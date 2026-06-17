@@ -1,0 +1,68 @@
+{
+  "cycle": 31,
+  "timestamp": "2026-03-26T09:18:05.358819",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 294
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 30.27s",
+      "time_ms": 35334
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 158889
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=64 (target \u226560) [3 samples]",
+      "time_ms": 66240
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4101
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2259
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Integrate cycle 21 misconception research into Galileo prompts \u2014 3 killer misconceptions + scaffolding in tutor.yml, proactive teacher warnings in teacher.yml",
+    "status": "done",
+    "files_changed": [
+      "nanobot/prompts/tutor.yml",
+      "nanobot/prompts/teacher.yml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "hypothesis"
+  },
+  "research": "DeepSeek: **Problemi:**\n1.  **Accesso internet inaffidabile e costoso:** In molte regioni, la connettivit\u00e0 \u00e8 scarsa, intermittente o troppo costosa, escludendo gli studenti da risorse educative online essenziali.\n2.  **Contenuti statici e non aggiornati:** Le soluzioni educative offline tradizionali (es. DVD, app native non aggiornate) diventano rapidamente obsolete, privando gli studenti di informazioni at",
+  "ai_scoring": null,
+  "composite_score": 0.9552,
+  "self_exam": null
+}

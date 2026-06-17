@@ -1,0 +1,625 @@
+{
+  "timestamp": "2026-04-16T09:30:00Z",
+  "auditor": "parity-audit-v2 (sample of 15 new experiments, 5 per volume)",
+  "previousAudit": "a1-volumes.json audited Vol1 Cap6-9 (15 experiments). This audit covers UNAUDITED territory: Vol1 Cap10-14, Vol2, Vol3.",
+  "totalAudited": 15,
+  "totalExperimentsInProject": 87,
+  "methodology": "For each sample: 1) locate ESPERIMENTO in /tmp/volN.txt 2) read book prose verbatim 3) compare bookText/bookInstructions in volume-references.js 4) compare components + steps in experiments-volN.js 5) measure similarity (letterale/parafrasi/invenzione) and flag discrepancies.",
+  "similarityScale": {
+    "exactQuote": "0.90-1.00 — citazione letterale o quasi letterale del libro",
+    "closeParaphrase": "0.70-0.89 — significato identico, parole diverse",
+    "distantParaphrase": "0.40-0.69 — concetto simile ma riformulato pesantemente",
+    "invention": "0.00-0.39 — contenuto non presente nel PDF"
+  },
+  "auditedExperiments": [
+    "v1-cap10-esp1", "v1-cap11-esp1", "v1-cap12-esp1", "v1-cap13-esp1", "v1-cap14-esp1",
+    "v2-cap3-esp1", "v2-cap6-esp1", "v2-cap7-esp1", "v2-cap8-esp1", "v2-cap10-esp1",
+    "v3-cap5-esp1", "v3-cap6-esp1", "v3-cap6-semaforo", "v3-cap7-esp1", "v3-cap7-esp5"
+  ],
+  "findings": [
+    {
+      "experimentId": "v1-cap10-esp1",
+      "bookPage": 82,
+      "pdfLocation": "/tmp/vol1.txt lines 1937-1992",
+      "parity": {
+        "bookText": {
+          "similarity": 0.93,
+          "note": "volume-references.bookText e' quasi letterale: 'Proviamo ad accendere un LED utilizzando un fotoresistore. Vogliamo che il LED sia spento se facciamo ombra al fotoresistore e acceso se invece e' esposto alla luce.' Il PDF lo riproduce verbatim alle righe 1939-1941. MATCH ESATTO."
+        },
+        "components": {
+          "match": false,
+          "missing": [],
+          "extra": ["resistor (220Ohm)"],
+          "severity": "high",
+          "note": "CONTRADDIZIONE PEDAGOGICA GRAVE: il PDF dichiara ESPLICITAMENTE 'In questo circuito non c'e' bisogno di inserire un resistore in serie al LED perche' il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED' (righe 1990-1992). Il simulatore INVECE aggiunge un resistore da 220Ohm nel circuito (componente r1 in components array di experiments-vol1.js riga 4202). Questo contraddice direttamente l'insegnamento del libro. Il bookQuote in volume-references.js cita correttamente la regola, ma l'experiment stesso la viola."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "none (first experiment of Cap10)",
+          "note": "Correttamente trattato come esperimento iniziale."
+        }
+      }
+    },
+    {
+      "experimentId": "v1-cap11-esp1",
+      "bookPage": 94,
+      "pdfLocation": "/tmp/vol1.txt lines 2226-2250",
+      "parity": {
+        "bookText": {
+          "similarity": 0.88,
+          "note": "volume-references.bookText 'Un cicalino non ha bisogno di resistori ma basta collegarlo direttamente alla batteria per farlo suonare' e' una PARAFRASI vicina di due frasi del PDF (righe 2213-2216) combinate. Il PDF ha formulazione piu' spezzata. Accettabile."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "components allineati: battery9v + breadboard-half + buzzer-piezo. PDF elenca esattamente 'Un cicalino, Una breadboard, Una batteria 9V, La clip per la batteria 9V' (righe 2230-2233)."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "none (first experiment of Cap11)",
+          "note": "PRIMO esperimento, non ha predecessori. Correttamente modellato."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "missing_detail",
+          "severity": "low",
+          "note": "Il PDF ha una nota importante (riga 2249-2250) sulla polarita' del cicalino alternativo: 'nel kit puoi trovare anche un cicalino con due piedini uno lungo (negativo) e uno corto (positivo)'. Il simulatore non trasmette questa informazione pratica."
+        }
+      ]
+    },
+    {
+      "experimentId": "v1-cap12-esp1",
+      "bookPage": 98,
+      "pdfLocation": "/tmp/vol1.txt lines 2305-2354",
+      "parity": {
+        "bookText": {
+          "similarity": 0.92,
+          "note": "volume-references.bookText 'In questo esperimento applicheremo quanto fatto prima, ma anziche' utilizzare il pulsante, utilizzeremo un interruttore magnetico' e' LETTERALE: il PDF dice esattamente le stesse parole alla riga 2307-2308."
+        },
+        "components": {
+          "match": false,
+          "missing": [],
+          "extra": [],
+          "severity": "low",
+          "note": "PDF dice 'Un LED, sceglilo del colore che ti piace di piu'!' (riga 2311-2312) - colore libero. Il simulatore fissa led1 color='red'. Pattern ricorrente gia' notato nell'audit precedente."
+        },
+        "narrative": {
+          "isContinuous": true,
+          "prevLink": "rimanda a Cap8 (pulsante)",
+          "note": "Il PDF esplicitamente dice 'applicheremo quanto fatto prima, ma anziche' utilizzare il pulsante' - c'e' un legame narrativo con Cap8. Il simulatore costruisce tutto da zero (13 buildSteps) senza esplicitare questo parallelo."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "missing_quote",
+          "severity": "low",
+          "note": "bookQuote 'Avvicina il magnete all'interruttore magnetico: il LED si accendera'!' e' correttamente in volume-references.js MA non appare nel campo observe di experiments-vol1.js. Il testo del simulatore osserva solo 'Avvicina il magnete: il LED si accende! Il reed switch e' un interruttore magnetico invisibile.' - parafrasi corretta ma non cita la frase esatta del libro."
+        }
+      ]
+    },
+    {
+      "experimentId": "v1-cap13-esp1",
+      "bookPage": 104,
+      "pdfLocation": "/tmp/vol1.txt lines 2441-2457",
+      "parity": {
+        "bookText": {
+          "similarity": 0.90,
+          "note": "volume-references.bookText 'Questo esperimento serve per capire il principio di funzionamento base dell'elettropongo' e' LETTERALE (PDF riga 2443-2444). Istruzioni bookInstructions sono riassuntive ma fedeli."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "components di experiments-vol1.js: battery9v + led (color 'white'). PDF elenca 'Un LED, sceglilo del colore che ti piace di piu', Una batteria 9V, L'elettropongo' (righe 2446-2449). L'elettropongo non e' un componente SVG, il flag simulable=false e' corretto. LED bianco e' una scelta fissa mentre PDF lascia libera scelta."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "none (Cap13 introduce un materiale nuovo)",
+          "note": "Correttamente trattato come esperimento autonomo."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "pedagogical_limitation",
+          "severity": "medium",
+          "note": "Il simulatore non puo' rappresentare visivamente le 'due striscettine di elettropongo' del libro. Il flag simulable=false + simulableReason='Richiede pasta conduttiva (elettropongo) - solo kit fisico' e' gestito correttamente. Ma il campo observe del simulatore dice 'l'elettropongo conduce corrente e chiude il circuito' che e' una parafrasi accettabile del concetto."
+        }
+      ]
+    },
+    {
+      "experimentId": "v1-cap14-esp1",
+      "bookPage": 107,
+      "pdfLocation": "/tmp/vol1.txt lines 2490-2600",
+      "parity": {
+        "bookText": {
+          "similarity": 0.75,
+          "note": "volume-references.bookText 'Costruiamo il nostro primo robot utilizzando la breadboard, tre potenziometri, resistenze da 220 Ohm e due LED verdi' e' una SINTESI corretta della prima parte del PDF (righe 2494-2521). Manca pero' menzione esplicita dell'interruttore magnetico e del LED RGB che il PDF include (righe 2556-2591) come componenti fondamentali del robot completo."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "experiments-vol1.js v1-cap14-esp1 components: battery9v, breadboard-full, 3x potentiometer, 4x resistor(220), 2x led(green), rgb-led, reed-switch. TUTTI i componenti del robot del PDF sono presenti: 3 potenziometri (riga 2498-2500), 2 LED verdi per gli occhi (riga 2512-2521), interruttore magnetico (riga 2556-2561), LED RGB per la mano (riga 2588-2591). Allineamento eccellente."
+        },
+        "narrative": {
+          "isContinuous": true,
+          "prevLink": "progetto finale che integra Cap7 (RGB), Cap9 (potenziometri), Cap12 (reed)",
+          "note": "Il PDF presenta il robot in 5 PASSI (1PASSO potenziometri, 2PASSO LED, 3PASSO fili, 4PASSO reed, 5PASSO RGB). Il simulatore ha 11+ buildSteps che ricostruiscono la sequenza. Pos e' corretta."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "missing_book_detail",
+          "severity": "medium",
+          "note": "Il PDF specifica posizioni ESATTE sulla breadboard per ogni componente (es. 'potenziometro n1 Pin e-1', 'Led1 gambetta lunga su g-15', 'piedino potenziometro j-2 con punto j-27'). Il simulatore usa le sue posizioni (es. 'reed1:pin1 bb1:c3') che NON CORRISPONDONO alle posizioni del libro. Uno studente che confronta libro e simulatore vedra' layout diversi. Il simulatore avrebbe dovuto copiare le posizioni fisiche esatte del libro per parallelismo totale."
+        },
+        {
+          "type": "missing_book_quote",
+          "severity": "low",
+          "note": "Il PDF chiude (riga 2597-2598): 'Appoggiando il magnete sul nostro amico gli si illumineranno gli occhi dalla felicita' e con i potenziometri potrai variare i colori al suo scettro!'. Questa frase pittoresca non e' in bookQuote di volume-references.js (null) ne' in observe del simulatore."
+        }
+      ]
+    },
+    {
+      "experimentId": "v2-cap3-esp1",
+      "bookPage": 17,
+      "pdfLocation": "/tmp/vol2.txt lines 437-506",
+      "parity": {
+        "bookText": {
+          "similarity": 0.95,
+          "note": "volume-references.bookText 'Controlliamo la carica della tua batteria da 9V! Oggi usiamo il multimetro per scoprire quanta carica c'e' in una batteria da 9V. E' come dare un'occhiata dentro per vedere se e' ancora piena o se sta per esaurirsi!' e' QUASI LETTERALE dal PDF (righe 439-442). Ottimo allineamento."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "simulator: battery9v + multimeter. PDF: 'Il multimetro, Una batteria da 9 Volt' (righe 445-446). Match perfetto."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "none (primo esperimento V2)",
+          "note": "Correttamente trattato come primo esperimento."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "missing_detail",
+          "severity": "medium",
+          "note": "PDF del libro include istruzioni pratiche importanti che il simulatore SEMPLIFICA: identificazione dei poli della batteria ('bottoncino piu' grande = negativo, piu' piccolo = positivo' righe 472-474), interpretazione dei valori ('9.XX = carica, 7.50 in giu' = da cambiare' righe 486-493), caso segno meno ('hai collegato al contrario' riga 505). Il campo steps di experiments-vol2.js riduce tutto a 4 righe generiche perdendo la ricchezza interpretativa del libro. volume-references.bookInstructions e' piu' ricco (7 punti) ma il simulatore ne usa solo 4."
+        },
+        {
+          "type": "missing_quote",
+          "severity": "low",
+          "note": "bookQuote 'Bene, ora sai come misurare le batterie!' in volume-references.js non ho trovato riscontro esatto nel PDF estratto (potrebbe essere troncato dall'estrattore). Va verificato con PDF originale."
+        }
+      ]
+    },
+    {
+      "experimentId": "v2-cap6-esp1",
+      "bookPage": 56,
+      "pdfLocation": "/tmp/vol2.txt lines 1598-1636",
+      "parity": {
+        "bookText": {
+          "similarity": 0.97,
+          "note": "volume-references.bookText 'In questo esperimento vedremo come utilizzare piu' LED in serie avendo un solo resistore di protezione del LED' e' LETTERALE dal PDF (righe 1600-1601)."
+        },
+        "components": {
+          "match": false,
+          "missing": [],
+          "extra": [],
+          "severity": "low",
+          "note": "experiments-vol2.js components: battery9v, breadboard-half, resistor(330), led(red), led(red). PDF dice 'due LED del colore che preferisci' (riga 1606) - libera scelta. Il simulatore fissa entrambi LED a 'red'. Pattern gia' notato altrove."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "primo esperimento Cap6 V2",
+          "note": "Correttamente trattato come primo esperimento."
+        }
+      }
+    },
+    {
+      "experimentId": "v2-cap7-esp1",
+      "bookPage": 67,
+      "pdfLocation": "/tmp/vol2.txt lines 1860-1897",
+      "parity": {
+        "bookText": {
+          "similarity": 0.82,
+          "note": "volume-references.bookText 'In questo esperimento osserveremo l'effetto di scarica del condensatore elettrolitico' e' LETTERALE (PDF riga 1861). Ma il simulatore's desc dice 'Tieni premuto il pulsante per caricare il condensatore da 1000uF. Rilascialo per scaricarlo attraverso R1kOhm.' - il libro NON menziona la scarica attraverso R1k in Esp1."
+        },
+        "components": {
+          "match": false,
+          "missing": [],
+          "extra": ["resistor (1000 Ohm) come percorso di scarica"],
+          "severity": "high",
+          "note": "DISCREPANZA STRUTTURALE: il PDF Esp1 elenca 'un condensatore da 1000uF, un pulsante, il multimetro, un filo colorato, un resistore da 1kOhm' (righe 1863-1867). MA dal testo del PDF (righe 1894-1897) emerge che la scarica avviene ATTRAVERSO IL MULTIMETRO: 'Il condensatore si comporta come una batteria momentanea e si scarica lentamente all'interno del multimetro. I puntali infatti si comportano come un resistore di valore molto elevato'. Quindi il resistore da 1kOhm listato nei materiali NON viene USATO per la scarica in Esp1 (probabilmente e' preparazione per Esp2 che invece collega un LED+R in uscita). Il simulatore invece INCORPORA il resistore da 1kOhm nel percorso di scarica, creando una costante di tempo tau=1s. Tecnicamente e' una pre-anticipazione di Esp2. PEDAGOGICAMENTE sbagliato: il libro vuole mostrare LA SCARICA LENTA attraverso l'alta impedenza del multimetro; il simulatore mostra una scarica piu' veloce attraverso R=1k."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "primo esperimento Cap7 V2",
+          "note": "E' primo esperimento, ma anticipa parte di Esp2 creando confusione sulle differenze tra i due."
+        }
+      }
+    },
+    {
+      "experimentId": "v2-cap8-esp1",
+      "bookPage": 78,
+      "pdfLocation": "/tmp/vol2.txt lines 2159-2218",
+      "parity": {
+        "bookText": {
+          "similarity": 0.96,
+          "note": "volume-references.bookText 'In questo esperimento vedremo come utilizzare il MOSFET come interruttore comandato da una tensione' e' LETTERALE (PDF riga 2160)."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "experiments-vol2.js components: battery9v, breadboard-half, mosfet-n, resistor(470), led(red). PDF elenca '1 transistor, 1 LED, Una breadboard, Una batteria 9V, La clip per la pila 9V, 1 resistore da 470 Ohm, 4 fili colorati' (righe 2162-2168). Allineamento completo (i fili sono gestiti come connections)."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "primo esperimento Cap8 V2",
+          "note": "Correttamente trattato come primo esperimento."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "ordering_issue",
+          "severity": "medium",
+          "note": "Il PDF presenta le istruzioni in UN ORDINE molto specifico: (1) clip alla batteria, (2) posiziona transistor, (3) collega SOURCE al negativo, (4) posiziona LED, (5) collega CATODO al drain, (6) resistore tra ANODO e breadboard, (7) collega source (DUPLICATO del punto 3 nel PDF - probabilmente refuso), (8) collega GATE al positivo. Il simulatore segue un ordine simile ma alcune connessioni sono raggruppate diversamente. Pattern generalmente ok."
+        }
+      ]
+    },
+    {
+      "experimentId": "v2-cap10-esp1",
+      "bookPage": 95,
+      "pdfLocation": "/tmp/vol2.txt lines 2566-2578",
+      "parity": {
+        "bookText": {
+          "similarity": 0.98,
+          "note": "volume-references.bookText 'In questo semplice esperimento vedremo come far girare il motore presente all'interno del kit' e' LETTERALE (PDF riga 2568)."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "simulator components: battery9v, breadboard-half, motor-dc. PDF elenca 'Una breadboard, Una batteria 9V, La clip per la pila 9V, Un motore' (righe 2571-2574). Match perfetto."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "primo esperimento Cap10 V2",
+          "note": "Correttamente trattato come primo esperimento."
+        }
+      }
+    },
+    {
+      "experimentId": "v3-cap5-esp1",
+      "bookPage": 47,
+      "pdfLocation": "/tmp/vol3.txt (Capitolo 5) - estrazione PDF incompleta, molti caratteri corrotti (ricetta, encoding)",
+      "parity": {
+        "bookText": {
+          "similarity": 0.60,
+          "note": "volume-references.bookText: 'Il capitolo introduce la struttura base di un programma Arduino con void setup() e void loop(), e il primo sketch Blink che fa lampeggiare il LED integrato sulla scheda.' Questo e' un RIASSUNTO inventato dal curator, non una citazione diretta dal PDF. Il PDF vol3.txt righe 630-735 contiene frammenti corrotti su setup() e pinMode che mostrano il contenuto e' presente ma l'estrattore ha perso struttura. Il simulatore's desc 'Il primo programma in assoluto!' e' una PARAFRASI didattica non letterale."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "simulator components: breadboard-half + nano-r4. L'esperimento Blink con LED_BUILTIN non richiede altri componenti. PDF conferma che il Blink iniziale usa il LED integrato."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "primo esperimento Cap5 V3",
+          "note": "Correttamente trattato come primo Blink."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "code_vs_book",
+          "severity": "low",
+          "note": "Il simulatore usa pin '13' diretto nel codice. Il PDF originale (vol3.txt riga 1044-1047) dice che Esp1 usa 'LED_BUILTIN' e l'Esp2 lo sostituisce con '13'. Il simulatore salta la distinzione pedagogica e parte direttamente da 13. volume-references.bookContext lo documenta correttamente."
+        }
+      ]
+    },
+    {
+      "experimentId": "v3-cap6-esp1",
+      "bookPage": 56,
+      "pdfLocation": "/tmp/vol3.txt lines 1002-1042",
+      "parity": {
+        "bookText": {
+          "similarity": 0.55,
+          "note": "DISCREPANZA DI CONTENUTO GRAVISSIMA: volume-references.bookText dice 'Primo esperimento con LED esterno su breadboard. Useremo un LED verde per riprodurre lo stesso effetto del LED BUILTIN, ma questa volta fuori dalla scheda.' - questo CORRISPONDE al PDF (righe 1032-1034). MA il title in experiments-vol3.js dice 'Cap. 6 Esp. 1 - Circuito AND/OR con pulsanti' che NON E' QUELLO CHE DICE IL LIBRO. Il simulatore's experiments-vol3.js v3-cap6-esp1 e' un esperimento COMPLETAMENTE DIVERSO (AND/OR logic con 2 pulsanti + LED) rispetto al PDF Esp1 (LED su D13 esterno)."
+        },
+        "components": {
+          "match": false,
+          "missing": ["nessuno nel PDF parla di 2 pulsanti"],
+          "extra": ["push-button (btn1)", "push-button (btn2)"],
+          "severity": "critical",
+          "note": "CRITICO: PDF Esp1 elenca '1 Arduino Nano, 1 breadboard, 1 LED rosso o verde, 1 resistenza 470, 1 cavetto jumper, Cavo USB-C' (righe 1003-1012). Il simulatore experiments-vol3.js v3-cap6-esp1 components: breadboard-half, nano-r4, push-button (x2), resistor(470), led(red). Ha DUE pulsanti non menzionati dal PDF Esp1. Non e' lo stesso esperimento. Questa e' una discrepanza strutturale: il simulatore v3-cap6-esp1 NON MAPPA all'Esp1 del libro. Il simulatore sembra aver rinominato l'esperimento ma mantenuto il title/chapter/num che causa confusione."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "PDF dice 'riproduce lo stesso effetto del LED BUILTIN ma fuori dalla scheda' - legame con Cap5 Esp1",
+          "note": "Il PDF vuole chiarire la continuita' da Cap5 (LED integrato) a Cap6 (LED esterno). Il simulatore rompe completamente questo arco narrativo introducendo AND/OR gates logiche che non sono nel libro."
+        }
+      }
+    },
+    {
+      "experimentId": "v3-cap6-semaforo",
+      "bookPage": 58,
+      "pdfLocation": "/tmp/vol3.txt lines 1144-1160",
+      "parity": {
+        "bookText": {
+          "similarity": 0.90,
+          "note": "volume-references.bookText 'Il semaforo: un link con piu' fasi. Verde su pin 5, Giallo su pin 6, Rosso su pin 7. Sequenza: Verde 3s, Giallo 1s, Rosso 3s.' - il PDF riga 1144-1157 conferma: 'Un semaforo e' solo: un link con piu' fasi' e elenca 'Verde pin 5, Giallo pin 6, Rosso pin 7'. Ma la sequenza 3/1/3 secondi e' inferita (non letteralmente nel PDF estratto - potrebbe essere corrotto)."
+        },
+        "components": {
+          "match": true,
+          "missing": [],
+          "extra": [],
+          "severity": "none",
+          "note": "simulator components: breadboard-half, nano-r4, 3x resistor(470), led(green), led(yellow), led(red). Match con PDF: 3 LED verdi/gialli/rossi."
+        },
+        "narrative": {
+          "isContinuous": true,
+          "prevLink": "estende Esp4 (sirena a 2 LED)",
+          "note": "Il PDF dice esplicitamente 'un link con piu' fasi' - richiamando l'esperimento precedente."
+        }
+      },
+      "extraIssues": [
+        {
+          "type": "pin_mismatch",
+          "severity": "high",
+          "note": "CRITICO: il PDF (riga 1151) specifica 'Rosso pin 7'. Il simulatore v3-cap6-semaforo usa 'Rosso pin 3' (nano1:W_D3 - connection da nano1:W_D3 a bb1:f16, codice digitalWrite(3, HIGH) per il rosso). DIFFERENZA ESPLICITA: il libro dice pin 7, il simulatore ha pin 3. Uno studente che segue entrambi vedra' disallineamento. volume-references.bookText dice correttamente 'Rosso su pin 7' ma poi il codice simulato usa pin 3. Incoerenza interna."
+        }
+      ]
+    },
+    {
+      "experimentId": "v3-cap7-esp1",
+      "bookPage": 65,
+      "pdfLocation": "/tmp/vol3.txt lines 1321-1357 (CAPITOLO 7 - Input/INPUT_PULLUP)",
+      "parity": {
+        "bookText": {
+          "similarity": 0.20,
+          "note": "DISCREPANZA CATASTROFICA: volume-references.js per v3-cap7-esp1 dichiara 'Arduino legge lo stato del pulsante con digitalRead() e decide cosa fare con if/else. Se il pulsante e' premuto accendi il LED, altrimenti spegnilo.' Questo CORRISPONDE al PDF Cap7 Esp 7.4 (righe 1368-1380) sul pulsante + if/else. MA il simulatore experiments-vol3.js v3-cap7-esp1 ha title 'Cap. 7 Esp. 1 - analogRead base' e code 'analogRead(A0)' + threshold >511 per LED. analogRead NON e' materia del PDF Cap7 del libro che e' esclusivamente su Input digitali (INPUT_PULLUP, digitalRead, if/else). Il simulatore sta descrivendo un esperimento del libro Cap8 (pin analogici) come se fosse Cap7."
+        },
+        "components": {
+          "match": false,
+          "missing": ["push-button (che il PDF Cap7 usa)"],
+          "extra": ["potentiometer (che e' del PDF Cap8)"],
+          "severity": "critical",
+          "note": "CRITICO: simulator components: nano-r4, potentiometer(10000), resistor(470), led(red). PDF Cap7 chiede UN PULSANTE (cavetto D2-pulsante-GND riga 1331-1334) non un potenziometro. Il potenziometro appartiene al Cap8 del libro. L'ID 'v3-cap7-esp1' nel simulatore e' SFASATO RISPETTO AL LIBRO: numero capitolo e contenuto non corrispondono."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "Non c'e' mapping con il PDF Cap7 Esp1 perche' il simulatore non rappresenta Cap7 del libro.",
+          "note": "L'ID experiments-vol3.js 'v3-cap7-esp1' non corrisponde all'Esp1 del Cap7 del libro."
+        }
+      }
+    },
+    {
+      "experimentId": "v3-cap7-esp5",
+      "bookPage": 77,
+      "pdfLocation": "/tmp/vol3.txt (Capitolo 8 - pin analogici) - estrazione corrotta ma si vedono 'I PIN ANALOGICI' riga 26 e 'ARDUINO I PARA A SENTIRE LE UANTIT'",
+      "parity": {
+        "bookText": {
+          "similarity": 0.30,
+          "note": "volume-references.js per v3-cap7-esp5 dice 'Primo programma analogico: leggo un numero e lo salvo in una scatolina (int). Uso analogRead(A0)' - questo mappa al Cap8 del libro (pin analogici). MA il simulatore experiments-vol3.js v3-cap7-esp5 ha title 'Cap. 7 Esp. 5 - PWM con valori manuali' e usa analogWrite + PWM (NON analogRead). Il PWM (analogWrite) non e' menzionato nel volume-references per questo ID. Doppio disallineamento: il volume-references dice analogRead, il simulator usa analogWrite, e ne' uno ne' l'altro e' Esp5 del Cap7 del libro (che sarebbe 'semaforo' - gia' assegnato a v3-cap6-semaforo)."
+        },
+        "components": {
+          "match": false,
+          "missing": ["nothing clear - inconsistent mapping"],
+          "extra": [],
+          "severity": "critical",
+          "note": "simulator components: nano-r4, resistor(470), led(red). Nessun potenziometro nonostante volume-references.bookText parli di potenziometro. Incoerenza interna tra volume-references.js e experiments-vol3.js per lo stesso ID."
+        },
+        "narrative": {
+          "isContinuous": false,
+          "prevLink": "indefinito - mapping rotto tra vol-ref e simulator",
+          "note": "Volume-references dice 'Primo programma analogico' (primo di Cap8 libro), simulator dice 'PWM con valori manuali' (potrebbe essere un altro esperimento di Cap8 o un esperimento extra). Mapping interno rotto."
+        }
+      }
+    }
+  ],
+  "criticalIssues": [
+    {
+      "id": "CI-01",
+      "type": "pedagogical_contradiction",
+      "severity": "high",
+      "location": "v1-cap10-esp1",
+      "detail": "Il libro esplicitamente dichiara NON servire un resistore in serie al LED con fotoresistore, ma il simulatore ne aggiunge uno da 220Ohm. Contraddice l'insegnamento del libro."
+    },
+    {
+      "id": "CI-02",
+      "type": "id_structural_mismatch",
+      "severity": "critical",
+      "location": "v3-cap6-esp1",
+      "detail": "experiments-vol3.js per v3-cap6-esp1 ha title 'Circuito AND/OR con pulsanti' e usa 2 pulsanti. Il libro Cap6 Esp1 e' invece 'LED esterno su D13' con un solo LED + resistore (vol3.txt righe 1002-1042). Completa discrepanza di contenuto."
+    },
+    {
+      "id": "CI-03",
+      "type": "id_structural_mismatch",
+      "severity": "critical",
+      "location": "v3-cap7-esp1",
+      "detail": "experiments-vol3.js per v3-cap7-esp1 ha title 'analogRead base' (materia del Cap8 libro: pin analogici). Il libro Cap7 e' invece su Input digitali (INPUT_PULLUP, digitalRead, if/else). v3-cap7-esp1 del simulatore non mappa al Cap7 del libro."
+    },
+    {
+      "id": "CI-04",
+      "type": "internal_inconsistency",
+      "severity": "critical",
+      "location": "v3-cap7-esp5",
+      "detail": "volume-references.js per v3-cap7-esp5 dice 'analogRead + int valore' (bookContext 'Primo programma con analogRead'). Ma experiments-vol3.js per lo stesso ID dice 'PWM con valori manuali' con analogWrite. I due file del progetto si contraddicono per lo stesso experimentId."
+    },
+    {
+      "id": "CI-05",
+      "type": "pin_mismatch",
+      "severity": "high",
+      "location": "v3-cap6-semaforo",
+      "detail": "Il libro (vol3.txt riga 1151) specifica 'Rosso pin 7'. Il simulatore usa 'Rosso pin 3'. Disallineamento fisico tra libro e simulatore."
+    },
+    {
+      "id": "CI-06",
+      "type": "extra_component",
+      "severity": "high",
+      "location": "v2-cap7-esp1",
+      "detail": "Il libro elenca un R=1kOhm nei materiali ma l'Esp1 PROPOSITAMENTE mostra la scarica attraverso l'alta impedenza del multimetro (non attraverso R). Il simulatore scarica attraverso R=1kOhm creando tau=1s invece della scarica lenta intesa dal libro. Pedagogicamente cambia il messaggio."
+    },
+    {
+      "id": "CI-07",
+      "type": "narrative_continuity_break",
+      "severity": "medium",
+      "location": "v1-cap12-esp1",
+      "detail": "Il libro dice 'applicheremo quanto fatto prima [pulsante], ma anziche' utilizzarlo, useremo un interruttore magnetico'. Il simulatore non esplicita questo parallelo narrativo con Cap8 (pulsante)."
+    },
+    {
+      "id": "CI-08",
+      "type": "missing_detail",
+      "severity": "medium",
+      "location": "v2-cap3-esp1",
+      "detail": "Il libro include istruzioni interpretative ricche (identificare poli, leggere valori, capire segno meno). Il simulatore steps riduce tutto a 4 righe generiche perdendo il valore pedagogico."
+    },
+    {
+      "id": "CI-09",
+      "type": "color_freedom_vs_fixed",
+      "severity": "low",
+      "location": "v1-cap12-esp1, v1-cap13-esp1, v2-cap6-esp1",
+      "detail": "Pattern ricorrente: il libro dice 'LED del colore che preferisci', il simulatore fissa un colore. Gia' notato nell'audit precedente."
+    },
+    {
+      "id": "CI-10",
+      "type": "missing_breadboard_position",
+      "severity": "medium",
+      "location": "v1-cap14-esp1",
+      "detail": "Il libro Cap14 specifica posizioni esatte su breadboard (es. 'potenziometro n1 Pin e-1', 'Led1 gambetta lunga su g-15'). Il simulatore usa posizioni diverse, creando disallineamento visivo col libro."
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "ID-content misalignment in Vol3",
+      "count": 3,
+      "affectedIds": ["v3-cap6-esp1", "v3-cap7-esp1", "v3-cap7-esp5"],
+      "severity": "critical",
+      "explanation": "Per Vol3 esistono ESPERIMENTI CON IDs che non corrispondono ai capitoli del libro. L'ID suggerisce il capitolo del libro (es. 'v3-cap7-esp1' = Cap7 Esp1), ma il contenuto e' di un altro capitolo o un'invenzione del simulatore. Causa: mapping ID-libro creato senza verificare il contenuto effettivo del PDF. Richiede rinomina o migrazione ID."
+    },
+    {
+      "pattern": "volume-references <-> experiments-volN inconsistency",
+      "count": 2,
+      "affectedIds": ["v3-cap7-esp1", "v3-cap7-esp5"],
+      "severity": "critical",
+      "explanation": "Per lo stesso experimentId, volume-references.js e experiments-volN.js descrivono ESPERIMENTI DIVERSI. Chi legge volume-references.js vede l'esperimento del libro; chi apre il simulatore vede un esperimento diverso. Dual source of truth rotto."
+    },
+    {
+      "pattern": "Added components that the book excludes",
+      "count": 2,
+      "affectedIds": ["v1-cap10-esp1", "v2-cap7-esp1"],
+      "severity": "high",
+      "explanation": "Il simulatore aggiunge componenti che il libro spiega esplicitamente di NON usare, o li usa in ruoli diversi da quelli del libro."
+    },
+    {
+      "pattern": "LED color fixed vs libera scelta",
+      "count": 3,
+      "affectedIds": ["v1-cap12-esp1", "v1-cap13-esp1", "v2-cap6-esp1"],
+      "severity": "low",
+      "explanation": "Pattern continuo anche nell'audit precedente. Il libro lascia libera scelta del colore LED, il simulatore ne fissa uno."
+    },
+    {
+      "pattern": "Narrative continuity breaks",
+      "count": 2,
+      "affectedIds": ["v1-cap12-esp1", "v2-cap7-esp1"],
+      "severity": "medium",
+      "explanation": "Il libro spesso presenta un esperimento come modifica/estensione del precedente. Il simulatore ricostruisce tutto da zero perdendo il legame narrativo."
+    }
+  ],
+  "summary": {
+    "criticalSeverity": 4,
+    "highSeverity": 3,
+    "mediumSeverity": 4,
+    "lowSeverity": 3,
+    "bestAlignedExperiments": [
+      "v2-cap3-esp1 (0.95 similarity, componenti match)",
+      "v2-cap6-esp1 (0.97 similarity bookText)",
+      "v2-cap10-esp1 (0.98 similarity)",
+      "v1-cap12-esp1 (0.92 similarity, componenti match)",
+      "v1-cap13-esp1 (0.90 similarity)"
+    ],
+    "worstAlignedExperiments": [
+      "v3-cap7-esp1 (0.20 similarity - ESPERIMENTO SBAGLIATO)",
+      "v3-cap7-esp5 (0.30 similarity - INCONSISTENZA INTERNA vol-ref vs simulator)",
+      "v3-cap6-esp1 (0.55 similarity - ESPERIMENTO DIVERSO dal libro)",
+      "v3-cap5-esp1 (0.60 similarity - bookText e' riassunto curato, non citazione)"
+    ],
+    "overallAssessment": "Vol1 e Vol2 hanno allineamento BUONO (similarity media 0.90) con pattern noti gia' documentati nell'audit precedente (LED colore fisso, continuita' narrativa rotta). Vol3 ha problemi STRUTTURALI GRAVI: 3 su 5 esperimenti auditati hanno ID che non corrispondono al contenuto del libro, e 2 hanno inconsistenza interna tra volume-references.js e experiments-vol3.js. Il Vol3 appare essere stato costruito PRIMA con logica propria (esp1..esp5 sequenziali per capitolo simulatore) e solo DOPO associato ai capitoli del libro, creando falso parallelismo."
+  },
+  "recommendations": [
+    {
+      "priority": "P0",
+      "recommendation": "Rimappare gli ID di Vol3 sui capitoli reali del libro. Il PDF Vol3 ha questa struttura: Cap5=programma base (setup/loop/pinMode), Cap6=pin digitali OUTPUT (LED esterno, Blink variato, semaforo), Cap7=pin INPUT (pulsante, INPUT_PULLUP, if/else), Cap8=pin analogici (potenziometro, analogRead, int), Cap9-12=progetti avanzati. Gli ID attuali sono sfasati.",
+      "affectedIds": ["v3-cap6-esp1", "v3-cap7-esp1", "v3-cap7-esp5", "tutto il namespace v3-cap7-*, v3-cap8-*"]
+    },
+    {
+      "priority": "P0",
+      "recommendation": "Per v1-cap10-esp1: rimuovere il resistore da 220Ohm per allinearsi all'insegnamento esplicito del libro che dichiara inutile questo resistore.",
+      "affectedIds": ["v1-cap10-esp1"]
+    },
+    {
+      "priority": "P0",
+      "recommendation": "Per v3-cap6-semaforo: cambiare Rosso da pin 3 a pin 7 come nel libro. Aggiornare anche il codice Arduino, i connections e i buildSteps.",
+      "affectedIds": ["v3-cap6-semaforo"]
+    },
+    {
+      "priority": "P1",
+      "recommendation": "Per v2-cap7-esp1: spiegare nel campo observe/note che la scarica intesa dal libro e' attraverso l'impedenza del multimetro, non attraverso il resistore. Se si vuole mantenere R=1kOhm per simulazione piu' rapida, aggiungere nota: 'Il simulatore usa R=1kOhm per rendere visibile la scarica in pochi secondi. Nel libro la scarica avviene attraverso l'impedenza del multimetro stesso e dura diversi minuti'.",
+      "affectedIds": ["v2-cap7-esp1"]
+    },
+    {
+      "priority": "P1",
+      "recommendation": "Risolvere inconsistenza interna: per ogni experimentId assicurare che volume-references.js e experiments-volN.js descrivano LO STESSO esperimento (stesso titolo, stessi componenti principali, stesso obiettivo pedagogico). Auditare tutti i 87 esperimenti non solo i sample auditati.",
+      "affectedIds": ["v3-cap7-esp1", "v3-cap7-esp5", "possibly others"]
+    },
+    {
+      "priority": "P2",
+      "recommendation": "Aggiungere al schema di experiments-volN.js un campo 'bookQuoteLiteral' per contenere la citazione esatta del libro da mostrare in UI. Oggi observe e desc sono parafrasi. Il principio zero ELAB dice 'stesse parole del libro'.",
+      "affectedIds": ["tutti"]
+    },
+    {
+      "priority": "P2",
+      "recommendation": "Aggiungere al schema un campo 'prevExperimentId' per modellare la continuita' narrativa del libro (es. v1-cap12-esp1.prevExperimentId = 'v1-cap8-esp1' perche' il libro dice 'applicheremo quanto fatto prima'). Cosi' l'UI puo' mostrare 'Parti dal circuito di [link]' come fa il libro.",
+      "affectedIds": ["v1-cap12-esp1", "v1-cap10-esp5", "v1-cap10-esp6", "v2-cap4-esp3", "v2-cap6-esp2", "v2-cap6-esp3", "v2-cap7-esp2", "v2-cap7-esp3", "v2-cap7-esp4", "v2-cap8-esp2", "v2-cap8-esp3", "v2-cap10-esp2", "v2-cap10-esp3", "v2-cap10-esp4"]
+    },
+    {
+      "priority": "P2",
+      "recommendation": "Per v1-cap14-esp1 (robot): aggiungere un'opzione 'modalita' libro' che posiziona i componenti nelle posizioni fisiche ESATTE del libro (e-1, e-5, e-9 per potenziometri, g-15/g-16 per LED, etc.) per parallelismo visivo totale.",
+      "affectedIds": ["v1-cap14-esp1"]
+    },
+    {
+      "priority": "P3",
+      "recommendation": "Unificare pattern 'LED colore fisso vs libera scelta' aggiungendo al components un flag 'colorFixed: false' che permette allo studente di cambiare colore nel simulatore, restando fedele al libro.",
+      "affectedIds": ["v1-cap6-esp1", "v1-cap8-esp1", "v1-cap10-esp1", "v1-cap12-esp1", "v1-cap13-esp1", "v2-cap6-esp1", "v2-cap8-esp1"]
+    }
+  ],
+  "nextSteps": [
+    "Estendere audit agli ALTRI 72 esperimenti non auditati (15 auditati in a1-volumes.json + 15 auditati qui = 30 auditati; restanti 57)",
+    "Priorita' massima: completare audit Vol3 che ha il maggior numero di discrepanze strutturali",
+    "Verificare se PDF Vol3 estratto (/tmp/vol3.txt) ha perso dati per encoding - alcuni caratteri mancano (U PU invece di OUTPUT, I invece di HIGH). Riconsiderare estrazione con pdftotext -layout o OCR"
+  ],
+  "auditLog": [
+    {
+      "session": "2026-04-16T09:30:00Z",
+      "auditor": "parity-audit-v2 (15 nuovi esperimenti)",
+      "audited": [
+        "v1-cap10-esp1", "v1-cap11-esp1", "v1-cap12-esp1", "v1-cap13-esp1", "v1-cap14-esp1",
+        "v2-cap3-esp1", "v2-cap6-esp1", "v2-cap7-esp1", "v2-cap8-esp1", "v2-cap10-esp1",
+        "v3-cap5-esp1", "v3-cap6-esp1", "v3-cap6-semaforo", "v3-cap7-esp1", "v3-cap7-esp5"
+      ],
+      "notes": "Audit di 15 esperimenti NON auditati dall'a1-volumes.json. Focus su: bookText literal vs parafrasi vs invenzione, components missing/extra, narrative continuity, bug pattern 'libera esplorazione cristallizzata'. SCOPERTA PRINCIPALE: Vol3 ha 3/5 esperimenti con ID sfasati rispetto al libro, 2/5 con inconsistenza interna tra volume-references.js e experiments-vol3.js. Vol1 e Vol2 hanno pattern noti ma sono globalmente allineati. La discrepanza piu' grave concettualmente e' v1-cap10-esp1: il libro dichiara NON servire un resistore ma il simulatore ne aggiunge uno (contraddizione diretta dell'insegnamento)."
+    }
+  ]
+}

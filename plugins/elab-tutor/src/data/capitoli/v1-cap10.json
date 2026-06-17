@@ -1,0 +1,1719 @@
+{
+  "id": "v1-cap10",
+  "volume": 1,
+  "capitolo": 10,
+  "type": "experiment",
+  "titolo": "Cos'è un fotoresistore?",
+  "titolo_classe": "Cos'è un fotoresistore?",
+  "pageStart": 81,
+  "pageEnd": 92,
+  "theory": {
+    "testo_classe": "Cos'è un fotoresistore?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v1-cap10-esp1",
+      "num": 1,
+      "title_classe": "La fotoresistenza sente la luce",
+      "title_docente": "La fotoresistenza sente la luce",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 1,
+          "icon": "☀️"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 220
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a6",
+              "to": "bb1:a7",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a11",
+              "to": "bb1:bus-top-minus-11",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Ricordate il potenziometro? Cambiava resistenza girando la manopola. Ora vi mostro un componente che cambia resistenza DA SOLO — reagisce alla luce!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi i ragazzi scoprono la fotoresistenza — un componente che cambia resistenza DA SOLO in base alla luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Ricorda il potenziometro: 'La manopola cambiava la resistenza. Ma se il componente reagisse alla LUCE da solo, senza manopola?' La fotoresistenza non ha polarità."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione la fotoresistenza: 2 piedini, senza polarità. Va collegata uno dopo l'altro con il LED e il resistore di protezione.",
+            "spunto_per_classe": null,
+            "note": [
+              "Dai la fotoresistenza prima di montare il circuito. Chiedi: 'Cosa notate quando la coprite con la mano?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Cosa succede al LED quando copri la fotoresistenza con la mano? E quando la illumini con la torcia del telefono?",
+            "spunto_per_classe": "Domanda: 'Il circuito può 'sentire' se c'è luce o buio? Come fa la fotoresistenza a sapere?'",
+            "note": [
+              "Serve un ambiente non troppo illuminato per vedere la differenza. Coprire completamente con la mano, poi illuminare con torcia."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Non vedono differenza di luminosità",
+                "soluzione_neutra": "Serve una stanza non troppo illuminata. Coprire completamente con la mano, poi illuminare con torcia del telefono."
+              },
+              {
+                "problema": "Fotoresistenza al posto sbagliato",
+                "soluzione_neutra": "Va collegata nella stessa fila del LED, come una resistenza normale. È come il potenziometro, ma la manopola è la luce stessa."
+              },
+              {
+                "problema": "LED sempre spento o sempre acceso",
+                "soluzione_neutra": "Controllare il valore della resistenza fissa — se troppo alto, il LED non si accende mai."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Muovi il cursore! Con luce il LED si accende perché la fotoresistenza ha poca resistenza. Al buio si spegne perché la resistenza è alta. Il primo SENSORE!",
+            "analogies": [
+              {
+                "concept": "fotoresistenza",
+                "text": "La fotoresistenza è come un guardiano che apre il cancello quando c'è luce e lo chiude quando è buio. Non hai bisogno di toccarlo — reagisce da solo!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "sensore_luce",
+                "text": "È il primo componente che 'sente' il mondo esterno! Come i tuoi occhi sentono la luce, la fotoresistenza sente la luce e cambia il circuito.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e muovi il cursore luminosità sulla fotoresistenza. Con luce il LED si accende, al buio si spegne!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia la fotoresistenza. Spiega: 'Con luce, la porta si apre e la corrente passa. Al buio, la porta si chiude.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:ldr1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La fotoresistenza è un sensore: sente la luce e cambia resistenza da sola! Con luce → poca resistenza → LED acceso. Al buio → tanta resistenza → LED spento.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto il primo SENSORE — un componente che reagisce al mondo esterno senza che lo tocchiamo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Dove ci sono sensori di luce nella vita reale?' (lampioni, luci auto, telefono). E: 'Possiamo farlo al contrario? LED acceso AL BUIO?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'è come il potenziometro ma automatico' → ha fatto il collegamento concettuale chiave",
+        "Se copre la LDR e nota il cambiamento → apprendimento per scoperta funziona",
+        "Se chiede 'possiamo fare che si accende AL BUIO?' → pensiero inverso, pronto per esp 2"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "fotoresistenza_sensore",
+          "resistenza_ambiente"
+        ],
+        "next_suggested": "v1-cap10-esp2",
+        "resume_message": "L'ultima volta avete scoperto la fotoresistenza — il primo sensore! Ora facciamo la luce notturna automatica."
+      }
+    },
+    {
+      "id": "v1-cap10-esp2",
+      "num": 2,
+      "title_classe": "LED diverso colore con LDR",
+      "title_docente": "LED diverso colore con LDR",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 1,
+          "icon": "☀️"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED blu",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap10-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "blue"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a6",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a9",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a11",
+                      "to": "bb1:bus-top-minus-11",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "La fotoresistenza accendeva il LED rosso facilmente. Ma il LED blu ha bisogno di più o meno luce?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi cambiamo il LED: da rosso a blu. Serve la stessa quantità di luce per accenderlo? Scopriamolo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Stesso circuito dell'esperimento 1 ma con LED blu. Il blu ha bisogno di più corrente, quindi serve più luce sulla fotoresistenza."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Stesso circuito dell'esperimento 1, ma con LED blu. Muovi il cursore luce e confronta il punto di accensione.",
+            "spunto_per_classe": null,
+            "note": [
+              "Se possibile, mostra il confronto: prima carica l'esperimento 1 (LED rosso), poi questo (LED blu). La differenza è visibile."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Muovi il cursore luce: il LED blu si accende con più luce del rosso! Perché?",
+            "spunto_per_classe": "Domanda: 'Se il blu si accende con più luce, quale colore di LED si accenderebbe per primo in una stanza che si illumina lentamente?'",
+            "note": [
+              "Il LED blu ha bisogno di più corrente per accendersi. La fotoresistenza deve avere una resistenza più bassa (=più luce) per fornire abbastanza corrente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Non vedono differenza con il rosso",
+                "soluzione_neutra": "Confronta con il ricordo dell'esperimento 1: il rosso si accendeva con meno luce. Il blu ha bisogno di più luce."
+              },
+              {
+                "problema": "Pensano che il LED sia difettoso",
+                "soluzione_neutra": "Il LED funziona! Ogni colore ha bisogno di una quantità diversa di corrente. Il blu è il più 'esigente'."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED blu si accende con più luce del rosso! Ogni colore ha una soglia diversa: il rosso è il più facile da accendere, il blu il più esigente.",
+            "analogies": [
+              {
+                "concept": "soglia_colore_ldr",
+                "text": "Ogni LED è come un cane diverso: il chihuahua (rosso) si sveglia con un sussurro, il San Bernardo (blu) ha bisogno di un grido forte!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "sensore_soglia",
+                "text": "La fotoresistenza è come un cancello automatico: quando c'è abbastanza luce (abbastanza persone), si apre. Ma il cancello del blu è più pesante!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e muovi il cursore: il LED blu si accende con più luce del rosso! Ogni colore ha la sua soglia.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia la fotoresistenza e il LED. Spiega: 'Il blu è più esigente — ha bisogno che la fotoresistenza lasci passare più corrente.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:ldr1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Ogni colore di LED ha una soglia diversa: il rosso si accende facilmente, il blu ha bisogno di più luce. La fotoresistenza 'apre il cancello' in base alla luce!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto che ogni colore di LED ha una soglia diversa con la fotoresistenza. Il blu è il più esigente!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se mettessimo 3 fotoresistenze, una per ogni colore del LED RGB?' Anticipa l'esperimento 3."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'il blu ha bisogno di più luce' → ha capito il concetto",
+        "Se confronta con l'esperimento 1 → capacità di collegamento",
+        "Se chiede del verde → curiosità esplorativa"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "soglia_led_colore_ldr",
+          "confronto_sensibilita"
+        ],
+        "next_suggested": "v1-cap10-esp3",
+        "resume_message": "L'ultima volta avete scoperto che il blu è più esigente! Ora: 3 fotoresistenze per 3 colori."
+      }
+    },
+    {
+      "id": "v1-cap10-esp3",
+      "num": 3,
+      "title_classe": "3 LDR controllano RGB",
+      "title_docente": "3 LDR controllano RGB",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 3,
+          "icon": "☀️"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 3,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🌈"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 12,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap10-esp2",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr2"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr3"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 220
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 220
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-11",
+                      "to": "bb1:a11",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:a5",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a6",
+                      "to": "bb1:a19",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a8",
+                      "to": "bb1:a9",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:a10",
+                      "to": "bb1:a21",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:a12",
+                      "to": "bb1:a13",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:a14",
+                      "to": "bb1:a22",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:a20",
+                      "to": "bb1:bus-top-minus-20",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "La lampada RGB aveva 3 manopole. E se le manopole fossero sostituite da 3 SENSORI di luce? Il circuito 'vedrebbe' la luce!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi 3 fotoresistenze controllano i 3 colori del LED RGB! Copri o illumina ogni sensore per cambiare colore.",
+            "spunto_per_classe": null,
+            "note": [
+              "Tre canali indipendenti: LDR1→R1→rosso, LDR2→R2→verde, LDR3→R3→blu. Ogni fotoresistenza controlla un solo canale."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione i 3 blocchi: ogni fotoresistenza è collegata a un resistore che va a un canale diverso del LED RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il circuito è grande ma modulare: 3 blocchi identici (LDR→R→canale) che condividono lo stesso LED RGB."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Copri una fotoresistenza alla volta: quale colore si spegne? Illuminale tutte: il LED diventa bianco!",
+            "spunto_per_classe": "Domanda: 'Come fareste a creare il viola usando solo le mani e le fotoresistenze? (copri il verde!)'",
+            "note": [
+              "Se un canale non risponde, controllare il collegamento specifico LDR→R→canale. Ogni blocco è indipendente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Un canale non risponde alla luce",
+                "soluzione_neutra": "Controllo il collegamento: la fotoresistenza deve essere collegata al resistore, e il resistore al canale corrispondente."
+              },
+              {
+                "problema": "Tutti i colori si accendono/spengono insieme",
+                "soluzione_neutra": "Le 3 fotoresistenze devono avere ognuna il proprio collegamento al bus positivo. Non devono condividere il segnale."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "3 sensori = 3 colori indipendenti! Copri il verde: rosso+blu = viola. Copri il rosso: verde+blu = ciano. Il circuito 'vede' la luce!",
+            "analogies": [
+              {
+                "concept": "sensori_indipendenti",
+                "text": "Le 3 fotoresistenze sono come 3 finestre colorate: ogni finestra lascia entrare luce per il suo colore. Chiudendo una finestra, quel colore scompare!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "circuito_che_sente",
+                "text": "Per la prima volta il circuito 'sente' il mondo esterno da 3 punti diversi! È come avere 3 occhi, ognuno per un colore.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e sperimenta con la luce! Ogni fotoresistenza controlla un colore. Copri il verde: resta rosso+blu = viola!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia le 3 fotoresistenze. Chiedi di creare colori specifici coprendo le giuste combinazioni."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:ldr1]",
+            "[AZIONE:highlight:ldr2]",
+            "[AZIONE:highlight:ldr3]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "3 fotoresistenze controllano 3 colori indipendentemente! Coprendo le giuste combinazioni puoi creare qualsiasi colore. Il circuito 'vede' la luce da 3 punti diversi.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo costruito un circuito con 3 sensori indipendenti — il circuito 'vede' la luce da 3 punti!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Dove si usano più sensori di luce nella vita reale?' (telecamere, robot, sensori di parcheggio)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se crea il viola coprendo il verde → ha capito il controllo indipendente",
+        "Se dice '3 finestre per 3 colori' → ha interiorizzato l'analogia",
+        "Se nota che tutti illuminati = bianco → sintesi additiva confermata"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "multi_sensore_rgb",
+          "controllo_indipendente_luce"
+        ],
+        "next_suggested": "v1-cap10-esp4",
+        "resume_message": "L'ultima volta avete usato 3 sensori per 3 colori! Ora: catena di luce, un LED ne accende un altro."
+      }
+    },
+    {
+      "id": "v1-cap10-esp4",
+      "num": 4,
+      "title_classe": "LED bianco illumina LDR → LED blu",
+      "title_docente": "LED bianco illumina LDR → LED blu",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED bianco",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 1,
+          "icon": "☀️"
+        },
+        {
+          "name": "LED blu",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 10,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap10-esp3",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+                    },
+                    {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "blue"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-bot-plus-5",
+                      "to": "bb1:j5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a12",
+                      "to": "bb1:a14",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a15",
+                      "to": "bb1:bus-top-minus-15",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:j6",
+                      "to": "bb1:j14",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:j15",
+                      "to": "bb1:bus-bot-minus-15",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-bot-minus-1",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Due circuiti che non sono collegati da fili possono comunicare? Sì — attraverso la LUCE!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi un LED ne accende un altro! Il LED bianco illumina la fotoresistenza, che accende il LED blu. Una catena di luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Due circuiti separati che comunicano attraverso la luce. Il LED bianco è nel circuito 1 (sopra), la fotoresistenza e il LED blu nel circuito 2 (sotto)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione i due circuiti: sopra il LED bianco con il suo resistore, sotto la fotoresistenza con il LED blu.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione che i due circuiti non hanno fili in comune (tranne la batteria). Comunicano solo attraverso la luce!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED bianco è acceso: il LED blu si accende? Copri la fotoresistenza con la mano: cosa succede?",
+            "spunto_per_classe": "Domanda: 'I due circuiti non hanno fili in comune. Come fa il LED bianco a 'parlare' con il LED blu?'",
+            "note": [
+              "Se il LED blu non si accende, la fotoresistenza potrebbe essere troppo lontana dal LED bianco. Devono essere vicini."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED blu non si accende",
+                "soluzione_neutra": "La fotoresistenza deve essere illuminata dal LED bianco. Avvicina i due componenti o aumenta la luminosità."
+              },
+              {
+                "problema": "Pensano che i circuiti siano collegati",
+                "soluzione_neutra": "Guarda bene: non ci sono fili tra il LED bianco e la fotoresistenza. Comunicano solo attraverso la luce!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Catena di luce! LED bianco → luce → fotoresistenza → corrente → LED blu. Due circuiti che comunicano senza fili, solo con la luce!",
+            "analogies": [
+              {
+                "concept": "accoppiamento_ottico",
+                "text": "È come il gioco del telefono con le torce: il LED bianco 'parla' con la luce, la fotoresistenza 'ascolta' e trasmette il messaggio al LED blu!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "comunicazione_luce",
+                "text": "I telecomandi della TV funzionano così! Un LED infrarosso manda un segnale luminoso, e un sensore nella TV lo riceve.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: il LED bianco illumina la fotoresistenza che accende il LED blu! Luce → sensore → luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il LED bianco e la fotoresistenza. Spiega: 'Questo è un accoppiamento ottico — due circuiti che parlano con la luce.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:ldr1]",
+            "[AZIONE:highlight:led2]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Due circuiti possono comunicare attraverso la luce! Il LED bianco illumina la fotoresistenza, che accende il LED blu. Nessun filo in comune — solo luce. Come il telecomando della TV!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto l'accoppiamento ottico: due circuiti che comunicano attraverso la luce, senza fili!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se potessi regolare la luminosità del LED bianco con una manopola?' Anticipa l'esperimento 5."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'comunicano con la luce' → ha capito l'accoppiamento ottico",
+        "Se copre l'LDR e il blu si spegne → conferma sperimentale",
+        "Se fa il collegamento con il telecomando → trasferimento concettuale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "accoppiamento_ottico",
+          "comunicazione_luce"
+        ],
+        "next_suggested": "v1-cap10-esp5",
+        "resume_message": "L'ultima volta avete fatto comunicare due circuiti con la luce! Ora aggiungiamo il controllo con la manopola."
+      }
+    },
+    {
+      "id": "v1-cap10-esp5",
+      "num": 5,
+      "title_classe": "Aggiungi pot per controllare LED bianco",
+      "title_docente": "Aggiungi pot per controllare LED bianco",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED bianco",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 1,
+          "icon": "☀️"
+        },
+        {
+          "name": "LED blu",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 12,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap10-esp4",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+                    },
+                    {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "blue"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-bot-plus-5",
+                      "to": "bb1:j5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a3",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a14",
+                      "to": "bb1:a16",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a17",
+                      "to": "bb1:bus-top-minus-17",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:j6",
+                      "to": "bb1:j14",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:j15",
+                      "to": "bb1:bus-bot-minus-15",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-bot-minus-1",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "La scorsa volta il LED bianco era sempre acceso. E se potessimo REGOLARE la sua luminosità? Come cambierebbe il LED blu?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi aggiungiamo il potenziometro al circuito! La manopola regola il LED bianco, che a sua volta controlla il LED blu attraverso la fotoresistenza.",
+            "spunto_per_classe": null,
+            "note": [
+              "Catena a 3 livelli: potenziometro → LED bianco → luce → fotoresistenza → LED blu. Ogni livello influenza il successivo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito: il potenziometro controlla il LED bianco (sopra). La fotoresistenza e il LED blu sono sotto.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione la catena: 'Girando la manopola, regoli il LED bianco. Il LED bianco illumina la fotoresistenza. La fotoresistenza accende il LED blu.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp5]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola: il LED bianco cambia luminosità. Cosa succede al LED blu?",
+            "spunto_per_classe": "Domanda: 'Stai girando una manopola, ma il LED blu cambia luminosità senza essere collegato alla manopola. Come è possibile?'",
+            "note": [
+              "Se il LED blu non cambia, la fotoresistenza potrebbe non ricevere abbastanza luce. Avvicinare LED bianco e fotoresistenza."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED blu non risponde alla manopola",
+                "soluzione_neutra": "Controllo che il LED bianco sia abbastanza vicino alla fotoresistenza. La luce del LED bianco deve colpire il sensore."
+              },
+              {
+                "problema": "Non capiscono la catena indiretta",
+                "soluzione_neutra": "La manopola non è collegata al LED blu! La catena è: manopola → LED bianco → luce → fotoresistenza → LED blu."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Controllo a catena! Manopola → LED bianco → luce → fotoresistenza → LED blu. Giri una manopola ma controlli un LED che non è collegato direttamente!",
+            "analogies": [
+              {
+                "concept": "controllo_indiretto",
+                "text": "È come dire qualcosa all'orecchio di un amico che lo ripete a un altro amico: il messaggio arriva, ma passa attraverso un intermediario (la luce)!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "catena_reazione",
+                "text": "Come una fila di domino: spingi la prima tessera (manopola), e l'effetto si propaga fino all'ultima (LED blu), anche se non le hai toccate!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira la manopola: il LED bianco cambia, e il LED blu lo segue! Controllo indiretto a catena!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro e il LED blu. Spiega: 'Giri la manopola ma controlli il LED blu indirettamente, attraverso la luce.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:led2]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Controllo indiretto: la manopola regola il LED bianco, che illumina la fotoresistenza, che accende il LED blu. Come una catena di domino — ogni pezzo influenza il successivo!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto il controllo indiretto: la manopola controlla il LED blu attraverso una catena di luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se aggiungessimo un pulsante ON/OFF prima di tutto?' Anticipa l'esperimento 6."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'la manopola controlla il blu indirettamente' → ha capito la catena",
+        "Se nota il ritardo tra manopola e LED blu → osservazione fine",
+        "Se suggerisce 'aggiungi un pulsante' → pensiero progettuale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "controllo_indiretto",
+          "catena_reazione"
+        ],
+        "next_suggested": "v1-cap10-esp6",
+        "resume_message": "L'ultima volta avete controllato il LED blu indirettamente! Ultimo esperimento: aggiungiamo il pulsante."
+      }
+    },
+    {
+      "id": "v1-cap10-esp6",
+      "num": 6,
+      "title_classe": "Aggiungi pulsante al circuito LDR",
+      "title_docente": "Aggiungi pulsante al circuito LDR",
+      "volume_ref": {
+        "page_start": 81,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Pulsante (tact switch)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Fotoresistenza (LDR)",
+          "quantity": 1,
+          "icon": "☀️"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 7,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap10-esp5",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "push-button",
+                      "id": "btn1"
+                    },
+                    {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:j4",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a8",
+                      "to": "bb1:a9",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a11",
+                      "to": "bb1:a12",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a13",
+                      "to": "bb1:bus-top-minus-13",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "La fotoresistenza accendeva il LED con la luce. Ma se volessi anche un bottone per controllare? Il LED si accende solo se premi E c'è luce!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi aggiungiamo un pulsante al circuito con la fotoresistenza. Servono DUE condizioni per accendere il LED!",
+            "spunto_per_classe": null,
+            "note": [
+              "Pulsante e fotoresistenza sono nella stessa catena: la corrente deve passare da entrambi. Se uno dei due 'dice no', il LED resta spento."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione la catena: batteria → pulsante → fotoresistenza → resistore → LED → batteria. Entrambi devono 'dire sì'!",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione che il pulsante e la fotoresistenza sono come due porte in fila: devi aprire ENTRAMBE per passare."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap10-esp6]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione il pulsante senza luce: LED spento. Illumina senza premere: LED spento. Premi E illumina: LED acceso!",
+            "spunto_per_classe": "Domanda: 'Quante condizioni servono per accendere il LED? Una sola basta?'",
+            "note": [
+              "provare tutte e 4 le combinazioni: (no pulsante, no luce), (pulsante, no luce), (no pulsante, luce), (pulsante, luce). Solo l'ultima accende."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED si accende senza premere il pulsante",
+                "soluzione_neutra": "Il pulsante potrebbe non essere nel circuito correttamente. La corrente non deve poter passare senza il pulsante premuto."
+              },
+              {
+                "problema": "Non capiscono perché servono entrambe le condizioni",
+                "soluzione_neutra": "Il pulsante e la fotoresistenza sono come due porte: devi aprire ENTRAMBE per far passare la corrente."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Due condizioni: pulsante premuto E luce sulla fotoresistenza. Solo quando ENTRAMBE sono vere il LED si accende. Come una porta con due serrature!",
+            "analogies": [
+              {
+                "concept": "logica_and",
+                "text": "Come una porta con due serrature: servono ENTRAMBE le chiavi (pulsante + luce) per aprirla. Se manca una chiave, la porta resta chiusa!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "doppio_controllo",
+                "text": "Come il lancio di un razzo: servono DUE persone che girano la chiave contemporaneamente. Una sola non basta — è un controllo di sicurezza!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: servono DUE condizioni — pulsante premuto E luce sulla fotoresistenza. Come una porta con due serrature!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia pulsante e fotoresistenza. Spiega: 'Questa è la logica AND — entrambe le condizioni devono essere vere!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:ldr1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il pulsante e la fotoresistenza sono come due serrature: servono ENTRAMBE le condizioni (pulsante premuto + luce) per accendere il LED. Questo si chiama logica AND nella tecnologia!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto la logica AND: servono DUE condizioni contemporaneamente per accendere il LED!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riassumi il capitolo: 'Dalla fotoresistenza singola alla catena ottica al doppio controllo — il sensore reagisce al mondo esterno!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'servono entrambe' → ha capito la logica AND",
+        "Se fa l'analogia con le serrature → trasferimento concettuale",
+        "Se prova tutte le 4 combinazioni → metodo sperimentale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "logica_and",
+          "doppio_controllo"
+        ],
+        "next_suggested": "v1-cap11-esp1",
+        "resume_message": "Avete completato il capitolo della fotoresistenza! Ora: il SUONO con il cicalino."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cos'è un fotoresistore?",
+    "transitions": [
+      {
+        "between": [
+          "v1-cap10-esp1",
+          "v1-cap10-esp2"
+        ],
+        "text_classe": "La fotoresistenza accendeva il LED rosso facilmente. Ma il LED blu ha bisogno di più o meno luce?",
+        "text_docente_action": "Stesso circuito dell'esperimento 1 ma con LED blu. Il blu ha bisogno di più corrente, quindi serve più luce sulla fotoresistenza.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap10-esp2",
+          "v1-cap10-esp3"
+        ],
+        "text_classe": "La lampada RGB aveva 3 manopole. E se le manopole fossero sostituite da 3 SENSORI di luce? Il circuito 'vedrebbe' la luce!",
+        "text_docente_action": "Tre canali indipendenti: LDR1→R1→rosso, LDR2→R2→verde, LDR3→R3→blu. Ogni fotoresistenza controlla un solo canale.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap10-esp3",
+          "v1-cap10-esp4"
+        ],
+        "text_classe": "Due circuiti che non sono collegati da fili possono comunicare? Sì — attraverso la LUCE!",
+        "text_docente_action": "Due circuiti separati che comunicano attraverso la luce. Il LED bianco è nel circuito 1 (sopra), la fotoresistenza e il LED blu nel circuito 2 (sotto).",
+        "incremental_mode": "remove_component"
+      },
+      {
+        "between": [
+          "v1-cap10-esp4",
+          "v1-cap10-esp5"
+        ],
+        "text_classe": "La scorsa volta il LED bianco era sempre acceso. E se potessimo REGOLARE la sua luminosità? Come cambierebbe il LED blu?",
+        "text_docente_action": "Catena a 3 livelli: potenziometro → LED bianco → luce → fotoresistenza → LED blu. Ogni livello influenza il successivo.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap10-esp5",
+          "v1-cap10-esp6"
+        ],
+        "text_classe": "La fotoresistenza accendeva il LED con la luce. Ma se volessi anche un bottone per controllare? Il LED si accende solo se premi E c'è luce!",
+        "text_docente_action": "Pulsante e fotoresistenza sono nella stessa catena: la corrente deve passare da entrambi. Se uno dei due 'dice no', il LED resta spento.",
+        "incremental_mode": "remove_component"
+      }
+    ],
+    "closing_text": "Avete completato il capitolo della fotoresistenza! Ora: il SUONO con il cicalino."
+  }
+}

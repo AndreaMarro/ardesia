@@ -1,0 +1,80 @@
+# Curriculum YAML — v2-cap9-esp1
+# "Fototransistor come sensore"
+
+experiment_id: v2-cap9-esp1
+volume: 2
+chapter: 9
+title: "Fototransistor come sensore"
+
+prerequisites:
+  - v2-cap8-esp3
+
+concepts_introduced:
+  - fototransistor
+  - amplificazione
+  - sensore_attivo
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - fototransistor
+  - transistor
+  - luce
+  - sensore
+  - breadboard
+  - amplificazione
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 fototransistor (tipo PT333-3C o simile), 1 LED,
+    1 resistore 1k ohm, 1 batteria 9V, fili. Il fototransistor ha 2 pin: emettitore
+    e collettore (come un LED trasparente). Il collettore va verso il +.
+  during_class: >
+    Collega il fototransistor in serie con il LED e il resistore. In condizioni normali
+    di luce: LED acceso. Copri il fototransistor con la mano: LED si spegne (o diventa
+    debole). Avvicina la torcia del telefono: LED luminosissimo! "Il fototransistor
+    fa passare piu' o meno corrente in base alla luce che riceve."
+  common_question: >
+    "Che differenza c'e' con il fotoresistore (LDR)?" -> Il fototransistor e' piu'
+    sensibile e piu' veloce. L'LDR cambia resistenza, il fototransistor amplifica
+    il segnale della luce — serve meno luce per fare un grande effetto.
+
+common_mistakes:
+  - mistake: "Fototransistor inserito al contrario"
+    what_to_do: "Ha polarita' come un LED. Il pin piu' lungo e' l'emettitore (verso il -). Prova a girarlo."
+    analogy: "Come il LED — ha un verso giusto"
+  - mistake: "Testare in una stanza troppo luminosa — LED sempre acceso"
+    what_to_do: "Copri il fototransistor con la mano per vedere la differenza. Oppure spegni le luci."
+    analogy: null
+
+analogies:
+  fototransistor:
+    analogy: "Il fototransistor e' come un portiere che apre il cancello in base a quanta luce vede — piu' luce c'e', piu' spalanca il cancello e lascia passare corrente."
+    evidence: "Analogia portiere/cancello per transistor fotoelettrico (Taber 2001)"
+  amplificazione:
+    analogy: "L'amplificazione e' come un megafono — la tua voce e' piccola, ma il megafono la rende forte. Il fototransistor trasforma una piccola luce in una grande corrente."
+    evidence: "Analogia megafono per amplificazione, classica in elettronica didattica (Horowitz & Hill 2015)"
+
+assessment_invisible:
+  - "Se lo studente copre/scopre il fototransistor e osserva il LED -> sperimentazione attiva"
+  - "Se dice 'piu' luce = piu' corrente' -> ha capito la relazione luce-corrente"
+  - "Se chiede 'posso usarlo per fare qualcosa di automatico?' -> pronto per esp2"

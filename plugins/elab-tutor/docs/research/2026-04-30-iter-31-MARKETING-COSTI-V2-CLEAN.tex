@@ -1,0 +1,395 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit,backgrounds}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{caption}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{italian}
+
+\setmainfont{Times New Roman}[Ligatures=TeX,Scale=1.0]
+
+\definecolor{elabnavy}{HTML}{1E4D8C}
+\definecolor{elablime}{HTML}{4A7A25}
+\definecolor{elaborange}{HTML}{E8941C}
+\definecolor{elabred}{HTML}{E54B3D}
+\definecolor{elabgray}{HTML}{4A4A4A}
+\definecolor{lightgray}{HTML}{F5F5F5}
+
+\titleformat{\section}{\Large\bfseries\color{elabnavy}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{elablime}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{elabgray}}{\thesubsubsection}{1em}{}
+
+\title{\color{elabnavy}\textbf{ELAB Tutor --- Analisi Costi V2}\\
+\large Documento unico iter 31 (2026-04-30) --- baseline Voxtral primary}
+\author{Andrea Marro \texttt{<marro.andrea96@gmail.com>}}
+\date{30 aprile 2026 --- iter 31 V2 CLEAN (corregge V1 stratificato)}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}
+\color{elabgray}\textit{Documento ricostruito da zero (V2) post peer review V1 6.5/10. \\
+Numeri ricalcolati. Stratificazione iter 26/29 archiviata in appendice. \\
+GDPR posizionato come "in valutazione" non "clean".}
+\end{center}
+
+\vspace{0.5cm}
+
+\tableofcontents
+\newpage
+
+\section{Sommario esecutivo}
+
+\textbf{ELAB Tutor} è un tutor educativo per elettronica e Arduino destinato a bambini 8--14 anni nelle scuole italiane. Live: \href{https://www.elabtutor.school}{elabtutor.school}.
+
+\subsection*{Stack iter 31 (UNICA baseline)}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{LLM primary}: Mistral routing 65/25/10 (Mistral Small / Mistral Large / Together Llama 3.3 70B fallback)
+  \item \textbf{Vision}: Mistral Pixtral 12B
+  \item \textbf{TTS}: Mistral Voxtral mini-tts-2603 (voice clone Andrea IT \texttt{voice\_id 9234f1b6-...} LIVE prod 30/04/2026)
+  \item \textbf{STT}: Cloudflare Whisper Turbo
+  \item \textbf{ImgGen}: Cloudflare FLUX schnell
+  \item \textbf{Embeddings}: Voyage AI \texttt{voyage-3} 1024-dim (RAG ingest static volumi only)
+\end{itemize}
+
+\textbf{NOTA}: Edge TTS Microsoft Isabella \textbf{NON è più primary}. Demoted a fallback emergency post Voxtral attivazione iter 31 PM (Mistral Scale tier €18/mese subscription).
+
+\section{Costi reali ricalcolati (PEER REVIEW correction)}
+
+\subsection*{Assunzioni per classe}
+
+\begin{itemize}[leftmargin=*]
+  \item 5 lezioni/mese
+  \item 20 messaggi/lezione
+  \item 50 token input medi per messaggio
+  \item 150 token output medi per messaggio
+  \item TTS: 6.000 caratteri audio/mese (sintesi voce risposte)
+  \item Vision: 60 chiamate/mese (1 ogni 2 lezioni)
+\end{itemize}
+
+\subsection*{Pricing provider verificato (oct 2025)}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Provider} & \textbf{Modello} & \textbf{Prezzo (USD)} \\
+\midrule
+Mistral & Small Latest          & \$0.20/M input + \$0.60/M output \\
+Mistral & Large Latest          & \$2.00/M input + \$6.00/M output \\
+Together AI & Llama 3.3 70B Turbo & \$0.88/M input + \$0.88/M output \\
+Mistral & Voxtral mini-tts-2603 & \$0.016/1k chars (\$16/M chars) \\
+Mistral & Pixtral 12B           & \$0.15/M input + image \\
+Cloudflare WAI & Whisper Turbo / FLUX & free <10k Neurons/giorno, poi \$0.011/1k \\
+Voyage AI & voyage-3 + rerank-2.5 & free 50M tokens/mese \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Costo LLM 1.000 classi (CORRETTO)}
+
+Token totali/mese a 1.000 classi: \\
+Messaggi totali = 1000 × 5 × 20 = 100.000 \\
+Input tokens = 100.000 × 50 = 5M \\
+Output tokens = 100.000 × 150 = 15M
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Provider} & \textbf{Quota} & \textbf{Costo input} & \textbf{Costo output} \\
+\midrule
+Mistral Small (65\%)  & 3,25M in + 9,75M out & \$0,65 & \$5,85 \\
+Mistral Large (25\%)  & 1,25M in + 3,75M out & \$2,50 & \$22,50 \\
+Together Llama (10\%) & 0,5M in + 1,5M out   & \$0,44 & \$1,32 \\
+\textbf{TOTALE LLM 1k cl} & & & \textbf{\$33,26/mese} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{V1 errore corretto}: V1 diceva "Together Llama 10\% = €16/mese". Numero errato di un fattore 10. Reale ~\$1,76/mese (10\% × \$17,60 LLM total). Versione V2 mostra calcolo trasparente.
+
+\subsection*{Costo Voxtral TTS 1.000 classi (CORRETTO)}
+
+Caratteri totali/mese: 1.000 × 6.000 = 6.000.000 chars (6M).
+
+\begin{equation*}
+\text{Costo TTS} = 6{,}000{,}000 \times \frac{0{,}016}{1.000} = \$96/\text{mese}
+\end{equation*}
+
+\textbf{V1 errore corretto}: V1 diceva "Voxtral €25/mese 1000 classi". Numero errato. Per-classe \$0,096 (corretto V1) × 1000 = \$96 (NON €25).
+
+\subsection*{Cost matrix totale ricalcolato (CORRETTO)}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Scala (classi)} & \textbf{LLM (\$/mese)} & \textbf{Voxtral TTS (\$/mese)} & \textbf{Totale AI} \\
+\midrule
+200    & \$6,65    & \$19,20    & \$25,85   \\
+500    & \$16,63   & \$48,00    & \$64,63   \\
+1.000  & \$33,26   & \$96,00    & \$129,26  \\
+2.000  & \$66,52   & \$192,00   & \$258,52  \\
+5.000  & \$166,30  & \$480,00   & \$646,30  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{NOTE IMPORTANTI}:
+\begin{itemize}[leftmargin=*]
+  \item Voxtral è la voce di costo dominante a regime, NON LLM
+  \item Cloudflare Whisper/FLUX gratis fino 10k Neurons/giorno (sotto soglia per \textless 2.000 classi)
+  \item Sopra 2.000 classi calcolare Cloudflare \$0.011/1k Neurons (stima minore)
+  \item Voyage embeddings free tier 50M tokens/mese (sufficiente fino \textgreater 10.000 classi)
+\end{itemize}
+
+\subsection*{Costi infrastruttura fissa}
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+\textbf{Servizio} & \textbf{€/mese} \\
+\midrule
+Mistral Scale tier (voice cloning) & €18 \\
+Supabase EU Pro                    & €25 \\
+Vercel Pro                         & €20 \\
+\textbf{TOTALE fisso}              & \textbf{€63/mese} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Totale infrastruttura (AI + fisso)}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Scala} & \textbf{AI variabile USD} & \textbf{Fisso EUR} & \textbf{TOTALE EUR/mese (~)} \\
+\midrule
+200    & \$25,85  & €63 & ~€86 \\
+500    & \$64,63  & €63 & ~€122 \\
+1.000  & \$129,26 & €63 & ~€181 \\
+2.000  & \$258,52 & €63 & ~€297 \\
+5.000  & \$646,30 & €63 & ~€670 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+(Conversione USD→EUR ~0,93 ottobre 2025)
+
+\section{Margini commerciali --- onesti (separati AI vs operativo)}
+
+\subsection*{Pacchetti commerciali ELAB iter 31}
+
+\begin{center}
+\begin{tabular}{llr}
+\toprule
+\textbf{Tier} & \textbf{Cosa include} & \textbf{€/anno classe} \\
+\midrule
+A. Base       & Solo Lavagna + UNLIM testo                    & €240 \\
+B. Voce       & + Voxtral TTS + chat audio                    & €450 \\
+C. Sim        & + Simulator + Vision + Fumetto                & €800 \\
+D. Voce+      & + Voce proattiva wake-word                    & €1.050 \\
+E. Video      & + Videolezioni base                           & €1.350 \\
+F. Pro        & TUTTO + Videolezioni full + LIM proietta      & €1.750 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Margine LORDO AI 1.000 classi (escluso operativo)}
+
+Tier C (€800/anno × 1000 = €800k revenue) vs costo AI ~€181/mese × 12 = €2.172/anno totale.
+
+\begin{equation*}
+\text{Margine LORDO AI} = \frac{800{,}000 - 2.172}{800{,}000} = 99{,}7\%
+\end{equation*}
+
+\textbf{ATTENZIONE}: Margine LORDO AI \textbf{NON è il margine operativo reale}. Esclude:
+
+\begin{itemize}[leftmargin=*]
+  \item Assistenza tecnica + onboarding docenti
+  \item Gestione account scuole + MePA + IVA + commercialista
+  \item Manutenzione software + bug fixing continuo
+  \item DPA + informative privacy + DPIA (post valutazione GDPR)
+  \item Logging + monitoring + backup + alerting
+  \item Costi Vercel/Supabase scale tier sopra 5k classi
+  \item Costi vendita + marketing + warm intros
+  \item Royalty volumi cartacei (Davide Fagherazzi)
+  \item Tempo founder Andrea + Tea + Davide + Omaric
+  \item Supporto critico aula durante uso scuole
+\end{itemize}
+
+\subsection*{Margine OPERATIVO REALE stimato (cautivo)}
+
+Stima conservativa includendo overhead non-AI:
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Tier} & \textbf{Revenue 1000} & \textbf{Costo AI lordo} & \textbf{Costo operativo stimato} & \textbf{Margine reale} \\
+\midrule
+A €240   & €240k   & €2k & €60-80k  & ~65-75\% \\
+B €450   & €450k   & €3k & €80-100k & ~75-80\% \\
+C €800   & €800k   & €4k & €100-150k & ~80-85\% \\
+D €1.050 & €1.050k & €5k & €120-180k & ~80-85\% \\
+E €1.350 & €1.350k & €5k & €150-220k & ~80-85\% \\
+F €1.750 & €1.750k & €7k & €200-300k & ~80-85\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Verdetto onesto}: margine operativo reale 65-85\% (NON 99\%). Comunque margini eccellenti per business educativo. Break-even reale ~10-20 classi per Tier A (vs 3,21 calcolato solo AI).
+
+\section{GDPR --- POSIZIONE in valutazione (non "clean")}
+
+\subsection*{Stato attuale (onesto)}
+
+Stack orientato a minimizzare trasferimenti extra-UE, con primario EU e fallback US gated/anonymized. \textbf{Non ancora certificabile come "GDPR-clean"} senza:
+
+\begin{itemize}[leftmargin=*]
+  \item DPA firmabile (Data Processing Agreement) con Mistral, Cloudflare, Supabase, Vercel
+  \item Data retention policy documentata
+  \item Logging disattivabile o controllato
+  \item Subprocessors list pubblica
+  \item Regione effettivamente bloccata (verifica config)
+  \item No training sui dati garantito contrattualmente
+  \item Trattamento dati minori (Art. 8 GDPR consenso parentale)
+  \item Ruoli titolare/responsabile chiaramente definiti
+  \item DPIA scolastica completata (Data Protection Impact Assessment)
+  \item Audit trail accessi sensibili
+\end{itemize}
+
+\subsection*{Provider stack iter 31 e profilo trasferimenti}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Provider} & \textbf{Region} & \textbf{Profilo dati student} & \textbf{Note} \\
+\midrule
+Mistral AI            & FR Paris       & EU-only            & DPA da firmare \\
+Cloudflare WAI        & EU edge        & EU edge            & SCC + DPF certified \\
+Supabase EU           & DE Frankfurt   & EU region          & SCC + DPA available \\
+Vercel                & EU edge        & EU edge            & SCC + DPF certified \\
+Google Gemini fallback& DE Frankfurt   & EU region          & SCC firmato \\
+\hline
+Together AI fallback  & US             & gated/anonymized   & SCC + DPF, eccezione controllata \\
+Voyage AI ingest      & US             & static-content only & ZERO PII studenti \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Frase corretta}: "Stack orientato minimizzare trasferimenti extra-UE; primario EU + fallback US gated/anonymized; certificazione GDPR \textbf{in valutazione} pending DPA + retention policy + DPIA."
+
+\section{Architettura Onniscenza 7-layer (status onesto)}
+
+Architettura implementata, validazione pedagogica e retrieval benchmark \textbf{ancora incompleti}.
+
+\subsection*{Layer architecture}
+
+\begin{itemize}[leftmargin=*]
+  \item L1 RAG hybrid Voyage 1881 chunks (Vol1+Vol2+Vol3 + 100 wiki + Glossario Tea 174 termini)
+  \item L2 Wiki concepts retrieval (100 documenti)
+  \item L3 Glossario Tea (174 termini, merged in L1 retrieval)
+  \item L4 Class memory (Supabase \texttt{class\_memory} table sessioni passate)
+  \item L5 Vision (Pixtral 12B captureScreenshot input)
+  \item L6 LLM-knowledge (chat history last N turns)
+  \item L7 Analogia graph (concept-graph.json --- defer iter 25+ se mancante)
+\end{itemize}
+
+Fusion: RRF k=60 + top-3 inject in BASE\_PROMPT. Timeout 200ms per layer (fail-fast iter 34).
+
+\subsection*{Validation pending (P0 iter 35)}
+
+Per claim robusti servono:
+\begin{itemize}[leftmargin=*]
+  \item 100 query reali docente/studente gold-set
+  \item Top-K retrieval accuracy
+  \item Citation correctness (Vol/pag verbatim)
+  \item Risposta riferimento volume/pagina presente
+  \item Tasso allucinazione misurato
+  \item Test "non so" quando contenuto NON nei volumi
+  \item Tempo medio risposta (latency p50, p95)
+  \item Costo medio risposta (\$/query)
+  \item Confronto Mistral Small vs Large vs Together fallback
+\end{itemize}
+
+\section{Voxtral voice clone --- claim onesti}
+
+Voxtral voice clone Andrea IT (\texttt{voice\_id 9234f1b6-...}) LIVE prod 30/04/2026 PM.
+
+\subsection*{Smoke test verified}
+
+\begin{itemize}[leftmargin=*]
+  \item 5 sample IT generati (file MP3 in \texttt{scripts/bench/output/voxtral-test/})
+  \item Latency p50 measured: 1181ms server-side, ~2.2s end-to-end
+  \item Format MP3 valid
+  \item Voce italiana nativa (vs cross-lingual EN→IT pre-cloning)
+\end{itemize}
+
+\textbf{NON ancora benchmark robusto}: 5 sample = smoke test, NON evidenza qualità 9.0/10. Per claim quality solid serve:
+\begin{itemize}[leftmargin=*]
+  \item 20-30 frasi italiane K-12 didattico
+  \item 5-10 ascoltatori blind test
+  \item Confronto cieco Voxtral / ElevenLabs / Cartesia / Edge TTS
+  \item Punteggi naturalezza, chiarezza, pronuncia tecnica, latenza, costo
+  \item Frasi con "Arduino", "breadboard", "resistenza", "catodo", "anodo", "PWM", "milliampere"
+\end{itemize}
+
+\textbf{Frase corretta}: "Voxtral voice clone Andrea IT LIVE prod, smoke test 5/5 sample superati; benchmark MOS qualitativo human-rater pending iter 35+."
+
+\section{Decisione finale stack}
+
+\subsection*{Caso A Hybrid Mistral primary (RACCOMANDATO 2026)}
+
+ELAB resta su API Hybrid (Caso A) fino \textbf{6.000 classi}. Sopra: VPS Hetzner GEX130 GPU €838/mese conviene (cost cap fissato vs scaling lineare API).
+
+\textbf{Stato verifica}: Scaleway H100-1-80GB \euro 2,73/h confermato per scenari 24/7 (~\euro 1.998/mese fixed). Conviene solo \textbf{sopra 7.500 classi} con uso continuo.
+
+\subsection*{NON contraddire ricerche iter 25}
+
+Documento V2 valida + conferma:
+\begin{itemize}[leftmargin=*]
+  \item API-first ora, self-host solo oltre scala
+  \item EU FR primary (Mistral) + fallback chain
+  \item RunPod sandbox/benchmark ONLY (NON prod)
+  \item Voce italiana clonabile come differentiator
+  \item PRINCIPIO ZERO + Morfismo coerenza triplet kit + volumi + software
+\end{itemize}
+
+\section{Aleph Alpha / Cohere (corretta attribuzione)}
+
+Cohere ha annunciato l'acquisizione/merger con Aleph Alpha. Reuters: prezzo acquisto \textbf{NON divulgato}. Cohere valutazione \$6,8B post round 2025. TechCrunch: nuova entità valutazione \$20B secondo FT.
+
+\textbf{Frase corretta V2}: "Cohere ha annunciato acquisizione/merger con Aleph Alpha; prezzo non divulgato; alcune fonti riportano valutazione nuova entità ~\$20B."
+
+(NON "Aleph Alpha acquisita per \$20B" come V1.)
+
+\section{Conclusione iter 31 V2}
+
+Documento ricostruito da zero post peer review V1 6.5/10:
+\begin{itemize}[leftmargin=*]
+  \item Numeri ricalcolati con calcolo trasparente
+  \item Stratificazione iter 26/29 archiviata in appendice
+  \item GDPR posizionato come "in valutazione" non "clean"
+  \item Margini separati AI lordo (99\%) vs operativo reale (65-85\%)
+  \item Voxtral voice clone smoke 5/5 verificato, MOS bench pending
+  \item Onniscenza 7-layer architettura LIVE, validation pending
+  \item LaTeX issues corretti (xcolor table option, no pgf-pie, no emoji)
+\end{itemize}
+
+\textbf{Voto onestà rispetto V1}: 6,5/10 → target 8,5/10 V2 post peer review fix.
+
+\end{document}

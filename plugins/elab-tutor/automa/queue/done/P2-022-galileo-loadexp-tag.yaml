@@ -1,0 +1,29 @@
+id: galileo-loadexp-tag
+priority: P2
+title: Fix Galileo tag [[AZIONE:loadexp]] mancante su 'carica esperimento'
+description: 'Il check Galileo mostra: "carica esperimento 1: missing expected [[AZIONE:loadexp]]"
+
+  Galileo deve rispondere con [AZIONE:loadexp:v1-cap1-esp1] quando l''utente chiede
+  di caricare.
+
+  '
+success_criteria: 'python3 -c "from automa.tools import chat_galileo; r=chat_galileo(''carica
+  esperimento 1''); print(''PASS'' if ''loadexp'' in r[''response''].lower() else
+  ''FAIL'')"
+
+  Deve stampare PASS.
+
+  '
+context_files:
+- nanobot/nanobot.yml
+plan:
+- Leggi nanobot/nanobot.yml — trova la sezione system_prompt, regola 9
+- 'Aggiungi esempio esplicito: ''carica esperimento 1'' → [AZIONE:loadexp:v1-cap1-esp1]'
+- 'Verifica YAML valido: python3 -c ''import yaml; yaml.safe_load(open("nanobot/nanobot.yml"))'''
+- 'Deploy: cd nanobot && git add -A && git commit -m ''fix loadexp tag'' && git push'
+- 'Test: chat_galileo(''carica esperimento 1'') deve contenere [AZIONE:loadexp]'
+tags: galileo,nanobot,tags,prompt
+claimed_at: '2026-03-23T20:18:08.701664'
+claimed_by: orchestrator
+completed_at: '2026-03-23T20:21:31.332376'
+result: ok

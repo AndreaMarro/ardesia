@@ -1,0 +1,348 @@
+/**
+ * HomeUnlimChatV2 — CSS module.
+ * Swarm 3 (2026-05-29). Palette mirrors ELAB tokens (Navy / Lime / Orange / Red).
+ * WCAG AA: text contrast 4.5:1+, touch targets 44px+, focus-visible rings.
+ *
+ * Anti-regression:
+ *   - NO hardcoded font sizes < 13px (CLAUDE.md Qualita rule 8)
+ *   - NO emoji glyphs in CSS content (Qualita rule 11)
+ *   - NO :hover-only affordances (touch-first; pair with :focus-visible)
+ */
+
+.panel {
+  --elab-navy: #1E4D8C;
+  --elab-lime: #4A7A25;
+  --elab-orange: #E8941C;
+  --elab-red: #E54B3D;
+  --elab-ink: #1A1A1A;
+  --elab-mute: #5A6B7E;
+  --elab-bg-soft: #F5F7FA;
+  --elab-border-soft: rgba(30, 77, 140, 0.16);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid var(--elab-navy);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: "Open Sans", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: var(--elab-ink);
+  box-shadow: 0 6px 18px rgba(30, 77, 140, 0.10);
+}
+
+.panel[data-status="error"] {
+  border-color: var(--elab-red);
+}
+
+.panel[data-status="success"] {
+  border-color: var(--elab-lime);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--elab-navy);
+  color: #FFFFFF;
+  min-height: 56px;
+}
+
+.mascot {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid var(--elab-lime);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.mascotImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 70%;
+  display: block;
+}
+
+.headerText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-family: "Oswald", system-ui, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.contextChip {
+  font-size: 11px;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Voice + collapse buttons: WCAG 44x44 touch target */
+.voiceBtn,
+.collapseBtn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voiceBtn:focus-visible,
+.collapseBtn:focus-visible {
+  outline: 2px solid var(--elab-orange);
+  outline-offset: 2px;
+}
+
+.voiceBtn:hover,
+.collapseBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.voiceBtnActive {
+  background: var(--elab-orange);
+  border-color: var(--elab-orange);
+  color: #FFFFFF;
+}
+
+/* ── Body ── */
+.body {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, rgba(30, 77, 140, 0.02) 0%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--elab-ink);
+}
+
+.emptyHint {
+  color: var(--elab-mute);
+  font-style: italic;
+  font-size: 13px;
+  margin: 0;
+}
+
+.bubbleAssistant {
+  align-self: flex-start;
+  background: #F0F4F8;
+  border: 1px solid var(--elab-lime);
+  border-radius: 12px 12px 12px 4px;
+  padding: 10px 12px;
+  max-width: 92%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.bubbleAssistant[data-vision="true"] {
+  border-color: var(--elab-orange);
+  background: rgba(232, 148, 28, 0.06);
+}
+
+.bubbleUser {
+  align-self: flex-end;
+  background: var(--elab-navy);
+  color: #FFFFFF;
+  border-radius: 12px 12px 4px 12px;
+  padding: 10px 12px;
+  max-width: 92%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.loading {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--elab-bg-soft);
+  border: 1px dashed var(--elab-mute);
+  border-radius: 12px;
+  color: var(--elab-mute);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ── Quick suggestions row ── */
+.quickRow {
+  list-style: none;
+  margin: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--elab-border-soft);
+  background: var(--elab-bg-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quickBtn {
+  min-height: 36px;
+  padding: 6px 12px;
+  background: #FFFFFF;
+  border: 1px solid var(--elab-navy);
+  border-radius: 18px;
+  color: var(--elab-navy);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.quickBtn:hover:not(:disabled) {
+  background: var(--elab-navy);
+  color: #FFFFFF;
+}
+
+.quickBtn:focus-visible {
+  outline: 2px solid var(--elab-orange);
+  outline-offset: 2px;
+}
+
+.quickBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Input row ── */
+.inputRow {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--elab-border-soft);
+  background: #FFFFFF;
+}
+
+.input {
+  flex: 1;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--elab-border-soft);
+  border-radius: 10px;
+  background: #FFFFFF;
+  color: var(--elab-ink);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: 14px;
+  outline: none;
+}
+
+.input:focus-visible {
+  border-color: var(--elab-orange);
+  outline: 2px solid rgba(232, 148, 28, 0.3);
+  outline-offset: 0;
+}
+
+.input:disabled {
+  background: var(--elab-bg-soft);
+  opacity: 0.6;
+}
+
+.sendBtn {
+  min-width: 72px;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--elab-navy);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: #143966;
+}
+
+.sendBtn:focus-visible {
+  outline: 2px solid var(--elab-orange);
+  outline-offset: 2px;
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Voice mode hint banner ── */
+.voiceHint {
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(232, 148, 28, 0.10);
+  color: var(--elab-orange);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  border-top: 1px solid rgba(232, 148, 28, 0.3);
+}
+
+/* ── Collapsed state ── */
+.panel[data-collapsed="true"] .body {
+  display: none;
+}
+
+/* ── Reduced motion support ── */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .quickBtn,
+  .sendBtn,
+  .voiceBtn,
+  .collapseBtn {
+    transition: none;
+  }
+}
+
+/* ── High-contrast / forced-colors mode ── */
+@media (forced-colors: active) {
+  .panel {
+    border-color: CanvasText;
+  }
+  .bubbleAssistant,
+  .bubbleUser,
+  .quickBtn,
+  .sendBtn,
+  .input {
+    border-color: CanvasText;
+  }
+}

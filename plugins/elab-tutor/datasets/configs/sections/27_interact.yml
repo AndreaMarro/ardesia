@@ -1,0 +1,96 @@
+id: interact
+name: Interazione Componenti
+intent: action
+needs_llm: false
+templates:
+- input: '{frase}'
+  response: '@interact'
+  actions:
+  - '[AZIONE:interact]'
+  entities:
+  - push-button
+  vars:
+    frase:
+    - premi il pulsante
+    - schiaccia il bottone
+    - clicca il pulsante
+    - premi il tasto
+    - tieni premuto il pulsante
+    - spingi il bottone
+    - pigia il tasto
+    - dai un click al pulsante
+    - fai click sul bottone
+    - premi il button
+    - pulsante!
+    - schiaccia!
+    - premilo
+    - clicka il pulsante
+    - premi e tieni
+    - pigia
+    - dai, premilo!
+    - spingi il tasto
+    - fai pressione sul pulsante
+    - attiva il pulsante
+- input: '{frase}'
+  response: '@interact'
+  actions:
+  - '[AZIONE:interact]'
+  entities:
+  - potentiometer
+  vars:
+    frase:
+    - gira il potenziometro
+    - ruota la manopola
+    - muovi il potenziometro
+    - gira la rotella
+    - alza il potenziometro
+    - abbassa il potenziometro
+    - giralo al massimo
+    - metti il pot a meta'
+    - ruota il pot
+    - muovi la manopola
+    - gira il pot verso destra
+    - gira il pot verso sinistra
+    - metti il potenziometro a zero
+    - potenziometro al massimo
+    - gira piano il pot
+    - la rotellina!
+- input: '{frase}'
+  response: '@interact'
+  actions:
+  - '[AZIONE:interact]'
+  entities:
+  - photo-resistor
+  vars:
+    frase:
+    - copri il sensore di luce
+    - illumina il fotoresistore
+    - cambia la luce
+    - metti buio
+    - metti luce
+    - simula luce sul sensore
+    - copri il LDR
+    - fai buio sul sensore
+    - accendi la luce sul fotoresistore
+    - muovi lo slider della luce
+    - cambia luminosita'
+- input: '{frase}'
+  response: '@interact'
+  actions:
+  - '[AZIONE:interact]'
+  entities:
+  - reed-switch
+  vars:
+    frase:
+    - avvicina il magnete
+    - usa il magnete
+    - attiva il reed switch
+    - metti il magnete vicino
+    - simula il magnete
+    - togli il magnete
+    - allontana il magnete
+corruptions:
+  typo_swap: 0.3
+  voice: 0.15
+  emoji: 0.15
+  filler: 0.12

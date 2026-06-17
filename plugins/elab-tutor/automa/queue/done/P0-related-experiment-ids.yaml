@@ -1,0 +1,18 @@
+id: P0-related-experiment-ids
+priority: P0
+title: Fix relatedExperiment IDs in unlim-knowledge-base.js (100% failure offline)
+description: |
+Bug trovato dal C25: gli ID relatedExperiment nella knowledge base offline usano il formato
+File target: src/data/unlim-knowledge-base.js
+Azione: mappare tutti gli ID al formato v{volume}-cap{capitolo}-esp{numero}.
+metric: content_integrity
+tags: P0,offline,bug,critical
+created_at: "2026-03-25T21:00:02"
+claimed_at: "2026-03-26T14:40:51.055861"
+claimed_by: orchestrator
+failed_at: "2026-03-25T21:59:58.908302"
+error: unknown
+retry: 1
+requeued_at: "2026-03-25T23:53:52.992321"
+completed_at: "2026-03-26T14:44:14.854117"
+result: ok

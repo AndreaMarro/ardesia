@@ -1,0 +1,66 @@
+{
+  "cycle": 12,
+  "timestamp": "2026-03-25T12:01:47.357319",
+  "date": "2026-03-25",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 529
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 51.61s",
+      "time_ms": 58339
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 153944
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 9
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=63 (target \u226560) [3 samples]",
+      "time_ms": 62801
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5087
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2528
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH cycle 12 ricerca-marketing",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "high",
+    "evidence": "verified",
+    "notes": "Ricerca completata, scrittura file bloccata da permessi mancanti \u2014 approvazione utente necessaria per salvare automa/knowledge/research-cycle-12.md e task in queue/pending/"
+  },
+  "research": "DeepSeek: **Problems for ELAB Tutor:**\n1.  **Diagnostic Challenge:** Children often hold the misconception that \"electricity is 'used up' by a bulb\" or that \"current is the flow of electrons from both battery terminals.\" The tutor must first reliably identify these and other persistent preconceptions (e.g., batteries storing pre-made electrons) through targeted diagnostic questions or analysis of student-dr",
+  "ai_scoring": null,
+  "composite_score": 0.9593,
+  "self_exam": null
+}

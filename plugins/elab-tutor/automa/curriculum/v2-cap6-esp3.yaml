@@ -1,0 +1,77 @@
+# Curriculum YAML — v2-cap6-esp3
+# "Tre LED in serie"
+
+experiment_id: v2-cap6-esp3
+volume: 2
+chapter: 6
+title: "Tre LED in serie"
+
+prerequisites:
+  - v2-cap6-esp2
+
+concepts_introduced:
+  - tensione_distribuita
+  - limite_batteria
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - ohm
+  - corrente
+  - tensione
+  - volt
+  - serie
+  - breadboard
+  - anodo
+  - catodo
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 breadboard, 1 batteria 9V, 1 resistore 100 ohm,
+    4 LED rossi, fili. L'obiettivo e' scoprire il limite: quanti LED rossi si
+    possono accendere in serie con 9V? (3 si', 4 no o debolissimi).
+  during_class: >
+    Fai partire con 1 LED, poi aggiungerne uno alla volta. Chiedi di osservare la
+    luminosita'. "Cosa succede aggiungendo il terzo? E il quarto?" Al quarto LED
+    la luce diventa debolissima o si spegne. "Dove e' finita la tensione?"
+  common_question: >
+    "Perche' con 4 LED non funziona piu'?" -> La batteria ha 9 volt. Ogni LED
+    rosso 'consuma' circa 2 volt. 3 LED = 6 volt, ok. 4 LED = 8 volt, non ne resta
+    abbastanza per il resistore.
+
+common_mistakes:
+  - mistake: "Pensare che la batteria si sia scaricata"
+    what_to_do: "Togli un LED — tornano luminosi! La batteria va bene, e' la tensione che non basta."
+    analogy: null
+  - mistake: "Aggiungere un altro resistore pensando di aiutare"
+    what_to_do: "Il resistore consuma altra tensione. Serve MENO carico, non di piu'."
+    analogy: "Come aggiungere un altro passeggero su un'auto gia' piena"
+
+analogies:
+  tensione_distribuita:
+    analogy: "La tensione della batteria e' come una torta: se la dividi in 3 fette grandi, tutti mangiano bene. Se la dividi in 4, le fette sono troppo piccole e nessuno si sazia."
+    evidence: "Analogia distributiva per partizione energia, basata su modello a risorse limitate (Cosgrove 1995)"
+  limite_batteria:
+    analogy: "La batteria e' come un serbatoio d'acqua in cima a una collina. Se metti 3 mulini lungo il fiume, girano tutti. Se ne metti 4, l'acqua non ha abbastanza forza per farli girare tutti."
+    evidence: "Modello idraulico gravitazionale per tensione (Schwedes & Dudeck 1996)"
+
+assessment_invisible:
+  - "Se lo studente prevede quanti LED si possono mettere PRIMA di provare -> ragionamento quantitativo"
+  - "Se dice 'la tensione si divide tra i LED' -> comprensione tensione distribuita"
+  - "Se toglie un LED per verificare -> metodo sperimentale"

@@ -1,0 +1,303 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap10-esp6",
+  "volume": 1,
+  "chapter": 10,
+  "title": "Aggiungi pulsante al circuito LDR",
+  "chapter_title": "Cos'è un fotoresistore?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono la logica AND: servono DUE condizioni (pulsante premuto E luce sulla fotoresistenza) per accendere il LED.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Pulsante (tact switch)",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Fotoresistenza (LDR)",
+      "quantity": 1,
+      "icon": "☀️"
+    },
+    {
+      "name": "Resistore 220Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 7,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "pulsante",
+      "circuito aperto",
+      "circuito chiuso",
+      "fotoresistenza",
+      "sensore",
+      "LDR",
+      "luce",
+      "buio",
+      "automatico",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore",
+      "digitale"
+    ],
+    "note": "Cap 10 Vol 1 — pulsante + LDR = logica AND."
+  },
+  "prerequisites": [
+    "v1-cap10-esp5"
+  ],
+  "next_experiment": {
+    "id": "v1-cap11-esp1",
+    "title": "Buzzer suona continuo",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.94 intitolata \"Buzzer suona continuo\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi aggiungiamo un pulsante al circuito con la fotoresistenza. Servono DUE condizioni per accendere il LED!",
+      "teacher_tip": "Pulsante e fotoresistenza sono nella stessa catena: la corrente deve passare da entrambi. Se uno dei due 'dice no', il LED resta spento.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 pulsante, 1 fotoresistenza, 1 resistore 220Ω, 1 LED rosso, 7 fili.",
+      "class_hook": "La fotoresistenza accendeva il LED con la luce. Ma se volessi anche un bottone per controllare? Il LED si accende solo se premete E c'è luce!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate la catena: batteria → pulsante → fotoresistenza → resistore → LED → batteria. Entrambi devono 'dire sì'!",
+      "teacher_tip": "Spiegate che il pulsante e la fotoresistenza sono come due porte in fila: devi aprire ENTRAMBE per passare.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap10-esp6]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Aggiungi pulsante al circuito LDR seguendo Vol.1 pag.92.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "white"
+            },
+            {
+              "type": "led",
+              "id": "led2",
+              "color": "blue"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:j4",
+              "to": "bb1:a14",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a17",
+              "to": "bb1:a18",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a19",
+              "to": "bb1:bus-top-minus-19",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-plus-6",
+              "to": "bb1:a6",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a10",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a11",
+              "to": "bb1:bus-top-minus-11",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete il pulsante senza luce: LED spento. Illumina senza premere: LED spento. Premete E illuminate: LED acceso!",
+      "teacher_tip": "Fate provare tutte e 4 le combinazioni: (no pulsante, no luce), (pulsante, no luce), (no pulsante, luce), (pulsante, luce). Solo l'ultima accende.",
+      "provocative_question": "Quante condizioni servono per accendere il LED? Una sola basta?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Il LED si accende senza premere il pulsante",
+          "teacher_response": "Il pulsante potrebbe non essere nel circuito correttamente. La corrente non deve poter passare senza il pulsante premuto.",
+          "analogy": null
+        },
+        {
+          "mistake": "Non capiscono perché servono entrambe le condizioni",
+          "teacher_response": "Il pulsante e la fotoresistenza sono come due porte: devi aprire ENTRAMBE per far passare la corrente.",
+          "analogy": "Come una porta con due serrature: servono entrambe le chiavi"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play: servono DUE condizioni — pulsante premuto E luce sulla fotoresistenza. Come una porta con due serrature!",
+      "teacher_tip": "Evidenziate pulsante e fotoresistenza. Spiegate: 'Questa è la logica AND — entrambe le condizioni devono essere vere!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:btn1]",
+        "[AZIONE:highlight:ldr1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Due condizioni: pulsante premuto E luce sulla fotoresistenza. Solo quando ENTRAMBE sono vere il LED si accende. Come una porta con due serrature!",
+      "analogies": [
+        {
+          "concept": "logica_and",
+          "text": "Come una porta con due serrature: servono ENTRAMBE le chiavi (pulsante + luce) per aprirla. Se manca una chiave, la porta resta chiusa!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "doppio_controllo",
+          "text": "Come il lancio di un razzo: servono DUE persone che girano la chiave contemporaneamente. Una sola non basta — è un controllo di sicurezza!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto la logica AND: servono DUE condizioni contemporaneamente per accendere il LED!",
+      "teacher_tip": "Riassumi il capitolo: 'Dalla fotoresistenza singola alla catena ottica al doppio controllo — il sensore reagisce al mondo esterno!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il pulsante e la fotoresistenza sono come due serrature: servono ENTRAMBE le condizioni (pulsante premuto + luce) per accendere il LED. Questo si chiama logica AND nella tecnologia!",
+      "concepts_learned": [
+        "logica AND",
+        "doppio controllo",
+        "integrazione sensore e pulsante"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.94 intitolata \"Buzzer suona continuo\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'servono entrambe' → ha capito la logica AND",
+    "Se fa l'analogia con le serrature → trasferimento concettuale",
+    "Se prova tutte le 4 combinazioni → metodo sperimentale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "logica_and",
+      "doppio_controllo"
+    ],
+    "next_suggested": "v1-cap11-esp1",
+    "resume_message": "Avete completato il capitolo della fotoresistenza! Ora: il SUONO con il cicalino."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 92,
+    "label": "Vol.1 pag.92"
+  }
+}

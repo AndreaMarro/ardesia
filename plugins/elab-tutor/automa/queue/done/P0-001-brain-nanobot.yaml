@@ -1,0 +1,9 @@
+id: brain-nanobot
+priority: P0
+title: Collegare Brain V13 al nanobot cloud
+description: "Aggiungere BRAIN_URL env var su Render per nanobot. Il nanobot deve usare Brain V13 (http://72.60.129.50:11434) per routing pre-LLM. Verificare che /chat usi Brain per classificare intent prima di chiamare LLM cloud."
+tags: brain,nanobot,render,deploy
+claimed_at: "2026-03-23T00:03:25.559704"
+claimed_by: orchestrator
+completed_at: "2026-03-23T00:50:04.302092"
+result: Brain V13 LIVE on Render. Source=brain, Layer=L0-brain. Model alias created on VPS.

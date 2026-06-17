@@ -1,0 +1,72 @@
+{
+  "cycle": 15,
+  "timestamp": "2026-03-27T06:43:38.032623",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 314
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.01s",
+      "time_ms": 20692
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 199733
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=74 (target \u226560) [3 samples]",
+      "time_ms": 62654
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 6287
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2475
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fix Onboarding: Rimuovere Progressive Disclosure di default",
+    "status": "done",
+    "files_changed": [
+      "src/components/simulator/panels/ControlBar.jsx",
+      "src/components/simulator/NewElabSimulator.jsx",
+      "src/components/simulator/ElabSimulator.css"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi:**\n1.  **Accesso Internet Inaffidabile:** In molte regioni, la connettivit\u00e0 \u00e8 costosa, lenta o assente, escludendo gli studenti da risorse educative online essenziali.\n2.  **Limiti di Dispositivi e Costi:** La proliferazione di diversi sistemi operativi (Android, iOS) e il costo elevato dello sviluppo di app native multiple rendono la distribuzione di soluzioni scalabile e conveniente u",
+  "ai_scoring": "DeepSeek scoring: SCORE:8\nMOTIVO:Spiegazione chiara e coinvolgente con linguaggio adatto all'et\u00e0, ma la risposta \u00e8 incompleta (interrotta a met\u00e0 frase).\nKimi review: Il problema pi\u00f9 grave che impedisce la vendita alle scuole \u00e8 l'alta licenza annuale di \u20ac500-1000, che pu\u00f2 essere proibitiva per scuole con budget limitati. Suggerisco di offrire una licenza \"Basic\" a un prezzo pi\u00f9 accessibile, come \u20ac100-200/anno, e una licenza \"Premium\" a \u20ac500-1000/anno con funziona",
+  "composite_score": 0.9445,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

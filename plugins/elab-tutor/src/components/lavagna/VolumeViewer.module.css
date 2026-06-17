@@ -1,0 +1,361 @@
+/* VolumeViewer — PDF viewer per i volumi ELAB nella Lavagna */
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f5f5f0; /* palette */
+}
+
+/* ── Volume tabs ── */
+.volTabs {
+  display: flex;
+  gap: 2px;
+  padding: 6px 10px 0;
+  border-bottom: 1px solid rgba(30, 77, 140, 0.1);
+}
+
+.volTab {
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  color: #595959; /* palette */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  min-height: 44px;
+  transition: background 150ms, color 150ms;
+}
+
+.volTab:hover {
+  background: rgba(30, 77, 140, 0.06);
+}
+
+.volTabActive {
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 -1px 4px rgba(30, 77, 140, 0.08);
+}
+
+.volTab:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: -2px;
+}
+
+/* ── Navigation bar ── */
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  border-bottom: 1px solid rgba(30, 77, 140, 0.1);
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.navGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms;
+  padding: 0;
+}
+
+.navBtn:hover:not(:disabled) {
+  background: rgba(30, 77, 140, 0.06);
+  border-color: rgba(30, 77, 140, 0.25);
+}
+
+.navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: -1px;
+}
+
+.navBtnActive {
+  background: rgba(30, 77, 140, 0.1);
+  border-color: var(--color-primary);
+}
+
+/* Page counter */
+.pageInfo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.pageInput {
+  width: 44px;
+  text-align: center;
+  border: 1px solid rgba(30, 77, 140, 0.15);
+  border-radius: 6px;
+  padding: 4px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--color-primary);
+  background: #fff;
+  -moz-appearance: textfield;
+}
+
+.pageInput::-webkit-inner-spin-button,
+.pageInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pageSep {
+  margin: 0 2px;
+  color: #666666; /* palette */
+}
+
+/* ── Pen toolbar ── */
+.penBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #f0f4f8; /* palette */
+  border-bottom: 1px solid rgba(30, 77, 140, 0.1);
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.penColorBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 120ms;
+  flex-shrink: 0;
+}
+
+.penColorBtn:hover { transform: scale(1.15); }
+
+.penSizeBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.penToolBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  background: #fff;
+  color: var(--elab-navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.penToolBtn:hover { background: rgba(30, 77, 140, 0.06); }
+
+.penSep {
+  width: 1px;
+  height: 18px;
+  background: rgba(30, 77, 140, 0.15);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+.penCount {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #666666; /* palette */
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  margin-left: 4px;
+}
+
+.zoomLabel {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #555555; /* palette */
+  min-width: 36px;
+  text-align: center;
+}
+
+/* ── Content area ── */
+.content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Thumbnails sidebar ── */
+.thumbnails {
+  width: 100px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(30, 77, 140, 0.1);
+  background: #f0f0ec; /* palette */
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.thumbBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 150ms, box-shadow 150ms;
+  overflow: hidden;
+}
+
+.thumbBtn:hover {
+  border-color: rgba(30, 77, 140, 0.3);
+}
+
+.thumbActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.thumbNumber {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #555555; /* palette */
+}
+
+/* ── PDF page container ── */
+.pageContainer {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  position: relative;
+}
+
+.pdfStage {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.annotationLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  z-index: 4;
+}
+
+.pdfPage {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+/* ── Loading/Error overlays ── */
+.loadingOverlay,
+.errorOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(245, 245, 240, 0.95);
+  z-index: 5;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(30, 77, 140, 0.15);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorOverlay {
+  color: var(--color-red);
+}
+
+.retryBtn {
+  padding: 8px 20px;
+  border: 1px solid var(--color-red);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-red);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.retryBtn:hover {
+  background: rgba(229, 75, 61, 0.05);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .thumbnails {
+    width: 80px;
+  }
+  .navBar {
+    padding: 4px 6px;
+  }
+}
+
+@media (pointer: coarse) {
+  .navBtn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

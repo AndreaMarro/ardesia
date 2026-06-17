@@ -1,0 +1,747 @@
+/**
+ * HomeCompileEntry — HomePage Blockly+IDE cross-compile entry (iter 73 CC-2).
+ *
+ * iter 64 SPEC mandate Andrea verbatim:
+ *   "deve essere disponibile dove ci sono gli esperimenti con arduino e
+ *    disponibile in generale nella home ide+blockly. Devono poterlo fare
+ *    tutti, in sicurezza. Documenta tutto. Zero debito tecnico."
+ *
+ * Architecture: lazy-mounted via HomePage hash route `#compile-home`.
+ * Reuses simulator panels (ScratchEditor + ScratchCompileBar) + R5
+ * CompileAgentBanner (iter 66) + iter 70 CompileUploadButton wire (iter 72 BG-A7).
+ *
+ * Cross-compile chain end-to-end:
+ *   1. Blockly editor → scratchGenerator.js → Arduino C++ string
+ *   2. ScratchCompileBar onCompile → POST localhost:8765/compile
+ *   3. ELAB Agent → arduino-cli compile FQBN arduino:renesas_uno:nanor4
+ *   4. CompileUploadButton (if agent online + sketchCode) → POST /compile-and-upload
+ *
+ * PRINCIPIO ZERO compliance:
+ *   - Plurale "Ragazzi" in tutti i copy
+ *   - Kit fisico ELAB mention (Nano R4 breakout wing)
+ *   - Vol3 reference quando applicabile
+ *
+ * Morfismo Sense 2:
+ *   - Palette Navy/Lime/Orange/Red CSS vars
+ *   - Iconografia ElabIcons SVG (no emoji)
+ *   - boardId default `arduino-nano-r4` matching kit Omaric
+ */
+
+import React, { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { compileCode } from '../../services/api';
+import logger from '../../utils/logger';
+import { resolveCompileFlash } from '../../utils/compileSizeParse';
+// iter 77 P0.2b fix (Codex Pattern V iter 77 verify MED #4): swap legacy
+// CompileAgentBanner → WebUsbBanner default per iter 76 ARCHITECTURAL
+// PIVOT Andrea verbatim "NO download docente, WebUSB direct". Legacy
+// banner gated env flag VITE_USE_LOCAL_AGENT for dev fallback ONLY.
+import CompileAgentBanner from '../HomePage/CompileAgentBanner';
+import WebUsbBanner from '../HomePage/WebUsbBanner';
+const USE_LOCAL_AGENT_BANNER =
+  typeof import.meta !== 'undefined'
+    && import.meta.env
+    && import.meta.env.VITE_USE_LOCAL_AGENT === 'true';
+import ScratchEditor from '../simulator/panels/ScratchEditor';
+import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/ScratchCompileBar';
+// iter 80.A2 fix (Codex Pattern V iter 79 HIGH IDE-1): add direct C++
+// editor tab. HomePage copy line 112 promises "scrivete codice Arduino con
+// i blocchi Blockly oppure direttamente in C++" — previously only Blockly
+// mounted, breaking PRINCIPIO ZERO mandate Andrea verbatim iter 79 PM.
+// CodeEditorCM6 consumed AS-IS from existing simulator panel (iter 73 P0.5
+// LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
+// translator). NO modify simulator file — pure consumer wire-up.
+import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
+// Iter 97 atom C — UnlimCompileHelper right-panel mascot per Andrea iter 97 PM
+// screenshot feedback "qui sarebbe bello unlim animato che ti spiega cosa fare
+// in base alle domande". V1 static scaffold (mascot + speech bubble + 3 quick
+// question buttons). V2 animation iter 98+. V3 unlimScreenAgent wire iter 99+
+// (post-fix 5 HIGH per code-reviewer atom 34 verdict).
+import UnlimCompileHelper from './UnlimCompileHelper';
+// Iter 95 SP3 T3 — Virtual Serial Monitor panel rendering predicted Serial.*
+// output from user C++ Arduino sketch. Andrea iter 94 PM mandate: "Monitor
+// Seriale Virtuale che analizza Serial.begin/print/println + mostra output
+// previsto" + mandatory disclaimer "Seriale prevista dal programma. Per
+// leggere la seriale reale collega una Nano R4 via USB."
+import VirtualSerialMonitor from '../simulator/panels/VirtualSerialMonitor';
+// iter 85 close integration Sub-project A: WrenchIcon + PuzzleIcon ElabIcons
+// imports removed — inline tab bar (iter 80.A2 + iter 81.A1) replaced by
+// ModeToggle (iter 84 atom 8) which provides its own canonical IT plurale
+// label "Blocchi"/"C++" senza icon dependency (palette-only styling).
+// iter 85 close integration Sub-project A: wire iter 84 standalone atoms
+// 6 (StarterButtons + starterTemplates) + 7 (ElabScratchModeShell) + 8
+// (ModeToggle) into production path. PROD user vede ModeToggle top bar +
+// ElabScratchModeShell wrap StarterButtons overlay quando workspace empty.
+// Anti-regression CRITICAL: editorMode === 'blocks' gate MANDATORY —
+// 'code' path NO mount ElabScratchModeShell (Blockly-only crash prevention).
+import { ModeToggle, MODE_BLOCKS, MODE_CODE } from '../../features/elabBlocks/ui/ModeToggle.jsx';
+import { ElabScratchModeShell } from '../../features/elabBlocks/ui/ElabScratchModeShell.jsx';
+import { getStarterXml } from '../../features/elabBlocks/starterTemplates.js';
+import { cppToBlocklyXml, NANO_R4_BLINK_CPP } from '../../features/elabBlocks/codeSync.js';
+import * as Blockly from 'blockly';
+import styles from './HomeCompileEntry.module.css';
+import BoardPicker from '../lavagna/BoardPicker';
+import UniversalUploadButton from '../lavagna/UniversalUploadButton';
+import { getBoardById } from '../../services/arduinoBoards';
+// 2026-05-29 orchestrator integration: 5-swarm V2 wiring.
+// V2 layout = Swarm 2 (HomeCompileLayoutV2 edukit-inspired)
+// V2 chat   = Swarm 3 (HomeUnlimChatV2 full compile-context integration)
+// Polish    = Swarm 4 (HomeCompilePolishProvider + home-compile-polish.css)
+// Enabled via URL `?v2=1` OR localStorage `elab.home_compile.v2`.
+// Default OFF for one deploy cycle so docente prod path stays untouched
+// until Andrea ratifies V2 on hardware. Toggle promotes to default later.
+import HomeCompileLayoutV2 from './HomeCompileLayoutV2';
+import HomeUnlimChatV2 from './HomeUnlimChatV2';
+import HomeCompilePolishProvider from './HomeCompilePolishProvider';
+import '../../styles/home-compile-polish.css';
+
+function isV2Enabled() {
+  try {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('v2') === '1' || params.get('layout') === 'v2') return true;
+    return window.localStorage?.getItem('elab.home_compile.v2') === '1';
+  } catch (_) {
+    return false;
+  }
+}
+
+// V2 layout expects { flashUsed, flashTotal, flashPercent }; resolveCompileFlash
+// returns { bytes, total, percent } — adapter keeps V2 component free of
+// legacy state shape.
+function adaptCompileSizeForV2(legacy) {
+  if (!legacy) return null;
+  return {
+    flashUsed: legacy.bytes,
+    flashTotal: legacy.total,
+    flashPercent: legacy.percent,
+  };
+}
+
+// iter 85 close integration Sub-project A: localStorage persistence key
+// Andrea ratify gruppo 17 voce 2 verbose explicit naming
+// (vs short 'elab_mode' — IT plurale explicit per Sense 1.5 morfismo).
+const EDITOR_MODE_STORAGE_KEY = 'elab_editor_mode_preference';
+
+const DEFAULT_BOARD_ID = 'arduino-nano-r4';
+// Iter 73 CC-2 fix F2 (Codex Pattern V REFUTE): canonical FQBN passed
+// explicit to compileCode — without this, api.js fallback to AVR Nano old
+// bootloader (api.js:1294 ALLOWED_COMPILE_BOARDS sanitize). Matches
+// src/boards/arduino-nano-r4.json:6 + api.js:64 whitelist (iter 72 BG-A7).
+const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
+
+const DEFAULT_BLOCKS_BLINK = getStarterXml('blink');
+
+function FullscreenIcon({ active = false }) {
+  return (
+    <svg
+      width={18}
+      height={18}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {active ? (
+        <>
+          <path d="M8 3v5H3" />
+          <path d="M16 3v5h5" />
+          <path d="M8 21v-5H3" />
+          <path d="M16 21v-5h5" />
+        </>
+      ) : (
+        <>
+          <path d="M3 9V3h6" />
+          <path d="M21 9V3h-6" />
+          <path d="M3 15v6h6" />
+          <path d="M21 15v6h-6" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function SerialRailIcon() {
+  return (
+    <svg
+      width={18}
+      height={18}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M4 7h16" />
+      <path d="M4 12h10" />
+      <path d="M4 17h16" />
+      <path d="M18 10l3 2-3 2" />
+    </svg>
+  );
+}
+
+const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
+  const { t } = useTranslation();
+  const [blocklyXml, setBlocklyXml] = useState(DEFAULT_BLOCKS_BLINK);
+  // 2026-05-29 SWARM 1 fix — one-shot compile/upload bug (Andrea verbatim
+  // "succede niente se cambi i blocchi o codice e puoi compilare e caricare
+  // una sola volta"). Root cause: passing `blocklyXml` directly as
+  // ScratchEditor's `initialCode` created a circular state ping-pong. Every
+  // Blockly user-edit fires onChange → setBlocklyXml(newXml) → re-render →
+  // ScratchEditor's `useEffect[initialCode]` (panel:548-581) re-fires →
+  // workspace.clear() + reload from newXml + synthetic onChange. The
+  // visible workspace remount disturbed every edit ("sembra che succeda
+  // niente"). Downstream effect: user could not produce a meaningful
+  // second compile because the workspace kept resetting → so compile+upload
+  // appeared to work "una sola volta".
+  //
+  // FIX: pin the initialCode prop to a stable ref-held value. The ref is
+  // updated ONLY by intentional re-seeds (C++→Blocks mode switch via
+  // cppToBlocklyXml). When the ref is re-seeded, `blocklyEditorKey` is
+  // bumped → ScratchEditor remounts → its first-mount useEffect loads the
+  // new XML cleanly. User-edits still update `blocklyXml` state for the
+  // code preview + cppToBlocklyXml use, but NEVER flow back into the editor
+  // as `initialCode` → no feedback loop.
+  // File ownership: this fix is entirely in HomeCompileEntry.jsx — no
+  // touch to ScratchEditor.jsx (which other surfaces — Passo Passo, the
+  // simulator NewElabSimulator — depend on for forced-reload semantics).
+  const blocklyInitialCodeRef = useRef(DEFAULT_BLOCKS_BLINK);
+  const [blocklyEditorKey, setBlocklyEditorKey] = useState(0);
+  // Helper: re-seed the editor with new XML. Bumps the key so ScratchEditor
+  // remounts with the fresh initialCode (no in-place reload feedback loop).
+  const reseedBlocklyEditor = useCallback((xml) => {
+    if (typeof xml !== 'string' || xml.length === 0) return;
+    blocklyInitialCodeRef.current = xml;
+    setBlocklyXml(xml);
+    setBlocklyEditorKey((k) => k + 1);
+  }, []);
+  const [scratchCode, setScratchCode] = useState(NANO_R4_BLINK_CPP);
+  // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
+  // state. Default seeded Blink Vol3 Cap.6 Esp.1 sketch so docente vede
+  // codice già compilabile (Karpathy "Simple": no empty-editor friction).
+  const [cppCode, setCppCode] = useState(NANO_R4_BLINK_CPP);
+  // iter 85 close integration Sub-project A: editorMode state ora consume
+  // localStorage preference Andrea ratify gruppo 17 voce 2. Default 'blocks'
+  // preserves iter 73 CC-2 Blockly first-impression (vs 'code' direct C++).
+  const [editorMode, setEditorMode] = useState(() => {
+    try {
+      if (typeof window === 'undefined') return MODE_BLOCKS;
+      const saved = window.localStorage.getItem(EDITOR_MODE_STORAGE_KEY);
+      if (saved === MODE_CODE || saved === MODE_BLOCKS) return saved;
+    } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
+    return MODE_BLOCKS;
+  });
+  // iter 85 close integration Sub-project A: workspace lifecycle state for
+  // ElabScratchModeShell. workspaceRef stores Blockly workspace instance for
+  // starter XML load. workspaceReady toggles skeleton loading (F4 mitigation
+  // 4/6 personas fail audit). workspaceBlockCount drives StarterButtons
+  // overlay visibility (isEmpty when ≤1 = arduino_base alone).
+  const workspaceRef = useRef(null);
+  const [workspaceReady, setWorkspaceReady] = useState(false);
+  const [workspaceBlockCount, setWorkspaceBlockCount] = useState(0);
+  const [compileStatus, setCompileStatus] = useState('idle');
+  const [compileErrors, setCompileErrors] = useState(null);
+  const [compileWarnings, setCompileWarnings] = useState(null);
+  const [compileSize, setCompileSize] = useState(null);
+  // Compiled HEX (Intel HEX text or base64-wrapped) preserved so the upload
+  // button can flash without re-compiling. Per-board (R4 vs AVR) separation.
+  const [compiledHex, setCompiledHex] = useState(null);
+  const [targetBoardId, setTargetBoardId] = useState('nano-r4');
+  // Switching board invalidates the previous compile output — different MCU
+  // family means the bytes don't apply. Force re-compile.
+  const handleBoardChange = useCallback((newBoardId) => {
+    setTargetBoardId(newBoardId);
+    setCompiledHex(null);
+    setCompileStatus('idle');
+    setCompileErrors(null);
+    setCompileWarnings(null);
+    setCompileSize(null);
+  }, []);
+
+  const [serialExpanded, setSerialExpanded] = useState(false);
+  const [editorFullscreen, setEditorFullscreen] = useState(false);
+
+  // iter 85 close integration Sub-project A: ModeToggle handler — persists
+  // preference localStorage (defensive try/catch — quota OR private mode).
+  const handleModeChange = useCallback((mode) => {
+    if (mode !== MODE_BLOCKS && mode !== MODE_CODE) return;
+    if (mode === MODE_CODE && editorMode === MODE_BLOCKS) {
+      setCppCode(scratchCode || NANO_R4_BLINK_CPP);
+    }
+    if (mode === MODE_BLOCKS && editorMode === MODE_CODE) {
+      const xml = cppToBlocklyXml(cppCode);
+      if (xml) {
+        // 2026-05-29 SWARM 1 fix — use reseedBlocklyEditor so ScratchEditor
+        // remounts with the C++-derived XML (intentional re-seed, no loop).
+        reseedBlocklyEditor(xml);
+        setScratchCode(cppCode || NANO_R4_BLINK_CPP);
+      }
+    }
+    setEditorMode(mode);
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(EDITOR_MODE_STORAGE_KEY, mode);
+      }
+    } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
+  }, [cppCode, editorMode, scratchCode, reseedBlocklyEditor]);
+
+  // iter 85 close integration Sub-project A: ScratchEditor optional callback
+  // onWorkspaceReady — captures Blockly workspace ref for starter XML load
+  // + flips workspaceReady true → ElabScratchModeShell dismiss skeleton.
+  const handleWorkspaceReady = useCallback((workspace) => {
+    workspaceRef.current = workspace;
+    setWorkspaceReady(true);
+  }, []);
+
+  // iter 85 close integration Sub-project A: StarterButtons callback —
+  // parent loads pre-built Blockly XML via getStarterXml + domToWorkspace.
+  // Defensive: validate workspace ref + Blockly Xml utils available before
+  // dispatch. Clear workspace first to avoid stacking with arduino_base.
+  const handleStarterClick = useCallback((key) => {
+    const xml = getStarterXml(key);
+    if (!xml || !workspaceRef.current) {
+      logger.warn('[HomeCompileEntry] starter load skipped: missing xml or workspace ref');
+      return;
+    }
+    try {
+      const dom = Blockly?.utils?.xml?.textToDom?.(xml);
+      if (!dom) {
+        logger.warn('[HomeCompileEntry] Blockly.utils.xml.textToDom unavailable');
+        return;
+      }
+      workspaceRef.current.clear();
+      Blockly.Xml.domToWorkspace(dom, workspaceRef.current);
+    } catch (err) {
+      logger.warn('[HomeCompileEntry] starter load failed:', err?.message);
+    }
+  }, []);
+
+  // iter 79.A A1 fix (Codex Pattern V HIGH IDE-2 + HOMEPAGE-2): ScratchEditor
+  // emits onChange(xmlText, generatedCppCode) per ScratchEditor.jsx:407-412+
+  // 421-425+491. Previous handler stored xmlText as scratchCode → compile
+  // received raw <xml>...</xml> instead of C++ → arduino-cli "Error during
+  // build: exit status 1" (empirically reproduced 2026-05-17). Fix: ignore
+  // first arg, store second (generated C++).
+  const handleScratchCodeChange = useCallback((_xml, code) => {
+    setBlocklyXml(_xml || DEFAULT_BLOCKS_BLINK);
+    setScratchCode(code || '');
+  }, []);
+
+  const activeSketchCode = editorMode === MODE_CODE ? cppCode : scratchCode;
+
+  const handleCompile = useCallback(async (codeOverride) => {
+    const code = typeof codeOverride === 'string' ? codeOverride : scratchCode;
+    if (!code || !code.trim()) {
+      setCompileStatus('error');
+      setCompileErrors('Ragazzi, prima scrivete il codice Arduino o trascinate i blocchi sull\'editor.');
+      return;
+    }
+    setCompileStatus('compiling');
+    setCompileErrors(null);
+    setCompileWarnings(null);
+    setCompileSize(null);
+    setCompiledHex(null);
+    try {
+      const board = getBoardById(targetBoardId);
+      const fqbn = board?.fqbn || DEFAULT_FQBN;
+      const result = await compileCode(code, fqbn);
+      if (result && result.success) {
+        if (result.hex) setCompiledHex(result.hex);
+        const provider = result.provider || 'cloud-renesas';
+        if (provider !== 'cloud-renesas') {
+          setCompileStatus('verified-legacy');
+          setCompileSize(null);
+          if (result.warnings) setCompileWarnings(result.warnings);
+          return;
+        }
+
+        setCompileStatus('success');
+        // iter-102 fix (Codex iter-101 review + live Chrome debug 2026-05-20):
+        // iter-80.A5 reported result.artifactSizeBytes (= hexSize, the Intel
+        // HEX *file* size) and atob(hexBase64).length (the same HEX text) as
+        // the flash figure → the panel showed "42%" for a Blink that really
+        // uses ~14%. resolveCompileFlash parses arduino-cli stdout
+        // (result.output, authoritative) with an Intel HEX data-record
+        // fallback. See src/utils/compileSizeParse.js.
+        const flash = resolveCompileFlash(result);
+        if (flash) {
+          setCompileSize(flash);
+        }
+        if (result.warnings) setCompileWarnings(result.warnings);
+      } else {
+        setCompileStatus('error');
+        setCompileErrors(result?.errors || 'Compilazione fallita. Controllate il codice ragazzi.');
+      }
+    } catch (err) {
+      logger.error('[HomeCompileEntry] compile error', err);
+      setCompileStatus('error');
+      setCompileErrors(err?.message || 'Errore di rete. Verificate la connessione.');
+    }
+    // 2026-05-28 (Andrea + Playwright trace): targetBoardId MUST be in the
+    // deps list — handleCompile reads getBoardById(targetBoardId) above. The
+    // previous `[scratchCode]` deps array captured 'nano-r4' (the initial
+    // useState) and kept reusing that closure, so changing the picker to UNO
+    // R3 left the compile call targeting Nano R4 anyway. Mascot + upload
+    // button labels were correct (read from current render state) but the
+    // compile API still received the stale fqbn — visible regression: size
+    // panel kept saying "38.1 KB / 256 KB" (Nano R4 build) while the picker
+    // said UNO R3.
+  }, [scratchCode, targetBoardId]);
+
+  // 2026-05-29 orchestrator integration: V2 opt-in path. When the docente
+  // visits `/?v2=1#compile-home` (or has `elab.home_compile.v2='1'` in
+  // localStorage), render the Swarm 2 edukit-inspired layout with the
+  // Swarm 3 always-present UNLIM chat and the Swarm 4 polish provider.
+  // Default OFF keeps PR #176-186 working prod path untouched until Andrea
+  // ratifies V2 on his hardware.
+  if (isV2Enabled()) {
+    const activeBoard = getBoardById(targetBoardId);
+    const v2BoardLabel = activeBoard?.label || 'Arduino Nano R4';
+    return (
+      <HomeCompilePolishProvider>
+        <div
+          data-testid="home-compile-entry"
+          data-elab-mode="compile-home"
+          data-elab-layout="hcv2-edukit"
+        >
+          <HomeCompileLayoutV2
+            boardLabel={v2BoardLabel}
+            compileStatus={compileStatus}
+            compileSize={adaptCompileSizeForV2(compileSize)}
+            sketchCode={activeSketchCode}
+            canCompile={Boolean(activeSketchCode && activeSketchCode.trim())}
+            canUpload={Boolean(compiledHex)}
+            onCompile={() => handleCompile(activeSketchCode)}
+            onUpload={() => {
+              try {
+                const btn = document.querySelector('[data-testid="universal-upload-btn"]');
+                btn?.click();
+              } catch (_) { /* defensive */ }
+            }}
+            onAskUnlim={(question) => {
+              try {
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('elab-unlim-seed', String(question || ''));
+                  // surface to in-page chat via custom event if listener exists
+                  window.dispatchEvent(new CustomEvent('elab:home_unlim_v2:ask', { detail: { question } }));
+                }
+              } catch (_) { /* defensive */ }
+            }}
+            onBackHome={onBackHome}
+            editorSlot={(
+              <ScratchErrorBoundary>
+                {editorMode === MODE_CODE ? (
+                  <CodeEditorCM6
+                    code={cppCode}
+                    onChange={(next) => setCppCode(next)}
+                    onCompile={() => handleCompile(cppCode)}
+                  />
+                ) : (
+                  <ElabScratchModeShell
+                    workspaceReady={workspaceReady}
+                    blockCount={workspaceBlockCount}
+                    onStarterClick={handleStarterClick}
+                  >
+                    <ScratchEditor
+                      initialCode={blocklyInitialCodeRef.current}
+                      key={blocklyEditorKey}
+                      onChange={handleScratchCodeChange}
+                      onWorkspaceReady={handleWorkspaceReady}
+                      onBlockCountChange={setWorkspaceBlockCount}
+                    />
+                  </ElabScratchModeShell>
+                )}
+              </ScratchErrorBoundary>
+            )}
+            bannerSlot={USE_LOCAL_AGENT_BANNER
+              ? <CompileAgentBanner openCompilerUrl={null} />
+              : <WebUsbBanner compact openCompilerUrl={null} />}
+            boardPickerSlot={(
+              <>
+                <BoardPicker boardId={targetBoardId} onChange={handleBoardChange} hint={t('home_compile_v2.board_pick_label')} />
+                {/* UniversalUploadButton remains the actual WebSerial dispatcher;
+                    V2 layout's "Upload" pill delegates to its hidden click handler. */}
+                <div style={{ position: 'absolute', left: -10000, top: 'auto' }} aria-hidden="true">
+                  <UniversalUploadButton key={targetBoardId} boardId={targetBoardId} hexText={compiledHex || ''} />
+                </div>
+              </>
+            )}
+            unlimChatSlot={(
+              <HomeUnlimChatV2
+                compileStatus={compileStatus}
+                editorMode={editorMode}
+                sketchCode={activeSketchCode}
+                boardId={targetBoardId}
+                boardLabel={v2BoardLabel}
+                fqbn={activeBoard?.fqbn || DEFAULT_FQBN}
+                compileSize={compileSize}
+                compileErrors={compileErrors}
+                compileWarnings={compileWarnings}
+                blockCount={workspaceBlockCount}
+              />
+            )}
+            serialMonitorSlot={serialExpanded ? (
+              <VirtualSerialMonitor
+                sketchCode={activeSketchCode}
+                expanded
+                onToggle={() => setSerialExpanded((v) => !v)}
+              />
+            ) : null}
+          />
+        </div>
+      </HomeCompilePolishProvider>
+    );
+  }
+
+  return (
+    <div
+      className={styles.root}
+      data-testid="home-compile-entry"
+      data-elab-mode="compile-home"
+      data-elab-layout="codekit-workspace"
+      data-elab-fullscreen={editorFullscreen ? 'true' : 'false'}
+      data-elab-serial-expanded={serialExpanded ? 'true' : 'false'}
+    >
+      <header className={styles.header}>
+        <button
+          type="button"
+          className={styles.backBtn}
+          onClick={onBackHome}
+          aria-label={t('home_compile_entry.back_home')}
+        >
+          ←
+        </button>
+        <h1 className={styles.title}>ELAB Code</h1>
+        <div className={styles.boardPill} aria-label="Scheda selezionata">Arduino Nano R4</div>
+      </header>
+
+      <section className={styles.bannerSection} aria-label="Stato browser cross-compile">
+        {/* iter 87 PHASE 4c UX (Andrea feedback 2026-05-18): hide redundant
+            "Apri il Compilatore" CTA when banner rendered INSIDE compiler page
+            (sei già nel compilatore). Status part still useful (WebUSB ready
+            indicator). openCompilerUrl=null hides only the CTA button. */}
+        {USE_LOCAL_AGENT_BANNER
+          ? <CompileAgentBanner openCompilerUrl={null} />
+          : <WebUsbBanner openCompilerUrl={null} compact />}
+      </section>
+
+      <main className={styles.editorGrid} data-testid="codekit-workspace-main">
+        {/* data-onboard-target attrs are kept as stable QA hooks for this tool surface. */}
+        <section className={styles.editorPanel} aria-label="Editor Blockly + IDE" data-onboard-target="starter-buttons">
+          {/* iter 85 close integration Sub-project A — ModeToggle iter 84
+              atom 8 (Andrea ratify gruppo 16 voce 3) replaces inline
+              tab bar (iter 80.A2 + iter 81.A1) for canonical 2-state
+              Blocchi/C++ toggle. Same WAI-ARIA Tab pattern
+              (tablist + tab + aria-selected + Arrow Left/Right + Space/Enter)
+              + WCAG touch 44+ + IT plurale label preserved. Top bar
+              position visibile LIM 4K + iPad. localStorage persist via
+              handleModeChange. */}
+          {/* iter 85 close integration Sub-project A: reuse styles.tabBar
+              wrapper (defined HomeCompileEntry.module.css:102 — flex 0 0 auto +
+              bg + border-bottom + padding 0 8px + gap 4px). NO modify CSS
+              module (file ownership rigid per Sub-project A mandate). */}
+          <div className={styles.tabBar}>
+            <ModeToggle activeMode={editorMode} onModeChange={handleModeChange} />
+            <button
+              type="button"
+              className={styles.fullscreenBtn}
+              onClick={() => setEditorFullscreen((value) => !value)}
+              aria-label={editorFullscreen ? 'Esci da tutto schermo' : 'Apri editor a tutto schermo'}
+              aria-pressed={editorFullscreen}
+              title={editorFullscreen ? 'Esci da tutto schermo' : 'Editor a tutto schermo'}
+            >
+              <FullscreenIcon active={editorFullscreen} />
+              <span>{editorFullscreen ? 'Esci' : 'Schermo intero'}</span>
+            </button>
+          </div>
+
+          <div
+            className={styles.editorSurface}
+            role="tabpanel"
+            id="home-compile-tabpanel-editor"
+            aria-labelledby="mode-toggle-active"
+            data-onboard-target="editor"
+          >
+            {/* iter 85 close integration Sub-project A — anti-regression
+                MANDATORY: editorMode === 'blocks' gate. ElabScratchModeShell
+                (atom 7) wraps ScratchEditor con StarterButtons (atom 6)
+                overlay quando workspace empty + skeleton loading mount.
+                editorMode === 'code' path NO mount ElabScratchModeShell
+                (Blockly-only crash prevention — workspaceRef nullable
+                outside Blockly mount). */}
+            {editorMode === MODE_BLOCKS ? (
+              <ScratchErrorBoundary>
+                <ElabScratchModeShell
+                  workspaceReady={workspaceReady}
+                  workspaceBlockCount={workspaceBlockCount}
+                  onStarterClick={handleStarterClick}
+                  disableAutoStarters
+                >
+                  <ScratchEditor
+                    // 2026-05-29 SWARM 1 fix — `key` makes ScratchEditor
+                    // remount cleanly when reseedBlocklyEditor bumps the
+                    // counter (e.g. C++→Blocks mode switch). `initialCode`
+                    // pinned to a ref so user-driven onChange NEVER flows
+                    // back into ScratchEditor as a new prop value → breaks
+                    // the previous workspace-clear ping-pong that made the
+                    // editor feel dead after the first compile cycle.
+                    key={blocklyEditorKey}
+                    initialCode={blocklyInitialCodeRef.current}
+                    onChange={handleScratchCodeChange}
+                    // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
+                    // Without gate, C++ compile error shows in Blockly overlay after tab switch.
+                    compileError={editorMode === MODE_BLOCKS ? compileErrors : null}
+                    onCompileErrorDismiss={() => setCompileErrors(null)}
+                    // iter 85 close integration Sub-project A: optional callback
+                    // wire-up — ScratchEditor emits workspace ref + top-block count
+                    // for ElabScratchModeShell skeleton + StarterButtons overlay.
+                    onWorkspaceReady={handleWorkspaceReady}
+                    onBlockCountChange={setWorkspaceBlockCount}
+                    showOnboardingOnFirstRun={false}
+                  />
+                </ElabScratchModeShell>
+              </ScratchErrorBoundary>
+            ) : (
+              <CodeEditorCM6
+                code={cppCode}
+                onChange={setCppCode}
+                readOnly={false}
+                // iter 87 PHASE 4c UX: hide duplicate "▶ Compila & Carica" footer
+                // button. Canonical compile entry = ScratchCompileBar aside (right
+                // panel). Andrea feedback 2026-05-18 PM: 3 compile buttons (header
+                // banner CTA + green editor footer + side panel) confondevano.
+                hideCompileButton
+                // iter 88 88.UX-1 /distill — hide decorative "Editor Codice"
+                // title + A-/13/A+ font zoom toolbar. Status preserved
+                // (role="status" aria-live) accessibility. Reduces ≤5 elem
+                // first-render per Andrea verdetto iter 87 PHASE 4c
+                // "ux ui fanno schifo" + critique Nielsen 22/40 mediocre.
+                // ScratchCompileBar aside already shows canonical status.
+                compact
+              />
+            )}
+          </div>
+        </section>
+
+        <aside className={styles.compileBarPanel} aria-label="Pannello compilazione" data-onboard-target="compile-bar">
+          <section className={styles.codePreview} aria-label="Codice Arduino corrente">
+            <div className={styles.codePreviewHeader}>
+              <span>{t('home_compile_entry.code')}</span>
+              <button
+                type="button"
+                className={styles.codePreviewAction}
+                onClick={() => handleModeChange(MODE_CODE)}
+              >
+                Apri
+              </button>
+            </div>
+            <pre className={styles.codePreviewBody}>{activeSketchCode || NANO_R4_BLINK_CPP}</pre>
+          </section>
+          <ScratchCompileBar
+            onCompile={() => handleCompile(activeSketchCode)}
+            compilationStatus={compileStatus}
+            compilationErrors={compileErrors}
+            compilationWarnings={compileWarnings}
+            compilationSize={compileSize}
+            // 2026-05-28 (Andrea report "non va, non va nessuna pagina e non
+            // va l'upload"): drop `sketchCode` so ScratchCompileBar skips
+            // its built-in CompileUploadButton path. That legacy button was
+            // hardcoded to Nano R4 (boardId={DEFAULT_BOARD_ID}, copy
+            // "Collegate il Nano R4", DFU protocol) and ignored the
+            // BoardPicker below, dispatching DFU upload at an attached
+            // UNO R3. Single upload UI now = BoardPicker + UniversalUploadButton,
+            // which honors the picker and routes per-board protocol.
+            compileButtonLabel="Compila"
+            boardId={targetBoardId}
+            port={null}
+          />
+          {/* Andrea 2026-05-27 — board picker + universal upload. Single
+              upload entry after 2026-05-28 dedup. UniversalUploadButton
+              gets key={targetBoardId} so a board switch unmounts/remounts
+              with fresh state — clears lingering error message + status. */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '12px 0' }}>
+            <BoardPicker boardId={targetBoardId} onChange={handleBoardChange} hint="Scheda di destinazione" />
+            <UniversalUploadButton key={targetBoardId} boardId={targetBoardId} hexText={compiledHex || ''} />
+          </div>
+          {/* Iter 97 atom C — UnlimCompileHelper static mascot scaffold per
+              Andrea iter 97 PM screenshot feedback "qui sarebbe bello unlim
+              animato che ti spiega cosa fare in base alle domande". V1 fills
+              previously empty right-panel area below ScratchCompileBar.
+              V2 iter 98+ wire onAskQuestion to HomePage UNLIM chat surface. */}
+          <UnlimCompileHelper
+            compileStatus={compileStatus}
+            editorMode={editorMode}
+            sketchCode={activeSketchCode}
+            blockCount={workspaceBlockCount}
+            boardLabel={getBoardById(targetBoardId)?.label || ''}
+            onAskQuestion={(question) => {
+              // iter 104 C3 — forward a Lavagna chat reale via hash navigation
+              // con seedMessage query param. Lavagna seedMessage consume handler
+              // out-of-scope C3 (TODO iter 105+); per ora apre Lavagna pulita,
+              // mascotte preserva contesto via localStorage `elab-unlim-seed`.
+              try {
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('elab-unlim-seed', String(question || ''));
+                  window.location.hash = '#lavagna';
+                }
+              } catch (_) { /* defensive — quota/private mode */ }
+            }}
+          />
+        </aside>
+
+        {/* Iter 95 SP3 T3 — Virtual Serial Monitor. iter-103 layout refactor
+            (Andrea iter 103 PM ratify "Monitor sotto l'editor"): spostato
+            DENTRO editorGrid come cella della griglia (grid-area: serial)
+            sotto l'editor. Prima era un <section> fratello a tutta larghezza
+            — la "banda nera gigante" del bug. Mostra l'output Serial.*
+            previsto dal sorgente corrente; disclaimer Andrea iter 94 PM
+            dentro al componente. */}
+        <section
+          className={styles.virtualSerialSection}
+          aria-label={t('home_compile_entry.serial_aria')}
+          data-onboard-target="virtual-serial"
+          id="home-compile-serial-panel"
+        >
+          <button
+            type="button"
+            className={styles.serialRailBtn}
+            onClick={() => setSerialExpanded((value) => !value)}
+            aria-label={serialExpanded ? 'Chiudi Monitor Seriale Virtuale' : 'Apri Monitor Seriale Virtuale'}
+            aria-expanded={serialExpanded}
+            aria-controls="home-compile-serial-panel"
+            data-elab-orientation="portrait"
+          >
+            <SerialRailIcon />
+            <span>{t('home_compile_entry.serial')}</span>
+          </button>
+          {serialExpanded && (
+            <div className={styles.serialDrawer}>
+              <VirtualSerialMonitor
+                cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
+                boardConnected={false}
+                maxIterations={10}
+              />
+            </div>
+          )}
+        </section>
+      </main>
+      {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso
+          link diretto <a href="/scripts/setup-elab-compile-agent.sh"> perché
+          script MAI shipped (404 prod confermato empirical). Distribuzione
+          packaging Tauri signed installer = iter 64 SPEC Option B
+          ($300/yr Apple Dev ID + cross-platform pipeline) defer iter 75+
+          scope. Per ora docente legge istruzioni manuale OR Andrea/Tea
+          installa via SSH ad-hoc. */}
+
+    </div>
+  );
+});
+
+export default HomeCompileEntry;

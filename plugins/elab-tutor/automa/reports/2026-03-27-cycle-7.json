@@ -1,0 +1,67 @@
+{
+  "cycle": 7,
+  "timestamp": "2026-03-27T03:43:52.739663",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 822
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.98s",
+      "time_ms": 21769
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 165635
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=82 min=77 (target \u226560) [3 samples]",
+      "time_ms": 60945
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4221
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2003
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "galileo-breve-didattico",
+    "status": "done",
+    "files_changed": [
+      "nanobot/prompts/tutor.yml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi per ELAB Tutor:**\n\n1.  **Deviazione inconcludente:** Il dialogo aperto pu\u00f2 portare lo studente fuori tema, facendogli perdere l'obiettivo di apprendimento principale senza che il sistema riesca a riallinearlo in modo efficace.\n2.  **Valutazione qualitativa:** \u00c8 difficile per l'AI valutare automaticamente la *qualit\u00e0* del ragionamento dietro una risposta aperta, limitandosi spesso a rico",
+  "ai_scoring": null,
+  "composite_score": 0.9445,
+  "self_exam": null
+}

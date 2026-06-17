@@ -1,0 +1,74 @@
+# Curriculum YAML — v1-cap7-esp2
+# "Accendi il verde del RGB"
+
+experiment_id: v1-cap7-esp2
+volume: 1
+chapter: 7
+title: "Accendi il verde del RGB"
+
+prerequisites:
+  - v1-cap7-esp1  # Sa accendere il rosso del RGB
+
+concepts_introduced:
+  - canale_verde_RGB
+  - piedino_diverso_colore_diverso
+
+vocabulary_level: v1-cap7
+allowed_terms:
+  - LED
+  - LED RGB
+  - rosso
+  - verde
+  - blu
+  - resistenza
+  - ohm
+  - corrente
+  - catodo
+  - anodo
+  - breadboard
+  - piedino
+  - circuito
+  - batteria
+  - filo
+  - pin
+  - colore
+forbidden_terms:
+  - PWM
+  - analogWrite
+  - digitale
+  - Arduino
+  - codice
+  - programma
+  - frequenza
+  - condensatore
+  - potenziometro
+  - transistor
+  - MOSFET
+  - parallelo
+  - serie
+
+teacher_briefing:
+  before_class: >
+    Stesso materiale dell'esp 1. Obiettivo: scoprire che cambiando piedino
+    si cambia colore. Lo studente deve trovare da solo quale piedino e il verde.
+  during_class: >
+    "Nell'esperimento 1 avete acceso il rosso. Ora provate ad accendere il verde
+    — quale piedino dovete collegare?" Lascia che provino. Se bloccati: "Ricordate
+    l'ordine dei piedini? Provate il prossimo."
+  common_question: >
+    "Come faccio a sapere quale e il verde?" -> Guarda il datasheet semplificato
+    oppure prova: sposta il filo su un piedino diverso e guarda che colore esce!
+
+common_mistakes:
+  - mistake: "Collegano lo stesso piedino del rosso"
+    what_to_do: "Ricorda l'ordine: dal catodo (il piu lungo), i piedini sono R, catodo, G, B"
+    analogy: null
+
+analogies:
+  canale_verde_RGB:
+    analogy: "E come cambiare canale sulla TV: stessa TV (LED RGB), ma canale diverso (piedino diverso) mostra un programma diverso (colore diverso)."
+    evidence: "Analogia canale/selettore (Gentner 1983)"
+
+assessment_invisible:
+  - "Se trova il verde al primo tentativo -> ha memorizzato il pinout dal esp 1"
+  - "Se chiede 'posso accenderli insieme?' -> pronto per esp 4-5"

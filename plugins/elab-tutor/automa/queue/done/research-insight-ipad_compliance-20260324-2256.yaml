@@ -1,0 +1,17 @@
+id: research-insight-ipad_compliance-20260324-2256
+priority: P1
+title: "Research-driven fix: ipad_compliance (score=0.68)"
+description: |
+Metrica target: "ipad_compliance (attuale: 0.680, target: 0.90+)"
+Fonte: "**1. Problemi concreti:**"
+- Interfaccia non completamente responsiva: alcuni elementi UI (pulsanti, toolbar) non si ridimensionano correttamente su tutti i modelli iPad, causando overlap o aree "morte" touch.
+- Aree touch inadeguate: gli elementi interattivi (cavi, componenti) ha
+success_criteria: |
+python3 automa/evaluate.py | grep 'SCORE: ipad_compliance
+context_files: 
+tags: research-driven,auto-generated,ipad_compliance
+created: "2026-03-24T22:56:46.015522"
+claimed_at: "2026-03-24T23:38:18.350895"
+claimed_by: orchestrator
+completed_at: "2026-03-24T23:50:07.869236"
+result: ok

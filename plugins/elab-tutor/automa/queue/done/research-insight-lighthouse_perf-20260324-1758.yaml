@@ -1,0 +1,17 @@
+id: research-insight-lighthouse_perf-20260324-1758
+priority: P1
+title: "Research-driven fix: lighthouse_perf (score=0.62)"
+description: |
+Metrica target: "lighthouse_perf (attuale: 0.620, target: 0.90+)"
+Fonte: "**Problemi concreti:**"
+1. Bundle iniziale troppo grande: tutti i componenti del simulatore (canvas, toolbar, strumenti) caricati in blocco, ritardando il rendering della schermata principale.
+success_criteria: |
+python3 automa/evaluate.py | grep 'SCORE: lighthouse_perf
+context_files: 
+tags: research-driven,auto-generated,lighthouse_perf
+created: "2026-03-24T17:58:12.720264"
+claimed_at: "2026-03-24T20:07:44.480787"
+claimed_by: orchestrator
+
+completed_at: 2026-03-24T22:38:57.123623
+result: done_by_cycle_62_lighthouse_0.90

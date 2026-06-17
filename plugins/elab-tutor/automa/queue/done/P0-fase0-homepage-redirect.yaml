@@ -1,0 +1,12 @@
+id: P0-fase0-homepage-redirect
+priority: P0
+title: "Fase 0.1: Eliminare redirect homepage — renderizzare VetrinaSimulatore direttamente"
+description: |
+PROBLEMA: La prima cosa che un utente vede è "Reindirizzamento alla vetrina..." su sfondo grigio.
+FILE: src/components/ShowcasePage.jsx
+FIX: Renderizzare VetrinaSimulatore direttamente in ShowcasePage, eliminare redirect a Netlify.
+VERIFICA: curl homepage → HTML con contenuto ELAB, non "Reindirizzamento
+GATE: build PASSA, homepage mostra contenuto ELAB
+tags: fase0,ux,p0,bloccante
+claimed_at: "2026-03-27T02:12:31.114345"
+claimed_by: orchestrator

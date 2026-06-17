@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "total": 5,
+    "pass": 0,
+    "bug_400_persist": false,
+    "latency_stats": {
+      "n": 5,
+      "min": 137,
+      "max": 740,
+      "mean": 275,
+      "p50": 173,
+      "p95": 740,
+      "p99": 740
+    }
+  },
+  "results": [
+    {
+      "id": "E01",
+      "text": "Ragazzi accendiamo il LED.",
+      "stage": "stt",
+      "status": 500,
+      "latency_ms": 740,
+      "audio_size": 16446,
+      "transcript": "",
+      "raw": {
+        "success": false,
+        "error": "Transcription failed",
+        "details": "Unexpected token 'I', \"ID3\u0004\u0000\u0000\u0000\u0000\u0000\"\"... is not valid JSON"
+      },
+      "ok": false
+    },
+    {
+      "id": "E02",
+      "text": "La legge di Ohm.",
+      "stage": "stt",
+      "status": 500,
+      "latency_ms": 137,
+      "audio_size": 8578,
+      "transcript": "",
+      "raw": {
+        "success": false,
+        "error": "Transcription failed",
+        "details": "Unexpected token 'I', \"ID3\u0004\u0000\u0000\u0000\u0000\u0000\"\"... is not valid JSON"
+      },
+      "ok": false
+    },
+    {
+      "id": "E03",
+      "text": "Volume uno pagina quaranta.",
+      "stage": "stt",
+      "status": 500,
+      "latency_ms": 186,
+      "audio_size": 14850,
+      "transcript": "",
+      "raw": {
+        "success": false,
+        "error": "Transcription failed",
+        "details": "Unexpected token 'I', \"ID3\u0004\u0000\u0000\u0000\u0000\u0000\"\"... is not valid JSON"
+      },
+      "ok": false
+    },
+    {
+      "id": "E04",
+      "text": "Pin tredici Arduino.",
+      "stage": "stt",
+      "status": 500,
+      "latency_ms": 138,
+      "audio_size": 12982,
+      "transcript": "",
+      "raw": {
+        "success": false,
+        "error": "Transcription failed",
+        "details": "Unexpected token 'I', \"ID3\u0004\u0000\u0000\u0000\u0000\u0000\"\"... is not valid JSON"
+      },
+      "ok": false
+    },
+    {
+      "id": "E05",
+      "text": "Resistenza duecentoventi Ohm.",
+      "stage": "stt",
+      "status": 500,
+      "latency_ms": 173,
+      "audio_size": 17535,
+      "transcript": "",
+      "raw": {
+        "success": false,
+        "error": "Transcription failed",
+        "details": "Unexpected token 'I', \"ID3\u0004\u0000\u0000\u0000\u0000\u0000\"\"... is not valid JSON"
+      },
+      "ok": false
+    }
+  ]
+}

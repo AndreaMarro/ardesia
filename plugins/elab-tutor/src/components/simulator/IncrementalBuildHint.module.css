@@ -1,0 +1,107 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/**
+ * IncrementalBuildHint Q2.E — palette ELAB
+ */
+
+.hint {
+  background-color: rgba(74, 122, 37, 0.06);
+  border: 1px solid rgba(74, 122, 37, 0.2);
+  border-left: 4px solid var(--elab-lime);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 14px;
+  color: #1a1a1a; /* palette */
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(74, 122, 37, 0.25);
+}
+
+.label {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3a6020; /* palette */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.baseRef {
+  font-size: 13px;
+  color: #555;
+}
+
+.baseRef code {
+  background-color: white;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  color: var(--color-primary);
+}
+
+.count {
+  margin-left: auto;
+  font-size: 13px;
+  color: #666;
+}
+
+.opList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.opItem {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+}
+
+.opItem:last-child {
+  border-bottom: none;
+}
+
+.opLabel {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 80px;
+}
+
+.opTarget {
+  background-color: white;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  color: var(--color-primary);
+}
+
+.opDetail {
+  font-size: 13px;
+  color: #555;
+}
+
+.op_add .opLabel {
+  color: #3a6020; /* palette */
+}
+
+.op_remove .opLabel {
+  color: #c93f30; /* palette */
+}
+
+.op_modify .opLabel {
+  color: #c07010; /* palette */
+}

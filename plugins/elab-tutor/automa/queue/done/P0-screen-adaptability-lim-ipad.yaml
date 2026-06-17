@@ -1,0 +1,40 @@
+id: P0-screen-adaptability-lim-ipad
+priority: P0
+title: Adattabilità schermi LIM (1024x768, 1280x800, 1366x768) e iPad (810x1080)
+description: |
+OBIETTIVO: Verificare e correggere la resa di ELAB Tutor su schermi scolastici reali.
+CONTESTO: 
+- LIM scolastiche italiane: principalmente 1024x768 (XGA), 1280x800, 1366x768
+- iPad scolastici: 810x1080 (iPad 10th gen), touch-first
+- Distanza LIM in classe: 3-5 metri → font minimo 24px per testo principale
+- Touch target: ≥44px per TUTTI gli elementi interattivi (Apple HIG, WCAG 2.5.5)
+STEPS DA ESEGUIRE (nell'ordine): 
+1. PLAYWRIGHT TEST su 4 viewport: 
+- Viewport: 1024x768 (LIM XGA), 1280x800 (LIM WXGA), 1366x768 (LIM comune), 810x1080 (iPad)
+- Per ogni viewport: screenshot in automa/screenshots/lim-{W}x{H}.png
+2. VERIFICA TOUCH TARGET: 
+- Query CSS: verificare computed style su elementi interattivi
+- Metodo: Playwright evaluate() per estrarre dimensioni
+3. VERIFICA FONT SIZE: 
+- body font-size: ≥17px su iPad (810px width)
+- Titoli e istruzioni: ≥24px per viewport ≥1024px (LIM)
+- Verificare che media query @media (max-width: 1024px) non riducano eccessivamente
+4. VERIFICA CANVAS SIMULATORE: 
+- Test specifico: aprire esperimento 1 (LED con resistore) e verificare visibilità
+5. MEDIA QUERY SPECIFICA LIM: 
+Se trovate violazioni CSS, aggiungere: 
+@media (max-width: "1366px) and (pointer: coarse) {"
+/* touch LIM: aumentare touch target, font */
+6. KIMI VISION REVIEW: 
+CoV OBBLIGATORIA: 
+- Prima: contare violazioni touch target e font size
+- Dopo fix: ricontare
+- Atteso: 0 violazioni touch target, 0 font <17px su iPad
+NOTA: automa/screenshots/ deve contenere screenshot PRIMA dei fix (baseline) e DOPO.
+tags: responsive,lim,ipad,accessibility,css,playwright
+created: 2026-03-25
+source: sessione-claude-desktop-audit
+claimed_at: "2026-03-25T12:14:05.334977"
+claimed_by: orchestrator
+completed_at: "2026-03-25T12:20:21.554424"
+result: ok

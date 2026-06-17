@@ -1,0 +1,68 @@
+{
+  "cycle": 47,
+  "timestamp": "2026-03-26T22:49:12.783871",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 491
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 17.80s",
+      "time_ms": 20461
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 150050
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=79 min=73 (target \u226560) [3 samples]",
+      "time_ms": 59649
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4151
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2220
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Progressive disclosure \u2014 CSS fade + toast sblocco + changedComponent milestone",
+    "status": "done",
+    "files_changed": [
+      "src/components/simulator/ElabSimulator.css",
+      "src/components/simulator/NewElabSimulator.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "low",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problema 1: Connettivit\u00e0 Inaffidabile.** In molte regioni, l'accesso a Internet \u00e8 costoso, lento o intermittente, rendendo impossibile il caricamento di risorse educative digitali tradizionali in tempo reale.\n\n**Problema 2: Formazione Docenti Limitata.** Gli insegnanti possono avere poca familiarit\u00e0 con le tecnologie digitali, rendendo difficile l'integrazione di nuovi strumenti nelle loro metod",
+  "ai_scoring": null,
+  "composite_score": 0.9655,
+  "self_exam": null
+}

@@ -1,0 +1,69 @@
+{
+  "cycle": 8,
+  "timestamp": "2026-03-27T04:18:20.094995",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 526
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.71s",
+      "time_ms": 23971
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 155322
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=68 (target \u226560) [3 samples]",
+      "time_ms": 65943
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4575
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2362
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "gdpr-reale-scuole",
+    "status": "done",
+    "files_changed": [
+      "automa/docs/GDPR-COMPLIANCE.md",
+      "automa/queue/done/P1-gdpr-reale-scuole.yaml",
+      "automa/results.tsv"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "high",
+    "evidence": "verified"
+  },
+  "research": "Kimi: Trend 1: Crescimento dell'utilizzo della tecnologia nell'istruzione\nL'adozione della tecnologia nell'istruzione \u00e8 in rapida crescita, con la maggior parte degli insegnanti che si avvicinano a strumenti digitali per migliorare l'esperienza di apprendimento degli studenti. Tuttavia, gli insegnanti inesperti possono incontrare barriere tecnologiche che ostacolano l'integrazione di queste risorse dida\nDeepSeek: **Problemi**\n1.  **Carenza di competenze tecniche:** Gli insegnanti inesperti spesso mancano della formazione pratica per utilizzare strumenti tecnologici in modo efficace, trovandosi sopraffatti dalla complessit\u00e0 o dalla risoluzione dei problemi tecnici di base.\n2.  **Ansia e mancanza di fiducia:** La paura di fallire di fronte agli studenti o di interrompere il flusso della lezione con errori te",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

@@ -1,0 +1,15 @@
+id: fix-lighthouse-perf-c52
+priority: P2
+title: 'Fix Core Web Vitals (lighthouse_perf=0.64 < 0.80)'
+description: |
+  Lighthouse performance score 0.64 è sotto la soglia 0.80.
+  Azioni concrete richieste:
+  1. Esegui `npx lighthouse https://www.elabtutor.school --output json` e analizza i diagnostici.
+  2. Identifica le risorse che bloccano il rendering (render-blocking JS/CSS).
+  3. Verifica code-splitting in vite.config.js — aggiungi manualChunks se necessario.
+  4. Controlla image optimization: usa WebP e lazy loading per immagini pesanti.
+  5. Riduci il bundle size: `npx vite-bundle-visualizer` per trovare dipendenze pesanti.
+  6. Dopo ogni modifica, riesegui lighthouse e verifica miglioramento.
+  Target: lighthouse_perf >= 0.80 (da 0.64).
+tags: performance,lighthouse,core-web-vitals,auto-generated
+auto_created_cycle: 52

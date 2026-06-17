@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-04-15T12:10:00Z",
+  "agent": "web-implementer (scheduled task)",
+  "sessionNotes": "No vice-orders.json found — used ralph-sync.json priorities.",
+  "ordersExecuted": [
+    {
+      "order": "P1 — Compilare volume-references.js con pagine reali dai PDF",
+      "result": "done",
+      "commit": "0372db3",
+      "testsDelta": "+0",
+      "details": "92 esperimenti mappati a pagine reali estratte con pdftotext dai 3 PDF ufficiali. Prima era STUB che restituiva null per tutto. Aggiunta helper getVolumeLabel(). Page numbers verificati da ToC e marker ESPERIMENTO nei PDF."
+    },
+    {
+      "order": "P3 — Aggiornare system prompt Nanobot Render (Galileo→UNLIM)",
+      "result": "partial",
+      "commit": null,
+      "testsDelta": "0",
+      "details": "Fix applicato a galileo-backend/api/main.py locale (Galileo→UNLIM in 3 punti). NON deployato: il backend Render live è v5.5.0 (multi-provider: DeepSeek/Gemini/Groq/Kimi), un sistema diverso dalla codebase locale. Serve accesso al repo git del backend Render per deploy."
+    },
+    {
+      "order": "P4 — Warm-up automatico Render per eliminare cold start",
+      "result": "done",
+      "commit": "dafc6d9",
+      "testsDelta": "0",
+      "details": "Aggiunta warmupRender() in api.js — pinga https://elab-galileo.onrender.com/health con HEAD request su app load (AbortSignal 60s). Chiamata in App.jsx mount effect insieme a startSyncInterval. Fire-and-forget, non blocca UI."
+    },
+    {
+      "order": "P1 — UNLIM RAG specifico + enriched context",
+      "result": "done",
+      "commit": "dafc6d9",
+      "testsDelta": "0",
+      "details": "sendChat ora inietta: volume references con citazione pagina fisica, stato simulatore dettagliato (componenti, fili, codice, pin, errori), storia studente (exp completati, tentativi, hint usati). Pre-existing uncommitted changes committed."
+    },
+    {
+      "order": "P5 — Verificare esperimenti mancanti da lesson-groups",
+      "result": "done",
+      "commit": null,
+      "testsDelta": "0",
+      "details": "Verifica: tutti 92 esperimenti coperti in lesson-groups (117 entries). Il dato '87/92' in ralph-sync era stale (aggiornato nella sessione 14/04). Nessuna modifica necessaria."
+    }
+  ],
+  "testsBefore": 8190,
+  "testsAfter": 8239,
+  "buildStatus": "PASS",
+  "blockers": [
+    "Render Galileo→UNLIM: non deployabile senza accesso git repo backend (v5.5.0 è sistema diverso)",
+    "Kokoro TTS produzione: non affrontato (richiede infrastruttura VPS/cloud)"
+  ],
+  "nextPriorities": [
+    "Deploy galileo-backend fix o aggiornare prompt nel repo Render v5.5.0",
+    "Integrare getVolumeLabel() nell'UI — ExperimentGuide.jsx per citare il libro",
+    "Kokoro TTS o Edge TTS in produzione (VPS 72.60.129.50:8880 non risponde)"
+  ]
+}

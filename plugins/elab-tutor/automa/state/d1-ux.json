@@ -1,0 +1,447 @@
+{
+  "timestamp": "2026-04-17T09:00:00Z",
+  "filesScanned": [
+    "src/components/tutor/ChatOverlay.jsx",
+    "src/components/tutor/TutorTopBar.jsx",
+    "src/components/tutor/TutorSidebar.jsx",
+    "src/components/lavagna/FloatingToolbar.jsx",
+    "src/components/lavagna/AppHeader.jsx",
+    "src/components/tutor/ElabTutorV4.jsx",
+    "src/components/tutor/VolumeChooser.jsx",
+    "src/components/lavagna/LavagnaShell.jsx",
+    "src/components/lavagna/RetractablePanel.jsx",
+    "src/components/tutor/ManualTab.jsx",
+    "src/components/simulator/panels/ComponentDrawer.jsx",
+    "src/components/simulator/panels/PropertiesPanel.jsx",
+    "src/components/lavagna/GalileoAdapter.jsx",
+    "src/components/auth/LoginPage.jsx",
+    "src/components/auth/RegisterPage.jsx",
+    "src/components/simulator/panels/NotesPanel.jsx",
+    "src/components/simulator/panels/QuizPanel.jsx",
+    "src/components/common/ConfirmModal.jsx",
+    "src/components/student/StudentDashboard.jsx",
+    "src/components/simulator/panels/BomPanel.jsx"
+  ],
+  "totalFilesScanned": 20,
+  "issues": [
+    {
+      "file": "src/components/tutor/ChatOverlay.jsx",
+      "line": 386,
+      "type": "missing-aria",
+      "severity": "P0",
+      "description": "<textarea> has placeholder='Chiedi a UNLIM...' but no aria-label. Screen readers announce 'textbox' with no context. Add aria-label='Scrivi messaggio a UNLIM'."
+    },
+    {
+      "file": "src/components/tutor/ChatOverlay.jsx",
+      "line": 241,
+      "type": "missing-aria",
+      "severity": "P0",
+      "description": "Floating chat panel (role=none, floating overlay) is missing role='dialog' and aria-modal='true'. Focus is not trapped, so keyboard users can navigate behind the overlay. This is a WCAG 2.1 failure for modal dialogs."
+    },
+    {
+      "file": "src/components/tutor/ChatOverlay.jsx",
+      "line": 367,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "'Più azioni' expand button (moreActionsBtn) has no aria-label and no aria-expanded. Screen reader says 'button' with no context. Add aria-label='Mostra più azioni' and aria-expanded={actionsExpanded}."
+    },
+    {
+      "file": "src/components/tutor/ChatOverlay.jsx",
+      "line": 608,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Retry button in MessageBubble (class retryBtn) has no aria-label. Text content is 'Riprova' which serves as label, but no association to the specific failed message."
+    },
+    {
+      "file": "src/components/tutor/ChatOverlay.jsx",
+      "line": 183,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "No focus trap implemented inside the chat overlay when open/fullscreen. Keyboard Tab escapes the overlay and navigates to content behind it."
+    },
+    {
+      "file": "src/components/tutor/TutorTopBar.jsx",
+      "line": 104,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Session export button has title='Esporta sessione' but no aria-label. Screen readers may not expose title consistently."
+    },
+    {
+      "file": "src/components/tutor/TutorTopBar.jsx",
+      "line": 114,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Chat toggle button has title but no aria-label and no aria-pressed for toggle state. Add aria-label={showChat ? 'Nascondi Chat UNLIM' : 'Mostra Chat UNLIM'} and aria-pressed={showChat}."
+    },
+    {
+      "file": "src/components/tutor/TutorTopBar.jsx",
+      "line": 124,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Fullscreen toggle button has title but no aria-label and no aria-pressed. Add aria-label={isFullscreen ? 'Esci fullscreen' : 'Fullscreen'} and aria-pressed={isFullscreen}."
+    },
+    {
+      "file": "src/components/tutor/TutorTopBar.jsx",
+      "line": 79,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "'Cambia' volume button has title='Cambia volume' but no aria-label. Not descriptive enough for AT. Add aria-label='Cambia volume'."
+    },
+    {
+      "file": "src/components/tutor/TutorSidebar.jsx",
+      "line": 126,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Giochi dropdown toggle button is missing aria-expanded={gamesOpen}. Screen readers cannot announce whether the submenu is open or closed."
+    },
+    {
+      "file": "src/components/tutor/TutorSidebar.jsx",
+      "line": 210,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Sidebar collapse button has aria-label='Toggle sidebar' — English label in Italian UI. Use 'Espandi barra laterale' / 'Comprimi barra laterale' dynamically."
+    },
+    {
+      "file": "src/components/tutor/VolumeChooser.jsx",
+      "line": 75,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Overlay has role='dialog' and aria-label — good start. But missing aria-modal='true'. Without it, AT does not treat it as a modal dialog; background content remains accessible to screen readers."
+    },
+    {
+      "file": "src/components/tutor/VolumeChooser.jsx",
+      "line": 74,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "No focus trap implemented inside VolumeChooser dialog. Keyboard Tab can escape the overlay to content behind it. Especially problematic on LIM (touch/keyboard hybrid use)."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 295,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "BentornatiOverlay div (bentornatiOverlay class) is a full-screen blocking modal with no role='dialog' and no aria-modal='true'. Screen readers can still access background content behind it. All 3 branches (isFirstTime, suggestion, no-suggestion) are affected."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 67,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "View-mode toggle buttons ('Manuali', 'Documenti') are missing aria-pressed. They visually communicate active state via CSS class 'active', but AT users have no way to know which mode is selected. Add aria-pressed={viewMode === 'manual'} and aria-pressed={viewMode === 'document'}."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 76,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Fullscreen toggle button uses emoji ⛶ as icon-only text content with title='Fullscreen' but no aria-label. Unicode symbol ⛶ (U+26F6) is announced as 'square four corners' or not at all by most screen readers. Add aria-label='Fullscreen' or 'Esci da fullscreen' dynamically."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 119,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Volume page navigation: back button '←' has no aria-label. Arrow-only buttons are announced as 'button' with no context. Add aria-label='Pagina precedente'. Affects both manual and document pagination (lines 119, 121, 189, 191)."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 119,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "<input type='number'> for page navigation has no aria-label. AT announces 'spin button' with no context about what number is being set. Add aria-label='Numero pagina'."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 175,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Remove document button uses ✕ symbol with title='Rimuovi documento' but no aria-label. Symbol-only buttons need explicit aria-label='Rimuovi documento' for reliable AT support."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 243,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "<select> for fit mode (width/height/page/free) in ZoomControls has no aria-label. Screen reader announces 'combo box' with no context. Add aria-label='Modalità visualizzazione'."
+    },
+    {
+      "file": "src/components/tutor/ManualTab.jsx",
+      "line": 251,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Zoom buttons − and + in ZoomControls have no aria-label. Icon-only buttons; add aria-label='Riduci zoom' and aria-label='Aumenta zoom'."
+    },
+    {
+      "file": "src/components/simulator/panels/ComponentDrawer.jsx",
+      "line": 346,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "minimizeBtn has title='Riduci' but no aria-label. The '−' minus sign character is announced as 'minus sign' or 'dash' by screen readers — not descriptive. Add aria-label='Riduci pannello'."
+    },
+    {
+      "file": "src/components/simulator/panels/ComponentDrawer.jsx",
+      "line": 329,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Header div with role='button' controls the panel expand/collapse state but lacks aria-expanded={!collapsed}. Screen readers cannot determine whether the panel is open or collapsed. Also affects guided mode floating card header."
+    },
+    {
+      "file": "src/components/simulator/panels/ComponentDrawer.jsx",
+      "line": 360,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Progress bar for step navigation has no ARIA semantics: missing role='progressbar', aria-valuenow={currentStep+1}, aria-valuemin=0, aria-valuemax={allSteps.length}. Screen readers cannot announce progress through steps."
+    },
+    {
+      "file": "src/components/simulator/panels/PropertiesPanel.jsx",
+      "line": 110,
+      "type": "missing-aria",
+      "severity": "P0",
+      "description": "Floating properties panel is a dialog (blocks canvas interaction) but has no role='dialog', no aria-modal='true', no aria-labelledby. Screen readers treat it as plain content and continue reading behind it. This is the most severe ARIA issue in this file."
+    },
+    {
+      "file": "src/components/simulator/panels/PropertiesPanel.jsx",
+      "line": 135,
+      "type": "missing-aria",
+      "severity": "P0",
+      "description": "Close button renders only an SVG X path with no aria-label and no title. Screen reader announces 'button' with no context. Add aria-label='Chiudi proprietà componente'."
+    },
+    {
+      "file": "src/components/simulator/panels/PropertiesPanel.jsx",
+      "line": 147,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "<label> elements for Resistenza/Capacità/Voltaggio fields have no htmlFor attribute, and the corresponding <input> elements have no id. The form labels are not programmatically associated with their inputs — affects resistor, potentiometer, capacitor, and battery9v forms."
+    },
+    {
+      "file": "src/components/simulator/panels/PropertiesPanel.jsx",
+      "line": 159,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Unit <select> elements (Ω/kΩ/MΩ for resistor, pF/nF/µF/mF for capacitor) have no aria-label. Screen reader announces 'combo box' with no context about what unit is being selected. Add aria-label='Unità di misura'."
+    },
+    {
+      "file": "src/components/simulator/panels/PropertiesPanel.jsx",
+      "line": 238,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "LED and Wire color swatch buttons have title={LED_LABELS[c]} but no aria-label and no aria-pressed to indicate selection. Screen readers: (1) title may not be announced, (2) users cannot tell which color is currently selected. Add aria-label={LED_LABELS[c]} and aria-pressed={isSelected}."
+    },
+    {
+      "file": "src/components/lavagna/GalileoAdapter.jsx",
+      "line": 640,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Tab bar for CHAT/PERCORSO/GUIDA tabs: the container div has no role='tablist', the tab buttons have no role='tab' or aria-selected. Screen readers cannot navigate the tab interface semantically. Add role='tablist' on container and role='tab' + aria-selected={activeTab === 'chat'} etc. on each button."
+    },
+    {
+      "file": "src/components/lavagna/GalileoAdapter.jsx",
+      "line": 624,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "FloatingWindow rendering the UNLIM panel has no focus trap. Keyboard Tab escapes the floating panel and navigates to content behind it (the simulator canvas, lavagna). For a floating dialog visible over other content, focus should be contained within the panel while open."
+    },
+    {
+      "file": "src/components/auth/LoginPage.jsx",
+      "line": 126,
+      "type": "small-touch",
+      "severity": "P1",
+      "description": "Eye icon button (toggle password visibility) has padding='4px' with a 20×20px SVG icon, resulting in an actual touch target of ~28×28px — well below the 44×44px WCAG minimum. Increase to padding='12px' or set minWidth/minHeight='44px' explicitly. Note: tabIndex={-1} also removes this control from keyboard navigation entirely."
+    },
+    {
+      "file": "src/components/auth/RegisterPage.jsx",
+      "line": 200,
+      "type": "small-touch",
+      "severity": "P1",
+      "description": "Both eye icon buttons (password + confirm password) have padding='4px' with 20×20px SVG icon → ~28×28px touch target, below 44×44px minimum. Two instances affected (lines 200 and 230). Increase padding to 12px or set explicit minWidth/minHeight='44px'."
+    },
+    {
+      "file": "src/components/auth/RegisterPage.jsx",
+      "line": 301,
+      "type": "low-contrast",
+      "severity": "P1",
+      "description": "Submit button 'Crea Account' uses color='#1A1A2E' (very dark navy, luminance ≈0.017) on background='linear-gradient(135deg, #4A7A25, #6fa030)' (green, luminance ≈0.15). Estimated contrast ratio ~3:1 — below WCAG AA 4.5:1 requirement for normal text. Use white (#fff) text on this green background instead (contrast ≈5.2:1). Same issue exists in LoginPage.jsx 'Accedi' button."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 71,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Close button renders ✕ (U+2715) as text content with no aria-label. Screen readers announce the symbol character name ('multiplication x') rather than the action. Add aria-label='Chiudi appunti'."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 78,
+      "type": "small-touch",
+      "severity": "P1",
+      "description": "Color dot buttons (Blu/Verde/Rosso/Nero) are 20×20px with no padding — actual touch target is 20×20px, far below the 44×44px WCAG minimum. These are the only way to select text color for notes. Add padding: 12px to bring touch target to 44×44px."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 78,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Color dot buttons have title={c.label} but no aria-label. title is not reliably announced by screen readers, especially on touch devices. Add aria-label={c.label} and aria-pressed={activeColor === c.id} to convey both the color name and the selection state."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 93,
+      "type": "small-touch",
+      "severity": "P1",
+      "description": "Weight buttons (Leggero/Normale/Grassetto) are 28×28px — below the 44×44px minimum. Add padding or set minWidth/minHeight='44px'. Also missing aria-pressed={activeWeight === w.id} to communicate selected state."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 112,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "<textarea> has a placeholder but no aria-label. When placeholder disappears on focus, screen reader has no persistent label. Add aria-label='Appunti esperimento'."
+    },
+    {
+      "file": "src/components/simulator/panels/NotesPanel.jsx",
+      "line": 66,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "The panel is positioned absolutely over other content but has no role='dialog' or aria-modal='true'. Screen readers continue reading content behind it. Add role='dialog' aria-modal='true' aria-label='Appunti' to the root div."
+    },
+    {
+      "file": "src/components/simulator/panels/QuizPanel.jsx",
+      "line": 109,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "QuizPanel root div is a floating panel rendered over the simulator canvas with no role='dialog', no aria-modal='true', and no aria-labelledby. Screen readers cannot identify it as a modal dialog and will continue reading content behind it. Add role='dialog' aria-modal='true' aria-labelledby pointing to the header title span."
+    },
+    {
+      "file": "src/components/simulator/panels/QuizPanel.jsx",
+      "line": 114,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Close button (headerBtn) has title='Chiudi' but no aria-label. The SVG content (X path) has no accessible text. Screen reader announces 'button' with no description of the action. Add aria-label='Chiudi quiz'. Note: the button is correctly sized at 44×44px."
+    },
+    {
+      "file": "src/components/simulator/panels/QuizPanel.jsx",
+      "line": 122,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Progress bar div has no ARIA progressbar semantics. Add role='progressbar', aria-valuenow={currentQ + (selectedAnswer !== null ? 1 : 0)}, aria-valuemin=0, aria-valuemax={quiz.length}, aria-label='Progresso quiz'. Without this, screen readers have no way to announce quiz progress."
+    },
+    {
+      "file": "src/components/simulator/panels/QuizPanel.jsx",
+      "line": 73,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Result screen root (finished state) also renders with no role='dialog'. The score circle (scoreNumber) with N/M is not wrapped in an aria-live region, so screen readers won't announce the result when it appears. Add aria-live='polite' to the resultBody or scoreCircle."
+    },
+    {
+      "file": "src/components/common/ConfirmModal.jsx",
+      "line": 119,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "role='dialog' is placed on the overlay backdrop div (full screen), not on the visible modal box (modalStyle div). Semantically, the dialog role should be on the focused panel, not the transparent backdrop. Move role='dialog' aria-modal='true' aria-label={title} from the outer div to the inner div (ref={trapRef}). Currently works in most screen readers but is technically incorrect per ARIA spec."
+    },
+    {
+      "file": "src/components/common/ConfirmModal.jsx",
+      "line": 124,
+      "type": "small-touch",
+      "severity": "P2",
+      "description": "Cancel and Confirm buttons have padding='8px 20px' with font-size 14px — computed height ~37px, below 44px minimum. This is a desktop modal and less likely to be used on touch, but still worth aligning. Increase to padding='12px 20px'. Note: focus trap, Escape key, aria-modal, aria-label are all correctly implemented — ConfirmModal is otherwise the best ARIA implementation in the codebase."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 181,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Tab bar (Panoramica/Diario/Meraviglie/Esperimenti/Mappa/Classe) uses plain <button> elements with no ARIA tab semantics. Container has no role='tablist'; buttons have no role='tab' or aria-selected. Screen readers cannot navigate the tab interface with arrow keys per ARIA patterns. Add role='tablist' on the container div and role='tab' aria-selected={activeTab === tab.id} on each button."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 884,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Error and success messages in ClasseTab are rendered as plain <p> elements (lines 884-888) without role='alert' or aria-live='polite'. When a class join fails or succeeds, screen readers won't announce the message because the DOM update is not flagged as a live region. Add role='alert' to the error paragraph and aria-live='polite' to the success paragraph."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 240,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Nudge overlay has role='dialog' and aria-modal='true' with autoFocus on the button — good. However, there is no focus trap implemented. After the user Tabs past the 'Ho capito!' button, focus escapes to content behind the dialog. Add a useFocusTrap hook (already used in ConfirmModal) to contain Tab cycling within the nudge panel."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 854,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Class code input in ClasseTab has placeholder='CODICE' but no aria-label. The placeholder disappears on focus and is not a substitute for a label. Add aria-label='Codice classe (6 caratteri)' to the input."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 708,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "CostellazioneTab SVG (constellation map) has no role='img' and no aria-label. Screen readers will traverse all the internal SVG circles, lines, and text elements as raw content. Add role='img' aria-label='Mappa delle stelle: i concetti che hai esplorato' to the <svg> element, or aria-hidden='true' if it is purely decorative."
+    },
+    {
+      "file": "src/components/student/StudentDashboard.jsx",
+      "line": 448,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Mood note input (<input type='text'>) has only a placeholder but no aria-label. Add aria-label='Nota opzionale per il mood'. Same pattern applies to the meraviglia input (line 543) and diario textarea (line 460)."
+    },
+    {
+      "file": "src/components/simulator/panels/BomPanel.jsx",
+      "line": 98,
+      "type": "missing-aria",
+      "severity": "P1",
+      "description": "Close button renders an SVG X icon with no aria-label. Screen reader announces 'button' with no description. Add aria-label='Chiudi lista componenti'. Note: button is correctly sized at 56×56px — touch target is fine."
+    },
+    {
+      "file": "src/components/simulator/panels/BomPanel.jsx",
+      "line": 109,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Table <th> elements (lines 110-113) are missing scope='col' attribute. Without scope, screen readers may not correctly associate column headers with data cells, especially when the first empty <th> is present. Add scope='col' to all four header cells."
+    },
+    {
+      "file": "src/components/simulator/panels/BomPanel.jsx",
+      "line": 119,
+      "type": "missing-aria",
+      "severity": "P2",
+      "description": "Component icon in <td> (line 119) renders emoji/text icon from the registry without aria-hidden='true'. Screen readers will announce the emoji character name (e.g. 'electric plug' for LED). Since the icon is decorative (the component name is in the adjacent <td>), add aria-hidden='true' to the icon cell or its content."
+    }
+  ],
+  "summary": {
+    "P0": 4,
+    "P1": 38,
+    "P2": 11,
+    "total": 53,
+    "cleanFiles": [
+      "src/components/common/ConfirmModal.jsx"
+    ],
+    "roundNotes": {
+      "round3_new_issues": 19,
+      "bestFile": "ConfirmModal.jsx — role='dialog', aria-modal='true', aria-label, useFocusTrap, Escape key, backdrop click. Only minor issue: dialog role on backdrop instead of modal box.",
+      "worstFile": "NotesPanel.jsx — 4 P1 issues in one simple component: missing aria-label on close btn, color dots 20x20px no padding, weight buttons 28x28px, textarea no aria-label. All simple fixes.",
+      "crossCuttingPatterns": [
+        "Floating panels over content consistently missing role='dialog' aria-modal='true' (QuizPanel, NotesPanel, BomPanel, ChatOverlay, PropertiesPanel)",
+        "Close buttons with SVG-only content consistently missing aria-label",
+        "Color/state toggle buttons consistently missing aria-pressed",
+        "Tab bar patterns missing ARIA tab semantics (StudentDashboard, GalileoAdapter)"
+      ],
+      "topFixesByImpact": [
+        "Add role='dialog' aria-modal='true' to all floating panels — 1 line each, high WCAG impact (affects 6+ components)",
+        "Add aria-label to all SVG-only close buttons — 1 line each (affects 8+ buttons)",
+        "Add aria-pressed to all toggle/color buttons — 1 line each (affects 10+ buttons)",
+        "Add scope='col' to all <th> in BomPanel — trivial fix",
+        "Increase color dot button padding from 0 to 12px in NotesPanel — fixes 4 touch targets at once"
+      ]
+    }
+  },
+  "nextToScan": [
+    "src/components/tutor/VideosTab.jsx",
+    "src/components/tutor/CircuitDetective.jsx",
+    "src/components/tutor/PredictObserveExplain.jsx",
+    "src/components/lavagna/FloatingWindow.jsx",
+    "src/components/social/Navbar.jsx"
+  ]
+}

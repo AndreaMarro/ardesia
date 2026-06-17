@@ -1,0 +1,38 @@
+{
+  "name": "Test HTTPS Minimal",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-https-minimal",
+        "responseMode": "lastNode",
+        "options": { "allowedOrigins": "*" }
+      },
+      "id": "wh-test-min",
+      "name": "Webhook Test",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "test-https-minimal"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const r = {};\nr.has$http = typeof $http !== 'undefined';\nif (r.has$http) { r.$httpType = typeof $http; r.$httpKeys = Object.keys($http||{}).join(','); }\nr.has$env = typeof $env !== 'undefined';\nr.has$input = typeof $input !== 'undefined';\nr.has$execution = typeof $execution !== 'undefined';\nr.has$node = typeof $node !== 'undefined';\nr.has$workflow = typeof $workflow !== 'undefined';\nr.has$now = typeof $now !== 'undefined';\nr.has$today = typeof $today !== 'undefined';\nr.has$runIndex = typeof $runIndex !== 'undefined';\nr.has$itemIndex = typeof $itemIndex !== 'undefined';\nr.has$prevNode = typeof $prevNode !== 'undefined';\nr.has$jmespath = typeof $jmespath !== 'undefined';\ntry { r.inputBody = $input.first().json.body || $input.first().json; } catch(e) { r.inputErr = e.message; }\ntry { r.globalKeys = Object.keys(globalThis).filter(k => k.startsWith('$')).join(','); } catch {}\ntry { r.hasDateTime = typeof DateTime !== 'undefined'; } catch {}\ntry { r.hasLuxon = typeof luxon !== 'undefined'; } catch {}\nreturn [{ json: r }];"
+      },
+      "id": "test-code-min",
+      "name": "Test Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Test": { "main": [[{ "node": "Test Code", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "pinData": {}
+}

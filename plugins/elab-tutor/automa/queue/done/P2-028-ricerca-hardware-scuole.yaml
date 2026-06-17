@@ -1,0 +1,24 @@
+id: ricerca-hardware-scuole
+priority: P2
+title: Hardware nelle scuole italiane e compatibilita ELAB
+description: 'Mappa hardware tipico nelle scuole medie italiane. LIM, Chromebook,
+  iPad, tablet Android. Testa compatibilita ELAB su ciascuno.
+
+  '
+success_criteria: 'Tabella compatibilita in knowledge/ricerca-hardware-scuole.md con
+  almeno 5 device/browser testati.
+
+  '
+context_files:
+- src/components/simulator/ElabSimulator.css
+- src/components/tutor/tutor-responsive.css
+plan:
+- Cerca con Gemini "dotazione hardware scuole medie Italia 2025"
+- Testa ELAB con Playwright su viewport tipici (1024x768, 1366x768, 768x1024)
+- Analizza CSS responsive per breakpoint mancanti
+- Crea tabella compatibilita
+- Salva in knowledge/ricerca-hardware-scuole.md
+claimed_at: '2026-03-23T23:07:19.669142'
+claimed_by: orchestrator
+completed_at: '2026-03-23T23:12:08.964249'
+result: ok

@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-04-16T21:58:53Z",
+  "git": {
+    "branch": "main",
+    "head": "c6b04a0",
+    "uncommitted": 164
+  },
+  "tests": {
+    "passed": 11983,
+    "failed": 0,
+    "files": 190,
+    "total_it_statements": 3842,
+    "trivial_it_statements": 24,
+    "trivial_ratio": 0.006
+  },
+  "build": {
+    "status": "CACHED",
+    "dist_size_kb": 81484
+  },
+  "endpoints": {
+    "site": "200",
+    "compiler_n8n": "200",
+    "edge_tts_vps": "200"
+  },
+  "codebase": {
+    "todos_and_fixmes": 3,
+    "console_log_residuals": 3,
+    "top_files_by_size": {"src/data/experiments-vol1.js":6935,"src/data/experiments-vol3.js":5693,"src/data/experiments-vol2.js":4322,"src/components/teacher/TeacherDashboard.jsx":3437,"src/components/simulator/canvas/SimulatorCanvas.jsx":3149}
+  },
+  "parallelism": {
+    "bookText_entries": 92,
+    "bookDivergence_entries_must_be_zero": 0
+0
+  },
+  "commercial_readiness_score": "19.5/30",
+  "honesty_notes": [
+    "Questo file contiene metriche OGGETTIVE misurate da comandi reali.",
+    "NON contiene self-evaluation ('ho fatto un buon lavoro').",
+    "trivial_ratio > 0.3 = sospetto test inflation. Investigare.",
+    "todos_and_fixmes > 50 = debito tecnico alto.",
+    "console_log_residuals > 30 = codice non production-ready.",
+    "bookDivergence_entries_must_be_zero != 0 = fallito il fix del 17/04."
+  ]
+}

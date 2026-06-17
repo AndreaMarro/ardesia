@@ -1,0 +1,68 @@
+# Curriculum YAML — v1-cap9-esp8
+# "Sfida: combina esperimenti 5+6"
+
+experiment_id: v1-cap9-esp8
+volume: 1
+chapter: 9
+title: "Sfida: combina esperimenti 5+6"
+
+prerequisites:
+  - v1-cap9-esp5  # Miscelatore blu-rosso
+  - v1-cap9-esp6  # Lampada 3 pot
+
+concepts_introduced:
+  - composizione_circuiti
+  - progettazione_libera
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - colore
+  - mescolare
+  - combinare
+  - progettare
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Sfida aperta. Tutto il materiale disponibile. Obiettivo: combinare
+    il miscelatore (esp 5) con la lampada (esp 6) in un circuito unico.
+  during_class: >
+    "Avete costruito un miscelatore e una lampada separatamente. Riuscite a
+    combinarli in un unico circuito super?" Nessuna guida — solo incoraggiamento.
+    Se bloccati: "Cosa succederebbe se usaste il miscelatore per 2 canali e un
+    pot separato per il terzo?"
+  common_question: >
+    "Non ce la faccio!" -> Normale! La sfida e pensare come un ingegnere.
+    Prova una parte alla volta e poi unisci.
+
+common_mistakes:
+  - mistake: "Troppi componenti, breadboard piena"
+    what_to_do: "Suggerisci di usare 2 breadboard collegate"
+    analogy: null
+
+analogies:
+  composizione_circuiti:
+    analogy: "E come costruire con i LEGO: ogni pezzo funziona da solo, ma insieme creano qualcosa di piu grande."
+    evidence: "Analogia modulare (Resnick 1996)"
+
+assessment_invisible:
+  - "Se completa la sfida -> padronanza del capitolo 9"
+  - "Se inventa una soluzione diversa da quella attesa -> pensiero creativo"

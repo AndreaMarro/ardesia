@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- ELAB Tutor — Fast redirect gateway. © Andrea Marro -->
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELAB Tutor</title>
+  <!-- Preconnect to Netlify: save ~200ms DNS+TLS on redirect -->
+  <link rel="preconnect" href="https://funny-pika-3d1029.netlify.app" crossorigin>
+  <link rel="dns-prefetch" href="https://funny-pika-3d1029.netlify.app">
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=https://funny-pika-3d1029.netlify.app/vetrina.html">
+  </noscript>
+</head>
+<body>
+<script>
+(function () {
+  var PAGES = ['tutor', 'login', 'register', 'admin', 'teacher', 'dashboard', 'vetrina', 'showcase'];
+  var hash = window.location.hash;
+  var page = hash ? hash.replace('#', '').toLowerCase() : '';
+  if (PAGES.indexOf(page) >= 0) {
+    // Hash-routed app page → rewrite to path-based URL so React loads
+    window.location.replace('/' + page + window.location.search);
+  } else {
+    // No specific page → vetrina (marketing landing page)
+    window.location.replace('https://funny-pika-3d1029.netlify.app/vetrina.html');
+  }
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* PredictObserveExplain — CSS Module (G26) */
+
+.badgeInline {
+  margin-left: 8px;
+}
+
+.starBlock {
+  display: block;
+  margin-top: 2px;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.questionText {
+  font-size: 0.88rem;
+  color: var(--elab-text);
+  margin: 0;
+  font-weight: 500;
+}
+
+.conceptBadge {
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.cardBorder {
+  border-top: 4px solid var(--card-accent-color);
+}
+
+.cardHeaderRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.phaseHint {
+  color: var(--elab-muted);
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+}
+
+.optionsGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.compareBox--result {
+  border-color: var(--compare-border);
+  background: var(--compare-bg);
+}
+
+.resultMargin {
+  margin-bottom: 16px;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.flexOne {
+  flex: 1;
+}
+
+.flexTwo {
+  flex: 2;
+}
+
+.explainHint {
+  color: var(--elab-muted);
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.shortWarning {
+  color: #ea580c; /* palette */
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.explainActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.completeCenter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.completeTitle {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.starResultWrap {
+  margin-bottom: 12px;
+}
+
+.explanationBox {
+  padding: 16px;
+  border-radius: var(--elab-radius);
+  margin-bottom: 16px;
+  background: rgba(31, 61, 133, 0.04);
+  border-left: 4px solid var(--elab-navy);
+}
+
+.explanationBox p {
+  margin: 0;
+}
+
+.completeActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}

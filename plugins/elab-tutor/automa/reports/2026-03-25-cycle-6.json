@@ -1,0 +1,87 @@
+{
+  "cycle": 6,
+  "timestamp": "2026-03-25T04:37:49.702101",
+  "date": "2026-03-25",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1190
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.58s",
+      "time_ms": 21380
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 164292
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 4
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=79 min=76 (target \u226560) [3 samples]",
+      "time_ms": 64513
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3754
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1956
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "micro-research-integration",
+    "status": "done",
+    "files_changed": [
+      "automa/orchestrator.py"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "score_delta": 0.0,
+    "principio_zero": true,
+    "next_task": "Verificare che la ricerca Kimi parallela usi i finding da daily-findings.md per guidare query pi\u00f9 precise \u2014 collegare parallel_research.py al knowledge/daily-findings.md per context enrichment",
+    "impact": {
+      "innovazione": "si \u2014 il ciclo ora salva automaticamente finding strutturati da Semantic Scholar con relevance scoring e auto-crea task quando la ricerca \u00e8 altamente azionabile",
+      "marketing": "no \u2014 nessun cambiamento visibile all'utente",
+      "ricavi": "si \u2014 ricerca continua evidence-based migliora qualit\u00e0 prodotto nel tempo, avvicinando all'adozione scolastica",
+      "pedagogia": "si \u2014 i paper trovati su misconception, scaffolding e feedback entrano direttamente nella knowledge base del prodotto, informando miglioramenti pedagogici futuri"
+    },
+    "notes": "Integrazione pulita: micro_research.py resta single source of truth per logica estrazione finding. L'orchestratore ora scrive sia in research-log.md (log raw) che in daily-findings.md (finding strutturati). Nessuna duplicazione di codice.",
+    "output_length": 3212
+  },
+  "research": "DeepSeek: **Causa principale:** Chiamate API sincrone e senza debouncing a ogni input nell'interfaccia di ricerca, sovraccaricando il backend e causando latenza elevata con risultati scarsi.\n\n**Fix concreto:** Nel componente principale di ricerca (es. `src/components/GalileoSearchBar.jsx`), implementare un debounce di 300ms sulla funzione `handleSearchInput` usando `lodash.debounce` o `setTimeout`. Integrar",
+  "ai_scoring": null,
+  "composite_score": 0.945,
+  "score_before": 0.9389,
+  "score_after": 0.945,
+  "score_delta": 0.0061,
+  "verdict": "keep",
+  "impact": {
+    "innovazione": "si \u2014 il ciclo ora salva automaticamente finding strutturati da Semantic Scholar con relevance scoring e auto-crea task quando la ricerca \u00e8 altamente azionabile",
+    "marketing": "no \u2014 nessun cambiamento visibile all'utente",
+    "ricavi": "si \u2014 ricerca continua evidence-based migliora qualit\u00e0 prodotto nel tempo, avvicinando all'adozione scolastica",
+    "pedagogia": "si \u2014 i paper trovati su misconception, scaffolding e feedback entrano direttamente nella knowledge base del prodotto, informando miglioramenti pedagogici futuri"
+  },
+  "next_task": "Verificare che la ricerca Kimi parallela usi i finding da daily-findings.md per guidare query pi\u00f9 precise \u2014 collegare parallel_research.py al knowledge/daily-findings.md per context enrichment",
+  "self_exam": null
+}

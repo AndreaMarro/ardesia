@@ -1,0 +1,122 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* UnlimMascotte.module.css — Tea-canonical mascotte styling.
+ *
+ * Sprint U iter 70 Team D.
+ *
+ * Palette canonica enforced (Tea spec + CLAUDE.md Morfismo Sense 2):
+ *   --elab-navy   #1E4D8C
+ *   --elab-lime   #4A7A25
+ *   --elab-orange #E8941C
+ *   --elab-red    #E54B3D
+ *
+ * Size range per ADR-019 (180-280 px runtime):
+ *   small  120 px (e.g. inline chat avatar)
+ *   medium 180 px (default panel)
+ *   large  240 px (LIM presentation)
+ *   hero   280 px (Welcome/Onboarding)
+ *
+ * Position: floating corners snap to edges; inline = block flow.
+ *
+ * Animations respect prefers-reduced-motion (WCAG 2.3.3 SC + Andrea PRINCIPIO ZERO
+ * docente in LIM must NOT be distracted).
+ */
+
+.wrapper {
+  display: inline-block;
+  line-height: 0;
+  user-select: none;
+  --mascot-size: 180px;
+  width: var(--mascot-size);
+  height: var(--mascot-size);
+  aspect-ratio: 360 / 400;
+}
+
+/* Sizes (px scale per ADR-019 morphic runtime) */
+.size-small  { --mascot-size: 120px; }
+.size-medium { --mascot-size: 180px; }
+.size-large  { --mascot-size: 240px; }
+.size-hero   { --mascot-size: 280px; }
+
+/* Positions */
+.pos-inline {
+  position: relative;
+}
+.pos-floating-tl,
+.pos-floating-tr,
+.pos-floating-bl,
+.pos-floating-br {
+  position: fixed;
+  z-index: 100;
+  pointer-events: auto;
+}
+.pos-floating-tl { top: 16px; left: 16px; }
+.pos-floating-tr { top: 16px; right: 16px; }
+.pos-floating-bl { bottom: 16px; left: 16px; }
+.pos-floating-br { bottom: 16px; right: 16px; }
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Idle (aspetta): zero animation, default. */
+.state-aspetta .antennaTip,
+.state-aspetta .earPupil,
+.state-aspetta .lightRays {
+  animation: none;
+}
+
+/* Parla: light rays + antenna tip glow */
+.state-parla .lightRays {
+  transform-origin: 320px 314px;
+  animation: unlimRayPulse 1.4s ease-in-out infinite;
+}
+.state-parla .antennaTip {
+  transform-origin: 232px 38px;
+  animation: unlimAntennaGlow 1.8s ease-in-out infinite;
+}
+
+/* Ascolta: ear pulse (left ear pupil pulses) */
+.state-ascolta .earPupil {
+  transform-origin: 100px 185px;
+  animation: unlimEarPulse 1.2s ease-in-out infinite;
+}
+.state-ascolta .antennaTip {
+  transform-origin: 232px 38px;
+  animation: unlimAntennaGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes unlimRayPulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.92); }
+  50%       { opacity: 1;   transform: scale(1.05); }
+}
+
+@keyframes unlimAntennaGlow {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes unlimEarPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.25); }
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .state-parla .lightRays,
+  .state-parla .antennaTip,
+  .state-ascolta .earPupil,
+  .state-ascolta .antennaTip {
+    animation: none !important;
+  }
+}
+
+/* Touch target hit area for interactive use ≥44x44 px even if visually smaller. */
+.wrapper[role='button'],
+.wrapper:focus-visible {
+  outline: 2px solid var(--elab-lime, #4A7A25);
+  outline-offset: 4px;
+  cursor: pointer;
+}

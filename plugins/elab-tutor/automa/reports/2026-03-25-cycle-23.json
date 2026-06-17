@@ -1,0 +1,62 @@
+{
+  "cycle": 23,
+  "timestamp": "2026-03-25T17:54:25.215957",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 399
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in ?s",
+      "time_ms": 76795
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 158864
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 8
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=72 (target \u226560) [3 samples]",
+      "time_ms": 60831
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 6283
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3155
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 822,
+    "returncode": 0
+  },
+  "research": "DeepSeek: **2 Problemi per ELAB Tutor:**\n\n1.  **Sovraccarico Cognitivo:** Un flusso incessante di domande socratiche aperte pu\u00f2 sopraffare e frustrare gli studenti, specialmente quelli con lacune conoscitive di base, portando all'abbandono invece che alla scoperta guidata.\n2.  **Dipendenza dalla Formulazione:** Le risposte e il percorso dell'AI possono essere eccessivamente sensibili alla formulazione lingu",
+  "ai_scoring": null,
+  "composite_score": 0.7714,
+  "self_exam": null
+}

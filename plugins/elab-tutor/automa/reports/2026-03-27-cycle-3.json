@@ -1,0 +1,67 @@
+{
+  "cycle": 3,
+  "timestamp": "2026-03-27T02:13:07.630151",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 442
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 23.67s",
+      "time_ms": 27073
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 155981
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 2
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=81 min=76 (target \u226560) [3 samples]",
+      "time_ms": 61647
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4065
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2309
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fase 0.3: Chat UNLIM minimizzata per default, eliminare Sono qui",
+    "status": "done",
+    "files_changed": [
+      "src/components/tutor/ChatOverlay.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problema 1:** Accesso limitato. Gli studenti spesso non possono installare software di simulazione circuitale avanzato (come SPICE) sui propri dispositivi, a causa di requisiti di sistema, costi di licenza o restrizioni amministrative.\n\n**Problema 2:** Coinvolgimento passivo. Anche quando disponibili, le simulazioni tradizionali possono essere \"scatole nere\" che non incoraggiano l'esplorazione a",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

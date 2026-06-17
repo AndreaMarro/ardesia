@@ -1,0 +1,18 @@
+id: P2-consent-banner-cls-fix
+priority: P2
+title: Fix CLS causato dal consent banner che appare dopo il render
+description: |
+FIX: Riservare spazio fisso per il banner in fondo alla pagina
+oppure renderizzare il banner con position: fixed (non sposta il layout).
+File: src/components/common/ConsentBanner.jsx
+Verifica: Lighthouse CLS < 0.1
+tags: [lighthouse, cls, performance]
+source: visual-test-c2
+claimed_at: "2026-03-25T18:51:29.987286"
+claimed_by: orchestrator
+failed_at: "2026-03-25T18:12:18.304007"
+error: unknown
+retry: 1
+requeued_at: "2026-03-25T18:16:33.382230"
+completed_at: "2026-03-25T18:54:36.363852"
+result: ok

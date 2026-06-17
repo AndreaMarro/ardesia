@@ -1,0 +1,70 @@
+{
+  "cycle": 43,
+  "timestamp": "2026-03-26T19:06:40.958267",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 460
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 25.69s",
+      "time_ms": 30487
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 150628
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 9
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=70 (target \u226560) [3 samples]",
+      "time_ms": 60006
+    },
+    {
+      "name": "browser",
+      "status": "fail",
+      "detail": "Title: ?, Errors: ?",
+      "time_ms": 18309
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2213
+    }
+  ],
+  "checks_passed": 5,
+  "checks_total": 7,
+  "task_result": {
+    "task": "C43: browser-check-fix + galileo-breve-didattico",
+    "status": "done",
+    "files_changed": [
+      "automa/checks.py",
+      "nanobot/prompts/tutor.yml",
+      "automa/results.tsv",
+      "automa/reports/2026-03-26-cycle-43.json"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problema 1:** Processo decisionale frammentato. L'acquisto coinvolge docenti, dirigenti e IT, con priorit\u00e0 contrastanti (didattica, budget, sicurezza), rendendo difficile un messaggio unico.\n\n**Problema 2:** Difficolt\u00e0 nel dimostrare il valore reale. Le scuole sono scettiche verso mere promesse. Hanno bisogno di prove concrete di un impatto misurabile sull'apprendimento e sull'operativit\u00e0 quotid",
+  "ai_scoring": null,
+  "composite_score": 0.9745,
+  "self_exam": null
+}

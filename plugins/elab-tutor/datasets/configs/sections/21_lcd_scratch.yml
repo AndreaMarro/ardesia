@@ -1,0 +1,95 @@
+id: lcd_scratch
+name: "LCD e Scratch/Blockly Specifici"
+
+templates:
+  # ── LCD COMMANDS ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Blocco LCD aggiunto!"
+    actions: ["[AZIONE:loadblocks]"]
+    entities: [lcd16x2]
+    vars:
+      frase:
+        - inizializza il display
+        - inizializza l'LCD
+        - attiva il display LCD
+        - accendi lo schermo
+        - prepara il display
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: true
+    llm_hint: "L'utente vuole scrivere sul display LCD. Suggerire il codice/blocco appropriato."
+    actions: []
+    entities: [lcd16x2]
+    vars:
+      frase:
+        - stampa Hello World sull'LCD
+        - scrivi qualcosa sul display
+        - fai vedere un messaggio sul display
+        - mostra la temperatura sull'LCD
+        - scrivi il nome sul display
+        - come faccio a scrivere sul display?
+        - voglio mostrare un numero sull'LCD
+        - come cancello il display?
+        - come cambio riga sul display?
+        - muovi il cursore dell'LCD
+
+  # ── SCRATCH SPECIFIC ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: true
+    llm_hint: "Domanda specifica su Scratch/Blockly per Arduino. Spiegare i blocchi disponibili."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - come faccio un blocco per il servo?
+        - qual e' il blocco per accendere il LED?
+        - come metto un delay nei blocchi?
+        - il blocco analogRead dove lo trovo?
+        - come faccio un ciclo infinito con i blocchi?
+        - non trovo il blocco per il buzzer
+        - come leggo il potenziometro con i blocchi?
+        - come faccio if-else nei blocchi?
+        - il blocco per il display LCD?
+        - come collego due blocchi insieme?
+        - come genero il codice Arduino dai blocchi?
+        - posso vedere il codice C++ generato?
+        - i blocchi non si collegano, perche'?
+
+  # ── SCRATCH ACTIONS ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Scratch!"
+    actions: ["[AZIONE:switcheditor:scratch]"]
+    entities: []
+    vars:
+      frase:
+        - apri Scratch
+        - voglio i blocchi
+        - passa alla programmazione visuale
+        - modalita' blocchi
+        - blockly
+        - apri l'editor a blocchi
+        - voglio programmare con i blocchi
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Arduino C++!"
+    actions: ["[AZIONE:switcheditor:arduino]"]
+    entities: []
+    vars:
+      frase:
+        - torna al codice
+        - voglio scrivere in C++
+        - passa ad Arduino
+        - codice testuale
+        - esci da Scratch
+        - chiudi i blocchi
+
+corruptions:
+  typo_swap: 0.2

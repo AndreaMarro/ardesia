@@ -1,0 +1,69 @@
+{
+  "cycle": 38,
+  "timestamp": "2026-03-26T14:45:00.865646",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 386
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.90s",
+      "time_ms": 23087
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 157390
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=69 (target \u226560) [3 samples]",
+      "time_ms": 65363
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4013
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2103
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fix relatedExperiment IDs in unlim-knowledge-base.js (100% failure offline)",
+    "status": "done",
+    "files_changed": [
+      "src/data/unlim-knowledge-base.js"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "P0",
+    "evidence": "verified",
+    "lesson": "Knowledge base relatedExperiment IDs used a fictional naming scheme (cap1-led-semplice) that never matched the real experiment ID format (v1-cap6-esp1). All 9 IDs fixed and cross-validated against experiment files. mystery-circuits.js has similar issues to fix next.",
+    "next_action": "Audit and fix relatedExperiment IDs in mystery-circuits.js (same pattern \u2014 fictional IDs like v1-cap10-foto that don't match real experiment IDs)"
+  },
+  "research": "Scholar: 'offline progressive web app education' -> 5 papers\n  - [2020] Progressive Web Apps are a Game-Changer! Use Active Learning to Engage Students \n  - [2026] OFFLINE-FIRST PWA WITH CONTROLLED GENERATIVE AI SUPPORT FOR TEACHING INFORMATICS\n  - [2025] AccessiLearnAI: An Accessibility-First, AI-Powered E-Learning Platform for Inclu\nKimi: Nel settore dell'educazione, l'utilizzo di app web progressive offline sta diventando un trend importante. Queste app offrono un'esperienza di app completa anche senza connessione internet, rendendole ideali per ambienti educativi con scarsa o inesistente connessione.\n\n1. **Trend 1: Accesso all'educazione ovunque** - L'aumento dell'utilizzo di dispositivi mobili e la creazione di app educative pro",
+  "ai_scoring": null,
+  "composite_score": 0.973,
+  "self_exam": null
+}

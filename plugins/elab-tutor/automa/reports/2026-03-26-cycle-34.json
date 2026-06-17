@@ -1,0 +1,68 @@
+{
+  "cycle": 34,
+  "timestamp": "2026-03-26T12:22:18.427960",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 295
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.87s",
+      "time_ms": 23475
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 163254
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=68 (target \u226560) [3 samples]",
+      "time_ms": 61797
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3875
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1902
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Implementare scaffold fading esplicito in Galileo \u2014 3 livelli per volume (Vol1=massimo supporto, Vol2=medio, Vol3=minimo) + fading nei briefing teacher",
+    "status": "done",
+    "files_changed": [
+      "nanobot/prompts/tutor.yml",
+      "nanobot/prompts/teacher.yml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "Kimi: Il tema \"AI tutoring scaffolding real-time\" si riferisce all'uso dell'intelligenza artificiale per supportare gli studenti in modo personalizzato e in tempo reale. Ecco 3 tendenze, 1 idea e 1 rischio in questo campo.\n\n1. Tendenza 1: Personalizzazione dell'apprendimento\nL'AI pu\u00f2 analizzare i dati degli studenti per creare piani di studio personalizzati, adattando il materiale didattico alle loro es\nDeepSeek: **Problema 1: Latenza nell'intervento.** Se il suggerimento dell'IA arriva troppo tardo rispetto allo stallo dello studente, perde il suo scopo di \"scaffolding\" in tempo reale, interrompendo il flusso cognitivo.\n\n**Problema 2: Dipendenza dall'aiuto.** Un tutor IA troppo pronto o esplicito pu\u00f2 creare dipendenza, impedendo allo studente di sviluppare resilienza e capacit\u00e0 di problem-solving autonomo",
+  "ai_scoring": null,
+  "composite_score": 0.964,
+  "self_exam": null
+}

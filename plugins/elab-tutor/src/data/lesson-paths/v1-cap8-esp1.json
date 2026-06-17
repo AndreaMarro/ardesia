@@ -1,0 +1,286 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap8-esp1",
+  "volume": 1,
+  "chapter": 8,
+  "title": "Il pulsante accende il LED",
+  "chapter_title": "Cos'è un pulsante?",
+  "difficulty": 1,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono il concetto di circuito aperto e chiuso: premendo il pulsante il LED si accende, rilasciandolo si spegne.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Pulsante (tact switch)",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED blu",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 6,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "breadboard",
+      "corrente",
+      "pulsante",
+      "circuito aperto",
+      "circuito chiuso",
+      "premere",
+      "rilasciare",
+      "volt"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "potenziometro",
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "toggle",
+      "latch"
+    ],
+    "note": "Cap 8 Vol 1 — primo esperimento con pulsante. Si introduce aperto/chiuso."
+  },
+  "prerequisites": [
+    "v1-cap6-esp1"
+  ],
+  "next_experiment": {
+    "id": "v1-cap8-esp2",
+    "title": "Cambiate colore e luminosità",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"Cambiate colore e luminosità\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi i ragazzi scoprono il pulsante — un componente che apre e chiude il circuito. Il LED si accende solo quando premete!",
+      "teacher_tip": "Il pulsante ha 4 piedini — i due sulla stessa fila sono collegati internamente. Va a cavallo della scanalatura centrale.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 pulsante, 1 resistore 470Ω, 1 LED blu, 6 fili.",
+      "class_hook": "Finora i circuiti erano sempre accesi. Ma come facciamo ad accendere e spegnere il LED SENZA staccare i fili?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate il circuito con il pulsante. Il LED è collegato al resistore, e il pulsante chiude il circuito verso il negativo.",
+      "teacher_tip": "Mostrate prima il circuito SENZA pulsante (LED sempre acceso). Poi aggiungi il pulsante: 'Cosa pensate che succeda?'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap8-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di LED con pulsante seguendo Vol.1 pag.44.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "blue"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e9",
+              "to": "bb1:f9",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:f10",
+              "to": "bb1:e10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:e10",
+              "to": "bb1:e11",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:j13",
+              "to": "bb1:bus-bot-minus-13",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-2",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Cosa succede quando premete? E quando rilasci? Perché?",
+      "teacher_tip": "Se il LED resta sempre acceso o sempre spento, il pulsante potrebbe essere girato di 90 gradi. Fate ruotare e riprovare.",
+      "provocative_question": "Quando premete il pulsante, il circuito è aperto o chiuso? E quando lo rilasci?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Pulsante sulle stesse file della breadboard",
+          "teacher_response": "Il pulsante deve stare a cavallo della scanalatura centrale, come un ponte che collega due sponde.",
+          "analogy": "Come un ponte levatoio"
+        },
+        {
+          "mistake": "Collegano i piedini sbagliati",
+          "teacher_response": "I piedini opposti (diagonali) sono quelli che si collegano premendo. Provate a ruotarlo di 90 gradi.",
+          "analogy": null
+        },
+        {
+          "mistake": "LED resta sempre acceso o sempre spento",
+          "teacher_response": "Regolate se il pulsante è inserito nel verso giusto — provate a ruotarlo di 90 gradi.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play, poi premete il pulsante: il LED si accende! Rilascia: si spegne. Circuito aperto e chiuso!",
+      "teacher_tip": "Evidenziate il pulsante e il LED. Chiedete: 'Vedete? Premendo, il circuito si chiude e la corrente passa.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:btn1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Premete il pulsante: LED acceso! Rilascia: LED spento! Il pulsante apre e chiude il circuito — come un ponte levatoio per la corrente.",
+      "analogies": [
+        {
+          "concept": "pulsante",
+          "text": "Un pulsante è come il campanello di casa: finché tieni premuto suona, quando lasci smette. Non resta premuto da solo.",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "circuito_aperto_chiuso",
+          "text": "Un circuito è come un percorso ad anello per le biglie. Se togli un pezzo di binario, le biglie si fermano. Il pulsante è il pezzo che metti e togli.",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto il pulsante — un componente che apre e chiude il circuito.",
+      "teacher_tip": "Chiedete: 'Cosa fareste se voleste che il LED resti acceso senza tenere premuto?' Anticipate il concetto di interruttore che resta in posizione.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il pulsante apre e chiude il circuito. Premuto = circuito chiuso = LED acceso. Rilasciato = circuito aperto = LED spento. Come un ponte levatoio!",
+      "concepts_learned": [
+        "circuito aperto e chiuso",
+        "pulsante come interruttore"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"Cambiate colore e luminosità\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se capisce che il LED si spegne rilasciando → ha capito circuito aperto/chiuso",
+    "Se chiede 'posso fare che resta acceso senza tenere premuto?' → pronto per interruttore a scorrimento",
+    "Se provate a mettere due pulsanti → curiosità verso combinazioni di controlli"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "circuito_aperto_chiuso",
+      "pulsante_interruttore"
+    ],
+    "next_suggested": "v1-cap8-esp2",
+    "resume_message": "L'ultima volta avete scoperto il pulsante! Ora proviamo con LED e resistori diversi."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 44,
+    "label": "Vol.1 pag.44"
+  }
+}

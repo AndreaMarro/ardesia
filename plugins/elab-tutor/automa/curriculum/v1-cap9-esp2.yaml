@@ -1,0 +1,72 @@
+# Curriculum YAML — v1-cap9-esp2
+# "Inverti la rotazione"
+
+experiment_id: v1-cap9-esp2
+volume: 1
+chapter: 9
+title: "Inverti la rotazione"
+
+prerequisites:
+  - v1-cap9-esp1  # Sa usare il potenziometro base
+
+concepts_introduced:
+  - inversione_pin
+  - simmetria_potenziometro
+  - pin1_pin3_scambiabili
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - ruotare
+  - invertire
+  - scambiare
+  - pin
+  - piedino
+  - dimmer
+  - luminosita
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Stesso circuito dell'esp 1. Obiettivo: scoprire che scambiando pin 1 e pin 3
+    del potenziometro, la rotazione si inverte.
+  during_class: >
+    "Nell'esperimento 1, girando a destra il LED si accendeva. Provate a scambiare
+    i due fili esterni del potenziometro. Cosa succede ora?" Falli scoprire da soli
+    che la rotazione si inverte. Poi: "Perche secondo voi?"
+  common_question: >
+    "Perche si inverte?" -> Il potenziometro e simmetrico: il cursore (pin centrale)
+    si avvicina a un estremo o all'altro. Se scambi gli estremi, il comportamento
+    si rovescia — come guardare allo specchio.
+
+common_mistakes:
+  - mistake: "Scambiano il pin centrale con un estremo"
+    what_to_do: "Il pin centrale NON si tocca — scambia solo i due esterni"
+    analogy: null
+
+analogies:
+  inversione_pin:
+    analogy: "E come invertire il senso di una strada a senso unico — la strada e la stessa, ma le auto vanno nella direzione opposta."
+    evidence: "Analogia simmetria (Gentner 1983)"
+
+assessment_invisible:
+  - "Se lo studente predice l'inversione PRIMA di provare -> ragionamento logico forte"
+  - "Se chiede 'posso fare che cambia colore invece di luminosita?' -> pronto per esp 3"

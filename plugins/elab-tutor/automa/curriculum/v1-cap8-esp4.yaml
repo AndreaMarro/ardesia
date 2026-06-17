@@ -1,0 +1,85 @@
+# Curriculum YAML — v1-cap8-esp4
+# "3 pulsanti, 3 colori RGB"
+
+experiment_id: v1-cap8-esp4
+volume: 1
+chapter: 8
+title: "3 pulsanti, 3 colori RGB"
+
+prerequisites:
+  - v1-cap8-esp3  # Sa mescolare 2 colori
+  - v1-cap7-esp1  # Conosce il LED RGB
+
+concepts_introduced:
+  - controllo_indipendente_canali
+  - combinazioni_colori
+  - bianco_additivo
+
+vocabulary_level: v1-cap8
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - breadboard
+  - pulsante
+  - rosso
+  - verde
+  - blu
+  - viola
+  - giallo
+  - ciano
+  - bianco
+  - colore
+  - mescolare
+  - combinazione
+  - canale
+  - catodo
+forbidden_terms:
+  - potenziometro
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - PWM
+  - fotoresistenza
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 3 resistenze 470 ohm, 3 pulsanti, breadboard, batteria.
+    Ogni pulsante controlla un canale (R, G, B) indipendentemente. Obiettivo:
+    scoprire tutte le combinazioni possibili e il bianco.
+  during_class: >
+    "Adesso avete 3 pulsanti — uno per ogni colore. Quante combinazioni potete fare?
+    Provate tutte!" Sfida: "Riuscite a fare il bianco?" (tutti e 3 premuti).
+    Tabella alla lavagna: R+G=giallo, R+B=viola, G+B=ciano, R+G+B=bianco.
+  common_question: >
+    "Quante combinazioni ci sono?" -> 7 colori diversi (3 singoli + 3 coppie + 1 triplo)
+    piu lo spento. Come 3 interruttori della luce — ogni combinazione acceso/spento
+    crea qualcosa di diverso.
+
+common_mistakes:
+  - mistake: "Non riescono a premere 2 o 3 pulsanti contemporaneamente"
+    what_to_do: "Lavoro di squadra — un bambino per pulsante! Collaborazione naturale."
+    analogy: null
+  - mistake: "Il bianco non sembra bianco"
+    what_to_do: "Normale — dipende dal bilanciamento delle resistenze. Prova in una stanza buia"
+    analogy: null
+  - mistake: "Confondono con i colori dei pennarelli"
+    what_to_do: "Ricorda: luce si somma (additiva), pittura si sottrae (sottrattiva)"
+    analogy: null
+
+analogies:
+  combinazioni_colori:
+    analogy: "3 pulsanti sono come 3 ingredienti base in cucina — con solo farina, uova e zucchero puoi fare tanti dolci diversi. Con solo rosso, verde e blu puoi fare 7 colori!"
+    evidence: "Analogia combinatoria, supporta pensiero computazionale (Wing 2006)"
+
+assessment_invisible:
+  - "Se trovano tutte e 7 le combinazioni senza aiuto -> pensiero sistematico"
+  - "Se dicono 'e come il binario, acceso/spento' -> ready per concetti digitali (Vol3)"
+  - "Se chiedono 'posso fare l'arancione?' -> pronto per esp 5 (resistori diversi per sfumature)"

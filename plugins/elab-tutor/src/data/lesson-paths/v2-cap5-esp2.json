@@ -1,0 +1,211 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap5-esp2",
+  "volume": 2,
+  "chapter": 5,
+  "title": "Batterie AA/AAA in antiserie",
+  "chapter_title": "Approfondiamo le Batterie",
+  "difficulty": 2,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Ragazzi, collegano due batterie AA/AAA da 1,5V in antiserie e scoprono che le tensioni uguali e opposte si sottraggono: 1,5V - 1,5V = circa 0V, come nel Vol.2 pag.51.",
+  "components_needed": [
+    {
+      "name": "Batterie AA/AAA 1,5V",
+      "quantity": 2,
+      "icon": "🔋"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📟"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 1,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "batteria",
+      "antiserie",
+      "tensione",
+      "volt",
+      "sottrazione",
+      "polo positivo",
+      "polo negativo",
+      "multimetro",
+      "voltmetro",
+      "opposto",
+      "annullare",
+      "zero"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "condensatore",
+      "transistor"
+    ],
+    "note": "Vol 2 Cap 5 — antiserie, sottrazione tensioni, forze opposte."
+  },
+  "prerequisites": [
+    "v2-cap5-esp1"
+  ],
+  "next_experiment": {
+    "id": "v2-cap6-esp1",
+    "title": "LED in serie con 1 resistore",
+    "preview": "Prossimo passo: LED in serie con 1 resistore. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, la volta scorsa le batterie in serie sommavano le tensioni. Oggi le colleghiamo AL CONTRARIO: polo + con polo +. Cosa succedera? Le tensioni si annullano!",
+      "teacher_tip": "Antiserie e quando le due batterie 'spingono' in direzioni opposte. Con due batterie uguali da 1,5V, le forze si annullano: 1,5V - 1,5V = 0V.",
+      "components_list": "Ti servono: 2 batterie AA/AAA da 1,5V, 1 multimetro, fili di collegamento.",
+      "class_hook": "Se due persone spingono la stessa porta da parti opposte con la stessa forza, la porta si muove? No! Le forze si annullano. Le batterie in antiserie fanno lo stesso!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Colleghiamo le batterie al contrario: positivo (+) con positivo (+). Poi misuriamo la tensione totale con il multimetro tra i due negativi.",
+      "teacher_tip": "ATTENZIONE: non lasciate le batterie in antiserie per molto tempo! Le batterie si 'combattono' e potrebbero scaldarsi. Misurate velocemente e poi scollega.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap5-esp2]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Collegate due batterie AA/AAA da 1,5V in antiserie (polo + con polo +)",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "battery9v",
+              "id": "bat2"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, due batterie da 1,5V collegate al contrario. Il multimetro mostrera 3V, 1,5V o 0V? Perche?",
+      "teacher_tip": "La risposta e 0V (o quasi 0V). Le due batterie spingono in direzioni opposte con la stessa forza e si annullano.",
+      "provocative_question": "Se una batteria fosse piu carica dell'altra, il valore resterebbe proprio zero o vedreste una piccola differenza?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Confondere antiserie con serie inversa (scambiare i terminali del multimetro)",
+          "teacher_response": "In antiserie sono le BATTERIE ad essere collegate al contrario, non il multimetro! Positivo con positivo. Il multimetro resta collegato normalmente.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, il multimetro mostra circa 0V! Le due batterie AA/AAA da 1,5V si annullano. E come un tiro alla fune dove nessuno vince.",
+      "teacher_tip": "Se il valore non e esattamente 0V (es. 0.2V), e perche le due batterie non hanno esattamente la stessa carica. Una batteria piu nuova 'vince' leggermente.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:bat1]",
+        "[AZIONE:highlight:bat2]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il multimetro mostra circa 0V! Due batterie uguali in antiserie si annullano. Le forze opposte si cancellano come in un tiro alla fune alla pari.",
+      "analogies": [
+        {
+          "concept": "antiserie",
+          "text": "L'antiserie e come un tiro alla fune: se le due squadre tirano con la stessa forza, la corda non si muove. La 'tensione' totale e zero. Se una squadra e piu forte, la corda si muove dalla parte della squadra piu forte!",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, in antiserie le tensioni si sottraggono. Due batterie uguali: 1,5V - 1,5V = circa 0V. Se una fosse piu carica, resterebbe una piccola differenza dalla parte della batteria piu forte.",
+      "teacher_tip": "Recap del capitolo: Serie → tensioni si sommano. Antiserie → tensioni si sottraggono. Parallelo → la tensione resta uguale ma la capacita aumenta (per batterie future).",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "In antiserie le batterie 'combattono': le tensioni si sottraggono. Due AA/AAA uguali da 1,5V danno circa 0V. E il contrario della serie dove si sommano!",
+      "concepts_learned": [
+        "batterie in antiserie",
+        "sottrazione delle tensioni",
+        "forze opposte si annullano",
+        "confronto serie vs antiserie"
+      ],
+      "next_preview": "Nel prossimo capitolo approfondite i LED: circuiti in serie e in parallelo con LED di colori diversi!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se prevede 0V prima di misurare → comprensione della sottrazione",
+    "Se calcola il risultato con batterie diverse → comprensione quantitativa",
+    "Se spiega il concetto con parole sue (es. forze opposte) → comprensione concettuale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "antiserie",
+      "sottrazione_tensioni",
+      "forze_opposte"
+    ],
+    "next_suggested": "v2-cap6-esp1",
+    "resume_message": "Avete scoperto l'antiserie! Prossimo capitolo: LED avanzati."
+  },
+  "analogies": [
+    {
+      "concept": "antiserie",
+      "text": "L'antiserie e come un tiro alla fune: se le due squadre tirano con la stessa forza, la corda non si muove. La 'tensione' totale e zero. Se una squadra e piu forte, la corda si muove dalla parte della squadra piu forte!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Confondere antiserie con serie inversa (scambiare i terminali del multimetro)",
+      "teacher_response": "In antiserie sono le BATTERIE ad essere collegate al contrario, non il multimetro! Positivo con positivo. Il multimetro resta collegato normalmente.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

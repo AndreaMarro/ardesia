@@ -1,0 +1,147 @@
+{
+  "config": {
+    "configFile": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/playwright.config.js",
+    "rootDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "102-unlim-voice-reactivity-benchmark.spec.js",
+      "file": "102-unlim-voice-reactivity-benchmark.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "UNLIM severe voice/reactivity benchmark: TTS, voice UI, no console noise, post-deploy proof",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 75000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 26709,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 38\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"bytes\": 60,\u001b[39m\n\u001b[31m+     \"contentType\": \"application/json; charset=utf-8\",\u001b[39m\n\u001b[31m+     \"latencyMs\": 10919.59999999404,\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsStatus\",\u001b[39m\n\u001b[31m+     \"ok\": false,\u001b[39m\n\u001b[31m+     \"status\": 502,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsAudioBytes\",\u001b[39m\n\u001b[31m+     \"threshold\": 1500,\u001b[39m\n\u001b[31m+     \"value\": 60,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"errors\": Array [\u001b[39m\n\u001b[31m+       \"Failed to load resource: the server responded with a status of 502 ()\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"consoleErrors\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"failures\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"resourceType\": \"fetch\",\u001b[39m\n\u001b[31m+         \"status\": 502,\u001b[39m\n\u001b[31m+         \"url\": \"https://elab-tutor-ht0a208sa-andreas-projects-6d4e9791.vercel.app/api/tts?text=Ragazzi%2C%20osserviamo%20il%20LED%3A%20e%20come%20un%20piccolo%20semaforo%20del%20circuito.\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"networkFailures\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"realMicrophoneHardwareLog\",\u001b[39m\n\u001b[31m+     \"reason\": \"Headless browser endpoint/UI checks do not prove real microphone capture or classroom audio playback.\",\u001b[39m\n\u001b[31m+     \"value\": \"NOT_PROVEN\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 38\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"bytes\": 60,\u001b[39m\n\u001b[31m+     \"contentType\": \"application/json; charset=utf-8\",\u001b[39m\n\u001b[31m+     \"latencyMs\": 10919.59999999404,\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsStatus\",\u001b[39m\n\u001b[31m+     \"ok\": false,\u001b[39m\n\u001b[31m+     \"status\": 502,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsAudioBytes\",\u001b[39m\n\u001b[31m+     \"threshold\": 1500,\u001b[39m\n\u001b[31m+     \"value\": 60,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"errors\": Array [\u001b[39m\n\u001b[31m+       \"Failed to load resource: the server responded with a status of 502 ()\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"consoleErrors\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"failures\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"resourceType\": \"fetch\",\u001b[39m\n\u001b[31m+         \"status\": 502,\u001b[39m\n\u001b[31m+         \"url\": \"https://elab-tutor-ht0a208sa-andreas-projects-6d4e9791.vercel.app/api/tts?text=Ragazzi%2C%20osserviamo%20il%20LED%3A%20e%20come%20un%20piccolo%20semaforo%20del%20circuito.\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"networkFailures\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"realMicrophoneHardwareLog\",\u001b[39m\n\u001b[31m+     \"reason\": \"Headless browser endpoint/UI checks do not prove real microphone capture or classroom audio playback.\",\u001b[39m\n\u001b[31m+     \"value\": \"NOT_PROVEN\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/102-unlim-voice-reactivity-benchmark.spec.js:174:20",
+                    "location": {
+                      "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/102-unlim-voice-reactivity-benchmark.spec.js",
+                      "column": 20,
+                      "line": 174
+                    },
+                    "snippet": "  172 |   );\n  173 |\n> 174 |   expect(failures).toEqual([]);\n      |                    ^\n  175 | });\n  176 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/102-unlim-voice-reactivity-benchmark.spec.js",
+                        "column": 20,
+                        "line": 174
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 38\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"bytes\": 60,\u001b[39m\n\u001b[31m+     \"contentType\": \"application/json; charset=utf-8\",\u001b[39m\n\u001b[31m+     \"latencyMs\": 10919.59999999404,\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsStatus\",\u001b[39m\n\u001b[31m+     \"ok\": false,\u001b[39m\n\u001b[31m+     \"status\": 502,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"edgeTtsAudioBytes\",\u001b[39m\n\u001b[31m+     \"threshold\": 1500,\u001b[39m\n\u001b[31m+     \"value\": 60,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"errors\": Array [\u001b[39m\n\u001b[31m+       \"Failed to load resource: the server responded with a status of 502 ()\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"consoleErrors\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"failures\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"resourceType\": \"fetch\",\u001b[39m\n\u001b[31m+         \"status\": 502,\u001b[39m\n\u001b[31m+         \"url\": \"https://elab-tutor-ht0a208sa-andreas-projects-6d4e9791.vercel.app/api/tts?text=Ragazzi%2C%20osserviamo%20il%20LED%3A%20e%20come%20un%20piccolo%20semaforo%20del%20circuito.\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"name\": \"networkFailures\",\u001b[39m\n\u001b[31m+     \"value\": 1,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"name\": \"realMicrophoneHardwareLog\",\u001b[39m\n\u001b[31m+     \"reason\": \"Headless browser endpoint/UI checks do not prove real microphone capture or classroom audio playback.\",\u001b[39m\n\u001b[31m+     \"value\": \"NOT_PROVEN\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  172 |   );\n  173 |\n> 174 |   expect(failures).toEqual([]);\n      |                    ^\n  175 | });\n  176 |\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/102-unlim-voice-reactivity-benchmark.spec.js:174:20"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-05-09T09:00:40.039Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/results/artifacts/102-unlim-voice-reactivity-3d534-ole-noise-post-deploy-proof-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/results/artifacts/102-unlim-voice-reactivity-3d534-ole-noise-post-deploy-proof-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/results/artifacts/102-unlim-voice-reactivity-3d534-ole-noise-post-deploy-proof-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/102-unlim-voice-reactivity-benchmark.spec.js",
+                    "column": 20,
+                    "line": 174
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "78abcf51f1bcf66dc8f0-5bac769288d03c84b5fb",
+          "file": "102-unlim-voice-reactivity-benchmark.spec.js",
+          "line": 56,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-09T09:00:37.645Z",
+    "duration": 31010.818,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

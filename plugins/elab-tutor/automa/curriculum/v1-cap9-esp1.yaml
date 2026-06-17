@@ -1,0 +1,97 @@
+# Curriculum YAML — v1-cap9-esp1
+# "Dimmer LED con potenziometro"
+
+experiment_id: v1-cap9-esp1
+volume: 1
+chapter: 9
+title: "Dimmer LED con potenziometro"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+  - v1-cap8-esp1  # Conosce il pulsante
+
+concepts_introduced:
+  - potenziometro
+  - resistenza_variabile
+  - manopola
+  - dimmer
+  - luminosita_variabile
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - manopola
+  - ruotare
+  - girare
+  - dimmer
+  - luminosita
+  - piu forte
+  - piu debole
+  - variabile
+  - regolare
+  - piedino
+  - pin
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - analogico
+  - fotoresistenza
+  - sensore
+  - tensione
+  - volt
+  - partitore
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED, 1 resistenza 220 ohm, 1 potenziometro 10K,
+    breadboard, batteria 9V. Il potenziometro ha 3 piedini — quello centrale e
+    il cursore. Obiettivo: capire che la resistenza puo cambiare in modo continuo.
+  during_class: >
+    Inizia chiedendo: "Finora la resistenza era sempre uguale. Come fareste a
+    cambiare la luminosita del LED senza cambiare resistenza?" Lascia che pensino.
+    Poi mostra il potenziometro: "Questo e un potenziometro — una resistenza con la
+    manopola. Ruotandola, cambia quanta corrente passa." Falli provare liberamente.
+  common_question: >
+    "Perche girando da un lato si spegne?" -> Immaginalo come un rubinetto dell'acqua.
+    Quando lo chiudi del tutto, l'acqua non passa piu. Il potenziometro fa lo stesso
+    con l'elettricita: da un lato passa tutta, dall'altro niente.
+
+common_mistakes:
+  - mistake: "Collegano solo 2 piedini del potenziometro"
+    what_to_do: "Serve il piedino centrale + uno degli estremi. Mostra i 3 piedini e spiega che il centrale e il cursore"
+    analogy: "E come un rubinetto: ha l'entrata dell'acqua, l'uscita, e la manopola che regola"
+  - mistake: "Il LED non cambia luminosita girando"
+    what_to_do: "Probabilmente hanno collegato i due piedini esterni senza il centrale — il cursore non e nel circuito"
+    analogy: null
+  - mistake: "Il LED si brucia girando il pot al minimo"
+    what_to_do: "Serve la resistenza fissa in serie! Il pot da solo puo arrivare a 0 ohm"
+    analogy: "La resistenza fissa e come il limitatore di velocita — anche a manopola al massimo, c'e sempre un freno"
+
+analogies:
+  potenziometro:
+    analogy: "Un potenziometro e come il rubinetto della doccia: girando la manopola decidi quanta acqua (corrente) esce. Non cambi la pressione dell'acquedotto, cambi solo quanto ne fai passare."
+    evidence: "Analogia idraulica classica per circuiti, validata da Driver & Bell (1986)"
+  resistenza_variabile:
+    analogy: "Immagina una strada con un semaforo regolabile: puoi decidere quante auto (elettroni) far passare ogni minuto, da zero a tutte."
+    evidence: "Analogia traffico-corrente, scaffolding concettuale (Clement 1993)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e come cambiare la resistenza' -> ha collegato potenziometro a resistenza"
+  - "Se nota che serve la resistenza fissa 'di protezione' -> ha interiorizzato il concetto dal cap 6"
+  - "Se prova a invertire i pin del pot -> curiosita esplorativa, pronto per esp 2"

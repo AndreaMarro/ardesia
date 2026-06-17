@@ -1,0 +1,15 @@
+id: G28-teacher-dashboard-mvp
+priority: P0
+title: "G28: Teacher Dashboard MVP — class progress tracking"
+description: |
+  MANDATORY for school directors. Currently score 0/10.
+  MVP features:
+  1. Class overview: which experiments completed, by whom
+  2. Student progress bars per volume
+  3. Common mistakes report (from Galileo analytics)
+  4. Export to CSV for school reports
+  Must work on desktop (dirigente's PC, not LIM).
+  Auth: teacher role already exists in useAuth().
+tags: G28,dashboard,sales,critical
+mode: IMPROVE
+verify: "npm run build"

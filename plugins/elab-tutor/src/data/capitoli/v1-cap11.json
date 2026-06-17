@@ -1,0 +1,501 @@
+{
+  "id": "v1-cap11",
+  "volume": 1,
+  "capitolo": 11,
+  "type": "experiment",
+  "titolo": "Cos'è un cicalino?",
+  "titolo_classe": "Cos'è un cicalino?",
+  "pageStart": 93,
+  "pageEnd": 96,
+  "theory": {
+    "testo_classe": "Cos'è un cicalino?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v1-cap11-esp1",
+      "num": 1,
+      "title_classe": "Buzzer suona continuo",
+      "title_docente": "Buzzer suona continuo",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 96,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Cicalino (buzzer piezo)",
+          "quantity": 1,
+          "icon": "🔊"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "buzzer-piezo",
+              "id": "buz1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bat1:negative",
+              "to": "bb1:bus-top-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bb1:bus-top-minus-27",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-plus-1",
+              "to": "bb1:bus-bot-plus-27",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-bot-plus-27",
+              "to": "buz1:positive",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-minus-27",
+              "to": "buz1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Finora abbiamo fatto circuiti che producono LUCE. Ma l'elettricità può anche fare SUONO! Chi ha mai premuto un campanello?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi entriamo nel mondo del SUONO! Collegheremo un cicalino alla batteria e lo faremo suonare. È come un LED, ma invece della luce produce suono.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il cicalino è polarizzato come il LED: ha un piedino + e uno −. Mostralo alla classe prima di iniziare. Se lo colleghi al contrario, non funziona."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito sulla LIM: batteria → bus → cicalino → bus → batteria. Il cicalino è collegato direttamente ai bus della breadboard.",
+            "spunto_per_classe": null,
+            "note": [
+              "Uso il Passo Passo. Fai notare che la struttura è identica al primo circuito LED: cambiano solo i componenti. Il filo rosso va al + del cicalino."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap11-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Cosa ha in comune il cicalino con il LED? Entrambi hanno una polarità! Il piedino lungo va al +. Cosa succede se lo giri al contrario?",
+            "spunto_per_classe": "Domanda: 'Il LED produce luce, il cicalino produce suono. Cosa hanno in comune? E cosa succede se inverti i fili?'",
+            "note": [
+              "Lascia che i ragazzi notino la somiglianza con il LED: entrambi hanno + e −. Se qualcuno chiede 'come fa a suonare?', usa l'analogia del cristallo che vibra."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il cicalino non suona",
+                "soluzione_neutra": "Controllo la polarità: il filo rosso deve andare al piedino + del cicalino. Cerca il segno + stampato sopra."
+              },
+              {
+                "problema": "Non capiscono come il cicalino produce suono",
+                "soluzione_neutra": "Dentro il cicalino c'è un piccolo cristallo che vibra quando riceve corrente. Le vibrazioni muovono l'aria e noi sentiamo il suono!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il cicalino suona appena la corrente lo attraversa! Dentro c'è un cristallo piezoelettrico che vibra e produce suono — come una corda di chitarra microscopica.",
+            "analogies": [
+              {
+                "concept": "piezoelettrico",
+                "text": "Il cristallo dentro il buzzer è come una corda di chitarra microscopica: quando la corrente lo attraversa, vibra e muove l'aria. Noi sentiamo quelle vibrazioni come suono!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "polarita_componenti",
+                "text": "Il cicalino è come il LED: ha un piedino + e uno −. Se lo colleghi al contrario non funziona, come una chiavetta USB al rovescio!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: il cicalino suona! La corrente fa vibrare un cristallo dentro il buzzer e produce suono.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il cicalino. Spiega: 'La corrente attraversa il cristallo → il cristallo vibra → l'aria si muove → noi sentiamo il suono!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:buz1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il cicalino trasforma la corrente in suono! Ha una polarità come il LED (piedino + e piedino −). Dentro c'è un cristallo che vibra quando la corrente lo attraversa.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto il cicalino: un componente che trasforma la corrente in suono! Come il LED ha una polarità da rispettare.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Ma suona SEMPRE... e se volessimo farlo suonare solo quando premiamo un pulsante?' Questo anticipa l'esperimento successivo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'è come il LED ma con il suono' → ha capito la somiglianza",
+        "Se nota la polarità da solo → trasferimento concettuale dal LED",
+        "Se chiede 'come fa a suonare?' → curiosità scientifica attiva"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "cicalino_piezoelettrico",
+          "polarita_componenti",
+          "corrente_suono"
+        ],
+        "next_suggested": "v1-cap11-esp2",
+        "resume_message": "Avete scoperto il cicalino! Ora aggiungiamo un pulsante per controllare quando suona."
+      }
+    },
+    {
+      "id": "v1-cap11-esp2",
+      "num": 2,
+      "title_classe": "Campanello con pulsante",
+      "title_docente": "Campanello con pulsante",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 96,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Pulsante (tact switch)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Cicalino (buzzer piezo)",
+          "quantity": 1,
+          "icon": "🔊"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 7,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap11-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "push-button",
+                      "id": "btn1"
+                    },
+                    {
+                      "type": "buzzer-piezo",
+                      "id": "buz1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bat1:negative",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-top-minus-27",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-plus-1",
+                      "to": "bb1:bus-bot-plus-27",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-bot-plus-24",
+                      "to": "buz1:positive",
+                      "color": "red"
+                    },
+                    {
+                      "from": "buz1:negative",
+                      "to": "bb1:j16",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-14",
+                      "to": "bb1:e14",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "L'ultima volta il cicalino suonava SEMPRE. Ma un campanello vero suona solo quando lo premi! Come facciamo?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi costruiamo un CAMPANELLO! Aggiungiamo un pulsante al cicalino: suonerà solo quando premiamo.",
+            "spunto_per_classe": null,
+            "note": [
+              "Richiama l'esperimento LED + pulsante: 'Vi ricordate quando controllavamo il LED con il pulsante? Oggi facciamo la stessa cosa ma con il suono!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito sulla LIM: il pulsante è nella catena tra batteria e cicalino. Senza premere, il circuito è aperto.",
+            "spunto_per_classe": null,
+            "note": [
+              "Confronta con il circuito LED + pulsante: stessa struttura, diverso componente. Il pulsante va a cavallo della scanalatura (E14/F16)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap11-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione il pulsante: suona! Rilascia: silenzio. È identico al LED con pulsante — cosa cambia?",
+            "spunto_per_classe": "Domanda: 'Il circuito è quasi identico a quello del LED con pulsante. Cosa cambia? Solo il componente controllato!'",
+            "note": [
+              "il confronto esplicito: 'Con il LED, premevi e vedevi la luce. Ora premi e senti il suono. La struttura del circuito è la stessa!'"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il cicalino suona sempre, anche senza premere",
+                "soluzione_neutra": "Il pulsante non è nel percorso della corrente. Controlla che il filo dal cicalino passi attraverso il pulsante prima di tornare al negativo."
+              },
+              {
+                "problema": "Non vedono la somiglianza con il circuito LED + pulsante",
+                "soluzione_neutra": "Disegna i due circuiti affiancati: sono identici! Cambia solo il componente: LED → cicalino. Il pulsante fa sempre lo stesso lavoro: apre e chiude il circuito."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Premi il pulsante → suona! Rilascia → silenzio. Il pulsante controlla il cicalino come controllava il LED. Stesso principio, diverso risultato: luce vs suono!",
+            "analogies": [
+              {
+                "concept": "campanello",
+                "text": "Il campanello di casa funziona ESATTAMENTE così: quando premi il bottone, il circuito si chiude e il suono parte. Quando rilasci, il circuito si apre e il suono si ferma!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "riuso_principio",
+                "text": "È come imparare a guidare la bici e poi il monopattino: il principio dell'equilibrio è lo stesso, cambia solo il mezzo. Il pulsante funziona sempre allo stesso modo!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play, poi premi il pulsante: il cicalino suona! Rilascia e si ferma. È un vero campanello!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia pulsante e cicalino. Fai notare: 'Il pulsante apre e chiude il circuito. È lo STESSO principio del LED — il pulsante è l'interruttore!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:buz1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il campanello è un circuito con pulsante + cicalino! Premi → suona, rilascia → silenzio. Lo STESSO principio del LED con pulsante — cambia solo il componente.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo costruito un campanello vero! Lo stesso pulsante che controllava il LED ora controlla il suono.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Abbiamo usato il pulsante con le dita. Esiste un modo per controllare un circuito SENZA toccarlo?' Anticipa il reed switch del cap 12."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'è come il LED ma con il suono' → ha capito il pattern",
+        "Se nota 'il pulsante fa la stessa cosa' → trasferimento concettuale",
+        "Se chiede 'posso usare anche un interruttore?' → pensiero esplorativo"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "campanello_elettrico",
+          "riuso_pulsante",
+          "confronto_LED_buzzer"
+        ],
+        "next_suggested": "v1-cap12-esp1",
+        "resume_message": "Avete costruito un campanello! Ora scoprirete un interruttore magico che si attiva con un magnete."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cos'è un cicalino?",
+    "transitions": [
+      {
+        "between": [
+          "v1-cap11-esp1",
+          "v1-cap11-esp2"
+        ],
+        "text_classe": "L'ultima volta il cicalino suonava SEMPRE. Ma un campanello vero suona solo quando lo premi! Come facciamo?",
+        "text_docente_action": "Richiama l'esperimento LED + pulsante: 'Vi ricordate quando controllavamo il LED con il pulsante? Oggi facciamo la stessa cosa ma con il suono!'",
+        "incremental_mode": "add_component"
+      }
+    ],
+    "closing_text": "Avete costruito un campanello! Ora scoprirete un interruttore magico che si attiva con un magnete."
+  }
+}

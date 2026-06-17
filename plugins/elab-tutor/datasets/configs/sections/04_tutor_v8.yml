@@ -1,0 +1,201 @@
+id: tutor
+name: Teoria e Spiegazioni v8
+intent: tutor
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - cos'e' la legge di Ohm?
+    - spiegami la legge di Ohm
+    - V uguale I per R, che significa?
+    - come funziona la legge di Ohm?
+    - cos'e' la corrente elettrica?
+    - spiegami la corrente
+    - cos'e' la tensione?
+    - cos'e' il voltaggio?
+    - spiegami la differenza tra tensione e corrente
+    - cos'e' la resistenza elettrica?
+    - a cosa serve la resistenza?
+    - cos'e' la potenza elettrica?
+    - cos'e' un circuito in serie?
+    - cos'e' un circuito in parallelo?
+    - che differenza c'e' tra serie e parallelo?
+    - cos'e' un corto circuito?
+    - perche' il corto circuito e' pericoloso?
+    - cos'e' la frequenza?
+    - cos'e' il PWM?
+    - come funziona il PWM?
+    - cos'e' la corrente continua?
+    - cos'e' la corrente alternata?
+    - differenza tra DC e AC?
+    - cos'e' l'amperaggio?
+    - cosa sono i watt?
+    - come si calcola la resistenza necessaria?
+    - cos'e' una caduta di tensione?
+    - cos'e' un divisore di tensione?
+    hint:
+    - Spiegazione legge fisica. Usa analogia acqua/tubi per corrente, autostrada per resistenza.
+    - 'Concetto di fisica base. Metafore concrete: tensione=pressione acqua, corrente=flusso.'
+    - Domanda su legge elettrica. Esempio pratico dal circuito che lo studente sta costruendo.
+    - 'Teoria elettrica. Esperimento mentale: Immagina un tubo d''acqua...'
+    - Concetto fisico. Prima risposta breve, poi analogia, poi collegalo al circuito.
+    - Legge fisica. Non formule subito — prima intuizione, poi formula come conferma.
+    - 'Spiegazione fisica. Parti da cosa lo studente conosce: rubinetto, batteria telefono, lampadina.'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities:
+  - '{comp}'
+  vars:
+    frase:
+    - cos'e' {comp_nome}?
+    - a cosa serve {comp_nome}?
+    - come funziona {comp_nome}?
+    - spiegami {comp_nome}
+    - perche' si usa {comp_nome}?
+    - '{comp_nome} cosa fa?'
+    - dove si usa {comp_nome} nella vita reale?
+    - come si collega {comp_nome}?
+    - '{comp_nome} ha una polarita''?'
+    - che succede se {comp_nome} si brucia?
+    comp_nome:
+    - un LED
+    - una resistenza
+    - un condensatore
+    - un pulsante
+    - un buzzer
+    - un potenziometro
+    - un fotoresistore
+    - un diodo
+    - un mosfet
+    - un LED RGB
+    - un motore DC
+    - un servo
+    - un reed switch
+    - un fototransistor
+    - un display LCD
+    comp:
+    - led
+    - resistor
+    - capacitor
+    - push-button
+    - buzzer-piezo
+    - potentiometer
+    - photo-resistor
+    - diode
+    - mosfet-n
+    - rgb-led
+    - motor-dc
+    - servo
+    - reed-switch
+    - phototransistor
+    - lcd16x2
+    hint:
+    - Spiegazione componente. Analogia quotidiana, a cosa serve nella vita reale.
+    - Componente. Parti dalla funzione pratica, poi principio fisico semplice.
+    - Info componente. Aspetto fisico, funzione, dove lo trovi nella vita quotidiana.
+    - 'Componente. Come se lo studente lo avesse in mano: Vedi queste gambine?...'
+    - 'Componente. Collega a oggetto familiare: LED=lampadina, resistenza=rubinetto.'
+    - Curiosita' componente. Fatto interessante, poi funzione tecnica.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - cos'e' un circuito?
+    - come si legge uno schema elettrico?
+    - cos'e' una breadboard?
+    - come funziona una breadboard?
+    - cos'e' Arduino?
+    - a cosa serve Arduino?
+    - cos'e' la massa? cos'e' GND?
+    - perche' i fili hanno colori diversi?
+    - cos'e' un pin digitale?
+    - cos'e' un pin analogico?
+    - che differenza c'e' tra digitale e analogico?
+    - cos'e' un sensore?
+    - cos'e' un attuatore?
+    - cos'e' l'elettricita'?
+    - come arriva la corrente a casa nostra?
+    - perche' ci servono le batterie?
+    - cos'e' un semiconduttore?
+    - come si usa il multimetro?
+    - cos'e' un segnale?
+    - cos'e' un prototipo?
+    hint:
+    - Concetto generale. Spiegare in modo accessibile, esempi vita quotidiana.
+    - Domanda base. Lo studente scopre l'elettronica — entusiasmo e semplicita'.
+    - Concetto fondamentale. Parti da zero, non dare nulla per scontato.
+    - Curiosita'. Rendi la risposta interessante — fatto sorprendente, poi spiegazione.
+    - 'Domanda concettuale. Metodo: COSA e'' → A COSA serve → COME funziona.'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - perche' il LED si brucia senza resistenza?
+    - perche' il buzzer suona anche piano?
+    - perche' il motore gira al contrario?
+    - perche' devo mettere la resistenza prima del LED?
+    - perche' ci vogliono i fili?
+    - perche' il condensatore si scarica?
+    - perche' il servo trema?
+    - perche' il display non mostra niente?
+    - perche' si chiama breadboard?
+    - perche' Arduino ha bisogno del computer?
+    - perche' le batterie si scaricano?
+    - perche' il LED ha due gambe diverse?
+    - perche' la resistenza ha le strisce colorate?
+    - perche' il circuito deve essere chiuso?
+    - perche' i fili si scaldano?
+    - perche' non posso toccare i fili con le mani bagnate?
+    - perche' la lampadina a LED dura di piu'?
+    hint:
+    - Domanda perche'. Analogia divertente, senza paroloni.
+    - Curiosita' infantile. Questa e' la domanda migliore! Esempio concreto.
+    - 'Domanda causale. Meccanismo fisico con metafora: acqua, traffico, palline.'
+    - 'Perche''? Contro-domanda: Cosa pensi che succederebbe se...? poi conferma.'
+    - Domanda sul perche'. Risposta breve, poi esperimento mentale.
+- input: '{frase}'
+  llm_hint: Lo studente collega l'elettronica alla vita reale. Rispondi collegando il concetto al circuito attuale.
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come funziona una lampadina?
+    - come funziona il telefonino?
+    - come funziona un computer?
+    - come funziona un robot?
+    - come funziona un drone?
+    - l'elettricita' c'e' anche nel corpo umano?
+    - i fulmini sono elettricita'?
+    - come funzionano le cuffie?
+    - come fanno le luci di Natale a lampeggiare?
+- input: '{frase}'
+  llm_hint: Lo studente si interroga sull'apprendimento. Incoraggialo, normalizza la difficolta'.
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - e' difficile l'elettronica?
+    - ce la posso fare?
+    - sono negato
+    - non capisco niente
+    - e' troppo difficile per me
+    - non mi riesce niente
+    - mi sento perso
+    - e' normale che non capisco?
+    - da dove devo partire?
+    - qual e' il prossimo passo?
+corruptions:
+  typo_swap: 0.3
+  truncated: 0.15
+  filler: 0.15
+  emoji: 0.1
+  sms: 0.1

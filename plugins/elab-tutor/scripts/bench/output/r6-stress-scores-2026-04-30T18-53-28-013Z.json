@@ -1,0 +1,101 @@
+{
+  "bench": "R6-stress",
+  "timestamp": "2026-04-30T18-53-28-013Z",
+  "fixture": "scripts/bench/r6-fixture-100.jsonl",
+  "fixture_count": 100,
+  "endpoint": "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat",
+  "success_count": 100,
+  "failure_count": 0,
+  "template_shortcut_count": 48,
+  "measured_count": 52,
+  "avg_recall_at_5": 0.0673076923076923,
+  "pass_threshold": 0.55,
+  "warn_threshold": 0.45,
+  "verdict": "FAIL",
+  "latency_avg_ms": 2256,
+  "latency_p50_ms": 1592,
+  "latency_p95_ms": 5071,
+  "latency_p99_ms": 8346,
+  "by_category": {
+    "plurale_ragazzi": {
+      "measured": 3,
+      "sumRecall": 0.75,
+      "templateShortcut": 7,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0.25
+    },
+    "citation_vol_pag": {
+      "measured": 0,
+      "sumRecall": 0,
+      "templateShortcut": 10,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": null
+    },
+    "sintesi_60w": {
+      "measured": 7,
+      "sumRecall": 1.75,
+      "templateShortcut": 3,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0.25
+    },
+    "safety_minor": {
+      "measured": 8,
+      "sumRecall": 0.25,
+      "templateShortcut": 2,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0.03125
+    },
+    "off_topic_redirect": {
+      "measured": 10,
+      "sumRecall": 0,
+      "templateShortcut": 0,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0
+    },
+    "deep_concept": {
+      "measured": 5,
+      "sumRecall": 0,
+      "templateShortcut": 5,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0
+    },
+    "experiment_mount": {
+      "measured": 6,
+      "sumRecall": 0.25,
+      "templateShortcut": 4,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0.041666666666666664
+    },
+    "error_diagnosis": {
+      "measured": 7,
+      "sumRecall": 0.5,
+      "templateShortcut": 3,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0.07142857142857142
+    },
+    "vision_describe": {
+      "measured": 3,
+      "sumRecall": 0,
+      "templateShortcut": 7,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0
+    },
+    "clawbot_composite": {
+      "measured": 3,
+      "sumRecall": 0,
+      "templateShortcut": 7,
+      "errors": 0,
+      "total": 10,
+      "avgRecall": 0
+    }
+  }
+}

@@ -1,0 +1,1591 @@
+{
+  "id": "v1-cap7",
+  "volume": 1,
+  "capitolo": 7,
+  "type": "experiment",
+  "titolo": "Cos'è il LED RGB?",
+  "titolo_classe": "Cos'è il LED RGB?",
+  "pageStart": 35,
+  "pageEnd": 42,
+  "theory": {
+    "testo_classe": "Cos'è il LED RGB?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v1-cap7-esp1",
+      "num": 1,
+      "title_classe": "Accendi il rosso del RGB",
+      "title_docente": "Accendi il rosso del RGB",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🔴"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 5,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-9",
+              "to": "bb1:b9",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e2",
+              "to": "bb1:f2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:j3",
+              "to": "bb1:bus-bot-minus-3",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-2",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete mai visto quelle luci che cambiano colore? Le strisce LED, le luci della discoteca? Oggi scopriamo come funzionano — con un LED speciale!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi i ragazzi scoprono il LED RGB — un componente con 3 LED dentro! Il LED RGB ha 4 piedini: il più lungo è il catodo (GND), gli altri 3 sono rosso, verde, blu.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione il LED RGB reale alla classe. Chiedi: 'Quanti piedini ha? Perché 4 e non 2 come il LED normale?' Lascia che osservino e facciano ipotesi prima di spiegare."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito sulla LIM. Solo il canale rosso è collegato — gli altri 2 piedini (verde, blu) restano liberi.",
+            "spunto_per_classe": null,
+            "note": [
+              "Uso il Passo Passo. Quando appare il LED RGB, fai notare i 4 piedini. Spiega: 'Il piedino più lungo è il catodo — va al negativo. Il primo piedino corto è il rosso.' Disegna lo schema sulla lavagna se serve."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "È il momento della domanda provocatoria. NON dare la risposta — lascia che i ragazzi discutano.",
+            "spunto_per_classe": "Domanda: 'Se dentro ci sono 3 LED, possiamo accenderli tutti insieme? Che colore verrebbe fuori?'",
+            "note": [
+              "Se collegano il piedino sbagliato, NON correggerli. Chiedi: 'Quale piedino avete collegato? Il rosso è il primo a sinistra del catodo.' Se dimenticano la resistenza, ricorda l'esperimento 6.2!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Collegano il piedino sbagliato (verde o blu invece del rosso)",
+                "soluzione_neutra": "Visualizzazione il datasheet semplificato: piedino lungo = catodo, poi R, G, B. 'Come una forchetta — il manico è il catodo, i rebbi sono i colori.'"
+              },
+              {
+                "problema": "Dimenticano il resistore",
+                "soluzione_neutra": "Ricorda l'esperimento 6.2! 'Cosa succede senza resistore?' Il LED RGB costa di più — meglio proteggerlo!"
+              },
+              {
+                "problema": "Collegano catodo al + invece che al −",
+                "soluzione_neutra": "Ricorda: catodo = piedino più lungo = va al polo negativo (−). 'Come il LED normale, il piedino lungo va al meno.'"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED RGB si accende di rosso! Solo il canale rosso è collegato al circuito. Gli altri 2 piedini (verde e blu) sono liberi — non possono accendersi.",
+            "analogies": [
+              {
+                "concept": "LED_RGB",
+                "text": "Un LED RGB è come una torcia con 3 lampadine colorate dentro. Puoi accenderne una, due o tutte e tre per creare colori diversi — come un pittore che mescola i colori.",
+                "evidence": "Curriculum YAML analogia torcia"
+              },
+              {
+                "concept": "catodo_comune",
+                "text": "Il catodo comune è come la porta di uscita di un cinema con 3 sale. Tutti escono dalla stessa porta, ma entrano da porte diverse (rosso, verde, blu).",
+                "evidence": "Curriculum YAML analogia cinema"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e osserva. Il LED RGB si accende di ROSSO! Solo il canale rosso è alimentato.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il LED RGB sul simulatore. Chiedi: 'Di che colore si accende? Perché proprio rosso?' Poi: 'Secondo voi, come facciamo ad accendere il verde?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED RGB ha 3 LED dentro! Il piedino più lungo è il catodo comune — va al negativo. Oggi abbiamo acceso solo il rosso. Prossima volta: il verde!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto che il LED RGB contiene 3 LED in 1! Ha 4 piedini: catodo comune (il più lungo) e 3 anodi per rosso, verde e blu.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: a un ragazzo di ripetere con parole sue. Poi chiedi: 'Se collegassimo anche il verde, che succede? E se li collegassimo tutti e 3?' Seminare la curiosità per gli esperimenti successivi."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se identifica il piedino lungo come catodo senza aiuto → ha trasferito conoscenza dal cap 6",
+        "Se chiede 'posso accendere anche gli altri colori?' → curiosità naturale, pronto per esp 2-3",
+        "Se prova a mescolare colori spontaneamente → pronto per esp 4"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "LED_RGB_struttura",
+          "catodo_comune",
+          "singolo_canale_colore"
+        ],
+        "next_suggested": "v1-cap7-esp2",
+        "resume_message": "L'ultima volta avete acceso il rosso del LED RGB! Oggi proviamo il verde — e scopriamo come mescolare i colori."
+      }
+    },
+    {
+      "id": "v1-cap7-esp2",
+      "num": 2,
+      "title_classe": "Accendi il verde del RGB",
+      "title_docente": "Accendi il verde del RGB",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 30,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🟢"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap7-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-11",
+                      "to": "bb1:b11",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "L'ultima volta abbiamo acceso il rosso del LED RGB. Ma dentro ci sono 3 colori... riuscite ad accendere il verde?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Stessa configurazione dell'esperimento precedente. L'unica differenza: questa volta colleghiamo il pin VERDE del LED RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'L'ultima volta abbiamo acceso il rosso. Secondo voi, come accendiamo il verde?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito sulla LIM. L'unica differenza dal rosso è quale pin del LED RGB colleghiamo.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia che il circuito è IDENTICO — cambia solo il filo che va al pin verde (F4) invece che al rosso (F2)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Domanda: alla classe cosa è cambiato rispetto al circuito del rosso.",
+            "spunto_per_classe": "Domanda: 'Cosa è cambiato nel circuito rispetto al rosso? Solo una cosa!'",
+            "note": [
+              "La risposta attesa: 'Solo il filo va a un pin diverso'. Il circuito è lo stesso! Ogni canale è indipendente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Pensa che serva un circuito completamente diverso",
+                "soluzione_neutra": "Visualizzazione i due circuiti affiancati: l'unica differenza è il filo che va al pin verde invece che al rosso."
+              },
+              {
+                "problema": "Collega il filo al pin sbagliato",
+                "soluzione_neutra": "Ricorda l'ordine: Rosso (F2), Catodo comune (F3), Verde (F4), Blu (F5). Il verde è il terzo!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED è verde! Ogni canale del LED RGB funziona indipendentemente — basta collegare il pin giusto.",
+            "analogies": [
+              {
+                "concept": "canali_indipendenti",
+                "text": "Il LED RGB è come un palazzo con 3 appartamenti: ogni appartamento ha la sua porta (pin), ma tutti condividono lo stesso ingresso (catodo comune).",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "colore_verde_natura",
+                "text": "Il verde è il colore della natura: foglie, erba, alberi. Il LED RGB può ricreare quel verde usando un solo canale! È come avere un piccolo pezzetto di foresta nel tuo circuito.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e osserva: il LED si accende VERDE! Stesso circuito, colore diverso.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Quanti colori possiamo fare con questo LED?' Prepara i ragazzi per gli esperimenti di mescolanza."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED RGB ha 3 canali indipendenti. Cambiando il pin collegato, cambi il colore. Stessa idea, solo un filo diverso!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Abbiamo scoperto che ogni canale del LED RGB funziona come un LED singolo. Basta cambiare quale pin colleghiamo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Se possiamo accendere rosso e verde separatamente... possiamo accenderli INSIEME?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'basta cambiare il filo' → ha capito i canali indipendenti",
+        "Se chiede 'posso accenderli insieme?' → pronto per esperimenti di mescolanza"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "canali_RGB_indipendenti",
+          "pin_verde"
+        ],
+        "next_suggested": "v1-cap7-esp3",
+        "resume_message": "L'ultima volta avete acceso il verde del LED RGB. Ora proviamo il blu!"
+      }
+    },
+    {
+      "id": "v1-cap7-esp3",
+      "num": 3,
+      "title_classe": "Accendi il blu del RGB",
+      "title_docente": "Accendi il blu del RGB",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 30,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🔵"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap7-esp2",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:b12",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e5",
+                      "to": "bb1:f5",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Abbiamo acceso rosso e verde. Manca il blu — l'ultimo colore base! Ma il blu nasconde una sorpresa...",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Stessa configurazione. Questa volta colleghiamo il pin BLU (F5) del LED RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Avete notato differenze tra rosso e verde? Il blu sarà uguale?' (spoiler: il blu ha bisogno di più energia)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito. Filo blu dal resistore al pin blu (F5) del LED RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Dopo aver montato, chiedi: 'Notate qualcosa di diverso rispetto al rosso?' Il blu potrebbe sembrare leggermente meno luminoso con lo stesso resistore."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il blu ha bisogno di più energia per accendersi. Chiedi se notano differenze.",
+            "spunto_per_classe": "Domanda: 'Il blu sembra diverso dal rosso e dal verde? Secondo voi perché?'",
+            "note": [
+              "Il LED blu ha una 'porta' più alta da superare — serve più energia per farlo accendere. NON dire termini tecnici avanzati."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Non nota la differenza di luminosità",
+                "soluzione_neutra": "Tentativo confrontare rosso e blu con lo stesso resistore fianco a fianco."
+              },
+              {
+                "problema": "Pensa che il blu sia rotto",
+                "soluzione_neutra": "No! Il blu ha bisogno di più energia. È come una porta più alta da superare."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED è blu! Nota: il blu ha bisogno di più energia per accendersi rispetto al rosso. Ogni colore ha la sua 'porta' da superare.",
+            "analogies": [
+              {
+                "concept": "soglia_colori",
+                "text": "Ogni colore del LED ha una porta di altezza diversa. Il rosso ha la porta più bassa, il blu la più alta. La corrente deve avere abbastanza spinta per superarla.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "blu_energia",
+                "text": "Il blu richiede più energia del rosso e del verde — per questo il resistore da 100Ω è più piccolo. È come scalare una montagna più alta: servono più forze, ma il panorama (la luce blu brillante) è spettacolare!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED si accende BLU! Ogni colore ha una 'soglia' diversa.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiega: il blu ha bisogno di più energia. Come una porta più alta: serve più forza per aprirla."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED blu ha bisogno di più energia del rosso per accendersi. Ogni colore ha la sua 'soglia'. Ora conosciamo tutti e 3 i colori base!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Abbiamo completato i 3 colori base! Ogni colore ha bisogno di una quantità diversa di energia.",
+            "spunto_per_classe": null,
+            "note": [
+              "Anticipazione: 'Ora che sappiamo accendere ogni colore singolarmente... cosa succede se ne accendiamo DUE insieme?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se nota la differenza tra rosso e blu → osservazione attiva",
+        "Se chiede 'perché il blu è diverso?' → curiosità scientifica",
+        "Se propone di accenderne due insieme → pronto per sintesi additiva"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "soglia_energetica_colore",
+          "pin_blu_RGB"
+        ],
+        "next_suggested": "v1-cap7-esp4",
+        "resume_message": "L'ultima volta avete acceso tutti e 3 i colori del LED RGB. Ora li mescoliamo!"
+      }
+    },
+    {
+      "id": "v1-cap7-esp4",
+      "num": 4,
+      "title_classe": "Mescola 2 colori: il viola!",
+      "title_docente": "Mescola 2 colori: il viola!",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 2,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🟣"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap7-esp3",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Sapete già accendere rosso, verde e blu separatamente. Ma cosa succede se accendiamo rosso E blu INSIEME?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi servono DUE resistori — uno per il canale rosso e uno per il blu. Ogni canale ha il suo resistore di protezione.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Quanti resistori servono se vogliamo accendere 2 colori?' La risposta è 2 — uno per ogni canale."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito con 2 resistori: R1→pin rosso, R2→pin blu. Il catodo comune è lo stesso.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia che sono come DUE circuiti separati che condividono la batteria e il catodo. Ogni colore ha la sua 'strada'."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Prima di premere Play, chiedi alla classe che colore si aspettano.",
+            "spunto_per_classe": "Domanda: 'Se accendo rosso e blu insieme, che colore vedremo? Rosso? Blu? O qualcosa di completamente diverso?'",
+            "note": [
+              "La maggior parte dei bambini dirà 'rosso e blu' o 'non lo so'. Pochi diranno 'viola'. NON dare la risposta — fai premere Play!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Pensa che i colori restino separati",
+                "soluzione_neutra": "Con la luce i colori si mescolano! È diverso dalla pittura."
+              },
+              {
+                "problema": "Dimentica uno dei due resistori",
+                "soluzione_neutra": "Ogni canale del LED ha bisogno del suo resistore di protezione. Come ogni appartamento ha bisogno della sua porta."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Rosso + Blu = VIOLA! I colori della luce si mescolano in modo diverso dalla pittura. Questa si chiama mescolanza della luce.",
+            "analogies": [
+              {
+                "concept": "mescolanza_luce",
+                "text": "Con i pennarelli rosso+blu fa marrone. Ma con la LUCE rosso+blu fa viola! La luce si mescola in modo diverso. Lo schermo del tuo telefono funziona proprio così.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "pixel_schermo",
+                "text": "Lo schermo del telefono funziona esattamente così: ogni pixel ha un mini-LED rosso, verde e blu. Accendendone due insieme si creano nuovi colori. Il viola sullo schermo è rosso+blu, proprio come nel vostro circuito!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: rosso + blu = VIOLA! La luce si mescola in modo diverso dalla pittura.",
+            "spunto_per_classe": null,
+            "note": [
+              "Momento wow! La luce si mescola in modo diverso dai colori a tempera. Con i pennarelli rosso+blu = marrone. Con la LUCE = viola!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Rosso + Blu = Viola! I colori della luce si mescolano in modo diverso dalla pittura. Il tuo schermo usa lo stesso trucco!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Abbiamo creato il viola mescolando rosso e blu! La luce si mescola in modo diverso dalla pittura.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Se rosso+blu=viola, cosa faranno TUTTI E TRE insieme?' Preparali per il prossimo esperimento."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se predice il viola → conoscenza pregressa sui colori",
+        "Se è sorpreso → momento di scoperta autentica",
+        "Se chiede 'e rosso+verde?' → curiosità per esplorare tutte le combinazioni"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "mescolanza_luce_additiva",
+          "viola_da_rosso_blu"
+        ],
+        "next_suggested": "v1-cap7-esp5",
+        "resume_message": "L'ultima volta avete mescolato rosso e blu per fare il viola! Ora proviamo TUTTI E TRE insieme..."
+      }
+    },
+    {
+      "id": "v1-cap7-esp5",
+      "num": 5,
+      "title_classe": "Tutti e 3: bianco!",
+      "title_docente": "Tutti e 3: bianco!",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 3,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "⬜"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 8,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap7-esp4",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Rosso e blu insieme fanno viola. Ma cosa succede se accendiamo TUTTI E TRE i colori? Bianco? Nero? Arcobaleno?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi servono TRE resistori — uno per ogni canale. Il circuito è più complesso ma il principio è lo stesso.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Rosso+blu fa viola. Cosa farà rosso+verde+blu?' Raccogli le ipotesi PRIMA di costruire."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito con 3 resistori. Ogni canale ha la sua 'strada' dalla batteria al LED RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione che sono come 3 circuiti paralleli che condividono batteria e catodo. Ogni colore funziona indipendentemente."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp5]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Domanda: le ipotesi prima di premere Play. Che colore sarà R+G+B?",
+            "spunto_per_classe": "Domanda: 'Rosso + Verde + Blu tutti insieme: che colore vedrete? (Suggerimento: NON è quello che pensate!)'",
+            "note": [
+              "La maggior parte dirà 'marrone' o 'arcobaleno'. Quasi nessuno dirà 'bianco'. L'effetto sorpresa è potentissimo!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Si aspetta marrone (come coi pennarelli)",
+                "soluzione_neutra": "La luce si mescola diversamente dalla pittura! Con la pittura R+G+B fa marrone, con la LUCE fa bianco!"
+              },
+              {
+                "problema": "Collega 3 resistori ma dimentica un filo al canale",
+                "soluzione_neutra": "Ogni resistore deve essere collegato al suo canale specifico: R1→rosso, R2→verde, R3→blu."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Rosso + Verde + Blu = BIANCO! Sembra impossibile, ma è così che funzionano TUTTI gli schermi — TV, telefono, tablet. Ogni pixel è un mini LED RGB!",
+            "analogies": [
+              {
+                "concept": "sintesi_additiva",
+                "text": "Con i pennarelli, mescolando tutto viene marrone scuro. Ma con la LUCE, mescolando R+G+B viene BIANCO! Il tuo schermo usa questo trucco: milioni di mini LED RGB creano tutte le immagini.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "bianco_televisione",
+                "text": "Guardate da vicino uno schermo TV con una lente: vedrete puntini rossi, verdi e blu. Da lontano il vostro occhio li mescola e vedete bianco! Il LED RGB fa la stessa cosa in un solo componente.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: R+G+B = BIANCO! Gli schermi dei nostri dispositivi funzionano proprio così.",
+            "spunto_per_classe": null,
+            "note": [
+              "Momento WOW della lezione. Spiega: ogni pixel del telefono è un mini LED RGB. Milioni di pixel fanno le foto!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Rosso + Verde + Blu = Bianco! Ogni pixel dello schermo del telefono è un mini LED RGB. Milioni di pixel fanno tutte le immagini!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "R+G+B = Bianco. Ogni schermo che usate funziona con questo principio!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se cambiassimo i resistori per fare più rosso e meno verde? Che colore verrebbe?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se è sorpreso dal bianco → ha sperimentato la scoperta",
+        "Se collega al funzionamento degli schermi → transfer di conoscenza",
+        "Se chiede 'posso fare il giallo?' → pronto per creare colori personalizzati"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "RGB_completo_bianco",
+          "funzionamento_schermi"
+        ],
+        "next_suggested": "v1-cap7-esp6",
+        "resume_message": "L'ultima volta avete scoperto che R+G+B fa bianco! Ora create il VOSTRO colore!"
+      }
+    },
+    {
+      "id": "v1-cap7-esp6",
+      "num": 6,
+      "title_classe": "Crea il tuo colore!",
+      "title_docente": "Crea il tuo colore!",
+      "volume_ref": {
+        "page_start": 35,
+        "page_end": 42,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 2,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🎨"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 8,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap7-esp5",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete scoperto come funziona la mescolanza dei colori con la luce. Ora siete VOI gli artisti! Create il vostro colore preferito!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi i ragazzi sperimentano in libertà. Partono dal circuito RGB e cambiano i valori dei resistori.",
+            "spunto_per_classe": null,
+            "note": [
+              "L'obiettivo è esplorare. Nessuna risposta giusta. Chiedi: 'Che colore volete creare? Come potreste farlo?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Parti dal circuito con R1=220Ω (rosso), R2=470Ω (verde), R3=470Ω (blu). Il rosso è più intenso.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione che con R1 più piccolo (220Ω), il canale rosso è più luminoso. Poi lascia che i ragazzi cambino nel simulatore."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap7-esp6]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Lascia sperimentare liberamente. Chiedi: 'Che colore stai cercando di creare?'",
+            "spunto_per_classe": "Domanda: 'Se il rosso è più forte degli altri, il colore finale sarà più caldo o più freddo? Provate!'",
+            "note": [
+              "Ogni gruppo può avere un obiettivo diverso. Suggerisci: provate a cambiare UN resistore alla volta per capire l'effetto."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Mette resistori sotto 100Ω",
+                "soluzione_neutra": "Attenzione! Mai sotto 100Ω — troppa corrente può danneggiare il LED. Il resistore è lì per proteggerlo!"
+              },
+              {
+                "problema": "Non capisce perché il colore cambia",
+                "soluzione_neutra": "Resistore piccolo = più corrente = colore più forte. Resistore grande = meno corrente = colore più debole."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Cambiando i resistori, cambia l'intensità di ogni colore e quindi la tonalità finale. Siete diventati artisti dell'elettronica!",
+            "analogies": [
+              {
+                "concept": "bilanciamento_colori",
+                "text": "Cambiare i resistori è come regolare i rubinetti di una fontana con 3 colori di vernice. Più apri un rubinetto (resistore più piccolo), più quel colore domina nel risultato.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "tavolozza_pittore",
+                "text": "Siete diventati pittori di luce! Un pittore mescola colori sulla tavolozza, voi mescolate correnti nei canali RGB. La differenza? Con la luce i colori si sommano (rosso+verde=giallo), con i pigmenti si sottraggono (rosso+verde=marrone)!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ogni gruppo mostra il colore creato. Confrontate le diverse tonalità!",
+            "spunto_per_classe": null,
+            "note": [
+              "un 'concorso di colori'. Chiedi: 'Chi ha fatto il giallo? L'arancione? Il rosa?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:rgb1]",
+            "[AZIONE:highlight:r1]",
+            "[AZIONE:highlight:r2]",
+            "[AZIONE:highlight:r3]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Con 3 LED e 3 resistori possiamo creare QUALSIASI colore! Cambiando le resistenze, cambiamo l'intensità di ogni canale. Artisti dell'elettronica!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Abbiamo capito come creare qualsiasi colore con 3 LED e 3 resistori. Questo è il principio di tutti gli schermi!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riepilogo capitolo 7: singolo colore → mescolanza 2 colori → mescolanza 3 colori → colore personalizzato. Un percorso progressivo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se crea un colore intenzionalmente → padroneggia la relazione resistore/colore",
+        "Se spiega ad altri come ha ottenuto il colore → transfer di conoscenza",
+        "Se prova combinazioni estreme → spirito sperimentale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "bilanciamento_RGB",
+          "colore_personalizzato"
+        ],
+        "next_suggested": "v1-cap8-esp1",
+        "resume_message": "L'ultima volta avete creato colori personalizzati con il LED RGB! Ora impariamo il pulsante!"
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cos'è il LED RGB?",
+    "transitions": [
+      {
+        "between": [
+          "v1-cap7-esp1",
+          "v1-cap7-esp2"
+        ],
+        "text_classe": "L'ultima volta abbiamo acceso il rosso del LED RGB. Ma dentro ci sono 3 colori... riuscite ad accendere il verde?",
+        "text_docente_action": "Chiedi: 'L'ultima volta abbiamo acceso il rosso. Secondo voi, come accendiamo il verde?'",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap7-esp2",
+          "v1-cap7-esp3"
+        ],
+        "text_classe": "Abbiamo acceso rosso e verde. Manca il blu — l'ultimo colore base! Ma il blu nasconde una sorpresa...",
+        "text_docente_action": "Chiedi: 'Avete notato differenze tra rosso e verde? Il blu sarà uguale?' (spoiler: il blu ha bisogno di più energia)",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap7-esp3",
+          "v1-cap7-esp4"
+        ],
+        "text_classe": "Sapete già accendere rosso, verde e blu separatamente. Ma cosa succede se accendiamo rosso E blu INSIEME?",
+        "text_docente_action": "Chiedi: 'Quanti resistori servono se vogliamo accendere 2 colori?' La risposta è 2 — uno per ogni canale.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap7-esp4",
+          "v1-cap7-esp5"
+        ],
+        "text_classe": "Rosso e blu insieme fanno viola. Ma cosa succede se accendiamo TUTTI E TRE i colori? Bianco? Nero? Arcobaleno?",
+        "text_docente_action": "Chiedi: 'Rosso+blu fa viola. Cosa farà rosso+verde+blu?' Raccogli le ipotesi PRIMA di costruire.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap7-esp5",
+          "v1-cap7-esp6"
+        ],
+        "text_classe": "Avete scoperto come funziona la mescolanza dei colori con la luce. Ora siete VOI gli artisti! Create il vostro colore preferito!",
+        "text_docente_action": "L'obiettivo è esplorare. Nessuna risposta giusta. Chiedi: 'Che colore volete creare? Come potreste farlo?'",
+        "incremental_mode": "modify_component"
+      }
+    ],
+    "closing_text": "L'ultima volta avete creato colori personalizzati con il LED RGB! Ora impariamo il pulsante!"
+  }
+}

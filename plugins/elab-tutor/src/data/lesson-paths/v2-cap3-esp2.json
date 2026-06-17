@@ -1,0 +1,206 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap3-esp2",
+  "volume": 2,
+  "chapter": 3,
+  "title": "Diario di misurazione della pila",
+  "chapter_title": "Il Multimetro",
+  "difficulty": 1,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Misurare la batteria ogni giorno e registrare i valori. Scoprire come una batteria si scarica nel tempo e imparare il metodo scientifico della misurazione ripetuta.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    },
+    {
+      "name": "Quaderno per appunti",
+      "quantity": 1,
+      "icon": "📓"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "multimetro",
+      "voltmetro",
+      "tensione",
+      "volt",
+      "batteria",
+      "carica",
+      "scarica",
+      "misurazione",
+      "diario",
+      "dato",
+      "grafico",
+      "tempo",
+      "giorno"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "condensatore",
+      "transistor"
+    ],
+    "note": "Vol 2 Cap 3 — misurazione ripetuta, diario scientifico, scarica batteria."
+  },
+  "prerequisites": [
+    "v2-cap3-esp1"
+  ],
+  "next_experiment": {
+    "id": "v2-cap3-esp3",
+    "title": "Misuriamo una resistenza",
+    "preview": "Prossimo passo: Misuriamo una resistenza. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi facciamo gli scienziati: misuriamo la batteria e scriviamo il valore nel nostro diario. Lo faremo per piu giorni per capire come si scarica una batteria.",
+      "teacher_tip": "Prepara una tabella alla lavagna: Data | Tensione (V) | Note. Questo e il primo esperimento di raccolta dati sistematica per i ragazzi.",
+      "components_list": "Ti servono: 1 batteria 9V, 1 multimetro, 1 quaderno per appunti.",
+      "class_hook": "Gli scienziati veri non fanno un esperimento e basta — ripetono le misure molte volte! Oggi iniziamo il nostro primo diario scientifico.",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Colleghiamo il multimetro alla batteria come la volta scorsa. Leggiamo il valore e lo scriviamo nella prima riga del nostro diario con la data di oggi.",
+      "teacher_tip": "Fate misurare la stessa batteria a diversi studenti: i valori saranno leggermente diversi. Spiegate che le piccole differenze sono normali (errore di misura).",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap3-esp2]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Collegate il multimetro alla batteria per la misurazione giornaliera",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Se misuriamo la batteria ogni giorno, il valore restera lo stesso o cambiera? Secondo voi, quanto ci vorra perche scenda sotto 7V?",
+      "teacher_tip": "Lasciate che i ragazzi facciano previsioni e le scrivano. Dopo una settimana confronteranno le previsioni con i dati reali. E il metodo scientifico!",
+      "provocative_question": "Una batteria 9V nel telecomando dura mesi. Ma se la collego a un LED acceso 24 ore, quanto dura? Perche c'e differenza?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Dimenticare di segnare la data e l'ora della misurazione",
+          "teacher_response": "Senza la data, il dato perde significato! Ogni scienziato registra QUANDO ha fatto la misurazione.",
+          "analogy": "E come scattare una foto senza sapere quando: non puoi ricostruire la storia!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Misurate la batteria e annotate il valore. Se avete dati dei giorni precedenti, confrontateli. Vedrete che la tensione cala lentamente giorno dopo giorno.",
+      "teacher_tip": "Se e la prima misurazione, mostrate un grafico di esempio di come cala la tensione. Se avete piu misure, disegnate il grafico insieme alla lavagna.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:mm1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il valore della batteria oggi e un po piu basso di ieri? La scarica e lenta se la batteria non e collegata a nulla, ma diventa veloce quando alimenta un circuito.",
+      "analogies": [
+        {
+          "concept": "scarica_batteria",
+          "text": "La batteria e come un secchio d'acqua con un piccolo buco: l'acqua esce lentamente. Se si fa un buco piu grande (circuito che consuma di piu), l'acqua finisce prima!",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Ottimo lavoro! Avete iniziato il vostro diario scientifico. Continuate a misurare ogni giorno: tra una settimana avrete dati sufficienti per disegnare un grafico della scarica!",
+      "teacher_tip": "Assegna come compito: misurare la batteria almeno 3 volte questa settimana. Chi ha una batteria quasi scarica portera risultati piu interessanti!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "La misurazione ripetuta e il cuore del metodo scientifico. Ogni giorno la batteria perde un po di carica: registrare i dati ci permette di scoprire la velocita di scarica.",
+      "concepts_learned": [
+        "misurazione ripetuta",
+        "diario scientifico",
+        "scarica batteria nel tempo"
+      ],
+      "next_preview": "La prossima volta useremo il multimetro in modo diverso: misureremo il valore di una resistenza con le bande colorate!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se tiene un diario ordinato con date e valori → comprensione del metodo scientifico",
+    "Se nota differenze tra misure successive → spirito di osservazione",
+    "Se fa previsioni sulla durata della batteria → pensiero analitico"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "misurazione_ripetuta",
+      "diario_scientifico",
+      "scarica_batteria"
+    ],
+    "next_suggested": "v2-cap3-esp3",
+    "resume_message": "Avete iniziato il diario di misurazione! Prossimo passo: misurare le resistenze."
+  },
+  "analogies": [
+    {
+      "concept": "scarica_batteria",
+      "text": "La batteria e come un secchio d'acqua con un piccolo buco: l'acqua esce lentamente. Se si fa un buco piu grande (circuito che consuma di piu), l'acqua finisce prima!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Dimenticare di segnare la data e l'ora della misurazione",
+      "teacher_response": "Senza la data, il dato perde significato! Ogni scienziato registra QUANDO ha fatto la misurazione.",
+      "analogy": "E come scattare una foto senza sapere quando: non puoi ricostruire la storia!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

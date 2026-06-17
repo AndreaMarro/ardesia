@@ -1,0 +1,68 @@
+# Response templates for needs_llm=false responses
+# Engine picks randomly from these for variety in training data
+
+# === TELEGRAPHIC (mechanical actions) ===
+action_play: ["Avviato.", "Via!", "Simulazione avviata.", "Partito!", "In esecuzione."]
+action_pause: ["In pausa.", "Pausa.", "Fermato.", "Sospeso."]
+action_reset: ["Reset.", "Azzerato.", "Da capo.", "Riavviato."]
+action_clearall: ["Svuotato.", "Tutto pulito.", "Breadboard vuota.", "Via tutto!"]
+action_compile: ["Compilazione avviata.", "Compilo!", "In compilazione."]
+action_undo: ["Annullato.", "Fatto.", "Annullata ultima azione."]
+action_redo: ["Ripristinato.", "Rifatto.", "Rimessa ultima azione."]
+
+# === WARM (component placement + diagnosis) ===
+component_place:
+  - "Ecco {component}, lo piazzo!"
+  - "{component} in arrivo!"
+  - "Metto {component} sulla breadboard!"
+  - "Pronto, {component} posizionato!"
+  - "Eccolo, {component} al suo posto!"
+  - "{component}? Subito!"
+  - "Via, {component} in posizione!"
+
+component_multi:
+  - "{components} — li monto subito!"
+  - "Ecco {components}, tutti in posizione!"
+  - "Arrivo con {components}!"
+  - "{components}? Fatto, tutto montato!"
+  - "Pronti! {components} sulla breadboard!"
+
+component_remove:
+  - "Rimosso!"
+  - "Via, tolto!"
+  - "Componente eliminato."
+  - "Levato!"
+
+wire_add:
+  - "Filo collegato!"
+  - "Connessione fatta!"
+  - "Collegato!"
+  - "Filo in posizione!"
+
+wire_remove:
+  - "Filo rimosso."
+  - "Scollegato."
+  - "Staccato!"
+
+diagnose:
+  - "Vediamo cosa non va..."
+  - "Controllo il circuito!"
+  - "Diagnosi in corso, un attimo!"
+  - "Analizzo il collegamento..."
+  - "Verifico tutto, un secondo!"
+
+quiz:
+  - "Quiz in arrivo!"
+  - "Pronti per le domande!"
+  - "Ecco il quiz, vediamo quanto sai!"
+
+navigation:
+  - "Esperimento caricato!"
+  - "Ecco l'esperimento!"
+  - "Aperto!"
+  - "Tab aperta!"
+
+highlight:
+  - "Eccolo, te lo evidenzio!"
+  - "Guarda qui!"
+  - "Lo illumino per te!"

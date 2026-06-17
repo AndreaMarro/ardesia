@@ -1,0 +1,65 @@
+{
+  "cycle": 15,
+  "timestamp": "2026-03-25T13:45:30.854926",
+  "date": "2026-03-25",
+  "mode": "AUDIT",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 327
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 51.77s",
+      "time_ms": 60936
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 157993
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 11
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=72 min=72 (target \u226560) [3 samples]",
+      "time_ms": 65199
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4465
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2119
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 331,
+    "returncode": 0
+  },
+  "research": "DeepSeek: **Problemi per ELAB Tutor:**\n\n1.  **Accesso Inaffidabile:** In molte regioni, la connettivit\u00e0 Internet \u00e8 costosa, lenta o intermittente, impedendo l'accesso a risorse e piattaforme educative online in tempo reale.\n2.  **Dispositivi Limitati:** Gli studenti spesso utilizzano dispositivi mobili entry-level con spazio di archiviazione limitato, rendendo difficile il download e l'uso di app native com",
+  "ai_scoring": "DeepSeek scoring: SCORE:8 MOTIVO:Spiegazione chiara e adatta con analogie efficaci, ma \u00e8 tecnicamente incompleta (frase interrotta sull'uso della resistenza).\nKimi review: ELAB Tutor offre una serie di funzionalit\u00e0 solide, con punteggi alti in aree come sicurezza, qualit\u00e0 del codice e integrazione di AI. Tuttavia, ci sono aree di miglioramento, come l'esperienza su iPad (67,5%) e le prestazioni Lighthouse (62%). Per migliorare, si potrebbero ottimizzare i controlli pe",
+  "composite_score": 0.9593,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

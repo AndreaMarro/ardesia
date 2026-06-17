@@ -1,0 +1,834 @@
+{
+  "id": "v2-cap8",
+  "volume": 2,
+  "capitolo": 8,
+  "type": "experiment",
+  "titolo": "Cosa sono i Transistor?",
+  "titolo_classe": "Cosa sono i Transistor?",
+  "pageStart": 75,
+  "pageEnd": 84,
+  "theory": {
+    "testo_classe": "Cosa sono i Transistor?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v2-cap8-esp1",
+      "num": 1,
+      "title_classe": "MOSFET come interruttore",
+      "title_docente": "MOSFET come interruttore",
+      "volume_ref": {
+        "page_start": 75,
+        "page_end": 84,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "MOSFET N-channel",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "🔴"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 8,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "mosfet-n",
+              "id": "mos1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a12",
+              "to": "bb1:a14",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a15",
+              "to": "bb1:g18",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:g19",
+              "to": "bb1:bus-top-minus-19",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-plus-17",
+              "to": "bb1:g17",
+              "color": "green"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete mai pensato che un interruttore potesse accendersi da solo, senza che nessuno lo tocchi? Il MOSFET lo fa! È controllato dalla tensione elettrica, non dalle dita.",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Benvenuti al Capitolo 8! Oggi incontriamo un componente nuovo e speciale: il MOSFET. È un interruttore, ma non lo si preme con le dita. Si controlla con la tensione!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione fisicamente un MOSFET (se disponibile): 'Ha 3 gambe: Gate, Drain e Source. Il Gate è il controllo. Drain e Source sono i due terminali che si collegano o si scollegano.' Fai vedere la differenza con un pulsante meccanico."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Montiamo il circuito: resistore e LED in serie collegati al Drain del MOSFET. Il Source va a massa. Un filo verde collega il Gate alla riga positiva: Gate a 9V = LED acceso!",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione i tre pin mentre li inserisci: 'Gate = controllo (come il grilletto di una pistola ad acqua). Drain = ingresso corrente. Source = uscita corrente.' Il filo verde al Gate è la chiave!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap8-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Con il filo verde collegato il LED è acceso. Cosa succede se stacchiamo il filo dal Gate? E se lo colleghiamo alla riga negativa invece che a quella positiva?",
+            "spunto_per_classe": "Domanda: 'Il MOSFET è come un cancello: la tensione al Gate lo apre o lo chiude. Se il Gate è scollegato (flottante), cosa pensi che succeda al LED? Acceso, spento o... imprevedibile?'",
+            "note": [
+              "la previsione PRIMA di agire: 'Gate a 9V = ON. Gate scollegato = ??? Gate a 0V = ???' Poi verificatelo in simulazione. La sorpresa arriva con il Gate flottante!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Invertire i pin Drain e Source del MOSFET",
+                "soluzione_neutra": "Nel MOSFET N-channel: il Drain è sempre collegato al lato ad alta tensione (verso il LED), il Source è collegato a massa. Se li invertite il circuito non funziona!"
+              },
+              {
+                "problema": "Pensare che il MOSFET si controlli con la corrente come un pulsante",
+                "soluzione_neutra": "Il MOSFET si controlla con la TENSIONE al Gate, non con la corrente! Il Gate ha un'impedenza altissima: quasi nessuna corrente entra nel Gate. Basta la tensione!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Gate a 9V → LED acceso. Gate scollegato → LED spento. Il MOSFET è un interruttore elettronico: la tensione al Gate controlla il flusso di corrente tra Drain e Source.",
+            "analogies": [
+              {
+                "concept": "cancello_elettronico",
+                "text": "Il MOSFET è come un cancello elettronico: il Gate è il telecomando. Con il segnale giusto (tensione alta) il cancello si apre e la corrente può passare dal Drain al Source. Senza segnale, il cancello è chiuso!",
+                "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp1"
+              },
+              {
+                "concept": "interruttore_senza_dita",
+                "text": "Un pulsante normale hai bisogno di premere con il dito. Il MOSFET invece risponde alla tensione: può essere controllato da un altro circuito, automaticamente, anche milioni di volte al secondo!",
+                "evidence": "experiments-vol2.js concept v2-cap8-esp1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: il LED si accende perché il Gate è a 9V. Ora stacca il filo verde dal Gate: il LED si spegne immediatamente! Il MOSFET è davvero un interruttore controllato dalla tensione.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il Gate e il filo verde. 'Questo è il segreto del MOSFET: basta cambiare la tensione al Gate per aprire o chiudere il percorso Drain-Source!' Fallo provare agli studenti: Gate ON, Gate OFF."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mos1]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:r1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il MOSFET è un interruttore elettronico a 3 pin: Gate, Drain, Source. La tensione al Gate controlla se la corrente passa da Drain a Source. Gate alto = LED acceso. Gate basso o scollegato = LED spento!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il MOSFET ha 3 pin: Gate (controllo), Drain (ingresso), Source (uscita). La tensione al Gate apre o chiude il canale Drain-Source. È un interruttore controllato elettronicamente!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riepiloga: 'Gate a tensione alta (>Vth) = MOSFET ON. Gate a tensione bassa (0V o scollegato) = MOSFET OFF. Nel prossimo esperimento vedremo qualcosa di strano: il Gate flottante reagisce al tocco del dito!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se nomina correttamente Gate, Drain, Source → comprensione della struttura",
+        "Se spiega che il Gate si controlla con la tensione → comprensione del principio",
+        "Se prevede correttamente lo stato del LED con Gate ON/OFF → applicazione logica"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "MOSFET_interruttore",
+          "Gate_Drain_Source",
+          "tensione_controlla_corrente"
+        ],
+        "next_suggested": "v2-cap8-esp2",
+        "resume_message": "Avete imparato il MOSFET come interruttore! Gate alto = ON, Gate basso = OFF. Prossimo: il Gate flottante e la carica del corpo!"
+      }
+    },
+    {
+      "id": "v2-cap8-esp2",
+      "num": 2,
+      "title_classe": "MOSFET e carica del corpo",
+      "title_docente": "MOSFET e carica del corpo",
+      "volume_ref": {
+        "page_start": 75,
+        "page_end": 84,
+        "fig_refs": []
+      },
+      "duration_minutes": 30,
+      "components_needed": [
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "MOSFET N-channel",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "🔴"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap8-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "mosfet-n",
+                      "id": "mos1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a13",
+                      "to": "bb1:g19",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:g20",
+                      "to": "bb1:bus-top-minus-20",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Sapete che il vostro corpo è carico di elettricità statica? Ogni volta che camminate sul tappeto raccogliete carica. Oggi la useremo per accendere un LED!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Nell'esperimento precedente il Gate era collegato a 9V per accendere il LED. Ora costruiamo lo stesso circuito ma SENZA collegare nulla al Gate. Il Gate resta scollegato, 'flottante'. Cosa succederà?",
+            "spunto_per_classe": null,
+            "note": [
+              "la domanda: 'Se il Gate non è collegato a niente, il MOSFET sarà ON o OFF?' La maggior parte risponderà OFF. Poi rivelate la sorpresa: 'Il Gate è così sensibile che basta il vostro dito!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Montiamo lo stesso circuito dell'Esp.1 ma senza il filo verde al Gate. Il Gate del MOSFET rimane scollegato nel foro F18. Notate la differenza: un filo in meno!",
+            "spunto_per_classe": null,
+            "note": [
+              "Sottolinea che il Gate è flottante: 'Non c'è nessun filo al Gate. Il foro F18 è vuoto. Eppure il MOSFET è lì, pronto ad attivarsi con la minima carica.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap8-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il Gate è flottante. Prima di toccare il pin, prevedete: il LED è acceso o spento? E dopo aver toccato il Gate con il dito? Rimarrà acceso o si spegnerà?",
+            "spunto_per_classe": "Domanda: 'Il Gate del MOSFET è come una porta leggerissima: basta un soffio per aprirla. Se strofini i piedi sul tappeto e poi tocchi il Gate, cosa pensi che succeda al LED? E se poi togli il dito?'",
+            "note": [
+              "Questa è la domanda più sorprendente: 'Dopo aver toccato il Gate, il LED resta acceso anche se togli il dito?' La risposta è SÌ per un po', perché la carica rimane intrappolata nel Gate! Poi si scarica lentamente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Pensare di aver rotto il circuito quando il LED si comporta in modo strano con Gate flottante",
+                "soluzione_neutra": "È esattamente quello che deve succedere! Il Gate flottante può attivarsi in modo imprevedibile. Per avere un comportamento stabile, il Gate deve sempre essere collegato a un punto preciso del circuito."
+              },
+              {
+                "problema": "Confondere l'impedenza del Gate con la corrente",
+                "soluzione_neutra": "Impedenza alta significa che quasi nessuna corrente entra nel Gate. Ma la tensione si accumula comunque, come una bottiglia che si riempie goccia a goccia: poche cariche bastano per alzare la tensione!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Toccare il Gate con il dito trasferisce carica elettrostatica sufficiente per attivare il MOSFET! Il Gate ha impedenza altissima: bastano pochissime cariche per alzare la tensione sopra Vth (~2V).",
+            "analogies": [
+              {
+                "concept": "porta_leggerissima",
+                "text": "Il Gate del MOSFET è come una porta leggerissima su cardini perfetti: basta un soffio leggero per aprirla. La carica statica del tuo corpo è quel soffio: pochissima energia, ma sufficiente per attivare il MOSFET!",
+                "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp2"
+              },
+              {
+                "concept": "bottiglia_carica",
+                "text": "L'impedenza altissima del Gate è come una bottiglia con il collo strettissimo: quasi nessuna corrente entra, ma le cariche che entrano si accumulano e alzano la tensione. Poche cariche = tensione alta = MOSFET acceso!",
+                "evidence": "experiments-vol2.js concept v2-cap8-esp2"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Nel simulatore: clicca sul pin Gate del MOSFET per simulare il tocco del dito. Il LED si accende! Questo è il potere dell'impedenza altissima del Gate.",
+            "spunto_per_classe": null,
+            "note": [
+              "notare la magia: 'La carica statica del corpo è sufficiente per superare Vth! Il Gate ha un'impedenza così alta che anche pochissime cariche elettrostatiche alzano la tensione sopra la soglia.' Nella realtà, strofina i piedi sul tappeto prima di toccare."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mos1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il Gate flottante del MOSFET è attivato dalla carica elettrostatica del corpo! L'impedenza altissima del Gate significa che pochissime cariche bastano per alzare la tensione sopra Vth. Sempre collegare il Gate a un punto preciso del circuito per avere controllo!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il Gate del MOSFET ha un'impedenza altissima: basta la carica elettrostatica del corpo per attivarlo! Questo è meraviglioso ma anche pericoloso: i MOSFET si possono danneggiare con l'elettricità statica se non protetti.",
+            "spunto_per_classe": null,
+            "note": [
+              "Collegamento il concetto al prossimo esperimento: 'Nel prossimo esperimento useremo un potenziometro per controllare con precisione la tensione al Gate. Troveremo esattamente Vth, la soglia di attivazione!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega cos'è l'impedenza altissima → comprensione approfondita",
+        "Se capisce perché il Gate va sempre collegato → applicazione pratica",
+        "Se collega l'elettricità statica quotidiana al fenomeno → trasferimento del sapere"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "Gate_flottante",
+          "impedenza_altissima",
+          "carica_elettrostatica",
+          "MOSFET_sensibile"
+        ],
+        "next_suggested": "v2-cap8-esp3",
+        "resume_message": "Avete scoperto il Gate flottante e la carica del corpo! Prossimo: potenziometro per trovare Vth con precisione."
+      }
+    },
+    {
+      "id": "v2-cap8-esp3",
+      "num": 3,
+      "title_classe": "MOSFET + pot + tensione soglia",
+      "title_docente": "MOSFET + pot + tensione soglia",
+      "volume_ref": {
+        "page_start": 75,
+        "page_end": 84,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "MOSFET N-channel",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "🔴"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 12,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap8-esp2",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "mosfet-n",
+                      "id": "mos1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+                    },
+                    {
+                      "type": "multimeter",
+                      "id": "mm1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a13",
+                      "to": "bb1:g18",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:g19",
+                      "to": "bb1:bus-top-minus-19",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-24",
+                      "to": "bb1:g24",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:g25",
+                      "to": "bb1:g17",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:g26",
+                      "to": "bb1:bus-top-minus-26",
+                      "color": "black"
+                    },
+                    {
+                      "from": "mm1:probe-positive",
+                      "to": "bb1:h17",
+                      "color": "red"
+                    },
+                    {
+                      "from": "mm1:probe-negative",
+                      "to": "bb1:bus-top-minus-27",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 6,
+          "classe_display": {
+            "text_hook": "Il potenziometro che conoscete (dal Capitolo 2!) diventa qui un potente strumento di controllo: giriamo la manopola e osserviamo dove il MOSFET 'scatta'. È come trovare il punto critico!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi useremo il potenziometro come 'manopola del volume' per la tensione al Gate. Faremo salire la tensione da 0V a 9V lentamente e osserveremo esattamente a quale tensione il LED si accende!",
+            "spunto_per_classe": null,
+            "note": [
+              "Introduce il concetto di Vth: 'Ogni MOSFET ha una tensione di soglia Vth. Sotto Vth è spento, sopra Vth si accende. Oggi la misuriamo con i nostri occhi usando il multimetro!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito ha il MOSFET con LED e resistore, più il potenziometro che controlla la tensione al Gate. Il multimetro misura la tensione al Gate in tempo reale.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione la connessione del potenziometro: 'VCC del pot va alla riga +, GND alla riga -, e il pin Signal (uscita centrale) va direttamente al Gate. Girando la manopola, il Signal varia da 0V a 9V.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap8-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Parta da zero (potenziometro tutto a sinistra). Il LED è spento. Girate lentamente la manopola. A che tensione (V) pensi che il LED si accenda? Fate una scommessa!",
+            "spunto_per_classe": "Domanda: 'La batteria fornisce 9V. Il MOSFET si accende a tutta la tensione della batteria, oppure si attiva a una tensione più bassa? Fate una previsione: a quanti volt si accende il LED?'",
+            "note": [
+              "scrivere le previsioni sulla lavagna: 1V? 2V? 5V? 9V? Poi fate l'esperimento. La risposta (circa 2V) sorprende sempre! 'È molto meno di 9V: il MOSFET è molto sensibile.'"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Girare il potenziometro troppo velocemente e perdere il punto di soglia",
+                "soluzione_neutra": "Girate LENTAMENTE, quasi a rallentatore! Il punto critico è intorno a 2V e dura pochi gradi di rotazione. Se andate troppo veloci, non vedrete la transizione graduale."
+              },
+              {
+                "problema": "Collegare il Signal del potenziometro al VCC invece che al Gate",
+                "soluzione_neutra": "Il potenziometro ha 3 pin: VCC (alimentazione), GND (massa) e Signal (uscita variabile). Solo il Signal va al Gate! Il Signal è il pin centrale che varia da 0V a 9V."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Girando il potenziometro: 0-2V Gate → LED spento. Intorno a 2V (Vth) → LED inizia ad accendersi debolmente. Oltre 4V → MOSFET completamente aperto, LED alla massima luminosità.",
+            "analogies": [
+              {
+                "concept": "manopola_volume",
+                "text": "Il potenziometro è la manopola del volume della tensione al Gate: da 0 (minimo, silenzio) a 9V (massimo, tutto aperto). La soglia Vth è come il volume minimo per sentire la musica: sotto non si sente nulla!",
+                "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp3"
+              },
+              {
+                "concept": "zona_transizione",
+                "text": "Il MOSFET ha tre zone: spento (0V-Vth), transizione (intorno a Vth) e completamente aperto (>4V). È come un interruttore della luce che ha anche una zona di penombra: non è solo ON/OFF!",
+                "evidence": "experiments-vol2.js observe v2-cap8-esp3"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play. Gira il potenziometro lentamente da 0 verso destra. Guarda il multimetro: la tensione al Gate sale. A circa 2V il LED inizia ad accendersi debolmente. A 4V+ è completamente acceso!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro, il Gate e il multimetro. 'Il LED non si accende di colpo: prima è debole, poi aumenta. Questo è il MOSFET nella zona di transizione, tra completamente spento e completamente acceso!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:mos1]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:mm1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La tensione di soglia Vth ≈ 2V: sotto questo valore il MOSFET è spento, sopra si apre. Il potenziometro ha permesso di variare la tensione al Gate con precisione. Il multimetro ha mostrato esattamente il punto critico!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Avete trovato sperimentalmente Vth ≈ 2V! Sotto Vth il MOSFET è spento, sopra si accende gradualmente, a 4V+ è completamente aperto. Il potenziometro ci ha permesso di controllare la transizione con precisione.",
+            "spunto_per_classe": null,
+            "note": [
+              "Questo conclude il Capitolo 8. Riepiloga i 3 esperimenti: 'Esp.1: Gate a 9V = ON/OFF. Esp.2: Gate flottante e carica del dito. Esp.3: trovare Vth con il potenziometro.' Il Capitolo 9 introduce un sensore controllato dalla luce!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se identifica Vth intorno a 2V → comprensione della soglia",
+        "Se descrive le tre zone (spento, transizione, saturo) → comprensione approfondita",
+        "Se usa correttamente il multimetro per leggere la tensione al Gate → abilità strumentale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "Vth_tensione_soglia",
+          "transizione_graduale",
+          "potenziometro_Gate",
+          "multimetro_Gate"
+        ],
+        "next_suggested": "v2-cap9-esp1",
+        "resume_message": "Avete completato il Capitolo 8! Conoscete Vth e la transizione del MOSFET. Il Capitolo 9 vi aspetta con un sensore di luce!"
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cosa sono i Transistor?",
+    "transitions": [
+      {
+        "between": [
+          "v2-cap8-esp1",
+          "v2-cap8-esp2"
+        ],
+        "text_classe": "Sapete che il vostro corpo è carico di elettricità statica? Ogni volta che camminate sul tappeto raccogliete carica. Oggi la useremo per accendere un LED!",
+        "text_docente_action": "Fai la domanda: 'Se il Gate non è collegato a niente, il MOSFET sarà ON o OFF?' La maggior parte risponderà OFF. Poi rivelate la sorpresa: 'Il Gate è così sensibile che basta il vostro dito!'",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v2-cap8-esp2",
+          "v2-cap8-esp3"
+        ],
+        "text_classe": "Il potenziometro che conoscete (dal Capitolo 2!) diventa qui un potente strumento di controllo: giriamo la manopola e osserviamo dove il MOSFET 'scatta'. È come trovare il punto critico!",
+        "text_docente_action": "Introduce il concetto di Vth: 'Ogni MOSFET ha una tensione di soglia Vth. Sotto Vth è spento, sopra Vth si accende. Oggi la misuriamo con i nostri occhi usando il multimetro!'",
+        "incremental_mode": "add_component"
+      }
+    ],
+    "closing_text": "Avete completato il Capitolo 8! Conoscete Vth e la transizione del MOSFET. Il Capitolo 9 vi aspetta con un sensore di luce!"
+  }
+}

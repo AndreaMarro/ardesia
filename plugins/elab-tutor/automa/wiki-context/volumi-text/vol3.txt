@@ -1,0 +1,2778 @@
+LABORATORIO DI ELETTRONICA
+IMPARA E SPERIMENTA
+
+VOLUME
+
+ELAB
+
+Indice
+Capitolo 1- Un viaggio nella storia della programmazione ...................................... 05
+Capitolo 2 - Cos’è la Programmazione?....................................................................09
+Capitolo 3 - Ardware e Software: cosa cambia? ......................................................13
+Capitolo 4 - Il collegamento tra te e Arduino (IDE).................................................... 37
+Capitolo 5 - Come è fatto un programma Arduino?................................................ 47
+Capitolo 6 - I pin digitali : le dita di Arduino............................................................. 53
+Capitolo 7 - I pin imput e output............................................................................ 63
+Capitolo 8 - I PIN ANALOGICI: ARDUINO I PARA A SENTIRE LE UANTIT ................... 75
+Capitolo 9 - ......................................................................................................... 85
+Capitolo 10 - ........................................................................................................ 93
+Capitolo 11 - ....................................................................................................... 103
+Capitolo 12 - ........................................................................................................ 109
+Non è finita qui! ................................................................................................... 114
+
+COMPONENTI DEL KIT
+1x Breadboard 830 punti
+1x Multimetro + puntalini a coccodrillo
+Cavi di differenti lunghezze
+1x Clip Batteria intestata con header
+Resistori 4 Bande:
+10x 100 Ohm
+10x 220 Ohm
+10x 330 Ohm
+10x 470 Ohm
+10x 1 kOhm
+LEDs:
+5x Blu
+5x Rosso
+5x Verde
+5x Giallo
+5x Bianco
+5x RGB catodo comune
+5x Pulsanti
+4x Transistor
+4x Diodi
+4x Fotosensori
+4x Condensatori da 1000uF
+2x Motori a corrente continua
+2x Ruote
+4
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 1
+Un viaggio nella storia della programmazione
+entornati, giovani esploratori ggi vi porter a scoprire uno dei poteri più
+incredibili dell’essere umano: il linguaggio con cui d ordini alle macchine.
+Programmare significa spiegare a una macchina cosa deve fare, passo
+dopo passo. Ma prima di ini iare a scrivere codice, facciamo un salto
+indietro nel tempo per capire come tutto è cominciato.
+
+Prima dei computer: le idee geniali.
+iamo a met dell’ ttocento. Non esistono
+computer, non esiste l’elettricit domestica e molte
+inven ioni moderne devono ancora nascere. Eppure
+una giovane matematica inglese, Ada ovelace,
+immagina che una macchina possa seguire istru ioni
+per eseguire calcoli complessi. la prima persona a
+descrivere uello che oggi chiamiamo algoritmo: una
+se uen a di passi chiara e ordinata che permette a
+una macchina di fare ualcosa.
+come se avesse visto il
+futuro un secolo prima
+
+ualche anno prima, nel 1 4, oseph ac uard
+aveva gi costruito un telaio che fun ionava
+tramite schede forate. gni scheda diceva alla
+macchina come muovere i fili per creare un certo
+disegno. Anche se era solo un meccanismo,
+possiamo considerarlo uno dei primi esempi di
+programma .
+
+Laboratorio di elettronica: Impara e sperimenta
+
+5
+
+CAPITOLO 1
+
+I primi computer: giganti lenti e
+rumorosi
+Molto tempo dopo, durante la seconda
+guerra mondiale, nascono i primi
+computer elettronici.
+Erano enormi, lenti, rumorosi e pieni di
+valvole che si scaldavano subito. Uno
+dei più famosi è ENIAC, costruito nel
+1946: era grande come un’aula
+scolastica. Per programmarlo non si
+usava una tastiera, ma bisognava
+collegare cavi, spostare interruttori e
+modificare interi pannelli.
+
+Il linguaggio macchina
+Con l’arrivo dei primi sistemi più
+avan ati, i programmatori ini iano a
+scrivere se uen e di numeri e 1 che
+rappresentano istru ioni per il
+computer.
+il livello più puro e difficile della
+programma ione.
+
+Da e alle parole vere
+Negli anni ’ e ’6 succede ualcosa
+di rivolu ionario: nascono i primi
+linguaggi di programma ione leggibili
+dalle persone.
+
+6
+
+Altro che tastiera
+programmare allora
+voleva dire diventare
+elettricisti
+
+AN viene usato per la
+matematica, C
+per il mondo
+delle a iende e A IC per chi vuole
+imparare a programmare. Per la
+prima volta è possibile scrivere
+comandi simili all’inglese, molto
+più facili da ricordare e da leggere.
+
+Il boom del personal computer
+Ogni scoperta ha portato a nuove
+invenzioni, che hanno cambiato
+il mondo e il nostro modo di vivere.
+E chissà quali altre incredibili
+scoperte ci riserverà il futuro!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+ALTRI CENNI DI STORIA DELL’ELETTRONICA
+
+Programmare oggi: da Arduino all’intelligenza artificiale
+ggi programmare è alla portata di tutti. Anche una piccola scheda come
+Arduino permette di creare luci intelligenti, piccoli robot, sistemi di allarme
+e giochi interattivi. Nei prossimi capitoli imparerai a usarla passo dopo
+passo.
+
+Programmare non significa solo
+parlare a un computer: significa
+creare ualcosa che prima non
+esisteva.
+
+NOTE
+• Una istru ione è un comando dato a una macchina.
+• Un programma è un insieme ordinato di istru ioni.
+• I linguaggi di programma ione servono per facilitare la
+comunica ione tra noi e il computer, sen a usare
+
+e 1.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+7
+
+NOTE
+
+8
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 2
+
+Cos’è la programmazione?
+a programma ione è il modo in cui
+comunichiamo con i dispositivi
+elettronici programmabili per dir loro
+cosa devono fare. un po’ come
+scrivere una ricetta che deve essere
+seguita passo dopo passo.
+Immagina di voler preparare una
+torta: hai una lista di ingredienti e una
+serie di passaggi da seguire
+nell’ordine corretto.
+e rispetti ogni passaggio, la torta
+verr fuori
+a programma ione fun iona
+esattamente allo stesso modo: se
+riusciamo a dire, in modo chiaro e
+preciso, cosa deve fare l’oggetto che
+vogliamo programmare, possiamo
+creare cose meravigliose. Anche i
+videogiochi, le app sullo smartphone
+e i soft are che usi ogni giorno
+
+I linguaggi di
+programmazione
+I dispositivi elettronici programmabili,
+proprio come gli esseri umani,
+comunicano attraverso linguaggi
+diversi. Nel loro caso si chiamano
+linguaggi di programma ione.
+E come ualun ue lingua, hanno delle
+regole grammaticali ben precise: se
+non le rispettiamo, la macchina non
+capisce e il programma non
+fun iona.
+Prova a leggere uesta frase:
+
+Io pu volere andare ma se io volere
+andare come fare per volere andare
+ad andare
+
+sono programmati
+
+Laboratorio di elettronica: Impara e sperimenta
+
+9
+
+CAPITOLO 2
+
+Confusa vero?
+o stesso succede uando si scrive
+male un programma.
+Nel mondo della programma ione, ad
+esaminare se ci che abbiamo
+scritto è corretto, c’è una sorta di
+professore molto severo:
+il compilatore.
+Il suo compito è controllare se il
+codice rispetta le regole del
+linguaggio. e è corretto ti d la
+sufficien a e fa partire il programma
+se invece ci sono errori, non ti lascia
+proseguire e non compila.
+Nei linguaggi di programma ione non
+usiamo frasi, ma istru ioni, chiamate
+anche linee di codice.
+gni linea di codice corrisponde a
+un’a ione.
+Per esempio, se dovessimo
+programmare un robot per farlo
+muovere, potremmo scrivere:
+
+Per esempio, se dovessimo
+programmare un robot per farlo
+muovere, potremmo scrivere:
+•
+•
+•
+
+ai avanti di passi
+irati a destra
+aluta
+
+E il robot eseguir ueste a ioni
+esattamente nel loro ordine.
+
+Un esempio pratico
+Prova a fare un piccolo esperimento
+con un tuo amico. Immagina di
+doverlo guidare all’uscita della scuola.
+crivi tutte le istru ioni, una per una:
+1. Al ati dalla sedia
+. ai un passo in avanti.
+. irati di 9 gradi a destra.
+e il tuo compagno riesce davvero ad
+arrivare all’uscita seguendo solo le tue
+istru ioni, significa che hai scritto un
+buon programma
+e invece rimane bloccato contro un
+muro o non sa cosa fare allora c’è
+un problema, uello che in gergo si
+chiama bug.
+
+10
+
+Laboratorio di elettronica: Impara e sperimenta
+
+Cos’è la programmazione?
+
+Perch si chiama bug?
+
+Perch si chiama bug?
+
+Il termine bug ha una storia
+curiosa che risale al 194 .
+i racconta che un gruppo di tecnici
+che lavorava al computer Mar II
+dell’Universit di arvard trov un
+vero insetto una falena
+incastrato in un componente, che
+causava un malfun ionamento
+
+Anche se il termine era gi usato in
+ingegneria per indicare difetti o guasti,
+uesto episodio è entrato nella storia
+dell’informatica e ha contribuito a
+renderlo famoso in tutto il mondo.
+
+race opper, una pioniera
+dell’informatica che faceva parte del
+team, document l’episodio
+incollando la falena sul registro di
+bordo e scrivendo:
+irst actual case of bug being
+found. a uel momento, la parola
+bug è diventata il termine più usato
+per indicare errori o problemi nei
+programmi.
+
+ALGORIT I: LE RICETTE DELLA
+TECNOLOGIA
+Un algoritmo è semplicemente una
+lista di istru ioni, scritte in un ordine
+preciso, che serve per raggiungere un
+risultato.Non è ualcosa di misterioso
+o complicato: è un procedimento, un
+metodo, un come si fa .
+Per capirlo meglio, pensa a una ricetta
+di cucina:
+1.
+.
+.
+4.
+
+Metti la farina
+Aggiungi l’ac ua
+Mescola
+Inforna
+
+e segui tutti i passaggi
+correttamente, il dolce verr
+Ma se sbagli l’ordine addio torta
+Prima la metti nel forno e poi la
+mescoli Impossibile.
+a stessa cosa succede uando
+programmi un computer:
+
+Laboratorio di elettronica: Impara e sperimenta
+
+11
+
+Cos’è la programmazione?
+
+L’ordine delle istruzioni è fondamentale.
+Un algoritmo deve essere chiaro,
+ordinato e sen a confusione, perch la
+macchina eseguir esattamente ci
+che hai scritto, n più n meno.
+PE C
+P
+AMMA E C
+IMP
+AN E
+Programmare significa prendere
+un’idea e trasformarla in ualcosa di
+reale.
+un superpotere moderno: ti permette
+di far fare alle macchine tutto ci che
+vuoi, purch tu glielo sappia spiegare.
+
+• Creare videogiochi, dai più
+semplici ai più complessi
+• Costruire sistemi intelligenti,
+come allarmi, automa ioni o
+piccoli assistenti
+E non solo
+ra ie alla programma ione puoi:
+•
+•
+
+progettare strumenti utili
+dare vita ai tuoi progetti
+tecnologici
+• imparare come ragionano le
+macchine
+• sviluppare un metodo logico e
+creativo
+
+Con il codice puoi:
+• Accendere un E con un
+semplice comando
+Programmare non è solo scrivere
+• Controllare un robot, facendolo
+codice :
+camminare, girare, evitare
+ostacoli
+è trasformare la tua immagina ione in
+• eggere un sensore, per sapere la
+ualcosa che fun iona davvero.
+temperatura, la luce, il movimento
+
+12
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 3
+ARD ARE E SO T ARE: COSA CA IA?
+Adesso che hai capito cos’è la
+programma ione, possiamo fare un
+passo avanti verso il nostro
+obiettivo:
+imparare a usare Arduino nel
+modogiusto
+Per farlo, dobbiamo distinguere due
+mondi che lavorano sempre
+insieme.
+ono come due met della stessa
+mela:
+
+ard are
+
+il corpo
+
+oft are
+
+la mente
+
+ARD ARE: IL CORPO DEL SISTE A
+’hard are è tutto ci che puoi
+toccare fisicamente.
+fatto di plastica, metallo, cavi,
+componenti elettronici.
+la parte che reagisce al mondo
+esterno, che si muove, si accende,
+misura, emette suoni.
+Esempi di hard are:
+•
+
+a scheda Arduino Nano 4
+
+• un E
+• un pulsante
+• una batteria
+• un sensore di temperatura
+• i fili umper
+
+en a uno dei due nulla pu
+fun ionare davvero
+misura, emette suoni. Esempi di
+hard are:
+
+Laboratorio di elettronica: Impara e sperimenta
+
+13
+
+CAPITOLO 3
+
+a attenzione:
+l’hard are da solo non fa
+assolutamente nulla.
+
+SO T ARE: LA ENTE C E CO ANDA
+
+E allo stesso tempo
+sen a hard are, il soft are non pu
+fare nulla.
+Non puoi far accendere un E
+E non esiste
+
+se il
+
+PERC LA ORANO INSIE E?
+
+Il soft are è la parte invisibile ma
+intelligente. ci che decide cosa deve
+fare l’hard are.
+
+Immagina una lampada intelligente.
+
+Esempi di soft are che usi ogni giorno:
+
+erve:
+
+• l’app della calcolatrice
+•
+
+ou ube
+
+• un videogioco
+• un messaggio sul telefono
+• e presto il codice che scriverai
+nell’Arduino I E.
+Il soft are è formato da istru ioni,
+scritte in un linguaggio che la macchina
+pu comprendere.
+en a soft are:
+• Arduino non sa uali pin accendere
+
+• hard are → la lampada, il E , i
+cavi
+• soft are → il programma che dice
+uando deve accendersi o
+spegnersi
+e uno dei due manca, la lampada
+non fun iona.
+a stessa cosa succede in Arduino:
+tu scrivi il programma soft are e la
+scheda esegue ci che hai scritto
+hard are
+
+• un sensore non sa uando inviare
+dati
+• un robot non sa muoversi
+
+14
+
+Laboratorio di elettronica: Impara e sperimenta
+
+ARD ARE E SO T ARE: COSA CA IA?
+
+IL ICROCONTROLLORE: IL CER ELLO DI
+ARDUINO
+entro la tua Arduino Nano 4 c’è un
+piccolo componente nero molto
+importante:
+il microcontrollore, cioè il cervello
+della scheda.
+molto più semplice di un computer,
+ma anche più veloce in alcune cose:
+esegue miliardi di opera ioni al
+secondo ed è progettato per
+controllare dispositivi elettronici.
+Un microcontrollore pu :
+•
+•
+•
+•
+•
+
+leggere ci che arriva dai sensori
+accendere e spegnere E
+pilotare motori
+prendere decisioni con if
+ripetere comandi molto
+velocemente
+• comunicare con il computer
+tramite U
+• memori are il tuo programma al
+suo interno
+uando carichi uno s etch, è proprio il
+microcontrollore che lo esegue,
+istru ione dopo istru ione.
+
+FUNZIONI DISPONIBILI
+Guarda il tuo multimetro: ha un
+selettore rotativo al centro e tanti
+numeri e simboli tutti intorno. Questa
+manopola ti permette di selezionare
+cosa vuoi che il multimetro misuri.
+Puoi girarla in qualsiasi direzione.
+Se la metti esattamente al centro,
+di solito punterà verso la scritta OFF.
+In questa posizione, il multimetro
+è spento.
+È super importante ricordarsi di
+rimettere sempre la manopola su OFF
+quando hai finito di usarlo, così la
+batteria del multimetro non si scarica
+inutilmente!
+
+gra ie a lui se Arduino vive .
+
+Laboratorio di elettronica: Impara e sperimenta
+
+15
+
+CAPITOLO 3
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 4
+
+IL COLLEGA ENTO TRA TE E ARDUINO
+uando scriveremo i primi
+programmi, succeder uesto:
+• u scrivi il codice nell’Arduino
+I E soft are .
+• Premi Carica.
+• Il compilatore controlla che il
+codice sia corretto.
+• Il programma viene inviato ad
+Arduino.
+• Il microcontrollore lo
+memori a.
+• ’hard are risponde ai tuoi
+comandi.
+• In poche parole:
+u dai le istru ioni, Arduino
+obbedisce.
+
+Che cos’è Arduino?
+Al contrario di uello che si pensa,
+Arduino non è solo una scheda
+elettronica.
+molto di più: è una piattaforma
+completa che permette a
+chiun ue , anche ai principianti, di
+creare progetti elettronici e
+interattivi.
+Arduino è formato principalmente
+da tre elementi fondamentali, che
+lavorano insieme come un’unica
+s uadra:
+
+Laboratorio di elettronica: Impara e sperimenta
+
+7
+
+CAPITOLO 4
+
+La scheda elettronica da programmare
+
+L’ambiente di sviluppo (Arduino IDE)
+
+la parte fisica, uella che puoi
+toccare.
+a più famosa è Arduino UN , ma ne
+esistono moltissime varianti, ognuna
+con caratteristiche diverse.
+
+Per far fun ionare Arduino serve un
+posto in cui scrivere il codice,
+modificarlo e inviarlo alla scheda.
+uesto posto è chiamato I E, cioè
+Integrated evelopment
+Environment.
+Arduino mette a disposi ione due
+I E diversi:
+
+Nel nostro percorso useremo una
+Arduino Nano 4, una scheda
+compatta e moderna, perfetta per
+ini iare a programmare e per
+costruire prototipi.
+
+I E
+
+es top
+
+un programma da installare sul tuo
+computer.
+stabile, veloce e molto usato da chi
+lavora a progetti complessi.
+
+a scheda contiene:
+• un microcontrollore il
+cervello ,
+• i pin di input e output,
+• il collegamento U ,
+• alcuni componenti integrati,
+come il E sulla scheda.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL COLLEGA ENTO TRA TE E ARDUINO
+eb I E
+un iona direttamente dal bro ser,
+sen a installare nulla.
+asta un account Arduino e puoi
+programmare la scheda anche da
+un’altra posta ione.
+In entrambi i casi, l’I E ti permette di:
+• scrivere il codice,
+• verificare se ci sono errori,
+• caricare il programma sulla
+scheda,
+• usare esempi gi pronti,
+• gestire librerie aggiuntive.
+
+La communit : il vero cuore di Arduino
+Arduino è una piattaforma pen
+ource.
+ignifica che:
+•
+•
+•
+•
+
+uesta scelta ha creato nel tempo
+una communit gigantesca di
+appassionati, studenti, insegnanti,
+inventori, sviluppatori professionisti.
+gni giorno la communit
+contribuisce a migliorare Arduino:
+•
+•
+•
+•
+•
+
+crea librerie nuove,
+risolve problemi,
+pubblica tutorial,
+condivide progetti,
+risponde alle domande dei
+principianti.
+
+proprio gra ie a uesta comunit
+che Arduino è diventato lo strumento
+educativo n 1 al mondo per imparare
+la programma ione e l’elettronica.
+
+i progetti,
+la documenta ione,
+i file delle schede,
+l’ambiente di sviluppo
+
+sono pubblici e accessibili a tutti.
+Nessun brevetto segreto, nessun
+blocco artificiale: chiun ue pu
+studiare, migliorare e condividere.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+9
+
+CAPITOLO 4
+
+Come installare Arduino IDE
+• Aprire un bro ser ualsiasi sul PC e inserire come indiri o
+.arduino.cc
+• Nella homepage cliccare su documenta ione poi su soft are
+•
+
+opo aver cliccato sar possibile scegliere
+
+• per uale sistema operativo effettuare il do nload. cegli uello giusto per
+il computer che stai utili ando nella lista
+N A
+P I N .
+• Una volta finito il do nload lancia il programma Arduino I E
+• Appena avviato per la prima volta Arduino I E installa dei pacchetti
+necessari al suo fun ionamento in maniera autonoma
+
+0
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL COLLEGA ENTO TRA TE E ARDUINO
+
+Il nostro primo programma Arduino
+Adesso scriveremo e capiremo insieme il nostro primissimo programma su
+Arduino
+uesto programma si chiama lin , che in inglese significa fare l’occhiolino.
+Ed è proprio uello che faremo fare a un E :
+accendersi e spegnersi da solo.
+
+PASSO
+
+Collegare Arduino al computer
+
+i serve:
+la tua Arduino Nano 4
+un cavo U C
+un computer con l’Arduino I E
+Procedi cos :
+1.
+Collega il cavo U alla scheda Arduino.
+.
+Collega l’altra estremit al computer.
+.
+ovresti vedere accendersi un E sulla
+scheda: significa che ha ricevuto corrente.
+e non la sele ioni, Arduino non sapr dove inviare il
+programma.
+
+PASSO
+
+Aprire l’esempio link
+
+’esempio lin è gi dentro l’I E, pronto per essere
+usato:
+ai su ile → Esempi → 1. asics → lin .
+i aprir una nuova finestra con il programma gi
+scritto.
+uesto è il codice più famoso del mondo Arduino.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+1
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 5
+
+Come è fatto un programma Arduino?
+Anali iamo il programma più
+famoso e semplice di Arduino:
+
+Un programma Arduino ha uasi
+sempre parti importanti:
+
+void setup
+pinMode E
+
+setup
+la prepara ione.
+iene eseguita una sola volta,
+uando Arduino si accende o si
+resetta.
+ui diciamo ad Arduino come deve
+essere usato l’hard are pin,
+sensori, ecc. .
+
+void loop
+digital rite E
+dela 1
+digital rite E
+dela 1
+
+UI
+
+IN, U PU
+
+UI
+
+IN, I
+
+UI
+
+IN,
+
+Un programma Arduino ha uasi
+sempre parti importanti:
+
+loop
+il ciclo che si ripete.
+Il codice dentro loop viene eseguito
+all’infinito, in tondo: uando arriva
+alla fine, ricomincia dall’ini io.
+Puoi immaginare:
+setup
+sistemiamo le cose prima
+di ini iare a giocare
+loop
+il gioco vero e proprio che
+ripetiamo in continua ione
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 5
+
+Spiegazione parola per parola
+I A 1:
+void setup
+void . In inglese significa vuoto .
+ui vuol dire: uesta fun ione non
+restituisce niente non ti d un
+numero o un risultato da usare dopo .
+solo un gruppo di comandi da
+eseguire.
+
+I A :
+pinMode E
+
+UI
+
+IN, U PU
+
+pinMode
+una fun ione comando.
+Pin piedino di Arduino uno dei
+buchini numerati .
+Mode
+setup
+ignifica prepara ione.
+il nome speciale della fun ione che
+Arduino cerca sempre all’ini io.
+
+Parentesi aperta e chiusa
+e parentesi tonde.
+ervono per dire se la fun ione ha
+bisogno di ualche dato in ingresso.
+ui sono vuote → setup non ha
+bisogno di informa ioni in ingresso.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+modalit .
+
+uindi pinMode serve per dire:
+come useremo uel pin Come
+ingresso o come uscita
+
+Parentesi chiusa
+Ini ia la lista delle informa ioni che
+la fun ione pinMode deve usare.
+E
+
+UI
+
+IN
+
+E
+
+la lucina.
+
+UI IN incorporato , cioè gi
+montato sulla scheda.
+
+Come è fatto un programma Arduino?
+
+come se dicessimo: usa la lucina
+interna della scheda .
+
+virgola
+,
+epara il primo dato uale pin dal
+secondo dato come lo useremo .
+U PU
+
+ignifica uscita.
+
+uol dire: da uesto pin usciranno
+segnali , cioè Arduino user il pin per
+mandare corrente accendere cose,
+come il E .
+
+Chiude la lista di informa ioni della
+fun ione.
+punto e virgola
+come il punto alla fine di una frase.
+ice ad Arduino: uesta istru ione è
+finita, passa alla prossima .
+
+uol dire: ui finisce il blocco di
+comandi di setup .
+uindi setup ha solo una riga di
+comandi, uella con pinMode.
+
+void loop
+void
+come prima: fun ione che non
+restituisce un valore.
+
+Parentesi chiusa
+
+Parentesi graffa chiusa.
+
+I A :
+
+loop
+In inglese significa giro ciclo .
+il nome speciale della fun ione
+che Arduino ripete all’infinito.
+
+Parentesi aperta e chiusa
+Come prima: parentesi tonde, ui
+vuote perch la fun ione non ha
+bisogno di dati in ingresso.
+
+Parentesi graffa aperta
+Ini io del blocco di comandi che
+appartiene a loop.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 5
+,
+
+virgola
+
+eparatore tra primo dato il pin e
+secondo dato il valore .
+I
+
+In inglese alto .
+
+Per Arduino vuol dire: accendi, manda
+corrente, metti uel pin a 1.
+
+Chiusa parentesi
+ine dei dati per digital rite.
+
+I A :
+digital rite E
+
+UI
+
+IN, I
+
+Punto e virgola
+
+digital rite
+
+digital che pu valere solo
+spento o acceso.
+
+rite
+
+ine dell’istru ione.
+o 1,
+
+piega ione logica della scritta:
+Accendi il E interno della scheda .
+
+scrivere.
+
+Insieme: scrivere un valore digitale
+su un pin, cioè dire ad Arduino se
+uel pin deve essere spento
+o
+acceso 1 .
+
+Parentesi chiusa
+Ini io dei dati da passare alla
+fun ione.
+E
+
+UI
+
+IN
+
+i nuovo, il E interno alla scheda.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+Come è fatto un programma Arduino?
+
+I A
+
+I A 9: digital rite E
+
+1 : dela 1
+
+U
+
+IN ,
+
+come la riga , ma:
+
+dela
+ignifica pausa ritardo .
+o
+
+ice ad Arduino di aspettare un po’
+prima di fare il prossimo
+comando.
+
+In inglese basso .
+
+o
+uol dire: spegni, niente corrente,
+metti uel pin a .
+
+aperta parentesi
+Ini io del numero che indica uanto
+tempo aspettare.
+1
+
+piega ione logica della scritta:
+pegni il E interno della scheda.
+
+Numero di millisecondi.
+1
+
+millisecondi
+
+1 secondo.
+
+uindi: aspetta 1 secondo .
+
+Chiusa parentesi
+ine del tempo specificato.
+
+punto e virgola
+ine dell’istru ione.
+piega ione logica della scritta:
+ra aspetta 1 secondo sen a fare
+altro.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+Come è fatto un programma Arduino?
+
+I A 1 : dela 1
+identica alla riga :
+di nuovo aspetta 1 secondo.
+piega ione logica della scritta:
+ra aspetta 1 secondo sen a fare
+altro.
+Cosa succede davvero passo passo
+
+• All’accensione Arduino esegue setup :
+• imposta il E interno come uscita pinMode E
+
+UI
+
+IN, U PU
+
+•
+• Poi entra in loop e fa sempre gli stessi passi:
+• digital rite E
+• dela 1
+
+•
+
+IN, I
+
+→ accende il E .
+
+→ aspetta 1 secondo.
+
+• digital rite E
+• dela 1
+
+UI
+UI
+
+IN,
+
+→ spegne il E .
+
+→ aspetta 1 secondo.
+
+orna all’ini io di loop e ricomincia.
+
+•
+•
+isultato: la lucina sulla scheda Arduino lampeggia: 1 secondo accesa, 1 secondo
+spenta, all’infinito
+
+Laboratorio di elettronica: Impara e sperimenta
+
+Come è fatto un programma Arduino?
+
+Promemoria dei termini
+NOTE DI ELAB – Da tenere a portata di mano
+
+GLOSSARIO RAPIDO –
+Capitolo 5
+1. Sketch / Programma — L’insieme di istruzioni che Arduino esegue.
+2. Istruzione (riga di codice) — Un comando singolo che Arduino deve fare.
+3. setup() — La fase di preparazione: si esegue una sola volta all’avvio o al reset.
+4. loop() — Il ciclo: si ripete all’infinito.
+5. void — Significa “vuoto”: la funzione non restituisce un risultato, esegue solo
+comandi.
+6. Funzione — Un gruppo di comandi con un nome (es. setup, loop, delay…).
+7. ( ) (parentesi tonde) — Contengono i dati usati da una funzione (es.
+delay(1000)).
+8. { } (parentesi graffe) — Indicano inizio e fine di un blocco di comandi.
+9. pinMode(pin, modalità) — Dice ad Arduino come usare un pin.
+10.
+
+OUTPUT — Il pin è un’uscita: Arduino può accendere o spegnere qualcosa.
+
+11.
+
+LED_BUILTIN — La lucina già presente sulla scheda (LED interno).
+
+12.
+
+digitalWrite(pin, valore) — Scrive su un pin digitale: acceso/spento.
+
+13.
+
+HIGH — “Alto”: acceso, corrente presente (1).
+
+14.
+
+LOW — “Basso”: spento, niente corrente (0).
+
+15.
+
+delay(tempo) — Fa una pausa prima del comando successivo.
+
+16.
+
+Millisecondi (ms) — 1000 ms = 1 secondo.
+
+17.
+
+, (virgola) — Separa i dati dentro una funzione.
+
+18.
+
+; (punto e virgola) — Fine di un’istruzione (come il punto a fine frase).
+
+19. Compilatore — Controlla se il codice è scritto bene; se trova errori non
+carica il programma.
+20.
+
+Reset — Riavvio della scheda: setup() riparte da capo.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 6
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+entornati, giovani esploratori
+
+I pin digitali: cosa sono davvero?
+uarda la tua Arduino Nano 4.
+ino a ora Arduino ha acceso e
+Ai lati della scheda vedi tanti buchini
+spento una lucina sulla sua pancia
+numerati:
+ma oggi scopriremo una cosa
+, , 4
+1 .
+uelli che ini iano con la lettera si
+incredibile: Arduino ha tante dita e con
+chiamano:
+pin digitali
+ognuna può accendere e spegnere
+Un pin digitale è un punto da cui
+qualcosa nel mondo reale!
+Arduino pu :
+Obiettivo del capitolo
+• far uscire corrente
+In uesto capitolo imparerai:
+• oppure non far uscire nulla
+• cosa sono i pin digitali
+Non esistono vie di me o, solo due
+• cosa significano I
+e
+possibilit . Un pin digitale pu avere
+• perch i pin fun ionano come
+solo due stati:
+interruttori
+• ACCE
+• come Arduino accende e spegne
+• PEN
+componenti esterni
+Proprio come:
+• a creare giochi di luce sempre
+più interessanti
+• un interruttore della luce
+• un pulsante N
+Alla fine del capitolo, Arduino non
+• una porta aperta o chiusa
+controller più solo una lucina sulla
+scheda ma componenti veri
+collegati fuori, come un vero cervello
+elettronico.
+
+nota E A
+• Un pin digitale non è complicato:
+o fa passare corrente, oppure no.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 6
+HIGH e LOW: il linguaggio segreto dei
+pin
+Arduino non usa le parole acceso e
+spento .
+Usa due parole speciali in inglese:
+HIGH , significa alto ,vuol dire:
+• accendi
+• manda corrente
+• s
+LOW, significa basso , vuol dire:
+•
+spegni
+•
+niente corrente
+•
+no
+Esempio pratico
+•
+•
+
+E acceso → pin in I
+E spento → pin in
+
+Arduino parla cos con l’elettronica.
+I pin digitali come interruttori ra
+arriva una delle idee più importanti
+di tutto Arduino.
+· Un pin digitale è come un
+interruttore elettronico.
+a differen a è che:
+• non lo premi con il dito
+• lo comandi con il codice
+uando scrivi un programma, è come
+se dicessi:
+•
+•
+
+Accendi uesto interruttore
+pegni uest’altro
+
+OUTPUT: uando Arduino comanda
+uando vogliamo che Arduino
+accenda o spenga ualcosa, usiamo il
+pin come:
+U PU uscita
+Per uesto, prima di usarlo, dobbiamo
+sempre dire:
+pinMode numero pin, U PU
+È come dire ad Arduino:
+“Questo pin lo userai per dare ordini.”
+Le due funzioni magiche
+Per controllare i pin digitali useremo
+sempre due fun ioni.
+pinMode() – preparo il pin
+erve per dire ad Arduino come
+useremo un pin.
+Esempio:
+pinMode 1 , U PU
+
+ignifica:
+Il pin 1 sar un’uscita.
+digitalWrite() – accendo o spengo
+Esempio:
+digital rite 1 , I
+ignifica: Accendi il pin 1 .
+digital rite 1 ,
+ignifica: pegni il pin 1 .
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+Premessa:
+(alimentazione breadboard)
+aga i, nei olumi 1 e abbiamo
+uasi sempre alimentato la
+breadboard usando una batteria da
+9 con il suo cavetto clip , uindi la
+corrente arrivava alla breadboard
+direttamente dalla batteria.
+a adesso, con Arduino Nano 4,
+cambiamo metodo: non usiamo più
+la 9 per alimentare la breadboard,
+perch l’alimenta ione pu arrivare
+direttamente dalla scheda Arduino
+collegando il cavo usbC al PC.
+
+Come fun iona ora:
+a breadboard prende la corrente
+dalla scheda Arduino.
+Il positivo
+lo prendiamo dal pin
+dell’Arduino uello indicato
+proprio come
+.
+Il negativo
+lo prendiamo da uno
+dei pin GND massa indicati sulla
+scheda.
+
+•
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+ESPERIMENTO 1:
+
+Colleghiamo la resistenza
+
+• Materiale necessario
+
+a resisten a deve andare in serie al
+led . uindi metti un capo della
+resisten a nella stessa fila della gamba
+corta del E .
+
+• 1 Arduino Nano 4
+• 1 breadboard 4
+• 1 E
+
+punti
+
+rosso o verde
+
+’altro capo lo mettiamo nella colonna
+del gnd della nostra NAN
+
+• 1 resisten a 4
+• 1 cavetto umper
+• Cavo U
+
+C
+
+Posizioniamo Arduino Nano sulla
+breadboard
+Prendi la breadboard.
+Inserisci la Arduino Nano in modo che:
+i pin di sinistra stiano su una riga a ,
+i pin di destra sulla riga g
+
+Collegamenti elettrici con Arduino Nano
+
+a Nano rimane a cavalo della rigache D13 → gamba lunga del E anodo
+separa le breadbord, cos ogni pin resta
+useremo 1 perch è uello che
+separato. in uesto modo puoi usare
+controlla il E interno, cos il codice
+facilmente i pin , , 4
+1 e i pin
+resta identico
+N , v
+
+GND → resisten a → gamba corta del
+E catodo
+
+Spostiamo il LED sulla breadboard
+Useremo un E verde per riprodurre lo
+stesso effetto del E
+UI IN, ma
+uesta volta fuori dalla scheda.
+
+
+
+unga anodo
+Corta catodo
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+Codice da caricare (lo stesso del
+capitolo 5 l’unica differenza che invece
+di usare il termine “LED_BUILTIN” lo
+sostituiamo con “13 “
+
+ESPERIMENTO 2:
+
+Cambia il numero di pin sia sul codice che
+sulla readbord
+Modifica il pin:
+Prova a usare:
+pinMode , U PU
+digital rite , I
+digital rite ,
+
+ESPERIMENTO 3:
+
+ai un
+
+in codice Morse
+
+Modifica il codice aggiungi comandi:
+Prova a usare:
+void loop
+Nota: su Arduino Nano è meglio usare il
+numero del pin 1 invece di
+E
+UI IN, per essere più chiari nella
+pratica.
+
+digital rite 1 , I
+dela 1
+digital rite 1 ,
+dela
+
+Esperimenti aggiuntivi (per approfondire) digital rite 1 , I
+
+Cambia la velocit del lampeggio
+
+dela
+
+Modifica il delay:
+
+digital rite 1 ,
+
+ms → lampeggio veloce
+
+dela
+
+ms → lampeggio lento
+
+Laboratorio di elettronica: Impara e sperimenta
+
+Come è fatto un programma Arduino?
+ESPERIMENTO 4 :
+PROGRAMMA LUCI LAMPEGGIANTE STILE
+SIRENATO 2 :
+
+Due LED: effetto “polizia”
+Prova a usare:
+Collega:
+Programma:
+
+•
+•
+
+E 1 → pin
+E
+→ pin 9
+
+• uno acceso
+• l’altro spento
+• poi si scambiano
+
+isultato: luci lampeggianti stile sirena
+
+In uesto modo possiamo scrivere
+tutte le annota ioni che vogliamo
+direttamente sulla riga interessata
+o anche su più righe , sen a
+modificare il comportamento del
+codice: i commenti infatti non
+vengono eseguiti e uindi non
+interferiscono con il programma
+scritto nell’I E.
+
+Nota di elab
+Nella figura affianco abbiamo inserito
+delle scritte di spiega ione per chiarire il
+significato e il fun ionamento di ogni
+singola stringa istru ione del programma.
+ueste spiega ioni sono state aggiunte
+sotto forma di commenti, riconoscibili
+perch prima del testo compaiono due
+barre:
+// esempio di nota
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+Note utili
+
+Prova a scriverlo da solo poi controlli le
+stringe con uesto esempio.
+
+Usa i commenti per: spiegare
+cosa fa una riga, chiarire
+passaggi complessi, indicare
+valori importanti, o ricordare
+scelte fatte durante lo sviluppo.
+Mantieni i commenti brevi e
+chiari, cos il codice resta
+leggibile.
+e cambi il codice, aggiorna
+anche i commenti: devono
+sempre
+seguire il programma per
+evitare
+ESPERIMENTO 5: Il semaforo
+Un semaforo è solo: un link
+con più fasi
+LED:
+Verde → pin
+iallo → pin 6
+Rosso → pin 7
+S q
+
+z
+
+V
+
+3
+1
+3
+
+R
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+ai appena reali ato:
+• il primo circuito fisico con Arduino Nano,
+• il primo programma che controlla un componente esterno,
+• il collegamento tra soft are codice e hard are
+
+E
+
+breadboard .
+
+Errori tipici (diventa un detective)
+e il E non si accende, controlla:
+Chec list:
+• E girato nel verso giusto
+•
+esisten a collegata bene
+•
+N presente
+• Numero del pin corretto sia sulla breadbord che nel codice
+Nota ELAB
+Un buon programmatore controlla sempre anche i fili.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+
+NOTE DI ELAB - Promemoria dei termini (Capitolo 6)
+TERMINE
+Pin digitali
+I
+
+,
+
+... 1
+
+Interruttore elettronico
+U PU
+pinMode pin, U PU
+digital rite pin, I
+E anodo e catodo
+esisten a in serie
+ohm
+N
+
+1 e E
+
+UI
+
+dela ms
+Millisecondo ms
+
+Commenti
+e uen a fasi
+ebug chec list
+
+IN
+
+4
+
+Piedini che possono stare solo in due
+tato acceso : il pin vale 1 e manda corrente.
+tato spento : il pin vale e non manda corrente.
+Un pin digitale e come un interruttore: lo accendi o
+lo spegni con il codice.
+Modalita per comandare ualcosa: Arduino usa il
+pin per far uscire un segnale.
+ice ad Arduino: uesto pin lo usero come uscita .
+Accende o spegne un pin digitale e uindi un E
+collegato
+amba lunga anodo . amba corta catodo .
+imita la corrente per proteggere il E : va messa in
+serie al E .
+Massa ero volt: e il ritorno della corrente il
+negativo .
+Alimenta ione positiva dalla scheda il positivo .
+1 e il pin collegato alla lucina interna. Per un E
+esterno puoi usare anche il numero 1 .
+Pausa: ferma Arduino per un tempo in millisecondi
+1
+ms 1 secondo .
+Pausa: ferma Arduino per un tempo in millisecondi
+1
+ms 1 secondo .
+Unita di tempo: 1
+ms 1 secondo.
+Note per gli umani: Arduino le ignora. ervono per
+ricordare e spiegare il codice.
+Una se uen a e una serie di accensioni con tempi
+diversi es. semaforo: verde, giallo, rosso .
+e non fun iona: E nel verso giusto resisten a
+presente N collegato pin giusto nel codice
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I PIN DIGITALI: LE DITA DI ARDUINO
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 7
+
+I PIN DI INPUT: ARDUINO ASCOLTA E DECIDE
+«Giovani esploratori, fino a questo
+momento Arduino è stato un
+ottimo esecutore.
+Ha acceso luci, le ha spente, ha
+fatto lampeggiare LED come un
+vero mago dell’elettronica.
+
+Arduino mette un pin in
+→ esce
+energia → E si accende
+Arduino mette un pin in
+→ non esce
+energia → E si spegne
+uindi:
+rduino comanda
+
+Ma c’è una domanda importante
+da farsi:
+Arduino può reagire a quello
+che facciamo noi?
+La risposta è sì.
+E oggi Arduino impara una nuova
+abilità: ascoltare.»
+
+7.1 INPUT e OUTPUT:
+Arduino parla e Arduino
+ascolta
+Nel Capitolo 6 abbiamo usato i pin
+digitali come OUTPUT (uscita). Cosa
+vuol dire?
+
+ra invece vogliamo che Arduino riceva
+un’informa ione dall’esterno.
+Per esempio: ualcuno sta premendo un
+pulsante
+rduino asco ta
+
+come dire:
+U PU → Arduino usa la bocca
+INPU → Arduino usa le orecchie
+
+Laboratorio di elettronica: Impara e sperimenta
+
+63
+
+CAPITOLO 7
+
+7.2 Il pulsante: come
+funziona davvero
+Un pulsante è un componente
+semplice ma geniale.
+Quando NON premi
+
+uesta modalit : rende la lettura stabile
+riduce i collegamenti evita falsi valori
+strani
+Ma c’è un effetto curioso
+
+Il circuito è aperto → non passa
+corrente.
+
+Con INPUT_PULLUP:
+
+Quando premi
+
+pulsante premuto →
+
+Il circuito si chiude → passa corrente.
+
+Sì: è “al contrario”.
+
+uindi il pulsante manda ad Arduino un
+messaggio che ha solo due possibilit :
+
+Ma è normale: basta ricordarselo.
+
+• s no
+• acceso spento
+•
+I
+Come ti ricorderai nel volume uno di Elab
+abbiamo visto come collegare il pulsante,
+ricordati il pulsante va sempre inserito a
+cavallo della riga centrale della breadbord.
+
+7.3 INPUT_PULLUP: la
+scorciatoia più utile per
+iniziare
+ra arriva un trucco utilissimo.
+In teoria, per far fun ionare bene un
+pulsante, servirebbe una resisten a di
+aiuto .
+Ma Arduino ce l’ha gi dentro
+uindi invece di scrivere:
+pinMode(2, INPUT);
+noi useremo:
+pinMode(2, INPUT_PULLUP);
+
+64
+
+pulsante N N premuto → I
+
+Perch non basta scrivere INPU
+uando scrivi: pinMode , INPU
+Arduino dice:
+, il pin adesso deve ascoltare.
+MA c’è un problema grosso:
+Un pin in INPU è come un orecchio
+super sensibile. e non gli dai un
+riferimento, il pin resta in aria , cioè non
+è collegato n a
+n a N .
+E un pin in aria pu :
+leggere I
+anche se non tocchi niente
+leggere
+a caso cambiare valore
+solo perch muovi un filo o avvicini la
+mano
+uesto si chiama pin fluttuante
+floating .
+come chiedere a ualcuno:
+ai sentito un rumore
+ma stai in una stan a piena di eco:
+sentir
+ualcosa anche se non c’è.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+ESERCIZIO 7.3 –
+Collegamento del pulsante
+con INPUT_PULLUP (super
+semplice)
+
+Quindi a cosa serve INPUT_PULLUP?
+Quando scrivi:
+pinMode(2, INPUT_PULLUP);
+Arduino fa due cose insieme: mette il pin
+in INPUT (ascolta) attiva una resistenza
+interna che lo “tira su” verso HIGH
+Cosa significa “tira su”?
+Significa che Arduino dice al pin:
+“Se nessuno ti sta dicendo nulla, tu stai su
+HIGH, in modo stabile.”
+
+Obiettivo: collegare il pulsante
+usando solo 1 filo + GND. Scegliamo
+il pin di lettura:
+useremo D2. Collega un cavetto da
+D2 a un lato del pulsante.
+Collega l’altro lato del pulsante a
+GND.Fatto.
+
+Questa resistenza interna si chiama pullup.
+Così il pin non resta più “in aria”
+Con INPUT_PULLUP succede questo:
+Quando NON premi il pulsante
+il pulsante è aperto (non collega niente)
+il pin NON resta nel vuoto
+la resistenza interna lo tiene su → HIGH
+stabile
+In questo modo:
+Quando PREMI il pulsante
+il pulsante collega il pin a GND
+quindi il pin va a 0V → LOW
+Ecco perché “premuto =
+LOW” (sembra al contrario ma è
+normale).
+
+se premi → D2 si collega a GND →
+Arduino legge LOW
+se non premi → Arduino legge HIGH
+(grazie al pullup interno)
+
+Laboratorio di elettronica: Impara e sperimenta
+
+65
+
+CAPITOLO 7
+7.4 rd ino le
+
+e “pre
+
+to
+
+non pre
+
+to” di ital ead():
+
+ra Arduino deve leggere lo stato del pulsante. Nel capitolo precedente per accendere i
+led abbiamo usato digital rite , .... uindi diciamo noi se scceso o spento, ora
+dobbiamo leggere il valore del pulsante uindi la fun ione è: digital ead , ....
+uesta fun ione restituisce: I
+o
+Ecome chiedere: il Pin , mi stai dicendo I
+
+o
+
+7. Arduino decide: if, else
+e perch usiamo
+
+==
+
+ra arriva la magia vera della programma ione.
+Arduino non deve solo leggere: deve decidere.
+Usiamo:
+if (condizione)
+
+int pulsante
+
+int led
+
+fai uesto
+
+else {
+
+altrimenti fai uest altro
+
+E succede una cosa → fai A A
+
+IMEN I → fai
+
+Nel nostro caso:
+e il pulsante è premuto
+→ accendi E A
+
+IMEN I
+
+→ spegni E
+
+int
+
+e
+
+Abbiamo aggiunto un altro
+termine al programma nella
+pagina successiva ti spiego tutto
+
+66
+
+Laboratorio di elettronica: Impara e sperimenta
+
+W?
+
+CHE COSA SONO I CONDENSATORI?
+
+7.7 Le “scatoline” dei numeri: int
+uando scriviamo:
+int pulsante
+int led
+stiamo dicendo ad Arduino:
+Mi serve una scatolina dove conservare un numero.
+int significa: numero intero cioè un numero sen a virgola: , 1, , , 1 ,
+uindi:
+pulsante
+è una scatolina che contiene il numero
+led
+è una scatolina che contiene il numero
+Perch lo facciamo
+Perch invece di scrivere sempre:
+pinMode , U PU
+pinMode , INPU PU
+digital ead
+digital rite , I
+
+UP
+
+Possiamo scrivere:
+pinMode led, U PU
+pinMode pulsante, INPU
+digital ead pulsante
+digital rite led, I
+o ì il pro ra
+
+PU
+
+UP
+
+a è pi c iaro, perc
+
+le
+
+endo capi ci
+
+ito:
+
+uale pin è il pulsante
+uale pin è il E
+E E CI I
+Cambia un numero, cambia il circuito
+posta il filo del E da
+a 9
+Cambia solo uesta riga:
+int led
+cambialo con int led
+
+9
+
+e fun iona, hai capito cos’è una variabile:
+hai cambiato un solo numero e hai cambiato il comportamento del programma.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+67
+
+CAPITOLO 7
+
+7.7 Perch si scrive ==
+(due uguali)?
+
+Esempio super chiaro con frasi
+
+In Arduino e in uasi tutti i linguaggi :
+
+legge cosa:
+
+= uno uguale significa assegna.
+
+E il pulsante è premuto cioè
+allora
+
+Cioè: metti dentro .
+
+Errore tipico da evitare
+sbagliato:
+
+Esempio:
+int led
+
+if digital ead pulsante
+
+; vuol dire: metti il numero
+
+nella scatolina chiamata led.
+come dire: led prende valore
+
+.
+
+In Arduino e in uasi tutti i linguaggi :
+due uguali significa confronta
+
+i
+,
+
+uesto è
+
+if digital ead pulsante
+Perch
+non fa una domanda: prova ad
+assegnare
+e crea
+confusione errori .
+uello giusto è:
+if digital ead pulsante
+
+Cioè: è uguale a
+e
+
+Esempio:
+di ital ead(p l ante)
+vuol dire:
+
+L
+
+uello che leggo dal pulsante è
+
+significa assegna
+metti un valore in una variabile
+significa confronta sono uguali
+
+uguale a
+una domanda a cui Arduino risponde con:
+
+entro if ... si usa uasi sempre
+perch stiamo facendo una domanda.
+
+si vero
+no falso
+E poi, gra ie a if , decide cosa fare.
+
+68
+
+non sono la stessa cosa
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+7.7 Debug guidato (se non funziona)
+e il E non risponde:
+o Il E è girato bene gamba lunga verso il pin, corta verso resisten a
+N
+o a resisten a è collegata davvero in serie
+o Il pulsante attraversa la fessura centrale
+o Il pulsante è collegato tra
+e N
+o Nel codice:
+o pulsante
+o led
+o INPU PU UP scritto giusti
+o confronto con
+due uguali
+
+7. Mini-progetto: Due LED, un pulsante (Arduino
+sceglie)
+biettivo
+se premi → E verde acceso
+se non premi → E rosso acceso
+Collegamenti
+E verde →
+E rosso → 9
+pulsante →
+e N
+Codice
+INPU PU UP scritto giusto
+confronto con
+due uguali
+
+Laboratorio di elettronica: Impara e sperimenta
+
+69
+
+CAPITOLO 7
+
+programma:
+
+70
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+Scema di assemblaggio sulla breadbord:
+
+70
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+Pull up interno
+egola INPU
+
+PU
+
+UP
+
+esisten a interna che tiene il pin su I
+premi.
+
+uando non
+
+N N premuto
+N .
+
+perch va a
+
+I
+
+P EMU
+
+digital ead pin
+
+egge un pin digitale e restituisce I
+
+digital rite pin,
+
+crive su un pin: lo mette I
+
+if
+
+E : controlla una condi ione e decide se fare un’a ione.
+
+else
+
+A
+
+Condi ione
+
+Una domanda vera falsa es. pulsante premuto
+
+int
+
+Numero intero: crea una scatolina per conservare un
+numero es. pin , , 9 .
+
+ariabile
+
+Una scatolina con un nome es. pulsante, verde che
+contiene un valore.
+
+un uguale
+
+Assegna: mette un valore in una variabile es. int led
+
+due uguali
+
+Confronta: chiede è uguale a
+
+70
+
+oppure
+
+accende o
+
+.
+spegne .
+
+IMEN I : cosa fare uando la condi ione dell’if è falsa.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+si usa dentro if .
+
+.
+
+.
+
+NOTE
+
+74
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 8
+
+I PIN ANALOGICI: ARDUINO I PARA A
+SENTIRE LE UANTIT
+Giovani esploratori, nel Capitolo 7
+Arduino ha imparato a fare una cosa
+da cervello :ascoltare e decidere con
+SE ALLORA
+Per ascoltava solo messaggi molto
+semplici:
+
+ietti o de capito o
+In uesto capitolo imparerai:
+• cos’è un segnale analogico
+• cosa sono i pin A , A1, A
+• come usare la fun ione
+
+• s no
+• acceso spento
+• I
+
+• analog ead
+• cosa significa leggere un valore
+da a 1
+
+Ma il mondo reale è più ricco.
+a luce non è solo c’è non c’è : pu
+essere poca, media, tanta.
+E il volume non è solo muto alto :
+pu crescere piano piano.
+
+• come trasformare un numero in
+un’a ione con if
+• mini progetti con E controllati
+da una manopola
+
+i rduino impara a sentire e
+uantit
+
+Laboratorio di elettronica: Impara e sperimenta
+
+75
+
+CAPITOLO 8
+i ita e s na o ico spie ato
+ene
+I pin igitali li abbiamo visti nel
+capitolo precedente, è come una
+risposta secca:
+•
+•
+•
+
+N
+N
+I
+
+Esempio:
+pulsante premuto s no
+in na o ico
+come una uantit che pu
+cambiare:
+poco medio tanto
+1
+fino a tantissimi valori
+Esempio:
+uanto stai girando una manopola
+uanta luce c’è
+uanta temperatura c’è
+Arduino pu leggere ueste uantit
+con i pin analogici.
+o e sono i pin ana o ici
+Sulla scheda Arduino Nano R4 trovi
+dei pin con scritto:
+Questi pin sono speciali perché
+Arduino può usarli come “sensori”:
+leggono un numero che cambia.
+Oggi useremo A
+e più comodo.
+
+76
+
+E E CI I
+
+.
+
+rova A e segnalo
+
+Prendi la scheda e cerca il pin A .
+poten iometro: a manopo a
+c e cam ia a ore l a ia
+gi
+at n l l
+di
+Per far capire l’analogico serve
+qualcosa che cambi “piano piano”.
+Il componente perfetto è il
+potenziometro (una manopola).
+a
+
+piedini:
+
+un estremo va a 5V
+l’altro estremo va a GND
+quello in mezzo (centrale) manda un
+valore “variabile” ad Arduino
+Il piedino centrale è il più importante: è
+quello che “parla” con A0.
+o e are i
+poten iometro passo passo
+Materiale:
+Arduino Nano 4
+breadboard
+1 poten iometro
+cavetti umper
+
+perché è il primo
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+repariamo a nostra read ord
+• Inserisci la nostra rduino ano
+sulla breadboard, come
+mostrato nell’immagine.
+• Alimenta la breadboard
+collegando il pin
+e i pin
+della scheda alle rispettive linee di
+alimenta ione positivo e
+negativo della breadboard.
+• Per facilitare i collegamenti, usa
+due cavetti umper per collegare
+tra loro le due linee di
+alimenta ione opposte della
+breadboard:
+•
+•
+
+•
+
+linea da un lato →
+dall’altro lato
+
+linea
+
+N linea da un lato → N
+linea dall’altro lato
+In uesto modo avrai
+e N
+disponibili su entrambi i lati della
+breadboard.
+
+assa
+
+i
+
+• Inserisci il poten iometro
+nella breadboard i piedini
+in righe diverse . mettilo a
+cavallo della linea centrale
+• Collega un piedino esterno a
+di Arduino.
+• Collega l’altro piedino esterno
+a N .
+• Collega il piedino centrale a
+A .
+
+a uesto momento in poi,
+mantieni sempre uesti
+collegamenti anche negli eserci i
+successivi: è un metodo pratico
+per avere la breadboard sempre
+alimentata e collegata
+correttamente. correttamente
+
+Laboratorio di elettronica: Impara e sperimenta
+
+77
+
+CAPITOLO 8
+
+a fun ione nuo a: ana o
+
+ead
+
+ra Arduino deve sentire la manopola.
+a fun ione è: ana o ead
+
+uesta fun ione restituisce un numero:
+•
+
+uando il segnale è bassissimo verso N
+
+•
+
+uando il segnale è altissimo verso
+
+uindi Arduino non riceve s no , riceve un numero.
+
+rimo pro ramma: e
+sa o in una scato ina int
+
+78
+
+Laboratorio di elettronica: Impara e sperimenta
+
+o un numero e o
+
+CHE COSA SONO I TRANSISTOR?
+: int a ore
+int
+Come abbiamo gia visto significa: numero intero sen a virgola .
+erve per creare una scatolina capace di contenere numeri come ,
+1, ,
+,1
+In pratica: sto dicendo ad Arduino: mi serve una
+scatola per numeri .
+a ore : il nome della scatolina. ’abbiamo chiamata valore perch
+dentro metteremo il valore letto dal pin analogico. Potevi anche
+chiamarla numero, lettura, pot, ma valore è chiaro.
+un uguale ignifica assegna. uol dire: metti dentro la scatolina
+uello che scrivo dopo .
+il numero che mettiamo dentro all’ini io.Non è obbligatorio per
+for a, ma è utile perch : cos la scatolina parte pulita e non contiene
+numeri casuali
+
+piega ione logica della riga 1:
+Creo una scatolina per numeri chiamata valore e ci metto dentro .
+: oid setup
+oid significa vuoto la fun ione non restituisce un risultato: contiene
+solo comandi.
+setup è la fun ione di prepara ione, Arduino la esegue una sola volta
+uando si accende o si resetta.
+pie a ione lo ica di setup:
+ui preparo le cose prima che Arduino ini i a ripetere il programma.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+79
+
+CAPITOLO 8
+dentro setup: eria
+
+e in
+
+eria
+il nome di un canale che Arduino usa per parlare con il computer.
+Passa attraverso il cavo U
+
+.
+
+come un al ie tal ie:
+
+Arduino parla il PC ascolta nel Monitor eriale
+e in : begin significa ini ia . uindi: ini ia la comunica ione seriale .
+la velocit della comunica ione.
+96
+
+è un valore standard molto usato.
+
+Importantissimo:
+se nel codice hai eria
+
+e in
+
+nel Monitor eriale devi sele ionare 96
+
+baud altrimenti vedrai caratteri strani o niente.
+pie a ione lo ica di setup:
+Arduino, apri il canale per parlare con il PC a velocit 96
+
+.
+
+: oid oop
+oop è la fun ione che Arduino ripete per sempre finisce e ricomincia.
+piega ione logica di setup:
+ti
+andi li ip t all in init
+: a ore
+
+ana o
+
+ead
+
+ui Arduino sente l’analogico.
+a ore la scatolina che abbiamè il pin analogico dove hai collegato il piedino
+centrale del poten iometro.o creato prima
+assegna: metti dentro valore il risultato di
+ana o
+
+ead
+
+è una fun ione che legge un pin analogico A .
+
+è il pin analogico dove hai collegato il piedino centraè il pin analogico
+dove hai collegato il piedino centrale del poten iometro.le del poten iometro.
+
+80
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+Cosa restituisce analogRead?
+Uun numero tra:
+manopola verso N
+1 23
+
+manopola verso
+
+piega ione logica della riga:
+eggo la manopola su A e salvo il numero dentro valore.
+RIGA: Serial.println(valore)
+ra Arduino dice al PC uel numero.
+Serial stesso canale di prima Arduino ↔ PC
+println
+•
+
+print
+
+•
+
+ln
+
+scrivi
+line → vai a capo
+
+uindi:
+alore significa: scrivi uello che c’è dentro la scatolina valore .
+
+piega ione logica della riga:
+crivo sul Monitor eriale il numero che ho letto.
+RIGA: delay(2
+delay
+(2 )
+
+)
+
+fai una pausa
+millisecondi
+
+, secondi
+
+perch serve
+Perch sen a pausa Arduino stamperebbe migliaia di numeri al secondo e il
+monitor scorrerebbe troppo veloce.
+
+piega ione logica della riga:
+Aspetto un pochino prima di leggere e stampare di nuovo.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+81
+
+RIGA: delay(2
+delay
+(2 )
+
+)
+
+fai una pausa
+millisecondi
+
+, secondi
+
+perch serve
+Perch sen a pausa Arduino stamperebbe migliaia di numeri al secondo e il
+monitor scorrerebbe troppo veloce.
+
+piega ione logica della riga:
+Aspetto un pochino prima di leggere e stampare di nuovo.
+
+Cosa fare sul PC
+Carica lo s etch.
+Apri trumenti → Monitor eriale.
+Imposta in basso a destra 96 baud.
+Cosa vedi Numeri che cambiano mentre giri la manopola.
+
+82
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+83
+
+NOTE
+
+84
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 9
+
+COSA SONO I FOTOTRANSISTOR?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+85
+
+CAPITOLO 9
+
+86
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+87
+
+CAPITOLO 9
+
+88
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+89
+
+CAPITOLO 9
+
+90
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+91
+
+92
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 10
+
+Laboratorio di elettronica: Impara e sperimenta
+
+93
+
+CAPITOLO 10
+
+94
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MOTORE A CORRENTE CONTINUA
+
+Laboratorio di elettronica: Impara e sperimenta
+
+95
+
+CAPITOLO 10
+
+96
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MOTORE A CORRENTE CONTINUA
+
+Laboratorio di elettronica: Impara e sperimenta
+
+97
+
+NOTE
+
+98
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 11
+
+Laboratorio di elettronica: Impara e sperimenta
+
+99
+
+CAPITOLO 11
+
+100
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I DIODI
+
+Laboratorio di elettronica: Impara e sperimenta
+
+101
+
+NOTE
+
+102
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 12
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+103
+
+CAPITOLO 12
+
+104
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+105
+
+CAPITOLO 12
+
+106
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+107
+
+CAPITOLO 12
+
+108
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+109
+
+CAPITOLO 12
+
+110
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+111
+
+CAPITOLO 12
+
+112
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+113
+
+NON È FINITA QUI!
+Speriamo davvero che ti sia divertito con questi esperimenti per avvicinarti al mondo
+dell’elettronica!
+Nei prossimi volumi espanderemo i concetti visti nei primi due volumi, maggiormente
+nel dettaglio del funzionamento, utilizzeremo anche altri componenti e soprattutto
+inizieremo ad addentrarci nel magico mondo della programmazione utilizzando il
+linguaggio Arduino e le sue schede elettroniche!
+Grazie per averci seguito in questa prima avventura e speriamo che gradirete
+anche le successive!
+
+114
+
+Laboratorio di elettronica: Impara e sperimenta
+
+ELAB
+
+

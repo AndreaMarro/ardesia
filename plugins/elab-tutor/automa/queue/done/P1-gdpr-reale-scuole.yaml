@@ -1,0 +1,20 @@
+id: P1-gdpr-reale-scuole
+priority: P1
+title: gdpr-reale-scuole
+description: |
+I dati transitano su Anthropic e Render (USA). Per le scuole italiane serve: (1) valutazione impatto privacy DPIA, (2) DPA con ogni provider, (3) consenso genitori, (4) data residency EU. Creare documento automa/docs/GDPR-COMPLIANCE.md con gap analysis e piano.
+target_files: automa/docs/
+created_at: "2026-03-26T16:50:00"
+source: audit-andrea-suggerimenti
+claimed_at: "2026-03-27T04:09:36.401345"
+claimed_by: orchestrator
+completed_at: "2026-03-27T14:45:00"
+result: ok
+result_detail: |
+  Creato automa/docs/GDPR-COMPLIANCE.md (300+ righe) con:
+  - Gap analysis: 6 gap identificati (2 BLOCKER, 2 HIGH, 1 MEDIUM, 1 LOW)
+  - Piano di rimedio in 3 fasi (documentazione, tecnica, EU data residency)
+  - Flussi dati verificati nel codice sorgente
+  - FAQ per dirigenti scolastici
+  - Checklist vendita a scuola
+  - 11 fonti verificate via WebSearch (Garante 2026, MIM, DPA provider)

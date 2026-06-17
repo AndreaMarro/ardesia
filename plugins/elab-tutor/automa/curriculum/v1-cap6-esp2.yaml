@@ -1,0 +1,74 @@
+# Curriculum YAML — v1-cap6-esp2
+# "LED senza resistore (cosa NON fare!)"
+
+experiment_id: v1-cap6-esp2
+volume: 1
+chapter: 6
+title: "LED senza resistore (cosa NON fare!)"
+
+prerequisites:
+  - v1-cap6-esp1
+
+concepts_introduced:
+  - protezione_componenti
+  - corrente_eccessiva
+  - danno_componente
+
+vocabulary_level: v1-cap6
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - acceso
+  - spento
+  - corrente
+  - troppa corrente
+  - bruciare
+  - protezione
+  - breadboard
+forbidden_terms:
+  - resistenza
+  - ohm
+  - tensione
+  - volt
+  - parallelo
+  - serie
+  - condensatore
+  - potenziometro
+  - MOSFET
+  - Arduino
+
+teacher_briefing:
+  before_class: >
+    IMPORTANTE: nel simulatore il LED non si brucia davvero. Ma nel mondo reale SÌ.
+    Prepara un LED bruciato vero da mostrare. L'obiettivo è capire che serve
+    qualcosa che limiti la corrente (nel prossimo capitolo scopriranno il resistore).
+  during_class: >
+    Fai costruire il circuito LED+batteria SENZA resistore. Nel simulatore si accende
+    ma lampeggia l'avviso. Chiedi: "Cosa potrebbe andare storto?" Mostra il LED
+    bruciato reale. "Come potremmo proteggere il LED?"
+  common_question: >
+    "Perché troppa corrente brucia il LED?" → Analogia: è come aprire un rubinetto
+    al massimo — troppa acqua può rompere il tubo. Il LED ha bisogno di poca corrente.
+
+common_mistakes:
+  - mistake: "Non capisce perché il LED si brucia"
+    what_to_do: "Usa l'analogia del rubinetto. Troppa acqua = troppa corrente = danno"
+    analogy: "Rubinetto aperto al massimo → tubo scoppia"
+  - mistake: "Pensa che il simulatore sia sbagliato perché il LED non si brucia"
+    what_to_do: "Spiega che il simulatore avvisa ma non distrugge. Nel mondo reale succede davvero."
+    analogy: null
+
+analogies:
+  corrente_eccessiva:
+    analogy: "La corrente è come l'acqua in un tubo. Se ne passa troppa, il tubo (il LED) si rompe. Serve qualcosa che limiti il flusso."
+    evidence: "Modello idraulico della corrente, ampiamente validato in letteratura (Gentner & Gentner 1983)"
+  protezione_componenti:
+    analogy: "È come mettere un cuscino tra un uovo e il pavimento — senza protezione, l'uovo si rompe. Il LED è fragile come un uovo."
+    evidence: "Analogia di protezione, efficace per concretizzare il concetto astratto"
+
+assessment_invisible:
+  - "Se dice 'serve qualcosa per limitare la corrente' → ha capito il concetto chiave"
+  - "Se propone 'qualcosa che rallenta la corrente' → pronto per Cap 7 (resistore)"
+  - "Se chiede 'e se uso meno batteria?' → ha intuito il rapporto tensione/corrente"

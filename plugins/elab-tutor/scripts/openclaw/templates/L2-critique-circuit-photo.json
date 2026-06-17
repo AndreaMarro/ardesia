@@ -1,0 +1,111 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-critique-circuit-photo",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "critiqueCircuitPhoto",
+  "description": "Morphic template: critica costruttiva foto webcam del circuito fisico ragazzi. Vision EU identifica differenze vs riferimento volume, sintetizza 1 punto positivo + 1 da migliorare con citazione verbatim, parla pronunciando plurale 'Ragazzi,'.",
+  "category": "critique-vision",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 13,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.10"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true,
+    "tone_register": "encouraging-pedagogical"
+  },
+  "inputs": {
+    "photoUrl": {
+      "type": "string",
+      "required": true
+    },
+    "experimentId": {
+      "type": "string",
+      "required": true
+    },
+    "referenceFigureId": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "sequence": [
+    {
+      "step": "post-vision-photo",
+      "tool": "postToVisionEndpoint",
+      "args": {
+        "image": "${inputs.photoUrl}",
+        "task": "compare-vs-reference",
+        "referenceFigureId": "${inputs.referenceFigureId}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "rag-retrieve-reference",
+      "tool": "ragRetrieve",
+      "args": {
+        "query": "${inputs.experimentId} schema riferimento corretto kit",
+        "topK": 3,
+        "wikiFusion": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-positive-area",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": "${prev.positiveAreaIds}",
+        "color": "green"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-improvement-area",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": "${prev.improvementAreaIds}",
+        "color": "orange"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-critique",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, ottimo lavoro sul collegamento verde. Vol.${citation.vol} pag.${citation.page}: '${citation.verbatim}'. Verifichiamo la zona arancione insieme.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5800,
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'postToVisionEndpoint'",
+    "sequence[2].args.color === 'green'",
+    "sequence[3].args.color === 'orange'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "principio_zero.citazione_verbatim === true"
+  ]
+}

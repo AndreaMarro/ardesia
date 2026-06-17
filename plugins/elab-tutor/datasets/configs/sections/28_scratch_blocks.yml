@@ -1,0 +1,231 @@
+id: scratch_blocks
+name: Scratch/Blockly — 38 Blocchi Arduino
+intent: code
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come accendo un LED con i blocchi?
+    - blocco per scrivere su un pin digitale
+    - dove trovo digitalWrite nei blocchi?
+    - come faccio HIGH su un pin?
+    - blocco per spegnere un pin
+    - come leggo un pin digitale con i blocchi?
+    - blocco digitalRead
+    - leggere un pulsante con Scratch
+    - il blocco per accendere e spegnere
+    - come metto HIGH o LOW?
+    - come imposto un pin come output?
+    - pinMode nei blocchi
+    - come leggo il pulsante con i blocchi?
+    - blocco per leggere input digitale
+    hint:
+    - 'Blocchi I/O digitali: digitalWrite(pin, HIGH/LOW), digitalRead(pin), pinMode(pin,
+      OUTPUT/INPUT). Mostra dove trovarli nella palette.'
+    - I/O Scratch. Categoria 'Input/Output'. Il blocco 'Imposta pin digitale' equivale
+      a digitalWrite.
+    - Blocchi digitali. Spiega la differenza tra INPUT (leggere pulsante) e OUTPUT
+      (accendere LED).
+    - Blocco digitale. HIGH=5V=acceso, LOW=0V=spento. Il blocco ha un menu a tendina
+      per scegliere.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come leggo il potenziometro con i blocchi?
+    - blocco analogRead
+    - leggere un valore analogico con Scratch
+    - come faccio analogWrite con i blocchi?
+    - blocco PWM
+    - come controllo la luminosita' del LED coi blocchi?
+    - il blocco per leggere il sensore di luce
+    - come leggo un valore da 0 a 1023?
+    - blocco per il fotoresistore
+    - analogico nei blocchi
+    - come faccio il fade del LED con i blocchi?
+    hint:
+    - 'Blocchi analogici: analogRead(pin) ritorna 0-1023, analogWrite(pin, valore)
+      per PWM 0-255.'
+    - Analogico Scratch. Il blocco 'Leggi pin analogico' e' in categoria Input/Output.
+    - PWM via blocchi. analogWrite accetta 0 (spento) a 255 (massimo). Solo pin 3,5,6,9,10,11.
+    - Sensori analogici. Il blocco legge un valore 0-1023. Mappalo su 0-255 per controllare
+      un LED.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come faccio un if con i blocchi?
+    - blocco se...allora
+    - condizione if-else nei blocchi
+    - come metto una condizione?
+    - blocco 'se' dove lo trovo?
+    - come faccio un confronto nei blocchi?
+    - il blocco per maggiore di
+    - come faccio uguale a nei blocchi?
+    - blocchi logici AND OR
+    - come combino due condizioni?
+    - il blocco NOT dove sta?
+    hint:
+    - 'Blocchi logica: se/allora/altrimenti, confronti (<, >, =, !=), operatori (e,
+      o, non). Categoria ''Logica''.'
+    - If-else in Scratch. Il blocco 'Se...allora...altrimenti' e' giallo. Si compone
+      come un sandwich.
+    - Condizioni Blockly. Il blocco 'Se' accetta un esagono (condizione). I confronti
+      creano esagoni.
+    - Logica. AND = entrambe vere, OR = almeno una vera, NOT = inverti. Costruisci
+      passo passo.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come faccio un ciclo con i blocchi?
+    - blocco per ripetere
+    - ciclo infinito nei blocchi
+    - come faccio un for loop coi blocchi?
+    - blocco 'ripeti per sempre'
+    - come ripeto 10 volte?
+    - blocco while in Scratch
+    - come faccio un ciclo che conta?
+    - il blocco loop
+    - come faccio lampeggiare il LED con un ciclo?
+    hint:
+    - 'Blocchi ciclo: ''ripeti per sempre'' (while true), ''ripeti N volte'' (for),
+      ''ripeti mentre'' (while condizione).'
+    - Loop Scratch. Il blocco verde 'ripeti' crea il ciclo. Il setup e' fuori dal
+      loop, il loop e' dentro.
+    - Cicli Blockly. 'ripeti per sempre' = loop(), 'ripeti N volte' = for(i=0; i<N;
+      i++). Spiega la differenza.
+    - Ciclo infinito. In Arduino, loop() gira per sempre. Il blocco 'ripeti per sempre'
+      fa esattamente questo.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come creo una variabile nei blocchi?
+    - variabili in Scratch
+    - come salvo un valore?
+    - blocco per creare variabile
+    - come uso una variabile?
+    - dove trovo le variabili?
+    - come cambio il valore di una variabile?
+    - variabile contatore nei blocchi
+    - come incremento una variabile?
+    hint:
+    - 'Variabili Blockly: clicca ''Crea variabile'', poi usa i blocchi ''imposta''
+      e ''modifica di''. Categoria ''Variabili''.'
+    - Variabili Scratch. Creare la variabile, poi 'imposta' per darle un valore iniziale.
+    - 'Variabili. Come una scatola con un''etichetta: la crei, ci metti un numero,
+      lo cambi quando vuoi.'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities:
+  - servo
+  vars:
+    frase:
+    - blocco per il servo
+    - come controllo il servo con i blocchi?
+    - muovi il servo a 90 gradi con Scratch
+    - blocco servoWrite
+    - come imposto l'angolo del servo coi blocchi?
+    hint:
+    - 'Blocco Servo: ''Muovi servo su pin X a Y gradi''. Angolo 0-180. Categoria I/O.'
+    - 'Servo Scratch. Un solo blocco: imposta pin e angolo. 0=tutto a sinistra, 180=tutto
+      a destra.'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities:
+  - lcd16x2
+  vars:
+    frase:
+    - blocco per il display LCD
+    - come scrivo sul display con i blocchi?
+    - blocco LCD init
+    - blocco LCD print
+    - come cancello il display coi blocchi?
+    - come cambio riga sul display coi blocchi?
+    - blocco setCursor LCD
+    - inizializzare LCD con Scratch
+    hint:
+    - 'Blocchi LCD: lcd_init, lcd_print, lcd_set_cursor, lcd_clear. Categoria ''LCD''
+      nella palette.'
+    - LCD Scratch. Prima inizializza con lcd_init, poi usa lcd_print per scrivere
+      testo.
+    - 'Display con blocchi. 4 blocchi: init, print, setCursor(colonna, riga), clear.
+      Init va nel setup.'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - blocco per il serial monitor
+    - come stampo sul serial con i blocchi?
+    - blocco Serial.println
+    - il blocco per scrivere sulla seriale
+    - come faccio debug con i blocchi?
+    - stampare valori con Scratch
+    hint:
+    - 'Blocco Serial: ''Stampa su seriale'' equivale a Serial.println(). Categoria
+      ''Seriale''.'
+    - Serial Scratch. Il blocco stampa il valore sul Serial Monitor. Utile per debug
+      dei sensori.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - blocco per fare calcoli
+    - come faccio addizione nei blocchi?
+    - operazioni matematiche in Scratch
+    - blocco map
+    - come converto un valore da 0-1023 a 0-255?
+    - blocco per numeri random
+    - come faccio la media con i blocchi?
+    hint:
+    - 'Blocchi math: somma, sottrazione, moltiplicazione, divisione, map(), random,
+      modulo. Categoria ''Matematica''.'
+    - 'Map Scratch. Il blocco ''mappa'' converte un range in un altro: 0-1023 → 0-255
+      per PWM.'
+    - Matematica Blockly. I blocchi rotondi restituiscono numeri. Si incastrano dentro
+      altri blocchi.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come metto un delay nei blocchi?
+    - blocco aspetta
+    - come faccio una pausa nel codice coi blocchi?
+    - blocco delay
+    - il blocco per aspettare un secondo
+    - ritardo nei blocchi
+    - come faccio lampeggiare con un delay?
+    - blocco millis
+    hint:
+    - 'Blocco delay: ''Aspetta X millisecondi''. 1000ms = 1 secondo. Per lampeggiare:
+      HIGH, delay, LOW, delay.'
+    - Delay Scratch. Il blocco giallo 'aspetta' ferma l'esecuzione. 1000 = 1 secondo,
+      500 = mezzo secondo.
+    - Tempo nei blocchi. delay() blocca tutto il programma. Per cose avanzate c'e'
+      millis() ma e' complesso.
+corruptions:
+  typo_swap: 0.2
+  voice: 0.1
+  filler: 0.1
+  emoji: 0.08

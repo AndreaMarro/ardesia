@@ -1,0 +1,21 @@
+id: G26-test-ai-reliability
+priority: P1
+title: "G26: Add tests for AI chat reliability code (0% → 50%)"
+description: |
+  CRITICAL GAP: 0% test coverage on all AI chat code.
+  sendChat(), processAiResponse(), AbortController timeout, slow indicator — all untested.
+  vitest.config.js excludes api.js and ElabTutorV4.jsx from coverage.
+
+  Priority tests to write:
+  1. sendChat() master AbortController fires at 10s (mock fetch)
+  2. sendChat() combinedSignal propagates to all 3 endpoints
+  3. processAiResponse() strips INTENT and AZIONE tags correctly
+  4. processAiResponse() sequential placement (no parallel await)
+  5. Word count truncation at 80 words with sentence boundary
+  6. Action failure >50% shows user message
+  7. extractIntentTags() balanced brace matching
+
+  Files: tests/unit/api.test.js, tests/unit/processAiResponse.test.js
+tags: G26,testing,reliability,critical
+mode: IMPROVE
+verify: "npx vitest run"

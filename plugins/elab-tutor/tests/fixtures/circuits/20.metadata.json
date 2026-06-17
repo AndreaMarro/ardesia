@@ -1,0 +1,19 @@
+{
+  "id": "circuit-20",
+  "topology": "mixed_voltage_3v3_5v",
+  "expected_diagnosis": "voltage_mismatch",
+  "error_type": "voltage_level",
+  "components": [
+    "nano",
+    "sensor_3v3",
+    "actuator_5v",
+    "level_shifter_missing"
+  ],
+  "label": "Mix 3.3V/5V no level shifter",
+  "category_band": "edge_case",
+  "fixture_kind": "placeholder_png_with_metadata",
+  "iter": 8,
+  "real_screenshot_iter9_pending": true,
+  "principio_zero_expected_response_pattern": "Ragazzi, ... Vol.X pag.Y ...",
+  "morfismo_compliance": true
+}

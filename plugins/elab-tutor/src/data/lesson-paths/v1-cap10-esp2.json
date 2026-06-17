@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap10-esp2",
+  "volume": 1,
+  "chapter": 10,
+  "title": "Esperimento 2: cambia il colore del LED con il fotoresistore",
+  "chapter_title": "Cos'è un fotoresistore?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che con un LED blu serve più luce per l'accensione rispetto al rosso — ogni colore ha una soglia diversa.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Fotoresistenza (LDR)",
+      "quantity": 1,
+      "icon": "☀️"
+    },
+    {
+      "name": "Resistore 220Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED blu",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 6,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "fotoresistenza",
+      "sensore",
+      "LDR",
+      "luce",
+      "buio",
+      "automatico",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore",
+      "digitale"
+    ],
+    "note": "Cap 10 Vol 1 — LED blu con LDR, soglia diversa."
+  },
+  "prerequisites": [
+    "v1-cap10-esp1"
+  ],
+  "next_experiment": {
+    "id": "v1-cap10-esp3",
+    "title": "3 LDR controllano RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.85: 3 LDR controllano RGB."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi cambiamo il LED: da rosso a blu. Serve la stessa quantità di luce per accenderlo? Scopriamolo!",
+      "teacher_tip": "Stesso circuito dell'esperimento 1 ma con LED blu. Il blu ha bisogno di più corrente, quindi serve più luce sulla fotoresistenza.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 fotoresistenza, 1 resistore 220Ω, 1 LED blu, 6 fili.",
+      "class_hook": "La fotoresistenza accendeva il LED rosso facilmente. Ma il LED blu ha bisogno di più o meno luce?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Stesso circuito dell'esperimento 1, ma con LED blu. Muovete il cursore luce e confronta il punto di accensione.",
+      "teacher_tip": "Se possibile, mostrate il confronto: prima carica l'esperimento 1 (LED rosso), poi questo (LED blu). La differenza è visibile.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap10-esp2]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di LED diverso colore con LDR seguendo Vol.1 pag.84.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr1"
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "blue"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a9",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Muovete il cursore luce: il LED blu si accende con più luce del rosso! Perché?",
+      "teacher_tip": "Il LED blu ha bisogno di più corrente per accendersi. La fotoresistenza deve avere una resistenza più bassa (=più luce) per fornire abbastanza corrente.",
+      "provocative_question": "Se il blu si accende con più luce, quale colore di LED si accenderebbe per primo in una stanza che si illumina lentamente?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Non vedono differenza con il rosso",
+          "teacher_response": "Confrontate con il ricordo dell'esperimento 1: il rosso si accendeva con meno luce. Il blu ha bisogno di più luce.",
+          "analogy": null
+        },
+        {
+          "mistake": "Pensano che il LED sia difettoso",
+          "teacher_response": "Il LED funziona! Ogni colore ha bisogno di una quantità diversa di corrente. Il blu è il più 'esigente'.",
+          "analogy": "Come le piante: alcune crescono con poca acqua, altre ne vogliono di più"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e muovete il cursore: il LED blu si accende con più luce del rosso! Ogni colore ha la sua soglia.",
+      "teacher_tip": "Evidenziate la fotoresistenza e il LED. Spiegate: 'Il blu è più esigente — ha bisogno che la fotoresistenza lasci passare più corrente.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:ldr1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il LED blu si accende con più luce del rosso! Ogni colore ha una soglia diversa: il rosso è il più facile da accendere, il blu il più esigente.",
+      "analogies": [
+        {
+          "concept": "soglia_colore_ldr",
+          "text": "Ogni LED è come un cane diverso: il chihuahua (rosso) si sveglia con un sussurro, il San Bernardo (blu) ha bisogno di un grido forte!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "sensore_soglia",
+          "text": "La fotoresistenza è come un cancello automatico: quando c'è abbastanza luce (abbastanza persone), si apre. Ma il cancello del blu è più pesante!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto che ogni colore di LED ha una soglia diversa con la fotoresistenza. Il blu è il più esigente!",
+      "teacher_tip": "Chiedete: 'E se mettessimo 3 fotoresistenze, una per ogni colore del LED RGB?' Anticipate l'esperimento 3.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Ogni colore di LED ha una soglia diversa: il rosso si accende facilmente, il blu ha bisogno di più luce. La fotoresistenza 'apre il cancello' in base alla luce!",
+      "concepts_learned": [
+        "soglia diversa per colore LED con LDR",
+        "confronto sensibilità"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.85: 3 LDR controllano RGB."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'il blu ha bisogno di più luce' → ha capito il concetto",
+    "Se confronta con l'esperimento 1 → capacità di collegamento",
+    "Se chiede del verde → curiosità esplorativa"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "soglia_led_colore_ldr",
+      "confronto_sensibilita"
+    ],
+    "next_suggested": "v1-cap10-esp3",
+    "resume_message": "L'ultima volta avete scoperto che il blu è più esigente! Ora: 3 fotoresistenze per 3 colori."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 84,
+    "label": "Vol.1 pag.84"
+  }
+}

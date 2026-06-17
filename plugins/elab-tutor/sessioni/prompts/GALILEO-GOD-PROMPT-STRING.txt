@@ -1,0 +1,103 @@
+Sei un ingegnere AI senior incaricato di portare Galileo — il tutor AI di ELAB Tutor (piattaforma didattica di elettronica per bambini 8-14 anni) — al livello "GOD": onnipotente, onnisciente, predittivo, impattante.
+
+## ARCHITETTURA ATTUALE
+
+### Backend (Render — https://elab-galileo.onrender.com)
+- **server.py** (1799 righe): FastAPI, Multi-Galileo v5.0.0
+- **Routing v5**: 3 path — SIMPLE (1 specialist), COMPLEX (Reasoner R1 -> specialist), MULTI_DOMAIN (chain A->B->C)
+- **4 Specialisti**: circuit.yml, code.yml, tutor.yml, vision.yml + shared.yml (in nanobot/prompts/)
+- **4 Provider**: DeepSeek Chat, Gemini 2.5 Flash, Groq Llama 3.3, DeepSeek Reasoner (R1)
+- **Layers**: L0-cache, L1-router, L2-racing, L3-enhance, L5-reasoner, L5-chain
+- **nanobot.yml**: SUPER-PROMPT v3.1.0 con 18 action tags, 69 esperimenti, 21 componenti
+
+### Frontend (Vercel — https://www.elabtutor.school)
+- **ElabTutorV4.jsx**: 923KB, ~70K righe — hub principale (parser azioni, buildTutorContext, routing)
+- **NewElabSimulator.jsx**: 151K — simulatore circuiti (apiInstance, exporre funzioni)
+- **CircuitSolver.js**: 88K — physics engine (KVL/KCL, MNA, RC transient, MOSFET)
+- **ChatOverlay.jsx**: ~38K — UI chat Galileo (draggable, resizable, formatMarkdown)
+- **69 esperimenti** (Vol1:38, Vol2:18, Vol3:13), 138 quiz, 21 componenti SVG
+
+### 18 Action Tags
+play, pause, reset, highlight, loadexp, opentab, openvolume, addwire, removewire, addcomponent, removecomponent, interact, compile, movecomponent, clearall, quiz, youtube, setcode
+
+### Piano da implementare (file: .claude/plans/agile-floating-whistle.md)
+- Fase 1: Esecuzione silenziosa (strip tag dal testo chat + badge visuale sotto i messaggi)
+- Fase 2: Handler frontend per nuove azioni (movecomponent, clearall, quiz, youtube, setcode)
+- Fase 3: Memoria persistente (galileoMemory.js con localStorage — track esperimenti, quiz, errori)
+- Fase 4: Contesto arricchito (cronologia interazioni, progresso, durata sessione, errori recenti in buildTutorContext)
+- Fase 5: Nanobot prompt potenziato — GIA' FATTO (v3.1.0)
+- Fase 6: Intelligenza proattiva (auto-diagnosi su burnout/short-circuit, messaggio inattivita')
+- Fase 7: YouTube DB curato (galileo-videos.js con ~20 video italiani)
+
+## WORKFLOW — RALPH LOOP
+
+Esegui cicli iterativi:
+
+### Per ogni ciclo:
+
+**STEP 1 — IMPLEMENTA** una fase dal piano (nell'ordine: 1,2,3,4,6,7). Leggi il piano completo in .claude/plans/agile-floating-whistle.md per i dettagli tecnici di ogni fase.
+
+**STEP 2 — BUILD + DEPLOY**
+- Frontend: cd "VOLUME 3/PRODOTTO/elab-builder" && npm run build && npx vercel --prod --yes
+- Backend (se modifiche server.py/nanobot.yml): cd nanobot && git add -A && git commit -m "fix: ..." && git push
+- ZERO errori build richiesto
+
+**STEP 3 — TEST (Chrome Control)**
+Apri https://www.elabtutor.school in Chrome. Naviga a /#tutor, apri chat Galileo.
+Esegui un batch di 30 domande dal campione (vedi file sessioni/prompts/GALILEO-GOD-MEGA-PROMPT.md per le 300 domande complete divise in 5 personas x 60 domande).
+
+Le 5 personas:
+1. Marco (9 anni, principiante assoluto, scrive con errori)
+2. Sofia (12 anni, intermedia, ha fatto Vol1)
+3. Prof. Rossi (insegnante non tecnico, usa ELAB in classe)
+4. Alex (13 anni, scherzoso, testa limiti, fa battute)
+5. Luca (16 anni, esperto tecnico, vuole cose avanzate)
+
+Per ogni domanda: digita -> attendi risposta -> valuta PASS/FAIL/PARTIAL -> documenta.
+
+**STEP 4 — ANALISI**
+Calcola success rate, categorizza FAIL, identifica pattern.
+
+**STEP 5 — FIX pattern errore**
+- Problema nel PROMPT -> modifica nanobot.yml
+- Problema nel ROUTING -> modifica server.py
+- Problema nel FRONTEND parser -> modifica ElabTutorV4.jsx
+- Problema nell'UI -> modifica ChatOverlay.jsx / NewElabSimulator.jsx
+- Problema nella PHYSICS -> modifica CircuitSolver.js
+
+**STEP 6 — RE-TEST** domande fallite, poi prossimo batch.
+
+Dopo ogni 2 cicli (60 domande), analisi con team agenti:
+- Agente UI/UX, Agente AI, Agente Web, Agente ELAB, Agente QA
+- Ciascuno: 3 punti forti, 3 problemi critici, 3 suggerimenti, score 1-10
+
+## TEST 69 ESPERIMENTI
+
+Dopo 95%+ success rate sulle 300 domande, testa OGNI esperimento con Chrome:
+Per ciascuno dei 69: "carica [nome]" -> verifica load -> "fai partire" -> verifica play -> "diagnosi" -> verifica accuratezza -> "quiz" -> verifica apertura
+
+## FILE CRITICI
+
+| File | Path | Ruolo |
+|------|------|-------|
+| server.py | nanobot/server.py | Backend AI v5.0 |
+| nanobot.yml | nanobot/nanobot.yml | SUPER-PROMPT |
+| ElabTutorV4.jsx | src/components/tutor/ElabTutorV4.jsx | Hub + parser azioni |
+| ChatOverlay.jsx | src/components/tutor/ChatOverlay.jsx | UI chat |
+| NewElabSimulator.jsx | src/components/simulator/NewElabSimulator.jsx | Simulatore |
+| simulator-api.js | src/services/simulator-api.js | API proxy |
+| CircuitSolver.js | src/components/simulator/engine/CircuitSolver.js | Physics |
+| PropertiesPanel.jsx | src/components/simulator/panels/PropertiesPanel.jsx | Editor proprieta' |
+| galileoMemory.js | src/services/galileoMemory.js | DA CREARE — Memoria persistente |
+| galileo-videos.js | src/data/galileo-videos.js | DA CREARE — YouTube DB |
+| agile-floating-whistle.md | .claude/plans/agile-floating-whistle.md | Piano dettagliato 7 fasi |
+
+## REGOLE NON NEGOZIABILI
+1. ZERO REGRESSIONI — build + test dopo ogni fix
+2. MASSIMA ONESTA' — documenta FAIL reali, mai gonfiare
+3. PROGRESSIVITA' — fix->test->fix->test, mai tutto insieme
+4. DOCUMENTA — mini-report con score per ogni ciclo
+5. CHROME CONTROL — test reali su www.elabtutor.school, non simulati
+6. TARGET: 95%+ success rate (285/300 PASS), 69/69 esperimenti PASS
+
+INIZIA leggendo il piano dettagliato in .claude/plans/agile-floating-whistle.md, poi implementa la Fase 1 (Esecuzione Silenziosa). Dopo il deploy, testa con Batch 1 (Marco, domande 1-15).

@@ -1,0 +1,39 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* UnlimOverlay — CSS Module */
+/* Extracted from inline styles — Sessione 2/5 Ciclo 1 */
+
+.container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  overflow: hidden;
+}
+
+.bubbleIcon {
+  font-size: 26px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Arrow SVG positioning */
+.arrowLeft {
+  position: absolute;
+  left: calc(-1 * var(--arrow-size, 10px) + 1px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrowRight {
+  position: absolute;
+  right: calc(-1 * var(--arrow-size, 10px) + 1px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrowBottom {
+  position: absolute;
+  bottom: calc(-1 * var(--arrow-size, 10px) + 1px);
+  left: 50%;
+  transform: translateX(-50%);
+}

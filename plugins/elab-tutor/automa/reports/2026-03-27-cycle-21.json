@@ -1,0 +1,67 @@
+{
+  "cycle": 21,
+  "timestamp": "2026-03-27T09:08:44.942823",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 620
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.05s",
+      "time_ms": 21464
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 164755
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=77 min=72 (target \u226560) [3 samples]",
+      "time_ms": 65120
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4320
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2062
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Landing PNRR: 2 errori fattuali corretti (D.M. 218/2022, 750M non 1.1B), pivot temporale onesto (fase acquisti chiusa, rendicontazione 30/06/2026), FAQ aggiornata",
+    "status": "done",
+    "files_changed": [
+      "src/components/LandingPNRR.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi:**\n1. **Differenze di sviluppo motorio fine:** L'interfaccia touch presuppone un controllo preciso, ma studenti pi\u00f9 giovani o con disabilit\u00e0 motorie possono lottare con gesti come il pinch-to-zoom, causando frustrazione e imprecisione.\n2. **Interazione discontinua e distrazioni:** La natura multimodale dell'iPad (notifiche, home button, uscite accidentali dall'app) frammenta l'attenzion",
+  "ai_scoring": null,
+  "composite_score": 0.946,
+  "self_exam": null
+}

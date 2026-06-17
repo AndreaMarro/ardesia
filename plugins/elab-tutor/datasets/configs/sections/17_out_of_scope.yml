@@ -1,0 +1,47 @@
+id: out_of_scope
+name: "Fuori Tema"
+intent: tutor
+needs_llm: true
+
+templates:
+  - input: "{frase}"
+    llm_hint: "Domanda FUORI TEMA — non riguarda elettronica/ELAB. Rispondere brevemente con simpatia, poi riportare su ELAB. Es: 'Bella domanda! Ma torniamo ai circuiti...'"
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - che ore sono?
+        - chi ha vinto la partita?
+        - raccontami una barzelletta
+        - qual e' la capitale della Francia?
+        - quanto fa 2+2?
+        - mi aiuti con i compiti di matematica?
+        - cos'e' la fotosintesi?
+        - chi e' il presidente della repubblica?
+        - mi scrivi un tema?
+        - quando iniziano le vacanze?
+        - che tempo fa domani?
+        - mi consigli un film?
+        - come si fa una torta?
+        - chi ha inventato la pizza?
+        - qual e' il pianeta piu' grande?
+        - mi racconti una storia?
+        - perche' il cielo e' blu?
+        - come si dice ciao in giapponese?
+        - aiutami con inglese
+        - fammi i compiti
+        - gioca con me
+        - sei un robot?
+        - come ti chiami davvero?
+        - chi ti ha creato?
+        - sei intelligente?
+        - mi vuoi bene?
+        - puoi fare i miei compiti?
+        - sai cantare?
+        - parliamo di calcio
+        - conosci Minecraft?
+        - sai giocare a Fortnite?
+
+corruptions:
+  typo_swap: 0.2
+  emoji: 0.1

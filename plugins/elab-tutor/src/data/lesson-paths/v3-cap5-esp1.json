@@ -1,0 +1,242 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "generated": "2026-05-21",
+    "source": "docs/volumi-originali/VOLUME-3-TESTO.txt",
+    "canonical_order": 1
+  },
+  "experiment_id": "v3-cap5-esp1",
+  "volume": 3,
+  "chapter": 5,
+  "title": "Blink: il primo programma",
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  },
+  "chapter_title": "Il nostro primo programma (Blink)",
+  "difficulty": 1,
+  "duration_minutes": 25,
+  "target_age": "8-14 anni",
+  "objective": "Ragazzi, il docente accompagna la classe in ESERCIZIO 5.1 del Volume 3: I ragazzi scrivono Blink e osservano il LED integrato che lampeggia.",
+  "volume_reference": {
+    "volume": 3,
+    "page": 30,
+    "chapter": 5,
+    "source": "ESERCIZIO 5.1"
+  },
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1
+    },
+    {
+      "name": "Arduino Nano R4",
+      "quantity": 1
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "Ragazzi",
+      "Arduino Nano R4",
+      "setup",
+      "loop",
+      "pin",
+      "GND",
+      "5V",
+      "delay",
+      "digitalWrite",
+      "digitalRead",
+      "analogRead",
+      "Serial"
+    ],
+    "forbidden": [
+      "fate da soli",
+      "devi",
+      "devo sostituire il kit",
+      "esperimento extra"
+    ],
+    "note": "Vol. 3 pag. 30 - ESERCIZIO 5.1"
+  },
+  "prerequisites": [],
+  "next_experiment": {
+    "id": "v3-cap5-esp2",
+    "title": "Modificare il delay del Blink",
+    "preview": "Ragazzi, dopo Blink: il primo programma il libro prosegue con Modificare il delay del Blink."
+  },
+  "common_mistakes": [
+    {
+      "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+      "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+      "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+    },
+    {
+      "mistake": "GND o 5V non sono collegati ai binari corretti.",
+      "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+      "analogy": "Come due rotaie: se una manca, il treno non parte."
+    }
+  ],
+  "analogies": [
+    {
+      "concept": "programma",
+      "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+    },
+    {
+      "concept": "pin",
+      "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+    }
+  ],
+  "session_save": {
+    "store": [
+      "experiment_id",
+      "volume_reference",
+      "build_step",
+      "code_variant",
+      "observations"
+    ],
+    "morphic_ready": true
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "prepara",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il docente introduce Blink: il primo programma citando Vol. 3 pag. 30.",
+      "teacher_tip": "La guida resta al docente: prima si richiama il passaggio precedente, poi si mostra il nuovo passo della sequenza.",
+      "components_list": "Componenti: Breadboard, Arduino Nano R4",
+      "class_hook": "Ragazzi, questo passaggio continua l'arco narrativo del Volume 3.",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "mostra",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, il docente mostra sulla LIM il circuito e lo sketch di ESERCIZIO 5.1.",
+      "teacher_tip": "Il Passo Passo va letto lentamente: ogni filo viene nominato prima di essere collegato.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v3-cap5-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Passo Passo per Blink: il primo programma",
+        "button_label": "Passo Passo",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "nano-r4",
+              "id": "nano1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "chiedi",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, il docente apre una domanda breve e lascia tempo alla classe di prevedere il risultato.",
+      "teacher_tip": "La domanda non ordina: aiuta i ragazzi a collegare codice, pin e componente fisico.",
+      "provocative_question": "Ragazzi, quale riga del codice fa cambiare comportamento a Blink: il primo programma?",
+      "common_mistakes": [
+        {
+          "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+          "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+          "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+        },
+        {
+          "mistake": "GND o 5V non sono collegati ai binari corretti.",
+          "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+          "analogy": "Come due rotaie: se una manca, il treno non parte."
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "osserva",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, il docente avvia la simulazione; la classe osserva: I ragazzi scrivono Blink e osservano il LED integrato che lampeggia.",
+      "teacher_tip": "La verifica resta legata al kit: codice sullo schermo, fili sulla breadboard, risultato visibile.",
+      "action_tags": [
+        "[AZIONE:play]"
+      ],
+      "auto_action": "play",
+      "observation_prompt": "Ragazzi, confrontate quello che vedete con Vol. 3 pag. 30.",
+      "analogies": [
+        {
+          "concept": "programma",
+          "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+        },
+        {
+          "concept": "pin",
+          "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "concludi",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il docente chiude ESERCIZIO 5.1 agganciandolo al prossimo esperimento del libro.",
+      "teacher_tip": "Una frase di sintesi basta: cosa abbiamo controllato, con quale pin, e cosa cambia nel prossimo passaggio.",
+      "summary_for_class": "I ragazzi scrivono Blink e osservano il LED integrato che lampeggia.",
+      "concepts_learned": [
+        "Blink: il primo programma",
+        "Il nostro primo programma (Blink)"
+      ],
+      "next_preview": "Ragazzi, il prossimo passo e Modificare il delay del Blink."
+    }
+  ],
+  "assessment_invisible": [
+    "La classe collega Blink: il primo programma alla pagina 30.",
+    "I ragazzi distinguono filo fisico e riga di codice.",
+    "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "apri_sketch",
+      "instruction": "Ragazzi, apriamo lo sketch Blink (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_base"
+        ],
+        "explanation": "Ragazzi, il blocco Setup prepara la scheda, il Loop ripete (Vol3 pag 30)."
+      }
+    },
+    {
+      "step_id": "imposta_pin",
+      "instruction": "Ragazzi, impostate il pin 13 come uscita (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, pinMode dice ad Arduino se il pin riceve o manda segnali (Vol3 pag 30)."
+      }
+    },
+    {
+      "step_id": "lampeggia",
+      "instruction": "Ragazzi, scrivete digitalWrite HIGH e LOW con un delay (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write",
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, il LED si accende e spegne ogni mezzo secondo (Vol3 pag 30)."
+      }
+    }
+  ]
+}

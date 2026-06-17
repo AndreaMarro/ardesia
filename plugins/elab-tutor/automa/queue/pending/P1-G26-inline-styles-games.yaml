@@ -1,0 +1,15 @@
+id: G26-inline-styles-games
+priority: P1
+title: "G26: Extract 117 inline styles from game components to CSS modules"
+description: |
+  Audit found 161 inline styles remaining. Top offenders:
+  - PredictObserveExplain.jsx (29 inline)
+  - ReverseEngineeringLab.jsx (25 inline)
+  - CircuitDetective.jsx (20 inline)
+  - VolumeChooser.jsx (18 inline)
+  - TutorLayout.jsx (10 inline)
+  Create CSS modules for each. Convert hardcoded px to rem.
+  18 !important overrides to eliminate.
+tags: G26,css,accessibility,lim
+mode: IMPROVE
+verify: "npm run build"

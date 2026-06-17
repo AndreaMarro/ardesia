@@ -1,0 +1,12 @@
+id: P0-galileo-conosce-volumi
+priority: P0
+title: galileo-conosce-volumi
+description: |
+Il prompt SOCRATIC_INSTRUCTION in api.js NON contiene il curriculum dei 3 volumi. Galileo non sa quali esperimenti esistono ne' in che ordine. Iniettare nel prompt: lista completa 67 esperimenti con titolo+volume+capitolo+difficolta+componenti. Galileo deve poter dire 'Ora apriamo il prossimo esperimento del Volume 1 capitolo 7'.
+target_files: src/services/api.js nanobot/prompts/tutor.yml
+created_at: "2026-03-26T16:50:00"
+source: audit-andrea-suggerimenti
+claimed_at: "2026-03-26T17:57:57.496320"
+claimed_by: orchestrator
+completed_at: "2026-03-26T18:02:23.301808"
+result: ok

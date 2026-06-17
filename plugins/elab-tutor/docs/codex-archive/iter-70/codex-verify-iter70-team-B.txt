@@ -1,0 +1,2014 @@
+Reading additional input from stdin...
+OpenAI Codex v0.130.0
+--------
+workdir: /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 019e31bb-c9a8-7731-b299-2626a477f1f9
+--------
+user
+GOAL: cross-check TEAM B iter 70 94 esperimenti Playwright UNO PER UNO audit methodology. CONTEXT: @scripts/bench/iter-70-94-esperimenti-runner.mjs @tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js @tests/unit/iter-70-experiments-data-integrity.test.js. Verify Playwright spec coverage 94 esperimenti complete + license bypass strategy + screenshot capture path + severity P0/P1/P2 classification + report aggregator correctness. CONSTRAINTS: read-only sandbox cite file:line. DONE: HIGH/MED/LOW findings + verdict.
+codex
+I’ll inspect the referenced runner and tests, then cross-check the experiment list, Playwright coverage, bypass/screenshot behavior, severity mapping, and report aggregation. I’m in read-only mode, so this will be an audit with file:line citations only.
+exec
+/bin/zsh -lc "pwd && rg --files | rg '("'^scripts/bench/iter-70-94-esperimenti-runner'"\\.mjs"'$|''^tests/e2e/iter-70-94-esperimenti-uno-per-uno'"\\.spec\\.js"'$|''^tests/unit/iter-70-experiments-data-integrity'"\\.test\\.js"'$|AGENTS'"\\.md"'$)'"'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc 'git status --short' in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 736ms:
+/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js
+AGENTS.md
+scripts/bench/iter-70-94-esperimenti-runner.mjs
+tests/unit/iter-70-experiments-data-integrity.test.js
+
+ succeeded in 1262ms:
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+git: error: couldn't create cache file '/tmp/xcrun_db-mQj1AlER' (errno=Operation not permitted)
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+git: error: couldn't create cache file '/tmp/xcrun_db-9rZSZ2O9' (errno=Operation not permitted)
+ M AGENTS.md
+ M automa/state/heartbeat
+ M automa/state/iter-19-harness-2.0-results.json
+ M automa/state/parallel-research.json
+ M src/services/elab-agent/http-server.js
+?? docs/audits/2026-05-19-iter-70-CLOSE-multi-agent-audit.md
+?? docs/handoff/2026-05-19-iter-70-to-iter-71-handoff.md
+?? vitest.iter70-E.config.js
+
+codex
+I found the three target files. The worktree already has unrelated modified/untracked files, so I’ll leave those untouched and focus only on the audit surface you named.
+exec
+/bin/zsh -lc "nl -ba scripts/bench/iter-70-94-esperimenti-runner.mjs | sed -n '1,260p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "nl -ba tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js | sed -n '1,320p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 582ms:
+     1	#!/usr/bin/env node
+     2	/**
+     3	 * iter-70-94-esperimenti-runner.mjs
+     4	 *
+     5	 * Orchestrator for the iter-70 79-experiment Playwright audit.
+     6	 * Executes the spec against prod and aggregates JSONL output into
+     7	 * a structured report.
+     8	 *
+     9	 * Usage:
+    10	 *   node scripts/bench/iter-70-94-esperimenti-runner.mjs
+    11	 *   node scripts/bench/iter-70-94-esperimenti-runner.mjs --dry-run
+    12	 *   node scripts/bench/iter-70-94-esperimenti-runner.mjs --max=10
+    13	 *   node scripts/bench/iter-70-94-esperimenti-runner.mjs --url=https://staging.elabtutor.school
+    14	 *
+    15	 * Options:
+    16	 *   --dry-run     Print config and exit without running Playwright
+    17	 *   --max=N       Limit to first N experiments (for quick smoke)
+    18	 *   --url=URL     Override prod URL (default: https://www.elabtutor.school)
+    19	 *   --workers=N   Playwright workers (default: 1, must stay 1 for prod audit)
+    20	 *   --settle=MS   Wait ms after mountExperiment (default: 2500)
+    21	 *
+    22	 * Output:
+    23	 *   docs/audits/iter-70-94-esperimenti-results.jsonl    (appended by spec)
+    24	 *   docs/audits/iter-70-94-esperimenti-summary.json     (written by spec afterAll)
+    25	 *   docs/audits/iter-70-runner-report.json              (written by this runner)
+    26	 *
+    27	 * (c) Andrea Marro 2026-05-19 — ELAB Tutor — iter 70 Team B
+    28	 */
+    29	
+    30	import { spawnSync } from 'node:child_process';
+    31	import fs from 'node:fs';
+    32	import path from 'node:path';
+    33	import { fileURLToPath } from 'node:url';
+    34	
+    35	const __filename = fileURLToPath(import.meta.url);
+    36	const __dirname = path.dirname(__filename);
+    37	const REPO_ROOT = path.resolve(__dirname, '..', '..');
+    38	
+    39	// ── CLI args ───────────────────────────────────────────────────────────────
+    40	const args = process.argv.slice(2);
+    41	const dryRun = args.includes('--dry-run');
+    42	const maxArg = args.find((a) => a.startsWith('--max='));
+    43	const urlArg = args.find((a) => a.startsWith('--url='));
+    44	const workersArg = args.find((a) => a.startsWith('--workers='));
+    45	const settleArg = args.find((a) => a.startsWith('--settle='));
+    46	
+    47	const MAX_EXPERIMENTS = maxArg ? parseInt(maxArg.split('=')[1], 10) : null;
+    48	const PROD_URL = urlArg ? urlArg.split('=').slice(1).join('=') : 'https://www.elabtutor.school';
+    49	const WORKERS = workersArg ? parseInt(workersArg.split('=')[1], 10) : 1;
+    50	const SETTLE_MS = settleArg ? parseInt(settleArg.split('=')[1], 10) : 2500;
+    51	
+    52	const SPEC_PATH = path.join(REPO_ROOT, 'tests', 'e2e', 'iter-70-94-esperimenti-uno-per-uno.spec.js');
+    53	const CONFIG_PATH = path.join(REPO_ROOT, 'tests', 'e2e', 'sprint-u.config.js');
+    54	const RESULTS_JSONL = path.join(REPO_ROOT, 'docs', 'audits', 'iter-70-94-esperimenti-results.jsonl');
+    55	const SUMMARY_JSON = path.join(REPO_ROOT, 'docs', 'audits', 'iter-70-94-esperimenti-summary.json');
+    56	const RUNNER_REPORT = path.join(REPO_ROOT, 'docs', 'audits', 'iter-70-runner-report.json');
+    57	
+    58	// ── Config display ─────────────────────────────────────────────────────────
+    59	console.log('');
+    60	console.log('═══════════════════════════════════════════════════════════');
+    61	console.log('ITER-70 TEAM B — 79 ESPERIMENTI RUNNER');
+    62	console.log('═══════════════════════════════════════════════════════════');
+    63	console.log(`Prod URL    : ${PROD_URL}`);
+    64	console.log(`Workers     : ${WORKERS} (keep at 1 for sequential per-experiment audit)`);
+    65	console.log(`Settle ms   : ${SETTLE_MS}`);
+    66	console.log(`Max exps    : ${MAX_EXPERIMENTS ?? 'ALL (79)'}`);
+    67	console.log(`Spec        : ${path.relative(REPO_ROOT, SPEC_PATH)}`);
+    68	console.log(`Config      : ${path.relative(REPO_ROOT, CONFIG_PATH)}`);
+    69	console.log(`Output JSONL: ${path.relative(REPO_ROOT, RESULTS_JSONL)}`);
+    70	console.log(`Summary JSON: ${path.relative(REPO_ROOT, SUMMARY_JSON)}`);
+    71	console.log('');
+    72	
+    73	if (dryRun) {
+    74	  console.log('[DRY RUN] Exiting without executing Playwright.');
+    75	  process.exit(0);
+    76	}
+    77	
+    78	// ── Ensure output dirs ─────────────────────────────────────────────────────
+    79	fs.mkdirSync(path.join(REPO_ROOT, 'docs', 'audits'), { recursive: true });
+    80	fs.mkdirSync(path.join(REPO_ROOT, 'tests', 'e2e', 'iter-70-screenshots'), { recursive: true });
+    81	
+    82	// ── Build Playwright command args ──────────────────────────────────────────
+    83	// Use spawnSync (not exec/execSync) to avoid shell injection.
+    84	const playwrightArgs = [
+    85	  'playwright',
+    86	  'test',
+    87	  SPEC_PATH,
+    88	  '--config', CONFIG_PATH,
+    89	  `--workers=${WORKERS}`,
+    90	  '--timeout=45000',
+    91	  '--reporter=line',
+    92	];
+    93	
+    94	const spawnEnv = {
+    95	  ...process.env,
+    96	  ELAB_PROD_URL: PROD_URL,
+    97	  SETTLE_MS: String(SETTLE_MS),
+    98	};
+    99	if (MAX_EXPERIMENTS) spawnEnv.MAX_EXPERIMENTS = String(MAX_EXPERIMENTS);
+   100	
+   101	console.log(`Running: npx ${playwrightArgs.join(' ')}`);
+   102	console.log('');
+   103	
+   104	const startTime = Date.now();
+   105	
+   106	const result = spawnSync('npx', playwrightArgs, {
+   107	  cwd: REPO_ROOT,
+   108	  env: spawnEnv,
+   109	  stdio: 'inherit',
+   110	  encoding: 'utf8',
+   111	});
+   112	
+   113	const exitCode = result.status ?? 1;
+   114	const durationMs = Date.now() - startTime;
+   115	
+   116	// Non-zero exit is expected when BROKEN experiments are found
+   117	if (exitCode !== 0) {
+   118	  console.log(`\nPlaywright exited with code ${exitCode} (expected when broken experiments found)`);
+   119	}
+   120	
+   121	// ── Aggregate JSONL results ────────────────────────────────────────────────
+   122	console.log('\nAggregating results from JSONL...');
+   123	
+   124	let results = [];
+   125	if (fs.existsSync(RESULTS_JSONL)) {
+   126	  const lines = fs.readFileSync(RESULTS_JSONL, 'utf8').trim().split('\n');
+   127	  for (const line of lines) {
+   128	    if (!line.trim()) continue;
+   129	    try {
+   130	      const parsed = JSON.parse(line);
+   131	      if (parsed.id && parsed.severity) {
+   132	        results.push(parsed);
+   133	      }
+   134	    } catch (_) {
+   135	      // skip meta line and malformed lines
+   136	    }
+   137	  }
+   138	}
+   139	
+   140	const p0 = results.filter((r) => r.severity === 'P0_BROKEN');
+   141	const p1 = results.filter((r) => r.severity === 'P1_PARTIAL');
+   142	const p2 = results.filter((r) => r.severity === 'P2_OK');
+   143	
+   144	const vol1 = results.filter((r) => r.vol === 1);
+   145	const vol2 = results.filter((r) => r.vol === 2);
+   146	const vol3 = results.filter((r) => r.vol === 3);
+   147	
+   148	// ── Per-cap breakdown ──────────────────────────────────────────────────────
+   149	const byCap = {};
+   150	for (const r of results) {
+   151	  const key = `vol${r.vol}-cap${r.cap}`;
+   152	  if (!byCap[key]) byCap[key] = { vol: r.vol, cap: r.cap, total: 0, P0: 0, P1: 0, P2: 0 };
+   153	  byCap[key].total++;
+   154	  if (r.severity === 'P0_BROKEN') byCap[key].P0++;
+   155	  else if (r.severity === 'P1_PARTIAL') byCap[key].P1++;
+   156	  else byCap[key].P2++;
+   157	}
+   158	
+   159	const pctOf = (n, total) => total > 0 ? `${((n / total) * 100).toFixed(1)}%` : '0%';
+   160	
+   161	// ── Console summary ────────────────────────────────────────────────────────
+   162	console.log('');
+   163	console.log('═══════════════════════════════════════════════════════════');
+   164	console.log('RUNNER AGGREGATE REPORT');
+   165	console.log('═══════════════════════════════════════════════════════════');
+   166	console.log(`Total tested : ${results.length} / 79 expected`);
+   167	console.log(`P2 OK        : ${p2.length} (${pctOf(p2.length, results.length)})`);
+   168	console.log(`P1 PARTIAL   : ${p1.length} (${pctOf(p1.length, results.length)})`);
+   169	console.log(`P0 BROKEN    : ${p0.length} (${pctOf(p0.length, results.length)})`);
+   170	console.log('');
+   171	console.log('Per-volume:');
+   172	console.log(`  Vol1 (38): OK=${vol1.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol1.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol1.filter(r=>r.severity==='P0_BROKEN').length}`);
+   173	console.log(`  Vol2 (27): OK=${vol2.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol2.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol2.filter(r=>r.severity==='P0_BROKEN').length}`);
+   174	console.log(`  Vol3 (14): OK=${vol3.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol3.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol3.filter(r=>r.severity==='P0_BROKEN').length}`);
+   175	console.log('');
+   176	
+   177	if (p0.length > 0) {
+   178	  console.log('WORST P0 BROKEN (top 10):');
+   179	  p0.slice(0, 10).forEach((r) => {
+   180	    const errSummary = (r.consoleErrors?.[0] || r.mountError || r.pageErrors?.[0] || 'no error captured').slice(0, 100);
+   181	    console.log(`  [P0] ${r.id}: api=${r.apiReady} mount=${r.mounted} err="${errSummary}"`);
+   182	  });
+   183	  console.log('');
+   184	}
+   185	
+   186	if (p1.length > 0) {
+   187	  console.log('WORST P1 PARTIAL (top 10):');
+   188	  p1.slice(0, 10).forEach((r) => {
+   189	    console.log(`  [P1] ${r.id}: comp=${r.circuitComponentCount}/${r.expectedComponents} conns=${r.circuitConnectionCount}/${r.expectedConnections}`);
+   190	  });
+   191	  console.log('');
+   192	}
+   193	
+   194	console.log(`Duration     : ${(durationMs / 1000).toFixed(1)}s`);
+   195	console.log(`Exit code    : ${exitCode}`);
+   196	console.log('');
+   197	
+   198	// ── Write runner report ────────────────────────────────────────────────────
+   199	const runnerReport = {
+   200	  meta: {
+   201	    iter: 70,
+   202	    team: 'B',
+   203	    generatedAt: new Date().toISOString(),
+   204	    prodUrl: PROD_URL,
+   205	    durationMs,
+   206	    playwrightExitCode: exitCode,
+   207	  },
+   208	  totals: {
+   209	    tested: results.length,
+   210	    expected: 79,
+   211	    P0_BROKEN: p0.length,
+   212	    P1_PARTIAL: p1.length,
+   213	    P2_OK: p2.length,
+   214	    passRate: pctOf(p2.length, results.length),
+   215	  },
+   216	  byVolume: {
+   217	    vol1: {
+   218	      total: vol1.length,
+   219	      P0: vol1.filter(r=>r.severity==='P0_BROKEN').length,
+   220	      P1: vol1.filter(r=>r.severity==='P1_PARTIAL').length,
+   221	      P2: vol1.filter(r=>r.severity==='P2_OK').length,
+   222	    },
+   223	    vol2: {
+   224	      total: vol2.length,
+   225	      P0: vol2.filter(r=>r.severity==='P0_BROKEN').length,
+   226	      P1: vol2.filter(r=>r.severity==='P1_PARTIAL').length,
+   227	      P2: vol2.filter(r=>r.severity==='P2_OK').length,
+   228	    },
+   229	    vol3: {
+   230	      total: vol3.length,
+   231	      P0: vol3.filter(r=>r.severity==='P0_BROKEN').length,
+   232	      P1: vol3.filter(r=>r.severity==='P1_PARTIAL').length,
+   233	      P2: vol3.filter(r=>r.severity==='P2_OK').length,
+   234	    },
+   235	  },
+   236	  byChapter: Object.values(byCap).sort((a, b) => a.vol - b.vol || a.cap - b.cap),
+   237	  top10Broken: p0.slice(0, 10),
+   238	  top10Partial: p1.slice(0, 10),
+   239	};
+   240	
+   241	fs.writeFileSync(RUNNER_REPORT, JSON.stringify(runnerReport, null, 2), 'utf8');
+   242	console.log(`Runner report: ${path.relative(REPO_ROOT, RUNNER_REPORT)}`);
+   243	console.log('═══════════════════════════════════════════════════════════');
+   244	console.log('');
+   245	
+   246	process.exit(exitCode);
+
+exec
+/bin/zsh -lc "nl -ba tests/unit/iter-70-experiments-data-integrity.test.js | sed -n '1,280p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 636ms:
+     1	/**
+     2	 * iter-70-94-esperimenti-uno-per-uno.spec.js
+     3	 *
+     4	 * Iter 70 Team B — AUDIT 79 esperimenti UNO PER UNO su prod
+     5	 * (Andrea iter 21 mandate carryover NEVER executed + May 13 verbatim
+     6	 * "Diciamo che non funziona affatto")
+     7	 *
+     8	 * Spec audits ALL experiments from:
+     9	 *   src/data/experiments-vol1.js  (38 experiments)
+    10	 *   src/data/experiments-vol2.js  (27 experiments)
+    11	 *   src/data/experiments-vol3.js  (14 experiments)
+    12	 *   TOTAL: 79 experiments
+    13	 *
+    14	 * NOTE: The task brief says "94" but the canonical source data contains
+    15	 * 79 experiments. This spec audits all 79 that actually exist.
+    16	 *
+    17	 * Per experiment:
+    18	 *   1. navigate https://www.elabtutor.school/#lavagna
+    19	 *   2. bypass license gate via seedSprintUBypass (addInitScript before goto)
+    20	 *   3. dismiss ExperimentPicker if auto-opens
+    21	 *   4. mountExperiment(id) via window.__ELAB_API
+    22	 *   5. wait for render (2.5s settle)
+    23	 *   6. capture DOM diagnostics:
+    24	 *        - __ELAB_API present + mountExperiment callable
+    25	 *        - circuit component count (data-component-id nodes)
+    26	 *        - circuit connection count from getCircuitState()
+    27	 *        - SVG presence
+    28	 *        - console errors + page errors
+    29	 *   7. screenshot to tests/e2e/iter-70-screenshots/{id}.png
+    30	 *   8. severity classification:
+    31	 *        P0 BROKEN  — API missing OR mount fails OR 0 circuit components rendered
+    32	 *        P1 PARTIAL — components render but connection count is 0 (wires missing)
+    33	 *                      OR component count < 50% of expected
+    34	 *        P2 OK      — components render + connections > 0 (or 0-connection
+    35	 *                      experiment where connections array is empty by design)
+    36	 *
+    37	 * Output:
+    38	 *   - Individual screenshots in tests/e2e/iter-70-screenshots/
+    39	 *   - Aggregate JSONL in docs/audits/iter-70-94-esperimenti-results.jsonl
+    40	 *   - Summary JSON in docs/audits/iter-70-94-esperimenti-summary.json
+    41	 *
+    42	 * Run:
+    43	 *   npx playwright test tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js \
+    44	 *     --config tests/e2e/sprint-u.config.js \
+    45	 *     --workers=1 --timeout=45000
+    46	 *
+    47	 * (c) Andrea Marro 2026-05-19 — ELAB Tutor — iter 70 Team B
+    48	 */
+    49	
+    50	import { test } from '@playwright/test';
+    51	import fs from 'node:fs';
+    52	import path from 'node:path';
+    53	import { fileURLToPath } from 'node:url';
+    54	import { seedSprintUBypass } from './helpers/sprint-u-auth.js';
+    55	import { extractWireCount } from './helpers/wire-count.js';
+    56	
+    57	const __filename = fileURLToPath(import.meta.url);
+    58	const __dirname = path.dirname(__filename);
+    59	const REPO_ROOT = path.resolve(__dirname, '..', '..');
+    60	
+    61	const SCREENSHOTS_DIR = path.join(REPO_ROOT, 'tests', 'e2e', 'iter-70-screenshots');
+    62	const RESULTS_JSONL = path.join(REPO_ROOT, 'docs', 'audits', 'iter-70-94-esperimenti-results.jsonl');
+    63	const SUMMARY_JSON = path.join(REPO_ROOT, 'docs', 'audits', 'iter-70-94-esperimenti-summary.json');
+    64	
+    65	// Ensure output dirs exist
+    66	fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+    67	fs.mkdirSync(path.join(REPO_ROOT, 'docs', 'audits'), { recursive: true });
+    68	
+    69	const PROD_URL = (process.env.ELAB_PROD_URL || 'https://www.elabtutor.school').replace(/\/$/, '');
+    70	const SETTLE_MS = parseInt(process.env.SETTLE_MS || '2500', 10);
+    71	
+    72	// ── Canonical experiment list ──────────────────────────────────────────────
+    73	// Hardcoded from src/data/experiments-vol*.js to avoid dynamic import issues
+    74	// in the Playwright worker context. Verified 2026-05-19.
+    75	const ALL_EXPERIMENTS = [
+    76	  // ── Volume 1 (38 experiments) ─────────────────────────────────────────
+    77	  { id: 'v1-cap6-esp1', vol: 1, cap: 6, expectedComponents: 4, expectedConnections: 6 },
+    78	  { id: 'v1-cap6-esp2', vol: 1, cap: 6, expectedComponents: 3, expectedConnections: 5 },
+    79	  { id: 'v1-cap6-esp3', vol: 1, cap: 6, expectedComponents: 4, expectedConnections: 6 },
+    80	  { id: 'v1-cap7-esp1', vol: 1, cap: 7, expectedComponents: 4, expectedConnections: 5 },
+    81	  { id: 'v1-cap7-esp2', vol: 1, cap: 7, expectedComponents: 4, expectedConnections: 5 },
+    82	  { id: 'v1-cap7-esp3', vol: 1, cap: 7, expectedComponents: 4, expectedConnections: 5 },
+    83	  { id: 'v1-cap7-esp4', vol: 1, cap: 7, expectedComponents: 5, expectedConnections: 6 },
+    84	  { id: 'v1-cap7-esp5', vol: 1, cap: 7, expectedComponents: 6, expectedConnections: 7 },
+    85	  { id: 'v1-cap7-esp6', vol: 1, cap: 7, expectedComponents: 6, expectedConnections: 7 },
+    86	  { id: 'v1-cap8-esp1', vol: 1, cap: 8, expectedComponents: 4, expectedConnections: 5 },
+    87	  { id: 'v1-cap8-esp2', vol: 1, cap: 8, expectedComponents: 4, expectedConnections: 5 },
+    88	  { id: 'v1-cap8-esp3', vol: 1, cap: 8, expectedComponents: 4, expectedConnections: 5 },
+    89	  { id: 'v1-cap8-esp4', vol: 1, cap: 8, expectedComponents: 4, expectedConnections: 5 },
+    90	  { id: 'v1-cap8-esp5', vol: 1, cap: 8, expectedComponents: 4, expectedConnections: 5 },
+    91	  { id: 'v1-cap9-esp1', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    92	  { id: 'v1-cap9-esp2', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    93	  { id: 'v1-cap9-esp3', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    94	  { id: 'v1-cap9-esp4', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    95	  { id: 'v1-cap9-esp5', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    96	  { id: 'v1-cap9-esp6', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    97	  { id: 'v1-cap9-esp7', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    98	  { id: 'v1-cap9-esp8', vol: 1, cap: 9, expectedComponents: 5, expectedConnections: 6 },
+    99	  { id: 'v1-cap9-esp9', vol: 1, cap: 9, expectedComponents: 6, expectedConnections: 7 },
+   100	  { id: 'v1-cap10-esp1', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   101	  { id: 'v1-cap10-esp2', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   102	  { id: 'v1-cap10-esp3', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   103	  { id: 'v1-cap10-esp4', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   104	  { id: 'v1-cap10-esp5', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   105	  { id: 'v1-cap10-esp6', vol: 1, cap: 10, expectedComponents: 4, expectedConnections: 5 },
+   106	  { id: 'v1-cap11-esp1', vol: 1, cap: 11, expectedComponents: 4, expectedConnections: 5 },
+   107	  { id: 'v1-cap11-esp2', vol: 1, cap: 11, expectedComponents: 4, expectedConnections: 5 },
+   108	  { id: 'v1-cap12-esp1', vol: 1, cap: 12, expectedComponents: 4, expectedConnections: 5 },
+   109	  { id: 'v1-cap12-esp2', vol: 1, cap: 12, expectedComponents: 4, expectedConnections: 5 },
+   110	  { id: 'v1-cap12-esp3', vol: 1, cap: 12, expectedComponents: 4, expectedConnections: 5 },
+   111	  { id: 'v1-cap12-esp4', vol: 1, cap: 12, expectedComponents: 4, expectedConnections: 5 },
+   112	  { id: 'v1-cap13-esp1', vol: 1, cap: 13, expectedComponents: 4, expectedConnections: 5 },
+   113	  { id: 'v1-cap13-esp2', vol: 1, cap: 13, expectedComponents: 4, expectedConnections: 5 },
+   114	  { id: 'v1-cap14-esp1', vol: 1, cap: 14, expectedComponents: 6, expectedConnections: 8 },
+   115	
+   116	  // ── Volume 2 (27 experiments) ─────────────────────────────────────────
+   117	  { id: 'v2-cap3-esp1', vol: 2, cap: 3, expectedComponents: 2, expectedConnections: 0 },
+   118	  { id: 'v2-cap3-esp2', vol: 2, cap: 3, expectedComponents: 2, expectedConnections: 0 },
+   119	  { id: 'v2-cap3-esp3', vol: 2, cap: 3, expectedComponents: 2, expectedConnections: 0 },
+   120	  { id: 'v2-cap3-esp4', vol: 2, cap: 3, expectedComponents: 4, expectedConnections: 2 },
+   121	  { id: 'v2-cap4-esp1', vol: 2, cap: 4, expectedComponents: 4, expectedConnections: 2 },
+   122	  { id: 'v2-cap4-esp2', vol: 2, cap: 4, expectedComponents: 5, expectedConnections: 3 },
+   123	  { id: 'v2-cap4-esp3', vol: 2, cap: 4, expectedComponents: 5, expectedConnections: 3 },
+   124	  { id: 'v2-cap5-esp1', vol: 2, cap: 5, expectedComponents: 3, expectedConnections: 0 },
+   125	  { id: 'v2-cap5-esp2', vol: 2, cap: 5, expectedComponents: 3, expectedConnections: 0 },
+   126	  { id: 'v2-cap6-esp1', vol: 2, cap: 6, expectedComponents: 4, expectedConnections: 5 },
+   127	  { id: 'v2-cap6-esp2', vol: 2, cap: 6, expectedComponents: 4, expectedConnections: 5 },
+   128	  { id: 'v2-cap6-esp3', vol: 2, cap: 6, expectedComponents: 4, expectedConnections: 5 },
+   129	  { id: 'v2-cap6-esp4', vol: 2, cap: 6, expectedComponents: 5, expectedConnections: 6 },
+   130	  { id: 'v2-cap7-esp1', vol: 2, cap: 7, expectedComponents: 5, expectedConnections: 6 },
+   131	  { id: 'v2-cap7-esp2', vol: 2, cap: 7, expectedComponents: 5, expectedConnections: 6 },
+   132	  { id: 'v2-cap7-esp3', vol: 2, cap: 7, expectedComponents: 5, expectedConnections: 6 },
+   133	  { id: 'v2-cap7-esp4', vol: 2, cap: 7, expectedComponents: 5, expectedConnections: 6 },
+   134	  { id: 'v2-cap8-esp1', vol: 2, cap: 8, expectedComponents: 5, expectedConnections: 5 },
+   135	  { id: 'v2-cap8-esp2', vol: 2, cap: 8, expectedComponents: 5, expectedConnections: 5 },
+   136	  { id: 'v2-cap8-esp3', vol: 2, cap: 8, expectedComponents: 5, expectedConnections: 5 },
+   137	  { id: 'v2-cap9-esp1', vol: 2, cap: 9, expectedComponents: 5, expectedConnections: 5 },
+   138	  { id: 'v2-cap9-esp2', vol: 2, cap: 9, expectedComponents: 5, expectedConnections: 5 },
+   139	  { id: 'v2-cap10-esp1', vol: 2, cap: 10, expectedComponents: 5, expectedConnections: 5 },
+   140	  { id: 'v2-cap10-esp2', vol: 2, cap: 10, expectedComponents: 5, expectedConnections: 5 },
+   141	  { id: 'v2-cap10-esp3', vol: 2, cap: 10, expectedComponents: 5, expectedConnections: 5 },
+   142	  { id: 'v2-cap10-esp4', vol: 2, cap: 10, expectedComponents: 5, expectedConnections: 5 },
+   143	  { id: 'v2-cap12-esp1', vol: 2, cap: 12, expectedComponents: 6, expectedConnections: 6 },
+   144	
+   145	  // ── Volume 3 (14 experiments) ─────────────────────────────────────────
+   146	  { id: 'v3-cap5-esp1', vol: 3, cap: 5, expectedComponents: 4, expectedConnections: 0 },
+   147	  { id: 'v3-cap5-esp2', vol: 3, cap: 5, expectedComponents: 4, expectedConnections: 0 },
+   148	  { id: 'v3-cap6-esp1', vol: 3, cap: 6, expectedComponents: 5, expectedConnections: 3 },
+   149	  { id: 'v3-cap6-esp2', vol: 3, cap: 6, expectedComponents: 5, expectedConnections: 3 },
+   150	  { id: 'v3-cap6-morse', vol: 3, cap: 6, expectedComponents: 4, expectedConnections: 2 },
+   151	  { id: 'v3-cap6-esp4', vol: 3, cap: 6, expectedComponents: 5, expectedConnections: 3 },
+   152	  { id: 'v3-cap6-semaforo', vol: 3, cap: 6, expectedComponents: 7, expectedConnections: 5 },
+   153	  { id: 'v3-cap7-esp1', vol: 3, cap: 7, expectedComponents: 5, expectedConnections: 3 },
+   154	  { id: 'v3-cap7-esp2', vol: 3, cap: 7, expectedComponents: 5, expectedConnections: 3 },
+   155	  { id: 'v3-cap7-esp3', vol: 3, cap: 7, expectedComponents: 5, expectedConnections: 3 },
+   156	  { id: 'v3-cap7-esp6', vol: 3, cap: 7, expectedComponents: 5, expectedConnections: 3 },
+   157	  { id: 'v3-cap8-esp1', vol: 3, cap: 8, expectedComponents: 5, expectedConnections: 3 },
+   158	  { id: 'v3-cap8-esp2', vol: 3, cap: 8, expectedComponents: 5, expectedConnections: 3 },
+   159	  { id: 'v3-cap8-esp3', vol: 3, cap: 8, expectedComponents: 5, expectedConnections: 3 },
+   160	];
+   161	
+   162	// ── Init results JSONL ─────────────────────────────────────────────────────
+   163	fs.writeFileSync(
+   164	  RESULTS_JSONL,
+   165	  JSON.stringify({
+   166	    _meta: 'iter-70-94-esperimenti-audit',
+   167	    startedAt: new Date().toISOString(),
+   168	    prodUrl: PROD_URL,
+   169	    totalExpected: ALL_EXPERIMENTS.length,
+   170	  }) + '\n',
+   171	);
+   172	
+   173	function appendResult(record) {
+   174	  fs.appendFileSync(RESULTS_JSONL, JSON.stringify(record) + '\n');
+   175	}
+   176	
+   177	// ── Shared results accumulator for afterAll ────────────────────────────────
+   178	const sharedResults = [];
+   179	
+   180	// ── Per-experiment probe function ─────────────────────────────────────────
+   181	async function probeExperiment(page, expId, consoleErrors, pageErrors) {
+   182	  // Mount via __ELAB_API
+   183	  const mountResult = await page.evaluate(async (id) => {
+   184	    const api = window.__ELAB_API;
+   185	    if (!api) return { apiReady: false, mounted: false, mountError: 'no __ELAB_API on window' };
+   186	    if (typeof api.mountExperiment !== 'function') {
+   187	      return { apiReady: true, mounted: false, mountError: 'mountExperiment not a function' };
+   188	    }
+   189	    let mounted = false;
+   190	    let mountError = null;
+   191	    try {
+   192	      const result = await api.mountExperiment(id);
+   193	      mounted = result !== false; // some versions return false on "not found"
+   194	    } catch (e) {
+   195	      mountError = String(e).slice(0, 300);
+   196	    }
+   197	    return { apiReady: true, mounted, mountError };
+   198	  }, expId);
+   199	
+   200	  // Settle after mount
+   201	  await page.waitForTimeout(SETTLE_MS);
+   202	
+   203	  // DOM + circuit diagnostics
+   204	  const diagnostics = await page.evaluate(() => {
+   205	    const api = window.__ELAB_API;
+   206	    let circuitState = null;
+   207	    try { circuitState = api ? api.getCircuitState() : null; } catch (_) {}
+   208	
+   209	    const componentNodes = document.querySelectorAll('[data-component-id]');
+   210	    const svgEls = document.querySelectorAll('svg');
+   211	    const canvasEl = document.querySelector(
+   212	      '[data-testid="simulator-canvas"], .simulator-canvas, #simulator-canvas, [class*="SimulatorCanvas"]'
+   213	    );
+   214	
+   215	    // Circuit state diagnostics
+   216	    const stateComponents = circuitState?.components
+   217	      ? (Array.isArray(circuitState.components)
+   218	          ? circuitState.components.length
+   219	          : Object.keys(circuitState.components).length)
+   220	      : 0;
+   221	    const stateConnections = Array.isArray(circuitState?.connections)
+   222	      ? circuitState.connections.length
+   223	      : (Array.isArray(circuitState?.wires) ? circuitState.wires.length : 0);
+   224	
+   225	    return {
+   226	      domComponentCount: componentNodes.length,
+   227	      svgCount: svgEls.length,
+   228	      hasSvg: svgEls.length > 0,
+   229	      hasCanvas: !!canvasEl,
+   230	      circuitComponentCount: stateComponents,
+   231	      circuitConnectionCount: stateConnections,
+   232	      circuitStatePresent: circuitState !== null,
+   233	    };
+   234	  });
+   235	
+   236	  return { ...mountResult, ...diagnostics };
+   237	}
+   238	
+   239	// ── Classify severity ──────────────────────────────────────────────────────
+   240	function classifySeverity(probe, exp, consoleErrors, pageErrors) {
+   241	  // P0: API not present, or mount failed, or zero components rendered anywhere
+   242	  if (!probe.apiReady) return 'P0_BROKEN';
+   243	  if (!probe.mounted) return 'P0_BROKEN';
+   244	  if (probe.domComponentCount === 0 && probe.circuitComponentCount === 0) return 'P0_BROKEN';
+   245	
+   246	  // P0: critical page errors (JS crashes)
+   247	  if (pageErrors.length > 0) return 'P0_BROKEN';
+   248	
+   249	  // P1: components render but connections missing when expected
+   250	  const actualComponents = Math.max(probe.domComponentCount, probe.circuitComponentCount);
+   251	  const compRatio = exp.expectedComponents > 0 ? actualComponents / exp.expectedComponents : 1;
+   252	  const connectionsMissing = exp.expectedConnections > 0 && probe.circuitConnectionCount === 0;
+   253	
+   254	  if (connectionsMissing) return 'P1_PARTIAL';
+   255	  if (compRatio < 0.5) return 'P1_PARTIAL';
+   256	
+   257	  // P2: OK
+   258	  return 'P2_OK';
+   259	}
+   260	
+   261	// ── Generate one Playwright test per experiment ────────────────────────────
+   262	for (const exp of ALL_EXPERIMENTS) {
+   263	  test(`iter70 ${exp.id} | vol${exp.vol} cap${exp.cap}`, async ({ page }) => {
+   264	    const consoleErrors = [];
+   265	    const pageErrors = [];
+   266	
+   267	    page.on('console', (msg) => {
+   268	      if (msg.type() === 'error') {
+   269	        consoleErrors.push(msg.text().slice(0, 300));
+   270	      }
+   271	    });
+   272	    page.on('pageerror', (err) => {
+   273	      pageErrors.push(String(err).slice(0, 300));
+   274	    });
+   275	
+   276	    const startMs = Date.now();
+   277	
+   278	    // Seed auth bypass BEFORE navigation
+   279	    await seedSprintUBypass(page);
+   280	
+   281	    // Navigate to #lavagna (preferred over #tutor per iter-70 brief)
+   282	    await page.goto(`${PROD_URL}/#lavagna`, {
+   283	      waitUntil: 'domcontentloaded',
+   284	      timeout: 25000,
+   285	    });
+   286	
+   287	    // Wait for app hydration
+   288	    await page.waitForTimeout(1500);
+   289	
+   290	    // Dismiss ExperimentPicker if it auto-opened (non-fatal if absent)
+   291	    const picker = page.locator('[role="dialog"][aria-label="Scegli un esperimento"]');
+   292	    const pickerVisible = await picker.isVisible({ timeout: 3000 }).catch(() => false);
+   293	    if (pickerVisible) {
+   294	      // Try "Lavagna libera" button first
+   295	      const liberaBtn = picker.getByText(/Lavagna libera/i).first();
+   296	      const liberaVisible = await liberaBtn.isVisible({ timeout: 1000 }).catch(() => false);
+   297	      if (liberaVisible) {
+   298	        await liberaBtn.click({ timeout: 2000 }).catch(() => {});
+   299	      } else {
+   300	        // Fallback: close button or Escape
+   301	        const closeBtn = picker.getByRole('button', { name: /Chiudi/i }).first();
+   302	        const closeVisible = await closeBtn.isVisible({ timeout: 500 }).catch(() => false);
+   303	        if (closeVisible) {
+   304	          await closeBtn.click({ timeout: 2000 }).catch(() => {});
+   305	        } else {
+   306	          await page.keyboard.press('Escape').catch(() => {});
+   307	        }
+   308	      }
+   309	      await page.waitForTimeout(500);
+   310	    }
+   311	
+   312	    // Probe experiment
+   313	    const probe = await probeExperiment(page, exp.id, consoleErrors, pageErrors);
+   314	
+   315	    // Screenshot (best-effort — never fail the test on screenshot error)
+   316	    const screenshotPath = path.join(SCREENSHOTS_DIR, `${exp.id}.png`);
+   317	    await page.screenshot({ path: screenshotPath, fullPage: false }).catch(() => {});
+   318	
+   319	    const durationMs = Date.now() - startMs;
+   320	    const severity = classifySeverity(probe, exp, consoleErrors, pageErrors);
+
+ succeeded in 469ms:
+     1	/**
+     2	 * iter-70-experiments-data-integrity.test.js
+     3	 *
+     4	 * Iter 70 Team B — data integrity verification for all 79 experiments.
+     5	 *
+     6	 * Complements the existing experimentDataIntegrity.test.js but focuses on:
+     7	 *  1. Canonical ID regex compliance (v[1-3]-cap[0-9]+-(?:esp\d+|[a-z0-9_-]+))
+     8	 *  2. unlimPrompt presence and minimum quality (non-empty string)
+     9	 *  3. connections field presence and correct type on all 79 experiments
+    10	 *  4. Vol3 chapter ordering matches book order (cap5 → cap6 → cap7 → cap8)
+    11	 *  5. Cross-volume ID uniqueness
+    12	 *  6. Exact counts (38 vol1, 27 vol2, 14 vol3 = 79 total)
+    13	 *  7. Vol3 chapter composition (cap5:2, cap6:5, cap7:4, cap8:3)
+    14	 *  8. Vol2 "simulable=false" experiments still have components array
+    15	 *  9. connections elements have {from, to} string fields
+    16	 * 10. layout field present on experiments with components
+    17	 * 11. No experiment has negative difficulty
+    18	 * 12. IDs with non-standard suffixes (morse, semaforo) are in Vol3 cap6 only
+    19	 * 13. Vol1+Vol2 experiments use simulationMode "circuit" (no Arduino)
+    20	 * 14. Vol3 experiments use simulationMode "avr" (Arduino)
+    21	 * 15. estimatedMinutes > 0 where present
+    22	 *
+    23	 * Target: 15+ test groups covering iter 70 mandate concerns.
+    24	 *
+    25	 * (c) Andrea Marro 2026-05-19 — ELAB Tutor — iter 70 Team B
+    26	 */
+    27	
+    28	import { describe, test, expect } from 'vitest';
+    29	import EXPERIMENTS_VOL1 from '../../src/data/experiments-vol1.js';
+    30	import EXPERIMENTS_VOL2 from '../../src/data/experiments-vol2.js';
+    31	import EXPERIMENTS_VOL3 from '../../src/data/experiments-vol3.js';
+    32	
+    33	const vol1 = EXPERIMENTS_VOL1.experiments;
+    34	const vol2 = EXPERIMENTS_VOL2.experiments;
+    35	const vol3 = EXPERIMENTS_VOL3.experiments;
+    36	const all = [...vol1, ...vol2, ...vol3];
+    37	
+    38	// Canonical ID regex from iter-70 brief:
+    39	// IDs: v[1-3]-cap[0-9]+-(?:esp\d+|[a-z0-9_-]+)
+    40	const CANONICAL_ID_REGEX = /^v[1-3]-cap\d+(?:-esp\d+|-[a-z][a-z0-9_-]*)$/;
+    41	
+    42	// ═══════════════════════════════════════════════════════════════════════════
+    43	// 1. Exact counts — iter 70 reality check (not 94, but 79)
+    44	// ═══════════════════════════════════════════════════════════════════════════
+    45	describe('1. Exact experiment counts', () => {
+    46	  test('Volume 1 has exactly 38 experiments', () => {
+    47	    expect(vol1.length).toBe(38);
+    48	  });
+    49	
+    50	  test('Volume 2 has exactly 27 experiments', () => {
+    51	    expect(vol2.length).toBe(27);
+    52	  });
+    53	
+    54	  test('Volume 3 has exactly 14 experiments (not 29 as brief says)', () => {
+    55	    expect(vol3.length).toBe(14);
+    56	  });
+    57	
+    58	  test('Total across all volumes is 79', () => {
+    59	    expect(all.length).toBe(79);
+    60	  });
+    61	});
+    62	
+    63	// ═══════════════════════════════════════════════════════════════════════════
+    64	// 2. All 79 IDs match canonical regex
+    65	// ═══════════════════════════════════════════════════════════════════════════
+    66	describe('2. All IDs match canonical regex v[1-3]-cap\\d+-(?:esp\\d+|[a-z0-9_-]+)', () => {
+    67	  all.forEach((exp) => {
+    68	    test(`${exp.id} matches canonical ID regex`, () => {
+    69	      expect(exp.id, `"${exp.id}" does not match canonical regex`).toMatch(CANONICAL_ID_REGEX);
+    70	    });
+    71	  });
+    72	});
+    73	
+    74	// ═══════════════════════════════════════════════════════════════════════════
+    75	// 3. All 79 IDs are unique across volumes
+    76	// ═══════════════════════════════════════════════════════════════════════════
+    77	describe('3. ID uniqueness', () => {
+    78	  test('No duplicate IDs across all 79 experiments', () => {
+    79	    const ids = all.map((e) => e.id);
+    80	    const unique = new Set(ids);
+    81	    const duplicates = ids.filter((id, idx) => ids.indexOf(id) !== idx);
+    82	    expect(duplicates, `Duplicate IDs found: ${duplicates.join(', ')}`).toEqual([]);
+    83	    expect(unique.size).toBe(all.length);
+    84	  });
+    85	
+    86	  test('No duplicate IDs within Volume 1', () => {
+    87	    const ids = vol1.map((e) => e.id);
+    88	    const dups = ids.filter((id, idx) => ids.indexOf(id) !== idx);
+    89	    expect(dups).toEqual([]);
+    90	  });
+    91	
+    92	  test('No duplicate IDs within Volume 2', () => {
+    93	    const ids = vol2.map((e) => e.id);
+    94	    const dups = ids.filter((id, idx) => ids.indexOf(id) !== idx);
+    95	    expect(dups).toEqual([]);
+    96	  });
+    97	
+    98	  test('No duplicate IDs within Volume 3', () => {
+    99	    const ids = vol3.map((e) => e.id);
+   100	    const dups = ids.filter((id, idx) => ids.indexOf(id) !== idx);
+   101	    expect(dups).toEqual([]);
+   102	  });
+   103	});
+   104	
+   105	// ═══════════════════════════════════════════════════════════════════════════
+   106	// 4. All experiments have required fields: title + unlimPrompt + components + connections
+   107	// ═══════════════════════════════════════════════════════════════════════════
+   108	describe('4. Required fields present on all 79 experiments', () => {
+   109	  all.forEach((exp) => {
+   110	    test(`${exp.id} has title + unlimPrompt + components + connections`, () => {
+   111	      expect(exp.title, `${exp.id} missing title`).toBeTruthy();
+   112	      expect(typeof exp.title).toBe('string');
+   113	      expect(exp.title.length, `${exp.id} title is empty`).toBeGreaterThan(0);
+   114	
+   115	      expect(exp.unlimPrompt, `${exp.id} missing unlimPrompt`).toBeTruthy();
+   116	      expect(typeof exp.unlimPrompt).toBe('string');
+   117	      expect(exp.unlimPrompt.length, `${exp.id} unlimPrompt is too short (< 20 chars)`).toBeGreaterThanOrEqual(20);
+   118	
+   119	      expect(exp.components, `${exp.id} missing components`).toBeDefined();
+   120	      expect(Array.isArray(exp.components), `${exp.id} components is not an array`).toBe(true);
+   121	      expect(exp.components.length, `${exp.id} has zero components`).toBeGreaterThan(0);
+   122	
+   123	      expect(exp.connections, `${exp.id} missing connections field`).toBeDefined();
+   124	      expect(Array.isArray(exp.connections), `${exp.id} connections is not an array`).toBe(true);
+   125	    });
+   126	  });
+   127	});
+   128	
+   129	// ═══════════════════════════════════════════════════════════════════════════
+   130	// 5. connections elements have {from, to} string fields
+   131	// ═══════════════════════════════════════════════════════════════════════════
+   132	describe('5. connections elements are valid {from, to} objects', () => {
+   133	  all.forEach((exp) => {
+   134	    if (!exp.connections || exp.connections.length === 0) return;
+   135	    test(`${exp.id} connections elements have from+to strings`, () => {
+   136	      exp.connections.forEach((conn, idx) => {
+   137	        expect(typeof conn.from, `${exp.id} connections[${idx}].from is not string`).toBe('string');
+   138	        expect(conn.from.length, `${exp.id} connections[${idx}].from is empty`).toBeGreaterThan(0);
+   139	        expect(typeof conn.to, `${exp.id} connections[${idx}].to is not string`).toBe('string');
+   140	        expect(conn.to.length, `${exp.id} connections[${idx}].to is empty`).toBeGreaterThan(0);
+   141	      });
+   142	    });
+   143	  });
+   144	});
+   145	
+   146	// ═══════════════════════════════════════════════════════════════════════════
+   147	// 6. Vol3 chapter ordering matches book order: cap5 → cap6 → cap7 → cap8
+   148	// ═══════════════════════════════════════════════════════════════════════════
+   149	describe('6. Vol3 chapter ordering matches book order (cap5 → cap6 → cap7 → cap8)', () => {
+   150	  test('Vol3 experiments are in ascending chapter order in the array', () => {
+   151	    const chapNumbers = vol3.map((e) => {
+   152	      const m = e.id.match(/^v3-cap(\d+)-/);
+   153	      return m ? parseInt(m[1], 10) : -1;
+   154	    });
+   155	
+   156	    // Chapters must be non-decreasing (sorted ascending)
+   157	    for (let i = 1; i < chapNumbers.length; i++) {
+   158	      expect(
+   159	        chapNumbers[i],
+   160	        `Vol3 experiment at index ${i} (${vol3[i].id}) has chapter ${chapNumbers[i]} ` +
+   161	          `which is lower than previous chapter ${chapNumbers[i - 1]}`
+   162	      ).toBeGreaterThanOrEqual(chapNumbers[i - 1]);
+   163	    }
+   164	  });
+   165	
+   166	  test('Vol3 first experiment is in cap5', () => {
+   167	    expect(vol3[0].id).toMatch(/^v3-cap5-/);
+   168	  });
+   169	
+   170	  test('Vol3 last experiment is in cap8', () => {
+   171	    expect(vol3[vol3.length - 1].id).toMatch(/^v3-cap8-/);
+   172	  });
+   173	
+   174	  test('Vol3 chapter 5 has exactly 2 experiments', () => {
+   175	    const cap5 = vol3.filter((e) => e.id.startsWith('v3-cap5-'));
+   176	    expect(cap5.length).toBe(2);
+   177	  });
+   178	
+   179	  test('Vol3 chapter 6 has exactly 5 experiments', () => {
+   180	    const cap6 = vol3.filter((e) => e.id.startsWith('v3-cap6-'));
+   181	    expect(cap6.length).toBe(5);
+   182	  });
+   183	
+   184	  test('Vol3 chapter 7 has exactly 4 experiments', () => {
+   185	    const cap7 = vol3.filter((e) => e.id.startsWith('v3-cap7-'));
+   186	    expect(cap7.length).toBe(4);
+   187	  });
+   188	
+   189	  test('Vol3 chapter 8 has exactly 3 experiments', () => {
+   190	    const cap8 = vol3.filter((e) => e.id.startsWith('v3-cap8-'));
+   191	    expect(cap8.length).toBe(3);
+   192	  });
+   193	});
+   194	
+   195	// ═══════════════════════════════════════════════════════════════════════════
+   196	// 7. Non-standard suffixes (morse, semaforo) are only in Vol3 cap6
+   197	// ═══════════════════════════════════════════════════════════════════════════
+   198	describe('7. Non-standard ID suffixes are correctly scoped', () => {
+   199	  test('v3-cap6-morse exists in Vol3', () => {
+   200	    const found = vol3.find((e) => e.id === 'v3-cap6-morse');
+   201	    expect(found, 'v3-cap6-morse not found in vol3').toBeDefined();
+   202	  });
+   203	
+   204	  test('v3-cap6-semaforo exists in Vol3', () => {
+   205	    const found = vol3.find((e) => e.id === 'v3-cap6-semaforo');
+   206	    expect(found, 'v3-cap6-semaforo not found in vol3').toBeDefined();
+   207	  });
+   208	
+   209	  test('No non-standard suffixes outside Vol3 cap6', () => {
+   210	    const nonStandardOutsideCap6 = all.filter((e) => {
+   211	      // Standard suffix is -esp\d+
+   212	      const isStandard = /^v[1-3]-cap\d+-esp\d+$/.test(e.id);
+   213	      const isAllowedNonStandard = /^v3-cap6-(morse|semaforo)$/.test(e.id);
+   214	      return !isStandard && !isAllowedNonStandard;
+   215	    });
+   216	    expect(
+   217	      nonStandardOutsideCap6.map((e) => e.id),
+   218	      'Unexpected non-standard IDs found outside v3-cap6'
+   219	    ).toEqual([]);
+   220	  });
+   221	});
+   222	
+   223	// ═══════════════════════════════════════════════════════════════════════════
+   224	// 8. Vol1 + Vol2 use simulationMode "circuit" (no Arduino)
+   225	// ═══════════════════════════════════════════════════════════════════════════
+   226	describe('8. simulationMode correctness by volume', () => {
+   227	  test('All Vol1 experiments use simulationMode "circuit"', () => {
+   228	    const wrong = vol1.filter((e) => e.simulationMode !== 'circuit');
+   229	    expect(wrong.map((e) => `${e.id}:${e.simulationMode}`)).toEqual([]);
+   230	  });
+   231	
+   232	  test('All Vol2 experiments use simulationMode "circuit"', () => {
+   233	    const wrong = vol2.filter((e) => e.simulationMode !== 'circuit');
+   234	    expect(wrong.map((e) => `${e.id}:${e.simulationMode}`)).toEqual([]);
+   235	  });
+   236	
+   237	  test('All Vol3 experiments use simulationMode "avr"', () => {
+   238	    const wrong = vol3.filter((e) => e.simulationMode !== 'avr');
+   239	    expect(wrong.map((e) => `${e.id}:${e.simulationMode}`)).toEqual([]);
+   240	  });
+   241	
+   242	  test('Total circuit mode = 65 (Vol1+Vol2), total avr mode = 14 (Vol3)', () => {
+   243	    const circuitCount = all.filter((e) => e.simulationMode === 'circuit').length;
+   244	    const avrCount = all.filter((e) => e.simulationMode === 'avr').length;
+   245	    expect(circuitCount).toBe(65);
+   246	    expect(avrCount).toBe(14);
+   247	  });
+   248	});
+   249	
+   250	// ═══════════════════════════════════════════════════════════════════════════
+   251	// 9. Vol2 simulable=false experiments still have non-empty components array
+   252	// ═══════════════════════════════════════════════════════════════════════════
+   253	describe('9. Vol2 non-simulable experiments still have components', () => {
+   254	  const nonSimulableVol2 = vol2.filter((e) => e.simulable === false);
+   255	
+   256	  test('There are some non-simulable experiments in Vol2', () => {
+   257	    // vol2 has multimeter experiments marked simulable=false
+   258	    expect(nonSimulableVol2.length).toBeGreaterThan(0);
+   259	  });
+   260	
+   261	  nonSimulableVol2.forEach((exp) => {
+   262	    test(`${exp.id} (non-simulable) still has components array`, () => {
+   263	      expect(Array.isArray(exp.components)).toBe(true);
+   264	      expect(exp.components.length).toBeGreaterThan(0);
+   265	    });
+   266	  });
+   267	});
+   268	
+   269	// ═══════════════════════════════════════════════════════════════════════════
+   270	// 10. layout field present on experiments with components
+   271	// ═══════════════════════════════════════════════════════════════════════════
+   272	describe('10. layout field present and non-empty for all experiments', () => {
+   273	  all.forEach((exp) => {
+   274	    test(`${exp.id} has layout object with at least one entry`, () => {
+   275	      expect(exp.layout, `${exp.id} missing layout`).toBeDefined();
+   276	      expect(typeof exp.layout).toBe('object');
+   277	      expect(exp.layout).not.toBeNull();
+   278	      const keys = Object.keys(exp.layout);
+   279	      expect(keys.length, `${exp.id} layout is empty`).toBeGreaterThan(0);
+   280	    });
+
+exec
+/bin/zsh -lc "nl -ba tests/unit/iter-70-experiments-data-integrity.test.js | sed -n '280,520p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "nl -ba tests/e2e/helpers/sprint-u-auth.js | sed -n '1,260p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "nl -ba tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js | sed -n '320,520p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "nl -ba tests/e2e/helpers/wire-count.js | sed -n '1,220p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 2949ms:
+   320	    const severity = classifySeverity(probe, exp, consoleErrors, pageErrors);
+   321	
+   322	    const record = {
+   323	      id: exp.id,
+   324	      vol: exp.vol,
+   325	      cap: exp.cap,
+   326	      severity,
+   327	      apiReady: probe.apiReady,
+   328	      mounted: probe.mounted,
+   329	      mountError: probe.mountError || null,
+   330	      domComponentCount: probe.domComponentCount,
+   331	      circuitComponentCount: probe.circuitComponentCount,
+   332	      circuitConnectionCount: probe.circuitConnectionCount,
+   333	      hasSvg: probe.hasSvg,
+   334	      svgCount: probe.svgCount,
+   335	      hasCanvas: probe.hasCanvas,
+   336	      circuitStatePresent: probe.circuitStatePresent,
+   337	      expectedComponents: exp.expectedComponents,
+   338	      expectedConnections: exp.expectedConnections,
+   339	      consoleErrors: consoleErrors.slice(0, 5),
+   340	      pageErrors: pageErrors.slice(0, 3),
+   341	      screenshotPath: path.relative(path.join(REPO_ROOT, '..'), screenshotPath),
+   342	      durationMs,
+   343	      timestamp: new Date().toISOString(),
+   344	    };
+   345	
+   346	    appendResult(record);
+   347	    sharedResults.push(record);
+   348	
+   349	    // Inline CI log
+   350	    const actualComps = Math.max(probe.domComponentCount, probe.circuitComponentCount);
+   351	    console.log(
+   352	      `[${severity}] ${exp.id} | ` +
+   353	        `api=${probe.apiReady} mount=${probe.mounted} ` +
+   354	        `dom_comp=${probe.domComponentCount} circuit_comp=${probe.circuitComponentCount} ` +
+   355	        `conns=${probe.circuitConnectionCount}/${exp.expectedConnections} ` +
+   356	        `errs=${consoleErrors.length} pageErrs=${pageErrors.length} ` +
+   357	        `${durationMs}ms`
+   358	    );
+   359	  });
+   360	}
+   361	
+   362	// ── After all: write summary JSON ─────────────────────────────────────────
+   363	test.afterAll(async () => {
+   364	  const p0 = sharedResults.filter((r) => r.severity === 'P0_BROKEN');
+   365	  const p1 = sharedResults.filter((r) => r.severity === 'P1_PARTIAL');
+   366	  const p2 = sharedResults.filter((r) => r.severity === 'P2_OK');
+   367	
+   368	  const vol1Results = sharedResults.filter((r) => r.vol === 1);
+   369	  const vol2Results = sharedResults.filter((r) => r.vol === 2);
+   370	  const vol3Results = sharedResults.filter((r) => r.vol === 3);
+   371	
+   372	  const summary = {
+   373	    meta: {
+   374	      iter: 70,
+   375	      team: 'B',
+   376	      task: '94-esperimenti-uno-per-uno',
+   377	      generatedAt: new Date().toISOString(),
+   378	      prodUrl: PROD_URL,
+   379	      totalTested: sharedResults.length,
+   380	    },
+   381	    totals: {
+   382	      P0_BROKEN: p0.length,
+   383	      P1_PARTIAL: p1.length,
+   384	      P2_OK: p2.length,
+   385	    },
+   386	    byVolume: {
+   387	      vol1: {
+   388	        total: vol1Results.length,
+   389	        P0_BROKEN: vol1Results.filter((r) => r.severity === 'P0_BROKEN').length,
+   390	        P1_PARTIAL: vol1Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+   391	        P2_OK: vol1Results.filter((r) => r.severity === 'P2_OK').length,
+   392	      },
+   393	      vol2: {
+   394	        total: vol2Results.length,
+   395	        P0_BROKEN: vol2Results.filter((r) => r.severity === 'P0_BROKEN').length,
+   396	        P1_PARTIAL: vol2Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+   397	        P2_OK: vol2Results.filter((r) => r.severity === 'P2_OK').length,
+   398	      },
+   399	      vol3: {
+   400	        total: vol3Results.length,
+   401	        P0_BROKEN: vol3Results.filter((r) => r.severity === 'P0_BROKEN').length,
+   402	        P1_PARTIAL: vol3Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+   403	        P2_OK: vol3Results.filter((r) => r.severity === 'P2_OK').length,
+   404	      },
+   405	    },
+   406	    worstBroken: p0
+   407	      .sort((a, b) => a.id.localeCompare(b.id))
+   408	      .slice(0, 10)
+   409	      .map((r) => ({
+   410	        id: r.id,
+   411	        severity: r.severity,
+   412	        apiReady: r.apiReady,
+   413	        mounted: r.mounted,
+   414	        mountError: r.mountError,
+   415	        domComponentCount: r.domComponentCount,
+   416	        circuitComponentCount: r.circuitComponentCount,
+   417	        consoleErrors: r.consoleErrors,
+   418	        pageErrors: r.pageErrors,
+   419	        screenshotPath: r.screenshotPath,
+   420	      })),
+   421	    worstPartial: p1
+   422	      .sort((a, b) => a.id.localeCompare(b.id))
+   423	      .slice(0, 10)
+   424	      .map((r) => ({
+   425	        id: r.id,
+   426	        severity: r.severity,
+   427	        domComponentCount: r.domComponentCount,
+   428	        circuitComponentCount: r.circuitComponentCount,
+   429	        circuitConnectionCount: r.circuitConnectionCount,
+   430	        expectedConnections: r.expectedConnections,
+   431	        consoleErrors: r.consoleErrors,
+   432	        screenshotPath: r.screenshotPath,
+   433	      })),
+   434	    allResults: sharedResults,
+   435	  };
+   436	
+   437	  fs.writeFileSync(SUMMARY_JSON, JSON.stringify(summary, null, 2), 'utf8');
+   438	
+   439	  console.log('\n');
+   440	  console.log('═══════════════════════════════════════════════════════════');
+   441	  console.log('ITER-70 TEAM B — 79 ESPERIMENTI AUDIT RESULTS');
+   442	  console.log('═══════════════════════════════════════════════════════════');
+   443	  console.log(`Total tested : ${sharedResults.length}`);
+   444	  console.log(`P2 OK        : ${p2.length} (${sharedResults.length > 0 ? ((p2.length / sharedResults.length) * 100).toFixed(1) : 0}%)`);
+   445	  console.log(`P1 PARTIAL   : ${p1.length} (${sharedResults.length > 0 ? ((p1.length / sharedResults.length) * 100).toFixed(1) : 0}%)`);
+   446	  console.log(`P0 BROKEN    : ${p0.length} (${sharedResults.length > 0 ? ((p0.length / sharedResults.length) * 100).toFixed(1) : 0}%)`);
+   447	  console.log('');
+   448	  console.log(`Vol1 (38): OK=${vol1Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol1Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol1Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+   449	  console.log(`Vol2 (27): OK=${vol2Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol2Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol2Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+   450	  console.log(`Vol3 (14): OK=${vol3Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol3Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol3Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+   451	  console.log('');
+   452	  if (p0.length > 0) {
+   453	    console.log('TOP P0 BROKEN:');
+   454	    p0.slice(0, 10).forEach((r) => {
+   455	      console.log(
+   456	        `  ${r.id}: api=${r.apiReady} mount=${r.mounted} ` +
+   457	          `comp=${r.circuitComponentCount} err="${(r.consoleErrors[0] || r.mountError || '').slice(0, 80)}"`
+   458	      );
+   459	    });
+   460	  }
+   461	  console.log('');
+   462	  console.log(`Summary JSON : docs/audits/iter-70-94-esperimenti-summary.json`);
+   463	  console.log(`Screenshots  : tests/e2e/iter-70-screenshots/ (${sharedResults.length} PNG)`);
+   464	  console.log('═══════════════════════════════════════════════════════════');
+   465	});
+
+ succeeded in 3207ms:
+   280	    });
+   281	  });
+   282	});
+   283	
+   284	// ═══════════════════════════════════════════════════════════════════════════
+   285	// 11. Difficulty is positive integer (no negatives, no zero)
+   286	// ═══════════════════════════════════════════════════════════════════════════
+   287	describe('11. Difficulty is a positive integer 1-5', () => {
+   288	  test('No experiment has difficulty <= 0', () => {
+   289	    const bad = all.filter((e) => !e.difficulty || e.difficulty <= 0);
+   290	    expect(bad.map((e) => `${e.id}:${e.difficulty}`)).toEqual([]);
+   291	  });
+   292	
+   293	  test('No experiment has difficulty > 5', () => {
+   294	    const bad = all.filter((e) => e.difficulty > 5);
+   295	    expect(bad.map((e) => `${e.id}:${e.difficulty}`)).toEqual([]);
+   296	  });
+   297	
+   298	  test('All difficulty values are integers', () => {
+   299	    const bad = all.filter((e) => !Number.isInteger(e.difficulty));
+   300	    expect(bad.map((e) => `${e.id}:${e.difficulty}`)).toEqual([]);
+   301	  });
+   302	});
+   303	
+   304	// ═══════════════════════════════════════════════════════════════════════════
+   305	// 12. estimatedMinutes > 0 where present
+   306	// ═══════════════════════════════════════════════════════════════════════════
+   307	describe('12. estimatedMinutes is positive where defined', () => {
+   308	  const withMinutes = all.filter((e) => e.estimatedMinutes !== undefined && e.estimatedMinutes !== null);
+   309	
+   310	  test('Experiments with estimatedMinutes have it > 0', () => {
+   311	    const bad = withMinutes.filter((e) => e.estimatedMinutes <= 0);
+   312	    expect(bad.map((e) => `${e.id}:${e.estimatedMinutes}`)).toEqual([]);
+   313	  });
+   314	
+   315	  test('estimatedMinutes is a number where present', () => {
+   316	    const bad = withMinutes.filter((e) => typeof e.estimatedMinutes !== 'number');
+   317	    expect(bad.map((e) => `${e.id}:${typeof e.estimatedMinutes}`)).toEqual([]);
+   318	  });
+   319	});
+   320	
+   321	// ═══════════════════════════════════════════════════════════════════════════
+   322	// 13. unlimPrompt language check (Italian — rudimentary keyword test)
+   323	// ═══════════════════════════════════════════════════════════════════════════
+   324	describe('13. unlimPrompt is in Italian (contains Italian keywords)', () => {
+   325	  // Spot-check: UNLIM always ends with "Rispondi in italiano."
+   326	  const itKeywords = /Rispondi in italiano|Sei UNLIM|il docente|bambini|la classe/i;
+   327	
+   328	  all.forEach((exp) => {
+   329	    test(`${exp.id} unlimPrompt contains Italian indicator`, () => {
+   330	      expect(exp.unlimPrompt, `${exp.id} unlimPrompt missing — cannot check language`).toBeTruthy();
+   331	      expect(
+   332	        itKeywords.test(exp.unlimPrompt),
+   333	        `${exp.id} unlimPrompt appears not in Italian: "${exp.unlimPrompt.slice(0, 80)}..."`
+   334	      ).toBe(true);
+   335	    });
+   336	  });
+   337	});
+   338	
+   339	// ═══════════════════════════════════════════════════════════════════════════
+   340	// 14. Vol3 cap6 specific: morse and semaforo have correct simulationMode
+   341	// ═══════════════════════════════════════════════════════════════════════════
+   342	describe('14. Vol3 cap6 special experiments (morse, semaforo) correctness', () => {
+   343	  const morse = vol3.find((e) => e.id === 'v3-cap6-morse');
+   344	  const semaforo = vol3.find((e) => e.id === 'v3-cap6-semaforo');
+   345	
+   346	  test('v3-cap6-morse has simulationMode avr', () => {
+   347	    expect(morse?.simulationMode).toBe('avr');
+   348	  });
+   349	
+   350	  test('v3-cap6-semaforo has simulationMode avr', () => {
+   351	    expect(semaforo?.simulationMode).toBe('avr');
+   352	  });
+   353	
+   354	  test('v3-cap6-morse has chapter field containing "Capitolo 6"', () => {
+   355	    expect(morse?.chapter).toMatch(/capitolo 6|cap.*6/i);
+   356	  });
+   357	
+   358	  test('v3-cap6-semaforo has chapter field containing "Capitolo 6"', () => {
+   359	    expect(semaforo?.chapter).toMatch(/capitolo 6|cap.*6/i);
+   360	  });
+   361	});
+   362	
+   363	// ═══════════════════════════════════════════════════════════════════════════
+   364	// 15. Component IDs within each experiment are unique
+   365	// ═══════════════════════════════════════════════════════════════════════════
+   366	describe('15. Component IDs are unique within each experiment', () => {
+   367	  all.forEach((exp) => {
+   368	    if (!exp.components || exp.components.length < 2) return;
+   369	    test(`${exp.id} has no duplicate component IDs`, () => {
+   370	      const compIds = exp.components.map((c) => c.id);
+   371	      const unique = new Set(compIds);
+   372	      const dups = compIds.filter((id, idx) => compIds.indexOf(id) !== idx);
+   373	      expect(
+   374	        dups,
+   375	        `${exp.id} has duplicate component IDs: ${dups.join(', ')}`
+   376	      ).toEqual([]);
+   377	      expect(unique.size).toBe(compIds.length);
+   378	    });
+   379	  });
+   380	});
+
+ succeeded in 3346ms:
+     1	/**
+     2	 * Sprint U — inject classKey bypass for E2E testing against prod.
+     3	 *
+     4	 * Two strategies:
+     5	 *   1. addInitScript (PRIMARY) — seed localStorage before app boots.
+     6	 *      Call seedSprintUBypass(page) BEFORE page.goto().
+     7	 *   2. injectClassKey (LEGACY helper) — navigate first, then inject.
+     8	 *      Retained for compatibility but prefer primary path.
+     9	 *
+    10	 * Sprint U Cycle 1 Iter 1 — LiveTest-1
+    11	 */
+    12	
+    13	export const SPRINT_U_LICENSE_KEY = 'ELAB2026';
+    14	
+    15	/**
+    16	 * Primary: seed localStorage via addInitScript (before app hydration).
+    17	 * Also seeds GDPR consent and BentornatiOverlay suppression.
+    18	 *
+    19	 * @param {import('@playwright/test').Page} page
+    20	 */
+    21	export async function seedSprintUBypass(page) {
+    22	  await page.addInitScript((licenseKey) => {
+    23	    try {
+    24	      // Gate 1: WelcomePage license
+    25	      window.localStorage.setItem('elab-license-key', licenseKey);
+    26	      window.localStorage.setItem('elab-class-key', licenseKey);
+    27	      window.sessionStorage.setItem('elab-license-key', licenseKey);
+    28	
+    29	      // Gate 2: ConsentBanner — fully accepted state
+    30	      const acceptedConsent = JSON.stringify({
+    31	        status: 'accepted',
+    32	        age: 18,
+    33	        analyticsAnonymized: true,
+    34	        timestamp: new Date().toISOString(),
+    35	        version: '1.0',
+    36	      });
+    37	      window.localStorage.setItem('elab_gdpr_consent', acceptedConsent);
+    38	      window.localStorage.setItem('elab_consent_v2', 'accepted');
+    39	      window.sessionStorage.setItem('elab_user_age', '18');
+    40	
+    41	      // Suppress BentornatiOverlay and picker auto-open
+    42	      window.localStorage.setItem('elab_skip_bentornati', 'true');
+    43	      window.localStorage.setItem('elab_lavagna_active_tab', 'lavagna');
+    44	    } catch (_e) {
+    45	      /* storage blocked / private mode — fallback via UI */
+    46	    }
+    47	  }, SPRINT_U_LICENSE_KEY);
+    48	}
+    49	
+    50	/**
+    51	 * Legacy helper: navigate to root then inject via page.evaluate.
+    52	 * Use seedSprintUBypass instead for reliability.
+    53	 *
+    54	 * @param {import('@playwright/test').Page} page
+    55	 */
+    56	export async function injectClassKey(page) {
+    57	  await page.goto('https://www.elabtutor.school/', { waitUntil: 'domcontentloaded' });
+    58	  await page.evaluate(() => {
+    59	    localStorage.setItem('elab-license-key', 'ELAB2026');
+    60	    localStorage.setItem('elab-class-key', 'ELAB2026');
+    61	    sessionStorage.setItem('elab-license-key', 'ELAB2026');
+    62	  });
+    63	  return true;
+    64	}
+
+ succeeded in 3876ms:
+     1	/**
+     2	 * extractWireCount — canonical wire count read from circuit state.
+     3	 *
+     4	 * Iter-29 Task 29.2 PIVOT (docs/audits/iter-29-wires-root-cause.md).
+     5	 *
+     6	 * useSimulatorAPI.getCircuitState() (src/components/simulator/hooks/useSimulatorAPI.js:136)
+     7	 * returns the field `connections` — an array of `{from, to, color?}` objects.
+     8	 *
+     9	 * The audit harness `tests/e2e/29-92-esperimenti-audit.spec.js` previously read
+    10	 * `state.wires`, which does not exist on the canonical state shape. Result:
+    11	 * `actualWireCount === 0` for ALL 94 esperimenti (including known-working
+    12	 * reference experiments) — a measurement artifact, NOT an engine/mountExperiment
+    13	 * bug. The original Task 29.2 plan assumed mountExperiment was at fault; Task
+    14	 * 29.1 investigation FALSIFIED that hypothesis.
+    15	 *
+    16	 * This helper centralizes the read so the harness and its unit test share a
+    17	 * single source of truth. `connections` is canonical; `wires` is a legacy
+    18	 * fallback retained for forward-compat in case any older state shape surfaces.
+    19	 *
+    20	 * Contract:
+    21	 *   - connections: Array<{from, to, ...}> takes precedence (even if empty)
+    22	 *   - wires: Array<...> used only when connections is absent / non-array
+    23	 *   - null / undefined / missing fields → 0
+    24	 *
+    25	 * @param {object|null|undefined} state - circuit state object from getCircuitState()
+    26	 * @returns {number} wire count (length of connections, or wires fallback, or 0)
+    27	 */
+    28	export function extractWireCount(state) {
+    29	  if (!state) return 0;
+    30	  // connections is canonical (per useSimulatorAPI.js:136), wires is legacy fallback
+    31	  if (Array.isArray(state.connections)) return state.connections.length;
+    32	  if (Array.isArray(state.wires)) return state.wires.length;
+    33	  return 0;
+    34	}
+
+codex
+The E2E spec itself states the “94” brief is not the canonical data shape and audits 79 hardcoded entries. I’m now checking whether that hardcoded list actually matches the source experiment data and whether the runner/report logic can produce stale or misleading totals.
+exec
+/bin/zsh -lc "node --input-type=module -e \"import v1 from './src/data/experiments-vol1.js'; import v2 from './src/data/experiments-vol2.js'; import v3 from './src/data/experiments-vol3.js'; const all=[...v1.experiments,...v2.experiments,...v3.experiments]; console.log(all.length); console.log(all.map(e=>[e.id,e.components?.length??0,e.connections?.length??0]).join('\\n'));\"" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "rg -n \"MAX_EXPERIMENTS|ALL_EXPERIMENTS|extractWireCount|expected: 79|79 expected|task: '94|totalExpected|screenshotPath|P0_BROKEN|P1_PARTIAL|P2_OK\" scripts/bench/iter-70-94-esperimenti-runner.mjs tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js tests/unit/iter-70-experiments-data-integrity.test.js" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+exec
+/bin/zsh -lc "rg -n \"id: 'v[123]-cap|components:|connections:\" src/data/experiments-vol1.js src/data/experiments-vol2.js src/data/experiments-vol3.js | head -n 240" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 125ms:
+scripts/bench/iter-70-94-esperimenti-runner.mjs:47:const MAX_EXPERIMENTS = maxArg ? parseInt(maxArg.split('=')[1], 10) : null;
+scripts/bench/iter-70-94-esperimenti-runner.mjs:66:console.log(`Max exps    : ${MAX_EXPERIMENTS ?? 'ALL (79)'}`);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:99:if (MAX_EXPERIMENTS) spawnEnv.MAX_EXPERIMENTS = String(MAX_EXPERIMENTS);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:140:const p0 = results.filter((r) => r.severity === 'P0_BROKEN');
+scripts/bench/iter-70-94-esperimenti-runner.mjs:141:const p1 = results.filter((r) => r.severity === 'P1_PARTIAL');
+scripts/bench/iter-70-94-esperimenti-runner.mjs:142:const p2 = results.filter((r) => r.severity === 'P2_OK');
+scripts/bench/iter-70-94-esperimenti-runner.mjs:154:  if (r.severity === 'P0_BROKEN') byCap[key].P0++;
+scripts/bench/iter-70-94-esperimenti-runner.mjs:155:  else if (r.severity === 'P1_PARTIAL') byCap[key].P1++;
+scripts/bench/iter-70-94-esperimenti-runner.mjs:166:console.log(`Total tested : ${results.length} / 79 expected`);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:172:console.log(`  Vol1 (38): OK=${vol1.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol1.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol1.filter(r=>r.severity==='P0_BROKEN').length}`);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:173:console.log(`  Vol2 (27): OK=${vol2.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol2.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol2.filter(r=>r.severity==='P0_BROKEN').length}`);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:174:console.log(`  Vol3 (14): OK=${vol3.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol3.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol3.filter(r=>r.severity==='P0_BROKEN').length}`);
+scripts/bench/iter-70-94-esperimenti-runner.mjs:210:    expected: 79,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:211:    P0_BROKEN: p0.length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:212:    P1_PARTIAL: p1.length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:213:    P2_OK: p2.length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:219:      P0: vol1.filter(r=>r.severity==='P0_BROKEN').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:220:      P1: vol1.filter(r=>r.severity==='P1_PARTIAL').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:221:      P2: vol1.filter(r=>r.severity==='P2_OK').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:225:      P0: vol2.filter(r=>r.severity==='P0_BROKEN').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:226:      P1: vol2.filter(r=>r.severity==='P1_PARTIAL').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:227:      P2: vol2.filter(r=>r.severity==='P2_OK').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:231:      P0: vol3.filter(r=>r.severity==='P0_BROKEN').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:232:      P1: vol3.filter(r=>r.severity==='P1_PARTIAL').length,
+scripts/bench/iter-70-94-esperimenti-runner.mjs:233:      P2: vol3.filter(r=>r.severity==='P2_OK').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:55:import { extractWireCount } from './helpers/wire-count.js';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:75:const ALL_EXPERIMENTS = [
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:169:    totalExpected: ALL_EXPERIMENTS.length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:242:  if (!probe.apiReady) return 'P0_BROKEN';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:243:  if (!probe.mounted) return 'P0_BROKEN';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:244:  if (probe.domComponentCount === 0 && probe.circuitComponentCount === 0) return 'P0_BROKEN';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:247:  if (pageErrors.length > 0) return 'P0_BROKEN';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:254:  if (connectionsMissing) return 'P1_PARTIAL';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:255:  if (compRatio < 0.5) return 'P1_PARTIAL';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:258:  return 'P2_OK';
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:262:for (const exp of ALL_EXPERIMENTS) {
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:316:    const screenshotPath = path.join(SCREENSHOTS_DIR, `${exp.id}.png`);
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:317:    await page.screenshot({ path: screenshotPath, fullPage: false }).catch(() => {});
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:341:      screenshotPath: path.relative(path.join(REPO_ROOT, '..'), screenshotPath),
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:364:  const p0 = sharedResults.filter((r) => r.severity === 'P0_BROKEN');
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:365:  const p1 = sharedResults.filter((r) => r.severity === 'P1_PARTIAL');
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:366:  const p2 = sharedResults.filter((r) => r.severity === 'P2_OK');
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:376:      task: '94-esperimenti-uno-per-uno',
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:382:      P0_BROKEN: p0.length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:383:      P1_PARTIAL: p1.length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:384:      P2_OK: p2.length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:389:        P0_BROKEN: vol1Results.filter((r) => r.severity === 'P0_BROKEN').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:390:        P1_PARTIAL: vol1Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:391:        P2_OK: vol1Results.filter((r) => r.severity === 'P2_OK').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:395:        P0_BROKEN: vol2Results.filter((r) => r.severity === 'P0_BROKEN').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:396:        P1_PARTIAL: vol2Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:397:        P2_OK: vol2Results.filter((r) => r.severity === 'P2_OK').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:401:        P0_BROKEN: vol3Results.filter((r) => r.severity === 'P0_BROKEN').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:402:        P1_PARTIAL: vol3Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:403:        P2_OK: vol3Results.filter((r) => r.severity === 'P2_OK').length,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:419:        screenshotPath: r.screenshotPath,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:432:        screenshotPath: r.screenshotPath,
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:448:  console.log(`Vol1 (38): OK=${vol1Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol1Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol1Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:449:  console.log(`Vol2 (27): OK=${vol2Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol2Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol2Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:450:  console.log(`Vol3 (14): OK=${vol3Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol3Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol3Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+
+ succeeded in 129ms:
+src/data/experiments-vol3.js:982:      components: [
+src/data/experiments-vol3.js:986:      connections: [],
+src/data/experiments-vol3.js:1050:      components: [
+src/data/experiments-vol3.js:1054:      connections: [],
+src/data/experiments-vol3.js:1128:      components: [
+src/data/experiments-vol3.js:1134:      connections: [
+src/data/experiments-vol3.js:1250:      components: [
+src/data/experiments-vol3.js:1256:      connections: [
+src/data/experiments-vol3.js:1382:      components: [
+src/data/experiments-vol3.js:1388:      connections: [
+src/data/experiments-vol3.js:1537:      components: [
+src/data/experiments-vol3.js:1545:      connections: [
+src/data/experiments-vol3.js:1707:      components: [
+src/data/experiments-vol3.js:1731:      connections: [
+src/data/experiments-vol3.js:2003:      components: [
+src/data/experiments-vol3.js:2010:      connections: [
+src/data/experiments-vol3.js:2170:      components: [
+src/data/experiments-vol3.js:2177:      connections: [
+src/data/experiments-vol3.js:2338:      components: [
+src/data/experiments-vol3.js:2349:      connections: [
+src/data/experiments-vol3.js:2602:      components: [
+src/data/experiments-vol3.js:2608:      connections: [
+src/data/experiments-vol3.js:2731:      components: [
+src/data/experiments-vol3.js:2735:      connections: [],
+src/data/experiments-vol3.js:2795:      components: [
+src/data/experiments-vol3.js:2799:      connections: [],
+src/data/experiments-vol3.js:2855:      components: [
+src/data/experiments-vol3.js:2865:      connections: [
+src/data/experiments-vol1.js:27:      components: [
+src/data/experiments-vol1.js:39:      connections: [
+src/data/experiments-vol1.js:157:      components: [
+src/data/experiments-vol1.js:166:      connections: [
+src/data/experiments-vol1.js:277:      components: [
+src/data/experiments-vol1.js:289:      connections: [
+src/data/experiments-vol1.js:412:      components: [
+src/data/experiments-vol1.js:426:      connections: [
+src/data/experiments-vol1.js:543:      components: [
+src/data/experiments-vol1.js:557:      connections: [
+src/data/experiments-vol1.js:675:      components: [
+src/data/experiments-vol1.js:689:      connections: [
+src/data/experiments-vol1.js:807:      components: [
+src/data/experiments-vol1.js:824:      connections: [
+src/data/experiments-vol1.js:969:      components: [
+src/data/experiments-vol1.js:989:      connections: [
+src/data/experiments-vol1.js:1163:      components: [
+src/data/experiments-vol1.js:1183:      connections: [
+src/data/experiments-vol1.js:1354:      components: [
+src/data/experiments-vol1.js:1369:      connections: [
+src/data/experiments-vol1.js:1529:      components: [
+src/data/experiments-vol1.js:1544:      connections: [
+src/data/experiments-vol1.js:1703:      components: [
+src/data/experiments-vol1.js:1723:      connections: [
+src/data/experiments-vol1.js:1913:      components: [
+src/data/experiments-vol1.js:1942:      connections: [
+src/data/experiments-vol1.js:2148:      components: [
+src/data/experiments-vol1.js:2177:      connections: [
+src/data/experiments-vol1.js:2386:      components: [
+src/data/experiments-vol1.js:2402:      connections: [
+src/data/experiments-vol1.js:2544:      components: [
+src/data/experiments-vol1.js:2560:      connections: [
+src/data/experiments-vol1.js:2701:      components: [
+src/data/experiments-vol1.js:2717:      connections: [
+src/data/experiments-vol1.js:2858:      components: [
+src/data/experiments-vol1.js:2876:      connections: [
+src/data/experiments-vol1.js:3052:      components: [
+src/data/experiments-vol1.js:3070:      connections: [
+src/data/experiments-vol1.js:3236:      components: [
+src/data/experiments-vol1.js:3268:      connections: [
+src/data/experiments-vol1.js:3537:      components: [
+src/data/experiments-vol1.js:3558:      connections: [
+src/data/experiments-vol1.js:3738:      components: [
+src/data/experiments-vol1.js:3763:      connections: [
+src/data/experiments-vol1.js:3970:      components: [
+src/data/experiments-vol1.js:3991:      connections: [
+src/data/experiments-vol1.js:4178:      components: [
+src/data/experiments-vol1.js:4190:      connections: [
+src/data/experiments-vol1.js:4314:      components: [
+src/data/experiments-vol1.js:4326:      connections: [
+src/data/experiments-vol1.js:4467:      components: [
+src/data/experiments-vol1.js:4487:      connections: [
+src/data/experiments-vol1.js:4665:      components: [
+src/data/experiments-vol1.js:4683:      connections: [
+src/data/experiments-vol1.js:4870:      components: [
+src/data/experiments-vol1.js:4892:      connections: [
+src/data/experiments-vol1.js:5106:      components: [
+src/data/experiments-vol1.js:5127:      connections: [
+src/data/experiments-vol1.js:5292:      components: [
+src/data/experiments-vol1.js:5301:      connections: [
+src/data/experiments-vol1.js:5423:      components: [
+src/data/experiments-vol1.js:5433:      connections: [
+src/data/experiments-vol1.js:5577:      components: [
+src/data/experiments-vol1.js:5592:      connections: [
+src/data/experiments-vol1.js:5725:      components: [
+src/data/experiments-vol1.js:5740:      connections: [
+src/data/experiments-vol1.js:5871:      components: [
+src/data/experiments-vol1.js:5888:      connections: [
+src/data/experiments-vol1.js:6031:      components: [
+src/data/experiments-vol1.js:6052:      connections: [
+src/data/experiments-vol1.js:6228:      components: [
+src/data/experiments-vol1.js:6236:      connections: [
+src/data/experiments-vol1.js:6317:      components: [
+src/data/experiments-vol1.js:6331:      connections: [
+src/data/experiments-vol1.js:6467:      components: [
+src/data/experiments-vol1.js:6511:      connections: [
+src/data/experiments-vol2.js:57:      components: [
+src/data/experiments-vol2.js:61:      connections: [],
+src/data/experiments-vol2.js:126:      components: [
+src/data/experiments-vol2.js:130:      connections: [],
+src/data/experiments-vol2.js:194:      components: [
+src/data/experiments-vol2.js:198:      connections: [],
+src/data/experiments-vol2.js:264:      components: [
+src/data/experiments-vol2.js:274:      connections: [],
+src/data/experiments-vol2.js:366:      components: [
+src/data/experiments-vol2.js:378:      connections: [],
+src/data/experiments-vol2.js:460:      components: [
+src/data/experiments-vol2.js:475:      connections: [],
+src/data/experiments-vol2.js:565:      components: [
+src/data/experiments-vol2.js:581:      connections: [],
+src/data/experiments-vol2.js:686:      components: [
+src/data/experiments-vol2.js:691:      connections: [],
+src/data/experiments-vol2.js:772:      components: [
+src/data/experiments-vol2.js:777:      connections: [],
+src/data/experiments-vol2.js:862:      components: [
+src/data/experiments-vol2.js:877:      connections: [
+src/data/experiments-vol2.js:1024:      components: [
+src/data/experiments-vol2.js:1039:      connections: [
+src/data/experiments-vol2.js:1181:      components: [
+src/data/experiments-vol2.js:1199:      connections: [
+src/data/experiments-vol2.js:1354:      components: [
+src/data/experiments-vol2.js:1367:      connections: [
+src/data/experiments-vol2.js:1526:      components: [
+src/data/experiments-vol2.js:1542:      connections: [
+src/data/experiments-vol2.js:1722:      components: [
+src/data/experiments-vol2.js:1741:      connections: [
+src/data/experiments-vol2.js:1941:      components: [
+src/data/experiments-vol2.js:1965:      connections: [
+src/data/experiments-vol2.js:2188:      components: [
+src/data/experiments-vol2.js:2207:      connections: [
+src/data/experiments-vol2.js:2409:      components: [
+src/data/experiments-vol2.js:2426:      connections: [
+src/data/experiments-vol2.js:2583:      components: [
+src/data/experiments-vol2.js:2599:      connections: [
+src/data/experiments-vol2.js:2734:      components: [
+src/data/experiments-vol2.js:2755:      connections: [
+src/data/experiments-vol2.js:2958:      components: [
+src/data/experiments-vol2.js:2971:      connections: [
+src/data/experiments-vol2.js:3123:      components: [
+src/data/experiments-vol2.js:3154:      connections: [
+src/data/experiments-vol2.js:3408:      components: [
+src/data/experiments-vol2.js:3418:      connections: [
+src/data/experiments-vol2.js:3519:      components: [
+src/data/experiments-vol2.js:3528:      connections: [
+src/data/experiments-vol2.js:3628:      components: [
+src/data/experiments-vol2.js:3638:      connections: [
+src/data/experiments-vol2.js:3762:      components: [
+src/data/experiments-vol2.js:3778:      connections: [
+src/data/experiments-vol2.js:3950:      components: [
+src/data/experiments-vol2.js:3984:      connections: [
+
+ succeeded in 447ms:
+79
+v1-cap6-esp1,4,6
+v1-cap6-esp2,3,6
+v1-cap6-esp3,4,6
+v1-cap7-esp1,4,6
+v1-cap7-esp2,4,6
+v1-cap7-esp3,4,6
+v1-cap7-esp4,5,8
+v1-cap7-esp5,6,10
+v1-cap7-esp6,6,10
+v1-cap8-esp1,5,8
+v1-cap8-esp2,5,8
+v1-cap8-esp3,6,10
+v1-cap8-esp4,9,9
+v1-cap8-esp5,9,9
+v1-cap9-esp1,5,6
+v1-cap9-esp2,5,6
+v1-cap9-esp3,5,6
+v1-cap9-esp4,5,7
+v1-cap9-esp5,5,6
+v1-cap9-esp6,9,16
+v1-cap9-esp7,6,9
+v1-cap9-esp8,7,11
+v1-cap9-esp9,8,9
+v1-cap10-esp1,4,5
+v1-cap10-esp2,4,6
+v1-cap10-esp3,6,9
+v1-cap10-esp4,6,10
+v1-cap10-esp5,7,12
+v1-cap10-esp6,7,7
+v1-cap11-esp1,3,6
+v1-cap11-esp2,4,7
+v1-cap12-esp1,5,5
+v1-cap12-esp2,5,5
+v1-cap12-esp3,5,6
+v1-cap12-esp4,6,8
+v1-cap13-esp1,2,2
+v1-cap13-esp2,4,6
+v1-cap14-esp1,13,21
+v2-cap3-esp1,2,0
+v2-cap3-esp2,2,0
+v2-cap3-esp3,2,0
+v2-cap3-esp4,4,0
+v2-cap4-esp1,4,0
+v2-cap4-esp2,5,0
+v2-cap4-esp3,6,0
+v2-cap5-esp1,3,0
+v2-cap5-esp2,3,0
+v2-cap6-esp1,5,6
+v2-cap6-esp2,5,6
+v2-cap6-esp3,6,6
+v2-cap6-esp4,5,8
+v2-cap7-esp1,6,9
+v2-cap7-esp2,7,10
+v2-cap7-esp3,8,11
+v2-cap7-esp4,7,10
+v2-cap8-esp1,5,7
+v2-cap8-esp2,5,5
+v2-cap8-esp3,7,10
+v2-cap9-esp1,5,7
+v2-cap9-esp2,10,12
+v2-cap10-esp1,3,4
+v2-cap10-esp2,3,4
+v2-cap10-esp3,4,5
+v2-cap10-esp4,6,7
+v2-cap12-esp1,12,20
+v3-cap5-esp1,2,0
+v3-cap5-esp2,2,0
+v3-cap6-esp1,4,5
+v3-cap6-esp2,4,5
+v3-cap6-morse,4,5
+v3-cap6-esp4,6,7
+v3-cap6-semaforo,8,10
+v3-cap7-esp1,5,8
+v3-cap7-esp2,5,8
+v3-cap7-esp3,9,13
+v3-cap7-esp6,4,5
+v3-cap8-esp1,2,0
+v3-cap8-esp2,2,0
+v3-cap8-esp3,3,5
+
+exec
+/bin/zsh -lc "nl -ba src/data/experiments-vol1.js | sed -n '145,180p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 0ms:
+   145	          explanation: "La gamba più lunga del LED è l'anodo (+). Va collegata verso il positivo della batteria."
+   146	        }
+   147	      ]
+   148	    },
+   149	    {
+   150	      id: "v1-cap6-esp2",
+   151	      title: "Cap. 6 Esp. 2 - LED senza resistore (cosa NON fare!)",
+   152	      desc: "Attenzione! Collegare un LED senza resistore lo brucia. Impara perché il resistore è essenziale.",
+   153	      chapter: "Capitolo 6 - Cos'è il diodo LED?",
+   154	      difficulty: 1,
+   155	      icon: "\u26A0\uFE0F",
+   156	      simulationMode: "circuit",
+   157	      components: [
+   158	        { type: "battery9v", id: "bat1" },
+   159	        { type: "breadboard-half", id: "bb1" },
+   160	        { type: "led", id: "led1", color: "blue" }
+   161	      ],
+   162	      pinAssignments: {
+   163	        "led1:anode": "bb1:f2",
+   164	        "led1:cathode": "bb1:f3"
+   165	      },
+   166	      connections: [
+   167	        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
+   168	        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
+   169	        { from: "bb1:e2", to: "bb1:f2", color: "red" },
+   170	        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
+   171	        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-1", color: "black" },
+   172	        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+   173	      ],
+   174	      layout: {
+   175	        "bat1": { x: 30, y: 55 },
+   176	        "bb1": { x: 100, y: 10 },
+   177	        "led1": { x: 129, y: 68.75 }
+   178	      },
+   179	      steps: [
+   180	        "Inserisci il LED blu nei fori F2 (anodo) e F3 (catodo), sotto il gap centrale",
+
+exec
+/bin/zsh -lc "nl -ba src/data/experiments-vol2.js | sed -n '250,282p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 0ms:
+   250	        { question: "In che modalita devi mettere il multimetro per misurare una resistenza?", options: ["V (Volt)", "A (Ampere)", "Ohm (simbolo omega)"], correct: 2, explanation: "Per misurare le resistenze serve la modalità Ohm, indicata dal simbolo greco omega. Il multimetro manda una piccola corrente è calcola la resistenza!" },
+   251	        { question: "Se le bande dicono 330 Ohm e il multimetro misura 328 Ohm, è un problema?", options: ["Si, la resistenza e rotta", "No, e normale — le resistenze hanno una tolleranza del 5%", "Si, bisogna cambiarla"], correct: 1, explanation: "Le resistenze hanno una tolleranza (di solito +-5%). Quindi 330 Ohm puo misurare da 313 a 347 Ohm. 328 e perfettamente nella norma!" },
+   252	      ],
+   253	    },
+   254	    {
+   255	      id: "v2-cap3-esp4",
+   256	      title: "Cap. 3 Esp. 4 - Misuriamo la corrente in un circuito",
+   257	      desc: "Colleghiamo il multimetro IN SERIE per misurare quanta corrente passa. La Legge di Ohm funziona davvero?",
+   258	      chapter: "Capitolo 3 - Il Multimetro",
+   259	      difficulty: 2,
+   260	      simulable: false,
+   261	      simulableReason: "Richiede multimetro fisico",
+   262	      icon: "\u{26A1}",
+   263	      simulationMode: "circuit",
+   264	      components: [
+   265	        { type: "battery9v", id: "bat1" },
+   266	        { type: "breadboard-half", id: "bb1" },
+   267	        { type: "resistor", id: "r1", value: 1000 },
+   268	        { type: "multimeter", id: "mm1" },
+   269	      ],
+   270	      pinAssignments: {
+   271	        "r1:pin1": "bb1:a6",
+   272	        "r1:pin2": "bb1:a13"
+   273	      },
+   274	      connections: [],
+   275	      layout: {
+   276	        "bat1": { x: 15, y: 60 },
+   277	        "bb1": { x: 100, y: 10 },
+   278	        "r1": { x: 185, y: 43.75 },
+   279	        "mm1": { x: 260, y: 40 }
+   280	      },
+   281	      code: null,
+   282	      hexFile: null,
+
+exec
+/bin/zsh -lc "nl -ba src/data/experiments-vol3.js | sed -n '960,990p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 0ms:
+   960	</statement>
+   961	</block></next></block></next></block>
+   962	</statement>
+   963	</block></xml>`;
+   964	
+   965	const EXPERIMENTS_VOL3 = {
+   966	  title: "Volume 3 - Arduino Programmato",
+   967	  subtitle: "Programmazione Arduino: LED, pulsanti, sensori analogici",
+   968	  icon: "\u{1F4D5}",
+   969	  color: "#E54B3D",
+   970	  experiments: [
+   971	    // ═══════════════════════════════════════════════════
+   972	    // CAPITOLO 5 — Il nostro primo programma (2 esperimenti)
+   973	    // ═══════════════════════════════════════════════════
+   974	    {
+   975	      id: "v3-cap5-esp1",
+   976	      title: "Il programma Blink: accendi e spegni il LED",
+   977	      desc: "Il primo programma in assoluto! Facciamo lampeggiare il LED integrato sulla scheda Arduino, quello collegato al pin 13. Si accende per 1 secondo, si spegne per 1 secondo, e ripete all'infinito.",
+   978	      chapter: "Capitolo 5 - Il nostro primo programma",
+   979	      difficulty: 1,
+   980	      icon: "\u{1F4A1}",
+   981	      simulationMode: "avr",
+   982	      components: [
+   983	        { type: "breadboard-half", id: "bb1" },
+   984	        { type: "nano-r4", id: "nano1" }
+   985	      ],
+   986	      connections: [],
+   987	      code: `// Blink — Il primo programma!
+   988	// Fa lampeggiare il LED integrato (pin 13)
+   989	
+   990	void setup() {
+
+exec
+/bin/zsh -lc "node --input-type=module -e \"import fs from 'node:fs'; import v1 from './src/data/experiments-vol1.js'; import v2 from './src/data/experiments-vol2.js'; import v3 from './src/data/experiments-vol3.js'; const spec=fs.readFileSync('./tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js','utf8'); const re=/\\\\{ id: '(["'^'"']+)', vol: (\\\\d+), cap: (\\\\d+), expectedComponents: (\\\\d+), expectedConnections: (\\\\d+) \\\\}/g; const hard=[]; let m; while((m=re.exec(spec))) hard.push({id:m[1], comp:+m[4], conn:+m[5]}); const src=new Map([...v1.experiments,...v2.experiments,...v3.experiments].map(e=>[e.id,{comp:e.components?.length??0,conn:e.connections?.length??0}])); const missing=hard.filter(h=>"'!src.has(h.id)); const extra=[...src.keys()].filter(id=>!hard.some(h=>h.id===id)); const mism=hard.filter(h=>src.has(h.id)&&(h.comp!==src.get(h.id).comp||h.conn!==src.get(h.id).conn)); console.log(JSON.stringify({hardcoded:hard.length, source:src.size, missing, extra, mismatchCount:mism.length, first20:mism.slice(0,20).map(h=>({id:h.id, spec:[h.comp,h.conn], source:[src.get(h.id).comp,src.get(h.id).conn]}))},null,2));"' in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 119ms:
+{
+  "hardcoded": 79,
+  "source": 79,
+  "missing": [],
+  "extra": [],
+  "mismatchCount": 66,
+  "first20": [
+    {
+      "id": "v1-cap6-esp2",
+      "spec": [
+        3,
+        5
+      ],
+      "source": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": "v1-cap7-esp1",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "v1-cap7-esp2",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "v1-cap7-esp3",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "v1-cap7-esp4",
+      "spec": [
+        5,
+        6
+      ],
+      "source": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": "v1-cap7-esp5",
+      "spec": [
+        6,
+        7
+      ],
+      "source": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "v1-cap7-esp6",
+      "spec": [
+        6,
+        7
+      ],
+      "source": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "v1-cap8-esp1",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": "v1-cap8-esp2",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": "v1-cap8-esp3",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "v1-cap8-esp4",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        9,
+        9
+      ]
+    },
+    {
+      "id": "v1-cap8-esp5",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        9,
+        9
+      ]
+    },
+    {
+      "id": "v1-cap9-esp4",
+      "spec": [
+        5,
+        6
+      ],
+      "source": [
+        5,
+        7
+      ]
+    },
+    {
+      "id": "v1-cap9-esp6",
+      "spec": [
+        5,
+        6
+      ],
+      "source": [
+        9,
+        16
+      ]
+    },
+    {
+      "id": "v1-cap9-esp7",
+      "spec": [
+        5,
+        6
+      ],
+      "source": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "v1-cap9-esp8",
+      "spec": [
+        5,
+        6
+      ],
+      "source": [
+        7,
+        11
+      ]
+    },
+    {
+      "id": "v1-cap9-esp9",
+      "spec": [
+        6,
+        7
+      ],
+      "source": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "v1-cap10-esp2",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "v1-cap10-esp3",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "v1-cap10-esp4",
+      "spec": [
+        4,
+        5
+      ],
+      "source": [
+        6,
+        10
+      ]
+    }
+  ]
+}
+
+exec
+/bin/zsh -lc "nl -ba tests/e2e/sprint-u.config.js | sed -n '1,220p'" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 0ms:
+     1	/**
+     2	 * Sprint U Playwright config — Cycle 1 Iter 1
+     3	 * Target: prod https://www.elabtutor.school
+     4	 * Single worker, sequential, retries 1.
+     5	 */
+     6	import { defineConfig } from '@playwright/test';
+     7	
+     8	export default defineConfig({
+     9	  testDir: '.',
+    10	  timeout: 30000,
+    11	  expect: { timeout: 10000 },
+    12	  fullyParallel: false,
+    13	  workers: 1,
+    14	  retries: 1,
+    15	  reporter: [
+    16	    ['line'],
+    17	    ['html', { open: 'never', outputFolder: 'docs/audits/sprint-u-cycle1-iter1-pw-report' }],
+    18	  ],
+    19	  use: {
+    20	    baseURL: 'https://www.elabtutor.school',
+    21	    headless: true,
+    22	    screenshot: 'on',
+    23	    video: 'off',
+    24	    storageState: undefined,
+    25	  },
+    26	});
+
+exec
+/bin/zsh -lc "rg -n \"expect\\(|throw new|test\\.fail|toBe|severity\" tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js" in /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+ succeeded in 0ms:
+30: *   8. severity classification:
+239:// ── Classify severity ──────────────────────────────────────────────────────
+320:    const severity = classifySeverity(probe, exp, consoleErrors, pageErrors);
+326:      severity,
+352:      `[${severity}] ${exp.id} | ` +
+364:  const p0 = sharedResults.filter((r) => r.severity === 'P0_BROKEN');
+365:  const p1 = sharedResults.filter((r) => r.severity === 'P1_PARTIAL');
+366:  const p2 = sharedResults.filter((r) => r.severity === 'P2_OK');
+389:        P0_BROKEN: vol1Results.filter((r) => r.severity === 'P0_BROKEN').length,
+390:        P1_PARTIAL: vol1Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+391:        P2_OK: vol1Results.filter((r) => r.severity === 'P2_OK').length,
+395:        P0_BROKEN: vol2Results.filter((r) => r.severity === 'P0_BROKEN').length,
+396:        P1_PARTIAL: vol2Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+397:        P2_OK: vol2Results.filter((r) => r.severity === 'P2_OK').length,
+401:        P0_BROKEN: vol3Results.filter((r) => r.severity === 'P0_BROKEN').length,
+402:        P1_PARTIAL: vol3Results.filter((r) => r.severity === 'P1_PARTIAL').length,
+403:        P2_OK: vol3Results.filter((r) => r.severity === 'P2_OK').length,
+411:        severity: r.severity,
+426:        severity: r.severity,
+448:  console.log(`Vol1 (38): OK=${vol1Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol1Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol1Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+449:  console.log(`Vol2 (27): OK=${vol2Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol2Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol2Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+450:  console.log(`Vol3 (14): OK=${vol3Results.filter(r=>r.severity==='P2_OK').length} PARTIAL=${vol3Results.filter(r=>r.severity==='P1_PARTIAL').length} BROKEN=${vol3Results.filter(r=>r.severity==='P0_BROKEN').length}`);
+
+codex
+**Verdict: FAIL for “94 esperimenti complete” audit methodology.** The harness audits the current canonical 79 experiments, not 94, and the 79 ID set matches source data. But the methodology has correctness holes large enough that P0/P1/P2 results can be materially wrong.
+
+**HIGH**
+- Coverage is not 94. The spec explicitly says the brief says “94” but canonical source has 79, and audits 79 only: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:14`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:75`. The unit test also hard-locks totals to 38 + 27 + 14 = 79: `tests/unit/iter-70-experiments-data-integrity.test.js:45`, `tests/unit/iter-70-experiments-data-integrity.test.js:58`. Runner reports `/ 79 expected`, not 94: `scripts/bench/iter-70-94-esperimenti-runner.mjs:166`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:210`.
+- Hardcoded expected component/connection counts are stale versus source data. My read-only comparison found 66/79 expected count mismatches. Examples: spec says `v1-cap6-esp2` has 5 expected connections, source has 6 connections: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:78`, `src/data/experiments-vol1.js:166`. Spec says `v2-cap3-esp4` expects 2 connections, source has `connections: []`, so a correct render would be misclassified partial: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:120`, `src/data/experiments-vol2.js:274`. Spec says `v3-cap5-esp1` expects 4 components, source has 2: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:146`, `src/data/experiments-vol3.js:982`.
+- Severity is too weak for audit-grade correctness. `P1` only checks expected connections > 0 and actual connections exactly 0; any nonzero under-rendered wire count becomes `P2_OK`: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:249`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:254`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:258`. Also, the E2E spec records severity but has no assertion/throw on `P0_BROKEN` or `P1_PARTIAL`, so Playwright can exit 0 while the audit found broken experiments: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:320`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:346`. Runner’s comment assumes nonzero exit when broken experiments are found, but the spec does not enforce that: `scripts/bench/iter-70-94-esperimenti-runner.mjs:116`.
+
+**MED**
+- Screenshot capture is best-effort and silently swallowed, but report still records a path and prints “N PNG”. A failed screenshot is indistinguishable from a valid one: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:315`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:317`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:341`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:463`.
+- License bypass strategy is correctly seeded before navigation, but never verified. The helper sets local/session storage and consent keys: `tests/e2e/helpers/sprint-u-auth.js:21`, `tests/e2e/helpers/sprint-u-auth.js:25`, `tests/e2e/helpers/sprint-u-auth.js:37`. The spec calls it before `goto`: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:278`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:282`. There is no post-navigation assertion that the license gate is gone, so bypass failure can be conflated with experiment/API failure.
+- Runner `--max=N` is advertised and exported as `MAX_EXPERIMENTS`, but the spec never reads it and loops over all `ALL_EXPERIMENTS`: `scripts/bench/iter-70-94-esperimenti-runner.mjs:17`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:99`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:262`.
+- Aggregator trusts whatever JSONL records exist and does not validate unique IDs, missing IDs, duplicate IDs, or exact expected count before writing final totals: `scripts/bench/iter-70-94-esperimenti-runner.mjs:124`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:131`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:208`.
+
+**LOW**
+- `extractWireCount` is imported but unused, while the spec reimplements connection counting inline. That weakens the intended single-source-of-truth helper: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:55`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:221`, `tests/e2e/helpers/wire-count.js:28`.
+- Naming/report metadata remains misleading: files and summary task say `94-esperimenti`, while the implementation and totals are 79: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:376`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:61`.
+
+I did not run the prod Playwright audit because the sandbox is read-only and network-restricted. This was a file-level methodology audit with source/count cross-checks.
+tokens used
+97.467
+**Verdict: FAIL for “94 esperimenti complete” audit methodology.** The harness audits the current canonical 79 experiments, not 94, and the 79 ID set matches source data. But the methodology has correctness holes large enough that P0/P1/P2 results can be materially wrong.
+
+**HIGH**
+- Coverage is not 94. The spec explicitly says the brief says “94” but canonical source has 79, and audits 79 only: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:14`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:75`. The unit test also hard-locks totals to 38 + 27 + 14 = 79: `tests/unit/iter-70-experiments-data-integrity.test.js:45`, `tests/unit/iter-70-experiments-data-integrity.test.js:58`. Runner reports `/ 79 expected`, not 94: `scripts/bench/iter-70-94-esperimenti-runner.mjs:166`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:210`.
+- Hardcoded expected component/connection counts are stale versus source data. My read-only comparison found 66/79 expected count mismatches. Examples: spec says `v1-cap6-esp2` has 5 expected connections, source has 6 connections: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:78`, `src/data/experiments-vol1.js:166`. Spec says `v2-cap3-esp4` expects 2 connections, source has `connections: []`, so a correct render would be misclassified partial: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:120`, `src/data/experiments-vol2.js:274`. Spec says `v3-cap5-esp1` expects 4 components, source has 2: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:146`, `src/data/experiments-vol3.js:982`.
+- Severity is too weak for audit-grade correctness. `P1` only checks expected connections > 0 and actual connections exactly 0; any nonzero under-rendered wire count becomes `P2_OK`: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:249`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:254`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:258`. Also, the E2E spec records severity but has no assertion/throw on `P0_BROKEN` or `P1_PARTIAL`, so Playwright can exit 0 while the audit found broken experiments: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:320`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:346`. Runner’s comment assumes nonzero exit when broken experiments are found, but the spec does not enforce that: `scripts/bench/iter-70-94-esperimenti-runner.mjs:116`.
+
+**MED**
+- Screenshot capture is best-effort and silently swallowed, but report still records a path and prints “N PNG”. A failed screenshot is indistinguishable from a valid one: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:315`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:317`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:341`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:463`.
+- License bypass strategy is correctly seeded before navigation, but never verified. The helper sets local/session storage and consent keys: `tests/e2e/helpers/sprint-u-auth.js:21`, `tests/e2e/helpers/sprint-u-auth.js:25`, `tests/e2e/helpers/sprint-u-auth.js:37`. The spec calls it before `goto`: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:278`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:282`. There is no post-navigation assertion that the license gate is gone, so bypass failure can be conflated with experiment/API failure.
+- Runner `--max=N` is advertised and exported as `MAX_EXPERIMENTS`, but the spec never reads it and loops over all `ALL_EXPERIMENTS`: `scripts/bench/iter-70-94-esperimenti-runner.mjs:17`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:99`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:262`.
+- Aggregator trusts whatever JSONL records exist and does not validate unique IDs, missing IDs, duplicate IDs, or exact expected count before writing final totals: `scripts/bench/iter-70-94-esperimenti-runner.mjs:124`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:131`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:208`.
+
+**LOW**
+- `extractWireCount` is imported but unused, while the spec reimplements connection counting inline. That weakens the intended single-source-of-truth helper: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:55`, `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:221`, `tests/e2e/helpers/wire-count.js:28`.
+- Naming/report metadata remains misleading: files and summary task say `94-esperimenti`, while the implementation and totals are 79: `tests/e2e/iter-70-94-esperimenti-uno-per-uno.spec.js:376`, `scripts/bench/iter-70-94-esperimenti-runner.mjs:61`.
+
+I did not run the prod Playwright audit because the sandbox is read-only and network-restricted. This was a file-level methodology audit with source/count cross-checks.

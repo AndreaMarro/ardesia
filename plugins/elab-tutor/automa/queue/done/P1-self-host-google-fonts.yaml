@@ -1,0 +1,13 @@
+id: P1-self-host-google-fonts
+priority: P1
+title: Self-host Google Fonts (Open Sans + Oswald) to fix woff2 ERR_FAILED
+description: |
+Tutti i font risultano "unloaded" o "error". Questo causa: 
+FIX: Scaricare i woff2 di Open Sans (400,500,600,700) e Oswald (600,700),
+Verifica: npm run build + Playwright check font.status === "loaded
+tags: [lighthouse, performance, fonts]
+source: visual-test-c2
+claimed_at: "2026-03-25T01:14:39.301188"
+claimed_by: orchestrator
+completed_at: "2026-03-25T01:19:27.386559"
+result: ok

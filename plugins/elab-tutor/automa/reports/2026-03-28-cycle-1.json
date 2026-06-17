@@ -1,0 +1,60 @@
+{
+  "cycle": 1,
+  "timestamp": "2026-03-28T18:51:16.547716",
+  "date": "2026-03-28",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 535
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 35.32s",
+      "time_ms": 39281
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 259198
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "warn",
+      "detail": "avg=62 min=51 (target \u226560) [3 samples]",
+      "time_ms": 81898
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB TUTOR - Assistente Arduino, Errors: 0",
+      "time_ms": 5373
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 3",
+      "time_ms": 3488
+    }
+  ],
+  "checks_passed": 5,
+  "checks_total": 7,
+  "task_result": {
+    "task": "dry_run",
+    "status": "skipped"
+  },
+  "research": "DeepSeek: **Problema 1: Astrattezza del testo.** Studenti abituati a blocchi visivi e immediati faticano a comprendere la sintassi testuale di C++ (punti e virgola, parentesi graffe), portando a frequenti errori di compilazione.\n\n**Problema 2: Salto concettuale.** La programmazione a blocchi nasconde la struttura logica del codice (es. `setup` e `loop` di Arduino). Il passaggio richiede di apprendere questi",
+  "ai_scoring": null,
+  "composite_score": 0.946,
+  "self_exam": null
+}

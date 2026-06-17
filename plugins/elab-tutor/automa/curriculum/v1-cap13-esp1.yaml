@@ -1,0 +1,100 @@
+# Curriculum YAML — v1-cap13-esp1
+# "LED nell'elettropongo"
+
+experiment_id: v1-cap13-esp1
+volume: 1
+chapter: 13
+title: "LED nell'elettropongo"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+
+concepts_introduced:
+  - conduttivita
+  - materiali_conduttivi
+  - elettropongo
+  - circuito_senza_breadboard
+
+vocabulary_level: v1-cap13
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - plastilina
+  - elettropongo
+  - conduttore
+  - isolante
+  - passare
+  - bloccare
+  - materiale
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - elettrolita
+  - ioni
+  - sale
+  - molecola
+  - elettrone
+  - atomo
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha plastilina conduttiva (elettropongo — si
+    compra o si fa con farina, acqua, sale, olio, cremor tartaro), 1-2 LED,
+    1 resistenza 220 ohm, batteria 9V con clip. NON serve la breadboard!
+    Se fate l'elettropongo in classe: 1 tazza farina, 1/4 tazza sale,
+    9 cucchiai succo limone, 1 cucchiaio olio, 1 tazza acqua, colorante.
+    Cuocere mescolando finche diventa palla.
+  during_class: >
+    Sorpresa: "Oggi la breadboard resta nel cassetto!" Mostra l'elettropongo:
+    "Questa plastilina e speciale: l'elettricita ci passa attraverso!"
+    Dimostrazione: fai due palline di elettropongo, collega la batteria a
+    una e il LED tra le due. Si accende! "L'elettricita passa nella
+    plastilina come passa nei fili!" Sfida: fare un circuito LED usando
+    solo elettropongo e fili per la batteria.
+  common_question: >
+    "Perche la plastilina fa passare l'elettricita?" -> Questa plastilina
+    speciale ha dentro il sale. Il sale aiuta l'elettricita a passare,
+    come i fili di metallo. La plastilina normale non funziona perche non
+    ha sale!
+
+common_mistakes:
+  - mistake: "Le due palline di elettropongo si toccano e il LED non si accende (corto circuito)"
+    what_to_do: "Le due palline devono essere SEPARATE! Se si toccano, l'elettricita prende la scorciatoia e non passa dal LED"
+    analogy: "E come l'acqua: se c'e un buco nel tubo, l'acqua esce li invece di arrivare al rubinetto"
+  - mistake: "Il LED non si accende perche i contatti sono deboli"
+    what_to_do: "Spingere bene le gambe del LED nell'elettropongo. Deve fare buon contatto. Piu grande la pallina, meglio funziona"
+    analogy: null
+  - mistake: "Provano con plastilina normale e non funziona"
+    what_to_do: "Perfetto momento didattico! La plastilina del negozio non conduce. Solo quella con sale. Confronto conduttore vs isolante"
+    analogy: "La plastilina normale e come la gomma: blocca l'elettricita. Quella col sale e come il metallo: la fa passare"
+
+analogies:
+  conduttivita:
+    analogy: "Alcuni materiali lasciano passare l'elettricita (come l'acqua in un tubo aperto) e altri la bloccano (come un tubo chiuso). Il metallo e l'elettropongo lasciano passare, la plastica e la gomma bloccano!"
+    evidence: "Modello tubo aperto/chiuso per conduttivita, estende analogia idraulica (Shipstone 1984)"
+  elettropongo:
+    analogy: "L'elettropongo e come un filo che puoi modellare in qualsiasi forma! Invece di fili rigidi sulla breadboard, usi la fantasia per dare forma al circuito."
+    evidence: "Manipolazione tattile migliora comprensione circuiti in eta 10-14 (Piaget stadi operativi concreti, Martinez 2010)"
+
+assessment_invisible:
+  - "Se lo studente capisce subito che le palline devono essere separate -> comprensione corto circuito"
+  - "Se confronta plastilina normale vs elettropongo -> ragionamento comparativo scientifico"
+  - "Se prova altri materiali (carta, moneta, gomma) -> metodo sperimentale spontaneo"
+  - "Se chiede 'posso fare forme diverse?' -> pronto per esp2 creativo"

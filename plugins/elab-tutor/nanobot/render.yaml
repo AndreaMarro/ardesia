@@ -1,0 +1,57 @@
+# Render.com deployment config for Galileo Nanobot v2
+# 4-Layer Intelligence Stack: Cache → Smart Router → Parallel Racing → Quality Boost
+# Deploy: connect GitHub repo, point to nanobot/ directory
+# (c) Andrea Marro — 24/02/2026
+services:
+  - type: web
+    name: elab-galileo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    envVars:
+      # Provider 1: DeepSeek (reasoning, code, circuit analysis)
+      - key: AI_PROVIDER1
+        value: deepseek
+      - key: AI_MODEL1
+        value: deepseek-chat
+      - key: AI_API_KEY1
+        sync: false  # Set manually in Render dashboard
+      # Provider 2: Google Gemini Flash 2.5 (creative, fast, free)
+      - key: AI_PROVIDER2
+        value: google
+      - key: AI_MODEL2
+        value: gemini-2.0-flash
+      - key: AI_API_KEY2
+        sync: false  # Set manually in Render dashboard
+      # Provider 3: Groq/Llama 3.3 70B (ultra-fast, free tier 1000 req/day)
+      - key: AI_PROVIDER3
+        value: groq
+      - key: AI_MODEL3
+        value: llama-3.3-70b-versatile
+      - key: AI_API_KEY3
+        sync: false  # Get from console.groq.com → API Keys
+      # Provider 4: DeepSeek Reasoner (R1 — complex multi-step planning)
+      - key: AI_PROVIDER4
+        value: deepseek
+      - key: AI_MODEL4
+        value: deepseek-reasoner
+      - key: AI_API_KEY4
+        sync: false  # Same DeepSeek API key, different model
+      # Provider 5: Mistral (France, EU — GDPR-safe, OpenAI-compatible API)
+      - key: AI_PROVIDER5
+        value: mistral
+      - key: AI_MODEL5
+        value: mistral-small-latest
+      - key: AI_API_KEY5
+        sync: false  # Get from console.mistral.ai → API Keys
+      # GDPR EU-Only mode (set to "true" for Italian school deployments)
+      - key: GDPR_EU_ONLY
+        value: "false"
+      # CORS
+      - key: CORS_ORIGINS
+        value: https://elab-builder.vercel.app,https://www.elabtutor.school,https://elabtutor.school,https://elab.school,https://funny-pika-3d1029.netlify.app
+      - key: PORT
+        value: "8100"
+    healthCheckPath: /health
+    autoDeploy: true

@@ -1,0 +1,16 @@
+id: research-insight-lighthouse_perf-20260324-1710
+priority: P1
+title: "Research-driven fix: lighthouse_perf (score=0.62)"
+description: |
+Metrica target: "lighthouse_perf (attuale: 0.620, target: 0.90+)"
+Fonte: "**Problemi concreti:**"
+1. **Bundle iniziale sovradimensionato: ** Tutti i componenti React
+success_criteria: |
+python3 automa/evaluate.py | grep 'SCORE: lighthouse_perf
+context_files: 
+tags: research-driven,auto-generated,lighthouse_perf
+created: "2026-03-24T17:10:26.014353"
+claimed_at: "2026-03-24T17:23:22.795993"
+claimed_by: orchestrator
+completed_at: "2026-03-24T17:34:45.214159"
+result: ok

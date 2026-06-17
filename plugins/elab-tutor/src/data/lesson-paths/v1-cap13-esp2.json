@@ -1,0 +1,269 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap13-esp2",
+  "volume": 1,
+  "chapter": 13,
+  "title": "Esperimento 2: crea circuiti artistici con l'elettropongo",
+  "chapter_title": "Cos'è l'elettropongo?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi usano elettropongo e LED dello stesso colore per creare un circuito artistico con zone positive e negative.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "LED bianco",
+      "quantity": 3,
+      "icon": "💡"
+    },
+    {
+      "name": "Elettropongo (plastilina conduttiva)",
+      "quantity": 2,
+      "icon": "🟢"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "pulsante",
+      "circuito aperto",
+      "circuito chiuso",
+      "fotoresistenza",
+      "sensore",
+      "LDR",
+      "luce",
+      "buio",
+      "automatico",
+      "cicalino",
+      "buzzer",
+      "suono",
+      "magnete",
+      "reed switch",
+      "campo magnetico",
+      "interruttore magnetico",
+      "elettropongo",
+      "plastilina",
+      "conduttivo",
+      "condurre",
+      "zona positiva",
+      "zona negativa",
+      "volt"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore",
+      "digitale"
+    ],
+    "note": "Cap 13 Vol 1, esp 2 — circuiti artistici con plastilina, più LED."
+  },
+  "prerequisites": [
+    "v1-cap13-esp1"
+  ],
+  "next_experiment": {
+    "id": "v1-cap14-esp1",
+    "title": "Il Primo Robot ELAB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.107 intitolata \"Il Primo Robot ELAB\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi creiamo ARTE con l'elettronica! Usate l'elettropongo per fare forme creative e accendere più LED.",
+      "teacher_tip": "Distribuisci abbastanza elettropongo per forme grandi. Ricordate la regola d'oro: zona positiva e zona negativa devono restare SEPARATE. Per il resto, libertà creativa totale!",
+      "components_list": "Ti servono: 1 batteria 9V, 3 LED bianchi, tanta plastilina conduttiva.",
+      "class_hook": "Oggi siete ARTISTI dell'elettronica! Create la forma che volete con la plastilina — una stella, un fiore, un drago — e fatela brillare con i LED!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Crea una zona positiva e una zona negativa con l'elettropongo. Inserite i LED con l'anodo nella zona + e il catodo nella zona −.",
+      "teacher_tip": "Mostrate prima un esempio semplice: due strisce parallele con 3 LED in mezzo. Poi lasciate che i ragazzi inventino le proprie forme. L'unica regola: + e − separati!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap13-esp2]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Circuiti artistici con plastilina seguendo Vol.1 pag.105.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "white"
+            },
+            {
+              "type": "led",
+              "id": "led2",
+              "color": "white"
+            },
+            {
+              "type": "led",
+              "id": "led3",
+              "color": "white"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "led1:anode",
+              "color": "red"
+            },
+            {
+              "from": "bat1:positive",
+              "to": "led2:anode",
+              "color": "red"
+            },
+            {
+              "from": "bat1:positive",
+              "to": "led3:anode",
+              "color": "red"
+            },
+            {
+              "from": "led1:cathode",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "led2:cathode",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "led3:cathode",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Tre LED nella stessa plastilina! La corrente si divide e passa attraverso tutti. Cosa succede se le zone + e − si toccano?",
+      "teacher_tip": "Se qualcuno fa toccare le zone: la corrente prende la scorciatoia e i LED si spengono! Usate questo come momento di apprendimento, non come errore.",
+      "provocative_question": "Se aggiungi un quarto LED, gli altri diventano più deboli? La corrente basta per tutti?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Le zone + e − si toccano e i LED si spengono",
+          "teacher_response": "La corrente ha preso una scorciatoia! È come un fiume: se aprite un canale diretto, l'acqua non passa più dai mulini (LED). Separa le zone!",
+          "analogy": "Come un fiume che aggira i mulini se trova una scorciatoia"
+        },
+        {
+          "mistake": "Un LED è al contrario e non si accende",
+          "teacher_response": "Controllate la polarità: il piedino lungo (anodo) va nella zona positiva, il corto (catodo) nella negativa. Girate il LED!",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, Premete Play: tutti i LED si accendono! La corrente della batteria si distribuisce tra tutti i LED attraverso la plastilina.",
+      "teacher_tip": "Evidenziate i LED. Fate osservare: 'Ogni LED ha il suo percorso tra zona + e zona −. La corrente trova la strada da sola!' Celebrate le creazioni artistiche dei ragazzi.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:led1]",
+        "[AZIONE:highlight:led2]",
+        "[AZIONE:highlight:led3]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Tre LED si accendono nella plastilina! La corrente si distribuisce: ogni LED ha il suo percorso tra la zona + e la zona −. L'arte incontra l'elettronica!",
+      "analogies": [
+        {
+          "concept": "distribuzione_corrente",
+          "text": "La corrente nella plastilina è come l'acqua in un giardino: se pianti tre fiori (LED), l'acqua li raggiunge tutti attraverso la terra. Ogni fiore prende la sua parte!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "creativita_tecnica",
+          "text": "Siete come scultori che danno VITA alle loro creazioni! La plastilina è la forma, i LED sono gli occhi che si illuminano. Arte + scienza = magia!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Avete creato circuiti artistici con la plastilina! L'elettronica può essere creativa — non solo fili e breadboard!",
+      "teacher_tip": "Se possibile, esponi le creazioni come una 'galleria d'arte elettronica'. Poi anticipate il gran finale: 'Il prossimo è il PROGETTO FINALE: costruiamo un ROBOT!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "L'elettropongo permette di creare circuiti in qualsiasi forma! Basta tenere separate la zona + e la zona −. Più LED possono funzionare nella stessa plastilina: la corrente si distribuisce tra tutti.",
+      "concepts_learned": [
+        "circuiti creativi",
+        "distribuzione corrente",
+        "arte + elettronica"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.107 intitolata \"Il Primo Robot ELAB\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se tiene separate le zone autonomamente → comprende la polarità",
+    "Se inventa forme creative → unione pensiero tecnico e artistico",
+    "Se spiega perché le zone devono restare separate → comprensione profonda"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "circuiti_creativi",
+      "distribuzione_corrente",
+      "arte_elettronica"
+    ],
+    "next_suggested": "v1-cap14-esp1",
+    "resume_message": "Avete creato arte con l'elettronica! Ora il PROGETTO FINALE: il vostro primo ROBOT!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 105,
+    "label": "Vol.1 pag.105"
+  }
+}

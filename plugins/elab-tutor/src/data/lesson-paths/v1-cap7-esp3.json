@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap7-esp3",
+  "volume": 1,
+  "chapter": 7,
+  "title": "Accendi il blu del RGB",
+  "chapter_title": "Cos'è il LED RGB?",
+  "difficulty": 1,
+  "duration_minutes": 30,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che il LED blu ha bisogno di più energia per accendersi rispetto al rosso e al verde.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED RGB (catodo comune)",
+      "quantity": 1,
+      "icon": "🔵"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 4,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "anodo",
+      "catodo",
+      "breadboard",
+      "corrente",
+      "piedino",
+      "canale colore",
+      "blu",
+      "energia",
+      "volt",
+      "polarità"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "potenziometro",
+      "Arduino",
+      "codice",
+      "programma"
+    ],
+    "note": "Cap 7 Vol 1 — terzo esperimento RGB. Si nota che il blu 'costa' più energia."
+  },
+  "prerequisites": [
+    "v1-cap7-esp1",
+    "v1-cap7-esp2"
+  ],
+  "next_experiment": {
+    "id": "v1-cap7-esp4",
+    "title": "Mescola 2 colori: il viola!",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Mescola 2 colori: il viola!\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, stessa configurazione. Questa volta colleghiamo il pin BLU (F5) del LED RGB.",
+      "teacher_tip": "Chiedete: 'Avete notato differenze tra rosso e verde? Il blu sarà uguale?' (spoiler: il blu ha bisogno di più energia)",
+      "components_list": "Stessi componenti: 1 breadboard, 1 batteria 9V, 1 resistore 470Ω, 1 LED RGB, 4 fili.",
+      "class_hook": "Abbiamo acceso rosso e verde. Manca il blu — l'ultimo colore base! Ma il blu nasconde una sorpresa...",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate il circuito. Filo blu dal resistore al pin blu (F5) del LED RGB.",
+      "teacher_tip": "Dopo aver montato, chiedete: 'Notate qualcosa di diverso rispetto al rosso?' Il blu potrebbe sembrare leggermente meno luminoso con lo stesso resistore.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap7-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Accendi il blu del RGB seguendo Vol.1 pag.39.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-12",
+              "to": "bb1:b12",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e5",
+              "to": "bb1:f5",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:j3",
+              "to": "bb1:bus-bot-minus-3",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-2",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Il blu ha bisogno di più energia per accendersi. Chiedete se notano differenze.",
+      "teacher_tip": "Il LED blu ha una 'porta' più alta da superare — serve più energia per farlo accendere. NON dire termini tecnici avanzati.",
+      "provocative_question": "Il blu sembra diverso dal rosso e dal verde? Secondo voi perché?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Non nota la differenza di luminosità",
+          "teacher_response": "Provate a confrontare rosso e blu con lo stesso resistore fianco a fianco.",
+          "analogy": null
+        },
+        {
+          "mistake": "Pensa che il blu sia rotto",
+          "teacher_response": "No! Il blu ha bisogno di più energia. È come una porta più alta da superare.",
+          "analogy": "Come salire una scala: il gradino del blu è più alto di quello del rosso"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Il LED si accende BLU! Ogni colore ha una 'soglia' diversa.",
+      "teacher_tip": "Spiegate: il blu ha bisogno di più energia. Come una portate più alta: serve più forza per aprirla.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:rgb1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il LED è blu! Nota: il blu ha bisogno di più energia per accendersi rispetto al rosso. Ogni colore ha la sua 'porta' da superare.",
+      "analogies": [
+        {
+          "concept": "soglia_colori",
+          "text": "Ogni colore del LED ha una porta di altezza diversa. Il rosso ha la porta più bassa, il blu la più alta. La corrente deve avere abbastanza spinta per superarla.",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "blu_energia",
+          "text": "Il blu richiede più energia del rosso e del verde — per questo il resistore da 100Ω è più piccolo. È come scalare una montagna più alta: servono più forze, ma il panorama (la luce blu brillante) è spettacolare!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Abbiamo completato i 3 colori base! Ogni colore ha bisogno di una quantità diversa di energia.",
+      "teacher_tip": "Anticipazione: 'Ora che sappiamo accendere ogni colore singolarmente... cosa succede se ne accendiamo DUE insieme?'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il LED blu ha bisogno di più energia del rosso per accendersi. Ogni colore ha la sua 'soglia'. Ora conosciamo tutti e 3 i colori base!",
+      "concepts_learned": [
+        "soglia energetica per colore",
+        "pin blu del LED RGB"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Mescola 2 colori: il viola!\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se nota la differenza tra rosso e blu → osservazione attiva",
+    "Se chiede 'perché il blu è diverso?' → curiosità scientifica",
+    "Se propone di accenderne due insieme → pronto per sintesi additiva"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "soglia_energetica_colore",
+      "pin_blu_RGB"
+    ],
+    "next_suggested": "v1-cap7-esp4",
+    "resume_message": "L'ultima volta avete acceso tutti e 3 i colori del LED RGB. Ora li mescoliamo!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 39,
+    "label": "Vol.1 pag.39"
+  }
+}

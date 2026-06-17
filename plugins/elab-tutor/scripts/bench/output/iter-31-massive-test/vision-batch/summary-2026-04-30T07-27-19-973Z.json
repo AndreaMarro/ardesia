@@ -1,0 +1,134 @@
+{
+  "summary": {
+    "total": 5,
+    "pass_http": 0,
+    "pass_italian": 0,
+    "pass_response": 0,
+    "latency_stats": {
+      "n": 5,
+      "min": 125,
+      "max": 703,
+      "mean": 407,
+      "p50": 381,
+      "p95": 703,
+      "p99": 703
+    }
+  },
+  "results": [
+    {
+      "id": "D01",
+      "label": "red square (mock LED on)",
+      "color": [
+        220,
+        30,
+        30
+      ],
+      "prompt": "Cosa vedi nel circuito?",
+      "latency_ms": 381,
+      "status": 400,
+      "response_text": "",
+      "raw": {
+        "success": false,
+        "error": "sessionId required"
+      },
+      "checks": {
+        "http_ok": false,
+        "http_status": 400,
+        "italian": false,
+        "response_present": false
+      }
+    },
+    {
+      "id": "D02",
+      "label": "black square (mock LED off / inverso)",
+      "color": [
+        10,
+        10,
+        10
+      ],
+      "prompt": "Il LED è acceso o spento? Spiega ai ragazzi.",
+      "latency_ms": 703,
+      "status": 400,
+      "response_text": "",
+      "raw": {
+        "success": false,
+        "error": "sessionId required"
+      },
+      "checks": {
+        "http_ok": false,
+        "http_status": 400,
+        "italian": false,
+        "response_present": false
+      }
+    },
+    {
+      "id": "D03",
+      "label": "gray square (breadboard vuota)",
+      "color": [
+        180,
+        180,
+        180
+      ],
+      "prompt": "Cosa c è sulla breadboard?",
+      "latency_ms": 677,
+      "status": 400,
+      "response_text": "",
+      "raw": {
+        "success": false,
+        "error": "sessionId required"
+      },
+      "checks": {
+        "http_ok": false,
+        "http_status": 400,
+        "italian": false,
+        "response_present": false
+      }
+    },
+    {
+      "id": "D04",
+      "label": "green square (componenti scattered)",
+      "color": [
+        60,
+        180,
+        60
+      ],
+      "prompt": "Identifica i componenti nel kit.",
+      "latency_ms": 125,
+      "status": 400,
+      "response_text": "",
+      "raw": {
+        "success": false,
+        "error": "sessionId required"
+      },
+      "checks": {
+        "http_ok": false,
+        "http_status": 400,
+        "italian": false,
+        "response_present": false
+      }
+    },
+    {
+      "id": "D05",
+      "label": "yellow (circuito completo)",
+      "color": [
+        240,
+        220,
+        30
+      ],
+      "prompt": "Il circuito è corretto? Vol/pag riferimento.",
+      "latency_ms": 148,
+      "status": 400,
+      "response_text": "",
+      "raw": {
+        "success": false,
+        "error": "sessionId required"
+      },
+      "checks": {
+        "http_ok": false,
+        "http_status": 400,
+        "italian": false,
+        "response_present": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "total": 5,
+    "pass_http": 5,
+    "pass_italian": 5,
+    "pass_response": 5,
+    "latency_stats": {
+      "n": 5,
+      "min": 1094,
+      "max": 1391,
+      "mean": 1245,
+      "p50": 1239,
+      "p95": 1391,
+      "p99": 1391
+    }
+  },
+  "results": [
+    {
+      "id": "D01",
+      "label": "red square (mock LED on)",
+      "color": [
+        220,
+        30,
+        30
+      ],
+      "prompt": "Cosa vedi nel circuito?",
+      "sessionId": "81c3d015-d509-400e-9b57-656666796a95",
+      "latency_ms": 1391,
+      "status": 200,
+      "response_text": "Ragazzi,\nNel vostro **kit ELAB Arduino** vedo:\n- **1 LED** (come una lampadina piccola)\n- **1 resistore** (100Ω, come un \"limitatore di corrente\")\n- **Breadboard** (tavola con buchi per collegare tutto)\n- **Fili rossi/neri** (come tubi dell’acqua: rosso=+ energia, nero=−)\n- **Batteria 9V** (come una pila gigante).\n\n**Attenzione!** Il LED è inserito **al contrario** (gamba lunga verso terra). Come una scarpa rovesciata: non funziona! 😉",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi,\nNel vostro **kit ELAB Arduino** vedo:\n- **1 LED** (come una lampadina piccola)\n- **1 resistore** (100Ω, come un \"limitatore di corrente\")\n- **Breadboard** (tavola con buchi per collegare tutto)\n- **Fili rossi/neri** (come tubi dell’acqua: rosso=+ energia, nero=−)\n- **Batteria 9V** (come una pila gigante).\n\n**Attenzione!** Il LED è inserito **al contrario** (gamba lunga verso terra). Come una scarpa rovesciata: non funziona! 😉",
+        "model": "pixtral-12b-2409",
+        "provider": "mistral-eu",
+        "latencyMs": 1132
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "italian": true,
+        "response_present": true
+      }
+    },
+    {
+      "id": "D02",
+      "label": "black square (mock LED off / inverso)",
+      "color": [
+        10,
+        10,
+        10
+      ],
+      "prompt": "Il LED è acceso o spento? Spiega ai ragazzi.",
+      "sessionId": "9d8fbe51-10e2-4acc-96c6-dbd753c7f56e",
+      "latency_ms": 1239,
+      "status": 200,
+      "response_text": "Ragazzi,\nL’LED **è spento**! Guardo il vostro kit fisico: il **resistore** (il \"frenino\" per l’LED) è collegato male alla breadboard, e il filo **rosso** (positivo) va *dritto* al polo negativo della batteria (come se metteste la spina al contrario!).\n**Fissatelo**: il filo rosso va al **+** della batteria, quello nero al **–**! 🔌✨",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi,\nL’LED **è spento**! Guardo il vostro kit fisico: il **resistore** (il \"frenino\" per l’LED) è collegato male alla breadboard, e il filo **rosso** (positivo) va *dritto* al polo negativo della batteria (come se metteste la spina al contrario!).\n**Fissatelo**: il filo rosso va al **+** della batteria, quello nero al **–**! 🔌✨",
+        "model": "pixtral-12b-2409",
+        "provider": "mistral-eu",
+        "latencyMs": 1096
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "italian": true,
+        "response_present": true
+      }
+    },
+    {
+      "id": "D03",
+      "label": "gray square (breadboard vuota)",
+      "color": [
+        180,
+        180,
+        180
+      ],
+      "prompt": "Cosa c è sulla breadboard?",
+      "sessionId": "97bce089-20b7-4216-8979-3deeaf8481ee",
+      "latency_ms": 1094,
+      "status": 200,
+      "response_text": "Ragazzi,\nSulla breadboard vedo **2 LED** (come due palline luminose), **2 resistori** (cilindretti colorati, come collanine), **fili rossi e neri** (come tubicini flessibili). La batteria (9V) è collegata male: il filo rosso va al **+**, non al **-**! L’LED è al contrario: la gamba lunga va verso il **+** (come un semaforo verde). 🔦⚡",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi,\nSulla breadboard vedo **2 LED** (come due palline luminose), **2 resistori** (cilindretti colorati, come collanine), **fili rossi e neri** (come tubicini flessibili). La batteria (9V) è collegata male: il filo rosso va al **+**, non al **-**! L’LED è al contrario: la gamba lunga va verso il **+** (come un semaforo verde). 🔦⚡",
+        "model": "pixtral-12b-2409",
+        "provider": "mistral-eu",
+        "latencyMs": 920
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "italian": true,
+        "response_present": true
+      }
+    },
+    {
+      "id": "D04",
+      "label": "green square (componenti scattered)",
+      "color": [
+        60,
+        180,
+        60
+      ],
+      "prompt": "Identifica i componenti nel kit.",
+      "sessionId": "7eb76439-01aa-4abd-9078-370e688b1927",
+      "latency_ms": 1390,
+      "status": 200,
+      "response_text": "Ragazzi,\nNel vostro kit vedo: **1 LED verde** (come una lampadina mini), **1 resistore marrone-nero-rosso** (il \"poliziotto\" che controlla la corrente), **1 breadboard** (la tavola dove saldare tutto), **fili rossi e neri** (come le vene e le arterie del circuito) e **1 batteria 9V** (la pila che dà energia).\n\nTutto sembra posizionato bene! 😊",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi,\nNel vostro kit vedo: **1 LED verde** (come una lampadina mini), **1 resistore marrone-nero-rosso** (il \"poliziotto\" che controlla la corrente), **1 breadboard** (la tavola dove saldare tutto), **fili rossi e neri** (come le vene e le arterie del circuito) e **1 batteria 9V** (la pila che dà energia).\n\nTutto sembra posizionato bene! 😊",
+        "model": "pixtral-12b-2409",
+        "provider": "mistral-eu",
+        "latencyMs": 1237
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "italian": true,
+        "response_present": true
+      }
+    },
+    {
+      "id": "D05",
+      "label": "yellow (circuito completo)",
+      "color": [
+        240,
+        220,
+        30
+      ],
+      "prompt": "Il circuito è corretto? Vol/pag riferimento.",
+      "sessionId": "e5107e8f-3601-43db-aff8-4d6a8b813c23",
+      "latency_ms": 1112,
+      "status": 200,
+      "response_text": "Ragazzi,\nNel vostro **kit ELAB Arduino Starter** vedo: **LED rosso**, **resistore 220Ω** (come un \"filtro\" per l’LED), **breadboard** con fili **rossi (positivo)** e **neri (negativo)**. **Attenzione!** Il LED è inserito **al contrario** (gamba lunga = positivo, come la batteria!). Corregete e provate! 🔌✨\n\n*(Vol. 1, Pag. 12 – \"Collegare l’LED\")*",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi,\nNel vostro **kit ELAB Arduino Starter** vedo: **LED rosso**, **resistore 220Ω** (come un \"filtro\" per l’LED), **breadboard** con fili **rossi (positivo)** e **neri (negativo)**. **Attenzione!** Il LED è inserito **al contrario** (gamba lunga = positivo, come la batteria!). Corregete e provate! 🔌✨\n\n*(Vol. 1, Pag. 12 – \"Collegare l’LED\")*",
+        "model": "pixtral-12b-2409",
+        "provider": "mistral-eu",
+        "latencyMs": 999
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "italian": true,
+        "response_present": true
+      }
+    }
+  ]
+}

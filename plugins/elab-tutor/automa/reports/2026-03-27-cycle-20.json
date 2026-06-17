@@ -1,0 +1,63 @@
+{
+  "cycle": 20,
+  "timestamp": "2026-03-27T08:44:36.062255",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1269
+    },
+    {
+      "name": "build",
+      "status": "fail",
+      "detail": "[Errno 2] No such file or directory: 'npm'",
+      "time_ms": 3
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 156075
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=71 (target \u226560) [3 samples]",
+      "time_ms": 63974
+    },
+    {
+      "name": "browser",
+      "status": "warn",
+      "detail": "Playwright not available",
+      "time_ms": 3
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Test error: [Errno 2] No such file or directory: 'node'",
+      "time_ms": 1
+    }
+  ],
+  "checks_passed": 4,
+  "checks_total": 7,
+  "task_result": {
+    "task": "[Research] pnrr_bandi: finding from cycle 16",
+    "status": "pending_interactive"
+  },
+  "research": "Kimi: Il tema \"readability index Italian children\" si riferisce all'analisi della facilit\u00e0 di comprensione dei testi per i bambini italiani. L'ELAB Tutor, un simulatore di circuiti pensato per i bambini, pu\u00f2 essere utilizzato per comprendere meglio i tre trend, una idea e un rischio legati a questo argomento.\n\nI tre trend sono: l'aumento della complessit\u00e0 dei testi didattici, la crescente importanza del\nDeepSeek: **Problema 1:** Gli indici di leggibilit\u00e0 generalisti (es. Gulpease) non catturano le specifiche sfide dei bambini italiani, come strutture sintattiche complesse o riferimenti culturali, risultando in valutazioni imprecise per testi scolastici.\n\n**Problema 2:** Manca uno strumento che adatti dinamicamente la misurazione ai diversi stadi dello sviluppo (6-10 anni vs. 11-13 anni), considerando l'acq",
+  "ai_scoring": "DeepSeek scoring: SCORE:7 MOTIVO:Spiegazione chiara, adatta all'et\u00e0 e incoraggiante, ma incompleta (si interrompe a met\u00e0 frase).\nGemini market: [GEMINI-CLI-TIMEOUT]",
+  "composite_score": 0.9415,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

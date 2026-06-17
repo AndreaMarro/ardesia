@@ -1,0 +1,70 @@
+# Curriculum YAML — v3-extra-servo-sweep
+# "Servo Sweep"
+
+experiment_id: v3-extra-servo-sweep
+volume: 3
+chapter: 99
+title: "Servo Sweep"
+
+prerequisites:
+  - v3-cap6-semaforo
+
+concepts_introduced:
+  - Servo
+  - attach
+  - write
+  - for_loop
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 1 servo motore (SG90 o
+    simile), fili. Il servo ha 3 fili: marrone=GND, rosso=5V, arancione=segnale (pin
+    digitale). Obiettivo: far muovere il servo avanti e indietro da 0 a 180 gradi.
+    E' il primo esperimento con movimento fisico — molto coinvolgente per i ragazzi.
+    Porta nastro adesivo e pezzi di cartoncino da attaccare al servo per vedere meglio il
+    movimento.
+  during_class: >
+    Fai collegare il servo (solo 3 fili — circuito semplice). Poi il codice: Servo.attach(pin)
+    collega, servo.write(angolo) muove. Prima prova: servo.write(90) = meta'. Poi
+    servo.write(0), servo.write(180). Introduci il ciclo for: "Invece di scrivere 180
+    righe, il for ripete automaticamente." Fai lo sweep: for da 0 a 180, poi da 180 a 0.
+    Sfida: attacca una bandierina e fai il tergicristallo.
+  common_question: >
+    "Perche' il servo trema/vibra?" -> Potrebbe essere: 1) alimentazione insufficiente
+    (il servo prende corrente dalla USB — a volte non basta), 2) il servo e' al limite
+    meccanico (non forzarlo oltre 0 o 180). Se trema troppo, usa un alimentatore esterno.
+
+common_mistakes:
+  - mistake: "Fili del servo invertiti — non si muove"
+    what_to_do: "Il servo ha colori standard: marrone=GND, rosso=5V, arancione=segnale. Fai un cartellino con i colori da tenere vicino."
+    analogy: "I 3 fili sono come le 3 cose che servono a un robot: cibo (5V), terra (GND) e ordini (segnale)"
+  - mistake: "write(200) o write(-10) — angolo fuori range"
+    what_to_do: "Il servo gira solo da 0 a 180 gradi, come un orologio da mezzogiorno alle sei. Valori fuori range possono danneggiarlo."
+    analogy: "E' come girare la testa: puoi andare da sinistra a destra, ma non puoi fare il giro completo"
+  - mistake: "for loop senza delay — il servo salta direttamente alla fine"
+    what_to_do: "Senza delay tra un write e l'altro, il programma va troppo veloce e il servo non fa in tempo a muoversi. Aggiungi delay(15) nel for."
+    analogy: "E' come dire tutte le istruzioni in un secondo — nessuno riesce a seguirle. Bisogna dare tempo."
+
+analogies:
+  Servo:
+    analogy: "Il servo e' come un braccio robotico che puoi puntare in una direzione precisa. Gli dici 'vai a 45 gradi' e lui ci va. Come la lancetta di un orologio, ma tu scegli dove fermarla."
+    evidence: "Servo come primo attuatore in curricula robotica educativa (Benitti 2012, review sistematica)"
+  attach:
+    analogy: "attach e' come collegare il telecomando al servo: prima di dare ordini, devi dire al programma 'il servo e' collegato a questo pin'. Senza attach, gli ordini non arrivano."
+    evidence: "Concetto inizializzazione-dispositivo tramite metafora connessione (Kafai & Burke 2014)"
+  write:
+    analogy: "servo.write(angolo) e' come girare una manopola a un numero preciso. Scrivi 0 = tutto a sinistra, 90 = centro, 180 = tutto a destra."
+    evidence: "Mappatura numero-posizione accessibile per eta' 9+ (Papert 1980, geometria Logo)"
+  for_loop:
+    analogy: "Il ciclo for e' come dire 'fai 10 giri di pista': invece di scrivere 'corri' 10 volte, dici 'ripeti 10 volte: corri'. Il computer conta i giri per te."
+    evidence: "Analogia ripetizione-contata fondamentale in CS education (Lye & Koh 2014, review sistematica)"
+
+assessment_invisible:
+  - "Se lo studente cambia l'angolo e prevede dove andra' il servo -> ha capito la mappatura angolo-posizione"
+  - "Se modifica il delay nel for per cambiare velocita' -> ha capito il rapporto tempo-movimento"
+  - "Se prova a fare un pattern diverso (es. oscillazione corta) -> creativita' computazionale"
+  - "Se spiega il for loop a un compagno con parole sue -> comprensione del ciclo"

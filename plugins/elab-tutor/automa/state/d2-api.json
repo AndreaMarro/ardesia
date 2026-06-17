@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-04-17T06:30:00Z",
+  "auditor": "Claude main session — verifica diretta con curl + supabase CLI",
+  "endpoints": {
+    "site": {
+      "url": "https://www.elabtutor.school",
+      "status": 200,
+      "reachable": true,
+      "note": "OK"
+    },
+    "nanobot_supabase_edge": {
+      "url": "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat",
+      "status": "POST responds",
+      "reachable": true,
+      "note": "Supabase Edge Function attiva (project elab-unlim)"
+    },
+    "nanobot_render_fallback": {
+      "url": "https://elab-galileo.onrender.com/chat",
+      "status": 200,
+      "reachable": true,
+      "note": "Fallback Render OK (cold start ~15s)"
+    },
+    "supabase": {
+      "url": "https://vxvqalmxqtezvgiboxyv.supabase.co",
+      "status": 200,
+      "reachable": true,
+      "verified": true,
+      "note": "VIVO. Progetto 'ghost-tutor'. 25 tabelle attive. 190 student_sessions reali. Il 401 PAUSED precedente era FALSA DIAGNOSI: la routine testava /rest/v1/ radice (sempre 401 senza tabella specifica) invece di /rest/v1/{tabella}. Confermato via supabase CLI linkato + curl diretto."
+    },
+    "kokoro": {
+      "url": "http://localhost:8881",
+      "status": "not running local",
+      "reachable": false,
+      "note": "Atteso: non in esecuzione sul Mac. Non e' un bug."
+    },
+    "edge_tts_vps": {
+      "url": "http://72.60.129.50:8880",
+      "status": 200,
+      "reachable": true,
+      "note": "VPS Edge TTS UP. Fallisce solo per CORS da browser (proxy necessario)."
+    },
+    "compiler_n8n": {
+      "url": "https://n8n.srv1022317.hstgr.cloud/compile",
+      "status": "POST 200",
+      "reachable": true,
+      "verified": true,
+      "note": "COMPILATORE FUNZIONA. Test POST con codice Arduino Blink risposta success:true + hex. Il 404 precedente era FALSA DIAGNOSI (testava GET su endpoint POST-only)."
+    }
+  },
+  "corrections_from_previous_audit": [
+    "FALSO ALLARME: Supabase 401 PAUSED → in realta' VIVO, 25 tabelle, 190 sessioni.",
+    "FALSO ALLARME: Compiler 404 → in realta' 200 su POST."
+  ],
+  "realBlockers": [
+    "CORS Edge TTS da Vercel (serve proxy route)",
+    "Kokoro locale non running (opzionale, non critico)"
+  ],
+  "healthy": 6,
+  "total": 7,
+  "note": "6/7 infrastruttura attiva. Solo Kokoro locale non running (atteso)."
+}

@@ -1,0 +1,82 @@
+{
+  "sprint": "S-iter-8",
+  "generated_at": "2026-04-27T12:54:01.807Z",
+  "pre_flight": {
+    "env": {
+      "missingRequired": [
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY"
+      ],
+      "missingOptional": [
+        "ELAB_API_KEY",
+        "TOGETHER_API_KEY",
+        "VOYAGE_API_KEY",
+        "GEMINI_API_KEY"
+      ]
+    },
+    "baseline": {
+      "ok": true,
+      "passed": 0,
+      "skipped": true
+    },
+    "services": []
+  },
+  "suites": {
+    "B1": {
+      "label": "B1: R6 Stress (50/100 prompts)",
+      "ok": false,
+      "exit_code": 1,
+      "duration_ms": 35,
+      "scores": null
+    },
+    "B2": {
+      "label": "B2: Hybrid RAG",
+      "ok": true,
+      "exit_code": 0,
+      "duration_ms": 71,
+      "scores": null
+    },
+    "B5": {
+      "label": "B5: ClawBot Composite",
+      "ok": false,
+      "exit_code": 1,
+      "duration_ms": 71,
+      "scores": null
+    },
+    "B3": {
+      "label": "B3: Vision E2E (SKIPPED — spec missing or dry-run)",
+      "ok": null,
+      "skipped": true
+    },
+    "B4": {
+      "label": "B4: TTS Isabella",
+      "ok": true,
+      "exit_code": 0,
+      "duration_ms": 62,
+      "scores": null
+    },
+    "B6": {
+      "label": "B6: Cost per Session",
+      "ok": true,
+      "exit_code": 0,
+      "duration_ms": 70,
+      "scores": null
+    },
+    "B7": {
+      "label": "B7: Fallback Chain",
+      "ok": true,
+      "exit_code": 0,
+      "duration_ms": 60,
+      "scores": null
+    }
+  },
+  "aggregate": {
+    "pass": 4,
+    "fail": 2,
+    "skipped": 1,
+    "ratio": "4/6",
+    "score_gate": 7.5,
+    "verdict": "YELLOW"
+  },
+  "dry_run": true
+}

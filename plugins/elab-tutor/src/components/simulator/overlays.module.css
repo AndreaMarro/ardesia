@@ -1,0 +1,399 @@
+/* Andrea Marro — 13/02/2026 */
+/* Overlay + Guide styles — Responsive Edition (UI-5) */
+/* Breakpoints: Mobile <600, Landscape 600-767, Tablet 768-1023, Desktop 1024+ */
+
+/* ─── Overlay (Pot / LDR / Properties) ─────────────────────── */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-overlay-backdrop, rgba(0, 0, 0, 0.35));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.card {
+  background: var(--color-sim-bg);
+  border: 1px solid var(--color-sim-border);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.18));
+  width: 280px;
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  overflow: visible;
+}
+
+.cardWide {
+  composes: card;
+  width: 300px;
+}
+
+.overlayHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-bottom: 1px solid var(--color-sim-border);
+}
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-primary);
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.closeBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-md, 16px);
+  color: var(--color-sim-text-muted);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm, 6px);
+  min-width: var(--touch-min, 56px);
+  min-height: var(--touch-min, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.knobContainer {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0 12px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.valueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+}
+
+.valueText {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-primary);
+  font-family: var(--font-mono, 'Fira Code', monospace);
+  min-width: var(--touch-min, 56px);
+  text-align: right;
+}
+
+/* ─── S76: WCAG 56px touch target (LIM) range slider for kids ──── */
+
+.valueRow input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  border-radius: var(--radius-sm, 6px);
+  background: var(--color-sim-border);
+  outline: none;
+  cursor: pointer;
+}
+
+.valueRow input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full, 50%);
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: var(--shadow-md, 0 2px 6px rgba(0,0,0,0.2));
+  border: 3px solid white;
+}
+
+.valueRow input[type="range"]::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full, 50%);
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: var(--shadow-md, 0 2px 6px rgba(0,0,0,0.2));
+  border: 3px solid white;
+}
+
+.valueRow input[type="range"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ─── Guide Panel ──────────────────────────────────────────── */
+
+.collapsedBtn {
+  position: absolute;
+  top: var(--space-2, 8px);
+  right: var(--space-2, 8px);
+  width: var(--touch-min, 56px);
+  height: var(--touch-min, 56px);
+  border: 1px solid var(--color-sim-border);
+  border-radius: var(--radius-md, 10px);
+  background: var(--color-overlay-cream-alt, rgba(250, 250, 247, 0.9));
+  cursor: pointer;
+  font-size: var(--font-size-lg, 18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.08));
+}
+
+.guideRoot {
+  position: absolute;
+  top: var(--space-2, 8px);
+  right: var(--space-2, 8px);
+  width: 280px;
+  min-width: 220px;
+  max-width: 50vw;
+  max-height: calc(100% - 16px);
+  min-height: 200px;
+  background: var(--color-overlay-cream-alt, rgba(250, 250, 247, 0.97));
+  border: 1px solid var(--color-sim-border);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: var(--shadow-lg, 0 4px 20px rgba(0, 0, 0, 0.12));
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  font-size: var(--font-size-base, 16px);
+  line-height: 1.5;
+  color: var(--color-text);
+  overflow: auto;
+  z-index: 20;
+  transition: width 200ms ease, box-shadow 200ms ease;
+}
+
+.guideHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 6px);
+  padding: var(--space-2, 8px) 10px;
+  background: linear-gradient(135deg, var(--color-accent-subtle, rgba(124, 179, 66, 0.08)), var(--color-primary-subtle, rgba(30, 77, 140, 0.03)));
+  border-bottom: 1px solid var(--color-sim-border);
+  border-radius: var(--radius-md, 10px) var(--radius-md, 10px) 0 0;
+}
+
+.guideIcon {
+  font-size: var(--font-size-md, 16px);
+}
+
+.guideTitle {
+  flex: 1;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-primary);
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.guideCloseBtn {
+  border: none;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-sim-text-muted);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  border-radius: var(--radius-sm, 6px);
+  min-width: var(--touch-min, 56px);
+  min-height: var(--touch-min, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* © Andrea Marro — 18/02/2026 */
+
+.desc {
+  margin: 0;
+  padding: var(--space-2, 8px) 10px;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal, 1.5);
+  border-bottom: 1px solid var(--color-divider-subtle);
+}
+
+.section {
+  padding: 8px 12px;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.stepsList {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.step {
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.4;
+  color: var(--color-text-gray-600);
+}
+
+.observe {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.4;
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.concept {
+  margin: 0;
+  padding: 6px 10px 8px;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  border-top: 1px solid var(--color-divider-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Portrait (0-599px)
+   Overlays become bottom sheets, guide panel is full-width
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 599px) {
+  .backdrop {
+    align-items: flex-end;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    animation: overlaySlideUp 300ms ease;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .cardWide {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .knobContainer {
+    padding: 16px 0 12px;
+  }
+
+  .guideRoot {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 60vh;
+    max-height: 60dvh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+    animation: overlaySlideUp 300ms ease;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .collapsedBtn {
+    bottom: 8px;
+    top: auto;
+    right: 8px;
+  }
+
+  .desc {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .step {
+    font-size: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Landscape (600-767px)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 600px) and (max-width: 767px) {
+  .guideRoot {
+    width: 200px;
+  }
+
+  .card {
+    width: 240px;
+  }
+
+  .cardWide {
+    width: 260px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768-1023px)
+   Guide panel slightly narrower
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .guideRoot {
+    width: 220px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Wide (1440px+)
+   Generous sizing
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1440px) {
+  .guideRoot {
+    width: 280px;
+  }
+
+  .card {
+    width: 320px;
+  }
+
+  .cardWide {
+    width: 340px;
+  }
+}
+
+/* ─── Build Mode: step content fade-in ─────────────────────── */
+/* Andrea Marro — 17/02/2026 */
+
+.buildStepFadeIn {
+  animation: buildStepAppear 0.3s ease-out;
+}
+
+/* ─── Animations ───────────────────────────────────────────── */
+
+@keyframes overlaySlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes buildStepAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

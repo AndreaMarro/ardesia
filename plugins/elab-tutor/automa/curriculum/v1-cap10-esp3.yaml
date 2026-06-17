@@ -1,0 +1,73 @@
+# Curriculum YAML — v1-cap10-esp3
+# "3 LDR controllano RGB"
+
+experiment_id: v1-cap10-esp3
+volume: 1
+chapter: 10
+title: "3 LDR controllano RGB"
+
+prerequisites:
+  - v1-cap10-esp1  # Sa usare la fotoresistenza
+  - v1-cap9-esp6   # Sa usare la lampada RGB
+
+concepts_introduced:
+  - multi_sensore
+  - input_ambiente_multiplo
+  - colore_controllato_dalla_luce
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - fotoresistenza
+  - luce
+  - buio
+  - sensore
+  - colore
+  - rosso
+  - verde
+  - blu
+  - controllare
+  - reagire
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - tensione
+  - volt
+  - transistor
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 3 fotoresistenze, 3 resistenze 1K, breadboard, batteria.
+    Ogni LDR controlla un canale del RGB. Obiettivo: il circuito reagisce alla
+    luce in modo complesso — 3 sensori = 3 canali.
+  during_class: >
+    "Nell'esperimento 1 un sensore controllava un LED. Ora 3 sensori controllano
+    3 colori! Coprite una fotoresistenza alla volta e guardate cosa succede al
+    colore." Sfida: "Riuscite a fare il viola coprendo solo il verde?"
+  common_question: >
+    "E complicato!" -> Si, ma e lo stesso principio ripetuto 3 volte. Come imparare
+    a suonare un accordo: prima un dito, poi due, poi tre.
+
+common_mistakes:
+  - mistake: "Non capiscono quale LDR controlla quale colore"
+    what_to_do: "Etichetta le LDR con R, G, B (nastro adesivo colorato) e testa una alla volta"
+    analogy: null
+
+analogies:
+  multi_sensore:
+    analogy: "Il circuito ha 3 occhi! Uno vede il rosso, uno il verde, uno il blu. Insieme decidono il colore del LED — come i nostri occhi hanno 3 tipi di recettori per i colori."
+    evidence: "Analogia biologica visione dei colori, contestualizza elettronica (Anderson & Smith 1986)"
+
+assessment_invisible:
+  - "Se dice 'il circuito sente la luce da 3 posti' -> comprensione multi-input"
+  - "Se scopre come fare colori specifici coprendo LDR diverse -> padronanza"
+  - "Se chiede 'posso aggiungere potenziometri?' -> pensiero compositivo"

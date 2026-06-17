@@ -1,0 +1,44 @@
+name: Render Warmup (T1-003)
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: render-warmup
+  cancel-in-progress: false
+
+jobs:
+  warmup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      HEALTH_URL_SECRET: ${{ secrets.RENDER_HEALTH_URL }}
+      HEALTH_URL_DEFAULT: 'https://elab-galileo.onrender.com/health'
+    steps:
+      - name: Ping /health with retry-backoff
+        run: |
+          set +e
+          URL="${HEALTH_URL_SECRET:-$HEALTH_URL_DEFAULT}"
+          ATTEMPT=0
+          MAX=3
+          WAIT=2
+          STATUS=0
+          while [ $ATTEMPT -lt $MAX ]; do
+            ATTEMPT=$((ATTEMPT+1))
+            STATUS=$(curl -sS -o /tmp/body.txt -w "%{http_code}" -m 20 -H "x-warmup: 1" "$URL")
+            echo "attempt=$ATTEMPT status=$STATUS"
+            if [ "$STATUS" = "200" ] || [ "$STATUS" = "204" ]; then
+              echo "warmup:success status=$STATUS"
+              head -c 512 /tmp/body.txt || true
+              exit 0
+            fi
+            sleep $WAIT
+            WAIT=$((WAIT*2))
+          done
+          echo "warmup:failure status=$STATUS after $ATTEMPT attempts"
+          exit 0

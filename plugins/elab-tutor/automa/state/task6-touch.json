@@ -1,0 +1,316 @@
+{
+  "task": "CICLO 7 — Audit touch/iPad WCAG touch targets",
+  "date": "2026-04-14",
+  "scope": [
+    "src/components/lavagna/*.jsx + *.css",
+    "src/components/simulator/panels/*.jsx",
+    "src/components/tutor/*.jsx + *.css"
+  ],
+  "summary": {
+    "total_issues": 28,
+    "P0": 5,
+    "P1": 12,
+    "P2": 11
+  },
+  "categories": {
+    "undersized_touch_targets": 14,
+    "div_onclick_no_role": 6,
+    "missing_aria_label": 5,
+    "missing_touch_action": 3
+  },
+  "issues": [
+    {
+      "id": "T01",
+      "severity": "P0",
+      "category": "div_onclick_no_role",
+      "file": "src/components/simulator/panels/ShortcutsPanel.jsx",
+      "line": 63,
+      "description": "div.backdrop con onClick senza role='button' e senza aria-label. Cliccabile per chiudere il modal ma invisibile a screen reader.",
+      "fix": "Aggiungere role='dialog' al modal, role='presentation' al backdrop, o usare <button> per il close."
+    },
+    {
+      "id": "T02",
+      "severity": "P0",
+      "category": "div_onclick_no_role",
+      "file": "src/components/simulator/panels/GalileoResponsePanel.jsx",
+      "line": 26,
+      "description": "div.backdrop con onClick senza role. Stesso pattern di ShortcutsPanel.",
+      "fix": "Aggiungere role='presentation' al backdrop o gestire chiusura solo via button."
+    },
+    {
+      "id": "T02b",
+      "severity": "P1",
+      "category": "div_onclick_no_role",
+      "file": "src/components/simulator/panels/GalileoResponsePanel.jsx",
+      "line": 27,
+      "description": "div.panel con onClick stopPropagation — div interattivo senza role.",
+      "fix": "Aggiungere role='dialog' aria-modal='true'."
+    },
+    {
+      "id": "T03",
+      "severity": "P0",
+      "category": "div_onclick_no_role",
+      "file": "src/components/simulator/panels/LessonPathPanel.jsx",
+      "line": 399,
+      "description": "div root con onClick={collapsed ? onToggleCollapse : undefined} — div cliccabile senza role='button' ne tabIndex quando collapsed.",
+      "fix": "Usare <button> wrapper oppure aggiungere role='button' tabIndex={0} onKeyDown quando collapsed."
+    },
+    {
+      "id": "T04",
+      "severity": "P1",
+      "category": "div_onclick_no_role",
+      "file": "src/components/tutor/KeyboardManager.jsx",
+      "line": 100,
+      "description": "div.shortcuts-overlay con onClick={onClose} senza role. Identico pattern backdrop cliccabile.",
+      "fix": "Aggiungere role='presentation' o gestire click solo via button."
+    },
+    {
+      "id": "T05",
+      "severity": "P0",
+      "category": "div_onclick_no_role",
+      "file": "src/components/simulator/panels/ComponentPalette.jsx",
+      "line": 52,
+      "description": "div draggable con onClick (tap-to-place) ma senza role='button' ne tabIndex ne onKeyDown. Non accessibile da tastiera su iPad.",
+      "fix": "Aggiungere role='button' tabIndex={0} onKeyDown (come fatto correttamente in ComponentDrawer.jsx:107)."
+    },
+    {
+      "id": "T06",
+      "severity": "P0",
+      "category": "missing_aria_label",
+      "file": "src/components/simulator/panels/ShortcutsPanel.jsx",
+      "line": 74,
+      "description": "button closeBtn senza aria-label — contiene solo SVG 14x14.",
+      "fix": "Aggiungere aria-label='Chiudi scorciatoie'."
+    },
+    {
+      "id": "T07",
+      "severity": "P1",
+      "category": "missing_aria_label",
+      "file": "src/components/simulator/panels/GalileoResponsePanel.jsx",
+      "line": 44,
+      "description": "button closeBtn senza aria-label — contiene solo SVG 14x14.",
+      "fix": "Aggiungere aria-label='Chiudi'."
+    },
+    {
+      "id": "T08",
+      "severity": "P1",
+      "category": "missing_aria_label",
+      "file": "src/components/simulator/panels/GalileoResponsePanel.jsx",
+      "line": 76,
+      "description": "button retryBtn senza aria-label — contiene SVG + testo, ma il testo cambia tra stati.",
+      "fix": "Aggiungere aria-label='Chiedi di nuovo a Galileo'."
+    },
+    {
+      "id": "T09",
+      "severity": "P1",
+      "category": "missing_aria_label",
+      "file": "src/components/lavagna/GalileoAdapter.jsx",
+      "line": 558,
+      "description": "Tab buttons (CHAT/PERCORSO/GUIDA) senza aria-label. Hanno testo ma manca role='tab' e aria-selected.",
+      "fix": "Aggiungere role='tab' aria-selected={active} a ogni tab, role='tablist' al contenitore."
+    },
+    {
+      "id": "T10",
+      "severity": "P1",
+      "category": "missing_aria_label",
+      "file": "src/components/lavagna/ErrorToast.jsx",
+      "line": 60,
+      "description": "button.askBtn senza aria-label — ha testo visibile 'UNLIM puo aiutarti' ma nessuna semantica per il contesto errore.",
+      "fix": "Aggiungere aria-label='Chiedi aiuto a UNLIM per questo errore'."
+    },
+    {
+      "id": "T11",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/GalileoAdapter.jsx",
+      "line": 532,
+      "description": "Tab buttons con padding '8px 0' — altezza risultante circa 30-34px, sotto il minimo 44px WCAG.",
+      "fix": "Aggiungere min-height: 44px o padding: '14px 0'."
+    },
+    {
+      "id": "T12",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/simulator/panels/ShortcutsPanel.jsx",
+      "line": 74,
+      "description": "button closeBtn — inline style con solo padding:8 e SVG 14x14. Touch target risultante ~30x30px.",
+      "fix": "Aggiungere min-width: 44px, min-height: 44px."
+    },
+    {
+      "id": "T13",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/FloatingWindow.module.css",
+      "line": 132,
+      "description": "Resize corner handle 20x20px — troppo piccolo per iPad. Difficile da toccare con precisione.",
+      "fix": "Aumentare a 32x32px con hit area invisibile piu grande."
+    },
+    {
+      "id": "T14",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/FloatingWindow.module.css",
+      "line": 105,
+      "description": "Resize right handle 8px wide — troppo sottile su touch. Difficile da afferrare su iPad.",
+      "fix": "Aumentare a 16px o aggiungere padding invisibile di 20px."
+    },
+    {
+      "id": "T15",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/FloatingWindow.module.css",
+      "line": 119,
+      "description": "Resize bottom handle 8px high — troppo sottile su touch.",
+      "fix": "Aumentare a 16px o aggiungere padding invisibile."
+    },
+    {
+      "id": "T16",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/RetractablePanel.module.css",
+      "line": 81,
+      "description": "Resize handle 8px wide con hit area 3px (pseudo-element). Quasi impossibile da usare su touch.",
+      "fix": "Aumentare a almeno 16px con pseudo-element piu largo."
+    },
+    {
+      "id": "T17",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/lavagna/RetractablePanel.module.css",
+      "line": 125,
+      "description": "handleTop 8px high — troppo sottile per touch.",
+      "fix": "Aumentare a 16px."
+    },
+    {
+      "id": "T18",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/ElabTutorV4.css",
+      "line": 472,
+      "description": "v4-tabs button senza min-height. Con padding var(--space-3) = 12px e font-size-sm = 14px, altezza totale circa 38px, sotto 44px.",
+      "fix": "Aggiungere min-height: 44px."
+    },
+    {
+      "id": "T19",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/ElabTutorV4.css",
+      "line": 95,
+      "description": "v4-mascot 36x36px — sotto il minimo 44px. Elemento cliccabile.",
+      "fix": "Aumentare a 44x44px o aggiungere hit area padding invisibile."
+    },
+    {
+      "id": "T20",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/ElabTutorV4.css",
+      "line": 2049,
+      "description": "v4-mascot responsive a 30x30px su mobile — molto sotto 44px minimo.",
+      "fix": "Mantenere almeno 44x44px anche su mobile."
+    },
+    {
+      "id": "T21",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/ChatOverlay.module.css",
+      "line": 77,
+      "description": "Diversi elementi 28x28px nel ChatOverlay (icone header, close buttons). Sotto 44px WCAG.",
+      "fix": "Aggiungere min-width/min-height 44px o padding per allargare hit area."
+    },
+    {
+      "id": "T22",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/TutorTools.css",
+      "line": 566,
+      "description": "Elementi 24x24px in TutorTools — troppo piccoli per touch.",
+      "fix": "Aumentare a 44x44px con padding."
+    },
+    {
+      "id": "T23",
+      "severity": "P1",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/tutor-responsive.css",
+      "line": 349,
+      "description": "Bottoni 24x24px nel responsive layout — troppo piccoli per iPad.",
+      "fix": "Min 44px anche in layout responsive."
+    },
+    {
+      "id": "T24",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/simulator/panels/ScratchEditor.jsx",
+      "line": 222,
+      "description": "blocklyToolboxCategoryIcon 20x20px — sotto 44px. Questi sono i pulsanti categorie di Blockly (Scratch).",
+      "fix": "Override CSS per aumentare touch area a 44px. Nota: Blockly potrebbe avere limiti interni."
+    },
+    {
+      "id": "T25",
+      "severity": "P2",
+      "category": "undersized_touch_targets",
+      "file": "src/components/tutor/tutor-responsive.css",
+      "line": 465,
+      "description": "Bottoni 30x30px nel responsive — vicini ma sotto 44px minimo.",
+      "fix": "Aumentare a 44x44px."
+    },
+    {
+      "id": "T26",
+      "severity": "P1",
+      "category": "missing_touch_action",
+      "file": "src/components/lavagna/MascotPresence.jsx",
+      "line": 156,
+      "description": "MascotPresence ha touch-action: none come inline style (OK), ma solo sul div floating. Verificare che sia applicato anche in tutti i media query breakpoints.",
+      "note": "Inline style copre tutti i casi — LOW RISK. Verificato OK."
+    },
+    {
+      "id": "T27",
+      "severity": "P1",
+      "category": "missing_touch_action",
+      "file": "src/components/tutor/CanvasTab.jsx",
+      "line": 424,
+      "description": "Canvas disegno con onPointerDown ma senza touch-action: none nel CSS. Potrebbe causare scroll del browser su iPad durante il disegno.",
+      "fix": "Aggiungere touch-action: none al canvas element."
+    },
+    {
+      "id": "T28",
+      "severity": "P2",
+      "category": "missing_touch_action",
+      "file": "src/components/simulator/canvas/WireRenderer.jsx",
+      "line": 1273,
+      "description": "Waypoint drag handles senza touch-action: none esplicita. Gestito parzialmente dal canvas parent, ma i drag handles stessi potrebbero beneficiare di touch-action: none.",
+      "fix": "Aggiungere touch-action: none ai circle drag handles del wire renderer."
+    }
+  ],
+  "positives": [
+    "FloatingToolbar.module.css: btn 48x48px con min-width/min-height — CONFORME",
+    "AppHeader.module.css: btn 48x48px, tabBtn min-height 44px con @media coarse — CONFORME",
+    "RetractablePanel.module.css: toggle button 48x48px — CONFORME",
+    "FloatingWindow.module.css: titleBar buttons hanno padding adeguato — CONFORME",
+    "VolumeViewer.module.css: navBtn min-width/min-height 44px — CONFORME",
+    "UnlimBar.jsx: tutti i bottoni hanno aria-label — CONFORME",
+    "MascotPresence.module.css: inline mode 44x44px min — CONFORME",
+    "ComponentDrawer.jsx: ha role='button' tabIndex={0} onKeyDown — MODELLO CORRETTO da seguire",
+    "ChatOverlay.jsx: minimizedHeader ha role='button' tabIndex={0} onKeyDown aria-label — MODELLO CORRETTO",
+    "NotebooksTab.jsx: div cliccabili hanno role='button' tabIndex={0} onKeyDown — MODELLO CORRETTO",
+    "SimulatorCanvas: touch-action: none sul canvas — CONFORME",
+    "PotOverlay/LdrOverlay: knobContainer touch-action: none — CONFORME",
+    "ScratchEditor: workspace touch-action: none — CONFORME"
+  ],
+  "fix_priority_order": [
+    "T05 — ComponentPalette div senza role (blocca iPad keyboard nav)",
+    "T06 — ShortcutsPanel closeBtn senza aria-label (screen reader)",
+    "T01+T02 — Backdrop div onClick senza role (pattern ricorrente in 3 file)",
+    "T03 — LessonPathPanel collapsed onClick senza role",
+    "T11+T12+T18 — Touch targets sotto 44px su elementi primari (tab/close)",
+    "T21+T22+T23 — Touch targets ChatOverlay/TutorTools 24-28px",
+    "T27 — CanvasTab disegno senza touch-action (blocca iPad drawing)",
+    "T13-T17 — Resize handles troppo sottili (miglioramento UX)",
+    "T19+T20+T24+T25 — Touch targets secondari sotto 44px"
+  ],
+  "effort_estimate": {
+    "P0_fixes": "2h",
+    "P1_fixes": "3h",
+    "P2_fixes": "2h",
+    "total": "7h"
+  }
+}

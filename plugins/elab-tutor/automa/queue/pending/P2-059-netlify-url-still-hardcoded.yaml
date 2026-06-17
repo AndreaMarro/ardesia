@@ -1,0 +1,29 @@
+id: P2-059-netlify-url-still-hardcoded
+title: "URL Netlify funny-pika ancora hardcoded in 3 file (P2-058 falso done)"
+priority: P2
+severity: medium
+evidence: verified
+created: 2026-03-26
+cycle: 35
+mode: AUDIT
+description: |
+  Il task P2-058 è marcato done ma il fix non è stato applicato.
+  funny-pika-3d1029.netlify.app è ancora hardcoded in:
+  - src/components/ShowcasePage.jsx:11
+  - src/components/social/Navbar.jsx:35
+  - src/components/VetrinaSimulatore.jsx:416
+  - vercel.json:13 (CSP whitelist)
+  - Footer vetrina: link "Sito Web"
+steps:
+  - Decidere il dominio definitivo (elabtutor.school o altro)
+  - Creare costante VETRINA_URL in src/config.js
+  - Sostituire in tutti i file
+  - Aggiornare CSP in vercel.json
+acceptance:
+  - Nessuna occorrenza di funny-pika in src/
+  - Link footer punta al dominio branded
+files_to_check:
+  - src/components/ShowcasePage.jsx
+  - src/components/social/Navbar.jsx
+  - src/components/VetrinaSimulatore.jsx
+  - vercel.json

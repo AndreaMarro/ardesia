@@ -1,0 +1,68 @@
+{
+  "cycle": 32,
+  "timestamp": "2026-03-26T10:30:32.559472",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1032
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 25.16s",
+      "time_ms": 28978
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 167773
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=77 min=75 (target \u226560) [3 samples]",
+      "time_ms": 67223
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4132
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2113
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Scaffolding adattivo context-aware in tutor.yml + scaffolding_guidance in teacher.yml",
+    "status": "done",
+    "files_changed": [
+      "nanobot/prompts/tutor.yml",
+      "nanobot/prompts/teacher.yml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "Kimi: 1. Trend 1: Crescita dell'educazione STEM\nL'educazione STEM (Science, Technology, Engineering, Mathematics) sta prendendo sempre pi\u00f9 importanza nella formazione dei bambini. I simulatori di circuiti sono uno strumento prezioso per introdurre i bambini a questi campi, stimolando il loro interesse e la curiosit\u00e0.\n\n2. Trend 2: Personalizzazione e accessibilit\u00e0\nCon l'avanzare della tecnologia, i simul\nDeepSeek: **Problemi:**\n1.  **Complessit\u00e0 astratta:** I simulatori elettronici tradizionali (es. SPICE) utilizzano interfacce e concetti (corrente, tensione) troppo astratti per i bambini, causando frustrazione e perdita d\u2019interesse.\n2.  **Mancanza di guida pedagogica:** Spesso sono strumenti open-ended senza un percorso didattico strutturato, lasciando l\u2019insegnante o il bambino senza feedback su errori con",
+  "ai_scoring": null,
+  "composite_score": 0.9552,
+  "self_exam": null
+}

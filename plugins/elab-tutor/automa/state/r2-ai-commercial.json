@@ -1,0 +1,274 @@
+{
+  "timestamp": "2026-04-17T00:00:00Z",
+  "iteration": "dispari",
+  "iterationNumber": 1,
+  "note": "Prima iterazione. Copertura mista: AI tech + pacchetti commerciali + pedagogia. Iterazione 2 (pari) approfondirà AI in modo sistematico.",
+
+  "aiTechnologies": [
+    {
+      "name": "Gemma 3 27B",
+      "vendor": "Google DeepMind",
+      "params": "27B",
+      "cost": "Open weights — self-host o via provider. Nessun costo API ufficiale Google.",
+      "quality": "MMLU-Pro 67.5, MATH 69.0, 140+ lingue, multimodale (vision+text), 128K context. Top-10 mondiale su LMSys Arena (Elo 1339, comparabile a o1-preview).",
+      "latency": "Dipende dall'infra. Self-hosted su GPU A100: ~1-2s per risposta media.",
+      "openSource": true,
+      "license": "Gemma Terms of Use (permissiva per la maggior parte dei casi, incluso commerciale con volume < 2B MAU)",
+      "elabFit": "ECCELLENTE per uso locale su Mac Mini M4 (tramite Ollama/llama.cpp con quantizzazione Q4/Q5). Alternativa a Gemini per ridurre dipendenza Google. Multilingue nativo, ottimo per italiano. ATTENZIONE: 27B richiede ~18GB VRAM — ok su Mac Mini M4 PRO 24GB, NON su M4 base 16GB.",
+      "action": "Testare Q4_K_M su Mac Mini M4 Pro — se disponibile"
+    },
+    {
+      "name": "Gemma 4 (annunciato)",
+      "vendor": "Google DeepMind",
+      "params": "N/A (ancora non dettagliato pubblicamente)",
+      "cost": "TBD",
+      "quality": "Sequel di Gemma 3, miglioramento atteso in reasoning e multilingue",
+      "latency": "TBD",
+      "openSource": true,
+      "license": "TBD",
+      "elabFit": "Da monitorare — potrebbe sostituire Gemma 3 27B per futuri use case",
+      "action": "Monitorare rilascio ufficiale"
+    },
+    {
+      "name": "Voxtral 4B TTS",
+      "vendor": "Mistral AI",
+      "params": "4B",
+      "released": "2026-03-26",
+      "cost": "Open weights (CC BY-NC 4.0). Uso commerciale richiede licenza separata con Mistral. API Mistral: prezzo non ancora annunciato pubblicamente.",
+      "quality": "Batte ElevenLabs Flash v2.5 nei test human preference. Supporta italiano nativamente. Voice cloning da 3 secondi di audio. BF16 weights.",
+      "latency": "70ms per campione da 500 char (10s audio) — eccellente",
+      "openSource": true,
+      "license": "CC BY-NC 4.0 — NON commerciale senza accordo. PROBLEMA per ELAB.",
+      "hardwareRequired": "16GB VRAM GPU (singola GPU)",
+      "elabFit": "OTTIMO dal punto di vista tecnico. CRITICO: la licenza CC BY-NC blocca uso commerciale diretto. Opzioni: (1) accordo commerciale Mistral, (2) aspettare MIT license, (3) usare Kokoro 82M per ora.",
+      "action": "Verificare costi licenza commerciale con Mistral. Testare qualità italiano vs Kokoro."
+    },
+    {
+      "name": "Kokoro 82M",
+      "vendor": "hexgrad (community open source)",
+      "params": "82M",
+      "cost": "Completamente gratuito, nessuna restrizione licenza commerciale nota",
+      "quality": "2 voci italiane (1M + 1F), 54 voci totali in 9 lingue. Qualità buona per il peso del modello. Inferiore a Voxtral per naturalezza.",
+      "latency": "Molto basso — modello piccolo, gira in real-time su CPU",
+      "openSource": true,
+      "license": "Apache 2.0 (uso commerciale OK)",
+      "hardwareRequired": "CPU sufficiente, nessuna GPU richiesta",
+      "elabFit": "SOLUZIONE ATTUALE CONSIGLIATA per TTS italiano. Già referenziata in memory. Zero costi, zero problemi legali. Limitazione: solo 2 voci italiane, meno naturale di Voxtral.",
+      "action": "Già in scope. Integrare nell'app produzione con fallback su Gemini TTS."
+    },
+    {
+      "name": "Qwen3 / Qwen3-Max",
+      "vendor": "Alibaba",
+      "params": "Varia: 0.5B → 480B (MoE)",
+      "cost": "$0.01/M tokens (embedding 8B) → $3.90/M tokens (Qwen3-Max output). Qwen3.5 Plus: $0.26/$1.56 in/out. Batch 50% discount.",
+      "quality": "119-201 lingue, ottimo per multilingue. Qwen3-Max compete con GPT-4o. Comprende italiano, cinese, giapponese, arabo natively.",
+      "latency": "API cloud standard (~1-3s)",
+      "openSource": true,
+      "license": "Qwen License (modelli piccoli Apache 2.0, grandi custom — commerciale consentito)",
+      "elabFit": "ALTERNATIVA LOW-COST a Gemini. Qwen3.5 Plus a $0.26/$1.56 vs Gemini Flash $0.30/$2.50 — risparmio 20-40%. Ottima qualità italiano. Possibile sostituzione parziale nel routing 70/25/5.",
+      "action": "Benchmark Qwen3.5 Plus vs Gemini Flash su prompt tipo UNLIM italiano. Se qualità ≥90%, abbassare costi del 25%."
+    },
+    {
+      "name": "DeepSeek V3 / V3.2",
+      "vendor": "DeepSeek",
+      "params": "~671B MoE (attivi ~37B)",
+      "cost": "$0.27/M input, $1.10/M output (API ufficiale). Provider terzi: 2-9x markup.",
+      "quality": "Comparable a GPT-4 Turbo su reasoning. Italiano: buono ma meno testato di Gemini. Costo/performance ratio eccellente.",
+      "latency": "API cloud ~2-4s",
+      "openSource": true,
+      "license": "DeepSeek License (commerciale permessa)",
+      "elabFit": "POTENZIALE SOSTITUTO per il 5% Pro nel routing (casi complessi). DeepSeek V3 a $1.10/M out vs Gemini 2.5 Pro a $10/M out = risparmio 89% sui casi complessi. Da testare su ragionamento scientifico (UNLIM circuiti).",
+      "action": "Testare su 50 prompt difficili UNLIM. Se accuracy ≥85%, inserire nel routing come alternativa a Gemini Pro."
+    },
+    {
+      "name": "Gemini 2.5 Flash",
+      "vendor": "Google",
+      "params": "N/A (closed)",
+      "cost": "$0.30/M input, $2.50/M output. 1M token context window. Flash-Lite più economico.",
+      "quality": "Già in produzione ELAB. Ottimo per italiano. 1M context = zero problemi di lunghezza.",
+      "latency": "~1-2s API",
+      "openSource": false,
+      "license": "Commercial (Google API)",
+      "elabFit": "BACKBONE ATTUALE (70% Flash-Lite, 25% Flash, 5% Pro). Pricing stabile ad aprile 2026. Nessun cambiamento urgente necessario.",
+      "action": "Mantenere routing attuale. Valutare Qwen3 come sostituto parziale per ridurre dipendenza single-vendor."
+    },
+    {
+      "name": "Phi-4-mini",
+      "vendor": "Microsoft",
+      "params": "3.8B",
+      "cost": "Open weights gratuito. In Microsoft Edge: built-in, zero costo API.",
+      "quality": "Buono per task semplici (summarization, Q&A breve). Non competitivo con Gemini Flash per ragionamento complesso.",
+      "latency": "~50-100ms on-device (Edge/browser)",
+      "openSource": true,
+      "license": "MIT License",
+      "hardwareRequired": "CPU moderna, 4-8GB RAM. Funziona in browser via Edge Prompt API.",
+      "elabFit": "INTERESSANTE per modalità offline completamente client-side. Può gestire hint semplici, feedback immediato senza network. ATTENZIONE: Edge Canary ancora sperimentale, non production-ready. Alternativa: ONNX Runtime Web con modello quantizzato.",
+      "action": "Prototipare offline hint con Phi-4-mini ONNX nel browser. Utile per scuole con connessione scarsa."
+    },
+    {
+      "name": "Edge AI via WebGPU/ONNX Runtime Web",
+      "vendor": "Community/W3C standard",
+      "params": "Dipende dal modello caricato",
+      "cost": "Zero costi API — inference locale nel browser",
+      "quality": "82.7% browser support (Chrome/Firefox/Edge/Safari). 20x speedup su GPU vs CPU. Latenza 15-30ms per modelli piccoli.",
+      "latency": "15-30ms on modern GPUs, 300-500ms su CPU",
+      "openSource": true,
+      "license": "Standard web — nessuna restrizione",
+      "elabFit": "STRATEGICO per offline mode e privacy GDPR. Un modello ONNX quantizzato (es. Phi-4-mini Q4 ~2GB) può gestire feedback istantaneo nel simulatore senza dati che lasciano il device. PERFETTO per contesto scolastico italiano (GDPR minori, connessioni lente).",
+      "action": "R&D: provare phi-4-mini.onnx in browser per feedback errori Arduino. Target: <500ms latenza, <2GB download iniziale."
+    }
+  ],
+
+  "packages": [
+    {
+      "name": "ELAB Starter — Solo Software",
+      "components": ["Accesso simulatore online", "UNLIM AI base (testo, no voce)", "10 lezioni Vol.1 Arduino", "NO kit fisico"],
+      "price": "€5/studente/mese oppure €49/anno/studente",
+      "margin": "85%+ (solo infra AI)",
+      "target": "Famiglie, studenti autodidatti, scuole con budget limitato",
+      "mepaCompatible": false,
+      "notes": "Entry point digitale. Non include hardware. Ideale per trial gratuito di 14 giorni."
+    },
+    {
+      "name": "ELAB Classe — Kit + Software (core product)",
+      "components": ["Kit fisico Vol.1 (componenti Arduino base)", "Simulatore illimitato", "UNLIM AI tutor voce+testo", "Dashboard docente", "27 lezioni Vol.1", "Aggiornamenti 1 anno"],
+      "price": "€20/classe/mese (≤30 studenti)",
+      "margin": "~59% (€11.80 su €20 dopo costi AI+infra)",
+      "target": "Classi scuola secondaria primo grado, docenti STEM",
+      "mepaCompatible": true,
+      "notes": "Prodotto principale. MePA: fatturazione annuale €240/classe. Valore kit fisico incluso nel prezzo."
+    },
+    {
+      "name": "ELAB Classe Plus — Kit Vol.1+2",
+      "components": ["Kit fisico Vol.1+2", "Simulatore illimitato", "UNLIM AI tutor completo", "Dashboard + report", "54 lezioni (Vol.1+2)", "Aggiornamenti 2 anni"],
+      "price": "€35/classe/mese oppure €350/anno/classe",
+      "margin": "~50% (kit fisici aumentano costi materiali)",
+      "target": "Scuole con percorso biennale, laboratori dedicati",
+      "mepaCompatible": true,
+      "notes": "Pacchetto preferito per scuole con laboratorio consolidato. Giustifica il prezzo con 2 anni di materiale."
+    },
+    {
+      "name": "ELAB Completo — Kit Vol.1+2+3",
+      "components": ["Kit fisico completo (3 volumi)", "Simulatore + avanzato", "UNLIM AI + voice cloning insegnante", "Dashboard istituto", "81+ lezioni", "Aggiornamenti 3 anni", "Formazione docenti 4h online"],
+      "price": "€50/classe/mese oppure €480/anno/classe",
+      "margin": "~40% (hardware vol.3 più costoso)",
+      "target": "Istituti tecnici, scuole di eccellenza, bando PNRR",
+      "mepaCompatible": true,
+      "notes": "Massimo impatto per bandi PNRR. Include formazione docenti come leva di differenziazione."
+    },
+    {
+      "name": "ELAB Istituto — Licenza Scolastica",
+      "components": ["Tutte le classi illimitate per 1 anno", "Kit fisici per ogni classe (Vol.1)", "Dashboard istituto centralizzata", "Report automatici per PTOF/RAV", "Supporto prioritario", "Formazione docenti 8h"],
+      "price": "€800-1500/anno (10-30 classi). Prezzo per scuola.",
+      "margin": "~45% (economia di scala su licenze)",
+      "target": "Istituti comprensivi, acquisto diretto dirigenza via MePA",
+      "mepaCompatible": true,
+      "notes": "Ideale per acquisto Davide Fagherazzi via MePA. Deadline PNRR 30/06/2026. Proposta personalizzata obbligatoria."
+    },
+    {
+      "name": "ELAB Famiglia",
+      "components": ["Accesso simulatore", "UNLIM AI tutor", "Percorso autonomo casa", "NO kit fisico (acquisto separato opzionale)"],
+      "price": "€9.99/mese oppure €79/anno",
+      "margin": "80%+",
+      "target": "Genitori, ragazzi 10-15 anni, homeschooling",
+      "mepaCompatible": false,
+      "notes": "Canale B2C. Non prioritario rispetto al B2B scuole."
+    },
+    {
+      "name": "ELAB White-Label per Editori",
+      "components": ["SDK + API ELAB", "Simulatore brandizzato", "UNLIM AI configurabile", "Dashboard personalizz.", "Contenuti su licenza"],
+      "price": "€5.000-20.000 setup + royalty 15-25% su vendite",
+      "margin": "Variable (dipende da volume editore)",
+      "target": "Mondadori, Pearson, Zanichelli, distributori STEM",
+      "mepaCompatible": false,
+      "notes": "Opportunità a lungo termine. Richiede maturità prodotto >8/10. Non prioritario ora."
+    },
+    {
+      "name": "ELAB On-Premise (Scuola Server)",
+      "components": ["Installazione locale su server scuola", "UNLIM offline con modello locale (Gemma/Phi)", "Nessun dato esterno", "Aggiornamenti via USB/LAN", "GDPR garantita al 100%"],
+      "price": "€2.000 setup + €500/anno manutenzione",
+      "margin": "~60% (no costi cloud AI)",
+      "target": "Scuole con policy IT rigide, istituti con server dedicato",
+      "mepaCompatible": true,
+      "notes": "USP massima per GDPR minori. Richiede Edge AI (WebGPU/ONNX) + Phi-4-mini o Gemma 3 quantizzato locale."
+    }
+  ],
+
+  "pedagogicalFrameworks": [
+    {
+      "name": "Constructionism (Papert)",
+      "core": "Si impara meglio costruendo artefatti pubblici — oggetti tangibili o digitali che altri possono vedere, toccare, usare.",
+      "elabImplementation": "Il simulatore Arduino/Scratch È il costruttore. Ogni circuito assemblato, ogni sketch compilato, è un artefatto costruito. UNLIM guida ma non sostituisce l'azione. La lavagna = spazio costruttivo.",
+      "unlimRole": "UNLIM non deve fare il compito allo studente. Deve porre domande Socratiche: 'Cosa succede se aggiungi un resistore da 220Ω? Prova e dimmi.' → costruzionismo puro.",
+      "gap": "Attuale UNLIM risponde troppo direttamente. Serve modalità 'guida-senza-fare'.",
+      "priority": "ALTA — allineamento con filosofia prodotto"
+    },
+    {
+      "name": "Productive Failure (Kapur)",
+      "core": "Lo studente affronta il problema PRIMA di ricevere istruzione. Il fallimento iniziale attiva la conoscenza pregressa e crea terreno fertile per l'apprendimento.",
+      "elabImplementation": "UNLIM non dovrebbe correggere subito l'errore. Dovrebbe dire: 'Interessante. Il LED non si accende. Cosa pensi che manchi nel circuito?' → poi istruzione solo se lo studente non trova.",
+      "unlimRole": "Delayed feedback > immediate correction. UNLIM attende 2-3 tentativi prima di dare la soluzione.",
+      "gap": "Attuale UNLIM corregge al primo errore. Invertire la logica: errore = opportunità, non problema da eliminare.",
+      "priority": "ALTA — differenziazione pedagogica da concorrenti"
+    },
+    {
+      "name": "Zone of Proximal Development (Vygotsky)",
+      "core": "L'apprendimento avviene nella zona tra ciò che lo studente sa fare da solo e ciò che può fare con aiuto (scaffolding).",
+      "elabImplementation": "UNLIM misura il livello corrente (errori, progressi, RAG) e fornisce aiuto al livello esatto della ZPD — né troppo facile (noia) né troppo difficile (frustrazione).",
+      "unlimRole": "Sistema di hint a 3 livelli già implementato. Ottimizzare: hint L1 = domanda, hint L2 = suggerimento, hint L3 = soluzione guidata (mai la risposta diretta).",
+      "gap": "Calibrazione ZPD richiede dati sufficienti sulla storia studente. RAG da 549 chunk = buona base.",
+      "priority": "MEDIA — già parzialmente implementato"
+    },
+    {
+      "name": "Inquiry-Based Learning (IBL)",
+      "core": "L'apprendimento guidato da domande dello studente. L'insegnante facilita, non trasmette.",
+      "elabImplementation": "UNLIM trasforma ogni domanda dello studente in una nuova domanda esplorativa. 'Perché il LED si brucia?' → 'Ottima domanda. Cosa pensi che succeda quando la corrente supera il limite del LED?'",
+      "unlimRole": "Question-first mode: UNLIM risponde sempre con una domanda tranne che per richieste esplicite di soluzione.",
+      "gap": "Non ancora implementato sistematicamente. Richiede classificazione intent: question/explanation/help.",
+      "priority": "MEDIA"
+    },
+    {
+      "name": "Universal Design for Learning (UDL)",
+      "core": "Accessibilità per tutti i profili di apprendimento: visivo, uditivo, cinestesico, BES, DSA.",
+      "elabImplementation": "Voice UNLIM = canale uditivo. Simulatore visivo = canale visivo. Kit fisico = canale cinestesico. Testo adattivo (Flesch/Gulpease già monitorato) = accessibilità DSA.",
+      "unlimRole": "Configurazione profilo studente: se DSA=true, UNLIM usa frasi più brevi, più immagini/diagrammi, evita parole tecniche complesse senza spiegazione.",
+      "gap": "Profilo studente DSA non ancora implementato. Feature importante per MePA (obbligo accessibilità PA).",
+      "priority": "ALTA — obbligo legale PA italiana"
+    },
+    {
+      "name": "Spaced Repetition + Active Recall",
+      "core": "La conoscenza si consolida con richiami distribuiti nel tempo, non con studio intensivo.",
+      "elabImplementation": "Dashboard docente mostra 'concetti da ripassare' per ogni studente basandosi su errori passati. UNLIM introduce richiami: 'La settimana scorsa hai avuto problemi con i resistori. Ricordi come si calcola la resistenza?'",
+      "unlimRole": "Memory system già implementato (3-tier). Aggiungere active recall scheduler: ogni 3-7 giorni, UNLIM inizia con domanda di ripasso.",
+      "gap": "Scheduler non implementato. Semplice da aggiungere con BroadcastChannel + cron.",
+      "priority": "MEDIA"
+    }
+  ],
+
+  "marketInsights": {
+    "globalPricing": {
+      "khanmigoMonthly": "~$9/studente/mese",
+      "avgK12EdtechSpend": "$45/studente/anno (LearnPlatform 2023)",
+      "districtBulk": "$3-10/studente per strumenti supplementari",
+      "enterpriseRange": "$50k-$500k/anno per grandi distretti",
+      "elabPositioning": "€20/classe/mese = €0.67/studente/mese (30 studenti) — COMPETITIVO. Include hardware. Unico sul mercato italiano con AI + fisico."
+    },
+    "italianMarket": {
+      "pnrrDeadline": "30/06/2026",
+      "mepaChannel": "Davide Fagherazzi gestisce procurement PA",
+      "competitorGap": "Nessun competitor italiano con AI tutor + kit fisico + simulatore + GDPR",
+      "privateSchoolCount": "~6.500 scuole secondarie Italia (potenziale 195M€/anno a €30k/scuola media)"
+    }
+  },
+
+  "recommendations": [
+    "PRIORITÀ 1: Testare Qwen3.5 Plus vs Gemini Flash per routing UNLIM — risparmio 25-30% sui costi API se qualità adeguata",
+    "PRIORITÀ 2: Integrare Kokoro 82M per TTS italiano in produzione (CC libero, zero costi, già noto)",
+    "PRIORITÀ 3: Implementare 'Productive Failure mode' in UNLIM — non correggere al primo errore, attendere 2-3 tentativi",
+    "PRIORITÀ 4: Aggiungere profilo DSA studente per conformità GDPR/PA italiana (obbligo MePA)",
+    "PRIORITÀ 5: R&D offline AI con Phi-4-mini ONNX nel browser — differenziazione per scuole con connessione scarsa",
+    "PRIORITÀ 6: Formalizzare pacchetto ELAB Istituto con report PTOF/RAV automatici — leva per bandi PNRR prima del 30/06/2026",
+    "MONITORARE: Gemma 4 (in arrivo) — potrebbe superare Gemma 3 27B per uso locale",
+    "ATTENZIONE: Voxtral 4B è tecnicamente superiore a Kokoro MA licenza CC BY-NC blocca uso commerciale. Contattare Mistral solo se volume giustifica accordo."
+  ]
+}

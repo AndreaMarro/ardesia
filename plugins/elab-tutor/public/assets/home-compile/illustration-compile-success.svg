@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- (c) Andrea Marro - 29/05/2026 - ELAB Tutor - Tutti i diritti riservati
+     Swarm 4 Visual Polish + Morfismo (2026-05-29).
+     Morfismo Sense 2: derives palette + iconography from Vol3 cap.6 Arduino
+     section + Vol1 Lime success identity. NO generic stock icon. Stylized
+     Arduino Nano R4 silhouette + Lime checkmark = success state for the
+     #compile-home route. Aesthetic: Lego Education kit-coupled, NOT
+     Material Design SaaS / Disney cartoon / RGB gaming. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="ELAB Tutor compilazione riuscita">
+  <title>Compilazione riuscita - Nano R4 pronto</title>
+  <desc>Illustrazione Morfismo: scheda Arduino Nano R4 con segno di spunta verde lime, palette Volumi cartacei ELAB</desc>
+  <defs>
+    <linearGradient id="hcsBoardBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E4D8C"/>
+      <stop offset="100%" stop-color="#163A6B"/>
+    </linearGradient>
+    <linearGradient id="hcsRibbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4A7A25"/>
+      <stop offset="100%" stop-color="#3E6B1F"/>
+    </linearGradient>
+    <linearGradient id="hcsCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F7F8"/>
+    </linearGradient>
+  </defs>
+  <!-- Background soft Khan Academy card -->
+  <rect x="6" y="6" width="228" height="148" rx="14" fill="url(#hcsCard)" stroke="#E5E5EA" stroke-width="1"/>
+  <!-- Vol1 Lime accent strip - Morfismo palette stampa volumi -->
+  <rect x="6" y="6" width="6" height="148" rx="3" fill="#4A7A25"/>
+  <!-- Nano R4 stylized silhouette (kit Omaric coherent) -->
+  <g transform="translate(56 52)">
+    <!-- PCB body -->
+    <rect x="0" y="0" width="128" height="48" rx="4" fill="url(#hcsBoardBlue)"/>
+    <!-- pin headers -->
+    <g fill="#0D2A52">
+      <rect x="2" y="2" width="124" height="6" rx="1"/>
+      <rect x="2" y="40" width="124" height="6" rx="1"/>
+    </g>
+    <!-- pin holes -->
+    <g fill="#FAFAF7" opacity="0.9">
+      <circle cx="8" cy="5" r="1.2"/><circle cx="16" cy="5" r="1.2"/><circle cx="24" cy="5" r="1.2"/>
+      <circle cx="32" cy="5" r="1.2"/><circle cx="40" cy="5" r="1.2"/><circle cx="48" cy="5" r="1.2"/>
+      <circle cx="56" cy="5" r="1.2"/><circle cx="64" cy="5" r="1.2"/><circle cx="72" cy="5" r="1.2"/>
+      <circle cx="80" cy="5" r="1.2"/><circle cx="88" cy="5" r="1.2"/><circle cx="96" cy="5" r="1.2"/>
+      <circle cx="104" cy="5" r="1.2"/><circle cx="112" cy="5" r="1.2"/><circle cx="120" cy="5" r="1.2"/>
+      <circle cx="8" cy="43" r="1.2"/><circle cx="16" cy="43" r="1.2"/><circle cx="24" cy="43" r="1.2"/>
+      <circle cx="32" cy="43" r="1.2"/><circle cx="40" cy="43" r="1.2"/><circle cx="48" cy="43" r="1.2"/>
+      <circle cx="56" cy="43" r="1.2"/><circle cx="64" cy="43" r="1.2"/><circle cx="72" cy="43" r="1.2"/>
+      <circle cx="80" cy="43" r="1.2"/><circle cx="88" cy="43" r="1.2"/><circle cx="96" cy="43" r="1.2"/>
+      <circle cx="104" cy="43" r="1.2"/><circle cx="112" cy="43" r="1.2"/><circle cx="120" cy="43" r="1.2"/>
+    </g>
+    <!-- microcontroller chip -->
+    <rect x="52" y="16" width="24" height="16" rx="2" fill="#1A1A2E"/>
+    <!-- USB-C port left edge -->
+    <rect x="-7" y="14" width="10" height="20" rx="2" fill="#9DA5AD"/>
+    <!-- power LED Lime -->
+    <circle cx="14" cy="22" r="2" fill="#4A7A25"/>
+    <!-- ELAB / NANO R4 wordmark -->
+    <text x="64" y="27" text-anchor="middle" font-family="Oswald, sans-serif" font-size="6" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">ELAB NANO R4</text>
+  </g>
+  <!-- Lime checkmark ribbon top-right -->
+  <g transform="translate(168 22)">
+    <circle cx="22" cy="22" r="22" fill="url(#hcsRibbon)"/>
+    <path d="M11 22 L19 30 L34 14" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Success caption -->
+  <text x="120" y="130" text-anchor="middle" font-family="Open Sans, system-ui, sans-serif" font-size="11" font-weight="600" fill="#3E6B1F">Compilazione riuscita</text>
+  <text x="120" y="144" text-anchor="middle" font-family="Open Sans, system-ui, sans-serif" font-size="9" fill="#5A5A6B">Nano R4 pronto per il caricamento</text>
+</svg>

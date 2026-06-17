@@ -1,0 +1,92 @@
+# Curriculum YAML — v1-cap8-esp1
+# "LED con pulsante"
+
+experiment_id: v1-cap8-esp1
+volume: 1
+chapter: 8
+title: "LED con pulsante"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+  - v1-cap7-esp1  # Sa collegare un LED RGB
+
+concepts_introduced:
+  - pulsante
+  - circuito_aperto_chiuso
+  - interruttore_momentaneo
+  - normalmente_aperto
+
+vocabulary_level: v1-cap8
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - premere
+  - rilasciare
+  - acceso
+  - spento
+  - aperto
+  - chiuso
+  - interrompere
+  - collegare
+forbidden_terms:
+  - potenziometro
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - digitalRead
+  - INPUT
+  - OUTPUT
+  - fotoresistenza
+  - sensore
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED, 1 resistenza 470 ohm, 1 pulsante (tact switch),
+    breadboard, batteria 9V. Il pulsante ha 4 piedini — i due sulla stessa fila sono
+    collegati internamente. Obiettivo: capire che il pulsante apre e chiude il circuito.
+  during_class: >
+    Chiedi: "Come facciamo ad accendere e spegnere il LED senza staccare i fili?"
+    Lascia che provino. Poi mostra il pulsante: "Questo componente si chiama pulsante.
+    Provate a inserirlo nel circuito." Se non funziona, chiedere "Il circuito e
+    completo? L'elettricita puo passare da una parte all'altra?"
+  common_question: >
+    "Perche si spegne quando rilascio?" -> Il pulsante e come una porta a molla:
+    quando la spingi si apre, quando la lasci si richiude. Finche tieni premuto,
+    l'elettricita passa. Quando rilasci, il percorso si interrompe.
+
+common_mistakes:
+  - mistake: "Inseriscono il pulsante sulle stesse file della breadboard"
+    what_to_do: "Il pulsante deve stare a cavallo della scanalatura centrale della breadboard"
+    analogy: "Come un ponte che collega due sponde — deve stare sopra il fiume, non sulla stessa riva"
+  - mistake: "Collegano i piedini sbagliati del pulsante"
+    what_to_do: "Mostra che i piedini opposti (diagonali) sono quelli che si collegano premendo"
+    analogy: null
+  - mistake: "Il LED resta sempre acceso o sempre spento"
+    what_to_do: "Controlla se il pulsante e inserito nel verso giusto — prova a ruotarlo di 90 gradi"
+    analogy: null
+
+analogies:
+  pulsante:
+    analogy: "Un pulsante e come il campanello di casa: finche tieni premuto suona, quando lasci smette. Non resta premuto da solo."
+    evidence: "Analogia con esperienza quotidiana, supporta transfer concettuale (Gentner 1983)"
+  circuito_aperto_chiuso:
+    analogy: "Un circuito e come un percorso ad anello per le biglie. Se togli un pezzo di binario, le biglie si fermano. Il pulsante e il pezzo che metti e togli."
+    evidence: "Modello ad anello per corrente, raccomandato da ricerca misconception (Shipstone 1984)"
+
+assessment_invisible:
+  - "Se lo studente capisce che il LED si spegne rilasciando -> ha capito circuito aperto/chiuso"
+  - "Se chiede 'posso fare che resta acceso senza tenere premuto?' -> pronto per concetto latch/toggle (futuro)"
+  - "Se prova a mettere due pulsanti -> curiosita naturale verso serie/parallelo (cap 9)"

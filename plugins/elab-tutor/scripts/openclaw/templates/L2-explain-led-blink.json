@@ -1,0 +1,121 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-explain-led-blink",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "explainLedBlink",
+  "description": "Morphic template: spiega l'esperimento LED lampeggiante (Blink) con highlight visuale, citazione VERBATIM dal Volume e voice TTS Isabella. Adatta tono per docente esperto vs primo anno (Sense 1.5).",
+  "category": "lesson-explain",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 13,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.45"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v1-cap6-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "esperto"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-experiment",
+      "tool": "highlightExperiment",
+      "args": {
+        "experimentId": "${inputs.experimentId}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "mount-experiment",
+      "tool": "mountExperiment",
+      "args": {
+        "experimentId": "${inputs.experimentId}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-component-led",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "led1",
+          "r1"
+        ]
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "rag-retrieve-led-blink",
+      "tool": "ragRetrieve",
+      "args": {
+        "query": "LED Blink lampeggio digitalWrite delay",
+        "topK": 3,
+        "wikiFusion": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-intro",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.${citation.page} '${citation.verbatim}'. Sul kit guardate il LED rosso e la resistenza da 220Ω in serie.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 4500,
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightExperiment'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.\\d/)",
+    "principio_zero.max_parole <= 120"
+  ]
+}

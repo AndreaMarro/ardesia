@@ -1,0 +1,61 @@
+{
+  "cycle": 61,
+  "timestamp": "2026-03-24T19:50:43.099526",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 260
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 38.53s",
+      "time_ms": 48186
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass [cached]",
+      "time_ms": 12098
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 21
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=69 (target \u226560) [3 samples]",
+      "time_ms": 79300
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5321
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 5",
+      "time_ms": 3267
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "timeout",
+    "status": "failed",
+    "error": "Timed out after 1500s"
+  },
+  "research": "Research: 'React SPA Lighthouse LCP optimization code splitting lazy lo' | 0 papers | worst=lighthouse_perf=0.620",
+  "ai_scoring": "DeepSeek root-cause [lighthouse_perf=0.620]: 1. **Root cause**: Il bundle JavaScript principale \u00e8 troppo grande, causando un caricamento lento e blocca il rendering. Lighthouse segnala \"Reduce unused JavaScript\" e \"Eliminate render-blocking resources\".\n\n2. **File da modificare**: `src/router.tsx` (o `src/App.tsx` se non usa routing).\n\n3. **Cosa cambiare**:\n   ```jsx\n   // Sostituisci import diretti con lazy loading\n   const Simulator = lazy(() => import('./pages/Simulator'));\n   const Tutor = lazy(() => import('./pages/Tutor'));\n   // Avvo",
+  "composite_score": 0.8934,
+  "self_exam": null
+}

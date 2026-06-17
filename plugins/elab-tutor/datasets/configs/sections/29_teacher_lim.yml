@@ -1,0 +1,90 @@
+id: teacher_lim
+name: Domande Docente su LIM e Lezione
+intent: teacher
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come preparo la lezione?
+    - come uso la LIM con ELAB?
+    - suggeriscimi una lezione per la terza elementare
+    - quale esperimento faccio per primo?
+    - come presento ELAB ai ragazzi?
+    - quanto dura una lezione con ELAB?
+    - posso usare ELAB senza sapere niente di elettronica?
+    - quali esperimenti per la quinta elementare?
+    - come faccio se non so niente di Arduino?
+    - mi serve un piano lezione
+    - come organizzo il laboratorio?
+    - quanti studenti possono usare ELAB contemporaneamente?
+    - serve il collegamento internet?
+    - funziona sulla LIM della scuola?
+    - come faccio se i bambini non hanno mai visto un circuito?
+    - quale volume per la seconda media?
+    - quale volume per la terza media?
+    - da dove parto con bambini di 8 anni?
+    - quale esperimento per spiegare la legge di Ohm?
+    - come valuto gli studenti?
+    - posso assegnare compiti con ELAB?
+    - come faccio a far lavorare a gruppi?
+    - quanto costa ELAB?
+    - dove compro i kit?
+    - serve formazione per i docenti?
+    - c'e' un manuale per l'insegnante?
+    - come faccio a mostrare il simulatore alla LIM?
+    - posso proiettare ELAB?
+    - funziona su tablet?
+    - funziona su iPad?
+    hint:
+    - Docente sulla LIM. Rispondi come esperto ELAB. ELAB funziona su qualsiasi browser
+      (LIM, tablet, PC).
+    - Preparazione lezione. Suggerisci Volume 1 per principianti, Volume 2 per intermedi,
+      Volume 3 (AVR) per avanzati.
+    - 'Docente inesperto. Rassicuralo: ELAB e'' pensato per docenti senza formazione
+      tecnica. Galileo aiuta.'
+    - 'Piano lezione. Struttura: 5min intro, 15min esperimento guidato, 10min esplorazione
+      libera, 5min quiz.'
+    - 'Uso LIM. ELAB e'' web: basta aprire il browser. No installazione. Proiettare
+      sulla LIM e far seguire.'
+    - 'Scelta volume. Vol1 (base, 38 esp): da 8 anni. Vol2 (intermedio, 18 esp): da
+      10 anni. Vol3 (AVR, 14 esp): da 12 anni.'
+    - Docente. Rispondi con sicurezza. ELAB su Amazon, kit fisici opzionali, simulatore
+      gratis online.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - come spiego il concetto di circuito ai bambini?
+    - qual e' il modo migliore per introdurre l'elettronica?
+    - come rendo la lezione divertente?
+    - idee per un progetto di classe
+    - come motivo gli studenti?
+    - i bambini si annoiano, come faccio?
+    - come gestisco livelli diversi in classe?
+    - suggerimenti per una verifica
+    - come collego l'elettronica alle altre materie?
+    - attivita' STEM con ELAB
+    - come faccio coding unplugged con ELAB?
+    - suggerimenti per il PCTO
+    - come faccio una relazione di laboratorio?
+    hint:
+    - Pedagogia STEM. Suggerisci attivita' pratiche, giochi (Detective, POE), lavoro
+      a coppie.
+    - Motivazione. I bambini adorano accendere un LED! Parti da li'. Successo immediato
+      = motivazione.
+    - 'Didattica differenziata. Studenti avanzati: Scratch + esperimenti Vol3. Principianti:
+      Vol1 guidato.'
+    - Cross-curricolare. Matematica (Ohm), scienze (elettricita'), tecnologia (Arduino),
+      arte (LED RGB).
+    - 'Lezione coinvolgente. Usa i giochi di Galileo: Detective, POE. Quiz alla fine.
+      Sfida a gruppi.'
+corruptions:
+  typo_swap: 0.15
+  voice: 0.08
+  filler: 0.1

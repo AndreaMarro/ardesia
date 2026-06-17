@@ -1,0 +1,11 @@
+id: G25-abort-controller-10s
+priority: P0
+title: "DONE G25: AbortController 10s timeout in sendChat()"
+description: |
+  COMPLETED in session G25. Master AbortController wraps entire sendChat()
+  with 10s timeout for text, 20s for images. combinedSignal passed to all
+  3 endpoints. clearTimeout in finally block.
+  File: src/services/api.js
+tags: G25,reliability,done
+status: done
+completed_at: 2026-03-29T20:00:00

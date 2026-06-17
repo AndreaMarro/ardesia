@@ -1,0 +1,61 @@
+# All 69 experiments organized by volume
+# Used for navigation and context generation
+
+tabs: [simulatore, manuale, video, lavagna, taccuini, detective, poe, reverse, review]
+build_modes: [montato, passopasso, libero]
+
+experiments:
+  "1":
+    - v1-cap6-primo-circuito
+    - v1-cap6-led-rosso
+    - v1-cap6-led-bruciato
+    - v1-cap7-rgb-base
+    - v1-cap7-rgb-mix
+    - v1-cap7-rgb-arcobaleno
+    - v1-cap8-pulsante-led
+    - v1-cap8-semaforo-pulsante
+    - v1-cap8-pulsante-doppio
+    - v1-cap9-dimmer
+    - v1-cap9-barra-led
+    - v1-cap9-joystick
+    - v1-cap10-ldr-base
+    - v1-cap10-ldr-led
+    - v1-cap10-notturno
+    - v1-cap11-buzzer
+    - v1-cap11-allarme
+    - v1-cap12-reed-base
+    - v1-cap12-reed-allarme
+  "2":
+    - v2-cap6-led-avanzato
+    - v2-cap6-led-parallelo
+    - v2-cap7-condensatore-base
+    - v2-cap7-rc-timer
+    - v2-cap8-mosfet-base
+    - v2-cap8-mosfet-motore
+    - v2-cap9-fototransistor
+    - v2-cap9-inseguitore
+    - v2-cap10-motordc-base
+    - v2-cap10-motordc-pwm
+  "3":
+    - v3-cap6-led-blink
+    - v3-cap6-led-fade
+    - v3-cap6-sos-morse
+    - v3-cap6-semaforo-auto
+    - v3-cap6-knight-rider
+    - v3-cap7-pulsante-digitale
+    - v3-cap7-debounce
+    - v3-cap7-toggle
+    - v3-cap8-analog-read
+    - v3-cap8-servo-pot
+    - v3-cap8-termometro
+
+# Experiment name slang/variants for natural language matching
+experiment_slang:
+  primo-circuito: [primo circuito, il primo esperimento, quello base, il circuito semplice]
+  led-rosso: [led rosso, il led rosso, l'esperimento del led]
+  led-bruciato: [led bruciato, il led che si brucia, quello del led bruciato]
+  rgb-base: [rgb, led rgb, il led colorato, quello dei colori]
+  semaforo: [semaforo, il semaforo, l'esperimento del semaforo]
+  buzzer: [buzzer, il buzzer, quello che suona, il cicalino]
+  dimmer: [dimmer, il dimmer, quello della manopola, il potenziometro]
+  servo-pot: [servo, il servo, quello del braccetto]

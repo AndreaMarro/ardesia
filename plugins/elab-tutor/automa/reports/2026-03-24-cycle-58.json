@@ -1,0 +1,68 @@
+{
+  "cycle": 58,
+  "timestamp": "2026-03-24T17:58:12.725711",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 312
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 27.27s",
+      "time_ms": 31466
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass [cached]",
+      "time_ms": 12058
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 4
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=72 (target \u226560) [3 samples]",
+      "time_ms": 82557
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5330
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 3183
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fix [AZIONE:loadexp] non generato quando Brain VPS attivo",
+    "status": "done",
+    "files_changed": [
+      "nanobot/server.py",
+      "nanobot/brain.py"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "Research: 'React SPA Lighthouse LCP optimization code splitting lazy lo' | 0 papers | worst=lighthouse_perf=0.620 | Task: research-insight-lighthouse_perf-2026032 | ACTIONABLE",
+  "ai_scoring": "DeepSeek root-cause [lighthouse_perf=0.620]: 1. **Root cause**: LCP (Largest Contentful Paint) alto (3.2s) perch\u00e9 le immagini principali del simulatore (circuit_simulator_images.zip) vengono scaricate e decompresse a runtime, ritardando il rendering critico.\n\n2. **File da modificare**: `src/components/CircuitSimulator/CircuitImageLoader.js`\n\n3. **Cosa cambiare**:\n   - Inline le prime 5 immagini di componenti critici (batteria, led) come SVG direttamente nell'HTML iniziale.\n   - Implementare `loading=\"eager\"` e `fetchpriority=\"high\"` per l'",
+  "composite_score": 0.8934,
+  "self_exam": null
+}

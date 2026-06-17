@@ -1,0 +1,51 @@
+{
+  "name": "ELAB Auth Service",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-auth",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-auth",
+      "name": "Webhook Auth",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ELAB Auth Service — n8n Code Node\n// Handles: register, login, verify-session, update-profile, change-password\n// Backend: Notion Database (Users)\n//\n// ⚠️ SKELETON — Non ancora collegato al frontend.\n// Il frontend userService.js usa ancora localStorage.\n// Questa è la struttura pronta per la migrazione.\n\nconst NOTION_TOKEN = 'ntn_R67349320986iXvpEJvEF8hYlxl3mpOeRlwVd4UbFbc2jx';\nconst NOTION_USERS_DB = ''; // TODO: Creare database Notion 'ELAB Users'\nconst NOTION_API = 'https://api.notion.com/v1';\n\nconst body = $input.first().json.body;\nconst action = body.action || 'unknown';\n\nlet result = { success: false, action };\n\ntry {\n  if (action === 'register') {\n    // TODO: Creare utente in Notion Users DB\n    // Hash password server-side con bcrypt\n    // Verificare email duplicata\n    result = { success: false, action, message: 'Auth backend non ancora implementato' };\n\n  } else if (action === 'login') {\n    // TODO: Query Notion per email\n    // Verificare password hash\n    // Generare JWT token\n    result = { success: false, action, message: 'Auth backend non ancora implementato' };\n\n  } else if (action === 'verify-session') {\n    // TODO: Verificare JWT token\n    result = { success: false, action, message: 'Auth backend non ancora implementato' };\n\n  } else if (action === 'update-profile') {\n    // TODO: Aggiornare profilo in Notion\n    result = { success: false, action, message: 'Auth backend non ancora implementato' };\n\n  } else if (action === 'change-password') {\n    // TODO: Verificare vecchia password, aggiornare hash\n    result = { success: false, action, message: 'Auth backend non ancora implementato' };\n\n  } else {\n    result = { success: false, action, message: 'Azione non riconosciuta: ' + action };\n  }\n} catch (error) {\n  result = { success: false, action, error: error.message };\n}\n\nreturn [{ json: result }];"
+      },
+      "id": "code-auth",
+      "name": "Auth Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Auth": {
+      "main": [
+        [
+          {
+            "node": "Auth Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateId": "custom",
+    "instanceId": "elab-auth-service"
+  }
+}

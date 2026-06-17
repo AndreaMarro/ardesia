@@ -1,0 +1,29 @@
+id: font-size-audit-fix
+priority: P0
+title: "Fix 29 font-size sotto 14px — accessibilita LIM"
+description: |
+  PRINCIPIO ZERO: sulla LIM i ragazzi devono leggere.
+  L'audit ha trovato 29 dichiarazioni font-size sotto 14px.
+  Su una LIM a 3 metri di distanza, sotto 16px e' illeggibile.
+
+  Target MINIMO: 14px per testo secondario, 16px+ per testo principale.
+
+  File principali:
+  - src/components/unlim/UnlimReport.jsx (15 occorrenze — report fumetto)
+  - src/components/tutor/TutorTools.css (6 occorrenze)
+  - src/components/tutor/ElabTutorV4.css (3 occorrenze)
+
+  PER UnlimReport.jsx: il report e' stampato in PDF A4, non sulla LIM.
+  Quindi i font piccoli (9pt, 10pt) possono restare SOLO per il PDF.
+  Ma se appaiono anche sulla LIM, vanno aumentati.
+success_criteria: |
+  grep -rn "font-size.*[0-9]px" src/ --include="*.css" --include="*.jsx" |
+    grep -E "[0-9]px|1[0-3]px" | grep -v "UnlimReport" | wc -l
+  Target: 0 occorrenze fuori da UnlimReport
+plan:
+  - "Step 1: grep tutte le font-size < 14px"
+  - "Step 2: Classificare: LIM (FIX) vs PDF-only (OK)"
+  - "Step 3: Aumentare a minimo 14px quelle su LIM"
+  - "Step 4: npm run build"
+  - "Step 5: Verifica visiva che non rompa layout"
+tags: accessibility,lim,principio-zero

@@ -1,0 +1,83 @@
+id: games_reverse
+name: Gioco Reverse Engineering
+intent: tutor
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - giochiamo a reverse engineering
+    - che circuito e'?
+    - indovina il componente nascosto
+    - facciamo il circuito misterioso
+    - cos'e' questo circuito?
+    - riesci a capire cosa fa?
+    - analizza questo circuito
+    - gioco del mistero
+    - cosa fa questo circuito secondo te?
+    - decodifica il circuito
+    - 'indovinello: cosa fa?'
+    - reverse engineering!
+    - scopri cosa fa il circuito
+    - a cosa serve questo circuito?
+    - facciamo un quiz sul circuito
+    - riconosci questo schema?
+    - 'sfida: di'' cosa fa senza avviarlo'
+    - mistero del circuito
+    - facciamo gli ingegneri al contrario
+    - smonta il circuito mentalmente
+    - analizza e indovina
+    hint:
+    - 'Reverse Engineering: guida lo studente ad analizzare il circuito pezzo per
+      pezzo. Parti dai componenti, poi i collegamenti.'
+    - 'Gioco mistero. Fai domande: ''Quanti componenti vedi? Che tipi sono? Come sono
+      collegati?'''
+    - 'Reverse: non rivelare subito. Dai indizi: ''C''e'' un LED e una resistenza...
+      cosa potrebbe fare?'''
+    - 'Analisi circuito. Metodo: 1) Elenca componenti 2) Segui i fili 3) Ipotizza
+      la funzione 4) Verifica.'
+    - Circuito misterioso. Lo studente deve dedurre la funzione dai componenti. Festeggia
+      il ragionamento.
+    - 'Ingegneria inversa per bambini. Parti da: ''Vedo un sensore e un attuatore...
+      cosa potrebbe collegare?'''
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - il circuito e' corretto?
+    - valuta il mio lavoro
+    - controlla se ho fatto bene
+    - dammi un voto
+    - com'e' il mio circuito?
+    - ho costruito bene?
+    - e' giusto cosi'?
+    - puoi valutare il circuito?
+    - revisione del mio circuito
+    - dammi un feedback
+    - correggi il mio circuito
+    - review!
+    - controlla il circuito che ho fatto
+    - va bene cosi'?
+    - e' pronto per essere avviato?
+    - ho finito, controllalo
+    hint:
+    - 'Review circuito. Dai feedback costruttivo: cosa va bene, cosa si puo'' migliorare.
+      Mai demolire.'
+    - 'Valutazione. Punti di forza PRIMA delle critiche. Suggerimenti gentili: ''Potresti
+      anche provare...'''
+    - 'Review. Checklist: alimentazione corretta? Componenti giusti? Fili collegati
+      bene? Codice OK?'
+    - Feedback circuito. Sii incoraggiante ma onesto. Se c'e' un errore, guidalo a
+      trovarlo da solo.
+    - Revisione lavoro. Festeggia i progressi, suggerisci migliorie. Non dire 'sbagliato'
+      — di' 'potresti provare...'
+corruptions:
+  typo_swap: 0.25
+  emoji: 0.12
+  filler: 0.1
+  voice: 0.08

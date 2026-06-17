@@ -1,0 +1,288 @@
+/* ============================================
+   ConsentBanner — GDPR/COPPA Consent Banner
+   CSS Module — migrated from inline styles (G24)
+   © Andrea Marro — 29/03/2026
+   ============================================ */
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background-color: var(--elab-navy);
+  color: #ffffff; /* palette */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 1 400px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.textChild {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.privacyLink {
+  background: none;
+  border: none;
+  color: #ffffff; /* palette */
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 4px;
+  display: inline-block;
+  min-height: 44px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.privacyLink:hover {
+  opacity: 0.85;
+}
+
+.coppaNotice {
+  margin: 4px 0 0 0;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btnAccept {
+  padding: 10px 24px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--elab-lime);
+  color: #ffffff; /* palette */
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btnAccept:hover {
+  background-color: #3d6820; /* palette */
+  transform: scale(1.02);
+}
+
+.btnReject {
+  padding: 10px 24px;
+  min-height: 44px;
+  border: 1px solid #ffffff; /* palette */
+  border-radius: 8px;
+  background-color: transparent;
+  color: #ffffff; /* palette */
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btnReject:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
+}
+
+/* ── Focus-visible for keyboard navigation ── */
+.btnAccept:focus-visible,
+.btnReject:focus-visible,
+.privacyLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Age gate ── */
+.ageRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.ageLabel {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.ageSelect {
+  padding: 10px 14px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff; /* palette */
+  color: var(--elab-navy);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.ageSelect:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Parental flow ── */
+.parentalExplain {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.parentalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  max-width: 400px;
+}
+
+.parentInput {
+  padding: 10px 14px;
+  min-height: 44px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff; /* palette */
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.parentInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.parentInput:focus {
+  outline: none;
+  border-color: #F9A825; /* palette */
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(249, 168, 37, 0.3);
+}
+
+.emailError {
+  margin: 0;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  padding: 6px 10px;
+  background-color: rgba(229, 75, 61, 0.3);
+  border-radius: 6px;
+  font-size: 14px;
+  color: #FFCDD2; /* palette */
+}
+
+.btnParental {
+  padding: 10px 24px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background-color: #F9A825; /* palette */
+  color: var(--elab-navy);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  font-family: 'Open Sans', sans-serif;
+  align-self: flex-start;
+}
+
+.btnParental:hover {
+  background-color: #F57F17; /* palette */
+  transform: scale(1.02);
+}
+
+.btnParental:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnParental:focus-visible {
+  outline: 2px solid #ffffff; /* palette */
+  outline-offset: 2px;
+}
+
+.parentalNote {
+  margin: 8px 0 0 0;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+/* ── LIM: Large touch screens at distance ── */
+@media (pointer: coarse) and (min-width: 1024px) {
+  .banner {
+    font-size: 18px;
+    padding: 20px 32px;
+    gap: 20px;
+  }
+
+  .text,
+  .textChild,
+  .coppaNotice {
+    font-size: 18px;
+  }
+
+  .privacyLink {
+    font-size: 18px;
+    min-height: 48px;
+    padding: 10px 6px;
+  }
+
+  .btnAccept,
+  .btnReject {
+    font-size: 18px;
+    min-height: 48px;
+    padding: 12px 28px;
+  }
+
+  .ageSelect,
+  .parentInput,
+  .btnParental {
+    font-size: 18px;
+    min-height: 48px;
+  }
+
+  .ageLabel,
+  .parentalExplain {
+    font-size: 18px;
+  }
+}

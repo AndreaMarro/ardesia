@@ -1,0 +1,97 @@
+# Curriculum YAML — v1-cap12-esp2
+# "Cambia luminosita con magnete"
+
+experiment_id: v1-cap12-esp2
+volume: 1
+chapter: 12
+title: "Cambia luminosita con magnete"
+
+prerequisites:
+  - v1-cap12-esp1  # Sa usare il reed switch
+  - v1-cap6-esp3   # Sa usare resistenze diverse
+  - v1-cap9-esp1   # Capisce che resistenza diversa = luminosita diversa
+
+concepts_introduced:
+  - resistenze_selettive
+  - percorso_alternativo
+  - magnete_selettore
+
+vocabulary_level: v1-cap12
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - calamita
+  - sensore
+  - luminosita
+  - piu_forte
+  - piu_debole
+  - cambiare
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - campo_magnetico
+  - induzione
+  - digitale
+  - analogico
+  - parallelo
+  - multiplexer
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED, 2-3 resistenze di valori diversi
+    (es. 220, 1K, 10K ohm), 1 reed switch, 1 magnete, breadboard, batteria.
+    Obiettivo: i ragazzi scoprono che possono usare il magnete per cambiare
+    il comportamento del circuito, non solo accendere/spegnere.
+  during_class: >
+    Ricorda esp1: "Col magnete accendevate il LED. Ma possiamo fare di piu!"
+    Sfida: "Riuscite a fare un circuito dove il LED cambia luminosita
+    quando avvicinate il magnete?" Suggerimento: usare il reed switch per
+    collegare una resistenza diversa. Quando il magnete e lontano, passa
+    per una resistenza grande (LED debole). Quando e vicino, il reed switch
+    si chiude e la corrente passa per una resistenza piccola (LED forte).
+  common_question: >
+    "Perche cambia luminosita?" -> Quando avvicini il magnete, il reed switch
+    apre una scorciatoia per l'elettricita. E come quando in strada trovi
+    una scorciatoia: ci metti meno tempo! L'elettricita prende la strada
+    piu facile e il LED si accende di piu.
+
+common_mistakes:
+  - mistake: "Non capiscono come collegare due resistenze diverse"
+    what_to_do: "Disegna lo schema: una resistenza grande sempre collegata, il reed switch bypassa con una piccola. E un concetto avanzato — guida passo passo"
+    analogy: "E come avere due strade: una lunga (resistenza grande) e una scorciatoia (resistenza piccola) che si apre col magnete"
+  - mistake: "Il LED non cambia visibilmente luminosita"
+    what_to_do: "Servono resistenze con valori molto diversi (es. 220 vs 10K). Se troppo simili, la differenza non si vede"
+    analogy: null
+  - mistake: "Collegano le resistenze in modo sbagliato"
+    what_to_do: "Verifica che il reed switch sia in serie con la resistenza piccola, e che questo ramo sia in parallelo alla resistenza grande"
+    analogy: null
+
+analogies:
+  resistenze_selettive:
+    analogy: "E come avere due porte per entrare in casa: una porta stretta (resistenza grande, poca corrente) e una porta larga (resistenza piccola, tanta corrente). Il magnete apre la porta larga!"
+    evidence: "Analogia porta/flusso per resistenza, estende modello idraulico gia noto (Clement & Brown 2008)"
+  magnete_selettore:
+    analogy: "Il magnete diventa un telecomando! Non accende e spegne, ma cambia COME funziona il circuito. E come il volume della TV: non spegni, ma cambi l'intensita."
+    evidence: "Analogia telecomando per controllo graduato, concretizza concetto di modulazione (Taber 2009)"
+
+assessment_invisible:
+  - "Se lo studente propone la soluzione da solo -> problem-solving attivo, ottimo"
+  - "Se dice 'e come il potenziometro ma col magnete' -> collegamento concettuale eccellente"
+  - "Se chiede 'posso usare 3 resistenze diverse?' -> pensiero espansivo"
+  - "Se prova combinazioni diverse di resistenze -> metodo sperimentale spontaneo"

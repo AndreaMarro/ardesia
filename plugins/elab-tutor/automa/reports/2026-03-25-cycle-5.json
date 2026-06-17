@@ -1,0 +1,92 @@
+{
+  "cycle": 5,
+  "timestamp": "2026-03-25T03:22:44.108349",
+  "date": "2026-03-25",
+  "mode": "AUDIT",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 463
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.10s",
+      "time_ms": 21650
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 153078
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=71 (target \u226560) [3 samples]",
+      "time_ms": 62153
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3952
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1964
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "backstopjs-baseline",
+    "status": "done",
+    "files_changed": [
+      "backstop.config.cjs",
+      "backstop.config.js",
+      "backstop_data/engine_scripts/puppet/onBefore.cjs",
+      "backstop_data/engine_scripts/puppet/onReady.cjs",
+      "backstop_data/engine_scripts/puppet/clickAndHoverHelper.cjs",
+      "backstop_data/bitmaps_reference/"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "score_delta": 0.0,
+    "principio_zero": true,
+    "next_task": "Aggiungere scenario BackstopJS per il simulatore (richiede auth o mock) e integrare il test nel CI/CD nightly con BACKSTOP_BASE_URL=production",
+    "impact": {
+      "innovazione": "si \u2014 visual regression testing automatico previene regressioni UI invisibili",
+      "marketing": "si \u2014 garantisce consistenza visiva vetrina/login su tutti i viewport target (mobile/tablet/desktop)",
+      "ricavi": "si \u2014 previene rotture UI che allontanerebbero scuole durante demo o primo accesso",
+      "pedagogia": "si \u2014 viewport tablet 1024x768 corrisponde esattamente alla risoluzione LIM, garantendo che l'insegnante inesperto veda sempre l'interfaccia corretta"
+    },
+    "notes": "Fix critico: URLs usavano path routing (/login) invece di hash routing (/#login) \u2014 tutti gli screenshot precedenti sarebbero stati identici alla homepage. Rinominati puppet scripts da .js a .cjs per compatibilit\u00e0 Node 22 ESM. 6 reference screenshots generati e verificati con test 6/6 PASS.",
+    "output_length": 3714
+  },
+  "research": null,
+  "ai_scoring": "DeepSeek scoring: SCORE:9 MOTIVO:Spiega con metafore semplici (lampadina magica, faro, gambine) e linguaggio giocoso adatto a 10 anni. Le informazioni tecniche sono corrette ma semplificate. Il tono \u00e8 molto incoraggian\nKimi review: ELAB Tutor offre una serie di funzionalit\u00e0 solide, con punteggi elevati in sicurezza, qualit\u00e0 del codice e integrazione di AI. Tuttavia, potresti migliorare l'esperienza utente su dispositivi iPad, migliorando la conformit\u00e0 con i criteri di progettazione per dispositivi touch, come dimensioni dei pu",
+  "composite_score": 0.9389,
+  "score_before": 0.943,
+  "score_after": 0.9389,
+  "score_delta": -0.0041,
+  "verdict": "keep",
+  "impact": {
+    "innovazione": "si \u2014 visual regression testing automatico previene regressioni UI invisibili",
+    "marketing": "si \u2014 garantisce consistenza visiva vetrina/login su tutti i viewport target (mobile/tablet/desktop)",
+    "ricavi": "si \u2014 previene rotture UI che allontanerebbero scuole durante demo o primo accesso",
+    "pedagogia": "si \u2014 viewport tablet 1024x768 corrisponde esattamente alla risoluzione LIM, garantendo che l'insegnante inesperto veda sempre l'interfaccia corretta"
+  },
+  "next_task": "Aggiungere scenario BackstopJS per il simulatore (richiede auth o mock) e integrare il test nel CI/CD nightly con BACKSTOP_BASE_URL=production",
+  "self_exam": null
+}

@@ -1,0 +1,71 @@
+{
+  "cycle": 5,
+  "timestamp": "2026-03-27T03:05:23.654469",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1150
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.50s",
+      "time_ms": 23463
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 159648
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=75 (target \u226560) [3 samples]",
+      "time_ms": 58914
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4254
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2040
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fase 0.4: Eliminare toggle Modalit\u00e0 Guida OFF",
+    "status": "done",
+    "files_changed": [
+      "src/components/tutor/ElabTutorV4.jsx",
+      "src/components/tutor/ChatOverlay.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi per ELAB Tutor:**\n1.  **Sviluppo motorio limitato:** Le interazioni base (toccare, scorrere) non sviluppano la motricit\u00e0 fine necessaria per la scrittura manuale, creando un divario tra attivit\u00e0 digitale e abilit\u00e0 tradizionali.\n2.  **Carico cognitivo elevato:** L'interfaccia multi-touch e le notifiche incoraggiano il multitasking, frammentando l'attenzione dello studente e riducendo la ",
+  "ai_scoring": "DeepSeek scoring: SCORE:7 MOTIVO:Termini tecnici (anodo/catodo) un po' complessi, ma spiegati con pin lungo/corto. Corretta e con azione utile. Poteva essere pi\u00f9 incoraggiante e gioiosa.\nKimi review: Il problema pi\u00f9 grave che impedisce la vendita alle scuole \u00e8 l'alta licenza annuale di \u20ac500-1000, che pu\u00f2 essere proibitiva per scuole con budget limitati. Suggerisco di offrire una licenza \"Basic\" a un prezzo pi\u00f9 accessibile, come \u20ac100-200/anno, e una licenza \"Premium\" a \u20ac500-1000/anno con funziona",
+  "composite_score": 0.943,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

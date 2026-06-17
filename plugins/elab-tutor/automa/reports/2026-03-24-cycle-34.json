@@ -1,0 +1,60 @@
+{
+  "cycle": 34,
+  "timestamp": "2026-03-24T09:20:53.619656",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 444
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 23.60s",
+      "time_ms": 27072
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 155755
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=71 (target \u226560) [3 samples]",
+      "time_ms": 63574
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4002
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2329
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 2397,
+    "returncode": 0
+  },
+  "research": "DeepSeek analysis on 'AI tutoring scaffolding real-time':\n  1) **Problemi:**  \n- L'AI deve riconoscere errori *concettuali* (es. cortocircuito logico) oltre a quelli tecnici, in tempo reale.  \n- Deve dosare gli interventi: troppo assistenza riduce la scoperta autonoma; troppo poca causa frustrazione.  \n\n2) **Soluzione tecnica (1 settimana):**  \nImplementare un sistema di \"suggerimenti contestuali\" basato su regole (rule-based). Quando un circuito non funzi",
+  "ai_scoring": null
+}

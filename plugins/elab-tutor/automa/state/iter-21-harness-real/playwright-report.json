@@ -1,0 +1,3122 @@
+{
+  "config": {
+    "configFile": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/playwright.harness-real.config.js",
+    "rootDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-prod",
+        "name": "chromium-prod",
+        "testDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/harness-real-2026-04-28\\.spec\\.js$/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../automa/state/iter-21-harness-real/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "harness-real-2026-04-28.spec.js",
+      "file": "harness-real-2026-04-28.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "iter-21 real harness UNO PER UNO @ https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app",
+          "file": "harness-real-2026-04-28.spec.js",
+          "line": 168,
+          "column": 6,
+          "specs": [
+            {
+              "title": "real harness v1-cap10-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11143,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:04:38.432Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-5a532d716338f52ca0a5",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap10-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10839,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:04:51.703Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0d58f65dd1e858b2bd46",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap10-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12009,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:05:02.595Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-a4f7fad9c7b3ca0f31b3",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap10-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14577,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:05:14.637Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-8ec47a55caac67c0069f",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap10-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17780,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:05:29.266Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-a09cdc7c01a61e5cf475",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap10-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10843,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:05:47.226Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-3184bf1c5c5bef25dd94",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap11-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16075,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:05:58.106Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-c5c25fc31ec43887f32d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap11-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:06:14.272Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-138bb20965f38496124a",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap12-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11160,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:06:29.683Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-311a93e60667358ea375",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap12-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11618,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:06:40.880Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ea4299844c48284e0f60",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap12-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12090,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:06:52.551Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ff364f79c7357ab641e5",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap12-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20423,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:07:05.206Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-48f9df4ec0c0e0998776",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap13-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15376,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:07:25.834Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-b8562a074ef0dc527530",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap13-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13791,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:07:41.398Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-83a9e22f7d2c05ba0204",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap14-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21715,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:07:55.237Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-3ae7b7a741d9e1d087cb",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap6-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 49876,
+                      "error": {
+                        "message": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m",
+                        "stack": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js:281:63",
+                        "location": {
+                          "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js",
+                          "column": 63,
+                          "line": 281
+                        },
+                        "snippet": "  279 |\n  280 |       // Soft expect: don't kill suite on first fail, but assert critical\n> 281 |       expect.soft(result.steps.navigate?.ok, 'navigate prod').toBe(true);\n      |                                                               ^\n  282 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  283 |       // Hard: at least one SVG must render (otherwise the simulator clearly failed to mount)\n  284 |       expect(result.steps.render?.svg_count, `svg rendered for ${lp.id}`).toBeGreaterThan(0);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js",
+                            "column": 63,
+                            "line": 281
+                          },
+                          "message": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  279 |\n  280 |       // Soft expect: don't kill suite on first fail, but assert critical\n> 281 |       expect.soft(result.steps.navigate?.ok, 'navigate prod').toBe(true);\n      |                                                               ^\n  282 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  283 |       // Hard: at least one SVG must render (otherwise the simulator clearly failed to mount)\n  284 |       expect(result.steps.render?.svg_count, `svg rendered for ${lp.id}`).toBeGreaterThan(0);\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js:281:63"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js",
+                            "column": 75,
+                            "line": 284
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a number or bigint\n\nReceived has value: \u001b[31mundefined\u001b[39m\n\n  282 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  283 |       // Hard: at least one SVG must render (otherwise the simulator clearly failed to mount)\n> 284 |       expect(result.steps.render?.svg_count, `svg rendered for ${lp.id}`).toBeGreaterThan(0);\n      |                                                                           ^\n  285 |     });\n  286 |   }\n  287 | });\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js:284:75"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:08:17.025Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/harness-real-2026-04-28-it-51d83-p-real-harness-v1-cap6-esp1-chromium-prod/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/harness-real-2026-04-28-it-51d83-p-real-harness-v1-cap6-esp1-chromium-prod/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/harness-real-2026-04-28-it-51d83-p-real-harness-v1-cap6-esp1-chromium-prod/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js",
+                        "column": 63,
+                        "line": 281
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-189a5c6d5d9faf9d78ea",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap6-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13076,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:09:12.794Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0799b87956be2a34c008",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap6-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13089,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:09:30.170Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-9e553baf88e5b6ad4843",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11804,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:09:43.305Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-79928b6747a2fc4a4885",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 162341,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js",
+                            "column": 75,
+                            "line": 284
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a number or bigint\n\nReceived has value: \u001b[31mundefined\u001b[39m\n\n  282 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  283 |       // Hard: at least one SVG must render (otherwise the simulator clearly failed to mount)\n> 284 |       expect(result.steps.render?.svg_count, `svg rendered for ${lp.id}`).toBeGreaterThan(0);\n      |                                                                           ^\n  285 |     });\n  286 |   }\n  287 | });\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/harness-real-2026-04-28.spec.js:284:75"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:09:55.178Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/harness-real-2026-04-28-it-48260-p-real-harness-v1-cap7-esp2-chromium-prod/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/harness-real-2026-04-28-it-48260-p-real-harness-v1-cap7-esp2-chromium-prod/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-08379f5541ae620cd786",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19487,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:12:48.059Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-a3cfd6e3705642cca88b",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12733,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:13:15.208Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-2b4e01a39d7919b42268",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15563,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:13:27.994Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-42c37c536a27fac23cb6",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap7-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14342,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:13:43.616Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0ffd925a912ca218474c",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap8-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14691,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:13:58.059Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-c574fc599beb313f8c2c",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap8-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28776,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:14:12.838Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0bcf1351536c42e08271",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap8-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25552,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:14:41.698Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-f5a6176473534b8a676d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap8-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17778,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:15:07.333Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-73d0f35c69ab1332c21e",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap8-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19219,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:15:25.194Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-411ae8c38a7e8ff4f92e",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13550,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:15:44.478Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-12c0d589080617ae8705",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21391,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:15:58.094Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-62d6312a6bcd51497b59",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 35365,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:16:19.565Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-c027ce7e1a7817c7abcc",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20913,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:16:55.027Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-b85ba8df96fdbb0f8025",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11772,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:17:16.013Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ef84b2e4526cb1008abf",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20163,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:17:27.842Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-e9671c2700caaa8635bb",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28753,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:17:48.109Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d497f1afeff1af1eede4",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp8",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 48073,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:18:17.030Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-a14f62d2b53603226833",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v1-cap9-esp9",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 89495,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:19:05.452Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-3094777aa29932608bbf",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap10-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 46720,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:20:35.851Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-5e896e359ee2569df718",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap10-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 26611,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:21:22.941Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-14000baaf17b5d8b1d94",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap10-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17637,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:21:50.164Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-2d24ee9e2d8b10e35986",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap10-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17429,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:22:08.096Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d89a6114ff5f7d08ba53",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap12-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 35444,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:22:25.594Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-35ce31c9189f2aa9f5d7",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap3-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13139,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:23:01.075Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-88a4500bb5e124abf62d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap3-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16429,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:23:14.261Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-efa35ba54c91ccad71c0",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap3-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18797,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:23:30.722Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-4b33f0749b1a6a137091",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap3-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19845,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:23:49.576Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-dd285ddd7a7b083735bf",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap4-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 41217,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:24:09.479Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-20ab395312d4321a47ea",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap4-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16410,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:24:50.871Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0aaab4517dee9fd30b60",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap4-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22228,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:25:07.310Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-8243b346c7172154d8f3",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap5-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17625,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:25:29.603Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-31ca8b99165b35c55b08",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap5-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25803,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:25:47.255Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-8507eb9645d4cbcd743f",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap6-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15560,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:26:13.140Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-772142c08daf233b99a0",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap6-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15166,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:26:28.767Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-3a05b27f7089021c2fe0",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap6-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11996,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:26:43.975Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-31a7dc56c8c2580e2e10",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap6-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20344,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:26:56.006Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-8e36475e28f979768f41",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap7-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 43547,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:27:16.423Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-599ed33161127736f49d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap7-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 55663,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:28:00.238Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d0b97d1024344d68a028",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap7-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 32083,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:28:55.972Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-c769d995c26ffcd94d26",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap7-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25880,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:29:28.806Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-2faa21fc47dda976524d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap8-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 47838,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:29:54.925Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-1508be4d61e5c5044e2f",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap8-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25837,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:30:42.992Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-320e340cc8f78c2397ce",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap8-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18188,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:31:09.382Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-370d9b00fe7612a2d45c",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap9-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13638,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:31:27.618Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-0da67c6ac190c646d2c8",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v2-cap9-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14504,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:31:41.293Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d579b80be1019475e5ff",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap5-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18406,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:31:55.832Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d49a6d080cfdf0c60760",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap5-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13712,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:32:14.270Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ccea5661890a525dcc60",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10818,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:32:28.016Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-d6d5570fe61fbe941c9d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11332,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:32:38.857Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-bfcc9e9086e825826f3b",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10530,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:32:50.220Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-885c48e54f636e321b12",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12961,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:33:00.782Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-9793e5828346be22fa77",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13283,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:33:13.775Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-fbd690ec1e54aa5057ae",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14287,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:33:27.082Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-97bfcea01b4174951dc1",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap6-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10673,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:33:41.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ab518027bd6387da0bfb",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11036,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:33:52.105Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-54ce7b4e68e40f3a305f",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10674,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:03.184Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-91cfb10da2aedbe951ab",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12408,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:13.905Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-770b7cb7ffe55b0ec423",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6360,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:26.334Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-5371b6e8103bd33b13e1",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5865,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:32.707Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-415731b7391464ed8011",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6017,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:38.581Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-9021977e8a2e2fccd90e",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5992,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:44.606Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-341d1a39a6778ac89bab",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap7-esp8",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6227,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:50.608Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-c4c16bbde0ee03b5a0db",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap8-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5672,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:34:56.846Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-6f5077bb26ca59bea412",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap8-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5904,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:35:02.529Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-66669f1e6417face09f9",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap8-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5566,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:35:08.440Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-20b0d677ac54a2799c6d",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap8-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5623,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:35:14.022Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-201598151985843d7841",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            },
+            {
+              "title": "real harness v3-cap8-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6545,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-29T06:35:19.654Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37bacacec16cc3ea0d1a-ff8fa663e6ace8776d99",
+              "file": "harness-real-2026-04-28.spec.js",
+              "line": 172,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-29T06:04:36.181Z",
+    "duration": 1851042.0010000002,
+    "expected": 85,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

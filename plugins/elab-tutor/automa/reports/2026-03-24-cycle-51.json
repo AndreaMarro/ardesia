@@ -1,0 +1,62 @@
+{
+  "cycle": 51,
+  "timestamp": "2026-03-24T14:13:40.014054",
+  "date": "2026-03-24",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 353
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 27.61s",
+      "time_ms": 32213
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 171970
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 11
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=80 min=78 (target \u226560) [3 samples]",
+      "time_ms": 67674
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 7671
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 3209
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH pedagogia insegnante inesperto + Gulpease optimization",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": false,
+    "research": "4 gap teacher.yml con pattern YAML pronti (Bandura/Schon/Vygotsky). 8 anti-pattern Gulpease + 20 sostituzioni parole + 5 regole operative. Blocco write in sessione interattiva \u2014 persisting nel prossimo ciclo headless."
+  },
+  "research": "DeepSeek analysis on 'circuit simulation browser WebAssembly':\n  **1) Problemi concreti:**\n- **Performance iniziali:** Il caricamento e l'istanziazione del modulo WebAssembly pu\u00f2 causare un ritardo percepibile all'avvio della simulazione, frustrante per un bambino.\n- **Interattivit\u00e0 in tempo reale:** Durante simulazioni complesse, la comunicazione frequente tra JavaScript (UI) e WebAssembly (calcoli) pu\u00f2 introdurre latenza, rendendo \"appiccicosa\" la manipolazio",
+  "ai_scoring": null
+}

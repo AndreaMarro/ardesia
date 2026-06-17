@@ -1,0 +1,75 @@
+{
+  "cycle": 62,
+  "timestamp": "2026-03-24T20:56:58.646485",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 377
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.95s",
+      "time_ms": 24410
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass [cached]",
+      "time_ms": 12064
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 2
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=72 (target \u226560) [3 samples]",
+      "time_ms": 99480
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3761
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3014
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Research-driven fix: lighthouse_perf (score=0.62)",
+    "status": "done",
+    "files_changed": [
+      "vite.config.js"
+    ],
+    "build_pass": true,
+    "score_before": 0.8934,
+    "score_after": 0.9326,
+    "lighthouse_before": 0.62,
+    "lighthouse_after": 0.9,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified",
+    "deploy": {
+      "status": "skipped",
+      "reason": "NETLIFY_AUTH_TOKEN non impostato \u2014 aggiungi in automa/.env"
+    }
+  },
+  "research": "Research: 'educational electronics simulation children interactive lear' | 0 papers | worst=ipad_compliance=0.680 | Task: research-insight-ipad_compliance-2026032 | ACTIONABLE",
+  "ai_scoring": "DeepSeek root-cause [lighthouse_perf=0.620]: **Root cause:** Tempi di caricamento elevati per font non ottimizzati e immagini non compresse, che ritardano First Contentful Paint e Largest Contentful Paint.\n\n**File da modificare:** `public/index.html` e `src/components/Simulator/Simulator.js`.\n\n**Cosa cambiare:**\n1. In `index.html`, nel `<head>`, aggiungi `<link rel=\"preload\" href=\"/fonts/galileo-bold.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>`.\n2. In `Simulator.js`, sostituisci il riferimento a grandi immagini `.png` con equivalenti c",
+  "composite_score": 0.9156,
+  "self_exam": null
+}

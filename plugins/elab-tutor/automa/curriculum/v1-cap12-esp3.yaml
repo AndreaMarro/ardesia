@@ -1,0 +1,99 @@
+# Curriculum YAML — v1-cap12-esp3
+# "Sfida: RGB + reed switch"
+
+experiment_id: v1-cap12-esp3
+volume: 1
+chapter: 12
+title: "Sfida: RGB + reed switch"
+
+prerequisites:
+  - v1-cap12-esp1  # Sa usare il reed switch
+  - v1-cap9-esp5   # Sa usare il LED RGB (o esperimento RGB equivalente)
+  - v1-cap6-esp3   # Sa usare le resistenze
+
+concepts_introduced:
+  - sfida_aperta
+  - combinazione_RGB_sensore
+  - progettazione_creativa
+
+vocabulary_level: v1-cap12
+allowed_terms:
+  - LED
+  - LED_RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - calamita
+  - rosso
+  - verde
+  - blu
+  - colore
+  - mescolare
+  - cambiare
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - campo_magnetico
+  - induzione
+  - digitale
+  - analogico
+  - PWM
+  - duty_cycle
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED RGB, 3 resistenze (220 ohm),
+    1-2 reed switch, 1-2 magneti, breadboard, batteria, fili extra.
+    Questa e una SFIDA APERTA — non c'e una sola soluzione giusta.
+    Obiettivo: combinare creativamente cose gia imparate.
+  during_class: >
+    Presenta la sfida: "Avete il LED RGB che cambia colore e il reed switch
+    che sente il magnete. SFIDA: inventate un circuito dove il magnete
+    cambia il colore del LED!" Non dare la soluzione — lascia che
+    sperimentino. Suggerimenti solo se bloccati da 10+ minuti: "Cosa
+    succede se il reed switch accende solo il rosso? E se ne mettete
+    due per due colori diversi?" Ogni gruppo presentera la sua soluzione.
+  common_question: >
+    "Non so da dove cominciare!" -> Inizia da quello che sai: collegare
+    il LED RGB con un colore solo. Poi pensa: dove metto il reed switch
+    per controllare quel colore? Un passo alla volta!
+
+common_mistakes:
+  - mistake: "Si bloccano perche non sanno la soluzione esatta"
+    what_to_do: "Ricorda: non c'e UNA soluzione! Qualsiasi cosa inventino che funziona e giusta. Iniziare dal semplice: un colore + un reed switch"
+    analogy: "E come costruire con i LEGO: non c'e un modo giusto, solo il tuo modo!"
+  - mistake: "Collegano tutti i colori insieme senza il reed switch"
+    what_to_do: "Il reed switch deve controllare almeno un colore. Chiedi: quale colore volete controllare col magnete?"
+    analogy: null
+  - mistake: "Confondono i pin del LED RGB (anodo comune vs catodo comune)"
+    what_to_do: "Verificare il tipo di LED RGB e ricordare quale gamba e il comune"
+    analogy: null
+
+analogies:
+  sfida_aperta:
+    analogy: "Questa sfida e come essere un inventore: avete i pezzi e dovete creare qualcosa di nuovo. Non esiste il modo giusto — esiste il VOSTRO modo! Ogni gruppo inventa una cosa diversa."
+    evidence: "Design-based learning aumenta agency e motivazione intrinseca (Kolodner et al. 2003)"
+  combinazione_RGB_sensore:
+    analogy: "Combinate il LED colore-cambiante con il sensore magnete: e come avere una lampada magica che cambia colore quando avvicinate la bacchetta magica (il magnete)!"
+    evidence: "Narrazione magica per engagement, scaffolding emotivo per sfide aperte (Egan 1986)"
+
+assessment_invisible:
+  - "Se il gruppo propone almeno un'idea originale -> pensiero creativo attivato"
+  - "Se usano 2 reed switch per 2 colori diversi -> composizione avanzata"
+  - "Se discutono tra loro su come farlo -> collaborazione e comunicazione scientifica"
+  - "Se presentano la soluzione spiegando il perche -> metacognizione attiva"
+  - "Se chiedono 'possiamo aggiungere anche il potenziometro?' -> pronti per esp4"

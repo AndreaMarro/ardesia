@@ -1,0 +1,81 @@
+# Curriculum YAML — v2-cap8-esp1
+# "MOSFET come interruttore"
+
+experiment_id: v2-cap8-esp1
+volume: 2
+chapter: 8
+title: "MOSFET come interruttore"
+
+prerequisites:
+  - v2-cap7-esp4
+
+concepts_introduced:
+  - MOSFET
+  - gate
+  - drain
+  - source
+  - interruttore_elettronico
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - MOSFET
+  - gate
+  - drain
+  - source
+  - interruttore
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 MOSFET N-channel (IRF520 o simile), 1 LED, 1 resistore
+    330 ohm, 1 batteria 9V, fili. Identifica i pin del MOSFET: Gate (sinistra),
+    Drain (centro), Source (destra) guardandolo di fronte con la scritta verso di te.
+  during_class: >
+    Collega LED + resistore tra batteria e drain. Source al negativo. Il LED e' spento.
+    Ora tocca il gate con un filo dal polo positivo — il LED si accende!
+    "Il MOSFET e' come un interruttore: il gate decide se far passare la corrente."
+    Stacca il filo dal gate — il LED si spegne.
+  common_question: >
+    "Perche' si chiama gate?" -> Gate vuol dire 'cancello' in inglese. Il cancello
+    si apre quando arriva tensione, e lascia passare la corrente dal drain al source.
+
+common_mistakes:
+  - mistake: "Pin del MOSFET invertiti (gate/drain/source confusi)"
+    what_to_do: "Disegna lo schema alla lavagna: guardando il MOSFET di fronte, G-D-S da sinistra a destra."
+    analogy: "Come leggere un libro — da sinistra a destra: G, D, S"
+  - mistake: "Gate lasciato in aria (floating) — comportamento casuale"
+    what_to_do: "Il gate va collegato a qualcosa: + per accendere, - per spegnere. Mai lasciarlo scollegato."
+    analogy: null
+
+analogies:
+  MOSFET:
+    analogy: "Il MOSFET e' come un rubinetto elettronico — il gate e' la manopola. Quando giri la manopola (dai tensione al gate), l'acqua (corrente) scorre dal drain al source."
+    evidence: "Analogia rubinetto per transistor, classica in didattica (Horowitz & Hill 2015)"
+  interruttore_elettronico:
+    analogy: "A differenza di un interruttore normale che premi con il dito, il MOSFET si 'preme' con la tensione. Niente parti che si muovono — tutto succede con l'elettricita'."
+    evidence: "Confronto meccanico/elettronico per transizione concettuale (Taber 2001)"
+
+assessment_invisible:
+  - "Se lo studente dice 'il gate controlla il passaggio' -> ha capito il principio"
+  - "Se collega il gate al - per spegnere il LED -> uso intenzionale"
+  - "Se chiede 'posso controllare il gate con un altro circuito?' -> pensiero sistemico"

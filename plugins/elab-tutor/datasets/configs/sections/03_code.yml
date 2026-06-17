@@ -1,0 +1,127 @@
+id: code
+name: "Arduino e Scratch Coding"
+
+templates:
+  # ── COMPILE + RUN ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "@action_compile"
+    actions: ["[AZIONE:compile]"]
+    entities: []
+    vars:
+      frase:
+        - compila il codice
+        - compila e avvia
+        - compilalo
+        - fai il compile
+        - compila il programma
+        - compilami sto codice
+        - esegui la compilazione
+        - build
+        - compile
+        - compilare
+
+  # ── EDITOR SWITCH ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Editor aperto!"
+    actions: ["[AZIONE:openeditor]"]
+    entities: []
+    vars:
+      frase:
+        - apri l'editor
+        - mostrami il codice
+        - voglio vedere il codice
+        - fammi vedere il programma
+        - apri il code editor
+        - editor
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Scratch!"
+    actions: ["[AZIONE:switcheditor:scratch]"]
+    entities: []
+    vars:
+      frase:
+        - passa a Scratch
+        - voglio usare Scratch
+        - apri i blocchi
+        - modalita' Scratch
+        - switch to Scratch
+        - Blockly
+        - metti i blocchi
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "Arduino C++!"
+    actions: ["[AZIONE:switcheditor:arduino]"]
+    entities: []
+    vars:
+      frase:
+        - passa ad Arduino
+        - voglio scrivere codice
+        - modalita' Arduino
+        - torna al C++
+        - switch to Arduino
+        - codice testuale
+
+  # ── CODE QUESTIONS (needs LLM) ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: true
+    llm_hint: "Domanda su codice Arduino/C++. Spiegare con semplicita', analogie concrete. Target 10-14 anni."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' void setup?
+        - cos'e' void loop?
+        - come faccio un for loop?
+        - cos'e' una variabile?
+        - come si usa digitalWrite?
+        - come si legge un sensore analogico?
+        - cos'e' pinMode?
+        - cos'e' delay?
+        - come faccio lampeggiare un LED?
+        - cos'e' analogRead?
+        - come si usa il Serial Monitor?
+        - cos'e' una funzione?
+        - come si mette un if?
+        - come faccio un while?
+        - cos'e' un array?
+        - spiegami il codice
+        - non capisco questo programma
+        - c'e' un errore nel codice
+        - il codice non compila, perche'?
+        - come si fa il PWM?
+        - cos'e' map()?
+        - come si controlla un servo da codice?
+        - come funziona analogWrite?
+        - spiega la differenza tra digitale e analogico
+
+  # ── SCRATCH QUESTIONS (needs LLM) ──────────────
+  - input: "{frase}"
+    intent: code
+    needs_llm: true
+    llm_hint: "Domanda su Scratch/Blockly per Arduino. Spiegare blocchi visivi, drag-and-drop."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - come si usano i blocchi?
+        - come collego un blocco all'altro?
+        - che blocco uso per accendere il LED?
+        - come faccio un ciclo con i blocchi?
+        - non trovo il blocco giusto
+        - come si fa un if con i blocchi?
+        - il blocco non si attacca
+        - come genero il codice dai blocchi?
+        - spiegami la programmazione a blocchi
+
+corruptions:
+  typo_swap: 0.2
+  filler: 0.1

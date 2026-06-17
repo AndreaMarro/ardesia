@@ -1,0 +1,136 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* StudentDashboard CSS Module — S4 migration */
+
+.iconSvg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.loginPrompt {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.loginLogo {
+  font-size: 48px;
+  color: var(--color-primary);
+  font-weight: 800;
+  font-family: Oswald, sans-serif;
+}
+
+.headingNavy {
+  color: var(--color-primary);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+
+.badgeCard {
+  text-align: center;
+  padding: 10px 6px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.badgeName {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.badgeDesc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.statIcon {
+  display: flex;
+  justify-content: center;
+}
+
+.nudgeBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1199;
+  background: rgba(0,0,0,0.3);
+}
+
+.nudgePanel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 24px;
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.15);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.nudgeEmoji {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.nudgeText {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.nudgeSubtext {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0 0 16px;
+}
+
+.flexRow {
+  display: flex;
+  gap: 8px;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.moodItem {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.textMuted {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.textMutedSm {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.emptyState {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 20px;
+}
+
+.infoNote {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}

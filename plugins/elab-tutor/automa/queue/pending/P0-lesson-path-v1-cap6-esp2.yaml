@@ -1,0 +1,13 @@
+id: lesson-path-v1-cap6-esp2
+type: WRITE
+priority: P0
+title: "Genera percorso lezione v1-cap6-esp2 — LED senza resistore"
+description: |
+  Genera il file src/data/lesson-paths/v1-cap6-esp2.json seguendo il template PERFETTO 
+  di v1-cap6-esp1.json. 5 fasi: PREPARA→MOSTRA→CHIEDI→OSSERVA→CONCLUDI.
+  Ogni fase ha: teacher_message, teacher_tip, class_hook, action_tags, common_mistakes.
+  Verifica vocabolario contro curriculum YAML. Aggiungi l'import in src/data/lesson-paths/index.js.
+  Build DEVE passare.
+template: src/data/lesson-paths/v1-cap6-esp1.json
+curriculum: automa/curriculum/v1-cap6-esp2.yaml
+output: src/data/lesson-paths/v1-cap6-esp2.json

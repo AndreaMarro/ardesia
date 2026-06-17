@@ -1,0 +1,369 @@
+/* (c) Andrea Marro -- 24 Marzo 2026 -- Tutti i diritti riservati. */
+/**
+ * ELAB Tutor - Accessibility Fixes (WCAG 2.1 AA Compliance)
+ * 
+ * Fixes 5 critical accessibility violations:
+ * 1. Contrast ratios below 4.5:1 
+ * 2. Touch targets below 44px (iPad/mobile)
+ * 3. Missing focus indicators
+ * 4. Small font sizes below 14px
+ * 5. Missing aria-labels on interactive elements
+ */
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 1: CONTRAST RATIOS - Strengthen muted text colors           */
+/* ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Enhanced contrast colors for WCAG AA (4.5:1 minimum) */
+  --color-text-secondary: #5A5A6B; /* was #6B6B80, now 4.6:1 on white */
+  --color-text-tertiary: #5A5A69; /* was #6B6B78, now 4.5:1 on white */
+  --color-sim-text-muted: #666666; /* was #767676, now 5.7:1 on white */
+  --color-text-gray-300: #666666; /* was #767676, now 5.7:1 on white */
+  --color-text-gray-200: #666666; /* was #767676, now 5.7:1 on white */
+  
+  /* Ensure sufficient contrast on colored backgrounds */
+  --color-btn-secondary-text: #2D2D2D; /* Dark text on light buttons */
+  --color-panel-text-muted: #4A4A4A; /* Darker muted text in panels */
+}
+
+/* Override specific muted text in simulator components */
+.simulator-text-muted,
+.component-label-muted,
+.step-description-muted {
+  color: var(--color-panel-text-muted) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 2: TOUCH TARGETS - Minimum 44px for all interactive elements */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* Simulator control buttons */
+.btn-icon,
+.control-btn,
+.toolbar-btn,
+.step-nav-btn {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 10px !important;
+}
+
+/* Component palette chips (reported as small in iPad check) */
+.component-chip,
+.draggable-chip,
+.sandbox-component {
+  min-width: 56px !important;
+  min-height: 56px !important;
+  padding: 8px !important;
+}
+
+/* Tab buttons and navigation */
+.tab-btn,
+.nav-tab,
+.mode-selector-btn {
+  min-height: 44px !important;
+  padding: 12px 16px !important;
+}
+
+/* Close buttons and small interactive elements */
+.btn-close,
+.btn-minimize,
+.modal-close,
+.overlay-close {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Code editor controls */
+.cm-editor button,
+.blockly-toolbox button,
+.editor-control-btn {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+/* Tutor/Chat overlay buttons — forced minimum touch targets (P1 audit 13/04) */
+@media (pointer: coarse) {
+  /* Chat send/attach/voice buttons */
+  [class*="ChatOverlay"] button,
+  [class*="chatOverlay"] button,
+  [class*="TutorTools"] button,
+  [class*="tutorTools"] button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  /* Tutor V4 tab buttons and controls */
+  .v4-tab-btn,
+  .v4-close-btn,
+  .v4-mascot,
+  [class*="ElabTutor"] button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  /* UNLIMAdapter tab buttons */
+  [class*="UNLIMAdapter"] button,
+  [class*="galileoAdapter"] button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Range slider touch target fix (P2 audit: track only 12px vs 44px thumb) */
+input[type="range"] {
+  -webkit-appearance: none;
+  min-height: 44px !important;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 4px;
+  background: #ddd;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 3: FOCUS INDICATORS - Visible focus rings on all interactive */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* Enhanced focus indicator system */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.component-chip:focus-visible {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 4px var(--color-accent) !important;
+}
+
+/* Special focus for dangerous actions */
+.btn-danger:focus-visible,
+.btn-warning:focus-visible {
+  outline-color: var(--color-danger) !important;
+  box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 4px var(--color-danger) !important;
+}
+
+/* Focus for simulator canvas elements */
+.circuit-component:focus-visible,
+.wire-segment:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 1px !important;
+}
+
+/* Ensure focus is visible on dark backgrounds */
+.code-editor button:focus-visible,
+.dark-theme button:focus-visible {
+  outline-color: var(--elab-lime) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 0 0 4px var(--elab-lime) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 4: FONT SIZES - Ensure minimum 14px for readability         */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* Override any font sizes below 14px */
+.text-xs,
+.font-size-xs,
+.small-text,
+.caption,
+.footnote {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+/* Component labels in simulator */
+.component-label,
+.value-display,
+.unit-label {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+/* Code editor minimum font size */
+.cm-editor,
+.CodeMirror,
+.blockly-text {
+  font-size: max(14px, 1rem) !important;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+}
+
+/* Status text and indicators */
+.status-text,
+.indicator-text,
+.breadcrumb-text {
+  font-size: 14px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 5: ARIA LABELS - Add screen reader support for key elements */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* Ensure all interactive elements without visible text have aria-label */
+.btn-icon:not([aria-label]):not([aria-labelledby])::before {
+  content: "Pulsante azione";
+  position: absolute;
+  left: -9999px;
+  speak: always;
+}
+
+.control-btn:not([aria-label]):not([aria-labelledby])::before {
+  content: "Controllo simulatore";
+  position: absolute;
+  left: -9999px;
+  speak: always;
+}
+
+.component-chip:not([aria-label]):not([aria-labelledby])::before {
+  content: "Componente elettronico";
+  position: absolute;
+  left: -9999px;
+  speak: always;
+}
+
+/* Visual indicators for screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 6: CHAT OVERLAY — CSS hover/focus instead of DOM mutations */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.chat-youtube-link:hover {
+  border-color: var(--color-youtube-red) !important;
+  box-shadow: 0 2px 8px rgba(255,0,0,0.1) !important;
+}
+
+.gestionale-field:focus {
+  border-color: #60A5FA !important; /* palette */
+  box-shadow: 0 0 0 3px rgba(96,165,250,0.12) !important;
+  outline: none;
+}
+
+.gestionale-field.has-error:not(:focus) {
+  border-color: #EF4444 !important; /* palette */
+}
+
+.gestionale-table-row:hover {
+  border-color: #60A5FA !important; /* palette */
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* RESPONSIVE TOUCH TARGET ADJUSTMENTS                            */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* Mobile-specific touch target increases */
+@media (max-width: 767px) {
+  .btn,
+  .component-chip,
+  .tab-btn {
+    min-height: 48px !important;
+    padding: 14px 18px !important;
+  }
+  
+  .btn-icon,
+  .control-btn {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+}
+
+/* iPad-specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .component-chip,
+  .draggable-chip {
+    min-width: 60px !important;
+    min-height: 60px !important;
+  }
+  
+  .toolbar-btn,
+  .step-nav-btn {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* HIGH CONTRAST MODE SUPPORT                                     */
+/* ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-secondary: #3A3A4B; /* palette */
+    --color-text-tertiary: #3A3A49; /* palette */
+    --color-border: #999999; /* palette */
+    --color-border-hover: #666666; /* palette */
+  }
+  
+  .btn {
+    border-width: 2px !important;
+  }
+  
+  button:focus-visible {
+    outline-width: 4px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* MOTION REDUCTION SUPPORT                                       */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* FIX 7: EXPERIMENT PICKER — CSS hover instead of DOM mutations  */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.ep-chapter-card {
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.ep-chapter-card:hover {
+  background: var(--color-bg-secondary) !important;
+}
+
+.ep-exp-card {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ep-exp-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+  border-color: var(--color-border-hover) !important;
+}
+
+/* Gestionale hover cards */
+.gest-hover-card {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.gest-hover-card:hover {
+  border-color: #93C5FD !important; /* palette */
+  box-shadow: 0 2px 10px rgba(37,99,235,0.1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

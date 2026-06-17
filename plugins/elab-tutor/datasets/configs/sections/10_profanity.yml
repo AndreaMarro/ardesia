@@ -1,0 +1,57 @@
+id: profanity
+name: "Parolacce e Frustrazione"
+
+templates:
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: true
+    llm_hint: "Utente frustrato, usa parolacce. NON giudicare. Rispondere con empatia, poi aiutare col problema tecnico."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - non funziona un cazzo
+        - porco giuda non va niente
+        - ma che merda e' sto circuito
+        - sto coso del cazzo non si accende
+        - mannaggia la miseria il LED e' rotto
+        - ma vaffanculo non capisco niente
+        - che palle non funziona mai
+        - diocane il buzzer non suona
+        - porca miseria si e' bruciato tutto
+        - ma che cavolo devo fare?
+        - sto cacchio di filo non entra
+        - maledetto circuito di merda
+        - fanculo non ci riesco
+        - cristo santo non funziona
+        - ma che cazzo ho sbagliato?
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase:
+        - dai cazzo avvia
+        - avvia sto coso del cavolo
+        - fallo partire perdio
+        - su avvia mannaggia
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase:
+        - cancella tutto sto schifo
+        - pulisci tutto porco cane
+        - via tutta sta merda
+        - butta via tutto diocane
+
+corruptions:
+  caps_chaos: 0.3
+  filler: 0.2

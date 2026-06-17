@@ -1,0 +1,79 @@
+# Curriculum YAML — v1-cap8-esp2
+# "Cambia colore e luminosita"
+
+experiment_id: v1-cap8-esp2
+volume: 1
+chapter: 8
+title: "Cambia colore e luminosita"
+
+prerequisites:
+  - v1-cap8-esp1  # Sa usare il pulsante
+
+concepts_introduced:
+  - LED_colori_diversi
+  - resistori_diversi_luminosita
+  - relazione_resistenza_luminosita
+
+vocabulary_level: v1-cap8
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - colore
+  - rosso
+  - verde
+  - blu
+  - giallo
+  - luminosita
+  - piu forte
+  - piu debole
+forbidden_terms:
+  - potenziometro
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Preparazione: LED di colori diversi (rosso, verde, blu, giallo), resistori di
+    valori diversi (220, 470, 1K, 2.2K ohm). Stesso circuito dell'esp 1 ma con
+    componenti intercambiabili. Obiettivo: scoprire che colore e resistore cambiano
+    il risultato.
+  during_class: >
+    "Provate a sostituire il LED rosso con uno verde. Cosa cambia?" Poi:
+    "Ora cambiate anche la resistenza — usatene una piu grande. Cosa succede?"
+    Lascia che sperimentino liberamente — non c'e un risultato "giusto".
+  common_question: >
+    "Perche il verde e piu debole?" -> Ogni colore di LED ha bisogno di una
+    quantita diversa di energia per accendersi. Il verde ne chiede un po' di piu.
+
+common_mistakes:
+  - mistake: "Non notano differenza cambiando resistore"
+    what_to_do: "Usa valori molto diversi: 220 vs 2200 ohm — la differenza sara evidente"
+    analogy: null
+  - mistake: "Il LED non si accende con resistore troppo alto"
+    what_to_do: "La resistenza e troppo grande — torna a 220 ohm e aumenta gradualmente"
+    analogy: "Come stringere troppo un rubinetto — l'acqua non esce piu"
+
+analogies:
+  relazione_resistenza_luminosita:
+    analogy: "La resistenza e come un dosatore: piu grande, meno corrente passa, meno luce. Come regolare il volume della radio — giri la manopola e cambia l'intensita."
+    evidence: "Analogia proporzionalita inversa, supporta intuizione Ohm (McDermott 1992)"
+
+assessment_invisible:
+  - "Se lo studente predice 'con la resistenza grande sara piu debole' PRIMA di provare -> ragionamento causale"
+  - "Se chiede 'posso mischiare i colori?' -> pronto per esp 3 (RGB)"

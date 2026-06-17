@@ -1,0 +1,124 @@
+# scratch.yml — UNLIM Knowledge Base: Scratch/Blockly Editor
+# S76: Scratch Universale — UNLIM deve sapere TUTTO sull'editor a blocchi
+
+scratch_editor:
+  description: |
+    ELAB Tutor ha un editor visuale a blocchi (Blockly/Scratch) integrato nel simulatore.
+    I blocchi si agganciano come pezzi di puzzle per creare programmi Arduino senza scrivere codice.
+    L'editor genera automaticamente codice Arduino C++ dai blocchi posizionati.
+
+  availability: |
+    L'editor codice è disponibile per TUTTI gli esperimenti, non solo Volume 3.
+    - Volume 1/2 (circuiti): il docente può aprire l'editor per programmare i componenti
+    - Volume 3 (Arduino): l'editor si apre automaticamente
+    Il docente può passare tra la tab "Arduino C++" e "🧩 Blocchi" in qualsiasi momento.
+
+  categories:
+    - name: "Input/Output"
+      description: "Controllo pin digitali e analogici"
+      blocks:
+        - "digitalWrite(pin, HIGH/LOW) — accende/spegne un pin digitale"
+        - "digitalRead(pin) — legge lo stato di un pin digitale (HIGH o LOW)"
+        - "analogWrite(pin, valore) — scrive un valore PWM (0-255) su un pin"
+        - "analogRead(pin) — legge un valore analogico (0-1023) da un pin"
+    - name: "Tempo"
+      description: "Gestione tempi e attese"
+      blocks:
+        - "delay(millisecondi) — mette in pausa il programma"
+        - "millis() — restituisce il tempo trascorso dall'avvio (in ms)"
+    - name: "Suono"
+      description: "Generazione suoni con buzzer piezoelettrico"
+      blocks:
+        - "tone(pin, frequenza) — emette un suono alla frequenza specificata"
+        - "noTone(pin) — ferma il suono"
+    - name: "Variabili"
+      description: "Creazione e gestione variabili"
+      blocks:
+        - "dichiara variabile — crea una nuova variabile con nome e tipo"
+        - "imposta variabile — cambia il valore di una variabile esistente"
+    - name: "Servo"
+      description: "Controllo servomotori"
+      blocks:
+        - "servoAttach(pin) — collega un servo al pin specificato"
+        - "servoWrite(pin, angolo) — ruota il servo all'angolo (0-180°)"
+        - "servoRead(pin) — legge la posizione attuale del servo"
+    - name: "Seriale"
+      description: "Comunicazione con Serial Monitor"
+      blocks:
+        - "serialPrint(testo) — stampa testo sulla stessa riga"
+        - "serialPrintln(testo) — stampa testo e va a capo"
+        - "serialRead() — legge un carattere dal Serial Monitor"
+    - name: "Logica"
+      description: "Condizioni e decisioni (if/else)"
+    - name: "Cicli"
+      description: "Ripetizioni (for, while, repeat)"
+    - name: "Matematica"
+      description: "Operazioni matematiche e confronti"
+    - name: "Testo"
+      description: "Manipolazione stringhe di testo"
+
+  how_it_works: |
+    1. Il docente trascina i blocchi dalla toolbox (barra laterale) nello spazio di lavoro
+    2. I blocchi si agganciano automaticamente quando sono vicini
+    3. Il codice Arduino C++ viene generato in tempo reale
+    4. Il docente può vedere il codice generato cliccando la tab "Arduino C++"
+    5. Premendo "Compila" il codice viene compilato e caricato sull'Arduino virtuale
+    6. La simulazione mostra il risultato (LED che lampeggia, buzzer che suona, ecc.)
+
+  when_to_suggest: |
+    Suggerisci i blocchi quando:
+    - Il docente è alle prime armi o lavora con ragazzi 8-12 anni
+    - Il docente dice "non capisco il codice" o "è troppo difficile"
+    - Il docente chiede "come faccio a programmare?"
+    - È un esperimento semplice (blink, buzzer, LED)
+    Suggerisci Arduino C++ quando:
+    - Il docente ha già esperienza
+    - L'esperimento richiede logica complessa
+    - Il docente chiede esplicitamente di scrivere codice
+
+  action_tags: |
+    Usa questi tag per controllare l'editor:
+    - [AZIONE:openeditor] — apre il pannello editor codice
+    - [AZIONE:closeeditor] — chiude il pannello editor codice
+    - [AZIONE:switcheditor:scratch] — passa alla tab Blocchi
+    - [AZIONE:switcheditor:arduino] — passa alla tab Arduino C++
+    - [AZIONE:compile] — compila il codice (funziona sia da blocchi che da Arduino)
+
+    Combinazioni comuni:
+    - "apri i blocchi" → [AZIONE:openeditor] [AZIONE:switcheditor:scratch]
+    - "mostra il codice" → [AZIONE:openeditor] [AZIONE:switcheditor:arduino]
+    - "chiudi l'editor" → [AZIONE:closeeditor]
+    - "compila" → [AZIONE:compile]
+
+  guided_examples:
+    blink_led: |
+      Per far lampeggiare un LED con i blocchi:
+      1. Trascina "digitalWrite" nello spazio di lavoro
+      2. Imposta pin 13, valore HIGH (acceso)
+      3. Aggiungi un blocco "delay" con 1000 millisecondi
+      4. Aggiungi un altro "digitalWrite" con pin 13, valore LOW (spento)
+      5. Aggiungi un altro "delay" con 1000 millisecondi
+      6. Premi Compila per provare!
+
+    buzzer_tone: |
+      Per suonare una nota con il buzzer:
+      1. Trascina "tone" nello spazio di lavoro
+      2. Imposta il pin del buzzer e la frequenza (es. 440 = nota LA)
+      3. Aggiungi un "delay" per la durata della nota
+      4. Aggiungi "noTone" per fermare il suono
+
+    read_button: |
+      Per leggere un pulsante:
+      1. Trascina "digitalRead" e mettilo in una condizione "if"
+      2. Se il valore è HIGH, il pulsante è premuto
+      3. Dentro l'if, metti l'azione (es. accendi LED)
+
+  voice_commands: |
+    Riconosci queste frasi come richieste relative all'editor:
+    - "apri i blocchi" / "voglio i blocchi" / "programma a blocchi" → apri editor in modalità Scratch
+    - "mostrami il codice" / "vedi il codice Arduino" → apri editor in modalità Arduino
+    - "chiudi l'editor" / "nascondi il codice" → chiudi editor
+    - "compila" / "prova il codice" / "esegui i blocchi" → compila
+    - "come uso i blocchi?" / "cos'è scratch?" → spiega l'editor a blocchi
+    - "passa ai blocchi" / "torna ai blocchi" → switch a Scratch
+    - "passa al codice" / "torna al codice" → switch a Arduino

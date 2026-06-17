@@ -1,0 +1,201 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap3-esp3",
+  "volume": 2,
+  "chapter": 3,
+  "title": "Misuriamo una resistenza",
+  "chapter_title": "Il Multimetro",
+  "difficulty": 1,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Usare il multimetro in modalita ohmmetro per misurare il valore reale di una resistenza e confrontarlo con il codice a bande colorate.",
+  "components_needed": [
+    {
+      "name": "Resistore 330ohm",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "multimetro",
+      "ohmmetro",
+      "ohm",
+      "resistore",
+      "resistenza",
+      "bande colorate",
+      "tolleranza",
+      "valore nominale",
+      "valore reale",
+      "misurare",
+      "puntale"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "condensatore",
+      "transistor"
+    ],
+    "note": "Vol 2 Cap 3 — ohmmetro, bande colorate, tolleranza."
+  },
+  "prerequisites": [
+    "v2-cap3-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap3-esp4",
+    "title": "Misuriamo la corrente in un circuito",
+    "preview": "Prossimo passo: Misuriamo la corrente in un circuito. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi il multimetro cambia ruolo: da voltmetro diventa ohmmetro! Misureremo il valore di una resistenza e verificheremo se le bande colorate dicono la verita.",
+      "teacher_tip": "Mostrate il codice colori: arancio-arancio-marrone = 330ohm. Spiegate che ogni resistore ha una tolleranza (es. 5%) quindi il valore misurato puo differire leggermente.",
+      "components_list": "Ti servono: 1 resistore 330ohm, 1 multimetro.",
+      "class_hook": "Le resistenze hanno delle strisce colorate che nascondono un codice segreto. Oggi impariamo a decifrarlo e poi verifichiamo con il multimetro se e vero!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Impostiamo il multimetro su Ohm (il simbolo omega). Tocchiamo i due terminali del resistore con i puntali. Leggiamo il valore sul display: sara circa 330ohm ma non esattamente.",
+      "teacher_tip": "Il circuito deve essere SPENTO per misurare la resistenza! Se il multimetro e collegato a un circuito alimentato, la misura sara sbagliata. Evidenziate questo punto.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap3-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Collegate il multimetro al resistore per misurare la resistenza",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 330
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Il multimetro dice 328ohm ma le bande dicono 330ohm. Chi ha ragione? E se misuro un altro resistore '330ohm' dalla stessa scatola, sara esattamente uguale?",
+      "teacher_tip": "Nessuno dei due mente! Il valore nominale (bande) e approssimato. La tolleranza del 5% significa che un 330ohm puo valere da 313.5 a 346.5ohm.",
+      "provocative_question": "Se le bande colorate non dicono il valore esatto, a cosa servono? Non sarebbe meglio scrivere il numero direttamente sul resistore?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Misurare la resistenza con il circuito alimentato",
+          "teacher_response": "SPEGNI tutto prima! Il multimetro in modalita ohmmetro invia una piccola corrente propria. Se il circuito e acceso, le correnti si mescolano e la misura e sbagliata.",
+          "analogy": "E come pesarsi sulla bilancia tenendo una borsa: il peso che leggi non e il tuo vero peso!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Osservate il valore sul display. E vicino a 330ohm? Provate con resistori diversi: 1kohm, 10kohm. Confrontate sempre il valore misurato con quello delle bande.",
+      "teacher_tip": "Fate compilate una tabella: Resistore | Bande (valore nominale) | Misurato | Differenza %. I ragazzi vedranno che tutti i valori rientrano nella tolleranza.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:r1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il display mostra un valore molto vicino a 330ohm. Le bande colorate danno un'approssimazione corretta! La piccola differenza e normale ed e chiamata tolleranza.",
+      "analogies": [
+        {
+          "concept": "tolleranza",
+          "text": "La tolleranza e come la taglia dei vestiti: una 'M' non e identica in tutti i negozi, ma e sempre vicina alla stessa misura. Un resistore da '330ohm' puo variare un po, ma resta nella fascia giusta.",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 4,
+      "teacher_message": "Ragazzi, Avete imparato a decifrare il codice colori e a verificare con il multimetro. Le bande sono un codice pratico, il multimetro da il valore preciso!",
+      "teacher_tip": "Lasciate un mini-quiz: date un resistore senza dire il valore, i ragazzi devono leggerlo dalle bande e poi verificare col multimetro.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il multimetro in modalita ohmmetro misura le resistenze. Il codice a bande colorate da il valore nominale, il multimetro il valore reale. La tolleranza spiega le piccole differenze.",
+      "concepts_learned": [
+        "ohmmetro",
+        "codice bande colorate",
+        "tolleranza resistenze",
+        "valore nominale vs reale"
+      ],
+      "next_preview": "La prossima volta collegheremo il multimetro IN SERIE nel circuito per misurare la corrente che passa!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se legge correttamente le bande colorate → comprensione del codice",
+    "Se nota la differenza tra valore nominale e misurato → spirito critico",
+    "Se capisce il concetto di tolleranza → pensiero quantitativo"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "ohmmetro",
+      "bande_colorate",
+      "tolleranza"
+    ],
+    "next_suggested": "v2-cap3-esp4",
+    "resume_message": "Avete misurato le resistenze con il multimetro! Prossimo: misurare la corrente."
+  },
+  "analogies": [
+    {
+      "concept": "tolleranza",
+      "text": "La tolleranza e come la taglia dei vestiti: una 'M' non e identica in tutti i negozi, ma e sempre vicina alla stessa misura. Un resistore da '330ohm' puo variare un po, ma resta nella fascia giusta.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Misurare la resistenza con il circuito alimentato",
+      "teacher_response": "SPEGNI tutto prima! Il multimetro in modalita ohmmetro invia una piccola corrente propria. Se il circuito e acceso, le correnti si mescolano e la misura e sbagliata.",
+      "analogy": "E come pesarsi sulla bilancia tenendo una borsa: il peso che leggi non e il tuo vero peso!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

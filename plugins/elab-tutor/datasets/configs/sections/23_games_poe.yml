@@ -1,0 +1,78 @@
+id: games_poe
+name: Gioco POE — Predici Osserva Spiega
+intent: tutor
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - giochiamo a predici e spiega
+    - facciamo il gioco POE
+    - predici cosa succede
+    - cosa pensi che succeda?
+    - facciamo predici-osserva-spiega
+    - voglio fare il gioco della previsione
+    - proviamo a prevedere
+    - secondo te cosa succede se premo play?
+    - indovina cosa fara' il circuito
+    - POE!
+    - che succede se avvio?
+    - previsione!
+    - facciamo un esperimento mentale
+    - dimmi prima cosa succede
+    - cosa prevedi?
+    - prova a indovinare cosa fa
+    - prima di avviare, cosa ti aspetti?
+    - fai la tua previsione
+    - che succedera' secondo te?
+    - scommettiamo su cosa fa?
+    hint:
+    - 'Gioco POE fase 1 PREDICI: chiedi allo studente cosa pensa che succedera''.
+      NON dare la risposta.'
+    - 'POE: lo studente deve fare la previsione PRIMA di avviare. Poi osservare. Poi
+      spiegare la differenza.'
+    - 'Predici-Osserva-Spiega. Metodo scientifico per bambini. Fase 1: ipotesi prima
+      dell''esperimento.'
+    - 'POE: guida le 3 fasi. 1) Che prevedi? 2) Avvia e osserva. 3) La previsione
+      era giusta? Perche'' si/no?'
+    - 'Gioco previsione. Stimola il pensiero critico: non esiste risposta sbagliata
+      nella previsione!'
+    - 'POE fase predizione. Chiedi: Se premo play, il LED si accendera''? Perche''
+      pensi di si/no?'
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions: []
+  entities: []
+  vars:
+    frase:
+    - perche' e' successo questo?
+    - non e' come me lo aspettavo
+    - la mia previsione era sbagliata
+    - avevo ragione!
+    - non capisco perche' ha fatto cosi'
+    - spiegami perche' e' diverso da quello che pensavo
+    - ho previsto giusto?
+    - come faccio a spiegare quello che e' successo?
+    - perche' il LED si e' acceso quando pensavo di no?
+    - pensavo che non funzionasse e invece va!
+    - ma io avevo detto che si accendeva e invece no
+    - la mia teoria era giusta?
+    hint:
+    - 'POE fase 3 SPIEGA: aiuta lo studente a spiegare la differenza tra previsione
+      e risultato.'
+    - POE fase osserva/spiega. Se la previsione era sbagliata, e' un momento di apprendimento
+      fantastico!
+    - 'Fase spiegazione POE. Collega il risultato alla teoria. Normalizza gli errori:
+      ''Anche gli scienziati sbagliano!'''
+    - POE riflessione. Guida lo studente a capire PERCHE' il risultato e' diverso
+      dalla previsione.
+    - Spiegazione post-esperimento. Festeggia sia le previsioni giuste che quelle
+      sbagliate (imparare dall'errore).
+corruptions:
+  typo_swap: 0.3
+  emoji: 0.15
+  filler: 0.15
+  voice: 0.1

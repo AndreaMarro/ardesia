@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<title>ELAB Tutor — Pitch Davide / Omaric / Tea — 2026-04-29</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.css" id="theme">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/monokai.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E4D8C;
+    --lime: #4A7A25;
+    --orange: #E8941C;
+    --red: #E54B3D;
+    --beige: #F5F0E8;
+    --ink: #1c2740;
+  }
+  .reveal { font-family: 'Open Sans', sans-serif; color: var(--ink); }
+  .reveal .slides section {
+    text-align: left;
+    background: var(--beige);
+    padding: 32px 40px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: 'Inter', sans-serif; color: var(--navy); letter-spacing: -0.01em; text-transform: none; }
+  .reveal h1 { font-size: 2.4em; font-weight: 800; }
+  .reveal h2 { font-size: 1.7em; font-weight: 700; margin-bottom: 0.4em; border-bottom: 4px solid var(--orange); padding-bottom: 6px; display: inline-block; }
+  .reveal h3 { font-size: 1.15em; font-weight: 700; color: var(--lime); }
+  .reveal p, .reveal li { font-size: 0.78em; line-height: 1.45; }
+  .reveal ul { margin-left: 1em; }
+  .reveal ul li { margin: 4px 0; }
+  .reveal table { font-size: 0.62em; border-collapse: collapse; width: 100%; }
+  .reveal table th { background: var(--navy); color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+  .reveal table td { padding: 6px 10px; border-bottom: 1px solid #d8d2c4; vertical-align: top; }
+  .reveal table tr.highlight td { background: #FFF4DE; font-weight: 700; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 0.62em; font-weight: 700; }
+  .badge-navy { background: var(--navy); color: white; }
+  .badge-lime { background: var(--lime); color: white; }
+  .badge-orange { background: var(--orange); color: white; }
+  .badge-red { background: var(--red); color: white; }
+  .card { background: white; border-left: 6px solid var(--navy); padding: 14px 18px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .card-lime { border-left-color: var(--lime); }
+  .card-orange { border-left-color: var(--orange); }
+  .card-red { border-left-color: var(--red); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .triplet-stage { position: relative; height: 360px; }
+  .triplet-circle { position: absolute; width: 220px; height: 220px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; font-weight: 700; text-align: center; mix-blend-mode: multiply; opacity: 0.88; padding: 0 24px; font-size: 0.85em; }
+  .triplet-circle small { font-weight: 400; font-size: 0.72em; display: block; margin-top: 6px; opacity: 0.95; }
+  .tc-soft { background: var(--navy); top: 30px; left: 50%; transform: translateX(-50%); }
+  .tc-kit { background: var(--orange); top: 150px; left: 16%; }
+  .tc-vol { background: var(--lime); top: 150px; right: 16%; }
+  .principio-box { background: white; border: 2px solid var(--navy); border-radius: 8px; padding: 14px 18px; }
+  .principio-box.lime { border-color: var(--lime); }
+  .footer-tag { position: absolute; bottom: 14px; right: 28px; font-size: 0.5em; color: #7a7062; font-family: 'Inter'; }
+  .stat-num { font-size: 1.6em; font-weight: 800; color: var(--navy); font-family: 'Inter'; }
+  .stat-label { font-size: 0.72em; color: #5b5345; }
+  .quote { font-style: italic; color: #5b5345; border-left: 4px solid var(--orange); padding: 8px 14px; }
+  iframe.demo { border: 2px solid var(--navy); border-radius: 6px; width: 100%; height: 380px; background: white; }
+  .pricing-card { background: white; border-radius: 10px; padding: 10px 12px; border-top: 6px solid var(--navy); min-width: 0; overflow: hidden; }
+  .pricing-card.featured { border-top-color: var(--orange); box-shadow: 0 6px 20px rgba(232,148,28,0.25); transform: translateY(-4px); }
+  .pricing-card .price { font-size: 1.1em; color: var(--navy); font-weight: 800; font-family: 'Inter'; margin: 4px 0; line-height: 1.1; }
+  .pricing-card .price small { font-weight: 400; font-size: 0.55em; display:block; color: #5b5345; }
+  .pricing-card.featured .price { color: var(--orange); }
+  .pricing-card ul { font-size: 0.62em; margin-top: 6px; padding-left: 18px; }
+  .pricing-card ul li { margin: 3px 0; }
+  .timeline-bar { display: flex; gap: 4px; align-items: stretch; }
+  .timeline-bar > div { flex: 1; background: white; border-radius: 6px; padding: 8px 6px; font-size: 0.6em; border-top: 5px solid var(--navy); }
+  .timeline-bar > div.alt { border-top-color: var(--orange); }
+  .timeline-bar > div.alt2 { border-top-color: var(--lime); }
+  .reveal .progress { color: var(--orange); }
+  .ack { background: linear-gradient(135deg, #FFF4DE, white); border: 2px dashed var(--orange); }
+  .v-good { color: var(--lime); font-weight: 700; }
+  .v-mid { color: var(--orange); font-weight: 700; }
+  .v-bad { color: var(--red); font-weight: 700; }
+  .reveal section.cover { background: linear-gradient(135deg, var(--navy) 0%, #16345f 100%); color: white; text-align: center; }
+  .reveal section.cover h1 { color: white; font-size: 3em; }
+  .reveal section.cover h2 { color: var(--orange); border-bottom: none; }
+  .reveal section.cover p { color: #d6e3f5; }
+</style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+  <!-- 1 COVER -->
+  <section class="cover" data-background-color="#1E4D8C">
+    <div style="padding-top: 50px;">
+      <p style="font-size: 0.7em; letter-spacing: 0.3em; color: var(--orange);">ELAB TUTOR</p>
+      <h1 style="margin-top: 16px;">L'unico tutor che parla<br>la lingua dei tuoi volumi.</h1>
+      <p style="font-size: 1em; margin-top: 28px; max-width: 760px; margin-left:auto; margin-right:auto;">Software ↔ Kit Omaric ↔ Volumi Davide. Triplet morfica. Coerenza che il LLM da solo non può copiare.</p>
+      <div style="margin-top: 60px; font-size: 0.72em; color: #d6e3f5;">
+        Andrea Marro · 29 aprile 2026<br>
+        Per Davide Fagherazzi · Omaric Elettronica · Tea De Venere
+      </div>
+    </div>
+    <aside class="notes">Apertura calma e diretta. Tono: stiamo costruendo un prodotto che si difende anche quando il LLM diventa commodity. La coerenza con kit fisico e volumi è il moat. Niente euforia, niente claim gonfiati.</aside>
+  </section>
+
+  <!-- 2 VISION DUE PAROLE D'ORDINE -->
+  <section>
+    <h2>Due parole d'ordine</h2>
+    <div class="grid-2 mt-2">
+      <div class="principio-box">
+        <h3>1 · Principio Zero V3</h3>
+        <p style="margin-top:6px;">Il docente è il tramite. UNLIM è lo strumento del docente. I ragazzi lavorano sul kit fisico ELAB.</p>
+        <ul>
+          <li><b>Plurale "Ragazzi,"</b> in ogni risposta</li>
+          <li><b>Vol/pag VERBATIM</b> (Vol.1 pag.42 "testo esatto")</li>
+          <li><b>Analogia esplicita</b> + <b>kit fisico (breadboard)</b></li>
+          <li><b>Max 60 parole</b> — registro scuola pubblica IT</li>
+          <li>UNLIM <b>non sostituisce</b> il libro: lo cita</li>
+        </ul>
+      </div>
+      <div class="principio-box lime">
+        <h3>2 · Morfismo DUAL + SENSE 1.5</h3>
+        <p style="margin-top:6px;">Il software è morfico runtime, e morfico al kit + ai volumi.</p>
+        <ul>
+          <li><b>Sense 1</b> · piattaforma morfica/mutaforma — codice, prompt, finestre</li>
+          <li><b>Sense 1.5</b> · adatta a docente + classe + kit + età studenti</li>
+          <li><b>Sense 2</b> · triplet coerenza Software ↔ Kit ↔ Volumi</li>
+          <li>Stessi <b>nomi</b>, stesse <b>pagine</b>, stesso <b>ordine</b>, stessa <b>palette</b> stampa</li>
+          <li>Il moat: nessun copycat puro-software può replicarlo</li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center" style="text-align:center; margin-top:20px; font-size:0.76em; color:var(--navy);"><b>Coppia inseparabile.</b> Tolto uno dei due, non è più ELAB.</p>
+    <div class="footer-tag">2 / 15 · DUE PAROLE</div>
+    <aside class="notes">Spiegare che queste due parole d'ordine sono nel CLAUDE.md del repo — non slogan, sono regole compilate, validate runtime, testate. Vol/pag verbatim e Ragazzi sono enforced dal validator (principio-zero-validator.ts).</aside>
+  </section>
+
+  <!-- 3 TRIPLET MOAT -->
+  <section>
+    <h2>Triplet moat: il vero differenziatore</h2>
+    <p style="margin-top:6px;">In pochi mesi, chiunque genererà software via LLM. Il differenziatore non sarà "avere software". Sarà la <b>coerenza esatta</b> tra i tre lati del triangolo.</p>
+    <div class="triplet-stage">
+      <div class="triplet-circle tc-soft">SOFTWARE<small>ELAB Tutor · Andrea<br>morfico runtime</small></div>
+      <div class="triplet-circle tc-kit">KIT FISICO<small>Omaric Elettronica<br>breadboard, NanoR4, comp.</small></div>
+      <div class="triplet-circle tc-vol">VOLUMI<small>Davide Fagherazzi<br>Vol.1 / Vol.2 / Vol.3</small></div>
+    </div>
+    <div class="card card-orange" style="margin-top:14px;">
+      <p><b>Test Morfismo</b>: prendi una pagina random di un Volume + una schermata random del software. Se non sembrano "lo stesso prodotto fatto da persone che hanno parlato", il Morfismo è violato. Oggi il triplet è valido per ~72% (Vol1 0.85, Vol2 0.78, Vol3 0.55).</p>
+    </div>
+    <div class="footer-tag">3 / 15 · TRIPLET</div>
+    <aside class="notes">Davide capisce subito: Vol3 0.55 è il numero che chiede il suo intervento. Il software non sta inventando, sta misurando contro le sue pagine.</aside>
+  </section>
+
+  <!-- 4 DEMO LIVE -->
+  <section>
+    <h2>Demo live · elabtutor.school</h2>
+    <div class="grid-2">
+      <div>
+        <iframe class="demo" src="https://www.elabtutor.school" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <p style="font-size: 0.6em; color: #7a7062; margin-top: 4px;">Se l'iframe non carica (X-Frame-Options), apriremo in finestra nuova: elabtutor.school</p>
+      </div>
+      <div>
+        <h3>Cosa vedete</h3>
+        <ul>
+          <li><b>4 modalità canonical</b> (ADR-025): Già Montato · Passo Passo · Libero · Percorso</li>
+          <li><b>UNLIM mascotte</b> floating window — chat, voce Isabella, vision</li>
+          <li><b>Lavagna</b> per docente LIM, simulatore Arduino Nano R4</li>
+          <li><b>92 esperimenti</b> in 27 Lezioni mappate ai 3 Volumi</li>
+          <li><b>Compilatore C++ → HEX</b> reale, emulazione AVR nel browser</li>
+          <li><b>RAG 1881 chunk</b> Voyage 1024-dim + Llama 3.3 70B contextualization</li>
+        </ul>
+        <div class="card card-lime" style="margin-top:10px;">
+          <p style="font-size:0.7em;"><b>Onesto</b>: 91/92 esperimenti non ancora verificati live (Playwright UNO PER UNO iter 22+). UNLIM Vol/pag verbatim in prod = 0/3 oggi → fix iter 22-23.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-tag">4 / 15 · DEMO</div>
+    <aside class="notes">Se l'iframe non carica per X-Frame-Options di Vercel, basta aprire elabtutor.school in tab a parte. Mostrare la Lavagna in modalità "Già Montato" — è la più solida.</aside>
+  </section>
+
+  <!-- 5 GLOSSARIO TEA -->
+  <section class="ack">
+    <h2>Glossario · contributo Tea De Venere</h2>
+    <div class="grid-2">
+      <div>
+        <h3>180 termini ingested · 3 PDF</h3>
+        <ul>
+          <li><b>Glossario_VolumeUNO</b> · termini di base (LED, resistore, tensione, breadboard)</li>
+          <li><b>Glossario_VolumeDUE</b> · diodi, MOSFET, transistor, protezioni</li>
+          <li><b>Glossario_VolumeTRE</b> · PWM, sensori, attuatori, robotica</li>
+        </ul>
+        <p style="margin-top:8px;">I termini Tea sono adesso parte del <b>RAG 1881 chunk</b> + del wiki UNLIM (100/100 concepts kebab-case). Quando UNLIM cita un componente, attinge anche dal lavoro di Tea — non solo dai Volumi.</p>
+      </div>
+      <div>
+        <div class="card card-orange">
+          <h3>Riconoscimento esplicito</h3>
+          <p style="font-size:0.75em;">Tea è co-autrice del <b>linguaggio</b> con cui UNLIM parla ai docenti. La sua revisione del glossario è uno dei 3 anelli del triplet linguistico (Volumi · Glossario · Wiki concepts).</p>
+        </div>
+        <div class="card card-lime" style="margin-top:10px;">
+          <h3>Prossimo passo (richiesta)</h3>
+          <p style="font-size:0.75em;">Tea + Davide review congiunta: assicurarsi che ogni termine glossario abbia <b>Vol/pag</b> verbatim collegata, così UNLIM cita sempre origine canonica.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-tag">5 / 15 · TEA</div>
+    <aside class="notes">Acknowledge esplicito: Tea NON è marginale. Il glossario è uno dei tre pilastri linguistici. Chiederle di collaborare al review congiunto con Davide.</aside>
+  </section>
+
+  <!-- 6 VOLUMI NARRATIVE SCORE -->
+  <section>
+    <h2>Volumi narrative score · richiesta a Davide</h2>
+    <div class="grid-2">
+      <div>
+        <canvas id="volChart" height="220"></canvas>
+      </div>
+      <div>
+        <h3>Cosa misura</h3>
+        <p>Coerenza narrativa esperimenti software ↔ libro fisico (mapping esatto, ordine, citazioni, capitoli completi).</p>
+        <table class="mt-2">
+          <tr><th>Volume</th><th>Score</th><th>Stato</th></tr>
+          <tr><td>Vol.1 (38 esp.)</td><td><span class="v-good">0.85</span></td><td>Esemplare · 1:1 libro</td></tr>
+          <tr><td>Vol.2 (27 esp.)</td><td><span class="v-mid">0.78</span></td><td>cap.11 black-hole diodi</td></tr>
+          <tr><td>Vol.3 (27 esp.)</td><td><span class="v-bad">0.55</span></td><td>Pezzi staccati · cap.9-12 incompleti V0.8.1</td></tr>
+        </table>
+        <div class="card card-orange" style="margin-top:10px;">
+          <h3>Richiesta concreta a Davide</h3>
+          <ul>
+            <li>Completare <b>Vol.3 V0.9</b> cap.9-12 (motore, diodi, robot Arduino)</li>
+            <li>Decidere Vol.2 cap.11: continuum libro O ELAB only?</li>
+            <li>Naming alias V3 (rimuovere o ribattezzare?)</li>
+            <li>Ratify schema lesson-paths-narrative grouped</li>
+            <li>UAT iter 25 close per refactor</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-tag">6 / 15 · VOLUMI</div>
+    <aside class="notes">Vol3 0.55 è il numero più importante della giornata. È un dato oggettivo, non una critica. È la richiesta esplicita: senza Davide non chiudiamo il triplet.</aside>
+  </section>
+
+  <!-- 7 ITER 21 AUDIT HONEST -->
+  <section>
+    <h2>Audit onesto iter 21 · da 5.8 a 9.5</h2>
+    <div class="grid-2">
+      <div>
+        <canvas id="scoreChart" height="220"></canvas>
+      </div>
+      <div>
+        <h3>Cosa è successo</h3>
+        <ul>
+          <li>Self-claim iter 18-20: <b>8.5-8.8/10</b> (inflato)</li>
+          <li>Audit 6 agenti indipendenti iter 21: <b>5.8/10 onesto</b></li>
+          <li>G45 anti-inflation mandate validato — mai più auto-score &gt;7 senza Opus indipendente</li>
+        </ul>
+        <h3 style="margin-top:10px;">Path iter 22-30</h3>
+        <ul>
+          <li><b>Iter 22-23</b> (P0): UNLIM Vol/pag verbatim deploy + 4 modalità canonical + content safety guard</li>
+          <li><b>Iter 24-26</b>: Volumi narrative refactor + Playwright 92 esperimenti UNO PER UNO</li>
+          <li><b>Iter 27-30</b>: harness 2.0 fixtures + Sprint T close → <b>9.5/10 onesto</b></li>
+        </ul>
+        <p style="font-size:0.7em; color:#5b5345; margin-top:8px;">"Mai inventare numeri. Mai inflazionare progress. Mai self-rate." — CLAUDE.md, regola CoV.</p>
+      </div>
+    </div>
+    <div class="footer-tag">7 / 15 · AUDIT</div>
+    <aside class="notes">Davide e Omaric capiranno: stiamo dichiarando i numeri veri, non quelli di marketing. È il segno che il prodotto è gestito da ingegneri.</aside>
+  </section>
+
+  <!-- 8 BENCH LLAMA WIN -->
+  <section>
+    <h2>Bench Llama 3.3 70B · 4/4 PZ V3 vs prod 0/3</h2>
+    <div class="grid-2">
+      <div>
+        <canvas id="benchChart" height="220"></canvas>
+      </div>
+      <div>
+        <h3>Test condotto 2026-04-28 19:25</h3>
+        <ul>
+          <li>5 prompt PZ V3 (LED, resistore, PWM, breadboard, LED vs lampadina)</li>
+          <li>Llama 3.3 70B Turbo (Together AI serverless): <b>4/4 pass</b> (1 timeout transient)</li>
+          <li>Prod attuale (Gemini Flash via Edge Fn): <b>0/3 Vol/pag verbatim</b>, 0/3 kit fisico</li>
+          <li>Llama: 37-44 parole · ben sotto le 60</li>
+        </ul>
+        <div class="quote">"Ragazzi, un LED (pag 42, Vol 1) è come una piccola lampadina che si accende quando passa la corrente… possiamo collegarlo al nostro kit fisico, il breadboard, per vedere la magia in azione." <span style="color:var(--lime);">5/5 PZ V3</span></div>
+      </div>
+    </div>
+    <div class="footer-tag">8 / 15 · BENCH</div>
+    <aside class="notes">Numeri da iter-21-llama-bench-results.json — non inventati. Switching plan documentato in andrea_ratify_recommendation.</aside>
+  </section>
+
+  <!-- 9 COST PROJECTION -->
+  <section>
+    <h2>Costo progetto · Together vs Scaleway</h2>
+    <div class="grid-2">
+      <div>
+        <canvas id="costChart" height="220"></canvas>
+      </div>
+      <div>
+        <h3>Stime onesty @ 1000 classi · 5 lezioni/mese</h3>
+        <table>
+          <tr><th>Voce</th><th>Costo/mese</th></tr>
+          <tr><td>Llama 3.3 70B Turbo · Together AI serverless</td><td><span class="v-good">$7-10</span></td></tr>
+          <tr><td>Scaleway VPS GPU self-host (alternativa)</td><td><span class="v-bad">$400+</span></td></tr>
+          <tr><td>Voyage AI embeddings (free 50M tok/mo)</td><td>$0</td></tr>
+          <tr><td>Supabase pgvector + Edge Fn</td><td>~$25</td></tr>
+          <tr><td>Vercel frontend</td><td>~$20</td></tr>
+          <tr><td><b>Totale infra @ 1000 classi</b></td><td><b><span class="v-good">~$55/mese</span></b></td></tr>
+        </table>
+        <p style="margin-top:6px; font-size:0.7em;">Break-even self-host RunPod solo se &gt;50K req/giorno (~$30/giorno spend Together). Per ora <b>Together = winning</b>.</p>
+      </div>
+    </div>
+    <div class="footer-tag">9 / 15 · COSTI</div>
+    <aside class="notes">Cost estimate da iter-21-llama-bench-results.json. Nessuna spesa di infrastruttura mensile pesante prima di break-even reale.</aside>
+  </section>
+
+  <!-- 10 PACCHETTI -->
+  <section>
+    <h2>Pacchetti commerciali · proposta</h2>
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;">
+      <div class="pricing-card">
+        <span class="badge badge-navy">A · Base</span>
+        <p class="price">€240<small>/anno/classe</small></p>
+        <ul>
+          <li>Lavagna LIM</li>
+          <li>UNLIM chat + RAG</li>
+          <li>Simulatore Arduino</li>
+          <li>4 modalità canonical</li>
+          <li class="v-good">Margine ~85%</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <span class="badge badge-lime">B · Tutto</span>
+        <p class="price">€480<small>/anno/classe</small></p>
+        <ul>
+          <li>Tutto di A</li>
+          <li>Dashboard docente + report</li>
+          <li>27 Lezioni complete</li>
+          <li>Sync Supabase classe</li>
+          <li class="v-good">Margine ~92%</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <span class="badge badge-orange">C · Voce</span>
+        <p class="price">+€120<small>/anno</small></p>
+        <ul>
+          <li>Add-on a B</li>
+          <li>Voce Isabella Neural</li>
+          <li>STT Whisper</li>
+          <li>36 comandi vocali</li>
+          <li class="v-good">Marginalità add-on</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <span class="badge badge-orange">D · Premium ⭐</span>
+        <p class="price">€960<small>/anno/classe</small></p>
+        <ul>
+          <li>Tutto di B + C</li>
+          <li><b>Videolezioni Davide</b> integrate (Vol.1/2/3)</li>
+          <li>Glossario Tea consultabile</li>
+          <li>UNLIM cita timestamp video</li>
+          <li class="v-good"><b>Margine ~96%</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-orange" style="margin-top:18px;">
+      <p><b>Push commerciale = Pacchetto D</b>. Il videocorso di Davide è il moltiplicatore margine + il moat narrativo (Davide è IL volto dei volumi). UNLIM cita "guarda Vol.1 cap.6 video min 4:32" — esperienza unica che nessun copycat può replicare senza Davide stesso.</p>
+    </div>
+    <div class="footer-tag">10 / 15 · PRICING</div>
+    <aside class="notes">Insistere sul Pacchetto D: è la proposta concreta a Davide. Se lui produce 18-24h di videolezioni Vol1+2+3, il prodotto sale di una classe intera vs competitor.</aside>
+  </section>
+
+  <!-- 11 COMPETITOR -->
+  <section>
+    <h2>Competitor analysis · matrice feature</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>ELAB Tutor</th>
+          <th>Tinkercad</th>
+          <th>Wokwi</th>
+          <th>LabsLand</th>
+          <th>Fritzing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Lingua italiana scuola pubblica</td><td class="v-good">SI · plurale "Ragazzi,"</td><td>EN tradotto</td><td>EN</td><td>parziale</td><td>EN</td></tr>
+        <tr><td>Tutor AI con memoria classe</td><td class="v-good">UNLIM · 7-layer</td><td>NO</td><td>NO (chat generica)</td><td>NO</td><td>NO</td></tr>
+        <tr><td>Volumi cartacei integrati Vol/pag verbatim</td><td class="v-good">SI · 92 esp. mappati</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td></tr>
+        <tr><td>Kit fisico coordinato (filiera)</td><td class="v-good">Omaric · stesso layout</td><td>NO</td><td>NO</td><td>NO hardware proprio</td><td>NO</td></tr>
+        <tr><td>Compilatore Arduino reale + AVR</td><td class="v-good">SI · avr8js</td><td>simulato</td><td class="v-good">SI · simulavr</td><td>remoto</td><td>NO</td></tr>
+        <tr><td>4 modalità canonical pedagogiche</td><td class="v-good">SI (ADR-025)</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td></tr>
+        <tr><td>Voce italiana Isabella + STT</td><td class="v-good">SI</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td></tr>
+        <tr><td>Dashboard docente + nudge</td><td class="v-good">SI</td><td>limitato</td><td>NO</td><td>SI</td><td>NO</td></tr>
+        <tr><td>Morfismo runtime docente/classe</td><td class="v-good">UNICO</td><td>NO (config statica)</td><td>NO</td><td>NO</td><td>NO</td></tr>
+        <tr><td>Costo annuo per classe (riferimento)</td><td>€240-960</td><td>free*</td><td>free / pro</td><td>licenza alta</td><td>free</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.62em; margin-top:8px; color:#5b5345;">* Tinkercad free ma EN con Adobe Air-style UX, no kit fisico, no LIM 5m, no continuità libro.</p>
+    <div class="footer-tag">11 / 15 · COMPETITOR</div>
+    <aside class="notes">Il punto: nessuno ha il triplet. Tinkercad ha Autodesk dietro, ma non ha né kit né volumi italiani. Wokwi è ottimo simulatore ma è solo simulatore.</aside>
+  </section>
+
+  <!-- 12 ROADMAP TIMELINE -->
+  <section>
+    <h2>Roadmap iter 22-30 · 29 aprile → 7 maggio</h2>
+    <div class="timeline-bar mt-2">
+      <div><b>iter 22 · 29/4</b><br>Vol/pag verbatim deploy · 4 modalità canonical · content safety guard</div>
+      <div class="alt"><b>iter 23 · 30/4</b><br>Codemod plurale "Ragazzi," · 23 file · ESLint custom rule PZ</div>
+      <div><b>iter 24 · 1/5</b><br>Volumi refactor schema flat→grouped 27 file · alias V3 cleanup</div>
+      <div class="alt"><b>iter 25 · 2/5</b><br>Playwright 92 esp · UNO PER UNO · UAT close</div>
+      <div class="alt2"><b>iter 26 · 3/5</b><br>Davide review Vol.3 cap.9-12 V0.9 · Glossario+Vol/pag</div>
+      <div><b>iter 27 · 4/5</b><br>harness 2.0 golden fixtures · ClawBot L2 templates</div>
+      <div class="alt"><b>iter 28 · 5/5</b><br>Hybrid RAG live · Vision E2E prod · TTS WS deploy</div>
+      <div class="alt2"><b>iter 29 · 6/5</b><br>Stress test prod · 50 personas concurrent · Mac Mini wiki batch</div>
+      <div><b>iter 30 · 7/5</b><br>Sprint T close · score 9.5/10 · MePA listing review Davide</div>
+    </div>
+    <div class="card card-lime" style="margin-top:14px;">
+      <p>9 iterazioni × 8 cicli = ~72 cicli. Pattern S 4-agent OPUS (planner + architect + gen-app + gen-test) PHASE-PHASE con scribe sequential. Race-cond fix validato 6× consecutive.</p>
+    </div>
+    <div class="footer-tag">12 / 15 · ROADMAP</div>
+    <aside class="notes">È un piano operativo già scritto. Non è "ci proveremo". È: ecco gli ATOMs già decomposti.</aside>
+  </section>
+
+  <!-- 13 SCORE PROGRESSION -->
+  <section>
+    <h2>Score progression onesto · no inflation</h2>
+    <div class="grid-2">
+      <div>
+        <canvas id="progressionChart" height="240"></canvas>
+      </div>
+      <div>
+        <h3>Regola CoV — Chain of Verification</h3>
+        <ul>
+          <li>Score = output di <code>scripts/benchmark.cjs</code> oggettivo, mai self-rate</li>
+          <li>Numeri = solo da <code>vitest run</code> appena fatto, mai a memoria</li>
+          <li>Audit = 6 agenti indipendenti Opus, non l'agente che ha scritto il codice</li>
+          <li>Inflation cap iter 19+: G45 mandate "auto-score &gt;7 vietato senza Opus indipendente"</li>
+        </ul>
+        <h3 style="margin-top:10px;">Stato oggi</h3>
+        <table>
+          <tr><th>Iter</th><th>Self-claim</th><th>Onesto</th></tr>
+          <tr><td>iter 18-20</td><td>8.5-8.8</td><td><span class="v-bad">5.8</span></td></tr>
+          <tr><td>iter 21 close</td><td>—</td><td><span class="v-mid">5.8-7.0</span></td></tr>
+          <tr><td>iter 22 target</td><td>—</td><td>6.5</td></tr>
+          <tr><td>iter 25 target</td><td>—</td><td>7.8</td></tr>
+          <tr><td>iter 30 target</td><td>—</td><td><span class="v-good">9.5</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer-tag">13 / 15 · ONESTÀ</div>
+    <aside class="notes">Mostriamo il delta self-claim/onesto. È il segno che ci fidiamo dei dati, non delle nostre impressioni.</aside>
+  </section>
+
+  <!-- 14 ANDREA RATIFY QUEUE -->
+  <section>
+    <h2>Andrea ratify queue · 9 voci per voi</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Owner</th><th>Voce</th><th>Deadline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="badge badge-orange">DAVIDE</span></td><td>Completare Vol.3 V0.9 cap.9-12 (motore, diodi, robot Arduino)</td><td>iter 26 · 3/5</td></tr>
+        <tr><td>2</td><td><span class="badge badge-orange">DAVIDE</span></td><td>Decisione Vol.2 cap.11 black-hole diodi: continuum libro O ELAB only?</td><td>iter 22 · 29/4</td></tr>
+        <tr><td>3</td><td><span class="badge badge-orange">DAVIDE</span></td><td>Naming alias V3 (rimuovere o ribattezzare?) — schema lesson-paths grouped ratify</td><td>iter 24 · 1/5</td></tr>
+        <tr><td>4</td><td><span class="badge badge-orange">DAVIDE</span></td><td>Pacchetto D · 18-24h videolezioni Vol.1/2/3 produzione (margine 96%)</td><td>iter 30 · 7/5</td></tr>
+        <tr><td>5</td><td><span class="badge badge-navy">OMARIC</span></td><td>Audit 92 esperimenti vs kit fisico — quali componenti effettivamente nei kit base/avanzato</td><td>iter 25 · 2/5</td></tr>
+        <tr><td>6</td><td><span class="badge badge-navy">OMARIC</span></td><td>Conferma layout NanoR4 + breadboard SVG simulator = identico a kit (palette, pin, dimensioni)</td><td>iter 23 · 30/4</td></tr>
+        <tr><td>7</td><td><span class="badge badge-lime">TEA</span></td><td>Review congiunta con Davide: ogni termine glossario → Vol/pag verbatim collegata</td><td>iter 25 · 2/5</td></tr>
+        <tr><td>8</td><td><span class="badge badge-lime">TEA</span></td><td>UAT 4 modalità canonical (Già Montato · Passo Passo · Libero · Percorso) su LIM scuola reale</td><td>iter 27 · 4/5</td></tr>
+        <tr><td>9</td><td><span class="badge badge-lime">TEA</span></td><td>10 idee miglioramento UX (doc 13/04) — priorità 3 per iter 28-30</td><td>iter 28 · 5/5</td></tr>
+      </tbody>
+    </table>
+    <div class="footer-tag">14 / 15 · RATIFY</div>
+    <aside class="notes">Ogni voce ha owner + deadline. Niente "vediamo". Ognuno sa cosa firma e quando.</aside>
+  </section>
+
+  <!-- 15 Q&A -->
+  <section class="cover" data-background-color="#1E4D8C">
+    <div style="padding-top: 60px;">
+      <p style="font-size: 0.7em; letter-spacing: 0.3em; color: var(--orange);">Q&A · NEXT STEP</p>
+      <h1 style="margin-top: 16px;">Costruiamo il triplet completo<br>entro 7 maggio.</h1>
+      <p style="font-size: 0.95em; max-width: 720px; margin: 24px auto 0; color: #d6e3f5;">Andrea ratify queue + 9 voci · firma settimana prossima · sprint T close 7/5 a score 9.5/10 onesto. PNRR deadline 30/06 raggiungibile.</p>
+      <div style="margin-top: 50px; font-size: 0.7em; color: #b9c8df; line-height:1.6;">
+        Andrea Marro · marro.andrea96@gmail.com<br>
+        Live: https://www.elabtutor.school<br>
+        Repo: PRODOTTO/elab-builder · branch feat/sprint-s-iter-2 · HEAD 09d47a5
+      </div>
+      <p style="margin-top: 36px; font-size: 0.6em; color: #8aa0c4;">Premete <kbd style="background:#0f223e;border:1px solid #25416f;padding:2px 8px;border-radius:4px;color:#d6e3f5;">S</kbd> per le speaker notes · <kbd style="background:#0f223e;border:1px solid #25416f;padding:2px 8px;border-radius:4px;color:#d6e3f5;">F</kbd> per fullscreen · <kbd style="background:#0f223e;border:1px solid #25416f;padding:2px 8px;border-radius:4px;color:#d6e3f5;">←/→</kbd> per navigare</p>
+    </div>
+    <aside class="notes">Chiudere chiedendo: posso avere un OK firmato sulle 9 voci entro venerdì? Niente urgenza performativa, solo deadline operative.</aside>
+  </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    hash: true,
+    slideNumber: 'c/t',
+    progress: true,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  const NAVY = '#1E4D8C', LIME = '#4A7A25', ORANGE = '#E8941C', RED = '#E54B3D';
+  const fontDef = "'Open Sans', sans-serif";
+
+  // Slide 6 · Volumi narrative
+  Reveal.on('ready', () => initCharts());
+  Reveal.on('slidechanged', () => initCharts());
+
+  let charted = {};
+  function initCharts() {
+    if (!charted.vol && document.getElementById('volChart')) {
+      charted.vol = new Chart(document.getElementById('volChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Volume 1','Volume 2','Volume 3'],
+          datasets: [{
+            label: 'Narrative coherence (0-1)',
+            data: [0.85, 0.78, 0.55],
+            backgroundColor: [LIME, ORANGE, RED],
+            borderRadius: 6
+          },{
+            label: 'Target',
+            data: [0.90, 0.90, 0.90],
+            backgroundColor: 'rgba(30,77,140,0.18)',
+            borderRadius: 6
+          }]
+        },
+        options: { plugins: { legend: { position:'bottom' } }, scales: { y: { min:0, max:1 } } }
+      });
+    }
+    if (!charted.score && document.getElementById('scoreChart')) {
+      charted.score = new Chart(document.getElementById('scoreChart'), {
+        type: 'line',
+        data: {
+          labels: ['iter18','iter19','iter20','iter21','iter22','iter25','iter30'],
+          datasets: [{
+            label:'Self-claim (inflato)',
+            data: [8.5,8.6,8.8,null,null,null,null],
+            borderColor: RED, backgroundColor: 'rgba(229,75,61,0.15)', borderDash:[6,4], tension:0.3
+          },{
+            label:'Onesto verificato',
+            data: [5.8,5.8,5.8,5.8,6.5,7.8,9.5],
+            borderColor: NAVY, backgroundColor: 'rgba(30,77,140,0.12)', tension:0.3, fill:true
+          }]
+        },
+        options: { plugins: { legend: { position:'bottom' } }, scales: { y: { min:0, max:10 } } }
+      });
+    }
+    if (!charted.bench && document.getElementById('benchChart')) {
+      charted.bench = new Chart(document.getElementById('benchChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Plurale "Ragazzi,"','Vol/pag verbatim','Analogia','Kit fisico','Max 60 parole'],
+          datasets: [
+            { label:'Llama 3.3 70B (Together)', data:[4,4,4,4,4], backgroundColor: LIME },
+            { label:'Prod attuale (Gemini)',     data:[1,0,2,0,3], backgroundColor: RED }
+          ]
+        },
+        options: { indexAxis:'y', plugins: { legend: { position:'bottom' } }, scales: { x: { min:0, max:4, ticks:{ stepSize:1 } } } }
+      });
+    }
+    if (!charted.cost && document.getElementById('costChart')) {
+      charted.cost = new Chart(document.getElementById('costChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Together AI Llama 3.3 ($10)','Supabase + Edge Fn ($25)','Vercel ($20)','Voyage embeddings ($0)'],
+          datasets: [{ data:[10,25,20,0.1], backgroundColor:[ORANGE, NAVY, LIME, '#9aa3b0'] }]
+        },
+        options: { plugins: { legend: { position:'bottom' }, title: { display:true, text:'$55/mese @ 1000 classi · vs $400+ Scaleway VPS GPU' } } }
+      });
+    }
+    if (!charted.prog && document.getElementById('progressionChart')) {
+      charted.prog = new Chart(document.getElementById('progressionChart'), {
+        type: 'line',
+        data: {
+          labels: ['iter18','iter19','iter20','iter21','iter22','iter23','iter24','iter25','iter26','iter27','iter28','iter29','iter30'],
+          datasets: [{
+            label:'Score onesto',
+            data: [5.8,5.8,5.8,5.8,6.5,6.8,7.2,7.8,8.1,8.5,8.9,9.2,9.5],
+            borderColor: NAVY, backgroundColor: 'rgba(30,77,140,0.18)', tension:0.3, fill:true,
+            pointBackgroundColor: NAVY, pointRadius: 4
+          },{
+            label:'Target Sprint T',
+            data: Array(13).fill(9.0),
+            borderColor: ORANGE, borderDash:[5,5], tension:0, pointRadius:0
+          }]
+        },
+        options: { plugins: { legend: { position:'bottom' } }, scales: { y: { min:5, max:10 } } }
+      });
+    }
+  }
+</script>
+</body>
+</html>

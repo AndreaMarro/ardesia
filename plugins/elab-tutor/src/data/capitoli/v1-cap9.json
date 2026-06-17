@@ -1,0 +1,2540 @@
+{
+  "id": "v1-cap9",
+  "volume": 1,
+  "capitolo": 9,
+  "type": "experiment",
+  "titolo": "Cos'è un potenziometro?",
+  "titolo_classe": "Cos'è un potenziometro?",
+  "pageStart": 57,
+  "pageEnd": 80,
+  "theory": {
+    "testo_classe": "Cos'è un potenziometro?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v1-cap9-esp1",
+      "num": 1,
+      "title_classe": "Dimmer LED con potenziometro",
+      "title_docente": "Dimmer LED con potenziometro",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a6",
+              "to": "bb1:a10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a7",
+              "to": "bb1:bus-top-minus-7",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a18",
+              "to": "bb1:bus-top-minus-18",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Finora per cambiare la luminosità dovevate cambiare il resistore. E se esistesse un componente con una MANOPOLA per regolare?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi i ragazzi scoprono il potenziometro — una resistenza con la manopola. Il piedino centrale è il cursore.",
+            "spunto_per_classe": null,
+            "note": [
+              "Inizia chiedendo: 'Finora la resistenza era sempre uguale. Come fareste a cambiare la luminosità SENZA cambiare resistore?' Lascia che pensino."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il potenziometro: 3 piedini. Quello centrale è il cursore che regola la resistenza.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il potenziometro ha 3 piedini: VCC (entrata), Signal (uscita regolabile), GND (massa). Collegare VCC al +, Signal al resistore, GND al −."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola e osserva: cosa succede? La luminosità cambia gradualmente!",
+            "spunto_per_classe": "Domanda: 'Secondo voi, cosa c'è dentro il potenziometro che lo fa funzionare come un dimmer?'",
+            "note": [
+              "Se il LED non cambia, probabilmente sono collegati i due piedini esterni senza il centrale. Il cursore non è nel circuito."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Collegano solo 2 piedini del pot",
+                "soluzione_neutra": "Serve il piedino centrale + uno degli estremi. È come un rubinetto: ha l'entrata, l'uscita, e la manopola che regola."
+              },
+              {
+                "problema": "Il LED non cambia luminosità girando",
+                "soluzione_neutra": "Probabilmente collegati i due piedini esterni senza il centrale — il cursore non è nel circuito."
+              },
+              {
+                "problema": "Il LED si brucia girando il pot al minimo",
+                "soluzione_neutra": "Serve la resistenza fissa di protezione! Il pot da solo può arrivare a 0. La resistenza fissa è il limitatore di sicurezza."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Gira la manopola! Il LED diventa più luminoso o più fioco. Il potenziometro è come un rubinetto per la corrente — regola quanta ne passa.",
+            "analogies": [
+              {
+                "concept": "potenziometro",
+                "text": "Un potenziometro è come il rubinetto della doccia: girando la manopola decidi quanta acqua (corrente) esce. Non cambi la pressione dell'acquedotto, cambi solo quanto ne fai passare.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "resistenza_variabile",
+                "text": "Immagina una strada con un semaforo regolabile: puoi decidere quante auto (elettroni) far passare ogni minuto, da zero a tutte.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira la manopola del potenziometro. Il LED cambia luminosità gradualmente!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro. Chiedi: 'Vedete? Girando la manopola, la resistenza cambia e la luminosità del LED pure!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il potenziometro è come un rubinetto per la corrente. Girando la manopola, cambi la resistenza e quindi la luminosità del LED. I dimmer di casa funzionano allo stesso modo!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto il potenziometro — una resistenza che puoi regolare con una manopola, come un dimmer!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Dove avete visto dei dimmer nella vita reale?' (volume TV, luminosità dello schermo, volume cuffie)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'è come cambiare la resistenza' → ha collegato potenziometro a resistenza",
+        "Se nota che serve la resistenza fissa di protezione → ha interiorizzato il concetto dal cap 6",
+        "Se prova a invertire i pin del pot → curiosità esplorativa"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "resistenza_variabile",
+          "potenziometro_dimmer"
+        ],
+        "next_suggested": "v1-cap9-esp2",
+        "resume_message": "L'ultima volta avete scoperto il potenziometro! Ora scopriamo un componente che cambia resistenza DA SOLO..."
+      }
+    },
+    {
+      "id": "v1-cap9-esp2",
+      "num": 2,
+      "title_classe": "Inverti la rotazione",
+      "title_docente": "Inverti la rotazione",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a6",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a5",
+                      "to": "bb1:bus-top-minus-5",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Ricordate il dimmer? Girando a destra il LED si accendeva. E se girando a destra si SPEGNESSE? Si può fare?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi scopriamo un trucco: scambiando i pin laterali del potenziometro, la rotazione si inverte! Giri a destra e il LED si spegne!",
+            "spunto_per_classe": null,
+            "note": [
+              "Stesso circuito dell'esperimento 1, ma con il positivo collegato al pin GND del potenziometro e il negativo al pin VCC. Il signal resta al centro."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione che l'unica differenza è lo scambio dei fili: il positivo va al pin che prima era il negativo, e viceversa.",
+            "spunto_per_classe": null,
+            "note": [
+              "Prima di collegare, chiedi ai ragazzi di prevedere cosa succederà. È un ottimo esercizio di ragionamento."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola a destra: il LED si spegne! A sinistra: si accende! È il contrario!",
+            "spunto_per_classe": "Domanda: 'Come è possibile invertire il comportamento cambiando solo DUE fili?'",
+            "note": [
+              "Se il LED non cambia, verificare che il positivo sia al pin GND e il negativo al pin VCC — è proprio lo scambio che crea l'inversione."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED non cambia luminosità",
+                "soluzione_neutra": "Verifica che siano davvero scambiati i pin laterali. Il signal (centrale) resta collegato al resistore."
+              },
+              {
+                "problema": "Non capiscono perché si inverte",
+                "soluzione_neutra": "Il cursore divide il potenziometro in due parti: scambiando i pin, la parte che 'cresce' diventa quella che 'diminuisce'."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La rotazione è invertita! Girando a destra il LED si spegne. Il potenziometro è simmetrico: i pin laterali sono intercambiabili.",
+            "analogies": [
+              {
+                "concept": "simmetria_pot",
+                "text": "Il potenziometro è come un righello: puoi misurare da sinistra a destra o da destra a sinistra. Lo zero cambia posizione, ma il righello è lo stesso!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "inversione_controllo",
+                "text": "È come il volume della radio: se lo monti al contrario, girando a destra il volume si abbassa. Stessa manopola, verso opposto!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira la manopola: la rotazione è invertita! Il potenziometro è simmetrico — i pin laterali si possono scambiare.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro. Spiega che il cursore è come un puntatore che si muove tra i due estremi: scambiando gli estremi, il puntatore va nella direzione opposta."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il potenziometro è simmetrico: scambiando i pin laterali la rotazione si inverte. Giri a destra e il LED si spegne! Il pin centrale (cursore) resta sempre lo stesso.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto che il potenziometro è simmetrico — scambiando i pin laterali, la rotazione si inverte!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Dove potrebbe servire un controllo invertito nella vita reale?' (freno = più premi più frena, gas = più premi più accelera)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'sono scambiati i fili' → ha capito il trucco",
+        "Se nota che il pin centrale non cambia → ha capito la simmetria",
+        "Se prova a invertire da solo → apprendimento attivo"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "simmetria_potenziometro",
+          "inversione_rotazione"
+        ],
+        "next_suggested": "v1-cap9-esp3",
+        "resume_message": "L'ultima volta avete invertito la rotazione del potenziometro! Ora proviamo con un LED di colore diverso."
+      }
+    },
+    {
+      "id": "v1-cap9-esp3",
+      "num": 3,
+      "title_classe": "LED di colore diverso con pot",
+      "title_docente": "LED di colore diverso con pot",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED verde",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp2",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a6",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a7",
+                      "to": "bb1:bus-top-minus-7",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Il LED rosso si accendeva facilmente con il potenziometro. Il LED verde avrà bisogno della stessa quantità di corrente o di più?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi cambiamo il LED: da rosso a verde. Si accenderà allo stesso punto della manopola? Scopriamolo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Stesso circuito dell'esperimento 1 ma con LED verde. Il verde ha bisogno di più corrente per accendersi, quindi la manopola dovrà essere girata di più."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Stesso circuito del dimmer, ma con LED verde. Mostra dove si accende rispetto al rosso.",
+            "spunto_per_classe": null,
+            "note": [
+              "Se possibile, tieni montato anche il circuito con il LED rosso per un confronto diretto."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola lentamente: a che punto si accende il LED verde? È prima o dopo rispetto al rosso?",
+            "spunto_per_classe": "Domanda: 'Perché il LED verde ha bisogno di più corrente per accendersi? Dipende dal colore?'",
+            "note": [
+              "Il verde si accende dopo rispetto al rosso. Se i ragazzi non notano la differenza, suggerisci di girare molto lentamente e segnare il punto di accensione."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Non notano la differenza con il rosso",
+                "soluzione_neutra": "Gira molto lentamente e nota il punto esatto in cui il LED si illumina. Confronta con il ricordo del rosso."
+              },
+              {
+                "problema": "Pensano che il LED sia difettoso",
+                "soluzione_neutra": "Il LED funziona! Ogni colore ha una soglia diversa — il verde ha bisogno di più corrente per accendersi."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED verde si accende più tardi nella rotazione! Ogni colore ha una soglia diversa: il rosso si accende facilmente, il verde ha bisogno di più corrente.",
+            "analogies": [
+              {
+                "concept": "soglia_colore",
+                "text": "Ogni colore di LED è come un atleta diverso: il rosso è il più leggero e parte subito, il verde è più pesante e ha bisogno di più spinta (corrente) per partire.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "sensibilita_diversa",
+                "text": "Come le piante: alcune fioriscono con poca acqua, altre ne hanno bisogno di più. Ogni LED 'fiorisce' con una quantità diversa di corrente.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira la manopola: il LED verde si accende più tardi del rosso! Ogni colore ha la sua soglia.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il LED e il potenziometro. Spiega: 'Ogni colore di LED ha bisogno di una quantità diversa di corrente per illuminarsi.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Ogni colore di LED ha una soglia diversa. Il rosso si accende facilmente, il verde ha bisogno di più corrente. Il potenziometro ci permette di vedere questa differenza girando la manopola!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo scoperto che ogni colore di LED ha una soglia diversa — il verde ha bisogno di più corrente del rosso!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E il blu? Sarà come il rosso o come il verde?' (il blu ha la soglia più alta di tutti)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se nota che il verde si accende 'dopo' → osservazione precisa",
+        "Se dice 'ogni colore ha bisogno di una quantità diversa' → ha capito il concetto di soglia",
+        "Se chiede 'e il blu?' → curiosità esplorativa"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "soglia_led_per_colore",
+          "confronto_led_diversi"
+        ],
+        "next_suggested": "v1-cap9-esp4",
+        "resume_message": "L'ultima volta avete scoperto che il verde si accende dopo il rosso! Ora creiamo un colore nuovo con il potenziometro."
+      }
+    },
+    {
+      "id": "v1-cap9-esp4",
+      "num": 4,
+      "title_classe": "Dimmer RGB azzurrino",
+      "title_docente": "Dimmer RGB azzurrino",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 2,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "💧"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 9,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp3",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:a8",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:f8",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a15",
+                      "to": "bb1:a21",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:f15",
+                      "to": "bb1:a20",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:a5",
+                      "to": "bb1:bus-top-minus-5",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a19",
+                      "to": "bb1:bus-top-minus-19",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Il potenziometro controllava un solo LED. Ma può controllare DUE canali del LED RGB contemporaneamente?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi un solo potenziometro controlla DUE colori insieme: verde e blu. Il risultato? Il CIANO, un azzurrino brillante!",
+            "spunto_per_classe": null,
+            "note": [
+              "Il segnale del potenziometro si divide in due rami, ciascuno con il suo resistore. Un ramo va al canale verde, l'altro al canale blu."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito: dal potenziometro partono due fili — uno verso il resistore del verde, uno verso il resistore del blu.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione che il segnale del potenziometro è come un fiume che si divide in due: entrambi i rami ricevono la stessa 'quantità' di corrente."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola: il colore ciano (azzurrino) cambia intensità! Cosa succede se giri al massimo? E al minimo?",
+            "spunto_per_classe": "Domanda: 'Se il potenziometro controlla due canali insieme, come fa il colore a essere sempre lo stesso (ciano)?'",
+            "note": [
+              "Se il colore sembra solo verde o solo blu, controllare i collegamenti dei due rami dal segnale del potenziometro."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Solo un colore si accende",
+                "soluzione_neutra": "Controllo che il segnale del potenziometro sia collegato a ENTRAMBI i resistori: uno per il verde e uno per il blu."
+              },
+              {
+                "problema": "Il colore non è ciano",
+                "soluzione_neutra": "Il ciano è verde + blu. Se vedi viola, probabilmente il filo va al canale rosso invece che al verde."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Verde + Blu = Ciano (azzurrino)! Il potenziometro regola entrambi i canali insieme: il colore non cambia, solo l'intensità.",
+            "analogies": [
+              {
+                "concept": "dimmer_multicanale",
+                "text": "Il potenziometro è come un rubinetto che alimenta due fontane insieme: entrambe si riempiono o si svuotano contemporaneamente.",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "ciano",
+                "text": "Il ciano è il colore del mare tropicale: verde + blu insieme. Con il potenziometro puoi renderlo più intenso (mare sotto il sole) o più tenue (mare al tramonto).",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira la manopola: ciano brillante! Verde + Blu = Ciano, come il colore del mare tropicale!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro e il LED RGB. Spiega: 'Un solo controllo per due colori — il ciano cambia intensità senza cambiare tinta.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Un potenziometro può controllare due canali contemporaneamente! Verde + Blu = Ciano. Girando la manopola, l'intensità del ciano cambia ma il colore resta lo stesso.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo creato il ciano con un solo potenziometro che controlla due canali. Verde + Blu = Ciano!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se il potenziometro potesse MISCELRE tra due colori? Da un lato rosso, dall'altro blu?' Anticipa l'esperimento 5."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'verde + blu = ciano' → ha capito la sintesi",
+        "Se nota che il colore non cambia, solo l'intensità → osservazione precisa",
+        "Se chiede 'posso cambiare la proporzione?' → pronto per esp 5"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "dimmer_multicanale",
+          "ciano_verde_blu"
+        ],
+        "next_suggested": "v1-cap9-esp5",
+        "resume_message": "L'ultima volta avete creato il ciano! Ora il potenziometro diventa un miscelatore di colori."
+      }
+    },
+    {
+      "id": "v1-cap9-esp5",
+      "num": 5,
+      "title_classe": "Pot miscelatore blu rosso",
+      "title_docente": "Pot miscelatore blu rosso",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 2,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🎨"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 8,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp4",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-4",
+                      "to": "bb1:a4",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a3",
+                      "to": "bb1:a8",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a5",
+                      "to": "bb1:f8",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a15",
+                      "to": "bb1:a21",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:f15",
+                      "to": "bb1:a18",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a19",
+                      "to": "bb1:bus-top-minus-19",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Finora il potenziometro controllava la luminosità. Ma può MESCOLARE due colori? Da un lato blu, dall'altro rosso, nel mezzo il viola?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi il potenziometro diventa un MISCELATORE! Collegando la corrente al pin centrale, i due pin laterali alimentano i due colori.",
+            "spunto_per_classe": null,
+            "note": [
+              "Collegamento speciale: la corrente entra dal pin centrale (signal) del potenziometro. I due pin laterali vanno ciascuno a un resistore e poi a un canale del LED RGB."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il collegamento speciale: il positivo entra dal pin centrale. I due pin laterali vanno ai canali rosso e blu dell'RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Questo è un circuito invertito rispetto al solito: il pin centrale riceve la corrente e la 'distribuisce' tra i due estremi. Come un rubinetto a due vie."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp5]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira la manopola lentamente: il colore sfuma dal blu al rosso! Nel mezzo appare il viola!",
+            "spunto_per_classe": "Domanda: 'Come fa un solo potenziometro a dare più corrente al blu E meno al rosso contemporaneamente?'",
+            "note": [
+              "Se non vedono la transizione, assicurarsi che l'ambiente non sia troppo illuminato. La differenza si vede meglio al buio."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Vedono solo un colore",
+                "soluzione_neutra": "Controllo che i due pin laterali del potenziometro siano collegati ciascuno a un resistore diverso. Il pin centrale riceve il positivo."
+              },
+              {
+                "problema": "Il viola non appare nel mezzo",
+                "soluzione_neutra": "A metà rotazione la corrente si divide equamente: rosso e blu insieme fanno viola. Se non appare, gira molto lentamente intorno al centro."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Miscelatore di colori! Da un lato tutto blu, dall'altro tutto rosso, nel mezzo il viola. Il potenziometro divide la corrente tra i due canali.",
+            "analogies": [
+              {
+                "concept": "miscelatore",
+                "text": "Il potenziometro è come il rubinetto della doccia con acqua calda e fredda: da un lato solo fredda (blu), dall'altro solo calda (rosso), nel mezzo tiepida (viola)!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "sfumatura_continua",
+                "text": "È come un tramonto: il cielo sfuma dal blu scuro al rosso arancio passando per il viola. Il potenziometro crea lo stesso effetto!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e gira: il colore sfuma! Tutto blu → viola → tutto rosso. Il potenziometro mescola i colori!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il potenziometro. Spiega: 'Il cursore divide la corrente: più va verso un lato, più quel colore domina.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il potenziometro può mescolare due colori: girando la manopola il colore sfuma dal blu al rosso passando per il viola. Il cursore divide la corrente tra i due canali.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo trasformato il potenziometro in un miscelatore di colori! Da blu a rosso passando per il viola.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'E se aveste 3 manopole, una per ogni colore? Potreste creare QUALSIASI colore!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'il cursore divide la corrente' → ha capito il meccanismo",
+        "Se nota la transizione graduale → osservazione precisa",
+        "Se chiede '3 manopole per 3 colori?' → pronto per esp 6"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "miscelatore_colore",
+          "sfumatura_continua"
+        ],
+        "next_suggested": "v1-cap9-esp6",
+        "resume_message": "L'ultima volta avete miscelato blu e rosso! Ora: 3 manopole per creare qualsiasi colore."
+      }
+    },
+    {
+      "id": "v1-cap9-esp6",
+      "num": 6,
+      "title_classe": "Lampada RGB con 3 potenziometri",
+      "title_docente": "Lampada RGB con 3 potenziometri",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 3,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 3,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 15,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp5",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot3",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a3",
+                      "to": "bb1:a17",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a8",
+                      "to": "bb1:c19",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a13",
+                      "to": "bb1:f17",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a24",
+                      "to": "bb1:a27",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:c26",
+                      "to": "bb1:c29",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:f24",
+                      "to": "bb1:a30",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a14",
+                      "to": "bb1:bus-top-minus-14",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a28",
+                      "to": "bb1:bus-top-minus-28",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Con i pulsanti potevate fare solo 7 colori (acceso/spento). Con 3 manopole graduali potete creare QUALSIASI sfumatura!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi costruiamo la lampada RGB completa! Tre manopole controllano tre colori indipendentemente — come i pixel del telefono!",
+            "spunto_per_classe": null,
+            "note": [
+              "Il circuito è il più grande finora: 3 potenziometri, 3 resistori, 1 LED RGB. Ogni potenziometro controlla un canale indipendente."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione i 3 potenziometri affiancati: pot1 controlla il rosso, pot2 il verde, pot3 il blu. Ogni canale è indipendente.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il circuito è simmetrico: ogni blocco pot→resistore→canale RGB ha la stessa struttura. Mostra un blocco e spiega che gli altri sono identici."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp6]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira le manopole una alla volta: ogni colore si regola indipendentemente! Poi prova combinazioni per trovare il tuo colore preferito.",
+            "spunto_per_classe": "Domanda: 'Con i pulsanti si potevano fare 7 colori. Con 3 manopole graduate, quanti colori si possono creare?'",
+            "note": [
+              "Se un canale non funziona, controllare il collegamento specifico pot→resistore→canale. I tre blocchi sono indipendenti, quindi il problema è nel singolo blocco."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Un canale non risponde",
+                "soluzione_neutra": "Controllo il collegamento: il segnale del potenziometro deve arrivare al resistore, e il resistore al canale corrispondente del LED RGB."
+              },
+              {
+                "problema": "Tutti i colori si accendono/spengono insieme",
+                "soluzione_neutra": "I potenziometri devono avere alimentazione separata dal bus positivo. Se condividono il segnale, non sono indipendenti."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "3 manopole = qualsiasi colore! Ogni pixel del tuo telefono funziona esattamente così: 3 micro-LED (R, G, B) regolati indipendentemente.",
+            "analogies": [
+              {
+                "concept": "pixel_schermo",
+                "text": "Ogni pixel del telefono ha 3 micro-LED: rosso, verde e blu. Questa lampada funziona allo stesso modo — 3 controlli indipendenti per creare qualsiasi colore!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "tavolozza_pittore",
+                "text": "Le 3 manopole sono come i 3 tubetti di colore di un pittore: puoi dosare quanto rosso, verde e blu mettere nella miscela.",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e sperimenta! 3 manopole = controllo TOTALE del colore. Come i pixel degli schermi!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia i 3 potenziometri. Chiedi di creare colori specifici: arancione (tanto rosso, poco verde, zero blu), rosa (rosso + poco blu), ecc."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:pot2]",
+            "[AZIONE:highlight:pot3]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Con 3 manopole graduali puoi creare QUALSIASI colore! Ogni pixel del telefono funziona così: 3 micro-LED (R, G, B) regolati indipendentemente. I pulsanti davano 7 colori, le manopole ne danno migliaia!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo costruito la lampada RGB completa — 3 manopole per creare qualsiasi colore, come gli schermi dei dispositivi!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Riesci a creare il bianco? E il giallo? E il rosa?' Sfida creativa con i colori."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se crea il bianco (tutti al massimo) → ha capito la sintesi additiva",
+        "Se nota 'come lo schermo del telefono' → collegamento con la tecnologia reale",
+        "Se sperimenta combinazioni → apprendimento attivo per scoperta"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "controllo_indipendente_continuo",
+          "rgb_pixel_schermi"
+        ],
+        "next_suggested": "v1-cap9-esp7",
+        "resume_message": "L'ultima volta avete costruito la lampada RGB! Ora sfida: aggiungete pulsanti ON/OFF."
+      }
+    },
+    {
+      "id": "v1-cap9-esp7",
+      "num": 7,
+      "title_classe": "Sfida: aggiungi pulsanti alla lampada",
+      "title_docente": "Sfida: aggiungi pulsanti alla lampada",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Pulsante (tact switch)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🏆"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 9,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp6",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "push-button",
+                      "id": "btn1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:j4",
+                      "to": "bb1:j7",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:j7",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a8",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a19",
+                      "to": "bb1:a22",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a23",
+                      "to": "bb1:bus-top-minus-23",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "La lampada RGB è sempre accesa. Ma se voleste un bottone per accendere e spegnere ogni colore senza perdere la regolazione?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Sfida! Aggiungete un pulsante prima del potenziometro: il pulsante fa da ON/OFF, il potenziometro regola la luminosità.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il circuito mostra un esempio per il canale rosso. La sfida è pensare come estenderlo a tutti e 3 i canali."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito esempio: pulsante → potenziometro → resistore → canale rosso dell'RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione la catena di controllo: il pulsante è il primo cancello (ON/OFF), il potenziometro è il secondo (quanto). Due livelli di controllo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp7]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione il pulsante E gira la manopola: due livelli di controllo! Come fareste a replicare questo per tutti e 3 i canali?",
+            "spunto_per_classe": "Domanda: 'Se il pulsante è PRIMA del potenziometro, cosa succede? E se lo metti DOPO?'",
+            "note": [
+              "La sfida è pensare, non necessariamente costruire tutto. Se qualcuno ci prova, aiutarlo ma lasciare che ragionino prima."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED non si accende premendo",
+                "soluzione_neutra": "Verifica la catena: il positivo deve passare dal pulsante, poi al potenziometro, poi al resistore, poi al LED RGB."
+              },
+              {
+                "problema": "Non capiscono la catena di controllo",
+                "soluzione_neutra": "Pensa alla catena: il pulsante decide SE accendere, il potenziometro decide QUANTO. Come un rubinetto con un interruttore!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Due livelli di controllo: pulsante = ON/OFF, manopola = luminosità. Senza premere, la manopola non serve a niente!",
+            "analogies": [
+              {
+                "concept": "controllo_doppio",
+                "text": "È come una lampada con interruttore E dimmer: prima accendi (interruttore), poi regoli la luminosità (dimmer). Senza accendere, il dimmer non fa niente!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "catena_controllo",
+                "text": "I componenti sono come le porte di un castello: devi passare dalla prima porta (pulsante) per raggiungere la seconda porta (manopola).",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: il pulsante è l'ON/OFF, la manopola regola la luminosità. Due livelli di controllo sullo stesso canale!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia pulsante e potenziometro. Chiedi: 'Cosa succede se giri la manopola al massimo ma non premi il pulsante?' (niente!)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:pot1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Pulsante + manopola = due livelli di controllo. Il pulsante decide SE accendere, la manopola decide QUANTO luminoso. Come una lampada con interruttore e dimmer!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi avete combinato pulsante e manopola: due livelli di controllo! Riuscireste a fare lo stesso per 3 canali?",
+            "spunto_per_classe": null,
+            "note": [
+              "Lascia la sfida aperta: 'Per la prossima volta, provate a disegnare su carta il circuito completo con 3 pulsanti e 3 manopole!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'pulsante = se, manopola = quanto' → ha capito i due livelli",
+        "Se prova a disegnare il circuito per 3 canali → pensiero progettuale",
+        "Se chiede 'e se metto il pulsante dopo?' → ragionamento critico"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "controllo_due_livelli",
+          "integrazione_componenti"
+        ],
+        "next_suggested": "v1-cap9-esp8",
+        "resume_message": "L'ultima volta avete combinato pulsante e manopola! Ora sfida ancora più avanzata."
+      }
+    },
+    {
+      "id": "v1-cap9-esp8",
+      "num": 8,
+      "title_classe": "Sfida: combina esperimenti 5+6",
+      "title_docente": "Sfida: combina esperimenti 5+6",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 2,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 2,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED RGB (catodo comune)",
+          "quantity": 1,
+          "icon": "🏆"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 11,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v1-cap9-esp7",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a3",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a8",
+                      "to": "bb1:f12",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a19",
+                      "to": "bb1:a22",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:f19",
+                      "to": "bb1:a25",
+                      "color": "blue"
+                    },
+                    {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a23",
+                      "to": "bb1:bus-top-minus-23",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete costruito il miscelatore e la lampada. Ora combiniamoli: due manopole per rosso e blu!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Sfida! Due potenziometri controllano rosso e blu indipendentemente. Combinazione degli esperimenti 5 e 6!",
+            "spunto_per_classe": null,
+            "note": [
+              "Ogni potenziometro ha il suo resistore e il suo canale: pot1→r1→rosso, pot2→r2→blu. La sfida è aggiungere un terzo pot per il verde."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione il circuito: due blocchi pot→resistore, uno collegato al canale rosso, l'altro al blu dell'RGB.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione che combinare circuiti è il cuore dell'elettronica: si prendono pezzi che funzionano e si uniscono."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp8]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Gira le due manopole: una controlla il rosso, l'altra il blu. Riuscite a creare il viola perfetto?",
+            "spunto_per_classe": "Domanda: 'Come fareste ad aggiungere il canale verde a questo circuito? Di cosa avete bisogno?'",
+            "note": [
+              "Il canale verde resta spento: la sfida è progettare dove aggiungere il terzo potenziometro. Chiedi di disegnare prima su carta."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Un canale non risponde",
+                "soluzione_neutra": "Controllo il collegamento specifico: il segnale del potenziometro deve arrivare al resistore, e dal resistore al canale corrispondente."
+              },
+              {
+                "problema": "Non sanno dove aggiungere il terzo canale",
+                "soluzione_neutra": "Serve un terzo blocco identico: potenziometro→resistore→canale verde. Collegalo allo stesso LED RGB e alla stessa batteria."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Due manopole: una per il rosso, una per il blu. Combinando i circuiti precedenti! Il verde è la sfida: aggiungete un terzo blocco!",
+            "analogies": [
+              {
+                "concept": "combinare_circuiti",
+                "text": "Combinare circuiti è come costruire con i LEGO: prendi pezzi che funzionano e li unisci per creare qualcosa di più grande!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "modularita",
+                "text": "Ogni blocco pot→resistore→canale è un modulo: puoi aggiungerne quanti ne vuoi. È lo stesso principio con cui si costruiscono i computer!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e sperimenta: rosso e blu insieme fanno viola! Ma il verde è spento — la sfida è aggiungerlo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia i due potenziometri. Spiega che combinare circuiti che funzionano è più facile che costruire tutto da zero."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:pot2]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Combinare circuiti è il cuore dell'elettronica: si prendono pezzi che funzionano e si uniscono! Due manopole per rosso e blu, e la sfida è aggiungere il verde.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi avete combinato due circuiti precedenti in uno solo! Questa è la vera sfida dell'elettronica: combinare pezzi che funzionano.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: 'Quanti potenziometri servirebbero per una lampada completa?' (3) 'E se aggiungessimo anche i pulsanti?' (6 componenti di controllo)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'serve un terzo blocco identico' → ha capito la modularità",
+        "Se disegna il circuito completo → pensiero progettuale maturo",
+        "Se nota che il verde è spento e vuole aggiungerlo → motivazione alta"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "combinazione_circuiti",
+          "modularita_blocchi"
+        ],
+        "next_suggested": "v1-cap9-esp9",
+        "resume_message": "L'ultima volta avete combinato due circuiti! Ultima sfida: aggiungete il pulsante master."
+      }
+    },
+    {
+      "id": "v1-cap9-esp9",
+      "num": 9,
+      "title_classe": "Sfida: aggiungi pulsante all'esp 8",
+      "title_docente": "Sfida: aggiungi pulsante all'esp 8",
+      "volume_ref": {
+        "page_start": 57,
+        "page_end": 80,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Pulsante (tact switch)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 1,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 9,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:j4",
+              "to": "bb1:j7",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:j7",
+              "to": "bb1:a7",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a12",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:bus-top-minus-9",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a19",
+              "to": "bb1:a20",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a21",
+              "to": "bb1:bus-top-minus-21",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Abbiamo scoperto il pulsante (ON/OFF) e la manopola (regolazione). Cosa succede se li mettiamo INSIEME in catena?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Sfida finale del capitolo! Pulsante → Manopola → Resistore → LED. Una catena di controllo completa!",
+            "spunto_per_classe": null,
+            "note": [
+              "Il pulsante è il primo stadio (ON/OFF), il potenziometro è il secondo (regolazione), il resistore è la protezione. Tre ruoli diversi in catena."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Visualizzazione la catena: dal positivo si passa prima dal pulsante, poi dal potenziometro, poi dal resistore, poi dal LED.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione ogni componente come un 'posto di controllo' nella catena: il pulsante è il cancello, la manopola è il rubinetto, il resistore è il limitatore."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap9-esp9]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione il pulsante E gira la manopola. Cosa succede se giri al massimo ma NON premi? E se premi ma la manopola è al minimo?",
+            "spunto_per_classe": "Domanda: 'Cosa cambia se metti il pulsante DOPO la manopola invece che prima? Il circuito funziona lo stesso?'",
+            "note": [
+              "Se non premono il pulsante, nessuna corrente passa — la manopola non fa niente. Questo è il concetto chiave della catena di controllo."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED non si accende",
+                "soluzione_neutra": "Controllo la catena completa: il positivo deve passare dal pulsante, poi al potenziometro, poi al resistore, poi al LED."
+              },
+              {
+                "problema": "Confondono l'ordine dei componenti",
+                "soluzione_neutra": "L'ordine è: pulsante (ON/OFF) → manopola (regolazione) → resistore (protezione) → LED. Come una catena di montaggio!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Catena di controllo: pulsante (ON/OFF) → manopola (luminosità) → resistore (protezione) → LED. Ogni componente ha il suo ruolo!",
+            "analogies": [
+              {
+                "concept": "catena_controllo",
+                "text": "La catena è come una squadra: il pulsante è il portiere (decide se far passare), la manopola è il centrocampista (decide quanto), il resistore è il difensore (protegge).",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "ordine_componenti",
+                "text": "Come un acquedotto: la diga (pulsante) decide se l'acqua scorre, il rubinetto (manopola) decide quanta, il tubo stretto (resistore) protegge il vaso (LED).",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play: pulsante = ON/OFF, manopola = luminosità, resistore = protezione. Ogni componente ha un ruolo preciso!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia ogni componente uno alla volta. Chiedi: 'Quale toglieresti se potessi toglierne solo uno?' (il resistore NO — il LED si brucia!)"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La catena di controllo: pulsante = ON/OFF, manopola = regolazione, resistore = protezione. Ogni componente ha un ruolo preciso nel circuito, come i giocatori di una squadra!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Sfida completata! Avete costruito una catena di controllo completa. Ogni componente ha un ruolo diverso e importante.",
+            "spunto_per_classe": null,
+            "note": [
+              "Riassumi il capitolo: 'Dal semplice dimmer alla catena di controllo — i componenti si combinano come i LEGO!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se dice 'il pulsante non serve se la manopola è al minimo' → ragionamento logico",
+        "Se chiede 'e se inverto l'ordine?' → pensiero critico",
+        "Se identifica i 3 ruoli (on/off, regolazione, protezione) → comprensione matura"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "catena_controllo",
+          "ruoli_componenti"
+        ],
+        "next_suggested": "v1-cap10-esp1",
+        "resume_message": "Avete completato il capitolo del potenziometro! Ora un componente magico che reagisce alla luce."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cos'è un potenziometro?",
+    "transitions": [
+      {
+        "between": [
+          "v1-cap9-esp1",
+          "v1-cap9-esp2"
+        ],
+        "text_classe": "Ricordate il dimmer? Girando a destra il LED si accendeva. E se girando a destra si SPEGNESSE? Si può fare?",
+        "text_docente_action": "Stesso circuito dell'esperimento 1, ma con il positivo collegato al pin GND del potenziometro e il negativo al pin VCC. Il signal resta al centro.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp2",
+          "v1-cap9-esp3"
+        ],
+        "text_classe": "Il LED rosso si accendeva facilmente con il potenziometro. Il LED verde avrà bisogno della stessa quantità di corrente o di più?",
+        "text_docente_action": "Stesso circuito dell'esperimento 1 ma con LED verde. Il verde ha bisogno di più corrente per accendersi, quindi la manopola dovrà essere girata di più.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp3",
+          "v1-cap9-esp4"
+        ],
+        "text_classe": "Il potenziometro controllava un solo LED. Ma può controllare DUE canali del LED RGB contemporaneamente?",
+        "text_docente_action": "Il segnale del potenziometro si divide in due rami, ciascuno con il suo resistore. Un ramo va al canale verde, l'altro al canale blu.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp4",
+          "v1-cap9-esp5"
+        ],
+        "text_classe": "Finora il potenziometro controllava la luminosità. Ma può MESCOLARE due colori? Da un lato blu, dall'altro rosso, nel mezzo il viola?",
+        "text_docente_action": "Collegamento speciale: la corrente entra dal pin centrale (signal) del potenziometro. I due pin laterali vanno ciascuno a un resistore e poi a un canale del LED RGB.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp5",
+          "v1-cap9-esp6"
+        ],
+        "text_classe": "Con i pulsanti potevate fare solo 7 colori (acceso/spento). Con 3 manopole graduali potete creare QUALSIASI sfumatura!",
+        "text_docente_action": "Il circuito è il più grande finora: 3 potenziometri, 3 resistori, 1 LED RGB. Ogni potenziometro controlla un canale indipendente.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp6",
+          "v1-cap9-esp7"
+        ],
+        "text_classe": "La lampada RGB è sempre accesa. Ma se voleste un bottone per accendere e spegnere ogni colore senza perdere la regolazione?",
+        "text_docente_action": "Il circuito mostra un esempio per il canale rosso. La sfida è pensare come estenderlo a tutti e 3 i canali.",
+        "incremental_mode": "remove_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp7",
+          "v1-cap9-esp8"
+        ],
+        "text_classe": "Avete costruito il miscelatore e la lampada. Ora combiniamoli: due manopole per rosso e blu!",
+        "text_docente_action": "Ogni potenziometro ha il suo resistore e il suo canale: pot1→r1→rosso, pot2→r2→blu. La sfida è aggiungere un terzo pot per il verde.",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v1-cap9-esp8",
+          "v1-cap9-esp9"
+        ],
+        "text_classe": "Abbiamo scoperto il pulsante (ON/OFF) e la manopola (regolazione). Cosa succede se li mettiamo INSIEME in catena?",
+        "text_docente_action": "Il pulsante è il primo stadio (ON/OFF), il potenziometro è il secondo (regolazione), il resistore è la protezione. Tre ruoli diversi in catena.",
+        "incremental_mode": "remove_component"
+      }
+    ],
+    "closing_text": "Avete completato il capitolo del potenziometro! Ora un componente magico che reagisce alla luce."
+  }
+}

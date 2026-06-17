@@ -1,0 +1,150 @@
+# ============================================
+# ELAB Tutor — Tea Autoflow (auto-merge safe paths)
+#
+# T1-009: Abilita auto-merge per PR di Tea che toccano
+# SOLO path sicuri (docs, styles, tests, common UI).
+# Se tocca file critici → blocca e richiedi review Andrea.
+# ============================================
+
+name: Tea Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-safe-paths:
+    # Solo PR di Tea con label 'tea-autoflow'
+    if: >
+      github.event.pull_request.user.login == 'TeaLeaBabbalea' &&
+      contains(github.event.pull_request.labels.*.name, 'tea-autoflow')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check modified files are in safe paths
+        id: safe-check
+        run: |
+          # Ottieni lista file modificati nella PR
+          FILES=$(gh pr diff ${{ github.event.pull_request.number }} --name-only)
+
+          echo "File modificati nella PR:"
+          echo "$FILES"
+
+          # Path sicuri dove Tea può lavorare liberamente
+          SAFE_PATTERNS=(
+            "^docs/"
+            "^tests/"
+            "^src/styles/"
+            "^src/components/common/"
+            "^src/components/dashboard/"
+            "^src/components/.*\.module\.css$"
+            "^src/data/lesson-paths/"
+            "^\.github/PULL_REQUEST_TEMPLATE\.md$"
+          )
+
+          # Path critici che BLOCCANO l'auto-merge
+          CRITICAL_PATTERNS=(
+            "^src/components/simulator/engine/"
+            "^src/components/simulator/canvas/SimulatorCanvas\.jsx$"
+            "^src/components/simulator/NewElabSimulator\.jsx$"
+            "^src/services/api\.js$"
+            "^src/services/simulator-api\.js$"
+            "^vite\.config\.js$"
+            "^package\.json$"
+            "^package-lock\.json$"
+            "^\.github/workflows/"
+          )
+
+          UNSAFE_FILES=""
+          CRITICAL_FILES=""
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+
+            # Check critici prima
+            for pattern in "${CRITICAL_PATTERNS[@]}"; do
+              if echo "$file" | grep -qE "$pattern"; then
+                CRITICAL_FILES="${CRITICAL_FILES}${file}\n"
+                continue 2
+              fi
+            done
+
+            # Check se è in path sicuro
+            IS_SAFE=false
+            for pattern in "${SAFE_PATTERNS[@]}"; do
+              if echo "$file" | grep -qE "$pattern"; then
+                IS_SAFE=true
+                break
+              fi
+            done
+
+            if [ "$IS_SAFE" = "false" ]; then
+              UNSAFE_FILES="${UNSAFE_FILES}${file}\n"
+            fi
+          done <<< "$FILES"
+
+          if [ -n "$CRITICAL_FILES" ]; then
+            echo "::error::PR tocca file CRITICI (engine/config). Review Andrea obbligatoria."
+            echo -e "File critici:\n$CRITICAL_FILES"
+            echo "safe=false" >> "$GITHUB_OUTPUT"
+            echo "reason=critical" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ -n "$UNSAFE_FILES" ]; then
+            echo "::warning::PR tocca file fuori dai safe paths. Review Andrea consigliata."
+            echo -e "File non sicuri:\n$UNSAFE_FILES"
+            echo "safe=false" >> "$GITHUB_OUTPUT"
+            echo "reason=unsafe" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Tutti i file sono in safe paths. Auto-merge OK."
+          echo "safe=true" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add review comment
+        if: steps.safe-check.outputs.safe == 'false'
+        run: |
+          REASON="${{ steps.safe-check.outputs.reason }}"
+          if [ "$REASON" = "critical" ]; then
+            MSG="⛔ **Auto-merge bloccato**: questa PR tocca file critici (engine/config). Serve review di @AndreaMarro."
+          else
+            MSG="⚠️ **Auto-merge sospeso**: questa PR tocca file fuori dai safe paths. Review di @AndreaMarro consigliata."
+          fi
+          gh pr comment ${{ github.event.pull_request.number }} --body "$MSG"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Auto-approve safe PR
+        if: steps.safe-check.outputs.safe == 'true'
+        run: |
+          gh pr review ${{ github.event.pull_request.number }} --approve \
+            --body "✅ **Tea Autoflow**: tutti i file sono in safe paths. Auto-approvata."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Auto-merge dopo che CI passa (quality-gate + test)
+  auto-merge:
+    needs: check-safe-paths
+    if: needs.check-safe-paths.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enable auto-merge
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} \
+            --auto --squash \
+            --subject "chore(tea): ${{ github.event.pull_request.title }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

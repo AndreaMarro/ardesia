@@ -1,0 +1,687 @@
+{
+  "1_chat_basic": {
+    "queries_count": 10,
+    "successes": 10,
+    "failures": 0,
+    "wall_s": 6.7,
+    "stats": {
+      "n": 10,
+      "avg_ms": 2454,
+      "p50_ms": 2219,
+      "p95_ms": 3155,
+      "p99_ms": 3155,
+      "min_ms": 1599,
+      "max_ms": 3856
+    },
+    "sources": {
+      "vertex-gemini-2.5-flash-lite": 10
+    },
+    "raw": [
+      {
+        "q": "Cosa \u00e8 la corrente elettrica?",
+        "ok": true,
+        "elapsed_s": 3.1356634169999893,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 218,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Cosa \u00e8 un LED?",
+        "ok": true,
+        "elapsed_s": 3.150449750000007,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 196,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami il resistore",
+        "ok": true,
+        "elapsed_s": 3.155050499999959,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 400,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Come funziona la breadboard?",
+        "ok": true,
+        "elapsed_s": 3.856023082999968,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 219,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Cosa serve un condensatore?",
+        "ok": true,
+        "elapsed_s": 1.5989156659999821,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 220,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Spiegami il circuito chiuso",
+        "ok": true,
+        "elapsed_s": 1.74243041699998,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 286,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami la massa GND",
+        "ok": true,
+        "elapsed_s": 1.7277464589999454,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 368,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Che cosa \u00e8 la tensione?",
+        "ok": true,
+        "elapsed_s": 2.6170412499999998,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 173,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Cosa \u00e8 il LED RGB?",
+        "ok": true,
+        "elapsed_s": 1.737935250000021,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 206,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami il pulsante",
+        "ok": true,
+        "elapsed_s": 1.8214849999999956,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 408,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      }
+    ]
+  },
+  "2_chat_thinking": {
+    "queries_count": 10,
+    "successes": 10,
+    "failures": 0,
+    "wall_s": 6.0,
+    "stats": {
+      "n": 10,
+      "avg_ms": 1991,
+      "p50_ms": 1899,
+      "p95_ms": 2547,
+      "p99_ms": 2547,
+      "min_ms": 827,
+      "max_ms": 2960
+    },
+    "sources": {
+      "vertex-gemini-2.5-flash-lite": 9,
+      "direct-operational-arduino": 1
+    },
+    "raw": [
+      {
+        "q": "Approfondisci il principio di funzionamento di un transistor MOSFET e come lo applichiamo in classe con il kit ELAB",
+        "ok": true,
+        "elapsed_s": 1.6716842499999984,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 375,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami nel dettaglio come funziona la legge di Ohm con un esempio numerico passo passo",
+        "ok": true,
+        "elapsed_s": 1.9040504170000077,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 394,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Spiegami in modo dettagliato il funzionamento del partitore di tensione con esempi numerici e applicazioni",
+        "ok": true,
+        "elapsed_s": 1.8942456249999964,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 432,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Analizza in profondit\u00e0 perch\u00e9 un LED richiede sempre un resistore in serie e calcola il valore per 9V e LED rosso",
+        "ok": true,
+        "elapsed_s": 2.5332516249999912,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 965,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Analizza il principio di funzionamento di un buzzer piezoelettrico e di un buzzer attivo con confronto",
+        "ok": true,
+        "elapsed_s": 1.632425875000024,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 390,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Analizza in profondit\u00e0 come il codice Morse converte testo in segnali e fai un esempio completo con LED",
+        "ok": true,
+        "elapsed_s": 0.82730858299999,
+        "source": "direct-operational-arduino",
+        "len": 186,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami in dettaglio come Arduino comunica con i componenti via PWM con esempio di codice e formula",
+        "ok": true,
+        "elapsed_s": 2.5470003329999713,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 320,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "Approfondisci come funziona un potenziometro come divisore variabile e fai un esempio di calcolo completo",
+        "ok": true,
+        "elapsed_s": 2.95974604099996,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 1188,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Approfondisci la differenza tra serie e parallelo con calcoli completi per resistori e condensatori",
+        "ok": true,
+        "elapsed_s": 2.3056814999999915,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 393,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "Spiegami nel dettaglio come il sensore di temperatura legge la temperatura e converte in valore digitale",
+        "ok": true,
+        "elapsed_s": 1.6388088749999952,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 317,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      }
+    ]
+  },
+  "3_onnipotenza_basic": {
+    "queries_count": 10,
+    "successes": 10,
+    "failures": 0,
+    "wall_s": 2.9,
+    "stats": {
+      "n": 10,
+      "avg_ms": 747,
+      "p50_ms": 527,
+      "p95_ms": 1779,
+      "p99_ms": 1779,
+      "min_ms": 362,
+      "max_ms": 1802
+    },
+    "sources": {
+      "direct-operational-led-color": 2,
+      "direct-operational-play": 1,
+      "direct-operational-resistance": 2,
+      "direct-operational-highlight": 1,
+      "direct-operational-screenshot": 1,
+      "direct-operational-compile": 1,
+      "vertex-gemini-2.5-flash-lite": 2
+    },
+    "raw": [
+      {
+        "q": "metti led verde",
+        "ok": true,
+        "elapsed_s": 0.5726687499999912,
+        "source": "direct-operational-led-color",
+        "len": 122,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "fai partire il circuito",
+        "ok": true,
+        "elapsed_s": 0.5608940830000506,
+        "source": "direct-operational-play",
+        "len": 57,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "imposta resistenza 470 ohm",
+        "ok": true,
+        "elapsed_s": 0.6191267089999997,
+        "source": "direct-operational-resistance",
+        "len": 117,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "evidenzia led1",
+        "ok": true,
+        "elapsed_s": 0.3621617499999843,
+        "source": "direct-operational-highlight",
+        "len": 104,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "scatta foto del circuito",
+        "ok": true,
+        "elapsed_s": 0.43289233400003013,
+        "source": "direct-operational-screenshot",
+        "len": 100,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "compila il codice",
+        "ok": true,
+        "elapsed_s": 0.4937712500000089,
+        "source": "direct-operational-compile",
+        "len": 79,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "cambia led a blu",
+        "ok": true,
+        "elapsed_s": 0.3803433749999954,
+        "source": "direct-operational-led-color",
+        "len": 119,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "metti resistenza 1k",
+        "ok": true,
+        "elapsed_s": 0.46576604099999486,
+        "source": "direct-operational-resistance",
+        "len": 119,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "ferma simulazione",
+        "ok": true,
+        "elapsed_s": 1.7793820420000088,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 138,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": false
+      },
+      {
+        "q": "vai play",
+        "ok": true,
+        "elapsed_s": 1.8024072500000443,
+        "source": "vertex-gemini-2.5-flash-lite",
+        "len": 397,
+        "intents_parsed": 1,
+        "has_ragazzi": true,
+        "has_intent": false
+      }
+    ]
+  },
+  "4_onnipotenza_avanzata": {
+    "queries_count": 10,
+    "successes": 10,
+    "failures": 0,
+    "wall_s": 1.2,
+    "stats": {
+      "n": 10,
+      "avg_ms": 414,
+      "p50_ms": 463,
+      "p95_ms": 508,
+      "p99_ms": 508,
+      "min_ms": 222,
+      "max_ms": 517
+    },
+    "sources": {
+      "direct-operational-experiment-nav": 3,
+      "direct-operational-play": 3,
+      "direct-operational-resistance": 2,
+      "direct-operational-highlight": 1,
+      "direct-operational-screenshot": 1
+    },
+    "raw": [
+      {
+        "q": "carica esperimento blink poi mostra il led",
+        "ok": true,
+        "elapsed_s": 0.46446866600001613,
+        "source": "direct-operational-experiment-nav",
+        "len": 124,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "ferma, compila il codice, e poi fai partire",
+        "ok": true,
+        "elapsed_s": 0.46210058299999446,
+        "source": "direct-operational-play",
+        "len": 57,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "accendi led, evidenzia r1 e compila",
+        "ok": true,
+        "elapsed_s": 0.4965513329999567,
+        "source": "direct-operational-experiment-nav",
+        "len": 123,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "metti led verde, imposta r1 a 220, fai play",
+        "ok": true,
+        "elapsed_s": 0.5078769579999971,
+        "source": "direct-operational-resistance",
+        "len": 117,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "evidenzia il pulsante, poi metti r1 a 470, poi play",
+        "ok": true,
+        "elapsed_s": 0.2400702080000201,
+        "source": "direct-operational-highlight",
+        "len": 100,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "apri arduino, carica blink, compila e fai partire",
+        "ok": true,
+        "elapsed_s": 0.34844666599997254,
+        "source": "direct-operational-play",
+        "len": 57,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "imposta led verde, resistenza 1k, e schermata",
+        "ok": true,
+        "elapsed_s": 0.4048378330000446,
+        "source": "direct-operational-resistance",
+        "len": 119,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "scatta foto, poi cambia led a rosso, poi compila",
+        "ok": true,
+        "elapsed_s": 0.5171429589999548,
+        "source": "direct-operational-screenshot",
+        "len": 100,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "porta volume 3, accendi led, fai partire simulazione",
+        "ok": true,
+        "elapsed_s": 0.22164745899999616,
+        "source": "direct-operational-play",
+        "len": 57,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "carica potenziometro dimmer, metti pulsante in evidenza, compila",
+        "ok": true,
+        "elapsed_s": 0.4817027920000214,
+        "source": "direct-operational-experiment-nav",
+        "len": 134,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      }
+    ]
+  },
+  "5_vision_basic": {
+    "queries_count": 5,
+    "successes": 5,
+    "failures": 0,
+    "wall_s": 23.2,
+    "stats": {
+      "n": 5,
+      "avg_ms": 11643,
+      "p50_ms": 11646,
+      "p95_ms": 11687,
+      "p99_ms": 11696,
+      "min_ms": 11560,
+      "max_ms": 11696
+    },
+    "sources": {
+      "unknown": 5
+    },
+    "raw": [
+      {
+        "q": "Cosa vedi nell'immagine?",
+        "ok": true,
+        "elapsed_s": 11.56018958300001,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Analizza questo circuito",
+        "ok": true,
+        "elapsed_s": 11.645535709,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Identifica i collegamenti",
+        "ok": true,
+        "elapsed_s": 11.686795625000002,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Descrivi i componenti visibili",
+        "ok": true,
+        "elapsed_s": 11.695524250000005,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Che esperimento mostra l'immagine?",
+        "ok": true,
+        "elapsed_s": 11.62892229099998,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      }
+    ]
+  },
+  "6_vision_avanzata": {
+    "queries_count": 5,
+    "successes": 5,
+    "failures": 0,
+    "wall_s": 23.1,
+    "stats": {
+      "n": 5,
+      "avg_ms": 11585,
+      "p50_ms": 11578,
+      "p95_ms": 11619,
+      "p99_ms": 11682,
+      "min_ms": 11476,
+      "max_ms": 11682
+    },
+    "sources": {
+      "unknown": 5
+    },
+    "raw": [
+      {
+        "q": "Vedi l'immagine del circuito: il resistore \u00e8 del valore giusto per proteggere il LED? Calcola.",
+        "ok": true,
+        "elapsed_s": 11.476377833000015,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Guarda la foto e dimmi se ci sono errori di collegamento sulla breadboard. Lista dettagliata.",
+        "ok": true,
+        "elapsed_s": 11.569849124999962,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Analizza il circuito in foto e dimmi se la polarit\u00e0 del LED \u00e8 giusta. Se no, cosa correggere?",
+        "ok": true,
+        "elapsed_s": 11.578450958000019,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Guarda l'immagine: il LED \u00e8 collegato correttamente? Spiega cosa controllare passo passo.",
+        "ok": true,
+        "elapsed_s": 11.681674375,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      },
+      {
+        "q": "Analizza l'immagine: identifica i componenti, valuta i collegamenti, suggerisci miglioramenti pedagogici.",
+        "ok": true,
+        "elapsed_s": 11.619088500000032,
+        "source": "unknown",
+        "len": 0,
+        "has_ragazzi": false
+      }
+    ]
+  },
+  "7_interfacciamento": {
+    "queries_count": 5,
+    "successes": 5,
+    "failures": 0,
+    "wall_s": 0.9,
+    "stats": {
+      "n": 5,
+      "avg_ms": 431,
+      "p50_ms": 420,
+      "p95_ms": 452,
+      "p99_ms": 464,
+      "min_ms": 402,
+      "max_ms": 464
+    },
+    "sources": {
+      "direct-operational-experiment-nav": 1,
+      "direct-operational-volume-nav": 1,
+      "direct-operational-arduino": 1,
+      "direct-operational-highlight": 1,
+      "direct-operational-play": 1
+    },
+    "raw": [
+      {
+        "q": "carica esperimento blink",
+        "ok": true,
+        "elapsed_s": 0.40247199999998884,
+        "source": "direct-operational-experiment-nav",
+        "len": 124,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "vai al volume 3",
+        "ok": true,
+        "elapsed_s": 0.41887300000001915,
+        "source": "direct-operational-volume-nav",
+        "len": 151,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "compila e poi play",
+        "ok": true,
+        "elapsed_s": 0.4201861669999971,
+        "source": "direct-operational-arduino",
+        "len": 203,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "evidenzia il led",
+        "ok": true,
+        "elapsed_s": 0.4516677080000022,
+        "source": "direct-operational-highlight",
+        "len": 104,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      },
+      {
+        "q": "metti led rosso e fai partire",
+        "ok": true,
+        "elapsed_s": 0.4635124999999789,
+        "source": "direct-operational-play",
+        "len": 57,
+        "intents_parsed": 0,
+        "has_ragazzi": true,
+        "has_intent": true
+      }
+    ]
+  }
+}

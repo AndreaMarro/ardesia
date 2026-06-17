@@ -1,0 +1,29 @@
+id: fix-galileo-loadexp
+priority: P0
+title: "Fix Galileo: risponde con [[AZIONE:loadexp]] a 'carica esperimento"
+description: |
+non contiene il tag [[AZIONE: loadexp]]. Questo tag è necessario per caricare
+DIAGNOSI: Il sistema di pattern matching di Galileo non riconosce "carica
+esperimento N" → [[AZIONE: loadexp]].
+FILE DA ESAMINARE (in ordine di priorità): 
+AZIONE CONCRETA: 
+1. Esegui: grep -n "loadexp\|AZIONE\|action.*load\|parseAction\|extractAction" src/components/tutor/ElabTutorV4.jsx
+2. Trovata la funzione di parsing, verifica che gestisca [[AZIONE: "loadexp:N]] dove N è il numero esperimento"
+4. Esegui: "grep -rn "loadexp\|AZIONE:load" src/ per trovare tutti i riferimenti"
+FORMATO ATTESO nella risposta Galileo: 
+"Per caricare il primo esperimento, clicca qui [[AZIONE: "loadexp:1]]"
+Il check automa usa: checks.py → check_galileo() che verifica che la risposta
+contenga "[[AZIONE: loadexp]]" quando l'utente dice "carica esperimento 1
+success_criteria: |
+context_files: 
+plan: 
+- "Step 1: grep -n 'loadexp\\|AZIONE\\|parseGalileo\\|extractAction' src/components/tutor/ElabTutorV4.jsx
+- "Step 2: Capire come vengono parsate le azioni nella risposta Galileo
+- "Step 3: Se manca il pattern loadexp, aggiungere il parsing in ElabTutorV4.jsx
+- "Step 4: Verificare che il pattern check in checks.py sia corretto
+- "Step 5: npm run build && verifica check_galileo
+tags: galileo,loadexp,azione,fix,P0
+claimed_at: "2026-03-24T16:09:15.491058"
+claimed_by: orchestrator
+completed_at: "2026-03-24T16:14:35.595117"
+result: ok

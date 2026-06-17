@@ -1,0 +1,25 @@
+id: ricerca-pedagogia
+priority: P2
+title: Ricerca metodi pedagogici elettronica bambini 8-14
+description: 'Cerca paper accademici su misconcezioni bambini riguardo elettricita.
+  Analizza modello unipolare, consumo corrente, tensione vs corrente. Confronta con
+  approccio ELAB attuale.
+
+  '
+success_criteria: 'File automa/knowledge/ricerca-pedagogia.md con almeno 3 misconcezioni
+  documentate e suggerimento per come Galileo puo affrontarle.
+
+  '
+context_files:
+- src/components/tutor/ElabTutorV4.jsx
+- public/data/esperimenti-v1.json
+plan:
+- Cerca su Semantic Scholar "children electricity misconceptions"
+- Analizza i top 5 paper con DeepSeek
+- Confronta con come Galileo gestisce le misconcezioni ora
+- Documenta 3+ misconcezioni specifiche con suggerimenti
+- Salva in knowledge/ricerca-pedagogia.md
+claimed_at: '2026-03-23T21:18:58.553405'
+claimed_by: orchestrator
+completed_at: '2026-03-23T21:21:47.793350'
+result: ok

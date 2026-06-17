@@ -1,0 +1,83 @@
+# Curriculum YAML — v2-cap9-esp2
+# "Luce notturna automatica"
+
+experiment_id: v2-cap9-esp2
+volume: 2
+chapter: 9
+title: "Luce notturna automatica"
+
+prerequisites:
+  - v2-cap9-esp1
+
+concepts_introduced:
+  - luce_notturna
+  - inversione_logica
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - fototransistor
+  - transistor
+  - MOSFET
+  - gate
+  - luce
+  - buio
+  - sensore
+  - breadboard
+  - automatico
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 fototransistor, 1 MOSFET, 1 LED, 2 resistori
+    (1k e 10k ohm), 1 batteria 9V, fili. Questo circuito e' piu' complesso — fai
+    lo schema alla lavagna prima. Il trucco: il fototransistor controlla il gate
+    del MOSFET in modo invertito.
+  during_class: >
+    Costruite il circuito: fototransistor + resistore creano una tensione che va al
+    gate del MOSFET. Con la luce, il gate e' basso -> LED spento. Al buio, il gate
+    e' alto -> LED acceso! "Avete costruito una luce notturna automatica — come quelle
+    vere!" Copri il fototransistor: il LED si accende. Scoprilo: si spegne.
+  common_question: >
+    "Come fa ad accendersi al buio?" -> E' un'inversione: quando c'e' luce, il
+    fototransistor 'abbassa' la tensione al gate. Al buio, nessuno abbassa la
+    tensione e il gate si alza — il MOSFET si apre.
+
+common_mistakes:
+  - mistake: "Circuito che funziona al contrario (LED acceso con la luce)"
+    what_to_do: "Controlla il collegamento del partitore — il fototransistor e il resistore devono essere invertiti."
+    analogy: null
+  - mistake: "LED sempre acceso o sempre spento"
+    what_to_do: "Prova con resistori diversi per il partitore. La soglia del MOSFET deve cadere nel range giusto."
+    analogy: "Come regolare la sensibilita' di un allarme — troppo sensibile o troppo poco"
+
+analogies:
+  luce_notturna:
+    analogy: "La luce notturna automatica funziona come i lampioni stradali — quando il sole tramonta, si accendono da soli. Il fototransistor e' il 'sensore del tramonto'."
+    evidence: "Collegamento con esperienza quotidiana, efficace per motivazione (Pintrich 2003)"
+  inversione_logica:
+    analogy: "L'inversione e' come un'altalena a bilanciere — quando un lato sale, l'altro scende. Quando la luce sale, il LED scende (si spegne). Quando la luce scende, il LED sale (si accende)."
+    evidence: "Analogia bilanciere per logica invertita, intuitiva per bambini (Piaget 1972)"
+
+assessment_invisible:
+  - "Se lo studente spiega il funzionamento 'al buio si accende perche'...' -> comprensione del sistema"
+  - "Se dice 'il fototransistor controlla il MOSFET' -> ha capito la catena di controllo"
+  - "Se propone modifiche (es. aggiungere sensibilita') -> pensiero progettuale"

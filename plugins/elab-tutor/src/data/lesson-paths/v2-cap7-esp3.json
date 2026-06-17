@@ -1,0 +1,348 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap7-esp3",
+  "volume": 2,
+  "chapter": 7,
+  "title": "Condensatori in parallelo",
+  "chapter_title": "Capitolo 7 - Cosa sono i condensatori?",
+  "difficulty": 2,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Scoprire cosa succede quando si collegano più condensatori in parallelo: la capacità totale è la SOMMA di tutte le capacità, e la scarica diventa molto più lenta. Con 3 condensatori da 1000µF in parallelo otteniamo 3000µF e un Tau di 3 secondi!",
+  "components_needed": [
+    {
+      "name": "Breadboard mezza (half-size)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Condensatore 1000µF",
+      "quantity": 3,
+      "icon": "⚡"
+    },
+    {
+      "name": "Pulsante",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Resistore 1kΩ",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "🔴"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 12,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "condensatore",
+      "capacità",
+      "µF",
+      "microfarad",
+      "carica",
+      "scarica",
+      "pulsante",
+      "resistore",
+      "LED",
+      "batteria",
+      "corrente",
+      "tensione",
+      "multimetro",
+      "Tau",
+      "costante di tempo",
+      "RC",
+      "parallelo",
+      "esponenziale",
+      "energia"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "transistor",
+      "MOSFET",
+      "motore",
+      "diodo",
+      "fototransistor"
+    ],
+    "note": "Cap 7 Vol 2 — condensatori in parallelo, Ctot = C1+C2+C3."
+  },
+  "prerequisites": [
+    "v2-cap7-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap7-esp4",
+    "title": "Variare R nella scarica RC",
+    "preview": "Prossimo passo: Variare R nella scarica RC. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi aggiungiamo condensatori! Cosa succede se ne mettiamo tre in parallelo invece di uno solo? Il LED si spegnerà più lentamente o uguale?",
+      "teacher_tip": "Fate una scommessa con la classe: 'Se mettiamo 3 condensatori invece di 1, il LED sfuma 2 volte, 3 volte o 10 volte più lentamente?' Raccoglile le risposte prima di procedere.",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 3 condensatori da 1000µF, 1 pulsante, 1 resistore 1kΩ, 1 LED rosso, fili.",
+      "class_hook": "Ricordate il condensatore dell'esperimento scorso? Si scaricava in circa 1 secondo. Cosa succede se ne usiamo TRE insieme? Scopriamolo!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Montiamo il circuito: tre condensatori da 1000µF con i positivi tutti collegati insieme (parallelo), poi pulsante, resistore e LED in serie.",
+      "teacher_tip": "Sottolineate il concetto di parallelo: 'I tre positivi sono tutti collegati allo stesso filo, i tre negativi sono tutti collegati alla riga negativa. Funzionano come UN UNICO condensatore gigante da 3000µF!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap7-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate il circuito con 3 condensatori in parallelo",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "capacitor",
+              "id": "c1",
+              "value": 1000
+            },
+            {
+              "type": "capacitor",
+              "id": "c2",
+              "value": 1000
+            },
+            {
+              "type": "capacitor",
+              "id": "c3",
+              "value": 1000
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 1000
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-14",
+              "to": "bb1:a14",
+              "color": "red"
+            },
+            {
+              "from": "bb1:g16",
+              "to": "bb1:a3",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a3",
+              "to": "bb1:a7",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a7",
+              "to": "bb1:a10",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a4",
+              "to": "bb1:bus-top-minus-4",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:bus-top-minus-8",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a11",
+              "to": "bb1:bus-top-minus-11",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:a19",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a27",
+              "to": "bb1:bus-top-minus-27",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Prima di premere Play, fate una previsione: con 3 condensatori da 1000µF in parallelo, quanto durerà la scarica?",
+      "teacher_tip": "Fate la previsione PRIMA del Play! 'Ctot = 1000+1000+1000 = 3000µF. Tau = R × C = 1kΩ × 3000µF. Quanto fa?' Lasciate che calcolino da soli.",
+      "provocative_question": "Se un condensatore da 1000µF si scarica in 1 secondo, tre condensatori in parallelo si scaricano in 1, 2 o 3 secondi? Calcolate Tau = R × C con la capacità totale!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Collegare i condensatori in serie invece che in parallelo",
+          "teacher_response": "In parallelo i positivi sono TUTTI collegati allo stesso nodo positivo, e i negativi TUTTI allo stesso nodo negativo. Non uno dietro l'altro, ma uno ACCANTO all'altro!",
+          "analogy": "Come secchi d'acqua affiancati: puoi riempirli tutti insieme dallo stesso rubinetto"
+        },
+        {
+          "mistake": "Confondere il polo positivo e negativo del condensatore",
+          "teacher_response": "Il condensatore ha polarità! Il polo positivo (gambe più lunga o segno +) va sempre verso la tensione alta. Il polo negativo (banda bianca o segno −) va verso la riga negativa.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play, poi caricate i condensatori e premete il pulsante. Il LED sfuma MOLTO più lentamente: quasi 3 secondi! Confrontate con 1 solo condensatore.",
+      "teacher_tip": "Evidenziate i tre condensatori e il LED. Fate notare che sfuma circa 3 volte più lentamente rispetto all'esperimento precedente. 'La capacità si è triplicata, e Tau si è triplicato!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:c1]",
+        "[AZIONE:highlight:c2]",
+        "[AZIONE:highlight:c3]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il LED sfuma lentissimamente! Con 3 condensatori da 1000µF in parallelo otteniamo Ctot = 3000µF. Tau = 1kΩ × 3000µF = 3 secondi. Tre volte più lento di un solo condensatore!",
+      "analogies": [
+        {
+          "concept": "parallelo_capacita",
+          "text": "I tre condensatori in parallelo sono come tre serbatoi d'acqua affiancati: quando li svuoti insieme, ci vuole 3 volte più tempo rispetto a svuotarne uno solo. La capacità totale è la somma di tutte!",
+          "evidence": "experiments-vol2.js unlimPrompt v2-cap7-esp3"
+        },
+        {
+          "concept": "scarica_lenta",
+          "text": "Tau = R × C è come un rubinetto (resistore) che svuota un serbatoio (condensatore): più grande il serbatoio, più tempo ci vuole. Triplicando la capacità, triplichi il tempo di scarica!",
+          "evidence": "experiments-vol2.js concept v2-cap7-esp3"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, In parallelo le capacità si SOMMANO: 3 × 1000µF = 3000µF. Tau = 1kΩ × 3000µF = 3 secondi. Più condensatori in parallelo = più energia immagazzinata = scarica più lenta!",
+      "teacher_tip": "Scrivete sulla lavagna: Ctot = C1 + C2 + C3. Sottolineate che in PARALLELO la capacità aumenta. Nel prossimo esperimento vedremo come cambia R invece di C.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Condensatori in parallelo: la capacità totale è la SOMMA di tutte. Con Ctot = 3000µF e R = 1kΩ, Tau = 3 secondi. Il LED sfuma 3 volte più lentamente rispetto a un solo condensatore!",
+      "concepts_learned": [
+        "condensatori in parallelo: Ctot = C1+C2+C3",
+        "la capacità totale aumenta in parallelo",
+        "Tau = R × C aumenta con C maggiore",
+        "scarica esponenziale più lenta"
+      ],
+      "next_preview": "Nel prossimo esperimento cambieremo il resistore invece dei condensatori: Tau = R × C dipende anche da R!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se calcola Ctot = 3000µF correttamente → comprensione della formula",
+    "Se spiega perché la scarica dura 3 volte di più → collegamento Tau e capacità",
+    "Se distingue parallelo da serie → comprensione topologica"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "condensatori_parallelo",
+      "Ctot_somma",
+      "tau_RC_aumenta"
+    ],
+    "next_suggested": "v2-cap7-esp4",
+    "resume_message": "Avete scoperto che i condensatori in parallelo sommano le capacità! Nel prossimo esperimento cambiamo R per variare Tau."
+  },
+  "analogies": [
+    {
+      "concept": "parallelo_capacita",
+      "text": "I tre condensatori in parallelo sono come tre serbatoi d'acqua affiancati: quando li svuoti insieme, ci vuole 3 volte più tempo rispetto a svuotarne uno solo. La capacità totale è la somma di tutte!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap7-esp3"
+    },
+    {
+      "concept": "scarica_lenta",
+      "text": "Tau = R × C è come un rubinetto (resistore) che svuota un serbatoio (condensatore): più grande il serbatoio, più tempo ci vuole. Triplicando la capacità, triplichi il tempo di scarica!",
+      "evidence": "experiments-vol2.js concept v2-cap7-esp3"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Collegare i condensatori in serie invece che in parallelo",
+      "teacher_response": "In parallelo i positivi sono TUTTI collegati allo stesso nodo positivo, e i negativi TUTTI allo stesso nodo negativo. Non uno dietro l'altro, ma uno ACCANTO all'altro!",
+      "analogy": "Come secchi d'acqua affiancati: puoi riempirli tutti insieme dallo stesso rubinetto"
+    },
+    {
+      "mistake": "Confondere il polo positivo e negativo del condensatore",
+      "teacher_response": "Il condensatore ha polarità! Il polo positivo (gambe più lunga o segno +) va sempre verso la tensione alta. Il polo negativo (banda bianca o segno −) va verso la riga negativa.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

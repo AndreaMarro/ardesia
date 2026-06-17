@@ -1,0 +1,82 @@
+# Curriculum YAML — v1-cap6-esp3
+# "Cambia luminosità con resistenze diverse"
+
+experiment_id: v1-cap6-esp3
+volume: 1
+chapter: 6
+title: "Cambia luminosità con resistenze diverse"
+
+prerequisites:
+  - v1-cap6-esp1
+  - v1-cap6-esp2
+
+concepts_introduced:
+  - resistenza_come_protezione
+  - valore_resistenza_effetto
+  - luminosita_proporzionale
+
+vocabulary_level: v1-cap6
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - corrente
+  - breadboard
+  - luminosità
+  - più forte
+  - più debole
+  - protezione
+  # Cap6 esp3 introduce "resistenza" per la prima volta
+  - resistenza
+  - resistore
+forbidden_terms:
+  - ohm
+  - tensione
+  - volt
+  - parallelo
+  - serie
+  - condensatore
+  - potenziometro
+  - MOSFET
+  - Arduino
+  - legge di Ohm
+
+teacher_briefing:
+  before_class: >
+    Prepara 3 resistori con valori diversi (220Ω, 470Ω, 1kΩ). NON dire i valori
+    in ohm — i ragazzi devono osservare l'effetto sulla luminosità. L'obiettivo
+    è che scoprano da soli: "resistenza grande = LED meno luminoso".
+  during_class: >
+    Fai provare le 3 resistenze una alla volta. Chiedi di mettere in ordine dalla
+    più luminosa alla meno luminosa. Poi chiedi: "Secondo voi, perché cambia?"
+    La risposta attesa è: "La resistenza 'frena' la corrente". NON introdurre
+    la legge di Ohm — è per il capitolo 7.
+  common_question: >
+    "Perché con una resistenza più grande il LED è meno luminoso?" →
+    Analogia: è come stringere un tubo dell'acqua — più lo stringi, meno acqua
+    passa. La resistenza stringe il passaggio della corrente.
+
+common_mistakes:
+  - mistake: "Pensa che la resistenza 'consuma' corrente"
+    what_to_do: "Chiarisci: la resistenza non consuma, LIMITA. Come un rubinetto non beve l'acqua, la controlla."
+    analogy: "Rubinetto dell'acqua"
+  - mistake: "Confonde resistenza grande con LED più luminoso"
+    what_to_do: "Fai riprovare e osservare. Chiedi di toccare le resistenze (sono sicure) — quella più calda fa passare più corrente."
+    analogy: null
+  - mistake: "Non inserisce la resistenza nel verso giusto sulla breadboard"
+    what_to_do: "Rassicura: la resistenza funziona in entrambi i versi, non come il LED!"
+    analogy: "Come un ponte — puoi attraversarlo da entrambe le parti"
+
+analogies:
+  resistenza_come_protezione:
+    analogy: "La resistenza è come un limitatore di velocità — non ferma la macchina, la rallenta. Protegge il LED facendo passare meno corrente."
+    evidence: "Analogia meccanica, coerente con il modello idraulico (Gentner & Gentner 1983)"
+  valore_resistenza_effetto:
+    analogy: "Resistenza piccola = tubo largo (tanta acqua). Resistenza grande = tubo stretto (poca acqua). Il LED si illumina di più quando passa più corrente."
+    evidence: "Modello idraulico con variazione di sezione, efficace per introduzione qualitativa (McDermott & Shaffer 1992)"
+
+assessment_invisible:
+  - "Se ordina correttamente le resistenze per luminosità → ha capito la relazione"
+  - "Se dice 'la resistenza frena la corrente' → concetto chiave acquisito"
+  - "Se chiede 'quanto frena esattamente?' → pronto per Cap 7 (legge di Ohm)"

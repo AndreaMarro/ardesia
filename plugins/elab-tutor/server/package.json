@@ -1,0 +1,20 @@
+{
+  "name": "elab-compile-server",
+  "version": "1.0.0",
+  "description": "ELAB Arduino Compile Server - wraps arduino-cli for real-time compilation",
+  "main": "compile-server.js",
+  "scripts": {
+    "start": "node compile-server.js",
+    "dev": "node compile-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "Andrea Marro",
+  "license": "UNLICENSED",
+  "private": true
+}

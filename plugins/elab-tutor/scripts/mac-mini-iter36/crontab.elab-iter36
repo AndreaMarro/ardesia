@@ -1,0 +1,22 @@
+# ELAB Mac Mini iter 36-38 user-simulation curriculum 3-livelli
+# Reference: docs/pdr/MAC-MINI-USER-SIMULATION-CURRICULUM.md
+# Installed: 2026-04-30 PM iter 36 entrance Phase 0
+
+# Livello 1 smoke (P1+P4 alternate every 5min)
+*/5 * * * * /Users/progettibelli/scripts/elab-user-sim-livello-1.sh >> /Users/progettibelli/Library/Logs/elab/iter36-cron.log 2>&1
+
+# Livello 2 workflow (P1+P2+P3 rotate every 30min)
+*/30 * * * * /Users/progettibelli/scripts/elab-user-sim-livello-2.sh >> /Users/progettibelli/Library/Logs/elab/iter36-cron.log 2>&1
+
+# Livello 3 Onniscenza+Onnipotenza stress (every 2h, P3 primary)
+0 */2 * * * /Users/progettibelli/scripts/elab-user-sim-livello-3.sh >> /Users/progettibelli/Library/Logs/elab/iter36-cron.log 2>&1
+
+# Aggregator + cleanup + optional push (every 15min)
+*/15 * * * * /Users/progettibelli/scripts/elab-user-sim-aggregate-push.sh >> /Users/progettibelli/Library/Logs/elab/iter36-cron.log 2>&1
+
+# === iter 9 legacy (preserved) ===
+0 */6 * * * cd /Users/progettibelli/Projects/elab-tutor && bash /Users/progettibelli/scripts/elab-stress-runner.sh > /Users/progettibelli/Library/Logs/elab/cron-stress-$(date +\%Y\%m\%d).log 2>&1
+30 20 * * * cd /Users/progettibelli/Projects/elab-tutor && bash /Users/progettibelli/scripts/elab-wiki-batch-gen-v2.sh > /Users/progettibelli/Library/Logs/elab/cron-wiki-$(date +\%Y\%m\%d).log 2>&1
+0 3 * * 0 cd /Users/progettibelli/Projects/elab-tutor && bash /Users/progettibelli/scripts/elab-volumi-diff.sh > /Users/progettibelli/Library/Logs/elab/cron-volumi-$(date +\%Y\%m\%d).log 2>&1
+*/30 * * * * echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) heartbeat" >> /Users/progettibelli/Library/Logs/elab/heartbeat.log
+* * * * * /Users/progettibelli/scripts/elab-warmup-cron.sh

@@ -1,0 +1,25 @@
+# Galileo Brain Factory v5 — Evaluation Holdout
+# 200 examples with different seed for model evaluation
+
+target: 200
+seed: 9999
+system_prompt: system_prompt.txt
+output: galileo-brain-v5-eval-200.jsonl
+
+# Same sections, equal weights for balanced evaluation
+sections:
+  actions:          { weight: 10 }
+  circuit:          { weight: 15 }
+  code:             { weight: 10 }
+  tutor:            { weight: 10 }
+  navigation:       { weight: 5 }
+  vision:           { weight: 5 }
+  teacher:          { weight: 10 }
+  teacher_clueless: { weight: 5 }
+  dialects:         { weight: 5 }
+  profanity:        { weight: 3 }
+  expert:           { weight: 3 }
+  ignorant:         { weight: 5 }
+  out_of_scope:     { weight: 5 }
+  multi_step:       { weight: 5 }
+  english:          { weight: 4 }

@@ -1,0 +1,60 @@
+{
+  "cycle": 17,
+  "timestamp": "2026-03-27T07:37:03.867051",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 634
+    },
+    {
+      "name": "build",
+      "status": "fail",
+      "detail": "[Errno 2] No such file or directory: 'npm'",
+      "time_ms": 3
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 152546
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=74 (target \u226560) [3 samples]",
+      "time_ms": 61549
+    },
+    {
+      "name": "browser",
+      "status": "warn",
+      "detail": "Playwright not available",
+      "time_ms": 4
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Test error: [Errno 2] No such file or directory: 'node'",
+      "time_ms": 3
+    }
+  ],
+  "checks_passed": 4,
+  "checks_total": 7,
+  "task_result": {
+    "task": "[Research] circuit_accuracy: finding from cycle 15",
+    "status": "pending_interactive"
+  },
+  "research": "DeepSeek: **Problemi per un ELAB Tutor:**\n\n1.  **Divario Astratto:** Gli studenti abituati all'ambiente puramente virtuale di Scratch possono lottare nel collegare i blocchi logici al comportamento fisico dei componenti elettronici (es. sensori, LED) su una scheda Arduino, un concetto del tutto nuovo.\n2.  **Rigidit\u00e0 del Codice:** La transizione dai blocchi flessibili e perdonanti al codice testuale struttur",
+  "ai_scoring": null,
+  "composite_score": 0.946,
+  "self_exam": null
+}

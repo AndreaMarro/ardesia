@@ -1,0 +1,341 @@
+/* Andrea Marro — 13/02/2026 */
+/* Layout + UNLIM styles — Responsive Edition (UI-5) */
+/* Breakpoints: Mobile <600, Landscape 600-767, Tablet 768-1023, Desktop 1024-1439, Wide 1440+ */
+
+/* ─── Layout ───────────────────────────────────────────────── */
+
+.controlBarRow {
+  display: flex;
+  align-items: center;
+}
+
+/* S79: Proportional width with clamp() — editor scales with viewport */
+.codeEditorPanel {
+  width: clamp(240px, 30vw, 400px);
+  min-width: 160px;
+  max-width: 40%;
+  border-left: 1px solid var(--color-sim-border);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0.5;
+  transition: width var(--transition-base, 200ms ease), min-width var(--transition-base, 200ms ease);
+}
+
+.wireModeIndicator {
+  position: absolute;
+  top: var(--space-2, 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: 6px 14px;
+  background: var(--color-wire-mode-bg, rgba(255, 243, 224, 0.95));
+  border: 1px solid var(--color-vol2);
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-sm, 16px);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  color: var(--color-wire-mode-text);
+  font-weight: var(--font-weight-semibold, 600);
+  z-index: 25;
+  pointer-events: none;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* ─── UNLIM Response Panel ───────────────────────────────── */
+
+.unlimBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.unlimPanel {
+  background: var(--color-sim-bg);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: var(--shadow-xl, 0 12px 48px rgba(0, 0, 0, 0.2));
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  max-height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+}
+
+.unlimHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: linear-gradient(135deg, rgba(124, 179, 66, 0.08), rgba(30, 77, 140, 0.04));
+  border-bottom: 1px solid var(--color-sim-border);
+}
+
+.unlimHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.unlimHeaderTitle {
+  font-size: var(--font-size-md, 16px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-primary);
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.unlimCloseBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-md, 16px);
+  color: var(--color-sim-text-muted);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  border-radius: var(--radius-sm, 6px);
+  min-width: var(--touch-min, 56px);
+  min-height: var(--touch-min, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unlimBody {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  font-size: var(--font-size-sm, 16px);
+  color: var(--color-text);
+  line-height: var(--line-height-relaxed, 1.6);
+  overflow: auto;
+  flex: 1;
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+}
+
+.unlimFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-top: 1px solid var(--color-sim-border);
+  background: var(--color-overlay-cream);
+}
+
+.unlimRetryBtn {
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-bg);
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: var(--space-2, 8px) 14px;
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  min-height: var(--touch-min, 56px);
+}
+
+/* S93: Removed .scratchModePanel, .scratchLayout, .scratchBlockly, .scratchCodePreview
+   Side-by-side layout replaced by full-size Blockly + ScratchCompileBar */
+
+/* S93+S96: Wider panel when in Blocchi/Scratch mode — Blockly needs more space */
+.codeEditorPanelScratch {
+  width: clamp(420px, 52vw, 720px);
+  min-width: 380px;
+  max-width: 62%;
+}
+
+/* S96: Fullscreen Scratch mode — covers entire viewport */
+/* S161.4: z-index 300→900 (above chat 400, below hints 1000) + solid background */
+/* S115: margins + rounded corners so user sees edges and can exit */
+.codeEditorPanelScratchFullscreen {
+  position: fixed !important;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  width: calc(100% - 16px) !important;
+  max-width: calc(100% - 16px) !important;
+  min-width: 0 !important;
+  height: calc(100dvh - 16px) !important;
+  z-index: 900;
+  border-left: none !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-editor-active-bg);
+  box-shadow: 0 16px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(230,126,34,0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Portrait (0-599px)
+   Stack everything vertically, bottom sheet for panels
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 599px) {
+  .codeEditorPanel {
+    width: 100% !important;
+    min-width: 0;
+    max-width: none;
+    border-left: none;
+    border-top: 1px solid var(--color-sim-border);
+    max-height: 40vh;
+    max-height: 40dvh;
+  }
+
+  .wireModeIndicator {
+    font-size: 16px;
+    padding: 4px 10px;
+    gap: 6px;
+    top: 4px;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  }
+
+  .unlimBackdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .unlimPanel {
+    max-width: 100%;
+    max-height: 85vh;
+    max-height: 85dvh;
+    border-radius: 16px 16px 0 0;
+    border-bottom: none;
+    animation: slideUpUnlim 300ms ease;
+  }
+
+  .unlimBody {
+    padding: 16px 16px;
+    font-size: 16px;
+  }
+
+  .unlimHeaderTitle {
+    font-size: 16px;
+  }
+}
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Landscape (600-767px) — Slightly wider but still compact
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 600px) and (max-width: 767px) {
+  /* S79: Proportional width for mobile landscape */
+  .codeEditorPanel {
+    width: clamp(180px, 30vw, 280px);
+    min-width: 160px;
+    max-width: 40%;
+  }
+
+  /* S93+S96: Scratch wider panel — mobile landscape */
+  .codeEditorPanelScratch {
+    width: clamp(300px, 50vw, 420px);
+    min-width: 260px;
+    max-width: 60%;
+  }
+
+  .wireModeIndicator {
+    font-size: 16px;
+    padding: 5px 12px;
+  }
+
+  .unlimPanel {
+    max-width: 500px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — iPad Portrait (768-1023px)
+   S77: code editor as slide-over panel from right
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* S79/S100: iPad portrait slide-over — proportional width + slide-in animation */
+  .codeEditorPanel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: clamp(280px, 40vw, 380px);
+    max-width: 50vw;
+    height: calc(100dvh - 44px);
+    max-height: none;
+    border-left: 2px solid var(--color-primary);
+    border-top: none;
+    z-index: 250;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+    animation: slideInFromRight 200ms ease-out;
+  }
+
+  /* S93+S96: Scratch wider slide-over — iPad portrait */
+  .codeEditorPanelScratch {
+    width: clamp(420px, 60vw, 580px);
+    max-width: 70vw;
+  }
+
+  .unlimPanel {
+    max-width: 560px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — iPad Landscape (1024-1365px)
+   S77: narrower editor, canvas ≥70%
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  /* S79: iPad landscape — keep canvas ≥60%, editor proportional */
+  .codeEditorPanel {
+    width: clamp(200px, 22vw, 300px);
+    min-width: 160px;
+    max-width: 35%;
+  }
+
+  /* S93+S96+S112: Scratch panel — iPad landscape — reduced to give canvas more space */
+  .codeEditorPanelScratch {
+    width: clamp(360px, 40vw, 520px);
+    min-width: 320px;
+    max-width: 48%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Wide (1440px+)
+   Generous spacing
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1440px) {
+  /* S79: Wide screens — generous but capped at 40% */
+  .codeEditorPanel {
+    width: clamp(300px, 22vw, 480px);
+    max-width: 40%;
+  }
+
+  /* S93+S96: Scratch wider panel — wide screens */
+  .codeEditorPanelScratch {
+    width: clamp(500px, 42vw, 750px);
+    max-width: 55%;
+  }
+}
+
+/* ─── Animations ───────────────────────────────────────────── */
+
+@keyframes slideUpUnlim {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* S100: Slide-in animation for code editor panel on iPad portrait */
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}

@@ -1,0 +1,52 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - 'automa/**'
+      - 'tests/**'
+      - '*.md'
+      - '.claude/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies (fresh install for native bindings)
+        run: rm -rf node_modules package-lock.json && npm install
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel env for production
+        # vercel pull fetches the env vars + project config from the Vercel
+        # dashboard (including VITE_* vars like VITE_NANOBOT_URL and
+        # VITE_ELAB_API_KEY). The previous `npm run build` on a GitHub runner
+        # did NOT see Vercel dashboard env on its own — verified 2026-04-22
+        # when prod bundle `index-B5F-vzDS.js` shipped without the
+        # `X-Elab-Api-Key` header, causing Supabase Edge Function to return
+        # 401 on every chat request.
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build with Vercel env
+        # `vercel build` runs the framework build (vite) with the pulled env
+        # injected at build time, so all VITE_* values are baked into the
+        # bundle.
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - name: Deploy prebuilt to Vercel
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"

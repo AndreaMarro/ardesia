@@ -1,0 +1,68 @@
+# Curriculum YAML — v3-cap7-mini
+# "2 LED + Pulsante (toggle)"
+
+experiment_id: v3-cap7-mini
+volume: 3
+chapter: 7
+title: "2 LED + Pulsante (toggle)"
+
+prerequisites:
+  - v3-cap6-semaforo
+
+concepts_introduced:
+  - digitalRead
+  - if_else
+  - variabile_stato
+  - toggle
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 2 LED (rosso e verde),
+    2 resistori da 330 ohm, 1 pulsante, 1 resistore da 10k ohm (pull-down), fili.
+    Obiettivo: il pulsante alterna quale LED e' acceso. Prima pressione = verde ON,
+    seconda = rosso ON, terza = verde ON... Il concetto chiave e' il toggle: ogni
+    pressione cambia stato.
+  during_class: >
+    Fai costruire il circuito. Poi spiega: "Il pulsante manda un segnale al computer —
+    digitalRead legge se e' premuto o no." Introduci la variabile stato come una scatola
+    con dentro 0 o 1: ogni volta che premi, il valore nella scatola cambia. Fai scrivere
+    il codice passo passo col simulatore. Sfida: aggiungi un terzo LED che fa un ciclo.
+  common_question: >
+    "Perche' quando premo il pulsante i LED impazziscono?" -> E' il bounce: il pulsante
+    rimbalza e manda tanti segnali veloci. Aggiungi un delay(200) dopo la lettura per
+    risolvere. UNLIM lo spiega come analogia.
+
+common_mistakes:
+  - mistake: "Pulsante senza resistore pull-down — lettura instabile"
+    what_to_do: "Spiega che senza pull-down il pin 'galleggia' e legge valori a caso. Il resistore da 10k lo tiene a terra quando non premi."
+    analogy: "Senza pull-down e' come chiedere 'si o no?' a qualcuno che dorme — risponde cose a caso"
+  - mistake: "Non capiscono la variabile stato — il toggle non funziona"
+    what_to_do: "Usa un foglietto con scritto 0: ogni volta che premi il pulsante, cancella e scrivi il contrario. Questa e' la variabile."
+    analogy: "La variabile stato e' come un cartello girevole APERTO/CHIUSO sulla porta di un negozio"
+  - mistake: "if senza else — solo un LED funziona"
+    what_to_do: "Chiedi: 'Se il semaforo e' verde, il rosso e' ___?' Spento! Bisogna dire anche cosa fare quando la condizione NON e' vera."
+    analogy: null
+
+analogies:
+  digitalRead:
+    analogy: "digitalRead e' come guardare se una porta e' aperta o chiusa. Il computer guarda il pin e ti dice: 1 = premuto (porta aperta), 0 = non premuto (porta chiusa)."
+    evidence: "Metafora porta aperta/chiusa per input digitale (Lee et al. 2011, K-12 CS education)"
+  if_else:
+    analogy: "if/else e' come un bivio sulla strada: SE piove prendi l'ombrello, ALTRIMENTI metti gli occhiali da sole. Il computer sceglie quale strada prendere."
+    evidence: "Analogia bivio per strutture condizionali validata in Scratch research (Maloney et al. 2010)"
+  variabile_stato:
+    analogy: "Una variabile stato e' come una lavagnetta dove scrivi un numero. Puoi leggerlo, cancellarlo e scriverne uno nuovo. Il programma la usa per ricordare cosa sta succedendo."
+    evidence: "Concetto lavagnetta-variabile efficace per eta' 9-12 (Grover & Pea 2013)"
+  toggle:
+    analogy: "Il toggle e' come l'interruttore della luce di casa: premi una volta = acceso, premi di nuovo = spento. Ogni pressione cambia lo stato."
+    evidence: "Esperienza quotidiana interruttore come bridge verso concetto toggle (Sentance & Csizmadia 2017)"
+
+assessment_invisible:
+  - "Se lo studente prevede quale LED si accendera' alla prossima pressione -> ha capito il toggle"
+  - "Se spiega a un compagno cos'e' la variabile stato -> comprensione profonda"
+  - "Se aggiunge il delay anti-bounce da solo dopo aver visto il problema -> problem solving attivo"
+  - "Se modifica il codice per aggiungere un terzo stato -> estensione autonoma del concetto"

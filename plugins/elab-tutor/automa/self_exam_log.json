@@ -1,0 +1,225 @@
+{
+  "proposals": [
+    {
+      "id": "proposal-001",
+      "pattern_id": "cost-inefficiency",
+      "created_at": "2026-03-24T12:35:11.324197",
+      "status": "validated",
+      "effect_measured_at_cycle": 9,
+      "effect_delta": 0.4,
+      "type": "prompt_rule",
+      "description": "Cicli ad alto costo senza output completato",
+      "action": "Aggiungi regola: 'Se dopo 10 tool call il task non \u00e8 completato, scrivi un partial report e concludi il ciclo. Non esaurire tutti i token.'",
+      "risk": "low",
+      "expected_impact": "Riduzione token sprecati, pi\u00f9 cicli completati",
+      "auto_apply": true,
+      "applied_at": "2026-03-24T12:35:11.325672"
+    },
+    {
+      "id": "proposal-002",
+      "pattern_id": "persistent-warn-ipad",
+      "created_at": "2026-03-24T12:35:11.324272",
+      "status": "proposed",
+      "effect_measured_at_cycle": null,
+      "effect_delta": null,
+      "type": "config_change",
+      "description": "Check 'ipad' in warning da troppi cicli",
+      "action": "Crea task: 'Fix warning persistente check ipad \u2014 analizzare causa e risolvere'",
+      "risk": "medium",
+      "expected_impact": "Riduzione warning cronici che mascherano problemi reali",
+      "auto_apply": false
+    },
+    {
+      "id": "proposal-003",
+      "pattern_id": "score-plateau",
+      "created_at": "2026-03-25T21:01:45.165883",
+      "status": "proposed",
+      "effect_measured_at_cycle": null,
+      "effect_delta": null,
+      "type": "task_generation",
+      "description": "Score composito in stallo \u2014 serve task di miglioramento mirato",
+      "action": "Crea task YAML: 'Revisione metriche evaluate.py \u2014 identificare quale dimensione \u00e8 bloccata e proporre fix concreto'",
+      "risk": "medium",
+      "expected_impact": "Sblocco plateau con intervento mirato su metrica specifica",
+      "auto_apply": false
+    }
+  ],
+  "runs": [
+    {
+      "cycle": 45,
+      "timestamp": "2026-03-24T12:35:11.326497",
+      "patterns_found": 2,
+      "proposals_generated": 2,
+      "proposals_applied": 1,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 60,
+      "timestamp": "2026-03-24T19:03:12.642495",
+      "patterns_found": 2,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 65,
+      "timestamp": "2026-03-24T23:56:22.850346",
+      "patterns_found": 2,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 5,
+      "timestamp": "2026-03-25T03:22:44.131002",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 10,
+      "timestamp": "2026-03-25T09:25:27.031548",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 15,
+      "timestamp": "2026-03-25T13:45:30.853283",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 20,
+      "timestamp": "2026-03-25T16:31:57.064660",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 25,
+      "timestamp": "2026-03-25T18:42:22.645497",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 30,
+      "timestamp": "2026-03-25T21:01:45.167564",
+      "patterns_found": 1,
+      "proposals_generated": 1,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 5,
+      "timestamp": "2026-03-26T01:12:34.049692",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 10,
+      "timestamp": "2026-03-26T02:42:40.998026",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 15,
+      "timestamp": "2026-03-26T04:09:53.172713",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 20,
+      "timestamp": "2026-03-26T05:41:40.388260",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 25,
+      "timestamp": "2026-03-26T07:11:46.286428",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "stable"
+    },
+    {
+      "cycle": 30,
+      "timestamp": "2026-03-26T08:43:12.332671",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 35,
+      "timestamp": "2026-03-26T12:38:30.594916",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 45,
+      "timestamp": "2026-03-26T20:26:18.662029",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "worsening"
+    },
+    {
+      "cycle": 5,
+      "timestamp": "2026-03-27T03:04:01.228837",
+      "patterns_found": 0,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "stable"
+    },
+    {
+      "cycle": 10,
+      "timestamp": "2026-03-27T04:37:52.299981",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 15,
+      "timestamp": "2026-03-27T06:32:26.053762",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 15,
+      "timestamp": "2026-03-27T06:41:06.487340",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    },
+    {
+      "cycle": 20,
+      "timestamp": "2026-03-27T08:43:23.184164",
+      "patterns_found": 1,
+      "proposals_generated": 0,
+      "proposals_applied": 0,
+      "verdict": "improving"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap4-esp1",
+  "volume": 2,
+  "chapter": 4,
+  "title": "Due resistori in parallelo",
+  "chapter_title": "Approfondiamo le Resistenze",
+  "difficulty": 2,
+  "duration_minutes": 40,
+  "target_age": "10-14 anni",
+  "objective": "Scoprire che due resistori uguali in parallelo danno una resistenza totale pari alla meta. Misurare con il multimetro e verificare la formula.",
+  "components_needed": [
+    {
+      "name": "Breadboard mezza",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Resistore 1kohm",
+      "quantity": 2,
+      "icon": "⚡"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "resistore",
+      "resistenza",
+      "parallelo",
+      "ohm",
+      "kohm",
+      "multimetro",
+      "ohmmetro",
+      "breadboard",
+      "totale",
+      "formula",
+      "meta",
+      "corrente",
+      "percorso"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "condensatore",
+      "transistor"
+    ],
+    "note": "Vol 2 Cap 4 — resistenze in parallelo, formula 1/Rtot = 1/R1 + 1/R2."
+  },
+  "prerequisites": [
+    "v2-cap3-esp4"
+  ],
+  "next_experiment": {
+    "id": "v2-cap4-esp2",
+    "title": "Tre resistori in serie",
+    "preview": "Prossimo passo: Tre resistori in serie. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi scopriamo cosa succede mettendo due resistori in parallelo: non si sommano, come ci si aspetterebbe! La resistenza totale e MENO di ciascuno dei due.",
+      "teacher_tip": "Analogia chiave: due porte d'uscita affiancate fanno passare piu persone di una sola portate. Due percorsi paralleli per la corrente riducono la resistenza.",
+      "components_list": "Ti servono: 1 breadboard mezza, 2 resistori da 1kohm, 1 multimetro.",
+      "class_hook": "Se in una classe ci sono 2 porte d'uscita invece di 1, gli studenti escono piu velocemente o piu lentamente? I resistori in parallelo funzionano cosi!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mettiamo i due resistori da 1kohm in parallelo sulla breadboard: entrambi collegati tra le stesse due righe. Poi misuriamo la resistenza totale con il multimetro.",
+      "teacher_tip": "Mostrate chiaramente che in parallelo i terminali sono collegati agli stessi punti. Il multimetro in modalita ohmmetro (circuito SPENTO!) misura la resistenza totale.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap4-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate due resistori 1kohm in parallelo su breadboard",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 1000
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 1000
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Due resistori da 1kohm in parallelo: la resistenza totale sara 2kohm (si sommano), 1kohm (resta uguale), o 500ohm (si dimezza)? Ragionate e fate la vostra previsione!",
+      "teacher_tip": "La risposta e 500ohm. La formula: 1/Rtot = 1/R1 + 1/R2 = 1/1000 + 1/1000 = 2/1000. Rtot = 500ohm. Per resistori uguali e semplice: Rtot = R/n.",
+      "provocative_question": "Se in serie le resistenze si sommano, perche in parallelo non succede lo stesso? Cosa cambia nel percorso della corrente?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Pensare che resistenze in parallelo si sommano",
+          "teacher_response": "In parallelo la corrente ha PIU percorsi, quindi la resistenza totale DIMINUISCE. E l'opposto della serie!",
+          "analogy": "Due porte affiancate fanno passare il doppio delle persone di una sola porta: la 'resistenza al passaggio' dimezza!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Misurate con il multimetro: la resistenza totale e circa 500ohm! Due resistori da 1kohm in parallelo danno esattamente la meta.",
+      "teacher_tip": "Evidenziate entrambi i resistori. Fate la dimostrazione fisica: togli un resistore e misura di nuovo — torna a 1kohm. Rimettilo — dimezza a 500ohm. L'effetto e immediato e visibile.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:r1]",
+        "[AZIONE:highlight:r2]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il multimetro conferma: due resistori da 1kohm in parallelo danno circa 500ohm. La corrente ora ha due strade e la resistenza totale dimezza!",
+      "analogies": [
+        {
+          "concept": "parallelo_porte",
+          "text": "I resistori in parallelo sono come le corsie di un'autostrada: piu corsie ci sono, piu auto passano contemporaneamente. Piu percorsi = meno resistenza al flusso!",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, In parallelo la resistenza diminuisce! Con 2 resistori uguali, Rtot = R/2. Con 3, Rtot = R/3. Piu resistori in parallelo, meno resistenza totale.",
+      "teacher_tip": "Formula generale: 1/Rtot = 1/R1 + 1/R2 + ... Per resistori uguali: Rtot = R/n. Per due diversi: Rtot = (R1*R2)/(R1+R2).",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Resistori in parallelo: la resistenza totale e MENO del singolo resistore! Con 2 da 1kohm: 500ohm. La corrente ha piu percorsi e scorre piu facilmente.",
+      "concepts_learned": [
+        "resistenze in parallelo",
+        "formula 1/Rtot = 1/R1 + 1/R2",
+        "resistenza totale minore del singolo"
+      ],
+      "next_preview": "La prossima volta metteremo tre resistori in serie: le resistenze si sommano!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se prevede correttamente che la resistenza diminuisce → comprensione intuitiva del parallelo",
+    "Se usa la formula 1/Rtot = 1/R1 + 1/R2 → comprensione quantitativa",
+    "Se distingue serie (somma) da parallelo (diminuisce) → comprensione dei due collegamenti"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "resistenze_parallelo",
+      "formula_parallelo",
+      "Rtot_minore"
+    ],
+    "next_suggested": "v2-cap4-esp2",
+    "resume_message": "Avete scoperto i resistori in parallelo! Prossimo: tre resistori in serie."
+  },
+  "analogies": [
+    {
+      "concept": "parallelo_porte",
+      "text": "I resistori in parallelo sono come le corsie di un'autostrada: piu corsie ci sono, piu auto passano contemporaneamente. Piu percorsi = meno resistenza al flusso!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare che resistenze in parallelo si sommano",
+      "teacher_response": "In parallelo la corrente ha PIU percorsi, quindi la resistenza totale DIMINUISCE. E l'opposto della serie!",
+      "analogy": "Due porte affiancate fanno passare il doppio delle persone di una sola porta: la 'resistenza al passaggio' dimezza!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

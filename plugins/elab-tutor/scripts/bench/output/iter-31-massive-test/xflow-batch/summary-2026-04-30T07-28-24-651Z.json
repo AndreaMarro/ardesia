@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "total": 5,
+    "pass": 4
+  },
+  "results": [
+    {
+      "id": "G01",
+      "desc": "mount → speak chain",
+      "sessionId": "6799dbff-4e63-4b9c-9295-c81d893f0337",
+      "chat_status": 200,
+      "chat_latency_ms": 5882,
+      "tts_status": 200,
+      "tts_latency_ms": 2377,
+      "audio_size": 92279,
+      "ok": true
+    },
+    {
+      "id": "G02",
+      "desc": "vision → speak chain",
+      "vision_status": 400,
+      "vision_latency_ms": 233,
+      "vision_response_len": 0,
+      "tts_status": 200,
+      "tts_latency_ms": 902,
+      "audio_size": 12769,
+      "ok": false
+    },
+    {
+      "id": "G03",
+      "desc": "Passo-Passo plurale Ragazzi",
+      "sessionId": "5b308804-9b73-49dc-a070-102dce1ac016",
+      "status": 200,
+      "latency_ms": 4151,
+      "response_text": "Ragazzi, Vol.1 pag. 'Approfondimento: Estensione dei concetti già introdotti per esplorarli con maggiore dettaglio tecnico.. È quando torniam'. Sul kit guardate il LED rosso e la resistenza da 220Ω in serie.\n\n[AZIONE:highlightExperiment:{\"experimentId\":\"\"}] [AZIONE:mountExperiment:{\"experimentId\":\"\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\",\"r1\"]}] [AZIONE:ragRetrieve:{\"query\":\"LED Blink lampeggio digitalWrite delay\",\"topK\":3,\"wikiFusion\":true}]",
+      "ragazzi_present": true,
+      "ok": true
+    },
+    {
+      "id": "G04",
+      "desc": "Switch Vol1 → Vol2",
+      "v1_status": 200,
+      "v1_response": "Ragazzi, «Il diodo LED è un componente elettronico che permette il passaggio della corrente in una sola direzione, emettendo luce» — Vol.1 cap.6. Provate a costruire il circuito con il LED e la resist",
+      "v2_status": 200,
+      "v2_response": "Ragazzi, nel vostro kit ELAB, Vol.2 cap.1 esp.1 vi fa costruire il **circuito più semplice di tutti**: un pulsante che accende un LED! «Un circuito con un pulsante funziona come un interruttore che, q",
+      "ok": true
+    },
+    {
+      "id": "G05",
+      "desc": "Onniscenza recall + Vol/pag",
+      "sessionId": "5d5ee866-ec16-4900-96d7-a87b6408116a",
+      "status": 200,
+      "latency_ms": 3770,
+      "response_text": "Ragazzi, Vol.1 pag.52 'il LED ha polarità: gamba lunga verso il +'. Sul kit ruotate il LED di 180 gradi: gamba lunga vicino alla riga rossa.\n\n[AZIONE:captureScreenshot:{\"purpose\":\"diagnose-led-polarity\",\"focus\":\"led1\"}] [AZIONE:askUNLIM:{\"query\":\"Vedi il LED del kit fisico: anodo gamba lunga verso + o gamba corta? Ribaltato?\",\"context\":\"Vol.1 cap.6 polarità LED\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\"],\"color\":\"red\",\"animation\":\"rotate-180\"}] [AZIONE:showNudge:{\"text\":\"Ragazzi, ruotate il LED di 180°: gamba lunga (anodo) verso la riga rossa del +\",\"position\":\"near-component\",\"duration_ms\":5000}]",
+      "vol_pag_cited": true,
+      "ok": true
+    }
+  ]
+}

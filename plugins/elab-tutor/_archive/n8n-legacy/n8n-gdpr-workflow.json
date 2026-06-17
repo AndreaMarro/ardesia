@@ -1,0 +1,52 @@
+{
+  "name": "ELAB GDPR Service",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-gdpr",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-gdpr",
+      "name": "Webhook GDPR",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ELAB GDPR Service — n8n Code Node V4\n// Andrea Marro — 17/02/2026\n// Schema aligned to Notion DB '\ud83d\udd12 GDPR Requests'\n// Uses this.helpers.httpRequest (no fetch, no returnFullResponse)\n\nconst NOTION_TOKEN = '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';\nconst NOTION_DB = 'e2e0c070301b4813a7c5378a2d46758a';\nconst NOTION_API = 'https://api.notion.com/v1';\n\n// Robust body extraction: webhook v2 wraps POST body under .body\nconst raw = $input.first().json;\nconst body = raw.body || raw;\nconst action = body.action || 'unknown';\n\n// --- HTTP helper (n8n sandbox — NO fetch, NO returnFullResponse) ---\nasync function notionRequest(method, path, data) {\n  const options = {\n    method,\n    url: NOTION_API + path,\n    headers: {\n      'Authorization': 'Bearer ' + NOTION_TOKEN,\n      'Notion-Version': '2022-06-28',\n      'Content-Type': 'application/json'\n    }\n  };\n  if (data) options.body = data;\n  return await this.helpers.httpRequest(options);\n}\n\nasync function notionCreate(properties) {\n  return await notionRequest.call(this, 'POST', '/pages', {\n    parent: { database_id: NOTION_DB },\n    properties\n  });\n}\n\nasync function notionQuery(filter) {\n  return await notionRequest.call(this, 'POST', '/databases/' + NOTION_DB + '/query', { filter });\n}\n\nasync function notionUpdate(pageId, properties) {\n  return await notionRequest.call(this, 'PATCH', '/pages/' + pageId, { properties });\n}\n\n// --- Notion property helpers ---\nconst textProp = (v) => ({ rich_text: [{ text: { content: String(v || '') } }] });\nconst titleProp = (v) => ({ title: [{ text: { content: String(v || '') } }] });\nconst selectProp = (v) => ({ select: { name: String(v || '') } });\nconst emailProp = (v) => ({ email: String(v || '') });\nconst numProp = (v) => ({ number: Number(v) || 0 });\nconst checkProp = (v) => ({ checkbox: Boolean(v) });\nconst dateProp = () => ({ date: { start: new Date().toISOString() } });\n\n// --- Token generator ---\nfunction makeToken() {\n  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';\n  let token = 'tok_';\n  for (let i = 0; i < 24; i++) {\n    token += chars[Math.floor(Math.random() * chars.length)];\n  }\n  return token;\n}\n\n// --- Action mapping (Italian select options) ---\nconst TIPO_MAP = {\n  'delete': 'Eliminazione Dati',\n  'export': 'Esportazione Dati',\n  'correct': 'Rettifica Dati',\n  'revoke': 'Revoca Consenso',\n  'parental-consent': 'Consenso Parentale',\n  'verify-parental-consent': 'Verifica Parentale'\n};\n\nlet result = { success: false, action };\n\ntry {\n  if (action === 'delete') {\n    const page = await notionCreate.call(this, {\n      'Name': titleProp('DEL-' + Date.now()),\n      'Tipo': selectProp(TIPO_MAP[action]),\n      'User ID': textProp(body.userId),\n      'Motivo': textProp(body.reason),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp()\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta eliminazione registrata' };\n\n  } else if (action === 'parental-consent') {\n    const token = makeToken();\n    const page = await notionCreate.call(this, {\n      'Name': titleProp('PC-' + Date.now()),\n      'Tipo': selectProp(TIPO_MAP[action]),\n      'Dettagli': textProp('Minore: ' + (body.childName || '')),\n      'Et\\u00e0 Minore': numProp(body.childAge),\n      'Email Genitore': emailProp(body.parentEmail),\n      'Nome Genitore': textProp(body.parentName),\n      'Metodo Consenso': selectProp(body.consentMethod === 'firma' ? 'Firma Digitale' : 'Email'),\n      'COPPA': checkProp(true),\n      'Stato': selectProp('In Attesa Verifica'),\n      'Token Verifica': textProp(token),\n      'Data Richiesta': dateProp()\n    });\n    result = { success: true, action, pageId: page.id, token, message: 'Richiesta consenso parentale registrata' };\n\n  } else if (action === 'export') {\n    const page = await notionCreate.call(this, {\n      'Name': titleProp('EXP-' + Date.now()),\n      'Tipo': selectProp(TIPO_MAP[action]),\n      'User ID': textProp(body.userId),\n      'Email': emailProp(body.email || ''),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp()\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta esportazione registrata' };\n\n  } else if (action === 'revoke') {\n    const page = await notionCreate.call(this, {\n      'Name': titleProp('REV-' + Date.now()),\n      'Tipo': selectProp(TIPO_MAP[action]),\n      'User ID': textProp(body.userId),\n      'Stato': selectProp('Completata'),\n      'Data Richiesta': dateProp(),\n      'Data Completamento': dateProp()\n    });\n    result = { success: true, action, pageId: page.id, message: 'Consenso revocato' };\n\n  } else if (action === 'verify-parental-consent') {\n    const qData = await notionQuery.call(this, {\n      property: 'Token Verifica',\n      rich_text: { equals: body.token || '' }\n    });\n    const results = qData.results || [];\n    if (results.length > 0) {\n      const pageId = results[0].id;\n      await notionUpdate.call(this, pageId, {\n        'Stato': selectProp('Completata'),\n        'Data Completamento': dateProp()\n      });\n      result = { success: true, action, verified: true, message: 'Consenso verificato' };\n    } else {\n      result = { success: false, action, verified: false, message: 'Token non valido' };\n    }\n\n  } else if (action === 'correct') {\n    const page = await notionCreate.call(this, {\n      'Name': titleProp('COR-' + Date.now()),\n      'Tipo': selectProp(TIPO_MAP[action]),\n      'User ID': textProp(body.userId),\n      'Dettagli': textProp(JSON.stringify(body.corrections)),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp()\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta rettifica registrata' };\n\n  } else {\n    result = { success: false, action, message: 'Azione non riconosciuta: ' + action };\n  }\n} catch (error) {\n  result = { success: false, action, error: error.message };\n}\n\nreturn [{ json: result }];"
+      },
+      "id": "code-gdpr",
+      "name": "GDPR Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook GDPR": {
+      "main": [
+        [
+          {
+            "node": "GDPR Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateId": "custom",
+    "instanceId": "elab-gdpr-service"
+  }
+}

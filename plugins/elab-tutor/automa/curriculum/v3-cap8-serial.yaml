@@ -1,0 +1,69 @@
+# Curriculum YAML — v3-cap8-serial
+# "analogRead + Serial Monitor"
+
+experiment_id: v3-cap8-serial
+volume: 3
+chapter: 8
+title: "analogRead + Serial Monitor"
+
+prerequisites:
+  - v3-cap7-mini
+
+concepts_introduced:
+  - analogRead
+  - Serial_println
+  - valore_analogico
+  - range_0_1023
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 1 potenziometro (10k ohm),
+    fili. Obiettivo: leggere un valore analogico (non solo 0/1 ma da 0 a 1023) e
+    visualizzarlo sul Serial Monitor. E' il primo esperimento dove il computer "parla"
+    allo studente mostrando numeri. Non servono LED — tutto si vede sullo schermo.
+  during_class: >
+    Fai collegare il potenziometro al pin A0. Apri il codice: analogRead(A0) legge il
+    valore, Serial.println lo stampa. Apri il Serial Monitor e fai girare la manopola.
+    I numeri cambiano! Chiedi: "Cosa succede al numero quando girate tutto a destra?
+    E a sinistra?" Fai scoprire che va da 0 a 1023. Sfida: "A quale numero siamo a
+    meta'?" (~512). Seconda sfida: usate il valore per controllare un LED (se > 512
+    acceso, altrimenti spento).
+  common_question: >
+    "Perche' 1023 e non 100?" -> Il convertitore dentro Arduino ha 10 bit, cioe' conta
+    da 0 a 1023. E' come un righello con 1024 tacche invece di 100. Piu' tacche = piu'
+    precisione.
+
+common_mistakes:
+  - mistake: "Collegano il potenziometro al pin digitale invece che analogico (A0-A5)"
+    what_to_do: "Mostra sulla scheda la differenza: i pin analogici hanno la A davanti. Solo quelli leggono valori da 0 a 1023."
+    analogy: "I pin digitali sono come interruttori (si/no), quelli analogici come termometri (un valore preciso)"
+  - mistake: "Serial Monitor mostra caratteri strani"
+    what_to_do: "Controlla il baud rate: nel codice Serial.begin(9600) e nel monitor deve esserci 9600. Se sono diversi, parlano lingue diverse."
+    analogy: "E' come due walkie-talkie su canali diversi — si sentono ma non si capiscono"
+  - mistake: "Dimenticano Serial.begin() nel setup"
+    what_to_do: "Senza Serial.begin il computer non apre il canale di comunicazione. E' la prima cosa da fare, come accendere la radio prima di parlare."
+    analogy: null
+
+analogies:
+  analogRead:
+    analogy: "analogRead e' come un termometro: invece di dire solo 'caldo' o 'freddo' (digitale), ti da' un numero preciso. Il potenziometro e' la manopola che cambia la 'temperatura'."
+    evidence: "Analogia termometro per sensori analogici validata in contesti educativi (Blikstein 2013)"
+  Serial_println:
+    analogy: "Serial.println e' come far scrivere un messaggio al computer su un foglio che tu puoi leggere. Ogni volta che il programma arriva a quella riga, scrive un nuovo numero."
+    evidence: "Output testuale come feedback primario per debugging in educazione CS (Pea & Kurland 1984)"
+  valore_analogico:
+    analogy: "Un valore analogico e' come il volume della musica: non e' solo acceso/spento, ma puoi scegliere quanto forte. Da 0 (silenzio) a 1023 (volume massimo)."
+    evidence: "Analogia volume-range validata per introduzione concetti analogici (Resnick et al. 2009)"
+  range_0_1023:
+    analogy: "Immagina un righello con 1024 tacche: 0 e' il bordo sinistro, 1023 e' il bordo destro. Il potenziometro e' come il dito che scorre sul righello."
+    evidence: "Visualizzazione lineare di range numerici efficace per eta' 10+ (Siegler & Booth 2004)"
+
+assessment_invisible:
+  - "Se lo studente prevede che girando la manopola il numero sale -> ha capito il collegamento fisico-digitale"
+  - "Se dice 'meta' e' circa 512' -> ha intuito il range"
+  - "Se usa il valore letto per controllare qualcos'altro (LED, soglia) -> transfer di conoscenza"
+  - "Se cambia il Serial.println per stampare anche un testo ('Valore: ...') -> padronanza dell'output"

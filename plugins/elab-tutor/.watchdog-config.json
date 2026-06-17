@@ -1,0 +1,39 @@
+{
+  "project": "ELAB Tutor",
+  "source": "watchdog-elab",
+  "prod_url": "https://www.elabtutor.school",
+  "supabase_edge_base": "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1",
+  "edge_functions": [
+    {
+      "name": "unlim-chat",
+      "payload": "{\"message\":\"spiegami questo esperimento\",\"sessionId\":\"watchdog-pz3\",\"experimentId\":\"v1-cap6-esp1\"}",
+      "check_tone": true
+    },
+    {
+      "name": "unlim-hints",
+      "payload": "{\"experimentId\":\"v1-cap6-esp1\",\"currentStep\":0,\"difficulty\":\"base\"}",
+      "check_tone": false
+    },
+    {
+      "name": "unlim-diagnose",
+      "payload": "{\"circuitState\":{\"components\":[{\"id\":\"led1\",\"type\":\"led\"}],\"wires\":[]}}",
+      "check_tone": false
+    }
+  ],
+  "principio_zero_v3_patterns": {
+    "required_any_of": ["Ragazzi", "ragazzi"],
+    "forbidden": ["Docente, leggi", "Insegnante, leggi", "Docente leggi", "Insegnante leggi"]
+  },
+  "thresholds": {
+    "pr_draft_stuck_hours": 2,
+    "ci_fail_lookback_hours": 2,
+    "cli_idle_minutes": 60,
+    "response_time_max_seconds": 10
+  },
+  "monitored_branches": [
+    "feature/vision-e2e-live",
+    "feature/fumetto-report-mvp",
+    "feature/brand-alignment-ui"
+  ],
+  "github_repo": "AndreaMarro/elab-tutor"
+}

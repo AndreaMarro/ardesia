@@ -1,0 +1,93 @@
+# Curriculum YAML — v2-cap12-esp1
+# "Robot Segui Luce"
+
+experiment_id: v2-cap12-esp1
+volume: 2
+chapter: 12
+title: "Robot Segui Luce"
+
+prerequisites:
+  - v2-cap10-esp4
+  - v2-cap9-esp2
+
+concepts_introduced:
+  - progetto_finale_v2
+  - robot_autonomo
+  - fototransistor_motore
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - motore
+  - fototransistor
+  - transistor
+  - MOSFET
+  - gate
+  - drain
+  - source
+  - sensore
+  - luce
+  - robot
+  - breadboard
+  - automatico
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 2 fototransistor, 2 motori DC (o 1 motore + ruote),
+    2 MOSFET, resistori vari (1k, 10k, 330 ohm), 1 batteria (pile AA x4 = 6V),
+    fili, un telaio semplice (cartone rigido). Questo e' il progetto finale del Vol2 —
+    richiede 2-3 lezioni. Prepara il telaio in anticipo o fai costruire ai ragazzi.
+  during_class: >
+    Il robot ha 2 fototransistor (occhi) e 2 motori (ruote). Ogni fototransistor
+    controlla un MOSFET che accende un motore. Luce a destra -> gira a destra.
+    Luce a sinistra -> gira a sinistra. Luce davanti -> va dritto!
+    Fai costruire per gradi: prima 1 lato, testa con la torcia, poi l'altro lato.
+    "Avete costruito un robot autonomo senza Arduino e senza programmi!"
+  common_question: >
+    "Come fa a seguire la luce?" -> Ogni occhio controlla la ruota opposta. Se la
+    luce viene da destra, il fototransistor destro attiva la ruota sinistra e il
+    robot gira verso la luce. E' lo stesso principio dei robot veri degli anni '50!
+
+common_mistakes:
+  - mistake: "I motori girano nello stesso senso — il robot gira in cerchio"
+    what_to_do: "Controlla che ogni fototransistor controlli la ruota OPPOSTA. Destra controlla sinistra e viceversa."
+    analogy: "Come le redini del cavallo — tiri a destra, il cavallo va a sinistra"
+  - mistake: "Robot non risponde alla luce — fototransistor troppo lontani dalla luce"
+    what_to_do: "Usa la torcia del telefono vicino. In una stanza molto luminosa la differenza e' troppo piccola."
+    analogy: null
+  - mistake: "MOSFET non si attiva — tensione dal fototransistor insufficiente"
+    what_to_do: "Regola i resistori del partitore. Prova 10k al posto di 1k per aumentare la tensione al gate."
+    analogy: null
+
+analogies:
+  robot_autonomo:
+    analogy: "Questo robot segui-luce funziona come la falena che vola verso la lampada — non ha un 'cervello' programmato, ma un circuito semplice che la fa muovere verso la luce piu' forte."
+    evidence: "Riferimento ai veicoli di Braitenberg (1984), paradigma classico di robotica comportamentale"
+  fototransistor_motore:
+    analogy: "Il fototransistor collegato al motore e' come un occhio collegato a una gamba — l'occhio vede la luce e la gamba si muove in quella direzione. Senza cervello, solo un collegamento diretto."
+    evidence: "Analogia sensore-attuatore, fondamento della robotica reattiva (Brooks 1991)"
+
+assessment_invisible:
+  - "Se lo studente fa funzionare il robot seguendo la torcia -> progetto completato con successo"
+  - "Se spiega il collegamento incrociato (occhio dx -> ruota sx) -> comprensione del sistema"
+  - "Se modifica il circuito per migliorare la risposta -> capacita' di iterazione progettuale"
+  - "Se dice 'non serve un computer per fare un robot' -> comprensione profonda del Vol2"

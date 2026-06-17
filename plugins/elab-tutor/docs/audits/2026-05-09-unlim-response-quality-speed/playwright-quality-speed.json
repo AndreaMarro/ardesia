@@ -1,0 +1,470 @@
+{
+  "generatedAt": "2026-05-09T22:59:02.403Z",
+  "baseUrl": "https://elab-tutor-mvrg7h18w-andreas-projects-6d4e9791.vercel.app",
+  "thresholds": {
+    "firstUiFeedbackMs": 100,
+    "localUsefulResponseMs": 500,
+    "knownOperationalResponseMs": 1500,
+    "localActionVerifiedMs": 3000,
+    "apiReadyMs": 10000,
+    "horizontalOverflowPx": 24
+  },
+  "viewportResults": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1366,
+        "height": 768
+      },
+      "apiReadyMs": 9570,
+      "measurements": [
+        {
+          "text": "fai tu, sono in panico",
+          "expectedText": "Parto dal gesto piu sicuro",
+          "requiredActions": [],
+          "firstUiFeedbackMs": 29.699999999953434,
+          "firstUsefulResponseMs": 132,
+          "actionVerifiedMs": null,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1366,
+            "innerWidth": 1366,
+            "actions": [],
+            "actionProof": {
+              "showEditor": false,
+              "setEditorMode": false,
+              "setEditorCode": false,
+              "compile": false,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Prepara codice Arduino per semaforo e compila",
+          "expectedText": "semaforo a tre LED",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "setEditorCode",
+            "compile"
+          ],
+          "firstUiFeedbackMs": 12.300000000046566,
+          "firstUsefulResponseMs": 739,
+          "actionVerifiedMs": 926,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1366,
+            "innerWidth": 1366,
+            "actions": [
+              {
+                "name": "loadExperiment",
+                "ok": true,
+                "ms": 5.5
+              },
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0.09999999986030161
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.19999999995343387
+              },
+              {
+                "name": "setEditorCode",
+                "ok": true,
+                "ms": 0.09999999986030161
+              },
+              {
+                "name": "getEditorCode",
+                "ok": true,
+                "ms": 0.10000000009313226
+              },
+              {
+                "name": "compile",
+                "ok": true,
+                "ms": 365.5
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Apri Scratch e carica i blocchi per far lampeggiare il LED",
+          "expectedText": "editor a blocchi",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "loadScratchWorkspace"
+          ],
+          "firstUiFeedbackMs": 14.199999999953434,
+          "firstUsefulResponseMs": 192,
+          "actionVerifiedMs": 255,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1366,
+            "innerWidth": 1366,
+            "actions": [
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0.10000000009313226
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.19999999995343387
+              },
+              {
+                "name": "loadScratchWorkspace",
+                "ok": true,
+                "ms": 0.19999999995343387
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": true
+            }
+          }
+        }
+      ],
+      "health": {
+        "bodyLength": 2065,
+        "title": "ELAB Tutor — Simulatore di Elettronica e Arduino per la Scuola",
+        "url": "https://elab-tutor-mvrg7h18w-andreas-projects-6d4e9791.vercel.app/#lavagna",
+        "whiteScreen": false,
+        "objectObject": false,
+        "oldWaitingCopy": false,
+        "autoplayMedia": 0,
+        "horizontalOverflowPx": 0
+      }
+    },
+    {
+      "viewport": {
+        "name": "ipad",
+        "width": 1024,
+        "height": 1366
+      },
+      "apiReadyMs": 6031,
+      "measurements": [
+        {
+          "text": "fai tu, sono in panico",
+          "expectedText": "Parto dal gesto piu sicuro",
+          "requiredActions": [],
+          "firstUiFeedbackMs": 24.199999999953434,
+          "firstUsefulResponseMs": 128,
+          "actionVerifiedMs": null,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1024,
+            "innerWidth": 1024,
+            "actions": [],
+            "actionProof": {
+              "showEditor": false,
+              "setEditorMode": false,
+              "setEditorCode": false,
+              "compile": false,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Prepara codice Arduino per semaforo e compila",
+          "expectedText": "semaforo a tre LED",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "setEditorCode",
+            "compile"
+          ],
+          "firstUiFeedbackMs": 14.600000000093132,
+          "firstUsefulResponseMs": 655,
+          "actionVerifiedMs": 716,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1024,
+            "innerWidth": 1024,
+            "actions": [
+              {
+                "name": "loadExperiment",
+                "ok": true,
+                "ms": 4.899999999906868
+              },
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0.09999999986030161
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.20000000018626451
+              },
+              {
+                "name": "setEditorCode",
+                "ok": true,
+                "ms": 0.09999999986030161
+              },
+              {
+                "name": "getEditorCode",
+                "ok": true,
+                "ms": 0
+              },
+              {
+                "name": "compile",
+                "ok": true,
+                "ms": 290.19999999995343
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Apri Scratch e carica i blocchi per far lampeggiare il LED",
+          "expectedText": "editor a blocchi",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "loadScratchWorkspace"
+          ],
+          "firstUiFeedbackMs": 14,
+          "firstUsefulResponseMs": 119,
+          "actionVerifiedMs": 183,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 1024,
+            "innerWidth": 1024,
+            "actions": [
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.19999999995343387
+              },
+              {
+                "name": "loadScratchWorkspace",
+                "ok": true,
+                "ms": 0.20000000018626451
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": true
+            }
+          }
+        }
+      ],
+      "health": {
+        "bodyLength": 1988,
+        "title": "ELAB Tutor — Simulatore di Elettronica e Arduino per la Scuola",
+        "url": "https://elab-tutor-mvrg7h18w-andreas-projects-6d4e9791.vercel.app/#lavagna",
+        "whiteScreen": false,
+        "objectObject": false,
+        "oldWaitingCopy": false,
+        "autoplayMedia": 0,
+        "horizontalOverflowPx": 0
+      }
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "apiReadyMs": 5041,
+      "measurements": [
+        {
+          "text": "fai tu, sono in panico",
+          "expectedText": "Parto dal gesto piu sicuro",
+          "requiredActions": [],
+          "firstUiFeedbackMs": 44.199999999953434,
+          "firstUsefulResponseMs": 302,
+          "actionVerifiedMs": null,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 390,
+            "innerWidth": 390,
+            "actions": [],
+            "actionProof": {
+              "showEditor": false,
+              "setEditorMode": false,
+              "setEditorCode": false,
+              "compile": false,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Prepara codice Arduino per semaforo e compila",
+          "expectedText": "semaforo a tre LED",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "setEditorCode",
+            "compile"
+          ],
+          "firstUiFeedbackMs": 32.800000000046566,
+          "firstUsefulResponseMs": 982,
+          "actionVerifiedMs": 1051,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 390,
+            "innerWidth": 390,
+            "actions": [
+              {
+                "name": "loadExperiment",
+                "ok": true,
+                "ms": 5
+              },
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0.10000000009313226
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.30000000004656613
+              },
+              {
+                "name": "setEditorCode",
+                "ok": true,
+                "ms": 0.09999999986030161
+              },
+              {
+                "name": "getEditorCode",
+                "ok": true,
+                "ms": 0.19999999995343387
+              },
+              {
+                "name": "compile",
+                "ok": true,
+                "ms": 455.10000000009313
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": false
+            }
+          }
+        },
+        {
+          "text": "Apri Scratch e carica i blocchi per far lampeggiare il LED",
+          "expectedText": "editor a blocchi",
+          "requiredActions": [
+            "showEditor",
+            "setEditorMode",
+            "loadScratchWorkspace"
+          ],
+          "firstUiFeedbackMs": 18.399999999906868,
+          "firstUsefulResponseMs": 539,
+          "actionVerifiedMs": 970,
+          "state": {
+            "thinkingCount": 0,
+            "oldElaborandoCount": 0,
+            "objectObject": false,
+            "autoplayMedia": 0,
+            "scrollWidth": 390,
+            "innerWidth": 390,
+            "actions": [
+              {
+                "name": "showEditor",
+                "ok": true,
+                "ms": 0
+              },
+              {
+                "name": "setEditorMode",
+                "ok": true,
+                "ms": 0.10000000009313226
+              },
+              {
+                "name": "loadScratchWorkspace",
+                "ok": true,
+                "ms": 0.10000000009313226
+              }
+            ],
+            "actionProof": {
+              "showEditor": true,
+              "setEditorMode": true,
+              "setEditorCode": true,
+              "compile": true,
+              "loadScratchWorkspace": true
+            }
+          }
+        }
+      ],
+      "health": {
+        "bodyLength": 2225,
+        "title": "ELAB Tutor — Simulatore di Elettronica e Arduino per la Scuola",
+        "url": "https://elab-tutor-mvrg7h18w-andreas-projects-6d4e9791.vercel.app/#lavagna",
+        "whiteScreen": false,
+        "objectObject": false,
+        "oldWaitingCopy": false,
+        "autoplayMedia": 0,
+        "horizontalOverflowPx": 0
+      }
+    }
+  ],
+  "screenshots": [
+    "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/docs/audits/2026-05-09-unlim-response-quality-speed/playwright-desktop.png",
+    "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/docs/audits/2026-05-09-unlim-response-quality-speed/playwright-ipad.png",
+    "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/docs/audits/2026-05-09-unlim-response-quality-speed/playwright-mobile.png"
+  ],
+  "console": {
+    "errors": [],
+    "warnings": []
+  },
+  "requestFailures": [],
+  "verdict": "PASS",
+  "failures": []
+}

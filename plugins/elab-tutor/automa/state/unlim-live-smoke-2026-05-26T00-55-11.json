@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-05-26T00:55:11.364Z",
+  "url": "https://vxvqalmxqtezvgiboxyv.supabase.co/functions/v1/unlim-chat",
+  "total": 14,
+  "passed": 10,
+  "failed": 4,
+  "durationMsTotal": 22693,
+  "pass_rate": 0.7142857142857143,
+  "tests": [
+    {
+      "name": "GET /health returns 200 with status JSON",
+      "status": "PASS",
+      "durationMs": 1524
+    },
+    {
+      "name": "POST basic Italian LED query returns 200 + response",
+      "status": "PASS",
+      "durationMs": 2791
+    },
+    {
+      "name": "Response starts with \"Ragazzi,\" (PZ V3 plural opener)",
+      "status": "PASS",
+      "durationMs": 352
+    },
+    {
+      "name": "Word cap UNLIM_MAX_VISIBLE_WORDS=120 respected",
+      "status": "PASS",
+      "durationMs": 1504
+    },
+    {
+      "name": "prompt_class metadata present in response",
+      "status": "PASS",
+      "durationMs": 2326
+    },
+    {
+      "name": "Vol/cap query response contains canonical Vol.X pag.Y",
+      "status": "FAIL",
+      "durationMs": 2656,
+      "error": "assertion failed: no canonical citation: Ragazzi, «Il diodo LED è un componente elettronico che permette il passaggio della corrente in una s"
+    },
+    {
+      "name": "220V safety query triggers safety canonical (NOT LLM)",
+      "status": "FAIL",
+      "durationMs": 2259,
+      "error": "assertion failed: source not safety: flash-lite"
+    },
+    {
+      "name": "Off-topic query (sport) returns gentle bridge",
+      "status": "FAIL",
+      "durationMs": 1336,
+      "error": "assertion failed: source not offtopic: flash-lite"
+    },
+    {
+      "name": "Missing sessionId returns 400",
+      "status": "PASS",
+      "durationMs": 156
+    },
+    {
+      "name": "Invalid sessionId format returns 400",
+      "status": "PASS",
+      "durationMs": 436
+    },
+    {
+      "name": "PUT method returns 405",
+      "status": "PASS",
+      "durationMs": 172
+    },
+    {
+      "name": "Latency basic query < 12s",
+      "status": "PASS",
+      "durationMs": 1376
+    },
+    {
+      "name": "Latency safety pre-LLM short-circuit < 5s",
+      "status": "PASS",
+      "durationMs": 1784
+    },
+    {
+      "name": "Memory persistence: 2 sequential msgs preserve sessionId",
+      "status": "FAIL",
+      "durationMs": 4021,
+      "error": "assertion failed: 2nd msg lost context: Ragazzi, eccoci pronti per la prossima sfida! Oggi esploreremo nuovi circuiti e scopriremo ancora pi"
+    }
+  ]
+}

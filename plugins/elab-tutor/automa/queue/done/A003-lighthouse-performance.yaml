@@ -1,0 +1,18 @@
+type: performance
+priority: low
+title: Lighthouse Performance Issues
+description: |
+This suggests potential issues with: 
+reproduction: 
+- Run: "npx lighthouse https://www.elabtutor.school"
+- See LanternError: rootNode not found
+expected: Lighthouse runs successfully and provides performance metrics
+actual: Lighthouse fails with trace engine errors
+files_to_check: 
+impact: Cannot properly measure and optimize performance, score below target
+created: 2026-03-24
+source: audit-cycle
+claimed_at: "2026-03-24T08:20:46.404787"
+claimed_by: orchestrator
+completed_at: "2026-03-24T08:26:28.272799"
+result: ok

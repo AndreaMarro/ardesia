@@ -1,0 +1,83 @@
+# Curriculum YAML — v1-cap9-esp6
+# "Lampada RGB con 3 potenziometri"
+
+experiment_id: v1-cap9-esp6
+volume: 1
+chapter: 9
+title: "Lampada RGB con 3 potenziometri"
+
+prerequisites:
+  - v1-cap9-esp1  # Sa usare il potenziometro
+  - v1-cap9-esp5  # Sa mescolare colori con pot
+  - v1-cap8-esp4  # Sa che 3 canali creano qualsiasi colore
+
+concepts_introduced:
+  - controllo_indipendente_3_canali
+  - spazio_colore_continuo
+  - qualsiasi_colore_possibile
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - rosso
+  - verde
+  - blu
+  - colore
+  - sfumatura
+  - luminosita
+  - regolare
+  - mescolare
+  - lampada
+  - qualsiasi
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - PWM
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 3 resistenze 220 ohm, 3 potenziometri 10K, breadboard,
+    batteria 9V. Ogni pot controlla un canale (R, G, B) indipendentemente.
+    Questo e il circuito culminante del capitolo — il "momento wow".
+  during_class: >
+    "Adesso avete 3 manopole — una per il rosso, una per il verde, una per il blu.
+    Potete creare QUALSIASI colore!" Sfide: "Chi riesce a fare l'arancione? Il rosa?
+    Il turchese? Il colore dei vostri occhi?" Lavoro in gruppi, confrontate i colori.
+  common_question: >
+    "Come funzionano i veri schermi?" -> Esattamente cosi! Ogni pixel del tuo
+    telefono ha 3 LED microscopici (rosso, verde, blu) con intensita regolabile.
+    Tu hai appena costruito un pixel gigante!
+
+common_mistakes:
+  - mistake: "Confusione su quale pot controlla quale colore"
+    what_to_do: "Etichetta i pot con R, G, B (nastro adesivo colorato sui pomelli)"
+    analogy: null
+  - mistake: "Troppi fili, circuito disordinato"
+    what_to_do: "Fai prima uno schema semplice alla lavagna: 3 circuiti paralleli che condividono il catodo"
+    analogy: null
+
+analogies:
+  spazio_colore_continuo:
+    analogy: "Hai costruito una tavolozza infinita! Con 3 manopole puoi creare milioni di colori — e cosi che funziona lo schermo del tuo telefono, del computer, e della TV. Ogni pixel e un piccolo LED RGB come il tuo."
+    evidence: "Collegamento mondo reale per motivazione intrinseca (Csikszentmihalyi 1990)"
+
+assessment_invisible:
+  - "Se lo studente crea colori complessi (rosa, turchese, oro) -> padronanza del mixing"
+  - "Se dice 'e come un pixel!' -> transfer al mondo reale"
+  - "Se documenta le posizioni dei pot per ricreare un colore -> metodo scientifico"
+  - "Se chiede 'posso controllare con il computer?' -> pronto per Arduino (Vol3)"

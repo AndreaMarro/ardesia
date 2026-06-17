@@ -1,0 +1,287 @@
+{
+  "sprint": "sett-1-stabilize",
+  "sprint_period": "2026-04-21_to_2026-04-27",
+  "updated_at": "2026-04-21T18:30:00Z",
+  "current_day": "day-03",
+  "owner": "Andrea Marro + Tea Lea (volunteer da mer 23/04)",
+  "goal": "Score benchmark 2.77 -> 6.0+, 6/6 bug T1 fixed, Tea autoflow, Vol 3 P0 parity, 92 foto TRES JOLIE",
+  "baseline": {
+    "test_count": 12149,
+    "benchmark_score": 4.06,
+    "build_status": "PASS",
+    "branch": "feature/pdr-ambizioso-8-settimane",
+    "last_commit": "109cb33",
+    "unpushed_commits": 0
+  },
+  "sprint_contract_ref": "docs/sprints/sprint-1-contract.md",
+  "columns": {
+    "backlog": [
+      {
+        "id": "T1-004",
+        "title": "Bug T1 #4: Vision non testata live E2E",
+        "priority": "P1",
+        "estimated_hours": 3,
+        "files_impacted": ["tests/e2e/vision-circuit.spec.js"],
+        "depends_on": []
+      },
+      {
+        "id": "T1-005",
+        "title": "Bug T1 #5: Dashboard pochi dati reali (resume Supabase)",
+        "priority": "P1",
+        "estimated_hours": 2,
+        "files_impacted": ["src/services/teacherDataService.js"],
+        "depends_on": ["DAY02-SUPABASE-REF"]
+      },
+      {
+        "id": "T1-006",
+        "title": "Bug T1 #6: Voice E2E 36 comandi",
+        "priority": "P1",
+        "estimated_hours": 4,
+        "files_impacted": ["tests/e2e/voice-commands.spec.js"],
+        "depends_on": ["T1-003"]
+      },
+      {
+        "id": "T1-007",
+        "title": "92 foto TRES JOLIE batch import (PTC asyncio)",
+        "priority": "P1",
+        "estimated_hours": 2,
+        "files_impacted": ["public/tres-jolie/*", "scripts/import-tres-jolie.py"],
+        "depends_on": []
+      },
+      {
+        "id": "T1-008",
+        "title": "Vol 3 cap 6-8 bookText parity 100%",
+        "priority": "P1",
+        "estimated_hours": 4,
+        "files_impacted": ["src/data/volume-references.js"],
+        "depends_on": []
+      },
+      {
+        "id": "T1-010",
+        "title": "claude-mem corpus build pdr-ambizioso",
+        "priority": "P2",
+        "estimated_hours": 1,
+        "files_impacted": [],
+        "depends_on": []
+      },
+      {
+        "id": "DAY02-DIRTY-TRIAGE",
+        "title": "152 dirty files triage (carry-over, nessuna regression)",
+        "priority": "P2",
+        "estimated_hours": 2,
+        "files_impacted": [],
+        "depends_on": []
+      },
+      {
+        "id": "DAY02-PRODUCT-BACKLOG",
+        "title": "Product backlog gerarchico (Epic -> Story -> Task)",
+        "priority": "P2",
+        "estimated_hours": 1,
+        "files_impacted": ["docs/pdr-ambizioso/BACKLOG.md"],
+        "depends_on": [],
+        "assigned_to": "tpm"
+      },
+      {
+        "id": "DAY02-NO-REGRESSION-DRYRUN",
+        "title": "no-regression-guard.sh --dry-run flag (ALREADY IMPLEMENTED)",
+        "priority": "P3",
+        "estimated_hours": 0,
+        "files_impacted": ["scripts/cli-autonomous/no-regression-guard.sh"],
+        "depends_on": [],
+        "status": "false_blocker_resolved",
+        "notes": "Verificato Day 02: --dry-run gia' supportato lines 46,69,89,102,113. Auditor/TPM mistake."
+      }
+    ],
+    "todo": [
+      {
+        "id": "T1-003",
+        "title": "Bug T1 #3: Render cold start 18s warmup cron",
+        "priority": "P0",
+        "estimated_hours": 2,
+        "files_impacted": ["scripts/warmup.js", ".github/workflows/render-warmup.yml"],
+        "depends_on": [],
+        "assigned_to": "dev",
+        "assigned_at": "2026-04-22T09:00:00Z",
+        "day": "day-02",
+        "notes": "Cron warmup ping Render every 10min via GH Action o Supabase Edge scheduled. Verifica TTFT post-warmup < 3s.",
+        "acceptance": ["curl cold start <3s post-deploy warmup", "CI job green", "test count >= 12149"]
+      },
+      {
+        "id": "DAY02-SUPABASE-REF",
+        "title": "Canonicalize Supabase project ref (BLOCKED-ANDREA)",
+        "priority": "P0",
+        "estimated_hours": 0.2,
+        "files_impacted": ["src/services/api.js", "scripts/cli-autonomous/deploy-prod.sh", ".env.production", "CLAUDE.md"],
+        "depends_on": [],
+        "assigned_to": "andrea",
+        "assigned_at": "2026-04-21T09:00:00Z",
+        "day": "day-02",
+        "status": "BLOCKED-ANDREA",
+        "block_reason": "src/services/api.js = euqpdueopmlllqjmqnyb (PROD frontend LIVE); deploy-prod.sh + CLAUDE.md = vxvqalmxqtezvgiboxyv. Modificare ref senza verifica = rottura prod. Andrea DEVE confermare canonical.",
+        "andrea_action": "Check Supabase dashboard: quale project contiene dati reali (users, sessions, lessons)? Quel ref = canonical. Aggiornare tutti i file all'altro.",
+        "acceptance": ["grep 0 match ref non-canonical", "prod HTTP 200 post-change", "test count >= 12149", "build PASS"]
+      },
+      {
+        "id": "DAY02-JWT-401",
+        "title": "Resolve Supabase edge function JWT 401",
+        "priority": "P1",
+        "estimated_hours": 0.5,
+        "files_impacted": ["supabase/functions/_shared/*", "verify-llm-switch.sh"],
+        "depends_on": ["DAY02-SUPABASE-REF"],
+        "assigned_to": "dev",
+        "assigned_at": "2026-04-22T09:00:00Z",
+        "day": "day-02",
+        "notes": "JWT rotazione o legacy key retirement. Dashboard Supabase check. Enable PZ v3 live curl verification.",
+        "acceptance": ["curl unlim-chat 200 OK", "verify-llm-switch.sh 20/20 PZ v3 PASS"]
+      },
+      {
+        "id": "DAY02-VELOCITY",
+        "title": "velocity-tracking.json initial seed Day 01+02",
+        "priority": "P1",
+        "estimated_hours": 0.3,
+        "files_impacted": ["automa/state/velocity-tracking.json"],
+        "depends_on": [],
+        "assigned_to": "tpm",
+        "assigned_at": "2026-04-22T09:00:00Z",
+        "day": "day-02",
+        "notes": "Seed metrics: commits/day, tests_delta/day, benchmark_delta/day. Day 01 =12 commits/+33 test/+1.29 bench.",
+        "acceptance": ["file esiste con 2 entry Day 01+02 seed", "schema estensibile per Day 03-07"]
+      },
+      {
+        "id": "DAY02-BENCH-WRITE",
+        "title": "Benchmark --write persist + tighten E2E homepage assertions",
+        "priority": "P1",
+        "estimated_hours": 1,
+        "files_impacted": ["automa/state/benchmark.json", "tests/e2e/01-homepage-loads.spec.js"],
+        "depends_on": [],
+        "assigned_to": "dev",
+        "assigned_at": "2026-04-22T09:00:00Z",
+        "day": "day-02",
+        "notes": "node scripts/benchmark.cjs --write persist. Tighten homepage E2E da 'length > 0' a content check specifico (reviewer issue #4).",
+        "acceptance": ["benchmark.json aggiornato con SHA 109cb33", "E2E 01-homepage assertion >= 3 content check"]
+      },
+      {
+        "id": "DAY02-REVIEWER-MINOR",
+        "title": "Batch 5 reviewer minor issues non-blocking",
+        "priority": "P1",
+        "estimated_hours": 1,
+        "files_impacted": ["scripts/verify-llm-switch.sh", "docs/architectures/cli-autonomous-foundations.md", "supabase/functions/_shared/llm-client.ts"],
+        "depends_on": [],
+        "assigned_to": "dev",
+        "assigned_at": "2026-04-22T09:00:00Z",
+        "day": "day-02",
+        "notes": "1) hardcoded anon key -> env var  2) blueprint script names reconcile  3) vi.resetModules in integration tests  4) E2E content assertions (merge con DAY02-BENCH-WRITE)  5) TS explicit mapping withGeminiProvider.",
+        "acceptance": ["5/5 issues chiusi o con ADR differimento", "reviewer re-approva"]
+      }
+    ],
+    "in_progress": [],
+    "ready_for_test": [],
+    "ready_for_review": [],
+    "approved": [],
+    "merged": [
+      {
+        "id": "T0-001",
+        "title": "Prep day: setup harness team agenti + state files + tools-config",
+        "priority": "P0",
+        "estimated_hours": 3,
+        "assigned_to": "andrea",
+        "started_at": "2026-04-20T12:00:00Z",
+        "completed_at": "2026-04-20T21:00:00Z",
+        "files_impacted": [".claude/agents/team-*.md", "automa/team-state/*", ".claude/tools-config.json"]
+      },
+      {
+        "id": "T1-001",
+        "title": "Bug T1 #1: lavagna vuota non selezionabile",
+        "priority": "P0",
+        "estimated_hours": 3,
+        "assigned_to": "dev",
+        "started_at": "2026-04-21T09:00:00Z",
+        "completed_at": "2026-04-21T16:00:00Z",
+        "commit": "1c753c3",
+        "files_impacted": ["src/components/lavagna/LavagnaShell.jsx"],
+        "day": "day-01",
+        "notes": "Stable toggleDrawing ref pattern, eliminata stale closure"
+      },
+      {
+        "id": "T1-002",
+        "title": "Bug T1 #2: scritti spariscono su Esci (persistenza)",
+        "priority": "P0",
+        "estimated_hours": 3,
+        "assigned_to": "dev",
+        "started_at": "2026-04-21T09:00:00Z",
+        "completed_at": "2026-04-21T17:00:00Z",
+        "commit": "4d512b7",
+        "files_impacted": ["src/components/lavagna/LavagnaShell.jsx", "src/hooks/useLocalStorage.js"],
+        "day": "day-01",
+        "notes": "Whiteboard persistenza sandbox + auto-save 5s + flush traccia"
+      },
+      {
+        "id": "T1-009",
+        "title": "Tea autoflow CODEOWNERS + auto-merge GH Action",
+        "priority": "P0",
+        "estimated_hours": 2,
+        "assigned_to": "dev",
+        "started_at": "2026-04-21T09:00:00Z",
+        "completed_at": "2026-04-21T18:00:00Z",
+        "commit": "129f37c",
+        "files_impacted": [".github/CODEOWNERS", ".github/workflows/tea-auto-merge.yml"],
+        "day": "day-01",
+        "notes": "Tea autoflow + Day 01 audit"
+      },
+      {
+        "id": "FOUNDATIONS-CLI",
+        "title": "Autonomous CLI scripts + E2E Playwright + llm-client.ts",
+        "priority": "P0",
+        "estimated_hours": 4,
+        "assigned_to": "dev",
+        "started_at": "2026-04-21T14:30:00Z",
+        "completed_at": "2026-04-21T19:00:00Z",
+        "files_impacted": ["scripts/*.sh", "tests/e2e/*.spec.js", "supabase/functions/_shared/llm-client.ts"],
+        "day": "day-01",
+        "notes": "9 CLI scripts (no-regression-guard, verify-llm-switch, etc.), 12 E2E specs (31 tests), llm-client.ts dispatcher"
+      },
+      {
+        "id": "FOUNDATIONS-TOGETHER",
+        "title": "LLM provider switch Gemini to Together AI",
+        "priority": "P0",
+        "estimated_hours": 2,
+        "assigned_to": "dev",
+        "started_at": "2026-04-21T16:00:00Z",
+        "completed_at": "2026-04-21T19:00:00Z",
+        "files_impacted": ["supabase/functions/_shared/llm-client.ts", "supabase/functions/*/index.ts"],
+        "day": "day-01",
+        "notes": "Together AI LIVE. 20/20 PZ v3 PASS. System prompt untouched."
+      }
+    ],
+    "rework": []
+  },
+  "day02_plan": {
+    "capacity_hours": 8,
+    "total_estimated_hours": 5,
+    "buffer_hours": 3,
+    "dispatch_cap": 5,
+    "p0_count": 2,
+    "p1_count": 4,
+    "p2_count": 3,
+    "p3_count": 1,
+    "critical_path": ["DAY02-SUPABASE-REF", "DAY02-JWT-401", "T1-003", "DAY02-BENCH-WRITE"],
+    "next_day_unblock_deps": ["DAY02-SUPABASE-REF -> T1-005 (Supabase resume)", "T1-003 -> T1-006 (Voice E2E)"]
+  },
+  "notes": {
+    "tea_onboarding": "mer 23/04 18:00 Zoom 1h pair programming Andrea",
+    "weekly_call": "ven 18:00-19:00 Telegram voice",
+    "dispatch_cap": 5,
+    "ptc_enabled": true,
+    "principio_zero_v3_immutable": true,
+    "sprint_contract": "docs/sprints/sprint-1-contract.md ratificato Day 02",
+    "velocity_tracking": "automa/state/velocity-tracking.json",
+    "day01_results": {
+      "commits": 12,
+      "test_delta": "+33 (12116 -> 12149)",
+      "benchmark_delta": "2.77 -> 4.06",
+      "reviewer": "APPROVE",
+      "auditor": "6.5/10",
+      "unpushed": 0
+    }
+  }
+}

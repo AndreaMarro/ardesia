@@ -1,0 +1,14 @@
+id: G26-pin-hit-tolerance-16px
+priority: P0
+title: "G26: Increase pin/component hit tolerance to 16px for LIM touch"
+description: |
+Fix: increase hit tolerance to 16px minimum for all interactive SVG elements.
+Files: src/components/simulator/canvas/SimulatorCanvas.jsx
+Test: on tablet/touch device, can you tap pins reliably?
+tags: G26,accessibility,lim,critical
+mode: IMPROVE
+verify: npm run build
+claimed_at: "2026-03-29T21:02:27.010664"
+claimed_by: orchestrator
+completed_at: "2026-03-29T21:05:26.584002"
+result: ok

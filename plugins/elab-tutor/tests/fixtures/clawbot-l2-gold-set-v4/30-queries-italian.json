@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "version": "v4",
+    "generated": "2026-04-28",
+    "sprint": "T",
+    "iter": 19,
+    "agent": "gen-test-opus",
+    "framework": "BGE-M3 multilingual 1024-dim (target Scaleway H100 prod) + Voyage 1024-dim transitional",
+    "scoring": "RRF k=60 fusion BM25+dense + Cohere rerank top-5 (ADR-015 Hybrid RAG)",
+    "language": "it",
+    "audience": "K-12 docente Italia (8-14 anni studenti)",
+    "register": "plurale 'Ragazzi,' + Vol/pag VERBATIM (Principio Zero V3)",
+    "intent_classes_total": 10,
+    "queries_per_class": 3,
+    "total_queries": 30,
+    "intent_classes": [
+      "concept_explain",
+      "diagnose_visual",
+      "state_current",
+      "code_help",
+      "kit_question",
+      "lesson_navigation",
+      "glossary_term",
+      "analogy_request",
+      "error_recovery",
+      "meta_question"
+    ],
+    "schema": {
+      "id": "string — Q01..Q30",
+      "query": "string — domanda docente Italian",
+      "intent_class": "enum — ADR-023 §6.1",
+      "expected_chunks": "array — golden chunks attesi top-5 retrieval",
+      "expected_response_pattern": "regex hint — pattern atteso risposta",
+      "language": "string — 'it'",
+      "expected_layers_active": "array — ADR-023 §6 routing"
+    }
+  },
+  "queries": [
+    {
+      "id": "Q01",
+      "query": "Ragazzi, cos'e' un LED e come si accende?",
+      "intent_class": "concept_explain",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.34", "source_type": "rag-volume" },
+        { "vol_pag": "Vol.1|pag.35", "source_type": "rag-volume" },
+        { "concept": "led", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*LED.*Vol\\.1.*pag\\.\\d+",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q02",
+      "query": "Spiega ai ragazzi cos'e' la legge di Ohm.",
+      "intent_class": "concept_explain",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.78", "source_type": "rag-volume" },
+        { "concept": "ohm", "source_type": "wiki-llm" },
+        { "termine": "resistenza", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*Ohm.*tensione.*corrente",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q03",
+      "query": "Come funziona un MOSFET come interruttore?",
+      "intent_class": "concept_explain",
+      "expected_chunks": [
+        { "vol_pag": "Vol.2|pag.105", "source_type": "rag-volume" },
+        { "concept": "mosfet", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*MOSFET.*gate.*Vol\\.2",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q04",
+      "query": "Guarda questo circuito, c'e' qualcosa che non va?",
+      "intent_class": "diagnose_visual",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.45", "source_type": "rag-volume" }
+      ],
+      "expected_response_pattern": "Ragazzi.*controllate.*circuito",
+      "language": "it",
+      "expected_layers_active": ["L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q05",
+      "query": "Diagnose: il LED non si accende, perche'?",
+      "intent_class": "diagnose_visual",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.34", "source_type": "rag-volume" },
+        { "vol_pag": "Vol.1|pag.36", "source_type": "rag-volume" }
+      ],
+      "expected_response_pattern": "Ragazzi.*verificate.*polarit",
+      "language": "it",
+      "expected_layers_active": ["L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q06",
+      "query": "Controlla cosa hanno costruito i ragazzi sul kit.",
+      "intent_class": "diagnose_visual",
+      "expected_chunks": [
+        { "concept": "breadboard", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*kit.*breadboard",
+      "language": "it",
+      "expected_layers_active": ["L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q07",
+      "query": "Cosa abbiamo montato finora nel simulatore?",
+      "intent_class": "state_current",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*(montato|circuito).*",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q08",
+      "query": "Stato del simulatore corrente?",
+      "intent_class": "state_current",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*(simulatore|stato).*",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q09",
+      "query": "Che codice abbiamo scritto nello sketch Arduino?",
+      "intent_class": "state_current",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*(codice|sketch).*",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q10",
+      "query": "Aiutami con il codice per far lampeggiare il LED.",
+      "intent_class": "code_help",
+      "expected_chunks": [
+        { "vol_pag": "Vol.3|pag.45", "source_type": "rag-volume" },
+        { "concept": "blink-led", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*digitalWrite.*delay",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L4", "L6", "L7"]
+    },
+    {
+      "id": "Q11",
+      "query": "Errore Arduino: 'expected ;' come risolviamo?",
+      "intent_class": "code_help",
+      "expected_chunks": [
+        { "concept": "errori-comuni-arduino", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*punto e virgola.*",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L4", "L6", "L7"]
+    },
+    {
+      "id": "Q12",
+      "query": "Come scrivere uno sketch per leggere un sensore di temperatura?",
+      "intent_class": "code_help",
+      "expected_chunks": [
+        { "vol_pag": "Vol.3|pag.78", "source_type": "rag-volume" },
+        { "concept": "analog-read", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*analogRead.*",
+      "language": "it",
+      "expected_layers_active": ["L1", "L2", "L4", "L6", "L7"]
+    },
+    {
+      "id": "Q13",
+      "query": "Ho il kit Omaric base, quale resistenza per un LED rosso?",
+      "intent_class": "kit_question",
+      "expected_chunks": [
+        { "termine": "resistore-470-ohm", "source_type": "glossario" },
+        { "vol_pag": "Vol.1|pag.40", "source_type": "rag-volume" }
+      ],
+      "expected_response_pattern": "Ragazzi.*470.*ohm",
+      "language": "it",
+      "expected_layers_active": ["L3", "L4", "L7"]
+    },
+    {
+      "id": "Q14",
+      "query": "Quali componenti sono nel kit per il capitolo 7?",
+      "intent_class": "kit_question",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.55", "source_type": "rag-volume" }
+      ],
+      "expected_response_pattern": "Ragazzi.*kit.*capitolo",
+      "language": "it",
+      "expected_layers_active": ["L3", "L4", "L7"]
+    },
+    {
+      "id": "Q15",
+      "query": "Ragazzi, prendete dal kit il pushbutton. Quale e'?",
+      "intent_class": "kit_question",
+      "expected_chunks": [
+        { "termine": "pushbutton", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*pushbutton.*kit",
+      "language": "it",
+      "expected_layers_active": ["L3", "L4", "L7"]
+    },
+    {
+      "id": "Q16",
+      "query": "Andiamo al prossimo esperimento.",
+      "intent_class": "lesson_navigation",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*prossimo.*",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q17",
+      "query": "Passiamo al capitolo successivo del Volume 1.",
+      "intent_class": "lesson_navigation",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*Vol\\.1.*capitolo",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q18",
+      "query": "Torniamo all'esperimento precedente, ragazzi.",
+      "intent_class": "lesson_navigation",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*precedente.*",
+      "language": "it",
+      "expected_layers_active": ["L4", "L7"]
+    },
+    {
+      "id": "Q19",
+      "query": "Anodo?",
+      "intent_class": "glossary_term",
+      "expected_chunks": [
+        { "termine": "anodo", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*anodo.*positivo",
+      "language": "it",
+      "expected_layers_active": ["L3", "L7"]
+    },
+    {
+      "id": "Q20",
+      "query": "Catodo?",
+      "intent_class": "glossary_term",
+      "expected_chunks": [
+        { "termine": "catodo", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*catodo.*negativo",
+      "language": "it",
+      "expected_layers_active": ["L3", "L7"]
+    },
+    {
+      "id": "Q21",
+      "query": "Pulldown?",
+      "intent_class": "glossary_term",
+      "expected_chunks": [
+        { "termine": "pulldown", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*pulldown.*GND",
+      "language": "it",
+      "expected_layers_active": ["L3", "L7"]
+    },
+    {
+      "id": "Q22",
+      "query": "Fammi un esempio: la corrente e' come l'acqua?",
+      "intent_class": "analogy_request",
+      "expected_chunks": [
+        { "concept": "corrente-continua", "source_type": "wiki-llm" },
+        { "termine": "analogia-corrente-acqua", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*acqua.*tubo",
+      "language": "it",
+      "expected_layers_active": ["L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q23",
+      "query": "Analogia per spiegare il transistor ai ragazzi.",
+      "intent_class": "analogy_request",
+      "expected_chunks": [
+        { "concept": "transistor", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*rubinetto.*transistor",
+      "language": "it",
+      "expected_layers_active": ["L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q24",
+      "query": "Come spiego un condensatore con un esempio reale?",
+      "intent_class": "analogy_request",
+      "expected_chunks": [
+        { "concept": "condensatore-ceramico", "source_type": "wiki-llm" },
+        { "termine": "analogia-condensatore-secchio", "source_type": "glossario" }
+      ],
+      "expected_response_pattern": "Ragazzi.*secchio.*condensatore",
+      "language": "it",
+      "expected_layers_active": ["L2", "L3", "L6", "L7"]
+    },
+    {
+      "id": "Q25",
+      "query": "Il LED non si accende, perche' non funziona?",
+      "intent_class": "error_recovery",
+      "expected_chunks": [
+        { "vol_pag": "Vol.1|pag.36", "source_type": "rag-volume" },
+        { "concept": "errori-comuni-led", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*polarit.*resistore",
+      "language": "it",
+      "expected_layers_active": ["L1", "L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q26",
+      "query": "Il codice non compila, c'e' qualcosa di sbagliato.",
+      "intent_class": "error_recovery",
+      "expected_chunks": [
+        { "concept": "errori-comuni-arduino", "source_type": "wiki-llm" }
+      ],
+      "expected_response_pattern": "Ragazzi.*compilatore.*",
+      "language": "it",
+      "expected_layers_active": ["L1", "L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q27",
+      "query": "Il motore non gira, ragazzi cosa controlliamo?",
+      "intent_class": "error_recovery",
+      "expected_chunks": [
+        { "vol_pag": "Vol.3|pag.95", "source_type": "rag-volume" }
+      ],
+      "expected_response_pattern": "Ragazzi.*alimentazione.*motore",
+      "language": "it",
+      "expected_layers_active": ["L1", "L4", "L5", "L6", "L7"]
+    },
+    {
+      "id": "Q28",
+      "query": "Chi sei?",
+      "intent_class": "meta_question",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*UNLIM.*tutor",
+      "language": "it",
+      "expected_layers_active": ["L7"]
+    },
+    {
+      "id": "Q29",
+      "query": "Cosa puoi fare?",
+      "intent_class": "meta_question",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*aiut.*elettronica",
+      "language": "it",
+      "expected_layers_active": ["L7"]
+    },
+    {
+      "id": "Q30",
+      "query": "Come ti chiami?",
+      "intent_class": "meta_question",
+      "expected_chunks": [],
+      "expected_response_pattern": "Ragazzi.*UNLIM",
+      "language": "it",
+      "expected_layers_active": ["L7"]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+type: ux
+priority: high
+title: Touch Targets Too Small for iPad/LIM
+description: |
+Analisi Gemini identifica componenti criticamente piccoli per il touch: 
+PROBLEMI CRITICI: 
+IMPACT: Insegnanti non riescono a usare l'interfaccia correttamente su iPad/LIM,
+reproduction: 
+expected: Touch targets ≥56px per ogni elemento interattivo
+actual: Molti elementi <40px, unusabili su touch
+files_to_check: 
+impact: Blocca completamente l'uso su iPad/LIM - priorità massima
+created: 2026-03-24
+source: audit-cycle-gemini-analysis
+claimed_at: "2026-03-24T07:22:04.449218"
+claimed_by: orchestrator
+completed_at: "2026-03-24T07:31:08.260491"
+result: ok

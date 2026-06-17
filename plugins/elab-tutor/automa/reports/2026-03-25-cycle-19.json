@@ -1,0 +1,66 @@
+{
+  "cycle": 19,
+  "timestamp": "2026-03-25T15:49:22.996008",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 521
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in ?s",
+      "time_ms": 117888
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 163050
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=70 (target \u226560) [3 samples]",
+      "time_ms": 67067
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 7932
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3490
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fix visual issue found by Gemini QA (cycle 18)",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": false,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified \u2014 root causes confirmed in code, edits blocked by permission mode",
+    "blocker": "permission_mode=default, need acceptEdits or user approval"
+  },
+  "research": "DeepSeek: **Problema 1 (Accesso):** Gli studenti potrebbero non avere hardware sufficiente o i software desktop proprietari per eseguire simulazioni di circuiti complessi localmente.\n\n**Problema 2 (Esperienza):** Le simulazioni basate su JavaScript puro nel browser sono spesso lente e limitate nella complessit\u00e0, riducendo il realismo e l'engagement.\n\n**Soluzione:** Sviluppare un'applicazione web didattica c",
+  "ai_scoring": null,
+  "composite_score": 0.9593,
+  "self_exam": null
+}

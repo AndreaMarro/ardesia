@@ -1,0 +1,131 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-diagnose-led-rovesciato",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "diagnoseLedRovesciato",
+  "description": "Morphic template diagnosi vision LED catodo errato (anodo invertito polarità) — captureScreenshot + Vision detect + animazione rotazione 180° + nudge orientamento gamba lunga + cita Vol.1 cap.6.",
+  "category": "diagnose-vision",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.52",
+    "analogia": "il LED ha una freccia: gamba lunga (anodo) verso il + come freccia che indica la direzione della corrente"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v1-cap6-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
+  },
+  "sequence": [
+    {
+      "step": "capture-screenshot-led",
+      "tool": "captureScreenshot",
+      "args": {
+        "purpose": "diagnose-led-polarity",
+        "focus": "led1"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-vision-diagnose",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Vedi il LED del kit fisico: anodo gamba lunga verso + o gamba corta? Ribaltato?",
+        "context": "Vol.1 cap.6 polarità LED"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-component-led-error",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "led1"
+        ],
+        "color": "red",
+        "animation": "rotate-180"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-flip",
+      "tool": "showNudge",
+      "args": {
+        "text": "Ragazzi, ruotate il LED di 180°: gamba lunga (anodo) verso la riga rossa del +",
+        "position": "near-component",
+        "duration_ms": 5000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-correction",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.52 'il LED ha polarità: gamba lunga verso il +'. Sul kit ruotate il LED di 180 gradi: gamba lunga vicino alla riga rossa.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5800,
+  "telemetry": {
+    "track_vision_accuracy": true,
+    "track_correction_success": true,
+    "category": "diagnose-vision-polarity"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'captureScreenshot'",
+    "sequence[2].args.animation === 'rotate-180'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.1 pag\\.52/)",
+    "principio_zero.analogia.includes('freccia')"
+  ]
+}

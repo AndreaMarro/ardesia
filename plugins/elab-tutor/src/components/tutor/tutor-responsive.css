@@ -1,0 +1,1363 @@
+/* ============================================
+   ELAB Tutor — Responsive Layout System (UI-5)
+   Styles for TutorLayout, TutorTopBar, TutorSidebar,
+   ChatOverlay, MobileBottomTabs
+
+   Breakpoints:
+     Mobile Portrait:   0 - 599px
+     Mobile Landscape:  600 - 767px
+     Tablet:            768 - 1023px
+     Desktop:           1024 - 1439px
+     Wide:              1440px+
+
+   (c) Andrea Marro — 13/02/2026
+   ============================================ */
+
+/* ─────────────────────────────────────────────
+   CSS Custom Properties for Responsive
+   ───────────────────────────────────────────── */
+
+:root {
+  --tutor-sidebar-width: 260px;
+  --tutor-sidebar-collapsed: 60px;
+  --tutor-topbar-height: 52px;
+  --tutor-bottomtab-height: 56px;
+  --tutor-transition: 250ms ease;
+}
+
+/* ═══════════════════════════════════════════════
+   TUTOR LAYOUT — Main Grid Container
+   ═══════════════════════════════════════════════ */
+
+.tutor-layout {
+  display: grid;
+  grid-template-rows: var(--tutor-topbar-height) 1fr;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.tutor-layout--fullscreen,
+.tutor-layout--no-nav {
+  grid-template-rows: 1fr !important;
+}
+
+/* ─── Tutor Body: sidebar + content ─── */
+
+.tutor-body {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  min-height: 0;
+  /* Fix for Firefox flex/grid overflow */
+}
+
+/* ─── Content Area ─── */
+
+.tutor-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  /* Prevent content from overflowing flex */
+  /* G38: Volume accent — colored top border matching the active volume */
+  border-top: 3px solid var(--volume-accent, transparent);
+}
+
+.tutor-fullscreen-exit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: rgba(30, 77, 140, 0.92);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-sans, 'Open Sans', -apple-system, sans-serif);
+  backdrop-filter: blur(8px);
+  transition: background var(--tutor-transition);
+}
+
+.tutor-fullscreen-exit:hover {
+  background: rgba(30, 77, 140, 1);
+}
+
+/* ═══════════════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════════════ */
+
+.tutor-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: var(--tutor-topbar-height);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background var(--tutor-transition);
+  flex-shrink: 0;
+}
+
+.topbar-sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-mascot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  object-fit: contain;
+  background: white;
+  flex-shrink: 0;
+}
+
+.topbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.topbar-title {
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.topbar-subtitle {
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-volume-badge {
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--tutor-transition);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.topbar-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.topbar-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.topbar-btn-label {
+  font-size: 14px;
+}
+
+.topbar-session-btn .session-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-error-red);
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR — Desktop (full + collapsed)
+   ═══════════════════════════════════════════════ */
+
+.tutor-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border-light);
+  overflow-y: auto;
+  overflow-x: hidden;
+  resize: horizontal;
+  z-index: 50;
+  min-width: 60px;
+  max-width: 500px;
+}
+
+.tutor-sidebar.expanded {
+  width: var(--tutor-sidebar-width);
+}
+
+.tutor-sidebar.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  border-right: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  resize: none;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+}
+
+.sidebar-section {
+  margin-bottom: 4px;
+}
+
+.sidebar-section-label {
+  padding: 6px 16px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--color-text-secondary);
+  user-select: none;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-sans, 'Open Sans', -apple-system, sans-serif);
+  text-align: left;
+  transition: all 150ms ease;
+  border-left: 3px solid transparent;
+  min-height: 44px;
+}
+
+.sidebar-item:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-primary);
+}
+
+/* © Andrea Marro — 18/02/2026 */
+
+.sidebar-item.active {
+  background: rgba(30, 77, 140, 0.06);
+  color: var(--color-primary);
+  font-weight: 600;
+  border-left-color: var(--color-primary);
+}
+
+.sidebar-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed sidebar: center icons */
+.tutor-sidebar.collapsed .sidebar-item {
+  justify-content: center;
+  padding: 10px 0;
+  border-left-width: 0;
+}
+
+.tutor-sidebar.collapsed .sidebar-item.active {
+  background: rgba(30, 77, 140, 0.1);
+  border-radius: 8px;
+  margin: 0 8px;
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--color-border-light);
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--tutor-transition);
+}
+
+.sidebar-collapse-btn:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-primary);
+  border-color: var(--color-border-medium);
+}
+
+/* ═══════════════════════════════════════════════
+   CHAT OVERLAY — Floating Panel
+   ═══════════════════════════════════════════════ */
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+
+.chat-overlay {
+  position: fixed;
+  z-index: 300;
+  background: var(--color-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: chatSlideIn 250ms ease;
+  font-family: var(--font-sans, 'Open Sans', -apple-system, sans-serif);
+}
+
+.chat-overlay--compact {
+  bottom: 16px;
+  right: 16px;
+  width: 380px;
+  height: 520px;
+  max-height: calc(100vh - 80px);
+  max-height: calc(100dvh - 80px);
+}
+
+.chat-overlay--expanded {
+  bottom: 16px;
+  right: 16px;
+  width: 560px;
+  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
+  max-width: calc(100vw - 32px);
+}
+
+@keyframes chatSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Chat Header */
+.chat-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+  flex-shrink: 0;
+}
+
+.chat-overlay-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-overlay-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  object-fit: contain;
+  background: white;
+}
+
+.chat-overlay-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.chat-overlay-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.chat-status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 4px var(--color-accent);
+}
+
+.chat-overlay-header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.chat-overlay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.chat-overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.chat-overlay-close:hover {
+  background: rgba(239, 68, 68, 0.6);
+}
+
+/* Chat Messages */
+.chat-overlay-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chat-overlay-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* © Andrea Marro — 18/02/2026 */
+
+.chat-overlay-messages::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 4px;
+}
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  animation: msgFadeIn 200ms ease;
+}
+
+.chat-msg.user {
+  align-items: flex-end;
+}
+
+.chat-msg.assistant {
+  align-items: flex-start;
+}
+
+@keyframes msgFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-msg-image {
+  max-width: 180px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.chat-msg-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.55;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.chat-msg.user .chat-bubble {
+  background: var(--color-primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-msg.assistant .chat-bubble {
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  background: var(--color-bg-cool);
+  color: var(--color-code-bg);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-msg.error .chat-bubble {
+  border-left: 3px solid var(--color-error-red);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.chat-bubble code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: var(--font-mono, 'Fira Code', monospace);
+  font-size: 14px;
+}
+
+.chat-bubble pre {
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* Typing indicator */
+.chat-typing {
+  display: flex;
+  gap: 5px;
+  padding: 12px 16px !important;
+}
+
+.chat-typing span {
+  width: 7px;
+  height: 7px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  animation: chatBounce 1.4s infinite ease-in-out;
+}
+
+.chat-typing span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.chat-typing span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes chatBounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Retry button */
+.chat-retry-btn {
+  margin-top: 4px;
+  padding: 6px 14px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease;
+  align-self: flex-start;
+  min-height: 44px;
+}
+
+.chat-retry-btn:hover {
+  background: var(--color-accent);
+}
+
+/* Suggestions & Confusion */
+.chat-suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 14px;
+  padding: 10px 12px;
+  background: rgba(124, 179, 66, 0.08);
+  border: 1px solid rgba(124, 179, 66, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--color-unlim-gradient-end);
+  flex-shrink: 0;
+}
+
+.chat-suggestion-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.chat-suggestion-text {
+  margin: 0;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.chat-suggestion-dismiss {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.chat-suggestion-dismiss:hover {
+  color: var(--color-error-red);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.chat-confusion {
+  margin: 0 14px;
+  padding: 10px 12px;
+  background: rgba(30, 77, 140, 0.05);
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.chat-confusion-text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--color-primary);
+  line-height: 1.4;
+}
+
+.chat-confusion-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chat-confusion-btns button {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+  border: 1px solid var(--color-border-light);
+  background: white;
+  color: var(--color-text-muted);
+  min-height: 44px;
+}
+
+/* © Andrea Marro — 18/02/2026 */
+
+.chat-confusion-btns button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.chat-confusion-btns button.confused {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.chat-confusion-input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-confusion-input-row input {
+  flex: 1;
+  padding: 7px 12px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.chat-confusion-input-row button {
+  padding: 7px 14px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-confusion-input-row button:disabled {
+  opacity: 0.4;
+}
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+
+/* Quick Actions */
+.chat-quick-actions {
+  display: flex;
+  gap: 6px;
+  padding: 8px 14px;
+  overflow-x: auto;
+  border-top: 1px solid var(--color-bg-subtle);
+  flex-shrink: 0;
+}
+
+.chat-quick-actions::-webkit-scrollbar {
+  height: 2px;
+}
+
+.chat-quick-actions::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 2px;
+}
+
+.chat-quick-actions button {
+  padding: 5px 12px;
+  background: white;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 16px;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.chat-quick-actions button:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Chat Input */
+.chat-overlay-input {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--color-bg-hover);
+  border-top: 1px solid var(--color-border-light);
+  flex-shrink: 0;
+}
+
+.chat-code-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--tutor-transition);
+  min-width: 44px;
+}
+
+.chat-code-toggle:hover,
+.chat-code-toggle.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.chat-overlay-input input {
+  flex: 1;
+  padding: 9px 14px;
+  border: 1.5px solid var(--color-border-light);
+  border-radius: 20px;
+  font-size: 14px;
+  transition: border-color var(--tutor-transition);
+  background: white;
+  min-width: 0;
+}
+
+.chat-overlay-input input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.08);
+}
+
+.chat-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all var(--tutor-transition);
+  flex-shrink: 0;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+  background: var(--color-unlim-gradient-end);
+  transform: scale(1.05);
+}
+
+.chat-send-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE BOTTOM TABS — iOS-style tab bar
+   ═══════════════════════════════════════════════ */
+
+.tutor-mobile-tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--color-border-light);
+  padding: 6px 0;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
+  z-index: 500;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.mobile-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--font-sans, 'Open Sans', -apple-system, sans-serif);
+  padding: 4px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  transition: color 150ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-tab.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* © Andrea Marro — 18/02/2026 */
+
+.mobile-tab-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mobile-tab-label {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Portrait (0-599px)
+   Full-width layout, bottom tabs, bottom-sheet chat
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 599px) {
+  :root {
+    --tutor-topbar-height: 48px;
+  }
+
+  .tutor-layout {
+    grid-template-rows: var(--tutor-topbar-height) 1fr;
+  }
+
+  .tutor-body {
+    grid-template-columns: 1fr;
+    padding-bottom: var(--tutor-bottomtab-height);
+    padding-bottom: calc(var(--tutor-bottomtab-height) + env(safe-area-inset-bottom));
+  }
+
+  /* Hide sidebar on mobile (bottom tabs replace it) */
+  .tutor-sidebar {
+    display: none;
+  }
+
+  /* TopBar compact */
+  .tutor-topbar {
+    padding: 0 10px;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+    height: var(--tutor-topbar-height);
+  }
+
+  .topbar-mascot {
+    width: 28px;
+    height: 28px;
+  }
+
+  .topbar-title {
+    font-size: 0.92rem;
+  }
+
+
+  .topbar-subtitle {
+    font-size: 14px;
+  }
+
+  .topbar-btn-label {
+    display: none;
+  }
+
+  .topbar-btn {
+    padding: 6px 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Chat overlay: full-width bottom sheet — max 40vh compact */
+  .chat-overlay--compact {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 40vh;
+    height: 40dvh;
+    border-radius: 16px 16px 0 0;
+    animation: chatSlideUpMobile 300ms ease;
+  }
+
+  .chat-overlay--expanded {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 90vh;
+    height: 90dvh;
+    max-width: 100vw;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .chat-quick-actions button {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .chat-overlay-input {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes chatSlideUpMobile {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile Landscape (600-767px)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 600px) and (max-width: 767px) {
+  .tutor-body {
+    grid-template-columns: 1fr;
+    padding-bottom: var(--tutor-bottomtab-height);
+  }
+
+  .tutor-sidebar {
+    display: none;
+  }
+
+  .chat-overlay--compact {
+    width: 340px;
+    height: 400px;
+    bottom: calc(var(--tutor-bottomtab-height) + 8px);
+  }
+
+  .chat-overlay--expanded {
+    width: 480px;
+    height: calc(100vh - var(--tutor-bottomtab-height) - 16px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768-1023px)
+   Collapsed sidebar (icons only), hover to reveal
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --tutor-sidebar-width: 200px;
+    --tutor-sidebar-collapsed: 56px;
+  }
+
+  .tutor-body {
+    grid-template-columns: var(--tutor-sidebar-collapsed) 1fr;
+  }
+
+  /* Force collapsed on tablet */
+  .tutor-sidebar {
+    width: var(--tutor-sidebar-collapsed) !important;
+    position: relative;
+    transition: width 250ms ease, box-shadow 250ms ease;
+  }
+
+  /* S91: Expand on hover ONLY for mouse devices (not touch/iPad) */
+  @media (pointer: fine) {
+    .tutor-sidebar:hover {
+      width: var(--tutor-sidebar-width) !important;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 200;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .tutor-sidebar:hover .sidebar-section-label,
+    .tutor-sidebar:hover .sidebar-label {
+      display: block;
+    }
+
+    .tutor-sidebar:hover .sidebar-item {
+      justify-content: flex-start;
+      padding: 8px 16px;
+    }
+  }
+
+  /* S91: On touch/iPad — sidebar expands via toggle button (expanded class) */
+  .tutor-sidebar.expanded {
+    width: var(--tutor-sidebar-width) !important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .tutor-sidebar.expanded .sidebar-section-label,
+  .tutor-sidebar.expanded .sidebar-label {
+    display: block;
+  }
+
+  .tutor-sidebar.expanded .sidebar-item {
+    justify-content: flex-start;
+    padding: 8px 16px;
+  }
+
+  /* Collapse labels normally */
+  .tutor-sidebar .sidebar-section-label {
+    display: none;
+  }
+
+  .tutor-sidebar .sidebar-label {
+    display: none;
+  }
+
+  /* © Andrea Marro — 18/02/2026 */
+
+  .tutor-sidebar .sidebar-item {
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .chat-overlay--compact {
+    width: 320px;
+    max-width: calc(100vw - 80px);
+    height: 480px;
+  }
+
+  .chat-overlay--expanded {
+    width: 420px;
+    max-width: calc(100vw - 80px);
+  }
+
+  /* Hide mobile bottom tabs on tablet */
+  .tutor-mobile-tabs {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   S91: iPad 10th Gen Specific (810px viewport, pointer: coarse)
+   Touch-optimized: larger targets, no hover dependencies,
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+   Apple Pencil USB C compatible with precise and coarse pointer
+   ═══════════════════════════════════════════════════════════════ */
+@media (pointer: coarse) and (min-width: 768px) and (max-width: 1023px) {
+  /* Ensure sidebar toggle button is always visible on iPad */
+  .topbar-sidebar-toggle {
+    display: flex !important;
+  }
+
+  /* Larger touch targets for sidebar items on iPad */
+  .sidebar-item {
+    min-height: 48px;
+    padding: 10px 16px;
+  }
+
+  /* Chat overlay: slightly larger for iPad readability */
+  .chat-overlay--compact {
+    width: 360px;
+    height: 500px;
+  }
+
+  .chat-bubble {
+    font-size: 15px;
+    padding: 12px 16px;
+  }
+
+  /* Ensure all buttons have generous touch targets */
+  .chat-overlay-btn,
+  .topbar-btn,
+  .sidebar-collapse-btn {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Desktop (1024-1439px)
+   Full sidebar, normal layout
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  .tutor-mobile-tabs {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Wide (1440px+)
+   Generous spacing, wider chat
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1440px) {
+  :root {
+    --tutor-sidebar-width: 280px;
+  }
+
+  .chat-overlay--compact {
+    width: 420px;
+    height: 580px;
+  }
+
+  .chat-overlay--expanded {
+    width: 600px;
+  }
+
+  .topbar-title {
+    font-size: 1.15rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS & ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════ */
+
+.tutor-topbar button:focus-visible,
+.tutor-sidebar button:focus-visible,
+.chat-overlay button:focus-visible,
+.chat-overlay input:focus-visible,
+.tutor-mobile-tabs button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Touch targets minimum 44px */
+@media (pointer: coarse) {
+  .sidebar-item {
+    min-height: 44px;
+  }
+
+  .topbar-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .chat-overlay-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .chat-send-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+
+  .chat-quick-actions button {
+    min-height: 44px;
+  }
+
+  .chat-confusion-btns button {
+    min-height: 44px;
+  }
+
+  .chat-retry-btn {
+    min-height: 44px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIM — Lavagne Interattive Multimediali
+   Touch screen grandi (tipicamente 1920x1080), usati a distanza 2-3m.
+   Aumenta font e touch target per leggibilità a distanza.
+   ═══════════════════════════════════════════════════════════════ */
+@media (pointer: coarse) and (min-width: 1024px) {
+  .tutor-layout {
+    font-size: 18px;
+  }
+
+  .tutor-layout button,
+  .tutor-layout .topbar-btn,
+  .tutor-layout [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    font-size: 16px;
+  }
+
+  .tutor-layout .sidebar-label,
+  .tutor-layout .sidebar-section-label,
+  .tutor-layout .sidebar-item {
+    font-size: 18px;
+  }
+
+  .tutor-layout .topbar-title {
+    font-size: 1.3rem;
+  }
+
+  .tutor-layout .topbar-subtitle {
+    font-size: 1rem;
+  }
+
+  .tutor-layout .chat-bubble {
+    font-size: 1rem;
+  }
+
+  .tutor-layout .chat-overlay-name {
+    font-size: 1rem;
+  }
+}

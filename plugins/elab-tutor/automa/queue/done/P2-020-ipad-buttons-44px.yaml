@@ -1,0 +1,13 @@
+id: ipad-buttons-44px
+priority: P2
+title: Fix 13 bottoni <44px su homepage per iPad/LIM
+description: |
+Target: "tutti i bottoni interattivi devono avere min-height: 44px e min-width: 44px."
+File da modificare: src/components/ (homepage buttons, navigation, cards).
+Approccio: "aggiungi min-height/min-width: 44px ai CSS dei bottoni troppo piccoli."
+VERIFICA: "dopo il fix, esegui il check iPad:"
+tags: ipad,touch,accessibility,css
+claimed_at: "2026-03-23T17:36:23.606855"
+claimed_by: orchestrator
+completed_at: "2026-03-23T17:45:54.184242"
+result: ok

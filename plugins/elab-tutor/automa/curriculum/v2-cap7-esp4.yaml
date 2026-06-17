@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap7-esp4
+# "Variare R nella scarica RC"
+
+experiment_id: v2-cap7-esp4
+volume: 2
+chapter: 7
+title: "Variare R nella scarica RC"
+
+prerequisites:
+  - v2-cap7-esp3
+
+concepts_introduced:
+  - costante_RC
+  - tempo_scarica
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - ohm
+  - corrente
+  - tensione
+  - volt
+  - condensatore
+  - carica
+  - scarica
+  - tempo
+  - breadboard
+  - potenziometro
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 condensatore 1000uF, 3 resistori diversi (1k, 10k, 100k ohm),
+    1 LED rosso, 1 batteria 9V, fili, cronometro. Oppure un potenziometro 100k al
+    posto dei 3 resistori. Carica il condensatore prima di ogni test.
+  during_class: >
+    Test 1: scarica con 1k ohm. Cronometra. Test 2: scarica con 10k. Test 3: con 100k.
+    Scrivi i tempi alla lavagna. "Cosa notate?" Piu' il resistore e' grande, piu'
+    lentamente si scarica. Il resistore e' come un rubinetto — piu' e' chiuso,
+    piu' piano esce l'acqua.
+  common_question: >
+    "Perche' il resistore grande rallenta la scarica?" -> Il resistore limita quanta
+    corrente passa. Meno corrente = il condensatore si svuota piu' piano.
+
+common_mistakes:
+  - mistake: "Non ricaricare il condensatore tra un test e l'altro"
+    what_to_do: "Il condensatore deve partire sempre da 9V. Ricaricalo 10 secondi dalla batteria ogni volta."
+    analogy: "Come riempire di nuovo il bicchiere prima di ogni esperimento"
+  - mistake: "Confondere il valore del resistore con il tempo"
+    what_to_do: "Scrivi una tabella: R | tempo. La relazione e' chiara."
+    analogy: null
+
+analogies:
+  costante_RC:
+    analogy: "R e C insieme decidono la velocita' di scarica, come la dimensione di un secchio (C) e la larghezza del buco sul fondo (R). Secchio grande + buco piccolo = ci vuole tanto a svuotarsi."
+    evidence: "Analogia idraulica per costante di tempo RC (Chabay & Sherwood 2011)"
+  tempo_scarica:
+    analogy: "Cambiare il resistore e' come cambiare la larghezza di uno scivolo d'acqua — scivolo stretto (R grande) = l'acqua scende piano. Scivolo largo (R piccolo) = scende veloce."
+    evidence: "Modello flusso-resistenza per circuiti RC (Schwedes & Dudeck 1996)"
+
+assessment_invisible:
+  - "Se lo studente prevede che R piu' grande = scarica piu' lenta -> ha capito la relazione"
+  - "Se propone di misurare con il multimetro oltre che con il LED -> metodo scientifico"
+  - "Se chiede 'e se cambio il condensatore?' -> pronto per esplorare C variabile"

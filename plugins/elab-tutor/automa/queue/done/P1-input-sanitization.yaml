@@ -1,0 +1,15 @@
+id: P1-input-sanitization
+priority: P1
+title: Add DOMPurify to all user input components
+description: |
+  Install DOMPurify via npm and wrap all instances of raw HTML rendering
+  and user-generated content with sanitization. Search src/components/ for
+  user input fields, textareas, contentEditable, and any unsafe HTML injection.
+  Ensure all user-facing inputs are sanitized before rendering to prevent XSS.
+metric: zero unsanitized user inputs in src/components/
+tags:
+  - security
+  - xss
+  - input-validation
+  - frontend
+created_at: 2026-03-25T21:30:00

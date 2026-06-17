@@ -1,0 +1,76 @@
+=== LOGIN ===
+✅ Login completed
+📸 01-login-result.png saved
+=== FASE 3: Tab Overflow Verification ===
+📸 02-teacher-1440px.png saved
+📸 03-teacher-768px.png saved
+📸 04-teacher-375px.png saved
+📸 05-admin-1440px.png saved
+📸 06-admin-768px.png saved
+📸 07-admin-375px.png saved
+=== FASE 4: Font Size Verification ===
+Font min Teacher: 9px (target: ≥14px) ⚠️
+Font min Admin: 9px (target: ≥14px) ⚠️
+=== FASE 5: Touch Target Verification ===
+Privacy link size: 140x37px (target: height≥36px) ✅
+📸 08-consent-banner.png saved
+=== FASE 6: Dead Code Verification ===
+Community tab visible in Admin: ✅ REMOVED
+📸 09-admin-no-community.png saved
+=== FULL PAGE VERIFICATION ===
+📸 10-tutor-1440px.png saved
+tutor @ 1440px — overflow: ✅
+📸 10-tutor-768px.png saved
+tutor @ 768px — overflow: ✅
+📸 10-tutor-375px.png saved
+tutor @ 375px — overflow: ✅
+📸 10-teacher-1440px.png saved
+teacher @ 1440px — overflow: ✅
+📸 10-teacher-768px.png saved
+teacher @ 768px — overflow: ✅
+📸 10-teacher-375px.png saved
+teacher @ 375px — overflow: ✅
+📸 10-admin-1440px.png saved
+admin @ 1440px — overflow: ✅
+📸 10-admin-768px.png saved
+admin @ 768px — overflow: ✅
+📸 10-admin-375px.png saved
+admin @ 375px — overflow: ✅
+📸 10-vetrina-1440px.png saved
+vetrina @ 1440px — overflow: ✅
+📸 10-vetrina-768px.png saved
+vetrina @ 768px — overflow: ✅
+📸 10-vetrina-375px.png saved
+vetrina @ 375px — overflow: ✅
+=== FASE 2: Whiteboard V2 Verification ===
+⚠️ Whiteboard test: elementHandle.click: Timeout 30000ms exceeded.
+Call log:
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div>…</div> from <div class="elab-tool__hint-tooltip">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div>…</div> from <div class="elab-tool__hint-tooltip">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    55 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div>…</div> from <div class="elab-tool__hint-tooltip">…</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+📸 14-whiteboard-error.png saved
+
+=== SESSION 20 VERIFICATION SUMMARY ===
+✅ PASS: 15
+❌ FAIL: 0
+⚠️ WARN: 3

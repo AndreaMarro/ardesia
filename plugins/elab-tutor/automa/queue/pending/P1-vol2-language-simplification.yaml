@@ -1,0 +1,60 @@
+id: vol2-language-simplification
+type: EDIT
+priority: P1
+title: "Semplifica linguaggio Vol2 — da accademico a 10-14 anni"
+description: |
+  PROBLEMA: I 18 lesson path di Vol2 usano linguaggio troppo tecnico per bambini 10-14 anni.
+  Termini da ELIMINARE o SOSTITUIRE con analogie:
+
+  | Termine tecnico | Sostituzione |
+  |-----------------|-------------|
+  | "Tau" | "tempo di scarica" |
+  | "costante di tempo" | "quanto ci mette a scaricarsi" |
+  | "Vf" o "tensione di soglia" | "la spinta minima per accendersi" |
+  | "esponenziale" | "veloce all'inizio, poi sempre più lento" |
+  | "partitore di tensione" | "divisore di corrente" o analogia rubinetto |
+  | "curva esponenziale" | "come una palla che rimbalza sempre meno" |
+  | "RC" (senza spiegazione) | "resistore + condensatore insieme" |
+  | "pull-down" | "collegamento a terra" |
+  | "collector-emitter" | "ingresso-uscita del sensore" |
+
+  REGOLA: Se un termine è in vocabulary.allowed ma è troppo tecnico,
+  SPOSTALO in vocabulary.forbidden e aggiungi la versione semplificata in allowed.
+
+  PROCEDURA per OGNI file v2-*.json:
+  1. Leggi il file
+  2. Cerca i termini nella tabella sopra in TUTTI i campi di testo
+  3. Sostituisci con la versione kid-friendly
+  4. Aggiorna vocabulary.allowed e vocabulary.forbidden
+  5. Verifica che class_hook e provocative_question NON usino termini forbidden
+  6. Salva il file
+  7. npm run build DEVE passare
+
+  FILES (18 totali):
+  - src/data/lesson-paths/v2-cap6-esp1.json
+  - src/data/lesson-paths/v2-cap6-esp2.json
+  - src/data/lesson-paths/v2-cap6-esp3.json
+  - src/data/lesson-paths/v2-cap6-esp4.json
+  - src/data/lesson-paths/v2-cap7-esp1.json
+  - src/data/lesson-paths/v2-cap7-esp2.json
+  - src/data/lesson-paths/v2-cap7-esp3.json
+  - src/data/lesson-paths/v2-cap7-esp4.json
+  - src/data/lesson-paths/v2-cap8-esp1.json
+  - src/data/lesson-paths/v2-cap8-esp2.json
+  - src/data/lesson-paths/v2-cap8-esp3.json
+  - src/data/lesson-paths/v2-cap9-esp1.json
+  - src/data/lesson-paths/v2-cap9-esp2.json
+  - src/data/lesson-paths/v2-cap10-esp1.json
+  - src/data/lesson-paths/v2-cap10-esp2.json
+  - src/data/lesson-paths/v2-cap10-esp3.json
+  - src/data/lesson-paths/v2-cap10-esp4.json
+  - src/data/lesson-paths/v2-cap12-esp1.json
+
+  PRINCIPIO ZERO: L'insegnante deve capire TUTTO senza preparazione.
+  Se un termine richiede una laurea in ingegneria, NON deve stare nel lesson path.
+
+  VERIFICA FINALE: grep per "Tau\|Vf\|esponenziale\|partitore\|pull-down\|collector"
+  nei file v2-*.json — deve dare 0 risultati.
+template: src/data/lesson-paths/v1-cap6-esp1.json
+output: "18 file v2-*.json modificati"
+verify: "grep -l 'Tau\\|Vf\\|esponenziale\\|partitore\\|pull-down\\|collector' src/data/lesson-paths/v2-*.json | wc -l == 0"

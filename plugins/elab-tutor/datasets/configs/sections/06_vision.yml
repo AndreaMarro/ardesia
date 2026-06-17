@@ -1,0 +1,63 @@
+id: vision
+name: "Analisi Visiva"
+intent: vision
+needs_llm: true
+
+templates:
+  - input: "{frase}"
+    llm_hint: "L'utente chiede analisi visiva del circuito. Attivare cattura screenshot e analisi Gemini."
+    actions: ["[AZIONE:screenshot]"]
+    entities: []
+    vars:
+      frase:
+        - guarda il mio circuito
+        - cosa vedi?
+        - analizza il circuito
+        - e' giusto il collegamento?
+        - controlla se ho fatto bene
+        - guarda cosa ho fatto
+        - il circuito e' corretto?
+        - dimmi se c'e' qualcosa di sbagliato
+        - riesci a vedere il mio disegno?
+        - guarda lo screenshot
+        - analizza la mia breadboard
+        - vedi errori?
+        - controlla il mio lavoro
+        - guarda un attimo
+        - fammi un check visivo
+        - cosa ne pensi del mio circuito?
+        - e' fatto bene?
+        - ho montato tutto giusto?
+        - riesci a vedere se funziona?
+        - guarda e dimmi cosa c'e' che non va
+
+  # ── VISION + ACTION CHAIN ──────────────
+  - input: "{frase}"
+    llm_hint: "L'utente chiede di guardare E correggere. Chain vision->circuit. Prima analisi, poi suggerimento fix."
+    actions: ["[AZIONE:screenshot]"]
+    entities: []
+    vars:
+      frase:
+        - guarda il circuito e correggilo
+        - controlla e sistema
+        - vedi cosa c'e' di sbagliato e aggiusta
+        - guarda e dimmi come fixare
+        - analizza e ripara
+        - check e fix
+
+  # ── CANVAS DRAWING ──────────────
+  - input: "{frase}"
+    llm_hint: "L'utente chiede di analizzare un disegno/schema sulla lavagna/canvas."
+    actions: ["[AZIONE:screenshot]"]
+    entities: []
+    vars:
+      frase:
+        - cosa vedi nel mio disegno?
+        - guarda cosa ho disegnato
+        - analizza il mio schema
+        - riesci a leggere quello che ho scritto?
+        - descrivi cosa c'e' sulla lavagna
+
+corruptions:
+  typo_swap: 0.2
+  filler: 0.1

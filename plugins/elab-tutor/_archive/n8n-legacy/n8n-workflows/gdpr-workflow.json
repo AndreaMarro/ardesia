@@ -1,0 +1,52 @@
+{
+  "name": "ELAB GDPR Service",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-gdpr",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-gdpr",
+      "name": "Webhook GDPR",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "elab-gdpr"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ============================================\n// ELAB GDPR Service v2.1 — FIX email null\n// Property names: italiano (come nel DB Notion)\n// Select values: italiano (come nel DB Notion)\n// FIX: email vuota → null (Notion rifiuta \"\")\n// © Andrea Marro — 19/02/2026\n// ============================================\n\nconst https = require('https');\nconst crypto = require('crypto');\n\nconst NOTION_TOKEN = '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';\nconst NOTION_VERSION = '2022-06-28';\nconst NOTION_DB = 'e2e0c070-301b-4813-a7c5-378a2d46758a';\n\nfunction notionReq(method, path, payload) {\n  return new Promise((resolve, reject) => {\n    const data = payload ? JSON.stringify(payload) : null;\n    const opts = {\n      hostname: 'api.notion.com',\n      path: '/v1' + path,\n      method: method,\n      headers: {\n        'Authorization': 'Bearer ' + NOTION_TOKEN,\n        'Notion-Version': NOTION_VERSION,\n        'Content-Type': 'application/json'\n      }\n    };\n    if (data) opts.headers['Content-Length'] = Buffer.byteLength(data);\n    const req = https.request(opts, (res) => {\n      let body = '';\n      res.on('data', (chunk) => body += chunk);\n      res.on('end', () => {\n        try {\n          const parsed = JSON.parse(body);\n          if (res.statusCode >= 400) reject(new Error('Notion ' + res.statusCode + ': ' + (parsed.message || JSON.stringify(parsed).substring(0, 300))));\n          else resolve(parsed);\n        } catch { reject(new Error('Invalid JSON: ' + body.substring(0, 200))); }\n      });\n    });\n    req.on('error', reject);\n    req.setTimeout(15000, () => { req.destroy(); reject(new Error('Timeout')); });\n    if (data) req.write(data);\n    req.end();\n  });\n}\n\nasync function notionCreate(properties) {\n  // Rimuovi proprietà con valore undefined\n  const clean = {};\n  for (const [k, v] of Object.entries(properties)) {\n    if (v !== undefined) clean[k] = v;\n  }\n  return await notionReq('POST', '/pages', {\n    parent: { database_id: NOTION_DB },\n    properties: clean\n  });\n}\n\nasync function notionQuery(filter) {\n  return await notionReq('POST', '/databases/' + NOTION_DB + '/query', { filter });\n}\n\nasync function notionUpdate(pageId, properties) {\n  return await notionReq('PATCH', '/pages/' + pageId, { properties });\n}\n\nconst textProp = (v) => ({ rich_text: [{ text: { content: String(v || '') } }] });\nconst titleProp = (v) => ({ title: [{ text: { content: String(v || '') } }] });\nconst selectProp = (v) => ({ select: { name: String(v || '') } });\n// FIX: Notion rifiuta { email: \"\" } — deve essere null o email valida\nconst emailProp = (v) => v ? ({ email: String(v) }) : undefined;\nconst numProp = (v) => ({ number: Number(v) || 0 });\nconst checkProp = (v) => ({ checkbox: Boolean(v) });\nconst dateProp = (v) => ({ date: { start: v || new Date().toISOString() } });\n\n// === Input ===\nlet rawInput = null;\nlet body = null;\ntry {\n  rawInput = $input.first().json;\n  body = rawInput.body || rawInput;\n} catch (e) {\n  return [{ json: { success: false, error: 'INPUT_ERROR: ' + e.message } }];\n}\n\nconst action = body.action || 'unknown';\n\nconst debug = {\n  receivedAction: action,\n  bodyKeys: Object.keys(body),\n  dbId: NOTION_DB\n};\n\nlet result = { success: false, action };\n\ntry {\n  if (action === 'delete') {\n    const page = await notionCreate({\n      'Name': titleProp('DEL-' + Date.now()),\n      'Tipo': selectProp('Eliminazione Dati'),\n      'User ID': textProp(body.userId),\n      'Motivo': textProp(body.reason),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp(),\n      'Email': emailProp(body.email)\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta eliminazione registrata', _debug: debug };\n\n  } else if (action === 'parental-consent') {\n    const token = 'tok_' + crypto.randomUUID().replace(/-/g, '').substring(0, 24);\n    const page = await notionCreate({\n      'Name': titleProp('PC-' + Date.now()),\n      'Tipo': selectProp('Consenso Parentale'),\n      'User ID': textProp(body.userId || ''),\n      'Età Minore': numProp(body.childAge),\n      'Email Genitore': emailProp(body.parentEmail),\n      'Nome Genitore': textProp(body.parentName),\n      'Metodo Consenso': selectProp(body.consentMethod === 'signature' ? 'Firma Digitale' : 'Email'),\n      'COPPA': checkProp(body.requiresCOPPA),\n      'Stato': selectProp('In Attesa Verifica'),\n      'Token Verifica': textProp(token),\n      'Data Richiesta': dateProp(),\n      'Dettagli': textProp(body.childName ? 'Nome minore: ' + body.childName : '')\n    });\n    result = { success: true, action, pageId: page.id, token, message: 'Richiesta consenso parentale registrata', _debug: debug };\n\n  } else if (action === 'export') {\n    const page = await notionCreate({\n      'Name': titleProp('EXP-' + Date.now()),\n      'Tipo': selectProp('Esportazione Dati'),\n      'User ID': textProp(body.userId),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp(),\n      'Email': emailProp(body.email)\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta esportazione registrata', _debug: debug };\n\n  } else if (action === 'revoke') {\n    const page = await notionCreate({\n      'Name': titleProp('REV-' + Date.now()),\n      'Tipo': selectProp('Revoca Consenso'),\n      'User ID': textProp(body.userId),\n      'Stato': selectProp('Completata'),\n      'Data Richiesta': dateProp(),\n      'Data Completamento': dateProp(),\n      'Email': emailProp(body.email)\n    });\n    result = { success: true, action, pageId: page.id, message: 'Consenso revocato', _debug: debug };\n\n  } else if (action === 'verify-parental-consent') {\n    const qData = await notionQuery({\n      property: 'Token Verifica',\n      rich_text: { equals: body.token || '' }\n    });\n    if (qData.results && qData.results.length > 0) {\n      const pageId = qData.results[0].id;\n      await notionUpdate(pageId, {\n        'Stato': selectProp('Completata'),\n        'Data Completamento': dateProp()\n      });\n      result = { success: true, action, verified: true, message: 'Consenso verificato', _debug: debug };\n    } else {\n      result = { success: false, action, verified: false, message: 'Token non valido o scaduto', _debug: debug };\n    }\n\n  } else if (action === 'correct') {\n    const page = await notionCreate({\n      'Name': titleProp('COR-' + Date.now()),\n      'Tipo': selectProp('Rettifica Dati'),\n      'User ID': textProp(body.userId),\n      'Dettagli': textProp(JSON.stringify(body.corrections || body.details || {})),\n      'Stato': selectProp('Ricevuta'),\n      'Data Richiesta': dateProp(),\n      'Email': emailProp(body.email)\n    });\n    result = { success: true, action, pageId: page.id, message: 'Richiesta rettifica registrata', _debug: debug };\n\n  } else {\n    result = { success: false, action, message: 'Azione non riconosciuta: ' + action, _debug: debug };\n  }\n} catch (error) {\n  result = { success: false, action, error: error.message, _debug: debug };\n}\n\nreturn [{ json: result }];"
+      },
+      "id": "code-gdpr-handler",
+      "name": "GDPR Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook GDPR": {
+      "main": [
+        [
+          {
+            "node": "GDPR Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [{ "name": "ELAB" }, { "name": "GDPR" }],
+  "triggerCount": 0,
+  "pinData": {}
+}

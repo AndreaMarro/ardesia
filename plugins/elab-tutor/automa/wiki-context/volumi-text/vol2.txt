@@ -1,0 +1,3059 @@
+LABORATORIO DI ELETTRONICA
+IMPARA E SPERIMENTA
+
+VOLUME 2
+
+ELAB
+
+© 2025 ELAB. Tutti i diritti riservati.
+Nessuna parte di questo libro può essere riprodotta o distribuita in qualsiasi forma o con
+qualsiasi mezzo, elettronico o meccanico, senza il permesso scritto dell'autore.
+
+Indice
+Capitolo 1- Altri cenni di storia dell’elettronica ..................................................... 05
+Capitolo 2 - Cos’è l’elettricità? . ........................................................................... 09
+Capitolo 3 - Il Multimetro . ..................................................................................... 13
+Capitolo 4 - Approfondiamo le resistenze . ............................................................ 37
+Capitolo 5 - Approfondiamo le Batterie . ................................................................ 47
+Capitolo 6 - Approfondiamo i Led . ......................................................................... 53
+Capitolo 7 - Cosa sono i condensatori? . ............................................................... 63
+Capitolo 8 - Cosa sono i Transistor? ...................................................................... 75
+Capitolo 9 - Cosa sono i fototransistor? ................................................................ 85
+Capitolo 10 - Il motore a corrente continua . ......................................................... 93
+Capitolo 11 - I diodi ............................................................................................... 99
+Capitolo 12 -Costruiamo il nostro primo Robot marciante! .................................. 103
+Non è finita qui! .................................................................................................... 114
+
+COMPONENTI DEL KIT
+1x Breadboard 830 punti
+1x Multimetro + puntalini a coccodrillo
+Cavi di differenti lunghezze
+1x Clip Batteria intestata con header
+Resistori 4 Bande:
+10x 100 Ohm
+10x 220 Ohm
+10x 330 Ohm
+10x 470 Ohm
+10x 1 kOhm
+LEDs:
+5x Blu
+5x Rosso
+5x Verde
+5x Giallo
+5x Bianco
+5x RGB catodo comune
+5x Pulsanti
+4x Transistor
+4x Diodi
+4x Fotosensori
+4x Condensatori da 1000uF
+2x Motori a corrente continua
+2x Ruote
+4
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 1
+
+ALTRI CENNI DI STORIA
+DELL’ELETTRONICA
+L’Elettronica è una delle scoperte più
+importanti nella storia dell’umanità. Ogni
+giorno, in modo del tutto automatico,
+utilizziamo dispositivi elettronici; lo
+smartphone, i computer, le automobili,
+i videogiochi. Possiamo affermare che
+l'elettronica muove le nostre azioni. Ma
+come ci siamo arrivati? Per capirlo,
+dobbiamo tornare indietro nel tempo.
+
+LA LEGGE DI OHM:
+LE BASI DELL’ELETTRICITÀ.
+Nel 1827, il fisico tedesco
+Georg Simon Ohm studiò
+il comportamento della corrente
+elettrica nei circuiti e formulò una
+legge fondamentale dell’elettricità. La
+legge di Ohm - che prese il suo nome
+- spiega la relazione tra tensione (V),
+corrente (I) e resistenza (R)
+
+Laboratorio di elettronica: Impara e sperimenta
+
+5
+
+CAPITOLO 1
+Abbiamo già parlato della legge di
+Ohm nel primo volume di “Laboratorio
+di Elettronica: Impara e Sperimenta”e
+possiamo affermare che questa
+scoperta è stata fondamentale per lo
+sviluppo della tecnologia elettrica ed
+elettronica.
+
+DALLA VALVOLA AL TRANSISTOR
+Con la scoperta della legge di Ohm,
+molti scienziati iniziarono a studiare
+diversi modi per controllare l’elettricità.
+All’inizio del 900 furono inventate
+le valvole termoioniche, componenti
+che permettevano di amplificare e
+controllare i segnali elettrici, ma ci
+accorse - una volta installate nei primi
+computer e nelle radio, che occupavano
+molto spazio e consumavano molta
+energia. Fu necessario quindi trovare
+una soluzione per creare componenti
+meno ingombranti affinché i dispositivi
+fossero più piccoli e leggeri per essere
+trasportati.
+
+L’INVENZIONE DEL MICROCHIP
+Nel 1947 i tre scienziati americani
+William Shockley, John Bardeen
+e Walter Brattain inventarono il
+transistor, un piccolo componente che
+svolgeva la stessa funzione delle
+valvole, ma in modo più efficiente e
+compatto. Questa invenzione
+rivoluzionò la tecnologia e aprì la
+strada all’elettronica moderna. Grazie
+alla creazione del transistor,
+l’elettronica ebbe un gran successo
+tanto da favorirne la diffusione.
+
+E IN FUTURO?
+Ogni scoperta ha portato a nuove
+invenzioni, che hanno cambiato
+il mondo e il nostro stile di vita. Chissà
+quali altre incredibili scoperte ci
+riserverà il futuro!
+
+6
+
+Laboratorio di elettronica: Impara e sperimenta
+
+ALTRI CENNI DI STORIA DELL’ELETTRONICA
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+7
+
+NOTE
+
+8
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 2
+
+CHE COS’È L’ELETTRICITÀ
+Finora abbiamo realizzato i circuiti
+che funzionano con l’elettricità ma
+non abbiamo ben spiegato cos’è.
+La usiamo tutti i giorni senza
+accorgercene; per accendere le luci,
+far funzionare i videogiochi, ma non
+possiamo né vederla né toccarla. Non
+possiamo vederla perché è composta
+da delle particelle molto piccoli che
+non sono visibili ad occhio nudo.
+
+Bentornati, sono Elab, il vostro
+compagno di avventure!
+In questo secondo volume
+analizzeremo quanto visto
+precedentemente e impareremo cose
+nuove. Cominciamo ad approfondire il
+tema dell'Elettricità.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+9
+
+CAPITOLO 2
+Tutto ciò che ci circonda è fatto
+dalle stesse particelle invisibili
+chiamate atomi.
+Ogni atomo è poi composto da altre
+particelle ancora più piccole,
+potremmo immaginare un sistema
+solare ma in miniatura:
+•Al centro c’è il “sole” (il nucleo).
+•Intorno al “sole” girano i “pianeti”
+super veloci e invisibili che si
+chiamano elettroni.
+Gli elettroni hanno una carica
+elettrica negativa. Hai presente i
+magneti che attacchiamo al
+frigorifero? Ecco, gli elettroni hanno la
+funzione di attrarre o respingere.
+
+L’ELETTRICITÀ STATICA: LA MAGIA CHE
+PUOI SENTIRE (E VEDERE!)
+A volte, gli elettroni possono essere
+“strappati” da un oggetto
+e portati su un altro. Hai mai provato a
+strofinare un palloncino sui capelli e
+poi attaccarlo al muro? Hai mai preso
+una piccola scossa sulla maniglia
+della porta dopo aver camminato sul
+tappeto? Bene, questo succede per
+via dell’elettricità statica!
+
+10
+
+Questo fenomeno avviene perché gli
+elettroni si sono accumulati in un
+posto e poi sono saltati via per
+andare da un’altra parte.
+Praticamente le cariche si sono
+accumulate in un punto e poi
+improvvisamente si sono spostate in
+un altro punto sprigionando molta
+energia.
+
+L’ELETTRICITÀ CHE USIAMO:
+GLI ELETTRONI IN VIAGGIO!
+L’elettricità che fa funzionare la
+TV o un robot non è “ferma”, ma in
+movimento. Pensa ad un fiume e
+immagina che l’acqua che scorre
+rappresenti gli elettroni che si
+muovono. L’elettricità che sfruttiamo
+è proprio questo: un flusso di
+elettroni che si spostano in una
+direzione specifica. Questo flusso è
+chiamato corrente elettrica.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COS’È L’ELETTRICITÀ
+
+DA DOVE VIENE QUESTA “SPINTA”
+PER FAR MUOVERE GLI ELETTRONI?
+Per far muovere l’acqua nel fiume
+serve una pendenza, giusto? Per gli
+elettroni, serve una “spinta” o una
+“pressione”. Questa spinta è data da
+una fonte di energia come:
+• Una batteria (la nostra
+“pompa” portatile che spinge gli
+elettroni);
+• Una presa domestica (l’energia
+che arriva dalla centrale elettrica,
+che è una pompa gigante).
+
+Prima di fare qualsiasi esperimento
+con l’elettricità:
+1.
+
+Lavoriamo solo con batterie o
+alimentatori a bassa tensione!
+Sono sicuri per i nostri
+esperimenti.
+
+Possiamo dire in sintesi che:
+L’elettricità è il movimento degli
+elettroni. Queste piccolissime
+particelle cariche viaggiano
+attraverso dei materiali che li
+lasciano passare (come i fili di
+rame) per portare energia da un
+punto all’altro e far funzionare gli
+oggetti che usiamo. In questo kit, come
+nel precedente, utilizziamo batterie a
+bassa tensione, questo ci consente
+di non correre alcun pericolo anche
+se le tocchiamo. L’elettricità però non
+va sottovalutata poiché il nostro
+corpo è come un grande resistore.
+Cosa significa? Significa che contiene
+una grande quantità di energia e può
+far scorrere corrente!
+
+2. Facciamo i nostri esperimenti lontano
+dall'acqua!
+L’acqua è un buon conduttore e
+rende l’elettricità molto più
+pericolosa.
+
+3.
+
+Chiedi sempre aiuto a un
+adulto se hai il dubbio di
+non essere al sicuro.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+11
+
+NOTE
+
+12
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 3
+
+IL MULTIMETRO
+CHE COS’È IL MULTIMETRO?
+
+•
+stessa, è
+Il multimetro, come dice la parola
+. E' lo strumento grazie •
+un multi-misuratore
+al quale con un unico apparecchio
+le diverse grandezze •
+possiamo misurare
+elettriche.
+
+un Ohmmetro: per misurare la
+resistenza
+un Amperometro: per misurare la
+corrente
+un Voltmetro: per misurare la
+tensione
+
+!
+Nel corso di questo libro
+raffigureremo il multimetro anche in
+questo modo per semplicità.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+13
+
+CAPITOLO 3
+
+COME FAR FUNZIONARE IL MULTIMETRO
+
+COLLEGA I PUNTALI:
+
+Per poter utilizzare il multimetro
+dobbiamo eseguire dei passaggi
+affinché funzioni correttamente.
+
+Per utilizzare il multimetro e le sue
+funzioni abbiamo bisogno dei puntali
+che vanno inseriti nel posto giusto!
+
+INSERISCI LA BATTERIA
+
+I puntali sono sempre uno rosso e
+uno nero. Nel multimetro ci sono tre
+fori in cui poterli inserire.
+
+Il multimetro, come tutti i circuiti
+elettronici, ha bisogno di essere
+alimentato da energia, proprio come i
+circuiti che abbiamo realizzato finora.
+Per mettere in funzione il multimetro
+dovrai inserire una batteria da 9V.
+Giralo! Ecco, sul sul retro c'è uno
+sportellino, è proprio lì che aprendolo,
+dovrai inserire con cura la tua
+batteria da 9V.
+Presta attenzione ai simboli + e - ed
+inserisci la batteria nello stesso verso
+facendo combaciare i simboli con
+quelli presenti sulla batteria. Richiudi
+lo sportellino, ora il tuo multimetro è
+pronto per essere utilizzato.
+
+14
+
+Il morsetto “COM” (Nero): nel
+morsetto COM va sempre inserito
+il puntalino NERO.
+• Il morsetto “VΩmA” (Rosso - per
+Volt, Ohm e milliAmpere): è il
+morsetto più utilizzato, quello per
+misurare la tensione (Volt), la
+resistenza (Ohm) e la corrente
+piccola (milliAmpere).
+Qui va inserito il cavo ROSSO per
+quasi tutte le misure.
+• Il morsetto “10A” (per Correnti
+Grandi): il morsetto 10A, si
+utilizza solo per misurare
+correnti molto elevate, fino a 10
+Ampere.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+Per gli esercizi di questo kit NON
+useremo MAI questo connettore,
+quindi i puntalini andranno sempre
+inseriti come indicato in figura.
+
+FUNZIONI DISPONIBILI
+LE PINZE A COCCODRILLO:
+Normalmente i multimetri hanno
+puntali con punte sottili e appuntite. I
+puntali sono però scomodi da
+utilizzare perché non sono stabili, ma
+con le pinze a coccodrillo invece riesci
+a “mordere” (da qui il nome
+coccodrillo) i punti in cui vuoi che il
+multimetro venga posizionato senza
+dover lottare per tenere i puntali fermi.
+Questo ti consente di essere più
+concentrato sull’utilizzo del
+multimetro e poter leggere più
+comodamente le misure che stai
+effettuando. Quindi non preoccuparti
+se online trovi del materiale didattico
+con i puntali standard, i tuoi sono
+semplicemente più comodi da
+utilizzare!
+
+Guarda il tuo multimetro. Il tuo
+multimentro ha un selettore rotativo
+al centro e tanti numeri e simboli tutti
+intorno. Questa manopola ti permette
+di selezionare cosa vuoi che il
+multimetro misuri.
+Puoi
+ruotarla
+in
+qualsiasi
+direzione.
+Posizionandola
+esattamente al centro, punterà verso
+la scritta OFF.
+In questa posizione il multimetro
+è spento.
+È molto importante ricordare di
+posizionare sempre la manopola su
+OFF quando hai terminato il tuo
+lavoro. In questo modo la batteria del
+multimetro non si scaricherà
+inutilmente!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+15
+
+CAPITOLO 3
+
+MISURIAMO LA TENSIONE DELLE
+BATTERIE: TENSIONE CONTINUA (DC)
+Quando ruoti la manopola verso
+sinistra (guarda la zona gialla nella
+foto), trovi la sezione per misurare le
+tensioni continue. Queste sono le
+tensioni che trovi nella maggior parte
+dei circuiti elettronici o delle varie
+batterie che li alimentano. Le tensioni
+continue sono spesso abbreviate con
+la sigla DC (in inglese Direct Current).
+Le tensioni spesso sono
+impropriamente dette Voltaggio, ma
+questo termine è solo una traduzione
+errata dall’inglese (Voltage). Voltaggio
+in Italia è solo un paese in provincia di
+Alessandria!
+
+SCEGLI LA SCALA GIUSTA:
+IL “FONDO SCALA”
+Vicino alla “V” (che indica Volt) vedrai
+diversi numeri: 0.2, 2, 20, 200, 600 e
+così via. Questi numeri indicano il
+“fondo scala” dello strumento, cioè il
+valore massimo di tensione che il
+multimetro può misurare in quel
+momento. Se volessi misurare
+l’altezza di un tuo amico, useresti un
+metro da sarto
+
+Per il multimetro è uguale!
+Regola d’oro: scegli un numero che
+sia appena più grande del valore che ti
+aspetti di misurare.
+Se misuri una batteria da 1.5 Volt
+(come una AA o AAA), ruota la
+manopola su 2V. Se misuri una
+batteria da 9 Volt ruota invece la
+manopola su 20V.
+
+o un metro da muratore? Quello da
+sarto arriva a 1,5 metri, mentre quello
+da muratore fino a 100 metri. Troppo
+grande e poco preciso vero?
+
+16
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+ESPERIMENTO 1
+Controlliamo la carica della tua batteria da 9V!
+Oggi usiamo il multimetro per scoprire quanta carica c’è in una batteria da 9V.
+È come dare un’occhiata dentro per vedere se è ancora “piena” o se sta per
+“esaurirsi”!
+Cosa ti serve:
+Il multimetro
+Una batteria da 9 Volt
+Preparazione del multimetro:
+Prendi il cavo nero e inseriscilo nella porta COM
+Prendi il cavo rosso e inseriscilo nella porta contrassegnata con VΩmA
+Guarda il selettore rotativo del multimetro. Trova la sezione con la lettera “V”
+e una linea dritta sopra e una linea tratteggiata sotto (o a volte solo “DCV” o
+“VDC”). Questo simbolo indica la Tensione Continua, quella delle batterie.
+Ora, dobbiamo scegliere la scala giusta. La batteria è da 9 Volt, quindi
+dobbiamo scegliere una scala che sia appena più grande di 9V. Sul tuo
+multimetro, cerca il numero 20V in quella sezione.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+17
+
+CAPITOLO 3
+
+Ruota la manopola esattamente su 20V.
+Misuriamo la Batteria da 9V:
+Identifica i poli della batteria:
+Guarda i bottoncini sulla batteria da 9V. Uno è più grande (esagonale) e
+l’altro più piccolo (rotondo). Il bottoncino più grande è il negativo (-),
+quello più piccolo è il positivo (+)
+Inserisci la clip della batteria 9V così da
+poter pinzare con i puntali con i coccodrilli le
+terminazioni della clip
+Aggancia il coccodrillo del cavo rosso
+sul positivo (+) della batteria.
+Aggancia il coccodrillo del cavo nero
+sul negativo (-) della batteria. Guarda il
+numero che appare sul display del
+multimetro.
+Se vedi circa “9.XX” (es. 9.30, 9.15, 9.00)
+Ottimo! La tua batteria è carica e pronta all’uso! Le batterie nuove
+spesso misurano anche un po’ più di 9V (tipo 9.30V o 9.6V)
+Se vedi un numero più basso (es. 7.50, 6.00, 5.00, 0.50)
+La tua batteria è quasi o completamente scarica
+È ora di cambiarla!
+
+18
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+Se vedi un numero con un segno meno davanti (es. “-9.25” o “-8.80”)
+Nessun problema, significa solo che hai collegato i coccodrilli al contrario.
+Il cavo rosso è sul negativo della batteria e il cavo nero è sul positivo.
+Basta invertire i coccodrilli (rosso sul positivo e nero sul negativo)
+e vedrai il numero giusto senza il meno.
+Vedi “OL” o “1.” sul display
+Significato: Over Load (sovraccarico) o il multimetro non può leggere
+su questa scala perché è sbagliata.
+Molto probabilmente hai posizionato la manopola su una scala troppo
+piccola
+(es. 2V anziché 20V). Ricontrolla e assicurati che sia su 20V. Se lo hai
+posizionato su una scala per la corrente o la resistenza, il multimetro
+non capisce cosa misurare.
+Bene, ora sai come misurare le batterie!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+19
+
+CAPITOLO 3
+
+ESPERIMENTO 2
+Ora che hai imparato ad utilizzare il multimetro, passiamo
+dalla teoria alla pratica: misuriamo la tua batteria da 9V
+presente nel Kit!
+Ogni volta che userai il kit e misurerai la batteria, segna qui sotto la data e
+il valore in Volt che leggi sul multimetro. Così potrai tenerne d’occhio la
+carica e capire quando è il momento di sostituirla. Se hai una
+batteria ricaricabile, potrai anche controllare lo stato di
+avanzamento della sua carica.!
+Data_________Misura________ Data_________Misura________
+
+20
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Data_________Misura________
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+COME MISURARE LE RESISTENZE
+Continuando a ruotare il selettore
+rotativo verso sinistra, arriviamo sul
+simbolo degli Ohm (Ω). Guarda
+l’immagine sotto per chiarezza.
+
+Se il display mostra “OL” o “1.”
+(come per le batterie), significa che la
+resistenza è troppo alta per la scala
+che hai scelto.Ruota la manopola su
+una scala più grande!
+Se il display mostra “0.00” o un valore
+molto vicino allo zero, significa che la
+resistenza è molto piccola. Ruota la
+manopola su una scala più piccola
+per avere una lettura più precisa.
+
+controllare l'immagine come fondo
+scala 200kohm invece di 2-20M
+
+Anche qui, in base a ciò che
+dobbiamo misurare, va selezionato il
+fondo scala più adeguato:
+Scegli sempre la scala appena più
+grande di resistenza che ti aspetti di
+trovare. Non sai il valore della
+resistenza?
+Non preoccuparti! Puoi iniziare dalla
+scala più alta (tipo 2M o 20M Ω) e
+poi scendere gradualmente fino ad
+ottenere una misura più precisa.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+21
+
+CAPITOLO 3
+
+ESPERIMENTO 3
+Misuriamo una Resistenza da 330 Ohm!
+Ora mettiamo in pratica quello che abbiamo imparato e misuriamo una vera
+resistenza. Useremo il nostro multimetro per scoprire se quella resistenza ha
+davvero il valore che ci aspettiamo: 330 Ohm!
+Per questo esperimento hai bisogno di:
+- Il multimetro
+- Un resistore da 330 Ohm. Aiutati con
+l’immagine accanto se non ricordi i
+colori!
+
+Assicurati che il cavo nero sia inserito nella porta (COM) e che il cavo rosso
+sia inserito nella porta con il simbolo (V ΩmA)
+Ruota il selettore fino a selezionare la scala più appropriata. Il valore atteso è
+intorno ai 330 Ohm, quale pensi sia quella giusta?
+Ricorda: per misurare una resistenza guarda il selettore del multimetro nella
+sezione dell’Omega (Ω). Cerca i numeri come 200, 2k, 20k, 200k
+22
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+Per una resistenza da 330 Ohm, la scala migliore da scegliere è quella più
+piccola ma comunque superiore a 330 Ohm.
+La prima scala più vicina a 330 è 2k. Ruota quindi la manopola su 2k
+Prendi il tuo resistore e aggancia i coccodrilli alle due estremità.
+Considerando che i resistori non sono componenti polarizzati, non
+importa come colleghi i coccodrilli!
+
+Cosa leggi sul display?
+
+Laboratorio di elettronica: Impara e sperimenta
+
+23
+
+CAPITOLO 3
+
+Mentre misuri potresti vedere diversi risultati!
+Ad esempio 314, 326, 340
+Fantastico! Hai misurato correttamente la resistenza.
+Il numero è vicino a 330 Ohm. I resistori reali non sono mai esattamente
+precisi, quindi un valore leggermente diverso è normale.
+La piccola differenza è dovuta alla tolleranza della resistenza. Ricorda che i
+resistori di questo kit hanno una tolleranza del 5%, quindi i valori che leggi
+hanno questo scarto!
+Se vedi OL o 1
+Esattamente come visto per le batterie, significa Over Load (sovraccarico).
+Il multimetro non riesce a leggere un valore su quella scala. Il resistore che
+stai cercando di misurare è più grande del fondo scala. Questo può
+accadere se hai messo la manopola su una scala troppo piccola (es. 200
+anziché 2k).
+
+Se vedi 0.0 o un numero molto vicino a zero (es. “0.1” o “0.2”)
+Probabilmente hai scelto una scala troppo grande oppure i puntali si
+stanno toccando tra di loro causando un corto circuito. Un cortocircuito ha
+una resistenza molto piccola ecco perché vedi un valore così vicino allo zero.
+
+24
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+Se vedi un numero che cambia continuamente significa che il contatto tra
+i puntali e la resistenza non è stabile. Stai toccando i terminali in modo leggero
+o instabile, Prova a riposizionare i coccodrilli in modo che mordano
+correttamente i terminali del resistore. Puoi anche provare a piegarli
+leggermente in modo che tocchino anche la parte esterna del coccodrillo!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+25
+
+CAPITOLO 3
+
+MISURIAMO LA CORRENTE (AMPERE):
+Ora che abbiamo misurato le
+tensioni (Volt) e le resistenze
+(Ohm), è il momento di misurare la
+corrente (Ampere)! Questa è forse la
+misurazione più delicata, ma anche la
+più affascinante perché è in grado di
+dirci per quanto tempo possono
+funzionare i nostri circuiti. Come già
+detto, la tensione è come la pressione
+dell’acqua in un tubo e la resistenza il
+suo diametro, mentre la corrente
+è la quantità di acqua che scorre
+effettivamente da quel rubinetto.
+
+Misurare la corrente è diverso. Per
+misurare la tensione si posizionano i
+puntali sul circuito, mentre per la
+corrente il multimetro deve diventare
+una parte del circuito stesso, come
+un pezzo del tubo dove scorre
+l’acqua.
+
+26
+
+COME IMPOSTARE IL MULTIMETRO PER
+MISURARE LA CORRENTE.
+Negli esercizi di questo kit
+misureremo sempre correnti piccole
+(qualche decina di mA). Per questo
+motivo non useremo mai la porta del
+multimetro con scritto 10A, ma la
+stessa che abbiamo già utilizzato per
+misurare tensioni e resistenze. I fondo
+scala disponibili sul multimetro sono
+diversi e come al solito vanno usati in
+base al contesto di misurazione.
+Quelli disponibili sono:
+• 2000μA (cioè 2mA): una corrente
+davvero molto piccola che può
+essere letta solo con resistori
+molto elevati;
+• 20mA: una corrente che troveremo
+nei circuiti in cui sono presenti i
+LED e useremo questo fondo
+scala!
+• 200mA: una corrente che
+possiamo leggere se ci sono dei
+motorini.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+Prima di lanciarci a capofitto nel
+nostro esperimento di misura della
+corrente, proviamo a cercare con la
+teoria il risultato che vedremo sul
+multimetro. Lo so che sembra noioso,
+ma prima di fare una misura è sempre
+bene accertarsi di avere almeno una
+vaga idea di quello che ci troveremo
+davanti. Vogliamo misurare la
+corrente che scorre in un resistore da
+1000Ohm (quindi 1 kOhm) collegato
+ad una batteria da 9V. Una misura
+davvero semplice! Per capire cosa ci
+dobbiamo aspettare, possiamo
+utilizzare la Legge di Ohm. Ricordi
+come trovare la corrente?
+
+Utilizzando la figura possiamo
+invocare il grande potere del Triangolo
+di Ohm che abbiamo studiato nel
+Volume 1. Abbiamo sia la tensione
+(9V) che il valore della resistenza
+(1000Ohm) quindi per ottenere la
+resistenza attesa ci basta dividere la
+tensione per la corrente.
+I = V÷R = 9V / 1kOhm = 9mA
+Considerato che la corrente attesa è
+di 9mA, il fondo scala più appropriato
+sarà 20mA!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+27
+
+CAPITOLO 3
+
+ESPERIMENTO 4
+Fantastico! Ora che il multimetro è impostato correttamente per misurare la
+corrente, vediamo come fare praticamente la misurazione sul circuito con
+il resistore e la batteria 9V.
+Costruiamo insieme il circuito di base e poi capiremo come
+inserire il multimetro.
+Collega la clip della batteria alla batteria
+Collega il positivo della batteria
+Collega il positivo della batteria alla striscia rossa superiore della
+breadboard
+
+Collega il resistore da 1 kOhm tra un punto qualsiasi della striscia rossa e
+un punto qualsiasi della zona al di sotto
+
+28
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+Con il coccodrillo rosso mordi un reoforo del resistore che hai appena
+inserito, mentre con quello nero il cavetto nero della batteria.
+Praticamente hai inserito il multimetro in serie al resistore. Come abbiamo
+già detto, per effettuare una misura di corrente il multimetro deve
+diventare un pezzo del circuito. In buona sostanza si comporta da cavetto
+speciale: mette in comunicazione due punti e inoltre ci restituisce il valore
+di corrente che lo attraversa!
+
+Sul display leggerai circa 9mA, ma potresti anche leggere un
+valore leggermente più alto (resistenza più bassa) o leggermente più basso
+(resistenza più alta). I resistori hanno una
+tolleranza ricordi? I resistori che utilizziamo hanno una tolleranza del 5% ,ciò
+vuol dire che il nostro resistore può valere al massimo:
+1000 Ohm + 5% = 1050 Ohm
+1000 Ohm - 5% = 950 Ohm
+Proviamo a fare i calcoli per trovare la corrente massima e quella minima che
+puoi leggere! Chiameremo il valore di 1050 Ohm RMAX, mentre il valore di 950
+Ohm Rmin.
+Per calcolare la corrente massima dobbiamo utilizzare la resistenza minima
+(perché se è più bassa fa passare più corrente):
+IMAX = V/Rmin = 9V/950 Ohm = 9.47 mA
+Laboratorio di elettronica: Impara e sperimenta
+
+29
+
+CAPITOLO 3
+
+Per calcolare invece la corrente minima dobbiamo usare la resistenza
+massima (perché fa passare meno corrente):
+Imin = V/RMAX = 9V/1050 Ohm = 8.57 mA
+Ovviamente per fare questi calcoli abbiamo assunto che il valore della batteria
+sia di 9V esatti, ma sappiamo che non è così! Misura la tua batteria, misura la
+tua resistenza e successivamente applica la legge di Ohm. Il tuo multimetro
+legge quello che ti aspetti con il calcolo con i valori reali dei componenti che
+stai utilizzando?
+Annota qui i risultati che hai ottenuto:
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+___________________________________________________
+
+30
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+Prova ora ad invertire il coccodrillo rosso con coccodrillo nero
+del multimetro. Cosa ti aspetti che succeda?
+
+Collegando i coccodrilli “al contrario” rispetto a quanto fatto prima, ottieni lo
+stesso risultato, ma col il segno negativo! Questo succede perché il
+multimetro misura secondo “convenzione”. La convenzione
+è un modo di fare le cose. Nel caso del multimetro ci dice che il coccodrillo
+rosso deve essere collegato verso il punto
+più positivo del circuito, mentre quello nero verso il punto più negativo.
+Praticamente il coccodrillo rosso deve puntare verso il positivo della batteria,
+mentre il coccodrillo nero verso il negativo della batteria. Prova adesso a
+modificare il circuito aumentando o diminuendo il valore dl resistore. Prima
+o dopo aver effettuato la misura, controlla con il multimetro i valori reali e
+applica la legge di Ohm per controllare se hai effettuato i calcoli in maniera
+corretta. Padroneggiare la legge di Ohm vi consentirà di diventare maghi
+dell’elettronica!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+31
+
+CAPITOLO 3
+
+NOTE
+
+32
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+
+COME IMPOSTARE IL MULTIMETRO
+PER MISURARE LA CONTINUITÀ: DUE
+PUNTI SONO CONNESSI?
+Innanzitutto ruota il selettore sul
+simbolo corretto, quello con l'icona del
+diodo e di un’onda(sonora).
+La continuità ci consente di capire se
+due punti sono collegati tra di loro.
+Per utilizzare questa funzione il
+circuito da controllare deve però
+essere spento, quindi prima di
+utilizzare questa funzione rimuovi la
+batteria dal tuo circuito!
+Se due punti sono connessi tra di loro,
+quindi con un cortocircuito, il
+multimetro emetterà un beep che
+indica la corretta connessione.
+Per provare molto velocemente
+questa funzione prova, dopo aver
+selezionato col selettore la corretta
+funzione, a far toccare tra di loro
+i due coccodrilli: il tester suonerà!
+Puoi giocare a suonare una melodia
+facendo toccare tra loro i coccodrilli,
+ma potrebbe diventare fastidioso!
+
+CONTROLLARE UN FILO: IL FILO È ROTTO?
+Poiché un filo è un cortocircuito, ma i
+fili si possono spezzare, con la
+continuità possiamo verificare che il
+filo non sia interrotto. Prova a
+prendere uno dei fili colorati del kit e a
+pinzare i due estremi. Se il filo non è
+rotto il multimetro emetterà il
+beeeeeeep!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+33
+
+CAPITOLO 3
+
+CONTROLLARE IL CORRETTO
+FUNZIONAMENTO DI UN PULSANTE
+Nel Volume 1 di "Laboratorio di
+Elettronica: Impara e Sperimenta",
+abbiamo già utilizzato dei pulsanti
+come quello della figura
+sottostante.
+
+Abbiamo detto che anche se ha
+quattro pin, due coppie sono sempre
+collegate tra di loro e quando viene
+premuto invece vengono messe in
+comunicazione le altre perché un
+pezzettino metallico si sovrappone
+su di loro. In particolare quando il
+pulsante NON è premuto, i due
+piedini rossi sono sempre in
+comunicazione con un cortocircuito,
+mentre quando viene premuto si
+mette in comunicazione il lato rosso
+con il lato blu.
+
+34
+
+Utilizzando la funzione continuità del
+multimetro possiamo ora provare il
+corretto funzionamento del pulsante.
+Per prima cosa controlliamo le due
+coppie di piedini che sono sempre
+collegate tra di loro.
+Per farlo, dopo aver impostato il
+multimetro in continuità, pinza con i
+coccodrilli i due lati del pulsante
+come mostrato nella figura
+sottostante.
+
+Se i piedini del pulsante non sono
+interrotti, perché si sono danneggiati
+durante l’utilizzo, il tuo multimetro
+dovrebbe emettere il famigerato
+beep!
+Ripeti adesso la stessa operazione
+per le altre due coppie dal lato
+opposto!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MULTIMETRO
+La funzionalità di continuità del tester
+è uno strumento utilissimo per ogni
+giovane esploratore dell’elettronica.
+
+Ora controlliamo che quando il
+pulsante viene premuto,
+i due lati opposti si collegano tra di
+loro attraverso la lamella che viene
+messa giù dalla molla. Per fare
+questo, pinza con i coccodrilli i due
+lati opposti del pulsante come
+mostrato dalla figura sottostante
+
+Permette di capire se due punti sono
+collegati tra loro senza dover
+smontare tutto o perdere tempo.
+È come avere un super potere per
+“vedere” dentro i fili e le piste dei
+circuiti!
+Pu aiutarti a trovare fili interrotti,
+controllare se un interruttore funziona,
+verificare se un circuito è chiuso e
+pronto a far passare la corrente.
+
+Se il pulsante funziona correttamente
+quando non è premuto il multimetro
+non deve emettere alcun suono,
+mentre appena lo premi emette un
+beeeep!
+
+Usare la funzionalità di continuità del
+tester è semplice e ti permette di
+scoprire tantissimo: proprio come un
+detective dell’elettricità!
+Ricorda però di utilizzarla sempre
+dopo aver rimosso l’alimentazione dal
+circuito da analizzare, noi utilizziamo
+la batteria da 9V negli esercizi della
+nostra collana.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+35
+
+NOTE
+
+36
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 4
+
+APPROFONDIAMO LE RESISTENZE
+LA SERIE STANDARD E12
+In questo capitolo approfondiremo
+quanto visto nel Volume 1 di
+"Laboratorio di Elettronica: Impara e
+Sperimenta".
+I valori standard o normalizzati per i
+resistori sono stabiliti in base alla
+norma IEC 60063, che fissa delle
+tabelle da utilizzare a seconda della
+tolleranza In base ad essa si può
+conoscere quali valori di resistori sono
+
+Abbiamo già parlato dei resistori e
+abbiamo capito a cosa servono e
+come sono fatti, ma era solo
+un’introduzione da approfondire.
+Abbiamo appreso che le resistenze
+sono come dei “rubinetti” che
+rallentano l’elettricità, giusto? E
+abbiamo imparato a leggerne il valore
+dai colori.
+Ora immagina di dover costruire molti
+circuiti diversi tra loro. Ti aspetti che i
+negozi di elettronica vendano
+resistenze con ogni valore possibile
+(tipo 1 Ohm, 1.1 Ohm, 1.2 Ohm, 1.3
+Ohm, e così via all’infinito)? Non è
+così, sarebbe un caos!
+
+disponibili in commercio.
+È come se avessero detto: “Ok, non
+possiamo avere tutti i valori, ma
+scegliamo alcuni valori ‘giusti’ che ci
+permettano di coprire quasi tutte le
+necessità.”
+Ricordi la nozione sulla tolleranza dei
+resistori? Ecco, sfruttando questo
+concetto si possono scegliere i valori
+della serie E12.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+37
+
+CAPITOLO 4
+La Serie E12 è una lista di “valori
+scelti con cura”. È una delle serie più
+comuni e utili, soprattutto per chi
+come te inizia ad esplorare il mondo
+dell’elettronica.
+
+Questi 12 numeri sono solo la
+base. Per ottenere i valori reali delle
+resistenze, moltiplichiamo questi
+numeri per 10, 100, 1000, 10000e
+così via.
+
+Il “12” nella Serie E12 sta ad indicare
+che per ogni “gruppo” di valori (come i
+valori tra 10 e 100 Ohm, o tra 100 e
+1000 Ohm), ci sono 12 valori diversi
+che puoi trovare.
+
+Valori da “dieci” a “cento” Ohm:
+
+Perché sono importanti questi 12
+valori?
+Se si prende un resistore di un valore
+presente nella Serie E12 e il suo
+valore subito successivo, non c’è un
+divario di valori troppo elevato tra di
+loro. Questo ci consente di coprire
+o approssimare quasi tutti i valori di
+resistenza senza dover inventare un
+resistore di valore assurdo.
+
+10 Ohm
+12 Ohm
+15
+...per arrivare fino ad 82 Ohm.
+Valori da “cento” a “mille” Ohm:
+100 Ohm
+120 Ohm
+150 Ohm
+...fino a 820 Ohm.
+Valori da “mille” a “diecimila” Ohm:
+1 kOhm
+1.2 kOhm
+1.5 kOhm
+...fino a 8.2 kOhm
+
+ECCO I 12 “NUMERI BASE” DELLA SERIE E12:
+1.
+2.
+3.
+4.
+5.
+6.
+
+38
+
+1.0
+1.2
+1.5
+1.8
+2.2
+2.7
+
+7. 3.3
+8. 3.9
+9. 4.7
+10. 5.6
+11. 6.8
+12. 8.2
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE RESISTENZE ?
+Quando acquisti i resistori per i tuoi
+progetti o quando li trovi in un kit
+come questo che stai utilizzando, la
+maggior parte delle resistenze ha
+valori che rientrano in questa serie
+standard. Raramente troverai una
+resistenza da 1.6 kOhm
+o 1.7 kOhm, perché non rientrano
+nella Serie E12. Ovviamente esistono
+delle applicazioni in cui si necessita
+di un singolo valore di resistenza più
+specifico, per questo motivo si
+possono utilizzare i concetti che
+verranno esposti nel capitolo oppure
+utilizzare delle serie di valori più
+estesi come la E24 (24 valori) o la
+E36 (36 valori).
+
+COSA FACCIAMO SE NON
+ABBIAMO IL VALORE DI CUI
+ABBIAMO BISOGNO NELLA SERIE
+E12?
+La Serie E12 è comoda, ma si potrà
+verificare l'eventualità si aver
+bisogno di quel valore che non c’è.
+Niente paura! E' possibile “creare” una
+resistenza con un valore diverso
+utilizzando uno
+o più valori di resistenza tra quelli che
+abbiamo a disposizione nel nostro kit.
+Esattamente come facciamo con gli
+ingredienti di una ricetta, possiamo
+utilizzare i resistori per creare
+qualcosa di nuovo, peccato che non
+sarà un dolce!
+
+COLLEGAMENTO SERIE
+Si parla di collegamento serie quando
+colleghiamo tra di loro due (o più)
+resistori in fila indiana. Proprio come
+quando colleghiamo un piedino di un
+resistore col piedino di un altro
+resistore. In questo caso i valori di
+resistenza si sommano! Se mettiamo
+i resistori in serie in un circuito la
+corrente che li attraversa è la stessa.
+Immaginiamo di voler creare il
+resistore da 1.6 kΩ di cui parlavamo
+poco fa. Poiché possiamo sommare il
+valore di resistenza con un
+collegamento serie, ci basta collegare
+insieme un resistore da 1.5 kΩ e un
+resistore da 100 Ω.
+Ricordi la fila indiana? Ecco che i
+resistori si devono 'tenere la mano in
+fila indiana', quindi il collegamento da
+effettuare è questo:
+
+Laboratorio di elettronica: Impara e sperimenta
+
+39
+
+CAPITOLO 4
+
+COLLEGAMENTO PARALLELO
+Si parla di collegamento parallelo
+quando due (o più) resistori si tengono
+entrambe le mani e si guardano,
+quindi quando entrambi i pin dei
+resistori sono collegati a coppie nello
+stesso punto. In questo caso
+la faccenda del valore di resistenza
+equivalente si complica perché
+abbiamo una divisione della corrente
+tra i resistori.
+Esattamente come succede in un
+tubo in cui ad un certo punto c’è un
+bivio e l’acqua si divide, anche per i
+resistori succede la stessa cosa con la
+corrente.
+
+La corrente totale sarà quindi la
+somma delle due correnti che
+scorrono dai due rami.
+Proviamo a fare un esempio.
+Immaginiamo di avere una batteria
+da 9V collegata a 2 resistori da 330 Ω
+collegati in parallelo.
+
+40
+
+In ogni resistore per la legge di Ohm
+scorre:
+I = V/R = 9V/330Ω = 0.03 A = 3 mA
+Poiché in ogni resistore scorrono 3
+mA la corrente totale in uscita dalla
+batteria sarà 6 mA!
+Ma un attimo, sempre utilizzando la
+legge di Ohm questo vuol dire che
+è come se la resistenza equivalente
+connessa alla batteria fosse di 165 Ω!
+
+Due resistori identici collegati in
+parallelo equivalgono ad un resistore
+con valore dimezzato.
+Se invece i due resistori collegati
+insieme non hanno lo stesso valore, si
+può utilizzare la seguente formula:
+Req = (R1 * R2) / (R1 + R2)
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE RESISTENZE ?
+Req è il resistore equivalente, mentre
+R1 ed R2 sono i due resistori messi in
+parallelo. In sostanza dobbiamo
+calcolare il prodotto dei due valori di
+resistori diviso la loro somma. La
+dimostrazione di questa formula esula
+dallo scopo di questo libro, ma si può
+trovare con la legge di Ohm!
+Utilizzando il multimetro, come
+spiegato in precedenza, prova ad
+effettuare il collegamento serie e
+parallelo delle due immagini proposte
+in questo capitolo e controlla il
+risultato che ottieni. Ricorda, c’è
+sempre la tolleranza di mezzo!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+41
+
+CAPITOLO 4
+
+Esercizio 1
+Utilizzando due resistori della serie E12 come realizzeresti un resistore
+equivalente da 75kΩ?
+___________________________________________________
+___________________________________________________
+
+Esercizio 2
+Utilizzando due resistori della serie E12 come realizzeresti un resistore
+equivalente da 4.4kΩ?
+___________________________________________________
+___________________________________________________
+
+42
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE RESISTENZE ?
+
+Esercizio 3
+Quanti resistori della serie E12 utilizzeresti per creare un resistore
+equivalente da 3kΩ? Come li collegheresti?
+___________________________________________________
+___________________________________________________
+
+ESPERIMENTO 1
+Utilizzando la breadboard metti in parallelo due resistori da 1kΩ.
+Che valore deve avere il resistore equivalente?Utilizza il
+multimetro per controllare qual è il vero valore!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+43
+
+CAPITOLO 4
+
+ESPERIMENTO 2
+Utilizzando la breadboard metti in serie tre resistori da 1kΩ.
+Che valore deve avere il resistore equivalente?Utilizza il
+multimetro per controllare qual è il vero valore!
+
+Ora misura ogni resistore singolarmente e prendi nota del valore di
+ognuno. Sono molto simili o differenti? Scrivi qui i loro valori
+Valore 1:
+--------------------------------Valore 2:
+--------------------------------Valore 3:
+--------------------------------44
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE RESISTENZE ?
+
+ESPERIMENTO 3
+Sulla base del circuito dell’esperimento 2, aggiungi la batteria come
+indicato in figura. Posiziona il coccodrillo nero sul negativo della batteria
+e il coccodrillo rosso nei punti: J9, J5, J1
+
+Prendi nota della tre tensioni:
+V (J1):
+___________________
+V (J5):
+___________________
+V (J9):
+___________________
+Succede quello che ti aspettavi? Applica la legge di Ohm
+Laboratorio di elettronica: Impara e sperimenta
+
+45
+
+NOTE
+
+46
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 5
+
+APPROFONDIAMO LE BATTERIE
+In questo capitolo approfondiremo
+quanto visto nel Volume 1 di
+"Laboratorio di Elettronica: Impara e
+Sperimenta".
+Abbiamo già parlato delle batterie, ma
+finora abbiamo utilizzato solo quella
+da 9V. Siamo abituati però ad esempio
+ad inserire più di una batteria nei
+telecomandi, nei giocattoli o in altri
+dispositivi elettronici. Ma sai il perché?
+
+COLLEGAMENTO SERIE
+Alcuni dispositivi elettronici hanno
+bisogno di più tensione (quindi più V)
+per funzionare correttamente.
+Prendiamo l’esempio di una
+macchinina radiocomandata.
+
+In questo tipo di giocattoli di solito
+ci sono quattro batterie AA o AAA.
+Ogni batteria ha una tensione di 1.5V
+ed esattamente come i resistori, le
+batterie possono essere messe in
+serie per avere un valore più alto.
+Collegando infatti il positivo di
+una batteria con il negativo della
+successiva in modo da avere un solo
+positivo e un solo negativo libero
+(esattamente come nell’immagine)
+abbiamo:
+1.5V + 1.5V + 1.5V + 1.5V = 6V
+Abbiamo quindi costruito una batteria
+equivalente da 6V!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+47
+
+CAPITOLO 5
+
+COLLEGAMENTO PARALLELO
+Le batterie possono anche essere
+collegate in parallelo, in questo caso
+la tensione totale è la stessa, ma
+perché lo facciamo?
+
+Facciamo un esempio con la batteria
+da 1.5V 2.5Ah. Per la legge di Ohm
+se abbiamo tensione e corrente
+possiamo ricavare la resistenza:
+R = V/I = 1.5V/2.5Ah = 0.6Ω
+Quindi se colleghiamo un resistore da
+0.6Ω ad una batteria da 1.5V, la
+corrente scorrerà per 1 ora prima che
+la batteria si scarichi del tutto.
+
+Le batterie vengono collegate in
+parallelo quando abbiamo bisogno di
+più corrente. Esattamente come la
+corrente si ripartisce tra due resistori
+collegati in parallelo, nel caso delle
+batterie, la corrente che viene erogata
+per alimentare un circuito viene
+prelevata in piccole parti da ogni
+batteria!
+Sulle batterie infatti troviamo una
+scritta (come quella dell’immagine)
+che dice ad esempio 2.5Ah. Questa
+dicitura ci indica che se il nostro
+circuito assorbe 2.5Ah, la batteria
+sarà in grado di alimentarlo per 1 ora
+(ora in inglese si dice hour quindi si
+usa la h).
+
+48
+
+Se invece vogliamo fare la stessa
+cosa, ma alimentare lo stesso circuito
+per 4 ore alla stessa tensione di 1.5V,
+ci basta collegare 4 batterie in
+parallelo.
+
+2.5Ah + 2.5Ah + 2.5Ah + 2.5Ah = 10Ah
+Ecco perché la batteria dura
+quattro volte di più. Ovviamente più
+batterie
+in
+parallelo
+aggiungeremo,
+più aumenterà la
+durata!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE BATTERIE?
+
+ESPERIMENTO 1
+Batterie in Serie (Più “Spinta”!)
+Obiettivo: Capire come le batterie in serie aumentano la tensione (i Volt)
+e misurarla con il multimetro.
+Cosa ti serve:
+• 3 o 4 batterie AA/AAA (quelle da 1.5V)
+• Il tuo multimetro
+Passo 1: Misuriamo una singola batteria
+1. Prendi il tuo multimetro
+2. Ruota la manopola sul simbolo “V” con la linea dritta e i tre puntini
+(V), e impostalo su una scala tipo “20V” (o “DCV 20”)
+3. Prendi una sola batteria
+4. Tocca il puntale rosso del multimetro sul polo positivo (+) della batteria
+5. Tocca il puntale nero del multimetro sul polo negativo (-) della batteria
+6. Cosa leggi? Vedi sul dispaly un valore vicino a 1.5V (es. 1.55V,
+1.48V). Questo è il “voltaggio” o la “spinta” di una singola batteria.
+Passo 2: Colleghiamo due batterie in Serie
+1. Prendi due batterie
+2. Collega il polo positivo (+) di una batteria al polo negativo (-) dell’altra
+batteria. Puoi usare un cavetto jumper o semplicemente tenerle vicine
+3. Ora hai un polo negativo libero da una parte e un polo positivo libero
+dall’altra. Questi sono i tuoi nuovi “poli” combinati!
+4. Con il multimetro (sempre impostato su 20V DC):
+• Puntale rosso sul polo positivo libero
+• Puntale nero sul polo negativo libero
+Laboratorio di elettronica: Impara e sperimenta
+
+49
+
+CAPITOLO 5
+
+5. Cosa leggi ora? Ti comparirà un valore vicino a 3V (es. 3.05V, 2.9V).
+• Spiegazione: 1.5V (prima batteria) + 1.5V (seconda batteria) = 3V! Hai
+raddoppiato la “spinta”!
+Passo 3: Colleghiamo tre (o quattro) batterie in Serie
+1. Ora aggiungi una terza (o quarta) batteria alla “catena”, sempre
+collegando il positivo di quella precedente al negativo di quella nuova
+2. Avrai sempre un polo positivo libero all’inizio e un polo negativo libero alla
+fine della catena
+3. Misura la tensione tra questi due poli liberi con il multimetro.
+4. Cosa leggi?
+• Con 3 batterie: Dovresti leggere circa 4.5V (1.5V x 3)
+• Con 4 batterie: Dovresti leggere circa 6V (1.5V x 4)
+Esattamente, come detto nella parte teorica di questo capitolo, abbiamo visto
+che collegando due o più batterie in serie tra di loro, possiamo ottenere
+tensioni più alte di quelle che avremmo utilizzando una sola batteria. Questo
+torna molto utile in una varietà di applicazioni che hanno ad esempio dei
+motorini (come le macchinine radiocomandate) poiché necessitano di tensioni
+più alte e anche di più corrente per durare più a lungo. Se infatti
+usassimo una batteria da 9V per alimentare una macchinina radiocomandata,
+probabilmente potremmo giocare solo per 5 minuti! Questo accade perché
+le batterie da 9V hanno una quantità di mAh nettamente inferiore alle batterie
+oAAAAA.
+
+50
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO LE BATTERIE?
+
+ESPERIMENTO 2
+Abbiamo detto che le batterie in serie si sommano e abbiamo anche effettuato
+un esperimento per dimostrarlo. Ma cosa succede se anziché collegare il
+positivo di una batteria con il negativo della successiva lo collegassimo con
+il positivo?
+
+Se colleghiamo il tester invertendo il positivo e il negativo sulla batteria
+otteniamo una lettura negativa. Effettuando questo collegamento facciamo
+esattamente la stessa cosa!
+Il risultato è
+V = 1.5V - 1.5V = 0V
+Praticamente una batteria prova a spingere in una direzione e l’altra nel senso
+opposto! Quindi la tensione totale diminuisce. Se le batterie hanno esattamente
+la stessa tensione leggerai 0V sul multimetro altrimenti un valore poco più
+positivo di 0V (ad esempio 0.2V) o poco più negativo di 0V (ad esempio -0.3V).
+Questo tipo di collegamento tra le batterie (o tra i componenti elettronici
+polarizzati in generale) è chiamato ANTISERIE.
+Laboratorio di elettronica: Impara e sperimenta
+
+51
+
+CAPITOLO 8
+
+NOTE
+
+52
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 6
+
+APPROFONDIAMO I LED
+In questo capitolo approfondiremo
+quanto visto nel Volume 1 di
+"Laboratorio di Elettronica: Impara e
+Sperimenta".
+Abbiamo detto che per non
+danneggiare i LED dobbiamo
+utilizzare dei resistori per limitare la
+corrente che li attraversa. Ma come
+facciamo a calcolare un valore di
+resistenza che faccia scorrere proprio
+la quantità di corrente che vogliamo?
+Un LED ha una tensione (chiamata
+Vf) che permette di
+far scorrere la massima corrente
+(chiamata If) che può sopportare
+e quindi avere il massimo della
+luminosità. Questa tensione, e di
+conseguenza la corrente, vengono
+indicate nel documento tecnico del
+componente (chiamato datasheet).
+
+Questi due valori inoltre cambiano
+per ogni costruttore e per ogni
+colore di LED. Ovviamente ci sono
+dei valori usuali, ad esempio nel
+caso del LED verde Vf = 2V e If =
+0.025A (quindi 25mA).
+Per calcolare il resistore da
+posizionare in serie al LED per avere
+la If, possiamo utilizzare la legge di
+Ohm e quanto visto per le batterie.
+Sappiamo che il LED deve avere
+applicata ai suoi capi una tensione di
+2V, per il calcolo del resistore può
+essere considerato come una
+piccola batteria!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+53
+
+CAPITOLO 6
+Se mettessimo un resistore da 270Ω
+invece passerebbe più corrente
+sempre per la legge di Ohm:
+I = Vbatteria/R = 7V/270Ω = 26mA
+che è maggiore di quella massima
+sopportabile dal LED.
+Scegliamo quindi il valore standard
+successivo di 330Ω ottenendo una
+corrente di:
+
+Se consideriamo il LED come una
+batteria da 2V, considerato che il suo
+lato negativo (il catodo) è rivolto
+verso
+il negativo della batteria da 9V, la
+batteria equivalente è una batteria da:
+Vbatteria = 9V - 2V = 7V
+Se vogliamo far scorrere 25mA
+possiamo utilizzare la legge di Ohm
+per calcolare il resistore necessario.
+R = Vbatteria / I = 7V/0.025A = 280Ω
+In base a quanto detto nel capitolo 2
+di approfondimento sui resistori,
+questi ultimi della serie standard E12
+non comprendono il valore 280Ω e
+non sarebbe comodo fare una serie
+di due resistori per crearne uno da
+280Ω.
+
+54
+
+I = Vbatteria/R = 7V/330Ω = 21mA
+la corrente è leggermente più bassa di
+quella massima quindi non lo
+danneggerà e sarà abbastanza
+luminoso.
+NOTA:
+Esattamente come nell’esperimento 2
+del capitolo 5 in cui abbiamo
+effettuato la sottrazione tra le due
+batterie, anche in questo caso
+dobbiamo sottrarre la tensione Vf del
+LED dalla batteria. Questo accade
+perché se modelliamo il LED come
+una batteria, quest'ultima spinge nel
+verso contrario. Ecco perché è
+necessario sottrarre!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO I LED?
+Quando costruiamo un circuito con un
+LED, non possiamo semplicemente
+collegarlo alla batteria e sperare che
+funzioni, ma dobbiamo capire quanta
+tensione e quanta corrente gli servono
+per accendersi senza bruciarsi. Il LED
+si comporta come una piccola batteria
+al contrario, che “ruba” una parte della
+tensione. Se la nostra batteria è da 9
+V e il LED ha una caduta di tensione
+di 2 V, al resto del circuito restano
+solo 7 V da gestire. È su questi 7 V
+che dobbiamo calcolare il resistore,
+applicando la legge di Ohm.
+
+Ricorda:
+In elettronica spesso si fa un
+compromesso tra teoria e pratica.
+I calcoli ci guidano, ma la scelta
+finale deve anche tener conto della
+sicurezza e della disponibilità dei
+componenti. E, proprio come
+abbiamo visto negli esperimenti
+precedenti, quando due tensioni si
+oppongono bisogna sempre fare la
+sottrazione: è la regola che ci salva
+i componenti e… la pazienza!
+
+Ricordiamo che nella pratica non
+sempre esiste il resistore con il valore
+esatto dato dal risultato dei calcoli.
+Per questo esistono delle serie
+standard, come la E12, che
+contengono solo determinati valori.
+Se il calcolo ci dice che è opportuno
+utilizzare un resistore da 280 Ω,
+dobbiamo scegliere il valore più vicino
+che mantenga il LED al sicuro. In
+questo caso, meglio salire a 330 Ω: la
+corrente sarà leggermente più bassa,
+il LED durerà più a lungo e la
+differenza di luminosità sarà quasi
+invisibile.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+55
+
+CAPITOLO 6
+
+ESPERIMENTO 1
+In questo esperimento vedremo come utilizzare più LED in serie avendo
+un solo resistore di protezione del LED.
+Per questo esperimento abbiamo bisogno di:
+•
+•
+•
+•
+
+una breadboard
+la clip per la batteria 9V e la batteria
+un resistore da 330 Ω
+due LED del colore che preferisci
+
+Collega il positivo della batteria alla parte superiore della breadboard
+e il negativo nella parte inferiore
+
+Collega un resistore da 330 Ω tra il positivo della batteria e un punto
+qualsiasi della breadboard
+
+56
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO I LED?
+
+Inserisci un LED con l’anodo rivolto verso il lato libero del resistore e il catodo
+dopo la divisione centrale della breadboard
+
+Inserisci il secondo LED con l' anodo rivolto verso il catodo del primo LED e il
+catodo verso il negativo della batteria
+
+Laboratorio di elettronica: Impara e sperimenta
+
+57
+
+CAPITOLO 6
+
+ESPERIMENTO 2
+Sulla base dell’esperimento 1, prova a modificare il colore del secondo LED
+(ad esempio utilizzandone uno blu) per apprezzare come cambia l’intensità
+luminosa
+
+Ti sembra che il LED rosso sia meno luminoso?
+Prova a modificare i colori di entrambi i LED e tenere traccia di come si
+modifica l’intensità luminosa a seconda del colore del LED che stai
+utilizzando
+COLORI UTILIZZATI:
+LED1: __________ LED2: __________ NOTE: __________
+LED1: __________ LED2: __________ NOTE: __________
+LED1: __________ LED2: __________ NOTE: __________
+
+58
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO I LED?
+
+ESPERIMENTO 3
+Proviamo ora ad aggiungere ancora un LED per averne tre collegati in serie.
+Per fare questo, partendo dall’esperimento 2, rimuovi il resistore
+
+Posiziona un LED di un altro colore (usiamo il giallo) con il catodo rivolto
+verso l’anodo del LED rosso e il suo anodo collegato in un punto qualsiasi
+della breadboard
+
+Collega ora il resistore da 330 Ω tra il positivo della batteria e l’anodo del
+LED giallo
+
+Laboratorio di elettronica: Impara e sperimenta
+
+59
+
+CAPITOLO 6
+
+Poiché abbiamo posizionato ben tre LED in serie, se ricordi quanto
+visto nella parte di teoria di questo capitolo, la corrente è via via diminuita
+aggiungendo LED. Prova ora a modificare il valore di resistenza da 330 Ω
+a 220 Ω e osserva come cambia la luminosità dei LED!
+
+ESPERIMENTO 4
+Abbiamo detto che il multimetro ha la funzione prova diodi e continuità.
+Come dice il nome della funzione, può essere usato per provare i diodi (per
+vedere se sono funzionanti o rotti) e come bonus ci dice quanto vale la sua Vf.
+Sapendo qual è la Vf esatta del nostro diodo, siamo in grado di
+individuare il valore esatto di resistenza di cui abbiamo bisogno per
+avere il massimo della luminosità. Ruota il selettore delle funzionalità fino ad
+arrivare alla funzione prova diodi e continuità.
+
+60
+
+Laboratorio di elettronica: Impara e sperimenta
+
+APPROFONDIAMO I LED?
+
+Prendi un diodo qualunque, usiamone uno
+verde. Con il coccodrillo nero tocca il catodo
+del LED e con il coccodrillo rosso tocca
+l’anodo del LED
+Sullo schermo comparirà quanto vale la Vf del diodo che hai scelto.
+Se si tratta di un diodo verde comparirà intorno ai 2V, ma se sullo
+display non compare nulla, ci sono tre opzioni:
+• hai invertito i puntalini!
+• il diodo è rotto o difettoso
+• il diodo ha una Vf troppo elevata e il multimetro
+non riesce a misurarla correttamente
+Utilizzando questa funzionalità, come abbiamo già detto, possiamo selezionare
+il valore perfetto di resistenza da mettere in serie al LED per renderlo il
+più luminoso possibile. Se vuoi prova a rifare i calcoli della parte teorica
+scegliendo un LED e misurando la sua Vf!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+61
+
+NOTE
+
+62
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 7
+
+COSA SONO I CONDENSATORI?
+I condensatori (detti anche capacitori)
+sono dei componenti elettronici che
+funzionano come delle piccole
+batterie. Sono infatti capaci
+(da qui il loro nome) di immagazzinare
+la tensione che gli viene applicata e
+liberare energia quando serve.
+
+L’unità di misura del condensatore
+è il Farad e si indica con la lettera F.
+A seconda del loro valore, i condensatori
+possono essere di due tipologie:
+• non polarizzati
+• polarizzati
+
+Hai presente quando stacchi la spina
+ad un dispositivo elettronico e
+qualche LED rimane acceso per un
+pochino? Bene, quell’effetto è causato
+dai condensatori che tengono le cose
+accese ino a quando non si
+scaricano.
+Esattamente come le batterie,
+i condensatori non possono
+immagazzinare l’energia per sempre,
+ma solo per un periodo di tempo
+limitato!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+63
+
+CAPITOLO 7
+Per valori di capacità elevati (di solito
+dai 100uF in su) i condensatori sono
+sempre polarizzati. Quelli polarizzati
+vengono anche chiamati elettrolitici
+perché per realizzarli serve una
+sostanza chimica chiamata elettrolita.
+
+Sui condensatori elettrolitici, oltre
+all’indicazione del valore di capacità,
+troviamo anche il valore di tensione
+massima a cui possono essere
+sottoposti. Anche in questo cas, se
+non rispettata ne consegue la
+rottura del componente!
+
+I condensatori elettrolitici, essendo
+polarizzati, devono essere inseriti
+correttamente in un circuito altrimenti
+il componente si danneggia e
+potrebbe addirittura esplodere!
+
+Nel caso del condensatore
+rappresentato nell'immagine
+leggiamo che il suo valore di capacità
+è 3300uF e che la sua massima
+tensione è 35V.
+Inoltre è presente una striscia laterale
+che indica qual è il pin negativo e,
+proprio come i LED, i pin sono uno più
+lungo ed uno più corto. Quello più
+lungo è il positivo!
+
+64
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+Esattamente come per i resistori,
+anche per i condensatori esiste
+un codice che indica il valore di
+capacità. In questo caso il codice è
+solo numerico e serve per
+rappresentare grandezze molto
+piccole. Infatti i condensatori sono
+componenti che possono
+immagazzinare cariche elettriche, ma
+la quantità che riescono a contenere
+è davvero minuscola se confrontata
+con un’unità intera di misura chiamata
+Farad (F).
+Per questo motivo si usano quasi
+sempre i sottomultipli del Farad, cioè
+unità di misura più piccole:
+•
+
+•
+
+•
+
+pF, si legge pico Farad ed equivale
+a un trilionesimo di Farad
+(1/1.000.000.000.000).
+nF si legge nano Farad ed equivale
+a un miliardesimo di Farad
+(1/1.000.000.000).
+μF (o uF) si legge micro Farad ed
+equivale a un milionesimo di Farad
+(1/1.000.000).
+
+Un condensatore da 1 Farad sarebbe
+talmente grande da risultare
+ingombrante e poco pratico per i
+normali circuiti elettronici. Per questo
+motivo i valori che troviamo più
+spesso nei dispositivi elettronici sono
+compresi tra pochi pF e qualche
+centinaio di μF.
+Un condensatore da 100 pF è
+installato nei circuiti delle radio
+poiché servono valori piccolissimi.
+Un condensatore da 100 nF si trova
+quasi in tutte schede elettroniche
+come “ iltro” per eliminare piccoli
+disturbi.
+Un condensatore da 100 μF può
+essere utilizzato negli alimentatori,
+per rendere più stabile la tensione
+poiché viene sfruttato l’effetto
+“batteria”.
+In questo modo, oltre a conoscere
+i simboli, puoi iniziare a intuire anche
+a cosa servono i diversi tipi di
+condensatori nei circuiti.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+65
+
+CAPITOLO 7
+
+66
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+ESPERIMENTO 1
+In questo esperimento osserveremo l’effetto di scarica del condensatore
+elettrolitico. Abbiamo bisogno di:
+• un condensatore da 1000uF
+• un pulsante
+• il multimetro
+• un filo colorato
+• un resistore da 1kΩ
+Imposta il multimetro su 20V in continua come fondo scala
+Inserisci il condensatore a cavallo della separazione centrale della breadboard
+e collega il multimetro con il cavo nero sul negativo e il rosso sul positivo del
+condensatore
+
+Inserisci il pulsante accanto al condensatore sempre a cavallo
+della separazione centrale
+Laboratorio di elettronica: Impara e sperimenta
+
+67
+
+CAPITOLO 7
+
+Collega un lato del pulsante al positivo del condensatore con il filo
+colorato e premi il pulsante. Il multimetro deve indicare circa 9V
+(cioè la tensione di batteria)
+
+Rilascia il pulsante e osserva cosa succede alla tensione ai capi del
+condensatore
+Il condensatore si comporta come una batteria momentanea e si scarica
+lentamente all’interno del multimetro. I puntali infatti si comportano come
+un resistore di valore molto elevato (richiedendo quindi poca corrente) e
+quindi la “batteria” si scarica lentamente
+
+68
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+ESPERIMENTO 2
+In questo esperimento continueremo ad osservare l’effetto di scarica del
+condensatore. Per questo esperimento abbiamo bisogno di:
+• un condensatore da 1000uF
+• un pulsante
+• un LED rosso
+• il multimetro
+• tre fili colorati
+• un resistore da 1kΩ
+Inserisci il pulsante a cavallo della divisione centrale della
+breadboard e collega la batteria come mostrato in figura
+
+Inserisci il condensatore accanto al pulsante con il negativo rivolto
+verso il basso e collega il positivo all’altro lato del pulsante
+
+Laboratorio di elettronica: Impara e sperimenta
+
+69
+
+CAPITOLO 7
+
+Inserisci il condensatore accanto al pulsante con il negativo rivolto
+verso il basso e collega il positivo all’altro lato del pulsante
+
+Collega il negativo del condensatore al negativo della batteria con un filo
+
+Collega il resistore tra il positivo del condensatore e un punto qualsiasi
+della breadboard
+
+70
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+Collega il positivo del LED con il lato libero del resistore e il negativo del LED
+in un punto qualsiasi della breadboard dopo la divisione centrale
+
+Collega il negativo del LED al negativo della batteria con un filo
+
+Collega il multimetro col cavo rosso sul positivo del condensatore
+e il cavo nero sul negativo del condensatore
+
+Laboratorio di elettronica: Impara e sperimenta
+
+71
+
+CAPITOLO 7
+
+Premi ora il pulsante e osserva cosa accade!
+Questa volta l’effetto di scarica del condensatore è visibile sia sul LED
+guardando come si spegne, sia sul multimetro guardando come diminuisce il
+valore letto.
+Come possiamo fare ad aumentare la durata dell’accensione del LED?
+Aggiungendo capacità in parallelo creiamo una batteria più capiente
+e quindi il LED può rimanere acceso per più tempo.
+
+ESPERIMENTO 3
+Nel kit sono presenti 3 condensatori da 1000uF 25V.
+Al contrario di quanto visto per i resistori, per sommare la capacità dei
+condensatori bisogna connetterli in parallelo. Così facendo, proprio come
+visto per le batterie, riescono a rimanere carichi per più tempo osservando
+una scarica più lenta.
+Ora prova ad aggiungere prima solo un condensatore in parallelo al
+circuito costruito durante l’esperimento 2 e successivamente un terzo.
+Sarai sorpreso nel vedere come cambia l’effetto di scarica del
+condensatore!
+72
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I CONDENSATORI?
+
+ESPERIMENTO 4
+Sulla base dell’esperimento 2 prova ora a cambiare il valore di resistenza
+aumentandolo o diminuendolo e osserva come cambia la scarica del
+condensatore.
+Prova a fare la stessa cosa anche sulla base dell’esperimento 3.
+Vedrai che con valori di capacità più alti e con valori di resistenza più alti,
+la scarica del condensatore è più lenta!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+73
+
+NOTE
+
+74
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 8
+
+CHE COSA SONO I TRANSITOR?
+Un transistor è un piccolo
+componente elettronico che può
+attivare o disattivare il passaggio
+della corrente, un po’ come fa un
+interruttore della luce.
+La cosa particolare è che non
+si aziona con una mano, come un
+normale interruttore, ma con un
+segnale elettrico! Per questo si
+chiama anche interruttore elettronico.
+
+I transistor possono anche
+essere usati per costruire circuiti
+di amplificazione del segnale,
+esattamente come quelli presenti
+all’interno delle casse bluetooth o di
+qualunque dispositivo di riproduzione
+audio ma, poiché la spiegazione
+matematica di questo funzionamento
+è abbastanza complessa,
+affronteremo l'argomento nelle
+pagine seguenti.
+Utilizzati come semplici interruttori
+comandati (chiamati anche
+interruttori digitali),
+i transistor possono già regalare
+molta soddisfazione e permetterci di
+costruire delle piccole automazioni.
+La spiegazione che utilizzeremo per
+descrivere il funzionamento dei
+transistor è semplificata, ma serve a
+capirne il funzionamento di base.
+Sarà spiegata più approfonditamente
+nei volumi successivi!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+75
+
+CAPITOLO 8
+Il transistor ha un funzionamento
+simile a quello dell’interruttore
+magnetico: proprio come il magnete
+tira la lamella e mette in contatto i
+due terminali e ha un terminale di
+controllo (chiamato Base o Gate a
+seconda della tipologia di transistor)
+a cui si applica una tensione per
+chiudere gli altri due terminali. Il
+transistor è quindi un dispositivo
+elettronico due categorie principali di
+transistor:
+
+•
+•
+
+i BJT (Bipolar Junction Transistor)
+i MOSFET (Metal Oxide Field
+Effect Transistor)
+A loro volta ci sono altre due
+sottocategorie:
+• BJT
+• NPN
+• PNP
+• MOSFET
+• canale N
+• canale P
+
+Per via della loro facilità di utilizzo, ci
+concentreremo ora sull’utilizzo dei
+MOSFET, nello specifico a canale N.
+I BJT NPN e i MOSFET a canale N
+hanno un comportamento analogo e
+vengono utilizzati come interruttore
+che “chiude il negativo” detto anche
+interruttore low side. Mentre i BJT
+PNP e i MOSFET a canale P vengono
+utilizzati come interruttore “che
+chiude il positivo”, detto anche
+interruttore high side.
+Giusto qualche altra breve nozione e
+inizieremo con i nostri esperimenti!
+Diamo solo dei nomi ai tre terminali
+dei transistor. Nel caso dei BJT
+abbiamo:
+
+•
+•
+•
+
+C: Collector (Collettore)
+B: Base
+E: Emitter (Emettitore)
+
+Le cariche elettriche (quindi la
+corrente) vengono tirate dal Collettore
+verso l’Emettitore quando
+applichiamo una tensione sulla
+base.Proprio come quando
+accendiamo una luce in casa
+spostando l’interruttore da OFF in ON.
+
+76
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+Per il MOSFET invece:
+• D: Drain
+• G: Gate
+• S: Source
+Per il MOSFET non abbiamo una
+diretta traduzione in italiano per i
+terminali, ma quando applichiamo
+una tensione di comando sul gate,
+la corrente scorre dal Drain verso il
+Source.
+
+Pensate ad un computer o ad uno
+smartphone. Al loro interno ci sono
+miliardi di transistor che lavorano
+insieme, aprono e chiudono correnti
+in modo velocissimo. È proprio grazie
+a loro che i dispositivi elettronici
+possono “pensare”, fare calcoli,
+accendere schermi, riprodurre musica
+e collegarsi a internet.
+
+Ultimissimo concetto: i transistor non
+sono dei veri e propri interruttori
+(come quelli meccanici)
+semplicemente perché devono
+essere collegati correttamente, sono
+dei componenti polarizzati come i
+diodi.
+
+Nei nostri esperimenti, anche se
+useremo solo pochi transistor,
+vedremo quanto sono potenti. Vedrai
+che con un semplice segnale
+possiamo accendere una lampadina,
+muovere un motorino o controllare
+una parte del circuito. È un po’ come
+avere il superpotere di accendere e
+spegnere la luce della propria stanza
+senza alzarsi dal letto, solo
+schioccando le dita!
+
+Nei nostri esperimenti collegheremo
+sempre:
+• il Source al negativo della batteria
+• il Drain al punto del circuito di cui
+vogliamo staccare il negativo
+• il Gate alla tensione di controllo
+Possiamo quindi immaginare il
+transistor come un piccolo guardiano
+elettronico: decide quando far passare
+la corrente e quando bloccarla,
+proprio come un vigile che regola il
+traffico ad un incrocio. A differenza di
+un normale interruttore però non
+serve la mano per spostarlo, basta
+una minuscola tensione di comando.
+
+I transistor sono quindi la base di tutta
+l’elettronica moderna: piccoli, veloci e
+intelligenti. Imparare ad usarli
+significa avere in mano una chiave per
+capire come funzionano quasi tutti gli
+oggetti tecnologici che usiamo ogni
+giorno.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+77
+
+CAPITOLO 8
+
+ESPERIMENTO 1
+In questo esperimento vedremo come utilizzare il MOSFET come interruttore
+comandato da una tensione. Per farlo abbiamo bisogno di:
+• 1 transistor
+• 1 LED: sceglilo del colore che ti piace di più)
+• Una breadboard
+• Una batteria 9V
+• La clip per la pila 9V
+• 1 resistore da 470 Ohm
+• 4 fili colorati
+Collega la clip alla batteria, poi connetti il cavo rosso alla striscia rossa e il
+cavo nero alla striscia nera della breadboard.
+Posiziona il transistor come indicato in figura. Così facendo il piedino più a
+sinistra è il gate, quello in mezzo il drain e quello più a destra è la source
+
+78
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+
+Collega il source (piedino più a destra) al negativo della batteria
+utilizzando un cavetto
+
+Posiziona il LED accanto al transistor rivolgendo l’anodo verso destra
+
+Collega il catodo del LED al drain (pin centrale del transistor)
+utilizzando un cavetto
+
+Laboratorio di elettronica: Impara e sperimenta
+
+79
+
+CAPITOLO 8
+
+Collega un resistore da 470 Ω tra l’anodo del LED e un punto qualsiasi dopo la
+divisione centrale della breadboard
+
+Collega il source del MOSFET al negativo della batteria utilizzando un cavetto
+
+Collega il gate del MOSFET al positivo della
+batteria. Il LED si accenderà!
+
+80
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+
+ESPERIMENTO 2
+Sulla base dell’esperimento 1 scollega il lato collegato al positivo della batteria
+del cavetto connesso sul gate del MOSFET e collegalo al negativo della batteria.
+Questo spegne il circuito perché scarica il gate. Ora solleva il cavetto e prova
+a toccare l’estremità col dito: la carica del tuo corpo consente al MOSFET di
+accendersi e quindi di conseguenza accendere il LED!
+
+ESPERIMENTO 2
+Abbiamo detto che sia il MOSFET che il BJT hanno bisogno di una tensione di
+comando sul Gate o sulla Base per accendersi. Non abbiamo però detto che
+questa tensione deve avere un valore minimo. Questo valore si chiama tensione
+di soglia Vth (perché in inglese soglia si dice threshold) e vale circa 1V per i
+BJT e 2V per i MOSFET utilizzati in questo kit. In questo esperimento vedremo il
+comportamento del MOSFET all’approcciarsi della tensione di soglia. Per farlo
+abbiamo bisogno di:
+•
+•
+•
+•
+•
+•
+•
+•
+
+1 transistor
+1 LED: sceglilo del colore che ti piace di più
+Una breadboard • Una batteria 9V
+La clip per la pila 9V
+1 resistore da 470 Ohm
+1 potenziometro con alberino
+•il multimetro
+• 8 fili colorati
+Laboratorio di elettronica: Impara e sperimenta
+
+81
+
+CAPITOLO 8
+
+Per questo esperimento partiremo con quanto fatto nell’esperimento 1.
+Scollega solo il cavetto connesso al gate. Dovresti trovarti in questa
+situazione
+
+Posiziona ora il potenziometro a cavallo della divisione centrale
+accanto al resistore da 470Ω
+
+Collega ora il pin 1 del potenziometro al negativo della batteria
+e il piedino 3 al positivo
+
+82
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CHE COSA SONO I TRANSISTOR?
+
+Connetti il pin 2 del potenziometro al gate del transistor e il multimetro
+tra il gate e il negativo della batteria
+
+Ruota piano l’alberino del potenziometro verso destra. Questo fa aumentare la
+tensione sul gate. Osserva cosa succede al LED man mano che ruoti
+l’alberino
+
+Più ruoti l’alberino verso destra, più la tensione sul gate sale e il
+transistor si accende meglio! In pratica il transistor si
+comporta come un resistore variabile a seconda di quanto vale la
+tensione di gate: più è alta più basso è il suo valore di resistenza!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+83
+
+NOTE
+
+84
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 9
+
+COSA SONO I FOTOTRANSISTOR?
+Come ci suggerisce il nome stesso
+il fototransistor è un transistor,
+ma comandato dalla luce. Il suo
+comportamento di interruttore chiuso
+o aperto dipende quindi dalla presenza
+o dall’assenza di luce. Sui
+fototransistor, a seconda della
+tipologia di transistor su cui sono
+basati, vedremo il simbolo elettrico
+come in figura. I più diffusi sono BJT
+NPN.
+
+Tutto quello che abbiamo detto per
+i transistor nel capitolo precedente
+vale anche per i fototransistor.
+
+Sperimentiamo!
+Il comportamento del fototransistor
+può essere confrontato con quello del
+fotoresistore utilizzato nel Volume 1
+di "Laboratorio di Elettronica: Impara
+e Sperimenta", ma c’è una differenza
+fondamentale: in questo volume
+useremo il fotoresistore come
+sensore per avere un’uscita in
+tensione proporzionale alla quantità
+di luce che lo colpisce.
+Da lontano un fototransistor somiglia
+molto ad un LED con il corpo
+trasparente.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+85
+
+CAPITOLO 9
+
+Esattamente come i LED, anche i
+fototransistor hanno un piedino più
+lungo e uno più corto, ma il corpo
+superiore è più corto e di solito anche
+piatto per consentire alla luce di
+colpire perpendicolarmente la base.
+Nel caso del fototransistor, il pin lungo
+è il Collettore, mentre quello corto è
+l’Emettitore.
+
+ESPERIMENTO 1
+In questo esperimento utilizzeremo un fotoresistore come sensore
+controllando con il multimetro quanto vale la tensione ai capi di una resistenza
+in base a quanta luce colpisce il fotoresistore.
+86
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+Per realizzare l'esperimento abbiamo bisogno di:
+• Una breadboard
+• Una batteria 9V
+• La clip per la pila 9V
+• 1 resistore da 10 kOhm
+• 1 fototransistor
+• il multimetro
+Collega il fototransistor in due punti qualunque a cavallo della divisione
+centrale della breadboard con l’emettitore (pin corto) rivolto verso il basso
+
+Collega un resistore da 10 kOhm tra l’emettitore del fototransistor
+e la striscia nera inferiore della breadboard
+
+Laboratorio di elettronica: Impara e sperimenta
+
+87
+
+CAPITOLO 9
+
+Collega il multimetro impostato su fondoscala 20V ai capi del resistore da 10 kOhm
+
+Collega il positivo della batteria sul collettore del fototransistor e il negativo
+nella striscia nera in cui è inserito il resistore da 10 kOhm. Vedrai un
+valore di tensione sul multimetro proporzionale alla quantità di luce. Aiutandoti
+con una lucina e illumina il corpo del fototransistor e osserva come varia la
+lettura sul multimetro. Se punti la luce direttamente sul corpo leggerai
+quasi 9V!
+
+Prova a tenere al buio il fototransistor coprendolo con le mani, la
+lettura sul multimetro sarà vicina a 0V.
+Abbiamo creato un sensore di luce!
+
+88
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+ESPERIMENTO 2
+In questo esperimento useremo un fototransistor per accendere una luce
+quando è buio e spegnerla quando c’è luce. Per farlo abbiamo bisogno di:
+• Una breadboard
+• Una batteria 9V
+• La clip per la pila 9V
+• 4 resistori da 10 kOhm
+• 1 resistore da 470 Ohm
+• 1 fototransistor
+• 1 LED (del colore che preferisci)
+• 1 Transistor MOSFET
+• 4 fili colorati
+Collega la clip della batteria alla batteria e connetti il positivo alla striscia
+rossa e il negativo alla striscia nera della breadboard, poi effettua la
+serie dei 4 resistori per crearne uno da 40kOhm
+
+Laboratorio di elettronica: Impara e sperimenta
+
+89
+
+CAPITOLO 9
+
+Connetti il fototransistor tra l'ultimo resistore e il negativo della batteria
+
+Inserisci il MOSFET nella breadboard accanto all'ultimo resistore
+
+Connetti il gate del MOSFET al collettore del fototransistor utilizzando un filo
+
+90
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSA SONO I FOTOTRANSISTOR?
+
+Connetti il source del MOSFET al negativo della batteria utilizzando un filo
+
+Posiziona il LED accanto al MOSFET tenendo l’anodo verso destra
+
+Connetti il catodo del LED al drain del MOSFET utilizzando un filo
+
+Laboratorio di elettronica: Impara e sperimenta
+
+91
+
+Collega il resistore da 470 Ohm tra il positivo della batteria e lâ€™anodo del LED
+
+Copri con le mani il fototransistor per simulare il buio: il LED si accenderà!
+
+92
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 10
+
+IL MOTORE A CORRENTE CONTINUA
+Il motore a corrente continua è un
+oggetto in grado di trasformare
+l’energia elettrica in movimento.
+
+Corrente elettrica: Quando colleghi
+il motore a una batteria, la corrente
+elettrica inizia a fluire attraverso fili
+di rame avvolti all’interno del motore
+detti avvolgimenti (o coils in inglese)
+
+COME FUNZIONA?
+Pensa a due magneti uno con il polo
+nord e l’altro con il polo sud. Se metti
+un corpo di metallo tra di loro e fai
+passare corrente elettrica attraverso
+di esso, succede qualcosa di
+magico: il metallo inizia a girare!
+Questo fenomeno è regolato dalla
+Legge di Lenz.
+
+Campo magnetico: Questa corrente
+crea un campo magnetico attorno ai
+fili.
+Interazione magnetica: Il campo
+magnetico dei fili interagisce con
+quello dei magneti fissi nel motore,
+causando una forza che fa girare il
+motore.
+Rotazione continua: Un
+componente chiamato
+“commutatore” cambia la direzione
+della corrente ogni mezzo giro,
+assicurando che il motore continui a
+girare nella stessa direzione.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+93
+
+CAPITOLO 10
+
+I motori a corrente continua sono un
+elemento quasi fondamentale per la
+creazione di robot, infatti nel kit ce
+ne sono due che useremo per
+costruire il nostro primo robot che si
+muove!
+I motori presenti nel kit sono come
+quelli della figura. Questi motori
+possono essere alimentati ad una
+tensione massima di 9V quindi
+cerca di non esagerare facendo
+esperimenti strani con le batterie
+altrimenti rischi di bruciarlo!
+Nel kit sono anche presenti le ruote
+che verranno per il robot del progetto
+finale. Per gli esperimenti di questo
+capitolo non utilizzarle.
+
+94
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MOTORE A CORRENTE CONTINUA
+
+ESPERIMENTO 1
+In questo semplice esperimento vedremo come far girare il motore presente
+all’interno del kit. Per farlo abbiamo bisogno di:
+•
+•
+•
+•
+
+Una breadboard
+Una batteria 9V
+La clip per la pila 9V
+Un motore
+
+Utilizzando la breadboard solo per effettuare i collegamenti, connetti il filo
+rosso del motore al positivo della batteria e il filo nero al negativo della
+batteria. Osserva in che verso gira il motore
+
+Laboratorio di elettronica: Impara e sperimenta
+
+95
+
+CAPITOLO 10
+
+ESPERIMENTO 2
+Prova a invertire il filo rosso e il filo nero, puoi farlo anche con i fili della batteria
+o quelli del motore. In che verso gira ora il motore?
+
+ESPERIMENTO 3
+Prova a inserire un pulsante per comandare il motore acceso e spento
+
+ESPERIMENTO 4
+Prova a inserire un pulsante per comandare il motore aggiungendo
+anche una resistenza e un led in modo che quando il motore inizia a
+girare il led si accenda.
+
+96
+
+Laboratorio di elettronica: Impara e sperimenta
+
+IL MOTORE A CORRENTE CONTINUA
+
+Laboratorio di elettronica: Impara e sperimenta
+
+97
+
+NOTE
+
+98
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 11
+
+I DIODI
+Scopriamo un componente
+elettronico molto utile che si trova
+in tanti circuiti: il diodo.
+Abbiamo già sentito questo nome
+per i LED, sono infatti parenti: i diodi
+“normali”, al contrario di quelli LED,
+non emettono luce.
+
+COSA SONO I DIODI
+Immaginate una strada a senso unico.
+Le macchine possono andare solo in
+una direzione e non possono tornare
+indietro, giusto? Ecco, un diodo
+funziona proprio come una strada a
+senso unico per l’elettricità!
+
+Il compito principale di un diodo
+è permettere alla corrente
+elettrica di scorrere solo in una
+direzione.
+Se la corrente prova ad andare nella
+direzione opposta, il diodo la blocca.
+È come un “vigile del traffico” super
+efficiente per gli elettroni!
+
+•
+
+COME LO RICONOSCIAMO?
+Esattamente come il LED (abbiamo
+detto che sono parenti) anche i diodi
+classici hanno due terminali chiamati
+ANODO e CATODO. Considerando
+che non hanno la testa luminosa, nel
+diodo standard il catodo è
+identificato da una striscia sul corpo.
+Questa striscia può essere sia
+colorata oppure incavata nel corpo.
+Alcuni esempi sono visibili
+nell’immagine qui sotto.
+
+Laboratorio di elettronica: Impara e sperimenta
+
+99
+
+CAPITOLO 11
+Oltre a funzionare come strade a
+senso unico, i diodi hanno un altro
+compito molto importante ovvero
+proteggere i circuiti.
+Immagina di avere un robot o una
+radio alimentata a batteria. Se per
+distrazione colleghi la batteria al
+contrario (più con meno, meno con
+più), la corrente proverebbe a passare
+nella direzione sbagliata e rischierebbe
+di bruciare i componenti.
+Con un diodo messo nel punto giusto,
+invece, questo non accade: il diodo si
+comporta come un portiere che
+chiude la porta in faccia alla corrente
+sbagliata. Così il circuito rimane al
+sicuro anche se hai fatto un piccolo
+errore di collegamento.
+Un altro caso in cui i diodi sono
+indispensabili è quando si usano
+motori o bobine. I motori elettrici
+funzionano grazie a delle bobine di
+filo che creano campi magnetici.
+Quando il motore gira, queste bobine
+si riempiono di energia, un po’ come
+una molla che si carica. Ora immagina
+di spegnere il motore di colpo: la molla
+vuole scaricarsi tutta insieme!
+
+100
+
+Le bobine fanno la stessa cosa:
+rilasciano la loro energia in un colpo
+solo e questo può creare una specie di
+“schiaffo elettrico” che rischia di
+rompere i componenti del circuito.
+Per evitare questo problema, si
+inserisce vicino al motore un diodo
+di flyback (di ricircolo in italiano).
+Questo diodo funziona come
+un’uscita di emergenza: quando il
+motore
+si spegne e la bobina butta fuori
+l’energia, il diodo apre un passaggio
+sicuro e lascia sfogare quella corrente
+senza danni.
+Così i componenti delicati, come i
+transistor che possiamo utilizzare per
+pilotare il motore (ti anticipo che lo
+vedremo nel capitolo successivo) non
+si rompono per accumulo di energia
+che non trova una via per esaurirsi!
+Insomma, i diodi non sono solo “vigili
+urbani” che regolano il traffico degli
+elettroni, ma diventano anche scudi
+protettivi che salvano i circuiti e
+valvole di sicurezza e che
+impediscono agli “schiaffi elettrici”
+delle bobine di fare disastri (e quindi
+pongono subito il nostro
+divertimento!).
+
+Laboratorio di elettronica: Impara e sperimenta
+
+I DIODI
+Nel caso dei motori (e di tutte le
+bobine in generale) il diodo di ricircolo
+si collega sempre con il CATODO
+verso il POSITIVO e l’ANODO verso il
+NEGATIVO.
+
+Questo succede perché quando il
+motore non viene più pilotato (da
+un pulsante o da un transistor) la
+bobina presente all’interno cerca di
+funzionare come un serbatoio per la
+corrente. Il principio di funzionamento
+è analogo a quello visto sul capitolo
+dei condensatori, gli avvolgimenti però
+(bobine) anziché essere dei serbatoi di
+tensione sono dei serbatoi di corrente.
+Quando non è più presente la tensione
+di pilotaggio, l’avvolgimento aumenta
+la tensione ai suoi capi e il negativo
+del motore diventa più positivo del
+vero positivo. A questo punto,
+considerato che il diodo ha una
+tensione più positiva sull’anodo
+comincia a condurre
+e la corrente si esaurisce in un
+cortocircuito causato dal diodo!
+
+Laboratorio di elettronica: Impara e sperimenta
+
+101
+
+NOTE
+
+102
+
+Laboratorio di elettronica: Impara e sperimenta
+
+CAPITOLO 12
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+In questo capitolo metteremo insieme un po’ tutti i concetti acquisiti in questo
+volume per costruire un semplice robot che segue la luce!
+Per costruire il nostro robot abbiamo bisogno di:
+Una breadboard
+Sei cavi colorati
+Una batteria 9V
+La clip per la pila 9V
+Due transistor
+Due resistori da 10KOhm
+Due diodi
+Due motori
+Due ruote
+Due fotoresistori
+Il supporto batteria
+
+Laboratorio di elettronica: Impara e sperimenta
+
+103
+
+CAPITOLO 12
+
+Iniziamo subito ad assemblare la meccanica della tua macchinina!
+Montaggio dei Motoriduttori e delle Ruote:
+1. Prepara i Motoriduttori e le Ruote: prendi in mano uno dei motoriduttori e
+una delle ruote
+2. Osserva l’Albero del Motoriduttore. Noterai che l’albero (il perno rotante
+che esce dal motoriduttore) non è perfettamente cilindrico ma che ha
+una parte piana (una sezione appiattita) lungo un lato
+3. Osserva il Foro della Ruota, al suo interno, dove l’albero deve essere
+inserito, vedrai una sagoma che corrisponde esattamente a quella
+dell’albero: un foro circolare a mezza luna
+Una volta innestate, le ruote devono essere ben salde e girare insieme
+all’albero del motoriduttore. Ripeti lo stesso procedimento per l’altro
+motoriduttore e l’altra ruota
+
+Fase di Preparazione e Incollaggio della Breadboard e dei Motori:
+Avvertenze Fondamentali:
+• Massima Attenzione: Questa operazione richiede estrema cautela. L’adesivo
+sotto la breadboard è molto forte.
+• Irreversibilità: Una volta che la breadboard e i motori sono stati incollati,
+rimuoverli è un’operazione rischiosa. Potresti danneggiare la breadboard
+stessa o la base del tuo progetto.
+• Fallo una sola volta: Cerca di posizionare i componenti correttamente al
+primo tentativo per evitare problemi. Prendi il tuo tempo, allinea bene e solo
+quando sei sicuro, premi per incollare.
+104
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+1. Prendi la Breadboard: rimuovi con attenzione la pellicola protettiva che
+copre la parte adesiva situata sotto
+2. Prepara i Motori per l’Incollaggio:
+Prima di incollare i motori assicurati di averli orientati correttamente
+
+Molto importante: i cavi dei motori devono essere posizionati in modo da rimanere
+nella parte interna, proprio al centro. Questo eviterà che i cavi si
+impiglino nelle ruote o si danneggino durante il movimento del robot
+3. Incolla i Motori:
+Appoggia con delicatezza i motori sulla base del breadboard. Sii estremamente
+preciso in questo passaggio. Cerca di posizionarli esattamente come mostrato
+nella figura di riferimento
+4. Incolla il porta batteria, anche qui guarda bene la figura
+
+Laboratorio di elettronica: Impara e sperimenta
+
+105
+
+CAPITOLO 12
+
+Prendi la breadboard e iniziamo inserendo due diodi.
+Ricorda che i diodi sono componenti polarizzati!
+Guarda bene il diodo: vedrai una piccola banda grigia su un lato.
+Quel lato è il catodo del diodo. Inserisci il piedino con la riga grigia
+in una delle file nere della breadboard
+
+Prendi i MOSFET. Fai attenzione a come li posizioni!
+
+106
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Bene! Ora diamo gli “occhi” alla nostra macchinina! Dobbiamo inserire i
+fototransistor sulla breadboard.
+Sono proprio questi fototransistor che daranno il segnale ai MOSFET per
+accendere i motori e far muovere la macchina. Ma dobbiamo usare un
+trucchetto per farla girare poichè non ha uno sterzo:
+• Se vuoi girare a destra, devi far girare la ruota sinistra e tenere ferma
+quella di destra
+• Se vuoi girare a sinistra, devi far girare la ruota destra e tenere ferma
+quella di sinistra
+1. Posiziona i due fototransistor sulla breadboard con il collettore inserito
+nella striscia rossa della breadboard
+2. Prendi due cavetti per collegare i fototransistor ai MOSFET.
+3. Ora, facciamo l’incrocio:
+• Il fototransistor di destra piloterà il motore sinistro
+• Il fototransistor di sinistra piloterà il motore destro
+
+Laboratorio di elettronica: Impara e sperimenta
+
+107
+
+CAPITOLO 12
+
+Ora posizioniamo dei resistori da 10kΩ sull’emettitore del fototransistor.
+Questi resistori hanno la doppia funzionalità: polarizzare correttamente il
+fototransistor garantendo il passaggio di corrente quando c’è luce e “tirare
+giù” verso 0V il gate del MOSFET quando non c’è la luce. Per questo motivo
+vengono chiamati anche resistori di “pull-down”
+
+Come puoi notare, stiamo utilizzando la breadboard in maniera simmetrica
+rispetto alla divisione centrale. Questo risulta molto comodo quando il circuito
+da realizzare è gemello!
+Poichè la nostra macchinina sarà alimentata da una sola batteria (la nostra è
+da 9V), dobbiamo collegare insieme le strisce di alimentazione positive su un
+lato della breadboard con quelle positive sull’altro lato. E, allo stesso modo,
+dobbiamo collegare insieme le strisce di alimentazioni negative su un lato con
+quelle negative sull’altro lato
+
+108
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Fantastico! Ci siamo quasi, la tua macchinina sta per prendere vita! Ora
+colleghiamo i motori.
+Fai molta attenzione anche qui perché c’è un trucchetto importante!
+Ricordi che i due motori sulla tua macchinina sono montati in modo simmetrico?
+Beh, se li collegassimo entrambi nello stesso modo, quando diamo corrente i
+motori girerebbero uno in un senso e l’altro nel senso opposto. La tua
+macchinina non andrebbe dritta, ma farebbe un giro su se stessa!
+Quindi, quando li colleghiamo, dobbiamo essere attenti alla rotazione per farli
+girare entrambi nella stessa direzione.
+A tale scopo un motore sarà collegato con il positivo nella striscia rossa, mentre
+l’altro al contrario”
+Come visto invece nel capitolo sui transistor, il source di entrambi i MOSFET sarà
+collegato al negativo della batteria. Il drain invece fornirà il comando al motore
+
+Laboratorio di elettronica: Impara e sperimenta
+
+109
+
+CAPITOLO 12
+
+In questo modo, quando darai corrente, entrambi i motori gireranno
+nella stessa direzione e la tua macchinina potrà andare dritta
+Se hai seguito correttamente tutti i passaggi, la tua macchinina sarà
+simile a questa nell'immagine!
+
+110
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+111
+
+CAPITOLO 12
+
+Perfetto, abbiamo completato il montaggio della nostra macchina
+con tutti i componenti al loro posto!
+Ora prendi la batteria e inseriscila con cura nel suo alloggio, quindi
+collegala alle strisce della breadboard
+Procurati uno smartphone con il flash acceso o una piccola torcia
+Ora, viene il bello: avvicina la luce ai fototransistor e vedrai i motori
+muoversi. Prova ad alternare la luce a destra o a sinistra.
+La macchinina seguirà la luce!
+
+112
+
+Laboratorio di elettronica: Impara e sperimenta
+
+COSTRUIAMO IL ROBOT SEGUI LUCE
+
+NOTE
+
+Laboratorio di elettronica: Impara e sperimenta
+
+113
+
+NON È FINITA QUI!
+Speriamo davvero che ti sia divertito con questi esperimenti per avvicinarti al mondo
+dell’elettronica!
+Nei prossimi volumi approfondiremo i concetti trattati nei primi due volumi,
+ci concentreremo nel dettaglio sul funzionamento e utilizzeremo anche
+altri componenti, ma soprattutto inizieremo ad addentrarci nel magico mondo
+della programmazione utilizzando il linguaggio Arduino e le sue schede elettroniche!
+Grazie per averci seguito in questa prima avventura e speriamo che gradirai
+anche le successive!
+
+114
+
+Laboratorio di elettronica: Impara e sperimenta
+
+© 2024 ELAB. Tutti i diritti riservati.
+Nessuna parte di questo libro puÃ† essere riprodotta o distribuita in qualsiasi forma o con
+qualsiasi mezzo, elettronico o meccanico, senza il permesso scritto dell'autore.
+
+ELAB
+
+

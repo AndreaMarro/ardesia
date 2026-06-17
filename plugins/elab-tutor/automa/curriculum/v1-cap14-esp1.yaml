@@ -1,0 +1,119 @@
+# Curriculum YAML — v1-cap14-esp1
+# "Il Primo Robot ELAB"
+
+experiment_id: v1-cap14-esp1
+volume: 1
+chapter: 14
+title: "Il Primo Robot ELAB"
+
+prerequisites:
+  - v1-cap6-esp1   # LED base
+  - v1-cap9-esp5   # LED RGB
+  - v1-cap12-esp1  # Reed switch
+  - v1-cap6-esp3   # Resistenze
+  - v1-cap8-esp1   # Pulsante
+
+concepts_introduced:
+  - progetto_finale
+  - integrazione_tutto
+  - robot_base
+  - design_ingegneristico
+
+vocabulary_level: v1-cap14
+allowed_terms:
+  - LED
+  - LED_RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - calamita
+  - plastilina
+  - elettropongo
+  - conduttore
+  - isolante
+  - robot
+  - occhi
+  - mano
+  - sensore
+  - progetto
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - servomotore
+  - microcontrollore
+  - digitale
+  - analogico
+  - PWM
+  - attuatore
+
+teacher_briefing:
+  before_class: >
+    Preparazione GRANDE: ogni gruppo ha 2 LED verdi (occhi), 1 LED RGB
+    (mano), 1 reed switch (sensore magnetico), resistenze varie (220 ohm),
+    1 pulsante, breadboard, batteria 9V, fili, cartoncino/cartone per il
+    corpo del robot, forbici, nastro adesivo, pennarelli. Questo e il
+    PROGETTO FINALE del Volume 1! Prevedere 45-60 minuti. Ogni gruppo
+    costruisce il proprio robot unico.
+  during_class: >
+    Grande annuncio: "Oggi costruite il vostro PRIMO ROBOT! Non si muove
+    ancora (quello sara il Volume 2), ma ha occhi che si accendono, una
+    mano che cambia colore e un sensore segreto!" Specifiche minime:
+    1) Occhi: 2 LED verdi sempre accesi. 2) Mano: LED RGB che cambia colore
+    (possono usare pulsanti o potenziometro). 3) Sensore: reed switch
+    nascosto — quando avvicini il magnete succede qualcosa (un LED extra,
+    buzzer, cambio colore). Il corpo lo disegnano e costruiscono col
+    cartoncino. Fase 1 (15 min): progettare su carta. Fase 2 (25 min):
+    costruire il circuito. Fase 3 (15 min): assemblare corpo + circuito.
+    FINALE: presentazione di ogni robot alla classe!
+  common_question: >
+    "E un robot vero?" -> E l'inizio di un robot vero! Ha occhi (LED),
+    ha un senso (il sensore magnetico), e reagisce all'ambiente. Nel
+    Volume 2 imparerete a farlo muovere e pensare con Arduino. Per adesso,
+    e il vostro primo robot e dovreste essere super orgogliosi!
+
+common_mistakes:
+  - mistake: "Vogliono fare tutto subito e si confondono"
+    what_to_do: "FONDAMENTALE: un pezzo alla volta! Prima gli occhi (2 LED), testa che funzionano. Poi la mano RGB, testa. Poi il sensore, testa. Solo alla fine assembla tutto"
+    analogy: "E come costruire una casa: prima le fondamenta, poi i muri, poi il tetto. Non tutto insieme!"
+  - mistake: "La batteria non basta per tutti i componenti"
+    what_to_do: "Con batteria 9V e resistenze 220 ohm, 2 LED + 1 RGB + reed switch vanno bene. Se aggiungono troppo, le luci diventano deboli"
+    analogy: null
+  - mistake: "I fili sono troppo corti per collegare breadboard al corpo del robot"
+    what_to_do: "Usare fili lunghi (jumper wire 20cm) oppure fissare la breadboard direttamente dietro/dentro il corpo del robot col nastro adesivo"
+    analogy: null
+  - mistake: "Si concentrano solo sull'estetica e non sul circuito"
+    what_to_do: "Regola: prima il circuito deve FUNZIONARE, poi lo rendete bello. Un robot bello che non funziona non e un robot!"
+    analogy: null
+
+analogies:
+  progetto_finale:
+    analogy: "Costruire questo robot e come l'esame finale — ma divertente! Usate TUTTO quello che avete imparato: LED, resistenze, pulsanti, potenziometro, sensori. Siete diventati dei veri costruttori di circuiti!"
+    evidence: "Progetto capstone aumenta consolidamento e autoefficacia (Krajcik & Shin 2014)"
+  integrazione_tutto:
+    analogy: "Ogni esperimento che avete fatto era come imparare una parola nuova. Oggi scrivete la vostra prima frase intera! Mettete insieme tutte le parole (componenti) per dire qualcosa di grande."
+    evidence: "Metafora linguistica per integrazione concettuale, supporta transfer far (Gentner & Holyoak 1997)"
+  robot_base:
+    analogy: "Il vostro robot e come un neonato: ha gli occhi (LED) e sente il mondo intorno (sensore magnetico). Nel Volume 2 imparera a muoversi e pensare. Oggi gli date la vita!"
+    evidence: "Analogia crescita/sviluppo per fasi apprendimento progressivo, crea anticipazione per continuazione (Papert 1980)"
+
+assessment_invisible:
+  - "Se il circuito funziona con tutti e 3 i sottosistemi -> padronanza completa Volume 1"
+  - "Se progettano su carta prima di costruire -> pensiero ingegneristico"
+  - "Se debuggano da soli quando qualcosa non funziona -> autonomia nel problem-solving"
+  - "Se la presentazione spiega il COME e non solo il COSA -> comunicazione tecnica"
+  - "Se chiedono 'quando facciamo il Volume 2?' -> missione compiuta, voglia di continuare!"
+  - "Se aiutano altri gruppi senza che glielo chiedi -> leadership naturale"

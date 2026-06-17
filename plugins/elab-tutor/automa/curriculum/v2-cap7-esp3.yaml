@@ -1,0 +1,78 @@
+# Curriculum YAML — v2-cap7-esp3
+# "Condensatori in parallelo"
+
+experiment_id: v2-cap7-esp3
+volume: 2
+chapter: 7
+title: "Condensatori in parallelo"
+
+prerequisites:
+  - v2-cap7-esp2
+
+concepts_introduced:
+  - capacita_sommata
+  - durata_maggiore
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - condensatore
+  - carica
+  - scarica
+  - parallelo
+  - breadboard
+  - capacita'
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 2 condensatori 1000uF, 1 LED rosso, 1 resistore 330 ohm,
+    1 batteria 9V, fili. Carica entrambi i condensatori. Prima si prova con uno solo,
+    poi con due in parallelo. Serve un cronometro (telefono va bene).
+  during_class: >
+    Primo test: 1 condensatore carico + LED. Cronometra quanto resta acceso.
+    Secondo test: 2 condensatori in parallelo + LED. "Quanto dura stavolta?"
+    Dura circa il doppio! Chiedi: "Perche'?" Due condensatori in parallelo sono come
+    due bottiglie d'acqua — piu' riserva, piu' durata.
+  common_question: >
+    "Perche' non e' il doppio esatto?" -> Piccole differenze sono normali — i
+    condensatori non sono identici, e il LED non si spegne di colpo ma si affievolisce.
+
+common_mistakes:
+  - mistake: "Condensatori collegati in serie invece che in parallelo"
+    what_to_do: "In parallelo: tutti i + insieme, tutti i - insieme. In serie la capacita' diminuisce, non aumenta."
+    analogy: "Parallelo = due bottiglie affiancate con lo stesso tappo"
+  - mistake: "Dimenticare di caricare entrambi i condensatori"
+    what_to_do: "Se uno e' scarico, 'ruba' carica dall'altro. Caricali entrambi prima del test."
+    analogy: null
+
+analogies:
+  capacita_sommata:
+    analogy: "Due condensatori in parallelo sono come due secchi d'acqua uniti con un tubo in fondo — la capacita' totale e' la somma dei due secchi."
+    evidence: "Analogia idraulica per capacita' parallelo (Stocklmayer & Treagust 1996)"
+  durata_maggiore:
+    analogy: "E' come avere due batterie in una torcia invece di una — la luce dura piu' a lungo perche' c'e' piu' energia a disposizione."
+    evidence: "Analogia di riserva energetica, intuitiva per bambini 10-14 (Driver et al. 1994)"
+
+assessment_invisible:
+  - "Se lo studente prevede che 2 condensatori durano di piu' PRIMA di provare -> ragionamento predittivo"
+  - "Se dice 'piu' condensatori = piu' energia' -> ha capito la somma di capacita'"
+  - "Se propone di provare con 3 condensatori -> curiosita' scientifica"

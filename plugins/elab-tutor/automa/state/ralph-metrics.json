@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "description": "Memoria strutturata del Ralph Loop. Aggiornato da builder (propri campi) e auditor (verifiche). Serve per derivare honest_score OGGETTIVAMENTE anziché dichiarato.",
+  "mission": {
+    "id": "pdr-v3-definitivo",
+    "started_at": "2026-04-17T06:12:01Z",
+    "max_iterations": 100,
+    "completion_criteria_met": false
+  },
+  "baseline": {
+    "tests_original_pdr": 11983,
+    "tests_current_high_water_mark": 12056,
+    "tests_min_required": 12056,
+    "last_verified_at": "2026-04-17T19:24:00Z",
+    "last_verified_by": "interactive-session (TASK 3 v3-cap6-esp1 + esp2 parity)",
+    "flaky_fixed": {
+      "test": "tests/unit/parallelismoVolumiReale.test.js > lessonPrepService exports > esporta prepareLesson e getLessonSummary",
+      "resolution": "added explicit 10s timeout on the dynamic-import test (it(..., fn, 10_000)). Verified stable across 3 consecutive full-suite runs.",
+      "fixed_at": "2026-04-17T11:43:00Z",
+      "commit": "f38aacb"
+    }
+  },
+  "iterations": {
+    "builder_runs": 1,
+    "auditor_runs": 0,
+    "remaining_budget": 99,
+    "last_builder_run_at": "2026-04-17T11:32:00Z",
+    "last_builder_run_outcome": "NO_COMMIT — flaky test pre-existing (now fixed in f38aacb)"
+  },
+  "scoreboard": {
+    "builder_commits_approved": 4,
+    "builder_commits_reverted": 0,
+    "builder_commits_fix_forward": 0,
+    "builder_no_commits": 1,
+    "builder_escalates": 0,
+    "auditor_approved": 0,
+    "auditor_rubber_stamps_streak": 0,
+    "builder_honest_score_avg_claimed": 0,
+    "builder_honest_score_avg_computed": 0,
+    "honesty_drift": 0,
+    "avg_test_behavioral_quality": 0
+  },
+  "deliverables": {
+    "D1_vol3_book_alignment": {"status": "partial", "commits": ["8837e32"], "completed": ["v3-cap6-esp1", "v3-cap6-esp2"], "remaining": ["v3-cap7-esp1 (TASK 4)", "v3-cap7-esp5 (TASK 5)"]},
+    "D2_unlim_omniscient": {"status": "partial", "commits": ["8293e3f", "62c9702"], "remaining": ["TASK 8", "TASK 9"]},
+    "D3_kokoro_tts_prod": {"status": "partial", "commits": ["927cdbd"], "blocker": "Kokoro VPS deploy richiede Andrea"},
+    "D4_porcupine_eval": {"status": "done-rejected", "doc": "docs/strategia/2026-04-18-ricerca-web-validata.md", "decision": "Porcupine not suitable for production, use Web Speech API or openWakeWord"},
+    "D5_bugs_lavagna_toolbar": {"status": "done", "commits": ["59e8fce", "62c9702"]},
+    "D6_e2e_playwright": {"status": "blocked", "blocker": "tool approval Andrea"},
+    "D7_web_research": {"status": "done", "commit": "59e8fce", "doc": "docs/strategia/2026-04-18-ricerca-web-validata.md"},
+    "D8_openclaw_eval": {"status": "todo", "commit": null},
+    "D9_dashboard_supabase": {"status": "blocked", "blocker": "credentials + schema review Andrea"}
+  },
+  "tasks_pdr": {
+    "completed": ["TASK 1", "TASK 2", "TASK 3", "TASK 6", "TASK 7", "TASK 10", "TASK 11b"],
+    "remaining_safe": ["TASK 11a", "TASK 12"],
+    "remaining_with_risk": ["TASK 4", "TASK 5"],
+    "remaining_blocked": ["TASK 8", "TASK 9", "TASK 11"]
+  },
+  "anti_inflation": {
+    "max_honest_score_allowed": 8,
+    "auto_revert_if_builder_score": 9,
+    "rubber_stamp_alert_after": 3,
+    "honesty_delta_revert_threshold": 3,
+    "min_behavioral_assertions_per_test": 3,
+    "forbidden_test_patterns": [
+      "expect(true).toBe(true)",
+      "expect(fn).toBeDefined()",
+      "expect(component).toBeTruthy()",
+      "expect(result).not.toBeNull() (only as single assertion)"
+    ]
+  },
+  "memory_policy": {
+    "ralph_builder_log_max_entries": 50,
+    "ralph_auditor_verdict_max_entries": 50,
+    "on_overflow": "oldest entries trimmed, summary moved to automa/state/ralph-archive/"
+  },
+  "last_updated": "2026-04-17T19:35:00Z",
+  "updated_by": "interactive-session (sync post TASK 3 + flaky fix + key rotation)"
+}

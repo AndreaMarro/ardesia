@@ -1,0 +1,32 @@
+// ============================================================================
+// ELAB Vol.3 Cap.5 Esp.1 — Blink: il primo programma
+// Sketch CANONICO Davide Fagherazzi (Volume 3 cartaceo, pag.5)
+//
+// Morfismo Sense 2: questo file e' la single source of truth Vol.3 cap.5 esp.1.
+// Tutti gli altri rendering (experiments-vol3.js, vol3-experiments-pipeline.js,
+// canvas SVG, LessonReader) DEVONO coincidere con questo testo VERBATIM
+// (semantic equivalence: SketchBuilder alphabetically-sorts setup lines per
+// anti-debito dedup — ordine setup S.begin/pinMode e' deterministic, NON
+// semanticamente significativo a runtime).
+//
+// Target hardware: Arduino Nano R4 (Renesas RA4M1 Cortex-M4 @ 48 MHz)
+// FQBN: arduino:renesas_uno:nanor4
+// LED: built-in pin 13 (LED_BUILTIN)
+//
+// © Davide Fagherazzi (Volume 3) + Andrea Marro (codice)
+// ELAB Tutor — iter 71 TEAM C Vol3 first-vertical-slice 2026-05-16
+// ============================================================================
+
+const int LED_PIN = 13;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_PIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_PIN, LOW);
+  delay(1000);
+}

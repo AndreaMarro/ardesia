@@ -1,0 +1,160 @@
+{
+  "name": "ELAB Health Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://elab-galileo.onrender.com/health",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "ping-nanobot",
+      "name": "Ping Nanobot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 200],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.elabtutor.school",
+        "options": {
+          "timeout": 10000,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          }
+        }
+      },
+      "id": "ping-vercel",
+      "name": "Ping Vercel",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const nanobotResult = $('Ping Nanobot').first();\nconst vercelResult = $('Ping Vercel').first();\n\nconst now = new Date().toISOString();\nconst nanobotOk = nanobotResult.json?.status === 'ok' || nanobotResult.json?.statusCode === 200;\nconst vercelOk = vercelResult.json?.statusCode === 200 || !vercelResult.json?.error;\n\nconst entry = {\n  timestamp: now,\n  nanobot: {\n    healthy: nanobotOk,\n    status: nanobotResult.json?.status || 'unknown',\n    version: nanobotResult.json?.version || 'unknown',\n    error: nanobotOk ? null : (nanobotResult.json?.error || 'unreachable'),\n  },\n  vercel: {\n    healthy: vercelOk,\n    statusCode: vercelResult.json?.statusCode || 0,\n    error: vercelOk ? null : (vercelResult.json?.error || 'unreachable'),\n  },\n  allHealthy: nanobotOk && vercelOk,\n};\n\nreturn [{ json: entry }];"
+      },
+      "id": "check-results",
+      "name": "Check Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.allHealthy }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "is-healthy",
+      "name": "All Healthy?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [940, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "filePath": "/shared/health-log.json",
+        "options": {}
+      },
+      "id": "log-success",
+      "name": "Log Success",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [1180, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "filePath": "/shared/health-log.json",
+        "options": {}
+      },
+      "id": "log-failure",
+      "name": "Log Failure",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [1180, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// WhatsApp alert placeholder\n// When WhatsApp Business API is configured, replace this with actual send\nconst data = $json;\nconsole.log('ALERT: Service down!', JSON.stringify(data));\n\n// For now, write alert to a file for pickup\nreturn [{ json: { ...data, alert_type: 'service_down', alerted_at: new Date().toISOString() } }];"
+      },
+      "id": "whatsapp-alert",
+      "name": "WhatsApp Alert (placeholder)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1400, 400]
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          { "node": "Ping Nanobot", "type": "main", "index": 0 },
+          { "node": "Ping Vercel", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Ping Nanobot": {
+      "main": [
+        [{ "node": "Check Results", "type": "main", "index": 0 }]
+      ]
+    },
+    "Ping Vercel": {
+      "main": [
+        [{ "node": "Check Results", "type": "main", "index": 0 }]
+      ]
+    },
+    "Check Results": {
+      "main": [
+        [{ "node": "All Healthy?", "type": "main", "index": 0 }]
+      ]
+    },
+    "All Healthy?": {
+      "main": [
+        [{ "node": "Log Success", "type": "main", "index": 0 }],
+        [{ "node": "Log Failure", "type": "main", "index": 0 }]
+      ]
+    },
+    "Log Failure": {
+      "main": [
+        [{ "node": "WhatsApp Alert (placeholder)", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "tags": [
+    { "name": "elab-automa" },
+    { "name": "health-monitor" }
+  ]
+}

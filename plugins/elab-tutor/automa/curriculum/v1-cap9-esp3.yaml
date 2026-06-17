@@ -1,0 +1,76 @@
+# Curriculum YAML — v1-cap9-esp3
+# "LED di colore diverso con pot"
+
+experiment_id: v1-cap9-esp3
+volume: 1
+chapter: 9
+title: "LED di colore diverso con pot"
+
+prerequisites:
+  - v1-cap9-esp1  # Sa usare il potenziometro
+  - v1-cap8-esp2  # Sa che LED diversi hanno luminosita diversa
+
+concepts_introduced:
+  - soglia_accensione_diversa
+  - tensione_forward_intuitiva
+  - colori_diversi_comportamento_diverso
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - ruotare
+  - dimmer
+  - luminosita
+  - colore
+  - rosso
+  - verde
+  - blu
+  - soglia
+  - accendersi
+  - spegnersi
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - tensione
+  - volt
+  - forward voltage
+  - fotoresistenza
+
+teacher_briefing:
+  before_class: >
+    Preparazione: potenziometro 10K, resistenza 220 ohm, LED di colori diversi
+    (rosso, verde, blu). Stesso circuito dell'esp 1 ma si cambiano i LED.
+  during_class: >
+    "Montate il dimmer con il LED rosso. Notate a che punto della manopola si accende.
+    Ora sostituite con il verde — si accende allo stesso punto? E il blu?"
+    Scopriranno che il blu richiede di girare di piu per accendersi.
+  common_question: >
+    "Perche il blu si accende dopo?" -> Ogni colore di LED ha bisogno di una
+    spinta diversa per accendersi. Il rosso ha bisogno di poca spinta, il blu
+    di tanta. E come salire gradini di altezze diverse.
+
+common_mistakes:
+  - mistake: "Il LED blu non si accende mai"
+    what_to_do: "La resistenza fissa e troppo alta. Abbassa a 100 ohm per il blu"
+    analogy: null
+
+analogies:
+  soglia_accensione_diversa:
+    analogy: "Ogni LED e come un animale diverso: il gatto (rosso) salta un muretto basso, il cane (verde) ha bisogno di un muretto medio, l'elefante (blu) ha bisogno di una rampa alta. Servono spinte diverse!"
+    evidence: "Analogia soglia intuitiva, scaffolding per forward voltage (Clement 1993)"
+
+assessment_invisible:
+  - "Se lo studente nota la differenza senza suggerimento -> osservazione scientifica"
+  - "Se chiede 'perche?' -> curiosita genuina, momento per introdurre concetto intuitivo di soglia"
+  - "Se propone di misurare il punto esatto -> pensiero quantitativo (futuro multimetro)"

@@ -1,0 +1,302 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap8-esp3",
+  "volume": 1,
+  "chapter": 8,
+  "title": "RGB + pulsante = viola",
+  "chapter_title": "Cos'è un pulsante?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che un pulsante può controllare più canali contemporaneamente: premendo si accendono rosso e blu insieme, creando il viola per sintesi additiva.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 2,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED RGB (catodo comune)",
+      "quantity": 1,
+      "icon": "🟣"
+    },
+    {
+      "name": "Pulsante (tact switch)",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 10,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "breadboard",
+      "corrente",
+      "pulsante",
+      "circuito aperto",
+      "circuito chiuso",
+      "premere",
+      "rilasciare",
+      "anodo",
+      "catodo",
+      "volt"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "potenziometro",
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "toggle",
+      "latch"
+    ],
+    "note": "Cap 8 Vol 1 — pulsante + LED RGB, sintesi additiva viola."
+  },
+  "prerequisites": [
+    "v1-cap8-esp2"
+  ],
+  "next_experiment": {
+    "id": "v1-cap8-esp4",
+    "title": "3 pulsanti → 3 colori RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.51: 3 pulsanti → 3 colori RGB."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi i ragazzi combinano il pulsante con il LED RGB! Premendo il pulsante si accendono rosso e blu insieme — e il colore che esce è il VIOLA!",
+      "teacher_tip": "Due resistori separati proteggono i canali rosso e blu. Il catodo comune del LED RGB è collegato al pulsante: premendo si chiude il circuito per entrambi i canali.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 2 resistori 470Ω, 1 LED RGB, 1 pulsante, 10 fili.",
+      "class_hook": "Ricordate il LED RGB? Faceva tanti colori. Ma come facciamo ad accenderlo SOLO quando vogliamo? Con il pulsante!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate il circuito: due resistori portano corrente ai canali rosso e blu del LED RGB. Il catodo comune è collegato al pulsante.",
+      "teacher_tip": "Spiegate che i due resistori sono come due strade separate che portano corrente a due canali diversi del LED RGB. Il pulsante è il 'cancello' comune.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap8-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di RGB + pulsante = viola seguendo Vol.1 pag.47.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-11",
+              "to": "bb1:a11",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e9",
+              "to": "bb1:f15",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:e18",
+              "to": "bb1:f18",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:j16",
+              "to": "bb1:j20",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:f20",
+              "to": "bb1:e20",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:j22",
+              "to": "bb1:bus-bot-minus-22",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-2",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete il pulsante: che colore vedete? Perché non è né rosso né blu ma un colore nuovo?",
+      "teacher_tip": "Se vedono solo rosso o solo blu, uno dei due resistori potrebbe non essere collegato. Controllare entrambi i rami.",
+      "provocative_question": "Con un solo pulsante riusciamo a controllare DUE colori contemporaneamente. Come è possibile?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Vedono solo un colore (rosso o blu)",
+          "teacher_response": "Regolate che entrambi i resistori siano collegati: uno al canale rosso e uno al canale blu del LED RGB.",
+          "analogy": null
+        },
+        {
+          "mistake": "Il LED RGB non si accende",
+          "teacher_response": "Verificate che il catodo comune sia collegato al pulsante e che il pulsante sia collegato al negativo della batteria.",
+          "analogy": "Come un cancello che deve essere aperto per far passare tutti"
+        },
+        {
+          "mistake": "Confondono i piedini del LED RGB",
+          "teacher_response": "Il piedino più lungo è il catodo comune. Rosso, catodo, verde, blu — in quest'ordine.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e poi premete il pulsante: il LED diventa VIOLA! Rosso + Blu = Viola nella luce!",
+      "teacher_tip": "Evidenziate il LED RGB e il pulsante. Spiegate: 'I colori della luce si mescolano in modo diverso dai colori a tempera!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:rgb1]",
+        "[AZIONE:highlight:btn1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Premete il pulsante: VIOLA! Rosso + Blu si mescolano. Nella luce i colori si sommano — è la sintesi additiva, diversa dai colori a tempera!",
+      "analogies": [
+        {
+          "concept": "sintesi_additiva",
+          "text": "I colori della luce si mescolano come le torce: se punti una torcia rossa e una blu nello stesso punto, il muro diventa viola! Con i colori a tempera sarebbe diverso.",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "pulsante_controlla_due_rami",
+          "text": "Il pulsante è come un cancello che regola una strada che poi si divide in due: una verso il rosso e una verso il blu. Un solo cancello, due strade!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto la sintesi additiva: mescolando rosso e blu nella luce si ottiene il VIOLA!",
+      "teacher_tip": "Chiedete: 'Secondo voi, cosa succede se accendiamo tutti e tre i colori insieme?' (bianco!) — anticipate l'esperimento 4.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Un pulsante può controllare più canali: premendo si accendono rosso e blu insieme. Rosso + Blu = Viola! I colori della luce si mescolano diversamente dai colori a tempera.",
+      "concepts_learned": [
+        "sintesi additiva della luce",
+        "pulsante regola più canali"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.51: 3 pulsanti → 3 colori RGB."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'rosso e blu fanno viola' → ha capito la sintesi additiva",
+    "Se chiede 'e se accendo tutti e tre?' → pronto per esp 4",
+    "Se nota che il pulsante regola entrambi i canali → ha capito il circuito"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "sintesi_additiva",
+      "pulsante_multi_canale"
+    ],
+    "next_suggested": "v1-cap8-esp4",
+    "resume_message": "L'ultima volta avete creato il viola! Ora ogni colore avrà il suo pulsante."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 47,
+    "label": "Vol.1 pag.47"
+  }
+}

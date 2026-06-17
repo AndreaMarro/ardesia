@@ -1,0 +1,28 @@
+id: gulpease-improve
+priority: P2
+title: Migliora Gulpease medio da 73 a 78+
+description: 'Gulpease medio risposte Galileo è 73 (target ≥60, ottimo ≥80).
+
+  Aggiungere regola leggibilità al system prompt di Galileo.
+
+  '
+success_criteria: 'python3 -c "from automa.tools import chat_galileo, gulpease_index;
+  r=chat_galileo(''Cos è un LED?''); g=gulpease_index(r[''response'']); print(f''Gulpease:
+  {g}''); print(''PASS'' if g>=75 else ''FAIL'')"
+
+  Deve stampare PASS con Gulpease ≥ 75.
+
+  '
+context_files:
+- nanobot/nanobot.yml
+plan:
+- Leggi nanobot/nanobot.yml — trova regola 6
+- 'Aggiungi regola 6b: frasi brevi max 12-15 parole, parole comuni, Gulpease ≥75'
+- Verifica YAML valido
+- 'Deploy: cd nanobot && git add -A && git commit -m ''improve gulpease'' && git push'
+- 'Test: chat_galileo + gulpease_index, target ≥75'
+tags: galileo,gulpease,readability,pedagogy,nanobot
+claimed_at: '2026-03-23T21:06:35.883666'
+claimed_by: orchestrator
+completed_at: '2026-03-23T21:07:59.096465'
+result: ok

@@ -1,0 +1,162 @@
+{
+  "iteration": "iter-37-phase3-tester4",
+  "startedAt": "2026-04-30T18:52:58.715Z",
+  "finishedAt": "2026-04-30T18:53:08.855Z",
+  "phrase": "Ragazzi, oggi accendiamo il LED.",
+  "samples": [
+    {
+      "label": "mp3-fixture",
+      "desiredFormat": "mp3",
+      "detectedContainer": "mp3",
+      "sourceNote": "fixture scripts/bench/output/voxtral-test/voxtral-T1.mp3 (Voxtral IT)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 29555
+    },
+    {
+      "label": "wav-tts",
+      "desiredFormat": "wav",
+      "detectedContainer": "wav",
+      "sourceNote": "Voxtral TTS format=wav (890924 bytes, ct=audio/wav)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 890924
+    },
+    {
+      "label": "ogg-tts",
+      "desiredFormat": "ogg",
+      "detectedContainer": "ogg",
+      "sourceNote": "Voxtral TTS format=opus (15089 bytes, ct=audio/opus)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 15089
+    }
+  ],
+  "matrix": [
+    {
+      "sample": "mp3-fixture",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 307,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (b8dfdac6-1ec1-49eb-9992-c6287197353f)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": "audio/mpeg",
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 262,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (01065331-bcc7-4340-948f-22b0357253b6)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 462,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (baffa775-ec70-4c86-9846-883718588ac9)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 384,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (39cf05f1-fa27-4daf-9ddd-dbfa8f5d3d93)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": "audio/wav",
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 860,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (f6953be2-3e2c-4a01-8a56-b2d6f51ada6d)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 846,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (c92771f5-d723-4b9e-b5d5-e781cd053491)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 379,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (fe04a217-47b4-43a4-97d2-f9ebc115b9b2)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": "audio/ogg",
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 210,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (f6a2bc02-aaae-41c1-a737-df8535dd1898)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 367,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "responseDetails": "CF Whisper 400: {\"errors\":[{\"message\":\"AiError: AiError: Invalid input (4c779fa3-f0a7-4a88-9f3c-7a290b1093fb)\",\"code\":8001}],\"success\":false,\"result\":{},\"messages\":[]}",
+      "contentTypeSent": null,
+      "stubAudio": false
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "pass": 0,
+    "warn": 0,
+    "fail": 9,
+    "blocked": 0,
+    "verdict": "FAIL"
+  }
+}

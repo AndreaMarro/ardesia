@@ -1,0 +1,14 @@
+id: P0-fase0-chat-minimizzata
+priority: P0
+title: "Fase 0.3: Chat UNLIM minimizzata per default, eliminare "Sono qui"
+description: |
+PROBLEMA: Chat si apre automaticamente con "Sono qui", copre metà schermo.
+FILE: cercare il componente chat (ChatPanel, UnlimChat, o simile)
+FIX: 1) Chat minimizzata per default (stato iniziale = closed/minimized)
+VERIFICA: aprire simulatore → chat NON visibile, solo icona piccola in alto a destra
+GATE: build PASSA
+tags: fase0,ux,p0,bloccante
+claimed_at: "2026-03-27T02:08:51.879792"
+claimed_by: orchestrator
+completed_at: "2026-03-27T02:12:10.054660"
+result: ok

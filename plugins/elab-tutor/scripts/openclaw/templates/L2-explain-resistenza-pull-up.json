@@ -1,0 +1,135 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-explain-resistenza-pull-up",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "explainResistenzaPullUp",
+  "description": "Morphic template iter 15: pull-up resistor Vol.2 cap.9 — analogia palla in cima alla scala + INPUT_PULLUP keyword. Citazione VERBATIM Vol.2 + voice TTS Isabella + highlight resistore 10kOhm.",
+  "category": "lesson-explain",
+  "owner_agent": "toolspec-batch3-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.2 pag.58",
+    "analogia": "pull-up come palla in cima alla scala che cade quando spingi pulsante"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v2-cap9-esp3"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "esperto"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-resistor-pullup",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "r10k",
+          "btn1"
+        ],
+        "color": "orange"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-pullup-logic",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Spiega resistenza pull-up 10kOhm + INPUT_PULLUP keyword Arduino",
+        "vol": "Vol.2",
+        "cap": 9
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-input-pullup",
+      "tool": "showNudge",
+      "args": {
+        "text": "pinMode(2, INPUT_PULLUP) attiva resistenza interna: pulsante non premuto = HIGH",
+        "duration_ms": 4500
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-circuit",
+      "tool": "captureScreenshot",
+      "args": {
+        "target": "pull-up-circuit"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-explain",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.2 pag.58: 'pull-up tiene il pin a HIGH'. Pensate a una palla in cima alla scala. Premete il pulsante: la palla cade, pin diventa LOW.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.92
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5800,
+  "expected_outcome": "Classe capisce stato HIGH default + transizione LOW al click. Docente padroneggia INPUT_PULLUP.",
+  "telemetry": {
+    "track_events": [
+      "template_dispatched",
+      "tts_complete",
+      "analogia_used"
+    ],
+    "supabase_table": "openclaw_template_runs"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[4].tool === 'speakTTS'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.2/)",
+    "sequence[4].args.text.match(/pag\\.58/)",
+    "principio_zero.analogia.includes('palla')",
+    "iter_introduced === 15"
+  ]
+}

@@ -1,0 +1,216 @@
+id: actions
+name: "Azioni Simulatore"
+intent: action
+needs_llm: false
+
+templates:
+  # ── PLAY ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase:
+        - avvia la simulazione
+        - avvia il circuito
+        - fai partire la simulazione
+        - esegui la simulazione
+        - metti in esecuzione
+        - inizia la simulazione
+        - fai andare il circuito
+        - lancia la simulazione
+        - fallo partire
+        - dai fallo andare
+        - vai vai avvia
+        - premi play
+        - fammi vedere se funziona
+        - ok avvia
+        - daje avvia
+        - forza fallo partire
+        - andiamo avvia tutto
+        - play
+        - start
+        - run
+        - go
+        - fai play
+        - premi start
+        - metti play
+        - dai start
+        - daje
+        - su su avvia
+        - avvia sta roba
+        - fallo funzionare
+        - accendi tutto
+        - parti
+        - "via!"
+        - sono pronto
+        - possiamo provare?
+        - vediamo se funziona
+        - proviamolo
+        - facciamo partire
+        - ok ci siamo
+        - proviamo
+        - ho finito di montare, avvia
+        - i fili sono collegati, avvia
+        - tutto pronto avvia la simulazione
+        - ho messo tutto, fai partire
+        - avvia dai
+        - ma fallo andare
+        - e allora avvia
+        - su avvia che voglio vedere
+
+  # ── PAUSE ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_pause"
+    actions: ["[AZIONE:pause]"]
+    entities: []
+    vars:
+      frase:
+        - pausa
+        - metti in pausa
+        - ferma la simulazione
+        - stop
+        - fermati
+        - pause
+        - ferma tutto
+        - stoppa
+        - basta fermati
+        - halt
+        - aspetta ferma
+        - metti pausa
+        - pausa un attimo
+        - frena
+        - pausala
+        - metti stop
+        - ok fermala
+        - stop stop
+        - ferma ferma
+        - fermala un secondo
+        - stoppala
+        - frenatutto
+        - dai ferma
+
+  # ── RESET ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_reset"
+    actions: ["[AZIONE:reset]"]
+    entities: []
+    vars:
+      frase:
+        - resetta
+        - reset
+        - ricomincia
+        - ricomincia da capo
+        - riavvia
+        - resetta tutto
+        - fa reset
+        - riavvia la simulazione
+        - da capo
+        - ripristina
+        - torna all'inizio
+        - ricominciamo
+        - restart
+        - rifallo
+        - riazzera
+
+  # ── CLEARALL ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase:
+        - pulisci tutto
+        - cancella tutto
+        - svuota la breadboard
+        - togli tutto
+        - rimuovi tutti i componenti
+        - clear all
+        - clearall
+        - pulisci la breadboard
+        - sgombra tutto
+        - elimina tutto
+        - via tutto
+        - togli tutto dalla breadboard
+        - levami tutto
+        - cancela tutto
+        - butta via tutto
+        - ricominciamo da zero
+        - tabula rasa
+        - azzera tutto
+        - svuota tutto
+        - cancella la breadboard
+        - clean
+        - togli ogni cosa
+
+  # ── COMPILE ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_compile"
+    actions: ["[AZIONE:compile]"]
+    entities: []
+    vars:
+      frase:
+        - compila il codice
+        - compila
+        - compilalo
+        - compila il programma
+        - fai il compile
+        - compilami sto codice
+        - esegui la compilazione
+        - compile
+        - build
+        - fai il build
+        - compila e avvia
+
+  # ── UNDO ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_undo"
+    actions: ["[AZIONE:undo]"]
+    entities: []
+    vars:
+      frase:
+        - annulla
+        - ctrl z
+        - undo
+        - torna indietro
+        - annulla l'ultima azione
+        - rifai indietro
+
+  # ── REDO ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@action_redo"
+    actions: ["[AZIONE:redo]"]
+    entities: []
+    vars:
+      frase:
+        - rifai
+        - ctrl y
+        - redo
+        - rimetti
+        - rifai l'ultima azione
+
+  # ── QUIZ ──────────────────────────────────────
+  - input: "{frase}"
+    response: "@quiz"
+    actions: ["[AZIONE:quiz]"]
+    entities: []
+    vars:
+      frase:
+        - fammi un quiz
+        - preparami delle domande
+        - interrogami
+        - quiz
+        - fai il quiz
+        - domandami qualcosa
+        - testami
+        - voglio fare il quiz
+        - fammi delle domande
+        - prova a interrogarmi
+        - facciamo un quiz
+        - quiz sull'elettronica
+        - mettimi alla prova
+
+corruptions:
+  typo_swap: 0.3
+  voice: 0.1
+  filler: 0.15

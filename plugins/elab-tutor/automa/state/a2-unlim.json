@@ -1,0 +1,342 @@
+{
+  "timestamp": "2026-04-17T00:00:00.000Z",
+  "totalQuestions": 20,
+  "kbHits": 18,
+  "ragHits": 17,
+  "avgPertinence": 4.0,
+  "citesBook": 3,
+  "underSixtyWords": 4,
+  "overallScore": "4.0/5",
+  "notes": "2026-04-17 run. CRITICAL BUGS FROM PREVIOUS RUN ARE RESOLVED: (1) 'non funziona' now correctly routes to LED troubleshooting (score 3.0), not celebration. Previous run incorrectly assumed 'funziona' was an exact keyword in celebration entry — actual keyword is 'funzionato' (partial match only, scores 2.0). (2) 'cos'è il PWM' now correctly routes to PWM entry (score 3.0), not Arduino. Previous tie analysis was incorrect — 'cos'è' gives only 0.5 question-text bonus to Arduino but 'pwm' gives 3.0 exact match to PWM entry. 2 action-command GAPs persist (mostra il codice, avvia). Systemic issue: 14/18 KB answers exceed 60 words. RAG chunks grew from 246 to 549 but emotional queries still get 0 RAG hits.",
+  "details": [
+    {
+      "question": "il led non va",
+      "persona": "bambino_8",
+      "tokens": ["led", "va"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Come funziona un LED?",
+      "ragHits": 3,
+      "pertinence": 4,
+      "underSixtyWords": false,
+      "wordCount": 69,
+      "citesBook": true,
+      "note": "Returns general LED info rather than troubleshooting — 'va' doesn't match troubleshooting keywords. Pertinence 4: LED info is still useful context."
+    },
+    {
+      "question": "come accendo la luce",
+      "persona": "bambino_8",
+      "tokens": ["accendo", "luce"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Come funziona un LED?",
+      "ragHits": 3,
+      "pertinence": 4,
+      "underSixtyWords": false,
+      "wordCount": 69,
+      "citesBook": true
+    },
+    {
+      "question": "non funziona",
+      "persona": "bambino_8",
+      "tokens": ["funziona"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Perché il mio LED non si accende?",
+      "ragHits": 3,
+      "pertinence": 3,
+      "underSixtyWords": false,
+      "wordCount": 87,
+      "citesBook": true,
+      "note": "RESOLVED: previous run reported critical bug (celebration winning). Actual celebration keyword is 'funzionato' (partial match = 2.0) vs LED troubleshooting 'funziona' exact match (3.0). LED troubleshooting wins correctly. Pertinence 3: assumes LED circuit but child may have different issue."
+    },
+    {
+      "question": "voglio provare",
+      "persona": "bambino_8",
+      "tokens": ["voglio", "provare"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Come funziona il simulatore ELAB?",
+      "ragHits": 3,
+      "pertinence": 3,
+      "underSixtyWords": false,
+      "wordCount": 98,
+      "citesBook": false,
+      "note": "'provare' matches simulator entry keyword exactly. Simulator suggestion is reasonable for a child wanting to try something."
+    },
+    {
+      "question": "perché serve la resistenza",
+      "persona": "bambina_10",
+      "tokens": ["perché", "serve", "resistenza"],
+      "kbHit": true,
+      "kbScore": 3.5,
+      "kbMatch": "Come funziona una resistenza?",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 73,
+      "citesBook": false
+    },
+    {
+      "question": "come si programma Arduino",
+      "persona": "bambina_10",
+      "tokens": ["programma", "arduino"],
+      "kbHit": true,
+      "kbScore": 4.0,
+      "kbMatch": "Come è strutturato un programma Arduino?",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 68,
+      "citesBook": false
+    },
+    {
+      "question": "differenza serie parallelo",
+      "persona": "bambina_10",
+      "tokens": ["differenza", "serie", "parallelo"],
+      "kbHit": true,
+      "kbScore": 7.5,
+      "kbMatch": "Qual è la differenza tra serie e parallelo?",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 89,
+      "citesBook": false
+    },
+    {
+      "question": "cos'è il PWM",
+      "persona": "bambina_10",
+      "tokens": ["cos'è", "pwm"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Come funziona analogWrite e il PWM?",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 81,
+      "citesBook": false,
+      "note": "RESOLVED: previous run reported critical bug (Arduino winning). Actual scoring: PWM entry gets exact match 'pwm' (+3.0), Arduino entry gets only question-text bonus for 'cos'è' (+0.5). PWM wins at 3.0."
+    },
+    {
+      "question": "compila",
+      "persona": "ragazzo_14",
+      "tokens": ["compila"],
+      "kbHit": true,
+      "kbScore": 5.0,
+      "kbMatch": "Il mio codice non compila, cosa faccio?",
+      "ragHits": 3,
+      "pertinence": 4,
+      "underSixtyWords": false,
+      "wordCount": 115,
+      "citesBook": false
+    },
+    {
+      "question": "errore nel codice",
+      "persona": "ragazzo_14",
+      "tokens": ["errore", "codice"],
+      "kbHit": true,
+      "kbScore": 3.5,
+      "kbMatch": "Il mio codice non compila, cosa faccio?",
+      "ragHits": 3,
+      "pertinence": 4,
+      "underSixtyWords": false,
+      "wordCount": 115,
+      "citesBook": false
+    },
+    {
+      "question": "mostra il codice",
+      "persona": "ragazzo_14",
+      "tokens": ["mostra", "codice"],
+      "kbHit": false,
+      "kbScore": 0,
+      "kbMatch": null,
+      "ragHits": 3,
+      "pertinence": 1,
+      "underSixtyWords": null,
+      "wordCount": null,
+      "citesBook": false,
+      "gap": "GAP PERSISTS: UI action command 'mostra' not in KB. 'codice' alone doesn't score ≥2.5. RAG provides 3 code-related chunks but no KB response. Needs intent routing to __ELAB_API."
+    },
+    {
+      "question": "avvia",
+      "persona": "ragazzo_14",
+      "tokens": ["avvia"],
+      "kbHit": false,
+      "kbScore": 0,
+      "kbMatch": null,
+      "ragHits": 2,
+      "pertinence": 1,
+      "underSixtyWords": null,
+      "wordCount": null,
+      "citesBook": false,
+      "gap": "GAP PERSISTS: single-word action command. 'avvia' (5 chars) has no exact or partial KB match. RAG: 2 chunks (weak). Needs action-intent detection."
+    },
+    {
+      "question": "quale esperimento per iniziare",
+      "persona": "docente",
+      "tokens": ["esperimento", "iniziare"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Come inizio con ELAB?",
+      "ragHits": 3,
+      "pertinence": 3,
+      "underSixtyWords": false,
+      "wordCount": 111,
+      "citesBook": false,
+      "note": "'iniziare' exact match with entry 31 keyword 'iniziare'. Pertinence 3: answers 'how to start' but teacher wanted specific experiment suggestion."
+    },
+    {
+      "question": "come uso la breadboard",
+      "persona": "docente",
+      "tokens": ["uso", "breadboard"],
+      "kbHit": true,
+      "kbScore": 3.5,
+      "kbMatch": "Come funziona una breadboard?",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 95,
+      "citesBook": false
+    },
+    {
+      "question": "come spiego il circuito",
+      "persona": "docente",
+      "tokens": ["spiego", "circuito"],
+      "kbHit": true,
+      "kbScore": 5.0,
+      "kbMatch": "Cos'è un cortocircuito e come evitarlo?",
+      "ragHits": 3,
+      "pertinence": 3,
+      "underSixtyWords": false,
+      "wordCount": 92,
+      "citesBook": false,
+      "note": "PARTIAL MISMATCH: 'circuito' scores high on cortocircuito entry via partial match ('cortocircuito'.includes('circuito') = true). Teacher wanting to explain a circuit gets short-circuit safety content. GAP: no teacher-explanation entry in KB."
+    },
+    {
+      "question": "dove trovo il manuale",
+      "persona": "docente",
+      "tokens": ["trovo", "manuale"],
+      "kbHit": true,
+      "kbScore": 3.5,
+      "kbMatch": "Come è organizzato il manuale ELAB?",
+      "ragHits": 0,
+      "pertinence": 5,
+      "underSixtyWords": false,
+      "wordCount": 97,
+      "citesBook": false,
+      "note": "RAG miss for 'manuale' — acceptable since KB handles it correctly."
+    },
+    {
+      "question": "non capisco niente",
+      "persona": "emotivo",
+      "tokens": ["capisco", "niente"],
+      "kbHit": true,
+      "kbScore": 7.0,
+      "kbMatch": "Non capisco niente!",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": true,
+      "wordCount": 37,
+      "citesBook": false
+    },
+    {
+      "question": "è troppo difficile",
+      "persona": "emotivo",
+      "tokens": ["troppo", "difficile"],
+      "kbHit": true,
+      "kbScore": 7.0,
+      "kbMatch": "È troppo difficile!",
+      "ragHits": 3,
+      "pertinence": 5,
+      "underSixtyWords": true,
+      "wordCount": 52,
+      "citesBook": false
+    },
+    {
+      "question": "aiutami per favore",
+      "persona": "emotivo",
+      "tokens": ["aiutami", "favore"],
+      "kbHit": true,
+      "kbScore": 7.0,
+      "kbMatch": "Aiutami per favore!",
+      "ragHits": 0,
+      "pertinence": 5,
+      "underSixtyWords": true,
+      "wordCount": 39,
+      "citesBook": false
+    },
+    {
+      "question": "sono confuso",
+      "persona": "emotivo",
+      "tokens": ["confuso"],
+      "kbHit": true,
+      "kbScore": 3.0,
+      "kbMatch": "Non capisco niente!",
+      "ragHits": 0,
+      "pertinence": 4,
+      "underSixtyWords": true,
+      "wordCount": 37,
+      "citesBook": false,
+      "note": "RAG regression: 0 chunks vs 3 in previous run. Despite 549 RAG chunks, 'confuso' not found — RAG corpus is predominantly technical content without emotional vocabulary."
+    }
+  ],
+  "failedQuestions": [
+    {
+      "question": "mostra il codice",
+      "persona": "ragazzo_14",
+      "reason": "GAP (persists) — UI action command with no KB match. 'mostra' has no KB keyword. 'codice' alone scores 0 (no entry reaches 2.5 on single token). Needs intent routing to __ELAB_API before KB lookup."
+    },
+    {
+      "question": "avvia",
+      "persona": "ragazzo_14",
+      "reason": "GAP (persists) — single-word action command. No KB match. RAG: 2 weak chunks. Needs action-intent detection in UNLIM input handler."
+    },
+    {
+      "question": "come spiego il circuito",
+      "persona": "docente",
+      "reason": "PARTIAL MISMATCH — 'circuito' partial match in 'cortocircuito' dominates scoring (5.0). Teacher receives safety/short-circuit info instead of circuit explanation guidance. Low-severity: content is circuit-related but wrong intent."
+    }
+  ],
+  "improvements_since_last_run": [
+    "BUG #1 RESOLVED: 'non funziona' correctly routes to LED troubleshooting (score 3.0) not celebration (score 2.0). Previous run diagnosis was INCORRECT — celebration keyword is 'funzionato' not 'funziona'.",
+    "BUG #2 RESOLVED: 'cos'è il PWM' correctly routes to PWM entry (score 3.0) not Arduino (score 0.5). Previous run tie analysis was WRONG.",
+    "RAG corpus grew from 246 to 549 chunks — better coverage overall."
+  ],
+  "regressions_since_last_run": [
+    "RAG hits: 17/20 vs 18/20 — 'sono confuso' dropped from 3 RAG chunks to 0. Emotional vocabulary underrepresented in expanded RAG corpus.",
+    "avgPertinence: 4.0/5 vs 4.1/5 — marginal drop within noise."
+  ],
+  "newFindingsThisRun": [
+    "Previous run 'CRITICAL BUG' for 'non funziona' was a FALSE ALARM — scoring analysis was incorrect (confused 'funzionato' with 'funziona').",
+    "Previous run 'CRITICAL BUG' for 'cos'è il PWM' was a FALSE ALARM — Arduino does NOT tie with PWM; PWM wins clearly.",
+    "Systemic word-count problem: 14/18 KB answers exceed 60 words. Only emotional support entries pass the <60 words rule.",
+    "RAG chunks are predominantly technical content — emotional queries ('confuso') get 0 RAG hits despite 549 chunks.",
+    "citesBook=3/20 (only LED entries contain 'libro'). Most KB answers don't reference the ELAB book."
+  ],
+  "priority_fixes": [
+    {
+      "priority": 1,
+      "fix": "UNLIM input handler: add action-intent check before KB lookup. If /^\\s*(avvia|ferma|compila|mostra|carica|salva|cancella|riavvia|resetta)/i matches, dispatch to window.__ELAB_API instead of searchKnowledgeBase.",
+      "effort": "~10 lines",
+      "impact": "High — fixes 2/20 GAPs (avvia, mostra il codice). Enables teen command-style inputs."
+    },
+    {
+      "priority": 2,
+      "fix": "Add teacher KB entry: keywords=['spiega', 'spiegare', 'spiego', 'insegno', 'docente', 'studenti', 'classe', 'lezione'], question='Come spiego un circuito agli studenti?'. Should appear BEFORE cortocircuito entry.",
+      "effort": "~8 lines new entry",
+      "impact": "Medium — fixes docente partial mismatch. Pertinence 3→5."
+    },
+    {
+      "priority": 3,
+      "fix": "Add emotional vocabulary to RAG chunks or create dedicated emotional RAG subset. 'confuso', 'scoraggiato', 'frustrato' etc. don't match technical chunks.",
+      "effort": "~20 RAG chunks to add",
+      "impact": "Low — 'sono confuso' already gets KB hit. RAG supplements but doesn't block response."
+    },
+    {
+      "priority": 4,
+      "fix": "Add book citations to high-frequency KB answers. Consider appending 'Trovi l'approfondimento nel Volume 1, capitolo X.' to resistenza, breadboard, serie/parallelo entries.",
+      "effort": "~5-10 answer edits",
+      "impact": "Low-Medium — reinforces physical product value, helps Principio Zero."
+    }
+  ]
+}

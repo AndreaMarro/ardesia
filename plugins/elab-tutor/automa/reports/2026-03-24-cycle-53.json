@@ -1,0 +1,69 @@
+{
+  "cycle": 53,
+  "timestamp": "2026-03-24T15:19:27.508632",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 411
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.09s",
+      "time_ms": 21255
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]] [cached]",
+      "time_ms": 12076
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 4
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=73 min=67 (target \u226560) [3 samples]",
+      "time_ms": 101795
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5300
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2569
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Ricerca pipeline voice/NLU per controllo simulatore",
+    "status": "done",
+    "files_changed": [
+      "automa/knowledge/RESEARCH-VOICE-NLU-PIPELINE-2026-03-24.md",
+      "automa/metrics-proposals.md",
+      "automa/queue/done/P2-042-ricerca-voice-nlu.yaml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": null,
+  "ai_scoring": null,
+  "composite_score": 0.8975,
+  "self_exam": null
+}

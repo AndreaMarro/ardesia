@@ -1,0 +1,24 @@
+id: ricerca-locale-offline
+priority: P2
+title: Ricerca funzionamento offline PWA per scuole
+description: 'Analizza come rendere ELAB funzionante offline. Service worker, cache
+  assets, esperimenti precaricati. Il simulatore non richiede backend.
+
+  '
+success_criteria: 'Analisi in knowledge/ricerca-locale-offline.md con architettura
+  proposta e stima effort.
+
+  '
+context_files:
+- vite.config.js
+- public/sw.js
+plan:
+- Verifica stato attuale PWA (manifest, service worker)
+- Cerca con DeepSeek best practice PWA educative
+- Identifica cosa funziona gia offline vs cosa richiede rete
+- Proponi architettura cache con Workbox
+- Salva in knowledge/ricerca-locale-offline.md
+claimed_at: '2026-03-23T21:47:32.501322'
+claimed_by: orchestrator
+completed_at: '2026-03-23T21:50:54.606241'
+result: ok

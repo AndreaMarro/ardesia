@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap6-esp4
+# "Misurare Vf con multimetro"
+
+experiment_id: v2-cap6-esp4
+volume: 2
+chapter: 6
+title: "Misurare Vf con multimetro"
+
+prerequisites:
+  - v2-cap6-esp3
+
+concepts_introduced:
+  - multimetro
+  - misurare_tensione
+  - Vf
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - serie
+  - multimetro
+  - sonda rossa
+  - sonda nera
+  - misurare
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha il circuito dell'esperimento precedente (3 LED in serie),
+    piu' 1 multimetro impostato su V (tensione continua). Mostra come si collegano
+    le sonde: rossa sul + del componente, nera sul -. NON serve spiegare la scala.
+  during_class: >
+    Fai misurare la tensione ai capi di ogni LED singolo. "Quanto segna il multimetro
+    sul LED rosso? E sul verde?" Scrivi i numeri alla lavagna. Poi chiedi:
+    "La somma di tutti i numeri, quanto fa? E la batteria quanti volt ha?"
+    Scoperta: la somma delle tensioni = tensione batteria (circa).
+  common_question: >
+    "Perche' il numero non e' esatto?" -> Gli strumenti non sono perfetti, e c'e'
+    anche il resistore che 'consuma' un po' di tensione. Ma il totale e' molto vicino a 9V.
+
+common_mistakes:
+  - mistake: "Collegare il multimetro in serie invece che in parallelo al LED"
+    what_to_do: "Per misurare la tensione, le sonde vanno AI DUE LATI del LED, non in mezzo al circuito."
+    analogy: "Come misurare la lunghezza di un ponte — metti il metro da un capo all'altro, non lo tagli a meta'"
+  - mistake: "Invertire le sonde rossa e nera"
+    what_to_do: "Il numero diventa negativo ma il valore e' giusto. Fai notare il segno meno."
+    analogy: null
+
+analogies:
+  multimetro:
+    analogy: "Il multimetro e' come un termometro per i circuiti — non cambia nulla, ma ti dice cosa succede dentro. La sonda rossa e la nera sono le due 'punte' del termometro."
+    evidence: "Analogia strumento di misura, efficace per introduzione strumentazione (Driver et al. 1994)"
+  Vf:
+    analogy: "La tensione ai capi del LED e' come il dislivello di una cascata — l'acqua cade da un'altezza precisa. Ogni LED ha la sua 'cascata' diversa."
+    evidence: "Modello gravitazionale per differenza di potenziale (Psillos et al. 1988)"
+
+assessment_invisible:
+  - "Se lo studente posiziona le sonde correttamente al primo tentativo -> ha capito la misura in parallelo"
+  - "Se nota che la somma delle tensioni fa circa 9V -> ha scoperto la legge di Kirchhoff"
+  - "Se confronta LED rosso vs verde e dice 'il verde vuole piu' volt' -> collegamento con esp2"

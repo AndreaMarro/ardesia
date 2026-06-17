@@ -1,0 +1,133 @@
+{
+  "name": "ELAB Arduino Compile",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-compile",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const code = $input.first().json.body.code;\nconst board = $input.first().json.body.board || 'arduino:avr:nano:cpu=atmega328old';\n\nconst fs = require('fs');\nconst ts = Date.now();\nconst sketchDir = '/tmp/elab_sketch_' + ts;\nconst outputDir = '/tmp/elab_output_' + ts;\n\nfs.mkdirSync(sketchDir, { recursive: true });\nfs.mkdirSync(outputDir, { recursive: true });\n\nconst sketchPath = sketchDir + '/sketch.ino';\nfs.writeFileSync(sketchPath, code, 'utf-8');\n\nreturn [{\n  json: {\n    sketchDir,\n    sketchPath,\n    outputDir,\n    board,\n  }\n}];\n"
+      },
+      "id": "prepare-files",
+      "name": "Prepare Files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "command": "=arduino-cli compile --fqbn {{ $json.board }} --output-dir {{ $json.outputDir }} {{ $json.sketchDir }} 2>&1",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "compile",
+      "name": "Compile",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [640, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst sketchDir = $('Prepare Files').first().json.sketchDir;\nconst outputDir = $('Prepare Files').first().json.outputDir;\nconst exitCode = $input.first().json.exitCode;\nconst stdout = $input.first().json.stdout || '';\nconst stderr = $input.first().json.stderr || '';\n\nlet hex = null;\nlet success = false;\nlet errors = null;\n\nif (exitCode === 0) {\n  try {\n    const files = fs.readdirSync(outputDir);\n    const hexFile = files.find(f => f.endsWith('.hex'));\n    if (hexFile) {\n      hex = fs.readFileSync(outputDir + '/' + hexFile, 'utf-8');\n      success = true;\n    } else {\n      errors = 'Hex file not produced by compiler';\n    }\n  } catch (e) {\n    errors = 'Error reading hex: ' + e.message;\n  }\n} else {\n  errors = stderr || stdout || 'Compilation failed with exit code ' + exitCode;\n}\n\n// Cleanup temp files\ntry {\n  fs.rmSync(sketchDir, { recursive: true, force: true });\n  fs.rmSync(outputDir, { recursive: true, force: true });\n} catch (e) { /* ignore */ }\n\nreturn [{\n  json: {\n    success,\n    hex,\n    errors,\n    output: stdout,\n  }\n}];\n"
+      },
+      "id": "read-hex",
+      "name": "Read Hex & Cleanup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1080, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Files": {
+      "main": [
+        [
+          {
+            "node": "Compile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compile": {
+      "main": [
+        [
+          {
+            "node": "Read Hex & Cleanup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Hex & Cleanup": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": ["elab", "arduino", "compile"]
+}

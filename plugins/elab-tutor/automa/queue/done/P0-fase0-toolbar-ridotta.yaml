@@ -1,0 +1,12 @@
+id: P0-fase0-toolbar-ridotta
+priority: P0
+title: "Fase 0.5: Ridurre toolbar simulatore da 7 a 3-4 bottoni essenziali"
+description: |
+PROBLEMA: 7 icone visibili nella toolbar (Menu, <, Reset, BOM, menu extra, Quiz, Timer).
+FILE: src/components/simulator/panels/ControlBar.jsx
+FIX: "Mostrare solo bottoni essenziali al livello 1 (disclosureLevel=1):"
+VERIFICA: contare bottoni visibili → ≤4
+GATE: build PASSA
+tags: fase0,ux,p0,progressive-disclosure
+claimed_at: "2026-03-27T03:18:07.233737"
+claimed_by: orchestrator

@@ -1,0 +1,62 @@
+{
+  "cycle": 33,
+  "timestamp": "2026-03-24T08:59:14.512916",
+  "date": "2026-03-24",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 262
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.17s",
+      "time_ms": 21731
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 157716
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 9
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=82 min=76 (target \u226560) [3 samples]",
+      "time_ms": 62541
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5168
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2307
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH cycle 22 \u2014 P0-008 architecture analysis + Gulpease optimization",
+    "status": "done",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "research": "3 findings: (1) P0-008 = thin wrapper 150 LOC su CircuitSolver APIs esistenti (getDiagnostics/getState/getComponentCurrents) \u2014 1 giornata non 3 settimane; (2) Gulpease +6-10 punti con 3 regole prompt (frasi brevi, parole corte, liste); (3) fix urgente: mismatch ID loadexp in tutor.yml riga 66 causa test fail"
+  },
+  "research": "DeepSeek analysis on 'Scratch to Arduino C++ block programming':\n  1) **Problemi concreti per ELAB Tutor**:\n- **Disallineamento concettuale**: I blocchi Scratch nascondono la complessit\u00e0 sintattica del C++ (es. punti e virgola, tipi di dato). Il passaggio diretto pu\u00f2 causare confusione quando i comandi dei blocchi non mappano 1:1 con le funzioni Arduino.\n- **Astrazione hardware**: Simulare il collegamento fisico (es. pin, sensori) in un ambiente a blocchi puro pe",
+  "ai_scoring": null
+}

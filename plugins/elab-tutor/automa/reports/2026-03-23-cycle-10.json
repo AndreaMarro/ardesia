@@ -1,0 +1,58 @@
+{
+  "cycle": 10,
+  "timestamp": "2026-03-23T10:14:08.292174",
+  "date": "2026-03-23",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 780
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.10s",
+      "time_ms": 21845
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 167954
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=77 min=72 (target \u226560) [3 samples]",
+      "time_ms": 65331
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4282
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2348
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 2194,
+    "returncode": 0
+  },
+  "research": null
+}

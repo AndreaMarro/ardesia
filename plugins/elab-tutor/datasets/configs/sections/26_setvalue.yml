@@ -1,0 +1,99 @@
+id: setvalue
+name: Imposta Valore Componente
+intent: action
+needs_llm: false
+templates:
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:setvalue]'
+  entities:
+  - resistor
+  vars:
+    frase:
+    - metti la resistenza a 220 ohm
+    - imposta la resistenza a 1k
+    - cambia la resistenza a 330 ohm
+    - voglio una resistenza da 10k
+    - metti 4.7k ohm
+    - cambia il valore della resistenza
+    - imposta 100 ohm
+    - metti la resistenza a 470
+    - resistenza 1000 ohm
+    - fai 220 ohm la resistenza
+    - imposta R a 150 ohm
+    - voglio 2.2k
+    - cambiami il valore a 560 ohm
+    - setta la resistenza a 680
+    - la resistenza deve essere da 330
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:setvalue]'
+  entities:
+  - buzzer-piezo
+  vars:
+    frase:
+    - metti la frequenza a 440 Hz
+    - cambia il tono del buzzer
+    - imposta il buzzer a 1000 Hz
+    - voglio un suono piu' acuto
+    - abbassa la frequenza
+    - alza il tono
+    - metti il buzzer a 262 Hz
+    - la nota Do
+    - fammi sentire il La (440)
+    - cambia frequenza buzzer
+    - imposta il tono a 880 Hz
+    - suono grave
+    - suono acuto
+    - buzzer 523 Hz
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:setvalue]'
+  entities:
+  - capacitor
+  vars:
+    frase:
+    - metti il condensatore a 100 microfarad
+    - imposta capacita' 47uF
+    - cambia il condensatore a 10uF
+    - condensatore da 220 microfarad
+    - imposta 1000uF
+    - cambia valore condensatore
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:setvalue]'
+  entities:
+  - led
+  vars:
+    frase:
+    - cambia il colore del LED in rosso
+    - LED verde
+    - metti il LED blu
+    - voglio un LED giallo
+    - cambia colore a bianco
+    - LED rosso
+    - fai il LED arancione
+    - 'colore LED: verde'
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:setvalue]'
+  entities:
+  - battery9v
+  vars:
+    frase:
+    - imposta la tensione a 5V
+    - cambia la batteria a 9V
+    - metti 3.3 volt
+    - voltaggio a 12V
+    - imposta alimentazione 5 volt
+    - cambia la tensione della batteria
+corruptions:
+  typo_swap: 0.25
+  voice: 0.12
+  filler: 0.1
+  sms: 0.1

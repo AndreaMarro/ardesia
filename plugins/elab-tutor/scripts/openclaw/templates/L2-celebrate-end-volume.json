@@ -1,0 +1,140 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-celebrate-end-volume",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "celebrateEndVolume",
+  "description": "Morphic template iter 15: chiusura volume completo — riassunto capitoli + transizione next volume. Citazione VERBATIM ultima pagina Vol + voice TTS Isabella + analogia traguardo tappa Giro.",
+  "category": "lesson-celebrate",
+  "owner_agent": "toolspec-batch3-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.156",
+    "analogia": "fine volume come traguardo di tappa Giro d'Italia, prossimo volume = nuova tappa"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": false,
+      "default": "v1-end"
+    },
+    "volumeId": {
+      "type": "string",
+      "required": true,
+      "default": "vol1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "esperto"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-all-experiments-done",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "progress:vol1"
+        ],
+        "color": "green"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-recap",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Riassumi capitoli Vol.1 completati + introduci Vol.2 cap.7",
+        "vol": "Vol.1",
+        "cap": "all"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-next-volume",
+      "tool": "showNudge",
+      "args": {
+        "text": "Avete completato Volume 1! Prossima sessione apriamo Volume 2 capitolo 7: scheda Arduino",
+        "duration_ms": 5500
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-celebration",
+      "tool": "captureScreenshot",
+      "args": {
+        "target": "volume-completion-screen"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-celebrate",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.156: 'fine del primo viaggio'. Avete completato 6 capitoli. E come traguardo tappa Giro d'Italia. Prossima tappa: Vol.2 Arduino.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5800,
+  "expected_outcome": "Classe celebra completamento + capisce continuita Vol.2. Docente chiude lezione + anticipa next.",
+  "telemetry": {
+    "track_events": [
+      "template_dispatched",
+      "volume_completed",
+      "tts_complete"
+    ],
+    "supabase_table": "openclaw_template_runs"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[4].tool === 'speakTTS'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.1/)",
+    "sequence[4].args.text.match(/pag\\.156/)",
+    "principio_zero.analogia.includes('traguardo')",
+    "iter_introduced === 15"
+  ]
+}

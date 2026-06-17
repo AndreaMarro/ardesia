@@ -1,0 +1,131 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-explain-condensatore-tempo",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "explainCondensatoreTempo",
+  "description": "Morphic template condensatore + costante tempo τ=RC Vol.2 cap.10 — analogia secchio acqua riempimento progressivo + highlight componenti + grafico carica + cita testo verbatim volume.",
+  "category": "lesson-explain",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.2 pag.78",
+    "analogia": "il condensatore è un secchio: la resistenza è il rubinetto, τ è il tempo per riempirlo al 63%"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v2-cap10-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "advanced"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "esperto"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-rc-circuit",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "c1",
+          "r1"
+        ],
+        "color": "orange",
+        "pulse": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-rc-formula",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Spiega τ = R × C analogia secchio acqua per classe secondaria",
+        "context": "Vol.2 cap.10 condensatore costante tempo"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-formula",
+      "tool": "showNudge",
+      "args": {
+        "text": "τ = R × C → con R=10kΩ e C=100µF il secchio si riempie al 63% in 1 secondo",
+        "position": "side-panel",
+        "duration_ms": 6000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-curve",
+      "tool": "captureScreenshot",
+      "args": {
+        "purpose": "verify-rc-curve",
+        "annotateTau": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-explain",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.2 pag.78 'il prodotto R per C è la costante di tempo tau'. Pensate al condensatore come secchio: tau è quanto tempo serve a riempirlo al 63 per cento.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5500,
+  "telemetry": {
+    "track_concept_understanding": true,
+    "track_formula_recall": true,
+    "category": "lesson-explain-rc"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[0].args.ids.includes('c1')",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.2 pag\\.78/)",
+    "principio_zero.analogia.includes('secchio')"
+  ]
+}

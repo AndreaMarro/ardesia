@@ -1,0 +1,132 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-guide-scratch-blockly-first",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "guideScratchBlocklyFirst",
+  "description": "Morphic template primo programma Scratch/Blockly — digitalWrite blink LED, highlight blocchi colorati, mapping Scratch → C++ Arduino, cita Vol.1 cap.7 setup() + loop().",
+  "category": "lesson-program-first",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.62",
+    "analogia": "i blocchi Scratch sono come pezzi LEGO: ogni colore = istruzione Arduino diversa"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v1-cap7-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-blockly-blocks",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "block-pinmode",
+          "block-digitalwrite",
+          "block-delay"
+        ],
+        "color": "green",
+        "pulse": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-mapping",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Spiega come blocchi Scratch verde-pinMode + arancio-digitalWrite + blu-delay diventano codice C++ Arduino",
+        "context": "Vol.1 cap.7 primo programma Blink"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-mapping",
+      "tool": "showNudge",
+      "args": {
+        "text": "Blocco verde = pinMode(13, OUTPUT) → blocco arancio = digitalWrite(13, HIGH) → blocco blu = delay(1000)",
+        "position": "code-panel",
+        "duration_ms": 6000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-code",
+      "tool": "captureScreenshot",
+      "args": {
+        "purpose": "verify-blockly-to-cpp",
+        "showBoth": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-explain-mapping",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.62 'ogni blocco Scratch corrisponde a una istruzione Arduino'. I blocchi colorati sono LEGO: verde è pinMode, arancio è digitalWrite, blu è delay.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 5400,
+  "telemetry": {
+    "track_first_program": true,
+    "track_blockly_to_cpp_mapping": true,
+    "category": "lesson-program-scratch-first"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[0].args.ids.length === 3",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.1 pag\\.62/)",
+    "principio_zero.analogia.includes('LEGO')"
+  ]
+}

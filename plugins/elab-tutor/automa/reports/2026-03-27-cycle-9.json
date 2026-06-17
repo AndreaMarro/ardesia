@@ -1,0 +1,60 @@
+{
+  "cycle": 9,
+  "timestamp": "2026-03-27T04:23:12.345707",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 319
+    },
+    {
+      "name": "build",
+      "status": "fail",
+      "detail": "[Errno 2] No such file or directory: 'npm'",
+      "time_ms": 2
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 163019
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 4
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=74 (target \u226560) [3 samples]",
+      "time_ms": 62513
+    },
+    {
+      "name": "browser",
+      "status": "warn",
+      "detail": "Playwright not available",
+      "time_ms": 5
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Test error: [Errno 2] No such file or directory: 'node'",
+      "time_ms": 2
+    }
+  ],
+  "checks_passed": 4,
+  "checks_total": 7,
+  "task_result": {
+    "task": "identita-unica",
+    "status": "pending_interactive"
+  },
+  "research": "DeepSeek: **Problema 1: Accesso alle risorse.** Le scuole elementari spesso mancano di budget, spazio dedicato e materiali (es. elettronica di base, strumenti per la fabbricazione) per sostenere in modo coerente attivit\u00e0 pratiche di maker education in pi\u00f9 classi.\n\n**Problema 2: Preparazione degli insegnanti.** Gli educatori possono sentirsi impreparati a integrare la pedagogia del *making*, che richiede com",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

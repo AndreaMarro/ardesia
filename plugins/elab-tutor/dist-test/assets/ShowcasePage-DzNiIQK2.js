@@ -1,0 +1,2 @@
+/* (c) Andrea Marro — 2026-03-13 — ELAB Tutor — Tutti i diritti riservati */
+import{r as e,j as t}from"./index-LEMstady.js";import"./react-vendor-B1ATuZue.js";import"./mammoth-izk78QMb.js";function a(){return e.useEffect(()=>{window.location.replace("https://funny-pika-3d1029.netlify.app/vetrina.html")},[]),t.jsx("div",{style:{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh",fontFamily:"sans-serif",color:"#374151"},children:t.jsx("p",{children:"Reindirizzamento alla vetrina…"})})}export{a as default};

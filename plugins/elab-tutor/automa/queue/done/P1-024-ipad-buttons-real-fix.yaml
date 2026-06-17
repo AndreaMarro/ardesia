@@ -1,0 +1,29 @@
+id: ipad-buttons-real-fix
+priority: P1
+title: Fix REALE 13 bottoni sotto 44px su iPad portarli tutti a 56px
+description: 'evaluate.py misura ipad_compliance=0.675 perche ci sono 13 bottoni con
+  altezza sotto 44px. Il fix precedente ha cambiato 48px a 56px ma NON ha toccato
+  quelli che erano a 36-40px. Serve trovare TUTTI i bottoni sotto 44px e portarli
+  a min-height 56px.
+
+  '
+success_criteria: 'Dopo npm run build, eseguire python3 automa/evaluate.py e verificare
+  che ipad_compliance sia almeno 0.85 e small_btns sia meno di 5.
+
+  '
+context_files:
+- src/components/simulator/ElabSimulator.css
+- src/components/tutor/ElabTutorV4.css
+- src/components/tutor/tutor-responsive.css
+- src/styles/design-system.css
+plan:
+- Cerca tutti i CSS con height sotto 44px in src/
+- Per ogni bottone trovato aggiungi min-height 56px e min-width 56px
+- npm run build deve passare
+- Verifica con python3 automa/evaluate.py che ipad_compliance sale
+- Report onesto con prima/dopo
+tags: ipad,touch,accessibility,css
+claimed_at: '2026-03-23T19:38:26.378865'
+claimed_by: orchestrator
+completed_at: '2026-03-23T19:42:45.370807'
+result: ok

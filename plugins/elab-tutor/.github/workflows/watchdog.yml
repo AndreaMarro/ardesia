@@ -1,0 +1,97 @@
+name: Watchdog ELAB (production + autonomous CI)
+
+# Cron-driven health monitoring + anomaly detection.
+# Read-only checks: production HTTP, Edge Functions CORS+content,
+# Principio Zero v3 compliance, GitHub PR/CI state, branch idle.
+# NEVER blocks (always exit 0). Logs anomalies to docs/audits/errors-log-YYYY-MM.md
+# and opens GitHub issues with rate limiting.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+    - cron: '0 22 * * 0'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode (test or production)'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - test
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+  actions: read
+
+concurrency:
+  group: watchdog-elab
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config --global user.email "watchdog@elabtutor.school"
+          git config --global user.name "ELAB Watchdog"
+
+      - name: Detect run type
+        id: run-type
+        run: |
+          # Whitelist sanitize input mode
+          MODE="${{ inputs.mode }}"
+          case "$MODE" in
+            test|production) ;;
+            *) MODE="production" ;;
+          esac
+
+          if [ "${{ github.event.schedule }}" = "0 22 * * 0" ]; then
+            RUN_TYPE="weekly"
+          elif [ -n "${{ github.event.schedule }}" ]; then
+            RUN_TYPE="regular"
+          else
+            RUN_TYPE="$MODE"
+          fi
+          echo "type=$RUN_TYPE" >> "$GITHUB_OUTPUT"
+          echo "Run type: $RUN_TYPE"
+
+      - name: Run watchdog checks
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ELAB_ANON_KEY: ${{ secrets.ELAB_ANON_KEY }}
+          RUN_TYPE: ${{ steps.run-type.outputs.type }}
+        run: |
+          chmod +x scripts/watchdog-run.sh scripts/watchdog-checks.sh
+          bash scripts/watchdog-run.sh "$RUN_TYPE"
+
+      - name: Commit log changes (if any)
+        run: |
+          MONTH=$(date -u +%Y-%m)
+          LOG_FILE="docs/audits/errors-log-${MONTH}.md"
+          if [ -n "$(git status --porcelain "$LOG_FILE" 2>/dev/null)" ]; then
+            git add "$LOG_FILE"
+            git commit -m "chore(watchdog): append anomalies $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin "${GITHUB_REF#refs/heads/}" || echo "Push failed (non-blocking)"
+          else
+            echo "No log changes to commit."
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Watchdog run summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "Type: ${{ steps.run-type.outputs.type }}" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f /tmp/watchdog-report.md ]; then
+            cat /tmp/watchdog-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi

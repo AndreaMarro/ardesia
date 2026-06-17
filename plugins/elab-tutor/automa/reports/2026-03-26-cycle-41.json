@@ -1,0 +1,62 @@
+{
+  "cycle": 41,
+  "timestamp": "2026-03-26T16:53:49.351380",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 312
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 23.63s",
+      "time_ms": 28994
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 169726
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=76 (target \u226560) [3 samples]",
+      "time_ms": 65677
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4009
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2045
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "max_turns",
+    "status": "partial",
+    "lesson": "Raggiunto limite turni. Task troppo complesso \u2014 ridurre scope.",
+    "error": "max_turns_reached"
+  },
+  "research": "Scholar: 'maker education elementary school' -> 5 papers\n  - [2024] The Effects of a Design Thinking-Based Maker Education Program on the Emotional \n  - [2024] Exploring the Proposals and Applicability of Physical Education Subject Maker Ed\n  - [2023] The Effects of the Maker Education Program Using Wood on Self-Directed Learning ",
+  "ai_scoring": null,
+  "composite_score": 0.973,
+  "self_exam": null
+}

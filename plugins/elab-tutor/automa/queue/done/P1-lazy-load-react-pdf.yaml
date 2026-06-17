@@ -1,0 +1,15 @@
+id: P1-lazy-load-react-pdf
+priority: P1
+title: Dynamic import react-pdf only when PDF viewer is opened
+description: |
+  Replace static import of react-pdf with React.lazy + Suspense wrapper.
+  The PDF viewer component should only be loaded when the user actually opens
+  a PDF. This reduces initial bundle size from ~1.7MB. Find wherever react-pdf
+  is imported and apply code splitting.
+metric: initial bundle reduced by react-pdf chunk size (~500KB+)
+tags:
+  - performance
+  - bundle-size
+  - code-splitting
+  - react
+created_at: 2026-03-25T21:30:00

@@ -1,0 +1,20 @@
+type: ux
+priority: high
+title: iPad Missing Component Properties Panel
+description: |
+Gemini analysis reveals CRITICAL issue: properties panel missing on iPad.
+PROBLEMA: Utente può trascinare componenti ma NON può modificare valori
+Su desktop: pannello proprietà a destra
+Su iPad: pannello proprietà ASSENTE completamente
+reproduction: 
+- Apri https: //www.elabtutor.school/sim/volume1/cap6/esp1 su iPad
+expected: Proprietà accessibili su tutti i dispositivi
+actual: Proprietà completamente nascoste su iPad
+files_to_check: 
+impact: Simulatore COMPLETAMENTE INUTILIZZABILE su iPad - CRITICO
+created: 2026-03-24
+source: audit-cycle-gemini-analysis
+claimed_at: "2026-03-24T07:43:21.368516"
+claimed_by: orchestrator
+completed_at: "2026-03-24T07:49:38.828338"
+result: ok

@@ -1,0 +1,40 @@
+#!/bin/bash
+# ELAB pre-commit hook — blocca commit se test regressione
+# Attivazione: git config core.hooksPath .githooks
+
+# Consenti bypass esplicito con env var (uso raro, documentato)
+if [ "$ELAB_SKIP_PRECOMMIT" = "1" ]; then
+  echo "[pre-commit] ELAB_SKIP_PRECOMMIT=1 → skipping checks (ON YOUR OWN RISK)"
+  exit 0
+fi
+
+# Se siamo in un merge commit, skip (i test sono già girati prima)
+if [ -f .git/MERGE_HEAD ]; then
+  echo "[pre-commit] Merge commit → skipping checks"
+  exit 0
+fi
+
+# Path assoluto allo script
+SCRIPT_PATH="$(git rev-parse --show-toplevel)/scripts/quick-regression-check.sh"
+
+if [ ! -f "$SCRIPT_PATH" ]; then
+  echo "[pre-commit] WARNING: quick-regression-check.sh non trovato, skipping"
+  exit 0
+fi
+
+"$SCRIPT_PATH"
+QUICK_RC=$?
+
+# Iter 69 A-AUTOMATION-1 — experiment-registry.ts drift check
+# Verifica VALID_EXPERIMENT_IDS matches src/data/experiments-vol*.js. Overhead <100ms.
+REGISTRY_CHECK="$(git rev-parse --show-toplevel)/scripts/sync-experiment-registry.mjs"
+if [ -f "$REGISTRY_CHECK" ]; then
+  node "$REGISTRY_CHECK"
+  REGISTRY_RC=$?
+  if [ "$REGISTRY_RC" != "0" ]; then
+    echo "[pre-commit] BLOCKED — experiment registry drift detected. Fix above OR ELAB_SKIP_PRECOMMIT=1."
+    exit 1
+  fi
+fi
+
+exit "$QUICK_RC"

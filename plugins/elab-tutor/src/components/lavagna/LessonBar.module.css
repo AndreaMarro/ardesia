@@ -1,0 +1,194 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* LessonBar — Compact lesson progress below the circuit */
+
+.bar {
+  position: absolute;
+  bottom: 130px; /* Above toolbar + UNLIM bar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 55;
+  max-width: min(520px, calc(100vw - 120px));
+  width: 100%;
+}
+
+.compactRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 77, 140, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  color: var(--color-text);
+  text-align: left;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.compact:hover {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Quick UNLIM ask button — always visible next to lesson bar */
+.quickAsk {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 1px solid rgba(74, 122, 37, 0.2);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.quickAsk:hover {
+  background: rgba(74, 122, 37, 0.08);
+  border-color: rgba(74, 122, 37, 0.4);
+  transform: scale(1.05);
+}
+
+.quickAsk:active {
+  transform: scale(0.95);
+}
+
+.progress {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(30, 77, 140, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* Mini progress dots — inline in compact bar */
+.miniDots {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.miniDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(30, 77, 140, 0.15);
+  transition: background 300ms, transform 300ms;
+}
+
+.miniDotDone {
+  background: var(--color-accent);
+}
+
+.miniDotCurrent {
+  background: var(--elab-navy);
+  transform: scale(1.3);
+}
+
+.badge {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: var(--color-vol2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.stepLabel {
+  flex: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #595959; /* palette */
+  transition: transform 0.2s;
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+}
+
+/* Expanded detail popover */
+.detail {
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 77, 140, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: detailSlide 0.2s ease-out;
+}
+
+.desc {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.askUnlim {
+  border: 1px solid rgba(74, 122, 37, 0.3);
+  background: rgba(74, 122, 37, 0.06);
+  color: var(--color-accent);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.askUnlim:hover {
+  background: rgba(74, 122, 37, 0.12);
+  border-color: var(--color-accent);
+}
+
+@keyframes detailSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* LIM */
+@media (max-width: 1024px) {
+  .bar {
+    bottom: 120px;
+    max-width: calc(100vw - 80px);
+  }
+  .compact {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}

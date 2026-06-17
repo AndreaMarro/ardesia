@@ -1,0 +1,116 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* UnlimBar — Barra input UNLIM sempre visibile in basso */
+
+.bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 6px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  border-radius: 18px;
+  box-shadow:
+    0 4px 24px rgba(30, 77, 140, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  z-index: 1050;
+  max-width: min(600px, calc(100vw - 40px));
+  width: 100%;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.bar:focus-within {
+  border-color: rgba(74, 122, 37, 0.4);
+  box-shadow:
+    0 4px 24px rgba(30, 77, 140, 0.18),
+    0 1px 4px rgba(0, 0, 0, 0.08),
+    0 0 0 2px rgba(74, 122, 37, 0.15);
+}
+
+/* Form + input */
+.form {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  font-size: 15px;
+  color: var(--color-text);
+  padding: 8px 4px;
+  outline: none;
+  min-height: 44px;
+}
+
+.input::placeholder {
+  color: #9CA3AF; /* palette */
+}
+
+/* Icon buttons — 44px (padded to 48px touch target via padding) */
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: none;
+  background: transparent;
+  color: #595959; /* palette */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.iconBtn:hover {
+  background: rgba(30, 77, 140, 0.08);
+  color: var(--color-primary);
+}
+
+.sendBtn {
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: 10px;
+}
+
+.sendBtn:hover {
+  background: #3d6620; /* palette */
+}
+
+.sendBtn:disabled {
+  background: #E2E8F0; /* palette */
+  color: #9CA3AF; /* palette */
+  cursor: default;
+}
+
+/* LIM optimization */
+@media (max-width: 1024px) {
+  .bar {
+    bottom: 8px;
+    max-width: calc(100vw - 16px);
+    padding: 4px 6px 4px 4px;
+  }
+  .input {
+    font-size: 14px;
+  }
+}
+
+/* Mobile: full width */
+@media (max-width: 600px) {
+  .bar {
+    bottom: 4px;
+    border-radius: 12px;
+  }
+}

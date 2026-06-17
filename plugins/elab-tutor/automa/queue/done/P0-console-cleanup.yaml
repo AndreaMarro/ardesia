@@ -1,0 +1,20 @@
+id: console-cleanup-production
+priority: P0
+title: Rimuovere 46 console.log/warn/error dal codice produzione
+description: |
+REGOLA: Se il log serve per debugging, rimuovilo.
+NON toccare: console.error in catch blocks critici (auth, API fallback).
+RIMUOVI: console.log di debug, console.warn non necessari.
+success_criteria: |
+Target: meno di 5 occorrenze
+plan: 
+- "Step 1: grep -rn console.log src/ — lista completa
+- "Step 2: "Classificare: debug (RIMUOVI) vs error handling (TIENI)"
+- "Step 3: Rimuovere tutti i console.log di debug
+- "Step 4: npm run build
+- "Step 5: Conteggio finale
+tags: code-quality,cleanup,produzione
+claimed_at: "2026-03-28T20:42:26.327369"
+claimed_by: orchestrator
+completed_at: "2026-03-28T20:49:06.790747"
+result: ok

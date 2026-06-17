@@ -1,0 +1,302 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap9-esp1",
+  "volume": 2,
+  "chapter": 9,
+  "title": "Fototransistor come sensore",
+  "chapter_title": "Capitolo 9 - Cosa sono i fototransistor?",
+  "difficulty": 2,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Scoprire il fototransistor: un componente che lascia passare più o meno corrente in base alla luce che riceve. Con il multimetro misuriamo la tensione che cambia tra luce intensa e buio. Fototransistor e resistore formano un partitore di tensione controllato dalla luce!",
+  "components_needed": [
+    {
+      "name": "Breadboard mezza (half-size)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Fototransistor",
+      "quantity": 1,
+      "icon": "👁️"
+    },
+    {
+      "name": "Resistore 10kΩ",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 7,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "fototransistor",
+      "luce",
+      "buio",
+      "sensore",
+      "collettore",
+      "emettitore",
+      "corrente",
+      "MOSFET",
+      "Gate",
+      "LED",
+      "resistore",
+      "batteria",
+      "partitore di tensione",
+      "pull-down",
+      "automatico",
+      "notte"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "motore",
+      "diodo"
+    ],
+    "note": "Cap 9 Vol 2 — fototransistor NPN, luce regola corrente collector-emitter, partitore di tensione."
+  },
+  "prerequisites": [
+    "v2-cap8-esp3"
+  ],
+  "next_experiment": {
+    "id": "v2-cap9-esp2",
+    "title": "Luce Notturna Automatica",
+    "preview": "Prossimo passo: Luce Notturna Automatica. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, benvenuti al Capitolo 9! Oggi incontriamo il fototransistor: un sensore che reagisce alla luce. Più luce riceve, più corrente lascia passare. È come un MOSFET, ma invece del Gate ha un 'occhio' sensibile alla luce!",
+      "teacher_tip": "Mostrate fisicamente un fototransistor (se disponibile): 'Ha solo 2 gambe invece di 3: collettore ed emettitore. Non ha il Gate perché la luce fa il lavoro del Gate!' Confrontalo visivamente con il MOSFET visto prima.",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 fototransistor (2 gambe), 1 resistore 10kΩ, 1 multimetro, fili.",
+      "class_hook": "Avete mai visto le luci del cortile che si accendono da sole di notte? C'è un sensore di luce dentro! Il fototransistor è il cuore di quel sensore. Oggi scopriamo come funziona.",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Montiamo il circuito: il fototransistor in serie con il resistore da 10kΩ. Il multimetro misura la tensione tra emettitore e massa: alta con la luce, bassa al buio.",
+      "teacher_tip": "Spiegate i 2 pin: 'Il collettore (gamba lunga o segnata) va verso l'alimentazione. L'emettitore (gamba corta) va verso il resistore. La luce entra nella capsula trasparente e regola il flusso di corrente!' Il resistore da 10kΩ funziona come pull-down.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap9-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate il circuito fototransistor con resistore pull-down e multimetro",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "phototransistor",
+              "id": "pt1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 10000
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-8",
+              "to": "bb1:a8",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a14",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a21",
+              "to": "bb1:bus-top-minus-21",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "mm1:probe-positive",
+              "to": "bb1:b9",
+              "color": "red"
+            },
+            {
+              "from": "mm1:probe-negative",
+              "to": "bb1:bus-top-minus-25",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Prima di Play, prevedete: con la luce della finestra il multimetro leggerà un numero alto o basso? E coprendo il fototransistor con la mano (buio totale) cosa succederà?",
+      "teacher_tip": "Fate la scommessa sulla classe: 'Più luce = più corrente = più tensione sull'emettitore. Al buio, quasi nessuna corrente = tensione vicino a 0V.' Il partitore di tensione è il concetto chiave: il resistore da 10kΩ portate la tensione a zero quando non c'è corrente.",
+      "provocative_question": "Il fototransistor e il resistore formano un partitore di tensione. Se il fototransistor lascia passare molta corrente (tanta luce), il multimetro legge un valore alto o basso? E al buio completo?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Invertire collettore ed emettitore del fototransistor",
+          "teacher_response": "Il fototransistor ha polarità! Il collettore (gamba più lunga o con il segno nel datasheet) va verso la tensione alta. L'emettitore va verso il resistore e poi a massa. Se invertiti, il circuito non risponde alla luce!",
+          "analogy": "Come una valvola: ha un senso di flusso preciso, invertita non funziona"
+        },
+        {
+          "mistake": "Aspettarsi che il multimetro mostri un valore fisso",
+          "teacher_response": "Il valore sul multimetro CAMBIA continuamente con la luce! È un sensore che varia in modo continuo: tra quasi 0V (buio) e quasi 9V (luce intensa). Muovete una torcia o coprite con la mano e guardate il numero cambiare in diretta!",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play. Il simulatore mostra la risposta alla luce. Fate variare la luce nel simulatore: il multimetro cambia! Con luce intensa, tensione alta. Al buio, tensione vicina a zero.",
+      "teacher_tip": "Evidenziate il fototransistor e il multimetro. Fate variare la luce nel simulatore e osservate il multimetro in tempo reale. 'Questo è un sensore continuo: non è ON/OFF come un interruttore, ma varia gradualmente con la luce!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pt1]",
+        "[AZIONE:highlight:r1]",
+        "[AZIONE:highlight:mm1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Luce intensa → fototransistor conduce molto → tensione all'emettitore alta (multimetro mostra valore alto). Buio → fototransistor non conduce → tensione vicino a 0V. Il resistore da 10kΩ porta il segnale a zero quando non c'è luce.",
+      "analogies": [
+        {
+          "concept": "porta_solare",
+          "text": "Il fototransistor è come una porta controllata dal sole: più luce arriva, più la porta si apre e più corrente passa. Al tramonto la porta si chiude e la corrente smette di scorrere. La tensione che misuriamo è quanto 'aperta' è questa porta!",
+          "evidence": "experiments-vol2.js unlimPrompt v2-cap9-esp1"
+        },
+        {
+          "concept": "partitore_luce",
+          "text": "Il fototransistor e il resistore formano un partitore di tensione controllato dalla luce: quando il fototransistor conduce molto (luce), abbassa la sua resistenza e la tensione sale sull'emettitore. Il resistore da 10kΩ tiene il segnale a zero quando non c'è luce.",
+          "evidence": "experiments-vol2.js concept v2-cap9-esp1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Il fototransistor è un sensore di luce continuo: la tensione all'emettitore varia gradualmente con la luce. Combinato con un resistore forma un partitore di tensione controllato dalla luce!",
+      "teacher_tip": "Collegate al prossimo esperimento: 'Avete un sensore di luce che dà una tensione variabile. Nel prossimo esperimento userete questa tensione per controllare un MOSFET + LED: luce notturna automatica!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il fototransistor ha 2 pin: collettore ed emettitore. Più luce riceve, più corrente lascia passare. Con un resistore da 10kΩ forma un partitore di tensione: il multimetro mostra una tensione variabile tra 0V (buio) e quasi 9V (luce intensa)!",
+      "concepts_learned": [
+        "fototransistor come sensore di luce",
+        "collettore ed emettitore",
+        "partitore di tensione controllato dalla luce",
+        "segnale continuo variabile"
+      ],
+      "next_preview": "Prossimo esperimento: collegherete il fototransistor a un MOSFET per costruire una luce notturna automatica. Al buio il LED si accende da solo!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se spiega che più luce = più corrente = tensione più alta → comprensione del principio",
+    "Se identifica il partitore di tensione luce-resistore → comprensione circuitale",
+    "Se distingue sensore continuo da interruttore ON/OFF → comprensione avanzata"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "fototransistor_sensore",
+      "partitore_tensione_luce",
+      "segnale_continuo",
+      "collettore_emettitore"
+    ],
+    "next_suggested": "v2-cap9-esp2",
+    "resume_message": "Avete scoperto il fototransistor! Tensione variabile con la luce. Prossimo: luce notturna automatica con MOSFET!"
+  },
+  "analogies": [
+    {
+      "concept": "porta_solare",
+      "text": "Il fototransistor è come una porta controllata dal sole: più luce arriva, più la porta si apre e più corrente passa. Al tramonto la porta si chiude e la corrente smette di scorrere. La tensione che misuriamo è quanto 'aperta' è questa porta!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap9-esp1"
+    },
+    {
+      "concept": "partitore_luce",
+      "text": "Il fototransistor e il resistore formano un partitore di tensione controllato dalla luce: quando il fototransistor conduce molto (luce), abbassa la sua resistenza e la tensione sale sull'emettitore. Il resistore da 10kΩ tiene il segnale a zero quando non c'è luce.",
+      "evidence": "experiments-vol2.js concept v2-cap9-esp1"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Invertire collettore ed emettitore del fototransistor",
+      "teacher_response": "Il fototransistor ha polarità! Il collettore (gamba più lunga o con il segno nel datasheet) va verso la tensione alta. L'emettitore va verso il resistore e poi a massa. Se invertiti, il circuito non risponde alla luce!",
+      "analogy": "Come una valvola: ha un senso di flusso preciso, invertita non funziona"
+    },
+    {
+      "mistake": "Aspettarsi che il multimetro mostri un valore fisso",
+      "teacher_response": "Il valore sul multimetro CAMBIA continuamente con la luce! È un sensore che varia in modo continuo: tra quasi 0V (buio) e quasi 9V (luce intensa). Muovete una torcia o coprite con la mano e guardate il numero cambiare in diretta!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

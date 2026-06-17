@@ -1,0 +1,70 @@
+{
+  "cycle": 37,
+  "timestamp": "2026-03-26T13:36:38.739400",
+  "date": "2026-03-26",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 409
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.05s",
+      "time_ms": 22158
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 153065
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 8
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=80 min=74 (target \u226560) [3 samples]",
+      "time_ms": 61952
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4159
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2053
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Lighthouse LCP \u2014 React.lazy() sui 3 componenti pi\u00f9 pesanti del router",
+    "status": "done",
+    "files_changed": [
+      "src/App.jsx",
+      "src/main.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified",
+    "lesson": "Polyfills importati staticamente per moduli lazy-loaded (Buffer per react-pdf, mobile-drag-drop per simulator) sprecano critical path. requestIdleCallback con fallback setTimeout \u00e8 il pattern sicuro per deferire. PrivacyPolicy (1339 LOC) era staticamente importata ma usata solo su /privacy.",
+    "next_action": "Lighthouse audit per verificare LCP improvement reale"
+  },
+  "research": "DeepSeek: **Problema 1: Sovraccarico cognitivo.** L'interfaccia multi-touch permette un accesso immediato ad app, browser e notifiche, portando a frequenti distrazioni e a una frammentazione dell'attenzione durante le attivit\u00e0 didattiche strutturate.\n\n**Problema 2: Feedback tattile assente.** A differenza della scrittura su carta, lo schermo non fornisce resistenza fisica, il che pu\u00f2 ostacolare lo sviluppo ",
+  "ai_scoring": null,
+  "composite_score": 0.973,
+  "self_exam": null
+}

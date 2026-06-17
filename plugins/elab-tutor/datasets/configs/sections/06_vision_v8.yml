@@ -1,0 +1,188 @@
+id: vision
+name: Analisi Visiva v8
+intent: vision
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - guarda il mio circuito
+    - cosa vedi?
+    - analizza il circuito
+    - e' giusto il collegamento?
+    - controlla se ho fatto bene
+    - guarda cosa ho fatto
+    - il circuito e' corretto?
+    - dimmi se c'e' qualcosa di sbagliato
+    - guarda lo screenshot
+    - analizza la mia breadboard
+    - vedi errori?
+    - controlla il mio lavoro
+    - guarda un attimo
+    - fammi un check visivo
+    - e' fatto bene?
+    - ho montato tutto giusto?
+    - guarda e dimmi cosa c'e' che non va
+    - dai un occhio al circuito
+    - controlla sta roba
+    - dimmi se manca qualcosa
+    - ci sono errori visibili?
+    - la breadboard e' collegata bene?
+    - i fili sono nel posto giusto?
+    - tutto ok con i componenti?
+    - verifica il montaggio
+    - i collegamenti sono corretti?
+    - sembra giusto?
+    - vedi qualcosa di strano?
+    - noti errori?
+    - ho sbagliato qualcosa?
+    - controlla i pin
+    - dammi un feedback visivo
+    - cosa dici, va bene?
+    - e' apposto il circuito?
+    - ok guarda se va bene
+    - riesci a vedere se funziona?
+    hint:
+    - Analisi visiva circuito. Cattura screenshot, identifica componenti e collegamenti.
+    - Check visivo. Analizza posizionamento componenti, polarita' LED/diodi, collegamenti.
+    - Verifica visiva. Fili nella riga giusta? Componenti orientati? Manca qualcosa?
+    - Screenshot per diagnosi. Cerca cortocircuiti, componenti invertiti, fili scollegati.
+    - 'Analisi visiva. Errori comuni: LED al contrario, resistenza mancante, fili nella stessa riga.'
+    - Check circuito. Confronta con esperimento corrente, identifica componenti mancanti.
+    - Verifica montaggio. Controlla schema vs montaggio reale, segnala discrepanze.
+- input: '{frase}'
+  llm_hint: Confronto visivo tra circuito studente e schema esperimento. Identifica differenze.
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - il mio circuito e' uguale a quello dell'esperimento?
+    - confronta con lo schema
+    - assomiglia a quello che dovrei fare?
+    - ho seguito bene le istruzioni?
+    - e' come quello del manuale?
+    - corrisponde all'esperimento?
+    - ho fatto come dice il passo-passo?
+    - manca qualcosa rispetto allo schema?
+    - differenze tra il mio e quello giusto?
+- input: '{frase}'
+  llm_hint: Chain vision->fix. Analizza visivamente, poi suggerisci correzioni step by step.
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - guarda il circuito e correggilo
+    - controlla e sistema
+    - vedi cosa c'e' di sbagliato e aggiusta
+    - guarda e dimmi come fixare
+    - analizza e ripara
+    - check e fix
+    - trova l'errore e risolvilo
+    - se c'e' un errore correggilo
+    - vedi il problema? aggiustalo
+    - diagnostica visivamente e ripara
+- input: '{frase}'
+  llm_hint: Analisi disegno/schema sulla lavagna canvas. Interpreta e dai feedback.
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - cosa vedi nel mio disegno?
+    - guarda cosa ho disegnato
+    - analizza il mio schema
+    - riesci a leggere quello che ho scritto?
+    - descrivi cosa c'e' sulla lavagna
+    - ho disegnato un circuito, com'e'?
+    - il mio disegno ha senso?
+    - guarda la lavagna
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions:
+  - '[AZIONE:screenshot]'
+  entities:
+  - '{comp}'
+  vars:
+    frase:
+    - il {comp_nome} e' messo bene?
+    - '{comp_nome} e'' nel posto giusto?'
+    - guarda se {comp_nome} e' collegato
+    - '{comp_nome} va bene cosi?'
+    - e' corretto come ho messo {comp_nome}?
+    - controlla {comp_nome}
+    - vedi se {comp_nome} funziona
+    - '{comp_nome} e'' orientato giusto?'
+    comp_nome:
+    - LED
+    - la resistenza
+    - il condensatore
+    - il pulsante
+    - il buzzer
+    - il potenziometro
+    - il fotoresistore
+    - il diodo
+    - il mosfet
+    - il LED RGB
+    - il motore
+    - il servo
+    - il display LCD
+    comp:
+    - led
+    - resistor
+    - capacitor
+    - push-button
+    - buzzer-piezo
+    - potentiometer
+    - photo-resistor
+    - diode
+    - mosfet-n
+    - rgb-led
+    - motor-dc
+    - servo
+    - lcd16x2
+    hint:
+    - Verifica visiva componente specifico. Controlla orientamento, pin, connessioni.
+    - Check componente. Verifica polarita' e collegamenti.
+    - Check visivo singolo componente. Verso giusto, pin corretti, riga breadboard.
+- input: '{frase}'
+  llm_hint: Foto circuito fisico reale. Analizza immagine e confronta con schema esperimento.
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - guarda la foto del mio circuito vero
+    - ho fatto una foto, controlla
+    - ecco il circuito che ho montato dal vero
+    - questo e' il mio Arduino vero, com'e'?
+    - ho costruito il circuito con il kit, e' giusto?
+    - foto del mio progetto
+    - guarda il mio lavoro fisico
+- input: '{frase}'
+  llm_hint: Studente frustrato chiede aiuto visivo. Calma, analizza, suggerisci in modo incoraggiante.
+  actions:
+  - '[AZIONE:screenshot]'
+  entities: []
+  vars:
+    frase:
+    - non funziona niente guarda!
+    - aiuto il circuito non va, controlla!
+    - basta non capisco cosa ho sbagliato, guarda
+    - e' tutto sbagliato? dimmi cosa non va
+    - sto impazzendo, controlla il circuito
+    - non so piu' cosa fare, guarda tu
+    - AIUTOOOO guarda il circuito
+    - ma perche non funziona?! guarda!
+    - ho provato tutto, controlla tu
+corruptions:
+  typo_swap: 0.25
+  filler: 0.15
+  emoji: 0.1
+  voice: 0.1
+  sms: 0.1

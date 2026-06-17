@@ -1,0 +1,74 @@
+# Curriculum YAML — v1-cap9-esp7
+# "Sfida: aggiungi pulsanti alla lampada"
+
+experiment_id: v1-cap9-esp7
+volume: 1
+chapter: 9
+title: "Sfida: aggiungi pulsanti alla lampada"
+
+prerequisites:
+  - v1-cap9-esp6  # Sa usare la lampada RGB con 3 pot
+  - v1-cap8-esp4  # Sa usare i pulsanti con RGB
+
+concepts_introduced:
+  - combinazione_pulsante_potenziometro
+  - on_off_per_canale
+  - sfida_aperta
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - pulsante
+  - manopola
+  - rosso
+  - verde
+  - blu
+  - colore
+  - accendere
+  - spegnere
+  - regolare
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Sfida aperta! Materiale: tutto quello dei cap 8+9. Obiettivo: combinare pulsanti
+    e potenziometri per creare una lampada RGB con ON/OFF per canale.
+  during_class: >
+    "Avete la lampada con 3 manopole. Ma come fate a spegnere solo il rosso senza
+    cambiare la manopola? Aggiungete dei pulsanti!" Non dare la soluzione — lascia
+    che progettino da soli. Se bloccati: "Dove mettereste il pulsante? Prima o dopo
+    il potenziometro?"
+  common_question: >
+    "Il pulsante va prima o dopo il pot?" -> Provate entrambi! Funzionano uguale?
+    (Spoiler: si, entrambe le posizioni funzionano per un interruttore in serie.)
+
+common_mistakes:
+  - mistake: "Circuito troppo complesso, si perdono nei fili"
+    what_to_do: "Suggerisci di iniziare con UN solo canale + pulsante, poi replicare"
+    analogy: null
+
+analogies:
+  combinazione_pulsante_potenziometro:
+    analogy: "E come una lampada da tavolo vera: ha la manopola per la luminosita E l'interruttore per accendere/spegnere. Due controlli diversi per la stessa luce!"
+    evidence: "Analogia mondo reale per composizione di controlli (Papert 1980)"
+
+assessment_invisible:
+  - "Se progetta prima su carta -> pensiero ingegneristico"
+  - "Se testa canale per canale -> metodo sistematico"
+  - "Se aiuta i compagni -> leadership naturale"

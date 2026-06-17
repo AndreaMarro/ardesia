@@ -1,0 +1,74 @@
+/* ELAB Tutor — © Andrea Marro — 2026-05-28 */
+/* LanguageSwitcher: compact button, fits header chrome IT/EN toggle. */
+
+.switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  min-height: 44px;
+  min-width: 44px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(30, 77, 140, 0.2);
+  border-radius: 999px;
+  color: #1E4D8C;
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.switcher:hover {
+  background: rgba(74, 122, 37, 0.08);
+  border-color: rgba(74, 122, 37, 0.4);
+}
+
+.switcher:active {
+  transform: scale(0.98);
+}
+
+.switcher:focus-visible {
+  outline: 2px solid #4A7A25;
+  outline-offset: 2px;
+}
+
+.flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.code {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.divider {
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.nextCode {
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.compact {
+  padding: 6px 8px;
+  gap: 4px;
+}
+
+.compact .code {
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .switcher {
+    padding: 6px 8px;
+  }
+  .divider, .nextCode {
+    display: none;
+  }
+}

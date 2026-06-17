@@ -1,0 +1,13 @@
+id: G26-unlim-word-count-truncation
+priority: P0
+title: "G26: Client-side UNLIM word count truncation at 80 words"
+description: |
+  UNLIM responses must be MAX 60 words (3 sentences + 1 analogy).
+  The AI prompt says 60 words but there is NO client-side enforcement.
+  Add: count words in AI response, if >80 truncate at last sentence boundary.
+  Show truncated indicator "..." with expand button.
+  File: src/components/tutor/ElabTutorV4.jsx (processAiResponse or message display)
+  Verify: send "cos'è un LED?" and check response is under 80 words.
+tags: G26,unlim,ux,critical
+mode: IMPROVE
+verify: "npm run build"

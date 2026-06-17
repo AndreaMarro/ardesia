@@ -1,0 +1,80 @@
+{
+  "cycle": 63,
+  "timestamp": "2026-03-24T22:32:49.821968",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 313
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 23.58s",
+      "time_ms": 27125
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass [cached]",
+      "time_ms": 12059
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=69 min=62 (target \u226560) [2 samples]",
+      "time_ms": 4110511
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 7332
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3543
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Lighthouse LCP \u2014 loading='lazy' su tutti i tag <img> in src/components/",
+    "status": "done",
+    "files_changed": [
+      "src/components/VetrinaSimulatore.jsx",
+      "src/components/teacher/TeacherDashboard.jsx",
+      "src/components/social/Navbar.jsx",
+      "src/components/tutor/PresentationModal.jsx",
+      "src/components/tutor/ChatOverlay.jsx",
+      "src/components/tutor/NotebooksTab.jsx",
+      "src/components/tutor/TutorTopBar.jsx",
+      "src/components/student/StudentDashboard.jsx"
+    ],
+    "build_pass": true,
+    "score_before": 0.9156,
+    "img_tags_updated": 11,
+    "cov_verified": true,
+    "severity": "low",
+    "evidence": "verified",
+    "deploy": {
+      "status": "skipped",
+      "reason": "NETLIFY_AUTH_TOKEN non impostato \u2014 aggiungi in automa/.env"
+    }
+  },
+  "research": "Research: 'educational electronics simulation children interactive lear' | 0 papers | worst=ipad_compliance=0.680",
+  "ai_scoring": "DeepSeek root-cause [ipad_compliance=0.680]: **1. Root cause:** Componenti UI con dimensioni fisse (px) e layout non responsivo violano linee guida iPad per touch (min tap target 44pt) e adattamento schermo.\n\n**2. File da modificare:** `src/components/CircuitSimulator.js`\n\n**3. Cosa cambiare:** Sostituire dimensioni fisse nel container principale con unit\u00e0 relative e `min-width/min-height`:\n```jsx\n<div className=\"simulator-container\" style={{ \n  width: '100%', \n  height: '100vh',\n  minWidth: '768px', \n  minHeight: '1024px' \n}}>\n```\n\n**4. S",
+  "composite_score": 0.9196,
+  "self_exam": null
+}

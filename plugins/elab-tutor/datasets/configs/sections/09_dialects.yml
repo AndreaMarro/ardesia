@@ -1,0 +1,207 @@
+id: dialects
+name: "Dialetti Italiani"
+
+templates:
+  # ── NAPOLETANO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["fa' partì 'o circuito", "fallo ji", "daje fa partì", "avvia 'o circuito"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: ["miett nu LED ncopp 'a breadboard", "metteme na lucetta", "daje miett o LED"]
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase: ["levame tutt cosa 'a miezz", "pulisci tutt", "leva tutt"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in dialetto napoletano, non capisce. Spiegare con pazienza."
+    actions: []
+    entities: []
+    vars:
+      frase: ["che cazz e' na resistenza?", "spiegame sta cosa", "nun capisco nient"]
+
+  # ── ROMANO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["daje fallo parti'", "fallo anna'", "avvialo daje"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: ["mettece un LED", "piazza na lucina", "daje metti er LED"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in dialetto romano. Spiegare con semplicita'."
+    actions: []
+    entities: []
+    vars:
+      frase: ["che cazzo e' sto coso?", "spiegame un po'", "nun capisco niente daje"]
+
+  # ── MILANESE ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["fal parti' el circuit", "fal anda'", "mettilo in moto"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"buzzer-piezo\"}],\"wires\":\"auto\"}]"]
+    entities: [buzzer-piezo]
+    vars:
+      frase: ["mett el buzzer", "piazza el cicalino", "el buzzer daj"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in dialetto milanese."
+    actions: []
+    entities: []
+    vars:
+      frase: ["cus'e' una resistenza?", "spiegamm un poo", "capisi minga"]
+
+  # ── SICILIANO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["fallo partiri u circuitu", "fallo jiri", "avvialu"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: ["metti nu LED supra a breadboard", "piazza na lucetta", "metti u LED"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in dialetto siciliano."
+    actions: []
+    entities: []
+    vars:
+      frase: ["chi minchia e' na resistenza?", "spiegami sta cosa", "un capisciu nenti"]
+
+  # ── TOSCANO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["fallo anda' 'l circuito", "avvialo icche'", "mandalo via"]
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase: ["leva tutto 'odio", "sgombra via", "pulisci tutto icche'"]
+
+  # ── VENETO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["falo partir el circuito", "dale falo andar", "avvialo dai"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in dialetto veneto."
+    actions: []
+    entities: []
+    vars:
+      frase: ["cossa xe na resistensa?", "spiegame par piaser", "no go capio"]
+
+  # ── PIEMONTESE ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["falo parte' el circuit", "daje falo anda'", "avvialo neh"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"resistor\"}],\"wires\":\"auto\"}]"]
+    entities: [resistor]
+    vars:
+      frase: ["buteme na resistensa", "metti na resistensa", "piassa la resistensa"]
+
+  # ── SARDO ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["faghe partire su circuitu", "avvia totu", "faghe andare"]
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Studente parla in sardo."
+    actions: []
+    entities: []
+    vars:
+      frase: ["itte est una resistenzia?", "ispiegami", "no apo cumpresu"]
+
+  # ── PUGLIESE ──────────────
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["falle parté u circuìte", "avvie tutte", "falle ji"]
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: ["mette nu LED", "piazze na lucette", "ci mette u LED"]
+
+corruptions: {}

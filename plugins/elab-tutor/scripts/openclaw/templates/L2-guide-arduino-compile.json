@@ -1,0 +1,140 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-guide-arduino-compile",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "guideArduinoCompile",
+  "description": "Morphic template: guida primo compile Arduino via n8n endpoint. Highlight bottone compile, ask UNLIM verify codice prima invio, controllo errori output HEX, retry on failure, voice TTS Isabella spiega processo classe (Vol.1 pag.58).",
+  "category": "guide-action",
+  "owner_agent": "toolspec-expand-opus",
+  "iter_introduced": 14,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.58",
+    "analogia": "compilare = tradurre dall'italiano alla lingua del Nano"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "sketchCode": {
+      "type": "string",
+      "required": true
+    },
+    "compileEndpoint": {
+      "type": "string",
+      "required": false,
+      "default": "https://n8n.srv1022317.hstgr.cloud/compile"
+    },
+    "retryOnFailure": {
+      "type": "boolean",
+      "required": false,
+      "default": true
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-compile-button",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "compile-btn"
+        ],
+        "color": "navy",
+        "duration_ms": 3000,
+        "pulse": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-verify-code",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "verifica sintassi codice Arduino prima compile setup loop semicolon graffe",
+        "context": "pre-compile-check",
+        "code": "${inputs.sketchCode}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-compile-process",
+      "tool": "showNudge",
+      "args": {
+        "text": "Ora compilo: il codice diventa HEX (lingua del Nano). Se errore, leggiamo riga insieme e riprovo.",
+        "type": "info",
+        "duration_ms": 6000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-compile-result",
+      "tool": "captureScreenshot",
+      "args": {
+        "target": "compile-output",
+        "annotate": true,
+        "waitForResult": true,
+        "timeout_ms": 8000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-guide-compile",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.58: compilare significa tradurre dall'italiano alla lingua del Nano. Premete compile: se vedete OK il codice è pronto, se errore leggiamo la riga insieme.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.93
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "retry-then-halt",
+  "expected_outcome": "Classe vede compile button evidenziato, attende risultato, comprende processo HEX, gestisce errore con docente",
+  "expected_total_latency_ms": 9000,
+  "telemetry": {
+    "category": "guide-action",
+    "expected_latency_ms": 9000
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[3].args.waitForResult === true",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.\\d/)",
+    "principio_zero.max_parole <= 120",
+    "principio_zero.analogia.includes('tradurre')"
+  ]
+}

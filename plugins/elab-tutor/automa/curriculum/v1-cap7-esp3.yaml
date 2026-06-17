@@ -1,0 +1,77 @@
+# Curriculum YAML — v1-cap7-esp3
+# "Accendi il blu del RGB"
+
+experiment_id: v1-cap7-esp3
+volume: 1
+chapter: 7
+title: "Accendi il blu del RGB"
+
+prerequisites:
+  - v1-cap7-esp2  # Sa accendere il verde del RGB
+
+concepts_introduced:
+  - canale_blu_RGB
+  - tutti_e_tre_i_canali_scoperti
+  - soglia_diversa_colore_blu
+
+vocabulary_level: v1-cap7
+allowed_terms:
+  - LED
+  - LED RGB
+  - rosso
+  - verde
+  - blu
+  - resistenza
+  - ohm
+  - corrente
+  - catodo
+  - anodo
+  - breadboard
+  - piedino
+  - circuito
+  - batteria
+  - filo
+  - pin
+  - colore
+forbidden_terms:
+  - PWM
+  - analogWrite
+  - digitale
+  - Arduino
+  - codice
+  - programma
+  - frequenza
+  - condensatore
+  - potenziometro
+  - transistor
+  - MOSFET
+  - parallelo
+  - serie
+
+teacher_briefing:
+  before_class: >
+    Stesso materiale. Obiettivo: completare la scoperta dei 3 canali.
+    Il blu potrebbe apparire piu debole — e normale (Vf piu alta).
+  during_class: >
+    "Ultimo colore! Trovate il piedino del blu." Dopo: "Avete scoperto tutti
+    e 3 i colori. Cosa notate? Il blu e uguale al rosso in luminosita?"
+    Spesso il blu appare piu debole — ottima osservazione da discutere.
+  common_question: >
+    "Perche il blu e piu debole?" -> Il blu ha bisogno di piu energia per
+    accendersi. Con la stessa resistenza, il rosso brilla di piu. E come
+    salire scale di altezze diverse — il blu deve salire piu in alto.
+
+common_mistakes:
+  - mistake: "Il blu non si accende"
+    what_to_do: "Prova con una resistenza piu piccola (220 ohm). Il blu ha bisogno di piu corrente"
+    analogy: null
+
+analogies:
+  soglia_diversa_colore_blu:
+    analogy: "Ogni colore del LED e come un atleta diverso: il rosso e un velocista che parte subito, il verde e un corridore medio, il blu e un maratoneta che ha bisogno di piu energia per partire ma poi brilla intensamente."
+    evidence: "Analogia energetica per Vf diversa, scaffolding intuitivo (Driver et al. 1994)"
+
+assessment_invisible:
+  - "Se nota la differenza di luminosita blu vs rosso -> osservazione scientifica spontanea"
+  - "Se chiede 'perche?' -> momento perfetto per discutere senza dare formule"
+  - "Se vuole accendere tutti e 3 -> pronto per esp 4-5"

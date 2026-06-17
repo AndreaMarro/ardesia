@@ -1,0 +1,62 @@
+# Curriculum YAML — v3-cap6-semaforo
+# "Semaforo 3 LED"
+
+experiment_id: v3-cap6-semaforo
+volume: 3
+chapter: 6
+title: "Semaforo 3 LED"
+
+prerequisites:
+  - v1-cap6-esp1
+
+concepts_introduced:
+  - digitalWrite
+  - delay
+  - sequenza
+  - programma
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 3 LED (rosso, giallo, verde),
+    3 resistori da 330 ohm, fili. Obiettivo: far scrivere il primo programma che controlla
+    una sequenza — il semaforo. Non serve sapere programmare, UNLIM guida passo passo.
+    Proietta il simulatore sulla LIM e fai vedere il risultato atteso prima di iniziare.
+  during_class: >
+    Fai costruire il circuito fisico (3 LED su pin diversi). Poi apri il simulatore e
+    fai scrivere il codice insieme: digitalWrite(pin, HIGH) accende, LOW spegne, delay(ms)
+    aspetta. Chiedi: "Quanto dura il rosso al semaforo vero?" Falli sperimentare con i
+    tempi. Sfida finale: chi fa il semaforo piu' realistico?
+  common_question: >
+    "Perche' il LED non si accende?" -> Controlla: pin giusto nel codice? LED girato bene?
+    Resistore collegato? Fai usare la checklist: circuito -> codice -> pin -> upload.
+
+common_mistakes:
+  - mistake: "Pin nel codice diverso da pin fisico sulla breadboard"
+    what_to_do: "Fai contare i pin sulla scheda e confrontare col numero nel codice. Scrivi i numeri su un foglietto."
+    analogy: "E' come mandare una lettera all'indirizzo sbagliato — il postino non trova la casa"
+  - mistake: "Dimenticano di mettere LOW prima del prossimo HIGH (LED restano tutti accesi)"
+    what_to_do: "Chiedi: al semaforo vero, sono mai accesi tutti e tre insieme? No! Quindi bisogna spegnere prima di accendere."
+    analogy: null
+  - mistake: "delay(1) invece di delay(1000) — il semaforo cambia troppo veloce"
+    what_to_do: "Spiega che delay conta in millisecondi: 1000 = 1 secondo. Falli provare delay(100) vs delay(3000)."
+    analogy: "I millisecondi sono come i centesimi di euro — ne servono 1000 per fare 1 secondo"
+
+analogies:
+  digitalWrite:
+    analogy: "digitalWrite e' come un interruttore della luce: HIGH = accendi, LOW = spegni. Tu dici al computer quale interruttore toccare e cosa fare."
+    evidence: "Metafora interruttore validata in contesti educativi Arduino per principianti (Barker & Ansorge 2007)"
+  delay:
+    analogy: "delay e' come dire 'aspetta qui e conta fino a...' prima di fare la prossima cosa. Il numero che scrivi sono i millisecondi da aspettare."
+    evidence: "Concetto di attesa sequenziale accessibile dai 9 anni (Scratch Foundation research 2015)"
+  sequenza:
+    analogy: "Un programma e' come una ricetta di cucina: fai una cosa alla volta, nell'ordine scritto. Se salti un passaggio o li mischi, il risultato cambia."
+    evidence: "Analogia ricetta-algoritmo supportata da Brennan & Resnick (2012) su pensiero computazionale"
+
+assessment_invisible:
+  - "Se lo studente modifica i tempi del delay autonomamente -> ha capito il collegamento tempo-codice"
+  - "Se corregge da solo il pin sbagliato -> ha capito la mappatura pin fisico-codice"
+  - "Se aggiunge una fase (es. giallo lampeggiante) senza che glielo si chieda -> pensiero computazionale attivo"

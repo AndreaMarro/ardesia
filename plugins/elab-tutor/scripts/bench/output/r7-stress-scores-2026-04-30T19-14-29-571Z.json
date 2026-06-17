@@ -1,0 +1,111 @@
+{
+  "bench": "R7-stress",
+  "timestamp": "2026-04-30T19-14-29-571Z",
+  "fixture": "scripts/bench/r7-fixture.jsonl",
+  "fixture_count": 200,
+  "endpoint": "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat",
+  "success_count": 200,
+  "failure_count": 0,
+  "canonical_intent_count": 0,
+  "legacy_azione_count": 84,
+  "no_intent_count": 116,
+  "canonical_rate": 0,
+  "combined_rate": 0.42,
+  "pass_threshold": 0.8,
+  "verdict": "FAIL",
+  "intent_aggregate": {
+    "total_intents": 0,
+    "shape_valid_count": 0,
+    "whitelist_match_count": 0,
+    "params_valid_count": 0,
+    "shape_valid_pct": 0,
+    "whitelist_match_pct": 0,
+    "params_valid_pct": 0
+  },
+  "latency_avg_ms": 2749,
+  "latency_p50_ms": 2240,
+  "latency_p95_ms": 7984,
+  "latency_p99_ms": 11718,
+  "by_category": {
+    "plurale_ragazzi": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 14,
+      "none": 6,
+      "canonicalRate": 0,
+      "combinedRate": 0.7
+    },
+    "citation_vol_pag": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 20,
+      "none": 0,
+      "canonicalRate": 0,
+      "combinedRate": 1
+    },
+    "sintesi_60w": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 3,
+      "none": 17,
+      "canonicalRate": 0,
+      "combinedRate": 0.15
+    },
+    "safety_minor": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 3,
+      "none": 17,
+      "canonicalRate": 0,
+      "combinedRate": 0.15
+    },
+    "off_topic_redirect": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 0,
+      "none": 20,
+      "canonicalRate": 0,
+      "combinedRate": 0
+    },
+    "deep_concept": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 9,
+      "none": 11,
+      "canonicalRate": 0,
+      "combinedRate": 0.45
+    },
+    "experiment_mount": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 7,
+      "none": 13,
+      "canonicalRate": 0,
+      "combinedRate": 0.35
+    },
+    "error_diagnosis": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 4,
+      "none": 16,
+      "canonicalRate": 0,
+      "combinedRate": 0.2
+    },
+    "vision_describe": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 10,
+      "none": 10,
+      "canonicalRate": 0,
+      "combinedRate": 0.5
+    },
+    "clawbot_composite": {
+      "total": 20,
+      "canonical": 0,
+      "legacy": 14,
+      "none": 6,
+      "canonicalRate": 0,
+      "combinedRate": 0.7
+    }
+  }
+}

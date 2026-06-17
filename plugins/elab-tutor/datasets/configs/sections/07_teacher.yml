@@ -1,0 +1,125 @@
+id: teacher
+name: "Docente Competente"
+intent: teacher
+needs_llm: true
+
+templates:
+  # ── SUGGERIMENTI DIDATTICI ──────────────
+  - input: "Come spiego {concetto} alla classe?"
+    llm_hint: "Docente chiede suggerimento didattico per {concetto}. Fornire script pronto, analogie quotidiane, attivita' interattive."
+    actions: []
+    entities: []
+    vars:
+      concetto:
+        - la legge di Ohm
+        - la corrente elettrica
+        - la tensione
+        - la resistenza
+        - i circuiti in serie
+        - i circuiti in parallelo
+        - il corto circuito
+        - il PWM
+        - il funzionamento del LED
+        - come funziona un condensatore
+        - come funziona un motore
+        - la differenza tra digitale e analogico
+        - cos'e' un microcontrollore
+        - come funziona Arduino
+        - la programmazione a blocchi
+
+  # ── PREPARAZIONE LEZIONE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente prepara una lezione. Suggerire sequenza esperimenti, tempi, attivita' pratiche."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - preparami una lezione sul LED
+        - come organizzo la lezione di oggi?
+        - fammi una lezione guidata
+        - quanto tempo serve per fare questo esperimento?
+        - in che ordine faccio gli esperimenti del volume 1?
+        - qual e' il modo migliore per iniziare?
+        - come introduco l'elettronica alla classe?
+        - fammi un piano lezione per 2 ore
+        - quali esperimenti faccio alla prima lezione?
+        - come passo dal volume 1 al volume 2?
+
+  # ── DOMANDE STUDENTI RIPORTATE ──────────────
+  - input: "{prefisso} {domanda}"
+    llm_hint: "Docente riporta domanda di uno studente su {domanda}. Fornire risposta pronta con analogia semplice che il docente puo' ripetere alla classe."
+    actions: []
+    entities: []
+    vars:
+      prefisso:
+        - uno studente mi ha chiesto
+        - un ragazzo vuole sapere
+        - mi hanno chiesto
+        - una ragazza ha chiesto
+        - la classe vuole sapere
+        - un alunno ha domandato
+      domanda:
+        - perche' il LED si brucia
+        - a cosa serve la resistenza
+        - cos'e' la corrente
+        - perche' servono i fili
+        - come fa il buzzer a suonare
+        - perche' il motore gira
+        - cos'e' un sensore
+        - perche' Arduino ha bisogno del computer
+        - cosa succede se inverto i fili
+        - perche' la batteria si scarica
+        - come funziona il semaforo vero
+        - cos'e' il codice
+        - perche' dobbiamo programmare
+
+  # ── QUIZ E VALUTAZIONE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente chiede strumenti di valutazione. Suggerire quiz, domande, attivita' di verifica."
+    actions: ["[AZIONE:quiz]"]
+    entities: []
+    vars:
+      frase:
+        - prepara un quiz per la classe
+        - fammi delle domande per verificare
+        - come valuto se hanno capito?
+        - crea un test sull'esperimento
+        - domande per la verifica
+        - quiz di fine lezione
+
+  # ── GESTIONE CLASSE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente chiede consigli sulla gestione della classe durante il laboratorio. Suggerire organizzazione gruppi, ruoli, sicurezza."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - come divido la classe in gruppi?
+        - quanti studenti per kit?
+        - come gestisco il laboratorio?
+        - cosa faccio se un gruppo finisce prima?
+        - come mantengo l'attenzione?
+        - come coinvolgo tutti?
+        - un gruppo e' rimasto indietro, che faccio?
+        - i ragazzi si annoiano, come li motivo?
+
+  # ── TROUBLESHOOTING IN CLASSE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente ha problema pratico in classe. Risposta rapida e pratica, rassicurare."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - il kit di un gruppo non funziona
+        - un LED si e' bruciato, cosa faccio?
+        - il computer non vede Arduino
+        - il codice non compila su un PC
+        - un gruppo ha rotto un componente
+        - la breadboard sembra difettosa
+        - i fili non entrano nei buchi
+        - il display non si accende
+
+corruptions:
+  typo_swap: 0.2
+  voice: 0.1
+  filler: 0.1

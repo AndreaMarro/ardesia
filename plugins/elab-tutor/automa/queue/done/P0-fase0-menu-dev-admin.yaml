@@ -1,0 +1,14 @@
+id: P0-fase0-menu-dev-admin
+priority: P0
+title: "Fase 0.2: Nascondere Dev/Dashboard/Admin dal menu per utenti normali"
+description: |
+PROBLEMA: Menu hamburger mostra Dev, Dashboard, Admin a TUTTI gli utenti.
+FILE: cercare dove il menu è definito (probabilmente ElabTutorV4.jsx o componente menu)
+FIX: Mostrare Dev/Admin solo se user.role === 'admin' o isAdmin === true
+VERIFICA: aprire menu come utente normale → solo "Area Docente" visibile
+GATE: build PASSA, menu non mostra Dev/Admin
+tags: fase0,ux,p0,bloccante
+claimed_at: "2026-03-27T02:30:54.097259"
+claimed_by: orchestrator
+completed_at: "2026-03-27T02:34:08.573990"
+result: ok

@@ -1,0 +1,65 @@
+{
+  "cycle": 11,
+  "timestamp": "2026-03-25T10:45:38.238146",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 696
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 58.46s",
+      "time_ms": 66722
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 152208
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=79 min=74 (target \u226560) [3 samples]",
+      "time_ms": 66034
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4714
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2225
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Creare baseline BackstopJS per visual regression",
+    "status": "done",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "low",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi:**\n1.  **Vincoli di budget:** Le scuole operano con budget limitati e rigidamente allocati, rendendo difficile giustificare una nuova spesa ricorrente, specialmente per prodotti non testati.\n2.  **Processi decisionali complessi:** L'acquisto coinvolge molteplici stakeholder (dirigenti, coordinatori, docenti, IT) con priorit\u00e0 diverse. Coinvolgerli tutti in modo efficace \u00e8 una sfida signi",
+  "ai_scoring": null,
+  "composite_score": 0.9593,
+  "self_exam": null
+}

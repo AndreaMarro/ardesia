@@ -1,0 +1,144 @@
+id: teacher_clueless
+name: "Docente Imbranato"
+intent: teacher
+needs_llm: true
+
+templates:
+  # ── PRIMO CONTATTO ──────────────
+  - input: "Io sono {ruolo}, non capisco niente di circuiti"
+    llm_hint: "Docente totalmente inesperto ({ruolo}), primo contatto con ELAB. Rassicurare: UNLIM guida tutto, il merito sara' del docente. Tono caldo, zero giudizio."
+    actions: []
+    entities: []
+    vars:
+      ruolo:
+        - la prof di italiano
+        - il prof di storia
+        - la prof di geografia
+        - il prof di matematica
+        - la prof di arte
+        - il prof di musica
+        - la prof di inglese
+        - il prof di scienze
+        - la prof di ed. fisica
+        - il supplente
+        - la nuova insegnante
+
+  # ── INSICUREZZA ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente insicuro, ha paura di fare figuracce. Rassicurare con empatia, fornire script pronto da dire alla classe."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - come faccio a fare bella figura se non so cos'e' un resistore?
+        - ho paura di rompere qualcosa davanti alla classe
+        - non voglio fare figuracce
+        - i ragazzi ne sanno piu' di me, aiutami
+        - se mi fanno una domanda e non so rispondere?
+        - non ho mai toccato un circuito in vita mia
+        - ma e' difficile?
+        - e se combino un guaio?
+        - posso rompere qualcosa?
+        - non so da dove cominciare
+        - mi sento in imbarazzo
+        - sono negata con la tecnologia
+        - non ho mai usato Arduino
+        - la preside mi ha detto di usare sto coso ma non so che e'
+        - aiutami che non capisco niente
+
+  # ── SCRIPT PRONTI ──────────────
+  - input: "Dimmi {cosa}"
+    llm_hint: "Docente vuole una frase pronta da dire alla classe su {cosa}. Fornire ESATTAMENTE le parole da dire, con analogia semplice."
+    actions: []
+    entities: []
+    vars:
+      cosa:
+        - cosa dire quando spiego il LED
+        - come introduco l'elettronica
+        - come spiego cos'e' la corrente
+        - le parole giuste per spiegare la resistenza
+        - come presento Arduino alla classe
+        - cosa dire se qualcosa non funziona
+        - come motivo i ragazzi
+        - come faccio sembrare che so quello che faccio
+        - come spiego perche' il LED si brucia
+        - le parole per spiegare la breadboard
+
+  # ── DOMANDE BASICHE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente non sa proprio niente. Spiegare dal livello zero, senza vergogna. Analogie quotidiane (interruttore luce, rubinetto acqua)."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' un circuito? scusa l'ignoranza
+        - cos'e' la breadboard? quella cosa bianca con i buchi?
+        - ma cosa sono quei cosini colorati?
+        - il filo rosso va dove?
+        - come si accende sta cosa?
+        - dove si collega il cavo USB?
+        - che differenza c'e' tra i buchi della breadboard?
+        - positivo e negativo... quale e' quale?
+        - cos'e' un LED? e' tipo una lampadina?
+        - ma Arduino e' il nome del computer o del programma?
+        - cos'e' quel coso con le strisce colorate?
+        - come faccio a capire se funziona?
+        - perche' ci sono tanti fili?
+        - a cosa servono tutti questi pezzi?
+
+  # ── PANICO IN CLASSE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente in PANICO durante la lezione. Risposta IMMEDIATA, pratica, calmante. Primo: rassicurare. Secondo: istruzione precisa."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - aiuto non funziona niente!
+        - si e' rotto tutto!
+        - il LED non si accende e i ragazzi aspettano!
+        - il programma da errore e non so che fare!
+        - un ragazzo ha collegato qualcosa al contrario, e' pericoloso?
+        - esce fumo! che faccio?!
+        - il computer non riconosce la scheda!
+        - sono nel panico, la classe e' in caos
+        - ho perso il controllo della lezione
+        - tutti fanno cose diverse e io non capisco niente
+        - e' la prima volta che faccio sta roba e va tutto storto
+
+  # ── MODO PIU' SEMPLICE ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente cerca la via piu' facile. Suggerire il percorso minimo: esperimento piu' semplice, passopasso, zero rischio di errore."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - qual e' il modo piu' semplice per fare una lezione?
+        - qual e' l'esperimento piu' facile?
+        - c'e' qualcosa che funziona sicuro al 100%?
+        - dammi la lezione a prova di idiota
+        - voglio qualcosa che non puo' andare storto
+        - fammi fare la cosa piu' semplice possibile
+        - c'e' un modo per non fare errori?
+        - quale esperimento dura meno?
+        - qual e' il piu' facile del volume 1?
+
+  # ── GRATITUDINE E DIPENDENZA ──────────────
+  - input: "{frase}"
+    llm_hint: "Docente esprime gratitudine/dipendenza. Rispondere con calore, ricordare che il merito e' SUO. UNLIM e' solo il suggeritore."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - meno male che ci sei tu
+        - senza di te non saprei che fare
+        - sei la mia salvezza
+        - finalmente qualcuno che mi aiuta
+        - grazie grazie grazie
+        - stai salvando la mia lezione
+        - i ragazzi pensano che sono brava grazie a te
+
+corruptions:
+  typo_swap: 0.3
+  voice: 0.2
+  truncated: 0.15
+  filler: 0.15

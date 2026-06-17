@@ -1,0 +1,45 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "Lavagna ELAB — Scegli un esperimento..." [level=1] [ref=e4]
+    - banner [ref=e5]:
+      - generic [ref=e7]:
+        - img "ELAB" [ref=e8]
+        - generic [ref=e9]: ELAB
+      - 'button "Esperimento: Scegli un esperimento.... Clicca per cambiare." [ref=e11] [cursor=pointer]': Scegli un esperimento...
+      - generic [ref=e12]:
+        - button "Apri manuale" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+          - generic [ref=e17]: Manuale
+        - button "Apri video" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+          - generic [ref=e22]: Video
+        - button "Apri Fumetto Report della sessione" [active] [ref=e23] [cursor=pointer]:
+          - img [ref=e24]
+          - generic [ref=e28]: Fumetto
+    - main [ref=e31]:
+      - toolbar "Strumenti lavagna" [ref=e35]:
+        - img [ref=e37]
+        - button "Seleziona" [pressed] [ref=e44] [cursor=pointer]:
+          - img [ref=e45]
+        - button "Filo" [ref=e47] [cursor=pointer]:
+          - img [ref=e48]
+        - button "Elimina" [ref=e51] [cursor=pointer]:
+          - img [ref=e52]
+        - button "Annulla" [ref=e54] [cursor=pointer]:
+          - img [ref=e55]
+        - button "Ripeti" [ref=e58] [cursor=pointer]:
+          - img [ref=e59]
+        - button "Penna" [ref=e63] [cursor=pointer]:
+          - img [ref=e64]
+      - button "Guarda il mio circuito - UNLIM analizza lo schermo" [ref=e68] [cursor=pointer]:
+        - img [ref=e69]
+        - generic [ref=e72]: Guarda il mio circuito
+    - button "Parla con UNLIM — trascina per spostare" [ref=e73]:
+      - img "UNLIM mascotte" [ref=e74]
+      - text: UNLIM
+  - status:
+    - generic [ref=e75]: Nessuna sessione salvata. Fai almeno un esperimento prima di generare il Fumetto.
+```

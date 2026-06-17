@@ -1,0 +1,370 @@
+// ============================================
+// ELAB Tutor - Canvas/Whiteboard Tab
+// Extracted from ElabTutorV4.jsx
+// © Andrea Marro — 13/02/2026
+// ============================================
+
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import logger from '../../utils/logger';
+import { captureWhiteboardScreenshot } from '../../utils/whiteboardScreenshot';
+
+export default function CanvasTab({
+    // Canvas refs from parent
+    canvasRef,
+    ctxRef,
+    // Slides
+    slides,
+    onSetIsPresentationMode,
+    onAddCanvasToSlides,
+    // Notebook pager
+    activeNotebookId,
+    activePageIndex,
+    onChangePage,
+    // Chat integration
+    onSetShowChat,
+    onSetMessages,
+    onSetIsLoading,
+    // Galileo text chat
+    onSendToGalileo,
+    onSendImageToGalileo,
+}) {
+    const fileInputRef = useRef(null);
+    // Last position ref for per-segment pressure-sensitive drawing
+    const lastPosRef = useRef(null);
+    // Track drawing state via ref (avoids stale closure in pointer handlers)
+    const isDrawingRef = useRef(false);
+
+    // Canvas local state
+    const [isDrawing, setIsDrawing] = useState(false);
+    const [brushColor, setBrushColor] = useState('#1E4D8C');
+    const [brushSize, setBrushSize] = useState(2);
+    const [isEraser, setIsEraser] = useState(false);
+    const [canvasTool, setCanvasTool] = useState('brush'); // 'brush', 'text'
+    const [textInput, setTextInput] = useState('');
+    const [textPosition, setTextPosition] = useState(null);
+
+    // Initialize Canvas + ResizeObserver (debounced to prevent content loss)
+    useEffect(() => {
+        if (canvasRef.current) {
+            const canvas = canvasRef.current;
+            const parent = canvas.parentElement;
+            let resizeTimer = null;
+
+            const initCanvas = () => {
+                // Save content synchronously via getImageData (NOT async toDataURL)
+                let savedPixels = null;
+                let savedW = 0, savedH = 0;
+                if (canvas.width > 0 && canvas.height > 0) {
+                    try {
+                        const oldCtx = canvas.getContext('2d');
+                        savedPixels = oldCtx.getImageData(0, 0, canvas.width, canvas.height);
+                        savedW = canvas.width;
+                        savedH = canvas.height;
+                    } catch(e) {}
+                }
+
+                const dpr = window.devicePixelRatio || 1;
+                const cssW = parent.clientWidth;
+                const cssH = parent.clientHeight - 60;
+                if (cssW <= 0 || cssH <= 0) return; // skip if parent not visible
+                canvas.width = cssW * dpr;
+                canvas.height = cssH * dpr;
+                canvas.style.width = cssW + 'px';
+                canvas.style.height = cssH + 'px';
+                const ctx = canvas.getContext('2d');
+                ctx.scale(dpr, dpr);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, cssW, cssH);
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = isEraser ? '#FFFFFF' : brushColor;
+                ctx.lineWidth = brushSize;
+                ctxRef.current = ctx;
+
+                // Restore content synchronously — no race condition
+                if (savedPixels && savedW > 0 && savedH > 0) {
+                    // Create offscreen canvas to scale saved content to new size
+                    const offscreen = document.createElement('canvas');
+                    offscreen.width = savedW;
+                    offscreen.height = savedH;
+                    const offCtx = offscreen.getContext('2d');
+                    offCtx.putImageData(savedPixels, 0, 0);
+                    // Draw scaled into main canvas (reset scale first for pixel-accurate draw)
+                    ctx.save();
+                    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset to identity
+                    ctx.drawImage(offscreen, 0, 0, savedW, savedH, 0, 0, canvas.width, canvas.height);
+                    ctx.restore();
+                }
+            };
+
+            initCanvas();
+
+            // Debounce ResizeObserver to prevent cascade wipes
+            const observer = new ResizeObserver(() => {
+                if (resizeTimer) clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(initCanvas, 150);
+            });
+            observer.observe(parent);
+            return () => {
+                if (resizeTimer) clearTimeout(resizeTimer);
+                observer.disconnect();
+            };
+        }
+    }, []);
+
+    // --- Pointer Events drawing (Apple Pencil pressure support) ---
+    // Pressure: pen (Apple Pencil) uses real e.pressure (0.0-1.0),
+    // mouse/touch fallback to constant 0.5 for consistent strokes.
+    // Each pointermove draws an individual segment with its own lineWidth
+    // so pressure variation creates natural thick/thin strokes.
+
+    const getPressure = useCallback((e) => {
+        // Apple Pencil (pointerType === 'pen') provides real pressure 0.0-1.0
+        // Mouse/touch: force constant 0.5 for uniform strokes
+        if (e.pointerType === 'pen') {
+            // Clamp to avoid zero-width at pen lift (pressure can be 0 briefly)
+            return Math.max(0.1, e.pressure);
+        }
+        return 0.5;
+    }, []);
+
+    const startDrawing = useCallback((e) => {
+        if (canvasTool !== 'brush') return;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        // Capture pointer for reliable tracking even outside canvas bounds
+        canvas.setPointerCapture(e.pointerId);
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        lastPosRef.current = { x, y };
+        isDrawingRef.current = true;
+        setIsDrawing(true);
+
+        // Draw a dot at the starting point (for single-tap marks)
+        const ctx = ctxRef.current;
+        if (!ctx) return;
+        const pressure = getPressure(e);
+        const size = brushSize * (0.3 + 1.4 * pressure);
+        ctx.beginPath();
+        ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+        ctx.fillStyle = isEraser ? '#FFFFFF' : brushColor;
+        ctx.fill();
+    }, [canvasTool, brushSize, brushColor, isEraser, getPressure]);
+
+    const draw = useCallback((e) => {
+        if (!isDrawingRef.current) return;
+        e.preventDefault();
+        const ctx = ctxRef.current;
+        const canvas = canvasRef.current;
+        if (!ctx || !canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const last = lastPosRef.current;
+        if (!last) return;
+
+        // Calculate pressure-modulated lineWidth
+        // Range: brushSize * 0.3 (light touch) to brushSize * 1.7 (full press)
+        const pressure = getPressure(e);
+        const size = brushSize * (0.3 + 1.4 * pressure);
+
+        // Draw individual segment with this pressure's lineWidth
+        ctx.beginPath();
+        ctx.moveTo(last.x, last.y);
+        ctx.lineTo(x, y);
+        ctx.lineWidth = size;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = isEraser ? '#FFFFFF' : brushColor;
+        ctx.stroke();
+
+        lastPosRef.current = { x, y };
+    }, [brushSize, brushColor, isEraser, getPressure]);
+
+    const stopDrawing = useCallback((e) => {
+        if (e && canvasRef.current) {
+            try { canvasRef.current.releasePointerCapture(e.pointerId); } catch(_) {}
+        }
+        lastPosRef.current = null;
+        isDrawingRef.current = false;
+        setIsDrawing(false);
+    }, []);
+
+    const clearCanvas = () => {
+        const ctx = ctxRef.current;
+        if (!ctx) return;
+        ctx.fillStyle = '#FFFFFF';
+        const dpr = window.devicePixelRatio || 1;
+        ctx.fillRect(0, 0, canvasRef.current.width / dpr, canvasRef.current.height / dpr);
+    };
+
+    const handleCanvasClick = useCallback((e) => {
+        if (canvasTool !== 'text') return;
+        const rect = canvasRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        setTextPosition({ x, y });
+    }, [canvasTool]);
+
+    const insertTextOnCanvas = () => {
+        if (!textInput.trim() || !textPosition) return;
+        const ctx = ctxRef.current;
+        ctx.font = `${brushSize * 6}px 'Open Sans', sans-serif`;
+        ctx.fillStyle = brushColor;
+        ctx.fillText(textInput, textPosition.x, textPosition.y);
+        setTextInput('');
+        setTextPosition(null);
+    };
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = canvasRef.current;
+                const ctx = ctxRef.current;
+                const dpr = window.devicePixelRatio || 1;
+                const cssW = canvas.width / dpr;
+                const cssH = canvas.height / dpr;
+                const scale = Math.min(
+                    cssW / img.width,
+                    cssH / img.height
+                ) * 0.8;
+
+                const w = img.width * scale;
+                const h = img.height * scale;
+                const x = (cssW - w) / 2;
+                const y = (cssH - h) / 2;
+
+                ctx.drawImage(img, x, y, w, h);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const askGalileoAboutCanvas = useCallback(() => {
+        const screenshot = captureWhiteboardScreenshot({ tutorCanvas: canvasRef.current });
+        if (screenshot.dataUrl && onSendImageToGalileo) {
+            onSendImageToGalileo(
+                screenshot.dataUrl,
+                'Ho fatto un disegno sulla lavagna. Puoi analizzarlo e darmi un feedback?'
+            );
+            return;
+        }
+        onSendToGalileo?.('Ho fatto un disegno sulla lavagna. Puoi analizzarlo e darmi un feedback?');
+    }, [canvasRef, onSendImageToGalileo, onSendToGalileo]);
+
+    return (
+        <div className="v4-canvas-wrapper">
+            <div className="v4-canvas-toolbar">
+                <div className="tool-group">
+                    <button className={`tool-btn ${canvasTool === 'brush' ? 'active' : ''}`} onClick={() => setCanvasTool('brush')} title="Pennello">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                    </button>
+                    <button className={`tool-btn ${canvasTool === 'text' ? 'active' : ''}`} onClick={() => setCanvasTool('text')} title="Testo">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9.5" y1="20" x2="14.5" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                    </button>
+                    <button className={`tool-btn ${isEraser ? 'active' : ''}`} onClick={() => { const w = !isEraser; setIsEraser(w); setCanvasTool('brush'); if (ctxRef.current) ctxRef.current.strokeStyle = w ? '#FFFFFF' : brushColor; }} title="Gomma">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+                    </button>
+                </div>
+
+                <div className="tool-group-separator" />
+
+                <div className="tool-group">
+                    {['#1E4D8C', '#7CB342', '#EF4444', '#F59E0B', '#000000', '#FFFFFF'].map(c => (
+                        <button
+                            key={c}
+                            className={`v4-color ${brushColor === c ? 'active' : ''}`}
+                            style={{ background: c, border: c === '#FFFFFF' ? '1px solid var(--elab-border)' : undefined }}
+                            onClick={() => { setBrushColor(c); setIsEraser(false); if (ctxRef.current) ctxRef.current.strokeStyle = c; }}
+                        />
+                    ))}
+                </div>
+
+                <div className="tool-group-separator" />
+
+                <select className="v4-brush-size" value={brushSize} onChange={e => { const s = parseInt(e.target.value); setBrushSize(s); if (ctxRef.current) ctxRef.current.lineWidth = s; }}>
+                    <option value="2">Fine</option>
+                    <option value="5">Media</option>
+                    <option value="10">Grossa</option>
+                    <option value="20">XL</option>
+                </select>
+
+                <div className="v4-toolbar-spacer" />
+
+                <button onClick={() => fileInputRef.current?.click()} className="tool-btn" title="Carica immagine">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                </button>
+                <button onClick={onAddCanvasToSlides} className="tool-btn" title="Aggiungi a Slide">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                </button>
+                <button onClick={clearCanvas} className="tool-btn" title="Cancella tutto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+                </button>
+                {onSendToGalileo && (
+                    <button
+                        className="v4-toolbar-btn primary"
+                        onClick={askGalileoAboutCanvas}
+                        title="Chiedi a Galileo di analizzare il disegno"
+                        style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/><path d="M8 8l2 2 4-4" strokeWidth="1.5"/></svg>
+                        Chiedi a Galileo
+                    </button>
+                )}
+                <input type="file" ref={fileInputRef} hidden onChange={handleImageUpload} accept="image/*" />
+            </div>
+
+            {canvasTool === 'text' && textPosition && (
+                <div className="v4-text-input-overlay" style={{ left: textPosition.x, top: textPosition.y + 60 }}>
+                    <input
+                        type="text"
+                        value={textInput}
+                        onChange={(e) => setTextInput(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && insertTextOnCanvas()}
+                        placeholder="Scrivi qui..."
+                        autoFocus
+                    />
+                    <button className="v4-text-confirm" onClick={insertTextOnCanvas}>✓</button>
+                    <button className="v4-text-cancel" onClick={() => setTextPosition(null)}>✗</button>
+                </div>
+            )}
+
+            {canvasTool === 'text' && !textPosition && (
+                <div className="v4-text-hint">Clicca dove vuoi inserire il testo</div>
+            )}
+
+            <canvas
+                ref={canvasRef}
+                onClick={handleCanvasClick}
+                onPointerDown={startDrawing}
+                onPointerMove={draw}
+                onPointerUp={stopDrawing}
+                onPointerCancel={stopDrawing}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f && f.type.startsWith('image/')) handleImageUpload({ target: { files: [f] } }); }}
+                style={{ cursor: canvasTool === 'text' ? 'text' : 'crosshair', touchAction: 'none' }}
+            />
+
+            {slides.length > 0 && (
+                <div className="v4-slide-bar">
+                    <span className="v4-slide-count">{slides.length} slide</span>
+                    <button className="v4-present-btn" onClick={() => onSetIsPresentationMode(true)}>▶ Presenta</button>
+                </div>
+            )}
+
+            {activeNotebookId && (
+                <div className="v4-canvas-pager">
+                    <button onClick={() => onChangePage(Math.max(0, activePageIndex - 1))} disabled={activePageIndex === 0}>←</button>
+                    <small>Pag. {activePageIndex + 1}</small>
+                    <button onClick={() => onChangePage(activePageIndex + 1)}>→</button>
+                </div>
+            )}
+        </div>
+    );
+}

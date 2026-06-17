@@ -1,0 +1,17 @@
+id: P1-mistral-integration
+priority: P1
+title: Integrare Mistral come LLM produzione EU-safe
+description: |
+DECISIONE ANDREA 26/03/2026: Zero provider extra-EU in produzione.
+Architettura target: 
+Implementazione: 
+Modello consigliato: mistral-large-latest (o mistral-medium per costo)
+Costo stimato: ~€0.002/risposta (10x meno di Claude)
+CRITICO: questo e' un prerequisito per vendere alle scuole.
+target_files: nanobot/server.py nanobot/prompts/tutor.yml
+created_at: "2026-03-26T17:30:00"
+source: decisione-andrea-gdpr-26-03-2026
+claimed_at: "2026-03-27T05:44:06.935754"
+claimed_by: orchestrator
+completed_at: "2026-03-27T05:46:37.884415"
+result: ok

@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap9-esp6",
+  "volume": 1,
+  "chapter": 9,
+  "title": "Lampada RGB con 3 potenziometri",
+  "chapter_title": "Cos'è un potenziometro?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono il controllo totale dei colori: 3 manopole regolano indipendentemente rosso, verde e blu — come i pixel del telefono.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Potenziometro 10kΩ",
+      "quantity": 3,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 3,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED RGB (catodo comune)",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 15,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "manopola",
+      "dimmer",
+      "luminosità",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore"
+    ],
+    "note": "Cap 9 Vol 1 — 3 pot per controllo completo RGB."
+  },
+  "prerequisites": [
+    "v1-cap9-esp5"
+  ],
+  "next_experiment": {
+    "id": "v1-cap9-esp7",
+    "title": "Sfida: aggiungi pulsanti alla lampada",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.78 intitolata \"Sfida: aggiungi pulsanti alla lampada\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi costruiamo la lampada RGB completa! Tre manopole controllano tre colori indipendentemente — come i pixel del telefono!",
+      "teacher_tip": "Il circuito è il più grande finora: 3 potenziometri, 3 resistori, 1 LED RGB. Ogni potenziometro regola un canale indipendente.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 3 potenziometri 10K, 3 resistori 470Ω, 1 LED RGB, 15 fili.",
+      "class_hook": "Con i pulsanti potevate fare solo 7 colori (acceso/spento). Con 3 manopole graduali potete creare QUALSIASI sfumatura!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate i 3 potenziometri affiancati: pot1 regola il rosso, pot2 il verde, pot3 il blu. Ogni canale è indipendente.",
+      "teacher_tip": "Il circuito è simmetrico: ogni blocco pot→resistore→canale RGB ha la stessa struttura. Mostrate un blocco e spiegate che gli altri sono identici.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap9-esp6]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Lampada RGB con 3 potenziometri seguendo Vol.1 pag.71.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot2",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot3",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 470
+            },
+            {
+              "type": "resistor",
+              "id": "r3",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-7",
+              "to": "bb1:a7",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-12",
+              "to": "bb1:a12",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a3",
+              "to": "bb1:a17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:c19",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a13",
+              "to": "bb1:f17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:bus-top-plus-1",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a24",
+              "to": "bb1:a27",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:c26",
+              "to": "bb1:c29",
+              "color": "green"
+            },
+            {
+              "from": "bb1:f24",
+              "to": "bb1:a30",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:a4",
+              "to": "bb1:bus-top-minus-4",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:bus-top-minus-9",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a14",
+              "to": "bb1:bus-top-minus-14",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a28",
+              "to": "bb1:bus-top-minus-28",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Girate le manopole una alla volta: ogni colore si regola indipendentemente! Poi provate combinazioni per trovare il tuo colore preferito.",
+      "teacher_tip": "Se un canale non funziona, controllare il collegamento specifico pot→resistore→canale. I tre blocchi sono indipendenti, quindi il problema è nel singolo blocco.",
+      "provocative_question": "Con i pulsanti si potevano fare 7 colori. Con 3 manopole graduate, quanti colori si possono creare?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Un canale non risponde",
+          "teacher_response": "Regolate il collegamento: il segnale del potenziometro deve arrivare al resistore, e il resistore al canale corrispondente del LED RGB.",
+          "analogy": null
+        },
+        {
+          "mistake": "Tutti i colori si accendono/spengono insieme",
+          "teacher_response": "I potenziometri devono avere alimentazione separata dal bus positivo. Se condividono il segnale, non sono indipendenti.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e sperimenta! 3 manopole = controllo TOTALE del colore. Come i pixel degli schermi!",
+      "teacher_tip": "Evidenziate i 3 potenziometri. Chiedete di creare colori specifici: arancione (tanto rosso, poco verde, zero blu), rosa (rosso + poco blu), ecc.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:pot2]",
+        "[AZIONE:highlight:pot3]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "3 manopole = qualsiasi colore! Ogni pixel del tuo telefono funziona esattamente così: 3 micro-LED (R, G, B) regolati indipendentemente.",
+      "analogies": [
+        {
+          "concept": "pixel_schermo",
+          "text": "Ogni pixel del telefono ha 3 micro-LED: rosso, verde e blu. Questa lampada funziona allo stesso modo — 3 controlli indipendenti per creare qualsiasi colore!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "tavolozza_pittore",
+          "text": "Le 3 manopole sono come i 3 tubetti di colore di un pittore: puoi dosare quanto rosso, verde e blu mettere nella miscela.",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo costruito la lampada RGB completa — 3 manopole per creare qualsiasi colore, come gli schermi dei dispositivi!",
+      "teacher_tip": "Chiedete: 'Riesci a creare il bianco? E il giallo? E il rosa?' Sfida creativa con i colori.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Con 3 manopole graduali puoi creare QUALSIASI colore! Ogni pixel del telefono funziona così: 3 micro-LED (R, G, B) regolati indipendentemente. I pulsanti davano 7 colori, le manopole ne danno migliaia!",
+      "concepts_learned": [
+        "controllo indipendente continuo",
+        "principio RGB degli schermi"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.78 intitolata \"Sfida: aggiungi pulsanti alla lampada\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se crea il bianco (tutti al massimo) → ha capito la sintesi additiva",
+    "Se nota 'come lo schermo del telefono' → collegamento con la tecnologia reale",
+    "Se sperimenta combinazioni → apprendimento attivo per scoperta"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "controllo_indipendente_continuo",
+      "rgb_pixel_schermi"
+    ],
+    "next_suggested": "v1-cap9-esp7",
+    "resume_message": "L'ultima volta avete costruito la lampada RGB! Ora sfida: aggiungete pulsanti ON/OFF."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 71,
+    "label": "Vol.1 pag.71"
+  }
+}

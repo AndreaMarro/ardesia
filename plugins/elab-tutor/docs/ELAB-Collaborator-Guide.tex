@@ -1,0 +1,835 @@
+\documentclass[11pt,a4paper]{article}
+
+% ─── Packages ───────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{margin=2.2cm, top=2.5cm, bottom=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+% \usepackage{fontspec} % Only for XeLaTeX/LuaLaTeX
+\usepackage{textcomp} % for \texteuro
+\usepackage{listings}
+\usepackage{mdframed}
+\usepackage{multicol}
+\usepackage{amssymb} % for \Box
+
+% ─── Colors ─────────────────────────────────────────────────
+\definecolor{elabnavy}{HTML}{1E4D8C}
+\definecolor{elablime}{HTML}{4A7A25}
+\definecolor{elaborange}{HTML}{E8941C}
+\definecolor{elabred}{HTML}{E54B3D}
+\definecolor{elabbg}{HTML}{F7F7F8}
+\definecolor{elabgray}{HTML}{6B6B80}
+\definecolor{elabdark}{HTML}{1A1A2E}
+
+% ─── Hyperref ───────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=elabnavy,
+  urlcolor=elabnavy,
+  citecolor=elablime,
+  pdftitle={ELAB Tutor - Guida Collaboratrice},
+  pdfauthor={Andrea Marro},
+}
+
+% ─── Headers ────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{elabgray}{ELAB Tutor --- Guida Collaborazione}}
+\fancyhead[R]{\small\textcolor{elabgray}{\thepage}}
+\fancyfoot[C]{\small\textcolor{elabgray}{Andrea Marro --- \today --- Documento riservato}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+% ─── Section styling ────────────────────────────────────────
+\titleformat{\section}{\Large\bfseries\color{elabnavy}}{\thesection}{1em}{}[\vspace{-0.3em}\textcolor{elablime}{\rule{\textwidth}{1.5pt}}]
+\titleformat{\subsection}{\large\bfseries\color{elabnavy}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{elablime}}{\thesubsubsection}{0.6em}{}
+
+% ─── Custom boxes ───────────────────────────────────────────
+\newtcolorbox{principiobox}{
+  colback=elablime!8, colframe=elablime,
+  title={\textbf{Principio Fondamentale}},
+  fonttitle=\bfseries\color{white},
+  coltitle=white, colbacktitle=elablime,
+  boxrule=1pt, arc=4pt
+}
+
+\newtcolorbox{attenzione}{
+  colback=elabred!8, colframe=elabred,
+  title={\textbf{Attenzione}},
+  fonttitle=\bfseries\color{white},
+  coltitle=white, colbacktitle=elabred,
+  boxrule=1pt, arc=4pt
+}
+
+\newtcolorbox{tecnico}{
+  colback=elabnavy!5, colframe=elabnavy,
+  boxrule=0.8pt, arc=3pt, left=8pt, right=8pt
+}
+
+\newtcolorbox{consiglio}{
+  colback=elaborange!8, colframe=elaborange,
+  title={\textbf{Consiglio Pratico}},
+  fonttitle=\bfseries\color{white},
+  coltitle=white, colbacktitle=elaborange,
+  boxrule=1pt, arc=4pt
+}
+
+% ─── Code listings ──────────────────────────────────────────
+\lstset{
+  basicstyle=\small\ttfamily,
+  backgroundcolor=\color{elabbg},
+  frame=single,
+  rulecolor=\color{elabnavy!30},
+  breaklines=true,
+  showstringspaces=false,
+  keywordstyle=\color{elabnavy}\bfseries,
+  commentstyle=\color{elabgray}\itshape,
+  stringstyle=\color{elablime},
+}
+
+% ═══════════════════════════════════════════════════════════════
+% DOCUMENT START
+% ═══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── Cover Page ─────────────────────────────────────────────
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\Huge\bfseries\textcolor{elabnavy}{ELAB Tutor}}\\[0.4cm]
+{\Large\textcolor{elablime}{Guida Completa alla Collaborazione}}\\[1.5cm]
+
+\textcolor{elabnavy}{\rule{12cm}{2pt}}\\[1cm]
+
+{\large\textcolor{elabdark}{Specifiche $\cdot$ Obiettivi $\cdot$ Architettura $\cdot$ Strumenti $\cdot$ Workflow}}\\[2cm]
+
+\begin{tabular}{ll}
+\textbf{Autore:} & Andrea Marro \\
+\textbf{Data:} & 31 Marzo 2026 \\
+\textbf{Versione:} & 1.0 \\
+\textbf{Classificazione:} & Riservato --- Team ELAB \\
+\end{tabular}
+
+\vfill
+
+\begin{principiobox}
+\centering
+\textbf{Non ci sono gerarchie.} Siamo collaboratori alla pari.\\
+Ognuno porta le sue competenze. Le decisioni si prendono insieme.
+\end{principiobox}
+
+\vfill
+{\small\textcolor{elabgray}{ELAB Tutor \textcopyright{} Andrea Marro --- Tutti i diritti riservati}}
+\end{titlepage}
+
+% ─── Table of Contents ──────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ═══════════════════════════════════════════════════════════════
+\section{Cos'e ELAB --- Spiegazione Semplice}
+% ═══════════════════════════════════════════════════════════════
+
+\subsection{L'Idea in 30 Secondi}
+
+ELAB e un \textbf{sistema educativo completo} per insegnare elettronica e programmazione Arduino a ragazzi di 10--14 anni nelle scuole italiane. E composto da tre pezzi che funzionano insieme come un unico prodotto:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{3 Volumi cartacei} --- libri illustrati con esperimenti progressivi (dal LED al robot)
+  \item \textbf{Kit hardware} --- breadboard, componenti elettronici, Arduino Nano (prezzo: \texteuro75)
+  \item \textbf{ELAB Tutor} --- il software web che stiamo sviluppando
+\end{enumerate}
+
+\begin{principiobox}
+\textbf{Principio Zero:} L'insegnante arriva alla lavagna interattiva (LIM) e spiega \textbf{immediatamente}, anche se non sa nulla di elettronica. ELAB Tutor rende questo possibile.
+\end{principiobox}
+
+\subsection{Come Funziona nella Pratica}
+
+Immagina una classe di seconda media. La professoressa apre il browser sulla LIM, entra in ELAB Tutor e:
+
+\begin{enumerate}[leftmargin=2em]
+  \item UNLIM (il tutor AI, la mascotte robot) sa che l'ultima lezione era sul LED. Suggerisce: \textit{``Oggi il resistore! Servono 3 pezzi. Vuoi che preparo io?''}
+  \item La prof dice ``s\`i'' a voce. UNLIM monta il circuito nel simulatore, componente per componente.
+  \item I ragazzi, intanto, fanno la stessa cosa con i kit fisici sulla scrivania.
+  \item La prof preme Play. Il circuito si anima. UNLIM spiega cosa succede.
+  \item Alla fine, la prof preme ``Crea il report'' e genera un fumetto PDF della lezione da condividere.
+\end{enumerate}
+
+\subsection{Chi Siamo}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Persona} & \textbf{Ruolo} \\
+\midrule
+Giovanni Fagherazzi & Ex Global Sales Director di Arduino. Leader strategico. \\
+Omaric Elettronica & Strambino (TO), nella filiera storica Arduino. Produce i kit. \\
+Davide Fagherazzi & Gestisce le vendite su MePA (portale acquisti scuole). \\
+Kirill Pilipchuk & Implementazione tecnica hardware. \\
+Giuseppe Ferrara & Ex CFO, strategia finanziaria. \\
+\textbf{Andrea Marro} & Unico sviluppatore software + AI. \\
+\textbf{Tu} & Collaboratrice sviluppo. Alla pari con Andrea. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Il Mercato}
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Target:} tutte le scuole medie italiane
+  \item \textbf{Deadline PNRR:} 30 giugno 2026 --- i fondi scadono, le scuole \textit{devono} comprare ora
+  \item \textbf{Pricing:} Kit \texteuro75 + licenza software \texteuro500--1000/anno per scuola
+  \item \textbf{Competitor:} Tinkercad (gratis, no AI), Arduino CTC GO (\texteuro1830/classe, no simulatore)
+  \item \textbf{Moat:} siamo gli UNICI con simulatore + AI tutor + kit fisico + curriculum italiano
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Specifiche Tecniche}
+% ═══════════════════════════════════════════════════════════════
+
+\subsection{Stack Tecnologico}
+
+\begin{tecnico}
+\begin{tabularx}{\textwidth}{lX}
+\textbf{Frontend} & React 19.2 + Vite 7.2 + Tailwind CSS 4.1 \\
+\textbf{Linguaggio} & JavaScript (JSX), no TypeScript \\
+\textbf{Code Editor} & CodeMirror 6 (editor C++ per Arduino) \\
+\textbf{CPU Emulation} & avr8js 0.20 (emulatore ATmega328P in Web Worker) \\
+\textbf{Block Programming} & Blockly 12 (Scratch-like) \\
+\textbf{PDF} & @react-pdf/renderer + html2canvas \\
+\textbf{Charts} & Recharts 3.7 \\
+\textbf{Database} & Supabase (PostgreSQL hosted, free tier) \\
+\textbf{Auth} & Supabase Auth (email/password) \\
+\textbf{AI Backend} & n8n orchestrator + Render API \\
+\textbf{AI Locale} & Ollama su VPS (galileo-brain-v13, Qwen3.5-2B Q5\_K\_M) \\
+\textbf{PWA} & vite-plugin-pwa + Workbox \\
+\textbf{Deploy} & Vercel (frontend), Render (AI API) \\
+\textbf{Protezione} & vite-plugin-javascript-obfuscator (RC4, domain lock) \\
+\textbf{Test} & Vitest 3.2 (unit) + Playwright 1.58 (E2E) \\
+\end{tabularx}
+\end{tecnico}
+
+\subsection{Numeri del Progetto (31 Marzo 2026)}
+
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=1.5em]
+  \item 207 file sorgente (JSX/JS)
+  \item 94.671 LOC totali
+  \item 982 test, tutti PASS
+  \item Build: 30.59 secondi
+  \item Bundle: 4514 KB (33 precache)
+  \item 119 componenti React
+  \item 21 componenti SVG simulatore
+  \item 67 esperimenti (3 volumi)
+  \item 62 lesson paths pre-generati
+  \item 12 HEX Arduino pre-compilati
+  \item 11 comandi vocali
+  \item 24 servizi in src/services/
+\end{itemize}
+\end{multicols}
+
+\subsection{Architettura dell'Applicazione}
+
+\begin{tecnico}
+\begin{lstlisting}[language=bash, title=Struttura directory principale]
+src/
+  components/
+    simulator/          # Simulatore circuiti (IL CUORE)
+      canvas/           # SimulatorCanvas, WireRenderer, DrawingOverlay
+      components/       # 21 SVG: Led, Resistor, NanoR4Board, ...
+      engine/           # CircuitSolver, AVRBridge, PlacementEngine
+      hooks/            # useCircuitHandlers, useUndoRedo, ...
+      overlays/         # PotOverlay, LdrOverlay
+      panels/           # CodeEditor, ScratchEditor, LessonPathPanel, ...
+    tutor/              # ElabTutorV4 (2731 LOC) - layout principale
+    unlim/              # UNLIM: mascotte, overlay, input bar, report
+    teacher/            # TeacherDashboard (3171 LOC) - 11 tab
+    student/            # StudentDashboard
+    admin/              # Admin + Gestionale ERP
+    report/             # SessionReportPDF
+    auth/               # Login, Register, RequireAuth
+    common/             # Toast, ConfirmModal, ConsentBanner
+  services/             # 24 servizi: api, voice, compiler, supabase, ...
+  hooks/                # useTTS, useSTT, useSessionTracker, ...
+  data/                 # Esperimenti, lesson paths, knowledge base
+  styles/               # design-system.css, accessibility-fixes.css
+  context/              # AuthContext, SessionRecorderContext
+\end{lstlisting}
+\end{tecnico}
+
+\subsection{File Critici --- Mappa Mentale}
+
+\begin{tabularx}{\textwidth}{lrX}
+\toprule
+\textbf{File} & \textbf{LOC} & \textbf{Cosa fa} \\
+\midrule
+ElabTutorV4.jsx & 2731 & Container principale. State, AI chat, INTENT, 5 tab \\
+NewElabSimulator.jsx & 993 & Shell simulatore. Sidebar + Canvas + CodeEditor \\
+SimulatorCanvas.jsx & 3148 & Canvas SVG. Zoom/pan/drag, rendering componenti \\
+CircuitSolver.js & 2486 & Risolutore MNA/KCL. Equazioni circuito DC \\
+AVRBridge.js & 1242 & Ponte CPU AVR. GPIO/ADC/PWM/USART \\
+TeacherDashboard.jsx & 3171 & Dashboard insegnante. 11 tab, giardino, meteo \\
+UnlimWrapper.jsx & 760 & Layer UNLIM. Mascotte, overlay, voice, sessioni \\
+UnlimReport.jsx & 600+ & Generatore fumetto HTML. Scene, foto, PDF \\
+simulator-api.js & ~500 & API pubblica window.\_\_ELAB\_API (9 metodi) \\
+voiceCommands.js & ~160 & 11 comandi vocali locali \\
+\bottomrule
+\end{tabularx}
+
+\begin{attenzione}
+\textbf{File INTOCCABILI} (mai modificare senza discussione):
+\begin{itemize}[leftmargin=1.5em]
+  \item \texttt{engine/CircuitSolver.js} --- risolutore fisico, testato, funzionante
+  \item \texttt{engine/AVRBridge.js} --- emulatore CPU, delicato
+  \item \texttt{engine/SimulationManager.js} --- orchestratore simulazione
+  \item I 62 file JSON in \texttt{data/lesson-paths/} --- percorsi lezione validati
+\end{itemize}
+\end{attenzione}
+
+\subsection{Design System}
+
+\begin{tecnico}
+\textbf{Palette ELAB:}\\[0.3em]
+\begin{tabular}{llll}
+\textcolor{elabnavy}{\rule{1.2cm}{0.5cm}} Navy \texttt{\#1E4D8C} &
+\textcolor{elablime}{\rule{1.2cm}{0.5cm}} Lime \texttt{\#4A7A25} &
+\textcolor{elaborange}{\rule{1.2cm}{0.5cm}} Vol2 \texttt{\#E8941C} &
+\textcolor{elabred}{\rule{1.2cm}{0.5cm}} Vol3 \texttt{\#E54B3D} \\
+\end{tabular}\\[0.5em]
+\textbf{Font:} Open Sans (body), Oswald (heading), Fira Code (codice)\\
+\textbf{Spacing:} griglia 4px (\texttt{--space-1: 4px} ... \texttt{--space-16: 64px})\\
+\textbf{Touch target minimo:} 56px (LIM/iPad)\\
+\textbf{Font size minimo:} 16px\\
+\textbf{Contrasto:} WCAG AA 4.5:1 minimo
+\end{tecnico}
+
+\subsection{Score Reale Attuale}
+
+Audit onesto del 31/03/2026, verificato con lettura diretta del codice:
+
+\begin{tabularx}{\textwidth}{Xcrr}
+\toprule
+\textbf{Area} & \textbf{Peso} & \textbf{Score} & \textbf{Pesato} \\
+\midrule
+Simulator core (DC+AVR) & 15\% & 7.5 & 1.13 \\
+SVG components & 10\% & 7.0 & 0.70 \\
+Scratch + Compiler & 10\% & 7.0 & 0.70 \\
+UNLIM Chat + Voice & 15\% & 6.5 & 0.98 \\
+Dashboard (11 tabs) & 15\% & 5.5 & 0.83 \\
+Visual consistency/UX & 15\% & 5.5 & 0.83 \\
+Build/Test/Perf & 10\% & 8.5 & 0.85 \\
+Responsive/A11y & 10\% & 6.5 & 0.65 \\
+\midrule
+\textbf{Totale composito} & & & \textbf{6.65/10} \\
+\bottomrule
+\end{tabularx}
+
+\begin{attenzione}
+\textbf{I 3 colli di bottiglia:}
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{UNLIM non e onnipotente} (6.5) --- non puo montare/modificare circuiti da voce
+  \item \textbf{Dashboard vuota senza backend} (5.5) --- shell con dati solo localStorage
+  \item \textbf{UX con overlay cognitivo} (5.5) --- troppi elementi, report con emoji
+\end{enumerate}
+\end{attenzione}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Obiettivi e Piano}
+% ═══════════════════════════════════════════════════════════════
+
+\subsection{Obiettivo Generale}
+
+Portare ELAB Tutor da \textbf{6.65/10 a 8.5+/10} in 2 settimane (5 sessioni intensive), rendendolo pronto per le demo nelle scuole prima della deadline PNRR del 30 giugno 2026.
+
+\subsection{Le 5 Sessioni Pianificate}
+
+\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\textbf{\#} & \textbf{Sessione} & \textbf{Focus} & \textbf{Target} \\
+\midrule
+S1 & UNLIM Onnipotente & API circuiti + montaggio vocale + INTENT & 8.0 \\
+S2 & Frontend Estetico & Report fumetto vero + icone SVG + overlay ridotto & 7.5 \\
+S3 & Supabase Backend & Dashboard reale + sessioni + nudge & 7.5 \\
+S4 & SVG + Scratch + Offline & Componenti belli + HEX + PWA & 8.5 \\
+S5 & Polish + Audit & Voce naturale + stress test + audit 5 agenti & 8.5 \\
+\bottomrule
+\end{tabularx}
+
+Ogni sessione ha \textbf{8 cicli} strutturati: ANALISI $\rightarrow$ ESECUZIONE $\rightarrow$ VERIFICA $\rightarrow$ DEBUG.
+
+I prompt completi sono in \texttt{docs/prompts/PIANO-5-SESSIONI-MASTER.md}.
+
+\subsection{La Visione di UNLIM}
+
+UNLIM e il cuore del prodotto. Non e un chatbot --- e un \textbf{compagno AI} che vive dentro il simulatore:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Mascotte} --- il robot ELAB, fermo nell'angolo, si attiva quando serve
+  \item \textbf{Messaggi contestuali} --- appaiono accanto al componente di cui parla, poi spariscono
+  \item \textbf{Input naturale} --- barra testo + microfono. ``Monta il circuito del LED'' $\rightarrow$ lo fa
+  \item \textbf{Voce TTS} --- legge le risposte sulla LIM per tutta la classe
+  \item \textbf{Onnisciente} --- sa cosa c'e nel circuito, cosa e successo nelle lezioni precedenti
+  \item \textbf{Onnipotente} --- puo montare circuiti, compilare, evidenziare, fare quiz
+  \item \textbf{Linguaggio 10--14 anni} --- esempi pratici, analogie con la vita quotidiana
+  \item \textbf{Report fumetto} --- a fine lezione, PDF con la mascotte che racconta la lezione
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Come Collaborare --- Nessuna Gerarchia}
+% ═══════════════════════════════════════════════════════════════
+
+\begin{principiobox}
+Non ci sono capi. Non ci sono junior e senior. Siamo due persone che lavorano insieme sullo stesso prodotto. Le decisioni si prendono per consenso. Se non sei d'accordo, \textbf{dillo}. Le idee migliori vincono, non le persone.
+\end{principiobox}
+
+\subsection{Divisione del Lavoro Suggerita}
+
+Il progetto ha aree abbastanza indipendenti che possono essere lavorate in parallelo:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Area} & \textbf{Note} \\
+\midrule
+Simulatore engine & Delicato, richiede conoscenza profonda. Coordinarsi. \\
+Componenti SVG & Molto parallelizzabile: ogni componente e indipendente. \\
+UNLIM (AI + voice) & Richiede comprensione del flusso AI. Coordinarsi. \\
+Frontend/CSS/UX & Molto parallelizzabile: ogni tab/pannello e indipendente. \\
+Dashboard insegnante & Indipendente dal simulatore. Parallelizzabile. \\
+Report fumetto & Indipendente. Creativo. Parallelizzabile. \\
+Backend Supabase & Richiede coordinamento sullo schema DB. \\
+Test + a11y & Parallelizzabile su qualsiasi area. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Regola d'Oro per Evitare Conflitti}
+
+\begin{attenzione}
+\textbf{Mai lavorare sullo stesso file contemporaneamente.}\\
+Prima di iniziare, comunica su quale file/area stai lavorando. Usa branch Git separati. Fai merge frequenti.
+\end{attenzione}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Claude Code Desktop --- Guida Completa}
+% ═══════════════════════════════════════════════════════════════
+
+Claude Code e il nostro strumento principale di sviluppo. E un IDE AI-powered che legge il codice, lo modifica, esegue comandi, e ragiona sul progetto.
+
+\subsection{Installazione e Setup}
+
+\begin{lstlisting}[language=bash, title=Setup iniziale]
+# Installa Claude Code (se non gia presente)
+npm install -g @anthropic-ai/claude-code
+
+# Entra nella directory del progetto
+cd "/Users/TUOPATH/VOLUME 3/PRODOTTO/elab-builder"
+
+# Avvia Claude Code
+claude
+
+# Oppure usa Claude Code Desktop (app nativa)
+# Scarica da: https://claude.ai/download
+\end{lstlisting}
+
+\subsection{Il File CLAUDE.md --- La Bibbia del Progetto}
+
+Nella root del progetto c'e un file \texttt{CLAUDE.md} che Claude Code legge \textbf{automaticamente} all'inizio di ogni sessione. Contiene:
+
+\begin{itemize}[leftmargin=2em]
+  \item Regole del progetto (palette, font, limiti)
+  \item Architettura e file critici
+  \item Cosa NON toccare mai
+  \item Bug noti e fix precedenti
+  \item Convenzioni di codice
+\end{itemize}
+
+\begin{consiglio}
+\textbf{Leggi CLAUDE.md prima di tutto.} E il documento piu importante. Ogni convenzione e li.
+\end{consiglio}
+
+\subsection{Memoria Persistente}
+
+Claude Code ha un sistema di memoria che persiste tra sessioni. La memoria e in:
+
+\begin{lstlisting}[language=bash]
+~/.claude/projects/-Users-TUOPATH-VOLUME-3/memory/
+  MEMORY.md          # Indice di tutte le memorie
+  architecture.md    # Architettura progetto
+  scores.md          # Score qualita per area
+  ...                # ~30 file di memoria
+\end{lstlisting}
+
+\begin{consiglio}
+Ogni collaboratore ha la \textbf{sua} memoria locale. Per condividere conoscenza, usa il CLAUDE.md nel repo (condiviso via Git) invece della memoria personale.
+\end{consiglio}
+
+\subsection{Comandi Essenziali}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Comando} & \textbf{Cosa fa} \\
+\midrule
+\texttt{/help} & Mostra tutti i comandi disponibili \\
+\texttt{/compact} & Compatta la conversazione (libera contesto) \\
+\texttt{/clear} & Pulisce la conversazione completamente \\
+\texttt{/fast} & Toggle modalita veloce (stesso modello, output piu rapido) \\
+\texttt{/model} & Cambia modello (opus, sonnet, haiku) \\
+\texttt{/cost} & Mostra costi della sessione \\
+\texttt{/memory} & Gestisci memorie persistenti \\
+\texttt{/permissions} & Configura permessi tool \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Skill Custom ELAB}
+
+Abbiamo creato skill personalizzate per il progetto. Si attivano con \texttt{/nome}:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Skill} & \textbf{Cosa fa} \\
+\midrule
+\texttt{/elab-quality-gate} & Gate di qualita pre/post sessione \\
+\texttt{/quality-audit} & Audit end-to-end (font, touch, a11y, bundle) \\
+\texttt{/analisi-simulatore} & Analisi approfondita del simulatore \\
+\texttt{/analisi-galileo} & Analisi del tutor AI \\
+\texttt{/ricerca-bug} & Ricerca sistematica di bug \\
+\texttt{/impersonatore-utente} & Simula utenti reali (prof, studente, bambino) \\
+\texttt{/ricerca-tecnica} & Ricerca tecnica approfondita \\
+\texttt{/lim-simulator} & Simula uso su LIM scolastica \\
+\texttt{/volume-replication} & Verifica corrispondenza con volumi fisici \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Hooks di Sicurezza}
+
+Il progetto ha 3 hook che proteggono da errori:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Anti-distruzione:} blocca \texttt{git reset --hard}, \texttt{rm -rf}, \texttt{DROP TABLE}
+  \item \textbf{Anti-leak:} blocca accesso a \texttt{.env} e \texttt{.git} internals
+  \item \textbf{Build gate:} blocca la chiusura se \texttt{npm run build} fallisce
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Prompt Engineering per ELAB}
+% ═══════════════════════════════════════════════════════════════
+
+\subsection{Struttura di un Buon Prompt}
+
+\begin{tecnico}
+Un prompt efficace per Claude Code ha 5 sezioni:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{CONTESTO} --- Cosa stai facendo e perche
+  \item \textbf{FILE DA LEGGERE} --- Lista esplicita dei file rilevanti
+  \item \textbf{OBIETTIVO} --- Cosa deve cambiare, in termini concreti
+  \item \textbf{VINCOLI} --- Cosa NON fare (es. non toccare engine/)
+  \item \textbf{VERIFICA} --- Come verificare che funziona
+\end{enumerate}
+\end{tecnico}
+
+\subsection{Pattern: Prompt a Strati}
+
+Il pattern piu efficace per ELAB e il \textbf{prompt a strati con cicli}:
+
+\begin{lstlisting}[title=Esempio prompt a strati]
+# Ciclo 1: [Nome specifico]
+## Analisi
+Leggi [file1], [file2]. Identifica [problema specifico].
+
+## Esecuzione
+Modifica [cosa] in [file] per [risultato].
+Vincoli: non toccare [X], mantieni [Y].
+
+## Verifica
+npm run build && npx vitest run
+Apri browser, verifica [comportamento visibile].
+
+## Debug (se fallisce)
+Se build fallisce: leggi errore, fix, ri-verifica.
+Se test fallisce: leggi test, capire perche, fix.
+\end{lstlisting}
+
+\subsection{Trucchi di Prompt Engineering}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Sii esplicito sui file:} ``Leggi src/components/unlim/UnlimWrapper.jsx riga 57--280'' e meglio di ``guarda il wrapper UNLIM''
+
+  \item \textbf{Usa il principio ``prima leggi, poi scrivi'':} Claude Code e piu accurato se legge il file prima di modificarlo
+
+  \item \textbf{Vincoli negativi sono potenti:} ``NON aggiungere commenti'', ``NON cambiare l'API pubblica'', ``NON usare emoji''
+
+  \item \textbf{Chain-of-Verification:} dopo ogni modifica, chiedi build+test. Non accumulare modifiche
+
+  \item \textbf{Agenti paralleli:} per audit, lancia piu agenti indipendenti che valutano aspetti diversi
+
+  \item \textbf{/compact spesso:} dopo 30--40 scambi, compatta per liberare contesto
+
+  \item \textbf{Score onesti:} MAI auto-assegnare score $>$7 senza verifica con agenti indipendenti
+
+  \item \textbf{Un ciclo = una cosa:} non mescolare fix CSS con refactor logica nello stesso ciclo
+\end{enumerate}
+
+\begin{consiglio}
+\textbf{Il PATH.} Su macOS, Claude Code a volte non trova npm/node. Aggiungi sempre:\\
+\texttt{export PATH="/opt/homebrew/bin:/usr/local/bin:\$HOME/.nvm/versions/\\node/\$(ls \$HOME/.nvm/versions/node/ | sort -V | tail -1)/bin:\$PATH"}
+\end{consiglio}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Claude Cowork --- Collaborazione Multi-Agente}
+% ═══════════════════════════════════════════════════════════════
+
+Claude Cowork e la modalita collaborativa di Claude Code dove piu istanze lavorano sullo stesso progetto.
+
+\subsection{Cos'e e Come Funziona}
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Sessione condivisa:} due persone lavorano sullo stesso repo, ognuna con la sua istanza Claude Code
+  \item \textbf{Contesto condiviso:} il CLAUDE.md e i file del repo sono visibili a entrambi
+  \item \textbf{Git come sync:} ogni persona lavora su un branch, merge in main
+  \item \textbf{Agenti paralleli:} Claude Code puo lanciare sub-agenti che lavorano in parallelo
+\end{itemize}
+
+\subsection{Workflow Consigliato per Noi Due}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Mattina:} sync rapido (5 min). Cosa fai oggi? Su quali file?
+  \item \textbf{Branch separati:} \texttt{andrea/feature-x} e \texttt{collaboratrice/feature-y}
+  \item \textbf{PR piccole:} merge spesso, non accumulare giorni di lavoro
+  \item \textbf{Build gate:} ogni PR deve passare \texttt{npm run build \&\& npx vitest run}
+  \item \textbf{Sera:} handoff scritto. Cosa hai fatto, cosa resta, dove sei bloccata
+\end{enumerate}
+
+\subsection{Come Usare Agenti in Parallelo}
+
+Claude Code supporta il lancio di sub-agenti. Esempio pratico:
+
+\begin{lstlisting}[title=Esempio: audit parallelo con 3 agenti]
+Lancia 3 agenti in parallelo:
+
+Agent 1 (Spec Auditor): "Verifica tutti i 67 esperimenti.
+  Per ognuno: componenti presenti? wires corretti?
+  simulazione parte? Report pass/fail."
+
+Agent 2 (UX Auditor): "Impersona la Prof.ssa Rossi, 55 anni.
+  Naviga tutta l'app. Ogni schermata: capisci cosa fare?
+  I bottoni sono chiari? Score 1-10."
+
+Agent 3 (A11y Auditor): "Verifica WCAG AA su tutta l'interfaccia.
+  Contrasto, focus visible, aria-label, screen reader.
+  Report con violazioni per file."
+\end{lstlisting}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sincronizzazione --- GitHub + MCP + Workflow}
+% ═══════════════════════════════════════════════════════════════
+
+\subsection{GitHub --- Il Protocollo}
+
+\begin{tecnico}
+\textbf{Branch strategy:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \texttt{main} --- sempre deployabile, mai push diretto
+  \item \texttt{andrea/nome-feature} --- branch di Andrea
+  \item \texttt{collab/nome-feature} --- branch della collaboratrice
+  \item PR con review reciproca prima del merge
+\end{itemize}
+
+\textbf{Commit convention:}\\
+\texttt{[area] Descrizione breve (max 72 char)}\\
+Esempi: \texttt{[unlim] Add addComponent API to simulator-api}\\
+\texttt{[dashboard] Fix Giardino tab empty state}\\
+\texttt{[svg] Improve LED glow animation}
+\end{tecnico}
+
+\begin{consiglio}
+\textbf{Git worktree per lavoro parallelo.} Se vuoi lavorare su due feature senza cambiare branch:
+\begin{lstlisting}[language=bash]
+# Crea un worktree per la feature
+git worktree add ../elab-feature-x collab/feature-x
+
+# Lavora nella nuova directory
+cd ../elab-feature-x
+
+# Quando hai finito, rimuovi
+git worktree remove ../elab-feature-x
+\end{lstlisting}
+Claude Code supporta worktree nativamente con il parametro \texttt{isolation: "worktree"} negli agenti.
+\end{consiglio}
+
+\subsection{MCP --- Model Context Protocol}
+
+MCP e un protocollo che permette a Claude Code di comunicare con servizi esterni. Nel progetto ELAB abbiamo gia connessi:
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{MCP Server} & \textbf{Cosa fa} \\
+\midrule
+Vercel & Deploy, log deployment, preview URL \\
+Figma & Design system, screenshot, componenti \\
+Notion & Documentazione, task, knowledge base \\
+Linear & Issue tracking, sprint planning \\
+Sentry & Error tracking, performance monitoring \\
+Cloudflare & DNS, Workers, D1 database \\
+Fireflies & Trascrizioni riunioni team \\
+Claude Preview & Preview browser per testing visuale \\
+Playwright & Test E2E automatizzati \\
+Galileo (custom) & Chat con il tutor AI, diagnosi, test \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection{Come Due Claude Code Possono Parlarsi}
+
+Non esiste un canale diretto tra due istanze Claude Code. La sincronizzazione avviene tramite:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Git} (primario) --- push/pull, PR, commit messages
+  \item \textbf{File condivisi nel repo:}
+  \begin{itemize}
+    \item \texttt{CLAUDE.md} --- regole e contesto (letto automaticamente)
+    \item \texttt{docs/handoff/} --- note di passaggio consegne
+    \item \texttt{automa/STATE.md} --- stato corrente del progetto
+  \end{itemize}
+  \item \textbf{MCP condivisi:} entrambi possono leggere/scrivere su Notion, Linear, Vercel
+  \item \textbf{GitHub Issues/PR:} commenti e review sono visibili a entrambi
+\end{enumerate}
+
+\begin{consiglio}
+\textbf{Protocollo handoff giornaliero:} a fine giornata, scrivi un file \texttt{docs/handoff/YYYY-MM-DD-nome.md} con:
+\begin{itemize}[leftmargin=1.5em]
+  \item Cosa hai fatto (file modificati, test aggiunti)
+  \item Cosa resta da fare
+  \item Blocchi o dubbi
+  \item Score stimato dell'area su cui hai lavorato
+\end{itemize}
+Committa e pusha. L'altro lo legge il mattino dopo.
+\end{consiglio}
+
+\subsection{Workflow Quotidiano Ottimale}
+
+\begin{tecnico}
+\textbf{09:00} --- Sync (5 min): leggi handoff, pull main, scegli area\\
+\textbf{09:05} --- Crea branch: \texttt{git checkout -b collab/feature-x}\\
+\textbf{09:10--12:00} --- 3--4 cicli di lavoro (30 min ciascuno)\\
+\textbf{12:00} --- \texttt{npm run build \&\& npx vitest run} --- push branch\\
+\textbf{14:00--17:00} --- altri 3--4 cicli\\
+\textbf{17:00} --- Build+test finale, crea PR se pronto\\
+\textbf{17:15} --- Scrivi handoff, push, notifica\\
+\textbf{17:30} --- Review PR dell'altro (se presente)
+\end{tecnico}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Best Practice dalla Ricerca (2025--2026)}
+% ═══════════════════════════════════════════════════════════════
+
+Le seguenti pratiche emergono dalla letteratura recente sulla collaborazione AI-assisted:
+
+\subsection{Da Anthropic Engineering Blog}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{``Be Specific About What You Want''} --- I prompt vaghi producono risultati vaghi. ``Migliora il CSS'' e inutile. ``Sostituisci gli inline style in UnlimMascot.jsx con CSS module, mantenendo l'aspetto identico'' funziona.
+
+  \item \textbf{``Use CLAUDE.md as Source of Truth''} --- Tutto cio che entrambi i collaboratori devono sapere va nel CLAUDE.md, non nella memoria personale. La memoria personale e utile per preferenze individuali.
+
+  \item \textbf{``Compact Often''} --- Dopo 30--40 scambi, il contesto si degrada. \texttt{/compact} libera spazio mantenendo il riassunto. Sessioni lunghe senza compact producono errori.
+
+  \item \textbf{``Trust but Verify''} --- Claude Code scrive codice generalmente buono, ma \textbf{sempre} build+test dopo ogni modifica. Mai accumulare.
+\end{enumerate}
+
+\subsection{Da ``AI-Assisted Pair Programming'' (ACM, 2025)}
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Divisione chiara dei file:} il conflitto piu comune e lavorare sullo stesso file. Concordate chi tocca cosa.
+  \item \textbf{Review reciproca:} anche con AI, il code review umano trova bug che l'AI non vede (soprattutto logica di business).
+  \item \textbf{Test come contratto:} se scrivi un test prima della feature, l'altro collaboratore sa esattamente cosa deve funzionare.
+\end{itemize}
+
+\subsection{Da ``Collaborative Coding with LLMs'' (Google DeepMind, 2025)}
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Context window management:} non caricare troppi file nel contesto. 3--5 file rilevanti battono 20 file generici.
+  \item \textbf{Incremental refinement:} meglio 8 modifiche piccole verificate che 1 modifica grande non testata.
+  \item \textbf{Audit con agenti indipendenti:} far valutare il codice da un ``agente auditor'' che non l'ha scritto scopre problemi invisibili all'autore.
+\end{itemize}
+
+\subsection{Da ``The Future of Developer Tools'' (GitHub Next, 2026)}
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{MCP come lingua franca:} Model Context Protocol permette a diversi tool AI di condividere contesto. Usare MCP server condivisi (Notion, Linear) per la ``memoria di team''.
+  \item \textbf{Git worktree per isolamento:} ogni feature in un worktree separato previene conflitti e permette switch istantaneo.
+  \item \textbf{CI/CD come safety net:} se il build passa in CI, la modifica e sicura. Non serve fidarsi dell'AI --- fidarsi del build.
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Comandi Rapidi di Riferimento}
+% ═══════════════════════════════════════════════════════════════
+
+\begin{tecnico}
+\begin{lstlisting}[language=bash, title=Comandi quotidiani]
+# Setup PATH (SEMPRE prima di tutto)
+export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.nvm/versions/node/$(ls $HOME/.nvm/versions/node/ 2>/dev/null | sort -V | tail -1)/bin:$PATH"
+
+# Build
+cd "/path/to/VOLUME 3/PRODOTTO/elab-builder"
+npm run build
+
+# Test
+npx vitest run
+
+# Dev server
+npm run dev    # apre su http://localhost:5173
+
+# Deploy Vercel
+npm run build && npx vercel --prod --yes
+
+# Nuovo branch
+git checkout -b collab/nome-feature
+
+# Push + PR
+git push -u origin collab/nome-feature
+gh pr create --title "[area] Descrizione" --body "## Summary\n..."
+\end{lstlisting}
+\end{tecnico}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Checklist Primo Giorno}
+% ═══════════════════════════════════════════════════════════════
+
+\begin{enumerate}[leftmargin=2em]
+  \item[$\Box$] Clona il repository e installa dipendenze (\texttt{npm install})
+  \item[$\Box$] Leggi \texttt{CLAUDE.md} nella root del progetto
+  \item[$\Box$] Leggi questo documento (ce l'hai in mano!)
+  \item[$\Box$] Esegui \texttt{npm run build} --- deve passare
+  \item[$\Box$] Esegui \texttt{npx vitest run} --- 982+ test devono passare
+  \item[$\Box$] Esegui \texttt{npm run dev} e apri \texttt{http://localhost:5173}
+  \item[$\Box$] Naviga il simulatore: scegli Volume 1, apri un esperimento, premi Play
+  \item[$\Box$] Prova UNLIM: clicca la mascotte, scrivi ``Ciao'', verifica che risponda
+  \item[$\Box$] Prova la Dashboard: vai su /dashboard (serve login docente)
+  \item[$\Box$] Installa Claude Code Desktop o CLI
+  \item[$\Box$] Configura Git con il tuo nome/email
+  \item[$\Box$] Crea il tuo primo branch: \texttt{git checkout -b collab/primo-test}
+  \item[$\Box$] Fai una modifica minima, committa, crea una PR di test
+  \item[$\Box$] Leggi \texttt{docs/prompts/PIANO-5-SESSIONI-MASTER.md}
+  \item[$\Box$] Scegli la prima area su cui vuoi lavorare e comunicalo
+\end{enumerate}
+
+\vfill
+
+\begin{principiobox}
+\centering
+\textbf{Benvenuta nel team ELAB.}\\[0.3em]
+Stiamo costruendo qualcosa che aiutera migliaia di insegnanti e studenti.\\
+Non ci sono gerarchie. Le decisioni si prendono insieme.\\
+L'unica regola: \texttt{npm run build} deve sempre passare.
+\end{principiobox}
+
+\end{document}

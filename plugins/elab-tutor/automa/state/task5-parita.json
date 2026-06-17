@@ -1,0 +1,148 @@
+{
+  "task": "parita",
+  "timestamp": "2026-04-14T04:45:00Z",
+  "checked": 15,
+  "summary": "Audit parita volumi — primi 5 esperimenti per volume. Vol1 eccellente, Vol2 buono con 2 limiti simulazione, Vol3 solido ma desc troppo lunghe.",
+  "issues": [
+    {
+      "id": "V1-ESP2-ICON",
+      "volume": 1,
+      "experiment": "v1-cap6-esp2",
+      "severity": "minor",
+      "area": "titolo",
+      "detail": "Icon e una stringa con apici errati: icon: \"''\" invece di un emoji valido. Non si renderizza."
+    },
+    {
+      "id": "V2-ESP1-NOSIM",
+      "volume": 2,
+      "experiment": "v2-cap3-esp1",
+      "severity": "medium",
+      "area": "simulazione",
+      "detail": "simulable: false con motivo 'Richiede multimetro fisico'. Il bambino apre il simulatore e non puo fare nulla. Nessun fallback visivo."
+    },
+    {
+      "id": "V2-ESP2-NOSIM",
+      "volume": 2,
+      "experiment": "v2-cap3-esp2",
+      "severity": "medium",
+      "area": "simulazione",
+      "detail": "simulable: false — stesso problema di v2-cap3-esp1. Diario di misurazione non simulabile, nessun fallback."
+    },
+    {
+      "id": "V2-ESP3-NOSIM",
+      "volume": 2,
+      "experiment": "v2-cap3-esp3",
+      "severity": "medium",
+      "area": "simulazione",
+      "detail": "simulable: false — misurazione resistenza con multimetro, non simulabile. 3 esperimenti su 5 del Vol2 non simulabili = esperienza povera."
+    },
+    {
+      "id": "V2-ESP4-NOSIM",
+      "volume": 2,
+      "experiment": "v2-cap3-esp4",
+      "severity": "medium",
+      "area": "simulazione",
+      "detail": "simulable: false — misurazione corrente con multimetro, non simulabile. 4 su 5 primi esperimenti Vol2 richiedono multimetro fisico."
+    },
+    {
+      "id": "V2-ACCENTI-MANCANTI",
+      "volume": 2,
+      "experiment": "v2-cap3-*",
+      "severity": "minor",
+      "area": "testo",
+      "detail": "Accenti mancanti sistematici in tutto Vol2: 'e' invece di 'e accento', 'sara' invece di 'sara accento', 'piu' senza accento. Non adatto a prodotto scolastico."
+    },
+    {
+      "id": "V3-ESP1-DESC-LUNGA",
+      "volume": 3,
+      "experiment": "v3-cap5-esp1",
+      "severity": "minor",
+      "area": "descrizione",
+      "detail": "desc ha 33 parole — OK ma borderline. observe ha 30 parole — OK."
+    },
+    {
+      "id": "V3-ESP3-DESC-TROPPO-LUNGA",
+      "volume": 3,
+      "experiment": "v3-cap6-esp1",
+      "severity": "medium",
+      "area": "descrizione",
+      "detail": "desc ha 40+ parole (circuito AND/OR). Supera il target di concisione per bambini 8-14. Troppo tecnica per un bambino di 8 anni."
+    },
+    {
+      "id": "V3-ESP4-ID-MISMATCH",
+      "volume": 3,
+      "experiment": "v3-cap6-esp2",
+      "severity": "medium",
+      "area": "titolo",
+      "detail": "id dice 'v3-cap6-esp2' ma title dice 'Cap. 6 Esp. 1 - Colleghiamo la resistenza'. Mismatch tra ID e titolo — confusione per debug e per UNLIM."
+    },
+    {
+      "id": "V3-ESP5-DESC-LUNGA",
+      "volume": 3,
+      "experiment": "v3-cap6-morse",
+      "severity": "minor",
+      "area": "descrizione",
+      "detail": "desc ha 30 parole — OK, ma la parola 'Morse' potrebbe non dire nulla a un bambino di 8 anni senza contesto aggiuntivo."
+    },
+    {
+      "id": "V1-V2-DISPARITA-BUILDSTEPS",
+      "volume": "cross",
+      "experiment": "cross-volume",
+      "severity": "info",
+      "area": "buildSteps",
+      "detail": "Vol1 ha 7-8 buildSteps dettagliati per esperimento. Vol2 ha 4-7 buildSteps. Vol3 ha 1-10 buildSteps. Qualita disomogenea tra volumi."
+    },
+    {
+      "id": "V2-NO-COMPONENTS-REALI",
+      "volume": 2,
+      "experiment": "v2-cap3-esp1..esp4",
+      "severity": "high",
+      "area": "componenti",
+      "detail": "I primi 4 esperimenti del Vol2 usano SOLO batteria + multimetro. Zero breadboard, zero LED, zero resistori su breadboard. Per un bambino che apre Vol2 dopo Vol1 (pieno di LED e circuiti), e una regressione di engagement enorme."
+    }
+  ],
+  "per_volume": {
+    "vol1": {
+      "checked": 5,
+      "experiments": ["v1-cap6-esp1", "v1-cap6-esp2", "v1-cap6-esp3", "v1-cap7-esp1", "v1-cap7-esp2"],
+      "titolo_ok": 5,
+      "componenti_realistici": 5,
+      "desc_sotto_100_parole": 5,
+      "buildSteps_logici": 5,
+      "concept_presente": 5,
+      "score": 9.5,
+      "note": "Eccellente. Titoli chiari, componenti da kit reale (batteria 9V, breadboard, resistori, LED, RGB LED). BuildSteps dettagliati 7-8 step con hint. Unico difetto: icon errata su esp2. Concept sempre presente e chiaro."
+    },
+    "vol2": {
+      "checked": 5,
+      "experiments": ["v2-cap3-esp1", "v2-cap3-esp2", "v2-cap3-esp3", "v2-cap3-esp4", "v2-cap4-esp1"],
+      "titolo_ok": 5,
+      "componenti_realistici": 5,
+      "desc_sotto_100_parole": 5,
+      "buildSteps_logici": 5,
+      "concept_presente": 5,
+      "score": 6.5,
+      "note": "Titoli chiari e adatti. Componenti realistici (multimetro, batteria, resistori). PERO: 4/5 esperimenti NON simulabili (richiedono multimetro fisico). Accenti mancanti ovunque. Per un bambino al PC senza kit fisico, i primi 4 esperimenti del Vol2 sono inutili. Il 5o (resistori parallelo) finalmente usa la breadboard ed e simulabile."
+    },
+    "vol3": {
+      "checked": 5,
+      "experiments": ["v3-cap5-esp1", "v3-cap5-esp2", "v3-cap6-esp1", "v3-cap6-esp2", "v3-cap6-morse"],
+      "titolo_ok": 4,
+      "componenti_realistici": 5,
+      "desc_sotto_100_parole": 5,
+      "buildSteps_logici": 5,
+      "concept_presente": 5,
+      "score": 7.5,
+      "note": "Buoni. Componenti Arduino realistici (nano, breadboard, LED, pulsanti, resistori). BuildSteps presenti e logici per tutti e 5. Code C++ presente dove serve. Problemi: 1 mismatch ID/titolo (v3-cap6-esp2), desc di v3-cap6-esp1 troppo tecnica per 8enni. Scratch XML presente per i primi 2 (Blink). Concept sempre presente."
+    }
+  },
+  "verdetto": {
+    "score": 7.5,
+    "giudizio": "Vol1 e quasi perfetto — il benchmark. Vol3 e solido con buildSteps completi. Vol2 e il punto debole: i primi 4 esperimenti sono non-simulabili e poco engaging per chi usa solo il software. La disparita principale non e nella qualita dei dati ma nella SIMULABILITA: Vol2 apre con 4 esperimenti che richiedono hardware fisico, mentre Vol1 e Vol3 sono immediatamente interattivi.",
+    "top3_fix": [
+      "1. CRITICO: Implementare un multimetro virtuale nel simulatore o spostare gli esperimenti simulabili del Vol2 in cima",
+      "2. MEDIO: Fixare accenti mancanti in tutto Vol2 (ricerca-e-sostituisci 'e ' -> 'e accento' dove appropriato)",
+      "3. MINOR: Fixare icon errata v1-cap6-esp2 e mismatch ID/titolo v3-cap6-esp2"
+    ]
+  }
+}

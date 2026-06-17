@@ -1,0 +1,92 @@
+id: truncated
+name: "Frasi Troncate e Incomplete"
+
+templates:
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: [avv, avvia, avvi la sim, fallo part, play, sta, vai, dai avv]
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_pause"
+    actions: ["[AZIONE:pause]"]
+    entities: []
+    vars:
+      frase: [pau, stop, fer, ferma tut, paus, sto]
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase: [pulisci tut, cancella tu, via tut, svuota la bre, togli tut]
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: [metti un le, metti led, aggiungi l, met un LED, voglio un l]
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"resistor\"}],\"wires\":\"auto\"}]"]
+    entities: [resistor]
+    vars:
+      frase: [metti una res, aggiungi resi, una resisten, met resistenz]
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"buzzer-piezo\"}],\"wires\":\"auto\"}]"]
+    entities: [buzzer-piezo]
+    vars:
+      frase: [metti un buz, aggiungi il cical, voglio il bee, metti buzz]
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "@action_compile"
+    actions: ["[AZIONE:compile]"]
+    entities: []
+    vars:
+      frase: [comp, compila il co, compilalo, compi, fai il comp]
+
+  - input: "{frase}"
+    intent: navigation
+    needs_llm: false
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]"]
+    entities: []
+    vars:
+      frase: [carica l'esper, apri l'esp, carica il, voglio l'esperim, prossimo esp]
+
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Frase troncata, l'utente stava chiedendo una spiegazione. Interpretare dal contesto e rispondere."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' la
+        - spiegami il
+        - perche' il LED
+        - come funziona
+        - a cosa serve la
+        - che differenza c'e' tra
+
+corruptions: {}

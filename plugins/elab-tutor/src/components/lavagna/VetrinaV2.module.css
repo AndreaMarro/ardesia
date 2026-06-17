@@ -1,0 +1,234 @@
+/* VetrinaV2 — Landing page pre-login */
+
+.container {
+  min-height: 100vh;
+  background: var(--color-bg);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(155deg, #06111f 0%, #0d2240 35%, var(--elab-navy) 70%, #2563A8 100%);
+  padding: 80px 24px 64px;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(74, 122, 37, 0.25);
+  border: 1px solid rgba(74, 122, 37, 0.5);
+  color: #9CCC65; /* palette */
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 800;
+  font-family: var(--font-display, Oswald, sans-serif);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+
+.accent {
+  background: linear-gradient(135deg, var(--elab-lime), #AED581);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+
+.ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  padding: 14px 36px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--elab-lime), #6AA033);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 48px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ctaPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(74, 122, 37, 0.3);
+}
+
+.ctaSecondary {
+  padding: 14px 36px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.2s;
+}
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Stats ── */
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 32px 24px;
+  margin-top: -32px;
+}
+
+.statCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.statValue {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  font-family: var(--font-display, Oswald, sans-serif);
+  color: var(--color-primary);
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #595959; /* palette */
+  font-weight: 500;
+}
+
+/* ── Volumes ── */
+.volumes {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-display, Oswald, sans-serif);
+  color: var(--color-primary);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sectionSub {
+  color: #595959; /* palette */
+  font-size: 15px;
+  margin: 0 0 32px;
+}
+
+.volGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.volCard {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  transition: transform 0.2s;
+}
+.volCard:hover {
+  transform: translateY(-2px);
+}
+
+.volAccent {
+  height: 5px;
+}
+
+.volBody {
+  padding: 20px;
+}
+
+.volNum {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.volTitle {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-display, Oswald, sans-serif);
+  color: #1A2B4A; /* palette */
+  margin: 4px 0 8px;
+}
+
+.volDesc {
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  font-size: 14px;
+  color: #595959; /* palette */
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.volExp {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ── Footer CTA ── */
+.footerCta {
+  text-align: center;
+  padding: 48px 24px 80px;
+}
+
+.footerTitle {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-display, Oswald, sans-serif);
+  color: var(--color-primary);
+  margin: 0 0 20px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .title { font-size: 32px; }
+  .subtitle { font-size: 16px; }
+  .statCard { min-width: 80px; padding: 14px 16px; }
+  .statValue { font-size: 24px; }
+}

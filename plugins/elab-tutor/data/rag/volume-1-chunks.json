@@ -1,0 +1,762 @@
+[
+  {
+    "volume": 1,
+    "chapter": "Volume 1",
+    "section": "ESPERIMENTO 3",
+    "content": "LABORATORIO DI ELETTRONICA\nI M P A R A E S P E R I M E N TA\nVOLUME 1\nELAB\nCOS’È IL DIODO LED?\nESPERIMENTO 3\nPer rendere il led più luminoso, ci basta partire dal circuito che abbiamo\nrealizzato! Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm!\nTi ricordi i colori delle resistenze?\nCon un resistore più basso, passa più corrente quindi il LED si illumina di più.\nRendiamo il LED meno luminoso\nPer rendere il led meno luminoso, ci basta partire dal circuito che abbiamo\nrealizzato! Basta cambiare il resistore da 220 Ohm con uno da 1 kOhm!\nTi ricordi i colori?\nProva ora a cambiare il valore del resistore, ma NON scendere mai sotto\ni 100 Ohm.\nLaboratorio di elettronica: Impara e sperimenta 33\n© 2025 ELAB. Tutti i diritti riservati.\nNessuna parte di questo libro può essere riprodotta o distribuita in qualsiasi forma o con qualsiasi\nmezzo, elettronico o meccanico, senza il permesso scritto dell'autore.",
+    "page_number": 1,
+    "token_count": 228
+  },
+  {
+    "volume": 1,
+    "chapter": "Capitolo 1",
+    "section": null,
+    "content": "Indice\nCapitolo 1 - La Storia dell’Elettronica: Un Viaggio nel Tempo ................................. 05\nCapitolo 2 - Le grandezze elettriche e la legge di Ohm ......................................... 09\nCapitolo 3 - Cos’è un resistore? ........................................................................... 13\nCapitolo 4 - Cos’è la breadboard? ........................................................................ 21\nCapitolo 5 - Cosa sono le batterie? ....................................................................... 25\nCapitolo 6 - Cos’è il diodo LED? ............................................................................ 27\nCapitolo 7 - Cos’è il LED RGB? ............................................................................... 35\nCapitolo 8 - Cos’è un pulsante? ........................................................................... 43\nCapitolo 9 - Cos’è un potenziometro? ................................................................... 57\nCapitolo 10 - Cos’è un fotoresistore ..................................................................... 81\nCapitolo 11 - Cos’è un cicalino? ............................................................................ 93\nCapitolo 12 - L’interruttore magnetico ................................................................. 97\nCapitolo 13 - Cos’è l’elettropongo? ..................................................................... 103\nCapitolo 14 - Costruiamo il nostro primo robot .................................................... 107\nNon è finita qui! ................................................................................................... 112\nCOMPONENTI DEL KIT\n• 1x Breadboard 830 punti\n• Cavi di differenti lunghezze\n• 1x Clip Batteria intestata con header\n• Resistori 4 Bande:\n10x 100 Ohm\n10x 220 Ohm\n10x 330 Ohm\n10x 470 Ohm\n10x 1 kOhm\n• LEDs:\n5x Blu\n5x Rosso\n5x Verde\n5x Giallo\n5x Bianco\n5x RGB catodo comune\n• 5x Pulsanti\n• 3x Trimmer con alberino 10 kOhm\n• 3x Fotoresistore 10 kOhm",
+    "page_number": 3,
+    "token_count": 499
+  },
+  {
+    "volume": 1,
+    "chapter": "Capitolo 1",
+    "section": null,
+    "content": "• 1x Cicalino\n• 1x Interruttore Magnetico + 1x Magnete\n• 1x Robot ELAB\n4 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 4,
+    "token_count": 30
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "CAPITOLO 1\nLA STORIA DELL’ELETTRONICA:\nUN VIAGGIO NEL TEMPO\nRiesci ad immaginare un mondo senza computer,\nsenza smartphone, telefono, videogiochi o televisori?\nQuasi sicuramente la tua risposta è no, ma come ben saprai\ncento anni fa tutto ciò non esisteva.\nGli apparecchi succitati, e che rientrano ormai nella nostra\nroutine quotidiana, sono frutto di ricerca e ingegno di grandi\nscienziati, molti dei quali orgogliosamente italiani.\nL’Elettronica di cui disponiamo è nata solo nell’ultimo Secolo.\nVediamo come tutto è iniziato! REV\nI PRIMI PASSI: L’ELETTRICITÀ\nE I SEGRETI DELLA NATURA\nLa storia dell’Elettronica inizia con la nascita della prima\nbatteria. Lo scienziato italiano Alessandro Volta ne costruì il\nprimo esemplare che ne ereditò il suo nome “pila di Volta”.\nQuesta invenzione dimostrò che si poteva creare energia\nelettrica in modo controllato. Alessandro Volta diede il via ad\naltre scoperte poiché, altri scienziati incuriositi dalla sua\nricerca cominciarono ad approfondire il tema. Michael\nFaraday, scoprì infatti che si poteva generare elettricità con il\nmovimento dando vita così al principio del generatore\nelettrico.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 5",
+    "page_number": 5,
+    "token_count": 309
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "CAPITOLO 1\nNASCE L’ELETTRONICA: I PRIMI CIRCUITI L’ERA DEI TRANSISTOR:\nPIÙ PICCOLO, PIÙ POTENTE\nIntorno alla fine del 1800 la lampadina\ndi Thomas Edison aprì la strada ad Quarantatré anni dopo il mondo fu\nuna nuova fase. Con l’invenzione di segnato da una nuova invenzione. Era\nEdison, infatti, ebbe inizio l’era 1947 quando un oggetto riuscì a\ndell’energia elettrica che di lì a poco stravolgere la vita di tutti: nacque il\nilluminò tutte le città. La curiosità transistor. Più piccolo, economico e\nspinse ricercatori e studiosi a pensare resistente delle valvole, iI transistor\nche l'elettricità potesse essere consentì di costruire radio, televisori e\nutilizzata non solo per illuminare, ma computer dalle dimensioni ridotte e\nper trasmettere anche suoni e segnali. più potenti. Immagina che ora il tuo\nPoco dopo, più precisamente nel nel computer occupa parte della scrivania\n1904, si segnò la grande svolta grazie della tua stanza, addirittura il posto in\nalla scoperta della valvola termoionica, uno zainetto se trattasi di un personal\nuna sorta di “interruttore elettronico” computer, i primi computer, come ad\nche era in grado di controllare le esempio l’ENIAC, occupavano intere\ncorrenti elettriche. Fu proprio questa stanze e consumavano alte quantità di\ninvenzione a dare il via alla nascita energia. Ecco che grazie all'invenzione\ndelle prime radio: si scoprì così che era dei transistor, i computer iniziarono a\npossibile ascoltare notizie e musica a diventare più accessibili.\ndistanza.\n6 Laboratorio di elettronica: Impara e sperimenta\nLA STORIA DELL’ELETTRONICA: UN VIAGGIO NEL TEMPO\nL’INVENZIONE DEI MICROCHIP\nNegli anni Sessanta i transistor\nfurono miniaturizzati e montati\ninsieme su piccole schede chiamate\n‘microchip’. Con l’assemblaggio\ndi numerosi microchip si arrivò\nalla nascita dei moderni computer,\ndei telefoni cellulari e di tante altri\npiccoli e grandi apparecchi\nelettronici che usiamo ogni giorno.\nLa storia dell’Elettronica è fatta di",
+    "page_number": 6,
+    "token_count": 491
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "scoperte geniali e di invenzioni\nsorprendenti che hanno cambiato la\nvita di ognuno di noi.\nE se un giorno fossi proprio tu ad\ninventare qualcosa di straordinario\nche cambierà, semplificherà o\nsalverà la vita delle persone?\nTe lo sei mai chiesto? L’elettronica\npotrebbe appassionarti così tanto\nda stimolarti a tal punto da voler\ndare il tuo contributo al mondo.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 7\nNOTE\n8 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 7,
+    "token_count": 128
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "CAPITOLO 2\nLE GRANDEZZE ELETTRICHE\nE LA LEGGE DI OHM\nPer descrivere il fenomeno TENSIONE (VOLT)\ndell’elettricità usiamo tre grandezze\nprincipali: Immagina una pompa d’acqua che\nspinge l’acqua attraverso un tubo.\n(cid:3282)(cid:5) (cid:57)(cid:74)(cid:83)(cid:88)(cid:78)(cid:84)(cid:83)(cid:74)(cid:5)(cid:13)(cid:59)(cid:84)(cid:81)(cid:89)(cid:14)\n(cid:3282)(cid:5) (cid:40)(cid:84)(cid:87)(cid:87)(cid:74)(cid:83)(cid:89)(cid:74)(cid:5)(cid:13)(cid:38)(cid:82)(cid:85)(cid:74)(cid:87)(cid:74)(cid:14) (cid:3282)(cid:5) La tensione è come la (cid:75)(cid:84)(cid:87)(cid:95)(cid:70)\n(cid:3282)(cid:5) (cid:55)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:13)(cid:52)(cid:77)(cid:82)(cid:14) con cui la pompa spinge l’acqua. (cid:3282)(cid:5)\nPiù alta è la tensione, più\nQueste unità di grandezza sono forte è la spinta e quindi più\ncome gli ingredienti di una ricetta. acqua\nZucchero, uova e farina da soli (corrente) può fluire.\nservono a poco, ma insieme danno\nvita a golose torte. Ecco che, la\nTENSIONE, la CORRENTE e la\nRESISTENZA messe insieme\nlavorano per far funzionare\nl’elettricità.\nPer capire meglio immaginiamo un\nsistema di tubi pieni d’acqua.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 9",
+    "page_number": 9,
+    "token_count": 323
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "CAPITOLO 2\nPer esempio, se hai una cascata RESISTENZA (OHM)\nalta, l’acqua cade con più energia,\nproprio come una batteria con alta\nOra pensa al tubo stesso:\ntensione spinge più forte\nl’elettricità. CORRENTE (AMPERE (cid:3282)(cid:5) La (cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70) è come il (cid:73)(cid:78)(cid:70)(cid:82)(cid:74)(cid:89)(cid:87)(cid:84)(cid:5)\n(cid:73)(cid:74)(cid:81)(cid:5)(cid:89)(cid:90)(cid:71)(cid:84).\n(cid:3282)(cid:5) Un tubo stretto rende difficile il\npassaggio dell’acqua, mentre\nLa corrente è come il (cid:1835)(cid:90)(cid:88)(cid:88)(cid:84)(cid:5)(cid:73)(cid:1123)(cid:70)(cid:72)(cid:86)(cid:90)(cid:70)\nun tubo largo la lascia scorrere\nche scorre attraverso il tubo.\nfacilmente.\n(cid:3282)(cid:5) Allo stesso modo, nei circuiti\n(cid:3282)(cid:5) È la quantità di acqua che passa\nelettrici, i materiali con alta\nogni secondo, proprio come\nresistenza rallentano il flusso\nla corrente è la quantità di\ndella corrente.\nelettroni che fluiscono in un\ncircuito.\nEsempio: una cannuccia stretta\n(cid:3282)(cid:5) Se la pompa spinge più forte (più\ntensione), può fluire più oppone più resistenza al passaggio\nacqua e quindi aumenta dell’acqua rispetto a un tubo largo.\nla corrente.\n10 Laboratorio di elettronica: Impara e sperimenta\nLE GRANDEZZE ELETTRICHE E LA LEGGE DI OHM\nLA LEGGE DI OHM: COME SONO LEGATE?\nLa relazione tra queste tre grandezze\nè illustrata dalla Legge di Ohm:\n(cid:59)(cid:34)(cid:46)(cid:3282)\n(cid:3282)(cid:5) V è la tensione (in Volt),\n(cid:3282)(cid:5) I è la corrente (in Ampere),\n(cid:3282)(cid:5) (cid:53)(cid:74)(cid:87)(cid:5)(cid:89)(cid:87)(cid:84)(cid:91)(cid:70)(cid:87)(cid:74)(cid:5)(cid:81)(cid:70)(cid:5)(cid:89)(cid:74)(cid:83)(cid:88)(cid:78)(cid:84)(cid:83)(cid:74)(cid:5)(cid:13)(cid:59)(cid:14)(cid:31) Copri\n(cid:81)(cid:70)(cid:5)(cid:1126)(cid:59)(cid:1127)(cid:19)(cid:5)(cid:55)(cid:78)(cid:82)(cid:70)(cid:83)(cid:74) (cid:46)(cid:5)(cid:131)(cid:5)(cid:55). Quindi la",
+    "page_number": 10,
+    "token_count": 495
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "(cid:3282)(cid:5) (cid:55)(cid:5)(cid:2316)(cid:5)(cid:81)(cid:70)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:13)(cid:78)(cid:83)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:84)(cid:5)(cid:569)(cid:14)(cid:19)\nTensione è uguale alla Corrente\nmoltiplicata per la Resistenza.\nRicorriamo all'esempio\ndell’acqua: (cid:3282)(cid:5) (cid:53)(cid:74)(cid:87)(cid:5)(cid:89)(cid:87)(cid:84)(cid:91)(cid:70)(cid:87)(cid:74)(cid:5)(cid:81)(cid:70)(cid:5)C(cid:84)(cid:87)(cid:87)(cid:74)(cid:83)(cid:89)(cid:74)(cid:5)(cid:13)(cid:46)(cid:14)(cid:31) Copri\n(cid:81)(cid:70)(cid:5)(cid:1126)(cid:46)(cid:1127)(cid:19)(cid:5)(cid:55)(cid:78)(cid:82)(cid:70)(cid:83)(cid:74)(cid:5)(cid:59)(cid:5)(cid:137)(cid:5)(cid:55). Quindi la\nCorrente è uguale alla\n(cid:3282)(cid:5) Se vuoi più acqua (corrente)\nattraverso un tubo stretto (alta Tensione divisa per la\nresistenza), devi spingere più forte Resistenza.\n(tensione più alta). (cid:3282)(cid:5) (cid:53)(cid:74)(cid:87)(cid:5)(cid:89)(cid:87)(cid:84)(cid:91)(cid:70)(cid:87)(cid:74)(cid:5)(cid:81)(cid:70)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:13)(cid:55)(cid:14)(cid:31)\n(cid:3282)(cid:5) Se il tubo è largo (bassa (cid:40)(cid:84)(cid:85)(cid:87)(cid:78)(cid:5)(cid:81)(cid:70)(cid:5)(cid:1126)(cid:55)(cid:1127)(cid:19)(cid:5)(cid:55)(cid:78)(cid:82)(cid:70)(cid:83)(cid:74)(cid:5)(cid:59)(cid:5)(cid:137)(cid:5)(cid:46). Quindi\nresistenza), puoi far fluire più la Resistenza è uguale alla\nacqua senza aumentare la forza Tensione divisa per la Corrente.\ndella pompa (tensione). Immaginiamo una torcia elettrica:\n(cid:3282)(cid:5) La batteria ha una T(cid:74)(cid:83)(cid:88)(cid:78)(cid:84)(cid:83)(cid:74)(cid:5)(cid:13)(cid:59)(cid:14) di 6V\nIL TRIANGOLO DI OHM",
+    "page_number": 11,
+    "token_count": 454
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "(cid:3282)(cid:5) La lampadina ha una R(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:13)(cid:55)(cid:14) (cid:73)(cid:78)(cid:5)(cid:23)(cid:569)\nPer trovare quanta Corrente ((cid:46)) passa nella\nIl (cid:89)(cid:87)(cid:78)(cid:70)(cid:83)(cid:76)(cid:84)(cid:81)(cid:84)(cid:5)(cid:73)(cid:78)(cid:5)(cid:52)(cid:77)(cid:82) è un modo\nlampadina usiamo il triangolo:\nsemplice per ricordare la relazione\ntra tre grandezze fondamentali\ndell’elettricità: T(cid:74)(cid:83)(cid:88)(cid:78)(cid:84)(cid:83)(cid:74)(cid:5)(cid:13)(cid:59)(cid:14),\nCorrente (cid:13)(cid:46)(cid:14) e R(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:13)(cid:55)(cid:14)\n(cid:46)(cid:34)(cid:59)(cid:137)(cid:55)(cid:34)(cid:27)(cid:59)(cid:137)(cid:23)(cid:569)(cid:34)(cid:24)(cid:38)\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 11\nNOTE\n12 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 11,
+    "token_count": 248
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\nCOS’È UN RESISTORE?\nUn resistore è un componente che va (le lucine colorate). I resistori -\nmontato sui circuiti elettrici e serve a chiamati erroneamente resistenze,\ncontrollare il passaggio dell’elettricità. hanno il ruolo di guardiani nei circuiti:\nImmaginalo come un autovelox aiutano a mantenere tutto al sicuro e a\ninstallato su una strada: la sua far funzionare le cose al meglio!\npresenza aiuta a controllare la Piccola curiosità: la resistenza è la\nvelocità delle auto (in questo caso proprietà (cid:1834)(cid:88)(cid:78)(cid:72)(cid:70)(cid:5)dei resistori, non\nl’elettricità) affinché non spingano cadiamo in questa confusione!\ntroppo sull’acceleratore!\nCOME LO DISEGNIAMO?\nCome tutti i componenti elettronici\ni resistori hanno un loro simbolo che\nviene utilizzato in disegni tecnici\nchiamati schemi elettrici. Nel caso del\nresistore il simbolo può essere uno dei\nA COSA SERVE UN RESISTORE? due (cid:73)(cid:74)(cid:81)(cid:81)(cid:70)(cid:5)(cid:1834)(cid:76)(cid:90)(cid:87)(cid:70)(cid:5)(cid:88)(cid:84)(cid:89)(cid:89)(cid:84)\nI resistori aiutano a tenere sotto\ncontrollo la quantità di elettricità\nche attraversi i circuiti. E' un\ncompito di grande responsabilità\naffinché non si danneggino i\ncomponenti delicati come i LED\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 13",
+    "page_number": 13,
+    "token_count": 337
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\nSul resistore si utilizza il simbolo a\nzig-zag che ha sempre tre punte (cid:30)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:78)(cid:5)(cid:73)(cid:74)(cid:81)(cid:81)(cid:1123)(cid:70)(cid:87)(cid:72)(cid:84)(cid:71)(cid:70)(cid:81)(cid:74)(cid:83)(cid:84),(cid:5)(cid:82)(cid:74)(cid:83)(cid:89)(cid:87)(cid:74)(cid:5)(cid:81)(cid:74)(cid:5)\nrispettivamente rivolte verso l'alto e\n(cid:70)(cid:81)(cid:89)(cid:87)(cid:74)(cid:5)(cid:23)(cid:5)(cid:85)(cid:84)(cid:88)(cid:88)(cid:84)(cid:83)(cid:84)(cid:5)(cid:70)(cid:91)(cid:74)(cid:87)(cid:74)(cid:5)(cid:88)(cid:84)(cid:81)(cid:84)(cid:5)(cid:28)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:78)(cid:5)\nverso il basso, queste si identificano\n(cid:13)(cid:78)(cid:81)(cid:5)(cid:82)(cid:84)(cid:81)(cid:89)(cid:78)(cid:85)(cid:81)(cid:78)(cid:72)(cid:70)(cid:89)(cid:84)(cid:87)(cid:74)(cid:14)(cid:5)(cid:84)(cid:5)(cid:25)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:78)(cid:5)(cid:13)(cid:81)(cid:70)(cid:5)\ncon la lettera R.(cid:5) tolleranza).\nIL CODICE COLORI DEI RESISTORI\nCOME SI LEGGE IL CODICE COLORI?\nSui resistori vengono stampate delle Per leggere il codice colori bisogna\nlinee colorate (bande) che indicano la mettere il colore della tolleranza a\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70) contenuta. Le linee destra e poi guardare le altre 3.\nindicano un codice che ci dice la\nquantità di elettricità che controllano. (cid:3282)(cid:5) Il primo colore, quello più a sinistra,\nIl valore di resistenza si indica le decine\n(cid:82)(cid:78)(cid:88)(cid:90)(cid:87)(cid:70)(cid:5)(cid:78)(cid:83)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:13)(cid:569)(cid:14)(cid:19) (cid:3282)(cid:5) Il secondo colore indica le unità (cid:3282)\nIl terzo colore invece indica il\nnumero di zeri da aggiungere!\nFacciamo un esempio!\nIl codice più comune è il codice (cid:3282)(cid:5) 3 decine",
+    "page_number": 14,
+    "token_count": 477
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)(cid:70)(cid:89)(cid:84)(cid:5)(cid:70)(cid:5)(cid:25)(cid:5)(cid:71)(cid:70)(cid:83)(cid:73)(cid:74)(cid:19)(cid:5)(cid:40)(cid:78)(cid:5)(cid:88)(cid:84)(cid:83)(cid:84)(cid:5)(cid:78)(cid:83)(cid:75)(cid:70)(cid:89)(cid:89)(cid:78)(cid:5) (cid:3282)(cid:5) 6 unità\n(cid:25)(cid:5)(cid:71)(cid:70)(cid:83)(cid:73)(cid:74)(cid:17)(cid:5)(cid:23)(cid:5)(cid:85)(cid:84)(cid:88)(cid:88)(cid:84)(cid:83)(cid:84)(cid:5)(cid:70)(cid:91)(cid:74)(cid:87)(cid:74)(cid:5)(cid:90)(cid:83)(cid:84)(cid:5)(cid:73)(cid:74)(cid:78)(cid:5) (cid:3282)(cid:5) 2 zeri\n14 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN RESISTORE?\n(cid:40)(cid:84)(cid:83)(cid:5)(cid:86)(cid:90)(cid:74)(cid:88)(cid:89)(cid:78)(cid:5)(cid:83)(cid:90)(cid:82)(cid:74)(cid:87)(cid:78)(cid:5)(cid:84)(cid:89)(cid:89)(cid:74)(cid:83)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:24)(cid:27)(cid:21)(cid:21)(cid:5)(cid:569)(cid:19)(cid:5) Se un resistore non ha il valore che ci\nConsiderato che il colore della si aspetta, potrebbe causare problemi\ntolleranza è nel circuito e farlo funzionare in modo\n(cid:84)(cid:87)(cid:84)(cid:17)(cid:5)(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:90)(cid:83)(cid:70)(cid:5)(cid:89)(cid:84)(cid:81)(cid:81)(cid:74)(cid:87)(cid:70)(cid:83)(cid:95)(cid:70)(cid:5)(cid:73)(cid:74)(cid:81)(cid:5)(cid:26)(cid:10)(cid:19) errato. Conoscere la tolleranza ci\naiuta a progettare circuiti più sicuri\n(cid:74)(cid:5)(cid:70)(cid:75)(cid:1834)(cid:73)(cid:70)(cid:71)(cid:78)(cid:81)(cid:78)(cid:19)\nCOS’È LA TOLLERANZA DI UN RESISTORE?\nImmaginate di avere un resistore da COME RICORDIAMO IL CODICE COLORI?\n(cid:22)(cid:21)(cid:21)(cid:5)(cid:51)(cid:77)(cid:82)(cid:19)(cid:5)(cid:53)(cid:84)(cid:89)(cid:87)(cid:74)(cid:88)(cid:89)(cid:74)(cid:5)(cid:85)(cid:74)(cid:83)(cid:88)(cid:70)(cid:87)(cid:74)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:88)(cid:78)(cid:70)(cid:5)",
+    "page_number": 14,
+    "token_count": 482
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "(cid:74)(cid:88)(cid:70)(cid:89)(cid:89)(cid:70)(cid:82)(cid:74)(cid:83)(cid:89)(cid:74)(cid:5)(cid:22)(cid:21)(cid:21)(cid:5)(cid:51)(cid:77)(cid:82)(cid:17)(cid:5)(cid:82)(cid:70)(cid:5)(cid:78)(cid:83)(cid:5)(cid:87)(cid:74)(cid:70)(cid:81)(cid:89)(cid:2308)(cid:5) Abbiamo detto che il codice\n(cid:72)(cid:1123)(cid:2316)(cid:5)un piccolo segreto da considerare: colori utilizza l’ordine dei colori\nla Tolleranza. La tolleranza è un dell’arcobaleno, ma chi ricorda l’ordine\nmargine di errore che ci dice quanto il esatto dei colori dell’arcobaleno?\nvalore reale del resistore può variare Nessuno! Non preoccuparti però c’è\nrispetto al valore nominale. (cid:90)(cid:83)(cid:70)(cid:5)(cid:88)(cid:74)(cid:82)(cid:85)(cid:81)(cid:78)(cid:72)(cid:74)(cid:5)(cid:1834)(cid:81)(cid:70)(cid:88)(cid:89)(cid:87)(cid:84)(cid:72)(cid:72)(cid:70)(cid:5)(cid:85)(cid:74)(cid:87)(cid:5)(cid:87)(cid:78)(cid:72)(cid:84)(cid:87)(cid:73)(cid:70)(cid:87)(cid:81)(cid:70)(cid:5)\nmolto più semplicemente.\nAd esempio, se un resistore ha una\n(cid:89)(cid:84)(cid:81)(cid:81)(cid:74)(cid:87)(cid:70)(cid:83)(cid:95)(cid:70)(cid:5)(cid:73)(cid:74)(cid:81)(cid:5)(cid:26)(cid:10)(cid:5)(cid:88)(cid:78)(cid:76)(cid:83)(cid:78)(cid:1834)(cid:72)(cid:70)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5) valore Non Metterti (cid:55)ubicondo Alla Guida\nreale del resistore può essere un po’ Vino (e) Birra Van (cid:43)iù Bene\npiù alto o un po’ più basso\n(cid:73)(cid:78)(cid:5)(cid:22)(cid:21)(cid:21)(cid:5)(cid:51)(cid:77)(cid:82)(cid:19)(cid:5)(cid:46)(cid:83)(cid:5)(cid:86)(cid:90)(cid:74)(cid:88)(cid:89)(cid:84)(cid:5)(cid:72)(cid:70)(cid:88)(cid:84)(cid:5)(cid:78)(cid:81)(cid:5)(cid:88)(cid:90)(cid:84)(cid:5) Proviamo ora a scriverla in verticale",
+    "page_number": 15,
+    "token_count": 436
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "(cid:91)(cid:70)(cid:81)(cid:84)(cid:87)(cid:74)(cid:5)(cid:85)(cid:84)(cid:89)(cid:87)(cid:74)(cid:71)(cid:71)(cid:74)(cid:5)(cid:91)(cid:70)(cid:87)(cid:78)(cid:70)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:30)(cid:26)(cid:5)(cid:51)(cid:77)(cid:82)(cid:5)(cid:70)(cid:5)\n(cid:22)(cid:21)(cid:26)(cid:5)(cid:51)(cid:77)(cid:82)(cid:19)(cid:5)(cid:54)(cid:90)(cid:78)(cid:83)(cid:73)(cid:78)(cid:17)(cid:5)(cid:70)(cid:83)(cid:72)(cid:77)(cid:74)(cid:5)(cid:88)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5)(cid:83)(cid:84)(cid:88)(cid:89)(cid:87)(cid:84)(cid:5) Non\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:2316)(cid:5)(cid:74)(cid:89)(cid:78)(cid:72)(cid:77)(cid:74)(cid:89)(cid:89)(cid:70)(cid:89)(cid:84)(cid:5)(cid:72)(cid:84)(cid:82)(cid:74)(cid:5)(cid:22)(cid:21)(cid:21)(cid:5)(cid:51)(cid:77)(cid:82)(cid:17)(cid:5) Metterti\nnon sempre sarà esattamente così. (cid:55)ubicondo\nAlla\nMa perché è così importante capire la Guida\ntolleranza? Quando si progettano Vino\ncircuiti elettronici, gli ingegneri devono Birra\nessere sicuri che i componenti Van\nfunzionino bene anche se hanno Giù\npiccole variazioni nei loro valori. Bene\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 15",
+    "page_number": 15,
+    "token_count": 318
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\nLa lettera iniziale di ogni parola\n(cid:73)(cid:74)(cid:81)(cid:81)(cid:70)(cid:5)(cid:1834)(cid:81)(cid:70)(cid:88)(cid:89)(cid:87)(cid:84)(cid:72)(cid:72)(cid:70)(cid:17)(cid:5)(cid:78)(cid:83)(cid:73)(cid:78)(cid:72)(cid:70)(cid:5)(cid:90)(cid:83)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:74)(cid:5)\ndell’arcobaleno!\n(cid:51)(cid:84)(cid:83)(cid:5) (cid:34)(cid:5) (cid:51)(cid:74)(cid:87)(cid:84)(cid:5) (cid:34)(cid:5) (cid:21)\n(cid:50)(cid:74)(cid:89)(cid:89)(cid:74)(cid:87)(cid:89)(cid:78)(cid:5) (cid:34)(cid:5) (cid:50)(cid:70)(cid:87)(cid:87)(cid:84)(cid:83)(cid:74)(cid:5) (cid:34)(cid:5) (cid:22)\n(cid:55)(cid:90)(cid:71)(cid:78)(cid:72)(cid:84)(cid:83)(cid:73)(cid:84)(cid:5) (cid:34)(cid:5) (cid:55)(cid:84)(cid:88)(cid:88)(cid:84)(cid:5) (cid:34)(cid:5) (cid:23)\nAlla = Arancione = 3\n(cid:44)(cid:90)(cid:78)(cid:73)(cid:70)(cid:5) (cid:34)(cid:5) (cid:44)(cid:78)(cid:70)(cid:81)(cid:81)(cid:84)(cid:5) (cid:34)(cid:5) (cid:25)\n(cid:59)(cid:78)(cid:83)(cid:84)(cid:5) (cid:34)(cid:5) (cid:59)(cid:74)(cid:87)(cid:73)(cid:74)(cid:5) (cid:34)(cid:5) (cid:26)\nBirra = Blu = 6\n(cid:59)(cid:70)(cid:83)(cid:5) (cid:34)(cid:5) (cid:59)(cid:78)(cid:84)(cid:81)(cid:70)(cid:5) (cid:34)(cid:5) (cid:28)\n(cid:44)(cid:78)(cid:2330)(cid:5) (cid:34)(cid:5) (cid:44)(cid:87)(cid:78)(cid:76)(cid:78)(cid:84)(cid:5) (cid:34)(cid:5) (cid:29)\n(cid:39)(cid:74)(cid:83)(cid:74)(cid:5) (cid:34)(cid:5) (cid:39)(cid:78)(cid:70)(cid:83)(cid:72)(cid:84)(cid:5) (cid:34)(cid:5) (cid:30)\nFacile no?\nESERCIZI\nPer verificare se hai capito come utilizzare la filastrocca e il codice\ncolori proviamo ora a fare qualche esercizio.\nScrivi accanto ad ogni resistore quanto vale il suo valore di resistenza e\nla sua tolleranza.\n16 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN RESISTORE?\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %",
+    "page_number": 16,
+    "token_count": 496
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "R = _____________ (cid:49) ± _____ %\nScrivi qui i tuoi appunti\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 17",
+    "page_number": 17,
+    "token_count": 40
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\nCOSA FARE QUANDO CI SONO TROPPI MA COME SI LEGGONO?\nZERI?\n(cid:3282)(cid:5)La lettera k serve per\nAlcuni valori di resistenza hanno (cid:78)(cid:83)(cid:73)(cid:78)(cid:72)(cid:70)(cid:87)(cid:74)(cid:5)(cid:22)(cid:21)(cid:21)(cid:21)(cid:5) e va letta kilo.\n(cid:73)(cid:70)(cid:91)(cid:91)(cid:74)(cid:87)(cid:84)(cid:5)(cid:89)(cid:87)(cid:84)(cid:85)(cid:85)(cid:78)(cid:5)(cid:95)(cid:74)(cid:87)(cid:78)(cid:6)(cid:5)(cid:22)(cid:21)(cid:5)(cid:21)(cid:21)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82),(cid:5) U(cid:83)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:5)(cid:22)(cid:21)(cid:19)(cid:21)(cid:21)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)è(cid:5)(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)\n(cid:22)(cid:5)(cid:21)(cid:21)(cid:21)(cid:5)(cid:21)(cid:21)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82),(cid:5)(cid:82)(cid:70)(cid:5)(cid:86)(cid:90)(cid:70)(cid:83)(cid:89)(cid:78)(cid:5)(cid:88)(cid:84)(cid:83)(cid:84)(cid:36)(cid:5) (cid:70)(cid:89)(cid:84)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:78)(cid:81)(cid:84)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)\n(cid:3282)(cid:5) La lettera M serve per\n(cid:54)(cid:90)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)(cid:72)(cid:78)(cid:5)(cid:88)(cid:84)(cid:83)(cid:84)(cid:5)(cid:24)(cid:17)(cid:5)(cid:27)(cid:5)(cid:84)(cid:5)(cid:70)(cid:73)(cid:73)(cid:78)(cid:87)(cid:78)(cid:89)(cid:89)(cid:90)(cid:87)(cid:70)(cid:5)(cid:30)(cid:5)(cid:95)(cid:74)(cid:87)(cid:78)(cid:5) (cid:78)(cid:83)(cid:73)(cid:78)(cid:72)(cid:70)(cid:87)(cid:74)(cid:5)(cid:22)(cid:19)(cid:21)(cid:21)(cid:21)(cid:19)(cid:21)(cid:21)(cid:21)(cid:5) e va letta",
+    "page_number": 18,
+    "token_count": 441
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "si utilizzano delle abbreviazioni per mega. U(cid:83)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:22)(cid:5)(cid:82)(cid:78)(cid:81)(cid:78)(cid:84)(cid:83)(cid:74)(cid:5)\nevitare di scrivere numeri enormi. di Ohm è chiamato\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:22)(cid:5)(cid:82)(cid:74)(cid:76)(cid:70)(cid:5)(cid:52)(cid:77)(cid:82)\nSe abbiamo 3 zeri utilizziamo la lettera (cid:3282)(cid:5) La lettera G serve\nk (minuscolo perché con la lettera K (cid:85)(cid:74)(cid:87)(cid:5)(cid:78)(cid:83)(cid:73)(cid:78)(cid:72)(cid:70)(cid:87)(cid:74)(cid:5)(cid:22)(cid:19)(cid:21)(cid:21)(cid:21)(cid:19)(cid:21)(cid:21)(cid:21)(cid:19)(cid:21)(cid:21)(cid:21)(cid:5)(cid:13)(cid:90)(cid:83)(cid:5)\nsi nomina Lord Kelvin!) se sono 6 la miliardo)e va letta giga. Un\nlettera M(cid:5)(cid:74)(cid:5)(cid:88)(cid:74)(cid:5)(cid:88)(cid:84)(cid:83)(cid:84)(cid:5)(cid:30)(cid:5)(cid:81)(cid:70)(cid:5)(cid:81)(cid:74)(cid:89)(cid:89)(cid:74)(cid:87)(cid:70)(cid:5)G. resistore da (cid:22)(cid:5)(cid:82)(cid:78)(cid:81)(cid:78)(cid:70)(cid:87)(cid:73)(cid:84)(cid:5)(cid:73)(cid:78)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)è(cid:5)\n(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)(cid:70)(cid:89)(cid:84)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:22)(cid:5)(cid:76)(cid:78)(cid:76)(cid:70)(cid:5)(cid:52)(cid:77)\n(cid:82).\nESERCIZI\nRipeti ora l’esercizio utilizzando le lettere k M e G\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\n18 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN RESISTORE?\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nR = _____________ (cid:49) ± _____ %\nScrivi qui i tuoi appunti\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 19\nNOTE",
+    "page_number": 18,
+    "token_count": 499
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "20 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 20,
+    "token_count": 12
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "CAPITOLO 4\nCOS’È LA BREADBOARD?\nUna breadboard è una scheda con COME FUNZIONA?\ntanti piccoli fori e connessioni interne\nche permettono di inserire numerosi\n(cid:22)(cid:19) (cid:56)(cid:89)(cid:87)(cid:90)(cid:89)(cid:89)(cid:90)(cid:87)(cid:70): La breadboard ha linee\ncomponenti elettronici da collegare tra orizzontali e verticali che sono\ndi loro senza usare il saldatore (che è collegate internamente. Le linee\nuno strumento potenzialmente sul lato lungo della breadboard\npericoloso). È utilizzata sono usate principalmente\nprincipalmente per prototipare per alimentazione (positivo\n(cid:72)(cid:78)(cid:87)(cid:72)(cid:90)(cid:78)(cid:89)(cid:78)(cid:17)(cid:5)ciò(cid:5)(cid:88)(cid:78)(cid:76)(cid:83)(cid:78)(cid:1834)(cid:72)(cid:70)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:85)(cid:90)(cid:84)(cid:78)(cid:5)(cid:72)(cid:87)(cid:74)(cid:70)(cid:87)(cid:74)(cid:5) e negativo), mentre le linee centrali\nun circuito per testarlo senza fare sono utilizzate per inserire i\ncollegamenti permanenti. componenti. (cid:38)(cid:57)(cid:57)(cid:42)(cid:51)(cid:63)(cid:46)(cid:52)(cid:51)(cid:42)! Ci\nsono i simboli + e - ma le linee non\nsanno di essere colorate! Questa è\nsolo uno stratagemma che si usa\nper capire dove finiscono i fili, una\ncosiddetta (cid:72)(cid:84)(cid:83)(cid:91)(cid:74)(cid:83)(cid:95)(cid:78)(cid:84)(cid:83)(cid:74).\n2. (cid:40)(cid:84)(cid:81)(cid:81)(cid:74)(cid:76)(cid:70)(cid:82)(cid:74)(cid:83)(cid:89)(cid:84): Quando inserisci\nun componente in uno dei fori è\ncollegato automaticamente ai fori\nadiacenti sulla stessa riga/linea.\nQuesto\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 21",
+    "page_number": 21,
+    "token_count": 417
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "CAPITOLO 4\nsignifica che i componenti sulla fai puoi farlo come se fosse il gioco\nstessa riga possono comunicare della battaglia navale!\ntra loro.\nUSIAMO LA BREADBOARD!\nVediamo ora come usare la\nbreadboard per collegare un resistore\n(cid:73)(cid:70)(cid:5)(cid:23)(cid:23)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:13)(cid:89)(cid:78)(cid:5)(cid:87)(cid:78)(cid:72)(cid:84)(cid:87)(cid:73)(cid:78)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:78)(cid:5)\ndovrebbe avere?)\nGuarda le righe blu per capire come\nsono fatti i collegamenti della\nbreadboard!\nNelle righe superiori e inferiori i\nbuchetti sono collegati tra di loro\nin (cid:84)(cid:87)(cid:78)(cid:95)(cid:95)(cid:84)(cid:83)(cid:89)(cid:70)(cid:81)(cid:74), mentre nella parte\ninferiore in (cid:91)(cid:74)(cid:87)(cid:89)(cid:78)(cid:72)(cid:70)(cid:81)(cid:74). Questo è\n(cid:91)(cid:74)(cid:87)(cid:84)(cid:5)(cid:1834)(cid:83)(cid:84)(cid:5)(cid:70)(cid:81)(cid:5)(cid:72)(cid:70)(cid:83)(cid:70)(cid:81)(cid:74)(cid:89)(cid:89)(cid:84)(cid:5)al centro(cid:5)de(cid:81)(cid:81)(cid:70)(cid:5)\nbreadboard dove il collegamento viene\ninterrotto per poi riprendere\n(cid:88)(cid:90)(cid:71)(cid:78)(cid:89)(cid:84)(cid:5)(cid:73)(cid:84)(cid:85)(cid:84)(cid:5)(cid:81)(cid:70)(cid:5)(cid:88)(cid:90)(cid:70)(cid:5)(cid:1834)(cid:83)(cid:74)(cid:19)(cid:5)(cid:54)(cid:90)(cid:74)(cid:88)(cid:89)a\noperazione(cid:5) consente di collegare i\ncomponenti che hanno pin sia da un\nlato che dall’altro senza collegare tra\ndi loro pin che non dovrebbero esserlo!\nOppure semplicemente avere la\npossibilità di inserire più prototipi sulla\nstessa breadboard. Entrambi i modi vanno bene perché i\ndue piedini del resistore sono collegati\nOsserva attentamente la breadboard: in due fori non connessi tra di loro\nci sono delle lettere e dei numeri, se dalla breadboard. Che succede se\nvuoi prendere appunti su quello che invece lo colleghi così?\n22 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 22,
+    "token_count": 495
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "COS’È LA BREADBOARD?\nLe due gambette del resistore sono\nconnesse tra di loro dai collegamenti\ninterni della breadboard. La corrente\nè pigra e sceglie sempre il percorso a\nresistenza più bassa per fare meno\nfatica a passare e quindi il nostro\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:23)(cid:23)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:2316)(cid:5)(cid:73)(cid:78)(cid:91)(cid:74)(cid:83)(cid:89)(cid:70)(cid:89)(cid:84)(cid:5)(cid:90)(cid:83)(cid:5)\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)(cid:70)(cid:89)(cid:84)(cid:5)(cid:70)(cid:83)(cid:72)(cid:77)(cid:74)(cid:5)\n(cid:72)(cid:84)(cid:87)(cid:89)(cid:84)(cid:5)(cid:72)(cid:78)(cid:87)(cid:72)(cid:90)(cid:78)(cid:89)(cid:84).\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 23\nNOTE\n24 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 23,
+    "token_count": 265
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "CAPITOLO 5\nCOSA SONO LE BATTERIE?\nLe batterie sono i nostri esperimenti. Muovendosi\ndelle piccole “scatole magiche” che lungo il percorso le cariche generano\naccumulano energia. Quando le quindi qualcosa come calore o luce!\nusiamo l'energia accumulata serve\nImmaginate la vostra lampada da\nper far funzionare oggetti come torce,\nnotte: in quel caso l’energia della\ntelefoni, giocattoli e tanto altro.\nbatteria (o della presa della luce)\nviene utilizzata per generare luce.\nCOME FUNZIONANO? Invece, nel caso dell'asciugacapelli\nl’energia viene usata per generare\nUna parte della batteria è fatta calore e asciugare i capelli.\ndi un materiale che “vuole” liberarsi di\nenergia ((cid:85)(cid:84)(cid:81)(cid:84)(cid:5)(cid:83)(cid:74)(cid:76)(cid:70)(cid:89)(cid:78)(cid:91)(cid:84)) e un’altra\nparte che vuole catturare questa\nenergia ((cid:85)(cid:84)(cid:81)(cid:84)(cid:5)(cid:85)(cid:84)(cid:88)(cid:78)(cid:89)(cid:78)(cid:91)(cid:84)). Tra queste\ndue parti c’è una sostanza liquida\n(elettrolita) che aiuta le cariche a\nmuoversi.\nPer spostarsi dal polo negativo al polo\npositivo, le cariche hanno bisogno di\nun percorso obbligato, come se fosse\nuna pista. Questo percorso è fatto di\ncircuiti che costruiremo durante\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 25",
+    "page_number": 25,
+    "token_count": 329
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "CAPITOLO 5\nPer gli esperimenti di questo corso Per collegare la clip alla\n(cid:90)(cid:89)(cid:78)(cid:81)(cid:78)(cid:95)(cid:95)(cid:74)(cid:87)(cid:74)(cid:82)(cid:84)(cid:5) (cid:90)(cid:83)(cid:70)(cid:5) (cid:71)(cid:70)(cid:89)(cid:89)(cid:74)(cid:87)(cid:78)(cid:70)(cid:5) (cid:70)(cid:5) (cid:30)(cid:59)(cid:5) batteria fai combaciare i\n(cid:72)(cid:84)(cid:82)(cid:74)(cid:5)questa nell'immagine: connettori in questo modo\nUna volta collegati, il cavo rosso\nindica il positivo, mentre quello nero il\nnegativo. Per comodità inseriremo il\n(cid:72)(cid:70)(cid:91)(cid:84)(cid:5)(cid:83)(cid:74)(cid:87)(cid:84) nella (cid:88)(cid:89)(cid:87)(cid:78)(cid:88)(cid:72)(cid:78)(cid:70)(cid:5)(cid:82)(cid:73)(cid:86)(cid:69) della\nbreadboard e il (cid:72)(cid:70)(cid:91)(cid:84)(cid:5) (cid:87)(cid:84)(cid:88)(cid:88)(cid:84) nella\nstriscia rossa della breadboard.\nPer collegarla alla breadboard invece (cid:55)(cid:78)(cid:72)(cid:84)(cid:87)(cid:73)(cid:70)(cid:31) l(cid:73)(cid:4) (cid:87)(cid:88)(cid:86)(cid:77)(cid:87)(cid:71)(cid:73)(cid:4) (cid:71)(cid:83)(cid:80)(cid:83)(cid:86)(cid:69)(cid:88)(cid:73)(cid:4) (cid:87)(cid:83)(cid:82)(cid:83)(cid:4)\nutilizzeremo una clip per (cid:87)(cid:83)(cid:80)(cid:83)(cid:4) (cid:89)(cid:82)(cid:4) (cid:69)(cid:89)(cid:87)(cid:77)(cid:80)(cid:77)(cid:83)(cid:4) (cid:90)(cid:77)(cid:87)(cid:77)(cid:90)(cid:83)(cid:16)(cid:4) (cid:82)(cid:83)(cid:82)(cid:4) (cid:76)(cid:69)(cid:82)(cid:82)(cid:83)(cid:4)\nbatteria come questa (cid:69)(cid:80)(cid:71)(cid:89)(cid:82)(cid:69)(cid:4)(cid:74)(cid:89)(cid:82)(cid:94)(cid:77)(cid:83)(cid:82)(cid:73)(cid:4)(cid:73)(cid:80)(cid:73)(cid:88)(cid:88)(cid:86)(cid:77)(cid:71)(cid:69)(cid:18)\nnell'immagine:\nSiamo ora pronti a realizzare i\nnostri primi esperimenti perché\npossiamo dare energia ai circuiti.\n26 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 26,
+    "token_count": 464
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "CAPITOLO 6\nCOS’È IL DIODO LED?\nnotare infatti il LED ha una gambetta\nUn diodo LED (che è l'acronimo di Light più lunga e una più corta, questo non\nEmitting Diode) o diodo a emissione di perché gli piace zoppicare, ma perché\nluce in italiano, la (cid:76)(cid:70)(cid:82)(cid:71)(cid:74)(cid:89)(cid:89)(cid:70)(cid:5)(cid:81)(cid:90)(cid:83)(cid:76)(cid:70) indica il (cid:85)(cid:84)(cid:88)(cid:78)(cid:89)(cid:78)(cid:91)(cid:84),\nè un piccolo dispositivo elettronico che mentre la (cid:76)(cid:70)(cid:82)(cid:71)(cid:74)(cid:89)(cid:89)(cid:70)(cid:5)(cid:72)(cid:84)(cid:87)(cid:89)(cid:70) il (cid:83)(cid:74)(cid:76)(cid:70)(cid:89)(cid:78)(cid:91)(cid:84).\nproduce luce quando viene attraversato Il nome del (cid:85)(cid:84)(cid:88)(cid:78)(cid:89)(cid:78)(cid:91)(cid:84) è (cid:38)(cid:51)(cid:52)(cid:41)(cid:52)\nda corrente elettrica. Puoi pensarlo mentre quello del (cid:83)(cid:74)(cid:76)(cid:70)(cid:89)(cid:78)(cid:91)(cid:84) è\ncome una minuscola (cid:40)(cid:38)(cid:57)(cid:52)(cid:41)(cid:52). Cosa succede se invece\n(cid:81)(cid:70)(cid:82)(cid:85)(cid:70)(cid:73)(cid:78)(cid:83)(cid:70)(cid:5)(cid:82)(cid:84)(cid:81)(cid:89)(cid:84)(cid:5)(cid:74)(cid:75)(cid:1834)(cid:72)(cid:78)(cid:74)(cid:83)(cid:89)(cid:74)(cid:19) tagliamo le gambette al povero LED?\nCome\n(cid:78)(cid:73)(cid:74)(cid:83)(cid:89)(cid:78)(cid:1834)(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:78)(cid:81)(cid:5)(cid:85)(cid:84)(cid:88)(cid:78)(cid:89)(cid:78)(cid:91)(cid:84)(cid:5)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5)(cid:83)(cid:74)(cid:76)(cid:70)(cid:89)(cid:78)(cid:91)(cid:84)(cid:36)\nA differenza dei resistori il led (cid:51)(cid:52)(cid:51)\npuò essere inserito nella breadboard In corrispondenza della gambetta\nin qualunque verso perché è un corta c’è anche un taglio sulla testa\ncomponente (cid:85)(cid:84)(cid:81)(cid:70)(cid:87)(cid:78)(cid:95)(cid:95)(cid:70)(cid:89)(cid:84). Come puoi del LED. Questo taglietto serve proprio",
+    "page_number": 27,
+    "token_count": 488
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "Laboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 27",
+    "page_number": 27,
+    "token_count": 24
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "CAPITOLO 6\n(cid:70)(cid:73)(cid:5)(cid:78)(cid:73)(cid:74)(cid:83)(cid:89)(cid:78)(cid:1834)(cid:72)(cid:70)(cid:87)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5)(cid:83)(cid:74)(cid:76)(cid:70)(cid:89)(cid:78)(cid:91)(cid:84)(cid:5)(cid:83)(cid:74)(cid:81)(cid:5)(cid:72)(cid:70)(cid:88)(cid:84)(cid:5)(cid:78)(cid:83)(cid:5) a quello del diodo classico ma\ncui le gambette siano lunghe uguali! con una piccola aggiunta.\nCOME FUNZIONA?\nInnanzitutto dobbiamo chiederci: cos’è\nun diodo?\nI diodi sono i sensi unici dell’elettronica.\nQuesto vuol dire che fanno Le freccette che escono dal diodo\nattraversare la corrente solo in un indicano l’emissione di luce.\nverso tant’è che il loro simbolo\nelettronico è una freccia.\nCOME FA AD EMETTERE LUCE?\nQuando la corrente (nel verso\ngiusto) attraversa il LED, essendo(cid:5)\n(cid:91)(cid:74)(cid:81)(cid:84)(cid:72)(cid:78)(cid:88)(cid:88)(cid:78)(cid:82)(cid:70)(cid:5)(cid:72)(cid:84)(cid:82)(cid:74)(cid:5)(cid:42)(cid:80)(cid:70)(cid:88)(cid:77)(cid:17)(cid:5)(cid:73)(cid:78)(cid:91)(cid:74)(cid:83)(cid:89)(cid:70)(cid:5)\nluminosa e poichè la testa del LED è\ncolorata\nIl diodo consente il passaggio di (cid:83)(cid:4)(cid:88)(cid:86)(cid:69)(cid:87)(cid:84)(cid:69)(cid:86)(cid:73)(cid:82)(cid:88)(cid:73)(cid:16)(cid:4)(cid:86)(cid:77)(cid:89)(cid:87)(cid:71)(cid:77)(cid:69)(cid:81)(cid:83)(cid:4)(cid:69)(cid:4)(cid:90)(cid:73)(cid:72)(cid:73)(cid:86)(cid:73)(cid:4)(cid:77)(cid:4)\ncorrente solo dal positivo verso il (cid:72)(cid:77)(cid:90)(cid:73)(cid:86)(cid:87)(cid:77)(cid:4)(cid:71)(cid:83)(cid:80)(cid:83)(cid:86)(cid:77).\nnegativo, mentre lo blocca nell’altro\nverso. È un passaggio obbligato per\nla corrente che può scorrere solo\nin un verso.\nMa torniamo ora al nostro LED.\nEssendo comunque un diodo, ci in\nindica un senso unico ed è per\nquesto che è polarizzato. Poiché fa\nDiversi colori? Quello dell’immagine è\nluce ma è un diodo, il suo simbolo\nrosso! Lo so che lo hai pensato!\nè simile\n28 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 28,
+    "token_count": 497
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": "ESPERIMENTO 1",
+    "content": "COS’È IL DIODO LED?\nI led esistono in tantissimi DOVE LO TROVIAMO?\ncolori e di diverse dimensioni\nTroviamo i diodi LED in tutti i\ndispositivi elettronici e questo ci\nindica banalmente che sono vivi.\nPensa al televisore quando è spento,\nla lucina led è accesa per dirti che la\npresa è collegata e che il televisore è\nin attesa (Stanby). Troviamo i LED\nanche nelle lucine di Natale\noin quelle tastiere da gaming che ti\nPensa che addirittura esiste un LED (lo piacciono tanto. Come già detto sono\nvedremo più avanti) che ti consente di ovunque!\ncreare il tuo colore preferito!\nESPERIMENTO 1\nTutto bellissimo, tante parole, ma ora siamo arrivati alla domanda che ti stai\nponendo dall’inizio: come lo accendo?\nPer accendere il LED e fare il nostro primo esperimento abbiamo bisogno di:\n• Un LED, sceglilo del colore che ti piace di più!\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm: spiegheremo dopo perché. Ti ricordi i\ncolori?(Giallo Viola Marrone)\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 29",
+    "page_number": 29,
+    "token_count": 272
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "CAPITOLO 6\nCostruiamo passo passo il nostro primo circuito!\nCollega la clip della batteria alla batteria\nCollega il positivo della batteria alla striscia rossa superiore della breadboard\nCollega il resistore da 470 Ohm tra un punto qualsiasi della striscia\nrossa e un punto qualsiasi della zona sotto\nCollega la gambetta lunga del LED verso il resistore e la gambetta corta\nin un punto qualsiasi della parte sotto dopo la divisione centrale\n30 Laboratorio di elettronica: Impara e sperimenta\nCOS’È IL DIODO LED?\nCollega il negativo della batteria in un punto qualsiasi della stessa colonna\ndella gambetta corta del LED e … MAGIA!\nIl LED si è acceso! Bellissimo vero? Prova adesso a cambiare il LED con\nuno di un colore diverso!\nQuale ti piace di più?\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 31",
+    "page_number": 30,
+    "token_count": 212
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": "ESPERIMENTO 2",
+    "content": "CAPITOLO 6\nESPERIMENTO 2\nIl nostro circuito include un resistore, ma perché? Abbiamo detto che\ni resistori servono per limitare la corrente te lo ricordi? Ogni LED può\nsopportare una corrente massima che non deve essere superata altrimenti il\nled si rompe. Il resistore serve proprio ad evitare di rompere il led perché\nlimita la corrente.\nSe infatti colleghi per errore il LED direttamente alla batteria, il LED si\nbrucia e potrebbe addirittura esplodere!\nQuesto succede perché gli elettroni (delle particelle minuscole di cui è\nfatta la corrente) acquistano troppa energia e vanno a scontrarsi\nfortissimo contro la superficie del LED rompendolo!\nRICORDA: NON collegare MAI il LED direttamente alla batteria, ma inserisci\nsempre un resistore al centro!\n32 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 32,
+    "token_count": 201
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 6",
+    "section": "ESPERIMENTO 3",
+    "content": "LABORATORIO DI ELETTRONICA\nI M P A R A E S P E R I M E N TA\nVOLUME 1\nELAB\nCOS’È IL DIODO LED?\nESPERIMENTO 3\nPer rendere il led più luminoso ci basta partire dal circuito che abbiamo\nrealizzato. Basta cambiare il resistore da 470 Ohm con uno da 220\nOhm. Ti ricordi i colori delle resistenze?\nCon un resistore più basso, passa più corrente quindi il LED si illumina di più.\nRendiamo il LED meno luminoso\nPer rendere il led meno luminoso, ci basta partire dal circuito che abbiamo\nrealizzato. Basta cambiare il resistore da 220 Ohm con uno da 1 kOhm.\nTi ricordi i colori?\nProva ora a cambiare il valore del resistore, ma NON scendere mai al\ndi sotto dei 100 Ohm.\nLaboratorio di elettronica: Impara e sperimenta 33\nNOTE\n34 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 33,
+    "token_count": 191
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\nCOS’È IL LED RGB?\n(cid:46)(cid:81)(cid:5)(cid:49)(cid:42)(cid:41)(cid:5)(cid:55)(cid:44)(cid:39)(cid:5)(cid:13)(cid:55)ed Green Blue) è un LED\nled nello stesso involucro per evitare di\nspeciale perché consente di creare il\navere troppi piedini da collegare si può\ncolore che più ti piace.\nscegliere di metterne uno in comune\ntra tutti, per comodità ad esempio il\n(cid:58)(cid:83)(cid:5)(cid:49)(cid:42)(cid:41)(cid:5)(cid:55)(cid:44)(cid:39)(cid:5)(cid:2316)(cid:5)(cid:78)(cid:83)(cid:75)(cid:70)(cid:89)(cid:89)(cid:78)(cid:5)(cid:75)(cid:84)(cid:87)(cid:82)(cid:70)(cid:89)(cid:84)(cid:5)(cid:73)(cid:70)(cid:5)(cid:89)(cid:87)(cid:74)(cid:5)\n(cid:72)(cid:70)(cid:89)(cid:84)(cid:73)(cid:84)(cid:17)(cid:5)(cid:84)(cid:89)(cid:89)(cid:74)(cid:83)(cid:74)(cid:83)(cid:73)(cid:84)(cid:5)(cid:72)(cid:84)(cid:88)(cid:2320)(cid:5)(cid:78)(cid:81)(cid:5)(cid:49)(cid:42)(cid:41)(cid:5)(cid:55)(cid:44)(cid:39)(cid:5)(cid:70)(cid:5)\ndiversi LED (uno rosso, uno verde e\ncatodo comune.\nuno blu), dentro lo stesso involucro\ntrasparente e quindi a seconda dei\ncolori che scegliamo di accendere\npossiamo unirli e crearne di nuovi!\nCOME FUNZIONA?\nInnanzitutto bisogna dire che esistono\n(cid:73)(cid:90)(cid:74)(cid:5)(cid:73)(cid:78)(cid:91)(cid:74)(cid:87)(cid:88)(cid:74)(cid:5)(cid:89)(cid:78)(cid:85)(cid:84)(cid:81)(cid:84)(cid:76)(cid:78)(cid:74)(cid:5)(cid:73)(cid:78)(cid:5)(cid:49)(cid:42)(cid:41)(cid:5)(cid:55)(cid:44)(cid:39)(cid:5)(cid:72)(cid:78)(cid:84)(cid:2316)(cid:5)\nquelli a (cid:72)(cid:70)(cid:89)(cid:84)(cid:73)(cid:84)(cid:5)(cid:72)(cid:84)(cid:82)(cid:90)(cid:83)(cid:74) e quelli ad\n(cid:70)(cid:83)(cid:84)(cid:73)(cid:84)(cid:5)(cid:72)(cid:84)(cid:82)(cid:90)(cid:83)(cid:74). In questo kit sono\npresenti quelli a catodo comune. Ma",
+    "page_number": 35,
+    "token_count": 441
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "cosa vuol dire? Abbiamo detto che i (cid:40)(cid:84)(cid:82)(cid:74)(cid:5)(cid:85)(cid:90)(cid:84)(cid:78)(cid:5)(cid:91)(cid:74)(cid:73)(cid:74)(cid:87)(cid:74)(cid:5)(cid:78)(cid:83)(cid:75)(cid:70)(cid:89)(cid:89)(cid:78)(cid:5)(cid:78)(cid:81)(cid:5)(cid:49)(cid:42)(cid:41)(cid:5)(cid:55)(cid:44)(cid:39)(cid:5)\nLED hanno due pin, uno lungo ha quattro piedini tutti di lunghezze\n(l’anodo) e uno corto (il catodo), se diverse. Il piedino più lungo di tutti è il\nmettiamo tre catodo comune a tutti e tre i led\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 35",
+    "page_number": 35,
+    "token_count": 153
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 7\n(cid:12)(cid:86)(cid:83)(cid:87)(cid:87)(cid:83)(cid:4)(cid:55), verde G, blu B), quello Non dimentichiamo però che stiamo\naccanto solo soletto nell’angolo è parlando comunque di LED e quindi\nsempre il rosso, nell’angolo opposto vale tutto quello che abbiamo detto\nc’è sempre il blu e il rimanente è il prima, quindi tieni a mente che per\nverde! non bruciarlo dobbiamo usare i\nresistori!\nESPERIMENTO 1\nAccendiamo il LED rosso! Per questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un filo colorato\nCollega la clip della batteria alla batteria\nCollega il positivo della batteria alla striscia rossa della breadboard\n36 Laboratorio di elettronica: Impara e sperimenta\nCOS’È IL LED RGB?\nCollega il resistore da 470 Ohm tra un punto qualsiasi della\nstriscia rossa e un punto qualsiasi della zona sotto\nPosiziona il LED RGB in modo che il led rosso sia collegato all’altro lato\ndel resistore da 470 Ohm (ricorda che la gambetta più lunga è il catodo)\nCollega il negativo della batteria alla striscia nera della breadboard\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 37",
+    "page_number": 36,
+    "token_count": 305
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 2",
+    "content": "CAPITOLO 7\nCollega il catodo (la gambetta lunga) al negativo della batteria con un filo e …\nmagia!\nESPERIMENTO 2\nScollega il resistore da 470 Ohm dal rosso e collegalo al verde\n38 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 38,
+    "token_count": 56
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 3",
+    "content": "COS’È IL LED RGB?\nESPERIMENTO 3\nScollega il resistore da 470 Ohm dal rosso e collegalo al blu\nESPERIMENTO 4\nAbbiamo a disposizione tre colori dentro lo stesso involucro quindi è arrivato\nil momento di unirli.\nPrendi un altro resistore da 470 Ohm e prova ad accendere insieme due colori\nche preferisci per creare un colore nuovo. Utilizza l’immagine sotto per\navere qualche spunto. Proviamo ad esempio a mettere insieme il rosso e\nil blu.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 39",
+    "page_number": 39,
+    "token_count": 134
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\nAbbiamo ottenuto il viola!\n40 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nInserisci il primo potenziometro nella breadboard\nInserisci una resistenza da 470 Ohm tra il positivo della batteria e il piedino\ndel potenziometro, come nel disegno\nInserisci il secondo potenziometro nella breadboard\nLaboratorio di elettronica: Impara e sperimenta 73",
+    "page_number": 40,
+    "token_count": 95
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 5",
+    "content": "COS’È IL LED RGB?\nESPERIMENTO 5\nPrendi un altro resistore da 470 Ohm per accendere\ntutti i colori contemporaneamente\nAccendendo tutti i colori contemporaneamente, dovresti in teoria ottenere il\nbianco! Molto probabilmente il colore che ottieni risulta leggermente\nazzurrino, questo perché per ottenere un bel bianco hai bisogno che il rosso\nsia più luminoso del verde e del blu!\nCome facciamo? Basta abbassare la resistenza del LED rosso! Prova a\nmodificare il resistore del LED rosso abbassandolo prima a 330 Ohm e poi a\n220 Ohm. Ti ricordi i colori? Se non li ricordi torna un attimo al capitolo sui\nresistori!\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 41\nCOS’È UN POTENZIOMETRO?\nInserisci il primo potenziometro nella breadboard\nInserisci una resistenza da 470 Ohm tra il positivo della batteria e il piedino\ndel potenziometro, come nel disegno\nInserisci il secondo potenziometro nella breadboard\nLaboratorio di elettronica: Impara e sperimenta 73",
+    "page_number": 41,
+    "token_count": 251
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 6",
+    "content": "ESPERIMENTO 6\nOra dovresti aver capito che puoi anche cambiare quanto è luminoso il singolo\ncolore del LED RGB, quindi prova a giocare con i valori di resistenza dei colori\nper creare il colore che più ti piace!\nNOTE\n42 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 42,
+    "token_count": 66
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nCOS’È UN PULSANTE?\nFinora gli esperimenti realizzati COME FUNZIONA?\nrimangono accesi e quindi continuano\n(cid:70)(cid:5)(cid:1126)(cid:72)(cid:84)(cid:83)(cid:88)(cid:90)(cid:82)(cid:70)(cid:87)(cid:74)(cid:1127)(cid:5)(cid:81)(cid:70)(cid:5)(cid:71)(cid:70)(cid:89)(cid:89)(cid:74)(cid:87)(cid:78)(cid:70)(cid:5)(cid:1834)(cid:83)(cid:84)(cid:5)(cid:70)(cid:5)\nIl pulsante è formato da due contatti\n(cid:86)(cid:90)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)(cid:83)(cid:84)(cid:83)(cid:5)(cid:88)(cid:72)(cid:84)(cid:81)(cid:81)(cid:74)(cid:76)(cid:77)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:90)(cid:83)(cid:5)(cid:1834)(cid:81)(cid:84)(cid:5) dalla\nmetallici che vengono tenuti separati\nbreadboard. Ma come possiamo\nda una molla. Quando premiamo il\naccendere il LED solo quando vogliamo\ncerchietto nero, la molla si comprime\nnoi? Possiamo usare un pulsante!\ne i due contatti metallici si toccano.\nUn pulsante è un contatto metallico\n(cid:72)(cid:77)(cid:74)(cid:5)(cid:70)(cid:72)(cid:72)(cid:74)(cid:83)(cid:73)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5)(cid:72)(cid:78)(cid:87)(cid:72)(cid:90)(cid:78)(cid:89)(cid:84)(cid:5)(cid:1834)(cid:83)(cid:84)(cid:5)(cid:70)(cid:5)(cid:86)(cid:90)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)\nviene tenuto premuto e smette di farlo\nnon appena smettiamo di premere.\nI pulsanti presenti nel kit sono i\n\"cioccolatini\" neri con quattro gambette\n(cid:72)(cid:84)(cid:82)(cid:74)(cid:5)(cid:86)(cid:90)(cid:74)(cid:81)(cid:81)(cid:84)(cid:5)(cid:78)(cid:83)(cid:5)(cid:1834)(cid:76)(cid:90)(cid:87)(cid:70).\nQuindi i quattro piedini è come se in\nrealtà fossero solo due! Come vedi\ndall’immagine sono due coppie di\ncontatti (la coppia rossa e la coppia\nblu), quando premi la parte centrale",
+    "page_number": 43,
+    "token_count": 432
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "(cid:72)(cid:84)(cid:81)(cid:81)(cid:74)(cid:76)(cid:77)(cid:78)(cid:5)(cid:90)(cid:83)(cid:5)(cid:1834)(cid:81)(cid:84)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:81)(cid:70)(cid:5)(cid:72)(cid:84)(cid:85)(cid:85)(cid:78)(cid:70)(cid:5)(cid:87)(cid:84)(cid:88)(cid:88)(cid:70)(cid:5)(cid:74)(cid:5)\nla coppia blu, questo è il motivo per\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 43",
+    "page_number": 43,
+    "token_count": 108
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 8\ncui il simbolo elettrico del pulsante Sono rappresentati i due lati del\nè questo che vedi nell'immagine pulsante (quello rosso e quello blu\n(cid:73)(cid:74)(cid:81)(cid:81)(cid:70)(cid:5)(cid:1834)(cid:76)(cid:90)(cid:87)(cid:70)(cid:5)(cid:85)(cid:87)(cid:74)(cid:72)(cid:74)(cid:73)(cid:74)(cid:83)(cid:89)(cid:74)(cid:14)(cid:5)(cid:74)(cid:5)(cid:78)(cid:81)(cid:5)(cid:72)(cid:84)(cid:83)(cid:89)(cid:70)(cid:89)(cid:89)(cid:84)(cid:5)\nmetallico che va giù quando lo premi\nper collegarli insieme.\nESPERIMENTO 1\nIn questo esperimento ripeteremo quanto fatto con il LED singolo ma\naggiungeremo un pulsante per accendere il LED solo quando vogliamo noi.\nPer questo esperimento abbiamo bisogno di:\n• Un LED.Sceglilo del colore che ti piace di\npiù!\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un pulsante\nCollega la clip della batteria alla batteria\n44 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN PULSANTE?\nCollega il positivo della batteria alla striscia rossa della breadboard\nCollega il resistore da 470 Ohm a cavallo della striscia centrale della\nbreadbord e collega lil resistore con un filo alla linea rossa del positivo\nCollega la gambetta lunga del LED verso il resistore e la gambetta\ncorta in un foro qualsiasi\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 45",
+    "page_number": 44,
+    "token_count": 347
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nInserisci il pulsante con un lato verso la gambetta corta del LED e l’altro verso\nlo spazio libero alla destra del LED. Prova a copiare esattamente l’immagine\naltrimenti diventa complicato inserire il pulsante e farlo funzionare.\nInserisci ora il negativo della batteria nella striscia nera e con un filo\ncollegalo al pulsante come mostrato in figura\nProva ora a premere il pulsante!\nNon appena lo rilasci il LED si spegne!\n46 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 46,
+    "token_count": 121
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": "ESPERIMENTO 2",
+    "content": "COS’È UN PULSANTE?\nESPERIMENTO 2\nPartendo dall’esperimento appena finito, cambia colore del LED o\nvalore del resistore per rendere il LED più o meno luminoso.\nESPERIMENTO 3\nProviamo a sostituire il LED monocolore con uno RGB. L’idea è quella di usare\nun solo pulsante per accendere o spegnere i colori che preferisci del LED.\nDiciamo che vogliamo accendere insieme il blu e il rosso per fare un led viola.\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Due resistori da 470 Ohm\n• Un pulsante\n• Due fili colorati\nCollega la clip della batteria alla batteria\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 47",
+    "page_number": 47,
+    "token_count": 182
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nCollega il positivo della batteria alla striscia rossa della breadboard\nCollega il resistore da 470 Ohm tra un punto qualsiasi della striscia\nrossa e un punto qualsiasi della breadbord\nPosiziona il LED RGB in modo che il led rosso sia collegato all’altro lato\ndel resistore da 470 Ohm (ricorda che la gambetta più lunga è il catodo).\n48 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN PULSANTE?\nCollega il negativo della batteria alla striscia nera della breadboard\n(quella sotto la rossa)\nCollega un altro resistore da 470 Ohm tra il positivo e il LED blu\nCollega il pulsante accanto al LED a cavallo della striscia divisoria centrale\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 49",
+    "page_number": 48,
+    "token_count": 188
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nCollega un filo tra il catodo del LED RGB e i contatti di sinistra del pulsante\nCollega un filo tra i contatti di destra del pulsante e il negativo della batteria\nPremi il pulsante!\n50 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 50,
+    "token_count": 60
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": "ESPERIMENTO 4",
+    "content": "COS’È UN PULSANTE?\nESPERIMENTO 4\nProviamo ora ad utilizzare tre pulsanti diversi ognuno per ogni colore\ndel LED RGB.\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Tre resistori da 470 Ohm\n• Tre pulsanti\n• Quattro fili colorati\nCollega la clip della batteria alla batteria.\nCollega il positivo della batteria alla striscia rossa superiore della breadboard\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 51",
+    "page_number": 51,
+    "token_count": 132
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nCollega il negativo alla breadboard\nPosiziona tre pulsanti a cavallo della striscia centrale della breadboard\ncome in figura\nPosiziona il LED RGB dall’altro lato della breadboard\n52 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN PULSANTE?\nCollega il catodo del LED RGB (la gambetta lunga) al negativo della batteria\ncon un filo\nCollega i tre resistori da 470 Ohm ai contatti dei tre pulsanti come in figura\ne al positivo della batteria\nCollega il pulsante più in basso al LED blu\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 53",
+    "page_number": 52,
+    "token_count": 149
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nCollega il pulsante centrale al LED verde\nCollega il pulsante più in alto al LED rosso\nPremi il pulsante collegato al LED blu\n54 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN PULSANTE?\nPremi il pulsante collegato al LED verde\nPremi il pulsante collegato al LED rosso\nProva ora a giocare con i pulsanti e ad unire i colori!\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 55",
+    "page_number": 54,
+    "token_count": 110
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 8",
+    "section": "ESPERIMENTO 5",
+    "content": "ESPERIMENTO 5\nGiocando con l’esperimento 4 prova a cambiare i valori di resistenza\ndei vari colori così da ottenere colori diversi quando premi più pulsanti\ncontemporaneamente!\nRICORDA: non scendere mai sotto i 100 Ohm altrimenti rischi di bruciare il LED!\nNOTE\n56 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 56,
+    "token_count": 78
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCOS’È UN POTENZIOMETRO?\nin numeri sul suo corpo. In questo\nUn potenziometro è un componente\nkit sono presenti dei potenziometri\nelettronico a tre piedini simile a quelli\n(cid:73)(cid:74)(cid:81)(cid:5)(cid:91)(cid:70)(cid:81)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:78)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:19)(cid:5)(cid:57)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)\n(cid:78)(cid:83)(cid:5)(cid:1834)(cid:76)(cid:90)(cid:87)(cid:70)(cid:19)\ne 3 abbiamo sempre il valore del\npotenziometro, nel nostro caso\n(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:19)(cid:5)(cid:58)(cid:89)(cid:78)(cid:81)(cid:78)(cid:95)(cid:95)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)(cid:86)(cid:90)(cid:78)(cid:83)(cid:73)(cid:78)(cid:5)(cid:78)(cid:81)(cid:5)\npotenziometro collegando solo i pin\n(cid:22)(cid:5)(cid:74)(cid:5)(cid:24)(cid:5)(cid:2316)(cid:5)(cid:72)(cid:84)(cid:82)(cid:74)(cid:5)(cid:88)(cid:74)(cid:5)(cid:88)(cid:89)(cid:74)(cid:88)(cid:88)(cid:78)(cid:82)(cid:84)(cid:5)(cid:72)(cid:84)(cid:81)(cid:81)(cid:74)(cid:76)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)\n(cid:85)(cid:87)(cid:84)(cid:85)(cid:87)(cid:78)(cid:84)(cid:5)(cid:90)(cid:83)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:70)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:19)(cid:5)(cid:50)(cid:70)(cid:5)\nc’è un trucco! Il pin 2 è collegato ad un\nAll’interno c’è un disco resistivo\npiccolo componente metallico che\nfatto proprio così:\ntocca il disco in qualunque punto\nquindi ci permette di “prelevare” un\nvalore di resistenza intermedio.\nPraticamente quando il cursore\nrotativo è tutto girato verso",
+    "page_number": 57,
+    "token_count": 432
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "(cid:78)(cid:81)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)(cid:74)(cid:5)(cid:23)(cid:5)(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)\n(cid:74)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:23)(cid:5)(cid:74)(cid:5)(cid:24)(cid:5)(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:19)(cid:5)\nVia via che che ruotiamo il cursore, la\n(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)(cid:74)(cid:5)(cid:23)(cid:5)(cid:70)(cid:90)(cid:82)(cid:74)(cid:83)(cid:89)(cid:70)(cid:5)(cid:74)(cid:5)\n(cid:86)(cid:90)(cid:74)(cid:81)(cid:81)(cid:70)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:23)(cid:5)(cid:74)(cid:5)(cid:24)(cid:5)(cid:73)(cid:78)(cid:82)(cid:78)(cid:83)(cid:90)(cid:78)(cid:88)(cid:72)(cid:74)(cid:5)(cid:1834)(cid:83)(cid:84)(cid:5)\nad arrivare al punto in cui il pin 2\nIl potenziometro ha un valore di\ncoincide con il pin 3. In questo caso\nresistenza che viene indicato scritto\n(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:81)(cid:70)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 57",
+    "page_number": 57,
+    "token_count": 434
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 9\n(cid:74)(cid:5)(cid:23)(cid:5)(cid:91)(cid:70)(cid:81)(cid:74)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:5)(cid:74)(cid:5)(cid:86)(cid:90)(cid:74)(cid:81)(cid:81)(cid:70)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:23)(cid:5) (cid:56)(cid:74)(cid:5)(cid:90)(cid:89)(cid:78)(cid:81)(cid:78)(cid:95)(cid:95)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:88)(cid:84)(cid:81)(cid:84)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)(cid:74)(cid:5)(cid:23)(cid:5)(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)\n(cid:74)(cid:5)(cid:24)(cid:5)(cid:91)(cid:70)(cid:81)(cid:74)(cid:5)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:19)(cid:5)(cid:46)(cid:83)(cid:5)(cid:71)(cid:90)(cid:84)(cid:83)(cid:70)(cid:5)(cid:88)(cid:84)(cid:88)(cid:89)(cid:70)(cid:83)(cid:95)(cid:70)(cid:5)(cid:81)(cid:70)(cid:5) praticamente creato un resistore di\nloro somma fa sempre il valore del valore variabile che passa da un valore\n(cid:85)(cid:84)(cid:89)(cid:74)(cid:83)(cid:95)(cid:78)(cid:84)(cid:82)(cid:74)(cid:89)(cid:87)(cid:84)(cid:17)(cid:5)(cid:83)(cid:74)(cid:81)(cid:5)(cid:83)(cid:84)(cid:88)(cid:89)(cid:87)(cid:84)(cid:5)(cid:72)(cid:70)(cid:88)(cid:84)(cid:5)(cid:22)(cid:21)(cid:5) (cid:73)(cid:78)(cid:5)(cid:21)(cid:5)(cid:52)(cid:77)(cid:82)(cid:5)(cid:86)(cid:90)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)(cid:2316)(cid:5)(cid:89)(cid:90)(cid:89)(cid:89)(cid:84)(cid:5)(cid:70)(cid:5)(cid:88)(cid:78)(cid:83)(cid:78)(cid:88)(cid:89)(cid:87)(cid:70)(cid:5)\nkOhm! (cid:70)(cid:73)(cid:5)(cid:90)(cid:83)(cid:5)(cid:91)(cid:70)(cid:81)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:78)(cid:5)(cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:5)(cid:86)(cid:90)(cid:70)(cid:83)(cid:73)(cid:84)(cid:5)(cid:2316)(cid:5)\nQuando il cursore si trova al centro, tra tutto a destra, per questo motivo,",
+    "page_number": 58,
+    "token_count": 475
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 1",
+    "content": "(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:22)(cid:5)(cid:74)(cid:5)(cid:23)(cid:5)(cid:74)(cid:5)(cid:89)(cid:87)(cid:70)(cid:5)(cid:78)(cid:5)(cid:85)(cid:78)(cid:83)(cid:5)(cid:23)(cid:5)(cid:74)(cid:5)(cid:24)(cid:5)(cid:70)(cid:71)(cid:71)(cid:78)(cid:70)(cid:82)(cid:84)(cid:5)(cid:81)(cid:84)(cid:5) se usato come resistore variabile il\n(cid:88)(cid:89)(cid:74)(cid:88)(cid:88)(cid:84)(cid:5)(cid:91)(cid:70)(cid:81)(cid:84)(cid:87)(cid:74)(cid:5)(cid:73)(cid:78)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:73)(cid:78)(cid:5)(cid:26)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:5) potenziometro ha questo simbolo\nconsiderato che la loro somma fa\nsempre (cid:22)(cid:21)(cid:5)(cid:80)(cid:52)(cid:77)(cid:82)(cid:6)\nPer quanto detto il simbolo elettrico\ndel potenziometro è questo nella figura\nESPERIMENTO 1\nIn questo esperimento useremo il potenziometro come resistore variabile\nper cambiare l’intensità luminosa di un LED per renderlo più o meno luminoso\nsemplicemente ruotando l’alberino del potenziometro.\nPer questo esperimento abbiamo bisogno di:\n58 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\n• Un LED: sceglilo del colore che ti piace di più!\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un potenziometro da 10 kOhm\n• Due fili colorati\nCollega la clip della batteria alla batteria.\nCollega il positivo della batteria alla striscia rossa della breadboard\nCollega il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa\ne un punto qualsiasi della zona sotto\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 59",
+    "page_number": 58,
+    "token_count": 429
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCollega la gambetta lunga del LED verso il resistore e la gambetta corta\nnel foro subito dopo la divisione centrale\nInserisci il potenziometro nella breadboard\nCollega il catodo del LED al pin 2 del potenziometro con un filo\n60 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nCollega il pin 1 del potenziometro alla striscia nera della breadboard\nCollega il negativo della batteria alla striscia nera della breadboard.\nIl led dovrebbe accendersi al massimo della sua luminosità!\nRuota ora il cursore del potenziometro via via verso destra, l’intensità\nluminosa del LED diminuisce\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 61",
+    "page_number": 60,
+    "token_count": 178
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 2",
+    "content": "CAPITOLO 9\nESPERIMENTO 2\nNell’esperimento 1 l’intensità luminosa diminuisce ruotando verso destra, come\nfacciamo invece a farla aumentare? Facile! Basta\n. In questo modo la resistenza parte alta e\ndiminuisce man mano che giri verso destra quindi il LED diventa più luminoso\n62 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 62,
+    "token_count": 81
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 3",
+    "content": "COS’È UN POTENZIOMETRO?\nESPERIMENTO 3\nCambia colore del LED, noti differenze di luminosità man mano che giri\nil cursore?\nESPERIMENTO 4\nModifichiamo l’intensità luminosa di un LED RGB utilizzando un potenziometro\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un potenziometro da 10 kOhm\n• Tre fili colorati\nCollega la clip della batteria alla batteria.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 63",
+    "page_number": 63,
+    "token_count": 138
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCollega il positivo della batteria alla striscia rossa della breadboard\nCollega il negativo della batteria alla striscia nera della breadboard\nInserisci il LED RGB nella breadboard ,attento a dove metti il catodo\n(pin più lungo)!\n64 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nCollega il resistore da 470 Ohm tra il catodo del LED RGB e un punto qualsiasi\ndella breadboard\nCollega il LED blu al positivo della batteria\nCollega il LED verde al positivo della batteria\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 65",
+    "page_number": 64,
+    "token_count": 151
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nInserisci il potenziometro nella breadboard collegando il pin 2 all’altro capo\ndel resistore da 470 Ohm\nCollega il pin 3 del potenziometro al negativo della batteria e il LED dovrebbe\ndiventare azzurrino\nRuota il potenziometro verso destra e sinistra e osserva come cambia\nla luminosità del LED RGB\n66 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 66,
+    "token_count": 90
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 5",
+    "content": "COS’È UN POTENZIOMETRO?\nESPERIMENTO 5\nIn questo esperimento utilizzeremo tutti i pin del potenziometro per sfruttare\nil principio secondo cui la resistenza tra il pin 2 e gli altri due aumenta o\ndiminuisce a seconda del verso di rotazione. Questo ci consentirà di avere il\nLED RGB colorato di BLU quando il potenziometro è tutto girato verso sinistra\ne di ROSSO quando è girato verso destra. E in mezzo? Blu e rosso\nsi uniscono!\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un potenziometro da 10 kOhm\n• Tre fili colorati\nCollega la clip della batteria alla batteria\nCollega il positivo della batteria alla striscia rossa della breadboard\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 67",
+    "page_number": 67,
+    "token_count": 210
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCollega il negativo della batteria alla striscia nera della breadboard\nInserisci il LED RGB nella breadboard\nCollega il resistore da 470 Ohm tra il catodo del LED RGB e il negativo\ndella batteria , come sul disegno aggiungi un filo per collegare il\nresistore al catodo del LED RGB\n68 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nInserisci il potenziometro nella breadboard\nCollega il LED blu del LED RGB al pin 1 del potenziometro\nCollega il LED rosso del LED RGB al pin 3 del potenziometro\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 69",
+    "page_number": 68,
+    "token_count": 156
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCollega il pin 2 del potenziometro al positivo della batteria. Cosa succede?\nSe il cursore si trova in una posizione intermedia vedrai una tonalità di viola!\nRuota ora il cursore verso sinistra e destra per vedere come si passa dal blu\nal rosso e viceversa!\n70 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 70,
+    "token_count": 79
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 6",
+    "content": "COS’È UN POTENZIOMETRO?\nESPERIMENTO 6\nCostruiamo una lampada avendo la possibilità di poter scegliere abbastanza\nfacilmente quanto colore aggiungere per ogni luce colorata presente nel\nLED RGB.\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Tre resistori da 470 Ohm\n• Tre potenziometri da 10 kOhm\n• Sette fili colorati\nCollega la clip della batteria alla batteria.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 71",
+    "page_number": 71,
+    "token_count": 134
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCollega il negativo della batteria alla striscia nera della breadboard\nInserisci il LED RGB nella breadboard\nCollega il catodo del LED RGB (la gambetta lunga) al negativo della batteria\ncon un filo\n72 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 72,
+    "token_count": 64
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 7",
+    "section": "ESPERIMENTO 5",
+    "content": "CAPITOLO 7 COS’È IL LED RGB?\nESPERIMENTO 5\nPrendi un altro resistore da 470 Ohm e accendere tutti i colori\ncontemporaneamente\nAccendendo tutti i colori contemporaneamente, dovresti in teoria ottenere\nil bianco! Molto, ma molto probabilmente il colore che ottieni risulta\nleggermente azzurrino, questo perché per ottenere un bel bianco hai bisogno\nAbbiamo ottenuto il viola!\nche il rosso sia più luminoso del verde e del blu!\nCome facciamo? Basta abbassare la resistenza del LED rosso! Prova a\nmodificare il resistore del LED rosso abbassandolo prima a 330 Ohm e poi a\n220 Ohm. Ti ricordi i colori? Se non li ricordi torna un attimo al capitolo sui\nresistori!\n40 Laboratorio di elettroLnaibcao:r aImtoprairoa d ei eslpeettrrimoneinctaa: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 41\nCOS’È UN POTENZIOMETRO?\nInserisci il primo potenziometro nella breadboard\nInserisci una resistenza da 470 Ohm tra il positivo della batteria e il\npiedino del potenziometro come nel disegno\nInserisci il secondo potenziometro nella breadboard\nLaboratorio di elettronica: Impara e sperimenta 73",
+    "page_number": 73,
+    "token_count": 274
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nInserisci un’altra resistenza da 470 Ohm allineata al terzo piedino del\nsecondo potenziometro come hai fatto prima\nInserisci il 3° potenzometro con la sua resistenza da 470r\n74 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nCollega il positivo della batteria alla linea rossa della Breardboard\nCollega il pin 2 del terzo potenziometro al LED blu del LED RGB.\nSe ruoti la manopola regoli la sua intensità luminosa\nLaboratorio di elettronica: Impara e sperimenta 75",
+    "page_number": 74,
+    "token_count": 124
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nSe ruoti la manopola dalla parte opposta il LED si spegne\nCollega il pin 2 del secondo potenziometro al LED verde del LED RGB.\nSe ruoti la manopola regoli la sua intensità luminosa\n76 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN POTENZIOMETRO?\nCollega il pin 2 del primo potenziometro al LED rosso del LED RGB.\nSe ruoti la manopola regoli la sua intensità luminosa\nLED\nLaboratorio di elettronica: Impara e sperimenta 77\nCOSTRUIAMO IL NOSTRO PRIMO ROBOT\n5° PASSO:\nOra inserisci il nostro amico ELAB\nsulla breadboard\ncentrando i due verdi.\nSe hai collegato tutto correttamente ora puoi inserire il RGB nei quattro\nfori sulla pancia di ELAB. RICORDATI anche il L RGBè polarizzato, quindi il\npiedino più lungo devi inserirlo su g-25 di conseguenza gli altri tre andranno\nsu (g-24),(g-26) e (g-27).\nUna volta inserito il L RGB piegalo sulla mano di ELAB e collega la batteria.\nAppoggiando il magnete sul nostro amico gli si illumineranno gli occhi\ndalla felicità e con i potenziometri potrai variare i colori al suo scettro.\nLaboratorio di elettronica: Impara e sperimenta 111",
+    "page_number": 76,
+    "token_count": 273
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 7",
+    "content": "Gioca ora con le regolazioni e crea il colore che ti piace di più!\nProva a chiedere un bicchierino del caffé (pulito) di plastica bianco e\npoggialo sopra al LED RGB: diffonderà la luce! A proposito prova questo\nesperimento al buio!\nESPERIMENTO 7\nVuoi provare ad aggiungere qualche pulsante?\n78 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL NOSTRO PRIMO ROBOT\n5° PASSO:\nOra inserisci il nostro amico ELAB\nsulla breadboard\ncentrando i due verdi.\nSe hai collegato tutto correttamente ora puoi inserire il RGB nei quattro\nfori sulla pancia di ELAB. RICORDATI anche il L RGBè polarizzato, quindi il\npiedino più lungo devi inserirlo su g-25 di conseguenza gli altri tre andranno\nsu (g-24),(g-26) e (g-27).\nUna volta inserito il L RGB piegalo sulla mano di ELAB e collega la batteria.\nAppoggiando il magnete sul nostro amico gli si illumineranno gli occhi\ndalla felicità e con i potenziometri potrai variare i colori al suo scettro.\nLaboratorio di elettronica: Impara e sperimenta 111",
+    "page_number": 78,
+    "token_count": 248
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 9",
+    "section": "ESPERIMENTO 8",
+    "content": "ESPERIMENTO 8\nProva a fare insieme l’esperimento 6 e l’esperimento 5\nESPERIMENTO 9\nAggiungi un pulsante per accendere e spegnere il LED all’esperimento 8!\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 79\nNOTE\n80 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 79,
+    "token_count": 77
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\nCOS’È UN FOTORESISTORE?\nUn fotoresistore è un resistore che La sua resistenza diminuisce\ncambia il suo valore di resistenza in all’aumentare della luce.\nbase a quanto viene illuminato. Ha due\n(cid:91)(cid:70)(cid:81)(cid:84)(cid:87)(cid:78)(cid:5)(cid:73)(cid:78)(cid:5)(cid:87)(cid:74)(cid:88)(cid:78)(cid:88)(cid:89)(cid:74)(cid:83)(cid:95)(cid:70)(cid:5)(cid:1834)(cid:88)(cid:88)(cid:78)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)(cid:78)(cid:83)(cid:73)(cid:78)(cid:72)(cid:70)(cid:83)(cid:84)(cid:5) (cid:46)(cid:83)(cid:5)(cid:78)(cid:83)(cid:76)(cid:81)(cid:74)(cid:88)(cid:74)(cid:5)(cid:91)(cid:78)(cid:74)(cid:83)(cid:74)(cid:5)(cid:72)(cid:77)(cid:78)(cid:70)(cid:82)(cid:70)(cid:89)(cid:84)(cid:5)(cid:49)(cid:41)(cid:55)(cid:5)(cid:72)(cid:77)(cid:74)(cid:5)\nquanto vale al buio completo e quanto è un acronimo che sta per Light\nquando viene colpito da tanta luce, (cid:41)ependent (cid:55)esistor e il suo simbolo\nad esempio una torcia! elettrico è questo\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 81",
+    "page_number": 81,
+    "token_count": 269
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 10\nESPERIMENTO 1\nProviamo ad accendere un LED utilizzando un fotoresistore. Vogliamo che\nil LED sia spento se facciamo ombra al fotoresistore e acceso se invece\nè esposto alla luce.\nPer questo esperimento abbiamo bisogno di:\n• Un LED. Sceglilo del colore che ti piace di\npiù!\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un fotoresistore\nCollega la clip della batteria alla batteria.\nCollega il positivo e il negativo della batteria alla breadboard\n82 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN FOTORESISTORE?\nCollega il fotoresistore a cavallo della divisione centrale e usa un filo per\ncollegare il piedino al positivo\nCollega l’anodo del LED con l’altro piedino della fotoresistenza e il catodo\ndel LED dopo la divisione centrale\nCollega il negativo della batteria al catodo del LED\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 83",
+    "page_number": 82,
+    "token_count": 232
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 2",
+    "content": "CAPITOLO 10\nProva ad illuminare il fotoresistore\nIn questo circuito non c’è bisogno di inserire un resistore in serie al LED\nperché il fotoresistore anche quando illuminato ha una resistenza\nabbastanza elevata da non bruciare il LED.\nESPERIMENTO 2\nProva adesso a cambiare il LED con uno di un colore diverso e osserva\ncome cambia il comportamento!\n84 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 84,
+    "token_count": 99
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 3",
+    "content": "COS’È UN FOTORESISTORE?\nESPERIMENTO 3\nIn questo esperimento utilizzeremo un LED RGB e tre\nfotoresistori per far cambiare con la luce il colore generato dal\nLED RGB.\nPer questo esperimento abbiamo bisogno di:\n• Un LED RGB\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Tre fotoresistori\n• Tre fili colorati\nCollega la clip della batteria alla batteria.\nCollega il positivo della batteria alla striscia rossa della breadboard\nLaboratorio di elettronica: Impara e sperimenta 85",
+    "page_number": 85,
+    "token_count": 123
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\nCollega il negativo della batteria alla striscia nera della breadboard\nCollega il catodo del LED RGB al negativo della batteria\nInserisci i tre fotoresistori nella breadboard con un piedino nella striscia\nrossa e l’altro piedino in un punto qualunque della breadboard\n86 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN FOTORESISTORE?\nCollega il primo fotoresistore al LED blu del LED RGB\nCollega il secondo fotoresistore al LED verde del LED RGB\nCollega il terzo fotoresistore al LED rosso del LED RGB\nUtilizzando una torcia o coprendo col dito i fotoresistori e osserva come\ncambia il colore del LED RGB!\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 87",
+    "page_number": 86,
+    "token_count": 181
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 4",
+    "content": "CAPITOLO 10\nESPERIMENTO 4\nIn questo esperimento useremo un LED bianco per illuminare un fotoresistore\ne quindi cambiare la luminosità di un LED blu collegato al fotoresistore\nPer questo esperimento abbiamo bisogno di:\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un LED bianco\n• Un LED blu\n• Un fotoresistore\n• Un resistore da 470 Ohm\n• Due fili colorati\nCollega la clip della batteria alla batteria.\nCollega il positivo della batteria alla striscia rossa e il negativo\ndella batteria alla striscia nera della breadboard\n88 Laboratorio di elettronica: Impara e sperimenta\nCOS’È UN FOTORESISTORE?\nCollega il fotoresistore tra il positivo della batteria e un punto qualunque\ndella breadboard\nCollega il LED blu con l’anodo verso il fotoresistore e il catodo dopo la divisione\ncentrale della breadboard\nCollega il catodo del LED blu al negativo della batteria con un filo\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 89",
+    "page_number": 88,
+    "token_count": 247
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\nCollega il LED bianco vicino al fotoresistore con l’anodo connesso al positivo\ndella batteria\nCollega il catodo del LED bianco ad un resistore da 470 Ohm e l’altro piedino\ndel resistore in un punto qualsiasi dopo la divisione centrale della breadboard\nCollega il piedino libero del resistore al negativo della batteria\n90 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 90,
+    "token_count": 95
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 5",
+    "content": "COS’È UN FOTORESISTORE?\nProva ad orientare la base del fotoresistore verso la testa del LED\ne osserva come cambia la luminosità del LED blu.\nProva anche ad inserire un pezzetto di carta tra il fotoresistore e il\nLED e osserva come cambia la luminosità del LED blu.\nESPERIMENTO 5\nPartendo dall’esperimento 4 aggiungiamo un potenziometro per\ncambiare l’intensità luminosa del LED bianco.\nProva a cambiare l’inclinazione del LED e del fotoresistore per\navere più luminosità.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 91",
+    "page_number": 91,
+    "token_count": 142
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 10",
+    "section": "ESPERIMENTO 6",
+    "content": "ESPERIMENTO 6\nPartendo dall’esperimento 4 aggiungiamo un pulsante per cambiare\nl’intensità luminosa del LED blu solo quando premiamo il pulsante.\nProva a cambiare l’inclinazione del LED e del fotoresistore per\navere più luminosità.\nNOTE\n92 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 92,
+    "token_count": 71
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 11",
+    "section": null,
+    "content": "CAPITOLO 11\nCOS’È UN CICALINO?\nUn cicalino è un componente\nelettronico polarizzato (quindi che\nha un positivo e un negativo) che se\ncollegato ad una tensione suona. Nel\nkit è presente un cicalino come questo\nUn cicalino non ha bisogno di\nresistori ma basta collegarlo\ndirettamente alla batteria per farlo\nsuonare.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 93",
+    "page_number": 93,
+    "token_count": 103
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 11",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 11\nESPERIMENTO 1\nPer questo esperimento abbiamo bisogno di:\n• Un cicalino\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\nCollega la clip della batteria alla batteria.\nCollega il positivo e il negativo della batteria alla striscia rossa e nera\ndella breadboard\n94 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 94,
+    "token_count": 84
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 11",
+    "section": "ESPERIMENTO 2",
+    "content": "COS’È UN FOTORESISTORE?\nCollega ora il cicalino alla batteria collegando nero con nero e rosso con rosso\nnel kit puoi tovare anche un cicalino con due piedini uno lungo (negativo) e uno\ncorto (positivo)\nESPERIMENTO 2\nProva ora a realizzare un circuito in cui il cicalino suona solo se premi\nun pulsante. Ti ricordi come fare?\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 95\nNOTE\n96 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 95,
+    "token_count": 120
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\nL’INTERRUTTORE MAGNETICO\nCOS’È UN INTERRUTTORE MAGNETICO? Come suggerisce il suo simbolo,\ndentro l’interruttore magnetico\n( reed switch in inglese) ci sono due\nUn interruttore magnetico è un\npiccole particelle metalliche che non\ncomponente che ha lo stesso principio\nsi toccano tra di loro, quindi quando\ndi funzionamento del pulsante, ma\nnon c’è il magnete vicino si comporta\nanziché essere azionato con le dita,\ncome un circuito aperto e non scorre\nviene attivato da un piccolo magnete!\ncorrente.\nQuando invece avviciniamo il\nCOME FUNZIONA?\nmagnetino all’interruttore, le due\nlamelline si toccano e quindi si chiude\nIl funzionamento è molto semplice!\nil circuito facendo scorrere corrente!\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 97",
+    "page_number": 97,
+    "token_count": 200
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 12",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 12\nESPERIMENTO 1\nIn questo esperimento applicheremo quanto fatto prima, ma anziché utilizzare\nil pulsante, utilizzeremo un interruttore magnetico.\nPer questo esperimento abbiamo bisogno di:\n• Un LED, sceglilo del colore che ti piace di\npiù!\n• Una breadboard\n• Una batteria 9V\n• La clip per la batteria 9V\n• Un resistore da 470 Ohm\n• Un interruttore magnetico\nCollega la clip della batteria alla batteria.\nCollega il positivo della batteria alla striscia rossa della breadboard\n98 Laboratorio di elettronica: Impara e sperimenta\nL’INTERRUTTORE AD INCLINAZIONE\nCollega il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa\ne un punto qualsiasi della breadbord\nCollega la gambetta lunga del LED verso il resistore e la gambetta corta\nnel foro subito dopo la divisione centrale\nInserisci l’interruttore magnetico tra il catodo del LED e la striscia nera\ninferiore della breadboard\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 99",
+    "page_number": 98,
+    "token_count": 249
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 12",
+    "section": "ESPERIMENTO 2",
+    "content": "CAPITOLO 12\nCollega il negativo della batteria alla striscia nera della breadboard\nAvvicina il magnete all’interruttore magnetico: il LED si accenderà!\nESPERIMENTO 2\nCome fatto con il pulsante, prova a sperimentare con i valori di resistenza\nper rendere più o meno luminoso il LED.\n100 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 100,
+    "token_count": 83
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 12",
+    "section": "ESPERIMENTO 3",
+    "content": "L’INTERRUTTORE AD INCLINAZIONE\nESPERIMENTO 3\nProva a realizzare un circuito che accenda un LED RGB del colore\nche preferisci utilizzando un interruttore magnetico\nESPERIMENTO 4\nProva ad utilizzare insieme potenziometri, LED RGB e un interruttore\nmagnetico\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 101\nNOTE\n102 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 101,
+    "token_count": 103
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 13",
+    "section": null,
+    "content": "CAPITOLO 13\nCOS’È L’ELETTROPONGO?\nL’elettropongo è una tipologia di PROCEDIMENTO\nplastilina che però è conduttiva. (cid:22)(cid:19) (cid:50)(cid:74)(cid:89)(cid:89)(cid:78)(cid:5)(cid:78)(cid:81)(cid:5)(cid:88)(cid:70)(cid:81)(cid:74)(cid:5)(cid:78)(cid:83)(cid:5)(cid:90)(cid:83)(cid:70)(cid:5)(cid:85)(cid:74)(cid:83)(cid:89)(cid:84)(cid:81)(cid:70)\nPossiamo quindi usarla per 2. Aggiungi l’acqua\nmodellare oggetti in grado di 3. Porta ad ebollizione per far\ncondurre elettricità. dissolvere parzialmente il sale\n(cid:25)(cid:19) (cid:38)(cid:71)(cid:71)(cid:70)(cid:88)(cid:88)(cid:70)(cid:5)(cid:81)(cid:70)(cid:5)(cid:75)(cid:78)(cid:70)(cid:82)(cid:82)(cid:70)(cid:5)(cid:88)(cid:74)(cid:5)(cid:89)(cid:87)(cid:84)(cid:85)(cid:85)(cid:84)(cid:5)(cid:70)(cid:81)(cid:89)(cid:70)\n(cid:26)(cid:19) (cid:38)(cid:76)(cid:76)(cid:78)(cid:90)(cid:83)(cid:76)(cid:78)(cid:5)(cid:81)(cid:1123)(cid:84)(cid:81)(cid:78)(cid:84)\nLA RICETTA 6. Aggiungi il (cid:71)(cid:86)(cid:73)(cid:81)(cid:83)(cid:86)(cid:4)(cid:88)(cid:69)(cid:86)(cid:88)(cid:69)(cid:86)(cid:83) o il\nsucco(cid:4)di limone\n(cid:28)(cid:19) (cid:38)(cid:76)(cid:76)(cid:78)(cid:90)(cid:83)(cid:76)(cid:78)(cid:5)(cid:85)(cid:78)(cid:70)(cid:83)(cid:5)(cid:85)(cid:78)(cid:70)(cid:83)(cid:84)(cid:5)(cid:81)(cid:70)(cid:5)(cid:75)(cid:70)(cid:87)(cid:78)(cid:83)(cid:70)(cid:4)e\nINGREDIENTI\nmescola continuamente\n(cid:3282)(cid:5) (cid:23)(cid:24)(cid:21)(cid:82)(cid:81)(cid:5)(cid:73)(cid:78)(cid:5)(cid:70)(cid:72)(cid:86)(cid:90)(cid:70) con(cid:4)un cucchiaio da cucina\n(cid:3282)(cid:5) (cid:22)(cid:27)(cid:21)(cid:76)(cid:5)(cid:73)(cid:78)(cid:5)(cid:75)(cid:70)(cid:87)(cid:78)(cid:83)(cid:70)(cid:5)(cid:21)(cid:5)(cid:84)(cid:5)(cid:21)(cid:21) fino ad(cid:4) ottenere una palla",
+    "page_number": 103,
+    "token_count": 438
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 13",
+    "section": null,
+    "content": "(cid:3282)(cid:5) (cid:22)(cid:27)(cid:21)(cid:76)(cid:5)(cid:73)(cid:78)(cid:5)(cid:88)(cid:70)(cid:81)(cid:74) (cid:29)(cid:19) u (cid:56) n (cid:85) i (cid:74) fo (cid:76) r (cid:83) m (cid:78)(cid:5)(cid:78) e (cid:81)(cid:5)(cid:75)(cid:90)(cid:84)(cid:72)(cid:84)\n(cid:3282)(cid:5) (cid:22)(cid:27)(cid:76)(cid:5)(cid:73)(cid:78)(cid:5)(cid:71)(cid:86)(cid:73)(cid:81)(cid:83)(cid:86)(cid:4)(cid:88)(cid:69)(cid:86)(cid:88)(cid:69)(cid:86)(cid:83)(cid:5)(cid:84)(cid:5)(cid:22)(cid:29)(cid:5) (cid:30)(cid:19) (cid:49)(cid:70)(cid:88)(cid:72)(cid:78)(cid:70)(cid:5)(cid:87)(cid:70)(cid:75)(cid:75)(cid:87)(cid:74)(cid:73)(cid:73)(cid:70)(cid:87)(cid:74)\n(cid:72)(cid:90)(cid:72)(cid:72)(cid:77)(cid:78)(cid:70)(cid:78)(cid:5)di succo di limone (cid:22)(cid:21)(cid:19)(cid:5)(cid:58)(cid:83)(cid:70)(cid:5)(cid:91)(cid:84)(cid:81)(cid:89)(cid:70)(cid:5)(cid:75)(cid:87)(cid:74)(cid:73)(cid:73)(cid:84)(cid:5)(cid:78)(cid:82)(cid:85)(cid:70)(cid:88)(cid:89)(cid:70)(cid:5)(cid:70)(cid:83)(cid:72)(cid:84)(cid:87)(cid:70)\n(cid:3282)(cid:5) 2 cucchiai di olio vegetale un po’ per dare uniformità\n(cid:3282)(cid:5) opzionale il colorante alimentare (cid:22)(cid:22)(cid:19)(cid:5)(cid:57)(cid:84)(cid:76)(cid:81)(cid:78)(cid:5)(cid:81)(cid:70)(cid:5)(cid:86)(cid:90)(cid:70)(cid:83)(cid:89)(cid:78)(cid:89)(cid:2308)(cid:5)(cid:73)(cid:70)(cid:5)(cid:72)(cid:84)(cid:81)(cid:84)(cid:87)(cid:70)(cid:87)(cid:74)(cid:5)(cid:74)\naggiungi il colorante alimentare\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 103",
+    "page_number": 103,
+    "token_count": 390
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 13",
+    "section": "ESPERIMENTO 1",
+    "content": "CAPITOLO 13\nCOME LO USIAMO?\nDopo aver seguito la ricetta, crea\nCerca di non creare pezzi troppo\nla forma che preferisci. Puoi anche\ngrossi altrimenti è come avere una\nutilizzare delle formine per biscotti in\nresistenza più elevata e quindi i LED\nmodo da poter fare un animaletto,\nche collegheremo si accenderanno\nuna stella, un cuore o quello che ti\npoco.\npiace di più!\nESPERIMENTO 1\nQuesto esperimento serve per capire il principio di funzionamento base\ndell’elettropongo.\nPer questo esperimento abbiamo bisogno di:\n• Un LED, sceglilo del colore che ti piace di\npiù!\n• Una batteria 9V\n• L’elettropongo\nStacca due pezzettini di elettropongo, forma due striscettine e appoggiale\nsul tavolo\nAllarga le gambette del LED che hai scelto per infilare e inserisci ail LED nelle\ndue striscette di elettropongo\nAvvicina la batteria (puoi anche usare la clip della pila se vuoi) alle due\nstriscette mettendo il positivo della batteria sull’anodo e il negativo sul catodo\nIl LED si accenderà!\n104 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 104,
+    "token_count": 258
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 13",
+    "section": "ESPERIMENTO 2",
+    "content": "COS’È L’ELETTROPONGO?\nESPERIMENTO 2\nDai sfogo alla tua fantasia e prova a creare un circuiti artistico\nutilizzando l’elettropongo e i LED!\nNon è obbligatorio, ma i risultati migliori si ottengono utilizzando LED dello\nstesso colore e scegliendo una zona in cui colleghi sempre il negativo e una\nin cui colleghi sempre il positivo.\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 105\nQui sotto c’è qualche idea!\nNOTE\n106 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 105,
+    "token_count": 128
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 14",
+    "section": null,
+    "content": "CAPITOLO 14\nCOSTRUIAMO IL NOSTRO PRIMO ROBOT\n1° PASSO:\nPrendiamo la nostra breadboard e inseriamo tre potenziometri\nseguendo la numerazione sulla breadboard, per indicarti il foro giusto\nuseremo in orizzontale i numeri da 1 a 30, in verticale le lettere da “a” a\n“J”\n1. potenziometro n°1 Pin e-1\n2. potenziometro n°2 Pin e-5\n3. potenziometro n°1 Pin e-9\ne colleghiamo i pin dei potenziometri con tre resistenze da 220 Ohm\nsulla linea del positivo\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 107",
+    "page_number": 107,
+    "token_count": 136
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 14",
+    "section": null,
+    "content": "CAPITOLO 14\nCOLLEGHIAMO DUE LED:\nPrendiamo due LED verdi, ricordati che il LED è polarizzato.\n(Fatti aiutare ad accorciare i pin dei led in maniera che il led rimanga quasi\na filo delle breadboard).\n1. Led1 gambetta lunga su g-15\n2. Led1 gambetta corta su g-16\n3. Led2 gambetta lunga su d-15\n4. Led2 gambetta corta su d-16\nOra colleghiamo con due fili il punto f-15 con e-15 e f-16 con e-16 Inseriamo\nuna resistenza da 220 Ohm dal pin a-15 verso la linea del positivo\n108 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL NOSTRO PRIMO ROBOT\n3° PASSO:\nColleghiamo i potenziometri.\nOra prendi tre fili lunghi e colleghiamoli come nella foto sottostante,anche qui,\nfatti aiutare ad accorciare i fili in maniera che rimangano ben ordinati sulla\nbreadboard.\n5. piedino potenziometro j-2 con punto j-27\n6. piedino potenziometro j-6 con punto j-26\n7. piedino potenziometro j-10 con punto j-24\nLaboratorio di elettronica: Impara e sperimenta Laboratorio di elettronica: Impara e sperimenta 109",
+    "page_number": 108,
+    "token_count": 249
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 14",
+    "section": null,
+    "content": "CAPITOLO 14\n4° PASSO:\nInseriamo l'interruttore magnetico\nOra inseriamo l'interruttore magnetico sulla breadboard\n8. un piedino su g-18\n9. un piedino su d-18\nOra colleghiamo i LED verdi al l'interruttore con un filo da j-16 a j-18\nColleghiamo anche i-18 con j-25\ne infine, con un terzo cavo, colleghiamo c-16 con la linea del negativo\n110 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 110,
+    "token_count": 96
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 14",
+    "section": "ESPERIMENTO 7",
+    "content": "COS’È UN POTENZIOMETRO?\nCollega il pin 2 del primo potenziometro al LED rosso del LED RGB.\nSe ruoti la manopola regoli la sua intensità luminosa!\nGioca ora con le regolazioni e crea il colore che ti piace di più!\nLED\nProva a chiedere un bicchierino del caffé (pulito) di plastica bianco e\npoggialo sopra al LED RGB: diffonderà la luce! A proposito prova questo\nesperimento al buio!\nESPERIMENTO 7\nVuoi provare ad aggiungere qualche pulsante?\nLaboratorio di elettronica: Impara e sperimenta 77\n78 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL NOSTRO PRIMO ROBOT\n5° PASSO:\nOra inserisci il nostro amico ELAB\nsulla breadboard\ncentrando i due verdi.\nSe hai collegato tutto correttamente ora puoi inserire il RGB nei quattro fori\nsulla pancia di ELAB. RICORDA che anche il L RGB è polarizzato, quindi il\npiedino più lungo devi inserirlo su g-25 di conseguenza gli altri tre andranno su\n(g-24),(g-26) e (g-27).\nUna volta inserito il L RGB piegalo sulla mano di ELAB e collega la batteria\nAppoggiando il magnete sul nostro amico gli si illumineranno gli occhi\ndalla felicità e con i potenziometri potrai variare i colori al suo scettro!\nLaboratorio di elettronica: Impara e sperimenta 111\nNON È FINITA QUI!\nSperiamo davvero che ti sia divertito con questi esperimenti per avvicinarti\nal mondo dell’elettronica!\nNei prossimi volumi approfondiremo i concetti illustrati in questo libro\nentrando maggiormente nel dettaglio del funzionamento. Utilizzeremo nuovi\ncomponenti e soprattutto inizieremo ad addentrarci nel magico mondo della\nprogrammazione utilizzando il linguaggio Arduino e le sue schede elettroniche.\nGrazie per averci seguito in questa prima avventura e speriamo di\naccompagnarti anche nelle prossime tappe del\nviaggio verso il mondo fantastico dell'Elettronica!\n112 Laboratorio di elettronica: Impara e sperimenta\n© 2024 ELAB. Tutti i diritti riservati.",
+    "page_number": 111,
+    "token_count": 468
+  },
+  {
+    "volume": 1,
+    "chapter": "CAPITOLO 14",
+    "section": "ESPERIMENTO 7",
+    "content": "Laboratorio di elettronica: Impara e sperimenta Nessuna parte di questo libro può essere riprodotta o distribuita in qualsiasi forma o con qualsiasi\nmezzo, elettronico o meccanico, senza il permesso scritto dell'autore.\nELAB",
+    "page_number": 113,
+    "token_count": 56
+  }
+]

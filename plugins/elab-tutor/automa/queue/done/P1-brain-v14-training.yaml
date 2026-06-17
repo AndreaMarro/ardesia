@@ -1,0 +1,22 @@
+id: P1-brain-v14-training
+priority: P1
+title: Preparare dataset e training Brain V14 (Qwen 4B)
+status: done
+description: |
+  ROADMAP: V13 (2B, routing) → V14 (4B, routing + risposte semplici)
+
+  COMPLETATO (ciclo 48):
+  1. Dataset V14: datasets/galileo-brain-v14.jsonl (155,280 esempi, 372 MB)
+     - 20+ tag vecchi rimappati in 4 categorie produzione (play/build/code/show)
+     - System prompt V14 con 7 intents allineato a shared-optimized.yml v5.6
+     - 100% response fill per needs_llm=false (77,294 risposte arricchite)
+     - 92,378 action tag nel formato [AZIONE:tipo:dettaglio], 0 vecchi
+  2. Eval: datasets/galileo-brain-v14-eval.jsonl (350 esempi)
+  3. Notebook: ~/Downloads/GalileoBrainV14.ipynb (11 celle, Qwen3-4B)
+  4. Script: datasets/convert-v10-to-v14.py + datasets/generate_notebook_v14.py
+target_files: datasets/
+created_at: "2026-03-26T17:30:00"
+source: roadmap-training-26-03-2026
+completed_at: "2026-03-27T00:00:00"
+claimed_at: "2026-03-26T23:16:05.474985"
+claimed_by: orchestrator

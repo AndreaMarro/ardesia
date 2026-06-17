@@ -1,0 +1,57 @@
+{
+  "cycle": 1,
+  "timestamp": "2026-03-23T00:03:26.446312",
+  "date": "2026-03-23",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 285
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.46s",
+      "time_ms": 21686
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 68863
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=82 min=77 (target \u226560) [3 samples]",
+      "time_ms": 18458
+    },
+    {
+      "name": "browser",
+      "status": "fail",
+      "detail": "Title: ?, Errors: ?",
+      "time_ms": 1336
+    },
+    {
+      "name": "ipad",
+      "status": "fail",
+      "detail": "Overflow: ?, Small btns: ?",
+      "time_ms": 25
+    }
+  ],
+  "checks_passed": 5,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Collegare Brain V13 al nanobot cloud",
+    "status": "pending_interactive",
+    "prompt_saved": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/automa/state/next-prompt.md"
+  },
+  "research": "Research: 'Scratch to Arduino C++ block programming' \u2192 3 papers found\n  - AelE: A Versatile Tool for Teaching Programming and Robotics Using Arduino (2024, 3 cites)\n  - Developing Programming Competencies in School-Students With Block-Based Tools in Chile, Ecuador, and Peru (2024, 8 cites)"
+}

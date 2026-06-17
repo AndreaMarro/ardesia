@@ -1,0 +1,11 @@
+id: P1-012
+title: "Identity leak check"
+priority: P1
+status: done
+completed: "2026-03-23"
+result: |
+  10 provocative messages tested. 1/10 leak found ("sono un'intelligenza artificiale").
+  Fixed with:
+  1. Prompt: shared.yml identity rules (deflect to UNLIM)
+  2. Server-side: sanitize_identity_leaks() regex patterns for AI terminology
+  Both pushed to elab-galileo-nanobot repo. Awaiting Render redeploy.

@@ -1,0 +1,343 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap8-esp3",
+  "volume": 2,
+  "chapter": 8,
+  "title": "MOSFET + pot + tensione soglia",
+  "chapter_title": "Capitolo 8 - Cosa sono i transistor?",
+  "difficulty": 3,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "Trovare sperimentalmente la tensione di soglia Vth del MOSFET usando un potenziometro come partitore di tensione. Il multimetro mostra la tensione al Gate: a circa 2V il LED inizia ad accendersi, sopra 4V è completamente acceso!",
+  "components_needed": [
+    {
+      "name": "Breadboard mezza (half-size)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "MOSFET N-channel",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "Potenziometro 10kΩ",
+      "quantity": 1,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "🔴"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 12,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "MOSFET",
+      "transistor",
+      "Gate",
+      "Drain",
+      "Source",
+      "interruttore",
+      "tensione",
+      "soglia",
+      "Vth",
+      "LED",
+      "resistore",
+      "batteria",
+      "potenziometro",
+      "multimetro",
+      "carica",
+      "impedenza",
+      "flottante",
+      "elettricità statica",
+      "GND",
+      "massa"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "motore",
+      "diodo",
+      "fototransistor"
+    ],
+    "note": "Cap 8 Vol 2 — tensione di soglia Vth del MOSFET, potenziometro per variare tensione Gate."
+  },
+  "prerequisites": [
+    "v2-cap8-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap9-esp1",
+    "title": "Fototransistor come sensore",
+    "preview": "Prossimo passo: Fototransistor come sensore. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 6,
+      "teacher_message": "Ragazzi, oggi useremo il potenziometro come 'manopola del volume' per la tensione al Gate. Faremo salire la tensione da 0V a 9V lentamente e osserveremo esattamente a quale tensione il LED si accende!",
+      "teacher_tip": "Introduce il concetto di Vth: 'Ogni MOSFET ha una tensione di soglia Vth. Sotto Vth è spento, sopra Vth si accende. Oggi la misuriamo con i nostri occhi usando il multimetro!'",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 MOSFET N-channel, 1 potenziometro 10kΩ, 1 resistore 470Ω, 1 LED rosso, 1 multimetro, fili.",
+      "class_hook": "Il potenziometro che conoscete (dal Capitolo 2!) diventa qui un potente strumento di controllo: giriamo la manopola e osserviamo dove il MOSFET 'scatta'. È come trovare il punto critico!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, Il circuito ha il MOSFET con LED e resistore, più il potenziometro che regola la tensione al Gate. Il multimetro misura la tensione al Gate in tempo reale.",
+      "teacher_tip": "Spiegate la connessione del potenziometro: 'VCC del pot va alla riga +, GND alla riga -, e il pin Signal (uscita centrale) va direttamente al Gate. Girando la manopola, il Signal varia da 0V a 9V.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap8-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate il circuito MOSFET con potenziometro al Gate e multimetro",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "mosfet-n",
+              "id": "mos1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a13",
+              "to": "bb1:g18",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:g19",
+              "to": "bb1:bus-top-minus-19",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-plus-24",
+              "to": "bb1:g24",
+              "color": "red"
+            },
+            {
+              "from": "bb1:g25",
+              "to": "bb1:g17",
+              "color": "green"
+            },
+            {
+              "from": "bb1:g26",
+              "to": "bb1:bus-top-minus-26",
+              "color": "black"
+            },
+            {
+              "from": "mm1:probe-positive",
+              "to": "bb1:h17",
+              "color": "red"
+            },
+            {
+              "from": "mm1:probe-negative",
+              "to": "bb1:bus-top-minus-27",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Parta da zero (potenziometro tutto a sinistra). Il LED è spento. Girate lentamente la manopola. A che tensione (V) pensi che il LED si accenda? Fate una scommessa!",
+      "teacher_tip": "Fate scrivere le previsioni sulla lavagna: 1V? 2V? 5V? 9V? Poi fate l'esperimento. La risposta (circa 2V) sorprende sempre! 'È molto meno di 9V: il MOSFET è molto sensibile.'",
+      "provocative_question": "La batteria fornisce 9V. Il MOSFET si accende a tutta la tensione della batteria, oppure si attiva a una tensione più bassa? Fate una previsione: a quanti volt si accende il LED?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Girare il potenziometro troppo velocemente e perdere il punto di soglia",
+          "teacher_response": "Girate LENTAMENTE, quasi a rallentatore! Il punto critico è intorno a 2V e dura pochi gradi di rotazione. Se andate troppo veloci, non vedrete la transizione graduale.",
+          "analogy": "Come trovare il punto di ebollizione dell'acqua: bisogna alzare la fiamma lentamente e stare attenti al momento in cui inizia a bollire"
+        },
+        {
+          "mistake": "Collegare il Signal del potenziometro al VCC invece che al Gate",
+          "teacher_response": "Il potenziometro ha 3 pin: VCC (alimentazione), GND (massa) e Signal (uscita variabile). Solo il Signal va al Gate! Il Signal è il pin centrale che varia da 0V a 9V.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, Premete Play. Girate il potenziometro lentamente da 0 verso destra. Guardate il multimetro: la tensione al Gate sale. A circa 2V il LED inizia ad accendersi debolmente. A 4V+ è completamente acceso!",
+      "teacher_tip": "Evidenziate il potenziometro, il Gate e il multimetro. 'Il LED non si accende di colpo: prima è debole, poi aumenta. Questo è il MOSFET nella zona di transizione, tra completamente spento e completamente acceso!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:mos1]",
+        "[AZIONE:highlight:led1]",
+        "[AZIONE:highlight:mm1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Girando il potenziometro: 0-2V Gate → LED spento. Intorno a 2V (Vth) → LED inizia ad accendersi debolmente. Oltre 4V → MOSFET completamente aperto, LED alla massima luminosità.",
+      "analogies": [
+        {
+          "concept": "manopola_volume",
+          "text": "Il potenziometro è la manopola del volume della tensione al Gate: da 0 (minimo, silenzio) a 9V (massimo, tutto aperto). La soglia Vth è come il volume minimo per sentire la musica: sotto non si sente nulla!",
+          "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp3"
+        },
+        {
+          "concept": "zona_transizione",
+          "text": "Il MOSFET ha tre zone: spento (0V-Vth), transizione (intorno a Vth) e completamente aperto (>4V). È come un interruttore della luce che ha anche una zona di penombra: non è solo ON/OFF!",
+          "evidence": "experiments-vol2.js observe v2-cap8-esp3"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Avete trovato sperimentalmente Vth ≈ 2V! Sotto Vth il MOSFET è spento, sopra si accende gradualmente, a 4V+ è completamente aperto. Il potenziometro ci ha permesso di controllare la transizione con precisione.",
+      "teacher_tip": "Questo conclude il Capitolo 8. Riepiloga i 3 esperimenti: 'Esp.1: Gate a 9V = ON/OFF. Esp.2: Gate flottante e carica del dito. Esp.3: trovare Vth con il potenziometro.' Il Capitolo 9 introduce un sensore controllato dalla luce!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "La tensione di soglia Vth ≈ 2V: sotto questo valore il MOSFET è spento, sopra si apre. Il potenziometro ha permesso di variare la tensione al Gate con precisione. Il multimetro ha mostrato esattamente il punto critico!",
+      "concepts_learned": [
+        "tensione di soglia Vth del MOSFET",
+        "zona di transizione graduale ON/OFF",
+        "potenziometro per variare tensione al Gate",
+        "misurare Vth con il multimetro"
+      ],
+      "next_preview": "Capitolo 9: un sensore controllato dalla luce! Più luce riceve, più corrente lascia passare. Combinato con quello che sapete farà cose incredibili!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se identifica Vth intorno a 2V → comprensione della soglia",
+    "Se descrive le tre zone (spento, transizione, saturo) → comprensione approfondita",
+    "Se usa correttamente il multimetro per leggere la tensione al Gate → abilità strumentale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "Vth_tensione_soglia",
+      "transizione_graduale",
+      "potenziometro_Gate",
+      "multimetro_Gate"
+    ],
+    "next_suggested": "v2-cap9-esp1",
+    "resume_message": "Avete completato il Capitolo 8! Conoscete Vth e la transizione del MOSFET. Il Capitolo 9 vi aspetta con un sensore di luce!"
+  },
+  "analogies": [
+    {
+      "concept": "manopola_volume",
+      "text": "Il potenziometro è la manopola del volume della tensione al Gate: da 0 (minimo, silenzio) a 9V (massimo, tutto aperto). La soglia Vth è come il volume minimo per sentire la musica: sotto non si sente nulla!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp3"
+    },
+    {
+      "concept": "zona_transizione",
+      "text": "Il MOSFET ha tre zone: spento (0V-Vth), transizione (intorno a Vth) e completamente aperto (>4V). È come un interruttore della luce che ha anche una zona di penombra: non è solo ON/OFF!",
+      "evidence": "experiments-vol2.js observe v2-cap8-esp3"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Girare il potenziometro troppo velocemente e perdere il punto di soglia",
+      "teacher_response": "Girate LENTAMENTE, quasi a rallentatore! Il punto critico è intorno a 2V e dura pochi gradi di rotazione. Se andate troppo veloci, non vedrete la transizione graduale.",
+      "analogy": "Come trovare il punto di ebollizione dell'acqua: bisogna alzare la fiamma lentamente e stare attenti al momento in cui inizia a bollire"
+    },
+    {
+      "mistake": "Collegare il Signal del potenziometro al VCC invece che al Gate",
+      "teacher_response": "Il potenziometro ha 3 pin: VCC (alimentazione), GND (massa) e Signal (uscita variabile). Solo il Signal va al Gate! Il Signal è il pin centrale che varia da 0V a 9V.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

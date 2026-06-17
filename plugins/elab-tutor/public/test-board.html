@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NanoBreakout V1.1 GP — Visual Test</title>
+<style>
+  body { margin: 20px; background: #f5f5f5; font-family: sans-serif; }
+  h1 { font-size: 18px; color: #333; }
+  h2 { margin: 0 0 10px; font-size: 14px; color: #333; }
+  .container { display: flex; gap: 20px; flex-wrap: wrap; align-items: start; }
+  .card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  svg { border: 1px solid #ddd; border-radius: 4px; background: #E8E4D9; }
+</style>
+</head>
+<body>
+<h1>NanoBreakout V1.1 GP — Board SVG Test</h1>
+<div class="container">
+
+<div class="card">
+<h2>3x scale view</h2>
+<svg width="600" height="400" viewBox="-10 -10 188 119">
+<defs>
+  <clipPath id="board-clip-test">
+    <path d="M 49.5 0 L 162 0 Q 168 0 168 6 L 168 19 Q 168 25 162 25 L 136 25 Q 130 25 130 31 L 130 78 Q 130 84 136 84 L 149 84 Q 155 84 155 90 L 155 93 Q 155 99 149 99 L 49.5 99 A 49.5 49.5 0 1 1 49.5 0 Z" />
+  </clipPath>
+</defs>
+
+<!-- PCB board (C-shape, ORDINE 1) -->
+<path d="M 49.5 0 L 162 0 Q 168 0 168 6 L 168 19 Q 168 25 162 25 L 136 25 Q 130 25 130 31 L 130 78 Q 130 84 136 84 L 149 84 Q 155 84 155 90 L 155 93 Q 155 99 149 99 L 49.5 99 A 49.5 49.5 0 1 1 49.5 0 Z"
+  fill="#EEEEF5" stroke="#1a1a2e" stroke-width="2" />
+
+<!-- USB-C connector (outside clip) -->
+<rect x="-4" y="45.5" width="8" height="8" rx="1.8" fill="#C0C6CC" stroke="#888E96" stroke-width="0.6" />
+<rect x="-3.2" y="46.7" width="6.4" height="5.6" rx="1" fill="#888E96" />
+<rect x="-2.2" y="47.5" width="4.4" height="4" rx="0.6" fill="#2A2E33" />
+
+<!-- Clipped content -->
+<g clip-path="url(#board-clip-test)">
+
+  <!-- Nano socket recess (x=14, y=36, w=114, h=27 — between header pin rows) -->
+  <rect x="14" y="36" width="114" height="27" rx="1.5" fill="#3A3D42" stroke="#2A2D31" stroke-width="0.6" />
+
+  <!-- Arduino Nano R4 module (navy, x=16, y=37, w=110, h=25) -->
+  <rect x="16" y="37" width="110" height="25" rx="1.5" fill="#1a3a6e" stroke="#0D2A52" stroke-width="0.6" />
+  <rect x="16.6" y="37.6" width="108.8" height="23.8" rx="1" fill="none" stroke="#3A6A9E" stroke-width="0.25" opacity="0.3" />
+
+  <!-- MCU RA4M1 (centered in module) -->
+  <rect x="46" y="40" width="22" height="19" rx="0.8" fill="#111111" stroke="#2A2F35" stroke-width="0.35" />
+  <circle cx="48" cy="42" r="0.5" fill="#444" />
+  <text x="57" y="48.5" text-anchor="middle" font-size="1.4" fill="#555" font-family="Arial" font-weight="700">RA4M1</text>
+  <text x="57" y="51" text-anchor="middle" font-size="0.9" fill="#444" font-family="Arial">RENESAS</text>
+
+  <!-- ESP32-S3 -->
+  <rect x="76" y="41" width="12" height="17" rx="0.6" fill="#B0B8C0" stroke="#7C8893" stroke-width="0.25" />
+  <text x="82" y="49" text-anchor="middle" font-size="0.8" fill="#555" font-family="Arial">ESP32</text>
+  <text x="82" y="51" text-anchor="middle" font-size="0.6" fill="#666" font-family="Arial">S3</text>
+
+  <!-- Crystal oscillator -->
+  <rect x="26" y="45.5" width="5" height="8" rx="0.6" fill="#C4CCD3" stroke="#7C8893" stroke-width="0.2" />
+
+  <!-- Voltage regulator -->
+  <rect x="96" y="45.5" width="5" height="8" rx="0.4" fill="#111111" stroke="#333" stroke-width="0.2" />
+
+  <!-- Reset button -->
+  <rect x="36" y="47.5" width="4" height="4" rx="0.5" fill="#C7CCD2" stroke="#7B838D" stroke-width="0.3" />
+  <circle cx="38" cy="49.5" r="1" fill="#9DA5AD" stroke="#666E77" stroke-width="0.2" />
+
+  <!-- ARDUINO text -->
+  <text x="71" y="41.5" text-anchor="middle" font-size="2.2" fill="#DDF4FA" font-family="Oswald, Arial" font-weight="700" letter-spacing="0.6">ARDUINO</text>
+  <text x="71" y="44.5" text-anchor="middle" font-size="1.3" fill="#B0DCE8" font-family="Oswald, Arial" font-weight="500" letter-spacing="0.4">NANO R4</text>
+
+  <!-- Nano pin contacts top (gold traces at module top edge) -->
+  <rect x="20.2" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="27.6" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="35.1" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="42.5" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="49.9" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="57.4" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="64.8" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="72.3" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="79.7" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="87.1" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="94.6" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="102" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="109.5" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="116.9" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="124.3" y="37" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+
+  <!-- Nano pin contacts bottom -->
+  <rect x="20.2" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="27.6" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="35.1" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="42.5" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="49.9" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="57.4" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="64.8" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="72.3" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="79.7" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="87.1" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="94.6" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="102" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="109.5" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="116.9" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+  <rect x="124.3" y="59.5" width="1.6" height="2.5" rx="0.2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.1" />
+
+  <!-- LEDs on Nano -->
+  <circle cx="20" cy="41" r="0.8" fill="#49D35C" />
+  <circle cx="20" cy="41" r="2" fill="#6DFF85" opacity="0.25" />
+  <text x="23" y="41.5" font-size="0.7" fill="#0D6B40" font-family="Fira Code, monospace" font-weight="600">PWR</text>
+
+  <!-- TOP HEADER PINS (y=35) -->
+  <!-- D13 at x=20 -->
+  <rect x="17.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="20" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="20" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D13</text>
+
+  <!-- 3V3 at x=27.5 -->
+  <rect x="25.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#E85040" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="27.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="27.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">3V3</text>
+
+  <!-- AREF at x=35 -->
+  <rect x="32.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="35" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="35" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">AREF</text>
+
+  <!-- A0 at x=42.5 -->
+  <rect x="40.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="42.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="42.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A0</text>
+
+  <!-- A1..A7, 5V, -, GND, VIN (x=50 to x=125) — abbreviated for size, same pattern -->
+  <!-- A1 x=50 -->
+  <rect x="47.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="50" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="50" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A1</text>
+  <!-- A2 x=57.5 -->
+  <rect x="55.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="57.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="57.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A2</text>
+  <!-- A3 x=65 -->
+  <rect x="62.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="65" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="65" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A3</text>
+  <!-- A4 x=72.5 -->
+  <rect x="70.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="72.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="72.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A4</text>
+  <!-- A5 x=80 -->
+  <rect x="77.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="80" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="80" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A5</text>
+  <!-- A6 x=87.5 -->
+  <rect x="85.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="87.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="87.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A6</text>
+  <!-- A7 x=95 -->
+  <rect x="92.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="95" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="95" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">A7</text>
+  <!-- 5V x=102.5 (power red) -->
+  <rect x="100.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#E85040" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="102.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="102.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">5V</text>
+  <!-- - x=110 (GND dark) -->
+  <rect x="107.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#333" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="110" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="110" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">-</text>
+  <!-- GND x=117.5 (dark) -->
+  <rect x="115.1" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#333" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="117.5" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="117.5" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">GND</text>
+  <!-- VIN x=125 (power red) -->
+  <rect x="122.6" y="32.6" width="4.8" height="4.8" rx="0.7" fill="#E85040" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="125" cy="35" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="125" y="30.5" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">VIN</text>
+
+  <!-- BOTTOM HEADER PINS (y=64) — same pattern at y=64, labels at y+6=70 -->
+  <!-- D12 x=20 -->
+  <rect x="17.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="20" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="20" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D12</text>
+  <!-- ~D11 x=27.5 -->
+  <rect x="25.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="27.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="27.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D11</text>
+  <!-- ~D10 x=35 -->
+  <rect x="32.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="35" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="35" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D10</text>
+  <!-- ~D9 x=42.5 -->
+  <rect x="40.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="42.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="42.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D9</text>
+  <!-- D8 through D1/TX — abbreviated for file size -->
+  <rect x="47.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="50" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="50" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D8</text>
+  <rect x="55.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="57.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="57.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D7</text>
+  <rect x="62.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="65" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="65" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D6</text>
+  <rect x="70.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="72.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="72.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D5</text>
+  <rect x="77.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="80" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="80" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D4</text>
+  <rect x="85.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="87.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="87.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">~D3</text>
+  <rect x="92.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="95" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="95" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">D2</text>
+  <!-- GND_R x=102.5 -->
+  <rect x="100.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#333" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="102.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="102.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">GND</text>
+  <rect x="107.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="110" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="110" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">RST</text>
+  <rect x="115.1" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="117.5" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="117.5" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">RX</text>
+  <rect x="122.6" y="61.6" width="4.8" height="4.8" rx="0.7" fill="#c8a84b" stroke="#8B7430" stroke-width="0.35" />
+  <circle cx="125" cy="64" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="125" y="70" text-anchor="middle" font-size="1.8" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.95">TX</text>
+
+  <!-- WING PINS on arm (y=13, circular pads) — showing first/last few -->
+  <!-- A0 at x=76 -->
+  <circle cx="76" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="76" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <text x="76" y="8" text-anchor="start" font-size="1.5" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="600" opacity="0.9" transform="rotate(-90, 76, 8)">A0</text>
+  <!-- A1 at x=80.2 -->
+  <circle cx="80.2" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="80.2" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- A2 at x=84.4 -->
+  <circle cx="84.4" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="84.4" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- A3 at x=88.6 -->
+  <circle cx="88.6" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="88.6" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- ~D3 at x=92.8 -->
+  <circle cx="92.8" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="92.8" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- ~D5 at x=97 -->
+  <circle cx="97" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="97" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- ~D6 at x=101.2 -->
+  <circle cx="101.2" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="101.2" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- ~D9 at x=105.4 -->
+  <circle cx="105.4" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="105.4" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- ... remaining wing pins -->
+  <circle cx="109.6" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="109.6" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="113.8" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="113.8" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="118" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="118" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="122.2" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="122.2" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="126.4" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="126.4" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="130.6" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="130.6" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="134.8" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="134.8" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <circle cx="139" cy="13" r="2.5" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="139" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- GND at x=143.2 (dark) -->
+  <circle cx="143.2" cy="13" r="2.5" fill="#333" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="143.2" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- 5V at x=147.4 (red) -->
+  <circle cx="147.4" cy="13" r="2.5" fill="#E85040" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="147.4" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- GND at x=151.6 (dark) -->
+  <circle cx="151.6" cy="13" r="2.5" fill="#333" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="151.6" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+  <!-- 5V at x=155.8 (red) -->
+  <circle cx="155.8" cy="13" r="2.5" fill="#E85040" stroke="#8B7430" stroke-width="0.3" />
+  <circle cx="155.8" cy="13" r="1" fill="#2A2E33" stroke="#555" stroke-width="0.2" />
+
+  <!-- BREAKOUT PINS label -->
+  <text x="116" y="21" text-anchor="middle" font-size="1" fill="#1a1a2e" font-family="Fira Code, monospace" opacity="0.4">BREAKOUT PINS</text>
+
+  <!-- Morsettiera (ORDINE 5) -->
+  <rect x="52" y="4" width="20" height="14" rx="1" fill="#2d6a2d" stroke="#1E4D1E" stroke-width="0.6" />
+  <rect x="52.5" y="4.5" width="19" height="1.5" rx="0.5" fill="#3A8A3A" opacity="0.5" />
+  <circle cx="58" cy="12" r="3" fill="#1E4D1E" stroke="#0F3A0F" stroke-width="0.3" />
+  <circle cx="58" cy="12" r="1.2" fill="#8A8A8A" stroke="#666" stroke-width="0.2" />
+  <circle cx="66" cy="12" r="3" fill="#1E4D1E" stroke="#0F3A0F" stroke-width="0.3" />
+  <circle cx="66" cy="12" r="1.2" fill="#8A8A8A" stroke="#666" stroke-width="0.2" />
+  <text x="62" y="3" text-anchor="middle" font-size="1.5" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="700" opacity="0.8">VIN 5-20V</text>
+
+  <!-- ELAB branding on semicircle (ORDINE 4) — x=8 to stay on exposed PCB -->
+  <text x="8" y="49.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#1a1a2e" font-family="Oswald, Arial" font-weight="800" letter-spacing="1.5" transform="rotate(-90, 8, 49.5)">ELAB</text>
+  <text x="3" y="49.5" text-anchor="middle" dominant-baseline="central" font-size="4" fill="#333" font-family="Fira Code, monospace" font-weight="400" transform="rotate(-90, 3, 49.5)">Electronics Laboratory</text>
+
+  <!-- Version text -->
+  <text x="128" y="22" text-anchor="end" font-size="1.5" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="600" opacity="0.6">NANO BREAKOUT V1.1 GP</text>
+
+  <!-- Power LED (ORDINE 3) -->
+  <circle cx="120" cy="33" r="2.5" fill="#1a1a2e" opacity="0.3" />
+  <circle cx="120" cy="33" r="2" fill="#4488ff" stroke="#0D2A52" stroke-width="0.4" />
+  <circle cx="120" cy="33" r="3.5" fill="#6699ff" opacity="0.4" />
+  <text x="120" y="29" text-anchor="middle" font-size="1" fill="#1a1a2e" font-family="Fira Code, monospace" opacity="0.7">POWER</text>
+
+  <!-- Switch ON/OFF (ORDINE 7) -->
+  <rect x="85" y="76" width="10" height="5" rx="1" fill="#444" stroke="#333" stroke-width="0.3" />
+  <rect x="85.8" y="76.8" width="8.4" height="3.4" rx="0.6" fill="#1A1C1F" />
+  <rect x="90" y="77" width="3.8" height="3" rx="0.4" fill="#888" stroke="#666" stroke-width="0.2" />
+  <text x="88" y="74.5" text-anchor="middle" font-size="1" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="600" opacity="0.6">ON</text>
+  <text x="92.5" y="74.5" text-anchor="middle" font-size="1" fill="#1a1a2e" font-family="Fira Code, monospace" font-weight="600" opacity="0.6">OFF</text>
+
+  <!-- Tab pads (ORDINE 6) -->
+  <circle cx="136.5" cy="91.5" r="3" fill="#c8a84b" stroke="#D32F2F" stroke-width="0.5" />
+  <circle cx="136.5" cy="91.5" r="1.2" fill="#2A2E33" />
+  <text x="136.5" y="86.5" text-anchor="middle" font-size="5" fill="#D32F2F" font-family="Arial" font-weight="700">+</text>
+  <circle cx="148.5" cy="91.5" r="3" fill="#c8a84b" stroke="#212121" stroke-width="0.5" />
+  <circle cx="148.5" cy="91.5" r="1.2" fill="#2A2E33" />
+  <text x="148.5" y="86.5" text-anchor="middle" font-size="5" fill="#212121" font-family="Arial" font-weight="700">&#x2212;</text>
+
+  <!-- Mounting holes -->
+  <circle cx="54.5" cy="8" r="2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" opacity="0.4" />
+  <circle cx="54.5" cy="8" r="1" fill="#2A2E33" opacity="0.5" />
+  <circle cx="125" cy="8" r="2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" opacity="0.4" />
+  <circle cx="125" cy="8" r="1" fill="#2A2E33" opacity="0.5" />
+  <circle cx="54.5" cy="91" r="2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" opacity="0.4" />
+  <circle cx="54.5" cy="91" r="1" fill="#2A2E33" opacity="0.5" />
+  <circle cx="160" cy="8" r="2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" opacity="0.4" />
+  <circle cx="160" cy="8" r="1" fill="#2A2E33" opacity="0.5" />
+  <circle cx="150" cy="91" r="2" fill="#c8a84b" stroke="#8B7430" stroke-width="0.3" opacity="0.4" />
+  <circle cx="150" cy="91" r="1" fill="#2A2E33" opacity="0.5" />
+
+</g><!-- end clip-path -->
+
+</svg>
+</div>
+
+</div>
+</body>
+</html>

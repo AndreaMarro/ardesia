@@ -1,0 +1,266 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap10-esp1",
+  "volume": 1,
+  "chapter": 10,
+  "title": "La fotoresistenza sente la luce",
+  "chapter_title": "Cos'è un fotoresistore?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono il primo sensore: la fotoresistenza cambia resistenza con la luce, accendendo o spegnendo il LED automaticamente.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Fotoresistenza (LDR)",
+      "quantity": 1,
+      "icon": "☀️"
+    },
+    {
+      "name": "Resistore 220Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 4,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "fotoresistenza",
+      "sensore",
+      "LDR",
+      "luce",
+      "buio",
+      "automatico",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore",
+      "digitale"
+    ],
+    "note": "Cap 10 Vol 1 — primo sensore. La fotoresistenza reagisce all'ambiente."
+  },
+  "prerequisites": [
+    "v1-cap9-esp1"
+  ],
+  "next_experiment": {
+    "id": "v1-cap10-esp2",
+    "title": "LED diverso colore con LDR",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.84 intitolata \"LED diverso colore con LDR\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi i ragazzi scoprono la fotoresistenza — un componente che cambia resistenza DA SOLO in base alla luce!",
+      "teacher_tip": "Ricordate il potenziometro: 'La manopola cambiava la resistenza. Ma se il componente reagisse alla LUCE da solo, senza manopola?' La fotoresistenza non ha polarità.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 fotoresistenza, 1 resistore 220Ω, 1 LED rosso, 4 fili.",
+      "class_hook": "Ricordate il potenziometro? Cambiava resistenza girando la manopola. Ora vi mostro un componente che cambia resistenza DA SOLO — reagisce alla luce!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate la fotoresistenza: 2 piedini, senza polarità. Va collegata uno dopo l'altro con il LED e il resistore di protezione.",
+      "teacher_tip": "Date la fotoresistenza prima di montare il circuito. Chiedete: 'Cosa notate quando la coprite con la mano?'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap10-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di LED controllato dalla luce seguendo Vol.1 pag.82.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr1"
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a9",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Cosa succede al LED quando copri la fotoresistenza con la mano? E quando la illumini con la torcia del telefono?",
+      "teacher_tip": "Serve un ambiente non troppo illuminato per vedere la differenza. Coprite completamente con la mano, poi illuminare con torcia.",
+      "provocative_question": "Il circuito può 'sentire' se c'è luce o buio? Come fa la fotoresistenza a sapere?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Non vedono differenza di luminosità",
+          "teacher_response": "Serve una stanza non troppo illuminata. Coprite completamente con la mano, poi illuminare con torcia del telefono.",
+          "analogy": null
+        },
+        {
+          "mistake": "Fotoresistenza al posto sbagliato",
+          "teacher_response": "Va collegata nella stessa fila del LED, come una resistenza normale. È come il potenziometro, ma la manopola è la luce stessa.",
+          "analogy": "Come il potenziometro, ma la manopola è la luce"
+        },
+        {
+          "mistake": "LED sempre spento o sempre acceso",
+          "teacher_response": "Controllare il valore della resistenza fissa — se troppo alto, il LED non si accende mai.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e muovete il cursore luminosità sulla fotoresistenza. Con luce il LED si accende, al buio si spegne!",
+      "teacher_tip": "Evidenziate la fotoresistenza. Spiegate: 'Con luce, la porta si apre e la corrente passa. Al buio, la porta si chiude.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:ldr1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Muovete il cursore! Con luce il LED si accende perché la fotoresistenza ha poca resistenza. Al buio si spegne perché la resistenza è alta. Il primo SENSORE!",
+      "analogies": [
+        {
+          "concept": "fotoresistenza",
+          "text": "La fotoresistenza è come un guardiano che apre il cancello quando c'è luce e lo chiude quando è buio. Non hai bisogno di toccarlo — reagisce da solo!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "sensore_luce",
+          "text": "È il primo componente che 'sente' il mondo esterno! Come i tuoi occhi sentono la luce, la fotoresistenza sente la luce e cambia il circuito.",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto il primo SENSORE — un componente che reagisce al mondo esterno senza che lo tocchiamo!",
+      "teacher_tip": "Chiedete: 'Dove ci sono sensori di luce nella vita reale?' (lampioni, luci auto, telefono). E: 'Possiamo farlo al contrario? LED acceso AL BUIO?'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "La fotoresistenza è un sensore: sente la luce e cambia resistenza da sola! Con luce → poca resistenza → LED acceso. Al buio → tanta resistenza → LED spento.",
+      "concepts_learned": [
+        "fotoresistenza come sensore",
+        "resistenza che cambia con l'ambiente"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.84 intitolata \"LED diverso colore con LDR\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'è come il potenziometro ma automatico' → ha fatto il collegamento concettuale chiave",
+    "Se copre la LDR e nota il cambiamento → apprendimento per scoperta funziona",
+    "Se chiede 'possiamo fare che si accende AL BUIO?' → pensiero inverso, pronto per esp 2"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "fotoresistenza_sensore",
+      "resistenza_ambiente"
+    ],
+    "next_suggested": "v1-cap10-esp2",
+    "resume_message": "L'ultima volta avete scoperto la fotoresistenza — il primo sensore! Ora facciamo la luce notturna automatica."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 82,
+    "label": "Vol.1 pag.82"
+  }
+}

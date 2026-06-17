@@ -1,0 +1,644 @@
+{
+  "timestamp": "2026-04-17T07:00:00Z",
+  "auditedExperiments": [
+    "v1-cap6-esp1",
+    "v1-cap6-esp2",
+    "v1-cap6-esp3",
+    "v1-cap7-esp1",
+    "v1-cap7-esp2",
+    "v1-cap7-esp3",
+    "v1-cap7-esp4",
+    "v1-cap7-esp5",
+    "v1-cap7-esp6",
+    "v1-cap8-esp1",
+    "v1-cap8-esp2",
+    "v1-cap8-esp3",
+    "v1-cap8-esp4",
+    "v1-cap8-esp5",
+    "v1-cap9-esp1",
+    "v1-cap9-esp2",
+    "v1-cap9-esp3",
+    "v1-cap9-esp4",
+    "v1-cap9-esp5",
+    "v1-cap9-esp6",
+    "v1-cap9-esp7",
+    "v1-cap9-esp8",
+    "v1-cap9-esp9",
+    "v1-cap10-esp1",
+    "v1-cap10-esp2",
+    "v1-cap10-esp3",
+    "v1-cap10-esp4",
+    "v1-cap10-esp5",
+    "v1-cap10-esp6",
+    "v1-cap11-esp1",
+    "v1-cap11-esp2",
+    "v1-cap12-esp1",
+    "v1-cap12-esp2",
+    "v1-cap12-esp3",
+    "v1-cap12-esp4"
+  ],
+  "totalAudited": 35,
+  "totalExperiments": 87,
+  "discrepancies": [
+    {
+      "experimentId": "v1-cap6-esp1",
+      "field": "components",
+      "expected": "LED di qualsiasi colore (il PDF dice 'sceglilo del colore che ti piace di più!')",
+      "found": "led[red] — colore rosso fisso nel codice",
+      "severity": "low",
+      "note": "Funzionalmente accettabile per il simulatore, ma il PDF non prescrive il rosso"
+    },
+    {
+      "experimentId": "v1-cap6-esp1",
+      "field": "steps",
+      "expected": "Il PDF descrive passaggi generici: 'Collega il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa e un punto qualsiasi della zona sotto'",
+      "found": "Il codice specifica posizioni esatte (fila A, colonne 2-9, foro B2, ecc.)",
+      "severity": "low",
+      "note": "Il codice è più preciso del libro — accettabile per il simulatore digitale, ma la breadboard virtuale forza posizioni fisse che il libro non richiede"
+    },
+    {
+      "experimentId": "v1-cap6-esp2",
+      "field": "steps",
+      "expected": "Il PDF presenta questo come un AVVERTIMENTO teorico ('NON collegare MAI il LED direttamente alla batteria') senza passi di assemblaggio reali",
+      "found": "Il codice lo tratta come un esperimento con 3 step di assemblaggio e componenti fisici (led[blue], breadboard, batteria)",
+      "severity": "medium",
+      "note": "Il libro non intende che lo studente collegi davvero il LED senza resistore — è una spiegazione concettuale. Il simulatore lo trasforma in un vero esperimento interattivo, il che è pedagogicamente discutibile ma non completamente sbagliato"
+    },
+    {
+      "experimentId": "v1-cap6-esp2",
+      "field": "components",
+      "expected": "Nessuna lista componenti nel PDF per questo avvertimento (è testo esplicativo)",
+      "found": "battery9v, breadboard-half, led[blue] — colore blu non specificato nel PDF",
+      "severity": "low",
+      "note": "Il colore blu è arbitrario, il PDF non indica alcun colore per questo scenario"
+    },
+    {
+      "experimentId": "v1-cap6-esp3",
+      "field": "components",
+      "expected": "Il PDF dice: partire dal circuito precedente e cambiare il resistore a 220Ω (più luminoso) o 1kΩ (meno luminoso) — serve ANCHE il resistore da 1kΩ",
+      "found": "components: resistor(470) — il codice lista solo il 470Ω come componente, non i 220Ω o 1kΩ necessari per l'esperimento",
+      "severity": "medium",
+      "note": "L'esperimento richiede di provare 220Ω, 470Ω e 1kΩ ma il codice mostra solo 470Ω nella lista componenti. Dovrebbero essere listati tutti e tre (o almeno 220Ω come valore principale dell'esperimento)"
+    },
+    {
+      "experimentId": "v1-cap6-esp3",
+      "field": "steps",
+      "expected": "PDF: 'Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm' — l'esperimento INIZIA con 220Ω (più luminoso) poi suggerisce 1kΩ",
+      "found": "Passo 1 del codice: 'Inserisci il resistore da 220Ω' — corretto per il primo passo. Ma non ci sono passi per provare il 470Ω e il 1kΩ come il libro suggerisce",
+      "severity": "low",
+      "note": "Il primo passo è allineato (220Ω), ma mancano le istruzioni per variare tra i tre valori come il libro descrive"
+    },
+    {
+      "experimentId": "v1-cap7-esp2",
+      "field": "steps",
+      "expected": "Il PDF presenta Esp2 come modifica di Esp1: 'Scollega il resistore da 470 Ohm dal rosso e collegalo al verde' — un singolo passo di ricollegamento",
+      "found": "Il codice tratta Esp2 come un esperimento INDIPENDENTE con 5 step di assemblaggio completo dall'inizio, come se fosse un circuito nuovo",
+      "severity": "medium",
+      "note": "Anche Esp3 (blu) nel PDF è solo 'Scollega dal rosso e collegalo al blu'. Il codice ricrea tutto da zero invece di modificare il circuito precedente. Questo è accettabile per il simulatore ma non rispecchia il flusso pedagogico del libro"
+    },
+    {
+      "experimentId": "v1-cap7-esp2",
+      "field": "components",
+      "expected": "PDF: implicitamente usa gli stessi componenti di Esp1 (già sulla breadboard), non re-elenca tutto",
+      "found": "battery9v, breadboard-half, resistor(470), rgb-led — lista completa come se si partisse da zero",
+      "severity": "low",
+      "note": "Funzionalmente corretto per il simulatore, ma non rispecchia il flusso del libro dove i componenti rimangono sulla breadboard tra gli esperimenti"
+    },
+    {
+      "experimentId": "v1-cap7-esp3",
+      "field": "steps",
+      "expected": "PDF Esp3: 'Scollega il resistore da 470 Ohm dal rosso e collegalo al blu' — un solo step, modifica incrementale da Esp2",
+      "found": "Il codice tratta Esp3 come esperimento indipendente con 8 buildSteps completi dall'inizio (stessa problematica di Esp2)",
+      "severity": "medium",
+      "note": "Il pattern 'Esp indipendente vs modifica incrementale' si ripete: il PDF intende che ogni Esp RGB del Cap7 sia una variazione del precedente, il codice li tratta tutti come esperimenti autonomi. Accettabile per usabilità del simulatore ma rompe il flusso narrativo del libro"
+    },
+    {
+      "experimentId": "v1-cap7-esp3",
+      "field": "components",
+      "expected": "PDF: implicitamente usa gli stessi componenti di Esp1 (già sulla breadboard) — solo un resistore da 470Ω",
+      "found": "battery9v, breadboard-half, resistor(470), rgb-led — lista completa autonoma",
+      "severity": "low",
+      "note": "Coerente con la scelta del simulatore di presentare esperimenti indipendenti"
+    },
+    {
+      "experimentId": "v1-cap7-esp4",
+      "field": "steps",
+      "expected": "PDF: 'Prendi un altro resistore da 470 Ohm e prova ad accendere insieme due colori che preferisci' — libera scelta dei colori, solo l'esempio propone Rosso+Blu",
+      "found": "Il codice fissa specificamente Rosso+Blu=Viola come l'unica configurazione dell'esperimento",
+      "severity": "low",
+      "note": "Il PDF propone R+B come ESEMPIO ma invita a scegliere liberamente i due colori. Il codice va bene per il simulatore ma elimina l'esplorazione creativa suggerita dal libro. L'approccio fisso è accettabile ma idealmente andrebbero mostrati altri esempi (R+G=giallo, G+B=ciano)"
+    },
+    {
+      "experimentId": "v1-cap7-esp5",
+      "field": "steps",
+      "expected": "PDF: dopo aver acceso tutti e 3, suggerisce SUBITO di abbassare il rosso a 330Ω poi 220Ω per ottenere bianco vero. Questo è parte dell'Esp5, non dell'Esp6.",
+      "found": "Il codice mette tutti e 3 i resistori a 470Ω (bianco azzurrino) e non include i passi di regolazione. La regolazione resistori è spostata completamente in Esp6.",
+      "severity": "medium",
+      "note": "Il PDF integra l'aggiustamento del rosso dentro Esp5 stesso ('Come facciamo? Basta abbassare la resistenza del LED rosso! Prova a modificare il resistore del LED rosso abbassandolo prima a 330 Ohm e poi a 220 Ohm'). Il codice scinde questo in due esperimenti separati, perdendo il legame narrativo diretto"
+    },
+    {
+      "experimentId": "v1-cap7-esp6",
+      "field": "steps",
+      "expected": "PDF: 'prova a giocare con i valori di resistenza dei colori per creare il colore che più ti piace!' — esperimento di libera esplorazione senza configurazione fissa",
+      "found": "Il codice forza una configurazione specifica: R1=220Ω (rosso intenso), R2=470Ω, R3=470Ω — presentata come l'esperimento definitivo",
+      "severity": "medium",
+      "note": "L'Esp6 del PDF è pensato come sandbox creativo dove lo studente sperimenta liberamente valori di resistenza. Il codice lo cristallizza in una configurazione predefinita (rosso più luminoso), perdendo completamente la natura esplorativa dell'esperimento. Sarebbe più fedele al libro proporre più preset o permettere la modifica interattiva dei valori"
+    },
+    {
+      "experimentId": "v1-cap8-esp1",
+      "field": "components",
+      "expected": "PDF: 'Un LED. Sceglilo del colore che ti piace di più!' — colore libero",
+      "found": "led[blue] — colore blu fisso nel codice",
+      "severity": "low",
+      "note": "Stesso pattern ricorrente: il PDF lascia scegliere il colore, il simulatore lo fissa (qui blu). Coerente con gli altri esperimenti LED singolo"
+    },
+    {
+      "experimentId": "v1-cap8-esp1",
+      "field": "steps",
+      "expected": "PDF: resistore a CAVALLO della striscia centrale, gambetta lunga LED verso il resistore, gambetta corta in 'un foro qualsiasi', pulsante con 'un lato verso la gambetta corta del LED e l'altro verso lo spazio libero'",
+      "found": "Il codice ha btn1:pin1=e11, btn1:pin2=f13 — pulsante a cavallo della striscia centrale accanto al LED. Connessione f10→e10→e11 lega catodo LED al pulsante. Struttura generale allineata.",
+      "severity": "low",
+      "note": "La struttura del circuito è corretta e allineata con il PDF. Le posizioni esatte (e11, f13) sono scelte di implementazione del simulatore non in conflitto con il libro. L'unica differenza è il colore del LED (blu vs libero scelta)"
+    },
+    {
+      "experimentId": "v1-cap8-esp2",
+      "field": "steps",
+      "expected": "PDF Esp2 Cap8: 'Partendo dall'esperimento appena finito, cambia colore del LED o valore del resistore per rendere il LED più o meno luminoso.' — una riga, suggerimento di libera modifica, NESSUN passo specifico",
+      "found": "Il codice crea un esperimento completo da zero: 13 buildStep, LED verde fisso, resistore 220Ω fisso, stessa struttura indipendente degli altri",
+      "severity": "medium",
+      "note": "Il PDF descrive Esp2 Cap8 come un'indicazione in una riga (libera sperimentazione), non un esperimento strutturato. Il codice lo trasforma in un esperimento completo con configurazione fissa (verde + 220Ω), rimuovendo la scelta dello studente. Pattern identico a Cap7-Esp6. Pedagogicamente, lo studente dovrebbe poter scegliere colore e resistore."
+    },
+    {
+      "experimentId": "v1-cap8-esp2",
+      "field": "components",
+      "expected": "PDF: nessuna lista componenti specifica — lo studente modifica quello che ha già",
+      "found": "led[green] (220Ω) — il codice prescrive un LED verde e un resistore da 220Ω come unica configurazione",
+      "severity": "low",
+      "note": "Il colore verde e il valore 220Ω sono scelte arbitrarie non prescritte dal PDF. Accettabile come default ma dovrebbe essere chiaramente indicato come 'esempio' nel testo."
+    },
+    {
+      "experimentId": "v1-cap8-esp3",
+      "field": "components",
+      "expected": "PDF: RGB, breadboard, batteria 9V, clip, 2x resistori 470Ω, 1 pulsante, 2 fili colorati",
+      "found": "battery9v, breadboard-half, 2x resistor(470), rgb-led, push-button — corretto. Fili non listati come componenti ma presenti nelle connections.",
+      "severity": "low",
+      "note": "Buon allineamento componenti. Il PDF specifica 'Due fili colorati' come componenti — il codice li gestisce come connections, accettabile per il simulatore."
+    },
+    {
+      "experimentId": "v1-cap8-esp3",
+      "field": "steps",
+      "expected": "PDF: circuito con catodo del LED RGB collegato al pulsante, pulsante al negativo. Positivo → R1(rosso) → LED.red; positivo → R2(blu) → LED.blue; LED.catodo → pulsante → negativo",
+      "found": "Codice: r1→rgb.red (E9→F15), r2→rgb.blue (E18→F18), catodo(J16)→pulsante(J20)→bus−. Topologia corretta.",
+      "severity": "low",
+      "note": "BUON ALLINEAMENTO: il circuito del simulatore replica fedelmente il PDF. Il pulsante controlla il catodo comune, accendendo insieme rosso e blu (viola) quando premuto."
+    },
+    {
+      "experimentId": "v1-cap8-esp4",
+      "field": "components",
+      "expected": "PDF: RGB, breadboard, batteria 9V, clip, 3x resistori 470Ω, 3 pulsanti, 4 fili colorati",
+      "found": "battery9v, breadboard-half, 3x push-button, 3x resistor(470), rgb-led — corretto.",
+      "severity": "low",
+      "note": "Buon allineamento componenti. Il PDF dice '4 fili colorati' come componenti — il codice li gestisce come connections."
+    },
+    {
+      "experimentId": "v1-cap8-esp4",
+      "field": "steps",
+      "expected": "PDF: pulsante in basso → LED blu, pulsante centrale → LED verde, pulsante in alto → LED rosso. Assegnazione spaziale bottom/center/top.",
+      "found": "Codice: btn1(e2/f4)→rosso, btn2(e6/f8)→verde, btn3(e10/f12)→blu. Assegnazione left-to-right con colori in ordine inverso rispetto al PDF.",
+      "severity": "low",
+      "note": "La topologia è funzionalmente equivalente — ogni pulsante controlla un colore. L'ordine spaziale dei colori differisce dal PDF (PDF: basso=blu, alto=rosso; codice: sinistra=rosso, destra=blu). Non impatta l'apprendimento ma chi segue entrambi potrebbe notare la differenza."
+    },
+    {
+      "experimentId": "v1-cap8-esp5",
+      "field": "steps",
+      "expected": "PDF: 'prova a cambiare i valori di resistenza dei vari colori così da ottenere colori diversi quando premi più pulsanti contemporaneamente!' — libera esplorazione. NESSUN valore prescritto.",
+      "found": "Codice: r1=220Ω (rosso), r2=470Ω (verde), r3=1kΩ (blu) — configurazione specifica prescritta come 'Mix avanzato'.",
+      "severity": "medium",
+      "note": "Stesso pattern di Cap7-Esp6 e Cap8-Esp2: un esperimento di libera esplorazione viene cristallizzato in una configurazione fissa. Lo studente perde l'opportunità di scoprire autonomamente le sfumature. I valori 220/470/1k sono una scelta ragionevole ma non l'unica (né quella del libro)."
+    },
+    {
+      "experimentId": "v1-cap8-esp5",
+      "field": "steps",
+      "expected": "PDF: 'RICORDA: non scendere mai sotto i 100 Ohm altrimenti rischi di bruciare il LED!' — avvertimento di sicurezza esplicito.",
+      "found": "Il codice NON include questo avvertimento di sicurezza né nel campo 'note', né nei buildSteps, né nell'observe.",
+      "severity": "medium",
+      "note": "AVVERTIMENTO DI SICUREZZA MANCANTE: il PDF avvisa esplicitamente di non usare resistori sotto 100Ω per evitare di bruciare il LED. Questa informazione critica è assente nel codice. Da aggiungere almeno nel campo 'note' o nell'observe."
+    },
+    {
+      "experimentId": "v1-cap9-esp1",
+      "field": "components",
+      "expected": "PDF: LED (colore libero), breadboard, batteria 9V, clip, 1x resistore 470Ω, 1x potenziometro 10kΩ, 2 fili colorati",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), led[red] — corretti tranne colore LED (solito pattern rosso vs libero scelta).",
+      "severity": "low",
+      "note": "Componenti allineati. LED rosso fisso invece di libera scelta — pattern ricorrente."
+    },
+    {
+      "experimentId": "v1-cap9-esp1",
+      "field": "steps",
+      "expected": "PDF usa il potenziometro come RESISTORE VARIABILE a 2 pin: catodo LED → pot.pin2 (wiper), pot.pin1 → bus negativo. Circuito: battery+ → R(470Ω) → LED.anodo → LED.catodo → pot(pin2→pin1) → battery−. Girare a destra = più resistenza = LED più fioco.",
+      "found": "Codice usa il potenziometro come PARTITORE DI TENSIONE a 3 pin: pot.vcc(pin1)=bus+, pot.signal(pin2)=uscita, pot.gnd(pin3)=bus−. Circuito: battery+ → pot.pin1 → pot.pin2(wiper) → R(470Ω) → LED → battery−.",
+      "severity": "medium",
+      "note": "DIFFERENZA TOPOLOGICA SIGNIFICATIVA: il PDF usa solo 2 pin del potenziometro (pin1+pin2) come resistore variabile in serie con il LED; il codice usa tutti e 3 i pin in configurazione voltage divider. Entrambi controllano la luminosità del LED, ma il principio fisico e il wiring sono diversi. Il libro insegna 'resistore variabile', il codice implementa 'partitore di tensione' — concetti diversi a livello educativo."
+    },
+    {
+      "experimentId": "v1-cap9-esp1",
+      "field": "steps",
+      "expected": "PDF: circuito ha battery+ → R(470Ω) → LED(+→−) → pot → battery−. Il potenziometro è DOPO il LED nel circuito.",
+      "found": "Codice: battery+ → pot → R(470Ω) → LED → battery−. Il potenziometro è PRIMA del resistore e del LED.",
+      "severity": "low",
+      "note": "L'ordine dei componenti in serie è diverso dal PDF. In un circuito puramente resistivo DC ciò non cambia il comportamento, ma la posizione spaziale nella breadboard sarà diversa dal disegno del libro, creando confusione agli studenti che seguono entrambi."
+    },
+    {
+      "experimentId": "v1-cap9-esp2",
+      "field": "steps",
+      "expected": "PDF: 'Nell'esperimento 1 l'intensità luminosa diminuisce ruotando verso destra, come facciamo invece a farla aumentare? Facile! Basta [invertire i pin].' — UNA RIGA. Nessun passo di assemblaggio: è una modifica one-shot dell'esperimento precedente.",
+      "found": "Il codice crea un esperimento completamente autonomo con 11 buildSteps completi, breadboard+batteria+pot+resistore+LED montati da zero.",
+      "severity": "medium",
+      "note": "Cap9-Esp2 nel PDF è la proposta di modifica più breve di tutto il volume — una singola frase. Il codice lo eleva a esperimento indipendente con wiring invertito (pot.gnd→bus+, pot.vcc→bus−). Il concetto di inversione pin è corretto e l'arricchimento pedagogico (quiz su simmetria del pot) è valido, ma la presentazione come esperimento autonomo allontana dal flusso narrativo del libro."
+    },
+    {
+      "experimentId": "v1-cap9-esp2",
+      "field": "components",
+      "expected": "PDF: nessuna lista componenti — lo studente usa quelli già sulla breadboard dell'Esp1",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), led[red] — lista completa come se si partisse da zero",
+      "severity": "low",
+      "note": "Stesso pattern ricorrente: il simulatore non può mantenere lo stato breadboard tra esperimenti, quindi ogni Esp viene ricreato da zero."
+    },
+    {
+      "experimentId": "v1-cap9-esp3",
+      "field": "steps",
+      "expected": "PDF: 'Cambia colore del LED, noti differenze di luminosità man mano che giri il cursore?' — UNA RIGA. Nessun passo di assemblaggio: suggerimento di sostituzione del LED nel circuito già montato.",
+      "found": "Il codice crea un esperimento autonomo con 11 buildSteps, LED verde fisso, e aggiunge una spiegazione scientifica sulla tensione forward (Vf 2.2V vs 1.8V) non presente nel PDF.",
+      "severity": "medium",
+      "note": "Cap9-Esp3 nel PDF è ancora più breve di Esp2 — solo una domanda stimolo. Il codice aggiunge contenuto educativo accurato (tensione forward) che il PDF NON menziona esplicitamente. L'arricchimento è pedagogicamente valido ma tecnicamente non aderente al testo del libro. Positivo che il concetto di Vf sia spiegato, ma andrebbe indicato chiaramente come approfondimento rispetto al libro."
+    },
+    {
+      "experimentId": "v1-cap9-esp3",
+      "field": "components",
+      "expected": "PDF: nessuna lista componenti — lo studente usa quelli già montati e cambia solo il LED",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), led[green] — lista completa autonoma",
+      "severity": "low",
+      "note": "LED verde scelto come 'colore diverso' per dimostrare la Vf differente. Scelta coerente e didattica."
+    },
+    {
+      "experimentId": "v1-cap9-esp4",
+      "field": "components",
+      "expected": "PDF: LED RGB, breadboard, batteria 9V, clip, 1x resistore 470Ω, 1x potenziometro 10kΩ, 3 fili colorati",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), rgb-led — CORRETTI. 1 solo resistore e 1 solo pot come il PDF.",
+      "severity": "low",
+      "note": "Buon allineamento componenti. I fili gestiti nelle connections come al solito."
+    },
+    {
+      "experimentId": "v1-cap9-esp4",
+      "field": "steps",
+      "expected": "PDF circuit: battery+ → rgb.blue(direttamente) AND rgb.green(direttamente) → rgb.common(catodo) → R(470Ω) → pot.pin2(wiper) → pot.pin3 → battery−. Il pot è SUL LATO CATODO, dopo il LED.",
+      "found": "Codice circuit: battery+ → pot.vcc(pin1) → pot.signal(pin2/wiper) → rgb.blue AND rgb.green → rgb.common(catodo) → R(470Ω) → bus− → battery−. Il pot è SUL LATO ANODO, prima del LED.",
+      "severity": "medium",
+      "note": "DIFFERENZA TOPOLOGICA: il PDF controlla la corrente SUL LATO DI USCITA (catodo/GND side), il codice controlla la corrente SUL LATO DI INGRESSO (anodo/+ side). Entrambi dimmano il LED ma: (1) il punto nel circuito dove il pot agisce è invertito rispetto al PDF; (2) il comportamento della rotazione potrebbe differire; (3) lo studente che confronta il suo circuito fisico (seguendo il PDF) con il simulatore vedrà una breadboard completamente diversa."
+    },
+    {
+      "experimentId": "v1-cap9-esp5",
+      "field": "components",
+      "expected": "PDF: LED RGB, breadboard, batteria 9V, clip, 1x resistore 470Ω, 1x potenziometro 10kΩ, 3 fili colorati",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), rgb-led — CORRETTI.",
+      "severity": "low",
+      "note": "Buon allineamento componenti. 1 solo resistore e 1 solo pot come il PDF."
+    },
+    {
+      "experimentId": "v1-cap9-esp5",
+      "field": "steps",
+      "expected": "PDF circuit: battery+ → pot.pin2(wiper, collegato al +) → si divide tra pot.pin1(→ rgb.blue) E pot.pin3(→ rgb.red) → rgb.common(catodo) → R(470Ω) → battery−.",
+      "found": "Codice circuit: bus+ → bus-top-plus-4 → a4(pot.signal/pin2) → si divide verso a3(pot.vcc/pin1 → rgb.blue via a21) E a5(pot.gnd/pin3 → rgb.red via a18) → rgb.common → R(470Ω) → bus− → battery−.",
+      "severity": "low",
+      "note": "BUON ALLINEAMENTO CIRCUITALE: il circuito del codice corrisponde al PDF. La corrente della batteria entra nel pin2 del pot (wiper) e si divide tra pin1 (blu) e pin3 (rosso) a seconda della posizione del cursore. Unica differenza: l'etichettatura interna del pot (pot.vcc/pot.gnd) è fuorviante per questa configurazione — i pin1 e pin3 non sono 'VCC' né 'GND' qui, ma il circuito funziona correttamente."
+    },
+    {
+      "experimentId": "v1-cap9-esp6",
+      "field": "components",
+      "expected": "PDF: LED RGB, breadboard, batteria 9V, clip, 3x resistori 470Ω, 3x potenziometri 10kΩ, 7 fili colorati",
+      "found": "battery9v, breadboard-half, 3x potentiometer(10000), 3x resistor(470), rgb-led — CORRETTI.",
+      "severity": "low",
+      "note": "Perfetto allineamento componenti. I 7 fili sono gestiti nelle connections. Questo è uno degli esperimenti con migliore corrispondenza componenti."
+    },
+    {
+      "experimentId": "v1-cap9-esp6",
+      "field": "steps",
+      "expected": "PDF: resistore posizionato 'tra il positivo della batteria e il piedino del potenziometro' — quindi R è TRA battery+ e pot.pin1. Circuit: battery+ → R(470Ω) → pot.pin1 → pot.pin2(wiper) → LED channel → rgb.common → battery−.",
+      "found": "Codice circuit: battery+ → pot.vcc(pin1) → pot.signal(pin2) → R(470Ω) → LED channel → rgb.common → battery−. Il resistore è DOPO il wiper, non prima del pin1.",
+      "severity": "low",
+      "note": "Differenza nella posizione del resistore: PDF mette R tra battery+ e pot.pin1; codice mette R tra pot.signal e il LED channel. Funzionalmente identici (in serie DC il comportamento è lo stesso), ma fisicamente diversi dalla breadboard del libro. Uno studente che segue il PDF e confronta col simulatore vedrà posizioni di fili diverse ma il circuito funzionerà allo stesso modo. Impatto pedagogico minimo."
+    },
+    {
+      "experimentId": "v1-cap9-esp6",
+      "field": "steps",
+      "expected": "PDF: suggerimento finale 'Gioca ora con le regolazioni e crea il colore che ti piace di più!' + 'Prova a chiedere un bicchierino del caffè di plastica bianco e poggialo sopra al LED RGB: diffonderà la luce! Prova questo esperimento al buio!'",
+      "found": "Il codice NON include il suggerimento del bicchierino di caffè né quello di provare al buio, presenti nel PDF come 'bonus tips' che arricchiscono l'esperienza.",
+      "severity": "low",
+      "note": "Tips pratiche del PDF assenti nel codice. Non critiche ma aggiungerebbero valore all'esperienza dell'utente se incluse nel campo 'observe' o in un campo 'tips' dedicato."
+    },
+    {
+      "experimentId": "v1-cap9-esp7",
+      "field": "steps",
+      "expected": "PDF ESPERIMENTO 7: 'Vuoi provare ad aggiungere qualche pulsante?' — UNA SOLA RIGA. Suggerimento a libera sperimentazione basata su Esp6 (lampada con 3 pot). Implica aggiungere pulsanti per ogni canale R/G/B.",
+      "found": "Il codice crea un esperimento completo con 15 buildSteps: 1 pulsante + 1 pot + 1 resistore + 1 RGB. Circuito parziale rispetto all'implicazione del PDF (1 canale invece di 3).",
+      "severity": "medium",
+      "note": "PATTERN ESTREMO: il PDF di Cap9-Esp7 è di nuovo una singola riga — la quinta volta che questo pattern emerge in Cap9 (esp2, esp3, esp7, esp8, esp9). Il codice trasforma il suggerimento in un esperimento completo ma PARZIALE (solo 1 canale su 3). Il PDF 'Vuoi provare ad aggiungere qualche pulsante?' implicherebbe l'aggiunta di 3 pulsanti alla lampada Esp6 (3 pot + 3 R + 3 BTN + RGB). Il codice mostra solo 1 pulsante + 1 pot, che è meno della sfida originale."
+    },
+    {
+      "experimentId": "v1-cap9-esp7",
+      "field": "components",
+      "expected": "PDF: nessuna lista specifica — lo studente parte da Esp6 (3 pot + 3 R + RGB) e aggiunge 3 pulsanti",
+      "found": "battery9v, breadboard-half, potentiometer(10000), push-button, resistor(470), rgb-led — solo 1 pot e 1 pulsante (non 3+3 come implicato da Esp6+pulsanti)",
+      "severity": "low",
+      "note": "La semplificazione a 1 canale è pedagogicamente ragionevole per una 'sfida introduttiva', ma diverge dall'intento del PDF che intende estendere la lampada a 3 canali."
+    },
+    {
+      "experimentId": "v1-cap9-esp8",
+      "field": "steps",
+      "expected": "PDF ESPERIMENTO 8: 'Prova a fare insieme l'esperimento 6 e l'esperimento 5' — UNA SOLA RIGA. Combinare Esp5 (miscelatore blu/rosso con wiper che divide tra i 2 canali) e Esp6 (lampada a 3 pot). Il circuito combinato sarebbe molto complesso (wiper + 3 pots + 3 resistors + RGB).",
+      "found": "Il codice crea 18 buildSteps con 2 pot + 2 resistori + RGB, dove ogni pot controlla un canale R o B in modo indipendente (non in modalità partitore wiper come Esp5). Semplificazione significativa.",
+      "severity": "medium",
+      "note": "Il PDF 'Prova a fare insieme l'esperimento 6 e l'esperimento 5' è la sfida più ambiziosa del capitolo — combinare la topologia partitore di Esp5 (wiper che mescola R/B) con la lampada multi-pot di Esp6. Il codice implementa invece 2 pot in parallelo con resistori separati, che è più simile a una versione ridotta di Esp6 (solo 2 canali) che alla vera combinazione Esp5+Esp6. Concettualmente è una semplificazione che non rispecchia la sfida del libro."
+    },
+    {
+      "experimentId": "v1-cap9-esp8",
+      "field": "components",
+      "expected": "PDF: combinazione implicita di Esp5 (1 pot wiper + RGB.red + RGB.blue + R) e Esp6 (3 pot + 3 R + RGB). Risultato: ~4 potenziometri in teoria (1 wiper + 3 dimmer).",
+      "found": "battery9v, breadboard-half, 2x potentiometer(10000), 2x resistor(470), rgb-led — parziale: 2 pot invece dei 3+ della combinazione completa.",
+      "severity": "low",
+      "note": "La semplificazione a 2 pot è pragmatica per il simulatore ma non rispecchia la complessità implicita della sfida del PDF."
+    },
+    {
+      "experimentId": "v1-cap9-esp9",
+      "field": "steps",
+      "expected": "PDF ESPERIMENTO 9: 'Aggiungi un pulsante per accendere e spegnere il LED all'esperimento 8!' — UNA SOLA RIGA. Aggiunta di un singolo pulsante master ON/OFF al circuito Esp8.",
+      "found": "Il codice crea 15 buildSteps con il circuito: 1 pulsante + 1 pot + 1 resistore + 1 LED SINGOLO (non RGB!). Contiene anche pot2 nella lista components ma pot2 non ha pinAssignments né connections — pot2 è un componente ORFANO non connesso.",
+      "severity": "high",
+      "note": "DOPPIO BUG CRITICO: (1) L'esperimento Esp9 dovrebbe estendere Esp8 (2 pot + 2 R + RGB) aggiungendo un pulsante, ma il codice usa un LED singolo ordinario (led1:anode/cathode) invece dell'RGB, e pot2 è elencato nei components ma non compare in pinAssignments né connections — è un componente disconnesso/orfano. Questo è sia una discrepanza col PDF (LED singolo vs RGB atteso) sia un bug interno del codice (pot2 orfano che potrebbe causare errori nel simulatore)."
+    },
+    {
+      "experimentId": "v1-cap9-esp9",
+      "field": "components",
+      "expected": "PDF: nessuna lista specifica — si parte da Esp8 (2 pot + 2 R + RGB) e si aggiunge 1 pulsante",
+      "found": "battery9v, breadboard-half, 2x potentiometer(10000), push-button, 2x resistor(470), rgb-led — lista include rgb-led, ma il circuito reale usa led1 (LED singolo). Incoerenza interna tra components e pinAssignments.",
+      "severity": "high",
+      "note": "INCOERENZA INTERNA: la lista components dichiara rgb-led (rgb1) ma il pinAssignments usa 'led1:anode' e 'led1:cathode' (LED singolo), e i buildSteps dicono 'LED rosso'. Il simulatore potrebbe renderizzare in modo imprevedibile. Da correggere urgentemente."
+    },
+    {
+      "experimentId": "v1-cap10-esp1",
+      "field": "components",
+      "expected": "PDF ESPLICITO: 'In questo circuito non c'è bisogno di inserire un resistore in serie al LED perché il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED.' — componenti: LED (colore libero), breadboard, batteria 9V, clip, 1 fotoresistore. NESSUN resistore.",
+      "found": "components: battery9v, breadboard-half, photo-resistor, led[red] — la lista NON include un resistore. MA i buildSteps (step 4) aggiungono esplicitamente 'Inserisci il resistore da 220Ω', il campo observe dice 'Il resistore da 220Ω protegge il LED dalla troppa corrente', e il campo steps dice 'Inserisci il resistore da 220Ω nella fila d, colonne 7-9 (protegge il LED!)'. Il resistore R1 appare nei buildSteps ma NON nella lista components né nei pinAssignments.",
+      "severity": "high",
+      "note": "TRIPLA DISCREPANZA CRITICA: (1) Il PDF dice ESPLICITAMENTE nessun resistore necessario — il codice aggiunge uno da 220Ω CONTRADDICENDO il testo del libro. (2) Il codice è INTERNAMENTE INCOERENTE: il resistore appare negli steps e nell'observe ma non nei components né nei pinAssignments — questo è un bug che renderizza il componente in modo imprevedibile. (3) Il LED è rosso fisso invece di libera scelta. La discrepanza #1 è la più grave: uno studente che segue il libro vedrà 'non serve il resistore' ma il simulatore ne mostra uno."
+    },
+    {
+      "experimentId": "v1-cap10-esp1",
+      "field": "steps",
+      "expected": "PDF circuit: battery+ → fotoresistore pin1 → fotoresistore pin2 → LED anodo → LED catodo → battery−. Catodo del LED direttamente al negativo. NO resistore intermedio.",
+      "found": "Codice circuit: bus+5 → a5 (LDR pin1) → LDR→ a6→a7 (bridge) → R1(220Ω) → LED → bus−. Il resistore è inserito tra l'LDR e il LED.",
+      "severity": "medium",
+      "note": "La topologia del simulatore aggiunge un resistore in una posizione dove il PDF dice che non serve. Lo studente che segue il PDF fisicamente non avrà il resistore e il circuito funzionerà comunque (l'LDR ha abbastanza resistenza). Ma confrontando col simulatore vedrà un componente in più che il libro non prevede."
+    },
+    {
+      "experimentId": "v1-cap10-esp2",
+      "field": "steps",
+      "expected": "PDF: 'Prova adesso a cambiare il LED con uno di un colore diverso e osserva come cambia il comportamento!' — UNA SOLA RIGA. Modifica one-shot del circuito Esp1.",
+      "found": "Il codice crea un esperimento completamente autonomo con ~11 buildSteps, LED blu fisso, stesso circuito di Esp1 con led[blue]. Aggiunge spiegazione sulla soglia forward voltage (non nel PDF).",
+      "severity": "medium",
+      "note": "Pattern ricorrente: una riga del PDF diventa un esperimento completo. Il codice sceglie il blu come 'colore diverso' — scelta ragionevole e pedagogicamente valida (il blu ha soglia più alta). L'aggiunta del concetto di forward voltage threshold è un arricchimento non presente nel PDF ma educativamente valido. EREDITA il bug del resistore da Esp1: anche qui il resistore appare negli steps ma non nei components."
+    },
+    {
+      "experimentId": "v1-cap10-esp2",
+      "field": "components",
+      "expected": "PDF: nessuna lista — si parte da Esp1 e si cambia solo il LED",
+      "found": "battery9v, breadboard-half, photo-resistor, led[blue] — lista senza resistore (stesso pattern inconsistente di Esp1).",
+      "severity": "medium",
+      "note": "EREDITA BUG Esp1: il codice non lista il resistore nei components ma i buildSteps lo includono. Stessa incoerenza interna. Da correggere insieme a Esp1."
+    },
+    {
+      "experimentId": "v1-cap10-esp3",
+      "field": "components",
+      "expected": "PDF: LED RGB, breadboard, batteria 9V, clip, 3 fotoresistori, 3 fili colorati — NO resistori nel PDF.",
+      "found": "battery9v, breadboard-half, 3x photo-resistor, rgb-led — componenti CORRETTI. Ma buildSteps 6-8 aggiungono 3x resistore 220Ω (r1, r2, r3) con targetPins, NON presenti in components né pinAssignments — orfani.",
+      "severity": "high",
+      "note": "TERZO CASO ORPHAN RESISTOR: il pattern si ripete per la terza volta (dopo Cap10-Esp1 e Cap10-Esp2). 3 resistori da 220Ω appaiono nei buildSteps e nel campo steps ('Inserisci 3 resistori da 220Ω') ma sono completamente assenti da components e pinAssignments. Il codice CONTRADDICE il PDF che non lista resistori. Bug interno + discrepanza pedagogica. Probabilmente causa rendering imprevedibile nel simulatore."
+    },
+    {
+      "experimentId": "v1-cap10-esp3",
+      "field": "steps",
+      "expected": "PDF circuit per ogni canale: battery+ → LDR.pin1 (striscia rossa) → LDR.pin2 → RGB.channel → RGB.common → battery−. Ogni LDR collegato direttamente al canale RGB corrispondente, senza resistori intermedi.",
+      "found": "Codice: connections con bridge a4→a5, a6→a19 (per canale rosso). Suggerisce path: bus+3 → ldr1.pin1(d3) → ldr1.pin2 → [bridge a4→a5 = phantom resistor path] → a6 → rgb1.red. Ma ldr1:pin2=d6 in pinAssignments vs d4 in buildStep targetPins — incoerenza interna nelle posizioni LDR.",
+      "severity": "high",
+      "note": "DOPPIA INCONSISTENZA INTERNA: (1) buildStep targetPins per ldr1 dicono d3-d4, ma pinAssignments dice d3-d6 (2 colonne di scarto). Stessa incoerenza per ldr2 (d7-d8 in buildStep vs d8-d11 in pinAssignments) e ldr3. I 'bridge' a4→a5, a8→a9, a12→a13 nel circuits sembrano essere i piedini di resistori orfani — ma quei resistori non sono in pinAssignments. Il circuito simulato potrebbe avere connessioni diverse da quelle mostrate visivamente."
+    },
+    {
+      "experimentId": "v1-cap10-esp4",
+      "field": "components",
+      "expected": "PDF: breadboard, batteria 9V, clip, LED bianco, LED blu, fotoresistore, resistore 470Ω, 2 fili colorati",
+      "found": "battery9v, breadboard-half, resistor(470), led[white], photo-resistor, led[blue] — ALLINEAMENTO PERFETTO.",
+      "severity": "low",
+      "note": "Buon allineamento componenti. La lista è esatta rispetto al PDF — unico esperimento di Cap10 senza discrepanze nei componenti."
+    },
+    {
+      "experimentId": "v1-cap10-esp4",
+      "field": "steps",
+      "expected": "PDF descrive 2 sotto-circuiti fisicamente vicini: (A) battery+ → LDR → LED_blu → battery−; (B) battery+ → LED_bianco(anodo) → LED_bianco(catodo) → R(470Ω) → battery−. Il LED bianco è posizionato VICINO all'LDR per illuminarlo otticamente ('Collega il LED bianco vicino al fotoresistore').",
+      "found": "Codice usa le due metà della breadboard: circuito LED_bianco+R sul BUS SUPERIORE (righe a-e), circuito LDR+LED_blu sul BUS INFERIORE (righe f-j). Non c'è alcun meccanismo simulato di accoppiamento ottico tra LED_bianco e LDR.",
+      "severity": "high",
+      "note": "CRITICAL SIMULATION FLAW: il concetto CENTRALE dell'Esp4 è l'accoppiamento ottico (LED_bianco illumina l'LDR che accende il LED_blu). Il simulatore non può modellare fotoni fisici — quindi o (a) il circuito non funziona come previsto perché l'LDR non 'vede' il LED_bianco, oppure (b) c'è un meccanismo di simulazione speciale non evidente dal codice. Il PDF dice esplicitamente 'Prova ad orientare la base del fotoresistore verso la testa del LED bianco' — questa fisica è impossibile da simulare in un simulatore elettrico puro. La discrepanza è strutturale: l'esperimento fisico usa luce, il simulatore usa solo corrente."
+    },
+    {
+      "experimentId": "v1-cap10-esp4",
+      "field": "steps",
+      "expected": "PDF circuit B: battery+ → LED_bianco.anodo → LED_bianco.catodo → R(470Ω) → battery−. Il resistore è DOPO il catodo del LED bianco.",
+      "found": "Codice circuit B: battery+ → bus+5 → a5 → R.pin1(c5) → R.pin2(c12) → a12 → a14 → LED_bianco.anodo(b14) → LED_bianco.catodo(b15) → bus-minus. Il resistore è PRIMA del LED bianco.",
+      "severity": "low",
+      "note": "Ordine R+LED invertito rispetto al PDF (R prima vs R dopo). Funzionalmente identico in DC serie, ma la posizione fisica sulla breadboard sarà diversa da quella del libro."
+    },
+    {
+      "experimentId": "v1-cap10-esp5",
+      "field": "steps",
+      "expected": "PDF: 'Partendo dall'esperimento 4 aggiungiamo un potenziometro per cambiare l'intensità luminosa del LED bianco.' — UNA RIGA. Esp4 + pot sul circuito LED_bianco.",
+      "found": "Il codice crea esperimento autonomo con 19 buildSteps. Aggiunge pot1 (10kΩ, 3 pin, voltage divider) nel percorso battery+ → pot → R → LED_bianco. LDR+LED_blu sul bus inferiore rimane invariato.",
+      "severity": "medium",
+      "note": "Pattern 'one-liner PDF → full experiment' si estende a Cap10 (quarta occorrenza dopo Cap9-Esp2/3 e Cap10-Esp2). Il pot è configurato come voltage divider a 3 pin — ma il PDF vuole solo 'aggiungere un potenziometro', senza specificare la topologia. L'accoppiamento ottico (LED_bianco → LDR → LED_blu) è ancora non simulabile come discusso in Esp4."
+    },
+    {
+      "experimentId": "v1-cap10-esp5",
+      "field": "components",
+      "expected": "PDF: nessuna lista — si parte da Esp4 e si aggiunge 1 pot",
+      "found": "battery9v, breadboard-half, potentiometer(10000), resistor(470), led[white], photo-resistor, led[blue] — lista completa autonoma, coerente internamente.",
+      "severity": "low",
+      "note": "La lista componenti è internamente coerente (tutti i componenti appaiono in pinAssignments e connections). Nessun componente orfano — migliore stato di Esp3."
+    },
+    {
+      "experimentId": "v1-cap10-esp6",
+      "field": "steps",
+      "expected": "PDF: 'Partendo dall'esperimento 4 aggiungiamo un pulsante per cambiare l'intensità luminosa del LED blu solo quando premiamo il pulsante.' — UNA RIGA. Esp4 + pulsante in serie con LDR+LED_blu.",
+      "found": "Il codice crea esperimento autonomo con 13 buildSteps. Ma ha MULTIPLE INCOERENZE INTERNE CRITICHE: (1) pinAssignments r1:pin1=d6 vs buildStep targetPins r1:pin1=d9; (2) pinAssignments ldr1:pin1=d14 vs buildStep targetPins ldr1:pin1=d7; (3) pinAssignments led1:anode=d10 vs buildStep targetPins led1:anode=d12; (4) buildStep dice 'LED rosso' ma component è led[white]; (5) components dice r1=470Ω ma steps/observe dicono 220Ω.",
+      "severity": "high",
+      "note": "ESPERIMENTO CON PIÙ BUG INTERNI DI TUTTO IL VOLUME: 5 incoerenze interne in un solo esperimento. Il pinAssignments e i buildStep targetPins non concordano su 3 componenti. Il tipo di LED nei buildSteps non corrisponde ai components. Il valore del resistore nei steps non corrisponde ai components. Il simulatore probabilmente mostra un circuito diverso da quello descritto nel testo. Da risolvere prioritariamente dopo Cap9-Esp9."
+    },
+    {
+      "experimentId": "v1-cap10-esp6",
+      "field": "components",
+      "expected": "PDF: nessuna lista — Esp4 + pulsante. Il LED bianco non serve per la funzione del pulsante sul LED blu.",
+      "found": "battery9v, breadboard-half, push-button, photo-resistor, resistor(470), led[white], led[blue] — il LED bianco è nella lista ma non appare nelle connections del circuito funzionale. Serve solo come prop ottico per l'LDR.",
+      "severity": "medium",
+      "note": "Il LED_bianco è elencato nei components (led1) ma le connections del codice non lo includono nel percorso funzionale btn+LDR+LED_blu. Probabile componente visivo-only (per l'accoppiamento ottico LDR←LED_bianco) non connesso elettricamente. Il PDF dice solo di aggiungere un pulsante al circuito Esp4 — il LED bianco fa parte del contesto visivo ma non è il focus dell'esperimento."
+    },
+    {
+      "experimentId": "v1-cap11-esp1",
+      "field": "components",
+      "expected": "PDF: Un cicalino, Una breadboard, Una batteria 9V, La clip per la batteria 9V — NO resistori ('Un cicalino non ha bisogno di resistori').",
+      "found": "battery9v, breadboard-half, buzzer-piezo — ALLINEAMENTO PERFETTO. Nessun resistore aggiunto.",
+      "severity": "low",
+      "note": "Lista componenti esatta. Il PDF dice esplicitamente che il cicalino non ha bisogno di resistori — il codice rispetta questa indicazione."
+    },
+    {
+      "experimentId": "v1-cap11-esp1",
+      "field": "steps",
+      "expected": "PDF: 2 passi — (1) collega positivo e negativo della batteria alle strisce rossa/nera; (2) collega il cicalino alla batteria con nero=nero e rosso=rosso. Circuito semplicissimo. NOTA IMPORTANTE: 'nel kit puoi trovare anche un cicalino con due piedini uno lungo (negativo) e uno corto (positivo)' — polarità INVERTITA rispetto ai LED!",
+      "found": "Il codice crea 9 buildSteps con bridge da col 1 a col 27 di entrambi i bus: bat→bus-bot+1→bus-bot+27→buz+, bat→bus-top-1→bus-top-27→buz-. Il cicalino è posizionato all'estrema destra (col 27). MANCA l'avvertimento sulla polarità invertita (lungo=negativo) del cicalino.",
+      "severity": "medium",
+      "note": "AVVERTIMENTO POLARITÀ MANCANTE (medium): il PDF specifica esplicitamente che il cicalino nel kit ha il piedino LUNGO = NEGATIVO, opposto alla convenzione del LED (lungo=positivo). Questa informazione critica è assente dal codice. Uno studente che ha imparato la convenzione LED potrebbe invertire la polarità del cicalino. Da aggiungere nell'observe o in una 'note' dedicata. Il circuito funzionale è corretto ma eccessivamente complesso (9 step per un circuito di 2 connessioni)."
+    },
+    {
+      "experimentId": "v1-cap11-esp2",
+      "field": "steps",
+      "expected": "PDF: 'Prova ora a realizzare un circuito in cui il cicalino suona solo se premi un pulsante. Ti ricordi come fare?' — DUE RIGHE. Sfida autonoma che rimanda al ricordo del circuito LED+pulsante. Nessun passo di assemblaggio specificato.",
+      "found": "Il codice crea un esperimento completo con 11 buildSteps, circuito specifico: battery+ (bus-bot-plus) → buz1:positive → buz1:negative → j16 (btn1:pin2) → btn1 → e14 (btn1:pin1) → bus-top-minus → battery-.",
+      "severity": "medium",
+      "note": "Pattern ricorrente (decima occorrenza): il PDF lancia una sfida di recall con 2 righe, il codice crea un esperimento autonomo completo. Il circuito implementato (buzzer in serie con pulsante) è corretto e pedagocamente valido — è il medesimo principio del LED+pulsante. Il bus di polarità usato (bot-plus per positivo, top-minus per negativo) è invertito rispetto agli esperimenti precedenti che usano top-plus e bot-minus, ma funzionalmente identico. Nessun bug interno rilevato."
+    },
+    {
+      "experimentId": "v1-cap11-esp2",
+      "field": "components",
+      "expected": "PDF: nessuna lista componenti — lo studente deve ricordare e applicare quanto fatto con LED+pulsante",
+      "found": "battery9v, breadboard-half, push-button, buzzer-piezo — lista completa autonoma. Nessun resistore (corretto: il cicalino non ne ha bisogno).",
+      "severity": "low",
+      "note": "La scelta di non aggiungere resistori è corretta (allineata con Cap11-Esp1). Il PDF non specifica alcun componente: è una sfida di memoria e applicazione. Il codice traduce la sfida in un esperimento strutturato con componenti esplicitati — scelta accettabile per il simulatore."
+    },
+    {
+      "experimentId": "v1-cap12-esp1",
+      "field": "components",
+      "expected": "PDF: LED (colore libero), breadboard, batteria 9V, clip, resistore 470Ω, interruttore magnetico (reed switch)",
+      "found": "battery9v, breadboard-half, reed-switch, resistor(470), led[red] — ALLINEAMENTO CORRETTO tranne colore LED (rosso fisso vs libero scelta).",
+      "severity": "low",
+      "note": "Lista componenti ben allineata. Solito pattern: PDF lascia scegliere il colore LED, codice fissa il rosso. Non impatta l'apprendimento."
+    },
+    {
+      "experimentId": "v1-cap12-esp1",
+      "field": "steps",
+      "expected": "PDF circuit: battery+ → bus rosso → R(470Ω) → LED.anodo → LED.catodo → reed switch (pin1) → reed switch (pin2) → bus nero → battery−. Il PDF dice esplicitamente: 'Inserisci l'interruttore magnetico tra il catodo del LED e la striscia nera inferiore della breadboard' — il reed switch è DOPO il LED sul lato catodo/GND.",
+      "found": "Codice circuit: battery+ → bus-top-plus → reed(pin1=c5 → pin2=c11) → R(470Ω, e14→e21) → LED(anode=d21, cathode=d22) → bus-top-minus → battery−. Il reed switch è PRIMA del resistore e del LED, sul lato anodo/VCC.",
+      "severity": "medium",
+      "note": "DIFFERENZA TOPOLOGICA: il PDF posiziona il reed switch TRA il catodo del LED e il bus negativo (lato GND), mentre il codice lo posiziona TRA il bus positivo e il resistore (lato VCC). Funzionalmente equivalenti in DC: aprire/chiudere il circuito in un punto qualsiasi interrompe la corrente. Ma la posizione fisica sulla breadboard sarà COMPLETAMENTE DIVERSA da quella del libro — uno studente che segue il PDF e confronta col simulatore non riconoscerà il layout. Stessa tipologia di discrepanza già trovata in Cap9-Esp1 (pot lato anodo vs catodo)."
+    },
+    {
+      "experimentId": "v1-cap12-esp2",
+      "field": "steps",
+      "expected": "PDF: 'Come fatto con il pulsante, prova a sperimentare con i valori di resistenza per rendere più o meno luminoso il LED.' — UNA RIGA. Suggerimento di modificare il resistore nel circuito già montato da Esp1.",
+      "found": "Il codice crea un esperimento completamente autonomo con 10 buildSteps, circuito identico a Esp1 (stesso reed, stesso 470Ω, stesso led[red]). Gli steps del codice dicono 'Sperimenta diversi valori di resistore' ma il circuito fornisce solo 470Ω.",
+      "severity": "medium",
+      "note": "DOPPIA DISCREPANZA: (1) Pattern ricorrente (undicesima occorrenza): una riga del PDF diventa un esperimento completo. (2) AUTOCONTRADDIZIONE INTERNA: lo scopo dell'esperimento è cambiare il resistore per variare la luminosità, ma il codice fornisce UN SOLO valore di resistore (470Ω) — identico a Esp1. Non c'è nulla da 'sperimentare' nel simulatore. Questo è pedagogicamente problematico: l'esercizio propone di sperimentare ma non fornisce strumenti per farlo. Almeno un secondo resistore (220Ω o 1kΩ) dovrebbe essere presente nei components per rendere l'esperimento significativo."
+    },
+    {
+      "experimentId": "v1-cap12-esp2",
+      "field": "components",
+      "expected": "PDF: nessuna lista — lo studente usa il circuito Esp1 e cambia solo il resistore. Implica avere a disposizione 220Ω e 1kΩ oltre al 470Ω.",
+      "found": "battery9v, breadboard-half, reed-switch, resistor(470), led[red] — lista identica a Esp1. Nessun resistore aggiuntivo da sperimentare.",
+      "severity": "medium",
+      "note": "Se lo scopo dell'esperimento è confrontare diversi valori di resistore, la lista dovrebbe includere almeno un secondo valore (es. 220Ω come in Cap6-Esp3). Con un solo resistore, l'esperimento è pedagogicamente vuoto nel simulatore."
+    },
+    {
+      "experimentId": "v1-cap12-esp3",
+      "field": "steps",
+      "expected": "PDF: 'Prova a realizzare un circuito che accenda un LED RGB del colore che preferisci utilizzando un interruttore magnetico' — UNA RIGA. Sfida aperta con libera scelta del colore RGB.",
+      "found": "Il codice crea un esperimento con 11 buildSteps che accende SOLO il canale ROSSO dell'RGB (connessione: reed → R(470Ω) → rgb1.red → rgb1.common). Il verde e il blu non sono collegati. Il codice è coerente internamente (no componenti orfani).",
+      "severity": "medium",
+      "note": "LIBERTÀ DI SCELTA ELIMINATA: il PDF dice 'del colore che preferisci' — sfida aperta. Il codice fissa il rosso come unica opzione, eliminando la natura esplorativa dell'esercizio. La scelta del rosso come default è ragionevole (colore primario), ma l'observe del codice almeno invita a espandere ('Riesci a farlo diventare bianco?'), mantenendo parzialmente lo spirito del PDF. Pattern ricorrente (dodicesima occorrenza): sfida PDF → esperimento fisso nel codice."
+    },
+    {
+      "experimentId": "v1-cap12-esp3",
+      "field": "components",
+      "expected": "PDF: non specifica — la sfida è open-ended. Per accendere 'il colore che preferisci' serviranno da 1 a 3 resistori + il reed switch + RGB.",
+      "found": "battery9v, breadboard-half, reed-switch, resistor(470), rgb-led — 1 solo resistore. Permette di accendere un solo canale RGB alla volta. Accettabile come configurazione minima.",
+      "severity": "low",
+      "note": "La configurazione è coerente internamente. Con 1 resistore e 1 canale, lo studente vede il rosso accendersi col magnete. Per replicare la sfida completa del PDF ('colore che preferisce') servirebbero istruzioni per aggiungere più resistori. La mancanza dei canali verde e blu è una semplificazione, non un bug."
+    },
+    {
+      "experimentId": "v1-cap12-esp4",
+      "field": "steps",
+      "expected": "PDF: 'Prova ad utilizzare insieme potenziometri, LED RGB e un interruttore magnetico' — UNA RIGA. Sfida aperta, 'potenziometri' è al PLURALE.",
+      "found": "Il codice crea un esperimento con 14 buildSteps: reed → pot(voltage divider, 10kΩ) → R(470Ω) → rgb1.red → rgb1.common. Solo 1 potenziometro (singolare) e solo il canale rosso del RGB è attivo. Il circuito è coerente internamente.",
+      "severity": "medium",
+      "note": "DUE DISCREPANZE: (1) PDF usa 'potenziometri' al PLURALE — implica più di uno. Il codice usa 1 solo pot. Per accendere tutti e 3 i canali RGB con pot individuali (come in Cap9-Esp6) servirebbero 3 pot + 3 R. (2) Solo il canale rosso dell'RGB è attivo — gli altri 2 pin (verde e blu) sono fisicamente connessi nella breadboard (col 29 e 30) ma non collegati a nulla nel circuito. Pattern ricorrente: sfida aperta → configurazione parziale fissa. La topologia voltage divider per il pot è la stessa scelta ricorrente, non quella 'resistore variabile' del PDF Cap9."
+    },
+    {
+      "experimentId": "v1-cap12-esp4",
+      "field": "components",
+      "expected": "PDF: nessuna lista, 'potenziometri' al plurale — implica 2 o 3 pot per controllare più canali RGB.",
+      "found": "battery9v, breadboard-half, reed-switch, potentiometer(10000), resistor(470), rgb-led — 1 solo pot. Lista coerente internamente (nessun componente orfano).",
+      "severity": "low",
+      "note": "La semplificazione a 1 pot è pragmatica per il simulatore. Il circuito è la catena più complessa del capitolo (3 componenti di controllo: reed + pot + R prima del LED), pedagogicamente valida anche se ridotta rispetto all'ambizione del PDF."
+    }
+  ],
+  "summary": {
+    "highSeverity": 7,
+    "mediumSeverity": 27,
+    "lowSeverity": 38,
+    "overallAlignment": "ACCETTABILE CON 7 BUG CRITICI CONFERMATI. Cap11 e Cap12 mostrano pattern DIVERSI da Cap9-10: gli esperimenti sono più robusti internamente (nessun componente orfano in Cap12), ma la tendenza a cristallizzare sfide aperte in configurazioni fisse persiste sistematicamente. NUOVI PATTERN TROVATI IN CAP12: (1) Cap12-Esp1 riposiziona il reed switch lato VCC invece che lato GND come il PDF — stessa topologia invertita già trovata per il pot in Cap9. (2) Cap12-Esp2 è auto-contraddittorio: l'obiettivo è sperimentare valori di resistori diversi, ma il codice fornisce solo 1 resistore — l'esperimento è pedagogicamente vuoto nel simulatore. (3) Cap12-Esp3/4 seguono il pattern 'sfida aperta → colore rosso fisso + 1 canale solo'. BUG CRITICI APERTI (invariati): v1-cap9-esp9 (pot2 orfano + LED singolo), v1-cap10-esp1/2/3 (orphan resistors), v1-cap10-esp4 (accoppiamento ottico non simulabile), v1-cap10-esp6 (5 incoerenze interne). NOTA POSITIVA: Cap11-Esp2 e Cap12-Esp1/3/4 sono internamente coerenti (nessun componente orfano) — miglioramento rispetto ai picchi di Cap9-10.",
+    "newPatternsFound": [
+      "REED SWITCH LATO VCC INVECE GND (Cap12-Esp1): Il PDF istruisce esplicitamente di collegare il reed switch 'tra il catodo del LED e la striscia nera inferiore' (lato GND), ma il codice lo posiziona tra il bus positivo e il resistore (lato VCC). Questo è il terzo caso di posizionamento del componente di controllo invertito rispetto al PDF (dopo Cap9-Esp1 e Cap9-Esp4 con il potenziometro). Funzionalmente equivalente, ma la breadboard del simulatore sarà irriconoscibile per chi segue il libro fisico.",
+      "AUTO-CONTRADDIZIONE Cap12-Esp2: L'obiettivo esplicito dell'esperimento è 'sperimentare con i valori di resistenza', ma il codice fornisce un solo resistore (470Ω) — identico a Esp1. Il simulatore non permette di sperimentare nulla. Per rendere l'esperimento funzionale pedagogicamente, dovrebbero essere disponibili almeno 2-3 valori di resistore.",
+      "SFIDA APERTA → CANALE ROSSO FISSO (Cap12-Esp3/4): Sia Esp3 che Esp4 del PDF sono sfide aperte con 'colore che preferisci' e 'potenziometri' al plurale. Entrambi nel codice accendono solo il canale rosso con 1 resistore/1 pot. È un pattern di semplificazione sistematica delle sfide RGB multi-canale.",
+      "Cap11-Cap12 INTERNAMENTE PIÙ PULITI di Cap9-10: Nessun componente orfano trovato in Cap11-Esp2 e Cap12-Esp1/2/3/4. Il miglioramento nella qualità interna del codice rispetto ai picchi di bug di Cap9-10 è evidente, anche se le discrepanze pedagogiche con il PDF continuano."
+    ]
+  },
+  "nextToAudit": [
+    "v1-cap13-esp1",
+    "v1-cap13-esp2",
+    "v1-cap14-esp1",
+    "v2-cap1-esp1",
+    "v2-cap1-esp2"
+  ],
+  "auditLog": [
+    {
+      "session": "2026-04-15T03:48:21Z",
+      "audited": ["v1-cap6-esp1", "v1-cap6-esp2", "v1-cap6-esp3", "v1-cap7-esp1", "v1-cap7-esp2"],
+      "notes": "Prima sessione di audit. PDF estratto con pdftotext. Confronto manuale sezioni Cap6 (righe 760-900) e Cap7 (righe 928-1080) del file /tmp/vol1.txt con src/data/experiments-vol1.js"
+    },
+    {
+      "session": "2026-04-15T10:30:00Z",
+      "audited": ["v1-cap7-esp3", "v1-cap7-esp4", "v1-cap7-esp5", "v1-cap7-esp6", "v1-cap8-esp1"],
+      "notes": "Seconda sessione. Confronto Cap7 Esp3-6 (righe 998-1070) e Cap8 Esp1 (righe 1103-1185) del file /tmp/vol1.txt con src/data/experiments-vol1.js. Pattern ricorrenti confermati: esperimenti RGB come modifiche incrementali vs autonomi; Esp6 Cap7 libera esplorazione cristallizzata in config fissa; Esp5 scinde il libro in modo artificiale."
+    },
+    {
+      "session": "2026-04-15T12:00:00Z",
+      "audited": ["v1-cap8-esp2", "v1-cap8-esp3", "v1-cap8-esp4", "v1-cap8-esp5", "v1-cap9-esp1"],
+      "notes": "Terza sessione. Confronto Cap8 Esp2-5 (righe 1211-1400) e Cap9 Esp1 (righe 1400-1550). NUOVO PATTERN: Cap8-Esp5 manca avvertimento di sicurezza del PDF ('non scendere mai sotto i 100 Ohm'). NUOVA DISCREPANZA CONCETTUALE: Cap9-Esp1 implementa voltage divider 3-pin invece di resistore variabile 2-pin come descritto nel PDF — differenza pedagogica rilevante. Cap8-Esp3 è ben allineato (unico esperimento pienamente corretto in questa sessione)."
+    },
+    {
+      "session": "2026-04-16T07:30:00Z",
+      "audited": ["v1-cap9-esp2", "v1-cap9-esp3", "v1-cap9-esp4", "v1-cap9-esp5", "v1-cap9-esp6"],
+      "notes": "Quarta sessione. Confronto Cap9 completo (righe 1449-1778 del PDF). SCOPERTE PRINCIPALI: (1) Cap9-Esp2 e Esp3 sono i più brevi del volume (1 riga PDF ciascuno) — caso estremo del pattern 'modifica vs autonomo'. (2) Cap9-Esp4 ha topologia invertita rispetto al PDF (pot sul lato anodo invece del catodo). (3) Cap9-Esp5 è il miglior allineamento trovato finora — circuito identico al PDF. (4) Cap9-Esp6 manca i bonus tips del PDF (bicchierino caffè + buio). (5) Esp2 ha inversione pin corretta nel codice (pot.gnd→bus+, pot.vcc→bus−) confermato dall'analisi connections."
+    },
+    {
+      "session": "2026-04-16T09:00:00Z",
+      "audited": ["v1-cap9-esp7", "v1-cap9-esp8", "v1-cap9-esp9", "v1-cap10-esp1", "v1-cap10-esp2"],
+      "notes": "Quinta sessione. Confronto Cap9 fine (righe 1778-1792, PDF: Esp7-9 sono 1 riga ciascuno) e Cap10 inizio (righe 1813-1856, LDR experiments). RECORD: Cap9 ha TUTTI e 9 gli esperimenti come one-liner nel PDF. BUG CRITICI HIGH: (1) Cap9-Esp9: pot2 orfano + LED singolo vs RGB — incoerenza interna gravi; (2) Cap10-Esp1: resistore 220Ω aggiunto dal codice in CONTRADDIZIONE con il PDF ('non c'è bisogno di un resistore') + resistore non listato nei components ma citato negli steps; (3) Cap10-Esp2 eredita bug Esp1. Primo esperimento HIGH severity trovato in tutto l'audit."
+    },
+    {
+      "session": "2026-04-16T11:30:00Z",
+      "audited": ["v1-cap10-esp3", "v1-cap10-esp4", "v1-cap10-esp5", "v1-cap10-esp6", "v1-cap11-esp1"],
+      "notes": "Sesta sessione. Confronto Cap10 Esp3-6 (righe 1863-1990) e Cap11 Esp1 (righe 1991-2010). SCOPERTE PRINCIPALI: (1) Bug 'orphan resistor' SISTEMATICO: Cap10-Esp3 è il terzo caso consecutivo — 3x 220Ω resistori in buildSteps ma assenti da components/pinAssignments, più contraddizione con PDF che non li prevede; (2) INCONSISTENZA buildSteps vs pinAssignments per le posizioni LDR in Esp3 (d3-d4 vs d3-d6); (3) BUG ARCHITETTURALE SCOPERTO: Esp4/5/6 richiedono accoppiamento ottico LED_bianco→LDR non simulabile da un solver DC; (4) Cap10-Esp6: RECORD con 5 incoerenze interne (posizioni, tipi LED, valori resistore); (5) Cap11-Esp1: buon allineamento ma manca avvertimento polarità invertita cicalino (lungo=negativo, opposto ai LED)."
+    },
+    {
+      "session": "2026-04-17T07:00:00Z",
+      "audited": ["v1-cap11-esp2", "v1-cap12-esp1", "v1-cap12-esp2", "v1-cap12-esp3", "v1-cap12-esp4"],
+      "notes": "Settima sessione. Confronto Cap11-Esp2 (riga 2032 PDF: 2 righe, sfida recall) e Cap12 completo (righe 2075-2143 PDF: Esp1 dettagliato, Esp2-4 one-liner). NUOVI PATTERN: (1) Reed switch lato VCC invece GND come da PDF in Cap12-Esp1 — terzo caso di componente controllo topologia invertita. (2) Cap12-Esp2 auto-contraddittorio: dice 'sperimenta resistori diversi' ma fornisce solo 470Ω. (3) Cap12-Esp3/4 cristallizzano sfide aperte RGB multi-canale in configurazione rosso-fisso con 1 canale. NOTA POSITIVA: Cap11-Esp2 e Cap12 internamente coerenti — nessun componente orfano, miglioramento rispetto a Cap9-10. Il progress di audit è ora 35/87 esperimenti (40% completato)."
+    }
+  ]
+}

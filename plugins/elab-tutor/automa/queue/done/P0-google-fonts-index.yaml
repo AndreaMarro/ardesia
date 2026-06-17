@@ -1,0 +1,12 @@
+id: P0-google-fonts-index
+priority: P0
+title: "Rimuovere Google Fonts link da index.html (GDPR + performance)"
+description: |
+  index.html carica ancora Google Fonts via CDN esterno nonostante fonts self-hosted in public/fonts/.
+  File target: public/index.html
+  Azione: rimuovere tutti i <link> che puntano a fonts.googleapis.com.
+  I font sono già serviti da src/styles/fonts.css (fixato in C27).
+  Verificare con npm run build.
+metric: gdpr_compliance
+tags: P0,GDPR,performance,fonts
+created_at: 2026-03-25T21:00:01

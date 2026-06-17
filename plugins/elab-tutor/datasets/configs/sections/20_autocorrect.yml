@@ -1,0 +1,106 @@
+id: autocorrect
+name: "Autocorrect Smartphone"
+
+templates:
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"mosfet-n\"}],\"wires\":\"auto\"}]"]
+    entities: [mosfet-n]
+    vars:
+      frase:
+        - metti un mostre
+        - aggiungi un mouse
+        - piazza un misfatto
+        - voglio il mostre sulla breadboard
+        - aggiungi il mouse elettronico
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"buzzer-piezo\"}],\"wires\":\"auto\"}]"]
+    entities: [buzzer-piezo]
+    vars:
+      frase:
+        - metti un bazar
+        - aggiungi il buffer
+        - piazza un bazar piezo
+        - voglio il bazar
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"servo\"}],\"wires\":\"auto\"}]"]
+    entities: [servo]
+    vars:
+      frase:
+        - metti un serbo
+        - aggiungi il serve
+        - piazza un serbo motore
+        - voglio il serve
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"diode\"}],\"wires\":\"auto\"}]"]
+    entities: [diode]
+    vars:
+      frase:
+        - metti un divido
+        - aggiungi un dodo
+        - piazza il divido
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"resistor\"}],\"wires\":\"auto\"}]"]
+    entities: [resistor]
+    vars:
+      frase:
+        - metti un'esistenza
+        - aggiungi un'insistenza
+        - piazza la esistenza
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"potentiometer\"}],\"wires\":\"auto\"}]"]
+    entities: [potentiometer]
+    vars:
+      frase:
+        - metti il potenziale
+        - aggiungi la potenza metro
+        - piazza il potenziale metro
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"capacitor\"}],\"wires\":\"auto\"}]"]
+    entities: [capacitor]
+    vars:
+      frase:
+        - metti il condensato
+        - aggiungi il condensare
+        - piazza il condensato re
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: false
+    response: "@action_compile"
+    actions: ["[AZIONE:compile]"]
+    entities: []
+    vars:
+      frase:
+        - con pila il codice
+        - kompila
+        - con pila
+        - con pila il programma
+
+corruptions: {}

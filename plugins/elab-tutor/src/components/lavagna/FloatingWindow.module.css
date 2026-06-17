@@ -1,0 +1,280 @@
+/* FloatingWindow — finestra trascinabile/ridimensionabile per Lavagna ELAB */
+
+.window {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 200ms ease;
+  z-index: 100;
+  min-width: 280px;
+  min-height: 200px;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.window:focus-within {
+  box-shadow: 0 8px 40px rgba(30, 77, 140, 0.25);
+}
+
+/* Title bar — drag handle */
+.titleBar {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 4px 0 16px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, rgba(30, 77, 140, 0.85) 100%);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  gap: 4px;
+}
+
+.titleBar:active {
+  cursor: grabbing;
+}
+
+.titleText {
+  flex: 1;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+  max-width: 200px;
+}
+
+/* Window control buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 150ms ease, color 150ms ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+.btnClose:hover {
+  background: rgba(229, 75, 61, 0.8);
+  color: #fff;
+}
+
+/* Body */
+.body {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  z-index: 0;
+}
+
+/* Resize handles */
+.resizeHandle {
+  position: absolute;
+  z-index: 200;
+  pointer-events: auto;
+}
+
+.resizeRight {
+  right: 0;
+  top: 48px;
+  bottom: 0;
+  width: 8px;
+  cursor: ew-resize;
+  touch-action: none;
+  transition: background 150ms;
+}
+
+.resizeLeft {
+  left: 0;
+  top: 48px;
+  bottom: 0;
+  width: 8px;
+  cursor: ew-resize;
+  touch-action: none;
+  transition: background 150ms;
+  background: linear-gradient(to left, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
+}
+
+.resizeRight:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.resizeLeft:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.resizeTop {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  cursor: ns-resize;
+  touch-action: none;
+  transition: background 150ms;
+  background: linear-gradient(to top, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
+}
+
+.resizeTop:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.resizeBottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  cursor: ns-resize;
+  touch-action: none;
+  transition: background 150ms;
+}
+
+.resizeBottom:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.resizeCorner {
+  width: 24px;
+  height: 24px;
+  touch-action: none;
+}
+
+.resizeNE {
+  right: 0;
+  top: 0;
+  cursor: nesw-resize;
+}
+
+.resizeSE {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+}
+
+.resizeSW {
+  left: 0;
+  bottom: 0;
+  cursor: nesw-resize;
+}
+
+.resizeNW {
+  left: 0;
+  top: 0;
+  cursor: nwse-resize;
+}
+
+/* iter 45 fix Andrea video 06/05/2026 "dimensioni non modificabili": chevron
+   pattern visibile sempre (era radial-gradient dot opacity 0.3 invisibile prod).
+   3 diagonali stroke 1.5px Navy WCAG-contrast — match ComponentDrawer SE handle. */
+.resizeSE::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 14px;
+  height: 14px;
+  background-image: linear-gradient(135deg, transparent 0%, transparent 30%, var(--elab-navy, #1E4D8C) 30%, var(--elab-navy, #1E4D8C) 40%, transparent 40%, transparent 55%, var(--elab-navy, #1E4D8C) 55%, var(--elab-navy, #1E4D8C) 65%, transparent 65%, transparent 80%, var(--elab-navy, #1E4D8C) 80%, var(--elab-navy, #1E4D8C) 90%, transparent 90%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.resizeSE:hover::after {
+  opacity: 1;
+}
+
+/* iter 45 right+bottom edges: visibili-subtle senza hover (Andrea touch device
+   docente LIM mai fa hover). 2px stripe Navy 0.15. */
+.resizeRight {
+  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
+}
+
+.resizeBottom {
+  background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
+}
+
+.resizeHandle {
+  background-color: rgba(30, 77, 140, 0.01);
+}
+
+/* Maximized state */
+.maximized {
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  max-width: 100vw;
+  max-height: 100dvh;
+  border-radius: 0;
+  z-index: 10000 !important;
+}
+
+.maximized .titleBar {
+  border-radius: 0;
+}
+
+/* Glassmorphism variant */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Touch device adjustments */
+@media (pointer: coarse) {
+  .resizeRight {
+    width: 16px;
+  }
+  .resizeLeft {
+    width: 16px;
+  }
+  .resizeTop {
+    height: 16px;
+  }
+  .resizeBottom {
+    height: 16px;
+  }
+  .resizeCorner {
+    width: 32px;
+    height: 32px;
+/* © Andrea Marro — 06/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+  }
+  .resizeSE::after {
+    width: 14px;
+    height: 14px;
+    right: 6px;
+    bottom: 6px;
+  }
+}
+
+/* LIM / small screens */
+@media (max-width: 1024px) {
+  .window {
+    max-width: 90vw;
+    max-height: 85vh;
+  }
+}

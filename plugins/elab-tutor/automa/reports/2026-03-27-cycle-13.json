@@ -1,0 +1,62 @@
+{
+  "cycle": 13,
+  "timestamp": "2026-03-27T05:47:36.646540",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 324
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 17.75s",
+      "time_ms": 20348
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 158494
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=80 min=76 (target \u226560) [3 samples]",
+      "time_ms": 59284
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3678
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1943
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 2592,
+    "returncode": 0
+  },
+  "research": "DeepSeek: **Due Problemi per l'ELAB Tutor:**\n1.  **Paradosso dell'Astrattamento:** Gli ambienti di programmazione visiva (come Tinkercad o mBlock) nascondono la sintassi testuale, rischiando di creare un gap concettuale. Gli studenti possono assemblare blocchi senza comprendere la logica di programmazione sottostante (es., variabili, cicli), limitando la transizione verso la codifica avanzata.\n2.  **Divario",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

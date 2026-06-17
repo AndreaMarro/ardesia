@@ -1,0 +1,399 @@
+{
+  "id": "v1-cap14",
+  "volume": 1,
+  "capitolo": 14,
+  "type": "project",
+  "titolo": "Costruiamo il nostro primo robot",
+  "titolo_classe": "Costruiamo il nostro primo robot",
+  "pageStart": 107,
+  "pageEnd": 112,
+  "theory": {
+    "testo_classe": "Costruiamo il nostro primo robot.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v1-cap14-esp1",
+      "num": 1,
+      "title_classe": "Il Primo Robot ELAB",
+      "title_docente": "Il Primo Robot ELAB",
+      "volume_ref": {
+        "page_start": 107,
+        "page_end": 112,
+        "fig_refs": []
+      },
+      "duration_minutes": 60,
+      "components_needed": [
+        {
+          "name": "Breadboard grande (full-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Reed switch",
+          "quantity": 1,
+          "icon": "🧲"
+        },
+        {
+          "name": "Potenziometro 10kΩ",
+          "quantity": 3,
+          "icon": "🎛️"
+        },
+        {
+          "name": "Resistore 220Ω",
+          "quantity": 5,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED verde",
+          "quantity": 2,
+          "icon": "💚"
+        },
+        {
+          "name": "LED RGB",
+          "quantity": 1,
+          "icon": "🌈"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 20,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-full",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot2",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot3",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 220
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 220
+            },
+            {
+              "type": "resistor",
+              "id": "r3",
+              "value": 220
+            },
+            {
+              "type": "resistor",
+              "id": "r4",
+              "value": 220
+            },
+            {
+              "type": "resistor",
+              "id": "r5",
+              "value": 220
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "green"
+            },
+            {
+              "type": "led",
+              "id": "led2",
+              "color": "green"
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            },
+            {
+              "type": "reed-switch",
+              "id": "reed1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-plus-3",
+              "to": "bb1:a3",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a14",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:f14",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a28",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a33",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a38",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a22",
+              "to": "bb1:bus-minus-22",
+              "color": "black"
+            },
+            {
+              "from": "bb1:g21",
+              "to": "bb1:g23",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:j24",
+              "to": "bb1:bus-minus-24",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a29",
+              "to": "bb1:a43",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a50",
+              "to": "bb1:a53",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a34",
+              "to": "bb1:f43",
+              "color": "green"
+            },
+            {
+              "from": "bb1:f50",
+              "to": "bb1:a55",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a39",
+              "to": "bb1:f53",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:f60",
+              "to": "bb1:a56",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:a30",
+              "to": "bb1:bus-minus-30",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a35",
+              "to": "bb1:bus-minus-35",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a40",
+              "to": "bb1:bus-minus-40",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a54",
+              "to": "bb1:bus-minus-54",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": "Ricordate tutto quello che avete imparato? LED, resistori, pulsanti, potenziometri, fotoresistenze, cicalini, reed switch, plastilina... Oggi UNIAMO TUTTO in un ROBOT!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "È il PROGETTO FINALE del Volume 1! Costruiamo un robot con occhi verdi, mano colorata e sensore magnetico. Tutto quello che avete imparato converge qui!",
+            "spunto_per_classe": null,
+            "note": [
+              "un recap dei componenti: 'Reed switch (cap 12) per accendere il robot col magnete. Potenziometri (cap 9) per controllare i colori. LED (cap 6-7) per occhi e mano. Tutto insieme!' Usa la breadboard grande (full-size)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 15,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il robot ha 3 sezioni: OCCHI (2 LED verdi), MANO (LED RGB + 3 pot), INTERRUTTORE (reed switch). Il magnete accende tutto!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione il circuito sezione per sezione: prima il reed switch (ON/OFF), poi gli occhi (2 LED verdi con resistori), poi la mano (3 pot → 3 resistori → RGB). Ogni sezione usa un concetto già imparato!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v1-cap14-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il robot ha occhi, mano colorata e un interruttore magnetico. Quanti concetti diversi ci sono in questo circuito?",
+            "spunto_per_classe": "Domanda: 'Quanti capitoli servono per costruire un robot? Contate tutti i componenti: quanti concetti avete usato?'",
+            "note": [
+              "Conta insieme alla classe: LED (cap 6), resistori (cap 7), potenziometri (cap 9), reed switch (cap 12). TUTTO il Volume 1 in un solo progetto!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il circuito sembra troppo complesso",
+                "soluzione_neutra": "Dividiamolo in sezioni! Occhi = 2 LED verdi (cap 6-7). Mano = RGB + 3 pot (cap 8-9). ON/OFF = reed switch (cap 12). Ogni sezione la conoscete già!"
+              },
+              {
+                "problema": "Il LED RGB non cambia colore con i potenziometri",
+                "soluzione_neutra": "Ogni potenziometro controlla UN canale: rosso, verde o blu. Gira una manopola alla volta per vedere quale colore cambia!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 15,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il robot si accende con il magnete! Occhi verdi brillano. La mano cambia colore girando le 3 manopole (rosso, verde, blu). Ogni combinazione = un colore diverso. Avete costruito il vostro PRIMO ROBOT!",
+            "analogies": [
+              {
+                "concept": "integrazione_totale",
+                "text": "Il robot è come un'orchestra: ogni musicista (componente) suona la sua parte, e insieme creano una sinfonia! Il reed switch è il direttore che dà il via, i potenziometri sono i musicisti, e il risultato è luce e colore!",
+                "evidence": "Curriculum ELAB Vol 1"
+              },
+              {
+                "concept": "costruzione_progressiva",
+                "text": "Avete iniziato con un LED e una batteria (cap 6). Ora avete 14 componenti in un robot funzionante! Ogni capitolo era un mattone, e oggi avete costruito la casa!",
+                "evidence": "Curriculum ELAB Vol 1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play, avvicina il magnete: il robot si accende! Occhi verdi brillano, la mano cambia colore girando le manopole!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia tutto: reed switch, LED verdi, potenziometri, LED RGB. Fai girare le 3 manopole: rosso, verde, blu. Ogni combinazione è un colore diverso! Celebra il momento — è il traguardo del Volume 1!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:reed1]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:led2]",
+            "[AZIONE:highlight:pot1]",
+            "[AZIONE:highlight:pot2]",
+            "[AZIONE:highlight:pot3]",
+            "[AZIONE:highlight:rgb1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Avete costruito il vostro PRIMO ROBOT! Usa tutti i concetti del Volume 1: LED per gli occhi, potenziometri per i colori della mano, reed switch per l'interruttore magnetico. Dal primo LED al robot — siete diventati costruttori di circuiti!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "COMPLIMENTI! Avete completato il Volume 1 e costruito il vostro primo robot! Dal LED singolo al robot completo — che viaggio incredibile!",
+            "spunto_per_classe": null,
+            "note": [
+              "Questo è un momento da celebrare! Fai un recap del viaggio: cap 6 (LED), cap 7 (resistore), cap 8 (RGB), cap 9 (potenziometro), cap 10 (LDR), cap 11 (buzzer), cap 12 (reed switch), cap 13 (elettropongo), cap 14 (robot). Se possibile, fai una foto del robot sulla LIM!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega le 3 sezioni del robot → comprensione strutturale",
+        "Se mescola i colori RGB autonomamente → sperimentazione avanzata",
+        "Se ricollega i concetti ai capitoli precedenti → visione d'insieme"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "robot_completo",
+          "integrazione_volume1",
+          "reed_pot_RGB_LED"
+        ],
+        "next_suggested": "v2-cap6-esp1",
+        "resume_message": "Avete completato il Volume 1 e costruito un robot! Il Volume 2 vi aspetta con nuove avventure!"
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Costruiamo il nostro primo robot",
+    "transitions": [],
+    "closing_text": "Avete completato il Volume 1 e costruito un robot! Il Volume 2 vi aspetta con nuove avventure!"
+  }
+}

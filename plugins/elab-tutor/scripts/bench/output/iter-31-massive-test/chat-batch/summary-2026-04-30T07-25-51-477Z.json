@@ -1,0 +1,291 @@
+{
+  "summary": {
+    "total": 10,
+    "pass_http": 10,
+    "pass_ragazzi": 10,
+    "pass_vol_pag": 5,
+    "pass_kit": 4,
+    "pass_wc60": 6,
+    "latency_stats": {
+      "n": 10,
+      "min": 3718,
+      "max": 6801,
+      "mean": 5038,
+      "p50": 5392,
+      "p95": 6801,
+      "p99": 6801
+    }
+  },
+  "results": [
+    {
+      "id": "B01",
+      "message": "Spiega LED rosso ai ragazzi 4° primaria",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "5acea2cb-b12e-40ca-9103-a1b6b81d806c",
+      "latency_ms": 6305,
+      "status": 200,
+      "response_text": "Ragazzi, Vol.1 pag. 'Approfondimento: Estensione dei concetti già introdotti per esplorarli con maggiore dettaglio tecnico.. È quando torniam'. Sul kit guardate il LED rosso e la resistenza da 220Ω in serie.\n\n[AZIONE:highlightExperiment:{\"experimentId\":\"\"}] [AZIONE:mountExperiment:{\"experimentId\":\"\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\",\"r1\"]}] [AZIONE:ragRetrieve:{\"query\":\"LED Blink lampeggio digitalWrite delay\",\"topK\":3,\"wikiFusion\":true}]",
+      "source": "clawbot-l2-L2-explain-led-blink",
+      "template_id": "L2-explain-led-blink",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, Vol.1 pag. 'Approfondimento: Estensione dei concetti già introdotti per esplorarli con maggiore dettaglio tecnico.. È quando torniam'. Sul kit guardate il LED rosso e la resistenza da 220Ω in serie.\n\n[AZIONE:highlightExperiment:{\"experimentId\":\"\"}] [AZIONE:mountExperiment:{\"experimentId\":\"\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\",\"r1\"]}] [AZIONE:ragRetrieve:{\"query\":\"LED Blink lampeggio digitalWrite delay\",\"topK\":3,\"wikiFusion\":true}]",
+        "source": "clawbot-l2-L2-explain-led-blink",
+        "dataProcessing": "local-template",
+        "template_id": "L2-explain-led-blink",
+        "template_category": "lesson-explain",
+        "template_latency_ms": 569
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": true,
+        "kit_mention": true,
+        "word_count_60": true,
+        "word_count": 54
+      }
+    },
+    {
+      "id": "B02",
+      "message": "Cap.6 esp.1 LED + R: cosa serve?",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "9994af57-df74-465d-86c2-3855dd0866ad",
+      "latency_ms": 3738,
+      "status": 200,
+      "response_text": "Ragazzi, Vol.1 pag.52 'il LED ha polarità: gamba lunga verso il +'. Sul kit ruotate il LED di 180 gradi: gamba lunga vicino alla riga rossa.\n\n[AZIONE:captureScreenshot:{\"purpose\":\"diagnose-led-polarity\",\"focus\":\"led1\"}] [AZIONE:askUNLIM:{\"query\":\"Vedi il LED del kit fisico: anodo gamba lunga verso + o gamba corta? Ribaltato?\",\"context\":\"Vol.1 cap.6 polarità LED\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\"],\"color\":\"red\",\"animation\":\"rotate-180\"}] [AZIONE:showNudge:{\"text\":\"Ragazzi, ruotate il LED di 180°: gamba lunga (anodo) verso la riga rossa del +\",\"position\":\"near-component\",\"duration_ms\":5000}]",
+      "source": "clawbot-l2-L2-diagnose-led-rovesciato",
+      "template_id": "L2-diagnose-led-rovesciato",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, Vol.1 pag.52 'il LED ha polarità: gamba lunga verso il +'. Sul kit ruotate il LED di 180 gradi: gamba lunga vicino alla riga rossa.\n\n[AZIONE:captureScreenshot:{\"purpose\":\"diagnose-led-polarity\",\"focus\":\"led1\"}] [AZIONE:askUNLIM:{\"query\":\"Vedi il LED del kit fisico: anodo gamba lunga verso + o gamba corta? Ribaltato?\",\"context\":\"Vol.1 cap.6 polarità LED\"}] [AZIONE:highlightComponent:{\"ids\":[\"led1\"],\"color\":\"red\",\"animation\":\"rotate-180\"}] [AZIONE:showNudge:{\"text\":\"Ragazzi, ruotate il LED di 180°: gamba lunga (anodo) verso la riga rossa del +\",\"position\":\"near-component\",\"duration_ms\":5000}]",
+        "source": "clawbot-l2-L2-diagnose-led-rovesciato",
+        "dataProcessing": "local-template",
+        "template_id": "L2-diagnose-led-rovesciato",
+        "template_category": "diagnose-vision",
+        "template_latency_ms": 1
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": true,
+        "kit_mention": true,
+        "word_count_60": false,
+        "word_count": 90
+      }
+    },
+    {
+      "id": "B03",
+      "message": "Perché il LED non si accende?",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "a6d61ed9-ecc3-4aba-a176-abc698358c54",
+      "latency_ms": 5323,
+      "status": 200,
+      "response_text": "Ragazzi, la prima cosa da controllare è la polarità del LED! «Il LED è un componente che permette il passaggio della corrente in una sola direzione, emettendo luce» — Vol.1 cap.6. Funziona come una porta: se la apri nel verso sbagliato, non passa nulla. Controllate che il catodo (gamba corta, lato piatto) sia collegato al negativo e l'anodo al positivo!",
+      "source": "mistral-small-latest",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, la prima cosa da controllare è la polarità del LED! «Il LED è un componente che permette il passaggio della corrente in una sola direzione, emettendo luce» — Vol.1 cap.6. Funziona come una porta: se la apri nel verso sbagliato, non passa nulla. Controllate che il catodo (gamba corta, lato piatto) sia collegato al negativo e l'anodo al positivo!",
+        "source": "mistral-small-latest",
+        "dataProcessing": "mistral-eu"
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": false,
+        "kit_mention": false,
+        "word_count_60": true,
+        "word_count": 60
+      }
+    },
+    {
+      "id": "B04",
+      "message": "Vol1 pag.45: legge di Ohm",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "0f8ff773-0e61-41cb-8812-e5d1f0096c33",
+      "latency_ms": 3718,
+      "status": 200,
+      "response_text": "Ragazzi, Vol.1 pag.32: il resistore limita la corrente come un rubinetto limita l'acqua. Sul kit cercate la resistenza da 220 ohm con le bande colorate.\n\n[AZIONE:highlightComponent:{\"ids\":[\"r1\"],\"color\":\"orange\",\"duration_ms\":4000}] [AZIONE:askUNLIM:{\"query\":\"introduzione resistore prima volta classe analogia rubinetto Vol.1 cap.3\",\"context\":\"introduce-resistor\"}] [AZIONE:showNudge:{\"text\":\"Mostrate il rubinetto: aprite poco = poca acqua. Resistore stessa cosa con la corrente.\",\"type\":\"analogy\",\"duration_ms\":6000}] [AZIONE:captureScreenshot:{\"target\":\"resistor-on-breadboard\",\"annotate\":true}]",
+      "source": "clawbot-l2-L2-introduce-resistor",
+      "template_id": "L2-introduce-resistor",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, Vol.1 pag.32: il resistore limita la corrente come un rubinetto limita l'acqua. Sul kit cercate la resistenza da 220 ohm con le bande colorate.\n\n[AZIONE:highlightComponent:{\"ids\":[\"r1\"],\"color\":\"orange\",\"duration_ms\":4000}] [AZIONE:askUNLIM:{\"query\":\"introduzione resistore prima volta classe analogia rubinetto Vol.1 cap.3\",\"context\":\"introduce-resistor\"}] [AZIONE:showNudge:{\"text\":\"Mostrate il rubinetto: aprite poco = poca acqua. Resistore stessa cosa con la corrente.\",\"type\":\"analogy\",\"duration_ms\":6000}] [AZIONE:captureScreenshot:{\"target\":\"resistor-on-breadboard\",\"annotate\":true}]",
+        "source": "clawbot-l2-L2-introduce-resistor",
+        "dataProcessing": "local-template",
+        "template_id": "L2-introduce-resistor",
+        "template_category": "lesson-introduce",
+        "template_latency_ms": 0
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": true,
+        "kit_mention": true,
+        "word_count_60": false,
+        "word_count": 81
+      }
+    },
+    {
+      "id": "B05",
+      "message": "Quanti tipi di componenti ci sono nel kit?",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "a7a3fc0e-b30f-4398-8819-ecbaf549f95a",
+      "latency_ms": 3814,
+      "status": 200,
+      "response_text": "Ragazzi, Vol.1 pag.45 dice attenzione cortocircuito. Il filo rosso tocca il nero: scollegate subito la batteria e separate i fili.\n\n[AZIONE:highlightComponent:{\"ids\":[\"bus-bot-plus\",\"bus-bot-minus\"],\"color\":\"red\",\"duration_ms\":3000}] [AZIONE:captureScreenshot:{\"target\":\"breadboard-full\",\"annotate\":true,\"submitToVision\":true}] [AZIONE:askUNLIM:{\"query\":\"diagnosi corto circuito breadboard rotaie positivo negativo collegate diretto\",\"context\":\"diagnose-short-circuit\",\"useVision\":true}] [AZIONE:showNudge:{\"text\":\"STOP! Scollegate la batteria subito. Controllate filo rosso e nero non si tocchino.\",\"type\":\"warning\",\"duration_ms\":8000}]",
+      "source": "clawbot-l2-L2-debug-short-circuit",
+      "template_id": "L2-debug-short-circuit",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, Vol.1 pag.45 dice attenzione cortocircuito. Il filo rosso tocca il nero: scollegate subito la batteria e separate i fili.\n\n[AZIONE:highlightComponent:{\"ids\":[\"bus-bot-plus\",\"bus-bot-minus\"],\"color\":\"red\",\"duration_ms\":3000}] [AZIONE:captureScreenshot:{\"target\":\"breadboard-full\",\"annotate\":true,\"submitToVision\":true}] [AZIONE:askUNLIM:{\"query\":\"diagnosi corto circuito breadboard rotaie positivo negativo collegate diretto\",\"context\":\"diagnose-short-circuit\",\"useVision\":true}] [AZIONE:showNudge:{\"text\":\"STOP! Scollegate la batteria subito. Controllate filo rosso e nero non si tocchino.\",\"type\":\"warning\",\"duration_ms\":8000}]",
+        "source": "clawbot-l2-L2-debug-short-circuit",
+        "dataProcessing": "local-template",
+        "template_id": "L2-debug-short-circuit",
+        "template_category": "diagnose-error",
+        "template_latency_ms": 0
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": true,
+        "kit_mention": false,
+        "word_count_60": false,
+        "word_count": 82
+      }
+    },
+    {
+      "id": "B06",
+      "message": "Costruite il circuito sul kit",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "9a6940b6-1152-48e2-aaae-346e3358679d",
+      "latency_ms": 3738,
+      "status": 200,
+      "response_text": "Ragazzi, Vol.1 pag.45 dice attenzione cortocircuito. Il filo rosso tocca il nero: scollegate subito la batteria e separate i fili.\n\n[AZIONE:highlightComponent:{\"ids\":[\"bus-bot-plus\",\"bus-bot-minus\"],\"color\":\"red\",\"duration_ms\":3000}] [AZIONE:captureScreenshot:{\"target\":\"breadboard-full\",\"annotate\":true,\"submitToVision\":true}] [AZIONE:askUNLIM:{\"query\":\"diagnosi corto circuito breadboard rotaie positivo negativo collegate diretto\",\"context\":\"diagnose-short-circuit\",\"useVision\":true}] [AZIONE:showNudge:{\"text\":\"STOP! Scollegate la batteria subito. Controllate filo rosso e nero non si tocchino.\",\"type\":\"warning\",\"duration_ms\":8000}]",
+      "source": "clawbot-l2-L2-debug-short-circuit",
+      "template_id": "L2-debug-short-circuit",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, Vol.1 pag.45 dice attenzione cortocircuito. Il filo rosso tocca il nero: scollegate subito la batteria e separate i fili.\n\n[AZIONE:highlightComponent:{\"ids\":[\"bus-bot-plus\",\"bus-bot-minus\"],\"color\":\"red\",\"duration_ms\":3000}] [AZIONE:captureScreenshot:{\"target\":\"breadboard-full\",\"annotate\":true,\"submitToVision\":true}] [AZIONE:askUNLIM:{\"query\":\"diagnosi corto circuito breadboard rotaie positivo negativo collegate diretto\",\"context\":\"diagnose-short-circuit\",\"useVision\":true}] [AZIONE:showNudge:{\"text\":\"STOP! Scollegate la batteria subito. Controllate filo rosso e nero non si tocchino.\",\"type\":\"warning\",\"duration_ms\":8000}]",
+        "source": "clawbot-l2-L2-debug-short-circuit",
+        "dataProcessing": "local-template",
+        "template_id": "L2-debug-short-circuit",
+        "template_category": "diagnose-error",
+        "template_latency_ms": 1
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": true,
+        "kit_mention": false,
+        "word_count_60": false,
+        "word_count": 82
+      }
+    },
+    {
+      "id": "B07",
+      "message": "Differenza tra LED e LDR",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "ecab4301-5c66-46ab-a191-85583789f091",
+      "latency_ms": 6801,
+      "status": 200,
+      "response_text": "Ragazzi, «Il LED è un componente che emette luce quando passa la corrente, mentre l’LDR è una resistenza che cambia valore con la luce: più luce = meno resistenza» — Vol.1 cap.6 e Vol.2 cap.5. Immaginate il LED come una torcia che accendete, l’LDR come un sensore che \"sente\" la luce del sole.",
+      "source": "mistral-large-latest",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, «Il LED è un componente che emette luce quando passa la corrente, mentre l’LDR è una resistenza che cambia valore con la luce: più luce = meno resistenza» — Vol.1 cap.6 e Vol.2 cap.5. Immaginate il LED come una torcia che accendete, l’LDR come un sensore che \"sente\" la luce del sole.",
+        "source": "mistral-large-latest",
+        "dataProcessing": "mistral-eu"
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": false,
+        "kit_mention": false,
+        "word_count_60": true,
+        "word_count": 55
+      }
+    },
+    {
+      "id": "B08",
+      "message": "Come collegare resistore?",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "d9882c62-925e-4d3f-88dc-10e2a631c8ed",
+      "latency_ms": 5510,
+      "status": 200,
+      "response_text": "Ragazzi, «Un resistore è un componente che limita il passaggio della corrente elettrica, cioè \"frena\" un po’ gli elettroni che vogliono scorrere troppo veloci nella pila» — Vol.1 cap.4. Pensatelo come un piccolo dosso su una strada: rallenta le macchine ma non le ferma!",
+      "source": "mistral-small-latest",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, «Un resistore è un componente che limita il passaggio della corrente elettrica, cioè \"frena\" un po’ gli elettroni che vogliono scorrere troppo veloci nella pila» — Vol.1 cap.4. Pensatelo come un piccolo dosso su una strada: rallenta le macchine ma non le ferma!",
+        "source": "mistral-small-latest",
+        "dataProcessing": "mistral-eu"
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": false,
+        "kit_mention": false,
+        "word_count_60": true,
+        "word_count": 44
+      }
+    },
+    {
+      "id": "B09",
+      "message": "Verifica circuito",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "617cb64a-8239-4deb-856e-c3e54c63965c",
+      "latency_ms": 5392,
+      "status": 200,
+      "response_text": "Ragazzi, il circuito va verificato come un detective! Controlliamo insieme se tutto è collegato bene e pronto per accendersi. [AZIONE:describe]\n\nRicordate la checklist ELAB: il LED è girato giusto? I fili sono inseriti bene nella breadboard? Il codice gira senza errori? Provate a premere il pulsante o a cambiare il valore del potenziometro sul vostro kit fisico!",
+      "source": "mistral-small-latest",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, il circuito va verificato come un detective! Controlliamo insieme se tutto è collegato bene e pronto per accendersi. [AZIONE:describe]\n\nRicordate la checklist ELAB: il LED è girato giusto? I fili sono inseriti bene nella breadboard? Il codice gira senza errori? Provate a premere il pulsante o a cambiare il valore del potenziometro sul vostro kit fisico!",
+        "source": "mistral-small-latest",
+        "dataProcessing": "mistral-eu"
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": false,
+        "kit_mention": true,
+        "word_count_60": true,
+        "word_count": 56
+      }
+    },
+    {
+      "id": "B10",
+      "message": "Genera quiz LED 5 domande",
+      "experiment": "v1-cap6-esp1",
+      "sessionId": "b504d163-5bf2-405b-a503-ad144bf6bd27",
+      "latency_ms": 6043,
+      "status": 200,
+      "response_text": "Ragazzi, ecco un mini-quiz sul LED: pronti a sfidarvi? Ecco 5 domande veloci! 1. Da quale parte si collega il catodo del LED? 2. Cosa succede se collego il LED al contrario? 3. Perché serve sempre un resistore con il LED? 4. Quanto può sopportare in corrente un LED comune? 5.",
+      "source": "mistral-small-latest",
+      "raw": {
+        "success": true,
+        "response": "Ragazzi, ecco un mini-quiz sul LED: pronti a sfidarvi? Ecco 5 domande veloci! 1. Da quale parte si collega il catodo del LED? 2. Cosa succede se collego il LED al contrario? 3. Perché serve sempre un resistore con il LED? 4. Quanto può sopportare in corrente un LED comune? 5.",
+        "source": "mistral-small-latest",
+        "dataProcessing": "mistral-eu"
+      },
+      "checks": {
+        "http_ok": true,
+        "http_status": 200,
+        "ragazzi_plural": true,
+        "vol_pag": false,
+        "kit_mention": false,
+        "word_count_60": true,
+        "word_count": 52
+      }
+    }
+  ]
+}

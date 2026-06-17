@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-05-09T22:53:51.785Z",
+  "thresholds": {
+    "firstUiFeedbackMs": 100,
+    "localUsefulResponseMs": 500,
+    "knownOperationalResponseMs": 1500,
+    "localActionVerifiedMs": 3000
+  },
+  "firstUiFeedback": {
+    "count": 400,
+    "min": 0.0005419999999958236,
+    "p50": 0.001167000000009466,
+    "p95": 0.00333299999999781,
+    "p99": 0.010208999999974822,
+    "max": 0.0730829999999969
+  },
+  "localUsefulResponse": {
+    "count": 400,
+    "min": 0.0009999999999763531,
+    "p50": 0.002334000000018932,
+    "p95": 0.006500000000016826,
+    "p99": 0.016541999999958534,
+    "max": 0.01979199999999537
+  },
+  "routedResponse": {
+    "count": 400,
+    "min": 0.060584000000005744,
+    "p50": 0.08762500000000273,
+    "p95": 0.20066600000001245,
+    "p99": 0.30733299999997143,
+    "max": 0.8089579999999614
+  },
+  "apiReady": {
+    "measuredBy": "Playwright benchmark, not this unit microbench"
+  },
+  "longTask": {
+    "measuredBy": "Playwright benchmark, not this unit microbench"
+  },
+  "actionVerified": {
+    "measuredBy": "Playwright fast-active benchmark; local parser has tags preserved here"
+  },
+  "localVsLlm": {
+    "localCases": 47,
+    "llmFallbackCases": 53
+  }
+}

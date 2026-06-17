@@ -1,0 +1,287 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap10-esp3",
+  "volume": 2,
+  "chapter": 10,
+  "title": "Motore con Pulsante",
+  "chapter_title": "Il motore a corrente continua",
+  "difficulty": 1,
+  "duration_minutes": 20,
+  "target_age": "10-14 anni",
+  "objective": "Aggiungere un pulsante al circuito del motore: il motore gira solo quando si preme il pulsante. Capire il concetto di circuito aperto (corrente bloccata) e circuito chiuso (corrente passa).",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Breadboard mezza (half-size)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Motore DC",
+      "quantity": 1,
+      "icon": "⚙️"
+    },
+    {
+      "name": "Pulsante (push button)",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 5,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "motore",
+      "DC",
+      "corrente continua",
+      "rotazione",
+      "polarità",
+      "batteria",
+      "pulsante",
+      "LED",
+      "resistore",
+      "circuito",
+      "meccanico",
+      "energia",
+      "parallelo",
+      "interruttore",
+      "indicatore"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "transistor",
+      "MOSFET",
+      "diodo",
+      "fototransistor"
+    ],
+    "note": "Cap 10 Esp 3 Vol 2 — controllo manuale motore con pulsante, circuito aperto/chiuso."
+  },
+  "prerequisites": [
+    "v2-cap10-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap10-esp4",
+    "title": "Motore + Pulsante + LED Indicatore",
+    "preview": "Prossimo passo: Motore + Pulsante + LED Indicatore. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, finora il motore girava sempre non appena collegavamo la batteria. E se volessimo controllare quando gira? Aggiungiamo un pulsante!",
+      "teacher_tip": "Mostrate fisicamente un pulsante (se disponibile). Spiegate: 'Un pulsante è un interruttore momentaneo: finché lo tieni premuto il circuito è chiuso, quando lo rilasci il circuito si apre e la corrente si blocca.'",
+      "components_list": "Ti servono: breadboard mezza, batteria 9V, motore DC, 1 pulsante, fili.",
+      "class_hook": "Come fate a controllare le luci di casa? Con un interruttore! Oggi aggiungiamo un interruttore al nostro motore: premete e gira, rilascia e si ferma!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Il pulsante è in serie con il motore: la corrente deve passare attraverso il pulsante prima di arrivare al motore. Se il pulsante è aperto, niente corrente, niente rotazione!",
+      "teacher_tip": "Illustra il percorso della corrente: batteria → bus + → pulsante → motore → bus - → batteria. Il pulsante è il 'cancello' del circuito: aperto = niente corrente; chiuso = corrente passa.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap10-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate il motore DC con pulsante di controllo",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "motor-dc",
+              "id": "mot1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:c7",
+              "to": "bb1:c10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:g10",
+              "to": "mot1:positive",
+              "color": "orange"
+            },
+            {
+              "from": "mot1:negative",
+              "to": "bb1:bus-top-minus-12",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Il motore gira solo quando premete il pulsante. Cosa succede dentro il circuito quando premete? E quando rilasci?",
+      "teacher_tip": "Chiedete agli studenti di descrivere il percorso della corrente sia quando il pulsante è premuto che quando è rilasciato. Usate la metafora del cancello: 'Il pulsante apre e chiude un cancello nel percorso della corrente.'",
+      "provocative_question": "Se il pulsante è come un cancello nel percorso della corrente, cosa succederebbe se mettessimo DUE pulsanti in serie? Dovremmo premere entrambi per far girare il motore?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Il motore gira sempre, anche senza premere il pulsante",
+          "teacher_response": "Regolate che il pulsante sia davvero in serie con il motore, non in parallelo. Se lo hai collegato in parallelo, bypassa il circuito e il motore riceve sempre corrente!",
+          "analogy": "È come una porta sul percorso: se la costruisci a fianco del percorso invece che sul percorso, tutti ci passano senza aprirla!"
+        },
+        {
+          "mistake": "Il motore non gira neanche premendo il pulsante",
+          "teacher_response": "Regolate i fili: il filo dal bus + deve arrivare a un pin del pulsante, e l'altro pin del pulsante deve essere collegato al motore. Se c'è un filo mancante, il circuito non si chiude!",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play, poi cliccate il pulsante nel simulatore: il motore si avvia! Rilascia il pulsante: si ferma.",
+      "teacher_tip": "Evidenziate il pulsante e il motore. Mostrate la differenza tra circuito aperto (pulsante non premuto) e circuito chiuso (pulsante premuto). Chiedete agli studenti di descrivere cosa succede.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:btn1]",
+        "[AZIONE:highlight:mot1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Con il pulsante rilasciato: circuito aperto, niente corrente, motore fermo. Con il pulsante premuto: circuito chiuso, corrente scorre, motore gira! Il pulsante è l'interruttore manuale del circuito.",
+      "analogies": [
+        {
+          "concept": "circuito_aperto_chiuso",
+          "text": "Il pulsante è come un cancello sul sentiero della corrente elettrica. Quando il cancello è chiuso (pulsante premuto), la corrente passa e il motore gira. Quando il cancello è aperto (pulsante rilasciato), la corrente non può passare e il motore si ferma!",
+          "evidence": "Curriculum ELAB Vol 2 Cap 10"
+        },
+        {
+          "concept": "controllo_manuale",
+          "text": "È esattamente come il campanello della porta di casa: premete il pulsante e il campanello suona, rilasci e tace. Il tuo dito regola il circuito! Oggi il tuo dito regola il motore.",
+          "evidence": "Curriculum ELAB Vol 2 Cap 10"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Ottimo! Con un semplice pulsante avete aggiunto il controllo manuale al motore. Questo è il principio degli interruttori di casa!",
+      "teacher_tip": "Riassumi: 'Il pulsante mette un interruttore in serie nel circuito. Premuto = circuito chiuso = motore gira. Rilasciato = circuito aperto = motore fermo.' Anticipate: 'Nel prossimo esperimento aggiungiamo anche un LED che si accende insieme al motore come spia di funzionamento!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Un pulsante in serie al motore crea un controllo manuale: premete per avviare, rilascia per fermare. Quando il pulsante è premuto il circuito è chiuso e la corrente scorre. Quando è rilasciato il circuito si apre e il motore si ferma.",
+      "concepts_learned": [
+        "pulsante come interruttore in serie",
+        "circuito aperto vs circuito chiuso",
+        "controllo manuale del motore",
+        "percorso della corrente"
+      ],
+      "next_preview": "Nel prossimo esperimento aggiungerete un LED verde che si accende insieme al motore! Così sapete sempre se il motore sta girando."
+    }
+  ],
+  "assessment_invisible": [
+    "Se descrive correttamente il percorso della corrente con pulsante premuto → comprensione del circuito in serie",
+    "Se spiega la differenza tra circuito aperto e chiuso → comprensione del concetto fondamentale",
+    "Se propone applicazioni reali del pulsante-interruttore → transfer al mondo reale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "pulsante_interruttore",
+      "circuito_aperto_chiuso",
+      "controllo_manuale_motore",
+      "serie"
+    ],
+    "next_suggested": "v2-cap10-esp4",
+    "resume_message": "Avete aggiunto il controllo manuale al motore con un pulsante! Ora aggiungerete anche un LED indicatore."
+  },
+  "analogies": [
+    {
+      "concept": "circuito_aperto_chiuso",
+      "text": "Il pulsante è come un cancello sul sentiero della corrente elettrica. Quando il cancello è chiuso (pulsante premuto), la corrente passa e il motore gira. Quando il cancello è aperto (pulsante rilasciato), la corrente non può passare e il motore si ferma!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    },
+    {
+      "concept": "controllo_manuale",
+      "text": "È esattamente come il campanello della porta di casa: premete il pulsante e il campanello suona, rilasci e tace. Il tuo dito regola il circuito! Oggi il tuo dito regola il motore.",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il motore gira sempre, anche senza premere il pulsante",
+      "teacher_response": "Regolate che il pulsante sia davvero in serie con il motore, non in parallelo. Se lo hai collegato in parallelo, bypassa il circuito e il motore riceve sempre corrente!",
+      "analogy": "È come una porta sul percorso: se la costruisci a fianco del percorso invece che sul percorso, tutti ci passano senza aprirla!"
+    },
+    {
+      "mistake": "Il motore non gira neanche premendo il pulsante",
+      "teacher_response": "Regolate i fili: il filo dal bus + deve arrivare a un pin del pulsante, e l'altro pin del pulsante deve essere collegato al motore. Se c'è un filo mancante, il circuito non si chiude!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

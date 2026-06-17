@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 60" width="50" height="60">
+  <defs>
+    <filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.3"/></filter>
+  </defs>
+  <g id="transistor-npn" filter="url(#shadow)">
+    <line x1="10" y1="60" x2="10" y2="45" stroke="#757575" stroke-width="2"/>
+    <line x1="25" y1="60" x2="25" y2="40" stroke="#757575" stroke-width="2"/>
+    <line x1="40" y1="60" x2="40" y2="45" stroke="#757575" stroke-width="2"/>
+    <path d="M 10,10 L 10,40 L 40,40 L 40,10 Q 25,5 10,10 Z" fill="#212121"/>
+    <rect x="15" y="12" width="20" height="8" fill="#757575" opacity="0.3"/>
+    <text x="25" y="35" text-anchor="middle" font-size="8" fill="#ffffff" font-family="Arial">NPN</text>
+    <text x="10" y="55" text-anchor="middle" font-size="5" fill="#757575">E</text>
+    <text x="25" y="55" text-anchor="middle" font-size="5" fill="#757575">B</text>
+    <text x="40" y="55" text-anchor="middle" font-size="5" fill="#757575">C</text>
+  </g>
+</svg>

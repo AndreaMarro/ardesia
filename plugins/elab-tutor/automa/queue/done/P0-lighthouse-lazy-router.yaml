@@ -1,0 +1,14 @@
+id: P0-lighthouse-lazy-router
+title: Lighthouse LCP — React.lazy() sui 3 componenti più pesanti del router
+priority: P0
+description: |
+Esempio: 
+Prima: import HeavyComponent from './HeavyComponent
+Dopo: const HeavyComponent = React.lazy(() => import('./HeavyComponent'))
+Criteri di successo: 
+atomic: True
+estimated_minutes: 15
+claimed_at: "2026-03-26T13:30:00.231350"
+claimed_by: orchestrator
+completed_at: "2026-03-26T13:35:40.424977"
+result: ok

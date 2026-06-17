@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap10-esp1
+# "Far girare il motore"
+
+experiment_id: v2-cap10-esp1
+volume: 2
+chapter: 10
+title: "Far girare il motore"
+
+prerequisites:
+  - v2-cap9-esp2
+
+concepts_introduced:
+  - motore_DC
+  - rotazione
+  - energia_meccanica
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - corrente
+  - tensione
+  - volt
+  - motore
+  - rotazione
+  - energia
+  - breadboard
+  - polo positivo
+  - polo negativo
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 motorino DC (3-6V), 1 batteria 9V con clip
+    (oppure 4 pile AA = 6V per sicurezza), fili. Nastro adesivo su un'elica di carta
+    sull'asse del motore per vedere la rotazione. ATTENZIONE: il motore puo'
+    scaldarsi con 9V — usa tempi brevi o pile AA.
+  during_class: >
+    Collega il motore direttamente alla batteria. "Gira!" Questa e' la trasformazione
+    di energia: l'energia elettrica della batteria diventa energia di movimento
+    (meccanica). Chiedi: "Dove avete gia' visto questa trasformazione?"
+    (ventilatore, frullatore, lavatrice).
+  common_question: >
+    "Perche' il motore e' caldo?" -> Parte dell'energia diventa calore. Non tutta
+    l'energia diventa movimento — una parte si 'spreca' in calore. E' normale.
+
+common_mistakes:
+  - mistake: "Motore collegato alla breadboard — i pin non entrano"
+    what_to_do: "Usa fili con coccodrilli o salda fili ai terminali del motore. La breadboard non regge la corrente del motore."
+    analogy: null
+  - mistake: "Batteria 9V che si scarica velocemente"
+    what_to_do: "Il motore consuma molta piu' corrente di un LED. La 9V si scarica in fretta — meglio pile AA."
+    analogy: "Il motore e' un elefante assetato, il LED e' un gattino — servono riserve diverse"
+
+analogies:
+  motore_DC:
+    analogy: "Il motore elettrico e' come una giostra — la corrente lo fa girare, come le braccia del giostraio fanno girare la giostra. Piu' corrente, piu' veloce."
+    evidence: "Analogia meccanica rotazionale per motori DC (Driver et al. 1994)"
+  energia_meccanica:
+    analogy: "L'energia elettrica che diventa movimento e' come l'acqua di un fiume che fa girare una ruota del mulino — l'energia cambia forma ma non scompare."
+    evidence: "Analogia mulino per conversione energia, classica in fisica didattica (Feynman 1963)"
+
+assessment_invisible:
+  - "Se lo studente dice 'l'energia della batteria fa girare il motore' -> conversione energetica"
+  - "Se fa esempi di motori nella vita quotidiana -> collegamento con il reale"
+  - "Se chiede 'posso farlo andare piu' veloce o piu' piano?' -> pronto per il controllo"

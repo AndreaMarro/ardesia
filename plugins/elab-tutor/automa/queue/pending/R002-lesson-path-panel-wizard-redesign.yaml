@@ -1,0 +1,48 @@
+id: R002-lesson-path-panel-wizard-redesign
+priority: P1
+title: "R002: LessonPathPanel — redesign come Teacher Wizard (una azione per step)"
+description: |
+  RESEARCH FINDING (2026-04-06): CTC GO! (competitor diretto, 1830€) investe
+  enormemente nel preparare il docente con teacher guide per ogni sessione.
+  Il LessonPathPanel è la risposta ELAB — ma deve essere il CENTRO del prodotto,
+  non una sidebar opzionale.
+
+  PROBLEMA ATTUALE:
+  LessonPathPanel.jsx (668 LOC) esiste ma non è connesso ai dati YAML.
+  Il pattern UX "wizard" richiede: una sola decisione per step, progress indicator
+  con nomi evocativi (non numeri), possibilità di tornare indietro.
+
+  FIX RICHIESTO (sessione interattiva — richiede product decisions):
+  1. Connettere LessonPathPanel ai YAML dell'esperimento corrente
+  2. Per ogni step, mostrare UNA SOLA istruzione d'azione (non lista di cose)
+  3. Progress bar orizzontale: ● PREPARA ○ MOSTRA ○ CHIEDI ○ OSSERVA ○ CONCLUDI
+     (nomi, non "Step 1/5")
+  4. Bottone "← Indietro" sempre visibile
+  5. Step PREPARA: lista componenti da teacher_briefing YAML
+  6. Step CHIEDI: una sola domanda provocatoria da common_mistakes YAML
+  7. Step OSSERVA: [AZIONE:play] + cosa osservare dal YAML
+
+  PATTERN UX (da letteratura):
+  - Wizard riduce ansia docenti inesperti (confirmed literature)
+  - Progress indicator è il componente CRITICO per completion
+  - "Review before action": bottone "Monta il circuito per me" deve avere
+    preview circuito + confirm prima di eseguire
+
+  NON fare:
+  - NON usare numeri "Step 1/5"
+  - NON mostrare più di un'istruzione per schermata
+  - NON auto-montare circuito senza conferma docente
+
+  VERIFICA:
+  - Aprire 3 esperimenti diversi → LessonPathPanel mostra contenuto YAML reale
+  - Progress bar visibile con nomi evocativi
+  - "Monta per me" → preview → conferma → circuito montato
+  - Simulazione Prof.ssa Rossi: segue 5 step senza aprire chat
+
+tags: R002,ux,wizard,lesson-path,teacher,fase2,product-decision
+mode: IMPROVE
+effort: sessione interattiva (4-8 ore + product decisions)
+evidence: alto — UX literature + CTC GO competitor analysis
+source_research: automa/knowledge/RESEARCH-UX-WIZARD-CTCGO-2026-04-06.md
+verify: "npm run build + visual test LIM + simulazione Prof.ssa Rossi"
+note: "Richiede sessione interattiva con Andrea per design decisions"

@@ -1,0 +1,88 @@
+{
+  "cycle": 7,
+  "timestamp": "2026-03-25T05:55:35.128909",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1072
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 17.86s",
+      "time_ms": 20182
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 167362
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=83 min=74 (target \u226560) [3 samples]",
+      "time_ms": 64919
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3911
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2093
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "blueprint-research-loop",
+    "status": "done",
+    "files_changed": [
+      "automa/research_loop.py",
+      "automa/orchestrator.py"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "score_delta": 0.0,
+    "principio_zero": true,
+    "next_task": "Aggiungere test di integrazione: orchestrator lancia research_loop.py subprocess e verifica che research-output.json venga scritto correttamente entro 30s",
+    "impact": {
+      "innovazione": "si \u2014 architettura subprocess isolata con comunicazione atomica via file, daemon mode per ricerca indipendente",
+      "marketing": "no \u2014 refactoring interno non visibile all'utente",
+      "ricavi": "si \u2014 sistema piu' stabile riduce rischio crash durante cicli autonomi notturni",
+      "pedagogia": "si \u2014 ricerca piu' affidabile genera task migliori che migliorano l'esperienza LIM"
+    },
+    "notes": "Consolidati 3 moduli research (parallel_research.py, micro_research.py, enhanced_research.py) + codice inline orchestrator in un unico research_loop.py. Backward compat mantenuta via fallback. Il vecchio codice inline micro_research() (831-968) non viene piu' chiamato ma resta nel file per sicurezza.",
+    "output_length": 3215
+  },
+  "research": null,
+  "ai_scoring": null,
+  "composite_score": 0.8872,
+  "score_before": 0.945,
+  "score_after": 0.8872,
+  "score_delta": -0.0578,
+  "verdict": "discard",
+  "impact": {
+    "innovazione": "si \u2014 architettura subprocess isolata con comunicazione atomica via file, daemon mode per ricerca indipendente",
+    "marketing": "no \u2014 refactoring interno non visibile all'utente",
+    "ricavi": "si \u2014 sistema piu' stabile riduce rischio crash durante cicli autonomi notturni",
+    "pedagogia": "si \u2014 ricerca piu' affidabile genera task migliori che migliorano l'esperienza LIM"
+  },
+  "next_task": "Aggiungere test di integrazione: orchestrator lancia research_loop.py subprocess e verifica che research-output.json venga scritto correttamente entro 30s",
+  "self_exam": null
+}

@@ -1,0 +1,63 @@
+{
+  "cycle": 22,
+  "timestamp": "2026-03-25T17:38:41.517334",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 373
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in ?s",
+      "time_ms": 103053
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 161772
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 9
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=72 (target \u226560) [3 samples]",
+      "time_ms": 63341
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 8070
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3588
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Integrare micro-ricerca Semantic Scholar nel ciclo",
+    "status": "failed",
+    "files_changed": [],
+    "build_pass": false,
+    "lesson": "WebSearch, WebFetch e write ai file (sia automa/ che src/) sono stati negati. Task micro-research impossibile senza web access. Trovato per\u00f2 fix chiave per score regression: index.html e src/index.css caricano ancora Google Fonts esterni nonostante public/fonts/ self-hosted siano gi\u00e0 presenti. Il ciclo successivo deve applicare: (1) rimuovere @import Google in src/index.css, (2) aggiungere import fonts.css in main.jsx, (3) rimuovere link Google Fonts in index.html."
+  },
+  "research": "Kimi: Nel settore dell'educazione, l'utilizzo di app web progressive offline sta diventando un trend importante. Queste app offrono un'esperienza di app completa anche senza connessione internet, rendendole ideali per ambienti educativi con scarsa o inesistente connessione.\n\n1. **Trend 1: Accesso all'educazione ovunque** - L'utilizzo di app web progressive offline permette agli studenti di accedere ai m\nDeepSeek: **Problemi per ELAB Tutor:**\n1.  **Accesso disuguale:** Gli studenti in zone con connettivit\u00e0 scarsa o costosa non possono accedere ai materiali didattici quando sono offline, ampliando il divario digitale.\n2.  **Perdita di dati di apprendimento:** Le attivit\u00e0 completate offline (quiz, note) non vengono tracciate, impedendo a tutor e sistema di monitorare il progresso reale e di personalizzare il ",
+  "ai_scoring": null,
+  "composite_score": 0.7714,
+  "self_exam": null
+}

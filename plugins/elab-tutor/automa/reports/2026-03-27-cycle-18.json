@@ -1,0 +1,68 @@
+{
+  "cycle": 18,
+  "timestamp": "2026-03-27T07:56:54.894545",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 352
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.35s",
+      "time_ms": 20888
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 161880
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 2
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=73 (target \u226560) [3 samples]",
+      "time_ms": 65076
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3667
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2029
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Mistral GDPR-safe fallback provider + EU-only mode",
+    "status": "done",
+    "files_changed": [
+      "nanobot/server.py",
+      "nanobot/render.yaml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "high",
+    "evidence": "verified"
+  },
+  "research": "Kimi: Il tema 'AI tutoring scaffolding real-time' si riferisce all'uso dell'intelligenza artificiale per supportare gli studenti in modo personalizzato e in tempo reale. Ecco 3 tendenze, 1 idea e 1 rischio in questo campo.\n\n1. Personalizzazione: L'AI pu\u00f2 analizzare i progressi degli studenti e adattare il materiale di apprendimento in base alle loro esigenze personali. Questa personalizzazione migliora \nDeepSeek: **Problemi per ELAB Tutor (AI Scaffolding in Tempo Reale):**\n1.  **Sovraccarico Cognitivo:** L'AI potrebbe fraintendere il momento esatto dello \"spazio di sviluppo prossimale\" dello studente, fornendo aiuti non necessari o troppo complessi, interrompendo il flusso di pensiero e aumentando la frustrazione.\n2.  **Dipendenza dallo Scaffolding:** Un supporto eccessivamente granulare o immediato rischi",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

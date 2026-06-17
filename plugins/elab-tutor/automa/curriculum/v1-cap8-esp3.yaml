@@ -1,0 +1,78 @@
+# Curriculum YAML — v1-cap8-esp3
+# "RGB + pulsante = viola"
+
+experiment_id: v1-cap8-esp3
+volume: 1
+chapter: 8
+title: "RGB + pulsante = viola"
+
+prerequisites:
+  - v1-cap8-esp1  # Sa usare il pulsante
+  - v1-cap7-esp1  # Conosce il LED RGB
+
+concepts_introduced:
+  - miscelazione_colori_additiva
+  - controllo_canale_singolo
+  - viola_rosso_piu_blu
+
+vocabulary_level: v1-cap8
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - breadboard
+  - pulsante
+  - rosso
+  - blu
+  - viola
+  - colore
+  - mescolare
+  - accendere
+  - canale
+  - catodo
+forbidden_terms:
+  - potenziometro
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - PWM
+  - duty cycle
+  - fotoresistenza
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 2 resistenze 470 ohm, 1 pulsante, breadboard, batteria.
+    Il pulsante controlla i canali rosso+blu contemporaneamente. Obiettivo: scoprire
+    che mescolando due colori di luce si crea un terzo colore.
+  during_class: >
+    "Ricordate i colori primari nella pittura? Rosso+blu=viola. Ma con la luce
+    funziona uguale? Proviamo!" Fai montare il circuito e premere il pulsante.
+    "Che colore vedete? E viola! La luce si mescola in modo diverso dalla pittura."
+  common_question: >
+    "Perche non e uguale alla pittura?" -> Con la pittura i colori si sottraggono
+    (mescolando tutto diventa marrone/nero). Con la luce i colori si sommano
+    (mescolando tutto diventa bianco!). Sono due mondi diversi.
+
+common_mistakes:
+  - mistake: "Vedono rosa invece di viola"
+    what_to_do: "Normale — dipende dall'intensita dei due canali. Prova resistenze diverse per bilanciare"
+    analogy: null
+  - mistake: "Solo un colore si accende"
+    what_to_do: "Controlla che entrambi i canali (rosso E blu) siano collegati al pulsante"
+    analogy: null
+
+analogies:
+  miscelazione_colori_additiva:
+    analogy: "Mescolando i colori della luce e come mescolare fasci di torce colorate sul muro bianco — i colori si sommano e diventano piu chiari, non piu scuri come con i pennarelli."
+    evidence: "Distinzione sintesi additiva/sottrattiva, misconception comune (Anderson & Smith 1986)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e diverso dai pennarelli!' -> ha capito la differenza additiva/sottrattiva"
+  - "Se chiede 'e se accendo anche il verde?' -> pronto per esp 4 (3 pulsanti)"

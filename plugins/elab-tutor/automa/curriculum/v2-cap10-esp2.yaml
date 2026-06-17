@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap10-esp2
+# "Invertire la rotazione"
+
+experiment_id: v2-cap10-esp2
+volume: 2
+chapter: 10
+title: "Invertire la rotazione"
+
+prerequisites:
+  - v2-cap10-esp1
+
+concepts_introduced:
+  - inversione_polarita
+  - senso_rotazione
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - corrente
+  - tensione
+  - volt
+  - motore
+  - rotazione
+  - polo positivo
+  - polo negativo
+  - inversione
+  - senso orario
+  - senso antiorario
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: stesso materiale dell'esperimento precedente. Metti un pezzetto di
+    nastro colorato sull'elica per vedere chiaramente il senso di rotazione.
+    Obiettivo: scoprire che invertendo i fili, il motore gira al contrario.
+  during_class: >
+    Fai girare il motore. "In che senso gira?" Ora chiedi: "Come potremmo farlo
+    girare nell'altro senso?" Lascia che provino. La soluzione: scambiare i due fili
+    della batteria. "Perche' funziona?" Invertendo la polarita', la corrente scorre
+    al contrario nel motore, e il campo magnetico si inverte.
+  common_question: >
+    "Perche' il LED non funziona al contrario ma il motore si'?" -> Il LED ha una
+    direzione sola (diodo). Il motore funziona in entrambe le direzioni — cambia
+    solo il senso di rotazione.
+
+common_mistakes:
+  - mistake: "Pensare che invertire i fili rompa il motore"
+    what_to_do: "Il motore DC funziona benissimo in entrambi i sensi. Non si rompe nulla. Prova!"
+    analogy: null
+  - mistake: "Confondere senso orario e antiorario"
+    what_to_do: "Guarda il motore dall'alto, come un orologio. Se gira come le lancette: orario. Al contrario: antiorario."
+    analogy: "Come le lancette dell'orologio — stesso trucco per ricordare"
+
+analogies:
+  inversione_polarita:
+    analogy: "Invertire la polarita' e' come cambiare il senso di una scala mobile — la scala e' la stessa, ma se inverti il motore sotto, le persone vanno in su invece che in giu'."
+    evidence: "Analogia meccanica per inversione corrente (Clement 1993)"
+  senso_rotazione:
+    analogy: "Il motore e' come una trottola che puoi lanciare in due sensi — a destra o a sinistra. Il verso dipende da come la lanci. Per il motore, dipende da come colleghi i fili."
+    evidence: "Analogia rotazionale per polarita' motore (Borges & Gilbert 1999)"
+
+assessment_invisible:
+  - "Se lo studente scambia i fili spontaneamente senza suggerimento -> intuizione forte"
+  - "Se spiega 'la corrente va al contrario' -> comprensione del meccanismo"
+  - "Se confronta con il LED ('il LED non funziona al contrario') -> pensiero comparativo"

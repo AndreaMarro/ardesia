@@ -1,0 +1,60 @@
+id: expert
+name: "Utente Esperto"
+
+templates:
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Utente con competenze tecniche avanzate. Rispondere a livello appropriato ma senza intimidire gli altri."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - la giunzione p-n del LED ha una forward voltage di 2.1V?
+        - il duty cycle del PWM a che frequenza opera?
+        - posso usare un pull-up da 10k?
+        - la corrente di base del BJT e' sufficiente per saturazione?
+        - il gain del MOSFET in regione lineare?
+        - RC costante di tempo con 100uF e 10k?
+        - il ripple sul bus di alimentazione e' accettabile?
+        - posso mettere un filtro passa-basso RC?
+        - la corrente di leakage del condensatore?
+        - il MOSFET ha abbastanza Vgs per aprire?
+        - qual e' la resistenza interna del pin GPIO?
+        - il timer prescaler a quanto e' settato?
+        - posso usare un interrupt su PCINT?
+        - l'ADC ha 10 bit di risoluzione, giusto?
+        - la UART opera a TTL o RS232?
+
+  - input: "{frase}"
+    intent: code
+    needs_llm: true
+    llm_hint: "Utente esperto fa domanda avanzata di codice. Rispondere con dettaglio tecnico appropriato."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - posso usare i registri diretti al posto di digitalWrite?
+        - PORTB |= (1 << PB5) e' piu' veloce?
+        - come configuro il timer1 in CTC mode?
+        - posso fare bit banging sulla SPI?
+        - il watchdog timer a quanto e' configurato?
+        - come implemento un debounce hardware?
+        - la ISR deve essere SIGNAL o INTERRUPT?
+        - posso usare millis() invece di delay()?
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: true
+    llm_hint: "Utente esperto chiede circuito avanzato."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - voglio un H-bridge per invertire il motore
+        - posso fare un partitore di tensione per il sensore 5V?
+        - come dimensiono la resistenza di gate del MOSFET?
+        - il condensatore di bypass da 100nF va vicino al chip
+
+corruptions:
+  typo_swap: 0.1

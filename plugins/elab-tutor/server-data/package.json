@@ -1,0 +1,23 @@
+{
+  "name": "elab-data-server",
+  "version": "1.0.0",
+  "description": "ELAB Tutor Data Backend — Student sync, Teacher Dashboard, GDPR compliance",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "helmet": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Andrea Marro",
+  "license": "UNLICENSED",
+  "private": true
+}

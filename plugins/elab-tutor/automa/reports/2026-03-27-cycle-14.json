@@ -1,0 +1,68 @@
+{
+  "cycle": 14,
+  "timestamp": "2026-03-27T06:03:27.872152",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 334
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 17.91s",
+      "time_ms": 20633
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 155872
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=82 min=76 (target \u226560) [3 samples]",
+      "time_ms": 59948
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3797
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3251
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "ridurre-densita-cognitiva",
+    "status": "done",
+    "files_changed": [
+      "src/components/simulator/panels/ControlBar.jsx",
+      "src/components/simulator/NewElabSimulator.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problema 1: Complessit\u00e0 Tecnica.** L'installazione e la configurazione della LIM e del software associato richiedono tempo e competenze specifiche. Gli insegnanti spesso perdono tempo prezioso della lezione risolvendo problemi di connettivit\u00e0, calibrazione o driver, interrompendo il flusso didattico.\n\n**Problema 2: Sovraccarico di Contenuto.** La facilit\u00e0 di inserire immagini, video e animazioni",
+  "ai_scoring": null,
+  "composite_score": 0.9415,
+  "self_exam": null
+}

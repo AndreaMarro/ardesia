@@ -1,0 +1,103 @@
+id: switcheditor
+name: Cambia Editor Arduino/Scratch
+intent: action
+needs_llm: false
+templates:
+- input: '{frase}'
+  response: '@editor_mode_switch'
+  actions:
+  - '[AZIONE:switcheditor:scratch]'
+  entities: []
+  vars:
+    frase:
+    - passa a Scratch
+    - voglio i blocchi
+    - apri Scratch
+    - modalita' blocchi
+    - blockly
+    - voglio programmare con i blocchi
+    - switch a Scratch
+    - passa alla programmazione visuale
+    - apri l'editor a blocchi
+    - fammi i blocchi
+    - metti Scratch
+    - passa ai blocchi
+    - voglio i blocchetti
+    - apri blockly
+    - modalita' visuale
+    - usa i blocchi
+    - preferisco i blocchi
+    - cambia a Scratch
+    - metti la modalita' blocchi
+    - editor visuale
+    - non voglio scrivere codice, usa i blocchi
+    - e' troppo difficile il codice, metti i blocchi
+    - voglio trascinare i blocchi
+    - drag and drop
+- input: '{frase}'
+  response: '@editor_mode_switch'
+  actions:
+  - '[AZIONE:switcheditor:arduino]'
+  entities: []
+  vars:
+    frase:
+    - passa ad Arduino
+    - torna al codice
+    - voglio scrivere in C++
+    - modalita' codice
+    - switch ad Arduino
+    - apri l'editor di testo
+    - codice testuale
+    - esci da Scratch
+    - chiudi i blocchi
+    - voglio scrivere il codice
+    - passa al codice C++
+    - torna all'editor normale
+    - metti Arduino
+    - modalita' Arduino
+    - voglio il codice vero
+    - editor di codice
+    - non voglio i blocchi
+    - sono pronto per il codice
+    - cambia a C++
+    - modalita' testo
+    - coding!
+    - metti la modalita' codice
+- input: '{frase}'
+  response: '@editor_open'
+  actions:
+  - '[AZIONE:openeditor]'
+  entities: []
+  vars:
+    frase:
+    - apri l'editor
+    - voglio scrivere codice
+    - apri il pannello codice
+    - mostra l'editor
+    - dov'e' l'editor?
+    - fammi scrivere
+    - apri dove si scrive
+    - editor!
+    - mostrami il codice
+    - voglio vedere il codice
+    - apri il codice
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:closeeditor]'
+  entities: []
+  vars:
+    frase:
+    - chiudi l'editor
+    - nascondi il codice
+    - non mi serve il codice
+    - chiudi il pannello codice
+    - toglielo
+    - chiudi tutto
+    - nascondi l'editor
+    - basta codice
+corruptions:
+  typo_swap: 0.25
+  voice: 0.12
+  emoji: 0.1
+  filler: 0.1

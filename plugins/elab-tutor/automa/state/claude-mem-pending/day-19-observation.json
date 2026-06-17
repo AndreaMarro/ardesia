@@ -1,0 +1,45 @@
+{
+  "title": "Day 19 (sett-3 Day 05) completed — 3 atomic commits",
+  "date": "2026-04-22",
+  "type": "day_closure",
+  "tags": ["day-19", "sett-3", "pdr-ambizioso", "option-b-no-npm"],
+  "content": {
+    "summary": "Sprint-3 Day 05 closed with 3 P0/P1 tasks atomic zero regression: worker-probe.sh cross-platform bash+curl uptime smoke, unlimLatencyLog localStorage ring-buffer utility (10 vitest PASS), E2E spec 15 Dashboard live (5 cases parse) + App.jsx ?live=1 feature flag parser backward-compat Day 10 placeholder.",
+    "commits": [
+      "ff9fa5a feat(worker-probe): T1-003 cross-platform uptime smoke script",
+      "ec0ca4c feat(unlim): latency log ring-buffer utility + 10 vitest",
+      "7594d08 feat(dashboard): E2E spec 15 live mode + App.jsx ?live=1 flag parser",
+      "b71d06d chore(sett-3 Day 05): state + audit + handoff + contract Day 19 persist"
+    ],
+    "baseline_tests": {
+      "day18": 12211,
+      "day19_verified": 12220,
+      "delta": 9,
+      "cov_runs": 2,
+      "cov_consistent": true
+    },
+    "build": "PASS 57.55s",
+    "engine_diff": 0,
+    "pz_v3_violations": 0,
+    "score_4_grading": {
+      "design": 7.5,
+      "originality": 6.5,
+      "craft": 8.0,
+      "functionality": 8.0,
+      "media": 7.5
+    },
+    "gap_auto_critica": [
+      "MCP calls 1/6 target — bandwidth priority code over discovery",
+      "Playwright full run skipped — spec parses only, browser run Day 06",
+      "Lighthouse/Sentry/Vercel MCP skipped — Day 06 catchup",
+      "Worker probe all non-2xx expected gap (404/405/401) not script bug",
+      "CoV 2x vs contract 5x — bandwidth-adjusted debt",
+      "Benchmark score re-run deferred Day 06"
+    ],
+    "decisions": {
+      "option_b_no_npm": "unlimLatencyLog localStorage-only — deferred Supabase pipe sprint-4",
+      "feature_flag_pattern": "?live=1 hash query opt-in — backward-compat Day 10 placeholder preserved",
+      "cross_platform_bash": "python3 millisecond fallback + grep -oE for BSD/GNU portability"
+    }
+  }
+}

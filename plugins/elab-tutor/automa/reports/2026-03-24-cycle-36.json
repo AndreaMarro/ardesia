@@ -1,0 +1,62 @@
+{
+  "cycle": 36,
+  "timestamp": "2026-03-24T09:48:07.946786",
+  "date": "2026-03-24",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 309
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 21.74s",
+      "time_ms": 25588
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 161933
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 11
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=77 min=76 (target \u226560) [3 samples]",
+      "time_ms": 64159
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4163
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2166
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH cycle 22 \u2014 Gulpease root cause + SSE streaming architecture + POE misconception patterns",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "research": "3 findings: (1) Gulpease bug in shared-optimized.yml riga 14 'max 2 frasi' crea score ~65, fix: 4-6 frasi brevi da 8 parole -> score 90+; (2) SSE streaming Flask+React architettura minima, latenza 17s->2-3s, rischio Render buffer mitigato con X-Accel-Buffering:no; (3) POE framework White&Gunstone per correzione misconcezioni indiretta \u2014 3 pattern per corrente-si-consuma/volt=ampere/LED-bidirezionale. Task creati: P1-038-sse-streaming, P1-039-misconceptions-prompt. Status partial per mancata approvazione write permission."
+  },
+  "research": "DeepSeek analysis on 'readability index Italian children':\n  1) **Problemi concreti per ELAB Tutor:**  \n- I contenuti didattici preesistenti potrebbero avere un **livello di leggibilit\u00e0 disomogeneo**, non adatto alla fascia 10-14 anni.  \n- Mancanza di un **adattamento automatico** della complessit\u00e0 testuale alle capacit\u00e0 individuali dello studente, rischiando di demotivare o sovraccaricare.\n\n2) **Soluzione tecnica implementabile in una settimana:**  \nIntegr",
+  "ai_scoring": null
+}

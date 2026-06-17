@@ -1,0 +1,46 @@
+# Galileo Brain Factory v8 — Extreme Variety
+# Target: 30000 unique examples (prima del context injection)
+# Focus: varieta' estrema risposte, llm_hint, vision+code oversample
+#
+# CAMBIAMENTI CHIAVE vs v5/v7:
+# 1. vision: peso 4→10 (oversampling 2.5x per compensare deficit)
+# 2. code: peso 8→12 (oversampling 1.5x)
+# 3. tutor: peso 10→12 (piu' llm_hint diversi)
+# 4. teacher: peso 6→4 (troppo pesante in v7)
+# 5. Nuove sezioni: tutor_v8, vision_v8, code_v8 sostituiscono le vecchie
+# 6. responses_v8.yml con 20-40 varianti per categoria (vs 4-7 in v7)
+
+target: 30000
+seed: 2026_03_19
+system_prompt: system_prompt.txt
+output: galileo-brain-v8.jsonl
+
+sections:
+  # === CORE (intent principali, 60% del dataset) ===
+  actions:          { weight: 7,  corruptions: { typo_swap: 0.3, voice: 0.12, filler: 0.15, emoji: 0.08 } }
+  circuit:          { weight: 12, corruptions: { typo_swap: 0.35, sms: 0.2, emoji: 0.12, voice: 0.08 } }
+  code:             { weight: 12, corruptions: { typo_swap: 0.25, voice: 0.1, sms: 0.15, filler: 0.1 } }
+  tutor:            { weight: 12, corruptions: { typo_swap: 0.3, truncated: 0.15, filler: 0.15, emoji: 0.1 } }
+  navigation:       { weight: 5,  corruptions: { typo_swap: 0.2, voice: 0.15, emoji: 0.05 } }
+  vision:           { weight: 10, corruptions: { typo_swap: 0.25, filler: 0.15, emoji: 0.1, voice: 0.1 } }
+
+  # === PERSONAGGI (diversi stili di utente, 20%) ===
+  teacher:          { weight: 3,  corruptions: { typo_swap: 0.2, voice: 0.1 } }
+  teacher_clueless: { weight: 3,  corruptions: { typo_swap: 0.3, voice: 0.2, truncated: 0.15 } }
+  dialects:         { weight: 5 }
+  profanity:        { weight: 2,  corruptions: { caps_chaos: 0.3, emoji: 0.2 } }
+  expert:           { weight: 3,  corruptions: { typo_swap: 0.1 } }
+  ignorant:         { weight: 4,  corruptions: { typo_swap: 0.4, voice: 0.2, emoji: 0.25, sms: 0.2 } }
+
+  # === STILI INPUT (rumore realistico, 15%) ===
+  truncated:        { weight: 2 }
+  emoji_speak:      { weight: 3,  corruptions: { emoji: 0.5 } }
+  english:          { weight: 2,  corruptions: { typo_swap: 0.2 } }
+  voice:            { weight: 3,  corruptions: { voice: 0.8 } }
+  out_of_scope:     { weight: 3,  corruptions: { typo_swap: 0.2, emoji: 0.1 } }
+  autocorrect:      { weight: 2,  corruptions: { autocorrect: 0.7 } }
+
+  # === CONTESTO (5%) ===
+  multi_step:       { weight: 3,  corruptions: { typo_swap: 0.2, truncated: 0.1 } }
+  context_aware:    { weight: 3,  corruptions: { typo_swap: 0.2, emoji: 0.05 } }
+  lcd_scratch:      { weight: 2,  corruptions: { typo_swap: 0.2 } }

@@ -1,0 +1,62 @@
+{
+  "cycle": 48,
+  "timestamp": "2026-03-24T13:23:35.296141",
+  "date": "2026-03-24",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 393
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 21.51s",
+      "time_ms": 25003
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 164313
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 11
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=72 (target \u226560) [3 samples]",
+      "time_ms": 67382
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 5221
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2408
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH cycle 47 \u2014 Gulpease analysis + pedagogia Cognitive Load Theory",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "research": "Expert agent validato: template Gulpease ~88-91 con frasi MAX 6 parole + vocabolario semplificato + bullet point. Pedagogia: CLT (Sweller 1988), Worked Example (Van Gog 2019), POE 42% retention. Implementazione bloccata: permessi write non concessi per nanobot/prompts/ e automa/. Loop richiede modalita' acceptEdits."
+  },
+  "research": "DeepSeek analysis on 'educational electronics simulation children':\n  1) **Problemi concreti per ELAB Tutor:**\n   *   **Sovraccarico cognitivo:** I bambini (10-14 anni) possono sentirsi sopraffatti presentando troppi componenti e schemi astratti in una volta sola, perdendo l'attenzione.\n   *   **Frustrazione da debug:** Quando un circuito non funziona, la mancanza di un feedback chiaro e immediato sul *perch\u00e9* (es. un cortocircuito) genera frustrazione e abbandono.\n",
+  "ai_scoring": null
+}

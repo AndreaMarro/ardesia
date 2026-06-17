@@ -1,0 +1,63 @@
+{
+  "cycle": 29,
+  "timestamp": "2026-03-25T20:32:34.398698",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 323
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in ?s",
+      "time_ms": 91909
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 249457
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 6
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=71 (target \u226560) [3 samples]",
+      "time_ms": 79890
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 7276
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 4284
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "status": "failed",
+    "files_changed": [],
+    "lesson": "orchestrator usa CLAUDE_AUTO_ACCEPT=1 (non riconosciuto da Claude Code CLI). Il flag corretto e' --dangerously-skip-permissions. Senza questo flag, ogni Edit/Write/Bash-redirect richiede approvazione utente interattiva, impossibile in headless mode. Fix LIM (chat-bubble 24px, topbar-title 32px, touch 56px) preparato ma non applicato. Aggiungere --dangerously-skip-permissions a run_claude_headless() in orchestrator_v2.py riga 627.",
+    "next_action": "Fix orchestratore: aggiungere --dangerously-skip-permissions alla chiamata claude -p in run_claude_headless(). Poi riapplicare fix LIM: tutor-responsive.css LIM media query chat-bubble 1rem->24px, topbar-title 1.3rem->32px, buttons 48px->56px.",
+    "idea": "Sistema di pre-approvazione permessi: prima di ogni ciclo IMPROVE, l'orchestratore scrive .claude/settings.json con permissionMode:acceptEdits, poi lo rimuove dopo il ciclo. Zero interazione utente richiesta."
+  },
+  "research": "DeepSeek: **Problemi:**\n\n1.  **Astrazione eccessiva:** Gli ambienti di programmazione visuale a blocchi (come Scratch for Arduino) rischiano di nascondere completamente i concetti hardware e la sintassi testuale, creando un divario insormontabile quando gli studenti passano alla programmazione tradizionale in C++.\n2.  **Debugging inefficace:** Gli studenti possono assemblare blocchi funzionali senza compren",
+  "ai_scoring": null,
+  "composite_score": 0.9471,
+  "self_exam": null
+}

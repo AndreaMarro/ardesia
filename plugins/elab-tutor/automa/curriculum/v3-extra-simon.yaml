@@ -1,0 +1,74 @@
+# Curriculum YAML — v3-extra-simon
+# "Simon Says Game"
+
+experiment_id: v3-extra-simon
+volume: 3
+chapter: 99
+title: "Simon Says Game"
+
+prerequisites:
+  - v3-cap7-mini
+
+concepts_introduced:
+  - array
+  - random
+  - confronto
+  - gioco_logico
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 4 LED (rosso, verde, blu,
+    giallo), 4 resistori da 330 ohm, 4 pulsanti, 4 resistori da 10k ohm (pull-down),
+    fili. E' il circuito piu' complesso del volume: tanti componenti. Prepara lo schema
+    sulla LIM e dai almeno 20 minuti solo per il cablaggio. Obiettivo: costruire un gioco
+    di memoria — il computer accende LED in sequenza, il giocatore deve ripeterla.
+  during_class: >
+    Fase 1 (20 min): costruisci il circuito. Aiuta gruppo per gruppo.
+    Fase 2 (10 min): carica il codice base che accende i LED uno alla volta (test).
+    Fase 3 (15 min): aggiungi la logica del gioco — UNLIM guida ogni riga. Il computer
+    genera una sequenza random, la mostra coi LED, poi aspetta che il giocatore prema i
+    pulsanti giusti. Se sbaglia, ricomincia. Sfida: chi arriva alla sequenza piu' lunga?
+    Fai una gara tra gruppi.
+  common_question: >
+    "Come fa il computer a ricordare la sequenza?" -> Usa un array, che e' come una fila
+    di cassetti numerati. Nel cassetto 0 c'e' il primo colore, nel cassetto 1 il secondo,
+    e cosi' via. Il computer guarda i cassetti uno alla volta.
+
+common_mistakes:
+  - mistake: "Pulsanti collegati ai pin sbagliati — il gioco non risponde correttamente"
+    what_to_do: "Fai una tabella: LED rosso = pin X, pulsante rosso = pin Y. I colori devono corrispondere. Etichetta i fili."
+    analogy: "Ogni LED ha il suo telecomando (pulsante). Se scambi i telecomandi, premi rosso ma si accende blu."
+  - mistake: "Non capiscono l'array — confondono indice e valore"
+    what_to_do: "Usa scatole di cartone numerate 0,1,2,3. Dentro ogni scatola metti un foglietto colorato. L'indice e' il numero della scatola, il valore e' il colore dentro."
+    analogy: "L'array e' come un armadio con cassetti numerati: il numero del cassetto e' l'indice, quello che c'e' dentro e' il valore"
+  - mistake: "Il confronto sequenza non funziona — il gioco dice sempre 'sbagliato'"
+    what_to_do: "Stampa su Serial Monitor cosa preme il giocatore e cosa c'e' nell'array. Cosi' vedi dove il confronto fallisce. Debug visuale!"
+    analogy: null
+  - mistake: "Sequenza sempre uguale — dimenticano randomSeed"
+    what_to_do: "Senza randomSeed il computer genera sempre gli stessi numeri 'casuali'. Usa randomSeed(analogRead(A0)) per avere numeri diversi ogni volta."
+    analogy: "E' come un mazzo di carte che viene sempre mischiato nello stesso modo — dopo un po' sai l'ordine"
+
+analogies:
+  array:
+    analogy: "Un array e' come una fila di armadietti a scuola, ognuno con un numero. Puoi mettere qualcosa dentro l'armadietto 0, poi dentro il numero 1, e cosi' via. Per trovare qualcosa, dici il numero dell'armadietto."
+    evidence: "Analogia armadietti-array validata in CS Unplugged per eta' 9-14 (Bell et al. 2009)"
+  random:
+    analogy: "random e' come tirare un dado: ogni volta esce un numero diverso e non puoi prevedere quale. Il computer 'tira il dado' per scegliere il prossimo colore della sequenza."
+    evidence: "Concetto dado-random accessibile e verificato in curricula CS per bambini (Scratch curriculum MIT)"
+  confronto:
+    analogy: "Il confronto e' come il gioco 'uguale o diverso': il computer guarda cosa hai premuto e cosa dovevi premere. Se sono uguali -> giusto! Se sono diversi -> sbagliato!"
+    evidence: "Pattern matching come attivita' cognitiva naturale nei giochi di memoria (Karpicke & Blunt 2011)"
+  gioco_logico:
+    analogy: "Un gioco logico e' un gioco dove vinci usando il cervello, non la forza o la velocita'. Simon Says allena la memoria: piu' ricordi, piu' vai avanti, come un muscolo che si allena."
+    evidence: "Giochi di memoria come veicolo per computational thinking (Kafai & Burke 2014)"
+
+assessment_invisible:
+  - "Se lo studente arriva a ripetere sequenze di 5+ elementi -> memoria di lavoro attiva e comprensione del gioco"
+  - "Se modifica il codice per aggiungere suoni o cambiare velocita' -> creativita' e padronanza"
+  - "Se usa il Serial Monitor per debuggare un problema -> pensiero analitico"
+  - "Se spiega a un compagno come funziona l'array -> comprensione profonda della struttura dati"
+  - "Se propone varianti del gioco (piu' LED, tempo limite) -> design thinking"

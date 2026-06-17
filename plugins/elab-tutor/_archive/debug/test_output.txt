@@ -1,0 +1,37 @@
+
+ RUN  v3.2.4 /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+
+ ❯ tests/unit/components.critical.test.js (4 tests | 1 failed) 8ms
+   ✓ Critical Components Logic > Capacitor: should use uF units and enforce min resistance 2ms
+   ✓ Critical Components Logic > MOSFET: should discharge floating gate 1ms
+   × Critical Components Logic > LED: should burn if connected directly to battery (no resistor) 5ms
+     → expected false to be true // Object.is equality
+   ✓ Critical Components Logic > Potentiometer: should handle reversed polarity 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/components.critical.test.js > Critical Components Logic > LED: should burn if connected directly to battery (no resistor)
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ tests/unit/components.critical.test.js:113:33
+    111|         const ledState = solver.getState()['led'];
+    112| 
+    113|         expect(ledState.burned).toBe(true);
+       |                                 ^
+    114|         expect(ledState.brightness).toBe(0);
+    115|         expect(ledState.current).toBeGreaterThan(0.02); // > 20mA
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  20:35:03
+   Duration  765ms (transform 60ms, setup 49ms, collect 49ms, tests 8ms, environment 294ms, prepare 41ms)
+

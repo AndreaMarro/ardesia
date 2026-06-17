@@ -1,0 +1,151 @@
+[
+  {
+    "name": "desktop experiment loaded",
+    "ok": true,
+    "details": {
+      "id": "v1-cap6-esp1",
+      "title": "Cap. 6 Esp. 1 - Accendi il tuo primo LED",
+      "count": 94
+    }
+  },
+  {
+    "name": "desktop header buttons",
+    "ok": true,
+    "details": {
+      "UNLIM": true,
+      "Manuale": true,
+      "Video": true,
+      "Salva": true,
+      "Fumetto": true
+    }
+  },
+  {
+    "name": "three mode buttons visible",
+    "ok": true,
+    "details": {
+      "percorso": true,
+      "passo-passo": true,
+      "gia-montato": true
+    }
+  },
+  {
+    "name": "UNLIM remains present after experiment load",
+    "ok": true,
+    "details": {
+      "unlimBox": {
+        "x": 16,
+        "y": 96,
+        "width": 360,
+        "height": 520
+      }
+    }
+  },
+  {
+    "name": "UNLIM floating panel resizes from all sides",
+    "ok": true,
+    "details": {
+      "leftWorked": true,
+      "topWorked": true,
+      "rightWorked": true,
+      "bottomWorked": true
+    }
+  },
+  {
+    "name": "Passo Passo panel resizes from all sides",
+    "ok": true,
+    "details": {
+      "westWorked": true,
+      "northWorked": true,
+      "eastWorked": true,
+      "southWorked": true
+    }
+  },
+  {
+    "name": "drawing persists after Esci",
+    "ok": true,
+    "details": {
+      "key": "elab-drawing-v1-cap6-esp1",
+      "count": 1,
+      "visiblePaths": 1,
+      "toolbarVisible": false
+    }
+  },
+  {
+    "name": "eraser deletes instead of coloring",
+    "ok": true,
+    "details": {
+      "key": "elab-drawing-v1-cap6-esp1",
+      "length": 0,
+      "eraserPaths": 0,
+      "toolbarVisible": false
+    }
+  },
+  {
+    "name": "Manuale opens",
+    "ok": true,
+    "details": {
+      "manualVisible": true
+    }
+  },
+  {
+    "name": "Video opens",
+    "ok": true,
+    "details": {
+      "videoVisible": true
+    }
+  },
+  {
+    "name": "Salva creates saved session",
+    "ok": true,
+    "details": {
+      "count": 1,
+      "last": "v1-cap6-esp1",
+      "drawings": true,
+      "queued": 1
+    }
+  },
+  {
+    "name": "Fumetto/report opens or gives visible feedback",
+    "ok": true,
+    "details": {
+      "popup": true
+    }
+  },
+  {
+    "name": "UNLIM action bridge exposes expected core actions",
+    "ok": true,
+    "details": {
+      "loadExperiment": "function",
+      "setBuildMode": "function",
+      "nextStep": "function",
+      "prevStep": "function",
+      "showEditor": "function",
+      "setEditorMode": "function",
+      "loadScratchWorkspace": "function",
+      "compile": "function",
+      "captureScreenshot": "function"
+    }
+  },
+  {
+    "name": "iPad/Apple Pencil proxy: panels usable and drawing persists after exit",
+    "ok": true,
+    "details": {
+      "panelVisible": true,
+      "unlimVisible": true,
+      "drawingCount": 1,
+      "overflowX": false,
+      "viewport": {
+        "w": 834,
+        "h": 1194
+      }
+    }
+  },
+  {
+    "name": "browser console/page errors",
+    "ok": true,
+    "details": {
+      "count": 0,
+      "errors": []
+    }
+  }
+]

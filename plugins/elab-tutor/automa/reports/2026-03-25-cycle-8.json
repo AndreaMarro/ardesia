@@ -1,0 +1,68 @@
+{
+  "cycle": 8,
+  "timestamp": "2026-03-25T07:07:47.009595",
+  "date": "2026-03-25",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 381
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.23s",
+      "time_ms": 22148
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 172062
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=76 min=71 (target \u226560) [3 samples]",
+      "time_ms": 63733
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3895
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1932
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 562,
+    "returncode": 0
+  },
+  "research": "Kimi [CONTESTUALE]: 1. Insight concreto: Ottimizzare il rendering delle SVG per il Canvas, utilizzando lazy loading e codice efficiente per ridurre il carico iniziale e migliorare la latenza. 2. Insight concreto: Integrare una libreria di ottimizzazione per le prestazioni come `react-spring` per animazioni fluide, adattandosi ai dispositivi con prestazioni limitate come LIM Promethean e iPad 10a gen. Idea innovativa:",
+  "ai_scoring": null,
+  "composite_score": 0.952,
+  "score_before": 0.8872,
+  "score_after": 0.952,
+  "score_delta": 0.0648,
+  "verdict": "keep",
+  "impact": {},
+  "next_task": null,
+  "self_exam": null
+}

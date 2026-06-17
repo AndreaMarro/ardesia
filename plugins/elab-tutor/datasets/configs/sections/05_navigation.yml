@@ -1,0 +1,98 @@
+id: navigation
+name: "Navigazione Esperimenti e Tab"
+intent: navigation
+needs_llm: false
+
+templates:
+  # ── LOAD EXPERIMENT ──────────────
+  - input: "{frase} {exp_nome}"
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]"]
+    entities: ["{exp_id}"]
+    vars:
+      frase: [carica, apri, metti, caricami, voglio fare, fammi vedere]
+      exp_nome:
+        - il primo circuito
+        - l'esperimento del LED rosso
+        - il LED bruciato
+        - il LED RGB
+        - il semaforo
+        - il dimmer
+        - il buzzer
+        - il reed switch
+        - il blink
+        - il fade
+        - il SOS morse
+        - il knight rider
+        - il servo con potenziometro
+      exp_id:
+        - v1-cap6-primo-circuito
+        - v1-cap6-led-rosso
+        - v1-cap6-led-bruciato
+        - v1-cap7-rgb-base
+        - v1-cap8-semaforo-pulsante
+        - v1-cap9-dimmer
+        - v1-cap11-buzzer
+        - v1-cap12-reed-base
+        - v3-cap6-led-blink
+        - v3-cap6-led-fade
+        - v3-cap6-sos-morse
+        - v3-cap6-knight-rider
+        - v3-cap8-servo-pot
+
+  # ── NEXT/PREV EXPERIMENT ──────────────
+  - input: "{frase}"
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]"]
+    entities: []
+    vars:
+      frase:
+        - prossimo esperimento
+        - esperimento successivo
+        - avanti
+        - il prossimo
+        - andiamo avanti
+        - vai al prossimo
+        - next
+
+  - input: "{frase}"
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]"]
+    entities: []
+    vars:
+      frase:
+        - esperimento precedente
+        - torna indietro
+        - il precedente
+        - torniamo indietro
+        - quello di prima
+
+  # ── OPEN TAB ──────────────
+  - input: "{verbo} {tab_nome}"
+    response: "@navigation"
+    actions: ["[AZIONE:opentab:{tab_id}]"]
+    entities: []
+    vars:
+      verbo: [apri, vai al, mostrami, fammi vedere, apri il tab]
+      tab_nome: [il manuale, il video, la lavagna, i taccuini, il detective, il simulatore]
+      tab_id: [manuale, video, lavagna, taccuini, detective, simulatore]
+
+  # ── VOLUME SWITCH ──────────────
+  - input: "{frase}"
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]"]
+    entities: []
+    needs_llm: true
+    llm_hint: "L'utente vuole cambiare volume. Suggerire il primo esperimento del volume richiesto."
+    vars:
+      frase:
+        - vai al volume 1
+        - carica il volume 2
+        - voglio il volume 3
+        - passa al volume 1
+        - apri il volume 2
+        - fammi gli esperimenti del volume 3
+
+corruptions:
+  typo_swap: 0.2
+  voice: 0.15

@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-04-16T06:35:00Z",
+  "source": "ralph-loop-terminal + PDR v2 ULTRA + memory",
+  "status": "draft",
+  "packages": {
+    "ELAB_Classe": {
+      "price": "€20/classe/mese",
+      "includes": ["Kit fisico ELAB (3 volumi + componenti)", "Accesso simulatore illimitato", "AI Tutor UNLIM (chat + voce)", "Dashboard docente con progressi classe", "Aggiornamenti automatici"],
+      "target": "Scuole primarie e secondarie di primo grado",
+      "marginEstimate": "59% (€20 - €8.20 costi AI/infra = €11.80 margine)"
+    },
+    "ELAB_Famiglia": {
+      "price": "€9.99/mese",
+      "includes": ["Accesso simulatore", "AI Tutor UNLIM", "Percorso autonomo casa", "NO kit fisico (acquisto separato)"],
+      "target": "Genitori che vogliono far imparare elettronica ai figli",
+      "marginEstimate": "80%+ (solo costi AI)"
+    },
+    "ELAB_Scuola": {
+      "price": "€500/anno",
+      "includes": ["Tutte le classi illimitate", "Kit fisici per ogni classe", "Dashboard istituto", "Formazione docenti", "Supporto prioritario"],
+      "target": "Istituti comprensivi, acquisto MePA",
+      "marginEstimate": "Variable (dipende da numero classi)"
+    }
+  },
+  "competitors": {
+    "CampuStore_Arduino_CTC": { "price": "~€350/kit", "hasSimulator": false, "hasAI": false },
+    "Tinkercad": { "price": "Gratis", "hasSimulator": true, "hasAI": false, "note": "No kit fisico, no voce, no GDPR bambini" },
+    "Arduino_Education": { "price": "~€300/kit", "hasSimulator": "parziale", "hasAI": false }
+  },
+  "differentiator": "ELAB è l'UNICO prodotto che combina kit fisico + simulatore + AI tutor + voce + offline + GDPR zero dati personali",
+  "mepaRequirements": {
+    "contact": "Davide Fagherazzi (procurement PA)",
+    "status": "Da preparare — specifiche tecniche per scheda MePA",
+    "deadline": "PNRR 30/06/2026"
+  },
+  "landingPage": {
+    "route": "/prezzi",
+    "status": "NOT IMPLEMENTED — serve conferma pricing da Andrea prima di pubblicare"
+  }
+}

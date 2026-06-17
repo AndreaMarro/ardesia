@@ -1,0 +1,79 @@
+id: measure
+name: Misurazioni con Multimetro
+intent: action
+needs_llm: false
+templates:
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:measure]'
+  entities:
+  - multimeter
+  vars:
+    frase:
+    - misura la tensione
+    - misura il voltaggio
+    - quanti volt ci sono?
+    - misura i volt
+    - usa il multimetro
+    - misura la corrente
+    - quanti ampere passano?
+    - misura gli ampere
+    - misura la resistenza
+    - quanti ohm ha?
+    - misura gli ohm
+    - voglio misurare
+    - fammi vedere la tensione
+    - attacca il tester
+    - usa il tester
+    - metti il multimetro
+    - collega il multimetro
+    - misura qui
+    - prendi la misura
+    - quanto misura?
+    - fai una misurazione
+    - voglio sapere quanti volt
+    - controlla la tensione
+    - controlla la corrente
+    - leggi il valore
+    - che valore c'e'?
+    - dimmi la tensione ai capi del LED
+    - misura la tensione sulla resistenza
+    - quanta corrente passa nel circuito?
+    - misura tra questi due punti
+- input: '{frase}'
+  response: '@generic_done'
+  actions:
+  - '[AZIONE:measure]'
+  entities:
+  - multimeter
+  - '{comp}'
+  vars:
+    frase:
+    - misura la tensione sul {comp_nome}
+    - quanti volt ci sono sul {comp_nome}?
+    - misura la corrente che passa nel {comp_nome}
+    - quanti ampere attraversano {comp_nome}?
+    - misura {comp_nome} con il tester
+    - controlla {comp_nome} col multimetro
+    comp_nome:
+    - LED
+    - resistenza
+    - buzzer
+    - motore
+    - condensatore
+    - diodo
+    - potenziometro
+    comp:
+    - led
+    - resistor
+    - buzzer-piezo
+    - motor-dc
+    - capacitor
+    - diode
+    - potentiometer
+corruptions:
+  typo_swap: 0.25
+  voice: 0.15
+  filler: 0.1
+  emoji: 0.05

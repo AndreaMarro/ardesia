@@ -1,0 +1,70 @@
+# Curriculum YAML — v1-cap10-esp5
+# "Aggiungi pot per controllare LED bianco"
+
+experiment_id: v1-cap10-esp5
+volume: 1
+chapter: 10
+title: "Aggiungi pot per controllare LED bianco"
+
+prerequisites:
+  - v1-cap10-esp4  # Accoppiamento ottico
+  - v1-cap9-esp1   # Sa usare il potenziometro
+
+concepts_introduced:
+  - controllo_indiretto
+  - catena_di_controllo
+  - pot_controlla_luce_controlla_LED
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - fotoresistenza
+  - potenziometro
+  - manopola
+  - luce
+  - bianco
+  - blu
+  - controllare
+  - regolare
+  - catena
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - tensione
+  - volt
+  - transistor
+
+teacher_briefing:
+  before_class: >
+    Estensione dell'esp 4: aggiungi un potenziometro al circuito del LED bianco.
+    La catena diventa: pot → LED bianco → luce → LDR → LED blu.
+  during_class: >
+    "Nell'esperimento 4 il LED bianco era sempre acceso. Come facciamo a regolare
+    QUANTO illumina?" Aggiungi il pot. Ora girando la manopola si controlla
+    indirettamente il LED blu. "La manopola non tocca il LED blu, ma lo controlla!"
+  common_question: >
+    "Perche non collegare il pot direttamente al LED blu?" -> Potresti! Ma il
+    bello e che qui un circuito parla a un altro tramite la luce. Nella realta
+    si usa per isolare circuiti diversi — si chiama isolamento ottico.
+
+common_mistakes:
+  - mistake: "Il pot non cambia nulla"
+    what_to_do: "Il pot deve essere in serie con il LED bianco, non con la LDR"
+    analogy: null
+
+analogies:
+  catena_di_controllo:
+    analogy: "E come una catena di domino: giri la manopola → il LED bianco cambia → la luce cambia → la fotoresistenza cambia → il LED blu cambia. Un'azione alla partenza controlla il risultato alla fine!"
+    evidence: "Analogia catena causale, scaffolding per feedback loops (Sengupta et al. 2013)"
+
+assessment_invisible:
+  - "Se dice 'e una catena!' -> ha capito il controllo indiretto"
+  - "Se chiede 'e se aggiungo un pulsante?' -> pensiero compositivo (esp 6)"

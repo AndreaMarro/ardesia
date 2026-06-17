@@ -1,0 +1,320 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap9-esp9",
+  "volume": 1,
+  "chapter": 9,
+  "title": "Sfida: aggiungi pulsante all'esp 8",
+  "chapter_title": "Cos'è un potenziometro?",
+  "difficulty": 3,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "Sfida finale: aggiungere un pulsante 'master' ON/OFF prima del potenziometro, creando una catena di controllo a 3 livelli.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Pulsante (tact switch)",
+      "quantity": 1,
+      "icon": "🔘"
+    },
+    {
+      "name": "Potenziometro 10kΩ",
+      "quantity": 1,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 9,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "pulsante",
+      "circuito aperto",
+      "circuito chiuso",
+      "potenziometro",
+      "resistenza variabile",
+      "manopola",
+      "dimmer",
+      "luminosità",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore"
+    ],
+    "note": "Cap 9 Vol 1 — sfida finale: catena pulsante + pot + LED."
+  },
+  "prerequisites": [
+    "v1-cap9-esp8"
+  ],
+  "next_experiment": {
+    "id": "v1-cap10-esp1",
+    "title": "LED controllato dalla luce",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.82 intitolata \"LED controllato dalla luce\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, sfida finale del capitolo! Pulsante → Manopola → Resistore → LED. Una catena di controllo completa!",
+      "teacher_tip": "Il pulsante è il primo stadio (ON/OFF), il potenziometro è il secondo (regolazione), il resistore è la protezione. Tre ruoli diversi in catena.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 pulsante, 1 potenziometro 10K, 1 resistore 470Ω, 1 LED rosso, 9 fili.",
+      "class_hook": "Abbiamo scoperto il pulsante (ON/OFF) e la manopola (regolazione). Cosa succede se li mettiamo INSIEME in catena?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate la catena: dal positivo si passa prima dal pulsante, poi dal potenziometro, poi dal resistore, poi dal LED.",
+      "teacher_tip": "Spiegate ogni componente come un 'posto di controllo' nella catena: il pulsante è il cancello, la manopola è il rubinetto, il resistore è il limitatore.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap9-esp9]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Sfida: aggiungi pulsante all'esp 8 seguendo Vol.1 pag.79.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot2",
+              "value": 10000
+            },
+            {
+              "type": "push-button",
+              "id": "btn1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:j4",
+              "to": "bb1:a7",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:j4",
+              "to": "bb1:a12",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a13",
+              "to": "bb1:f17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a24",
+              "to": "bb1:a27",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:f24",
+              "to": "bb1:a30",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:bus-top-minus-9",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a14",
+              "to": "bb1:bus-top-minus-14",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a28",
+              "to": "bb1:bus-top-minus-28",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete il pulsante E girate la manopola. Cosa succede se giri al massimo ma NON premete? E se premete ma la manopola è al minimo?",
+      "teacher_tip": "Se non premono il pulsante, nessuna corrente passa — la manopola non fa niente. Questo è il concetto chiave della catena di controllo.",
+      "provocative_question": "Cosa cambia se mettete il pulsante DOPO la manopola invece che prima? Il circuito funziona lo stesso?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Il LED non si accende",
+          "teacher_response": "Regolate la catena completa: il positivo deve passare dal pulsante, poi al potenziometro, poi al resistore, poi al LED.",
+          "analogy": null
+        },
+        {
+          "mistake": "Confondono l'ordine dei componenti",
+          "teacher_response": "L'ordine è: pulsante (ON/OFF) → manopola (regolazione) → resistore (protezione) → LED. Come una catena di montaggio!",
+          "analogy": "Come una catena di montaggio: ogni stazione fa il suo lavoro nell'ordine giusto"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play: pulsante = ON/OFF, manopola = luminosità, resistore = protezione. Ogni componente ha un ruolo preciso!",
+      "teacher_tip": "Evidenziate ogni componente uno alla volta. Chiedete: 'Quale toglieresti se potessi toglierne solo uno?' (il resistore NO — il LED si brucia!)",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:btn1]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Catena di controllo: pulsante (ON/OFF) → manopola (luminosità) → resistore (protezione) → LED. Ogni componente ha il suo ruolo!",
+      "analogies": [
+        {
+          "concept": "catena_controllo",
+          "text": "La catena è come una squadra: il pulsante è il portiere (decide se far passare), la manopola è il centrocampista (decide quanto), il resistore è il difensore (protegge).",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "ordine_componenti",
+          "text": "Come un acquedotto: la diga (pulsante) decide se l'acqua scorre, il rubinetto (manopola) decide quanta, il tubo stretto (resistore) protegge il vaso (LED).",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Sfida completata! Avete costruito una catena di controllo completa. Ogni componente ha un ruolo diverso e importante.",
+      "teacher_tip": "Riassumi il capitolo: 'Dal semplice dimmer alla catena di controllo — i componenti si combinano come i LEGO!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "La catena di controllo: pulsante = ON/OFF, manopola = regolazione, resistore = protezione. Ogni componente ha un ruolo preciso nel circuito, come i giocatori di una squadra!",
+      "concepts_learned": [
+        "catena di controllo",
+        "ruoli dei componenti"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.82 intitolata \"LED controllato dalla luce\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'il pulsante non serve se la manopola è al minimo' → ragionamento logico",
+    "Se chiede 'e se inverto l'ordine?' → pensiero critico",
+    "Se identifica i 3 ruoli (on/off, regolazione, protezione) → comprensione matura"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "catena_controllo",
+      "ruoli_componenti"
+    ],
+    "next_suggested": "v1-cap10-esp1",
+    "resume_message": "Avete completato il capitolo del potenziometro! Ora un componente magico che reagisce alla luce."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 79,
+    "label": "Vol.1 pag.79"
+  }
+}

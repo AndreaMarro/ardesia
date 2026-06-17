@@ -1,0 +1,103 @@
+# Curriculum YAML — v1-cap12-esp1
+# "LED con reed switch"
+
+experiment_id: v1-cap12-esp1
+volume: 1
+chapter: 12
+title: "LED con reed switch"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+  - v1-cap8-esp1  # Conosce il concetto di interruttore (pulsante)
+
+concepts_introduced:
+  - reed_switch
+  - sensore_magnetico
+  - magnete
+  - interruttore_invisibile
+  - attivazione_a_distanza
+
+vocabulary_level: v1-cap12
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - suono
+  - reed_switch
+  - magnete
+  - calamita
+  - sensore
+  - interruttore
+  - avvicinare
+  - allontanare
+  - accendere
+  - spegnere
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - campo_magnetico
+  - induzione
+  - elettromagnetismo
+  - Tesla
+  - digitale
+  - analogico
+  - Hall
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED, 1 resistenza 220 ohm, 1 reed switch
+    (interruttore magnetico, sembra un tubicino di vetro con dentro due
+    lamelle metalliche), 1 magnete, breadboard, batteria. Il reed switch
+    NON ha polarita. Obiettivo: scoprire un interruttore che funziona
+    senza toccarlo — magia!
+  during_class: >
+    Inizia con un trucco: prepara un circuito LED + reed switch nascosto,
+    e avvicina il magnete di nascosto. "Guardate, accendo il LED senza
+    toccarlo!" Lascia che provino a capire il trucco. Poi mostra il reed
+    switch: "Dentro questo tubicino ci sono due pezzettini di metallo.
+    Quando la calamita si avvicina, i pezzettini si toccano e il circuito
+    si chiude!" Falli costruire: LED + resistenza + reed switch in serie.
+  common_question: >
+    "Come fa la calamita ad accenderlo?" -> Dentro il reed switch ci sono
+    due piccole linguette di metallo. Normalmente sono staccate (circuito
+    aperto). Quando avvicini la calamita, la forza del magnete le attira
+    e le fa toccare — e il circuito si chiude! Come un pulsante invisibile.
+
+common_mistakes:
+  - mistake: "Il magnete non attiva il reed switch"
+    what_to_do: "Il magnete deve essere abbastanza vicino (1-2 cm). Provare ad avvicinarlo lentamente da diversi lati"
+    analogy: null
+  - mistake: "Rompono il reed switch premendo troppo sulla breadboard"
+    what_to_do: "Il reed switch e fragile (e di vetro!). Inserire con delicatezza, senza forzare"
+    analogy: "Trattalo come una cannuccia di vetro sottilissima"
+  - mistake: "Confondono reed switch con fotoresistenza"
+    what_to_do: "Il reed switch e un interruttore ON/OFF (come il pulsante). La fotoresistenza cambia gradualmente"
+    analogy: "Il reed switch e come un interruttore della luce: acceso o spento. La fotoresistenza e come un dimmer"
+
+analogies:
+  reed_switch:
+    analogy: "Il reed switch e come un pulsante invisibile: non serve toccarlo, basta avvicinare la calamita! E come le porte automatiche del supermercato che si aprono quando ti avvicini."
+    evidence: "Analogia porta automatica per sensori di prossimita, concretizza attivazione a distanza (Taber 2009)"
+  sensore_magnetico:
+    analogy: "La calamita e come una bacchetta magica: muovila vicino al reed switch e il LED si accende. Ma non e magia — e scienza! Dentro ci sono pezzettini di metallo che la calamita attira."
+    evidence: "Demistificazione fenomeno apparentemente magico, promuove attitudine scientifica (Osborne & Freyberg 1985)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e come un pulsante ma con la calamita' -> ha colto l'analogia interruttore"
+  - "Se prova a variare la distanza del magnete -> esplorazione scientifica spontanea"
+  - "Se chiede 'funziona attraverso il tavolo/la mano?' -> curiosita sulle proprieta del magnete"
+  - "Se propone 'facciamo un allarme per la porta!' -> applicazione pratica, pensiero progettuale"

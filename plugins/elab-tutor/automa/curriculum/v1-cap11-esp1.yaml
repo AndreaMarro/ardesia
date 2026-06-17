@@ -1,0 +1,94 @@
+# Curriculum YAML — v1-cap11-esp1
+# "Buzzer suona continuo"
+
+experiment_id: v1-cap11-esp1
+volume: 1
+chapter: 11
+title: "Buzzer suona continuo"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED (circuito base)
+  - v1-cap6-esp3  # Sa usare una resistenza
+
+concepts_introduced:
+  - buzzer
+  - polarita_buzzer
+  - suono
+  - componente_polarizzato_attivo
+
+vocabulary_level: v1-cap11
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - suono
+  - vibrazione
+  - polarita
+  - positivo
+  - negativo
+  - lungo
+  - corto
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - frequenza
+  - hertz
+  - oscillatore
+  - piezoelettrico
+  - digitale
+  - analogico
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 buzzer polarizzato attivo (NON passivo!),
+    breadboard, batteria 9V, fili. Il buzzer attivo ha un + segnato sopra e
+    la gamba lunga e il positivo (come il LED). Obiettivo: scoprire che
+    l'elettricita non fa solo luce ma anche suono.
+  during_class: >
+    Inizia con: "Finora abbiamo fatto circuiti che si VEDONO. Oggi ne facciamo
+    uno che si SENTE!" Mostra il buzzer: "Assomiglia a qualcosa che conoscete?
+    Ha una gamba lunga e una corta, come il LED!" Falli collegare come un LED
+    (gamba lunga al +, corta al -). Quando suona, chiedi: "Cosa sta succedendo
+    dentro? Sentite la vibrazione col dito?"
+  common_question: >
+    "Perche suona?" -> Dentro il buzzer c'e una piastrina che vibra velocissimo
+    quando passa l'elettricita. E come quando pizzichi una corda di chitarra:
+    la corda vibra e fa suono. Qui e l'elettricita che fa vibrare la piastrina!
+
+common_mistakes:
+  - mistake: "Collegano il buzzer al contrario e non suona"
+    what_to_do: "Ricorda: gamba lunga = positivo, come il LED! Se non suona, gira il buzzer"
+    analogy: "E come il LED — ha un verso giusto e uno sbagliato"
+  - mistake: "Confondono buzzer attivo e passivo"
+    what_to_do: "Per questo esperimento serve il buzzer ATTIVO (quello con il + segnato sopra). Il passivo non suona da solo"
+    analogy: null
+  - mistake: "Il buzzer suona troppo forte e disturba"
+    what_to_do: "Aggiungere una resistenza in serie per abbassare il volume, oppure coprire con un dito"
+    analogy: null
+
+analogies:
+  buzzer:
+    analogy: "Il buzzer e come un piccolo altoparlante: trasforma l'elettricita in suono, come il LED trasforma l'elettricita in luce. Stessa energia, risultato diverso!"
+    evidence: "Analogia trasformazione energetica input→output diversi, rafforza concetto conversione energia (Driver et al. 1994)"
+  polarita_buzzer:
+    analogy: "Come il LED ha il verso giusto, anche il buzzer ha il + e il -. E come una pila nella torcia: se la metti al contrario, non funziona!"
+    evidence: "Rinforzo analogia polarita gia appresa con LED, transfer near (Gentner 1983)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e come il LED ma fa suono' -> ha colto la trasformazione energetica"
+  - "Se nota la polarita senza che glielo dici -> transfer dal LED riuscito"
+  - "Se tocca il buzzer e dice 'vibra!' -> scoperta tattile della produzione del suono"
+  - "Se chiede 'posso farlo suonare e spegnere?' -> pronto per esp 2 col pulsante"

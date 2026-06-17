@@ -1,0 +1,56 @@
+# Components database — 21 valid component types with slang aliases
+# Used by all sections for entity recognition and phrase generation
+
+components:
+  led:
+    slang: [led, LED, lucina, lucetta, lampadina, luce, diodo luminoso, ledino, leddone, lucettina, la lucina, quel coso che si accende]
+  resistor:
+    slang: [resistenza, resistore, res, "resistore da 220", ohm, impedenza, R, la res, quella con le strisce]
+  push-button:
+    slang: [pulsante, bottone, tasto, switch, pulsantino, btn, tastino, interruttore, button, il bottone, il tastino]
+  buzzer-piezo:
+    slang: [buzzer, cicalino, speaker, suonatore, coso che suona, beep, piezo, cicalina, il beep, la trombetta, quello che fa bip]
+  capacitor:
+    slang: [condensatore, capacitore, cap, capacitor, il cap, il condensatore, il cilindretto]
+  potentiometer:
+    slang: [potenziometro, pot, manopola, rotella, dimmer, il coso che giri, knob, trimmer, la rotellina]
+  photo-resistor:
+    slang: [fotoresistore, fotoresistenza, ldr, sensore di luce, il coso della luce, light sensor, sensore luminoso]
+  diode:
+    slang: [diodo, il diodo, 1N4007, diodo raddrizzatore, il componente nero con la striscia]
+  mosfet-n:
+    slang: [mosfet, transistor, il mosfet, interruttore elettronico, mos-fet, fet, transistore, il coso con 3 gambe]
+  rgb-led:
+    slang: [led rgb, rgb, led colorato, led tricolore, led che cambia colore, lucina rgb, il led con 4 gambe]
+  motor-dc:
+    slang: [motore, motorino, motor dc, motore dc, motorino elettrico, motoretto, quello che gira]
+  servo:
+    slang: [servo, servomotore, servo motore, braccetto, motorino di precisione, servetto, il servo]
+  reed-switch:
+    slang: [reed switch, reed, interruttore magnetico, sensore magnetico, coso del magnete, il sensore magnetico]
+  phototransistor:
+    slang: [fototransistor, sensore ottico, transistor della luce, quello che vede la luce]
+  battery9v:
+    slang: [batteria, pila, "batteria 9v", la 9 volt, alimentazione, la pila, la batteria]
+  multimeter:
+    slang: [multimetro, tester, il tester, lo strumento di misura, il misuratore]
+  lcd16x2:
+    slang: [display, LCD, schermo, display LCD, lo schermino, il display, il pannellino]
+  nano-r4-board:
+    slang: [Arduino, la scheda, il nano, Arduino Nano, la board, la schedina, il microcontrollore]
+  breadboard-half:
+    slang: [breadboard piccola, mezza breadboard, la basetta piccola, la breadboard corta]
+  breadboard-full:
+    slang: [breadboard, basetta, la basetta, breadboard grande, la piastra]
+  wire:
+    slang: [filo, cavetto, jumper, wire, cavo, il filo, collegamento, ponticello]
+
+# Action verbs commonly used with components
+action_verbs:
+  place: [metti, aggiungi, piazza, mettimi, posiziona, inserisci, voglio, dammi, monta, carica]
+  remove: [togli, rimuovi, elimina, leva, cancella, porta via]
+  connect: [collega, connetti, unisci, attacca, wira]
+  diagnose: [controlla, verifica, analizza, diagnostica, testa, misura]
+
+# Conjunctions for multi-component phrases
+conjunctions: ["e", "con", "più", ",", "e anche", "insieme a", "poi"]

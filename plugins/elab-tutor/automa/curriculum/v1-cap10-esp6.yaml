@@ -1,0 +1,73 @@
+# Curriculum YAML — v1-cap10-esp6
+# "Aggiungi pulsante al circuito LDR"
+
+experiment_id: v1-cap10-esp6
+volume: 1
+chapter: 10
+title: "Aggiungi pulsante al circuito LDR"
+
+prerequisites:
+  - v1-cap10-esp1  # Sa usare la fotoresistenza
+  - v1-cap8-esp1   # Sa usare il pulsante
+
+concepts_introduced:
+  - combinazione_sensore_interruttore
+  - controllo_manuale_piu_automatico
+  - sfida_aperta_cap10
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - fotoresistenza
+  - pulsante
+  - luce
+  - buio
+  - sensore
+  - accendere
+  - spegnere
+  - manuale
+  - automatico
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - tensione
+  - volt
+  - transistor
+
+teacher_briefing:
+  before_class: >
+    Estensione dell'esp 1: aggiungi un pulsante ON/OFF manuale al circuito con
+    fotoresistenza. Obiettivo: combinare controllo manuale (pulsante) e
+    automatico (fotoresistenza).
+  during_class: >
+    "Il circuito dell'esp 1 si accende e spegne da solo con la luce. Ma se
+    volessimo un pulsante per spegnere tutto, anche quando c'e luce?" Fai
+    aggiungere il pulsante in serie. "Ora avete DUE condizioni: ci deve essere
+    luce E dovete premere il pulsante."
+  common_question: >
+    "Perche servono entrambi?" -> Nella vita reale le luci automatiche hanno
+    sempre anche un interruttore manuale — per quando vuoi sovrascrivere il
+    sensore. Come l'allarme di casa: ha il sensore ma anche il telecomando!
+
+common_mistakes:
+  - mistake: "Il pulsante non fa differenza"
+    what_to_do: "Probabilmente e in parallelo alla LDR (bypassa). Deve essere in serie."
+    analogy: null
+
+analogies:
+  combinazione_sensore_interruttore:
+    analogy: "E come la luce del frigo: ha un sensore (si accende quando apri la porta) MA anche un interruttore generale. Se stacchi l'interruttore, non si accende neanche aprendo la porta."
+    evidence: "Analogia vita quotidiana per condizioni multiple (AND logico intuitivo)"
+
+assessment_invisible:
+  - "Se capisce che entrambe le condizioni devono essere vere -> intuizione AND logico"
+  - "Se chiede 'e se il pulsante fosse in parallelo?' -> pronto per Vol2 (circuiti logici)"
+  - "Se propone combinazioni diverse (pot + LDR + pulsante) -> padronanza cap 8-9-10"

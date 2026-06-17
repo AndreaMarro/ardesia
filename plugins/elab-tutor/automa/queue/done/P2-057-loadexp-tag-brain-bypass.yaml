@@ -1,0 +1,27 @@
+id: P2-057-loadexp-tag-brain-bypass
+title: "Fix [AZIONE:loadexp] non generato quando Brain VPS attivo"
+priority: P2
+severity: medium
+evidence: verified
+created: 2026-03-24
+cycle: 55
+mode: IMPROVE
+description: |
+Il check "carica esperimento 1" fallisce (9/10): la risposta non contiene
+[AZIONE: "loadexp]. Root cause probabile: quando Brain VPS è attivo, bypassa"
+Meccanismo: 
+1. fast_action_dispatch() (server.py: 1053) gestisce "carica esperimento N
+→ dovrebbe restituire "[AZIONE: "loadexp:N]"
+([AZIONE: "show], [AZIONE:build], [AZIONE:code], [AZIONE:play])"
+Schema mismatch: Brain trained su 4 simplified tags, ma frontend e checks
+steps: 
+- Opzione A: applicare fast_action_dispatch() PRIMA del Brain check
+- Opzione B: aggiungere deterministic_action_fallback al Brain response path
+- Opzione C: "aggiornare check e frontend per accettare [AZIONE:show:esperimento_N]"
+- Raccomandato: Opzione A — fast_action_dispatch è deterministico e corretto
+acceptance: 
+files_to_check: 
+claimed_at: "2026-03-24T17:47:53.415377"
+claimed_by: orchestrator
+completed_at: "2026-03-24T17:52:53.188410"
+result: ok

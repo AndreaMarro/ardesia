@@ -1,0 +1,275 @@
+{
+  "_meta": {
+    "version": "1.2",
+    "generated": "2026-04-24",
+    "generated_by": "Sprint Q0 Tresjolie analysis (body-deep-verified)",
+    "sources": {
+      "vol1": "/Users/andreamarro/VOLUME 3/ELAB - TRES JOLIE/1 ELAB VOLUME UNO/2 MANUALE VOLUME 1/MANUALE VOLUME 1 ITALIANO.pdf (114 pg, InDesign 21.1)",
+      "vol2": "/Users/andreamarro/VOLUME 3/ELAB - TRES JOLIE/2 ELAB VOLUME DUE/2 MANUALE VOLUME  2/MANUALE VOLUME 2 ITALIANO.pdf (116 pg, InDesign 20.5)",
+      "vol3": "/Users/andreamarro/VOLUME 3/ELAB - TRES JOLIE/3 ELAB VOLUME TRE/2 MANUALE VOLUME 3/MANUALE VOLUME 3 WORD.odt (canonico)",
+      "vol3_pdf_buggy": "/Users/andreamarro/VOLUME 3/CONTENUTI/volumi-pdf/Manuale VOLUME 3 V0.8.1.pdf (94 pg, InDesign 20.5) — TOC ha phantom Cap 10-12 NON esistenti in ODT"
+    },
+    "extraction_tools": {
+      "vol1_vol2": "pdftotext -layout (poppler 26.04.0)",
+      "vol3": "pandoc -f odt -t plain (ODT canonical)"
+    },
+    "verification_method": "body header uppercase CAPITOLO N + ESPERIMENTO N (Vol1/2) / ESERCIZIO N.M (Vol3) marker grep + cross-check tutor JSON chapter field",
+    "corrections_v1_to_v1.1": [
+      "v1: Cap11 Diodi era 'questionable' → CORRETTO: teoria pura + demo visiva, NO ESPERIMENTO markers, gap tutor legittimo",
+      "v1: Vol3 era 12 Cap → CORRETTO: 9 Cap planned (ODT canonical), Cap 10-12 phantom PDF TOC",
+      "v1: Vol3 esperimenti inferiti 18 → CORRETTO: 22 ESERCIZIO explicit markers (24 con dup 6.4 + implicit 7.8)",
+      "v1: totale 38 Cap → CORRETTO: 35 Cap reali",
+      "BUG EDITORIALE trovato Vol3: ESERCIZIO 6.4 duplicato (stesso numero su 2 esercizi diversi)",
+      "BUG EDITORIALE trovato Vol3: Sketch_Capitolo_7.8 referenziato ma marker ESERCIZIO 7.8 mancante"
+    ],
+    "extensions_v1.1_to_v1.2": [
+      "Aggiunto decisions_operative_q0_q1 con 6 decisioni autonome per Q1 schema Capitolo narrative-preserving",
+      "Mapping v3-extra-simon → v3-cap9 (promotion capstone)",
+      "Mapping v3-extra-lcd-hello + servo-sweep → nuovo tier 'progetti_bonus_vol3'",
+      "Reference narrative-progression analysis: docs/audits/2026-04-24-narrative-progression-analysis.md",
+      "Vol3 Cap 9 ora marked 'wip_with_capstone_candidate' invece di puro WIP"
+    ],
+    "extensions_v1.2_iter37_phase3_close": [
+      "Sprint T iter 37 Phase 3 — Maker-3 atom A9-FIX (2026-04-30, Andrea iter 37 mandate 'no debito tecnico'): chiusura 2/7 deferred Maker-1 iter 37 Phase 1",
+      "Lesson-path JSON v3-cap7-mini.json shipped (Vol3 ODT line 2851-3000 verbatim Cap 7 ESERCIZIO 7.1 mini sintesi: potenziometro ADC + LED PWM)",
+      "Lesson-path JSON v3-cap8-serial.json shipped (Vol3 ODT line 3864-4100 verbatim Cap 8 ESERCIZIO 8.1: Serial.begin + Serial.println primo messaggio)",
+      "experiments-vol3.js ALL_EXPERIMENTS aggregator +2 entries (id + chapter + page + bookText verbatim + components + buildSteps + quiz)",
+      "volume-references.js VOLUME_REFERENCES +2 entries (volume + bookPage + chapter + bookText verbatim ODT-sourced + bookInstructions + bookQuote + bookContext)",
+      "Total esperimenti: 92 → 94 (38 Vol1 + 27 Vol2 + 29 Vol3, di cui Vol3 = 27 chapter-numbered + 2 chapter-mini/serial + 3 extras simon/lcd/servo, ma simon/lcd/servo gia counted in 27 numbered cap5-8 mapping)",
+      "Hardcoded toBe(92) test assertions aggiornati a toBe(94) in 22+ test files unit/ (volumeParallelism + experimentDataIntegrity + experimentQuiz + ALL_EXPERIMENTS aggregator tests)"
+    ],
+    "notes": [
+      "Grep pattern originale usava `Capitolo` lowercase = solo TOC. Body usa `CAPITOLO` uppercase = caught now.",
+      "Vol3 ODT body ha solo 1 marker 'CAPITOLO' uppercase (line 655 Cap3). Struttura Vol3 ODT è ESERCIZIO-driven.",
+      "Vol2 body confermato CAPITOLO 1-12 presenti. Cap 11 esiste a PDF pag 98-102.",
+      "Vol3 ODT finisce a ESERCIZIO 8.6 (line 4372). Body Cap 9+ ASSENTE (TOC ODT line 111 Cap 9 stub).",
+      "tutor v3-cap7-esp8 (debounce) probabilmente copre ESERCIZIO 7.8 implicito volume.",
+      "tutor v3-cap6-semaforo mappa a ESERCIZIO 6.4-duplicato (semaforo).",
+      "tutor v3-extra-simon.chapter=99 = capstone Vol3, candidato per Cap 9 WIP fill."
+    ]
+  },
+  "totals": {
+    "capitoli_toc_pdf_declared": 38,
+    "capitoli_real_planned": 35,
+    "capitoli_phantom_removed": 3,
+    "capitoli_written_complete": 34,
+    "capitoli_wip_incomplete": 1,
+    "capitoli_with_experiments_or_project": 22,
+    "capitoli_theory_only": 12,
+    "esperimenti_markers_vol1_pdf": 37,
+    "esperimenti_markers_vol2_pdf": 26,
+    "esercizi_markers_vol3_odt": 22,
+    "esercizi_vol3_including_dup_implicit": 24,
+    "esperimenti_total_markers": 85,
+    "tutor_files_total": 94,
+    "tutor_files_cap_mapped": 91,
+    "tutor_files_extras_standalone": 3,
+    "coverage_capitoli_total_pct": 62.9,
+    "coverage_capitoli_total_numerator": 22,
+    "coverage_capitoli_total_denominator": 35,
+    "coverage_experimental_cap_pct": 100,
+    "coverage_legitimate_gap_pct": 100,
+    "q1_migration_file_target": 35
+  },
+  "bugs_editorial_found": [
+    {
+      "id": "vol3-cap6-dup",
+      "severity": "medium",
+      "description": "Vol3 ODT ESERCIZIO 6.4 duplicato: line 2113 'Due LED alternati' + line 2176 'Costruiamo un semaforo'",
+      "fix": "Rinumerare seconda occorrenza come 6.5 e shiftare ESERCIZIO 6.5-6.7 a 6.6-6.8",
+      "flag_for": "Tea"
+    },
+    {
+      "id": "vol3-cap7-missing-marker",
+      "severity": "low",
+      "description": "Vol3 ODT referenzia 'Sketch_Capitolo_7.8' (line 3814) ma marker 'ESERCIZIO 7.8' assente",
+      "fix": "Aggiungere marker ESERCIZIO 7.8 davanti al passaggio debounce (esistente come tutor v3-cap7-esp8)",
+      "flag_for": "Tea"
+    },
+    {
+      "id": "vol3-pdf-v081-phantom-toc",
+      "severity": "high",
+      "description": "PDF V0.8.1 ha Cap 10-12 nel TOC (pag 93, 103, 109) MA non esistono in ODT canonical",
+      "fix": "Rigenerare PDF da ODT aggiornato: TOC non deve avere slot 10-12 se non scritti",
+      "flag_for": "Tea + graphic designer"
+    },
+    {
+      "id": "vol2-cap3-transistor-dup",
+      "severity": "low",
+      "description": "Vol2 PDF Cap 8 Transistor: ESPERIMENTO 2 duplicato (lines 2242 + 2252)",
+      "fix": "Correzione editoriale su prossima ristampa",
+      "flag_for": "Tea"
+    }
+  ],
+  "volumes": {
+    "vol1": {
+      "titolo": "Laboratorio STEM di Elettronica - Volume 1",
+      "capitoli_planned": 14,
+      "capitoli_body_confirmed": 14,
+      "esperimenti_total_markers": 37,
+      "pages_span": "5-112 (PDF 114 pg totali)",
+      "status": "complete",
+      "capitoli": [
+        { "num": 1, "id": "v1-cap1", "titolo": "La Storia dell'Elettronica", "page_start": 5, "page_end": 8, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 2, "id": "v1-cap2", "titolo": "Le grandezze elettriche e la legge di Ohm", "page_start": 9, "page_end": 12, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 3, "id": "v1-cap3", "titolo": "Cos'è un resistore?", "page_start": 13, "page_end": 20, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 4, "id": "v1-cap4", "titolo": "Cos'è la breadboard?", "page_start": 21, "page_end": 24, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 5, "id": "v1-cap5", "titolo": "Cosa sono le batterie?", "page_start": 25, "page_end": 26, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 6, "id": "v1-cap6", "titolo": "Cos'è il diodo LED?", "page_start": 27, "page_end": 34, "type": "experiment", "esperimenti_count": 3, "tutor_coverage": "full", "tutor_files": ["v1-cap6-esp1", "v1-cap6-esp2", "v1-cap6-esp3"] },
+        { "num": 7, "id": "v1-cap7", "titolo": "Cos'è il LED RGB?", "page_start": 35, "page_end": 42, "type": "experiment", "esperimenti_count": 6, "tutor_coverage": "full", "tutor_files": ["v1-cap7-esp1", "v1-cap7-esp2", "v1-cap7-esp3", "v1-cap7-esp4", "v1-cap7-esp5", "v1-cap7-esp6"] },
+        { "num": 8, "id": "v1-cap8", "titolo": "Cos'è un pulsante?", "page_start": 43, "page_end": 56, "type": "experiment", "esperimenti_count": 5, "tutor_coverage": "full", "tutor_files": ["v1-cap8-esp1", "v1-cap8-esp2", "v1-cap8-esp3", "v1-cap8-esp4", "v1-cap8-esp5"] },
+        { "num": 9, "id": "v1-cap9", "titolo": "Cos'è un potenziometro?", "page_start": 57, "page_end": 80, "type": "experiment", "esperimenti_count": 9, "tutor_coverage": "full", "tutor_files": ["v1-cap9-esp1", "v1-cap9-esp2", "v1-cap9-esp3", "v1-cap9-esp4", "v1-cap9-esp5", "v1-cap9-esp6", "v1-cap9-esp7", "v1-cap9-esp8", "v1-cap9-esp9"] },
+        { "num": 10, "id": "v1-cap10", "titolo": "Cos'è un fotoresistore?", "page_start": 81, "page_end": 92, "type": "experiment", "esperimenti_count": 6, "tutor_coverage": "full", "tutor_files": ["v1-cap10-esp1", "v1-cap10-esp2", "v1-cap10-esp3", "v1-cap10-esp4", "v1-cap10-esp5", "v1-cap10-esp6"] },
+        { "num": 11, "id": "v1-cap11", "titolo": "Cos'è un cicalino?", "page_start": 93, "page_end": 96, "type": "experiment", "esperimenti_count": 2, "tutor_coverage": "full", "tutor_files": ["v1-cap11-esp1", "v1-cap11-esp2"] },
+        { "num": 12, "id": "v1-cap12", "titolo": "L'interruttore magnetico", "page_start": 97, "page_end": 102, "type": "experiment", "esperimenti_count": 4, "tutor_coverage": "full", "tutor_files": ["v1-cap12-esp1", "v1-cap12-esp2", "v1-cap12-esp3", "v1-cap12-esp4"] },
+        { "num": 13, "id": "v1-cap13", "titolo": "Cos'è l'elettropongo?", "page_start": 103, "page_end": 106, "type": "experiment", "esperimenti_count": 2, "tutor_coverage": "full", "tutor_files": ["v1-cap13-esp1", "v1-cap13-esp2"] },
+        { "num": 14, "id": "v1-cap14", "titolo": "Costruiamo il nostro primo robot", "page_start": 107, "page_end": 112, "type": "project", "esperimenti_count": 1, "tutor_coverage": "full", "tutor_files": ["v1-cap14-esp1"], "notes": "Progetto capstone Vol1 senza marker ESPERIMENTO" }
+      ]
+    },
+    "vol2": {
+      "titolo": "Laboratorio STEM di Elettronica - Volume 2",
+      "capitoli_planned": 12,
+      "capitoli_body_confirmed": 12,
+      "esperimenti_total_markers": 26,
+      "pages_span": "5-114 (PDF 116 pg totali)",
+      "status": "complete",
+      "capitoli": [
+        { "num": 1, "id": "v2-cap1", "titolo": "Altri cenni di storia dell'elettronica", "page_start": 5, "page_end": 8, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 2, "id": "v2-cap2", "titolo": "Cos'è l'elettricità?", "page_start": 9, "page_end": 12, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 3, "id": "v2-cap3", "titolo": "Il Multimetro", "page_start": 13, "page_end": 36, "type": "experiment", "esperimenti_count": 4, "tutor_coverage": "full", "tutor_files": ["v2-cap3-esp1", "v2-cap3-esp2", "v2-cap3-esp3", "v2-cap3-esp4"] },
+        { "num": 4, "id": "v2-cap4", "titolo": "Approfondiamo le resistenze", "page_start": 37, "page_end": 46, "type": "experiment", "esperimenti_count": 3, "tutor_coverage": "full", "tutor_files": ["v2-cap4-esp1", "v2-cap4-esp2", "v2-cap4-esp3"] },
+        { "num": 5, "id": "v2-cap5", "titolo": "Approfondiamo le Batterie", "page_start": 47, "page_end": 52, "type": "experiment", "esperimenti_count": 2, "tutor_coverage": "full", "tutor_files": ["v2-cap5-esp1", "v2-cap5-esp2"] },
+        { "num": 6, "id": "v2-cap6", "titolo": "Approfondiamo i Led", "page_start": 53, "page_end": 62, "type": "experiment", "esperimenti_count": 4, "tutor_coverage": "full", "tutor_files": ["v2-cap6-esp1", "v2-cap6-esp2", "v2-cap6-esp3", "v2-cap6-esp4"] },
+        { "num": 7, "id": "v2-cap7", "titolo": "Cosa sono i condensatori?", "page_start": 63, "page_end": 74, "type": "experiment", "esperimenti_count": 4, "tutor_coverage": "full", "tutor_files": ["v2-cap7-esp1", "v2-cap7-esp2", "v2-cap7-esp3", "v2-cap7-esp4"] },
+        { "num": 8, "id": "v2-cap8", "titolo": "Cosa sono i Transistor?", "page_start": 75, "page_end": 84, "type": "experiment", "esperimenti_count": 3, "tutor_coverage": "full", "tutor_files": ["v2-cap8-esp1", "v2-cap8-esp2", "v2-cap8-esp3"], "notes": "PDF typo editoriale ESPERIMENTO 2 duplicato line 2242+2252" },
+        { "num": 9, "id": "v2-cap9", "titolo": "Cosa sono i fototransistor?", "page_start": 85, "page_end": 92, "type": "experiment", "esperimenti_count": 2, "tutor_coverage": "full", "tutor_files": ["v2-cap9-esp1", "v2-cap9-esp2"] },
+        { "num": 10, "id": "v2-cap10", "titolo": "Il motore a corrente continua", "page_start": 93, "page_end": 97, "type": "experiment", "esperimenti_count": 4, "tutor_coverage": "full", "tutor_files": ["v2-cap10-esp1", "v2-cap10-esp2", "v2-cap10-esp3", "v2-cap10-esp4"] },
+        { "num": 11, "id": "v2-cap11", "titolo": "I diodi", "page_start": 98, "page_end": 102, "type": "theory", "esperimenti_count": 0, "tutor_coverage": "none", "gap_legitimate": true, "notes": "VERIFIED body PDF pag 98-102: teoria + demo visiva diodo (senso unico, flyback protezione motori). NO marker ESPERIMENTO. Gap tutor legittimo come Cap 1-2. TOC PDF errato (diceva pag 103-108 = in realtà già Cap 12)." },
+        { "num": 12, "id": "v2-cap12", "titolo": "Robot segui luce (originale TOC 'Robot marciante')", "page_start": 103, "page_end": 114, "type": "project", "esperimenti_count": 1, "tutor_coverage": "full", "tutor_files": ["v2-cap12-esp1"], "notes": "tutor v2-cap12-esp1 title 'Robot Segui Luce' conferma. TOC diceva 'Robot marciante' = titolo vecchio." }
+      ]
+    },
+    "vol3": {
+      "titolo": "Laboratorio STEM di Elettronica - Volume 3 (Arduino/Programmazione)",
+      "capitoli_planned_odt_canonical": 9,
+      "capitoli_body_written": 8,
+      "capitoli_wip": 1,
+      "capitoli_phantom_pdf_v081": 3,
+      "esercizi_total_markers_body": 22,
+      "esercizi_total_including_anomalies": 24,
+      "pages_span_odt": "Cap 1-8 written complete, Cap 9 stub",
+      "status": "WIP Cap 9; Cap 10-12 phantom PDF removed",
+      "capitoli": [
+        { "num": 1, "id": "v3-cap1", "titolo": "Un viaggio nella storia della programmazione", "type": "theory", "esercizi_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 2, "id": "v3-cap2", "titolo": "Cos'è la programmazione", "type": "theory", "esercizi_count": 0, "tutor_coverage": "none", "gap_legitimate": true },
+        { "num": 3, "id": "v3-cap3", "titolo": "Hardware e Software", "type": "theory", "esercizi_count": 0, "tutor_coverage": "none", "gap_legitimate": true, "notes": "Body confirmed ODT line 655 CAPITOLO 3 header" },
+        { "num": 4, "id": "v3-cap4", "titolo": "Introduciamo Arduino (IDE)", "type": "theory", "esercizi_count": 0, "tutor_coverage": "none", "gap_legitimate": true, "notes": "Installazione IDE + community" },
+        { "num": 5, "id": "v3-cap5", "titolo": "Il nostro primo programma (Blink)", "type": "experiment", "esercizi_count": 2, "esercizi_numbered": ["5-1", "5.2"], "tutor_coverage": "full", "tutor_files": ["v3-cap5-esp1", "v3-cap5-esp2"] },
+        { "num": 6, "id": "v3-cap6", "titolo": "Il mondo discreto: i pin digitali", "type": "experiment", "esercizi_count": 8, "esercizi_numbered": ["6-1", "6.2", "6.3", "6.4-due-led", "6.4-semaforo (DUP)", "6.5", "6.6", "6.7"], "tutor_coverage": "full_plus_extras", "tutor_files": ["v3-cap6-esp1", "v3-cap6-esp2", "v3-cap6-esp3", "v3-cap6-esp4", "v3-cap6-esp5", "v3-cap6-esp6", "v3-cap6-esp7", "v3-cap6-semaforo", "v3-cap6-morse"], "notes": "BUG: ESERCIZIO 6.4 duplicato volume. v3-cap6-semaforo mappa a 6.4-dup. v3-cap6-morse è addizione tutor-only (no volume ref)." },
+        { "num": 7, "id": "v3-cap7", "titolo": "Il mondo continuo: i pin analogici", "type": "experiment", "esercizi_count": 8, "esercizi_numbered": ["7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "7.7", "7.8-implicit"], "tutor_coverage": "full_plus_extras", "tutor_files": ["v3-cap7-esp1", "v3-cap7-esp2", "v3-cap7-esp3", "v3-cap7-esp4", "v3-cap7-esp5", "v3-cap7-esp6", "v3-cap7-esp7", "v3-cap7-esp8", "v3-cap7-mini"], "notes": "Volume referenzia Sketch_Capitolo_7.8 (debounce) ma marker ESERCIZIO 7.8 mancante. Tutor v3-cap7-esp8 copre. v3-cap7-mini è variant toggle." },
+        { "num": 8, "id": "v3-cap8", "titolo": "Pin analogici + Serial Monitor", "type": "experiment", "esercizi_count": 6, "esercizi_numbered": ["8.1", "8.2", "8.3", "8.4", "8.5", "8.6"], "tutor_coverage": "full", "tutor_files": ["v3-cap8-esp1", "v3-cap8-esp2", "v3-cap8-esp3", "v3-cap8-esp4", "v3-cap8-esp5", "v3-cap8-serial"], "notes": "Titolo PDF V0.8.1 corrotto 'LE UANTIT', ODT chiaro. 6 esercizi = 6 tutor files." },
+        { "num": 9, "id": "v3-cap9", "titolo": "(stub ODT - WIP)", "type": "wip", "esercizi_count": 0, "tutor_coverage": "candidate_fill", "notes": "ODT index line 111 'Capitolo 9 –' stub. Body ASSENTE. Candidato fill: v3-extra-simon (chapter=99, capstone Vol3)." }
+      ],
+      "phantom_removed": [
+        { "num": 10, "source": "PDF V0.8.1 TOC only", "explanation": "Mai esistito in ODT canonical. Rimosso dal count reale." },
+        { "num": 11, "source": "PDF V0.8.1 TOC only", "explanation": "Mai esistito in ODT canonical." },
+        { "num": 12, "source": "PDF V0.8.1 TOC only", "explanation": "Mai esistito in ODT canonical." }
+      ],
+      "tutor_extras_not_mapped_to_cap": [
+        { "file": "v3-extra-simon", "chapter_field": 99, "title": "Simon Says - Gioco di Memoria", "purpose": "PROGETTO FINALE Vol3 (self-declared in JSON)", "recommendation": "Promuovere a Cap 9 Vol3 quando Tea scrive body Cap 9, OR mantenere come capstone standalone" },
+        { "file": "v3-extra-lcd-hello", "title": "LCD display hello", "purpose": "progetto tutor-only freestyle", "recommendation": "Categoria 'Creatività libera' o nuovo Cap futuro se Tea pianifica LCD" },
+        { "file": "v3-extra-servo-sweep", "title": "Servo motor sweep", "purpose": "progetto tutor-only freestyle", "recommendation": "Categoria 'Creatività libera' o Cap futuro motori" }
+      ]
+    }
+  },
+  "tutor_map": {
+    "v1": { "files_total": 38, "capitoli_covered": [6, 7, 8, 9, 10, 11, 12, 13, 14], "capitoli_theory": [1, 2, 3, 4, 5], "coverage_experimental_pct": 100 },
+    "v2": { "files_total": 27, "capitoli_covered": [3, 4, 5, 6, 7, 8, 9, 10, 12], "capitoli_theory": [1, 2, 11], "coverage_experimental_pct": 100 },
+    "v3": { "files_total": 29, "capitoli_covered": [5, 6, 7, 8], "capitoli_theory": [1, 2, 3, 4], "capitoli_wip": [9], "capitoli_phantom_excluded": [10, 11, 12], "coverage_experimental_pct": 100, "notes": "Overcoverage tutor-side: 4 variants (morse, semaforo, mini, serial) + 3 standalone extras (lcd, servo, simon)" }
+  },
+  "decisions_operative_q0_q1": {
+    "_source": "docs/audits/2026-04-24-narrative-progression-analysis.md",
+    "_authority": "Andrea explicit delegation 2026-04-24: 'prendi tu le decisioni operativamente migliori'",
+    "decision_1_schema_narrative_preserving": {
+      "rationale": "Volume insegna variazioni progressive stesso tema; tutor attuale UI surface card isolate. Schema Capitolo deve esplicitare narrative_flow + classe_display/docente_sidebar duality.",
+      "schema_extensions": [
+        "theory.testo_classe (narrativo stile volume)",
+        "theory.citazioni_volume[] (testo esatto + pag)",
+        "narrative_flow.transitions[] (tra esperimenti stesso Cap)",
+        "esperimenti[].build_circuit.mode (from_scratch | incremental_from_prev)",
+        "esperimenti[].build_circuit.incremental_delta.operations",
+        "esperimenti[].phases[].classe_display (display centrale)",
+        "esperimenti[].phases[].docente_sidebar (sidebar colpo d'occhio)"
+      ]
+    },
+    "decision_2_vol3_cap9_fill": {
+      "action": "promote v3-extra-simon to v3-cap9-esp1",
+      "rationale": "Pattern coerente: Vol1 Cap14 Robot primo, Vol2 Cap12 Robot segui luce, Vol3 Cap9 Simon Says = capstone finale per volume. simon.chapter=99 già self-declared 'PROGETTO FINALE Vol3'.",
+      "migration_steps": [
+        "Rename file v3-extra-simon.json → v3-cap9-esp1.json",
+        "Update chapter: 99 → 9",
+        "Add volume_ref: { page_start: 85, page_end: 92, note: 'body volume WIP ODT' }",
+        "Preserve 'PROGETTO FINALE Vol3' in title"
+      ]
+    },
+    "decision_3_v3_extras_bonus_tier": {
+      "action": "create tier progetti_bonus_vol3 for lcd-hello + servo-sweep",
+      "rationale": "LCD e Servo sono HW breakout Nano ELAB ma non coperti in ODT volume. Tier separato evita forzarli in Cap 5-8 o trattarli come WIP.",
+      "tier_schema": {
+        "type": "bonus",
+        "volume": 3,
+        "capitolo": null,
+        "order": "1 (lcd), 2 (servo)",
+        "ui_placement": "Libero mode → sezione 'Progetti Bonus' sotto Cap numerati",
+        "narrative_flow": null
+      }
+    },
+    "decision_4_passo_passo_incremental": {
+      "component": "BuildModeGuide.jsx",
+      "action": "add prop mode: 'from_scratch' | 'incremental_from_prev'",
+      "behavior": "Se incremental: NON clear canvas, applica delta operations. UI mostra 'Da qui: [snapshot] Sostituisci X con Y'",
+      "migration_infer": "Script confronta build_circuit.intent esp N vs N-1. Delta ≤2 componenti + stessa breadboard = incremental. Override manuale per edge cases."
+    },
+    "decision_5_percorso_capitolo_view": {
+      "component": "PercorsoCapitoloView.jsx (NEW) + DocenteSidebar.jsx (NEW)",
+      "replaces": "PercorsoPanel.jsx (per-esperimento)",
+      "layout": "Display centrale 70% (classe 24px+ narrativo) + Sidebar destra 25% sticky (docente colpo d'occhio, reactive scroll)",
+      "content_flow": "Teoria intro → Esperimento 1 (passo-passo inline) → Transizione narrativa → Esperimento 2 → ... → Quiz finale",
+      "language_duality": {
+        "display_centrale": "classe_display (hook, volume_quote, observation, analogies)",
+        "sidebar_docente": "docente_sidebar (ora_fai imperativo, chiedi_alla_classe, attenzione_a, common_mistakes_short)"
+      },
+      "citation_inline": "badge (Vol.N pag.M) cliccabile → VolumeViewer"
+    },
+    "decision_6_bugs_editorial_flag_no_block": {
+      "action": "flag Tea con 4 bug (vedi bugs_editorial_found[])",
+      "rationale": "Bug volume-side, non tutor-side. Q1 procede con volume-structure.json v1.2 body-verified. Fix Tea asincrono next ODT release."
+    }
+  },
+  "q1_migration_plan": {
+    "total_capitoli_to_create": 35,
+    "tier_1_direct_migration_experiments": {
+      "count": 22,
+      "description": "Cap con esperimenti + tutor full coverage, migrazione diretta lesson-paths → capitoli",
+      "list": ["v1-cap6..v1-cap14 (9)", "v2-cap3..v2-cap10, v2-cap12 (9)", "v3-cap5..v3-cap8 (4)"]
+    },
+    "tier_2_theory_only": {
+      "count": 12,
+      "description": "Cap teoria pura, Capitolo con solo theory{}, esperimenti[] vuoto",
+      "list": ["v1-cap1..v1-cap5 (5)", "v2-cap1, v2-cap2, v2-cap11 (3)", "v3-cap1..v3-cap4 (4)"]
+    },
+    "tier_3_wip_placeholder": {
+      "count": 1,
+      "description": "Vol3 Cap 9 stub, placeholder Capitolo da completare post-Tea",
+      "list": ["v3-cap9 (+ candidato fill: v3-extra-simon come capstone)"]
+    },
+    "tier_4_extras_decision": {
+      "count": 3,
+      "description": "v3-extras non mappati a Cap numbered, decisione Andrea",
+      "options": [
+        "A) simon → fill Cap 9 Vol3 WIP, lcd+servo categoria 'Creatività libera' standalone",
+        "B) Tutti 3 in categoria 'Creatività libera' nuova section app",
+        "C) Mantenere status quo (3 file JSON fuori struttura Cap)"
+      ]
+    }
+  }
+}

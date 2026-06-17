@@ -1,0 +1,81 @@
+# Curriculum YAML — v1-cap7-esp5
+# "Tutti e 3: bianco!"
+
+experiment_id: v1-cap7-esp5
+volume: 1
+chapter: 7
+title: "Tutti e 3: bianco!"
+
+prerequisites:
+  - v1-cap7-esp4  # Ha mescolato 2 colori
+
+concepts_introduced:
+  - luce_bianca
+  - RGB_completo
+
+vocabulary_level: v1-cap7
+allowed_terms:
+  - LED RGB
+  - rosso
+  - verde
+  - blu
+  - bianco
+  - viola
+  - giallo
+  - ciano
+  - resistenza
+  - ohm
+  - corrente
+  - catodo
+  - breadboard
+  - batteria
+  - filo
+  - pin
+  - colore
+  - mescolare
+  - luce
+forbidden_terms:
+  - PWM
+  - analogWrite
+  - digitale
+  - Arduino
+  - codice
+  - programma
+  - parallelo
+  - serie
+  - legge di Ohm
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 3 resistenze 470 ohm. Questo e il culmine del capitolo RGB —
+    accendendo R+G+B insieme si ottiene il bianco. E il momento wow del capitolo.
+  during_class: >
+    PRIMA di collegare, chiedi: "Rosso + blu = viola. E se aggiungiamo anche il verde?"
+    Molti diranno marrone o grigio. Fai costruire e accendere. Il bianco sorprende sempre.
+    "Sapevate che lo schermo del vostro telefono funziona cosi? Ogni pixel ha un mini
+    LED rosso, verde e blu!" Collega alla vita quotidiana.
+  common_question: >
+    "Ma non sembra bianco puro!" -> E vero, i LED non hanno tutti la stessa luminosita.
+    Il bianco potrebbe avere una sfumatura. Con Arduino (nel Volume 2) si potranno
+    regolare i singoli colori per ottenere il bianco perfetto.
+
+common_mistakes:
+  - mistake: "Un colore e piu forte degli altri"
+    what_to_do: "E normale — i LED hanno luminosita diverse. Si puo provare con resistenze diverse per bilanciare"
+    analogy: "Come un trio musicale dove uno suona troppo forte — bisogna regolare il volume di ciascuno"
+  - mistake: "Dimenticano un collegamento e vedono solo 2 colori"
+    what_to_do: "Chiedi di verificare ogni collegamento uno per uno — metodo sistematico"
+    analogy: null
+
+analogies:
+  luce_bianca:
+    analogy: "La luce bianca e come una squadra di 3 amici: Rosso, Verde e Blu. Quando lavorano tutti insieme, creano qualcosa di completamente nuovo — la luce bianca! E come quando Newton scopri che la luce del sole contiene tutti i colori dell'arcobaleno."
+    evidence: "Riferimento storico Newton prisma, collegamento curricolare scienze (MIUR indicazioni nazionali)"
+  RGB_completo:
+    analogy: "Ogni schermo — telefono, tablet, TV — usa migliaia di mini LED RGB. Ogni puntino sullo schermo e un piccolo LED RGB come quello che hai appena costruito!"
+    evidence: "Collegamento tecnologia quotidiana, aumenta motivazione (Quintana et al. 2004)"
+
+assessment_invisible:
+  - "Se lo studente collega tutti e 3 senza aiuto -> ha padroneggiato il LED RGB"
+  - "Se fa il collegamento con lo schermo del telefono -> transfer learning in atto"
+  - "Se chiede 'posso fare altri colori?' -> naturale transizione a Cap 8+ o Arduino"

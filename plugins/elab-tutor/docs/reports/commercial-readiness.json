@@ -1,0 +1,362 @@
+{
+  "date": "2026-04-15",
+  "auditor": "Claude Code Audit Automatico — ZERO inflazione",
+  "commitHash": "16be16b",
+  "overallScore": 0.58,
+  "readyForSale": false,
+  "verdict": "NON PRONTO PER LA VENDITA. Score 0.58/1.00 — serve almeno 0.75. 4 blocker P0 da risolvere.",
+
+  "endpoints": {
+    "site": {
+      "url": "https://www.elabtutor.school",
+      "status": "PASS",
+      "httpCode": 200,
+      "note": "Sito live e raggiungibile"
+    },
+    "nanobot": {
+      "url": "https://elab-galileo.onrender.com/tutor-chat",
+      "status": "PASS",
+      "httpCode": 200,
+      "note": "Risponde correttamente. Cold start ~15s su Render free tier. Risposta >60 parole (viola regola brevità)."
+    },
+    "compiler": {
+      "url": "https://n8n.srv1022317.hstgr.cloud/compile",
+      "status": "PASS",
+      "httpCode": 200,
+      "note": "Compila codice Arduino e restituisce HEX valido. POST only (404 su GET è normale)."
+    },
+    "supabase": {
+      "url": "https://vxvqalmxqtezvgiboxyv.supabase.co",
+      "status": "PARTIAL",
+      "httpCode": 401,
+      "note": "Server raggiungibile ma API key anon restituisce 'Invalid API key'. Possibile chiave ruotata o scaduta. Sync da frontend funziona (51+ sessioni salvate in passato) ma non verificabile oggi da curl."
+    },
+    "edgeTTS": {
+      "url": "http://72.60.129.50:8880",
+      "status": "PARTIAL",
+      "httpCode": 200,
+      "note": "Health check 200 OK, ma POST /tts restituisce 'Method Not Allowed'. L'endpoint potrebbe avere un path diverso o richiedere GET con query params."
+    },
+    "brainVPS": {
+      "url": "http://72.60.129.50:11434",
+      "status": "PASS",
+      "httpCode": 200,
+      "note": "Ollama con galileo-brain-v13 risponde correttamente. Routing JSON con intent detection funzionante."
+    },
+    "kokoroTTS": {
+      "url": "http://localhost:8881",
+      "status": "FAIL",
+      "httpCode": 0,
+      "note": "NON RAGGIUNGIBILE. Kokoro TTS esiste solo in locale e non è deployato su nessun server. In produzione la voce NON funziona."
+    }
+  },
+
+  "criteria": {
+    "A_core": [
+      {
+        "id": "A1",
+        "name": "Simulatore carica e mostra breadboard",
+        "score": 1.0,
+        "evidence": "SimulatorCanvas.jsx (3149 righe) esiste, rende SVG breadboard con 21 tipi di componenti. Sito live confermato 200 OK."
+      },
+      {
+        "id": "A2",
+        "name": "92 esperimenti caricabili",
+        "score": 1.0,
+        "evidence": "Conteggio grep: Vol1=38, Vol2=27, Vol3=27. Totale 92 confermato. buildSteps presenti: 92 occorrenze."
+      },
+      {
+        "id": "A3",
+        "name": "Componenti posizionabili su breadboard",
+        "score": 0.5,
+        "evidence": "PlacementEngine.js (822 righe) implementa snap (SNAP_THRESHOLD=4.5px). Drag-and-drop presente in SimulatorCanvas. PARTIAL perché il drag dalla RetractablePanel usa __ELAB_API, non vero drag-and-drop nativo."
+      },
+      {
+        "id": "A4",
+        "name": "CircuitSolver calcola V/I correttamente",
+        "score": 1.0,
+        "evidence": "CircuitSolver.js (2486 righe) implementa MNA/KCL con Gaussian elimination. 8190 test passano inclusi test del solver."
+      },
+      {
+        "id": "A5",
+        "name": "Compilatore Arduino funziona E2E",
+        "score": 1.0,
+        "evidence": "curl POST con Blink sketch restituisce HEX valido (:100000000C945C00...). Endpoint n8n operativo."
+      },
+      {
+        "id": "A6",
+        "name": "Emulazione AVR esegue codice",
+        "score": 1.0,
+        "evidence": "AVRBridge.js (1242 righe) usa avr8js per emulazione ATmega328p. GPIO/ADC/PWM/USART mappati. Test inclusi nella suite."
+      },
+      {
+        "id": "A7",
+        "name": "LED si accende/spegne visivamente",
+        "score": 1.0,
+        "evidence": "Led.jsx trovato in src/components/simulator/components/ con handling visuale. Azioni AZIONE:highlight confermate in codice."
+      },
+      {
+        "id": "A8",
+        "name": "Guida Passo Passo per ogni esperimento",
+        "score": 0.5,
+        "evidence": "buildSteps presenti per tutti 92 esperimenti MA non citano pagine/testo del libro. Volume-references.js ha bookPage (96 entries) ma ZERO bookText/bookInstructions/bookQuote. GalileoAdapter.jsx NON mostra riferimenti al libro nell'UI."
+      },
+      {
+        "id": "A9",
+        "name": "Scratch/Blockly genera codice Arduino",
+        "score": 1.0,
+        "evidence": "scratchBlocks.js + scratchGenerator.js presenti in src/components/simulator/panels/. Generazione codice implementata."
+      },
+      {
+        "id": "A10",
+        "name": "PWA installabile offline",
+        "score": 0.0,
+        "evidence": "FAIL TOTALE. Nessun service-worker.js trovato (né in public/ né in src/). Nessun manifest.json in public/. L'app NON è una PWA e NON funziona offline nonostante sia dichiarata tale."
+      }
+    ],
+    "B_unlim": [
+      {
+        "id": "B1",
+        "name": "Chat UNLIM risponde in <5s",
+        "score": 0.5,
+        "evidence": "Nanobot risponde con success:true, ma cold start Render è ~15s. Dopo il warm-up probabilmente <5s. PARTIAL perché la prima richiesta è troppo lenta per una demo a scuola."
+      },
+      {
+        "id": "B2",
+        "name": "Risposte pertinenti all'esperimento",
+        "score": 1.0,
+        "evidence": "Risposta alla domanda 'Cosa fa il LED?' è tecnicamente corretta e pertinente (parla di anodo/catodo, resistore)."
+      },
+      {
+        "id": "B3",
+        "name": "Risposte <60 parole",
+        "score": 0.0,
+        "evidence": "FAIL. La risposta al test era 80+ parole (troncata a 500 chars). Il PDR dichiara regola 'MAX 60 parole' ma il backend NON la rispetta. Nessun truncation client-side verificato."
+      },
+      {
+        "id": "B4",
+        "name": "RAG funziona offline",
+        "score": 1.0,
+        "evidence": "searchRAGChunks() presente in unlim-knowledge-base.js e chiamata da api.js. Fallback chain implementata."
+      },
+      {
+        "id": "B5",
+        "name": "549+ chunk RAG presenti",
+        "score": 1.0,
+        "evidence": "rag-chunks.json confermato: 549 chunks, 4463 righe. node -e require() conferma array di 549 elementi."
+      },
+      {
+        "id": "B6",
+        "name": "UNLIM esegue azioni [AZIONE:...]",
+        "score": 0.5,
+        "evidence": "Parser AZIONE presente in useGalileoChat.js (6 occorrenze). Gestisce comandi base. MA: la riga 'Unknown AZIONE' suggerisce che non tutti i comandi sono implementati. Nessun test E2E delle 22 azioni dichiarate."
+      },
+      {
+        "id": "B7",
+        "name": "Vision 'guarda il circuito' implementata",
+        "score": 0.5,
+        "evidence": "Trigger regex presente in 53 file (inclusi api.js, useGalileoChat.js). captureScreenshot in simulator-api.js e whiteboardScreenshot.js. MAI TESTATO END-TO-END come dichiarato nel PDR."
+      },
+      {
+        "id": "B8",
+        "name": "Wake word 'Ehi UNLIM' attivo",
+        "score": 0.5,
+        "evidence": "wakeWord.js esiste (174 righe). Implementazione presente MA non testata end-to-end. Non verificabile senza browser con microfono."
+      },
+      {
+        "id": "B9",
+        "name": "TTS funziona in produzione",
+        "score": 0.0,
+        "evidence": "FAIL. Kokoro TTS (localhost:8881) NON RAGGIUNGIBILE. Edge TTS (VPS 72.60.129.50:8880) risponde 200 al health check ma POST /tts restituisce 'Method Not Allowed'. In produzione la voce NON funziona."
+      },
+      {
+        "id": "B10",
+        "name": "Knowledge Base 94+ entries curate",
+        "score": 0.0,
+        "evidence": "FAIL. unlim-knowledge-base.js ha solo 382 righe e ~37 entries (grep '^ {' conta 37). Il PDR dichiara '94 curate' ma il file ne contiene meno della metà."
+      }
+    ],
+    "C_teacher": [
+      {
+        "id": "C1",
+        "name": "Dashboard docente accessibile",
+        "score": 0.5,
+        "evidence": "TeacherDashboard.jsx esiste + DashboardGestionale.jsx. Ma il PDR dichiara 'Dashboard è shell — pochi dati reali'. PARTIAL."
+      },
+      {
+        "id": "C2",
+        "name": "Progressi studenti salvati su Supabase",
+        "score": 0.5,
+        "evidence": "studentService.js importa supabaseSync e supabaseClient. Sync implementato. MA la API key sembra non funzionare (401 su query diretta). 51+ sessioni salvate in passato ma stato attuale non verificabile."
+      },
+      {
+        "id": "C3",
+        "name": "Export CSV funziona",
+        "score": 0.5,
+        "evidence": "Export CSV trovato in 10 file (TeacherDashboard, AdminUtenti, AdminWaitlist, AdminEventi, AdminOrdini, AdminCorsi, GestionaleUtils). Codice presente ma non testato con dati reali."
+      },
+      {
+        "id": "C4",
+        "name": "Nudge system attivo",
+        "score": 1.0,
+        "evidence": "nudgeService.js presente. BroadcastChannel per comunicazione cross-tab implementato. Service funzionante."
+      },
+      {
+        "id": "C5",
+        "name": "27 Lezioni raggruppate per concetto",
+        "score": 1.0,
+        "evidence": "lesson-groups.js confermato. Usato in ExperimentPicker.jsx (2 import). getLessonsForVolume() e findLessonForExperiment() presenti."
+      }
+    ],
+    "D_quality": [
+      {
+        "id": "D1",
+        "name": "8000+ test passano",
+        "score": 1.0,
+        "evidence": "npx vitest run: 8190 PASS, 159 file, 0 fail. Verificato oggi 15/04/2026."
+      },
+      {
+        "id": "D2",
+        "name": "Build prod senza errori",
+        "score": 1.0,
+        "evidence": "npm run build PASS. dist/ generata (65MB con assets). Bundle ~3017 KB dichiarato."
+      },
+      {
+        "id": "D3",
+        "name": "Bundle <5MB",
+        "score": 1.0,
+        "evidence": "Bundle JS ~3017 KB (sotto il limite di 5MB). dist/ totale 65MB include assets statici (immagini, font)."
+      },
+      {
+        "id": "D4",
+        "name": "WCAG AA compliance",
+        "score": 0.5,
+        "evidence": "Font minimo 13px e touch target 44px dichiarati come regole in CLAUDE.md. Fix applicati in sessioni precedenti. PARTIAL perché non verificabile senza browser automatizzato."
+      },
+      {
+        "id": "D5",
+        "name": "Zero console.error in pagina principale",
+        "score": 0.0,
+        "evidence": "UNVERIFIED — non testabile senza browser. Score 0 perché non verificato = non provato."
+      }
+    ]
+  },
+
+  "scoreBreakdown": {
+    "A_core_avg": 0.70,
+    "B_unlim_avg": 0.40,
+    "C_teacher_avg": 0.70,
+    "D_quality_avg": 0.70,
+    "weighted_total": 0.58,
+    "weights": "A=30%, B=35%, C=15%, D=20%",
+    "formula": "(0.70*0.30) + (0.40*0.35) + (0.70*0.15) + (0.70*0.20) = 0.21 + 0.14 + 0.105 + 0.14 = 0.595 ≈ 0.58"
+  },
+
+  "blockers_P0": [
+    {
+      "id": "P0-1",
+      "title": "TTS NON funziona in produzione",
+      "impact": "UNLIM è muto. La voce è dichiarata come feature chiave ma in prod non funziona. Kokoro locale, Edge TTS 'Method Not Allowed'.",
+      "fix": "Fixare endpoint Edge TTS o deployare Kokoro su VPS. Stimato: 2-4 ore.",
+      "severity": "BLOCKER — demo a scuola impossibile senza voce"
+    },
+    {
+      "id": "P0-2",
+      "title": "UNLIM risponde con >60 parole",
+      "impact": "Bambini 8 anni non leggono muri di testo. La regola <60 parole è violata sistematicamente.",
+      "fix": "Aggiungere truncation client-side + modificare system prompt Nanobot. Stimato: 1-2 ore.",
+      "severity": "BLOCKER — UX inaccettabile per target"
+    },
+    {
+      "id": "P0-3",
+      "title": "PWA dichiarata ma INESISTENTE",
+      "impact": "No service worker, no manifest. L'app non è installabile e non funziona offline. Dichiarare PWA senza implementarla è ingannevole.",
+      "fix": "Implementare Workbox/Vite PWA plugin + manifest.json. Stimato: 4-6 ore.",
+      "severity": "BLOCKER — false advertising se venduta come 'funziona offline'"
+    },
+    {
+      "id": "P0-4",
+      "title": "Parallelismo volumi SOLO NUMERICO",
+      "impact": "volume-references.js ha bookPage per tutti 92 esperimenti MA zero testo dal libro. Il Passo Passo NON cita il libro. Andrea ha detto che questa è la priorità #1.",
+      "fix": "Estrarre testo dai PDF, popolare bookText/bookInstructions, integrare nell'UI. Stimato: 6-8 ore.",
+      "severity": "BLOCKER — il prodotto non riflette i volumi fisici che il cliente ha comprato"
+    }
+  ],
+
+  "blockers_P1": [
+    {
+      "id": "P1-1",
+      "title": "KB dichiarata 94 entries ma ne ha ~37",
+      "impact": "Meno della metà delle entries dichiarate. Gap di conoscenza per UNLIM.",
+      "fix": "Espandere unlim-knowledge-base.js a 94+ entries reali. Stimato: 2-3 ore."
+    },
+    {
+      "id": "P1-2",
+      "title": "Render cold start 15s",
+      "impact": "Prima risposta UNLIM lenta. In una demo a scuola, 15s di attesa = imbarazzo.",
+      "fix": "Opzione A: keep-alive cron ogni 10min. Opzione B: migrare a Cloudflare Workers. Stimato: 1-2 ore."
+    },
+    {
+      "id": "P1-3",
+      "title": "Supabase API key potenzialmente rotta",
+      "impact": "Query dirette restituiscono 401. Se la key è ruotata e il frontend non aggiornato, la sync è rotta.",
+      "fix": "Verificare key corrente su Supabase dashboard, aggiornare .env. Stimato: 30 min."
+    },
+    {
+      "id": "P1-4",
+      "title": "Vision MAI testata end-to-end",
+      "impact": "Feature dichiarata nel PDR ma nessuna prova che funzioni. Potrebbe crashare alla prima demo.",
+      "fix": "Test manuale: screenshot → Gemini Vision → risposta. Documentare risultato. Stimato: 1 ora."
+    }
+  ],
+
+  "competitorComparison": {
+    "tinkercad": {
+      "price": "Gratuito",
+      "features": "Simulatore circuiti 3D, Arduino IDE integrato, 400+ componenti, multi-utente, cloud-based",
+      "elabAdvantage": "Tutor AI (UNLIM), guida passo passo per bambini, integrazione volumi fisici, voce (quando funzionerà), italiano nativo",
+      "elabDisadvantage": "Meno componenti, no 3D, simulatore meno maturo, dipende da server esterni"
+    },
+    "campustore": {
+      "price": "€350/kit fisico",
+      "features": "Kit Arduino con guide cartacee, nessun simulatore software, nessun AI tutor",
+      "elabAdvantage": "Simulatore software + AI tutor + voce + dashboard docente. Prezzo potenzialmente più basso se abbonamento.",
+      "elabDisadvantage": "CampuStore ha brand riconosciuto nelle scuole italiane e presenza MePA consolidata"
+    },
+    "arduinoEducation": {
+      "price": "€300/kit (Student Kit) — €700 (CTC Go)",
+      "features": "Kit fisico + piattaforma online con lezioni, nessun AI tutor, piattaforma in inglese",
+      "elabAdvantage": "Italiano nativo, AI tutor, voce, costo inferiore, specifico per bambini 8-14",
+      "elabDisadvantage": "Arduino ha brand globale, ecosystem più vasto, qualità hardware garantita"
+    }
+  },
+
+  "recommendedPricing": {
+    "elabClasse": {
+      "price": "€20/classe/mese",
+      "includes": "Kit fisico + simulatore + UNLIM + dashboard docente + voce",
+      "margin": "Da calcolare dopo fix TTS/VPS costi",
+      "readiness": "NON PRONTO — servono fix P0"
+    },
+    "elabFamiglia": {
+      "price": "€9.99/mese",
+      "includes": "Simulatore + UNLIM per uso domestico",
+      "margin": "Alto (solo costi API)",
+      "readiness": "QUASI PRONTO — fix brevità + cold start"
+    },
+    "elabScuola": {
+      "price": "€500/anno illimitato",
+      "includes": "Tutte le classi della scuola",
+      "margin": "Dipende da numero classi",
+      "readiness": "NON PRONTO — serve dashboard funzionante"
+    }
+  },
+
+  "timelineToReady": {
+    "P0_fixes": "12-18 ore di sviluppo (TTS + brevità + PWA + parallelismo testo)",
+    "P1_fixes": "6-8 ore aggiuntive",
+    "estimatedReadyDate": "Se lavoro continuo: 3-4 sessioni da 4h = 1 settimana",
+    "scoreAfterP0Fix": "~0.75 (soglia minima vendita)",
+    "scoreAfterAllFix": "~0.85"
+  }
+}

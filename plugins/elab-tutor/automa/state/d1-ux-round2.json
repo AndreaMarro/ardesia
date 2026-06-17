@@ -1,0 +1,143 @@
+{
+  "timestamp": "2026-04-15T14:30:00Z",
+  "filesScanned": [
+    "src/components/tutor/ElabTutorV4.jsx",
+    "src/components/lavagna/LavagnaShell.jsx",
+    "src/components/lavagna/RetractablePanel.jsx",
+    "src/components/simulator/NewElabSimulator.jsx",
+    "src/components/common/ConsentBanner.jsx"
+  ],
+  "issues": [
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 109,
+      "type": "english-text-in-italian-ui",
+      "severity": "P1",
+      "description": "Component label 'Reed Switch' is English in an Italian UI. Should be 'Interruttore Reed' or 'Reed Switch (interruttore magnetico)' for consistency with other Italian labels like 'Resistore', 'Pulsante', 'Condensatore'."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 93,
+      "type": "touch-target-too-small",
+      "severity": "P1",
+      "description": "showAllBtn has padding 6px 12px and no min-height set in CSS (only padding). Computed height is approximately 28-30px, well below the 44px minimum touch target. Font-size is also 12px, below the 13px body text minimum."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 98,
+      "type": "font-size-too-small",
+      "severity": "P2",
+      "description": "showAllBtn font-size is 12px in LavagnaShell.module.css line 98. CLAUDE.md rule #8 requires minimum 13px for body text, 10px for secondary labels. This is a body-level interactive button, not a secondary label."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 298,
+      "type": "touch-target-too-small",
+      "severity": "P2",
+      "description": "bentornatiAlt button has padding 10px 20px but no min-height defined. Computed height depends on font-size 15px + padding = ~35px, which is below the 44px minimum. The bentornatiBtn correctly has min-height: 52px but bentornatiAlt does not."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 307,
+      "type": "missing-aria-expanded",
+      "severity": "P2",
+      "description": "BentornatiOverlay buttons ('Inizia', 'Scegli un altro esperimento', 'Scegli esperimento') at lines 307, 330, 333, 352 lack aria-label attributes. They do have visible text content, so this is minor — but the 'Inizia' button contains an SVG icon (FlaskIcon) plus text, and should have an explicit aria-label for screen readers to avoid reading 'Flask icon Inizia'."
+    },
+    {
+      "file": "src/components/lavagna/LavagnaShell.jsx",
+      "line": 891,
+      "type": "missing-role-attribute",
+      "severity": "P2",
+      "description": "MascotPresence component at line 889-892 has onClick handler but the rendered element is likely a div (not a button). Should have role='button' and tabIndex=0 for keyboard accessibility, or should be a <button> element. Requires checking MascotPresence.jsx to confirm."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 826,
+      "type": "missing-aria-label",
+      "severity": "P1",
+      "description": "PDF download button 'Scarica' at line 826 has onClick but no aria-label. While it has visible text, the context 'Report PDF pronto!' is only conveyed visually. Button should have aria-label='Scarica report PDF' for screen reader context."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 841,
+      "type": "missing-aria-label",
+      "severity": "P1",
+      "description": "Build mode switch buttons ('Gia Montato', 'Passo Passo', 'Libero') at line 841 use title= but no aria-label. The title attribute is not reliably read by screen readers. Each button should have an aria-label matching the title text (e.g., aria-label='Circuito gia pronto — osserva e sperimenta')."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 841,
+      "type": "emoji-as-icon",
+      "severity": "P2",
+      "description": "Build mode buttons use emoji characters as icons (wrench, footprints, art). CLAUDE.md rule #11 states 'MAI emoji come icone nei componenti — usare ElabIcons.jsx'. These emojis should be replaced with SVG icons from ElabIcons."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 933,
+      "type": "missing-aria-label",
+      "severity": "P2",
+      "description": "Welcome card step buttons (lines 933, 941, 949) have onClick and visible text content but use emoji characters as icons that will be read by screen readers. The emoji should have aria-hidden='true' and the button should have descriptive aria-label."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 965,
+      "type": "touch-target-too-small",
+      "severity": "P2",
+      "description": "'Mostra Esperimenti' button at line 965 has inline padding '6px 16px' with no min-height. With font-size 14px, computed height is approximately 32px, below 44px minimum."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 896,
+      "type": "emoji-as-icon",
+      "severity": "P2",
+      "description": "Wire mode indicator at line 896 uses emoji character (plug) with font-size 14px. Should use ElabIcons SVG per CLAUDE.md rule #11."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 981,
+      "type": "missing-aria-label",
+      "severity": "P2",
+      "description": "Arduino C++ tab button and Scratch 'Blocchi' tab button (lines 981-982) lack aria-label. They have visible text but function as tab selectors — should have role='tab' and aria-selected to communicate state to assistive technology."
+    },
+    {
+      "file": "src/components/simulator/NewElabSimulator.jsx",
+      "line": 979,
+      "type": "missing-role-attribute",
+      "severity": "P1",
+      "description": "Code editor tab bar (line 979) is a div containing tab-like buttons but lacks role='tablist'. The individual tab buttons lack role='tab' and aria-selected. This is a functional tab interface that should follow WAI-ARIA tabs pattern."
+    },
+    {
+      "file": "src/components/tutor/ElabTutorV4.jsx",
+      "line": 2456,
+      "type": "missing-aria-label",
+      "severity": "P2",
+      "description": "Registration button 'Tutti i N esperimenti' at line 2456 has onClick and visible text content, which is acceptable. However, the parent banner div lacks role='banner' or role='alert' to communicate its purpose to assistive tech."
+    },
+    {
+      "file": "src/components/common/ConsentBanner.jsx",
+      "line": 202,
+      "type": "no-issues",
+      "severity": "P2",
+      "description": "ConsentBanner is well-implemented: role='dialog', aria-label, aria-modal, useFocusTrap, htmlFor on labels, labeled inputs. Minor note: the email error message at line 311 should have role='alert' and aria-live='assertive' instead of relying on visual display only."
+    },
+    {
+      "file": "src/components/common/ConsentBanner.jsx",
+      "line": 311,
+      "type": "missing-aria-live",
+      "severity": "P1",
+      "description": "Email validation error paragraph at line 311 displays dynamically but lacks role='alert' or aria-live='assertive'. Screen reader users will not be notified of the error. Should add aria-live='assertive' to the error message element."
+    },
+    {
+      "file": "src/components/lavagna/RetractablePanel.jsx",
+      "line": 102,
+      "type": "no-issues",
+      "severity": "P2",
+      "description": "RetractablePanel is well-implemented: role='complementary', proper Italian aria-labels, aria-expanded on toggle, 48x48px touch targets (exceeds 44px minimum), aria-hidden on decorative resize handle. No issues found."
+    }
+  ],
+  "summary": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 11
+  }
+}

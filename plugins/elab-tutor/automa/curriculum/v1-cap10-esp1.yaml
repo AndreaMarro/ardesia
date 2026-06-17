@@ -1,0 +1,96 @@
+# Curriculum YAML — v1-cap10-esp1
+# "LED controllato dalla luce"
+
+experiment_id: v1-cap10-esp1
+volume: 1
+chapter: 10
+title: "LED controllato dalla luce"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+  - v1-cap9-esp1  # Conosce il potenziometro (resistenza variabile)
+
+concepts_introduced:
+  - fotoresistenza
+  - LDR
+  - sensore_luce
+  - resistenza_che_cambia_da_sola
+  - partitore_intuitivo
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - luce
+  - buio
+  - sensore
+  - luminosita
+  - automatico
+  - cambiare
+  - reagire
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - analogico
+  - analogRead
+  - tensione
+  - volt
+  - partitore_di_tensione
+  - transistor
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED, 1 resistenza 1K ohm, 1 fotoresistenza (LDR),
+    breadboard, batteria 9V. La fotoresistenza non ha polarita (si puo mettere in
+    qualsiasi verso). Obiettivo: scoprire che esistono componenti che reagiscono
+    all'ambiente — il circuito puo "sentire" la luce.
+  during_class: >
+    Prima di tutto: "Ricordate il potenziometro? Cambiava resistenza girando la
+    manopola. Ora vi mostro un componente che cambia resistenza DA SOLO."
+    Dai la fotoresistenza: "Cosa notate quando la coprite con la mano? E quando
+    la illuminate con la torcia del telefono?" Falli misurare (se hanno multimetro)
+    o osservare il LED che cambia.
+  common_question: >
+    "Come fa a sentire la luce?" -> Dentro la fotoresistenza c'e un materiale
+    speciale che quando la luce lo colpisce, diventa piu facile per l'elettricita
+    passare. E come una porta che si apre quando c'e il sole e si chiude quando
+    e buio.
+
+common_mistakes:
+  - mistake: "Non vedono differenza di luminosita del LED"
+    what_to_do: "Serve una stanza non troppo illuminata. Coprire completamente con la mano, poi illuminare con torcia telefono"
+    analogy: null
+  - mistake: "Mettono la fotoresistenza al posto sbagliato"
+    what_to_do: "La fotoresistenza va in serie col LED, come una resistenza normale. Sostituisce il potenziometro dell'esperimento 9"
+    analogy: "E come il potenziometro, ma la manopola e la luce stessa"
+  - mistake: "Il LED e sempre spento o sempre acceso"
+    what_to_do: "Controllare il valore della resistenza fissa — se troppo alto, il LED non si accende mai"
+    analogy: null
+
+analogies:
+  fotoresistenza:
+    analogy: "La fotoresistenza e come un guardiano che apre il cancello quando c'e luce e lo chiude quando e buio. Non hai bisogno di toccarlo — reagisce da solo all'ambiente."
+    evidence: "Analogia agente autonomo per sensori, facilita transizione da componenti passivi ad attivi (Osborne & Freyberg 1985)"
+  sensore_luce:
+    analogy: "E il primo componente che 'sente' il mondo esterno! Come i tuoi occhi sentono la luce, la fotoresistenza sente la luce e cambia il circuito."
+    evidence: "Analogia sensoriale corpo umano, supporta embodied cognition (Barsalou 2008)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e come il potenziometro ma automatico' -> ha fatto il collegamento concettuale chiave"
+  - "Se copre la LDR e nota il cambiamento -> apprendimento per scoperta funziona"
+  - "Se chiede 'possiamo fare che si accende AL BUIO?' -> pensiero inverso, pronto per esp 2 (invertire)"
+  - "Se propone di combinare pot + LDR -> pensiero creativo, pronto per esp 5"

@@ -1,0 +1,297 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap6-esp1",
+  "volume": 2,
+  "chapter": 6,
+  "title": "LED in serie con 1 resistore",
+  "chapter_title": "Approfondiamo i LED",
+  "difficulty": 1,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Capire cosa succede quando due LED vengono collegati in serie con un solo resistore: la corrente è identica in entrambi e le tensioni si sommano.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Breadboard mezza (half)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Resistore 330Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 2,
+      "icon": "🔴"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 6,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "serie",
+      "tensione",
+      "volt",
+      "Vf",
+      "tensione forward",
+      "multimetro",
+      "voltmetro",
+      "luminosità",
+      "rosso",
+      "verde",
+      "blu",
+      "anodo",
+      "catodo"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "transistor",
+      "MOSFET",
+      "motore",
+      "diodo"
+    ],
+    "note": "Vol 2 Cap 6 — LED in serie, tensione forward, multimetro"
+  },
+  "prerequisites": [
+    "v1-cap14-esp1"
+  ],
+  "next_experiment": {
+    "id": "v2-cap6-esp2",
+    "title": "LED in serie colori diversi",
+    "preview": "Prossimo passo: LED in serie colori diversi. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, benvenuti al Volume 2! Iniziamo con qualcosa di familiare: i LED. Ma questa volta li colleghiamo in serie — uno dietro l'altro — con UN solo resistore. Cosa succederà alla luminosità?",
+      "teacher_tip": "Chiedete alla classe: 'Se due LED condividono lo stesso resistore e lo stesso filo, come si dividerà la corrente?' Lasciate che emergano le ipotesi. La risposta sorprenderà: la corrente NON si divide!",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 resistore 330Ω, 2 LED rossi, fili colorati.",
+      "class_hook": "Immaginate una fila di persone che entrano da una porta stretta: passano UNA ALLA VOLTA. La corrente in serie funziona allo stesso modo — tutti i componenti condividono la stessa corrente!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Montiamo il circuito: resistore 330Ω tra e5 e e12, poi il primo LED rosso (anodo in d14, catodo in d15), poi il secondo LED rosso (anodo in d18, catodo in d19). La corrente scorre in fila: batteria → resistore → LED1 → LED2 → massa.",
+      "teacher_tip": "Mostrate il percorso fisicamente: tracciate il percorso della corrente con un dito sulla breadboard. Evidenziate anodo e catodo di ogni LED: la gamba lunga è l'anodo (+), quella corta il catodo (−).",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap6-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate due LED rossi in serie con un resistore 330Ω su breadboard",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 330
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            },
+            {
+              "type": "led",
+              "id": "led2",
+              "color": "red"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a12",
+              "to": "bb1:a14",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a15",
+              "to": "bb1:a18",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a19",
+              "to": "bb1:bus-top-minus-19",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Ora che vedete il circuito montato: perché entrambi i LED hanno la stessa luminosità? E se uno dei due LED si bruciasse, cosa succederebbe all'altro?",
+      "teacher_tip": "La domanda sul cortocircuito è fondamentale: in serie, se un componente si guasta (aperto), l'intero circuito si spegne. Fate l'analogia con le luci di Natale vecchio stile!",
+      "provocative_question": "Se rimuovo uno dei due LED dal circuito serie, l'altro rimane acceso o si spegne? Perché?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Il LED non si accende perché inserito al contrario",
+          "teacher_response": "Controllate la polarità! L'anodo (gamba lunga, +) deve essere collegato verso il polo positivo della batteria. Il catodo (gamba corta, −) verso la massa. Provate a girarlo!",
+          "analogy": "È come una porta girevole: funziona solo in un senso. La corrente passa nel LED solo nella direzione giusta!"
+        },
+        {
+          "mistake": "Pensare che in serie la corrente si divida tra i due LED",
+          "teacher_response": "In serie c'è UN SOLO percorso per la corrente: non può dividersi! Tutta la corrente passa prima nel resistore, poi nel LED1, poi nel LED2. Come l'acqua in un tubo senza biforcazioni.",
+          "analogy": "Immaginate una fila unica alla cassa del supermercato: tutti passano nello stesso punto, uno alla volta!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play! Entrambi i LED si accendono alla stessa luminosità. La stessa corrente passa in tutti e due — è la legge del circuito serie!",
+      "teacher_tip": "Evidenziate entrambi i LED e il resistore. Fate notare che la luminosità è identica: non c'è motivo per cui uno brilli di più se la corrente è la stessa. Domanda bonus: quanta tensione cade su ogni componente?",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:r1]",
+        "[AZIONE:highlight:led1]",
+        "[AZIONE:highlight:led2]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Entrambi i LED rossi brillano con la stessa luminosità. La corrente è identica in tutto il circuito serie. La batteria da 9V si divide: circa 1.8V su LED1 + 1.8V su LED2 + 5.4V sul resistore 330Ω.",
+      "analogies": [
+        {
+          "concept": "corrente_serie",
+          "text": "La corrente in serie è come l'acqua in un tubo unico: tutta l'acqua deve passare attraverso ogni punto. Non importa quanti componenti ci sono — la stessa corrente li attraversa tutti, uno dopo l'altro!",
+          "evidence": "Curriculum ELAB Vol 2"
+        },
+        {
+          "concept": "tensioni_sommano",
+          "text": "Le tensioni in serie si sommano come i piani di un palazzo: ogni piano (componente) ha la sua altezza (tensione). Il totale è la somma di tutti i piani — e deve eguagliare l'altezza totale dell'edificio (la batteria)!",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Ottimo lavoro! In un circuito serie la corrente è identica in tutti i componenti, mentre le tensioni si sommano. Due LED rossi in serie con 9V: ciascuno prende circa 1.8V e il resistore si prende il resto.",
+      "teacher_tip": "Fate il calcolo insieme: 9V - (1.8V + 1.8V) = 5.4V sul resistore. Con R=330Ω: I = 5.4V / 330Ω ≈ 16mA. È una corrente perfetta per i LED!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "In un circuito serie, la corrente è la stessa in ogni punto: tutti i componenti condividono lo stesso flusso. Le tensioni invece si sommano e devono raggiungere il totale della batteria. Con due LED rossi (Vf ≈ 1.8V ciascuno) e 9V, il resistore assorbe i 5.4V rimanenti.",
+      "concepts_learned": [
+        "corrente identica in serie",
+        "tensioni che si sommano",
+        "LED in fila",
+        "resistore come protezione per più LED"
+      ],
+      "next_preview": "Nel prossimo esperimento, sostituiremo un LED rosso con uno verde: la tensione forward diversa cambierà la luminosità dei due LED!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se spiega che la corrente è la stessa in entrambi i LED → comprensione del circuito serie",
+    "Se calcola correttamente la tensione sul resistore (9V - Vf1 - Vf2) → comprensione legge delle tensioni",
+    "Se prevede che rimuovendo un LED l'altro si spegne → comprensione della serie come percorso unico"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "LED_serie",
+      "corrente_uguale_serie",
+      "tensioni_sommano"
+    ],
+    "next_suggested": "v2-cap6-esp2",
+    "resume_message": "Hai imparato che in serie la corrente è identica! Prossimo passo: cosa cambia con LED di colori diversi?"
+  },
+  "analogies": [
+    {
+      "concept": "corrente_serie",
+      "text": "La corrente in serie è come l'acqua in un tubo unico: tutta l'acqua deve passare attraverso ogni punto. Non importa quanti componenti ci sono — la stessa corrente li attraversa tutti, uno dopo l'altro!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "tensioni_sommano",
+      "text": "Le tensioni in serie si sommano come i piani di un palazzo: ogni piano (componente) ha la sua altezza (tensione). Il totale è la somma di tutti i piani — e deve eguagliare l'altezza totale dell'edificio (la batteria)!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il LED non si accende perché inserito al contrario",
+      "teacher_response": "Controllate la polarità! L'anodo (gamba lunga, +) deve essere collegato verso il polo positivo della batteria. Il catodo (gamba corta, −) verso la massa. Provate a girarlo!",
+      "analogy": "È come una porta girevole: funziona solo in un senso. La corrente passa nel LED solo nella direzione giusta!"
+    },
+    {
+      "mistake": "Pensare che in serie la corrente si divida tra i due LED",
+      "teacher_response": "In serie c'è UN SOLO percorso per la corrente: non può dividersi! Tutta la corrente passa prima nel resistore, poi nel LED1, poi nel LED2. Come l'acqua in un tubo senza biforcazioni.",
+      "analogy": "Immaginate una fila unica alla cassa del supermercato: tutti passano nello stesso punto, uno alla volta!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

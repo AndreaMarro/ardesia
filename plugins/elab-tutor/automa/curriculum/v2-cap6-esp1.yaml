@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap6-esp1
+# "LED in serie con 1 resistore"
+
+experiment_id: v2-cap6-esp1
+volume: 2
+chapter: 6
+title: "LED in serie con 1 resistore"
+
+prerequisites:
+  - v1-cap7-esp4
+
+concepts_introduced:
+  - serie
+  - circuito_serie
+  - stessa_corrente
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - ohm
+  - corrente
+  - tensione
+  - volt
+  - serie
+  - polo positivo
+  - polo negativo
+  - breadboard
+  - anodo
+  - catodo
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 breadboard, 1 batteria 9V con clip, 2 LED rossi,
+    1 resistore da 330 ohm, fili. Obiettivo: far capire che in serie la corrente
+    passa attraverso TUTTI i componenti, uno dopo l'altro.
+  during_class: >
+    Fai collegare 2 LED e 1 resistore in serie. Chiedi: "Se stacco un LED, cosa
+    succede all'altro?" (si spegne). Poi: "Perche' secondo voi?" La corrente ha
+    una sola strada. Se la strada si interrompe, tutto si ferma.
+  common_question: >
+    "Perche' se tolgo un LED si spengono tutti?" -> Analogia: e' come un trenino
+    su un binario unico — se togli un vagone, il treno si ferma.
+
+common_mistakes:
+  - mistake: "LED collegati in parallelo invece che in serie"
+    what_to_do: "Mostra la differenza: in serie c'e' un solo percorso, in parallelo ce ne sono due"
+    analogy: "Serie = fila indiana, parallelo = corsie autostrada"
+  - mistake: "Resistore messo dopo i LED invece che prima"
+    what_to_do: "In serie non importa dove sta il resistore — protegge comunque. Fallo provare."
+    analogy: null
+
+analogies:
+  serie:
+    analogy: "Un circuito in serie e' come una fila indiana nel corridoio — tutti passano per lo stesso punto, uno dietro l'altro. Se qualcuno si ferma, si fermano tutti."
+    evidence: "Analogia sequenziale supportata da Shipstone (1985) su misconception corrente elettrica"
+  stessa_corrente:
+    analogy: "La corrente in un circuito serie e' come l'acqua in un tubo senza diramazioni — la stessa quantita' d'acqua passa in ogni punto del tubo."
+    evidence: "Modello idraulico validato per circuiti serie (Gentner & Gentner 1983)"
+
+assessment_invisible:
+  - "Se lo studente prevede che togliendo un LED si spegne anche l'altro -> ha capito la serie"
+  - "Se dice 'la corrente passa da uno all'altro' -> comprensione del percorso unico"
+  - "Se collega correttamente al primo tentativo -> ha interiorizzato la breadboard dal Vol1"

@@ -1,0 +1,82 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* UnlimMascot keyframe animations — extracted from JSX to avoid re-injection on every render */
+
+@keyframes unlim-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes unlim-speak-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(74, 122, 37, 0.5), 0 4px 14px rgba(0,0,0,0.15);
+    border-color: var(--elab-lime);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(74, 122, 37, 0.85), 0 4px 18px rgba(0,0,0,0.2);
+    border-color: var(--elab-lime);
+  }
+}
+
+@keyframes unlim-speak-bounce {
+  0%, 100% { transform: scale(1) translateY(0); }
+  25% { transform: scale(1.05) translateY(-2px); }
+  75% { transform: scale(0.98) translateY(1px); }
+}
+
+.unlim-mascot-btn {
+  transition: all 0.3s ease;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.unlim-mascot-btn:hover {
+  filter: brightness(1.08);
+}
+
+.unlim-mascot-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* Long-press visual feedback — shrinks progressively over 500ms */
+.unlim-mascot-pressing {
+  animation: unlim-long-press 0.5s ease-in-out forwards !important;
+}
+
+@keyframes unlim-long-press {
+  0% { transform: scale(1); border-color: rgba(30, 77, 140, 0.15); }
+  50% { transform: scale(0.92); border-color: var(--elab-orange); }
+  100% { transform: scale(0.88); border-color: var(--elab-lime); box-shadow: 0 0 24px rgba(74, 122, 37, 0.6); }
+}
+
+/* Thinking state — gentle wobble while waiting for AI */
+@keyframes unlim-think-wobble {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(232, 148, 28, 0.3), 0 4px 14px rgba(0,0,0,0.12);
+    border-color: var(--elab-orange);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(232, 148, 28, 0.55), 0 4px 16px rgba(0,0,0,0.15);
+    border-color: var(--elab-orange);
+  }
+}
+
+@keyframes unlim-think-tilt {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.02) rotate(3deg); }
+  75% { transform: scale(1.02) rotate(-3deg); }
+}
+
+/* G41: Nudge overlay fade-in */
+@keyframes nudgeFadeIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all UNLIM animations for motion-sensitive users */
+  .unlim-mascot-btn,
+  [style*="nudgeFadeIn"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,984 @@
+/**
+ * ELAB Simulator — Styles (Enhanced)
+ * Stili principali per il simulatore ELAB
+ * Supports: drag-drop, wire mode, component palette, code editor
+ * © Andrea Marro — 10/02/2026
+ * Polish: compile state machine animations — Andrea Marro — 18/02/2026
+ */
+
+.elab-simulator {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #FAFAF7;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E8E4DB;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.elab-simulator__layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar sinistra (experiment picker / component palette) */
+.elab-simulator__sidebar {
+  width: 260px;
+  min-width: 150px;
+  max-width: 500px;
+  border-right: 1px solid #E8E4DB;
+  background: #FAFAF7;
+  overflow-y: auto;
+  overflow-x: hidden;
+  resize: horizontal;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+}
+
+.elab-simulator__sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.elab-simulator__sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.elab-simulator__sidebar::-webkit-scrollbar-thumb {
+  background: #D4C9B0;
+  border-radius: 4px;
+}
+
+/* Area canvas principale */
+.elab-simulator__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+  /* Responsive fix: allow shrinking on narrow screens */
+}
+
+/* Canvas SVG */
+.elab-simulator__canvas {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.elab-simulator__canvas svg {
+  display: block;
+}
+
+/* Pannello inferiore (serial monitor / code preview) */
+.elab-simulator__bottom-panel {
+  border-top: 1px solid #E8E4DB;
+  background: #1E2530;
+  color: #E5E7EB;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+}
+
+/* Placeholder quando nessun esperimento selezionato */
+.elab-simulator__placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #999;
+}
+
+.elab-simulator__placeholder-icon {
+  font-size: 48px;
+  opacity: 0.4;
+}
+
+.elab-simulator__placeholder-text {
+  font-size: 14px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #BBB;
+}
+
+/* Watermark ELAB */
+.elab-simulator__watermark {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  font-size: 10px;
+  /* Watermark exception: intentionally small, decorative only */
+  color: #D4C9B0;
+  font-family: 'Open Sans', sans-serif;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── BUG FIX: Missing @keyframes spin (used by CodeEditor compile spinner) ─── */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── BUG FIX: Missing @keyframes pulse (used by compile status indicator) ─── */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ─── Responsive: Tablet (768-1023px) ─── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .elab-simulator__sidebar {
+    width: 220px;
+    /* Slightly wider to accommodate larger fonts */
+    min-width: 180px;
+  }
+
+  .elab-simulator__bottom-panel {
+    max-height: min(280px, 40dvh);
+    font-size: 15px;
+    /* Larger code font */
+  }
+
+  .toolbar-btn {
+    min-height: 48px;
+    padding: 8px 12px;
+  }
+
+  .toolbar-btn__label {
+    font-size: 15px;
+  }
+}
+
+/* ─── Responsive: Mobile (< 768px) ─── */
+@media (max-width: 767px) {
+  .elab-simulator__layout {
+    flex-direction: column;
+  }
+
+  .elab-simulator__sidebar {
+    width: 100%;
+    max-width: none;
+    max-height: 45vh;
+    border-right: none;
+    border-bottom: 1px solid #E8E4DB;
+  }
+
+  .elab-simulator__canvas {
+    min-height: 200px;
+  }
+
+  .elab-simulator__main {
+    min-width: 0;
+  }
+}
+
+/* ─── Mobile: Hamburger + overflow visible, secondary hidden ─── */
+@media (max-width: 599px) {
+
+  /* Show hamburger button */
+/* © Andrea Marro — 05/03/2026 — ELAB Tutor — Tutti i diritti riservati */
+  .toolbar-btn--hamburger {
+    display: flex;
+  }
+
+  /* Show overflow "..." button */
+  .toolbar-btn--overflow {
+    display: flex;
+  }
+
+  /* Hide secondary toolbar groups */
+  .toolbar-btn--secondary {
+    display: none !important;
+  }
+
+  /* Make sure main area doesn't overflow */
+  .elab-simulator__main {
+    min-width: 0;
+  }
+
+  /* Sidebar as stacked panel (not side-by-side) */
+  .elab-simulator__layout {
+    flex-direction: column;
+  }
+
+  .elab-simulator__sidebar {
+    width: 100%;
+    max-width: none;
+    max-height: 50vh;
+    max-height: 50dvh;
+    border-right: none;
+    border-bottom: 1px solid #E8E4DB;
+  }
+}
+
+/* ─── Desktop/Tablet: hide hamburger, keep overflow visible ─── */
+@media (min-width: 600px) {
+  .toolbar-btn--hamburger {
+    display: none;
+  }
+
+  /* S66 FIX: overflow "..." menu always visible — Report PDF + Galileo accessible on all screens */
+  /* .toolbar-btn--overflow was display:none here — REMOVED to fix discoverability */
+}
+
+/* ─── Overflow dropdown menu ─── */
+/* © Andrea Marro — 18/02/2026 */
+.toolbar-overflow-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  padding: 4px 0;
+  margin-top: 4px;
+}
+
+.toolbar-overflow-item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .toolbar-overflow-item:hover {
+    background: #F0F0F5;
+  }
+}
+
+.toolbar-overflow-item:active {
+  background: #E0E0E8;
+  transition: background 60ms ease-out;
+}
+
+/* ─── Overflow Menu Section Separators ─── */
+.overflow-separator {
+  border-top: 1px solid #E0E0E8;
+  margin: 4px 0;
+  padding: 4px 16px 2px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  pointer-events: none;
+  user-select: none;
+}
+
+.overflow-separator:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+
+/* Canvas SVG must fill its container — prevent overflow issues */
+.elab-simulator-canvas {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.elab-simulator-canvas svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* MODERN TOOLBAR — VS Code / Figma inspired                      */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--color-bg, #FFFFFF);
+  border-bottom: 1px solid var(--color-border, #E5E5EA);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  min-height: 52px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* S62: safety net — scrollable if toolbar overflows */
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  /* Show thin scrollbar so user knows there are more buttons */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.toolbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.toolbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.toolbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── Button Groups ── */
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* ── Separator (thin vertical line between groups) ── */
+.toolbar-separator {
+  width: 1px;
+  height: 28px;
+  background: var(--color-border, #E5E5EA);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+/* ── Spacer (pushes content apart) ── */
+.toolbar-spacer {
+  flex: 1;
+  min-width: 4px;
+}
+
+/* ─── Toolbar Button (base) ─── */
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary, #6B6B80);
+  font-size: var(--font-size-sm, 14px);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
+  font-weight: var(--font-weight-medium, 500);
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+}
+/* © Andrea Marro — 05/03/2026 — ELAB Tutor — Tutti i diritti riservati */
+
+/* Icon container */
+.toolbar-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toolbar-btn__icon svg {
+  display: block;
+}
+
+/* Label text */
+.toolbar-btn__label {
+  font-size: var(--font-size-sm, 14px);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Button States ─── */
+
+/* Hover — only on devices with a real hover cursor (mouse) */
+@media (hover: hover) {
+  .toolbar-btn:hover:not(:disabled) {
+    background: var(--color-bg-tertiary, #ECECF1);
+    color: var(--color-text, #1A1A2E);
+    border-color: transparent;
+  }
+}
+
+/* Active press — works on touch, pen, AND mouse */
+.toolbar-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  background: var(--color-bg-tertiary, #ECECF1);
+  color: var(--color-text, #1A1A2E);
+  transition: transform 60ms ease-out, background 60ms ease-out;
+}
+
+/* Focus visible (keyboard navigation) */
+.toolbar-btn:focus-visible {
+  outline: 2px solid var(--color-primary, #1E4D8C);
+  outline-offset: 1px;
+  box-shadow: var(--shadow-focus, 0 0 0 3px rgba(30, 77, 140, 0.15));
+}
+
+/* Active toggle state */
+.toolbar-btn--active {
+  background: var(--color-primary-light, #E8EEF6);
+  color: var(--color-primary, #1E4D8C);
+  border-color: rgba(30, 77, 140, 0.15);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--active:hover:not(:disabled) {
+    background: #DCE6F4;
+    color: var(--color-primary-hover, #163A6B);
+  }
+}
+
+.toolbar-btn--active:active:not(:disabled) {
+  background: #D0DEF0;
+  color: var(--color-primary-hover, #163A6B);
+  transform: scale(0.95);
+}
+
+/* Disabled state */
+.toolbar-btn--disabled,
+.toolbar-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.3);
+}
+
+
+/* ─── Button Variants ─── */
+
+/* Success (Play) */
+.toolbar-btn--success {
+  color: var(--color-accent, #558B2F);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--success:hover:not(:disabled) {
+    background: var(--color-accent-light, #E8F5E9);
+    color: var(--color-accent-hover, #457324);
+    border-color: rgba(85, 139, 47, 0.15);
+  }
+}
+
+.toolbar-btn--success:active:not(:disabled) {
+  background: #D6EAD8;
+  color: var(--color-accent-hover, #457324);
+  transform: scale(0.95);
+}
+
+/* Warning (Pause, Restore) */
+/* © Andrea Marro — 18/02/2026 */
+.toolbar-btn--warning {
+  color: var(--color-warning, #EA580C);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--warning:hover:not(:disabled) {
+    background: var(--color-warning-light, #FFEDD5);
+    color: #C2410C;
+    border-color: rgba(234, 88, 12, 0.15);
+  }
+}
+
+.toolbar-btn--warning:active:not(:disabled) {
+  background: #FDDCB5;
+  color: #C2410C;
+  transform: scale(0.95);
+}
+
+/* Danger (Reset) */
+.toolbar-btn--danger {
+  color: var(--color-danger, #DC2626);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--danger:hover:not(:disabled) {
+    background: var(--color-danger-light, #FEE2E2);
+    color: #B91C1C;
+    border-color: rgba(220, 38, 38, 0.15);
+  }
+}
+
+.toolbar-btn--danger:active:not(:disabled) {
+  background: #FCCFCF;
+  color: #B91C1C;
+  transform: scale(0.95);
+}
+
+/* Error (Compile failed) */
+.toolbar-btn--error {
+  color: var(--color-danger, #DC2626);
+  animation: toolbar-error-pulse 0.5s ease;
+}
+
+@media (hover: hover) {
+  .toolbar-btn--error:hover:not(:disabled) {
+    background: var(--color-danger-light, #FEE2E2);
+    color: #B91C1C;
+    border-color: rgba(220, 38, 38, 0.15);
+  }
+}
+
+@keyframes toolbar-error-pulse {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-2px);
+  }
+
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+/* Wire mode active */
+.toolbar-btn--wire.toolbar-btn--active {
+  background: var(--color-accent-light, #E8F5E9);
+  color: var(--color-accent, #558B2F);
+  border-color: rgba(85, 139, 47, 0.2);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--wire.toolbar-btn--active:hover:not(:disabled) {
+    background: #D4ECD6;
+  }
+}
+
+/* Galileo (gradient CTA) */
+.toolbar-btn--galileo {
+  background: linear-gradient(135deg, #558B2F 0%, #457324 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 16px;
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(85, 139, 47, 0.25);
+  border-radius: var(--radius-sm, 6px);
+}
+
+@media (hover: hover) {
+  .toolbar-btn--galileo:hover:not(:disabled) {
+    background: linear-gradient(135deg, #457324 0%, #365C1C 100%);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.35);
+/* © Andrea Marro — 05/03/2026 — ELAB Tutor — Tutti i diritti riservati */
+    transform: translateY(-1px);
+  }
+}
+
+.toolbar-btn--galileo:active:not(:disabled) {
+  background: linear-gradient(135deg, #365C1C 0%, #2B4B16 100%);
+  color: #FFFFFF;
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(85, 139, 47, 0.2);
+}
+
+.toolbar-btn--galileo:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 1px 4px rgba(85, 139, 47, 0.2);
+}
+
+/* Diagnosi Circuito — navy accent */
+.toolbar-btn--diagnose {
+  background: #1E4D8C;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 6px);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (hover: hover) {
+  .toolbar-btn--diagnose:hover:not(:disabled) {
+    background: #163A6B;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+}
+
+.toolbar-btn--diagnose:active:not(:disabled) {
+  background: #122F57;
+  color: #FFFFFF;
+  transform: scale(0.95);
+}
+
+/* Suggerimenti — lime accent */
+.toolbar-btn--hints {
+  background: #7CB342;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 6px);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (hover: hover) {
+  .toolbar-btn--hints:hover:not(:disabled) {
+    background: #689F38;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+}
+
+.toolbar-btn--hints:active:not(:disabled) {
+  background: #558B2F;
+  color: #FFFFFF;
+  transform: scale(0.95);
+}
+
+.toolbar-btn--youtube {
+  background: #FF0000;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 6px);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (hover: hover) {
+  .toolbar-btn--youtube:hover:not(:disabled) {
+    background: #CC0000;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+}
+
+.toolbar-btn--youtube:active:not(:disabled) {
+  background: #AA0000;
+  color: #FFFFFF;
+  transform: scale(0.95);
+}
+
+/* Loading state — pulse animation while compile is in progress */
+/* Andrea Marro — 18/02/2026 */
+.toolbar-btn--loading {
+  opacity: 0.6;
+  pointer-events: none;
+  animation: toolbar-compile-pulse 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes toolbar-compile-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 1.0;
+  }
+
+  25%,
+  75% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+}
+
+/* Compile success flash — briefly shows #7CB342 (ELAB Lime) background */
+/* Use .toolbar-btn--compile-success (not --success which is the Play color variant) */
+/* Andrea Marro — 18/02/2026 */
+.toolbar-btn--compile-success {
+  animation: toolbar-compile-success-flash 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toolbar-compile-success-flash {
+  0% {
+    background: #7CB342;
+    color: #FFFFFF;
+    border-color: #558B2F;
+    transform: scale(1.04);
+  }
+
+  60% {
+    background: #7CB342;
+    color: #FFFFFF;
+    border-color: #558B2F;
+    transform: scale(1.0);
+  }
+
+  100% {
+    background: transparent;
+    color: inherit;
+    border-color: transparent;
+    transform: scale(1);
+  }
+}
+
+.toolbar-btn__label--galileo {
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  font-size: var(--font-size-sm, 14px);
+}
+
+/* ─── Spinner animation ─── */
+.toolbar-spinner {
+  animation: toolbar-spin 0.8s linear infinite;
+}
+
+@keyframes toolbar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── Experiment Info (center) ─── */
+.toolbar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: center;
+  min-width: 0;
+  /* allow text truncation */
+}
+
+.toolbar-info__title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text, #1A1A2E);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.toolbar-info__meta {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-tertiary, #6B6B78);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Timer ─── */
+.toolbar-timer {
+  display: flex;
+/* © Andrea Marro — 05/03/2026 — ELAB Tutor — Tutti i diritti riservati */
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-xs, 12px);
+  font-family: var(--font-mono, 'Fira Code', monospace);
+  color: var(--color-text-tertiary, #6B6B78);
+  padding: 4px 10px;
+  background: var(--color-bg-secondary, #F7F7F8);
+  border-radius: var(--radius-sm, 6px);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Responsive: Progressive label hiding ─── */
+
+/* S62 FIX: Raised from 1200px → 1400px — at 1292px viewport the toolbar overflowed */
+/* 1400px: Hide secondary button labels (Collega Fili, Componenti, Lista Pezzi, Quiz) */
+@media (max-width: 1400px) {
+  .toolbar-btn--secondary .toolbar-btn__label {
+    display: none;
+  }
+
+  .toolbar-btn--secondary .toolbar-btn {
+    padding: 6px 8px;
+  }
+
+  .toolbar-info__title {
+    max-width: 200px;
+  }
+}
+
+/* 900px: Hide ALL button labels */
+@media (max-width: 900px) {
+  .toolbar-btn__label {
+    display: none;
+  }
+
+  .toolbar-btn {
+    padding: 6px 8px;
+  }
+
+  .toolbar-info__title {
+    max-width: 180px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .toolbar {
+    padding: 4px 8px;
+    gap: 2px;
+    min-height: 48px;
+  }
+
+  .toolbar-separator {
+    margin: 0 3px;
+  }
+
+  .toolbar-btn__label {
+    display: none;
+  }
+
+  .toolbar-btn__label--galileo {
+    display: none;
+  }
+
+  .toolbar-btn {
+    padding: 6px 8px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .toolbar-info {
+    display: none;
+  }
+}
+
+/* ─── BUG FIX: Button hover/active/focus states for non-toolbar buttons ─── */
+@media (hover: hover) {
+  .elab-simulator button:not(.toolbar-btn):hover {
+    filter: brightness(0.95);
+  }
+}
+
+.elab-simulator button:not(.toolbar-btn):active {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+  transition: transform 60ms ease-out, filter 60ms ease-out;
+}
+
+.elab-simulator button:not(.toolbar-btn):focus-visible {
+  outline: 2px solid #558B2F;
+  outline-offset: 2px;
+}
+
+/* ─── WCAG: Close button minimum touch target (44px) ─── */
+/* © Andrea Marro — 18/02/2026 */
+.elab-simulator [title*="Chiudi"],
+.elab-simulator [title*="chiudi"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* TASK 5: Touch-friendly :active states + Pin Tooltip styles     */
+/* iPad + Apple Pencil: immediate visual feedback on tap           */
+/* © Andrea Marro — 04/03/2026                                     */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* --- Zoom/wire overlay buttons: :active feedback --- */
+.elab-simulator-canvas button:active {
+  transform: scale(0.9);
+  filter: brightness(0.85);
+  transition: transform 60ms ease-out, filter 60ms ease-out;
+}
+
+/* --- Pin tooltip (HTML overlay, positioned absolute) --- */
+.elab-pin-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+  background: #1a1a2e;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  opacity: 0;
+  animation: elab-pin-tooltip-in 120ms ease-out forwards;
+}
+
+.elab-pin-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #1a1a2e;
+}
+
+.elab-pin-tooltip__label {
+  color: #7CB342;
+  margin-right: 4px;
+}
+
+.elab-pin-tooltip__detail {
+  color: #aab;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+@keyframes elab-pin-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+/* --- Sticky hover prevention for touch devices --- */
+@media (hover: none) {
+  .toolbar-btn:hover:not(:disabled) {
+    background: transparent;
+    color: inherit;
+    border-color: transparent;
+  }
+  .toolbar-btn--active:hover:not(:disabled) {
+    background: var(--color-primary-light, #E8EEF6);
+    color: var(--color-primary, #1E4D8C);
+  }
+}

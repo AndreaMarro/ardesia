@@ -1,0 +1,81 @@
+# Curriculum YAML — v1-cap6-esp1
+# "Accendi il tuo primo LED"
+
+experiment_id: v1-cap6-esp1
+volume: 1
+chapter: 6
+title: "Accendi il tuo primo LED"
+
+prerequisites: []
+concepts_introduced:
+  - circuito_chiuso
+  - LED_polarita
+  - breadboard_base
+
+vocabulary_level: v1-cap6
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - acceso
+  - spento
+  - corrente
+  - polo positivo
+  - polo negativo
+  - anodo
+  - catodo
+  - breadboard
+  - piedino lungo
+  - piedino corto
+forbidden_terms:
+  - resistenza
+  - ohm
+  - tensione
+  - volt
+  - parallelo
+  - serie
+  - condensatore
+  - potenziometro
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+
+teacher_briefing:
+  before_class: >
+    Preparazione: assicurati che ogni gruppo abbia 1 breadboard, 1 batteria 9V con clip,
+    2 fili e 1 LED rosso. NON dare il resistore in questa fase — lo scopriranno dopo.
+    Obiettivo: far provare l'emozione del "si accende!" prima di qualsiasi teoria.
+  during_class: >
+    Lascia che provino da soli. Se il LED non si accende, chiedi "Cosa potremmo provare
+    a cambiare?" (risposta attesa: girare il LED). NON dire tu la risposta.
+    Quando si accende: "Perché secondo voi funziona solo in un verso?"
+  common_question: >
+    "Perché il LED funziona solo in un verso?" → Analogia: è come una porta girevole
+    che gira solo in una direzione. La corrente può passare solo in un verso.
+
+common_mistakes:
+  - mistake: "LED inserito al contrario"
+    what_to_do: "Non correggerli. Chiedi: 'Cosa succede se lo giri?'"
+    analogy: null
+  - mistake: "Fili non inseriti nella stessa riga della breadboard"
+    what_to_do: "Mostra come i fori della stessa riga sono collegati sotto"
+    analogy: "Come i binari del treno — vanno nella stessa direzione"
+  - mistake: "Batteria collegata con polarità invertita"
+    what_to_do: "Nessun danno con il LED — semplicemente non si accende. Fai notare i simboli + e -"
+    analogy: null
+
+analogies:
+  circuito_chiuso:
+    analogy: "Un circuito è come un circuito di Formula 1 — la macchina deve poter fare tutto il giro e tornare al punto di partenza. Se la strada è interrotta, la macchina si ferma."
+    evidence: "Analogia con ciclo chiuso, supportata da ricerca su misconceptions elettroniche (Shipstone 1985)"
+  LED_polarita:
+    analogy: "Il LED è come una porta girevole — lascia passare solo in una direzione. Se provi dall'altra parte, resta bloccata."
+    evidence: "Analogia direzionale, efficace per bambini 8-12 (Osborne & Freyberg 1985)"
+
+assessment_invisible:
+  - "Se lo studente gira il LED spontaneamente quando non funziona → ha capito la polarità"
+  - "Se chiede 'perché solo in un verso?' → pronto per approfondire"
+  - "Se inserisce i fili nella riga corretta al primo tentativo → ha capito la breadboard"

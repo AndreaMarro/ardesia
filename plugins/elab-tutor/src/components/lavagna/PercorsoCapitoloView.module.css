@@ -1,0 +1,525 @@
+/**
+ * PercorsoCapitoloView Q2.D — split 70/25 layout
+ */
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fafbfc; /* palette */
+  font-family: 'Open Sans', system-ui, sans-serif;
+}
+
+.mainContent {
+  padding: 24px 32px;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a; /* palette */
+  font-size: calc(16px * var(--percorso-morphic-scale, 1));
+  container-type: inline-size;
+}
+
+.fallback {
+  padding: 48px;
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.capHeader {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--color-primary);
+  margin-bottom: 24px;
+}
+
+.capMeta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.volBadge {
+  padding: 2px 10px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Oswald', system-ui, sans-serif;
+}
+
+.pageRange {
+  color: #666;
+  font-size: 13px;
+}
+
+.typeChip {
+  padding: 2px 8px;
+  background-color: rgba(74, 122, 37, 0.15);
+  color: #3a6020; /* palette */
+  border-radius: 10px;
+  /* iter 14 LIM legibility: 11px → 14px (var(--font-size-label)) per spec §6 #3 */
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.capTitle {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a1a1a; /* palette */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  background-color: transparent;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a; /* palette */
+}
+
+.theorySection {
+  background-color: rgba(30, 77, 140, 0.05);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+.lessonIcon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.morphicRuntimeCue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 18px 0 22px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--elab-lime);
+  background: rgba(74, 122, 37, 0.08);
+  border-radius: 0 6px 6px 0;
+  color: var(--elab-navy);
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.morphicRuntimeCue span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.morphicRuntimeCue[data-transition-emphasis="alta"] {
+  border-left-color: var(--elab-red);
+  background: rgba(229, 75, 61, 0.08);
+}
+
+.morphicRuntimeCue[data-transition-emphasis="sintesi"] {
+  border-left-color: var(--elab-navy);
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.liveRegiaPanel {
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  border: 1px solid rgba(30, 77, 140, 0.14);
+  border-left: 4px solid var(--elab-navy);
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(90deg, rgba(30, 77, 140, 0.08), rgba(255, 255, 255, 0.92));
+  color: var(--elab-navy);
+}
+
+.liveRegiaHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.liveRegiaTitle {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.liveRegiaStatus {
+  font-size: 12px;
+  font-weight: 700;
+  color: #3a6020;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.liveRegiaSignals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.liveRegiaBudget {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.liveBudgetItem {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid rgba(74, 122, 37, 0.22);
+  border-radius: 6px;
+  background: rgba(74, 122, 37, 0.08);
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.liveSignal {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 9px;
+  border: 1px solid rgba(30, 77, 140, 0.13);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.liveRegiaAction {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.theoryText {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.citationsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.introSection,
+.closingSection {
+  padding: 16px 24px;
+  margin: 16px 0;
+  background-color: rgba(232, 148, 28, 0.05);
+  border-left: 3px solid var(--elab-orange);
+  border-radius: 0 6px 6px 0;
+}
+
+.introText,
+.closingText {
+  font-size: 17px;
+  font-style: italic;
+  margin: 0;
+}
+
+.experimentSection {
+  padding: 20px;
+  margin-bottom: 24px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.experimentSection:hover {
+  border-color: rgba(30, 77, 140, 0.3);
+}
+
+.activeExp {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(30, 77, 140, 0.15);
+}
+
+.transition,
+.nextTransition {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background-color: rgba(232, 148, 28, 0.1);
+  border-left: 3px solid var(--elab-orange);
+  border-radius: 0 6px 6px 0;
+}
+
+.nextTransition {
+  margin: -8px 0 24px 0;
+  background-color: rgba(74, 122, 37, 0.08);
+  border-left-color: var(--elab-lime);
+}
+
+.transitionLabel {
+  display: block;
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c07010; /* palette */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.transitionText {
+  font-size: 15px;
+  font-style: italic;
+  margin: 0;
+}
+
+.nextExperimentPreview {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #1E4D8C;
+}
+
+.nextPreviewText {
+  margin: 4px 0 0;
+  color: #3a6020;
+  line-height: 1.45;
+}
+
+.expHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.expNum {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.expTitle {
+  font-family: 'Oswald', system-ui, sans-serif;
+/* © Andrea Marro — 26/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.componentsBlock,
+.phasesBlock {
+  margin-top: 16px;
+}
+
+.blockLabel {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.componentsList {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.componentItem {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hiddenComponentsNote {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(232, 148, 28, 0.10);
+  color: #8a530f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.incrementalHint {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background-color: rgba(74, 122, 37, 0.08);
+  border-left: 2px solid var(--elab-lime);
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  font-style: italic;
+  color: #3a6020; /* palette */
+}
+
+.phasesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: phase-counter;
+}
+
+.phaseItem {
+  position: relative;
+  padding: 12px 12px 12px 36px;
+  margin-bottom: 6px;
+  background-color: #f5f7fa; /* palette */
+  border-radius: 6px;
+  cursor: pointer;
+  counter-increment: phase-counter;
+}
+
+.phaseItem::before {
+  content: counter(phase-counter);
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  width: 22px;
+  height: 22px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activePhase {
+  background-color: rgba(30, 77, 140, 0.1);
+  border: 1px solid rgba(30, 77, 140, 0.3);
+}
+
+.phaseName {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.phaseHook,
+.phaseObservation {
+  font-size: 14px;
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.phaseObservation {
+  font-style: italic;
+  color: #444;
+}
+
+@media (min-resolution: 192dpi), (min-width: 2500px) {
+  .container {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 24vw);
+  }
+
+  .mainContent {
+    padding: 36px 48px;
+    line-height: 1.58;
+  }
+
+  .capTitle {
+    font-size: 40px;
+  }
+
+  .theoryText {
+    font-size: 21px;
+  }
+
+  .liveRegiaAction {
+    font-size: 20px;
+  }
+
+  .introText,
+  .closingText {
+    font-size: 20px;
+  }
+
+  .experimentSection {
+    padding: 28px;
+  }
+
+  .expTitle {
+    font-size: 27px;
+  }
+}
+
+@media (pointer: coarse) {
+  .closeBtn,
+  .phaseItem,
+  .experimentSection {
+    min-height: var(--percorso-touch-target, 56px);
+  }
+
+  .phaseItem {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width: 860px) {
+  .liveRegiaBudget {
+    grid-template-columns: 1fr;
+  }
+}
+
+@container (min-width: 980px) {
+  .morphicRuntimeCue {
+    justify-content: flex-start;
+  }
+}

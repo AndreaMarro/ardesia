@@ -1,0 +1,97 @@
+# Curriculum YAML — v1-cap11-esp2
+# "Campanello con pulsante"
+
+experiment_id: v1-cap11-esp2
+volume: 1
+chapter: 11
+title: "Campanello con pulsante"
+
+prerequisites:
+  - v1-cap11-esp1  # Sa collegare il buzzer
+  - v1-cap8-esp1   # Sa usare il pulsante
+
+concepts_introduced:
+  - campanello
+  - pulsante_buzzer
+  - controllo_manuale_suono
+
+vocabulary_level: v1-cap11
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - suono
+  - vibrazione
+  - polarita
+  - positivo
+  - negativo
+  - campanello
+  - premere
+  - rilasciare
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - frequenza
+  - hertz
+  - digitale
+  - analogico
+  - timer
+  - oscillatore
+
+teacher_briefing:
+  before_class: >
+    Preparazione: stesso materiale di esp1 + 1 pulsante per gruppo.
+    I ragazzi sanno gia usare il pulsante (cap 8) e il buzzer (esp1).
+    Obiettivo: combinare due concetti gia noti per creare qualcosa di
+    utile e reale — un campanello!
+  during_class: >
+    Inizia con: "Chi ha un campanello a casa? Come funziona? Premi il
+    pulsante e... DRIIIIN! Oggi costruiamo il vostro!" Ricorda il circuito
+    di esp1 e chiedi: "Come possiamo fare in modo che il buzzer suoni
+    SOLO quando vogliamo noi?" Dovrebbero ricordare il pulsante dal cap 8.
+    Lasciali provare da soli a capire dove mettere il pulsante. Quando
+    funziona: "Complimenti, avete costruito il vostro primo dispositivo
+    che esiste davvero nelle case!"
+  common_question: >
+    "E uguale a un campanello vero?" -> Si! Il principio e lo stesso:
+    un pulsante che chiude il circuito e fa suonare qualcosa. Quelli
+    veri sono piu potenti, ma l'idea e identica a quello che avete
+    costruito voi.
+
+common_mistakes:
+  - mistake: "Mettono il pulsante dopo il buzzer invece che prima"
+    what_to_do: "Funziona comunque! In un circuito serie non importa l'ordine. Fallo notare"
+    analogy: "E come un tubo d'acqua: il rubinetto blocca l'acqua sia che lo metti all'inizio che alla fine"
+  - mistake: "Tengono premuto il pulsante e il suono continuo li infastidisce"
+    what_to_do: "Perfetto momento per dire: un vero campanello suona solo un attimo! Premi e rilascia veloce"
+    analogy: null
+  - mistake: "Il pulsante non fa contatto bene sulla breadboard"
+    what_to_do: "Il pulsante va a cavallo della scanalatura centrale della breadboard. Premere bene finche scatta"
+    analogy: null
+
+analogies:
+  campanello:
+    analogy: "Avete costruito un campanello vero! E come quello di casa: qualcuno preme il pulsante fuori dalla porta, e dentro casa si sente il suono. Voi siete sia il postino che il padrone di casa!"
+    evidence: "Collegamento oggetto quotidiano→circuito, aumenta motivazione e senso di competenza (Krajcik & Shin 2014)"
+  pulsante_buzzer:
+    analogy: "Combinare il pulsante col buzzer e come mettere insieme LEGO che gia conoscete per costruire qualcosa di nuovo. Ogni pezzo lo sapete gia usare!"
+    evidence: "Scaffolding combinatorio — riusare componenti noti in configurazioni nuove (Hmelo-Silver 2004)"
+
+assessment_invisible:
+  - "Se lo studente inserisce il pulsante al posto giusto senza aiuto -> transfer dal cap 8"
+  - "Se dice 'e come col LED ma col suono' -> astrazione del pattern pulsante+componente"
+  - "Se prova a mettere due pulsanti in parallelo -> pensiero creativo avanzato"
+  - "Se chiede 'posso fare campanello + luce insieme?' -> pronto per circuiti combinati"

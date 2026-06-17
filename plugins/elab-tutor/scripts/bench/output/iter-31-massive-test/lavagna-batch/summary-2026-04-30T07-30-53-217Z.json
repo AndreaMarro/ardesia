@@ -1,0 +1,85 @@
+{
+  "summary": {
+    "target": "https://www.elabtutor.school",
+    "total": 10,
+    "pass": 5,
+    "fail": 5,
+    "timestamp": "2026-04-30T07-30-53-217Z"
+  },
+  "results": [
+    {
+      "id": "A01",
+      "desc": "Open #lavagna",
+      "ok": true,
+      "ts": "2026-04-30T07:30:58.448Z",
+      "status": 200,
+      "latency_ms": 3818
+    },
+    {
+      "id": "A02",
+      "desc": "Click INIZIA / Entra",
+      "ok": false,
+      "ts": "2026-04-30T07:31:03.607Z"
+    },
+    {
+      "id": "A03",
+      "desc": "Verify Lavagna container mounted",
+      "ok": true,
+      "ts": "2026-04-30T07:31:03.696Z",
+      "mountCount": 14
+    },
+    {
+      "id": "A04",
+      "desc": "Switch modalità (3 modes)",
+      "ok": false,
+      "ts": "2026-04-30T07:31:03.781Z",
+      "clicks_attempted": 0,
+      "success": 0
+    },
+    {
+      "id": "A05",
+      "desc": "Toolbar interactions (0 buttons clicked)",
+      "ok": false,
+      "ts": "2026-04-30T07:31:09.404Z",
+      "clicked": 0
+    },
+    {
+      "id": "A06",
+      "desc": "Components panel: click LED",
+      "ok": false,
+      "ts": "2026-04-30T07:31:12.863Z",
+      "count": 0
+    },
+    {
+      "id": "A07",
+      "desc": "Vision button trigger",
+      "ok": true,
+      "ts": "2026-04-30T07:31:18.005Z",
+      "count": 2,
+      "clicked": false
+    },
+    {
+      "id": "A08",
+      "desc": "Mascotte UNLIM click",
+      "ok": true,
+      "ts": "2026-04-30T07:31:22.153Z",
+      "count": 3
+    },
+    {
+      "id": "A09",
+      "desc": "Manuale/Video/Fumetto trigger",
+      "ok": false,
+      "ts": "2026-04-30T07:31:28.916Z",
+      "found": 3,
+      "clicked": 0
+    },
+    {
+      "id": "A10",
+      "desc": "Console errors captured (0)",
+      "ok": true,
+      "ts": "2026-04-30T07:31:28.916Z",
+      "errors_count": 0,
+      "sample": []
+    }
+  ]
+}

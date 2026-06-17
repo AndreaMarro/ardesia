@@ -1,0 +1,25 @@
+id: galileo-latency-fix
+priority: P0
+title: Fix Galileo latency 17.6s to under 5s
+description: 'Galileo responses take 17.6s average — inaccettabile per bambini. Analizza
+  il flusso: browser → nanobot (Render) → n8n → Anthropic API → risposta. Identifica
+  il collo di bottiglia. Possibili fix: warm-up nanobot, caching risposte comuni,
+  streaming, ridurre prompt size, o spostare su VPS dedicato.
+
+  '
+success_criteria: 'evaluate.py galileo_latency score > 0.5 (media < 8s). Test con
+  3 domande diverse. Nessuna regressione su galileo_tags o identity.
+
+  '
+context_files:
+- src/components/tutor/GalileoChat.jsx
+plan:
+- Misura latenza attuale con breakdown (DNS, nanobot, n8n, API)
+- Identifica collo di bottiglia principale
+- Implementa fix più semplice (warm-up o cache)
+- Verifica latenza post-fix con 3 test
+- Esegui evaluate.py per confermare
+claimed_at: '2026-03-24T00:28:23.108374'
+claimed_by: orchestrator
+completed_at: '2026-03-24T00:37:28.354549'
+result: ok

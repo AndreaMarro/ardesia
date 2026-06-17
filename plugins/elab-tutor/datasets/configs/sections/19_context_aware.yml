@@ -1,0 +1,86 @@
+id: context_aware
+name: "Risposte Context-Dependent"
+
+templates:
+  # ── PRONOMI (dipendono dal contesto) ──────────────
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "L'utente usa pronomi/riferimenti vaghi. Usare il contesto del simulatore (tab, esperimento, componenti) per capire a cosa si riferisce."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' questo?
+        - a cosa serve quello?
+        - come funziona questo coso?
+        - spiegami questo
+        - perche' c'e' quello li'?
+        - quello rosso cos'e'?
+        - la cosa che lampeggia cos'e'?
+        - questo pezzo a cosa serve?
+        - e quello che sta facendo?
+
+  # ── RIFERIMENTI ALL'ESPERIMENTO CORRENTE ──────────────
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "L'utente fa riferimento all'esperimento corrente nel simulatore. Guardare il contesto per capire quale esperimento."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - spiegami questo esperimento
+        - cosa devo fare qui?
+        - come funziona questo circuito?
+        - qual e' il prossimo passo?
+        - e adesso che faccio?
+        - sono bloccato
+        - non so andare avanti
+        - sono arrivato qui ma non capisco
+        - ho finito, e ora?
+        - cosa manca?
+
+  # ── CONTINUAZIONE CONVERSAZIONE ──────────────
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "L'utente continua una conversazione precedente. Ricostruire il contesto dalla cronologia."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - e poi?
+        - dimmi di piu'
+        - continua
+        - non ho capito, rispiegami
+        - puoi ripetere?
+        - si ma perche'?
+        - ok e dopo?
+        - aspetta, non capisco questa parte
+        - torna indietro
+        - ricominciamo la spiegazione
+
+  # ── "COME FACCIO A..." CON CONTESTO ──────────────
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "L'utente chiede come fare qualcosa nel contesto dell'esperimento corrente. Guardare quale esperimento e' caricato."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - come faccio ad accendere il LED?
+        - come lo collego?
+        - dove metto il filo?
+        - quale pin uso?
+        - il filo dove va?
+        - come faccio a farlo funzionare?
+        - come si programma?
+        - cosa scrivo nel codice?
+        - come si monta?
+        - dove metto questo pezzo?
+
+corruptions:
+  typo_swap: 0.2
+  filler: 0.15

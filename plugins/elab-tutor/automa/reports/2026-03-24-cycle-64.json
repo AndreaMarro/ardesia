@@ -1,0 +1,77 @@
+{
+  "cycle": 64,
+  "timestamp": "2026-03-24T22:56:46.018754",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 249
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.33s",
+      "time_ms": 21211
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass [cached]",
+      "time_ms": 12087
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 3
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=73 min=68 (target \u226560) [3 samples]",
+      "time_ms": 76842
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3510
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 3067
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Fix Lighthouse LCP - lazy load immagini simulatore",
+    "status": "done",
+    "files_changed": [
+      "src/App.jsx",
+      "index.html"
+    ],
+    "build_pass": true,
+    "score_before": 0.9196,
+    "score_after": 0.9055,
+    "lighthouse_before": 0.62,
+    "lighthouse_after": 0.91,
+    "note": "composite -0.014 from gulpease API variance, lighthouse +0.29 from code change",
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified",
+    "deploy": {
+      "status": "skipped",
+      "reason": "NETLIFY_AUTH_TOKEN non impostato \u2014 aggiungi in automa/.env"
+    }
+  },
+  "research": "Research: 'educational electronics simulation children interactive lear' | 4 papers | worst=ipad_compliance=0.680 | Task: research-insight-ipad_compliance-2026032 | ACTIONABLE",
+  "ai_scoring": "DeepSeek root-cause [ipad_compliance=0.680]: **Root Cause**: Il layout non rispetta le dimensioni minime dei touch target (44px) e non si adatta correttamente al viewport 4:3 degli iPad, causando problemi di interazione.\n\n**File da modificare**: `src/components/Simulator/SimulatorView.less`\n\n**Cosa cambiare**:\nAggiungi una media query specifica per iPad con regole per i touch target e il viewport:\n```less\n@media (width: 1024px) and (height: 768px) {\n  .interactive-component { min-width: 44px; min-height: 44px; }\n  .simulator-area { max-hei",
+  "composite_score": 0.9183,
+  "self_exam": null
+}

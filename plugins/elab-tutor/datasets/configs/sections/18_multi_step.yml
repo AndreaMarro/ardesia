@@ -1,0 +1,95 @@
+id: multi_step
+name: "Sequenze Multi-Azione"
+intent: circuit
+needs_llm: false
+
+templates:
+  # ── BUILD + PLAY ──────────────
+  - input: "{frase}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"},{\"type\":\"resistor\"}],\"wires\":\"auto\"}]", "[AZIONE:play]"]
+    entities: [led, resistor]
+    vars:
+      frase:
+        - metti un LED con una resistenza e avvia
+        - aggiungi LED e resistenza poi fai partire
+        - piazza LED + resistenza e play
+        - metti lucina e resistenza e avvia tutto
+        - costruisci un circuito con LED e resistenza e fallo andare
+
+  # ── CLEAR + BUILD ──────────────
+  - input: "{frase}"
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]", "[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase:
+        - pulisci tutto e metti un LED
+        - ricomincia da zero e aggiungi un LED
+        - cancella tutto e piazza una lucina
+        - svuota e metti un led nuovo
+
+  # ── BUILD + COMPILE + PLAY ──────────────
+  - input: "{frase}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]", "[AZIONE:compile]", "[AZIONE:play]"]
+    entities: [led]
+    vars:
+      frase:
+        - metti un LED, compila e avvia
+        - aggiungi LED poi compila il codice e fai partire
+        - piazza LED, compile e play
+        - LED, compila, avvia
+
+  # ── LOAD + PLAY ──────────────
+  - input: "{frase}"
+    intent: navigation
+    response: "@navigation"
+    actions: ["[AZIONE:loadexp]", "[AZIONE:play]"]
+    entities: []
+    vars:
+      frase:
+        - carica l'esperimento del LED e avvia
+        - apri il primo circuito e fallo partire
+        - carica il blink e play
+        - metti l'esperimento e avvia
+
+  # ── MULTI-COMPONENT BUILD ──────────────
+  - input: "{frase}"
+    response: "@component_multi"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"},{\"type\":\"resistor\"},{\"type\":\"push-button\"}],\"wires\":\"auto\"}]"]
+    entities: [led, resistor, push-button]
+    vars:
+      frase:
+        - metti LED, resistenza e pulsante
+        - costruisci un circuito con LED resistenza e bottone
+        - aggiungi lucina, resistenza e tasto
+        - voglio LED con resistenza e interruttore
+
+  - input: "{frase}"
+    response: "@component_multi"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"buzzer-piezo\"},{\"type\":\"push-button\"},{\"type\":\"resistor\"}],\"wires\":\"auto\"}]"]
+    entities: [buzzer-piezo, push-button, resistor]
+    vars:
+      frase:
+        - metti buzzer, pulsante e resistenza
+        - costruisci allarme con cicalino e bottone
+        - voglio buzzer con pulsante e resistenza
+
+  # ── PAUSE + DIAGNOSE ──────────────
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: true
+    llm_hint: "L'utente vuole fermare e diagnosticare. Primo pausa, poi analisi del circuito."
+    actions: ["[AZIONE:pause]"]
+    entities: []
+    vars:
+      frase:
+        - ferma e controlla cosa c'e' che non va
+        - pausa e dimmi l'errore
+        - stop e diagnostica
+        - fermala e vediamo il problema
+
+corruptions:
+  typo_swap: 0.2
+  truncated: 0.1

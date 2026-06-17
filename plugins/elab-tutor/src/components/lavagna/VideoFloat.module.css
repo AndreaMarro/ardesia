@@ -1,0 +1,510 @@
+/* VideoFloat — YouTube Search + Videocorsi ELAB */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(30, 77, 140, 0.12);
+  flex-shrink: 0;
+}
+
+.tab {
+  flex: 1;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #595959; /* palette */
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease;
+  border-bottom: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tab:hover {
+  color: var(--color-primary);
+}
+
+.tabActive {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: -2px;
+}
+
+/* ── Search bar ── */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(30, 77, 140, 0.08);
+  flex-shrink: 0;
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: #595959; /* palette */
+}
+
+.searchInput {
+  flex: 1;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-primary);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #666666; /* palette */
+}
+
+.clearBtn,
+.searchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(30, 77, 140, 0.08);
+  color: #595959; /* palette */
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.clearBtn:hover,
+.searchBtn:hover {
+  background: rgba(30, 77, 140, 0.15);
+  color: var(--color-primary);
+}
+
+.clearBtn:focus-visible,
+.searchBtn:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: 1px;
+}
+
+/* ── Catalog / results section ── */
+.catalogSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Suggestions ── */
+.suggestionsWrap {
+  padding: 10px 12px 6px;
+  flex-shrink: 0;
+}
+
+.suggestionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.suggestionChip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid rgba(30, 77, 140, 0.15);
+  border-radius: 20px;
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, transform 100ms ease;
+}
+
+.suggestionChip:hover {
+  background: rgba(30, 77, 140, 0.06);
+  border-color: rgba(30, 77, 140, 0.3);
+}
+
+.suggestionChip:active {
+  transform: scale(0.95);
+}
+
+.suggestionChip:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: 1px;
+}
+
+/* ── Search results (YouTube embed) ── */
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── YouTube Player ── */
+.playerWrap {
+  flex: 1;
+  position: relative;
+  background: #000;
+  min-height: 200px;
+}
+
+.iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.localVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: contain;
+  background: #000;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: none;
+  border-top: 1px solid rgba(30, 77, 140, 0.1);
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease;
+}
+
+.backBtn:hover {
+  background: rgba(30, 77, 140, 0.04);
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+}
+
+.backBtn:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: -2px;
+}
+
+/* ── Video Card (Videocorsi) ── */
+.cardList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.virtualList {
+  flex: 1;
+  height: 260px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.virtualSpacer {
+  position: relative;
+  min-height: 100%;
+}
+
+.virtualRow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding-bottom: 6px;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 6px;
+  border: 1px solid rgba(30, 77, 140, 0.1);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, transform 100ms ease;
+  text-align: left;
+}
+
+.card:hover {
+  background: rgba(30, 77, 140, 0.04);
+  border-color: rgba(30, 77, 140, 0.2);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: -1px;
+}
+
+.cardLocked {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cardThumb {
+  position: relative;
+  width: 80px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e8ecf0; /* palette */
+}
+
+.cardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cardTopic {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #595959; /* palette */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Corso card extras ── */
+.corsoCard {
+  border-left: 3px solid transparent;
+}
+
+.corsoThumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.corsoVolume {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lockOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 6px;
+}
+
+/* ── Corso info banner ── */
+.corsoInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(30, 77, 140, 0.08);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+/* ── PiP Thumbnail ── */
+.pipThumb {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 120px;
+  height: 80px;
+  border: 2px solid rgba(30, 77, 140, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-primary);
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.pipThumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.pipThumb:focus-visible {
+  outline: 2px solid var(--elab-lime);
+  outline-offset: 2px;
+}
+
+.pipImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pipPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Thumbnail image ── */
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.youtubeThumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, rgba(30, 77, 140, 0.92), rgba(74, 122, 37, 0.78)),
+    radial-gradient(circle at 22% 24%, rgba(255,255,255,0.28), transparent 28%);
+}
+
+/* ── YouTube search button ── */
+.youtubeSearchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  margin: 4px 8px 8px;
+  border: 1px solid rgba(229, 75, 61, 0.2);
+  border-radius: 10px;
+  background: rgba(229, 75, 61, 0.06);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+/* © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati */
+  font-weight: 600;
+  color: var(--color-vol3-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.youtubeSearchBtn:hover {
+  background: rgba(229, 75, 61, 0.12);
+  border-color: rgba(229, 75, 61, 0.35);
+}
+
+.youtubeSearchBtn:focus-visible {
+  outline: 2px solid var(--elab-red);
+  outline-offset: 1px;
+}
+
+.externalIcon {
+  opacity: 0.6;
+}
+
+/* ── Empty state ── */
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #595959; /* palette */
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .tab {
+    font-size: 14px;
+    padding: 8px 8px;
+  }
+  .searchInput {
+    font-size: 14px;
+  }
+  .suggestionChip {
+    font-size: 14px;
+    padding: 6px 12px;
+    min-height: 44px;
+  }
+}
+
+@media (pointer: coarse) {
+  .card {
+    min-height: 56px;
+    padding: 8px;
+  }
+  .tab {
+    min-height: 48px;
+  }
+  .backBtn {
+    min-height: 48px;
+  }
+  .suggestionChip {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+}

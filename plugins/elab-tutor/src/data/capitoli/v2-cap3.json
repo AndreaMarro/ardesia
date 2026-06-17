@@ -1,0 +1,765 @@
+{
+  "id": "v2-cap3",
+  "volume": 2,
+  "capitolo": 3,
+  "type": "experiment",
+  "titolo": "Il Multimetro",
+  "titolo_classe": "Il Multimetro",
+  "pageStart": 13,
+  "pageEnd": 36,
+  "theory": {
+    "testo_classe": "Il Multimetro.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v2-cap3-esp1",
+      "num": 1,
+      "title_classe": "Controlliamo la carica della batteria",
+      "title_docente": "Controlliamo la carica della batteria",
+      "volume_ref": {
+        "page_start": 13,
+        "page_end": 36,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete mai avuto un telecomando che non funzionava? Come fate a sapere se le pile sono scariche? Oggi impariamo a scoprirlo con uno strumento da veri scienziati!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi impariamo a usare uno strumento fondamentale: il multimetro! Iniziamo con la cosa piu semplice: misurare quanti Volt ha la nostra batteria da 9V. Sara davvero 9V?",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione il multimetro reale se disponibile. Spiega che il puntale rosso va al + e il nero al -. La manopola va posizionata su V (tensione continua, DC)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Colleghiamo il multimetro alla batteria: puntale rosso al polo positivo (+), puntale nero al polo negativo (-). Impostiamo la scala su 20V DC. Leggiamo il display!",
+            "spunto_per_classe": null,
+            "note": [
+              "Se il valore e negativo, i puntali sono invertiti — nessun danno, solo il segno cambia. Mostra che una batteria nuova da circa 9.2-9.6V, una usata meno di 7V."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap3-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il multimetro mostra un valore. E esattamente 9V? Di piu? Di meno? Perche secondo voi non e mai esattamente 9.00V?",
+            "spunto_per_classe": "Domanda: 'Se la batteria dice '9V' sulla confezione, perche il multimetro mostra un numero diverso? La confezione mente?'",
+            "note": [
+              "La risposta e che '9V' e un valore nominale. Una batteria nuova ha circa 9.4-9.6V, e cala man mano che si scarica. Sotto 7V e praticamente scarica."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Puntali invertiti (rosso al - e nero al +)",
+                "soluzione_neutra": "Nessun danno! Il display mostra un valore negativo. Basta invertire i puntali."
+              },
+              {
+                "problema": "Scala sbagliata sul multimetro (es. mA invece di V)",
+                "soluzione_neutra": "Controllo che la manopola sia su V (tensione) e non su A (corrente). In modalita amperometro i puntali sono in corto!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il display del multimetro mostra la tensione reale della batteria. Una batteria da 9V nuova misura circa 9.4-9.6V. Se la batteria e usata, il valore sara piu basso.",
+            "analogies": [
+              {
+                "concept": "tensione_batteria",
+                "text": "La tensione di una batteria e come il livello d'acqua in un serbatoio: quando e pieno (carica) il livello e alto. Man mano che usi l'acqua (scarica), il livello scende.",
+                "evidence": "Curriculum ELAB Vol 2"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Osservazione il valore sul display del multimetro. Una batteria nuova mostra circa 9.4-9.6V. Prova a invertire i puntali: il valore diventa negativo!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il multimetro. Fai notare le cifre decimali: la precisione e importante. Chiedi: 'Quanto vale esattamente? E di piu o meno di 9V?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mm1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 4,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il multimetro in modalita voltmetro misura la tensione. Una batteria 9V nuova ha circa 9.5V, usata meno di 7V. Il puntale rosso va sempre al polo +, il nero al -.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Bravi! Oggi avete imparato a usare il multimetro come voltmetro. Sapete misurare la tensione di una batteria e capire se e carica o scarica!",
+            "spunto_per_classe": null,
+            "note": [
+              "Recap: puntale rosso al +, nero al -, scala su V. Batteria nuova ~9.5V, scarica <7V."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se collega i puntali nella polarita corretta al primo tentativo → comprensione della polarita",
+        "Se nota che il valore non e esattamente 9V → spirito di osservazione scientifica",
+        "Se chiede quanto dura una batteria → curiosita per approfondire"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "multimetro_voltmetro",
+          "tensione_batteria",
+          "polarita_puntali"
+        ],
+        "next_suggested": "v2-cap3-esp2",
+        "resume_message": "Hai imparato a misurare la tensione con il multimetro! Prossimo passo: il diario di misurazione."
+      }
+    },
+    {
+      "id": "v2-cap3-esp2",
+      "num": 2,
+      "title_classe": "Diario di misurazione della pila",
+      "title_docente": "Diario di misurazione della pila",
+      "volume_ref": {
+        "page_start": 13,
+        "page_end": 36,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        },
+        {
+          "name": "Quaderno per appunti",
+          "quantity": 1,
+          "icon": "📓"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Gli scienziati veri non fanno un esperimento e basta — ripetono le misure molte volte! Oggi iniziamo il nostro primo diario scientifico.",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi facciamo gli scienziati: misuriamo la batteria e scriviamo il valore nel nostro diario. Lo faremo per piu giorni per capire come si scarica una batteria.",
+            "spunto_per_classe": null,
+            "note": [
+              "Prepara una tabella alla lavagna: Data | Tensione (V) | Note. Questo e il primo esperimento di raccolta dati sistematica per i ragazzi."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Colleghiamo il multimetro alla batteria come la volta scorsa. Leggiamo il valore e lo scriviamo nella prima riga del nostro diario con la data di oggi.",
+            "spunto_per_classe": null,
+            "note": [
+              "misurare la stessa batteria a diversi studenti: i valori saranno leggermente diversi. Spiega che le piccole differenze sono normali (errore di misura)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap3-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Se misuriamo la batteria ogni giorno, il valore restera lo stesso o cambiera? Secondo voi, quanto ci vorra perche scenda sotto 7V?",
+            "spunto_per_classe": "Domanda: 'Una batteria 9V nel telecomando dura mesi. Ma se la collego a un LED acceso 24 ore, quanto dura? Perche c'e differenza?'",
+            "note": [
+              "Lascia che i ragazzi facciano previsioni e le scrivano. Dopo una settimana confronteranno le previsioni con i dati reali. E il metodo scientifico!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Dimenticare di segnare la data e l'ora della misurazione",
+                "soluzione_neutra": "Senza la data, il dato perde significato! Ogni scienziato registra QUANDO ha fatto la misurazione."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il valore della batteria oggi e un po piu basso di ieri? La scarica e lenta se la batteria non e collegata a nulla, ma diventa veloce quando alimenta un circuito.",
+            "analogies": [
+              {
+                "concept": "scarica_batteria",
+                "text": "La batteria e come un secchio d'acqua con un piccolo buco: l'acqua esce lentamente. Se fai un buco piu grande (circuito che consuma di piu), l'acqua finisce prima!",
+                "evidence": "Curriculum ELAB Vol 2"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Misurate la batteria e annotate il valore. Se avete dati dei giorni precedenti, confrontateli. Vedrete che la tensione cala lentamente giorno dopo giorno.",
+            "spunto_per_classe": null,
+            "note": [
+              "Se e la prima misurazione, mostra un grafico di esempio di come cala la tensione. Se avete piu misure, disegnate il grafico insieme alla lavagna."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mm1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La misurazione ripetuta e il cuore del metodo scientifico. Ogni giorno la batteria perde un po di carica: registrare i dati ci permette di scoprire la velocita di scarica.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ottimo lavoro! Avete iniziato il vostro diario scientifico. Continuate a misurare ogni giorno: tra una settimana avrete dati sufficienti per disegnare un grafico della scarica!",
+            "spunto_per_classe": null,
+            "note": [
+              "Assegna come compito: misurare la batteria almeno 3 volte questa settimana. Chi ha una batteria quasi scarica portera risultati piu interessanti!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se tiene un diario ordinato con date e valori → comprensione del metodo scientifico",
+        "Se nota differenze tra misure successive → spirito di osservazione",
+        "Se fa previsioni sulla durata della batteria → pensiero analitico"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "misurazione_ripetuta",
+          "diario_scientifico",
+          "scarica_batteria"
+        ],
+        "next_suggested": "v2-cap3-esp3",
+        "resume_message": "Avete iniziato il diario di misurazione! Prossimo passo: misurare le resistenze."
+      }
+    },
+    {
+      "id": "v2-cap3-esp3",
+      "num": 3,
+      "title_classe": "Misuriamo una resistenza",
+      "title_docente": "Misuriamo una resistenza",
+      "volume_ref": {
+        "page_start": 13,
+        "page_end": 36,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Resistore 330ohm",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 330
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Le resistenze hanno delle strisce colorate che nascondono un codice segreto. Oggi impariamo a decifrarlo e poi verifichiamo con il multimetro se e vero!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi il multimetro cambia ruolo: da voltmetro diventa ohmmetro! Misureremo il valore di una resistenza e verificheremo se le bande colorate dicono la verita.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione il codice colori: arancio-arancio-marrone = 330ohm. Spiega che ogni resistore ha una tolleranza (es. 5%) quindi il valore misurato puo differire leggermente."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Impostiamo il multimetro su Ohm (il simbolo omega). Tocchiamo i due terminali del resistore con i puntali. Leggiamo il valore sul display: sara circa 330ohm ma non esattamente.",
+            "spunto_per_classe": null,
+            "note": [
+              "Il circuito deve essere SPENTO per misurare la resistenza! Se il multimetro e collegato a un circuito alimentato, la misura sara sbagliata. Evidenzia questo punto."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap3-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il multimetro dice 328ohm ma le bande dicono 330ohm. Chi ha ragione? E se misuro un altro resistore '330ohm' dalla stessa scatola, sara esattamente uguale?",
+            "spunto_per_classe": "Domanda: 'Se le bande colorate non dicono il valore esatto, a cosa servono? Non sarebbe meglio scrivere il numero direttamente sul resistore?'",
+            "note": [
+              "Nessuno dei due mente! Il valore nominale (bande) e approssimato. La tolleranza del 5% significa che un 330ohm puo valere da 313.5 a 346.5ohm."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Misurare la resistenza con il circuito alimentato",
+                "soluzione_neutra": "SPEGNI tutto prima! Il multimetro in modalita ohmmetro invia una piccola corrente propria. Se il circuito e acceso, le correnti si mescolano e la misura e sbagliata."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il display mostra un valore molto vicino a 330ohm. Le bande colorate danno un'approssimazione corretta! La piccola differenza e normale ed e chiamata tolleranza.",
+            "analogies": [
+              {
+                "concept": "tolleranza",
+                "text": "La tolleranza e come la taglia dei vestiti: una 'M' non e identica in tutti i negozi, ma e sempre vicina alla stessa misura. Un resistore da '330ohm' puo variare un po, ma resta nella fascia giusta.",
+                "evidence": "Curriculum ELAB Vol 2"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Osservazione il valore sul display. E vicino a 330ohm? Prova con resistori diversi: 1kohm, 10kohm. Confronta sempre il valore misurato con quello delle bande.",
+            "spunto_per_classe": null,
+            "note": [
+              "compilare una tabella: Resistore | Bande (valore nominale) | Misurato | Differenza %. I ragazzi vedranno che tutti i valori rientrano nella tolleranza."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:r1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 4,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il multimetro in modalita ohmmetro misura le resistenze. Il codice a bande colorate da il valore nominale, il multimetro il valore reale. La tolleranza spiega le piccole differenze.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Avete imparato a decifrare il codice colori e a verificare con il multimetro. Le bande sono un codice pratico, il multimetro da il valore preciso!",
+            "spunto_per_classe": null,
+            "note": [
+              "Lascia un mini-quiz: dai un resistore senza dire il valore, i ragazzi devono leggerlo dalle bande e poi verificare col multimetro."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se legge correttamente le bande colorate → comprensione del codice",
+        "Se nota la differenza tra valore nominale e misurato → spirito critico",
+        "Se capisce il concetto di tolleranza → pensiero quantitativo"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "ohmmetro",
+          "bande_colorate",
+          "tolleranza"
+        ],
+        "next_suggested": "v2-cap3-esp4",
+        "resume_message": "Avete misurato le resistenze con il multimetro! Prossimo: misurare la corrente."
+      }
+    },
+    {
+      "id": "v2-cap3-esp4",
+      "num": 4,
+      "title_classe": "Misuriamo la corrente in un circuito",
+      "title_docente": "Misuriamo la corrente in un circuito",
+      "volume_ref": {
+        "page_start": 13,
+        "page_end": 36,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Resistore 1kohm",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap3-esp3",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 1000
+                    },
+                    {
+                      "type": "multimeter",
+                      "id": "mm1"
+                    }
+                  ],
+                  "wires": []
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Sapete misurare la tensione (i Volt). Ma quanta corrente passa davvero in un circuito? Oggi lo scopriamo — e verifichiamo una formula famosa: la Legge di Ohm!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi il multimetro diventa amperometro: misura QUANTA corrente passa nel circuito. Attenzione: va collegato IN SERIE, cioe nel percorso della corrente, non ai lati come il voltmetro!",
+            "spunto_per_classe": null,
+            "note": [
+              "IMPORTANTE: il multimetro in modalita amperometro ha resistenza quasi zero. Se collegato in parallelo alla batteria, cortocircuito! Mostra la differenza tra collegamento in serie (corretto) e parallelo (pericoloso)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito: batteria 9V → multimetro (in serie) → resistore 1kohm → ritorno a batteria. Il multimetro deve essere nel PERCORSO della corrente, come un casello autostradale.",
+            "spunto_per_classe": null,
+            "note": [
+              "tracciare il percorso della corrente con il dito: batteria+ → filo → multimetro → filo → resistore → filo → batteria-. Il multimetro e un 'checkpoint' che conta gli elettroni che passano."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap3-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "La batteria e 9V, il resistore e 1kohm. Quanto vale la corrente? La Legge di Ohm dice: I = V / R. Provate a calcolare PRIMA di misurare!",
+            "spunto_per_classe": "Domanda: 'Se sostituisco il resistore da 1kohm con uno da 2kohm, la corrente raddoppia o dimezza? E con uno da 500ohm?'",
+            "note": [
+              "I = 9V / 1000ohm = 0.009A = 9mA. Se i ragazzi non conoscono i milliampere, spiega: 1A = 1000mA. Quindi 0.009A = 9mA. Il multimetro dovrebbe mostrare circa 9mA."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Multimetro collegato in parallelo invece che in serie",
+                "soluzione_neutra": "ATTENZIONE! L'amperometro in parallelo crea un cortocircuito perche ha resistenza quasi zero. Deve essere nel percorso della corrente, come un casello autostradale!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il multimetro mostra circa 9mA. Calcolo: I = 9V / 1000ohm = 0.009A = 9mA. La Legge di Ohm e verificata sperimentalmente!",
+            "analogies": [
+              {
+                "concept": "legge_ohm",
+                "text": "La Legge di Ohm e come l'acqua in un tubo: piu pressione (tensione) = piu acqua (corrente). Tubo piu stretto (resistenza maggiore) = meno acqua. I = V / R.",
+                "evidence": "Curriculum ELAB Vol 2"
+              },
+              {
+                "concept": "amperometro_serie",
+                "text": "L'amperometro in serie e come un casello autostradale: tutte le auto (elettroni) devono passarci attraverso per essere contate. Se lo metti su una strada laterale, non conta nulla!",
+                "evidence": "Curriculum ELAB Vol 2"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e leggi il valore sul multimetro. Mostra circa 9mA! La Legge di Ohm funziona: I = V/R = 9V/1000ohm = 9mA.",
+            "spunto_per_classe": null,
+            "note": [
+              "Confronta il valore calcolato (9mA) con quello misurato. Saranno molto vicini! La piccola differenza dipende dalla batteria (non e esattamente 9V) e dalla tolleranza del resistore."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mm1]",
+            "[AZIONE:highlight:r1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il multimetro in modalita amperometro si collega IN SERIE nel circuito. La Legge di Ohm I=V/R ci permette di calcolare la corrente. Con 9V e 1kohm: 9mA. Calcolo e misura coincidono!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi avete verificato la Legge di Ohm con le vostre mani! I = V/R. Con 9V e 1kohm passa una corrente di circa 9mA. Il multimetro va in SERIE per misurare la corrente.",
+            "spunto_per_classe": null,
+            "note": [
+              "Recap delle 3 modalita del multimetro: Voltmetro (in parallelo), Ohmmetro (circuito spento), Amperometro (in serie). Sono le 3 superpoteri del multimetro!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se calcola I=V/R correttamente prima di misurare → comprensione della Legge di Ohm",
+        "Se collega il multimetro in serie al primo tentativo → comprensione del collegamento",
+        "Se prevede correttamente l'effetto del cambio resistore → pensiero proporzionale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "amperometro_serie",
+          "legge_ohm",
+          "corrente_mA"
+        ],
+        "next_suggested": "v2-cap4-esp1",
+        "resume_message": "Avete verificato la Legge di Ohm! Prossimo: resistori in parallelo."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Il Multimetro",
+    "transitions": [
+      {
+        "between": [
+          "v2-cap3-esp1",
+          "v2-cap3-esp2"
+        ],
+        "text_classe": "Gli scienziati veri non fanno un esperimento e basta — ripetono le misure molte volte! Oggi iniziamo il nostro primo diario scientifico.",
+        "text_docente_action": "Prepara una tabella alla lavagna: Data | Tensione (V) | Note. Questo e il primo esperimento di raccolta dati sistematica per i ragazzi.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v2-cap3-esp2",
+          "v2-cap3-esp3"
+        ],
+        "text_classe": "Le resistenze hanno delle strisce colorate che nascondono un codice segreto. Oggi impariamo a decifrarlo e poi verifichiamo con il multimetro se e vero!",
+        "text_docente_action": "Mostra il codice colori: arancio-arancio-marrone = 330ohm. Spiega che ogni resistore ha una tolleranza (es. 5%) quindi il valore misurato puo differire leggermente.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v2-cap3-esp3",
+          "v2-cap3-esp4"
+        ],
+        "text_classe": "Sapete misurare la tensione (i Volt). Ma quanta corrente passa davvero in un circuito? Oggi lo scopriamo — e verifichiamo una formula famosa: la Legge di Ohm!",
+        "text_docente_action": "IMPORTANTE: il multimetro in modalita amperometro ha resistenza quasi zero. Se collegato in parallelo alla batteria, cortocircuito! Mostra la differenza tra collegamento in serie (corretto) e parallelo (pericoloso).",
+        "incremental_mode": "add_component"
+      }
+    ],
+    "closing_text": "Avete verificato la Legge di Ohm! Prossimo: resistori in parallelo."
+  }
+}

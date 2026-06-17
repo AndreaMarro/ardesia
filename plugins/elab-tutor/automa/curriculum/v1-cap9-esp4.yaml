@@ -1,0 +1,73 @@
+# Curriculum YAML — v1-cap9-esp4
+# "Dimmer RGB azzurrino"
+
+experiment_id: v1-cap9-esp4
+volume: 1
+chapter: 9
+title: "Dimmer RGB azzurrino"
+
+prerequisites:
+  - v1-cap9-esp1  # Sa usare il potenziometro
+  - v1-cap7-esp1  # Conosce il LED RGB
+
+concepts_introduced:
+  - dimmer_su_due_canali
+  - azzurrino_verde_piu_blu
+  - controllo_analogico_colore
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - dimmer
+  - luminosita
+  - azzurro
+  - ciano
+  - verde
+  - blu
+  - mescolare
+  - regolare
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - PWM
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 2 resistenze 470 ohm, 1 potenziometro 10K, breadboard.
+    Il pot controlla blu + verde contemporaneamente. Obiettivo: dimmer di colore misto.
+  during_class: >
+    "Nell'esperimento 1 abbiamo dimmerato un LED singolo. Ora proviamo a dimmerare
+    due canali del RGB insieme — blu + verde. Che colore viene?" Girando la manopola
+    l'azzurrino diventa piu o meno intenso.
+  common_question: >
+    "Posso controllare i colori separatamente?" -> Ottima domanda! Per quello
+    servirebbero due potenziometri separati... e lo faremo nell'esperimento 6!
+
+common_mistakes:
+  - mistake: "Solo un colore si accende (soglia diversa blu vs verde)"
+    what_to_do: "Regola le resistenze fisse: abbassa quella del blu (220 ohm) per compensare"
+    analogy: null
+
+analogies:
+  dimmer_su_due_canali:
+    analogy: "E come avere un rubinetto che controlla due docce insieme — quando apri, escono entrambe. Non puoi ancora regolarle separatamente."
+    evidence: "Analogia idraulica per circuito condiviso (Driver & Bell 1986)"
+
+assessment_invisible:
+  - "Se chiede 'posso controllare separatamente?' -> pronto per esp 6 (3 pot)"
+  - "Se nota che i due colori non si accendono alla stessa intensita -> osservazione fine"

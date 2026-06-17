@@ -1,0 +1,38 @@
+id: R001-forbidden-terms-anticipatory-prompt
+priority: P1
+title: "R001: Galileo — forbidden_terms → anticipatory prompts pedagogici"
+description: |
+  RESEARCH FINDING (2026-04-06): I bambini tollerano meglio "lo impariamo dopo"
+  se presentato con curiosità, NON come rifiuto secco.
+
+  PROBLEMA ATTUALE:
+  I forbidden_terms nei YAML curriculum esistono ma Galileo non li gestisce attivamente.
+  Se un bambino chiede di un termine forbidden, Galileo risponde normalmente oppure
+  ignora il vincolo.
+
+  FIX RICHIESTO:
+  Modificare il prompt di sistema di Galileo (nanobot/prompts/tutor.yml o shared-optimized.yml)
+  per aggiungere una regola esplicita:
+
+  "Se l'utente chiede un termine presente in forbidden_terms dell'esperimento corrente:
+  1. NON usare mai il termine
+  2. Riconosci la curiosità: 'Ottima domanda! Stai pensando da scienziato!'
+  3. Offri un'analogia concreta alternativa dall'analogia disponibile nel YAML
+  4. Annuncia l'anticipazione: 'Questa scoperta ci aspetta al Cap {chapter_of_term}!'
+  5. Reindirizza gentilmente all'esperimento corrente: 'Per ora, torniamo a...'
+
+  VIETATO rispondere: 'Non posso rispondere a questa domanda.'
+  VIETATO ignorare la richiesta senza acknowledgment."
+
+  VERIFICA:
+  - Con experiment_id=v1-cap6-esp1, chiedi "cos'è una resistenza?"
+  - Galileo deve rispondere con anticipazione positiva, NON con definizione
+  - Galileo deve menzionare che la resistenza arriva più avanti
+  - Lunghezza risposta: <200 char
+
+tags: R001,pedagogy,galileo,nanobot,vocab-scaffolding,fase1
+mode: IMPROVE
+effort: 2-4 ore
+evidence: alto — letteratura pedagogia + learning progressions 2025
+source_research: automa/knowledge/RESEARCH-VOCAB-SCAFFOLDING-2026-04-06.md
+verify: "curl nanobot + test manuale 3 esperimenti"

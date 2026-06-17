@@ -1,0 +1,3808 @@
+{
+  "config": {
+    "configFile": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/playwright.iter29.config.js",
+    "rootDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium-prod",
+        "name": "chromium-prod",
+        "testDir": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/29-92-esperimenti-audit\\.spec\\.js$/"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../automa/state/iter-29-92-esperimenti/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "29-92-esperimenti-audit.spec.js",
+      "file": "29-92-esperimenti-audit.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "iter-29 92-esperimenti audit @ https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app",
+          "file": "29-92-esperimenti-audit.spec.js",
+          "line": 193,
+          "column": 6,
+          "specs": [
+            {
+              "title": "audit v1-cap10-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 120957,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:36:40.480Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-ae685f02ed1d42b97c6b",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap10-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 112941,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:36:40.266Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-c9d51344fba4bdfad289",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap10-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 118797,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:36:41.201Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-163e99a351b27886682c",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap10-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 104233,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:36:40.499Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-14bd7-cel-app-audit-v1-cap10-esp4-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-3ab9111aee26c4661bf2",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap10-esp5",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 95832,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:39:58.986Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-d7609-cel-app-audit-v1-cap10-esp5-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-f360005837c6d4d63afe",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap10-esp6",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 99971,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:39:58.788Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-23f1a8223a10258170dd",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap11-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 102747,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:40:01.177Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-5d63ee4ae35b2707925e",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap11-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16804,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:40:36.040Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-0bb840d380d5584d1462",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap12-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17042,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:42:17.497Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-21d3c6d9c5b8fe4bfa9f",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap12-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 69925,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:14.968Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-e8a2f-cel-app-audit-v1-cap12-esp2-chromium-prod/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-e8a2f-cel-app-audit-v1-cap12-esp2-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-3d82d1b62fc5acebbcdf",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap12-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 76147,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:15.314Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-6248ac822bf0a27b9867",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap12-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 71731,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:15.827Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-3205d-cel-app-audit-v1-cap12-esp4-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-f62aea1c98ace46c78ed",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap13-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15980,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:42:35.083Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-ec0374b4b85289b81be4",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap13-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16177,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:42:51.346Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d2366d66aa3d9a0349fe",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap14-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16037,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:07.769Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-6605751c8573567fc0ca",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap6-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19474,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:24.157Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7bd54f097af83ef00836",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap6-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 63833,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:43:49.403Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-1c2f2-rcel-app-audit-v1-cap6-esp2-chromium-prod/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-1c2f2-rcel-app-audit-v1-cap6-esp2-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-c3649c54902fc4273915",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap6-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 14789,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:44:53.323Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9c13bde665fc04d27744",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 140614,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:44.810Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e25b7990cfc20856216b",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 152017,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:44.703Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d053c5a8ec541def2fe1",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 176281,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:45.243Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-bffe2d4134806f3373a6",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 17260,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:08.811Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-016b9aa1c938efc4814b",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 17252,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:27.167Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-b2adb39311f431b46ab1",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap7-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 28911,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:45:44.824Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-953436bf0f1d547c97e5",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap8-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 39828,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:46:14.027Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e4f894ca4b219ddf1a15",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap8-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 183720,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded while setting up \"page\".\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded while setting up \"page\".\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded while setting up \"page\".\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        },
+                        {
+                          "message": "Error: browserContext.close: Test timeout of 60000ms exceeded.\nBrowser logs:\n\n<launching> /Users/andreamarro/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/playwright_chromiumdev_profile-xCupuo --remote-debugging-pipe --no-startup-window\n<launched> pid=17469\n[pid=17469][err] [0430/064345.235933:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064345.817837:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/#lavagna (0)\n[pid=17469][err] [0430/064458.481599:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064458.615713:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/#lavagna (0)\n[pid=17469][err] [0430/064513.300936:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064513.586018:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/#lavagna (0)\n[pid=17469][err] [0430/064534.543781:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064534.881141:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/ (0)\n[pid=17469][err] [0430/064550.917982:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064551.388082:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/#lavagna (0)\n[pid=17469][err] [0430/064616.905554:INFO:CONSOLE:13] \"%c╔══════════════════════════════════════════════════════╗\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ███████╗██╗      █████╗ ██████╗                    ║\n[pid=17469][err] ║   ██╔════╝██║     ██╔══██╗██╔══██╗                   ║\n[pid=17469][err] ║   █████╗  ██║     ███████║██████╔╝                   ║\n[pid=17469][err] ║   ██╔══╝  ██║     ██╔══██║██╔══██╗                   ║\n[pid=17469][err] ║   ███████╗███████╗██║  ██║██████╔╝                   ║\n[pid=17469][err] ║   ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝                   ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   ELAB Tutor — Simulatore Circuiti Educativo         ║\n[pid=17469][err] ║   Copyright (c) 2025-2026 Andrea Marro               ║\n[pid=17469][err] ║   Tutti i diritti riservati.                         ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Questo software è protetto da copyright.           ║\n[pid=17469][err] ║   La copia, la modifica, la decompilazione e la      ║\n[pid=17469][err] ║   distribuzione non autorizzata sono VIETATE          ║\n[pid=17469][err] ║   ai sensi della L. 633/1941 e del D.Lgs 518/1992.  ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ║   Qualsiasi uso non autorizzato sarà perseguito.     ║\n[pid=17469][err] ║                                                      ║\n[pid=17469][err] ╚══════════════════════════════════════════════════════╝ color:#1E4D8C;font-family:monospace;font-size:11px;\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/assets/index-DVnk8y6B.js (13)\n[pid=17469][err] [0430/064617.228918:INFO:CONSOLE:0] \"Access to fetch at 'https://elab-galileo.onrender.com/health' from origin 'https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.\", source: https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app/#lavagna (0)\n[pid=17469] <gracefully close start>"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:46:55.693Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-09e9a872899097def9a4",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap8-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 136791,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:51:32.531Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-af3f7a4669e9fb5c74ee",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap8-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 132170,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:51:33.153Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-842bf757675a55fe07d9",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap8-esp5",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 147466,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:51:33.350Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-16c8ad3eeeb43f29b902",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 8484,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:55:36.277Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-91174da5eea8a0825452",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10418,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:55:59.200Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9f4e1d2004c21646a5bf",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 8582,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:55:59.045Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-0ca7d076bc247170aa3c",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 133098,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:43.294Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-22fb4c8dbd763eeea3d0",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp5",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 143682,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:39.044Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-c26da160012d8d3cd3b4",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10133,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:07.692Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-4ee9b90ac87dcb405f8c",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 18525,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:18.466Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9a008ce27ed1bbb1ad34",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp8",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18063,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:18.862Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-11bc5b5ff11bace29282",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v1-cap9-esp9",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 29866,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:37.289Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-0d817a22baa57a62c855",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap10-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 30269,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:56:37.118Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-265c25ced23a7194ed85",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap10-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 42705,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:57:07.990Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-ee1e6c08a6e712f90047",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap10-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 44876,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:57:08.035Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-f0b8eca566fd263096fb",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap10-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 137216,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:57:53.119Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-a7815953a1034b98b67e",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap12-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 130576,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T04:57:54.238Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-bcd13-cel-app-audit-v2-cap12-esp1-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-766be0914c9c9ca96cc4",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap3-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 259293,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:01:16.804Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-5a1a8589bcc3844673aa",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap3-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 183682,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mFixture \"trace recording\" timeout of 60000ms exceeded during teardown.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:01:16.257Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-5e39d02286da4c5fdbc0",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap3-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 181918,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mFixture \"trace recording\" timeout of 60000ms exceeded during teardown.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:01:16.988Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d770fb1603e478e0d3fe",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap3-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 231025,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:01:15.536Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7d4671ea5c82509c1844",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap4-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 127269,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:08:37.556Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9e5b7aaa9f530c0d4719",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap4-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 164220,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:08:42.629Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e0642af428891721a95f",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap4-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 168381,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:08:41.864Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-05250-rcel-app-audit-v2-cap4-esp3-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-09a100bf69a3b6a2eb6d",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap5-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 161890,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:08:42.116Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-09668-rcel-app-audit-v2-cap5-esp1-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-02deecf14e6e7bb8243f",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap5-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 29,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 129345,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:12:59.184Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e93f5441c9f603ca77a5",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap6-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 30,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 127442,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:13:00.164Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-209a721823eba4b4a024",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap6-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 31,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 123984,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:13:00.070Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-97f6e9a5e6219c2cf424",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap6-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 32,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 137470,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 60000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:13:03.893Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7e14ec8948c5c9b4927d",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap6-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 33,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 255481,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:16:23.773Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-adb43a0ac781353b8706",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap7-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 34,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 182638,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mFixture \"trace recording\" timeout of 60000ms exceeded during teardown.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:16:22.048Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7b984de0a809b67ecdbb",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap7-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 35,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 210965,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:16:23.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-6f9d9eecc49f6b228448",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap7-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 36,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 236659,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:16:22.855Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-4c8e028e1405a587de2e",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap7-esp4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 37,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 144097,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:22:04.043Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-6946c-rcel-app-audit-v2-cap7-esp4-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-a1785ab8caff4b002003",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap8-esp1",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 38,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 139733,
+                      "error": {
+                        "message": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m",
+                        "stack": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/29-92-esperimenti-audit.spec.js:392:63",
+                        "location": {
+                          "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/29-92-esperimenti-audit.spec.js",
+                          "column": 63,
+                          "line": 392
+                        },
+                        "snippet": "  390 |\n  391 |       // Soft assertions — collect data even on fail\n> 392 |       expect.soft(result.steps.navigate?.ok, 'navigate prod').toBe(true);\n      |                                                               ^\n  393 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  394 |     });\n  395 |   }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/29-92-esperimenti-audit.spec.js",
+                            "column": 63,
+                            "line": 392
+                          },
+                          "message": "Error: navigate prod\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  390 |\n  391 |       // Soft assertions — collect data even on fail\n> 392 |       expect.soft(result.steps.navigate?.ok, 'navigate prod').toBe(true);\n      |                                                               ^\n  393 |       expect.soft(result.pageErrors.length, 'no pageerror').toBe(0);\n  394 |     });\n  395 |   }\n    at /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/29-92-esperimenti-audit.spec.js:392:63"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:22:12.010Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-c437c-rcel-app-audit-v2-cap8-esp1-chromium-prod/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/tests/e2e/29-92-esperimenti-audit.spec.js",
+                        "column": 63,
+                        "line": 392
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-821ec0f854a912449390",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap8-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 39,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 137140,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:22:11.577Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-fabfa-rcel-app-audit-v2-cap8-esp2-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d78e056b04468caf5ca9",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap8-esp3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 40,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 79108,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:24:47.917Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-21137-rcel-app-audit-v2-cap8-esp3-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-dff58a8011d0078ca987",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap9-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 42436,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:27:29.878Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-32a4056bb7e1f46b1ebc",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v2-cap9-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 49713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:27:32.229Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9d630469194c6b672a21",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap5-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 58038,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:27:29.838Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7f8bbed5fd22171e957d",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap5-esp2",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 44,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 62036,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:25.814Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-51196-rcel-app-audit-v3-cap5-esp2-chromium-prod/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/test-results/29-92-esperimenti-audit-it-51196-rcel-app-audit-v3-cap5-esp2-chromium-prod/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-665ac743378e2e285526",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 45454,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:03.561Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-3e83208429a531979c52",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 44886,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:07.224Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-b098c59011e306ab0031",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33133,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:16.264Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-5ed6896922668c4a2374",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25763,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:52.353Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-328fc991ea0a0d2dad89",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 24396,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:52.752Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e4adcee37bf9b79a3de4",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 27059,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:29:52.910Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-9c65eac878e269bcbc9a",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 38853,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:30:18.876Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d2e1c455716949f3ae7f",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-morse",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 27761,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:30:19.589Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-f4b6d80cd1e70804123d",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap6-semaforo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 30892,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:30:21.104Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-445dc200ee6cd5c0be00",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 37695,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:30:49.591Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-ea7e05df350c99d32ac7",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 36622,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:30:55.062Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-01896d9f48cd138b70f1",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 34317,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:03.120Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-639f86dabe619b7dadd2",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19750,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:28.595Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-42e3cdb7194b3974d060",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 15562,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:38.117Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-78f8c9127066aabc2de9",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 15230,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:38.403Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-edf340ea17717196e535",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp7",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15739,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:53.392Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-e51c6b85472b1bbc722e",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-esp8",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 14546,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:53.749Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-82c9035ff71ee721102d",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap7-mini",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 17064,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:31:54.462Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-bd208f2d0378ebcbe3b3",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-esp1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 45,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 13278,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:59.650Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-125aa0111c0dd9dd9ef1",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-esp2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 20435,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:08.993Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-7c407e1f0e48def828c9",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-esp3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19579,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:09.395Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-8c7953a10008010751da",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-esp4",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 17844,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:12.337Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-d10f4cc3c213266b3663",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-esp5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15671,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:29.922Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-464ae78d24d31ef9e9ac",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-cap8-serial",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 42,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 16773,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:30.102Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-f4acf3c2db61dfcb4448",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-extra-lcd-hello",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 16102,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:30.750Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-0f96b2b84197e6f06764",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-extra-servo-sweep",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 43,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11712,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:46.497Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-c582158a2b62f72fad57",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "audit v3-extra-simon",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-prod",
+                  "projectName": "chromium-prod",
+                  "results": [
+                    {
+                      "workerIndex": 41,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 11259,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-30T05:32:47.021Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba921efbae2541b1ec09-8ba788e9975cb9428972",
+              "file": "29-92-esperimenti-audit.spec.js",
+              "line": 197,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-30T04:36:26.497Z",
+    "duration": 3416106.071,
+    "expected": 52,
+    "skipped": 0,
+    "unexpected": 42,
+    "flaky": 0
+  }
+}

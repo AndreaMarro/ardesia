@@ -1,0 +1,22 @@
+id: P1-056-galileo-identity-name
+title: Allineare nome Galileo in tutto il codebase (residui UNLIM pubblici)
+priority: P1
+severity: high
+evidence: verified
+created: 2026-03-24
+cycle: 55
+mode: IMPROVE
+description: |
+rimangono riferimenti a "UNLIM" in contesti visibili agli utenti: 
+- nanobot/server.py: reasoner_msg (riga ~2365) dice "Sei il motore di ragionamento di UNLIM
+- api.js: SOCRATIC_INSTRUCTION dice "Sei UNLIM, tutor AI di ELAB
+- sessionReportService.js: [SISTEMA] Sei UNLIM
+steps: 
+- Distinguere: prompt visibili all'utente vs. log/commenti interni
+- Sostituire nei prompt utente: UNLIM" → "Galileo
+acceptance: 
+files_to_check: 
+claimed_at: "2026-03-24T16:52:54.856435"
+claimed_by: orchestrator
+completed_at: "2026-03-24T16:57:39.338521"
+result: ok

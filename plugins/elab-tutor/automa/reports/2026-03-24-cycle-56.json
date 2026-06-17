@@ -1,0 +1,73 @@
+{
+  "cycle": 56,
+  "timestamp": "2026-03-24T17:10:26.015917",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 275
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 27.70s",
+      "time_ms": 32587
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "10/10 pass",
+      "time_ms": 182879
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=65 (target \u226560) [3 samples]",
+      "time_ms": 82645
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3985
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2100
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Allineare nome Galileo \u2014 residui UNLIM pubblici",
+    "status": "done",
+    "files_changed": [
+      "src/locales/it.json",
+      "src/locales/en.json",
+      "src/locales/es.json",
+      "src/locales/de.json",
+      "src/components/tutor/TutorTopBar.jsx",
+      "src/components/tutor/ChatOverlay.jsx",
+      "src/components/tutor/ElabTutorV4.jsx"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified"
+  },
+  "research": "Research: 'React SPA Lighthouse LCP optimization code splitting lazy lo' | 0 papers | worst=lighthouse_perf=0.620 | Task: research-insight-lighthouse_perf-2026032 | ACTIONABLE",
+  "ai_scoring": "DeepSeek root-cause [lighthouse_perf=0.640]: **1. Root cause:** Il punteggio Performance Lighthouse \u00e8 basso principalmente a causa di un *render-blocking* JavaScript non critico e immagini/componenti pesanti che ritardano la First Contentful Paint (FCP) e Time to Interactive (TTI).\n\n**2. File da modificare:** `src/components/CircuitSimulator/CircuitCanvas.jsx` e `public/index.html`.\n\n**3. Cosa cambiare:**\n- In `CircuitCanvas.jsx`, ottimizza il ciclo di rendering del simulatore: sostituisci `setInterval` con `requestAnimationFrame` ed esegu",
+  "composite_score": 0.8934,
+  "self_exam": null
+}

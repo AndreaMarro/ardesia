@@ -1,0 +1,15 @@
+id: research-insight-lighthouse_perf-20260324-1834
+priority: P1
+title: "Research-driven fix: lighthouse_perf (score=0.62)"
+description: |
+Metrica target: "lighthouse_perf (attuale: 0.620, target: 0.90+)"
+Fonte: "React-based Web Aplication Performance Optimization Using Code Splitting and Lazy Loading: This study aims to enhance the performance of a React-based web application that utilizes Client-Side Rendering (CSR) by applying two optimization techniques: code splitting and lazy loadin"
+success_criteria: |
+python3 automa/evaluate.py | grep 'SCORE: lighthouse_perf
+context_files: 
+tags: research-driven,auto-generated,lighthouse_perf
+created: "2026-03-24T18:34:00.600821"
+claimed_at: "2026-03-24T20:35:51.873630"
+claimed_by: orchestrator
+completed_at: "2026-03-24T20:50:15.626637"
+result: ok

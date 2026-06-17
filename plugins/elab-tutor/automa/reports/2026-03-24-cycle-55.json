@@ -1,0 +1,60 @@
+{
+  "cycle": 55,
+  "timestamp": "2026-03-24T16:44:05.131206",
+  "date": "2026-03-24",
+  "mode": "AUDIT",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 299
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 33.78s",
+      "time_ms": 37263
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]] [cached]",
+      "time_ms": 12068
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 4
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=75 (target \u226560) [3 samples]",
+      "time_ms": 89624
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4308
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2519
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "dry_run",
+    "status": "skipped"
+  },
+  "research": "DeepSeek: **ELAB Tutor: Problemi & Soluzioni**\n\n**Due Problemi:**\n1.  **Rigidit\u00e0 dell'Interrogazione:** I tutor AI spesso seguono script predefiniti, incapaci di adattare dinamicamente la complessit\u00e0 e il filo delle domande al ragionamento unico dello studente.\n2.  **Fallimento Metacognitivo:** Molti sistemi si concentrano sull'ottenere la risposta \"corretta\", anzich\u00e9 guidare lo studente a riflettere sulle ",
+  "ai_scoring": null,
+  "composite_score": 0.8975,
+  "self_exam": null
+}

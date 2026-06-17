@@ -1,0 +1,28 @@
+id: lighthouse-perf
+priority: P2
+title: Migliora Lighthouse performance da 61 a 70+
+description: 'Lighthouse performance è 61/100 (evaluate.py misura 0.61).
+
+  Target ciclo: portarlo ad almeno 70.
+
+  '
+success_criteria: 'Lighthouse score ≥70/100 dopo build locale.
+
+  Build verde con npm run build.
+
+  '
+context_files:
+- index.html
+- vite.config.js
+- src/main.jsx
+plan:
+- Esegui Lighthouse locale e leggi JSON per capire COSA è lento (LCP, FCP, CLS, TBT)
+- Aggiungi loading='lazy' a tutte le <img> senza in src/
+- Aggiungi <link rel='preconnect'> in index.html per domini esterni
+- npm run build — verifica chunk <500KB
+- Ri-esegui Lighthouse e confronta score prima/dopo
+tags: performance,lighthouse,optimization
+claimed_at: '2026-03-23T20:05:49.543581'
+claimed_by: orchestrator
+completed_at: '2026-03-23T20:09:53.413737'
+result: ok

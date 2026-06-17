@@ -1,0 +1,130 @@
+{
+  "timestamp": "2026-04-17T05:02:00Z",
+  "task": "DEBUGGER CIRCUITSOLVER — analysis of connections, pinAssignments, component types, and edge cases",
+  "summary": {
+    "experimentsAnalyzed": 10,
+    "totalExperimentsScanned": 92,
+    "connectionIssuesFound": 1,
+    "pinIssuesFound": 1,
+    "edgeCaseTests": 25,
+    "edgeCaseTestsPassed": 25,
+    "falsePositivesNoted": 4,
+    "overallStatus": "HEALTHY — two non-blocking data inconsistencies found (both in simulable:false experiments)"
+  },
+  "experimentsAnalyzed": [
+    "v1-cap6-esp1",
+    "v1-cap7-esp2",
+    "v1-cap8-esp1",
+    "v1-cap9-esp1",
+    "v1-cap13-esp1",
+    "v2-cap4-esp1",
+    "v2-cap8-esp1",
+    "v2-cap12-esp1",
+    "v3-cap6-esp1",
+    "v3-cap7-esp1"
+  ],
+  "connectionIssues": [
+    {
+      "experimentId": "v1-cap13-esp1",
+      "connection": "connections array OK, but pinAssignments: led1:anode -> bat1:positive",
+      "issue": "pinAssignment target 'bat1:positive' is a battery pin, not a breadboard hole. This elettropongo/clay experiment places LED directly on battery terminals. The pinAssignment mechanism is designed for breadboard holes (format: bbId:holeId). Data inconsistency but NO runtime impact — experiment is simulable:false.",
+      "severity": "LOW",
+      "runtimeImpact": false,
+      "simulable": false
+    }
+  ],
+  "pinIssues": [
+    {
+      "experimentId": "v1-cap13-esp1 + v1-cap13-esp2",
+      "issue": "pinAssignments map LED pins (anode/cathode) to battery terminal pins (bat1:positive, bat1:negative) instead of breadboard hole IDs. pinAssignments API contract requires targets to be breadboard holes. No crash because CircuitSolver only unions pairs where BOTH are in _pinRefs (line 812), and the connections array correctly describes the circuit topology.",
+      "affectedExperiments": ["v1-cap13-esp1", "v1-cap13-esp2"],
+      "severity": "LOW",
+      "runtimeImpact": false
+    }
+  ],
+  "falsePositivesDocumented": [
+    {
+      "pattern": "nano1:W_D* and nano1:W_A* pins (e.g. W_D13, W_D5, W_A0)",
+      "affectedExperiments": "~20 vol3 experiments (v3-cap6-esp2 through v3-extra-simon)",
+      "explanation": "W_DX and W_AX are VALID wing pins on the Arduino Nano R4 breakout adapter — physical pins on the opposite PCB edge. CircuitSolver handles them via wing pin aliasing (lines 774-806): each W_DX is auto-unioned with its DX counterpart. NanoR4Board.jsx defines all 17 wing pins with mapsTo references. These are not bugs."
+    },
+    {
+      "pattern": "breadboard-full bus format: bus-plus-N, bus-minus-N (missing top/bot)",
+      "affectedExperiments": "v1-cap14-esp1, v2-cap12-esp1",
+      "explanation": "breadboard-full uses bus-plus-N and bus-minus-N — CORRECT format per BreadboardFull.jsx lines 341-342. breadboard-half uses bus-top-plus-N / bus-bot-plus-N. They have different schemas. Both are valid."
+    },
+    {
+      "pattern": "breadboard-full column numbers > 30 (e.g., a33, a50, f60)",
+      "affectedExperiments": "v1-cap14-esp1",
+      "explanation": "breadboard-full has ROWS = 63 (BreadboardFull.jsx line 15). Columns 1-63 are all valid. Holes a33, a50, f60 are within range for the full breadboard."
+    },
+    {
+      "pattern": "lcd16x2 pins: rs, e, d4, d5, d6, d7",
+      "affectedExperiments": "v3-extra-lcd-hello",
+      "explanation": "These are VALID LCD16x2 pins defined in LCD16x2.jsx (lines 299-306). The component has: rs, e, d4, d5, d6, d7, vcc, gnd. Not bugs."
+    }
+  ],
+  "componentTypesValidation": {
+    "allTypesSupported": true,
+    "typesFound": [
+      "battery9v", "breadboard-half", "breadboard-full", "resistor", "led", "rgb-led",
+      "buzzer-piezo", "motor-dc", "capacitor", "multimeter", "mosfet-n", "potentiometer",
+      "photo-resistor", "phototransistor", "push-button", "reed-switch", "diode",
+      "nano-r4", "servo", "lcd16x2"
+    ],
+    "unsupportedTypesFound": [],
+    "notes": "All 20 component types have _initState handlers. lcd16x2 falls through to default {} state (no dedicated _solveXXX) — acceptable since lcd16x2 only appears in AVR-mode experiments where CircuitSolver is bypassed by AVRBridge."
+  },
+  "edgeCaseTests": [
+    { "name": "EC-1.1 Short Circuit — solver does not throw on direct short", "result": "PASS", "details": "battery+ directly to battery-; no exception" },
+    { "name": "EC-1.2 Short Circuit — getDiagnostics().shortCircuit = true", "result": "PASS", "details": "_checkShortCircuit detects supply+ and supply- in same net" },
+    { "name": "EC-1.3 Short Circuit — onWarning callback fires", "result": "PASS", "details": "onWarning('short-circuit', ...) emitted" },
+    { "name": "EC-1.4 Short Circuit — normal circuit NOT flagged", "result": "PASS", "details": "Working bat→R→LED→GND: shortCircuit = false (control)" },
+    { "name": "EC-2.1 Open Circuit — no throw when cathode floating", "result": "PASS", "details": "LED anode connected, cathode disconnected; no exception" },
+    { "name": "EC-2.2 Open Circuit — LED.on = false", "result": "PASS", "details": "No complete path → LED off" },
+    { "name": "EC-2.3 Open Circuit — LED.current = 0", "result": "PASS", "details": "Zero current in open circuit" },
+    { "name": "EC-2.4 Open Circuit — LED ON when closed (control)", "result": "PASS", "details": "Proper circuit lights LED" },
+    { "name": "EC-3.1 Reversed LED — solver does not throw", "result": "PASS", "details": "Cathode at +, anode at GND; no exception" },
+    { "name": "EC-3.2 Reversed LED — LED.on = false", "result": "PASS", "details": "Reverse bias → LED blocks current" },
+    { "name": "EC-3.3 Reversed LED — LED.brightness = 0", "result": "PASS", "details": "Zero brightness confirms blocking" },
+    { "name": "EC-3.4 Reversed LED — forward LED ON (control)", "result": "PASS", "details": "Normal polarity → on + brightness > 0" },
+    { "name": "EC-4.1 Zero-ohm Resistor — no throw", "result": "PASS", "details": "R=0 between battery poles; no crash" },
+    { "name": "EC-4.2 Zero-ohm Resistor — state defined after solve", "result": "PASS", "details": "Solver stable with zero-resistance path" },
+    { "name": "EC-4.3 Zero-ohm Resistor with LED — no crash", "result": "PASS", "details": "bat→R(0)→LED→GND; no exception" },
+    { "name": "EC-4.4 Zero-ohm Resistor — silent 470Ω fallback (KNOWN BUG KB-1)", "result": "PASS", "details": "comp.value || 470: R=0 is falsy → 470Ω used. LED.on = true, LED.burned = false. Prevents infinite-current crash but masks student mistake." },
+    { "name": "EC-4.5 Negative Resistor Value — no crash", "result": "PASS", "details": "R=-100 also falls through to 470 fallback" },
+    { "name": "EC-5.1 Potentiometer 0% — resistance = 0", "result": "PASS", "details": "setPosition(0.0) → resistance = 0" },
+    { "name": "EC-5.2 Potentiometer 100% — resistance = maxR", "result": "PASS", "details": "setPosition(1.0) → resistance = 10000" },
+    { "name": "EC-5.3 Potentiometer 50% default — resistance = maxR/2", "result": "PASS", "details": "Default 0.5 → resistance = 5000" },
+    { "name": "EC-5.4 Potentiometer 0% in LED circuit — LED off", "result": "PASS", "details": "Wiper at GND → 0V signal → LED dark" },
+    { "name": "EC-5.5 Potentiometer 100% in LED circuit — LED on", "result": "PASS", "details": "Wiper at VCC → 9V signal → LED lit" },
+    { "name": "EC-5.6 Potentiometer clamped above 1.0", "result": "PASS", "details": "setPosition(1.5) → clamped; no crash" },
+    { "name": "EC-5.7 Potentiometer clamped below 0.0", "result": "PASS", "details": "setPosition(-0.5) → clamped; no crash" },
+    { "name": "EC-5.8 Potentiometer resistance monotonically increasing", "result": "PASS", "details": "Positions [0, 0.25, 0.5, 0.75, 1.0] → non-decreasing resistances" }
+  ],
+  "knownBugsDocumented": [
+    {
+      "id": "KB-1",
+      "description": "R=0 silently falls back to 470Ω",
+      "location": "CircuitSolver.js ~line 1342: case 'resistor': return comp.value || 470",
+      "impact": "Student who sets R=0 won't see overload warning. Circuit behaves as 470Ω. Prevents infinite-current crash but masks user error.",
+      "severity": "LOW",
+      "recommendation": "Explicit check: if value === 0, use 0.001Ω (near-short) and emit onWarning('zero_resistor', ...) to alert student"
+    },
+    {
+      "id": "KB-2",
+      "description": "Clay experiment pinAssignments use battery terminal refs instead of breadboard hole IDs",
+      "location": "experiments-vol1.js: v1-cap13-esp1 pinAssignments: {led1:anode: bat1:positive, led1:cathode: bat1:negative}",
+      "impact": "No runtime crash. Both experiments are simulable:false. Pure data contract violation.",
+      "severity": "LOW",
+      "recommendation": "Omit pinAssignments for clay/direct-connect experiments, OR document battery-terminal refs as a valid special case in the pinAssignment schema"
+    }
+  ],
+  "recommendations": [
+    "CircuitSolver is robust across all 25 edge case scenarios tested",
+    "Two data inconsistencies found, both in simulable:false experiments — zero runtime impact",
+    "breadboard-half and breadboard-full use DIFFERENT bus naming schemas — document this in schema comments to prevent future mistakes",
+    "Wing pins W_D*/W_A* are first-class in CircuitSolver — include in any external pin validator or documentation",
+    "Consider adding explicit R=0 warning to help students understand the error (KB-1)"
+  ]
+}

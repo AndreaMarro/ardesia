@@ -1,0 +1,52 @@
+{
+  "name": "ELAB License Service",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-license",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-license",
+      "name": "Webhook License",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "elab-license"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ============================================\n// ELAB License Service v2 — DEBUG VERSION\n// Espone errori invece di nasconderli\n// © Andrea Marro — 19/02/2026\n// ============================================\n\nconst https = require('https');\n\nconst NOTION_TOKEN = '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';\nconst NOTION_VERSION = '2022-06-28';\nconst LICENZE_DB = '14fcf500-0a9e-4e5d-92f8-6ae6e4c2a4cc';\n\nfunction notionReq(method, path, payload) {\n  return new Promise((resolve, reject) => {\n    const data = payload ? JSON.stringify(payload) : null;\n    const opts = {\n      hostname: 'api.notion.com',\n      path: '/v1' + path,\n      method,\n      headers: {\n        'Authorization': 'Bearer ' + NOTION_TOKEN,\n        'Notion-Version': NOTION_VERSION,\n        'Content-Type': 'application/json'\n      }\n    };\n    if (data) opts.headers['Content-Length'] = Buffer.byteLength(data);\n    const req = https.request(opts, (res) => {\n      let body = '';\n      res.on('data', c => body += c);\n      res.on('end', () => {\n        try {\n          const p = JSON.parse(body);\n          if (res.statusCode >= 400) {\n            reject(new Error('Notion ' + res.statusCode + ': ' + (p.message || JSON.stringify(p).substring(0, 300))));\n          } else {\n            resolve(p);\n          }\n        } catch {\n          reject(new Error('Bad JSON from Notion: ' + body.substring(0, 200)));\n        }\n      });\n    });\n    req.on('error', reject);\n    req.setTimeout(15000, () => { req.destroy(); reject(new Error('Timeout 15s')); });\n    if (data) req.write(data);\n    req.end();\n  });\n}\n\nfunction getText(p) {\n  if (!p) return '';\n  if (p.type === 'title') return (p.title || []).map(t => t.plain_text).join('');\n  if (p.type === 'rich_text') return (p.rich_text || []).map(t => t.plain_text).join('');\n  if (p.type === 'email') return p.email || '';\n  return '';\n}\nfunction getDate(p) { return p && p.date ? p.date.start : null; }\nfunction getSelect(p) { return p ? (p.select ? p.select.name : (p.status ? p.status.name : null)) : null; }\nfunction getNumber(p) { return p ? p.number : null; }\nfunction getCheckbox(p) { return p ? (p.checkbox || false) : false; }\n\nconst mvpPattern = /^ELAB-[A-Z0-9]{4}-[A-Z0-9]{4}$/i;\n\n// === STEP 1: Leggi input ===\nlet rawInput = null;\nlet body = null;\ntry {\n  rawInput = $input.first().json;\n  body = rawInput.body || rawInput;\n} catch (e) {\n  return [{ json: { valid: false, error: 'INPUT_ERROR: ' + e.message, rawKeys: Object.keys($input.first().json || {}) } }];\n}\n\nconst action = body.action || 'unknown';\nconst code = body.code || '';\nconst sessionId = body.sessionId || body.deviceId || '';\n\n// === DEBUG: mostra cosa abbiamo ricevuto ===\nconst debug = {\n  receivedAction: action,\n  receivedCode: code,\n  receivedSessionId: sessionId,\n  bodyKeys: Object.keys(body),\n  rawInputKeys: Object.keys(rawInput),\n  hasBody: rawInput.body !== undefined,\n  dbId: LICENZE_DB\n};\n\nlet result = { valid: false, error: 'Azione non riconosciuta' };\n\ntry {\n  if (action === 'verify') {\n    if (!code) {\n      result = { valid: false, error: 'Codice licenza mancante', _debug: debug };\n    } else if (!mvpPattern.test(code)) {\n      result = { valid: false, error: 'Formato licenza non valido. Usa ELAB-XXXX-XXXX', _debug: debug };\n    } else {\n      // === STEP 2: Query Notion — SENZA catch silenzioso ===\n      let queryError = null;\n      let found = null;\n      let queryResult = null;\n\n      try {\n        queryResult = await notionReq('POST', '/databases/' + LICENZE_DB + '/query', {\n          filter: { property: 'Codice', rich_text: { equals: code } },\n          page_size: 1\n        });\n        if (queryResult.results && queryResult.results.length > 0) {\n          found = queryResult.results[0];\n        }\n      } catch (e) {\n        queryError = e.message;\n      }\n\n      // === STEP 3: Se query fallita, ritorna errore VISIBILE ===\n      if (queryError) {\n        result = {\n          valid: true,\n          school: 'ELAB Makers',\n          email: '',\n          expiry: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),\n          plan: 'base',\n          maxUsers: 1,\n          sessionId,\n          mvp: true,\n          _queryError: queryError,\n          _debug: debug\n        };\n      } else if (!found) {\n        // Codice non trovato nel DB — MVP fallback\n        result = {\n          valid: true,\n          school: 'ELAB Makers',\n          email: '',\n          expiry: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),\n          plan: 'base',\n          maxUsers: 1,\n          sessionId,\n          mvp: true,\n          _notFound: true,\n          _queryResultCount: (queryResult.results || []).length,\n          _debug: debug\n        };\n      } else {\n        // === STEP 4: Licenza trovata nel DB ===\n        const props = found.properties || {};\n        const propKeys = Object.keys(props);\n        const school = getText(props['Scuola']);\n        const email = getText(props['Email']);\n        const expiry = getDate(props['Scadenza']);\n        const plan = getSelect(props['Piano']) || 'base';\n        const maxUsers = getNumber(props['MaxUtenti']) || 1;\n        const active = getCheckbox(props['Attivo']);\n        const lockedDevice = getText(props['DeviceId']);\n\n        if (expiry && new Date(expiry) < new Date()) {\n          result = { valid: false, error: 'Licenza scaduta', _debug: debug };\n        } else if (props['Attivo'] && !active) {\n          result = { valid: false, error: 'Licenza disattivata', _debug: debug };\n        } else if (lockedDevice && lockedDevice !== sessionId && lockedDevice !== '') {\n          result = { valid: false, error: 'DEVICE_LOCKED', _debug: debug };\n        } else {\n          // Lock device se non ancora lockato\n          if (!lockedDevice || lockedDevice === '') {\n            try {\n              await notionReq('PATCH', '/pages/' + found.id, {\n                properties: { 'DeviceId': { rich_text: [{ text: { content: sessionId } }] } }\n              });\n            } catch (lockErr) {\n              // Non bloccare per errore di lock\n            }\n          }\n          result = {\n            valid: true,\n            school,\n            email,\n            expiry: expiry || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),\n            plan,\n            maxUsers,\n            sessionId,\n            _foundPageId: found.id,\n            _propKeys: propKeys,\n            _debug: debug\n          };\n        }\n      }\n    }\n  } else if (action === 'release') {\n    let releaseError = null;\n    try {\n      const d = await notionReq('POST', '/databases/' + LICENZE_DB + '/query', {\n        filter: { property: 'Codice', rich_text: { equals: code } },\n        page_size: 1\n      });\n      if (d.results && d.results.length > 0) {\n        const page = d.results[0];\n        await notionReq('PATCH', '/pages/' + page.id, {\n          properties: { 'DeviceId': { rich_text: [{ text: { content: '' } }] } }\n        });\n      }\n    } catch (e) {\n      releaseError = e.message;\n    }\n    result = { released: true, _releaseError: releaseError, _debug: debug };\n  } else {\n    result = { valid: false, error: 'Azione non riconosciuta: ' + action, _debug: debug };\n  }\n} catch (error) {\n  result = {\n    valid: false,\n    error: 'UNCAUGHT: ' + error.message,\n    _stack: error.stack ? error.stack.substring(0, 500) : null,\n    _debug: debug\n  };\n}\n\nreturn [{ json: result }];"
+      },
+      "id": "code-license-handler",
+      "name": "License Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook License": {
+      "main": [
+        [
+          {
+            "node": "License Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [{ "name": "ELAB" }, { "name": "License" }],
+  "triggerCount": 0,
+  "pinData": {}
+}

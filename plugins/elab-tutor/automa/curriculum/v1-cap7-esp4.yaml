@@ -1,0 +1,80 @@
+# Curriculum YAML — v1-cap7-esp4
+# "Mescola 2 colori: il viola!"
+
+experiment_id: v1-cap7-esp4
+volume: 1
+chapter: 7
+title: "Mescola 2 colori: il viola!"
+
+prerequisites:
+  - v1-cap7-esp1  # Sa accendere un colore del RGB
+  - v1-cap7-esp3  # Ha provato tutti e 3 i colori
+
+concepts_introduced:
+  - miscelazione_additiva
+  - circuiti_paralleli_base
+
+vocabulary_level: v1-cap7
+allowed_terms:
+  - LED RGB
+  - rosso
+  - verde
+  - blu
+  - viola
+  - bianco
+  - resistenza
+  - ohm
+  - corrente
+  - catodo
+  - breadboard
+  - batteria
+  - filo
+  - pin
+  - colore
+  - mescolare
+  - insieme
+forbidden_terms:
+  - PWM
+  - analogWrite
+  - digitale
+  - Arduino
+  - codice
+  - programma
+  - parallelo  # non ancora
+  - serie  # non ancora
+  - legge di Ohm
+  - condensatore
+
+teacher_briefing:
+  before_class: >
+    Preparazione: servono 2 resistenze 470 ohm (una per il rosso, una per il blu).
+    Obiettivo: scoprire la miscelazione additiva — accendendo rosso + blu insieme
+    si ottiene il viola. Questo e diverso dalla miscelazione dei colori con le tempere!
+  during_class: >
+    PRIMA di collegare, chiedi: "Se mescolate rosso e blu con le tempere, che colore
+    ottenete?" (viola scuro/marrone). "Secondo voi, con la luce sara lo stesso?"
+    POI fai costruire il circuito e accendere. Sorpresa: il viola e luminoso e vivace!
+    "Perche e diverso dalle tempere?" -> luce additiva vs pigmenti sottrattivi.
+  common_question: >
+    "Perche il viola della luce e diverso da quello delle tempere?" -> I colori
+    della luce si sommano (diventano piu chiari), i colori delle tempere si sottraggono
+    (diventano piu scuri). E come la differenza tra accendere due torce insieme vs
+    versare due bicchieri di succo colorato nello stesso bicchiere.
+
+common_mistakes:
+  - mistake: "Usano una sola resistenza per entrambi i pin"
+    what_to_do: "Ogni colore ha bisogno della sua resistenza, come ogni rubinetto ha la sua valvola"
+    analogy: "Come in una doccia — acqua calda e fredda hanno manopole separate"
+  - mistake: "Collegano i pin alla stessa riga del catodo"
+    what_to_do: "Ricorda: il catodo va al negativo, i pin dei colori vanno ciascuno nella propria riga"
+    analogy: null
+
+analogies:
+  miscelazione_additiva:
+    analogy: "Mescolare la luce e come mescolare ingredienti per una ricetta magica — aggiungi rosso e blu e ottieni viola! Ma a differenza delle tempere dove i colori diventano scuri, la luce diventa piu luminosa quando la mescoli."
+    evidence: "Misconception colori additivi vs sottrattivi frequente in 8-12 (Winer & Cottrell 2004)"
+
+assessment_invisible:
+  - "Se lo studente predice correttamente che la luce sara viola -> ha intuito la miscelazione"
+  - "Se nota la differenza con le tempere spontaneamente -> pensiero critico attivo"
+  - "Se chiede 'e se accendo tutti e 3?' -> pronto per esp 5 (bianco)"

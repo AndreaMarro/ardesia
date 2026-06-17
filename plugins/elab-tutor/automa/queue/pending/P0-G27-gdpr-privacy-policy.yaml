@@ -1,0 +1,14 @@
+id: G27-gdpr-privacy-policy
+priority: P0
+title: "G27: GDPR privacy policy + cookie consent for PA compliance"
+description: |
+  MANDATORY for MePa sales. Currently score 1/10.
+  1. Create /privacy-policy page with Italian GDPR text
+  2. Add cookie consent banner (only analytics cookies)
+  3. Document data processing: sessionStorage only, no PII stored
+  4. Add data deletion endpoint or manual process
+  5. Create DPA (Data Processing Agreement) template
+  Deadline: before June 2026 MePa listing
+tags: G27,gdpr,legal,critical
+mode: IMPROVE
+verify: "npm run build"

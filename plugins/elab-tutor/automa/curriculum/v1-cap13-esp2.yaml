@@ -1,0 +1,101 @@
+# Curriculum YAML — v1-cap13-esp2
+# "Circuiti artistici con plastilina"
+
+experiment_id: v1-cap13-esp2
+volume: 1
+chapter: 13
+title: "Circuiti artistici con plastilina"
+
+prerequisites:
+  - v1-cap13-esp1  # Sa fare circuito base con elettropongo
+  - v1-cap6-esp1   # Sa accendere un LED
+
+concepts_introduced:
+  - circuito_creativo
+  - piu_LED_paralleli_intuitivo
+  - arte_elettronica
+  - scultura_interattiva
+
+vocabulary_level: v1-cap13
+allowed_terms:
+  - LED
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - plastilina
+  - elettropongo
+  - conduttore
+  - isolante
+  - forma
+  - scultura
+  - arte
+  - colore
+  - creare
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - elettrolita
+  - ioni
+  - parallelo_formale
+  - legge_Kirchhoff
+  - digitale
+  - analogico
+
+teacher_briefing:
+  before_class: >
+    Preparazione: tanto elettropongo (almeno 2 colori per gruppo), 3-5 LED
+    per gruppo (colori misti), resistenze 220 ohm, batteria 9V, fili.
+    Plastilina isolante (normale, senza sale) per i dettagli decorativi.
+    Obiettivo: arte + elettronica. Lasciate liberta creativa totale!
+  during_class: >
+    "Oggi siete artisti E ingegneri! Create una scultura di elettropongo
+    con LED che si accendono!" Regole: 1) Le parti che portano elettricita
+    devono essere di elettropongo (conduttivo). 2) Le decorazioni possono
+    essere di plastilina normale (isolante). 3) Almeno 2 LED devono
+    accendersi. Idee: mostro con occhi luminosi, casa con finestre LED,
+    fiore con petali colorati, macchina con fari. Tempo: 25-30 minuti.
+    Mostra finale dove ogni gruppo presenta la sua opera!
+  common_question: >
+    "Come metto piu LED?" -> Ogni LED ha bisogno di due palline separate
+    di elettropongo: una collegata al + e una al -. Puoi fare una striscia
+    lunga per il + e una per il -, e piantare i LED in mezzo come alberelli!
+
+common_mistakes:
+  - mistake: "Le zone + e - dell'elettropongo si toccano"
+    what_to_do: "Usare plastilina normale (isolante) come separatore tra le zone conduttive. E anche piu bello esteticamente!"
+    analogy: "La plastilina normale e come un muro che separa le due strade dell'elettricita"
+  - mistake: "I LED sono troppo deboli con tanti LED"
+    what_to_do: "L'elettropongo ha resistenza alta. Con tanti LED, la batteria potrebbe non bastare. Limitare a 3-4 LED o usare pile piu potenti"
+    analogy: null
+  - mistake: "La scultura si rompe e perde i contatti"
+    what_to_do: "Fare le palline/strisce di elettropongo abbastanza grandi e premere bene i LED dentro. Lavorare su un piatto di carta come base"
+    analogy: null
+
+analogies:
+  circuito_creativo:
+    analogy: "State creando arte che si accende! E come gli artisti che fanno installazioni luminose nei musei — ma voi sapete COME funzionano, non e solo bello, e anche scienza!"
+    evidence: "STEAM integration (art + science) aumenta motivazione e retention (Maeda 2013)"
+  arte_elettronica:
+    analogy: "I LED nella plastilina sono come le lucine nell'albero di Natale: rendono bello qualcosa che era gia carino. Ma voi le avete collegate con le vostre mani e il vostro cervello!"
+    evidence: "Ownership del prodotto creativo, aumenta senso di competenza e orgoglio (Csikszentmihalyi 1996)"
+
+assessment_invisible:
+  - "Se la scultura funziona con 2+ LED -> comprensione pratica circuiti"
+  - "Se usano plastilina isolante come separatore consapevolmente -> capiscono conduttore vs isolante"
+  - "Se spiegano perche hanno fatto certe scelte -> metacognizione e comunicazione"
+  - "Se aiutano altri gruppi -> leadership e competenza consolidata"
+  - "Se propongono di aggiungere pulsante o buzzer -> integrazione spontanea dei concetti"

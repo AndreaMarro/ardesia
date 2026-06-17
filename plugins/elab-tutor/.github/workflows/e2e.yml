@@ -1,0 +1,48 @@
+name: E2E Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Smoke-level timeout: il job e2e in CI esegue solo gli spec smoke
+    # (escludendo stress 50-users, 150-real, mega-stress). Full stress
+    # suite deve girare in scheduled/manual workflow dedicato.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Node 22 matches governance-gate/quality-gate to avoid the
+          # optional-native-deps bug when running vitest in this job.
+          node-version: 22
+      - name: Install dependencies
+        run: |
+          rm -rf node_modules package-lock.json && npm install --include=optional
+          # Defense-in-depth: stessa fix di governance/quality per
+          # lightningcss native binary, in caso lo spec e2e importi CSS
+          # che trigger il postcss pipeline (es. test che caricano la app).
+          npm install --no-save --include=optional \
+            lightningcss-linux-x64-gnu \
+            @tailwindcss/oxide-linux-x64-gnu || true
+          npm rebuild lightningcss @tailwindcss/oxide || true
+      - run: npx playwright install chromium --with-deps
+      - name: Unit tests
+        run: npx vitest run
+      - name: E2E tests (smoke only)
+        # Smoke suite only in CI. Stress specs in dedicated workflow.
+        # Integrity fix Day 15 (sett-3): prior "|| echo warning" masked
+        # stale-spec failures (specs 01-10 vs WelcomePage gate 222b630)
+        # and inflated benchmark e2e_pass_rate=1.0 falsely. Failures now
+        # must fail the job. See docs/handoff/2026-04-26-sprint-end.md.
+        run: |
+          npx playwright test \
+            --grep-invert "150-test-reali|stress-6-utenti|mega-stress|ultra-stress|fifty-users-comprehensive"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

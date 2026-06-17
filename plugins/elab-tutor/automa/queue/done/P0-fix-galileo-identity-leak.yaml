@@ -1,0 +1,27 @@
+id: fix-galileo-identity-leak
+priority: P0
+title: "CRITICO: Fix Galileo risponde 'Sono UNLIM' — identity leak"
+description: |
+  Galileo risponde "Sono UNLIM" invece di "Sono Galileo" quando gli chiedono chi sei.
+  Questo confonde insegnanti e studenti. UNLIM e' il nome interno della modalita.
+  Il tutor AI si chiama GALILEO per gli utenti.
+
+  FIX: Cercare in TUTTI i file dove appare "UNLIM" come testo visibile all'utente
+  (non come nome di componente React). Sostituire con "Galileo" nei messaggi di benvenuto,
+  nelle risposte del tutor, e nel nanobot system prompt.
+
+  File da controllare:
+  - automa/nanobot/nanobot.yml (system prompt)
+  - src/components/unlim/UnlimWrapper.jsx (welcome message)
+  - src/components/unlim/UnlimOverlay.jsx (messaggi)
+  - src/components/tutor/ElabTutorV4.jsx (identita)
+success_criteria: |
+  grep -rni "sono unlim" src/ | wc -l deve dare 0
+  Il nanobot deve rispondere "Sono Galileo" a "chi sei?"
+plan:
+  - "Step 1: grep -rni 'sono unlim' src/ e nanobot/"
+  - "Step 2: Sostituire con 'Sono Galileo' nei messaggi utente"
+  - "Step 3: NON rinominare componenti React (UnlimWrapper resta)"
+  - "Step 4: Verificare con curl al nanobot: chi sei?"
+  - "Step 5: npm run build"
+tags: bug,critico,identita,principio-zero

@@ -1,0 +1,74 @@
+# Curriculum YAML — v2-cap10-esp3
+# "Motore con pulsante"
+
+experiment_id: v2-cap10-esp3
+volume: 2
+chapter: 10
+title: "Motore con pulsante"
+
+prerequisites:
+  - v2-cap10-esp2
+
+concepts_introduced:
+  - controllo_manuale_motore
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - corrente
+  - tensione
+  - volt
+  - motore
+  - pulsante
+  - interruttore
+  - rotazione
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 motore DC, 1 pulsante (pushbutton), 1 batteria
+    (pile AA consigliate), fili. Il pulsante va in serie con il motore. Obiettivo:
+    controllare il motore con un pulsante — primi, premi, gira. Rilasci, si ferma.
+  during_class: >
+    Collega pulsante in serie con il motore e la batteria. Premi il pulsante —
+    il motore gira. Rilascia — si ferma. "Avete costruito un controllo manuale!
+    Come funziona il trapano del papa'?" Stesso principio: premi il grilletto,
+    il motore gira. Rilasci, si ferma. Ora provate: e' possibile farlo girare
+    piano premendo poco il pulsante? (No, il pulsante e' on/off).
+  common_question: >
+    "Posso far andare il motore piu' piano?" -> Con questo pulsante no — e' tutto
+    o niente. Per controllare la velocita' serve qualcosa di diverso, come un
+    potenziometro o un MOSFET.
+
+common_mistakes:
+  - mistake: "Pulsante che non fa contatto — motore non parte"
+    what_to_do: "Controlla che i pin del pulsante siano nelle righe giuste della breadboard. I 4 pin formano una H."
+    analogy: null
+  - mistake: "Motore che gira anche senza premere il pulsante"
+    what_to_do: "Il pulsante e' in cortocircuito. Controlla che i fili non bypassino il pulsante."
+    analogy: "Come una porta che resta aperta — non serve piu' la chiave"
+
+analogies:
+  controllo_manuale_motore:
+    analogy: "Il pulsante che controlla il motore funziona come il campanello di casa — premi, suona. Rilasci, smette. E' il controllo piu' semplice: on e off."
+    evidence: "Analogia interruttore domestico per controllo binario (Cosgrove 1995)"
+
+assessment_invisible:
+  - "Se lo studente dice 'il pulsante apre e chiude il circuito' -> ha capito il principio"
+  - "Se prova a tenere premuto a meta' e nota che non funziona -> scoperta on/off"
+  - "Se propone di usare il MOSFET o potenziometro per la velocita' -> collegamento con cap 8"

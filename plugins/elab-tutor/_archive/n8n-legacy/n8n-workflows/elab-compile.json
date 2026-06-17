@@ -1,0 +1,52 @@
+{
+  "name": "ELAB Compile Service",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "elab-compile",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-compile",
+      "name": "Webhook Compile",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "elab-compile"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ============================================\n// ELAB Compile Service — Arduino Code Compiler\n// Riceve { code, board } e compila via arduino-cli\n// Fallback n8n per quando il compile-server standalone è offline\n// © Andrea Marro — 19/02/2026\n// ============================================\n\nconst { execFileSync } = require('child_process');\nconst fs = require('fs');\nconst path = require('path');\nconst os = require('os');\nconst crypto = require('crypto');\n\nconst body = $input.first().json.body;\nconst code = body.code;\nconst board = body.board || 'arduino:avr:nano:cpu=atmega328old';\n\nif (!code || typeof code !== 'string' || code.trim().length === 0) {\n  return [{ json: { success: false, hex: null, errors: 'Codice mancante o vuoto', output: null } }];\n}\n\nconst ALLOWED = new Set(['arduino:avr:nano:cpu=atmega328old', 'arduino:avr:uno']);\nif (!ALLOWED.has(board)) {\n  return [{ json: { success: false, hex: null, errors: 'Board non supportata: ' + board, output: null } }];\n}\n\nconst tmpId = crypto.randomBytes(8).toString('hex');\nconst tmpDir = path.join(os.tmpdir(), 'elab-compile-' + tmpId);\nconst sketchDir = path.join(tmpDir, 'sketch');\n\ntry {\n  fs.mkdirSync(sketchDir, { recursive: true });\n  fs.writeFileSync(path.join(sketchDir, 'sketch.ino'), code, 'utf8');\n\n  const buildDir = path.join(tmpDir, 'build');\n  fs.mkdirSync(buildDir, { recursive: true });\n\n  let stdout = '';\n  try {\n    stdout = execFileSync('arduino-cli', [\n      'compile', '--fqbn', board, '--output-dir', buildDir, '--warnings', 'default', sketchDir\n    ], { timeout: 60000, encoding: 'utf8', maxBuffer: 5 * 1024 * 1024 });\n  } catch (compileError) {\n    const stderr = compileError.stderr || '';\n    const errOut = compileError.stdout || '';\n    const clean = (stderr + '\\n' + errOut)\n      .replace(new RegExp(sketchDir.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'g'), 'sketch')\n      .replace(new RegExp(tmpDir.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'g'), '.')\n      .trim();\n    return [{ json: { success: false, hex: null, errors: clean || 'Errore di compilazione', output: errOut.trim() || null } }];\n  }\n\n  let hex = null;\n  const hexFile = path.join(buildDir, 'sketch.ino.hex');\n  const altHex = path.join(buildDir, 'sketch.ino.with_bootloader.hex');\n  if (fs.existsSync(hexFile)) hex = fs.readFileSync(hexFile, 'utf8');\n  else if (fs.existsSync(altHex)) hex = fs.readFileSync(altHex, 'utf8');\n\n  const cleanOut = stdout\n    .replace(new RegExp(sketchDir.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'g'), 'sketch')\n    .replace(new RegExp(tmpDir.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'g'), '.')\n    .trim();\n\n  return [{ json: { success: true, hex: hex, errors: null, output: cleanOut || 'Compilazione completata' } }];\n\n} catch (error) {\n  return [{ json: { success: false, hex: null, errors: 'Errore interno: ' + error.message, output: null } }];\n} finally {\n  try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch {}\n}"
+      },
+      "id": "code-compile-handler",
+      "name": "Compile Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Compile": {
+      "main": [
+        [
+          {
+            "node": "Compile Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [{ "name": "ELAB" }, { "name": "Compile" }],
+  "triggerCount": 0,
+  "pinData": {}
+}

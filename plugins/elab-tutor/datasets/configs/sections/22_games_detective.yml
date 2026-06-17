@@ -1,0 +1,100 @@
+id: games_detective
+name: Gioco Detective — Trova il Guasto
+intent: tutor
+needs_llm: true
+templates:
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions:
+  - '[AZIONE:diagnose]'
+  entities: []
+  vars:
+    frase:
+    - giochiamo a detective
+    - facciamo il gioco del detective
+    - voglio trovare il guasto
+    - trova il guasto
+    - gioco trova l'errore
+    - facciamo detective
+    - giochiamo a trova il guasto
+    - detective mode
+    - modalita' detective
+    - voglio fare il detective
+    - trova l'errore nel circuito
+    - cos'e' rotto?
+    - cerca il guasto
+    - c'e' un errore, trovalo
+    - che cos'ha che non va?
+    - perche' non funziona? aiutami a trovare l'errore
+    - 'facciamo un gioco: trova il problema'
+    - detective del circuito
+    - investigiamo il circuito
+    - mi aiuti a trovare cosa non va?
+    - qualcosa non funziona, giochiamo a detective
+    - il circuito ha un bug
+    - debugging!
+    - facciamo il debug
+    - scova il guasto
+    - il detective dei circuiti
+    hint:
+    - 'Gioco Detective: guida lo studente a trovare il guasto con domande. Non dare
+      subito la soluzione.'
+    - 'Detective: fai notare i sintomi (LED spento, buzzer silenzioso) e chiedi cosa
+      potrebbe causarli.'
+    - 'Troubleshooting guidato. Usa il metodo scientifico: osserva, ipotizza, verifica.'
+    - Gioco a indizi. Dai un indizio alla volta. Festeggia quando lo studente trova
+      l'errore.
+    - 'Detective mode. Analizza il circuito e dai indizi progressivi: ''Guarda i fili...'',
+      ''Controlla la polarita''...'''
+    - 'Trova il guasto. Checklist: alimentazione OK? Fili collegati? Polarita'' corretta?
+      Codice caricato?'
+    - Investigazione circuito. Parti dal sintomo, risali alla causa. Lo studente deve
+      ragionare, non te.
+- input: '{frase}'
+  llm_hint: '{hint}'
+  actions:
+  - '[AZIONE:diagnose]'
+  entities:
+  - '{comp}'
+  vars:
+    frase:
+    - il {comp_nome} non funziona, facciamo detective
+    - perche' {comp_nome} non si accende? trova l'errore
+    - il {comp_nome} non fa niente, aiutami a capire
+    - 'detective: {comp_nome} e'' rotto?'
+    - 'trovala: cosa c''e'' di sbagliato con {comp_nome}?'
+    - il {comp_nome} sembra morto
+    comp_nome:
+    - il LED
+    - la resistenza
+    - il buzzer
+    - il motore
+    - il servo
+    - il display
+    - il pulsante
+    - il potenziometro
+    - il fotoresistore
+    - il fototransistor
+    comp:
+    - led
+    - resistor
+    - buzzer-piezo
+    - motor-dc
+    - servo
+    - lcd16x2
+    - push-button
+    - potentiometer
+    - photo-resistor
+    - phototransistor
+    hint:
+    - 'Detective con componente specifico. Verifica: collegamento corretto? Pin giusti?
+      Polarita''?'
+    - 'Troubleshooting componente. Guida domande: ''E'' collegato al pin giusto?'',
+      ''C''e'' la resistenza?'''
+    - Gioco detective per componente. Controlla alimentazione, GND, pin, codice.
+    - Debug componente. Non dare la soluzione subito — fai ragionare lo studente.
+corruptions:
+  typo_swap: 0.25
+  emoji: 0.15
+  filler: 0.1
+  voice: 0.1

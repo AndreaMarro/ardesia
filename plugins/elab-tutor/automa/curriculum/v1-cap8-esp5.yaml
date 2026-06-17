@@ -1,0 +1,81 @@
+# Curriculum YAML — v1-cap8-esp5
+# "Mix avanzato con resistori diversi"
+
+experiment_id: v1-cap8-esp5
+volume: 1
+chapter: 8
+title: "Mix avanzato con resistori diversi"
+
+prerequisites:
+  - v1-cap8-esp4  # Sa usare 3 pulsanti con RGB
+  - v1-cap8-esp2  # Sa che resistori diversi cambiano luminosita
+
+concepts_introduced:
+  - intensita_per_canale
+  - sfumature_intermedie
+  - arancione_rosa_ciano_chiaro
+
+vocabulary_level: v1-cap8
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - breadboard
+  - pulsante
+  - colore
+  - sfumatura
+  - intensita
+  - piu forte
+  - piu debole
+  - mescolare
+  - arancione
+  - rosa
+  - combinazione
+forbidden_terms:
+  - potenziometro
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - PWM
+  - duty cycle
+  - fotoresistenza
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, resistori assortiti (220, 470, 1K, 2.2K, 4.7K ohm),
+    3 pulsanti, breadboard, batteria. Obiettivo: scoprire che cambiando i resistori
+    si ottengono sfumature diverse, non solo i 7 colori base.
+  during_class: >
+    "Nell'esperimento 4 avevate solo 7 colori. Ma nella realta i colori sono infiniti!
+    Come facciamo?" Sfida aperta: "Provate a creare l'arancione." (suggerimento: rosso
+    forte + verde debole = resistenza bassa sul rosso, alta sul verde). Lascia che
+    sperimentino liberamente.
+  common_question: >
+    "Come faccio l'arancione?" -> L'arancione e rosso forte + un po' di verde.
+    Metti una resistenza piccola (220 ohm) sul rosso e una grande (2.2K) sul verde.
+    Il rosso domina, il verde aggiunge solo una sfumatura.
+
+common_mistakes:
+  - mistake: "Non vedono differenza tra sfumature"
+    what_to_do: "Stanza buia + LED vicino a superficie bianca. Le sfumature si vedono meglio"
+    analogy: null
+  - mistake: "Frustrazione per non ottenere il colore desiderato"
+    what_to_do: "Normale! E una sfida aperta. 'Nella realta i designer digitali fanno esattamente questo'"
+    analogy: null
+
+analogies:
+  intensita_per_canale:
+    analogy: "E come mescolare succhi di frutta: se metti tanto succo di fragola e poco di limone, viene rosato. Se metti uguali, viene un mix equilibrato. La resistenza e il 'dosatore' di ogni colore."
+    evidence: "Analogia proporzionale per mixing RGB (Mayer multimedia learning 2001)"
+
+assessment_invisible:
+  - "Se lo studente dice 'serve un modo per regolare senza cambiare resistore' -> intuizione del potenziometro (cap 9!)"
+  - "Se crea una tabella colori/resistenze -> pensiero scientifico sistematico"
+  - "Se collabora con altri per confrontare risultati -> apprendimento sociale"

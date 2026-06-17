@@ -1,0 +1,68 @@
+{
+  "cycle": 10,
+  "timestamp": "2026-03-25T09:25:27.032104",
+  "date": "2026-03-25",
+  "mode": "EVOLVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 626
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 27.46s",
+      "time_ms": 31950
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 156856
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=68 (target \u226560) [3 samples]",
+      "time_ms": 65476
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4793
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2393
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "EVOLVE ciclo 10 \u2014 analisi e piano",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": false,
+    "severity": "medium",
+    "evidence": "hypothesis \u2014 fix identificati, in attesa permessi scrittura"
+  },
+  "research": "DeepSeek: **Problemi per ELAB Tutor:**\n1. **Ricompense superficiali:** I badge e i punti possono motivare superficialmente, distogliendo l'attenzione dalla comprensione profonda dei concetti STEM.\n2. **Progettazione complessa:** Gli insegnanti faticano a integrare meccaniche di gioco significative e allineate agli obiettivi curriculari, rischiando attivit\u00e0 sconnesse.\n\n**Soluzione:** Implementare \"missioni\" ",
+  "ai_scoring": "DeepSeek scoring: SCORE:9\nMOTIVO:Spiegazione molto chiara e coinvolgente con esempi concreti (gambine, lampadina), terminologia corretta ma semplificata, tono incoraggiante e positivo. Manca solo un breve accenno alla \nGemini market: [ERROR] Gemini: HTTP 503",
+  "composite_score": 0.8872,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

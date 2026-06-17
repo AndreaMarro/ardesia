@@ -1,0 +1,81 @@
+# Curriculum YAML — v2-cap7-esp1
+# "Scarica condensatore + multimetro"
+
+experiment_id: v2-cap7-esp1
+volume: 2
+chapter: 7
+title: "Scarica condensatore + multimetro"
+
+prerequisites:
+  - v2-cap6-esp4
+
+concepts_introduced:
+  - condensatore
+  - carica
+  - scarica
+  - tempo
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - condensatore
+  - carica
+  - scarica
+  - multimetro
+  - breadboard
+  - tempo
+  - secondi
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 condensatore elettrolitico 1000uF, 1 resistore
+    10k ohm, 1 multimetro, 1 batteria 9V, fili. Carica il condensatore PRIMA
+    della lezione collegandolo alla batteria per 10 secondi. Poi stacca la batteria.
+  during_class: >
+    Collega il multimetro al condensatore carico (senza batteria). "Quanto segna?"
+    Circa 9V. Ora collega il resistore ai capi del condensatore. "Guardate il numero
+    che scende!" Chiedi: "Dove sta andando l'energia?" Il condensatore si sta
+    svuotando attraverso il resistore.
+  common_question: >
+    "Perche' il numero scende piano piano e non di colpo?" -> Il resistore rallenta
+    la scarica. E' come svuotare una vasca: se il buco e' piccolo, l'acqua esce piano.
+
+common_mistakes:
+  - mistake: "Collegare il condensatore al contrario (polarita' invertita)"
+    what_to_do: "Il condensatore elettrolitico ha un + e un -. Mostra la striscia con il meno sul corpo."
+    analogy: "Come la batteria — ha un verso giusto"
+  - mistake: "Non aspettare abbastanza per vedere la scarica"
+    what_to_do: "Con 1000uF e 10k ohm, ci vogliono circa 10 secondi per scendere visibilmente. Pazienza!"
+    analogy: null
+
+analogies:
+  condensatore:
+    analogy: "Il condensatore e' come una bottiglia d'acqua — puoi riempirla (carica) e poi svuotarla (scarica). Piu' grande e' la bottiglia, piu' acqua contiene."
+    evidence: "Analogia idraulica per capacita', validata in contesto educativo (Stocklmayer & Treagust 1996)"
+  scarica:
+    analogy: "La scarica del condensatore e' come un palloncino che si sgonfia — all'inizio l'aria esce forte, poi sempre piu' piano, fino a fermarsi."
+    evidence: "Analogia esponenziale per scarica RC, efficace per studenti 10-14 (Borges & Gilbert 1999)"
+
+assessment_invisible:
+  - "Se lo studente dice 'il condensatore si sta svuotando' -> ha capito il concetto di scarica"
+  - "Se nota che la tensione scende sempre piu' lentamente -> intuizione curva esponenziale"
+  - "Se chiede 'quanto tempo ci vuole a svuotarsi del tutto?' -> pronto per costante RC"

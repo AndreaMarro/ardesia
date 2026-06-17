@@ -1,0 +1,1000 @@
+{
+  "id": "v2-cap10",
+  "volume": 2,
+  "capitolo": 10,
+  "type": "experiment",
+  "titolo": "Il motore a corrente continua",
+  "titolo_classe": "Il motore a corrente continua",
+  "pageStart": 93,
+  "pageEnd": 97,
+  "theory": {
+    "testo_classe": "Il motore a corrente continua.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v2-cap10-esp1",
+      "num": 1,
+      "title_classe": "Far Girare il Motore",
+      "title_docente": "Far Girare il Motore",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 97,
+        "fig_refs": []
+      },
+      "duration_minutes": 20,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Motore DC",
+          "quantity": 1,
+          "icon": "⚙️"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "motor-dc",
+              "id": "mot1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Alzate la mano chi ha in casa un ventilatore, un frullatore o un drone! Tutti hanno un motore dentro. Oggi faremo girare il nostro!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi facciamo girare un motore! Il motore DC trasforma l'energia elettrica in movimento. È lo stesso principio dei ventilatori, dei droni e dei frullatori!",
+            "spunto_per_classe": null,
+            "note": [
+              "Porta in classe (o mostra) un oggetto con motore DC: un piccolo ventilatore, un drone giocattolo. Chiedi: 'Quante cose in casa hanno un motore?' Poi spiega: 'Oggi useremo la batteria per far girare il nostro primo motore.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito è semplicissimo: polo + della batteria al terminale + del motore, polo - al terminale - del motore. La corrente scorre e il motore gira!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione il motore: 'Ha solo 2 fili. Il + va al + della batteria, il - al - della batteria. Più semplice di così non si può!' Poi spiega che dentro ci sono magneti e bobine di filo che, con la corrente, creano un campo magnetico che fa girare l'asse."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap10-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il motore gira! Ma cosa succederebbe se invertissimo i fili? E da cosa dipende la velocità di rotazione?",
+            "spunto_per_classe": "Domanda: 'Cosa succede se inverto i fili della batteria sul motore? Il motore si ferma, gira più veloce, o gira nella direzione opposta? Perché?'",
+            "note": [
+              "Stimola la curiosità: 'Se mettessi il filo rosso dove c'è il nero e viceversa, cosa succederebbe?' Lascia che gli studenti facciano ipotesi. Anticipa l'esperimento 2!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il motore non gira",
+                "soluzione_neutra": "Controllo che entrambi i fili siano collegati: + della batteria al + del motore, - della batteria al - del motore. Se un filo è staccato, il circuito è aperto e la corrente non passa!"
+              },
+              {
+                "problema": "Il motore vibra ma non gira davvero",
+                "soluzione_neutra": "Nel simulatore, assicurati di aver premuto Play! Il motore nel simulatore gira quando il circuito è chiuso e la simulazione è attiva."
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il motore gira! La batteria fornisce energia elettrica, che percorre il circuito e arriva al motore. Dentro il motore, la corrente crea un campo magnetico che fa girare l'asse. Energia elettrica → energia meccanica!",
+            "analogies": [
+              {
+                "concept": "conversione_energia",
+                "text": "Il motore è come un traduttore: prende il 'linguaggio' dell'elettricità (corrente) e lo trasforma nel 'linguaggio' del movimento. È la stessa magia dentro un drone, un frullatore o una lavatrice!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              },
+              {
+                "concept": "flusso_corrente",
+                "text": "La corrente che entra nel motore è come l'acqua che fa girare un mulino ad acqua: l'acqua scorre, il mulino gira. La corrente scorre, il motore gira. Togli l'acqua (o la corrente) e tutto si ferma!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e guarda l'asse del motore che gira! L'energia elettrica della batteria diventa movimento rotatorio.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il motore durante la simulazione. Fai notare la direzione di rotazione: 'Vedete in che direzione gira? Segnatevela, perché nel prossimo esperimento la cambieremo!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mot1]",
+            "[AZIONE:highlight:bat1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il motore DC converte energia elettrica in energia meccanica (movimento rotatorio). Con la batteria collegata in modo diretto, il motore gira. La direzione dipende dalla polarità dei fili!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Bravi! Avete collegato il vostro primo motore DC. Con soli 2 fili avete trasformato l'elettricità in movimento!",
+            "spunto_per_classe": null,
+            "note": [
+              "Recap veloce: 'Il motore DC ha 2 terminali: + e -. La corrente entra dal +, percorre le bobine e crea un campo magnetico che fa girare l'asse. La direzione dipende dalla polarità.' Anticipa: 'Nel prossimo esperimento, invertiamo i fili e vediamo cosa succede!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega che il motore trasforma energia elettrica in meccanica → comprensione della conversione",
+        "Se prevede correttamente cosa succede invertendo i fili → anticipazione del concetto di polarità",
+        "Se collega il motore a oggetti di uso quotidiano → transfer al mondo reale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "motore_DC",
+          "collegamento_diretto",
+          "conversione_energia",
+          "polarita"
+        ],
+        "next_suggested": "v2-cap10-esp2",
+        "resume_message": "Avete fatto girare il primo motore DC! Ora scoprirete come invertire la direzione di rotazione."
+      }
+    },
+    {
+      "id": "v2-cap10-esp2",
+      "num": 2,
+      "title_classe": "Invertire la Rotazione",
+      "title_docente": "Invertire la Rotazione",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 97,
+        "fig_refs": []
+      },
+      "duration_minutes": 20,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Motore DC",
+          "quantity": 1,
+          "icon": "⚙️"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap10-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "motor-dc",
+                      "id": "mot1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:a10",
+                      "to": "bb1:bus-top-minus-10",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Ricordate in che direzione girava il motore nell'esperimento 1? Segnate mentalmente il verso. Ora indovinate: cosa succede se inverto i fili?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Nell'esperimento precedente il motore girava in un verso. Oggi invertiamo i fili e vediamo cosa succede! La polarità è tutto.",
+            "spunto_per_classe": null,
+            "note": [
+              "Ricorda: 'Nell'esperimento 1 il filo rosso andava al + del motore. Oggi facciamo il contrario: il filo rosso va al - del motore. Cosa cambierà?' Lascia che gli studenti facciano la loro previsione."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito è uguale all'esperimento 1, ma i fili del motore sono invertiti! Il + della batteria va al - del motore e viceversa.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione la differenza rispetto all'esperimento precedente: 'Vedete? Tutto uguale, tranne che i due fili del motore sono scambiati. Il + ora va dove andava il -, e il - dove andava il +.' Fai notare che la batteria non è cambiata."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap10-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il motore gira al contrario! Perché invertire i fili cambia la direzione? Cosa succede dentro il motore?",
+            "spunto_per_classe": "Domanda: 'Se invertire i fili fa girare il motore al contrario, come possiamo costruire un robot che possa andare sia avanti che indietro? Di cosa avremmo bisogno nel circuito?'",
+            "note": [
+              "Domanda: 'Perché pensate che il motore giri nella direzione opposta?' Guida la riflessione verso il concetto di campo magnetico invertito: 'Se la corrente scorre nell'altra direzione nelle bobine, il campo magnetico si inverte, e il motore gira al contrario.'"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il motore non sembra girare in direzione diversa dall'esperimento 1",
+                "soluzione_neutra": "Osservazione con attenzione il simbolo di rotazione nel simulatore. Confronta i due esperimenti aprendo uno dopo l'altro: la freccia di rotazione punta in direzioni opposte!"
+              },
+              {
+                "problema": "Gli studenti confondono quale filo è invertito",
+                "soluzione_neutra": "Nell'esp. 1: rosso → terminale + del motore. Nell'esp. 2: rosso → terminale - del motore. Basta scambiare i due fili che vanno al motore, non quelli della batteria!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il motore gira in direzione OPPOSTA rispetto all'esperimento 1! I fili sono invertiti: la corrente scorre nella direzione contraria dentro le bobine del motore. Il campo magnetico si inverte e l'asse ruota nell'altra direzione.",
+            "analogies": [
+              {
+                "concept": "inversione_polarita",
+                "text": "È come invertire il flusso dell'acqua in un mulino ad acqua: se fai scorrere l'acqua dall'altra parte, le pale girano al contrario. Nel motore, la corrente è l'acqua: cambia direzione, il motore gira al contrario!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              },
+              {
+                "concept": "applicazione_reale",
+                "text": "Le automobili elettriche usano questo principio per la retromarcia: cambiano la polarità del motore elettrico e le ruote girano al contrario. Non serve un cambio meccanico come nelle auto a benzina — basta invertire la corrente!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play e confronta la rotazione con l'esperimento 1. Stessa batteria, stessi fili, ma motore invertito!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia i fili di collegamento al motore e mostra come sono invertiti. Se possibile, apri l'esperimento 1 e l'esperimento 2 in sequenza per far vedere la differenza di rotazione."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:mot1]",
+            "[AZIONE:highlight:bat1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La polarità dei fili determina la direzione di rotazione del motore DC. Invertendo + e -, la corrente scorre al contrario nelle bobine, il campo magnetico si inverte e il motore gira nell'altra direzione. Stesso principio delle auto elettriche in retromarcia!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Perfetto! Avete scoperto che la polarità determina la direzione di rotazione. Invertite i fili, invertite il moto!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riassumi: 'Il motore DC ha una proprietà straordinaria: basta invertire + e - per far girare l'asse nell'altra direzione. Nelle auto elettriche, nei robot e nei droni si usa questo trucco per andare avanti e indietro!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega che la direzione della corrente nelle bobine determina il verso di rotazione → comprensione del meccanismo",
+        "Se collega l'inversione alle auto elettriche o ai robot → transfer al mondo reale",
+        "Se prevede correttamente cosa succede con una nuova configurazione di fili → pensiero logico applicato"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "inversione_polarita",
+          "inversione_rotazione",
+          "campo_magnetico_invertito"
+        ],
+        "next_suggested": "v2-cap10-esp3",
+        "resume_message": "Avete scoperto come invertire la rotazione del motore DC! Ora aggiungerete un pulsante per controllarlo."
+      }
+    },
+    {
+      "id": "v2-cap10-esp3",
+      "num": 3,
+      "title_classe": "Motore con Pulsante",
+      "title_docente": "Motore con Pulsante",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 97,
+        "fig_refs": []
+      },
+      "duration_minutes": 20,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Motore DC",
+          "quantity": 1,
+          "icon": "⚙️"
+        },
+        {
+          "name": "Pulsante (push button)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 5,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap10-esp2",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "push-button",
+                      "id": "btn1"
+                    },
+                    {
+                      "type": "motor-dc",
+                      "id": "mot1"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:c7",
+                      "to": "bb1:c10",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:g10",
+                      "to": "mot1:positive",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "mot1:negative",
+                      "to": "bb1:bus-top-minus-12",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Come fate a controllare le luci di casa? Con un interruttore! Oggi aggiungiamo un interruttore al nostro motore: premi e gira, rilascia e si ferma!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Finora il motore girava sempre non appena collegavamo la batteria. E se volessimo controllare quando gira? Aggiungiamo un pulsante!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione fisicamente un pulsante (se disponibile). Spiega: 'Un pulsante è un interruttore momentaneo: finché lo tieni premuto il circuito è chiuso, quando lo rilasci il circuito si apre e la corrente si blocca.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il pulsante è in serie con il motore: la corrente deve passare attraverso il pulsante prima di arrivare al motore. Se il pulsante è aperto, niente corrente, niente rotazione!",
+            "spunto_per_classe": null,
+            "note": [
+              "Illustra il percorso della corrente: batteria → bus + → pulsante → motore → bus - → batteria. Il pulsante è il 'cancello' del circuito: aperto = niente corrente; chiuso = corrente passa."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap10-esp3]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il motore gira solo quando premi il pulsante. Cosa succede dentro il circuito quando premi? E quando rilasci?",
+            "spunto_per_classe": "Domanda: 'Se il pulsante è come un cancello nel percorso della corrente, cosa succederebbe se mettessimo DUE pulsanti in serie? Dovremmo premere entrambi per far girare il motore?'",
+            "note": [
+              "Domanda: agli studenti di descrivere il percorso della corrente sia quando il pulsante è premuto che quando è rilasciato. Usa la metafora del cancello: 'Il pulsante apre e chiude un cancello nel percorso della corrente.'"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il motore gira sempre, anche senza premere il pulsante",
+                "soluzione_neutra": "Controllo che il pulsante sia davvero in serie con il motore, non in parallelo. Se lo hai collegato in parallelo, bypassa il circuito e il motore riceve sempre corrente!"
+              },
+              {
+                "problema": "Il motore non gira neanche premendo il pulsante",
+                "soluzione_neutra": "Controllo i fili: il filo dal bus + deve arrivare a un pin del pulsante, e l'altro pin del pulsante deve essere collegato al motore. Se c'è un filo mancante, il circuito non si chiude!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Con il pulsante rilasciato: circuito aperto, niente corrente, motore fermo. Con il pulsante premuto: circuito chiuso, corrente scorre, motore gira! Il pulsante è l'interruttore manuale del circuito.",
+            "analogies": [
+              {
+                "concept": "circuito_aperto_chiuso",
+                "text": "Il pulsante è come un cancello sul sentiero della corrente elettrica. Quando il cancello è chiuso (pulsante premuto), la corrente passa e il motore gira. Quando il cancello è aperto (pulsante rilasciato), la corrente non può passare e il motore si ferma!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              },
+              {
+                "concept": "controllo_manuale",
+                "text": "È esattamente come il campanello della porta di casa: premi il pulsante e il campanello suona, rilasci e tace. Il tuo dito controlla il circuito! Oggi il tuo dito controlla il motore.",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play, poi clicca il pulsante nel simulatore: il motore si avvia! Rilascia il pulsante: si ferma.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il pulsante e il motore. Mostra la differenza tra circuito aperto (pulsante non premuto) e circuito chiuso (pulsante premuto). Chiedi agli studenti di descrivere cosa succede."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:mot1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Un pulsante in serie al motore crea un controllo manuale: premi per avviare, rilascia per fermare. Quando il pulsante è premuto il circuito è chiuso e la corrente scorre. Quando è rilasciato il circuito si apre e il motore si ferma.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ottimo! Con un semplice pulsante avete aggiunto il controllo manuale al motore. Questo è il principio degli interruttori di casa!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riassumi: 'Il pulsante mette un interruttore in serie nel circuito. Premuto = circuito chiuso = motore gira. Rilasciato = circuito aperto = motore fermo.' Anticipa: 'Nel prossimo esperimento aggiungiamo anche un LED che si accende insieme al motore come spia di funzionamento!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se descrive correttamente il percorso della corrente con pulsante premuto → comprensione del circuito in serie",
+        "Se spiega la differenza tra circuito aperto e chiuso → comprensione del concetto fondamentale",
+        "Se propone applicazioni reali del pulsante-interruttore → transfer al mondo reale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "pulsante_interruttore",
+          "circuito_aperto_chiuso",
+          "controllo_manuale_motore",
+          "serie"
+        ],
+        "next_suggested": "v2-cap10-esp4",
+        "resume_message": "Avete aggiunto il controllo manuale al motore con un pulsante! Ora aggiungerete anche un LED indicatore."
+      }
+    },
+    {
+      "id": "v2-cap10-esp4",
+      "num": 4,
+      "title_classe": "Motore + Pulsante + LED Indicatore",
+      "title_docente": "Motore + Pulsante + LED Indicatore",
+      "volume_ref": {
+        "page_start": 93,
+        "page_end": 97,
+        "fig_refs": []
+      },
+      "duration_minutes": 25,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Motore DC",
+          "quantity": 1,
+          "icon": "⚙️"
+        },
+        {
+          "name": "Pulsante (push button)",
+          "quantity": 1,
+          "icon": "🔘"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED verde",
+          "quantity": 1,
+          "icon": "💚"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 7,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap10-esp3",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "push-button",
+                      "id": "btn1"
+                    },
+                    {
+                      "type": "motor-dc",
+                      "id": "mot1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:g12",
+                      "to": "mot1:positive",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "mot1:negative",
+                      "to": "bb1:bus-top-minus-12",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:g12",
+                      "to": "bb1:a16",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a24",
+                      "to": "bb1:bus-top-minus-24",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete mai notato le spie sul cruscotto dell'auto? Una si accende quando il motore è acceso. Oggi costruiamo la nostra spia luminosa per il motore!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Nell'esperimento precedente il motore girava con il pulsante. Come facciamo a sapere se il motore sta davvero girando senza guardarlo? Aggiungiamo una spia luminosa: il LED!",
+            "spunto_per_classe": null,
+            "note": [
+              "Porta l'analogia della cruscotto dell'auto: 'Nell'auto ci sono spie luminose che vi dicono cosa sta succedendo al motore. Oggi costruiamo la nostra spia!' Mostra il LED verde che userete."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED e il motore sono collegati in parallelo dopo il pulsante. Quando premi, entrambi ricevono tensione: il motore gira E il LED si accende contemporaneamente!",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione il parallelo con semplicità: 'In parallelo, ogni componente ha il suo percorso diretto verso la batteria. La tensione è la stessa per tutti, ma la corrente si divide.' Il resistore da 470Ω è necessario per proteggere il LED (il motore non ne ha bisogno perché ha la sua resistenza interna)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap10-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED e il motore si accendono insieme. Come mai il LED riceve abbastanza corrente se deve condividerla con il motore?",
+            "spunto_per_classe": "Domanda: 'Il LED e il motore sono collegati in parallelo. Se togliessi il LED dal circuito, il motore girerebbe più forte perché riceverebbe tutta la corrente? O no? Perché?'",
+            "note": [
+              "Guida la discussione sul parallelo: 'In parallelo, ogni componente ha il suo ramo separato. Il LED prende la sua corrente dal suo ramo, il motore dal suo. Non si rubano la corrente a vicenda!'"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED è molto fioco rispetto a quando è collegato da solo",
+                "soluzione_neutra": "Con la batteria a 9V condivisa con il motore, il LED potrebbe sembrare meno luminoso perché il motore 'assorbe' molta corrente. Questo è normale in parallelo con un componente ad alto consumo come il motore!"
+              },
+              {
+                "problema": "Il LED non si accende affatto",
+                "soluzione_neutra": "Controllo che il filo di collegamento dal punto comune del pulsante vada sia al motore che al resistore del LED. Se manca questo filo di raccordo, il ramo del LED è aperto!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Premendo il pulsante: il motore gira E il LED verde si accende contemporaneamente! Sono in parallelo: ricevono la stessa tensione ma la corrente si divide tra i due rami. Il LED funziona come spia: acceso = motore in funzione!",
+            "analogies": [
+              {
+                "concept": "parallelo_visivo",
+                "text": "Il LED e il motore sono come due strade parallele che partono dallo stesso incrocio (il pulsante): ogni componente ha il suo percorso diretto verso la destinazione (il negativo della batteria). La corrente si divide come il traffico che sceglie due strade diverse!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              },
+              {
+                "concept": "spia_indicatore",
+                "text": "Il LED verde è la spia del cruscotto del vostro circuito! Nelle macchine reali, decine di LED sul cruscotto vi dicono se il motore è acceso, se c'è benzina, se le porte sono chiuse. Voi avete costruito la vostra prima spia elettronica!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 10"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play, poi premi il pulsante. Guarda: LED verde acceso E motore in rotazione, tutto insieme!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il LED verde e il motore in parallelo. Mostra come il filo dal pulsante si biforca: un ramo va al motore, un ramo va al resistore del LED. La corrente si divide in due percorsi."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:btn1]",
+            "[AZIONE:highlight:mot1]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:r1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "LED e motore in parallelo: quando premi il pulsante, entrambi funzionano insieme. Il LED verde è un indicatore visivo — una spia che dice 'il motore sta girando'. In parallelo ogni componente ha la sua strada verso la batteria.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Magnifico! Avete costruito un circuito con controllo (pulsante), attuatore (motore) e indicatore (LED). Tre componenti con tre ruoli diversi!",
+            "spunto_per_classe": null,
+            "note": [
+              "Riassumi i 3 ruoli: 'Pulsante = controllo (decide quando agire). Motore = attuatore (fa qualcosa nel mondo reale). LED = indicatore (ci dice cosa sta succedendo).' Questa struttura — controllo + attuatore + indicatore — si ritrova in quasi tutti i sistemi elettronici!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega la differenza tra collegamento in serie e in parallelo → comprensione topologica del circuito",
+        "Se identifica i tre ruoli (controllo, attuatore, indicatore) → comprensione sistemica del circuito",
+        "Se risponde correttamente alla domanda provocatoria sul parallelo → comprensione della divisione di corrente"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "parallelo_LED_motore",
+          "LED_indicatore",
+          "divisione_corrente",
+          "struttura_controllo_attuatore_indicatore"
+        ],
+        "next_suggested": "v2-cap12-esp1",
+        "resume_message": "Avete completato tutti gli esperimenti sul motore DC! Ora il grande progetto finale: il Robot Segui Luce!"
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Il motore a corrente continua",
+    "transitions": [
+      {
+        "between": [
+          "v2-cap10-esp1",
+          "v2-cap10-esp2"
+        ],
+        "text_classe": "Ricordate in che direzione girava il motore nell'esperimento 1? Segnate mentalmente il verso. Ora indovinate: cosa succede se inverto i fili?",
+        "text_docente_action": "Ricorda: 'Nell'esperimento 1 il filo rosso andava al + del motore. Oggi facciamo il contrario: il filo rosso va al - del motore. Cosa cambierà?' Lascia che gli studenti facciano la loro previsione.",
+        "incremental_mode": "modify_component"
+      },
+      {
+        "between": [
+          "v2-cap10-esp2",
+          "v2-cap10-esp3"
+        ],
+        "text_classe": "Come fate a controllare le luci di casa? Con un interruttore! Oggi aggiungiamo un interruttore al nostro motore: premi e gira, rilascia e si ferma!",
+        "text_docente_action": "Mostra fisicamente un pulsante (se disponibile). Spiega: 'Un pulsante è un interruttore momentaneo: finché lo tieni premuto il circuito è chiuso, quando lo rilasci il circuito si apre e la corrente si blocca.'",
+        "incremental_mode": "add_component"
+      },
+      {
+        "between": [
+          "v2-cap10-esp3",
+          "v2-cap10-esp4"
+        ],
+        "text_classe": "Avete mai notato le spie sul cruscotto dell'auto? Una si accende quando il motore è acceso. Oggi costruiamo la nostra spia luminosa per il motore!",
+        "text_docente_action": "Porta l'analogia della cruscotto dell'auto: 'Nell'auto ci sono spie luminose che vi dicono cosa sta succedendo al motore. Oggi costruiamo la nostra spia!' Mostra il LED verde che userete.",
+        "incremental_mode": "add_component"
+      }
+    ],
+    "closing_text": "Avete completato tutti gli esperimenti sul motore DC! Ora il grande progetto finale: il Robot Segui Luce!"
+  }
+}

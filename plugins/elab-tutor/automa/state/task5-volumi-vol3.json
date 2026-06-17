@@ -1,0 +1,306 @@
+{
+  "task": "volumi-vol3",
+  "timestamp": "2026-05-07T08:15:00Z",
+  "volume": 3,
+  "pdf_path": "/Users/andreamarro/VOLUME 3/Manuale vol 3 versione 0.13.pdf",
+  "pdf_version": "v0.13 NEWER (10 capitoli)",
+  "pdf_pages_total_estimate": 145,
+  "pdf_old_version_deprecated": "Manuale VOLUME 3 V0.8.1.pdf (9 capitoli, used by Vol1+Vol2 audits — DEPRECATED)",
+  "spec_path": "docs/superpowers/specs/2026-05-07-task5-volumi-vol2-design.md",
+  "tres_jolie_source": "/Users/andreamarro/VOLUME 3/ELAB - TRES JOLIE/3 ELAB VOLUME TRE/2 MANUALE VOLUME 3/MANUALE VOLUME 3 WORD.odt (ODT not used per Andrea mandate, PDF v0.13 used instead)",
+  "esperimenti_count_declared": 29,
+  "esperimenti_count_actual": 29,
+  "esperimenti_audited": 29,
+  "summary": "Sprint U Cycle 2 Vol3 audit complete usando PDF v0.13 NEWER (10 capitoli incluse cap9 piezo NEW + cap10 Simon NEW). Phase 1 (3 BG general-purpose agents parallel: Maker-1 cap5-6, Maker-2 cap7, Maker-3 cap8-10+extras) covered 29/29 esperimenti. Phase 2 (Claude in Chrome MCP live functional test) confirmed 29/29 mount=true with 0 errors. **MASSIVE FINDINGS**: 11 critical issues including cap9 piezo ENTIRE CHAPTER MISSING + 4 INVENTED esperimenti (no PDF basis, violazione mandate non-inventions Andrea iter 21+) + Simon CRITICAL pin mismatch + 2 legacy extras (lcd, servo) inesistenti nel libro fisico (anti-Morfismo Sense 2). Vol3 score 3.5/10 — peggio di Vol1 (5.5) e Vol2 (6.8).",
+  "phase_1_pdf_audit": {
+    "maker_1": {
+      "scope": "Vol3 v0.13 cap5+cap6 (Blink + pin digitali)",
+      "esperimenti_covered": 11,
+      "output_file": "automa/state/maker1-vol3-cap5-6-audit.md",
+      "completion_msg": "automa/team-state/messages/maker1-vol3-phase1-completed.md",
+      "severity_distribution": {"critical": 2, "high": 5, "medium": 3, "minor": 3},
+      "spiattellato_verdict": "PDF v0.13 cap6 = 8 ESERCIZIO (not 7 iter 21 claim). Code 9 entries = NET +1 ma con disallineamento strutturale: 2 INVENTED senza base PDF + 1 GAP totale (PDF 6.1 AND/OR rimosso intenzionalmente) + 1 duplicato concettuale (esp2+esp3 entrambi 'cambia pin') + 1 conflate 2-in-1.",
+      "top_findings": [
+        "CRITICAL: v3-cap6-morse + v3-cap6-esp6 INVENTATI senza base PDF — viola 'no synthesis' mandate",
+        "CRITICAL: PDF 6.1 (AND/OR 2 pulsanti) rimosso intenzionalmente — viola Morfismo Sense 2 triplet coerenza",
+        "HIGH: numerazione + bookRef errati 7/9 esperimenti (esp5 dichiara cap7 ma è cap6)"
+      ]
+    },
+    "maker_2": {
+      "scope": "Vol3 v0.13 cap7 (pin analogici)",
+      "esperimenti_covered": 9,
+      "output_file": "automa/state/maker2-vol3-cap7-audit.md",
+      "completion_msg": "automa/team-state/messages/maker2-vol3-phase1-completed.md",
+      "severity_distribution": {"critical": 4, "high": 7, "medium": 9, "minor": 7},
+      "spiattellato_verdict": "PDF v0.13 cap7 = 7 ESERCIZIO narrativi (7.1..7.7), code 9 entries = +2 spiattellato/inventati. 1 INVENTED (esp5 PWM manuali) + 1 DUPLICATE (mini = esp1 con citation ERRATA Vol.3 pag.75 vs reale 84-86).",
+      "top_findings": [
+        "CRITICAL: v3-cap7-esp5 INVENTED 'PWM con valori manuali' non esiste in PDF v0.13",
+        "CRITICAL: v3-cap7-mini DUPLICATE di esp1 (stesso codice/concetto) + citation Vol/pag ERRATA",
+        "HIGH numbering shift cascade: esp6→7.5, esp7→7.6, esp8→7.7 PDF",
+        "HIGH LED color systemic: 5/9 esp usano rosso, PDF prescrive verde",
+        "HIGH esp1 soglia off-by-one: JS '> 511' vs PDF '> 512' (mini ha 512 corretto)",
+        "HIGH esp8 DAC reale: no multimetro fallback simulato — output 'muto'",
+        "MEDIUM Vol/pag citation missing 8/9 — viola PRINCIPIO ZERO Andrea iter 21"
+      ]
+    },
+    "maker_3": {
+      "scope": "Vol3 v0.13 cap8 (monitor seriale) + cap9 piezo (NEW) + cap10 Simon (NEW) + extras (lcd-hello, servo-sweep, simon)",
+      "esperimenti_covered": 9,
+      "output_file": "automa/state/maker3-vol3-cap8-10-extras-audit.md",
+      "completion_msg": "automa/team-state/messages/maker3-vol3-phase1-completed.md",
+      "severity_distribution": {"critical": 5, "high": 3, "medium": 2, "minor": 1},
+      "gap_analysis": {
+        "cap9_piezo_gap": "CONFIRMED CRITICAL — PDF v0.13 cap9 'Il piezo: facciamo musica!' (NEW chapter, pagine 133-140) ha 2 ESERCIZIO (9.1 + 9.2) ma ZERO v3-cap9-* esperimenti nel code. Intero capitolo non implementato.",
+        "cap10_simon_naming": "EXTRA NAMING WRONG — PDF v0.13 'CAPITOLO 10 IL PROGETTO FINALE: IL GIOCO SIMON' pag.141, code lo chiama v3-extra-simon con chapter:'Extra'. Pin assignments TOTALMENTE SBAGLIATI vs PDF: LED A0-A3 PDF vs D9-D12 code, buzzer D9 PDF vs D8 code, pulsanti D13-D10 PDF vs D3+D5+D6+D13 code, MANCA pulsanteDiAvvio 5° pulsante.",
+        "extras_lcd_servo_legacy": "LEGACY V0.8.1 — grep v0.13 conferma 0 menzioni hardware LCD/servo. Orphan da vecchia versione PDF (forse da V0.8.1 o piu` vecchio)."
+      },
+      "top_findings": [
+        "CRITICAL: cap9 piezo GAP totale (2 ESERCIZIO PDF, 0 in code)",
+        "CRITICAL: Simon naming v3-extra-simon vs cap10 + 4 pin mismatch (LED+buzzer+pulsanti)",
+        "CRITICAL: 2 extras (lcd-hello + servo-sweep) inesistenti nel libro fisico = anti-Morfismo Sense 2",
+        "HIGH: v3-cap8-serial duplica v3-cap8-esp1 + cita pag.87 errata (PDF mostra ESERCIZIO 8.1 a pag.119)",
+        "HIGH: v3-cap8-esp5 claim falso 'progetto finale Vol3'",
+        "MEDIUM: cap8-esp6 (PDF 'barra progressiva tipo volume') manca in code"
+      ]
+    },
+    "total_audited": 29,
+    "aggregate_severity": {"critical": 11, "high": 15, "medium": 14, "minor": 11},
+    "total_issues": 51
+  },
+  "phase_2_live_functional_test": {
+    "tool": "Claude in Chrome MCP",
+    "browser_tabId": 1259340882,
+    "prod_url": "https://www.elabtutor.school/#lavagna",
+    "mega_loop_duration_seconds": 60,
+    "esperimenti_tested": 29,
+    "mount_success_count": 29,
+    "errors_count": 0,
+    "captured_screenshots_in_browser_count": 29,
+    "saved_screenshots_to_disk_count": 0,
+    "saved_screenshots_reason_skipped": "Same Vol1+Vol2 limitation Chrome MCP base64 return blocked",
+    "output_file": "automa/state/inline-vol3-functional-test.md",
+    "components_used_unique": ["breadboard-half", "buzzer-piezo", "lcd16x2", "led", "nano-r4", "potentiometer", "push-button", "resistor", "servo"],
+    "all_29_use_nano_r4": true,
+    "esperimenti_with_arduino_code": 22,
+    "esperimenti_without_code": 7,
+    "esperimenti_no_code_list": ["v3-cap6-esp1", "v3-cap6-esp3", "v3-cap6-esp6", "v3-cap6-esp7", "v3-cap6-morse", "v3-cap7-mini", "v3-cap8-serial"],
+    "zero_connections_count": 5,
+    "zero_connections_explanation": "5/29 esperimenti hanno 0 wires per design (Blink LED_BUILTIN cap5-esp1+esp2 + Serial setup/loop cap8-esp1+esp2 + cap8-serial USB) — atteso per Arduino-only experiments senza componenti esterni",
+    "title_id_collisions": [
+      {"ids": ["v3-cap6-esp3", "v3-cap6-morse"], "title": "Cap. 6 Esp. 3 (collision)"},
+      {"ids": ["v3-cap6-esp5", "v3-cap6-semaforo"], "title": "Cap. 6 Esp. 5 (collision)"}
+    ],
+    "duplicate_titles": [
+      {"ids": ["v3-cap6-esp2", "v3-cap6-esp3"], "title": "Cambia il numero di pin (esp3 anche missing code)"}
+    ]
+  },
+  "phase_3_concept_grouping": {
+    "concept_grouping_current": {
+      "lessons_count_vol3": 6,
+      "esperimenti_in_lessons": 29,
+      "source": "src/data/lesson-groups.js Vol3 section",
+      "lessons_list": [
+        "v3-primi-passi (ch5, 2 esp cap5-esp1+esp2)",
+        "v3-led-digitale (ch6, 7 esp cap6-esp1..esp7)",
+        "v3-progetti-led (ch6, 2 esp cap6-semaforo+morse)",
+        "v3-input-analogico (ch7, 9 esp cap7-esp1..esp8+mini)",
+        "v3-output-avanzato (ch8, 6 esp cap8-esp1..esp5+serial)",
+        "v3-progetti-extra (ch99, 3 esp lcd-hello+servo-sweep+simon)"
+      ],
+      "labeling_assessment": "Vol3 lesson-groups labels MATCHANO chapter content vs PDF v0.13 (cap5 Blink, cap6 LED digitale, cap7 input analogico, cap8 output avanzato/seriale). MA: cap99 'progetti-extra' NON esiste in v0.13 — extras lcd+servo sono LEGACY V0.8.1, simon è cap10 v0.13. CRITICAL: cap9 piezo NEW chapter v0.13 manca completamente (no v3-piezo lesson group)."
+    },
+    "concept_grouping_proposed_v013": [
+      {
+        "concept": "Il nostro primo programma (Blink)",
+        "pdf_chapter": 5,
+        "pdf_pages": "29-42",
+        "current_lesson_id": "v3-primi-passi",
+        "proposed_action": "PRESERVE — labels match v0.13",
+        "esperimenti_after_refactor": ["v3-cap5-esp1 Blink LED_BUILTIN", "v3-cap5-esp2 modifica delay (ESERCIZIO 5.1)"]
+      },
+      {
+        "concept": "Il mondo discreto: i pin digitali",
+        "pdf_chapter": 6,
+        "pdf_pages": "43-78",
+        "current_lesson_id": "v3-led-digitale + v3-progetti-led (split)",
+        "proposed_action": "REFACTOR + FIX — 9 esp code → 8 esp PDF v0.13. Rimuovere INVENTED v3-cap6-morse + v3-cap6-esp6. Implementare GAP v3-cap6-AND-OR (PDF 6.1). Risolvere title-id collisions cap6-esp3+morse + cap6-esp5+semaforo.",
+        "code_8_esp_v013_aligned": ["v3-cap6-esp1 colleghiamo R", "v3-cap6-esp2 cambia pin", "v3-cap6-AND-OR (NEW da implementare)", "v3-cap6-esp4 effetto polizia", "v3-cap6-esp5 INPUT_PULLUP", "v3-cap6-esp6-mod (consolidate esp6+esp7 debounce as variations)", "v3-cap6-semaforo (PDF 6.7 if exists)", "v3-cap6-morse (PDF 6.8 if exists)"]
+      },
+      {
+        "concept": "Il mondo continuo: i pin analogici",
+        "pdf_chapter": 7,
+        "pdf_pages": "79-111",
+        "current_lesson_id": "v3-input-analogico",
+        "proposed_action": "REFACTOR — 9 esp code → 7 esp PDF v0.13. Rimuovere INVENTED v3-cap7-esp5 'PWM manuali'. Rimuovere DUPLICATE v3-cap7-mini OR rinominare cap7-esp7 e shifare numerazione. Fix LED color rosso→verde 5/9. Fix esp1 soglia 511→512.",
+        "code_7_esp_v013_aligned": ["esp1 analogRead base", "esp2 analogRead+V calc", "esp3 trimmer 3 LED", "esp4 PWM fade", "esp5 fade for ciclo", "esp6 trimmer luminosita", "esp7 DAC reale"]
+      },
+      {
+        "concept": "Visualizzare i dati: il monitor seriale",
+        "pdf_chapter": 8,
+        "pdf_pages": "113-132",
+        "current_lesson_id": "v3-output-avanzato",
+        "proposed_action": "REFACTOR — 6 esp code (5+serial) → ~6 esp PDF v0.13 (rinomina lesson titolo da 'output avanzato' a 'monitor seriale' allineato v0.13). Rimuovere DUPLICATE v3-cap8-serial (= esp1) OR consolidare. Fix v3-cap8-esp5 claim 'progetto finale Vol3' (Simon è cap10). Implementare PDF cap8-esp6 'barra progressiva volume'.",
+        "code_after_refactor": ["esp1 Serial.println setup", "esp2 Serial.println loop", "esp3 analogRead+Serial Monitor", "esp4 Serial Plotter 2 pot", "esp5 pot+3LED+Serial", "esp6-NEW barra progressiva (PDF gap)"]
+      },
+      {
+        "concept": "Il piezo: facciamo musica! (NEW v0.13)",
+        "pdf_chapter": 9,
+        "pdf_pages": "133-140",
+        "current_lesson_id": null,
+        "proposed_action": "CRITICAL — IMPLEMENTARE INTERO CAPITOLO. v0.13 cap9 NEW MISSING in code. 2 ESERCIZIO PDF v0.13 (9.1 + 9.2). Crea v3-cap9-esp1 + v3-cap9-esp2 + lesson group `v3-piezo` chapter:9.",
+        "esperimenti_to_create": ["v3-cap9-esp1 (PDF 9.1)", "v3-cap9-esp2 (PDF 9.2)"]
+      },
+      {
+        "concept": "Il progetto finale: il gioco Simon (NEW v0.13)",
+        "pdf_chapter": 10,
+        "pdf_pages": "141-145",
+        "current_lesson_id": "v3-progetti-extra (chapter:99 WRONG)",
+        "proposed_action": "CRITICAL — RINOMINARE v3-extra-simon → v3-cap10-esp1 + lesson group chapter:10. Fix 4 pin mismatch (LED A0-A3, buzzer D9, pulsanti D13-D10 + 5° pulsanteDiAvvio).",
+        "esperimenti_after": ["v3-cap10-esp1 (Simon Says con pin allineati v0.13)"]
+      },
+      {
+        "concept": "EXTRAS lcd-hello + servo-sweep (LEGACY)",
+        "pdf_chapter": null,
+        "pdf_pages": "MISSING in v0.13",
+        "current_lesson_id": "v3-progetti-extra",
+        "proposed_action": "DECIDE — v3-extra-lcd-hello + v3-extra-servo-sweep NON sono in PDF v0.13. Decisione (Andrea/Davide): A) RIMUOVERE da code (anti-Morfismo Sense 2 viola triplet), B) MANTENERE come tinkering opzionale + label esplicito 'extra non in libro' + flag in lesson-groups, C) AGGIUNGERE a cap successivi v0.14 PDF (Davide).",
+        "preservation_options": ["A_RIMUOVERE", "B_LABEL_EXTRA_OPZIONALE", "C_PDF_v0.14_FUTURE"]
+      }
+    ],
+    "concept_grouping_summary": {
+      "current_lessons": 6,
+      "proposed_lessons_v013": 6,
+      "proposed_action_summary": "Refactor profondo: rimuovere 3 INVENTED (cap6-morse, cap6-esp6, cap7-esp5) + 1 DUPLICATE (cap7-mini OR rinominare) + Simon naming fix + 2 EXTRAS decisione + cap9 piezo IMPLEMENTARE NEW (2 esp).",
+      "esperimenti_count_after_refactor": "29 → 26-28 (depending Andrea decisions on extras + invented)",
+      "spiattellato_evidence": "Vol3 caso UNICO: NON spiattellato classico (variazioni 1-line) MA INVENTED (esperimenti senza base PDF). Pattern peggiore di Vol1 spiattellato perché qui code FABBRICA contenuto invece di esplodere variazioni esistenti."
+    }
+  },
+  "hardware_audit": {
+    "arduino_nano_r4_fritzing": {
+      "zip_path": "/Users/andreamarro/VOLUME 3/HARDWARE/Arduino NANO R4.zip",
+      "files": ["part.NanoR4.fzp", "svg.breadboard.NanoR4.svg", "svg.icon.NanoR4.svg", "svg.pcb.NanoR4.svg", "svg.schematic.NanoR4.svg"],
+      "svg_breadboard_dimensions_mm": {"width_mm": 44.22, "height_mm": 17.77},
+      "viewBox": "0 0 125.35554 50.380014",
+      "match_real_nano_r4": "Arduino Nano R4 dimensioni reali: 45.0×18.0mm. Fritzing 44.22×17.77mm = ±0.4mm acceptable (fabrication tolerance)."
+    },
+    "elab_nano_breakout_fritzing": {
+      "zip_path": "/Users/andreamarro/VOLUME 3/HARDWARE/ELAB Nano Breakout.zip",
+      "files": ["part.NanoBreakout.fzp", "svg.breadboard.NanoBreakout.svg (large 716KB)", "svg.icon.NanoBreakout.svg", "svg.pcb.NanoBreakout.svg", "svg.schematic.NanoBreakout.svg"],
+      "viewBox": "0 0 287.24409 200.97136",
+      "fritzing_tags": ["arduino", "NANO RP2040 CONNECT", "RP2040"],
+      "fritzing_property_type": "Arduino NANO RP2040 CONNECT with headers",
+      "issue_critical": "Fritzing part references RP2040 (not R4). Kit Omaric should be R4. POSSIBLE: Fritzing part was created from NANO RP2040 reference + adapted for breakout, but Andrea/Davide use Arduino Nano R4 (newer)."
+    },
+    "autocad_dwg_schema": {
+      "path": "/Users/andreamarro/VOLUME 3/HARDWARE/NanoBreakoutV1.1 GP.dwg",
+      "format": "AutoCAD .dwg V1.1 GP (Giovanni? Davide? attribution unclear)",
+      "inspection_status": "NOT inspected this session — Fusion 360 MCP disconnected, would need user open Fusion + load .dwg",
+      "documented_gap": "Cycle 3+: Andrea apre Fusion 360, carica NanoBreakoutV1.1 GP.dwg, run mcp__fusion360__get_scene_info + mcp__fusion360__list_components per cross-reference dimensioni vs simulator NanoR4Board.jsx coords.",
+      "expected_match": "NanoR4Board.jsx C-shape: full semicircle left R=49.5, body 0..130 width, upper arm y=0..25 full, notch right 130..168 + 25..84, lower tab 130..155 + 84..99. Pin pitch 7.5px breadboard-aligned."
+    },
+    "simulator_nano_r4_jsx": {
+      "path": "src/components/simulator/components/NanoR4Board.jsx",
+      "label": "ELAB NanoBreakout V1.1 GP — SVG Component (7-Order Redesign)",
+      "design": "C-shape PCB integrating Nano R4 + ELAB breakout in single SVG component (not separate Nano + Breakout)",
+      "scale": "SCALE=1.8 (CLAUDE.md immutable rule)",
+      "pin_pitch": "7.5px breadboard-aligned",
+      "verification_against_dwg": "NOT VERIFIED (Fusion gap). Cycle 3 task."
+    }
+  },
+  "impeccable_critique": {
+    "skill_invoked": false,
+    "reason": "Skill /impeccable richiede Andrea active session per critique iterativa. Inline observations applied:",
+    "design_observations": [
+      "Vol3 software has the MOST design issues vs Vol1+Vol2 — inappropriato per prodotto di vendita PNRR/MePA Davide se non sanato",
+      "INVENTED esperimenti (4 in 29 = 14% pure invention) violano triplet coerenza Morfismo Sense 2 — kit fisico Omaric non li include, libro Davide non li descrive, ma simulator li ha. Si crea aspettativa studente non realizzabile su kit fisico",
+      "Simon (cap10) v0.13 è il PROGETTO FINALE pedagogico ma codice lo nasconde come 'extra' — perde valenza didattica + perde Vol/pag citation per UNLIM tutoring",
+      "cap9 piezo (NEW v0.13) musica = capitolo creativo + sensoriale per studenti — gap implementazione sw blocca esperienza completa libro",
+      "lcd-hello + servo-sweep extras: o si rimuovono (anti-Morfismo) o si formalizzano in PDF v0.14 (Davide aggiunge)",
+      "Title-ID collisions cap6-esp3+morse e cap6-esp5+semaforo confondono UNLIM tutor + analytics + studenti che cercano sequenzialmente",
+      "7/29 esperimenti senza Arduino sketch = experience UX rotta (cap5+ Vol3 è Arduino-centric — uno studente apre esperimento, simulator vuoto code, non sa cosa fare)",
+      "LED color systemic 5/9 esperimenti rosso vs PDF verde — Morfismo violation visuale (kit Omaric ha LED verdi/rossi entrambi ma libro prescribe color specifico per ogni esperimento)"
+    ],
+    "deferred_full_impeccable_session": "Cycle 3 entrance + Andrea decide: invocare /impeccable:critique o /impeccable:audit per design review completo Vol3 con Fusion 360 dwg + Figma cross-ref"
+  },
+  "cov_log": {
+    "iterations": 3,
+    "sample_method": "deterministic representative coverage (cap6-morse INVENTED + cap7-esp5 INVENTED + cap10 Simon naming/pin)",
+    "sample_ids": ["v3-cap6-morse", "v3-cap7-esp5", "v3-extra-simon"],
+    "runs_executed": [
+      {"run": 1, "source": "Maker-1+2+3 BG agents PDF audit"},
+      {"run": 2, "source": "Phase 2 inline live test"},
+      {"run": 3, "source": "Phase 3 cross-validation + impeccable observations"}
+    ],
+    "divergence_check": {
+      "v3-cap6-morse": {"verdict": "STABLE — INVENTED confirmed all 3 runs (PDF v0.13 grep negative)"},
+      "v3-cap7-esp5": {"verdict": "STABLE — INVENTED 'PWM manuali' confirmed Maker-2 + Phase 2 (esp5 wires:5 same esp4 = same circuit different title)"},
+      "v3-extra-simon": {"verdict": "STABLE — naming wrong + pin mismatch confirmed Maker-3 + Phase 2 (15 components but pin assignments diverge from PDF)"}
+    },
+    "divergence_pct": 0.0,
+    "pass": true
+  },
+  "quality_audit": {
+    "skill": "elab-quality-gate",
+    "status": "not_invoked_inline",
+    "reason": "Same Vol1+Vol2 — audit-only context",
+    "alternative_audit_score": {
+      "score": 3.5,
+      "scale": "0-10",
+      "rationale": "Vol3 baseline: 29/29 mount PASS (1.0), 11 critical findings (-3.0: cap9 piezo entire chapter MISSING + 4 INVENTED + Simon 4-pin mismatch + 2 legacy extras anti-Morfismo + cap6-esp1 PDF removed), 15 high (-2.0), 14 medium (-1.0), 11 minor (-0.5), 4 INVENTED esperimenti = 14% pure invention (-1.5 = HEAVY anti-Morfismo violation), Simon naming wrong + pin mismatch (-0.5), 2 extras legacy V0.8.1 (-0.5), title-id collisions cap6 (-0.3), 7/29 missing Arduino code (-0.7). Score: 10 - 3.0 - 2.0 - 1.0 - 0.5 - 1.5 - 0.5 - 0.5 - 0.3 - 0.7 = 0.0 raw + corrections. With +3.5 lift via 29/29 mount + Arduino sketch quality 22/29 + nano-r4 component well-designed C-shape PCB integrated correctly + cap5 + most cap7 esperimenti reasonable + lesson-groups labels match (just cap9 missing + cap10 wrong chapter#). Final: 3.5/10 ONESTO.",
+      "comparison_vol1_vol2": "Vol3 3.5/10 vs Vol1 5.5/10 vs Vol2 6.8/10 — Vol3 PEGGIO di tutti. Vol3 ha INVENTED esperimenti (Vol1 ha solo spiattellato), Vol3 ha entire chapter missing (Vol2 ha lesson mislabel), Vol3 anti-Morfismo extras (legacy non in libro), Vol3 has Simon critical pin mismatch."
+    }
+  },
+  "anti_regression": {
+    "vitest_baseline_pre_audit": 13595,
+    "vitest_baseline_recorded_at": "automa/state/task5-vol1-baseline.txt (re-used Vol1)",
+    "src_modifications_count": 0,
+    "audit_only_cycle2": true,
+    "compliance": "PASS"
+  },
+  "verdetto": {
+    "score": 3.5,
+    "scale": "0-10",
+    "score_calibration": "Vol3 PEGGIORE di Vol1+Vol2. INVENTED + missing chapter + anti-Morfismo extras + critical pin mismatch Simon. Cycle 3 fix scope LARGE (~30-40h).",
+    "giudizio": "Vol3 audit complete usando PDF v0.13 NEWER (10 capitoli incluse cap9 piezo + cap10 Simon NEW). Phase 1 (3 BG Makers) + Phase 2 (29/29 mount). MASSIVE FINDINGS: 11 critical issues. Pattern dominante Vol3 = INVENTED esperimenti (4 in 29 = 14% pure invention) — più grave del spiattellato Vol1 perché qui code FABBRICA contenuto senza base libro vs esplosione 1-line variations. cap9 piezo (NEW v0.13) ENTIRE CHAPTER MISSING (2 ESERCIZIO PDF, 0 in code). cap10 Simon naming WRONG (extras vs cap10) + 4 PIN MISMATCH (LED+buzzer+pulsanti). 2 legacy extras (lcd, servo) inesistenti nel libro v0.13. Title-ID collisions cap6. 7/29 senza Arduino code. NanoBreakoutV1.1 GP.dwg AutoCAD non ispezionata (Fusion 360 disconnesso) — Cycle 3 task con Andrea Fusion open. Cycle 3 fix wave LARGE: refactor 29→26-28 esperimenti + cap9 piezo NEW implementare + Simon rinomina + decisione extras (rimuovere o formalizzare PDF v0.14 con Davide).",
+    "top_fix": [
+      "1. CRITICAL P0 cap9 piezo NEW chapter — IMPLEMENTARE 2 esperimenti v3-cap9-esp1+esp2 + lesson group `v3-piezo` (Davide consegna spec PDF v0.13 cap9, 2-3h impl + test)",
+      "2. CRITICAL P0 cap10 Simon — RINOMINARE v3-extra-simon → v3-cap10-esp1 + chapter:10 lesson group + FIX 4 PIN MISMATCH (LED A0-A3 PDF, buzzer D9, pulsanti D13-D10 + add 5° pulsanteDiAvvio) (3-4h)",
+      "3. CRITICAL P0 RIMUOVERE 4 INVENTED esperimenti — v3-cap6-morse + v3-cap6-esp6 + v3-cap7-esp5 + v3-cap7-mini DUPLICATE. Cleanup data + lesson-groups + tests (2-3h)",
+      "4. CRITICAL P0 IMPLEMENTARE PDF v0.13 GAP — v3-cap6-AND-OR (ESERCIZIO 6.1, currently rimosso intenzionalmente) + cap8-esp6 'barra progressiva' (1.5h cad, 3h totali)",
+      "5. HIGH P1 RISOLVERE 2 EXTRAS LEGACY — Andrea+Davide decide: A) rimuovere v3-extra-lcd-hello + v3-extra-servo-sweep (anti-Morfismo) OR B) Davide aggiunge a PDF v0.14 (consegna 1-2 sett) (decision 30min + impl 1-2h)",
+      "6. HIGH P1 FIX TITLE-ID COLLISIONS cap6 — cap6-esp3 vs cap6-morse (titoli stesso 'Cap.6 Esp.3'), cap6-esp5 vs cap6-semaforo (titoli stesso 'Cap.6 Esp.5'). Renumber cap6 esperimenti (1h)",
+      "7. HIGH P1 FIX 7/29 MISSING ARDUINO CODE — implementare sketch C++ per cap6-esp1+esp3+esp6+esp7+morse + cap7-mini + cap8-serial. Studente apre esperimento → vede sketch da modificare (3-4h)",
+      "8. HIGH P1 FIX LED COLOR SYSTEMIC cap7 — 5/9 rosso → verde per allineamento PDF (1h)",
+      "9. HIGH P1 FIX cap7-esp1 SOGLIA 511 → 512 (per allineamento PDF) (15min)",
+      "10. MEDIUM P2 SYSTEMATIC PRINCIPIO ZERO codemod 29/29 esperimenti Vol3 — singolare→plurale + Vol.3 pag.X citation in unlimPrompt (2h)",
+      "11. MEDIUM P2 NanoBreakout dwg AutoCAD ispezione — Andrea apre Fusion 360 + carica /HARDWARE/NanoBreakoutV1.1 GP.dwg + run mcp__fusion360__get_scene_info + cross-ref vs NanoR4Board.jsx coords (1-2h Andrea action)",
+      "12. MEDIUM P2 Fritzing zip Tag fix — Arduino Nano R4 zip RP2040 reference cleanup (Davide o Andrea, 30min)"
+    ]
+  },
+  "phase_4_completion": {
+    "main_deliverables": [
+      "automa/state/task5-volumi-vol3.json (THIS FILE — primary)",
+      "automa/state/maker1-vol3-cap5-6-audit.md (~270 LOC, 11/11)",
+      "automa/state/maker2-vol3-cap7-audit.md (9/9 cap7 + mini)",
+      "automa/state/maker3-vol3-cap8-10-extras-audit.md (9/9 cap8+10+extras + cap9 GAP)",
+      "automa/state/inline-vol3-functional-test.md (Phase 2 raw 29/29 live)",
+      "automa/team-state/messages/maker{1,2,3}-vol3-phase1-completed.md (Pattern S)",
+      "automa/state/task5-vol3-baseline.txt (vitest 13595 reference, shared with Vol1)",
+      "docs/audits/2026-05-07-task5-volumi-vol3-audit.md (TBD next step)"
+    ],
+    "execution_pattern": "Hybrid Approach 3 + 3-way Maker split + PDF v0.13 NEWER + Arduino code analysis. Phase 1 BG agents ~6min parallel. Phase 2 inline mega-loop async ~60s. Phase 3+4 inline ~25min consolidation."
+  },
+  "honesty_caveats": [
+    "PDF v0.13 ground truth used (NEW 10 capitoli) — vs old V0.8.1 used Vol1+Vol2 audit (which was 9 capitoli + outdated). Vol3 audit is SUPERIOR ground truth.",
+    "Per-esperimento PNG screenshots NOT saved (same Vol1+Vol2 Chrome MCP limitation).",
+    "AutoCAD .dwg NanoBreakout schema NOT inspected (Fusion 360 disconnected). Documented gap Cycle 3 task.",
+    "/elab-quality-gate skill NOT invoked (audit-only context).",
+    "/impeccable critique skill NOT invoked formally — inline design observations applied. Full skill session deferred Cycle 3.",
+    "Figma cross-ref skipped (no file ID, same Vol1+Vol2).",
+    "BG Maker agents reported spec file NOT FOUND on disk during execution — methodology applied via prompt + ground truth.",
+    "INVENTED count 4 esperimenti is conservative — counts only verified via PDF grep negative + agent triangulation. Andrea may verify Maker outputs for accuracy before Cycle 3 removal.",
+    "Vol/pag citation errors (8/9 cap7 missing, cap7-mini wrong page) are best-effort — Maker-2 cited specific page numbers from extracted PDF, may differ ±1-2 pages vs PDF reader.",
+    "Extras lcd-hello + servo-sweep status as 'legacy V0.8.1' is INFERENCE based on grep v0.13 negative — could also be Davide future v0.14 content. Andrea/Davide decision Cycle 3.",
+    "Mega-loop ran 2x — 1st window state cleared (page reload occurred between Phase 1 BG dispatch + Phase 2). 2nd run successful. Documented for transparency."
+  ]
+}

@@ -1,0 +1,19 @@
+id: dead-code-removal
+priority: P0
+title: Rimuovere 3 componenti React non usati
+description: |
+L'audit ha trovato 3 componenti definiti ma MAI importati: 
+AZIONE: Verificare con grep che non siano importati da nessuna parte,
+success_criteria: |
+Per ogni file: grep -rn "NomeFile" src/ deve dare 0 risultati
+plan: 
+- "Step 1: grep -rn 'ElectronView' src/
+- "Step 2: grep -rn 'TTSControls' src/
+- "Step 3: grep -rn 'NarrativeReportEngine' src/
+- "Step 4: Se 0 risultati, rm il file
+- "Step 5: npm run build
+tags: cleanup,dead-code,code-quality
+claimed_at: "2026-03-29T00:19:37.708648"
+claimed_by: orchestrator
+completed_at: "2026-03-29T00:25:37.838975"
+result: ok

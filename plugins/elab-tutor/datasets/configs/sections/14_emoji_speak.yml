@@ -1,0 +1,60 @@
+id: emoji_speak
+name: "Comunicazione Emoji"
+
+templates:
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_play"
+    actions: ["[AZIONE:play]"]
+    entities: []
+    vars:
+      frase: ["▶️", "▶", "🟢", "▶️▶️▶️", "play ▶️", "⏯️", "🚀", "vai 🚀"]
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_pause"
+    actions: ["[AZIONE:pause]"]
+    entities: []
+    vars:
+      frase: ["⏸️", "⏸", "🔴", "⏸️⏸️", "stop ⏸️", "✋", "🛑"]
+
+  - input: "{frase}"
+    intent: action
+    needs_llm: false
+    response: "@action_clearall"
+    actions: ["[AZIONE:clearall]"]
+    entities: []
+    vars:
+      frase: ["🗑️", "🧹", "🗑️🗑️", "🧹 tutto", "❌ tutto"]
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: false
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"led\"}],\"wires\":\"auto\"}]"]
+    entities: [led]
+    vars:
+      frase: ["💡", "metti 💡", "💡 sulla breadboard", "voglio 💡", "aggiungi 💡"]
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: true
+    llm_hint: "Utente comunica con emoji. Interpretare il significato dal contesto."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - "💡➡️🔌"
+        - "🔧❓"
+        - "💡+💡+💡"
+        - "🔴❌ perche'?"
+        - "⚡🤔"
+        - "🔌➡️💡➡️🔋"
+        - "👀🔍"
+        - "😡💡❌"
+        - "🎵🔊"
+        - "⚙️🔄"
+
+corruptions: {}

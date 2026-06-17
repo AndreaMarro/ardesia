@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap6-esp4",
+  "volume": 2,
+  "chapter": 6,
+  "title": "Misurare Vf con il multimetro",
+  "chapter_title": "Approfondiamo i LED",
+  "difficulty": 2,
+  "duration_minutes": 40,
+  "target_age": "10-14 anni",
+  "objective": "Usare il multimetro come voltmetro per misurare la tensione forward (Vf) di un LED rosso collegato in un circuito con resistore, collegando le sonde in parallelo al LED.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Breadboard mezza (half)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Resistore 330Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "🔴"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 8,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "serie",
+      "tensione",
+      "volt",
+      "Vf",
+      "tensione forward",
+      "multimetro",
+      "voltmetro",
+      "luminosità",
+      "rosso",
+      "verde",
+      "blu",
+      "anodo",
+      "catodo"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "transistor",
+      "MOSFET",
+      "motore",
+      "diodo"
+    ],
+    "note": "Vol 2 Cap 6 — LED in serie, tensione forward, multimetro"
+  },
+  "prerequisites": [
+    "v2-cap6-esp3"
+  ],
+  "next_experiment": {
+    "id": "v2-cap7-esp1",
+    "title": "Scarica condensatore con multimetro",
+    "preview": "Prossimo passo: Scarica condensatore con multimetro. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 6,
+      "teacher_message": "Ragazzi, finora abbiamo parlato di tensione forward Vf come un valore teorico. Oggi la MISURIAMO davvero! Il multimetro diventa il nostro strumento di indagine: lo colleghiamo in parallelo al LED per leggere esattamente quanti volt consuma.",
+      "teacher_tip": "Introducete il concetto di 'parallelo' per il multimetro: le sonde si collegano ai DUE capi del LED (anodo e catodo). Il multimetro misura la differenza di tensione tra i due punti senza interferire con il circuito principale.",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 resistore 330Ω, 1 LED rosso, 1 multimetro, fili colorati.",
+      "class_hook": "Il multimetro è il detective dell'elettronica: può misurare la tensione in un punto del circuito senza interrompere nulla. Come mettere un termometro nella zuppa senza toglierla dal fuoco!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, Il circuito principale: batteria → resistore 330Ω (a2-a9) → LED rosso (f9 anodo, f10 catodo) → massa. Poi colleghiamo il multimetro IN PARALLELO al LED: sonda rossa all'anodo (f9), sonda nera al catodo (f10).",
+      "teacher_tip": "Sottolineate la differenza tra serie e parallelo per lo strumento di misura. Il voltmetro si collegate SEMPRE in parallelo al componente che volete misurare. Se lo collegate in serie, misura tensione sbagliata e cortocircuita il LED!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap6-esp4]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate circuito LED con resistore e multimetro in parallelo al LED",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 330
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "red"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e9",
+              "to": "bb1:f9",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:f10",
+              "to": "bb1:e10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:e10",
+              "to": "bb1:bus-top-minus-10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "mm1:probe-positive",
+              "to": "bb1:f9",
+              "color": "red"
+            },
+            {
+              "from": "mm1:probe-negative",
+              "to": "bb1:f10",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Il multimetro mostra circa 1.8V. Questo è il Vf del LED rosso! Domanda: se collegassimo le sonde del multimetro ai capi del resistore invece che del LED, che valore vedremmo?",
+      "teacher_tip": "La risposta è: 9 - 1.8 = 7.2V sul resistore. Se poi chiedete 'quanto corrente scorre?': I = 7.2V / 330Ω ≈ 21.8mA. Questi calcoli collegano teoria e misura reale.",
+      "provocative_question": "Se misurassimo con il multimetro la tensione ai capi della batteria mentre il circuito è acceso, vedremmo esattamente 9V o qualcosa di diverso? Perché?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Collegare le sonde del multimetro in serie invece che in parallelo",
+          "teacher_response": "Il voltmetro va SEMPRE in parallelo! In serie misurerebbe la corrente (che è un'altra cosa) e potrebbe interrompere il circuito. Le sonde vanno ai DUE CAPI del componente che volete misurare, non dentro il percorso principale.",
+          "analogy": "Per misurare l'altezza di una finestra, metti il metro ai lati (parallelo) — non dentro il muro (serie)!"
+        },
+        {
+          "mistake": "Collegare la sonda rossa al catodo invece che all'anodo",
+          "teacher_response": "Attenzione alla polarità! La sonda rossa (+) va all'anodo del LED (gamba lunga, +). La sonda nera (−) va al catodo (gamba corta, −). Se invertite, il multimetro mostra un valore negativo.",
+          "analogy": "Come una bussola: la freccia rossa indica sempre il nord. La sonda rossa del multimetro indica sempre il punto a tensione più alta!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play e osservate il multimetro: mostra circa 1.8V — la tensione forward del LED rosso! Il LED è acceso, il multimetro misura in modo invisibile senza interferire.",
+      "teacher_tip": "Evidenziate il multimetro e le sonde. Fate notare che il LED continua ad accendersi normalmente — il multimetro non disturba il circuito. Poi highlight del LED: 'Questa piccola differenza di tensione ai suoi capi è tutta la 'spinta' che gli serve per illuminarsi!'",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:led1]",
+        "[AZIONE:highlight:mm1]",
+        "[AZIONE:highlight:r1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il multimetro in modalità voltmetro mostra ≈ 1.8V ai capi del LED rosso: questa è la tensione forward Vf! Il LED è acceso, la misura avviene senza interferire con il circuito. Il resistore prende i restanti ≈ 7.2V.",
+      "analogies": [
+        {
+          "concept": "voltmetro_parallelo",
+          "text": "Il voltmetro è come un passante che osserva la corsa senza parteciparvi: si mette AI LATI della strada (in parallelo) e guarda senza ostacolare. Se si mettesse in mezzo alla pista (in serie), interferirebbe con tutto!",
+          "evidence": "Curriculum ELAB Vol 2"
+        },
+        {
+          "concept": "Vf_firma_LED",
+          "text": "La tensione forward è la firma unica di ogni LED: 1.8V per il rosso, 2.2V per il verde, 3V per il blu. È come un'impronta unica che il multimetro può leggere! Conoscere questi valori vi permette di calcolare qualsiasi circuito LED.",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 6,
+      "teacher_message": "Ragazzi, Avete misurato la tensione forward con il multimetro! Il segreto: il voltmetro si collega sempre in parallelo al componente da misurare. Con questa tecnica potete verificare qualsiasi circuito.",
+      "teacher_tip": "Recap: Vf rosso ≈ 1.8V, verde ≈ 2.2V, blu ≈ 3V. Il multimetro va in parallelo per misurare tensione. Se vedono un valore diverso (es. 0V), significa che il LED è spento o invertito. Questo conclude il Capitolo 6!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il multimetro in modalità voltmetro si collega in parallelo al LED: sonda rossa all'anodo (+), sonda nera al catodo (−). Mostrate la tensione forward Vf: circa 1.8V per il LED rosso. Questa misura conferma i nostri calcoli teorici — la teoria e la pratica coincidono!",
+      "concepts_learned": [
+        "uso del multimetro come voltmetro",
+        "collegamento in parallelo per misurare tensione",
+        "Vf rosso ≈ 1.8V misurata",
+        "verifica sperimentale delle previsioni teoriche"
+      ],
+      "next_preview": "Nel Capitolo 7 scoprirete i condensatori: componenti che immagazzinano energia elettrica e la rilasciano lentamente. Come una piccola batteria ricaricabile!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se collega correttamente le sonde in parallelo al LED → comprensione del collegamento del voltmetro",
+    "Se legge 1.8V e lo associa alla Vf del LED rosso → connessione teoria-misura reale",
+    "Se spiega perché il voltmetro va in parallelo e non in serie → comprensione del principio di misura"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "misura_Vf_multimetro",
+      "voltmetro_parallelo",
+      "Vf_rosso_1.8V_confermata"
+    ],
+    "next_suggested": "v2-cap7-esp1",
+    "resume_message": "Hai completato il Capitolo 6! Ora conosci la tensione forward di ogni LED. Il Capitolo 7 ti aspetta con un componente misterioso: un componente che immagazzina energia!"
+  },
+  "analogies": [
+    {
+      "concept": "voltmetro_parallelo",
+      "text": "Il voltmetro è come un passante che osserva la corsa senza parteciparvi: si mette AI LATI della strada (in parallelo) e guarda senza ostacolare. Se si mettesse in mezzo alla pista (in serie), interferirebbe con tutto!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "Vf_firma_LED",
+      "text": "La tensione forward è la firma unica di ogni LED: 1.8V per il rosso, 2.2V per il verde, 3V per il blu. È come un'impronta unica che il multimetro può leggere! Conoscere questi valori vi permette di calcolare qualsiasi circuito LED.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Collegare le sonde del multimetro in serie invece che in parallelo",
+      "teacher_response": "Il voltmetro va SEMPRE in parallelo! In serie misurerebbe la corrente (che è un'altra cosa) e potrebbe interrompere il circuito. Le sonde vanno ai DUE CAPI del componente che volete misurare, non dentro il percorso principale.",
+      "analogy": "Per misurare l'altezza di una finestra, metti il metro ai lati (parallelo) — non dentro il muro (serie)!"
+    },
+    {
+      "mistake": "Collegare la sonda rossa al catodo invece che all'anodo",
+      "teacher_response": "Attenzione alla polarità! La sonda rossa (+) va all'anodo del LED (gamba lunga, +). La sonda nera (−) va al catodo (gamba corta, −). Se invertite, il multimetro mostra un valore negativo.",
+      "analogy": "Come una bussola: la freccia rossa indica sempre il nord. La sonda rossa del multimetro indica sempre il punto a tensione più alta!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

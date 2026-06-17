@@ -1,0 +1,65 @@
+{
+  "cycle": 27,
+  "timestamp": "2026-03-25T19:38:17.456343",
+  "date": "2026-03-25",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 378
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in ?s",
+      "time_ms": 102720
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 258812
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=82 min=75 (target \u226560) [3 samples]",
+      "time_ms": 76996
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 6320
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2801
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "status": "done",
+    "files_changed": [
+      "src/index.css"
+    ],
+    "lesson": "src/styles/fonts.css era orphaned \u2014 font self-hosted mai importati mentre Google Fonts CDN era attivo. Fix: @import './styles/fonts.css' in index.css. Rimozione Google CDN migliora GDPR + performance su reti scolastiche. Inter non era usato nel design system (--font-sans = Open Sans).",
+    "next_action": "Creare landing page /scuole con pitch per dirigenti scolastici e CTA demo; registrazione MePa \u00e8 il blocco principale alle vendite B2B.",
+    "idea": "Certificato digitale stampabile per studenti al completamento di un Volume \u2014 costo zero implementazione, impatto marketing enorme (genitori condividono, dirigenti vedono ROI)."
+  },
+  "research": "DeepSeek: **Problemi:**\n\n1.  **Procurement complesso:** Il processo decisionale nelle scuole \u00e8 spesso frammentato e burocratico, coinvolgendo amministratori, responsabili IT e comitati didattici, rallentando drasticamente le vendite.\n2.  **Divario acquirente-utente:** Chi acquista (il distretto) e chi usa il prodotto (gli insegnanti) sono soggetti diversi, con bisogni e criteri di valutazione differenti. Un",
+  "ai_scoring": null,
+  "composite_score": 0.938,
+  "self_exam": null
+}

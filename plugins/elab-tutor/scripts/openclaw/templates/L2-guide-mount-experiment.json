@@ -1,0 +1,112 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-guide-mount-experiment",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "guideMountExperiment",
+  "description": "Morphic template: guida montaggio esperimento step-by-step sul kit fisico. Mostra componenti del kit Omaric uno alla volta sulla LIM con highlight breadboard fila/colonna e dispenser progressivo per le mani dei ragazzi.",
+  "category": "guide-build",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 13,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.10"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true
+    },
+    "stepIndex": {
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    }
+  },
+  "sequence": [
+    {
+      "step": "mount-experiment",
+      "tool": "mountExperiment",
+      "args": {
+        "experimentId": "${inputs.experimentId}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "rag-retrieve-build-steps",
+      "tool": "ragRetrieve",
+      "args": {
+        "query": "montaggio breadboard fila colonna kit ${inputs.experimentId}",
+        "topK": 3,
+        "wikiFusion": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-step-component",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": "${stepData.componentIds}",
+        "stepIndex": "${inputs.stepIndex}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "highlight-pin-target",
+      "tool": "highlightPin",
+      "args": {
+        "pins": "${stepData.targetPins}"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-step-guidance",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.${citation.vol} pag.${citation.page}: '${citation.verbatim}'. Inserite il componente nella fila evidenziata sulla breadboard.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 4200,
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'mountExperiment'",
+    "sequence[3].tool === 'highlightPin'",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "principio_zero.max_parole <= 120",
+    "morfismo_sense_1_5.adapt_complexity_lessico === true"
+  ]
+}

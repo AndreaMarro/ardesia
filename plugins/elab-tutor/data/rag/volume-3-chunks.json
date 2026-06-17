@@ -1,0 +1,538 @@
+[
+  {
+    "volume": 3,
+    "chapter": "Volume 3",
+    "section": null,
+    "content": "LABORATORIO DI ELETTRONICA\nII MM PP AA RR AA EE SS PP EE RR II MM EE NN TTAA\nVOLUME (cid:197)\nELAB",
+    "page_number": 1,
+    "token_count": 24
+  },
+  {
+    "volume": 3,
+    "chapter": "Capitolo 1",
+    "section": null,
+    "content": "Indice\nCapitolo 1- Un viaggio nella storia della programmazione ...................................... 05\nCapitolo 2 - Cos’è la Programmazione?....................................................................09\nCapitolo 3 - Ardware e Software: cosa cambia? ......................................................13\nCapitolo 4 - Il collegamento tra te e Arduino (IDE).................................................... 37\nCapitolo 5 - Come è fatto un programma Arduino?................................................ 47\nCapitolo 6 - I pin digitali : le dita di Arduino............................................................. 53\nCapitolo 7 - I pin imput e output............................................................................ 63\nCapitolo 8 - I PIN ANALOGICI: ARDUINO I(cid:51)PARA A SENTIRE LE (cid:72)UANTIT(cid:19)................... 75\nCapitolo 9 - ......................................................................................................... 85\nCapitolo 10 - ........................................................................................................ 93\nCapitolo 11 - ....................................................................................................... 103\nCapitolo 12 - ........................................................................................................ 109\nNon è finita qui! ................................................................................................... 114\nCOMPONENTI DEL KIT\n1x Breadboard 830 punti\n1x Multimetro + puntalini a coccodrillo\nCavi di differenti lunghezze\n1x Clip Batteria intestata con header\nResistori 4 Bande:\n10x 100 Ohm\n10x 220 Ohm\n10x 330 Ohm\n10x 470 Ohm\n10x 1 kOhm\nLEDs:\n5x Blu\n5x Rosso\n5x Verde\n5x Giallo\n5x Bianco\n5x RGB catodo comune\n5x Pulsanti\n4x Transistor\n4x Diodi\n4x Fotosensori\n4x Condensatori da 1000uF\n2x Motori a corrente continua\n2x Ruote\n4 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 3,
+    "token_count": 483
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "CAPITOLO 1\nUn viaggio nella storia della programmazione\n(cid:38)entornati, giovani esploratori(cid:5) (cid:51)ggi vi porter(cid:683) a scoprire uno dei poteri più\nincredibili dell’essere umano: il linguaggio con cui d(cid:666) ordini alle macchine.(cid:124)\nProgrammare significa spiegare a una macchina cosa deve fare, passo\ndopo passo. Ma prima di ini(cid:94)iare a scrivere codice, facciamo un salto\nindietro nel tempo per capire come tutto è cominciato.\nPrima dei computer: le idee geniali.\n(cid:55)iamo a met(cid:666) dell’(cid:51)ttocento. Non esistono\ncomputer, non esiste l’elettricit(cid:666) domestica e molte\ninven(cid:94)ioni moderne devono ancora nascere. Eppure\nuna giovane matematica inglese, Ada (cid:48)ovelace,\nimmagina che una macchina possa seguire istru(cid:94)ioni\nper eseguire calcoli complessi. (cid:647) la prima persona a\ndescrivere (cid:85)uello che oggi chiamiamo algoritmo: una\nse(cid:85)uen(cid:94)a di passi chiara e ordinata che permette a\nuna macchina di fare (cid:85)ualcosa.\n(cid:647) come se avesse visto il\nfuturo un secolo prima(cid:5)\n(cid:53)ualche anno prima, nel 1(cid:28)(cid:20)4, (cid:46)oseph (cid:46)ac(cid:85)uard\naveva gi(cid:666) costruito un telaio che fun(cid:94)ionava\ntramite schede forate. (cid:51)gni scheda diceva alla\nmacchina come muovere i fili per creare un certo\ndisegno. Anche se era solo un meccanismo,\npossiamo considerarlo uno dei primi esempi di\n(cid:392)programma(cid:393).\nLaboratorio di elettronica: Impara e sperimenta 5",
+    "page_number": 5,
+    "token_count": 372
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "CAPITOLO 1\nI primi computer: giganti lenti e\nrumorosi\nMolto tempo dopo, durante la seconda\nguerra mondiale, nascono i primi\ncomputer elettronici.\nErano enormi, lenti, rumorosi e pieni di\nvalvole che si scaldavano subito. Uno\ndei più famosi è ENIAC, costruito nel\nAltro che tastiera(cid:399)\n1946: era grande come un’aula\nprogrammare allora\nscolastica. Per programmarlo non si voleva dire diventare\nusava una tastiera, ma bisognava elettricisti(cid:5)\ncollegare cavi, spostare interruttori e\nmodificare interi pannelli.\n(cid:42)(cid:51)(cid:54)(cid:56)(cid:54)AN viene usato per la\nmatematica, C(cid:51)(cid:38)(cid:51)(cid:48) per il mondo\nIl linguaggio macchina delle a(cid:94)iende e (cid:38)A(cid:55)IC per chi vuole\nimparare a programmare. Per la\nCon l’arrivo dei primi sistemi più\nprima volta è possibile scrivere\navan(cid:94)ati, i programmatori ini(cid:94)iano a\ncomandi simili all’inglese, molto\nscrivere se(cid:85)uen(cid:94)e di numeri (cid:12)(cid:20) e 1(cid:13) che\npiù facili da ricordare e da leggere.\nrappresentano istru(cid:94)ioni per il\ncomputer.\n(cid:647) il livello più (cid:392)puro(cid:393) e difficile della\nIl boom del personal computer\nprogramma(cid:94)ione.\nDa (cid:194) e (cid:195) alle parole vere\nOgni scoperta ha portato a nuove\nNegli anni ’(cid:25)(cid:20) e ’6(cid:20) succede (cid:85)ualcosa invenzioni, che hanno cambiato\ndi rivolu(cid:94)ionario: nascono i primi il mondo e il nostro modo di vivere.\nlinguaggi di programma(cid:94)ione leggibili E chissà quali altre incredibili\ndalle persone. scoperte ci riserverà il futuro!\n6 Laboratorio di elettronica: Impara e sperimenta\nALTRI CENNI DI STORIA DELL’ELETTRONICA\nProgrammare oggi: da Arduino all’intelligenza artificiale\n(cid:51)ggi programmare è alla portata di tutti. Anche una piccola scheda come\nArduino permette di creare luci intelligenti, piccoli robot, sistemi di allarme\ne giochi interattivi. Nei prossimi capitoli imparerai a usarla passo dopo\npasso.\nProgrammare non significa solo",
+    "page_number": 6,
+    "token_count": 494
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 1",
+    "section": null,
+    "content": "parlare a un computer: significa\ncreare (cid:85)ualcosa che prima non\nesisteva.\nNOTE\n• Una istru(cid:94)ione è un comando dato a una macchina.\n• Un programma è un insieme ordinato di istru(cid:94)ioni.\n• I linguaggi di programma(cid:94)ione servono per facilitare la\ncomunica(cid:94)ione tra noi e il computer, sen(cid:94)a usare (cid:20) e 1.\nLaboratorio di elettronica: Impara e sperimenta 7\nNOTE\n8 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 7,
+    "token_count": 112
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "CAPITOLO 2\nCos’è la programmazione? I linguaggi di\nprogrammazione\n(cid:48)a programma(cid:94)ione è il modo in cui\ncomunichiamo con i dispositivi\nI dispositivi elettronici programmabili,\nelettronici programmabili per dir loro\nproprio come gli esseri umani,\ncosa devono fare. (cid:647) un po’ come\ncomunicano attraverso linguaggi\nscrivere una ricetta che deve essere\ndiversi. Nel loro caso si chiamano\nseguita passo dopo passo.\nlinguaggi di programma(cid:94)ione.\nImmagina di voler preparare una\ntorta: hai una lista di ingredienti e una\nserie di passaggi da seguire E come (cid:85)ualun(cid:85)ue lingua, hanno delle\nnell’ordine corretto. regole grammaticali ben precise: se\nnon le rispettiamo, la macchina non\ncapisce e il programma non\n(cid:55)e rispetti ogni passaggio, la torta\nfun(cid:94)iona.\nverr(cid:666) fuori(cid:5)\n(cid:48)a programma(cid:94)ione fun(cid:94)iona Prova a leggere (cid:85)uesta frase:\nesattamente allo stesso modo: se\nriusciamo a dire, in modo chiaro e Io pu(cid:683) volere andare ma se io volere\npreciso, cosa deve fare l’oggetto che andare come fare per volere andare\nvogliamo programmare, possiamo ad andare(cid:35)\ncreare cose meravigliose. Anche i\nvideogiochi, le app sullo smartphone\ne i soft(cid:91)are che usi ogni giorno\nsono programmati(cid:5)\nLaboratorio di elettronica: Impara e sperimenta 9",
+    "page_number": 9,
+    "token_count": 332
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 2",
+    "section": null,
+    "content": "CAPITOLO 2\nPer esempio, se dovessimo\nConfusa(cid:206) vero?\nprogrammare un robot per farlo\nmuovere, potremmo scrivere:\n(cid:48)o stesso succede (cid:85)uando si scrive\nmale un programma. • (cid:58)ai avanti di (cid:23) passi\nNel mondo della programma(cid:94)ione, ad • (cid:43)irati a destra\n(cid:392)esaminare(cid:393) se ci(cid:683) che abbiamo • (cid:55)aluta\nscritto è corretto, c’è una sorta di E il robot eseguir(cid:666) (cid:85)ueste a(cid:94)ioni\nprofessore molto severo: esattamente nel loro ordine.\nil compilatore.\nUn esempio pratico\nIl suo compito è controllare se il\ncodice rispetta le regole del\nProva a fare un piccolo esperimento\nlinguaggio. (cid:55)e è corretto (cid:392)ti d(cid:666) la\ncon un tuo amico. Immagina di\nsufficien(cid:94)a(cid:393) e fa partire il programma(cid:31)\ndoverlo guidare all’uscita della scuola.\nse invece ci sono errori, non ti lascia\n(cid:55)crivi tutte le istru(cid:94)ioni, una per una:\nproseguire e non compila.\nNei linguaggi di programma(cid:94)ione non\n1. Al(cid:94)ati dalla sedia\nusiamo frasi, ma istru(cid:94)ioni, chiamate\nanche linee di codice. (cid:22). (cid:42)ai un passo in avanti.\n(cid:51)gni linea di codice corrisponde a (cid:23). (cid:43)irati di 9(cid:20) gradi a destra.\nun’a(cid:94)ione.\nPer esempio, se dovessimo (cid:55)e il tuo compagno riesce davvero ad\nprogrammare un robot per farlo arrivare all’uscita seguendo solo le tue\nmuovere, potremmo scrivere: istru(cid:94)ioni, significa che hai scritto un\nbuon programma(cid:5)\n(cid:55)e invece rimane bloccato contro un\nmuro o non sa cosa fare(cid:399) allora c’è\nun problema, (cid:85)uello che in gergo si\nchiama bug.\n10 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 10,
+    "token_count": 421
+  },
+  {
+    "volume": 3,
+    "chapter": "1. M",
+    "section": null,
+    "content": "Cos’è la programmazione?\nPerch(cid:123) si chiama bug? Perch(cid:123) si chiama bug?\nIl termine (cid:392)bug(cid:393) ha una storia Anche se il termine era gi(cid:666) usato in\ncuriosa che risale al 194(cid:27). ingegneria per indicare difetti o guasti,\n(cid:55)i racconta che un gruppo di tecnici (cid:85)uesto episodio è entrato nella storia\nche lavorava al computer Mar(cid:79) II dell’informatica e ha contribuito a\ndell’Universit(cid:666) di (cid:44)arvard trov(cid:683) un renderlo famoso in tutto il mondo.\nvero insetto (cid:386) una falena (cid:386)\nALGORIT(cid:51)I: LE RICETTE DELLA\nincastrato in un componente, che\ncausava un malfun(cid:94)ionamento(cid:5) TECNOLOGIA\n(cid:43)race (cid:44)opper, una pioniera Un algoritmo è semplicemente una\ndell’informatica che faceva parte del lista di istru(cid:94)ioni, scritte in un ordine\nteam, document(cid:683) l’episodio preciso, che serve per raggiungere un\nincollando la falena sul registro di risultato.Non è (cid:85)ualcosa di misterioso\nbordo e scrivendo: ocomplicato: è un procedimento, un\n(cid:392)(cid:42)irst actual case of bug being metodo, un (cid:392)come si fa(cid:393).\nfound.(cid:393)(cid:40)a (cid:85)uel momento, la parola\n(cid:392)bug(cid:393) è diventata il termine più usato Per capirlo meglio, pensa a una ricetta\nper indicare errori o problemi nei di cucina:\nprogrammi.\n1. Metti la farina\n(cid:22). Aggiungi l’ac(cid:85)ua\n(cid:23). Mescola\n4. Inforna\n(cid:55)e segui tutti i passaggi\ncorrettamente, il dolce verr(cid:666)(cid:5)\nMa se sbagli l’ordine(cid:399) addio torta(cid:5)\nPrima la metti nel forno e poi la\nmescoli(cid:35) Impossibile.\n(cid:48)a stessa cosa succede (cid:85)uando\nprogrammi un computer:\nLaboratorio di elettronica: Impara e sperimenta 11\nCos’è la programmazione?\nL’ordine delle istruzioni è fondamentale.\n• Creare videogiochi, dai più\nUn algoritmo deve essere chiaro, semplici ai più complessi\nordinato e sen(cid:94)a confusione, perch(cid:675) la",
+    "page_number": 11,
+    "token_count": 486
+  },
+  {
+    "volume": 3,
+    "chapter": "1. M",
+    "section": null,
+    "content": "macchina eseguir(cid:666) esattamente ci(cid:683) • Costruire sistemi intelligenti,\nche hai scritto, n(cid:675) più n(cid:675) meno. come allarmi, automa(cid:94)ioni o\npiccoli assistenti\nPE(cid:54)C(cid:44)(cid:648) P(cid:54)(cid:51)(cid:43)(cid:54)AMMA(cid:54)E (cid:647) C(cid:51)(cid:55)(cid:651)\nE non solo(cid:5)\nIMP(cid:51)(cid:54)(cid:56)AN(cid:56)E(cid:35)\nProgrammare significa prendere\n(cid:43)ra(cid:94)ie alla programma(cid:94)ione puoi:\nun’idea e trasformarla in (cid:85)ualcosa di\nreale.\n• progettare strumenti utili\n• dare vita ai tuoi progetti\n(cid:647) un superpotere moderno: ti permette\ntecnologici\ndi far fare alle macchine tutto ci(cid:683) che\n• imparare come ragionano le\nvuoi, purch(cid:675) tu glielo sappia spiegare.\nmacchine\n• sviluppare un metodo logico e\nCon il codice puoi:\ncreativo\n• Accendere un (cid:48)E(cid:40) con un\nsemplice comando\nProgrammare non è solo (cid:392)scrivere\n• Controllare un robot, facendolo\ncodice(cid:393):\ncamminare, girare, evitare\nostacoli\nè trasformare la tua immagina(cid:94)ione in\n• (cid:48)eggere un sensore, per sapere la\n(cid:85)ualcosa che fun(cid:94)iona davvero.\ntemperatura, la luce, il movimento\n12 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 12,
+    "token_count": 304
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\n(cid:41)ARD(cid:90)ARE E SO(cid:39)T(cid:90)ARE: COSA CA(cid:51)(cid:22)IA?\n(cid:41)ARD(cid:90)ARE: IL CORPO DEL SISTE(cid:51)A\nAdesso che hai capito cos’è la\nprogramma(cid:94)ione, possiamo fare un (cid:48)’hard(cid:91)are è tutto ci(cid:683) che puoi\npasso avanti verso il nostro toccare fisicamente.\nobiettivo:\nimparare a usare Arduino nel (cid:647) fatto di plastica, metallo, cavi,\ncomponenti elettronici.\n(cid:647) la parte che reagisce al mondo\nmodogiusto\nesterno, che si muove, si accende,\nmisura, emette suoni.\nPer farlo, dobbiamo distinguere due\n(cid:392)mondi(cid:393) che lavorano sempre\nEsempi di hard(cid:91)are:\ninsieme.\n• (cid:48)a scheda Arduino Nano (cid:54)4\n(cid:55)ono come due met(cid:666) della stessa • un (cid:48)E(cid:40)\nmela:\n• un pulsante\n• una batteria\n(cid:44)ard(cid:91)are (cid:33) il corpo\n• un sensore di temperatura\n(cid:55)oft(cid:91)are (cid:33) la mente • i fili (cid:78)umper\n(cid:55)en(cid:94)a uno dei due(cid:399) nulla pu(cid:683)\nfun(cid:94)ionare davvero(cid:5)\nmisura, emette suoni. Esempi di\nhard(cid:91)are:\nLaboratorio di elettronica: Impara e sperimenta 13",
+    "page_number": 13,
+    "token_count": 279
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\n(cid:51)a attenzione: E allo stesso tempo(cid:399)\nsen(cid:94)a hard(cid:91)are, il soft(cid:91)are non pu(cid:683)\nl’hard(cid:91)are da solo non fa fare nulla.\nassolutamente nulla.\nNon puoi far accendere un (cid:48)E(cid:40) se il\n(cid:48)E(cid:40) non esiste(cid:5)\nSO(cid:39)T(cid:90)ARE: LA (cid:51)ENTE C(cid:41)E CO(cid:51)ANDA\nPERC(cid:41)(cid:28) LA(cid:89)ORANO INSIE(cid:51)E?\nIl soft(cid:91)are è la parte invisibile ma\nintelligente. (cid:647) ci(cid:683) che decide cosa deve Immagina una lampada intelligente.\nfare l’hard(cid:91)are.\n(cid:55)erve:\nEsempi di soft(cid:91)are che usi ogni giorno:\n• l’app della calcolatrice • hard(cid:91)are → la lampada, il (cid:48)E(cid:40), i\ncavi\n• (cid:61)ou(cid:56)ube\n• soft(cid:91)are → il programma che dice\n• un videogioco\n(cid:85)uando deve accendersi o\n• un messaggio sul telefono spegnersi\n• e presto(cid:399) il codice che scriverai\nnell’Arduino I(cid:40)E. (cid:55)e uno dei due manca, la lampada\nnon fun(cid:94)iona.\nIl soft(cid:91)are è formato da istru(cid:94)ioni,\nscritte in un linguaggio che la macchina\n(cid:48)a stessa cosa succede in Arduino:\npu(cid:683) comprendere.\ntu scrivi il programma (cid:12)soft(cid:91)are(cid:13) e la\n(cid:55)en(cid:94)a soft(cid:91)are:\nscheda esegue ci(cid:683) che hai scritto\n(cid:12)hard(cid:91)are(cid:13)\n• Arduino non sa (cid:85)uali pin accendere\n• un sensore non sa (cid:85)uando inviare\ndati\n• un robot non sa muoversi\n14 Laboratorio di elettronica: Impara e sperimenta\n(cid:41)ARD(cid:90)ARE E SO(cid:39)T(cid:90)ARE: COSA CA(cid:51)(cid:22)IA?\nIL (cid:51)ICROCONTROLLORE: IL CER(cid:89)ELLO DI\nARDUINO\n(cid:40)entro la tua Arduino Nano (cid:54)4 c’è un\npiccolo componente nero molto\nimportante:\nil microcontrollore, cioè il (cid:392)cervello(cid:393)\ndella scheda.\n(cid:647) molto più semplice di un computer,\nma anche più veloce in alcune cose:\nFUNZIONI DISPONIBILI\nesegue miliardi di opera(cid:94)ioni al\nsecondo ed è progettato per\nGuarda il tuo multimetro: ha un",
+    "page_number": 14,
+    "token_count": 496
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "controllare dispositivi elettronici.\nselettore rotativo al centro e tanti\nnumeri e simboli tutti intorno. Questa\nUn microcontrollore pu(cid:683):\nmanopola ti permette di selezionare\n• leggere ci(cid:683) che arriva dai sensori cosa vuoi che il multimetro misuri.\n• accendere e spegnere (cid:48)E(cid:40)\n• pilotare motori Puoi girarla in qualsiasi direzione.\n• prendere decisioni con if Se la metti esattamente al centro,\n• ripetere comandi molto di solito punterà verso la scritta OFF.\nvelocemente\n• comunicare con il computer In questa posizione, il multimetro\ntramite U(cid:55)(cid:38) è spento.\n• memori(cid:94)(cid:94)are il tuo programma al\nsuo interno È super importante ricordarsi di\n(cid:53)uando carichi uno s(cid:79)etch, è proprio il rimettere sempre la manopola su OFF\nmicrocontrollore che lo esegue, quando hai finito di usarlo, così la\nistru(cid:94)ione dopo istru(cid:94)ione. batteria del multimetro non si scarica\ninutilmente!\n(cid:647) gra(cid:94)ie a lui se Arduino (cid:392)vive(cid:393).\nLaboratorio di elettronica: Impara e sperimenta 15",
+    "page_number": 15,
+    "token_count": 265
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 3",
+    "section": null,
+    "content": "CAPITOLO 3\nNOTE\n(cid:195)(cid:200) Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 16,
+    "token_count": 20
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "CAPITOLO 4\nIL COLLEGA(cid:51)ENTO TRA TE E ARDUINO\nChe cos’è Arduino?\n(cid:53)uando scriveremo i primi\nprogrammi, succeder(cid:666) (cid:85)uesto:\n• (cid:56)u scrivi il codice nell’Arduino\nAl contrario di (cid:85)uello che si pensa,\nI(cid:40)E (cid:12)soft(cid:91)are(cid:13).\nArduino non è solo una scheda\n• Premi Carica.\nelettronica.\n• Il compilatore controlla che il\ncodice sia corretto.\n(cid:647) molto di più: è una piattaforma\n• Il programma viene inviato ad\ncompleta che permette a\nArduino.\nchiun(cid:85)ue , anche ai principianti, di\n• Il microcontrollore lo\ncreare progetti elettronici e\nmemori(cid:94)(cid:94)a.\ninterattivi.\n• (cid:48)’hard(cid:91)are risponde ai tuoi\nArduino è formato principalmente\ncomandi.\nda tre elementi fondamentali, che\n• In poche parole:\nlavorano insieme come un’unica\ns(cid:85)uadra:\n(cid:56)u dai le istru(cid:94)ioni, Arduino\nobbedisce.\nLaboratorio di elettronica: Impara e sperimenta (cid:195)7",
+    "page_number": 17,
+    "token_count": 233
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "CAPITOLO 4\nLa scheda elettronica da programmare L’ambiente di sviluppo (Arduino IDE)\n(cid:647) la parte fisica, (cid:85)uella che puoi\nPer far fun(cid:94)ionare Arduino serve un\ntoccare.\nposto in cui scrivere il codice,\n(cid:48)a più famosa è Arduino UN(cid:51), ma ne\nmodificarlo e inviarlo alla scheda.\nesistono moltissime varianti, ognuna\n(cid:53)uesto posto è chiamato I(cid:40)E, cioè\ncon caratteristiche diverse.\nIntegrated (cid:40)evelopment\nEnvironment.\nNel nostro percorso useremo una\nArduino mette a disposi(cid:94)ione due\nArduino Nano (cid:54)4, una scheda\nI(cid:40)E diversi:\ncompatta e moderna, perfetta per\nini(cid:94)iare a programmare e per\nI(cid:40)E (cid:22) (cid:40)es(cid:79)top\ncostruire prototipi.\n(cid:647) un programma da installare sul tuo\ncomputer.\n(cid:647) stabile, veloce e molto usato da chi\nlavora a progetti complessi.\n(cid:48)a scheda contiene:\n• un microcontrollore (cid:12)il\n(cid:392)cervello(cid:393)(cid:13),\n• i pin di input e output,\n• il collegamento U(cid:55)(cid:38),\n• alcuni componenti integrati,\ncome il (cid:48)E(cid:40) sulla scheda.\n(cid:195)(cid:202) Laboratorio di elettronica: Impara e sperimenta\nIL COLLEGA(cid:51)ENTO TRA TE E ARDUINO\n(cid:59)eb I(cid:40)E (cid:53)uesta scelta ha creato nel tempo\nuna communit(cid:93) gigantesca di\n(cid:42)un(cid:94)iona direttamente dal bro(cid:91)ser, appassionati, studenti, insegnanti,\nsen(cid:94)a installare nulla. inventori, sviluppatori professionisti.\n(cid:38)asta un account Arduino e puoi\nprogrammare la scheda anche da (cid:51)gni giorno la communit(cid:93)\nun’altra posta(cid:94)ione. contribuisce a migliorare Arduino:\nIn entrambi i casi, l’I(cid:40)E ti permette di:\n• scrivere il codice, • crea librerie nuove,\n• verificare se ci sono errori, • risolve problemi,\n• caricare il programma sulla • pubblica tutorial,\nscheda, • condivide progetti,\n• usare esempi gi(cid:666) pronti, • risponde alle domande dei\n• gestire librerie aggiuntive. principianti.",
+    "page_number": 18,
+    "token_count": 489
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "La communit(cid:187): il vero cuore di Arduino\n(cid:647) proprio gra(cid:94)ie a (cid:85)uesta comunit(cid:666)\nche Arduino è diventato lo strumento\nArduino è una piattaforma (cid:51)pen educativo n(cid:113)1 al mondo per imparare\n(cid:55)ource. la programma(cid:94)ione e l’elettronica.\n(cid:55)ignifica che:\n• i progetti,\n• la documenta(cid:94)ione,\n• i file delle schede,\n• l’ambiente di sviluppo\nsono pubblici e accessibili a tutti.\nNessun brevetto segreto, nessun\nblocco artificiale: chiun(cid:85)ue pu(cid:683)\nstudiare, migliorare e condividere.\nLaboratorio di elettronica: Impara e sperimenta (cid:195)9",
+    "page_number": 19,
+    "token_count": 152
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 4",
+    "section": null,
+    "content": "CAPITOLO 4\nCome installare Arduino IDE\n• Aprire un bro(cid:91)ser (cid:85)ualsiasi sul PC e inserire come indiri(cid:94)(cid:94)o\n(cid:91)(cid:91)(cid:91).arduino.cc\n• Nella homepage cliccare su documenta(cid:94)ione poi su soft(cid:91)are\n• (cid:40)opo aver cliccato sar(cid:666) possibile scegliere\n• per (cid:85)uale sistema operativo effettuare il do(cid:91)nload. (cid:55)cegli (cid:85)uello giusto per\nil computer che stai utili(cid:94)(cid:94)ando nella lista (cid:40)(cid:51)(cid:59)N(cid:48)(cid:51)A(cid:40)(cid:55) (cid:51)P(cid:56)I(cid:51)N(cid:55).\n• Una volta finito il do(cid:91)nload lancia il programma Arduino I(cid:40)E\n• Appena avviato per la prima volta Arduino I(cid:40)E installa dei pacchetti\nnecessari al suo fun(cid:94)ionamento in maniera autonoma(cid:5)\n(cid:196)0 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 20,
+    "token_count": 210
+  },
+  {
+    "volume": 3,
+    "chapter": "1. C",
+    "section": null,
+    "content": "IL COLLEGA(cid:51)ENTO TRA TE E ARDUINO\nIl nostro primo programma Arduino\nAdesso scriveremo e capiremo insieme il nostro primissimo programma su\nArduino(cid:5)\n(cid:53)uesto programma si chiama (cid:38)lin(cid:79), che in inglese significa fare l’occhiolino.\nEd è proprio (cid:85)uello che faremo fare a un (cid:48)E(cid:40):\naccendersi e spegnersi da solo.\nPASSO (cid:195) (cid:227) Collegare Arduino al computer\n(cid:56)i serve:\n(cid:397) la tua Arduino Nano (cid:54)4\n(cid:397) un cavo U(cid:55)(cid:38)(cid:17)C\n(cid:397) un computer con l’Arduino I(cid:40)E\nProcedi cos(cid:678):\n1. Collega il cavo U(cid:55)(cid:38) alla scheda Arduino.\n(cid:22). Collega l’altra estremit(cid:666) al computer.\n(cid:23). (cid:40)ovresti vedere accendersi un (cid:48)E(cid:40) sulla\nscheda: significa che ha ricevuto corrente.\n(cid:55)e non la sele(cid:94)ioni, Arduino non sapr(cid:666) dove inviare il\nprogramma.\nPASSO (cid:197) (cid:227) Aprire l’esempio (cid:22)link\n(cid:48)’esempio (cid:38)lin(cid:79) è gi(cid:666) dentro l’I(cid:40)E, pronto per essere\nusato:\n(cid:58)ai su (cid:42)ile → Esempi → (cid:20)1.(cid:38)asics → (cid:38)lin(cid:79).\n(cid:55)i aprir(cid:666) una nuova finestra con il programma gi(cid:666)\nscritto.\n(cid:53)uesto è il codice più famoso del mondo Arduino.\nLaboratorio di elettronica: Impara e sperimenta (cid:196)1\nNOTE\n(cid:196)(cid:196) Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 21,
+    "token_count": 352
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "CAPITOLO 5\nCome è fatto un programma Arduino?\nUn programma Arduino ha (cid:168)uasi\nAnali(cid:94)(cid:94)iamo il programma più\nfamoso e semplice di Arduino: sempre (cid:196) parti importanti:\nvoid setup(cid:12)(cid:13) (cid:95) setup(cid:12)(cid:13)\npinMode(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31) (cid:647) la prepara(cid:94)ione.\n(cid:97) (cid:58)iene eseguita una sola volta,\nvoid loop(cid:12)(cid:13) (cid:95) (cid:85)uando Arduino si accende o si\ndigital(cid:59)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31) resetta.\ndela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31) (cid:53)ui diciamo ad Arduino come deve\ndigital(cid:59)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:48)(cid:51)(cid:59)(cid:13)(cid:31) essere usato l’hard(cid:91)are (cid:12)pin,\ndela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31) sensori, ecc.(cid:13).\n(cid:97)\nUn programma Arduino ha (cid:85)uasi loop(cid:12)(cid:13)\nsempre (cid:22) parti importanti: (cid:647) il ciclo che si ripete.\nIl codice dentro loop(cid:12)(cid:13) viene eseguito\nall’infinito, in tondo: (cid:85)uando arriva\nalla fine, ricomincia dall’ini(cid:94)io.\nPuoi immaginare:\nsetup(cid:12)(cid:13) (cid:33) (cid:392)sistemiamo le cose prima\ndi ini(cid:94)iare a giocare(cid:393)\nloop(cid:12)(cid:13) (cid:33) (cid:392)il gioco vero e proprio che\nripetiamo in continua(cid:94)ione(cid:393)\nLaboratorio di elettronica: Impara e sperimenta (cid:196)(cid:197)",
+    "page_number": 24,
+    "token_count": 394
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "CAPITOLO 5\nSpiegazione parola per parola\n(cid:54)I(cid:43)A 1:\nvoid setup(cid:12)(cid:13) (cid:95)\nvoid . In inglese significa (cid:392)vuoto(cid:393).\n(cid:53)ui vuol dire: (cid:85)uesta fun(cid:94)ione non\nrestituisce niente (cid:12)non ti d(cid:666) un\nnumero o un risultato da usare dopo(cid:13).\n(cid:647) solo un gruppo di comandi da\neseguire.\n(cid:54)I(cid:43)A (cid:22):\n(cid:6) pinMode(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\n(cid:97) (cid:6)\npinMode\n(cid:647) una fun(cid:94)ione(cid:19)comando.\n(cid:392)Pin(cid:393) (cid:33) piedino di Arduino (cid:12)uno dei\nbuchini numerati(cid:13).\n(cid:392)Mode(cid:393) (cid:33) modalit(cid:666).\n(cid:53)uindi pinMode serve per dire:\nsetup\ncome useremo (cid:85)uel pin(cid:35) Come\ningresso o come uscita(cid:35)\n(cid:55)ignifica prepara(cid:94)ione.\n(cid:6) (cid:12) (cid:6) (cid:12)Parentesi chiusa(cid:13)\n(cid:647) il nome speciale della fun(cid:94)ione che\nArduino cerca sempre all’ini(cid:94)io. Ini(cid:94)ia la lista delle informa(cid:94)ioni che\nla fun(cid:94)ione pinMode deve usare.\n(cid:12) (cid:13) (cid:12)Parentesi aperta e chiusa(cid:13)\n(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN\n(cid:48)e parentesi tonde.\n(cid:55)ervono per dire se la fun(cid:94)ione ha (cid:48)E(cid:40) (cid:33) la lucina.\nbisogno di (cid:85)ualche dato in ingresso.\n(cid:38)UI(cid:48)(cid:56)IN (cid:33) (cid:392)incorporato(cid:393), cioè gi(cid:666)\n(cid:53)ui sono vuote → setup non ha\nmontato sulla scheda.\nbisogno di informa(cid:94)ioni in ingresso.\n(cid:196)(cid:198) Laboratorio di elettronica: Impara e sperimenta\nCome è fatto un programma Arduino?\n(cid:647) come se dicessimo: (cid:392)usa la lucina\ninterna della scheda(cid:393).\n(cid:6) , (cid:6) (cid:12)virgola(cid:13)\n(cid:55)epara il primo dato (cid:12)(cid:85)uale pin(cid:13) dal\nsecondo dato (cid:12)come lo useremo(cid:13).\n(cid:6)(cid:51)U(cid:56)PU(cid:56)(cid:6) (cid:55)ignifica uscita.",
+    "page_number": 25,
+    "token_count": 494
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "(cid:58)uol dire: (cid:392)da (cid:85)uesto pin usciranno (cid:54)I(cid:43)A (cid:23):\nsegnali(cid:393), cioè Arduino user(cid:666) il pin per (cid:6) void loop(cid:12)(cid:13) (cid:95)\nmandare corrente (cid:12)accendere cose,\n(cid:6) void (cid:6)\ncome il (cid:48)E(cid:40)(cid:13).\n(cid:647) come prima: fun(cid:94)ione che non\n(cid:6) (cid:13) (cid:6) (cid:12)Parentesi chiusa(cid:13)\nrestituisce un valore.\nChiude la lista di informa(cid:94)ioni della\n(cid:6) loop (cid:6)\nfun(cid:94)ione.\nIn inglese significa (cid:392)giro(cid:393) (cid:19) (cid:392)ciclo(cid:393).\n(cid:6) (cid:31) (cid:6) (cid:12)punto e virgola(cid:13)\n(cid:647) il nome speciale della fun(cid:94)ione\n(cid:647) come il punto alla fine di una frase. che Arduino ripete all’infinito.\n(cid:40)ice ad Arduino: (cid:392)(cid:85)uesta istru(cid:94)ione è\n(cid:6) (cid:12)(cid:13) (cid:6) (cid:12)Parentesi aperta e chiusa(cid:13)\nfinita, passa alla prossima(cid:393).\nCome prima: parentesi tonde, (cid:85)ui\nvuote perch(cid:675) la fun(cid:94)ione non ha\n(cid:6) (cid:97) (cid:6) (cid:12)Parentesi graffa chiusa.(cid:13)\nbisogno di dati in ingresso.\n(cid:58)uol dire: (cid:392)(cid:85)ui finisce il blocco di\n(cid:6) (cid:95) (cid:6) (cid:12)Parentesi graffa aperta(cid:13)\ncomandi di setup(cid:393).\n(cid:53)uindi setup ha solo una riga di\nIni(cid:94)io del blocco di comandi che\ncomandi, (cid:85)uella con pinMode.\nappartiene a loop.\nLaboratorio di elettronica: Impara e sperimenta (cid:196)(cid:199)",
+    "page_number": 26,
+    "token_count": 368
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "CAPITOLO 5\n(cid:6) , (cid:6) (cid:12)virgola(cid:13)\n(cid:55)eparatore tra primo dato (cid:12)il pin(cid:13) e\nsecondo dato (cid:12)il valore(cid:13).\n(cid:44)I(cid:43)(cid:44) (cid:6)In inglese (cid:392)alto(cid:393).\nPer Arduino vuol dire: accendi, manda\ncorrente, metti (cid:85)uel pin a 1.\n(cid:6) (cid:13) (cid:6) (cid:12)Chiusa parentesi(cid:13)\n(cid:42)ine dei dati per digital(cid:59)rite.\n(cid:54)I(cid:43)A (cid:27):\ndigital(cid:59)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\n(cid:6) (cid:31) (cid:6) (cid:12)Punto e virgola(cid:13)\ndigital(cid:59)rite\n(cid:42)ine dell’istru(cid:94)ione.\n(cid:55)piega(cid:94)ione logica della scritta:\n(cid:392)digital(cid:393) (cid:33) che pu(cid:683) valere solo (cid:20) o 1,\n(cid:392)Accendi il (cid:48)E(cid:40) interno della scheda(cid:393).\nspento o acceso.\n(cid:392)(cid:91)rite(cid:393) (cid:33) scrivere.\nInsieme: scrivere un valore digitale\nsu un pin, cioè dire ad Arduino se\n(cid:85)uel pin deve essere spento (cid:12)(cid:20)(cid:13) o\nacceso (cid:12)1(cid:13).\n(cid:6) (cid:12) (cid:6) (cid:12)Parentesi chiusa(cid:13)\nIni(cid:94)io dei dati da passare alla\nfun(cid:94)ione.\n(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN\n(cid:40)i nuovo, il (cid:48)E(cid:40) interno alla scheda.\n(cid:196)(cid:200) Laboratorio di elettronica: Impara e sperimenta\nCome è fatto un programma Arduino?\n(cid:54)I(cid:43)A (cid:28)(cid:19)1(cid:20): dela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31) (cid:54)I(cid:43)A 9: digital(cid:91)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)U(cid:48)(cid:40)IN(cid:43), (cid:48)(cid:51)(cid:59)(cid:13)(cid:31)\ndela(cid:93) (cid:647) come la riga (cid:25), ma:\n(cid:55)ignifica (cid:392)pausa (cid:19) ritardo(cid:393). (cid:397) (cid:48)(cid:51)(cid:59)\n(cid:40)ice ad Arduino di aspettare un po’ o In inglese (cid:392)basso(cid:393).\nprima di fare (cid:6) il prossimo\no (cid:58)uol dire: spegni, niente corrente,\ncomando.",
+    "page_number": 27,
+    "token_count": 496
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "metti (cid:85)uel pin a (cid:20).\n(cid:6) (cid:12) (cid:6) (cid:12) aperta parentesi (cid:13)\nIni(cid:94)io del numero che indica (cid:85)uanto\n(cid:55)piega(cid:94)ione logica della scritta:\ntempo aspettare.\n(cid:392)(cid:55)pegni il (cid:48)E(cid:40) interno della scheda.(cid:393)\n1(cid:20)(cid:20)(cid:20)\nNumero di millisecondi.\n1(cid:20)(cid:20)(cid:20) millisecondi (cid:33) 1 secondo.\n(cid:53)uindi: (cid:392)aspetta 1 secondo(cid:393).\n(cid:6) (cid:13) (cid:6) (cid:12) Chiusa parentesi (cid:13)\n(cid:42)ine del tempo specificato.\n(cid:6) (cid:31) (cid:6) (cid:12) punto e virgola(cid:13)\n(cid:42)ine dell’istru(cid:94)ione.\n(cid:55)piega(cid:94)ione logica della scritta:\n(cid:392)(cid:51)ra aspetta 1 secondo sen(cid:94)a fare\naltro.(cid:393)\nLaboratorio di elettronica: Impara e sperimenta (cid:196)(cid:201)\nCome è fatto un programma Arduino?\n(cid:54)I(cid:43)A (cid:28)(cid:19)1(cid:20): dela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31)\n(cid:647) identica alla riga (cid:27):\ndi nuovo aspetta 1 secondo.\n(cid:55)piega(cid:94)ione logica della scritta:\n(cid:392)(cid:51)ra aspetta 1 secondo sen(cid:94)a fare\naltro.(cid:393)\nCosa succede davvero passo passo\n• All’accensione Arduino esegue setup(cid:12)(cid:13):\n• imposta il (cid:48)E(cid:40) interno come uscita pinMode(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\n• (cid:97)\n• Poi entra in loop(cid:12)(cid:13) e fa sempre gli stessi passi:\n• digital(cid:59)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31) → accende il (cid:48)E(cid:40).\n• dela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31) → aspetta 1 secondo.\n• digital(cid:59)rite(cid:12)(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, (cid:48)(cid:51)(cid:59)(cid:13)(cid:31) → spegne il (cid:48)E(cid:40).\n• dela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31) → aspetta 1 secondo.",
+    "page_number": 28,
+    "token_count": 491
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 5",
+    "section": null,
+    "content": "• (cid:56)orna all’ini(cid:94)io di loop(cid:12)(cid:13) e ricomincia. (cid:97)\n• (cid:97)\n•\n(cid:54)isultato: la lucina sulla scheda Arduino lampeggia: 1 secondo accesa, 1 secondo\nspenta, all’infinito\nLaboratorio di elettronica: Impara e sperimenta (cid:196)(cid:201)",
+    "page_number": 29,
+    "token_count": 67
+  },
+  {
+    "volume": 3,
+    "chapter": "Capitolo 5",
+    "section": null,
+    "content": "Come è fatto un programma Arduino?\nCAPITOL\nO 5\nPromemoria dei termini\nNOTE DI ELAB – Da tenere a portata di mano\nGLOSSARIO RAPIDO –\nCapitolo 5\n1.Sketch / Programma — L’insieme di istruzioni che Arduino esegue.\n2.Istruzione (riga di codice) — Un comando singolo che Arduino deve fare.\n3.setup() — La fase di preparazione: si esegue una sola volta all’avvio o al reset.\n4.loop() — Il ciclo: si ripete all’infinito.\n5.void — Significa “vuoto”: la funzione non restituisce un risultato, esegue solo\ncomandi.\n6.Funzione — Un gruppo di comandi con un nome (es. setup, loop, delay…).\n7.( ) (parentesi tonde) — Contengono i dati usati da una funzione (es.\ndelay(1000)).\n8.{ } (parentesi graffe) — Indicano inizio e fine di un blocco di comandi.\n9.pinMode(pin, modalità) — Dice ad Arduino come usare un pin.\n10. OUTPUT — Il pin è un’uscita: Arduino può accendere o spegnere qualcosa.\n11. LED_BUILTIN — La lucina già presente sulla scheda (LED interno).\n12. digitalWrite(pin, valore) — Scrive su un pin digitale: acceso/spento.\n13. HIGH — “Alto”: acceso, corrente presente (1).\n14. LOW — “Basso”: spento, niente corrente (0).\n15. delay(tempo) — Fa una pausa prima del comando successivo.\n16. Millisecondi (ms) — 1000 ms = 1 secondo.\n17. , (virgola) — Separa i dati dentro una funzione.\n18. ; (punto e virgola) — Fine di un’istruzione (come il punto a fine frase).\n19. Compilatore — Controlla se il codice è scritto bene; se trova errori non\ncarica il programma.\n20. Reset — Riavvio della scheda: setup() riparte da capo.\nLaboratorio di elettronica: Impara e sperimenta (cid:196)(cid:201)\nCAPITOLO (cid:199)\nNOTE\n(cid:196)(cid:203) Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 30,
+    "token_count": 417
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "CAPITOLO 6\nI PIN DIGITALI: LE DITA DI ARDUINO\n(cid:109)(cid:38)entornati, giovani esploratori(cid:5) I pin digitali: cosa sono davvero?\n(cid:43)uarda la tua Arduino Nano (cid:54)4.\n(cid:42)ino a ora Arduino ha acceso e Ai lati della scheda vedi tanti buchini\nspento una lucina sulla sua pancia(cid:399) numerati:\nma oggi scopriremo una cosa (cid:40)(cid:22), (cid:40)(cid:23), (cid:40)4(cid:399) (cid:40)1(cid:23).\nincredibile: Arduino ha tante dita e con (cid:53)uelli che ini(cid:94)iano con la lettera (cid:40) si\nognuna può accendere e spegnere chiamano: pin digitali\nqualcosa nel mondo reale! Un pin digitale è un punto da cui\nObiettivo del capitolo Arduino pu(cid:683):\nIn (cid:85)uesto capitolo imparerai: • far uscire corrente\n• cosa sono i pin digitali • oppure non far uscire nulla\n• cosa significano (cid:44)I(cid:43)(cid:44) e (cid:48)(cid:51)(cid:59) Non esistono vie di me(cid:94)(cid:94)o, solo due\npossibilit(cid:666). Un pin digitale pu(cid:683) avere\n• perch(cid:675) i pin fun(cid:94)ionano come\nsolo due stati:\ninterruttori\n• ACCE(cid:55)(cid:51)\n• come Arduino accende e spegne\n• (cid:55)PEN(cid:56)(cid:51)\ncomponenti esterni\n• a creare giochi di luce sempre Proprio come:\npiù interessanti • un interruttore della luce\nAlla fine del capitolo, Arduino non • un pulsante (cid:51)N (cid:19) (cid:51)(cid:42)(cid:42)\n• una porta aperta o chiusa\ncontroller(cid:666) più solo una lucina sulla\nscheda(cid:399) ma componenti veri\nnota E(cid:48)A(cid:38)\ncollegati fuori, come un vero cervello • Un pin digitale non è complicato:\nelettronico. ofa passare corrente, oppure no.\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:194)",
+    "page_number": 32,
+    "token_count": 413
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "CAPITOLO 6\nHIGH e LOW: il linguaggio segreto dei OUTPUT: (cid:85)uando Arduino comanda\npin\nArduino non usa le parole (cid:392)acceso(cid:393) e (cid:53)uando vogliamo che Arduino\n(cid:392)spento(cid:393). accenda o spenga (cid:85)ualcosa, usiamo il\nUsa due parole speciali in inglese: pin come:\n(cid:51)U(cid:56)PU(cid:56) (cid:12)uscita(cid:13)\nHIGH , significa alto ,vuol dire:\n• accendi\nPer (cid:85)uesto, prima di usarlo, dobbiamo\n• manda corrente\nsempre dire:\n• s(cid:678)\nLOW, significa basso , vuol dire:\npinMode(cid:12)numero(cid:67)pin, (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\n• spegni\n• niente corrente\nÈ come dire ad Arduino:\n• no\n“Questo pin lo userai per dare ordini.”\nEsempio pratico\nLe due funzioni magiche\n• (cid:48)E(cid:40) acceso → pin in (cid:44)I(cid:43)(cid:44)\nPer controllare i pin digitali useremo\n• (cid:48)E(cid:40) spento → pin in (cid:48)(cid:51)(cid:59)\nsempre due fun(cid:94)ioni.\nArduino parla cos(cid:678) con l’elettronica. pinMode() – preparo il pin\n(cid:55)erve per dire ad Arduino come\nI pin digitali come interruttori (cid:51)ra\nuseremo un pin.\narriva una delle idee più importanti\nEsempio:\ndi tutto Arduino.\npinMode(cid:12)1(cid:23), (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\n· Un pin digitale è come un (cid:55)ignifica:\ninterruttore elettronico. (cid:392)Il pin 1(cid:23) sar(cid:666) un’uscita.(cid:393)\n(cid:48)a differen(cid:94)a è che:\ndigitalWrite() – accendo o spengo\n• non lo premi con il dito\nEsempio:\n• lo comandi con il codice\ndigital(cid:59)rite(cid:12)1(cid:23), (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\n(cid:53)uando scrivi un programma, è come (cid:55)ignifica: (cid:392)Accendi il pin 1(cid:23).(cid:393)\nse dicessi:\ndigital(cid:59)rite(cid:12)1(cid:23), (cid:48)(cid:51)(cid:59)(cid:13)(cid:31)\n• (cid:392)Accendi (cid:85)uesto interruttore(cid:393) (cid:55)ignifica: (cid:392)(cid:55)pegni il pin 1(cid:23).(cid:393)\n• (cid:392)(cid:55)pegni (cid:85)uest’altro(cid:393)",
+    "page_number": 33,
+    "token_count": 483
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 6",
+    "section": null,
+    "content": "(cid:197)(cid:195) Laboratorio di elettronica: Impara e sperimenta\nI PIN DIGITALI: LE DITA DI ARDUINO\nPremessa: Come fun(cid:94)iona ora:\n(alimentazione breadboard)\n(cid:48)a breadboard prende la corrente\ndalla scheda Arduino.\n(cid:54)aga(cid:94)(cid:94)i, nei (cid:58)olumi 1 e (cid:22) abbiamo\n(cid:85)uasi sempre alimentato la Il positivo (cid:12)(cid:15)(cid:13) lo prendiamo dal pin\nbreadboard usando una batteria da (cid:25)(cid:58) dell’Arduino (cid:12)(cid:85)uello indicato\n9(cid:58) (cid:12)con il suo cavetto(cid:19)clip(cid:13), (cid:85)uindi la proprio come (cid:25)(cid:58)(cid:13).\ncorrente arrivava alla breadboard\nIl negativo (cid:12)(cid:431)(cid:13) lo prendiamo da uno\ndirettamente dalla batteria.\ndei pin GND (cid:12)massa(cid:13) indicati sulla\nscheda.\n(cid:40)a adesso, con Arduino Nano (cid:54)4,\ncambiamo metodo: non usiamo più\nla 9(cid:58) per alimentare la breadboard,\nperch(cid:675) l’alimenta(cid:94)ione pu(cid:683) arrivare\ndirettamente dalla scheda Arduino\ncollegando il cavo usbC al PC.\n•\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:196)\nbreadboard\nCosì tutta la breadboard è alimentata\nin modo ordinato: tutti i componenti\nuseranno lo stesso 5V e la stessa\nmassa (GND).",
+    "page_number": 33,
+    "token_count": 305
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 6",
+    "section": "ESPERIMENTO 1",
+    "content": "I PIN DIGITALI: LE DITA DI ARDUINO\nESPERIMENTO 1: Colleghiamo la resistenza\n• Materiale necessario (cid:48)a resisten(cid:94)a deve andare in serie al\n• 1 Arduino Nano (cid:54)4 led .(cid:53)uindi metti un capo della\nresisten(cid:94)a nella stessa fila della gamba\n• 1 breadboard (cid:12)4(cid:20)(cid:20) punti(cid:13)\ncorta del (cid:48)E(cid:40).\n• 1 (cid:48)E(cid:40) (cid:12)rosso o verde(cid:13)\n(cid:48)’altro capo lo mettiamo nella colonna\n• 1 resisten(cid:94)a 4(cid:27)(cid:20) (cid:186) del gnd della nostra NAN(cid:51)\n• 1 cavetto (cid:78)umper\n• Cavo U(cid:55)(cid:38)(cid:17)C\nPosizioniamo Arduino Nano sulla\nbreadboard\nPrendi la breadboard.\nInserisci la Arduino Nano in modo che:\ni pin di sinistra stiano su una riga (cid:6)a(cid:6),\ni pin di destra sulla riga (cid:6)g(cid:6) Collegamenti elettrici con Arduino Nano\n(cid:48)a Nano rimane a cavalo della rigache D13 → gamba lunga del (cid:48)E(cid:40) (cid:12)anodo(cid:13)\nsepara le breadbord, cos(cid:678) ogni pin resta\n(cid:12)useremo (cid:40)1(cid:23) perch(cid:675) è (cid:85)uello che\nseparato. in (cid:85)uesto modo puoi usare\ncontrolla il (cid:48)E(cid:40) interno, cos(cid:678) il codice\nfacilmente i pin (cid:40)(cid:22), (cid:40)(cid:23), (cid:40)4(cid:399) (cid:40)1(cid:23) e i pin\nresta identico(cid:13)\n(cid:43)N(cid:40), (cid:25)v\nGND → resisten(cid:94)a → gamba corta del\nSpostiamo il LED sulla breadboard (cid:48)E(cid:40) (cid:12)catodo(cid:13)\nUseremo un (cid:48)E(cid:40) verde per riprodurre lo\nstesso effetto del (cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, ma\n(cid:85)uesta volta fuori dalla scheda.\n (cid:48)unga (cid:33) anodo (cid:12)(cid:15)(cid:13)\n Corta (cid:33) catodo (cid:12)(cid:385)(cid:13)\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:197)",
+    "page_number": 35,
+    "token_count": 442
+  },
+  {
+    "volume": 3,
+    "chapter": "capitolo 5",
+    "section": "ESPERIMENTO 2",
+    "content": "I PIN DIGITALI: LE DITA DI ARDUINO\nCodice da caricare (lo stesso del ESPERIMENTO 2:\ncapitolo 5 l’unica differenza che invece\nCambia il numero di pin sia sul codice che\ndi usare il termine “LED_BUILTIN” lo sulla (cid:38)readbord\nsostituiamo con “13 “\nModifica il pin:\nProva a usare:\npinMode(cid:12)(cid:25), (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\ndigital(cid:59)rite(cid:12)(cid:25), (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\ndigital(cid:59)rite(cid:12)(cid:25), (cid:48)(cid:51)(cid:59)(cid:13)(cid:31)\nESPERIMENTO 3:\n(cid:42)ai un (cid:55)(cid:51)(cid:55) in codice Morse\nModifica il codice aggiungi comandi:\nProva a usare:\nvoid loop(cid:12)(cid:13) (cid:95)\nNota: su Arduino Nano è meglio usare il digital(cid:59)rite(cid:12)1(cid:23), (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\nnumero del pin (cid:12)1(cid:23)(cid:13) invece di\ndela(cid:93)(cid:12)1(cid:20)(cid:20)(cid:20)(cid:13)(cid:31)\n(cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN, per essere più chiari nella\ndigital(cid:59)rite(cid:12)1(cid:23), (cid:48)(cid:51)(cid:59)(cid:13)(cid:31)\npratica.\ndela(cid:93)(cid:12)(cid:22)(cid:20)(cid:20)(cid:13)(cid:31)\nEsperimenti aggiuntivi (per approfondire) digital(cid:59)rite(cid:12)1(cid:23), (cid:44)I(cid:43)(cid:44)(cid:31)\nCambia la velocit(cid:666) del lampeggio dela(cid:93)(cid:12)(cid:22)(cid:20)(cid:20)(cid:13)(cid:31)\ndigital(cid:59)rite(cid:12)1(cid:23), (cid:48)(cid:51)(cid:59)(cid:13)(cid:31)\nModifica il delay:\ndela(cid:93)(cid:12)(cid:22)(cid:20)(cid:20)(cid:20)(cid:13)(cid:31)\n(cid:397) (cid:22)(cid:20)(cid:20) ms → lampeggio veloce (cid:97)\n(cid:397) (cid:22)(cid:20)(cid:20)(cid:20) ms → lampeggio lento\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:198)",
+    "page_number": 36,
+    "token_count": 427
+  },
+  {
+    "volume": 3,
+    "chapter": "capitolo 5",
+    "section": "ESPERIMENTO 4",
+    "content": "Come è fatto un programma Arduino?\nESPERIMENTO 4 :\nPROGRAMMA LUCI LAMPEGGIANTE STILE\nSIRENATO 2 :\nDue LED: effetto “polizia”\nProva a usare:\n• (cid:48)E(cid:40) 1 → pin (cid:28)\nCollega:\n• (cid:48)E(cid:40) (cid:22) → pin 9\nProgramma: • uno acceso\n• l’altro spento\n• poi si scambiano\n(cid:54)isultato: luci lampeggianti stile sirena(cid:5)\nIn (cid:85)uesto modo possiamo scrivere\ntutte le annota(cid:94)ioni che vogliamo\ndirettamente sulla riga interessata\n(cid:12)oanche su più righe(cid:13), sen(cid:94)a\nmodificare il comportamento del\ncodice: i commenti infatti non\nvengono eseguiti e (cid:85)uindi non\ninterferiscono con il programma\nscritto nell’I(cid:40)E.\nNota di elab\nNella figura affianco abbiamo inserito\ndelle scritte di spiega(cid:94)ione per chiarire il\nsignificato e il fun(cid:94)ionamento di ogni\nsingola stringa(cid:19)istru(cid:94)ione del programma.\n(cid:53)ueste spiega(cid:94)ioni sono state aggiunte\nsotto forma di commenti, riconoscibili\nperch(cid:675) prima del testo compaiono due\nbarre:\n// esempio di nota\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:198)",
+    "page_number": 37,
+    "token_count": 274
+  },
+  {
+    "volume": 3,
+    "chapter": "capitolo 5",
+    "section": "ESPERIMENTO 5",
+    "content": "I PIN DIGITALI: LE DITA DI ARDUINO\nNote utili Prova a scriverlo da solo poi controlli le\nstringe con (cid:85)uesto esempio.\nUsa i commenti per: spiegare\ncosa fa una riga, chiarire\npassaggi complessi, indicare\nvalori importanti, o ricordare\nscelte fatte durante lo sviluppo.\nMantieni i commenti brevi e\nchiari, cos(cid:678) il codice resta\nleggibile.\n(cid:55)e cambi il codice, aggiorna\nanche i commenti: devono\nsempre\n(cid:392)seguire(cid:393) il programma per\nevitare\nESPERIMENTO 5: Il semaforo\nUn semaforo è solo: un (cid:38)link\ncon più fasi\nLED:\nVerde → pin (cid:25)\n(cid:43)iallo → pin 6\nRosso → pin 7\nS(cid:70)q(cid:86)(cid:70)(cid:79)z(cid:66)(cid:27)\nV(cid:70)(cid:83)(cid:69)(cid:70)(cid:1)(cid:9)3(cid:1)(cid:84)(cid:10)\n(cid:40)(cid:74)(cid:66)(cid:77)(cid:77)(cid:80)(cid:1)(cid:9)1(cid:1)(cid:84)(cid:10)\n(cid:83)(cid:80)(cid:84)(cid:84)(cid:80)(cid:1)(cid:9)3(cid:1)(cid:84)(cid:10)\nR(cid:74)(cid:81)(cid:70)(cid:85)(cid:74)\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:197)(cid:198)(cid:199)\nI PIN DIGITALI: LE DITA DI ARDUINO\n(cid:44)ai appena reali(cid:94)(cid:94)ato:\n• il primo circuito fisico con Arduino Nano,\n• il primo programma che controlla un componente esterno,\n• il collegamento tra soft(cid:91)are (cid:12)codice(cid:13) e hard(cid:91)are (cid:12)(cid:48)E(cid:40) (cid:15) breadboard(cid:13).\nErrori tipici (diventa un detective)\n(cid:55)e il (cid:48)E(cid:40) non si accende, controlla:\nChec(cid:79)list:\n• (cid:48)E(cid:40) girato nel verso giusto(cid:35)\n• (cid:54)esisten(cid:94)a collegata bene(cid:35)\n• (cid:43)N(cid:40) presente(cid:35)\n• Numero del pin corretto sia sulla breadbord che nel codice(cid:35)\nNota ELAB\nUn buon programmatore controlla sempre anche i fili.\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:199)\nI PIN DIGITALI: LE DITA DI ARDUINO\nNOTE DI ELAB - Promemoria dei termini (Capitolo 6)\nTERMINE",
+    "page_number": 38,
+    "token_count": 471
+  },
+  {
+    "volume": 3,
+    "chapter": "capitolo 5",
+    "section": "ESPERIMENTO 5",
+    "content": "Pin digitali (cid:12)(cid:40)(cid:22), (cid:40)(cid:23)... (cid:40)1(cid:23)(cid:13) Piedini che possono stare solo in due\n(cid:44)I(cid:43)(cid:44) (cid:55)tato (cid:11)acceso(cid:11): il pin vale 1 e manda corrente.\n(cid:48)(cid:51)(cid:59) (cid:55)tato (cid:11)spento(cid:11): il pin vale (cid:20) e non manda corrente.\nInterruttore elettronico Un pin digitale e(cid:11) come un interruttore: lo accendi o\nlo spegni con il codice.\n(cid:51)U(cid:56)PU(cid:56) Modalita(cid:11) per comandare (cid:85)ualcosa: Arduino usa il\npin per far uscire un segnale.\npinMode(cid:12)pin, (cid:51)U(cid:56)PU(cid:56)(cid:13) (cid:40)ice ad Arduino: (cid:11)(cid:85)uesto pin lo usero(cid:11) come uscita(cid:11).\ndigital(cid:59)rite(cid:12)pin, (cid:44)I(cid:43)(cid:44)(cid:19)(cid:48)(cid:51)(cid:59)(cid:13) Accende o spegne un pin digitale (cid:12)e (cid:85)uindi un (cid:48)E(cid:40)\ncollegato\n(cid:48)E(cid:40) (cid:12)anodo e catodo(cid:13) (cid:43)amba lunga (cid:33) anodo (cid:12)(cid:15)(cid:13). (cid:43)amba corta (cid:33) catodo (cid:12)(cid:17)(cid:13).\n(cid:54)esisten(cid:94)a in serie (cid:12)(cid:22)(cid:22)(cid:20)(cid:17)4(cid:27)(cid:20) (cid:48)imita la corrente per proteggere il (cid:48)E(cid:40): va messa in\nohm(cid:13) serie al (cid:48)E(cid:40).\n(cid:43)N(cid:40) Massa(cid:19)(cid:94)ero volt: e(cid:11) il ritorno della corrente (cid:12)il\n(cid:11)negativo(cid:11)(cid:13).\n(cid:25)(cid:58) Alimenta(cid:94)ione positiva dalla scheda (cid:12)il (cid:11)positivo(cid:11)(cid:13).\n(cid:40)1(cid:23) e (cid:48)E(cid:40)(cid:67)(cid:38)UI(cid:48)(cid:56)IN (cid:40)1(cid:23) e(cid:11) il pin collegato alla lucina interna. Per un (cid:48)E(cid:40)\nesterno puoi usare anche il numero 1(cid:23).\ndela(cid:93)(cid:12)ms(cid:13) Pausa: ferma Arduino per un tempo in millisecondi\n(cid:12)1(cid:20)(cid:20)(cid:20) ms (cid:33) 1 secondo(cid:13).\nMillisecondo (cid:12)ms(cid:13) Pausa: ferma Arduino per un tempo in millisecondi",
+    "page_number": 40,
+    "token_count": 484
+  },
+  {
+    "volume": 3,
+    "chapter": "capitolo 5",
+    "section": "ESPERIMENTO 5",
+    "content": "(cid:12)1(cid:20)(cid:20)(cid:20) ms (cid:33) 1 secondo(cid:13).\nUnita(cid:11) di tempo: 1(cid:20)(cid:20)(cid:20) ms (cid:33) 1 secondo.\nCommenti (cid:19)(cid:19) Note per gli umani: Arduino le ignora. (cid:55)ervono per\nricordare e spiegare il codice.\n(cid:55)e(cid:85)uen(cid:94)a (cid:19) fasi Una se(cid:85)uen(cid:94)a e(cid:11) una serie di accensioni con tempi\ndiversi (cid:12)es. semaforo: verde, giallo, rosso(cid:13).\n(cid:40)ebug (cid:12)chec(cid:79)list(cid:13) (cid:55)e non fun(cid:94)iona: (cid:48)E(cid:40) nel verso giusto(cid:35) resisten(cid:94)a\npresente(cid:35) (cid:43)N(cid:40) collegato(cid:35) pin giusto nel codice(cid:35)\nLaboratorio di elettronica: Impara e sperimenta (cid:197)(cid:199)\nI PIN DIGITALI: LE DITA DI ARDUINO\nNOTE\n(cid:197)(cid:200) Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 40,
+    "token_count": 205
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\nI PIN DI INPUT: ARDUINO ASCOLTA E DECIDE\n«Giovani esploratori, fino a questo Arduino mette un pin in (cid:44)(cid:45)(cid:43)(cid:44) → esce\nmomento Arduino è stato un (cid:392)energia(cid:393) → (cid:48)E(cid:40) si accende\nottimo esecutore. Arduino mette un pin in (cid:48)(cid:51)(cid:59) → non esce\nHa acceso luci, le ha spente, ha energia → (cid:48)E(cid:40) si spegne\nfatto lampeggiare LED come un\nvero mago dell’elettronica. (cid:53)uindi:\n(cid:51)(cid:57)(cid:56)(cid:52)(cid:57)(cid:56) (cid:33) (cid:37)rduino comanda\nMa c’è una domanda importante\nda farsi:\nArduino può reagire a quello\nche facciamo noi?\nLa risposta è sì.\n(cid:51)ra invece vogliamo che Arduino riceva\nE oggi Arduino impara una nuova\nun’informa(cid:94)ione dall’esterno.\nabilità: ascoltare.»\nPer esempio: (cid:392)(cid:53)ualcuno sta premendo un\npulsante(cid:35)(cid:393)\n(cid:45)(cid:50)(cid:52)(cid:57)(cid:56) (cid:33) (cid:37)rduino asco(cid:80)ta\n7.1 INPUT e OUTPUT:\nArduino parla e Arduino\nascolta\nNel Capitolo 6 abbiamo usato i pin\ndigitali come OUTPUT (uscita). Cosa\nvuol dire? (cid:647) come dire:\n(cid:51)U(cid:56)PU(cid:56) → Arduino usa la bocca\nINPU(cid:56) → Arduino usa le orecchie\nLaboratorio di elettronica: Impara e sperimenta 63",
+    "page_number": 42,
+    "token_count": 308
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\n7.2 Il pulsante: come (cid:53)uesta modalit(cid:666): rende la lettura stabile\nfunziona davvero riduce i collegamenti evita falsi valori\n(cid:392)strani(cid:393)\nUn pulsante è un componente\nMa c’è un effetto curioso\nsemplice ma geniale.\nQuando NON premi\nCon INPUT_PULLUP:\nIl circuito è aperto → non passa\ncorrente.\npulsante N(cid:51)N premuto → (cid:44)I(cid:43)(cid:44)\nQuando premi pulsante premuto → (cid:48)(cid:51)(cid:59)\nIl circuito si chiude → passa corrente. Sì: è “al contrario”.\n(cid:53)uindi il pulsante manda ad Arduino un\nMa è normale: basta ricordarselo.\nmessaggio che ha solo due possibilit(cid:666):\n• s(cid:678) (cid:19) no Perch(cid:675) non basta scrivere INPU(cid:56)(cid:35)\n• acceso (cid:19) spento (cid:53)uando scrivi: pinMode(cid:12)(cid:22), INPU(cid:56)(cid:13)(cid:31)\n• (cid:44)I(cid:43)(cid:44) (cid:19) (cid:48)(cid:51)(cid:59)\nArduino dice:\nCome ti ricorderai nel volume uno di Elab (cid:392)(cid:51)(cid:79), il pin (cid:22) adesso deve ascoltare.(cid:393)\nabbiamo visto come collegare il pulsante, MA(cid:399) c’è un problema grosso:\nricordati il pulsante va sempre inserito a Un pin in INPU(cid:56) è come un orecchio\ncavallo della riga centrale della breadbord. super sensibile.(cid:55)e non gli dai un\nriferimento, il pin resta (cid:392)in aria(cid:393), cioè non\n7.3 INPUT_PULLUP: la\nè collegato n(cid:675) a (cid:25)(cid:58) n(cid:675) a (cid:43)N(cid:40).\nscorciatoia più utile per E un pin (cid:392)in aria(cid:393) pu(cid:683):\nleggere (cid:44)I(cid:43)(cid:44) anche se non tocchi niente\niniziare\nleggere (cid:48)(cid:51)(cid:59) a caso cambiare valore\n(cid:51)ra arriva un trucco utilissimo.\nsolo perch(cid:675) muovi un filo o avvicini la\nIn teoria, per far fun(cid:94)ionare bene un\nmano\npulsante, servirebbe una resisten(cid:94)a (cid:392)di\n(cid:53)uesto si chiama pin fluttuante\naiuto(cid:393).\n(cid:12)floating(cid:13).\nMa Arduino ce l’ha gi(cid:666) dentro(cid:5)\n(cid:647) come chiedere a (cid:85)ualcuno:",
+    "page_number": 43,
+    "token_count": 492
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "(cid:53)uindi invece di scrivere:\n(cid:392)(cid:44)ai sentito un rumore(cid:35)(cid:393)\npinMode(2, INPUT);\nma stai in una stan(cid:94)a piena di eco:\nnoi useremo:\nsentir(cid:666) (cid:392)(cid:85)ualcosa(cid:393) anche se non c’è.\npinMode(2, INPUT_PULLUP);\n64 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 43,
+    "token_count": 77
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": "ESERCIZIO 7",
+    "content": "CHE COSA SONO I CONDENSATORI?\nQuindi a cosa serve INPUT_PULLUP? ESERCIZIO 7.3 –\nQuando scrivi: Collegamento del pulsante\npinMode(2, INPUT_PULLUP);\ncon INPUT_PULLUP (super\nArduino fa due cose insieme: mette il pin\nsemplice)\nin INPUT (ascolta) attiva una resistenza\ninterna che lo “tira su” verso HIGH\nObiettivo: collegare il pulsante\nusando solo 1 filo + GND. Scegliamo\nCosa significa “tira su”?\nil pin di lettura:\nuseremo D2. Collega un cavetto da\nSignifica che Arduino dice al pin:\nD2 a un lato del pulsante.\n“Se nessuno ti sta dicendo nulla, tu stai su\nCollega l’altro lato del pulsante a\nHIGH, in modo stabile.”\nGND.Fatto.\nQuesta resistenza interna si chiama pull-\nup.\nCosì il pin non resta più “in aria”\nCon INPUT_PULLUP succede questo:\nQuando NON premi il pulsante\nil pulsante è aperto (non collega niente)\nil pin NON resta nel vuoto\nla resistenza interna lo tiene su → HIGH\nstabile\nIn questo modo:\nQuando PREMI il pulsante\nil pulsante collega il pin a GND se premi → D2 si collega a GND →\nquindi il pin va a 0V → LOW Arduino legge LOW\nEcco perché “premuto = se non premi → Arduino legge HIGH\nLOW” (sembra al contrario ma è (grazie al pullup interno)\nnormale).\nLaboratorio di elettronica: Impara e sperimenta 65",
+    "page_number": 44,
+    "token_count": 304
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\n7.4 (cid:37)rd(cid:89)ino le(cid:75)(cid:75)e “pre(cid:81)(cid:89)to (cid:51) non pre(cid:81)(cid:89)to” di(cid:75)ital(cid:54)ead():\n(cid:51)ra Arduino deve leggere lo stato del pulsante. Nel capitolo precedente per accendere i\nled abbiamo usato digital(cid:59)rite(cid:12)(cid:22), ....(cid:13) (cid:85)uindi diciamo noi se scceso o spento, ora\ndobbiamo leggere il valore del pulsante (cid:85)uindi la fun(cid:94)ione è: digital(cid:54)ead(cid:12)(cid:22), ....(cid:13)\n(cid:53)uesta fun(cid:94)ione restituisce: (cid:44)I(cid:43)(cid:44) o (cid:48)(cid:51)(cid:59)\nEcome chiedere: il Pin (cid:22), mi stai dicendo (cid:44)I(cid:43)(cid:44) o (cid:48)(cid:51)W?\n7.(cid:26) Arduino decide: if, else\ne perch(cid:623) usiamo (cid:6) == (cid:6)\n(cid:51)ra arriva la magia vera della programma(cid:94)ione.\nArduino non deve solo leggere: deve decidere.\nUsiamo:\nif (condizione) int pulsante (cid:33) (cid:22)(cid:31)\nint led (cid:33) (cid:28)(cid:31) (cid:19)(cid:19) fai (cid:85)uesto\nelse { (cid:97) (cid:19)(cid:19) altrimenti fai (cid:85)uest(cid:11)altro\n(cid:55)E succede una cosa → fai A A(cid:48)(cid:56)(cid:54)IMEN(cid:56)I → fai (cid:38)\nNel nostro caso:\n(cid:55)e il pulsante è premuto\n(cid:12)(cid:48)(cid:51)(cid:59)(cid:13) → accendi (cid:48)E(cid:40) A(cid:48)(cid:56)(cid:54)IMEN(cid:56)I\n→spegni (cid:48)E(cid:40)\n(cid:6)int(cid:6) e (cid:6) (cid:33)(cid:33) (cid:6)\nAbbiamo aggiunto un altro\ntermine al programma nella\npagina successiva ti spiego tutto(cid:5)\n66 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I CONDENSATORI?\n7.7 Le “scatoline” dei numeri: (cid:6) int (cid:6)\n(cid:53)uando scriviamo:\nint pulsante (cid:33) (cid:22)(cid:31)\nint led (cid:33) (cid:28)(cid:31)\nstiamo dicendo ad Arduino:\n(cid:392)Mi serve una scatolina dove conservare un numero.(cid:393)\nint significa: numero intero (cid:12)cioè un numero sen(cid:94)a virgola: (cid:20), 1, (cid:22), (cid:28), 1(cid:23), (cid:25)(cid:20)(cid:20)(cid:399)(cid:13)\n(cid:53)uindi:",
+    "page_number": 45,
+    "token_count": 496
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "pulsante (cid:33)(cid:33) è una scatolina che contiene il numero (cid:22)\nled (cid:33)(cid:33) è una scatolina che contiene il numero (cid:28)\nPerch(cid:675) lo facciamo(cid:35)\nPerch(cid:675) invece di scrivere sempre:\npinMode(cid:12)(cid:28), (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\npinMode(cid:12)(cid:22), INPU(cid:56)(cid:67)PU(cid:48)(cid:48)UP(cid:13)(cid:31)\ndigital(cid:54)ead(cid:12)(cid:22)(cid:13)(cid:31)\ndigital(cid:59)rite(cid:12)(cid:28), (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\nPossiamo scrivere:\npinMode(cid:12)led, (cid:51)U(cid:56)PU(cid:56)(cid:13)(cid:31)\npinMode(cid:12)pulsante, INPU(cid:56)(cid:67)PU(cid:48)(cid:48)UP(cid:13)(cid:31)\ndigital(cid:54)ead(cid:12)pulsante(cid:13)(cid:31)\ndigital(cid:59)rite(cid:12)led, (cid:44)I(cid:43)(cid:44)(cid:13)(cid:31)\n(cid:39)o(cid:87)ì il pro(cid:75)ra(cid:81)(cid:81)a è pi(cid:636) c(cid:76)iaro, perc(cid:76)(cid:623) le(cid:75)(cid:75)endo capi(cid:87)ci (cid:87)(cid:89)(cid:70)ito:\n(cid:85)uale pin è il pulsante\n(cid:85)uale pin è il (cid:48)E(cid:40)\nE(cid:55)E(cid:54)CI(cid:62)I(cid:51) (cid:385) Cambia un numero, cambia il circuito\n(cid:55)posta il filo del (cid:48)E(cid:40) da (cid:40)(cid:28) a (cid:40)9\nCambia solo (cid:85)uesta riga:\nint led (cid:33) (cid:28)(cid:31) (cid:33)(cid:33)(cid:34) cambialo con int led (cid:33) 9(cid:31)\n(cid:55)e fun(cid:94)iona, hai capito cos’è una variabile:\nhai cambiato un solo numero e hai cambiato il comportamento del programma.\nLaboratorio di elettronica: Impara e sperimenta 67",
+    "page_number": 46,
+    "token_count": 377
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\nEsempio super chiaro con frasi\n7.7 Perch(cid:623) si scrive (cid:6) == (cid:6)\n(due uguali)?\nif (cid:12)digital(cid:54)ead(cid:12)pulsante(cid:13) (cid:33)(cid:33) (cid:48)(cid:51)(cid:59)(cid:13) (cid:95) (cid:55)i\nlegge cosa:\nIn Arduino (cid:12)e in (cid:85)uasi tutti i linguaggi(cid:13):\n(cid:392)(cid:55)E il pulsante è premuto (cid:12)cioè (cid:48)(cid:51)(cid:59)(cid:13),\n(cid:6)=(cid:6) (cid:12)uno uguale(cid:13) significa assegna.\nallora(cid:399)(cid:393)\nCioè: (cid:392)metti dentro(cid:393).\nErrore tipico da evitare (cid:53)uesto è\nEsempio:\nsbagliato:\nint led (cid:33) (cid:28); vuol dire: metti il numero (cid:28)\nif (cid:12)digital(cid:54)ead(cid:12)pulsante(cid:13) (cid:33) (cid:48)(cid:51)(cid:59)(cid:13)\nnella scatolina chiamata led.\nPerch(cid:675) (cid:33) non fa una domanda: prova ad\n(cid:392)assegnare(cid:393) (cid:48)(cid:51)(cid:59) (cid:12)e crea\ncome dire: (cid:392)led prende valore (cid:28)(cid:393).\nconfusione(cid:47)errori(cid:13).\nIn Arduino (cid:12)e in (cid:85)uasi tutti i linguaggi(cid:13): (cid:6)(cid:33)(cid:33)\n(cid:53)uello giusto è:\n(cid:6) (cid:12)due uguali(cid:13) significa confronta if (cid:12)digital(cid:54)ead(cid:12)pulsante(cid:13) (cid:33)(cid:33) (cid:48)(cid:51)(cid:59)(cid:13)\nCioè: (cid:392)è uguale a(cid:399)(cid:35)(cid:393)\n(cid:6) (cid:33) (cid:6) e (cid:6) (cid:33)(cid:33) (cid:6) non sono la stessa cosa\nEsempio:\ndi(cid:75)ital(cid:54)ead(p(cid:89)l(cid:87)ante) (cid:33)(cid:33) L(cid:51)(cid:59) (cid:33) significa assegna\n(cid:12)metti un valore in una variabile(cid:13)\nvuol dire: (cid:392)(cid:53)uello che leggo dal pulsante è\n(cid:33)(cid:33) significa confronta (cid:12)sono uguali(cid:35)(cid:13)\nuguale a (cid:48)(cid:51)(cid:59)(cid:35)(cid:393)\n(cid:40)entro if(cid:12)...(cid:13) si usa (cid:85)uasi sempre (cid:33)(cid:33)\nuna domanda a cui Arduino risponde con:\nperch(cid:675) stiamo facendo una domanda.\nsi (cid:12)vero(cid:13)\nno (cid:12)falso(cid:13)",
+    "page_number": 47,
+    "token_count": 487
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "E poi, gra(cid:94)ie a (cid:6) if (cid:6), decide cosa fare.\n68 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I CONDENSATORI?\n7.7 Debug guidato (se non funziona)\n(cid:55)e il (cid:48)E(cid:40) non risponde:\no Il (cid:48)E(cid:40) è girato bene(cid:35) (cid:12)gamba lunga verso il pin, corta verso resisten(cid:94)a(cid:19)\n(cid:43)N(cid:40)(cid:13)\no (cid:48)a resisten(cid:94)a è collegata davvero in serie(cid:35)\no Il pulsante attraversa la fessura centrale(cid:35)\no Il pulsante è collegato tra (cid:40)(cid:22) e (cid:43)N(cid:40)(cid:35)\no Nel codice:\no pulsante (cid:33)\no led (cid:33)\no INPU(cid:56)(cid:67)PU(cid:48)(cid:48)UP scritto giusti\no confronto con (cid:33)(cid:33) (cid:12)due uguali(cid:13)\n7.(cid:28) Mini-progetto: Due LED, un pulsante (Arduino\nsceglie)\n(cid:51)biettivo\nse premi → (cid:48)E(cid:40) verde acceso\nse non premi → (cid:48)E(cid:40) rosso acceso\nCollegamenti\n(cid:48)E(cid:40) verde → (cid:40)(cid:28)\n(cid:48)E(cid:40) rosso → (cid:40)9\npulsante → (cid:40)(cid:22) e (cid:43)N(cid:40)\nCodice\nINPU(cid:56)(cid:67)PU(cid:48)(cid:48)UP scritto giusto\nconfronto con (cid:33)(cid:33) (cid:12)due uguali(cid:13)\nLaboratorio di elettronica: Impara e sperimenta 69",
+    "page_number": 47,
+    "token_count": 302
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 7",
+    "section": null,
+    "content": "CAPITOLO 7\nprogramma:\n70 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I CONDENSATORI?\nScema di assemblaggio sulla breadbord:\n70 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I CONDENSATORI?\n(cid:54)esisten(cid:94)a interna che tiene il pin su (cid:44)I(cid:43)(cid:44) (cid:85)uando non\nPull(cid:17)up interno\npremi.\nN(cid:51)N premuto (cid:33) (cid:44)I(cid:43)(cid:44) (cid:397) P(cid:54)EMU(cid:56)(cid:51) (cid:33) (cid:48)(cid:51)(cid:59) (cid:12)perch(cid:675) va a\n(cid:54)egola INPU(cid:56)(cid:67)PU(cid:48)(cid:48)UP\n(cid:43)N(cid:40)(cid:13).\n(cid:48)egge un pin digitale e restituisce (cid:44)I(cid:43)(cid:44) oppure (cid:48)(cid:51)(cid:59).\ndigital(cid:54)ead(cid:12)pin(cid:13)\n(cid:55)crive su un pin: lo mette (cid:44)I(cid:43)(cid:44) (cid:12)accende(cid:13) o (cid:48)(cid:51)(cid:59) (cid:12)spegne(cid:13).\ndigital(cid:59)rite(cid:12)pin, (cid:399)(cid:13)\nif (cid:392)(cid:55)E(cid:393): controlla una condi(cid:94)ione e decide se fare un’a(cid:94)ione.\nelse (cid:392)A(cid:48)(cid:56)(cid:54)IMEN(cid:56)I(cid:393): cosa fare (cid:85)uando la condi(cid:94)ione dell’if è falsa.\nCondi(cid:94)ione Una domanda vera(cid:19)falsa (cid:12)es. (cid:392)pulsante premuto(cid:35)(cid:393)(cid:13).\nint Numero intero: crea una (cid:392)scatolina(cid:393) per conservare un\nnumero (cid:12)es. pin (cid:22), (cid:28), 9(cid:13).\n(cid:58)ariabile Una scatolina con un nome (cid:12)es. pulsante, verde(cid:13) che\ncontiene un valore.\n(cid:33) (cid:12)un uguale(cid:13) Assegna: mette un valore in una variabile (cid:12)es. int led (cid:33) (cid:28)(cid:31)(cid:13).\n(cid:33)(cid:33) (cid:12)due uguali(cid:13) Confronta: chiede (cid:392)è uguale a(cid:399)(cid:35)(cid:393) (cid:12)si usa dentro if(cid:13).\n70 Laboratorio di elettronica: Impara e sperimenta\nNOTE\n74 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 49,
+    "token_count": 464
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\nI PIN ANALOGICI: ARDUINO I(cid:51)PARA A\nSENTIRE LE (cid:72)UANTIT(cid:19)\n(cid:106)Giovani esploratori, nel Capitolo 7 (cid:28)(cid:18)(cid:20) (cid:51)(cid:70)ietti(cid:90)o de(cid:80) capito(cid:80)o\nArduino ha imparato a fare una cosa\nda (cid:392)cervello(cid:393):ascoltare e decidere con\nIn (cid:85)uesto capitolo imparerai:\nSE(cid:121) ALLORA(cid:121)\n• cos’è un segnale analogico\nPer(cid:683) ascoltava solo messaggi molto\nsemplici: • cosa sono i pin A(cid:20), A1, A(cid:22)(cid:399)\n• s(cid:678) (cid:19) no • come usare la fun(cid:94)ione\n• acceso (cid:19) spento\n• analog(cid:54)ead(cid:12)(cid:13)\n• I(cid:43)(cid:44) (cid:19) (cid:48)(cid:51)(cid:59)\n• cosa significa leggere un valore\nMa il mondo reale è più ricco.\nda (cid:20) a 1(cid:20)(cid:22)(cid:23)\n• come trasformare un numero in\n(cid:48)a luce non è solo (cid:392)c’è (cid:19) non c’è(cid:393): pu(cid:683)\nun’a(cid:94)ione con if\nessere poca, media, tanta.\nE il volume non è solo (cid:392)muto (cid:19) alto(cid:393): • mini(cid:17)progetti con (cid:48)E(cid:40) controllati\npu(cid:683) crescere piano piano. da una (cid:392)manopola(cid:393)\n(cid:51)(cid:75)(cid:75)i (cid:37)rduino impara a sentire (cid:80)e\n(cid:85)uantit(cid:614)(cid:18)(cid:124)(cid:18)\nLaboratorio di elettronica: Impara e sperimenta 75",
+    "page_number": 53,
+    "token_count": 324
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\n(cid:28)(cid:18)(cid:21) (cid:40)i(cid:75)ita(cid:80)e (cid:90)s (cid:37)na(cid:80)o(cid:75)ico (cid:12)spie(cid:75)ato E(cid:55)E(cid:54)CI(cid:62)I(cid:51) (cid:28).(cid:22) (cid:385) (cid:56)rova A(cid:20) e segnalo\n(cid:70)ene(cid:13)\nI pin (cid:40)igitali li abbiamo visti nel Prendi la scheda e cerca il pin A(cid:20).\ncapitolo precedente, è come una\nrisposta secca: (cid:28)(cid:18)(cid:23) (cid:45)(cid:80) poten(cid:94)iometro: (cid:80)a manopo(cid:80)a\nc(cid:76)e cam(cid:70)ia (cid:90)a(cid:80)ore (cid:12) l(cid:83) a(cid:70)(cid:70)ia(cid:81)(cid:83) gi(cid:615)\n• (cid:55)(cid:651) (cid:19) N(cid:51)\n(cid:89)(cid:87)at(cid:83) n(cid:73)l (cid:90)(cid:83)l(cid:89)(cid:81)(cid:73) (cid:21) di (cid:41)(cid:48)(cid:37)(cid:38)(cid:13)\n• (cid:51)N (cid:19) (cid:51)(cid:42)(cid:42)\n• (cid:44)I(cid:43)(cid:44) (cid:19) (cid:48)(cid:51)(cid:59)\nPer far capire l’analogico serve\nEsempio: qualcosa che cambi “piano piano”.\npulsante premuto(cid:35) s(cid:678)(cid:19)no Il componente perfetto è il\n(cid:45)(cid:80) (cid:52)in (cid:37)na(cid:80)o(cid:75)ico potenziometro (una manopola).\n(cid:647) come una (cid:85)uantit(cid:666) che pu(cid:683)\ncambiare: (cid:44)a (cid:23) piedini:\npoco (cid:19) medio (cid:19) tanto\n(cid:20)(cid:399) 1(cid:399) (cid:22)(cid:399) (cid:23)(cid:399) fino a tantissimi valori un estremo va a 5V\nl’altro estremo va a GND\nEsempio:\n(cid:85)uanto stai girando una manopola(cid:35) quello in mezzo (centrale) manda un\nvalore “variabile” ad Arduino\n(cid:85)uanta luce c’è(cid:35)\n(cid:85)uanta temperatura c’è(cid:35)\nIl piedino centrale è il più importante: è\nquello che “parla” con A0.\nArduino pu(cid:683) leggere (cid:85)ueste (cid:85)uantit(cid:666)\ncon i pin analogici.\n(cid:41)(cid:55)(cid:41)(cid:54)(cid:39)(cid:45)(cid:62)(cid:45)(cid:51) (cid:28)(cid:18)(cid:23) (cid:361) (cid:39)o(cid:80)(cid:80)e(cid:75)are i(cid:80)",
+    "page_number": 54,
+    "token_count": 469
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "(cid:28)(cid:18)(cid:22) (cid:40)o(cid:90)e sono i pin ana(cid:80)o(cid:75)ici (cid:12)(cid:37)(cid:20)(cid:16) poten(cid:94)iometro (cid:12)passo(cid:17)passo(cid:13)\n(cid:37)(cid:21)(cid:16) (cid:375)(cid:13)\nMateriale:\nSulla scheda Arduino Nano R4 trovi\nArduino Nano (cid:54)4\ndei pin con scritto:\n(cid:37)(cid:20)(cid:18)(cid:18)(cid:18)(cid:18)(cid:37)(cid:21)(cid:18)(cid:18)(cid:18)(cid:18)(cid:37)(cid:22)(cid:375) breadboard\n1 poten(cid:94)iometro\nQuesti pin sono speciali perché\n(cid:23) cavetti (cid:78)umper\nArduino può usarli come “sensori”:\nleggono un numero che cambia.\nOggi useremo (cid:6)A(cid:20)(cid:6) perché è il primo\ne più comodo.\n76 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I TRANSISTOR?\n(cid:52)repariamo (cid:80)a nostra (cid:70)read(cid:70)ord\n• Inserisci la nostra (cid:37)rduino (cid:50)ano\n(cid:54)(cid:24) sulla breadboard, come\nmostrato nell’immagine.\n• Alimenta la breadboard\ncollegando il pin (cid:25)(cid:58) e i(cid:80) pin (cid:43)(cid:50)(cid:40)\ndella scheda alle rispettive linee di\nalimenta(cid:94)ione (cid:12)positivo e\nnegativo(cid:13) della breadboard.\n(cid:52)assa(cid:75)(cid:75)i\n• Per facilitare i collegamenti, usa\n• Inserisci il poten(cid:94)iometro\ndue cavetti (cid:12)(cid:78)umper(cid:13) per collegare\nnella breadboard (cid:12)i (cid:23) piedini\ntra loro le due linee di\nin (cid:23) righe diverse(cid:13). mettilo a\nalimenta(cid:94)ione opposte della\ncavallo della linea centrale\nbreadboard:\n• Collega un piedino esterno a\n• (cid:25)(cid:58) (cid:12)linea (cid:15)(cid:13) da un lato → (cid:25)(cid:58) (cid:12)linea\n(cid:25)(cid:58) di Arduino.\n(cid:15)(cid:13) dall’altro lato\n• Collega l’altro piedino esterno\n• (cid:43)N(cid:40) (cid:12)linea (cid:431)(cid:13) da un lato → (cid:43)N(cid:40)\na (cid:43)N(cid:40).\n(cid:12)linea (cid:431)(cid:13) dall’altro lato\nIn (cid:85)uesto modo avrai (cid:25)(cid:58) e (cid:43)N(cid:40) • Collega il piedino centrale a\ndisponibili su entrambi i lati della A(cid:20).\nbreadboard.",
+    "page_number": 54,
+    "token_count": 499
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "• (cid:40)a (cid:85)uesto momento in poi,\nmantieni sempre (cid:85)uesti\ncollegamenti anche negli eserci(cid:94)i\nsuccessivi: è un metodo pratico\nper avere la breadboard sempre\nalimentata e collegata\ncorrettamente. correttamente\nLaboratorio di elettronica: Impara e sperimenta 77",
+    "page_number": 55,
+    "token_count": 69
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\n(cid:28)(cid:18)(cid:24) (cid:48)a fun(cid:94)ione nuo(cid:90)a: ana(cid:80)o(cid:75)(cid:54)ead(cid:12)(cid:13)\n(cid:51)ra Arduino deve (cid:392)sentire(cid:393) la manopola.\n(cid:48)a fun(cid:94)ione è: ana(cid:80)o(cid:75)(cid:54)ead(cid:12)(cid:37)(cid:20)(cid:13)\n(cid:53)uesta fun(cid:94)ione restituisce un numero:\n• (cid:6)(cid:20) (cid:6)(cid:85)uando il segnale è bassissimo (cid:12)verso (cid:43)N(cid:40)(cid:13)\n• (cid:6)(cid:21)(cid:20)(cid:22)(cid:23) (cid:6)(cid:85)uando il segnale è altissimo (cid:12)verso (cid:25)(cid:58)(cid:13)\n(cid:53)uindi Arduino non riceve (cid:392)s(cid:678)(cid:19)no(cid:393), riceve un numero.\n(cid:41)(cid:55)(cid:41)(cid:54)(cid:39)(cid:45)(cid:62)(cid:45)(cid:51) (cid:28)(cid:18)(cid:24) (cid:361) (cid:52)rimo pro(cid:75)ramma: (cid:80)e(cid:75)(cid:75)o un numero e (cid:80)o\nsa(cid:80)(cid:90)o in una scato(cid:80)ina (cid:12)int(cid:13)\n78 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I TRANSISTOR?\n(cid:54)(cid:45)(cid:43)(cid:37) (cid:21): int (cid:90)a(cid:80)ore (cid:33) (cid:20)(cid:31)\n(cid:6)int(cid:6)\nCome abbiamo gia visto significa: numero intero (cid:12)sen(cid:94)a virgola(cid:13).\n(cid:55)erve per creare una (cid:392)scatolina(cid:393) capace di contenere numeri come (cid:20),\n1, (cid:22)(cid:25), (cid:25)(cid:20)(cid:20), 1(cid:20)(cid:22)(cid:23)(cid:399) In pratica: sto dicendo ad Arduino: (cid:392)mi serve una\nscatola per numeri(cid:393).\n(cid:6)(cid:90)a(cid:80)ore(cid:6) : (cid:647) il nome della scatolina. (cid:48)’abbiamo chiamata (cid:392)valore(cid:393) perch(cid:675)\ndentro metteremo il valore letto dal pin analogico. Potevi anche\nchiamarla numero, lettura, pot, ma (cid:392)valore(cid:393) è chiaro.\n(cid:6)(cid:33) (cid:6) (cid:12)un uguale(cid:13) (cid:55)ignifica assegna. (cid:58)uol dire: (cid:392)metti dentro la scatolina\n(cid:85)uello che scrivo dopo(cid:393).\n(cid:6)(cid:20)(cid:6) (cid:647) il numero che mettiamo dentro all’ini(cid:94)io.Non è obbligatorio per",
+    "page_number": 56,
+    "token_count": 498
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "for(cid:94)a, ma è utile perch(cid:675): cos(cid:678) la scatolina parte (cid:392)pulita(cid:393)e non contiene\nnumeri casuali\n(cid:55)piega(cid:94)ione logica della riga 1:\n(cid:392)Creo una scatolina per numeri chiamata valore e ci metto dentro (cid:20).(cid:393)\n(cid:38)(cid:48)(cid:51)(cid:39)(cid:39)(cid:51): (cid:90)oid setup(cid:12)(cid:13) (cid:95) (cid:18)(cid:18)(cid:18) (cid:97)\n(cid:6)(cid:90)oid(cid:6) significa (cid:392)vuoto(cid:393)la fun(cid:94)ione non restituisce un risultato: contiene\nsolo comandi.\n(cid:6)setup(cid:6)è la fun(cid:94)ione di prepara(cid:94)ione, Arduino la esegue una sola volta\n(cid:85)uando si accende o si resetta.\n(cid:55)pie(cid:75)a(cid:94)ione lo(cid:75)ica di setup:\n(cid:392)(cid:53)ui preparo le cose prima che Arduino ini(cid:94)i a ripetere il programma.(cid:393)\nLaboratorio di elettronica: Impara e sperimenta 79",
+    "page_number": 57,
+    "token_count": 217
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "CAPITOLO 8\n(cid:54)(cid:45)(cid:43)(cid:37) dentro setup: (cid:55)eria(cid:80)(cid:18)(cid:70)e(cid:75)in(cid:12)(cid:29)(cid:26)(cid:20)(cid:20)(cid:13)(cid:31)\n(cid:6)(cid:55)eria(cid:80)(cid:6)\n(cid:647) il nome di un (cid:392)canale(cid:393) che Arduino usa per parlare con il computer.\nPassa attraverso il cavo U(cid:55)(cid:38). (cid:647) come un (cid:91)al(cid:79)ie(cid:17)tal(cid:79)ie:\nArduino parla il PC ascolta nel Monitor (cid:55)eriale\n(cid:6)(cid:18)(cid:70)e(cid:75)in(cid:6) : begin significa (cid:392)ini(cid:94)ia(cid:393).(cid:53)uindi: (cid:392)ini(cid:94)ia la comunica(cid:94)ione seriale(cid:393).\n(cid:6)(cid:12)(cid:29)(cid:26)(cid:20)(cid:20)(cid:13)(cid:6) (cid:647) la velocit(cid:666) della comunica(cid:94)ione.\n96(cid:20)(cid:20) è un valore standard molto usato.\nImportantissimo:\nse nel codice hai (cid:55)eria(cid:80)(cid:18)(cid:70)e(cid:75)in(cid:12)(cid:29)(cid:26)(cid:20)(cid:20)(cid:13) nel Monitor (cid:55)eriale devi sele(cid:94)ionare 96(cid:20)(cid:20)\nbaud altrimenti vedrai caratteri strani o niente.\n(cid:55)pie(cid:75)a(cid:94)ione lo(cid:75)ica di setup:\n(cid:392)Arduino, apri il canale per parlare con il PC a velocit(cid:666) 96(cid:20)(cid:20).(cid:393)\n(cid:38)(cid:48)(cid:51)(cid:39)(cid:39)(cid:51): (cid:90)oid (cid:80)oop(cid:12)(cid:13) (cid:95) (cid:18)(cid:18)(cid:18) (cid:97)(cid:31)\n(cid:6)(cid:80)oop(cid:6) è la fun(cid:94)ione che Arduino ripete per sempre finisce e ricomincia.\n(cid:55)piega(cid:94)ione logica di setup:\n(cid:368)(cid:53)(cid:89)(cid:73)(cid:87)ti (cid:71)(cid:83)(cid:81)andi li (cid:86)ip(cid:73)t(cid:83) all(cid:365)in(cid:74)init(cid:83)(cid:18)(cid:369)\n(cid:54)(cid:45)(cid:43)(cid:37): (cid:90)a(cid:80)ore (cid:33) ana(cid:80)o(cid:75)(cid:54)ead(cid:12)(cid:37)(cid:20)(cid:13)(cid:31)\n(cid:53)ui Arduino (cid:392)sente(cid:393) l’analogico.\n(cid:6)(cid:90)a(cid:80)ore(cid:6) la scatolina che abbiamè il pin analogico dove hai collegato il piedino\ncentrale del poten(cid:94)iometro.o creato prima",
+    "page_number": 58,
+    "token_count": 498
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "(cid:6)(cid:33) (cid:6) assegna: (cid:392)metti dentro valore il risultato di(cid:399)(cid:393)\n(cid:6)ana(cid:80)o(cid:75)(cid:54)ead(cid:12)(cid:37)(cid:20)(cid:13)(cid:6) è una fun(cid:94)ione che legge un pin analogico (cid:12)A(cid:20)(cid:13).\n(cid:6)(cid:37)(cid:20)(cid:6) è il pin analogico dove hai collegato il piedino centraè il pin analogico\ndove hai collegato il piedino centrale del poten(cid:94)iometro.le del poten(cid:94)iometro.\n80 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I TRANSISTOR?\nCosa restituisce analogRead?\nUun numero tra:\n(cid:6) (cid:20) (cid:6) (cid:12)manopola verso (cid:43)N(cid:40)(cid:13)\n(cid:6) 1(cid:20)23 (cid:6) (cid:12)manopola verso (cid:25)(cid:58)(cid:13)\n(cid:55)piega(cid:94)ione logica della riga:\n(cid:6)(cid:48)eggo la manopola su A(cid:20) e salvo il numero dentro valore.(cid:393)\nRIGA: Serial.println(valore)(cid:31)\n(cid:51)ra Arduino (cid:392)dice(cid:393) al PC (cid:85)uel numero.\n(cid:6) Serial (cid:6) stesso canale di prima (cid:12)Arduino ↔ PC(cid:13)\n(cid:6) println (cid:6)\n• (cid:392)print(cid:393) (cid:33) scrivi\n• (cid:392)ln(cid:393) (cid:33) (cid:392)line(cid:393) → vai a capo\n(cid:53)uindi:\n(cid:6)(cid:90)alore(cid:6) significa: (cid:392)scrivi (cid:85)uello che c’è dentro la scatolina valore(cid:393).\n(cid:55)piega(cid:94)ione logica della riga:\n(cid:6)(cid:55)crivo sul Monitor (cid:55)eriale il numero che ho letto.(cid:6)\nRIGA: delay(2(cid:20)(cid:20))(cid:31)\n(cid:6) delay (cid:6) fai una pausa\n(cid:6) (2(cid:20)(cid:20)) (cid:6) (cid:22)(cid:20)(cid:20) millisecondi (cid:33) (cid:20),(cid:22) secondi\nperch(cid:675) serve(cid:35)\nPerch(cid:675) sen(cid:94)a pausa Arduino stamperebbe migliaia di numeri al secondo e il\nmonitor scorrerebbe troppo veloce.\n(cid:55)piega(cid:94)ione logica della riga:\n(cid:392)Aspetto un pochino prima di leggere e stampare di nuovo.(cid:393)\nLaboratorio di elettronica: Impara e sperimenta 81\nRIGA: delay(2(cid:20)(cid:20))(cid:31)",
+    "page_number": 58,
+    "token_count": 491
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 8",
+    "section": null,
+    "content": "(cid:6) delay (cid:6) fai una pausa\n(cid:6) (2(cid:20)(cid:20)) (cid:6) (cid:22)(cid:20)(cid:20) millisecondi (cid:33) (cid:20),(cid:22) secondi\nperch(cid:675) serve(cid:35)\nPerch(cid:675) sen(cid:94)a pausa Arduino stamperebbe migliaia di numeri al secondo e il\nmonitor scorrerebbe troppo veloce.\n(cid:55)piega(cid:94)ione logica della riga:\n(cid:392)Aspetto un pochino prima di leggere e stampare di nuovo.(cid:393)\nCosa fare sul PC\nCarica lo s(cid:79)etch.\nApri (cid:55)trumenti → Monitor (cid:55)eriale.\nImposta in basso a destra 96(cid:20)(cid:20) baud.\nCosa vedi(cid:35) Numeri che cambiano mentre giri la manopola.\n82 Laboratorio di elettronica: Impara e sperimenta\nCHE COSA SONO I TRANSISTOR?\nLaboratorio di elettronica: Impara e sperimenta 83\nNOTE\n84 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 60,
+    "token_count": 201
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\nCOSA SONO I FOTOTRANSISTOR?\nLaboratorio di elettronica: Impara e sperimenta 85",
+    "page_number": 63,
+    "token_count": 22
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\n86 Laboratorio di elettronica: Impara e sperimenta\nCOSA SONO I FOTOTRANSISTOR?\nLaboratorio di elettronica: Impara e sperimenta 87",
+    "page_number": 64,
+    "token_count": 35
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\n88 Laboratorio di elettronica: Impara e sperimenta\nCOSA SONO I FOTOTRANSISTOR?\nLaboratorio di elettronica: Impara e sperimenta 89",
+    "page_number": 66,
+    "token_count": 35
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 9",
+    "section": null,
+    "content": "CAPITOLO 9\n90 Laboratorio di elettronica: Impara e sperimenta\nCOSA SONO I FOTOTRANSISTOR?\nLaboratorio di elettronica: Impara e sperimenta 91\n92 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 68,
+    "token_count": 47
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\nLaboratorio di elettronica: Impara e sperimenta 93",
+    "page_number": 71,
+    "token_count": 15
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\n94 Laboratorio di elettronica: Impara e sperimenta\nIL MOTORE A CORRENTE CONTINUA\nLaboratorio di elettronica: Impara e sperimenta 95",
+    "page_number": 72,
+    "token_count": 35
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 10",
+    "section": null,
+    "content": "CAPITOLO 10\n96 Laboratorio di elettronica: Impara e sperimenta\nIL MOTORE A CORRENTE CONTINUA\nLaboratorio di elettronica: Impara e sperimenta 97\nNOTE\n98 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 74,
+    "token_count": 49
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 11",
+    "section": null,
+    "content": "CAPITOLO 11\nLaboratorio di elettronica: Impara e sperimenta 99",
+    "page_number": 77,
+    "token_count": 15
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 11",
+    "section": null,
+    "content": "CAPITOLO 11\n100 Laboratorio di elettronica: Impara e sperimenta\nI DIODI\nLaboratorio di elettronica: Impara e sperimenta 101\nNOTE\n102 Laboratorio di elettronica: Impara e sperimenta",
+    "page_number": 78,
+    "token_count": 45
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nLaboratorio di elettronica: Impara e sperimenta 103",
+    "page_number": 81,
+    "token_count": 23
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\n104 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nLaboratorio di elettronica: Impara e sperimenta 105",
+    "page_number": 82,
+    "token_count": 36
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\n106 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nLaboratorio di elettronica: Impara e sperimenta 107",
+    "page_number": 84,
+    "token_count": 36
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\n108 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nLaboratorio di elettronica: Impara e sperimenta 109",
+    "page_number": 86,
+    "token_count": 36
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\n110 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nLaboratorio di elettronica: Impara e sperimenta 111",
+    "page_number": 88,
+    "token_count": 36
+  },
+  {
+    "volume": 3,
+    "chapter": "CAPITOLO 12",
+    "section": null,
+    "content": "CAPITOLO 12\n112 Laboratorio di elettronica: Impara e sperimenta\nCOSTRUIAMO IL ROBOT SEGUI LUCE\nNOTE\nLaboratorio di elettronica: Impara e sperimenta 113\nNON È FINITA QUI!\nSperiamo davvero che ti sia divertito con questi esperimenti per avvicinarti al mondo\ndell’elettronica!\nNei prossimi volumi espanderemo i concetti visti nei primi due volumi, maggiormente\nnel dettaglio del funzionamento, utilizzeremo anche altri componenti e soprattutto\ninizieremo ad addentrarci nel magico mondo della programmazione utilizzando il\nlinguaggio Arduino e le sue schede elettroniche!\nGrazie per averci seguito in questa prima avventura e speriamo che gradirete\nanche le successive!\n114 Laboratorio di elettronica: Impara e sperimenta\nELAB",
+    "page_number": 90,
+    "token_count": 180
+  }
+]

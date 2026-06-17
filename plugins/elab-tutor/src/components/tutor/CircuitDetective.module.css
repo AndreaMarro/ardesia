@@ -1,0 +1,107 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* CircuitDetective — CSS Module (G26) */
+
+.badgeInline {
+  margin-left: 8px;
+}
+
+.starBlock {
+  display: block;
+  margin-top: 2px;
+}
+
+.listBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.titleRow {
+  margin: 0;
+}
+
+.cardBorder {
+  border-top: 4px solid var(--card-accent-color);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.headerIcon {
+  font-size: 2rem;
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.headerMeta {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.hintsWrap {
+  margin-bottom: 16px;
+}
+
+.guessSection {
+  margin-bottom: 16px;
+}
+
+.guessLabel {
+  display: block;
+  font-weight: 600;
+  color: var(--elab-text);
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+.guessCheck {
+  padding: 10px;
+  color: var(--elab-lime);
+  font-weight: 700;
+}
+
+.confusedBtn {
+  background: none;
+  border: none;
+  color: var(--elab-muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: inherit;
+  text-decoration: underline;
+}
+
+.resultMargin {
+  margin-bottom: 12px;
+}
+
+.successCard {
+  animation: elab-slideUp 0.4s ease;
+}
+
+.successTitle {
+  color: #16a34a; /* palette */
+}
+
+.solutionText {
+  margin-bottom: 12px;
+}
+
+.starWrap {
+  margin-bottom: 12px;
+}
+
+.learnConcept {
+  margin-top: 8px;
+}

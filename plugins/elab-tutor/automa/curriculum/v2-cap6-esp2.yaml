@@ -1,0 +1,80 @@
+# Curriculum YAML — v2-cap6-esp2
+# "LED in serie colori diversi"
+
+experiment_id: v2-cap6-esp2
+volume: 2
+chapter: 6
+title: "LED in serie colori diversi"
+
+prerequisites:
+  - v2-cap6-esp1
+
+concepts_introduced:
+  - Vf_diversa
+  - LED_colori_serie
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - ohm
+  - corrente
+  - tensione
+  - volt
+  - serie
+  - rosso
+  - verde
+  - giallo
+  - blu
+  - breadboard
+  - anodo
+  - catodo
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 breadboard, 1 batteria 9V, 1 resistore 220 ohm,
+    1 LED rosso, 1 LED verde, 1 LED blu, fili. I LED di colore diverso hanno
+    tensioni di lavoro diverse — il blu ne vuole di piu'.
+  during_class: >
+    Fai collegare in serie un LED rosso e uno verde. Funzionano? Ora prova rosso + blu.
+    Chiedi: "Perche' il blu sembra piu' debole o non si accende?" Ogni colore
+    'consuma' una quantita' diversa di tensione. Il blu ne vuole di piu'.
+  common_question: >
+    "Perche' il LED blu non si accende in serie col rosso?" -> La batteria da 9V
+    deve dare tensione a tutti. Il blu ne chiede tanta, e non ne resta abbastanza.
+
+common_mistakes:
+  - mistake: "Pensare che tutti i LED siano uguali"
+    what_to_do: "Mostra che il rosso si accende con meno tensione del blu. Ogni colore ha una 'fame' diversa."
+    analogy: "Come le persone a tavola — c'e' chi mangia poco e chi mangia tanto"
+  - mistake: "Collegare troppi LED in serie con 9V"
+    what_to_do: "La batteria non ha abbastanza tensione per tutti. Fai togliere un LED alla volta."
+    analogy: null
+
+analogies:
+  Vf_diversa:
+    analogy: "Ogni LED e' come un pedaggio autostradale — il rosso costa poco, il verde un po' di piu', il blu costa tanto. La batteria e' il portafoglio: se finiscono i soldi, non puoi pagare tutti i pedaggi."
+    evidence: "Analogia economica per tensione, adattata da Psillos et al. (1988) su modelli energetici"
+  LED_colori_serie:
+    analogy: "Mettere LED diversi in serie e' come mettere bambini di altezze diverse in fila per salire su un gioco — se il gioco ha un limite di altezza totale, non tutti riescono a entrare."
+    evidence: "Analogia cumulativa per somma tensioni (Duit 1991)"
+
+assessment_invisible:
+  - "Se lo studente dice 'il blu vuole piu' tensione' -> ha capito il concetto di Vf"
+  - "Se prevede che 3 LED blu non funzioneranno con 9V -> ragionamento quantitativo"
+  - "Se prova combinazioni diverse spontaneamente -> approccio sperimentale"

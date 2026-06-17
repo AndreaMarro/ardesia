@@ -1,0 +1,72 @@
+{
+  "cycle": 35,
+  "timestamp": "2026-03-26T12:38:30.596724",
+  "date": "2026-03-26",
+  "mode": "AUDIT",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 315
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.58s",
+      "time_ms": 21097
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 151946
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=73 (target \u226560) [3 samples]",
+      "time_ms": 59908
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3946
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 1982
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Bug hunting audit cycle 35",
+    "status": "done",
+    "files_changed": [
+      "automa/reports/audit-cycle-35.md",
+      "automa/queue/pending/P1-font-self-hosted-not-imported.yaml",
+      "automa/queue/pending/P2-059-netlify-url-still-hardcoded.yaml"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "high",
+    "evidence": "verified"
+  },
+  "research": "DeepSeek: **Problemi per ELAB Tutor:**\n1.  **Accessibilit\u00e0 limitata:** Gli studenti devono spesso installare software complesso e specifico del sistema operativo per simulare circuiti, creando barriere all'accesso immediato e all'apprendimento ubiquitario.\n2.  **Realismo e interattivit\u00e0 insufficienti:** Le simulazioni basate su JavaScript puro o immagini statiche non offrono le prestazioni necessarie per mo",
+  "ai_scoring": "DeepSeek scoring: SCORE:8 MOTIVO:Spiegazione chiara, adatta all'et\u00e0, corretta e incoraggiante, ma leggermente incompleta.\nKimi review: ELAB Tutor \u00e8 un'ottima piattaforma EdTech che offre una vasta gamma di esperimenti e strumenti di simulazione. I punteggi sono in generale molto alti, con l'integrazione AI e la qualit\u00e0 del codice che raggiungono il massimo. Tuttavia, ci sono aree in cui \u00e8 possibile migliorare:\n\n1. **Simulatore iPad",
+  "composite_score": 0.964,
+  "self_exam": {
+    "patterns": 0,
+    "applied": 0
+  }
+}

@@ -1,0 +1,180 @@
+name: Sprint 6 Autonomous Loop (airplane-safe)
+
+# Andrea-safe autonomous loop: gira ogni 6h mentre tu sei via.
+# NEVER pushes to main. NEVER deploys. NEVER merges PR.
+# Ogni run esegue UN task atomico + verifica baseline + push su feature branch.
+#
+# Attivazione: Andrea deve aggiungere secrets:
+#   ANTHROPIC_API_KEY  → Claude Code CLI auth
+#   TELEGRAM_TOKEN     → notifica fail (opzionale)
+#   TELEGRAM_CHAT_ID   → chat destinazione (opzionale)
+#
+# Disattivazione immediata: gh workflow disable "Sprint 6 Autonomous Loop (airplane-safe)"
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # ogni 6 ore, in UTC
+  workflow_dispatch:
+    inputs:
+      max_iterations:
+        description: 'Max task iterations this run (default 3)'
+        required: false
+        default: '3'
+
+jobs:
+  autonomous-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    concurrency:
+      group: sprint-6-autonomous-loop
+      cancel-in-progress: false
+
+    # Only run on feature branch, never on main
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
+
+    permissions:
+      contents: write
+      pull-requests: read
+      actions: read
+
+    env:
+      MAX_ITER: ${{ github.event.inputs.max_iterations || '3' }}
+
+    steps:
+      - name: Checkout (feature branch only)
+        uses: actions/checkout@v4
+        with:
+          ref: feature/pdr-sett5-openclaw-onnipotenza-morfica-v4
+          fetch-depth: 50
+
+      - name: Safety assert not on main
+        shell: bash
+        run: |
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "Current branch: $CURRENT_BRANCH"
+          if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+            echo "FATAL: autonomous loop NEVER runs on main/master"
+            exit 1
+          fi
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Coherence pre-check
+        shell: bash
+        run: |
+          if [ -f scripts/coherence-check.mjs ]; then
+            node scripts/coherence-check.mjs || {
+              echo "Coherence check FAILED — abort loop run"
+              exit 1
+            }
+          fi
+
+      - name: Snapshot baseline BEFORE
+        id: baseline-before
+        shell: bash
+        run: |
+          BASELINE=$(cat automa/baseline-tests.txt 2>/dev/null || echo "0")
+          echo "baseline=$BASELINE" >> "$GITHUB_OUTPUT"
+          echo "Baseline before: $BASELINE tests"
+
+      - name: Run Claude Code next-task (placeholder)
+        id: claude-run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        shell: bash
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY missing — loop not activated (dry-run mode)"
+            exit 0
+          fi
+          echo "Would run Claude Code @planner + generator-* for up to $MAX_ITER iterations"
+          echo "Plan: docs/superpowers/plans/2026-04-23-openclaw-sprint6-l1-live.md"
+          exit 0
+
+      - name: Run tests (vitest)
+        shell: bash
+        run: |
+          set -o pipefail
+          OUTPUT=$(npx vitest run --reporter=dot 2>&1 || true)
+          echo "$OUTPUT" | tail -30
+          PASS=$(echo "$OUTPUT" | grep -oE "[0-9]+ passed" | grep -oE "[0-9]+" | head -1 || echo "0")
+          echo "Tests passed: $PASS"
+          echo "current=$PASS" >> "$GITHUB_ENV"
+
+      - name: Verify baseline non-regression
+        shell: bash
+        env:
+          BASELINE_BEFORE: ${{ steps.baseline-before.outputs.baseline }}
+        run: |
+          echo "baseline=$BASELINE_BEFORE current=$current"
+          if [ "$current" -lt "$BASELINE_BEFORE" ]; then
+            echo "FATAL: test regression $current < $BASELINE_BEFORE"
+            exit 1
+          fi
+          if [ "$current" -gt "$BASELINE_BEFORE" ]; then
+            echo "$current" > automa/baseline-tests.txt
+            echo "baseline_updated=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Coherence post-check
+        shell: bash
+        run: |
+          if [ -f scripts/coherence-check.mjs ]; then
+            node scripts/coherence-check.mjs || {
+              echo "Coherence check FAILED post-run — abort push"
+              exit 1
+            }
+          fi
+
+      - name: Safety assert never pushing main
+        shell: bash
+        run: |
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "Branch at push time: $BRANCH"
+          if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
+            echo "FATAL: about to push to main — aborted"
+            exit 1
+          fi
+
+      - name: Commit baseline update
+        if: env.baseline_updated == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add automa/baseline-tests.txt
+          git commit -m "chore(baseline): autonomous loop test count $current [skip ci]"
+          git push origin HEAD
+
+      - name: Telegram notification on fail
+        if: failure() && env.TELEGRAM_TOKEN != ''
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=Sprint 6 loop FAILED. See ${RUN_URL}"
+
+      - name: Summary
+        if: always()
+        env:
+          BASELINE_BEFORE: ${{ steps.baseline-before.outputs.baseline }}
+        shell: bash
+        run: |
+          {
+            echo "### Loop Run Summary"
+            echo "- Branch: $(git rev-parse --abbrev-ref HEAD)"
+            echo "- Baseline before: $BASELINE_BEFORE"
+            echo "- Tests current: $current"
+            echo "- Baseline updated: $baseline_updated"
+          } >> "$GITHUB_STEP_SUMMARY"

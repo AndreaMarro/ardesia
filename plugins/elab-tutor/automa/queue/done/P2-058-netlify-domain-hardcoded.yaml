@@ -1,0 +1,29 @@
+id: P2-058-netlify-domain-hardcoded
+title: Sostituire URL Netlify temporaneo (funny-pika-3d1029) con dominio branded
+priority: P2
+severity: medium
+evidence: verified
+created: 2026-03-24
+cycle: 55
+mode: IMPROVE
+description: |
+non brandizzato. Appare: 
+- src/components/ShowcasePage.jsx: 11 — redirect principale
+- src/components/social/Navbar.jsx: 35 — link "Per le Scuole
+- src/components/VetrinaSimulatore.jsx: 416 — link scuole
+- vercel.json: 13 — CSP connect-src whitelist
+Problema: se Netlify rigenera il sito su un nuovo URL (o se il progetto
+Il footer del sito Netlify mostra anche "Sito Web: funny-pika-3d1029.netlify.app
+steps: 
+- Se sì: sostituire in tutti e 3 i file + vercel.json CSP
+- Se no: creare costante VETRINA_URL = "..." in un unico posto
+acceptance: 
+files_to_check: 
+claimed_at: "2026-03-25T17:46:52.580084"
+claimed_by: orchestrator
+failed_at: "2026-03-25T16:55:18.639188"
+error: unknown
+retry: 2
+requeued_at: "2026-03-25T17:14:30.015979"
+completed_at: "2026-03-25T17:49:05.888411"
+result: ok

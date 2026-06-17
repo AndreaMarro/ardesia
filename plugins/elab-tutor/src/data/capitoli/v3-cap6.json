@@ -1,0 +1,1017 @@
+{
+  "id": "v3-cap6",
+  "volume": 3,
+  "capitolo": 6,
+  "type": "experiment",
+  "titolo": "Il mondo discreto: i pin digitali",
+  "titolo_classe": "Il mondo discreto: i pin digitali",
+  "pageStart": null,
+  "pageEnd": null,
+  "theory": {
+    "testo_classe": "Il mondo discreto: i pin digitali.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v3-cap6-esp1",
+      "num": 1,
+      "title_classe": "Circuito AND/OR con pulsanti",
+      "title_docente": "Circuito AND/OR con pulsanti",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 10,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4 (breakout wing)",
+          "quantity": 1,
+          "icon": "🤖"
+        },
+        {
+          "name": "Breadboard half-size",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "❤️"
+        },
+        {
+          "name": "Resistore 470ohm",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Pulsante",
+          "quantity": 2,
+          "icon": "🔘"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Se ci sono due interruttori in fila, devono essere accesi entrambi o basta uno per accendere la luce?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi facciamo un esperimento speciale: niente codice. Usiamo solo fili, pulsanti e un LED. La corrente passa solo se il circuito e chiuso. I pulsanti decidono quando.",
+            "spunto_per_classe": null,
+            "note": [
+              "Questo esperimento e fondamentale per capire serie e parallelo prima di usare i pin digitali. Non avere fretta."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Carichiamo il circuito nel simulatore. I due pulsanti sono in serie: la corrente deve passare attraverso entrambi. Provate a premerne solo uno. Succede qualcosa?",
+            "spunto_per_classe": null,
+            "note": [
+              "Mostrare prima la configurazione AND (serie). Poi chiedere alla classe come farebbero per accendere il LED premendo un solo pulsante."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v3-cap6-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "In serie servono entrambi i pulsanti premuti. E se li mettiamo in parallelo? La corrente ha due strade possibili: basta che una sia aperta.",
+            "spunto_per_classe": "Domanda: 'In casa vostra, gli interruttori delle scale funzionano in serie o in parallelo? Potete accendere la luce da sopra e da sotto?'",
+            "note": [
+              "Usare l'analogia delle porte: serie = due porte in corridoio (devono essere aperte entrambe), parallelo = due corridoi (basta uno aperto)."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "In quante combinazioni si accende il LED in serie? E in parallelo? Segnatele.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Provate tutte le combinazioni: nessun pulsante, solo il primo, solo il secondo, entrambi. Scrivete sul quaderno quando il LED si accende.",
+            "spunto_per_classe": null,
+            "note": [
+              "Far compilare una tabella 2x2 (pulsante A premuto/non premuto, pulsante B premuto/non premuto). E una tabella di verita senza dirlo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Due pulsanti in serie funzionano come AND: servono entrambi. In parallelo funzionano come OR: basta uno dei due.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "In serie servono entrambi i pulsanti: e come dire 'questo E questo'. In parallelo basta uno: 'questo O questo'. AND e OR, le basi della logica.",
+            "spunto_per_classe": null,
+            "note": [
+              "Non insistere sulla terminologia formale. L'importante e che abbiano capito il comportamento fisico. La formalizzazione verra dopo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [],
+      "session_save": {
+        "concepts_covered": [
+          "serie AND",
+          "parallelo OR",
+          "combinazioni pulsanti",
+          "circuiti passivi"
+        ],
+        "next_suggested": "v3-cap6-esp2",
+        "resume_message": "L'ultima volta avete scoperto AND e OR con i pulsanti. Oggi colleghiamo un LED esterno e lo controlliamo con Arduino."
+      }
+    },
+    {
+      "id": "v3-cap6-esp2",
+      "num": 2,
+      "title_classe": "Cambia pin del LED",
+      "title_docente": "Cambia pin del LED",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 10,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4 (breakout wing)",
+          "quantity": 1,
+          "icon": "🤖"
+        },
+        {
+          "name": "Breadboard half-size",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "❤️"
+        },
+        {
+          "name": "Resistore 470ohm",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 4,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Arduino ha 14 pin digitali. Se ognuno controlla un LED, quanti LED possiamo accendere insieme?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Finora abbiamo usato il LED integrato al pin 13. Ma Arduino ha tanti pin digitali. Oggi colleghiamo un LED esterno a un pin diverso e cambiamo il codice.",
+            "spunto_per_classe": null,
+            "note": [
+              "Mostrare sulla scheda dove sono i pin digitali numerati. Far contare alla classe quanti ce ne sono."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Carichiamo il circuito: un LED rosso collegato al pin 7 con un resistore da 470 ohm. Nel codice, al posto di LED_BUILTIN scriviamo 7. Tutto il resto resta uguale.",
+            "spunto_per_classe": null,
+            "note": [
+              "Sottolineare la corrispondenza: il numero nel codice DEVE corrispondere al pin fisico dove e collegato il filo. Se sbagli numero, il LED non si accende."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v3-cap6-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED e collegato al pin 7, ma nel codice scrivo pin 9. Cosa succede? Il LED si accende lo stesso o resta spento?",
+            "spunto_per_classe": "Domanda: 'Se collego il filo al pin 7 ma scrivo nel codice il pin 9, Arduino sa che ho sbagliato? O fa quello che gli ho scritto?'",
+            "note": [
+              "Lasciare che provino nel simulatore. L'errore intenzionale e il miglior insegnante. Collegamento fisico e codice devono corrispondere."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il LED esterno lampeggia come quello integrato? Provate a cambiare pin e numero nel codice.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Premiamo Play e osserviamo il LED esterno lampeggiare. Notate la differenza con il LED integrato: e piu luminoso perche e un vero LED con il suo resistore.",
+            "spunto_per_classe": null,
+            "note": [
+              "Se il tempo lo permette, far provare a spostare il filo su un altro pin e modificare il codice. Rafforza il concetto pin fisico = numero nel codice."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "I pin digitali di Arduino sono uscite controllabili via codice. Il numero nel programma deve corrispondere al pin dove e collegato il LED.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ogni pin digitale di Arduino puo controllare un componente esterno. Il numero nel codice deve corrispondere al pin fisico. Se sbagli numero, Arduino accende il pin sbagliato.",
+            "spunto_per_classe": null,
+            "note": [
+              "Rafforzare il concetto: Arduino non 'capisce' cosa c'e collegato. Esegue gli ordini alla lettera. La responsabilita e del programmatore."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [],
+      "session_save": {
+        "concepts_covered": [
+          "pin digitali",
+          "LED esterno",
+          "corrispondenza pin-codice",
+          "resistore protezione"
+        ],
+        "next_suggested": "v3-cap6-morse",
+        "resume_message": "L'ultima volta avete collegato un LED esterno a un pin digitale. Oggi ne controlliamo due alternati."
+      }
+    },
+    {
+      "id": "v3-cap6-esp4",
+      "num": 4,
+      "title_classe": "LED + Buzzer",
+      "title_docente": "LED + Buzzer",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 10,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4 (breakout wing)",
+          "quantity": 1,
+          "icon": "🤖"
+        },
+        {
+          "name": "Breadboard half-size",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "❤️"
+        },
+        {
+          "name": "Resistore 470ohm",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Buzzer piezoelettrico",
+          "quantity": 1,
+          "icon": "🔔"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 6,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Se faccio vibrare qualcosa 440 volte al secondo, che suono sento? E la nota LA, quella che usano per accordare gli strumenti.",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Finora abbiamo controllato solo la luce. Oggi aggiungiamo il suono con un componente nuovo: il buzzer. Quando Arduino gli manda un segnale, il buzzer vibra e produce un suono.",
+            "spunto_per_classe": null,
+            "note": [
+              "Far vedere e toccare il buzzer prima di collegarlo. Spiegare che dentro c'e un disco di ceramica che vibra. Non serve corrente forte."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Carichiamo il circuito: LED sul pin 7 e buzzer sul pin 9. Nel codice usiamo tone(9, 440) per suonare la nota LA e digitalWrite(7, HIGH) per il LED.",
+            "spunto_per_classe": null,
+            "note": [
+              "Far notare che tone() ha bisogno di due informazioni: quale pin e quale frequenza. Non serve pinMode per tone(), ma e buona pratica metterlo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v3-cap6-esp4]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Se cambio il numero 440 con 880, il suono diventa piu acuto o piu grave? E se metto 220? Proviamo a indovinare prima di testare.",
+            "spunto_per_classe": "Domanda: 'Il buzzer puo suonare qualsiasi nota? Anche quelle che il nostro orecchio non sente?'",
+            "note": [
+              "Regola semplice: numero doppio = un'ottava sopra. 220=LA grave, 440=LA centrale, 880=LA acuto. I ragazzi lo scoprono da soli."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Quale frequenza vi sembra un campanello? Quale un allarme? Segnatevi i numeri preferiti.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Premiamo Play. Il LED si accende e il buzzer suona contemporaneamente. Provate a cambiare la frequenza del tone e osservate come cambia il suono.",
+            "spunto_per_classe": null,
+            "note": [
+              "Far provare frequenze basse (100-200) e alte (2000-4000). Sotto 100 e sopra 5000 il buzzer piezo rende male: e normale."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "La funzione tone(pin, frequenza) fa suonare il buzzer. La frequenza in hertz decide se il suono e grave o acuto. LED e buzzer funzionano insieme.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Con tone() Arduino fa vibrare il buzzer a una frequenza precisa. Numero alto significa suono acuto, numero basso suono grave. Luce e suono insieme nello stesso programma.",
+            "spunto_per_classe": null,
+            "note": [
+              "Collegare al mondo reale: sveglie, campanelli, allarmi auto usano tutti buzzer piezoelettrici controllati in modo simile."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [],
+      "session_save": {
+        "concepts_covered": [
+          "buzzer",
+          "tone()",
+          "frequenza hertz",
+          "suono + luce"
+        ],
+        "next_suggested": "v3-cap6-semaforo",
+        "resume_message": "L'ultima volta avete usato il buzzer con tone(). Oggi creiamo una sirena che cambia frequenza."
+      }
+    },
+    {
+      "id": "v3-cap6-morse",
+      "num": 3,
+      "title_classe": "SOS in codice Morse",
+      "title_docente": "SOS in codice Morse",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 10,
+        "fig_refs": []
+      },
+      "duration_minutes": 40,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4",
+          "quantity": 1,
+          "icon": "🔌"
+        },
+        {
+          "name": "Breadboard",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "💡"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 3,
+          "icon": "🔗"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [],
+          "wires": []
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Chi sa cos'e SOS? Come lo mandereste con una torcia?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi trasformiamo il nostro LED in un trasmettitore! Impareremo il codice Morse, il sistema usato per comunicare con lampi di luce e suoni.",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: alla classe: come comunichereste un messaggio di aiuto se poteste solo accendere e spegnere una luce? Questo introduce il concetto di codifica."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "loadexp:v3-cap6-morse"
+          ],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": "Guardate come un semplice LED puo mandare un messaggio!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Usiamo lo stesso circuito dell'esperimento precedente. La novita e nel programma: creiamo DUE FUNZIONI — punto() per lampi brevi e linea() per lampi lunghi.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione prima il ritmo SOS battendo le mani: tre brevi, tre lunghi, tre brevi. Poi mostra come il codice traduce questo ritmo in istruzioni per Arduino."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "compile",
+            "play"
+          ],
+          "auto_action": null
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": "Provate a cambiare i tempi — cosa succede se il punto dura 50ms invece di 200ms?",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Perche abbiamo creato le funzioni punto() e linea() invece di scrivere tutto nel loop? Quanto tempo dura un punto? E una linea?",
+            "spunto_per_classe": "Domanda: 'Se volessimo scrivere il vostro nome in codice Morse, quante righe di codice servirebbero SENZA funzioni? E CON le funzioni?'",
+            "note": [
+              "Le funzioni sono il concetto chiave qui. Aiuta i ragazzi a capire che raggruppare istruzioni ripetute rende il codice piu ordinato e riutilizzabile."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "errore",
+                "soluzione_neutra": "correzione"
+              },
+              {
+                "problema": "errore",
+                "soluzione_neutra": "correzione"
+              },
+              {
+                "problema": "errore",
+                "soluzione_neutra": "correzione"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": "Il codice Morse fu inventato nel 1838 — per quasi 200 anni e stato il modo principale di comunicare a distanza!",
+            "observation_prompt": "Il LED lampeggia con un ritmo riconoscibile: tre brevi, tre lunghi, tre brevi, poi una pausa lunga.",
+            "analogies": [
+              {
+                "concept": "analogia",
+                "text": "Il codice Morse e come un alfabeto fatto di solo due lettere: punto e linea. Come il codice binario del computer (0 e 1)!"
+              },
+              {
+                "concept": "analogia",
+                "text": "Pensate a un semaforo: acceso/spento. Ma se cambiate la DURATA, potete comunicare informazioni diverse."
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Guardate il LED lampeggiare. Riuscite a distinguere i tre punti (brevi) dai tre trattini (lunghi)? Questo e il ritmo SOS!",
+            "spunto_per_classe": null,
+            "note": [
+              "contare alla classe: breve-breve-breve... lungo-lungo-lungo... breve-breve-breve. Se il ritmo non si distingue, aggiusta i delay."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Sfida per casa: cercate la tabella del codice Morse e provate a programmare le vostre iniziali!",
+            "observation_prompt": "Abbiamo trasformato il nostro LED in un trasmettitore Morse. Abbiamo creato funzioni punto() e linea() e le abbiamo combinate per mandare SOS.",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi abbiamo imparato due cose importanti: creare FUNZIONI per organizzare il codice e usare la TEMPORIZZAZIONE per comunicare.",
+            "spunto_per_classe": null,
+            "note": [
+              "Collegamento al prossimo: le funzioni le useremo sempre di piu. La prossima volta aggiungeremo un secondo LED!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [],
+      "session_save": {
+        "concepts_covered": [],
+        "next_suggested": "v3-cap6-esp4",
+        "resume_message": ""
+      }
+    },
+    {
+      "id": "v3-cap6-semaforo",
+      "num": 5,
+      "title_classe": "Semaforo 3 LED",
+      "title_docente": "Semaforo 3 LED",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 10,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4 (breakout wing)",
+          "quantity": 1,
+          "icon": "🤖"
+        },
+        {
+          "name": "Breadboard half-size",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "LED verde",
+          "quantity": 1,
+          "icon": "💚"
+        },
+        {
+          "name": "LED giallo",
+          "quantity": 1,
+          "icon": "💛"
+        },
+        {
+          "name": "LED rosso",
+          "quantity": 1,
+          "icon": "❤️"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 3,
+          "icon": "⚡"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 10,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v3-cap6-morse",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "nano-r4",
+                      "id": "nano1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+                    },
+                    {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "yellow"
+                    },
+                    {
+                      "type": "led",
+                      "id": "led3",
+                      "color": "red"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "nano1:W_D5",
+                      "to": "bb1:a16",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:d23",
+                      "to": "bb1:d25",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:a26",
+                      "to": "bb1:bus-bot-minus-26",
+                      "color": "black"
+                    },
+                    {
+                      "from": "nano1:W_D6",
+                      "to": "bb1:a22",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:a30",
+                      "to": "bb1:bus-bot-minus-30",
+                      "color": "black"
+                    },
+                    {
+                      "from": "nano1:W_D3",
+                      "to": "bb1:f16",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:h23",
+                      "to": "bb1:h30",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:f29",
+                      "to": "bb1:bus-bot-minus-29",
+                      "color": "black"
+                    },
+                    {
+                      "from": "nano1:GND_R",
+                      "to": "bb1:bus-bot-minus-1",
+                      "color": "black"
+                    },
+                    {
+                      "from": "nano1:5V",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 6,
+          "classe_display": {
+            "text_hook": "Sapete come funziona un semaforo? Chi decide quando si accende il verde? Oggi costruiamo noi il 'cervello' del semaforo con Arduino e un piccolo programma!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi costruiamo un semaforo vero con Arduino! Tre LED colorati, un programma che li controlla in sequenza: verde, giallo, rosso. Esattamente come i semafori della strada!",
+            "spunto_per_classe": null,
+            "note": [
+              "Domanda: ai ragazzi: 'Avete mai visto un semaforo? Quanto tempo rimane verde? E rosso?' Questo aggancia subito la realtà al progetto. Spiega che Arduino è il 'cervello' del semaforo: il programma dice a ogni LED quando accendersi e per quanto tempo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito ha tre rami identici: Arduino manda il segnale al resistore, il resistore al LED, e il LED scarica a massa (GND). I tre pin usati sono D5 (verde), D6 (giallo), D3 (rosso) sul breakout wing. Il codice viene caricato automaticamente dal simulatore!",
+            "spunto_per_classe": null,
+            "note": [
+              "Mentre il circuito si monta, spiega concettualmente il codice: 'Il setup() configura i tre pin come OUTPUT. Il loop() è diviso in tre blocchi: verde ON + gli altri OFF per 3 secondi, poi giallo ON + gli altri OFF per 1 secondo, poi rosso ON + gli altri OFF per 3 secondi. Poi ricomincia!' Non entrare nella sintassi C++, concentrati sul COSA fa il codice."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v3-cap6-semaforo]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il semaforo è montato! Prima di premere Play, facciamo delle domande. Il codice fa accendere un solo LED alla volta: perché gli altri devono essere spenti esplicitamente?",
+            "spunto_per_classe": "Domanda: 'Se il programma accende il verde e poi accende il giallo, ma NON dice mai di spegnere il verde, cosa succede? Il giallo e il verde restano accesi insieme o no?'",
+            "note": [
+              "Guida i ragazzi a capire che i pin OUTPUT rimangono nell'ultimo stato impostato finché il codice non li cambia. Se non scrivo LOW su un pin, resta HIGH da prima!"
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Un LED resta sempre acceso, anche quando dovrebbe spegnersi",
+                "soluzione_neutra": "Controllo il codice: ogni fase deve mettere LOW tutti i pin tranne quello acceso. Se manca un digitalWrite LOW su un pin, quel LED resta acceso!"
+              },
+              {
+                "problema": "Il LED non si accende affatto o è molto fioco",
+                "soluzione_neutra": "Controllo i collegamenti: il resistore è tra il pin Arduino e il LED? Il catodo del LED va a GND? Ricorda che il LED ha una direzione!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il semaforo funziona! Verde per 3 secondi, giallo per 1 secondo, rosso per 3 secondi. Solo un colore alla volta è acceso. Il ciclo si ripete all'infinito, come un vero semaforo!",
+            "analogies": [
+              {
+                "concept": "sequenza_stati",
+                "text": "Arduino è come il centralino di un semaforo stradale: ha un orologio interno (delay) e sa esattamente per quanti secondi tenere acceso ogni colore. Come i semafori della città, che cambiano da soli senza che nessuno li tocchi!",
+                "evidence": "Curriculum ELAB Vol 3 Cap 6"
+              },
+              {
+                "concept": "loop_infinito",
+                "text": "Il loop() è come un disco che gira in loop: verde-giallo-rosso, verde-giallo-rosso, sempre lo stesso ordine, all'infinito. Non si ferma mai, esattamente come i semafori che lavorano giorno e notte!",
+                "evidence": "Curriculum ELAB Vol 3 Cap 6"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play! Il semaforo prende vita: verde 3 secondi, giallo 1 secondo, rosso 3 secondi. Guarda come il programma controlla ogni LED in modo preciso e ripetuto all'infinito!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia i tre LED e i tre pin. Chiedi: 'Quanto dura il giallo rispetto al verde? Perché è più corto?' Fai notare che il loop() ripete il ciclo all'infinito — esattamente come i semafori reali che non si spengono mai."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:led1]",
+            "[AZIONE:highlight:led2]",
+            "[AZIONE:highlight:led3]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il semaforo funziona grazie a tre concetti chiave: pin OUTPUT (Arduino comanda i LED), delay() (controlla il tempo di ogni colore), e loop infinito (il ciclo non si ferma mai). Con questi stessi strumenti si possono costruire mille altri progetti!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ottimo lavoro! Avete costruito il vostro primo progetto Arduino con sequenza di stati. Il semaforo usa tre pin OUTPUT, delay() per il timing, e un loop infinito che non si ferma mai.",
+            "spunto_per_classe": null,
+            "note": [
+              "un recap veloce: 'setup() = configuriamo i pin una volta sola. loop() = ripetiamo la sequenza per sempre. digitalWrite HIGH = accendiamo. digitalWrite LOW = spegniamo. delay(3000) = aspettiamo 3 secondi.' Questi quattro concetti sono la base di TUTTI i programmi Arduino!"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega perché serve spegnere gli altri LED → comprensione del funzionamento dei pin OUTPUT",
+        "Se identifica correttamente il delay che va cambiato per modificare la durata di un colore → comprensione del timing",
+        "Se suggerisce di aggiungere una fase 'lampeggio giallo' → pensiero creativo applicato"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "pin_output",
+          "digitalWrite",
+          "delay_timing",
+          "sequenza_stati",
+          "loop_infinito"
+        ],
+        "next_suggested": "v3-cap7-esp1",
+        "resume_message": "Avete costruito il semaforo con Arduino! Prossimo passo: i pin di INPUT e i pulsanti."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Il mondo discreto: i pin digitali",
+    "transitions": [
+      {
+        "between": [
+          "v3-cap6-esp1",
+          "v3-cap6-esp2"
+        ],
+        "text_classe": "Arduino ha 14 pin digitali. Se ognuno controlla un LED, quanti LED possiamo accendere insieme?",
+        "text_docente_action": "Mostrare sulla scheda dove sono i pin digitali numerati. Far contare alla classe quanti ce ne sono.",
+        "incremental_mode": "from_scratch"
+      },
+      {
+        "between": [
+          "v3-cap6-esp2",
+          "v3-cap6-morse"
+        ],
+        "text_classe": "Le luci del passaggio a livello sono mai accese tutte e due insieme? O sono sempre una accesa e una spenta?",
+        "text_docente_action": "Il riferimento al passaggio a livello e molto efficace per questa eta. Se possibile, mostrare un video di 5 secondi.",
+        "incremental_mode": "from_scratch"
+      },
+      {
+        "between": [
+          "v3-cap6-morse",
+          "v3-cap6-esp4"
+        ],
+        "text_classe": "Se faccio vibrare qualcosa 440 volte al secondo, che suono sento? E la nota LA, quella che usano per accordare gli strumenti.",
+        "text_docente_action": "Far vedere e toccare il buzzer prima di collegarlo. Spiegare che dentro c'e un disco di ceramica che vibra. Non serve corrente forte.",
+        "incremental_mode": "from_scratch"
+      },
+      {
+        "between": [
+          "v3-cap6-esp4",
+          "v3-cap6-semaforo"
+        ],
+        "text_classe": "Se la sirena va da 400 a 800 hertz salendo di 10 ogni volta, quante righe di codice servirebbero senza il ciclo for?",
+        "text_docente_action": "Questo e il momento perfetto per introdurre il ciclo for come soluzione a un problema reale: ripetere qualcosa con un numero che cambia.",
+        "incremental_mode": "from_scratch"
+      }
+    ],
+    "closing_text": "Avete costruito il semaforo con Arduino! Prossimo passo: i pin di INPUT e i pulsanti."
+  }
+}

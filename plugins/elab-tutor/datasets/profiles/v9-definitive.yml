@@ -1,0 +1,65 @@
+# Galileo Brain Factory v9 — Definitive Dataset
+# Target: 35000 unique examples (prima del context injection + vision merge)
+# Focus: copertura COMPLETA di tutti i 24 action tags, 22 componenti, 70 esperimenti
+#
+# CAMBIAMENTI vs v8:
+# 1. 10 nuove sezioni (giochi, misura, setvalue, interact, scratch, teacher_lim, switch, youtube)
+# 2. Vision merge dal v7 post-generazione (non in profilo, merge separato)
+# 3. Pesi ricalcolati per target %: action 20%, circuit 25%, code 15%, tutor 18%, vision 7%, nav 5%, teacher 10%
+# 4. responses_v8.yml espanso con 5 nuove categorie di risposte
+# 5. Uso v8 sections (tutor_v8, vision_v8, code_v8) come base
+
+target: 35000
+seed: 2026_03_19_v9
+system_prompt: system_prompt.txt
+output: galileo-brain-v9.jsonl
+
+sections:
+  # === CORE ACTIONS (intent: action) — target ~20% ===
+  actions:          { weight: 6,  corruptions: { typo_swap: 0.3, voice: 0.12, filler: 0.15, emoji: 0.08 } }
+  measure:          { weight: 3,  corruptions: { typo_swap: 0.25, voice: 0.15, filler: 0.1, emoji: 0.05 } }
+  setvalue:         { weight: 3,  corruptions: { typo_swap: 0.25, voice: 0.12, filler: 0.1, sms: 0.1 } }
+  interact:         { weight: 4,  corruptions: { typo_swap: 0.3, voice: 0.15, emoji: 0.15, filler: 0.12 } }
+  switcheditor:     { weight: 3,  corruptions: { typo_swap: 0.25, voice: 0.12, emoji: 0.1, filler: 0.1 } }
+
+  # === CIRCUIT (intent: circuit) — target ~25% ===
+  circuit:          { weight: 15, corruptions: { typo_swap: 0.35, sms: 0.2, emoji: 0.12, voice: 0.08 } }
+
+  # === CODE (intent: code) — target ~15% ===
+  code:             { weight: 8,  corruptions: { typo_swap: 0.25, voice: 0.1, sms: 0.15, filler: 0.1 } }
+  scratch_blocks:   { weight: 5,  corruptions: { typo_swap: 0.2, voice: 0.1, filler: 0.1, emoji: 0.08 } }
+  lcd_scratch:      { weight: 2,  corruptions: { typo_swap: 0.2 } }
+
+  # === TUTOR (intent: tutor) — target ~18% ===
+  tutor:            { weight: 8,  corruptions: { typo_swap: 0.3, truncated: 0.15, filler: 0.15, emoji: 0.1 } }
+  games_detective:  { weight: 3,  corruptions: { typo_swap: 0.25, emoji: 0.15, filler: 0.1, voice: 0.1 } }
+  games_poe:        { weight: 3,  corruptions: { typo_swap: 0.3, emoji: 0.15, filler: 0.15, voice: 0.1 } }
+  games_reverse:    { weight: 3,  corruptions: { typo_swap: 0.25, emoji: 0.12, filler: 0.1, voice: 0.08 } }
+
+  # === VISION (intent: vision) — target ~7% (merge v7 post-gen) ===
+  vision:           { weight: 7,  corruptions: { typo_swap: 0.25, filler: 0.15, emoji: 0.1, voice: 0.1 } }
+
+  # === NAVIGATION (intent: navigation) — target ~5% ===
+  navigation:       { weight: 3,  corruptions: { typo_swap: 0.2, voice: 0.15, emoji: 0.05 } }
+  youtube:          { weight: 2,  corruptions: { typo_swap: 0.2, voice: 0.15, emoji: 0.12, filler: 0.1 } }
+
+  # === TEACHER (intent: teacher) — target ~10% ===
+  teacher:          { weight: 3,  corruptions: { typo_swap: 0.2, voice: 0.1 } }
+  teacher_clueless: { weight: 3,  corruptions: { typo_swap: 0.3, voice: 0.2, truncated: 0.15 } }
+  teacher_lim:      { weight: 4,  corruptions: { typo_swap: 0.15, voice: 0.08, filler: 0.1 } }
+
+  # === STILI INPUT (rumore realistico) ===
+  dialects:         { weight: 4 }
+  profanity:        { weight: 2,  corruptions: { caps_chaos: 0.3, emoji: 0.2 } }
+  expert:           { weight: 2,  corruptions: { typo_swap: 0.1 } }
+  ignorant:         { weight: 3,  corruptions: { typo_swap: 0.4, voice: 0.2, emoji: 0.25, sms: 0.2 } }
+  truncated:        { weight: 2 }
+  emoji_speak:      { weight: 2,  corruptions: { emoji: 0.5 } }
+  english:          { weight: 2,  corruptions: { typo_swap: 0.2 } }
+  voice:            { weight: 2,  corruptions: { voice: 0.8 } }
+  out_of_scope:     { weight: 2,  corruptions: { typo_swap: 0.2, emoji: 0.1 } }
+  autocorrect:      { weight: 2,  corruptions: { autocorrect: 0.7 } }
+
+  # === CONTESTO ===
+  multi_step:       { weight: 3,  corruptions: { typo_swap: 0.2, truncated: 0.1 } }
+  context_aware:    { weight: 3,  corruptions: { typo_swap: 0.2, emoji: 0.05 } }

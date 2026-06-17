@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap6-esp2",
+  "volume": 1,
+  "chapter": 6,
+  "title": "LED senza resistore (cosa NON fare!)",
+  "chapter_title": "Cos'è il diodo LED?",
+  "difficulty": 1,
+  "duration_minutes": 40,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che collegare un LED direttamente alla batteria senza resistore lo brucia. Capiscono che serve qualcosa per limitare la corrente.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "LED blu",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 4,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "acceso",
+      "spento",
+      "corrente",
+      "polo positivo",
+      "polo negativo",
+      "anodo",
+      "catodo",
+      "breadboard",
+      "piedino lungo",
+      "piedino corto",
+      "bruciare",
+      "troppa corrente",
+      "protezione",
+      "volt"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "potenziometro",
+      "MOSFET",
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "legge di Ohm"
+    ],
+    "note": "Cap 6 Vol 1, esperimento 2 — si introduce il concetto di 'troppa corrente' senza formule. La parola 'resistore' è permessa solo come anticipazione ('serve qualcosa che limiti')."
+  },
+  "prerequisites": [
+    "v1-cap6-esp1"
+  ],
+  "next_experiment": {
+    "id": "v1-cap6-esp3",
+    "title": "Cambiate luminosità con resistenze diverse",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.33 intitolata \"Cambiate luminosità con resistenze diverse\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi i ragazzi scoprono cosa succede se il LED non è protetto. IMPORTANTE: nel simulatore il LED non si brucia davvero, ma nel mondo reale SÌ.",
+      "teacher_tip": "Prepara un LED bruciato vero da mostrate alla classe — l'impatto visivo vale più di mille spiegazioni. Non date il resistore: l'obiettivo è che capiscano DA SOLI che serve.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 LED blu, 4 fili. NIENTE resistore!",
+      "class_hook": "L'ultima volta abbiamo acceso il LED con il resistore. Ma cosa succede se lo togliamo? Proviamo!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate il circuito sulla LIM. Il LED è collegato direttamente alla batteria SENZA resistore.",
+      "teacher_tip": "Usate il Passo Passo. Quando appare il circuito senza resistore, chiedete: 'Vi sembra che manchi qualcosa rispetto alla volta scorsa?' Lasciate che notino l'assenza del resistore.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap6-esp2]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di LED senza resistore (cosa NON fare!) seguendo Vol.1 pag.32.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "blue"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-2",
+              "to": "bb1:a2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:e2",
+              "to": "bb1:f2",
+              "color": "red"
+            },
+            {
+              "from": "bb1:j3",
+              "to": "bb1:bus-bot-minus-3",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, È il momento della domanda provocatoria. NON dare la risposta — lascia che i ragazzi ragionino.",
+      "teacher_tip": "Dopo aver fatto vedere che il LED lampeggia e si 'brucia' nel simulatore, mostrate il LED bruciato reale. L'effetto WOW è garantito. Chiedete: 'Come potremmo proteggere il LED?'",
+      "provocative_question": "La batteria manda troppa energia al LED. Cosa succede quando la corrente è troppo forte per un componente così piccolo?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Non capisce perché il LED si brucia",
+          "teacher_response": "Usate l'analogia del rubinetto: troppa acqua in un tubo piccolo lo rompe. Troppa corrente nel LED lo brucia.",
+          "analogy": "Rubinetto aperto al massimo → tubo si rompe"
+        },
+        {
+          "mistake": "Pensa che il simulatore sia sbagliato perché non distrugge il LED",
+          "teacher_response": "Spiegate che il simulatore avvisa ma non distrugge. 'Nel mondo reale succede davvero — ecco il LED bruciato!'",
+          "analogy": null
+        },
+        {
+          "mistake": "Propone di usare meno batteria",
+          "teacher_response": "Ottima intuizione! Ma non sempre possiamo scegliere la batteria. Serve qualcosa che limiti la corrente senza cambiare batteria.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e osservate. Il LED lampeggia e si brucia! La corrente è troppo alta senza protezione.",
+      "teacher_tip": "Evidenziate il LED sul simulatore. Chiedete: 'Vedete l'avviso? Il LED ha ricevuto troppa corrente.' Poi confronta con l'esperimento precedente: 'La volta scorsa il LED era protetto — da cosa?'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il LED lampeggia e si brucia! Senza resistore, la corrente è troppo alta. 9V diretti su un LED da 2V = disastro!",
+      "analogies": [
+        {
+          "concept": "corrente_eccessiva",
+          "text": "La corrente è come l'acqua in un tubo. Se ne passa troppa, il tubo si rompe. Il LED è un tubo piccolo — non sopporta tutta l'acqua della batteria.",
+          "evidence": "Curriculum YAML analogia rubinetto"
+        },
+        {
+          "concept": "protezione_necessaria",
+          "text": "È come mettere un cuscino tra un uovo e il pavimento. Senza il cuscino (il resistore), l'uovo (il LED) si rompe.",
+          "evidence": "Osborne & Freyberg 1985"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto che il LED è fragile: senza qualcosa che limiti la corrente, si brucia. La prossima volta scopriremo COSA può proteggerlo.",
+      "teacher_tip": "Chiedete a un ragazzo di ripetere con parole sue cosa è successo. Poi chiedete: 'Secondo voi, cosa potremmo aggiungere al circuito per proteggere il LED?' Non date la risposta — la scopriranno nel prossimo capitolo!",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il LED è fragile! Senza protezione, troppa corrente lo brucia. Serve qualcosa che limiti il flusso di corrente — come un rubinetto che non si apre troppo.",
+      "concepts_learned": [
+        "corrente eccessiva brucia il LED",
+        "necessità di protezione (resistore)"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.33 intitolata \"Cambiate luminosità con resistenze diverse\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'serve qualcosa per limitare la corrente' → ha capito il concetto chiave",
+    "Se propone 'qualcosa che rallenta la corrente' → pronto per Cap 7 (resistore)",
+    "Se chiede 'e se uso meno batteria?' → ha intuito il rapporto energia/corrente"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "corrente_eccessiva",
+      "protezione_LED",
+      "danno_senza_resistore"
+    ],
+    "next_suggested": "v1-cap6-esp3",
+    "resume_message": "L'ultima volta abbiamo visto che il LED si brucia senza protezione! Oggi scopriamo cosa succede con resistenze diverse..."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 32,
+    "label": "Vol.1 pag.32"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "iteration": "iter-37-phase3-tester4",
+  "startedAt": "2026-04-30T19:02:18.552Z",
+  "finishedAt": "2026-04-30T19:02:40.496Z",
+  "phrase": "Ragazzi, oggi accendiamo il LED.",
+  "samples": [
+    {
+      "label": "mp3-fixture",
+      "desiredFormat": "mp3",
+      "detectedContainer": "mp3",
+      "sourceNote": "fixture scripts/bench/output/voxtral-test/voxtral-T1.mp3 (Voxtral IT)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 29555
+    },
+    {
+      "label": "wav-tts",
+      "desiredFormat": "wav",
+      "detectedContainer": "wav",
+      "sourceNote": "Voxtral TTS format=wav (180524 bytes, ct=audio/wav)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 180524
+    },
+    {
+      "label": "ogg-tts",
+      "desiredFormat": "ogg",
+      "detectedContainer": "ogg",
+      "sourceNote": "Voxtral TTS format=opus (19384 bytes, ct=audio/opus)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 19384
+    }
+  ],
+  "matrix": [
+    {
+      "sample": "mp3-fixture",
+      "shape": "raw-binary",
+      "status": 200,
+      "latency_ms": 1344,
+      "transcript": "Ragazzi, Aji Accendiamo on LED Rosso del kit eLab",
+      "matchedKeywords": [
+        "ragazz",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": "audio/mpeg",
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "multipart",
+      "status": 200,
+      "latency_ms": 1071,
+      "transcript": "Ragazzi, Aji Accendiamo on LED Rosso del kit eLab",
+      "matchedKeywords": [
+        "ragazz",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "json-base64",
+      "status": 200,
+      "latency_ms": 1075,
+      "transcript": "Ragazzi, Aji Accendiamo on LED Rosso del kit eLab",
+      "matchedKeywords": [
+        "ragazz",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "raw-binary",
+      "status": 200,
+      "latency_ms": 1238,
+      "transcript": "Ragazzi oggi accendiamo il led.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": "audio/wav",
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "multipart",
+      "status": 200,
+      "latency_ms": 1642,
+      "transcript": "Ragazzi oggi accendiamo il led.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "json-base64",
+      "status": 200,
+      "latency_ms": 1688,
+      "transcript": "Ragazzi oggi accendiamo il led.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "raw-binary",
+      "status": 200,
+      "latency_ms": 2200,
+      "transcript": "Ragazzi, oggi accendiamo il LED.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": "audio/ogg",
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "multipart",
+      "status": 200,
+      "latency_ms": 1470,
+      "transcript": "Ragazzi, oggi accendiamo il LED.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "json-base64",
+      "status": 200,
+      "latency_ms": 1270,
+      "transcript": "Ragazzi, oggi accendiamo il LED.",
+      "matchedKeywords": [
+        "ragazz",
+        "oggi",
+        "led",
+        "accend"
+      ],
+      "verdict": "PASS",
+      "responseError": null,
+      "responseDetails": null,
+      "contentTypeSent": null,
+      "stubAudio": false
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "pass": 9,
+    "warn": 0,
+    "fail": 0,
+    "blocked": 0,
+    "verdict": "PASS"
+  }
+}

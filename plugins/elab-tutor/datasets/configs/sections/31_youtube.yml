@@ -1,0 +1,92 @@
+id: youtube
+name: Video Educativi YouTube
+intent: navigation
+needs_llm: false
+templates:
+- input: '{frase}'
+  response: '@navigation'
+  actions:
+  - '[AZIONE:youtube]'
+  entities: []
+  vars:
+    frase:
+    - cercami un video
+    - voglio vedere un video
+    - mostrami un video tutorial
+    - c'e' un video su questo?
+    - video su YouTube
+    - apri un video
+    - fammi vedere un video
+    - tutorial video
+    - video spiegazione
+    - c'e' un filmato?
+    - posso guardare un video?
+    - video su questo argomento
+    - YouTube!
+    - cerca su YouTube
+    - video per capire meglio
+    - hai un video da mostrarmi?
+- input: '{frase}'
+  response: '@navigation'
+  actions:
+  - '[AZIONE:youtube]'
+  entities:
+  - '{comp}'
+  vars:
+    frase:
+    - video su come funziona {comp_nome}
+    - cercami un video su {comp_nome}
+    - tutorial video su {comp_nome}
+    - voglio un video che spiega {comp_nome}
+    - video su {comp_nome} per principianti
+    - mostrami un video su {comp_nome}
+    comp_nome:
+    - il LED
+    - la resistenza
+    - il buzzer
+    - il servo
+    - il display LCD
+    - il motore
+    - Arduino
+    - i circuiti
+    - la legge di Ohm
+    - la breadboard
+    - il potenziometro
+    - il PWM
+    - il condensatore
+    comp:
+    - led
+    - resistor
+    - buzzer-piezo
+    - servo
+    - lcd16x2
+    - motor-dc
+    - nano-r4-board
+    - ''
+    - ''
+    - ''
+    - potentiometer
+    - ''
+    - capacitor
+- input: '{frase}'
+  response: '@navigation'
+  actions:
+  - '[AZIONE:youtube]'
+  entities: []
+  vars:
+    frase:
+    - video su come fare il blink
+    - tutorial Arduino per bambini
+    - video su come montare un circuito
+    - video su come usare la breadboard
+    - video su come collegare i fili
+    - video su come programmare Arduino
+    - video su Scratch per Arduino
+    - video su come leggere uno schema
+    - video su esperimenti di elettronica
+    - video su come si fa un semaforo con Arduino
+corruptions:
+  typo_swap: 0.2
+  voice: 0.15
+  emoji: 0.12
+  filler: 0.1

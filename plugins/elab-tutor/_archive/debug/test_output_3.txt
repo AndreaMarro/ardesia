@@ -1,0 +1,48 @@
+
+ RUN  v3.2.4 /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder
+
+stdout | tests/unit/components.critical.test.js > Critical Components Logic > MOSFET: should discharge floating gate
+[DEBUG] LED led: vDiff=9, totalR=0, vf=1.8
+[DEBUG] LED led: vDiff=9, totalR=0, vf=1.8
+
+stderr | tests/unit/components.critical.test.js > Critical Components Logic > MOSFET: should discharge floating gate
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+[DEBUG] _solveLED led: MNA=false
+
+stdout | tests/unit/components.critical.test.js > Critical Components Logic > LED: should burn if connected directly to battery (no resistor)
+[DEBUG] LED led: vDiff=9, totalR=0, vf=1.8
+
+stderr | tests/unit/components.critical.test.js > Critical Components Logic > LED: should burn if connected directly to battery (no resistor)
+[DEBUG] _solveLED led: MNA=false
+
+ ✓ tests/unit/components.critical.test.js (4 tests) 9ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  20:37:58
+   Duration  782ms (transform 93ms, setup 64ms, collect 100ms, tests 9ms, environment 307ms, prepare 48ms)
+

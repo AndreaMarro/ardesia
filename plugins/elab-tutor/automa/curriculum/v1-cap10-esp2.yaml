@@ -1,0 +1,69 @@
+# Curriculum YAML — v1-cap10-esp2
+# "LED diverso colore con LDR"
+
+experiment_id: v1-cap10-esp2
+volume: 1
+chapter: 10
+title: "LED diverso colore con LDR"
+
+prerequisites:
+  - v1-cap10-esp1  # Sa usare la fotoresistenza
+  - v1-cap9-esp3   # Sa che LED diversi hanno soglie diverse
+
+concepts_introduced:
+  - soglia_accensione_con_sensore
+  - LED_colori_diversi_con_LDR
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - fotoresistenza
+  - luce
+  - buio
+  - sensore
+  - colore
+  - rosso
+  - verde
+  - blu
+  - soglia
+  - accendersi
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - tensione
+  - volt
+  - transistor
+
+teacher_briefing:
+  before_class: >
+    Stesso circuito dell'esp 1 ma con LED di colori diversi. Obiettivo: scoprire
+    che la soglia di accensione cambia con il colore del LED.
+  during_class: >
+    "Provate a mettere un LED verde al posto del rosso. Si accende alla stessa
+    quantita di luce? E il blu?" Il blu avra bisogno di piu luce per accendersi.
+  common_question: >
+    "Perche il blu non si accende?" -> Il LED blu ha bisogno di piu energia. Con
+    la fotoresistenza, la luce deve essere piu forte per far passare abbastanza
+    corrente per il blu.
+
+common_mistakes:
+  - mistake: "Il LED blu non si accende mai"
+    what_to_do: "Abbassa la resistenza fissa a 100 ohm e usa luce diretta (torcia telefono)"
+    analogy: null
+
+analogies:
+  soglia_accensione_con_sensore:
+    analogy: "E come aprire porte di pesi diversi: la porta leggera (LED rosso) si apre con poca forza, la porta pesante (LED blu) ha bisogno di molta forza."
+    evidence: "Analogia soglia con forza fisica (Clement 1993)"
+
+assessment_invisible:
+  - "Se predice che il blu avra bisogno di piu luce -> transfer dal cap 9"
+  - "Se misura il punto di accensione per ogni colore -> metodo scientifico"

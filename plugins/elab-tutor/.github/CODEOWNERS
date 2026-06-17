@@ -1,0 +1,41 @@
+# ============================================
+# ELAB Tutor — CODEOWNERS
+# Ogni PR viene auto-assegnata al reviewer giusto
+# in base ai file modificati.
+# ============================================
+
+# Default: Andrea approva tutto
+* @AndreaMarro
+
+# ── File critici: SOLO Andrea ──────────────
+# Engine (simulatore core, solver, AVR bridge)
+src/components/simulator/engine/ @AndreaMarro
+# Canvas principale
+src/components/simulator/canvas/SimulatorCanvas.jsx @AndreaMarro
+# Shell simulatore
+src/components/simulator/NewElabSimulator.jsx @AndreaMarro
+# API services
+src/services/api.js @AndreaMarro
+src/services/simulator-api.js @AndreaMarro
+# Build config
+vite.config.js @AndreaMarro
+package.json @AndreaMarro
+package-lock.json @AndreaMarro
+
+# ── Aree libere Tea: review automatica ─────
+# Documentazione
+docs/ @AndreaMarro
+# Stili e CSS
+src/styles/ @AndreaMarro
+src/components/**/*.module.css @AndreaMarro
+# Componenti comuni UI
+src/components/common/ @AndreaMarro
+# Dashboard docente
+src/components/dashboard/ @AndreaMarro
+# Dati lezioni/volumi (non engine)
+src/data/lesson-paths/ @AndreaMarro
+# Test (sempre benvenuti)
+tests/ @AndreaMarro
+
+# ── CI/Infra: SOLO Andrea ─────────────────
+.github/ @AndreaMarro

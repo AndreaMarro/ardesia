@@ -1,0 +1,81 @@
+{
+  "cycle": 35,
+  "timestamp": "2026-03-24T09:33:42.592995",
+  "date": "2026-03-24",
+  "mode": "AUDIT",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 408
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 20.65s",
+      "time_ms": 23681
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 156754
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 10
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=74 (target \u226560) [3 samples]",
+      "time_ms": 63895
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4308
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2128
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "AUDIT - analisi axe/lighthouse/ipad su elabtutor.school",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": false,
+    "research": "WebSearch/WebFetch bloccati - Semantic Scholar non accessibile in questo ciclo",
+    "findings": {
+      "axe_violations": 4,
+      "axe_critical": "color-contrast ConsentBanner.jsx:176 (#7CB342 su #1E4D8C = 3.35:1)",
+      "lighthouse_perf_homepage": 64,
+      "lighthouse_perf_simulator": 61,
+      "lighthouse_main_cause": "redirect www.elabtutor.school\u2192Netlify aggiunge 4525ms (FCP 5.6s, LCP 6.0s senza redirect \u2192 ~1.1s)",
+      "ipad_small_buttons": 13,
+      "regressions": [
+        "A002 color-contrast ancora presente",
+        "A004 small buttons ancora presenti"
+      ],
+      "tasks_to_create": [
+        "A006-contrast-regression",
+        "A007-ipad-buttons-regression",
+        "A008-semantic-html",
+        "P2-042-redirect-performance"
+      ]
+    },
+    "blockers": "Playwright, WebSearch, WebFetch e file write non autorizzati \u2192 task YAML non creati, fix non applicati"
+  },
+  "research": "Semantic Scholar: 'circuit simulation browser WebAssembly' \u2192 5 papers\n  - [2025] Qcanvas: An Interactive Browser-Based Quantum Circuit Design and Simulation Plat (0 cites)\n  - [2024] Wasimoff: Distributed Computation Offloading Using WebAssembly in the Browser (4 cites)\n  - [2019] Process Simulation in the Browser: Porting ViennaTS using WebAssembly (1 cites)",
+  "ai_scoring": "DeepSeek scoring: SCORE:9 MOTIVO:Spiegazione chiara con metafore adatte (lampadina, gambe, freno), tecnicamente corretta nei concetti essenziali, incoraggia l'esperimento pratico con istruzioni passo-passo sicure.\nKimi review: [ERROR] Kimi: HTTP 429"
+}

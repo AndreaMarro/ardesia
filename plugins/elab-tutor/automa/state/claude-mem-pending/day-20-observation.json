@@ -1,0 +1,36 @@
+{
+  "session_date": "2026-04-22",
+  "sprint": "sett-3-stabilize-v3",
+  "day_cumulative": 20,
+  "day_local": 6,
+  "branch": "feature/sett-3-stabilize-v3",
+  "score_self": "7.5/10",
+  "benchmark_delta": "4.12 -> 4.75 (+0.63)",
+  "commits": [
+    "99225b7 feat(bench): wire worker_uptime metric to worker-probe state + 2/3 live 200"
+  ],
+  "key_observations": [
+    {
+      "type": "change",
+      "title": "Benchmark worker_uptime wired to probe state",
+      "detail": "metricWorkerUptime now reads automa/state/worker-probe-latest.json. Replaces placeholder 0 with empirical 2/3 probe rate. Contribution weight-adjusted +0.67/10 to total."
+    },
+    {
+      "type": "discovery",
+      "title": "Worker probe URLs empirically corrected",
+      "detail": "Nanobot /health 200, Edge TTS /health 200 verified via curl. Supabase /functions/v1/unlim-chat still 401 (ADR-003 anon-key carryover)."
+    },
+    {
+      "type": "decision",
+      "title": "Data-driven benchmark metric over placeholder",
+      "detail": "+0.63 score delta in single atomic commit via reading real probe evidence. Principle: measure, don't guess."
+    }
+  ],
+  "gap_auto_critica": [
+    "MCP calls 0 Day 06 (sprint debt continues)",
+    "Supabase 401 persists (needs ANON env provisioning)",
+    "No new tests Day 06 (narrow metric-wiring scope)",
+    "E2E Playwright full run deferred Day 07"
+  ],
+  "next_day": "Day 21 sett-3 Day 07 FINAL — sprint retro + PR + gate + deploy prod"
+}

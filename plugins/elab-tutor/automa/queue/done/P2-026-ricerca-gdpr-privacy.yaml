@@ -1,0 +1,24 @@
+id: ricerca-gdpr-privacy
+priority: P2
+title: Checklist GDPR per piattaforma educativa minori
+description: 'Analizza requisiti GDPR per software usato da bambini in scuole italiane.
+  Cookie policy, consenso genitori, dati minimi, logging anonimo.
+
+  '
+success_criteria: 'Checklist in knowledge/ricerca-gdpr-privacy.md con almeno 10 punti
+  e verifica di quali ELAB gia rispetta e quali no.
+
+  '
+context_files:
+- public/index.html
+- src/App.jsx
+plan:
+- Cerca con Gemini "GDPR educational platform children Italy requirements"
+- Analizza cookie e tracking attuali in ELAB
+- Verifica se analytics webhook invia dati personali
+- Crea checklist con stato attuale per ogni punto
+- Salva in knowledge/ricerca-gdpr-privacy.md
+claimed_at: '2026-03-23T21:27:57.489828'
+claimed_by: orchestrator
+completed_at: '2026-03-23T21:36:17.526259'
+result: ok

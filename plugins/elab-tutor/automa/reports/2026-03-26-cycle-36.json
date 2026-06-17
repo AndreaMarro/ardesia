@@ -1,0 +1,70 @@
+{
+  "cycle": 36,
+  "timestamp": "2026-03-26T13:04:27.653249",
+  "date": "2026-03-26",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 1440
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 39.14s",
+      "time_ms": 45159
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 158193
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=74 min=71 (target \u226560) [3 samples]",
+      "time_ms": 68013
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4093
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2027
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "Research ciclo 36 \u2014 trend EdTech e AI tutoring per insegnanti inesperti",
+    "status": "done",
+    "files_changed": [
+      "automa/knowledge/research-cycle-36.md",
+      "automa/state/shared-results.md"
+    ],
+    "build_pass": true,
+    "cov_verified": true,
+    "severity": "medium",
+    "evidence": "verified",
+    "lesson": "Stanford Tutor CoPilot (RCT n=2700) valida scientificamente il Principio Zero ELAB. Il gap middle school nella review sistematica ITS suggerisce che ELAB deve investire in scaffold calibrati 10-14 anni. Opportunit\u00e0 O1 (multi-suggerimento Galileo) \u00e8 la pi\u00f9 impattante.",
+    "next_action": "Implementare O1 (Galileo Teacher Mode con 2-3 suggerimenti) modificando teacher.yml e UI risposta"
+  },
+  "research": "Kimi: Il tema \"readability index Italian children\" si riferisce all'analisi della facilit\u00e0 di comprensione dei testi per i bambini italiani. Un simulatore circuiti bambini, come l'ELAB Tutor, pu\u00f2 essere utilizzato per comprendere meglio i livelli di lettura dei bambini e migliorare la didattica.\n\n1. Tre tendenze:\n   a. Digitalizzazione: Con l'aumento dell'uso di dispositivi digitali, i bambini hanno acc\nDeepSeek: **2 Problemi per ELAB Tutor:**\n1.  **Formule non aggiornate:** Gli indici di leggibilit\u00e0 tradizionali (es. Gulpease) si basano su parametri (lunghezza parole/frasi) che potrebbero non cogliere appieno la complessit\u00e0 del linguaggio contemporaneo e del vocabolario dei bambini italiani.\n2.  **Mancanza di benchmark specifici:** Manca un riferimento chiaro che colleghi direttamente il punteggio di legg",
+  "ai_scoring": null,
+  "composite_score": 0.973,
+  "self_exam": null
+}

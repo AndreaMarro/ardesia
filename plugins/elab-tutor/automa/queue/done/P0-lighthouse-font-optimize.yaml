@@ -1,0 +1,17 @@
+id: P0-lighthouse-font-optimize
+title: "Lighthouse LCP — font-display: swap in index.html"
+priority: P0
+description: |
+In index.html, aggiungi font-display: swap a tutti i blocchi @font-face
+Per ogni @font-face senza font-display, aggiungi: "font-display: swap;"
+Esempio: 
+Prima: "@font-face { font-family: 'MyFont'; src: url('...'); }"
+Dopo: "@font-face { font-family: 'MyFont'; src: url('...'); font-display: swap; }"
+Criteri di successo: 
+- Tutti i @font-face hanno font-display: swap
+atomic: True
+estimated_minutes: 10
+claimed_at: "2026-03-24T21:05:21.529022"
+claimed_by: orchestrator
+completed_at: "2026-03-24T21:08:57.543487"
+result: ok

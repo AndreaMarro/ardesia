@@ -1,0 +1,955 @@
+{
+  "generated_at": "2026-04-27T12:54:01.739Z",
+  "scorer": "score-cost-per-session",
+  "pricing_ref_date": "2026-04-27",
+  "pricing": {
+    "together_llama33_70b_input_per_m": 0.18,
+    "together_llama33_70b_output_per_m": 0.18,
+    "gemini_flash_lite_input_per_m": 0.075,
+    "gemini_flash_lite_output_per_m": 0.3,
+    "gemini_flash_input_per_m": 0.075,
+    "gemini_flash_output_per_m": 0.3,
+    "gemini_pro_input_per_m": 1.25,
+    "gemini_pro_output_per_m": 5,
+    "voyage_3_per_m": 0.06,
+    "voyage_rerank_per_m": 0.05,
+    "supabase_free_per_call": 0,
+    "edge_tts_per_call": 0
+  },
+  "threshold": 0.012,
+  "currency": "EUR",
+  "verdict": "PASS",
+  "aggregates": {
+    "n_sessions": 50,
+    "avg_cost_total_usd": 0.002371799999999999,
+    "avg_cost_total_eur": 0.0021820400000000005,
+    "p50_cost": 0.002159,
+    "p95_cost": 0.003866,
+    "max_cost": 0.005015,
+    "avg_tokens_input": 6758.66,
+    "avg_tokens_output": 908.98,
+    "avg_n_turns": 11.04,
+    "avg_n_rag_queries": 11.04,
+    "avg_n_tts_calls": 3.2
+  },
+  "per_session": [
+    {
+      "session_id": "syn-1",
+      "cost_llm_usd": 0.00073503,
+      "cost_voyage_usd": 0.00035334,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 3915,
+      "tokens_output": 769,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001088,
+      "cost_total_eur": 0.001001
+    },
+    {
+      "session_id": "syn-2",
+      "cost_llm_usd": 0.003292225,
+      "cost_voyage_usd": 0.00050904,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 6336,
+      "tokens_output": 770,
+      "n_turns": 10,
+      "n_rag_queries": 10,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-pro",
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.003801,
+      "cost_total_eur": 0.003497
+    },
+    {
+      "session_id": "syn-3",
+      "cost_llm_usd": 0.000915225,
+      "cost_voyage_usd": 0.00040722,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 5243,
+      "tokens_output": 816,
+      "n_turns": 9,
+      "n_rag_queries": 9,
+      "n_tts_calls": 1,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001322,
+      "cost_total_eur": 0.001216
+    },
+    {
+      "session_id": "syn-4",
+      "cost_llm_usd": 0.0012194250000000001,
+      "cost_voyage_usd": 0.00048287999999999993,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7128,
+      "tokens_output": 976,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.001702,
+      "cost_total_eur": 0.001566
+    },
+    {
+      "session_id": "syn-5",
+      "cost_llm_usd": 0.0018443549999999996,
+      "cost_voyage_usd": 0.0007396799999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 11413,
+      "tokens_output": 1355,
+      "n_turns": 16,
+      "n_rag_queries": 16,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.002584,
+      "cost_total_eur": 0.002377
+    },
+    {
+      "session_id": "syn-6",
+      "cost_llm_usd": 0.0010648200000000002,
+      "cost_voyage_usd": 0.0004158,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 6602,
+      "tokens_output": 703,
+      "n_turns": 10,
+      "n_rag_queries": 10,
+      "n_tts_calls": 0,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001481,
+      "cost_total_eur": 0.001363
+    },
+    {
+      "session_id": "syn-7",
+      "cost_llm_usd": 0.001694925,
+      "cost_voyage_usd": 0.0006517799999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 9146,
+      "tokens_output": 1164,
+      "n_turns": 15,
+      "n_rag_queries": 15,
+      "n_tts_calls": 1,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002347,
+      "cost_total_eur": 0.002159
+    },
+    {
+      "session_id": "syn-8",
+      "cost_llm_usd": 0.0004780349999999999,
+      "cost_voyage_usd": 0.00022674,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 2525,
+      "tokens_output": 488,
+      "n_turns": 5,
+      "n_rag_queries": 5,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.000705,
+      "cost_total_eur": 0.000649
+    },
+    {
+      "session_id": "syn-9",
+      "cost_llm_usd": 0.0030437100000000003,
+      "cost_voyage_usd": 0.00047274,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 6325,
+      "tokens_output": 999,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.003516,
+      "cost_total_eur": 0.003235
+    },
+    {
+      "session_id": "syn-10",
+      "cost_llm_usd": 0.002120995,
+      "cost_voyage_usd": 0.0005185199999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7224,
+      "tokens_output": 983,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.00264,
+      "cost_total_eur": 0.002429
+    },
+    {
+      "session_id": "syn-11",
+      "cost_llm_usd": 0.0023732549999999995,
+      "cost_voyage_usd": 0.0006393000000000001,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7483,
+      "tokens_output": 1084,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.003013,
+      "cost_total_eur": 0.002772
+    },
+    {
+      "session_id": "syn-12",
+      "cost_llm_usd": 0.00358711,
+      "cost_voyage_usd": 0.0006147599999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 8077,
+      "tokens_output": 1067,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-pro",
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.004202,
+      "cost_total_eur": 0.003866
+    },
+    {
+      "session_id": "syn-13",
+      "cost_llm_usd": 0.00145557,
+      "cost_voyage_usd": 0.0006009,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7933,
+      "tokens_output": 1022,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002056,
+      "cost_total_eur": 0.001892
+    },
+    {
+      "session_id": "syn-14",
+      "cost_llm_usd": 0.0013832949999999999,
+      "cost_voyage_usd": 0.0003075,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4571,
+      "tokens_output": 453,
+      "n_turns": 7,
+      "n_rag_queries": 7,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.001691,
+      "cost_total_eur": 0.001556
+    },
+    {
+      "session_id": "syn-15",
+      "cost_llm_usd": 0.0029230499999999995,
+      "cost_voyage_usd": 0.0005949,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7253,
+      "tokens_output": 1008,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 6,
+      "providers_used": [
+        "together",
+        "gemini-pro",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.003518,
+      "cost_total_eur": 0.003237
+    },
+    {
+      "session_id": "syn-16",
+      "cost_llm_usd": 0.00172703,
+      "cost_voyage_usd": 0.00031608,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 3676,
+      "tokens_output": 489,
+      "n_turns": 6,
+      "n_rag_queries": 6,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.002043,
+      "cost_total_eur": 0.00188
+    },
+    {
+      "session_id": "syn-17",
+      "cost_llm_usd": 0.002365175,
+      "cost_voyage_usd": 0.0005323799999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7271,
+      "tokens_output": 903,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 8,
+      "providers_used": [
+        "gemini-flash",
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.002898,
+      "cost_total_eur": 0.002666
+    },
+    {
+      "session_id": "syn-18",
+      "cost_llm_usd": 0.002349435,
+      "cost_voyage_usd": 0.0010113,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 13202,
+      "tokens_output": 1663,
+      "n_turns": 20,
+      "n_rag_queries": 20,
+      "n_tts_calls": 7,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.003361,
+      "cost_total_eur": 0.003092
+    },
+    {
+      "session_id": "syn-19",
+      "cost_llm_usd": 0.0005860500000000001,
+      "cost_voyage_usd": 0.0002835,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 3295,
+      "tokens_output": 527,
+      "n_turns": 7,
+      "n_rag_queries": 7,
+      "n_tts_calls": 1,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.00087,
+      "cost_total_eur": 0.0008
+    },
+    {
+      "session_id": "syn-20",
+      "cost_llm_usd": 0.0013647000000000002,
+      "cost_voyage_usd": 0.0005220600000000001,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7175,
+      "tokens_output": 1044,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 5,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001887,
+      "cost_total_eur": 0.001736
+    },
+    {
+      "session_id": "syn-21",
+      "cost_llm_usd": 0.0015551699999999998,
+      "cost_voyage_usd": 0.0006334199999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 8662,
+      "tokens_output": 1130,
+      "n_turns": 14,
+      "n_rag_queries": 14,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.002189,
+      "cost_total_eur": 0.002014
+    },
+    {
+      "session_id": "syn-22",
+      "cost_llm_usd": 0.004525309999999999,
+      "cost_voyage_usd": 0.0009254399999999998,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 9294,
+      "tokens_output": 1451,
+      "n_turns": 17,
+      "n_rag_queries": 17,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "gemini-pro",
+        "together"
+      ],
+      "cost_total_usd": 0.005451,
+      "cost_total_eur": 0.005015
+    },
+    {
+      "session_id": "syn-23",
+      "cost_llm_usd": 0.0033068,
+      "cost_voyage_usd": 0.00047520000000000006,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4960,
+      "tokens_output": 911,
+      "n_turns": 10,
+      "n_rag_queries": 10,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.003782,
+      "cost_total_eur": 0.003479
+    },
+    {
+      "session_id": "syn-24",
+      "cost_llm_usd": 0.0008180999999999999,
+      "cost_voyage_usd": 0.0004704600000000001,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4873,
+      "tokens_output": 649,
+      "n_turns": 9,
+      "n_rag_queries": 9,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.001289,
+      "cost_total_eur": 0.001186
+    },
+    {
+      "session_id": "syn-25",
+      "cost_llm_usd": 0.0016310450000000002,
+      "cost_voyage_usd": 0.00015341999999999998,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 2824,
+      "tokens_output": 367,
+      "n_turns": 4,
+      "n_rag_queries": 4,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.001784,
+      "cost_total_eur": 0.001641
+    },
+    {
+      "session_id": "syn-26",
+      "cost_llm_usd": 0.0024983049999999997,
+      "cost_voyage_usd": 0.00049698,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7413,
+      "tokens_output": 884,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 5,
+      "providers_used": [
+        "gemini-flash",
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.002995,
+      "cost_total_eur": 0.002755
+    },
+    {
+      "session_id": "syn-27",
+      "cost_llm_usd": 0.0006629100000000001,
+      "cost_voyage_usd": 0.00036293999999999996,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 3836,
+      "tokens_output": 502,
+      "n_turns": 7,
+      "n_rag_queries": 7,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001026,
+      "cost_total_eur": 0.000944
+    },
+    {
+      "session_id": "syn-28",
+      "cost_llm_usd": 0.001982505,
+      "cost_voyage_usd": 0.0009657599999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 10735,
+      "tokens_output": 1474,
+      "n_turns": 18,
+      "n_rag_queries": 18,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002948,
+      "cost_total_eur": 0.002712
+    },
+    {
+      "session_id": "syn-29",
+      "cost_llm_usd": 0.001430925,
+      "cost_voyage_usd": 0.00062148,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7638,
+      "tokens_output": 1078,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002052,
+      "cost_total_eur": 0.001888
+    },
+    {
+      "session_id": "syn-30",
+      "cost_llm_usd": 0.0008350200000000001,
+      "cost_voyage_usd": 0.00039353999999999995,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4874,
+      "tokens_output": 697,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 1,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001229,
+      "cost_total_eur": 0.001131
+    },
+    {
+      "session_id": "syn-31",
+      "cost_llm_usd": 0.0027483650000000004,
+      "cost_voyage_usd": 0.0005772599999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7290,
+      "tokens_output": 931,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 1,
+      "providers_used": [
+        "together",
+        "gemini-pro",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.003326,
+      "cost_total_eur": 0.00306
+    },
+    {
+      "session_id": "syn-32",
+      "cost_llm_usd": 0.002072535,
+      "cost_voyage_usd": 0.00034752,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 5310,
+      "tokens_output": 660,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-flash",
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.00242,
+      "cost_total_eur": 0.002226
+    },
+    {
+      "session_id": "syn-33",
+      "cost_llm_usd": 0.0008633099999999999,
+      "cost_voyage_usd": 0.00034488,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4680,
+      "tokens_output": 703,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001208,
+      "cost_total_eur": 0.001111
+    },
+    {
+      "session_id": "syn-34",
+      "cost_llm_usd": 0.00106773,
+      "cost_voyage_usd": 0.00043260000000000005,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7216,
+      "tokens_output": 751,
+      "n_turns": 10,
+      "n_rag_queries": 10,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.0015,
+      "cost_total_eur": 0.00138
+    },
+    {
+      "session_id": "syn-35",
+      "cost_llm_usd": 0.00069792,
+      "cost_voyage_usd": 0.00030953999999999997,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 3899,
+      "tokens_output": 438,
+      "n_turns": 6,
+      "n_rag_queries": 6,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001007,
+      "cost_total_eur": 0.000926
+    },
+    {
+      "session_id": "syn-36",
+      "cost_llm_usd": 0.0028200250000000003,
+      "cost_voyage_usd": 0.0007413599999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 8780,
+      "tokens_output": 1288,
+      "n_turns": 16,
+      "n_rag_queries": 16,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-flash",
+        "together",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.003561,
+      "cost_total_eur": 0.003276
+    },
+    {
+      "session_id": "syn-37",
+      "cost_llm_usd": 0.0012166800000000001,
+      "cost_voyage_usd": 0.00042006,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 5898,
+      "tokens_output": 964,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.001637,
+      "cost_total_eur": 0.001506
+    },
+    {
+      "session_id": "syn-38",
+      "cost_llm_usd": 0.004015225,
+      "cost_voyage_usd": 0.00044892,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7557,
+      "tokens_output": 924,
+      "n_turns": 11,
+      "n_rag_queries": 11,
+      "n_tts_calls": 3,
+      "providers_used": [
+        "gemini-pro",
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.004464,
+      "cost_total_eur": 0.004107
+    },
+    {
+      "session_id": "syn-39",
+      "cost_llm_usd": 0.00038583,
+      "cost_voyage_usd": 0.00019140000000000002,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 1978,
+      "tokens_output": 317,
+      "n_turns": 4,
+      "n_rag_queries": 4,
+      "n_tts_calls": 2,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.000577,
+      "cost_total_eur": 0.000531
+    },
+    {
+      "session_id": "syn-40",
+      "cost_llm_usd": 0.0018784499999999998,
+      "cost_voyage_usd": 0.0008157000000000001,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 9412,
+      "tokens_output": 1450,
+      "n_turns": 17,
+      "n_rag_queries": 17,
+      "n_tts_calls": 6,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.002694,
+      "cost_total_eur": 0.002478
+    },
+    {
+      "session_id": "syn-41",
+      "cost_llm_usd": 0.00213867,
+      "cost_voyage_usd": 0.00038340000000000005,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4959,
+      "tokens_output": 666,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 0,
+      "providers_used": [
+        "together",
+        "gemini-pro",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002522,
+      "cost_total_eur": 0.00232
+    },
+    {
+      "session_id": "syn-42",
+      "cost_llm_usd": 0.00245024,
+      "cost_voyage_usd": 0.0005592,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7880,
+      "tokens_output": 931,
+      "n_turns": 12,
+      "n_rag_queries": 12,
+      "n_tts_calls": 7,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.003009,
+      "cost_total_eur": 0.002768
+    },
+    {
+      "session_id": "syn-43",
+      "cost_llm_usd": 0.00160542,
+      "cost_voyage_usd": 0.0005886,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 7914,
+      "tokens_output": 1005,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together"
+      ],
+      "cost_total_usd": 0.002194,
+      "cost_total_eur": 0.002018
+    },
+    {
+      "session_id": "syn-44",
+      "cost_llm_usd": 0.0018943949999999997,
+      "cost_voyage_usd": 0.0004332,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 4534,
+      "tokens_output": 686,
+      "n_turns": 9,
+      "n_rag_queries": 9,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash",
+        "gemini-pro"
+      ],
+      "cost_total_usd": 0.002328,
+      "cost_total_eur": 0.002142
+    },
+    {
+      "session_id": "syn-45",
+      "cost_llm_usd": 0.0020427600000000002,
+      "cost_voyage_usd": 0.00094608,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 10955,
+      "tokens_output": 1727,
+      "n_turns": 19,
+      "n_rag_queries": 19,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002989,
+      "cost_total_eur": 0.00275
+    },
+    {
+      "session_id": "syn-46",
+      "cost_llm_usd": 0.0024692850000000003,
+      "cost_voyage_usd": 0.00065838,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 8090,
+      "tokens_output": 1128,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "gemini-pro",
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.003128,
+      "cost_total_eur": 0.002878
+    },
+    {
+      "session_id": "syn-47",
+      "cost_llm_usd": 0.002765195,
+      "cost_voyage_usd": 0.00054606,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 8837,
+      "tokens_output": 1031,
+      "n_turns": 13,
+      "n_rag_queries": 13,
+      "n_tts_calls": 5,
+      "providers_used": [
+        "together",
+        "gemini-pro",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.003311,
+      "cost_total_eur": 0.003046
+    },
+    {
+      "session_id": "syn-48",
+      "cost_llm_usd": 0.0008104049999999999,
+      "cost_voyage_usd": 0.00033863999999999997,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 5507,
+      "tokens_output": 531,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "gemini-flash",
+        "together"
+      ],
+      "cost_total_usd": 0.001149,
+      "cost_total_eur": 0.001057
+    },
+    {
+      "session_id": "syn-49",
+      "cost_llm_usd": 0.001958775,
+      "cost_voyage_usd": 0.0007550399999999999,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 10912,
+      "tokens_output": 1134,
+      "n_turns": 15,
+      "n_rag_queries": 15,
+      "n_tts_calls": 5,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.002714,
+      "cost_total_eur": 0.002497
+    },
+    {
+      "session_id": "syn-50",
+      "cost_llm_usd": 0.0009993749999999998,
+      "cost_voyage_usd": 0.00038226,
+      "cost_supabase_usd": 0,
+      "cost_tts_usd": 0,
+      "tokens_input": 5423,
+      "tokens_output": 758,
+      "n_turns": 8,
+      "n_rag_queries": 8,
+      "n_tts_calls": 4,
+      "providers_used": [
+        "together",
+        "gemini-flash"
+      ],
+      "cost_total_usd": 0.001382,
+      "cost_total_eur": 0.001271
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "cycle": 38,
+  "timestamp": "2026-03-24T10:29:44.014018",
+  "date": "2026-03-24",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 250
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 32.42s",
+      "time_ms": 36821
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 155860
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 9
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=75 min=74 (target \u226560) [3 samples]",
+      "time_ms": 62104
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4927
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2210
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "unknown",
+    "status": "done",
+    "output_length": 606,
+    "returncode": 0
+  },
+  "research": "DeepSeek analysis on 'offline progressive web app education':\n  **Problemi concreti per ELAB Tutor:**\n1.  **Accesso limitato:** Bambini in zone con connessione scarsa o costosa non possono usare il simulatore, vanificandone lo scopo educativo inclusivo.\n2.  **Perdita di progresso:** Lavori e progetti creati durante una sessione rischiano di essere persi se la connessione fallisce prima della sincronizzazione con il server.\n\n**Soluzione tecnica (1 settimana):**",
+  "ai_scoring": null
+}

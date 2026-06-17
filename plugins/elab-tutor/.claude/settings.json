@@ -1,0 +1,57 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run build --silent 2>&1 | tail -3; exit $?"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(cat | jq -r '.tool_input.file_path // empty' 2>/dev/null); case \"$FILE\" in */CircuitSolver.js|*/AVRBridge.js|*/avrWorker.js|*/SimulationManager.js|*/pinComponentMap.js|*/orchestrator.py) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"BLOCCATO: file protetto core engine + orchestrator. Solo Andrea puo modificarlo.\"}}';; *.env*|*credentials*|*secret*) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"BLOCCATO: file sensibile.\"}}';; */package.json) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"ASK: modifica package.json — verificare che non aggiunga dipendenze non necessarie.\"}}';; esac",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/agents/guard-forbidden-avr-patterns.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/agents/guard-deploy-unlim-chat.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"$CLAUDE_PROJECT_DIR/automa/context/ELAB-COMPLETE-CONTEXT.md\" 2>/dev/null; cat \"$CLAUDE_PROJECT_DIR/automa/context/CYCLE-HANDOFF.md\" 2>/dev/null; echo '---'; echo 'CONTESTO RE-INIETTATO DOPO COMPACTION'"
+          }
+        ]
+      }
+    ]
+  }
+}

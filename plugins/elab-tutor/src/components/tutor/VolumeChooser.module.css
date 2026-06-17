@@ -1,0 +1,134 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* VolumeChooser — CSS Module (G26) */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(30, 77, 140, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+  padding: 16px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  max-width: 640px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.mascotRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.mascot {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.heading {
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--elab-navy);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 12px;
+  border-radius: 16px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  min-height: 120px;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px var(--card-color, rgba(0, 0, 0, 0.12));
+}
+
+.card:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.cardIcon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardCount {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.returnButtons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.returnBtn {
+  font-family: var(--font-display, Oswald, sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 52px;
+}
+
+.changeBtn {
+  background: #f5f5f5; /* palette */
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}

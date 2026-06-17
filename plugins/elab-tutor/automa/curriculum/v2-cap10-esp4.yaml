@@ -1,0 +1,79 @@
+# Curriculum YAML — v2-cap10-esp4
+# "Motore + pulsante + LED indicatore"
+
+experiment_id: v2-cap10-esp4
+volume: 2
+chapter: 10
+title: "Motore + pulsante + LED indicatore"
+
+prerequisites:
+  - v2-cap10-esp3
+
+concepts_introduced:
+  - indicatore_stato
+  - feedback_visivo
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - motore
+  - pulsante
+  - interruttore
+  - indicatore
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 motore DC, 1 pulsante, 1 LED verde, 1 resistore
+    330 ohm, 1 batteria (pile AA), fili. Il LED e il motore vanno in parallelo dopo
+    il pulsante — quando premi, si accendono entrambi. Il LED e' l'indicatore di stato.
+  during_class: >
+    Costruisci il circuito: pulsante in serie, poi motore e LED+resistore in parallelo.
+    Premi il pulsante: motore gira E LED si accende. Rilascia: entrambi si spengono.
+    "A cosa serve il LED?" E' un indicatore — ti dice se il motore e' acceso senza
+    dover guardare l'asse. "Dove avete visto indicatori cosi'?" (lavatrice, microonde,
+    auto — la spia del motore acceso).
+  common_question: >
+    "Perche' il LED e il motore sono in parallelo e non in serie?" -> In serie, il
+    motore prenderebbe quasi tutta la tensione e il LED non si accenderebbe. In
+    parallelo, ognuno prende quello che gli serve.
+
+common_mistakes:
+  - mistake: "LED in serie con il motore — LED spento o debolissimo"
+    what_to_do: "Il motore ha resistenza bassissima e 'ruba' tutta la corrente. Mettili in parallelo."
+    analogy: "Come due strade che partono dallo stesso incrocio — ognuno sceglie la sua"
+  - mistake: "Dimenticare il resistore del LED"
+    what_to_do: "Senza resistore il LED si brucia. Il motore limita se stesso, il LED no."
+    analogy: null
+
+analogies:
+  indicatore_stato:
+    analogy: "Il LED indicatore e' come la spia della lavatrice — ti dice 'sto funzionando!' senza che tu debba aprire lo sportello. Nei dispositivi veri ci sono luci che indicano lo stato."
+    evidence: "Collegamento con feedback visivo in design industriale (Norman 1988)"
+  feedback_visivo:
+    analogy: "Il feedback visivo e' come il semaforo pedonale — non devi guardare le macchine, guardi la luce che ti dice se puoi passare. Il LED ti dice se il motore e' in marcia."
+    evidence: "Principio di feedback in human-computer interaction (Norman 1988)"
+
+assessment_invisible:
+  - "Se lo studente spiega 'il LED mi dice se il motore e' acceso' -> ha capito l'indicatore"
+  - "Se mette LED e motore in parallelo al primo tentativo -> ha capito la topologia"
+  - "Se propone LED di colori diversi per stati diversi -> pensiero progettuale avanzato"

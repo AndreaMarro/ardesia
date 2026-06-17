@@ -1,0 +1,70 @@
+# Curriculum YAML — v1-cap9-esp9
+# "Sfida: aggiungi pulsante all'esp 8"
+
+experiment_id: v1-cap9-esp9
+volume: 1
+chapter: 9
+title: "Sfida: aggiungi pulsante all'esp 8"
+
+prerequisites:
+  - v1-cap9-esp8  # Circuito combinato
+  - v1-cap9-esp7  # Sa aggiungere pulsanti
+
+concepts_introduced:
+  - sfida_finale_cap9
+  - integrazione_tutto_cap8_cap9
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - pulsante
+  - manopola
+  - colore
+  - accendere
+  - spegnere
+  - regolare
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Sfida finale del cap 9. Prende il circuito dell'esp 8 e aggiunge un pulsante
+    generale ON/OFF. Tutto il materiale dei cap 8+9.
+  during_class: >
+    "Ultima sfida del capitolo! Prendete il vostro circuito super dell'esp 8 e
+    aggiungete un pulsante generale che accende/spegne tutto. Come una vera lampada
+    con interruttore + dimmer!" Sfida bonus: "Chi riesce ad aggiungere anche pulsanti
+    per canale?"
+  common_question: >
+    "Dove metto il pulsante generale?" -> Prima di tutto il resto — cosi interrompe
+    l'intero circuito. Come l'interruttore generale di casa.
+
+common_mistakes:
+  - mistake: "Il pulsante spegne solo un canale"
+    what_to_do: "Il pulsante deve essere sul filo comune (catodo o alimentazione), non su un canale singolo"
+    analogy: null
+
+analogies:
+  integrazione_tutto_cap8_cap9:
+    analogy: "Avete costruito la lampada da tavolo piu tecnologica della scuola! Ha: interruttore ON/OFF, 3 manopole per i colori, e mescola qualsiasi sfumatura. I designer di lampade smart fanno esattamente questo."
+    evidence: "Collegamento mondo reale + senso di achievement (Csikszentmihalyi 1990)"
+
+assessment_invisible:
+  - "Se completa -> padronanza completa cap 8+9"
+  - "Se presenta alla classe spiegando come funziona -> transfer didattico"
+  - "Se chiede 'e se il circuito reagisse alla luce?' -> pronto per cap 10 (fotoresistenza)"

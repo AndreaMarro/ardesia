@@ -1,0 +1,14 @@
+id: P1-font-lim-responsive
+priority: P1
+title: Add CSS media query for LIM viewports
+description: |
+  Add responsive CSS media query targeting LIM (Lavagna Interattiva Multimediale)
+  viewports. Rule: @media (max-width: 1366px) with font-size: 24px for body
+  and 32px for h1-h2. File: src/components/tutor/tutor-responsive.css.
+metric: fonts readable at 1366px LIM resolution without zooming
+tags:
+  - css
+  - responsive
+  - lim
+  - accessibility
+created_at: 2026-03-25T21:30:00

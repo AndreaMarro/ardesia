@@ -1,0 +1,69 @@
+# Curriculum YAML — v3-extra-lcd-hello
+# "LCD Hello World"
+
+experiment_id: v3-extra-lcd-hello
+volume: 3
+chapter: 99
+title: "LCD Hello World"
+
+prerequisites:
+  - v3-cap6-semaforo
+
+concepts_introduced:
+  - LCD
+  - LiquidCrystal
+  - setCursor
+  - print
+
+vocabulary_level: v3
+allowed_terms: []  # Everything allowed in Vol3
+forbidden_terms: []  # Nothing forbidden in Vol3
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 Arduino Nano, 1 breadboard, 1 display LCD 16x2,
+    1 potenziometro (10k per contrasto), fili. Il collegamento dell'LCD ha molti fili
+    (6 pin dati + alimentazione + contrasto) — prepara uno schema grande sulla LIM.
+    Obiettivo: scrivere un messaggio personalizzato sul display. E' il primo esperimento
+    dove il risultato si vede su uno schermo, non su un LED.
+  during_class: >
+    Fai collegare l'LCD seguendo lo schema passo passo (e' il circuito piu' complesso
+    finora). Poi il codice: LiquidCrystal crea il display, lcd.begin(16,2) lo inizializza,
+    lcd.setCursor(colonna, riga) posiziona il cursore, lcd.print("testo") scrive.
+    Prima sfida: scrivi il tuo nome. Seconda: scrivi qualcosa sulla riga 2. Terza:
+    fai un contatore che si aggiorna ogni secondo.
+  common_question: >
+    "Perche' lo schermo e' tutto nero/bianco?" -> Gira il potenziometro del contrasto
+    lentamente. Se vedi quadratini, il display funziona ma il contrasto e' sbagliato.
+    Se non vedi niente, controlla alimentazione (5V e GND).
+
+common_mistakes:
+  - mistake: "Fili dell'LCD scambiati — lo schermo non si accende"
+    what_to_do: "L'LCD ha tanti pin e basta scambiarne uno. Fai controllare con lo schema: conta i pin da sinistra, uno per uno."
+    analogy: "E' come collegare un monitor al computer — se il cavo e' nel posto sbagliato, non vedi niente"
+  - mistake: "setCursor con coordinate sbagliate — testo fuori schermo"
+    what_to_do: "Spiega: il display ha 16 colonne (0-15) e 2 righe (0-1). setCursor(0,0) e' in alto a sinistra, setCursor(0,1) in basso a sinistra."
+    analogy: "E' come una griglia di battaglia navale: prima la colonna, poi la riga"
+  - mistake: "Testo troppo lungo che va oltre le 16 colonne"
+    what_to_do: "Conta le lettere! Il display mostra solo 16 caratteri per riga. Se ne scrivi di piu', scompaiono. Abbrevia o usa la seconda riga."
+    analogy: null
+
+analogies:
+  LCD:
+    analogy: "L'LCD e' come una piccola lavagna elettronica: puoi scriverci sopra, cancellare e riscrivere. A differenza dei LED che fanno solo luce, il display mostra lettere e numeri."
+    evidence: "Display come output testuale primario in educazione embedded (Przybylla & Romeike 2014)"
+  LiquidCrystal:
+    analogy: "LiquidCrystal e' come un traduttore: tu parli in italiano (lcd.print) e lui traduce in segnali elettrici che il display capisce. Senza il traduttore, il display non sa cosa fare."
+    evidence: "Concetto libreria-come-traduttore efficace per introduzione API hardware (Sentance et al. 2017)"
+  setCursor:
+    analogy: "setCursor e' come spostare il dito su un foglio a quadretti prima di scrivere. Dici: 'Voglio scrivere alla colonna 5, riga 1' e il cursore va li'."
+    evidence: "Metafora coordinate-griglia accessibile per eta' 10+ (Wing 2006, pensiero computazionale)"
+  print:
+    analogy: "lcd.print e' come dettare a qualcuno cosa scrivere sulla lavagna. Tu dici il testo, il display lo mostra."
+    evidence: "Analogia dettatura-output presente in curricula CS per scuola media (Code.org CS Discoveries)"
+
+assessment_invisible:
+  - "Se lo studente scrive un messaggio personalizzato sulla seconda riga -> ha capito setCursor"
+  - "Se conta i caratteri prima di scrivere per non sforare -> pianificazione attiva"
+  - "Se fa un contatore o un messaggio che cambia -> ha capito che il display si puo' aggiornare"
+  - "Se aiuta un compagno col collegamento fili -> padronanza del circuito"

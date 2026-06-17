@@ -1,0 +1,62 @@
+{
+  "cycle": 27,
+  "timestamp": "2026-03-24T07:17:15.351992",
+  "date": "2026-03-24",
+  "mode": "RESEARCH",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 259
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 19.40s",
+      "time_ms": 22410
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 159993
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 8
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=79 min=77 (target \u226560) [3 samples]",
+      "time_ms": 59717
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 4235
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Overflow: False, Small btns: 13",
+      "time_ms": 2090
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "RESEARCH cycle 22 \u2014 formative assessment + P0-008 + loadexp root cause",
+    "status": "partial",
+    "files_changed": [],
+    "build_pass": true,
+    "cov_verified": true,
+    "research": "Black&Wiliam formative assessment d=0.4-0.7; CircuitSolver.js riutilizzabile per P0-008 (70% gi\u00e0 fatto); bug loadexp: substring [AZIONE:loadexp] vs [AZIONE:loadexp:ID]"
+  },
+  "research": "DeepSeek analysis on 'EdTech product marketing school adoption':\n  **1) Problemi concreti:**\n*   **Disallineamento curriculare:** I docenti faticano a integrare ELAB Tutor nel programma scolastico standard per mancanza di piani di lezione pronti all'uso che colleghino le simulazioni agli obiettivi didattici.\n*   **Onboarding complesso:** Il tempo limitato dei docenti \u00e8 una barriera; percepiscono il prodotto come un'attivit\u00e0 \"extra\" che richiede troppo tempo per p",
+  "ai_scoring": null
+}

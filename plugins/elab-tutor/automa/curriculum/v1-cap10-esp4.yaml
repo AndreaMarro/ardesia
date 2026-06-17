@@ -1,0 +1,75 @@
+# Curriculum YAML — v1-cap10-esp4
+# "LED bianco illumina LDR -> LED blu"
+
+experiment_id: v1-cap10-esp4
+volume: 1
+chapter: 10
+title: "LED bianco illumina LDR -> LED blu"
+
+prerequisites:
+  - v1-cap10-esp1  # Sa usare la fotoresistenza
+
+concepts_introduced:
+  - accoppiamento_ottico
+  - un_circuito_controlla_un_altro
+  - comunicazione_con_luce
+
+vocabulary_level: v1-cap10
+allowed_terms:
+  - LED
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - fotoresistenza
+  - luce
+  - bianco
+  - blu
+  - sensore
+  - illuminare
+  - comunicare
+  - accoppiamento
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - tensione
+  - volt
+  - transistor
+  - optoisolatore
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED bianco, 1 LED blu, 1 LDR, 2 resistenze, breadboard, batteria.
+    Il LED bianco illumina la LDR che controlla il LED blu. Due circuiti che
+    comunicano tramite la luce. Concetto chiave: accoppiamento ottico.
+  during_class: >
+    "Finora la luce veniva dall'ambiente. E se la luce venisse da un altro LED?"
+    Fai montare: LED bianco che punta verso la LDR, LDR collegata al LED blu.
+    "Accendete il LED bianco — cosa succede al blu?" Momento wow: un LED ne
+    controlla un altro senza fili!
+  common_question: >
+    "Come fanno a comunicare senza fili?" -> La luce E il filo! Il LED bianco
+    manda un messaggio luminoso e la fotoresistenza lo riceve. E come parlare
+    a distanza con una torcia — codice morse!
+
+common_mistakes:
+  - mistake: "La LDR non vede il LED bianco"
+    what_to_do: "Devono essere molto vicini e puntati l'uno verso l'altro. Un tubicino di carta aiuta"
+    analogy: null
+  - mistake: "Il LED blu e sempre acceso per la luce ambiente"
+    what_to_do: "Lavora in semi-oscurita o copri la LDR con un tubo scuro che lascia solo la luce del LED"
+    analogy: null
+
+analogies:
+  accoppiamento_ottico:
+    analogy: "E come due persone che comunicano con le torce dalla finestra! Una accende la torcia (LED bianco), l'altra la vede (fotoresistenza) e reagisce (accende il LED blu). Comunicazione senza fili!"
+    evidence: "Analogia comunicazione ottica, prepara per concetti di trasmissione (Posner et al. 1982)"
+
+assessment_invisible:
+  - "Se dice 'comunicano con la luce!' -> ha capito l'accoppiamento"
+  - "Se chiede 'posso mandare un messaggio?' -> intuizione comunicazione digitale"
+  - "Se propone di mettere un ostacolo tra i due -> pensiero sperimentale"

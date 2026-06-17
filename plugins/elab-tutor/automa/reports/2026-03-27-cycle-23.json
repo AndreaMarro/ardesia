@@ -1,0 +1,60 @@
+{
+  "cycle": 23,
+  "timestamp": "2026-03-27T09:48:20.787898",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 339
+    },
+    {
+      "name": "build",
+      "status": "fail",
+      "detail": "[Errno 2] No such file or directory: 'npm'",
+      "time_ms": 7
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 159029
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 5
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=78 min=72 (target \u226560) [3 samples]",
+      "time_ms": 62855
+    },
+    {
+      "name": "browser",
+      "status": "warn",
+      "detail": "Playwright not available",
+      "time_ms": 6
+    },
+    {
+      "name": "ipad",
+      "status": "warn",
+      "detail": "Test error: [Errno 2] No such file or directory: 'node'",
+      "time_ms": 3
+    }
+  ],
+  "checks_passed": 4,
+  "checks_total": 7,
+  "task_result": {
+    "task": "[Research] ux_children: finding from cycle 2",
+    "status": "pending_interactive"
+  },
+  "research": "Scholar: 'Socratic questioning AI tutor' -> 5 papers\n  - [2025] Resurrecting Socrates in the Age of AI: A Study Protocol for Evaluating a Socrat\n  - [2025] NotebookLM as a Socratic physics tutor: Design and preliminary observations of a\n  - [2026] AI Tutor Comparison: Google Guided Learning and ChatGPT Study Mode",
+  "ai_scoring": null,
+  "composite_score": 0.946,
+  "self_exam": null
+}

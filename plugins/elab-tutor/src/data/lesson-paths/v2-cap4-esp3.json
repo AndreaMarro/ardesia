@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap4-esp3",
+  "volume": 2,
+  "chapter": 4,
+  "title": "Partitore di tensione",
+  "chapter_title": "Approfondiamo le Resistenze",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "Capire il partitore di tensione: tre resistori in serie con una batteria creano punti a tensioni diverse. Misurare le tensioni parziali con il multimetro.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Breadboard mezza",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Resistore 1kohm",
+      "quantity": 3,
+      "icon": "⚡"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "partitore",
+      "tensione",
+      "volt",
+      "resistore",
+      "serie",
+      "batteria",
+      "multimetro",
+      "voltmetro",
+      "nodo",
+      "punto",
+      "divisione",
+      "proporzionale",
+      "breadboard"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "condensatore",
+      "transistor"
+    ],
+    "note": "Vol 2 Cap 4 — partitore di tensione, tensioni proporzionali."
+  },
+  "prerequisites": [
+    "v2-cap4-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap5-esp1",
+    "title": "Esperimento 1: batterie in serie (più \"spinta\"!)",
+    "preview": "Prossimo passo: Esperimento 1: batterie in serie (più \"spinta\"!). La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi facciamo un esperimento elegante: con 3 resistori da 1kohm in serie e una batteria da 9V, creiamo 3 punti a tensione diversa: 3V, 6V e 9V. E il partitore di tensione!",
+      "teacher_tip": "Il partitore e fondamentale in elettronica: e il modo piu semplice per ottenere una tensione diversa da quella della batteria. Si usate ovunque!",
+      "components_list": "Ti servono: 1 batteria 9V, 1 breadboard mezza, 3 resistori da 1kohm, 1 multimetro.",
+      "class_hook": "Immaginate un palazzo di 9 piani (9 Volt). Con 3 scale uguali, potete fermarvi al piano 3, al piano 6, o salire fino al 9. I resistori dividono la tensione come le scale dividono i piani!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Il circuito: batteria 9V → R1 (1kohm) → R2 (1kohm) → R3 (1kohm) → massa. Tra ogni resistore c'e un punto con una tensione diversa. Misuriamo con il voltmetro!",
+      "teacher_tip": "Identifica i 4 nodi: 9V (prima di R1), 6V (tra R1 e R2), 3V (tra R2 e R3), 0V (dopo R3). Il multimetro in modalita voltmetro, puntale nero a massa.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap4-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate un partitore di tensione con 3 resistori 1kohm in serie",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 1000
+            },
+            {
+              "type": "resistor",
+              "id": "r2",
+              "value": 1000
+            },
+            {
+              "type": "resistor",
+              "id": "r3",
+              "value": 1000
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, 9V diviso equamente tra 3 resistori uguali: quanta tensione cade su ciascuno? E se un resistore fosse da 2kohm e gli altri da 1kohm, come cambierebbe la divisione?",
+      "teacher_tip": "Con resistori uguali: 9V/3 = 3V ciascuno. Con uno da 2k e due da 1k (totale 4k): il 2k prende 4.5V, ciascun 1k prende 2.25V. La tensione si divide in proporzione alla resistenza.",
+      "provocative_question": "Possiamo ottenere esattamente 5V dalla nostra batteria da 9V usando solo resistori? Come scegliereste i valori?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Misurare la tensione ai capi di un solo resistore con i puntali invertiti",
+          "teacher_response": "Per misurare la caduta su R2, il puntale rosso va al nodo superiore di R2 e il nero al nodo inferiore. Se leggete un valore negativo, inverti i puntali!",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, Misurate le tensioni in ogni punto! Tra batteria+ e massa: 9V. Tra R1-R2 e massa: circa 6V. Tra R2-R3 e massa: circa 3V. Ogni resistore 'mangia' 3V!",
+      "teacher_tip": "Fate compilate una tabella: Punto | Tensione attesa | Tensione misurata. I valori dovrebbero corrispondere quasi esattamente.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:r1]",
+        "[AZIONE:highlight:r2]",
+        "[AZIONE:highlight:r3]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il multimetro conferma la divisione: 3V su ogni resistore. La tensione di 9V si divide equamente perche i resistori sono uguali. Punto A: 9V, Punto B: 6V, Punto C: 3V, Massa: 0V.",
+      "analogies": [
+        {
+          "concept": "partitore_palazzo",
+          "text": "Il partitore di tensione e come un palazzo: la batteria e l'altezza totale (9 piani). Ogni resistore e un gruppo di scale. Con 3 gruppi uguali, ogni piano intermedio e a 1/3, 2/3 e 3/3 dell'altezza totale.",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Il partitore di tensione e uno dei circuiti piu importanti dell'elettronica! Con resistori in serie, potete creare qualsiasi tensione intermedia dalla vostra batteria.",
+      "teacher_tip": "Formula: Vout = Vin * R2/(R1+R2) per un partitore a 2 resistori. Usata ovunque: sensori, interfacce, alimentatori.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il partitore di tensione divide la tensione della batteria in proporzione alle resistenze. Con 3 resistori uguali da 1kohm e 9V: ogni punto intermedio ha 3V in meno del precedente (9V, 6V, 3V, 0V).",
+      "concepts_learned": [
+        "partitore di tensione",
+        "tensione proporzionale alla resistenza",
+        "nodi a tensioni diverse",
+        "formula Vout = Vin * R2/(R1+R2)"
+      ],
+      "next_preview": "Nel prossimo capitolo scoprirete le batterie in serie: collegandone due, la tensione raddoppia!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se calcola correttamente la tensione su ogni resistore (3V) → comprensione quantitativa",
+    "Se propone valori di resistore per ottenere una tensione specifica → applicazione creativa",
+    "Se riconosce il partitore in altri contesti (es. dimmer) → trasferimento concettuale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "partitore_tensione",
+      "tensioni_proporzionali",
+      "formula_partitore"
+    ],
+    "next_suggested": "v2-cap5-esp1",
+    "resume_message": "Avete costruito un partitore di tensione! Prossimo: batterie in serie."
+  },
+  "analogies": [
+    {
+      "concept": "partitore_palazzo",
+      "text": "Il partitore di tensione e come un palazzo: la batteria e l'altezza totale (9 piani). Ogni resistore e un gruppo di scale. Con 3 gruppi uguali, ogni piano intermedio e a 1/3, 2/3 e 3/3 dell'altezza totale.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Misurare la tensione ai capi di un solo resistore con i puntali invertiti",
+      "teacher_response": "Per misurare la caduta su R2, il puntale rosso va al nodo superiore di R2 e il nero al nodo inferiore. Se leggete un valore negativo, inverti i puntali!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

@@ -1,0 +1,214 @@
+id: circuit
+name: "Piazzamento Componenti e Wiring"
+intent: circuit
+needs_llm: false
+
+templates:
+  # ── SINGLE COMPONENT PLACEMENT ──────────────
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, posiziona, inserisci, voglio, dammi, monta, carica]
+      slang: [un LED, una lucina, una lampadina, una luce]
+      comp: [led]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, posiziona, inserisci, voglio, dammi]
+      slang: [una resistenza, un resistore, una res, un ohm]
+      comp: [resistor]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, posiziona, inserisci, voglio]
+      slang: [un pulsante, un bottone, un tasto, uno switch, un interruttore]
+      comp: [push-button]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un buzzer, un cicalino, il beep, il piezo, la trombetta]
+      comp: [buzzer-piezo]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un condensatore, un cap, un capacitor, il cilindretto]
+      comp: [capacitor]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un potenziometro, una manopola, una rotella, un dimmer, un trimmer]
+      comp: [potentiometer]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un fotoresistore, una fotoresistenza, un LDR, un sensore di luce]
+      comp: [photo-resistor]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un diodo, il diodo, un 1N4007]
+      comp: [diode]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un mosfet, un transistor, un interruttore elettronico, il coso con 3 gambe]
+      comp: [mosfet-n]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un led rgb, un led colorato, un led tricolore, il led con 4 gambe]
+      comp: [rgb-led]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un motore, un motorino, un motor dc, un motoretto]
+      comp: [motor-dc]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un servo, un servomotore, il braccetto, un servo motore]
+      comp: [servo]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un reed switch, un interruttore magnetico, un sensore magnetico]
+      comp: [reed-switch]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un fototransistor, un sensore ottico, il transistor della luce]
+      comp: [phototransistor]
+
+  - input: "{verbo} {slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [metti, aggiungi, piazza, mettimi, voglio]
+      slang: [un display, un LCD, uno schermo, il display LCD, lo schermino]
+      comp: [lcd16x2]
+
+  # ── SLANG PURO (senza verbo) ──────────────
+  - input: "{slang}"
+    response: "@component_place"
+    actions: ["[INTENT:{\"action\":\"place_and_wire\",\"components\":[{\"type\":\"{comp}\"}],\"wires\":\"auto\"}]"]
+    entities: ["{comp}"]
+    vars:
+      slang: [led, resistenza, pulsante, buzzer, condensatore, potenziometro, motore, servo, diodo, mosfet]
+      comp: [led, resistor, push-button, buzzer-piezo, capacitor, potentiometer, motor-dc, servo, diode, mosfet-n]
+
+  # ── REMOVE COMPONENT ──────────────
+  - input: "{verbo} {cosa}"
+    response: "@component_remove"
+    actions: ["[AZIONE:removecomponent]"]
+    entities: ["{comp}"]
+    vars:
+      verbo: [togli, rimuovi, elimina, leva, cancella, porta via]
+      cosa: [il LED, la resistenza, il pulsante, il buzzer, il condensatore, il motore]
+      comp: [led, resistor, push-button, buzzer-piezo, capacitor, motor-dc]
+
+  # ── WIRING ──────────────
+  - input: "{verbo} {cosa}"
+    response: "@wire_add"
+    actions: ["[AZIONE:addwire]"]
+    entities: [wire]
+    vars:
+      verbo: [collega, connetti, unisci, attacca, metti un filo, wira]
+      cosa:
+        - il LED alla resistenza
+        - il pulsante al LED
+        - il buzzer al pin D3
+        - il motore al mosfet
+        - il sensore al pin A0
+        - il potenziometro al pin A1
+        - il servo al pin D9
+
+  - input: "{verbo} {cosa}"
+    response: "@wire_remove"
+    actions: ["[AZIONE:removewire]"]
+    entities: [wire]
+    vars:
+      verbo: [scollega, stacca, togli il filo, rimuovi il collegamento]
+      cosa: [dal LED, dalla resistenza, dal pulsante, dal buzzer]
+
+  # ── DIAGNOSI ──────────────
+  - input: "{frase}"
+    needs_llm: true
+    llm_hint: "L'utente ha un problema col circuito. Analizzare contesto, suggerire fix con analogie semplici."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - non funziona
+        - il circuito non va
+        - il LED non si accende
+        - perche' non funziona?
+        - cosa c'e' che non va?
+        - ho collegato tutto ma non succede niente
+        - il buzzer non suona
+        - il motore non gira
+        - c'e' un errore
+        - qualcosa e' sbagliato
+        - aiutami a trovare il problema
+        - il display non mostra niente
+        - il servo non si muove
+        - non capisco perche' non va
+        - e' tutto collegato ma non funziona niente
+
+corruptions:
+  typo_swap: 0.4
+  sms: 0.15
+  emoji: 0.1
+  filler: 0.1

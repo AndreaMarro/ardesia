@@ -1,0 +1,4389 @@
+LABORATORIO STEM DI ELETTRONICA
+
+IMPARA E SPERIME NTA
+
+Â© 2025 ELAB. Tutti i diritti riservati.
+
+Nessuna parte di questo libro puÃ² essere riprodotta o distribuita in
+qualsiasi forma o con qualsiasi mezzo, elettronico o meccanico, senza il
+permesso scritto dellâ€™autore.
+
+Indice
+
+Capitolo 1 – Un viaggio nella storia della programmazione 
+
+- Ada Lovelace e i primi algoritmi
+- Il telaio di Jacquard
+- I primi computer (ENIAC)
+- Il linguaggio macchina
+- I primi linguaggi di programmazione
+- Il personal computer
+- Programmare oggi (Arduino e AI)
+
+Capitolo 2 – Cos’è la programmazione
+
+- Programmazione come ricetta
+- Linguaggi di programmazione
+- Il compilatore
+- Le istruzioni e il codice
+- Il concetto di bug
+- Gli algoritmi
+- Pensiero logico e creativo
+- Cosa si può fare con il codice
+
+Capitolo 3 – Hardware e Software
+
+- Differenza tra hardware e software
+- Il firmware
+- Il microcontrollore
+- CPU, memoria e periferiche
+- Come funziona Arduino
+- Esecuzione del programma
+
+Capitolo 4 – Introduciamo Arduino
+
+- Cos’è Arduino
+- I tre elementi fondamentali
+- Hardware (Nano R4 e breakout)
+- Arduino IDE
+- La community
+- Installazione IDE
+- Installazione scheda (Boards Manager)
+
+Capitolo 5 – Il nostro primo programma (Blink)
+
+- Struttura di un programma
+- setup() e loop()
+- pinMode()
+- digitalWrite()
+- delay()
+- Compilazione e upload
+- Commenti nel codice
+- Primo esperimento Blink
+- Modifica dei tempi
+
+Capitolo 6 – Il mondo discreto: i pin digitali
+
+- Cos’è il digitale (0 e 1)
+- HIGH e LOW
+- Logica AND e OR
+- Tabelle di verità
+- Collegamenti e alimentazione
+- LED esterno
+- Uso dei pin digitali
+- Più LED e semaforo
+- INPUT e OUTPUT
+- digitalRead()
+- INPUT_PULLUP
+- Pulsanti e logica nel codice
+- IF ed ELSE
+- Variabili (bool)
+- Problema del bounce
+- Soluzioni con delay
+- Ciclo while
+
+Capitolo 7 – Il mondo continuo: i pin analogici
+
+- Cos’è analogico
+- Numeri binari e risoluzione
+- ADC (conversione analogico-digitale)
+- Valori da 0 a 1023
+- Calcolo della tensione
+- Sensibilità (5 mV)
+- analogRead()
+- Uso del trimmer
+- Conversione in Volt
+- Variabili int e float
+- Intervalli e LED multipli
+- else if
+- DAC e PWM
+- analogWrite()
+- Duty cycle
+- Controllo luminosità LED
+- Ciclo for
+- Effetto respiro
+- Funzione map()
+- Controllo con trimmer
+- analogWriteResolution()
+
+Capitolo 8 –
+
+Capitolo 9 –
+
+Non è finita qui! ................................................... 
+
+COMPONENTI DEL KIT
+
+• 1x Breadboard 830 punti
+
+• Cavi di differenti lunghezze
+
+• 1x Clip Batteria intestata con header
+
+• 1x Breakout Nano Elab
+
+• 1x Arduino Nano R4:
+
+• 1x Cavo usb-C
+
+• Resistori 4 Bande:
+
+10x 100 Ohm
+
+10x 220 Ohm
+
+10x 330 Ohm
+
+10x 470 Ohm
+
+10x 1 KOhm
+
+10x 10 KOhm
+
+- LEDs:
+
+5x Blu
+
+5x Rosso
+
+5x Verde
+
+5x Giallo
+
+5x Bianco
+
+5x RGB catodo comune
+
+• 5x Pulsanti
+
+• 3x Trimmer con alberino 10 kOhm
+
+• 1x Cicalino
+
+Capitolo 1
+
+Un viaggio nella storia della programmazione.
+
+Bentornati!
+
+Oggi scopriamo una cosa davvero importante: il modo in cui gli esseri
+umani parlano con le macchine.
+
+Questo modo si chiama programmazione.
+
+Programmare significa dire a un computer cosa deve fare, usando
+istruzioni chiare e precise, una dopo l’altra.
+
+È un po’ come dare indicazioni passo passo, tipo:
+
+- fai questo
+- poi fai quello
+- infine, fai quest’altro
+
+Ma prima di iniziare a scrivere codice, facciamo un piccolo viaggio nel
+passato
+Così capiamo come è iniziato tutto.
+
+Prima dei computer: idee geniali!
+
+Siamo intorno al 1800. Non esistono ancora i computer, non c’è
+l’elettricità nelle case
+e tante invenzioni moderne non sono ancora state create. Eppure succede
+qualcosa di incredibile.
+
+Una giovane matematica inglese, Ada Lovelace, immagina una cosa mai
+vista prima:
+una macchina che può seguire istruzioni per fare calcoli difficili.
+
+[]Ada ha un’idea davvero geniale.
+
+Lei descrive per la prima volta quello che oggi chiamiamo algoritmo.
+
+Cos’è un algoritmo?
+È una lista di passi, in ordine, che servono per fare qualcosa.
+
+Per esempio:
+
+- prendi un numero
+- fai un calcolo
+- scrivi il risultato
+
+[]
+Ada Lovelace è stata la prima a capire che una macchina poteva “seguire
+istruzioni”, proprio come fanno i computer oggi.
+
+Qualche anno prima, nel 1804, succede un’altra cosa molto importante.
+
+Un inventore di nome Joseph Jacquard costruisce una macchina speciale:
+un telaio (cioè una macchina per fare tessuti).
+
+[]Questa macchina funzionava in un modo molto intelligente.
+
+Usava delle schede forate (cartoncini con dei buchi).
+Ogni scheda diceva alla macchina cosa fare.
+
+Per esempio:
+
+- come muovere i fili
+- quale disegno creare sul tessuto
+
+Anche se era solo una macchina meccanica, senza computer,
+possiamo considerarla uno dei primi esempi di:
+
+- programma (istruzioni da seguire)
+- automazione (la macchina lavora da sola)
+
+[][]
+Jacquard aveva già creato una macchina che “seguiva istruzioni” …
+proprio come fanno i computer oggi!
+
+I primi computer: giganti lenti e rumorosi 🖥️
+
+Molto tempo dopo, durante la Seconda guerra mondiale,
+nascono i primi computer elettronici.
+
+Ma attenzione… erano molto diversi da quelli di oggi!
+
+Erano:
+
+- enormi (grandissimi)
+- lenti
+- rumorosi
+- pieni di valvole che si scaldavano subito
+
+Uno dei più famosi si chiamava ENIAC, costruito nel 1946.
+Era così grande che occupava un’intera aula scolastica!
+
+E programmare non era affatto facile…
+
+Non c’era la tastiera
+Non c’era lo schermo
+
+Per dare istruzioni al computer bisognava:
+
+- collegare cavi
+- spostare interruttori
+- cambiare interi pannelli
+
+In poche parole:
+usare questi computer era complicato e richiedeva tanto lavoro manuale.
+
+Il linguaggio macchina
+
+Con i computer un po’ più avanzati, cambia anche il modo di programmare.
+
+I programmatori iniziano a scrivere istruzioni usando solo numeri:
+0 e 1
+
+Questo si chiama linguaggio macchina.
+
+Cos’è?
+È il linguaggio che il computer capisce direttamente.
+
+[]Ma c’è un problema…
+
+❗ È molto difficile da usare, perché:
+
+- è fatto solo di numeri
+- è difficile da leggere
+- è facile sbagliare
+
+Da 0 e 1 alle parole vere
+
+Negli anni ’50 e ’60 succede qualcosa di rivoluzionario.
+
+I programmatori non devono più usare solo 0 e 1!
+
+Nascono i primi linguaggi di programmazione leggibili dalle persone.
+
+Alcuni esempi:
+
+- FORTRAN → usato per la matematica
+- COBOL → usato nelle aziende
+- BASIC → creato per chi vuole imparare
+
+La grande novità?
+Ora si possono scrivere comandi simili all’inglese!
+
+Questo rende la programmazione:
+
+- più facile da leggere
+- più semplice da ricordare
+- meno piena di errori
+
+In poche parole:
+per la prima volta, programmare diventa qualcosa che anche le persone
+possono capire meglio
+
+Il boom del personal computer
+
+Ogni scoperta ha portato a nuove invenzioni,
+che hanno cambiato il mondo e anche il nostro modo di vivere
+
+Grazie alla programmazione oggi possiamo avere:
+
+- smartphone
+- videogiochi
+- internet
+- robot e intelligenza artificiale
+
+E questo è solo l’inizio!
+
+Chissà quali altre scoperte incredibili ci aspettano nel futuro…
+
+Magari una di queste la inventerai proprio tu!
+
+Programmare oggi: da Arduino all’intelligenza artificiale
+
+Oggi la programmazione è ovunque!
+Si usa in tantissimi campi:
+
+- a scuola
+- nelle aziende
+- nella tecnologia di tutti i giorni
+
+Anche con una piccola scheda come Arduino, si possono fare cose davvero
+reali.
+
+Per esempio:
+
+- accendere luci
+- controllare dispositivi
+- misurare temperatura o distanza
+- []creare piccoli robot
+
+La cosa importante è questa:
+le stesse idee usate per accendere un LED
+sono le stesse che stanno dietro a tecnologie molto più complesse!
+
+Arduino è perfetto per iniziare perché:
+
+- è semplice da usare
+- ti fa vedere subito cosa succede
+- collega il codice al mondo reale
+
+Nei prossimi capitoli impareremo passo dopo passo:
+
+- come scrivere il codice
+- ma soprattutto perché funziona
+
+[]
+
+Capitolo 2
+
+Cos’è la programmazione?
+
+La programmazione è il modo in cui parliamo con i dispositivi
+elettronici per dire loro cosa devono fare.
+
+È un po’ come scrivere una ricetta di cucina.
+
+Immagina di voler fare una torta:
+hai:
+
+- una lista di ingredienti
+- una serie di passaggi da seguire
+
+Devi fare tutto nell’ordine giusto!
+
+Per esempio:
+
+120. prepara gli ingredienti
+121. mescola
+122. inforna
+
+Se segui bene tutti i passaggi:
+- la torta viene buona
+- se sbagli, la torta si brucia o non riesce
+
+La programmazione funziona allo stesso modo!
+
+Se diamo istruzioni:
+
+- chiare
+- precise
+- nell’ordine giusto
+
+il dispositivo farà esattamente quello che vogliamo.
+
+[]
+programmare significa dare istruzioni per creare cose utili… e anche
+divertenti!
+
+I linguaggi di programmazione
+
+I dispositivi elettronici, un po’ come le persone,
+usano dei linguaggi per comunicare.
+
+Questi si chiamano linguaggi di programmazione.
+
+Proprio come le lingue che parliamo (italiano, inglese…),
+anche questi linguaggi hanno delle regole precise.
+
+Se non rispettiamo le regole:
+
+- la macchina non capisce
+- il programma non funziona
+- oppure fa cose strane
+
+Ora prova a leggere questa frase: “Io può volere andare ma se io volere
+andare come fare per volere andare ad andare?”
+
+È difficile da capire, vero?
+
+Questo succede perché la frase è scritta male e non segue le regole
+dell’italiano.
+
+Con i computer succede la stessa cosa:
+se scriviamo male le istruzioni,
+il computer non capisce cosa deve fare.
+
+[]
+per programmare bene, bisogna scrivere istruzioni chiare e corrette,
+proprio come quando si parla o si scrive una lingua
+
+Il compilatore: un professore severo
+
+Lo stesso problema succede quando si scrive male un programma.
+
+Nel mondo della programmazione c’è una specie di professore molto
+severo:
+
+si chiama compilatore
+
+Cosa fa il compilatore?
+Controlla se il codice è scritto bene, cioè se rispetta tutte le regole.
+
+- Se è corretto → “ti dà la sufficienza” e il programma parte
+- Se ci sono errori → blocca tutto e non ti fa continuare
+
+È molto preciso: non gli sfugge niente!
+
+[]In programmazione non scriviamo frasi come in italiano,
+ma istruzioni, chiamate anche: linee di codice
+
+Ogni linea di codice serve per fare un’azione.
+
+Per esempio:
+
+- accendere una luce
+- leggere un sensore
+- []far muovere un robot
+
+il compilatore controlla che tutto sia scritto bene,
+e ogni riga di codice dice al computer cosa fare.
+
+Un esempio semplice
+
+Immagina di programmare un robot.
+
+Possiamo dargli queste istruzioni:
+
+- Vai avanti di 3 passi
+- Gira a destra
+- Saluta
+
+Il robot farà esattamente queste azioni,
+nell’ordine in cui le abbiamo scritte.
+
+❗ Attenzione: l’ordine è importantissimo!
+
+Se cambiamo l’ordine, cambia anche il risultato.
+
+[]
+il computer (o il robot) segue le istruzioni una dopo l’altra,
+senza sbagliare e senza decidere da solo
+
+Un esempio pratico
+
+Prova a fare questo esperimento con un tuo amico.
+
+Immagina di doverlo guidare fino all’uscita della scuola.
+Devi scrivere tutte le istruzioni, una per una, per esempio:
+
+137. Alzati dalla sedia
+138. Fai un passo in avanti
+139. Gira di 90 gradi a destra
+
+Il tuo amico deve seguire solo quello che hai scritto, senza inventare
+niente!
+
+Se riesce ad arrivare all’uscita:
+hai scritto un buon programma
+
+Se invece:
+
+- si ferma
+- sbatte contro un muro
+- non sa cosa fare
+
+allora c’è un errore
+
+Questo errore, in programmazione, si chiama:
+“BUG “
+
+In poche parole:
+se le istruzioni non sono chiare o complete, il programma non funziona
+bene!
+
+Perché si chiama bug?
+
+La parola bug ha una storia davvero curiosa!
+
+Siamo nel 1947.
+Un gruppo di tecnici sta lavorando su un computer chiamato Mark II,
+all’Università di Harvard.
+
+A un certo punto succede qualcosa di strano…
+Il computer non funziona bene!
+
+Dopo aver controllato, trovano il problema:
+una vera falena (un insetto) era rimasta incastrata dentro la macchina!
+
+Questo causava il malfunzionamento.
+
+[]Una scienziata molto importante, Grace Hopper,
+decide di:
+
+- incollare la falena nel registro
+- scrivere: “Primo vero caso di bug trovato”
+
+Da quel momento, la parola bug viene usata per indicare:
+errori o problemi nei programmi
+
+Anche se la parola bug esisteva già prima,
+ed era usata per indicare problemi o difetti nelle macchine,
+
+questo episodio è diventato famosissimo!
+
+È entrato nella storia dell’informatica
+e ha fatto conoscere la parola “bug” in tutto il mondo 🌍
+
+Da allora, ogni errore in un programma
+viene chiamato proprio così: bug 🐞
+
+In poche parole:
+un piccolo incidente è diventato una parola usata ancora oggi da tutti i
+programmatori!
+
+[]
+un piccolo incidente è diventato una parola usata ancora oggi da tutti i
+programmatori
+
+un piccolo insetto ha dato il nome a uno dei problemi più comuni della
+programmazione!
+
+Algoritmi: le ricette della tecnologia
+
+Un algoritmo è semplicemente una lista di istruzioni,
+messe in un ordine preciso, per ottenere un risultato.
+
+Non è qualcosa di difficile:
+è solo un modo per dire “come si fa” qualcosa.
+
+Per capirlo meglio, pensa a una ricetta di cucina:
+
+145. Metti la farina
+146. Aggiungi l’acqua
+147. Mescola
+148. Inforna Se segui tutti i passaggi nel modo giusto:
+     il dolce viene bene!
+
+Ma se sbagli l’ordine… la torta non riuscirà
+
+Per esempio:
+
+- prima inforni
+- poi mescoli
+
+Impossibile!
+
+Lo stesso succede con i computer:
+se le istruzioni non sono nell’ordine giusto,
+il programma non funziona.
+
+In poche parole:
+un algoritmo è come una ricetta:
+se segui bene i passaggi, ottieni il risultato
+
+L’ordine delle istruzioni è fondamentale!
+
+Un algoritmo deve essere:
+
+- chiaro
+- ordinato
+- preciso La confusione non è ammessa!
+
+Il computer farà esattamente quello che scrivi,
+né più, né meno.
+
+Programmare = trasformare un’idea in realtà
+
+Programmare significa prendere un’idea
+e farla diventare qualcosa che funziona davvero.
+
+È come avere un superpotere moderno
+
+Se sai spiegare bene le istruzioni,
+puoi far fare alle macchine tantissime cose!
+
+Cosa puoi fare con il codice
+
+Con la programmazione puoi:
+
+- accendere un LED
+- controllare un robot (farlo camminare, girare, evitare ostacoli)
+- leggere sensori (temperatura, luce, movimento)
+- creare videogiochi
+- []costruire sistemi intelligenti (allarmi, automazioni, assistenti)
+
+E molto altro!
+
+Non è solo scrivere codice
+
+Programmare significa anche:
+
+- progettare strumenti utili
+- realizzare le tue idee tecnologiche
+- capire come “ragionano” le macchine
+- sviluppare un modo di pensare logico e creativo
+
+In poche parole:
+programmare è trasformare la tua immaginazione
+in qualcosa di reale
+
+CAPITOLO 3
+
+Hardware e Software: qual è la differenza?
+
+Abbiamo iniziato il nostro viaggio nella programmazione,
+ma prima dobbiamo capire due parole molto importanti:
+
+Hardware e Software
+
+Hardware
+
+L’hardware è tutto ciò che puoi toccare con mano.
+
+Per esempio:
+
+- computer
+- smartphone
+- tastiera
+- Arduino
+
+È la parte fisica.
+
+Software
+
+Il software è ciò che fa funzionare l’hardware.
+
+Sono i programmi, come:
+
+- app
+- []videogiochi
+- programmi sul computer
+
+Non si può toccare, ma è fondamentale!
+
+La differenza
+
+- Hardware = parte fisica
+- Software = programma
+
+Lavorano sempre insieme!
+
+[]Se manca uno dei due, niente funziona.
+
+l’hardware è ciò che tocchi, il software è ciò che gli dice cosa fare
+
+Nella nostra avventura nel mondo della programmazione con Arduino
+useremo sempre:
+sia l’hardware
+sia il software
+
+Il nostro hardware sarà composto da:
+
+- il PC
+  (che useremo per scrivere i programmi)
+- la scheda Arduino
+  (nel nostro caso: Arduino Nano R4)
+- tutti i componenti elettronici
+  (come LED, sensori, fili… che useremo negli esercizi)
+
+  []
+
+  scriveremo il programma sul computer
+  e poi lo useremo per far funzionare Arduino e i suoi componenti
+
+Il software che useremo 
+
+  Useremo due tipi di software:
+
+  1. L’ambiente di sviluppo Arduino 🛠️
+
+  È un programma che installiamo sul PC.
+
+  Serve per:
+
+- scrivere il codice
+- controllare se è corretto
+- caricarlo sulla scheda Arduino
+
+   È lo strumento che ci permette di lavorare.
+
+  2. Il programma scritto da noi
+
+  È il codice che creiamo noi.
+
+  Questo programma viene caricato sulla scheda Arduino
+  e le dice cosa deve fare.
+
+  []
+
+  il primo software serve per scrivere e inviare il codice il secondo è
+  il codice che fa funzionare Arduino
+
+Facciamo ancora un piccolo passo avanti 
+
+  Abbiamo usato la parola software per indicare due cose diverse:
+
+- il programma che usiamo sul computer (Arduino IDE)
+- il programma che carichiamo sulla scheda Arduino
+
+  Ma in realtà non sono proprio la stessa cosa!
+
+  Il programma che carichiamo su Arduino ha un nome speciale:
+  si chiama firmware.
+
+  Cos’è il firmware?
+  È un programma che viene caricato sulla scheda e rimane lì, senza
+  cambiare, finché non decidiamo noi di sostituirlo con uno nuovo.
+
+  Il software, invece, è qualcosa di più “flessibile”.
+  Può essere modificato, aggiornato e cambiato quando vogliamo.
+
+IL MICROCONTROLLORE: IL CERVELLO DI 
+
+[]ARDUINO
+
+Il microcontrollore: il cervello di Arduino
+
+Con Arduino succede qualcosa di davvero interessante.
+
+Il “cervello” della scheda si chiama microcontrollore.
+
+È un piccolissimo computer, grande più o meno come un’unghia!
+
+Dentro questo minuscolo chip ci sono diverse parti importanti:
+
+- un processore → esegue le istruzioni
+- una memoria → conserva il programma
+- dei pin → servono per collegarsi al mondo esterno (LED, sensori, ecc.)
+
+Quando carichiamo un programma su Arduino,
+stiamo scrivendo delle istruzioni dentro la memoria del
+microcontrollore.
+
+Da quel momento:
+Arduino esegue quelle istruzioni milioni di volte al secondo,
+finché non lo spegniamo o non carichiamo un nuovo programma.
+
+Ed è qui che sta la magia
+Non stiamo solo costruendo oggetti…
+stiamo creando comportamenti!
+
+Ma cosa significa davvero che è un “piccolo computer”?
+
+Dentro al microcontrollore ci sono diversi “pezzi” che lavorano insieme:
+
+- CPU → è il “cuore”, esegue le istruzioni velocemente
+- Memoria Flash → salva il programma anche quando Arduino è spento
+- RAM → memoria temporanea usata mentre il programma funziona
+- Periferiche interne → aiutano a fare cose specifiche (le vedremo più
+  avanti)
+
+Una cosa molto importante:
+il microcontrollore non ha un sistema operativo come un PC.
+
+Quando lo accendi:
+
+- parte subito
+- inizia dalla prima istruzione
+- continua a ripeterla all’infinito
+
+Questo significa che tutto dipende dal programma che hai scritto!
+
+Un’altra differenza rispetto al computer è che:
+le risorse sono limitate
+
+Non possiamo:
+
+- fare programmi troppo pesanti
+- fare mille cose complicatissime insieme
+
+Ed è proprio questo il bello di Arduino
+
+Ti fa capire davvero come funziona un computer,
+in modo semplice e concreto, collegato al mondo reale.
+
+Pensa a questo esempio:
+
+Se vuoi far lampeggiare un LED ogni secondo:
+
+- senza Arduino → devi premere un pulsante ogni secondo (noioso!)
+- con Arduino → scrivi il programma e lo fa da solo, in modo preciso
+
+[]
+
+programmare significa insegnare a una macchina a fare automaticamente e
+con precisione
+quello che per noi sarebbe lento e faticoso
+
+Capitolo 4
+
+Introduciamo Arduino
+
+Spesso si pensa che Arduino sia solo una scheda elettronica.
+Ma in realtà non è proprio così!
+
+[]Questo errore nasce perché una scheda molto famosa,
+la Arduino UNO R3, è conosciuta in tutto il mondo.
+
+Così tante persone finiscono per dire “Arduino”
+pensando solo a quella scheda.
+
+È un po’ come quando:
+
+- chiamiamo tutte le bibite alla cola “Coca Cola”
+- oppure tutti i fazzoletti “Scottex”
+
+In realtà sono solo nomi specifici,
+ma li usiamo per indicare una cosa più generale.
+
+Allo stesso modo:
+Arduino non è solo una scheda,
+ma un insieme di strumenti per programmare e creare progetti elettronici
+
+Ma Arduino è molto di più di una semplice scheda! 
+
+Ma Arduino è molto più di una semplice scheda!
+
+È una piattaforma completa che permette a chiunque, anche ai
+principianti, di creare progetti elettronici e interattivi.
+
+Con Arduino puoi trasformare le tue idee in qualcosa di reale, in pochi
+passi!
+
+Arduino è formato da tre elementi fondamentali, che lavorano insieme
+come una squadra
+
+- l’hardware → la scheda e i componenti che userai
+- l’ambiente di sviluppo → il programma sul PC dove scrivi il codice
+- la comunità di sviluppatori → persone in tutto il mondo che ogni
+  giorno condividono idee, progetti e aiuti
+
+[]Grazie a questa comunità, puoi trovare tantissimo materiale per
+imparare e creare cose sempre nuove!
+
+Con Arduino, ogni idea può diventare realtà
+
+L’hardware da programmare
+
+[][] Come abbiamo già anticipato nel capitolo precedente, all’interno di
+questo kit è inclusa una scheda Arduino Nano R4, che rappresenta il
+cuore di tutti gli esperimenti che realizzeremo. Per rendere l’utilizzo
+ancora più pratico e immediato, noi del team ELAB abbiamo progettato una
+schedina di supporto chiamata ELAB Nano Breakout. Questa piccola scheda
+aggiuntiva è stata pensata appositamente per facilitare il collegamento
+della Nano alla breadboard, semplificando notevolmente il cablaggio. In
+questo modo si riduce il numero di fili necessari per iniziare a
+lavorare, si evitano errori di collegamento e si mantiene il circuito
+più ordinato e leggibile — un aspetto fondamentale quando si muovono i
+primi passi nella sperimentazione elettronica.
+
+la Nano è il cervello, e la schedina ELAB ti aiuta a usarla senza
+confusione
+
+L’ambiente di sviluppo (Arduino IDE)
+
+Per poter utilizzare Arduino in modo efficace non basta avere la scheda:
+
+è necessario anche uno strumento che ci permetta di scrivere il
+programma, modificarlo quando serve e trasferirlo nella memoria della
+scheda stessa.
+
+In altre parole, abbiamo bisogno di un ambiente di lavoro digitale dove
+sviluppare il nostro codice.
+
+Questo ambiente si chiama IDE,
+
+acronimo di Integrated Development Environment (Ambiente di Sviluppo
+Integrato).
+
+L’IDE è un software che mette a disposizione, in un’unica interfaccia,
+tutti gli strumenti necessari per programmare: un editor di testo per
+scrivere il codice, funzioni per verificarne eventuali errori, e il
+sistema per caricarlo direttamente su Arduino tramite il collegamento
+USB.
+
+Grazie all’IDE possiamo quindi passare dall’idea al programma
+funzionante in pochi passaggi: scriviamo il codice, lo controlliamo, lo
+carichiamo sulla scheda e osserviamo il risultato del nostro lavoro. È
+il “laboratorio virtuale” in cui prende forma il comportamento dei
+nostri progetti elettronici.
+
+[]
+
+l’IDE è il posto dove nascono e prendono vita tutti i nostri progetti
+
+La community: il vero cuore di Arduino
+
+Arduino è una piattaforma Open Source.
+
+Significa che:
+
+• i progetti,
+
+• la documentazione,
+
+• i file delle schede,
+
+• l’ambiente di sviluppo
+
+sono pubblici e accessibili a tutti.
+
+Nessun brevetto segreto, nessun blocco artificiale: chiunque può
+studiare, migliorare e condividere.
+
+Questa scelta ha creato nel tempo una comunità
+
+(community) gigantesca di appassionati, studenti, insegnanti, inventori,
+sviluppatori professionisti.
+
+Installiamo Arduino ID
+
+Ora che sappiamo quanto è importante Arduino IDE, è il momento di fare
+il primo vero passo:
+
+[]Ti si aprirà una pagina del sito ufficiale di Arduino.
+Attenzione: potrebbe non essere identica alle immagini del libro.
+
+Perché?
+Il sito cambia spesso:
+
+- aggiornano le versioni
+- modificano le grafiche
+- mettono nuovi banner
+
+È tutto normale!
+
+Anche il programma Arduino IDE viene aggiornato spesso.
+Questo significa che la versione che troverai potrebbe essere diversa da
+quella del libro.
+
+Quando è stato scritto questo testo, l’ultima versione era la 2.3.7,
+ma tu potresti trovare una versione più nuova… ed è ancora meglio!
+
+Ora guarda bene la pagina:
+troverai il pulsante per scaricare il programma.
+
+Accanto al download vedrai indicato il tuo sistema operativo:
+
+- Windows
+- Mac
+- Linux
+
+Devi scegliere quello giusto per il tuo computer.
+
+[]E a questo punto sei pronto per iniziare davvero…
+stai per installare lo strumento con cui darai vita ai tuoi progetti!
+
+A questo punto siamo pronti!
+
+Possiamo cliccare sul pulsante DOWNLOAD per iniziare a scaricare il
+programma sul nostro computer.
+
+Una volta finito il download, troverai un file nel tuo PC.
+Cliccaci sopra per avviare l’installazione.
+
+Si aprirà una finestra con la procedura guidata.
+Non preoccuparti, è molto semplice!
+
+Ti basterà:
+
+- cliccare su ACCETTO
+- poi premere Avanti
+- continuare così fino alla fine
+
+In pochi passaggi, Arduino IDE sarà installato e pronto all’uso!
+
+[]
+
+Lasciando la spunta su Esegui Arduino IDE e cliccando su chiudi,
+avvieremo quindi l'IDE! Al primo avvio l'IDE installerà alcuni file
+necessari al suo funzionamento. Non preoccuparti è tutto normale!
+
+Installiamo Arduino Nano R4
+
+[]
+
+Arduino è molto potente, ma c’è una cosa importante da sapere
+
+Esistono tantissimi tipi di schede Arduino, non solo quella che stai
+usando tu.
+
+Per questo motivo, l’IDE non le conosce tutte subito.
+
+Quindi cosa dobbiamo fare?
+Dobbiamo “insegnargli” a riconoscere la nostra scheda!
+
+Per farlo si usa uno strumento speciale dentro l’IDE:
+si chiama Boards Manager
+
+Il Boards Manager è come un “negozio” interno al programma,
+dove possiamo trovare e installare le schede che ci servono.
+
+Per aprirlo, basta:
+cliccare sull’icona indicata nella figura
+
+Una volta aperto, potremo cercare la nostra scheda
+e installarla in pochi clic
+
+[]
+
+Una volta aperto il Boards Manager, vedrai un menu con una barra di
+ricerca
+
+Scrivi dentro: Nano R4
+
+A questo punto succede una cosa utile:
+la lista si riduce e dovrebbe comparire un solo risultato, chiamato:
+Arduino UNO R4 Boards
+
+Ora è semplicissimo:
+clicca sul pulsante Installa
+
+In pochi secondi, l’IDE sarà pronto a riconoscere la tua scheda!
+
+Da questo momento, Arduino saprà esattamente come “parlare” con la tua
+Nano R4
+
+Dopo aver cliccato su Installa, partirà automaticamente il processo di
+installazione
+
+Durante questo passaggio, il computer potrebbe chiederti di installare
+alcuni driver.
+Non preoccuparti: è tutto normale!
+
+I driver servono per far comunicare correttamente il computer con
+Arduino.
+
+Quindi:
+
+- clicca su Accetta
+- aspetta qualche istante
+
+Una volta completata l’installazione…
+
+Sei davvero pronto!
+
+Adesso puoi tuffarti nel magico mondo di Arduino e della programmazione
+
+Capitolo 5
+
+Il nostro primo programma!
+
+Il programma più famoso: Il Blink
+
+Siamo arrivati a un momento importante…
+il nostro primo vero programma Arduino!
+
+Si chiama Blink, che in inglese significa “lampeggiare”.
+
+È il programma più semplice e famoso,
+perché fa una cosa molto chiara: accende e spegne un LED continuamente
+
+Ma perché è così importante?
+
+Perché con questo piccolo programma:
+
+- capiamo se Arduino funziona
+- impariamo come si scrive il codice
+- vediamo subito un risultato reale
+
+È un po’ come il “ciao mondo” della programmazione,
+cioè il primo passo per iniziare
+
+ESERCIZIO 5-1
+
+[]Adesso tocca a te! 
+
+Apri Arduino IDE sul tuo computer e scrivi questo programma:
+
+void setup() {
+pinMode(LED_BUILTIN, OUTPUT);
+}
+void loop() {
+digitalWrite(LED_BUILTIN, HIGH);
+delay(1000);
+digitalWrite(LED_BUILTIN, LOW);
+delay(1000);
+}
+
+Ma prima di caricarlo sulla scheda… fermiamoci un attimo!
+
+Analizziamo il programma riga per riga,
+così capiamo davvero cosa stiamo scrivendo.
+
+In questo modo non copierai solo il codice,
+ma saprai anche perché funziona
+
+La struttura di un programma Arduino
+
+Prima di guardare il programma Blink, dobbiamo capire una cosa molto
+importante
+
+Abbiamo detto che ogni programma è scritto in un linguaggio di
+programmazione.
+
+E proprio come nelle lingue che parliamo,
+anche qui ci sono delle regole precise:
+
+- di scrittura
+- di struttura
+- di forma
+
+Se non le rispettiamo… il programma non funziona!
+
+Una delle prime regole riguarda come è organizzato il programma.
+
+In Arduino, ogni programma viene diviso in due parti principali.
+
+Queste parti si chiamano funzioni.
+
+Sono come due “sezioni” del programma,
+ognuna con un compito diverso.
+
+E si chiamano:
+
+setup()
+loop()
+
+Nei prossimi passaggi vedremo cosa fanno…
+e perché sono così importanti per far funzionare tutto!
+
+Le due parti fondamentali del programma :
+
+Ora vediamo meglio queste due funzioni così importanti.
+
+La prima si chiama setup().
+Questa parte viene eseguita una sola volta, quando Arduino si accende o
+viene riavviato.
+
+Qui prepariamo tutto quello che serve, per esempio:
+
+- diciamo quali pin usare
+- impostiamo i componenti
+
+È un po’ come preparare gli ingredienti prima di iniziare a cucinare
+
+La seconda si chiama loop().
+
+Questo è il vero cuore del programma.
+
+Tutto quello che scriviamo qui viene eseguito all’infinito!
+
+Arduino fa così:
+
+- esegue le istruzioni
+- arriva alla fine
+- e poi ricomincia da capo
+
+Per esempio:
+esegue riga 7, 8, 9, 10…
+e poi torna di nuovo alla riga 7
+
+E continua così per sempre
+
+  []setup() prepara tutto (una volta sola)
+
+  loop() ripete le azioni all’infinito
+
+Capire la funzione setup()
+
+Ora entriamo un po’ più dentro il codice… niente paura, andiamo con
+calma
+
+Quando vedi scritto:
+
+void setup() {
+
+stai guardando l’inizio di una funzione.
+
+Partiamo dalla prima parola: void
+
+In inglese significa “vuoto”.
+Vuol dire che questa funzione non restituisce nulla.
+
+Non preoccuparti troppo di questo adesso:
+lo capiremo meglio più avanti
+
+Poi troviamo setup
+
+È semplicemente il nome della funzione
+
+Subito dopo ci sono le parentesi: ( )
+
+Queste servono per passare delle informazioni alla funzione
+(si chiamano parametri)
+
+Un modo semplice per capirlo:
+è come una macchinetta delle bibite 🥤
+
+- inserisci qualcosa (le monete)
+- ottieni qualcosa in cambio
+
+Ma in questo caso:
+le parentesi sono vuote
+perché setup() non ha bisogno di ricevere nulla
+
+Infine troviamo questa parentesi graffa: {
+
+Questa è molto importante!
+
+Serve per dire:
+“Da qui inizia il codice della funzione”
+
+È come aprire una scatola
+tutto quello che scriveremo dopo,
+fino alla parentesi di chiusura,
+appartiene a setup()
+
+In poche parole:
+
+- void → non restituisce niente
+- setup → nome della funzione
+- ( ) → nessun parametro
+- { → inizio del codice
+
+E adesso siamo pronti a vedere cosa c’è dentro questa funzione!
+
+Quando la funzione finisce, troviamo la parentesi che si chiude: }
+
+Chiudere la parentesi è un po’ come mettere un punto alla fine di una
+frase.
+Significa: “ok, qui la funzione è finita”.
+
+Se vuoi scrivere queste parentesi sulla tastiera del PC:
+
+- { → premi AltGr + Maiusc + è
+- } → premi AltGr + Maiusc + *
+
+Devi premere i tasti insieme.
+
+Ora vediamo una riga molto importante:
+
+Ora vediamo una riga molto importante del programma:
+
+pinMode(LED_BUILTIN, OUTPUT);
+
+Questa è una delle istruzioni base di Arduino.
+
+pinMode è una funzione, cioè un comando che dice ad Arduino come usare
+un pin.
+
+Dentro le parentesi ci sono due informazioni (parametri):
+
+- LED_BUILTIN → indica il pin che vogliamo usare
+- OUTPUT → indica come vogliamo usarlo
+
+I pin sono i punti della scheda (ai lati) che servono per collegare e
+controllare i componenti.
+
+Il pin LED_BUILTIN è speciale perché è già collegato a un piccolo LED
+presente sulla scheda.
+
+Inoltre, invece di scrivere il numero del pin (che cambia da scheda a
+scheda), usiamo questo nome così il programma funziona ovunque
+
+Ma cosa significa OUTPUT?
+
+Significa che quel pin manda un segnale in uscita.
+
+Nel nostro caso:
+Arduino invia un segnale al LED per accenderlo o spegnerlo
+
+Quindi, questa riga sta dicendo:
+“Arduino, usa questo pin per controllare qualcosa e fai uscire un
+segnale da lì.”
+
+[]
+
+pinMode serve per scegliere un pin e dire ad Arduino come deve usarlo
+
+Il punto e virgola e l’ordine del codice 
+
+C’è un’altra regola molto importante nella programmazione:
+
+Alla fine di ogni istruzione bisogna mettere il ;
+
+Questo simbolo serve a dire:
+“questa istruzione è finita”
+
+È un po’ come il punto nelle frasi in italiano.
+
+Nel nostro caso, abbiamo scritto:
+
+pinMode(LED_BUILTIN, OUTPUT);
+
+Il ; alla fine indica che abbiamo completato l’istruzione.
+
+Nel setup() abbiamo solo questa riga.
+Quindi:
+
+- abbiamo impostato il pin
+- abbiamo chiuso l’istruzione con il ;
+
+A questo punto non dobbiamo fare altro…
+
+e possiamo chiudere la funzione con la parentesi }
+
+[]E pensa un po’:
+abbiamo spiegato tutto questo… e siamo solo alla riga 3!
+
+Subito dopo troviamo una riga vuota.
+
+Possiamo lasciare tutti gli spazi che vogliamo nel codice.
+
+Servono per:
+
+- tenere tutto più ordinato
+- rendere il codice più facile da leggere
+
+In poche parole:
+
+- ; → fine istruzione
+- } → fine funzione
+- spazi → aiutano a leggere meglio il codice
+
+Entriamo nel loop
+
+Ora troviamo questa riga:
+
+void loop() {
+
+È molto simile a quella del setup, e infatti funziona nello stesso modo.
+
+- void significa che non restituisce nulla
+- loop è il nome della funzione
+-  ( ) è vuoto perché non servono parametri
+-  { apre il “contenitore” del codice
+
+Ma c’è una differenza importantissima:
+
+tutto quello che scriviamo nel loop() viene eseguito all’infinito!
+
+Dentro questa funzione useremo altre due istruzioni base di Arduino.
+
+Se guardi il programma:
+
+- la riga 9 e 12 sono molto simili
+- la riga 10 e 13 sono identiche
+
+Questo non è un caso!
+
+Serve per creare un effetto che si ripete…
+proprio come nel Blink, dove il LED si accende e si spegne continuamente
+
+[]
+
+il loop() è la parte del programma che si ripete per sempre
+ed è qui che succede tutta la “magia”
+
+La funzione delay
+
+La parola delay in inglese significa “ritardo”.
+
+In questo caso vuol dire:
+“aspetta un po’ prima di fare la prossima cosa”
+
+Dentro le parentesi troviamo il numero 1000.
+
+Questo numero indica quanto tempo aspettare,
+ma attenzione: è espresso in millisecondi (ms).
+
+1000 millisecondi = 1 secondo
+
+  Quindi questa istruzione significa:
+  “aspetta 1 secondo prima di continuare”
+
+[]delay(1000) mette in pausa Arduino per 1 secondo
+
+Ed è proprio grazie a questa pausa che il LED del Blink riesce a
+lampeggiare invece di restare sempre acceso!
+
+La funzione digitalWrite 
+
+Ora passiamo a una funzione un po’ più interessante:
+
+digitalWrite(LED_BUILTIN, HIGH);
+
+La parola digitalWrite significa “scrivere in modo digitale”.
+
+Ma cosa vuol dire davvero?
+
+- scrivere → impostare lo stato di un pin
+- digitale → può avere solo due valori
+
+Quali valori?
+
+- HIGH → alto (acceso)
+- LOW → basso (spento)
+
+Quando scriviamo:
+
+digitalWrite(LED_BUILTIN, HIGH);
+
+stiamo dicendo ad Arduino:
+“metti questo pin alto”
+
+In pratica:
+accendi il LED
+
+Se invece scriviamo:
+
+digitalWrite(LED_BUILTIN, LOW);
+
+stiamo dicendo:
+“metti questo pin basso”
+
+quindi:
+spegni il LED
+
+Ora unisci tutto:
+
+- accendi il LED
+- aspetta 1 secondo
+- spegni il LED
+- aspetta 1 secondo
+
+E siccome queste istruzioni sono dentro il loop(),
+Arduino le ripete all’infinito
+
+Risultato:il LED si accende e si spegne ogni secondo… cioè lampeggia!
+
+Il nostro primo programma: Blink
+
+Abbiamo appena analizzato il nostro primo programma Arduino!
+
+Questo programma si chiama Blink perché il LED sulla scheda
+inizia a lampeggiare ogni secondo.
+
+È un po’ come se Arduino ci facesse l’occhiolino
+
+Infatti, in inglese “blink” significa proprio battere le palpebre!
+
+Anche se il programma sembra molto semplice,
+in realtà dentro c’è una logica abbastanza complessa.
+
+Arduino sta:
+
+- seguendo istruzioni precise
+- controllando il microcontrollore
+- eseguendo operazioni in modo continuo
+
+Ma noi non vediamo tutta questa complessità!
+
+Ed è proprio questo il bello di Arduino
+
+Tutta la parte difficile è nascosta,
+così possiamo concentrarci sulle idee
+e imparare in modo semplice e divertente.
+
+Abbiamo già installato la Arduino Nano R4 nel nostro IDE nel capitolo
+precedente, questo rende tutto molto più semplice! Innanzitutto se non
+lo hai già fatto lancia sul tuo computer l'IDE di Arduino.
+
+Anche se ti consigliamo di scrivere il Blink per prendere confidenza con
+la punteggiatura e il linguaggio, questo programma può essere trovato
+sotto gli esempi. Per farlo clicca su
+
+File->Esempi->Basics->Blink
+
+I commenti nel codice
+
+Quando aprirai il programma, noterai subito una cosa
+
+Il codice è un po’ più lungo di quello che abbiamo visto finora.
+
+Questo perché ci sono tante frasi (in inglese) che spiegano:
+
+- chi ha scritto il programma
+- cosa fanno le varie istruzioni
+
+Queste frasi si chiamano commenti
+
+I commenti servono per: spiegare il codice a chi lo legge
+
+Sono molto importanti perché aiutano a capire meglio cosa sta
+succedendo,
+soprattutto quando i programmi diventano più lunghi e complessi.
+
+Nel linguaggio Arduino possiamo scrivere commenti in due modi.
+
+Se vogliamo scrivere un commento su più righe, usiamo:
+
+/* per iniziare
+*/ per chiudere
+
+Per esempio:
+
+/*
+Questo è un commento
+su più righe
+*/
+
+[]
+
+A volte, mentre scriviamo un programma, abbiamo bisogno di lasciare
+delle spiegazioni per noi o per chi lo leggerà.
+
+Quando vogliamo scrivere un commento sulla stessa riga di un’istruzione,
+usiamo:
+
+//
+
+Dopo questi due simboli, tutto quello che scriviamo:
+
+non viene eseguito dal computer
+
+serve solo come spiegazione
+
+Per esempio:
+
+digitalWrite(LED_BUILTIN, HIGH); // accende il LED
+
+[]
+i commenti servono per spiegare il codice, ma Arduino li ignora
+completamente
+
+Impostiamo la scheda giusta 
+
+Ora dobbiamo preparare l’IDE per caricare il programma sulla nostra
+Arduino.
+
+La prima cosa da fare è scegliere la scheda corretta.
+
+  Se è la prima volta che usi Arduino IDE,
+  probabilmente vedrai selezionata una scheda diversa:
+  Arduino UNO
+
+[]Questa informazione si trova in basso a destra,
+accanto al nome della porta del computer.
+
+Ma attenzione!
+
+Noi stiamo usando una Arduino Nano R4,
+quindi dobbiamo cambiare questa impostazione.
+
+Per farlo segui questo percorso:
+Strumenti → Scheda → Arduino UNO R4 Boards → Arduino Nano R4
+
+Una volta fatto, guarda in basso a destra nell’IDE
+
+Non dovrebbe più esserci scritto “Arduino UNO”
+
+  Se tutto è corretto, vedrai il nome della scheda giusta:
+  Arduino Nano R4
+
+Colleghiamo Arduino al computer 
+
+Ora puoi collegare la tua Arduino Nano R4 al computer usando il cavo
+USB-C.
+
+Appena la colleghi:
+
+- si accenderà un LED verde sulla scheda (significa che è alimentata)
+- il computer potrebbe fare un suono
+
+  Adesso dobbiamo fare un altro passaggio importante:
+  scegliere la porta giusta
+
+Ogni dispositivo collegato al computer usa una porta per comunicare.
+Questa porta si chiama porta COM.
+
+  Per selezionarla:
+  vai su Strumenti → Porta
+
+Vedrai una lista di porte.
+
+Devi scegliere quella che ha scritto tra parentesi:
+Arduino Nano R4
+
+Per esempio:
+
+- COM12 (Arduino Nano R4)
+
+[]Dopo averla selezionata, guarda in basso a destra
+
+Dovresti vedere scritto qualcosa come:
+Arduino Nano R4 su COM12
+
+E la scritta [non connesso] scomparirà
+
+Carichiamo il programma!
+
+[]
+
+Adesso ci siamo davvero!
+
+Possiamo finalmente caricare il nostro programma sulla scheda Arduino.
+
+Per farlo basta cliccare sul pulsante “Carica” (quello con la freccia
+verso destra ).
+
+Cosa succede quando carichiamo il programma
+
+Quando clicchi su Carica, l’IDE fa due operazioni importanti:
+
+- Compilazione
+- Upload
+
+La compilazione
+
+La compilazione è come un controllo ortografico del codice.
+
+L’IDE controlla se hai scritto tutto correttamente.
+
+  Se c’è anche solo un piccolo errore:
+  il programma non parte
+
+e l’IDE ti avvisa che qualcosa non va.
+
+Proviamo a fare un errore apposta
+
+Togli il ; alla fine di una riga
+
+Ora clicca di nuovo su Carica.
+
+Cosa succede?
+
+L’IDE ti mostra un errore di compilazione
+
+- ti dirà (in inglese) che manca un ;
+- la riga con l’errore diventerà rossa
+
+Questo è molto utile, perché:
+l’IDE ti aiuta a capire dove hai sbagliato
+
+L’upload e i primi esperimenti
+
+Dopo la compilazione, arriva la seconda fase:
+l’upload
+
+Questa è la parte in cui il programma viene trasferito davvero sulla
+scheda Arduino.
+
+Se tutto va bene, l’IDE ti mostrerà un messaggio di successo
+
+Questo significa che Arduino ha ricevuto il programma
+ed è pronto a eseguirlo!
+
+Ora che sai come caricare un programma…
+è il momento di divertirsi un po’!
+
+Prova a modificare il Blink
+
+Guarda questa riga:
+
+delay(1000);
+
+ESERCIZIO 5.2
+
+Prova a cambiare il numero dentro le parentesi
+
+Per esempio:
+
+- 500 → il LED lampeggia più veloce
+- 2000 → lampeggia più lento
+
+Fai qualche prova:
+
+- usa due tempi uguali (es. 500 e 500)
+- poi prova tempi diversi (es. 300 e 200)
+
+Vedrai che il lampeggio cambia!
+
+Capitolo 6
+
+IL MONDO DISCRETO: I PIN DIGITALI
+
+Nel capitolo precedente abbiamo visto il nostro primo programma Arduino:
+il Blink!
+
+In questo programma abbiamo usato un’istruzione molto importante:
+digitalWrite
+
+Questa parola significa, letteralmente, “scrivere in modo digitale”.
+
+Lo abbiamo già accennato, ma adesso approfondiamo meglio cosa vuol dire
+digitale
+
+Quando qualcosa è digitale, può avere solo due stati possibili:
+
+- acceso o spento
+- alto o basso
+- 1 oppure 0
+
+Non esistono valori “a metà”!
+
+È un po’ come un interruttore della luce:
+
+- o è acceso o spento.
+- o è vero o falso.
+- o è alto o basso.
+
+In poche parole:
+digitale significa scegliere tra due sole possibilità
+
+Ecco perché, quando usiamo digitalWrite, dobbiamo scegliere tra due
+valori:
+
+HIGH oppure LOW
+
+- HIGH significa alto
+- LOW significa basso
+
+Ma cosa vuol dire davvero?
+
+Nel caso del LED:
+
+- HIGH → il pin manda corrente → il LED si accende
+- LOW → il pin non manda corrente → il LED si spegne
+
+Logica digitale: AND e OR 
+
+Quando si parla di programmazione, si parla spesso anche di logica
+digitale.
+
+In pratica: come fa un computer a prendere decisioni?
+
+Usando alcune operazioni molto semplici, tra cui le più importanti sono:
+
+- AND (e)
+- OR (oppure)
+
+AND (insieme)
+
+La AND è vera solo quando tutte le condizioni sono vere.
+
+Esempio:
+un LED si accende solo se premi entrambi i pulsanti
+
+- premi un solo pulsante → non succede niente
+- premi tutti e due → il LED si accende
+
+OR (oppure)
+
+La OR è vera quando almeno una condizione è vera.
+
+Esempio:
+un LED si accende se premi uno qualsiasi dei due pulsanti
+
+- premi uno dei due → il LED si accende
+- premi entrambi → il LED si accende comunque
+
+Nella programmazione si scrivono così:
+
+- AND → &&
+- OR → ||
+
+In poche parole:
+
+- AND → devono essere vere tutte le condizioni
+- OR → basta che sia vera anche solo una
+
+E con queste semplici regole puoi già iniziare a far “ragionare” i tuoi
+progetti!
+
+ESERCIZIO 6-1
+
+Proviamo il circuito AND e OR 
+
+Adesso passiamo alla pratica!
+
+Prova a realizzare il circuito mostrato in figura.
+
+In realtà non è uno solo, ma sono due circuiti diversi costruiti sulla
+stessa breadboard
+
+🔹 A sinistra (OR)
+
+  Qui i due pulsanti sono collegati in modo che:
+  basta premere uno qualsiasi dei due
+
+e il LED si accende
+
+Non importa quale premi:
+
+- primo pulsante
+- secondo pulsante
+
+il risultato è sempre lo stesso: LED acceso
+
+🔹 A destra (AND)
+
+In questo caso la situazione cambia.
+
+Il LED si accende solo se premi entrambi i pulsanti insieme
+
+- premi uno solo → niente
+- premi tutti e due → LED acceso
+
+In poche parole:
+
+- circuito a sinistra → OR (uno basta)
+- circuito a destra → AND (servono tutti)
+
+E così inizi a vedere come la logica della programmazione funziona anche
+nei circuiti reali!
+
+[]
+
+  Immagine capito 6.1
+
+Prova ora a montare il circuito per verificare quello che abbiamo appena
+spiegato.
+
+Per capirlo ancora meglio, diamo un nome ai pulsanti:
+
+- A e B per il circuito OR
+- C e D per il circuito AND
+
+A questo punto possiamo costruire quella che si chiama tabella di
+verità.
+
+La tabella di verità serve per capire in quali casi il circuito
+“funziona”, cioè quando il LED si accende.
+
+In pratica, mostra tutte le possibili combinazioni degli ingressi (i
+pulsanti) e il risultato finale (il LED).
+
+Abbiamo detto che:
+
+- VERO significa acceso
+- e acceso corrisponde al valore 1
+
+Di conseguenza:
+
+- FALSO significa spento
+- e spento corrisponde a 0
+
+Per questo motivo, nella tabella di verità useremo solo 0 e 1
+
+[]In questo modo possiamo descrivere il comportamento del circuito in
+modo chiaro e preciso, proprio come fa un computer.
+
+Per quanto riguarda la OR, possiamo costruire la seguente tabella di
+verità:
+
+  A   B   LED (uscita)
+  --- --- --------------
+  0   0   0
+  0   1   1
+  1   0   1
+  1   1   1
+
+Come vedi:
+il LED si accende (1) ogni volta che almeno uno dei due pulsanti è
+premuto.
+
+Solo nel caso in cui entrambi sono rilasciati (0 e 0) il LED rimane
+spento.
+
+Questo è proprio il comportamento della logica OR.
+
+Ricordiamo che:
+
+- per i pulsanti, 1 significa premuto
+- per il LED, 1 significa acceso
+
+Per quanto riguarda la AND, la tabella di verità è la seguente:
+
+  C   D   LED (uscita)
+  --- --- --------------
+  0   0   0
+  0   1   0
+  1   0   0
+  1   1   1
+
+Come vedi:
+il LED si accende solo quando entrambi i pulsanti sono premuti (1 e 1).
+
+In tutti gli altri casi, anche se uno solo è premuto,
+il LED rimane spento.
+
+Questo è il comportamento della logica AND.
+
+Quello che abbiamo scritto nella tabella dovrebbe corrispondere
+esattamente a quello che osservi nel circuito.
+
+Nel caso della OR, basta premere uno dei due pulsanti per accendere il
+LED.
+
+Nel caso della AND, invece, il LED si accende solo quando premi entrambi
+i pulsanti contemporaneamente.
+
+Se provi il circuito, vedrai che il comportamento è proprio questo.
+
+A questo punto il concetto di digitale dovrebbe essere più chiaro.
+
+Ora possiamo continuare e vedere come usare queste idee anche nella
+programmazione.
+
+Alimentazione e collegamenti di Arduino Nano R4 
+
+La Arduino Nano R4 che useremo nei nostri esperimenti funziona con una
+tensione di 5 Volt (5V).
+
+Possiamo alimentarla in due modi:
+
+- collegandola al computer tramite il cavo USB
+- oppure usando una batteria da 9V
+
+[]Per realizzare i nostri circuiti, useremo anche la ELAB Nano Breakout
+di cui abbiamo parlato prima.
+
+  Immagine capito 6.2
+
+Questa schedina ci aiuta a:
+
+- organizzare meglio i collegamenti
+- evitare errori mentre montiamo il circuito
+- lavorare in modo più sicuro
+
+In questo modo sarà più facile costruire i nostri esperimenti e capire
+cosa stiamo facendo
+
+Grazie alla levetta con l’indicazione ON/OFF, possiamo controllare
+facilmente l’alimentazione del circuito.
+
+- Quando la mettiamo su OFF, interrompiamo la corrente
+-  Quando la mettiamo su ON, il circuito torna a funzionare
+
+[]Questo è molto utile perché ci permette di non consumare la batteria
+inutilmente quando non stiamo usando il circuito
+
+Abbiamo detto che la Arduino Nano R4 funziona a 5V.
+
+Questo significa due cose molto importanti:
+
+- sui suoi pin non uscirà mai una tensione maggiore di 5V
+- non dobbiamo mai fornire ai pin una tensione superiore a 5V
+
+Se lo facessimo, rischieremmo di danneggiare la scheda.
+
+Come puoi vedere, la ELAB Nano Breakout si inserisce nelle strisce di
+alimentazione della breadboard (quelle sopra e sotto).
+
+In questo modo porta molti pin della Arduino Nano R4 (come A0, D2, ecc.)
+direttamente sulla prima riga della breadboard.
+
+Questo serve a ridurre il numero di fili e rendere tutto più semplice e
+ordinato.
+
+Il fatto che si colleghi anche alle strisce di alimentazione non è
+casuale.
+
+Serve per lavorare in sicurezza.
+
+La breakout prende i 5V generati da Arduino e li distribuisce sulla
+breadboard.
+
+Quindi avremo sempre:
+
+- []sulla linea nera → 0V
+- sulla linea rossa → 5V
+
+In questo modo evitiamo di collegare per errore tensioni troppo alte che
+potrebbero danneggiare la scheda.
+
+Puoi inserire la breakout sulla breadboard da entrambi i lati, ma fai
+attenzione a una cosa importante:
+
+controlla sempre che la breadboard sia orientata correttamente,
+con i numeri che vanno in ordine crescente da 1 a 30
+
+  Immagine capito 6.3
+
+ESERCIZIO 6.2
+
+Accendiamo un LED esterno 
+
+In questo esperimento faremo un passo in più:
+accenderemo un LED collegato a un pin della nostra Arduino Nano R4.
+
+Materiale necessario:
+
+- Arduino Nano R4
+- ELAB Nano Breakout
+- 1 LED verde
+- 1 resistore da 470 Ohm
+- []1 cavetto
+
+  Immagine capito 6.4
+
+Per iniziare:
+
+   inserisci la Arduino Nano R4 nella breakout
+  poi inserisci tutto sulla breadboard, come mostrato in figura
+
+Da questo momento in poi userai sempre breadboard e breakout insieme,
+quindi puoi considerarle come un unico strumento.
+
+Ora realizza i collegamenti:
+
+collega il cavetto, il resistore e il LED seguendo la figura
+
+Ricorda una cosa molto importante:
+il resistore deve essere in serie al LED
+
+Serve per evitare che il LED si bruci.
+
+Puoi metterlo:
+
+- sul lato positivo (gambetta lunga)
+- oppure sul lato negativo (gambetta corta)
+
+Non cambia: l’importante è che sia in serie al LED.
+
+Per quanto riguarda il programma:
+
+[] useremo lo stesso codice del Blink,
+ma con una piccola modifica
+
+  Sketch_Capitolo_6_1
+
+Al posto di:
+
+LED_BUILTIN
+
+scriveremo:
+
+13
+
+Perché?
+
+Il LED che hai collegato è connesso al pin D13
+
+[]
+stiamo usando lo stesso programma di prima,
+ma ora controlliamo un LED esterno invece di quello sulla scheda
+
+ESERCIZIO 6.3
+
+In questo esercizio, abbiamo utilizzato il pin 13 per accendere e
+spegnere il led, ma avremmo potuto utilizzare qualunque altro pin
+disponibile sulla breakout.
+
+Come puoi vedere, abbiamo a disposizione diverse alternative per
+collegare i nostri componenti.
+
+Sulla ELAB Nano Breakout troviamo vari pin, divisi in:
+
+- pin digitali A0 A1 A2 A3 A4 A5
+- pin analogici 3 5 6 9 10 11 12 13
+
+Accanto alla scheda Arduino Nano sono comunque riportati tutti i pin
+completi, così puoi sempre sapere quale stai utilizzando.
+
+- pin digitali A0 A1 A2 A3 A4 A5 A6 A7
+- pin analogici 0 1 2 3 4 5 6 7 8 9 10 11 12 13
+
+Puoi modificare questo esercizio in modo semplice:
+
+- scegli un altro pin tra quelli disponibili
+- sposta il filo collegato all’anodo del LED su quel pin
+- modifica il programma inserendo il numero del nuovo pin
+
+In questo modo puoi sperimentare liberamente e prendere confidenza con i
+diversi pin della scheda
+
+ESERCIZIO 6.4
+
+Due LED che si alternano
+
+In questo esperimento faremo un passo avanti:
+accenderemo due LED, collegati a due pin diversi della Arduino Nano R4.
+
+Materiale necessario:
+
+- Arduino Nano R4
+- ELAB Nano Breakout
+- 1 LED blu
+- 1 LED rosso
+- 2 resistori da 470 Ohm
+- 2 cavetti
+
+Come nel caso precedente:
+ogni LED deve avere il suo resistore in serie
+
+- il catodo (gambetta corta) va verso il GND tramite il resistore
+- l’anodo (gambetta lunga) va collegato a un pin di Arduino
+
+[]Questa volta useremo due pin diversi, ad esempio:
+
+  Immagine capito 6.5
+
+pin 6 e pin 9
+
+Per quanto riguarda il programma, partiamo dal Blink e lo modifichiamo.
+
+[]
+
+  Sketch_Capitolo_6_2
+
+Nel setup() dobbiamo dire ad Arduino che useremo entrambi i pin come
+output:
+
+pinMode(6, OUTPUT);
+pinMode(9, OUTPUT);
+
+Attenzione:
+non possiamo scrivere tutto in una sola riga
+(dobbiamo usare una riga per ogni pin)
+
+Quando Arduino si avvia, i pin impostati come OUTPUT partono già spenti
+(LOW),
+quindi non dobbiamo scriverlo.
+
+Nel loop() facciamo alternare i due LED:
+
+335. accendiamo il LED sul pin 6
+336. aspettiamo un po’ (per esempio 200 millisecondi)
+337. spegniamo il LED 6
+338. accendiamo il LED sul pin 9
+339. aspettiamo di nuovo
+340. spegniamo il LED 9
+
+Poi il ciclo ricomincia da capo, all’infinito
+
+[]
+
+i due LED si accendono uno dopo l’altro, creando un effetto alternato
+
+ESERCIZIO 6.4
+
+Costruiamo un semaforo 
+
+In questo esperimento aggiungiamo un terzo LED per realizzare un
+semplice semaforo.
+
+Per farlo abbiamo bisogno di:
+
+- Arduino Nano R4
+- ELAB Nano Breakout
+- 1 LED rosso
+- 1 LED giallo
+- 1 LED verde
+- 3 resistori da 470 Ohm
+- 3 cavetti
+
+Come nei casi precedenti, ogni LED deve essere collegato con un
+resistore in serie:
+
+- il catodo (gambetta corta) va verso il GND tramite il resistore
+- l’anodo (gambetta lunga) va a un pin di Arduino
+
+Questa volta useremo tre pin diversi, ad esempio: 5, 6 e 9
+
+[]
+
+  
+
+  Immagine capito 6.6
+
+Per il programma, possiamo partire dall’esercizio precedente con due
+LED.
+
+👉 Cosa cambia?
+
+[]
+
+  Sketch_Capitolo_6_3
+
+Dobbiamo solo aggiungere il nuovo pin.
+
+Prima usavamo:
+
+- pin 6
+- pin 9
+
+Adesso aggiungiamo anche:
+
+- pin 5
+
+Quindi nel setup() dovremo inizializzare anche questo nuovo pin come
+OUTPUT.
+
+A questo punto possiamo creare il comportamento del semaforo:
+
+- accendiamo un LED
+- aspettiamo un po’
+- lo spegniamo e accendiamo il successivo
+- e così via, in ciclo continuo
+
+  Prova anche a modificare i tempi del delay().
+
+  Ricorda:
+  👉 il numero dentro delay indica i millisecondi
+  👉 1000 ms = 1 secondo
+
+Dagli output agli input 
+
+Fino ad ora abbiamo parlato dei pin digitali usandoli come OUTPUT, cioè
+per controllare qualcosa, come accendere o spegnere un LED.
+
+Ma nel mondo reale non esistono solo le uscite.
+
+Esistono anche gli ingressi, chiamati INPUT.
+
+Gli input servono per ricevere informazioni dall’esterno, mentre gli
+output servono per agire.
+
+In altre parole:
+
+- con gli OUTPUT Arduino “fa qualcosa”
+- con gli INPUT Arduino “ascolta” quello che succede
+
+Ed è proprio grazie agli input che Arduino può iniziare a prendere
+decisioni e diventare davvero “intelligente”.
+
+Nei libri precedenti abbiamo utilizzato spesso i pulsanti.
+
+I pulsanti sono l’esempio più semplice e importante di input.
+
+Pensaci un attimo:
+quasi tutti i dispositivi elettronici che usi ogni giorno hanno almeno
+un pulsante.
+
+Per esempio:
+
+- il tasto per accendere il telefono
+- il telecomando
+- il computer
+
+Con un pulsante stiamo dando un’informazione alla macchina,
+come dire: “fai questa cosa”
+
+In poche parole:
+il pulsante è un modo per comunicare con Arduino
+
+Nei libri precedenti abbiamo acceso dei LED premendo dei pulsanti.
+
+Ma in quel caso il pulsante non era un vero input nel senso della
+programmazione.
+
+Perché?
+
+Perché il pulsante agiva direttamente sul circuito:
+quando lo premevi, la corrente passava e il LED si accendeva.
+
+In programmazione, invece, un input è qualcosa che viene:
+
+- letto da Arduino
+- interpretato
+- usato per decidere cosa fare
+
+[]
+prima il pulsante accendeva il LED da solo,
+adesso vogliamo che sia Arduino a “capire” se è premuto e decidere cosa
+fare
+
+Adesso vogliamo fare un passo in più.
+
+Non basta più premere un pulsante per accendere un LED direttamente.
+Vogliamo che sia Arduino a leggere il pulsante e decidere cosa fare.
+
+Per fare questo usiamo una nuova funzione:
+digitalRead
+
+Questa funzione significa:
+“leggi lo stato di un pin in modo digitale”
+
+Ma perché Arduino possa leggere correttamente il pulsante,
+dobbiamo fare in modo che ci siano due stati ben distinti:
+
+- HIGH (alto)
+- LOW (basso)
+
+In pratica:
+
+- pulsante non premuto → un valore
+- pulsante premuto → un altro valore
+
+Per ottenere questo risultato usiamo un piccolo trucco:
+un resistore di pull-up
+
+Cosa succede?
+
+- quando il pulsante NON è premuto → il resistore mantiene il pin su
+  HIGH
+- quando premi il pulsante → il pin viene portato a LOW
+
+[]
+
+  Immagine capito 6.7
+
+All’inizio può sembrare complicato,
+ma in realtà è molto semplice:
+
+il resistore tiene il pin “alto”
+il pulsante lo porta “basso” quando lo premi
+
+Quando impostiamo un pin di Arduino come INPUT, questo si comporta un
+po’ come se fosse collegato a un resistore molto grande.
+
+Questo significa che da solo non “decide” se essere alto o basso:
+ha bisogno di qualcosa che gli dica che valore assumere.
+
+Per questo usiamo un resistore (per esempio da 10kOhm) collegato ai 5V.
+
+Cosa succede in questo caso?
+
+- quando il pulsante non è premuto → il pin viene “tirato” verso i 5V
+  quindi diventa HIGH
+
+Questo succede perché la corrente preferisce passare dal resistore più
+piccolo (10k) invece che da quello interno molto grande.
+
+Quando invece premiamo il pulsante:
+
+il pin viene collegato direttamente a 0V (massa)
+
+e quindi diventa LOW
+
+- []pulsante non premuto → HIGH
+- pulsante premuto → LOW
+
+Questo ci permette di leggere in modo chiaro lo stato del pulsante
+
+Sembra complicato… ma in perfetto stile Arduino, rendiamolo semplice
+
+Abbiamo visto che per leggere lo stato di un pin usiamo la funzione
+digitalRead.
+
+Ma prima dobbiamo dire ad Arduino che quel pin sarà un INPUT.
+
+Per farlo, nel setup() scriviamo:
+
+pinMode(pin, INPUT);
+
+Fin qui tutto bene… ma c’è ancora un problema.
+
+Se usiamo solo questa istruzione, il pin non ha un valore stabile.
+
+Questo significa che:
+
+- a volte può leggere HIGH
+- a volte LOW
+- senza un motivo preciso
+
+Per evitare questo, come abbiamo visto prima, servirebbe un resistore
+esterno per “tenere” il pin su HIGH quando il pulsante non è premuto.
+
+INPUT_PULLUP
+
+Ma Arduino ha una soluzione molto comoda…
+
+(e nel prossimo passo vedremo come fare senza aggiungere componenti!)
+Per evitare di aggiungere un resistore esterno, Arduino ci offre una
+soluzione molto comoda
+
+Possiamo scrivere:
+
+pinMode(pin, INPUT_PULLUP);
+
+Questa istruzione attiva un resistore di pull-up interno al
+microcontrollore.
+
+In pratica:
+Arduino fa tutto da solo, senza bisogno di componenti aggiuntivi.
+
+Cosa succede quindi?
+
+- quando il pulsante non è premuto → il pin è HIGH
+- quando premi il pulsante → il pin va a LOW
+
+Questo significa che dobbiamo solo collegare il pulsante in modo che,
+quando viene premuto, porti il pin a massa (0V).
+
+[]
+con INPUT_PULLUP evitiamo di usare un resistore esterno
+e semplifichiamo molto il circuito
+
+Facile, no?
+
+In pratica, grazie alla ELAB Nano Breakout,
+ci basta un solo filo per leggere lo stato di un pulsante!
+
+Ora è il momento di mettere in pratica quello che abbiamo imparato.
+
+Proveremo alcuni esercizi che uniscono:
+
+- input (come i pulsanti)
+- output (come i LED)
+
+Durante questi esercizi scopriremo anche nuove regole della
+programmazione,
+un passo alla volta.
+
+Questo ci permetterà di scrivere programmi sempre più completi e
+interessanti.
+
+E da qui inizierai davvero a costruire progetti che reagiscono a ciò che
+succede nel mondo reale
+
+Leggere un pulsante e controllare un LED 
+
+ESERCIZIO 6.5
+
+In questo esperimento impareremo a usare l’istruzione digitalRead per
+leggere lo stato di un pulsante e, in base a questo, accendere o
+spegnere un LED
+
+Materiale necessario:
+
+- Arduino Nano R4
+- ELAB Nano Breakout
+- 1 LED verde
+- 1 pulsante
+- 1 resistore da 470 Ohm
+- 2 cavetti
+
+  Come visto nella teoria, useremo la modalità INPUT_PULLUP.
+
+  Questo ci permette di non aggiungere un resistore esterno per il
+  pulsante,
+  semplificando il circuito.
+
+Per questo esempio useremo:
+
+- il pin 10 per leggere il pulsante
+- un altro pin (per esempio il 6 o il 9) per controllare il LED
+
+Il pin 10 è scelto solo per comodità:
+in realtà puoi usare qualsiasi pin disponibile
+
+Lo stesso vale per il LED:
+puoi collegarlo a qualunque pin della breakout
+
+[]
+
+  Immagine capito 6.8
+
+Poche righe di codice… ma tante cose nuove!
+
+[]
+
+  Sketch_Capitolo_6_4
+
+Per prima cosa, dobbiamo dire ad Arduino che vogliamo usare il pin 10
+come INPUT_PULLUP.
+In questo modo attiviamo il resistore interno e possiamo leggere il
+pulsante senza componenti aggiuntivi.
+
+Poi, come abbiamo già fatto prima, impostiamo il pin del LED come
+OUTPUT.
+
+Adesso arriva la parte più interessante.
+
+Nel loop() dobbiamo controllare continuamente lo stato del pulsante e
+decidere cosa fare:
+
+- se il pulsante è premuto → accendiamo il LED
+- altrimenti → lo spegniamo
+
+Qui entrano in gioco due parole fondamentali della programmazione:
+
+- IF (se)
+- ELSE (altrimenti)
+
+[]In pratica stiamo dicendo ad Arduino:
+“Se succede questa cosa, fai questo…
+altrimenti fai qualcos’altro”
+
+Un’altra regola molto importante riguarda la struttura del codice.
+
+Ogni volta che vogliamo eseguire più istruzioni insieme, dobbiamo usare
+le parentesi graffe:
+
+if (condizione) {
+// istruzioni
+}
+
+La parentesi { apre il blocco
+La parentesi } lo chiude
+
+[]
+con if e else Arduino inizia a prendere decisioni
+e il tuo programma diventa davvero “intelligente”
+
+Le decisioni nel codice: l’istruzione IF
+
+Quindi, se traduciamo il nostro programma in parole semplici (quello che
+si chiama anche pseudocodice), stiamo dicendo:
+
+SE il pulsante collegato al pin 10 è premuto
+→ accendi il LED collegato al pin 5
+
+ALTRIMENTI
+→ spegni il LED
+
+Ora capiamo meglio come si scrive questa cosa nel linguaggio di Arduino.
+
+Quando usiamo la parola SE (in inglese if), dobbiamo sempre usare le
+parentesi tonde ( ).
+Dentro queste parentesi scriviamo la condizione, cioè quello che
+vogliamo controllare.
+
+Nel nostro caso vogliamo sapere:
+“Il pulsante è premuto oppure no?”
+
+Per scoprirlo usiamo l’istruzione digitalRead(10).
+
+Questa funzione legge il pin 10 e restituisce solo due possibili valori:
+
+- HIGH (alto)
+- LOW (basso)
+
+Ed è qui che bisogna fare attenzione a una cosa importante.
+
+Nel codice troviamo questa scrittura:
+
+if (digitalRead(10) == LOW)
+
+Il confronto nel codice: l’operatore ==
+
+Quel doppio uguale == non è un errore.
+
+Il simbolo = (uno solo) serve per assegnare un valore
+Il simbolo == (due uguali) serve per confrontare
+
+Quindi stiamo dicendo:
+“SE il valore letto è UGUALE a LOW…”
+
+È come fare una domanda al computer:
+“È vero che il pulsante è premuto?”
+
+Se la risposta è sì, allora Arduino esegue quello che c’è dentro il
+blocco.
+Se invece è no, passa all’ALTRIMENTI (else).
+
+Ed è proprio così che iniziamo a prendere decisioni nei programmi:
+facendo domande… e dando istruzioni diverse a seconda della risposta.
+
+Questo esercizio è molto semplice, ma è anche molto importante.
+
+Ci permette di fare con Arduino quello che avevamo già fatto nel Volume
+1, quando collegavamo direttamente un pulsante a un LED per accenderlo e
+spegnerlo.
+
+In quel caso, però, il comportamento era “automatico”:
+il pulsante controllava direttamente il LED
+
+Adesso invece stiamo facendo la stessa cosa, ma usando la
+programmazione.
+
+È Arduino che legge il pulsante e decide cosa fare.
+
+E qui arriva la parte interessante.
+
+Con la programmazione non siamo più limitati a un solo comportamento.
+
+Per esempio, possiamo fare qualcosa di più avanzato:
+accendere il LED quando premiamo il pulsante
+e spegnerlo quando lo premiamo una seconda volta
+
+[]
+prima il circuito faceva una sola cosa,
+adesso possiamo decidere noi come deve comportarsi
+
+ESERCIZIO 6.6
+
+l circuito è esattamente lo stesso di prima, ma ora vogliamo cambiare il
+comportamento.
+
+Invece di tenere il LED acceso solo mentre premiamo il pulsante,
+vogliamo:
+
+- accenderlo con una pressione
+- spegnerlo con la pressione successiva
+
+Per fare questo dobbiamo introdurre un nuovo concetto fondamentale:
+le variabili
+
+Le variabili sono come delle “scatole” dove possiamo salvare delle
+informazioni.
+
+Per esempio:
+
+- un numero
+- un risultato
+- oppure, come nel nostro caso, uno stato
+
+Noi vogliamo ricordarci se il LED è:
+
+- acceso
+- spento
+
+Quindi ci serve una variabile che possa contenere solo due valori.
+
+Questo tipo di variabile si chiama booleana (o “bool”).
+
+Per creare una variabile si usa questa struttura:
+
+tipo nomeVariabile = valore_iniziale;
+
+Nel nostro caso scriviamo:
+
+bool statoLED = false;
+
+👉 Questo significa:
+
+- bool → il tipo (solo vero o falso)
+- statoLED → il nome della variabile
+- false → il valore iniziale (LED spento)
+
+[]
+Stiamo creando una “memoria” che ci dice se il LED è acceso oppure no e
+questa sarà la chiave per far cambiare stato al LED ogni volta che
+premiamo il pulsante
+
+  
+
+  []
+
+  Sketch_Capitolo_6_5
+
+Leggi lo stato del pulsante
+
+SE il pulsante è premuto:
+  SE il LED è spento (false):
+    accendi il LED (statoLED = true)
+  ALTRIMENTI (se il LED è acceso):
+    spegni il LED (statoLED = false)
+
+Imposta il LED in base al valore della variabile statoLED
+
+[]
+
+ogni volta che premi il pulsante, il LED cambia stato
+
+Se provi a caricare questo codice sulla tua Arduino Nano R4 noterai
+subito una cosa un po’ strana:
+
+quando premi il pulsante, a volte il LED non si comporta come ti
+aspetti.
+Può accendersi e spegnersi più volte velocemente, oppure fare il
+contrario.
+
+Ma perché succede questo?
+
+Il motivo è molto semplice.
+
+All’interno del pulsante c’è una piccola molla che serve a farlo tornare
+su quando lo rilasci. Quando premi il pulsante, i contatti si toccano…
+ma non in modo perfetto e stabile.
+
+👉 Per qualche istante fanno “rimbalzo” (in inglese bounce)
+
+Questo significa che:
+
+- il contatto si chiude
+- si riapre
+- si richiude di nuovo
+  tutto in pochissimo tempo
+
+Il problema è che Arduino è velocissimo.
+
+Riesce a leggere questi piccoli cambiamenti più volte, anche se per noi
+sembrano impercettibili
+
+Quindi può succedere che:
+
+- tu premi una sola volta
+- ma Arduino pensa che tu abbia premuto più volte
+
+E per questo il programma entra più volte nell’IF, facendo cambiare
+stato al LED in modo “strano”.
+
+[]
+Non è il codice sbagliato… è il pulsante che “rimbalza” Questo fenomeno
+si chiama bounce, cioè “rimbalzo”.
+
+Per fortuna esiste un modo molto semplice per risolvere questo problema.
+
+Possiamo aggiungere un piccolo ritardo subito dopo aver letto il
+pulsante.
+
+In questo modo diamo il tempo alla molla interna di fermarsi e al
+segnale di diventare stabile.
+
+Se non lo facciamo, Arduino potrebbe continuare a leggere quei piccoli
+cambiamenti velocissimi e pensare che il pulsante venga premuto più
+volte.
+
+Un valore sicuro è circa 300 millisecondi.
+
+Questo significa che, dopo aver rilevato la pressione del pulsante,
+Arduino aspetta un attimo prima di controllarlo di nuovo.
+
+[]
+Aggiungendo un piccolo delay evitiamo che Arduino venga “ingannato” dal
+rimbalzo del pulsante
+
+[]
+
+  Sketch_Capitolo_6_6
+
+Se provi ora questo programma noterai che:
+
+👉 se premi una volta il pulsante il LED si accende
+👉 se ripremi si spegne
+
+Sembra tutto funzionare correttamente… ma c’è ancora un piccolo
+problema.
+
+Se tieni premuto il pulsante, il LED inizia a lampeggiare ogni 300
+millisecondi.
+
+Questo succede perché Arduino è molto veloce e continua a leggere il
+pulsante come “premuto” tante volte di seguito.
+
+👉 Ogni volta che lo legge come premuto, entra nell’IF e cambia lo stato
+del LED
+
+Quindi:
+
+- tu fai una sola pressione lunga
+- Arduino pensa che siano tante pressioni
+
+Evitare il lampeggio: gestire correttamente il pulsante
+
+ESERCIZIO 6.7
+
+In questo esperimento capiremo come sistemare il problema del lampeggio
+dell'esperimento 6.6!
+
+  
+
+[]
+
+  
+
+  Sketch_Capitolo_6_7
+
+Come puoi osservare, abbiamo fatto una piccola ma importante modifica:
+abbiamo spostato la digitalWrite dentro l’IF principale.
+
+In questo modo il LED si accende o si spegne subito dopo aver deciso
+cosa fare
+Il comportamento diventa più veloce e reattivo
+
+L’ultima operazione resta il delay, proprio come avevamo previsto nello
+pseudocodice.
+
+E in mezzo?
+
+Non dobbiamo fare nulla… finché il pulsante non viene rilasciato.
+
+Questo passaggio è fondamentale: serve a evitare che il LED cambi stato
+più volte quando teniamo premuto il pulsante.
+
+Il problema è che il pulsante non viene ancora rilasciato.
+
+Dobbiamo quindi fare in modo che Arduino aspetti finché il pulsante
+resta premuto.
+
+Per farlo usiamo una nuova struttura chiamata while.
+
+while in inglese significa “fino a quando”.
+
+È un ciclo, cioè una struttura che continua a ripetersi finché una certa
+condizione è vera.
+
+La sua forma è molto semplice:
+
+while (condizione) {
+// fai qualcosa
+}
+
+Nel nostro caso vogliamo ottenere questo comportamento:
+
+Finché il pulsante è premuto
+non fare nulla
+
+Per controllare se il pulsante è premuto usiamo:
+
+digitalRead(10) == LOW
+
+Quindi scriviamo:
+
+while (digitalRead(10) == LOW) {
+}
+
+Questo significa:
+
+“rimani qui fermo finché il pulsante è premuto”
+
+Il blocco è vuoto perché non vogliamo eseguire nessuna azione,
+stiamo semplicemente aspettando che il pulsante venga rilasciato.
+
+Come sempre, quando apriamo un blocco usiamo le parentesi graffe { },
+proprio come abbiamo fatto con gli if.
+
+Ora puoi caricare il programma:
+dovrebbe funzionare correttamente e il LED cambierà stato una sola volta
+per ogni pressione
+
+Capitolo 7
+
+IL MONDO CONTINUO: I PIN ANALOGICI
+
+Nel capitolo precedente abbiamo parlato di un mondo fatto di 0 e 1, cioè
+di valori digitali: acceso o spento, vero o falso.
+
+Ma il mondo reale che ci circonda non funziona così.
+
+Il mondo reale è analogico.
+
+Ma cosa significa analogico?
+
+Significa che, invece di avere solo due possibilità, possiamo avere
+tantissimi valori diversi, anche infiniti.
+
+Facciamo un esempio semplice.
+
+Se vogliamo misurare una tensione, possiamo usare un multimetro.
+
+Quando lo facciamo, non leggiamo solo “acceso” o “spento”, ma un valore
+preciso, per esempio:
+
+- 1,2 Volt
+- 3,7 Volt
+- 4,95 Volt
+
+E usando strumenti sempre più precisi possiamo misurare anche i
+millivolt (mV), cioè valori ancora più piccoli.
+
+Questo vuol dire che possiamo ottenere misure sempre più precise.
+
+In pratica, i valori analogici sono quasi infiniti.
+
+I numeri binari e la risoluzione:
+
+Teniamo bene a mente questo esempio.
+
+Abbiamo detto che Arduino lavora in binario, cioè con 0 e 1.
+
+Allora nasce una domanda importante:
+
+come fa a misurare una tensione, come fa un multimetro?
+
+Se ci pensi, anche il multimetro ha uno schermo che mostra un numero.
+Quel numero non appare da solo: qualcuno deve calcolarlo e mostrarlo.
+
+All’interno del multimetro c’è un microcontrollore
+
+Questo microcontrollore è programmato per:
+
+- leggere la tensione
+- trasformarla in un numero
+- mostrarla sul display
+
+A seconda dello strumento che utilizziamo, possiamo avere misure più o
+meno precise.
+
+Più uno strumento è preciso, più cifre riesce a mostrarci.
+Questo si chiama risoluzione.
+
+Ma cos’è la risoluzione?
+
+La risoluzione ci dice quanto è preciso uno strumento
+e quanti valori diversi può distinguere.
+
+Nel caso dei microcontrollori, ci dice anche quanti numeri (in binario)
+possiamo usare per rappresentare una misura.
+
+Facciamo un passo indietro per capire meglio.
+
+I numeri possono essere scritti in modi diversi:
+
+Nel sistema decimale (quello che usiamo tutti i giorni) abbiamo 10
+cifre:
+0 1 2 3 4 5 6 7 8 9
+
+Nel sistema binario (quello dei computer) abbiamo solo 2 cifre:
+0 e 1
+
+Vediamo qualche esempio:
+
+  0 (decimale) = 0 (binario) 7 (decimale) = 111 (binario)
+
+  1 (decimale) = 1 (binario) 8 (decimale) = 1000 (binario)
+
+  2 (decimale) = 10 (binario) 9 (decimale) = 1001 (binario)
+
+  3 (decimale) = 11 (binario) 10 (decimale) = 1010 (binario)
+
+  4 (decimale) = 100 (binario) 11 (decimale) = 1011 (binario)
+
+  5 (decimale) = 101 (binario) 12 (decimale) = 1100 (binario)
+
+  6 (decimale) = 110 (binario) 13 (decimale) = 1101 (binario)
+
+Cosa significa questo?
+
+Per rappresentare numeri più grandi in binario, servono più cifre.
+
+E più cifre abbiamo a disposizione, più possiamo rappresentare valori
+diversi.
+
+[]
+la risoluzione dipende da quanti “bit” usiamo
+e più bit abbiamo, più la misura sarà precisa
+
+come puoi osservare, ogni volta che aggiungiamo +1 a un numero binario
+succede qualcosa di particolare.
+
+Siccome abbiamo solo due cifre (0 e 1), non possiamo andare oltre 1.
+
+Quindi, quando arriviamo al massimo possibile con le cifre disponibili,
+dobbiamo:
+
+- spostare un 1 verso sinistra
+- e rimettere le altre cifre a 0
+
+Facciamo un esempio:
+
+- 0 → 0
+- 1 → 1
+- 1 + 1 = 2 → 10
+- 2 + 1 = 3 → 11
+- 3 + 1 = 4 → 100
+
+È un po’ come nel sistema decimale:
+quando passiamo da 9 a 10, aggiungiamo una nuova cifra.
+
+In binario succede la stessa cosa, ma molto prima, perché abbiamo solo 0
+e 1.
+
+[]
+quando si esauriscono le combinazioni possibili, il numero cresce verso
+sinistra
+
+Ora che abbiamo capito come funzionano i numeri binari e cos’è la
+risoluzione, possiamo affrontare un concetto molto importante:
+
+ La conversione analogico-digitale
+
+La nostra Arduino Nano R4 funziona a 5 Volt.
+
+Questo significa che può leggere tensioni da:
+
+- 0 V (minimo)
+- 5 V (massimo)
+
+Queste tensioni sono valori analogici, cioè continui.
+
+Ma Arduino capisce solo numeri digitali (binari).
+
+Quindi deve trasformare la tensione in un numero
+
+La scheda lo fa grazie a un sistema chiamato ADC (convertitore
+analogico-digitale).
+
+Questo sistema associa a ogni tensione un numero
+
+[]
+
+La risoluzione della scheda è di 10 bit.
+
+Questo significa che può rappresentare 1024 valori diversi
+cioè da 0 a 1023
+
+Facciamo qualche esempio:
+
+- a 0 V corrisponde il numero 0
+- a 5 V corrisponde il numero 1023
+
+Tutti gli altri valori stanno in mezzo
+
+   Immagine capito 7.1
+
+Per esempio:
+
+a 2,5 V (che è metà di 5 V) dovrebbe corrispondere circa metà di 1023
+
+cioè:
+1023 / 2 = 511,5
+
+Ma Arduino può usare solo numeri interi, quindi:
+deve scegliere un numero vicino
+
+Questo problema si chiama quantizzazione
+
+In pratica, dobbiamo arrotondare (per esempio a 511 o 512)
+
+Ora vediamo una cosa molto importante.
+
+Quanto vale il “passo minimo”, cioè quanto cambia la tensione passando
+da un numero al successivo?
+
+Basta fare:
+
+5V ÷ 1024 = 4.88mV circa 5 mV
+
+Questo significa che:
+ogni numero rappresenta un aumento di 0,005 Volt
+
+cioè 5 millivolt (5 mV)
+
+[]
+Arduino non può leggere qualsiasi valore preciso
+ma lo divide in tanti piccoli “gradini” da 5 mV
+
+Quindi tra 511 e 512 c’è una differenza di 5 mV.
+
+Questo significa che Arduino ha una sensibilità di 5 mV
+
+In pratica:
+il valore cambia solo se la tensione aumenta (o diminuisce) di almeno 5
+millivolt.
+
+Se la variazione è più piccola, Arduino non se ne accorge
+
+Ora facciamo un altro passo importante.
+
+Come facciamo a capire a quale tensione corrisponde il numero letto da
+Arduino?
+
+È molto semplice: basta fare una proporzione.
+
+5V : 1023 = V : numero
+
+Da cui otteniamo la formula:
+
+V = (5 * numero) / 1023
+
+Facciamo qualche esempio.
+
+Se Arduino legge 511:
+
+V = (5 * 511) / 1023 ≈ 2,497 V
+
+Se legge 512:
+
+V = (5 * 512) / 1023 ≈ 2,502 V
+
+La differenza tra i due valori è proprio 0,005 V (5 mV)
+
+Sulla Arduino Nano R4, i pin che possono leggere valori analogici sono
+quelli con la lettera A:
+
+A0, A1, A2, A3, A4, A5, A6, A7
+
+In totale abbiamo 8 pin analogici
+
+Ora siamo pronti per fare qualcosa di più interessante.
+
+Useremo un componente che già conosci: il potenziometro.
+
+Lo useremo come partitore di tensione
+
+In questo modo potremo:
+
+- ottenere una tensione variabile
+- leggerla con Arduino
+- e prendere decisioni in base al valore letto
+
+[]
+
+passiamo dalla teoria… alla pratica
+
+ESERCIZIO 7.1
+
+in questo esperimento faremo una cosa molto interessante:
+accenderemo un LED collegato al pin 13 della Arduino Nano R4
+solo quando la tensione letta sul pin A0 supera i 2,5 V
+
+Per realizzare il circuito abbiamo bisogno di:
+
+Arduino Nano R4
+
+ELAB Nano Breakout
+
+1 LED verde
+
+1 resistore da 470 Ohm
+
+1 trimmer (potenziometro)
+
+3 cavetti
+
+[]
+
+  Immagine capito 7.2
+
+Prova a costruire il circuito come nella figura.
+
+I collegamenti sono molto semplici. Se metti i componenti nello stesso
+modo dell’immagine, sarà più facile collegare tutto senza errori.
+
+Ricorda che il trimmer, collegato così, funziona come un partitore di
+tensione.
+
+Quando lo giri:
+
+- verso sinistra, la tensione sul pin centrale (pin 2) è circa 0V
+- verso destra, la tensione arriva fino a circa 5V
+- a metà, la tensione è circa 2,5V
+
+Questo succede perché le resistenze interne cambiano: una aumenta mentre
+l’altra diminuisce.
+
+  In questo esercizio non serve usare il PULLUP.
+
+Infatti, al pin A0 è collegato il trimmer, che funziona già come
+partitore di tensione.
+Aggiungere un’altra resistenza altererebbe la misura, rendendola meno
+precisa.
+
+[]
+
+  Sketch_Capitolo_7_1
+
+Per questo motivo impostiamo semplicemente:
+pinMode(A0, INPUT);
+
+Sul pin 13 invece abbiamo collegato un LED, che può solo essere acceso o
+spento.
+Quindi lo impostiamo come uscita:
+
+pinMode(13, OUTPUT);
+
+Nel loop dobbiamo leggere continuamente il valore analogico dal pin A0.
+
+Per farlo, creiamo una variabile intera chiamata valoreLetto e le
+assegniamo il valore letto con:
+
+int valoreLetto = analogRead(A0);
+
+Questo significa:
+dichiara una variabile di tipo intero chiamata valoreLetto e assegnale
+il valore letto dal pin A0.
+
+⚠️ Attenzione: qui usiamo un solo = perché stiamo assegnando un valore,
+non confrontando (come invece si fa con ==).
+
+A questo punto controlliamo il valore letto.
+
+Se è maggiore di 512 (circa metà, quindi circa 2.5V), accendiamo il LED.
+Altrimenti lo spegniamo.
+
+[][]Ora prova tu:
+ruota il trimmer oltre la metà per accendere il LED, e riportalo
+indietro per spegnerlo. Se vuoi, puoi anche misurare la tensione con un
+multimetro per vedere cosa succede davvero
+
+  Immagine capito 7.3
+
+ESERCIZIO 7.2
+
+In questo esperimento faremo una piccola modifica all’esercizio
+precedente, usando lo stesso circuito.
+
+Finora abbiamo controllato il valore letto in forma digitale (da 0 a
+1023).
+Per esempio, abbiamo usato il valore 512, che corrisponde circa a 2.5V.
+
+Ma cosa succede se vogliamo ragionare direttamente in Volt invece che in
+numeri?
+
+Come possiamo usare un valore di tensione (per esempio 2.5V) dentro
+l’if?
+
+  []
+
+  Immagine capito 7.4
+
+[]
+
+  Sketch_Capitolo_7_2
+
+Il setup() rimane uguale a prima, perché non dobbiamo cambiare i
+collegamenti.
+
+Dobbiamo invece lavorare sul loop(), dove decidiamo quando accendere il
+LED.
+
+Dopo aver letto il valore con valoreLetto, dobbiamo fare un calcolo per
+trasformarlo in tensione (Volt).
+
+Questo calcolo ci permette di capire a quanti Volt corrisponde il valore
+letto dal pin A0.
+
+Per fare questo dobbiamo:
+
+- dichiarare una variabile che possa contenere numeri con la virgola
+- prendere il valore letto dal pin analogico
+- moltiplicarlo per 5 (la tensione di alimentazione della scheda)
+- dividere il risultato per 1023 (il valore massimo leggibile)
+
+Quando scriviamo la moltiplicazione usiamo 5.0 invece di 5.
+
+Questo serve per far capire al compilatore che stiamo lavorando con
+numeri con la virgola.
+Vedremo meglio questo concetto più avanti.
+
+Ora abbiamo ottenuto il valore della tensione in Volt.
+
+Possiamo quindi usarlo per controllare se siamo sopra o sotto i 2.5V:
+
+- sopra → LED acceso
+- sotto → LED spento
+
+Come puoi notare:
+
+- prima usiamo int per salvare un numero intero
+- poi usiamo float per salvare un numero con la virgola
+
+Andando avanti impareremo altri tipi di variabili.
+
+ESERCIZIO 7.3
+
+In questo esercizio useremo il trimmer per accendere un LED diverso in
+base alla sua posizione.
+
+Abbiamo tre LED:
+
+- rosso
+- giallo
+- verde
+
+Per questo dividiamo il valore massimo (1023) in tre parti:
+
+1023 ÷ 3 = circa 341
+
+Quindi:
+
+- da 0 a 340 → LED rosso
+- da 341 a 681 → LED giallo
+- da 682 a 1023 → LED verde
+
+Per controllare questi intervalli useremo l’operatore && (AND).
+
+Serve per verificare due condizioni insieme, ad esempio:
+“maggiore di 341 e minore di 682”
+
+In questo modo possiamo capire in quale posizione si trova il trimmer e
+accendere il LED giusto
+
+[]
+
+  Immagine capito 7.5
+
+Proviamo a scrivere in pseudocodice quello che vogliamo fare:
+
+se la lettura analogica è tra 0 e 341:
+accendi il LED rosso
+spegni il LED giallo
+spegni il LED verde
+se la lettura analogica è tra 341 e 682:
+spegni il LED rosso
+accendi il LED giallo
+spegni il LED verde
+altrimenti:
+spegni il LED rosso
+spegni il LED giallo
+accendi il LED verde
+
+[] Nota importante (da capire bene):
+
+- “altrimenti” significa: tutti i casi che non sono nei primi due
+- quindi da 682 a 1023
+
+[]
+
+  Sketch_Capitolo_7_3
+
+Nel setup() dobbiamo impostare:
+
+- il pin A0 come input, perché leggiamo il trimmer
+- i pin 3, 5 e 6 come output, perché comandano i LED
+
+Nel loop() leggiamo il valore del pin A0 e lo salviamo nella variabile
+valoreLetto.
+
+Ora vediamo le condizioni.
+
+Nel primo if controlliamo che il valore sia tra 0 e 341:
+
+0 <= valoreLetto < 341
+
+Per farlo usiamo:
+
+- le parentesi
+- l’operatore && (che significa “e”)
+
+Quindi verifichiamo che il valore sia:
+maggiore o uguale a 0 e minore di 341
+
+Poi usiamo una cosa nuova: else if (altrimenti se).
+
+Finora abbiamo usato:
+
+- if
+- else
+
+Ma in questo caso abbiamo tre situazioni diverse, quindi usiamo:
+
+- if → prima condizione
+- else if → seconda condizione
+- else → tutti gli altri casi
+
+In inglese:
+
+- if (condizione A)
+- else if (condizione B)
+- else
+
+Se servono più condizioni, possiamo aggiungere altri else if.
+
+[] Regola importante. È buona norma:
+
+- controllare tutti i casi importanti con if e else if
+- usare else per gestire tutto il resto
+
+Così evitiamo comportamenti strani del programma.
+
+Esempio reale
+
+Immagina un cancello automatico.
+
+Se dimentichi una condizione, potrebbe succedere qualcosa di pericoloso,
+ad esempio:
+il cancello non si apre anche se c’è un ostacolo!
+
+Per evitare problemi, possiamo dire:
+“in tutti gli altri casi → apri il cancello”
+
+Questo è proprio il ruolo dell’else:
+coprire tutte le situazioni non previste per rendere il sistema sicuro
+
+Finora abbiamo usato analogRead per leggere un segnale analogico e
+abbiamo parlato della conversione analogico → digitale (ADC).
+
+Ma esiste anche il contrario:
+la conversione digitale → analogica (DAC).
+
+Conversione digitale → analogica
+
+Quando vogliamo trasformare un numero in una tensione, usiamo un
+componente chiamato DAC (Digital to Analog Converter).
+
+La scheda Arduino NANO R4 ha un DAC collegato al pin A0
+sì, proprio lo stesso pin usato prima per leggere!
+
+Per utilizzare il DAC in Arduino usiamo:
+
+analogWrite()
+
+Questa istruzione permette di generare una tensione analogica.
+
+Possiamo anche scegliere la precisione (fino a 12 bit) usando:
+
+analogWriteResolution(numeroDiBit)
+
+Più bit → maggiore precisione della tensione.
+
+Attenzione: esistono due analogWrite!
+
+In Arduino esistono due modi diversi di usare analogWrite:
+
+465. DAC reale (solo su alcuni pin, come A0 sulla NANO R4)
+466. PWM (su pin con simbolo ~)
+
+Cos’è il PWM?
+
+Il PWM (Pulse Width Modulation) è un trucco per simulare una tensione
+analogica usando un segnale digitale.
+
+[]
+
+  Immagine capito 7.6
+
+Il segnale:
+
+- passa velocemente tra 0V e 5V
+- si ripete continuamente
+
+Concetti importanti
+
+- Periodo (T) → tempo in cui il segnale si ripete
+- TON → tempo in cui il segnale è alto (5V)
+- TOFF → tempo in cui è basso (0V)
+
+T = TON + TOFF
+
+- Duty Cycle (DC) → quanto tempo resta acceso:
+
+DC = TON / T
+
+Come funziona davvero
+
+Non possiamo cambiare il periodo con Arduino,
+ma possiamo cambiare quanto tempo il segnale resta acceso (TON).
+
+Quindi controlliamo il Duty Cycle
+
+Valori PWM in Arduino
+
+Il PWM usa 8 bit, quindi:
+
+valori da 0 a 255
+
+- 0 → sempre spento
+- 255 → sempre acceso
+- 127 → circa metà (50%)
+
+Esempio:
+
+analogWrite(3, 127);
+
+segnale al 50% sul pin 3
+
+Perché funziona?
+
+Anche se il LED si accende e spegne velocemente:
+
+il nostro occhio non vede lo sfarfallio
+ma vede una luminosità “media”
+
+Questo succede grazie alla media del segnale nel tempo.
+
+Applicazione pratica
+
+Se aumenti il valore di analogWrite:
+il LED diventa più luminoso
+
+Se lo diminuisci:
+il LED diventa più debole
+
+In breve
+
+- DAC → tensione analogica vera
+- PWM → tensione “simulata”
+- analogWrite() → controlla entrambi (a seconda del pin)
+
+ESERCIZIO 7.4
+
+In questo esperimento impareremo a utilizzare l’istruzione analogWrite
+per modificare la luminosità di un LED.
+
+Materiale necessario
+
+- Arduino NANO R4
+- ELAB NANO Breakout
+- 1 LED verde
+- 1 resistore da 470 Ohm
+- cavetti di collegamento
+
+[]
+
+  Immagine capito 7.7
+
+In questo esercizio introduciamo una nuova struttura molto utile: il
+ciclo for.
+
+Serve per evitare di scrivere tante volte le stesse istruzioni, cioè per
+non fare operazioni ripetitive a mano.
+
+Prima di usarlo, proviamo a descrivere cosa vogliamo fare con lo
+pseudocodice. Questo ci aiuta a capire meglio il funzionamento del
+ciclo.
+
+Vogliamo:
+
+- Ripetere da 0 fino a 255
+
+  - assegnare a una variabile il valore da scrivere sul pin PWM
+  - scrivere questo valore sul pin PWM 5
+  - aspettare 10 millisecondi
+  - aumentare il valore di 5
+
+Senza il ciclo for, dovremmo scrivere l’istruzione analogWrite per ogni
+valore da 0 a 255.
+
+Il programma diventerebbe lunghissimo e difficile da leggere.
+
+[]
+
+  Sketch_Capitolo_7_
+
+Grazie al ciclo for, invece, possiamo fare la stessa cosa con poche
+righe di codice, in modo molto più semplice e ordinato.
+
+Vediamo come funziona il ciclo for.
+
+Per prima cosa dichiariamo una variabile intera chiamata i.
+Potremmo chiamarla anche Giovanni o valore, ma nei cicli for si usano
+quasi sempre nomi brevi come i, j, k.
+
+Il ciclo for è formato da tre parti, separate da punto e virgola ;:
+
+485. Valore iniziale
+     Qui diciamo che la variabile parte da 0:
+     int i = 0
+486. Condizione
+     Il ciclo continua finché questa condizione è vera:
+     i <= 255
+     Questo significa che il ciclo si ripete fino a quando i è minore o
+     uguale a 255.
+     Quando i diventa 256, la condizione non è più vera e il ciclo si
+     ferma.
+487. Incremento
+     Dopo ogni ripetizione del ciclo, aumentiamo il valore della
+     variabile:
+     i = i + 5
+     (cioè aumentiamo di 5 ogni volta)
+
+Quindi il ciclo farà: 0, 5, 10, 15… fino a 255.
+
+Siccome vogliamo aumentare il valore di i di 5 ogni volta, scriviamo:
+
+i = i + 5
+
+Questo significa:
+prendi il valore attuale di i e aggiungi 5.
+
+All’interno del ciclo dobbiamo poi usare questo valore. In particolare,
+lo scriviamo sul pin PWM che abbiamo scelto (il pin 5):
+
+analogWrite(5, i)
+
+Questo vuol dire:
+scrivi sul pin 5 un valore proporzionale a i, così cambiamo la
+luminosità del LED.
+
+Dopo ogni passaggio aspettiamo un pochino:
+
+delay(10)
+
+[]
+
+  Sketch_Capitolo_7.5
+
+Questo serve a dare tempo al nostro occhio di vedere il cambiamento di
+luminosità del LED.
+Se non aspettassimo, il cambiamento sarebbe troppo veloce!
+
+Pensa a quante righe abbiamo risparmiato!
+Senza il ciclo for, dovremmo scrivere una riga per ogni valore (0, 5,
+10, 15… fino a 255).
+
+Il programma diventerebbe lunghissimo e difficile da gestire.
+
+Come puoi vedere, si ripetono sempre le stesse due istruzioni:
+
+- analogWrite(5, qualcosa);
+- delay(10);
+
+Questo è proprio il caso tipico in cui utilizziamo un ciclo for.
+
+Quando dobbiamo ripetere più volte le stesse operazioni, invece di
+scriverle tante volte, usiamo un ciclo che le esegue automaticamente.
+
+Queste operazioni si chiamano iterative, cioè che si ripetono.
+
+Grazie al ciclo for, possiamo:
+
+- scrivere meno codice
+- rendere il programma più ordinato
+- evitare errori
+
+In poche parole, il ciclo for ci permette di semplificare e ottimizzare
+i nostri programmi.
+
+ESERCIZIO 7.5
+
+Il circuito è lo stesso utilizzato nell’esperimento precedente.
+
+Questa volta però modifichiamo il codice per fare una cosa diversa:
+accendere il LED gradualmente e poi spegnerlo allo stesso modo.
+
+In questo modo il LED non sarà più solo acceso o spento, ma varierà la
+sua luminosità in modo continuo []
+
+   Immagine capito 7.8
+
+Nell’esperimento 4 abbiamo visto come usare il ciclo for per aumentare
+un valore.
+
+Ma possiamo fare anche il contrario:
+far diminuire il valore usando un ciclo for decrescente.
+
+Se uniamo questi due cicli:
+
+- uno crescente (accende il LED)
+- uno decrescente (spegne il LED)
+
+possiamo creare un effetto molto interessante chiamato:
+
+effetto respiro
+
+In questo effetto il LED:
+
+- si accende lentamente
+- raggiunge la massima luminosità
+- poi si spegne lentamente
+
+Vediamo ora come modificare il programma dell’esperimento 4 per
+aggiungere un secondo ciclo for, questa volta decrescente
+
+[]
+
+   Sketch_Capitolo_7.6
+
+Il secondo ciclo for è molto simile al primo, ma funziona al contrario:
+
+partiamo da 255
+arriviamo fino a 0
+e diminuiamo di 5 ogni volta
+
+Prova a caricare il programma e osserva cosa succede al LED.
+
+Vedrai che si accende e si spegne lentamente, creando un effetto molto
+fluido.
+
+Puoi anche sperimentare:
+
+cambia il valore del delay() per rendere l’effetto più veloce o più
+lento
+
+[]
+
+Piccola nota utile
+
+Esiste un modo più veloce per scrivere alcune operazioni:
+
+- invece di
+  i = i + 5
+  puoi scrivere
+  i += 5
+- invece di
+  i = i - 5
+  puoi scrivere
+  i -= 5
+
+Funzionano esattamente allo stesso modo, ma sono più comode da scrivere
+.
+
+ESERCIZIO 7.6
+
+In questo esperimento aggiungeremo un trimmer per controllare in tempo
+reale la luminosità del LED collegato al pin PWM 5.
+
+Partiamo dal circuito dell’esperimento 4 e aggiungiamo semplicemente un
+trimmer collegato al pin A0.
+
+[] In questo modo potremo regolare la luminosità del LED ruotando il
+trimmer
+
+  
+
+  Immagine capito 7.9
+
+Abbiamo visto che la funzione analogRead() restituisce un valore a 10
+bit, quindi compreso tra 0 e 1023.
+
+Abbiamo anche visto che la funzione analogWrite() utilizza valori tra 0
+e 255.
+
+Questo significa che non possiamo usare direttamente il valore letto da
+analogRead().
+
+Una soluzione semplice è dividere il valore per 4:
+
+1023 ÷ 4 ≈ 255
+
+Però questa soluzione funziona solo nei casi più semplici.
+
+In situazioni più complesse, il calcolo non è così immediato.
+
+Per questo motivo possiamo usare una funzione molto utile:
+
+map()
+
+Questa funzione permette di trasformare un valore da un intervallo a un
+altro in modo automatico.
+
+[]Nel prossimo passo vedremo come usare map() per realizzare questo
+esercizio
+
+  Sketch_Capitolo_7.7
+
+Come prima, dichiariamo una variabile intera chiamata valoreLetto per
+memorizzare il valore restituito da analogRead().
+
+A questo punto dobbiamo adattare questo valore.
+
+Infatti:
+
+- valoreLetto varia tra 0 e 1023
+- analogWrite() invece accetta valori tra 0 e 255
+
+Per fare questa conversione utilizziamo la funzione:
+
+map()
+
+Scriviamo:
+
+int valorePWM = map(valoreLetto, 0, 1023, 0, 255);
+
+Cosa significa questa riga?
+
+Vuol dire:
+
+prendi valoreLetto (che va da 0 a 1023)
+e trasformalo in un valore tra 0 e 255
+
+Il risultato viene salvato nella variabile valorePWM.
+
+Come funziona map?
+
+La funzione map() calcola automaticamente il rapporto tra i due
+intervalli.
+
+Nel nostro caso:
+
+- intervallo di partenza → 0–1023
+- intervallo di arrivo → 0–255
+
+quindi il valore viene ridimensionato
+
+In pratica (semplificando):
+è come dividere per circa 4
+
+Risultato
+
+- giri il trimmer → cambia valoreLetto
+- map() lo trasforma
+- analogWrite() usa il valore per regolare la luminosità del LED
+
+[] Così il LED si accende e si spegne in modo proporzionale alla
+posizione del trimmer
+
+ESERCIZIO 7.7
+
+In questo esperimento riprendiamo quanto fatto in quello precedente, ma
+con una differenza importante.
+
+Useremo la funzione analogWrite() sul pin A0, che può generare una vera
+tensione analogica.
+
+Per controllare questa tensione:
+useremo un trimmer collegato al pin A1
+
+Questa volta non useremo il LED.
+
+Al suo posto collegheremo un multimetro, così potremo misurare
+direttamente la tensione in uscita dal pin A0.
+
+Ruotando il trimmer vedremo cambiare il valore di tensione sul
+multimetro
+
+[]
+
+  Immagine capito 7.10
+
+  []
+
+  Sketch_Capitolo_7.8
+
+In questo esperimento non abbiamo bisogno di usare map().
+
+Questo perché nel setup() abbiamo utilizzato l’istruzione:
+
+analogWriteResolution(10);
+
+Questa funzione imposta la risoluzione della scrittura analogica a 10
+bit.
+
+Ma cosa significa?
+
+- analogRead() restituisce valori da 0 a 1023 (10 bit)
+- anche analogWrite() ora lavora da 0 a 1023
+
+Quindi possiamo usare direttamente valoreLetto senza fare conversioni.
+
+Attenzione importante
+
+Non tutte le schede Arduino funzionano così!
+
+- Alcune schede (come Arduino UNO)
+  non hanno un vero DAC
+  non permettono di cambiare la risoluzione
+
+Per questo motivo spesso si usa map() per adattare i valori.
+
+Consiglio utile
+
+Quando cerchi esempi online o usi l’intelligenza artificiale:
+
+controlla sempre quale scheda Arduino stai usando
+verifica se supporta analogWriteResolution()
+
+Approfondimento
+
+Alcune schede Arduino permettono risoluzioni anche più alte, ad esempio
+12 o 14 bit.
+
+Più bit significa:
+
+- più valori disponibili
+- maggiore precisione
+- variazioni di tensione più piccole e precise
+
+[]
+
+In pratica: più bit = controllo più preciso
+
+Capitolo 8
+
+VISUALIZZARE DATI: IL MONITOR SERIALE
+
+Obiettivo del capitolo
+
+Fino ad ora Arduino ha lavorato "in silenzio". Leggeva dati, faceva
+calcoli e prendeva decisioni… ma noi non vedevamo nulla.
+
+In questo capitolo imparerai a:
+
+- vedere i dati letti da Arduino
+- inviare messaggi dal PC alla scheda
+- usare strumenti fondamentali per il debug
+
+come possiamo vedere davvero questi dati?
+
+Quando colleghiamo Arduino al computer, succede una cosa molto
+interessante.
+
+Di solito pensiamo che il PC serva solo per inviare istruzioni ad
+Arduino, cioè per caricare il programma nella scheda.
+Ed è vero… ma non è tutto!
+
+La comunicazione funziona anche al contrario.
+
+Arduino può mandare informazioni al computer.
+In pratica, non solo riceve ordini, ma può anche “parlare” e dirci cosa
+sta succedendo.
+
+Per esempio, può inviare:
+
+- i valori che legge dai sensori
+- i risultati dei calcoli
+- informazioni utili per capire se il programma funziona bene
+
+Questi dati vengono poi visualizzati sul PC, così possiamo leggerli e
+capire meglio cosa sta facendo il nostro progetto.
+
+Grazie a questa comunicazione possiamo fare due cose molto utili:
+
+inviare comandi dal PC ad Arduino
+ricevere i dati elaborati da Arduino
+
+Questi dati possiamo:
+
+- usarli in altri programmi
+- oppure semplicemente leggerli per capire cosa sta succedendo nel
+  nostro progetto
+
+Questo metodo è usato molto spesso negli sketch Arduino per fare una
+cosa importantissima chiamata debug.
+
+Ma cos’è il debug?
+
+[]Il debug è il processo che ci permette di:
+
+- controllare se il programma funziona correttamente
+- trovare eventuali errori
+- capire dove qualcosa non va
+
+In pratica, è come fare il “detective del codice” Arduino ci manda
+informazioni, noi le osserviamo… e scopriamo cosa sistemare!
+
+Grazie al debug possiamo quindi correggere gli errori e migliorare i
+nostri programmi
+
+Nei programmi Arduino, questa comunicazione avviene grazie a uno
+strumento molto utile:
+il Serial Monitor (Controllore Seriale).
+
+La comunicazione che usiamo si chiama seriale.
+È un modo molto comune per far parlare tra loro diversi dispositivi
+elettronici.
+
+Non lo usa solo Arduino!
+Un esempio molto semplice è la stampante.
+
+Quando stampi qualcosa:
+
+- il computer invia dati alla stampante
+- questi dati possono essere testo o immagini
+- la stampante li riceve e li trasforma in qualcosa di reale su carta
+
+Tutto questo avviene grazie alla comunicazione seriale (spesso tramite
+il cavo USB).
+
+Anche con le stampanti wireless il concetto è lo stesso:
+i dati viaggiano comunque dal computer alla stampante, solo senza filo.
+
+Allo stesso modo, Arduino usa la comunicazione seriale per:
+
+- inviare dati al computer
+- ricevere comandi
+- aiutarci a capire cosa sta succedendo nel programma
+
+È come aprire una finestra dentro Arduino e vedere cosa sta facendo in
+tempo reale
+
+Prima di vedere come usare le istruzioni negli sketch Arduino per
+inviare o leggere dati, facciamo un passo indietro.
+
+Vediamo come aprire il Serial Monitor dall’IDE di Arduino.
+
+[]Il primo metodo consiste nel cliccare su Strumenti e poi su Monitor
+Seriale.
+
+  Immagine capito 8.1
+
+[]
+
+Il secondo metodo è ancora più semplice:
+basta cliccare sulla lente di ingrandimento 🔍 che si trova in alto a
+destra nella finestra dello sketch, proprio sotto la X per chiudere la
+finestra.
+
+I due metodi sono identici:
+
+  Immagine capito 8.2
+
+Una volta effettuato il click con uno dei due metodi, in basso si aprirà
+una finestra con sfondo bianco.[]
+
+  Immagine capito 8.3
+
+Se apri il Serial Monitor quando la scheda non è collegata al PC (oppure
+hai selezionato la porta sbagliata), comparirà un messaggio di avviso.
+
+Vedrai un popup giallo che ti dice che la scheda non è connessa.
+
+Non è un errore grave: significa solo che Arduino non riesce a
+comunicare con il computer.
+
+[]Quando la scheda è collegata, nel Serial Monitor compaiono alcune
+informazioni in più molto utili:
+
+  Immagine capito 8.4
+
+- una riga in cui puoi scrivere e inviare un messaggio ad Arduino
+- []un menù dove puoi scegliere se aggiungere qualcosa alla fine del
+  messaggio (lo useremo più avanti)
+
+  Immagine capito 8.5
+
+- un altro menù dove puoi impostare la velocità di comunicazione tra PC
+  e Arduino
+
+[]
+
+  Immagine capito 8.6
+
+- un menù in cui puoi scegliere la velocità di comunicazione tra il PC e
+  la scheda Arduino
+
+Questa velocità si misura in baud.
+
+Il valore più usato è 9600, mentre un altro molto comune è 115200.
+
+[]Per semplificare le cose, nei nostri esercizi useremo sempre 9600 👍
+Così evitiamo errori e tutto funzionerà senza problemi! Immagine capito
+8.6
+
+  Immagine capito 8.7
+
+In alto a destra nel Serial Monitor ci sono anche quattro pulsanti molto
+utili per gestire i dati che arrivano da Arduino:
+
+- []il primo pulsante attiva l’autoscorrimento, così vedi sempre gli
+  ultimi messaggi senza dover scorrere manualmente
+
+  Immagine capito 8.8
+
+- il secondo pulsante permette di mostrare o nascondere il tempo accanto
+  ai messaggi ricevuti
+
+[]
+
+  Immagine capito 8.9
+
+- il terzo pulsante serve per cancellare tutti i messaggi presenti nella
+  finestra
+
+[]
+
+  Immagine capito 8.10
+
+- il quarto pulsante ti permette di copiare tutti i messaggi ricevuti
+
+[]
+
+  Immagine capito 8.11
+
+Questi strumenti ti aiutano a leggere meglio le informazioni e a
+lavorare in modo più ordinato.
+
+Ora che abbiamo capito come funziona il Serial Monitor, possiamo
+iniziare a fare qualche esperimento per inviare e ricevere dati con
+Arduino!
+
+ESERCIZIO 8.1
+
+In questo esperimento faremo una cosa molto semplice ma importante:
+
+Arduino invierà un messaggio di saluto al computer!
+
+Per farlo non serve costruire nessun circuito complicato.
+
+Ti basta:
+
+- collegare la scheda Arduino al PC con il cavo USB .
+
+  []Una volta collegata la scheda, saremo pronti per vedere Arduino
+  “parlare” con il computer!
+
+  Sketch_Capitolo_8_1
+
+Abbiamo scritto solo tre righe di codice, ma in realtà stanno succedendo
+molte cose nuove!
+
+Non farti ingannare dalla semplicità: qui stiamo facendo un passo
+importante.
+
+Adesso andiamo con calma e vediamo passo passo:
+
+Per prima cosa dobbiamo attivare la comunicazione seriale
+
+Serial.begin(9600);
+
+Questa istruzione significa:
+“inizia la comunicazione tra Arduino e il computer”
+
+- Serial è un “oggetto” (puoi immaginarlo come uno strumento pronto
+  all’uso)
+- begin() è un comando che serve per avviarlo
+- 9600 è la velocità di comunicazione (baud)
+
+Nei nostri esempi useremo sempre 9600, anche se esistono altri valori
+selezionabili dal menù.
+
+Poi troviamo questa istruzione
+
+while(!Serial);
+
+  Significa semplicemente:
+  “aspetta finché la comunicazione seriale non è pronta”
+
+In pratica:
+
+- Arduino resta in attesa
+- quando apri il Serial Monitor, allora continua
+
+Questo serve per non perdere il messaggio iniziale!
+
+Infine troviamo questa istruzione
+
+Serial.println("Ciao dal Team di ELAB!");
+
+Questa riga dice ad Arduino:
+“scrivi questo messaggio nel Serial Monitor”
+
+- println stampa il testo e va a capo
+- il messaggio è scritto tra virgolette " "
+
+Attenzione alle virgolette!
+
+Le virgolette sono fondamentali perché indicano che quello che c’è
+dentro è testo.
+
+Questo tipo di dato si chiama:
+stringa (String)
+
+- una stringa è una sequenza di caratteri (lettere, numeri, simboli…)
+- se invece abbiamo bisogno di un solo carattere, usiamo il tipo char
+
+In poche parole:
+
+- char = un solo carattere
+- String = tanti caratteri messi insieme
+
+Riassumendo:
+
+- avviamo la comunicazione → Serial.begin(9600)
+- aspettiamo che sia pronta → while(!Serial);
+- inviamo un messaggio → Serial.println("...")
+
+E così Arduino inizia a “parlare” con noi!
+
+ESERCIZIO 8.2
+
+Nell’esperimento precedente abbiamo scritto il messaggio dentro setup().
+
+Questo significa che:
+
+- il messaggio viene inviato una sola volta
+- subito dopo aver caricato il programma e aperto il Serial Monitor
+
+Ma cosa succede se vogliamo vedere il messaggio continuamente?
+
+Semplice!
+
+Ci basta spostare il comando dentro loop().
+
+Ricorda:
+
+- setup() → si esegue una sola volta
+- loop() → si ripete all’infinito
+
+Quindi, mettendo il messaggio nel loop, Arduino lo invierà senza
+fermarsi, ancora e ancora.
+
+È come dire ad Arduino:
+“Continua a ripetere questo messaggio all’infinito!”
+
+[]Sketch_Capitolo_8_2
+
+  
+
+Proviamo ora ad utilizzare il tastino di prima che abilita la scrittura
+che indica il tempo del messaggio ricevuto
+
+Come puoi osservare facilmente, ora ogni volta che Arduino invia un
+messaggio vengono mostrati anche:
+
+ore, minuti, secondi e millisecondi in cui il messaggio è stato
+ricevuto.
+
+Questo è molto utile perché ti permette di:
+
+- capire quando arrivano i dati
+- vedere quanto velocemente vengono inviati
+
+Ora prova anche tu!
+
+- clicca sul pulsante per disattivare l’autoscorrimento
+  → così puoi fermarti e leggere con calma i messaggi
+- clicca sul pulsante per cancellare i messaggi
+  → per ripulire la schermata e ripartire da zero
+
+Fare pratica con questi strumenti ti aiuta a prendere confidenza con il
+Serial Monitor e a usarlo meglio nei prossimi esperimenti
+
+ESERCIZIO 8.3
+
+In questo esperimento vedremo come stampare sul monitor seriale il
+valore che Arduino legge da un ingresso analogico (per esempio un
+sensore o un potenziometro).
+
+Per farlo abbiamo bisogno di:
+
+-  Arduino (qualsiasi modello, tipo UNO)
+- [] La breakout di Elab
+-  Cavo USB per collegarlo al computer
+-  Un potenziometro
+-  Cavetti jumper
+-  Breadboard (facoltativa ma utile)
+-  Arduino IDE (il programma sul computer)
+
+  Immagine capito 8.12
+
+  [][]
+
+Sketch_Capitolo_8_3
+
+Per visualizzarli meglio, abbiamo aggiunto un piccolo delay dopo la
+stampa del valore.
+
+Apri il monitor seriale e prova a ruotare il trimmer!
+Vedrai che i valori cambiano da 0 a 1023, proprio come abbiamo visto
+nella teoria.
+
+Abbiamo sempre usato il comando:
+
+Serial.println()
+
+Questo comando stampa il valore e va automaticamente a capo.
+
+Serial Plotter (visualizzazione grafica)
+
+[]Ora vediamo un modo ancora più interessante per visualizzare i dati
+
+Accanto al pulsante del Monitor Seriale, trovi il pulsante:
+
+Serial Plotter
+
+Il Serial Plotter serve per disegnare un grafico in tempo reale dei dati
+inviati da Arduino.
+
+Per usarlo correttamente, puoi scrivere:
+
+   Immagine capito 8.13
+
+[]Serial.print(valoreLetto);
+Serial.println();
+
+  In questo modo ogni valore viene mandato su una nuova riga
+  E il grafico verrà disegnato automaticamente
+
+  Immagine capito 8.14
+
+In pratica
+
+- Monitor seriale → vedi numeri
+- Serial Plotter → vedi un grafico che si muove
+
+  
+
+Come hai visto, nel grafico il valore visualizzato viene chiamato
+automaticamente "value 1".
+Se vogliamo, però, possiamo assegnare un nome ai grafici! Questo è molto
+utile perché possiamo visualizzare più valori contemporaneamente.
+
+Vedremo nel prossimo esperimento come fare.
+
+Un’ultima cosa importante: se non l’hai già notato, per caricare un
+nuovo programma sulla scheda devi prima chiudere il Serial Plotter.
+Questo succede perché la scheda sta usando la comunicazione USB e l’IDE
+non riesce a chiuderlo da solo.
+
+Quindi ricordati sempre: prima chiudi il Serial Plotter, poi carica il
+nuovo sketch!
+
+[] “Il Serial Plotter è utilissimo per capire l’andamento dei sensori
+nel tempo”
+
+ESERCIZIO 8.4
+
+In questo esperimento vedremo come stampare sul Serial Plotter il
+risultato della conversione analogica letta con analogRead() su due pin
+analogici.
+
+Per farlo abbiamo bisogno di:
+
+- Arduino NANO R4
+- ELAB NANO Breakout
+- 6 fili colorati
+- []2 trimmer
+
+Immagine capito 8.15
+
+Per separare tra di loro i due grafici e assegnare delle etichette, è
+necessario aggiungere alcune istruzioni Serial.print().
+
+[]Queste servono per far capire al Serial Plotter che vogliamo
+visualizzare due diverse serie di dati e per associare un nome
+(etichetta) a ciascuna di esse.
+
+  Sketch_Capitolo_8_4
+
+  Come puoi vedere, adesso vengono visualizzati i nomi A2 e A3 sulle due
+  serie di dati, identificate dai colori blu e arancione.
+
+  Se clicchi sulla spunta accanto al nome, puoi mostrare o nascondere
+  una serie di dati nel grafico.
+  Se invece clicchi su STOP, puoi bloccare l'acquisizione dei dati.
+
+  Prova ora a sperimentare con il Serial Plotter, aggiungendo più dati e
+  assegnando nomi diversi ai grafici!
+
+  [] Attenzione: i nomi dei grafici non possono contenere spazi.
+
+  Puoi scrivere, ad esempio:
+
+- valoreA2
+- valore_A2
+
+  ma non valore A2.
+
+  Se inserisci uno spazio, verrà considerata solo l’ultima parte: quindi
+  "valore A2" diventerà semplicemente "A2".
+
+  Piccolo bonus: per ridurre il numero di righe di codice, puoi scrivere
+  direttamente:
+
+  Serial.println(analogRead(A2));
+
+  senza salvare prima il valore in una variabile.
+
+  Le funzioni possono essere anche concatenate tra loro.
+  Ad esempio, puoi scrivere:
+
+  if (analogRead(A2) > 512)
+
+  senza dover salvare prima il valore in una variabile.
+
+ESERCIZIO 8.5
+
+In questo esercizio useremo un potenziometro per controllare dei LED e
+contemporaneamente vedremo i valori sia nel Monitor Seriale che nel
+Serial Plotter.
+
+Materiale
+
+- Arduino NANO R4
+- 1 potenziometro
+- 3 LED
+- 3 resistenze (220Ω circa)
+- Fili
+
+Idea dell’esercizio
+
+- Ruoti il potenziometro
+- Il valore cambia (0 → 1023)
+- In base al valore: si accendono i LED e vedi il valore nel Monitor
+  Seriale
+- vedi il grafico nel Serial Plotter
+
+  [] Sketch_Capitolo_8_5
+
+ESERCIZIO 8.6
+
+Perfetto, allora facciamo il passo successivo fatto bene
+
+Qui non accendiamo più un solo LED, ma una barra progressiva (tipo
+volume )
+
+Come funziona
+
+- valore basso → 1 LED acceso
+- valore medio → 2 LED accesi
+- valore alto → 3 LED accesi
+
+Programma migliorato (barra LED)
+
+[]
+
+Sketch_Capitolo_8_6

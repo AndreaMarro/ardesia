@@ -1,0 +1,153 @@
+{
+  "iteration": "iter-37-phase3-tester4",
+  "startedAt": "2026-04-30T18:51:36.857Z",
+  "finishedAt": "2026-04-30T18:51:47.986Z",
+  "phrase": "Ragazzi, oggi accendiamo il LED.",
+  "samples": [
+    {
+      "label": "mp3-fixture",
+      "desiredFormat": "mp3",
+      "detectedContainer": "mp3",
+      "sourceNote": "fixture scripts/bench/output/voxtral-test/voxtral-T1.mp3 (Voxtral IT)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 29555
+    },
+    {
+      "label": "wav-tts",
+      "desiredFormat": "wav",
+      "detectedContainer": "wav",
+      "sourceNote": "Voxtral TTS format=wav (280364 bytes, ct=audio/wav)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 280364
+    },
+    {
+      "label": "ogg-tts",
+      "desiredFormat": "ogg",
+      "detectedContainer": "ogg",
+      "sourceNote": "Voxtral TTS format=opus (20032 bytes, ct=audio/opus)",
+      "error": null,
+      "stubAudio": false,
+      "bytes": 20032
+    }
+  ],
+  "matrix": [
+    {
+      "sample": "mp3-fixture",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 452,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": "audio/mpeg",
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 539,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "mp3-fixture",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 699,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 565,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": "audio/wav",
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 1182,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "wav-tts",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 400,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "raw-binary",
+      "status": 500,
+      "latency_ms": 602,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": "audio/ogg",
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "multipart",
+      "status": 500,
+      "latency_ms": 518,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    },
+    {
+      "sample": "ogg-tts",
+      "shape": "json-base64",
+      "status": 500,
+      "latency_ms": 146,
+      "transcript": "",
+      "matchedKeywords": [],
+      "verdict": "FAIL",
+      "responseError": "Transcription failed",
+      "contentTypeSent": null,
+      "stubAudio": false
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "pass": 0,
+    "warn": 0,
+    "fail": 9,
+    "blocked": 0,
+    "verdict": "FAIL"
+  }
+}

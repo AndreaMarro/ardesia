@@ -1,0 +1,268 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap10-esp1",
+  "volume": 2,
+  "chapter": 10,
+  "title": "Far Girare il Motore",
+  "chapter_title": "Il motore a corrente continua",
+  "difficulty": 1,
+  "duration_minutes": 20,
+  "target_age": "10-14 anni",
+  "objective": "Collegare direttamente una batteria a un motore DC e farlo girare! Scoprire che l'energia elettrica si trasforma in energia meccanica (movimento).",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Breadboard mezza (half-size)",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Motore DC",
+      "quantity": 1,
+      "icon": "⚙️"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 4,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "motore",
+      "DC",
+      "corrente continua",
+      "rotazione",
+      "polarità",
+      "batteria",
+      "pulsante",
+      "LED",
+      "resistore",
+      "circuito",
+      "meccanico",
+      "energia",
+      "parallelo",
+      "interruttore",
+      "indicatore"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "transistor",
+      "MOSFET",
+      "diodo",
+      "fototransistor"
+    ],
+    "note": "Cap 10 Esp 1 Vol 2 — motore DC collegamento diretto, conversione energia."
+  },
+  "prerequisites": [
+    "v2-cap9-esp2"
+  ],
+  "next_experiment": {
+    "id": "v2-cap10-esp2",
+    "title": "Invertire la Rotazione",
+    "preview": "Prossimo passo: Invertire la Rotazione. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi facciamo girare un motore! Il motore DC trasforma l'energia elettrica in movimento. È lo stesso principio dei ventilatori, dei droni e dei frullatori!",
+      "teacher_tip": "Portate in classe (o mostrate) un oggetto con motore DC: un piccolo ventilatore, un drone giocattolo. Chiedete: 'Quante cose in casa hanno un motore?' Poi spiegate: 'Oggi useremo la batteria per far girare il nostro primo motore.'",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 motore DC, fili rosso e nero.",
+      "class_hook": "Alzate la mano chi ha in casa un ventilatore, un frullatore o un drone! Tutti hanno un motore dentro. Oggi faremo girare il nostro!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Il circuito è semplicissimo: polo + della batteria al terminale + del motore, polo - al terminale - del motore. La corrente scorre e il motore gira!",
+      "teacher_tip": "Mostrate il motore: 'Ha solo 2 fili. Il + va al + della batteria, il - al - della batteria. Più semplice di così non si può!' Poi spiegate che dentro ci sono magneti e bobine di filo che, con la corrente, creano un campo magnetico che fa girare l'asse.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap10-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate il motore DC con collegamento diretto alla batteria",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "motor-dc",
+              "id": "mot1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Il motore gira! Ma cosa succederebbe se invertissimo i fili? E da cosa dipende la velocità di rotazione?",
+      "teacher_tip": "Stimolate la curiosità: 'Se mettessi il filo rosso dove c'è il nero e viceversa, cosa succederebbe?' Lasciate che gli studenti facciano ipotesi. Anticipate l'esperimento 2!",
+      "provocative_question": "Cosa succede se inverto i fili della batteria sul motore? Il motore si ferma, gira più veloce, o gira nella direzione opposta? Perché?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Il motore non gira",
+          "teacher_response": "Controllate che entrambi i fili siano collegati: + della batteria al + del motore, - della batteria al - del motore. Se un filo è staccato, il circuito è aperto e la corrente non passa!",
+          "analogy": "Come una catena della bici: se manca anche solo un anello, la ruota non gira."
+        },
+        {
+          "mistake": "Il motore vibra ma non gira davvero",
+          "teacher_response": "Nel simulatore, assicurati di aver premuto Play! Il motore nel simulatore gira quando il circuito è chiuso e la simulazione è attiva.",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Premete Play e guardate l'asse del motore che gira! L'energia elettrica della batteria diventa movimento rotatorio.",
+      "teacher_tip": "Evidenziate il motore durante la simulazione. Fate notare la direzione di rotazione: 'Vedete in che direzione gira? Segnatevela, perché nel prossimo esperimento la cambieremo!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:mot1]",
+        "[AZIONE:highlight:bat1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il motore gira! La batteria fornisce energia elettrica, che percorre il circuito e arriva al motore. Dentro il motore, la corrente crea un campo magnetico che fa girare l'asse. Energia elettrica → energia meccanica!",
+      "analogies": [
+        {
+          "concept": "conversione_energia",
+          "text": "Il motore è come un traduttore: prende il 'linguaggio' dell'elettricità (corrente) e lo trasforma nel 'linguaggio' del movimento. È la stessa magia dentro un drone, un frullatore o una lavatrice!",
+          "evidence": "Curriculum ELAB Vol 2 Cap 10"
+        },
+        {
+          "concept": "flusso_corrente",
+          "text": "La corrente che entra nel motore è come l'acqua che fa girare un mulino ad acqua: l'acqua scorre, il mulino gira. La corrente scorre, il motore gira. Togli l'acqua (o la corrente) e tutto si ferma!",
+          "evidence": "Curriculum ELAB Vol 2 Cap 10"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Bravi! Avete collegato il vostro primo motore DC. Con soli 2 fili avete trasformato l'elettricità in movimento!",
+      "teacher_tip": "Recap veloce: 'Il motore DC ha 2 terminali: + e -. La corrente entra dal +, percorre le bobine e crea un campo magnetico che fa girare l'asse. La direzione dipende dalla polarità.' Anticipate: 'Nel prossimo esperimento, invertiamo i fili e vediamo cosa succede!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il motore DC converte energia elettrica in energia meccanica (movimento rotatorio). Con la batteria collegata in modo diretto, il motore gira. La direzione dipende dalla polarità dei fili!",
+      "concepts_learned": [
+        "motore DC come convertitore di energia",
+        "collegamento diretto batteria-motore",
+        "polarità del motore (+/-)",
+        "energia elettrica → energia meccanica"
+      ],
+      "next_preview": "Nel prossimo esperimento invertirete i fili e vedrete il motore girare nella direzione opposta. La polarità conta!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se spiega che il motore trasforma energia elettrica in meccanica → comprensione della conversione",
+    "Se prevede correttamente cosa succede invertendo i fili → anticipazione del concetto di polarità",
+    "Se collega il motore a oggetti di uso quotidiano → transfer al mondo reale"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "motore_DC",
+      "collegamento_diretto",
+      "conversione_energia",
+      "polarita"
+    ],
+    "next_suggested": "v2-cap10-esp2",
+    "resume_message": "Avete fatto girare il primo motore DC! Ora scoprirete come invertire la direzione di rotazione."
+  },
+  "analogies": [
+    {
+      "concept": "conversione_energia",
+      "text": "Il motore è come un traduttore: prende il 'linguaggio' dell'elettricità (corrente) e lo trasforma nel 'linguaggio' del movimento. È la stessa magia dentro un drone, un frullatore o una lavatrice!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    },
+    {
+      "concept": "flusso_corrente",
+      "text": "La corrente che entra nel motore è come l'acqua che fa girare un mulino ad acqua: l'acqua scorre, il mulino gira. La corrente scorre, il motore gira. Togli l'acqua (o la corrente) e tutto si ferma!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il motore non gira",
+      "teacher_response": "Controllate che entrambi i fili siano collegati: + della batteria al + del motore, - della batteria al - del motore. Se un filo è staccato, il circuito è aperto e la corrente non passa!",
+      "analogy": "Come una catena della bici: se manca anche solo un anello, la ruota non gira."
+    },
+    {
+      "mistake": "Il motore vibra ma non gira davvero",
+      "teacher_response": "Nel simulatore, assicurati di aver premuto Play! Il motore nel simulatore gira quando il circuito è chiuso e la simulazione è attiva.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

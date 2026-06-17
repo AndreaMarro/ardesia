@@ -1,0 +1,143 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-recap-fine-lezione",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "recapFineLezione",
+  "description": "Morphic template chiusura lezione classe — sintesi 3 punti chiave + frase 'ai ragazzi vediamo cosa abbiamo imparato' + nudge feedback + cita testo finale capitolo dal volume.",
+  "category": "lesson-recap",
+  "owner_agent": "omniscient-opus",
+  "iter_introduced": 15,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.70",
+    "analogia": "ricapitolare è come fare lo zaino prima di tornare a casa: prendiamo i 3 oggetti più importanti"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v1-cap6-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    },
+    "lessonKeyPoints": {
+      "type": "array",
+      "required": false,
+      "default": [
+        "LED polarità",
+        "resistenza serie",
+        "blink delay"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-key-components",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "led1",
+          "r1",
+          "nano"
+        ],
+        "color": "navy",
+        "pulse": false
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-recap",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "Genera recap 3 punti chiave lezione: LED polarità + resistenza serie 220Ω + delay blink",
+        "context": "Vol.1 cap.6 chiusura lezione"
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-3-points",
+      "tool": "showNudge",
+      "args": {
+        "text": "Oggi abbiamo imparato: 1) LED ha polarità (gamba lunga +) 2) resistenza 220Ω in serie protegge 3) delay 1000 fa lampeggio 1 secondo",
+        "position": "center",
+        "duration_ms": 8000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-final-state",
+      "tool": "captureScreenshot",
+      "args": {
+        "purpose": "save-lesson-final-state",
+        "saveToReport": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-recap",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, vediamo cosa abbiamo imparato. Vol.1 pag.70 'tre cose: LED polarità, resistenza serie, delay temporizza il blink'. Bravissimi tutti, alla prossima lezione.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.95
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_total_latency_ms": 6000,
+  "telemetry": {
+    "track_lesson_completion": true,
+    "track_recap_engagement": true,
+    "category": "lesson-recap-end"
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[2].args.duration_ms >= 6000",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.includes('vediamo cosa abbiamo imparato')",
+    "sequence[4].args.text.match(/Vol\\.1 pag\\.70/)",
+    "principio_zero.analogia.includes('zaino')"
+  ]
+}

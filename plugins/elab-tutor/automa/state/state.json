@@ -1,0 +1,105 @@
+{
+  "updated": "2026-03-29T21:06:37.308433",
+  "session": "S117",
+  "scores": {
+    "_WARNING": "INFLATED MANUAL SCORES BELOW \u2014 NOT FROM evaluate.py. Use composite_v3 as ground truth.",
+    "auth_security": 9.8,
+    "sito_pubblico": 9.6,
+    "simulatore_funzionalita": 10.0,
+    "simulatore_estetica": 8.5,
+    "simulatore_ipad": 8.5,
+    "simulatore_physics": 8.0,
+    "scratch_universale": 10.0,
+    "ai_integration": 10.0,
+    "responsive_a11y": 9.2,
+    "code_quality": 9.8,
+    "overall": "INFLATED \u2014 see composite_v3",
+    "composite_v2_7metrics": "0.7225 (BASELINE \u2014 Galileo metrics included, NO LONGER MEASURED)",
+    "composite_v3_4metrics": 0.9565,
+    "composite_v3_note": "4 metriche: build(0.35) content(0.25) ipad(0.25) lighthouse(0.15). 3 su 4 al massimo \u2014 metrica quasi satura, basso potere discriminante",
+    "composite": 0.9565,
+    "timestamp": "2026-03-27T10:40:00",
+    "cycle": 48,
+    "build_pass": 1.0,
+    "galileo_tag_accuracy": "0.9 (from checks.py, NOT in evaluate.py composite)",
+    "galileo_gulpease": "0.8 (from checks.py, NOT in evaluate.py composite)",
+    "galileo_identity": "1.0 (from checks.py, NOT in evaluate.py composite)",
+    "content_integrity": 1.0,
+    "ipad_compliance": "0.675 (STALE \u2014 from production site last deployed 2026-03-10)",
+    "lighthouse_perf": "0.62 (STALE \u2014 from production site last deployed 2026-03-10)"
+  },
+  "deploy": {
+    "vercel": {
+      "url": "https://www.elabtutor.school",
+      "last_deploy": "2026-03-10",
+      "status": "ok"
+    },
+    "nanobot": {
+      "url": "https://elab-galileo.onrender.com",
+      "version": "5.3.0",
+      "status": "ok"
+    },
+    "brain_vps": {
+      "url": "http://72.60.129.50:11434",
+      "model": "galileo-brain-v13",
+      "status": "ok"
+    }
+  },
+  "build": {
+    "status": "pass",
+    "last_check": "2026-03-29T21:06:37.308368"
+  },
+  "bugs": {
+    "p1": [
+      "notion-db-mismatch",
+      "student-tracking-not-shared",
+      "email-e2e-untested"
+    ],
+    "p2": [
+      "p2-tdz-obfuscator",
+      "circuitstate-unsanitized",
+      "session-messages-unsanitized"
+    ],
+    "p3": [
+      "no-e2e-tests",
+      "window-confirm-blocks-ui",
+      "notion-no-429-retry",
+      "no-aria-live"
+    ]
+  },
+  "loop": {
+    "status": "running",
+    "cycles_today": 2,
+    "last_cycle": "2026-03-29T21:06:37.308325",
+    "tasks_completed_today": 3,
+    "last_date": "2026-03-29",
+    "last_elapsed_s": 277,
+    "self_exam_last_run": "2026-03-27T08:43:23.186350",
+    "self_exam_last_cycle": 20
+  },
+  "budget": {
+    "monthly_limit_eur": 50,
+    "spent_today_eur": 0,
+    "spent_month_eur": 10.1,
+    "tokens_today": 85635,
+    "last_month": "2026-03"
+  },
+  "andrea_directives": "(2026-03-24)\n\n### MODELLO\n- Usa SEMPRE `claude-opus-4-6` \u2014 mai Sonnet, mai Haiku, mai altri modelli per il task principale.\n\n### ZERO REGRESSIONI\n- Zero regressioni. Se lo score composite scende anche di 0.001, rollback immediato con `git checkout -- .`\n- Il pattern Karpathy keep/revert deve funzionare DAVVERO. Il sistema deve auto-correggersi.\n\n### COV OBBLIGATORIA\n- Chain of Verification (CoV) obbligatoria dopo OGNI task completato.\n- Verifica sempre: build pass, score \u2265 score_before, file corretti, Principio 0 rispettato.\n- Non dichiarare \"done\" senza CoV eseguita.\n\n### AUTO-ALLINEAMENTO CLAUDE + KIMI\n- Claude (agente principale) e Kimi (ricerca parallela) si auto-allineano sul contesto condiviso.\n- Kimi ricerca SEMPRE nella direzione indicata dalla metrica peggiore del ciclo corrente.\n- I risultati di Kimi entrano nel prompt di Claude al ciclo successivo via parallel-research.json.\n- Nessun coordinamento manuale necessario \u2014 il contesto fa da collante.\n\n### INTERVENTO ANDREA\n- Andrea pu\u00f2 intervenire in qualsiasi momento modificando questo file.\n- L'orchestratore rileva il cambiamento e adatta il comportamento immediatamente.\n- Nessun riavvio necessario \u2014 il cambiamento viene applicato al ciclo successivo.\n\n### RICERCA\n- Le ricerche devono vertere su: difetti ELAB Tutor, innovazione EdTech, UX bambini/insegnanti, tecnologia scuole italiane (LIM, iPad, Chromebook).\n- Kimi deve essere preparato con il contesto del progetto prima di ogni ricerca.\n- Query dinamiche basate sulla metrica peggiore del ciclo (non lista statica).\n\n### DEPLOY\n- Il deploy deve essere automatico dopo ogni fix verificato (build pass + score non sceso).\n- NETLIFY_AUTH_TOKEN deve essere configurato in automa/.env (Andrea deve generarlo).\n- Senza deploy, i fix CSS/HTML non vengono misurati da evaluate.py.\n\n### PROMPT\n- I prompt devono seguire la struttura \"Anatomy of a Claude Prompt\":\n  Task \u2192 Context Files \u2192 Reference \u2192 Success Brief \u2192 Rules \u2192 Plan \u2192 Output.\n- Prompt concisi: < 1000 token di system prompt per ottimizzare i costi.\n\n---",
+  "benchmark": {
+    "composite": 0.8872,
+    "critical": [],
+    "urgent": []
+  },
+  "frozen_metrics": [],
+  "pending_human_review": [
+    {
+      "id": "proposal-003",
+      "type": "task_generation",
+      "description": "Score composito in stallo \u2014 serve task di miglioramento mirato",
+      "action": "Crea task YAML: 'Revisione metriche evaluate.py \u2014 identificare quale dimensione \u00e8 bloccata e proporre fix concreto'",
+      "risk": "medium",
+      "expected_impact": "Sblocco plateau con intervento mirato su metrica specifica",
+      "created_at": "2026-03-25T21:01:45.165883"
+    }
+  ]
+}

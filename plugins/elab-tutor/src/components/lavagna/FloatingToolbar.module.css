@@ -1,0 +1,122 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* FloatingToolbar — toolbar strumenti flottante sul canvas */
+
+.toolbar {
+  position: absolute;
+  bottom: 72px; /* Above UnlimBar (fixed ~56px + gap) */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 77, 140, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 950;
+  transition: opacity 200ms ease, bottom 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 150ms ease, transform 100ms ease, box-shadow 150ms ease;
+  padding: 0;
+}
+
+.btn:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--elab-navy);
+  outline-offset: 2px;
+}
+
+.btnActive {
+  background: rgba(74, 122, 37, 0.1);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(74, 122, 37, 0.3);
+}
+
+.dragHandle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  padding: 4px 6px;
+  min-width: 20px;
+  min-height: 44px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  border-radius: 6px;
+  transition: background 150ms ease;
+}
+
+.dragHandle:hover {
+  background: rgba(30, 77, 140, 0.08);
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+  background: rgba(30, 77, 140, 0.15);
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(30, 77, 140, 0.12);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* Position above bottom panel when open */
+.abovePanel {
+  bottom: 280px;
+}
+
+@media (pointer: coarse) {
+  .toolbar {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+}
+
+/* LIM: when left panel is closed, toolbar goes vertical on the left */
+@media (max-width: 1024px) {
+  .toolbar {
+    bottom: 64px;
+  }
+
+  .verticalOnLIM {
+    bottom: auto;
+    top: 60px;
+    left: 8px;
+    transform: none;
+    flex-direction: column;
+    padding: 6px;
+  }
+
+  .verticalOnLIM .divider {
+    width: 28px;
+    height: 1px;
+    margin: 2px 0;
+  }
+}

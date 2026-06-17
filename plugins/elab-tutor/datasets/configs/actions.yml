@@ -1,0 +1,97 @@
+# Action tags and their linguistic variants
+# Used across multiple sections for mapping user phrases to simulator actions
+
+actions:
+  play:
+    tag: "[AZIONE:play]"
+    variants:
+      formal: [avvia la simulazione, avvia il circuito, fai partire la simulazione, esegui la simulazione, metti in esecuzione]
+      informal: [fallo partire, dai fallo andare, vai vai avvia, premi play, fammi vedere se funziona, ok avvia, daje avvia, forza fallo partire]
+      english: [play, start, run, go, start it, fai play, premi start]
+      ultra_informal: [daje, su su avvia, avvia sta roba, fallo funzionare, accendi tutto, parti, "via!"]
+      implicit: [sono pronto, possiamo provare?, vediamo se funziona, proviamolo, facciamo partire]
+      contextual: [ho finito di montare avvia, i fili sono collegati avvia, tutto pronto avvia]
+
+  pause:
+    tag: "[AZIONE:pause]"
+    variants:
+      formal: [metti in pausa, ferma la simulazione, sospendi la simulazione]
+      informal: [pausa, ferma tutto, stoppa, basta fermati, ferma ferma, metti pausa, fermala]
+      english: [pause, stop, halt]
+
+  reset:
+    tag: "[AZIONE:reset]"
+    variants:
+      formal: [resetta, ricomincia da capo, riavvia la simulazione, ripristina]
+      informal: [reset, da capo, ricominciamo, riazzera, rifallo]
+      english: [restart, reset]
+
+  clearall:
+    tag: "[AZIONE:clearall]"
+    variants:
+      formal: [pulisci tutto, rimuovi tutti i componenti, svuota la breadboard]
+      informal: [cancella tutto, via tutto, togli tutto, levami tutto, butta via tutto, tabula rasa, azzera tutto]
+      english: [clear all, clearall, clean]
+
+  compile:
+    tag: "[AZIONE:compile]"
+    variants:
+      formal: [compila il codice, compila il programma, esegui la compilazione]
+      informal: [compila, compilalo, fai il compile, compilami sto codice]
+      english: [compile, build]
+
+  quiz:
+    tag: "[AZIONE:quiz]"
+    variants:
+      formal: [fammi un quiz, preparami delle domande, interrogami]
+      informal: [quiz, fai il quiz, domandami qualcosa, testami]
+
+  loadexp:
+    tag: "[AZIONE:loadexp]"
+    variants:
+      formal: [carica l'esperimento, apri l'esperimento, seleziona l'esperimento]
+      informal: [caricalo, apri quello, metti l'esperimento, caricami l'esperimento]
+
+  opentab:
+    tag: "[AZIONE:opentab]"
+    variants:
+      formal: [apri la scheda, vai alla sezione, mostrami la tab]
+      informal: [apri il tab, vai al, fammi vedere il, apri la]
+
+  highlight:
+    tag: "[AZIONE:highlight]"
+    variants:
+      formal: [evidenzia il componente, mostrami dove si trova]
+      informal: [dove sta, fammi vedere dove, indicami, illumina]
+
+  addcomponent:
+    tag: "[AZIONE:addcomponent]"
+    variants:
+      formal: [aggiungi un componente, inserisci un componente]
+      informal: [metti, aggiungi, piazza, mettimi, posiziona, inserisci, voglio, dammi]
+
+  removecomponent:
+    tag: "[AZIONE:removecomponent]"
+    variants:
+      formal: [rimuovi il componente, elimina il componente]
+      informal: [togli, leva, cancella, porta via, eliminalo]
+
+  addwire:
+    tag: "[AZIONE:addwire]"
+    variants:
+      formal: [collega con un filo, aggiungi un collegamento]
+      informal: [collega, connetti, unisci, attacca, wira, metti un filo]
+
+  removewire:
+    tag: "[AZIONE:removewire]"
+    variants:
+      formal: [rimuovi il collegamento, scollega]
+      informal: [togli il filo, scollega, stacca]
+
+  undo:
+    tag: "[AZIONE:undo]"
+    variants: [annulla, ctrl z, undo, torna indietro]
+
+  redo:
+    tag: "[AZIONE:redo]"
+    variants: [rifai, ctrl y, redo, rimetti]

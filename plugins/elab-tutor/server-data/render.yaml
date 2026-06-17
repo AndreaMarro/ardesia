@@ -1,0 +1,19 @@
+# Render Blueprint — ELAB Data Server
+# Deploy: Frankfurt EU region, free tier
+services:
+  - type: web
+    name: elab-data
+    runtime: docker
+    dockerfilePath: ./server-data/Dockerfile
+    dockerContext: ./server-data
+    region: frankfurt
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /app/data
+      - key: HMAC_SECRET
+        sync: false  # Set manually in Render dashboard — same secret as Netlify Functions
+    healthCheckPath: /api/health
+    autoDeploy: true

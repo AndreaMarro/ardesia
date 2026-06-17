@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>ELAB Tutor — Lista Sub-Processor</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: 'Open Sans', -apple-system, sans-serif; max-width: 1000px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #4a4a4a; }
+    h1 { color: #1E4D8C; }
+    h2 { color: #4A7A25; margin-top: 2rem; }
+    a { color: #E8941C; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    .eu { background: #e8f5e9; }
+    .gated { background: #fff3e0; }
+    .meta { background: #f5f5f5; padding: 1rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Lista Sub-Processor — ELAB Tutor</h1>
+
+  <div class="meta">
+    <p><strong>Versione</strong>: 1.0 — 30 aprile 2026 (iter 29)</p>
+    <p><strong>Compliance</strong>: GDPR Art. 28 §3 (sub-processor obligation disclosure)</p>
+    <p><strong>Status</strong>: DRAFT — pending DPA firma con scuole acquirenti</p>
+  </div>
+
+  <h2>Riepilogo categorie</h2>
+  <ul>
+    <li>🟢 <strong>EU-only</strong> (data residency garantita): trattamento dati studenti runtime</li>
+    <li>🟡 <strong>EU edge / EU region</strong>: trattamento via infrastruttura EU</li>
+    <li>🟠 <strong>Extra-EU gated</strong>: solo contenuti statici OR fallback emergency anonymized</li>
+  </ul>
+
+  <h2>Lista completa sub-processor (13 provider)</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Provider</th>
+        <th>Categoria</th>
+        <th>Region</th>
+        <th>Capability</th>
+        <th>Dati trattati</th>
+        <th>Base giuridica</th>
+        <th>SCC / DPF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="eu">
+        <td><strong>Mistral AI</strong></td>
+        <td>🟢 EU-only</td>
+        <td>Parigi, FR</td>
+        <td>LLM (chat + premium) + Vision Pixtral + TTS Voxtral</td>
+        <td>Testo conversazione anonymized + screenshot + audio</td>
+        <td>Art. 6(1)(b) contratto + Art. 8 consent parentale</td>
+        <td>N/A (EU)</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Google Cloud (Gemini API)</strong></td>
+        <td>🟡 EU region</td>
+        <td>Frankfurt, DE</td>
+        <td>LLM fallback (Flash-Lite/Flash/Pro) + Vision fallback + Embeddings fallback</td>
+        <td>Testo conversazione fallback solo se Mistral down</td>
+        <td>Art. 6(1)(b)</td>
+        <td>SCC EU + GDPR addendum</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Cloudflare Workers AI</strong></td>
+        <td>🟡 EU edge</td>
+        <td>Global EU edge nodes</td>
+        <td>STT Whisper Turbo + ImgGen FLUX schnell + Embeddings BGE-M3</td>
+        <td>Audio voice docente + prompt testuale</td>
+        <td>Art. 6(1)(b) + Art. 28</td>
+        <td>SCC EU + DPF certified</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Supabase</strong></td>
+        <td>🟢 EU region</td>
+        <td>Frankfurt, DE</td>
+        <td>Database PostgreSQL + Authentication + Edge Functions Deno + pgvector</td>
+        <td>Account docente + sessioni studenti + RAG chunks + audit log</td>
+        <td>Art. 6(1)(b)</td>
+        <td>SCC EU + DPA disponibile</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Vercel</strong></td>
+        <td>🟡 EU edge</td>
+        <td>EU edge global</td>
+        <td>Hosting frontend SPA React + Edge Network CDN + Analytics</td>
+        <td>Static assets + edge logs (anonimi)</td>
+        <td>Art. 6(1)(f) legittimo interesse</td>
+        <td>SCC EU + DPF certified</td>
+      </tr>
+      <tr class="gated">
+        <td><strong>Voyage AI</strong></td>
+        <td>🟠 Extra-EU gated</td>
+        <td>San Francisco, USA</td>
+        <td>Embeddings voyage-3 + reranker rerank-2.5 (RAG ingest)</td>
+        <td>Solo contenuti statici volumi cartacei (testo Vol1+Vol2+Vol3) — ZERO PII studenti</td>
+        <td>Art. 6(1)(f) — content statico no PII</td>
+        <td>SCC EU + assessment minimum risk</td>
+      </tr>
+      <tr class="gated">
+        <td><strong>Together AI</strong></td>
+        <td>🟠 Extra-EU gated</td>
+        <td>San Francisco, USA</td>
+        <td>LLM Llama 3.3 70B (15% routing weight + emergency fallback gated)</td>
+        <td>Solo prompt anonymized + consenso esplicito docente — BLOCK student runtime</td>
+        <td>Art. 6(1)(a) consent esplicito teacher mode</td>
+        <td>SCC EU + audit log mandatory (Supabase together_audit_log)</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>n8n Self-hosted (Hostinger)</strong></td>
+        <td>🟢 EU-only</td>
+        <td>Lituania, EU</td>
+        <td>Compilatore Arduino C++ → HEX</td>
+        <td>Codice sorgente C++ user (anonimo)</td>
+        <td>Art. 6(1)(b)</td>
+        <td>N/A (EU)</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>GitHub</strong></td>
+        <td>🟡 USA — code only</td>
+        <td>USA</td>
+        <td>Source code repository (privato)</td>
+        <td>Solo codice sorgente — ZERO dati utenti</td>
+        <td>Art. 6(1)(f)</td>
+        <td>SCC EU + DPF</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Anthropic Claude API</strong></td>
+        <td>🟢 EU region (Bedrock)</td>
+        <td>Frankfurt, DE (AWS Bedrock EU)</td>
+        <td>Solo development tools (Claude Code) — NO student runtime</td>
+        <td>Codice sorgente sviluppatori — ZERO dati utenti</td>
+        <td>Art. 6(1)(f)</td>
+        <td>DPA disponibile</td>
+      </tr>
+      <tr class="eu">
+        <td><strong>Microsoft (Edge TTS)</strong></td>
+        <td>🟡 Global edge — DEPRECATED</td>
+        <td>Global</td>
+        <td>TTS Isabella Neural fallback (DOWN iter 29 — sostituito Voxtral primary)</td>
+        <td>Solo testo TTS</td>
+        <td>Art. 6(1)(b) — fallback only</td>
+        <td>SCC + DPF</td>
+      </tr>
+      <tr>
+        <td><strong>Render (Nanobot legacy)</strong></td>
+        <td>🟡 USA — DEPRECATED</td>
+        <td>Oregon, USA</td>
+        <td>Vecchio endpoint UNLIM (deprecato post Edge Function deploy iter 5 P3)</td>
+        <td>Nessun dato attivo (endpoint inattivo)</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>~~RunPod~~</strong></td>
+        <td>❌ DECOMMISSIONED</td>
+        <td>—</td>
+        <td>VPS GPU — TERMINATED iter 5 P3 Path A</td>
+        <td>Nessun dato</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Distribuzione geografica trattamento dati</h2>
+  <ul>
+    <li><strong>EU-only student runtime</strong>: Mistral FR + Gemini Frankfurt + CF EU edge + Supabase Frankfurt + n8n Lituania = <strong>5 provider EU</strong> (100% dati personali studenti)</li>
+    <li><strong>USA gated batch only</strong>: Voyage (statico volumi) + Together (consent + anonymized) = <strong>2 provider USA gated</strong></li>
+    <li><strong>USA dev/admin</strong>: GitHub (code) + Anthropic Bedrock EU + Render (deprecato) = solo development</li>
+  </ul>
+
+  <h2>Aggiornamenti</h2>
+  <p>Questa lista viene aggiornata quando un sub-processor viene aggiunto, rimosso, o cambia categoria. Notifica via email a docenti registrati con preavviso 30 giorni per cambi material.</p>
+
+  <h2>Responsabili sub-processor</h2>
+  <p>Per richieste DPA con singoli sub-processor: <a href="mailto:marro.andrea96@gmail.com">marro.andrea96@gmail.com</a></p>
+
+  <hr>
+  <p><em>Documento DRAFT v1.0 iter 29 — pending DPA firma scuole acquirenti.</em></p>
+</body>
+</html>

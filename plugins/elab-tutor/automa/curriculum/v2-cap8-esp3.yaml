@@ -1,0 +1,80 @@
+# Curriculum YAML — v2-cap8-esp3
+# "MOSFET + pot + tensione soglia"
+
+experiment_id: v2-cap8-esp3
+volume: 2
+chapter: 8
+title: "MOSFET + pot + tensione soglia"
+
+prerequisites:
+  - v2-cap8-esp2
+
+concepts_introduced:
+  - soglia_MOSFET
+  - controllo_graduale
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - MOSFET
+  - gate
+  - drain
+  - source
+  - potenziometro
+  - soglia
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 MOSFET, 1 LED, 1 resistore 330 ohm, 1 potenziometro
+    10k, 1 batteria 9V, 1 multimetro (opzionale), fili. Il potenziometro va
+    collegato come partitore: estremi a + e -, cursore al gate.
+  during_class: >
+    Collega il potenziometro al gate del MOSFET. Gira la manopola lentamente da un
+    estremo all'altro. "A che punto si accende il LED?" C'e' un punto preciso — la
+    soglia. Sotto la soglia: spento. Sopra: acceso. Con il multimetro misura la
+    tensione al gate quando il LED si accende — circa 2-4V.
+  common_question: >
+    "Perche' il LED non si accende piano piano?" -> Il MOSFET e' come un cancello
+    che si apre tutto insieme. Appena la tensione supera la soglia, si spalanca.
+    C'e' una zona stretta dove sembra graduale, ma il passaggio e' rapido.
+
+common_mistakes:
+  - mistake: "Potenziometro collegato male — solo 2 pin invece di 3"
+    what_to_do: "Servono tutti e 3 i pin: i due estremi a + e -, il pin centrale (cursore) al gate."
+    analogy: "Come un rubinetto con 3 attacchi — ingresso, uscita e regolazione"
+  - mistake: "Girare il pot troppo velocemente e non vedere la soglia"
+    what_to_do: "Gira pianissimo! Il punto magico e' stretto. Fermati appena il LED si accende."
+    analogy: null
+
+analogies:
+  soglia_MOSFET:
+    analogy: "La soglia del MOSFET e' come il livello dell'acqua in una diga — quando l'acqua arriva al bordo, trabocca tutta insieme. Sotto quel livello, niente passa."
+    evidence: "Analogia diga/soglia per tensione di threshold, usata in ingegneria didattica (Sedra & Smith 2014)"
+  controllo_graduale:
+    analogy: "Il potenziometro al gate e' come una manopola del volume — giri piano piano e a un certo punto il suono 'parte'. Prima di quel punto: silenzio. Dopo: musica."
+    evidence: "Analogia audio per controllo continuo, familiare a bambini 10-14 (diSessa 1993)"
+
+assessment_invisible:
+  - "Se lo studente trova la soglia e dice 'qui si accende!' -> ha scoperto il threshold"
+  - "Se misura la tensione al gate con il multimetro -> approccio quantitativo"
+  - "Se dice 'sotto tot volt non funziona' -> comprensione soglia come concetto"

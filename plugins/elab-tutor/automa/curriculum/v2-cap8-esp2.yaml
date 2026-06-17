@@ -1,0 +1,80 @@
+# Curriculum YAML — v2-cap8-esp2
+# "MOSFET e carica del corpo"
+
+experiment_id: v2-cap8-esp2
+volume: 2
+chapter: 8
+title: "MOSFET e carica del corpo"
+
+prerequisites:
+  - v2-cap8-esp1
+
+concepts_introduced:
+  - elettricita_statica
+  - sensibilita_gate
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - MOSFET
+  - gate
+  - drain
+  - source
+  - elettricita' statica
+  - carica
+  - breadboard
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: stesso circuito dell'esperimento precedente ma SENZA filo al gate.
+    Il gate resta scollegato. Serve un ambiente asciutto per funzionare bene.
+    Strofina i piedi sulla moquette o un maglione di lana prima dell'esperimento.
+  during_class: >
+    Il circuito e' pronto, LED spento, gate scollegato. "Ora toccate il pin del gate
+    con il dito." Il LED si accende! Come e' possibile? Il vostro corpo ha
+    accumulato una piccola carica elettrica statica — abbastanza per attivare il gate
+    del MOSFET, che e' sensibilissimo.
+  common_question: >
+    "Perche' a volte non funziona?" -> Dipende dalla carica del corpo. Strofina i
+    piedi sulla moquette o toccati i capelli — accumuli piu' carica. In ambienti umidi
+    funziona meno bene.
+
+common_mistakes:
+  - mistake: "Toccare contemporaneamente gate e source — la carica si scarica"
+    what_to_do: "Tocca SOLO il gate. Se tocchi anche il source, la carica va a massa e non attiva il MOSFET."
+    analogy: null
+  - mistake: "Pensare che sia magia o un trucco"
+    what_to_do: "Spiega: il tuo corpo accumula piccole cariche, come quando prendi la scossa dalla portiera dell'auto."
+    analogy: "Come la scossa dalla portiera dell'auto in inverno — stessa elettricita' statica"
+
+analogies:
+  elettricita_statica:
+    analogy: "L'elettricita' statica del corpo e' come l'energia di una pallina in cima a una discesa — e' li', pronta a scendere. Quando tocchi il gate, la 'pallina' rotola giu' e attiva il MOSFET."
+    evidence: "Analogia potenziale gravitazionale per carica elettrostatica (Borges & Gilbert 1999)"
+  sensibilita_gate:
+    analogy: "Il gate del MOSFET e' sensibile come un interruttore della luce touch — basta sfiorarlo per farlo funzionare. Non serve forza, basta un tocco leggerissimo di carica."
+    evidence: "Analogia touch-screen per sensibilita' gate, contemporanea ed efficace (Liengme 2016)"
+
+assessment_invisible:
+  - "Se lo studente dice 'il mio corpo aveva elettricita'' -> ha capito la carica statica"
+  - "Se prova a caricarsi di piu' (strofina piedi/maglione) -> metodo sperimentale"
+  - "Se chiede 'quanta tensione serve per il gate?' -> pronto per soglia (esp3)"

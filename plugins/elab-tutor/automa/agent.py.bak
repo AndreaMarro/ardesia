@@ -1,0 +1,541 @@
+#!/usr/bin/env python3
+"""
+ELAB Autoresearch Agent — Anthropic API with Programmatic Tool Calling
+Replaces `claude -p` with structured tool use, persistent context, and multi-tool orchestration.
+
+Uses: Anthropic Messages API + tools (DeepSeek, Gemini, Kimi, Semantic Scholar,
+      Playwright screenshots, file read/write, bash, web search).
+"""
+
+import anthropic
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from datetime import datetime
+from pathlib import Path
+
+AUTOMA_ROOT = Path(__file__).parent
+PROJECT_ROOT = AUTOMA_ROOT.parent
+sys.path.insert(0, str(AUTOMA_ROOT))
+
+from tools import (
+    call_deepseek_reasoner, call_gemini, call_kimi,
+    search_papers, chat_galileo, gulpease_index,
+    check_nanobot_health, check_vercel_health, check_brain_health,
+    DEEPSEEK_API_KEY, GEMINI_API_KEY, KIMI_API_KEY,
+)
+
+# Load API key
+_env_path = AUTOMA_ROOT / ".env"
+if _env_path.exists():
+    for line in _env_path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
+# Force-load from .env (setdefault doesn't overwrite empty strings)
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+if not ANTHROPIC_API_KEY and _env_path.exists():
+    for line in _env_path.read_text().splitlines():
+        if line.startswith("ANTHROPIC_API_KEY="):
+            ANTHROPIC_API_KEY = line.split("=", 1)[1].strip()
+            break
+
+# ─── Tool Definitions ────────────────────────────
+
+TOOLS = [
+    {
+        "name": "deepseek_reason",
+        "description": "Call DeepSeek R1 for reasoning, scoring, and judging. Use for evaluating Galileo responses, analyzing problems, and making decisions.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"prompt": {"type": "string", "description": "The reasoning prompt"}},
+            "required": ["prompt"],
+        },
+    },
+    {
+        "name": "gemini_analyze",
+        "description": "Call Gemini 2.5 Pro for market research, competitor analysis, vision analysis, and long-context tasks.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"prompt": {"type": "string", "description": "The analysis prompt"}},
+            "required": ["prompt"],
+        },
+    },
+    {
+        "name": "kimi_review",
+        "description": "Call Kimi K2.5 (128K context) for code review, second opinions, trend analysis, and synthesis. Kimi also supports vision for screenshot analysis.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"prompt": {"type": "string", "description": "The review prompt"}},
+            "required": ["prompt"],
+        },
+    },
+    {
+        "name": "search_papers",
+        "description": "Search Semantic Scholar for academic papers. Returns titles, years, citation counts.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Search query"},
+                "limit": {"type": "integer", "description": "Max results (default 5)"},
+            },
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "web_search",
+        "description": "Search the web for current information, blog posts, competitor sites, EdTech news, documentation.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"query": {"type": "string", "description": "Search query"}},
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "test_galileo",
+        "description": "Send a message to Galileo AI tutor and get response. Use for testing quality, tag accuracy, identity leaks.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "message": {"type": "string"},
+                "experiment_id": {"type": "string", "description": "e.g. v1-cap6-esp1"},
+            },
+            "required": ["message"],
+        },
+    },
+    {
+        "name": "read_file",
+        "description": "Read a file from the project. Use for reading code, configs, knowledge files, reports.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Relative path from project root"},
+                "max_lines": {"type": "integer", "description": "Max lines to read (default 200)"},
+            },
+            "required": ["path"],
+        },
+    },
+    {
+        "name": "write_file",
+        "description": "Write content to a file. Use for saving research, articles, reports, code changes.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Relative path from project root"},
+                "content": {"type": "string"},
+            },
+            "required": ["path", "content"],
+        },
+    },
+    {
+        "name": "run_bash",
+        "description": "Run a bash command. Use for npm run build, git, playwright, lighthouse, axe-core, etc.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "command": {"type": "string"},
+                "timeout": {"type": "integer", "description": "Timeout in seconds (default 120)"},
+            },
+            "required": ["command"],
+        },
+    },
+    {
+        "name": "playwright_screenshot",
+        "description": "Take a screenshot of a URL with Playwright. Returns the file path of the saved screenshot.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "url": {"type": "string", "description": "URL to screenshot"},
+                "viewport": {"type": "string", "description": "WxH e.g. '1024x768' for iPad"},
+                "output": {"type": "string", "description": "Output filename"},
+            },
+            "required": ["url"],
+        },
+    },
+    {
+        "name": "evaluate_score",
+        "description": "Run evaluate.py to get the current composite score. Use to measure impact of changes.",
+        "input_schema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "kimi_vision",
+        "description": "Analyze a screenshot with Kimi moonshot-v1-128k vision. Use for finding visual bugs, UX issues, design problems in screenshots.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "image_path": {"type": "string", "description": "Path to screenshot PNG/JPG"},
+                "prompt": {"type": "string", "description": "What to analyze in the image"},
+            },
+            "required": ["image_path", "prompt"],
+        },
+    },
+    {
+        "name": "write_article",
+        "description": "Write an article and validate it with DeepSeek before saving. The article is scored 1-10 and only saved if score >= 7.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "title": {"type": "string"},
+                "content": {"type": "string", "description": "Full article in markdown"},
+                "tags": {"type": "string", "description": "Comma-separated tags"},
+            },
+            "required": ["title", "content"],
+        },
+    },
+    {
+        "name": "search_context",
+        "description": "Search the persistent SQLite context database for knowledge, research, experiments, scores. Use to recall what was learned in previous cycles.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Search query"},
+                "category": {"type": "string", "description": "Optional: research, improvement, bug, article, decision, metric"},
+            },
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "edit_file",
+        "description": "Edit a file by replacing a specific string with new content. Like sed but safer. Use for surgical code changes without rewriting entire files.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Relative path from project root"},
+                "old_string": {"type": "string", "description": "Exact string to find and replace (must be unique in file)"},
+                "new_string": {"type": "string", "description": "Replacement string"},
+            },
+            "required": ["path", "old_string", "new_string"],
+        },
+    },
+    {
+        "name": "save_knowledge",
+        "description": "Save a finding, insight, or decision to the persistent context database. This survives across cycles.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "category": {"type": "string", "description": "research, improvement, bug, article, decision, metric"},
+                "topic": {"type": "string"},
+                "content": {"type": "string"},
+                "source": {"type": "string", "description": "Where this came from: deepseek, gemini, kimi, semantic_scholar, playwright, manual"},
+            },
+            "required": ["category", "topic", "content"],
+        },
+    },
+]
+
+
+# ─── Tool Execution ─────────────────────────────
+
+def execute_tool(name: str, input_data: dict) -> str:
+    """Execute a tool and return result as string."""
+    try:
+        if name == "deepseek_reason":
+            return call_deepseek_reasoner(input_data["prompt"])
+
+        elif name == "gemini_analyze":
+            return call_gemini(input_data["prompt"])
+
+        elif name == "kimi_review":
+            return call_kimi(input_data["prompt"])
+
+        elif name == "search_papers":
+            papers = search_papers(input_data["query"], input_data.get("limit", 5))
+            return json.dumps(papers, indent=2, ensure_ascii=False)[:3000]
+
+        elif name == "web_search":
+            # Multi-source web search: DuckDuckGo API + Google Scholar scrape
+            import urllib.parse
+            query = input_data["query"]
+            encoded = urllib.parse.quote(query)
+            results = []
+
+            # Source 1: DuckDuckGo instant answers
+            try:
+                r = subprocess.run(
+                    ["curl", "-s", "-L", f"https://api.duckduckgo.com/?q={encoded}&format=json&no_html=1"],
+                    capture_output=True, text=True, timeout=15
+                )
+                ddg = json.loads(r.stdout) if r.stdout else {}
+                if ddg.get("Abstract"):
+                    results.append(f"DuckDuckGo: {ddg['Abstract'][:500]}")
+                if ddg.get("RelatedTopics"):
+                    for topic in ddg["RelatedTopics"][:3]:
+                        if isinstance(topic, dict) and topic.get("Text"):
+                            results.append(f"  - {topic['Text'][:150]}")
+            except Exception:
+                pass
+
+            # Source 2: Direct URL fetch (if query looks like URL)
+            if query.startswith("http"):
+                try:
+                    r = subprocess.run(
+                        ["curl", "-s", "-L", "--max-time", "10", query],
+                        capture_output=True, text=True, timeout=15
+                    )
+                    # Strip HTML tags for readability
+                    text = re.sub(r'<[^>]+>', ' ', r.stdout)
+                    text = re.sub(r'\s+', ' ', text).strip()
+                    results.append(f"Page content: {text[:2000]}")
+                except Exception:
+                    pass
+
+            # Source 3: Semantic Scholar (for academic queries)
+            if any(w in query.lower() for w in ["paper", "research", "study", "academic", "pedagogy", "education"]):
+                papers = search_papers(query, 3)
+                valid = [p for p in papers if p.get("title")]
+                if valid:
+                    results.append("Academic papers:")
+                    for p in valid:
+                        results.append(f"  [{p.get('year','?')}] {p.get('title','?')[:80]} ({p.get('citationCount',0)} cites)")
+
+            return "\n".join(results)[:4000] if results else "No results found"
+
+        elif name == "test_galileo":
+            r = chat_galileo(input_data["message"], input_data.get("experiment_id", "v1-cap6-esp1"))
+            return json.dumps(r, ensure_ascii=False)[:2000]
+
+        elif name == "read_file":
+            path = PROJECT_ROOT / input_data["path"]
+            if not path.exists():
+                return f"ERROR: File not found: {input_data['path']}"
+            content = path.read_text()
+            max_lines = input_data.get("max_lines", 200)
+            lines = content.splitlines()[:max_lines]
+            return "\n".join(lines)
+
+        elif name == "write_file":
+            path = PROJECT_ROOT / input_data["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(input_data["content"])
+            return f"Written {len(input_data['content'])} chars to {input_data['path']}"
+
+        elif name == "edit_file":
+            path = PROJECT_ROOT / input_data["path"]
+            if not path.exists():
+                return f"ERROR: File not found: {input_data['path']}"
+            content = path.read_text()
+            old = input_data["old_string"]
+            new = input_data["new_string"]
+            count = content.count(old)
+            if count == 0:
+                return f"ERROR: String not found in {input_data['path']}"
+            if count > 1:
+                return f"ERROR: String found {count} times in {input_data['path']} — must be unique. Provide more context."
+            content = content.replace(old, new, 1)
+            path.write_text(content)
+            return f"OK: Replaced 1 occurrence in {input_data['path']} ({len(old)} → {len(new)} chars)"
+
+        elif name == "run_bash":
+            timeout = input_data.get("timeout", 120)
+            r = subprocess.run(
+                input_data["command"], shell=True,
+                capture_output=True, text=True, timeout=timeout,
+                cwd=str(PROJECT_ROOT),
+            )
+            output = r.stdout + r.stderr
+            return output[:5000] if output else f"(exit code {r.returncode})"
+
+        elif name == "playwright_screenshot":
+            url = input_data["url"]
+            viewport = input_data.get("viewport", "1280x800")
+            w, h = viewport.split("x")
+            output = input_data.get("output", f"automa/screenshots/screen-{int(time.time())}.png")
+            (PROJECT_ROOT / "automa" / "screenshots").mkdir(parents=True, exist_ok=True)
+
+            script = f"""
+const {{ chromium }} = require('playwright');
+(async () => {{
+    const browser = await chromium.launch({{ headless: true }});
+    const page = await browser.newPage({{ viewport: {{ width: {w}, height: {h} }} }});
+    await page.goto('{url}', {{ timeout: 30000 }});
+    await page.waitForLoadState('networkidle', {{ timeout: 15000 }});
+    await page.screenshot({{ path: '{output}', fullPage: false }});
+    console.log('OK');
+    await browser.close();
+}})();
+"""
+            r = subprocess.run(["node", "-e", script], capture_output=True, text=True,
+                               timeout=45, cwd=str(PROJECT_ROOT))
+            if "OK" in r.stdout:
+                return f"Screenshot saved: {output}"
+            return f"Screenshot failed: {r.stderr[:300]}"
+
+        elif name == "evaluate_score":
+            r = subprocess.run(
+                ["python3", str(AUTOMA_ROOT / "evaluate.py")],
+                capture_output=True, text=True, timeout=600,
+                cwd=str(PROJECT_ROOT),
+            )
+            scores = {}
+            for line in r.stdout.splitlines():
+                if line.startswith("SCORE:"):
+                    parts = line[6:].split("=")
+                    if len(parts) == 2:
+                        scores[parts[0]] = parts[1]
+            return json.dumps(scores, indent=2)
+
+        elif name == "kimi_vision":
+            from tools import call_kimi_vision
+            return call_kimi_vision(
+                input_data["prompt"],
+                str(PROJECT_ROOT / input_data["image_path"]),
+            )
+
+        elif name == "write_article":
+            # Step 1: Validate with DeepSeek BEFORE saving
+            title = input_data["title"]
+            content = input_data["content"]
+            tags = input_data.get("tags", "edtech")
+
+            validation = call_deepseek_reasoner(
+                f"Valuta questo articolo per il blog di ELAB Tutor (simulatore elettronica per bambini).\n"
+                f"Titolo: {title}\n"
+                f"Contenuto (prime 1000 parole):\n{content[:3000]}\n\n"
+                f"Dai un punteggio 1-10 su: chiarezza, utilità per insegnanti inesperti, "
+                f"correttezza tecnica, appeal marketing. Rispondi con: SCORE:N MOTIVO:breve"
+            )
+
+            # Extract score
+            score_match = re.search(r'SCORE:\s*(\d+)', validation)
+            score = int(score_match.group(1)) if score_match else 5
+
+            if score < 7:
+                return f"ARTICLE REJECTED (score={score}/10). DeepSeek feedback: {validation[:500]}\nRewrite needed."
+
+            # Step 2: Save with watermark
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            filename = f"automa/articles/{date_str}-{re.sub(r'[^a-z0-9]+', '-', title.lower())[:50]}.md"
+            full_article = f"""---
+title: "{title}"
+author: "Andrea Marro"
+date: "{date_str}"
+tags: [{tags}]
+watermark: "© Andrea Marro — ELAB Tutor"
+quality_score: {score}/10
+validated_by: "DeepSeek R1"
+---
+
+{content}
+
+---
+*© Andrea Marro — ELAB Tutor. Tutti i diritti riservati.*
+"""
+            path = PROJECT_ROOT / filename
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(full_article)
+            return f"ARTICLE APPROVED (score={score}/10). Saved: {filename}. Validation: {validation[:200]}"
+
+        elif name == "search_context":
+            from context_db import search_knowledge
+            results = search_knowledge(
+                input_data["query"],
+                category=input_data.get("category"),
+                limit=10,
+            )
+            return json.dumps(results, indent=2, ensure_ascii=False, default=str)[:5000]
+
+        elif name == "save_knowledge":
+            from context_db import add_knowledge
+            add_knowledge(
+                category=input_data["category"],
+                topic=input_data["topic"],
+                content=input_data["content"],
+                source=input_data.get("source", "agent"),
+            )
+            return f"Saved to context DB: [{input_data['category']}] {input_data['topic']}"
+
+        else:
+            return f"Unknown tool: {name}"
+
+    except Exception as e:
+        return f"ERROR: {str(e)[:500]}"
+
+
+# ─── Agent Loop ──────────────────────────────────
+
+def run_agent(system_prompt: str, user_prompt: str, max_turns: int = 25,
+              model: str = "claude-opus-4-20250514") -> dict:
+    """Run the agent with tool calling loop. Returns conversation result."""
+
+    if not ANTHROPIC_API_KEY:
+        return {"error": "ANTHROPIC_API_KEY not set", "status": "failed"}
+
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    messages = [{"role": "user", "content": user_prompt}]
+
+    tool_calls_made = []
+    total_tokens = 0
+
+    for turn in range(max_turns):
+        response = client.messages.create(
+            model=model,
+            max_tokens=4096,
+            system=system_prompt,
+            tools=TOOLS,
+            messages=messages,
+        )
+
+        total_tokens += response.usage.input_tokens + response.usage.output_tokens
+
+        # Check if we're done
+        if response.stop_reason == "end_turn":
+            # Extract text from response
+            text = ""
+            for block in response.content:
+                if block.type == "text":
+                    text += block.text
+            return {
+                "status": "done",
+                "response": text,
+                "turns": turn + 1,
+                "tool_calls": len(tool_calls_made),
+                "tokens": total_tokens,
+                "tools_used": list(set(t["name"] for t in tool_calls_made)),
+            }
+
+        # Process tool calls
+        assistant_content = response.content
+        messages.append({"role": "assistant", "content": assistant_content})
+
+        tool_results = []
+        for block in assistant_content:
+            if block.type == "tool_use":
+                print(f"  🔧 {block.name}({json.dumps(block.input)[:80]}...)")
+                result = execute_tool(block.name, block.input)
+                tool_calls_made.append({"name": block.name, "input": block.input})
+                tool_results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,
+                    "content": result[:8000],  # Limit tool result size
+                })
+
+        messages.append({"role": "user", "content": tool_results})
+
+    return {
+        "status": "max_turns_reached",
+        "turns": max_turns,
+        "tool_calls": len(tool_calls_made),
+        "tokens": total_tokens,
+        "tools_used": list(set(t["name"] for t in tool_calls_made)),
+    }
+
+
+# ─── Entry Point ─────────────────────────────────
+
+if __name__ == "__main__":
+    # Quick test
+    print("Testing ELAB Agent with Anthropic API...")
+    print(f"API key: {'set' if ANTHROPIC_API_KEY else 'MISSING'}")
+
+    result = run_agent(
+        system_prompt="Sei ELAB Autoresearch. Rispondi brevemente.",
+        user_prompt="Usa il tool test_galileo per mandare 'Cos è un LED?' a Galileo. Poi valuta la risposta con deepseek_reason.",
+        max_turns=5,
+        model="claude-opus-4-20250514",
+    )
+    print(json.dumps(result, indent=2, ensure_ascii=False)[:2000])

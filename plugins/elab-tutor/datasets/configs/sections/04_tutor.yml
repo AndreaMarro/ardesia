@@ -1,0 +1,103 @@
+id: tutor
+name: "Teoria e Spiegazioni"
+intent: tutor
+needs_llm: true
+
+templates:
+  # ── LEGGI FISICHE ──────────────
+  - input: "{frase}"
+    llm_hint: "Spiegazione legge fisica. Usa analogia acqua/tubi per corrente, autostrada per resistenza. Semplice, divertente."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' la legge di Ohm?
+        - spiegami la legge di Ohm
+        - V uguale I per R, che significa?
+        - come funziona la legge di Ohm?
+        - cos'e' la corrente elettrica?
+        - spiegami la corrente
+        - cos'e' la tensione?
+        - cos'e' il voltaggio?
+        - spiegami la differenza tra tensione e corrente
+        - cos'e' la resistenza elettrica?
+        - a cosa serve la resistenza?
+        - cos'e' la potenza elettrica?
+        - cos'e' un circuito in serie?
+        - cos'e' un circuito in parallelo?
+        - che differenza c'e' tra serie e parallelo?
+        - cos'e' un corto circuito?
+        - perche' il corto circuito e' pericoloso?
+        - cos'e' la frequenza?
+        - cos'e' il PWM?
+        - come funziona il PWM?
+
+  # ── COMPONENTI ──────────────
+  - input: "{frase}"
+    llm_hint: "Spiegazione componente elettronico. Analogia quotidiana, a cosa serve nella vita reale."
+    actions: []
+    entities: ["{comp}"]
+    vars:
+      frase:
+        - cos'e' {comp_nome}?
+        - a cosa serve {comp_nome}?
+        - come funziona {comp_nome}?
+        - spiegami {comp_nome}
+        - perche' si usa {comp_nome}?
+      comp_nome: [un LED, una resistenza, un condensatore, un pulsante, un buzzer, un potenziometro, un fotoresistore, un diodo, un mosfet, un led RGB, un motore DC, un servo, un reed switch, un fototransistor, un display LCD]
+      comp: [led, resistor, capacitor, push-button, buzzer-piezo, potentiometer, photo-resistor, diode, mosfet-n, rgb-led, motor-dc, servo, reed-switch, phototransistor, lcd16x2]
+
+  # ── CONCETTI GENERALI ──────────────
+  - input: "{frase}"
+    llm_hint: "Concetto generale di elettronica. Spiegare in modo accessibile, con esempi dalla vita quotidiana."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' un circuito?
+        - come si legge uno schema elettrico?
+        - cos'e' una breadboard?
+        - come funziona una breadboard?
+        - cos'e' un microcontrollore?
+        - cos'e' Arduino?
+        - a cosa serve Arduino?
+        - cos'e' la massa? cos'e' GND?
+        - cos'e' il polo positivo e negativo?
+        - perche' i fili hanno colori diversi?
+        - cos'e' un pin digitale?
+        - cos'e' un pin analogico?
+        - che differenza c'e' tra digitale e analogico?
+        - cos'e' un segnale?
+        - come si misura la corrente?
+        - come si usa il multimetro?
+        - cos'e' un sensore?
+        - cos'e' un attuatore?
+        - cos'e' l'elettricita'?
+        - come arriva la corrente a casa nostra?
+        - perche' ci servono le batterie?
+        - cos'e' un semiconduttore?
+
+  # ── DOMANDE "PERCHE'" ──────────────
+  - input: "{frase}"
+    llm_hint: "Domanda 'perche'' — curiosita' dello studente. Risposta con analogia divertente, senza paroloni."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - perche' il LED si brucia senza resistenza?
+        - perche' il buzzer suona anche piano?
+        - perche' il motore gira al contrario?
+        - perche' devo mettere la resistenza prima del LED?
+        - perche' ci vogliono i fili?
+        - perche' non posso collegare tutto al positivo?
+        - perche' il condensatore si scarica?
+        - perche' il servo trema?
+        - perche' il display non mostra niente?
+        - perche' si chiama breadboard?
+        - perche' Arduino ha bisogno del computer?
+        - perche' le batterie si scaricano?
+
+corruptions:
+  typo_swap: 0.3
+  truncated: 0.15
+  filler: 0.1

@@ -1,0 +1,18 @@
+id: P1-mistral-fallback-gdpr
+priority: P1
+title: Integrare Mistral API come fallback GDPR-safe per Galileo
+created: "2026-03-26T23:30:00"
+source: ricerca-web-reale
+description: |
+Mistral AI è l'unica alternativa frontier-class con: 
+Modello consigliato: Mistral Nemo ($0.02/$0.04 per 1M token)
+- Costo stimato 1000 studenti x 20 domande/giorno: ~€6/mese
+Alternative più capaci se serve qualità superiore: 
+- Mistral Small 3.1 (24B): $0.03/$0.11 — rapporto qualità/prezzo ottimo
+- Mistral Small 3.2 (24B): $0.075/$0.20
+Implementazione: aggiungere provider Mistral in n8n come fallback.
+acceptance_criteria: 
+estimated_effort: 6-8 ore
+tags: [gdpr, mistral, ai, galileo, compliance, eu, fallback]
+claimed_at: "2026-03-27T05:26:58.797409"
+claimed_by: orchestrator

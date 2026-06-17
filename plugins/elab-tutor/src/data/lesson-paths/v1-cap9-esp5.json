@@ -1,0 +1,269 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap9-esp5",
+  "volume": 1,
+  "chapter": 9,
+  "title": "Esperimento 5: miscela blu e rosso con il potenziometro",
+  "chapter_title": "Cos'è un potenziometro?",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che il potenziometro può funzionare da miscelatore di colori: da un lato tutto blu, dall'altro tutto rosso, nel mezzo il viola.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Potenziometro 10kΩ",
+      "quantity": 1,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 2,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED RGB (catodo comune)",
+      "quantity": 1,
+      "icon": "🎨"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 8,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "manopola",
+      "dimmer",
+      "luminosità",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore"
+    ],
+    "note": "Cap 9 Vol 1 — pot miscelatore bidirezionale."
+  },
+  "prerequisites": [
+    "v1-cap9-esp4"
+  ],
+  "next_experiment": {
+    "id": "v1-cap9-esp6",
+    "title": "Lampada RGB con 3 potenziometri",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.71 intitolata \"Lampada RGB con 3 potenziometri\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi il potenziometro diventa un MISCELATORE! Collegando la corrente al pin centrale, i due pin laterali alimentano i due colori.",
+      "teacher_tip": "Collegamento speciale: la corrente entra dal pin centrale (signal) del potenziometro. I due pin laterali vanno ciascuno a un resistore e poi a un canale del LED RGB.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 potenziometro 10K, 2 resistori 470Ω, 1 LED RGB, 8 fili.",
+      "class_hook": "Finora il potenziometro controllava la luminosità. Ma può MESCOLARE due colori? Da un lato blu, dall'altro rosso, nel mezzo il viola?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate il collegamento speciale: il positivo entra dal pin centrale. I due pin laterali vanno ai canali rosso e blu dell'RGB.",
+      "teacher_tip": "Questo è un circuito invertito rispetto al solito: il pin centrale riceve la corrente e la 'distribuisce' tra i due estremi. Come un rubinetto a due vie.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap9-esp5]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di Pot miscelatore blu  rosso seguendo Vol.1 pag.67.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-4",
+              "to": "bb1:a4",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a3",
+              "to": "bb1:a21",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:a5",
+              "to": "bb1:a18",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a15",
+              "to": "bb1:bus-top-minus-15",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Girate la manopola lentamente: il colore sfuma dal blu al rosso! Nel mezzo appare il viola!",
+      "teacher_tip": "Se non vedono la transizione, assicurarsi che l'ambiente non sia troppo illuminato. La differenza si vede meglio al buio.",
+      "provocative_question": "Come fa un solo potenziometro a dare più corrente al blu E meno al rosso contemporaneamente?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Vedono solo un colore",
+          "teacher_response": "Controllate che i due pin laterali del potenziometro siano collegati ciascuno a un resistore diverso. Il pin centrale riceve il positivo.",
+          "analogy": null
+        },
+        {
+          "mistake": "Il viola non appare nel mezzo",
+          "teacher_response": "A metà rotazione la corrente si divide equamente: rosso e blu insieme fanno viola. Se non appare, gira molto lentamente intorno al centro.",
+          "analogy": "Come un rubinetto a due vie: al centro l'acqua esce da entrambi i lati"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e girate: il colore sfuma! Tutto blu → viola → tutto rosso. Il potenziometro mescola i colori!",
+      "teacher_tip": "Evidenziate il potenziometro. Spiegate: 'Il cursore divide la corrente: più va verso un lato, più quel colore domina.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:rgb1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Miscelatore di colori! Da un lato tutto blu, dall'altro tutto rosso, nel mezzo il viola. Il potenziometro divide la corrente tra i due canali.",
+      "analogies": [
+        {
+          "concept": "miscelatore",
+          "text": "Il potenziometro è come il rubinetto della doccia con acqua calda e fredda: da un lato solo fredda (blu), dall'altro solo calda (rosso), nel mezzo tiepida (viola)!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "sfumatura_continua",
+          "text": "È come un tramonto: il cielo sfuma dal blu scuro al rosso arancio passando per il viola. Il potenziometro crea lo stesso effetto!",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo trasformato il potenziometro in un miscelatore di colori! Da blu a rosso passando per il viola.",
+      "teacher_tip": "Chiedete: 'E se aveste 3 manopole, una per ogni colore? Potreste creare QUALSIASI colore!'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il potenziometro può mescolare due colori: girando la manopola il colore sfuma dal blu al rosso passando per il viola. Il cursore divide la corrente tra i due canali.",
+      "concepts_learned": [
+        "potenziometro come miscelatore",
+        "sfumatura continua tra colori"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.71 intitolata \"Lampada RGB con 3 potenziometri\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se dice 'il cursore divide la corrente' → ha capito il meccanismo",
+    "Se nota la transizione graduale → osservazione precisa",
+    "Se chiede '3 manopole per 3 colori?' → pronto per esp 6"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "miscelatore_colore",
+      "sfumatura_continua"
+    ],
+    "next_suggested": "v1-cap9-esp6",
+    "resume_message": "L'ultima volta avete miscelato blu e rosso! Ora: 3 manopole per creare qualsiasi colore."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 67,
+    "label": "Vol.1 pag.67"
+  }
+}

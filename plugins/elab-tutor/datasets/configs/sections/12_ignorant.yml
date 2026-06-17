@@ -1,0 +1,57 @@
+id: ignorant
+name: "Utente Totalmente Ignorante"
+
+templates:
+  - input: "{frase}"
+    intent: tutor
+    needs_llm: true
+    llm_hint: "Utente non sa assolutamente niente di elettronica. Spiegare dal livello zero, analogie semplicissime, zero giudizio."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - cos'e' sta roba?
+        - non capisco niente
+        - ma a che serve tutto questo?
+        - il coso con le gambe cos'e'?
+        - quella cosa colorata a strisce?
+        - ma questi fili dove vanno?
+        - il coso bianco con i buchi cos'e'?
+        - la cosa che si illumina
+        - il coso che fa rumore
+        - la cosa che gira
+        - dove si attacca il filo rosso?
+        - cos'e' questa scheda verde?
+        - ma e' pericoloso?
+        - si puo' prendere la scossa?
+        - devo toccare i fili?
+        - come si accende?
+        - il coso nero piccolo cos'e'?
+        - cos'e' quel cilindretto blu?
+        - che differenza c'e' tra i cosi piccoli e quelli grandi?
+        - ma io non so niente di elettricita'
+
+  - input: "{frase}"
+    intent: circuit
+    needs_llm: true
+    llm_hint: "Utente descrive componente con parole sue, non conosce i nomi. Interpretare e guidare."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - metti quel coso che si accende
+        - voglio la cosa con le strisce
+        - aggiungi il cilindretto
+        - metti il coso che suona
+        - dove va la cosa con 4 gambe?
+        - il coso con la rotella dove lo metto?
+        - voglio il coso che gira
+        - metti quello che sente la luce
+        - il coso del magnete dove va?
+        - aggiungi la cosa piatta con lo schermo
+
+corruptions:
+  typo_swap: 0.4
+  voice: 0.2
+  emoji: 0.2
+  filler: 0.2

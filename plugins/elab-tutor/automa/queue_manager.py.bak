@@ -1,0 +1,174 @@
+"""
+ELAB Automa — File-based Task Queue Manager
+Tasks are YAML files in queue/{pending,active,done,failed}/
+"""
+
+import hashlib
+import json
+import os
+import time
+from datetime import datetime
+from pathlib import Path
+
+QUEUE_ROOT = Path(__file__).parent / "queue"
+DIRS = ["pending", "active", "done", "failed"]
+
+
+def _ensure_dirs():
+    for d in DIRS:
+        (QUEUE_ROOT / d).mkdir(parents=True, exist_ok=True)
+
+
+def _parse_yaml_simple(text: str) -> dict:
+    """Parse YAML task file. Uses PyYAML if available, falls back to simple parser."""
+    try:
+        import yaml
+        result = yaml.safe_load(text)
+        return result if isinstance(result, dict) else {}
+    except ImportError:
+        pass
+    except Exception:
+        pass  # PyYAML parse error — fall back to simple parser
+    # Fallback: minimal parser (no multi-line, no lists)
+    result = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if ":" in line:
+            key, val = line.split(":", 1)
+            key = key.strip()
+            val = val.strip().strip('"').strip("'")
+            if val.lower() in ("true", "false"):
+                val = val.lower() == "true"
+            elif val.isdigit():
+                val = int(val)
+            result[key] = val
+    return result
+
+
+def _write_yaml_simple(data: dict, path: Path):
+    """Write YAML task file. Uses PyYAML if available for correct escaping."""
+    try:
+        import yaml
+        path.write_text(yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False))
+        return
+    except ImportError:
+        pass
+    # Fallback: simple writer (no multi-line support)
+    lines = []
+    for k, v in data.items():
+        if isinstance(v, str) and ("\n" in v or ":" in v or '"' in v):
+            # Use single quotes to avoid escaping issues
+            safe_v = v.replace("'", "''")
+            lines.append(f"{k}: '{safe_v}'")
+        else:
+            lines.append(f"{k}: {v}")
+    path.write_text("\n".join(lines) + "\n")
+
+
+def list_tasks(status: str = "pending") -> list:
+    """List all tasks in a given status directory, sorted by priority."""
+    _ensure_dirs()
+    d = QUEUE_ROOT / status
+    tasks = []
+    for f in sorted(d.glob("*.yaml")):
+        data = _parse_yaml_simple(f.read_text())
+        data["_file"] = f.name
+        data["_path"] = str(f)
+        tasks.append(data)
+    # Sort by priority (P0 first)
+    tasks.sort(key=lambda t: t.get("priority", "P9"))
+    return tasks
+
+
+def get_next_task() -> dict | None:
+    """Get the highest-priority pending task."""
+    tasks = list_tasks("pending")
+    return tasks[0] if tasks else None
+
+
+def claim_task(filename: str) -> bool:
+    """Move task from pending to active."""
+    _ensure_dirs()
+    src = QUEUE_ROOT / "pending" / filename
+    dst = QUEUE_ROOT / "active" / filename
+    if not src.exists():
+        return False
+    # Add claim metadata
+    data = _parse_yaml_simple(src.read_text())
+    data["claimed_at"] = datetime.now().isoformat()
+    data["claimed_by"] = "orchestrator"
+    _write_yaml_simple(data, dst)
+    src.unlink()
+    return True
+
+
+def complete_task(filename: str, result: str = "ok") -> bool:
+    """Move task from active to done."""
+    _ensure_dirs()
+    src = QUEUE_ROOT / "active" / filename
+    dst = QUEUE_ROOT / "done" / filename
+    if not src.exists():
+        return False
+    data = _parse_yaml_simple(src.read_text())
+    data["completed_at"] = datetime.now().isoformat()
+    data["result"] = result
+    _write_yaml_simple(data, dst)
+    src.unlink()
+    return True
+
+
+def fail_task(filename: str, error: str = "unknown") -> bool:
+    """Move task from active to failed."""
+    _ensure_dirs()
+    src = QUEUE_ROOT / "active" / filename
+    dst = QUEUE_ROOT / "failed" / filename
+    if not src.exists():
+        return False
+    data = _parse_yaml_simple(src.read_text())
+    data["failed_at"] = datetime.now().isoformat()
+    data["error"] = error[:500]
+    _write_yaml_simple(data, dst)
+    src.unlink()
+    return True
+
+
+def create_task(task_id: str, priority: str, title: str, description: str, tags: str = "") -> str:
+    """Create a new pending task. Returns filename."""
+    _ensure_dirs()
+    filename = f"{priority}-{task_id}.yaml"
+    path = QUEUE_ROOT / "pending" / filename
+
+    # Dedup: check if same task exists in any status
+    content_hash = hashlib.md5(f"{task_id}{title}".encode()).hexdigest()[:8]
+    for d in DIRS:
+        existing = QUEUE_ROOT / d / filename
+        if existing.exists():
+            return f"DUPLICATE:{d}/{filename}"
+
+    data = {
+        "id": task_id,
+        "priority": priority,
+        "title": title,
+        "description": description,
+        "tags": tags,
+        "created_at": datetime.now().isoformat(),
+        "hash": content_hash,
+    }
+    _write_yaml_simple(data, path)
+    return filename
+
+
+def stats() -> dict:
+    """Get queue statistics."""
+    _ensure_dirs()
+    return {d: len(list((QUEUE_ROOT / d).glob("*.yaml"))) for d in DIRS}
+
+
+if __name__ == "__main__":
+    _ensure_dirs()
+    print("Queue stats:", json.dumps(stats()))
+    print("\nPending tasks:")
+    for t in list_tasks("pending"):
+        print(f"  [{t.get('priority', '?')}] {t.get('title', t.get('_file', '?'))}")

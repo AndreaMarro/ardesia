@@ -1,0 +1,62 @@
+{
+  "cycle": 22,
+  "timestamp": "2026-03-27T09:39:28.160189",
+  "date": "2026-03-27",
+  "mode": "IMPROVE",
+  "checks": [
+    {
+      "name": "health",
+      "status": "pass",
+      "detail": "{\"nanobot\": \"ok\", \"vercel\": \"ok\", \"brain\": \"ok\"}",
+      "time_ms": 483
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": "Build OK in 18.62s",
+      "time_ms": 21405
+    },
+    {
+      "name": "galileo",
+      "status": "pass",
+      "detail": "9/10 pass | FAIL: carica esperimento 1: missing expected [[AZIONE:loadexp]]",
+      "time_ms": 170290
+    },
+    {
+      "name": "content",
+      "status": "pass",
+      "detail": "62 experiments found",
+      "time_ms": 7
+    },
+    {
+      "name": "gulpease",
+      "status": "pass",
+      "detail": "avg=80 min=73 (target \u226560) [3 samples]",
+      "time_ms": 66040
+    },
+    {
+      "name": "browser",
+      "status": "pass",
+      "detail": "Title: ELAB Tutor Galileo | Simulatore Circuiti, AI Tutor e Sfide Interattive, Errors: 0",
+      "time_ms": 3979
+    },
+    {
+      "name": "ipad",
+      "status": "ok",
+      "detail": "Overflow: False, Small btns: 0",
+      "time_ms": 2357
+    }
+  ],
+  "checks_passed": 6,
+  "checks_total": 7,
+  "task_result": {
+    "task": "max_turns",
+    "status": "partial",
+    "lesson": "Raggiunto limite turni. Task troppo complesso \u2014 ridurre scope.",
+    "error": "max_turns_reached"
+  },
+  "research": "Kimi: Trend 1: Crescita dell'apprendimento offline\nL'educazione offline sta diventando sempre pi\u00f9 importante, specialmente in aree con scarsa connessione internet. Le app progressive web (PWA) sono in grado di funzionare offline, rendendole ideali per l'istruzione in questi contesti. Questo trend si sta diffondendo rapidamente, con un aumento nell'utilizzo di PWA per l'educazione.\n\nTrend 2: Personalizza\nDeepSeek: **Problemi:**\n1.  **Accesso limitato:** Senza una PWA pre-installata, gli studenti in aree con connettivit\u00e0 intermittente non possono accedere ai materiali didattici quando offline.\n2.  **Sincronizzazione complessa:** Gestire la raccolta dei dati delle attivit\u00e0 offline (quiz, note) e la loro sincronizzazione affidabile una volta riconnessi \u00e8 tecnicamente complesso e soggetto a errori.\n\n**Soluzione",
+  "ai_scoring": null,
+  "composite_score": 0.946,
+  "self_exam": null
+}

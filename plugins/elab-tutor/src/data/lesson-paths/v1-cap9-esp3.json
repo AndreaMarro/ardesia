@@ -1,0 +1,268 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap9-esp3",
+  "volume": 1,
+  "chapter": 9,
+  "title": "LED di colore diverso con pot",
+  "chapter_title": "Cos'è un potenziometro?",
+  "difficulty": 1,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono che LED di colori diversi si accendono a punti diversi della manopola, perché ogni colore ha una soglia diversa.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Potenziometro 10kΩ",
+      "quantity": 1,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Resistore 470Ω",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED verde",
+      "quantity": 1,
+      "icon": "💡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 6,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "manopola",
+      "dimmer",
+      "luminosità",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore"
+    ],
+    "note": "Cap 9 Vol 1 — soglia diversa per colore LED."
+  },
+  "prerequisites": [
+    "v1-cap9-esp2"
+  ],
+  "next_experiment": {
+    "id": "v1-cap9-esp4",
+    "title": "Dimmer RGB azzurrino",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"Dimmer RGB azzurrino\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi cambiamo il LED: da rosso a verde. Si accenderà allo stesso punto della manopola? Scopriamolo!",
+      "teacher_tip": "Stesso circuito dell'esperimento 1 ma con LED verde. Il verde ha bisogno di più corrente per accendersi, quindi la manopola dovrà essere girata di più.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 potenziometro 10K, 1 resistore 470Ω, 1 LED verde, 6 fili.",
+      "class_hook": "Il LED rosso si accendeva facilmente con il potenziometro. Il LED verde avrà bisogno della stessa quantità di corrente o di più?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Stesso circuito del dimmer, ma con LED verde. Mostrate dove si accende rispetto al rosso.",
+      "teacher_tip": "Se possibile, tieni montato anche il circuito con il LED rosso per un confronto diretto.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap9-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di LED di colore diverso con pot seguendo Vol.1 pag.63.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "green"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-5",
+              "to": "bb1:a5",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a6",
+              "to": "bb1:a10",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a7",
+              "to": "bb1:bus-top-minus-7",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a18",
+              "to": "bb1:bus-top-minus-18",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Girate la manopola lentamente: a che punto si accende il LED verde? È prima o dopo rispetto al rosso?",
+      "teacher_tip": "Il verde si accende dopo rispetto al rosso. Se i ragazzi non notano la differenza, suggerisci di girare molto lentamente e segnare il punto di accensione.",
+      "provocative_question": "Perché il LED verde ha bisogno di più corrente per accendersi? Dipende dal colore?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Non notano la differenza con il rosso",
+          "teacher_response": "Girate molto lentamente e nota il punto esatto in cui il LED si illumina. Confronta con il ricordo del rosso.",
+          "analogy": null
+        },
+        {
+          "mistake": "Pensano che il LED sia difettoso",
+          "teacher_response": "Il LED funziona! Ogni colore ha una soglia diversa — il verde ha bisogno di più corrente per accendersi.",
+          "analogy": "Come le lampadine: alcune hanno bisogno di più energia per accendersi"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e girate la manopola: il LED verde si accende più tardi del rosso! Ogni colore ha la sua soglia.",
+      "teacher_tip": "Evidenziate il LED e il potenziometro. Spiegate: 'Ogni colore di LED ha bisogno di una quantità diversa di corrente per illuminarsi.'",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:led1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il LED verde si accende più tardi nella rotazione! Ogni colore ha una soglia diversa: il rosso si accende facilmente, il verde ha bisogno di più corrente.",
+      "analogies": [
+        {
+          "concept": "soglia_colore",
+          "text": "Ogni colore di LED è come un atleta diverso: il rosso è il più leggero e parte subito, il verde è più pesante e ha bisogno di più spinta (corrente) per partire.",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "sensibilita_diversa",
+          "text": "Come le piante: alcune fioriscono con poca acqua, altre ne hanno bisogno di più. Ogni LED 'fiorisce' con una quantità diversa di corrente.",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo scoperto che ogni colore di LED ha una soglia diversa — il verde ha bisogno di più corrente del rosso!",
+      "teacher_tip": "Chiedete: 'E il blu? Sarà come il rosso o come il verde?' (il blu ha la soglia più alta di tutti).",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Ogni colore di LED ha una soglia diversa. Il rosso si accende facilmente, il verde ha bisogno di più corrente. Il potenziometro ci permette di vedere questa differenza girando la manopola!",
+      "concepts_learned": [
+        "soglia diversa per colore LED",
+        "confronto tra LED"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"Dimmer RGB azzurrino\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se nota che il verde si accende 'dopo' → osservazione precisa",
+    "Se dice 'ogni colore ha bisogno di una quantità diversa' → ha capito il concetto di soglia",
+    "Se chiede 'e il blu?' → curiosità esplorativa"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "soglia_led_per_colore",
+      "confronto_led_diversi"
+    ],
+    "next_suggested": "v1-cap9-esp4",
+    "resume_message": "L'ultima volta avete scoperto che il verde si accende dopo il rosso! Ora creiamo un colore nuovo con il potenziometro."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 63,
+    "label": "Vol.1 pag.63"
+  }
+}

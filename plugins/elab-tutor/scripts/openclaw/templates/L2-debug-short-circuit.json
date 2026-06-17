@@ -1,0 +1,133 @@
+{
+  "$schema": "https://elabtutor.school/schema/openclaw-l2-template-v1.json",
+  "id": "L2-debug-short-circuit",
+  "version": "1.0.0",
+  "level": "L2",
+  "name": "debugShortCircuit",
+  "description": "Morphic template: rilevamento corto-circuito breadboard via vision Gemini + suggerimento riposiziona componenti. Highlight rotaie alimentazione, captura foto kit, diagnosi automatica, voice TTS Isabella avverte classe. Citazione Vol.1 pag.45 'attenzione cortocircuito'.",
+  "category": "diagnose-error",
+  "owner_agent": "toolspec-expand-opus",
+  "iter_introduced": 14,
+  "principio_zero": {
+    "plurale_obbligatorio": "Ragazzi,",
+    "citazione_verbatim": true,
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.45",
+    "analogia": "ponte diretto tra positivo e negativo = scorciatoia che brucia"
+  },
+  "morfismo_sense_1_5": {
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
+    "lim_distance_m": 5,
+    "adapt_voice": true,
+    "adapt_complexity_lessico": true
+  },
+  "inputs": {
+    "experimentId": {
+      "type": "string",
+      "required": false
+    },
+    "errorContext": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
+  },
+  "sequence": [
+    {
+      "step": "highlight-power-rails",
+      "tool": "highlightComponent",
+      "args": {
+        "ids": [
+          "bus-bot-plus",
+          "bus-bot-minus"
+        ],
+        "color": "red",
+        "duration_ms": 3000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "capture-screenshot-breadboard",
+      "tool": "captureScreenshot",
+      "args": {
+        "target": "breadboard-full",
+        "annotate": true,
+        "submitToVision": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "ask-unlim-diagnose-short",
+      "tool": "askUNLIM",
+      "args": {
+        "query": "diagnosi corto circuito breadboard rotaie positivo negativo collegate diretto",
+        "context": "diagnose-short-circuit",
+        "useVision": true
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "show-nudge-disconnect",
+      "tool": "showNudge",
+      "args": {
+        "text": "STOP! Scollegate la batteria subito. Controllate filo rosso e nero non si tocchino.",
+        "type": "warning",
+        "duration_ms": 8000
+      },
+      "expected_status": "ok"
+    },
+    {
+      "step": "speak-warning-short",
+      "tool": "speakTTS",
+      "args": {
+        "text": "Ragazzi, Vol.1 pag.45 dice attenzione cortocircuito. Il filo rosso tocca il nero: scollegate subito la batteria e separate i fili.",
+        "voice": "it-IT-IsabellaNeural",
+        "speed": 0.92
+      },
+      "expected_status": "ok"
+    }
+  ],
+  "fallback_strategy": "halt-on-error",
+  "expected_outcome": "Classe scollega batteria immediatamente, identifica fili rosso/nero che si toccano, ripristina circuito sicuro",
+  "expected_total_latency_ms": 5500,
+  "telemetry": {
+    "category": "diagnose-error",
+    "expected_latency_ms": 5500
+  },
+  "test_assertions": [
+    "sequence.length === 5",
+    "sequence[0].tool === 'highlightComponent'",
+    "sequence[1].args.submitToVision === true",
+    "sequence[4].args.text.includes('Ragazzi,')",
+    "sequence[4].args.text.match(/Vol\\.\\d/)",
+    "principio_zero.max_parole <= 120"
+  ]
+}

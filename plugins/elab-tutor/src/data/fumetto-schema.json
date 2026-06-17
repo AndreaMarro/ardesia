@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elabtutor.school/schemas/fumetto-v1.json",
+  "title": "ELAB Tutor — Fumetto pedagogico (scheda ad hoc esperienza studente)",
+  "description": "Schema canonico del fumetto generato da UNLIM a fine esperimento. Conforme PRINCIPIO ZERO + Morfismo Sense 2. Compatibile con Mistral function calling (response_format: json_schema) per integrazione OpenClaw L2 template.",
+  "version": "1.0",
+  "type": "object",
+  "required": ["experimentId", "session", "panels", "principioZero", "rendering"],
+  "additionalProperties": false,
+  "properties": {
+
+    "experimentId": {
+      "type": "string",
+      "pattern": "^v[1-3]-cap[0-9]+-esp[0-9]+$",
+      "description": "ID canonico esperimento (es. v1-cap6-esp1). Deve coincidere con il file lesson-paths/{id}.json."
+    },
+
+    "session": {
+      "type": "object",
+      "required": ["classKey", "anonStudentId", "startedAt", "completedAt", "durationSec"],
+      "additionalProperties": false,
+      "properties": {
+        "classKey": { "type": "string", "description": "Chiave classe inserita dal docente in onboarding (riferimento class_memory Supabase)." },
+        "anonStudentId": { "type": "string", "format": "uuid", "description": "ID anonimo studente (crypto.randomUUID() in localStorage, GDPR-clean)." },
+        "studentDisplayName": { "type": "string", "maxLength": 40, "description": "Nome di visualizzazione (può essere fittizio, es. 'Marta'). Mai cognome." },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "durationSec": { "type": "integer", "minimum": 0, "description": "Tempo totale della sessione in secondi." },
+        "ageBand": { "enum": ["8-10", "11-13", "14+"], "description": "Banda d'età della classe (da class_memory.age_band)." },
+        "kitDotazione": { "enum": ["basic", "advanced", "custom"] }
+      }
+    },
+
+    "volumeContext": {
+      "type": "object",
+      "required": ["volume", "chapter", "chapterTitle", "page", "verbatimText"],
+      "additionalProperties": false,
+      "description": "Riferimenti canonici al libro Davide Fagherazzi (estratti da volume-references.js).",
+      "properties": {
+        "volume": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "chapter": { "type": "integer", "minimum": 1 },
+        "chapterTitle": { "type": "string", "description": "Titolo verbatim del capitolo nel libro (es. 'Cos’è il diodo LED?')." },
+        "experimentTitle": { "type": "string" },
+        "page": { "type": "integer", "minimum": 1 },
+        "verbatimText": { "type": "string", "description": "Citazione verbatim dal bookText. Mai parafrasare." }
+      }
+    },
+
+    "componentsUsed": {
+      "type": "array",
+      "description": "Componenti del kit Omaric effettivamente toccati durante l'esperimento. Catturati via __ELAB_API.unlim.getCircuitState().",
+      "items": {
+        "type": "object",
+        "required": ["name", "kitId", "quantity"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "description": "Nome canonico kit (es. 'LED rosso', 'Resistore 470Ω', 'Breadboard', 'Batteria 9V')." },
+          "kitId": { "type": "string", "description": "ID interno kit Omaric (riferimento omaric-components.json)." },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "color": { "type": "string", "description": "Colore canonico se applicabile (red, lime, navy, ecc.)." }
+        }
+      }
+    },
+
+    "studentJourney": {
+      "type": "object",
+      "description": "Cronologia comportamentale catturata via telemetria pedagogica (events: step_started, step_completed, help_requested, mistake_made, variation_tried).",
+      "required": ["mistakesMade", "mistakesOvercome", "variationsTriedSpontaneously", "helpRequestsCount"],
+      "properties": {
+        "mistakesMade": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "description"],
+            "properties": {
+              "type": { "enum": ["led-reverse", "missing-resistor", "wire-wrong-row", "battery-reverse", "open-circuit", "other"] },
+              "description": { "type": "string", "maxLength": 120 },
+              "atSec": { "type": "integer", "description": "Secondo della sessione in cui l'errore è emerso." }
+            }
+          }
+        },
+        "mistakesOvercome": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Lista degli errori che lo studente HA superato da solo o con suggerimento UNLIM."
+        },
+        "variationsTriedSpontaneously": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 100 },
+          "description": "Variazioni libere tentate dallo studente (es. 'ha provato due LED in serie senza che fosse richiesto')."
+        },
+        "helpRequestsCount": { "type": "integer", "minimum": 0 },
+        "abandonedSteps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "panels": {
+      "type": "array",
+      "description": "Le 6 vignette canoniche. Struttura fissa, contenuto morfico per studente/classe.",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["index", "role", "title", "scene", "balloons", "caption"],
+        "additionalProperties": false,
+        "properties": {
+          "index": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "role": {
+            "enum": ["problema", "ipotesi", "errore", "click", "successo", "ponte"],
+            "description": "Ruolo narrativo canonico della vignetta nella story arc."
+          },
+          "title": { "type": "string", "maxLength": 32, "description": "Titolo del tag visibile in alto-sx (es. 'Il problema', 'Il click')." },
+          "tagColor": { "enum": ["navy", "lime", "orange", "red"], "description": "Colore della bandiera tag." },
+          "scene": {
+            "type": "object",
+            "description": "Descrizione SVG della scena. Render lato client da motore template SVG.",
+            "required": ["sceneType"],
+            "properties": {
+              "sceneType": { "enum": ["classroom-hook", "students-tinkering", "broken-circuit", "metaphor-illumination", "circuit-working", "cliffhanger"] },
+              "components": { "type": "array", "items": { "type": "string" }, "description": "Componenti kit visibili nella scena (LED, breadboard, batteria, resistore)." },
+              "characters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": { "enum": ["docente", "unlim", "studente"] },
+                    "pose": { "enum": ["holding-led", "pointing", "happy", "thinking", "puzzled", "celebrating", "speaking", "listening", "waiting"] },
+                    "position": { "enum": ["tl", "tr", "bl", "br", "tc", "bc", "center"] }
+                  }
+                }
+              },
+              "stateOverride": { "enum": ["led-on", "led-off", "led-burning", "circuit-open", "circuit-closed"], "description": "Stato visivo del circuito da renderizzare." }
+            }
+          },
+          "balloons": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["speaker", "text", "wordCount"],
+              "additionalProperties": false,
+              "properties": {
+                "speaker": { "enum": ["docente", "unlim", "studente"] },
+                "text": {
+                  "type": "string",
+                  "description": "Testo del balloon. Plurale 'Ragazzi'. NO imperativi al docente. ≤60 parole. Citazione Vol/pag verbatim quando presente."
+                },
+                "wordCount": { "type": "integer", "minimum": 1, "maximum": 60, "description": "Conteggio parole (incluso virgolato). HARD LIMIT 60." },
+                "containsCitation": { "type": "boolean", "description": "true se il testo contiene una citazione Vol.X pag.Y verbatim." },
+                "containsAnalogy": { "type": "boolean", "description": "true se il testo contiene un'analogia concreta (porte, tubi, strade, squadra, ecc.)." },
+                "position": { "enum": ["tl", "tr", "bl", "br", "tc", "bc"] },
+                "tail": { "enum": ["bl", "br", "tl", "tr"] }
+              }
+            }
+          },
+          "caption": { "type": "string", "maxLength": 80, "description": "Banda piena in basso vignetta (es. 'CIRCUITO CHIUSO ✓')." },
+          "captionColor": { "enum": ["navy", "lime", "orange"] }
+        }
+      }
+    },
+
+    "principioZero": {
+      "type": "object",
+      "description": "Output del validator pz-v3-validator.ts (12 regole). Hard gate: il fumetto NON viene esportato in PDF se score < 100% sulle regole bloccanti.",
+      "required": ["score", "passed", "rules"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100, "description": "Percentuale di regole superate." },
+        "passed": { "type": "boolean" },
+        "rules": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" },
+          "description": "Stato di ogni regola PZ-V3 (true = pass).",
+          "properties": {
+            "openerRagazzi": { "type": "boolean", "description": "Almeno un balloon docente apre con 'Ragazzi'." },
+            "citationVerbatim": { "type": "boolean", "description": "Citazione Vol/pag presente almeno in V5 (successo)." },
+            "wordLimit60": { "type": "boolean", "description": "Tutti i balloon ≤60 parole." },
+            "noImperativeToTeacher": { "type": "boolean", "description": "Zero imperativi al docente del tipo 'Distribuisci', 'Premi', 'Fai'." },
+            "kitProtagonist": { "type": "boolean", "description": "Kit Omaric protagonista; nessuna frase 'proviamo nel simulatore'." },
+            "hasAnalogy": { "type": "boolean", "description": "Almeno un'analogia concreta (mondo dei ragazzi) presente." },
+            "elabPalette": { "type": "boolean", "description": "Solo palette ELAB (Navy/Lime/Orange/Red) + neutri." },
+            "canonicalChapterTitle": { "type": "boolean", "description": "Titolo capitolo canonico dal volume-references.js." },
+            "componentsCanonical": { "type": "boolean", "description": "Componenti corrispondono al kit Omaric (no Arduino dove non previsto, no resistore 220 quando il libro dice 470, ecc.)." },
+            "noGalileoName": { "type": "boolean", "description": "Mascotte chiamata 'UNLIM', mai 'Galileo'." },
+            "morphicAge": { "type": "boolean", "description": "Tono adatto a ageBand (≤8-10 stile primaria, 11-13 medie, 14+ superiori)." },
+            "cliffhangerToNext": { "type": "boolean", "description": "V6 ponte verso esp.successivo presente." }
+          }
+        }
+      }
+    },
+
+    "rendering": {
+      "type": "object",
+      "required": ["format", "size", "outputPath"],
+      "properties": {
+        "format": { "enum": ["pdf", "png", "svg-web"], "default": "pdf" },
+        "size": { "enum": ["A4-portrait", "A4-landscape", "16:9-screen"], "default": "A4-portrait" },
+        "outputPath": { "type": "string", "description": "Path relativo (es. 'fumetti/{anonStudentId}/{experimentId}.pdf')." },
+        "albumPersistence": {
+          "type": "boolean",
+          "description": "Se true, il fumetto va aggiunto all'album personale dello studente (graphic novel del percorso)."
+        }
+      }
+    },
+
+    "morphicHints": {
+      "type": "object",
+      "description": "Suggerimenti morfici Sense 1.5 per generazione AI: come variare contenuto in base a docente/classe.",
+      "properties": {
+        "teacherStyle": { "enum": ["frontale", "laboratoriale", "ibrido"] },
+        "studentLevel": { "enum": ["basic", "intermediate", "advanced"] },
+        "previousConcepts": { "type": "array", "items": { "type": "string" }, "description": "Concetti già spiegati nelle sessioni precedenti (da class_memory.explained_concepts) per evitare ripetizioni." },
+        "preferredAnalogies": { "type": "array", "items": { "type": "string" }, "description": "Categorie analogiche più efficaci per questa classe (porte, tubi, strade, squadra, food)." }
+      }
+    }
+  }
+}

@@ -1,0 +1,395 @@
+"""
+ELAB Automa — 7 Quick Checks (~3 min total)
+Each check returns: {"name": str, "status": "pass"|"fail"|"warn", "detail": str, "time_ms": int}
+"""
+
+import functools
+import json
+import os
+import re
+import subprocess
+import time
+from pathlib import Path
+
+# Project root
+PROJECT_ROOT = Path(__file__).parent.parent
+AUTOMA_ROOT = Path(__file__).parent
+
+# Import tools
+from tools import (
+    check_brain_health,
+    check_nanobot_health,
+    check_vercel_health,
+    chat_galileo,
+    gulpease_index,
+)
+
+
+def _timed(fn):
+    """Decorator to measure execution time."""
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        t0 = time.time()
+        result = fn(*args, **kwargs)
+        result["time_ms"] = int((time.time() - t0) * 1000)
+        return result
+    return wrapper
+
+
+# ─── CHECK 1: Health (15s) ───────────────────────────────
+
+@_timed
+def check_health() -> dict:
+    """Ping nanobot + Vercel + Brain VPS."""
+    results = {}
+    nanobot = check_nanobot_health()
+    results["nanobot"] = nanobot["status"]
+
+    vercel = check_vercel_health()
+    results["vercel"] = vercel["status"]
+
+    brain = check_brain_health()
+    results["brain"] = brain["status"]
+
+    all_ok = all(v == "ok" for v in results.values())
+    failed = [k for k, v in results.items() if v != "ok"]
+
+    return {
+        "name": "health",
+        "status": "pass" if all_ok else "fail",
+        "detail": json.dumps(results) if all_ok else f"DOWN: {', '.join(failed)}",
+    }
+
+
+# ─── CHECK 2: Build (30s) ───────────────────────────────
+
+@_timed
+def check_build() -> dict:
+    """Run npm run build and check for errors."""
+    try:
+        result = subprocess.run(
+            ["npm", "run", "build"],
+            cwd=str(PROJECT_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if result.returncode == 0:
+            # Extract build time from output
+            match = re.search(r'built in ([\d.]+)s', result.stdout + result.stderr)
+            build_time = match.group(1) if match else "?"
+            return {
+                "name": "build",
+                "status": "pass",
+                "detail": f"Build OK in {build_time}s",
+            }
+        else:
+            # Extract first error
+            errors = [l for l in (result.stdout + result.stderr).splitlines() if "error" in l.lower()]
+            first_error = errors[0][:200] if errors else "Unknown error"
+            return {
+                "name": "build",
+                "status": "fail",
+                "detail": first_error,
+            }
+    except subprocess.TimeoutExpired:
+        return {"name": "build", "status": "fail", "detail": "Build timed out (>120s)"}
+    except Exception as e:
+        return {"name": "build", "status": "fail", "detail": str(e)[:200]}
+
+
+# ─── CHECK 3: Galileo (60s) ─────────────────────────────
+
+GALILEO_TEST_MESSAGES = [
+    ("Cos'è un LED?", "theory", ["LED", "luce"]),
+    ("avvia la simulazione", "action", ["[AZIONE:play]"]),
+    ("metti un LED sul circuito", "circuit", ["[AZIONE:addcomponent]", "[INTENT:"]),
+    ("compila il codice", "action", ["[AZIONE:compile]"]),
+    ("fammi un quiz", "quiz", ["quiz", "domanda", "[AZIONE:quiz]"]),
+    ("cos'è una resistenza?", "theory", ["resistenza", "ohm", "corrente"]),
+    ("pausa", "action", ["[AZIONE:pause]"]),
+    ("pulisci tutto", "action", ["[AZIONE:clearall]"]),
+    ("carica esperimento 1", "action", ["[AZIONE:loadexp]"]),
+    ("aiutami col circuito", "help", None),  # Any response is fine
+]
+
+@_timed
+def check_galileo() -> dict:
+    """Send 10 test messages to nanobot, verify tags + Italian."""
+    passed = 0
+    failed_msgs = []
+
+    for msg, category, expected_any in GALILEO_TEST_MESSAGES:
+        result = chat_galileo(msg)
+        if result["error"]:
+            failed_msgs.append(f"{msg}: {result['error']}")
+            continue
+
+        response = result["response"]
+
+        # Check it's not empty
+        if not response or len(response) < 10:
+            failed_msgs.append(f"{msg}: empty response")
+            continue
+
+        # Check expected content (if any)
+        if expected_any:
+            found = any(
+                kw.lower() in response.lower() or kw in response
+                for kw in expected_any
+            )
+            if not found:
+                failed_msgs.append(f"{msg}: missing expected [{', '.join(expected_any)}]")
+                continue
+
+        passed += 1
+
+    total = len(GALILEO_TEST_MESSAGES)
+    status = "pass" if passed >= 8 else ("warn" if passed >= 6 else "fail")
+
+    return {
+        "name": "galileo",
+        "status": status,
+        "detail": f"{passed}/{total} pass" + (f" | FAIL: {'; '.join(failed_msgs[:3])}" if failed_msgs else ""),
+    }
+
+
+# ─── CHECK 4: Content Integrity (5s) ────────────────────
+
+@_timed
+def check_content() -> dict:
+    """Verify experiment data files are intact."""
+    exp_files = [
+        "src/data/experiments-vol1.js",
+        "src/data/experiments-vol2.js",
+        "src/data/experiments-vol3.js",
+    ]
+    issues = []
+    total_experiments = 0
+
+    for f in exp_files:
+        path = PROJECT_ROOT / f
+        if not path.exists():
+            issues.append(f"{f}: MISSING")
+            continue
+        content = path.read_text()
+        # Count experiment objects (id: "v1-...", id: "v2-...", id: "v3-...")
+        exp_ids = re.findall(r'id:\s*["\']v\d+-', content)
+        total_experiments += len(exp_ids)
+
+        # Check for pin assignments
+        pin_count = content.count("pinAssignments")
+        if pin_count == 0 and "vol3" not in f:
+            issues.append(f"{f}: no pinAssignments found")
+
+    status = "pass" if total_experiments >= 60 and not issues else ("warn" if total_experiments >= 50 else "fail")
+
+    return {
+        "name": "content",
+        "status": status,
+        "detail": f"{total_experiments} experiments found" + (f" | Issues: {'; '.join(issues)}" if issues else ""),
+    }
+
+
+# ─── CHECK 5: Gulpease Readability (5s) ─────────────────
+
+@_timed
+def check_gulpease() -> dict:
+    """Test Galileo response readability (target: ≥60 for middle school)."""
+    test_msgs = [
+        "Cos'è un LED?",
+        "Come funziona una resistenza?",
+        "Cosa succede se collego il LED al contrario?",
+    ]
+
+    scores = []
+    for msg in test_msgs:
+        result = chat_galileo(msg)
+        if result["error"] or not result["response"]:
+            continue
+        score = gulpease_index(result["response"])
+        scores.append(score)
+
+    if not scores:
+        return {"name": "gulpease", "status": "warn", "detail": "No responses to analyze"}
+
+    avg = sum(scores) / len(scores)
+    min_score = min(scores)
+    status = "pass" if min_score >= 55 else ("warn" if min_score >= 40 else "fail")
+
+    return {
+        "name": "gulpease",
+        "status": status,
+        "detail": f"avg={avg:.0f} min={min_score:.0f} (target ≥60) [{len(scores)} samples]",
+    }
+
+
+# ─── CHECK 6: Browser (Playwright, 30s) ─────────────────
+
+@_timed
+def check_browser() -> dict:
+    """Load simulator in Playwright, click play, verify LED state."""
+    # Check if playwright is installed
+    try:
+        result = subprocess.run(
+            ["npx", "playwright", "--version"],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.returncode != 0:
+            return {"name": "browser", "status": "warn", "detail": "Playwright not installed"}
+    except Exception:
+        return {"name": "browser", "status": "warn", "detail": "Playwright not available"}
+
+    # Simple test: load the page and check for errors
+    test_script = """
+const { chromium } = require('playwright');
+(async () => {
+    const browser = await chromium.launch({ headless: true });
+    const page = await browser.newPage();
+    try {
+        await page.goto('https://www.elabtutor.school', { timeout: 30000 });
+        await page.waitForLoadState('networkidle', { timeout: 15000 });
+        const title = await page.title();
+        const errors = [];
+        page.on('pageerror', e => errors.push(e.message));
+        console.log(JSON.stringify({ title, errors: errors.length, status: 'ok' }));
+    } catch (e) {
+        console.log(JSON.stringify({ error: e.message, status: 'fail' }));
+    }
+    await browser.close();
+})();
+"""
+    try:
+        result = subprocess.run(
+            ["node", "-e", test_script],
+            capture_output=True, text=True, timeout=45,
+            cwd=str(PROJECT_ROOT),
+        )
+        output = result.stdout.strip().split("\n")[-1] if result.stdout.strip() else "{}"
+        data = json.loads(output)
+        status = "pass" if data.get("status") == "ok" else "fail"
+        return {
+            "name": "browser",
+            "status": status,
+            "detail": f"Title: {data.get('title', '?')}, Errors: {data.get('errors', '?')}",
+        }
+    except Exception as e:
+        return {"name": "browser", "status": "warn", "detail": f"Test error: {str(e)[:150]}"}
+
+
+# ─── CHECK 7: iPad Viewport (15s) ───────────────────────
+
+@_timed
+def check_ipad() -> dict:
+    """Playwright resize to 1024x768, check overflow and touch targets."""
+    # Similar to browser but with viewport check
+    test_script = """
+const { chromium } = require('playwright');
+(async () => {
+    const browser = await chromium.launch({ headless: true });
+    const page = await browser.newPage({ viewport: { width: 1024, height: 768 } });
+    try {
+        await page.goto('https://www.elabtutor.school', { timeout: 30000 });
+        await page.waitForLoadState('networkidle', { timeout: 15000 });
+
+        // Check for horizontal overflow
+        const overflow = await page.evaluate(() => {
+            return document.documentElement.scrollWidth > document.documentElement.clientWidth;
+        });
+
+        // Check touch targets (buttons should be ≥44px)
+        const smallButtons = await page.evaluate(() => {
+            const btns = document.querySelectorAll('button, a, [role="button"]');
+            let small = 0;
+            btns.forEach(b => {
+                const r = b.getBoundingClientRect();
+                if (r.width > 0 && r.height > 0 && (r.width < 44 || r.height < 44)) small++;
+            });
+            return small;
+        });
+
+        console.log(JSON.stringify({
+            overflow, smallButtons,
+            status: !overflow && smallButtons < 5 ? 'ok' : 'warn'
+        }));
+    } catch (e) {
+        console.log(JSON.stringify({ error: e.message, status: 'fail' }));
+    }
+    await browser.close();
+})();
+"""
+    try:
+        result = subprocess.run(
+            ["node", "-e", test_script],
+            capture_output=True, text=True, timeout=45,
+            cwd=str(PROJECT_ROOT),
+        )
+        output = result.stdout.strip().split("\n")[-1] if result.stdout.strip() else "{}"
+        data = json.loads(output)
+        status = data.get("status", "fail")
+        detail = f"Overflow: {data.get('overflow', '?')}, Small btns: {data.get('smallButtons', '?')}"
+        if "error" in data:
+            detail = data["error"][:150]
+            status = "warn"
+        return {"name": "ipad", "status": status, "detail": detail}
+    except Exception as e:
+        return {"name": "ipad", "status": "warn", "detail": f"Test error: {str(e)[:150]}"}
+
+
+# ─── Run All Checks ─────────────────────────────────────
+
+ALL_CHECKS = [
+    check_health,
+    check_build,
+    check_galileo,
+    check_content,
+    check_gulpease,
+    check_browser,
+    check_ipad,
+]
+
+
+def run_all_checks(skip_slow: bool = False) -> list:
+    """Run all 7 checks. skip_slow=True skips browser/iPad/galileo/gulpease."""
+    results = []
+    slow_checks = {"browser", "ipad", "galileo", "gulpease"}
+
+    for check_fn in ALL_CHECKS:
+        name = check_fn.__wrapped__.__name__ if hasattr(check_fn, "__wrapped__") else check_fn.__name__
+        # Extract check name from function name
+        check_name = name.replace("check_", "")
+        if skip_slow and check_name in slow_checks:
+            results.append({"name": check_name, "status": "skip", "detail": "Skipped (fast mode)", "time_ms": 0})
+            continue
+
+        try:
+            result = check_fn()
+            results.append(result)
+        except Exception as e:
+            results.append({"name": check_name, "status": "fail", "detail": f"CRASH: {str(e)[:200]}", "time_ms": 0})
+
+    return results
+
+
+def print_results(results: list):
+    """Pretty-print check results."""
+    icons = {"pass": "✅", "fail": "❌", "warn": "⚠️", "skip": "⏭️"}
+    total_ms = sum(r.get("time_ms", 0) for r in results)
+    print(f"\n{'='*60}")
+    print(f" ELAB Automa — 7 Checks ({total_ms/1000:.1f}s)")
+    print(f"{'='*60}")
+    for r in results:
+        icon = icons.get(r["status"], "?")
+        print(f"  {icon} {r['name']:12s} [{r.get('time_ms', 0):5d}ms] {r['detail'][:80]}")
+    passed = sum(1 for r in results if r["status"] == "pass")
+    total = sum(1 for r in results if r["status"] != "skip")
+    print(f"{'='*60}")
+    print(f"  Result: {passed}/{total} PASS")
+    print(f"{'='*60}\n")
+
+
+if __name__ == "__main__":
+    import sys
+    fast = "--fast" in sys.argv
+    results = run_all_checks(skip_slow=fast)
+    print_results(results)

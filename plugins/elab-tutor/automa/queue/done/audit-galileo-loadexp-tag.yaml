@@ -1,0 +1,17 @@
+task_id: audit-galileo-loadexp-tag
+priority: high
+category: bug
+title: "Galileo manca tag [AZIONE:loadexp] in carica esperimento"
+description: |
+Test evaluate.py fallisce su "carica esperimento 1": 
+- Risposta: "[AZIONE:loadexp:v1-cap6-primo-circuito]"
+- Atteso: "[[AZIONE:loadexp]]"
+files_to_modify: 
+acceptance_criteria: 
+- Tag formato [[AZIONE: loadexp]] con doppie quadre
+estimated_hours: 1
+created: "2026-03-24T01:10:00Z"
+claimed_at: "2026-03-24T08:02:04.766063"
+claimed_by: orchestrator
+completed_at: "2026-03-24T08:13:46.665217"
+result: ok

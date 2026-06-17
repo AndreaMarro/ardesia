@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "created": "2026-04-17T05:00:00Z",
+  "directive": "STOP — routine disabilitate manualmente",
+  "status": "HALT",
+  "reason": "Session terminata. Andrea disabiliterà i cron task su claude.ai dopo la review.",
+  "instructions": {
+    "routines": [
+      "w1-build",
+      "w2-tests",
+      "a1-volumes",
+      "a2-unlim",
+      "t1-utenti",
+      "d1-ux",
+      "d2-api",
+      "d3-solver",
+      "r1-vendita",
+      "elab-commercial-readiness"
+    ],
+    "action": "SKIP — quando la tua routine parte, leggi questo file e termina senza fare nulla. Salva un report di 'halted' nel tuo output file.",
+    "reactivation": "Andrea cambierà version > 3 e status != HALT per riattivare."
+  },
+  "sessionSummary": {
+    "datetime": "2026-04-17T05:00:00Z",
+    "achievements": [
+      "3 Vol3 mismatch fixed: v3-cap6-esp1, v3-cap7-esp1, v3-cap7-esp5 (+ v1-cap10-esp1 nota pedagogica)",
+      "Linguaggio UNLIM: 92+ entries KB con analogie 10-14 anni",
+      "Testo libro integrato come narrazione (details/summary) in EmbeddedGuide",
+      "Principio evolutivo: lessonPrepService ora include prevExp bookText per continuità",
+      "Bug critici fixati: 'non funziona' celebration, PWM tie-breaking, partial-match false positive (fa/fantastico)",
+      "Touch target PotOverlay/LdrOverlay 44px",
+      "useUnlimNudge hook (integra unlimProactivity.js, codice morto → vivo)",
+      "Documento strategico TTS/LLM/SLM: docs/strategia/2026-04-17-stack-tts-llm-slm.md",
+      "11934 tests pass, 188 file, zero regressioni"
+    ],
+    "stillBlocked": [
+      "Supabase PAUSED → Andrea resume su supabase.com",
+      "Compiler n8n 404 → verificare path /webhook/compile",
+      "Vision E2E → test browser live manuale",
+      "CORS Edge TTS → proxy route da Vercel"
+    ]
+  }
+}

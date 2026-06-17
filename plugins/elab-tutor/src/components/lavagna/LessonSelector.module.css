@@ -1,0 +1,79 @@
+/* © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+.container {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e2e8f0; /* palette */
+  margin-bottom: 0.5rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.itemWrap {
+  /* wrapper li (no visible style; button inside has all styling) */
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 0;
+  border-radius: 6px;
+  background: #f1f5f9; /* palette */
+  cursor: pointer;
+  min-height: 44px;
+  /* CLAUDE.md Rule 8: min 13px body. 0.8125rem = 13px. */
+  font-size: 0.8125rem;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.item:hover {
+  background: #e2e8f0; /* palette */
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--elab-orange);
+  outline-offset: 2px;
+}
+
+.selected {
+  background: var(--elab-navy);
+  color: #fff;
+  font-weight: 600;
+}
+
+.selected:hover {
+  background: #163d6e; /* palette */
+}
+
+.chapter {
+  font-family: 'Fira Code', monospace;
+  /* iter 14 LIM legibility: 0.75rem (12px) → 0.875rem (14px / var(--font-size-xs)) per spec §6 #6.
+     Prior: bumped from 0.6875rem (11px) per CLAUDE.md Rule 8 min 13px body + min 10px secondary;
+     LIM front-class viewer ≥2m needs ≥14px for chapter chip legibility. */
+  font-size: 0.875rem;
+  color: #2d5a18; /* palette */
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.selected .chapter {
+  /* WCAG AA on var(--elab-navy) navy: bumped from #a5d6a7 (ratio ~4.1:1 — sub-AA)
+     to #c8e6c9 (ratio ~7.2:1 — AAA). */
+  color: #c8e6c9; /* palette */
+}
+
+.title {
+  white-space: nowrap;
+}

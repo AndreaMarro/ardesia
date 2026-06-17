@@ -1,0 +1,14 @@
+id: P0-fase0-toggle-guida
+priority: P0
+title: "Fase 0.4: Eliminare toggle "Modalità Guida OFF"
+description: |
+PROBLEMA: Toggle "Modalità Guida OFF" visibile. Il prodotto È guida — non serve toggle.
+FILE: cercare "Modalità Guida" o "guidaMode" o "guideMode" nel codice
+FIX: Rimuovere il toggle dall'interfaccia. La guida è sempre attiva.
+VERIFICA: aprire simulatore → nessun toggle "Modalità Guida" visibile
+GATE: build PASSA
+tags: fase0,ux,p0
+claimed_at: "2026-03-27T02:59:55.569376"
+claimed_by: orchestrator
+completed_at: "2026-03-27T03:03:06.619322"
+result: ok

@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol2.js"
+  },
+  "experiment_id": "v2-cap3-esp1",
+  "volume": 2,
+  "chapter": 3,
+  "title": "Controlliamo la carica della batteria",
+  "chapter_title": "Il Multimetro",
+  "difficulty": 1,
+  "duration_minutes": 35,
+  "target_age": "10-14 anni",
+  "objective": "Imparare a usare il multimetro in modalita voltmetro per misurare la tensione di una batteria 9V e scoprire se e carica.",
+  "components_needed": [
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Multimetro",
+      "quantity": 1,
+      "icon": "📏"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "multimetro",
+      "voltmetro",
+      "tensione",
+      "volt",
+      "batteria",
+      "carica",
+      "scarica",
+      "puntale",
+      "rosso",
+      "nero",
+      "polo positivo",
+      "polo negativo",
+      "display",
+      "misurare"
+    ],
+    "forbidden": [
+      "Arduino",
+      "codice",
+      "programma",
+      "digitale",
+      "analogico",
+      "condensatore",
+      "transistor",
+      "MOSFET"
+    ],
+    "note": "Vol 2 Cap 3 — primo uso del multimetro, modalita voltmetro."
+  },
+  "prerequisites": [
+    "v1-cap14-esp1"
+  ],
+  "next_experiment": {
+    "id": "v2-cap3-esp2",
+    "title": "Diario di misurazione della pila",
+    "preview": "Prossimo passo: Diario di misurazione della pila. La storia continua nello stesso ordine del Volume 2."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi impariamo a usare uno strumento fondamentale: il multimetro! Iniziamo con la cosa piu semplice: misurare quanti Volt ha la nostra batteria da 9V. Sara davvero 9V?",
+      "teacher_tip": "Mostrate il multimetro reale se disponibile. Spiegate che il puntale rosso va al + e il nero al -. La manopola va posizionata su V (tensione continua, DC).",
+      "components_list": "Ti servono: 1 batteria 9V con clip, 1 multimetro.",
+      "class_hook": "Avete mai avuto un telecomando che non funzionava? Come fate a sapere se le pile sono scariche? Oggi impariamo a scoprirlo con uno strumento da veri scienziati!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Colleghiamo il multimetro alla batteria: puntale rosso al polo positivo (+), puntale nero al polo negativo (-). Impostiamo la scala su 20V DC. Leggiamo il display!",
+      "teacher_tip": "Se il valore e negativo, i puntali sono invertiti — nessun danno, solo il segno cambia. Mostrate che una batteria nuova da circa 9.2-9.6V, una usata meno di 7V.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v2-cap3-esp1]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Collegate il multimetro alla batteria 9V",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": []
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Il multimetro mostra un valore. E esattamente 9V? Di piu? Di meno? Perche secondo voi non e mai esattamente 9.00V?",
+      "teacher_tip": "La risposta e che '9V' e un valore nominale. Una batteria nuova ha circa 9.4-9.6V, e cala man mano che si scarica. Sotto 7V e praticamente scarica.",
+      "provocative_question": "Se la batteria dice '9V' sulla confezione, perche il multimetro mostra un numero diverso? La confezione mente?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Puntali invertiti (rosso al - e nero al +)",
+          "teacher_response": "Nessun danno! Il display mostra un valore negativo. Basta invertire i puntali.",
+          "analogy": "E come guardare un orologio allo specchio: il numero c'e, ma al contrario!"
+        },
+        {
+          "mistake": "Scala sbagliata sul multimetro (es. mA invece di V)",
+          "teacher_response": "Controllate che la manopola sia su V (tensione) e non su A (corrente). In modalita amperometro i puntali sono in corto!",
+          "analogy": null
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Osservate il valore sul display del multimetro. Una batteria nuova mostra circa 9.4-9.6V. Provate a invertire i puntali: il valore diventa negativo!",
+      "teacher_tip": "Evidenziate il multimetro. Fate notare le cifre decimali: la precisione e importante. Chiedete: 'Quanto vale esattamente? E di piu o meno di 9V?'",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:mm1]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Il display del multimetro mostra la tensione reale della batteria. Una batteria da 9V nuova misura circa 9.4-9.6V. Se la batteria e usata, il valore sara piu basso.",
+      "analogies": [
+        {
+          "concept": "tensione_batteria",
+          "text": "La tensione di una batteria e come il livello d'acqua in un serbatoio: quando e pieno (carica) il livello e alto. Man mano che usi l'acqua (scarica), il livello scende.",
+          "evidence": "Curriculum ELAB Vol 2"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 4,
+      "teacher_message": "Ragazzi, Bravi! Oggi avete imparato a usare il multimetro come voltmetro. Sapete misurare la tensione di una batteria e capire se e carica o scarica!",
+      "teacher_tip": "Recap: puntale rosso al +, nero al -, scala su V. Batteria nuova ~9.5V, scarica <7V.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il multimetro in modalita voltmetro misura la tensione. Una batteria 9V nuova ha circa 9.5V, usata meno di 7V. Il puntale rosso va sempre al polo +, il nero al -.",
+      "concepts_learned": [
+        "multimetro come voltmetro",
+        "tensione batteria reale vs nominale",
+        "polarita dei puntali"
+      ],
+      "next_preview": "La prossima volta terremo un diario: misureremo la batteria ogni giorno per scoprire quanto dura davvero!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se collega i puntali nella polarita corretta al primo tentativo → comprensione della polarita",
+    "Se nota che il valore non e esattamente 9V → spirito di osservazione scientifica",
+    "Se chiede quanto dura una batteria → curiosita per approfondire"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "multimetro_voltmetro",
+      "tensione_batteria",
+      "polarita_puntali"
+    ],
+    "next_suggested": "v2-cap3-esp2",
+    "resume_message": "Hai imparato a misurare la tensione con il multimetro! Prossimo passo: il diario di misurazione."
+  },
+  "analogies": [
+    {
+      "concept": "tensione_batteria",
+      "text": "La tensione di una batteria e come il livello d'acqua in un serbatoio: quando e pieno (carica) il livello e alto. Man mano che usi l'acqua (scarica), il livello scende.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Puntali invertiti (rosso al - e nero al +)",
+      "teacher_response": "Nessun danno! Il display mostra un valore negativo. Basta invertire i puntali.",
+      "analogy": "E come guardare un orologio allo specchio: il numero c'e, ma al contrario!"
+    },
+    {
+      "mistake": "Scala sbagliata sul multimetro (es. mA invece di V)",
+      "teacher_response": "Controllate che la manopola sia su V (tensione) e non su A (corrente). In modalita amperometro i puntali sono in corto!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  }
+}

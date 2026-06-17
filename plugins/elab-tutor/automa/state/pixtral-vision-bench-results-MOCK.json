@@ -1,0 +1,750 @@
+{
+  "_meta": {
+    "generated": "2026-04-29T12:00:01.931Z",
+    "iteration": "Sprint T iter 28",
+    "mode": "MOCK",
+    "dryRun": true,
+    "edgeFnUrl": "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-vision",
+    "lessonPathsCount": 94,
+    "screenshotsAvailable": 20,
+    "caveats": [
+      "20 PNG fixtures only — 70+ esperimenti SKIPPED (ground truth DEBT iter 28-29 Andrea+Tea)",
+      "Pixtral 12B Italian K-12 accuracy NOT benchmarked against gold set",
+      "Judge LLM bias possibile — Pixtral self-judges schema",
+      "Pass/fail threshold empirico — NO calibration sample iter 28",
+      "ELAB_API_KEY BLOCKED iter 28 default → MOCK MODE; live mode pending Andrea provision"
+    ]
+  },
+  "aggregate": {
+    "total": 94,
+    "pass": 20,
+    "fail": 0,
+    "skipped": 74,
+    "error": 0,
+    "perCriterion": {
+      "C1": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C2": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C3": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C4": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C5": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C6": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C7": {
+        "pass": 0,
+        "fail": 0
+      },
+      "C8": {
+        "pass": 0,
+        "fail": 0
+      }
+    },
+    "principioZero": {
+      "PZ1": {
+        "pass": 0,
+        "fail": 0
+      },
+      "PZ2": {
+        "pass": 0,
+        "fail": 0
+      },
+      "PZ3": {
+        "pass": 0,
+        "fail": 0
+      }
+    },
+    "byVolume": {
+      "1": {
+        "pass": 11,
+        "fail": 0,
+        "skipped": 27
+      },
+      "2": {
+        "pass": 6,
+        "fail": 0,
+        "skipped": 21
+      },
+      "3": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 26
+      }
+    }
+  },
+  "perExperiment": [
+    {
+      "experimentId": "v1-cap10-esp1",
+      "volume": 1,
+      "title": "La fotoresistenza sente la luce",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap10-esp2",
+      "volume": 1,
+      "title": "LED diverso colore con LDR",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap10-esp3",
+      "volume": 1,
+      "title": "3 LDR controllano RGB",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap10-esp4",
+      "volume": 1,
+      "title": "LED bianco illumina LDR → LED blu",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap10-esp5",
+      "volume": 1,
+      "title": "Aggiungi pot per controllare LED bianco",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap10-esp6",
+      "volume": 1,
+      "title": "Aggiungi pulsante al circuito LDR",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap11-esp1",
+      "volume": 1,
+      "title": "Buzzer suona continuo",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap11-esp2",
+      "volume": 1,
+      "title": "Campanello con pulsante",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap12-esp1",
+      "volume": 1,
+      "title": "LED con reed switch",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap12-esp2",
+      "volume": 1,
+      "title": "Cambia luminosità con magnete",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap12-esp3",
+      "volume": 1,
+      "title": "Sfida: RGB + reed switch",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap12-esp4",
+      "volume": 1,
+      "title": "Sfida: pot + RGB + reed switch",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap13-esp1",
+      "volume": 1,
+      "title": "LED nell'elettropongo",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap13-esp2",
+      "volume": 1,
+      "title": "Circuiti artistici con plastilina",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap14-esp1",
+      "volume": 1,
+      "title": "Il Primo Robot ELAB",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap6-esp1",
+      "volume": 1,
+      "title": "Accendi il tuo primo LED",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap6-esp2",
+      "volume": 1,
+      "title": "LED senza resistore (cosa NON fare!)",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap6-esp3",
+      "volume": 1,
+      "title": "Cambia luminosità con resistenze diverse",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap7-esp1",
+      "volume": 1,
+      "title": "Accendi il rosso del RGB",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap7-esp2",
+      "volume": 1,
+      "title": "Accendi il verde del RGB",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap7-esp3",
+      "volume": 1,
+      "title": "Accendi il blu del RGB",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap7-esp4",
+      "volume": 1,
+      "title": "Mescola 2 colori: il viola!",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap7-esp5",
+      "volume": 1,
+      "title": "Tutti e 3: bianco!",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap7-esp6",
+      "volume": 1,
+      "title": "Crea il tuo colore!",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap8-esp1",
+      "volume": 1,
+      "title": "Il pulsante accende il LED",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v1-cap8-esp2",
+      "volume": 1,
+      "title": "Cambia colore e luminosità con il pulsante",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap8-esp3",
+      "volume": 1,
+      "title": "RGB + pulsante = viola",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap8-esp4",
+      "volume": 1,
+      "title": "3 pulsanti → 3 colori RGB",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap8-esp5",
+      "volume": 1,
+      "title": "Mix avanzato con resistori diversi",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp1",
+      "volume": 1,
+      "title": "Dimmer LED con potenziometro",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp2",
+      "volume": 1,
+      "title": "Inverti la rotazione",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp3",
+      "volume": 1,
+      "title": "LED di colore diverso con pot",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp4",
+      "volume": 1,
+      "title": "Dimmer RGB azzurrino",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp5",
+      "volume": 1,
+      "title": "Pot miscelatore blu rosso",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp6",
+      "volume": 1,
+      "title": "Lampada RGB con 3 potenziometri",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp7",
+      "volume": 1,
+      "title": "Sfida: aggiungi pulsanti alla lampada",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp8",
+      "volume": 1,
+      "title": "Sfida: combina esperimenti 5+6",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v1-cap9-esp9",
+      "volume": 1,
+      "title": "Sfida: aggiungi pulsante all'esp 8",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap10-esp1",
+      "volume": 2,
+      "title": "Far Girare il Motore",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap10-esp2",
+      "volume": 2,
+      "title": "Invertire la Rotazione",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap10-esp3",
+      "volume": 2,
+      "title": "Motore con Pulsante",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap10-esp4",
+      "volume": 2,
+      "title": "Motore + Pulsante + LED Indicatore",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap12-esp1",
+      "volume": 2,
+      "title": "Robot Segui Luce",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap3-esp1",
+      "volume": 2,
+      "title": "Controlliamo la carica della batteria",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap3-esp2",
+      "volume": 2,
+      "title": "Diario di misurazione della pila",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap3-esp3",
+      "volume": 2,
+      "title": "Misuriamo una resistenza",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap3-esp4",
+      "volume": 2,
+      "title": "Misuriamo la corrente in un circuito",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap4-esp1",
+      "volume": 2,
+      "title": "Due resistori in parallelo",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap4-esp2",
+      "volume": 2,
+      "title": "Tre resistori in serie",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap4-esp3",
+      "volume": 2,
+      "title": "Partitore di tensione",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap5-esp1",
+      "volume": 2,
+      "title": "Batterie in serie (piu spinta!)",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap5-esp2",
+      "volume": 2,
+      "title": "Batterie in antiserie",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap6-esp1",
+      "volume": 2,
+      "title": "LED in serie con 1 resistore",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap6-esp2",
+      "volume": 2,
+      "title": "LED in serie colori diversi",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap6-esp3",
+      "volume": 2,
+      "title": "Tre LED in serie",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap6-esp4",
+      "volume": 2,
+      "title": "Misurare Vf con il multimetro",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap7-esp1",
+      "volume": 2,
+      "title": "Scarica condensatore con multimetro",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap7-esp2",
+      "volume": 2,
+      "title": "Scarica condensatore con LED rosso",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap7-esp3",
+      "volume": 2,
+      "title": "Condensatori in parallelo",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap7-esp4",
+      "volume": 2,
+      "title": "Variare R nella scarica RC",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap8-esp1",
+      "volume": 2,
+      "title": "MOSFET come interruttore",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v2-cap8-esp2",
+      "volume": 2,
+      "title": "MOSFET e carica del corpo",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap8-esp3",
+      "volume": 2,
+      "title": "MOSFET + pot + tensione soglia",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap9-esp1",
+      "volume": 2,
+      "title": "Fototransistor come sensore",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v2-cap9-esp2",
+      "volume": 2,
+      "title": "Luce Notturna Automatica",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap5-esp1",
+      "volume": 3,
+      "title": "Blink con LED_BUILTIN",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v3-cap5-esp2",
+      "volume": 3,
+      "title": "Modifica tempi del Blink",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp1",
+      "volume": 3,
+      "title": "Circuito AND/OR con pulsanti",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v3-cap6-esp2",
+      "volume": 3,
+      "title": "Cambia pin del LED",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp3",
+      "volume": 3,
+      "title": "2 LED alternati",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp4",
+      "volume": 3,
+      "title": "LED + Buzzer",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp5",
+      "volume": 3,
+      "title": "Sirena con Buzzer",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp6",
+      "volume": 3,
+      "title": "2 LED + Pulsante (toggle)",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-esp7",
+      "volume": 3,
+      "title": "Codice Morse con LED",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-morse",
+      "volume": 3,
+      "title": "SOS in codice Morse",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap6-semaforo",
+      "volume": 3,
+      "title": "Semaforo 3 LED",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp1",
+      "volume": 3,
+      "title": "Pulsante accende LED",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp2",
+      "volume": 3,
+      "title": "Pulsante spegne LED",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp3",
+      "volume": 3,
+      "title": "Pulsante con INPUT_PULLUP",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp4",
+      "volume": 3,
+      "title": "PWM: luminosita variabile",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp5",
+      "volume": 3,
+      "title": "Fade LED su e giu",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp6",
+      "volume": 3,
+      "title": "2 LED con pulsante (toggle)",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp7",
+      "volume": 3,
+      "title": "Contatore con LED binario",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-esp8",
+      "volume": 3,
+      "title": "Anti-rimbalzo pulsante (debounce)",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap7-mini",
+      "volume": 3,
+      "title": "2 LED + Pulsante (toggle)",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap8-esp1",
+      "volume": 3,
+      "title": "Serial.println in setup",
+      "status": "pass",
+      "reason": "DRY_RUN_OK"
+    },
+    {
+      "experimentId": "v3-cap8-esp2",
+      "volume": 3,
+      "title": "Serial.println in loop",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap8-esp3",
+      "volume": 3,
+      "title": "analogRead + Serial Monitor",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap8-esp4",
+      "volume": 3,
+      "title": "Serial Plotter con 2 potenziometri",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap8-esp5",
+      "volume": 3,
+      "title": "Pot + 3 LED + Serial Monitor",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-cap8-serial",
+      "volume": 3,
+      "title": "analogRead + Serial Monitor",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-extra-lcd-hello",
+      "volume": 3,
+      "title": "LCD Hello World",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-extra-servo-sweep",
+      "volume": 3,
+      "title": "Servo Sweep",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    },
+    {
+      "experimentId": "v3-extra-simon",
+      "volume": 3,
+      "title": "Simon Says — Gioco di Memoria",
+      "status": "skipped",
+      "reason": "NO_SCREENSHOT_FIXTURE"
+    }
+  ]
+}

@@ -1,0 +1,600 @@
+{
+  "id": "v2-cap9",
+  "volume": 2,
+  "capitolo": 9,
+  "type": "experiment",
+  "titolo": "Cosa sono i fototransistor?",
+  "titolo_classe": "Cosa sono i fototransistor?",
+  "pageStart": 85,
+  "pageEnd": 92,
+  "theory": {
+    "testo_classe": "Cosa sono i fototransistor?.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v2-cap9-esp1",
+      "num": 1,
+      "title_classe": "Fototransistor come sensore",
+      "title_docente": "Fototransistor come sensore",
+      "volume_ref": {
+        "page_start": 85,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Fototransistor",
+          "quantity": 1,
+          "icon": "👁️"
+        },
+        {
+          "name": "Resistore 10kΩ",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "Multimetro",
+          "quantity": 1,
+          "icon": "📏"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 7,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "phototransistor",
+              "id": "pt1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 10000
+            },
+            {
+              "type": "multimeter",
+              "id": "mm1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-8",
+              "to": "bb1:a8",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a14",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a21",
+              "to": "bb1:bus-top-minus-21",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
+              "from": "mm1:probe-positive",
+              "to": "bb1:b9",
+              "color": "red"
+            },
+            {
+              "from": "mm1:probe-negative",
+              "to": "bb1:bus-top-minus-25",
+              "color": "black"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Avete mai visto le luci del cortile che si accendono da sole di notte? C'è un sensore di luce dentro! Il fototransistor è il cuore di quel sensore. Oggi scopriamo come funziona.",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Benvenuti al Capitolo 9! Oggi incontriamo il fototransistor: un sensore che reagisce alla luce. Più luce riceve, più corrente lascia passare. È come un MOSFET, ma invece del Gate ha un 'occhio' sensibile alla luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione fisicamente un fototransistor (se disponibile): 'Ha solo 2 gambe invece di 3: collettore ed emettitore. Non ha il Gate perché la luce fa il lavoro del Gate!' Confrontalo visivamente con il MOSFET visto prima."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Montiamo il circuito: il fototransistor in serie con il resistore da 10kΩ. Il multimetro misura la tensione tra emettitore e massa: alta con la luce, bassa al buio.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione i 2 pin: 'Il collettore (gamba lunga o segnata) va verso l'alimentazione. L'emettitore (gamba corta) va verso il resistore. La luce entra nella capsula trasparente e controlla il flusso di corrente!' Il resistore da 10kΩ funziona come pull-down."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap9-esp1]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Prima di Play, prevedete: con la luce della finestra il multimetro leggerà un numero alto o basso? E coprendo il fototransistor con la mano (buio totale) cosa succederà?",
+            "spunto_per_classe": "Domanda: 'Il fototransistor e il resistore formano un partitore di tensione. Se il fototransistor lascia passare molta corrente (tanta luce), il multimetro legge un valore alto o basso? E al buio completo?'",
+            "note": [
+              "la scommessa sulla classe: 'Più luce = più corrente = più tensione sull'emettitore. Al buio, quasi nessuna corrente = tensione vicino a 0V.' Il partitore di tensione è il concetto chiave: il resistore da 10kΩ porta la tensione a zero quando non c'è corrente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Invertire collettore ed emettitore del fototransistor",
+                "soluzione_neutra": "Il fototransistor ha polarità! Il collettore (gamba più lunga o con il segno nel datasheet) va verso la tensione alta. L'emettitore va verso il resistore e poi a massa. Se invertiti, il circuito non risponde alla luce!"
+              },
+              {
+                "problema": "Aspettarsi che il multimetro mostri un valore fisso",
+                "soluzione_neutra": "Il valore sul multimetro CAMBIA continuamente con la luce! È un sensore che varia in modo continuo: tra quasi 0V (buio) e quasi 9V (luce intensa). Muovete una torcia o coprite con la mano e guardate il numero cambiare in diretta!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Luce intensa → fototransistor conduce molto → tensione all'emettitore alta (multimetro mostra valore alto). Buio → fototransistor non conduce → tensione vicino a 0V. Il resistore da 10kΩ porta il segnale a zero quando non c'è luce.",
+            "analogies": [
+              {
+                "concept": "porta_solare",
+                "text": "Il fototransistor è come una porta controllata dal sole: più luce arriva, più la porta si apre e più corrente passa. Al tramonto la porta si chiude e la corrente smette di scorrere. La tensione che misuriamo è quanto 'aperta' è questa porta!",
+                "evidence": "experiments-vol2.js unlimPrompt v2-cap9-esp1"
+              },
+              {
+                "concept": "partitore_luce",
+                "text": "Il fototransistor e il resistore formano un partitore di tensione controllato dalla luce: quando il fototransistor conduce molto (luce), abbassa la sua resistenza e la tensione sale sull'emettitore. Il resistore da 10kΩ tiene il segnale a zero quando non c'è luce.",
+                "evidence": "experiments-vol2.js concept v2-cap9-esp1"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play. Il simulatore mostra la risposta alla luce. Fai variare la luce nel simulatore: il multimetro cambia! Con luce intensa, tensione alta. Al buio, tensione vicina a zero.",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il fototransistor e il multimetro. Fai variare la luce nel simulatore e osserva il multimetro in tempo reale. 'Questo è un sensore continuo: non è ON/OFF come un interruttore, ma varia gradualmente con la luce!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pt1]",
+            "[AZIONE:highlight:r1]",
+            "[AZIONE:highlight:mm1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il fototransistor ha 2 pin: collettore ed emettitore. Più luce riceve, più corrente lascia passare. Con un resistore da 10kΩ forma un partitore di tensione: il multimetro mostra una tensione variabile tra 0V (buio) e quasi 9V (luce intensa)!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il fototransistor è un sensore di luce continuo: la tensione all'emettitore varia gradualmente con la luce. Combinato con un resistore forma un partitore di tensione controllato dalla luce!",
+            "spunto_per_classe": null,
+            "note": [
+              "Collegamento al prossimo esperimento: 'Avete un sensore di luce che dà una tensione variabile. Nel prossimo esperimento userete questa tensione per controllare un MOSFET + LED: luce notturna automatica!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega che più luce = più corrente = tensione più alta → comprensione del principio",
+        "Se identifica il partitore di tensione luce-resistore → comprensione circuitale",
+        "Se distingue sensore continuo da interruttore ON/OFF → comprensione avanzata"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "fototransistor_sensore",
+          "partitore_tensione_luce",
+          "segnale_continuo",
+          "collettore_emettitore"
+        ],
+        "next_suggested": "v2-cap9-esp2",
+        "resume_message": "Avete scoperto il fototransistor! Tensione variabile con la luce. Prossimo: luce notturna automatica con MOSFET!"
+      }
+    },
+    {
+      "id": "v2-cap9-esp2",
+      "num": 2,
+      "title_classe": "Luce Notturna Automatica",
+      "title_docente": "Luce Notturna Automatica",
+      "volume_ref": {
+        "page_start": 85,
+        "page_end": 92,
+        "fig_refs": []
+      },
+      "duration_minutes": 35,
+      "components_needed": [
+        {
+          "name": "Batteria 9V con clip",
+          "quantity": 1,
+          "icon": "🔋"
+        },
+        {
+          "name": "Breadboard mezza (half-size)",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Fototransistor",
+          "quantity": 1,
+          "icon": "👁️"
+        },
+        {
+          "name": "MOSFET-N",
+          "quantity": 1,
+          "icon": "🔌"
+        },
+        {
+          "name": "Resistore 10kΩ",
+          "quantity": 4,
+          "icon": "⚡"
+        },
+        {
+          "name": "Resistore 470Ω",
+          "quantity": 1,
+          "icon": "⚡"
+        },
+        {
+          "name": "LED bianco",
+          "quantity": 1,
+          "icon": "⚪"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 10,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "incremental_from_prev",
+        "incremental_delta": {
+          "base_experiment_id": "v2-cap9-esp1",
+          "operations": [
+            {
+              "op": "modify",
+              "target": "circuit",
+              "params": {
+                "intent": {
+                  "components": [
+                    {
+                      "type": "battery9v",
+                      "id": "bat1"
+                    },
+                    {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+                    },
+                    {
+                      "type": "phototransistor",
+                      "id": "pt1"
+                    },
+                    {
+                      "type": "mosfet-n",
+                      "id": "mos1"
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r4",
+                      "value": 10000
+                    },
+                    {
+                      "type": "resistor",
+                      "id": "r5",
+                      "value": 470
+                    },
+                    {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+                    }
+                  ],
+                  "wires": [
+                    {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-plus-20",
+                      "to": "bb1:a20",
+                      "color": "red"
+                    },
+                    {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a10",
+                      "to": "bb1:g3",
+                      "color": "orange"
+                    },
+                    {
+                      "from": "bb1:a11",
+                      "to": "bb1:g11",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:g18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:g10",
+                      "to": "bb1:g20",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:g20",
+                      "to": "bb1:g28",
+                      "color": "green"
+                    },
+                    {
+                      "from": "bb1:g27",
+                      "to": "bb1:bus-top-minus-27",
+                      "color": "black"
+                    },
+                    {
+                      "from": "bb1:a28",
+                      "to": "bb1:g29",
+                      "color": "yellow"
+                    },
+                    {
+                      "from": "bb1:g30",
+                      "to": "bb1:bus-top-minus-30",
+                      "color": "black"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": "Chi conosce le luci dei lampioni che si accendono da sole la sera? Come fa la luce a sapere che è buio? Oggi scopriamo il segreto!",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Oggi costruiamo una luce notturna INTELLIGENTE! Si accende da sola quando viene buio, come le luci delle strade di notte.",
+            "spunto_per_classe": null,
+            "note": [
+              "alzare la mano a chi ha già visto le lampioni accendersi da soli di sera. Poi spiega: 'Dentro c'è un sensore di luce, proprio come quello che useremo oggi — il fototransistor!'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 10,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il circuito ha 2 sezioni: SENSORE (fototransistor + resistori) e ATTUATORE (MOSFET + LED). Quando c'è luce il Gate resta basso e il LED è spento. Al buio il Gate sale e il LED si accende!",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione prima il fototransistor da solo: 'Ha un collettore e un emettitore come un transistor normale, ma la luce che entra dalla finestra trasparente è il segnale di controllo!' Poi mostra il MOSFET: 'Il Gate è come un cancello: quando la tensione sale abbastanza, apre la strada alla corrente verso il LED.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v2-cap9-esp2]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il LED si accende al BUIO e si spegne con la LUCE. Sembra strano, vero? Come funziona questa 'magia' invertita?",
+            "spunto_per_classe": "Domanda: 'Se copri il fototransistor con la mano, il LED si accende o si spegne? E se lo illumini con una torcia? Perché funziona al contrario di quello che ci aspettiamo?'",
+            "note": [
+              "Domanda: agli studenti di fare previsioni: 'Secondo voi, cosa succede al fototransistor quando coprimo il sensore con la mano?' Raccoglie le risposte prima di spiegare il meccanismo."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il LED rimane sempre spento anche al buio",
+                "soluzione_neutra": "Controllo il resistore di pull-down R4 collegato al Gate. Se manca o è scollegato, il Gate rimane fluttuante e il MOSFET non si apre correttamente al buio."
+              },
+              {
+                "problema": "Il LED rimane sempre acceso anche con la luce",
+                "soluzione_neutra": "Controllo che il collettore e l'emettitore del fototransistor siano nella posizione giusta. Se sono invertiti, il circuito funziona al contrario!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Al buio: il fototransistor si chiude (non conduce), la tensione sale al Gate, il MOSFET apre la strada alla corrente e il LED bianco si accende. Con la luce: il fototransistor conduce, il Gate scende (grazie al pull-down R4) e il LED si spegne.",
+            "analogies": [
+              {
+                "concept": "logica_invertita",
+                "text": "Immagina un guardiano speciale: di giorno è sveglio e blocca tutto, di notte si addormenta e lascia passare la corrente. Il fototransistor è proprio così: la luce lo 'sveglia' e blocca il LED, il buio lo 'addormenta' e il LED si accende!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 9"
+              },
+              {
+                "concept": "lampioni_notturni",
+                "text": "Le luci dei lampioni stradali funzionano esattamente con questo principio: un sensore di luce (come il nostro fototransistor) rileva il buio della sera e accende automaticamente le lampade. Avete costruito lo stesso meccanismo che illumina le strade ogni notte!",
+                "evidence": "Curriculum ELAB Vol 2 Cap 9"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play, poi usa il cursore della luce sul fototransistor: abbassa la luce e guarda il LED accendersi!",
+            "spunto_per_classe": null,
+            "note": [
+              "Uso il cursore LDR del fototransistor per simulare il passaggio giorno/notte. Evidenzia il fototransistor, poi il Gate del MOSFET, poi il LED. Spiega il percorso del segnale: luce → fototransistor → Gate → MOSFET → LED."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:pt1]",
+            "[AZIONE:highlight:mos1]",
+            "[AZIONE:highlight:led1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 5,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Avete costruito una luce notturna automatica! Il fototransistor rileva il buio, il resistore pull-down mantiene il Gate basso con la luce, e il MOSFET accende il LED quando viene notte. Logica invertita: buio = LED acceso!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ottimo lavoro! Avete costruito una luce notturna che si accende da sola. Il fototransistor è il sensore, il MOSFET è l'interruttore intelligente.",
+            "spunto_per_classe": null,
+            "note": [
+              "un recap: 'Il fototransistor vede la luce (o il buio). Il resistore pull-down tira giù il Gate quando c'è luce. Quando viene buio, il Gate sale e il MOSFET fa passare la corrente al LED.' Chiedi: 'Dove potremmo usare questo circuito in casa?'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega perché il LED si accende al buio e non con la luce → comprensione della logica invertita",
+        "Se identifica il ruolo del pull-down → comprensione del controllo del Gate",
+        "Se collega il circuito alle luci stradali → transfer del concetto al mondo reale"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "fototransistor_sensore",
+          "MOSFET_gate_controllo",
+          "pull_down",
+          "logica_invertita"
+        ],
+        "next_suggested": "v2-cap10-esp1",
+        "resume_message": "Avete costruito la luce notturna automatica! Il Capitolo 10 vi aspetta con un componente che si muove!"
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Cosa sono i fototransistor?",
+    "transitions": [
+      {
+        "between": [
+          "v2-cap9-esp1",
+          "v2-cap9-esp2"
+        ],
+        "text_classe": "Chi conosce le luci dei lampioni che si accendono da sole la sera? Come fa la luce a sapere che è buio? Oggi scopriamo il segreto!",
+        "text_docente_action": "Fai alzare la mano a chi ha già visto le lampioni accendersi da soli di sera. Poi spiega: 'Dentro c'è un sensore di luce, proprio come quello che useremo oggi — il fototransistor!'",
+        "incremental_mode": "add_component"
+      }
+    ],
+    "closing_text": "Avete costruito la luce notturna automatica! Il Capitolo 10 vi aspetta con un componente che si muove!"
+  }
+}

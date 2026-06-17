@@ -1,0 +1,17 @@
+id: research-insight-ipad_compliance-20260324-2056
+priority: P1
+title: "Research-driven fix: ipad_compliance (score=0.68)"
+description: |
+Metrica target: "ipad_compliance (attuale: 0.680, target: 0.90+)"
+Fonte: "**Problemi concreti:**"
+success_criteria: |
+python3 automa/evaluate.py | grep 'SCORE: ipad_compliance
+context_files: 
+tags: research-driven,auto-generated,ipad_compliance
+created: "2026-03-24T20:56:58.643518"
+claimed_at: "2026-03-27T09:24:09.190163"
+claimed_by: orchestrator
+failed_at: "2026-03-27T09:31:13.829974"
+error: unknown
+retry: 1
+requeued_at: "2026-03-27T09:19:49.932795"

@@ -1,0 +1,21 @@
+type: accessibility
+priority: medium
+title: Multiple WCAG Accessibility Violations
+description: |
+axe-core found 5 accessibility issues on both homepage and simulator: 
+1. color-contrast: Link has insufficient contrast ratio
+2. landmark-one-main: No main landmark in document
+3. page-has-heading-one: No H1 heading on page
+4. region: Content not contained by landmarks (2 occurrences)
+reproduction: 
+- Run: "npx axe https://www.elabtutor.school"
+expected: 0 accessibility violations
+actual: 5 violations affecting screen readers and keyboard users
+files_to_check: 
+impact: Site not accessible to users with disabilities, fails WCAG 2.1 AA standards
+created: 2026-03-24
+source: audit-cycle
+claimed_at: "2026-03-24T08:38:37.251897"
+claimed_by: orchestrator
+completed_at: "2026-03-24T08:41:13.076922"
+result: ok

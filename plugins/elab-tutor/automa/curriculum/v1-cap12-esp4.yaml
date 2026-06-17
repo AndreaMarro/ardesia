@@ -1,0 +1,102 @@
+# Curriculum YAML — v1-cap12-esp4
+# "Sfida: pot + RGB + reed switch"
+
+experiment_id: v1-cap12-esp4
+volume: 1
+chapter: 12
+title: "Sfida: pot + RGB + reed switch"
+
+prerequisites:
+  - v1-cap12-esp3  # Sa combinare RGB + reed switch
+  - v1-cap9-esp1   # Sa usare il potenziometro
+  - v1-cap12-esp2  # Sa cambiare luminosita con magnete
+
+concepts_introduced:
+  - integrazione_multipla
+  - controllo_manuale_e_automatico
+  - sfida_finale_cap12
+
+vocabulary_level: v1-cap12
+allowed_terms:
+  - LED
+  - LED_RGB
+  - resistenza
+  - ohm
+  - corrente
+  - circuito
+  - batteria
+  - filo
+  - breadboard
+  - pulsante
+  - potenziometro
+  - manopola
+  - fotoresistenza
+  - buzzer
+  - reed_switch
+  - magnete
+  - calamita
+  - rosso
+  - verde
+  - blu
+  - colore
+  - luminosita
+  - girare
+  - avvicinare
+forbidden_terms:
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - programma
+  - transistor
+  - campo_magnetico
+  - induzione
+  - digitale
+  - analogico
+  - PWM
+  - multiplexer
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED RGB, 3 resistenze 220 ohm,
+    1 potenziometro, 1-2 reed switch, 1-2 magneti, breadboard, batteria,
+    fili extra. Questa e la sfida FINALE del capitolo 12 — combina
+    tutto: controllo manuale (pot) + controllo magnetico (reed).
+  during_class: >
+    "Sfida finale del capitolo! Avete imparato potenziometro, LED RGB,
+    reed switch. Ora: create un circuito dove potete controllare il
+    colore sia girando la manopola sia con il magnete!" Esempi possibili:
+    pot controlla luminosita di un colore, magnete attiva un altro colore.
+    Oppure pot controlla il rosso, magnete attiva verde. Lasciate
+    liberta totale. Tempo: 20-25 minuti. Poi ogni gruppo presenta.
+  common_question: >
+    "E troppo difficile!" -> Fai un passo alla volta. Prima: collega
+    solo il pot con un colore (lo sai gia fare). Poi aggiungi il reed
+    switch con un altro colore (lo sai gia fare). Hai gia tutti i
+    pezzi — devi solo metterli insieme!
+
+common_mistakes:
+  - mistake: "Provano a collegare tutto insieme subito e si confondono"
+    what_to_do: "Strategia: costruire un pezzo alla volta. Prima pot+rosso, testa. Poi aggiungi reed+verde, testa. Un passo alla volta!"
+    analogy: "E come cucinare: prepari gli ingredienti uno alla volta, non butti tutto in padella insieme"
+  - mistake: "Non hanno abbastanza righe sulla breadboard"
+    what_to_do: "Suggerisci di usare fili piu lunghi e organizzare bene lo spazio. Ordine = meno errori"
+    analogy: null
+  - mistake: "Il potenziometro non sembra fare effetto"
+    what_to_do: "Verificare che il pot sia collegato come partitore (pin centrale al LED). Girare tutta la corsa da un estremo all'altro"
+    analogy: null
+
+analogies:
+  integrazione_multipla:
+    analogy: "State diventando veri ingegneri! Un ingegnere prende pezzi che conosce e li combina per creare qualcosa di nuovo. E come un cuoco che mischia ingredienti che conosce bene per inventare una nuova ricetta!"
+    evidence: "Identita professionale aspirazionale, aumenta self-efficacy (Bandura 1997)"
+  controllo_manuale_e_automatico:
+    analogy: "Il potenziometro e come il volante della macchina (lo controlli tu), il reed switch e come il sensore pioggia (reagisce da solo). Il vostro circuito ha entrambi!"
+    evidence: "Distinzione manuale/automatico, fondamentale per pensiero ingegneristico (Roth 2001)"
+
+assessment_invisible:
+  - "Se completano la sfida in autonomia -> padronanza dei concetti del volume 1"
+  - "Se la soluzione e diversa dagli altri gruppi -> creativita e originalita"
+  - "Se spiegano chiaramente come funziona -> comunicazione tecnica sviluppata"
+  - "Se aiutano un altro gruppo -> competenza sociale e leadership"
+  - "Se propongono miglioramenti -> mentalita iterativa da ingegnere"

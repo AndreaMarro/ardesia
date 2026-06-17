@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>ELAB Tutor — Privacy Policy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: 'Open Sans', -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #4a4a4a; }
+    h1 { color: #1E4D8C; }
+    h2 { color: #4A7A25; margin-top: 2rem; }
+    a { color: #E8941C; }
+    .meta { background: #f5f5f5; padding: 1rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy — ELAB Tutor</h1>
+
+  <div class="meta">
+    <p><strong>Titolare del trattamento</strong>: Andrea Marro &lt;marro.andrea96@gmail.com&gt;</p>
+    <p><strong>Ultima revisione</strong>: 30 aprile 2026 (versione iter 29)</p>
+    <p><strong>Versione documento</strong>: 1.0 — DRAFT — pending legal counsel review</p>
+  </div>
+
+  <h2>1. Chi siamo</h2>
+  <p>ELAB Tutor è una piattaforma educativa per elettronica e Arduino destinata a studenti italiani 8-14 anni. Il prodotto include kit fisici (Omaric Elettronica), volumi cartacei (autore Davide Fagherazzi), e questa applicazione web (sviluppatore Andrea Marro). Sito: <a href="https://www.elabtutor.school">elabtutor.school</a>.</p>
+
+  <h2>2. Dati personali raccolti</h2>
+  <ul>
+    <li><strong>Dati di account docente</strong>: nome, cognome, email, ruolo, scuola di appartenenza</li>
+    <li><strong>Dati di sessione studenti</strong>: identificatore anonimo classe (class_key), progressi esperimenti, drawing paths Lavagna</li>
+    <li><strong>Dati di utilizzo</strong>: timestamp sessioni, esperimenti completati, errori riscontrati</li>
+    <li><strong>Dati conversazione UNLIM AI</strong>: testo domande/risposte, screenshot circuiti (vision), trascrizioni audio (STT)</li>
+  </ul>
+  <p><strong>Età minore di 14 anni</strong>: il consenso del genitore/tutore è obbligatorio (Art. 8 GDPR + Codice Privacy italiano D.lgs. 196/2003 modificato D.lgs. 101/2018).</p>
+
+  <h2>3. Finalità del trattamento</h2>
+  <ul>
+    <li>Erogare il servizio educativo personalizzato (Principio Zero pedagogico)</li>
+    <li>Memorizzare progressi classe per adattamento Morfismo (Sense 1.5)</li>
+    <li>Migliorare la qualità del tutor AI (anonimizzazione obbligatoria)</li>
+    <li>Adempiere obblighi contrattuali con scuole acquirenti</li>
+  </ul>
+
+  <h2>4. Base giuridica</h2>
+  <ul>
+    <li>Art. 6(1)(b) GDPR — esecuzione contratto con scuole/docenti</li>
+    <li>Art. 6(1)(a) GDPR — consenso esplicito (cookie banner + minori)</li>
+    <li>Art. 8 GDPR — consenso parentale verificato per età &lt;14 anni</li>
+    <li>Art. 6(1)(f) GDPR — legittimo interesse (sicurezza piattaforma)</li>
+  </ul>
+
+  <h2>5. Sub-processor (provider AI EU + extra-EU gated)</h2>
+  <p>Vedi documento dedicato: <a href="/sub-processors.html">Lista Sub-Processor</a>.</p>
+  <p>Riepilogo:</p>
+  <ul>
+    <li><strong>Mistral AI</strong> (Francia EU) — LLM chat + Vision + TTS Voxtral — primary EU</li>
+    <li><strong>Google Cloud</strong> (Frankfurt EU) — Gemini fallback LLM + Vision</li>
+    <li><strong>Cloudflare Workers AI</strong> (EU edge) — STT Whisper + ImgGen FLUX</li>
+    <li><strong>Voyage AI</strong> (USA) — embeddings RAG (solo contenuto statico volumi, ZERO PII studenti)</li>
+    <li><strong>Together AI</strong> (USA) — fallback gated (solo emergency, anonymized payload, BLOCK su student runtime)</li>
+    <li><strong>Supabase</strong> (Frankfurt EU) — database + autenticazione + Edge Functions</li>
+    <li><strong>Vercel</strong> (EU edge) — hosting frontend</li>
+  </ul>
+
+  <h2>6. Trasferimenti internazionali</h2>
+  <p>Tutti i dati personali studenti rimangono in EU (Mistral FR + Gemini Frankfurt + Cloudflare EU + Supabase Frankfurt). Trasferimenti USA solo per:</p>
+  <ul>
+    <li>Voyage AI: contenuti statici volumi cartacei (ZERO PII)</li>
+    <li>Together AI: fallback emergency anonymized (consent docente esplicito + audit log)</li>
+  </ul>
+  <p>Garanzie: Standard Contractual Clauses (SCC) UE-USA + DPF (Data Privacy Framework) ove applicabile.</p>
+
+  <h2>7. Periodo di conservazione</h2>
+  <ul>
+    <li>Dati account docente: 5 anni dal termine contratto (obblighi fiscali)</li>
+    <li>Dati sessione studenti: 12 mesi (poi anonimizzazione)</li>
+    <li>Audit log Together fallback: 24 mesi (obbligo accountability GDPR Art. 30)</li>
+    <li>Dati di utilizzo aggregati: indefiniti (anonimi, aggregati)</li>
+  </ul>
+
+  <h2>8. Diritti dell'interessato (Art. 15-22 GDPR)</h2>
+  <ul>
+    <li>Diritto di accesso (Art. 15)</li>
+    <li>Diritto di rettifica (Art. 16)</li>
+    <li>Diritto alla cancellazione "diritto all'oblio" (Art. 17) — vedi <a href="#data-deletion">Cancellazione dati</a></li>
+    <li>Diritto di limitazione (Art. 18)</li>
+    <li>Diritto alla portabilità (Art. 20)</li>
+    <li>Diritto di opposizione (Art. 21)</li>
+    <li>Diritto di non essere soggetti a decisioni automatizzate (Art. 22) — UNLIM AI è strumento di supporto al docente, NON decisore autonomo</li>
+  </ul>
+
+  <h2>9. Cancellazione dati <a id="data-deletion"></a></h2>
+  <p>Per richiedere cancellazione dati: <a href="/?route=data-deletion">Form richiesta cancellazione</a>. Tempo massimo evasione: 30 giorni (Art. 12 GDPR).</p>
+
+  <h2>10. Sicurezza</h2>
+  <p>Misure tecniche e organizzative (Art. 32 GDPR):</p>
+  <ul>
+    <li>Crittografia in transito: TLS 1.3</li>
+    <li>Crittografia a riposo: AES-256 (Supabase)</li>
+    <li>Anonimizzazione PII pre-LLM (validatore Principio Zero V3 12-rule)</li>
+    <li>Rate limiting + body size limit + CORS allowlist</li>
+    <li>Row-level security (RLS) Postgres</li>
+    <li>Audit log accessi sensibili</li>
+  </ul>
+
+  <h2>11. Reclami</h2>
+  <p>L'interessato può proporre reclamo all'autorità di controllo italiana: <a href="https://www.gpdp.it">Garante per la Protezione dei Dati Personali</a> (gpdp.it).</p>
+
+  <h2>12. Contatti</h2>
+  <p>Email: <a href="mailto:marro.andrea96@gmail.com">marro.andrea96@gmail.com</a></p>
+  <p>Per richieste DPO: marro.andrea96@gmail.com (DPO designato Andrea Marro fino a nomina formale).</p>
+
+  <hr>
+  <p><em>Documento DRAFT — versione 1.0 iter 29 — pending review legale prima di go-live PNRR scuole.</em></p>
+</body>
+</html>

@@ -1,0 +1,78 @@
+# Curriculum YAML — v1-cap9-esp5
+# "Pot miscelatore blu-rosso"
+
+experiment_id: v1-cap9-esp5
+volume: 1
+chapter: 9
+title: "Pot miscelatore blu-rosso"
+
+prerequisites:
+  - v1-cap9-esp1  # Sa usare il potenziometro
+  - v1-cap8-esp3  # Sa mescolare colori RGB
+
+concepts_introduced:
+  - partitore_intuitivo
+  - bilancia_tra_due_carichi
+  - inversione_proporzionale
+
+vocabulary_level: v1-cap9
+allowed_terms:
+  - LED
+  - LED RGB
+  - resistenza
+  - corrente
+  - circuito
+  - breadboard
+  - potenziometro
+  - manopola
+  - blu
+  - rosso
+  - viola
+  - mescolare
+  - bilancia
+  - equilibrio
+  - pin 1
+  - pin 3
+  - cursore
+forbidden_terms:
+  - parallelo
+  - serie
+  - condensatore
+  - MOSFET
+  - Arduino
+  - codice
+  - partitore di tensione
+  - fotoresistenza
+  - tensione
+  - volt
+
+teacher_briefing:
+  before_class: >
+    Preparazione: 1 LED RGB, 2 resistenze 470 ohm, 1 potenziometro 10K. Pin 1 del pot
+    va al canale blu, pin 3 al canale rosso (cursore al centro). Girando, il colore
+    sfuma da blu a rosso passando per viola.
+  during_class: >
+    "Adesso il potenziometro non accende e spegne — mescola! Girate la manopola
+    lentamente e guardate cosa succede al colore." Da un lato tutto blu, dall'altro
+    tutto rosso, al centro viola. "E come una bilancia che pende da un lato all'altro."
+  common_question: >
+    "Come fa a mescolare?" -> Il potenziometro divide la corrente: da un lato ne manda
+    tanta al blu e poca al rosso, dall'altro il contrario. Al centro, uguale per entrambi.
+
+common_mistakes:
+  - mistake: "Solo un colore si vede"
+    what_to_do: "Controlla che pin 1 vada al blu e pin 3 al rosso (o viceversa)"
+    analogy: null
+  - mistake: "Il viola non si vede al centro"
+    what_to_do: "Stanza scura + le due resistenze fisse devono essere uguali"
+    analogy: null
+
+analogies:
+  bilancia_tra_due_carichi:
+    analogy: "Il potenziometro e come un'altalena a bilancia con due bambini (blu e rosso). Quando il punto di appoggio si sposta verso un lato, quel bambino sale e l'altro scende. Al centro, sono in equilibrio — e il colore e viola!"
+    evidence: "Analogia altalena per partitore, costruttivismo fisico (Piaget via Papert 1980)"
+
+assessment_invisible:
+  - "Se lo studente dice 'e come dividere in due' -> intuizione del partitore"
+  - "Se chiede 'posso aggiungere il verde?' -> pronto per esp 6 (3 pot)"
+  - "Se nota il viola al centro e dice 'e come nell'esp 3 ma regolabile' -> collegamento cross-esperimento"

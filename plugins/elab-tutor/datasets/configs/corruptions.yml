@@ -1,0 +1,68 @@
+# Corruption pipeline configuration
+# Each corruptor has a default probability and can be overridden per-section
+
+defaults:
+  typo_swap: 0.0
+  typo_drop: 0.0
+  typo_double: 0.0
+  sms: 0.0
+  caps_chaos: 0.0
+  filler: 0.0
+  emoji: 0.0
+  truncated: 0.0
+  voice: 0.0
+  autocorrect: 0.0
+  space_chaos: 0.0
+  profanity_wrap: 0.0
+
+# SMS replacement map (used by sms corruptor)
+sms_replacements:
+  "che ": "ke "
+  "per ": "x "
+  "perché": "xke"
+  "non ": "nn "
+  "cosa ": "kosa "
+  "come ": "cm "
+  "questo": "qst"
+  "anche": "anke"
+  "voglio": "vojo"
+  "con ": "cn "
+  "fammi": "fmmi"
+  "dove": "dv"
+  "quando": "qnd"
+  "sono": "sn"
+  "quello": "qll"
+  "adesso": "ades"
+  "tutto": "ttt"
+  "niente": "nnt"
+
+# Voice-to-text error map (used by voice corruptor)
+voice_map:
+  accendi: [a Gendy, accenni, a cendi]
+  avvia: [avia, a via]
+  metti: [methi, meti]
+  compila: [con pila, kompila]
+  led: [letto, let]
+  resistenza: [esistenza, risistenza]
+  buzzer: [bazar, bazzer, busser]
+  breadboard: [bretbord, bread bord, bredboard]
+  simulazione: [simolazione, simulazzione]
+  circuito: [circuìto, ciruito]
+  esperimento: [sperimento, esperimendo]
+  arduino: [artuino, arduìno]
+  pulsante: [polsante, pulsande]
+  potenziometro: [potenzi ometro, potenzio metro]
+  condensatore: [condensa tore, condensadore]
+  mosfet: [mos fet, mosfett]
+
+# Autocorrect error map (used by autocorrect corruptor)
+autocorrect_map:
+  mosfet: [mostre, mouse, misfatto]
+  buzzer: [bazar, buffer]
+  breadboard: [bread board, board]
+  arduino: [artigiano, arduo]
+  resistenza: [esistenza, insistenza]
+  potenziometro: [potenziale, potenza metro]
+  servo: [serbo, serve]
+  diodo: [divido, dodo]
+  condensatore: [condensato, condensare]

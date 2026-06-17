@@ -1,0 +1,291 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-03-27",
+    "source": "curriculum YAML + experiments-vol1.js"
+  },
+  "experiment_id": "v1-cap10-esp3",
+  "volume": 1,
+  "chapter": 10,
+  "title": "Esperimento 3: tre fotoresistori controllano un LED RGB",
+  "chapter_title": "Cos'è un fotoresistore?",
+  "difficulty": 3,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "I ragazzi scoprono il controllo indipendente con sensori: 3 fotoresistenze controllano i 3 canali del LED RGB separatamente.",
+  "components_needed": [
+    {
+      "name": "Breadboard",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Batteria 9V con clip",
+      "quantity": 1,
+      "icon": "🔋"
+    },
+    {
+      "name": "Fotoresistenza (LDR)",
+      "quantity": 3,
+      "icon": "☀️"
+    },
+    {
+      "name": "Resistore 220Ω",
+      "quantity": 3,
+      "icon": "⚡"
+    },
+    {
+      "name": "LED RGB (catodo comune)",
+      "quantity": 1,
+      "icon": "🌈"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 12,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "LED",
+      "LED RGB",
+      "batteria",
+      "filo",
+      "circuito",
+      "resistore",
+      "catodo comune",
+      "breadboard",
+      "corrente",
+      "potenziometro",
+      "resistenza variabile",
+      "fotoresistenza",
+      "sensore",
+      "LDR",
+      "luce",
+      "buio",
+      "automatico",
+      "volt",
+      "resistenza"
+    ],
+    "forbidden": [
+      "ohm",
+      "tensione",
+      "parallelo",
+      "serie",
+      "condensatore",
+      "Arduino",
+      "codice",
+      "programma",
+      "partitore",
+      "digitale"
+    ],
+    "note": "Cap 10 Vol 1 — 3 LDR controllano 3 canali RGB."
+  },
+  "prerequisites": [
+    "v1-cap10-esp2"
+  ],
+  "next_experiment": {
+    "id": "v1-cap10-esp4",
+    "title": "LED bianco illumina LDR → LED blu",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.88 intitolata \"LED bianco illumina LDR → LED blu\"."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, oggi 3 fotoresistenze controllano i 3 colori del LED RGB! Copri o illumina ogni sensore per cambiare colore.",
+      "teacher_tip": "Tre canali indipendenti: LDR1→R1→rosso, LDR2→R2→verde, LDR3→R3→blu. Ogni fotoresistenza regola un solo canale.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 3 fotoresistenze, 3 resistori 220Ω, 1 LED RGB, 12 fili.",
+      "class_hook": "La lampada RGB aveva 3 manopole. E se le manopole fossero sostituite da 3 SENSORI di luce? Il circuito 'vedrebbe' la luce!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Mostrate i 3 blocchi: ogni fotoresistenza è collegata a un resistore che va a un canale diverso del LED RGB.",
+      "teacher_tip": "Il circuito è grande ma modulare: 3 blocchi identici (LDR→R→canale) che condividono lo stesso LED RGB.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v1-cap10-esp3]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Ragazzi, costruite il circuito di 3 LDR controllano RGB seguendo Vol.1 pag.85.",
+        "button_label": "Mostrate il circuito passo passo",
+        "intent": {
+          "components": [
+            {
+              "type": "battery9v",
+              "id": "bat1"
+            },
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr1"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr2"
+            },
+            {
+              "type": "photo-resistor",
+              "id": "ldr3"
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bat1:positive",
+              "to": "bb1:bus-top-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-3",
+              "to": "bb1:a3",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-7",
+              "to": "bb1:a7",
+              "color": "red"
+            },
+            {
+              "from": "bb1:bus-top-plus-11",
+              "to": "bb1:a11",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a4",
+              "to": "bb1:a19",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a21",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a12",
+              "to": "bb1:a22",
+              "color": "blue"
+            },
+            {
+              "from": "bb1:a20",
+              "to": "bb1:bus-top-minus-20",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Copri una fotoresistenza alla volta: quale colore si spegne? Illuminale tutte: il LED diventa bianco!",
+      "teacher_tip": "Se un canale non risponde, controllare il collegamento specifico LDR→R→canale. Ogni blocco è indipendente.",
+      "provocative_question": "Come fareste a creare il viola usando solo le mani e le fotoresistenze? (copri il verde!)",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Un canale non risponde alla luce",
+          "teacher_response": "Regolate il collegamento: la fotoresistenza deve essere collegata al resistore, e il resistore al canale corrispondente.",
+          "analogy": null
+        },
+        {
+          "mistake": "Tutti i colori si accendono/spengono insieme",
+          "teacher_response": "Le 3 fotoresistenze devono avere ognuna il proprio collegamento al bus positivo. Non devono condividere il segnale.",
+          "analogy": "Come 3 finestre in stanze diverse: ogni finestra illumina solo la sua stanza"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premete Play e sperimenta con la luce! Ogni fotoresistenza regola un colore. Copri il verde: resta rosso+blu = viola!",
+      "teacher_tip": "Evidenziate le 3 fotoresistenze. Chiedete di creare colori specifici coprendo le giuste combinazioni.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:ldr1]",
+        "[AZIONE:highlight:ldr2]",
+        "[AZIONE:highlight:ldr3]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "3 sensori = 3 colori indipendenti! Copri il verde: rosso+blu = viola. Copri il rosso: verde+blu = ciano. Il circuito 'vede' la luce!",
+      "analogies": [
+        {
+          "concept": "sensori_indipendenti",
+          "text": "Le 3 fotoresistenze sono come 3 finestre colorate: ogni finestra lascia entrare luce per il suo colore. Chiudendo una finestra, quel colore scompare!",
+          "evidence": "Curriculum ELAB Vol 1"
+        },
+        {
+          "concept": "circuito_che_sente",
+          "text": "Per la prima volta il circuito 'sente' il mondo esterno da 3 punti diversi! È come avere 3 occhi, ognuno per un colore.",
+          "evidence": "Curriculum ELAB Vol 1"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, Oggi abbiamo costruito un circuito con 3 sensori indipendenti — il circuito 'vede' la luce da 3 punti!",
+      "teacher_tip": "Chiedete: 'Dove si usano più sensori di luce nella vita reale?' (telecamere, robot, sensori di parcheggio)",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "3 fotoresistenze controllano 3 colori indipendentemente! Coprendo le giuste combinazioni puoi creare qualsiasi colore. Il circuito 'vede' la luce da 3 punti diversi.",
+      "concepts_learned": [
+        "multi-sensore indipendente",
+        "controllo RGB con sensori"
+      ],
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.88 intitolata \"LED bianco illumina LDR → LED blu\"."
+    }
+  ],
+  "assessment_invisible": [
+    "Se crea il viola coprendo il verde → ha capito il controllo indipendente",
+    "Se dice '3 finestre per 3 colori' → ha interiorizzato l'analogia",
+    "Se nota che tutti illuminati = bianco → sintesi additiva confermata"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "multi_sensore_rgb",
+      "controllo_indipendente_luce"
+    ],
+    "next_suggested": "v1-cap10-esp4",
+    "resume_message": "L'ultima volta avete usato 3 sensori per 3 colori! Ora: catena di luce, un LED ne accende un altro."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 85,
+    "label": "Vol.1 pag.85"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "created": "2026-04-29",
+    "iter": 27,
+    "purpose": "Persona simulation 5 utenti REAL Playwright — Harness STRINGENT Livello 5 PEDAGOGICAL",
+    "principio_zero_v3": "imperativo — docente protagonist, kit fisico ELAB protagonist, citazione Vol/pag VERBATIM",
+    "honest_caveat": "Agent simulation ≠ utenti reali. Playtest LIM scuola pubblica con docente vero = ground truth definitivo (deferred Sprint U)."
+  },
+  "personas": [
+    {
+      "id": "persona_01",
+      "label": "Docente esperto Arduino",
+      "age": 45,
+      "context": "Insegnante tecnologia scuola media, 10+ anni esperienza Arduino Nano/UNO. Vuole dettagli tecnici, scetticismo high.",
+      "device": "LIM 4K + browser Chrome",
+      "session_duration_target_s": 600,
+      "behaviors": {
+        "click_speed_ms": 300,
+        "read_speed_wpm": 250,
+        "tolerance_for_mistakes": "low (esige precisione)",
+        "tolerance_for_simulator_bugs": "low (segnala subito)"
+      },
+      "test_assertions": [
+        "UNLIM cita Vol/pag VERBATIM (regex) — scettico controlla pagina libro",
+        "Componenti SVG simulator IDENTICI a kit Arduino fisico (no palette generica)",
+        "Esperimenti coerenti con narrativa volumi (NO card flat)",
+        "Linguaggio plurale 'Ragazzi,' rispettato sempre",
+        "Mai 'puoi simulare' sostituzione kit (PZ V3)"
+      ],
+      "expected_pain_points": [
+        "Componenti palette diversa da Omaric kit reale → Morfismo Sense 2 violazione",
+        "UNLIM parafrasa invece di citare → docente smette di fidarsi",
+        "Esperimento simulator NON funziona reale → simulatore broken (92 nominale)"
+      ]
+    },
+    {
+      "id": "persona_02",
+      "label": "Docente al primo anno",
+      "age": 28,
+      "context": "Insegnante scuola primaria 4ª/5ª, prima volta con Arduino. Linguaggio semplice, paura sbagliare, micro-step.",
+      "device": "LIM 1080p + iPad student secondario",
+      "session_duration_target_s": 1200,
+      "behaviors": {
+        "click_speed_ms": 800,
+        "read_speed_wpm": 180,
+        "tolerance_for_mistakes": "high (riprova spesso)",
+        "tolerance_for_simulator_bugs": "high (pensa errore proprio prima)"
+      },
+      "test_assertions": [
+        "Onboarding tempo a primo esperimento <90s",
+        "UNLIM analogie k-12 (pensate, immaginate) ≥1 per response",
+        "Ragazzi opening rispettato (essential per LIM clarity)",
+        "Modalità Percorso default pre-selezionato (Andrea iter 26 ADR-025 mandato)",
+        "Touch target ≥44px (iPad accessibility)"
+      ],
+      "expected_pain_points": [
+        "UI cluttered → docente pre-anno si confonde → abbandona Lavagna",
+        "UNLIM response >60 parole → LIM proiezione testo troppo piccolo",
+        "Toolbar 4 strumenti core NON evidenti → docente non trova Pen/Wire/Select/Delete"
+      ]
+    },
+    {
+      "id": "persona_03",
+      "label": "Bambino 4ª primaria 9 anni",
+      "age": 9,
+      "context": "Studente 4ª elementare, attenzione 5min, distrazione, drag-drop touch su LIM.",
+      "device": "LIM touch via dito (no mouse, no penna stylus)",
+      "session_duration_target_s": 300,
+      "behaviors": {
+        "click_speed_ms": 1500,
+        "read_speed_wpm": 80,
+        "tolerance_for_mistakes": "high (riprova mille volte)",
+        "tolerance_for_simulator_bugs": "low (frustrazione → smette dopo 1 tentativo)"
+      },
+      "test_assertions": [
+        "Drag-drop touch funziona LIM (no mouse-only events)",
+        "Mascotte UNLIM presente con feedback visivo (Mascot win/cheer animation)",
+        "LED accende immediatamente post-click (delay <500ms)",
+        "Sound feedback breadboard click sentito",
+        "Linguaggio bambino-friendly ('amici', 'ragazzi' NO termini tecnici prima Vol1 cap1)"
+      ],
+      "expected_pain_points": [
+        "Drag-drop touch finger spesso falla pinch zoom involontario",
+        "LED virtuale NON accende → bambino frustrato pensa rotto",
+        "UNLIM 60 parole TROPPO lungo per attenzione 9 anni"
+      ]
+    },
+    {
+      "id": "persona_04",
+      "label": "Bambino 3ª media 13 anni",
+      "age": 13,
+      "context": "Studente 3ª media autonomo, vuole 'che funzioni', smanetta, cerca shortcut.",
+      "device": "LIM + smartphone consultazione GitHub/StackOverflow",
+      "session_duration_target_s": 900,
+      "behaviors": {
+        "click_speed_ms": 200,
+        "read_speed_wpm": 220,
+        "tolerance_for_mistakes": "medium (chiede aiuto solo dopo 3 tentativi)",
+        "tolerance_for_simulator_bugs": "medium (cerca workaround online se Stuck)"
+      },
+      "test_assertions": [
+        "Modalità Libero accessibile (Andrea iter 26 mandato — Libero auto-Percorso)",
+        "Scratch/Blockly + Arduino C++ codice export funziona",
+        "Compilatore HEX OK senza errori",
+        "AVRBridge avr8js esegue codice realmente",
+        "Vision UNLIM 'guarda mio circuito' funziona screenshot"
+      ],
+      "expected_pain_points": [
+        "Compilatore Hostinger n8n cold start 18s → studente smanetta clicca refresh",
+        "Modalità Libero NON evidente all'utente → fallback Percorso forzato (Andrea ADR-025 voce 1+2 ratify)",
+        "Voce UNLIM wake-word 'Ehi UNLIM' NON wired iter 27 — manca interazione voice"
+      ]
+    },
+    {
+      "id": "persona_05",
+      "label": "Genitore curioso",
+      "age": 42,
+      "context": "Genitore vede figlio usare ELAB a casa, vuole capire cosa fa. NO formazione Arduino.",
+      "device": "Browser PC desktop o tablet",
+      "session_duration_target_s": 480,
+      "behaviors": {
+        "click_speed_ms": 600,
+        "read_speed_wpm": 200,
+        "tolerance_for_mistakes": "low (tempo poco, smette se confuso 30s)",
+        "tolerance_for_simulator_bugs": "low (bug → 'non funziona ELAB')"
+      },
+      "test_assertions": [
+        "Landing page chiara cosa è ELAB (entro 30s capire kit + volumi + simulatore)",
+        "Onboarding 3-click max a primo esperimento demo",
+        "UNLIM spiega in linguaggio non-tecnico (pensate, immaginate analogie)",
+        "Vol/pag citation visibile per fiducia ('è il libro!')",
+        "Pricing transparente (genitore vuole sapere costo prima abbonarsi)"
+      ],
+      "expected_pain_points": [
+        "Landing scuole-only NON home → genitore NON capisce è anche per lui (deferred B2C iter 32+)",
+        "Pricing classe €20/mese NON visibile pubblicamente → genitore abbandona",
+        "Modalità Percorso DEFAULT confusa per outsider (no contesto scuola)"
+      ]
+    }
+  ],
+  "global_assertions": {
+    "principio_zero_v3_violations": "ZERO tolerance per session — qualsiasi violazione (kit fisico sostituito da simulatore, no plurale, no Vol/pag) → FAIL session immediato",
+    "morfismo_dual_violations": "ZERO tolerance — palette generica, parafrasi volumi, esperimenti inventati → FAIL",
+    "wcag_aa": "Touch target ≥44px, contrasto 4.5:1 testo, 3:1 grafici",
+    "performance": "First contentful paint <2s, LIM 4K rendering 60fps stabile"
+  },
+  "scoring_rubric": {
+    "PASS": "≥80% test_assertions verde + 0 PZ V3 violations + 0 Morfismo violations",
+    "WARN": "60-80% test_assertions verde, 0 PZ V3, ≤1 Morfismo minor",
+    "FAIL": "<60% test_assertions verde OR ≥1 PZ V3 violation OR ≥2 Morfismo violations"
+  }
+}

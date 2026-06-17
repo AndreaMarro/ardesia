@@ -1,0 +1,203 @@
+id: code
+name: "Codice Arduino/Scratch v8"
+intent: code
+needs_llm: true
+
+templates:
+  # ── DOMANDE SUL CODICE ESISTENTE ──────────────
+  - input: "{frase}"
+    llm_hint: "{hint}"
+    actions: ["[AZIONE:getcode]"]
+    entities: []
+    vars:
+      frase:
+        - spiegami il codice
+        - cosa fa questo programma?
+        - non capisco il codice
+        - mi spieghi cosa ho scritto?
+        - cosa significa questo codice?
+        - che fa sto programma?
+        - mi traduci il codice in italiano?
+        - a cosa serve questa riga?
+        - perche' c'e' scritto cosi?
+        - cos'e' questa roba nel codice?
+        - il codice che c'e' cosa fa?
+        - spiegami il programma riga per riga
+        - non ci capisco niente del codice
+        - ma che vuol dire tutto questo?
+        - mi fai capire il codice?
+        - traduzione del programma?
+        - deciframi sto codice
+        - cosa significano queste righe?
+      hint:
+        - "Lo studente chiede spiegazione del codice corrente. Leggi il codice dall'editor e spiega riga per riga in italiano semplice."
+        - "Richiesta di spiegazione codice. Usa analogie quotidiane: loop=ripetizione, if=decisione, variabile=scatola."
+        - "L'utente non capisce il programma. Spiegalo come una ricetta: prima fai X, poi Y, se succede Z allora W."
+        - "Spiegazione codice richiesta. Focalizzati su cosa fa il programma nel circuito reale, non sulla sintassi astratta."
+        - "Lo studente vuole capire il codice. Collega ogni riga a un effetto visibile: questa riga accende il LED, questa lo spegne."
+
+  # ── FUNZIONI SPECIFICHE ARDUINO ──────────────
+  - input: "{frase}"
+    llm_hint: "Domanda su funzione Arduino specifica. Spiega cosa fa, quali parametri accetta, ed esempio pratico nel circuito."
+    actions: []
+    entities: []
+    vars:
+      frase:
+        - "cos'e' {func}?"
+        - "a cosa serve {func}?"
+        - "come si usa {func}?"
+        - "spiegami {func}"
+        - "che vuol dire {func}?"
+        - "cosa fa {func} nel codice?"
+        - "quando uso {func}?"
+        - "{func} che significa?"
+        - "non capisco {func}"
+      func:
+        - "digitalWrite"
+        - "digitalRead"
+        - "analogWrite"
+        - "analogRead"
+        - "pinMode"
+        - "delay"
+        - "Serial.println"
+        - "Serial.begin"
+        - "map"
+        - "millis"
+        - "tone"
+        - "noTone"
+        - "constrain"
+        - "random"
+        - "if"
+        - "for"
+        - "while"
+        - "void setup"
+        - "void loop"
+        - "int"
+        - "float"
+        - "boolean"
+        - "HIGH e LOW"
+        - "INPUT e OUTPUT"
+        - "INPUT_PULLUP"
+
+  # ── RICHIESTA SCRITTURA CODICE ──────────────
+  - input: "{frase}"
+    llm_hint: "{hint}"
+    actions: ["[AZIONE:openeditor]"]
+    entities: []
+    vars:
+      frase:
+        - scrivi il codice per far lampeggiare il LED
+        - fammi il programma per il LED
+        - genera il codice
+        - scrivi tu il codice per me
+        - crea un programma che {azione}
+        - fammi un codice che {azione}
+        - scrivi il programma Arduino
+        - genera il codice per questo circuito
+        - scrivi tu, io non so programmare
+        - aiutami a scrivere il codice
+        - fai il programma per il circuito
+        - mi serve il codice per {azione}
+        - puoi scrivere il codice?
+        - fammi il codice per far funzionare tutto
+        - come scrivo un programma che {azione}?
+      azione:
+        - accende il LED
+        - fa lampeggiare il LED
+        - legge il pulsante
+        - controlla il motore
+        - suona il buzzer
+        - legge il sensore di luce
+        - muove il servo
+        - mostra qualcosa sul display
+        - fa un semaforo
+        - conta i click del pulsante
+        - accende il LED quando premo il bottone
+        - fa un allarme con il buzzer
+        - regola la luminosita' con il potenziometro
+        - fa lampeggiare il LED RGB con colori diversi
+      hint:
+        - "Lo studente chiede di generare codice. Scrivi codice Arduino semplice, commentato riga per riga in italiano."
+        - "Richiesta generazione codice. Il codice deve essere funzionante, breve, e con commenti che spiegano ogni passo."
+        - "L'utente vuole codice pronto. Genera codice compatibile con il circuito corrente, con setup() e loop() chiari."
+        - "Richiesta scrittura programma. Fai codice leggibile per principianti: nomi variabili italiani, commenti su ogni blocco."
+
+  # ── ERRORI DI COMPILAZIONE ──────────────
+  - input: "{frase}"
+    llm_hint: "Lo studente ha un errore di compilazione. Leggi l'errore, spiega in parole semplici cosa significa, e suggerisci la correzione."
+    actions: ["[AZIONE:getcode]"]
+    entities: []
+    vars:
+      frase:
+        - c'e' un errore nel codice
+        - non compila
+        - il codice da errore
+        - errore di compilazione, aiuto
+        - mi dice che c'e' un errore
+        - il programma non funziona
+        - ho un bug
+        - dove ho sbagliato nel codice?
+        - il compilatore si lamenta
+        - errore! cosa ho fatto di sbagliato?
+        - non riesce a compilare
+        - c'e' un problema nel programma
+        - il codice e' rotto
+        - qualcosa non va nel codice
+        - come fixo l'errore?
+        - aiutami a trovare il bug
+        - il programma crasha
+
+  # ── MODIFICA CODICE ESISTENTE ──────────────
+  - input: "{frase}"
+    llm_hint: "{hint}"
+    actions: ["[AZIONE:getcode]"]
+    entities: []
+    vars:
+      frase:
+        - cambia il delay a {val}
+        - metti un ritardo di {val} millisecondi
+        - fai lampeggiare piu' veloce
+        - fai lampeggiare piu' lento
+        - aggiungi un if per il pulsante
+        - metti un for loop
+        - fai che si accende e si spegne
+        - cambia il pin a {pin}
+        - modifica il codice per usare il pin {pin}
+        - aggiungi una variabile per la luminosita'
+        - fai che quando premo il pulsante cambia
+        - fai il codice piu' corto
+        - semplifica il programma
+        - aggiungi un commento che spiega
+      val: ["100", "500", "1000", "2000", "50", "250"]
+      pin: ["2", "3", "5", "6", "9", "10", "11", "13"]
+      hint:
+        - "Lo studente vuole modificare il codice corrente. Leggi il codice, applica la modifica, spiega cosa hai cambiato."
+        - "Richiesta modifica codice. Fai il minimo cambiamento necessario, mostra prima/dopo, spiega il perche'."
+        - "Modifica al programma. Cambia solo quello che serve, non riscrivere tutto. Commenta la modifica."
+
+  # ── SCRATCH BLOCKS ──────────────
+  - input: "{frase}"
+    llm_hint: "Lo studente lavora in modalita' Scratch/Blockly. Spiega usando i nomi dei blocchi visivi, non il codice testuale."
+    actions: ["[AZIONE:openeditor]"]
+    entities: []
+    vars:
+      frase:
+        - quale blocco uso per accendere il LED?
+        - come faccio con i blocchi?
+        - dove trovo il blocco per il delay?
+        - non trovo il blocco giusto
+        - aiutami con Scratch
+        - come collego i blocchi?
+        - quale blocco legge il sensore?
+        - fammi vedere i blocchi giusti
+        - i blocchi per far lampeggiare?
+        - dove metto il blocco repeat?
+        - come funzionano i blocchi Arduino?
+        - aiutami a costruire il programma a blocchi
+
+corruptions:
+  typo_swap: 0.25
+  voice: 0.1
+  sms: 0.15
+  filler: 0.1
+  emoji: 0.05

@@ -1,0 +1,78 @@
+# Curriculum YAML — v2-cap7-esp2
+# "Scarica con LED rosso"
+
+experiment_id: v2-cap7-esp2
+volume: 2
+chapter: 7
+title: "Scarica con LED rosso"
+
+prerequisites:
+  - v2-cap7-esp1
+
+concepts_introduced:
+  - scarica_visibile
+  - energia_accumulata
+
+vocabulary_level: v2
+allowed_terms:
+  - LED
+  - batteria
+  - filo
+  - circuito
+  - resistore
+  - corrente
+  - tensione
+  - volt
+  - condensatore
+  - carica
+  - scarica
+  - energia
+  - breadboard
+  - luminosita'
+forbidden_terms:
+  - Arduino
+  - codice
+  - programma
+  - digitale
+  - compilare
+  - variabile
+  - funzione
+  - loop
+  - setup
+  - analogRead
+  - digitalRead
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 condensatore 1000uF (caricato a 9V), 1 LED rosso,
+    1 resistore 330 ohm, fili. Carica i condensatori PRIMA. L'effetto e' spettacolare:
+    il LED si accende e poi si spegne lentamente da solo!
+  during_class: >
+    Stacca la batteria e collega il condensatore carico al LED + resistore.
+    "Guardate! Il LED si accende e poi..." si spegne piano piano. Chiedi:
+    "Da dove arriva l'energia per il LED se la batteria non c'e' piu'?"
+    Il condensatore aveva 'conservato' l'energia della batteria.
+  common_question: >
+    "Come fa il LED ad accendersi senza batteria?" -> Il condensatore e' come una
+    batteria piccola e veloce. Ha immagazzinato energia e ora la sta restituendo.
+
+common_mistakes:
+  - mistake: "Pensare che il condensatore sia una batteria"
+    what_to_do: "Fai notare che si scarica in pochi secondi — una batteria dura ore. Il condensatore e' un 'serbatoio veloce'."
+    analogy: "La batteria e' un lago, il condensatore e' un bicchiere d'acqua"
+  - mistake: "LED collegato al contrario — non si vede nulla"
+    what_to_do: "Fai girare il LED. Se non funziona, ricarica il condensatore — potrebbe essersi gia' scaricato."
+    analogy: null
+
+analogies:
+  scarica_visibile:
+    analogy: "Vedere il LED che si spegne piano e' come vedere una candela che si consuma — l'energia finisce un po' alla volta, e lo vedi con i tuoi occhi."
+    evidence: "Apprendimento multisensoriale per concetti astratti (Paivio 1986, dual coding theory)"
+  energia_accumulata:
+    analogy: "Il condensatore carico e' come una molla compressa — quando lo lasci andare, rilascia tutta l'energia che aveva accumulato. Ma finisce in fretta."
+    evidence: "Analogia meccanica per energia immagazzinata (Clement 1993)"
+
+assessment_invisible:
+  - "Se lo studente dice 'l'energia era nel condensatore' -> ha capito l'accumulo"
+  - "Se confronta la durata del LED con e senza batteria -> ragionamento comparativo"
+  - "Se prova a ricaricare il condensatore da solo -> autonomia sperimentale"

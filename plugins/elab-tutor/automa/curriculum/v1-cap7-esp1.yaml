@@ -1,0 +1,89 @@
+# Curriculum YAML — v1-cap7-esp1
+# "Accendi il rosso del RGB"
+
+experiment_id: v1-cap7-esp1
+volume: 1
+chapter: 7
+title: "Accendi il rosso del RGB"
+
+prerequisites:
+  - v1-cap6-esp1  # Sa accendere un LED
+  - v1-cap6-esp3  # Sa usare una resistenza
+
+concepts_introduced:
+  - LED_RGB
+  - catodo_comune
+  - pin_multipli
+
+vocabulary_level: v1-cap7
+allowed_terms:
+  - LED
+  - LED RGB
+  - rosso
+  - verde
+  - blu
+  - resistenza
+  - ohm
+  - corrente
+  - catodo
+  - anodo
+  - breadboard
+  - piedino
+  - circuito
+  - batteria
+  - filo
+  - pin
+  - colore
+forbidden_terms:
+  - PWM
+  - analogWrite
+  - digitale
+  - Arduino
+  - codice
+  - programma
+  - frequenza
+  - duty cycle
+  - condensatore
+  - potenziometro
+  - transistor
+  - MOSFET
+  - parallelo
+  - serie
+
+teacher_briefing:
+  before_class: >
+    Preparazione: ogni gruppo ha 1 LED RGB (catodo comune), 1 resistenza 470 ohm,
+    breadboard, batteria 9V. Il LED RGB ha 4 piedini — il piu lungo e il catodo (GND).
+    Obiettivo: far capire che un LED RGB contiene 3 LED dentro un unico componente.
+  during_class: >
+    Chiedi: "Quanti piedini ha questo LED? Perche 4 e non 2?" Lascia che osservino.
+    Poi: "Proviamo a collegare solo il piedino del rosso." Se non funziona, chiedere
+    "Cosa manca?" (il collegamento al catodo comune).
+  common_question: >
+    "Perche ha 4 gambe?" -> Dentro ci sono 3 piccoli LED (rosso, verde, blu) che
+    condividono lo stesso piedino negativo. E come un palazzo con 3 appartamenti
+    e un unico ingresso.
+
+common_mistakes:
+  - mistake: "Collegano il piedino sbagliato"
+    what_to_do: "Mostra il datasheet semplificato: piedino lungo = catodo, poi R, G, B"
+    analogy: "Come una forchetta — il manico e il catodo, i rebbi sono i colori"
+  - mistake: "Dimenticano la resistenza"
+    what_to_do: "Ricorda l'esperimento 6.2 — cosa succede senza resistenza?"
+    analogy: null
+  - mistake: "Collegano catodo al + invece che al -"
+    what_to_do: "Ricorda: catodo = piedino lungo = va al polo negativo"
+    analogy: null
+
+analogies:
+  LED_RGB:
+    analogy: "Un LED RGB e come una torcia con 3 lampadine colorate dentro. Puoi accenderne una, due o tutte e tre per creare colori diversi — come un pittore che mescola i colori sulla tavolozza."
+    evidence: "Analogia additiva colori, supportata da ricerca su apprendimento visivo (Mayer 2001)"
+  catodo_comune:
+    analogy: "Il catodo comune e come la porta di uscita di un cinema con 3 sale — tutti escono dalla stessa porta, ma entrano da porte diverse (rosso, verde, blu)."
+    evidence: "Analogia strutturale per shared ground (Driver et al. 1994)"
+
+assessment_invisible:
+  - "Se lo studente identifica il piedino lungo come catodo senza aiuto -> ha trasferito conoscenza dal cap 6"
+  - "Se chiede 'posso accendere anche gli altri colori?' -> curiosita naturale, pronto per esp 2-3"
+  - "Se prova a mescolare colori spontaneamente -> pronto per esp 4"

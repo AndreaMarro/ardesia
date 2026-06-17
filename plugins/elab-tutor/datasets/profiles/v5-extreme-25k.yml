@@ -1,0 +1,31 @@
+# Galileo Brain Factory v5 — Extreme 25K Profile
+# Target: 25000 unique training examples
+# Training: sequential after 20K base dataset
+
+target: 25000
+seed: 2026_03_14
+system_prompt: system_prompt.txt
+output: galileo-brain-v5-extreme-25k.jsonl
+
+sections:
+  actions:          { weight: 8,  corruptions: { typo_swap: 0.3, voice: 0.1 } }
+  circuit:          { weight: 15, corruptions: { typo_swap: 0.4, sms: 0.2, emoji: 0.1 } }
+  code:             { weight: 8,  corruptions: { typo_swap: 0.2 } }
+  tutor:            { weight: 10, corruptions: { typo_swap: 0.3, truncated: 0.15 } }
+  navigation:       { weight: 5,  corruptions: { typo_swap: 0.2, voice: 0.15 } }
+  vision:           { weight: 4,  corruptions: { typo_swap: 0.2 } }
+  teacher:          { weight: 6,  corruptions: { typo_swap: 0.2, voice: 0.1 } }
+  teacher_clueless: { weight: 3,  corruptions: { typo_swap: 0.3, voice: 0.2, truncated: 0.15 } }
+  dialects:         { weight: 6 }
+  profanity:        { weight: 3,  corruptions: { caps_chaos: 0.3 } }
+  expert:           { weight: 4,  corruptions: { typo_swap: 0.1 } }
+  ignorant:         { weight: 5,  corruptions: { typo_swap: 0.4, voice: 0.2, emoji: 0.2 } }
+  truncated:        { weight: 3 }
+  emoji_speak:      { weight: 3 }
+  english:          { weight: 3,  corruptions: { typo_swap: 0.2 } }
+  voice:            { weight: 3 }
+  out_of_scope:     { weight: 4,  corruptions: { typo_swap: 0.2 } }
+  multi_step:       { weight: 5,  corruptions: { typo_swap: 0.2, truncated: 0.1 } }
+  context_aware:    { weight: 5,  corruptions: { typo_swap: 0.2 } }
+  autocorrect:      { weight: 2 }
+  lcd_scratch:      { weight: 3,  corruptions: { typo_swap: 0.2 } }
