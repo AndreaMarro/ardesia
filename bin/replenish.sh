@@ -39,9 +39,8 @@ if [ "$DRY" != "1" ] && [ "$nl" -ge "$THRESHOLD" ] && [ "$ns" -ge "$THRESHOLD" ]
   echo "[replenish] backlog sufficiente — niente da fare"; exit 0
 fi
 
-# master key gateway (litellm)
+# master key gateway (litellm) — serve SOLO al fallback deepseek (opus-first non la usa)
 MK="$(grep -rhoE 'LITELLM_MASTER_KEY[=: ]+["'"'"']?sk-[A-Za-z0-9_-]+' "$HOME/.zshenv" "$HOME/.zprofile" "$HOME/.zshrc" "$HOME/litellm/.env" "$HOME/litellm/start.sh" "$HOME/litellm/run-fg.sh" "$HOME/Library/LaunchAgents/com.ardesia.litellm.plist" 2>/dev/null | grep -oE 'sk-[A-Za-z0-9_-]+' | head -1)"
-[ -n "$MK" ] || { echo "[replenish] master key non trovata — skip"; exit 0; }
 
 # persona = corpo dell'agent .md (dopo il SECONDO '---')
 PERSONA="$(awk 'BEGIN{c=0} /^---[[:space:]]*$/{c++; next} c>=2{print}' "$AGENT" 2>/dev/null)"
@@ -65,19 +64,36 @@ $(tail -35 "$LASTSTRAT" 2>/dev/null)
 
 ### REPO SOTTO-SOGLIA DA RIFORNIRE: $([ "$nl" -lt "$THRESHOLD" ] && printf 'lessonos ')$([ "$ns" -lt "$THRESHOLD" ] && printf 'studio')"
 
-# richiesta gateway (deepseek-v4-pro via alias deepseek-chat; cheap+capped). JSON via python (escaping sicuro).
-REQ="$(PERSONA="$PERSONA" CTX="$CTX" python3 -c 'import json,os
+# STRATEGIST: opus-4-8 ULTRACODE first (quota-gated via acct.sh), fallback deepseek-v4-pro gateway (mai bloccato).
+USERMSG="Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro.
+
+$CTX"
+RAW=""
+ACC="$(bash "$HOME/lessonos/bin/acct.sh" pick 2>/dev/null || true)"
+if [ -n "$ACC" ]; then
+  TOK="$(bash "$HOME/lessonos/bin/acct.sh" token "$ACC" 2>/dev/null || true)"
+  if [ -n "$TOK" ]; then
+    RAW="$(timeout 300 env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$TOK" claude -p --dangerously-skip-permissions --model claude-opus-4-8 "ultracode — $PERSONA
+
+$USERMSG" 2>/dev/null)"
+    if [ "${#RAW}" -ge 20 ]; then echo "[replenish] strategist=opus-4-8 ultracode (account $ACC)"; else RAW=""; fi
+  fi
+fi
+if [ -z "$RAW" ] && [ -n "$MK" ]; then
+  echo "[replenish] strategist=deepseek-v4-pro (fallback gateway)"
+  REQ="$(PERSONA="$PERSONA" CTX="$CTX" python3 -c 'import json,os
 print(json.dumps({"model":"deepseek-chat","temperature":0.2,"max_tokens":3500,"messages":[
  {"role":"system","content":os.environ["PERSONA"]},
  {"role":"user","content":"Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro.\n\n"+os.environ["CTX"]}]}))')"
-RESP="$(curl -s -m 120 "$GW" -H "Authorization: Bearer $MK" -H "Content-Type: application/json" -d "$REQ" 2>/dev/null)"
-RAW="$(printf '%s' "$RESP" | python3 -c 'import sys,json
+  RESP="$(curl -s -m 120 "$GW" -H "Authorization: Bearer $MK" -H "Content-Type: application/json" -d "$REQ" 2>/dev/null)"
+  RAW="$(printf '%s' "$RESP" | python3 -c 'import sys,json
 try:
     m=json.load(sys.stdin)["choices"][0]["message"]
     print((m.get("content") or "").strip() or (m.get("reasoning_content") or ""))
 except Exception:
     print("")' 2>/dev/null)"
-if [ -z "$RAW" ]; then echo "[replenish] gateway: risposta vuota/errore — skip (nessuna scrittura)"; printf '%s' "$RESP" | head -c 300; echo; exit 0; fi
+fi
+if [ -z "$RAW" ]; then echo "[replenish] nessuna risposta (opus+gateway) — skip (nessuna scrittura)"; exit 0; fi
 
 # VALIDAZIONE RIGOROSA dell'output (NON fidato). process-substitution (NO heredoc => niente espansione/RCE).
 VALID=""
