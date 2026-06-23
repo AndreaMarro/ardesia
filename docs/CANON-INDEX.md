@@ -7,6 +7,7 @@ Spec canoniche del prodotto/architettura, ricavate dai repo reali e verificate f
 2. **[PRODUCT-CANON](PRODUCT-CANON.md)** — ARDESIA≠ELAB≠simulatore, reality-test camminato sullo stato reale, 2 modalità→`LessonMode`, funzioni Core cross-materia, statement moat onesto, responsive, tagli duri.
 3. **[PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md)** — `ArdesiaPluginManifest` (as-built + `kind`/visibility/marketplace da-aggiungere), kernel sicurezza, 2 item aperti (TOCTOU, bundleHash), wire-reachability, tipi vendibili, P0=montare l'host.
 4. **[ELAB-AS-PLUGIN-CANON](ELAB-AS-PLUGIN-CANON.md)** — stato brutale (ELAB = app intera in `plugins/`), split Simulation-Plugin vs ELABTutor-Pack, salvage/do-not-port file-ref, confine di decoupling + lint-gate.
+5. **[ELAB-SCENE-FORGE-CANON](ELAB-SCENE-FORGE-CANON.md)** — il moat profondo: manuale→scena-fisica-fedele. Geometria ~60% esiste (pose+grid) / wire-path il 40% gap; `ElabScene`=`circuit-scene/2` (estendi non forkare); **hand-author 5 scene prima (consumer prima del producer)**, CV-forge differita; licenze AGPL=trap marketplace.
 
 ## La REGOLA DI CLASSIFICAZIONE (legge)
 Universale → **Core Ardesia** · Strumento riusabile → **Plugin** · Materia/metodo → **Pack** · Sequenza vendibile → **Workflow**.
