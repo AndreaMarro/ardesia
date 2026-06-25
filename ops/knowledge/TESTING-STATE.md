@@ -3,7 +3,7 @@ last-verified: 2026-06-25 (gate 3739)
 verified-by: bash eval/gate.sh firsthand (lessonos@b368438)
 
 ## Gates
-- lessonos: eval/gate.sh -> uv run pytest, JSON {passed,failed,exit}. GREEN = exit0 + passed non-regress. baseline 3743 (3737 + 2 F2a + 4 F2b). FROZEN evaluator (do not weaken).
+- lessonos: eval/gate.sh -> uv run pytest, JSON {passed,failed,exit}. GREEN = exit0 + passed non-regress. baseline 3749 (3737 + 2 F2a + 4 F2b + 6 graph-lint). FROZEN evaluator (do not weaken).
 - pre-commit hook check-no-gte-literal: warns on >= over deterministic counts.
 - studio: tsc + vitest (maestro-studio).
 

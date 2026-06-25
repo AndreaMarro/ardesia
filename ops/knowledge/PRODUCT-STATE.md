@@ -6,7 +6,7 @@ verified-by: F0 served.db firsthand + extract (PRODUCT-CANON, PROJECT-RECON, MOA
 apro -> lavagna -> contenuto-storia-reale -> monto-plugin(Reference-Sim) -> aggancio-citazione -> student-pack(v0.1) | [GAP] plugin-ELAB | [GAP] validator-errore | [GAP] marketplace | [GAP] vendibilita. Tutto LOCALE/demo; web bloccato.
 
 ## Real primitives
-- served storia corpus (1224 seg, 37-concept method-graph). grounding explains-edges 37/37 evidence. depends_on prereq edges UNGROUNDED 0/54 = known moat gap.
+- served storia corpus (1224 seg, 37-concept method-graph). grounding explains-edges 37/37 evidence. depends_on prereq edges UNGROUNDED 0/54 = known moat gap. ZERO-LLM lint bin/graph_lint.py: 0 cycles (valid DAG), 54 lacune; storia_corpus=30 concept, global=37 (incl. calculus text-lessons).
 - moat gold-blind +0.75 [0.68,0.82] N=50 (MECHANISM on synthetic gold; real-corpus human gold = open). VIETATO claim "+0.33"/PPR/reasoning publicly; only "edge-set pedagogico dal corpus del docente".
 
 ## Greenfield (PRODUCT-CANON reality-test)
