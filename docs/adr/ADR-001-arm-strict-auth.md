@@ -129,3 +129,7 @@ makes arming safe.
   CONFIRMED local-only (gh api "Branch not found"); `lessonos/auto/main`
   unprotected (protection API 404); local-bare origin
   `/Users/progettibelli/lessonos.git`.
+
+
+## Provenance note (resolves A2 nit)
+SHA `9be3632` on branch `fix/auth-validator-flag-gated` is verified in this session’s `QA-GATE-2026-06-25.md` (vault, A2-PASS: flag-gated validator + bytes-compare fix, full suite 3752 pass). The WF1 GitHub audit only confirmed the branch is **local-only on the mini** (absent on GitHub); it did not record the commit SHA. SHA source = session build/qa-gate, not the GitHub audit.

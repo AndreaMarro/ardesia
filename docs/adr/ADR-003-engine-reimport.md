@@ -146,3 +146,7 @@ symlink rejected as non-portable.
   drift between the monorepo `packages/engine` and canonical lessonos
   `auto/main`; ardesia origin = GitHub directly; lessonos origin = local bare
   `/Users/progettibelli/lessonos.git`.
+
+
+## Provenance note (resolves A2 nit)
+SHA `6c9e73bd` on branch `ci/engine-sync-guard` is verified in this session’s `QA-GATE-2026-06-25.md` (vault, A2 PASS-WITH-NITS: drift-guard that surfaced the 22-file active engine drift). The WF1 GitHub audit confirmed the branch is **local-only on the mini**; SHA source = session build/qa-gate, not the GitHub audit.
