@@ -3,7 +3,7 @@ last-verified: 2026-06-25
 verified-by: gh api + vercel CLI + ssh git firsthand
 
 ## Repos (github AndreaMarro)
-- lessonos: auto/main b368438 (pushed; F2a). origin/auto/main 9fac811 = STALE OLD remote (ignore; use remote "github").
+- lessonos: auto/main 410562c (pushed; F2a b368438 + F2b served-SHA gate). origin/auto/main 9fac811 = STALE OLD remote (ignore; use remote "github").
 - ardesia (monorepo): main 9b7047ad; this session branch = session/long-2026-06-25.
 - ardesia-studio: github auto/main f881a78 ; LOCAL maestro-studio 899a350 -> DIVERGENT. T3 lineage = GATE-ANDREA (force-with-lease).
 - ardesia-vault: github repo exists; MacBook local copy has NO git remote (Syncthing-synced).
