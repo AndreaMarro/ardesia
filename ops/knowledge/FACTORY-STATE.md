@@ -3,7 +3,7 @@ last-verified: 2026-06-25 (lessonos@b368438, served pid 3797)
 verified-by: ssh macmini firsthand (ps/lsof/git/curl/sqlite) + bash eval/gate.sh
 
 ## Served API
-- :8200 = uvicorn lessonos.api.app:app, cwd ~/lessonos. HEAD auto/main 781a02b (pushed github; F2a b368438 -> F2b 410562c -> graph-lint 781a02b).
+- :8200 = uvicorn lessonos.api.app:app, cwd ~/lessonos. HEAD auto/main 20560ec (pushed github; F2a b368438 -> F2b 410562c -> 781a02b -> graph-lint-dup-removed 20560ec).
 - [DONE F2a] /health exposes git_sha (frozen at import). Live proven: /health git_sha == HEAD after restart (b368438 -> 410562c -> 781a02b). Served-SHA done-gate now HAS its data source.
 - served.db (gitignored runtime, mtime stable): 1224 seg, 37 concept, 54 depends_on (0 evidence = GAP), 37 explains (37 evidence). lessonos.db = near-empty demo.
 
