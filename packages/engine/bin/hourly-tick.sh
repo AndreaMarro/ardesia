@@ -73,3 +73,8 @@ else
   ~/lessonos/bin/adversarial.sh "$repo" >> ~/lessonos/hourly.log 2>&1 || true
 fi
 ~/maestro-tools/evolution-collector.sh >> ~/lessonos/hourly.log 2>&1 || true
+# Dual-Hermes pilot: opt-in, finite, read-only by default. It runs only when
+# ~/.dual_hermes_ticks_remaining is armed through dual-hermes-tick-pilot.sh.
+if [ -x "$HOME/lessonos/bin/dual-hermes-tick-pilot.sh" ] || [ -f "$HOME/lessonos/bin/dual-hermes-tick-pilot.sh" ]; then
+  bash "$HOME/lessonos/bin/dual-hermes-tick-pilot.sh" hook >> ~/lessonos/hourly.log 2>&1 || true
+fi
