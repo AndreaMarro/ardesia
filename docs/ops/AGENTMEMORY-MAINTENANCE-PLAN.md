@@ -23,6 +23,108 @@ Return AgentMemory to a bounded, observable state:
 4. `worker.err` stops repeating `ECONNREFUSED 127.0.0.1:3111` and BM25 shard warnings.
 5. Recall/remember canary uses a tiny payload and returns or fails within 5 seconds.
 
+## Operational Canary Runbook
+
+Status: prepared, not executed. This runbook is the minimum operational canary
+for the next approved maintenance window. It does not authorize restart, kill,
+compaction, import, launchd modification, or log deletion.
+
+### Step 0: Confirm Backup
+
+Use the latest verified backup bundle before any runtime mutation:
+
+- known verified bundle: `/Users/progettibelli/agentmemory-canary-backups/20260702-025141`;
+- verification command, run from inside the bundle only:
+
+```bash
+shasum -a 256 -c SHA256SUMS.txt
+```
+
+Pass condition: every listed file reports `OK`. If any checksum fails, stop and
+create a fresh owner-only backup before doing anything else.
+
+### Step 1: Read-Only Baseline
+
+Collect a baseline immediately before maintenance. These commands are read-only
+and may be run without changing service state:
+
+```bash
+date
+hostname
+curl -fsS --max-time 8 http://localhost:3111/agentmemory/livez
+ps -o pid,ppid,stat,%cpu,%mem,rss,vsz,etime,command -p "$(cat ~/.agentmemory/worker.pid 2>/dev/null)" 2>/dev/null
+lsof -nP -iTCP:3111 -iTCP:3112 -iTCP:3113 -sTCP:LISTEN
+stat -f '%z %Sm %N' ~/.agentmemory/worker.err ~/.agentmemory/worker.log ~/.agentmemory/consolidate.log 2>/dev/null
+tail -n 200 ~/.agentmemory/worker.err | egrep -i 'BM25 shard missing|ECONNREFUSED|WebSocket error|timeout|error' | tail -n 80
+```
+
+Metrics to record:
+
+| Metric | Pass target | Current degraded signal |
+|---|---:|---|
+| `livez` latency | `<2s` | timeout/HTTP 000 |
+| node CPU | `<50%` for 5 minutes | hot, several hundred percent |
+| node RSS | stable and `<1.2 GB` after warmup | multi-GB sample |
+| `worker.err` growth | no rapid growth over 10 minutes | large and still active |
+| BM25 warnings | zero new warnings over 10 minutes | repeated shard-missing warnings |
+| proxy errors | zero new `ECONNREFUSED 127.0.0.1:3111` | repeated viewer proxy failures |
+
+### Step 2: Approval Gate
+
+Stop here unless Andrea explicitly approves exactly one action. The approval
+must name the action and rollback boundary. Do not combine actions.
+
+Allowed one-action candidates, in safety order:
+
+| Action | Runtime mutation? | Why | Rollback boundary |
+|---|---|---|---|
+| Take a fresh owner-only backup | no service mutation | refresh pre-change evidence | remove only the new backup bundle if Andrea asks |
+| Rotate/copy logs after backup | filesystem mutation only | bound `worker.err` growth | restore copied log file from verified backup |
+| Pause consolidate/restart launchd job | launchd mutation | stop churn that hides root cause | restore original plist/job state from backup |
+| Controlled main service recycle | runtime mutation | clear hot process after evidence capture | restore wrapper/plist state, then re-run baseline |
+| BM25/index repair | storage mutation | repair missing shard only after diagnosis | restore changed index/KV files from backup |
+
+### Step 3: Observe One Action
+
+After one approved action, observe for 10 minutes before deciding anything else.
+
+Required samples:
+
+```bash
+for i in 1 2 3 4 5; do
+  date
+  curl -fsS --max-time 8 http://localhost:3111/agentmemory/livez || true
+  ps -o pid,stat,%cpu,%mem,rss,etime,command -p "$(cat ~/.agentmemory/worker.pid 2>/dev/null)" 2>/dev/null
+  stat -f '%z %Sm %N' ~/.agentmemory/worker.err ~/.agentmemory/worker.log ~/.agentmemory/consolidate.log 2>/dev/null
+  sleep 120
+done
+```
+
+Pass condition: `livez` returns, CPU/RSS trend down or stabilize, and
+`worker.err` does not add new BM25/proxy error bursts.
+
+Fail condition: `livez` still times out, CPU/RSS climb again, or log growth
+continues. On fail, stop and rollback only the changed boundary. Do not try a
+second action in the same window.
+
+### Step 4: Tiny Canary Only After `livez`
+
+Run remember/recall only when `livez` is fast and Andrea explicitly approves the
+state-changing canary write:
+
+```bash
+curl -fsS --max-time 5 http://localhost:3111/agentmemory/livez
+curl -fsS --max-time 5 -X POST http://localhost:3111/agentmemory/remember \
+  -H 'Content-Type: application/json' \
+  -d '{"content":"agentmemory canary: livez recovered after approved maintenance","concepts":["agentmemory-canary"],"files":[]}'
+curl -fsS --max-time 5 -X POST http://localhost:3111/agentmemory/smart-search \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"agentmemory canary livez recovered","limit":1}'
+```
+
+No secrets, no large payloads, no looped retries. If either write/read times out,
+stop and keep AgentMemory in fallback mode.
+
 ## Phase 1: Freeze And Backup
 
 This phase is required before any service change.
