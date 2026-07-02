@@ -1,7 +1,7 @@
 # GITHUB-REPO-MAP-LIVE
 
-Audit window: 2026-07-01.  
-Source: `gh repo list AndreaMarro --limit 200` and selected `gh pr list`.  
+Audit window: 2026-07-01, **refreshed 2026-07-02 (sera)**.  
+Source: `gh repo list AndreaMarro --limit 200` and selected `gh pr list` (re-run at refresh).  
 Scope: mapping only. No archival, deletion, merge, or push.
 
 ## Summary
@@ -17,7 +17,7 @@ Scope: mapping only. No archival, deletion, merge, or push.
 
 | Repo | Archived | Default branch | Last push | Class | Action |
 |---|---:|---|---|---|---|
-| `ardesia` | no | `main` | 2026-06-30 | CANONICAL | keep as human/AI map and future monorepo target |
+| `ardesia` | no | `main` | 2026-07-02 | CANONICAL | keep as human/AI map and future monorepo target |
 | `ardesia-lavagna` | no | `main` | 2026-06-30 | DEMO / PROTOTYPE / DEPLOY-SURFACE | preserve; current best Vercel demo surface |
 | `elab-tutor` | no | `main` | 2026-06-29 | LINEAGE / PRODUCT-SEPARATE | preserve; later extract Simulation Plugin and ELAB Pack |
 | `ardesia-simulator` | no | `main` | 2026-06-28 | PROTOTYPE | inspect for simulator salvage |
@@ -52,10 +52,20 @@ Scope: mapping only. No archival, deletion, merge, or push.
 
 ## Open PRs Observed
 
+Refresh 2026-07-02: su `ardesia` le PR #7-#15 (inventari, demo, canary runbook, slice esp.1 fixture+adapter) risultano MERGED e sono uscite dalla tabella; #8 (demo plan) e' tra queste. Le righe degli altri repo sono state ri-verificate e risultano invariate.
+
 | Repo | PR | Draft | Branch | Base | Meaning | Action |
 |---|---:|---:|---|---|---|---|
-| `ardesia` | #8 | yes | `demo/vertical-slice` | `main` | demo plan docs | read, do not merge blindly |
-| `ardesia` | #6 | yes | `codex/add-codex-minimax-worker` | `main` | dual Hermes/Codex orchestration proposal | design input only; not base of clean routing |
+| `ardesia` | #24 | no | `feat/lessonos-eventlog-microslice-20260702` | `main` | LessonOS event-log micro-slice (4 file, 12 test) | review/merge |
+| `ardesia` | #23 | no | `chore/studio-flaky-hunt-20260702` | `main` | fix flaky Room handleFile (race apiRef mock) | review/merge; sblocca lettura pulita evidenza #17 |
+| `ardesia` | #22 | no | `docs/teacher-dashboard-spec-20260702` | `main` | TEACHER-DASHBOARD-SPEC (projection read-only) | review/merge |
+| `ardesia` | #21 | no | `docs/import-ops-p0-maps-20260702` | `main` | import P0 mappe ops (incl. QUESTO file) | review/merge |
+| `ardesia` | #20 | no | `docs/import-product-pack-specs-20260702` | `main` | import P1 docs/product (6 file) | review/merge |
+| `ardesia` | #19 | no | `feat/elab-v1-cap6-esp1-book-topology` | `main` | fix fedelta'-libro esp1 (topologia 3 fili) | review/merge; poi rebase #16 |
+| `ardesia` | #18 | no | `docs/claude-full-project-context-20260702` | `main` | mappa completa ARDESIA per sessioni AI | review/merge |
+| `ardesia` | #17 | no | `ops/monorepo-command-surface-20260702-131120` | `main` | root command surface (verify eseguito, evidenza in commento) | review/merge |
+| `ardesia` | #16 | yes | `test/sim-elab-v1-cap6-esp1-board-payload` | `main` | board payload contract (referenzia pin VECCHI) | post-merge #19: rebase + pin nuovi |
+| `ardesia` | #6 | yes | `codex/add-codex-minimax-worker` | `main` | dual Hermes/Codex orchestration proposal | VIETATA (body!=files); design input only |
 | `ardesia` | #5 | yes | `docs/canon-2026-06-27` | `main` | canon docs | reconcile into canonical docs |
 | `ardesia` | #4 | yes | `docs/ops-maps-2026-06-26` | `main` | ops maps | reconcile, avoid duplication |
 | `ardesia` | #2 | yes | `docs/knowledge-maps-2026-06-25` | `main` | knowledge maps | preserve as lineage |
@@ -90,5 +100,5 @@ No repo should be deleted or archived during this stage.
 
 - Source commands: `gh auth status`, `gh repo list AndreaMarro --limit 200`, selected `gh pr list`.
 - No GitHub mutation was performed.
-- Counts are live as of 2026-07-01 audit window.
+- Counts are live as of 2026-07-01 audit window; PR/last-push refreshed firsthand 2026-07-02 (sera).
 - Risk: PR content/diffs were not fully reviewed in this file; this is inventory, not merge approval.
