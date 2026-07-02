@@ -125,21 +125,27 @@ verify_elab() {
   build_elab
 }
 
+# STOP-safe: probe di stato process-only. Non esegue MAI script del repo
+# lessonos (niente eval/gate.sh, niente pytest): solo curl di health endpoint
+# e ispezione launchctl/ps. Se compare una riga hourly/gate/pytest, va
+# documentata e segnalata — mai killata da qui.
 factory_readonly() {
   if ! has_cmd ssh; then
     echo "ssh not available"
     return 1
   fi
 
-  ssh macmini 'set -euo pipefail
+  ssh macmini 'set -u
     echo "== headroom ==";
     curl -sf --max-time 3 http://127.0.0.1:8787/health 2>/dev/null || true;
     echo;
     echo "== agentmemory livez ==";
     curl -sf --max-time 3 http://127.0.0.1:3111/agentmemory/livez 2>/dev/null || true;
     echo;
-    echo "== lessonos last pytest ==";
-    ps aux | grep -iE "uv run pytest -q --lf|pytest -q --lf" | grep -v grep || true'
+    echo "== launchd (lessonos/agentmemory) ==";
+    launchctl list | grep -iE "lessonos|agentmemory" || true;
+    echo "== processi fabbrica (atteso: nessuno con STOP attivo) ==";
+    ps aux | grep -iE "hourly-tick|driver-orch|eval/gate|uv run pytest|pytest -q" | grep -v grep || true'
 }
 
 main() {
