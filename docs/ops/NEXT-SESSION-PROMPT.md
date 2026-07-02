@@ -1,6 +1,47 @@
 # NEXT-SESSION-PROMPT - ELABTutor Plugin + Factory Parallel Sprint
 
-## ACTIVE PROMPT - Sprint ARDESIA follow-up, 2026-07-02
+## ACTIVE — Stato al 2026-07-02 pomeriggio (leggere PRIMA di tutto)
+
+Questa sezione supera i FATTI operativi delle sezioni sottostanti; la direzione
+prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) resta valida.
+
+### PR aperte in attesa di merge Andrea (verificato firsthand 02jul ~15:40, main = `270d1e95` merge #15)
+
+| PR | Cosa | Nota |
+|---|---|---|
+| #16 (draft) | board payload contract esp1 | va REBASATA sui pin nuovi dopo merge di #19 |
+| #17 | root command surface (`bin/monorepo.sh` + root `package.json`) | sostituisce il TODO "commit command-surface" del checkout Codex: NON ricommittarla da lì |
+| #18 | CLAUDE-FULL-PROJECT-CONTEXT (mappa completa) | orientamento sessioni AI |
+| #19 | topologia esp1 fedele al libro (Vol.1 pp.29-31) | fa fede il TESTO, non le figure; pin mai su bus-* |
+| #20 / #21 | import P1 product / P0 ops (mappe, entrypoints, GITHUB-REPO-MAP-LIVE) | docs-only |
+| #22 | TEACHER-DASHBOARD-SPEC | cruscotto = projection read-only, MAI secondo store |
+| #23 | fix flaky `Room.integration` handleFile | root cause: race change-event vs consegna API del mock Excalidraw (`setTimeout(0)`) → early-return su `!apiRef.current`; fix = attributo `data-mock-excalidraw-api` + drain timer; 12/12 dichiarato in #23 (sessione 02jul notte) |
+| #24 | LessonOS event-log micro-slice | riferimento canonico: event log append-only + materialized graph + evidence refs; NIENTE grafo parallelo |
+| #25 | COLLABORATOR-ONBOARDING | regole operative per chiunque lavori sul repo |
+| #26 | import ricerche UserAIOS + LessonOS memory/graph | citate da #22/#24; NUL=0, secret-scan 0 hit |
+
+PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
+
+### Lane
+
+- **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
+  MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
+  `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
+  commit su branch dedicato. Non toccare i branch delle PR #16-#26.
+- **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
+  (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
+  `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
+
+### Vincoli invariati
+
+Mai `eval/gate.sh` · mai merge/push diretto a main · mai deploy senza OK · mai
+`git add -A` · secret-scan prima di ogni push · check byte NUL sui file scritti da
+tool (`LC_ALL=C tr -cd '\000' | wc -c`) · AgentMemory = cache degradata finché
+`livez` timeouta · niente graph DB esterno.
+
+---
+
+## PROMPT PRECEDENTE (02jul mattina — fatti in parte superati dalla sezione ACTIVE sopra)
 
 Sei Codex sul Mac di Andrea. Non fare analisi infinita: chiudi prima il gate LessonOS, poi solo output tangibile.
 
