@@ -66,6 +66,17 @@ Artifacts were collected locally and were not committed:
 - `/tmp/ardesia-lavagna-demo/flow-result-coordinate-run.json`
 - `/tmp/ardesia-lavagna-demo/lesson-export-coordinate-run-lezione.ardesia.json`
 
+## Artifact Decision
+
+Textual COV is sufficient for PR #8. The screenshots, browser JSON, and
+downloaded lesson export stay local because they are generated verification
+artifacts, not source. The result table records the live URL, checked flow,
+export/import evidence, and local artifact paths; committing images would add
+binary churn without changing the demo verdict.
+
+Commit screenshots or exported lessons only if Andrea asks for release evidence
+or a future regression needs visual fixtures.
+
 ## Notes
 
 - Playwright role lookup for the `Run` button was unreliable in headless mode,
