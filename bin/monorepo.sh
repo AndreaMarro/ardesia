@@ -133,7 +133,7 @@ factory_readonly() {
 
   ssh macmini 'set -euo pipefail
     echo "== headroom ==";
-    curl -sf http://127.0.0.1:4317/health 2>/dev/null || true;
+    curl -sf --max-time 3 http://127.0.0.1:8787/health 2>/dev/null || true;
     echo;
     echo "== agentmemory livez ==";
     curl -sf --max-time 3 http://127.0.0.1:3111/agentmemory/livez 2>/dev/null || true;
