@@ -1,6 +1,6 @@
 # NEXT-SESSION-PROMPT - ELABTutor Plugin + Factory Parallel Sprint
 
-## ACTIVE — Stato al 2026-07-02 pomeriggio (leggere PRIMA di tutto)
+## ACTIVE — Stato al 2026-07-02 sera (leggere PRIMA di tutto)
 
 Questa sezione supera i FATTI operativi delle sezioni sottostanti; la direzione
 prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) resta valida.
@@ -21,6 +21,8 @@ prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) rest
 | #26 | import ricerche UserAIOS + LessonOS memory/graph | citate da #22/#24; NUL=0, secret-scan 0 hit |
 | #27 | ELABTutor plugin specification | lato Codex/Andrea; cross-check vs canon COMMENTATO (Claude, 02jul sera): §3 descrive lo stato pre-#19 (pin canonici = fixture #19), Stage 4 deve usare l'event-log #24, mount Stage 2 solo via ToolHost/originServer |
 | #29 | import P1 ops — FASTAPI-CHATGPT-MCP-GATEWAY | chiude il filone import TSV: ogni riga DOCS/OPS ≤P1 ora coperta (#17/#20/#21/#26/#29); restano solo BLOCKED e P2 human-ok |
+| #30 | teacher dashboard projection (LessonOS) | base = branch #24 (`feat/lessonos-eventlog-microslice-20260702`): merge DOPO #24, poi retarget su main. Chiusa da Codex sul worktree Claude, verificata avversarialmente e FIXATA (`61940847`); non-draft |
+| #31 | breadboard topology validator (sim) | base = branch #19 (`feat/elab-v1-cap6-esp1-book-topology`): merge DOPO #19, poi retarget su main. Chiusa da Codex sul worktree Claude, verificata avversarialmente e FIXATA (`f90d8896`); non-draft |
 
 PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 
@@ -29,7 +31,7 @@ PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 - **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
   MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
   `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
-  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#29.
+  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#31.
 - **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
   (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
   `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
