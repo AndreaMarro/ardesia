@@ -330,7 +330,7 @@ generica: riprendi dal COV qui sotto e produci lavoro verificabile.
 
 ## Cosa NON è verificabile senza GitHub/Mini/Vercel
 PR #6 (non-merge) / PR #8 (planning), Vercel live, AgentMemory live, headroom reale,
-**gate LessonOS rosso** (`NameError: re is not defined` in `tests/test_adversarial_kimi.py`),
+stato storico del gate LessonOS rosso, superato dal COV corrente sopra (`NameError: re is not defined` in `tests/test_adversarial_kimi.py`),
 scheduler/launchd. → tutto in `NEXT-CODEX-PACKET.md`.
 
 ## Prossima micro-task (in ordine)
