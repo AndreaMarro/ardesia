@@ -106,7 +106,7 @@ Decision candidate:
 - motive: overlapping full pytest/gate jobs, high load, current in-flight dirty builder work.
 - evidence: active `hourly-tick.sh`, two `driver-orch.sh` chains, active `pytest -q --no-header`; launchd StartInterval is 300s.
 - backup command: `cp ~/Library/LaunchAgents/com.elab.lessonos-hourly.plist ~/Library/LaunchAgents/com.elab.lessonos-hourly.plist.bak-$(date +%Y%m%d-%H%M%S)`
-- disable command: `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.elab.lessonos-hourly.plist`
+- Nota: non eseguire comandi `launchctl bootout` da questa documentazione. Qualunque modifica a launchd richiede backup del plist, rollback scritto, COV e conferma esplicita di Andrea.
 - rollback command: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.elab.lessonos-hourly.plist`
 
 Not executed in this session.
