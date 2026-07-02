@@ -1,0 +1,91 @@
+{
+  "id": "v1-cap6-esp1",
+  "title": "Accendi il tuo primo LED",
+  "scope": "simulation-plugin-context-fixture",
+  "sourceOfTruth": {
+    "manualPdf": "plugins/elab-tutor/public/volumes/volume1.pdf",
+    "manualPages": [29, 30, 31],
+    "experimentData": "plugins/elab-tutor/src/data/experiments-vol1.js",
+    "lessonPath": "plugins/elab-tutor/src/data/lesson-paths/v1-cap6-esp1.json"
+  },
+  "manualEvidence": [
+    {
+      "page": 29,
+      "claim": "parts-list",
+      "evidence": "LED, breadboard, 9V battery with clip, and 470 Ohm resistor are required."
+    },
+    {
+      "page": 30,
+      "claim": "assembly-sequence",
+      "evidence": "Battery positive goes to the red breadboard strip; the 470 Ohm resistor links that strip to a lower breadboard row; the LED long leg faces the resistor."
+    },
+    {
+      "page": 31,
+      "claim": "closed-circuit",
+      "evidence": "Battery negative closes the circuit through the row of the LED short leg, turning the LED on."
+    }
+  ],
+  "components": [
+    {
+      "type": "battery9v",
+      "id": "bat1"
+    },
+    {
+      "type": "breadboard-half",
+      "id": "bb1"
+    },
+    {
+      "type": "resistor",
+      "id": "r1",
+      "value": 470
+    },
+    {
+      "type": "led",
+      "id": "led1",
+      "color": "red"
+    }
+  ],
+  "pinAssignments": {
+    "r1:pin1": "bb1:a2",
+    "r1:pin2": "bb1:a9",
+    "led1:anode": "bb1:f9",
+    "led1:cathode": "bb1:f10"
+  },
+  "wires": [
+    {
+      "from": "bat1:positive",
+      "to": "bb1:bus-top-plus-1",
+      "color": "red"
+    },
+    {
+      "from": "bb1:bus-top-plus-2",
+      "to": "bb1:b2",
+      "color": "red"
+    },
+    {
+      "from": "bb1:e9",
+      "to": "bb1:f9",
+      "color": "green"
+    },
+    {
+      "from": "bb1:j10",
+      "to": "bb1:bus-bot-minus-10",
+      "color": "black"
+    },
+    {
+      "from": "bb1:bus-bot-minus-1",
+      "to": "bb1:bus-top-minus-1",
+      "color": "black"
+    },
+    {
+      "from": "bb1:bus-top-minus-1",
+      "to": "bat1:negative",
+      "color": "black"
+    }
+  ],
+  "driftNotes": [
+    "Component and wire data match experiments-vol1.js and the lesson-path build_circuit intent.",
+    "Pin assignments exist in experiments-vol1.js and are intentionally preserved here.",
+    "The lesson-path book_reference points to page 29 only; this fixture records manual evidence across pages 29-31."
+  ]
+}
