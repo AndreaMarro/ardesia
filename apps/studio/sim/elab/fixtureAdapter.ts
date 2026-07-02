@@ -65,20 +65,20 @@ const EXPECTED_COMPONENTS: ElabCircuitComponent[] = [
   { type: "led", id: "led1", color: "red" },
 ]
 
+// Book-faithful topology (Vol.1 pp.29-31): LED straddles the central divide on tie 3,
+// resistor reaches the red strip via one jumper on tie 9 (component pins live in holes,
+// so the book's leg-in-the-strip becomes a jumper), negative lead returns directly.
 const EXPECTED_PIN_ASSIGNMENTS: Record<string, string> = {
-  "r1:pin1": "bb1:a2",
-  "r1:pin2": "bb1:a9",
-  "led1:anode": "bb1:f9",
-  "led1:cathode": "bb1:f10",
+  "r1:pin1": "bb1:i9",
+  "r1:pin2": "bb1:i3",
+  "led1:anode": "bb1:f3",
+  "led1:cathode": "bb1:e3",
 }
 
 const EXPECTED_WIRES: ElabCircuitWire[] = [
   { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-  { from: "bb1:bus-top-plus-2", to: "bb1:b2", color: "red" },
-  { from: "bb1:e9", to: "bb1:f9", color: "green" },
-  { from: "bb1:j10", to: "bb1:bus-bot-minus-10", color: "black" },
-  { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-1", color: "black" },
-  { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" },
+  { from: "bb1:bus-top-plus-9", to: "bb1:j9", color: "red" },
+  { from: "bb1:a3", to: "bat1:negative", color: "black" },
 ]
 
 function isRecord(value: unknown): value is Record<string, unknown> {

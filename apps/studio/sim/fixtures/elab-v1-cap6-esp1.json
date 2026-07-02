@@ -12,17 +12,17 @@
     {
       "page": 29,
       "claim": "parts-list",
-      "evidence": "LED, breadboard, 9V battery with clip, and 470 Ohm resistor are required."
+      "evidence": "LED, breadboard, 9V battery with clip, and 470 Ohm resistor (Viola Giallo Marrone) are required; the book lists no extra jumper wires."
     },
     {
       "page": 30,
       "claim": "assembly-sequence",
-      "evidence": "Battery positive goes to the red breadboard strip; the 470 Ohm resistor links that strip to a lower breadboard row; the LED long leg faces the resistor."
+      "evidence": "Battery positive goes to the red breadboard strip; the 470 Ohm resistor links that strip to a free hole in the zone below; the LED straddles the central divide with the long leg facing the resistor and the short leg beyond the divide."
     },
     {
       "page": 31,
       "claim": "closed-circuit",
-      "evidence": "Battery negative closes the circuit through the row of the LED short leg, turning the LED on."
+      "evidence": "Battery negative goes straight to a free hole in the same tie as the LED short leg, closing the circuit and turning the LED on; the figures show only the two battery-clip leads."
     }
   ],
   "components": [
@@ -46,10 +46,10 @@
     }
   ],
   "pinAssignments": {
-    "r1:pin1": "bb1:a2",
-    "r1:pin2": "bb1:a9",
-    "led1:anode": "bb1:f9",
-    "led1:cathode": "bb1:f10"
+    "r1:pin1": "bb1:i9",
+    "r1:pin2": "bb1:i3",
+    "led1:anode": "bb1:f3",
+    "led1:cathode": "bb1:e3"
   },
   "wires": [
     {
@@ -58,34 +58,21 @@
       "color": "red"
     },
     {
-      "from": "bb1:bus-top-plus-2",
-      "to": "bb1:b2",
+      "from": "bb1:bus-top-plus-9",
+      "to": "bb1:j9",
       "color": "red"
     },
     {
-      "from": "bb1:e9",
-      "to": "bb1:f9",
-      "color": "green"
-    },
-    {
-      "from": "bb1:j10",
-      "to": "bb1:bus-bot-minus-10",
-      "color": "black"
-    },
-    {
-      "from": "bb1:bus-bot-minus-1",
-      "to": "bb1:bus-top-minus-1",
-      "color": "black"
-    },
-    {
-      "from": "bb1:bus-top-minus-1",
+      "from": "bb1:a3",
       "to": "bat1:negative",
       "color": "black"
     }
   ],
   "driftNotes": [
     "Component and wire data match experiments-vol1.js and the lesson-path build_circuit intent.",
-    "Pin assignments exist in experiments-vol1.js and are intentionally preserved here.",
+    "Book-faithful topology (pages 29-31): LED straddles the central divide (anode f3 top block, cathode e3 bottom block, shared tie 3 with the resistor), no green channel bridge, battery negative returns directly to tie 3 without any bus-minus chain.",
+    "Declared residual delta: the book plugs one resistor leg straight into the red strip; the circuit data grammar only places component pins in board holes, so one red jumper (bus-top-plus-9 to j9) stands in for that leg. Wire total is 3 here versus 2 leads in the book figures.",
+    "The book leaves hole positions free ('punto qualsiasi'); tie 9 (resistor rail side) and tie 3 (LED) are the canonical choices recorded here. Taken literally, the page 30-31 drawings place LED, resistor and negative lead on three different ties, which would leave the circuit open; the page text (long leg toward the resistor, negative on the short-leg column) is the binding source.",
     "The lesson-path book_reference points to page 29 only; this fixture records manual evidence across pages 29-31."
   ]
 }
