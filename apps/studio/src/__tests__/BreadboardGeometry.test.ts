@@ -4,15 +4,17 @@ import { describe, expect, it } from "vitest"
 import * as fs from "node:fs"
 import * as path from "node:path"
 import {
-  analyzeElabV1Cap6Esp1BookTopology,
   parseBreadboardHole,
   parseBreadboardRail,
   reaches,
   reachesDirectlyWithoutRails,
   sameTie,
   straddlesCenterGap,
-  validateElabV1Cap6Esp1BookTopology,
 } from "../../sim/breadboard/geometry.ts"
+import {
+  analyzeElabV1Cap6Esp1BookTopology,
+  validateElabV1Cap6Esp1BookTopology,
+} from "../../sim/elab/bookTopology.ts"
 import { validateElabV1Cap6Esp1Fixture, type ElabV1Cap6Esp1Fixture } from "../../sim/elab/fixtureAdapter.ts"
 
 const repoRoot = path.resolve(import.meta.dirname, "../../../..")
@@ -83,6 +85,54 @@ describe("breadboard geometry", () => {
     expect(reaches("bat1:positive", "r1:pin1", circuit)).toBe(true)
     expect(reaches("bat1:positive", "bat1:negative", circuit)).toBe(true)
     expect(reachesDirectlyWithoutRails("bb1:a3", "bat1:negative", circuit)).toBe(true)
+  })
+
+  it("rejects the pp.30-31 figures read literally: LED, resistor and negative return on three ties leave the circuit open", () => {
+    // Fixture driftNote: "Taken literally, the page 30-31 drawings place LED,
+    // resistor and negative lead on three different ties, which would leave the
+    // circuit open; the page text (...) is the binding source."
+    const literalFigures: Pick<ElabV1Cap6Esp1Fixture, "pinAssignments" | "wires"> = {
+      pinAssignments: {
+        "r1:pin1": "bb1:i9",
+        "r1:pin2": "bb1:i7",
+        "led1:anode": "bb1:f3",
+        "led1:cathode": "bb1:e3",
+      },
+      wires: [
+        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
+        { from: "bb1:bus-top-plus-9", to: "bb1:j9", color: "red" },
+        { from: "bb1:a5", to: "bat1:negative", color: "black" },
+      ],
+    }
+
+    const report = analyzeElabV1Cap6Esp1BookTopology(literalFigures)
+
+    expect(report.ledStraddlesCenterGap).toBe(true)
+    expect(report.resistorSharesAnodeTie).toBe(false)
+    expect(report.cathodeSharesNegativeReturnTie).toBe(false)
+    expect(report.closedCircuit).toBe(false)
+    expect(() => validateElabV1Cap6Esp1BookTopology(literalFigures)).toThrow(
+      /topological circuit must be closed/,
+    )
+  })
+
+  it("flags the minus bus on any rail position, not only bus-bot-minus", () => {
+    const topMinusOnly: Pick<ElabV1Cap6Esp1Fixture, "pinAssignments" | "wires"> = {
+      pinAssignments: {
+        "r1:pin1": "bb1:i9",
+        "r1:pin2": "bb1:i3",
+        "led1:anode": "bb1:f3",
+        "led1:cathode": "bb1:e3",
+      },
+      wires: [
+        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
+        { from: "bb1:bus-top-plus-9", to: "bb1:j9", color: "red" },
+        { from: "bb1:a3", to: "bb1:bus-top-minus-2", color: "black" },
+      ],
+    }
+
+    expect(analyzeElabV1Cap6Esp1BookTopology(topMinusOnly).usesMinusBus).toBe(true)
+    expect(() => validateElabV1Cap6Esp1BookTopology(topMinusOnly)).toThrow(/minus bus/)
   })
 
   it("rejects the old main topology with named book-drift predicates", () => {

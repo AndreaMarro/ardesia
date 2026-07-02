@@ -28,24 +28,8 @@ export type ConnectivityOptions = {
   includeRails?: boolean
 }
 
-export type ElabV1Cap6Esp1TopologyReport = {
-  ledStraddlesCenterGap: boolean
-  resistorSharesAnodeTie: boolean
-  cathodeSharesNegativeReturnTie: boolean
-  positiveReachesResistorRailSide: boolean
-  negativeReturnsDirectlyWithoutRails: boolean
-  closedCircuit: boolean
-  pinsOnRails: string[]
-  usesMinusBus: boolean
-  wireCount: number
-}
-
 const HOLE_RE = /^([^:]+):([a-j])([1-9]\d*)$/
 const RAIL_RE = /^([^:]+):(bus-(?:top|bot)-(?:plus|minus))-([1-9]\d*)$/
-const ELAB_V1_CAP6_ESP1_CONDUCTIVE_PAIRS = [
-  ["r1:pin1", "r1:pin2"],
-  ["led1:anode", "led1:cathode"],
-] as const
 
 class UnionFind {
   private parent = new Map<string, string>()
@@ -173,49 +157,4 @@ export function reaches(a: string, b: string, circuit: BreadboardCircuit, option
 
 export function reachesDirectlyWithoutRails(a: string, b: string, circuit: BreadboardCircuit): boolean {
   return reaches(a, b, circuit, { includeRails: false })
-}
-
-export function analyzeElabV1Cap6Esp1BookTopology(
-  circuit: Pick<BreadboardCircuit, "pinAssignments" | "wires">,
-): ElabV1Cap6Esp1TopologyReport {
-  const withConductors: BreadboardCircuit = {
-    ...circuit,
-    conductivePairs: ELAB_V1_CAP6_ESP1_CONDUCTIVE_PAIRS,
-  }
-  const pin = circuit.pinAssignments
-  const negativeReturn = circuit.wires.find((wire) => wire.to === "bat1:negative" || wire.from === "bat1:negative")
-  const negativeReturnHole = negativeReturn?.to === "bat1:negative" ? negativeReturn.from : negativeReturn?.to
-
-  return {
-    ledStraddlesCenterGap: straddlesCenterGap(pin["led1:anode"], pin["led1:cathode"]),
-    resistorSharesAnodeTie: sameTie(pin["r1:pin2"], pin["led1:anode"]),
-    cathodeSharesNegativeReturnTie: negativeReturnHole !== undefined && sameTie(pin["led1:cathode"], negativeReturnHole),
-    positiveReachesResistorRailSide: reaches("bat1:positive", "r1:pin1", withConductors),
-    negativeReturnsDirectlyWithoutRails:
-      negativeReturnHole !== undefined && reachesDirectlyWithoutRails(negativeReturnHole, "bat1:negative", withConductors),
-    closedCircuit: reaches("bat1:positive", "bat1:negative", withConductors),
-    pinsOnRails: pinsOnRails(pin),
-    usesMinusBus: circuit.wires.some((wire) => wire.from.includes("bus-bot-minus") || wire.to.includes("bus-bot-minus")),
-    wireCount: circuit.wires.length,
-  }
-}
-
-export function validateElabV1Cap6Esp1BookTopology(
-  circuit: Pick<BreadboardCircuit, "pinAssignments" | "wires">,
-): ElabV1Cap6Esp1TopologyReport {
-  const report = analyzeElabV1Cap6Esp1BookTopology(circuit)
-  const failures: string[] = []
-  if (!report.ledStraddlesCenterGap) failures.push("LED must straddle the center gap on one tie")
-  if (!report.resistorSharesAnodeTie) failures.push("resistor LED-side pin must share the LED anode tie")
-  if (!report.cathodeSharesNegativeReturnTie) failures.push("battery negative must return to the LED cathode tie")
-  if (!report.positiveReachesResistorRailSide) failures.push("battery positive must reach the resistor rail-side pin")
-  if (!report.negativeReturnsDirectlyWithoutRails) failures.push("battery negative must return directly without a minus-bus chain")
-  if (!report.closedCircuit) failures.push("topological circuit must be closed")
-  if (report.pinsOnRails.length > 0) failures.push(`component pins cannot live on rails: ${report.pinsOnRails.join(", ")}`)
-  if (report.usesMinusBus) failures.push("book-faithful topology must not use the minus bus")
-  if (report.wireCount !== 3) failures.push(`expected 3 wires for the fixture grammar, got ${report.wireCount}`)
-  if (failures.length > 0) {
-    throw new Error(`ELAB v1 cap6 esp1 breadboard topology drift: ${failures.join("; ")}`)
-  }
-  return report
 }

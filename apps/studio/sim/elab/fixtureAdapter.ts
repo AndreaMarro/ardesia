@@ -1,4 +1,4 @@
-import { validateElabV1Cap6Esp1BookTopology } from "../breadboard/geometry"
+import { validateElabV1Cap6Esp1BookTopology } from "./bookTopology"
 
 export type ElabCircuitComponent = {
   type: string
