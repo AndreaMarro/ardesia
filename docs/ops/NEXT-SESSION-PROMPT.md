@@ -51,7 +51,7 @@ Motivazioni (solo i vincoli veri; il resto è ordine di comodo docs-first):
 - **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
   MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
   `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
-  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#33.
+  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#34.
 - **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
   (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
   `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
