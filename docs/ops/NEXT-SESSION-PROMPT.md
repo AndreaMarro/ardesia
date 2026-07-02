@@ -19,6 +19,7 @@ prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) rest
 | #24 | LessonOS event-log micro-slice | riferimento canonico: event log append-only + materialized graph + evidence refs; NIENTE grafo parallelo |
 | #25 | COLLABORATOR-ONBOARDING | regole operative per chiunque lavori sul repo |
 | #26 | import ricerche UserAIOS + LessonOS memory/graph | citate da #22/#24; NUL=0, secret-scan 0 hit |
+| #27 | ELABTutor plugin specification | aperta 02jul pomeriggio dal lato Codex/Andrea, non da sessione Claude |
 
 PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 
@@ -27,7 +28,7 @@ PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 - **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
   MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
   `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
-  commit su branch dedicato. Non toccare i branch delle PR #16-#26.
+  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#28.
 - **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
   (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
   `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
