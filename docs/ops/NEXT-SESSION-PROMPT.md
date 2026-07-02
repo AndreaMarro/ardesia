@@ -5,7 +5,7 @@
 Questa sezione supera i FATTI operativi delle sezioni sottostanti; la direzione
 prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) resta valida.
 
-### PR aperte in attesa di merge Andrea (verificato firsthand 02jul ~15:40, main = `270d1e95` merge #15)
+### PR aperte in attesa di merge Andrea (riverificato firsthand 02jul sera: main sempre `270d1e95`, nessun merge nuovo)
 
 | PR | Cosa | Nota |
 |---|---|---|
@@ -19,7 +19,8 @@ prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) rest
 | #24 | LessonOS event-log micro-slice | riferimento canonico: event log append-only + materialized graph + evidence refs; NIENTE grafo parallelo |
 | #25 | COLLABORATOR-ONBOARDING | regole operative per chiunque lavori sul repo |
 | #26 | import ricerche UserAIOS + LessonOS memory/graph | citate da #22/#24; NUL=0, secret-scan 0 hit |
-| #27 | ELABTutor plugin specification | aperta 02jul pomeriggio dal lato Codex/Andrea, non da sessione Claude |
+| #27 | ELABTutor plugin specification | lato Codex/Andrea; cross-check vs canon COMMENTATO (Claude, 02jul sera): §3 descrive lo stato pre-#19 (pin canonici = fixture #19), Stage 4 deve usare l'event-log #24, mount Stage 2 solo via ToolHost/originServer |
+| #29 | import P1 ops — FASTAPI-CHATGPT-MCP-GATEWAY | chiude il filone import TSV: ogni riga DOCS/OPS ≤P1 ora coperta (#17/#20/#21/#26/#29); restano solo BLOCKED e P2 human-ok |
 
 PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 
@@ -28,7 +29,7 @@ PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
 - **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
   MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
   `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
-  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#28.
+  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#29.
 - **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
   (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
   `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
