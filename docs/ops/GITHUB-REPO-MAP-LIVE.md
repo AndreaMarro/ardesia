@@ -56,14 +56,21 @@ Refresh 2026-07-02: su `ardesia` le PR #7-#15 (inventari, demo, canary runbook, 
 
 | Repo | PR | Draft | Branch | Base | Meaning | Action |
 |---|---:|---:|---|---|---|---|
+| `ardesia` | #31 | no | `feat/sim-breadboard-geometry-20260702` | `feat/elab-v1-cap6-esp1-book-topology` | breadboard topology validator (fix post-verifica avversariale `f90d8896`) | review; merge dopo #19 (base = branch #19) |
+| `ardesia` | #30 | no | `feat/lessonos-teacher-projection-20260702` | `feat/lessonos-eventlog-microslice-20260702` | teacher dashboard projection (fix post-verifica avversariale `61940847`) | review; merge dopo #24 (base = branch #24) |
+| `ardesia` | #29 | no | `docs/import-ops-gateway-20260702` | `main` | import P1 FASTAPI-CHATGPT-MCP-GATEWAY (riconciliato con #20) — CHIUDE filone import TSV | review/merge |
+| `ardesia` | #28 | no | `docs/refresh-next-session-prompt-20260702` | `main` | refresh NEXT-SESSION-PROMPT (stato PR #16-#31, lane Codex/Claude) | review/merge |
+| `ardesia` | #27 | yes | `docs/elabtutor-plugin-spec-20260702` | `main` | ELABTutor plugin spec (ESTERNA; 6 rilievi cross-check in commento) | solo lettura/commenti; attende recepimento rilievi |
+| `ardesia` | #26 | no | `docs/import-research-aios-lessonos-20260702` | `main` | import ricerche UserAIOS + LessonOS citate da #22/#24 | review/merge |
+| `ardesia` | #25 | no | `docs/collaborator-onboarding-20260702` | `main` | COLLABORATOR-ONBOARDING (lavorare senza fare danni) | review/merge |
 | `ardesia` | #24 | no | `feat/lessonos-eventlog-microslice-20260702` | `main` | LessonOS event-log micro-slice (4 file, 12 test) | review/merge |
-| `ardesia` | #23 | no | `chore/studio-flaky-hunt-20260702` | `main` | fix flaky Room handleFile (race apiRef mock) | review/merge; sblocca lettura pulita evidenza #17 |
+| `ardesia` | #23 | no | `chore/studio-flaky-hunt-20260702` | `main` | fix flaky Room handleFile (race apiRef mock; misura: main 3/3 run flaky, branch 38/38×3) | review/merge; sblocca lettura pulita evidenza #17 |
 | `ardesia` | #22 | no | `docs/teacher-dashboard-spec-20260702` | `main` | TEACHER-DASHBOARD-SPEC (projection read-only) | review/merge |
 | `ardesia` | #21 | no | `docs/import-ops-p0-maps-20260702` | `main` | import P0 mappe ops (incl. QUESTO file) | review/merge |
 | `ardesia` | #20 | no | `docs/import-product-pack-specs-20260702` | `main` | import P1 docs/product (6 file) | review/merge |
 | `ardesia` | #19 | no | `feat/elab-v1-cap6-esp1-book-topology` | `main` | fix fedelta'-libro esp1 (topologia 3 fili) | review/merge; poi rebase #16 |
 | `ardesia` | #18 | no | `docs/claude-full-project-context-20260702` | `main` | mappa completa ARDESIA per sessioni AI | review/merge |
-| `ardesia` | #17 | no | `ops/monorepo-command-surface-20260702-131120` | `main` | root command surface (verify eseguito, evidenza in commento) | review/merge |
+| `ardesia` | #17 | no | `ops/monorepo-command-surface-20260702-131120` | `main` | root command surface (verify eseguito, evidenza in commento; patch `04e1aa60` Headroom :8787) | review/merge |
 | `ardesia` | #16 | yes | `test/sim-elab-v1-cap6-esp1-board-payload` | `main` | board payload contract (referenzia pin VECCHI) | post-merge #19: rebase + pin nuovi |
 | `ardesia` | #6 | yes | `codex/add-codex-minimax-worker` | `main` | dual Hermes/Codex orchestration proposal | VIETATA (body!=files); design input only |
 | `ardesia` | #5 | yes | `docs/canon-2026-06-27` | `main` | canon docs | reconcile into canonical docs |
