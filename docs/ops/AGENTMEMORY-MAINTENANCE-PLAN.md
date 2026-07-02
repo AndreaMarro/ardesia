@@ -74,15 +74,17 @@ Metrics to record:
 Stop here unless Andrea explicitly approves exactly one action. The approval
 must name the action and rollback boundary. Do not combine actions.
 
-Allowed one-action candidates, in safety order:
+Preparation actions allowed by this PR, in safety order:
 
 | Action | Runtime mutation? | Why | Rollback boundary |
 |---|---|---|---|
 | Take a fresh owner-only backup | no service mutation | refresh pre-change evidence | remove only the new backup bundle if Andrea asks |
-| Rotate/copy logs after backup | filesystem mutation only | bound `worker.err` growth | restore copied log file from verified backup |
-| Pause consolidate/restart launchd job | launchd mutation | stop churn that hides root cause | restore original plist/job state from backup |
-| Controlled main service recycle | runtime mutation | clear hot process after evidence capture | restore wrapper/plist state, then re-run baseline |
-| BM25/index repair | storage mutation | repair missing shard only after diagnosis | restore changed index/KV files from backup |
+| Copy logs after backup | filesystem copy only | preserve `worker.err` growth evidence | remove only the copied bundle if Andrea asks |
+
+Out of scope for this PR: restart, kill, compaction, import, launchd changes,
+service recycle, log truncation, index repair, and rebuild. If one of those is
+needed, stop and ask Andrea for a separate approval that names exactly one
+action and one rollback boundary.
 
 ### Step 3: Observe One Action
 
@@ -109,8 +111,9 @@ second action in the same window.
 
 ### Step 4: Tiny Canary Only After `livez`
 
-Run remember/recall only when `livez` is fast and Andrea explicitly approves the
-state-changing canary write:
+Do not run this from PR #12. Run remember/recall only when `livez` is fast and
+Andrea explicitly approves the state-changing canary write as its own single
+action:
 
 ```bash
 curl -fsS --max-time 5 http://localhost:3111/agentmemory/livez
@@ -157,18 +160,21 @@ Rollback notes must identify:
 - the operator-controlled service action used;
 - the matching operator-controlled restore action.
 
-## Phase 2: Stop The Thrash Source
+## Phase 2: Deferred Runtime Change
 
-Only after Phase 1 is complete:
+No runtime change is approved by this PR. If baseline evidence shows the
+thrash source still needs intervention, prepare a separate approval request
+instead of acting from this document.
 
-1. Pause or gate the hourly consolidation path that performs forced summarize,
-   consolidate, graph build, and post-consolidation worker restart.
-2. Pause or gate the periodic `am-restart.sh` path if it can mask root cause.
-3. Leave the main service untouched until backup and rollback are confirmed.
+That separate request must include:
 
-Reason: the current consolidation log shows `no-growth` followed by worker
-restart, while livez remains timed out and the worker is hot. Repeating that
-loop is unlikely to heal the index and may hide failure boundaries.
+1. the one proposed action;
+2. the exact rollback boundary;
+3. pre-action `livez`, CPU, RSS, and `worker.err` samples;
+4. a stop condition if `livez` remains timed out or CPU/RSS climbs.
+
+Until Andrea approves that separate request, leave the main service, scheduled
+jobs, indexes, logs, and launchd state untouched.
 
 ## Phase 3: Diagnose Index And Proxy
 
@@ -184,27 +190,22 @@ Read-only checks after the freeze:
 Do not rebuild the graph yet. A rebuild against a missing shard warning can make
 the evidence harder to interpret.
 
-## Phase 4: Controlled Recovery Window
+## Phase 4: Recovery Request Template
 
-Only after Phases 1-3 are documented:
+Only after Phases 1-3 are documented, draft a recovery request. Do not execute
+it from this PR.
 
-1. Choose one recovery action, not several.
-2. Execute it during a quiet factory window, with no full gate running.
-3. Observe for 10 minutes with `ps`, `lsof`, `livez`, and log tails.
-4. If CPU/RSS climb immediately or `livez` still times out, stop and rollback.
+The request must choose one recovery action, not several. It must also include
+the quiet-window timing, 10-minute observation commands, rollback boundary, and
+stop condition if CPU/RSS climb immediately or `livez` still times out.
 
-Allowed recovery candidates, in order of safety:
-
-| Candidate | Purpose | Exit condition |
-|---|---|---|
-| rotate logs after backup | reduce noisy `worker.err` growth | log tail remains readable, no service state changed |
-| pause consolidate/restart jobs | stop forced churn | main service remains running, no hourly restart |
-| controlled main service recycle | clear hot process only after backup | `livez` returns, ports preserved, canary passes |
-| index repair/rebuild | repair BM25 shard only after root cause | no repeated missing-shard warning |
+This PR does not approve log rotation, scheduled-job changes, service recycle,
+index repair, rebuild, compaction, or import.
 
 ## Phase 5: Canary
 
-Run only when `/agentmemory/livez` is fast:
+Prepare only. Run only when `/agentmemory/livez` is fast and Andrea has
+approved the canary as the single action for that window:
 
 - tiny remember payload, one sentence, no secrets;
 - tiny recall query, `limit=1`;
@@ -228,8 +229,8 @@ Until the canary passes:
 
 - Where does iii persist the active KV/index data outside the visible
   `~/.agentmemory` files?
-- Is the BM25 shard warning a stale reference, missing persisted shard, or failed
-  rebuild artifact?
+- Is the BM25 shard warning a stale reference, missing persisted shard, or stale
+  generated artifact?
 - Why does launchd list `com.elab.agentmemory` with status `-9` while the service
   keeps running?
 - Which timeout value is actually active: wrapper `45000` or `.env` `120000`?
