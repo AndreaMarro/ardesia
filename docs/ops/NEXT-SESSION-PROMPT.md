@@ -1,16 +1,16 @@
 # NEXT-SESSION-PROMPT - ELABTutor Plugin + Factory Parallel Sprint
 
-## ACTIVE — Stato al 2026-07-02 sera (leggere PRIMA di tutto)
+## ACTIVE — Stato al 2026-07-03 (leggere PRIMA di tutto)
 
 Questa sezione supera i FATTI operativi delle sezioni sottostanti; la direzione
 prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) resta valida.
 
-### PR aperte in attesa di merge Andrea (riverificato firsthand 02jul sera: main sempre `270d1e95`, nessun merge nuovo)
+### PR aperte in attesa di merge Andrea (riverificato firsthand 03jul: main sempre `270d1e95`, nessun merge nuovo)
 
 | PR | Cosa | Nota |
 |---|---|---|
 | #16 (draft) | board payload contract esp1 | va REBASATA sui pin nuovi dopo merge di #19 |
-| #17 | root command surface (`bin/monorepo.sh` + root `package.json`) | sostituisce il TODO "commit command-surface" del checkout Codex: NON ricommittarla da lì |
+| #17 | root command surface (`bin/monorepo.sh` + root `package.json`) | sostituisce il TODO "commit command-surface" del checkout Codex: NON ricommittarla da lì; EMENDATA STOP-safe 03jul (`3eeb00fa`): `factory-readonly` = probe process-only (launchctl+ps), mai gate |
 | #18 | CLAUDE-FULL-PROJECT-CONTEXT (mappa completa) | orientamento sessioni AI |
 | #19 | topologia esp1 fedele al libro (Vol.1 pp.29-31) | fa fede il TESTO, non le figure; pin mai su bus-* |
 | #20 / #21 | import P1 product / P0 ops (mappe, entrypoints, GITHUB-REPO-MAP-LIVE) | docs-only |
@@ -23,15 +23,34 @@ prodotto (ELABTutor/Simulation Plugin, Scratch compiler, fedeltà al libro) rest
 | #29 | import P1 ops — FASTAPI-CHATGPT-MCP-GATEWAY | chiude il filone import TSV: ogni riga DOCS/OPS ≤P1 ora coperta (#17/#20/#21/#26/#29); restano solo BLOCKED e P2 human-ok |
 | #30 | teacher dashboard projection (LessonOS) | base = branch #24 (`feat/lessonos-eventlog-microslice-20260702`): merge DOPO #24, poi retarget su main. Chiusa da Codex sul worktree Claude, verificata avversarialmente e FIXATA (`61940847`); non-draft |
 | #31 | breadboard topology validator (sim) | base = branch #19 (`feat/elab-v1-cap6-esp1-book-topology`): merge DOPO #19, poi retarget su main. Chiusa da Codex sul worktree Claude, verificata avversarialmente e FIXATA (`f90d8896`); non-draft |
+| #32 (draft) | import ricerca deep-research LessonOS/sim/ELABTutor | draft Codex: solo lettura/commenti; probabile atterraggio del report deep-research (LiveStore/local-first/WebKit-eviction) |
+| #33 | SDK contract range nei manifest reference + compat test | slice prodotto dal worktree handoff Codex 02jul, verificata e pushata da Claude 03jul: 27/27 test ×3, typecheck ok; handoff-doc in commit separato (split = gate Andrea) |
+| #28 | QUESTA PR (refresh NEXT-SESSION-PROMPT) | da mergiare ULTIMA (o rigenerare post-merge): descrive lo stato della coda stessa |
 
 PR #6 resta VIETATA (body≠files). Draft storiche #1/#2/#4/#5 invariate.
+
+### Ordine di merge consigliato (proposta Claude 03jul — ratifica = gate Andrea)
+
+`#23 → #17 → #33 → #18 → #20 → #26 → #21 → #29 → #25 → #22 → #24 → #30 → #19 → #31 → #16 → #32/#27 → #28`
+
+Motivazioni (solo i vincoli veri; il resto è ordine di comodo docs-first):
+
+1. **#23 per primo (flaky-first)**: finché il fix `Room.integration>handleFile` non è su main, OGNI full-suite delle PR successive può dare false-red — misurato firsthand 02jul: main 3/3 run fail, branch #23 38/38×3.
+2. **#17 subito dopo**: command surface emendata STOP-safe (`3eeb00fa`) = superficie operativa sicura per chiunque lavori dopo; nessuna dipendenza.
+3. **#33 presto e senza vincoli**: additiva (campo `contract` opzionale + test), zero overlap con le altre (unico file test toccato: `SdkContract.compat.test.ts`, non toccato altrove).
+4. **Blocco docs #18/#20/#26/#21/#29/#25/#22 in qualunque ordine interno**: docs-only, zero conflitti tra loro; #22 per ultima del blocco perché cita #24 (meglio leggerla a ridosso).
+5. **#24 PRIMA di #30 (vincolo stacked)**: #30 ha base = branch #24; dopo il merge di #24, #30 va **retargetata su main** (GitHub lo fa da solo al merge della base, ma verificare) + full test 3×.
+6. **#19 PRIMA di #31 (vincolo stacked)**: #31 ha base = branch #19; stesso retarget post-merge. Decisione-#19 (slice 6-file ok o split) è gate Andrea e viene PRIMA.
+7. **#19 PRIMA di #16 (vincolo pin)**: #16 va rebasata sui pin canonici di #19 (r1 i9/i3, led1 f3/e3, 3 fili; pin mai su bus-*). Overlap `fixtureAdapter.ts` con #31 → mergiare #31 prima del rebase di #16 evita un secondo giro.
+8. **#32/#27 in coda**: draft altrui, richiedono review Andrea; nessuno dipende da loro.
+9. **#28 ULTIMA o rigenerata**: descrive la coda; mergiarla prima la renderebbe subito stantia.
 
 ### Lane
 
 - **Loop Codex (checkout principale `/Users/andreamarro/VOLUME 3/ardesia`)**: la slice
   MOUNT-CANVAS (`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`,
   `simulationBreadboard.ts`) è ancora untracked → resta la tua priorità: test, poi
-  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#31.
+  commit su branch dedicato. Non toccare i branch delle PR aperte #16-#33.
 - **Sessioni Claude**: SOLO worktree usa-e-getta da `origin/main`
   (`git worktree add /tmp/ardesia-<task> -b <branch> origin/main`); orientamento da
   `docs/ops/CLAUDE-FULL-PROJECT-CONTEXT.md` (#18) + `COLLABORATOR-ONBOARDING.md` (#25).
