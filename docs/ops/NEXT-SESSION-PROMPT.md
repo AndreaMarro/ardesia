@@ -346,3 +346,40 @@ scheduler/launchd. → tutto in `NEXT-CODEX-PACKET.md`.
 ## COV richiesta alla prossima sessione
 Path, branch, commit creati (hash), `npm run verify` pass/fail, stato PR #6/#8, Vercel
 build+URL, gate LessonOS rosso/verde+causa, cosa non fatto e perché.
+
+---
+
+## Volume 3 GitHub inventory status
+
+Created from a clean worktree based on `origin/main` after PR #9 merge (`c48500cb`). Do not use the dirty local `ardesia` worktree as the PR base.
+
+Files created/updated:
+- `docs/ops/VOLUME3-GITHUB-INVENTORY.md`
+- `docs/ops/VOLUME3-GITHUB-CANDIDATES.tsv`
+- `docs/ops/VOLUME3-DO-NOT-COMMIT.md`
+- `docs/ops/VOLUME3-LARGE-FILES-AND-ASSETS.md`
+- `docs/ops/VOLUME3-LOCAL-HANDOFF-FOR-GITHUB.md`
+- `docs/ops/NEXT-SESSION-PROMPT.md`
+
+P0/P1 candidates:
+- P0 docs/ops: local status, repo map, entrypoints, headroom docs, AgentMemory semantic protocol.
+- P1 docs/product: Electrotechnics, ExamForge, FastAPI gateway, ChatGPT Apps/MCP integration, LessonOS graph/memory research.
+
+Do-not-commit:
+- 1090 sensitive filename matches.
+- 13045 redacted content path matches.
+- 109 files >20MB.
+
+Next PR:
+- Draft docs-only PR: `docs(ops): inventory Volume 3 GitHub candidates`.
+
+Blockers:
+- No bulk import. No assets/manuali/PDF/video/zip/env/dump/corpus.
+- Product docs require human/licence/sanitization review before becoming canonical.
+- AgentMemory remains degraded; only read-only canary was performed.
+
+Prompt for next session:
+1. Open `/tmp/ardesia-volume3-inventory-20260702-031847` or fetch the draft PR branch.
+2. Run `git status -sb`, `git diff --check`, and inspect the six docs-only files.
+3. If still docs-only and no secrets appear, finish/push the draft PR.
+4. Do not add unrelated local work from `/Users/andreamarro/VOLUME 3/ardesia`.

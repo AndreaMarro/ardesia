@@ -1,0 +1,22 @@
+path	class	priority	target_repo	target_path	reason	requires_sanitization	requires_license_review	requires_human_ok	next_action
+ardesia/docs/ops/LOCAL-VOLUME3-STATUS.md	DOCS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	Local status already curated; should become canonical after sanitize	no	no	no	Review diff then import in docs-only PR
+ardesia/docs/ops/GITHUB-REPO-MAP-LIVE.md	DOCS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	Repository map useful for navigation	no	no	no	Import after duplicate check
+ardesia/docs/ops/ENTRYPOINTS.md	DOCS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	Human/agent navigation entrypoints	no	no	no	Import after duplicate check
+ardesia/docs/ops/REPO-HEADROOM-MAP.md	OPS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	Headroom is an operational asset	no	no	no	Import as docs-only if factual
+ardesia/docs/ops/HEADROOM-ENFORCEMENT-STATUS.md	OPS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	Documents enforcement/readiness status	no	no	no	Import with COV
+ardesia/docs/ops/AGENTMEMORY-SEMANTIC-PROTOCOL.md	OPS-CANDIDATE	P0	AndreaMarro/ardesia	docs/ops/	AgentMemory P0 protocol docs	yes	no	no	Check for endpoints/secrets, then import
+ardesia/docs/ops/FASTAPI-CHATGPT-MCP-GATEWAY.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/ops/	Gateway integration research	yes	no	no	Reconcile with product docs
+ardesia/docs/product/ELECTROTECHNICS-SOLVER-PACK.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/product/	Formal product pack candidate	yes	possible	yes	Human product review
+ardesia/docs/product/EXAMFORGE-PACK.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/product/	Formal product pack candidate	yes	possible	yes	Human product review
+ardesia/docs/product/FASTAPI-INTEGRATION-GATEWAY.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/product/	Integration design candidate	yes	no	yes	Reconcile with ops gateway doc
+ardesia/docs/product/CHATGPT-APPS-MCP-INTEGRATION.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/product/	ChatGPT Apps/MCP integration candidate	yes	no	yes	Review against current OpenAI docs before merge
+ardesia/docs/ops/LESSONOS-MEMORY-ARCHITECTURE-RESEARCH.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/ops/	Architecture research for memory/graph	yes	possible	yes	Import after citation/license check
+ardesia/docs/ops/LESSONOS-DYNAMIC-GRAPH-RESEARCH.md	DOCS-CANDIDATE	P1	AndreaMarro/ardesia	docs/ops/	Dynamic graph research	yes	possible	yes	Import after citation/license check
+ardesia/apps/studio/src/toolhost/*	PRODUCT-CANDIDATE	P2	AndreaMarro/ardesia	apps/studio/	Toolhost/canvas implementation appears local	no	no	yes	Separate code PR with tests and screenshots
+ardesia/apps/studio/public/elab/	PRODUCT-CANDIDATE	BLOCKED	AndreaMarro/ardesia	assets/	Potential ELAB assets for demo	yes	yes	yes	Do not commit until asset/license decision
+bin/monorepo.sh + package.json	OPS-CANDIDATE	P1	AndreaMarro/ardesia	scripts/	Command surface useful only if verified	yes	no	yes	Dedicated ops PR after tests
+PRODOTTO/elab-builder	LINEAGE	P2	AndreaMarro/elab-tutor	n/a	Canonical ELAB product source	yes	possible	yes	Keep separate; cherry-pick docs/code only
+repos-research/open-design	PROTOTYPE	P2	external	docs/ideas/	Design research source	yes	yes	yes	Summarize with attribution, do not vendor
+ardesia-vault-local/*.md	IDEA-CANDIDATE	P2	AndreaMarro/ardesia	docs/ideas/	Local PRD/spec vault hits	yes	possible	yes	Sanitize and formalize selectively
+CONTENUTI, ELAB - TRES JOLIE, VOLUMI pdf e MD	LOCAL-ONLY	BLOCKED	private storage	n/a	Heavy/copyright/product media	yes	yes	yes	Keep out of Git; create manifest only
+ARCHIVIO/progetti-deprecati/*	DO-NOT-COMMIT	BLOCKED	private archive	n/a	Deprecated deploys/env/zips	yes	possible	yes	Do not import; salvage lessons only

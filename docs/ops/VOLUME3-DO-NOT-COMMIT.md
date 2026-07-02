@@ -1,0 +1,308 @@
+# VOLUME 3 - Do Not Commit
+
+## Regola
+Non committare path sensibili o dati locali grezzi. Questo file registra categorie e path ad alto rischio senza valori segreti.
+
+## Sensitive filename scan
+Match totali: 1090.
+
+Top directory:
+- `repos-research`: 684
+- `PRODOTTO`: 270
+- `ardesia-api-vercel`: 45
+- `ardesia`: 37
+- `ARCHIVIO`: 28
+- `elab-builder`: 11
+- `.stversions`: 8
+- `.venv`: 5
+- `SETUP-NEXT-SESSION`: 1
+- `ardesia-workspace`: 1
+
+Esempi path-only:
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/docs/audits/2026-04-23-security-secret-rotation-required~20260618-004324.md`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/docs/prompts/sessions/session-01-design-tokens~20260618-004323.md`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec~20260618-004323.md`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/docs/unlim-wiki/concepts/keypad-matrix~20260618-004326.md`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/scripts/git-hooks/pre-commit-secret-scan~20260618-004534.sh`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/src/components/tutor/KeyboardManager~20260618-004534.jsx`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/src/utils/homeCompileAnimationTokens~20260618-004535.js`
+- `./.stversions/PRODOTTO/elab-builder-graph-mhT32/supabase/auth-class-key~20260618-004537.sql`
+- `./.venv/lib/python3.13/site-packages/pip/_vendor/certifi/cacert.pem`
+- `./.venv/lib/python3.13/site-packages/pip/_vendor/packaging/__pycache__/_tokenizer.cpython-313.pyc`
+- `./.venv/lib/python3.13/site-packages/pip/_vendor/packaging/_tokenizer.py`
+- `./.venv/lib/python3.13/site-packages/pip/_vendor/pygments/__pycache__/token.cpython-313.pyc`
+- `./.venv/lib/python3.13/site-packages/pip/_vendor/pygments/token.py`
+- `./ARCHIVIO/ANTIGRAVITY/REPORT_COLOR_AUDIT_CREDENTIALS_2026-02-16.md`
+- `./ARCHIVIO/notebook-colab/elab-ai/elab_lora_extracted/elab_lora/special_tokens_map.json`
+- `./ARCHIVIO/notebook-colab/elab-ai/elab_lora_extracted/elab_lora/tokenizer.json`
+- `./ARCHIVIO/notebook-colab/elab-ai/elab_lora_extracted/elab_lora/tokenizer.model`
+- `./ARCHIVIO/notebook-colab/elab-ai/elab_lora_extracted/elab_lora/tokenizer_config.json`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pip/_vendor/certifi/cacert.pem`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pip/_vendor/packaging/__pycache__/_tokenizer.cpython-313.pyc`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pip/_vendor/packaging/_tokenizer.py`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pip/_vendor/pygments/__pycache__/token.cpython-313.pyc`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pip/_vendor/pygments/token.py`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pycparser/ply/__pycache__/ctokens.cpython-313.pyc`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/pycparser/ply/ctokens.py`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/tinycss2/__pycache__/tokenizer.cpython-313.pyc`
+- `./ARCHIVIO/notebook-colab/elab-ai/venv/lib/python3.13/site-packages/tinycss2/tokenizer.py`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/.env`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/.env.example`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/.env`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/.env.example`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/.env.example`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/.env.example`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/.env`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/.env.example`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/.env`
+- `./ARCHIVIO/progetti-deprecati/elab-mcp-controller-archive/elab-builder/src/hooks/useHotkeys.js`
+- `./ARCHIVIO/progetti-deprecati/elab-mcp-controller-archive/elab-builder/src/hooks/useKeyboardShortcuts.js`
+- `./ARCHIVIO/progetti-deprecati/elab-mcp-controller/.env`
+- `./ARCHIVIO/progetti-deprecati/elab-website/.env`
+- `./ARCHIVIO/progetti-deprecati/elab-website/.env.example`
+- `./PRODOTTO/elab-builder-blockly-definitivo/.env.example`
+- `./PRODOTTO/elab-builder-blockly-definitivo/.env.production`
+- `./PRODOTTO/elab-builder-blockly-definitivo/automa/.env.example`
+- `./PRODOTTO/elab-builder-blockly-definitivo/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-blockly-definitivo/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-blockly-definitivo/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-blockly-definitivo/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-blockly-definitivo/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-blockly-definitivo/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-blockly-definitivo/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-blockly-definitivo/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-blockly-definitivo/supabase/migrations/002_apply_class_key_2026-05-26.sql`
+- `./PRODOTTO/elab-builder-cc-libfix/.env.example`
+- `./PRODOTTO/elab-builder-cc-libfix/.env.production`
+- `./PRODOTTO/elab-builder-cc-libfix/automa/.env.example`
+- `./PRODOTTO/elab-builder-cc-libfix/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-cc-libfix/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-cc-libfix/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-cc-libfix/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-cc-libfix/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-cc-libfix/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-cc-libfix/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-cc-libfix/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-ci-unblock/.env.example`
+- `./PRODOTTO/elab-builder-ci-unblock/automa/.env.example`
+- `./PRODOTTO/elab-builder-ci-unblock/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-ci-unblock/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-ci-unblock/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-ci-unblock/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-ci-unblock/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-ci-unblock/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-ci-unblock/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-ci-unblock/src/utils/homeCompileAnimationTokens.js`
+- `./PRODOTTO/elab-builder-ci-unblock/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-demo25/.env.example`
+- `./PRODOTTO/elab-builder-demo25/.env.production`
+- `./PRODOTTO/elab-builder-demo25/.vercel/.env.production.local`
+- `./PRODOTTO/elab-builder-demo25/automa/.env.example`
+- `./PRODOTTO/elab-builder-demo25/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-demo25/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-demo25/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-demo25/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-demo25/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-demo25/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-demo25/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-demo25/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-iter83-fumetto/.env.example`
+- `./PRODOTTO/elab-builder-iter83-fumetto/.env.production`
+- `./PRODOTTO/elab-builder-iter83-fumetto/automa/.env.example`
+- `./PRODOTTO/elab-builder-iter83-fumetto/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-iter83-fumetto/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-iter83-fumetto/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-iter83-fumetto/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-iter83-fumetto/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-iter83-fumetto/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-iter83-fumetto/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-iter83-fumetto/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/.env.example`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/.env.production`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/automa/.env.example`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-iter83-percorso-morfica/supabase/auth-class-key.sql`
+- `./PRODOTTO/elab-builder-percorso-rescue/.env.example`
+- `./PRODOTTO/elab-builder-percorso-rescue/.env.production`
+- `./PRODOTTO/elab-builder-percorso-rescue/automa/.env.example`
+- `./PRODOTTO/elab-builder-percorso-rescue/docs/audits/2026-04-23-security-secret-rotation-required.md`
+- `./PRODOTTO/elab-builder-percorso-rescue/docs/prompts/sessions/session-01-design-tokens.md`
+- `./PRODOTTO/elab-builder-percorso-rescue/docs/specs/2026-04-28-iter-14-design-tokens-canonical-spec.md`
+- `./PRODOTTO/elab-builder-percorso-rescue/docs/unlim-wiki/concepts/keypad-matrix.md`
+- `./PRODOTTO/elab-builder-percorso-rescue/nanobot/.env.example`
+- `./PRODOTTO/elab-builder-percorso-rescue/scripts/git-hooks/pre-commit-secret-scan.sh`
+- `./PRODOTTO/elab-builder-percorso-rescue/src/components/tutor/KeyboardManager.jsx`
+- `./PRODOTTO/elab-builder-percorso-rescue/supabase/auth-class-key.sql`
+
+## Sensitive content scan redatto
+Match path-only: 13045. Pattern: provider key/token/secret/password, generic secret assignment, private key marker. Nessun valore e' stato incluso.
+
+Top directory:
+- `PRODOTTO`: 10532
+- `repos-research`: 902
+- `ardesia`: 689
+- `elab-builder`: 637
+- `ARCHIVIO`: 177
+- `SESSIONI`: 18
+- `ardesia-vault-local`: 15
+- `ardesia-api-vercel`: 14
+- `unlim-intelligente`: 14
+- `SETUP-NEXT-SESSION`: 10
+- `docs`: 8
+- `workflowxxx`: 7
+
+Esempi path-only:
+- `./ARCHIVIO/AGENTS.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/ANTIGRAVITY/REPORT-AUDIT-INTERDISCIPLINARE-ELAB-2026-02-16.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/ANTIGRAVITY/REPORT_COLOR_AUDIT_CREDENTIALS_2026-02-16.md	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/ANTIGRAVITY/REPORT_SECURITY_HARDENING_2026-02-16.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/CODEX53/REPORT-CODEX53-ELAB-COVE-2026-02-15.md	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/CODEX53/tools/vercel-index-CtdrZLTI.js	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/ISTRUZIONI_DEPLOY_NETLIFY.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/elab-builder-root-cleanup-2026-05-27/lighthouse/funny-pika-3d1029.netlify.app_2026-03-24_04-36-48.report.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/elab-builder-root-cleanup-2026-05-27/screenshots-audit/audit-lighthouse-homepage.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/elab-builder-root-cleanup-2026-05-27/screenshots-audit/audit-lighthouse-homepage.json	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/elab-builder-root-cleanup-2026-05-27/screenshots-audit/audit-lighthouse-simulator.json	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/notebook-colab/ELAB_Tutor_V4.ipynb	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY-2/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA 2/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DAIANA/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/DAIANA-DEPLOY/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/FIJI-PROJECT/fiji/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/admin.html	PROVIDER_KEY_NAME,GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/beta-test.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/create-checkout.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/create-subscription.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/customer-portal.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/notion-config.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/netlify/functions/stripe-webhook.js	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA-2/profilo.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/DEPLOY-CHECKLIST.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/README.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/backend/SETUP.md	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/dashboard.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/eventi.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/js/elab-auth.js	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/login.html	GENERIC_SECRET_ASSIGN`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/negozio.html	PROVIDER_KEY_NAME`
+- `./ARCHIVIO/progetti-deprecati/TOBIA/netlify/functions/cancel-subscription.js	PROVIDER_KEY_NAME`
+
+## Classi vietate
+- `.env`, `.env.*`, `.vercel/.env*`, credenziali, private key, token e password.
+- Database locali, cache, log lunghi, dump AgentMemory grezzi, snapshot runtime.
+- Dati personali, dati studenti, corpus reali e materiali didattici non autorizzati.
+- PDF/libri/manuali coperti, media/audio/video/foto raw, PSD e archivi pesanti.
+- `node_modules`, virtualenv, build output, `dist-test`, `.stversions`, zip di deploy.
+
+## Azione richiesta
+- `ignore`: cache, build, virtualenv, dump, log, deploy zip.
+- `sanitize`: docs operative con nomi di provider o comandi sensibili.
+- `private storage`: manuali, foto, video, audio, PSD, dataset/corpus.
+- `license review`: PDF/libri/manuali, repo terzi, design asset.
+- `human OK`: ogni file >20MB, ogni dato studente/personale, ogni asset ELAB reale.
+
+## COV
+- Path: `/Users/andreamarro/VOLUME 3`
+- Timestamp: 2026-07-02 CEST
+- Repos found: 19
+- Dirs mapped: 265
+- Files mapped at maxdepth 4: 18962
+- Important-file candidates: 123601
+- Large files >20MB: 109
+- Sensitive filename matches: 1090
+- Sensitive content path matches, redacted/path-only: 13045
+- Keyword hits, bounded/path+line file only: 1159634
+- Raw scan artifacts: `/tmp/volume3-*.txt`, `/tmp/volume3-sensitive-content.tsv`
+- Interrupted scans: two overly broad Python content scans were stopped by this agent; no runtime/service process was killed.
