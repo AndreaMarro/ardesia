@@ -25,6 +25,7 @@ interface ManifestSource {
   name: string
   version: string
   protocol: string
+  contract: string
   entry: string
   surfaces: string[]
   capabilities: Record<string, unknown>
@@ -59,6 +60,7 @@ async function main(): Promise<void> {
     name: "Reference Sim — Blink LED",
     version: "1.0.0",
     protocol: ">=1.0 <2.0",
+    contract: ">=1.0 <2.0",
     entry: "entry.html",
     surfaces: ["board-embed"],
     capabilities: {
