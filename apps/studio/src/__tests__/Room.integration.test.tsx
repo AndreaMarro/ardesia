@@ -32,6 +32,11 @@ vi.mock("@excalidraw/excalidraw", () => {
               return unsub
             }),
           })
+          // Segnale DOM-osservabile: l'API è stata consegnata (Room.apiRef è settato).
+          // Room non produce alcun segnale DOM quando excalidrawAPI viene chiamato,
+          // quindi i test che dipendono da apiRef devono aspettare QUESTO attributo,
+          // non il testo "mock-excalidraw" (che appare al render, PRIMA di questo timer).
+          document.body.setAttribute("data-mock-excalidraw-api", "1")
         }, 0)
       }
       return "mock-excalidraw"
@@ -1204,14 +1209,26 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   async function mountRoomAndGetFileInput() {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    // Drena i timer pendenti dei test precedenti: OGNI re-render del mock Excalidraw
+    // accoda una consegna API via setTimeout(0); una consegna stantia (Room già
+    // smontato) setterebbe l'attributo qui sotto SENZA settare l'apiRef di QUESTO
+    // Room. Dopo il drain, ogni consegna futura appartiene al mount corrente.
+    await new Promise((r) => setTimeout(r, 1))
+    // Azzera il segnale di consegna API di eventuali mount precedenti: l'attributo
+    // vive su document.body e sopravvive a unmount/innerHTML reset del beforeEach.
+    document.body.removeAttribute("data-mock-excalidraw-api")
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
-    // Attende il mount di Excalidraw (apiRef impostato dal mock via setTimeout(0)):
-    // handleFile esce subito se apiRef.current è null.
+    // Attende il mount di Excalidraw E la consegna dell'API (apiRef impostato dal
+    // mock via setTimeout(0)): handleFile esce subito, in silenzio, se apiRef.current
+    // è null. Il solo testo "mock-excalidraw" NON basta: appare al render, mentre
+    // l'API arriva in un timer successivo — race osservata flaky 4/10 run full-suite
+    // (chip mai mostrato, pdfToImages mai chiamato).
     let input: HTMLInputElement | undefined
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
+      expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
       input = document.querySelector('input[type="file"]') as HTMLInputElement
       expect(input).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
