@@ -75,7 +75,7 @@ export interface ProjectTeacherDashboardInput {
   focusNodeId?: string | null
 }
 
-interface LessonAccumulator {
+interface LessonSegment {
   room: string
   startedAt: number
   endedAt: number | null
@@ -137,79 +137,93 @@ function journalEvidence(ev: JournalEvent): EvidenceRef[] {
   }
 }
 
-function lessonKey(room: string): string {
-  return `room:${room}`
+/**
+ * Segmento che contiene `t`: per segmenti chiusi la finestra è [startedAt, endedAt];
+ * per segmenti aperti è [startedAt, startedAt del segmento successivo della stessa
+ * room) — o +∞ se non c'è un segmento successivo. `segments` è ordinato per startedAt.
+ */
+function segmentFor(segments: readonly LessonSegment[], t: number): LessonSegment | undefined {
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i]
+    if (t < segment.startedAt) continue
+    if (segment.endedAt !== null) {
+      if (t <= segment.endedAt) return segment
+    } else {
+      const bound = segments[i + 1]?.startedAt ?? Number.POSITIVE_INFINITY
+      if (t < bound) return segment
+    }
+  }
+  return undefined
 }
 
-function getOrCreateLesson(lessons: Map<string, LessonAccumulator>, room: string, startedAt: number): LessonAccumulator {
-  const key = lessonKey(room)
-  const existing = lessons.get(key)
-  if (existing) {
-    if (startedAt < existing.startedAt) existing.startedAt = startedAt
-    return existing
-  }
-  const lesson: LessonAccumulator = {
-    room,
-    startedAt,
-    endedAt: null,
-    counts: { ...EMPTY_COUNTS },
-    evidenceRefs: [],
-    pdfPages: new Set(),
-  }
-  lessons.set(key, lesson)
-  return lesson
-}
+function buildLessons(input: ProjectTeacherDashboardInput): LessonSegment[] {
+  const segmentsByRoom = new Map<string, LessonSegment[]>()
 
-function buildLessons(input: ProjectTeacherDashboardInput): LessonAccumulator[] {
-  const lessons = new Map<string, LessonAccumulator>()
-
+  // Segmentazione per coppie lesson.started/lesson.ended in ordine `seq` per room:
+  // started apre un segmento, ended chiude l'ultimo segmento aperto della room,
+  // started senza ended resta con endedAt null, ended orfano viene ignorato.
   for (const ev of [...input.lessonEvents].sort((a, b) => a.seq - b.seq)) {
     if (ev.kind === "lesson.started") {
-      const lesson = getOrCreateLesson(lessons, ev.room, ev.t)
-      addEvidence(lesson.evidenceRefs, ev.evidence)
-    } else if (ev.kind === "lesson.ended") {
-      const lesson = getOrCreateLesson(lessons, ev.room, ev.t)
-      lesson.endedAt = ev.t
-      addEvidence(lesson.evidenceRefs, ev.evidence)
-    }
-  }
-
-  const journalEvents = input.journalEvents ?? []
-  if (journalEvents.length > 0) {
-    const room = input.journalRoom ?? "current"
-    const firstJournalTime = Math.min(...journalEvents.map((ev) => ev.t).filter(Number.isFinite))
-    const lesson = getOrCreateLesson(lessons, room, firstJournalTime)
-    for (const ev of journalEvents) {
-      addEvidence(lesson.evidenceRefs, journalEvidence(ev))
-      switch (ev.type) {
-        case "element.add":
-          lesson.counts.elements += 1
-          break
-        case "math.insert":
-          lesson.counts.mathInserts += 1
-          break
-        case "pdf.page.view":
-          lesson.pdfPages.add(ev.page)
-          lesson.counts.pdfPagesViewed = lesson.pdfPages.size
-          break
-        case "audio.chunk":
-          lesson.counts.audioChunks += 1
-          break
-        case "element.delete":
-        case "element.update":
-        case "t0":
-        case "t1":
-          break
+      const segments = segmentsByRoom.get(ev.room) ?? []
+      const segment: LessonSegment = {
+        room: ev.room,
+        startedAt: ev.t,
+        endedAt: null,
+        counts: { ...EMPTY_COUNTS },
+        evidenceRefs: [],
+        pdfPages: new Set(),
       }
+      addEvidence(segment.evidenceRefs, ev.evidence)
+      segments.push(segment)
+      segmentsByRoom.set(ev.room, segments)
+    } else if (ev.kind === "lesson.ended") {
+      const open = [...(segmentsByRoom.get(ev.room) ?? [])].reverse().find((segment) => segment.endedAt === null)
+      if (!open) continue
+      open.endedAt = ev.t
+      addEvidence(open.evidenceRefs, ev.evidence)
     }
   }
 
-  return [...lessons.values()].sort((a, b) => a.startedAt - b.startedAt || byString(a.room, b.room))
+  for (const segments of segmentsByRoom.values()) {
+    segments.sort((a, b) => a.startedAt - b.startedAt)
+  }
+
+  // I journal contano SOLO dentro la finestra del segmento a cui appartengono;
+  // startedAt/endedAt vengono SOLO dagli eventi LessonOS, mai dal journal.
+  const journalSegments = segmentsByRoom.get(input.journalRoom ?? "current") ?? []
+  for (const ev of input.journalEvents ?? []) {
+    const segment = segmentFor(journalSegments, ev.t)
+    if (!segment) continue
+    addEvidence(segment.evidenceRefs, journalEvidence(ev))
+    switch (ev.type) {
+      case "element.add":
+        segment.counts.elements += 1
+        break
+      case "math.insert":
+        segment.counts.mathInserts += 1
+        break
+      case "pdf.page.view":
+        segment.pdfPages.add(ev.page)
+        segment.counts.pdfPagesViewed = segment.pdfPages.size
+        break
+      case "audio.chunk":
+        segment.counts.audioChunks += 1
+        break
+      case "element.delete":
+      case "element.update":
+      case "t0":
+      case "t1":
+        break
+    }
+  }
+
+  return [...segmentsByRoom.values()].flat().sort((a, b) => byString(a.room, b.room) || a.startedAt - b.startedAt)
 }
 
 function projectGraphView(graph: LessonGraph, focusNodeId: string | null | undefined): TeacherDashboardProjection["graphView"] {
   const focus = focusNodeId ?? null
-  const view = focus ? neighbors(graph, focus, 1) : null
+  // Z1: vicinato a profondità ≤2 del nodo in focus.
+  const view = focus ? neighbors(graph, focus, 2) : null
   if (!view) return { focusNodeId: null, nodes: [], edges: [] }
   return {
     focusNodeId: focus,
@@ -229,41 +243,45 @@ function projectGraphView(graph: LessonGraph, focusNodeId: string | null | undef
   }
 }
 
-function recurringErrors(graph: LessonGraph, locale: string): TeacherDashboardProjection["recurringErrors"] {
+// count/firstSeen/lastSeen vengono dagli EVENTI error.observed (ogni osservazione
+// conta, anche sullo stesso errorId); correctedBy resta dal grafo materializzato.
+function recurringErrors(
+  lessonEvents: readonly AppendedEvent[],
+  graph: LessonGraph,
+  locale: string,
+): TeacherDashboardProjection["recurringErrors"] {
   const byConcept = new Map<string, TeacherDashboardProjection["recurringErrors"][number]>()
-  for (const edge of graph.edges) {
-    if (edge.kind !== "deriva-da") continue
-    const errorNode = graph.nodes.get(edge.from)
-    const conceptNode = graph.nodes.get(edge.to)
-    if (errorNode?.kind !== "errore") continue
-    const existing = byConcept.get(edge.to)
+  for (const ev of [...lessonEvents].sort((a, b) => a.seq - b.seq)) {
+    if (ev.kind !== "error.observed") continue
+    const existing = byConcept.get(ev.conceptId)
     const row = existing ?? {
-      conceptId: edge.to,
-      label: labelsFor(edge.to, locale, conceptNode?.labels),
+      conceptId: ev.conceptId,
+      label: labelsFor(ev.conceptId, locale, graph.nodes.get(ev.conceptId)?.labels),
       count: 0,
-      firstSeen: errorNode.introducedAt,
-      lastSeen: errorNode.introducedAt,
+      firstSeen: ev.t,
+      lastSeen: ev.t,
       correctedBy: [],
       evidenceRefs: [],
     }
     row.count += 1
-    row.firstSeen = Math.min(row.firstSeen, errorNode.introducedAt)
-    row.lastSeen = Math.max(row.lastSeen, errorNode.introducedAt)
-    addEvidence(row.evidenceRefs, errorNode.evidenceRefs)
-    addEvidence(row.evidenceRefs, edge.evidenceRefs)
+    row.firstSeen = Math.min(row.firstSeen, ev.t)
+    row.lastSeen = Math.max(row.lastSeen, ev.t)
+    addEvidence(row.evidenceRefs, ev.evidence)
+    byConcept.set(ev.conceptId, row)
+  }
+  for (const row of byConcept.values()) {
     for (const correction of graph.edges) {
-      if (correction.kind === "corregge" && correction.to === edge.to && !row.correctedBy.includes(correction.from)) {
+      if (correction.kind === "corregge" && correction.to === row.conceptId && !row.correctedBy.includes(correction.from)) {
         row.correctedBy.push(correction.from)
       }
     }
     row.correctedBy.sort(byString)
-    byConcept.set(edge.to, row)
   }
   return [...byConcept.values()].sort((a, b) => byString(a.conceptId, b.conceptId))
 }
 
 function buildStats(
-  lessons: readonly LessonAccumulator[],
+  lessons: readonly LessonSegment[],
   graph: LessonGraph,
 ): TeacherDashboardProjection["stats"] {
   const evidenceRefs: EvidenceRef[] = []
@@ -329,7 +347,7 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
     })),
     lessons: lessonRows,
     graphView: projectGraphView(graph, input.focusNodeId),
-    recurringErrors: recurringErrors(graph, input.locale),
+    recurringErrors: recurringErrors(input.lessonEvents, graph, input.locale),
     plugins: [],
     studentPackQueue: [],
     stats: buildStats(lessons, graph),
@@ -341,6 +359,7 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
       { zone: "Z6", reason: "plugin manifest registry is not wired into this pure projector slice" },
       { zone: "Z7", reason: "student-pack candidates require dedicated append-only events" },
       { zone: "Z10", reason: "export/import events are not in the current event-log schema" },
+      { zone: "Z11", reason: "integrazione Drive fuori v0/v1 (spec §Z11)" },
       { zone: "Z12", reason: "public profile has no local source contract yet" },
     ],
   }

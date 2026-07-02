@@ -52,10 +52,14 @@ const JOURNAL_EVENTS: JournalEvent[] = [
   { t: 1090, type: "t1" },
 ]
 
-async function appendFixture(): Promise<AppendedEvent[]> {
+async function appendEvents(events: readonly LessonOsEvent[]): Promise<AppendedEvent[]> {
   const log = new InMemoryEventLog()
-  for (const ev of LESSON_EVENTS) await log.append(ev)
+  for (const ev of events) await log.append(ev)
   return log.readAll()
+}
+
+async function appendFixture(): Promise<AppendedEvent[]> {
+  return appendEvents(LESSON_EVENTS)
 }
 
 function makeProjection(events: readonly AppendedEvent[]): TeacherDashboardProjection {
@@ -119,6 +123,7 @@ describe("TeacherDashboardProjection", () => {
     expect(projection.graphView.edges.map((edge) => [edge.from, edge.kind, edge.to])).toEqual([
       ["error:led-invertito-1", "deriva-da", "led_polarity"],
       ["exercise:rimonta-led", "cita", "led_polarity"],
+      ["exercise:rimonta-led", "corregge", "error:led-invertito-1"],
       ["exercise:rimonta-led", "corregge", "led_polarity"],
       ["material:vol1-p30-fig2", "cita", "led_polarity"],
     ])
@@ -146,7 +151,146 @@ describe("TeacherDashboardProjection", () => {
     expect(projection.plugins).toEqual([])
     expect(projection.studentPackQueue).toEqual([])
     expect(projection.publicProfile).toBeNull()
-    expect(projection.unavailable.map((entry) => entry.zone)).toEqual(["Z3", "Z4", "Z5", "Z6", "Z7", "Z10", "Z12"])
+    expect(projection.unavailable.map((entry) => entry.zone)).toEqual(["Z3", "Z4", "Z5", "Z6", "Z7", "Z10", "Z11", "Z12"])
+  })
+
+  it("segmenta due sessioni della stessa room in due lezioni con finestre e counts separati", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+      { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+      { kind: "lesson.started", room: "3b-elab", t: 9000, evidence: ["lesson:3b-elab@9000"] },
+      { kind: "lesson.ended", room: "3b-elab", t: 9500, evidence: ["lesson:3b-elab@9500"] },
+    ])
+    const projection = projectTeacherDashboard({
+      lessonEvents: events,
+      journalEvents: [
+        { t: 1500, type: "element.add", element: { id: "el-prima", type: "rectangle", version: 1 } },
+        { t: 9100, type: "math.insert", latex: "I = V / R" },
+      ],
+      teacherId: "teacher-a",
+      locale: "it",
+      generatedAt: 10000,
+      journalRoom: "3b-elab",
+    })
+
+    expect(projection.lessons).toEqual([
+      {
+        room: "3b-elab",
+        startedAt: 1000,
+        endedAt: 2000,
+        counts: { elements: 1, mathInserts: 0, pdfPagesViewed: 0, audioChunks: 0 },
+        evidenceRefs: ["lesson:3b-elab@1000", "lesson:3b-elab@2000", "board:el-prima"],
+      },
+      {
+        room: "3b-elab",
+        startedAt: 9000,
+        endedAt: 9500,
+        counts: { elements: 0, mathInserts: 1, pdfPagesViewed: 0, audioChunks: 0 },
+        evidenceRefs: ["lesson:3b-elab@9000", "lesson:3b-elab@9500", "journal:math.insert@9100"],
+      },
+    ])
+    expect(projection.stats.find((stat) => stat.key === "lessons.count")?.value).toBe(2)
+  })
+
+  it("esclude i journal fuori finestra e non riscrive startedAt col journal", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+      { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+    ])
+    const projection = projectTeacherDashboard({
+      lessonEvents: events,
+      journalEvents: [
+        { t: 500, type: "element.add", element: { id: "el-anticipato", type: "rectangle", version: 1 } },
+        { t: 1500, type: "element.add", element: { id: "el-in-finestra", type: "rectangle", version: 1 } },
+        { t: 2500, type: "math.insert", latex: "V = R I" },
+      ],
+      teacherId: "teacher-a",
+      locale: "it",
+      generatedAt: 5000,
+      journalRoom: "3b-elab",
+    })
+
+    expect(projection.lessons).toEqual([
+      {
+        room: "3b-elab",
+        startedAt: 1000,
+        endedAt: 2000,
+        counts: { elements: 1, mathInserts: 0, pdfPagesViewed: 0, audioChunks: 0 },
+        evidenceRefs: ["lesson:3b-elab@1000", "lesson:3b-elab@2000", "board:el-in-finestra"],
+      },
+    ])
+  })
+
+  it("conta ogni osservazione dello stesso errorId e aggiorna lastSeen", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+      {
+        kind: "concept.introduced",
+        conceptId: "led_polarity",
+        labels: { it: "Polarita del LED" },
+        t: 1100,
+        evidence: ["manual:vol1:p30"],
+      },
+      {
+        kind: "error.observed",
+        errorId: "error:led-invertito-1",
+        conceptId: "led_polarity",
+        labels: { it: "LED invertito" },
+        t: 1300,
+        evidence: ["lesson:3b-elab@1300"],
+      },
+      {
+        kind: "error.observed",
+        errorId: "error:led-invertito-1",
+        conceptId: "led_polarity",
+        labels: { it: "LED invertito" },
+        t: 1700,
+        evidence: ["lesson:3b-elab@1700"],
+      },
+      { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+    ])
+    const projection = projectTeacherDashboard({
+      lessonEvents: events,
+      teacherId: "teacher-a",
+      locale: "it",
+      generatedAt: 5000,
+    })
+
+    expect(projection.recurringErrors).toEqual([
+      {
+        conceptId: "led_polarity",
+        label: { it: "Polarita del LED" },
+        count: 2,
+        firstSeen: 1300,
+        lastSeen: 1700,
+        correctedBy: [],
+        evidenceRefs: ["lesson:3b-elab@1300", "lesson:3b-elab@1700"],
+      },
+    ])
+  })
+
+  it("lascia endedAt null per lesson.started senza ended e conta i journal successivi", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+    ])
+    const projection = projectTeacherDashboard({
+      lessonEvents: events,
+      journalEvents: [{ t: 1200, type: "element.add", element: { id: "el-aperto", type: "rectangle", version: 1 } }],
+      teacherId: "teacher-a",
+      locale: "it",
+      generatedAt: 5000,
+      journalRoom: "3b-elab",
+    })
+
+    expect(projection.lessons).toEqual([
+      {
+        room: "3b-elab",
+        startedAt: 1000,
+        endedAt: null,
+        counts: { elements: 1, mathInserts: 0, pdfPagesViewed: 0, audioChunks: 0 },
+        evidenceRefs: ["lesson:3b-elab@1000", "board:el-aperto"],
+      },
+    ])
   })
 
   it("e rigenerabile da zero e non introduce metriche interpretative", async () => {
