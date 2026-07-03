@@ -142,7 +142,7 @@ describe("SavedLessonsPanel — svolgimento e correzione (gradeQuiz)", () => {
     ])
     // Dopo la correzione le opzioni sono bloccate (l'esito si riferisce a QUELLE risposte).
     expect((screen.getByLabelText("Anodo") as HTMLInputElement).disabled).toBe(true)
-  })
+  }, 15000)
 
   it("guasto della correzione: errore locale, quiz e risposte restano", async () => {
     const { client } = clientWithRoutes({

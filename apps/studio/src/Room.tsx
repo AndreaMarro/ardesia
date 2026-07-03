@@ -18,6 +18,11 @@ import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storage
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
 import EmptyState from "./design/EmptyState"
+import {
+  REFERENCE_SIM_EMBED_ID,
+  createToolEmbedElement,
+  renderToolCanvasEmbeddable,
+} from "./toolhost/ToolCanvasEmbeddable"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -445,7 +450,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ""
-    if (!file || !apiRef.current) return
+    if (!file) return
+    const supported = file.type === "application/pdf" || file.type.startsWith("image/")
+    if (!supported) {
+      setStorageError("Formato non supportato (usa immagine o PDF).")
+      return
+    }
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
     try {
       if (file.type === "application/pdf") {
         const pages = await pdfToImages(file)
@@ -463,12 +477,34 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         const w = Math.min(600, width)
         const h = Math.round(w * (height / width))
         addImages([{ dataURL, mimeType: file.type, width: w, height: h, x: 160, y: 120 }])
-      } else {
-        setStorageError("Formato non supportato (usa immagine o PDF).")
       }
     } catch (err) {
       setStorageError("Caricamento non riuscito: " + (err as Error).message)
     }
+  }
+
+  function insertSimulationPlugin() {
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+
+    const currentElements = apiRef.current.getSceneElements()
+    const existing = currentElements.find((element: any) => element.id === REFERENCE_SIM_EMBED_ID)
+    if (existing) {
+      apiRef.current.updateScene({
+        appState: { selectedElementIds: { [REFERENCE_SIM_EMBED_ID]: true } },
+      })
+      apiRef.current.scrollToContent?.([existing], { fitToContent: true })
+      return
+    }
+
+    const embed = createToolEmbedElement()
+    apiRef.current.updateScene({
+      elements: [...currentElements, embed],
+      appState: { selectedElementIds: { [REFERENCE_SIM_EMBED_ID]: true } },
+    })
+    apiRef.current.scrollToContent?.([embed], { fitToContent: true })
   }
   const shareUrl = studentView
     ? `${location.origin}${location.pathname}#${room}`
@@ -590,6 +626,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine o PDF">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
+          <button onClick={insertSimulationPlugin} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
+            sim
+          </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
@@ -730,6 +769,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             }
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
             onChange={studentView ? undefined : handleChange}
+            validateEmbeddable={/^maestro-tool:\/\//}
+            renderEmbeddable={renderToolCanvasEmbeddable}
           >
             {/* MainMenu custom: SOLO ClearCanvas + SaveAsImage — zero Socials/link/Dark-mode */}
             <MainMenu>
