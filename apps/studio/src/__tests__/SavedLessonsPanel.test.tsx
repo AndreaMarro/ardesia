@@ -294,3 +294,66 @@ describe("SavedLessonsPanel", () => {
     )
   })
 })
+
+describe("SavedLessonsPanel — flashcard (front visibile, back a richiesta)", () => {
+  const FLASHCARDS_OK: Route = {
+    status: 200,
+    body: {
+      saved_id: "sv-1",
+      lesson_id: "elab-v1-cap6",
+      flashcards: [
+        { atom_id: "f1", front: "Cos'è l'anodo?", back: "Il terminale positivo del LED." },
+      ],
+      total: 1,
+    },
+  }
+  const QUIZ_EMPTY_SV1: Route = {
+    status: 200,
+    body: { saved_id: "sv-1", lesson_id: "elab-v1-cap6", questions: [], total: 0 },
+  }
+
+  it("mostra il front; il back appare solo con «Mostra risposta» e si nasconde col toggle", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_EMPTY_SV1,
+      "GET /v1/saved-lessons/sv-1/flashcards": FLASHCARDS_OK,
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    expect(await screen.findByText("Cos'è l'anodo?")).toBeDefined()
+    expect(screen.queryByText("Il terminale positivo del LED.")).toBeNull()
+    fireEvent.click(screen.getByRole("button", { name: "Mostra risposta" }))
+    expect(screen.getByText("Il terminale positivo del LED.")).toBeDefined()
+    fireEvent.click(screen.getByRole("button", { name: "Nascondi risposta" }))
+    expect(screen.queryByText("Il terminale positivo del LED.")).toBeNull()
+  })
+
+  it("guasto flashcard: errore locale, il quiz non ne risente", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_TWO,
+      "GET /v1/saved-lessons/sv-1/flashcards": { status: 500, body: { detail: "boom" } },
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    expect(await screen.findByText("Flashcard non disponibili")).toBeDefined()
+    // Il quiz è vivo e svolgibile.
+    expect(screen.getByText("Quale terminale del LED va verso il resistore?")).toBeDefined()
+    expect(screen.getByRole("button", { name: "Correggi il quiz" })).toBeDefined()
+  })
+
+  it("lezione senza flashcard: nessuna sezione Flashcard (niente heading fantasma)", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_TWO,
+      "GET /v1/saved-lessons/sv-1/flashcards": {
+        status: 200,
+        body: { saved_id: "sv-1", lesson_id: "elab-v1-cap6", flashcards: [], total: 0 },
+      },
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    expect(await screen.findByText("Quale terminale del LED va verso il resistore?")).toBeDefined()
+    expect(screen.queryByText("Flashcard")).toBeNull()
+  })
+})

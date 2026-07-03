@@ -1,7 +1,8 @@
 // MAESTRO-Studio — SavedLessonsPanel: prima superficie UI sul client LessonOS
-// (apiClient.ts). Lista le lezioni salvate; alla selezione mostra il quiz e —
-// seconda slice — lo fa svolgere e correggere via `gradeQuiz` (la correzione è
-// del backend: qui nessuna logica di punteggio, solo presentazione). Il client
+// (apiClient.ts). Lista le lezioni salvate; alla selezione mostra il quiz — che
+// si può svolgere e correggere via `gradeQuiz` (la correzione è del backend:
+// qui nessuna logica di punteggio, solo presentazione) — e le flashcard
+// (front sempre visibile, back a richiesta: è ripasso, non quiz). Il client
 // arriva per prop — il componente non sa nulla di baseUrl/token: quella
 // configurazione è del chiamante (e il token in produzione resta GATE, vedi
 // AUTH_STRICT). Linguaggio docente: "lezioni salvate", mai vocabolario API.
@@ -9,6 +10,7 @@
 import { useEffect, useState } from "react"
 import {
   LessonOsApiError,
+  type FlashcardCard,
   type LessonOsApiClient,
   type QuizGradeResponse,
   type QuizQuestion,
@@ -43,6 +45,10 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null)
   const [quizError, setQuizError] = useState<string | null>(null)
   const [quizLoading, setQuizLoading] = useState(false)
+  // Flashcard: front sempre visibile, back rivelato per-card.
+  const [flashcards, setFlashcards] = useState<FlashcardCard[] | null>(null)
+  const [flashcardsError, setFlashcardsError] = useState<string | null>(null)
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({})
   // Svolgimento: risposte scelte (atom_id → indice) ed esito della correzione.
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [grade, setGrade] = useState<QuizGradeResponse | null>(null)
@@ -70,10 +76,13 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     setGradeError(null)
   }
 
-  const openQuiz = (lesson: SavedLessonSummary) => {
+  const openLesson = (lesson: SavedLessonSummary) => {
     setSelected(lesson)
     setQuiz(null)
     setQuizError(null)
+    setFlashcards(null)
+    setFlashcardsError(null)
+    setRevealed({})
     resetAttempt()
     setQuizLoading(true)
     client
@@ -86,6 +95,15 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
       })
       .finally(() => {
         setQuizLoading(false)
+      })
+    // Flashcard in parallelo: un guasto qui non tocca il quiz (e viceversa).
+    client
+      .getFlashcards(lesson.saved_id)
+      .then((response) => {
+        setFlashcards(response.flashcards)
+      })
+      .catch((err: unknown) => {
+        setFlashcardsError(describeError(err))
       })
   }
 
@@ -143,7 +161,7 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
       <ul className="saved-lessons-list">
         {lessons.map((lesson) => (
           <li key={lesson.saved_id}>
-            <button type="button" onClick={() => openQuiz(lesson)}>
+            <button type="button" onClick={() => openLesson(lesson)}>
               {lesson.title ?? lesson.lesson_id}
             </button>
             <span className="saved-lessons-meta">
@@ -221,6 +239,31 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
                 </>
               )}
             </>
+          )}
+          {flashcardsError && (
+            <EmptyState tone="error" compact title="Flashcard non disponibili" detail={flashcardsError} />
+          )}
+          {/* Nessuna flashcard = nessuna sezione: lo stato principale della lezione è il quiz. */}
+          {flashcards && flashcards.length > 0 && (
+            <div className="saved-lessons-flashcards">
+              <h3>Flashcard</h3>
+              <ul>
+                {flashcards.map((card) => (
+                  <li key={card.atom_id}>
+                    <p>{card.front}</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setRevealed((prev) => ({ ...prev, [card.atom_id]: !prev[card.atom_id] }))
+                      }
+                    >
+                      {revealed[card.atom_id] ? "Nascondi risposta" : "Mostra risposta"}
+                    </button>
+                    {revealed[card.atom_id] && <p className="saved-lessons-flashcard-back">{card.back}</p>}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </section>
       )}
