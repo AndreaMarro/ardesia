@@ -18,8 +18,17 @@ import {
   type StoragePreflightEnv,
 } from "./storagePreflight"
 
-/** Marker "un event-log con contenuto esiste su questo origin" (telemetria §4.4). */
+/** Prefisso del marker "un event-log con contenuto esiste" (telemetria §4.4). */
 export const EVENTLOG_EXPECTED_KEY = "lessonos:eventlog-expected"
+
+/**
+ * Chiave del marker scopata sul database fisico: un marker per-DB, non per-origin.
+ * Evita che il segnale di una lezione/DB diverso venga interpretato come perdita
+ * di un altro DB sullo stesso origin.
+ */
+export function eventLogMarkerKey(dbName: string): string {
+  return `${EVENTLOG_EXPECTED_KEY}:${dbName}`
+}
 
 /** Sottoinsieme di Storage usato per il marker; iniettabile nei test. */
 export type MarkerStorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">
@@ -32,6 +41,12 @@ export interface LessonOsBootstrapEnv extends StoragePreflightEnv {
 export interface LessonOsRuntime {
   store: EventLogStore
   capabilities: StorageCapabilitySnapshot
+  /**
+   * true = lo store realmente in uso persiste su disco (IndexedDbEventLog).
+   * false = fallback InMemory (la lezione vive solo in RAM): l'advice UX deve
+   * dire "da esportare" anche se l'API IndexedDB era presente ma open() è fallita.
+   */
+  persistent: boolean
   /**
    * true = alla riapertura il log atteso non c'era (eviction avvenuta, §4.4).
    * Il chiamante DEVE renderlo visibile al docente, mai silenzioso.
@@ -57,6 +72,7 @@ export async function bootstrapLessonOs(
 
   // Telemetria di perdita (§4.4) — solo sul backend persistente: sul fallback
   // InMemory il log è SEMPRE vuoto all'avvio e il marker non è giudicabile.
+  const persistent = store instanceof IndexedDbEventLog
   let dataLoss = false
   let corrupted = false
   if (store instanceof IndexedDbEventLog) {
@@ -64,17 +80,27 @@ export async function bootstrapLessonOs(
     const report = await store.open()
     corrupted = report.corrupted
     const marker = resolveMarkerStorage(env)
+    const key = eventLogMarkerKey(store.databaseName)
+    // Lettura del marker in un try SEPARATO dalla scrittura: se getItem lancia
+    // (es. accesso a storage negato), la telemetria degrada senza confondere il
+    // caso "letto false" con un errore di scrittura successivo.
+    let expected = false
+    try {
+      expected = Boolean(marker?.getItem(key))
+    } catch {
+      expected = false
+    }
     try {
       if (report.recovered > 0) {
-        marker?.setItem(EVENTLOG_EXPECTED_KEY, "1")
-      } else if (marker?.getItem(EVENTLOG_EXPECTED_KEY)) {
+        marker?.setItem(key, "1")
+      } else if (expected) {
         dataLoss = true
-        marker.removeItem(EVENTLOG_EXPECTED_KEY)
+        marker?.removeItem(key)
       }
     } catch {
-      // marker illeggibile/scrivibile (private mode): telemetria best-effort, mai bloccante
+      // marker non scrivibile (private mode): best-effort, mai bloccante
     }
   }
 
-  return { store, capabilities, dataLoss, corrupted }
+  return { store, capabilities, persistent, dataLoss, corrupted }
 }

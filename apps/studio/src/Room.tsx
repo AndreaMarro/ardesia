@@ -133,7 +133,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               } else if (runtime.corrupted) {
                 setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
               }
-              const { advice, reason } = deriveStorageAdvice(runtime.capabilities)
+              // runtime.persistent = lo store persiste DAVVERO (non il fallback
+              // InMemory): l'advice deve dire "da esportare" anche se l'API c'era.
+              const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
               if (advice === "export-advised") setExportAdvice(reason)
             })
             .catch(() => {})
@@ -701,8 +703,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                       .then((snapshot) => {
                         const runtime = lessonOsRef.current
                         if (runtime) lessonOsRef.current = { ...runtime, capabilities: snapshot }
-                        // Esito persist() nel consiglio UX (§4.3): negato ⇒ "da esportare".
-                        const { advice, reason } = deriveStorageAdvice(snapshot)
+                        // Esito persist() nel consiglio UX (§4.3): negato/fallito ⇒
+                        // "da esportare". persistent viene dal runtime (lo store non
+                        // cambia col gesto), non dalla mera presenza dell'API.
+                        const { advice, reason } = deriveStorageAdvice(snapshot, runtime?.persistent ?? snapshot.indexedDb)
                         setExportAdvice(advice === "export-advised" ? reason : null)
                       })
                       .catch(() => {})

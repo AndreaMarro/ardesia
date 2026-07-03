@@ -9,7 +9,7 @@
 
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog, type LessonOsEvent } from "../lessonos/eventlog"
-import { EVENTLOG_EXPECTED_KEY, bootstrapLessonOs, type MarkerStorageLike } from "../lessonos/bootstrap"
+import { bootstrapLessonOs, eventLogMarkerKey, type MarkerStorageLike } from "../lessonos/bootstrap"
 import { materialize } from "../lessonos/materializer"
 import {
   IndexedDbEventLog,
@@ -434,6 +434,8 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
 })
 
 describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker localStorage)", () => {
+  // Il marker è scopato sul DB fisico (default "lessonos-eventlog").
+  const KEY = eventLogMarkerKey("lessonos-eventlog")
   function fakeMarker(initial: Record<string, string> = {}): MarkerStorageLike & { data: Map<string, string> } {
     const data = new Map(Object.entries(initial))
     return {
@@ -455,18 +457,41 @@ describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker
     const runtime = await bootstrapLessonOs({ indexedDB: factory, storage: undefined, markerStorage: marker })
     expect(runtime.dataLoss).toBe(false)
     expect(runtime.corrupted).toBe(false)
-    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBe("1")
+    expect(runtime.persistent).toBe(true)
+    expect(marker.getItem(KEY)).toBe("1")
+  })
+
+  it("marker per-DB: il segnale di un altro DB non provoca dataLoss (chiave scopata)", () => {
+    // Verifica strutturale: chiavi di DB diversi non collidono.
+    expect(eventLogMarkerKey("lessonos-eventlog")).not.toBe(eventLogMarkerKey("altro-db"))
+    expect(eventLogMarkerKey("lessonos-eventlog")).toContain("lessonos-eventlog")
+  })
+
+  it("getItem che lancia (storage negato) ⇒ nessun dataLoss e nessun crash, telemetria degrada", async () => {
+    const throwingMarker: MarkerStorageLike = {
+      getItem: () => {
+        throw new DOMException("storage negato", "SecurityError")
+      },
+      setItem: () => {},
+      removeItem: () => {},
+    }
+    const runtime = await bootstrapLessonOs({
+      indexedDB: asFactory(new FakeIdbFactory()),
+      storage: undefined,
+      markerStorage: throwingMarker,
+    })
+    expect(runtime.dataLoss).toBe(false)
   })
 
   it("log atteso (marker) ma storage vuoto \u21d2 dataLoss=true, marker CONSUMATO (avviso una volta sola)", async () => {
-    const marker = fakeMarker({ [EVENTLOG_EXPECTED_KEY]: "1" })
+    const marker = fakeMarker({ [KEY]: "1" })
     const runtime = await bootstrapLessonOs({
       indexedDB: asFactory(new FakeIdbFactory()), // storage nuovo = eviction simulata
       storage: undefined,
       markerStorage: marker,
     })
     expect(runtime.dataLoss).toBe(true)
-    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBeNull()
+    expect(marker.getItem(KEY)).toBeNull()
     // Reload successivo: nessun nuovo allarme.
     const again = await bootstrapLessonOs({
       indexedDB: asFactory(new FakeIdbFactory()),
@@ -484,7 +509,7 @@ describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker
       markerStorage: marker,
     })
     expect(runtime.dataLoss).toBe(false)
-    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBeNull()
+    expect(marker.getItem(KEY)).toBeNull()
   })
 
   it("sequenza bucata \u21d2 corrupted=true nel runtime (\u00a75 inv. 5)", async () => {
@@ -506,7 +531,7 @@ describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker
   })
 
   it("fallback InMemory (niente IndexedDB): marker NON giudicabile \u21d2 mai falso allarme", async () => {
-    const marker = fakeMarker({ [EVENTLOG_EXPECTED_KEY]: "1" })
+    const marker = fakeMarker({ [KEY]: "1" })
     const runtime = await bootstrapLessonOs({
       indexedDB: undefined,
       storage: undefined,
@@ -514,6 +539,6 @@ describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker
     })
     expect(runtime.store).toBeInstanceOf(InMemoryEventLog)
     expect(runtime.dataLoss).toBe(false)
-    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBe("1")
+    expect(marker.getItem(KEY)).toBe("1")
   })
 })

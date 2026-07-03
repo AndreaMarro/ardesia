@@ -112,18 +112,30 @@ const QUOTA_WARN_RATIO = 0.8
 
 /**
  * Deriva "salvato / da esportare" (spec §4.3). Export consigliato quando la
- * persistenza locale non è affidabile: niente IndexedDB (memoria solo in RAM),
- * persist() chiesto e negato, o quota quasi piena. Un persist() non ancora
- * richiesto NON è un motivo: la richiesta arriva col primo gesto utente (§4.1).
+ * persistenza locale non è affidabile.
+ *
+ * `storePersistent` (default = presenza di IndexedDB) è il segnale VERO: dice se
+ * lo store realmente in uso persiste su disco. Va passato false quando il backend
+ * è degradato a InMemoryEventLog anche se `indexedDb` è presente (open() fallita:
+ * quota/private mode) — altrimenti l'advice direbbe "salvato" mentre la memoria
+ * vive solo in RAM. La presenza dell'API non implica che i dati sopravvivano.
+ *
+ * persist() chiesto e NON concesso (negato = false, o fallito silenziosamente =
+ * null: su WebKit sono indistinguibili e ugualmente inaffidabili) ⇒ export. Un
+ * persist() non ancora richiesto NON è un motivo: la richiesta arriva col primo
+ * gesto utente (§4.1).
  */
-export function deriveStorageAdvice(snapshot: StorageCapabilitySnapshot): StorageAdvice {
-  if (!snapshot.indexedDb) {
+export function deriveStorageAdvice(
+  snapshot: StorageCapabilitySnapshot,
+  storePersistent: boolean = snapshot.indexedDb,
+): StorageAdvice {
+  if (!storePersistent) {
     return {
       advice: "export-advised",
       reason: "Questo browser non conserva la memoria della lezione: esporta il file .lesson a fine lezione.",
     }
   }
-  if (snapshot.persistRequested && snapshot.persistGranted === false && snapshot.persisted !== true) {
+  if (snapshot.persistRequested && snapshot.persistGranted !== true && snapshot.persisted !== true) {
     return {
       advice: "export-advised",
       reason: "Il browser potrebbe liberare lo spazio della lezione: esporta il file .lesson a fine lezione.",

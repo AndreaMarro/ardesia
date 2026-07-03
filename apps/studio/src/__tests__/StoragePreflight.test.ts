@@ -114,6 +114,8 @@ describe("bootstrapLessonOs (§5 inv. 7 — factory + preflight, mai bloccante)"
     expect(runtime.store).toBeInstanceOf(InMemoryEventLog)
     expect(runtime.capabilities.indexedDb).toBe(false)
     expect(runtime.capabilities.persistRequested).toBe(false)
+    // runtime.persistent = false col fallback: guida l'advice UX (§4.3).
+    expect(runtime.persistent).toBe(false)
   })
 
   it("lo store degradato è funzionante: append + readAll come da contratto #24", async () => {
@@ -162,6 +164,20 @@ describe("deriveStorageAdvice (\u00a74.3 \u2014 salvato / da esportare, linguagg
     expect(advice).toBe("export-advised")
     // Ma se l'origin risulta comunque persisted, il rifiuto non conta.
     expect(deriveStorageAdvice({ ...base, persistGranted: false, persisted: true }).advice).toBe("ok")
+  })
+
+  it("persist() FALLITO silenziosamente (granted=null) \u2261 negato \u21d2 export consigliato", () => {
+    // Su WebKit un persist() che fallisce (null) \u00e8 inaffidabile come un rifiuto.
+    const { advice } = deriveStorageAdvice({ ...base, persistGranted: null, persisted: false })
+    expect(advice).toBe("export-advised")
+  })
+
+  it("storePersistent=false forza export anche con indexedDb presente (fallback InMemory: solo-RAM)", () => {
+    // L'API IndexedDB c'\u00e8 (indexedDb=true) ma lo store reale NON persiste (open fallita).
+    const snap = { ...base, indexedDb: true }
+    expect(deriveStorageAdvice(snap, false).advice).toBe("export-advised")
+    // Con il default (= indexedDb) direbbe erroneamente "ok": \u00e8 il gap che il param chiude.
+    expect(deriveStorageAdvice(snap).advice).toBe("ok")
   })
 
   it("persist() NON ancora richiesto non \u00e8 un motivo (arriva col primo gesto, \u00a74.1)", () => {

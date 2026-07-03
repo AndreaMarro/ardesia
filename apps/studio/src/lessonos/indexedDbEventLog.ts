@@ -72,6 +72,11 @@ export class IndexedDbEventLog implements EventLogStore {
     this.dbName = options.dbName ?? DB_NAME
   }
 
+  /** Nome del database fisico: usato per scopare il marker di telemetria per-DB. */
+  get databaseName(): string {
+    return this.dbName
+  }
+
   /** Apre lo storage, ricostruisce lastSeq, verifica la contiguità della sequenza. Idempotente. */
   async open(): Promise<RecoveryReport> {
     if (this.db && this.lastReport) return this.lastReport
