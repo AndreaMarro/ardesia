@@ -8,9 +8,16 @@
 // senza predicato topologico nella grammatica del circuito (la clip è implicita
 // negli endpoint bat1:positive / bat1:negative): è registrata come evidenza
 // dello step 1, non come step a sé.
+//
+// SEMANTICA CUMULATIVA: ogni step è valutato sullo STATO CORRENTE del circuito
+// (tipicamente quello completo/finale), NON sul delta incrementale del singolo
+// step. Per validazione passo-passo durante la costruzione usare
+// `firstFailingDidacticStep` (indica il primo step non ancora soddisfatto).
+// Una semantica incrementale per-delta è eventuale lavoro futuro, fuori scope.
 
 import {
   isBreadboardHole,
+  parseBreadboardHole,
   parseBreadboardRail,
   pinsOnRails,
   type BreadboardCircuit,
@@ -77,6 +84,17 @@ function describeExpectation(expectation: TopologyExpectation): string {
   }
 }
 
+// Board su cui è montato almeno un componente (dai pinAssignments): un rail su
+// una board estranea/inesistente non conta come collegamento valido.
+function componentBoardIds(circuit: ElabCircuitSlice): Set<string> {
+  const boards = new Set<string>()
+  for (const ref of Object.values(circuit.pinAssignments)) {
+    const hole = parseBreadboardHole(ref)
+    if (hole) boards.add(hole.boardId)
+  }
+  return boards
+}
+
 function holdsExpectation(
   expectation: TopologyExpectation,
   circuit: ElabCircuitSlice,
@@ -85,7 +103,8 @@ function holdsExpectation(
   switch (expectation.kind) {
     case "report-flag":
       return report[expectation.flag] === expectation.expected
-    case "wire-endpoint-on-rail":
+    case "wire-endpoint-on-rail": {
+      const boards = componentBoardIds(circuit)
       return circuit.wires.some((wire) => {
         const other =
           wire.from === expectation.endpoint
@@ -95,8 +114,9 @@ function holdsExpectation(
               : null
         if (other === null) return false
         const rail = parseBreadboardRail(other)
-        return rail !== null && rail.rail === expectation.rail
+        return rail !== null && rail.rail === expectation.rail && boards.has(rail.boardId)
       })
+    }
     case "pins-in-holes":
       return expectation.pins.every((pin) => isBreadboardHole(circuit.pinAssignments[pin] ?? ""))
     case "no-pins-on-rails":

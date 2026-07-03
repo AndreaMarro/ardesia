@@ -148,6 +148,24 @@ describe("ELAB Vol.1 cap.6 esp.1 didactic steps", () => {
     )
   })
 
+  it("COUNTER-EXAMPLE: positive lead on a plus rail of a non-existent board fails step 1", () => {
+    // QA probe: bat1:positive → bb2:bus-top-plus-1 with no component mounted on bb2
+    // must NOT give a per-step green on step 1.
+    const circuit = canonicalCircuit()
+    circuit.wires = [
+      { from: "bat1:positive", to: "bb2:bus-top-plus-1" },
+      circuit.wires[1],
+      circuit.wires[2],
+    ]
+
+    const step1 = evaluateDidacticStep(DIDACTIC_STEPS_V1_CAP6_ESP1[0], circuit)
+    expect(step1.passed).toBe(false)
+    expect(step1.failures.join("; ")).toMatch(/bus-top-plus/)
+    expect(firstFailingDidacticStep(DIDACTIC_STEPS_V1_CAP6_ESP1, circuit)?.stepId).toBe(
+      STEP_IDS.positive,
+    )
+  })
+
   it("COUNTER-EXAMPLE: a component pin parked on a bus rail fails step 4 (never pins on bus-*)", () => {
     const circuit = canonicalCircuit()
     circuit.pinAssignments["led1:cathode"] = "bb1:bus-bot-minus-3"
