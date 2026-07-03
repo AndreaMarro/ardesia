@@ -145,16 +145,73 @@ describe("ELAB Vol.1 cap.6 esp.1 Simulation Plugin fixture", () => {
     const experiment = module.default.experiments.find((candidate) => candidate.id === fixture.id)
 
     expect(experiment?.pinAssignments).toEqual({
-      "r1:pin1": "bb1:a2",
-      "r1:pin2": "bb1:a9",
-      "led1:anode": "bb1:f9",
-      "led1:cathode": "bb1:f10",
+      "r1:pin1": "bb1:i9",
+      "r1:pin2": "bb1:i3",
+      "led1:anode": "bb1:f3",
+      "led1:cathode": "bb1:e3",
     })
     expect(fixture.pinAssignments).toEqual(experiment!.pinAssignments)
     expect("pinAssignments" in findBuildCircuitIntent(lesson)).toBe(false)
     expect(fixture.driftNotes).toContain(
       "The lesson-path book_reference points to page 29 only; this fixture records manual evidence across pages 29-31.",
     )
+  })
+
+  it("stays faithful to the book topology on pages 29-31", () => {
+    const fixture = readJson<ElabFixture>(fixturePath)
+    const holeRef = /^bb1:([a-j])(\d+)$/
+
+    const parseHole = (ref: string): { letter: string; tie: number } => {
+      const match = holeRef.exec(ref)
+      if (!match) throw new Error(`not a hole ref: ${ref}`)
+      return { letter: match[1], tie: Number(match[2]) }
+    }
+    const isTopBlock = (letter: string): boolean => letter >= "f" && letter <= "j"
+    const isBottomBlock = (letter: string): boolean => letter >= "a" && letter <= "e"
+
+    // Book p.30: the LED straddles the central divide, long leg toward the resistor.
+    const anode = parseHole(fixture.pinAssignments["led1:anode"])
+    const cathode = parseHole(fixture.pinAssignments["led1:cathode"])
+    expect(isTopBlock(anode.letter)).toBe(true)
+    expect(isBottomBlock(cathode.letter)).toBe(true)
+    expect(anode.tie).toBe(cathode.tie)
+    const resistorLedSide = parseHole(fixture.pinAssignments["r1:pin2"])
+    expect(isTopBlock(resistorLedSide.letter)).toBe(true)
+    expect(resistorLedSide.tie).toBe(anode.tie)
+
+    // Book p.30 step 1: battery positive reaches the red strip.
+    const railWire = fixture.wires.find(
+      (wire) => wire.from === "bat1:positive" && wire.to.startsWith("bb1:bus-top-plus-"),
+    )
+    expect(railWire?.color).toBe("red")
+
+    // Book p.30 step 2: the resistor links the red strip to the zone below.
+    // Declared delta: pins live in holes, so one red jumper stands in for the leg-in-the-strip.
+    const jumper = fixture.wires.find(
+      (wire) => wire.from.startsWith("bb1:bus-top-plus-") && holeRef.test(wire.to),
+    )
+    expect(jumper?.color).toBe("red")
+    const jumperHole = parseHole(jumper!.to)
+    const resistorRailSide = parseHole(fixture.pinAssignments["r1:pin1"])
+    expect(isTopBlock(jumperHole.letter)).toBe(true)
+    expect(jumperHole.tie).toBe(resistorRailSide.tie)
+
+    // Book p.31: the negative lead returns straight from the short-leg tie.
+    const returnWire = fixture.wires.find((wire) => wire.to === "bat1:negative")
+    expect(returnWire?.color).toBe("black")
+    const returnHole = parseHole(returnWire!.from)
+    expect(isBottomBlock(returnHole.letter)).toBe(true)
+    expect(returnHole.tie).toBe(cathode.tie)
+
+    // Book figures show no channel bridge and no bus-minus chain: 3 wires total,
+    // exactly one more than the two battery-clip leads in the drawings.
+    expect(fixture.wires).toHaveLength(3)
+    expect(fixture.wires.some((wire) => wire.color === "green")).toBe(false)
+    expect(fixture.wires.some((wire) => wire.from.includes("bus-bot-minus"))).toBe(false)
+    expect(fixture.wires.some((wire) => wire.to.includes("bus-bot-minus"))).toBe(false)
+    expect(
+      fixture.driftNotes.some((note) => note.toLowerCase().includes("residual delta")),
+    ).toBe(true)
   })
 
   it("keeps the fixture bounded to circuit evidence without runtime or deployment claims", () => {

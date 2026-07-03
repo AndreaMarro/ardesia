@@ -49,10 +49,10 @@ describe("ELAB fixture adapter contract", () => {
     const payload = createElabV1Cap6Esp1CircuitPayload(fixture)
 
     expect(payload.circuit.pinAssignments).toEqual({
-      "r1:pin1": "bb1:a2",
-      "r1:pin2": "bb1:a9",
-      "led1:anode": "bb1:f9",
-      "led1:cathode": "bb1:f10",
+      "r1:pin1": "bb1:i9",
+      "r1:pin2": "bb1:i3",
+      "led1:anode": "bb1:f3",
+      "led1:cathode": "bb1:e3",
     })
     expect(payload.circuit.pinAssignments).toEqual(fixture.pinAssignments)
     expect(payload.provenance.checks.pinAssignments).toBe("canonical")

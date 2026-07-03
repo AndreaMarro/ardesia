@@ -45,10 +45,10 @@ const EXPERIMENTS_VOL1 = {
               }
       ],
       pinAssignments: {
-              "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
-              "led1:anode": "bb1:f9",
-              "led1:cathode": "bb1:f10"
+              "r1:pin1": "bb1:i9",
+              "r1:pin2": "bb1:i3",
+              "led1:anode": "bb1:f3",
+              "led1:cathode": "bb1:e3"
       },
       connections: [
               {
@@ -57,27 +57,12 @@ const EXPERIMENTS_VOL1 = {
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-2",
-                      "to": "bb1:b2",
+                      "from": "bb1:bus-top-plus-9",
+                      "to": "bb1:j9",
                       "color": "red"
               },
               {
-                      "from": "bb1:e9",
-                      "to": "bb1:f9",
-                      "color": "green"
-              },
-              {
-                      "from": "bb1:j10",
-                      "to": "bb1:bus-bot-minus-10",
-                      "color": "black"
-              },
-              {
-                      "from": "bb1:bus-bot-minus-1",
-                      "to": "bb1:bus-top-minus-1",
-                      "color": "black"
-              },
-              {
-                      "from": "bb1:bus-top-minus-1",
+                      "from": "bb1:a3",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -101,12 +86,11 @@ const EXPERIMENTS_VOL1 = {
               }
       },
       steps: [
-        "Inserisci il resistore da 470\u03A9 nella fila A, colonne 2-9",
-        "Inserisci il LED rosso con l'anodo in F9 e il catodo in F10 (sotto il gap centrale)",
-        "Collega un filo ROSSO dal bus + (colonna 2) al foro B2",
-        "Collega un filo VERDE dal foro E9 al foro F9 (attraversa il gap centrale)",
-        "Collega un filo NERO dal foro J10 al bus \u2212 inferiore (colonna 10)",
-        "Collega la batteria 9V: filo rosso al bus +, filo nero al bus \u2212"
+        "Collega un filo ROSSO dal positivo della batteria alla striscia rossa superiore (bus +)",
+        "Collega un filo ROSSO dal bus + (colonna 9) al foro J9: porta la striscia rossa verso il resistore",
+        "Inserisci il resistore da 470\u03A9 nei fori I9 e I3",
+        "Inserisci il LED rosso a cavallo del canale centrale: anodo (gambetta lunga) in F3 verso il resistore, catodo (gambetta corta) in E3",
+        "Collega un filo NERO dal foro A3 (stessa colonna della gambetta corta) al negativo della batteria"
       ],
       observe: "Il LED rosso si accende! Il resistore da 470\u03A9 limita la corrente a circa 15mA, proteggendo il LED.",
       unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Accendi il tuo primo LED'. Questo è il primissimo circuito: batteria 9V, resistore da 470 ohm e LED rosso. Spiega cos'è un circuito chiuso, perché serve il resistore (protezione LED), e cosa significano anodo e catodo. Usa l'analogia dell'acqua che scorre in un tubo. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
@@ -132,70 +116,46 @@ const EXPERIMENTS_VOL1 = {
               },
               {
                       "step": 3,
-                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
-                      "componentId": "r1",
-                      "componentType": "resistor",
-                      "hint": "Ragazzi, verificate posizione e polarita'.",
-                      "targetPins": {
-                              "r1:pin1": "bb1:a2",
-                              "r1:pin2": "bb1:a9"
-                      }
-              },
-              {
-                      "step": 4,
-                      "text": "Posiziona LED red nei fori F9, F10.",
-                      "componentId": "led1",
-                      "componentType": "led",
-                      "hint": "Ragazzi, verificate posizione e polarita'.",
-                      "targetPins": {
-                              "led1:anode": "bb1:f9",
-                              "led1:cathode": "bb1:f10"
-                      }
-              },
-              {
-                      "step": 5,
-                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1 (la striscia rossa superiore, come a pag.30).",
                       "wireFrom": "bat1:positive",
                       "wireTo": "bb1:bus-top-plus-1",
                       "wireColor": "red",
                       "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
-                      "step": 6,
-                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:b2.",
-                      "wireFrom": "bb1:bus-top-plus-2",
-                      "wireTo": "bb1:b2",
+                      "step": 4,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-9 a bb1:j9: porta la striscia rossa verso il resistore.",
+                      "wireFrom": "bb1:bus-top-plus-9",
+                      "wireTo": "bb1:j9",
                       "wireColor": "red",
                       "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori I9, I3.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:i9",
+                              "r1:pin2": "bb1:i3"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED red a cavallo del canale centrale: anodo (gambetta lunga) in F3 verso il resistore, catodo (gambetta corta) in E3.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f3",
+                              "led1:cathode": "bb1:e3"
+                      }
+              },
+              {
                       "step": 7,
-                      "text": "Collega un filo GREEN da bb1:e9 a bb1:f9.",
-                      "wireFrom": "bb1:e9",
-                      "wireTo": "bb1:f9",
-                      "wireColor": "green",
-                      "hint": "Ragazzi, controllate colore e due estremi."
-              },
-              {
-                      "step": 8,
-                      "text": "Collega un filo BLACK da bb1:j10 a bb1:bus-bot-minus-10.",
-                      "wireFrom": "bb1:j10",
-                      "wireTo": "bb1:bus-bot-minus-10",
-                      "wireColor": "black",
-                      "hint": "Ragazzi, controllate colore e due estremi."
-              },
-              {
-                      "step": 9,
-                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
-                      "wireFrom": "bb1:bus-bot-minus-1",
-                      "wireTo": "bb1:bus-top-minus-1",
-                      "wireColor": "black",
-                      "hint": "Ragazzi, controllate colore e due estremi."
-              },
-              {
-                      "step": 10,
-                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
-                      "wireFrom": "bb1:bus-top-minus-1",
+                      "text": "Collega un filo BLACK da bb1:a3 (stessa colonna della gambetta corta) a bat1:negative.",
+                      "wireFrom": "bb1:a3",
                       "wireTo": "bat1:negative",
                       "wireColor": "black",
                       "hint": "Ragazzi, controllate colore e due estremi."

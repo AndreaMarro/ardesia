@@ -49,8 +49,8 @@
       "icon": "💡"
     },
     {
-      "name": "Fili di collegamento",
-      "quantity": 4,
+      "name": "Filo di collegamento",
+      "quantity": 3,
       "icon": "🔌"
     }
   ],
@@ -103,7 +103,7 @@
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, oggi i ragazzi scoprono che un circuito deve essere CHIUSO per funzionare e che il LED si accende solo in un verso.",
       "teacher_tip": "Non date il resistore subito — lasciate che provino con batteria + LED + fili. L'emozione del 'si accende!' viene PRIMA di qualsiasi teoria.",
-      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V, 1 resistore 470Ω, 1 LED rosso, 4 fili.",
+      "components_list": "Ti servono: 1 breadboard, 1 batteria 9V con clip, 1 resistore 470Ω, 1 LED rosso, 3 fili di collegamento.",
       "class_hook": "Avete mai provato ad accendere una lampadina con una pila? Oggi facciamo qualcosa di simile... ma più figo!",
       "action_tags": [],
       "auto_action": null
@@ -151,27 +151,12 @@
               "color": "red"
             },
             {
-              "from": "bb1:bus-top-plus-2",
-              "to": "bb1:b2",
+              "from": "bb1:bus-top-plus-9",
+              "to": "bb1:j9",
               "color": "red"
             },
             {
-              "from": "bb1:e9",
-              "to": "bb1:f9",
-              "color": "green"
-            },
-            {
-              "from": "bb1:j10",
-              "to": "bb1:bus-bot-minus-10",
-              "color": "black"
-            },
-            {
-              "from": "bb1:bus-bot-minus-1",
-              "to": "bb1:bus-top-minus-1",
-              "color": "black"
-            },
-            {
-              "from": "bb1:bus-top-minus-1",
+              "from": "bb1:a3",
               "to": "bat1:negative",
               "color": "black"
             }
