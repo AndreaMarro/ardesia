@@ -107,12 +107,16 @@ export interface SavedLessonDetailResponse {
 
 /** Errore HTTP del backend: status + detail FastAPI quando presente. */
 export class LessonOsApiError extends Error {
-  constructor(
-    readonly status: number,
-    readonly detail?: string,
-  ) {
+  // Campi espliciti (non parameter-properties): il tsconfig del progetto ha
+  // `erasableSyntaxOnly: true`, che vieta le parameter-properties → `tsc -b`
+  // fallirebbe con TS1294. Assegnazione nel corpo.
+  readonly status: number
+  readonly detail?: string
+  constructor(status: number, detail?: string) {
     super(detail ? `LessonOS API ${status}: ${detail}` : `LessonOS API ${status}`)
     this.name = "LessonOsApiError"
+    this.status = status
+    this.detail = detail
   }
 }
 
