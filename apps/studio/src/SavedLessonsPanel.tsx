@@ -1,15 +1,16 @@
 // MAESTRO-Studio — SavedLessonsPanel: prima superficie UI sul client LessonOS
-// (apiClient.ts). Slice deliberatamente minima e read-only: lista le lezioni
-// salvate e, alla selezione, mostra le domande del quiz. Niente grading qui
-// (il client lo copre già: slice successiva). Il client arriva per prop — il
-// componente non sa nulla di baseUrl/token: quella configurazione è del
-// chiamante (e il token in produzione resta GATE, vedi AUTH_STRICT).
-// Linguaggio docente: "lezioni salvate", mai vocabolario API.
+// (apiClient.ts). Lista le lezioni salvate; alla selezione mostra il quiz e —
+// seconda slice — lo fa svolgere e correggere via `gradeQuiz` (la correzione è
+// del backend: qui nessuna logica di punteggio, solo presentazione). Il client
+// arriva per prop — il componente non sa nulla di baseUrl/token: quella
+// configurazione è del chiamante (e il token in produzione resta GATE, vedi
+// AUTH_STRICT). Linguaggio docente: "lezioni salvate", mai vocabolario API.
 
 import { useEffect, useState } from "react"
 import {
   LessonOsApiError,
   type LessonOsApiClient,
+  type QuizGradeResponse,
   type QuizQuestion,
   type SavedLessonSummary,
 } from "./lessonos/apiClient"
@@ -30,6 +31,11 @@ function describeError(err: unknown): string {
   return "Impossibile raggiungere il servizio delle lezioni salvate."
 }
 
+/** Solo le domande con opzioni sono rispondibili: le altre non entrano nel conteggio. */
+function answerableQuestions(quiz: QuizQuestion[]): QuizQuestion[] {
+  return quiz.filter((q) => q.options && q.options.length > 0)
+}
+
 export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   const [lessons, setLessons] = useState<SavedLessonSummary[] | null>(null)
   const [listError, setListError] = useState<string | null>(null)
@@ -37,6 +43,11 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   const [quiz, setQuiz] = useState<QuizQuestion[] | null>(null)
   const [quizError, setQuizError] = useState<string | null>(null)
   const [quizLoading, setQuizLoading] = useState(false)
+  // Svolgimento: risposte scelte (atom_id → indice) ed esito della correzione.
+  const [answers, setAnswers] = useState<Record<string, number>>({})
+  const [grade, setGrade] = useState<QuizGradeResponse | null>(null)
+  const [gradeError, setGradeError] = useState<string | null>(null)
+  const [grading, setGrading] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -53,10 +64,17 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     }
   }, [client])
 
+  const resetAttempt = () => {
+    setAnswers({})
+    setGrade(null)
+    setGradeError(null)
+  }
+
   const openQuiz = (lesson: SavedLessonSummary) => {
     setSelected(lesson)
     setQuiz(null)
     setQuizError(null)
+    resetAttempt()
     setQuizLoading(true)
     client
       .getQuiz(lesson.saved_id)
@@ -68,6 +86,26 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
       })
       .finally(() => {
         setQuizLoading(false)
+      })
+  }
+
+  const submitAnswers = () => {
+    if (!selected) return
+    setGrading(true)
+    setGradeError(null)
+    client
+      .gradeQuiz(
+        selected.saved_id,
+        Object.entries(answers).map(([atom_id, selected_index]) => ({ atom_id, selected_index })),
+      )
+      .then((response) => {
+        setGrade(response)
+      })
+      .catch((err: unknown) => {
+        setGradeError(describeError(err))
+      })
+      .finally(() => {
+        setGrading(false)
       })
   }
 
@@ -95,6 +133,11 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     )
   }
 
+  const answerable = quiz ? answerableQuestions(quiz) : []
+  const allAnswered = answerable.length > 0 && answerable.every((q) => q.atom_id in answers)
+  const resultByAtom = new Map(grade?.results.map((r) => [r.atom_id, r]) ?? [])
+  const correctCount = grade ? grade.results.filter((r) => r.correct).length : 0
+
   return (
     <div className="saved-lessons">
       <ul className="saved-lessons-list">
@@ -120,20 +163,64 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
             <EmptyState compact title="Quiz vuoto" detail="Questa lezione salvata non ha domande." />
           )}
           {quiz && quiz.length > 0 && (
-            <ol className="saved-lessons-quiz">
-              {quiz.map((question) => (
-                <li key={question.atom_id}>
-                  <p>{question.question}</p>
-                  {question.options && question.options.length > 0 && (
-                    <ul>
-                      {question.options.map((option, i) => (
-                        <li key={`${question.atom_id}-${i}`}>{option}</li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ol>
+            <>
+              <ol className="saved-lessons-quiz">
+                {quiz.map((question) => {
+                  const result = resultByAtom.get(question.atom_id)
+                  return (
+                    <li key={question.atom_id}>
+                      <p>{question.question}</p>
+                      {question.options && question.options.length > 0 && (
+                        <ul>
+                          {question.options.map((option, i) => (
+                            <li key={`${question.atom_id}-${i}`}>
+                              <label>
+                                <input
+                                  type="radio"
+                                  name={question.atom_id}
+                                  checked={answers[question.atom_id] === i}
+                                  disabled={grade !== null || grading}
+                                  onChange={() =>
+                                    setAnswers((prev) => ({ ...prev, [question.atom_id]: i }))
+                                  }
+                                />
+                                {option}
+                              </label>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {result && (
+                        <p className={result.correct ? "saved-lessons-ok" : "saved-lessons-ko"}>
+                          {result.correct
+                            ? "Risposta corretta"
+                            : `Risposta sbagliata — quella giusta è «${
+                                question.options?.[result.correct_index] ?? "non disponibile"
+                              }»`}
+                        </p>
+                      )}
+                    </li>
+                  )
+                })}
+              </ol>
+              {gradeError && (
+                <EmptyState tone="error" compact title="Correzione non riuscita" detail={gradeError} />
+              )}
+              {grade === null ? (
+                <button type="button" disabled={!allAnswered || grading} onClick={submitAnswers}>
+                  {grading ? "Correggo…" : "Correggi il quiz"}
+                </button>
+              ) : (
+                <>
+                  <p className="saved-lessons-score" role="status">
+                    {correctCount} risposte corrette su {grade.results.length}
+                  </p>
+                  <button type="button" onClick={resetAttempt}>
+                    Riprova il quiz
+                  </button>
+                </>
+              )}
+            </>
           )}
         </section>
       )}
