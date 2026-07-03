@@ -17,6 +17,8 @@ import JSZip from "jszip"
 import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
 import { parseSessionYaml } from "./AudioRecorder"
+import type { EventLogStore } from "../lessonos/eventlog"
+import { exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
 
 /** Nome del file bundle .lesson */
 export const LESSON_EXTENSION = ".lesson"
@@ -28,6 +30,8 @@ export const LESSON_PATHS = {
   JOURNAL: "raw/events.jsonl",
   SESSION: "raw/session.yaml",
   AUDIO_DIR: "raw/audio/",
+  /** Snapshot event-log LessonOS (JSONL, spec #35 §4.3) — distinto dal journal. */
+  LESSONOS: "raw/lessonos-events.jsonl",
 } as const
 
 /**
@@ -43,6 +47,13 @@ export const LESSON_PATHS = {
 export async function exportLesson(
   store: WorkspaceStore,
   room: string,
+  /**
+   * Event-log LessonOS opzionale (spec #35 §4.3: l'export è l'unica durabilità
+   * VERA). Se fornito e non vuoto, il suo snapshot JSONL entra nel bundle come
+   * raw/lessonos-events.jsonl. Il restore nell'event-log (importSnapshot) è
+   * fase successiva: qui il file viaggia nel bundle e sopravvive come raw/.
+   */
+  lessonOsLog?: EventLogStore | null,
 ): Promise<Blob> {
   const allRaw = await store.list("raw/")
   const entries = new Map<string, FileEntry>()
@@ -84,6 +95,23 @@ export async function exportLesson(
       mtime: Date.now(),
       data: new Blob([sceneJson], { type: "application/json" }),
     })
+  }
+
+  // Snapshot event-log LessonOS (best-effort: un log guasto non blocca l'export
+  // della lezione — il bundle resta valido, semplicemente senza memoria didattica)
+  if (lessonOsLog) {
+    try {
+      const snapshot = await exportEventLogSnapshot(lessonOsLog)
+      if (snapshot.size > 0) {
+        entries.set(LESSON_PATHS.LESSONOS, {
+          path: LESSON_PATHS.LESSONOS,
+          mtime: Date.now(),
+          data: snapshot,
+        })
+      }
+    } catch {
+      // log illeggibile: l'export procede senza snapshot
+    }
   }
 
   // Costruisce ZIP

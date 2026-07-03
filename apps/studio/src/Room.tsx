@@ -13,6 +13,8 @@ import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/Replay
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
+import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
+import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
 import EmptyState from "./design/EmptyState"
@@ -72,6 +74,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const drawerCloseRef = useRef<HTMLButtonElement>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
+  /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
+  const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
   const saveTimer = useRef<number | null>(null)
@@ -83,6 +87,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const audioRecorderRef = useRef<AudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
+  // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
+  const lessonOsRef = useRef<LessonOsRuntime | null>(null)
+  // persist() va chiesto UNA volta, su chiara interazione utente (spec #35 §4.1)
+  const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
   const _pendingSave = useRef<Promise<void>>(Promise.resolve())
 
@@ -112,6 +120,25 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             },
           })
           audioRecorderRef.current = ar
+
+          // LessonOS: event-log persistente + preflight storage (spec #35 §4).
+          // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
+          bootstrapLessonOs()
+            .then((runtime) => {
+              if (cancelled) return
+              lessonOsRef.current = runtime
+              // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
+              if (runtime.dataLoss) {
+                setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
+              } else if (runtime.corrupted) {
+                setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
+              }
+              // runtime.persistent = lo store persiste DAVVERO (non il fallback
+              // InMemory): l'advice deve dire "da esportare" anche se l'API c'era.
+              const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
+              if (advice === "export-advised") setExportAdvice(reason)
+            })
+            .catch(() => {})
         }
 
         return actualStore.loadScene(room)
@@ -160,6 +187,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               store: actualStore,
               recorder: journalRef.current,
               audioRecorder: audioRecorderRef.current,
+              lessonOs: lessonOsRef,
               apiRef,
               ReplayEngine,
               serializeEvents,
@@ -184,6 +212,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       audioRecorderRef.current?.dispose()
       journalRef.current = null
       audioRecorderRef.current = null
+      // Chiudi il backend persistente LessonOS (open() è idempotente al prossimo mount)
+      const lessonOsStore = lessonOsRef.current?.store
+      lessonOsRef.current = null
+      if (lessonOsStore && "close" in lessonOsStore) {
+        ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
+      }
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {
         unsub()
@@ -364,7 +398,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   async function handleExportLesson() {
     setExporting(true)
     try {
-      const zipBlob = await actualStore.exportLesson(room)
+      // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
+      const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")
       a.href = url
@@ -534,6 +569,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               )
           )}
           {saved && <span className="st-quiet">salvato</span>}
+          {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
+          {exportAdvice && !loading && (
+            <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
+          )}
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
         </div>
 
@@ -655,6 +694,23 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
+                  // Primo gesto reale sulla lavagna = momento giusto per persist()
+                  // (spec #35 §4.1: chiara interazione utente; stand-in finché il
+                  // bridge #34 non emette lesson.started). Una volta sola.
+                  if (!persistRequestedRef.current) {
+                    persistRequestedRef.current = true
+                    ensurePersistentStorage()
+                      .then((snapshot) => {
+                        const runtime = lessonOsRef.current
+                        if (runtime) lessonOsRef.current = { ...runtime, capabilities: snapshot }
+                        // Esito persist() nel consiglio UX (§4.3): negato/fallito ⇒
+                        // "da esportare". persistent viene dal runtime (lo store non
+                        // cambia col gesto), non dalla mera presenza dell'API.
+                        const { advice, reason } = deriveStorageAdvice(snapshot, runtime?.persistent ?? snapshot.indexedDb)
+                        setExportAdvice(advice === "export-advised" ? reason : null)
+                      })
+                      .catch(() => {})
+                  }
                 })
                 unsubsRef.current.push(unsubDown)
               }

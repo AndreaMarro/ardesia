@@ -8,6 +8,7 @@ import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStor
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
 import { exportLesson as buildLessonExport, importLesson as parseLessonImport } from "./lessonBundle"
+import type { EventLogStore } from "../lessonos/eventlog"
 
 export interface WorkspaceState {
   mode: StorageMode
@@ -199,8 +200,8 @@ export class WorkspaceStore {
 
   // --- EXPORT/IMPORT .lesson (ZIP) ---
 
-  async exportLesson(room: string): Promise<Blob> {
-    return buildLessonExport(this, room)
+  async exportLesson(room: string, lessonOsLog?: EventLogStore | null): Promise<Blob> {
+    return buildLessonExport(this, room, lessonOsLog)
   }
 
   async importLessonBlob(blob: Blob): Promise<void> {
