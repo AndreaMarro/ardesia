@@ -53,10 +53,10 @@ describe("ELAB Vol.1 cap.6 esp.1 board payload contract", () => {
     expect(payload.state.circuit.schema).toBe("elab.circuit-scene-adapter.v1")
     expect(payload.state.circuit.experimentId).toBe("v1-cap6-esp1")
     expect(payload.state.circuit.circuit.pinAssignments).toEqual({
-      "r1:pin1": "bb1:a2",
-      "r1:pin2": "bb1:a9",
-      "led1:anode": "bb1:f9",
-      "led1:cathode": "bb1:f10",
+      "r1:pin1": "bb1:i9",
+      "r1:pin2": "bb1:i3",
+      "led1:anode": "bb1:f3",
+      "led1:cathode": "bb1:e3",
     })
   })
 
