@@ -99,3 +99,46 @@ export async function ensurePersistentStorage(
   const granted = await safeCall(storage?.persist?.bind(storage))
   return buildSnapshot(env, { requested: true, granted })
 }
+
+/** Consiglio UX derivato dal capability snapshot (spec §4.3): linguaggio docente, mai OPFS. */
+export interface StorageAdvice {
+  advice: "ok" | "export-advised"
+  /** Motivo in linguaggio docente (solo per export-advised). */
+  reason: string | null
+}
+
+/** Sopra questa frazione di quota usata, l'export diventa il consiglio esplicito. */
+const QUOTA_WARN_RATIO = 0.8
+
+/**
+ * Deriva "salvato / da esportare" (spec §4.3). Export consigliato quando la
+ * persistenza locale non è affidabile: niente IndexedDB (memoria solo in RAM),
+ * persist() chiesto e negato, o quota quasi piena. Un persist() non ancora
+ * richiesto NON è un motivo: la richiesta arriva col primo gesto utente (§4.1).
+ */
+export function deriveStorageAdvice(snapshot: StorageCapabilitySnapshot): StorageAdvice {
+  if (!snapshot.indexedDb) {
+    return {
+      advice: "export-advised",
+      reason: "Questo browser non conserva la memoria della lezione: esporta il file .lesson a fine lezione.",
+    }
+  }
+  if (snapshot.persistRequested && snapshot.persistGranted === false && snapshot.persisted !== true) {
+    return {
+      advice: "export-advised",
+      reason: "Il browser potrebbe liberare lo spazio della lezione: esporta il file .lesson a fine lezione.",
+    }
+  }
+  if (
+    typeof snapshot.usageBytes === "number" &&
+    typeof snapshot.quotaBytes === "number" &&
+    snapshot.quotaBytes > 0 &&
+    snapshot.usageBytes / snapshot.quotaBytes > QUOTA_WARN_RATIO
+  ) {
+    return {
+      advice: "export-advised",
+      reason: "Lo spazio del browser è quasi pieno: esporta il file .lesson per non perdere nulla.",
+    }
+  }
+  return { advice: "ok", reason: null }
+}

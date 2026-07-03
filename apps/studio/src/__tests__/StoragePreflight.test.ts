@@ -8,8 +8,10 @@ import { describe, it, expect } from "vitest"
 import { InMemoryEventLog } from "../lessonos/eventlog"
 import { bootstrapLessonOs } from "../lessonos/bootstrap"
 import {
+  deriveStorageAdvice,
   ensurePersistentStorage,
   runStoragePreflight,
+  type StorageCapabilitySnapshot,
   type StorageManagerLike,
 } from "../lessonos/storagePreflight"
 
@@ -130,5 +132,52 @@ describe("bootstrapLessonOs (§5 inv. 7 — factory + preflight, mai bloccante)"
     const runtime = await bootstrapLessonOs()
     expect(runtime.store).toBeDefined()
     expect(typeof runtime.capabilities.at).toBe("number")
+  })
+})
+
+describe("deriveStorageAdvice (\u00a74.3 \u2014 salvato / da esportare, linguaggio docente)", () => {
+  const base: StorageCapabilitySnapshot = {
+    at: 1,
+    indexedDb: true,
+    persisted: true,
+    persistRequested: true,
+    persistGranted: true,
+    usageBytes: 1000,
+    quotaBytes: 100000,
+  }
+
+  it("storage sano \u21d2 ok, nessun motivo", () => {
+    expect(deriveStorageAdvice(base)).toEqual({ advice: "ok", reason: null })
+  })
+
+  it("niente IndexedDB (memoria solo in RAM) \u21d2 export consigliato", () => {
+    const { advice, reason } = deriveStorageAdvice({ ...base, indexedDb: false })
+    expect(advice).toBe("export-advised")
+    expect(reason).toContain(".lesson")
+    expect(reason).not.toMatch(/OPFS|IndexedDB|quota/i)
+  })
+
+  it("persist() chiesto e negato (e non gi\u00e0 persisted) \u21d2 export consigliato", () => {
+    const { advice } = deriveStorageAdvice({ ...base, persistGranted: false, persisted: false })
+    expect(advice).toBe("export-advised")
+    // Ma se l'origin risulta comunque persisted, il rifiuto non conta.
+    expect(deriveStorageAdvice({ ...base, persistGranted: false, persisted: true }).advice).toBe("ok")
+  })
+
+  it("persist() NON ancora richiesto non \u00e8 un motivo (arriva col primo gesto, \u00a74.1)", () => {
+    const { advice } = deriveStorageAdvice({
+      ...base,
+      persistRequested: false,
+      persistGranted: null,
+      persisted: false,
+    })
+    expect(advice).toBe("ok")
+  })
+
+  it("quota quasi piena (>80%) \u21d2 export consigliato; 50% \u21d2 ok", () => {
+    expect(deriveStorageAdvice({ ...base, usageBytes: 85000 }).advice).toBe("export-advised")
+    expect(deriveStorageAdvice({ ...base, usageBytes: 50000 }).advice).toBe("ok")
+    // usage/quota ignoti (null): nessun falso allarme.
+    expect(deriveStorageAdvice({ ...base, usageBytes: null, quotaBytes: null }).advice).toBe("ok")
   })
 })

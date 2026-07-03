@@ -14,7 +14,7 @@ import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
-import { ensurePersistentStorage } from "./lessonos/storagePreflight"
+import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
 import EmptyState from "./design/EmptyState"
@@ -74,6 +74,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const drawerCloseRef = useRef<HTMLButtonElement>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
+  /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
+  const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
   const saveTimer = useRef<number | null>(null)
@@ -123,7 +125,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
           bootstrapLessonOs()
             .then((runtime) => {
-              if (!cancelled) lessonOsRef.current = runtime
+              if (cancelled) return
+              lessonOsRef.current = runtime
+              // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
+              if (runtime.dataLoss) {
+                setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
+              } else if (runtime.corrupted) {
+                setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
+              }
+              const { advice, reason } = deriveStorageAdvice(runtime.capabilities)
+              if (advice === "export-advised") setExportAdvice(reason)
             })
             .catch(() => {})
         }
@@ -556,6 +567,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               )
           )}
           {saved && <span className="st-quiet">salvato</span>}
+          {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
+          {exportAdvice && !loading && (
+            <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
+          )}
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
         </div>
 
@@ -686,6 +701,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                       .then((snapshot) => {
                         const runtime = lessonOsRef.current
                         if (runtime) lessonOsRef.current = { ...runtime, capabilities: snapshot }
+                        // Esito persist() nel consiglio UX (§4.3): negato ⇒ "da esportare".
+                        const { advice, reason } = deriveStorageAdvice(snapshot)
+                        setExportAdvice(advice === "export-advised" ? reason : null)
                       })
                       .catch(() => {})
                   }

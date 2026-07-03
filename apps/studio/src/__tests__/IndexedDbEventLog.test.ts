@@ -9,6 +9,7 @@
 
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog, type LessonOsEvent } from "../lessonos/eventlog"
+import { EVENTLOG_EXPECTED_KEY, bootstrapLessonOs, type MarkerStorageLike } from "../lessonos/bootstrap"
 import { materialize } from "../lessonos/materializer"
 import {
   IndexedDbEventLog,
@@ -429,5 +430,90 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     expect(report.corrupted).toBe(false)
     expect(report.recovered).toBe(5)
     expect(await restored.readAll()).toEqual(await healthy.readAll())
+  })
+})
+
+describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker localStorage)", () => {
+  function fakeMarker(initial: Record<string, string> = {}): MarkerStorageLike & { data: Map<string, string> } {
+    const data = new Map(Object.entries(initial))
+    return {
+      data,
+      getItem: (k: string) => data.get(k) ?? null,
+      setItem: (k: string, v: string) => void data.set(k, v),
+      removeItem: (k: string) => void data.delete(k),
+    }
+  }
+
+  it("log con eventi \u21d2 marker settato, dataLoss=false", async () => {
+    const factory = asFactory(new FakeIdbFactory())
+    const seedLog = new IndexedDbEventLog({ factory })
+    await seedLog.open()
+    for (const ev of FIXTURE) await seedLog.append(ev)
+    await seedLog.close()
+
+    const marker = fakeMarker()
+    const runtime = await bootstrapLessonOs({ indexedDB: factory, storage: undefined, markerStorage: marker })
+    expect(runtime.dataLoss).toBe(false)
+    expect(runtime.corrupted).toBe(false)
+    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBe("1")
+  })
+
+  it("log atteso (marker) ma storage vuoto \u21d2 dataLoss=true, marker CONSUMATO (avviso una volta sola)", async () => {
+    const marker = fakeMarker({ [EVENTLOG_EXPECTED_KEY]: "1" })
+    const runtime = await bootstrapLessonOs({
+      indexedDB: asFactory(new FakeIdbFactory()), // storage nuovo = eviction simulata
+      storage: undefined,
+      markerStorage: marker,
+    })
+    expect(runtime.dataLoss).toBe(true)
+    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBeNull()
+    // Reload successivo: nessun nuovo allarme.
+    const again = await bootstrapLessonOs({
+      indexedDB: asFactory(new FakeIdbFactory()),
+      storage: undefined,
+      markerStorage: marker,
+    })
+    expect(again.dataLoss).toBe(false)
+  })
+
+  it("log vuoto SENZA marker (lavagna davvero nuova) \u21d2 dataLoss=false", async () => {
+    const marker = fakeMarker()
+    const runtime = await bootstrapLessonOs({
+      indexedDB: asFactory(new FakeIdbFactory()),
+      storage: undefined,
+      markerStorage: marker,
+    })
+    expect(runtime.dataLoss).toBe(false)
+    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBeNull()
+  })
+
+  it("sequenza bucata \u21d2 corrupted=true nel runtime (\u00a75 inv. 5)", async () => {
+    const factory = new FakeIdbFactory()
+    const rec = (seq: number) => ({
+      seq,
+      t: seq * 100,
+      kind: "lesson.started",
+      payload: JSON.stringify({ kind: "lesson.started", room: "r", t: seq * 100, evidence: [`lesson:r@${seq}`] }),
+      evidence: [`lesson:r@${seq}`],
+    })
+    factory.seed("lessonos-eventlog", "lessonos_events", "seq", [rec(1), rec(3)])
+    const runtime = await bootstrapLessonOs({
+      indexedDB: asFactory(factory),
+      storage: undefined,
+      markerStorage: fakeMarker(),
+    })
+    expect(runtime.corrupted).toBe(true)
+  })
+
+  it("fallback InMemory (niente IndexedDB): marker NON giudicabile \u21d2 mai falso allarme", async () => {
+    const marker = fakeMarker({ [EVENTLOG_EXPECTED_KEY]: "1" })
+    const runtime = await bootstrapLessonOs({
+      indexedDB: undefined,
+      storage: undefined,
+      markerStorage: marker,
+    })
+    expect(runtime.store).toBeInstanceOf(InMemoryEventLog)
+    expect(runtime.dataLoss).toBe(false)
+    expect(marker.getItem(EVENTLOG_EXPECTED_KEY)).toBe("1")
   })
 })
