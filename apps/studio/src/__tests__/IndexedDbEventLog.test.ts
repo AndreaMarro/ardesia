@@ -71,11 +71,14 @@ class FakeRequest<T> {
 }
 
 class FakeObjectStore {
-  constructor(
-    private records: Map<number, StoredRecord>,
-    private keyPath: string,
-    private txn: FakeTransaction,
-  ) {}
+  private records: Map<number, StoredRecord>
+  private keyPath: string
+  private txn: FakeTransaction
+  constructor(records: Map<number, StoredRecord>, keyPath: string, txn: FakeTransaction) {
+    this.records = records
+    this.keyPath = keyPath
+    this.txn = txn
+  }
 
   add(value: StoredRecord): FakeRequest<number> {
     const req = new FakeRequest<number>()
@@ -120,10 +123,11 @@ class FakeTransaction {
   onabort: ((ev: unknown) => void) | null = null
   onerror: ((ev: unknown) => void) | null = null
 
-  constructor(
-    private db: FakeDatabase,
-    private storeName: string,
-  ) {
+  private db: FakeDatabase
+  private storeName: string
+  constructor(db: FakeDatabase, storeName: string) {
+    this.db = db
+    this.storeName = storeName
     // Il complete arriva dopo che tutte le richieste sincrone sono state accodate.
     queueMicrotask(() => {
       queueMicrotask(() => {
@@ -147,7 +151,10 @@ class FakeTransaction {
 }
 
 class FakeDatabase {
-  constructor(private backing: FakeBacking) {}
+  private backing: FakeBacking
+  constructor(backing: FakeBacking) {
+    this.backing = backing
+  }
   objectStoreNames = {
     contains: (name: string) => this.backing.stores.has(name),
   }
