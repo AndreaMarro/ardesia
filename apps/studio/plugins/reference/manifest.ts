@@ -13,6 +13,7 @@ export const manifest: ToolManifest = defineManifest({
   name: "Arduino Blink (Reference)",
   version: "0.2.0",
   protocol: ">=1.0 <2.0",
+  contract: ">=1.0 <2.0",
   entry: "dist/index.html",
   surfaces: ["board-embed"],
   capabilities: {
