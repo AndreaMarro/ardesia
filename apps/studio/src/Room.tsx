@@ -385,7 +385,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   async function handleExportLesson() {
     setExporting(true)
     try {
-      const zipBlob = await actualStore.exportLesson(room)
+      // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
+      const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")
       a.href = url

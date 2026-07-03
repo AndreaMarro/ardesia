@@ -353,3 +353,77 @@ describe("LessonBundle", () => {
     await expect(importLesson(store2, blob)).rejects.toThrow(/ZipSlip/)
   })
 })
+
+// --- Snapshot event-log LessonOS nel bundle (spec #35 §4.3) ---
+
+describe("LessonBundle — snapshot event-log LessonOS", () => {
+  let store: WorkspaceStore
+  let mock: MockDriver
+  const ROOM = "test-room-lessonos"
+
+  beforeEach(async () => {
+    store = new WorkspaceStore()
+    mock = new MockDriver()
+    withMockDriver(store, mock)
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
+  })
+
+  async function filledLog() {
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    const log = new InMemoryEventLog()
+    await log.append({ kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] })
+    await log.append({
+      kind: "concept.introduced",
+      conceptId: "led_polarity",
+      labels: { it: "Polarità del LED" },
+      t: 1100,
+      evidence: ["manual:vol1:p30"],
+    })
+    return log
+  }
+
+  it("log fornito e non vuoto ⇒ raw/lessonos-events.jsonl nel bundle, una riga per evento", async () => {
+    const log = await filledLog()
+    const bundle = await exportLesson(store, ROOM, log)
+    const text = await readZipText(bundle, LESSON_PATHS.LESSONOS)
+    expect(text).not.toBeNull()
+    const parsed = text!.trimEnd().split("\n").map((line) => JSON.parse(line))
+    expect(parsed).toEqual(await log.readAll())
+  })
+
+  it("senza log (o log vuoto) ⇒ NESSUN raw/lessonos-events.jsonl (niente file fantasma)", async () => {
+    const senzaLog = await exportLesson(store, ROOM)
+    expect(await readZipText(senzaLog, LESSON_PATHS.LESSONOS)).toBeNull()
+
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    const conLogVuoto = await exportLesson(store, ROOM, new InMemoryEventLog())
+    expect(await readZipText(conLogVuoto, LESSON_PATHS.LESSONOS)).toBeNull()
+  })
+
+  it("log guasto (readAll che lancia) ⇒ l'export procede senza snapshot, mai bloccato", async () => {
+    const broken = {
+      append: async () => {
+        throw new Error("no")
+      },
+      readAll: async () => {
+        throw new Error("event log corrotto")
+      },
+    }
+    const bundle = await exportLesson(store, ROOM, broken)
+    expect(await readZipText(bundle, LESSON_PATHS.LESSONOS)).toBeNull()
+    // Il resto del bundle c'è: la scena iniettata sopravvive.
+    expect(await readZipText(bundle, LESSON_PATHS.SCENE)).not.toBeNull()
+  })
+
+  it("roundtrip: export→import riporta lo snapshot nello store come raw/ (il file viaggia)", async () => {
+    const log = await filledLog()
+    const bundle = await exportLesson(store, ROOM, log)
+
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    await importLesson(store2, bundle)
+    const restored = await store2.read(LESSON_PATHS.LESSONOS)
+    expect(restored).not.toBeNull()
+    expect((await restored!.text()).trimEnd().split("\n")).toHaveLength(2)
+  })
+})

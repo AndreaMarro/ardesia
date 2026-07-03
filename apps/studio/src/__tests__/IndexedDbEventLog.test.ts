@@ -10,7 +10,7 @@
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog, type LessonOsEvent } from "../lessonos/eventlog"
 import { materialize } from "../lessonos/materializer"
-import { IndexedDbEventLog, createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { IndexedDbEventLog, createEventLogStore, exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
 
 /** Stessa fixture canonica di LessonOsEventLog.test.ts (Vol.1 Cap.6 Esp.1). */
 const FIXTURE: LessonOsEvent[] = [
@@ -301,5 +301,40 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     expect(store).toBeInstanceOf(IndexedDbEventLog)
     const appended = await store.append(FIXTURE[0])
     expect(appended.seq).toBe(1)
+  })
+
+  it("exportSnapshot: JSONL una-riga-per-evento, seq preservati, roundtrip = stesso grafo (spec \u00a75)", async () => {
+    const idb = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await idb.open()
+    for (const ev of FIXTURE) await idb.append(ev)
+
+    const snapshot = await idb.exportSnapshot()
+    expect(snapshot.type).toBe("application/x-ndjson")
+    const text = await snapshot.text()
+    // Una riga per AppendedEvent, newline finale, nessuna riga vuota in mezzo.
+    const lines = text.split("\n")
+    expect(lines[lines.length - 1]).toBe("")
+    const parsed = lines.slice(0, -1).map((line) => JSON.parse(line))
+    expect(parsed).toEqual(await idb.readAll())
+    // Il grafo rimaterializzato dallo snapshot coincide (provenance intatta).
+    const g1 = materialize(await idb.readAll())
+    const g2 = materialize(parsed)
+    expect(g2.nodes).toEqual(g1.nodes)
+    expect(g2.edges).toEqual(g1.edges)
+  })
+
+  it("exportEventLogSnapshot: funziona su QUALSIASI EventLogStore (anche il fallback InMemory)", async () => {
+    const memory = new InMemoryEventLog()
+    for (const ev of FIXTURE) await memory.append(ev)
+    const snapshot = await exportEventLogSnapshot(memory)
+    const parsed = (await snapshot.text()).trimEnd().split("\n").map((l) => JSON.parse(l))
+    expect(parsed).toEqual(await memory.readAll())
+  })
+
+  it("exportSnapshot su log vuoto: Blob vuoto (size 0), nessuna riga fantasma", async () => {
+    const idb = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await idb.open()
+    const snapshot = await idb.exportSnapshot()
+    expect(snapshot.size).toBe(0)
   })
 })

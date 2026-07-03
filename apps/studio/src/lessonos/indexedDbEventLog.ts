@@ -147,6 +147,11 @@ export class IndexedDbEventLog implements EventLogStore {
       .map((record) => Object.freeze({ ...(JSON.parse(record.payload) as LessonOsEvent), seq: record.seq }))
   }
 
+  /** Snapshot JSONL dell'intero log (spec §5): una riga = un AppendedEvent, seq inclusi. */
+  async exportSnapshot(): Promise<Blob> {
+    return exportEventLogSnapshot(this)
+  }
+
   async close(): Promise<void> {
     this.db?.close()
     this.db = null
@@ -167,6 +172,18 @@ export class IndexedDbEventLog implements EventLogStore {
  * EventLogStore; se anche open() fallisce (quota, private mode) si degrada in
  * memoria: la lezione parte comunque, la durabilità vera resta l'export .lesson.
  */
+/**
+ * Snapshot JSONL da QUALSIASI EventLogStore (spec #35 §5: una riga = un
+ * AppendedEvent, seq preservati — è il formato che importSnapshot/restore
+ * rileggerà). Funziona anche sul fallback InMemoryEventLog: l'export .lesson
+ * è l'unica durabilità vera proprio quando la persistenza locale manca (§4.3).
+ */
+export async function exportEventLogSnapshot(store: EventLogStore): Promise<Blob> {
+  const events = await store.readAll()
+  const lines = events.map((event) => JSON.stringify(event)).join("\n")
+  return new Blob([lines.length > 0 ? `${lines}\n` : ""], { type: "application/x-ndjson" })
+}
+
 export async function createEventLogStore(
   options: IndexedDbEventLogOptions = {},
 ): Promise<EventLogStore> {
