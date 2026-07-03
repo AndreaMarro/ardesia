@@ -13,6 +13,8 @@ import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/Replay
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
+import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
+import { ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
 import EmptyState from "./design/EmptyState"
@@ -83,6 +85,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const audioRecorderRef = useRef<AudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
+  // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
+  const lessonOsRef = useRef<LessonOsRuntime | null>(null)
+  // persist() va chiesto UNA volta, su chiara interazione utente (spec #35 §4.1)
+  const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
   const _pendingSave = useRef<Promise<void>>(Promise.resolve())
 
@@ -112,6 +118,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             },
           })
           audioRecorderRef.current = ar
+
+          // LessonOS: event-log persistente + preflight storage (spec #35 §4).
+          // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
+          bootstrapLessonOs()
+            .then((runtime) => {
+              if (!cancelled) lessonOsRef.current = runtime
+            })
+            .catch(() => {})
         }
 
         return actualStore.loadScene(room)
@@ -160,6 +174,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               store: actualStore,
               recorder: journalRef.current,
               audioRecorder: audioRecorderRef.current,
+              lessonOs: lessonOsRef,
               apiRef,
               ReplayEngine,
               serializeEvents,
@@ -184,6 +199,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       audioRecorderRef.current?.dispose()
       journalRef.current = null
       audioRecorderRef.current = null
+      // Chiudi il backend persistente LessonOS (open() è idempotente al prossimo mount)
+      const lessonOsStore = lessonOsRef.current?.store
+      lessonOsRef.current = null
+      if (lessonOsStore && "close" in lessonOsStore) {
+        ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
+      }
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {
         unsub()
@@ -655,6 +676,18 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
+                  // Primo gesto reale sulla lavagna = momento giusto per persist()
+                  // (spec #35 §4.1: chiara interazione utente; stand-in finché il
+                  // bridge #34 non emette lesson.started). Una volta sola.
+                  if (!persistRequestedRef.current) {
+                    persistRequestedRef.current = true
+                    ensurePersistentStorage()
+                      .then((snapshot) => {
+                        const runtime = lessonOsRef.current
+                        if (runtime) lessonOsRef.current = { ...runtime, capabilities: snapshot }
+                      })
+                      .catch(() => {})
+                  }
                 })
                 unsubsRef.current.push(unsubDown)
               }
