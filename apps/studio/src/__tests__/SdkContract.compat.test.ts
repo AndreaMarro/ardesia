@@ -17,6 +17,7 @@ import {
   ToolManifestSchema,
   defineManifest,
   parseVersion,
+  protocolSatisfies,
 } from "../sdk/index.ts"
 import type { CapabilityName } from "../sdk/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
@@ -56,6 +57,8 @@ const GOLDEN_ERROR_CODES: Record<string, number> = {
   CAPABILITY_DENIED: -32001,
   HANDSHAKE_FAILED: -32002,
 }
+
+const SDK_V1_RANGE = ">=1.0 <2.0"
 
 describe("sdk-contract/versioning (SemVer)", () => {
   it("CONTRACT_VERSION è SemVer valido e coerente nel descrittore", () => {
@@ -172,6 +175,19 @@ describe("sdk-contract/plugin-di-riferimento (compila e rispetta il confine)", (
   it("il manifest del plugin di riferimento è valido contro lo schema del contratto", () => {
     expect(ToolManifestSchema.safeParse(refManifest).success).toBe(true)
     expect(refManifest.id).toBe("io.maestro.plugin-ref")
+  })
+
+  it("i reference tool dichiarano compatibilità col contratto SDK v1 corrente", () => {
+    expect(refManifest.contract).toBe(SDK_V1_RANGE)
+    expect(protocolSatisfies(CONTRACT_VERSION, refManifest.contract ?? "")).toBe(true)
+
+    const simManifestRaw = readFileSync(
+      fileURLToPath(new URL("../../sim/manifest-source.json", import.meta.url)),
+      "utf8",
+    )
+    const simManifest = ToolManifestSchema.parse(JSON.parse(simManifestRaw))
+    expect(simManifest.contract).toBe(SDK_V1_RANGE)
+    expect(protocolSatisfies(CONTRACT_VERSION, simManifest.contract ?? "")).toBe(true)
   })
 
   it("il plugin importa SOLO dal confine src/sdk (zero accoppiamento agli interni)", () => {
