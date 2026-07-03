@@ -8,6 +8,19 @@ import { singleManualRegistry, type ManualRegistry } from "../lessonos/journalBr
 import type { JournalEvent } from "../store/JournalRecorder"
 
 const VOL1 = singleManualRegistry("manual:vol1", { title: "Vol.1" })
+const VOL1_DOCUMENT_ID = "document:sha256:vol1"
+
+const VOL1_DOCUMENT_REGISTRY: ManualRegistry = {
+  resolve(view) {
+    if (view.documentId !== VOL1_DOCUMENT_ID) return undefined
+    if (view.page < 29 || view.page > 31) return undefined
+    return {
+      manualId: "manual:vol1",
+      page: view.page,
+      labels: { it: `Vol.1 — p.${view.page}` },
+    }
+  },
+}
 
 const JOURNAL: JournalEvent[] = [
   { type: "t0", t: 900 },
@@ -18,6 +31,52 @@ const JOURNAL: JournalEvent[] = [
 ]
 
 describe("appendJournalBridgeTail", () => {
+  it("promuove solo pdf.page.view con documento e pagina riconosciuti dal registry esplicito", async () => {
+    const log = new InMemoryEventLog()
+    const journal: JournalEvent[] = [
+      {
+        type: "pdf.page.view",
+        page: 30,
+        totalPages: 120,
+        documentId: VOL1_DOCUMENT_ID,
+        documentName: "volume1.pdf",
+        t: 1000,
+      },
+      {
+        type: "pdf.page.view",
+        page: 30,
+        totalPages: 120,
+        documentId: "document:sha256:unregistered",
+        documentName: "scheda-libera.pdf",
+        t: 1100,
+      },
+      {
+        type: "pdf.page.view",
+        page: 99,
+        totalPages: 120,
+        documentId: VOL1_DOCUMENT_ID,
+        documentName: "volume1.pdf",
+        t: 1200,
+      },
+    ]
+
+    const first = await appendJournalBridgeTail(log, journal, {
+      registry: VOL1_DOCUMENT_REGISTRY,
+    })
+    const second = await appendJournalBridgeTail(log, journal, {
+      registry: VOL1_DOCUMENT_REGISTRY,
+    })
+
+    expect(first).toHaveLength(1)
+    expect(first[0].kind === "material.cited" && first[0].materialId).toBe("manual:vol1:p30")
+    expect(first[0].evidence).toEqual([
+      "manual:vol1:p30",
+      "journal:pdf.page.view@1000",
+    ])
+    expect(second).toEqual([])
+    expect(await log.readAll()).toHaveLength(1)
+  })
+
   it("appende al LessonOS event-log solo le pdf.page.view promosse", async () => {
     const log = new InMemoryEventLog()
 
