@@ -1,0 +1,21 @@
+{
+  "name": "ardesia-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Safe root command surface for the ARDESIA monorepo.",
+  "scripts": {
+    "status": "bash bin/monorepo.sh status",
+    "bootstrap": "bash bin/monorepo.sh bootstrap-core",
+    "bootstrap:all": "bash bin/monorepo.sh bootstrap-all",
+    "dev:studio": "npm --prefix apps/studio run dev",
+    "dev:elab": "npm --prefix plugins/elab-tutor run dev",
+    "test": "bash bin/monorepo.sh test-core",
+    "test:elab": "bash bin/monorepo.sh test-elab",
+    "typecheck": "bash bin/monorepo.sh typecheck-core",
+    "build": "bash bin/monorepo.sh build-core",
+    "build:elab": "bash bin/monorepo.sh build-elab",
+    "verify": "bash bin/monorepo.sh verify-core",
+    "verify:elab": "bash bin/monorepo.sh verify-elab",
+    "factory:readonly": "bash bin/monorepo.sh factory-readonly"
+  }
+}
