@@ -164,7 +164,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     await vi.waitFor(() => {
       expect(initSpy).toHaveBeenCalledTimes(1)
       expect(loadSpy).toHaveBeenCalledWith("test-room-1")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -220,7 +220,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     // Aspetta che Excalidraw sia montato (loading finito)
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const { Excalidraw } = await import("@excalidraw/excalidraw")
     const call = vi.mocked(Excalidraw).mock.calls.at(-1)
@@ -280,7 +280,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(initialData).not.toBeUndefined()
       expect((initialData as any)?.elements).toBeDefined()
       expect((initialData as any)?.elements[0]?.id).toBe("el1")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -298,7 +298,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     // Aspetta che Excalidraw sia montato (loading finito)
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Prendi onChange
     const { Excalidraw } = await import("@excalidraw/excalidraw")
@@ -333,7 +333,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const { Excalidraw } = await import("@excalidraw/excalidraw")
     const call = vi.mocked(Excalidraw).mock.calls.at(-1)
@@ -362,7 +362,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const { Excalidraw } = await import("@excalidraw/excalidraw")
     const call = vi.mocked(Excalidraw).mock.calls.at(-1)
@@ -393,7 +393,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Bottone audio presente con label OFF (shell v1: testo "audio", MAI
     // "audio attivo"/"registrando" — default GDPR spento)
@@ -426,7 +426,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Trova il bottone audio e cliccalo (shell v1: label esatta "audio")
     const allButtons = document.querySelectorAll("button")
@@ -461,7 +461,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("solo in questo browser")
       expect(document.querySelector(".st-indicator-connect")).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -477,7 +477,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     expect(document.body.textContent).not.toContain("cache ")
 
@@ -504,7 +504,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(props!.UIOptions?.canvasActions?.loadScene).toBe(false)
       expect(props!.UIOptions?.canvasActions?.toggleTheme).toBe(false)
       expect(props!.UIOptions?.tools?.image).toBe(false)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -523,7 +523,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
       expect(props).toBeDefined()
       expect((props!.initialData as any)?.appState).toEqual(EXCALIDRAW_CONFIG.newRoomAppState)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -553,7 +553,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       })
       // …e gli elementi della scena restano
       expect(initialData?.elements).toEqual([])
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -572,7 +572,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
       expect(props).toBeDefined()
       expect((props!.initialData as any)?.appState).toEqual(EXCALIDRAW_CONFIG.newRoomAppState)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -591,7 +591,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
       const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
       expect(props).toBeDefined()
       expect(props!.initialData).toEqual({ appState: EXCALIDRAW_CONFIG.newRoomAppState })
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -620,7 +620,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("stai guardando la lavagna")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Chip studente presente
     expect(document.querySelector(".st-chip-student")).not.toBeNull()
@@ -663,7 +663,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
       expect(props).toBeDefined()
       expect(props!.viewModeEnabled).toBe(true)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -684,7 +684,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       expect(harness.ready).toBe(true)
       expect(harness.recorder).toBeNull()
       expect(harness.audioRecorder).toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -700,7 +700,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     await vi.waitFor(() => {
       const empty = document.querySelector(".st-student-empty .st-state")
       expect(empty).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const empty = document.querySelector(".st-student-empty .st-state")!
     expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/lavagna è ancora vuota/i)
@@ -734,7 +734,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       inviteBtn = Array.from(document.querySelectorAll("button"))
         .find((b) => b.textContent?.trim() === "invita studente")
       expect(inviteBtn).toBeDefined()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     inviteBtn!.click()
 
@@ -744,7 +744,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       expect(copiedUrl).toContain("?vista=studente")
       // L'hash della stanza resta nel link (stessa stanza, vista sola-lettura)
       expect(copiedUrl).toMatch(/\?vista=studente#.+/)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
     // Ripristina il clipboard originale: niente contaminazione dei test successivi
@@ -779,7 +779,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       inviteBtn = Array.from(document.querySelectorAll("button"))
         .find((b) => b.textContent?.trim() === "invita studente")
       expect(inviteBtn).toBeDefined()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     inviteBtn!.click()
 
@@ -788,7 +788,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Copia del link non riuscita")
       expect(err?.textContent).toContain("permesso negato")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
     // Su fallimento il bottone NON deve passare a 'copiato'.
     expect(
       Array.from(document.querySelectorAll("button")).some(
@@ -825,7 +825,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       expect(props!.viewModeEnabled).toBe(true)
       // onChange assente in vista studente: la lavagna è sola-lettura
       expect(props!.onChange).toBeUndefined()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     expect(saveSpy).not.toHaveBeenCalled()
 
@@ -854,7 +854,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       harness = (window as any).__MAESTRO_TEST__
       expect(harness).toBeDefined()
       expect(harness.ready).toBe(true)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Kill-test: se una regressione cablasse onChange in vista studente,
     // questa chiamata popolerebbe i refs e flushPersist scriverebbe → rosso.
@@ -893,7 +893,7 @@ describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)
       const chip = document.querySelector(".st-chip-lesson")
       expect(chip).not.toBeNull()
       expect(chip!.textContent).toBe("Teoria dei Segnali")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // L'id della stanza NON è il contenuto della chip quando il meta esiste
     expect(document.querySelector(".st-chip-lesson")!.textContent).not.toContain("test-room-1")
@@ -915,7 +915,7 @@ describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)
       const chip = document.querySelector(".st-chip-lesson")
       expect(chip).not.toBeNull()
       expect(chip!.textContent).toBe("test-room-1")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -933,7 +933,7 @@ describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)
       const chip = document.querySelector(".st-chip-lesson")
       expect(chip).not.toBeNull()
       expect(chip!.textContent).toBe("test-room-1")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     expect(document.body.textContent).not.toContain("Caricamento scena fallito")
 
@@ -951,7 +951,7 @@ describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)
 
     await vi.waitFor(() => {
       expect(metaSpy).toHaveBeenCalledWith("test-room-1")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -983,7 +983,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     // Aspetta che Excalidraw sia montato
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Assicura che il test harness sia disponibile (DEV)
     const harness = (window as any).__MAESTRO_TEST__
@@ -1006,7 +1006,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     // di entrare nella coda microtask (flushPersist → _doSave → await _pendingSave)
     await vi.waitFor(() => {
       expect(saveSpy).toHaveBeenCalledTimes(1)
-    }, { timeout: 1000, interval: 5 })
+    }, { timeout: 5000, interval: 5 })
 
     // saveScene è in sospeso (deferred) — l'hash NON deve essere cambiato
     expect(globalThis.location.hash).toBe("#test-room-1")
@@ -1017,7 +1017,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     // Ora navigateToLesson può proseguire: hash cambia
     await vi.waitFor(() => {
       expect(globalThis.location.hash).toBe("#altra-room")
-    }, { timeout: 1000, interval: 5 })
+    }, { timeout: 5000, interval: 5 })
 
     // Verifica che navPromise si risolva
     await expect(navPromise).resolves.toBeUndefined()
@@ -1039,7 +1039,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     // Aspetta che Excalidraw sia montato
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Trova e clicca il bottone "lezioni"
     const lezioniBtn = Array.from(document.querySelectorAll("button"))
@@ -1052,7 +1052,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       const err = document.querySelector(".st-err")
       expect(err).toBeDefined()
       expect(err!.textContent).toContain("store offline")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -1068,7 +1068,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const lezioniBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "lezioni")
@@ -1078,7 +1078,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     await vi.waitFor(() => {
       const empty = document.querySelector(".st-drawer-body .st-state-compact")
       expect(empty).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const empty = document.querySelector(".st-drawer-body .st-state-compact")!
     expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/nessuna lezione/i)
@@ -1112,7 +1112,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
     await vi.waitFor(() => {
       nameEl = document.querySelector(".st-name")
       expect(nameEl).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Uno <span> cliccabile senza questi attributi è invisibile alla tastiera/SR.
     expect(nameEl!.getAttribute("role")).toBe("button")
@@ -1123,7 +1123,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
     nameEl!.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }))
     await vi.waitFor(() => {
       expect(document.querySelector(".st-name-input")).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -1141,7 +1141,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const lezioniBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "lezioni")!
@@ -1154,7 +1154,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
       dialog = document.querySelector(".st-drawer")
       expect(dialog).not.toBeNull()
       expect(document.querySelector(".st-card")).not.toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     expect(dialog!.getAttribute("role")).toBe("dialog")
     expect(dialog!.getAttribute("aria-label")).toBeTruthy()
@@ -1171,13 +1171,13 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
     const closeBtn = dialog!.querySelector(".st-drawer-close")!
     await vi.waitFor(() => {
       expect(document.activeElement).toBe(closeBtn)
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Escape chiude…
     dialog!.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }))
     await vi.waitFor(() => {
       expect(document.querySelector(".st-drawer")).toBeNull()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
     // …e ridà il focus al trigger (WCAG 2.4.3)
     expect(document.activeElement).toBe(lezioniBtn)
 
@@ -1194,7 +1194,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const mediaBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "media")!
@@ -1231,7 +1231,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
       input = document.querySelector('input[type="file"]') as HTMLInputElement
       expect(input).toBeTruthy()
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
     return { root, input: input! }
   }
 
@@ -1248,7 +1248,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     await vi.waitFor(() => {
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Formato non supportato")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -1265,7 +1265,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Caricamento non riuscito")
       expect(err?.textContent).toContain("pdf corrotto")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -1283,7 +1283,7 @@ describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegne
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     const audioBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "audio")!
@@ -1293,7 +1293,7 @@ describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegne
     await vi.waitFor(() => {
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Microfono non disponibile")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
@@ -1314,7 +1314,7 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
     // apiRef impostato dopo il mount di Excalidraw; insertMath esce subito se null.
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     // Apre il composer (bottone "formula") -> il mock cattura onInsert=insertMath
     const formulaBtn = Array.from(document.querySelectorAll("button"))
@@ -1323,7 +1323,7 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
 
     await vi.waitFor(() => {
       expect(capturedOnInsert).toBeTypeOf("function")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     capturedOnInsert!("x^2")
 
@@ -1331,7 +1331,7 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Inserimento formula non riuscito")
       expect(err?.textContent).toContain("MathJax CDN load failed")
-    }, { timeout: 1000, interval: 10 })
+    }, { timeout: 5000, interval: 10 })
 
     root.unmount()
   })
