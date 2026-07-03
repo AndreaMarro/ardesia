@@ -10,7 +10,12 @@
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog, type LessonOsEvent } from "../lessonos/eventlog"
 import { materialize } from "../lessonos/materializer"
-import { IndexedDbEventLog, createEventLogStore, exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
+import {
+  IndexedDbEventLog,
+  createEventLogStore,
+  destroyEventLogStorage,
+  exportEventLogSnapshot,
+} from "../lessonos/indexedDbEventLog"
 
 /** Stessa fixture canonica di LessonOsEventLog.test.ts (Vol.1 Cap.6 Esp.1). */
 const FIXTURE: LessonOsEvent[] = [
@@ -174,6 +179,13 @@ class FakeOpenRequest extends FakeRequest<FakeDatabase> {
 class FakeIdbFactory {
   private databases = new Map<string, FakeBacking>()
 
+  deleteDatabase(name: string): FakeRequest<void> {
+    const req = new FakeRequest<void>()
+    this.databases.delete(name)
+    req.settleSuccess(undefined as void)
+    return req
+  }
+
   open(name: string, _version?: number): FakeOpenRequest {
     const req = new FakeOpenRequest()
     let backing = this.databases.get(name)
@@ -336,5 +348,86 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     await idb.open()
     const snapshot = await idb.exportSnapshot()
     expect(snapshot.size).toBe(0)
+  })
+
+  it("importSnapshot: restore su log vuoto preserva seq/eventi, append riparte da lastSeq+1 (spec \u00a75)", async () => {
+    const source = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await source.open()
+    for (const ev of FIXTURE) await source.append(ev)
+    const snapshot = await source.exportSnapshot()
+
+    const target = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await target.open()
+    const report = await target.importSnapshot(snapshot)
+    expect(report).toEqual({ recovered: 5, lastSeq: 5, droppedTail: 0, corrupted: false })
+    expect(await target.readAll()).toEqual(await source.readAll())
+    const gS = materialize(await source.readAll())
+    const gT = materialize(await target.readAll())
+    expect(gT.nodes).toEqual(gS.nodes)
+    expect(gT.edges).toEqual(gS.edges)
+    const appended = await target.append({
+      kind: "lesson.started",
+      room: "elab-v1-cap7",
+      t: 3000,
+      evidence: ["lesson:elab-v1-cap7@3000"],
+    })
+    expect(appended.seq).toBe(6)
+  })
+
+  it("importSnapshot su log NON vuoto: rifiutato (restore, mai merge)", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    await log.append(FIXTURE[0])
+    await expect(log.importSnapshot(new Blob(["{}"]))).rejects.toThrow(/log vuoto/)
+  })
+
+  it("importSnapshot con sequenza bucata o riga non-JSON: rifiutato, il log resta vuoto", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    const holed = new Blob([
+      JSON.stringify({ ...FIXTURE[0], seq: 1 }) + "\n" + JSON.stringify({ ...FIXTURE[1], seq: 3 }) + "\n",
+    ])
+    await expect(log.importSnapshot(holed)).rejects.toThrow(/non contigua/)
+    await expect(log.importSnapshot(new Blob(["non-json\n"]))).rejects.toThrow(/non-JSON/)
+    expect(await log.readAll()).toEqual([])
+    // Il log resta usabile: primo append parte da 1.
+    const appended = await log.append(FIXTURE[0])
+    expect(appended.seq).toBe(1)
+  })
+
+  it("percorso restore completo: log corrotto \u2192 destroy (con conferma) \u2192 open vuoto \u2192 importSnapshot", async () => {
+    const factory = new FakeIdbFactory()
+    // Log sano di partenza: snapshot di riferimento.
+    const healthy = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await healthy.open()
+    for (const ev of FIXTURE) await healthy.append(ev)
+    const backup = await healthy.exportSnapshot()
+
+    // Storage corrotto (buco nella sequenza).
+    const rec = (seq: number) => ({
+      seq,
+      t: seq * 100,
+      kind: "lesson.started",
+      payload: JSON.stringify({ kind: "lesson.started", room: "r", t: seq * 100, evidence: [`lesson:r@${seq}`] }),
+      evidence: [`lesson:r@${seq}`],
+    })
+    factory.seed("lessonos-eventlog", "lessonos_events", "seq", [rec(1), rec(3)])
+    const corrupted = new IndexedDbEventLog({ factory: asFactory(factory) })
+    expect((await corrupted.open()).corrupted).toBe(true)
+    await corrupted.close()
+
+    // Senza conferma esplicita: rifiutato.
+    await expect(
+      destroyEventLogStorage({ userConfirmed: false as unknown as true }, { factory: asFactory(factory) }),
+    ).rejects.toThrow(/conferma/)
+
+    // Con conferma: storage azzerato, open pulito, restore dal backup.
+    await destroyEventLogStorage({ userConfirmed: true }, { factory: asFactory(factory) })
+    const restored = new IndexedDbEventLog({ factory: asFactory(factory) })
+    expect((await restored.open()).recovered).toBe(0)
+    const report = await restored.importSnapshot(backup)
+    expect(report.corrupted).toBe(false)
+    expect(report.recovered).toBe(5)
+    expect(await restored.readAll()).toEqual(await healthy.readAll())
   })
 })

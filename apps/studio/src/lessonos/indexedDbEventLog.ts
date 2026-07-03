@@ -152,6 +152,71 @@ export class IndexedDbEventLog implements EventLogStore {
     return exportEventLogSnapshot(this)
   }
 
+  /** Durabilità esplicita (spec §5): no-op — ogni append è una transazione già committata. */
+  async flush(): Promise<void> {}
+
+  /**
+   * Restore da snapshot JSONL (spec §5): accetta SOLO su log vuoto e preserva i
+   * seq originali — mai merge su log non vuoto (i seq collidono = corruzione).
+   * Ogni riga passa la STESSA validazione di append (assertEvidence + t) e la
+   * sequenza deve essere contigua 1..N: uno snapshot bucato non si "ripara".
+   */
+  async importSnapshot(snapshot: Blob): Promise<RecoveryReport> {
+    const db = this.requireOpenDb()
+    if (this.lastSeq !== 0) {
+      throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
+    }
+    const lines = (await snapshot.text()).split("\n").filter((line) => line.length > 0)
+    const records: StoredEventRecord[] = []
+    for (const line of lines) {
+      let parsed: AppendedEvent
+      try {
+        parsed = JSON.parse(line) as AppendedEvent
+      } catch {
+        throw new Error("LessonOS event log: snapshot malformato (riga non-JSON)")
+      }
+      const { seq, ...event } = parsed
+      if (!Number.isInteger(seq) || seq <= 0) {
+        throw new Error("LessonOS event log: snapshot malformato (seq non valido)")
+      }
+      assertEvidence(event.evidence, event.kind)
+      if (!Number.isFinite(event.t)) {
+        throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
+      }
+      records.push({
+        seq,
+        t: event.t,
+        kind: event.kind,
+        payload: JSON.stringify(event),
+        evidence: [...event.evidence],
+      })
+    }
+    if (!records.every((record, i) => record.seq === i + 1)) {
+      throw new Error("LessonOS event log: snapshot corrotto (sequenza non contigua) — non si ripara")
+    }
+    if (records.length > 0) {
+      const txn = db.transaction(STORE_NAME, "readwrite")
+      const done = new Promise<void>((resolve, reject) => {
+        txn.oncomplete = () => resolve()
+        txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
+        txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
+      })
+      const store = txn.objectStore(STORE_NAME)
+      for (const record of records) {
+        await requestToPromise(store.add(record))
+      }
+      await done
+    }
+    this.lastSeq = records.length
+    this.lastReport = {
+      recovered: records.length,
+      lastSeq: this.lastSeq,
+      droppedTail: 0,
+      corrupted: false,
+    }
+    return this.lastReport
+  }
+
   async close(): Promise<void> {
     this.db?.close()
     this.db = null
@@ -172,6 +237,30 @@ export class IndexedDbEventLog implements EventLogStore {
  * EventLogStore; se anche open() fallisce (quota, private mode) si degrada in
  * memoria: la lezione parte comunque, la durabilità vera resta l'export .lesson.
  */
+/**
+ * UNICA operazione distruttiva dell'intero design (spec §5, FUORI interfaccia):
+ * cancella il database fisico del log. Esiste ESCLUSIVAMENTE per il restore da
+ * export quando open() ritorna `corrupted: true` — senza, importSnapshot
+ * (solo-su-log-vuoto) non avrebbe mai un log vuoto su cui operare. Il chiamante
+ * DEVE (1) avere conferma esplicita dell'utente, (2) aver tentato prima
+ * exportSnapshot() best-effort del log corrotto.
+ */
+export async function destroyEventLogStorage(
+  confirm: { userConfirmed: true },
+  options: IndexedDbEventLogOptions = {},
+): Promise<void> {
+  if (confirm?.userConfirmed !== true) {
+    throw new Error("LessonOS event log: distruzione rifiutata senza conferma esplicita dell'utente")
+  }
+  const factory = "factory" in options ? options.factory : (globalThis as { indexedDB?: IDBFactory }).indexedDB
+  if (!factory) return
+  await new Promise<void>((resolve, reject) => {
+    const request = factory.deleteDatabase(options.dbName ?? DB_NAME)
+    request.onsuccess = () => resolve()
+    request.onerror = () => reject(request.error ?? new Error("LessonOS event log: cancellazione fallita"))
+  })
+}
+
 /**
  * Snapshot JSONL da QUALSIASI EventLogStore (spec #35 §5: una riga = un
  * AppendedEvent, seq preservati — è il formato che importSnapshot/restore
