@@ -59,6 +59,18 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   // — così una risposta lenta della lezione A non sovrascrive la lezione B
   // aperta nel frattempo (la lista usa già un flag cancelled analogo).
   const requestToken = useRef(0)
+  // Guardia di smontaggio: le callback async di openLesson/submitAnswers sono
+  // gated dal solo requestToken, che NON cambia allo smontaggio del pannello —
+  // senza questo flag un fetch in volo applicherebbe setState su un componente
+  // smontato (warning React + micro-leak). La lista usa già `cancelled`; qui
+  // serve un ref perché le callback vivono fuori dall'effetto.
+  const mounted = useRef(true)
+  useEffect(
+    () => () => {
+      mounted.current = false
+    },
+    [],
+  )
 
   useEffect(() => {
     let cancelled = false
@@ -83,7 +95,7 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
 
   const openLesson = (lesson: SavedLessonSummary) => {
     const token = ++requestToken.current
-    const fresh = () => requestToken.current === token
+    const fresh = () => mounted.current && requestToken.current === token
     setSelected(lesson)
     setQuiz(null)
     setQuizError(null)
@@ -119,6 +131,7 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     // Lega la correzione alla lezione corrente: se il docente cambia lezione
     // mentre grade è in volo, l'esito NON si applica alla lezione sbagliata.
     const token = requestToken.current
+    const fresh = () => mounted.current && requestToken.current === token
     setGrading(true)
     setGradeError(null)
     client
@@ -127,13 +140,13 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
         Object.entries(answers).map(([atom_id, selected_index]) => ({ atom_id, selected_index })),
       )
       .then((response) => {
-        if (requestToken.current === token) setGrade(response)
+        if (fresh()) setGrade(response)
       })
       .catch((err: unknown) => {
-        if (requestToken.current === token) setGradeError(describeError(err))
+        if (fresh()) setGradeError(describeError(err))
       })
       .finally(() => {
-        if (requestToken.current === token) setGrading(false)
+        if (fresh()) setGrading(false)
       })
   }
 
