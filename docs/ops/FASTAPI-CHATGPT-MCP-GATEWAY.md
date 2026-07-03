@@ -163,6 +163,31 @@ POST /v1/electrotechnics/solve/preview
 POST /v1/examforge/preview
 ```
 
+## Mapping tool-MCP ↔ endpoint-REST (normativo, chiude il delta naming con #20)
+
+Regola (dalla nota di riconciliazione §1): all'implementazione **prevale il product doc**
+(`docs/product/FASTAPI-INTEGRATION-GATEWAY.md`, PR #20); lo sketch `/v1/*` qui sopra è un
+superset di design. Questa tabella è il mapping esplicito che prima mancava (audit contratti
+03jul): ogni tool MCP dichiara il suo endpoint REST product-canon, o il gap.
+
+| Tool MCP (v0) | REST product-canon (#20) | Sketch `/v1` (questo doc) | Stato/gap |
+|---|---|---|---|
+| `search` | `POST /graph/search` (**MVP**) | `POST /v1/search` | naming diverge → vince `/graph/search` |
+| `graph.query` | `POST /graph/search` (**MVP**) | `GET /v1/graph/query` | overlap con `search`: `search`=free-text, `graph.query`=query strutturata; stesso endpoint, parametri diversi. Da NON esporre come due endpoint finché non serve |
+| `fetch` | — | `GET /v1/fetch/{id}` | GAP product: nessun endpoint fetch-by-id in #20; richiesto da archetipo Apps SDK (citazioni). Additivo, da proporre in #20 alla prima implementazione |
+| `lesson.open` | `POST /lesson/open` (futuro) | `GET /v1/lessons/{lesson_id}` | semantica diverge: product=aprire/montare `.lesson` (mutante lato host), sketch=lettura metadata. Sono DUE operazioni; il tool read-only mappa sulla GET |
+| `plugin.registry.list` | — | `GET /v1/plugins` (+`/manifest`) | GAP product (additivo, read-only) |
+| `student_pack.preview` | `GET /student-pack/{id}` (**MVP**) | `GET /v1/lessons/{id}/student-pack/preview` | product ha un solo endpoint (artefatto); preview vs export da sdoppiare SOLO se il pack diventa costoso |
+| `student_pack.export` | `GET /student-pack/{id}` (**MVP**) | `POST /v1/lessons/{id}/student-pack/export` | come sopra; guard «file output, no inline binary» |
+| `simulation.scene.validate` | — | `POST /v1/simulation/scene/validate` | GAP product (il solver vive in lineage ELAB; gateway assente) |
+| `electrotechnics.solve_preview` | `POST /circuit/solve` (futuro) | `POST /v1/electrotechnics/solve/preview` | naming diverge → vince `/circuit/solve` |
+| `examforge.generate_preview` | `POST /exam/generate` (futuro) | `POST /v1/examforge/preview` | naming diverge → vince `/exam/generate` |
+| `lesson.save_snapshot` | — | — | GAP entrambi: tool mutante senza endpoint; guard confirm+version-id già dichiarata in §Tool Surface |
+| `plugin.install_local` | `POST /plugin/mount` (futuro, firma) | — | naming diverge (install vs mount) → vince `/plugin/mount`; guard ed25519 NON negoziabile |
+| `moodle.export_qti` | — | — | GAP entrambi (futuro pack) |
+| `render.*` (5 widget) | — (nessun REST, by design) | — | corretto: data/render split Apps SDK; i render tool consumano `structuredContent`, mai endpoint propri |
+| — | `POST /export/pdf` (futuro) | — | GAP inverso: endpoint product senza tool MCP; da aggiungere al Tool Surface quando implementato |
+
 ## Apps SDK Requirements To Preserve
 
 - Tool descriptions: one job per tool.
