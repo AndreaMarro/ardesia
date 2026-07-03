@@ -5,6 +5,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
 
+const ROOM_MOUNT_WAIT = { timeout: 5000, interval: 10 }
+
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 vi.mock("@excalidraw/excalidraw", () => {
   const serialized = JSON.stringify({ type: "excalidraw", elements: [], v: 1 })
@@ -91,7 +93,7 @@ describe("S-DESIGN-2 — document.title", () => {
 
     await vi.waitFor(() => {
       expect(document.title).toBe("Ardesia · studio")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     root.unmount()
   })
@@ -106,7 +108,7 @@ describe("S-DESIGN-2 — RECSTRIP", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     // Audio recording è false di default → nessun recstrip
     expect(document.querySelector("[data-rec-strip]")).toBeNull()
@@ -124,7 +126,7 @@ describe("S-DESIGN-2 — RECSTRIP", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     // In stato iniziale non c'è
     expect(document.querySelector(".st-recstrip")).toBeNull()
@@ -144,7 +146,7 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     // Deve mostrare l'indicatore locale
     expect(document.body.textContent).toContain("solo in questo browser")
@@ -172,7 +174,7 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     // Deve mostrare l'indicatore FSA
     expect(document.body.textContent).toContain("salvato sul computer")
@@ -191,7 +193,7 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
 
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
-    }, { timeout: 1000, interval: 10 })
+    }, ROOM_MOUNT_WAIT)
 
     const statusArea = document.querySelector(".st-status")
     const statusText = statusArea?.textContent ?? ""

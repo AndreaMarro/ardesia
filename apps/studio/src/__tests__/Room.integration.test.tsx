@@ -504,6 +504,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(props!.UIOptions?.canvasActions?.loadScene).toBe(false)
       expect(props!.UIOptions?.canvasActions?.toggleTheme).toBe(false)
       expect(props!.UIOptions?.tools?.image).toBe(false)
+      expect(props!.validateEmbeddable).toBeInstanceOf(RegExp)
+      expect((props!.validateEmbeddable as RegExp).test("maestro-tool://io.ardesia.simulation-plugin/elab-v1-cap6-esp1-first-led")).toBe(true)
+      expect(props!.renderEmbeddable).toEqual(expect.any(Function))
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()
