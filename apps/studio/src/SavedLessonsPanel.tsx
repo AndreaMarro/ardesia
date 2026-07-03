@@ -7,7 +7,7 @@
 // configurazione è del chiamante (e il token in produzione resta GATE, vedi
 // AUTH_STRICT). Linguaggio docente: "lezioni salvate", mai vocabolario API.
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   LessonOsApiError,
   type FlashcardCard,
@@ -54,6 +54,11 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   const [grade, setGrade] = useState<QuizGradeResponse | null>(null)
   const [gradeError, setGradeError] = useState<string | null>(null)
   const [grading, setGrading] = useState(false)
+  // Token di generazione: ogni openLesson lo incrementa. Le risposte async
+  // (quiz/flashcard/grade) applicano lo stato SOLO se il token è ancora il loro
+  // — così una risposta lenta della lezione A non sovrascrive la lezione B
+  // aperta nel frattempo (la lista usa già un flag cancelled analogo).
+  const requestToken = useRef(0)
 
   useEffect(() => {
     let cancelled = false
@@ -77,6 +82,8 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   }
 
   const openLesson = (lesson: SavedLessonSummary) => {
+    const token = ++requestToken.current
+    const fresh = () => requestToken.current === token
     setSelected(lesson)
     setQuiz(null)
     setQuizError(null)
@@ -88,27 +95,30 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     client
       .getQuiz(lesson.saved_id)
       .then((response) => {
-        setQuiz(response.questions)
+        if (fresh()) setQuiz(response.questions)
       })
       .catch((err: unknown) => {
-        setQuizError(describeError(err))
+        if (fresh()) setQuizError(describeError(err))
       })
       .finally(() => {
-        setQuizLoading(false)
+        if (fresh()) setQuizLoading(false)
       })
     // Flashcard in parallelo: un guasto qui non tocca il quiz (e viceversa).
     client
       .getFlashcards(lesson.saved_id)
       .then((response) => {
-        setFlashcards(response.flashcards)
+        if (fresh()) setFlashcards(response.flashcards)
       })
       .catch((err: unknown) => {
-        setFlashcardsError(describeError(err))
+        if (fresh()) setFlashcardsError(describeError(err))
       })
   }
 
   const submitAnswers = () => {
     if (!selected) return
+    // Lega la correzione alla lezione corrente: se il docente cambia lezione
+    // mentre grade è in volo, l'esito NON si applica alla lezione sbagliata.
+    const token = requestToken.current
     setGrading(true)
     setGradeError(null)
     client
@@ -117,13 +127,13 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
         Object.entries(answers).map(([atom_id, selected_index]) => ({ atom_id, selected_index })),
       )
       .then((response) => {
-        setGrade(response)
+        if (requestToken.current === token) setGrade(response)
       })
       .catch((err: unknown) => {
-        setGradeError(describeError(err))
+        if (requestToken.current === token) setGradeError(describeError(err))
       })
       .finally(() => {
-        setGrading(false)
+        if (requestToken.current === token) setGrading(false)
       })
   }
 
@@ -187,9 +197,11 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
                   const result = resultByAtom.get(question.atom_id)
                   return (
                     <li key={question.atom_id}>
-                      <p>{question.question}</p>
+                      <p id={`q-${question.atom_id}`}>{question.question}</p>
                       {question.options && question.options.length > 0 && (
-                        <ul>
+                        // role=radiogroup + aria-labelledby: lo screen reader
+                        // annuncia le opzioni COME risposte a questa domanda (WCAG 1.3.1).
+                        <ul role="radiogroup" aria-labelledby={`q-${question.atom_id}`}>
                           {question.options.map((option, i) => (
                             <li key={`${question.atom_id}-${i}`}>
                               <label>
@@ -225,9 +237,22 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
                 <EmptyState tone="error" compact title="Correzione non riuscita" detail={gradeError} />
               )}
               {grade === null ? (
-                <button type="button" disabled={!allAnswered || grading} onClick={submitAnswers}>
-                  {grading ? "Correggo…" : "Correggi il quiz"}
-                </button>
+                <>
+                  <button
+                    type="button"
+                    disabled={!allAnswered || grading}
+                    aria-describedby={!allAnswered ? "quiz-submit-hint" : undefined}
+                    onClick={submitAnswers}
+                  >
+                    {grading ? "Correggo…" : "Correggi il quiz"}
+                  </button>
+                  {/* Spiega perché il bottone è disabilitato: mai un grigio muto. */}
+                  {!allAnswered && (
+                    <p id="quiz-submit-hint" className="st-state-detail">
+                      Rispondi a tutte le domande per poter correggere.
+                    </p>
+                  )}
+                </>
               ) : (
                 <>
                   <p className="saved-lessons-score" role="status">
@@ -243,7 +268,15 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
           {flashcardsError && (
             <EmptyState tone="error" compact title="Flashcard non disponibili" detail={flashcardsError} />
           )}
-          {/* Nessuna flashcard = nessuna sezione: lo stato principale della lezione è il quiz. */}
+          {/* Distinguere "caricate ma vuote" da "non ancora caricate/guaste":
+              lo stato vuoto è esplicito come per il quiz, mai un silenzio. */}
+          {flashcards && flashcards.length === 0 && !flashcardsError && (
+            <EmptyState
+              compact
+              title="Nessuna flashcard"
+              detail="Questa lezione salvata non ha flashcard per il ripasso."
+            />
+          )}
           {flashcards && flashcards.length > 0 && (
             <div className="saved-lessons-flashcards">
               <h3>Flashcard</h3>

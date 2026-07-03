@@ -357,3 +357,126 @@ describe("SavedLessonsPanel — flashcard (front visibile, back a richiesta)", (
     expect(screen.queryByText("Flashcard")).toBeNull()
   })
 })
+
+describe("SavedLessonsPanel — concorrenza, a11y e stati vuoti (fix review avversariale 09jul)", () => {
+  // Mock server con GATE controllabile: una route 'deferred' resta pendente
+  // finché non chiamo release(key) — così l'ordine di risoluzione è deterministico.
+  function deferredClient(routes: Record<string, Route & { deferred?: boolean }>) {
+    const gates: Record<string, () => void> = {}
+    const fetchImpl = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(String(input))
+      const key = `${init?.method ?? "GET"} ${url.pathname}`
+      const route = routes[key]
+      if (!route) return new Response(JSON.stringify({ detail: "Not Found" }), { status: 404 })
+      const make = () => new Response(JSON.stringify(route.body), { status: route.status })
+      if (route.deferred) return await new Promise<Response>((resolve) => (gates[key] = () => resolve(make())))
+      return make()
+    }) as typeof fetch
+    return {
+      client: new LessonOsApiClient({ baseUrl: "https://api.test", token: "t", fetch: fetchImpl }),
+      release: (key: string) => gates[key]?.(),
+    }
+  }
+
+  const quizRoute = (savedId: string, lessonId: string, atom: string, q: string, deferred = false) => ({
+    status: 200,
+    deferred,
+    body: {
+      saved_id: savedId,
+      lesson_id: lessonId,
+      questions: [{ atom_id: atom, question: q, options: ["x", "y"], correct_index: 0 }],
+      total: 1,
+    },
+  })
+  const emptyFlash = (savedId: string, lessonId: string, deferred = false) => ({
+    status: 200,
+    deferred,
+    body: { saved_id: savedId, lesson_id: lessonId, flashcards: [], total: 0 },
+  })
+
+  it("cambio lezione rapido: la risposta LENTA della lezione precedente NON sovrascrive la corrente", async () => {
+    const { client, release } = deferredClient({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": quizRoute("sv-1", "elab-v1-cap6", "qA", "Domanda A", true),
+      "GET /v1/saved-lessons/sv-1/flashcards": emptyFlash("sv-1", "elab-v1-cap6", true),
+      "GET /v1/saved-lessons/sv-2/quiz": quizRoute("sv-2", "elab-v1-cap7", "qB", "Domanda B"),
+      "GET /v1/saved-lessons/sv-2/flashcards": emptyFlash("sv-2", "elab-v1-cap7"),
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" })) // sv-1: quiz LENTO
+    fireEvent.click(screen.getByRole("button", { name: "elab-v1-cap7" })) // sv-2: quiz istantaneo
+    expect(await screen.findByText("Domanda B")).toBeDefined()
+    // Ora la risposta lenta di sv-1 arriva: DEVE essere ignorata (token cambiato).
+    release("GET /v1/saved-lessons/sv-1/quiz")
+    release("GET /v1/saved-lessons/sv-1/flashcards")
+    await waitFor(() => expect(screen.getByText("Domanda B")).toBeDefined())
+    expect(screen.queryByText("Domanda A")).toBeNull()
+  })
+
+  it("cambio lezione durante la correzione: l'esito NON si applica alla lezione sbagliata", async () => {
+    const { client, release } = deferredClient({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": quizRoute("sv-1", "elab-v1-cap6", "qA", "Domanda A"),
+      "GET /v1/saved-lessons/sv-1/flashcards": emptyFlash("sv-1", "elab-v1-cap6"),
+      "POST /v1/saved-lessons/sv-1/quiz/grade": {
+        status: 200,
+        deferred: true,
+        body: {
+          saved_id: "sv-1",
+          lesson_id: "elab-v1-cap6",
+          results: [{ atom_id: "qA", question: "Domanda A", selected_index: 0, correct_index: 0, correct: true }],
+          score: 1,
+          total: 1,
+        },
+      },
+      "GET /v1/saved-lessons/sv-2/quiz": quizRoute("sv-2", "elab-v1-cap7", "qB", "Domanda B"),
+      "GET /v1/saved-lessons/sv-2/flashcards": emptyFlash("sv-2", "elab-v1-cap7"),
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    fireEvent.click(await screen.findByLabelText("x")) // rispondi
+    fireEvent.click(screen.getByRole("button", { name: "Correggi il quiz" })) // grade LENTO
+    fireEvent.click(screen.getByRole("button", { name: "elab-v1-cap7" })) // cambio lezione
+    expect(await screen.findByText("Domanda B")).toBeDefined()
+    release("POST /v1/saved-lessons/sv-1/quiz/grade") // esito di sv-1 arriva tardi
+    await waitFor(() => expect(screen.getByText("Domanda B")).toBeDefined())
+    // Nessun punteggio applicato a sv-2 (che non è mai stato corretto).
+    expect(screen.queryByText(/risposte corrette su/)).toBeNull()
+  })
+
+  it("a11y: le opzioni sono un radiogroup con nome accessibile = testo della domanda (WCAG 1.3.1)", async () => {
+    const { client } = deferredClient({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": quizRoute("sv-1", "elab-v1-cap6", "qA", "Qual è l'anodo?"),
+      "GET /v1/saved-lessons/sv-1/flashcards": emptyFlash("sv-1", "elab-v1-cap6"),
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    const group = await screen.findByRole("radiogroup", { name: "Qual è l'anodo?" })
+    expect(group).toBeDefined()
+  })
+
+  it("hint: bottone Correggi disabilitato mostra il PERCHÉ; sparisce a risposte complete", async () => {
+    const { client } = deferredClient({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": quizRoute("sv-1", "elab-v1-cap6", "qA", "Domanda A"),
+      "GET /v1/saved-lessons/sv-1/flashcards": emptyFlash("sv-1", "elab-v1-cap6"),
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    expect(await screen.findByText("Rispondi a tutte le domande per poter correggere.")).toBeDefined()
+    fireEvent.click(screen.getByLabelText("x"))
+    expect(screen.queryByText("Rispondi a tutte le domande per poter correggere.")).toBeNull()
+  })
+
+  it("flashcard vuote: stato esplicito «Nessuna flashcard», non un silenzio", async () => {
+    const { client } = deferredClient({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": quizRoute("sv-1", "elab-v1-cap6", "qA", "Domanda A"),
+      "GET /v1/saved-lessons/sv-1/flashcards": emptyFlash("sv-1", "elab-v1-cap6"),
+    })
+    render(<SavedLessonsPanel client={client} />)
+    fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
+    expect(await screen.findByText("Nessuna flashcard")).toBeDefined()
+  })
+})
