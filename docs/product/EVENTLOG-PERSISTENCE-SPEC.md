@@ -74,11 +74,15 @@ esattamente il buco che questa spec chiude per l'event-log.
 ## 2. Opzioni
 
 Premessa architetturale valida per tutte: il VFS `opfs` "classico" di sqlite-wasm
-richiede `SharedArrayBuffer` e quindi header **COOP/COEP** sull'intera pagina (F1).
-COEP `require-corp` è incompatibile con l'architettura ToolHost di ARDESIA (plugin
-montati in iframe sandbox a origin opaca / srcdoc single-file, gotcha canonico
-opaque-origin): imporrebbe vincoli CORP/CORS su ogni subresource dei plugin. Il VFS
-`opfs` con COOP/COEP è quindi **escluso a priori**, indipendentemente dal browser.
+richiede `SharedArrayBuffer` e quindi header **COOP/COEP** sull'intera pagina (F1 —
+fatto verificato). ⚠️ **INFERENZA ARCHITETTURALE, non testata firsthand su questo
+codebase**: COEP `require-corp` propaga vincoli CORP/CORS a ogni subresource della
+pagina, e il ToolHost di ARDESIA monta plugin in iframe sandbox a origin opaca /
+srcdoc single-file (gotcha canonico opaque-origin) — l'attesa è che attivare
+COOP/COEP rompa o vincoli il mount dei plugin. La conclusione resta robusta anche
+se l'inferenza fosse smentita da un test: né l'Opzione A né la B (`opfs-sahpool`)
+richiedono COOP/COEP, quindi il VFS `opfs` è **escluso a priori** senza costo,
+indipendentemente dal browser.
 
 ### Opzione A — IndexedDB nativo, log append-only (senza SQLite)
 
@@ -89,10 +93,12 @@ record `{ seq, t, kind, payload, evidence }` — la trasposizione 1:1 di
 **Pro**
 - Funziona su Safari/iPadOS oggi, nessun requisito di header, nessun gate: è
   l'unica opzione spedibile subito senza decisione ⑦.
-- Quota reale: fino al 60% del disco per origin nei browser (80% complessivo),
-  15%/20% per web-app standalone WebKit (F7) — ordini di grandezza sopra i 5 MB
-  di localStorage; per un log di eventi didattici a bassa frequenza (#34 §0) è
-  abbondante per anni.
+- Quota reale: fino al 60% del disco per origin nei browser (80% complessivo), e
+  quota **identica** per le web-app standalone/Home Screen ("same origin quota and
+  overall quota as when it is opened in a browser app", F7; il 15%/20% citato da
+  F7 riguarda le app NON-browser, es. WKWebView in-app) — ordini di grandezza
+  sopra i 5 MB di localStorage; per un log di eventi didattici a bassa frequenza
+  (#34 §0) è abbondante per anni.
 - Append-only naturale (`add`, mai `put` su chiavi esistenti); transazionale;
   utilizzabile da più tab (IndexedDB è multi-contesto).
 - Stessa classe di durabilità di OPFS su WebKit: entrambi storage script-writable
@@ -200,7 +206,7 @@ Cosa le fonti **garantiscono davvero** (niente wishful thinking):
 | Meccanismo | Cosa garantisce (fonte) | Cosa NON garantisce |
 |---|---|---|
 | `navigator.storage.persist()` concesso | L'origin è escluso dall'**eviction LRU/quota** ("origin might be excluded from eviction if … its storage is in persistent mode", F7). Su Safari 17+/iOS 17+ la Storage API è pienamente supportata (F7). | **Nessuna fonte primaria afferma che protegga dalla cancellazione ITP dei 7 giorni** (F9 descrive le due policy separatamente; verdetto claim 3: INCERTO su questo punto). Trattare come NON protetto. |
-| Concessione di `persist()` su WebKit | Automatica, senza prompt, "based on heuristics like whether the website is opened as a Home Screen Web App" (F7). Nessuna garanzia che venga concessa nel browser. | Non è richiedibile con certezza: può essere negata silenziosamente. |
+| Concessione di `persist()` su WebKit | Automatica per euristiche: "grants a request based on heuristics like whether the website is opened as a Home Screen Web App" (F7); la decisione avviene senza prompt all'utente (F9). Nessuna garanzia che venga concessa nel browser. | Non è richiedibile con certezza: può essere negata silenziosamente. |
 | Web-app su Home Screen | "Not part of Safari and thus have their own counter of days of use … which resets the timer. **We do not expect** the first-party … to have its website data deleted" (F8, 2020, mai revocato). Quota identica al browser (F7). Episodio EU feb-2024 (rimozione Home-Screen web-app) **rientrato** il 2024-03-01: restano WebKit standalone anche in EU (F11). | "We do not expect" ≠ garanzia contrattuale; nessuna fonte primaria post-2023 ri-afferma esplicitamente l'esenzione per iPadOS 18/19+ (verdetto claim 4: VERIFICATO con riserva). #32 lo dice già: "do not claim Home Screen install prevents eviction". |
 
 **Requisiti normativi P0** (coerenti con l'acceptance già scritta in #32):
@@ -243,7 +249,8 @@ export interface RecoveryReport {
   /**
    * Record scartati in coda perché incompleti/corrotti (torn write al crash).
    * SOLO record in coda: un buco in mezzo alla sequenza è corruzione,
-   * non recovery → `corrupted: true` e il chiamante propone il restore da export.
+   * non recovery → `corrupted: true` e il chiamante propone il restore da export
+   * (percorso: destroyEventLogStorage() → open() su log vuoto → importSnapshot()).
    */
   droppedTail: number
   corrupted: boolean
@@ -277,12 +284,27 @@ export interface PersistentEventLogStore extends EventLogStore {
   compact(): Promise<CompactionReport>
   close(): Promise<void>
 }
+
+/**
+ * UNICA operazione distruttiva ammessa nell'intero design — volutamente FUORI da
+ * PersistentEventLogStore, che resta append-only. Distrugge lo storage fisico del
+ * log (es. deleteDatabase IndexedDB / rimozione file OPFS). Esiste ESCLUSIVAMENTE
+ * per rendere eseguibile il restore da export quando open() ritorna
+ * `corrupted: true`: senza di essa, importSnapshot (solo-su-log-vuoto) non avrebbe
+ * mai un log vuoto su cui operare. Vincoli: (1) conferma esplicita dell'utente,
+ * mai automatica; (2) il chiamante DEVE prima tentare exportSnapshot() del log
+ * corrotto (best-effort, per non perdere gli eventi ancora recuperabili).
+ */
+export declare function destroyEventLogStorage(confirm: { userConfirmed: true }): Promise<void>
 ```
 
 **Invarianti (normative, testabili):**
 
-1. **Append-only**: nessun metodo muta o cancella eventi; `compact()` riscrive lo
-   storage, mai il contenuto logico.
+1. **Append-only**: nessun metodo di `PersistentEventLogStore` muta o cancella
+   eventi; `compact()` riscrive lo storage, mai il contenuto logico. L'unica
+   eccezione dell'intero design è `destroyEventLogStorage` (fuori interfaccia,
+   solo per il percorso di restore da log `corrupted: true`, su conferma
+   esplicita dell'utente — vedi sopra).
 2. **Provenance intatta**: per ogni evento, `{seq, t, kind, payload, evidence}`
    sopravvive byte-identico a recovery, export→import e compaction. Test canonico:
    `materialize(await store.readAll())` produce lo stesso grafo (deep-equal) prima
@@ -350,6 +372,8 @@ cancella i dati della precedente prima della verifica di cui sopra.
 - **F5** — wa-sqlite, repo GitHub (MIT dal 2023-02; v1.1.1, 2026-04-23; VFS
   OPFSCoopSyncVFS/OPFSWriteAheadVFS/IDBBatchAtomicVFS…):
   <https://github.com/rhashimoto/wa-sqlite> — VERIFICATO
+- **F6** — non assegnata (salto di numerazione in redazione; la si dichiara
+  invece di rinumerare per non alterare i riferimenti F7–F12 già citati nel corpo)
 - **F7** — WebKit Blog, "Updates to Storage Policy" (2023-08-10; Safari 17/iOS 17,
   quota 60%/15%, LRU eviction, persist() per euristiche, Home-Screen stessa quota):
   <https://webkit.org/blog/14403/updates-to-storage-policy/> — VERIFICATO
