@@ -44,6 +44,10 @@ export interface JournalPdfPageView {
   /** 1-based page number */
   page: number
   totalPages: number
+  /** Stable explicit identity of the PDF/document being viewed, when known. */
+  documentId?: string
+  /** Human-facing filename/title only; never used for manual inference. */
+  documentName?: string
 }
 
 export interface JournalAudioChunk {
@@ -174,8 +178,20 @@ export class JournalRecorder {
   }
 
   /** Cambio pagina PDF visualizzata */
-  recordPdfPageView(page: number, totalPages: number): void {
-    this.buffer.push({ t: this.now(), type: "pdf.page.view", page, totalPages })
+  recordPdfPageView(
+    page: number,
+    totalPages: number,
+    document?: { documentId?: string; documentName?: string },
+  ): void {
+    const event: JournalPdfPageView & { t: number } = {
+      t: this.now(),
+      type: "pdf.page.view",
+      page,
+      totalPages,
+    }
+    if (document?.documentId) event.documentId = document.documentId
+    if (document?.documentName) event.documentName = document.documentName
+    this.buffer.push(event)
     this.scheduleFlush()
   }
 

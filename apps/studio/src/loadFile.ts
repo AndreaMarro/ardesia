@@ -20,11 +20,29 @@ export function imageToDataURL(file: File): Promise<{ dataURL: string; width: nu
   })
 }
 
+export interface PdfImagePage {
+  dataURL: string
+  width: number
+  height: number
+  /** 1-based page number in the source PDF. */
+  page: number
+  totalPages: number
+  /** Stable content identity for the source PDF; no filename inference. */
+  documentId: string
+  documentName: string
+}
+
+async function sha256Hex(buf: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", buf.slice(0))
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("")
+}
+
 // PDF → una immagine PNG per pagina (rendering via pdf.js su canvas offscreen).
-export async function pdfToImages(file: File, scale = 1.5): Promise<{ dataURL: string; width: number; height: number }[]> {
+export async function pdfToImages(file: File, scale = 1.5): Promise<PdfImagePage[]> {
   const buf = await file.arrayBuffer()
+  const documentId = `document:sha256:${await sha256Hex(buf)}`
   const pdf = await pdfjsLib.getDocument({ data: buf }).promise
-  const out: { dataURL: string; width: number; height: number }[] = []
+  const out: PdfImagePage[] = []
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i)
     const viewport = page.getViewport({ scale })
@@ -33,7 +51,15 @@ export async function pdfToImages(file: File, scale = 1.5): Promise<{ dataURL: s
     canvas.height = Math.ceil(viewport.height)
     const ctx = canvas.getContext("2d")!
     await page.render({ canvas, canvasContext: ctx, viewport } as any).promise
-    out.push({ dataURL: canvas.toDataURL("image/png"), width: canvas.width, height: canvas.height })
+    out.push({
+      dataURL: canvas.toDataURL("image/png"),
+      width: canvas.width,
+      height: canvas.height,
+      page: i,
+      totalPages: pdf.numPages,
+      documentId,
+      documentName: file.name,
+    })
   }
   return out
 }

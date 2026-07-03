@@ -5,7 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
-import type { WorkspaceDriver, FileEntry } from "../store/types"
+import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
@@ -1232,7 +1232,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       input = document.querySelector('input[type="file"]') as HTMLInputElement
       expect(input).toBeTruthy()
     }, { timeout: 5000, interval: 10 })
-    return { root, input: input! }
+    return { root, input: input!, store }
   }
 
   function selectFile(input: HTMLInputElement, file: File) {
@@ -1266,6 +1266,57 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       expect(err?.textContent).toContain("Caricamento non riuscito")
       expect(err?.textContent).toContain("pdf corrotto")
     }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("import PDF registra pdf.page.view con identita documento esplicita nel journal", async () => {
+    const { pdfToImages } = await import("../loadFile")
+    vi.mocked(pdfToImages).mockResolvedValueOnce([
+      {
+        dataURL: "data:image/png;base64,cDE=",
+        width: 800,
+        height: 1000,
+        page: 1,
+        totalPages: 2,
+        documentId: "document:sha256:abc123",
+        documentName: "manuale.pdf",
+      },
+      {
+        dataURL: "data:image/png;base64,cDI=",
+        width: 800,
+        height: 1000,
+        page: 2,
+        totalPages: 2,
+        documentId: "document:sha256:abc123",
+        documentName: "manuale.pdf",
+      },
+    ])
+
+    const { root, input, store } = await mountRoomAndGetFileInput()
+
+    selectFile(input, new File(["%PDF-1.4"], "manuale.pdf", { type: "application/pdf" }))
+
+    await vi.waitFor(() => {
+      const recorder = (window as any).__MAESTRO_TEST__?.recorder
+      expect(recorder?.getBuffer().filter((ev: any) => ev.type === "pdf.page.view")).toHaveLength(2)
+    }, { timeout: 5000, interval: 10 })
+
+    await (window as any).__MAESTRO_TEST__.recorder.flush()
+    const blob = await store.read(PATHS.JOURNAL)
+    const events = (await blob!.text())
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line))
+
+    expect(events.map((event) => event.type)).toEqual(["pdf.page.view", "pdf.page.view"])
+    expect(events.map((event) => event.documentId)).toEqual([
+      "document:sha256:abc123",
+      "document:sha256:abc123",
+    ])
+    expect(events.map((event) => event.page)).toEqual([1, 2])
+    expect(events.map((event) => event.totalPages)).toEqual([2, 2])
+    expect(events.map((event) => event.documentName)).toEqual(["manuale.pdf", "manuale.pdf"])
 
     root.unmount()
   })

@@ -450,11 +450,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       if (file.type === "application/pdf") {
         const pages = await pdfToImages(file)
         let y = 100
-        const items = pages.map((p) => {
+        const totalPages = pages[0]?.totalPages ?? pages.length
+        const items = pages.map((p, index) => {
           const width = Math.min(720, p.width)
           const height = Math.round(width * (p.height / p.width))
           const it = { dataURL: p.dataURL, mimeType: "image/png", width, height, x: 160, y }
           y += height + 24
+          journalRef.current?.recordPdfPageView(p.page ?? index + 1, totalPages, {
+            documentId: p.documentId,
+            documentName: p.documentName,
+          })
           return it
         })
         addImages(items)
