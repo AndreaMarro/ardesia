@@ -1,3 +1,5 @@
+import { validateElabV1Cap6Esp1BookTopology } from "./bookTopology"
+
 export type ElabCircuitComponent = {
   type: string
   id: string
@@ -171,6 +173,10 @@ export function validateElabV1Cap6Esp1Fixture(input: unknown): ElabV1Cap6Esp1Fix
   assertSameFixturePart("components", fixture.components, EXPECTED_COMPONENTS)
   assertSameFixturePart("wires", fixture.wires, EXPECTED_WIRES)
   assertSameFixturePart("pinAssignments", fixture.pinAssignments, EXPECTED_PIN_ASSIGNMENTS)
+  validateElabV1Cap6Esp1BookTopology({
+    pinAssignments: fixture.pinAssignments,
+    wires: fixture.wires,
+  })
 
   return fixture
 }
