@@ -1,0 +1,261 @@
+// Passo-passo didattico ELAB Vol.1 cap.6 esp.1 (pp.29-31) come DATI PURI +
+// predicati topologici. Nessuna UI, nessun LLM, nessuna dipendenza nuova:
+// i predicati riusano i costrutti di sim/breadboard/geometry e di bookTopology.
+//
+// FA FEDE IL TESTO del manuale (pp.29-31), non le figure: prese alla lettera,
+// le figure lasciano il circuito aperto (vedi driftNotes della fixture).
+// La riga p.30 "Collega la clip della batteria alla batteria" è un prerequisito
+// senza predicato topologico nella grammatica del circuito (la clip è implicita
+// negli endpoint bat1:positive / bat1:negative): è registrata come evidenza
+// dello step 1, non come step a sé.
+
+import {
+  isBreadboardHole,
+  parseBreadboardRail,
+  pinsOnRails,
+  type BreadboardCircuit,
+  type BreadboardRailRef,
+} from "../breadboard/geometry"
+import {
+  analyzeElabV1Cap6Esp1BookTopology,
+  type ElabV1Cap6Esp1TopologyReport,
+} from "./bookTopology"
+import type { ElabManualEvidence } from "./fixtureAdapter"
+
+export type Labels = {
+  readonly it: string
+  readonly en: string
+}
+
+// Riuso del tipo evidenza già canonico nella fixture (page/claim/evidence).
+export type EvidenceRef = ElabManualEvidence
+
+export type ElabCircuitSlice = Pick<BreadboardCircuit, "pinAssignments" | "wires">
+
+// Solo i flag booleani del report topologico canonico.
+export type TopologyReportFlag = {
+  [K in keyof ElabV1Cap6Esp1TopologyReport]: ElabV1Cap6Esp1TopologyReport[K] extends boolean
+    ? K
+    : never
+}[keyof ElabV1Cap6Esp1TopologyReport]
+
+export type TopologyExpectation =
+  | { readonly kind: "report-flag"; readonly flag: TopologyReportFlag; readonly expected: boolean }
+  | {
+      readonly kind: "wire-endpoint-on-rail"
+      readonly endpoint: string
+      readonly rail: BreadboardRailRef["rail"]
+    }
+  | { readonly kind: "pins-in-holes"; readonly pins: readonly string[] }
+  | { readonly kind: "no-pins-on-rails" }
+
+export type DidacticStep = {
+  readonly id: string
+  readonly order: number
+  readonly instruction: Labels
+  readonly manualEvidence: readonly EvidenceRef[]
+  readonly expects: readonly TopologyExpectation[]
+}
+
+export type DidacticStepResult = {
+  readonly stepId: string
+  readonly order: number
+  readonly passed: boolean
+  readonly failures: readonly string[]
+}
+
+function describeExpectation(expectation: TopologyExpectation): string {
+  switch (expectation.kind) {
+    case "report-flag":
+      return `${expectation.flag} must be ${expectation.expected}`
+    case "wire-endpoint-on-rail":
+      return `${expectation.endpoint} must wire directly onto ${expectation.rail}`
+    case "pins-in-holes":
+      return `pins must sit in board holes, never on bus rails: ${expectation.pins.join(", ")}`
+    case "no-pins-on-rails":
+      return "no component pins may sit on bus rails"
+  }
+}
+
+function holdsExpectation(
+  expectation: TopologyExpectation,
+  circuit: ElabCircuitSlice,
+  report: ElabV1Cap6Esp1TopologyReport,
+): boolean {
+  switch (expectation.kind) {
+    case "report-flag":
+      return report[expectation.flag] === expectation.expected
+    case "wire-endpoint-on-rail":
+      return circuit.wires.some((wire) => {
+        const other =
+          wire.from === expectation.endpoint
+            ? wire.to
+            : wire.to === expectation.endpoint
+              ? wire.from
+              : null
+        if (other === null) return false
+        const rail = parseBreadboardRail(other)
+        return rail !== null && rail.rail === expectation.rail
+      })
+    case "pins-in-holes":
+      return expectation.pins.every((pin) => isBreadboardHole(circuit.pinAssignments[pin] ?? ""))
+    case "no-pins-on-rails":
+      return pinsOnRails(circuit.pinAssignments).length === 0
+  }
+}
+
+function evaluateWithReport(
+  step: DidacticStep,
+  circuit: ElabCircuitSlice,
+  report: ElabV1Cap6Esp1TopologyReport,
+): DidacticStepResult {
+  const failures = step.expects
+    .filter((expectation) => !holdsExpectation(expectation, circuit, report))
+    .map(describeExpectation)
+  return { stepId: step.id, order: step.order, passed: failures.length === 0, failures }
+}
+
+export function evaluateDidacticStep(
+  step: DidacticStep,
+  circuit: ElabCircuitSlice,
+): DidacticStepResult {
+  return evaluateWithReport(step, circuit, analyzeElabV1Cap6Esp1BookTopology(circuit))
+}
+
+export function evaluateDidacticSteps(
+  steps: readonly DidacticStep[],
+  circuit: ElabCircuitSlice,
+): DidacticStepResult[] {
+  const report = analyzeElabV1Cap6Esp1BookTopology(circuit)
+  return [...steps]
+    .sort((a, b) => a.order - b.order)
+    .map((step) => evaluateWithReport(step, circuit, report))
+}
+
+export function firstFailingDidacticStep(
+  steps: readonly DidacticStep[],
+  circuit: ElabCircuitSlice,
+): DidacticStepResult | null {
+  return evaluateDidacticSteps(steps, circuit).find((result) => !result.passed) ?? null
+}
+
+function deepFreeze<T>(value: T): T {
+  if (typeof value === "object" && value !== null && !Object.isFrozen(value)) {
+    Object.freeze(value)
+    for (const item of Object.values(value)) deepFreeze(item)
+  }
+  return value
+}
+
+// I predicati NON fissano i numeri di foro: il libro dice "punto qualsiasi".
+// Le scelte canoniche (resistore i9/i3, LED f3/e3, tie 3) vivono nella fixture
+// elab-v1-cap6-esp1.json e sono blindate da validateElabV1Cap6Esp1Fixture.
+export const DIDACTIC_STEPS_V1_CAP6_ESP1: readonly DidacticStep[] = deepFreeze([
+  {
+    id: "v1-cap6-esp1-step-1-positivo-striscia-rossa",
+    order: 1,
+    instruction: {
+      it: "Collega il positivo della batteria alla striscia rossa superiore della breadboard",
+      en: "Connect the battery positive lead to the upper red strip of the breadboard",
+    },
+    manualEvidence: [
+      {
+        page: 30,
+        claim: "battery-clip-precondition",
+        evidence: "Collega la clip della batteria alla batteria",
+      },
+      {
+        page: 30,
+        claim: "positive-to-red-strip",
+        evidence:
+          "Collega il positivo della batteria alla striscia rossa superiore della breadboard",
+      },
+    ],
+    expects: [
+      { kind: "wire-endpoint-on-rail", endpoint: "bat1:positive", rail: "bus-top-plus" },
+    ],
+  },
+  {
+    id: "v1-cap6-esp1-step-2-resistore-striscia-zona-sotto",
+    order: 2,
+    instruction: {
+      it: "Collega il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa e un punto qualsiasi della zona sotto",
+      en: "Connect the 470 Ohm resistor between any point of the red strip and any point of the zone below",
+    },
+    manualEvidence: [
+      {
+        page: 29,
+        claim: "resistor-470-part",
+        evidence:
+          "Un resistore da 470 Ohm: spiegheremo dopo perché. Ti ricordi i colori?(Giallo Viola Marrone)",
+      },
+      {
+        page: 30,
+        claim: "resistor-strip-to-zone-below",
+        evidence:
+          "Collega il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa e un punto qualsiasi della zona sotto",
+      },
+    ],
+    expects: [
+      // "striscia rossa" → il lato rail del resistore è raggiunto dal positivo.
+      { kind: "report-flag", flag: "positiveReachesResistorRailSide", expected: true },
+      // Grammatica del circuito: i pin vivono nei fori (delta dichiarato in fixture:
+      // la gamba-nella-striscia del libro diventa un jumper rosso).
+      { kind: "pins-in-holes", pins: ["r1:pin1", "r1:pin2"] },
+    ],
+  },
+  {
+    id: "v1-cap6-esp1-step-3-led-cavallo-divisione",
+    order: 3,
+    instruction: {
+      it: "Collega la gambetta lunga del LED verso il resistore e la gambetta corta in un punto qualsiasi della parte sotto dopo la divisione centrale",
+      en: "Connect the LED long leg toward the resistor and the short leg into any point of the lower part beyond the central divide",
+    },
+    manualEvidence: [
+      {
+        page: 30,
+        claim: "led-straddles-divide-long-leg-to-resistor",
+        evidence:
+          "Collega la gambetta lunga del LED verso il resistore e la gambetta corta in un punto qualsiasi della parte sotto dopo la divisione centrale",
+      },
+    ],
+    expects: [
+      // "a cavallo della divisione centrale": anodo e catodo su blocchi opposti, stesso tie.
+      { kind: "report-flag", flag: "ledStraddlesCenterGap", expected: true },
+      // "gambetta lunga verso il resistore": il resistore condivide il tie dell'anodo.
+      { kind: "report-flag", flag: "resistorSharesAnodeTie", expected: true },
+      { kind: "pins-in-holes", pins: ["led1:anode", "led1:cathode"] },
+    ],
+  },
+  {
+    id: "v1-cap6-esp1-step-4-negativo-colonna-catodo",
+    order: 4,
+    instruction: {
+      it: "Collega il negativo della batteria in un punto qualsiasi della stessa colonna della gambetta corta del LED",
+      en: "Connect the battery negative lead to any point in the same column as the LED short leg",
+    },
+    manualEvidence: [
+      {
+        page: 31,
+        claim: "negative-direct-to-cathode-column",
+        evidence:
+          "Collega il negativo della batteria in un punto qualsiasi della stessa colonna della gambetta corta del LED e … MAGIA!",
+      },
+      {
+        page: 31,
+        claim: "closed-circuit-led-on",
+        evidence: "Il LED si è acceso! Bellissimo vero?",
+      },
+    ],
+    expects: [
+      { kind: "report-flag", flag: "cathodeSharesNegativeReturnTie", expected: true },
+      // "in un punto qualsiasi della stessa colonna" = ritorno DIRETTO, niente bus minus.
+      { kind: "report-flag", flag: "negativeReturnsDirectlyWithoutRails", expected: true },
+      { kind: "report-flag", flag: "usesMinusBus", expected: false },
+      // "… MAGIA! Il LED si è acceso": il circuito è chiuso.
+      { kind: "report-flag", flag: "closedCircuit", expected: true },
+      // MAI pin su bus-*.
+      { kind: "no-pins-on-rails" },
+    ],
+  },
+])
