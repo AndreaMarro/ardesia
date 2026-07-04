@@ -95,6 +95,58 @@ describe("ElabScene -> Simulation Plugin adapter", () => {
     )
   })
 
+  it("rejects a wire endpoint whose breadboard-like prefix is a typo (fail-closed, not fail-open)", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[1]!.from = "b1:j9"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /unresolvable endpoint in wire w2.from: b1:j9/,
+    )
+  })
+
+  it("rejects a breadboard ref whose board id is not a declared component", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[1]!.from = "bb99:j9"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /breadboard bb99 is not a declared component in wire w2.from: bb99:j9/,
+    )
+  })
+
+  it("rejects a wire endpoint referencing an undeclared component", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[2]!.to = "batt9:negative"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /unresolvable endpoint in wire w3.to: batt9:negative/,
+    )
+  })
+
+  it("rejects a pinAssignments key whose component is not declared", () => {
+    const scene = candidateFixture() as { pinAssignments: Record<string, string> }
+    scene.pinAssignments["rx:pin1"] = "bb1:a1"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /unresolvable component in pinAssignments key rx:pin1/,
+    )
+  })
+
+  it("rejects a pinAssignments value on a board that is not a declared component", () => {
+    const scene = candidateFixture() as { pinAssignments: Record<string, string> }
+    scene.pinAssignments["led1:anode"] = "bb2:f3"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /breadboard bb2 is not a declared component in pinAssignments led1:anode: bb2:f3/,
+    )
+  })
+
+  it("dedupes duplicate book pages in sourceLabel", () => {
+    const scene = candidateFixture() as { book: { pages: number[] } }
+    scene.book.pages = [29, 29, 30, 31]
+
+    expect(createSimulationAdapterPayloadFromElabScene(scene).sourceLabel).toBe("Vol.1 pag.29-31")
+  })
+
   it("is deterministic for repeat adapter runs", () => {
     expect(JSON.stringify(createSimulationAdapterPayloadFromElabScene(candidateFixture()))).toBe(
       JSON.stringify(createSimulationAdapterPayloadFromElabScene(candidateFixture())),
