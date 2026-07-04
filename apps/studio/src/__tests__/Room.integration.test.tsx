@@ -70,6 +70,17 @@ vi.mock("../MathComposer", () => ({
 vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
 vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
+// LessonOS bridge: nei test il registry di default riconosce il manuale di prova
+// (in prod defaultManualRegistry è vuoto finché non esiste una config manuali).
+vi.mock("../lessonos/manualRegistry", async (importOriginal) => {
+  const mod = (await importOriginal()) as typeof import("../lessonos/manualRegistry")
+  return {
+    ...mod,
+    defaultManualRegistry: mod.staticManualRegistry({
+      "document:sha256:abc123": { manualId: "manual:vol1", title: "ELAB Volume 1", pages: [1, 40] },
+    }),
+  }
+})
 
 // --- Mock driver (supporta anche metodi legacy) ---
 
@@ -1320,6 +1331,83 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     expect(events.map((event) => event.page)).toEqual([1, 2])
     expect(events.map((event) => event.totalPages)).toEqual([2, 2])
     expect(events.map((event) => event.documentName)).toEqual(["manuale.pdf", "manuale.pdf"])
+
+    root.unmount()
+  })
+
+  // --- Bridge Journal → LessonOS (LANE P5): registry + call-site promoteJournalToLessonOs ---
+
+  function pdfPage(documentId: string, page: number) {
+    return {
+      dataURL: "data:image/png;base64,cDE=",
+      width: 800,
+      height: 1000,
+      page,
+      totalPages: 40,
+      documentId,
+      documentName: "manuale.pdf",
+    }
+  }
+
+  /** Monta Room, aspetta LessonOS pronto, importa un PDF e ritorna l'harness */
+  async function importPdfAndGetHarness(pages: ReturnType<typeof pdfPage>[]) {
+    const { pdfToImages } = await import("../loadFile")
+    vi.mocked(pdfToImages).mockResolvedValueOnce(pages)
+    const { root, input, store } = await mountRoomAndGetFileInput()
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current?.store).toBeTruthy()
+    }, { timeout: 5000, interval: 10 })
+    selectFile(input, new File(["%PDF-1.4"], "manuale.pdf", { type: "application/pdf" }))
+    await vi.waitFor(() => {
+      const recorder = (window as any).__MAESTRO_TEST__?.recorder
+      expect(
+        recorder?.getBuffer().filter((ev: any) => ev.type === "pdf.page.view").length,
+      ).toBeGreaterThan(0)
+    }, { timeout: 5000, interval: 10 })
+    return { root, store, harness: (window as any).__MAESTRO_TEST__ }
+  }
+
+  it("bridge LessonOS: pdf riconosciuto dal registry → esattamente UN material.cited con evidence doppia", async () => {
+    const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 3)])
+
+    await harness.promoteJournalToLessonOs()
+
+    const all = await harness.lessonOs.current.store.readAll()
+    const cited = all.filter((e: any) => e.kind === "material.cited")
+    expect(cited).toHaveLength(1)
+    expect(cited[0].materialId).toBe("manual:vol1:p3")
+    expect(cited[0].evidence).toContain("manual:vol1:p3")
+    expect(cited[0].evidence.some((r: string) => /^journal:pdf\.page\.view@\d+$/.test(r))).toBe(true)
+    expect(cited[0].evidence.some((r: string) => r.startsWith("lesson:"))).toBe(true)
+
+    root.unmount()
+  })
+
+  it("bridge LessonOS: replay completo → nessun duplicato (cursore lastPromotedJournalT)", async () => {
+    const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 5)])
+
+    await harness.promoteJournalToLessonOs()
+    const after1 = (await harness.lessonOs.current.store.readAll()).length
+    await harness.promoteJournalToLessonOs()
+    const after2 = (await harness.lessonOs.current.store.readAll()).length
+
+    expect(after1).toBeGreaterThan(0)
+    expect(after2).toBe(after1)
+
+    root.unmount()
+  })
+
+  it("bridge LessonOS: documento NON riconosciuto → zero material.cited, journal intatto", async () => {
+    const { root, store, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:zzz", 3)])
+
+    await harness.promoteJournalToLessonOs()
+
+    const all = await harness.lessonOs.current.store.readAll()
+    expect(all.filter((e: any) => e.kind === "material.cited")).toHaveLength(0)
+    // il journal registra comunque pdf.page.view (promote flusha prima di leggere)
+    const blob = await store.read(PATHS.JOURNAL)
+    expect(blob).not.toBeNull()
+    expect(await blob!.text()).toContain('"pdf.page.view"')
 
     root.unmount()
   })
