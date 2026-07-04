@@ -13,7 +13,7 @@ import {
   isBreadboardRef,
   pointForBreadboardRef,
   solveSeriesLoop,
-} from "./simulationBreadboard";
+} from "../../sim/breadboard/simulationBreadboard";
 import { registerSimulationTool, getSimulationTool } from "./simulationPluginRegistry";
 
 type EmbedLike = {

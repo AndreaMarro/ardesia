@@ -194,7 +194,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 // ELAB grid constants come persisted in the scene (canon §2: "persisti le costanti
 // breadboardSnap nella scena"). Values mirror breadboardGeometry in
-// src/toolhost/simulationBreadboard.ts (30 columns, pitch 7.5).
+// sim/breadboard/simulationBreadboard.ts (30 columns, pitch 7.5).
 const ELAB_DEFAULT_BOARD: ElabScene["board"] = {
   pose: { x: 0, y: 0, rotationDeg: 0, scale: 1 },
   grid: { columns: 30, columnPitch: 7.5 },
