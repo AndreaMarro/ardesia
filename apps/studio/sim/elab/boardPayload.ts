@@ -2,7 +2,14 @@ import {
   createElabV1Cap6Esp1CircuitPayload,
   type ElabCircuitSceneAdapterPayload,
 } from "./fixtureAdapter.ts"
-import type { BoardElementLike } from "../../src/toolhost/caps/board.ts"
+// Mirror strutturale di BoardElementLike (src/toolhost/caps/board.ts): sim
+// emette dati puri e non importa src (gate F4); la compatibilità col toolhost
+// è garantita dallo structural typing al punto di consumo in src.
+type BoardElementData = {
+  id: string
+  customData?: Record<string, unknown>
+  [k: string]: unknown
+}
 
 export const ELAB_V1_CAP6_ESP1_TOOL_ID = "io.maestro.sim-elab-v1-cap6-esp1"
 export const ELAB_V1_CAP6_ESP1_EMBED_ID = "elab-v1-cap6-esp1-circuit"
@@ -57,7 +64,7 @@ export function createElabV1Cap6Esp1BoardWritePayload(
 export function createElabV1Cap6Esp1EmbeddableSkeleton(
   embedId = ELAB_V1_CAP6_ESP1_EMBED_ID,
   bounds: ElabV1Cap6Esp1EmbedBounds = {},
-): BoardElementLike {
+): BoardElementData {
   return {
     id: embedId,
     type: "embeddable",

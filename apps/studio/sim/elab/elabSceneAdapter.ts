@@ -1,4 +1,4 @@
-import { pointForBreadboardRef } from "../../src/toolhost/simulationBreadboard.ts"
+import { pointForBreadboardRef } from "../breadboard/simulationBreadboard.ts"
 import {
   canDriveLesson,
   sceneGeometryStatus,
