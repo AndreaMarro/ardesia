@@ -152,4 +152,42 @@ describe("ElabScene -> Simulation Plugin adapter", () => {
       JSON.stringify(createSimulationAdapterPayloadFromElabScene(candidateFixture())),
     )
   })
+
+  // F5: zeri iniziali non devono aliasare i ref (bb1:j09 ≡ bb1:j9 via Number()).
+  // La grammatica breadboard è ancorata a [1-9]\d* come sim/breadboard/geometry.ts.
+  it("rejects a wire endpoint whose column has a leading zero instead of aliasing it", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[1]!.to = "bb1:j09"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /invalid breadboard ref in wire w2.to: bb1:j09/,
+    )
+  })
+
+  it("rejects a rail ref whose index has a leading zero instead of aliasing it", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[1]!.from = "bb1:bus-top-plus-09"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /invalid breadboard ref in wire w2.from: bb1:bus-top-plus-09/,
+    )
+  })
+
+  it("rejects a board id with a leading zero at the grammar level, not as a distinct board", () => {
+    const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
+    scene.wires[1]!.from = "bb01:j9"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /invalid breadboard ref in wire w2.from: bb01:j9/,
+    )
+  })
+
+  it("rejects a pinAssignments value whose column has a leading zero", () => {
+    const scene = candidateFixture() as { pinAssignments: Record<string, string> }
+    scene.pinAssignments["led1:anode"] = "bb1:f03"
+
+    expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
+      /invalid breadboard ref in pinAssignments led1:anode: bb1:f03/,
+    )
+  })
 })
