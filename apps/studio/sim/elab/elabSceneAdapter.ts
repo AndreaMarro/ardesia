@@ -44,7 +44,7 @@ function formatSceneErrors(errors: ReadonlyArray<{ path: string; message: string
 }
 
 function sourceLabel(scene: ElabScene): string {
-  const pages = [...scene.book.pages].sort((a, b) => a - b)
+  const pages = [...new Set(scene.book.pages)].sort((a, b) => a - b)
   const contiguous = pages.every((page, index) => index === 0 || page === pages[index - 1]! + 1)
   const pageLabel = contiguous && pages.length > 1 ? `${pages[0]}-${pages[pages.length - 1]}` : pages.join(",")
   return `Vol.${scene.book.volume} pag.${pageLabel}`
@@ -60,14 +60,48 @@ function assertBreadboardRef(ref: string, context: string): void {
   }
 }
 
-function assertResolvableBreadboardRefs(scene: ElabScene): void {
+function refComponentId(ref: string): string {
+  const separator = ref.indexOf(":")
+  return separator === -1 ? ref : ref.slice(0, separator)
+}
+
+// Ogni classificazione di ref deve chiudersi con un check esplicito contro gli
+// id dichiarati: un ref che non matcha la grammatica breadboard NON è
+// implicitamente un component ref valido (fail-closed, non fail-open).
+function assertResolvableRefs(scene: ElabScene): void {
+  const componentIds = new Set(scene.components.map((component) => component.id))
+
+  const assertBoardDeclared = (ref: string, context: string): void => {
+    const boardId = refComponentId(ref)
+    if (!componentIds.has(boardId)) {
+      throw new Error(`breadboard ${boardId} is not a declared component in ${context}: ${ref}`)
+    }
+  }
+
+  const assertEndpoint = (ref: string, context: string): void => {
+    if (looksLikeBreadboardRef(ref)) {
+      assertBreadboardRef(ref, context)
+      assertBoardDeclared(ref, context)
+      return
+    }
+    if (!componentIds.has(refComponentId(ref))) {
+      throw new Error(`unresolvable endpoint in ${context}: ${ref}`)
+    }
+  }
+
   for (const [pin, ref] of Object.entries(scene.pinAssignments)) {
+    if (!componentIds.has(refComponentId(pin))) {
+      throw new Error(`unresolvable component in pinAssignments key ${pin}`)
+    }
+    // I valori di pinAssignments sono fori breadboard per contratto: i pin dei
+    // componenti atterrano sulla board, mai direttamente su un altro componente.
     assertBreadboardRef(ref, `pinAssignments ${pin}`)
+    assertBoardDeclared(ref, `pinAssignments ${pin}`)
   }
 
   for (const wire of scene.wires) {
-    if (looksLikeBreadboardRef(wire.from)) assertBreadboardRef(wire.from, `wire ${wire.id}.from`)
-    if (looksLikeBreadboardRef(wire.to)) assertBreadboardRef(wire.to, `wire ${wire.id}.to`)
+    assertEndpoint(wire.from, `wire ${wire.id}.from`)
+    assertEndpoint(wire.to, `wire ${wire.id}.to`)
   }
 }
 
@@ -103,7 +137,7 @@ export function createSimulationAdapterPayloadFromElabScene(
   }
 
   const { scene } = result
-  assertResolvableBreadboardRefs(scene)
+  assertResolvableRefs(scene)
 
   return {
     schema: "elab.scene-sim-adapter.v1",
