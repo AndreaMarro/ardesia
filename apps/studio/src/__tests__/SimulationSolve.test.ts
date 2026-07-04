@@ -4,7 +4,7 @@
 // ELAB (tie top/bottom, rail interi) invece della formula hard-coded a due branch.
 
 import { describe, expect, it } from "vitest"
-import { resolveNet, solveSeriesLoop, type SeriesCircuitScene } from "../toolhost/simulationBreadboard"
+import { resolveNet, solveSeriesLoop, type SeriesCircuitScene } from "../../sim/breadboard/simulationBreadboard"
 import { createReferenceSimulationScene } from "../toolhost/ToolCanvasEmbeddable"
 
 /** Scena di riferimento Vol.1 cap.6 esp.1: bat9V → r470 → LED → bat- */
