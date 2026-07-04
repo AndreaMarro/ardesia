@@ -40,6 +40,14 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   const audioStartEpochRef = useRef<number | null>(null)
   /** Seek richiesto prima che i metadata audio siano pronti (applicato a loadedmetadata) */
   const pendingSeekSecRef = useRef<number | null>(null)
+  /**
+   * Guard SINCRONO: la sorgente audio concatenata si crea UNA sola volta per replay.
+   * Il guard `cancelled` dell'effect è asincrono e non blocca una seconda partenza
+   * (effect re-run per cambio-ref di timeline/store) → due Promise.all risolte =
+   * doppio URL.createObjectURL. Il replay è di una stanza fissa: caricare una volta
+   * è corretto. Impostato in modo sincrono prima di ogni await.
+   */
+  const audioLoadedRef = useRef(false)
   /** Ultimo t noto, per posizionare l'audio quando la sorgente finisce di caricare */
   const tRef = useRef<number | null>(null)
   tRef.current = t
@@ -88,13 +96,16 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
    */
   useEffect(() => {
     if (!timeline || timeline.audioChunks.length === 0) return
+    if (audioLoadedRef.current) return
+    const el = audioRef.current
+    if (!el) return
+    audioLoadedRef.current = true
     let cancelled = false
     Promise.all(timeline.audioChunks.map((chunk) => store.read(chunk.path)))
       .then((blobs) => {
         if (cancelled) return
         const parts = blobs.filter((b): b is Blob => b !== null)
-        const el = audioRef.current
-        if (!el || parts.length === 0) return
+        if (parts.length === 0) return
         const startEpoch = timeline.audioChunks[0].startEpoch
         audioStartEpochRef.current = startEpoch
         el.src = URL.createObjectURL(new Blob(parts, { type: "audio/webm" }))
