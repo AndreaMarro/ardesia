@@ -38,12 +38,13 @@ Gate = autorità. Mai indebolire. Baseline sempre PRIMA di toccare codice; non a
 
 ### apps/studio (FIRSTHAND — verdi su a237295c)
 ```bash
-npm --prefix apps/studio run typecheck   # tsc -b --noEmit
-npm --prefix apps/studio exec vitest run -- --pool=threads --maxWorkers=1 \
+cd apps/studio
+npm run typecheck                        # tsc -b --noEmit
+npx vitest run --pool=threads --maxWorkers=1 \
   --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
-npm --prefix apps/studio run build       # tsc -b && vite build
+npm run build                            # tsc -b && vite build
 ```
-CoV completa = typecheck → vitest full ×3 (flag stabilizzati sopra, exit espliciti) → build. Gotcha: vitest NON typechecka (`erasableSyntaxOnly`) — tsc-b obbligatorio.
+CoV completa = typecheck → vitest full ×3 (flag stabilizzati sopra, exit espliciti) → build. Gotcha: vitest NON typechecka (`erasableSyntaxOnly`) — tsc-b obbligatorio. Gotcha cwd (sessione 16jul): vitest va lanciato DA `apps/studio`, mai dalla root con `npm --prefix apps/studio exec vitest` (forma precedente di questo packet: rotta).
 
 ### packages/engine (FIRSTHAND: pyproject.toml + uv.lock + tests/ presenti)
 ```bash
@@ -59,6 +60,19 @@ TODO: eseguire e registrare baseline reale prima di qualunque lane che tocchi il
 
 ### packages/tools / packages/api / packages/simulation-plugin
 Non esistono: gate da definire ALLA CREAZIONE del package, mai dopo.
+
+### Gate import-direction sim/ → src/ (nuovo, in PR #50)
+`apps/studio/src/__tests__/ImportBoundarySim.test.ts` (scan fs+regex, zero dipendenze): fallisce se un modulo sotto `apps/studio/sim/` importa relativo dentro `apps/studio/src/`. È il primo enforcement eseguibile della direzione "simulation core puro non dipende da UI/toolhost" (target shape: `packages/simulation` non importa `apps/*`). Gira dentro il gate vitest studio. Limite dichiarato: copre solo specifier relativi statici/`import()` con apici; se entrano path alias va esteso.
+
+## Addendum firsthand 2026-07-04 (sessione F5/F4)
+
+Clock macchina 2026-07-04. Stato PR ricontrollato firsthand dopo push:
+- Stack sim: **#49** (schema, base main, fix F3 `2d2b3c70`) → **#50** (adapter, fix F1/F6 `9b82eab4`, **F5 chiuso** `ca5624bb`, **F4 chiuso** `42f749a5`+`a1f06125`+`7d44006f`). Entrambi MERGEABLE.
+- Stack LessonOS: **#46** → **#51** (C1 config manuali reale, hash Vol.2/Vol.3 firsthand). Entrambi MERGEABLE.
+- **#48** (questo packet) MERGEABLE.
+- F4: `simulationBreadboard.ts` ora vive in `apps/studio/sim/breadboard/` (direzione src→sim ovunque); `sim` aggiunto a tsconfig include (prima typecheckato solo via test — ha scoperto un TS6133 latente in `sim/bundle.ts`).
+- **F2 resta GATE-Andrea** (canDriveLesson true con zero geometria authored — decisione canon ELAB-SCENE-FORGE §3).
+- Baseline test per branch (firsthand 04jul): main+#49 = 749/5 · #49+#50 HEAD `7d44006f` = **763/5** ×3 · #46+#51 = 739/5.
 
 ## Decision tree LessonOS / Simulation Plugin
 
