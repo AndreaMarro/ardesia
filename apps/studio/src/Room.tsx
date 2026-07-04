@@ -7,7 +7,7 @@ import { latexToImage } from "./latexToImage"
 import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
-import { type StorageMode } from "./store/types"
+import { PATHS, type StorageMode } from "./store/types"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
@@ -15,6 +15,8 @@ import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
+import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
+import { defaultManualRegistry } from "./lessonos/manualRegistry"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
 import EmptyState from "./design/EmptyState"
@@ -98,6 +100,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
   const _pendingSave = useRef<Promise<void>>(Promise.resolve())
+  // Promise-chain mutex per la promozione bridge: due promote sovrapposti
+  // leggerebbero lo stesso cursore e duplicherebbero i material.cited
+  const _pendingPromote = useRef<Promise<void>>(Promise.resolve())
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
@@ -201,6 +206,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
               navigateToLesson,
               flushPersist,
+              promoteJournalToLessonOs,
             }
           }
         }
@@ -399,10 +405,45 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }, [actualStore])
 
+  /**
+   * Bridge Journal → LessonOS (spec #34): promuove le pdf.page.view riconosciute
+   * dal ManualRegistry in material.cited sull'event-log. Idempotente al replay
+   * (cursore lastPromotedJournalT dentro appendJournalBridgeTail). Best-effort:
+   * non deve mai bloccare l'export — il journal resta la fonte di verità.
+   */
+  async function promoteJournalToLessonOs(): Promise<void> {
+    const run = _pendingPromote.current.then(async () => {
+      const runtime = lessonOsRef.current
+      if (!runtime) return
+      try {
+        // Flush del buffer journal: le viste PDF appena registrate devono essere
+        // sul file PRIMA della lettura (stessa fonte dell'export, Room.read sotto).
+        await journalRef.current?.flush()
+        const blob = await actualStore.read(PATHS.JOURNAL)
+        if (!blob) return
+        const events = deserializeEvents(await blob.text())
+        await appendJournalBridgeTail(runtime.store, events, {
+          registry: defaultManualRegistry,
+          room,
+        })
+      } catch {
+        // promozione fallita: l'export prosegue col journal come verità
+      }
+    })
+    _pendingPromote.current = run.then(
+      () => {},
+      () => {},
+    )
+    return run
+  }
+
   /** Export .lesson: genera ZIP e avvia download */
   async function handleExportLesson() {
     setExporting(true)
     try {
+      // Promuovi le citazioni manuale PRIMA dello snapshot event-log nel bundle:
+      // l'export è il momento "fine lezione" (stand-in finché non esiste lesson.ended).
+      await promoteJournalToLessonOs()
       // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
       const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)
       const url = URL.createObjectURL(zipBlob)
