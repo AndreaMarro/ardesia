@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "circuit-scene/2",
+  "experimentId": "v1-cap6-esp1",
+  "provenance": {
+    "status": "candidate",
+    "origin": "imported",
+    "checks": {
+      "electrical": "unknown",
+      "geometry": "unknown",
+      "bookMatch": "unknown",
+      "visualMatch": "unknown"
+    }
+  },
+  "book": { "volume": 1, "chapter": 6, "exp": "esp1", "pages": [29, 30, 31] },
+  "source": {},
+  "board": {
+    "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 },
+    "grid": { "columns": 30, "columnPitch": 7.5 },
+    "orientation": "elab-volume"
+  },
+  "components": [
+    { "id": "bat1", "type": "battery9v" },
+    { "id": "bb1", "type": "breadboard-half" },
+    { "id": "r1", "type": "resistor", "value": 470 },
+    { "id": "led1", "type": "led", "color": "red" }
+  ],
+  "wires": [
+    { "id": "w1", "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
+    { "id": "w2", "from": "bb1:bus-top-plus-9", "to": "bb1:j9", "color": "red" },
+    { "id": "w3", "from": "bb1:a3", "to": "bat1:negative", "color": "black" }
+  ],
+  "pinAssignments": {
+    "r1:pin1": "bb1:i9",
+    "r1:pin2": "bb1:i3",
+    "led1:anode": "bb1:f3",
+    "led1:cathode": "bb1:e3"
+  }
+}
