@@ -252,6 +252,14 @@ export function fromCircuitSceneV1(input: unknown): ElabScene {
       if (!isRecord(connection)) {
         throw new Error(`CircuitScene v1 connections[${index}] must be an object`)
       }
+      // Stessa regola dei waypoints per OGNI chiave sconosciuta: rifiutare batte
+      // droppare in silenzio. In particolare un `id` legacy verrebbe ri-chiavato
+      // in `w<n>` spezzando eventuali riferimenti esterni senza traccia.
+      for (const key of Object.keys(connection)) {
+        if (key !== "from" && key !== "to" && key !== "color" && key !== "waypoints") {
+          throw new Error(`CircuitScene v1 connections[${index}] carries unknown key ${key}`)
+        }
+      }
       // Authored waypoints are the moat geometry: refusing beats silently dropping
       // them. Mapping waypoints -> wire.path needs the v1 seam semantics verified
       // firsthand (WireRenderer waypoint format) before it can be written honestly.

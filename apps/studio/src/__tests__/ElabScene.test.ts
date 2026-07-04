@@ -221,6 +221,20 @@ describe("fromCircuitSceneV1 read-shim (connections -> wires)", () => {
     expect(() => fromCircuitSceneV1(legacy)).toThrow(/components/)
   })
 
+  it("fails closed on v1 connections carrying unknown extra keys (no silent drop)", () => {
+    const legacy = legacyScene() as { connections: Array<Record<string, unknown>> }
+    legacy.connections[1]!.gauge = "22awg"
+    expect(() => fromCircuitSceneV1(legacy)).toThrow(
+      /connections\[1\] carries unknown key gauge/,
+    )
+  })
+
+  it("fails closed on a legacy connection id: re-keying would sever external references", () => {
+    const legacy = legacyScene() as { connections: Array<Record<string, unknown>> }
+    legacy.connections[0]!.id = "legacy-conn-7"
+    expect(() => fromCircuitSceneV1(legacy)).toThrow(/connections\[0\] carries unknown key id/)
+  })
+
   it("is deterministic: same input, byte-identical output", () => {
     expect(JSON.stringify(fromCircuitSceneV1(legacyScene()))).toBe(
       JSON.stringify(fromCircuitSceneV1(legacyScene())),
