@@ -17,6 +17,8 @@ import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
+import { isReplayView } from "./store/isReplayView"
+import ReplayView from "./ReplayView"
 import EmptyState from "./design/EmptyState"
 import {
   REFERENCE_SIM_EMBED_ID,
@@ -46,6 +48,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
   const recapView = useMemo(() => isRecapView(), [])
+  const replayView = useMemo(() => isReplayView(), [])
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -108,8 +111,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (cancelled) return
         setStoreMode(actualStore.mode)
 
-        // In vista studente/recap: niente JournalRecorder né AudioRecorder (sola lettura).
-        if (!studentView && !recapView) {
+        // In vista studente/recap/replay: niente JournalRecorder né AudioRecorder (sola lettura).
+        if (!studentView && !recapView && !replayView) {
           const clock = sharedClock
 
           // Crea JournalRecorder dopo init store con clock condiviso
@@ -529,6 +532,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   return recapView ? (
     <RecapView store={actualStore} room={room} />
+  ) : replayView ? (
+    <ReplayView store={actualStore} room={room} />
   ) : (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       {studentView ? (
