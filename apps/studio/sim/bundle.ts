@@ -15,7 +15,6 @@ import { fileURLToPath } from "node:url"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const SIM_DIR = path.resolve(__dirname, ".")
 const MANIFEST_SRC_PATH = path.join(SIM_DIR, "manifest-source.json")
-const ENTRY_HTML_PATH = path.join(SIM_DIR, "entry.html")
 const BUNDLE_PATH = path.join(SIM_DIR, "reference-blink.maestrotool")
 const KEYS_PATH = path.join(SIM_DIR, "keys.json")
 
