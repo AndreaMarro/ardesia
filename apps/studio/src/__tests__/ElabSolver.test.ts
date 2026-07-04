@@ -47,6 +47,8 @@ describe("solveElabExperiment (motore vendored)", () => {
       (connection) => connection.from !== "bat1:negative",
     )
     const result = solveElabExperiment(experiment)
+    // ok resta true: "nessun corto" ≠ "circuito funzionante" (vedi SolveResult.ok)
+    expect(result.ok).toBe(true)
     expect(result.componentStates.led1?.on).toBe(false)
     expect(result.currents.led1 ?? 0).toBe(0)
   })

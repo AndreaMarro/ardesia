@@ -26,6 +26,11 @@ export interface SolverExperiment {
 }
 
 export interface SolveResult {
+  /**
+   * `true` = solve eseguito SENZA corto circuito. NON significa "circuito
+   * funzionante": un circuito aperto ha ok=true con LED spento e correnti
+   * assenti — leggere componentStates/currents/diagnostics per il verdetto.
+   */
   ok: boolean
   componentStates: Record<string, { on?: boolean } & Record<string, unknown>>
   currents: Record<string, number>

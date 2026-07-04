@@ -108,5 +108,11 @@ confliggere). Verifica locale: typecheck ad hoc dei nuovi `.ts` + vitest.
 - **Drift del solver nel plugin**: coperto dal drift-guard (fallimento esplicito).
 - **Vf model mismatch**: reso esplicito (D4), decisione di riconciliazione = GATE-Andrea
   (quale Vf è canone per il Vol.1: 1.8 del motore o 2.0 della scena).
-- **Conflitto con PR #50**: evitato non toccando `ToolCanvasEmbeddable.tsx` render/tsconfig;
-  l'unico file condiviso è `simulationPluginRegistry.ts` (#50 non lo tocca — verificato nel diff).
+- **Conflitto con PR #50 (VERIFICATO in review, corregge una claim errata di questa spec)**:
+  #50 è basata su `a237295c` (pre-#45, mai rebasata): la sua versione di
+  `ToolCanvasEmbeddable.tsx` NON contiene il registry dispatch di #45. Merge di prova
+  eseguito in worktree isolato: `CONFLICT (content)` su `ToolCanvasEmbeddable.tsx`
+  (blocco import). Se il conflitto venisse risolto accettando la versione #50,
+  sparirebbero registry dispatch (#45) e campo `solve` (questa slice) in silenzio.
+  **Azione per il gate: rebase di #50 su main corrente PRIMA del merge.**
+  Questa slice tocca `ToolCanvasEmbeddable.tsx` per 4 righe additive (import + `solve:`).
