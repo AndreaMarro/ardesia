@@ -180,3 +180,127 @@ export function areBreadboardRefsContinuous(a: string, b: string): boolean {
   const pointB = parseBreadboardRef(b);
   return Boolean(pointA && pointB && pointA.nodeId === pointB.nodeId);
 }
+
+// --- Solve serie graph-driven -------------------------------------------------
+// Le net elettriche nascono dalla stessa grammatica di areBreadboardRefsContinuous
+// (ref breadboard → nodeId di tie/rail) estesa con pinAssignments + connections.
+// Il solve percorre il grafo battery→…→battery genericamente, senza hard-codare
+// il numero o l'ordine dei componenti.
+
+/** Forma strutturale minima della scena per il solve (SimulationSceneV1 la soddisfa). */
+export interface SeriesCircuitScene {
+  components: Array<{ id: string; type: string; value?: number }>;
+  pinAssignments: Record<string, string>;
+  connections: Array<{ from: string; to: string }>;
+}
+
+export interface SeriesLoopResult {
+  /** Esiste un cammino elettrico battery:positive → battery:negative. */
+  closed: boolean;
+  /** Somma delle resistenze dei componenti sul cammino. */
+  resistanceOhms: number;
+  /** Numero di LED attraversati sul cammino. */
+  ledCount: number;
+}
+
+/** Ref → nodo: ref breadboard collassano sul nodeId (tie/rail), il resto è un nodo proprio. */
+function circuitNode(ref: string): string {
+  const parsed = parseBreadboardRef(ref);
+  return parsed ? parsed.nodeId : ref;
+}
+
+/** Union-find sulle net: pinAssignments e connections uniscono i nodi. */
+function buildNets(scene: SeriesCircuitScene): (ref: string) => string {
+  const parent = new Map<string, string>();
+  const find = (node: string): string => {
+    let root = parent.get(node) ?? node;
+    if (root !== node) {
+      root = find(root);
+      parent.set(node, root);
+    }
+    return root;
+  };
+  const union = (a: string, b: string): void => {
+    const ra = find(a);
+    const rb = find(b);
+    if (ra !== rb) parent.set(ra, rb);
+  };
+  for (const [pinRef, holeRef] of Object.entries(scene.pinAssignments)) {
+    union(circuitNode(pinRef), circuitNode(holeRef));
+  }
+  for (const connection of scene.connections) {
+    union(circuitNode(connection.from), circuitNode(connection.to));
+  }
+  return (ref: string) => find(circuitNode(ref));
+}
+
+/** Net canonica di un ref (pin componente, foro o rail) nella scena data. */
+export function resolveNet(ref: string, scene: SeriesCircuitScene): string {
+  return buildNets(scene)(ref);
+}
+
+/**
+ * Solve serie minimo: cerca un cammino semplice battery:positive→battery:negative
+ * attraverso i componenti a due terminali (resistor: pin1/pin2, led: anode/cathode)
+ * e somma resistenze/LED incontrati. Nessun ramo parallelo (fuori scope).
+ */
+export function solveSeriesLoop(scene: SeriesCircuitScene): SeriesLoopResult {
+  const open: SeriesLoopResult = { closed: false, resistanceOhms: 0, ledCount: 0 };
+  const battery = scene.components.find((component) => component.type === "battery9v");
+  if (!battery) return open;
+
+  const net = buildNets(scene);
+  const start = net(`${battery.id}:positive`);
+  const target = net(`${battery.id}:negative`);
+
+  const edges = scene.components.flatMap((component) => {
+    if (component.type === "resistor") {
+      return [{
+        a: net(`${component.id}:pin1`),
+        b: net(`${component.id}:pin2`),
+        resistance: component.value ?? 0,
+        led: false,
+      }];
+    }
+    if (component.type === "led") {
+      return [{
+        a: net(`${component.id}:anode`),
+        b: net(`${component.id}:cathode`),
+        resistance: 0,
+        led: true,
+      }];
+    }
+    return [];
+  });
+
+  // Budget anti-DoS: la DFS dei cammini semplici è fattoriale su scene dense e
+  // le scene arrivano anche da embed condivisi/importati. Budget esaurito →
+  // scena trattata come aperta (0 mA), mai freeze del tab.
+  const MAX_WALK_STEPS = 20000;
+  let steps = 0;
+  const usedEdges = new Set<number>();
+  const visitedNets = new Set<string>();
+  const walk = (from: string): { resistance: number; leds: number } | null => {
+    if (++steps > MAX_WALK_STEPS) return null;
+    if (from === target) return { resistance: 0, leds: 0 };
+    visitedNets.add(from);
+    for (let i = 0; i < edges.length; i++) {
+      if (usedEdges.has(i)) continue;
+      const edge = edges[i];
+      const next = edge.a === from ? edge.b : edge.b === from ? edge.a : null;
+      if (next === null || (visitedNets.has(next) && next !== target)) continue;
+      usedEdges.add(i);
+      const rest = walk(next);
+      if (rest) {
+        return { resistance: rest.resistance + edge.resistance, leds: rest.leds + (edge.led ? 1 : 0) };
+      }
+      usedEdges.delete(i);
+    }
+    visitedNets.delete(from);
+    return null;
+  };
+
+  const path = walk(start);
+  if (!path) return open;
+  return { closed: true, resistanceOhms: path.resistance, ledCount: path.leds };
+}

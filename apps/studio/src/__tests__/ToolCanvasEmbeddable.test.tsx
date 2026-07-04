@@ -166,4 +166,27 @@ describe("ToolCanvasEmbeddable", () => {
     expect(html).toContain(">Mostra montato</button>");
     expect(html).toContain(">Reset</button>");
   });
+
+  it("GOLDEN: la corrente reference resta 14.9 mA ma deriva dal traversal del circuito", () => {
+    // Discriminante anti-formula: resistore componente 220 Ohm con runtime
+    // ancora a 470 → il traversal usa il componente (31.8 mA), la vecchia
+    // formula a due branch avrebbe risposto 14.9 mA.
+    const scene = createReferenceSimulationScene();
+    scene.components = scene.components.map((component) =>
+      component.id === "r1" ? { ...component, value: 220 } : component,
+    );
+    const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
+    const html = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!);
+    expect(html).toContain("31.8 mA");
+    expect(html).not.toContain("14.9 mA");
+  });
+
+  it("circuito aperto (filo negativo assente): corrente 0.0 mA anche con ledOn", () => {
+    const scene = createReferenceSimulationScene();
+    scene.connections = scene.connections.filter((connection) => connection.from !== "bat1:negative");
+    const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
+    const html = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!);
+    expect(html).toContain("0.0 mA");
+    expect(html).not.toContain("14.9 mA");
+  });
 });

@@ -12,7 +12,9 @@ import {
   generateBreadboardPoints,
   isBreadboardRef,
   pointForBreadboardRef,
+  solveSeriesLoop,
 } from "./simulationBreadboard";
+import { registerSimulationTool, getSimulationTool } from "./simulationPluginRegistry";
 
 type EmbedLike = {
   id?: string;
@@ -160,8 +162,6 @@ export const ELAB_EXTERNAL_LED_EXPERIMENT_ID = "v3-cap6-esp2";
 export const ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-030-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE = "/elab/manuals/vol1/page-031-esercizio-6-1.png";
 export const ELAB_V3_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol3/page-051-esercizio-6-2.png";
-
-const referenceToolIds = new Set([REFERENCE_SIM_TOOL_ID, REFERENCE_PLUGIN_REF_ID]);
 
 export function parseToolLink(link: string | null | undefined): ToolLink | null {
   if (!link?.startsWith(TOOL_EMBED_SCHEME)) return null;
@@ -432,9 +432,24 @@ export function isToolCanvasEmbed(element: EmbedLike): boolean {
 export function renderToolCanvasEmbeddable(element: EmbedLike): ReactElement | null {
   const toolLink = parseToolLink(element.link);
   if (!toolLink) return null;
-  if (referenceToolIds.has(toolLink.toolId)) return <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} />;
+  const entry = getSimulationTool(toolLink.toolId);
+  if (entry) return entry.render(element, toolLink);
   return <UnknownToolCanvasTool toolLink={toolLink} />;
 }
+
+// Registrazione dei tool reference: il dispatch di renderToolCanvasEmbeddable e
+// l'inserimento da toolbar (Room) passano ENTRAMBI dal registry, non da Set/id
+// hard-codati. Tool non registrati non vengono mai dispatchati (deny-by-default).
+const referenceSimulationEntry = {
+  embedId: REFERENCE_SIM_EMBED_ID,
+  render: (element: EmbedLike, toolLink: ToolLink) => (
+    <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} />
+  ),
+  createEmbed: () => createToolEmbedElement(),
+  validate: (state: unknown) => validateBookLayoutScene(state as SimulationSceneV1),
+};
+registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
+registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 
 function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLike; toolLink: ToolLink }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
@@ -932,7 +947,13 @@ function batteryLedCurrentMa(scene: SimulationSceneV1): number {
     return scene.runtime.ledOn ? ((5 - 2) / 470) * 1000 : 0;
   }
   if (!scene.runtime.ledOn) return 0;
-  return ((scene.runtime.supplyVolts - scene.runtime.ledForwardVolts) / scene.runtime.resistorOhms) * 1000;
+  // Solve serie graph-driven: la corrente deriva dal cammino elettrico REALE
+  // (connections + pinAssignments + valori dei componenti), non da una formula
+  // hard-coded. Circuito aperto o senza resistenza sul path → 0 mA.
+  const loop = solveSeriesLoop(scene);
+  if (!loop.closed || loop.resistanceOhms <= 0) return 0;
+  const driveVolts = scene.runtime.supplyVolts - scene.runtime.ledForwardVolts * loop.ledCount;
+  return Math.max(0, (driveVolts / loop.resistanceOhms) * 1000);
 }
 
 function resolveSimulationScene(state: SimulationToolState | undefined, snapshot: { millis: number; ledOn: boolean }) {

@@ -20,11 +20,11 @@ import RecapView from "./RecapView"
 import { isReplayView } from "./store/isReplayView"
 import ReplayView from "./ReplayView"
 import EmptyState from "./design/EmptyState"
-import {
-  REFERENCE_SIM_EMBED_ID,
-  createToolEmbedElement,
-  renderToolCanvasEmbeddable,
-} from "./toolhost/ToolCanvasEmbeddable"
+// NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
+// nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
+// getSimulationTool, o il registry risulterebbe vuoto.
+import { REFERENCE_SIM_TOOL_ID, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { getSimulationTool } from "./toolhost/simulationPluginRegistry"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -497,20 +497,27 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       return
     }
 
+    // Il tool arriva dal registry (deny-by-default), non da id/factory hard-codati.
+    const tool = getSimulationTool(REFERENCE_SIM_TOOL_ID)
+    if (!tool) {
+      setStorageError("Simulation Plugin non disponibile.")
+      return
+    }
+
     const currentElements = apiRef.current.getSceneElements()
-    const existing = currentElements.find((element: any) => element.id === REFERENCE_SIM_EMBED_ID)
+    const existing = currentElements.find((element: any) => element.id === tool.embedId)
     if (existing) {
       apiRef.current.updateScene({
-        appState: { selectedElementIds: { [REFERENCE_SIM_EMBED_ID]: true } },
+        appState: { selectedElementIds: { [tool.embedId]: true } },
       })
       apiRef.current.scrollToContent?.([existing], { fitToContent: true })
       return
     }
 
-    const embed = createToolEmbedElement()
+    const embed = tool.createEmbed()
     apiRef.current.updateScene({
       elements: [...currentElements, embed],
-      appState: { selectedElementIds: { [REFERENCE_SIM_EMBED_ID]: true } },
+      appState: { selectedElementIds: { [tool.embedId]: true } },
     })
     apiRef.current.scrollToContent?.([embed], { fitToContent: true })
   }
