@@ -6,12 +6,14 @@
 MAESTRO-Studio = la superficie di CATTURA del progetto MAESTRO: **la lavagna che registra**.
 Stack: React 19 + TypeScript + Vite 8, Excalidraw 0.18 (MIT), MathLive (MIT), pdfjs (Apache).
 Milestone M0, task in ordine VINCOLANTE: **T0 WorkspaceStore → T1 JournalRecorder (KILL-TEST replay deterministico) → T2 Audio Mode A → T3 bundle `.lesson`**.
-Gli ORDINI con i criteri di accettazione = `~/lessonos/COORDINATION.md` § CLAUDE-SAYS (UNICA fonte di verità). NON inventare task fuori ordine.
+Gli ORDINI con i criteri di accettazione = `~/lessonos/COORDINATION.md` § CLAUDE-SAYS. Se il file non esiste sulla macchina corrente (es. MacBook: vive solo sul Mini), fai fede su `docs/CANON-INDEX.md` + i PR aperti del monorepo. NON inventare task fuori ordine.
 
 ## 2. Pipeline iterazione (UNA task per iterazione)
 ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; UNA ipotesi) → BUILD (codice + test vitest NON tautologici) → REVIEW (`./bin/review.sh`, applica i fix VERI) → GATE `bash eval/gate.sh` VERDE → COMMIT + append STATUS.md + append log.jsonl.
 
 ## 3. Regole tecniche (gotcha REALI già pagati — non ri-sbattere)
+- **`tsc -b` è la fonte di verità del typecheck: vitest/esbuild NON typechecka.** `erasableSyntaxOnly` vieta le parameter-properties TS (constructor `private x`): vitest verde + `tsc -b` rosso = false-green già pagato più volte. Gira SEMPRE `npm run typecheck` prima di dichiarare verde.
+- Vitest deterministico solo coi flag runner: `--pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000` (senza, flakka in full-suite).
 - tsconfig è STRICT (`noUnusedLocals`/`noUnusedParameters`): import/variabili inutilizzati FALLISCONO il gate (TS6133) — pulisci prima di consegnare.
 - jsdom di vitest NON fornisce un localStorage completo: nei test stub esplicito (`Object.defineProperty(globalThis, 'localStorage', …)`) in beforeEach/setup — niente try/catch silenziosi che mascherano il guasto.
 - Blob binari (audio/immagini): MAI `data.text()` per serializzare — corrompe i byte; usa arrayBuffer → base64.
