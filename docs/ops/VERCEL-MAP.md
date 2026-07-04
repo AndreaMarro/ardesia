@@ -23,6 +23,12 @@ Current decision:
 - Do not claim the live demo contains the latest monorepo Simulation Plugin slice unless a browser check proves it on the served deployment.
 - Do not run `vercel deploy` without Andrea's explicit preview-deploy OK.
 
+Update 2026-07-04:
+
+- Clean monorepo worktree `/private/tmp/ardesia-preview-preflight-20260704` has no `.vercel/project.json` at the repo root or under `apps/studio`.
+- Root command `npm run preview:studio:preflight` now detects that blocker after local Studio typecheck/build.
+- Do not run `vercel link` automatically; the target Vercel project/root remains an Andrea gate before the first monorepo preview deploy.
+
 Data: 2026-06-30
 Aggiornamento live: 2026-07-01 03:08-03:20 CEST
 Audit esteso Vercel: 2026-07-01 03:55-04:05 CEST

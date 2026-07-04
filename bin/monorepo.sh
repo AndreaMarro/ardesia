@@ -18,6 +18,10 @@ Root scripts:
   typecheck          Run core TypeScript checks.
   build              Build core workspaces.
   build:elab         Build ELABTutor plugin.
+  preview:studio:check
+                     Run the no-deploy Studio preview readiness gate.
+  preview:studio:preflight
+                     Check Vercel readiness plus the no-deploy Studio gate.
   verify             Run core tests plus builds.
   verify:elab        Run ELABTutor tests plus build.
   factory:readonly   Print remote factory health without mutation.
@@ -26,6 +30,15 @@ EOF
 
 has_cmd() {
   command -v "$1" >/dev/null 2>&1
+}
+
+require_file() {
+  local path="$1"
+
+  if [[ ! -f "$ROOT/$path" ]]; then
+    echo "miss  $path" >&2
+    return 1
+  fi
 }
 
 print_workspace() {
@@ -111,7 +124,14 @@ build_core() {
 
 build_elab() {
   cd "$ROOT"
-  npm --prefix plugins/elab-tutor run build
+  npm --prefix plugins/elab-tutor --ignore-scripts run build
+}
+
+require_studio_deps() {
+  if [[ ! -x "$ROOT/apps/studio/node_modules/.bin/tsc" || ! -x "$ROOT/apps/studio/node_modules/.bin/vite" || ! -x "$ROOT/apps/studio/node_modules/.bin/vitest" ]]; then
+    echo "miss  apps/studio dependencies (run npm --prefix apps/studio ci, or npm run bootstrap, first)"
+    return 1
+  fi
 }
 
 verify_core() {
@@ -125,6 +145,72 @@ verify_elab() {
   build_elab
 }
 
+preview_studio_check() {
+  cd "$ROOT"
+
+  echo "== studio preview readiness =="
+  require_file "apps/studio/package.json"
+  require_file "apps/studio/package-lock.json"
+  require_file "apps/studio/vite.config.ts"
+  require_studio_deps
+
+  npm --prefix apps/studio run typecheck
+  npm --prefix apps/studio test -- --run
+  npm --prefix apps/studio run build
+  require_file "apps/studio/dist/index.html"
+}
+
+preview_studio_preflight() {
+  cd "$ROOT"
+
+  echo "== studio preview preflight =="
+  echo "This command is read-only against Vercel and never runs a deploy."
+  require_file "apps/studio/package.json"
+  require_file "apps/studio/package-lock.json"
+  require_file "apps/studio/vite.config.ts"
+
+  local blocked=0
+
+  echo
+  echo "== vercel =="
+  if has_cmd vercel; then
+    printf "ok    vercel %s\n" "$(vercel --version 2>&1 | tail -n 1 | sed 's/^Vercel CLI //')"
+  else
+    echo "miss  vercel CLI"
+    blocked=1
+  fi
+
+  if has_cmd vercel && vercel whoami >/dev/null 2>&1; then
+    echo "ok    vercel auth"
+  else
+    echo "miss  vercel auth"
+    blocked=1
+  fi
+
+  if [[ -f "$ROOT/.vercel/project.json" ]]; then
+    echo "ok    root .vercel/project.json"
+  elif [[ -f "$ROOT/apps/studio/.vercel/project.json" ]]; then
+    echo "warn  apps/studio .vercel/project.json exists; monorepo root link still missing"
+    blocked=1
+  else
+    echo "miss  .vercel/project.json (do not run vercel link without Andrea's target-project approval)"
+    blocked=1
+  fi
+
+  echo
+  echo "== local build =="
+  preview_studio_check
+
+  if [[ "$blocked" -ne 0 ]]; then
+    echo
+    echo "blocked: local build passed, but preview deploy is not ready."
+    return 1
+  fi
+
+  echo
+  echo "ready: local build and Vercel preflight passed. Preview deploy still requires GATE-Andrea."
+}
+
 # STOP-safe: probe di stato process-only. Non esegue MAI script del repo
 # lessonos (niente eval/gate.sh, niente pytest): solo curl di health endpoint
 # e ispezione launchctl/ps. Se compare una riga hourly/gate/pytest, va
@@ -136,16 +222,35 @@ factory_readonly() {
   fi
 
   ssh macmini 'set -u
+    status=0;
     echo "== headroom ==";
-    curl -sf --max-time 3 http://127.0.0.1:8787/health 2>/dev/null || true;
+    if curl -sf --max-time 3 http://127.0.0.1:8787/health 2>/dev/null; then
+      echo;
+    else
+      echo "miss  headroom health";
+      status=1;
+    fi;
     echo;
     echo "== agentmemory livez ==";
-    curl -sf --max-time 3 http://127.0.0.1:3111/agentmemory/livez 2>/dev/null || true;
+    if curl -sf --max-time 3 http://127.0.0.1:3111/agentmemory/livez 2>/dev/null; then
+      echo;
+    else
+      echo "miss  agentmemory livez";
+      status=1;
+    fi;
     echo;
     echo "== launchd (lessonos/agentmemory) ==";
     launchctl list | grep -iE "lessonos|agentmemory" || true;
     echo "== processi fabbrica (atteso: nessuno con STOP attivo) ==";
-    ps aux | grep -iE "hourly-tick|driver-orch|eval/gate|uv run pytest|pytest -q" | grep -v grep || true'
+    forbidden_pattern="[h]ourly-tick|[d]river-orch|[e]val/gate|[u]v run pytest|[p]ytest -q";
+    forbidden_processes="$(ps ax -o pid=,command= | grep -iE "$forbidden_pattern" || true)";
+    if [[ -n "$forbidden_processes" ]]; then
+      printf "%s\n" "$forbidden_processes";
+      status=1;
+    else
+      echo "ok    no forbidden factory processes";
+    fi;
+    exit "$status"'
 }
 
 main() {
@@ -160,6 +265,8 @@ main() {
     typecheck-core) typecheck_core ;;
     build-core) build_core ;;
     build-elab) build_elab ;;
+    preview-studio-check) preview_studio_check ;;
+    preview-studio-preflight) preview_studio_preflight ;;
     verify-core) verify_core ;;
     verify-elab) verify_elab ;;
     factory-readonly) factory_readonly ;;
