@@ -11,7 +11,7 @@ import {
   breadboardGeometry,
   generateBreadboardPoints,
   pointForBreadboardRef,
-} from "../toolhost/simulationBreadboard";
+} from "../../sim/breadboard/simulationBreadboard";
 import {
   ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE,
   ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE,
