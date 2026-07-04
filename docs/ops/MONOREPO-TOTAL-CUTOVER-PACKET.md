@@ -1,6 +1,6 @@
 # MONOREPO-TOTAL-CUTOVER-PACKET
 
-Date: 2026-07-01 · **Updated: 2026-07-16 (machine clock 2026-07-04)**
+Date: 2026-07-01 · **Updated: sessione "2026-07-16" (clock macchina reale: 2026-07-04 — ogni data 15/16jul in questo doc è il nome-sessione del prompt, non la data reale)**
 Status: plan, no cutover performed. First time committed to repo (previously lived only untracked in the local dirty checkout — that was itself fragmentation).
 Canonical repo: `AndreaMarro/ardesia`
 
@@ -9,7 +9,7 @@ Canonical repo: `AndreaMarro/ardesia`
 All claims below verified by command in session (FIRSTHAND unless marked).
 
 - `origin/main` = `a237295c` (merge PR #43). No feature merge since.
-- **PR aperti, verdi, in attesa GATE-Andrea (mai auto-merge):**
+- **PR aperti in attesa GATE-Andrea (mai auto-merge). "Verdi" = CoV locale sessione 15jul; il repo NON ha CI, quindi nessuno stato green machine-verificabile sui PR:**
   - **#44** replay player `?vista=replay` (P1)
   - **#45** toolhost registry dispatch + solve serie graph-driven (P2)
   - **#46** LessonOS manualRegistry + bridge call-site su export (P5) — inerte in prod (registry default vuoto)
