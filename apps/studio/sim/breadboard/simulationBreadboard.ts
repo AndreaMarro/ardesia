@@ -104,8 +104,11 @@ function railNodeId(boardId: string, rail: BreadboardRailName): string {
   return `${boardId}:${rail}`;
 }
 
+// Grammatica ancorata a [1-9]\d* (come sim/breadboard/geometry.ts): con \d+ gli
+// zeri iniziali aliasano i ref via Number() (bb1:j09 ≡ bb1:j9) e bb01 diventa
+// una board sintatticamente distinta da bb1.
 export function parseBreadboardRef(ref: string): ParsedBreadboardRef | null {
-  const terminal = ref.match(/^(bb\d+):([a-j])(\d+)$/);
+  const terminal = ref.match(/^(bb[1-9]\d*):([a-j])([1-9]\d*)$/);
   if (terminal) {
     const column = Number(terminal[3]);
     if (!isColumn(column)) return null;
@@ -114,7 +117,7 @@ export function parseBreadboardRef(ref: string): ParsedBreadboardRef | null {
     return { kind: "terminal", boardId, row, column, nodeId: terminalNodeId(boardId, row, column) };
   }
 
-  const rail = ref.match(/^(bb\d+):(bus-(?:top|bot)-(?:plus|minus))-(\d+)$/);
+  const rail = ref.match(/^(bb[1-9]\d*):(bus-(?:top|bot)-(?:plus|minus))-([1-9]\d*)$/);
   if (rail) {
     const column = Number(rail[3]);
     if (!isColumn(column)) return null;
