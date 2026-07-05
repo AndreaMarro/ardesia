@@ -39,13 +39,13 @@ describe('T1-009: Tea Autoflow governance files', () => {
       expect(content).toContain('vite.config.js');
     });
 
-    it('lists safe paths (docs, styles, tests, common, dashboard)', () => {
+    it('lists safe paths (docs, styles, tests, common, plugin)', () => {
       const content = readFileSync(codeownersPath, 'utf-8');
       expect(content).toContain('docs/');
       expect(content).toContain('src/styles/');
       expect(content).toContain('tests/');
       expect(content).toContain('src/components/common/');
-      expect(content).toContain('src/components/dashboard/');
+      expect(content).toContain('src/plugin/');
     });
   });
 

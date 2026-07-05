@@ -2,8 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
-vi.mock('../../../src/context/AuthContext', () => ({
-  useAuth: () => ({ user: { id: 'teacher1' }, isDocente: false, isStudente: false }),
+vi.mock('../../../src/plugin/hostIdentity', () => ({
+  useHostIdentity: () => ({ user: { id: 'teacher1' }, isDocente: false, isStudente: false }),
 }));
 
 vi.mock('../../../src/hooks/useSessionTracker', () => ({

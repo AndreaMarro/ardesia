@@ -7,8 +7,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import React from 'react';
 
-vi.mock('../../../src/context/AuthContext', () => ({
-  useAuth: () => ({ user: { id: 'teacher1' }, isDocente: true, isStudente: false }),
+vi.mock('../../../src/plugin/hostIdentity', () => ({
+  useHostIdentity: () => ({ user: { id: 'teacher1' }, isDocente: true, isStudente: false }),
 }));
 
 vi.mock('../../../src/services/classProfile', () => ({
@@ -34,13 +34,7 @@ vi.mock('../../../src/components/simulator/NewElabSimulator', () => ({
   default: () => React.createElement('div', { 'data-testid': 'mock-simulator' }, 'Simulator'),
 }));
 
-vi.mock('../../../src/components/teacher/TeacherDashboard', () => ({
-  default: () => React.createElement('div', null, 'TeacherDashboard'),
-}));
 
-vi.mock('../../../src/components/student/StudentDashboard', () => ({
-  default: () => React.createElement('div', null, 'StudentDashboard'),
-}));
 
 vi.mock('../../../src/components/lavagna/VolumeViewer', () => ({
   default: () => null,

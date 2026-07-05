@@ -8,7 +8,7 @@
 import React, { lazy, Suspense, useState, useCallback, useEffect, useRef, useMemo, useId } from 'react';
 import { createPortal } from 'react-dom';
 import { overlayPortalTarget, overlayPortalDisplayStyle } from './overlayPortal';
-import { useAuth } from '../../context/AuthContext';
+import { useHostIdentity } from '../../plugin/hostIdentity';
 // Iter 44 wire-up: useSessionTracker per persistenza scritte sessione.
 // Andrea iter 41+ feedback 2026-05-06: "Cronologia recente" homepage sempre
 // vuota nonostante 4+ iter di "fix" (T1-001, T1-002, ADR-019 design, Bug 3
@@ -72,8 +72,8 @@ import ModalitaSwitch from './ModalitaSwitch';
 import css from './LavagnaShell.module.css';
 
 const NewElabSimulator = lazy(() => import('../simulator/NewElabSimulator'));
-const TeacherDashboard = lazy(() => import('../teacher/TeacherDashboard'));
-const StudentDashboard = lazy(() => import('../student/StudentDashboard'));
+// Dashboard docente/studente: concern del Core host (ELAB-AS-PLUGIN-CANON §6),
+// amputate dal plugin in slice 2. L'host renderizza le proprie viste classe/progressi.
 const VolumeViewer = lazy(() => import('./VolumeViewer'));
 // Andrea feedback 2026-05-25: UN solo pannello in modalità Passo Passo.
 const PassoPassoUnifiedPanel = lazy(() => import('./PassoPassoUnifiedPanel'));
@@ -642,7 +642,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // Accept initialExperimentId prop from App.jsx #lavagna route deep-link `?exp=<id>`.
   // Wired in useEffect mount polling __ELAB_API ready below.
   const { t } = useTranslation();
-  const { user, isDocente, isStudente } = useAuth();
+  const { user, isDocente, isStudente } = useHostIdentity();
   // Iter 44 persistenza scritte: hook self-wires su __ELAB_API.experimentChange
   // (auto-startSession + recordAction 'experiment_loaded') + beforeunload +
   // visibilitychange (auto-finaliseSession + saveSession Supabase). Solo
@@ -1902,21 +1902,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           overlayPortalTarget()
         )}
 
-        {/* === DASHBOARD VIEW (docente o studente) === */}
-        {activeTab === 'classe' && isDocente && (
-          <div className={css.dashboardView}>
-            <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_dashboard')}</span></div>}>
-              <TeacherDashboard />
-            </Suspense>
-          </div>
-        )}
-        {activeTab === 'progressi' && isStudente && (
-          <div className={css.dashboardView}>
-            <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_progress')}</span></div>}>
-              <StudentDashboard />
-            </Suspense>
-          </div>
-        )}
+        {/* Le viste dashboard classe/progressi sono del Core host (canon §6, slice 2). */}
 
         {activeTab === 'lezione' && (
           <div className={css.dashboardView}>

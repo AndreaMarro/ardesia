@@ -5,11 +5,11 @@
 // ============================================
 
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useHostIdentity } from '../../plugin/hostIdentity';
 import useIsMobile from '../../hooks/useIsMobile';
 import { testConnection } from '../../services/notionService';
 // Code-split: each admin tab loads only when selected
-const AdminDashboard = lazy(() => import('./tabs/AdminDashboard'));
+// (AdminDashboard amputata in slice 2: le viste dashboard sono del Core host, canon §6)
 const AdminUtenti = lazy(() => import('./tabs/AdminUtenti'));
 const AdminOrdini = lazy(() => import('./tabs/AdminOrdini'));
 const AdminCorsi = lazy(() => import('./tabs/AdminCorsi'));
@@ -21,11 +21,6 @@ const GestionalePage = lazy(() => import('./gestionale/GestionalePage'));
 // Set VITE_N8N_LICENSE_URL as environment variable on Vercel.
 const NOTION_LICENSE_URL = import.meta.env.VITE_N8N_LICENSE_URL || '';
 
-const IconDashboard = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
-    </svg>
-);
 const IconUsers = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
@@ -63,7 +58,6 @@ const IconGestionale = () => (
 );
 
 const TABS = [
-    { id: 'dashboard',   label: 'Dashboard',    icon: <IconDashboard />, color: 'var(--elab-navy)' },
     { id: 'utenti',      label: 'Utenti',       icon: <IconUsers />, color: 'var(--elab-lime)' },
     { id: 'ordini',      label: 'Ordini',       icon: <IconOrders />, color: 'var(--elab-hex-f59e0b)' },
     { id: 'corsi',       label: 'Corsi',        icon: <IconCourses />, color: 'var(--elab-hex-8b5cf6)' },
@@ -96,9 +90,9 @@ async function hashPassword(pwd) {
 }
 
 export default function AdminPage({ onNavigate }) {
-    const { user, isAdmin } = useAuth();
+    const { user, isAdmin } = useHostIdentity();
     const isMobile = useIsMobile();
-    const [tab, setTab] = useState('dashboard');
+    const [tab, setTab] = useState('utenti');
     const [connectionStatus, setConnectionStatus] = useState(null);
 
     // Admin auth gate — password-based if not already admin via auth system
@@ -193,9 +187,6 @@ export default function AdminPage({ onNavigate }) {
     const renderTab = () => {
         let content;
         switch (tab) {
-            case 'dashboard':
-                content = <AdminDashboard isMobile={isMobile} onNavigate={setTab} />;
-                break;
             case 'utenti':
                 content = <AdminUtenti isMobile={isMobile} />;
                 break;
@@ -217,7 +208,7 @@ export default function AdminPage({ onNavigate }) {
                 content = <GestionalePage />;
                 break;
             default:
-                content = <AdminDashboard isMobile={isMobile} onNavigate={setTab} />;
+                content = <AdminUtenti isMobile={isMobile} />;
         }
         return <Suspense fallback={tabFallback}>{content}</Suspense>;
     };

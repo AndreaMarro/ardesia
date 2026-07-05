@@ -9,8 +9,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 
 // Mock all heavy dependencies
-vi.mock('../../../src/context/AuthContext', () => ({
-  useAuth: () => ({ user: { id: 'teacher1' }, isDocente: true, isStudente: false }),
+vi.mock('../../../src/plugin/hostIdentity', () => ({
+  useHostIdentity: () => ({ user: { id: 'teacher1' }, isDocente: true, isStudente: false }),
 }));
 
 vi.mock('../../../src/services/classProfile', () => ({

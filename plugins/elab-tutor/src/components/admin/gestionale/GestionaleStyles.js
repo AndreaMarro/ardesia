@@ -30,7 +30,6 @@ export const COLORS = {
 };
 
 export const MODULES = [
-    { id: 'dashboard', label: 'Dashboard', icon: '', color: COLORS.accent },
     { id: 'fatture', label: 'Fatturazione', icon: '', color: '#7c3aed' }, // palette
     { id: 'ordini', label: 'Ordini & Vendite', icon: '', color: '#2563eb' }, // palette
     { id: 'magazzino', label: 'Magazzino & Kit', icon: '', color: '#d97706' }, // palette

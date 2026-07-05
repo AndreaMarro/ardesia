@@ -24,7 +24,7 @@ import { openReportWindow, isReportCommand } from './UnlimReport';
 import { unlimMemory } from '../../services/unlimMemory';
 import { matchVoiceCommand, executeVoiceCommand } from '../../services/voiceCommands';
 import { startNudgeListener } from '../../services/nudgeService';
-import { useAuth } from '../../context/AuthContext';
+import { useHostIdentity } from '../../plugin/hostIdentity';
 
 /**
  * S1 Ciclo 4: Execute an INTENT action from AI response.
@@ -215,7 +215,7 @@ class UnlimErrorBoundary extends Component {
  * @param {React.ReactNode} children - il contenuto originale (ElabTutorV4 interno)
  */
 export default function UnlimWrapper({ children }) {
-  const { user } = useAuth();
+  const { user } = useHostIdentity();
   const { isUnlim, toggleMode } = useUnlimMode();
   const { messages, showMessage, dismissMessage } = useOverlayMessages();
   const [mascotState, setMascotState] = useState('idle'); // idle, active, thinking, speaking

@@ -6,7 +6,7 @@
 // ============================================
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useHostIdentity } from '../plugin/hostIdentity';
 import vcss from './VetrinaSimulatore.module.css';
 const AMAZON_URL = 'https://www.amazon.it/s?k=ELAB+elettronica';
 
@@ -133,7 +133,7 @@ function AnimatedNumber({ target, duration = 1400 }) {
 
 // ── Main component ──
 export default function VetrinaSimulatore({ onNavigate }) {
-    const { activateLicense, user } = useAuth();
+    const { activateLicense, user } = useHostIdentity();
     const [licenseCode, setLicenseCode] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
