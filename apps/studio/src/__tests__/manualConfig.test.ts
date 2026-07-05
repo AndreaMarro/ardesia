@@ -14,6 +14,14 @@ const VOL2_ID =
 // Manuale vol 3 versione 0.13.pdf — 172 pagine, footer stampato == indice PDF
 const VOL3_ID =
   "document:sha256:6b20832c245be960c62a513ceb233cf04b2443d3206b46fdcc23a327adebab21"
+// Copie canoniche "VOLUMI pdf e MD" (shasum firsthand 2026-07-05,
+// footer p.30 == indice PDF verificato a vista su ciascun file)
+const VOL1_CANON_ID =
+  "document:sha256:97ebc86e7e6014d05eebdec33dc3fbf62f96d1853b7a31641f08067685c9a5c8"
+const VOL2_CANON_ID =
+  "document:sha256:1eac0cc711426cbc5afb4f35d6c5d8b9ba44513b92134da0c483c6b1d4281b37"
+const VOL3_CANON_ID =
+  "document:sha256:95a690ca3c1ee5ddec051447994638aef825e58a4835815a4e97ded66fc04bd4"
 
 function view(over: Partial<{ documentId: string; page: number }>) {
   return {
@@ -66,6 +74,27 @@ describe("defaultManualRegistry con config reale", () => {
     expect(defaultManualRegistry.resolve(view({ documentId: VOL2_ID, page: 0 }))).toBeUndefined()
     expect(defaultManualRegistry.resolve(view({ documentId: VOL2_ID, page: 117 }))).toBeUndefined()
     expect(defaultManualRegistry.resolve(view({ documentId: VOL3_ID, page: 173 }))).toBeUndefined()
+  })
+
+  it("risolve le copie canoniche 'VOLUMI pdf e MD' (stesso manualId, hash diverso)", () => {
+    expect(defaultManualRegistry.resolve(view({ documentId: VOL2_CANON_ID, page: 3 }))).toEqual({
+      manualId: "manual:vol2",
+      page: 3,
+      labels: { it: "ELAB Volume 2 — p.3" },
+    })
+    expect(defaultManualRegistry.resolve(view({ documentId: VOL3_CANON_ID, page: 172 }))?.manualId).toBe(
+      "manual:vol3",
+    )
+    expect(defaultManualRegistry.resolve(view({ documentId: VOL3_CANON_ID, page: 173 }))).toBeUndefined()
+  })
+
+  it("risolve il Volume 1 canonico entro il range 1..114, fail-closed fuori", () => {
+    expect(defaultManualRegistry.resolve(view({ documentId: VOL1_CANON_ID, page: 30 }))).toEqual({
+      manualId: "manual:vol1",
+      page: 30,
+      labels: { it: "ELAB Volume 1 — p.30" },
+    })
+    expect(defaultManualRegistry.resolve(view({ documentId: VOL1_CANON_ID, page: 115 }))).toBeUndefined()
   })
 
   it("hash sconosciuto → undefined (nessun material.cited per PDF non registrati)", () => {
