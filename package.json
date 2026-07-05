@@ -14,6 +14,8 @@
     "typecheck": "bash bin/monorepo.sh typecheck-core",
     "build": "bash bin/monorepo.sh build-core",
     "build:elab": "bash bin/monorepo.sh build-elab",
+    "preview:studio:check": "bash bin/monorepo.sh preview-studio-check",
+    "preview:studio:preflight": "bash bin/monorepo.sh preview-studio-preflight",
     "verify": "bash bin/monorepo.sh verify-core",
     "verify:elab": "bash bin/monorepo.sh verify-elab",
     "factory:readonly": "bash bin/monorepo.sh factory-readonly"
