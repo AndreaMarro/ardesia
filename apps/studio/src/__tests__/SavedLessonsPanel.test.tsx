@@ -7,6 +7,7 @@
 import { describe, it, expect, afterEach } from "vitest"
 import { render, screen, cleanup, waitFor, fireEvent } from "@testing-library/react"
 import { LessonOsApiClient } from "../lessonos/apiClient"
+import { InMemoryEventLog, type EventLogStore } from "../lessonos/eventlog"
 import SavedLessonsPanel from "../SavedLessonsPanel"
 
 afterEach(cleanup)
@@ -479,4 +480,64 @@ describe("SavedLessonsPanel — concorrenza, a11y e stati vuoti (fix review avve
     fireEvent.click(await screen.findByRole("button", { name: "LED e polarità" }))
     expect(await screen.findByText("Nessuna flashcard")).toBeDefined()
   })
+})
+
+describe("SavedLessonsPanel — producer quiz.attempted (attemptLog)", () => {
+  it("dopo la correzione appende quiz.attempted con l'esito del backend", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_TWO,
+      "POST /v1/saved-lessons/sv-1/quiz/grade": GRADE_ONE_WRONG,
+    })
+    const log = new InMemoryEventLog()
+    render(<SavedLessonsPanel client={client} attemptLog={log} room="aula-3b" studentId="stu-7" />)
+    await openAndAnswerBoth()
+    fireEvent.click(screen.getByRole("button", { name: "Correggi il quiz" }))
+    await screen.findByText("1 risposte corrette su 2")
+
+    await waitFor(async () => {
+      expect(await log.readAll()).toHaveLength(1)
+    })
+    const [event] = await log.readAll()
+    if (event.kind !== "quiz.attempted") throw new Error(`kind inatteso: ${event.kind}`)
+    expect(event.quizId).toBe("sv-1")
+    expect(event.correct).toBe(1)
+    expect(event.total).toBe(2)
+    expect(event.studentId).toBe("stu-7")
+    expect(event.labels).toEqual({ it: "LED e polarità" })
+    expect(event.evidence).toContain("quiz:sv-1")
+    expect(event.evidence).toContain("lessonos-lesson:elab-v1-cap6")
+    expect(event.evidence.some((ref) => ref.startsWith("lesson:aula-3b@"))).toBe(true)
+  }, 15000)
+
+  it("guasto della correzione: NESSUN evento (nessun fatto senza correzione)", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_TWO,
+      "POST /v1/saved-lessons/sv-1/quiz/grade": { status: 500, body: { detail: "boom" } },
+    })
+    const log = new InMemoryEventLog()
+    render(<SavedLessonsPanel client={client} attemptLog={log} />)
+    await openAndAnswerBoth()
+    fireEvent.click(screen.getByRole("button", { name: "Correggi il quiz" }))
+    await screen.findByText("Correzione non riuscita")
+    expect(await log.readAll()).toHaveLength(0)
+  }, 15000)
+
+  it("registrazione fallita: punteggio mostrato + avviso visibile, mai silenzio", async () => {
+    const { client } = clientWithRoutes({
+      "GET /v1/saved-lessons": SAVED_LIST,
+      "GET /v1/saved-lessons/sv-1/quiz": QUIZ_TWO,
+      "POST /v1/saved-lessons/sv-1/quiz/grade": GRADE_ONE_WRONG,
+    })
+    const brokenLog: EventLogStore = {
+      append: () => Promise.reject(new Error("storage giù")),
+      readAll: () => Promise.resolve([]),
+    }
+    render(<SavedLessonsPanel client={client} attemptLog={brokenLog} />)
+    await openAndAnswerBoth()
+    fireEvent.click(screen.getByRole("button", { name: "Correggi il quiz" }))
+    expect(await screen.findByText("1 risposte corrette su 2")).toBeDefined()
+    expect(await screen.findByText("Tentativo non registrato")).toBeDefined()
+  }, 15000)
 })
