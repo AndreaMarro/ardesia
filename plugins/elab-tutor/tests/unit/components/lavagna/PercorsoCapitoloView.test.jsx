@@ -21,7 +21,7 @@ vi.mock('../../../../src/services/api.js', () => ({
   sendChat: vi.fn(),
 }));
 
-vi.mock('../../../../src/data/lesson-paths', () => ({
+vi.mock('../../../../../../packs/elab-tutor/data/lesson-paths', () => ({
   getLessonPath: vi.fn((experimentId) => {
     if (experimentId === 'v1-cap6-esp1') {
       return {

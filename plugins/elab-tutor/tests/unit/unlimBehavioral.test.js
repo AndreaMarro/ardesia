@@ -18,9 +18,9 @@ import {
 } from '../../src/services/unlimContextCollector';
 import { searchKnowledgeBase, searchRAGChunks } from '../../src/data/unlim-knowledge-base.js';
 import EXPERIMENTS_VOL1 from '../../src/data/experiments-vol1.js';
-import v1Cap6Esp1Path from '../../src/data/lesson-paths/v1-cap6-esp1.json';
-import v1Cap7Esp1Path from '../../src/data/lesson-paths/v1-cap7-esp1.json';
-import v2Cap8Esp1Path from '../../src/data/lesson-paths/v2-cap8-esp1.json';
+import v1Cap6Esp1Path from '../../../../packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json';
+import v1Cap7Esp1Path from '../../../../packs/elab-tutor/data/lesson-paths/v1-cap7-esp1.json';
+import v2Cap8Esp1Path from '../../../../packs/elab-tutor/data/lesson-paths/v2-cap8-esp1.json';
 
 // ─── localStorage mock helpers ───────────────────────────────────────────────
 const storageMap = new Map();

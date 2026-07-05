@@ -52,7 +52,7 @@ const __dirname = path.dirname(__filename);
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const LESSON_PATHS_DIR = path.join(REPO_ROOT, 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = path.join(REPO_ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 const SNAPSHOTS_DIR = path.join(REPO_ROOT, 'tests', 'e2e', 'snapshots', 'iter-21-real-harness');
 const RESULTS_DIR = process.env.ELAB_HARNESS_REAL_DIR
   ? path.resolve(process.env.ELAB_HARNESS_REAL_DIR)

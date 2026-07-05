@@ -10,7 +10,7 @@
  * (c) Andrea Marro — 16/04/2026
  */
 import { describe, it, expect } from 'vitest';
-import { getVolumeRef } from '../../src/data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { getExperimentGroupContext } from '../../src/data/lesson-groups';
 import { ALL_EXPERIMENTS } from '../../src/data/experiments-index';
 

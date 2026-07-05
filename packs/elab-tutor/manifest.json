@@ -6,12 +6,14 @@
   "description": "Dati + metodo ELAB per ARDESIA: lesson-path, volume-references, build-steps, prompt UNLIM, 2 modalità. Solo dati e metodo: zero shell, zero auth, zero dashboard (CI gate zero-tolerance su packs/).",
   "contents": {
     "planned": [
-      "lesson-paths/ (88 percorsi JSON, oggi in plugins/elab-tutor/src/data/lesson-paths/)",
-      "volume-references (88/88, oggi in plugins/elab-tutor/src/data/volume-references.js)",
       "build-steps",
       "unlim-prompts (metodo, non runtime AI)",
       "modes (Già-Montato / Passo-Passo / Montaggi-Liberi)"
     ],
-    "migrated": []
+    "migrated": [
+      "data/lesson-paths/ (88 percorsi JSON + index.js, slice S1)",
+      "data/volume-references.js (copertura 88/88 lesson-path, slice S2)",
+      "data/volume-citation.js (sostanza citazione Vol.N pag.M, slice S3)"
+    ]
   }
 }

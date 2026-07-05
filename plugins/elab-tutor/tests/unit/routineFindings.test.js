@@ -13,7 +13,7 @@
 import { describe, it, expect } from 'vitest';
 import { searchKnowledgeBase, searchRAGChunks } from '../../src/data/unlim-knowledge-base';
 import { ALL_EXPERIMENTS } from '../../src/data/experiments-index';
-import { getVolumeRef } from '../../src/data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { getExperimentGroupContext } from '../../src/data/lesson-groups';
 
 // ═══════════════════════════════════════════════════════════════

@@ -6,8 +6,8 @@
  * (c) Andrea Marro — 02/04/2026
  */
 
-import { getLessonPath } from '../data/lesson-paths';
-import { getVolumeRef } from '../data/volume-references';
+import { getLessonPath } from '../../../../packs/elab-tutor/data/lesson-paths';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { getExperimentGroupContext } from '../data/lesson-groups';
 import { getSavedSessions } from '../hooks/useSessionTracker';
 import { sendChat } from './api';

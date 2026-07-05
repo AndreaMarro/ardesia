@@ -24,8 +24,8 @@ import { useTranslation } from 'react-i18next';
 import VolumeCitation from '../common/VolumeCitation.jsx';
 import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
-import { getLessonPath } from '../../data/lesson-paths';
-import { getVolumeRef } from '../../data/volume-references.js';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
+import { getVolumeRef } from '../../../../../packs/elab-tutor/data/volume-references.js';
 import {
   adaptPercorsoRender,
   DEFAULT_PERCORSO_MORPHIC_CONTEXT,

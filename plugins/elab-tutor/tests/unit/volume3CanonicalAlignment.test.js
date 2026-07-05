@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import EXPERIMENTS_VOL3 from '../../src/data/experiments-vol3.js';
 import LESSON_GROUPS from '../../src/data/lesson-groups.js';
-import VOLUME_REFERENCES from '../../src/data/volume-references.js';
+import VOLUME_REFERENCES from '../../../../packs/elab-tutor/data/volume-references.js';
 import narrativeMap from '../../src/data/narrative-map-94.json';
 import cliffhangerTable from '../../src/data/cliffhanger-table.json';
 
@@ -51,7 +51,7 @@ describe('Volume 3 canonical printed-manual alignment', () => {
 
   test('every canonical Volume 3 experiment has a complete lesson path', () => {
     for (const id of canonicalVol3) {
-      const path = resolve(process.cwd(), `src/data/lesson-paths/${id}.json`);
+      const path = resolve(process.cwd(), `../../packs/elab-tutor/data/lesson-paths/${id}.json`);
       expect(existsSync(path), `${id} missing lesson-path JSON`).toBe(true);
       const payload = JSON.parse(readFileSync(path, 'utf8'));
       expect(payload.experiment_id).toBe(id);
@@ -81,7 +81,7 @@ describe('Volume 3 canonical printed-manual alignment', () => {
 
   test('next_experiment chain walks all 23 experiments once and terminates', () => {
     const byId = new Map(canonicalVol3.map((id) => {
-      const payload = JSON.parse(readFileSync(resolve(process.cwd(), `src/data/lesson-paths/${id}.json`), 'utf8'));
+      const payload = JSON.parse(readFileSync(resolve(process.cwd(), `../../packs/elab-tutor/data/lesson-paths/${id}.json`), 'utf8'));
       return [id, payload.next_experiment?.id || null];
     }));
 

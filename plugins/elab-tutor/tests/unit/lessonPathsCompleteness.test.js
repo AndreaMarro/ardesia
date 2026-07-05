@@ -22,7 +22,7 @@ function getExperimentIds() {
 }
 
 // Dynamically import lesson paths index
-const lessonPathsModule = await import('../../src/data/lesson-paths/index.js');
+const lessonPathsModule = await import('../../../../packs/elab-tutor/data/lesson-paths/index.js');
 const LESSON_PATHS = lessonPathsModule.default || {};
 const getLessonPath = lessonPathsModule.getLessonPath;
 

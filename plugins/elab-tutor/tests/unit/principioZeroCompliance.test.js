@@ -43,8 +43,8 @@
  */
 import { describe, it, expect } from 'vitest';
 import { searchKnowledgeBase, searchRAGChunks } from '../../src/data/unlim-knowledge-base';
-import { getVolumeRef, getBookPage, getVolumeLabel } from '../../src/data/volume-references';
-import VOLUME_REFERENCES from '../../src/data/volume-references';
+import { getVolumeRef, getBookPage, getVolumeLabel } from '../../../../packs/elab-tutor/data/volume-references';
+import VOLUME_REFERENCES from '../../../../packs/elab-tutor/data/volume-references';
 import {
   getExperimentGroupContext,
   findLessonForExperiment,

@@ -6,7 +6,7 @@
  */
 
 import { useRef, useCallback, useEffect, useMemo } from 'react';
-import { getLessonPath } from '../data/lesson-paths';
+import { getLessonPath } from '../../../../packs/elab-tutor/data/lesson-paths';
 import { saveSession as syncSessionToSupabase } from '../services/supabaseSync';
 import gamification from '../services/gamificationService';
 

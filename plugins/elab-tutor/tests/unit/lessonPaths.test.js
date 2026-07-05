@@ -9,7 +9,7 @@ import {
   hasLessonPath,
   getAvailableLessonPaths,
   PHASE_NAMES,
-} from '../../src/data/lesson-paths/index';
+} from '../../../../packs/elab-tutor/data/lesson-paths/index';
 
 describe('lessonPaths', () => {
   describe('registry', () => {

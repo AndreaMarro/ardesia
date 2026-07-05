@@ -7,7 +7,7 @@ import { describe, it, expect } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const LP_DIR = path.resolve('src/data/lesson-paths');
+const LP_DIR = path.resolve('../../packs/elab-tutor/data/lesson-paths');
 const jsonFiles = fs.readdirSync(LP_DIR).filter(f => f.endsWith('.json'));
 
 describe('Lesson Paths — JSON Validation Massiva', () => {

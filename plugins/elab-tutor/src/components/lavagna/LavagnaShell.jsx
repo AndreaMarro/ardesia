@@ -22,10 +22,10 @@ import { getSavedSessions } from '../../hooks/useSessionTracker';
 // tested in isolation, never imported). Wire here so 30s snapshot writes
 // localStorage during any active experiment session.
 import useSessionAutosnapshot from '../../hooks/useSessionAutosnapshot';
-import { getLessonPath } from '../../data/lesson-paths';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
 // Goal A (Manuale ↔ Passo Passo auto-sync): VOLUME_REFERENCES is the
 // source-of-truth for the experiment→bookPage mapping (94/94 enriched).
-import VOLUME_REFERENCES from '../../data/volume-references';
+import VOLUME_REFERENCES from '../../../../../packs/elab-tutor/data/volume-references';
 import AppHeader from './AppHeader';
 import FloatingToolbar from './FloatingToolbar';
 import RetractablePanel from './RetractablePanel';

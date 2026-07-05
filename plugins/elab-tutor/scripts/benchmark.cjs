@@ -99,7 +99,7 @@ function metricE2EPassRate() {
 }
 
 function metricVolumeRefCoverage() {
-  const p = path.join(ROOT, 'src', 'data', 'volume-references.js');
+  const p = path.join(ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'volume-references.js');
   if (!fs.existsSync(p)) return { value: 0, observed: 0, notes: 'file missing' };
   const content = fs.readFileSync(p, 'utf8');
   const bookTextCount = (content.match(/bookText:\s*["`]/g) || []).length;

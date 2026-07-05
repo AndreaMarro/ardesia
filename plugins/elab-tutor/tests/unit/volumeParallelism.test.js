@@ -14,7 +14,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../src/data/volume-references.js';
+import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../../packs/elab-tutor/data/volume-references.js';
 
 // ─── Struttura degli esperimenti ───────────────────────────────────────────
 describe('Volume Parallelism — Struttura VOLUME_REFERENCES', () => {

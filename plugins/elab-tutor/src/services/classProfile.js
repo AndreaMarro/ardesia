@@ -6,7 +6,7 @@
  */
 
 import { getSavedSessions } from '../hooks/useSessionTracker';
-import { getLessonPath } from '../data/lesson-paths';
+import { getLessonPath } from '../../../../packs/elab-tutor/data/lesson-paths';
 
 // ─── Memoization cache (avoids triple localStorage parse in welcome flow) ────
 let _profileCache = null;

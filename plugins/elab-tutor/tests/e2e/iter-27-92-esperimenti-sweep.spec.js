@@ -30,7 +30,7 @@ import { seedSprintUBypass } from './helpers/sprint-u-auth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const LESSON_PATHS_DIR = path.join(REPO_ROOT, 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = path.join(REPO_ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 const STATE_DIR = path.join(REPO_ROOT, 'automa', 'state');
 const SCREENSHOTS_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'iter-27-screenshots');
 

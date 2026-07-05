@@ -5,7 +5,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock dependencies
-vi.mock('../../src/data/lesson-paths', () => ({
+vi.mock('../../../../packs/elab-tutor/data/lesson-paths', () => ({
   getLessonPath: vi.fn(() => ({ title: 'Test', concepts_covered: [] })),
 }));
 vi.mock('../../src/services/supabaseSync', () => ({

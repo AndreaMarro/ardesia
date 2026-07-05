@@ -15,7 +15,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getCurriculum } from '../../../data/curriculumData';
-import { getLessonPath } from '../../../data/lesson-paths';
+import { getLessonPath } from '../../../../../../packs/elab-tutor/data/lesson-paths';
 import { getPrerequisites, getNewConcepts, CONCEPTS } from '../../../data/concept-graph';
 
 /* ─── Component type → Italian display name ─── */

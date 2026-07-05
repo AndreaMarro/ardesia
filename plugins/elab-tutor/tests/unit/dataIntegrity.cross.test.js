@@ -8,7 +8,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import { ALL_EXPERIMENTS, EXPERIMENTS_VOL1, EXPERIMENTS_VOL2, EXPERIMENTS_VOL3 } from '../../src/data/experiments-index';
-import { getAvailableLessonPaths, getLessonPath } from '../../src/data/lesson-paths/index';
+import { getAvailableLessonPaths, getLessonPath } from '../../../../packs/elab-tutor/data/lesson-paths/index';
 import { getWelcomeMessage } from '../../src/data/welcome-messages';
 import { getCurriculum } from '../../src/data/curriculumData';
 import { CONCEPTS } from '../../src/data/concept-graph';

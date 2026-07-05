@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import EXPERIMENTS_VOL1 from '../src/data/experiments-vol1.js';
 import EXPERIMENTS_VOL2 from '../src/data/experiments-vol2.js';
 import EXPERIMENTS_VOL3 from '../src/data/experiments-vol3.js';
-import VOLUME_REFERENCES from '../src/data/volume-references.js';
+import VOLUME_REFERENCES from '../../../packs/elab-tutor/data/volume-references.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');

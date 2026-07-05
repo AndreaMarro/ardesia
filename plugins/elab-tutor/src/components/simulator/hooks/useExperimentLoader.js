@@ -15,7 +15,7 @@ import { sessionMetrics } from '../../../services/sessionMetrics';
 import { sendAnalyticsEvent, EVENTS } from '../api/AnalyticsWebhook';
 import { buildPinComponentMap, buildLCDPinMapping, createOnPinChangeHandler } from '../utils/pinComponentMap';
 import { inferParentFromPinAssignments } from '../utils/parentChild';
-import { hasLessonPath } from '../../../data/lesson-paths';
+import { hasLessonPath } from '../../../../../../packs/elab-tutor/data/lesson-paths';
 import logger from '../../../utils/logger';
 
 /**

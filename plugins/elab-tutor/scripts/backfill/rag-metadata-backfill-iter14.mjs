@@ -74,7 +74,7 @@ if (MODE_COMMIT) {
 // LOAD volume-references.js mapping
 // ─────────────────────────────────────────────────
 async function loadVolumeReferences() {
-  const refPath = path.join(REPO_ROOT, 'src', 'data', 'volume-references.js');
+  const refPath = path.join(REPO_ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'volume-references.js');
   if (!fs.existsSync(refPath)) {
     throw new Error(`volume-references.js not found: ${refPath}`);
   }

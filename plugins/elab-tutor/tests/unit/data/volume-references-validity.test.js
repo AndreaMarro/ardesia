@@ -11,7 +11,7 @@ import VOLUME_REFERENCES, {
   getVolumeRef,
   getBookPage,
   getVolumeLabel,
-} from '../../../src/data/volume-references.js';
+} from '../../../../../packs/elab-tutor/data/volume-references.js';
 
 const ALL_REFS = Object.entries(VOLUME_REFERENCES);
 const ALL_IDS = Object.keys(VOLUME_REFERENCES);

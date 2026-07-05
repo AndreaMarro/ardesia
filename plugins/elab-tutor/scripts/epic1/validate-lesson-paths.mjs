@@ -168,7 +168,7 @@ const OUT = join(REPO, "docs", "audits", "2026-05-14-epic1-a4-1a-contract-valida
 function main() {
   const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
   const corrections = readJson(join(HERE, "a3-corrections.json")).experiments;
-  const lpDir = join(REPO, "src", "data", "lesson-paths");
+  const lpDir = join(REPO, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
   const lessonPaths = {};
   for (const f of readdirSync(lpDir).filter((f) => f.endsWith(".json"))) {
     const j = readJson(join(lpDir, f));
