@@ -10,7 +10,8 @@
     "test": "vitest run --passWithNoTests",
     "typecheck": "tsc -b --noEmit",
     "preview": "vite preview",
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",
