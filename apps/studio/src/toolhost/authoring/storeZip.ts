@@ -117,3 +117,88 @@ export function buildStoreZip(entries: ZipEntry[]): Uint8Array {
 
   return new Uint8Array([...parts, ...central, ...eocd])
 }
+
+// ---- Reader (fail-closed) ----
+
+function readU16(bytes: Uint8Array, at: number): number {
+  return bytes[at] | (bytes[at + 1] << 8)
+}
+function readU32(bytes: Uint8Array, at: number): number {
+  return (bytes[at] | (bytes[at + 1] << 8) | (bytes[at + 2] << 16) | (bytes[at + 3] << 24)) >>> 0
+}
+
+// Stessa lezione ZipSlip di lessonBundle: il WRITER non valida (input dello
+// scaffolder), il READER sì — un package arriva da fuori.
+function isSafeZipPath(p: string): boolean {
+  if (p === "" || p.startsWith("/") || p.includes("\\")) return false
+  return p.split("/").every((segment) => segment !== "" && segment !== "..")
+}
+
+/**
+ * Legge uno zip STORE-ONLY (method 0). Fail-closed su: EOCD assente, firma
+ * record mancante, method ≠ 0 (central E local), CRC che non torna, path
+ * ZipSlip. Niente inflate: un package v1 è per contratto senza compressione.
+ */
+export function readStoreZip(bytes: Uint8Array): ZipEntry[] {
+  // EOCD: cerca PK\x05\x06 dalla coda (min 22 byte, comment variabile).
+  let eocd = -1
+  for (let i = bytes.length - 22; i >= 0; i--) {
+    if (readU32(bytes, i) === 0x06054b50) {
+      eocd = i
+      break
+    }
+  }
+  if (eocd === -1) throw new Error("not a zip: end of central directory missing")
+
+  const count = readU16(bytes, eocd + 10)
+  const centralOffset = readU32(bytes, eocd + 16)
+
+  const entries: ZipEntry[] = []
+  let at = centralOffset
+  for (let i = 0; i < count; i++) {
+    if (readU32(bytes, at) !== 0x02014b50) {
+      throw new Error("corrupt zip: central directory record signature mismatch")
+    }
+    const method = readU16(bytes, at + 10)
+    const crc = readU32(bytes, at + 16)
+    const compressedSize = readU32(bytes, at + 20)
+    const uncompressedSize = readU32(bytes, at + 24)
+    const nameLen = readU16(bytes, at + 28)
+    const extraLen = readU16(bytes, at + 30)
+    const commentLen = readU16(bytes, at + 32)
+    const localOffset = readU32(bytes, at + 42)
+    const path = new TextDecoder().decode(bytes.slice(at + 46, at + 46 + nameLen))
+
+    if (method !== 0) {
+      throw new Error(`unsupported zip entry (store-only contract): "${path}" method=${method}`)
+    }
+    if (!isSafeZipPath(path)) {
+      throw new Error(`unsafe zip entry path: "${path}"`)
+    }
+    if (compressedSize !== uncompressedSize) {
+      throw new Error(`corrupt store entry "${path}": compressed ≠ uncompressed size`)
+    }
+
+    if (readU32(bytes, localOffset) !== 0x04034b50) {
+      throw new Error(`corrupt zip: local header signature mismatch for "${path}"`)
+    }
+    if (readU16(bytes, localOffset + 8) !== 0) {
+      throw new Error(`unsupported zip entry (store-only contract): "${path}" local method != 0`)
+    }
+    const localNameLen = readU16(bytes, localOffset + 26)
+    const localExtraLen = readU16(bytes, localOffset + 28)
+    const dataStart = localOffset + 30 + localNameLen + localExtraLen
+    const data = bytes.slice(dataStart, dataStart + uncompressedSize)
+    if (data.length !== uncompressedSize) {
+      throw new Error(`corrupt zip: truncated data for "${path}"`)
+    }
+    if (crc32(data) !== crc) {
+      throw new Error(`crc mismatch for zip entry "${path}"`)
+    }
+
+    entries.push({ path, data })
+    at += 46 + nameLen + extraLen + commentLen
+  }
+
+  return entries
+}
