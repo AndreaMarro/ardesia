@@ -22,6 +22,12 @@ function isSafeEntryPath(p: string): boolean {
 
 export const SurfaceSchema = z.enum(["board-embed", "panel", "fullscreen"])
 
+// Regola di classificazione del canon (CANON-INDEX): Universale → core ·
+// Strumento riusabile → plugin · Materia/metodo → pack · Sequenza vendibile
+// → workflow. Senza `kind` la gerarchia non è esprimibile nel manifest.
+export const ArdesiaModuleKindSchema = z.enum(["core", "plugin", "pack", "workflow"])
+export type ArdesiaModuleKind = z.infer<typeof ArdesiaModuleKindSchema>
+
 export const ToolManifestSchema = z.strictObject({
   manifestVersion: z.literal(1),
   id: z.string().regex(REVERSE_DNS_RE),
@@ -33,6 +39,9 @@ export const ToolManifestSchema = z.strictObject({
   // versione del contratto SDK gli serve. Opzionale -> assenza = nessun gate
   // (manifest legacy invariati). Stessa grammatica-range di `protocol`.
   contract: z.string().refine(isValidProtocolRange, { message: "invalid contract range" }).optional(),
+  // Posizione nella gerarchia Core/Plugin/Pack/Workflow. Opzionale → assenza
+  // = manifest legacy invariati (stessa disciplina di `contract`).
+  kind: ArdesiaModuleKindSchema.optional(),
   entry: z
     .string()
     .min(1)
