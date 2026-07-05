@@ -102,10 +102,12 @@ function makeMockStore(events: JournalEvent[] | null) {
 
 describe("ReplayView", () => {
   let container: HTMLDivElement
+  let mountedRoots: Array<ReturnType<typeof createRoot>>
 
   beforeEach(() => {
     container = document.createElement("div")
     document.body.appendChild(container)
+    mountedRoots = []
     capturedApi = null
     capturedExcalidrawProps = null
     document.body.removeAttribute("data-mock-excalidraw-api")
@@ -115,6 +117,10 @@ describe("ReplayView", () => {
   })
 
   afterEach(() => {
+    // Smonta i root: rimuovere il container dal DOM NON smonta React — il
+    // caricamento audio del test precedente restava vivo e chiamava il mock
+    // URL.createObjectURL del test successivo (conteggio 2 invece di 1).
+    for (const root of mountedRoots) root.unmount()
     document.body.removeChild(container)
     vi.restoreAllMocks()
   })
@@ -122,6 +128,7 @@ describe("ReplayView", () => {
   async function renderReplayView(store: any) {
     const { default: ReplayView } = await import("../ReplayView")
     const root = createRoot(container)
+    mountedRoots.push(root)
     root.render(<ReplayView store={store} room="test-room" />)
     // attesa fine caricamento: l'header renderizza subito, quindi il testo
     // deve essere NON vuoto e fuori dallo stato "caricamento…"
