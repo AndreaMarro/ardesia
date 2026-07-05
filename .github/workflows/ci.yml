@@ -63,4 +63,6 @@ jobs:
           BASE_REF: ${{ github.base_ref }}
         run: |
           git fetch origin "$BASE_REF" --depth=1
-          git diff --check "$(git merge-base "origin/$BASE_REF" HEAD)" HEAD
+          # sim/solver/engine è vendored byte-identico da ELAB (drift-guard
+          # sha256 nei test): il whitespace del sorgente canonico non si tocca.
+          git diff --check "$(git merge-base "origin/$BASE_REF" HEAD)" HEAD -- . ':(exclude)apps/studio/sim/solver/engine/'
