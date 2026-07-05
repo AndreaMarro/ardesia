@@ -31,7 +31,7 @@ export interface ConsentSheet {
   requested: ConsentItem[]
 }
 
-function declaredCaps(manifest: ToolManifest): CapabilityName[] {
+export function declaredCaps(manifest: ToolManifest): CapabilityName[] {
   return (Object.keys(manifest.capabilities) as CapabilityName[]).filter(
     (cap) => manifest.capabilities[cap] !== undefined,
   )
