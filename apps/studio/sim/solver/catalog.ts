@@ -1,0 +1,104 @@
+// Catalogo elettrico headless per il CircuitSolver vendored.
+// Il motore legge dal component-registry solo pin.id e, per le breadboard,
+// getInternalConnections(); qui registriamo esattamente quei dati, estratti
+// firsthand dai registerComponent del plugin (zero React):
+//   BreadboardHalf.jsx:15,56-57 (COLS=30, top a-e, bottom f-j),
+//   294-338 (pin generati: 2 alias + 300 fori + 120 bus),
+//   391-427 (strip: 30 net-top + 30 net-bot + 4 bus),
+//   Led.jsx:136-148 · Resistor.jsx:137-148 · Battery9V.jsx:166-177 · Wire.jsx:127-138.
+// Tipi non registrati restano deny-by-default per il solve (slice future).
+import { registerComponent } from "./components/registry.js"
+import type { CatalogInternalNet, CatalogPin } from "./components/registry.js"
+
+const COLS = 30
+const TOP_LABELS = ["a", "b", "c", "d", "e"] as const
+const BOT_LABELS = ["f", "g", "h", "i", "j"] as const
+const BUS_PREFIXES = ["bus-top-plus", "bus-top-minus", "bus-bot-plus", "bus-bot-minus"] as const
+
+function breadboardHalfPins(): CatalogPin[] {
+  const pins: CatalogPin[] = [
+    { id: "bus-plus", label: "+ Bus", type: "power" },
+    { id: "bus-minus", label: "- Bus", type: "power" },
+  ]
+  for (const rows of [TOP_LABELS, BOT_LABELS]) {
+    for (const row of rows) {
+      for (let col = 1; col <= COLS; col++) {
+        pins.push({ id: `${row}${col}`, label: `${row}${col}`, type: "hole" })
+      }
+    }
+  }
+  for (const prefix of BUS_PREFIXES) {
+    for (let col = 1; col <= COLS; col++) {
+      pins.push({ id: `${prefix}-${col}`, label: `${prefix}-${col}`, type: "power" })
+    }
+  }
+  return pins
+}
+
+function breadboardHalfInternalConnections(): CatalogInternalNet[] {
+  const nets: CatalogInternalNet[] = []
+  for (let col = 1; col <= COLS; col++) {
+    nets.push({ id: `net-top-${col}`, holes: TOP_LABELS.map((row) => `${row}${col}`) })
+  }
+  for (let col = 1; col <= COLS; col++) {
+    nets.push({ id: `net-bot-${col}`, holes: BOT_LABELS.map((row) => `${row}${col}`) })
+  }
+  for (const prefix of BUS_PREFIXES) {
+    nets.push({
+      id: `net-${prefix}`,
+      holes: Array.from({ length: COLS }, (_, i) => `${prefix}-${i + 1}`),
+    })
+  }
+  return nets
+}
+
+/** Registra i dati elettrici dei componenti Vol.1 base. Idempotente. */
+export function registerElectricalCatalog(): void {
+  registerComponent("breadboard-half", {
+    pins: breadboardHalfPins(),
+    defaultState: { activeHoles: {} },
+    category: "passive",
+    label: "Breadboard (Half)",
+    getInternalConnections: breadboardHalfInternalConnections,
+  })
+
+  registerComponent("battery9v", {
+    pins: [
+      { id: "positive", label: "+ (9V)", type: "power" },
+      { id: "negative", label: "− (GND)", type: "power" },
+    ],
+    defaultState: { voltage: 9, connected: true },
+    category: "power",
+    label: "Batteria 9V",
+  })
+
+  registerComponent("resistor", {
+    pins: [
+      { id: "pin1", label: "Pin 1", type: "digital" },
+      { id: "pin2", label: "Pin 2", type: "digital" },
+    ],
+    defaultState: { current: 0, voltage: 0 },
+    category: "passive",
+    label: "Resistore",
+  })
+
+  registerComponent("led", {
+    pins: [
+      { id: "anode", label: "A (+)", type: "digital" },
+      { id: "cathode", label: "K (−)", type: "digital" },
+    ],
+    defaultState: { on: false, brightness: 0 },
+    category: "output",
+    label: "LED",
+  })
+
+  registerComponent("wire", {
+    pins: [
+      { id: "start", label: "Start", type: "digital" },
+      { id: "end", label: "End", type: "digital" },
+    ],
+    defaultState: { current: 0 },
+    category: "wire",
+    label: "Filo",
+  })
+}

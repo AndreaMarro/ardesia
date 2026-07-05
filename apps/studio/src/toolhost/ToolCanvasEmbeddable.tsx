@@ -15,6 +15,7 @@ import {
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
 import { registerSimulationTool, getSimulationTool } from "./simulationPluginRegistry";
+import { solveElabExperiment } from "../../sim/solver/elabSolver";
 
 type EmbedLike = {
   id?: string;
@@ -447,6 +448,9 @@ const referenceSimulationEntry = {
   ),
   createEmbed: () => createToolEmbedElement(),
   validate: (state: unknown) => validateBookLayoutScene(state as SimulationSceneV1),
+  // Confine P2: il motore elettrico reale (CircuitSolver vendored) dietro il
+  // dispatch del registry. Il render resta traversal-driven (golden 14.9 mA).
+  solve: solveElabExperiment,
 };
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);

@@ -73,4 +73,44 @@ describe("simulationPluginRegistry", () => {
   it("link non maestro-tool → null (comportamento preservato)", () => {
     expect(renderToolCanvasEmbeddable(createToolEmbedElement({ link: "https://example.test/x" }))).toBeNull()
   })
+
+  // ── Fase 2 simulature: motore elettrico dietro il registry (confine P2) ──
+
+  it("entry registrata senza solve → solve undefined (deny-by-default sul solve)", () => {
+    const toolId = "io.test.no-solver"
+    registerSimulationTool(toolId, {
+      embedId: "no-solver-embed",
+      render: () => null,
+      createEmbed: () => ({ id: "no-solver-embed", type: "embeddable" }),
+    })
+    expect(getSimulationTool(toolId)!.solve).toBeUndefined()
+  })
+
+  it("il reference tool espone solve: golden 15.3 mA dal motore reale via dispatch del registry", () => {
+    const entry = getSimulationTool(REFERENCE_SIM_TOOL_ID)
+    expect(entry?.solve).toBeDefined()
+    // Stessa topologia della scena reference (Vol.1 cap.6 esp.1):
+    // 9V → strip f2-j2 → R470 (i2→i9) → LED rosso (f9→e9) → strip a9-e9 → GND.
+    const result = entry!.solve!({
+      components: [
+        { id: "bat1", type: "battery9v" },
+        { id: "bb1", type: "breadboard-half" },
+        { id: "r1", type: "resistor", value: 470 },
+        { id: "led1", type: "led", color: "red" },
+      ],
+      connections: [
+        { from: "bat1:positive", to: "bb1:j2" },
+        { from: "bat1:negative", to: "bb1:a9" },
+      ],
+      pinAssignments: {
+        "r1:pin1": "bb1:i2",
+        "r1:pin2": "bb1:i9",
+        "led1:anode": "bb1:f9",
+        "led1:cathode": "bb1:e9",
+      },
+    })
+    expect(result.ok).toBe(true)
+    expect(result.componentStates.led1?.on).toBe(true)
+    expect(result.currents.led1).toBeCloseTo(0.0153, 3)
+  })
 })

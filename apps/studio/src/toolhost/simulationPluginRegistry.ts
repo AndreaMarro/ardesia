@@ -4,6 +4,7 @@
 // il registry governa solo il render dell'embed, non capability/protocollo.
 
 import type { ReactElement } from "react";
+import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
 export type ToolEmbedLike = {
@@ -27,6 +28,12 @@ export interface SimulationToolEntry {
   createEmbed(): { id: string; type: string } & Record<string, unknown>;
   /** Validazione opzionale dello stato/scena del tool. */
   validate?(state: unknown): { ok: boolean; errors: string[] };
+  /**
+   * Solve elettrico opzionale (Fase 2 simulature, confine P2): il motore
+   * reale dietro il dispatch del registry. Entry senza solve → nessun
+   * calcolo elettrico dispatchabile (deny-by-default, come il render).
+   */
+  solve?(experiment: SolverExperiment, options?: SolveOptions): SolveResult;
 }
 
 const registry = new Map<string, SimulationToolEntry>();

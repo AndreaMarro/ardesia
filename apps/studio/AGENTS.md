@@ -24,6 +24,8 @@ ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; 
 - Eventi journal: `events.jsonl` APPEND-ONLY, timestamp epoch ms, replay deterministico (nessun `Math.random`/`Date.now` nel percorso di REPLAY).
 - localStorage = CACHE, mai fonte di verità (la verità = cartella FSA / export bundle).
 - Playwright è installato sul Mini: per il replay-test T1 "a schermo" usalo headless (chromium). MAI dichiarare "verificato" senza un test che gira.
+- **Solver vendored** (`sim/solver/{engine,components}/*.js`): copie BYTE-IDENTICHE della sorgente `plugins/elab-tutor`, protette da drift-guard sha256 (`SolverVendoredDrift.test.ts`). MAI "sistemare" la copia (nemmeno trailing whitespace): se la sorgente evolve, refresh consapevole + rerun. Tipi via `.d.ts` companion (niente allowJs).
+- **Due golden elettrici DISTINTI by-design**: UI 14.9 mA (traversal, scena `ledForwardVolts: 2`) vs motore 15.3 mA (`LED_VF.red = 1.8`, canone CircuitSolver). Conflitto Vf tracciato come warning in `elabSolver.ts` — NON riconciliare un golden con l'altro senza decisione di Andrea.
 
 ## 4. Vincoli duri (violarli = REVERT)
 - `eval/gate.sh` INTOCCABILE; mai indebolire/skippare test per far passare il gate.
