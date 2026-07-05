@@ -42,6 +42,21 @@ export const ToolManifestSchema = z.strictObject({
   // Posizione nella gerarchia Core/Plugin/Pack/Workflow. Opzionale → assenza
   // = manifest legacy invariati (stessa disciplina di `contract`).
   kind: ArdesiaModuleKindSchema.optional(),
+  // Campi marketplace (MARKETPLACE-CANON): tutti opzionali, assenza = legacy.
+  // `author` = chi ha creato il modulo (distinto da `publisher`, che firma e
+  // distribuisce): il marketplace mostra l'autore, l'installer verifica il publisher.
+  author: z
+    .strictObject({
+      name: z.string().min(1).max(100),
+      url: z.string().url().optional(),
+    })
+    .optional(),
+  // Chi vede il modulo nel catalogo: privato all'autore, non listato (link
+  // diretto), pubblico. Assenza = deciso fuori-manifest (default del catalogo).
+  visibility: z.enum(["private", "unlisted", "public"]).optional(),
+  // Identificatore licenza (SPDX o LicenseRef-*), bounded: il manifest dichiara,
+  // non interpreta — la validazione legale è del marketplace.
+  license: z.string().min(1).max(100).optional(),
   entry: z
     .string()
     .min(1)
