@@ -47,13 +47,32 @@ export type LessonOsEvent =
   | (BaseEvent & { kind: "lesson.ended"; room: string })
   | (BaseEvent & { kind: "concept.introduced"; conceptId: string; labels: Labels })
   | (BaseEvent & { kind: "material.cited"; materialId: string; conceptId?: string; labels: Labels })
-  | (BaseEvent & { kind: "error.observed"; errorId: string; conceptId: string; labels: Labels })
+  | (BaseEvent & {
+      kind: "error.observed"
+      errorId: string
+      conceptId: string
+      /** Studente a cui l'errore è attribuito; assente = non attribuito (lezione di classe). */
+      studentId?: string
+      labels: Labels
+    })
   | (BaseEvent & {
       kind: "exercise.completed"
       exerciseId: string
       conceptId?: string
       /** Se presente: questo esercizio corregge l'errore osservato (arco `corregge`). */
       correctsErrorId?: string
+      /** Studente che ha completato; assente = non attribuito. */
+      studentId?: string
+      labels: Labels
+    })
+  | (BaseEvent & {
+      /** Tentativo quiz per-studente: fatto registrato; ogni vista (media, debito) è derivata. */
+      kind: "quiz.attempted"
+      quizId: string
+      conceptId?: string
+      studentId?: string
+      correct: number
+      total: number
       labels: Labels
     })
 
