@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  studio:
+    name: studio (typecheck + test + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - name: vitest (deterministic profile)
+        run: >
+          npx vitest run
+          --pool=threads --maxWorkers=1 --no-file-parallelism
+          --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+      - run: npm run build
+
+  engine:
+    name: engine (pytest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: pytest (live tests self-skip without API keys)
+        run: uv run pytest -q
+
+  hygiene:
+    name: hygiene (NUL + secrets + boundary + whitespace)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: NUL scan (tracked text files)
+        run: python3 bin/ci/nul_scan.py
+      - name: secret scan (high-confidence patterns)
+        run: python3 bin/ci/secret_scan.py
+      - name: ELAB standalone boundary (ratchet)
+        run: python3 bin/ci/elab_boundary_gate.py
+      - name: whitespace errors (git diff --check)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF" --depth=1
+          git diff --check "$(git merge-base "origin/$BASE_REF" HEAD)" HEAD
