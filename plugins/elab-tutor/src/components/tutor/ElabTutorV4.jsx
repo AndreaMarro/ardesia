@@ -30,7 +30,7 @@ import studentService from '../../services/studentService';
 import { useConfirmModal } from '../common/ConfirmModal';
 import TutorLayout from './TutorLayout';
 import useIsMobile from '../../hooks/useIsMobile';
-import { useAuth } from '../../context/AuthContext';
+import { useHostIdentity } from '../../plugin/hostIdentity';
 import { SessionRecorderProvider } from '../../context/SessionRecorderContext';
 const ManualTab = lazy(() => import('./ManualTab'));
 const CanvasTab = lazy(() => import('./CanvasTab'));
@@ -133,7 +133,7 @@ const VOL3_COUNT = EXPERIMENTS_VOL3?.experiments?.length || 0;
 
 export default function ElabTutorV4({ provaMode = false, onNavigate, initialExperimentId: deepLinkExpId }) {
     // ===================== STATE =====================
-    const { user, isDocente } = useAuth();
+    const { user, isDocente } = useHostIdentity();
     const { confirm: confirmModal, ConfirmDialog } = useConfirmModal();
 
     // ── VOLUME SECTIONS (G22): Primary volume state ──

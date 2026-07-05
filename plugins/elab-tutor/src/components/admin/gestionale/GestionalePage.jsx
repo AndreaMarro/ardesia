@@ -15,7 +15,7 @@ import { fattureService, ordiniService, prodottiService } from './GestionaleServ
 
 // Code-split: each gestionale module loads only when selected
 const SetupWizard = lazy(() => import('./modules/SetupWizard'));
-const DashboardGestionale = lazy(() => import('./modules/DashboardGestionale'));
+// DashboardGestionale amputata in slice 2: viste dashboard = Core host (canon §6)
 const FatturazioneModule = lazy(() => import('./modules/FatturazioneModule'));
 const OrdiniVenditeModule = lazy(() => import('./modules/OrdiniVenditeModule'));
 const MagazzinoKitModule = lazy(() => import('./modules/MagazzinoKitModule'));
@@ -28,7 +28,7 @@ const ReportModule = lazy(() => import('./modules/ReportModule'));
 
 export default function GestionalePage() {
     const isMobile = useIsMobile();
-    const [activeModule, setActiveModule] = useState('dashboard');
+    const [activeModule, setActiveModule] = useState('fatture');
     const [setupDone, setSetupDone] = useState(
         () => localStorage.getItem('elab_gest_setupComplete') === 'true'
     );
@@ -81,7 +81,6 @@ export default function GestionalePage() {
     const renderModule = () => {
         let content;
         switch (activeModule) {
-            case 'dashboard': content = <DashboardGestionale onNavigate={setActiveModule} isMobile={isMobile} />; break;
             case 'fatture': content = <FatturazioneModule isMobile={isMobile} />; break;
             case 'ordini': content = <OrdiniVenditeModule isMobile={isMobile} />; break;
             case 'magazzino': content = <MagazzinoKitModule isMobile={isMobile} />; break;
@@ -91,7 +90,7 @@ export default function GestionalePage() {
             case 'marketing': content = <MarketingClientiModule isMobile={isMobile} />; break;
             case 'impostazioni': content = <ImpostazioniModule isMobile={isMobile} />; break;
             case 'report': content = <ReportModule isMobile={isMobile} />; break;
-            default: content = <DashboardGestionale onNavigate={setActiveModule} isMobile={isMobile} />;
+            default: content = <FatturazioneModule isMobile={isMobile} />;
         }
         return <Suspense fallback={moduleFallback}>{content}</Suspense>;
     };

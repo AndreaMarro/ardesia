@@ -5,7 +5,7 @@
 // ============================================
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useHostIdentity } from '../../plugin/hostIdentity';
 import useIsMobile from '../../hooks/useIsMobile';
 
 
@@ -17,7 +17,7 @@ const ICONS = {
 };
 
 export default function Navbar({ currentPage, onNavigate }) {
-    const { user, isAdmin, isDocente, logout } = useAuth();
+    const { user, isAdmin, isDocente, logout } = useHostIdentity();
     const isMobile = useIsMobile();
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null);
