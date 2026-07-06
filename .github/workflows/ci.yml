@@ -62,7 +62,12 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          git fetch origin "$BASE_REF" --depth=1
+          # niente --depth=1: su clone full (fetch-depth: 0) il fetch shallow
+          # innesta il tip di main senza parent -> merge-base vuoto quando la
+          # PR e' stale vs main -> "fatal: bad revision ''" (visto su #94).
+          git fetch origin "$BASE_REF"
+          base="$(git merge-base "origin/$BASE_REF" HEAD)"
+          test -n "$base" || { echo "merge-base vuoto: origin/$BASE_REF vs HEAD" >&2; exit 1; }
           # sim/solver/engine è vendored byte-identico da ELAB (drift-guard
           # sha256 nei test): il whitespace del sorgente canonico non si tocca.
-          git diff --check "$(git merge-base "origin/$BASE_REF" HEAD)" HEAD -- . ':(exclude)apps/studio/sim/solver/engine/'
+          git diff --check "$base" HEAD -- . ':(exclude)apps/studio/sim/solver/engine/'
