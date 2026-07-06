@@ -27,6 +27,7 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { REFERENCE_SIM_TOOL_ID, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { getSimulationTool } from "./toolhost/simulationPluginRegistry"
+import { persistEmbedState } from "./toolhost/caps/board"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -828,7 +829,22 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
             onChange={studentView ? undefined : handleChange}
             validateEmbeddable={/^maestro-tool:\/\//}
-            renderEmbeddable={renderToolCanvasEmbeddable}
+            // Host per i tool embed (slice 4): write-back dei piazzamenti nello
+            // state dell'embed → la persistenza segue quella della scena. In
+            // vista studente niente write-back (lavagna read-only, stato di
+            // sessione soltanto).
+            renderEmbeddable={(element: Parameters<typeof renderToolCanvasEmbeddable>[0]) =>
+              renderToolCanvasEmbeddable(
+                element,
+                studentView
+                  ? undefined
+                  : {
+                      persistEmbedState: (embedId, state) => {
+                        if (apiRef.current) persistEmbedState(apiRef.current, embedId, state)
+                      },
+                    },
+              )
+            }
           >
             {/* MainMenu custom: SOLO ClearCanvas + SaveAsImage — zero Socials/link/Dark-mode */}
             <MainMenu>

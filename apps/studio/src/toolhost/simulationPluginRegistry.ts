@@ -19,11 +19,20 @@ export type ToolLinkRef = {
   embedId: string;
 };
 
+/**
+ * Servizi che l'host offre al tool renderizzato (tutti opzionali: un tool
+ * senza host resta funzionante, fail-soft). persistEmbedState scrive lo state
+ * del PROPRIO embed in scena — la persistenza segue quella della scena.
+ */
+export type SimulationToolHost = {
+  persistEmbedState?: (embedId: string, state: unknown) => void;
+};
+
 export interface SimulationToolEntry {
   /** Id dell'embeddable creato da createEmbed (per idempotenza inserimento). */
   embedId: string;
   /** Render del tool dentro l'embed Excalidraw. */
-  render(element: ToolEmbedLike, toolLink: ToolLinkRef): ReactElement | null;
+  render(element: ToolEmbedLike, toolLink: ToolLinkRef, host?: SimulationToolHost): ReactElement | null;
   /** Crea l'elemento embeddable Excalidraw completo del tool. */
   createEmbed(): { id: string; type: string } & Record<string, unknown>;
   /** Validazione opzionale dello stato/scena del tool. */
