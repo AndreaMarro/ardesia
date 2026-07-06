@@ -103,6 +103,43 @@ test("ELAB Lab parallelismo ai libri: ?esperimento monta un ALTRO esperimento re
   expect(consoleErrors).toEqual([])
 })
 
+test("ELAB Lab montaggio libero: la diagnostica segue il montaggio dello studente", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text())
+  })
+  page.on("pageerror", (error) => {
+    consoleErrors.push(`pageerror: ${error.message}`)
+  })
+
+  await page.goto("/?vista=elab-lab")
+  await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
+
+  // Baseline sana del Pack, poi lo studente MONTA: anode nello stesso foro
+  // del cathode = conflitto fisico che la diagnostica vede LIVE.
+  await expect(page.locator("[data-diagnostica-ok]")).toBeVisible()
+  const montaggio = page.locator("[data-elab-lab-montaggio-libero]")
+  await montaggio.locator("[data-montaggio-attiva]").click()
+  const anode = montaggio.locator('input[data-montaggio-pin="led1:anode"]')
+  await expect(anode).toHaveValue("bb1:f3")
+  await anode.fill("bb1:e3")
+
+  const diagnostica = page.locator("[data-elab-lab-diagnostica]")
+  await expect(diagnostica.locator("[data-diagnostica-finding]").first()).toContainText(
+    "bb1:e3",
+  )
+  await expect(diagnostica.locator("[data-diagnostica-ok]")).toHaveCount(0)
+
+  // Ripristina dal manuale: valori Pack, diagnostica di nuovo pulita.
+  await montaggio.locator("[data-montaggio-ripristina]").click()
+  await expect(anode).toHaveValue("bb1:f3")
+  await expect(diagnostica.locator("[data-diagnostica-ok]")).toBeVisible()
+
+  expect(consoleErrors).toEqual([])
+})
+
 test("ELAB Lab diagnostica: il bug corpus bb1:c21 (canon §1.4) è visibile nella vista", async ({
   page,
 }) => {

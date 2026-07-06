@@ -118,6 +118,12 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const [conceptId, setConceptId] = useState<string | null>(null)
   const [markedCount, setMarkedCount] = useState(0)
   const [recordError, setRecordError] = useState<string | null>(null)
+  // Montaggio libero: null = modalità spenta (diagnostica sul Pack).
+  // Attivata = copia dei pinAssignments del manuale, poi dello studente.
+  const [studentAssignments, setStudentAssignments] = useState<Record<
+    string,
+    string
+  > | null>(null)
 
   useEffect(() => {
     if (eventLog !== undefined) return
@@ -159,6 +165,8 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   // LOGICA, non fili fisici — l'occupazione si valuta sui SOLI pinAssignments
   // (cross-check #74: esattamente i 3 bug canon, 0 falsi positivi;
   // connections-as-wires darebbe 69/88 falsi positivi).
+  // In modalità montaggio libero il report gira LIVE sul montaggio dello
+  // studente (studentAssignments); spenta = montaggio del Pack.
   const diagnostics = useMemo(
     () =>
       experiment === null
@@ -166,9 +174,9 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         : analyzeFreeAssembly({
             components: experiment.components,
             wires: [],
-            pinAssignments: experiment.pinAssignments ?? {},
+            pinAssignments: studentAssignments ?? experiment.pinAssignments ?? {},
           }),
-    [experiment],
+    [experiment, studentAssignments],
   )
   // type-unregistered = tipo fuori dal catalogo elettrico vendored (60/88
   // esperimenti): il solve lo rifiuta comunque (deny-by-default) — nella
@@ -340,6 +348,58 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 </div>
               </div>
             )}
+
+            {experiment.pinAssignments !== undefined &&
+              Object.keys(experiment.pinAssignments).length > 0 && (
+                <div className="reference-tool-panel" data-elab-lab-montaggio-libero>
+                  <div className="reference-tool-panel-bar">
+                    montaggio libero (monta tu)
+                  </div>
+                  <div style={{ padding: "4px 8px" }}>
+                    {studentAssignments === null ? (
+                      <button
+                        type="button"
+                        data-montaggio-attiva
+                        title="Parti dal montaggio del manuale e modificalo: la diagnostica segue TE"
+                        onClick={() =>
+                          setStudentAssignments({ ...experiment.pinAssignments })
+                        }
+                      >
+                        Monta tu (parti dal manuale)
+                      </button>
+                    ) : (
+                      <>
+                        {Object.entries(studentAssignments).map(([pin, ref]) => (
+                          <label key={pin} style={{ display: "block", margin: "2px 0" }}>
+                            <code>{pin}</code>{" → "}
+                            <input
+                              data-montaggio-pin={pin}
+                              value={ref}
+                              size={8}
+                              onChange={(event) =>
+                                setStudentAssignments((previous) =>
+                                  previous === null
+                                    ? previous
+                                    : { ...previous, [pin]: event.target.value },
+                                )
+                              }
+                            />
+                          </label>
+                        ))}
+                        <button
+                          type="button"
+                          data-montaggio-ripristina
+                          onClick={() =>
+                            setStudentAssignments({ ...experiment.pinAssignments })
+                          }
+                        >
+                          Ripristina dal manuale
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
 
             {bookRef !== null && (
               <div className="reference-tool-panel" data-elab-lab-citation>
