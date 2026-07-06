@@ -47,8 +47,10 @@ class MemoryInstallerStore implements InstallerStore {
 
 /** Store che fallisce la write su UN path specifico (fault injection reale). */
 class FailingWriteStore extends MemoryInstallerStore {
-  constructor(private _failOn: string) {
+  private _failOn: string
+  constructor(failOn: string) {
     super()
+    this._failOn = failOn
   }
   override async write(path: string, data: Blob): Promise<void> {
     if (path === this._failOn) throw new Error(`disk full writing ${path}`)
