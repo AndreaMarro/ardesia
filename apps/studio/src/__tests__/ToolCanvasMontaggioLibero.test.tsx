@@ -9,7 +9,7 @@
 // già assegnato rifiuta il tap con notice visibile — mai piazzamento muto.
 //
 // Fixture: scena reale v1-cap6-esp1 (createToolEmbedElement) — fori occupati
-// bb1:i2 / bb1:i9 / bb1:f9 / bb1:e9.
+// bb1:bus-top-plus-9 / bb1:i9 / bb1:f9 / bb1:e9.
 
 import { cleanup, fireEvent, render } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
@@ -84,8 +84,8 @@ describe("SimulationBoard — palette tap-tap (montaggio libero slice 3)", () =>
     const container = mountSim()
     fireEvent.click(palette(container, "LED"))
 
-    fireEvent.click(hole(container, "bb1:i2"))
-    expect(notice(container)).toContain("bb1:i2")
+    fireEvent.click(hole(container, "bb1:i9"))
+    expect(notice(container)).toContain("bb1:i9")
     expect(notice(container)).toContain("occupato")
     expect(count(container)).toBe("0")
   })

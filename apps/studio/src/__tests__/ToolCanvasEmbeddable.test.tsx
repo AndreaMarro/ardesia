@@ -56,7 +56,7 @@ describe("ToolCanvasEmbeddable", () => {
     expect(state.scene.manual).toMatchObject({
       volume: 1,
       page: 29,
-      label: "Vol. 1 pag. 29-31 - ESPERIMENTO 1",
+      label: "Vol.1 pag.29-31 - ESPERIMENTO",
     });
     expect(state.scene.provenance.status).toBe("draft");
     expect(state.scene.bookLayout).toMatchObject({
@@ -78,7 +78,7 @@ describe("ToolCanvasEmbeddable", () => {
       expect.arrayContaining([
         expect.objectContaining({
           ref: "r1:pin1",
-          target: "bb1:i2",
+          target: "bb1:bus-top-plus-9",
           targetKind: "breadboard-hole",
         }),
         expect.objectContaining({
@@ -119,13 +119,14 @@ describe("ToolCanvasEmbeddable", () => {
       },
     };
 
+    // Scena bridgata: wires bookLayout = wire-w1/wire-w2 (id fixture); nessuna
+    // regola spaziale autorata dal libro, quindi nessun errore spatial.
     expect(validateBookLayoutScene(drifted as never)).toEqual({
       ok: false,
       errors: [
         "layout drift led1",
         "pin target drift led1:anode",
-        "wire drift wire-battery-negative",
-        "spatial drift led-right-of-resistor",
+        "wire drift wire-w2",
       ],
     });
   });
@@ -154,12 +155,16 @@ describe("ToolCanvasEmbeddable", () => {
     const html = renderToStaticMarkup(view);
 
     expect(html).toContain("Accendi il tuo primo LED");
-    expect(html).toContain("Vol. 1 pag. 29-31 - ESPERIMENTO 1");
+    expect(html).toContain("Vol.1 pag.29-31 - ESPERIMENTO");
     expect(html).toContain("draft");
-    expect(html).toContain("2 wire guard, 3 layout guard");
+    // La scena bridgata non ha regole spaziali autorate dal libro (lista vuota onesta).
+    expect(html).toContain("2 wire guard, 0 layout guard");
     expect(html).toContain("PDF p.29 - crop presente");
     expect(html).toContain("ON");
-    expect(html).toContain("14.9 mA");
+    // D4 gate-Andrea aperto: Vf red=1.8 dalla tabella engine (il manuale non
+    // dichiara alcun valore in mA); (9-1.8)/470 = 15.3 mA. Se Andrea sceglie
+    // Vf=2.0 cambia la tabella engine, non questa scena.
+    expect(html).toContain("15.3 mA");
     expect(html).toContain('alt="Pagina reale del manuale ELAB Volume 1 pagina 30"');
     expect(html).toContain('alt="Pagina reale del manuale ELAB Volume 1 pagina 31 circuito montato"');
     expect(html).toContain('alt="Zoom reale sulla pagina passo passo del manuale ELAB Volume 1"');
@@ -167,18 +172,18 @@ describe("ToolCanvasEmbeddable", () => {
     expect(html).toContain(">Reset</button>");
   });
 
-  it("GOLDEN: la corrente reference resta 14.9 mA ma deriva dal traversal del circuito", () => {
+  it("GOLDEN: la corrente reference resta 15.3 mA ma deriva dal traversal del circuito", () => {
     // Discriminante anti-formula: resistore componente 220 Ohm con runtime
-    // ancora a 470 → il traversal usa il componente (31.8 mA), la vecchia
-    // formula a due branch avrebbe risposto 14.9 mA.
+    // ancora a 470 → il traversal usa il componente ((9-1.8)/220 = 32.7 mA),
+    // una formula pinnata sul runtime avrebbe risposto 15.3 mA.
     const scene = createReferenceSimulationScene();
     scene.components = scene.components.map((component) =>
       component.id === "r1" ? { ...component, value: 220 } : component,
     );
     const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
     const html = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!);
-    expect(html).toContain("31.8 mA");
-    expect(html).not.toContain("14.9 mA");
+    expect(html).toContain("32.7 mA");
+    expect(html).not.toContain("15.3 mA");
   });
 
   it("circuito aperto (filo negativo assente): corrente 0.0 mA anche con ledOn", () => {
@@ -187,6 +192,6 @@ describe("ToolCanvasEmbeddable", () => {
     const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
     const html = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!);
     expect(html).toContain("0.0 mA");
-    expect(html).not.toContain("14.9 mA");
+    expect(html).not.toContain("15.3 mA");
   });
 });

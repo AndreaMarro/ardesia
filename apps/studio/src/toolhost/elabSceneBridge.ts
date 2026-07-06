@@ -23,6 +23,9 @@ export type ElabSceneBridgeOptions = {
   bookQuote: string
   manualCrop?: string | null
   manualFinalCrop?: string | null
+  // Pagina del manuale che la figura/crop ritrae quando diversa dalla prima
+  // pagina dell'esperimento (es. testo a p29, figura a p30).
+  manualFigurePage?: number
 }
 
 type BridgeComponentType = SimulationSceneV1["components"][number]["type"]
@@ -176,6 +179,7 @@ export function simulationSceneFromElabScene(
       manualSource: {
         pdf: `VOLUMI pdf e MD/MANUALE VOLUME ${volume} ITALIANO 2.pdf`,
         pdfPage: page,
+        ...(options.manualFigurePage !== undefined ? { figurePage: options.manualFigurePage } : {}),
         textSource: scene.provenance.sourceRef ?? "",
         crop: options.manualCrop ?? null,
         finalCrop: options.manualFinalCrop ?? null,
