@@ -19,7 +19,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('../../src/hooks/useSessionTracker', () => ({
   getSavedSessions: vi.fn(() => []),
 }));
-vi.mock('../../src/data/lesson-paths', () => ({
+vi.mock('../../../../packs/elab-tutor/data/lesson-paths', () => ({
   getLessonPath: vi.fn(() => null),
 }));
 vi.mock('../../src/services/api', () => ({

@@ -15,7 +15,7 @@
  *   if (decision.nudge) { showNudgeUI(decision.message); }
  */
 
-import VOLUME_REFERENCES from '../data/volume-references';
+import VOLUME_REFERENCES from '../../../../packs/elab-tutor/data/volume-references';
 
 // ─────────────────────────────────────────────────
 // Soglie (tutte in millisecondi)

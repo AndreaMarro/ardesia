@@ -56,7 +56,7 @@ RAG_CHUNKS=$(node -e "console.log(require('./src/data/rag-chunks.json').length)"
 WIKI_CONCEPTS=$(ls docs/unlim-wiki/concepts/*.md 2>/dev/null | wc -l | tr -d ' ' || echo "0")
 
 # ─── 8. Lesson paths count ───
-LESSON_PATHS=$(ls src/data/lesson-paths/*.json 2>/dev/null | wc -l | tr -d ' ' || echo "0")
+LESSON_PATHS=$(ls ../../packs/elab-tutor/data/lesson-paths/*.json 2>/dev/null | wc -l | tr -d ' ' || echo "0")
 
 # ─── 9. Vitest baseline ───
 VITEST_BASELINE=$(cat automa/baseline-tests.txt 2>/dev/null | tr -d ' ' || echo "0")

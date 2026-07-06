@@ -53,7 +53,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const REPO_ROOT = resolve(__dirname, '..', '..');
-const LESSON_PATHS_DIR = resolve(REPO_ROOT, 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = resolve(REPO_ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 const SCREENSHOTS_DIR = resolve(REPO_ROOT, 'tests', 'fixtures', 'screenshots');
 const STATE_DIR = resolve(REPO_ROOT, 'automa', 'state');
 

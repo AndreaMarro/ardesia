@@ -54,7 +54,7 @@ describe('UNLIM Knowledge Base', () => {
 });
 
 describe('UNLIM Knowledge Base — Lesson Path Coverage', () => {
-  const LP_DIR = path.resolve('src/data/lesson-paths');
+  const LP_DIR = path.resolve('../../packs/elab-tutor/data/lesson-paths');
 
   test('lesson paths directory has 78+ JSON files', () => {
     const files = fs.readdirSync(LP_DIR).filter(f => f.endsWith('.json'));

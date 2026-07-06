@@ -288,9 +288,9 @@ export function createReferenceSimulationScene({
       provider: "none",
     },
     provenance: {
-      lessonPath: "plugins/elab-tutor/src/data/lesson-paths/v1-cap6-esp1.json",
+      lessonPath: "packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json",
       experimentData: "plugins/elab-tutor/src/data/experiments-vol1.js",
-      volumeReference: "plugins/elab-tutor/src/data/volume-references.js",
+      volumeReference: "packs/elab-tutor/data/volume-references.js",
       status: "draft",
       blocker: "Scena derivata dal lesson-path ELABTutor con pagine PDF reali; experiments-vol1.js contiene un layout alternativo con piu fili/rail, quindi il pack resta draft finche il drift non viene normalizzato.",
     },

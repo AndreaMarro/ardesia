@@ -45,7 +45,7 @@ import { dirname, join, resolve } from 'node:path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const REPO_ROOT = resolve(__dirname, '..', '..');
-const LESSON_PATHS_DIR = join(REPO_ROOT, 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = join(REPO_ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 const GOLDEN_DIR = join(REPO_ROOT, 'tests', 'fixtures', 'harness-2.0-golden');
 const OUTPUT_JSON = join(REPO_ROOT, 'automa', 'state', 'iter-19-harness-2.0-results.json');
 const OUTPUT_MD = join(REPO_ROOT, 'docs', 'audits', 'iter-19-harness-2.0-report-DRAFT.md');

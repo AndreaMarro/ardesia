@@ -109,7 +109,7 @@ function main() {
       for (const e of vol.chapters[chKey].experiments || []) teaMap[e.id] = e;
     }
   }
-  const lpDir = join(REPO, 'src', 'data', 'lesson-paths');
+  const lpDir = join(REPO, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
   const lessonPaths = {};
   for (const f of readdirSync(lpDir).filter((f) => f.endsWith('.json'))) {
     const j = readJson(join(lpDir, f));
@@ -123,7 +123,7 @@ async function run() {
   // Literal relative specifier: a non-literal import() breaks vite's SSR parser
   // when vitest imports this module for its named exports. This dynamic import
   // stays lazy — it runs only on direct `node` invocation, never during tests.
-  const volumeRefs = (await import('../../src/data/volume-references.js')).default;
+  const volumeRefs = (await import('../../../../packs/elab-tutor/data/volume-references.js')).default;
   const volText = {
     1: readFileSync(VOL_TEXT[1], 'utf8'),
     2: readFileSync(VOL_TEXT[2], 'utf8'),

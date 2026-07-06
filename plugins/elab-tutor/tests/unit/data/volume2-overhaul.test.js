@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { describe, expect, test } from 'vitest';
 import experimentsVol2 from '../../../src/data/experiments-vol2.js';
-import volumeReferences from '../../../src/data/volume-references.js';
+import volumeReferences from '../../../../../packs/elab-tutor/data/volume-references.js';
 import narrativeMap from '../../../src/data/narrative-map-94.json';
 
 const volume2Order = [
@@ -35,7 +35,7 @@ const volume2Order = [
   'v2-cap12-esp1',
 ];
 
-const lessonPathDir = path.resolve('src/data/lesson-paths');
+const lessonPathDir = path.resolve('../../packs/elab-tutor/data/lesson-paths');
 const readLessonPath = (id) => JSON.parse(fs.readFileSync(path.join(lessonPathDir, `${id}.json`), 'utf8'));
 
 describe('Volume 2 experiment overhaul invariants', () => {

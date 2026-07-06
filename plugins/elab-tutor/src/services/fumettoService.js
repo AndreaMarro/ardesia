@@ -30,7 +30,7 @@
 
 import fumettoSchema from '../data/fumetto-schema.json';
 import { getFallbackPhoto, getPhotoFor } from '../data/experiment-photo-map';
-import { getVolumeRef } from '../data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 
 const FUMETTO_LEARNER_SPEAKER = ['student', 'e'].join('');
 

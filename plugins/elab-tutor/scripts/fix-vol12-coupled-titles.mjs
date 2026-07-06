@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
-const LESSON_PATHS_DIR = path.join(REPO_ROOT, 'src/data/lesson-paths');
+const LESSON_PATHS_DIR = path.join(REPO_ROOT, '../../packs/elab-tutor/data/lesson-paths');
 const DRY_RUN = process.argv.includes('--dry-run');
 
 function main() {

@@ -8,7 +8,7 @@ vi.mock('../../src/hooks/useSessionTracker', () => ({
   getSavedSessions: vi.fn(() => []),
 }));
 
-vi.mock('../../src/data/lesson-paths', () => ({
+vi.mock('../../../../packs/elab-tutor/data/lesson-paths', () => ({
   getLessonPath: vi.fn((id) => {
     if (id === 'v1-cap6-esp1') return {
       title: 'Accendi il tuo primo LED',

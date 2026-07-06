@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest';
 import EXPERIMENTS_VOL1 from '../../src/data/experiments-vol1.js';
 import LESSON_GROUPS from '../../src/data/lesson-groups.js';
 
-const LESSON_PATH_DIR = path.resolve('src/data/lesson-paths');
+const LESSON_PATH_DIR = path.resolve('../../packs/elab-tutor/data/lesson-paths');
 
 const BOOK_ORDER = [
   ...Array.from({ length: 3 }, (_, i) => `v1-cap6-esp${i + 1}`),

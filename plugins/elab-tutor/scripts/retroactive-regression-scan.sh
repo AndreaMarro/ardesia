@@ -70,7 +70,7 @@ for COMMIT in $COMMITS; do
   TOOLS=$(grep -cE "^\s+name:\s*['\"]" scripts/openclaw/tools-registry.ts 2>/dev/null || echo "0")
   RAG=$(node -e "console.log(require('./src/data/rag-chunks.json').length)" 2>/dev/null || echo "0")
   WIKI=$(ls docs/unlim-wiki/concepts/*.md 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-  LESSON=$(ls src/data/lesson-paths/*.json 2>/dev/null | wc -l | tr -d ' ' || echo "0")
+  LESSON=$(ls ../../packs/elab-tutor/data/lesson-paths/*.json 2>/dev/null | wc -l | tr -d ' ' || echo "0")
   VITEST=$(cat automa/baseline-tests.txt 2>/dev/null | tr -d ' ' || echo "0")
   EDGE=$(ls -d supabase/functions/*/ 2>/dev/null | grep -v _shared | wc -l | tr -d ' ' || echo "0")
   ADR=$(ls docs/adrs/ADR-*.md 2>/dev/null | wc -l | tr -d ' ' || echo "0")

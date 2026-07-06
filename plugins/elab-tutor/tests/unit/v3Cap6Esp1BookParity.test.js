@@ -6,7 +6,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import EXPERIMENTS_VOL3 from '../../src/data/experiments-vol3';
-import { getVolumeRef } from '../../src/data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 
 // Support both [...] and {list:[...]} shapes historically used in this project.
 const list = Array.isArray(EXPERIMENTS_VOL3)

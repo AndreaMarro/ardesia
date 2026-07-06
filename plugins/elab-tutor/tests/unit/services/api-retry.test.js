@@ -21,7 +21,7 @@ vi.mock('../../../src/data/unlim-knowledge-base', () => ({
   searchRAGChunks: vi.fn(() => []),
 }));
 
-vi.mock('../../../src/data/volume-references', () => ({
+vi.mock('../../../../../packs/elab-tutor/data/volume-references', () => ({
   getVolumeRef: vi.fn(() => null),
   default: {},
 }));

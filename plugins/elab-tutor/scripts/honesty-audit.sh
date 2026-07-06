@@ -60,8 +60,8 @@ COMPILER_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 8 -X POST "h
 EDGE_TTS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 "http://72.60.129.50:8880/tts?text=test" 2>/dev/null || echo "0")
 
 # ── 11. Volume references integrity ──
-BOOKTEXT_COUNT=$(grep -c "bookText:" src/data/volume-references.js 2>/dev/null || echo "0")
-BOOKDIVERGENCE_COUNT=$(grep -c "bookDivergence" src/data/volume-references.js 2>/dev/null || echo "0")
+BOOKTEXT_COUNT=$(grep -c "bookText:" ../../packs/elab-tutor/data/volume-references.js 2>/dev/null || echo "0")
+BOOKDIVERGENCE_COUNT=$(grep -c "bookDivergence" ../../packs/elab-tutor/data/volume-references.js 2>/dev/null || echo "0")
 
 # ── 12. Commercial readiness (se presente) ──
 COMMERCIAL_SCORE="unknown"

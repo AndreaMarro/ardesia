@@ -10,7 +10,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { ALL_EXPERIMENTS, VOLUMES, findExperimentById } from '../../../src/data/experiments-index';
-import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../src/data/volume-references';
+import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../../../packs/elab-tutor/data/volume-references';
 
 // ─── Costanti attese ──────────────────────────────────────────────────────────
 const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 23, total: 88 };

@@ -4,7 +4,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import { findExperimentById, getExperimentsByVolume, getTotalExperiments, ALL_EXPERIMENTS, VOLUMES } from '../../src/data/experiments-index';
-import { getLessonPath, hasLessonPath, getAvailableLessonPaths, PHASE_NAMES } from '../../src/data/lesson-paths';
+import { getLessonPath, hasLessonPath, getAvailableLessonPaths, PHASE_NAMES } from '../../../../packs/elab-tutor/data/lesson-paths';
 
 describe('experiments-index — data integrity', () => {
   it('has 88+ total experiments', () => {

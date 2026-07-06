@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const LESSON_PATHS_DIR = resolve(__dirname, '..', '..', '..', 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = resolve(__dirname, '..', '..', '..', '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 
 const TARGET_FIELDS = new Set([
   'teacher_message',

@@ -13,7 +13,7 @@ import UnlimInputBar from './UnlimInputBar';
 import UnlimModeSwitch, { useUnlimMode } from './UnlimModeSwitch';
 import css from './unlim-wrapper.module.css';
 import { AntennaIcon, LetterIcon, CloseIcon, WarningIcon, SettingsIcon, CircuitIcon, SuccessIcon, MicrophoneIcon, RobotIcon, StarIcon, LightbulbIcon, HandWaveIcon, PartyIcon, BookIcon, FlaskIcon, SearchIcon, LoadingIcon } from '../common/ElabIcons';
-import { getLessonPath } from '../../data/lesson-paths';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
 import { sendChat, checkRateLimit } from '../../services/api';
 import { useTTS } from '../../hooks/useTTS';
 import { useSTT } from '../../hooks/useSTT';

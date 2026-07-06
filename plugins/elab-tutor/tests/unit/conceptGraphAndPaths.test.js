@@ -18,7 +18,7 @@ import {
   hasLessonPath,
   getAvailableLessonPaths,
   PHASE_NAMES,
-} from '../../src/data/lesson-paths/index.js';
+} from '../../../../packs/elab-tutor/data/lesson-paths/index.js';
 
 // Helper: all experiment IDs from the concept graph
 const ALL_EXPERIMENT_IDS = Object.keys(EXPERIMENT_CONCEPTS);
@@ -515,7 +515,7 @@ describe('cross-reference', () => {
   } catch (_) { /* handled in tests */ }
 
   // We use a beforeAll to load the module
-  const volRefPromise = import('../../src/data/volume-references.js');
+  const volRefPromise = import('../../../../packs/elab-tutor/data/volume-references.js');
 
   it('volume-references module loads successfully', async () => {
     const mod = await volRefPromise;

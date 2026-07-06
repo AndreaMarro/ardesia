@@ -61,7 +61,7 @@ const TEA_IDS = Object.keys(teaExp).sort();
 const teaCapstones = TEA_IDS.filter((id) => teaChain[id] === null).sort();
 
 // ── Load repo sources ─────────────────────────────────────────────────────
-const lpDir = join(REPO, 'src', 'data', 'lesson-paths');
+const lpDir = join(REPO, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 const lessonPaths = {};
 for (const f of readdirSync(lpDir).filter((f) => f.endsWith('.json'))) {
   const j = safe(`lesson-path ${f}`, () => readJson(join(lpDir, f)), null);
@@ -80,7 +80,7 @@ const chapterMap = await safe('chapter-map.js',
 const lessonGroups = await safe('lesson-groups.js',
   async () => (await import(join(REPO, 'src/data/lesson-groups.js'))).default, {});
 const volumeRefs = await safe('volume-references.js',
-  async () => (await import(join(REPO, 'src/data/volume-references.js'))).default, {});
+  async () => (await import(join(REPO, '../../packs/elab-tutor/data/volume-references.js'))).default, {});
 
 // experiment → lesson-group membership
 const expInGroup = {};

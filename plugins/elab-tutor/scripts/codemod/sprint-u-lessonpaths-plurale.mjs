@@ -52,7 +52,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = resolve(__dirname, '..', '..');
-const LESSON_PATHS_DIR = join(ROOT, 'src', 'data', 'lesson-paths');
+const LESSON_PATHS_DIR = join(ROOT, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
 
 const APPLY = process.argv.includes('--apply');
 const VERBOSE = process.argv.includes('--verbose');

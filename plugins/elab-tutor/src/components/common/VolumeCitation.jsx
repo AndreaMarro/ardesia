@@ -15,16 +15,17 @@
  */
 
 import React from 'react';
+import {
+  isValidVolumeCitation,
+  formatVolumeCitationLabel,
+} from '../../../../../packs/elab-tutor/data/volume-citation.js';
 import { BookIcon } from './ElabIcons';
 import css from './VolumeCitation.module.css';
 
-const VALID_VOLUMES = [1, 2, 3];
-
 export default function VolumeCitation({ volume, page, onClick, label }) {
-  if (!VALID_VOLUMES.includes(volume)) return null;
-  if (typeof page !== 'number' || page <= 0) return null;
+  if (!isValidVolumeCitation(volume, page)) return null;
 
-  const text = label ?? `Vol.${volume} pag.${page}`;
+  const text = label ?? formatVolumeCitationLabel(volume, page);
   const ariaLabel = `Citazione Volume ${volume} pagina ${page}`;
 
   if (typeof onClick === 'function') {

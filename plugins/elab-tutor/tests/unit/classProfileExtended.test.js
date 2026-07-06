@@ -11,7 +11,7 @@ vi.mock('../../src/hooks/useSessionTracker', () => ({
   getSavedSessions: vi.fn(() => []),
 }));
 
-vi.mock('../../src/data/lesson-paths', async (importOriginal) => {
+vi.mock('../../../../packs/elab-tutor/data/lesson-paths', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,

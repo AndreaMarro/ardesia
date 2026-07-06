@@ -102,7 +102,7 @@ describe('transitionsCycleNode', () => {
 // Integration: the guards must PASS on the real repo — this is also a live
 // regression check that the A4.1d re-thread left zero dangling refs / cycles.
 describe('A4.1d guards — live repo regression check', () => {
-  const LP_DIR = join(REPO, 'src', 'data', 'lesson-paths');
+  const LP_DIR = join(REPO, '..', '..', 'packs', 'elab-tutor', 'data', 'lesson-paths');
   const CAPITOLI_DIR = join(REPO, 'src', 'data', 'capitoli');
 
   it('every lesson-path reference resolves (0 dangling refs in src/)', () => {

@@ -7,7 +7,7 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 
 // Mock dependencies
-vi.mock('../../src/data/lesson-paths', () => ({
+vi.mock('../../../../packs/elab-tutor/data/lesson-paths', () => ({
     getLessonPath: vi.fn(),
 }));
 
@@ -24,7 +24,7 @@ vi.mock('../../src/utils/logger', () => ({
 }));
 
 import { getLessonSummary, isLessonPrepCommand, prepareLesson } from '../../src/services/lessonPrepService';
-import { getLessonPath } from '../../src/data/lesson-paths';
+import { getLessonPath } from '../../../../packs/elab-tutor/data/lesson-paths';
 import { getSavedSessions } from '../../src/hooks/useSessionTracker';
 import { sendChat } from '../../src/services/api';
 

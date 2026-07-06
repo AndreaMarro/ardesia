@@ -3,7 +3,7 @@
  * Sprint S iter 13 atom F2 (fumetto-opus)
  *
  * Renders 6-vignette comic-style recap of session experiments.
- * Morfismo Sense 2: each vignette cites Vol.X pag.Y verbatim from src/data/volume-references.js.
+ * Morfismo Sense 2: each vignette cites Vol.X pag.Y verbatim from packs/elab-tutor/data/volume-references.js.
  * Principio Zero V3: plurale "Ragazzi," in header + footer.
  * NO emoji icons (ElabIcons.jsx). Brand palette Navy/Lime/Orange/Red.
  *

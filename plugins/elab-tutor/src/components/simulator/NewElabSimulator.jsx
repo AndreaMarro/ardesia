@@ -33,7 +33,7 @@ import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-inde
 // to wire next_experiment cliffhanger CTA into ScratchCompileBar +
 // CompileUploadButton (iter 74 B-1 components had props MA real callers
 // non passavano nextExperiment → CTAs invisibili runtime users).
-import { getLessonPath } from '../../data/lesson-paths';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
 import { compileCode as apiCompileCode } from '../../services/api';
 import { compileArduinoCode, getLastCompileSource } from '../../services/compiler';
 import { emitSimulatorEvent } from '../../services/simulator-api';

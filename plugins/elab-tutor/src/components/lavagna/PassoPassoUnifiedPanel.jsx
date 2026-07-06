@@ -36,7 +36,7 @@ import logger from '../../utils/logger';
 import FloatingWindow from './FloatingWindow';
 import { getCliffhangerFor, getNextExperimentInChain } from '../../services/experimentNarrativeService';
 import { findExperimentById } from '../../data/experiments-index';
-import { getLessonPath } from '../../data/lesson-paths';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
 import css from './PassoPassoUnifiedPanel.module.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';

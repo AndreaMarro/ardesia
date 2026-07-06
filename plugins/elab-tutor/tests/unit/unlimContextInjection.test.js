@@ -50,7 +50,7 @@ import {
 } from '../../src/services/unlimContextCollector';
 
 import { checkRateLimit } from '../../src/services/api';
-import { getVolumeRef } from '../../src/data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { getExperimentGroupContext } from '../../src/data/lesson-groups';
 import { searchRAGChunks } from '../../src/data/unlim-knowledge-base';
 

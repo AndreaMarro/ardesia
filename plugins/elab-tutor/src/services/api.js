@@ -7,7 +7,7 @@
 // ========================================
 import { filterAIResponse } from '../utils/aiSafetyFilter';
 import { searchKnowledgeBase } from '../data/unlim-knowledge-base';
-import { getVolumeRef } from '../data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { ensureBookCitation } from './bookCitation';
 import { getExperimentGroupContext } from '../data/lesson-groups';
 import { buildAgentDecisionSeed } from './unlimSharedStateStore';

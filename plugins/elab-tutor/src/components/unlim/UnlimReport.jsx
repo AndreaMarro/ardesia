@@ -10,7 +10,7 @@
  */
 
 import { getSavedSessions, getLastSession } from '../../hooks/useSessionTracker';
-import { getLessonPath } from '../../data/lesson-paths';
+import { getLessonPath } from '../../../../../packs/elab-tutor/data/lesson-paths';
 
 // ─── Helpers ────────────────────────────────────────────────────────
 

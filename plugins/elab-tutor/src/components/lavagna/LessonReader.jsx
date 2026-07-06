@@ -1,6 +1,6 @@
 import React from 'react';
 import LESSON_GROUPS from '../../data/lesson-groups';
-import VOLUME_REFERENCES from '../../data/volume-references';
+import VOLUME_REFERENCES from '../../../../../packs/elab-tutor/data/volume-references';
 import styles from './LessonReader.module.css';
 
 export default function LessonReader({ lessonId, currentExperimentId, onExperimentSelect }) {

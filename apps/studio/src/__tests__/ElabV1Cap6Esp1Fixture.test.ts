@@ -85,7 +85,7 @@ const experimentPath = path.join(
 )
 const lessonPath = path.join(
   repoRoot,
-  "plugins/elab-tutor/src/data/lesson-paths/v1-cap6-esp1.json",
+  "packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json",
 )
 
 function readJson<T>(filePath: string): T {

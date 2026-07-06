@@ -11,7 +11,7 @@ import EXPERIMENTS_VOL1 from '../../src/data/experiments-vol1.js';
 import EXPERIMENTS_VOL2 from '../../src/data/experiments-vol2.js';
 import EXPERIMENTS_VOL3 from '../../src/data/experiments-vol3.js';
 import LESSON_GROUPS, { findLessonForExperiment } from '../../src/data/lesson-groups.js';
-import VOLUME_REFERENCES from '../../src/data/volume-references.js';
+import VOLUME_REFERENCES from '../../../../packs/elab-tutor/data/volume-references.js';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 

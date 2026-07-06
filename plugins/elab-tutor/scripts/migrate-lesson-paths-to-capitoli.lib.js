@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PROJECT_ROOT = join(__dirname, '..');
-const LESSON_PATHS_DIR = join(PROJECT_ROOT, 'src/data/lesson-paths');
+const LESSON_PATHS_DIR = join(PROJECT_ROOT, '../../packs/elab-tutor/data/lesson-paths');
 const VOLUME_STRUCTURE_FILE = join(PROJECT_ROOT, 'docs/data/volume-structure.json');
 
 // ====================================================================

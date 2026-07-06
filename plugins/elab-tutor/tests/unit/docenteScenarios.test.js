@@ -14,7 +14,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import { searchKnowledgeBase, searchRAGChunks } from '../../src/data/unlim-knowledge-base';
-import { getVolumeRef } from '../../src/data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 import { getExperimentGroupContext, findLessonForExperiment } from '../../src/data/lesson-groups';
 import { ALL_EXPERIMENTS } from '../../src/data/experiments-index';
 

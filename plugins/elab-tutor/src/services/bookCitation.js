@@ -25,7 +25,7 @@
  * © Andrea Marro — 18/04/2026 — Ralph Loop iteration 1
  */
 
-import { getVolumeRef } from '../data/volume-references';
+import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-references';
 
 // Match exact page anchors: "pagina 29", "pag. 29", "Vol. 1, pag. 29",
 // "Volume 2 pagina 45", "V1P45". Do not accept "Vol. 1" without a page.
