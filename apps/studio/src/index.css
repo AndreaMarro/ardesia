@@ -521,3 +521,8 @@ body {
   .ow-main { grid-template-columns: 1fr; overflow-y: auto; }
   .ow-form { border-right: none; border-bottom: var(--m-rule-weight) solid var(--m-line); max-width: none; }
 }
+
+/* Officina: campi marketplace in progressive disclosure */
+.ow-marketplace { display: flex; flex-direction: column; gap: var(--m-sp-3); }
+.ow-marketplace summary { cursor: pointer; margin-bottom: var(--m-sp-1); }
+.ow-marketplace[open] summary { color: var(--m-ink-2); }

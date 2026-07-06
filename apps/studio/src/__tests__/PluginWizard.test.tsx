@@ -103,7 +103,7 @@ describe("PluginWizard — spec e generazione", () => {
     const genera = screen.getByRole("button", { name: /genera il plugin/i })
     expect((genera as HTMLButtonElement).disabled).toBe(true)
 
-    fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Voltmetro" } })
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Voltmetro" } })
     fireEvent.change(screen.getByLabelText(/identificatore/i), {
       target: { value: "nonvalido" },
     })
@@ -119,7 +119,7 @@ describe("PluginWizard — spec e generazione", () => {
     const deps = makeDeps()
     render(<PluginWizard deps={deps} />)
 
-    fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Voltmetro" } })
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Voltmetro" } })
     fireEvent.change(screen.getByLabelText(/identificatore/i), {
       target: { value: "it.scuola.voltmetro" },
     })
@@ -149,7 +149,7 @@ describe("PluginWizard — spec e generazione", () => {
     })
     render(<PluginWizard deps={deps} />)
 
-    fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Demo" } })
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Demo" } })
     fireEvent.change(screen.getByLabelText(/identificatore/i), {
       target: { value: "it.scuola.demo" },
     })
@@ -165,7 +165,7 @@ describe("PluginWizard — spec e generazione", () => {
 describe("PluginWizard — collaudo e export (fail-closed)", () => {
   async function generaEBase(deps: PluginWizardDeps) {
     render(<PluginWizard deps={deps} />)
-    fireEvent.change(screen.getByLabelText(/nome/i), { target: { value: "Demo" } })
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Demo" } })
     fireEvent.change(screen.getByLabelText(/identificatore/i), {
       target: { value: "it.scuola.demo" },
     })
@@ -259,5 +259,66 @@ describe("PluginWizard — collaudo e export (fail-closed)", () => {
       (screen.getByRole("button", { name: /esporta \.maestrotool/i }) as HTMLButtonElement)
         .disabled,
     ).toBe(true)
+  })
+})
+
+// Campi marketplace (#72) nell'officina: passthrough alla ScaffoldSpec — la
+// grammatica resta UNA (ToolManifestSchema via scaffoldPlugin #83). Vuoti =
+// manifest legacy, NESSUNA chiave emessa (stessa regola dello scaffolder).
+describe("PluginWizard — campi marketplace (facoltativi)", () => {
+  function fillBase() {
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Demo" } })
+    fireEvent.change(screen.getByLabelText(/identificatore/i), {
+      target: { value: "it.scuola.demo" },
+    })
+  }
+
+  it("compilati: author/license/visibility arrivano alla spec dello scaffolder", async () => {
+    const deps = makeDeps()
+    render(<PluginWizard deps={deps} />)
+    fillBase()
+
+    fireEvent.change(screen.getByLabelText(/nome autore/i), {
+      target: { value: "Prof.ssa Rossi" },
+    })
+    fireEvent.change(screen.getByLabelText(/url autore/i), {
+      target: { value: "https://scuola.example" },
+    })
+    fireEvent.change(screen.getByLabelText(/licenza/i), { target: { value: "MIT" } })
+    fireEvent.change(screen.getByLabelText(/visibilità/i), { target: { value: "public" } })
+    fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
+
+    await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
+    const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
+    expect(spec.author).toEqual({ name: "Prof.ssa Rossi", url: "https://scuola.example" })
+    expect(spec.license).toBe("MIT")
+    expect(spec.visibility).toBe("public")
+  })
+
+  it("vuoti: la spec resta legacy, nessuna chiave marketplace emessa", async () => {
+    const deps = makeDeps()
+    render(<PluginWizard deps={deps} />)
+    fillBase()
+    fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
+
+    await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
+    const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
+    expect(spec.author).toBeUndefined()
+    expect(spec.license).toBeUndefined()
+    expect(spec.visibility).toBeUndefined()
+  })
+
+  it("solo URL senza nome autore: author NON emesso (regola nome-richiesto)", async () => {
+    const deps = makeDeps()
+    render(<PluginWizard deps={deps} />)
+    fillBase()
+    fireEvent.change(screen.getByLabelText(/url autore/i), {
+      target: { value: "https://scuola.example" },
+    })
+    fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
+
+    await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
+    const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
+    expect(spec.author).toBeUndefined()
   })
 })
