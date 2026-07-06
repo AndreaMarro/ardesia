@@ -45,6 +45,8 @@ export interface TeacherDashboardProjection {
   }>
   studentPackQueue: Array<{
     candidateId: string
+    /** Errore da cui nasce il candidato: la vista lo cita nell'evento di generazione. */
+    errorId: string
     fromRoom: string
     label: Labels
     status: "candidate" | "generated" | "exported"
@@ -245,20 +247,27 @@ function projectGraphView(graph: LessonGraph, focusNodeId: string | null | undef
 
 // Z7 — candidati student-pack DERIVATI dagli eventi già nel log: un
 // error.observed mai corretto (nessun exercise.completed.correctsErrorId che
-// lo punta) è un candidato al ripasso. Nessun kind nuovo. Solo status
-// "candidate": generated/exported richiedono eventi append-only dedicati e
-// restano fuori da questa slice. fromRoom = finestra lesson.started/ended che
-// contiene t; errore fuori da ogni finestra → fromRoom "" (mai perso in muto).
+// lo punta) è un candidato al ripasso. Il lift di stato viene da eventi
+// append-only dedicati (studentpack.generated/exported), NON da un secondo
+// store: candidate → generated → exported. fromRoom = finestra
+// lesson.started/ended che contiene t; errore fuori da ogni finestra →
+// fromRoom "" (mai perso in muto).
 function studentPackQueue(
   lessonEvents: readonly AppendedEvent[],
 ): TeacherDashboardProjection["studentPackQueue"] {
   const sorted = [...lessonEvents].sort((a, b) => a.seq - b.seq)
   const correctedErrorIds = new Set<string>()
+  const generatedPackIds = new Set<string>()
+  const exportedPackIds = new Set<string>()
   const windows: Array<{ room: string; from: number; to: number }> = []
   const openByRoom = new Map<string, number>()
   for (const ev of sorted) {
     if (ev.kind === "exercise.completed" && ev.correctsErrorId !== undefined) {
       correctedErrorIds.add(ev.correctsErrorId)
+    } else if (ev.kind === "studentpack.generated") {
+      generatedPackIds.add(ev.packId)
+    } else if (ev.kind === "studentpack.exported") {
+      exportedPackIds.add(ev.packId)
     } else if (ev.kind === "lesson.started") {
       openByRoom.set(ev.room, ev.t)
     } else if (ev.kind === "lesson.ended") {
@@ -275,12 +284,20 @@ function studentPackQueue(
   const queue: TeacherDashboardProjection["studentPackQueue"] = []
   for (const ev of sorted) {
     if (ev.kind !== "error.observed" || correctedErrorIds.has(ev.errorId)) continue
+    const candidateId = `sp-${ev.errorId}`
     const window = windows.find((w) => ev.t >= w.from && ev.t <= w.to)
+    // exported richiede generated a monte: nessun salto di stato inventato.
+    const status: "candidate" | "generated" | "exported" = generatedPackIds.has(candidateId)
+      ? exportedPackIds.has(candidateId)
+        ? "exported"
+        : "generated"
+      : "candidate"
     queue.push({
-      candidateId: `sp-${ev.errorId}`,
+      candidateId,
+      errorId: ev.errorId,
       fromRoom: window?.room ?? "",
       label: { ...ev.labels },
-      status: "candidate",
+      status,
       evidenceRefs: [...ev.evidence],
     })
   }

@@ -8,8 +8,8 @@
 // Onestà (spec §0.4): event log illeggibile → errore visibile, MAI una coda
 // vuota spacciata per vera; coda vuota REALE → empty state dichiarato.
 
-import { cleanup, render, screen } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { InMemoryEventLog, type AppendedEvent, type LessonOsEvent } from "../lessonos/eventlog"
 import { isTeacherDashboardView } from "../store/teacherDashboardView"
 import TeacherDashboardView from "../design/TeacherDashboardView"
@@ -95,5 +95,64 @@ describe("TeacherDashboardView — zona Z7 student-pack", () => {
     )
     expect(await screen.findByText(/memoria della lezione non leggibile/i)).toBeTruthy()
     expect(screen.queryByText(/nessun candidato/i)).toBeNull()
+  })
+
+  it("'Genera pack' su un candidato appende studentpack.generated (nessun secondo store) e ricarica", async () => {
+    const store = new InMemoryEventLog()
+    for (const ev of CANDIDATE_EVENTS) await store.append(ev)
+    const appendEvent = vi.fn(async (ev: LessonOsEvent) => {
+      await store.append(ev)
+    })
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents: async () => store.readAll(), appendEvent }}
+      />,
+    )
+
+    const button = await screen.findByRole("button", { name: /genera pack/i })
+    fireEvent.click(button)
+
+    await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+    const appended = appendEvent.mock.calls[0]![0]
+    expect(appended).toMatchObject({
+      kind: "studentpack.generated",
+      packId: "sp-error:corto-1",
+      errorId: "error:corto-1",
+      fromRoom: "3b-elab",
+    })
+    expect(appended.evidence).toEqual(["board:wire9", "manual:vol1:p29"])
+    // dopo il ricarico il candidato risulta generato (lift dal projector reale)
+    await waitFor(() => {
+      const row = document.querySelector('[data-z7-candidate="sp-error:corto-1"]')
+      expect(row?.querySelector("[data-z7-status=generated]")).not.toBeNull()
+    })
+  })
+
+  it("'Esporta' su un pack generato appende studentpack.exported", async () => {
+    const store = new InMemoryEventLog()
+    for (const ev of CANDIDATE_EVENTS) await store.append(ev)
+    await store.append({
+      kind: "studentpack.generated",
+      packId: "sp-error:corto-1",
+      errorId: "error:corto-1",
+      fromRoom: "3b-elab",
+      t: 2500,
+      evidence: ["board:wire9"],
+    })
+    const appendEvent = vi.fn(async (ev: LessonOsEvent) => {
+      await store.append(ev)
+    })
+    render(
+      <TeacherDashboardView deps={{ loadEvents: async () => store.readAll(), appendEvent }} />,
+    )
+
+    const button = await screen.findByRole("button", { name: /esporta/i })
+    fireEvent.click(button)
+
+    await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+    expect(appendEvent.mock.calls[0]![0]).toMatchObject({
+      kind: "studentpack.exported",
+      packId: "sp-error:corto-1",
+    })
   })
 })

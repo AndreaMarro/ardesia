@@ -7,10 +7,10 @@
 // Onestà (spec §0.4): event log illeggibile → errore dichiarato, MAI una coda
 // vuota spacciata per vera. Ogni riga porta le sue evidence refs (spec §0.3).
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
-import type { AppendedEvent } from "../lessonos/eventlog"
+import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
 import {
   projectTeacherDashboard,
   type TeacherDashboardProjection,
@@ -19,6 +19,8 @@ import {
 export interface TeacherDashboardViewDeps {
   /** Sorgente eventi (seam per i test jsdom); default: event log IndexedDB reale. */
   loadEvents?: () => Promise<readonly AppendedEvent[]>
+  /** Sink degli eventi append-only (stessa memoria, mai un secondo store). */
+  appendEvent?: (event: LessonOsEvent) => Promise<void>
 }
 
 async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
@@ -26,10 +28,17 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
   return store.readAll()
 }
 
+async function appendEventToStore(event: LessonOsEvent): Promise<void> {
+  const store = await createEventLogStore()
+  await store.append(event)
+}
+
+type Z7Candidate = TeacherDashboardProjection["studentPackQueue"][number]
+
 type Z7State =
   | { phase: "loading" }
   | { phase: "error"; detail: string }
-  | { phase: "ready"; queue: TeacherDashboardProjection["studentPackQueue"] }
+  | { phase: "ready"; queue: Z7Candidate[] }
 
 /** Etichetta nella lingua del cruscotto, o la prima disponibile (mai inventata). */
 function labelText(label: Record<string, string>): string {
@@ -38,30 +47,76 @@ function labelText(label: Record<string, string>): string {
 
 export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboardViewDeps }) {
   const loadEvents = deps?.loadEvents ?? loadEventsFromStore
+  const appendEvent = deps?.appendEvent ?? appendEventToStore
   const [state, setState] = useState<Z7State>({ phase: "loading" })
+  const [busyPackId, setBusyPackId] = useState<string | null>(null)
 
-  useEffect(() => {
-    let cancelled = false
-    loadEvents()
-      .then((events) => {
-        if (cancelled) return
-        const projection = projectTeacherDashboard({
-          lessonEvents: events,
-          teacherId: "docente-locale",
-          locale: "it",
-          generatedAt: Date.now(),
-        })
-        setState({ phase: "ready", queue: projection.studentPackQueue })
-      })
-      .catch((err: unknown) => {
-        if (!cancelled) setState({ phase: "error", detail: String(err) })
-      })
-    return () => {
-      cancelled = true
-    }
+  const refresh = useCallback(async () => {
+    const events = await loadEvents()
+    const projection = projectTeacherDashboard({
+      lessonEvents: events,
+      teacherId: "docente-locale",
+      locale: "it",
+      generatedAt: Date.now(),
+    })
+    setState({ phase: "ready", queue: projection.studentPackQueue })
     // loadEvents è stabile per contratto del seam (default modulo o dep dei test)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    refresh().catch((err: unknown) => {
+      if (!cancelled) setState({ phase: "error", detail: String(err) })
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [refresh])
+
+  // Genera pack: appende studentpack.generated con le evidenze del candidato
+  // (mai un fatto senza provenienza). Esporta: studentpack.exported. Entrambi
+  // vanno nello STESSO event log; il projector lifta lo status al ricarico.
+  const runPackAction = useCallback(
+    async (event: LessonOsEvent, packId: string) => {
+      setBusyPackId(packId)
+      try {
+        await appendEvent(event)
+        await refresh()
+      } catch (err) {
+        setState({ phase: "error", detail: String(err) })
+      } finally {
+        setBusyPackId(null)
+      }
+      // appendEvent/refresh stabili per contratto del seam
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [refresh],
+  )
+
+  const onGenerate = (candidate: Z7Candidate) =>
+    runPackAction(
+      {
+        kind: "studentpack.generated",
+        packId: candidate.candidateId,
+        errorId: candidate.errorId,
+        ...(candidate.fromRoom !== "" ? { fromRoom: candidate.fromRoom } : {}),
+        t: Date.now(),
+        evidence: [...candidate.evidenceRefs],
+      },
+      candidate.candidateId,
+    )
+
+  const onExport = (candidate: Z7Candidate) =>
+    runPackAction(
+      {
+        kind: "studentpack.exported",
+        packId: candidate.candidateId,
+        t: Date.now(),
+        evidence: [...candidate.evidenceRefs],
+      },
+      candidate.candidateId,
+    )
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -72,7 +127,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
           <span className="st-sub">studio</span>
         </div>
         <span className="st-name">
-          <span className="st-name-text">Cruscotto docente — projection LessonOS (read-only)</span>
+          <span className="st-name-text">Cruscotto docente — projection LessonOS (read-only) + azioni append-only</span>
         </span>
       </header>
 
@@ -134,6 +189,31 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                   </div>
                   <div style={{ fontSize: 12, opacity: 0.7 }}>
                     evidenze: {candidate.evidenceRefs.join(", ")}
+                  </div>
+                  <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
+                    {candidate.status === "candidate" && (
+                      <button
+                        type="button"
+                        data-z7-generate={candidate.candidateId}
+                        disabled={busyPackId === candidate.candidateId}
+                        onClick={() => onGenerate(candidate)}
+                      >
+                        Genera pack
+                      </button>
+                    )}
+                    {candidate.status === "generated" && (
+                      <button
+                        type="button"
+                        data-z7-export={candidate.candidateId}
+                        disabled={busyPackId === candidate.candidateId}
+                        onClick={() => onExport(candidate)}
+                      >
+                        Esporta
+                      </button>
+                    )}
+                    {candidate.status === "exported" && (
+                      <span style={{ fontSize: 12, opacity: 0.7 }}>pack esportato</span>
+                    )}
                   </div>
                 </li>
               ))}
