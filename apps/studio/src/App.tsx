@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react"
 import { isReferenceBlinkDemo } from "./store/referenceBlinkDemo"
 import { isToolLabView } from "./store/toolLabView"
+import { isElabLabView } from "./store/elabLabView"
 
 // Code-split per vista: Excalidraw (~MB) e le viste che lo usano escono
 // dall'entry — l'entry resta il solo router. Ogni vista arriva come chunk
@@ -8,6 +9,7 @@ import { isToolLabView } from "./store/toolLabView"
 const Room = lazy(() => import("./Room"))
 const ReferenceBlinkDemo = lazy(() => import("./design/ReferenceBlinkDemo"))
 const ToolLab = lazy(() => import("./design/ToolLab"))
+const ElabLab = lazy(() => import("./design/ElabLab"))
 
 /** Fallback neutro: header brand senza testo di stato (nessun flash di layout). */
 function ViewFallback() {
@@ -17,7 +19,7 @@ function ViewFallback() {
 export default function App() {
   return (
     <Suspense fallback={<ViewFallback />}>
-      {isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
+      {isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
     </Suspense>
   )
 }
