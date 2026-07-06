@@ -32,7 +32,10 @@ import type { ToolManifest } from "../toolhost-protocol/manifest.ts"
 // Il protocollo è la grammatica dei messaggi sul filo; il contratto è l'intera
 // superficie pubblica che un plugin compila contro. Possono evolvere insieme o
 // separatamente (es. un nuovo helper SDK = MINOR del contratto, wire invariato).
-export const CONTRACT_VERSION = "1.0.0"
+// 1.1.0 — MINOR: nuovo metodo wire retro-compatibile `graph.query` (P0-D):
+// vista READ-ONLY sul grafo LessonOS derivato dall'event-log. Nessun metodo,
+// capability o codice errore esistente è cambiato.
+export const CONTRACT_VERSION = "1.1.0"
 
 // ---- Descrittore macchina-verificabile del contratto (i 4 pilastri) --------
 

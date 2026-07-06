@@ -267,6 +267,11 @@ describe("router/onAudit (criterio T2-d: tentativi negati LOGGATI)", () => {
     expect(events).toEqual([{ method: "fs.read", outcome: "denied", code: ERR.METHOD_NOT_FOUND }])
   })
 
+  it("graph.query senza grant → denied LOGGATO (il metodo v1.1 passa dall'audit come gli altri)", async () => {
+    const events = await route({ jsonrpc: "2.0", id: 1, method: "graph.query", params: { select: "summary" } })
+    expect(events).toEqual([{ method: "graph.query", outcome: "denied", code: ERR.CAPABILITY_DENIED }])
+  })
+
   it("params malformati → invalid; handler che lancia → error", async () => {
     const bad = await route({ jsonrpc: "2.0", id: 1, method: "board.read", params: { target: "tutto" } })
     expect(bad).toEqual([{ method: "board.read", outcome: "invalid", code: ERR.INVALID_PARAMS }])

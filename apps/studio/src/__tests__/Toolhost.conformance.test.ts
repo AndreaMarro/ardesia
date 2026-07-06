@@ -389,7 +389,7 @@ describe("conformance/router (validazione host-side, capability deny-by-default)
   })
 
   // Pinna la verità P0-C: net.fetch è DICHIARATIVO (manifest/policy), non un
-  // metodo runtime — TOOL_METHODS contiene solo board.*/storage.*. Anche con
+  // metodo runtime — TOOL_METHODS copre board.*/storage.*/graph.query. Anche con
   // la capability concessa, la chiamata protocollo NON esiste. La rete vera
   // dell'entry (fetch del browser da srcDoc) oggi NON passa da qui: il suo
   // enforcement è ADR-0001 (PROPOSED, gate Andrea).
@@ -506,7 +506,57 @@ describe("conformance/router (validazione host-side, capability deny-by-default)
   })
 })
 
-// ---------- 5. SDK: chiamate concorrenti, errori, lifecycle suspend/restore ----------
+// ---------- 5. graph.query: capability read-only instradata sul wire ----------
+
+describe("conformance/graph.query (read-only, deny-by-default)", () => {
+  it("con grant e handler cablato il metodo ESISTE nel registro (fine METHOD_NOT_FOUND)", async () => {
+    const setup = makeSession({
+      grantedCaps: { "graph.query": {} },
+      handlers: {
+        "graph.query": () => ({ total: 0, summary: { nodeCounts: {}, edgeCounts: {}, uncorrectedErrors: 0 } }),
+      },
+    })
+    const rx = await rawReady(setup)
+    setup.toolPort.postMessage({ jsonrpc: "2.0", id: 1, method: "graph.query", params: { select: "summary" } })
+    const res = (await rx.next()) as { result?: { total: number }; error?: { code: number } }
+    expect(res.error).toBeUndefined()
+    expect(res.result?.total).toBe(0)
+  })
+
+  it("senza capability graph.query → CAPABILITY_DENIED e handler MAI invocato", async () => {
+    let invoked = 0
+    const setup = makeSession({
+      grantedCaps: { "board.read": {} },
+      handlers: { "graph.query": () => ((invoked += 1), { total: 0 }) },
+    })
+    const rx = await rawReady(setup)
+    setup.toolPort.postMessage({ jsonrpc: "2.0", id: 1, method: "graph.query", params: { select: "summary" } })
+    expectError(await rx.next(), ERR.CAPABILITY_DENIED)
+    expect(invoked).toBe(0)
+  })
+
+  it("params fuori schema → INVALID_PARAMS (select ignoto; kind con summary; kind di arco su nodes)", async () => {
+    let invoked = 0
+    const setup = makeSession({
+      grantedCaps: { "graph.query": {} },
+      handlers: { "graph.query": () => ((invoked += 1), { total: 0 }) },
+    })
+    const rx = await rawReady(setup)
+    setup.toolPort.postMessage({ jsonrpc: "2.0", id: 1, method: "graph.query", params: { select: "everything" } })
+    expectError(await rx.next(), ERR.INVALID_PARAMS)
+    setup.toolPort.postMessage({
+      jsonrpc: "2.0", id: 2, method: "graph.query", params: { select: "summary", kind: "errore" },
+    })
+    expectError(await rx.next(), ERR.INVALID_PARAMS)
+    setup.toolPort.postMessage({
+      jsonrpc: "2.0", id: 3, method: "graph.query", params: { select: "nodes", kind: "corregge" },
+    })
+    expectError(await rx.next(), ERR.INVALID_PARAMS)
+    expect(invoked).toBe(0)
+  })
+})
+
+// ---------- 6. SDK: chiamate concorrenti, errori, lifecycle suspend/restore ----------
 
 describe("conformance/toolsdk (call concorrenti + lifecycle)", () => {
   async function connectedPair(cfg?: Partial<HostSessionConfig>, handlers?: ToolHandlers) {

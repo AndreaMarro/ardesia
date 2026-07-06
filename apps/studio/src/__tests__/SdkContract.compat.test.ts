@@ -40,6 +40,9 @@ const GOLDEN_CAPABILITIES: readonly CapabilityName[] = [
 const GOLDEN_TOOL_METHODS: Record<string, CapabilityName> = {
   "board.read": "board.read",
   "board.write": "board.write",
+  // v1.1.0 (P0-D): graph.query read-only entra nel wire — aggiunta
+  // retro-compatibile ⇒ MINOR (regola SemVer in sdk/index.ts).
+  "graph.query": "graph.query",
   "storage.delete": "storage",
   "storage.get": "storage",
   "storage.list": "storage",

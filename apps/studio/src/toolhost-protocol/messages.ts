@@ -134,10 +134,70 @@ export const StorageDeleteResultSchema = z.strictObject({})
 export const StorageListParamsSchema = z.strictObject({ prefix: z.string().max(256).optional() })
 export const StorageListResultSchema = z.strictObject({ keys: z.array(z.string()) })
 
+// ---- graph.query v0 (tool → host): vista READ-ONLY sul grafo LessonOS ----
+// Il grafo NON è un secondo store: l'host lo deriva on-demand dall'event-log
+// (materializer). Vocabolario kinds allineato a lessonos/materializer.ts —
+// il wire lo ridichiara per non accoppiare il protocollo al modulo interno.
+export const GRAPH_NODE_KINDS = ["lesson", "materiale", "errore", "esercizio", "concetto"] as const
+export const GRAPH_EDGE_KINDS = ["cita", "deriva-da", "corregge"] as const
+
+const graphNodeKind = z.enum(GRAPH_NODE_KINDS)
+const graphEdgeKind = z.enum(GRAPH_EDGE_KINDS)
+
+export const GraphQueryParamsSchema = z
+  .strictObject({
+    select: z.enum(["summary", "nodes", "edges"]),
+    kind: z.enum([...GRAPH_NODE_KINDS, ...GRAPH_EDGE_KINDS]).optional(),
+    limit: z.number().int().min(1).max(500).optional(),
+  })
+  .superRefine((p, ctx) => {
+    // cross-field: il filtro kind deve appartenere alla selezione richiesta
+    if (p.kind === undefined) return
+    if (p.select === "summary") {
+      ctx.addIssue({ code: "custom", message: "kind non ammesso con select summary" })
+    } else if (p.select === "nodes" && !graphNodeKind.safeParse(p.kind).success) {
+      ctx.addIssue({ code: "custom", message: `kind "${p.kind}" non è un kind di nodo` })
+    } else if (p.select === "edges" && !graphEdgeKind.safeParse(p.kind).success) {
+      ctx.addIssue({ code: "custom", message: `kind "${p.kind}" non è un kind di arco` })
+    }
+  })
+export type GraphQueryParams = z.infer<typeof GraphQueryParamsSchema>
+
+export const GraphNodeWireSchema = z.strictObject({
+  id: z.string().min(1),
+  kind: graphNodeKind,
+  labels: z.record(z.string(), z.string()),
+  evidenceRefs: z.array(z.string()),
+  introducedAt: z.number(),
+  correctedAt: z.number().optional(),
+})
+export const GraphEdgeWireSchema = z.strictObject({
+  from: z.string().min(1),
+  to: z.string().min(1),
+  kind: graphEdgeKind,
+  introducedAt: z.number(),
+  evidenceRefs: z.array(z.string()),
+})
+export const GraphQueryResultSchema = z.strictObject({
+  /** Conteggio PRE-limit della selezione: il tool vede se la risposta è troncata. */
+  total: z.number().int().nonnegative(),
+  summary: z
+    .strictObject({
+      nodeCounts: z.record(z.string(), z.number().int().nonnegative()),
+      edgeCounts: z.record(z.string(), z.number().int().nonnegative()),
+      uncorrectedErrors: z.number().int().nonnegative(),
+    })
+    .optional(),
+  nodes: z.array(GraphNodeWireSchema).optional(),
+  edges: z.array(GraphEdgeWireSchema).optional(),
+})
+export type GraphQueryResult = z.infer<typeof GraphQueryResultSchema>
+
 // ---- Registro metodi tool→host: method → capability richiesta + schemi ----
-// Deny-by-default: un metodo fuori da questo registro NON esiste. In v0 il wire
-// copre SOLO board.* e storage.* (pin T1); llm/graph/net/ui restano capability
-// dichiarabili a manifest ma senza metodi raggiungibili finché T2/T3 non li aggiunge.
+// Deny-by-default: un metodo fuori da questo registro NON esiste. In v1.1 il wire
+// copre board.*, storage.* (pin T1) e graph.query read-only (P0-D); llm/net/ui e
+// graph.proposeClaims restano capability dichiarabili a manifest ma senza metodi
+// raggiungibili finché T2/T3 non li aggiunge.
 export interface MethodSpec {
   cap: CapabilityName
   params: z.ZodType
@@ -151,4 +211,5 @@ export const TOOL_METHODS: Record<string, MethodSpec> = {
   "storage.set": { cap: "storage", params: StorageSetParamsSchema, result: StorageSetResultSchema },
   "storage.delete": { cap: "storage", params: StorageDeleteParamsSchema, result: StorageDeleteResultSchema },
   "storage.list": { cap: "storage", params: StorageListParamsSchema, result: StorageListResultSchema },
+  "graph.query": { cap: "graph.query", params: GraphQueryParamsSchema, result: GraphQueryResultSchema },
 }

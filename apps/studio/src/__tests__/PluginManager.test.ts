@@ -243,14 +243,16 @@ describe("PluginManager — kill-switch (overlay su enabled)", () => {
 
 describe("PluginManager — gate contract version", () => {
   it("rigetta un plugin che RICHIEDE un contratto superiore a quello dell'host (atomico: nessun artefatto)", async () => {
-    // host SDK = CONTRACT_VERSION (1.0.0); il plugin pretende >=1.1 → l'host è inferiore.
+    // host SDK = CONTRACT_VERSION (1.x); il plugin pretende >=2.0 → l'host è inferiore
+    // per QUALUNQUE 1.x: il fixture non deve ridiventare valido a ogni MINOR bump
+    // (successo con ">=1.1" quando il contratto è passato a 1.1.0).
     // Firmo con una chiave SBAGLIATA di proposito: se l'errore è ancora "incompatible
     // contract" (non "signature"), il gate di contratto ha cortocircuitato PRIMA della
     // verifica firma di installTool → prova l'ordine (gate-prima-di-firma), non solo
     // che "qualcosa" abbia lanciato. Difende contro un reorder gate↔firma.
     const store = new MemoryInstallerStore()
     const pm = new PluginManager(store, () => 100)
-    const { manifestJson, toolId } = await makeSignedManifest({ contract: ">=1.1" })
+    const { manifestJson, toolId } = await makeSignedManifest({ contract: ">=2.0" })
     const { privateKey: wrongKey } = await generateKeypair()
     const badSig = await signJsonString(manifestJson, wrongKey)
 
