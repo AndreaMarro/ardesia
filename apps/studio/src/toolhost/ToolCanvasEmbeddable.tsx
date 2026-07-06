@@ -117,7 +117,15 @@ export type SimulationSceneV1 = {
   };
   components: SimulationComponent[];
   pinAssignments: Record<string, string>;
-  connections: Array<{ from: string; to: string; color: string; kind: "internal" | "wire" }>;
+  connections: Array<{
+    from: string;
+    to: string;
+    color: string;
+    kind: "internal" | "wire";
+    // Polyline autorata (schema circuit-scene/2): quando presente il renderer
+    // la disegna byte-identica, senza risintetizzare curve.
+    path?: { kind: "polyline"; points: Array<{ x: number; y: number }> };
+  }>;
   layout: Record<string, SimulationLayout>;
   bookLayout: BookLayoutV1;
   runtime:
@@ -975,10 +983,19 @@ function BoardWires({ scene }: { scene: SimulationSceneV1 }) {
   return (
     <g pointerEvents="none">
       {scene.connections.map((connection) => {
-        const start = resolveScenePoint(connection.from, scene);
-        const end = resolveScenePoint(connection.to, scene);
+        // Path autorato (schema-frozen): disegnato byte-identico, i marker
+        // stanno sugli estremi autorati. La bezier sintetica resta SOLO come
+        // fallback per scene senza geometria autorata.
+        const authored = connection.path;
+        const start = authored?.points[0] ?? resolveScenePoint(connection.from, scene);
+        const end = authored?.points.at(-1) ?? resolveScenePoint(connection.to, scene);
         if (!start || !end) return null;
-        const d = wirePath(start.x, start.y, end.x, end.y, connection.color);
+        const d = authored
+          ? `M ${authored.points[0]!.x} ${authored.points[0]!.y}${authored.points
+              .slice(1)
+              .map((point) => ` L ${point.x} ${point.y}`)
+              .join("")}`
+          : wirePath(start.x, start.y, end.x, end.y, connection.color);
         return (
           <g key={`${connection.from}-${connection.to}`}>
             <path d={d} fill="none" stroke="#000000" strokeWidth="2.9" strokeLinecap="round" opacity="0.18" transform="translate(0.6 0.7)" />

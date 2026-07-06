@@ -16,6 +16,17 @@ import {
   renderToolCanvasEmbeddable,
   validateBookLayoutScene,
 } from "../toolhost/ToolCanvasEmbeddable"
+import { pointForBreadboardRef } from "../../sim/breadboard/simulationBreadboard"
+
+type FixtureWithWires = {
+  components: Array<{ id: string; pose?: { x: number; y: number } }>
+  wires: Array<{
+    id: string
+    from: string
+    to: string
+    path?: { kind: string; points: Array<{ x: number; y: number }> }
+  }>
+}
 
 const repoRoot = path.resolve(import.meta.dirname, "../../../..")
 
@@ -60,7 +71,9 @@ describe("bridge ElabScene -> SimulationSceneV1 (round-trip render della scena r
       "led1:anode": "bb1:f9",
       "led1:cathode": "bb1:e9",
     })
-    expect(bridged.connections).toEqual([
+    // NOTTE-3: le connections trasportano anche wires[].path autorato
+    // (assert dedicato nel blocco round-trip geometrico).
+    expect(bridged.connections).toMatchObject([
       { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red", kind: "wire" },
       { from: "bat1:negative", to: "bb1:a9", color: "black", kind: "wire" },
     ])
@@ -95,6 +108,64 @@ describe("bridge ElabScene -> SimulationSceneV1 (round-trip render della scena r
     const bridged = simulationSceneFromElabScene(candidateFixture(), BRIDGE_OPTS)
     expect(bridged.provenance.status).toBe("draft")
     expect(bridged.bookLayout.status).toBe("draft")
+  })
+
+  it("trasporta i wires[].path autorati nelle connections (round-trip geometrico, nessuna perdita)", () => {
+    const fixture = candidateFixture() as FixtureWithWires
+    const bridged = simulationSceneFromElabScene(candidateFixture(), BRIDGE_OPTS)
+    expect(fixture.wires[0]?.path).toBeDefined()
+    expect(fixture.wires[1]?.path).toBeDefined()
+    expect(bridged.connections[0]?.path).toEqual(fixture.wires[0]?.path)
+    expect(bridged.connections[1]?.path).toEqual(fixture.wires[1]?.path)
+  })
+
+  it("i path autorati si attaccano agli anchor reali: terminale batteria e foro breadboard", () => {
+    // Il testo p30/31 non vincola il ROUTING del filo: i waypoint sono
+    // canonical simulator placement. Ma gli ENDPOINT devono coincidere con
+    // gli anchor che il renderer risolve per from/to, altrimenti il filo
+    // "autorato" parte staccato dal componente disegnato.
+    // bat1 pose (-120,45) + terminale renderer positive (114,20) / negative (114,48).
+    const fixture = candidateFixture() as FixtureWithWires
+    const w1 = fixture.wires.find((wire) => wire.id === "w1")
+    const w2 = fixture.wires.find((wire) => wire.id === "w2")
+    expect(w1?.path?.points[0]).toEqual({ x: -6, y: 65 })
+    expect(w2?.path?.points[0]).toEqual({ x: -6, y: 93 })
+    const w1End = w1?.path?.points.at(-1)
+    const w2End = w2?.path?.points.at(-1)
+    const railHole = pointForBreadboardRef("bb1:bus-top-plus-1")
+    const a9Hole = pointForBreadboardRef("bb1:a9")
+    expect(w1End).toEqual({ x: railHole?.x, y: railHole?.y })
+    expect(w2End).toEqual({ x: a9Hole?.x, y: a9Hole?.y })
+  })
+
+  it("il renderer disegna la polyline autorata byte-identica, non una bezier risintetizzata", () => {
+    const fixture = candidateFixture() as FixtureWithWires
+    const bridged = simulationSceneFromElabScene(candidateFixture(), BRIDGE_OPTS)
+    const element = createToolEmbedElement({
+      state: { kind: "simulation-scene-v1", scene: bridged },
+    })
+    const firstRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!)
+    const secondRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!)
+    // Determinismo: render ripetuto su dati identici = markup identico.
+    expect(secondRender).toBe(firstRender)
+    // Il d del filo = ESATTAMENTE i punti autorati (M/L), zero geometria inventata.
+    for (const wire of fixture.wires) {
+      const points = wire.path!.points
+      const authoredD = `M ${points[0]!.x} ${points[0]!.y}${points
+        .slice(1)
+        .map((point) => ` L ${point.x} ${point.y}`)
+        .join("")}`
+      expect(firstRender).toContain(`d="${authoredD}"`)
+    }
+  })
+
+  it("fail-closed: path bezier autorato -> errore, mai conversione o drop silenzioso", () => {
+    const scene = candidateFixture() as FixtureWithWires
+    const w1 = scene.wires.find((wire) => wire.id === "w1")!
+    w1.path = { kind: "bezier", points: w1.path!.points }
+    expect(() => simulationSceneFromElabScene(scene, BRIDGE_OPTS)).toThrow(
+      /bezier \(wire w1\)/,
+    )
   })
 
   it("fail-closed: scena senza geometria autorata completa -> errore, niente layout inventato", () => {
