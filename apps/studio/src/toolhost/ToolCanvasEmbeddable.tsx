@@ -20,6 +20,7 @@ import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
+import elabSceneCandidateV1Cap6Esp2 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json";
 
 type EmbedLike = {
   id?: string;
@@ -145,6 +146,14 @@ export type SimulationSceneV1 = {
         resistorOhms: number;
         ledForwardVolts: number;
         ledOn: boolean;
+      }
+    | {
+        // Dimostrazione "cosa NON fare" (Vol.1 p.32): LED direttamente alla
+        // batteria. ledOn resta false: il verdetto onesto è "bruciato".
+        kind: "battery-led-senza-resistore";
+        supplyVolts: number;
+        ledForwardVolts: number;
+        ledOn: boolean;
       };
   compile: {
     sketchKind: "arduino-cpp" | "none";
@@ -172,10 +181,13 @@ export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
 export const ELAB_V1_FIRST_LED_EXPERIMENT_ID = "v1-cap6-esp1";
+export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
+export const ELAB_V1_NO_RESISTOR_EMBED_ID = "elab-v1-cap6-esp2-led-senza-resistore";
 export const ELAB_BLINK_EXPERIMENT_ID = "v3-cap5-esp1";
 export const ELAB_EXTERNAL_LED_EXPERIMENT_ID = "v3-cap6-esp2";
 export const ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-030-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE = "/elab/manuals/vol1/page-031-esercizio-6-1.png";
+export const ELAB_V1_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-032-esercizio-6-2.png";
 export const ELAB_V3_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol3/page-051-esercizio-6-2.png";
 
 export function parseToolLink(link: string | null | undefined): ToolLink | null {
@@ -209,6 +221,28 @@ export const ELAB_V1_CAP6_ESP1_BRIDGE_OPTS: ElabSceneBridgeOptions = {
   manualFigurePage: 30,
 };
 
+// Copy dal Pack (volume-references v1-cap6-esp2, VERBATIM): l'esperimento è
+// una dimostrazione d'errore — il libro stesso avverte che il LED si brucia.
+export const ELAB_V1_CAP6_ESP2_BRIDGE_OPTS: ElabSceneBridgeOptions = {
+  title: "LED senza resistore (cosa NON fare!)",
+  chapter: "Capitolo 6 - Cos'e il diodo LED?",
+  bookText:
+    "Il nostro circuito include un resistore, ma perché? I resistori servono per limitare la corrente. Ogni LED può sopportare una corrente massima che non deve essere superata altrimenti il led si rompe.",
+  bookInstructions: [
+    "Collega il LED direttamente alla batteria senza resistore (ATTENZIONE: il LED si brucia!)",
+  ],
+  bookQuote:
+    "RICORDA: NON collegare MAI il LED direttamente alla batteria, ma inserisci sempre un resistore al centro!",
+  manualCrop: ELAB_V1_CAP6_ESP2_MANUAL_PAGE_IMAGE,
+  manualFinalCrop: null,
+  manualFigurePage: 32,
+};
+
+/** Scena reale v1-cap6-esp2 dal bridge sulla fixture candidate (nessun override: ledOn resta false, onesto). */
+export function createV1Cap6Esp2SimulationScene(): SimulationSceneV1 {
+  return simulationSceneFromElabScene(elabSceneCandidateV1Cap6Esp2, ELAB_V1_CAP6_ESP2_BRIDGE_OPTS);
+}
+
 // FONTE UNICA: la scena reference deriva dal bridge sulla fixture candidate
 // (circuit-scene/2). La vecchia topologia hand-coded (bat+ diretto in bb1:j2,
 // nessun rail) violava il testo p30 — falsificata da ElabBookConstraints.
@@ -226,6 +260,12 @@ export function createReferenceSimulationScene({
   return scene;
 }
 
+// Ancore Vol/pag delle scene con fixture circuit-scene/2 montata.
+const SCENE_MANUAL_ANCHORS: Record<string, { volume: 1 | 2 | 3; page: number }> = {
+  [ELAB_V1_FIRST_LED_EXPERIMENT_ID]: { volume: 1, page: 29 },
+  [ELAB_V1_NO_RESISTOR_EXPERIMENT_ID]: { volume: 1, page: 32 },
+};
+
 export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
   const componentIds = new Set(scene.components.map((component) => component.id));
@@ -236,8 +276,14 @@ export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean
   if (bookLayout.volume !== scene.manual.volume || bookLayout.page !== scene.manual.page) {
     errors.push("bookLayout manual reference drift");
   }
-  if (scene.experimentId !== ELAB_V1_FIRST_LED_EXPERIMENT_ID) errors.push("experimentId drift");
-  if (scene.manual.volume !== 1 || scene.manual.page !== 29) errors.push("manual reference drift");
+  // Ancore manuale per esperimento con scena montata: fail-closed sugli id
+  // sconosciuti (mai validare una scena contro l'ancora di un altro libro).
+  const anchor = SCENE_MANUAL_ANCHORS[scene.experimentId];
+  if (anchor === undefined) {
+    errors.push("experimentId drift");
+  } else if (scene.manual.volume !== anchor.volume || scene.manual.page !== anchor.page) {
+    errors.push("manual reference drift");
+  }
 
   for (const component of bookLayout.components) {
     if (!componentIds.has(component.id)) errors.push(`missing component ${component.id}`);
@@ -406,15 +452,33 @@ export function nextSimulationEmbedId(existingIds: readonly string[], baseEmbedI
  * Logica PURA dell'inserimento da toolbar (Room): ogni chiamata produce una
  * NUOVA istanza del Simulation Plugin con embedId unico e stato proprio.
  * null se il tool non è registrato (deny-by-default, come il render).
+ *
+ * experimentId opzionale: default = scena reference (v1-cap6-esp1); gli altri
+ * id ammessi sono SOLO quelli con scena montata nel catalogo (fail-closed:
+ * id senza scena reale = null, mai un post-it con dati inventati).
  */
 export function buildSimulationInsert(
   currentElements: readonly { id?: string }[],
+  experimentId: string = ELAB_V1_FIRST_LED_EXPERIMENT_ID,
 ): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
   const entry = getSimulationTool(REFERENCE_SIM_TOOL_ID);
   if (!entry) return null;
   const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
-  const embedId = nextSimulationEmbedId(ids, entry.embedId);
-  return { embed: entry.createEmbed(embedId), embedId };
+  if (experimentId === ELAB_V1_FIRST_LED_EXPERIMENT_ID) {
+    const embedId = nextSimulationEmbedId(ids, entry.embedId);
+    return { embed: entry.createEmbed(embedId), embedId };
+  }
+  if (experimentId === ELAB_V1_NO_RESISTOR_EXPERIMENT_ID) {
+    const embedId = nextSimulationEmbedId(ids, ELAB_V1_NO_RESISTOR_EMBED_ID);
+    return {
+      embed: createToolEmbedElement({
+        embedId,
+        state: { kind: "simulation-scene-v1", scene: createV1Cap6Esp2SimulationScene() },
+      }),
+      embedId,
+    };
+  }
+  return null;
 }
 
 export function renderToolCanvasEmbeddable(
@@ -641,6 +705,13 @@ function ReferenceSimulationCanvasTool({
                 <Metric label="mode" value="OUTPUT" />
                 <Metric label="level" value={snapshot.ledOn ? "HIGH" : "LOW"} />
                 <Metric label="millis" value={String(snapshot.millis)} />
+              </>
+            ) : scene.runtime.kind === "battery-led-senza-resistore" ? (
+              <>
+                <Metric label="sorgente" value={`${scene.runtime.supplyVolts} V`} />
+                <Metric label="resistore" value="ASSENTE!" />
+                <Metric label="LED" value="BRUCIATO" />
+                <Metric label="corrente" value="sovracorrente" />
               </>
             ) : (
               <>
@@ -888,6 +959,11 @@ function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; monta
               <text x="16" y="48" style={diagnosticSvgStyle}>D13 {scene.runtime.ledOn ? "HIGH" : "LOW"} - 5.00 V</text>
               <text x="16" y="68" style={diagnosticSvgStyle}>corrente {ledCurrentMa.toFixed(1)} mA - R=470 Ohm</text>
             </>
+          ) : scene.runtime.kind === "battery-led-senza-resistore" ? (
+            <>
+              <text x="16" y="48" style={diagnosticSvgStyle}>batteria {scene.runtime.supplyVolts}.00 V - LED BRUCIATO</text>
+              <text x="16" y="68" style={diagnosticSvgStyle}>SENZA RESISTORE: sovracorrente (Vol.1 p.32)</text>
+            </>
           ) : (
             <>
               <text x="16" y="48" style={diagnosticSvgStyle}>batteria {scene.runtime.supplyVolts}.00 V - LED {scene.runtime.ledOn ? "ON" : "OFF"}</text>
@@ -1110,8 +1186,13 @@ function PinRow({ y, labels }: { y: number; labels: string[] }) {
 }
 
 function ResistorSvg({ scene }: { scene: SimulationSceneV1 }) {
-  const a = pointForBreadboardRef(scene.pinAssignments["r1:pin1"]);
-  const b = pointForBreadboardRef(scene.pinAssignments["r1:pin2"]);
+  // Scene senza resistore (es. v1-cap6-esp2, dimostrazione p.32): niente da
+  // disegnare — e mai parseBreadboardRef su un ref assente.
+  const pin1 = scene.pinAssignments["r1:pin1"];
+  const pin2 = scene.pinAssignments["r1:pin2"];
+  if (pin1 === undefined || pin2 === undefined) return null;
+  const a = pointForBreadboardRef(pin1);
+  const b = pointForBreadboardRef(pin2);
   if (!a || !b) return null;
   return (
     <g aria-label="Resistore 470 Ohm" pointerEvents="none">
@@ -1141,9 +1222,15 @@ function LedSvg({ scene }: { scene: SimulationSceneV1 }) {
   const cathode = pointForBreadboardRef(scene.pinAssignments["led1:cathode"]);
   if (!anode || !cathode) return null;
   const led = scene.components.find((component) => component.id === "led1");
+  const burned = scene.runtime.kind === "battery-led-senza-resistore";
+  const ariaLabel = burned
+    ? `LED ${led?.color ?? "verde"} bruciato per sovracorrente`
+    : scene.runtime.ledOn
+      ? `LED ${led?.color ?? "verde"} acceso`
+      : `LED ${led?.color ?? "verde"} spento`;
   return (
-    <g aria-label={scene.runtime.ledOn ? `LED ${led?.color ?? "verde"} acceso` : `LED ${led?.color ?? "verde"} spento`} pointerEvents="none">
-      <LedBody anode={anode} cathode={cathode} color={led?.color ?? "verde"} on={scene.runtime.ledOn} />
+    <g aria-label={ariaLabel} pointerEvents="none">
+      <LedBody anode={anode} cathode={cathode} color={led?.color ?? "verde"} on={scene.runtime.ledOn} burned={burned} />
     </g>
   );
 }
@@ -1153,25 +1240,41 @@ function LedBody({
   cathode,
   color,
   on,
+  burned = false,
 }: {
   anode: { x: number; y: number };
   cathode: { x: number; y: number };
   color: string;
   on: boolean;
+  burned?: boolean;
 }) {
   const litColor = color === "red" ? "#e5483f" : "#38c85c";
-  const dimColor = color === "red" ? "#d99592" : "#b9d3bd";
-  const strokeColor = color === "red" ? "#9d2d27" : "#1f7f36";
+  const dimColor = burned ? "#6b6f73" : color === "red" ? "#d99592" : "#b9d3bd";
+  const strokeColor = burned ? "#3f4448" : color === "red" ? "#9d2d27" : "#1f7f36";
   const centerX = (anode.x + cathode.x) / 2;
   const bodyY = anode.y - 21;
   return (
     <g>
-      {on && <circle cx={centerX} cy={bodyY - 2} r="13" fill={litColor} filter="url(#led-glow)" opacity="0.55" />}
+      {on && !burned && <circle cx={centerX} cy={bodyY - 2} r="13" fill={litColor} filter="url(#led-glow)" opacity="0.55" />}
       <line x1={anode.x} y1={anode.y} x2={centerX - 3.2} y2={bodyY + 3} stroke="#a8adb2" strokeWidth="1.1" strokeLinecap="round" />
       <line x1={cathode.x} y1={cathode.y} x2={centerX + 3.2} y2={bodyY + 3} stroke="#a8adb2" strokeWidth="1.1" strokeLinecap="round" />
-      <path d={`M ${centerX - 9} ${bodyY + 4} Q ${centerX} ${bodyY - 16} ${centerX + 9} ${bodyY + 4} Z`} fill={on ? litColor : dimColor} stroke={strokeColor} strokeWidth="0.8" opacity={on ? 0.95 : 0.78} />
+      <path d={`M ${centerX - 9} ${bodyY + 4} Q ${centerX} ${bodyY - 16} ${centerX + 9} ${bodyY + 4} Z`} fill={on && !burned ? litColor : dimColor} stroke={strokeColor} strokeWidth="0.8" opacity={on && !burned ? 0.95 : 0.78} />
       <ellipse cx={centerX - 3.3} cy={bodyY - 4.5} rx="2.2" ry="4" fill="#ffffff" opacity="0.45" />
-      <text x={centerX} y={bodyY - 18} textAnchor="middle" fill={strokeColor} fontSize="5.4" fontWeight="850">LED</text>
+      {burned ? (
+        <g aria-hidden>
+          {/* Scoppio stilizzato come la figura p.32: il LED è rotto. */}
+          <path
+            d={`M ${centerX} ${bodyY - 14} l 2.2 4.4 4.8 -2 -2 4.8 4.4 2.2 -4.4 2.2 2 4.8 -4.8 -2 -2.2 4.4 -2.2 -4.4 -4.8 2 2 -4.8 -4.4 -2.2 4.4 -2.2 -2 -4.8 4.8 2 Z`}
+            fill="#f2a33c"
+            stroke="#c2530f"
+            strokeWidth="0.8"
+            opacity="0.92"
+          />
+          <text x={centerX} y={bodyY - 18} textAnchor="middle" fill="#b03a2e" fontSize="5.4" fontWeight="850">BRUCIATO!</text>
+        </g>
+      ) : (
+        <text x={centerX} y={bodyY - 18} textAnchor="middle" fill={strokeColor} fontSize="5.4" fontWeight="850">LED</text>
+      )}
     </g>
   );
 }
@@ -1331,6 +1434,11 @@ function batteryLedCurrentMa(scene: SimulationSceneV1): number {
 
 function resolveSimulationScene(state: SimulationToolState | undefined, snapshot: { millis: number; ledOn: boolean }) {
   const scene = state?.kind === "simulation-scene-v1" ? state.scene : createReferenceSimulationScene(snapshot);
+  if (scene.runtime.kind === "battery-led-senza-resistore") {
+    // Il verdetto "bruciato" non è animabile dallo snapshot: resta com'è
+    // (ledOn false), qualunque cosa dica lo stato del runtime blink.
+    return scene;
+  }
   if (scene.runtime.kind === "battery-led") {
     return {
       ...scene,

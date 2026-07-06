@@ -134,8 +134,11 @@ export function simulationSceneFromElabScene(
   const battery = payload.circuit.components.find((component) => component.type === "battery9v")
   const resistor = payload.circuit.components.find((component) => component.type === "resistor")
   const led = payload.circuit.components.find((component) => component.type === "led")
-  if (!battery || !resistor || !led || typeof resistor.value !== "number") {
-    throw new Error("scena non battery-led: il bridge v1 supporta solo il circuito batteria+resistore+LED")
+  if (!battery || !led) {
+    throw new Error("scena non battery-led: il bridge v1 supporta solo circuiti batteria+LED (con o senza resistore)")
+  }
+  if (resistor !== undefined && typeof resistor.value !== "number") {
+    throw new Error("resistore senza valore numerico: il bridge non inventa resistenze")
   }
 
   const status = statusFromProvenance(scene.provenance.status)
@@ -208,17 +211,30 @@ export function simulationSceneFromElabScene(
       spatialRules: [],
       tolerances: { coordinatePx: 0, relationPx: 2 },
     },
-    runtime: {
-      kind: "battery-led",
-      supplyVolts: 9,
-      resistorOhms: resistor.value,
-      ledForwardVolts: engineLedForwardVoltsForColor(led.color ?? null),
-      ledOn: true,
-    },
+    runtime:
+      resistor !== undefined
+        ? {
+            kind: "battery-led",
+            supplyVolts: 9,
+            resistorOhms: resistor.value as number,
+            ledForwardVolts: engineLedForwardVoltsForColor(led.color ?? null),
+            ledOn: true,
+          }
+        : {
+            // Scena SENZA resistore (dimostrazione "cosa NON fare", Vol.1
+            // p.32): il runtime dichiara l'esito onesto del motore — LED
+            // bruciato per sovracorrente, mai "acceso".
+            kind: "battery-led-senza-resistore",
+            supplyVolts: 9,
+            ledForwardVolts: engineLedForwardVoltsForColor(led.color ?? null),
+            ledOn: false,
+          },
     compile: { sketchKind: "none", targetFqbn: null, provider: "none" },
     provenance: {
       lessonPath: `packs/elab-tutor/data/lesson-paths/${payload.experimentId}.json`,
-      experimentData: "apps/studio/sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json",
+      // Path della fixture derivato dall'id (convenzione: id senza trattini),
+      // mai hardcoded su un solo esperimento.
+      experimentData: `apps/studio/sim/fixtures/elab-scene-v2-candidate-${payload.experimentId.replace(/-/g, "")}.json`,
       volumeReference: "packs/elab-tutor/data/volume-references.js",
       status,
       blocker:

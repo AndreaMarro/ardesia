@@ -30,9 +30,10 @@ export const ELAB_CORPUS_TOTAL = 88
 
 /**
  * SOLO esperimenti con fixture scene reale e superficie che li monta.
- * v1-cap6-esp1 è oggi l'unico: scena candidate (circuit-scene/2) + post-it
- * con già-montato, montaggio libero e passo-passo. compileUpload false:
- * esperimento Vol.1 a batteria, nessuno sketch.
+ * Entrambi Vol.1 a batteria (compileUpload false, nessuno sketch):
+ * - v1-cap6-esp1: scena candidate + già-montato/montaggio libero/passo-passo.
+ * - v1-cap6-esp2: dimostrazione "cosa NON fare" (p.32) — scena candidate,
+ *   solve onesto = LED bruciato per sovracorrente, passo-passo dedicato.
  */
 export const ELAB_EXPERIMENT_CATALOG: readonly ElabCatalogEntry[] = [
   {
@@ -42,6 +43,21 @@ export const ELAB_EXPERIMENT_CATALOG: readonly ElabCatalogEntry[] = [
     page: 29,
     sceneStatus: "candidate",
     sceneFixture: "sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json",
+    capabilities: {
+      giaMontato: true,
+      montaggioLibero: true,
+      passoPasso: true,
+      simulazioneElettrica: true,
+      compileUpload: false,
+    },
+  },
+  {
+    experimentId: "v1-cap6-esp2",
+    title: "LED senza resistore (cosa NON fare!)",
+    volume: 1,
+    page: 32,
+    sceneStatus: "candidate",
+    sceneFixture: "sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json",
     capabilities: {
       giaMontato: true,
       montaggioLibero: true,

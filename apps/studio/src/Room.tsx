@@ -541,7 +541,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
-  function insertSimulationPlugin() {
+  function insertSimulationPlugin(experimentId?: string) {
     if (!apiRef.current) {
       setStorageError("Lavagna non pronta: riprova tra un istante.")
       return
@@ -551,7 +551,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     // con embedId unico e stato proprio (la prima istanza tiene l'id storico).
     // Il tool arriva dal registry (deny-by-default), non da id/factory hard-codati.
     const currentElements = apiRef.current.getSceneElements()
-    const insert = buildSimulationInsert(currentElements as readonly { id?: string }[])
+    const insert = buildSimulationInsert(
+      currentElements as readonly { id?: string }[],
+      experimentId,
+    )
     if (!insert) {
       setStorageError("Simulation Plugin non disponibile.")
       return
@@ -685,8 +688,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine o PDF">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
-          <button onClick={insertSimulationPlugin} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
+          <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
             sim
+          </button>
+          {/* Catalogo scene montate (2/88): esp2 = dimostrazione "cosa NON
+              fare" (Vol.1 p.32) — LED senza resistore, verdetto BRUCIATO. */}
+          <button
+            onClick={() => insertSimulationPlugin("v1-cap6-esp2")}
+            className="st-ghost"
+            aria-label="Inserisci esperimento LED senza resistore sulla lavagna"
+          >
+            sim esp2
           </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni

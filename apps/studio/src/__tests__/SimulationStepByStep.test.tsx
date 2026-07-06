@@ -95,7 +95,7 @@ describe("simulationStepMode — valutazione passo-passo sul circuito attivo (S1
   })
 })
 
-describe("elabExperimentCatalog — onestà 1/88 da fonti reali (S2)", () => {
+describe("elabExperimentCatalog — onestà montati/88 da fonti reali (S2)", () => {
   const repoRoot = join(process.cwd(), "../..")
 
   it("ogni esperimento montato ha la fixture scene dichiarata SU DISCO", () => {
@@ -155,6 +155,8 @@ describe("Simulation Plugin — pannello passo-passo nel post-it (S3)", () => {
     const container = mountSim()
     const banner = container.querySelector("[data-elab-catalog-summary]")
     expect(banner, "banner catalogo assente").not.toBeNull()
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("1/88")
+    // Ancora esterna intenzionale (mai derivata dal catalogo stesso):
+    // 2 montati = v1-cap6-esp1 + v1-cap6-esp2 (NOTTE-12).
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("2/88")
   })
 })

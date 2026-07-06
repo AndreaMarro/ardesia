@@ -22,6 +22,7 @@ export type BookConstraintsReport = {
 const BOOK_REF_P29 = "Vol.1 pag.29"
 const BOOK_REF_P30 = "Vol.1 pag.30"
 const BOOK_REF_P31 = "Vol.1 pag.31"
+const BOOK_REF_P32 = "Vol.1 pag.32"
 
 function isPlusRail(parsed: ParsedBreadboardRef | null): boolean {
   return parsed?.kind === "rail" && (parsed.rail === "bus-top-plus" || parsed.rail === "bus-bot-plus")
@@ -150,6 +151,125 @@ export function checkBookConstraintsV1Cap6Esp1(scene: ElabScene): BookConstraint
         ? "componenti = LED rosso, breadboard, batteria 9V, resistore 470 Ohm"
         : `BOM diversa dal libro (trovati: ${types.join(", ") || "nessuno"}; r=${String(resistor?.value)}, led=${String(led?.color)})`,
       bookRef: `${BOOK_REF_P29} — elenco materiali dell'esperimento 1`,
+    })
+  }
+
+  return { ok: results.every((result) => result.ok), results }
+}
+
+/**
+ * Vincoli del TESTO/FIGURA di Vol.1 cap.6 esp.2 (p.32) — "LED senza resistore
+ * (cosa NON fare!)". L'esperimento è dimostrativo: il libro mostra il LED
+ * collegato DIRETTAMENTE alla batteria (nessun resistore nel percorso) e
+ * avverte che così il LED si brucia. bookMatch qui = "la scena riproduce
+ * l'errore del libro", non "il circuito è sano".
+ */
+export function checkBookConstraintsV1Cap6Esp2(scene: ElabScene): BookConstraintsReport {
+  const battery = scene.components.find((component) => component.type === "battery9v")
+  const led = scene.components.find((component) => component.type === "led")
+  const breadboard = scene.components.find((component) => component.type === "breadboard-half")
+  const resistors = scene.components.filter((component) => component.type === "resistor")
+
+  const results: BookConstraintResult[] = []
+
+  const anode = led ? parseBreadboardRef(scene.pinAssignments[`${led.id}:anode`] ?? "") : null
+  const cathode = led ? parseBreadboardRef(scene.pinAssignments[`${led.id}:cathode`] ?? "") : null
+
+  // E1 — figura p.32: il filo rosso porta bat+ alla striscia rossa.
+  {
+    const target = battery ? wireEndpointOpposite(scene, `${battery.id}:positive`) : null
+    const parsed = target === null ? null : parseBreadboardRef(target)
+    const ok = isPlusRail(parsed)
+    results.push({
+      id: "battery-positive-to-red-rail",
+      ok,
+      detail: ok
+        ? `bat+ collegato al rail rosso (${target})`
+        : `bat+ non arriva a una striscia rossa (endpoint: ${target ?? "assente"})`,
+      bookRef: `${BOOK_REF_P32} — figura: filo rosso dalla batteria alla striscia rossa`,
+    })
+  }
+
+  // E2 — "il LED direttamente alla batteria" (p.32): NESSUN resistore in
+  // scena E un filo che porta la striscia rossa direttamente alla tie-strip
+  // dell'anodo. È il cuore dell'errore dimostrato dal libro.
+  {
+    const noResistor = resistors.length === 0
+    const directWire = scene.wires.some((wire) => {
+      const from = parseBreadboardRef(wire.from)
+      const to = parseBreadboardRef(wire.to)
+      const railEnd = isPlusRail(from) ? from : isPlusRail(to) ? to : null
+      const holeEnd = isTerminalHole(from) ? from : isTerminalHole(to) ? to : null
+      return (
+        railEnd !== null &&
+        holeEnd !== null &&
+        isTerminalHole(anode) &&
+        holeEnd.nodeId === anode.nodeId
+      )
+    })
+    const ok = noResistor && directWire
+    results.push({
+      id: "led-direct-to-battery-no-resistor",
+      ok,
+      detail: ok
+        ? "nessun resistore in scena; striscia rossa collegata direttamente alla strip dell'anodo"
+        : `percorso non diretto (resistori in scena: ${resistors.length}; filo rail→strip anodo: ${directWire})`,
+      bookRef: `${BOOK_REF_P32} — "Se infatti colleghi per errore il LED direttamente alla batteria, il LED si brucia"`,
+    })
+  }
+
+  // E3 — figura p.32: LED a cavallo della divisione centrale (anodo e catodo
+  // su metà opposte della breadboard).
+  {
+    const ok =
+      isTerminalHole(anode) &&
+      isTerminalHole(cathode) &&
+      anode.nodeId.includes("-top-") !== cathode.nodeId.includes("-top-")
+    results.push({
+      id: "led-straddles-central-channel",
+      ok,
+      detail: ok
+        ? "LED a cavallo della divisione centrale"
+        : `LED non a cavallo del canale (anodo: ${String(anode?.nodeId)}, catodo: ${String(cathode?.nodeId)})`,
+      bookRef: `${BOOK_REF_P32} — figura: LED a cavallo della divisione centrale`,
+    })
+  }
+
+  // E4 — figura p.32: il filo nero porta bat- alla tie-strip del catodo.
+  {
+    const target = battery ? wireEndpointOpposite(scene, `${battery.id}:negative`) : null
+    const parsed = target === null ? null : parseBreadboardRef(target)
+    const ok =
+      isTerminalHole(parsed) && isTerminalHole(cathode) && parsed.nodeId === cathode.nodeId
+    results.push({
+      id: "battery-negative-same-column-as-cathode",
+      ok,
+      detail: ok
+        ? `bat- nella colonna del catodo (${target})`
+        : `bat- non condivide la colonna del catodo (endpoint: ${target ?? "assente"})`,
+      bookRef: `${BOOK_REF_P32} — figura: filo nero dalla batteria alla colonna del catodo`,
+    })
+  }
+
+  // E5 — componenti della dimostrazione: SOLO batteria 9V, breadboard e LED.
+  // Un resistore in scena significherebbe "esperimento 1", non l'errore
+  // dimostrato a p.32.
+  {
+    const types = scene.components.map((component) => component.type).sort()
+    const expected = ["battery9v", "breadboard-half", "led"]
+    const ok =
+      types.length === expected.length &&
+      types.every((type, index) => type === expected[index]) &&
+      battery !== undefined &&
+      breadboard !== undefined &&
+      led !== undefined
+    results.push({
+      id: "bom-demo-no-resistor",
+      ok,
+      detail: ok
+        ? "componenti = batteria 9V, breadboard, LED (nessun resistore)"
+        : `BOM diversa dalla dimostrazione p.32 (trovati: ${types.join(", ") || "nessuno"})`,
+      bookRef: `${BOOK_REF_P32} — dimostrazione: LED collegato direttamente alla batteria`,
     })
   }
 

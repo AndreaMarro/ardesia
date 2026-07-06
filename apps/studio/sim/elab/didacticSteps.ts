@@ -167,6 +167,77 @@ function deepFreeze<T>(value: T): T {
   return value
 }
 
+// Passo-passo Vol.1 cap.6 esp.2 (p.32) — "LED senza resistore (cosa NON
+// fare!)". Esperimento DIMOSTRATIVO: gli step riproducono l'errore del libro.
+// Il predicato chiave è resistorSharesAnodeTie atteso FALSE: se uno studente
+// aggiunge un resistore sul tie dell'anodo, la scena smette di essere la
+// dimostrazione p.32 (diventa l'esperimento 1) e lo step fallisce onestamente.
+export const DIDACTIC_STEPS_V1_CAP6_ESP2: readonly DidacticStep[] = deepFreeze([
+  {
+    id: "v1-cap6-esp2-step-1-positivo-striscia-rossa",
+    order: 1,
+    instruction: {
+      it: "Collega il positivo della batteria alla striscia rossa della breadboard",
+      en: "Connect the battery positive lead to the red strip of the breadboard",
+    },
+    manualEvidence: [
+      {
+        page: 32,
+        claim: "demo-what-not-to-do",
+        evidence:
+          "Se infatti colleghi per errore il LED direttamente alla batteria, il LED si brucia e potrebbe addirittura esplodere!",
+      },
+    ],
+    expects: [
+      { kind: "wire-endpoint-on-rail", endpoint: "bat1:positive", rail: "bus-top-plus" },
+    ],
+  },
+  {
+    id: "v1-cap6-esp2-step-2-led-cavallo-divisione",
+    order: 2,
+    instruction: {
+      it: "Inserisci il LED a cavallo della divisione centrale della breadboard",
+      en: "Insert the LED straddling the central divide of the breadboard",
+    },
+    manualEvidence: [
+      {
+        page: 32,
+        claim: "led-straddles-divide-figure",
+        evidence: "Figura p.32: LED a cavallo della divisione centrale, senza resistore",
+      },
+    ],
+    expects: [
+      { kind: "report-flag", flag: "ledStraddlesCenterGap", expected: true },
+      { kind: "pins-in-holes", pins: ["led1:anode", "led1:cathode"] },
+    ],
+  },
+  {
+    id: "v1-cap6-esp2-step-3-diretto-senza-resistore",
+    order: 3,
+    instruction: {
+      it: "Collega (per errore!) la striscia rossa direttamente alla gambetta lunga del LED e il negativo alla colonna della gambetta corta: il LED si brucia",
+      en: "Connect (by mistake!) the red strip directly to the LED long leg and the negative to the short-leg column: the LED burns out",
+    },
+    manualEvidence: [
+      {
+        page: 32,
+        claim: "never-led-direct-to-battery",
+        evidence:
+          "RICORDA: NON collegare MAI il LED direttamente alla batteria, ma inserisci sempre un resistore al centro!",
+      },
+    ],
+    expects: [
+      // Circuito chiuso: la dimostrazione richiede che la corrente scorra.
+      { kind: "report-flag", flag: "closedCircuit", expected: true },
+      // Ritorno del negativo sulla colonna del catodo (filo nero in figura).
+      { kind: "report-flag", flag: "cathodeSharesNegativeReturnTie", expected: true },
+      // IL VINCOLO DELL'ERRORE: nessun resistore sul tie dell'anodo. Con un
+      // resistore la scena non è più la dimostrazione p.32.
+      { kind: "report-flag", flag: "resistorSharesAnodeTie", expected: false },
+    ],
+  },
+])
+
 // I predicati NON fissano i numeri di foro: il libro dice "punto qualsiasi".
 // Le scelte canoniche (resistore i9/i3, LED f3/e3, tie 3) vivono nella fixture
 // elab-v1-cap6-esp1.json e sono blindate da validateElabV1Cap6Esp1Fixture.
