@@ -219,9 +219,11 @@ export const DIDACTIC_STEPS_V1_CAP6_ESP1: readonly DidacticStep[] = deepFreeze([
     expects: [
       // "striscia rossa" → il lato rail del resistore è raggiunto dal positivo.
       { kind: "report-flag", flag: "positiveReachesResistorRailSide", expected: true },
-      // Grammatica del circuito: i pin vivono nei fori (delta dichiarato in fixture:
-      // la gamba-nella-striscia del libro diventa un jumper rosso).
-      { kind: "pins-in-holes", pins: ["r1:pin1", "r1:pin2"] },
+      // "zona sotto" = un foro della board. Il lato striscia invece è LIBERO:
+      // il libro mette la gamba NELLA striscia rossa (scena canonica v2,
+      // r1:pin1 su bus-top-plus) e la vecchia codifica la portava in un foro
+      // via jumper — entrambe fedeli al testo, entrambe accettate.
+      { kind: "pins-in-holes", pins: ["r1:pin2"] },
     ],
   },
   {
@@ -274,8 +276,11 @@ export const DIDACTIC_STEPS_V1_CAP6_ESP1: readonly DidacticStep[] = deepFreeze([
       { kind: "report-flag", flag: "usesMinusBus", expected: false },
       // "… MAGIA! Il LED si è acceso": il circuito è chiuso.
       { kind: "report-flag", flag: "closedCircuit", expected: true },
-      // MAI pin su bus-*.
-      { kind: "no-pins-on-rails" },
+      // Le gambette del LED vivono SEMPRE nei fori, mai sui bus (il libro le
+      // mette a cavallo della divisione). Il vecchio "no-pins-on-rails"
+      // globale era più stretto del libro: bocciava r1:pin1 nella striscia
+      // rossa, che il testo p.30 prescrive (scena canonica v2).
+      { kind: "pins-in-holes", pins: ["led1:anode", "led1:cathode"] },
     ],
   },
 ])
