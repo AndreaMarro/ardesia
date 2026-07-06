@@ -5,7 +5,10 @@
 //
 // Output:
 //   sim/reference-blink.maestrotool  — zip bundle (entry.html + manifest firma)
-//   sim/keys.json               — chiave pubblica (per il manifest) + privata (solo demo)
+//   sim/keys.json               — SOLO chiave pubblica (la privata non viene
+//                                 mai persistita: Codex P1.3 + DevKeySecretGuard)
+//   sim/manifest.sig.json       — firma ed25519 dei byte di manifest-source.json
+//                                 (fixture prefirmata consumata da toolLab.ts)
 
 import { execSync } from "node:child_process"
 import * as fs from "node:fs"
@@ -17,6 +20,7 @@ const SIM_DIR = path.resolve(__dirname, ".")
 const MANIFEST_SRC_PATH = path.join(SIM_DIR, "manifest-source.json")
 const BUNDLE_PATH = path.join(SIM_DIR, "reference-blink.maestrotool")
 const KEYS_PATH = path.join(SIM_DIR, "keys.json")
+const SIG_PATH = path.join(SIM_DIR, "manifest.sig.json")
 
 interface ManifestSource {
   manifestVersion: 1
@@ -44,13 +48,12 @@ async function main(): Promise<void> {
     await crypto.subtle.exportKey("raw", keypair.publicKey),
   )
   const pubkeyB64 = btoa(String.fromCharCode(...pubkeyRaw))
-  const privkeyRaw = new Uint8Array(
-    await crypto.subtle.exportKey("pkcs8", keypair.privateKey),
-  )
-  const privkeyB64 = btoa(String.fromCharCode(...privkeyRaw))
 
-  // Salva le chiavi (solo demo — in produzione la chiave privata non esce dal publisher)
-  fs.writeFileSync(KEYS_PATH, JSON.stringify({ pubkey: `ed25519:${pubkeyB64}`, privateKey: privkeyB64 }, null, 2))
+  // Salva SOLO la pubkey: la chiave privata resta in-memory per la durata di
+  // questo run (manifest + firma vengono rigenerati coerenti insieme) e non
+  // viene MAI scritta su disco — niente signing key nel repo né nel client
+  // (Codex P1.3; guard statico in DevKeySecretGuard.test.ts).
+  fs.writeFileSync(KEYS_PATH, JSON.stringify({ pubkey: `ed25519:${pubkeyB64}` }, null, 2) + "\n")
 
   // 2. Crea manifest source con la pubkey
   const manifestSource: ManifestSource = {
@@ -82,10 +85,13 @@ async function main(): Promise<void> {
   const manifestJson = JSON.stringify(manifestSource)
   fs.writeFileSync(MANIFEST_SRC_PATH, manifestJson)
 
-  // 3. Firma i byte del manifest (esattamente come fa il publisher)
+  // 3. Firma i byte del manifest (esattamente come fa il publisher) e salva
+  // la firma come fixture: la firma è dato PUBBLICO, la chiave che l'ha
+  // prodotta no. toolLab.ts consuma questa fixture invece di firmare a runtime.
   const msg = new TextEncoder().encode(manifestJson)
   const sigRaw = new Uint8Array(await crypto.subtle.sign("Ed25519", keypair.privateKey, msg))
   const sigB64 = btoa(String.fromCharCode(...sigRaw))
+  fs.writeFileSync(SIG_PATH, JSON.stringify({ signatureB64: sigB64 }, null, 2) + "\n")
 
   // 4. Crea il bundle zip con entry.html
   // Il bundle zip contiene SOLO entry.html (il manifest va separato per l'installer)
@@ -99,7 +105,8 @@ async function main(): Promise<void> {
   console.log(`Pubkey:   ed25519:${pubkeyB64}`)
   console.log(`Sign:     ${sigB64}`)
   console.log(`Bundle:   ${BUNDLE_PATH} (${fs.statSync(BUNDLE_PATH).size} bytes)`)
-  console.log(`Keys:     ${KEYS_PATH}`)
+  console.log(`Keys:     ${KEYS_PATH} (pubkey-only)`)
+  console.log(`Sig file: ${SIG_PATH}`)
   console.log(`\nInstall command (from code):`)
   console.log(`  installTool(store, manifestJson, bundleZip, signatureB64)`)
   console.log(`  dove manifestJson = fs.readFileSync("sim/manifest-source.json", "utf-8")`)
