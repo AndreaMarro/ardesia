@@ -11,6 +11,8 @@ import { ToolAuditLog } from "./audit.ts"
 import type { AuditStore } from "./audit.ts"
 import { ToolBoard } from "./caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "./caps/board.ts"
+import { ToolGraph } from "./caps/graph.ts"
+import type { EventLogReadLike } from "./caps/graph.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
@@ -45,6 +47,12 @@ export interface ToolHostDeps {
   /** Il workspaceStore reale li soddisfa entrambi strutturalmente. */
   store: StorageDriverLike & AuditStore
   board: BoardApiLike
+  /**
+   * Event-log LessonOS in SOLA LETTURA per graph.query: senza iniezione il
+   * metodo resta concesso-ma-non-cablato (INTERNAL, mai silenzio) — speculare
+   * a storage senza quota. L'host non crea mai un log proprio.
+   */
+  eventLog?: EventLogReadLike
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string
@@ -73,6 +81,7 @@ export class ToolHost {
   private _deps: ToolHostDeps
   private _board: ToolBoard
   private _storage: ToolStorage | null
+  private _graph: ToolGraph | null
   private _session: ToolHostSession | null = null
   // suspend/restore serializzati: due suspend concorrenti non devono poter
   // atterrare su state.json fuori ordine (last-write-wins con stato VECCHIO).
@@ -92,6 +101,7 @@ export class ToolHost {
     this._board = new ToolBoard(deps.board, manifest.id, deps.makeSkeleton)
     const quota = grantedCaps.storage?.quotaMB
     this._storage = quota === undefined ? null : new ToolStorage(deps.store, manifest.id, quota)
+    this._graph = deps.eventLog === undefined ? null : new ToolGraph(deps.eventLog)
   }
 
   /** Sessione viva (mount corrente), o null se il tool non è montato. */
@@ -248,6 +258,10 @@ export class ToolHost {
       }
       handlers["storage.delete"] = (p) => storage.delete((p as { key: string }).key)
       handlers["storage.list"] = (p) => storage.list((p as { prefix?: string }).prefix)
+    }
+    const graph = this._graph
+    if (graph !== null) {
+      handlers["graph.query"] = (p) => graph.query(p as Parameters<ToolGraph["query"]>[0])
     }
     return handlers
   }
