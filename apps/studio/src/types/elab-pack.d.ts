@@ -30,3 +30,26 @@ declare module "@elab-pack/data/lesson-paths" {
   const LESSON_PATHS: Record<string, PackLessonPath>
   export default LESSON_PATHS
 }
+
+declare module "@elab-pack/data/volume-references" {
+  // Stessi campi di packs/elab-tutor/data/volume-references.js (estratti dai
+  // PDF ufficiali ELAB): la vista li mostra VERBATIM, mai rielaborati.
+  export interface PackVolumeReference {
+    volume: number
+    bookPage: number
+    chapter: string
+    chapterPage: number
+    bookText?: string
+    bookInstructions?: string[]
+    bookQuote?: string
+    bookContext?: string
+    [key: string]: unknown
+  }
+
+  export function getVolumeRef(experimentId: string): PackVolumeReference | null
+  export function getBookPage(experimentId: string): number | null
+  export function getVolumeLabel(experimentId: string): string | null
+
+  const VOLUME_REFERENCES: Record<string, PackVolumeReference>
+  export default VOLUME_REFERENCES
+}

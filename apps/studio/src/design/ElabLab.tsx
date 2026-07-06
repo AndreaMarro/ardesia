@@ -14,6 +14,7 @@ import { renderEmbeddable } from "@elab-tutor-plugin/plugin/renderEmbeddable"
 import EXPERIMENTS_VOL1 from "@elab-tutor-plugin/data/experiments-vol1"
 import type { ElabVolumeExperiment } from "@elab-tutor-plugin/data/experiments-vol1"
 import { getLessonPath } from "@elab-pack/data/lesson-paths"
+import { getVolumeLabel, getVolumeRef } from "@elab-pack/data/volume-references"
 import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
 // Import con side-effect deliberato: registra l'entry del Simulation Plugin
 // (render + solve reale) nel registry — lo stesso dispatch usato dal canvas.
@@ -80,6 +81,11 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   // Marcatura errori (emittente error.observed): dati dal Pack, concetto
   // SCELTO dal docente (mai un mapping inventato), transito via bus tipizzato,
   // persistenza via bindBusToEventLog. Fallimenti di registrazione VISIBILI.
+  // Citazione dal libro (Pack volume-references, estratto dai PDF ufficiali):
+  // mostrata VERBATIM. Riferimento assente = pannello assente (Principio
+  // Zero: mai testo inventato al suo posto).
+  const bookRef = useMemo(() => getVolumeRef(ELAB_LAB_EXPERIMENT_ID), [])
+  const bookLabel = useMemo(() => getVolumeLabel(ELAB_LAB_EXPERIMENT_ID), [])
   const lessonPath = useMemo(() => getLessonPath(ELAB_LAB_EXPERIMENT_ID), [])
   const observations = useMemo(
     () => (lessonPath === null ? [] : listMistakeObservations(lessonPath)),
@@ -172,6 +178,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         {experiment !== null && (
           <>
             <div ref={canvasRef} data-elab-canvas style={{ position: "absolute", inset: 0 }} />
+            <div className="elab-lab-panels">
             <div className="reference-tool-panel" data-elab-lab-solve={solve?.kind ?? "no-solve"}>
               <div className="reference-tool-panel-bar">
                 <span className="reference-tool-dot" data-on={ledOn ? "1" : "0"} aria-hidden />
@@ -214,6 +221,35 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 </div>
               )}
             </div>
+
+            {bookRef !== null && (
+              <div className="reference-tool-panel" data-elab-lab-citation>
+                <div className="reference-tool-panel-bar">dal libro — {bookLabel}</div>
+                <div style={{ padding: "4px 8px" }}>
+                  <div data-book-chapter style={{ fontWeight: 600 }}>
+                    {bookRef.chapter}
+                  </div>
+                  {bookRef.bookText !== undefined && (
+                    <p style={{ margin: "4px 0" }}>{bookRef.bookText}</p>
+                  )}
+                  {bookRef.bookInstructions !== undefined &&
+                    bookRef.bookInstructions.length > 0 && (
+                      <ol style={{ margin: "4px 0", paddingLeft: 18 }}>
+                        {bookRef.bookInstructions.map((step) => (
+                          <li key={step} data-book-step>
+                            {step}
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+                  {bookRef.bookQuote !== undefined && (
+                    <blockquote style={{ margin: "4px 0", fontStyle: "italic" }}>
+                      {bookRef.bookQuote}
+                    </blockquote>
+                  )}
+                </div>
+              </div>
+            )}
 
             {observations.length > 0 && (
               <div
@@ -260,6 +296,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 </div>
               </div>
             )}
+            </div>
           </>
         )}
       </div>
