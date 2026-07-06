@@ -96,5 +96,22 @@ test("ELAB Lab parallelismo ai libri: ?esperimento monta un ALTRO esperimento re
   await expect(page.locator("[data-elab-lab-citation]")).toBeVisible()
   await expect(page.locator("[data-elab-lab-marcatura]")).toBeVisible()
 
+  // Diagnostica montaggio: esp2 è sano (i suoi problemi noti erano falsi
+  // positivi da connections-as-wires, MAI usate come fori — issue #92).
+  await expect(page.locator("[data-diagnostica-ok]")).toBeVisible()
+
   expect(consoleErrors).toEqual([])
+})
+
+test("ELAB Lab diagnostica: il bug corpus bb1:c21 (canon §1.4) è visibile nella vista", async ({
+  page,
+}) => {
+  await page.goto("/?vista=elab-lab&esperimento=v3-cap7-esp3")
+  await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
+  const diagnostica = page.locator("[data-elab-lab-diagnostica]")
+  await expect(diagnostica).toBeVisible()
+  await expect(diagnostica.locator("[data-diagnostica-finding]").first()).toContainText(
+    "bb1:c21",
+  )
+  await expect(diagnostica.locator("[data-diagnostica-ok]")).toHaveCount(0)
 })

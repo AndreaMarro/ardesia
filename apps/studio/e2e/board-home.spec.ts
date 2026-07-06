@@ -15,7 +15,10 @@ test("lavagna home: brand + canvas, console senza errori", async ({ page }) => {
 
   await page.goto("/")
 
-  await expect(page.locator(".st-word").first()).toHaveText("Ardesia")
+  // Timeout esplicito come per il canvas: sotto carico (piu' run paralleli
+  // sullo stesso dev server) l'entry lazy supera i 5s default — flake 2/6
+  // osservato firsthand 2026-07-06.
+  await expect(page.locator(".st-word").first()).toHaveText("Ardesia", { timeout: 15_000 })
   // Excalidraw è un chunk lazy: attesa esplicita del mount del canvas.
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
 
