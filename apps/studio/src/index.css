@@ -399,3 +399,15 @@ body {
 .reference-tool-frame {
   display: block; width: 100%; height: 430px; border: none; background: var(--m-canvas);
 }
+
+/* ELAB Lab: colonna dei pannelli laterali — solve, citazione dal libro,
+   marcatura errori in stack verticale scrollabile, MAI sovrapposti
+   (il .reference-tool-panel nudo resta absolute per le altre viste). */
+.elab-lab-panels {
+  position: absolute; top: 24px; right: 24px; z-index: 50;
+  display: flex; flex-direction: column; gap: 12px;
+  width: 360px; max-height: calc(100% - 48px); overflow-y: auto;
+}
+.elab-lab-panels .reference-tool-panel {
+  position: static; width: auto; flex-shrink: 0;
+}

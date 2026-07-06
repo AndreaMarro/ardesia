@@ -21,6 +21,14 @@ test("ELAB Lab: sim reale + marcatura errore comune, console pulita", async ({ p
   await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
   await expect(page.locator(".st-name-text")).toContainText("ELAB Lab")
 
+  // Citazione REALE dal libro (Pack volume-references): etichetta Vol/Pag,
+  // capitolo e passi verbatim — il segmento manuale→citazione del §8.
+  const citazione = page.locator("[data-elab-lab-citation]")
+  await expect(citazione).toBeVisible()
+  await expect(citazione).toContainText("Vol. 1, p. 29")
+  await expect(citazione).toContainText("Capitolo 6 - Cos'è il diodo LED?")
+  await expect(citazione.locator("[data-book-step]")).toHaveCount(5)
+
   // Solve via registry: esito ok e LED acceso con corrente numerica.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })
   await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "1")
