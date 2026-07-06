@@ -86,6 +86,12 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
   const [id, setId] = useState("")
   const [surface, setSurface] = useState<WizardSurface>("panel")
   const [caps, setCaps] = useState<Set<CapKey>>(new Set())
+  // Campi marketplace (#72): facoltativi, passthrough alla ScaffoldSpec.
+  // Vuoti = manifest legacy, nessuna chiave emessa (regola dello scaffolder).
+  const [authorName, setAuthorName] = useState("")
+  const [authorUrl, setAuthorUrl] = useState("")
+  const [license, setLicense] = useState("")
+  const [visibility, setVisibility] = useState<"" | "private" | "unlisted" | "public">("")
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [output, setOutput] = useState<ScaffoldOutput | null>(null)
@@ -121,11 +127,19 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
     try {
       const keys = keysRef.current ?? (await makeKeys())
       keysRef.current = keys
+      const trimmedAuthor = authorName.trim()
+      const trimmedUrl = authorUrl.trim()
       const spec: ScaffoldSpec = {
         id,
         name: name.trim(),
         surfaces: [surface],
         capabilities: buildCapabilities(caps),
+        // author solo con nome (URL orfano non inventa un autore).
+        ...(trimmedAuthor.length > 0
+          ? { author: { name: trimmedAuthor, ...(trimmedUrl.length > 0 ? { url: trimmedUrl } : {}) } }
+          : {}),
+        ...(license.trim().length > 0 ? { license: license.trim() } : {}),
+        ...(visibility !== "" ? { visibility } : {}),
       }
       setOutput(await scaffold(spec, keys))
     } catch (err) {
@@ -243,6 +257,42 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
               </label>
             ))}
           </fieldset>
+
+          <details className="ow-marketplace">
+            <summary className="ow-label">Campi marketplace (facoltativi)</summary>
+            <label className="ow-field">
+              <span className="ow-label">Nome autore</span>
+              <input
+                value={authorName}
+                onChange={(e) => setAuthorName(e.target.value)}
+                placeholder="Prof.ssa Rossi"
+              />
+            </label>
+            <label className="ow-field">
+              <span className="ow-label">URL autore (richiede il nome)</span>
+              <input
+                value={authorUrl}
+                onChange={(e) => setAuthorUrl(e.target.value)}
+                placeholder="https://scuola.example"
+              />
+            </label>
+            <label className="ow-field">
+              <span className="ow-label">Licenza</span>
+              <input value={license} onChange={(e) => setLicense(e.target.value)} placeholder="MIT" />
+            </label>
+            <label className="ow-field">
+              <span className="ow-label">Visibilità</span>
+              <select
+                value={visibility}
+                onChange={(e) => setVisibility(e.target.value as typeof visibility)}
+              >
+                <option value="">non dichiarata (legacy)</option>
+                <option value="private">private</option>
+                <option value="unlisted">unlisted</option>
+                <option value="public">public</option>
+              </select>
+            </label>
+          </details>
 
           <button
             className="st-primary ow-genera"

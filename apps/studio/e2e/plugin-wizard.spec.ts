@@ -19,7 +19,7 @@ test("officina: spec → genera firmato → collaudo 4/4 verde → export .maest
 
   await page.goto("/?vista=officina-plugin")
 
-  await page.getByLabel(/nome/i).fill("Voltmetro di classe")
+  await page.getByLabel(/^nome$/i).fill("Voltmetro di classe")
   await page.getByLabel(/identificatore/i).fill("it.scuola.voltmetro")
   await page.getByLabel(/superficie/i).selectOption("board-embed")
   await page.getByLabel(/board\.read/i).check()
