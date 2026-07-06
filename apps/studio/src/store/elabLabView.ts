@@ -12,3 +12,21 @@ export function isElabLabView(): boolean {
     return false
   }
 }
+
+/** Esperimento di default della vista (il primo del libro, Vol.1 cap.6). */
+export const ELAB_LAB_DEFAULT_EXPERIMENT_ID = "v1-cap6-esp1"
+
+/**
+ * Legge l'esperimento richiesto dall'URL (?esperimento=<id>); senza
+ * parametro si usa il default. La VALIDAZIONE dell'id è della vista
+ * (fail-closed su id ignoto), non di questo reader.
+ */
+export function readElabLabExperimentId(): string {
+  try {
+    if (typeof window === "undefined") return ELAB_LAB_DEFAULT_EXPERIMENT_ID
+    const value = new URL(window.location.href).searchParams.get("esperimento")
+    return value === null || value === "" ? ELAB_LAB_DEFAULT_EXPERIMENT_ID : value
+  } catch {
+    return ELAB_LAB_DEFAULT_EXPERIMENT_ID
+  }
+}
