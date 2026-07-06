@@ -150,7 +150,7 @@ export const BOARDS = [
       { vendorId: 0x2341, productId: 0x0010 },
       { vendorId: 0x2341 },
     ],
-    inBrowserCompileSupported: true, // pin map differs from 328P
+    inBrowserCompileSupported: false, // il compiler bounded è solo ATmega328P: rifiuta atmega2560 (unsupported_board)
     flashSize: 253952,
   },
   {
