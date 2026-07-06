@@ -119,6 +119,8 @@ Regole: NON toccare `createReferenceSimulationScene` (additivo); `manual.volume/
 
 ### Task 6: studentpack.generated/exported append-only + azione Z7
 
+> [FATTO NOTTE-4 2026-07-06 — PR studentpack-generated-exported]: union eventlog + projector lift + bottoni Z7 Genera/Esporta. errorId aggiunto all'item queue.
+
 **Files:**
 - Modify: `apps/studio/src/lessonos/eventlog.ts` (union: 2 nuovi kind), `apps/studio/src/core/contracts/eventBus.ts` (map), `apps/studio/src/lessonos/teacherDashboardProjection.ts` (lift candidate→generated/exported), `apps/studio/src/design/TeacherDashboardView.tsx` (bottone "Genera pack" per riga candidate → append `studentpack.generated` con evidence refs)
 - Test: estendi test esistenti di projection + view.

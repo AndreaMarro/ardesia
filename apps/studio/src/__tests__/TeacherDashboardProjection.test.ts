@@ -329,6 +329,7 @@ describe("studentPackQueue (Z7) — candidati dagli errori mai corretti", () => 
     expect(projection.studentPackQueue).toEqual([
       {
         candidateId: "sp-error:corto-1",
+        errorId: "error:corto-1",
         fromRoom: "3b-elab",
         label: { it: "Corto circuito sulla riga i" },
         status: "candidate",
@@ -359,11 +360,78 @@ describe("studentPackQueue (Z7) — candidati dagli errori mai corretti", () => 
     expect(projection.studentPackQueue).toEqual([
       {
         candidateId: "sp-error:senza-lezione",
+        errorId: "error:senza-lezione",
         fromRoom: "",
         label: { it: "Errore orfano" },
         status: "candidate",
         evidenceRefs: ["board:x1"],
       },
     ])
+  })
+})
+
+describe("studentPackQueue (Z7) — lift candidate→generated→exported dagli eventi append-only", () => {
+  const BASE: LessonOsEvent[] = [
+    { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+    {
+      kind: "error.observed",
+      errorId: "error:corto-1",
+      conceptId: "ohm_law",
+      labels: { it: "Corto sulla riga i" },
+      t: 1500,
+      evidence: ["board:wire9"],
+    },
+    { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+  ]
+
+  it("un studentpack.generated lifta il candidato a 'generated' senza secondo store", async () => {
+    const events = await appendEvents([
+      ...BASE,
+      {
+        kind: "studentpack.generated",
+        packId: "sp-error:corto-1",
+        errorId: "error:corto-1",
+        fromRoom: "3b-elab",
+        t: 2500,
+        evidence: ["board:wire9"],
+      },
+    ])
+    const projection = makeProjection(events)
+    expect(projection.studentPackQueue).toEqual([
+      {
+        candidateId: "sp-error:corto-1",
+        errorId: "error:corto-1",
+        fromRoom: "3b-elab",
+        label: { it: "Corto sulla riga i" },
+        status: "generated",
+        evidenceRefs: ["board:wire9"],
+      },
+    ])
+  })
+
+  it("generated + exported lifta a 'exported' (ordine append-only rispettato)", async () => {
+    const events = await appendEvents([
+      ...BASE,
+      {
+        kind: "studentpack.generated",
+        packId: "sp-error:corto-1",
+        errorId: "error:corto-1",
+        fromRoom: "3b-elab",
+        t: 2500,
+        evidence: ["board:wire9"],
+      },
+      { kind: "studentpack.exported", packId: "sp-error:corto-1", t: 2600, evidence: ["board:wire9"] },
+    ])
+    const projection = makeProjection(events)
+    expect(projection.studentPackQueue[0]?.status).toBe("exported")
+  })
+
+  it("exported senza generated resta 'candidate': nessun salto di stato inventato", async () => {
+    const events = await appendEvents([
+      ...BASE,
+      { kind: "studentpack.exported", packId: "sp-error:corto-1", t: 2600, evidence: ["board:wire9"] },
+    ])
+    const projection = makeProjection(events)
+    expect(projection.studentPackQueue[0]?.status).toBe("candidate")
   })
 })

@@ -75,6 +75,23 @@ export type LessonOsEvent =
       total: number
       labels: Labels
     })
+  | (BaseEvent & {
+      /**
+       * Uno student-pack è stato generato da un candidato Z7 (errore osservato mai
+       * corretto). Fatto append-only: il projector lifta lo status del candidato
+       * da "candidate" a "generated". packId = candidateId (`sp-<errorId>`).
+       */
+      kind: "studentpack.generated"
+      packId: string
+      errorId: string
+      /** Room della lezione da cui nasce il pack; assente = candidato orfano. */
+      fromRoom?: string
+    })
+  | (BaseEvent & {
+      /** Uno student-pack generato è stato esportato: lift "generated" → "exported". */
+      kind: "studentpack.exported"
+      packId: string
+    })
 
 /** Evento accettato dal log: immutabile, con numero di sequenza monotono. */
 export type AppendedEvent = LessonOsEvent & { readonly seq: number }
