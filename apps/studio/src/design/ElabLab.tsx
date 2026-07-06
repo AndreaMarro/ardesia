@@ -119,11 +119,35 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const [markedCount, setMarkedCount] = useState(0)
   const [recordError, setRecordError] = useState<string | null>(null)
   // Montaggio libero: null = modalità spenta (diagnostica sul Pack).
-  // Attivata = copia dei pinAssignments del manuale, poi dello studente.
+  // Attivata = copia di pinAssignments E componenti del manuale, poi dello
+  // studente (aggiungi/togli componenti e terminali: la diagnostica giudica).
   const [studentAssignments, setStudentAssignments] = useState<Record<
     string,
     string
   > | null>(null)
+  const [studentComponents, setStudentComponents] = useState<Array<{
+    id: string
+    type: string
+  }> | null>(null)
+  const [newAssignmentPin, setNewAssignmentPin] = useState("")
+  const [newAssignmentRef, setNewAssignmentRef] = useState("")
+  const [newComponentId, setNewComponentId] = useState("")
+  const [newComponentType, setNewComponentType] = useState("")
+
+  const startFreeAssembly = () => {
+    if (experiment === null) return
+    setStudentAssignments({ ...experiment.pinAssignments })
+    setStudentComponents(
+      experiment.components.map((component) => ({
+        id: component.id,
+        type: component.type,
+      })),
+    )
+    setNewAssignmentPin("")
+    setNewAssignmentRef("")
+    setNewComponentId("")
+    setNewComponentType("")
+  }
 
   useEffect(() => {
     if (eventLog !== undefined) return
@@ -172,11 +196,11 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
       experiment === null
         ? null
         : analyzeFreeAssembly({
-            components: experiment.components,
+            components: studentComponents ?? experiment.components,
             wires: [],
             pinAssignments: studentAssignments ?? experiment.pinAssignments ?? {},
           }),
-    [experiment, studentAssignments],
+    [experiment, studentAssignments, studentComponents],
   )
   // type-unregistered = tipo fuori dal catalogo elettrico vendored (60/88
   // esperimenti): il solve lo rifiuta comunque (deny-by-default) — nella
@@ -361,37 +385,158 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                         type="button"
                         data-montaggio-attiva
                         title="Parti dal montaggio del manuale e modificalo: la diagnostica segue TE"
-                        onClick={() =>
-                          setStudentAssignments({ ...experiment.pinAssignments })
-                        }
+                        onClick={startFreeAssembly}
                       >
                         Monta tu (parti dal manuale)
                       </button>
                     ) : (
                       <>
-                        {Object.entries(studentAssignments).map(([pin, ref]) => (
-                          <label key={pin} style={{ display: "block", margin: "2px 0" }}>
-                            <code>{pin}</code>{" → "}
+                        <div data-montaggio-componenti>
+                          <strong>componenti dichiarati</strong>
+                          {(studentComponents ?? []).map((component) => (
+                            <div key={component.id} style={{ margin: "2px 0" }}>
+                              <code>{component.id}</code> ({component.type}){" "}
+                              <button
+                                type="button"
+                                data-montaggio-rimuovi-componente={component.id}
+                                title="Togli il componente: i terminali rimasti nei fori diventano orfani (la diagnostica lo dice)"
+                                onClick={() =>
+                                  setStudentComponents((previous) =>
+                                    previous === null
+                                      ? previous
+                                      : previous.filter(
+                                          (entry) => entry.id !== component.id,
+                                        ),
+                                  )
+                                }
+                              >
+                                togli
+                              </button>
+                            </div>
+                          ))}
+                          <div style={{ margin: "2px 0" }}>
                             <input
-                              data-montaggio-pin={pin}
-                              value={ref}
-                              size={8}
-                              onChange={(event) =>
+                              data-montaggio-nuovo-componente-id
+                              placeholder="id (es. led2)"
+                              value={newComponentId}
+                              size={7}
+                              onChange={(event) => setNewComponentId(event.target.value)}
+                            />{" "}
+                            <input
+                              data-montaggio-nuovo-componente-tipo
+                              placeholder="tipo (es. led)"
+                              value={newComponentType}
+                              size={7}
+                              onChange={(event) => setNewComponentType(event.target.value)}
+                            />{" "}
+                            <button
+                              type="button"
+                              data-montaggio-aggiungi-componente
+                              disabled={
+                                newComponentId.trim() === "" ||
+                                newComponentType.trim() === ""
+                              }
+                              onClick={() => {
+                                setStudentComponents((previous) =>
+                                  previous === null
+                                    ? previous
+                                    : [
+                                        ...previous,
+                                        {
+                                          id: newComponentId.trim(),
+                                          type: newComponentType.trim(),
+                                        },
+                                      ],
+                                )
+                                setNewComponentId("")
+                                setNewComponentType("")
+                              }}
+                            >
+                              aggiungi componente
+                            </button>
+                          </div>
+                        </div>
+                        <div data-montaggio-assegnazioni style={{ marginTop: 6 }}>
+                          <strong>terminali nei fori</strong>
+                          {Object.entries(studentAssignments).map(([pin, ref]) => (
+                            <div key={pin} style={{ margin: "2px 0" }}>
+                              <label>
+                                <code>{pin}</code>{" → "}
+                                <input
+                                  data-montaggio-pin={pin}
+                                  value={ref}
+                                  size={8}
+                                  onChange={(event) =>
+                                    setStudentAssignments((previous) =>
+                                      previous === null
+                                        ? previous
+                                        : { ...previous, [pin]: event.target.value },
+                                    )
+                                  }
+                                />
+                              </label>{" "}
+                              <button
+                                type="button"
+                                data-montaggio-rimuovi-pin={pin}
+                                title="Togli il terminale dal foro"
+                                onClick={() =>
+                                  setStudentAssignments((previous) => {
+                                    if (previous === null) return previous
+                                    const next = { ...previous }
+                                    delete next[pin]
+                                    return next
+                                  })
+                                }
+                              >
+                                togli
+                              </button>
+                            </div>
+                          ))}
+                          <div style={{ margin: "2px 0" }}>
+                            <input
+                              data-montaggio-nuovo-pin
+                              placeholder="pin (es. led2:anode)"
+                              value={newAssignmentPin}
+                              size={12}
+                              onChange={(event) => setNewAssignmentPin(event.target.value)}
+                            />{" "}
+                            <input
+                              data-montaggio-nuovo-foro
+                              placeholder="foro (es. bb1:a1)"
+                              value={newAssignmentRef}
+                              size={7}
+                              onChange={(event) => setNewAssignmentRef(event.target.value)}
+                            />{" "}
+                            <button
+                              type="button"
+                              data-montaggio-aggiungi-pin
+                              disabled={
+                                newAssignmentPin.trim() === "" ||
+                                newAssignmentRef.trim() === ""
+                              }
+                              onClick={() => {
                                 setStudentAssignments((previous) =>
                                   previous === null
                                     ? previous
-                                    : { ...previous, [pin]: event.target.value },
+                                    : {
+                                        ...previous,
+                                        [newAssignmentPin.trim()]:
+                                          newAssignmentRef.trim(),
+                                      },
                                 )
-                              }
-                            />
-                          </label>
-                        ))}
+                                setNewAssignmentPin("")
+                                setNewAssignmentRef("")
+                              }}
+                            >
+                              aggiungi
+                            </button>
+                          </div>
+                        </div>
                         <button
                           type="button"
                           data-montaggio-ripristina
-                          onClick={() =>
-                            setStudentAssignments({ ...experiment.pinAssignments })
-                          }
+                          style={{ marginTop: 6 }}
+                          onClick={startFreeAssembly}
                         >
                           Ripristina dal manuale
                         </button>
