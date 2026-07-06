@@ -4,6 +4,7 @@ import { isToolLabView } from "./store/toolLabView"
 import { isElabLabView } from "./store/elabLabView"
 import { isSavedLessonsView } from "./store/savedLessonsView"
 import { isPluginWizardView } from "./store/pluginWizardView"
+import { isTeacherDashboardView } from "./store/teacherDashboardView"
 
 // Code-split per vista: Excalidraw (~MB) e le viste che lo usano escono
 // dall'entry — l'entry resta il solo router. Ogni vista arriva come chunk
@@ -14,6 +15,7 @@ const ToolLab = lazy(() => import("./design/ToolLab"))
 const ElabLab = lazy(() => import("./design/ElabLab"))
 const SavedLessonsView = lazy(() => import("./design/SavedLessonsView"))
 const PluginWizard = lazy(() => import("./design/PluginWizard"))
+const TeacherDashboardView = lazy(() => import("./design/TeacherDashboardView"))
 
 /** Fallback neutro: header brand senza testo di stato (nessun flash di layout). */
 function ViewFallback() {
@@ -23,7 +25,7 @@ function ViewFallback() {
 export default function App() {
   return (
     <Suspense fallback={<ViewFallback />}>
-      {isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
+      {isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
     </Suspense>
   )
 }
