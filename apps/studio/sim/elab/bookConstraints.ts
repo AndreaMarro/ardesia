@@ -275,3 +275,132 @@ export function checkBookConstraintsV1Cap6Esp2(scene: ElabScene): BookConstraint
 
   return { ok: results.every((result) => result.ok), results }
 }
+
+/**
+ * Vincoli del TESTO/FIGURE di Vol.1 cap.6 esp.3 (p.33) — "Cambia luminosità
+ * con resistenze diverse". Le due figure (220 Ohm / 1 kOhm) condividono il
+ * layout di esp1; il testo aggiunge UN vincolo di sicurezza esplicito:
+ * "NON scendere mai al di sotto dei 100 Ohm". La scena canonica è la
+ * figura 1 (220 Ohm, LED verde). Il conflitto motore↔libro sulla soglia di
+ * burn (30 mA) NON si giudica qui: bookMatch = fedeltà al libro, il verdetto
+ * elettrico resta gate-Andrea D4-2.
+ */
+export function checkBookConstraintsV1Cap6Esp3(scene: ElabScene): BookConstraintsReport {
+  const battery = scene.components.find((component) => component.type === "battery9v")
+  const resistor = scene.components.find((component) => component.type === "resistor")
+  const led = scene.components.find((component) => component.type === "led")
+  const breadboard = scene.components.find((component) => component.type === "breadboard-half")
+
+  const results: BookConstraintResult[] = []
+  const BOOK_REF_P33 = "Vol.1 pag.33"
+
+  // F1 — figura p.33: bat+ alla striscia rossa.
+  {
+    const target = battery ? wireEndpointOpposite(scene, `${battery.id}:positive`) : null
+    const parsed = target === null ? null : parseBreadboardRef(target)
+    const ok = isPlusRail(parsed)
+    results.push({
+      id: "battery-positive-to-red-rail",
+      ok,
+      detail: ok
+        ? `bat+ collegato al rail rosso (${target})`
+        : `bat+ non arriva a una striscia rossa (endpoint: ${target ?? "assente"})`,
+      bookRef: `${BOOK_REF_P33} — figura: filo rosso dalla batteria alla striscia rossa`,
+    })
+  }
+
+  // F2 — figura p.33: resistore a cavallo rail-rosso/zona fori (come esp1).
+  const resistorZonePin = (() => {
+    if (!resistor) return null
+    const pin1 = parseBreadboardRef(scene.pinAssignments[`${resistor.id}:pin1`] ?? "")
+    const pin2 = parseBreadboardRef(scene.pinAssignments[`${resistor.id}:pin2`] ?? "")
+    const railCount = [pin1, pin2].filter((pin) => isPlusRail(pin)).length
+    const zonePins = [pin1, pin2].filter((pin) => isTerminalHole(pin))
+    if (railCount === 1 && zonePins.length === 1) return zonePins[0]!
+    return null
+  })()
+  results.push({
+    id: "resistor-bridges-rail-and-zone",
+    ok: resistorZonePin !== null,
+    detail:
+      resistorZonePin !== null
+        ? `resistore a cavallo rail/zona (gamba zona: ${resistorZonePin.row}${resistorZonePin.column})`
+        : "il resistore non ha esattamente una gamba nella striscia rossa e una nella zona fori",
+    bookRef: `${BOOK_REF_P33} — figura: resistore tra la striscia rossa e la zona fori`,
+  })
+
+  // F3 — figura p.33: anodo sulla strip del resistore, catodo oltre il canale.
+  {
+    const anode = led ? parseBreadboardRef(scene.pinAssignments[`${led.id}:anode`] ?? "") : null
+    const cathode = led ? parseBreadboardRef(scene.pinAssignments[`${led.id}:cathode`] ?? "") : null
+    const anodeTowardResistor =
+      resistorZonePin !== null && isTerminalHole(anode) && anode.nodeId === resistorZonePin.nodeId
+    const cathodePastChannel =
+      isTerminalHole(anode) &&
+      isTerminalHole(cathode) &&
+      anode.nodeId.includes("-top-") !== cathode.nodeId.includes("-top-")
+    const ok = anodeTowardResistor && cathodePastChannel
+    results.push({
+      id: "led-anode-toward-resistor-cathode-past-channel",
+      ok,
+      detail: ok
+        ? "anodo sulla strip del resistore, catodo oltre il canale centrale"
+        : `LED non conforme (anodo verso resistore: ${anodeTowardResistor}, catodo oltre il canale: ${cathodePastChannel})`,
+      bookRef: `${BOOK_REF_P33} — figura: LED a cavallo del divisorio, gambetta lunga verso il resistore`,
+    })
+  }
+
+  // F4 — figura p.33: bat- sulla tie-strip del catodo.
+  {
+    const cathode = led ? parseBreadboardRef(scene.pinAssignments[`${led.id}:cathode`] ?? "") : null
+    const target = battery ? wireEndpointOpposite(scene, `${battery.id}:negative`) : null
+    const parsed = target === null ? null : parseBreadboardRef(target)
+    const ok =
+      isTerminalHole(parsed) && isTerminalHole(cathode) && parsed.nodeId === cathode.nodeId
+    results.push({
+      id: "battery-negative-same-column-as-cathode",
+      ok,
+      detail: ok
+        ? `bat- nella colonna del catodo (${target})`
+        : `bat- non condivide la colonna del catodo (endpoint: ${target ?? "assente"})`,
+      bookRef: `${BOOK_REF_P33} — figura: filo nero dalla batteria alla colonna del catodo`,
+    })
+  }
+
+  // F5 — "Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm" (p.33):
+  // BOM = batteria, breadboard, LED, resistore; scena canonica = 220 Ohm.
+  {
+    const types = scene.components.map((component) => component.type).sort()
+    const expected = ["battery9v", "breadboard-half", "led", "resistor"]
+    const ok =
+      types.length === expected.length &&
+      types.every((type, index) => type === expected[index]) &&
+      battery !== undefined &&
+      breadboard !== undefined &&
+      resistor?.value === 220
+    results.push({
+      id: "bom-canonical-220",
+      ok,
+      detail: ok
+        ? "componenti = batteria 9V, breadboard, LED, resistore 220 Ohm (figura 1)"
+        : `BOM diversa dalla figura 1 p.33 (trovati: ${types.join(", ") || "nessuno"}; r=${String(resistor?.value)})`,
+      bookRef: `${BOOK_REF_P33} — "Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm"`,
+    })
+  }
+
+  // F6 — "Prova ora a cambiare il valore del resistore, ma NON scendere mai
+  // al di sotto dei 100 Ohm" (p.33): guardia di sicurezza del libro.
+  {
+    const ok = typeof resistor?.value === "number" && resistor.value >= 100
+    results.push({
+      id: "resistor-not-below-100-ohm",
+      ok,
+      detail: ok
+        ? `resistore ${String(resistor?.value)} Ohm >= 100 Ohm`
+        : `resistore sotto il minimo del libro (${String(resistor?.value)} Ohm < 100 Ohm)`,
+      bookRef: `${BOOK_REF_P33} — "NON scendere mai al di sotto dei 100 Ohm"`,
+    })
+  }
+
+  return { ok: results.every((result) => result.ok), results }
+}
