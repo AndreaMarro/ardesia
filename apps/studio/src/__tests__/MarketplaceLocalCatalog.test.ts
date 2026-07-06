@@ -170,4 +170,84 @@ describe("previewPluginPackage", () => {
     const broken = buildPluginPackage({ ...out, manifestJson: JSON.stringify(raw) })
     await expect(previewPluginPackage(broken)).rejects.toThrow()
   })
+
+  // ---- integrità payload in preview (Codex P2.1) ----
+
+  it("package integro con integrity → bundleIntegrityValid true, installable true, non legacy", async () => {
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin({ id: "io.test.preview-int-ok", name: "Int OK" }, keys)
+    const preview = await previewPluginPackage(buildPluginPackage(out))
+    expect(preview.signatureValid).toBe(true)
+    expect(preview.bundleIntegrityValid).toBe(true)
+    expect(preview.legacyIntegrityMissing).toBe(false)
+    expect(preview.installable).toBe(true)
+  })
+
+  it("entry manomessa, manifest intatto → firma valida MA bundleIntegrityValid false e installable false", async () => {
+    // Codex P2.1: prima del fix la preview mostrava solo signatureValid=true
+    // e l'install falliva DOPO — la UI poteva proporre un package manomesso.
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin({ id: "io.test.preview-int-tamper", name: "Int Tamper" }, keys)
+    const tampered = buildPluginPackage({
+      ...out,
+      entryHtml: out.entryHtml.replace("</body>", "<script>/* evil */</script></body>"),
+    })
+    const preview = await previewPluginPackage(tampered)
+    expect(preview.signatureValid).toBe(true) // il manifest non è stato toccato
+    expect(preview.bundleIntegrityValid).toBe(false)
+    expect(preview.installable).toBe(false)
+    // coerenza con l'install autoritativo: DEVE rifiutare davvero
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 1_000)
+    const parsed = JSON.parse(out.manifestJson) as { id: string }
+    await expect(
+      (await import("../toolhost/authoring/packageFile.ts")).installPluginPackage(store, tampered),
+    ).rejects.toThrow(/integrity/)
+    expect(await pm.getState(parsed.id)).toBe("not-installed")
+  })
+
+  it("manifest legacy senza integrity → legacyIntegrityMissing true, installable segue la firma", async () => {
+    // Package costruito a mano: manifest schema-valido SENZA campo integrity,
+    // firmato correttamente. Back-compat: installabile, ma la preview deve
+    // dichiarare che il payload non è impegnato dalla firma.
+    const keypair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])
+    const pubRaw = new Uint8Array(await crypto.subtle.exportKey("raw", keypair.publicKey))
+    const pubkeyB64 = btoa(String.fromCharCode(...pubRaw))
+    const manifestJson = JSON.stringify({
+      manifestVersion: 1,
+      id: "io.test.preview-legacy",
+      name: "Legacy",
+      version: "1.0.0",
+      protocol: ">=1.0 <2.0",
+      entry: "entry.html",
+      surfaces: ["panel"],
+      capabilities: { "board.read": {} },
+      publisher: { id: "legacy-pub", pubkey: `ed25519:${pubkeyB64}` },
+      privacy: { dataOut: "none" },
+    })
+    const sigRaw = new Uint8Array(
+      await crypto.subtle.sign("Ed25519", keypair.privateKey, new TextEncoder().encode(manifestJson)),
+    )
+    const pkg = buildPluginPackage({
+      manifestJson,
+      signatureB64: btoa(String.fromCharCode(...sigRaw)),
+      entryHtml: "<!doctype html><html><body>legacy</body></html>",
+    })
+    const preview = await previewPluginPackage(pkg)
+    expect(preview.signatureValid).toBe(true)
+    expect(preview.legacyIntegrityMissing).toBe(true)
+    expect(preview.installable).toBe(true)
+  })
+
+  it("manifest manomesso → installable false anche se il bundle combacia con l'integrity dichiarata", async () => {
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin({ id: "io.test.preview-sig-tamper", name: "Sig Tamper" }, keys)
+    const tampered = buildPluginPackage({
+      ...out,
+      manifestJson: out.manifestJson.replace("Sig Tamper", "S1g Tamper"),
+    })
+    const preview = await previewPluginPackage(tampered)
+    expect(preview.signatureValid).toBe(false)
+    expect(preview.installable).toBe(false)
+  })
 })
