@@ -111,6 +111,12 @@ describe("ElabLab (mount ELAB via renderEmbeddable + solve via registry)", () =>
     const r = root!
     await act(async () => r.unmount())
     root = null
+    // #71: dispose() differisce l'unmount del root interno al task successivo
+    // (vincolo React: niente unmount sincrono dentro il cleanup) — si attende
+    // il flush del macrotask prima di verificare che non restino root orfani.
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    })
     expect(canvasHost!.childElementCount).toBe(0)
   })
 })
