@@ -26,6 +26,18 @@ export interface ArdesiaEventMap {
     stepIndex: number
     room: string
   }
+  /**
+   * Errore didattico osservato dal plugin (es. common_mistakes del Pack):
+   * stessa forma del kind `error.observed` dell'event-log — il bus trasporta,
+   * l'host promuove a fatto (busEventLogBinding), il plugin non tocca la memoria.
+   */
+  "error.observed": BusEventBase & {
+    errorId: string
+    conceptId: string
+    /** Studente cui l'errore è attribuito; assente = non attribuito. */
+    studentId?: string
+    labels: Labels
+  }
 }
 
 export type ArdesiaEventKind = keyof ArdesiaEventMap
