@@ -59,8 +59,11 @@ describe("ElabScene -> Simulation Plugin adapter", () => {
       rotationDeg: 0,
       scale: 1,
     })
+    // Endpoint battery-side = terminale renderer (pose bat1 -120,45 + 114,20):
+    // riconciliato in NOTTE-3 perche' il punto autorato precedente (-102,30)
+    // cadeva dentro il corpo batteria, staccato dall'anchor disegnato.
     expect(payload.geometry.wirePaths["w1"]?.points).toEqual([
-      { x: -102, y: 30 },
+      { x: -6, y: 65 },
       { x: -40, y: 4 },
       { x: 17.75, y: 21.25 },
     ])

@@ -76,6 +76,18 @@ function bookLayoutEndpoint(ref: string): {
   return { ref, componentId, pin, target: pin, targetKind: "internal-net" }
 }
 
+function bridgeWirePath(
+  wireId: string,
+  path: { kind: "polyline" | "bezier"; points: ReadonlyArray<{ x: number; y: number }> },
+): NonNullable<SimulationSceneV1["connections"][number]["path"]> {
+  // FAIL-CLOSED: il renderer disegna solo polyline byte-identiche. Una bezier
+  // autorata non va ne' droppata ne' convertita in silenzio.
+  if (path.kind !== "polyline") {
+    throw new Error(`wire path kind non renderizzabile byte-identico: ${path.kind} (wire ${wireId})`)
+  }
+  return { kind: "polyline", points: path.points.map((point) => ({ ...point })) }
+}
+
 export function simulationSceneFromElabScene(
   input: unknown,
   options: ElabSceneBridgeOptions,
@@ -125,12 +137,18 @@ export function simulationSceneFromElabScene(
 
   const status = statusFromProvenance(scene.provenance.status)
 
-  const connections: SimulationSceneV1["connections"] = payload.circuit.wires.map((wire) => ({
-    from: wire.from,
-    to: wire.to,
-    color: wire.color,
-    kind: "wire" as const,
-  }))
+  const connections: SimulationSceneV1["connections"] = payload.circuit.wires.map((wire) => {
+    const authoredPath = payload.geometry.wirePaths[wire.id]
+    return {
+      from: wire.from,
+      to: wire.to,
+      color: wire.color,
+      kind: "wire" as const,
+      ...(authoredPath !== undefined
+        ? { path: bridgeWirePath(wire.id, authoredPath) }
+        : {}),
+    }
+  })
 
   return {
     v: 1,
