@@ -7,7 +7,9 @@
 
 import {
   DIDACTIC_STEPS_V1_CAP6_ESP1,
+  DIDACTIC_STEPS_V1_CAP6_ESP2,
   evaluateDidacticSteps,
+  type DidacticStep,
   type ElabCircuitSlice,
 } from "../../sim/elab/didacticSteps"
 
@@ -20,6 +22,7 @@ export type StepModePlacement = {
 
 /** Fetta minima di SimulationSceneV1 necessaria alla valutazione. */
 export type StepModeSceneSlice = {
+  experimentId?: string
   pinAssignments: Record<string, string>
   connections: ReadonlyArray<{
     from: string
@@ -27,6 +30,21 @@ export type StepModeSceneSlice = {
     color: string
     kind: "internal" | "wire"
   }>
+}
+
+/**
+ * Step canonici per esperimento montato. Fail-closed sul default: un
+ * esperimento senza step propri usa quelli di esp1 SOLO se è esp1 (o legacy
+ * senza id); id sconosciuti = lista vuota, mai step di un altro libro.
+ */
+export function didacticStepsForExperiment(
+  experimentId: string | undefined,
+): readonly DidacticStep[] {
+  if (experimentId === "v1-cap6-esp2") return DIDACTIC_STEPS_V1_CAP6_ESP2
+  if (experimentId === undefined || experimentId === "v1-cap6-esp1") {
+    return DIDACTIC_STEPS_V1_CAP6_ESP1
+  }
+  return []
 }
 
 export type StepEvidence = { page: number; evidence: string }
@@ -79,8 +97,9 @@ export function stepByStepModel(
   placements: readonly StepModePlacement[],
 ): StepByStepModel {
   const circuit = buildEvaluationCircuit(scene, placements)
-  const results = evaluateDidacticSteps(DIDACTIC_STEPS_V1_CAP6_ESP1, circuit)
-  const byId = new Map(DIDACTIC_STEPS_V1_CAP6_ESP1.map((step) => [step.id, step]))
+  const canonicalSteps = didacticStepsForExperiment(scene.experimentId)
+  const results = evaluateDidacticSteps(canonicalSteps, circuit)
+  const byId = new Map(canonicalSteps.map((step) => [step.id, step]))
 
   const steps: StepByStepStep[] = results.map((result) => {
     const step = byId.get(result.stepId)

@@ -250,6 +250,11 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   }, [experiment])
 
   const ledOn = solve?.kind === "ok" && solve.result.componentStates.led1?.on === true
+  // Verdetto onesto del motore: un LED bruciato (es. v1-cap6-esp2, senza
+  // resistore) NON è un generico "spento" — è la lezione del libro (p.32).
+  const ledBurned =
+    solve?.kind === "ok" &&
+    (solve.result.componentStates.led1 as { burned?: boolean } | undefined)?.burned === true
   const ledCurrent = solve?.kind === "ok" ? solve.result.currents.led1 : undefined
 
   return (
@@ -320,8 +325,12 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 <dl style={{ margin: 0, padding: "4px 8px" }}>
                   <div>
                     <dt style={{ display: "inline" }}>LED: </dt>
-                    <dd style={{ display: "inline", margin: 0 }} data-led-on={ledOn ? "1" : "0"}>
-                      {ledOn ? "acceso" : "spento"}
+                    <dd
+                      style={{ display: "inline", margin: 0 }}
+                      data-led-on={ledOn ? "1" : "0"}
+                      data-led-burned={ledBurned ? "1" : "0"}
+                    >
+                      {ledBurned ? "BRUCIATO (sovracorrente!)" : ledOn ? "acceso" : "spento"}
                     </dd>
                   </div>
                   <div>

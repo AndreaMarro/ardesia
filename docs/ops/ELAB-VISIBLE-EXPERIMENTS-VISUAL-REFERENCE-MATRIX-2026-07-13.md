@@ -61,7 +61,7 @@ Regola dura (canon §3): nessun `verified-*` senza gate umano o grader robusto; 
 | # | ID | Titolo | Vol/Cap/Pag | Reference primaria | Breakout | Asset (stato) | Stato scena | Stato simulazione | Stato Arduino | Gap principale | Prossimo test falsificabile |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | v1-cap6-esp1 | Accendi il tuo primo LED | 1/6/29-31 | pp.30-31 committate (sha sopra) | no | ✅ committato | **book-aligned-candidate** (`elab-scene-v2-candidate-v1cap6esp1.json`: pose 4/4, wire.path 2/2, bookConstraints C1-C5 pass, grader strutturale pass, `visualMatch: unknown`) | solve reale via registry, LED 15.3 mA (golden) | N/A (batteria) | `cropBBox` assente; p.031 non strutturata come 2ª source; verifica umana aperta | overlay/GT reale → `visualMatch`; poi review umana → `verified-human` |
-| 2 | v1-cap6-esp2 | LED senza resistore (cosa NON fare!) | 1/6/32 | p.32 estratta (figura: LED diretto su batteria, marker "brucia") | no | ⚠️ pdf-only, crop da committare (PR2) | static-only (nessuna fixture circuit-scene/2) | mountable via URL; solve corpus atteso LED-off/sovracorrente (test funzionale esistente a livello ElabLab) | N/A (batteria) | fixture+pose+wire.path+bookConstraints; il solve DEVE dichiarare sovracorrente, non un generico "off" | PR2: fixture candidate + falsificatore "senza resistore ⇒ overcurrent flag, con resistore ⇒ nessun flag" |
+| 2 | v1-cap6-esp2 | LED senza resistore (cosa NON fare!) | 1/6/32 | p.32 committata: `apps/studio/public/elab/manuals/vol1/page-032-esercizio-6-2.png` (1332×1771, sha256 `0992810c…958419`) | no | ✅ committato (PR2) | **book-aligned-candidate** (`elab-scene-v2-candidate-v1cap6esp2.json`: pose 3/3, wire.path 3/3, bookConstraints E1-E5 pass + 4 falsificatori, grader onGrid, `visualMatch: unknown`) | solve reale: LED **BRUCIATO** (burned=true, I≈1A > soglia 30mA); controfattuale 470Ω → 12.8mA acceso; post-it (toolbar "sim esp2") + ElabLab dichiarano BRUCIATO; passo-passo 3 step p.32 con falsificatore resistore-aggiunto; e2e desktop+mobile | N/A (batteria) | `cropBBox` assente; verifica umana aperta; overlay CV = gate-Andrea | overlay/GT reale → `visualMatch`; poi review umana → `verified-human` |
 | 3 | v1-cap6-esp3 | Cambia luminosità con resistenze diverse | 1/6/33 | p.33 estratta (2 figure: 220Ω e 1kΩ; vincolo "mai sotto 100Ω") | no | ⚠️ pdf-only, crop da committare (PR3) | static-only | mountable; il solve deve mostrare I(220Ω) > I(470Ω) > I(1kΩ) | N/A (batteria) | fixture; metrica luminosità dichiarata (corrente LED) | PR3: test rapporto correnti 220/470/1k + guardia 100Ω |
 | 4 | v1-cap9-esp6 | Lampada RGB con 3 potenziometri | 1/9/71-74 | pp.71-74 estratte (build progressivo, 3 pot + 3×470Ω) | no | ⚠️ pdf-only, crop da committare | static-only | mountable; **solver: supporto potenziometro/LED RGB da verificare** (bridge oggi fail-closed su tipi ≠ battery+R+LED) | N/A (batteria) | componenti pot/RGB nel bridge+renderer di scena; 4 figure da orchestrare | test RED: bridge su scena con `potentiometer` → oggi throw (onesto); poi estensione |
 | 5 | v2-cap7-esp1 | Scarica condensatore + multimetro | 2/7/67-68 | pp.67-68 estratte (breadboard INTERA orizzontale + multimetro) | no | ⚠️ pdf-only, crop da committare | static-only | mountable; **transitorio RC e multimetro NON supportati dal solve di scena attuale** | N/A (batteria) | board full-size + condensatore + pulsante + multimetro in scena; modello temporale (τ=RC) | test RED su τ: V(t)=V₀·e^(−t/RC) entro tolleranza dichiarata |
@@ -76,17 +76,22 @@ Regola dura (canon §3): nessun `verified-*` senza gate umano o grader robusto; 
 ## Conteggio onesto parità visiva (oggi)
 
 - Reference primaria identificata e verificata firsthand: **8/8** (nessun `blocked-by-missing-reference` a livello pagina).
-- Crop pagina committato in repo: **1/8** (solo esp1).
-- Fixture `circuit-scene/2`: **1/8** (esp1, candidate).
-- `wire.path` autorati: **1/8** (esp1, 2 fili).
-- bookConstraints falsificabili: **1/8** (esp1, C1-C5).
+- Crop pagina committato in repo: **2/8** (esp1 pp.30-31, esp2 p.32).
+- Fixture `circuit-scene/2`: **2/8** (esp1 + esp2, candidate).
+- `wire.path` autorati: **2/8** (esp1: 2 fili; esp2: 3 fili).
+- bookConstraints falsificabili: **2/8** (esp1 C1-C5, esp2 E1-E5).
+- Passo-passo dedicato con falsificatori: **2/8** (esp1: 4 step; esp2: 3 step).
 - `visualMatch` ≠ unknown: **0/8** (overlay CV = gate-Andrea).
 - `verified-human`: **0/8**.
 - Arduino end-to-end onesto (compile+HEX+upload con evidenza): **0/2** target AVR.
 
+Nota superficie: il canvas del plugin dentro ElabLab renderizza segnaposto scuri
+(pre-esistente, uguale per esp1 e esp2 — verificato con screenshot NOTTE-12);
+la superficie visiva book-aligned è il POST-IT Simulation Plugin (SVG scena).
+
 ## Prossimi passi vincolati
 
-1. PR2: v1-cap6-esp2 end-to-end (crop p.32, fixture, sovracorrente onesta, UI, screenshot).
+1. ~~PR2: v1-cap6-esp2 end-to-end~~ FATTO (fixture, sovracorrente onesta, toolbar "sim esp2", e2e screenshot desktop/mobile).
 2. PR3: v1-cap6-esp3 end-to-end (crop p.33, correnti 220/470/1k falsificabili).
 3. PR4: breadboard copy system (coordinate helper, bend-points, hover highlight, grader endpoint/pose più severo).
 4. PR5 (se tempo): v3-cap6-esp4/esp5 SOLO con HEX riconciliato/quarantenato e stato compile dichiarato.
