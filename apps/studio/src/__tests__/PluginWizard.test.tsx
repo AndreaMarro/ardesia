@@ -156,7 +156,9 @@ describe("PluginWizard — spec e generazione", () => {
     fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
 
     expect(await screen.findByText("it.scuola.demo")).toBeTruthy()
-    expect(screen.getByText(/net\.fetch/)).toBeTruthy()
+    // matcher sul messaggio del lint (il testo generico /net\.fetch/ ora
+    // comparirebbe anche nella checkbox capability della spec)
+    expect(screen.getByText(/non dichiara "net\.fetch"/)).toBeTruthy()
     const flag = screen.getByTestId("lint-flag-net-fetch-undeclared")
     expect(flag.getAttribute("data-severity")).toBe("warn")
   })
@@ -320,5 +322,84 @@ describe("PluginWizard — campi marketplace (facoltativi)", () => {
     await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
     const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
     expect(spec.author).toBeUndefined()
+  })
+})
+
+// net.fetch nel wizard (residuo SERA): la rete è deny-by-default — la
+// capability si concede SOLO con domini dichiarati validi (CapabilitiesSchema
+// min(1) + grammatica domini). Il wizard non deve poter generare una spec che
+// lo scaffolder rifiuterebbe: senza domini validi Genera resta disabilitato.
+describe("PluginWizard — capability net.fetch con domini dichiarati", () => {
+  function fillBase() {
+    fireEvent.change(screen.getByLabelText(/^nome$/i), { target: { value: "Meteo" } })
+    fireEvent.change(screen.getByLabelText(/identificatore/i), {
+      target: { value: "it.scuola.meteo" },
+    })
+  }
+
+  it("il campo domini appare SOLO con net.fetch selezionata", () => {
+    render(<PluginWizard deps={makeDeps()} />)
+    fillBase()
+    expect(screen.queryByLabelText(/domini net\.fetch/i)).toBeNull()
+
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    expect(screen.getByLabelText(/domini net\.fetch/i)).toBeTruthy()
+
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    expect(screen.queryByLabelText(/domini net\.fetch/i)).toBeNull()
+  })
+
+  it("net.fetch con domini validi: la spec porta net.fetch.domains (virgole e spazi tollerati)", async () => {
+    const deps = makeDeps()
+    render(<PluginWizard deps={deps} />)
+    fillBase()
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    fireEvent.change(screen.getByLabelText(/domini net\.fetch/i), {
+      target: { value: " api.scuola.it,  cdn.scuola.it " },
+    })
+    fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
+
+    await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
+    const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
+    expect(spec.capabilities).toEqual({
+      "net.fetch": { domains: ["api.scuola.it", "cdn.scuola.it"] },
+    })
+  })
+
+  it("net.fetch senza domini (o con dominio invalido): Genera DISABILITATO + hint deny-by-default", () => {
+    render(<PluginWizard deps={makeDeps()} />)
+    fillBase()
+    const genera = screen.getByRole("button", { name: /genera il plugin/i })
+    expect((genera as HTMLButtonElement).disabled).toBe(false)
+
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    expect((genera as HTMLButtonElement).disabled).toBe(true)
+    expect(screen.getByText(/almeno un dominio/i)).toBeTruthy()
+
+    fireEvent.change(screen.getByLabelText(/domini net\.fetch/i), {
+      target: { value: "non un dominio!!" },
+    })
+    expect((genera as HTMLButtonElement).disabled).toBe(true)
+
+    fireEvent.change(screen.getByLabelText(/domini net\.fetch/i), {
+      target: { value: "api.scuola.it" },
+    })
+    expect((genera as HTMLButtonElement).disabled).toBe(false)
+  })
+
+  it("net.fetch deselezionata: la spec resta senza net.fetch anche se i domini erano compilati", async () => {
+    const deps = makeDeps()
+    render(<PluginWizard deps={deps} />)
+    fillBase()
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    fireEvent.change(screen.getByLabelText(/domini net\.fetch/i), {
+      target: { value: "api.scuola.it" },
+    })
+    fireEvent.click(screen.getByLabelText(/net\.fetch — contatta/i))
+    fireEvent.click(screen.getByRole("button", { name: /genera il plugin/i }))
+
+    await waitFor(() => expect(deps.scaffold).toHaveBeenCalledTimes(1))
+    const [spec] = vi.mocked(deps.scaffold!).mock.calls[0]
+    expect(spec.capabilities).toEqual({})
   })
 })
