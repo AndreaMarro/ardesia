@@ -1,9 +1,9 @@
 # CODEX Teacher Dashboard Z-Zones Audit - 2026-07-11
 
-Packet: `PKT-CODEX-4`  
-Repo: `/Users/andreamarro/VOLUME 3/ardesia`  
-Mode: read-only audit + docs-only output  
-Working checkout at audit time: branch `codex/ardesia-ops-headroom-20260701`, dirty  
+Packet: `PKT-CODEX-4`
+Repo: `/Users/andreamarro/VOLUME 3/ardesia`
+Mode: read-only audit + docs-only output
+Working checkout at audit time: branch `codex/ardesia-ops-headroom-20260701`, dirty
 Canonical source used for teacher-dashboard code findings: `origin/main` at `12d61081` (`Merge pull request #124 from AndreaMarro/feat/installer-transactional-20260711`)
 
 ## 1. Executive summary
@@ -492,37 +492,37 @@ Queste richiedono almeno uno tra:
 
 ### PR-1 - Teacher dashboard honesty band
 
-**Obiettivo**: mostrare `unavailable[]`, Z2 mini-summary e Z8 recurring errors gia' calcolati dal projector.  
-**File target**: `TeacherDashboardView.tsx` + test vista.  
-**Verifica**: con event-log minimale compaiono sezioni "non disponibile" con ragione esplicita.  
+**Obiettivo**: mostrare `unavailable[]`, Z2 mini-summary e Z8 recurring errors gia' calcolati dal projector.
+**File target**: `TeacherDashboardView.tsx` + test vista.
+**Verifica**: con event-log minimale compaiono sezioni "non disponibile" con ragione esplicita.
 **Conflitto FABLE**: no.
 
 ### PR-2 - Live journal -> stats bridge per il cruscotto
 
-**Obiettivo**: far arrivare `journalEvents` reali al projector della teacher page, senza toccare ToolHost.  
-**File target**: helper lettura journal + `TeacherDashboardView.tsx` + test.  
-**Verifica**: una sessione con `element.add`, `math.insert`, `pdf.page.view` produce stat `> 0`.  
+**Obiettivo**: far arrivare `journalEvents` reali al projector della teacher page, senza toccare ToolHost.
+**File target**: helper lettura journal + `TeacherDashboardView.tsx` + test.
+**Verifica**: una sessione con `element.add`, `math.insert`, `pdf.page.view` produce stat `> 0`.
 **Conflitto FABLE**: no.
 
 ### PR-3 - Producer reale `lesson.started` / `lesson.ended`
 
-**Obiettivo**: rendere vere timeline, finestre e `fromRoom`.  
-**File target**: `Room.tsx` + test mirati LessonOS.  
-**Verifica**: dopo uso reale della room il log contiene start/end; `lessons.count` e `fromRoom` non restano vuoti.  
+**Obiettivo**: rendere vere timeline, finestre e `fromRoom`.
+**File target**: `Room.tsx` + test mirati LessonOS.
+**Verifica**: dopo uso reale della room il log contiene start/end; `lessons.count` e `fromRoom` non restano vuoti.
 **Conflitto FABLE**: **si**, perche' tocca `Room.tsx`.
 
 ### PR-4 - Z5/Z6 locali: materiali e plugin installati
 
-**Obiettivo**: popolare dashboard con catalogo locale e materiali workspace gia' esistenti.  
-**File target**: nuovo adapter read-only + `TeacherDashboardView.tsx`.  
-**Verifica**: un tool installato compare con `id/version/kind/publisher`; materiale locale compare nella zona.  
+**Obiettivo**: popolare dashboard con catalogo locale e materiali workspace gia' esistenti.
+**File target**: nuovo adapter read-only + `TeacherDashboardView.tsx`.
+**Verifica**: un tool installato compare con `id/version/kind/publisher`; materiale locale compare nella zona.
 **Conflitto FABLE**: basso, evitando `installer.ts`.
 
 ### PR-5 - Z7 da stato-log a producer reale
 
-**Obiettivo**: sostituire "Genera pack / Esporta" come semplice append-event con una pipeline vera o, in alternativa, rendere la zona read-only finche' il producer non esiste.  
-**File target**: `TeacherDashboardView.tsx`, `apiClient.ts` o adapter dedicato, test.  
-**Verifica**: click produce un artefatto o una chiamata backend reale; se non esiste artefatto, UI non promette piu' export.  
+**Obiettivo**: sostituire "Genera pack / Esporta" come semplice append-event con una pipeline vera o, in alternativa, rendere la zona read-only finche' il producer non esiste.
+**File target**: `TeacherDashboardView.tsx`, `apiClient.ts` o adapter dedicato, test.
+**Verifica**: click produce un artefatto o una chiamata backend reale; se non esiste artefatto, UI non promette piu' export.
 **Conflitto FABLE**: no diretto.
 
 ## 8. Cosa lasciare a gate-Andrea

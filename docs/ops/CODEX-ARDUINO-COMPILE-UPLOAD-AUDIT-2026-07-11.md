@@ -1,8 +1,8 @@
 # CODEX Arduino Compile/Upload Audit - 2026-07-11
 
-Packet: PKT-CODEX-2  
-Repo: `/Users/andreamarro/VOLUME 3/ardesia`  
-Mode: read-only audit + docs-only output  
+Packet: PKT-CODEX-2
+Repo: `/Users/andreamarro/VOLUME 3/ardesia`
+Mode: read-only audit + docs-only output
 Baseline checked: `origin/main` = `7be04f2b (origin/main, origin/HEAD) Merge pull request #120 from AndreaMarro/feat/package-preview-integrity-20260710`
 
 ## 1. Executive summary
