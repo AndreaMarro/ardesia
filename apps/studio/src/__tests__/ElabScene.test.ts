@@ -42,13 +42,13 @@ describe("ElabScene circuit-scene/2 schema", () => {
     expect(result.scene.wires.every((wire) => (wire.path?.points.length ?? 0) >= 2)).toBe(true)
   })
 
-  it("accepts the candidate fixture with empty geometry (honest backfill)", () => {
+  it("accepts the candidate fixture with authored geometry (scena reale riconciliata)", () => {
     const result = validateElabScene(candidateFixture())
     expect(result.ok).toBe(true)
     if (!result.ok) return
     expect(result.scene.provenance.status).toBe("candidate")
-    expect(result.scene.components.every((component) => component.pose === undefined)).toBe(true)
-    expect(result.scene.wires.every((wire) => wire.path === undefined)).toBe(true)
+    expect(result.scene.components.every((component) => component.pose !== undefined)).toBe(true)
+    expect(result.scene.wires.every((wire) => (wire.path?.points.length ?? 0) >= 2)).toBe(true)
   })
 
   it("rejects a wrong schemaVersion with a per-field error", () => {

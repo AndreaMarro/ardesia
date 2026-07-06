@@ -3,36 +3,82 @@
   "experimentId": "v1-cap6-esp1",
   "provenance": {
     "status": "candidate",
-    "origin": "imported",
+    "origin": "agent-authored",
+    "sourceRef": "Vol.1 pp.29-31; crop: apps/studio/public/elab/manuals/vol1/page-030-esercizio-6-1.png + page-031-esercizio-6-1.png. Il testo lascia liberi i fori esatti ('un punto qualsiasi'): colonna 9 = canonical simulator placement, non vincolo del libro.",
     "checks": {
-      "electrical": "unknown",
-      "geometry": "unknown",
-      "bookMatch": "unknown",
+      "electrical": "pass",
+      "geometry": "pass",
+      "bookMatch": "pass",
       "visualMatch": "unknown"
     }
   },
   "book": { "volume": 1, "chapter": 6, "exp": "esp1", "pages": [29, 30, 31] },
-  "source": {},
+  "source": {
+    "sourceImageHash": "11318b5471882d3737629b79e24706ebcbbfc411b214db88eade7c878cc683b7"
+  },
   "board": {
     "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 },
     "grid": { "columns": 30, "columnPitch": 7.5 },
     "orientation": "elab-volume"
   },
   "components": [
-    { "id": "bat1", "type": "battery9v" },
-    { "id": "bb1", "type": "breadboard-half" },
-    { "id": "r1", "type": "resistor", "value": 470 },
-    { "id": "led1", "type": "led", "color": "red" }
+    {
+      "id": "bat1",
+      "type": "battery9v",
+      "pose": { "x": -120, "y": 45, "rotationDeg": 0, "scale": 1 }
+    },
+    {
+      "id": "bb1",
+      "type": "breadboard-half",
+      "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 }
+    },
+    {
+      "id": "r1",
+      "type": "resistor",
+      "value": 470,
+      "pose": { "x": 77.75, "y": 31.25, "rotationDeg": 90, "scale": 1 }
+    },
+    {
+      "id": "led1",
+      "type": "led",
+      "color": "red",
+      "pose": { "x": 77.75, "y": 72.5, "rotationDeg": 0, "scale": 1 }
+    }
   ],
   "wires": [
-    { "id": "w1", "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
-    { "id": "w2", "from": "bb1:bus-top-plus-9", "to": "bb1:j9", "color": "red" },
-    { "id": "w3", "from": "bb1:a3", "to": "bat1:negative", "color": "black" }
+    {
+      "id": "w1",
+      "from": "bat1:positive",
+      "to": "bb1:bus-top-plus-1",
+      "color": "red",
+      "path": {
+        "kind": "polyline",
+        "points": [
+          { "x": -102, "y": 30 },
+          { "x": -40, "y": 4 },
+          { "x": 17.75, "y": 21.25 }
+        ]
+      }
+    },
+    {
+      "id": "w2",
+      "from": "bat1:negative",
+      "to": "bb1:a9",
+      "color": "black",
+      "path": {
+        "kind": "polyline",
+        "points": [
+          { "x": -102, "y": 60 },
+          { "x": -20, "y": 138 },
+          { "x": 77.75, "y": 111.25 }
+        ]
+      }
+    }
   ],
   "pinAssignments": {
-    "r1:pin1": "bb1:i9",
-    "r1:pin2": "bb1:i3",
-    "led1:anode": "bb1:f3",
-    "led1:cathode": "bb1:e3"
+    "r1:pin1": "bb1:bus-top-plus-9",
+    "r1:pin2": "bb1:i9",
+    "led1:anode": "bb1:f9",
+    "led1:cathode": "bb1:e9"
   }
 }
