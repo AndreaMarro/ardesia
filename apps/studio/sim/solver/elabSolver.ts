@@ -70,6 +70,15 @@ function engineLedForwardVolts(color: string | null | undefined): number {
   return (color != null ? ENGINE_LED_VF[color] : undefined) ?? ENGINE_LED_VF_DEFAULT
 }
 
+/**
+ * Vf che il motore userà per un LED di quel colore. Esposto perché chi
+ * costruisce scene derivate (bridge ElabScene→SimulationSceneV1) dichiari il
+ * Vf del motore invece di auto-dichiararne uno divergente (conflitto D4).
+ */
+export function engineLedForwardVoltsForColor(color: string | null | undefined): number {
+  return engineLedForwardVolts(color)
+}
+
 /** Risolve un esperimento col motore vendored. Fail-closed sui tipi non catalogati. */
 export function solveElabExperiment(
   experiment: SolverExperiment,
