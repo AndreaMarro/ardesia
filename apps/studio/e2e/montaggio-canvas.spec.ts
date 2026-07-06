@@ -1,7 +1,7 @@
 // Montaggio libero slice 3 — tap-tap dalla palette SVG del Simulation Plugin
 // sulla lavagna REALE: inserisci l'embed dalla toolbar di Room, seleziona la
 // resistenza dalla palette, tocca due fori liberi → piazzata; un foro del
-// manuale (bb1:i2, occupato dai pinAssignments) rifiuta il tap con notice.
+// manuale (bb1:i9, occupato dai pinAssignments) rifiuta il tap con notice.
 import { test, expect } from "@playwright/test"
 
 test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati", async ({
@@ -48,8 +48,8 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
   await expect(page.locator('[aria-label="Resistore montaggio libero r-libero-1"]')).toBeVisible()
 
   // Foro occupato dal manuale: rifiuto visibile, conteggio invariato.
-  await page.locator('[data-bb-hole="bb1:i2"]').click()
-  await expect(page.locator("[data-montaggio-canvas-notice]")).toContainText("bb1:i2")
+  await page.locator('[data-bb-hole="bb1:i9"]').click()
+  await expect(page.locator("[data-montaggio-canvas-notice]")).toContainText("bb1:i9")
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",
     "1",

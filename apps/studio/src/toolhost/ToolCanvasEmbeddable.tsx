@@ -16,6 +16,8 @@ import {
 } from "../../sim/breadboard/simulationBreadboard";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { solveElabExperiment } from "../../sim/solver/elabSolver";
+import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
+import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
 
 type EmbedLike = {
   id?: string;
@@ -186,125 +188,40 @@ export function parseToolLink(link: string | null | undefined): ToolLink | null 
   }
 }
 
+// Copy canoniche dal testo Vol.1 p29-31 (i fori esatti sono liberi nel testo:
+// "un punto qualsiasi" — canonical simulator placement nella fixture).
+export const ELAB_V1_CAP6_ESP1_BRIDGE_OPTS: ElabSceneBridgeOptions = {
+  title: "Accendi il tuo primo LED",
+  chapter: "Capitolo 6 - Cos'e il diodo LED?",
+  bookText:
+    "Per accendere il LED e fare il nostro primo esperimento abbiamo bisogno di: un LED, una breadboard, una batteria 9V, la clip per la batteria 9V, un resistore da 470 Ohm.",
+  bookInstructions: [
+    "Ragazzi, collegate la clip alla batteria e il positivo alla striscia rossa superiore della breadboard.",
+    "Ragazzi, collegate il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa e un punto qualsiasi della zona sotto.",
+    "Ragazzi, inserite il LED a cavallo della separazione centrale: gambetta lunga verso il resistore, gambetta corta dopo la divisione.",
+    "Ragazzi, collegate il negativo della batteria nella stessa colonna della gambetta corta del LED.",
+  ],
+  bookQuote: "Il LED si e acceso! Bellissimo vero?",
+  manualCrop: ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE,
+  manualFinalCrop: ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE,
+  manualFigurePage: 30,
+};
+
+// FONTE UNICA: la scena reference deriva dal bridge sulla fixture candidate
+// (circuit-scene/2). La vecchia topologia hand-coded (bat+ diretto in bb1:j2,
+// nessun rail) violava il testo p30 — falsificata da ElabBookConstraints.
+// L'unico delta ammesso rispetto al bridge e' l'override di runtime.ledOn.
 export function createReferenceSimulationScene({
   ledOn = true,
 }: {
   millis?: number;
   ledOn?: boolean;
 } = {}): SimulationSceneV1 {
-  return {
-    v: 1,
-    experimentId: ELAB_V1_FIRST_LED_EXPERIMENT_ID,
-    title: "Accendi il tuo primo LED",
-    manual: {
-      volume: 1,
-      page: 29,
-      chapter: "Capitolo 6 - Cos'e il diodo LED?",
-      label: "Vol. 1 pag. 29-31 - ESPERIMENTO 1",
-      bookText: "Per accendere il LED e fare il nostro primo esperimento abbiamo bisogno di: un LED, una breadboard, una batteria 9V, la clip per la batteria 9V, un resistore da 470 Ohm.",
-      bookInstructions: [
-        "Ragazzi, collegate la clip alla batteria e il positivo alla striscia rossa superiore della breadboard.",
-        "Ragazzi, collegate il resistore da 470 Ohm tra la zona positiva e la parte destra della breadboard.",
-        "Ragazzi, inserite il LED rosso a cavallo della separazione centrale: anodo verso il resistore, catodo sotto.",
-        "Ragazzi, collegate il negativo della batteria nella stessa colonna della gambetta corta del LED.",
-      ],
-      bookQuote: "Il LED si e acceso! Bellissimo vero?",
-    },
-    components: [
-      { id: "bat1", type: "battery9v", label: "Batteria 9V" },
-      { id: "bb1", type: "breadboard-half", label: "Breadboard" },
-      { id: "r1", type: "resistor", label: "Resistore 470 Ohm", value: 470, anchor: "bb1" },
-      { id: "led1", type: "led", label: "LED rosso", color: "red", anchor: "bb1" },
-    ],
-    pinAssignments: {
-      "r1:pin1": "bb1:i2",
-      "r1:pin2": "bb1:i9",
-      "led1:anode": "bb1:f9",
-      "led1:cathode": "bb1:e9",
-    },
-    connections: [
-      { from: "bat1:positive", to: "bb1:j2", color: "red", kind: "wire" },
-      { from: "bat1:negative", to: "bb1:a9", color: "black", kind: "wire" },
-    ],
-    layout: {
-      bat1: { x: 165, y: 45 },
-      bb1: { x: 280, y: 10 },
-      r1: { x: 331.5, y: 51.25 },
-      led1: { x: 357.75, y: 72.5 },
-    },
-    bookLayout: {
-      v: 1,
-      experimentId: ELAB_V1_FIRST_LED_EXPERIMENT_ID,
-      volume: 1,
-      page: 29,
-      status: "draft",
-      manualSource: {
-        pdf: "plugins/elab-tutor/public/volumes/volume1.pdf",
-        pdfPage: 29,
-        figurePage: 30,
-        textSource: "plugins/elab-tutor/docs/volumi-originali/VOLUME-1-TESTO.txt",
-        crop: ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE,
-        finalCrop: ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE,
-        blocker: "Pagine PDF reali Vol.1 p.30-31 montate; fori presi dal lesson-path v1-cap6-esp1 per correggere il drift rispetto a experiments-vol1.js.",
-      },
-      components: [
-        { id: "bat1", type: "battery9v", expected: { x: 165, y: 45 }, tolerancePx: 0 },
-        { id: "bb1", type: "breadboard-half", expected: { x: 280, y: 10 }, tolerancePx: 0 },
-        { id: "r1", type: "resistor", expected: { x: 331.5, y: 51.25 }, tolerancePx: 0 },
-        { id: "led1", type: "led", expected: { x: 357.75, y: 72.5 }, tolerancePx: 0 },
-      ],
-      pins: [
-        { ref: "r1:pin1", componentId: "r1", pin: "pin1", target: "bb1:i2", targetKind: "breadboard-hole" },
-        { ref: "r1:pin2", componentId: "r1", pin: "pin2", target: "bb1:i9", targetKind: "breadboard-hole" },
-        { ref: "led1:anode", componentId: "led1", pin: "anode", target: "bb1:f9", targetKind: "breadboard-hole" },
-        { ref: "led1:cathode", componentId: "led1", pin: "cathode", target: "bb1:e9", targetKind: "breadboard-hole" },
-      ],
-      wires: [
-        {
-          id: "wire-battery-positive",
-          from: { ref: "bat1:positive", componentId: "bat1", pin: "positive", target: "battery-positive", targetKind: "internal-net" },
-          to: { ref: "bb1:j2", componentId: "bb1", pin: "j2", target: "bb1:j2", targetKind: "breadboard-hole" },
-          color: "red",
-          kind: "wire",
-        },
-        {
-          id: "wire-battery-negative",
-          from: { ref: "bat1:negative", componentId: "bat1", pin: "negative", target: "battery-negative", targetKind: "internal-net" },
-          to: { ref: "bb1:a9", componentId: "bb1", pin: "a9", target: "bb1:a9", targetKind: "breadboard-hole" },
-          color: "black",
-          kind: "wire",
-        },
-      ],
-      spatialRules: [
-        { id: "breadboard-right-of-battery", a: "bb1", relation: "right-of", b: "bat1", minDelta: 100 },
-        { id: "resistor-right-of-battery", a: "r1", relation: "right-of", b: "bat1", minDelta: 150 },
-        { id: "led-right-of-resistor", a: "led1", relation: "right-of", b: "r1", minDelta: 24 },
-      ],
-      tolerances: {
-        coordinatePx: 0,
-        relationPx: 2,
-      },
-    },
-    runtime: {
-      kind: "battery-led",
-      supplyVolts: 9,
-      resistorOhms: 470,
-      ledForwardVolts: 2,
-      ledOn,
-    },
-    compile: {
-      sketchKind: "none",
-      targetFqbn: null,
-      provider: "none",
-    },
-    provenance: {
-      lessonPath: "packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json",
-      experimentData: "plugins/elab-tutor/src/data/experiments-vol1.js",
-      volumeReference: "packs/elab-tutor/data/volume-references.js",
-      status: "draft",
-      blocker: "Scena derivata dal lesson-path ELABTutor con pagine PDF reali; experiments-vol1.js contiene un layout alternativo con piu fili/rail, quindi il pack resta draft finche il drift non viene normalizzato.",
-    },
-  };
+  const scene = simulationSceneFromElabScene(elabSceneCandidateV1Cap6Esp1, ELAB_V1_CAP6_ESP1_BRIDGE_OPTS);
+  if (scene.runtime.kind === "battery-led") {
+    scene.runtime.ledOn = ledOn;
+  }
+  return scene;
 }
 
 export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean; errors: string[] } {

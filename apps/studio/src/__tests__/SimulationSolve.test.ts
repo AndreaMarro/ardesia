@@ -21,16 +21,16 @@ describe("resolveNet", () => {
 
   it("pinAssignments uniscono i pin componente alla net del foro", () => {
     const scene = referenceScene()
-    // r1:pin1 è assegnato a bb1:i2 → stessa net di bb1:j2 (stessa tie top col 2)
-    expect(resolveNet("r1:pin1", scene)).toBe(resolveNet("bb1:j2", scene))
+    // r1:pin1 è assegnato a bb1:bus-top-plus-9 → stessa net dell'intero rail plus
+    expect(resolveNet("r1:pin1", scene)).toBe(resolveNet("bb1:bus-top-plus-1", scene))
     // led1:anode @ bb1:f9 → stessa net di r1:pin2 @ bb1:i9 (tie top col 9)
     expect(resolveNet("led1:anode", scene)).toBe(resolveNet("r1:pin2", scene))
   })
 
   it("connections (fili) uniscono le net dei due capi", () => {
     const scene = referenceScene()
-    // bat1:positive —filo→ bb1:j2
-    expect(resolveNet("bat1:positive", scene)).toBe(resolveNet("bb1:j2", scene))
+    // bat1:positive —filo→ bb1:bus-top-plus-1 → stesso rail di r1:pin1 (testo p30)
+    expect(resolveNet("bat1:positive", scene)).toBe(resolveNet("r1:pin1", scene))
     // bat1:negative —filo→ bb1:a9 → stessa net del catodo LED (bb1:e9, tie bottom col 9)
     expect(resolveNet("bat1:negative", scene)).toBe(resolveNet("led1:cathode", scene))
   })
