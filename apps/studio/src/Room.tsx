@@ -25,8 +25,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { REFERENCE_SIM_TOOL_ID, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
-import { getSimulationTool } from "./toolhost/simulationPluginRegistry"
+import { buildSimulationInsert, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistEmbedState } from "./toolhost/caps/board"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -539,29 +538,21 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       return
     }
 
+    // P0-C multi-istanza: ogni click = un NUOVO post-it del Simulation Plugin,
+    // con embedId unico e stato proprio (la prima istanza tiene l'id storico).
     // Il tool arriva dal registry (deny-by-default), non da id/factory hard-codati.
-    const tool = getSimulationTool(REFERENCE_SIM_TOOL_ID)
-    if (!tool) {
+    const currentElements = apiRef.current.getSceneElements()
+    const insert = buildSimulationInsert(currentElements as readonly { id?: string }[])
+    if (!insert) {
       setStorageError("Simulation Plugin non disponibile.")
       return
     }
 
-    const currentElements = apiRef.current.getSceneElements()
-    const existing = currentElements.find((element: any) => element.id === tool.embedId)
-    if (existing) {
-      apiRef.current.updateScene({
-        appState: { selectedElementIds: { [tool.embedId]: true } },
-      })
-      apiRef.current.scrollToContent?.([existing], { fitToContent: true })
-      return
-    }
-
-    const embed = tool.createEmbed()
     apiRef.current.updateScene({
-      elements: [...currentElements, embed],
-      appState: { selectedElementIds: { [tool.embedId]: true } },
+      elements: [...currentElements, insert.embed],
+      appState: { selectedElementIds: { [insert.embedId]: true } },
     })
-    apiRef.current.scrollToContent?.([embed], { fitToContent: true })
+    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
   const shareUrl = studentView
     ? `${location.origin}${location.pathname}#${room}`

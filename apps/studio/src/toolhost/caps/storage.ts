@@ -4,6 +4,7 @@
 // (le chiavi sono comunque ri-validate, defense-in-depth oltre il wire schema).
 
 import { isValidStorageKey, isValidToolId } from "../../toolhost-protocol/index.ts"
+import { assertInstanceId } from "./instance.ts"
 
 /**
  * Sottoinsieme del WorkspaceStore/WorkspaceDriver usato dalla capability:
@@ -22,10 +23,19 @@ export interface StorageDriverLike {
   list(prefix?: string): Promise<StorageEntryLike[]>
 }
 
-export function storagePrefix(toolId: string): string {
+export function storagePrefix(toolId: string, instanceId?: string): string {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
-  return `tools/${toolId}/storage/`
+  if (instanceId === undefined) return `tools/${toolId}/storage/`
+  // P0-C: il namespace istanza vive DENTRO storage/ del tool, così l'uninstall
+  // (purge del prefisso tool) pulisce anche le istanze. "@instance" non può
+  // collidere con una chiave legacy: le storage key iniziano alfanumeriche.
+  assertInstanceId(instanceId)
+  return `tools/${toolId}/storage/@instance/${instanceId}/`
 }
+
+// Sottoalbero delle istanze visto dal namespace legacy (senza instanceId):
+// chiavi lì dentro non sono chiavi del namespace corrente, né per list né per quota.
+const INSTANCE_SUBTREE = "@instance/"
 
 function assertKey(key: string): void {
   if (!isValidStorageKey(key)) throw new Error(`invalid storage key: ${key}`)
@@ -48,10 +58,12 @@ export class ToolStorage {
   private _quotaBytes: number
   private _chain: Promise<unknown> = Promise.resolve()
 
-  constructor(driver: StorageDriverLike, toolId: string, quotaMB: number) {
+  constructor(driver: StorageDriverLike, toolId: string, quotaMB: number, instanceId?: string) {
     if (!Number.isInteger(quotaMB) || quotaMB < 1) throw new Error(`invalid quota: ${quotaMB}`)
     this._driver = driver
-    this._prefix = storagePrefix(toolId)
+    // Quota PER ISTANZA: le istanze le crea il docente host-side (mai il tool),
+    // quindi il moltiplicatore è sotto il controllo del docente, non del plugin.
+    this._prefix = storagePrefix(toolId, instanceId)
     this._quotaBytes = quotaMB * 1024 * 1024
   }
 
@@ -105,6 +117,7 @@ export class ToolStorage {
     const keys = entries
       .filter((e) => e.path.startsWith(this._prefix))
       .map((e) => e.path.slice(this._prefix.length))
+      .filter((k) => !k.startsWith(INSTANCE_SUBTREE))
       .filter((k) => prefix === undefined || k.startsWith(prefix))
       .sort()
     return { keys }
@@ -115,6 +128,8 @@ export class ToolStorage {
     let total = 0
     for (const e of entries) {
       if (!e.path.startsWith(this._prefix) || e.path === targetPath) continue
+      // la quota di un namespace non conta i byte dei namespace istanza annidati
+      if (e.path.slice(this._prefix.length).startsWith(INSTANCE_SUBTREE)) continue
       total += KEY_OVERHEAD_BYTES + e.data.size
     }
     return total

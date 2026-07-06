@@ -53,6 +53,13 @@ export interface ToolHostDeps {
    * a storage senza quota. L'host non crea mai un log proprio.
    */
   eventLog?: EventLogReadLike
+  /**
+   * Identità di ISTANZA (P0-C, multi-istanza dello stesso plugin): namespace
+   * storage e ownership board diventano per-istanza, così due post-it dello
+   * stesso tool non si leggono/scrivono a vicenda. HOST-side: la crea il
+   * docente (la superficie), mai il tool — non esiste sul wire.
+   */
+  instanceId?: string
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string
@@ -98,9 +105,10 @@ export class ToolHost {
     this._grant = grantedCaps
     this._deps = deps
     this.audit = new ToolAuditLog(deps.store, manifest.id, deps.now)
-    this._board = new ToolBoard(deps.board, manifest.id, deps.makeSkeleton)
+    this._board = new ToolBoard(deps.board, manifest.id, deps.makeSkeleton, deps.instanceId)
     const quota = grantedCaps.storage?.quotaMB
-    this._storage = quota === undefined ? null : new ToolStorage(deps.store, manifest.id, quota)
+    this._storage =
+      quota === undefined ? null : new ToolStorage(deps.store, manifest.id, quota, deps.instanceId)
     this._graph = deps.eventLog === undefined ? null : new ToolGraph(deps.eventLog)
   }
 
