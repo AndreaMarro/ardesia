@@ -41,6 +41,7 @@ import {
   buildLessonMemoryExport,
   lessonMemoryFileName,
 } from "../lessonos/exportLessonMemory"
+import { analyzeFreeAssembly } from "../../sim/freeAssembly"
 
 export const ELAB_LAB_EXPERIMENT_ID = ELAB_LAB_DEFAULT_EXPERIMENT_ID
 
@@ -152,6 +153,40 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     )
     setMarkedCount((count) => count + 1)
   }
+
+  // Diagnostica montaggio (report unico #82 sulla vista). Semantica dati
+  // (probe firsthand, issue #92): le connections del corpus sono topologia
+  // LOGICA, non fili fisici — l'occupazione si valuta sui SOLI pinAssignments
+  // (cross-check #74: esattamente i 3 bug canon, 0 falsi positivi;
+  // connections-as-wires darebbe 69/88 falsi positivi).
+  const diagnostics = useMemo(
+    () =>
+      experiment === null
+        ? null
+        : analyzeFreeAssembly({
+            components: experiment.components,
+            wires: [],
+            pinAssignments: experiment.pinAssignments ?? {},
+          }),
+    [experiment],
+  )
+  // type-unregistered = tipo fuori dal catalogo elettrico vendored (60/88
+  // esperimenti): il solve lo rifiuta comunque (deny-by-default) — nella
+  // vista è un aggregato informativo, non un problema di montaggio per-ref.
+  const diagnosticProblems =
+    diagnostics === null
+      ? []
+      : diagnostics.findings.filter((finding) =>
+          finding.source === "occupancy" ? true : finding.flag.kind !== "type-unregistered",
+        )
+  const unregisteredTypes =
+    diagnostics === null
+      ? new Set<string>()
+      : new Set(
+          diagnostics.pinVocabulary.flags
+            .filter((flag) => flag.kind === "type-unregistered")
+            .map((flag) => flag.type),
+        )
 
   // Export della memoria della lezione (golden-path §8, segmento export):
   // il modulo costruisce il JSON versionato dall'event-log, qui SOLO il
@@ -274,6 +309,37 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 </div>
               )}
             </div>
+
+            {diagnostics !== null && (
+              <div
+                className="reference-tool-panel"
+                data-elab-lab-diagnostica
+                data-diagnostica-problemi={diagnosticProblems.length}
+              >
+                <div className="reference-tool-panel-bar">
+                  diagnostica montaggio (fori + vocabolario pin)
+                </div>
+                <div style={{ padding: "4px 8px" }}>
+                  {diagnosticProblems.length === 0 ? (
+                    <div data-diagnostica-ok>nessun problema di montaggio rilevato</div>
+                  ) : (
+                    <ul style={{ margin: "4px 0", paddingLeft: 18 }}>
+                      {diagnosticProblems.map((finding) => (
+                        <li key={finding.message} data-diagnostica-finding>
+                          {finding.message}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {unregisteredTypes.size > 0 && (
+                    <div data-diagnostica-tipi-fuori-catalogo>
+                      {unregisteredTypes.size} tipi fuori dal catalogo elettrico: il solve
+                      li rifiuta (deny-by-default).
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {bookRef !== null && (
               <div className="reference-tool-panel" data-elab-lab-citation>
