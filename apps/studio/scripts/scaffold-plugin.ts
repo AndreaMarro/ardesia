@@ -20,6 +20,7 @@ import {
   scaffoldPlugin,
   ScaffoldSpecSchema,
 } from "../src/toolhost/authoring/scaffoldPlugin.ts"
+import { buildPluginPackage } from "../src/toolhost/authoring/packageFile.ts"
 
 function parseArgs(argv: string[]): Record<string, string | string[]> {
   const out: Record<string, string | string[]> = {}
@@ -73,6 +74,9 @@ async function main(): Promise<void> {
   write("signature.txt", out.signatureB64)
   write("entry.html", out.entryHtml)
   write("bundle.maestrotool", new Uint8Array(await out.bundleZip.arrayBuffer()))
+  // Package v1: UN file condivisibile (manifest + firma + bundle) per
+  // installPluginPackage — passa comunque dalla pipeline reale.
+  write("package.maestrotool", new Uint8Array(await buildPluginPackage(out).arrayBuffer()))
   write(
     "keys.dev.json",
     JSON.stringify(
@@ -93,6 +97,7 @@ async function main(): Promise<void> {
   console.log(`privacy:   ${out.manifest.privacy.dataOut}`)
   console.log(`out:       ${path.resolve(outDir)}`)
   console.log(`install:   PluginManager.install(manifest.json, bundle.maestrotool, signature.txt)`)
+  console.log(`package:   installPluginPackage(store, package.maestrotool) — un solo file`)
 }
 
 main().catch((err) => {
