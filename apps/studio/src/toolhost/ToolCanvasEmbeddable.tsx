@@ -14,7 +14,7 @@ import {
   pointForBreadboardRef,
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
-import { registerSimulationTool, getSimulationTool } from "./simulationPluginRegistry";
+import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { solveElabExperiment } from "../../sim/solver/elabSolver";
 
 type EmbedLike = {
@@ -148,9 +148,11 @@ export type SimulationSceneV1 = {
   };
 };
 
+// I piazzamenti del montaggio libero viaggiano NELLO state dell'embed
+// (slice 4, persistenza): sopravvivono a re-mount e save/load con la scena.
 type SimulationToolState =
-  | { kind: "simulation-scene-v1"; scene: SimulationSceneV1 }
-  | { kind: "reference-blink"; ledOn?: boolean; millis?: number };
+  | { kind: "simulation-scene-v1"; scene: SimulationSceneV1; montaggio?: MontaggioState }
+  | { kind: "reference-blink"; ledOn?: boolean; millis?: number; montaggio?: MontaggioState };
 
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
 export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
@@ -430,11 +432,14 @@ export function isToolCanvasEmbed(element: EmbedLike): boolean {
   return parseToolLink(element.link) !== null;
 }
 
-export function renderToolCanvasEmbeddable(element: EmbedLike): ReactElement | null {
+export function renderToolCanvasEmbeddable(
+  element: EmbedLike,
+  host?: SimulationToolHost,
+): ReactElement | null {
   const toolLink = parseToolLink(element.link);
   if (!toolLink) return null;
   const entry = getSimulationTool(toolLink.toolId);
-  if (entry) return entry.render(element, toolLink);
+  if (entry) return entry.render(element, toolLink, host);
   return <UnknownToolCanvasTool toolLink={toolLink} />;
 }
 
@@ -443,8 +448,8 @@ export function renderToolCanvasEmbeddable(element: EmbedLike): ReactElement | n
 // hard-codati. Tool non registrati non vengono mai dispatchati (deny-by-default).
 const referenceSimulationEntry = {
   embedId: REFERENCE_SIM_EMBED_ID,
-  render: (element: EmbedLike, toolLink: ToolLink) => (
-    <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} />
+  render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost) => (
+    <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} host={host} />
   ),
   createEmbed: () => createToolEmbedElement(),
   validate: (state: unknown) => validateBookLayoutScene(state as SimulationSceneV1),
@@ -460,6 +465,7 @@ registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
 type MontaggioPlacementType = "resistor" | "led";
 type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
+type MontaggioState = { placements: MontaggioPlacement[] };
 type MontaggioCanvas = {
   tool: MontaggioPlacementType | null;
   pending: string | null;
@@ -470,7 +476,15 @@ type MontaggioCanvas = {
   onReset: () => void;
 };
 
-function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLike; toolLink: ToolLink }) {
+function ReferenceSimulationCanvasTool({
+  element,
+  toolLink,
+  host,
+}: {
+  element: EmbedLike;
+  toolLink: ToolLink;
+  host?: SimulationToolHost;
+}) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
   const [machine, setMachine] = useState(createBlinkMachine);
   const [snapshot, setSnapshot] = useState({
@@ -487,8 +501,19 @@ function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLi
 
   const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null);
   const [pendingHole, setPendingHole] = useState<string | null>(null);
-  const [placements, setPlacements] = useState<MontaggioPlacement[]>([]);
+  // Ripristino al mount dallo state persistito; da lì in poi lo stato locale
+  // guida la UI e ogni cambio viene riscritto nell'embed (se l'host lo offre).
+  const [placements, setPlacements] = useState<MontaggioPlacement[]>(
+    () => marker?.state?.montaggio?.placements ?? [],
+  );
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
+
+  function applyPlacements(next: MontaggioPlacement[]) {
+    setPlacements(next);
+    if (host?.persistEmbedState && marker?.state) {
+      host.persistEmbedState(toolLink.embedId, { ...marker.state, montaggio: { placements: next } });
+    }
+  }
 
   const occupiedHoles = useMemo(() => {
     const occupied = new Set(Object.values(scene.pinAssignments));
@@ -522,13 +547,13 @@ function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLi
     }
     const ordinal = placements.filter((p) => p.type === montaggioTool).length + 1;
     const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`;
-    setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
+    applyPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
     setPendingHole(null);
     setMontaggioNotice(null);
   }
 
   function handleMontaggioReset() {
-    setPlacements([]);
+    applyPlacements([]);
     setPendingHole(null);
     setMontaggioNotice(null);
     setMontaggioTool(null);

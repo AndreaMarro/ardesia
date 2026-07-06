@@ -89,3 +89,17 @@ export class ToolBoard {
     return {}
   }
 }
+
+/**
+ * Write-back host-side dello state di un embed GIÀ marcato: l'owner arriva dal
+ * marker in scena, mai dal chiamante. Elemento assente o non marcato (es.
+ * disegno del docente) → no-op: l'host non trasforma mai un elemento normale
+ * in embed di un tool.
+ */
+export function persistEmbedState(api: BoardApiLike, embedId: string, state: unknown): void {
+  const existing = api.getSceneElements().find((el) => el.id === embedId)
+  if (existing === undefined) return
+  const owner = embedOwner(existing)
+  if (owner === undefined) return
+  new ToolBoard(api, owner).write(embedId, state)
+}
