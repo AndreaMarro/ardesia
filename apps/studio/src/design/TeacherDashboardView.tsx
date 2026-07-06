@@ -15,12 +15,27 @@ import {
   projectTeacherDashboard,
   type TeacherDashboardProjection,
 } from "../lessonos/teacherDashboardProjection"
+import { mountRipassoPanel } from "../toolhost/panelHost"
+import type { EventLogReadLike } from "../toolhost/caps/graph"
 
 export interface TeacherDashboardViewDeps {
   /** Sorgente eventi (seam per i test jsdom); default: event log IndexedDB reale. */
   loadEvents?: () => Promise<readonly AppendedEvent[]>
   /** Sink degli eventi append-only (stessa memoria, mai un secondo store). */
   appendEvent?: (event: LessonOsEvent) => Promise<void>
+  /**
+   * Event-log in sola lettura per il ToolHost della zona ripasso (P0-LIVE):
+   * default lo STESSO store LessonOS di loadEvents, mai un log separato.
+   */
+  eventLog?: EventLogReadLike
+}
+
+/** Vista read-only sull'event log reale: l'unico accesso concesso al ToolHost. */
+const realEventLog: EventLogReadLike = {
+  async readAll() {
+    const store = await createEventLogStore()
+    return store.readAll()
+  },
 }
 
 async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
@@ -40,6 +55,11 @@ type Z7State =
   | { phase: "error"; detail: string }
   | { phase: "ready"; queue: Z7Candidate[] }
 
+type RipassoZoneState =
+  | { phase: "loading" }
+  | { phase: "error"; detail: string }
+  | { phase: "ready"; lines: readonly string[]; aperti: number }
+
 /** Etichetta nella lingua del cruscotto, o la prima disponibile (mai inventata). */
 function labelText(label: Record<string, string>): string {
   return label.it ?? Object.values(label)[0] ?? "(senza etichetta)"
@@ -48,8 +68,38 @@ function labelText(label: Record<string, string>): string {
 export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboardViewDeps }) {
   const loadEvents = deps?.loadEvents ?? loadEventsFromStore
   const appendEvent = deps?.appendEvent ?? appendEventToStore
+  const eventLog = deps?.eventLog ?? realEventLog
   const [state, setState] = useState<Z7State>({ phase: "loading" })
   const [busyPackId, setBusyPackId] = useState<string | null>(null)
+  const [ripasso, setRipasso] = useState<RipassoZoneState>({ phase: "loading" })
+
+  // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
+  // l'event-log LessonOS cablato — graph.query vivo fuori dai test. Il plugin
+  // degrada da solo (capability negata / log non cablato → ripasso vuoto);
+  // qui si dichiara SOLO il fallimento del mount, mai una lista vuota finta.
+  useEffect(() => {
+    let cancelled = false
+    let close: (() => void) | null = null
+    mountRipassoPanel({ eventLog })
+      .then((handle) => {
+        if (cancelled) {
+          handle.close()
+          return
+        }
+        close = handle.close
+        const rendered = handle.plugin.render()
+        setRipasso({ phase: "ready", lines: rendered.lines, aperti: handle.plugin.model().aperti.length })
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) setRipasso({ phase: "error", detail: String(err) })
+      })
+    return () => {
+      cancelled = true
+      close?.()
+    }
+    // eventLog è stabile per contratto del seam (default modulo o dep dei test)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const refresh = useCallback(async () => {
     const events = await loadEvents()
@@ -215,6 +265,51 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                       <span style={{ fontSize: 12, opacity: 0.7 }}>pack esportato</span>
                     )}
                   </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <section
+          aria-labelledby="zripasso-title"
+          data-zripasso
+          data-zripasso-aperti={ripasso.phase === "ready" ? ripasso.aperti : undefined}
+          style={{ marginTop: 28 }}
+        >
+          <h2 id="zripasso-title" style={{ margin: "0 0 4px" }}>
+            Ripasso errori
+          </h2>
+          <p style={{ margin: "0 0 16px", opacity: 0.75 }}>
+            Plugin di sola lettura sul grafo della lezione (graph.query via ToolHost): errori aperti
+            prima, poi i corretti — con la fonte di ogni osservazione.
+          </p>
+
+          {ripasso.phase === "loading" && <p aria-busy="true">Interrogo il grafo della lezione…</p>}
+
+          {ripasso.phase === "error" && (
+            <EmptyState
+              tone="error"
+              title="Ripasso non disponibile"
+              detail="Il pannello ripasso non è stato montato: il grafo non è consultabile (non è detto che sia vuoto)."
+              hint={ripasso.detail}
+            />
+          )}
+
+          {ripasso.phase === "ready" && (
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 8 }}>
+              {ripasso.lines.map((line, i) => (
+                <li
+                  key={i}
+                  data-zripasso-line={i}
+                  style={{
+                    border: "1px solid var(--st-line, #d8d2c6)",
+                    borderRadius: 8,
+                    padding: "8px 12px",
+                    fontSize: 14,
+                  }}
+                >
+                  {line}
                 </li>
               ))}
             </ul>
