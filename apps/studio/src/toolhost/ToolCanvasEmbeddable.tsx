@@ -15,6 +15,8 @@ import {
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
+import { catalogSummary } from "./elabExperimentCatalog";
+import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
@@ -463,6 +465,12 @@ function ReferenceSimulationCanvasTool({
   );
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
 
+  // Passo-passo VIVO: i predicati del libro valutati sul circuito attivo
+  // (scena + placements). Nessuna persistenza del toggle: è una vista.
+  const [stepMode, setStepMode] = useState(false);
+  const stepModel = useMemo(() => stepByStepModel(scene, placements), [scene, placements]);
+  const catalog = catalogSummary();
+
   function applyPlacements(next: MontaggioPlacement[]) {
     setPlacements(next);
     if (host?.persistEmbedState && marker?.state) {
@@ -575,6 +583,13 @@ function ReferenceSimulationCanvasTool({
           <div style={eyebrowStyle}>Simulation Plugin</div>
           <h2 style={titleStyle}>{scene.title}</h2>
           <div style={manualRefStyle}>{scene.manual.label}</div>
+          {/* Onestà di catalogo: la UI non vende esperimenti non montati. */}
+          <div
+            style={catalogBannerStyle}
+            data-elab-catalog-summary={`${catalog.mounted}/${catalog.total}`}
+          >
+            {catalog.label}
+          </div>
         </div>
         <div style={toolIdStyle}>{toolLink.toolId}</div>
       </header>
@@ -584,7 +599,12 @@ function ReferenceSimulationCanvasTool({
 
         <aside style={sideStyle}>
           <ManualCard scene={scene} />
-          <StepByStepCard scene={scene} />
+          <StepByStepCard
+            scene={scene}
+            model={stepModel}
+            active={stepMode}
+            onToggle={() => setStepMode((prev) => !prev)}
+          />
           <div style={metricGridStyle}>
             {scene.runtime.kind === "arduino-blink" ? (
               <>
@@ -658,11 +678,32 @@ function ManualCard({ scene }: { scene: SimulationSceneV1 }) {
   );
 }
 
-function StepByStepCard({ scene }: { scene: SimulationSceneV1 }) {
+function StepByStepCard({
+  scene,
+  model,
+  active,
+  onToggle,
+}: {
+  scene: SimulationSceneV1;
+  model: StepByStepModel;
+  active: boolean;
+  onToggle: () => void;
+}) {
   const pageImage = scene.bookLayout.manualSource.crop;
   return (
     <section style={manualPostItStyle} aria-label="Modalita passo passo">
-      <div style={stepHeaderStyle}>PASSO PASSO</div>
+      <div style={stepHeaderRowStyle}>
+        <div style={stepHeaderStyle}>PASSO PASSO</div>
+        <button
+          type="button"
+          data-testid="step-mode-toggle"
+          aria-pressed={active}
+          onClick={onToggle}
+          style={active ? stepToggleActiveStyle : stepToggleStyle}
+        >
+          {active ? `Verifica viva ${model.passedCount}/${model.total}` : "Passo-passo"}
+        </button>
+      </div>
       {pageImage && (
         <div style={manualZoomFrameStyle} aria-label="Zoom reale della figura circuito sul manuale">
           <img
@@ -672,14 +713,51 @@ function StepByStepCard({ scene }: { scene: SimulationSceneV1 }) {
           />
         </div>
       )}
-      <ol style={stepListStyle}>
-        {scene.manual.bookInstructions.map((instruction, index) => (
-          <li key={instruction} style={stepItemStyle}>
-            <span style={stepNumberStyle}>{index + 1}</span>
-            <span>{instruction}</span>
-          </li>
-        ))}
-      </ol>
+      {active ? (
+        /* Verifica VIVA: ogni step passa solo se la topologia del circuito
+           attivo soddisfa i predicati del libro (didacticSteps). */
+        <ol style={stepListStyle}>
+          {model.steps.map((step) => (
+            <li
+              key={step.id}
+              data-step-id={step.id}
+              data-step-passed={step.passed ? "true" : "false"}
+              data-step-current={model.firstFailingId === step.id ? "true" : undefined}
+              style={
+                model.firstFailingId === step.id
+                  ? { ...stepItemStyle, ...stepItemCurrentStyle }
+                  : stepItemStyle
+              }
+            >
+              <span style={step.passed ? stepNumberDoneStyle : stepNumberStyle}>
+                {step.passed ? "✓" : step.order}
+              </span>
+              <span>
+                {step.instructionIt}
+                <span style={stepEvidenceStyle}>
+                  {step.evidence.map((item) => (
+                    <span key={`${item.page}-${item.evidence}`} style={stepEvidenceItemStyle}>
+                      Vol.{scene.manual.volume} pag.{item.page} — «{item.evidence}»
+                    </span>
+                  ))}
+                </span>
+                {!step.passed && step.failures.length > 0 && (
+                  <span style={stepFailureStyle}>{step.failures.join("; ")}</span>
+                )}
+              </span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <ol style={stepListStyle}>
+          {scene.manual.bookInstructions.map((instruction, index) => (
+            <li key={instruction} style={stepItemStyle}>
+              <span style={stepNumberStyle}>{index + 1}</span>
+              <span>{instruction}</span>
+            </li>
+          ))}
+        </ol>
+      )}
     </section>
   );
 }
@@ -1524,6 +1602,76 @@ const stepNumberStyle = {
   color: "#1f4f80",
   fontSize: 10,
   fontWeight: 900,
+} as const;
+
+const stepNumberDoneStyle = {
+  ...stepNumberStyle,
+  background: "#dcf5e4",
+  color: "#1d7a3f",
+} as const;
+
+const stepHeaderRowStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 8,
+} as const;
+
+const stepToggleStyle = {
+  border: "1px solid #c9d9ea",
+  borderRadius: 999,
+  background: "#f4f9ff",
+  color: "#1f4f80",
+  fontSize: 10,
+  fontWeight: 800,
+  padding: "3px 10px",
+  cursor: "pointer",
+} as const;
+
+const stepToggleActiveStyle = {
+  ...stepToggleStyle,
+  background: "#1f4f80",
+  borderColor: "#1f4f80",
+  color: "#f4f9ff",
+} as const;
+
+const stepItemCurrentStyle = {
+  background: "#fff7e6",
+  borderRadius: 6,
+  padding: 3,
+} as const;
+
+const stepEvidenceStyle = {
+  display: "grid",
+  gap: 2,
+  marginTop: 2,
+} as const;
+
+const stepEvidenceItemStyle = {
+  display: "block",
+  color: "#6b7d92",
+  fontSize: 9.5,
+  fontStyle: "italic",
+} as const;
+
+const stepFailureStyle = {
+  display: "block",
+  marginTop: 2,
+  color: "#a3492c",
+  fontSize: 9.5,
+  fontWeight: 700,
+} as const;
+
+const catalogBannerStyle = {
+  marginTop: 4,
+  color: "#7c6a2f",
+  background: "#fdf6df",
+  border: "1px solid #ecd9a0",
+  borderRadius: 6,
+  padding: "2px 8px",
+  fontSize: 10,
+  fontWeight: 700,
+  display: "inline-block",
 } as const;
 
 const metricGridStyle = {
