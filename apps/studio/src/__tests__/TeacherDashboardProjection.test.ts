@@ -151,7 +151,7 @@ describe("TeacherDashboardProjection", () => {
     expect(projection.plugins).toEqual([])
     expect(projection.studentPackQueue).toEqual([])
     expect(projection.publicProfile).toBeNull()
-    expect(projection.unavailable.map((entry) => entry.zone)).toEqual(["Z3", "Z4", "Z5", "Z6", "Z7", "Z10", "Z11", "Z12"])
+    expect(projection.unavailable.map((entry) => entry.zone)).toEqual(["Z3", "Z4", "Z5", "Z6", "Z10", "Z11", "Z12"])
   })
 
   it("segmenta due sessioni della stessa room in due lezioni con finestre e counts separati", async () => {
@@ -303,5 +303,67 @@ describe("TeacherDashboardProjection", () => {
     expect(serialized).not.toContain("score")
     expect(serialized).not.toContain("mastery")
     expect(serialized).not.toContain("progress")
+  })
+})
+
+// Z7 — studentPackQueue: i candidati derivano dagli eventi GIÀ nel log
+// (error.observed mai corretto da exercise.completed.correctsErrorId), senza
+// nuovi kind. Solo status "candidate": generated/exported richiedono eventi
+// append-only dedicati (restano fuori, documentato nel proiettore).
+describe("studentPackQueue (Z7) — candidati dagli errori mai corretti", () => {
+  it("un errore osservato e mai corretto diventa candidato con la room della lezione", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+      {
+        kind: "error.observed",
+        errorId: "error:corto-1",
+        conceptId: "ohm_law",
+        labels: { it: "Corto circuito sulla riga i" },
+        t: 1500,
+        evidence: ["board:wire9", "manual:vol1:p29"],
+      },
+      { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+    ])
+    const projection = makeProjection(events)
+
+    expect(projection.studentPackQueue).toEqual([
+      {
+        candidateId: "sp-error:corto-1",
+        fromRoom: "3b-elab",
+        label: { it: "Corto circuito sulla riga i" },
+        status: "candidate",
+        evidenceRefs: ["board:wire9", "manual:vol1:p29"],
+      },
+    ])
+    expect(projection.unavailable.map((entry) => entry.zone)).not.toContain("Z7")
+  })
+
+  it("un errore corretto da un esercizio NON è candidato (fixture canonica)", async () => {
+    const projection = makeProjection(await appendFixture())
+    expect(projection.studentPackQueue).toEqual([])
+  })
+
+  it("errore fuori da ogni finestra lezione: candidato con fromRoom vuota, mai perso in silenzio", async () => {
+    const events = await appendEvents([
+      {
+        kind: "error.observed",
+        errorId: "error:senza-lezione",
+        conceptId: "ohm_law",
+        labels: { it: "Errore orfano" },
+        t: 100,
+        evidence: ["board:x1"],
+      },
+    ])
+    const projection = makeProjection(events)
+
+    expect(projection.studentPackQueue).toEqual([
+      {
+        candidateId: "sp-error:senza-lezione",
+        fromRoom: "",
+        label: { it: "Errore orfano" },
+        status: "candidate",
+        evidenceRefs: ["board:x1"],
+      },
+    ])
   })
 })

@@ -243,6 +243,50 @@ function projectGraphView(graph: LessonGraph, focusNodeId: string | null | undef
   }
 }
 
+// Z7 — candidati student-pack DERIVATI dagli eventi già nel log: un
+// error.observed mai corretto (nessun exercise.completed.correctsErrorId che
+// lo punta) è un candidato al ripasso. Nessun kind nuovo. Solo status
+// "candidate": generated/exported richiedono eventi append-only dedicati e
+// restano fuori da questa slice. fromRoom = finestra lesson.started/ended che
+// contiene t; errore fuori da ogni finestra → fromRoom "" (mai perso in muto).
+function studentPackQueue(
+  lessonEvents: readonly AppendedEvent[],
+): TeacherDashboardProjection["studentPackQueue"] {
+  const sorted = [...lessonEvents].sort((a, b) => a.seq - b.seq)
+  const correctedErrorIds = new Set<string>()
+  const windows: Array<{ room: string; from: number; to: number }> = []
+  const openByRoom = new Map<string, number>()
+  for (const ev of sorted) {
+    if (ev.kind === "exercise.completed" && ev.correctsErrorId !== undefined) {
+      correctedErrorIds.add(ev.correctsErrorId)
+    } else if (ev.kind === "lesson.started") {
+      openByRoom.set(ev.room, ev.t)
+    } else if (ev.kind === "lesson.ended") {
+      const from = openByRoom.get(ev.room)
+      if (from !== undefined) {
+        windows.push({ room: ev.room, from, to: ev.t })
+        openByRoom.delete(ev.room)
+      }
+    }
+  }
+  // lezione ancora aperta: finestra fino a +Infinity
+  for (const [room, from] of openByRoom) windows.push({ room, from, to: Number.POSITIVE_INFINITY })
+
+  const queue: TeacherDashboardProjection["studentPackQueue"] = []
+  for (const ev of sorted) {
+    if (ev.kind !== "error.observed" || correctedErrorIds.has(ev.errorId)) continue
+    const window = windows.find((w) => ev.t >= w.from && ev.t <= w.to)
+    queue.push({
+      candidateId: `sp-${ev.errorId}`,
+      fromRoom: window?.room ?? "",
+      label: { ...ev.labels },
+      status: "candidate",
+      evidenceRefs: [...ev.evidence],
+    })
+  }
+  return queue.sort((a, b) => byString(a.candidateId, b.candidateId))
+}
+
 // count/firstSeen/lastSeen vengono dagli EVENTI error.observed (ogni osservazione
 // conta, anche sullo stesso errorId); correctedBy resta dal grafo materializzato.
 function recurringErrors(
@@ -349,7 +393,7 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
     graphView: projectGraphView(graph, input.focusNodeId),
     recurringErrors: recurringErrors(input.lessonEvents, graph, input.locale),
     plugins: [],
-    studentPackQueue: [],
+    studentPackQueue: studentPackQueue(input.lessonEvents),
     stats: buildStats(lessons, graph),
     publicProfile: null,
     unavailable: [
@@ -357,7 +401,6 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
       { zone: "Z4", reason: "planned lessons require lesson.planned events" },
       { zone: "Z5", reason: "workspace material registry is not wired into this pure projector slice" },
       { zone: "Z6", reason: "plugin manifest registry is not wired into this pure projector slice" },
-      { zone: "Z7", reason: "student-pack candidates require dedicated append-only events" },
       { zone: "Z10", reason: "export/import events are not in the current event-log schema" },
       { zone: "Z11", reason: "integrazione Drive fuori v0/v1 (spec §Z11)" },
       { zone: "Z12", reason: "public profile has no local source contract yet" },
