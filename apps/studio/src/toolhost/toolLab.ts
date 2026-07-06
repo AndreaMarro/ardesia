@@ -12,9 +12,8 @@ import manifestSourceRaw from "../../sim/manifest-source.json?raw"
 import entryHtml from "../../sim/entry.html?raw"
 import keys from "../../sim/keys.json"
 import { PluginManager } from "./pluginManager"
-import { isToolInstalled, manifestPath } from "./installer"
+import { isToolInstalled, verifyInstalledTool } from "./installer"
 import type { InstallerStore } from "./installer"
-import { ToolManifestSchema } from "../toolhost-protocol/manifest.ts"
 import type { ToolManifest } from "../toolhost-protocol/index.ts"
 
 export interface ToolLabOptions {
@@ -88,11 +87,16 @@ export async function installAndGateReferenceTool(
   if (!(await pm.canMount(toolId))) {
     return { ok: false, reason: "not-mountable", detail: `plugin "${toolId}" non montabile (disabled o revocato)` }
   }
-  // Fonte di verità = i byte installati (firmati), non la variabile locale.
-  const installedBytes = await store.read(manifestPath(toolId))
-  if (installedBytes === null) {
-    return { ok: false, reason: "not-mountable", detail: `manifest di "${toolId}" assente post-install` }
+  // Fonte di verità = i byte installati RIVERIFICATI (Codex P1.1): firma
+  // ed25519 sui byte salvati + id match + install record. Un manifest.json
+  // alterato post-install non è mai trusted (id-shift = bypass kill-list).
+  const verified = await verifyInstalledTool(store, toolId)
+  if (!verified.ok) {
+    return {
+      ok: false,
+      reason: "not-mountable",
+      detail: `installed artifacts di "${toolId}" non verificati (${verified.reason}): ${verified.detail}`,
+    }
   }
-  const manifest = ToolManifestSchema.parse(JSON.parse(await installedBytes.text()))
-  return { ok: true, manifest, entryHtml }
+  return { ok: true, manifest: verified.manifest, entryHtml }
 }

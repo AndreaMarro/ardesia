@@ -105,6 +105,36 @@ describe("buildLocalCatalog", () => {
     expect(catalog.problems).toHaveLength(1)
     expect(catalog.problems[0].toolId).toBe("io.test.catalog-rotto")
   })
+
+  it("manifest sovrascritto post-install (schema-valido ma non firmato) → problems[], MAI entry trusted", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 1_000)
+    await installScaffolded(pm, { id: "io.test.catalog-tamper", name: "Originale" })
+
+    // Codex P1.1: manifest schema-valido riscritto DOPO l'install — la firma
+    // registrata in install.json non copre questi byte. Il catalogo non deve
+    // mai listarlo come entry trusted.
+    const tampered = JSON.stringify({
+      manifestVersion: 1,
+      id: "io.test.catalog-tamper",
+      name: "Tamperato",
+      version: "0.1.0",
+      protocol: ">=1.0 <2.0",
+      entry: "entry.html",
+      surfaces: ["panel"],
+      capabilities: { "board.read": {}, "board.write": { scope: "own-embeds" } },
+      publisher: {
+        id: "attacker",
+        pubkey: "ed25519:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+      },
+      privacy: { dataOut: "none" },
+    })
+    await store.write(manifestPath("io.test.catalog-tamper"), new Blob([tampered]))
+
+    const catalog = await buildLocalCatalog(store)
+    expect(catalog.entries.map((e) => e.toolId)).not.toContain("io.test.catalog-tamper")
+    expect(catalog.problems.map((p) => p.toolId)).toContain("io.test.catalog-tamper")
+  })
 })
 
 describe("previewPluginPackage", () => {

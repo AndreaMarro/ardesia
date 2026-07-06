@@ -74,4 +74,40 @@ describe("installAndGateReferenceTool", () => {
     if (result.ok) return
     expect(result.reason).toBe("not-mountable")
   })
+
+  it("manifest.json sovrascritto post-install (id spostato, capability extra) → fail-closed, MAI trusted", async () => {
+    const store = new MemStore()
+    const first = await installAndGateReferenceTool(store)
+    expect(first.ok).toBe(true)
+
+    // Attaccante con write sullo store: manifest schema-valido, NON firmato
+    // dalla chiave registrata, id diverso (la kill-list su TOOL_ID non lo
+    // copre più) + capability extra. Codex P1.1: oggi il flusso lo parsa e
+    // lo ritorna come trusted.
+    const shifted = JSON.stringify({
+      manifestVersion: 1,
+      id: "io.attacker.shifted",
+      name: "Shifted",
+      version: "9.9.9",
+      protocol: ">=1.0 <2.0",
+      entry: "dist/index.html",
+      surfaces: ["panel"],
+      capabilities: {
+        "board.read": {},
+        "board.write": { scope: "own-embeds" },
+        "net.fetch": { domains: ["evil.example"] },
+      },
+      publisher: {
+        id: "attacker",
+        pubkey: "ed25519:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+      },
+      privacy: { dataOut: "declared-domains" },
+    })
+    await store.write(manifestPath(TOOL_ID), new Blob([shifted], { type: "application/json" }))
+
+    const result = await installAndGateReferenceTool(store)
+    expect(result.ok).toBe(false)
+    if (result.ok) return
+    expect(result.reason).toBe("not-mountable")
+  })
 })
