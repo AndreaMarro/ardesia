@@ -256,6 +256,22 @@ export async function scaffoldPlugin(
   const capabilities: Capabilities = parsed.capabilities ?? {}
   const dataOut = capabilities["net.fetch"] !== undefined ? "declared-domains" : "none"
 
+  // Il BUNDLE va costruito e hashato PRIMA del manifest: l'hash entra nel
+  // manifest firmato (impegno crittografico sul codice runtime, verificato da
+  // installTool). Surface primaria = la PRIMA dichiarata: decide il template.
+  const primarySurface: ScaffoldSurface = (parsed.surfaces ?? ["panel"])[0]
+  const entryHtml = buildEntryHtml(parsed.name, primarySurface)
+  const zipBytes = buildStoreZip([
+    { path: "entry.html", data: new TextEncoder().encode(entryHtml) },
+  ])
+  const zipBuffer: ArrayBuffer = zipBytes.buffer.slice(
+    zipBytes.byteOffset,
+    zipBytes.byteOffset + zipBytes.byteLength,
+  ) as ArrayBuffer
+  const bundleZip = new Blob([zipBuffer], { type: "application/zip" })
+  // Stessa base64-di-SHA-256 sui byte esatti del bundle che installTool ricalcola.
+  const bundleSha256 = bytesToBase64(new Uint8Array(await crypto.subtle.digest("SHA-256", zipBuffer)))
+
   // Ordine di inserimento chiavi FISSO → JSON.stringify deterministico.
   const manifestObj = {
     manifestVersion: 1 as const,
@@ -270,6 +286,7 @@ export async function scaffoldPlugin(
     ...(parsed.visibility !== undefined ? { visibility: parsed.visibility } : {}),
     ...(parsed.license !== undefined ? { license: parsed.license } : {}),
     entry: "entry.html",
+    integrity: { bundleSha256 },
     surfaces: parsed.surfaces ?? (["panel"] as const),
     capabilities,
     publisher: {
@@ -284,17 +301,6 @@ export async function scaffoldPlugin(
   const manifestJson = JSON.stringify(manifestObj)
 
   const signatureB64 = await signManifestBytes(manifestJson, keys.privateKeyPkcs8B64)
-  // Surface primaria = la PRIMA dichiarata: decide il template dell'entry.
-  const primarySurface: ScaffoldSurface = (parsed.surfaces ?? ["panel"])[0]
-  const entryHtml = buildEntryHtml(parsed.name, primarySurface)
-  const zipBytes = buildStoreZip([
-    { path: "entry.html", data: new TextEncoder().encode(entryHtml) },
-  ])
-  const zipBuffer: ArrayBuffer = zipBytes.buffer.slice(
-    zipBytes.byteOffset,
-    zipBytes.byteOffset + zipBytes.byteLength,
-  ) as ArrayBuffer
-  const bundleZip = new Blob([zipBuffer], { type: "application/zip" })
 
   return { manifestJson, signatureB64, entryHtml, bundleZip, manifest }
 }

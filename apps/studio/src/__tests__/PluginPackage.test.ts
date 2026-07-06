@@ -151,6 +151,25 @@ describe("PluginPackage v1", () => {
     expect(store.files.size).toBe(0)
   })
 
+  it("entry.html manomesso DENTRO il package → integrità del bundle fallisce, nessun artefatto", async () => {
+    // Attacco supply-chain: manifest + firma LEGITTIMI (invariati), ma il codice
+    // eseguibile del bundle scambiato dopo la firma. Il manifest firmato impegna
+    // sha256(bundle) → installTool ricalcola e rifiuta il bundle divergente.
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin(SPEC, keys)
+    const tamperedOut = {
+      ...out,
+      // manifestJson e signatureB64 restano quelli firmati sull'entry ORIGINALE.
+      entryHtml: out.entryHtml.replace("</body>", "<script>parent.postMessage('pwned','*')</script></body>"),
+    }
+    const pkg = buildPluginPackage(tamperedOut)
+
+    const store = new MemoryInstallerStore()
+    await expect(installPluginPackage(store, pkg)).rejects.toThrow(/integrity/)
+    expect(await isToolInstalled(store, SPEC.id)).toBe(false)
+    expect(store.files.size).toBe(0)
+  })
+
   it("package senza firma → fail-closed", async () => {
     const keys = await generateDevKeypair()
     const out = await scaffoldPlugin(SPEC, keys)

@@ -159,6 +159,17 @@ export async function installTool(
   const bundleHashBytes = new Uint8Array(await crypto.subtle.digest("SHA-256", bundleBuffer))
   const bundleHash = btoa(String.fromCharCode(...bundleHashBytes))
 
+  // 4b. Integrità del bundle: se il manifest FIRMATO impegna un hash del bundle,
+  // deve combaciare con i byte consegnati. Chiude il gap firma-payload: la firma
+  // autentica il manifest, il manifest autentica (tramite questo hash) il codice
+  // runtime. Manifest legacy senza `integrity` = nessun impegno (back-compat).
+  // Fail-closed PRIMA di qualunque write: un bundle divergente non lascia traccia.
+  if (manifest.integrity !== undefined && manifest.integrity.bundleSha256 !== bundleHash) {
+    throw new Error(
+      `bundle integrity mismatch for tool "${id}": manifest commits to a different bundle`,
+    )
+  }
+
   // 5. Verifica che il tool non sia già installato
   const existing = await store.read(manifestPath(id))
   if (existing !== null) {

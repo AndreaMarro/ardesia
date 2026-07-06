@@ -62,6 +62,18 @@ export const ToolManifestSchema = z.strictObject({
     .min(1)
     .refine(isSafeEntryPath, { message: "unsafe entry path" })
     .refine((p) => p.endsWith(".html"), { message: "entry must be an html file" }),
+  // Integrità del BUNDLE runtime (supply-chain): la firma ed25519 autentica
+  // SOLO i byte del manifest; `entry` ne dichiara il path, non il contenuto.
+  // `integrity.bundleSha256` (base64 di SHA-256 sui byte esatti del bundle)
+  // chiude il gap firma-payload: essendo dentro il manifest firmato, impegna
+  // crittograficamente il codice che gira. installTool ricalcola e confronta;
+  // divergenza = reject. Opzionale → manifest legacy (Reference first-party)
+  // invariati; ogni plugin scaffoldato lo emette sempre.
+  integrity: z
+    .strictObject({
+      bundleSha256: z.string().regex(/^[A-Za-z0-9+/]+={0,2}$/, { message: "bundleSha256 must be base64" }),
+    })
+    .optional(),
   surfaces: z.array(SurfaceSchema).min(1).refine((s) => new Set(s).size === s.length, {
     message: "duplicate surfaces",
   }),

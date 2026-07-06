@@ -227,6 +227,47 @@ describe("installer", () => {
     expect(await isToolInstalled(store, "com.example.test-tool")).toBe(false)
   })
 
+  it("integrity.bundleSha256 combacia → install accettato", async () => {
+    const store = new MemoryInstallerStore()
+    const { pubkeyB64, privateKey } = await generateKeypair()
+    const bundleZip = new Blob(["exact-bundle-bytes"], { type: "application/zip" })
+    const bundleSha256 = btoa(
+      String.fromCharCode(
+        ...new Uint8Array(await crypto.subtle.digest("SHA-256", await bundleZip.arrayBuffer())),
+      ),
+    )
+    const { manifestJson, signature } = await makeSignedManifest(pubkeyB64, privateKey, {
+      integrity: { bundleSha256 },
+    })
+
+    const manifest = await installTool(store, manifestJson, bundleZip, signature)
+    expect(manifest.integrity?.bundleSha256).toBe(bundleSha256)
+    expect(await isToolInstalled(store, "com.example.test-tool")).toBe(true)
+  })
+
+  it("integrity.bundleSha256 firmato ma bundle divergente → rifiutato, nessun artefatto", async () => {
+    // Firma valida, manifest valido: SOLO il payload runtime è stato scambiato
+    // dopo la firma. Il gap firma-payload è chiuso dall'hash impegnato.
+    const store = new MemoryInstallerStore()
+    const { pubkeyB64, privateKey } = await generateKeypair()
+    const original = new Blob(["trusted-entry"], { type: "application/zip" })
+    const committed = btoa(
+      String.fromCharCode(
+        ...new Uint8Array(await crypto.subtle.digest("SHA-256", await original.arrayBuffer())),
+      ),
+    )
+    const { manifestJson, signature } = await makeSignedManifest(pubkeyB64, privateKey, {
+      integrity: { bundleSha256: committed },
+    })
+    const tamperedBundle = new Blob(["MALICIOUS-entry"], { type: "application/zip" })
+
+    await expect(
+      installTool(store, manifestJson, tamperedBundle, signature),
+    ).rejects.toThrow(/integrity/)
+    expect(await isToolInstalled(store, "com.example.test-tool")).toBe(false)
+    expect(store.files.size).toBe(0)
+  })
+
   it("tool in kill-list → install rifiutato", async () => {
     const store = new MemoryInstallerStore()
     const { pubkeyB64, privateKey } = await generateKeypair()
