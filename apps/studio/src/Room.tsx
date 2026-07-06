@@ -25,7 +25,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildSimulationInsert, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistEmbedState } from "./toolhost/caps/board"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -296,6 +296,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   /** Handler composito: salva scena + registra eventi journal */
   function handleChange(elements: any, appState: any, files: any) {
+    // P0-C residuo: un duplicato dal canvas (copy/paste/Alt-drag) clona il
+    // link → id ≠ embedId e il duplicato scriverebbe sullo stato dell'
+    // ORIGINALE. La normalizzazione lo promuove a NUOVA istanza (idempotente:
+    // al giro dopo changed=false, nessun loop di updateScene).
+    const normalized = normalizeDuplicatedToolEmbeds(elements as readonly { id?: string }[])
+    if (normalized.changed && apiRef.current) {
+      apiRef.current.updateScene({ elements: normalized.elements })
+      return
+    }
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)

@@ -361,6 +361,35 @@ export function isToolCanvasEmbed(element: EmbedLike): boolean {
   return parseToolLink(element.link) !== null;
 }
 
+/**
+ * P0-C residuo — duplicazione dal canvas. Excalidraw su copy/paste/Alt-drag
+ * clona link e customData ma assegna un id NUOVO: l'elemento risultante ha
+ * id ≠ embedId nel link, e persistEmbedState (match `el.id === embedId`)
+ * farebbe scrivere il duplicato sullo stato dell'ORIGINALE (fantasma).
+ * Normalizzazione: ogni embed maestro-tool:// con id ≠ embedId diventa una
+ * NUOVA istanza — embedId = id dell'elemento (unico per costruzione), stato
+ * clonato (il duplicato parte dallo stato copiato, poi vive di suo).
+ * Ritorna gli stessi riferimenti quando non c'è nulla da riscrivere.
+ */
+export function normalizeDuplicatedToolEmbeds(
+  elements: readonly EmbedLike[],
+): { elements: EmbedLike[]; changed: boolean } {
+  let changed = false;
+  const next = elements.map((element) => {
+    const parsed = parseToolLink(element.link);
+    if (parsed === null || element.id === undefined || element.id === parsed.embedId) {
+      return element;
+    }
+    changed = true;
+    return {
+      ...element,
+      link: `${TOOL_EMBED_SCHEME}${parsed.toolId}/${element.id}`,
+      customData: element.customData ? structuredClone(element.customData) : element.customData,
+    };
+  });
+  return changed ? { elements: next, changed } : { elements: [...elements], changed };
+}
+
 // P0-C multi-istanza: identità del prossimo post-it. Il primo inserimento usa
 // l'embedId storico (scene salvate ed e2e invariati); i successivi suffissano
 // "--n" scegliendo il primo libero (mai un id già in scena, anche con buchi).
