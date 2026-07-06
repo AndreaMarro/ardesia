@@ -16,7 +16,7 @@ import { manifest as refManifest } from "../../plugins/reference/manifest.ts"
 import { ToolHost } from "../toolhost/host.ts"
 import type { MountGate } from "../toolhost/host.ts"
 import { PluginManager, lifecyclePath, LifecycleDocSchema } from "../toolhost/pluginManager.ts"
-import { manifestPath } from "../toolhost/installer.ts"
+import { bundlePath, installRecordPath, manifestPath } from "../toolhost/installer.ts"
 import { auditPath, readAuditLog } from "../toolhost/audit.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
@@ -84,10 +84,22 @@ function makeHost(store: MemoryWorkspace, board: FakeBoard, now?: () => number):
   return new ToolHost(refManifest, grant, { store, board, now })
 }
 
-/** Scrive il manifest del reference plugin → isToolInstalled true (la firma ed25519
- *  è irrilevante per il gate di LIFECYCLE qui in prova). */
+/** Scrive la TRIADE di install del reference plugin (P2.2: isToolInstalled =
+ *  manifest+bundle+record) → installato. Firma/hash fixture: qui si prova il
+ *  gate di LIFECYCLE, non l'install. */
 function writeManifest(store: MemoryWorkspace): void {
   store.files.set(manifestPath(ID), new Blob([JSON.stringify(refManifest)], { type: "application/json" }))
+  store.files.set(bundlePath(ID), new Blob(["zip"], { type: "application/zip" }))
+  const record = {
+    v: 1,
+    toolId: ID,
+    manifestVersion: 1,
+    toolVersion: refManifest.version,
+    t: 0,
+    signature: "fixture",
+    bundleHash: "fixture",
+  }
+  store.files.set(installRecordPath(ID), new Blob([JSON.stringify(record)], { type: "application/json" }))
 }
 
 /** Mount gated + handshake del plugin REALE sulla stessa istanza host. Ritorna la

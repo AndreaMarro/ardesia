@@ -16,7 +16,7 @@ import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
 import { PluginManager } from "../toolhost/pluginManager.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
-import { manifestPath } from "../toolhost/installer.ts"
+import { bundlePath, installRecordPath, manifestPath } from "../toolhost/installer.ts"
 import { addToKillList } from "../toolhost/killList.ts"
 import type { InstallerStore } from "../toolhost/installer.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
@@ -77,9 +77,21 @@ function freshPort(): MessageChannel["port1"] {
 
 const grant: Capabilities = resolveGrant(MANIFEST, ["board.read"])
 
-/** Scrive il manifest su disco (isToolInstalled = presenza manifest) → installato. */
+/** Scrive la TRIADE di install (P2.2: isToolInstalled = manifest+bundle+record)
+ *  → installato. Firma/hash fixture: qui si prova il gate di LIFECYCLE, non l'install. */
 function writeManifest(store: MemoryWorkspace): void {
   store.files.set(manifestPath(MANIFEST.id), new Blob([JSON.stringify(MANIFEST)], { type: "application/json" }))
+  store.files.set(bundlePath(MANIFEST.id), new Blob(["zip"], { type: "application/zip" }))
+  const record = {
+    v: 1,
+    toolId: MANIFEST.id,
+    manifestVersion: 1,
+    toolVersion: MANIFEST.version,
+    t: 0,
+    signature: "fixture",
+    bundleHash: "fixture",
+  }
+  store.files.set(installRecordPath(MANIFEST.id), new Blob([JSON.stringify(record)], { type: "application/json" }))
 }
 
 function makeHost(store: MemoryWorkspace): ToolHost {
