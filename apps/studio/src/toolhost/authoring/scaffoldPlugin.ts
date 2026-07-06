@@ -95,13 +95,52 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;")
 }
 
+type ScaffoldSurface = "board-embed" | "panel" | "fullscreen"
+
 /**
- * Entry minimale ma REALE: esegue lo handshake del protocollo (host.hello via
- * window.postMessage con MessagePort nei transferables → tool.ready sulla porta
- * con ECO del nonce). Il bearer arriva solo nel result di tool.ready.
+ * Entry differenziata per surface, ma sempre un plugin REALE: handshake del
+ * protocollo (host.hello via window.postMessage con MessagePort nei
+ * transferables → tool.ready sulla porta con ECO del nonce; il bearer arriva
+ * solo nel result). Il template board-embed insegna il pattern corretto per
+ * board.read: JSON-RPC sulla porta, GUARDATA da grantedCaps — deny-by-default,
+ * il bottone si abilita solo a capability concessa.
  */
-function buildEntryHtml(name: string): string {
+function buildEntryHtml(name: string, surface: ScaffoldSurface): string {
   const safeName = escapeHtml(name)
+  const fullscreenCss =
+    surface === "fullscreen"
+      ? "\n  html, body { height: 100%; }\n  body { min-height: 100vh; display: flex; flex-direction: column; }"
+      : ""
+  const boardDemoHtml =
+    surface === "board-embed"
+      ? '\n<button id="btnRead" disabled>Leggi la scena</button>\n<p class="status" id="boardOut"></p>'
+      : ""
+  const boardDemoJs =
+    surface === "board-embed"
+      ? `
+      // Demo board.read: abilitata SOLO se la capability è stata concessa
+      // (grantedCaps dal result di tool.ready). Pattern JSON-RPC sulla porta.
+      var btnRead = document.getElementById('btnRead');
+      var boardOut = document.getElementById('boardOut');
+      var nextId = 2;
+      function onGranted(grantedCaps) {
+        if (!grantedCaps || grantedCaps["board.read"] === undefined) return;
+        btnRead.disabled = false;
+        btnRead.addEventListener('click', function () {
+          var id = 'req-' + nextId++;
+          var onResult = function (e) {
+            var msg = e.data;
+            if (!msg || msg.id !== id) return;
+            port.removeEventListener('message', onResult);
+            if (msg.result) boardOut.textContent = 'elementi in scena: ' + msg.result.elements.length;
+            else boardOut.textContent = 'errore: ' + (msg.error && msg.error.message);
+          };
+          port.addEventListener('message', onResult);
+          port.postMessage({ jsonrpc: '2.0', id: id, method: "board.read", params: { target: "scene" } });
+        });
+      }`
+      : `
+      function onGranted() {}`
   return `<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -111,18 +150,19 @@ function buildEntryHtml(name: string): string {
 <style>
   body { font-family: system-ui, sans-serif; background: #faf9f6; color: #2c2825; padding: 16px; }
   h1 { font-size: 16px; margin-bottom: 8px; }
-  .status { font-size: 12px; color: #8a8682; }
+  .status { font-size: 12px; color: #8a8682; }${fullscreenCss}
 </style>
 </head>
-<body>
+<body data-surface="${surface}">
 <h1>${safeName}</h1>
-<p class="status" id="status">in attesa dello handshake…</p>
+<p class="status" id="status">in attesa dello handshake…</p>${boardDemoHtml}
 <script>
 (function() {
   'use strict';
   var port = null;
   var statusEl = document.getElementById('status');
   function setStatus(msg) { statusEl.textContent = msg; }
+${boardDemoJs}
 
   // Handshake TOOLHOST: host.hello arriva su window con la MessagePort;
   // tool.ready risponde SULLA PORTA ecoando il nonce. Mai token in URL.
@@ -132,13 +172,16 @@ function buildEntryHtml(name: string): string {
     if (data.method === 'host.hello' && ev.ports && ev.ports.length > 0) {
       port = ev.ports[0];
       var params = data.params || {};
-      port.onmessage = function (e) {
+      port.addEventListener('message', function onReady(e) {
         var msg = e.data;
         if (msg && msg.id === 'ready-1' && msg.result) {
+          port.removeEventListener('message', onReady);
           // result di tool.ready: bearer + capabilities concesse
           setStatus('pronto — capabilities: ' + Object.keys(msg.result.grantedCaps || {}).join(', '));
+          onGranted(msg.result.grantedCaps);
         }
-      };
+      });
+      port.start();
       port.postMessage({
         jsonrpc: '2.0',
         id: 'ready-1',
@@ -226,7 +269,9 @@ export async function scaffoldPlugin(
   const manifestJson = JSON.stringify(manifestObj)
 
   const signatureB64 = await signManifestBytes(manifestJson, keys.privateKeyPkcs8B64)
-  const entryHtml = buildEntryHtml(parsed.name)
+  // Surface primaria = la PRIMA dichiarata: decide il template dell'entry.
+  const primarySurface: ScaffoldSurface = (parsed.surfaces ?? ["panel"])[0]
+  const entryHtml = buildEntryHtml(parsed.name, primarySurface)
   const zipBytes = buildStoreZip([
     { path: "entry.html", data: new TextEncoder().encode(entryHtml) },
   ])
