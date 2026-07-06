@@ -14,7 +14,7 @@
 import { z } from "zod"
 import { ToolManifestSchema } from "../../toolhost-protocol/manifest.ts"
 import type { ToolManifest } from "../../toolhost-protocol/manifest.ts"
-import { listInstalledTools, manifestPath } from "../installer.ts"
+import { listInstalledTools, verifyInstalledTool } from "../installer.ts"
 import type { InstallerStore } from "../installer.ts"
 import { PluginManager } from "../pluginManager.ts"
 import type { PluginState } from "../pluginManager.ts"
@@ -51,23 +51,25 @@ export async function buildLocalCatalog(store: InstallerStore): Promise<LocalCat
   const problems: LocalCatalogProblem[] = []
 
   for (const toolId of (await listInstalledTools(store)).sort()) {
-    try {
-      const blob = await store.read(manifestPath(toolId))
-      if (blob === null) throw new Error("manifest.json assente")
-      const manifest = ToolManifestSchema.parse(JSON.parse(await blob.text()))
-      entries.push({
-        toolId,
-        name: manifest.name,
-        version: manifest.version,
-        ...(manifest.kind !== undefined ? { kind: manifest.kind } : {}),
-        ...(manifest.author !== undefined ? { author: manifest.author } : {}),
-        ...(manifest.visibility !== undefined ? { visibility: manifest.visibility } : {}),
-        ...(manifest.license !== undefined ? { license: manifest.license } : {}),
-        state: await pm.getState(toolId),
-      })
-    } catch (error) {
-      problems.push({ toolId, problem: error instanceof Error ? error.message : String(error) })
+    // Reverify fail-closed (Codex P1.1): firma ed25519 sui byte salvati +
+    // id match + install record. Un manifest alterato post-install finisce
+    // in problems[] col motivo — mai una entry trusted.
+    const verified = await verifyInstalledTool(store, toolId)
+    if (!verified.ok) {
+      problems.push({ toolId, problem: `${verified.reason}: ${verified.detail}` })
+      continue
     }
+    const manifest = verified.manifest
+    entries.push({
+      toolId,
+      name: manifest.name,
+      version: manifest.version,
+      ...(manifest.kind !== undefined ? { kind: manifest.kind } : {}),
+      ...(manifest.author !== undefined ? { author: manifest.author } : {}),
+      ...(manifest.visibility !== undefined ? { visibility: manifest.visibility } : {}),
+      ...(manifest.license !== undefined ? { license: manifest.license } : {}),
+      state: await pm.getState(toolId),
+    })
   }
 
   return { entries, problems }
