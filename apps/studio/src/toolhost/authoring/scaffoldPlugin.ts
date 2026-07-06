@@ -71,6 +71,17 @@ export const ScaffoldSpecSchema = z.strictObject({
   surfaces: z.array(SurfaceSchema).min(1).optional(),
   capabilities: CapabilitiesSchema.optional(),
   publisherId: z.string().min(1).optional(),
+  // Campi marketplace (#72), passthrough opzionale: stessa forma del manifest
+  // (la grammatica resta UNA — quella di ToolManifestSchema, ri-validata al
+  // self-check pre-firma). Assenza = manifest legacy, nessuna chiave emessa.
+  author: z
+    .strictObject({
+      name: z.string().min(1).max(100),
+      url: z.string().url().optional(),
+    })
+    .optional(),
+  visibility: z.enum(["private", "unlisted", "public"]).optional(),
+  license: z.string().min(1).max(100).optional(),
 })
 export type ScaffoldSpec = z.infer<typeof ScaffoldSpecSchema>
 
@@ -254,6 +265,10 @@ export async function scaffoldPlugin(
     protocol: ">=1.0 <2.0",
     contract: ">=1.0 <2.0",
     kind: parsed.kind ?? ("plugin" as const),
+    // Marketplace (#72): emessi SOLO se dichiarati (assenza = legacy).
+    ...(parsed.author !== undefined ? { author: parsed.author } : {}),
+    ...(parsed.visibility !== undefined ? { visibility: parsed.visibility } : {}),
+    ...(parsed.license !== undefined ? { license: parsed.license } : {}),
     entry: "entry.html",
     surfaces: parsed.surfaces ?? (["panel"] as const),
     capabilities,
