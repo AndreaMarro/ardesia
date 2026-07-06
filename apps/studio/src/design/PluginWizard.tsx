@@ -15,6 +15,7 @@
 
 import { useMemo, useRef, useState } from "react"
 import { isValidToolId } from "../toolhost-protocol/manifest.ts"
+import { CapabilitiesSchema } from "../toolhost-protocol/capabilities.ts"
 import type { Capabilities } from "../toolhost-protocol/capabilities.ts"
 import {
   generateDevKeypair,
@@ -68,12 +69,21 @@ const CAP_CHOICES = [
 ] as const
 type CapKey = (typeof CAP_CHOICES)[number]["key"]
 
-function buildCapabilities(selected: Set<CapKey>): Capabilities {
+function buildCapabilities(selected: Set<CapKey>, netFetchDomains: string[] | null): Capabilities {
   const caps: Capabilities = {}
   if (selected.has("board.read")) caps["board.read"] = {}
   if (selected.has("board.write")) caps["board.write"] = { scope: "own-embeds" }
   if (selected.has("ui")) caps.ui = {}
+  if (netFetchDomains !== null) caps["net.fetch"] = { domains: netFetchDomains }
   return caps
+}
+
+/** "api.scuola.it, cdn.scuola.it" → lista pulita; la validità la decide lo schema. */
+function parseNetFetchDomains(raw: string): string[] {
+  return raw
+    .split(",")
+    .map((domain) => domain.trim())
+    .filter((domain) => domain.length > 0)
 }
 
 export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
@@ -86,6 +96,11 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
   const [id, setId] = useState("")
   const [surface, setSurface] = useState<WizardSurface>("panel")
   const [caps, setCaps] = useState<Set<CapKey>>(new Set())
+  // net.fetch a parte dalle checkbox semplici: si concede SOLO con domini
+  // dichiarati (deny-by-default) — la validità arriva dallo STESSO
+  // CapabilitiesSchema del manifest (min 1 dominio, grammatica chiusa).
+  const [netFetchOn, setNetFetchOn] = useState(false)
+  const [netFetchDomainsRaw, setNetFetchDomainsRaw] = useState("")
   // Campi marketplace (#72): facoltativi, passthrough alla ScaffoldSpec.
   // Vuoti = manifest legacy, nessuna chiave emessa (regola dello scaffolder).
   const [authorName, setAuthorName] = useState("")
@@ -102,7 +117,12 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
   const previewRef = useRef<HTMLIFrameElement>(null)
 
   const idValid = isValidToolId(id)
-  const canGenerate = idValid && name.trim().length > 0 && !busy
+  const netFetchDomains = useMemo(() => parseNetFetchDomains(netFetchDomainsRaw), [netFetchDomainsRaw])
+  // Un solo punto di verità sulla grammatica: lo schema che valida il manifest.
+  const netFetchValid =
+    !netFetchOn ||
+    CapabilitiesSchema.safeParse({ "net.fetch": { domains: netFetchDomains } }).success
+  const canGenerate = idValid && name.trim().length > 0 && netFetchValid && !busy
   // Lint SEMPRE dal modulo reale sull'output corrente: un solo punto di verità.
   const lint = useMemo(
     () => (output === null ? null : lintAuthoring(output.manifest, output.entryHtml)),
@@ -133,7 +153,7 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
         id,
         name: name.trim(),
         surfaces: [surface],
-        capabilities: buildCapabilities(caps),
+        capabilities: buildCapabilities(caps, netFetchOn ? netFetchDomains : null),
         // author solo con nome (URL orfano non inventa un autore).
         ...(trimmedAuthor.length > 0
           ? { author: { name: trimmedAuthor, ...(trimmedUrl.length > 0 ? { url: trimmedUrl } : {}) } }
@@ -256,6 +276,30 @@ export default function PluginWizard({ deps }: { deps?: PluginWizardDeps }) {
                 <span>{choice.label}</span>
               </label>
             ))}
+            <label className="ow-cap">
+              <input
+                type="checkbox"
+                checked={netFetchOn}
+                onChange={() => setNetFetchOn((prev) => !prev)}
+              />
+              <span>net.fetch — contatta SOLO i domini dichiarati (proxy controllato)</span>
+            </label>
+            {netFetchOn && (
+              <label className="ow-field">
+                <span className="ow-label">Domini net.fetch (separati da virgola)</span>
+                <input
+                  value={netFetchDomainsRaw}
+                  onChange={(e) => setNetFetchDomainsRaw(e.target.value)}
+                  placeholder="api.scuola.it, cdn.scuola.it"
+                  data-valid={netFetchValid ? "1" : "0"}
+                />
+                {!netFetchValid && (
+                  <span className="ow-hint">
+                    serve almeno un dominio valido (es. api.scuola.it): la rete è deny-by-default
+                  </span>
+                )}
+              </label>
+            )}
           </fieldset>
 
           <details className="ow-marketplace">
