@@ -3,14 +3,15 @@
 // route reale"). Nessun bypass: firma ed25519 verificata da installTool sui
 // byte originali del manifest, lifecycle PluginManager, kill-switch overlay.
 //
-// La firma avviene a runtime con la chiave DEV first-party già checked-in
-// (sim/keys.json, stessa disciplina di sim/bundle.ts e del test E2E): comodità
-// di sviluppo per il tool Reference. Un plugin di marketplace arriva già
-// firmato offline dal publisher — questo modulo non è quel percorso.
+// La firma del Reference è una FIXTURE PREFIRMATA (sim/manifest.sig.json,
+// prodotta offline da sim/bundle.ts sui byte esatti di manifest-source.json):
+// nessuna chiave privata nel repo né nel bundle client (Codex P1.3, guard
+// statico in DevKeySecretGuard.test.ts). Un plugin di marketplace arriva
+// firmato offline dal publisher — questo percorso ne replica la disciplina.
 
 import manifestSourceRaw from "../../sim/manifest-source.json?raw"
 import entryHtml from "../../sim/entry.html?raw"
-import keys from "../../sim/keys.json"
+import manifestSig from "../../sim/manifest.sig.json"
 import { PluginManager } from "./pluginManager"
 import { isToolInstalled, verifyInstalledTool } from "./installer"
 import type { InstallerStore } from "./installer"
@@ -26,42 +27,14 @@ export type ToolLabGateResult =
   | { ok: true; manifest: ToolManifest; entryHtml: string }
   | { ok: false; reason: "install-failed" | "not-mountable"; detail: string }
 
-function base64ToBytes(b64: string): ArrayBuffer {
-  const bin = atob(b64)
-  const bytes = new Uint8Array(bin.length)
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
-  return bytes.buffer
-}
-
-function bytesToBase64(bytes: ArrayBuffer): string {
-  let bin = ""
-  for (const b of new Uint8Array(bytes)) bin += String.fromCharCode(b)
-  return btoa(bin)
-}
-
 /**
- * Manifest del Reference: i byte RAW checked-in, verbatim. Il pubkey del
- * manifest coincide già con sim/keys.json (che include il prefisso ed25519:);
- * la firma va calcolata su QUESTI byte, gli stessi che installTool verifica.
+ * Manifest del Reference: i byte RAW checked-in, verbatim. La fixture
+ * sim/manifest.sig.json è la firma ed25519 di QUESTI byte (gli stessi che
+ * installTool verifica) con la chiave del publisher dev — la firma è dato
+ * pubblico, la chiave privata che l'ha prodotta non è nel repo.
  */
 function buildManifestJson(): string {
   return manifestSourceRaw
-}
-
-async function signManifest(manifestJson: string): Promise<string> {
-  const privateKey = await crypto.subtle.importKey(
-    "pkcs8",
-    base64ToBytes(keys.privateKey),
-    { name: "Ed25519" },
-    false,
-    ["sign"],
-  )
-  const sig = await crypto.subtle.sign(
-    "Ed25519",
-    privateKey,
-    new TextEncoder().encode(manifestJson),
-  )
-  return bytesToBase64(sig)
 }
 
 /**
@@ -78,7 +51,7 @@ export async function installAndGateReferenceTool(
   const toolId = (JSON.parse(manifestJson) as { id: string }).id
   try {
     if (!(await isToolInstalled(store, toolId))) {
-      const signature = opts.signatureB64 ?? (await signManifest(manifestJson))
+      const signature = opts.signatureB64 ?? manifestSig.signatureB64
       await pm.install(manifestJson, new Blob([entryHtml]), signature)
     }
   } catch (error) {
