@@ -19,6 +19,7 @@ import type { InstallerStore } from "../installer.ts"
 import { PluginManager } from "../pluginManager.ts"
 import type { PluginState } from "../pluginManager.ts"
 import { readPluginPackage } from "../authoring/packageFile.ts"
+import { buildStoreZip } from "../authoring/storeZip.ts"
 
 export interface LocalCatalogEntry {
   toolId: string
@@ -85,6 +86,23 @@ export interface PluginPackagePreview {
    * un'altra chiave: l'UI DEVE marcarlo prima di proporre l'install.
    */
   signatureValid: boolean
+  /**
+   * true = nessuna evidenza di payload divergente: il manifest impegna
+   * integrity.bundleSha256 e il bundle ricostruito (come installPluginPackage
+   * lo ricostruirebbe) combacia, oppure il manifest è legacy senza integrity
+   * (vedi legacyIntegrityMissing). false = integrity impegnata ma bundle
+   * DIVERSO: l'install autoritativo fallirebbe — l'UI non deve proporlo
+   * come "firma valida" senza avvisare (Codex P2.1).
+   */
+  bundleIntegrityValid: boolean
+  /**
+   * true = manifest senza integrity.bundleSha256: la firma autentica solo il
+   * manifest, NON il payload runtime (back-compat pre-#115). Installabile ma
+   * con binding più debole — l'UI dovrebbe dichiararlo.
+   */
+  legacyIntegrityMissing: boolean
+  /** Cosa accetterebbe l'install autoritativo: firma valida E integrità ok. */
+  installable: boolean
 }
 
 function base64ToBytes(b64: string): Uint8Array {
@@ -144,5 +162,30 @@ export async function previewPluginPackage(pkg: Blob): Promise<PluginPackagePrev
     parsed.signatureB64,
     manifest.publisher.pubkey,
   )
-  return { manifest, signatureValid }
+
+  // Integrità payload (Codex P2.1): ricostruisce il bundle ESATTAMENTE come
+  // installPluginPackage (buildStoreZip sugli stessi file, deterministico) e
+  // confronta l'hash con quello impegnato nel manifest firmato. Senza questo,
+  // la preview mostrava "firma valida" anche con entry manomessa e l'install
+  // falliva solo dopo.
+  const legacyIntegrityMissing = manifest.integrity === undefined
+  let bundleIntegrityValid = true
+  if (!legacyIntegrityMissing) {
+    const bundleBytes = buildStoreZip(parsed.bundleFiles)
+    const bundleBuffer: ArrayBuffer = bundleBytes.buffer.slice(
+      bundleBytes.byteOffset,
+      bundleBytes.byteOffset + bundleBytes.byteLength,
+    ) as ArrayBuffer
+    const hashBytes = new Uint8Array(await crypto.subtle.digest("SHA-256", bundleBuffer))
+    const bundleHash = btoa(String.fromCharCode(...hashBytes))
+    bundleIntegrityValid = manifest.integrity!.bundleSha256 === bundleHash
+  }
+
+  return {
+    manifest,
+    signatureValid,
+    bundleIntegrityValid,
+    legacyIntegrityMissing,
+    installable: signatureValid && bundleIntegrityValid,
+  }
 }
