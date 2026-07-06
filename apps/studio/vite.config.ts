@@ -14,6 +14,9 @@ export default defineConfig({
       // Simulation Plugin SOLO via questo alias; i tipi stanno in
       // src/types/elab-tutor-plugin.d.ts (il plugin è JS con suite propria).
       '@elab-tutor-plugin': fileURLToPath(new URL('../../plugins/elab-tutor/src', import.meta.url)),
+      // Confine host→Pack (dati + metodo, slice 3 #68): sede canonica
+      // packs/elab-tutor; i tipi stanno in src/types/elab-pack.d.ts.
+      '@elab-pack': fileURLToPath(new URL('../../packs/elab-tutor', import.meta.url)),
     },
   },
   server: {

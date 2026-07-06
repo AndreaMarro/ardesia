@@ -9,15 +9,26 @@
 // primo LED", Vol.1 cap.6) — zero mock, stessa topologia del golden elettrico
 // (ElabSolver.test.ts).
 
-import { useEffect, useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { renderEmbeddable } from "@elab-tutor-plugin/plugin/renderEmbeddable"
 import EXPERIMENTS_VOL1 from "@elab-tutor-plugin/data/experiments-vol1"
 import type { ElabVolumeExperiment } from "@elab-tutor-plugin/data/experiments-vol1"
+import { getLessonPath } from "@elab-pack/data/lesson-paths"
 import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
 // Import con side-effect deliberato: registra l'entry del Simulation Plugin
 // (render + solve reale) nel registry — lo stesso dispatch usato dal canvas.
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import type { SolveResult, SolverExperiment } from "../../sim/solver/elabSolver"
+import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
+import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
+import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import type { EventLogStore } from "../lessonos/eventlog"
+import {
+  listLessonConcepts,
+  listMistakeObservations,
+  mistakeObservedBusEvent,
+  type MistakeObservation,
+} from "../lessonos/mistakeObservation"
 
 export const ELAB_LAB_EXPERIMENT_ID = "v1-cap6-esp1"
 
@@ -50,13 +61,74 @@ function dispatchSolve(experiment: ElabVolumeExperiment): SolveOutcome {
   }
 }
 
-export default function ElabLab() {
+interface ElabLabProps {
+  /**
+   * Event-log della lezione (iniettabile nei test); assente = creato qui
+   * (IndexedDB, fallback InMemory — la marcatura parte comunque).
+   */
+  eventLog?: EventLogStore
+}
+
+export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const canvasRef = useRef<HTMLDivElement>(null)
   const experiment = useMemo(findElabLabExperiment, [])
   const solve = useMemo(
     () => (experiment === null ? null : dispatchSolve(experiment)),
     [experiment],
   )
+
+  // Marcatura errori (emittente error.observed): dati dal Pack, concetto
+  // SCELTO dal docente (mai un mapping inventato), transito via bus tipizzato,
+  // persistenza via bindBusToEventLog. Fallimenti di registrazione VISIBILI.
+  const lessonPath = useMemo(() => getLessonPath(ELAB_LAB_EXPERIMENT_ID), [])
+  const observations = useMemo(
+    () => (lessonPath === null ? [] : listMistakeObservations(lessonPath)),
+    [lessonPath],
+  )
+  const concepts = useMemo(
+    () => (lessonPath === null ? [] : listLessonConcepts(lessonPath)),
+    [lessonPath],
+  )
+  const bus = useMemo(() => createTypedEventBus<ArdesiaEventMap>(), [])
+  const [log, setLog] = useState<EventLogStore | null>(eventLog ?? null)
+  const [conceptId, setConceptId] = useState<string | null>(null)
+  const [markedCount, setMarkedCount] = useState(0)
+  const [recordError, setRecordError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (eventLog !== undefined) return
+    let cancelled = false
+    void createEventLogStore().then((store) => {
+      if (!cancelled) setLog(store)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [eventLog])
+
+  useEffect(() => {
+    if (log === null) return
+    return bindBusToEventLog(bus, log, {
+      onRecordError: () =>
+        setRecordError("Errore osservato NON registrato nella memoria della lezione."),
+    })
+  }, [bus, log])
+
+  const selectedConcept = concepts.find((concept) => concept.conceptId === conceptId) ?? null
+
+  const markMistake = (observation: MistakeObservation) => {
+    if (selectedConcept === null || log === null) return
+    bus.emit(
+      "error.observed",
+      mistakeObservedBusEvent({
+        experimentId: ELAB_LAB_EXPERIMENT_ID,
+        observation,
+        concept: selectedConcept,
+        t: Date.now(),
+      }),
+    )
+    setMarkedCount((count) => count + 1)
+  }
 
   useEffect(() => {
     const node = canvasRef.current
@@ -142,6 +214,52 @@ export default function ElabLab() {
                 </div>
               )}
             </div>
+
+            {observations.length > 0 && (
+              <div
+                className="reference-tool-panel"
+                data-elab-lab-marcatura
+                style={{ maxWidth: 360 }}
+              >
+                <div className="reference-tool-panel-bar">
+                  errori osservati (CHIEDI → memoria della lezione)
+                </div>
+                <div style={{ padding: "4px 8px" }}>
+                  <fieldset style={{ border: 0, margin: 0, padding: 0 }}>
+                    <legend>Concetto coinvolto (scegli tu, non lo inventa il sistema):</legend>
+                    {concepts.map((concept) => (
+                      <label key={concept.conceptId} style={{ display: "block" }}>
+                        <input
+                          type="radio"
+                          name="elab-lab-concept"
+                          value={concept.conceptId}
+                          checked={conceptId === concept.conceptId}
+                          onChange={() => setConceptId(concept.conceptId)}
+                        />{" "}
+                        {concept.label}
+                      </label>
+                    ))}
+                  </fieldset>
+                  <div role="group" aria-label="Errori comuni della fase CHIEDI">
+                    {observations.map((observation) => (
+                      <button
+                        key={observation.errorId}
+                        type="button"
+                        data-mistake-id={observation.errorId}
+                        disabled={selectedConcept === null || log === null}
+                        title={observation.teacherResponse}
+                        onClick={() => markMistake(observation)}
+                        style={{ display: "block", margin: "4px 0" }}
+                      >
+                        {observation.mistake}
+                      </button>
+                    ))}
+                  </div>
+                  <div data-marked-count>errori segnati: {markedCount}</div>
+                  {recordError && <div role="alert">{recordError}</div>}
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
