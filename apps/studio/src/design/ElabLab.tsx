@@ -17,6 +17,10 @@ import {
   findExperimentById,
 } from "@elab-tutor-plugin/data/experiments-index"
 import {
+  filterVisibleExperiments,
+  isVisibleExperiment,
+} from "@elab-tutor-plugin/data/experiment-visibility"
+import {
   ELAB_LAB_DEFAULT_EXPERIMENT_ID,
   readElabLabExperimentId,
 } from "../store/elabLabView"
@@ -262,8 +266,11 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         <span className="st-name">
           <span className="st-name-text">ELAB Lab — Simulation Plugin (motore reale via registry)</span>
         </span>
-        {/* Parallelismo ai libri: un'opzione per OGNI esperimento del corpus.
-            La scelta naviga (?esperimento=) — la vista resta URL-driven. */}
+        {/* Disciplina Scene Forge: il picker offre SOLO la whitelist
+            VISIBLE_EXP_IDS (fonte di verità, selezione Andrea 25/05/2026).
+            La scelta naviga (?esperimento=) — la vista resta URL-driven e la
+            resurrezione via URL di un id fuori whitelist resta possibile:
+            in quel caso l'id corrente compare come voce disabilitata. */}
         <select
           data-elab-experiment-select
           value={experimentId}
@@ -274,11 +281,16 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
             window.location.assign(url.toString())
           }}
         >
-          {ALL_EXPERIMENTS.map((entry) => (
+          {filterVisibleExperiments(ALL_EXPERIMENTS).map((entry) => (
             <option key={entry.id} value={entry.id}>
               {entry.title}
             </option>
           ))}
+          {experiment !== null && !isVisibleExperiment(experimentId) && (
+            <option key={experimentId} value={experimentId} disabled>
+              {experiment.title} (fuori catalogo oggi)
+            </option>
+          )}
         </select>
         {experiment !== null && (
           <span className="st-chip-student st-chip-lesson" title="Esperimento del Pack ELAB">

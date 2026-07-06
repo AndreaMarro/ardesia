@@ -12,6 +12,7 @@ import ElabLab, {
 } from "../design/ElabLab"
 import { readElabLabExperimentId } from "../store/elabLabView"
 import { ALL_EXPERIMENTS } from "@elab-tutor-plugin/data/experiments-index"
+import { filterVisibleExperiments } from "@elab-tutor-plugin/data/experiment-visibility"
 import { InMemoryEventLog } from "../lessonos/eventlog"
 
 afterEach(() => {
@@ -58,8 +59,9 @@ describe("ElabLab con ?esperimento", () => {
     const select = container.querySelector<HTMLSelectElement>("select[data-elab-experiment-select]")
     expect(select).not.toBeNull()
     expect(select?.value).toBe("v1-cap6-esp2")
-    // Un'opzione per OGNI esperimento del corpus: parallelismo totale ai libri.
-    expect(select?.options.length).toBe(ALL_EXPERIMENTS.length)
+    // Disciplina Scene Forge: il picker offre SOLO la whitelist (8 visibili
+    // oggi), non il corpus intero — il corpus resta montabile via URL.
+    expect(select?.options.length).toBe(filterVisibleExperiments(ALL_EXPERIMENTS).length)
   })
 
   it("id ignoto: stato no-experiment dichiarato", async () => {
