@@ -74,9 +74,16 @@ describe("ToolLab component", () => {
       entryHtml: "<html><body>tool</body></html>",
     })
     await renderToolLab()
-    const frame = container!.querySelector("iframe")
-    expect(frame).not.toBeNull()
-    const sandbox = frame!.getAttribute("sandbox") ?? ""
+    // L'iframe monta solo DOPO la callback excalidrawAPI (apiReady), che sotto
+    // carico arriva oltre il settle dello stato gate: si attende l'iframe
+    // stesso, non lo stato (flake riprodotto firsthand: state
+    // "mounted-gate-passed" con iframe non ancora nel DOM).
+    const frame = await vi.waitFor(() => {
+      const el = container!.querySelector("iframe")
+      expect(el).not.toBeNull()
+      return el!
+    })
+    const sandbox = frame.getAttribute("sandbox") ?? ""
     expect(sandbox).toContain("allow-scripts")
     expect(sandbox).not.toContain("allow-popups")
     expect(sandbox).not.toContain("allow-top-navigation")
