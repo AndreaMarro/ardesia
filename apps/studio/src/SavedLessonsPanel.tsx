@@ -16,10 +16,21 @@ import {
   type QuizQuestion,
   type SavedLessonSummary,
 } from "./lessonos/apiClient"
+import type { EventLogStore } from "./lessonos/eventlog"
+import { recordQuizAttempt } from "./lessonos/quizAttemptProducer"
 import EmptyState from "./design/EmptyState"
 
 interface SavedLessonsPanelProps {
   client: LessonOsApiClient
+  /**
+   * Event-log della lezione: se presente, ogni correzione riuscita viene
+   * registrata come `quiz.attempted` (producer). Assente = solo presentazione.
+   */
+  attemptLog?: EventLogStore
+  /** Room della lezione per l'evidence `lesson:<room>@<t>`; mai inventata. */
+  room?: string
+  /** Studente cui attribuire i tentativi; assente = non attribuito. */
+  studentId?: string
 }
 
 /** Messaggio docente per i guasti HTTP: mai status code nudi in UI. */
@@ -38,7 +49,12 @@ function answerableQuestions(quiz: QuizQuestion[]): QuizQuestion[] {
   return quiz.filter((q) => q.options && q.options.length > 0)
 }
 
-export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
+export default function SavedLessonsPanel({
+  client,
+  attemptLog,
+  room,
+  studentId,
+}: SavedLessonsPanelProps) {
   const [lessons, setLessons] = useState<SavedLessonSummary[] | null>(null)
   const [listError, setListError] = useState<string | null>(null)
   const [selected, setSelected] = useState<SavedLessonSummary | null>(null)
@@ -54,6 +70,9 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
   const [grade, setGrade] = useState<QuizGradeResponse | null>(null)
   const [gradeError, setGradeError] = useState<string | null>(null)
   const [grading, setGrading] = useState(false)
+  // Registrazione del tentativo sull'event-log: un guasto qui NON tocca la
+  // correzione mostrata, ma resta visibile — mai una memoria persa in silenzio.
+  const [recordError, setRecordError] = useState<string | null>(null)
   // Token di generazione: ogni openLesson lo incrementa. Le risposte async
   // (quiz/flashcard/grade) applicano lo stato SOLO se il token è ancora il loro
   // — così una risposta lenta della lezione A non sovrascrive la lezione B
@@ -91,6 +110,7 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     setAnswers({})
     setGrade(null)
     setGradeError(null)
+    setRecordError(null)
   }
 
   const openLesson = (lesson: SavedLessonSummary) => {
@@ -130,6 +150,7 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
     if (!selected) return
     // Lega la correzione alla lezione corrente: se il docente cambia lezione
     // mentre grade è in volo, l'esito NON si applica alla lezione sbagliata.
+    const lesson = selected
     const token = requestToken.current
     const fresh = () => mounted.current && requestToken.current === token
     setGrading(true)
@@ -139,8 +160,25 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
         selected.saved_id,
         Object.entries(answers).map(([atom_id, selected_index]) => ({ atom_id, selected_index })),
       )
-      .then((response) => {
+      .then(async (response) => {
         if (fresh()) setGrade(response)
+        if (!attemptLog) return
+        // Producer quiz.attempted: il fatto è la correzione del backend; la
+        // label è il titolo docente della lezione salvata (mai l'id API nudo).
+        try {
+          await recordQuizAttempt(attemptLog, response, {
+            t: Date.now(),
+            labels: { it: lesson.title ?? lesson.lesson_id },
+            ...(room !== undefined ? { room } : {}),
+            ...(studentId !== undefined ? { studentId } : {}),
+          })
+        } catch {
+          if (fresh()) {
+            setRecordError(
+              "Correzione riuscita, ma il tentativo non è stato registrato nella memoria della lezione.",
+            )
+          }
+        }
       })
       .catch((err: unknown) => {
         if (fresh()) setGradeError(describeError(err))
@@ -271,6 +309,9 @@ export default function SavedLessonsPanel({ client }: SavedLessonsPanelProps) {
                   <p className="saved-lessons-score" role="status">
                     {correctCount} risposte corrette su {grade.results.length}
                   </p>
+                  {recordError && (
+                    <EmptyState tone="error" compact title="Tentativo non registrato" detail={recordError} />
+                  )}
                   <button type="button" onClick={resetAttempt}>
                     Riprova il quiz
                   </button>
