@@ -49,5 +49,23 @@ test("ELAB Lab: sim reale + marcatura errore comune, console pulita", async ({ p
     marcatura.getByText("Errore osservato NON registrato", { exact: false }),
   ).toHaveCount(0)
 
+  // Segmento export: la memoria della lezione scende come JSON versionato
+  // e contiene l'error.observed appena marcato (chiude il §8 sulla vista).
+  const downloadPromise = page.waitForEvent("download")
+  await page.getByRole("button", { name: "Esporta memoria (JSON)" }).click()
+  const download = await downloadPromise
+  expect(download.suggestedFilename()).toMatch(/^lezione-v1-cap6-esp1-.*\.json$/)
+  const stream = await download.createReadStream()
+  const chunks: Buffer[] = []
+  for await (const chunk of stream) chunks.push(chunk as Buffer)
+  const exported = JSON.parse(Buffer.concat(chunks).toString("utf8")) as {
+    format: string
+    experimentId?: string
+    events: Array<{ kind: string }>
+  }
+  expect(exported.format).toBe("ardesia.lesson-memory/1")
+  expect(exported.experimentId).toBe("v1-cap6-esp1")
+  expect(exported.events.map((event) => event.kind)).toContain("error.observed")
+
   expect(consoleErrors).toEqual([])
 })
