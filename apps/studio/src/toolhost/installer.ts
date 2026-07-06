@@ -257,3 +257,108 @@ export async function getInstallRecord(store: InstallerStore, toolId: string): P
     return null
   }
 }
+
+// ---- Reverify post-install (Codex P1.1) ----
+
+export type InstalledToolVerificationFailure =
+  | "not-installed"
+  | "install-record-missing"
+  | "install-record-invalid"
+  | "record-id-mismatch"
+  | "manifest-invalid"
+  | "manifest-id-mismatch"
+  | "signature-invalid"
+  | "integrity-mismatch"
+
+export type InstalledToolVerification =
+  | { ok: true; manifest: ToolManifest }
+  | { ok: false; reason: InstalledToolVerificationFailure; detail: string }
+
+/**
+ * Riverifica la catena di trust di un tool GIÀ installato, sui byte salvati.
+ * installTool verifica at-install; questo helper è la difesa post-install:
+ * un write locale a manifest.json (id spostato, capability extra, contenuto
+ * riscritto) non deve mai produrre un manifest trusted, né aggirare la
+ * kill-list sull'id originale (il check manifest.id === toolId chiude
+ * l'id-shift: la kill-list è indicizzata per toolId ma il runtime guarda
+ * manifest.id).
+ *
+ * Catena: install.json parse → record.toolId === toolId → manifest parse →
+ * manifest.id === toolId → firma ed25519 sui byte salvati (record.signature,
+ * manifest.publisher.pubkey) → integrity.bundleSha256 === record.bundleHash
+ * (solo se il manifest la impegna; manifest legacy senza integrity = nessun
+ * impegno, back-compat come installTool).
+ *
+ * Limite dichiarato: la catena è auto-referenziale dentro lo store (la pubkey
+ * sta nel manifest stesso) — un attaccante che riscrive in modo coerente
+ * manifest + install.json non è rilevabile senza un trust anchor fuori dallo
+ * store (publisher trust store / firma offline, fuori scope). Difende da
+ * tamper parziale, id-shift e corruzione. Fail-closed, mai throw per tamper:
+ * il chiamante decide la superficie d'errore (problems[], not-mountable, …).
+ */
+export async function verifyInstalledTool(
+  store: InstallerStore,
+  toolId: string,
+): Promise<InstalledToolVerification> {
+  if (!isValidToolId(toolId)) {
+    return { ok: false, reason: "not-installed", detail: `invalid tool id: ${toolId}` }
+  }
+  const manifestBlob = await store.read(manifestPath(toolId))
+  if (manifestBlob === null) {
+    return { ok: false, reason: "not-installed", detail: `no manifest.json for "${toolId}"` }
+  }
+  const recordBlob = await store.read(installRecordPath(toolId))
+  if (recordBlob === null) {
+    return { ok: false, reason: "install-record-missing", detail: `no install.json for "${toolId}"` }
+  }
+  let record: InstallRecord
+  try {
+    record = InstallRecordSchema.parse(JSON.parse(await recordBlob.text()))
+  } catch (error) {
+    return { ok: false, reason: "install-record-invalid", detail: String(error) }
+  }
+  if (record.toolId !== toolId) {
+    return {
+      ok: false,
+      reason: "record-id-mismatch",
+      detail: `install.json is for "${record.toolId}", expected "${toolId}"`,
+    }
+  }
+  const manifestJson = await manifestBlob.text()
+  let manifest: ToolManifest
+  try {
+    manifest = ToolManifestSchema.parse(JSON.parse(manifestJson))
+  } catch (error) {
+    return { ok: false, reason: "manifest-invalid", detail: String(error) }
+  }
+  if (manifest.id !== toolId) {
+    return {
+      ok: false,
+      reason: "manifest-id-mismatch",
+      detail: `manifest.id is "${manifest.id}", expected "${toolId}" (id shift = kill-list bypass)`,
+    }
+  }
+  let signatureOk = false
+  try {
+    const pubkeyBytes = extractPubkeyBytes(manifest.publisher.pubkey)
+    const sigBytes = decodeSignature(record.signature)
+    signatureOk = await verifyEd25519(new TextEncoder().encode(manifestJson), sigBytes, pubkeyBytes)
+  } catch {
+    signatureOk = false
+  }
+  if (!signatureOk) {
+    return {
+      ok: false,
+      reason: "signature-invalid",
+      detail: `stored manifest bytes do not verify against install.json signature for "${toolId}"`,
+    }
+  }
+  if (manifest.integrity !== undefined && manifest.integrity.bundleSha256 !== record.bundleHash) {
+    return {
+      ok: false,
+      reason: "integrity-mismatch",
+      detail: `manifest commits to a bundle hash different from install.json bundleHash for "${toolId}"`,
+    }
+  }
+  return { ok: true, manifest }
+}

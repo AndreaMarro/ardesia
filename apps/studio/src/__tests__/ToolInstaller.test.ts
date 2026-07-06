@@ -16,6 +16,7 @@ import {
   isToolInstalled,
   listInstalledTools,
   getInstallRecord,
+  verifyInstalledTool,
   manifestPath,
   bundlePath,
   installRecordPath,
@@ -384,5 +385,138 @@ describe("installer", () => {
       privacy: { dataOut: "none" },
     }
     expect(() => ToolManifestSchema.parse(raw)).toThrow()
+  })
+})
+
+// ---------- verifyInstalledTool (reverify post-install, Codex P1.1) ----------
+
+describe("verifyInstalledTool", () => {
+  const TOOL = "com.example.test-tool"
+
+  /** Install legittimo via pipeline reale; ritorna il materiale di firma. */
+  async function installLegit(store: MemoryInstallerStore, overrides?: Record<string, unknown>) {
+    const { pubkeyB64, privateKey } = await generateKeypair()
+    const { manifestJson, signature } = await makeSignedManifest(pubkeyB64, privateKey, overrides)
+    await installTool(store, manifestJson, new Blob(["bundle-bytes"]), signature, () => 1000)
+    return { pubkeyB64, privateKey, manifestJson, signature }
+  }
+
+  it("install legittimo → ok:true col manifest salvato", async () => {
+    const store = new MemoryInstallerStore()
+    await installLegit(store)
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v.ok).toBe(true)
+    if (!v.ok) return
+    expect(v.manifest.id).toBe(TOOL)
+  })
+
+  it("non installato → not-installed", async () => {
+    const store = new MemoryInstallerStore()
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "not-installed" })
+  })
+
+  it("toolId non valido → not-installed (non throw)", async () => {
+    const store = new MemoryInstallerStore()
+    const v = await verifyInstalledTool(store, "invalid id!")
+    expect(v).toMatchObject({ ok: false, reason: "not-installed" })
+  })
+
+  it("install.json assente → install-record-missing (install parziale mai trusted)", async () => {
+    const store = new MemoryInstallerStore()
+    await installLegit(store)
+    await store.delete(installRecordPath(TOOL))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "install-record-missing" })
+  })
+
+  it("install.json corrotto → install-record-invalid", async () => {
+    const store = new MemoryInstallerStore()
+    await installLegit(store)
+    await store.write(installRecordPath(TOOL), new Blob(["{broken"]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "install-record-invalid" })
+  })
+
+  it("installRecord.toolId diverso → record-id-mismatch", async () => {
+    const store = new MemoryInstallerStore()
+    await installLegit(store)
+    const rec = JSON.parse(await (await store.read(installRecordPath(TOOL)))!.text()) as Record<string, unknown>
+    rec.toolId = "com.other.tool"
+    await store.write(installRecordPath(TOOL), new Blob([JSON.stringify(rec)]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "record-id-mismatch" })
+  })
+
+  it("manifest.json corrotto → manifest-invalid", async () => {
+    const store = new MemoryInstallerStore()
+    await installLegit(store)
+    await store.write(manifestPath(TOOL), new Blob(["{not json"]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "manifest-invalid" })
+  })
+
+  it("manifest.id spostato (kill-list bypass) → manifest-id-mismatch anche con firma valida", async () => {
+    const store = new MemoryInstallerStore()
+    const { pubkeyB64, privateKey } = await installLegit(store)
+    // Manifest schema-valido RIFIRMATO con la stessa chiave ma id diverso:
+    // nemmeno una firma valida deve salvare un id shift (la kill-list
+    // sull'id originale non lo coprirebbe più).
+    const { manifestJson: shifted } = await makeSignedManifest(pubkeyB64, privateKey, {
+      id: "com.attacker.shifted",
+    })
+    await store.write(manifestPath(TOOL), new Blob([shifted]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "manifest-id-mismatch" })
+  })
+
+  it("manifest riscritto stesso id, capability extra, non rifirmato → signature-invalid", async () => {
+    const store = new MemoryInstallerStore()
+    const { manifestJson } = await installLegit(store)
+    const escalated = manifestJson.replace(
+      '"capabilities":{"board.read":{}}',
+      '"capabilities":{"board.read":{},"board.write":{"scope":"own-embeds"}}',
+    )
+    expect(escalated).not.toBe(manifestJson) // il replace deve aver morso
+    await store.write(manifestPath(TOOL), new Blob([escalated]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "signature-invalid" })
+  })
+
+  it("integrity firmata ma installRecord.bundleHash divergente → integrity-mismatch", async () => {
+    const store = new MemoryInstallerStore()
+    const bundle = new Blob(["bundle-bytes"])
+    const sha = btoa(
+      String.fromCharCode(
+        ...new Uint8Array(await crypto.subtle.digest("SHA-256", await bundle.arrayBuffer())),
+      ),
+    )
+    const { pubkeyB64, privateKey } = await generateKeypair()
+    const { manifestJson, signature } = await makeSignedManifest(pubkeyB64, privateKey, {
+      integrity: { bundleSha256: sha },
+    })
+    await installTool(store, manifestJson, bundle, signature, () => 1000)
+    const rec = JSON.parse(await (await store.read(installRecordPath(TOOL)))!.text()) as Record<string, unknown>
+    rec.bundleHash = "AAAA/tampered/hash="
+    await store.write(installRecordPath(TOOL), new Blob([JSON.stringify(rec)]))
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v).toMatchObject({ ok: false, reason: "integrity-mismatch" })
+  })
+
+  it("integrity firmata e record coerente → ok:true", async () => {
+    const store = new MemoryInstallerStore()
+    const bundle = new Blob(["bundle-bytes"])
+    const sha = btoa(
+      String.fromCharCode(
+        ...new Uint8Array(await crypto.subtle.digest("SHA-256", await bundle.arrayBuffer())),
+      ),
+    )
+    const { pubkeyB64, privateKey } = await generateKeypair()
+    const { manifestJson, signature } = await makeSignedManifest(pubkeyB64, privateKey, {
+      integrity: { bundleSha256: sha },
+    })
+    await installTool(store, manifestJson, bundle, signature, () => 1000)
+    const v = await verifyInstalledTool(store, TOOL)
+    expect(v.ok).toBe(true)
   })
 })
