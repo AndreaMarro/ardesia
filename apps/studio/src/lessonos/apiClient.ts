@@ -137,7 +137,11 @@ export class LessonOsApiClient {
   constructor(options: LessonOsApiClientOptions) {
     this.baseUrl = options.baseUrl.replace(/\/+$/, "")
     this.token = options.token
-    this.fetchImpl = options.fetch ?? fetch
+    // Bind esplicito: un riferimento nudo a `fetch` invocato come
+    // this.fetchImpl(...) perde il receiver window -> "Illegal invocation"
+    // in Chromium (bug reale visto dall'e2e saved-lessons, non dai test
+    // jsdom dove fetch e' sempre stubbato/iniettato).
+    this.fetchImpl = options.fetch ?? globalThis.fetch.bind(globalThis)
   }
 
   async health(): Promise<HealthResponse> {

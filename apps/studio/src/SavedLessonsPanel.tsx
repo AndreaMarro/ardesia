@@ -84,12 +84,17 @@ export default function SavedLessonsPanel({
   // smontato (warning React + micro-leak). La lista usa già `cancelled`; qui
   // serve un ref perché le callback vivono fuori dall'effetto.
   const mounted = useRef(true)
-  useEffect(
-    () => () => {
+  // StrictMode-safe: il mount di sviluppo e' doppio (mount -> cleanup ->
+  // re-mount) e il ref sopravvive al ciclo — senza il ripristino a true nel
+  // corpo dell'effetto, mounted resterebbe false per sempre e fresh()
+  // scarterebbe OGNI risposta (quiz bloccato su "Carico..."; bug reale visto
+  // dall'e2e saved-lessons, invisibile ai test jsdom senza StrictMode).
+  useEffect(() => {
+    mounted.current = true
+    return () => {
       mounted.current = false
-    },
-    [],
-  )
+    }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
