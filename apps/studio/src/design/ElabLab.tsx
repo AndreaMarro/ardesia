@@ -11,8 +11,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { renderEmbeddable } from "@elab-tutor-plugin/plugin/renderEmbeddable"
-import EXPERIMENTS_VOL1 from "@elab-tutor-plugin/data/experiments-vol1"
 import type { ElabVolumeExperiment } from "@elab-tutor-plugin/data/experiments-vol1"
+import {
+  ALL_EXPERIMENTS,
+  findExperimentById,
+} from "@elab-tutor-plugin/data/experiments-index"
+import {
+  ELAB_LAB_DEFAULT_EXPERIMENT_ID,
+  readElabLabExperimentId,
+} from "../store/elabLabView"
 import { getLessonPath } from "@elab-pack/data/lesson-paths"
 import { getVolumeLabel, getVolumeRef } from "@elab-pack/data/volume-references"
 import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
@@ -35,11 +42,16 @@ import {
   lessonMemoryFileName,
 } from "../lessonos/exportLessonMemory"
 
-export const ELAB_LAB_EXPERIMENT_ID = "v1-cap6-esp1"
+export const ELAB_LAB_EXPERIMENT_ID = ELAB_LAB_DEFAULT_EXPERIMENT_ID
 
-/** L'esperimento reale del Pack montato dalla vista (null = dato assente). */
-export function findElabLabExperiment(): ElabVolumeExperiment | null {
-  return EXPERIMENTS_VOL1.experiments.find((e) => e.id === ELAB_LAB_EXPERIMENT_ID) ?? null
+/**
+ * L'esperimento reale del corpus (88, vol.1-3) montato dalla vista.
+ * null = id ignoto (fail-closed, mai un fallback silenzioso sul default).
+ */
+export function findElabLabExperiment(
+  experimentId: string = ELAB_LAB_EXPERIMENT_ID,
+): ElabVolumeExperiment | null {
+  return findExperimentById(experimentId)
 }
 
 /** Proiezione dell'esperimento Pack sul contratto del solve (solo i campi elettrici). */
@@ -76,7 +88,8 @@ interface ElabLabProps {
 
 export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const canvasRef = useRef<HTMLDivElement>(null)
-  const experiment = useMemo(findElabLabExperiment, [])
+  const experimentId = useMemo(readElabLabExperimentId, [])
+  const experiment = useMemo(() => findElabLabExperiment(experimentId), [experimentId])
   const solve = useMemo(
     () => (experiment === null ? null : dispatchSolve(experiment)),
     [experiment],
@@ -88,9 +101,9 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   // Citazione dal libro (Pack volume-references, estratto dai PDF ufficiali):
   // mostrata VERBATIM. Riferimento assente = pannello assente (Principio
   // Zero: mai testo inventato al suo posto).
-  const bookRef = useMemo(() => getVolumeRef(ELAB_LAB_EXPERIMENT_ID), [])
-  const bookLabel = useMemo(() => getVolumeLabel(ELAB_LAB_EXPERIMENT_ID), [])
-  const lessonPath = useMemo(() => getLessonPath(ELAB_LAB_EXPERIMENT_ID), [])
+  const bookRef = useMemo(() => getVolumeRef(experimentId), [experimentId])
+  const bookLabel = useMemo(() => getVolumeLabel(experimentId), [experimentId])
+  const lessonPath = useMemo(() => getLessonPath(experimentId), [experimentId])
   const observations = useMemo(
     () => (lessonPath === null ? [] : listMistakeObservations(lessonPath)),
     [lessonPath],
@@ -131,7 +144,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     bus.emit(
       "error.observed",
       mistakeObservedBusEvent({
-        experimentId: ELAB_LAB_EXPERIMENT_ID,
+        experimentId,
         observation,
         concept: selectedConcept,
         t: Date.now(),
@@ -146,7 +159,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const exportMemory = async () => {
     if (log === null) return
     const data = await buildLessonMemoryExport(log, {
-      experimentId: ELAB_LAB_EXPERIMENT_ID,
+      experimentId,
       now: Date.now(),
     })
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
@@ -182,8 +195,26 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         <span className="st-name">
           <span className="st-name-text">ELAB Lab — Simulation Plugin (motore reale via registry)</span>
         </span>
+        {/* Parallelismo ai libri: un'opzione per OGNI esperimento del corpus.
+            La scelta naviga (?esperimento=) — la vista resta URL-driven. */}
+        <select
+          data-elab-experiment-select
+          value={experimentId}
+          title="Scegli l'esperimento del libro"
+          onChange={(event) => {
+            const url = new URL(window.location.href)
+            url.searchParams.set("esperimento", event.target.value)
+            window.location.assign(url.toString())
+          }}
+        >
+          {ALL_EXPERIMENTS.map((entry) => (
+            <option key={entry.id} value={entry.id}>
+              {entry.title}
+            </option>
+          ))}
+        </select>
         {experiment !== null && (
-          <span className="st-chip-student st-chip-lesson" title="Esperimento del Pack ELAB (Vol.1 cap.6 esp.1)">
+          <span className="st-chip-student st-chip-lesson" title="Esperimento del Pack ELAB">
             {experiment.title}
           </span>
         )}
@@ -193,7 +224,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         {experiment === null && (
           <div role="alert" className="reference-tool-panel" style={{ padding: 16 }}>
             <strong>Esperimento del Pack non trovato (fail-closed).</strong>
-            <div>id atteso: {ELAB_LAB_EXPERIMENT_ID}</div>
+            <div>id richiesto: {experimentId}</div>
           </div>
         )}
 

@@ -69,3 +69,32 @@ test("ELAB Lab: sim reale + marcatura errore comune, console pulita", async ({ p
 
   expect(consoleErrors).toEqual([])
 })
+
+test("ELAB Lab parallelismo ai libri: ?esperimento monta un ALTRO esperimento reale", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text())
+  })
+  page.on("pageerror", (error) => {
+    consoleErrors.push(`pageerror: ${error.message}`)
+  })
+
+  await page.goto("/?vista=elab-lab&esperimento=v1-cap6-esp2")
+
+  await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
+  await expect(page.locator(".st-chip-lesson")).toContainText("LED senza resistore")
+  await expect(page.locator("select[data-elab-experiment-select]")).toHaveValue("v1-cap6-esp2")
+
+  // Solve reale del motore: esito ok e LED SPENTO — è l'esperimento
+  // "cosa NON fare" del libro, il fatto è del solver, non della vista.
+  await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })
+  await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "0")
+
+  // Citazione e marcatura seguono l'esperimento (dati Pack, mai inventati).
+  await expect(page.locator("[data-elab-lab-citation]")).toBeVisible()
+  await expect(page.locator("[data-elab-lab-marcatura]")).toBeVisible()
+
+  expect(consoleErrors).toEqual([])
+})
