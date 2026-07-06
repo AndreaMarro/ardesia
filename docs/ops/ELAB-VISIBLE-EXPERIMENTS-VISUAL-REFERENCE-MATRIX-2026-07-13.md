@@ -1,0 +1,93 @@
+# ELAB — Visual Reference Matrix esperimenti visibili (8/8) — 2026-07-13
+
+> Fonte di verità visibilità: `plugins/elab-tutor/src/data/experiment-visibility.js` → `VISIBLE_EXP_IDS` (selezione Andrea verbatim 25/05/2026). Questa matrice copre SOLO gli 8 visibili. Baseline: `origin/main` = `80520005` (merge #130). Sessione FABLE NOTTE-12.
+
+## Metodo (riproducibile, zero dati inventati)
+
+- Pagine-libro identificate da `packs/elab-tutor/data/volume-references.js` (bookPage) e verificate firsthand col footer stampato sulla pagina estratta.
+- PDF sorgente = i volumi INTERNI al plugin (`plugins/elab-tutor/public/volumes/volume{1,2,3}.pdf`), NON i file in `VOLUME 3/CONTENUTI/` (vol3 lì è build diversa, v0.8.1).
+- Estrazione pagina: `pdftoppm -png -r 150 -f <pag> -l <pag> volumeN.pdf out` (poppler 26.04.0, MIT-clean, nessuna dipendenza AGPL).
+- Hash: `shasum -a 256`. Dimensioni: `sips -g pixelWidth -g pixelHeight`.
+- Nessun testo dei volumi riprodotto qui; solo path/pagina/hash/misure.
+
+### Sorgenti canoniche (sha256)
+
+| Sorgente | bytes | sha256 |
+|---|---:|---|
+| `plugins/elab-tutor/public/volumes/volume1.pdf` | 27.661.848 | `b08b8ec6b8c585510aa2a649d6cc028f575e88c8baa1128f4cb7c7b4c3f5fd1a` |
+| `plugins/elab-tutor/public/volumes/volume2.pdf` | 17.575.882 | `2aebce16d6a8943087ae4caf5ad5f799ba6175e374b2bd32b16266713457369d` |
+| `plugins/elab-tutor/public/volumes/volume3.pdf` | 21.166.639 | `95a690ca3c1ee5ddec051447994638aef825e58a4835815a4e97ded66fc04bd4` |
+
+⚠️ `VOLUME 3/CONTENUTI/volumi-pdf/Manuale VOLUME 3 V0.8.1.pdf` ha sha diverso (`923777…`): NON usarlo come reference del plugin senza decisione esplicita.
+
+### Asset pagina già committati (reference reali in repo)
+
+| Asset | px | sha256 | Copre |
+|---|---|---|---|
+| `apps/studio/public/elab/manuals/vol1/page-030-esercizio-6-1.png` | 1497×1936 | `11318b5471882d3737629b79e24706ebcbbfc411b214db88eade7c878cc683b7` | v1-cap6-esp1 |
+| `apps/studio/public/elab/manuals/vol1/page-031-esercizio-6-1.png` | 1332×1771 | `2f686a8af52fc057f68de9be9eae6363bc9df913becefa0733a5018e84694944` | v1-cap6-esp1 |
+| `apps/studio/public/elab/manuals/vol3/page-051-esercizio-6-2.png` | 1049×1489 | `56ce5cd5a3e6c84fd72ac3f0811ddb3582c7465c5ec732e4d659c3d49932c454` | v3-cap6-esp2 (FUORI whitelist oggi) |
+
+### Pagine estratte firsthand in NOTTE-12 (footer verificato, da committare nelle PR per-esperimento)
+
+Estrazione a 150dpi dai PDF interni; sha256 (primi 16) dell'estrazione di questa sessione — ricalcolare al commit.
+
+| Pagina | px | sha256/16 | Copre |
+|---|---|---|---|
+| Vol.1 p.29 | 1110×1476 | `bf77f6cfce6e5849` | v1-cap6-esp1 (già coperto da crop committati) |
+| Vol.1 p.32 | 1110×1476 | `4377b4a5656a6084` | v1-cap6-esp2 |
+| Vol.1 p.33 | 1247×1614 | `6923b3b4fdf9aa91` | v1-cap6-esp3 (2 figure: 220Ω e 1kΩ) |
+| Vol.1 p.71 | 1110×1476 | `129a7151748a409f` | v1-cap9-esp6 (materiali) |
+| Vol.1 p.72 | 1110×1476 | `f9e0ab59545ea603` | v1-cap9-esp6 (build 1-3) |
+| Vol.1 p.73 | 1247×1614 | `51b2f9849224b97d` | v1-cap9-esp6 (build) |
+| Vol.1 p.74 | 1247×1614 | `698b1df8ca323809` | v1-cap9-esp6 (2° e 3° pot + 470Ω) |
+| Vol.2 p.67 | 972×1339 | `a580d97a4e2bc4e1` | v2-cap7-esp1 (breadboard INTERA orizzontale + multimetro) |
+| Vol.2 p.68 | 972×1339 | `a0a87006cc64b95e` | v2-cap7-esp1 (build) |
+| Vol.2 p.69 | 972×1339 | `9bf95b61a020cc2f` | v2-cap7-esp2 (pulsante a cavallo del divisorio) |
+| Vol.2 p.70 | 972×1339 | `5de1fc669927f2f6` | v2-cap7-esp2 (build) |
+| Vol.3 p.54 | 875×1241 | `d629d9878cf46540` | v3-cap6-esp4 (materiali: Nano R4 + ELAB Nano Breakout) |
+| Vol.3 p.55 | 875×1241 | `f632c8b998e8a397` | v3-cap6-esp4 (figura circuito + sketch pin 6/9, delay 200ms) |
+| Vol.3 p.57 | 875×1241 | `db1b112f7e4c8a60` | v3-cap6-esp5 (figura semaforo: 3 LED + 3×470Ω, pin 5/6/9) |
+
+Render software (NON reference-libro, utili solo come confronto): `plugins/elab-tutor/docs/audits/iter-29-92-esperimenti-screenshots/` (8/8 presenti, 1280×720).
+
+## Stati ammessi
+
+`static-only` · `mounted-candidate` · `book-aligned-candidate` · `verified-human` · `verified-structural` · `uploadable` · `blocked-by-missing-reference` · `blocked-by-gate`.
+Regola dura (canon §3): nessun `verified-*` senza gate umano o grader robusto; `visualMatch` via overlay CV = gate-Andrea (dipendenze).
+
+## Matrice 8/8
+
+| # | ID | Titolo | Vol/Cap/Pag | Reference primaria | Breakout | Asset (stato) | Stato scena | Stato simulazione | Stato Arduino | Gap principale | Prossimo test falsificabile |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | v1-cap6-esp1 | Accendi il tuo primo LED | 1/6/29-31 | pp.30-31 committate (sha sopra) | no | ✅ committato | **book-aligned-candidate** (`elab-scene-v2-candidate-v1cap6esp1.json`: pose 4/4, wire.path 2/2, bookConstraints C1-C5 pass, grader strutturale pass, `visualMatch: unknown`) | solve reale via registry, LED 15.3 mA (golden) | N/A (batteria) | `cropBBox` assente; p.031 non strutturata come 2ª source; verifica umana aperta | overlay/GT reale → `visualMatch`; poi review umana → `verified-human` |
+| 2 | v1-cap6-esp2 | LED senza resistore (cosa NON fare!) | 1/6/32 | p.32 estratta (figura: LED diretto su batteria, marker "brucia") | no | ⚠️ pdf-only, crop da committare (PR2) | static-only (nessuna fixture circuit-scene/2) | mountable via URL; solve corpus atteso LED-off/sovracorrente (test funzionale esistente a livello ElabLab) | N/A (batteria) | fixture+pose+wire.path+bookConstraints; il solve DEVE dichiarare sovracorrente, non un generico "off" | PR2: fixture candidate + falsificatore "senza resistore ⇒ overcurrent flag, con resistore ⇒ nessun flag" |
+| 3 | v1-cap6-esp3 | Cambia luminosità con resistenze diverse | 1/6/33 | p.33 estratta (2 figure: 220Ω e 1kΩ; vincolo "mai sotto 100Ω") | no | ⚠️ pdf-only, crop da committare (PR3) | static-only | mountable; il solve deve mostrare I(220Ω) > I(470Ω) > I(1kΩ) | N/A (batteria) | fixture; metrica luminosità dichiarata (corrente LED) | PR3: test rapporto correnti 220/470/1k + guardia 100Ω |
+| 4 | v1-cap9-esp6 | Lampada RGB con 3 potenziometri | 1/9/71-74 | pp.71-74 estratte (build progressivo, 3 pot + 3×470Ω) | no | ⚠️ pdf-only, crop da committare | static-only | mountable; **solver: supporto potenziometro/LED RGB da verificare** (bridge oggi fail-closed su tipi ≠ battery+R+LED) | N/A (batteria) | componenti pot/RGB nel bridge+renderer di scena; 4 figure da orchestrare | test RED: bridge su scena con `potentiometer` → oggi throw (onesto); poi estensione |
+| 5 | v2-cap7-esp1 | Scarica condensatore + multimetro | 2/7/67-68 | pp.67-68 estratte (breadboard INTERA orizzontale + multimetro) | no | ⚠️ pdf-only, crop da committare | static-only | mountable; **transitorio RC e multimetro NON supportati dal solve di scena attuale** | N/A (batteria) | board full-size + condensatore + pulsante + multimetro in scena; modello temporale (τ=RC) | test RED su τ: V(t)=V₀·e^(−t/RC) entro tolleranza dichiarata |
+| 6 | v2-cap7-esp2 | Scarica con LED rosso | 2/7/69-70 | pp.69-70 estratte | no | ⚠️ pdf-only, crop da committare | static-only | mountable; come sopra + LED come indicatore di scarica | N/A (batteria) | come esp1 + LED path | test RED: LED si spegne con la scarica (soglia Vf) |
+| 7 | v3-cap6-esp4 | Due LED che si alternano | 3/6/54-55 | pp.54-55 estratte (breakout + LED blu/rosso + 2×470Ω, pin 6/9; sketch completo nel libro, delay 200ms) | **sì — ELAB Nano Breakout** | ⚠️ pdf-only, crop da committare | static-only | AVR (avr8js ATmega328P): sketch nel subset 5/23 compilabile in-browser | compile-in-browser: sì (subset); **HEX precompilato AMBIGUO**: record punta a `/hex/v3-cap6-sirena.hex` ma esiste anche `v3-cap6-esp4.hex` (audit P0-3); upload NON verificato; R4 runtime 0x0074 / DFU 0x0374 | componente breakout assente dal renderer di scena; HEX da riconciliare o quarantenare; nota onestà: screenshot IDE del libro mostra board "Nano 33 BLE" | matrix-test HEX: ogni `hexFile` Vol.3 esiste su disco e matcha lo sketch (oggi FAIL atteso) |
+| 8 | v3-cap6-esp5 | Costruiamo un semaforo | 3/6/57 | p.57 estratta (3 LED R/G/Y + 3×470Ω, pin 5/6/9, breakout) | **sì — ELAB Nano Breakout** | ⚠️ pdf-only, crop da committare | static-only | AVR: sketch nel subset 5/23 compilabile in-browser | compile-in-browser: sì (subset); **HEX `v3-cap6-esp5.hex` MANCANTE** su disco (audit P0-3) — quarantena finché non rigenerato con hash sorgente/artefatto; upload NON verificato | come esp4 + HEX mancante | come esp4; in più: fetch del hexFile dichiarato → oggi 404 (FAIL onesto) |
+
+### Nota fuori whitelist
+
+`v3-cap6-esp2` (LED esterno pin 13) ha già crop p.051 committato e compila nel subset in-browser, ma **NON è nella whitelist visibile oggi**: non prioritizzarlo salvo blocker dimostrato (ordine severo NOTTE-12).
+
+## Conteggio onesto parità visiva (oggi)
+
+- Reference primaria identificata e verificata firsthand: **8/8** (nessun `blocked-by-missing-reference` a livello pagina).
+- Crop pagina committato in repo: **1/8** (solo esp1).
+- Fixture `circuit-scene/2`: **1/8** (esp1, candidate).
+- `wire.path` autorati: **1/8** (esp1, 2 fili).
+- bookConstraints falsificabili: **1/8** (esp1, C1-C5).
+- `visualMatch` ≠ unknown: **0/8** (overlay CV = gate-Andrea).
+- `verified-human`: **0/8**.
+- Arduino end-to-end onesto (compile+HEX+upload con evidenza): **0/2** target AVR.
+
+## Prossimi passi vincolati
+
+1. PR2: v1-cap6-esp2 end-to-end (crop p.32, fixture, sovracorrente onesta, UI, screenshot).
+2. PR3: v1-cap6-esp3 end-to-end (crop p.33, correnti 220/470/1k falsificabili).
+3. PR4: breadboard copy system (coordinate helper, bend-points, hover highlight, grader endpoint/pose più severo).
+4. PR5 (se tempo): v3-cap6-esp4/esp5 SOLO con HEX riconciliato/quarantenato e stato compile dichiarato.
+5. Gate-Andrea: overlay CV (dipendenze), promozione verified-human, board full-size per Vol.2.
