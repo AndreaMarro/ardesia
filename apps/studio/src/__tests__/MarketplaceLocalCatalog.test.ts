@@ -1,0 +1,143 @@
+// @vitest-environment node
+//
+// P0-D marketplace locale-first — catalogo dei tool del workspace + preview di
+// un package .maestrotool PRIMA dell'install. Nessun canale privilegiato: il
+// catalogo legge SOLO ciò che la pipeline reale ha scritto (manifest firmati
+// all'install, lifecycle di PluginManager); la preview verifica la firma
+// ed25519 sugli stessi byte che l'installer verificherebbe (signatureValid),
+// così l'UI può marcare un package manomesso PRIMA di proporre l'install.
+// Fail-visible: manifest corrotto nel workspace → problems[], mai entry mute.
+
+import { describe, expect, it } from "vitest"
+import {
+  buildLocalCatalog,
+  previewPluginPackage,
+} from "../toolhost/marketplace/localCatalog.ts"
+import {
+  generateDevKeypair,
+  scaffoldPlugin,
+} from "../toolhost/authoring/scaffoldPlugin.ts"
+import { buildPluginPackage } from "../toolhost/authoring/packageFile.ts"
+import { PluginManager } from "../toolhost/pluginManager.ts"
+import { manifestPath } from "../toolhost/installer.ts"
+import type { InstallerStore } from "../toolhost/installer.ts"
+import type { StorageEntryLike } from "../toolhost/caps/storage.ts"
+
+class MemoryInstallerStore implements InstallerStore {
+  files = new Map<string, Blob>()
+
+  async read(path: string): Promise<Blob | null> {
+    return this.files.get(path) ?? null
+  }
+  async write(path: string, data: Blob): Promise<void> {
+    this.files.set(path, data)
+  }
+  async delete(path: string): Promise<void> {
+    this.files.delete(path)
+  }
+  async list(prefix?: string): Promise<StorageEntryLike[]> {
+    return [...this.files.entries()]
+      .filter(([p]) => prefix === undefined || p.startsWith(prefix))
+      .map(([path, data]) => ({ path, data }))
+  }
+}
+
+async function installScaffolded(
+  pm: PluginManager,
+  spec: Parameters<typeof scaffoldPlugin>[0],
+) {
+  const keys = await generateDevKeypair()
+  const out = await scaffoldPlugin(spec, keys)
+  await pm.install(out.manifestJson, out.bundleZip, out.signatureB64)
+  return out
+}
+
+describe("buildLocalCatalog", () => {
+  it("workspace vuoto → catalogo vuoto, zero problemi", async () => {
+    const catalog = await buildLocalCatalog(new MemoryInstallerStore())
+    expect(catalog.entries).toEqual([])
+    expect(catalog.problems).toEqual([])
+  })
+
+  it("tool installati via pipeline reale → entry ordinate con campi marketplace e stato lifecycle", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 1_000)
+    await installScaffolded(pm, {
+      id: "io.test.catalog-b",
+      name: "Catalog B",
+      author: { name: "Andrea" },
+      visibility: "public",
+      license: "MIT",
+    })
+    await installScaffolded(pm, { id: "io.test.catalog-a", name: "Catalog A" })
+    await pm.disable("io.test.catalog-a")
+
+    const catalog = await buildLocalCatalog(store)
+    expect(catalog.problems).toEqual([])
+    expect(catalog.entries.map((e) => e.toolId)).toEqual([
+      "io.test.catalog-a",
+      "io.test.catalog-b",
+    ])
+    const [a, b] = catalog.entries
+    expect(a.state).toBe("disabled")
+    expect(a.author).toBeUndefined()
+    expect(b.state).toBe("enabled")
+    expect(b.name).toBe("Catalog B")
+    expect(b.version).toBe("0.1.0")
+    expect(b.kind).toBe("plugin")
+    expect(b.author).toEqual({ name: "Andrea" })
+    expect(b.visibility).toBe("public")
+    expect(b.license).toBe("MIT")
+  })
+
+  it("manifest corrotto nel workspace → problems[] col toolId, le altre entry restano (fail-visible)", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 1_000)
+    await installScaffolded(pm, { id: "io.test.catalog-sano", name: "Sano" })
+    await installScaffolded(pm, { id: "io.test.catalog-rotto", name: "Rotto" })
+    await store.write(
+      manifestPath("io.test.catalog-rotto"),
+      new Blob(["{not json"], { type: "application/json" }),
+    )
+
+    const catalog = await buildLocalCatalog(store)
+    expect(catalog.entries.map((e) => e.toolId)).toEqual(["io.test.catalog-sano"])
+    expect(catalog.problems).toHaveLength(1)
+    expect(catalog.problems[0].toolId).toBe("io.test.catalog-rotto")
+  })
+})
+
+describe("previewPluginPackage", () => {
+  it("package integro → manifest + signatureValid true (stessi byte che l'installer verificherebbe)", async () => {
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin(
+      { id: "io.test.preview-ok", name: "Preview OK", license: "MIT" },
+      keys,
+    )
+    const preview = await previewPluginPackage(buildPluginPackage(out))
+    expect(preview.manifest.id).toBe("io.test.preview-ok")
+    expect(preview.manifest.license).toBe("MIT")
+    expect(preview.signatureValid).toBe(true)
+  })
+
+  it("manifest manomesso DENTRO il package → preview col manifest ma signatureValid false", async () => {
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin({ id: "io.test.preview-tamper", name: "Tamper" }, keys)
+    const tampered = buildPluginPackage({
+      ...out,
+      manifestJson: out.manifestJson.replace("Tamper", "T4mper"),
+    })
+    const preview = await previewPluginPackage(tampered)
+    expect(preview.manifest.name).toBe("T4mper")
+    expect(preview.signatureValid).toBe(false)
+  })
+
+  it("manifest fuori schema → throw (nessuna preview di roba malformata)", async () => {
+    const keys = await generateDevKeypair()
+    const out = await scaffoldPlugin({ id: "io.test.preview-bad", name: "Bad" }, keys)
+    const raw = JSON.parse(out.manifestJson) as Record<string, unknown>
+    raw.surfaces = []
+    const broken = buildPluginPackage({ ...out, manifestJson: JSON.stringify(raw) })
+    await expect(previewPluginPackage(broken)).rejects.toThrow()
+  })
+})
