@@ -1,11 +1,24 @@
 // @vitest-environment node
 
 import { describe, expect, it } from "vitest"
+import * as fs from "node:fs"
+import * as path from "node:path"
 import {
   checkBookConstraintsV1Cap6Esp1,
   type BookConstraintsReport,
 } from "../../sim/elab/bookConstraints.ts"
-import type { ElabScene } from "../../sim/elab/elabScene.ts"
+import { sceneGeometryStatus, validateElabScene, type ElabScene } from "../../sim/elab/elabScene.ts"
+
+const repoRoot = path.resolve(import.meta.dirname, "../../../..")
+
+function candidateFixture(): unknown {
+  return JSON.parse(
+    fs.readFileSync(
+      path.join(repoRoot, "apps/studio/sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json"),
+      "utf-8",
+    ),
+  )
+}
 
 // Scena conforme al TESTO del manuale (Vol.1 pp.29-31): bat+ nel rail rosso,
 // resistore a cavallo rail/zona, anodo sulla strip del pin-zona del resistore,
@@ -139,6 +152,39 @@ describe("bookConstraints v1-cap6-esp1 (vincoli calcolati dal testo del manuale)
     const report = checkBookConstraintsV1Cap6Esp1(scene)
     expect(resultById(report, "bom-matches-book").ok).toBe(false)
     expect(report.ok).toBe(false)
+  })
+
+  it("la fixture reale è fedele al testo e il claim bookMatch coincide col computato (drift-guard)", () => {
+    const result = validateElabScene(candidateFixture())
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+
+    const report = checkBookConstraintsV1Cap6Esp1(result.scene)
+    expect(report.results.filter((r) => !r.ok)).toEqual([])
+    expect(report.ok).toBe(true)
+    // Il claim scritto nel JSON non può divergere dal verdetto calcolato.
+    expect(result.scene.provenance.checks.bookMatch).toBe(report.ok ? "pass" : "fail")
+  })
+
+  it("la fixture reale ha geometria autorata completa e evidence dei crop (niente scena sintetica)", () => {
+    const result = validateElabScene(candidateFixture())
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+
+    const geometry = sceneGeometryStatus(result.scene)
+    expect(geometry.componentsWithPose).toBe(geometry.componentsTotal)
+    expect(geometry.wiresWithAuthoredPath).toBe(geometry.wiresTotal)
+    expect(result.scene.provenance.checks.geometry).toBe("pass")
+    // Evidence: sourceRef cita i crop reali committati, sourceImageHash li aggancia.
+    expect(result.scene.provenance.sourceRef).toMatch(/page-030-esercizio-6-1\.png/)
+    expect(result.scene.provenance.sourceRef).toMatch(/canonical/i)
+    expect(result.scene.source.sourceImageHash).toBe(
+      "11318b5471882d3737629b79e24706ebcbbfc411b214db88eade7c878cc683b7",
+    )
+    // Onestà: nessun overlay grader esiste -> visualMatch resta unknown e la
+    // scena resta candidate (verified = gate umano).
+    expect(result.scene.provenance.checks.visualMatch).toBe("unknown")
+    expect(result.scene.provenance.status).toBe("candidate")
   })
 
   it("fallisce chiuso se manca un componente del libro (niente crash, niente pass)", () => {

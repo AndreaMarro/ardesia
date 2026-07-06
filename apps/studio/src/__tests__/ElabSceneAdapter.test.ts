@@ -37,25 +37,33 @@ describe("ElabScene -> Simulation Plugin adapter", () => {
         ],
         wires: [
           { id: "w1", from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-          { id: "w2", from: "bb1:bus-top-plus-9", to: "bb1:j9", color: "red" },
-          { id: "w3", from: "bb1:a3", to: "bat1:negative", color: "black" },
+          { id: "w2", from: "bat1:negative", to: "bb1:a9", color: "black" },
         ],
         pinAssignments: {
-          "r1:pin1": "bb1:i9",
-          "r1:pin2": "bb1:i3",
-          "led1:anode": "bb1:f3",
-          "led1:cathode": "bb1:e3",
+          "r1:pin1": "bb1:bus-top-plus-9",
+          "r1:pin2": "bb1:i9",
+          "led1:anode": "bb1:f9",
+          "led1:cathode": "bb1:e9",
         },
       },
     } satisfies Partial<ElabSceneSimulationAdapterPayload>)
-    expect(payload.geometry).toEqual({
-      componentsTotal: 4,
-      componentsWithPose: 0,
-      wiresTotal: 3,
-      wiresWithAuthoredPath: 0,
-      componentPoses: {},
-      wirePaths: {},
+    // Post-riconciliazione la scena reale porta geometria autorata COMPLETA
+    // (poses + wire.path): il gap "solo la sintetica ha geometria" e chiuso.
+    expect(payload.geometry.componentsTotal).toBe(4)
+    expect(payload.geometry.componentsWithPose).toBe(4)
+    expect(payload.geometry.wiresTotal).toBe(2)
+    expect(payload.geometry.wiresWithAuthoredPath).toBe(2)
+    expect(payload.geometry.componentPoses["led1"]).toEqual({
+      x: 77.75,
+      y: 72.5,
+      rotationDeg: 0,
+      scale: 1,
     })
+    expect(payload.geometry.wirePaths["w1"]?.points).toEqual([
+      { x: -102, y: 30 },
+      { x: -40, y: 4 },
+      { x: 17.75, y: 21.25 },
+    ])
   })
 
   it("preserves authored geometry from a verified scene without moving it into renderer state", () => {
@@ -115,10 +123,10 @@ describe("ElabScene -> Simulation Plugin adapter", () => {
 
   it("rejects a wire endpoint referencing an undeclared component", () => {
     const scene = candidateFixture() as { wires: Array<{ from: string; to: string }> }
-    scene.wires[2]!.to = "batt9:negative"
+    scene.wires[1]!.from = "batt9:negative"
 
     expect(() => createSimulationAdapterPayloadFromElabScene(scene)).toThrow(
-      /unresolvable endpoint in wire w3.to: batt9:negative/,
+      /unresolvable endpoint in wire w2.from: batt9:negative/,
     )
   })
 
