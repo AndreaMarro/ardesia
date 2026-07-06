@@ -305,9 +305,11 @@ export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean
 }
 
 export function createToolEmbedElement({
-  link = REFERENCE_SIM_LINK,
   toolId = REFERENCE_SIM_TOOL_ID,
   embedId = REFERENCE_SIM_EMBED_ID,
+  // il link segue SEMPRE l'identità richiesta: id e link divergenti farebbero
+  // dispatchare al render lo stato di un'altra istanza (P0-C)
+  link = `${TOOL_EMBED_SCHEME}${toolId}/${embedId}`,
   state = { kind: "simulation-scene-v1", scene: createReferenceSimulationScene() },
 }: {
   link?: string;
@@ -357,6 +359,33 @@ export function isToolCanvasEmbed(element: EmbedLike): boolean {
   return parseToolLink(element.link) !== null;
 }
 
+// P0-C multi-istanza: identità del prossimo post-it. Il primo inserimento usa
+// l'embedId storico (scene salvate ed e2e invariati); i successivi suffissano
+// "--n" scegliendo il primo libero (mai un id già in scena, anche con buchi).
+export function nextSimulationEmbedId(existingIds: readonly string[], baseEmbedId: string): string {
+  const taken = new Set(existingIds);
+  if (!taken.has(baseEmbedId)) return baseEmbedId;
+  for (let n = 2; ; n += 1) {
+    const candidate = `${baseEmbedId}--${n}`;
+    if (!taken.has(candidate)) return candidate;
+  }
+}
+
+/**
+ * Logica PURA dell'inserimento da toolbar (Room): ogni chiamata produce una
+ * NUOVA istanza del Simulation Plugin con embedId unico e stato proprio.
+ * null se il tool non è registrato (deny-by-default, come il render).
+ */
+export function buildSimulationInsert(
+  currentElements: readonly { id?: string }[],
+): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
+  const entry = getSimulationTool(REFERENCE_SIM_TOOL_ID);
+  if (!entry) return null;
+  const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
+  const embedId = nextSimulationEmbedId(ids, entry.embedId);
+  return { embed: entry.createEmbed(embedId), embedId };
+}
+
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
@@ -376,7 +405,8 @@ const referenceSimulationEntry = {
   render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost) => (
     <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} host={host} />
   ),
-  createEmbed: () => createToolEmbedElement(),
+  createEmbed: (embedId?: string) =>
+    createToolEmbedElement(embedId === undefined ? {} : { embedId }),
   validate: (state: unknown) => validateBookLayoutScene(state as SimulationSceneV1),
   // Confine P2: il motore elettrico reale (CircuitSolver vendored) dietro il
   // dispatch del registry. Il render resta traversal-driven (golden 14.9 mA).

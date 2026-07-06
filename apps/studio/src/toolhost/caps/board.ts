@@ -4,7 +4,20 @@
 // state }: l'ownership vive NELLA scena, quindi sopravvive a suspend/restore
 // e a save/load del workspace insieme agli elementi.
 
+import { assertInstanceId } from "./instance.ts"
+
 export const EMBED_DATA_KEY = "maestroTool"
+
+/**
+ * Owner marker di un'istanza: `toolId#instanceId`. Il "#" non appartiene alla
+ * grammatica reverse-DNS dei toolId né a quella degli instanceId, quindi il
+ * marker è non ambiguo e nessun tool può impersonare un'istanza col solo id.
+ */
+export function instanceOwner(toolId: string, instanceId?: string): string {
+  if (instanceId === undefined) return toolId
+  assertInstanceId(instanceId)
+  return `${toolId}#${instanceId}`
+}
 
 export interface BoardElementLike {
   id: string
@@ -33,12 +46,18 @@ function defaultSkeleton(embedId: string): BoardElementLike {
 
 export class ToolBoard {
   private _api: BoardApiLike
-  private _toolId: string
+  /** Owner marker: toolId, o toolId#instanceId per un tool multi-istanza (P0-C). */
+  private _owner: string
   private _makeSkeleton: (embedId: string) => BoardElementLike
 
-  constructor(api: BoardApiLike, toolId: string, makeSkeleton?: (embedId: string) => BoardElementLike) {
+  constructor(
+    api: BoardApiLike,
+    toolId: string,
+    makeSkeleton?: (embedId: string) => BoardElementLike,
+    instanceId?: string,
+  ) {
     this._api = api
-    this._toolId = toolId
+    this._owner = instanceOwner(toolId, instanceId)
     this._makeSkeleton = makeSkeleton ?? defaultSkeleton
   }
 
@@ -64,14 +83,14 @@ export class ToolBoard {
   isOwnEmbed = (embedId: string): boolean => {
     const existing = this._api.getSceneElements().find((el) => el.id === embedId)
     if (existing === undefined) return true
-    return embedOwner(existing) === this._toolId
+    return embedOwner(existing) === this._owner
   }
 
   /** board.write: crea o aggiorna il PROPRIO embed (forma wire BoardWriteResult). */
   write(embedId: string, state: unknown): Record<string, never> {
     const elements = this._api.getSceneElements()
     const existing = elements.find((el) => el.id === embedId)
-    const marker = { [EMBED_DATA_KEY]: { owner: this._toolId, state } }
+    const marker = { [EMBED_DATA_KEY]: { owner: this._owner, state } }
 
     if (existing === undefined) {
       const embed: BoardElementLike = { ...this._makeSkeleton(embedId), id: embedId, customData: marker }
@@ -79,8 +98,8 @@ export class ToolBoard {
       return {}
     }
     // difesa in profondità: il router fa già il gate via isOwnEmbed
-    if (embedOwner(existing) !== this._toolId) {
-      throw new Error(`embed ${embedId} not owned by ${this._toolId}`)
+    if (embedOwner(existing) !== this._owner) {
+      throw new Error(`embed ${embedId} not owned by ${this._owner}`)
     }
     const next = elements.map((el) =>
       el.id === embedId ? { ...el, customData: { ...el.customData, ...marker } } : el,

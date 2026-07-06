@@ -29,12 +29,16 @@ export type SimulationToolHost = {
 };
 
 export interface SimulationToolEntry {
-  /** Id dell'embeddable creato da createEmbed (per idempotenza inserimento). */
+  /** EmbedId BASE del tool: prima istanza; le successive suffissano (P0-C). */
   embedId: string;
   /** Render del tool dentro l'embed Excalidraw. */
   render(element: ToolEmbedLike, toolLink: ToolLinkRef, host?: SimulationToolHost): ReactElement | null;
-  /** Crea l'elemento embeddable Excalidraw completo del tool. */
-  createEmbed(): { id: string; type: string } & Record<string, unknown>;
+  /**
+   * Crea l'elemento embeddable Excalidraw completo del tool. embedId opzionale
+   * per le istanze successive alla prima (P0-C multi-istanza): id e link
+   * dell'elemento devono seguire l'identità richiesta.
+   */
+  createEmbed(embedId?: string): { id: string; type: string } & Record<string, unknown>;
   /** Validazione opzionale dello stato/scena del tool. */
   validate?(state: unknown): { ok: boolean; errors: string[] };
   /**
