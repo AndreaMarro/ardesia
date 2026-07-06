@@ -150,6 +150,52 @@ describe("manifest.kind", () => {
   it("chiavi sconosciute restano REJECT (strict non allentato)", () => {
     expect(() => ToolManifestSchema.parse({ ...baseManifest, extra: 1 })).toThrow()
   })
+
+  // --- Campi marketplace (MARKETPLACE-CANON: author, visibility, licensing) ---
+
+  it("author/visibility/license assenti = manifest legacy valido (stessa disciplina di kind)", () => {
+    const parsed = ToolManifestSchema.parse(baseManifest)
+    expect(parsed.author).toBeUndefined()
+    expect(parsed.visibility).toBeUndefined()
+    expect(parsed.license).toBeUndefined()
+  })
+
+  it("author: nome obbligatorio non vuoto, url opzionale valida, chiavi extra REJECT", () => {
+    expect(
+      ToolManifestSchema.parse({
+        ...baseManifest,
+        author: { name: "Andrea Marro", url: "https://ardesia.example" },
+      }).author,
+    ).toEqual({ name: "Andrea Marro", url: "https://ardesia.example" })
+    expect(
+      ToolManifestSchema.parse({ ...baseManifest, author: { name: "Andrea Marro" } }).author,
+    ).toEqual({ name: "Andrea Marro" })
+    expect(() => ToolManifestSchema.parse({ ...baseManifest, author: { name: "" } })).toThrow()
+    expect(() =>
+      ToolManifestSchema.parse({ ...baseManifest, author: { name: "A", url: "non-una-url" } }),
+    ).toThrow()
+    expect(() =>
+      ToolManifestSchema.parse({ ...baseManifest, author: { name: "A", email: "x@y.z" } }),
+    ).toThrow()
+  })
+
+  it("visibility: solo private | unlisted | public", () => {
+    for (const visibility of ["private", "unlisted", "public"]) {
+      expect(ToolManifestSchema.parse({ ...baseManifest, visibility }).visibility).toBe(visibility)
+    }
+    expect(() => ToolManifestSchema.parse({ ...baseManifest, visibility: "hidden" })).toThrow()
+    expect(() => ToolManifestSchema.parse({ ...baseManifest, visibility: "" })).toThrow()
+  })
+
+  it("license: identificatore non vuoto e bounded (SPDX o LicenseRef), mai stringa vuota", () => {
+    expect(ToolManifestSchema.parse({ ...baseManifest, license: "MIT" }).license).toBe("MIT")
+    expect(
+      ToolManifestSchema.parse({ ...baseManifest, license: "LicenseRef-ELAB-Proprietary" })
+        .license,
+    ).toBe("LicenseRef-ELAB-Proprietary")
+    expect(() => ToolManifestSchema.parse({ ...baseManifest, license: "" })).toThrow()
+    expect(() => ToolManifestSchema.parse({ ...baseManifest, license: "x".repeat(101) })).toThrow()
+  })
 })
 
 // --- Event-bus tipizzato Core↔Plugin ---
