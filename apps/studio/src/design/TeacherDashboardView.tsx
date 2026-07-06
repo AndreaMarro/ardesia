@@ -49,11 +49,22 @@ async function appendEventToStore(event: LessonOsEvent): Promise<void> {
 }
 
 type Z7Candidate = TeacherDashboardProjection["studentPackQueue"][number]
+type StatRow = TeacherDashboardProjection["stats"][number]
 
 type Z7State =
   | { phase: "loading" }
   | { phase: "error"; detail: string }
-  | { phase: "ready"; queue: Z7Candidate[] }
+  | { phase: "ready"; queue: Z7Candidate[]; stats: StatRow[] }
+
+// D10: etichette docente per le stat del proiettore. Key sconosciuta → key
+// verbatim (mai inventare né nascondere una stat che il proiettore ha derivato).
+const STAT_LABELS_IT: Record<string, string> = {
+  "lessons.count": "Lezioni",
+  "board.elements.created": "Elementi creati sulla lavagna",
+  "math.inserts.count": "Formule inserite",
+  "manual.pages.viewed": "Pagine del manuale viste",
+  "errors.count": "Errori osservati",
+}
 
 type RipassoZoneState =
   | { phase: "loading" }
@@ -109,7 +120,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       locale: "it",
       generatedAt: Date.now(),
     })
-    setState({ phase: "ready", queue: projection.studentPackQueue })
+    setState({ phase: "ready", queue: projection.studentPackQueue, stats: projection.stats })
     // loadEvents è stabile per contratto del seam (default modulo o dep dei test)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -182,6 +193,58 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       </header>
 
       <div style={{ flex: 1, overflow: "auto", padding: 16 }}>
+        <section aria-labelledby="zstat-title" data-zstat style={{ marginBottom: 28 }}>
+          <h2 id="zstat-title" style={{ margin: "0 0 4px" }}>
+            Statistiche
+          </h2>
+          <p style={{ margin: "0 0 16px", opacity: 0.75 }}>
+            Numeri derivati SOLO dall&apos;event log della lezione (projection read-only):
+            ogni card porta la finestra temporale e le evidenze da cui deriva.
+          </p>
+
+          {state.phase === "loading" && <p aria-busy="true">Calcolo le statistiche…</p>}
+
+          {state.phase === "ready" && (
+            <ul
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+                gap: 12,
+              }}
+            >
+              {state.stats.map((stat) => (
+                <li
+                  key={stat.key}
+                  data-testid={`zstat-${stat.key}`}
+                  data-zstat-value={stat.value}
+                  style={{
+                    border: "1px solid var(--st-line, #d8d2c6)",
+                    borderRadius: 8,
+                    padding: "10px 14px",
+                    display: "grid",
+                    gap: 2,
+                  }}
+                >
+                  <span style={{ fontSize: 13, opacity: 0.75 }}>
+                    {STAT_LABELS_IT[stat.key] ?? stat.key}
+                  </span>
+                  <strong style={{ fontSize: 24 }}>{stat.value}</strong>
+                  <span style={{ fontSize: 11, opacity: 0.6 }}>
+                    {stat.window.from === 0 && stat.window.to === 0
+                      ? "nessuna finestra (event log vuoto)"
+                      : `dal ${new Date(stat.window.from).toLocaleString("it-IT")} al ${new Date(stat.window.to).toLocaleString("it-IT")}`}
+                    {" · "}
+                    {stat.evidenceRefs.length} evidenze
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
         <section aria-labelledby="z7-title" data-z7-count={state.phase === "ready" ? state.queue.length : undefined}>
           <h2 id="z7-title" style={{ margin: "0 0 4px" }}>
             Student-pack — coda candidati
