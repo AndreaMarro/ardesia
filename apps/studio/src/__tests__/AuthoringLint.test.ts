@@ -1,9 +1,10 @@
 // @vitest-environment node
 //
 // P0-D authoring — lint automatico manifest+entry PRIMA di firmare/spedire.
-// Non è un gate di sicurezza (sandbox/CSP/capability restano l'autorità a
-// runtime): è il feedback che spiega all'autore COSA si romperà e PERCHÉ,
-// con vocabolario flag chiuso e falsificabile.
+// Non è un gate di sicurezza E oggi non c'è enforcement runtime dietro i flag
+// rete/risorse (srcDoc senza CSP): il lint verifica la POLICY DICHIARATA;
+// l'enforcement vero è ADR-0001 (PROPOSED, gate Andrea). Vocabolario flag
+// chiuso e falsificabile.
 
 import { describe, expect, it } from "vitest"
 import { lintAuthoring } from "../toolhost/authoring/authoringLint.ts"
@@ -23,7 +24,27 @@ describe("lintAuthoring", () => {
     expect(report.flags).toEqual([])
   })
 
-  it("script esterno nell'entry → entry-external-script (la CSP srcDoc lo bloccherà)", async () => {
+  it("onestà dichiarativa: i flag rete/risorse citano la policy e ADR-0001, mai un blocco CSP inesistente", async () => {
+    // Oggi l'iframe ToolLab è srcDoc allow-same-origin SENZA CSP: nessun
+    // blocco attivo esiste. Il lint deve dire "contro la policy dichiarata,
+    // enforcement = ADR-0001", non fingere una CSP che blocca.
+    const out = await scaffolded({ id: "io.test.lint-honesty", name: "Honesty" })
+    const entry = out.entryHtml
+      .replace("<script>", '<script src="https://cdn.example.com/lib.js"></script>\n<script>')
+      .replace("</body>", '<img src="http://tracker.example.com/pixel.png"></body>')
+      .replace("</script>", ';fetch("https://x.example.com").catch(function(){});</script>')
+    const report = lintAuthoring(out.manifest, entry)
+    const declarative = report.flags.filter((flag) =>
+      ["entry-external-script", "entry-external-resource", "net-fetch-undeclared"].includes(flag.code),
+    )
+    expect(declarative.length).toBeGreaterThanOrEqual(3)
+    for (const flag of declarative) {
+      expect(flag.detail).toContain("ADR-0001")
+      expect(flag.detail).not.toMatch(/bloccherà|CSP chiusa|fallirà/)
+    }
+  })
+
+  it("script esterno nell'entry → entry-external-script (contro la policy dichiarata)", async () => {
     const out = await scaffolded({ id: "io.test.lint-extscript", name: "Ext Script" })
     const entry = out.entryHtml.replace(
       "<script>",

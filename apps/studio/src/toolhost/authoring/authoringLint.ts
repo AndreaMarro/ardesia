@@ -1,12 +1,14 @@
 // P0-D authoring — lint automatico manifest+entry PRIMA di firmare/spedire.
 //
-// NON è un gate di sicurezza: sandbox, CSP srcDoc e capability deny-by-default
-// restano l'autorità a runtime. È il feedback di authoring che spiega COSA si
-// romperà e PERCHÉ, così l'autore non scopre a runtime che la CSP ha bloccato
-// il suo CDN o che fetch è negata. Vocabolario flag CHIUSO, ogni check
-// falsificabile. Severity: "error" (si romperà di sicuro) · "warn"
-// (probabilmente non fa ciò che l'autore crede) · "info" (suggerimento).
-// ok = nessun error (warn/info non bloccano).
+// NON è un gate di sicurezza, e — ONESTÀ — oggi NON esiste nemmeno un
+// enforcement runtime dietro i flag rete/risorse: l'iframe ToolLab è srcDoc
+// allow-same-origin SENZA CSP, quindi script/risorse esterne CARICANO e
+// fetch( ESCE. Il lint verifica la POLICY DICHIARATA (manifest + regole di
+// authoring, tool self-contained); l'enforcement reale (origin dedicata +
+// CSP vera) è ADR-0001, PROPOSED, gate Andrea. Vocabolario flag CHIUSO, ogni
+// check falsificabile. Severity: "error" (viola la policy dichiarata) ·
+// "warn" (probabilmente non fa ciò che l'autore crede) · "info"
+// (suggerimento). ok = nessun error (warn/info non bloccano).
 
 import type { ToolManifest } from "../../toolhost-protocol/index.ts"
 import { isGranted } from "../../toolhost-protocol/capabilities.ts"
@@ -31,8 +33,9 @@ export type AuthoringLintReport = {
   flags: AuthoringLintFlag[]
 }
 
-// Attributi src/href con URL assoluto http(s) — l'entry gira in un iframe
-// srcDoc same-origin con CSP chiusa: qualunque risorsa esterna non arriverà.
+// Attributi src/href con URL assoluto http(s) — contro la policy dichiarata
+// (tool self-contained). NB: oggi l'iframe srcDoc NON ha CSP e la risorsa
+// caricherebbe comunque; il blocco vero arriva con ADR-0001.
 const EXTERNAL_SCRIPT_RE = /<script\b[^>]*\bsrc\s*=\s*["']?(https?:\/\/[^"'\s>]+)/gi
 const EXTERNAL_RESOURCE_RE = /<(?!script\b)[a-z][a-z0-9-]*\b[^>]*\b(?:src|href)\s*=\s*["']?(https?:\/\/[^"'\s>]+)/gi
 
@@ -43,7 +46,7 @@ export function lintAuthoring(manifest: ToolManifest, entryHtml: string): Author
     flags.push({
       code: "entry-external-script",
       severity: "error",
-      detail: `la CSP dell'host bloccherà lo script esterno: ${match[1]}`,
+      detail: `script esterno contro la policy dichiarata (tool self-contained; oggi nessuna CSP lo blocca, enforcement = ADR-0001): ${match[1]}`,
     })
   }
 
@@ -51,7 +54,7 @@ export function lintAuthoring(manifest: ToolManifest, entryHtml: string): Author
     flags.push({
       code: "entry-external-resource",
       severity: "warn",
-      detail: `risorsa esterna che la CSP dell'host bloccherà: ${match[1]}`,
+      detail: `risorsa esterna contro la policy dichiarata (oggi nessuna CSP la blocca, enforcement = ADR-0001): ${match[1]}`,
     })
   }
 
@@ -60,7 +63,7 @@ export function lintAuthoring(manifest: ToolManifest, entryHtml: string): Author
       code: "net-fetch-undeclared",
       severity: "warn",
       detail:
-        'l\'entry usa fetch( ma il manifest non dichiara "net.fetch": la rete è deny-by-default e la chiamata fallirà',
+        'l\'entry usa fetch( ma il manifest non dichiara "net.fetch": contro la policy deny-by-default (oggi srcDoc senza CSP non la blocca, enforcement = ADR-0001)',
     })
   }
 

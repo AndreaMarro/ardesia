@@ -388,6 +388,23 @@ describe("conformance/router (validazione host-side, capability deny-by-default)
     expectError(await rx.next(), ERR.METHOD_NOT_FOUND)
   })
 
+  // Pinna la verità P0-C: net.fetch è DICHIARATIVO (manifest/policy), non un
+  // metodo runtime — TOOL_METHODS contiene solo board.*/storage.*. Anche con
+  // la capability concessa, la chiamata protocollo NON esiste. La rete vera
+  // dell'entry (fetch del browser da srcDoc) oggi NON passa da qui: il suo
+  // enforcement è ADR-0001 (PROPOSED, gate Andrea).
+  it("net.fetch via protocollo → METHOD_NOT_FOUND anche con capability dichiarata (dichiarativo, non runtime)", async () => {
+    const setup = makeSession({ grantedCaps: { "net.fetch": { domains: ["api.example.com"] } } })
+    const rx = await rawReady(setup)
+    setup.toolPort.postMessage({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "net.fetch",
+      params: { url: "https://api.example.com/data" },
+    })
+    expectError(await rx.next(), ERR.METHOD_NOT_FOUND)
+  })
+
   it("deny-by-default: storage.get senza capability storage → CAPABILITY_DENIED e handler MAI invocato", async () => {
     let invoked = 0
     const setup = makeSession({
