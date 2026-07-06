@@ -4,7 +4,8 @@ import viteConfig from "./vite.config"
 export default defineConfig({
   ...viteConfig,
   test: {
-    exclude: ["node_modules/**", "dist/**", "eval/**"],
+    // e2e/** è Playwright (runner proprio): vitest non deve raccoglierlo.
+    exclude: ["node_modules/**", "dist/**", "eval/**", "e2e/**"],
     // Room/Excalidraw integration specs are jsdom-heavy and pass in isolation.
     // Serial file execution keeps the gate deterministic on loaded dev machines.
     fileParallelism: false,
