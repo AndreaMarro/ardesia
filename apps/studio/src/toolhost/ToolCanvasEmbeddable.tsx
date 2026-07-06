@@ -455,6 +455,21 @@ const referenceSimulationEntry = {
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 
+// Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
+// il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
+// contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
+type MontaggioPlacementType = "resistor" | "led";
+type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
+type MontaggioCanvas = {
+  tool: MontaggioPlacementType | null;
+  pending: string | null;
+  notice: string | null;
+  placements: MontaggioPlacement[];
+  onSelectTool: (tool: MontaggioPlacementType | null) => void;
+  onHoleTap: (ref: string) => void;
+  onReset: () => void;
+};
+
 function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLike; toolLink: ToolLink }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
   const [machine, setMachine] = useState(createBlinkMachine);
@@ -466,7 +481,89 @@ function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLi
     () => resolveSimulationScene(marker?.state, snapshot),
     [marker?.state, snapshot],
   );
+  // La validazione book-layout resta sulla scena del MANUALE: i piazzamenti
+  // dello studente non sono un drift del libro.
   const validation = validateBookLayoutScene(scene);
+
+  const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null);
+  const [pendingHole, setPendingHole] = useState<string | null>(null);
+  const [placements, setPlacements] = useState<MontaggioPlacement[]>([]);
+  const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
+
+  const occupiedHoles = useMemo(() => {
+    const occupied = new Set(Object.values(scene.pinAssignments));
+    for (const placement of placements) {
+      occupied.add(placement.holes[0]);
+      occupied.add(placement.holes[1]);
+    }
+    return occupied;
+  }, [scene, placements]);
+
+  function handleSelectTool(tool: MontaggioPlacementType | null) {
+    setMontaggioTool(tool);
+    setPendingHole(null);
+    setMontaggioNotice(null);
+  }
+
+  function handleHoleTap(ref: string) {
+    if (montaggioTool === null) return;
+    if (occupiedHoles.has(ref)) {
+      setMontaggioNotice(`foro ${ref} occupato: scegline uno libero`);
+      return;
+    }
+    if (pendingHole === null) {
+      setPendingHole(ref);
+      setMontaggioNotice(null);
+      return;
+    }
+    if (pendingHole === ref) {
+      setMontaggioNotice("stesso foro del primo tap: tocca un secondo foro diverso");
+      return;
+    }
+    const ordinal = placements.filter((p) => p.type === montaggioTool).length + 1;
+    const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`;
+    setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
+    setPendingHole(null);
+    setMontaggioNotice(null);
+  }
+
+  function handleMontaggioReset() {
+    setPlacements([]);
+    setPendingHole(null);
+    setMontaggioNotice(null);
+    setMontaggioTool(null);
+  }
+
+  // Scena AUMENTATA per la sola board: i piazzamenti entrano in components e
+  // pinAssignments (i fori si accendono via DetailedBreadboard, stessa via
+  // del manuale). runtime/bookLayout restano quelli del libro.
+  const boardScene = useMemo(() => {
+    if (placements.length === 0) return scene;
+    const components = [...scene.components];
+    const pinAssignments = { ...scene.pinAssignments };
+    for (const placement of placements) {
+      if (placement.type === "resistor") {
+        components.push({ id: placement.id, type: "resistor", label: "Resistore montaggio libero", value: 470, anchor: "bb1" });
+        pinAssignments[`${placement.id}:pin1`] = placement.holes[0];
+        pinAssignments[`${placement.id}:pin2`] = placement.holes[1];
+      } else {
+        components.push({ id: placement.id, type: "led", label: "LED montaggio libero", color: "red", anchor: "bb1" });
+        pinAssignments[`${placement.id}:anode`] = placement.holes[0];
+        pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
+      }
+    }
+    return { ...scene, components, pinAssignments };
+  }, [scene, placements]);
+
+  const montaggio: MontaggioCanvas = {
+    tool: montaggioTool,
+    pending: pendingHole,
+    notice: montaggioNotice,
+    placements,
+    onSelectTool: handleSelectTool,
+    onHoleTap: handleHoleTap,
+    onReset: handleMontaggioReset,
+  };
   const isArduinoScene = scene.runtime.kind === "arduino-blink";
 
   function step() {
@@ -503,7 +600,7 @@ function ReferenceSimulationCanvasTool({ element, toolLink }: { element: EmbedLi
       </header>
 
       <main style={mainStyle}>
-        <SimulationBoard scene={scene} />
+        <SimulationBoard scene={boardScene} montaggio={montaggio} />
 
         <aside style={sideStyle}>
           <ManualCard scene={scene} />
@@ -607,7 +704,7 @@ function StepByStepCard({ scene }: { scene: SimulationSceneV1 }) {
   );
 }
 
-function SimulationBoard({ scene }: { scene: SimulationSceneV1 }) {
+function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
   const hasBattery = scene.components.some((component) => component.type === "battery9v");
   return (
@@ -628,21 +725,73 @@ function SimulationBoard({ scene }: { scene: SimulationSceneV1 }) {
         <text x="24" y="34" style={svgBadgeTextStyle}>{scene.manual.bookQuote}</text>
         <g transform={hasBattery ? "translate(295 86) scale(2.2)" : "translate(225 80) scale(2.45)"}>
           <Battery9vSvg scene={scene} />
-          <DetailedBreadboard scene={scene} />
+          <DetailedBreadboard scene={scene} montaggio={montaggio} />
           <BoardWires scene={scene} />
           <NanoR4Svg scene={scene} />
           <ResistorSvg scene={scene} />
           <LedSvg scene={scene} />
+          {montaggio && <PlacedPartsSvg scene={scene} placements={montaggio.placements} />}
         </g>
         <g transform="translate(28 404)">
           <rect x="0" y="0" width="520" height="82" rx="8" fill="#ffffff" stroke="#d7e1ea" />
           <text x="18" y="24" style={paletteTitleSvgStyle}>COMPONENTI</text>
-          <PaletteItem x={18} label="Seleziona" glyph="M8 6 L30 24 L18 27 L24 42 L17 44 L11 29 L2 36 Z" />
-          <PaletteItem x={98} label="Resistenza" glyph="M18 7 L18 17 M18 33 L18 45 M14 17 H22 V33 H14 Z" />
-          <PaletteItem x={178} label="LED" glyph="M18 8 C10 8 8 16 12 22 H24 C28 16 26 8 18 8 M14 22 V42 M22 22 V42" />
+          <PaletteItem
+            x={18}
+            label="Seleziona"
+            glyph="M8 6 L30 24 L18 27 L24 42 L17 44 L11 29 L2 36 Z"
+            pressed={montaggio ? montaggio.tool === null : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool(null) : undefined}
+          />
+          <PaletteItem
+            x={98}
+            label="Resistenza"
+            glyph="M18 7 L18 17 M18 33 L18 45 M14 17 H22 V33 H14 Z"
+            pressed={montaggio ? montaggio.tool === "resistor" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("resistor") : undefined}
+          />
+          <PaletteItem
+            x={178}
+            label="LED"
+            glyph="M18 8 C10 8 8 16 12 22 H24 C28 16 26 8 18 8 M14 22 V42 M22 22 V42"
+            pressed={montaggio ? montaggio.tool === "led" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("led") : undefined}
+          />
           <PaletteItem x={258} label="Pulsante" glyph="M9 17 H31 V37 H9 Z M15 11 H25 V17" />
           <PaletteItem x={338} label="Cavo" glyph="M9 35 C18 10 34 12 39 30" />
           <PaletteItem x={418} label="Altro" glyph="M13 26 H15 M23 26 H25 M33 26 H35" />
+          {montaggio && (
+            <>
+              <text
+                x="502"
+                y="24"
+                textAnchor="end"
+                style={paletteTitleSvgStyle}
+                data-montaggio-canvas-count={String(montaggio.placements.length)}
+              >
+                {`montaggio libero: ${montaggio.placements.length}`}
+              </text>
+              <text x="0" y="98" style={diagnosticSvgStyle} data-montaggio-canvas-notice>
+                {montaggio.notice ?? ""}
+              </text>
+              <g
+                transform="translate(430 88)"
+                role="button"
+                tabIndex={0}
+                aria-label="riparti dal manuale"
+                data-montaggio-canvas-reset
+                style={{ cursor: "pointer" }}
+                onClick={montaggio.onReset}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") montaggio.onReset();
+                }}
+              >
+                <rect x="0" y="0" width="90" height="14" rx="7" fill="#f6f9fc" stroke="#dce6ef" />
+                <text x="45" y="10" textAnchor="middle" fill="#52677f" fontSize="7" fontWeight="700">
+                  riparti dal manuale
+                </text>
+              </g>
+            </>
+          )}
         </g>
         <g transform="translate(590 405)">
           <rect x="0" y="0" width="300" height="82" rx="8" fill="#ffffff" stroke="#d7e1ea" />
@@ -684,7 +833,7 @@ function Battery9vSvg({ scene }: { scene: SimulationSceneV1 }) {
   );
 }
 
-function DetailedBreadboard({ scene }: { scene: SimulationSceneV1 }) {
+function DetailedBreadboard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
   const active = new Map<string, string>();
   for (const [pinRef, hole] of Object.entries(scene.pinAssignments)) {
     active.set(hole, pinRef.startsWith("led") ? "#2fa764" : "#b6852f");
@@ -738,7 +887,17 @@ function DetailedBreadboard({ scene }: { scene: SimulationSceneV1 }) {
       {points.map((point) => {
         const ref = point.kind === "terminal" ? `${point.boardId}:${point.row}${point.column}` : `${point.boardId}:${point.rail}-${point.column}`;
         const color = active.get(ref);
-        return <BreadboardHole key={ref} x={point.x} y={point.y} activeColor={color} />;
+        return (
+          <BreadboardHole
+            key={ref}
+            x={point.x}
+            y={point.y}
+            activeColor={color}
+            holeRef={ref}
+            pending={montaggio?.pending === ref}
+            onTap={montaggio && montaggio.tool !== null ? montaggio.onHoleTap : undefined}
+          />
+        );
       })}
       <text x="126.5" y="75" textAnchor="middle" style={bbChannelStyle}>ELAB volume grammar: j..f / e..a</text>
     </g>
@@ -755,9 +914,29 @@ function BreadboardRail({ y, sign, color }: { y: number; sign: "+" | "-"; color:
   );
 }
 
-function BreadboardHole({ x, y, activeColor }: { x: number; y: number; activeColor?: string }) {
+function BreadboardHole({
+  x,
+  y,
+  activeColor,
+  holeRef,
+  pending,
+  onTap,
+}: {
+  x: number;
+  y: number;
+  activeColor?: string;
+  holeRef?: string;
+  pending?: boolean;
+  onTap?: (ref: string) => void;
+}) {
   return (
-    <g>
+    <g
+      data-bb-hole={holeRef}
+      data-pending={pending ? "1" : undefined}
+      onClick={onTap && holeRef ? () => onTap(holeRef) : undefined}
+      style={onTap ? { cursor: "pointer" } : undefined}
+    >
+      {pending && <circle cx={x} cy={y} r="3.6" fill="none" stroke="#2f68ad" strokeWidth="1" />}
       {activeColor && <circle cx={x} cy={y} r="3.2" fill={activeColor} opacity="0.24" />}
       <circle cx={x} cy={y} r={breadboardGeometry.holeRadius} fill={activeColor ?? "#b8b2a7"} />
       <circle cx={x} cy={y} r={breadboardGeometry.holeCoreRadius} fill={activeColor ? "#1f2e2c" : "#2f2f2f"} />
@@ -767,8 +946,9 @@ function BreadboardHole({ x, y, activeColor }: { x: number; y: number; activeCol
 }
 
 function BoardWires({ scene }: { scene: SimulationSceneV1 }) {
+  // Decorativo: i fili NON intercettano i pointer, i fori sotto restano tappabili.
   return (
-    <g>
+    <g pointerEvents="none">
       {scene.connections.map((connection) => {
         const start = resolveScenePoint(connection.from, scene);
         const end = resolveScenePoint(connection.to, scene);
@@ -837,9 +1017,17 @@ function ResistorSvg({ scene }: { scene: SimulationSceneV1 }) {
   const a = pointForBreadboardRef(scene.pinAssignments["r1:pin1"]);
   const b = pointForBreadboardRef(scene.pinAssignments["r1:pin2"]);
   if (!a || !b) return null;
+  return (
+    <g aria-label="Resistore 470 Ohm" pointerEvents="none">
+      <ResistorBody a={a} b={b} />
+    </g>
+  );
+}
+
+function ResistorBody({ a, b }: { a: { x: number; y: number }; b: { x: number; y: number } }) {
   const centerX = (a.x + b.x) / 2;
   return (
-    <g aria-label="Resistore 470 Ohm">
+    <g>
       <line x1={a.x} y1={a.y} x2={centerX - 14} y2={a.y} stroke="#9aa0a6" strokeWidth="1.3" strokeLinecap="round" />
       <line x1={centerX + 14} y1={b.y} x2={b.x} y2={b.y} stroke="#9aa0a6" strokeWidth="1.3" strokeLinecap="round" />
       <rect x={centerX - 15} y={a.y - 4.4} width="30" height="8.8" rx="4.4" fill="#d8b894" stroke="#8c7558" strokeWidth="0.7" />
@@ -857,29 +1045,114 @@ function LedSvg({ scene }: { scene: SimulationSceneV1 }) {
   const cathode = pointForBreadboardRef(scene.pinAssignments["led1:cathode"]);
   if (!anode || !cathode) return null;
   const led = scene.components.find((component) => component.id === "led1");
-  const color = led?.color === "red" ? "#e5483f" : "#38c85c";
-  const dimColor = led?.color === "red" ? "#d99592" : "#b9d3bd";
-  const strokeColor = led?.color === "red" ? "#9d2d27" : "#1f7f36";
+  return (
+    <g aria-label={scene.runtime.ledOn ? `LED ${led?.color ?? "verde"} acceso` : `LED ${led?.color ?? "verde"} spento`} pointerEvents="none">
+      <LedBody anode={anode} cathode={cathode} color={led?.color ?? "verde"} on={scene.runtime.ledOn} />
+    </g>
+  );
+}
+
+function LedBody({
+  anode,
+  cathode,
+  color,
+  on,
+}: {
+  anode: { x: number; y: number };
+  cathode: { x: number; y: number };
+  color: string;
+  on: boolean;
+}) {
+  const litColor = color === "red" ? "#e5483f" : "#38c85c";
+  const dimColor = color === "red" ? "#d99592" : "#b9d3bd";
+  const strokeColor = color === "red" ? "#9d2d27" : "#1f7f36";
   const centerX = (anode.x + cathode.x) / 2;
   const bodyY = anode.y - 21;
   return (
-    <g aria-label={scene.runtime.ledOn ? `LED ${led?.color ?? "verde"} acceso` : `LED ${led?.color ?? "verde"} spento`}>
-      {scene.runtime.ledOn && <circle cx={centerX} cy={bodyY - 2} r="13" fill={color} filter="url(#led-glow)" opacity="0.55" />}
+    <g>
+      {on && <circle cx={centerX} cy={bodyY - 2} r="13" fill={litColor} filter="url(#led-glow)" opacity="0.55" />}
       <line x1={anode.x} y1={anode.y} x2={centerX - 3.2} y2={bodyY + 3} stroke="#a8adb2" strokeWidth="1.1" strokeLinecap="round" />
       <line x1={cathode.x} y1={cathode.y} x2={centerX + 3.2} y2={bodyY + 3} stroke="#a8adb2" strokeWidth="1.1" strokeLinecap="round" />
-      <path d={`M ${centerX - 9} ${bodyY + 4} Q ${centerX} ${bodyY - 16} ${centerX + 9} ${bodyY + 4} Z`} fill={scene.runtime.ledOn ? color : dimColor} stroke={strokeColor} strokeWidth="0.8" opacity={scene.runtime.ledOn ? 0.95 : 0.78} />
+      <path d={`M ${centerX - 9} ${bodyY + 4} Q ${centerX} ${bodyY - 16} ${centerX + 9} ${bodyY + 4} Z`} fill={on ? litColor : dimColor} stroke={strokeColor} strokeWidth="0.8" opacity={on ? 0.95 : 0.78} />
       <ellipse cx={centerX - 3.3} cy={bodyY - 4.5} rx="2.2" ry="4" fill="#ffffff" opacity="0.45" />
       <text x={centerX} y={bodyY - 18} textAnchor="middle" fill={strokeColor} fontSize="5.4" fontWeight="850">LED</text>
     </g>
   );
 }
 
-function PaletteItem({ x, label, glyph }: { x: number; label: string; glyph: string }) {
+function PaletteItem({
+  x,
+  label,
+  glyph,
+  pressed,
+  onSelect,
+}: {
+  x: number;
+  label: string;
+  glyph: string;
+  /** Presenti = voce di palette ATTIVA (tap-tap montaggio); assenti = decorativa. */
+  pressed?: boolean;
+  onSelect?: () => void;
+}) {
+  const interactive = onSelect !== undefined;
   return (
-    <g transform={`translate(${x} 32)`}>
-      <rect x="0" y="0" width="62" height="38" rx="5" fill="#f6f9fc" stroke="#dce6ef" />
+    <g
+      transform={`translate(${x} 32)`}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? `palette ${label}` : undefined}
+      aria-pressed={interactive ? (pressed ? "true" : "false") : undefined}
+      style={interactive ? { cursor: "pointer" } : undefined}
+      onClick={onSelect}
+      onKeyDown={
+        interactive
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") onSelect();
+            }
+          : undefined
+      }
+    >
+      <rect
+        x="0"
+        y="0"
+        width="62"
+        height="38"
+        rx="5"
+        fill={pressed ? "#e8f1fb" : "#f6f9fc"}
+        stroke={pressed ? "#2f68ad" : "#dce6ef"}
+        strokeWidth={pressed ? 1.4 : 1}
+      />
       <path d={glyph} fill="none" stroke="#303d49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <text x="31" y="34" textAnchor="middle" fill="#52677f" fontSize="6" fontWeight="650">{label}</text>
+    </g>
+  );
+}
+
+/** Corpi dei piazzamenti tap-tap: LED sempre reso spento (il solve del
+ *  montaggio libero è una slice futura — niente accensioni inventate). */
+function PlacedPartsSvg({ scene, placements }: { scene: SimulationSceneV1; placements: MontaggioPlacement[] }) {
+  // Decorativo come i fili: i corpi piazzati non bloccano i tap sui fori vicini.
+  return (
+    <g pointerEvents="none">
+      {placements.map((placement) => {
+        const [firstHole, secondHole] = placement.holes;
+        const a = pointForBreadboardRef(firstHole);
+        const b = pointForBreadboardRef(secondHole);
+        if (!a || !b) return null;
+        if (placement.type === "resistor") {
+          return (
+            <g key={placement.id} aria-label={`Resistore montaggio libero ${placement.id}`}>
+              <ResistorBody a={a} b={b} />
+            </g>
+          );
+        }
+        const led = scene.components.find((component) => component.id === placement.id);
+        return (
+          <g key={placement.id} aria-label={`LED montaggio libero ${placement.id}`}>
+            <LedBody anode={a} cathode={b} color={led?.color ?? "red"} on={false} />
+          </g>
+        );
+      })}
     </g>
   );
 }
