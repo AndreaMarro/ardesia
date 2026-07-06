@@ -30,6 +30,10 @@ import {
   mistakeObservedBusEvent,
   type MistakeObservation,
 } from "../lessonos/mistakeObservation"
+import {
+  buildLessonMemoryExport,
+  lessonMemoryFileName,
+} from "../lessonos/exportLessonMemory"
 
 export const ELAB_LAB_EXPERIMENT_ID = "v1-cap6-esp1"
 
@@ -134,6 +138,24 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
       }),
     )
     setMarkedCount((count) => count + 1)
+  }
+
+  // Export della memoria della lezione (golden-path §8, segmento export):
+  // il modulo costruisce il JSON versionato dall'event-log, qui SOLO il
+  // download. Timestamp del click: l'export fotografa un momento reale.
+  const exportMemory = async () => {
+    if (log === null) return
+    const data = await buildLessonMemoryExport(log, {
+      experimentId: ELAB_LAB_EXPERIMENT_ID,
+      now: Date.now(),
+    })
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement("a")
+    anchor.href = url
+    anchor.download = lessonMemoryFileName(data.experimentId, data.exportedAt)
+    anchor.click()
+    URL.revokeObjectURL(url)
   }
 
   useEffect(() => {
@@ -296,6 +318,15 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                 </div>
               </div>
             )}
+
+            <div className="reference-tool-panel" data-elab-lab-export>
+              <div className="reference-tool-panel-bar">memoria della lezione</div>
+              <div style={{ padding: "4px 8px" }}>
+                <button type="button" disabled={log === null} onClick={() => void exportMemory()}>
+                  Esporta memoria (JSON)
+                </button>
+              </div>
+            </div>
             </div>
           </>
         )}
