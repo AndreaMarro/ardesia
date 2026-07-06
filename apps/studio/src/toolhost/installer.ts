@@ -170,9 +170,10 @@ export async function installTool(
     )
   }
 
-  // 5. Verifica che il tool non sia già installato
-  const existing = await store.read(manifestPath(id))
-  if (existing !== null) {
+  // 5. Verifica che il tool non sia già installato — sulla TRIADE completa
+  // (P2.2): un parziale legacy (es. manifest orfano di un install interrotto)
+  // non è "installato" e il reinstall è il percorso di recovery, non un deadlock.
+  if (await isToolInstalled(store, id)) {
     throw new Error(`tool "${id}" is already installed`)
   }
 
@@ -188,9 +189,23 @@ export async function installTool(
     bundleHash,
   }
 
-  await store.write(manifestPath(id), new Blob([manifestJson], { type: "application/json" }))
-  await store.write(bundlePath(id), bundleZip)
-  await store.write(installRecordPath(id), new Blob([JSON.stringify(installRecord, null, 2)], { type: "application/json" }))
+  // P2.2: mai artefatti parziali — se una write fallisce a metà, rollback
+  // best-effort di ciò che è atterrato PRIMA di rilanciare. Un manifest orfano
+  // farebbe da base a futuri "manifest presente = install valido".
+  try {
+    await store.write(manifestPath(id), new Blob([manifestJson], { type: "application/json" }))
+    await store.write(bundlePath(id), bundleZip)
+    await store.write(installRecordPath(id), new Blob([JSON.stringify(installRecord, null, 2)], { type: "application/json" }))
+  } catch (err) {
+    for (const p of [installRecordPath(id), bundlePath(id), manifestPath(id)]) {
+      try {
+        await store.delete(p)
+      } catch {
+        // rollback best-effort: l'errore originale resta quello riportato
+      }
+    }
+    throw err
+  }
 
   return manifest
 }
@@ -225,11 +240,18 @@ export async function uninstallTool(
 
 // ---- Query ----
 
-/** Verifica se un tool è installato (manifest.json esiste). */
+/**
+ * Verifica se un tool è installato: TRIADE completa (P2.2) — manifest + bundle
+ * + install record VALIDO. La sola presenza del manifest era una definizione
+ * pericolosa: true su install incompleti/interrotti.
+ */
 export async function isToolInstalled(store: InstallerStore, toolId: string): Promise<boolean> {
   if (!isValidToolId(toolId)) return false
-  const blob = await store.read(manifestPath(toolId))
-  return blob !== null
+  const manifest = await store.read(manifestPath(toolId))
+  if (manifest === null) return false
+  const bundle = await store.read(bundlePath(toolId))
+  if (bundle === null) return false
+  return (await getInstallRecord(store, toolId)) !== null
 }
 
 /** Lista tutti i toolId installati scandendo tools/<id>/manifest.json. */
