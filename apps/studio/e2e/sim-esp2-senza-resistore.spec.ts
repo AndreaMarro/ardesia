@@ -51,7 +51,7 @@ test("ELAB Lab esp2: solve onesto BRUCIATO, whitelist nel picker, console pulita
   expect(consoleErrors).toEqual([])
 })
 
-test("lavagna: post-it esp2 dalla toolbar — scena SVG col LED bruciato, banner 2/88", async ({
+test("lavagna: post-it esp2 dalla toolbar — scena SVG col LED bruciato, banner catalogo", async ({
   page,
 }) => {
   const consoleErrors = await collectConsoleErrors(page)
@@ -71,7 +71,7 @@ test("lavagna: post-it esp2 dalla toolbar — scena SVG col LED bruciato, banner
   await expect(page.locator('[aria-label*="bruciato per sovracorrente"]')).toBeVisible()
   await expect(page.getByText("SENZA RESISTORE: sovracorrente (Vol.1 p.32)")).toBeVisible()
   const banner = page.locator("[data-elab-catalog-summary]")
-  await expect(banner).toHaveAttribute("data-elab-catalog-summary", "3/88")
+  await expect(banner).toHaveAttribute("data-elab-catalog-summary", "4/88")
 
   // Evidenza visiva desktop + mobile.
   await page.screenshot({ path: "test-results/esp2-postit-desktop.png", fullPage: false })

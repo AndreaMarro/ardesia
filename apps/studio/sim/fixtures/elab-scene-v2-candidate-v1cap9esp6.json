@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "circuit-scene/2",
+  "experimentId": "v1-cap9-esp6",
+  "provenance": {
+    "status": "candidate",
+    "origin": "agent-authored",
+    "sourceRef": "Vol.1 pp.71-74; crop: apps/studio/public/elab/manuals/vol1/page-072-esercizio-9-6.png (primi passi) + page-074-esercizio-9-6.png (build finale, hash in source). Topologia elettrica = corpus experiments-vol1.js v1-cap9-esp6 (catalogo multi-pin sbloccato in #140, canali falsificati in ElabSolverEsp6Rgb): 3 divider pot 10k -> 470 Ohm -> canale RGB, common alla striscia nera. Il testo pp.72-74 vincola le net (negativo->striscia nera, catodo->negativo, un 470 per potenziometro), non i fori esatti: colonne 2-14 e 17-30 = canonical simulator placement.",
+    "checks": {
+      "electrical": "pass",
+      "geometry": "pass",
+      "bookMatch": "pass",
+      "visualMatch": "unknown"
+    }
+  },
+  "book": { "volume": 1, "chapter": 9, "exp": "esp6", "pages": [71, 72, 73, 74] },
+  "source": {
+    "sourceImageHash": "698b1df8ca3238096c7ed5be3027f38e2072d8431eade431a4606e7039632053"
+  },
+  "board": {
+    "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 },
+    "grid": { "columns": 30, "columnPitch": 7.5 },
+    "orientation": "elab-volume"
+  },
+  "components": [
+    { "id": "bat1", "type": "battery9v", "pose": { "x": -120, "y": 45, "rotationDeg": 0, "scale": 1 } },
+    { "id": "bb1", "type": "breadboard-half", "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 } },
+    { "id": "pot1", "type": "potentiometer", "value": 10000, "pose": { "x": 32.75, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
+    { "id": "pot2", "type": "potentiometer", "value": 10000, "pose": { "x": 70.25, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
+    { "id": "pot3", "type": "potentiometer", "value": 10000, "pose": { "x": 107.75, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
+    { "id": "r1", "type": "resistor", "value": 470, "pose": { "x": 164, "y": 103.75, "rotationDeg": 0, "scale": 1 } },
+    { "id": "r2", "type": "resistor", "value": 470, "pose": { "x": 179, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
+    { "id": "r3", "type": "resistor", "value": 470, "pose": { "x": 164, "y": 48.75, "rotationDeg": 0, "scale": 1 } },
+    { "id": "rgb1", "type": "rgb-led", "pose": { "x": 224, "y": 88.75, "rotationDeg": 0, "scale": 1 } }
+  ],
+  "wires": [
+    {
+      "id": "w1", "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red",
+      "path": { "kind": "polyline", "points": [ { "x": -6, "y": 65 }, { "x": -40, "y": 4 }, { "x": 17.75, "y": 21.25 } ] }
+    },
+    {
+      "id": "w2", "from": "bb1:bus-top-plus-2", "to": "bb1:a2", "color": "red",
+      "path": { "kind": "polyline", "points": [ { "x": 25.25, "y": 21.25 }, { "x": 25.25, "y": 111.25 } ] }
+    },
+    {
+      "id": "w3", "from": "bb1:bus-top-plus-7", "to": "bb1:a7", "color": "red",
+      "path": { "kind": "polyline", "points": [ { "x": 62.75, "y": 21.25 }, { "x": 62.75, "y": 111.25 } ] }
+    },
+    {
+      "id": "w4", "from": "bb1:bus-top-plus-12", "to": "bb1:a12", "color": "red",
+      "path": { "kind": "polyline", "points": [ { "x": 100.25, "y": 21.25 }, { "x": 100.25, "y": 111.25 } ] }
+    },
+    {
+      "id": "w5", "from": "bb1:a3", "to": "bb1:a17", "color": "yellow",
+      "path": { "kind": "polyline", "points": [ { "x": 32.75, "y": 111.25 }, { "x": 50, "y": 118 }, { "x": 120, "y": 118 }, { "x": 137.75, "y": 111.25 } ] }
+    },
+    {
+      "id": "w6", "from": "bb1:a8", "to": "bb1:c19", "color": "yellow",
+      "path": { "kind": "polyline", "points": [ { "x": 70.25, "y": 111.25 }, { "x": 90, "y": 119 }, { "x": 140, "y": 112 }, { "x": 152.75, "y": 96.25 } ] }
+    },
+    {
+      "id": "w7", "from": "bb1:a13", "to": "bb1:f17", "color": "yellow",
+      "path": { "kind": "polyline", "points": [ { "x": 107.75, "y": 111.25 }, { "x": 118, "y": 94 }, { "x": 131, "y": 72 }, { "x": 137.75, "y": 63.75 } ] }
+    },
+    {
+      "id": "w8", "from": "bb1:bus-top-plus-1", "to": "bb1:bus-bot-plus-1", "color": "red",
+      "path": { "kind": "polyline", "points": [ { "x": 17.75, "y": 21.25 }, { "x": 8, "y": 50 }, { "x": 8, "y": 95 }, { "x": 17.75, "y": 123.75 } ] }
+    },
+    {
+      "id": "w9", "from": "bb1:a24", "to": "bb1:a27", "color": "orange",
+      "path": { "kind": "polyline", "points": [ { "x": 190.25, "y": 111.25 }, { "x": 201, "y": 116 }, { "x": 212.75, "y": 111.25 } ] }
+    },
+    {
+      "id": "w10", "from": "bb1:c26", "to": "bb1:c29", "color": "green",
+      "path": { "kind": "polyline", "points": [ { "x": 205.25, "y": 96.25 }, { "x": 216, "y": 101 }, { "x": 227.75, "y": 96.25 } ] }
+    },
+    {
+      "id": "w11", "from": "bb1:f24", "to": "bb1:a30", "color": "blue",
+      "path": { "kind": "polyline", "points": [ { "x": 190.25, "y": 63.75 }, { "x": 216, "y": 86 }, { "x": 235.25, "y": 111.25 } ] }
+    },
+    {
+      "id": "w12", "from": "bb1:a4", "to": "bb1:bus-top-minus-4", "color": "black",
+      "path": { "kind": "polyline", "points": [ { "x": 40.25, "y": 111.25 }, { "x": 40.25, "y": 13.75 } ] }
+    },
+    {
+      "id": "w13", "from": "bb1:a9", "to": "bb1:bus-top-minus-9", "color": "black",
+      "path": { "kind": "polyline", "points": [ { "x": 77.75, "y": 111.25 }, { "x": 77.75, "y": 13.75 } ] }
+    },
+    {
+      "id": "w14", "from": "bb1:a14", "to": "bb1:bus-top-minus-14", "color": "black",
+      "path": { "kind": "polyline", "points": [ { "x": 115.25, "y": 111.25 }, { "x": 115.25, "y": 13.75 } ] }
+    },
+    {
+      "id": "w15", "from": "bb1:a28", "to": "bb1:bus-top-minus-28", "color": "black",
+      "path": { "kind": "polyline", "points": [ { "x": 220.25, "y": 111.25 }, { "x": 220.25, "y": 13.75 } ] }
+    },
+    {
+      "id": "w16", "from": "bb1:bus-top-minus-1", "to": "bat1:negative", "color": "black",
+      "path": { "kind": "polyline", "points": [ { "x": 17.75, "y": 13.75 }, { "x": -52, "y": 2 }, { "x": -6, "y": 93 } ] }
+    }
+  ],
+  "pinAssignments": {
+    "pot1:vcc": "bb1:e2",
+    "pot1:signal": "bb1:e3",
+    "pot1:gnd": "bb1:e4",
+    "pot2:vcc": "bb1:e7",
+    "pot2:signal": "bb1:e8",
+    "pot2:gnd": "bb1:e9",
+    "pot3:vcc": "bb1:e12",
+    "pot3:signal": "bb1:e13",
+    "pot3:gnd": "bb1:e14",
+    "r1:pin1": "bb1:b17",
+    "r1:pin2": "bb1:b24",
+    "r2:pin1": "bb1:e19",
+    "r2:pin2": "bb1:e26",
+    "r3:pin1": "bb1:h17",
+    "r3:pin2": "bb1:h24",
+    "rgb1:red": "bb1:d27",
+    "rgb1:common": "bb1:d28",
+    "rgb1:green": "bb1:d29",
+    "rgb1:blue": "bb1:d30"
+  }
+}

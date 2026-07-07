@@ -695,8 +695,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
             sim
           </button>
-          {/* Catalogo scene montate (2/88): esp2 = dimostrazione "cosa NON
-              fare" (Vol.1 p.32) — LED senza resistore, verdetto BRUCIATO. */}
+          {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
+              banner del post-it dichiara sempre montati/totale). */}
           <button
             onClick={() => insertSimulationPlugin("v1-cap6-esp2")}
             className="st-ghost"
@@ -710,6 +710,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             aria-label="Inserisci esperimento luminosità con resistenze diverse sulla lavagna"
           >
             sim esp3
+          </button>
+          <button
+            onClick={() => insertSimulationPlugin("v1-cap9-esp6")}
+            className="st-ghost"
+            aria-label="Inserisci esperimento lampada RGB con 3 potenziometri sulla lavagna"
+          >
+            sim esp6
           </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni

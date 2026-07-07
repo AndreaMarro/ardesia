@@ -4,7 +4,11 @@
 // Il testo lascia liberi i fori esatti ("un punto qualsiasi della striscia
 // rossa", "un punto qualsiasi della zona sotto"): qui si verifica SOLO ciò che
 // il libro impone, al livello delle net (tie-strip/rail), non dei fori.
-import { parseBreadboardRef, type ParsedBreadboardRef } from "../breadboard/simulationBreadboard.ts"
+import {
+  parseBreadboardRef,
+  resolveNet,
+  type ParsedBreadboardRef,
+} from "../breadboard/simulationBreadboard.ts"
 import type { ElabScene } from "./elabScene.ts"
 
 export type BookConstraintResult = {
@@ -26,6 +30,10 @@ const BOOK_REF_P32 = "Vol.1 pag.32"
 
 function isPlusRail(parsed: ParsedBreadboardRef | null): boolean {
   return parsed?.kind === "rail" && (parsed.rail === "bus-top-plus" || parsed.rail === "bus-bot-plus")
+}
+
+function isMinusRail(parsed: ParsedBreadboardRef | null): boolean {
+  return parsed?.kind === "rail" && (parsed.rail === "bus-top-minus" || parsed.rail === "bus-bot-minus")
 }
 
 function isTerminalHole(parsed: ParsedBreadboardRef | null): parsed is ParsedBreadboardRef & { kind: "terminal" } {
@@ -270,6 +278,183 @@ export function checkBookConstraintsV1Cap6Esp2(scene: ElabScene): BookConstraint
         ? "componenti = batteria 9V, breadboard, LED (nessun resistore)"
         : `BOM diversa dalla dimostrazione p.32 (trovati: ${types.join(", ") || "nessuno"})`,
       bookRef: `${BOOK_REF_P32} — dimostrazione: LED collegato direttamente alla batteria`,
+    })
+  }
+
+  return { ok: results.every((result) => result.ok), results }
+}
+
+/**
+ * Vincoli del TESTO di Vol.1 cap.9 esp.6 (pp.71-74) — "Lampada RGB con 3
+ * potenziometri". Primo esperimento multi-pin: i vincoli lavorano al livello
+ * delle NET (resolveNet su pinAssignments+wires), come impone il metodo del
+ * canon — il testo prescrive i collegamenti, non i fori esatti. Il verso
+ * "resistenza tra il positivo e il piedino del potenziometro" (p.73) è reso
+ * onesto al livello di catena: un 470 per canale in serie tra il divider del
+ * pot e il pin colore del LED RGB, col positivo che alimenta ogni pot.
+ */
+export function checkBookConstraintsV1Cap9Esp6(scene: ElabScene): BookConstraintsReport {
+  const battery = scene.components.find((component) => component.type === "battery9v")
+  const breadboard = scene.components.find((component) => component.type === "breadboard-half")
+  const pots = scene.components.filter((component) => component.type === "potentiometer")
+  const resistors = scene.components.filter((component) => component.type === "resistor")
+  const rgb = scene.components.find((component) => component.type === "rgb-led")
+
+  const results: BookConstraintResult[] = []
+  const BOOK_REF_P71 = "Vol.1 pag.71"
+  const BOOK_REF_P72 = "Vol.1 pag.72"
+  const BOOK_REF_P73 = "Vol.1 pag.73"
+  const BOOK_REF_P74 = "Vol.1 pag.74"
+
+  // Le net si calcolano sulla stessa grammatica del solve serie: pin→foro
+  // (pinAssignments) + fili (wires) collassano su tie-strip/rail.
+  const netScene = {
+    components: scene.components.map((component) => ({
+      id: component.id,
+      type: component.type,
+      ...(typeof component.value === "number" ? { value: component.value } : {}),
+    })),
+    pinAssignments: scene.pinAssignments,
+    connections: scene.wires.map((wire) => ({ from: wire.from, to: wire.to })),
+  }
+  const net = (ref: string): string => resolveNet(ref, netScene)
+
+  // G1 — BOM p.71 (elenco materiali): batteria 9V, breadboard, 3 potenziometri
+  // da 10k, 3 resistenze da 470 Ohm, 1 LED RGB.
+  {
+    const potsOk = pots.length === 3 && pots.every((pot) => pot.value === 10000)
+    const resistorsOk = resistors.length === 3 && resistors.every((resistor) => resistor.value === 470)
+    const ok =
+      battery !== undefined &&
+      breadboard !== undefined &&
+      rgb !== undefined &&
+      potsOk &&
+      resistorsOk &&
+      scene.components.length === 9
+    results.push({
+      id: "bom-matches-book",
+      ok,
+      detail: ok
+        ? "componenti = batteria 9V, breadboard, 3 pot 10k, 3 resistori 470 Ohm, LED RGB"
+        : `BOM diversa dal libro (pot: ${pots.length}, r470: ${resistors.filter((r) => r.value === 470).length}, rgb: ${rgb ? 1 : 0})`,
+      bookRef: `${BOOK_REF_P71} — elenco materiali dell'esperimento 6`,
+    })
+  }
+
+  // G2 — "Collega il negativo della batteria alla striscia nera della
+  // breadboard" (p.72): il filo da bat- termina su una rail minus.
+  {
+    const target = battery ? wireEndpointOpposite(scene, `${battery.id}:negative`) : null
+    const parsed = target === null ? null : parseBreadboardRef(target)
+    const ok = isMinusRail(parsed)
+    results.push({
+      id: "battery-negative-to-black-rail",
+      ok,
+      detail: ok
+        ? `bat- collegato alla striscia nera (${target})`
+        : `bat- non arriva a una striscia nera (endpoint: ${target ?? "assente"})`,
+      bookRef: `${BOOK_REF_P72} — "Collega il negativo della batteria alla striscia nera della breadboard"`,
+    })
+  }
+
+  // G3 — "Collega il catodo del LED RGB (la gambetta lunga) al negativo della
+  // batteria con un filo" (p.72): net(common) = net(bat-).
+  {
+    const ok =
+      battery !== undefined && rgb !== undefined && net(`${rgb.id}:common`) === net(`${battery.id}:negative`)
+    results.push({
+      id: "rgb-common-to-battery-negative",
+      ok,
+      detail: ok
+        ? "catodo comune del LED RGB sulla net del negativo batteria"
+        : "il catodo comune del LED RGB NON raggiunge il negativo della batteria",
+      bookRef: `${BOOK_REF_P72} — "Collega il catodo del LED RGB (la gambetta lunga) al negativo della batteria con un filo"`,
+    })
+  }
+
+  // G4 — "Inserisci il primo/secondo/terzo potenziometro nella breadboard"
+  // (pp.73-74): ogni pot ha i 3 pin su fori di zona, su 3 tie-strip DISTINTE
+  // (un pot con due gambe nella stessa strip sarebbe cortocircuitato).
+  {
+    const bad = pots.find((pot) => {
+      const pins = ["vcc", "signal", "gnd"].map((pin) =>
+        parseBreadboardRef(scene.pinAssignments[`${pot.id}:${pin}`] ?? ""),
+      )
+      if (!pins.every((pin) => isTerminalHole(pin))) return true
+      const strips = new Set(pins.map((pin) => pin!.nodeId))
+      return strips.size !== 3
+    })
+    const ok = pots.length === 3 && bad === undefined
+    results.push({
+      id: "pots-on-three-distinct-strips",
+      ok,
+      detail: ok
+        ? "ogni potenziometro ha vcc/signal/gnd su 3 tie-strip distinte"
+        : `potenziometro mal inserito: ${bad?.id ?? "conteggio pot diverso da 3"}`,
+      bookRef: `${BOOK_REF_P73} — "Inserisci il primo potenziometro nella breadboard" (e il 2°/3°, p.74)`,
+    })
+  }
+
+  // G5 — "il positivo della batteria" alimenta ogni potenziometro (p.73,
+  // "tra il positivo della batteria e il piedino del potenziometro"; p.72
+  // figura: striscia rossa): net(vcc di ogni pot) = net(bat+).
+  {
+    const ok =
+      battery !== undefined &&
+      pots.length === 3 &&
+      pots.every((pot) => net(`${pot.id}:vcc`) === net(`${battery.id}:positive`))
+    results.push({
+      id: "pots-vcc-on-battery-positive",
+      ok,
+      detail: ok
+        ? "il positivo della batteria alimenta i 3 potenziometri"
+        : "almeno un potenziometro non raggiunge il positivo della batteria",
+      bookRef: `${BOOK_REF_P73} — "Inserisci una resistenza da 470 Ohm tra il positivo della batteria e il piedino del potenziometro"`,
+    })
+  }
+
+  // G6 — un 470 Ohm per canale, in serie tra il pot e il pin colore (p.73-74
+  // + p.71 "Collega il pin 2 del terzo potenziometro al LED blu..."): per ogni
+  // canale {red,green,blue} esiste ESATTAMENTE un resistore con una gamba
+  // sulla net del canale e l'altra sulla net del signal di UN pot; la mappa
+  // pot↔resistore↔canale è una biiezione.
+  {
+    const usedResistors = new Set<string>()
+    const usedPots = new Set<string>()
+    const channels = ["red", "green", "blue"] as const
+    let chainsOk = rgb !== undefined && resistors.length === 3 && pots.length === 3
+    if (chainsOk) {
+      for (const channel of channels) {
+        const channelNet = net(`${rgb!.id}:${channel}`)
+        const resistor = resistors.find(
+          (candidate) =>
+            !usedResistors.has(candidate.id) &&
+            (net(`${candidate.id}:pin1`) === channelNet || net(`${candidate.id}:pin2`) === channelNet),
+        )
+        if (resistor === undefined) {
+          chainsOk = false
+          break
+        }
+        const otherPinNet =
+          net(`${resistor.id}:pin1`) === channelNet ? net(`${resistor.id}:pin2`) : net(`${resistor.id}:pin1`)
+        const pot = pots.find(
+          (candidate) => !usedPots.has(candidate.id) && net(`${candidate.id}:signal`) === otherPinNet,
+        )
+        if (pot === undefined) {
+          chainsOk = false
+          break
+        }
+        usedResistors.add(resistor.id)
+        usedPots.add(pot.id)
+      }
+    }
+    results.push({
+      id: "one-470-per-pot-channel",
+      ok: chainsOk,
+      detail: chainsOk
+        ? "3 catene indipendenti pot → 470 Ohm → canale RGB (biiezione completa)"
+        : "catena pot→470→canale mancante o duplicata per almeno un colore",
+      bookRef: `${BOOK_REF_P74} — "Inserisci il 3° potenzometro con la sua resistenza da 470r" + collegamenti canale (pin 2 → LED rosso/verde/blu)`,
     })
   }
 
