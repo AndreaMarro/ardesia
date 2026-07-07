@@ -18,6 +18,10 @@ import { useCallback, useEffect, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
+import type { JournalEvent } from "../store/JournalRecorder"
+import { deserializeEvents } from "../store/ReplayEngine"
+import { PATHS } from "../store/types"
+import { workspaceStore } from "../store/WorkspaceStore"
 import {
   projectTeacherDashboard,
   type TeacherDashboardProjection,
@@ -28,6 +32,12 @@ import type { EventLogReadLike } from "../toolhost/caps/graph"
 export interface TeacherDashboardViewDeps {
   /** Sorgente eventi (seam per i test jsdom); default: event log IndexedDB reale. */
   loadEvents?: () => Promise<readonly AppendedEvent[]>
+  /** Journal lavagna della stessa stanza; default: raw/events.jsonl dal WorkspaceStore reale. */
+  loadJournalEvents?: () => Promise<readonly JournalEvent[]>
+  /** Room a cui associare il journal finché JournalRecorder non porta room id nativi. */
+  journalRoom?: string
+  /** Nodo iniziale del grafo; se assente viene derivato dal primo concetto/evento didattico. */
+  focusNodeId?: string | null
   /** Sink degli eventi append-only (stessa memoria, mai un secondo store). */
   appendEvent?: (event: LessonOsEvent) => Promise<void>
   /**
@@ -50,18 +60,41 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
   return store.readAll()
 }
 
+async function loadJournalEventsFromStore(): Promise<readonly JournalEvent[]> {
+  if (workspaceStore.mode === "unavailable") await workspaceStore.init()
+  const blob = await workspaceStore.read(PATHS.JOURNAL)
+  if (!blob) return []
+  return deserializeEvents(await blob.text())
+}
+
 async function appendEventToStore(event: LessonOsEvent): Promise<void> {
   const store = await createEventLogStore()
   await store.append(event)
 }
 
+function roomFromHash(): string {
+  const h = location.hash.replace(/^#/, "").trim()
+  return h || "current"
+}
+
+function defaultFocusNodeId(events: readonly AppendedEvent[]): string | null {
+  for (const ev of events) {
+    if (ev.kind === "concept.introduced") return ev.conceptId
+  }
+  for (const ev of events) {
+    if (ev.kind === "material.cited" && ev.conceptId !== undefined) return ev.conceptId
+    if (ev.kind === "error.observed") return ev.conceptId
+    if (ev.kind === "exercise.completed" && ev.conceptId !== undefined) return ev.conceptId
+  }
+  return null
+}
+
 type Z7Candidate = TeacherDashboardProjection["studentPackQueue"][number]
-type StatRow = TeacherDashboardProjection["stats"][number]
 
 type Z7State =
   | { phase: "loading" }
   | { phase: "error"; detail: string }
-  | { phase: "ready"; queue: Z7Candidate[]; stats: StatRow[] }
+  | { phase: "ready"; projection: TeacherDashboardProjection }
 
 // D10: etichette docente per le stat del proiettore. Key sconosciuta → key
 // verbatim (mai inventare né nascondere una stat che il proiettore ha derivato).
@@ -85,9 +118,12 @@ function labelText(label: Record<string, string>): string {
 
 export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboardViewDeps }) {
   const loadEvents = deps?.loadEvents ?? loadEventsFromStore
+  const loadJournalEvents = deps?.loadJournalEvents ?? loadJournalEventsFromStore
+  const journalRoom = deps?.journalRoom ?? roomFromHash()
   const appendEvent = deps?.appendEvent ?? appendEventToStore
   const eventLog = deps?.eventLog ?? realEventLog
   const [state, setState] = useState<Z7State>({ phase: "loading" })
+  const [focusNodeId, setFocusNodeId] = useState<string | null>(deps?.focusNodeId ?? null)
   const [busyPackId, setBusyPackId] = useState<string | null>(null)
   // Import/riapertura pack: null = nessun import tentato; il risultato del
   // parse fail-closed (ok o errore) è SEMPRE visibile.
@@ -124,16 +160,21 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
 
   const refresh = useCallback(async () => {
     const events = await loadEvents()
+    const journalEvents = await loadJournalEvents()
+    const focus = focusNodeId ?? defaultFocusNodeId(events)
     const projection = projectTeacherDashboard({
       lessonEvents: events,
+      journalEvents,
+      journalRoom,
+      focusNodeId: focus,
       teacherId: "docente-locale",
       locale: "it",
       generatedAt: Date.now(),
     })
-    setState({ phase: "ready", queue: projection.studentPackQueue, stats: projection.stats })
-    // loadEvents è stabile per contratto del seam (default modulo o dep dei test)
+    setState({ phase: "ready", projection })
+    // loadEvents/loadJournalEvents sono stabili per contratto del seam (default modulo o dep dei test)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [focusNodeId, journalRoom])
 
   useEffect(() => {
     let cancelled = false
@@ -210,16 +251,30 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
-      <header className="st-bar">
+      <header
+        className="st-bar"
+        style={{
+          height: "auto",
+          minHeight: 52,
+          flex: "0 0 auto",
+          flexWrap: "wrap",
+          rowGap: 6,
+          paddingTop: 6,
+          paddingBottom: 6,
+          overflow: "visible",
+        }}
+      >
         <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
           <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
-        <span className="st-name">
+        <span className="st-name" style={{ flex: "1 1 160px", minWidth: 0, maxWidth: 360 }}>
           <span className="st-name-text">Cruscotto docente — projection LessonOS (read-only) + azioni append-only</span>
         </span>
-        <ViewNav current="cruscotto" />
+        <div style={{ marginLeft: "auto", maxWidth: "100%", overflowX: "auto", paddingBottom: 2 }}>
+          <ViewNav current="cruscotto" />
+        </div>
       </header>
 
       <div style={{ flex: 1, overflow: "auto", padding: 16 }}>
@@ -245,7 +300,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                 gap: 12,
               }}
             >
-              {state.stats.map((stat) => (
+              {state.projection.stats.map((stat) => (
                 <li
                   key={stat.key}
                   data-testid={`zstat-${stat.key}`}
@@ -273,9 +328,101 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
               ))}
             </ul>
           )}
+
+          {state.phase === "ready" && (
+            <div data-zcharts style={{ marginTop: 14, display: "grid", gap: 8 }}>
+              {state.projection.stats.map((stat) => {
+                const max = Math.max(1, ...state.projection.stats.map((item) => item.value))
+                const width = `${Math.max(4, Math.round((stat.value / max) * 100))}%`
+                return (
+                  <div key={stat.key} data-testid={`zchart-${stat.key}`} data-zchart-value={stat.value}>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: 8, fontSize: 12 }}>
+                      <span>{STAT_LABELS_IT[stat.key] ?? stat.key}</span>
+                      <strong>{stat.value}</strong>
+                    </div>
+                    <div
+                      aria-hidden
+                      style={{
+                        height: 8,
+                        borderRadius: 999,
+                        background: "rgba(21, 38, 56, 0.08)",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <div style={{ width, height: "100%", background: "var(--st-accent, #2f6fed)" }} />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </section>
 
-        <section aria-labelledby="z7-title" data-z7-count={state.phase === "ready" ? state.queue.length : undefined}>
+        <section
+          aria-labelledby="zgraph-title"
+          data-testid="zgraph"
+          data-zgraph-focus={state.phase === "ready" ? state.projection.graphView.focusNodeId ?? "" : undefined}
+          style={{ marginBottom: 28 }}
+        >
+          <h2 id="zgraph-title" style={{ margin: "0 0 4px" }}>
+            Grafo della lezione
+          </h2>
+          <p style={{ margin: "0 0 16px", opacity: 0.75 }}>
+            Vista navigabile derivata dall&apos;event log LessonOS: nodi e archi portano solo id, label ed evidenze pseudonime.
+          </p>
+
+          {state.phase === "loading" && <p aria-busy="true">Materializzo il grafo…</p>}
+
+          {state.phase === "ready" && state.projection.graphView.nodes.length === 0 && (
+            <EmptyState
+              title="Grafo non ancora navigabile"
+              detail="Quando la lezione contiene concetti, materiali o errori, il vicinato del nodo in focus compare qui."
+            />
+          )}
+
+          {state.phase === "ready" && state.projection.graphView.nodes.length > 0 && (
+            <div style={{ display: "grid", gap: 12 }}>
+              <div data-testid="zgraph-focus" style={{ fontSize: 13 }}>
+                Focus:{" "}
+                <strong>
+                  {labelText(
+                    state.projection.graphView.nodes.find((node) => node.id === state.projection.graphView.focusNodeId)?.label ?? {
+                      it: state.projection.graphView.focusNodeId ?? "nessun nodo",
+                    },
+                  )}
+                </strong>
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {state.projection.graphView.nodes.map((node) => (
+                  <button
+                    key={node.id}
+                    type="button"
+                    data-zgraph-node={node.id}
+                    aria-pressed={node.id === state.projection.graphView.focusNodeId}
+                    onClick={() => setFocusNodeId(node.id)}
+                    style={{
+                      minHeight: 36,
+                      borderRadius: 8,
+                      border: "1px solid var(--st-line, #d8d2c6)",
+                      background: node.id === state.projection.graphView.focusNodeId ? "rgba(47, 111, 237, 0.12)" : "#fff",
+                    }}
+                  >
+                    {labelText(node.label)}
+                  </button>
+                ))}
+              </div>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 6 }}>
+                {state.projection.graphView.edges.map((edge) => (
+                  <li key={`${edge.from}:${edge.kind}:${edge.to}`} style={{ fontSize: 12, opacity: 0.75 }}>
+                    {edge.from} → {edge.kind} → {edge.to}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+
+        <section aria-labelledby="z7-title" data-z7-count={state.phase === "ready" ? state.projection.studentPackQueue.length : undefined}>
           <h2 id="z7-title" style={{ margin: "0 0 4px" }}>
             Student-pack — coda candidati
           </h2>
@@ -295,16 +442,16 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
             />
           )}
 
-          {state.phase === "ready" && state.queue.length === 0 && (
+          {state.phase === "ready" && state.projection.studentPackQueue.length === 0 && (
             <EmptyState
               title="Nessun candidato in coda"
               detail="Quando un errore osservato in lezione resta senza esercizio correttivo, compare qui."
             />
           )}
 
-          {state.phase === "ready" && state.queue.length > 0 && (
+          {state.phase === "ready" && state.projection.studentPackQueue.length > 0 && (
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 12 }}>
-              {state.queue.map((candidate) => (
+              {state.projection.studentPackQueue.map((candidate) => (
                 <li
                   key={candidate.candidateId}
                   data-z7-candidate={candidate.candidateId}

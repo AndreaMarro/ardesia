@@ -1411,6 +1411,31 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
 
     root.unmount()
   })
+
+  it("LessonOS session producer: Room appende lesson.started al mount e lesson.ended all'unmount", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let lessonStore: { readAll(): Promise<Array<{ kind: string; room?: string; evidence: string[] }>> }
+    await vi.waitFor(async () => {
+      lessonStore = (window as any).__MAESTRO_TEST__?.lessonOs?.current?.store
+      expect(lessonStore).toBeTruthy()
+      const all = await lessonStore.readAll()
+      expect(all.some((event) => event.kind === "lesson.started" && event.room === "test-room-1")).toBe(true)
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+
+    await vi.waitFor(async () => {
+      const all = await lessonStore.readAll()
+      const ended = all.find((event) => event.kind === "lesson.ended" && event.room === "test-room-1")
+      expect(ended).toBeTruthy()
+      expect(ended!.evidence.some((ref) => ref.startsWith("lesson:test-room-1@"))).toBe(true)
+    }, { timeout: 5000, interval: 10 })
+  })
 })
 
 describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegnersi muto", () => {

@@ -141,6 +141,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             .then((runtime) => {
               if (cancelled) return
               lessonOsRef.current = runtime
+              const startedAt = clock()
+              runtime.store.append({
+                kind: "lesson.started",
+                room,
+                t: startedAt,
+                evidence: [`lesson:${room}@${startedAt}`],
+              }).catch(() => {})
               // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
               if (runtime.dataLoss) {
                 setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
@@ -231,7 +238,23 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       const lessonOsStore = lessonOsRef.current?.store
       lessonOsRef.current = null
       if (lessonOsStore && "close" in lessonOsStore) {
-        ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
+        const endedAt = sharedClock()
+        lessonOsStore.append({
+          kind: "lesson.ended",
+          room,
+          t: endedAt,
+          evidence: [`lesson:${room}@${endedAt}`],
+        }).catch(() => {}).finally(() => {
+          ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
+        })
+      } else if (lessonOsStore) {
+        const endedAt = sharedClock()
+        lessonOsStore.append({
+          kind: "lesson.ended",
+          room,
+          t: endedAt,
+          evidence: [`lesson:${room}@${endedAt}`],
+        }).catch(() => {})
       }
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {

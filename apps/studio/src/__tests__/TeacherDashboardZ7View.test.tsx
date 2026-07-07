@@ -54,9 +54,10 @@ describe("TeacherDashboardView — zona Z7 student-pack", () => {
     const events = await appendEvents(CANDIDATE_EVENTS)
     render(<TeacherDashboardView deps={{ loadEvents: async () => events }} />)
 
-    expect(await screen.findByText("Corto circuito sulla riga i")).toBeTruthy()
+    await screen.findByRole("button", { name: /genera pack/i })
     const row = document.querySelector('[data-z7-candidate="sp-error:corto-1"]')
     expect(row).not.toBeNull()
+    expect(row!.textContent).toContain("Corto circuito sulla riga i")
     expect(row!.textContent).toContain("3b-elab")
     expect(row!.textContent).toContain("candidate")
     // ogni riga porta le sue evidenze (spec §0.3: niente dati senza provenienza)
@@ -77,8 +78,9 @@ describe("TeacherDashboardView — zona Z7 student-pack", () => {
     ])
     render(<TeacherDashboardView deps={{ loadEvents: async () => events }} />)
 
-    expect(await screen.findByText("Errore orfano")).toBeTruthy()
+    await screen.findByText(/fuori lezione/i)
     const row = document.querySelector('[data-z7-candidate="sp-error:senza-lezione"]')
+    expect(row!.textContent).toContain("Errore orfano")
     expect(row!.textContent).toContain("fuori lezione")
   })
 
