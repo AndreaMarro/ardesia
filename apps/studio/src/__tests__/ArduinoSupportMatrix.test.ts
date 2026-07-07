@@ -163,14 +163,14 @@ describe("Arduino support matrix — freeze della verità compile/upload Vol.3",
     }
   })
 
-  it("M4b: v3-cap6-esp4 punta a sirena.hex mentre esiste anche v3-cap6-esp4.hex (ambiguità nota)", async () => {
+  it("M4b: v3-cap6-esp4 RICONCILIATO — punta al suo build pin-6 (NOTTE-12)", async () => {
     const experiments = await loadVol3()
     const esp4 = experiments.find((exp) => exp.id === "v3-cap6-esp4")
     expect(esp4).toBeDefined()
-    // Caratterizzazione, non approvazione: finché nessuno verifica col libro
-    // quale artefatto è quello giusto, il puntamento incrociato resta DICHIARATO.
-    // Se riconcili (esp4 → esp4.hex con hash verificato), aggiorna qui e la matrice.
-    expect(esp4?.hexFile).toBe("/hex/v3-cap6-sirena.hex")
+    // Riconciliato in NOTTE-12: verificato col libro (pin 6/9) e col
+    // disassembly (esp4.hex = ldi r24,0x06; sirena.hex = 0x08, altro
+    // esperimento). Hash ancorato in ElabVol3HexTruth.test.ts.
+    expect(esp4?.hexFile).toBe("/hex/v3-cap6-esp4.hex")
     expect(fs.existsSync(path.join(publicHexDir, "v3-cap6-esp4.hex"))).toBe(true)
   })
 })
