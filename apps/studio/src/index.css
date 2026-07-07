@@ -419,6 +419,13 @@ body {
   flex: 0 1 210px;
   min-width: 0;
 }
+.elab-lab-canvas-host {
+  position: absolute;
+  top: 0;
+  right: 408px;
+  bottom: 0;
+  left: 0;
+}
 .elab-lab-panels {
   position: absolute; top: 24px; right: 24px; z-index: 50;
   display: flex; flex-direction: column; gap: 12px;
@@ -441,6 +448,9 @@ body {
     flex: 1 1 96px;
     min-width: 86px;
     max-width: 130px;
+  }
+  .elab-lab-canvas-host {
+    inset: 0;
   }
   .elab-lab-panels {
     left: 6px;

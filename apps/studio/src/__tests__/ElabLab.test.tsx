@@ -70,6 +70,19 @@ describe("ElabLab (mount ELAB via renderEmbeddable + solve via registry)", () =>
     expect(types).toEqual(["battery9v", "breadboard-half", "led", "resistor"])
   })
 
+  it("layout libro: breadboard verticale e LED ancora a cavallo del ponte", () => {
+    const experiment = findElabLabExperiment()!
+    const layout = (experiment as typeof experiment & {
+      layout: Record<string, { rotation?: number; leadLayout?: string }>
+    }).layout
+    const pinAssignments = experiment.pinAssignments ?? {}
+    expect(layout.bb1?.rotation).toBe(90)
+    expect(layout.led1?.leadLayout).toBe("bridge")
+    expect(layout.led1?.rotation).toBe(90)
+    expect(pinAssignments["led1:anode"]).toBe("bb1:f3")
+    expect(pinAssignments["led1:cathode"]).toBe("bb1:e3")
+  })
+
   it("il pannello mostra il verdetto del MOTORE REALE: LED acceso, corrente = engine firsthand", async () => {
     const engine = solveElabExperiment(toSolverExperiment(findElabLabExperiment()!))
     expect(engine.componentStates.led1?.on).toBe(true) // precondizione: dato Pack sano

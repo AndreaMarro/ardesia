@@ -69,22 +69,24 @@ const EXPERIMENTS_VOL1 = {
       ],
       layout: {
               "bat1": {
-                      "x": 30,
-                      "y": 55
+                      "x": 35,
+                      "y": 90
               },
               "bb1": {
-                      "x": 100,
-                      "y": 10
+                      "x": 260,
+                      "y": 20,
+                      "rotation": 90
               },
               "r1": {
-                      "x": 155.25,
-                      "y": 123.75,
-                      "rotation": 180,
+                      "x": 146.25,
+                      "y": 75.25,
+                      "rotation": 270,
                       "leadSpan": 6
               },
               "led1": {
-                      "x": 132.75,
-                      "y": 68.75,
+                      "x": 201.25,
+                      "y": 52.75,
+                      "rotation": 90,
                       "leadLayout": "bridge"
               }
       },

@@ -39,7 +39,7 @@ import {
   type SimulationSceneV1,
 } from "../toolhost/ToolCanvasEmbeddable"
 import type { SolveResult, SolverExperiment } from "../../sim/solver/elabSolver"
-import { stepByStepModel } from "../toolhost/simulationStepMode"
+import { stepByStepModel, type StepModeSceneSlice } from "../toolhost/simulationStepMode"
 import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
 import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
@@ -113,6 +113,122 @@ interface ElabLabProps {
 type EntitlementPanelState = EntitlementAccessResult | { kind: "checking" }
 type ElabLabMode = "ready" | "step" | "free"
 
+type AssemblyStep = {
+  id: string
+  label: string
+  componentIds: readonly string[]
+  connectionIndexes: readonly number[]
+  pinRefs: readonly string[]
+}
+
+type ElabExperimentLayout = Record<
+  string,
+  {
+    x?: number
+    y?: number
+    rotation?: number
+    parentId?: string
+    leadLayout?: string
+    leadSpan?: number
+  }
+>
+
+type ElabVolumeExperimentWithLayout = ElabVolumeExperiment & {
+  layout?: ElabExperimentLayout
+}
+
+const BASE_MOUNTED_COMPONENT_TYPES = new Set(["battery9v", "breadboard-half"])
+
+const V1_CAP6_ESP1_ASSEMBLY_STEPS: readonly AssemblyStep[] = [
+  {
+    id: "positive-wire",
+    label: "Monta il filo rosso dal + batteria alla striscia rossa",
+    componentIds: [],
+    connectionIndexes: [0],
+    pinRefs: [],
+  },
+  {
+    id: "resistor",
+    label: "Monta il resistore da 470 Ohm e il ponte rosso verso la fila sotto",
+    componentIds: ["r1"],
+    connectionIndexes: [1],
+    pinRefs: ["r1:pin1", "r1:pin2"],
+  },
+  {
+    id: "led-bridge",
+    label: "Monta il LED a cavallo della divisione centrale",
+    componentIds: ["led1"],
+    connectionIndexes: [],
+    pinRefs: ["led1:anode", "led1:cathode"],
+  },
+  {
+    id: "negative-wire",
+    label: "Monta il filo nero di ritorno sulla colonna del catodo",
+    componentIds: [],
+    connectionIndexes: [2],
+    pinRefs: [],
+  },
+]
+
+function assemblyStepsForExperiment(experimentId: string): readonly AssemblyStep[] {
+  return experimentId === "v1-cap6-esp1" ? V1_CAP6_ESP1_ASSEMBLY_STEPS : []
+}
+
+function experimentAtAssemblyStep(
+  experiment: ElabVolumeExperiment,
+  completedStepCount: number,
+): ElabVolumeExperiment {
+  const steps = assemblyStepsForExperiment(experiment.id)
+  if (steps.length === 0) return experiment
+
+  const activeComponents = new Set(
+    experiment.components
+      .filter((component) => BASE_MOUNTED_COMPONENT_TYPES.has(component.type))
+      .map((component) => component.id),
+  )
+  const activeConnections = new Set<number>()
+  const activePins = new Set<string>()
+
+  for (const step of steps.slice(0, completedStepCount)) {
+    step.componentIds.forEach((componentId) => activeComponents.add(componentId))
+    step.connectionIndexes.forEach((index) => activeConnections.add(index))
+    step.pinRefs.forEach((pinRef) => activePins.add(pinRef))
+  }
+
+  const pinAssignments = Object.fromEntries(
+    Object.entries(experiment.pinAssignments ?? {}).filter(([pinRef]) =>
+      activePins.has(pinRef),
+    ),
+  )
+  const sourceLayout = (experiment as ElabVolumeExperimentWithLayout).layout ?? {}
+  const layout = Object.fromEntries(
+    Object.entries(sourceLayout).filter(([componentId]) =>
+      activeComponents.has(componentId),
+    ),
+  )
+
+  return {
+    ...experiment,
+    components: experiment.components.filter((component) => activeComponents.has(component.id)),
+    connections: experiment.connections.filter((_, index) => activeConnections.has(index)),
+    pinAssignments,
+    layout,
+  } as ElabVolumeExperiment
+}
+
+function stepSceneFromExperiment(experiment: ElabVolumeExperiment): StepModeSceneSlice {
+  return {
+    experimentId: experiment.id,
+    pinAssignments: experiment.pinAssignments ?? {},
+    connections: experiment.connections.map((connection) => ({
+      from: connection.from,
+      to: connection.to,
+      color: connection.color ?? "black",
+      kind: "wire" as const,
+    })),
+  }
+}
+
 function mountedSceneForExperiment(experimentId: string): SimulationSceneV1 | null {
   switch (experimentId) {
     case "v1-cap6-esp1":
@@ -175,10 +291,6 @@ export default function ElabLab({
   const experimentId = useMemo(readElabLabExperimentId, [])
   const experiment = useMemo(() => findElabLabExperiment(experimentId), [experimentId])
   const mountedScene = useMemo(() => mountedSceneForExperiment(experimentId), [experimentId])
-  const solve = useMemo(
-    () => (experiment === null ? null : dispatchSolve(experiment)),
-    [experiment],
-  )
 
   // Marcatura errori (emittente error.observed): dati dal Pack, concetto
   // SCELTO dal docente (mai un mapping inventato), transito via bus tipizzato,
@@ -216,6 +328,7 @@ export default function ElabLab({
   const [newAssignmentPin, setNewAssignmentPin] = useState("")
   const [newAssignmentRef, setNewAssignmentRef] = useState("")
   const [labMode, setLabMode] = useState<ElabLabMode>("ready")
+  const [stepCursor, setStepCursor] = useState(0)
   const [entitlementState, setEntitlementState] = useState<EntitlementPanelState>({
     kind: "checking",
   })
@@ -237,25 +350,50 @@ export default function ElabLab({
     setNewComponentType("")
   }
 
+  const assemblySteps = useMemo(
+    () => (experiment === null ? [] : assemblyStepsForExperiment(experiment.id)),
+    [experiment],
+  )
+  const stepExperiment = useMemo(
+    () => (experiment === null ? null : experimentAtAssemblyStep(experiment, stepCursor)),
+    [experiment, stepCursor],
+  )
+  const displayedExperiment = labMode === "step" ? stepExperiment : experiment
+  const solve = useMemo(
+    () => (displayedExperiment === null ? null : dispatchSolve(displayedExperiment)),
+    [displayedExperiment],
+  )
   const activeStepModel = useMemo(() => {
-    if (mountedScene === null) return null
-    return stepByStepModel(
-      {
-        ...mountedScene,
-        pinAssignments: studentAssignments ?? mountedScene.pinAssignments,
-      },
-      [],
-    )
-  }, [mountedScene, studentAssignments])
+    if (displayedExperiment === null) return null
+    return stepByStepModel(stepSceneFromExperiment(displayedExperiment), [])
+  }, [displayedExperiment])
+  const nextAssemblyStep =
+    labMode === "step" && stepCursor < assemblySteps.length
+      ? assemblySteps[stepCursor]
+      : null
+  const stepComplete = assemblySteps.length > 0 && stepCursor >= assemblySteps.length
+  const mountedStepCount =
+    labMode === "step" && activeStepModel !== null
+      ? Math.min(stepCursor, activeStepModel.total)
+      : activeStepModel?.passedCount ?? 0
 
   const activateReadyMode = () => {
     setLabMode("ready")
+    setStepCursor(0)
+    setStudentAssignments(null)
+    setStudentComponents(null)
+  }
+
+  const activateStepMode = () => {
+    setLabMode("step")
+    setStepCursor(0)
     setStudentAssignments(null)
     setStudentComponents(null)
   }
 
   const activateFreeMode = () => {
     setLabMode("free")
+    setStepCursor(0)
     if (studentAssignments === null) startFreeAssembly()
   }
 
@@ -324,15 +462,17 @@ export default function ElabLab({
   // In modalità montaggio libero il report gira LIVE sul montaggio dello
   // studente (studentAssignments); spenta = montaggio del Pack.
   const diagnostics = useMemo(
-    () =>
-      experiment === null
+    () => {
+      const diagnosticExperiment = labMode === "step" ? displayedExperiment : experiment
+      return diagnosticExperiment === null
         ? null
         : analyzeFreeAssembly({
-            components: studentComponents ?? experiment.components,
+            components: studentComponents ?? diagnosticExperiment.components,
             wires: [],
-            pinAssignments: studentAssignments ?? experiment.pinAssignments ?? {},
-          }),
-    [experiment, studentAssignments, studentComponents],
+            pinAssignments: studentAssignments ?? diagnosticExperiment.pinAssignments ?? {},
+          })
+    },
+    [displayedExperiment, experiment, labMode, studentAssignments, studentComponents],
   )
   // type-unregistered = tipo fuori dal catalogo elettrico vendored (60/88
   // esperimenti): il solve lo rifiuta comunque (deny-by-default) — nella
@@ -372,10 +512,10 @@ export default function ElabLab({
 
   useEffect(() => {
     const node = canvasRef.current
-    if (node === null || experiment === null) return
-    const handle = renderEmbeddable(node, { experiment })
+    if (node === null || displayedExperiment === null) return
+    const handle = renderEmbeddable(node, { experiment: displayedExperiment })
     return () => handle.dispose()
-  }, [experiment])
+  }, [displayedExperiment])
 
   const ledOn = solve?.kind === "ok" && solve.result.componentStates.led1?.on === true
   // Verdetto onesto del motore: un LED bruciato (es. v1-cap6-esp2, senza
@@ -447,7 +587,7 @@ export default function ElabLab({
 
         {experiment !== null && (
           <>
-            <div ref={canvasRef} data-elab-canvas style={{ position: "absolute", inset: 0 }} />
+            <div ref={canvasRef} className="elab-lab-canvas-host" data-elab-canvas />
             <div className="elab-lab-panels">
             <div
               className="reference-tool-panel"
@@ -469,8 +609,8 @@ export default function ElabLab({
                     type="button"
                     data-elab-lab-mode-step
                     aria-pressed={labMode === "step"}
-                    disabled={activeStepModel === null || activeStepModel.total === 0}
-                    onClick={() => setLabMode("step")}
+                    disabled={assemblySteps.length === 0}
+                    onClick={activateStepMode}
                   >
                     Passo-passo
                   </button>
@@ -497,12 +637,47 @@ export default function ElabLab({
               <div
                 className="reference-tool-panel"
                 data-elab-lab-step-mode
-                data-step-passed={`${activeStepModel.passedCount}/${activeStepModel.total}`}
+                data-step-passed={`${mountedStepCount}/${activeStepModel.total}`}
+                data-step-cursor={stepCursor}
+                data-step-complete={stepComplete ? "true" : "false"}
               >
                 <div className="reference-tool-panel-bar">
-                  passo-passo dal manuale ({activeStepModel.passedCount}/{activeStepModel.total})
+                  passo-passo dal manuale ({mountedStepCount}/{activeStepModel.total})
                 </div>
                 <div style={{ padding: "6px 8px", display: "grid", gap: 6 }}>
+                  <div
+                    aria-live="polite"
+                    data-elab-lab-step-status
+                    style={{ display: "grid", gap: 4 }}
+                  >
+                    <strong>
+                      {stepComplete
+                        ? "Circuito montato: verifica finale attiva"
+                        : `Prossimo: ${nextAssemblyStep?.label ?? "nessun passo"}`}
+                    </strong>
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                      <button
+                        type="button"
+                        data-elab-lab-step-next
+                        disabled={stepComplete || nextAssemblyStep === null}
+                        onClick={() =>
+                          setStepCursor((current) =>
+                            Math.min(current + 1, assemblySteps.length),
+                          )
+                        }
+                      >
+                        {stepComplete ? "Circuito montato" : "Monta prossimo passo"}
+                      </button>
+                      <button
+                        type="button"
+                        data-elab-lab-step-reset
+                        disabled={stepCursor === 0}
+                        onClick={() => setStepCursor(0)}
+                      >
+                        Ricomincia
+                      </button>
+                    </div>
+                  </div>
                   {mountedScene?.bookLayout.manualSource.crop && (
                     <img
                       data-elab-lab-step-manual-crop
@@ -518,9 +693,22 @@ export default function ElabLab({
                       <div
                         key={step.id}
                         data-elab-lab-step-id={step.id}
-                        data-step-passed={step.passed ? "true" : "false"}
+                        data-step-passed={step.order <= stepCursor ? "true" : "false"}
+                        data-step-mounted={
+                          step.order <= stepCursor
+                            ? "true"
+                            : step.order === stepCursor + 1
+                              ? "next"
+                              : "false"
+                        }
                       >
-                        <strong>{step.passed ? "OK" : "da verificare"} · {step.order}. </strong>
+                        <strong>
+                          {step.order <= stepCursor
+                            ? "montato"
+                            : step.order === stepCursor + 1
+                              ? "prossimo"
+                              : "in attesa"} · {step.order}.{" "}
+                        </strong>
                         {step.instructionIt}
                         <div style={{ color: "var(--m-ink-3)", fontSize: "var(--m-fs-xs)" }}>
                           {step.evidence.map((entry) => `Vol.${mountedScene?.manual.volume ?? 1} pag.${entry.page}`).join(" · ")}

@@ -78,10 +78,31 @@ describe("ElabLab — accesso ELAB Plugin via FastAPI entitlement", () => {
     fireEvent.click(container.querySelector("[data-elab-lab-mode-step]") as Element)
     const stepPanel = container.querySelector<HTMLElement>("[data-elab-lab-step-mode]")
     expect(stepPanel).not.toBeNull()
-    expect(stepPanel!.getAttribute("data-step-passed")).toBe("4/4")
+    expect(stepPanel!.getAttribute("data-step-passed")).toBe("0/4")
+    expect(stepPanel!.getAttribute("data-step-cursor")).toBe("0")
+    expect(stepPanel!.getAttribute("data-step-complete")).toBe("false")
     expect(stepPanel!.textContent).toContain("Collega il positivo della batteria")
     expect(stepPanel!.textContent).toContain("Vol.1 pag.30")
     expect(container.querySelector("[data-elab-lab-step-manual-crop]")).not.toBeNull()
+    expect(container.querySelector("[data-led-on]")?.getAttribute("data-led-on")).toBe("0")
+
+    const nextStep = container.querySelector("[data-elab-lab-step-next]") as HTMLButtonElement
+    fireEvent.click(nextStep)
+    await waitFor(() => expect(stepPanel!.getAttribute("data-step-passed")).toBe("1/4"))
+    expect(stepPanel!.getAttribute("data-step-cursor")).toBe("1")
+
+    fireEvent.click(nextStep)
+    await waitFor(() => expect(stepPanel!.getAttribute("data-step-passed")).toBe("2/4"))
+
+    fireEvent.click(nextStep)
+    await waitFor(() => expect(stepPanel!.getAttribute("data-step-passed")).toBe("3/4"))
+    expect(container.querySelector("[data-led-on]")?.getAttribute("data-led-on")).toBe("0")
+
+    fireEvent.click(nextStep)
+    await waitFor(() => expect(stepPanel!.getAttribute("data-step-passed")).toBe("4/4"))
+    expect(stepPanel!.getAttribute("data-step-complete")).toBe("true")
+    expect(container.querySelector("[data-led-on]")?.getAttribute("data-led-on")).toBe("1")
+    expect(container.querySelector("[data-led-current-ma]")?.textContent).toBe("15.3")
 
     fireEvent.click(container.querySelector("[data-elab-lab-mode-free]") as Element)
     expect(modePanel!.getAttribute("data-elab-lab-mode")).toBe("free")
