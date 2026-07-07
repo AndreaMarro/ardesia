@@ -10,14 +10,32 @@ Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e no
 
 ## Stato base
 
-- Base verificata: `origin/main 6386e172` (`Merge pull request #143 from AndreaMarro/feat/entitlement-api-20260715`).
+- Base finale verificata a fine sessione Codex 2026-07-07: `origin/main e9267801`
+  (`Merge pull request #146 from AndreaMarro/feat/teacher-dashboard-live-graph-20260715`).
 - #142, #143, #144 risultano `MERGED`.
 - #144 non e' persa: `6386e172` ha come parent `fa6fb6ce` (#144), quindi il renderer multi-pin/esp6 e' gia'
   nella storia di `main`.
-- PR recovery Codex: #145 `docs(ops): Codex post-FABLE recovery audit`, ready, CI verde alla creazione.
-- PR dashboard/nav Codex: #146 `feat(dashboard): live lesson graph and primary shell nav`, ready, CI verde
-  alla creazione; shell primaria corretta a `lavagna` + plugin caricabile, non quattro pillole.
+- PR recovery Codex: #145 `docs(ops): Codex post-FABLE recovery audit`, `MERGED`.
+- PR dashboard/nav Codex: #146 `feat(dashboard): live lesson graph and primary shell nav`, `MERGED`;
+  shell primaria corretta a `lavagna` + `ELAB Plugin`, non quattro pillole.
 - Documento di recovery: `docs/ops/CODEX-POST-FABLE-RECOVERY-2026-07-15.md`.
+
+## Stato live/deploy finale
+
+- Vercel CLI autenticata come `andreamarro`; lista progetti letta via CLI.
+- Il monorepo `ardesia` non ha `.vercel/project.json`: `npm run preview:studio:preflight` ha passato typecheck,
+  vitest e build locali, ma ha chiuso con `blocked: local build passed, but preview deploy is not ready`.
+- Non e' stato eseguito deploy monorepo per evitare link/progetto Vercel cieco.
+- Smoke live read-only 2026-07-07:
+  - `https://ardesia-lavagna.vercel.app/` -> HTTP 200, browser desktop/mobile OK, titolo
+    `ARDESIA · la lavagna del docente`, plugin presenti, zero console/pageerror.
+  - `https://ardesia-api-vercel.vercel.app/health` -> HTTP 200.
+  - `https://www.elabtutor.school/` -> HTTP 401, gated/protetto.
+- Screenshot live locali:
+  - `/Users/andreamarro/VOLUME 3/smoke-evidence-20260715/live/ardesia-lavagna-live-desktop.png`
+  - `/Users/andreamarro/VOLUME 3/smoke-evidence-20260715/live/ardesia-lavagna-live-mobile.png`
+- Interpretazione: il live pubblico e' ancora la demo separata `ardesia-lavagna`, non il monorepo appena
+  merged. Prima del prossimo deploy Opus deve scegliere e cablare esplicitamente il progetto Vercel target.
 
 ## Regole operative
 
@@ -46,6 +64,7 @@ Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e no
   - Claude Desktop cablato in `~/Library/Application Support/Claude/claude_desktop_config.json`.
   - Claude-3p Desktop cablato in `~/Library/Application Support/Claude-3p/claude_desktop_config.json`.
   - Skills AgentMemory aggiornate con `npx skills add rohitg00/agentmemory -y`.
+- Memoria salvata via REST per questa chiusura: `mem_mralr7jn_d6b0f6c18ec7`.
 - Dopo apertura nuova sessione, riavviare/riaprire Codex o Claude/Opus se i tool non appaiono: i config MCP
   vengono letti al launch.
 
@@ -85,11 +104,11 @@ Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e no
   overlay/report, crop pp.71-74, test ed e2e.
 - #143: servizio `services/entitlement/` FastAPI sandbox/GDPR-ready tecnico con 51 pytest.
 
-## Prossima PR consigliata: Dashboard Docente/Scuola
+## Prossima PR consigliata: Tutor Graphify reale + UX lavagna
 
-Obiettivo: trasformare il cruscotto da architettura corretta ma sottoutilizzata a superficie vendibile interna
-con grafici e grafo navigabile da event-log reale, senza PII default. Non promuoverlo a feature primaria
-nella shell: resta dashboard contestuale per docente/scuola.
+Obiettivo: portare la superficie visiva al livello prodotto che Andrea ha chiesto: lavagna piu' bella e facile,
+ELAB Plugin caricabile ma non protagonista, e pagina Tutor con un vero grafo Graphify/Grapiphy evolutivo.
+La dashboard docente/scuola ha una prima slice merged in #146, ma non basta ancora come prodotto vendibile.
 
 Vincoli:
 
@@ -100,20 +119,24 @@ Vincoli:
   crescita LessonOS e descrittori; `graph.query` e' solo una capability dati, non la UI finale.
 - Classi/studenti pseudonimi; niente nomi, email, telefoni.
 - UI sobria, operativa, adatta a docente/scuola, no landing page.
+- Shell primaria sempre corta: `lavagna` + `ELAB Plugin`.
+- ELABTutorPlugin completo e caricabile, ma non headline feature.
+- Nessun deploy monorepo finche' non esiste link Vercel esplicito e documentato.
 
 Test RED iniziali suggeriti:
 
-1. `TeacherDashboardView` in live passa `journalEvents` e `focusNodeId` a `projectTeacherDashboard`.
-2. La shell produce `lesson.started` e `lesson.ended` reali quando una sessione inizia/finisce.
-3. Il cruscotto mostra almeno un grafico derivato da event-log non vuoto.
-4. La zona grafo e' navigabile: nodo focus selezionabile, vicini visibili, `graph.query` auditata.
-5. Pagina Tutor: grafo Graphify/Grapiphy renderizzato come canvas/SVG reale, con delta visibile dopo append
+1. Pagina Tutor: grafo Graphify/Grapiphy renderizzato come canvas/SVG reale, con delta visibile dopo append
    di un evento LessonOS.
-6. E2E Playwright dashboard/tutor desktop/tablet/mobile con fixture non-PII e screenshot non vuoti.
+2. Timeline/replay mostra crescita LessonOS: nodi nuovi, archi, sottoparti, provenance e descrittori.
+3. Focus/expand/collapse del grafo seleziona un nodo e aggiorna pannello descrittori senza PII.
+4. Shell e lavagna restano pulite su mobile/tablet: niente overlap, touch target coerenti, header non affollato.
+5. ELAB Plugin si carica dalla lavagna con stato installato/attivo/permessi/provenance, senza diventare tab primario.
+6. E2E Playwright tutor/lavagna desktop/tablet/mobile con fixture non-PII e screenshot non vuoti.
 
 File probabili:
 
 - `apps/studio/src/design/TeacherDashboardView.tsx`
+- `apps/studio/src/design/ViewNav.tsx`
 - `apps/studio/src/lessonos/teacherDashboardProjection.ts`
 - `apps/studio/src/Room.tsx`
 - `apps/studio/src/toolhost/panelHost.ts`
@@ -124,12 +147,16 @@ File probabili:
 - ELABTutorPlugin: contenuti e visibilita' 8/8 presenti, ma solo 4/8 con fixture/overlay structural.
 - Simulation Plugin: esp1/2/3/6 solidi structural; Vol.2 e Vol.3 breakout restano il collo di bottiglia.
 - FastAPI/GDPR-ready: servizio sandbox pronto, non ancora cablato alla UI/prodotto.
-- UI/UX Studente/Tutor/Scuola: shell navigabile, ma LIM/iPad e dashboard vendibile ancora aperti.
+- UI/UX Studente/Tutor/Scuola: shell primaria corretta in #146; LIM/iPad polish e grafo Tutor prodotto ancora aperti.
+- Dashboard docente/scuola: prima slice live da event-log/journal e grafo interno merged in #146; serve ancora
+  Graphify/Grapiphy reale nella pagina Tutor e profondita' scuola.
 - Plugin/Skill Factory: manifest/install/signing solidi; mancano plugin utili installabili e trust story remota.
 - Posizionamento UX aggiornato: lavagna come prodotto primario; ELABTutorPlugin caricabile e completo ma non
   headline feature.
 
 ## Handoff breve
 
-Parti dal recovery audit #145, poi apri una PR dashboard chirurgica. Non rifare esp6: e' gia' dentro `main`.
-Il prossimo valore vendibile e' cruscotto docente/scuola con metriche reali, grafo navigabile, pseudonimi e zero PII.
+Parti da `origin/main e9267801`, leggi recovery audit #145 e la slice dashboard/nav #146, poi apri una PR
+chirurgica su UX lavagna + grafo Tutor Graphify reale. Non rifare esp6: e' gia' dentro `main`.
+Il prossimo valore vendibile e' una lavagna piu' bella/facile con ELAB Plugin caricabile e un Tutor che mostra
+visivamente come cresce LessonOS, con metriche/grafo, pseudonimi e zero PII.
