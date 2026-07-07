@@ -1,10 +1,14 @@
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import {
   normalizeSimulationScene,
   sceneReadiness,
   type SimulationScene,
 } from "../../sim/core/simulationScene"
 import { wokwiDiagramToSimulationScene } from "../../sim/core/wokwiDiagramAdapter"
+import {
+  structuredObservationToSimulationScene,
+  type StructuredSceneObservation,
+} from "../../sim/core/sourceIntake"
 import ViewNav from "./ViewNav"
 
 const technicalHarnessDiagram = {
@@ -23,14 +27,83 @@ const technicalHarnessDiagram = {
   ],
 }
 
+type SourceMode = "wokwi" | "image" | "description"
+
+const imageObservation: StructuredSceneObservation = {
+  kind: "image-observation" as const,
+  label: "structured bench image observation",
+  components: [
+    { id: "breadboard1", type: "breadboard-half", x: 150, y: 168 },
+    { id: "led1", type: "led", x: 546, y: 158, attrs: { color: "red" } },
+    { id: "r1", type: "resistor", x: 374, y: 184, attrs: { value: 220 } },
+  ],
+  wires: [
+    {
+      from: "breadboard1:bb1:j8",
+      to: "r1:1",
+      color: "#16a34a",
+      points: [
+        { x: 178, y: 196 },
+        { x: 374, y: 212 },
+      ],
+    },
+    {
+      from: "r1:2",
+      to: "led1:A",
+      color: "#f59e0b",
+      points: [
+        { x: 458, y: 212 },
+        { x: 546, y: 186 },
+      ],
+    },
+  ],
+}
+
+const descriptionObservation: StructuredSceneObservation = {
+  kind: "manual-description" as const,
+  label: "structured teacher description",
+  components: [
+    { id: "supply", type: "battery9v", x: 86, y: 160 },
+    { id: "r1", type: "resistor", x: 338, y: 178, attrs: { value: 470 } },
+    { id: "led1", type: "led", x: 556, y: 158, attrs: { color: "red" } },
+  ],
+  wires: [
+    {
+      from: "supply:+",
+      to: "r1:1",
+      color: "#dc2626",
+      points: [
+        { x: 114, y: 188 },
+        { x: 338, y: 206 },
+      ],
+    },
+    {
+      from: "r1:2",
+      to: "led1:A",
+      color: "#f59e0b",
+      points: [
+        { x: 422, y: 206 },
+        { x: 556, y: 186 },
+      ],
+    },
+    {
+      from: "led1:C",
+      to: "supply:-",
+      color: "#111827",
+      points: [
+        { x: 584, y: 214 },
+        { x: 584, y: 388 },
+        { x: 114, y: 388 },
+      ],
+    },
+  ],
+}
+
 export default function SimulationPluginWorkbench() {
+  const [sourceMode, setSourceMode] = useState<SourceMode>("wokwi")
   const scene = useMemo(
-    () =>
-      wokwiDiagramToSimulationScene(technicalHarnessDiagram, {
-        id: "simulation-plugin-technical-harness",
-        title: "ARDESIA Simulation",
-      }),
-    [],
+    () => buildScene(sourceMode),
+    [sourceMode],
   )
   const readiness = useMemo(() => sceneReadiness(scene), [scene])
   const normalized = useMemo(() => normalizeSimulationScene(scene), [scene])
@@ -59,9 +132,27 @@ export default function SimulationPluginWorkbench() {
           <section className="reference-tool-panel" style={panelStyle}>
             <div className="reference-tool-panel-bar">sorgenti scena</div>
             <div style={sourceGridStyle}>
-              <button style={activeButtonStyle}>Wokwi diagram.json</button>
-              <button style={buttonStyle}>Immagine</button>
-              <button style={buttonStyle}>Descrizione</button>
+              <button
+                type="button"
+                style={sourceMode === "wokwi" ? activeButtonStyle : buttonStyle}
+                onClick={() => setSourceMode("wokwi")}
+              >
+                Wokwi diagram.json
+              </button>
+              <button
+                type="button"
+                style={sourceMode === "image" ? activeButtonStyle : buttonStyle}
+                onClick={() => setSourceMode("image")}
+              >
+                Immagine
+              </button>
+              <button
+                type="button"
+                style={sourceMode === "description" ? activeButtonStyle : buttonStyle}
+                onClick={() => setSourceMode("description")}
+              >
+                Descrizione
+              </button>
             </div>
           </section>
           <section className="reference-tool-panel" style={panelStyle}>
@@ -85,6 +176,7 @@ export default function SimulationPluginWorkbench() {
             <div className="reference-tool-panel-bar">contratto scena</div>
             <div style={contractStyle}>
               <strong>{scene.schemaVersion}</strong>
+              <span data-simulation-source-kind>{scene.adapters.source}</span>
               <span>{normalized.components.length} componenti</span>
               <span>{normalized.wires.length} fili</span>
               <span>{readiness.ok ? "ready" : readiness.blockers.join(", ")}</span>
@@ -94,6 +186,25 @@ export default function SimulationPluginWorkbench() {
       </main>
     </div>
   )
+}
+
+function buildScene(sourceMode: SourceMode) {
+  if (sourceMode === "image") {
+    return structuredObservationToSimulationScene(imageObservation, {
+      id: "simulation-plugin-image-observation",
+      title: "ARDESIA Simulation",
+    })
+  }
+  if (sourceMode === "description") {
+    return structuredObservationToSimulationScene(descriptionObservation, {
+      id: "simulation-plugin-description-observation",
+      title: "ARDESIA Simulation",
+    })
+  }
+  return wokwiDiagramToSimulationScene(technicalHarnessDiagram, {
+        id: "simulation-plugin-technical-harness",
+        title: "ARDESIA Simulation",
+      })
 }
 
 function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
@@ -152,6 +263,43 @@ function ComponentGlyph({
   type: string
   attrs?: Record<string, string | number | boolean>
 }) {
+  if (type.includes("breadboard")) {
+    return (
+      <>
+        <rect x="-96" y="-34" width="192" height="68" rx="8" fill="#ffffff" stroke="#94a3b8" strokeWidth="2" />
+        {Array.from({ length: 12 }, (_, index) => (
+          <circle
+            key={index}
+            cx={-68 + index * 12}
+            cy="-10"
+            r="2.2"
+            fill="#cbd5e1"
+          />
+        ))}
+        {Array.from({ length: 12 }, (_, index) => (
+          <circle
+            key={index}
+            cx={-68 + index * 12}
+            cy="12"
+            r="2.2"
+            fill="#cbd5e1"
+          />
+        ))}
+      </>
+    )
+  }
+  if (type.includes("battery")) {
+    return (
+      <>
+        <rect x="-42" y="-30" width="84" height="60" rx="7" fill="#111827" />
+        <rect x="42" y="-16" width="12" height="12" rx="2" fill="#111827" />
+        <rect x="42" y="4" width="12" height="12" rx="2" fill="#111827" />
+        <text x="0" y="5" textAnchor="middle" style={{ ...smallGlyphTextStyle, fill: "#ffffff" }}>
+          9V
+        </text>
+      </>
+    )
+  }
   if (type.includes("arduino")) {
     return (
       <>

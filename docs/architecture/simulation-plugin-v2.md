@@ -24,6 +24,7 @@ This branch now contains both the first contract slice and a visible autonomous 
 - `packs/elab-tutor/manifest.json` declares `io.elab.tutor` depending on `io.ardesia.simulation >=2.0.0`.
 - `apps/studio/sim/core/simulationScene.ts` defines the generic `simulation-scene/2` core contract.
 - `apps/studio/sim/core/wokwiDiagramAdapter.ts` converts an external `diagram.json`-style source into that generic scene.
+- `apps/studio/sim/core/sourceIntake.ts` converts structured image/description observations into the same generic scene without inventing missing geometry.
 - `apps/studio/src/design/SimulationPluginWorkbench.tsx` exposes `?vista=simulatore` as a standalone Simulation Plugin workbench before ELABTutor.
 
 This corrects the first visual slice: opening ARDESIA no longer presents the simulator primarily as "ELAB Plugin". The route order is now:

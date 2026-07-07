@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen } from "@testing-library/react"
+import { cleanup, fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
 import SimulationPluginWorkbench from "../design/SimulationPluginWorkbench"
 import ViewNav, { ARDESIA_VIEW_LINKS, viewHref } from "../design/ViewNav"
@@ -55,5 +55,22 @@ describe("SimulationPluginWorkbench", () => {
     expect(container.querySelector("[data-wire-id='wire-1']")).not.toBeNull()
     expect(container.textContent).not.toContain("ELAB Lab")
     expect(container.textContent).not.toContain("dal libro")
+  })
+
+  it("switches between Wokwi, image, and description scene sources", () => {
+    const { container } = render(<SimulationPluginWorkbench />)
+
+    expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
+      "wokwi-diagram-json",
+    )
+    fireEvent.click(screen.getByText("Immagine"))
+    expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
+      "image-observation",
+    )
+    fireEvent.click(screen.getByText("Descrizione"))
+    expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
+      "manual-description",
+    )
+    expect(container.querySelector("[data-component-id='supply']")).not.toBeNull()
   })
 })
