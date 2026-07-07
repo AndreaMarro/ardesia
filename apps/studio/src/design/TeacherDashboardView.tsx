@@ -8,13 +8,14 @@
 // vuota spacciata per vera. Ogni riga porta le sue evidence refs (spec §0.3).
 
 import ViewNav from "./ViewNav"
+import LessonGraphCanvas from "./LessonGraphCanvas"
 import {
   buildStudentPackArtifact,
   parseStudentPackArtifact,
   studentPackFileName,
   type StudentPackParseResult,
 } from "../lessonos/studentPackArtifact"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
@@ -129,6 +130,10 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   // parse fail-closed (ok o errore) è SEMPRE visibile.
   const [importedPack, setImportedPack] = useState<StudentPackParseResult | null>(null)
   const [ripasso, setRipasso] = useState<RipassoZoneState>({ phase: "loading" })
+  // Delta del grafo: nodi comparsi dall'ultimo refresh a PARITÀ di focus (quindi
+  // per un evento appeso, non per la navigazione). Evidenziati come "new" nel canvas.
+  const [deltaNodeIds, setDeltaNodeIds] = useState<readonly string[]>([])
+  const prevGraphRef = useRef<{ focus: string | null; ids: Set<string> }>({ focus: null, ids: new Set() })
 
   // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
   // l'event-log LessonOS cablato — graph.query vivo fuori dai test. Il plugin
@@ -171,6 +176,14 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       locale: "it",
       generatedAt: Date.now(),
     })
+    // Delta a parità di focus: differenza dei nodi del vicinato dal refresh
+    // precedente. Cambio focus (navigazione) → delta vuoto, mai un falso "new".
+    const gv = projection.graphView
+    const nowIds = new Set(gv.nodes.map((node) => node.id))
+    const prev = prevGraphRef.current
+    const delta = prev.focus === gv.focusNodeId ? [...nowIds].filter((id) => !prev.ids.has(id)) : []
+    prevGraphRef.current = { focus: gv.focusNodeId, ids: nowIds }
+    setDeltaNodeIds(delta)
     setState({ phase: "ready", projection })
     // loadEvents/loadJournalEvents sono stabili per contratto del seam (default modulo o dep dei test)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -392,32 +405,14 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                   )}
                 </strong>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {state.projection.graphView.nodes.map((node) => (
-                  <button
-                    key={node.id}
-                    type="button"
-                    data-zgraph-node={node.id}
-                    aria-pressed={node.id === state.projection.graphView.focusNodeId}
-                    onClick={() => setFocusNodeId(node.id)}
-                    style={{
-                      minHeight: 36,
-                      borderRadius: 8,
-                      border: "1px solid var(--st-line, #d8d2c6)",
-                      background: node.id === state.projection.graphView.focusNodeId ? "rgba(47, 111, 237, 0.12)" : "#fff",
-                    }}
-                  >
-                    {labelText(node.label)}
-                  </button>
-                ))}
-              </div>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 6 }}>
-                {state.projection.graphView.edges.map((edge) => (
-                  <li key={`${edge.from}:${edge.kind}:${edge.to}`} style={{ fontSize: 12, opacity: 0.75 }}>
-                    {edge.from} → {edge.kind} → {edge.to}
-                  </li>
-                ))}
-              </ul>
+              <LessonGraphCanvas
+                focusNodeId={state.projection.graphView.focusNodeId}
+                nodes={state.projection.graphView.nodes}
+                edges={state.projection.graphView.edges}
+                onFocusNode={setFocusNodeId}
+                newNodeIds={deltaNodeIds}
+                locale="it"
+              />
             </div>
           )}
         </section>
