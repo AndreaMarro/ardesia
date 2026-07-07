@@ -101,4 +101,39 @@ export function registerElectricalCatalog(): void {
     category: "wire",
     label: "Filo",
   })
+
+  // ── Sblocco multi-pin (NOTTE-13, per v1-cap9-esp6 lampada RGB) ──────────
+  // Il motore vendored supporta già potentiometer (_solvePotentiometer,
+  // dynamic supply del wiper) e rgb-led (_solveRGBLed, 3 canali verso
+  // common): era il catalogo host a negarli. Dati estratti firsthand da
+  // Potentiometer.jsx:109-123 e RgbLed.jsx:84-96 del plugin.
+  registerComponent("potentiometer", {
+    pins: [
+      { id: "vcc", label: "VCC", type: "power" },
+      { id: "signal", label: "Signal", type: "analog" },
+      { id: "gnd", label: "GND", type: "power" },
+    ],
+    defaultState: { position: 0.5, resistance: 5000 },
+    category: "input",
+    label: "Potenziometro",
+  })
+
+  registerComponent("rgb-led", {
+    pins: [
+      { id: "red", label: "R (Red)", type: "digital" },
+      { id: "common", label: "GND (−)", type: "power" },
+      { id: "green", label: "G (Green)", type: "digital" },
+      { id: "blue", label: "B (Blue)", type: "digital" },
+    ],
+    defaultState: {
+      r: 0,
+      g: 0,
+      b: 0,
+      red: { on: false, brightness: 0 },
+      green: { on: false, brightness: 0 },
+      blue: { on: false, brightness: 0 },
+    },
+    category: "output",
+    label: "LED RGB",
+  })
 }
