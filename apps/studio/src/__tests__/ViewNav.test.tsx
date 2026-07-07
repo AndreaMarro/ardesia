@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-// Product Flow Shell — la nav preserva la stanza e dichiara la vista corrente.
+// Product Flow Shell — la nav espone solo i due ingressi caricabili e preserva la stanza.
 
 import { cleanup, render } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
@@ -11,22 +11,22 @@ afterEach(() => {
 })
 
 describe("viewHref — hash stanza preservato attraverso le viste", () => {
-  it("lavagna con hash = stessa stanza; viste query-routed portano lo hash", () => {
+  it("lavagna con hash = stessa stanza; ELAB Plugin porta lo hash", () => {
     expect(viewHref("lavagna", "#wbstudio-abc")).toBe("/#wbstudio-abc")
     expect(viewHref("elab-lab", "#wbstudio-abc")).toBe("/?vista=elab-lab#wbstudio-abc")
-    expect(viewHref("cruscotto", "")).toBe("/?vista=cruscotto")
-    expect(viewHref("lezioni-salvate", "wbstudio-x")).toBe(
-      "/?vista=lezioni-salvate#wbstudio-x",
-    )
   })
 })
 
-describe("ViewNav — sobria, completa, con vista corrente dichiarata", () => {
-  it("rende le 4 viste del flusso docente e marca aria-current sulla corrente", () => {
+describe("ViewNav — sobria, solo lavagna/ELAB Plugin", () => {
+  it("rende i 2 ingressi caricabili e marca aria-current sulla corrente", () => {
     window.history.replaceState(null, "", "/?vista=elab-lab#wbstudio-room1")
     const { container } = render(<ViewNav current="elab-lab" />)
     const items = container.querySelectorAll("[data-view-nav-item]")
     expect(items.length).toBe(ARDESIA_VIEW_LINKS.length)
+    expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual(["lavagna", "elab-lab"])
+    expect(container.textContent).toContain("ELAB Plugin")
+    expect(container.textContent).not.toContain("cruscotto")
+    expect(container.textContent).not.toContain("lezioni")
     const current = container.querySelector('[aria-current="page"]')
     expect(current?.getAttribute("data-view-nav-item")).toBe("elab-lab")
     // Ogni link porta lo hash stanza corrente.
