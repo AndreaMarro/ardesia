@@ -1,6 +1,8 @@
-# PROMPT-NEXT-CODEX-PRODUCT-RC
+# PROMPT-NEXT-CODEX-PRODUCT-RC — 4.8 OPUS DESKTOP
 
-Sei Codex Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il checkout storico
+Destinatario: **4.8 opus desktop**.
+
+Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il checkout storico
 `/Users/andreamarro/VOLUME 3/ardesia` come base di implementazione.
 
 ## Stato base
@@ -38,6 +40,13 @@ Sei Codex Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il 
   caricamento chiaro, stato installato/attivo, permessi, provenance, test live, fallback onesto.
 - Next UI work: migliorare bellezza/semplicita' della lavagna e rendere il caricamento ELABTutorPlugin evidente
   ma sobrio; evitare nav a quattro pillole e feature creep visibile in header.
+- Pagina Tutor: il grafo deve essere **un vero grafo visuale Graphify/Grapiphy navigabile**, non una lista di
+  nodi/archi. Deve evolvere mentre cresce LessonOS: vedere nodi nuovi, archi, sottoparti, provenance, evidenze,
+  descrittori didattici, concetti, materiali, errori, esercizi, quiz, student-pack e stati di completamento.
+- Il grafo Tutor deve raccontare "come cresce LessonOS": snapshot temporali, timeline/replay, highlight del delta,
+  focus/expand/collapse, filtri per descrittore, livelli classe/studente pseudonimo/materiale, e link alle fonti.
+- Se Graphify/Grapiphy e' disponibile nel repo/tooling, usarlo davvero; se manca, creare adapter esplicito e
+  documentare il fallback visuale temporaneo. Vietato spacciare chips o liste statiche per grafo prodotto.
 
 ## Cosa FABLE ha gia' chiuso
 
@@ -57,6 +66,8 @@ Vincoli:
 - Dati derivati solo da event-log LessonOS e journal reali/sintetici di test non-PII.
 - Nessun secondo store parallelo per il grafo.
 - `graph.query` resta read-only e auditato.
+- La pagina Tutor deve avere un vero grafo Graphify/Grapiphy evolutivo, visibile e navigabile, che mostri
+  crescita LessonOS e descrittori; `graph.query` e' solo una capability dati, non la UI finale.
 - Classi/studenti pseudonimi; niente nomi, email, telefoni.
 - UI sobria, operativa, adatta a docente/scuola, no landing page.
 
@@ -66,7 +77,9 @@ Test RED iniziali suggeriti:
 2. La shell produce `lesson.started` e `lesson.ended` reali quando una sessione inizia/finisce.
 3. Il cruscotto mostra almeno un grafico derivato da event-log non vuoto.
 4. La zona grafo e' navigabile: nodo focus selezionabile, vicini visibili, `graph.query` auditata.
-5. E2E Playwright dashboard desktop/tablet/mobile con fixture non-PII.
+5. Pagina Tutor: grafo Graphify/Grapiphy renderizzato come canvas/SVG reale, con delta visibile dopo append
+   di un evento LessonOS.
+6. E2E Playwright dashboard/tutor desktop/tablet/mobile con fixture non-PII e screenshot non vuoti.
 
 File probabili:
 
