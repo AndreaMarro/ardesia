@@ -156,7 +156,7 @@ describe("Simulation Plugin — pannello passo-passo nel post-it (S3)", () => {
     const banner = container.querySelector("[data-elab-catalog-summary]")
     expect(banner, "banner catalogo assente").not.toBeNull()
     // Ancora esterna intenzionale (mai derivata dal catalogo stesso):
-    // 2 montati = v1-cap6-esp1 + v1-cap6-esp2 (NOTTE-12).
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("2/88")
+    // 3 montati = esp1 + esp2 + esp3 (ADR-0003, NOTTE-13).
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("3/88")
   })
 })

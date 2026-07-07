@@ -19,10 +19,11 @@ import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
-import { solveElabExperiment } from "../../sim/solver/elabSolver";
+import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
 import elabSceneCandidateV1Cap6Esp2 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json";
+import elabSceneCandidateV1Cap6Esp3 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp3.json";
 
 type EmbedLike = {
   id?: string;
@@ -185,11 +186,14 @@ export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/
 export const ELAB_V1_FIRST_LED_EXPERIMENT_ID = "v1-cap6-esp1";
 export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
 export const ELAB_V1_NO_RESISTOR_EMBED_ID = "elab-v1-cap6-esp2-led-senza-resistore";
+export const ELAB_V1_LUMINOSITA_EXPERIMENT_ID = "v1-cap6-esp3";
+export const ELAB_V1_LUMINOSITA_EMBED_ID = "elab-v1-cap6-esp3-luminosita-resistenze";
 export const ELAB_BLINK_EXPERIMENT_ID = "v3-cap5-esp1";
 export const ELAB_EXTERNAL_LED_EXPERIMENT_ID = "v3-cap6-esp2";
 export const ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-030-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE = "/elab/manuals/vol1/page-031-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-032-esercizio-6-2.png";
+export const ELAB_V1_CAP6_ESP3_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-033-esercizio-6-3.png";
 export const ELAB_V3_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol3/page-051-esercizio-6-2.png";
 
 export function parseToolLink(link: string | null | undefined): ToolLink | null {
@@ -245,6 +249,27 @@ export function createV1Cap6Esp2SimulationScene(): SimulationSceneV1 {
   return simulationSceneFromElabScene(elabSceneCandidateV1Cap6Esp2, ELAB_V1_CAP6_ESP2_BRIDGE_OPTS);
 }
 
+// Copy dal Pack (volume-references v1-cap6-esp3, VERBATIM).
+export const ELAB_V1_CAP6_ESP3_BRIDGE_OPTS: ElabSceneBridgeOptions = {
+  title: "Cambia luminosità con resistenze diverse",
+  chapter: "Capitolo 6 - Cos'e il diodo LED?",
+  bookText:
+    "Per rendere il led più luminoso ci basta partire dal circuito che abbiamo realizzato. Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm.",
+  bookInstructions: [
+    "Parti dal circuito dell'Esperimento 1",
+    "Cambia il resistore da 470 Ohm con uno da 220 Ohm",
+  ],
+  bookQuote: "Ti ricordi i colori delle resistenze?",
+  manualCrop: ELAB_V1_CAP6_ESP3_MANUAL_PAGE_IMAGE,
+  manualFinalCrop: null,
+  manualFigurePage: 33,
+};
+
+/** Scena reale v1-cap6-esp3 (220 Ohm, zona overdrive ADR-0003) dal bridge sulla fixture candidate. */
+export function createV1Cap6Esp3SimulationScene(): SimulationSceneV1 {
+  return simulationSceneFromElabScene(elabSceneCandidateV1Cap6Esp3, ELAB_V1_CAP6_ESP3_BRIDGE_OPTS);
+}
+
 // FONTE UNICA: la scena reference deriva dal bridge sulla fixture candidate
 // (circuit-scene/2). La vecchia topologia hand-coded (bat+ diretto in bb1:j2,
 // nessun rail) violava il testo p30 — falsificata da ElabBookConstraints.
@@ -266,6 +291,7 @@ export function createReferenceSimulationScene({
 const SCENE_MANUAL_ANCHORS: Record<string, { volume: 1 | 2 | 3; page: number }> = {
   [ELAB_V1_FIRST_LED_EXPERIMENT_ID]: { volume: 1, page: 29 },
   [ELAB_V1_NO_RESISTOR_EXPERIMENT_ID]: { volume: 1, page: 32 },
+  [ELAB_V1_LUMINOSITA_EXPERIMENT_ID]: { volume: 1, page: 33 },
 };
 
 export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean; errors: string[] } {
@@ -476,6 +502,16 @@ export function buildSimulationInsert(
       embed: createToolEmbedElement({
         embedId,
         state: { kind: "simulation-scene-v1", scene: createV1Cap6Esp2SimulationScene() },
+      }),
+      embedId,
+    };
+  }
+  if (experimentId === ELAB_V1_LUMINOSITA_EXPERIMENT_ID) {
+    const embedId = nextSimulationEmbedId(ids, ELAB_V1_LUMINOSITA_EMBED_ID);
+    return {
+      embed: createToolEmbedElement({
+        embedId,
+        state: { kind: "simulation-scene-v1", scene: createV1Cap6Esp3SimulationScene() },
       }),
       embedId,
     };
@@ -970,6 +1006,11 @@ function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; monta
             <>
               <text x="16" y="48" style={diagnosticSvgStyle}>batteria {scene.runtime.supplyVolts}.00 V - LED {scene.runtime.ledOn ? "ON" : "OFF"}</text>
               <text x="16" y="68" style={diagnosticSvgStyle}>corrente {ledCurrentMa.toFixed(1)} mA - R={scene.runtime.resistorOhms} Ohm</text>
+              {ledStressZone(ledCurrentMa / 1000) !== "nominale" && (
+                <text x="16" y="78" style={diagnosticSvgStyle} data-led-stress-zone={ledStressZone(ledCurrentMa / 1000)}>
+                  {LED_STRESS_ZONE_LABELS[ledStressZone(ledCurrentMa / 1000)]}
+                </text>
+              )}
             </>
           )}
         </g>

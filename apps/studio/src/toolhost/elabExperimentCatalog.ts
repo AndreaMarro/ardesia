@@ -66,6 +66,25 @@ export const ELAB_EXPERIMENT_CATALOG: readonly ElabCatalogEntry[] = [
       compileUpload: false,
     },
   },
+  {
+    // Sbloccato da ADR-0003 (zone di stress LED): il solve dichiara
+    // overdrive onesto, non un finto "acceso" né un burn contro il libro.
+    // passoPasso false ONESTO: la grammatica degli step (topologica) non sa
+    // esprimere "cambia il resistore da 470 a 220" (i valori non sono pin).
+    experimentId: "v1-cap6-esp3",
+    title: "Cambia luminosità con resistenze diverse",
+    volume: 1,
+    page: 33,
+    sceneStatus: "candidate",
+    sceneFixture: "sim/fixtures/elab-scene-v2-candidate-v1cap6esp3.json",
+    capabilities: {
+      giaMontato: true,
+      montaggioLibero: true,
+      passoPasso: false,
+      simulazioneElettrica: true,
+      compileUpload: false,
+    },
+  },
 ]
 
 export type CatalogSummary = { mounted: number; total: number; label: string }
