@@ -157,6 +157,6 @@ describe("Simulation Plugin — pannello passo-passo nel post-it (S3)", () => {
     expect(banner, "banner catalogo assente").not.toBeNull()
     // Ancora esterna intenzionale (mai derivata dal catalogo stesso):
     // 3 montati = esp1 + esp2 + esp3 (ADR-0003, NOTTE-13).
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("3/88")
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
   })
 })

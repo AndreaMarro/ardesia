@@ -17,10 +17,8 @@ const overlaysDir = path.join(repoRoot, "docs/ops/overlays")
 
 describe("overlay strutturale — evidenza committata = metriche ricalcolate", () => {
   for (const entry of OVERLAY_SCENES) {
-    const experimentId = entry.fixture.match(/v1cap6esp\d/)![0].replace(
-      /v1cap6(esp\d)/,
-      "v1-cap6-$1",
-    )
+    const match = entry.fixture.match(/v1cap(\d+)esp(\d)/)!
+    const experimentId = `v1-cap${match[1]}-esp${match[2]}`
     it(`${experimentId}: report committato coincide col ricalcolo (drift-guard)`, () => {
       const committed = JSON.parse(
         fs.readFileSync(path.join(overlaysDir, `${experimentId}-report.json`), "utf-8"),
@@ -37,7 +35,7 @@ describe("overlay strutturale — evidenza committata = metriche ricalcolate", (
     })
   }
 
-  it("le 3 scene reali sono oggi verified-structural (soglia dichiarata 0.5px)", () => {
+  it("le 4 scene reali sono oggi verified-structural (soglia dichiarata 0.5px)", () => {
     for (const entry of OVERLAY_SCENES) {
       const report = buildOverlayReport(entry.fixture, entry.crop)
       expect(report.levelClaim, entry.fixture).toBe("verified-structural")

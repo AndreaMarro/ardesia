@@ -55,9 +55,9 @@ describe("post-it esp3 — zona di stress dichiarata", () => {
     const zone = container.querySelector("[data-led-stress-zone]")
     expect(zone?.getAttribute("data-led-stress-zone")).toBe("overdrive")
     expect(zone?.textContent).toContain("vita del LED ridotta")
-    // Banner onestà: 3 scene montate.
+    // Banner onestà: 4 scene montate.
     const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("3/88")
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
   })
 
   it("controprova esp1 (470 Ohm, 15.3mA): NESSUN avviso di zona", () => {
@@ -80,6 +80,8 @@ describe("inserimento toolbar", () => {
   })
 
   it("fail-closed: id senza scena montata = null", () => {
-    expect(buildSimulationInsert([], "v1-cap9-esp6")).toBeNull()
+    // v1-cap9-esp6 è stato MONTATO (NOTTE-15): l'esempio di id non montato
+    // passa al condensatore Vol.2 (ancora static-only in matrice).
+    expect(buildSimulationInsert([], "v2-cap7-esp1")).toBeNull()
   })
 })

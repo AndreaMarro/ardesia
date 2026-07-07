@@ -85,6 +85,24 @@ export const ELAB_EXPERIMENT_CATALOG: readonly ElabCatalogEntry[] = [
       compileUpload: false,
     },
   },
+  {
+    // Primo esperimento MULTI-PIN (NOTTE-15): 3 potenziometri (3 pin) + LED
+    // RGB (4 pin), runtime elab-mna — i canali escono dal motore MNA reale.
+    // passoPasso false ONESTO: la grammatica step non esprime i multi-pin.
+    experimentId: "v1-cap9-esp6",
+    title: "Lampada RGB con 3 potenziometri",
+    volume: 1,
+    page: 71,
+    sceneStatus: "candidate",
+    sceneFixture: "sim/fixtures/elab-scene-v2-candidate-v1cap9esp6.json",
+    capabilities: {
+      giaMontato: true,
+      montaggioLibero: true,
+      passoPasso: false,
+      simulazioneElettrica: true,
+      compileUpload: false,
+    },
+  },
 ]
 
 export type CatalogSummary = { mounted: number; total: number; label: string }

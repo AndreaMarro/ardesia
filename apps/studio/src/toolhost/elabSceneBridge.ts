@@ -37,6 +37,10 @@ const COMPONENT_TYPES: ReadonlySet<string> = new Set([
   "resistor",
   "led",
   "builtin-led",
+  // Multi-pin (NOTTE-15, per v1-cap9-esp6): il catalogo elettrico li ha già
+  // (#140), qui escono dal fail-closed di bridge+renderer.
+  "potentiometer",
+  "rgb-led",
 ] satisfies BridgeComponentType[])
 
 function componentLabel(component: { type: string; value?: string | number; color?: string }): string {
@@ -49,6 +53,10 @@ function componentLabel(component: { type: string; value?: string | number; colo
       return component.value !== undefined ? `Resistore ${component.value} Ohm` : "Resistore"
     case "led":
       return component.color !== undefined ? `LED ${component.color}` : "LED"
+    case "potentiometer":
+      return component.value !== undefined ? `Potenziometro ${component.value} Ohm` : "Potenziometro"
+    case "rgb-led":
+      return "LED RGB"
     default:
       return component.type
   }
@@ -118,7 +126,12 @@ export function simulationSceneFromElabScene(
       label: componentLabel(component),
       ...(numericValue !== undefined ? { value: numericValue } : {}),
       ...(component.color !== undefined ? { color: component.color } : {}),
-      ...(component.type === "resistor" || component.type === "led" ? { anchor: "bb1" } : {}),
+      ...(component.type === "resistor" ||
+      component.type === "led" ||
+      component.type === "potentiometer" ||
+      component.type === "rgb-led"
+        ? { anchor: "bb1" }
+        : {}),
     }
   })
 
@@ -134,11 +147,24 @@ export function simulationSceneFromElabScene(
   const battery = payload.circuit.components.find((component) => component.type === "battery9v")
   const resistor = payload.circuit.components.find((component) => component.type === "resistor")
   const led = payload.circuit.components.find((component) => component.type === "led")
-  if (!battery || !led) {
-    throw new Error("scena non battery-led: il bridge v1 supporta solo circuiti batteria+LED (con o senza resistore)")
+  // Scene multi-pin (pot/RGB): il verdetto per canale NON è pre-dichiarabile
+  // in un runtime statico — arriva dal motore MNA reale sui dati della scena
+  // (runtime "elab-mna"). Le scene battery-led restano sul percorso storico.
+  const multiPin = payload.circuit.components.some(
+    (component) => component.type === "potentiometer" || component.type === "rgb-led",
+  )
+  if (!battery || (!led && !multiPin)) {
+    throw new Error(
+      "scena non battery-led: il bridge supporta circuiti batteria+LED (con o senza resistore) o batteria+multi-pin (potenziometro/LED RGB)",
+    )
   }
-  if (resistor !== undefined && typeof resistor.value !== "number") {
-    throw new Error("resistore senza valore numerico: il bridge non inventa resistenze")
+  if (multiPin && !payload.circuit.components.some((component) => component.type === "rgb-led")) {
+    throw new Error("scena multi-pin senza LED RGB: nessun runtime onesto disponibile")
+  }
+  for (const candidate of payload.circuit.components) {
+    if (candidate.type === "resistor" && typeof candidate.value !== "number") {
+      throw new Error("resistore senza valore numerico: il bridge non inventa resistenze")
+    }
   }
 
   const status = statusFromProvenance(scene.provenance.status)
@@ -211,13 +237,19 @@ export function simulationSceneFromElabScene(
       spatialRules: [],
       tolerances: { coordinatePx: 0, relationPx: 2 },
     },
-    runtime:
-      resistor !== undefined
+    runtime: multiPin
+      ? {
+          // Multi-pin: nessun valore pre-dichiarato — correnti e stato canali
+          // escono dal solve MNA reale nel renderer (fail-visible sugli errori).
+          kind: "elab-mna",
+          supplyVolts: 9,
+        }
+      : resistor !== undefined
         ? {
             kind: "battery-led",
             supplyVolts: 9,
             resistorOhms: resistor.value as number,
-            ledForwardVolts: engineLedForwardVoltsForColor(led.color ?? null),
+            ledForwardVolts: engineLedForwardVoltsForColor(led!.color ?? null),
             ledOn: true,
           }
         : {
@@ -226,7 +258,7 @@ export function simulationSceneFromElabScene(
             // bruciato per sovracorrente, mai "acceso".
             kind: "battery-led-senza-resistore",
             supplyVolts: 9,
-            ledForwardVolts: engineLedForwardVoltsForColor(led.color ?? null),
+            ledForwardVolts: engineLedForwardVoltsForColor(led!.color ?? null),
             ledOn: false,
           },
     compile: { sketchKind: "none", targetFqbn: null, provider: "none" },

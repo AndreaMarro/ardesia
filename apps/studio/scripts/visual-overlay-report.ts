@@ -47,6 +47,10 @@ export const OVERLAY_SCENES: ReadonlyArray<{ fixture: string; crop: string }> = 
     fixture: "elab-scene-v2-candidate-v1cap6esp3.json",
     crop: "apps/studio/public/elab/manuals/vol1/page-033-esercizio-6-3.png",
   },
+  {
+    fixture: "elab-scene-v2-candidate-v1cap9esp6.json",
+    crop: "apps/studio/public/elab/manuals/vol1/page-074-esercizio-9-6.png",
+  },
 ]
 
 function loadScene(fixtureName: string): ElabScene {

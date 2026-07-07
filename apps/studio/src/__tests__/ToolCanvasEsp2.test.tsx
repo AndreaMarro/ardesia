@@ -39,9 +39,9 @@ describe("createV1Cap6Esp2SimulationScene — bridge onesto", () => {
     const scene = createV1Cap6Esp2SimulationScene()
     expect(scene.experimentId).toBe("v1-cap6-esp2")
     expect(scene.runtime.kind).toBe("battery-led-senza-resistore")
-    expect(scene.runtime.ledOn).toBe(false)
     // Vf blu dalla tabella del motore, mai auto-dichiarato.
     if (scene.runtime.kind === "battery-led-senza-resistore") {
+      expect(scene.runtime.ledOn).toBe(false)
       expect(scene.runtime.ledForwardVolts).toBe(3.0)
     }
   })
@@ -75,7 +75,7 @@ describe("post-it esp2 — la UI dichiara il LED bruciato", () => {
     expect(container.textContent).toContain("BRUCIATO")
     expect(container.textContent).toContain("sovracorrente")
     const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("3/88")
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
   })
 
   it("SVG: LED marcato bruciato (aria-label) e monito del libro visibile", () => {

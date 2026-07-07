@@ -43,7 +43,7 @@ test("post-it: toggle passo-passo → 4 step verdi + evidenza libro + banner one
   // Ancora esterna intenzionale: 2 montati = esp1 + esp2 (NOTTE-12).
   const banner = page.locator("[data-elab-catalog-summary]").first()
   await expect(banner).toBeVisible()
-  await expect(banner).toHaveAttribute("data-elab-catalog-summary", "3/88")
+  await expect(banner).toHaveAttribute("data-elab-catalog-summary", "4/88")
 
   await toggle.click()
   await expect(toggle).toHaveAttribute("aria-pressed", "true")

@@ -19,11 +19,12 @@ import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
-import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS } from "../../sim/solver/elabSolver";
+import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
 import elabSceneCandidateV1Cap6Esp2 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json";
 import elabSceneCandidateV1Cap6Esp3 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp3.json";
+import elabSceneCandidateV1Cap9Esp6 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap9esp6.json";
 
 type EmbedLike = {
   id?: string;
@@ -38,7 +39,7 @@ type ToolLink = {
 
 type SimulationComponent = {
   id: string;
-  type: "battery9v" | "breadboard-half" | "nano-r4" | "resistor" | "led" | "builtin-led";
+  type: "battery9v" | "breadboard-half" | "nano-r4" | "resistor" | "led" | "builtin-led" | "potentiometer" | "rgb-led";
   label: string;
   anchor?: string;
   value?: number;
@@ -157,6 +158,13 @@ export type SimulationSceneV1 = {
         supplyVolts: number;
         ledForwardVolts: number;
         ledOn: boolean;
+      }
+    | {
+        // Scene multi-pin (potenziometro/LED RGB, v1-cap9-esp6): nessun
+        // valore pre-dichiarato — il renderer interroga il motore MNA reale
+        // sui dati della scena e mostra i canali com'escono dal solve.
+        kind: "elab-mna";
+        supplyVolts: number;
       };
   compile: {
     sketchKind: "arduino-cpp" | "none";
@@ -188,12 +196,16 @@ export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
 export const ELAB_V1_NO_RESISTOR_EMBED_ID = "elab-v1-cap6-esp2-led-senza-resistore";
 export const ELAB_V1_LUMINOSITA_EXPERIMENT_ID = "v1-cap6-esp3";
 export const ELAB_V1_LUMINOSITA_EMBED_ID = "elab-v1-cap6-esp3-luminosita-resistenze";
+export const ELAB_V1_RGB_LAMP_EXPERIMENT_ID = "v1-cap9-esp6";
+export const ELAB_V1_RGB_LAMP_EMBED_ID = "elab-v1-cap9-esp6-lampada-rgb";
 export const ELAB_BLINK_EXPERIMENT_ID = "v3-cap5-esp1";
 export const ELAB_EXTERNAL_LED_EXPERIMENT_ID = "v3-cap6-esp2";
 export const ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-030-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE = "/elab/manuals/vol1/page-031-esercizio-6-1.png";
 export const ELAB_V1_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-032-esercizio-6-2.png";
 export const ELAB_V1_CAP6_ESP3_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-033-esercizio-6-3.png";
+export const ELAB_V1_CAP9_ESP6_MANUAL_PAGE_IMAGE = "/elab/manuals/vol1/page-072-esercizio-9-6.png";
+export const ELAB_V1_CAP9_ESP6_FINAL_PAGE_IMAGE = "/elab/manuals/vol1/page-074-esercizio-9-6.png";
 export const ELAB_V3_CAP6_ESP2_MANUAL_PAGE_IMAGE = "/elab/manuals/vol3/page-051-esercizio-6-2.png";
 
 export function parseToolLink(link: string | null | undefined): ToolLink | null {
@@ -270,6 +282,37 @@ export function createV1Cap6Esp3SimulationScene(): SimulationSceneV1 {
   return simulationSceneFromElabScene(elabSceneCandidateV1Cap6Esp3, ELAB_V1_CAP6_ESP3_BRIDGE_OPTS);
 }
 
+// Copy dal Pack (volume-references v1-cap9-esp6, VERBATIM).
+export const ELAB_V1_CAP9_ESP6_BRIDGE_OPTS: ElabSceneBridgeOptions = {
+  title: "Lampada RGB con 3 potenziometri",
+  chapter: "Capitolo 9 - Cos'è un potenziometro?",
+  bookText:
+    "Costruiamo una lampada avendo la possibilità di poter scegliere abbastanza facilmente quanto colore aggiungere per ogni luce colorata presente nel LED RGB.",
+  bookInstructions: [
+    "Collega la clip della batteria alla batteria",
+    "Collega il negativo della batteria alla striscia nera della breadboard",
+    "Inserisci il LED RGB nella breadboard",
+    "Collega il catodo del LED RGB (la gambetta lunga) al negativo della batteria con un filo",
+    "Inserisci il primo potenziometro nella breadboard",
+    "Inserisci una resistenza da 470 Ohm tra il positivo della batteria e il piedino del potenziometro",
+    "Inserisci il secondo e terzo potenziometro con le loro resistenze da 470 Ohm",
+    "Collega il positivo della batteria alla linea rossa della breadboard",
+    "Collega il pin 2 del terzo potenziometro al LED blu del LED RGB",
+    "Collega il pin 2 del secondo potenziometro al LED verde del LED RGB",
+    "Collega il pin 2 del primo potenziometro al LED rosso del LED RGB",
+  ],
+  bookQuote:
+    "Gioca ora con le regolazioni e crea il colore che ti piace di più! Prova a chiedere un bicchierino del caffé di plastica bianco e poggialo sopra al LED RGB: diffonderà la luce! A proposito prova questo esperimento al buio!",
+  manualCrop: ELAB_V1_CAP9_ESP6_MANUAL_PAGE_IMAGE,
+  manualFinalCrop: ELAB_V1_CAP9_ESP6_FINAL_PAGE_IMAGE,
+  manualFigurePage: 72,
+};
+
+/** Scena reale v1-cap9-esp6 (multi-pin: 3 pot + LED RGB) dal bridge sulla fixture candidate. */
+export function createV1Cap9Esp6SimulationScene(): SimulationSceneV1 {
+  return simulationSceneFromElabScene(elabSceneCandidateV1Cap9Esp6, ELAB_V1_CAP9_ESP6_BRIDGE_OPTS);
+}
+
 // FONTE UNICA: la scena reference deriva dal bridge sulla fixture candidate
 // (circuit-scene/2). La vecchia topologia hand-coded (bat+ diretto in bb1:j2,
 // nessun rail) violava il testo p30 — falsificata da ElabBookConstraints.
@@ -292,6 +335,7 @@ const SCENE_MANUAL_ANCHORS: Record<string, { volume: 1 | 2 | 3; page: number }> 
   [ELAB_V1_FIRST_LED_EXPERIMENT_ID]: { volume: 1, page: 29 },
   [ELAB_V1_NO_RESISTOR_EXPERIMENT_ID]: { volume: 1, page: 32 },
   [ELAB_V1_LUMINOSITA_EXPERIMENT_ID]: { volume: 1, page: 33 },
+  [ELAB_V1_RGB_LAMP_EXPERIMENT_ID]: { volume: 1, page: 71 },
 };
 
 export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean; errors: string[] } {
@@ -516,6 +560,16 @@ export function buildSimulationInsert(
       embedId,
     };
   }
+  if (experimentId === ELAB_V1_RGB_LAMP_EXPERIMENT_ID) {
+    const embedId = nextSimulationEmbedId(ids, ELAB_V1_RGB_LAMP_EMBED_ID);
+    return {
+      embed: createToolEmbedElement({
+        embedId,
+        state: { kind: "simulation-scene-v1", scene: createV1Cap9Esp6SimulationScene() },
+      }),
+      embedId,
+    };
+  }
   return null;
 }
 
@@ -601,6 +655,12 @@ function ReferenceSimulationCanvasTool({
   const [stepMode, setStepMode] = useState(false);
   const stepModel = useMemo(() => stepByStepModel(scene, placements), [scene, placements]);
   const catalog = catalogSummary();
+  // Metriche per canale delle scene multi-pin (elab-mna): stesso solve della
+  // board, memoizzato sulla scena.
+  const sideMnaView = useMemo(
+    () => (scene.runtime.kind === "elab-mna" ? computeElabMnaView(scene) : null),
+    [scene],
+  );
 
   function applyPlacements(next: MontaggioPlacement[]) {
     setPlacements(next);
@@ -751,6 +811,20 @@ function ReferenceSimulationCanvasTool({
                 <Metric label="LED" value="BRUCIATO" />
                 <Metric label="corrente" value="sovracorrente" />
               </>
+            ) : scene.runtime.kind === "elab-mna" ? (
+              sideMnaView === null || !sideMnaView.ok ? (
+                <>
+                  <Metric label="sorgente" value={`${scene.runtime.supplyVolts} V`} />
+                  <Metric label="solve" value="non disponibile" />
+                </>
+              ) : (
+                <>
+                  <Metric label="sorgente" value={`${scene.runtime.supplyVolts} V`} />
+                  <Metric label="canale R" value={formatChannelMa(sideMnaView.channels.red)} />
+                  <Metric label="canale G" value={formatChannelMa(sideMnaView.channels.green)} />
+                  <Metric label="canale B" value={formatChannelMa(sideMnaView.channels.blue)} />
+                </>
+              )
             ) : (
               <>
                 <Metric label="sorgente" value={`${scene.runtime.supplyVolts} V`} />
@@ -900,8 +974,66 @@ function StepByStepCard({
   );
 }
 
+// ── Vista canali per scene multi-pin (runtime elab-mna) ─────────────────────
+// Il verdetto per canale esce dal motore MNA reale sui dati della scena.
+// currentMa è l'inversione esatta della formula del motore (brightness =
+// clamped/0.03, CircuitSolver._solveRGBLed): sotto il clamp è il valore vero,
+// a brightness 1 il motore ha clampato → si dichiara ">= 30", mai un numero finto.
+type ElabMnaChannel = { on: boolean; brightness: number; currentMa: number };
+type ElabMnaChannels = { red: ElabMnaChannel; green: ElabMnaChannel; blue: ElabMnaChannel };
+type ElabMnaView =
+  | { ok: true; channels: ElabMnaChannels; anyOn: boolean }
+  | { ok: false; error: string };
+
+function computeElabMnaView(scene: SimulationSceneV1): ElabMnaView {
+  const rgb = scene.components.find((component) => component.type === "rgb-led");
+  if (!rgb) return { ok: false, error: "scena elab-mna senza LED RGB" };
+  let result: SolveResult;
+  try {
+    result = solveElabExperiment({
+      components: scene.components.map((component) => ({
+        id: component.id,
+        type: component.type,
+        ...(component.value !== undefined ? { value: component.value } : {}),
+        ...(component.color !== undefined ? { color: component.color } : {}),
+      })),
+      connections: scene.connections.map((connection) => ({
+        from: connection.from,
+        to: connection.to,
+        color: connection.color,
+      })),
+      pinAssignments: scene.pinAssignments,
+    });
+  } catch (error) {
+    // Fail-visible: l'errore del solve arriva in diagnostica, mai verde finto.
+    return { ok: false, error: (error as Error).message };
+  }
+  const state = result.componentStates[rgb.id] as
+    | Partial<Record<"red" | "green" | "blue", { on?: boolean; brightness?: number }>>
+    | undefined;
+  const channel = (name: "red" | "green" | "blue"): ElabMnaChannel => {
+    const raw = state?.[name];
+    const brightness = raw?.brightness ?? 0;
+    return { on: raw?.on === true, brightness, currentMa: brightness * 30 };
+  };
+  const channels = { red: channel("red"), green: channel("green"), blue: channel("blue") };
+  return {
+    ok: true,
+    channels,
+    anyOn: channels.red.on || channels.green.on || channels.blue.on,
+  };
+}
+
+function formatChannelMa(channel: ElabMnaChannel): string {
+  return channel.brightness >= 1 ? ">= 30 mA" : `${channel.currentMa.toFixed(1)} mA`;
+}
+
 function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
+  const mnaView = useMemo(
+    () => (scene.runtime.kind === "elab-mna" ? computeElabMnaView(scene) : null),
+    [scene],
+  );
   const hasBattery = scene.components.some((component) => component.type === "battery9v");
   return (
     <div style={boardStageStyle} data-experiment-id={scene.experimentId}>
@@ -926,6 +1058,8 @@ function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; monta
           <NanoR4Svg scene={scene} />
           <ResistorSvg scene={scene} />
           <LedSvg scene={scene} />
+          <PotentiometersSvg scene={scene} />
+          <RgbLedSvg scene={scene} channels={mnaView?.ok === true ? mnaView.channels : null} />
           {montaggio && <PlacedPartsSvg scene={scene} placements={montaggio.placements} />}
         </g>
         <g transform="translate(28 404)">
@@ -1001,6 +1135,19 @@ function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; monta
             <>
               <text x="16" y="48" style={diagnosticSvgStyle}>batteria {scene.runtime.supplyVolts}.00 V - LED BRUCIATO</text>
               <text x="16" y="68" style={diagnosticSvgStyle}>SENZA RESISTORE: sovracorrente (Vol.1 p.32)</text>
+            </>
+          ) : scene.runtime.kind === "elab-mna" ? (
+            <>
+              <text x="16" y="48" style={diagnosticSvgStyle}>
+                batteria {scene.runtime.supplyVolts}.00 V - LED RGB {mnaView?.ok === true && mnaView.anyOn ? "ON" : "OFF"}
+              </text>
+              <text x="16" y="68" style={diagnosticSvgStyle} data-rgb-channels>
+                {mnaView === null
+                  ? ""
+                  : mnaView.ok
+                    ? `R ${formatChannelMa(mnaView.channels.red)} - G ${formatChannelMa(mnaView.channels.green)} - B ${formatChannelMa(mnaView.channels.blue)}`
+                    : `solve non disponibile: ${mnaView.error}`}
+              </text>
             </>
           ) : (
             <>
@@ -1222,8 +1369,10 @@ function NanoR4Svg({ scene }: { scene: SimulationSceneV1 }) {
       <text x="78" y="65" textAnchor="middle" fill="#ffffff" fontSize="8" fontWeight="750">NANO R4</text>
       <PinRow y={35} labels={["D13", "3V3", "REF", "A0", "A1", "A2", "A3", "A4", "A5", "A7", "5V", "RST", "GND", "VIN"]} />
       <PinRow y={64} labels={["D12", "D11", "D10", "D9", "D8", "D7", "D6", "D5", "D4", "D3", "D2", "GND", "RST", "RX", "TX"]} />
-      {scene.runtime.ledOn && <circle cx="150" cy="57" r="5" fill="#91e64f" filter="url(#led-glow)" opacity="0.9" />}
-      <circle cx="150" cy="57" r="2.8" fill={scene.runtime.ledOn ? "#91e64f" : "#587067"} stroke="#123429" strokeWidth="0.4" />
+      {scene.runtime.kind !== "elab-mna" && scene.runtime.ledOn && (
+        <circle cx="150" cy="57" r="5" fill="#91e64f" filter="url(#led-glow)" opacity="0.9" />
+      )}
+      <circle cx="150" cy="57" r="2.8" fill={scene.runtime.kind !== "elab-mna" && scene.runtime.ledOn ? "#91e64f" : "#587067"} stroke="#123429" strokeWidth="0.4" />
       {pin13 && (
         <g transform={`translate(${pin13.x - origin.x} ${pin13.y - origin.y})`}>
           <circle r="3.3" fill="#35a852" stroke="#0e4f25" strokeWidth="0.6" />
@@ -1251,22 +1400,119 @@ function PinRow({ y, labels }: { y: number; labels: string[] }) {
 }
 
 function ResistorSvg({ scene }: { scene: SimulationSceneV1 }) {
-  // Scene senza resistore (es. v1-cap6-esp2, dimostrazione p.32): niente da
-  // disegnare — e mai parseBreadboardRef su un ref assente.
-  const pin1 = scene.pinAssignments["r1:pin1"];
-  const pin2 = scene.pinAssignments["r1:pin2"];
-  if (pin1 === undefined || pin2 === undefined) return null;
-  const a = pointForBreadboardRef(pin1);
-  const b = pointForBreadboardRef(pin2);
-  if (!a || !b) return null;
+  // TUTTI i resistori del manuale (r1, r2, r3, …): la selezione scandisce i
+  // componenti, mai id hard-codati. I piazzamenti del montaggio libero
+  // (r-libero-*) restano di PlacedPartsSvg — qui vengono esclusi.
+  const resistors = scene.components.filter(
+    (component) => component.type === "resistor" && !component.id.startsWith("r-libero-"),
+  );
   return (
-    <g aria-label="Resistore 470 Ohm" pointerEvents="none">
-      <ResistorBody a={a} b={b} />
+    <g>
+      {resistors.map((resistor) => {
+        // Scene senza resistore o pin non assegnati: niente da disegnare — e
+        // mai parseBreadboardRef su un ref assente.
+        const pin1 = scene.pinAssignments[`${resistor.id}:pin1`];
+        const pin2 = scene.pinAssignments[`${resistor.id}:pin2`];
+        if (pin1 === undefined || pin2 === undefined) return null;
+        const a = pointForBreadboardRef(pin1);
+        const b = pointForBreadboardRef(pin2);
+        if (!a || !b) return null;
+        return (
+          <g key={resistor.id} aria-label={`Resistore ${resistor.value ?? 470} Ohm`} pointerEvents="none">
+            <ResistorBody a={a} b={b} ohms={resistor.value ?? 470} />
+          </g>
+        );
+      })}
     </g>
   );
 }
 
-function ResistorBody({ a, b }: { a: { x: number; y: number }; b: { x: number; y: number } }) {
+function PotentiometersSvg({ scene }: { scene: SimulationSceneV1 }) {
+  // Potenziometro 3-pin (vcc/signal/gnd su tie-strip adiacenti): corpo con
+  // manopola blu sopra il canale centrale, come nelle figure del libro.
+  const pots = scene.components.filter((component) => component.type === "potentiometer");
+  return (
+    <g>
+      {pots.map((pot) => {
+        const pins = ["vcc", "signal", "gnd"].map((pin) =>
+          pointForBreadboardRef(scene.pinAssignments[`${pot.id}:${pin}`] ?? ""),
+        );
+        if (pins.some((pin) => pin === null)) return null;
+        const [vcc, signal, gnd] = pins as Array<{ x: number; y: number }>;
+        const cx = signal.x;
+        const cy = signal.y - 12;
+        return (
+          <g key={pot.id} aria-label={pot.label} pointerEvents="none">
+            {[vcc, signal, gnd].map((pin, index) => (
+              <line
+                key={index}
+                x1={pin.x}
+                y1={pin.y}
+                x2={cx + (pin.x - cx) * 0.4}
+                y2={cy + 7}
+                stroke="#9aa0a6"
+                strokeWidth="1.1"
+                strokeLinecap="round"
+              />
+            ))}
+            <rect x={cx - 12} y={cy - 9.5} width="24" height="19" rx="2.5" fill="#3a678f" stroke="#1f3f5c" strokeWidth="0.7" />
+            <circle cx={cx} cy={cy} r="7.2" fill="#4d86bd" stroke="#123452" strokeWidth="0.8" />
+            <circle cx={cx} cy={cy} r="2" fill="#dfe9f2" />
+            {/* Indicatore del wiper a metà corsa: il solve usa position 0.5. */}
+            <line x1={cx} y1={cy} x2={cx + 5} y2={cy - 5} stroke="#eef4f9" strokeWidth="1.1" strokeLinecap="round" />
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+function RgbLedSvg({ scene, channels }: { scene: SimulationSceneV1; channels: ElabMnaChannels | null }) {
+  const rgb = scene.components.find((component) => component.type === "rgb-led");
+  if (!rgb) return null;
+  const legs = (["red", "common", "green", "blue"] as const).map((pin) => ({
+    pin,
+    point: pointForBreadboardRef(scene.pinAssignments[`${rgb.id}:${pin}`] ?? ""),
+  }));
+  if (legs.some((leg) => leg.point === null)) return null;
+  const cx = legs.reduce((sum, leg) => sum + leg.point!.x, 0) / legs.length;
+  const baseY = Math.min(...legs.map((leg) => leg.point!.y));
+  const cy = baseY - 19;
+  const anyOn = channels !== null && (channels.red.on || channels.green.on || channels.blue.on);
+  // Miscela additiva SOLO per la resa visiva (il dato onesto sta in
+  // diagnostica): canale acceso → contributo pieno del suo colore.
+  const mix = anyOn
+    ? `rgb(${channels!.red.on ? 235 : 40}, ${channels!.green.on ? 225 : 40}, ${channels!.blue.on ? 230 : 45})`
+    : "#c9cdd2";
+  const legColor: Record<string, string> = { red: "#d3413a", green: "#2fa764", blue: "#2f68ad", common: "#15191e" };
+  return (
+    <g aria-label={`LED RGB ${anyOn ? "acceso" : "spento"}`} pointerEvents="none">
+      {legs.map((leg) => (
+        <line
+          key={leg.pin}
+          x1={leg.point!.x}
+          y1={leg.point!.y}
+          x2={cx + (leg.point!.x - cx) * 0.25}
+          y2={cy + 8}
+          stroke={legColor[leg.pin]}
+          strokeWidth={leg.pin === "common" ? 1.4 : 1.1}
+          strokeLinecap="round"
+        />
+      ))}
+      {anyOn && <ellipse cx={cx} cy={cy} rx="9.5" ry="11" fill={mix} filter="url(#led-glow)" opacity="0.85" />}
+      <path
+        d={`M ${cx - 6.5} ${cy + 8} L ${cx - 6.5} ${cy - 2} A 6.5 6.5 0 0 1 ${cx + 6.5} ${cy - 2} L ${cx + 6.5} ${cy + 8} Z`}
+        fill={mix}
+        stroke="#7d838a"
+        strokeWidth="0.7"
+        opacity={anyOn ? 0.95 : 0.8}
+      />
+      <text x={cx} y={cy + 15} textAnchor="middle" fill="#4a5a6a" fontSize="4.8" fontWeight="800">RGB</text>
+    </g>
+  );
+}
+
+function ResistorBody({ a, b, ohms = 470 }: { a: { x: number; y: number }; b: { x: number; y: number }; ohms?: number }) {
   const centerX = (a.x + b.x) / 2;
   return (
     <g>
@@ -1277,25 +1523,31 @@ function ResistorBody({ a, b }: { a: { x: number; y: number }; b: { x: number; y
       <rect x={centerX - 2.5} y={a.y - 4.4} width="2.2" height="8.8" fill="#753d16" />
       <rect x={centerX + 3} y={a.y - 4.4} width="2.2" height="8.8" fill="#753d16" />
       <rect x={centerX + 9} y={a.y - 4.4} width="2.2" height="8.8" fill="#d9ba44" />
-      <text x={centerX} y={a.y - 8} textAnchor="middle" fill="#5e4930" fontSize="5.2" fontWeight="800">470 Ohm</text>
+      <text x={centerX} y={a.y - 8} textAnchor="middle" fill="#5e4930" fontSize="5.2" fontWeight="800">{ohms} Ohm</text>
     </g>
   );
 }
 
 function LedSvg({ scene }: { scene: SimulationSceneV1 }) {
-  const anode = pointForBreadboardRef(scene.pinAssignments["led1:anode"]);
-  const cathode = pointForBreadboardRef(scene.pinAssignments["led1:cathode"]);
+  // Scene senza LED singolo (es. multi-pin v1-cap9-esp6): niente da disegnare
+  // — e mai parseBreadboardRef su un ref assente.
+  const anodeRef = scene.pinAssignments["led1:anode"];
+  const cathodeRef = scene.pinAssignments["led1:cathode"];
+  if (anodeRef === undefined || cathodeRef === undefined) return null;
+  const anode = pointForBreadboardRef(anodeRef);
+  const cathode = pointForBreadboardRef(cathodeRef);
   if (!anode || !cathode) return null;
   const led = scene.components.find((component) => component.id === "led1");
   const burned = scene.runtime.kind === "battery-led-senza-resistore";
+  const ledOn = scene.runtime.kind === "elab-mna" ? false : scene.runtime.ledOn;
   const ariaLabel = burned
     ? `LED ${led?.color ?? "verde"} bruciato per sovracorrente`
-    : scene.runtime.ledOn
+    : ledOn
       ? `LED ${led?.color ?? "verde"} acceso`
       : `LED ${led?.color ?? "verde"} spento`;
   return (
     <g aria-label={ariaLabel} pointerEvents="none">
-      <LedBody anode={anode} cathode={cathode} color={led?.color ?? "verde"} on={scene.runtime.ledOn} burned={burned} />
+      <LedBody anode={anode} cathode={cathode} color={led?.color ?? "verde"} on={ledOn} burned={burned} />
     </g>
   );
 }
@@ -1487,6 +1739,9 @@ function batteryLedCurrentMa(scene: SimulationSceneV1): number {
   if (scene.runtime.kind === "arduino-blink") {
     return scene.runtime.ledOn ? ((5 - 2) / 470) * 1000 : 0;
   }
+  // Multi-pin: nessun "LED singolo" — le correnti per canale escono dal solve
+  // MNA (computeElabMnaView), questo traversal serie non si applica.
+  if (scene.runtime.kind === "elab-mna") return 0;
   if (!scene.runtime.ledOn) return 0;
   // Solve serie graph-driven: la corrente deriva dal cammino elettrico REALE
   // (connections + pinAssignments + valori dei componenti), non da una formula
@@ -1499,9 +1754,9 @@ function batteryLedCurrentMa(scene: SimulationSceneV1): number {
 
 function resolveSimulationScene(state: SimulationToolState | undefined, snapshot: { millis: number; ledOn: boolean }) {
   const scene = state?.kind === "simulation-scene-v1" ? state.scene : createReferenceSimulationScene(snapshot);
-  if (scene.runtime.kind === "battery-led-senza-resistore") {
-    // Il verdetto "bruciato" non è animabile dallo snapshot: resta com'è
-    // (ledOn false), qualunque cosa dica lo stato del runtime blink.
+  if (scene.runtime.kind === "battery-led-senza-resistore" || scene.runtime.kind === "elab-mna") {
+    // Verdetti non animabili dallo snapshot: "bruciato" resta bruciato, e i
+    // canali multi-pin escono SOLO dal solve MNA — mai da un toggle.
     return scene;
   }
   if (scene.runtime.kind === "battery-led") {
@@ -1531,7 +1786,10 @@ function readStateMillis(state: SimulationToolState | undefined): number | undef
 }
 
 function readStateLed(state: SimulationToolState | undefined): boolean | undefined {
-  if (state?.kind === "simulation-scene-v1") return state.scene.runtime.ledOn;
+  if (state?.kind === "simulation-scene-v1") {
+    const runtime = state.scene.runtime;
+    return runtime.kind === "elab-mna" ? undefined : runtime.ledOn;
+  }
   return state?.ledOn;
 }
 
