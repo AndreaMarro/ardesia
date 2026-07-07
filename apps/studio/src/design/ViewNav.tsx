@@ -1,10 +1,6 @@
-// Product Flow Shell (NOTTE-13, decisione autonoma): navigazione REALE tra le
-// viste principali. Prima di questo componente le viste ?vista= erano isole
-// raggiungibili solo digitando l'URL a mano (Product Flow Audit NOTTE-12,
-// blocco #1). Sobrio, docente-first: solo i passi del flusso di lavoro,
-// nessun marketing. Ogni voce è un <a> vero (le viste sono route con chunk
-// separati: la navigazione full-page è il comportamento corretto, non un
-// ripiego).
+// Product Flow Shell: la nav espone SOLO gli ingressi primari caricabili dal
+// docente. Cruscotto e lezioni salvate restano route interne/profonde, non
+// comandi principali nella shell.
 
 export type ArdesiaViewId = "lavagna" | "elab-lab" | "cruscotto" | "lezioni-salvate"
 
@@ -14,9 +10,7 @@ export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
   title: string
 }> = [
   { id: "lavagna", label: "lavagna", title: "Lavagna Ardesia (stanza corrente)" },
-  { id: "elab-lab", label: "ELAB Lab", title: "Simulation Plugin — esperimenti del libro" },
-  { id: "cruscotto", label: "cruscotto", title: "Cruscotto docente — errori e ripasso" },
-  { id: "lezioni-salvate", label: "lezioni", title: "Lezioni salvate" },
+  { id: "elab-lab", label: "ELAB Plugin", title: "Simulation Plugin — esperimenti del libro" },
 ]
 
 /**
@@ -53,16 +47,19 @@ export default function ViewNav({ current }: { current: ArdesiaViewId }) {
 const navStyle = {
   display: "flex",
   alignItems: "center",
-  gap: 2,
-  padding: "2px 4px",
-  borderRadius: 8,
-  background: "rgba(21,38,56,0.05)",
+  gap: 4,
+  padding: 4,
+  borderRadius: 10,
+  background: "rgba(21,38,56,0.06)",
 } as const
 
 const linkStyle = {
-  padding: "3px 9px",
-  borderRadius: 6,
-  fontSize: 12,
+  minHeight: 30,
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "5px 12px",
+  borderRadius: 8,
+  fontSize: 13,
   fontWeight: 600,
   color: "#41556d",
   textDecoration: "none",
@@ -72,5 +69,5 @@ const linkStyle = {
 const activeStyle = {
   background: "#ffffff",
   color: "#1f3f63",
-  boxShadow: "0 1px 2px rgba(21,38,56,0.14)",
+  boxShadow: "0 1px 3px rgba(21,38,56,0.18)",
 } as const
