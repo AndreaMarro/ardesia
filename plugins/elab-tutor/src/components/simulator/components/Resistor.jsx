@@ -2,7 +2,7 @@
  * ELAB Simulator — Resistor Component (Tinkercad-Identical Style)
  * Axial resistor: light beige body with subtle highlight, flat color bands,
  * thin neutral wire leads. No value text (matches Tinkercad diagrams).
- * Pin positions UNCHANGED — solver-safe.
+ * leadSpan allows book fixtures to match the exact breadboard hole span.
  * © Andrea Marro — 10/02/2026, Tinkercad-identical redesign 23/02/2026
  */
 
@@ -41,11 +41,24 @@ function formatValue(value) {
   return `${value}\u03A9`;
 }
 
-const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, value = 470, id }) => {
+function getResistorPinOffset(leadSpan = 7) {
+  return leadSpan === 6 ? 22.5 : 26.25;
+}
+
+function getResistorPins(component = {}) {
+  const pinOffset = getResistorPinOffset(component.leadSpan);
+  return [
+    { id: 'pin1', label: 'Pin 1', x: -pinOffset, y: 0, type: 'digital' },
+    { id: 'pin2', label: 'Pin 2', x:  pinOffset, y: 0, type: 'digital' },
+  ];
+}
+
+const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, value = 470, id, leadSpan = 7 }) => {
   const bands = calculateBands(value);
   const current = state.current || 0;
   const hasFlow = current > 0.0001;
   const uid = `res-${id}`;
+  const pinOffset = getResistorPinOffset(leadSpan);
 
   return (
     <g transform={`translate(${x}, ${y})`} data-component-id={id} data-type="resistor" role="img"
@@ -77,9 +90,9 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
       </defs>
 
       {/* Wire leads — metallic gradient */}
-      <line x1="-26.25" y1="0" x2="-14.2" y2="0"
+      <line x1={-pinOffset} y1="0" x2="-14.2" y2="0"
         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-      <line x1="14.2" y1="0" x2="26.25" y2="0"
+      <line x1="14.2" y1="0" x2={pinOffset}
         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
 
       {/* Body shadow for depth */}
@@ -134,16 +147,15 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
   );
 };
 
-Resistor.pins = [
-  { id: 'pin1', label: 'Pin 1', x: -26.25, y: 0, type: 'digital' },
-  { id: 'pin2', label: 'Pin 2', x:  26.25, y: 0, type: 'digital' },
-];
+Resistor.pins = getResistorPins();
+Resistor.getPins = getResistorPins;
 
 Resistor.defaultState = { current: 0, voltage: 0 };
 
 registerComponent('resistor', {
   component: Resistor,
   pins: Resistor.pins,
+  getPins: Resistor.getPins,
   defaultState: Resistor.defaultState,
   category: 'passive',
   label: 'Resistore',
@@ -151,5 +163,5 @@ registerComponent('resistor', {
   volumeAvailableFrom: 1,
 });
 
-export { calculateBands, formatValue };
+export { calculateBands, formatValue, getResistorPins };
 export default Resistor;

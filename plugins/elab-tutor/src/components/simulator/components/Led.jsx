@@ -3,9 +3,9 @@
   * 5mm LED: small hemispherical dome at top, two long thin wire leads.
  * Pixel-perfect match with Tinkercad Circuits diagrams (ELAB volumes).
  * - Dome: flat-bottom D-shape, small, base at y=0, apex at y≈-12
-  * - Leads: long thin lines from under the dome to pins (±3.75, 22.5)
+ * - Leads: long thin lines from under the dome to pins (±3.75, 22.5)
  * - Colors: verified from Tinkercad screenshots (flat fills, no gradients)
- * Pin positions UNCHANGED — solver-safe.
+ * - leadLayout="bridge": breadboard gap placement, anode/cathode on opposite sides
  * © Andrea Marro — 10/02/2026, Tinkercad-identical redesign 22/02/2026
  */
 
@@ -20,17 +20,33 @@ const LED_COLORS = {
   white:  { body: 'var(--elab-hex-bdbdbd)', tint: 'var(--elab-hex-f5f5f5)', dark: 'var(--elab-hex-757575)', vf: 3.2 },
 };
 
-const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color = 'red', id }) => {
+const LED_PIN_LAYOUTS = {
+  inline: [
+    { id: 'anode',   label: 'A (+)',      x: -3.75, y: 22.5, type: 'digital' },
+    { id: 'cathode', label: 'K (\u2212)', x:  3.75, y: 22.5, type: 'digital' },
+  ],
+  bridge: [
+    { id: 'anode',   label: 'A (+)',      x: 0, y: 22.5, type: 'digital' },
+    { id: 'cathode', label: 'K (\u2212)', x: 0, y:  5.0, type: 'digital' },
+  ],
+};
+
+function getLedPins(component = {}) {
+  return component.leadLayout === 'bridge' ? LED_PIN_LAYOUTS.bridge : LED_PIN_LAYOUTS.inline;
+}
+
+const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color = 'red', id, leadLayout = 'inline' }) => {
   const burned = state.burned || false;
   const brightness = burned ? 0 : (state.brightness || 0);
   const isOn = !burned && brightness > 0.01;
   const c = LED_COLORS[color] || LED_COLORS.red;
   const uid = `led-${id}`;
+  const isBridge = leadLayout === 'bridge';
   // Glow intensity scales with brightness (0→1), clamped
   const glowOpacity = Math.min(brightness, 1);
 
   return (
-    <g transform={`translate(${x}, ${y})`} data-component-id={id} data-type="led" role="img"
+    <g transform={`translate(${x}, ${y})`} data-component-id={id} data-type="led" data-lead-layout={leadLayout} role="img"
        aria-label={`LED ${id}: ${color}${burned ? ', bruciato' : isOn ? ', acceso' : ''}`}>
       {/* S115: Hit area — 44px minimum on both dimensions for WCAG touch target */}
       <rect x="-22" y="-22" width="44" height="50" fill="transparent" pointerEvents="all" onClick={onInteract} />
@@ -69,14 +85,26 @@ const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color 
          </g>
        )}
 
-       {/* Wire leads — metallic gradient, slightly diverging */}
-       <line x1="-2.4" y1="0" x2="-3.75" y2="22.5"
-         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-       <line x1="2.4" y1="0" x2="3.75" y2="22.5"
-         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-       {/* Anode marker — longer lead (left) has subtle thickening at base */}
-       <circle cx="-3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
-       <circle cx="3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
+       {/* Wire leads — inline for free mounting, bridge for breadboard central gap */}
+       {isBridge ? (
+         <>
+           <line x1="-2.4" y1="0" x2="0" y2="5"
+             stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
+           <line x1="2.4" y1="0" x2="0" y2="22.5"
+             stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
+           <circle cx="0" cy="5" r="1.0" fill="#888" opacity="0.3" />
+           <circle cx="0" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
+         </>
+       ) : (
+         <>
+           <line x1="-2.4" y1="0" x2="-3.75" y2="22.5"
+             stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
+           <line x1="2.4" y1="0" x2="3.75" y2="22.5"
+             stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
+           <circle cx="-3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
+           <circle cx="3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
+         </>
+       )}
 
        {/* LED dome shadow */}
        <path
@@ -133,16 +161,15 @@ const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color 
   );
 };
 
-Led.pins = [
-  { id: 'anode',   label: 'A (+)',      x: -3.75, y: 22.5, type: 'digital' },
-  { id: 'cathode', label: 'K (\u2212)', x:  3.75, y: 22.5, type: 'digital' },
-];
+Led.pins = LED_PIN_LAYOUTS.inline;
+Led.getPins = getLedPins;
 
 Led.defaultState = { on: false, brightness: 0 };
 
 registerComponent('led', {
   component: Led,
   pins: Led.pins,
+  getPins: Led.getPins,
   defaultState: Led.defaultState,
   category: 'output',
   label: 'LED',
@@ -151,5 +178,5 @@ registerComponent('led', {
   volumeAvailableFrom: 1,
 });
 
-export { LED_COLORS };
+export { LED_COLORS, getLedPins };
 export default Led;

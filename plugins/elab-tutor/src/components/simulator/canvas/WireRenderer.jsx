@@ -162,6 +162,27 @@ function isAboveBreadboard(absY, bbY) {
 }
 
 /**
+ * Return pin definitions for an instance, allowing components to expose
+ * placement-specific geometry while preserving the same electrical pin ids.
+ */
+function getComponentPins(registered, component = {}) {
+  if (!registered) return [];
+  if (typeof registered.getPins === 'function') {
+    const pins = registered.getPins(component);
+    if (Array.isArray(pins)) return pins;
+  }
+  return Array.isArray(registered.pins) ? registered.pins : [];
+}
+
+function withLayoutPinGeometry(component, position = {}) {
+  return {
+    ...component,
+    leadLayout: position.leadLayout ?? component.leadLayout,
+    leadSpan: position.leadSpan ?? component.leadSpan,
+  };
+}
+
+/**
  * Resolve absolute pin position with rotation support
  */
 function resolvePinPosition(pinRef, components, layout) {
@@ -175,10 +196,11 @@ function resolvePinPosition(pinRef, components, layout) {
   if (!pos) return null;
 
   const registered = getComponent(comp.type);
-  if (!registered || !registered.pins) return null;
+  const pins = getComponentPins(registered, withLayoutPinGeometry(comp, pos));
+  if (pins.length === 0) return null;
 
   const normalizedPinId = normalizePinIdForComponent(comp.type, pinId);
-  const pinDef = registered.pins.find(p => p.id === normalizedPinId);
+  const pinDef = pins.find(p => p.id === normalizedPinId);
   if (!pinDef) return null;
 
   const rotation = pos.rotation || 0;
@@ -1405,6 +1427,8 @@ const WireRenderer = ({
 };
 
 export {
+  getComponentPins,
+  withLayoutPinGeometry,
   resolvePinPosition,
   computeRoutedWire,
   applyCollisionAvoidance,

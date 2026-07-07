@@ -7,7 +7,7 @@
 
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { getComponent } from '../components/registry';
-import WireRenderer, { resolvePinPosition } from './WireRenderer';
+import WireRenderer, { getComponentPins, resolvePinPosition, withLayoutPinGeometry } from './WireRenderer';
 import PinOverlay from './PinOverlay';
 import Annotation from '../components/Annotation';
 import RotationHandle, { snapToNearestQuadrant } from '../overlays/RotationHandle';
@@ -241,8 +241,9 @@ function getSnapPinHoles(compType, compX, compY, bbX, bbY, bbType, dragCompId, e
       const pos = experiment.layout[comp.id];
       if (!pos) continue;
       const reg = getComponent(comp.type);
-      if (!reg?.pins) continue;
-      for (const pin of reg.pins) {
+      const pins = getComponentPins(reg, withLayoutPinGeometry(comp, pos));
+      if (pins.length === 0) continue;
+      for (const pin of pins) {
         const pinAbsX = pos.x + pin.x;
         const pinAbsY = pos.y + pin.y;
         // Snap this pin to nearest hole to determine which hole it occupies
@@ -400,17 +401,18 @@ function hitTestPin(svgX, svgY, components, layout, tolerance = PIN_HIT_TOLERANC
   let bestDist = tolerance;
 
   for (const comp of components) {
-    const registered = getComponent(comp.type);
-    if (!registered || !registered.pins) continue;
     const pos = layout?.[comp.id];
     if (!pos) continue;
+    const registered = getComponent(comp.type);
+    const pins = getComponentPins(registered, withLayoutPinGeometry(comp, pos));
+    if (pins.length === 0) continue;
 
     const rotation = pos.rotation || 0;
     const rad = (rotation * Math.PI) / 180;
     const cos = Math.cos(rad);
     const sin = Math.sin(rad);
 
-    for (const pin of registered.pins) {
+    for (const pin of pins) {
       let px = pin.x;
       let py = pin.y;
       if (rotation !== 0) {
@@ -441,8 +443,9 @@ function getPinInfo(pinRef, components, componentStates) {
   const comp = components?.find(c => c.id === compId);
   if (!comp) return null;
   const registered = getComponent(comp.type);
-  if (!registered?.pins) return null;
-  const pinDef = registered.pins.find(p => p.id === pinId);
+  const pins = getComponentPins(registered, comp);
+  if (pins.length === 0) return null;
+  const pinDef = pins.find(p => p.id === pinId);
   if (!pinDef) return null;
   const label = pinDef.label || pinId;
   const state = componentStates?.[compId];
@@ -2211,6 +2214,8 @@ const SimulatorCanvas = ({
       }
 
       const Component = registered.component;
+      const leadLayout = rawPos.leadLayout ?? comp.leadLayout;
+      const leadSpan = rawPos.leadSpan ?? comp.leadSpan;
       let state = componentStates[comp.id] || registered.defaultState;
 
       // Build nano-r4 state from root _pins data (pin states + LED indicators)
@@ -2386,6 +2391,8 @@ const SimulatorCanvas = ({
               onInteract={onComponentClick ? (compId, action) => onComponentClick(compId, action) : undefined}
               {...(comp.value !== undefined ? { value: comp.value } : {})}
               {...(comp.color !== undefined ? { color: comp.color } : {})}
+              {...(leadLayout !== undefined ? { leadLayout } : {})}
+              {...(leadSpan !== undefined ? { leadSpan } : {})}
               {...((comp.type === 'breadboard-half' || comp.type === 'breadboard-full') && wireMode
                 ? { onHoleClick: (holeId) => handlePinClick(`${comp.id}:${holeId}`) }
                 : {})}
@@ -2893,7 +2900,9 @@ const SimulatorCanvas = ({
               // Try to auto-start wire from this component's first pin
               const comp = experiment?.components?.find(c => c.id === contextMenu.componentId);
               if (comp) {
-                const pinDefs = comp.pins || [];
+                const registered = getComponent(comp.type);
+                const pos = experiment.layout?.[comp.id] || {};
+                const pinDefs = getComponentPins(registered, withLayoutPinGeometry(comp, pos));
                 if (pinDefs.length > 0) {
                   const firstPinRef = `${contextMenu.componentId}:${pinDefs[0].id || pinDefs[0].name || pinDefs[0]}`;
                   const pinPos = resolvePinPosition(firstPinRef, experiment.components, experiment.layout);

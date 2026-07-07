@@ -77,12 +77,15 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "r1": {
-                      "x": 151.5,
-                      "y": 43.75
+                      "x": 155.25,
+                      "y": 123.75,
+                      "rotation": 180,
+                      "leadSpan": 6
               },
               "led1": {
-                      "x": 181.5,
-                      "y": 68.75
+                      "x": 132.75,
+                      "y": 68.75,
+                      "leadLayout": "bridge"
               }
       },
       steps: [
