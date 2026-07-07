@@ -23,7 +23,7 @@ export type BlockedElabSceneStatus = {
   kind: "blocked"
   experimentId: string
   blocker: string
-  provenance: SceneProvenance
+  provenance?: SceneProvenance
   scene?: undefined
 }
 
@@ -39,12 +39,19 @@ export type ElabSceneStatus = BlockedElabSceneStatus | ReadyElabSceneStatus
 function blocked(
   experimentId: string,
   blocker: string,
-  manual: { volume: 1 | 2 | 3; chapter: number; page: number; sourceManual: string },
+  manual?: { volume: 1 | 2 | 3; chapter: number; page: number; sourceManual: string },
 ): BlockedElabSceneStatus {
-  return {
+  const status: BlockedElabSceneStatus = {
     kind: "blocked",
     experimentId,
     blocker,
+    scene: undefined,
+  }
+  if (!manual) {
+    return status
+  }
+  return {
+    ...status,
     provenance: {
       experimentId,
       volume: manual.volume,
@@ -59,7 +66,7 @@ function blocked(
         bookMatch: "unknown",
         visualMatch: "unknown",
       },
-    },
+    }
   }
 }
 
@@ -73,10 +80,5 @@ export function getElabSceneStatus(experimentId: string): ElabSceneStatus {
     })
   }
 
-  return blocked(experimentId, `no SimulationScene registered for ${experimentId}`, {
-    volume: 1,
-    chapter: 0,
-    page: 0,
-    sourceManual: "unknown",
-  })
+  return blocked(experimentId, `no SimulationScene registered for ${experimentId}`)
 }
