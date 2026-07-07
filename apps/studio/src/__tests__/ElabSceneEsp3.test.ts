@@ -4,12 +4,11 @@
 // (Vol.1 p.33). La metrica del libro è FALSIFICABILE sul motore reale:
 // I(220Ω) > I(470Ω) > I(1kΩ) — con un resistore più basso passa più corrente.
 //
-// ⚠️ GATE-ANDREA D4-2 (caratterizzato qui, non mascherato): il motore brucia
-// il LED verde a 220Ω (30.9 mA > soglia burn 30 mA) e a 100Ω (68 mA), mentre
-// il libro presenta 220Ω come "più luminoso" e 100Ω come pavimento sicuro.
-// La fixture dichiara electrical="unknown" (blocked-by-gate). Quando la
-// tabella del motore cambierà, il test di caratterizzazione qui sotto DEVE
-// rompersi e forzare l'aggiornamento di fixture + matrice.
+// D4-2 RISOLTO (ADR-0003, NOTTE-13): zone di stress LED nel wrapper del solve
+// riconciliano libro e fisica — 220Ω = overdrive (acceso, più luminoso, vita
+// ridotta), 100Ω = zona pericolo (il pavimento del libro), >100mA = bruciato.
+// I vecchi test di caratterizzazione del conflitto si sono rotti COME DA
+// CONTRATTO e sono stati sostituiti dalla caratterizzazione delle zone.
 
 import { describe, expect, it } from "vitest"
 import * as fs from "node:fs"
@@ -94,10 +93,22 @@ describe("fixture v1-cap6-esp3 — schema e provenance", () => {
     expect(scene.source.sourceImageHash).toBe(hash)
   })
 
-  it("electrical è dichiarato UNKNOWN (blocked-by-gate D4-2), mai auto-asserito pass", () => {
+  it("il claim electrical=pass coincide col verdetto calcolato (zone ADR-0003)", () => {
     const scene = validScene(esp3Fixture())
-    expect(scene.provenance.checks.electrical).toBe("unknown")
-    expect(scene.provenance.sourceRef).toContain("GATE-ANDREA D4-2")
+    expect(scene.provenance.sourceRef).toContain("ADR-0003")
+    const result = solveElabExperiment(solverExperimentFromScene(esp3Fixture()))
+    const led = result.componentStates.led1 as {
+      on?: boolean
+      burned?: boolean
+      stressZone?: string
+    }
+    // "pass" per esp3 = il LED si accende più luminoso come dice il libro
+    // (zona overdrive, mai bruciato) — verdetto calcolato, non auto-asserito.
+    const computed =
+      result.ok && led?.on === true && led?.burned === false && led?.stressZone === "overdrive"
+        ? "pass"
+        : "fail"
+    expect(scene.provenance.checks.electrical).toBe(computed)
   })
 })
 
@@ -127,21 +138,51 @@ describe("metrica del libro: resistenza più bassa ⇒ più corrente (falsificab
   })
 })
 
-describe("GATE-ANDREA D4-2 — conflitto tabella motore ↔ libro (caratterizzazione)", () => {
-  it("OGGI il motore brucia il LED verde a 220Ω (30.9mA > soglia 30mA) mentre il libro dice 'più luminoso'", () => {
-    // ⚠️ Questo test CARATTERIZZA il conflitto aperto: se si rompe, la
-    // tabella del motore è cambiata (decisione Andrea) → aggiornare fixture
-    // (electrical unknown→calcolato), matrice e questo file.
+describe("ADR-0003 — zone di stress LED: libro e fisica riconciliati (caratterizzazione)", () => {
+  it("220Ω (30.9mA): OVERDRIVE — acceso e più luminoso come dice il libro, con warning strutturato", () => {
     const result = solveElabExperiment(withResistor(220))
-    const led = result.componentStates.led1 as { on?: boolean; burned?: boolean }
+    const led = result.componentStates.led1 as {
+      on?: boolean
+      burned?: boolean
+      brightness?: number
+      stressZone?: string
+    }
     expect(result.currents.led1).toBeCloseTo(0.0309, 3)
-    expect(led.burned).toBe(true)
+    expect(led.stressZone).toBe("overdrive")
+    expect(led.on).toBe(true)
+    expect(led.burned).toBe(false)
+    expect(led.brightness).toBe(1)
+    const warning = result.diagnostics.overloadWarnings.find((w) => w.compId === "led1")
+    expect(warning?.type).toBe("overdrive")
+    expect(warning?.message).toContain("vita del LED ridotta")
   })
 
-  it("OGGI il motore brucia anche a 100Ω, il pavimento di sicurezza del libro (68mA)", () => {
+  it("100Ω (68mA): ZONA PERICOLO — il pavimento del libro, acceso ma con avviso severo", () => {
     const result = solveElabExperiment(withResistor(100))
-    const led = result.componentStates.led1 as { burned?: boolean }
+    const led = result.componentStates.led1 as { burned?: boolean; stressZone?: string }
     expect(result.currents.led1).toBeCloseTo(0.068, 3)
+    expect(led.stressZone).toBe("pericolo")
+    expect(led.burned).toBe(false)
+    const warning = result.diagnostics.overloadWarnings.find((w) => w.compId === "led1")
+    expect(warning?.type).toBe("pericolo")
+  })
+
+  it("senza resistore (~1A): resta BRUCIATO — la dimostrazione p.32 (esp2) non cambia", () => {
+    const base = solverExperimentFromScene(esp3Fixture())
+    const noResistor = {
+      components: base.components.filter((component) => component.id !== "r1"),
+      connections: [
+        ...base.connections,
+        { from: "bb1:bus-top-plus-9", to: "bb1:i9", color: "red" },
+      ],
+      pinAssignments: Object.fromEntries(
+        Object.entries(base.pinAssignments ?? {}).filter(([pin]) => !pin.startsWith("r1:")),
+      ),
+    }
+    const result = solveElabExperiment(noResistor)
+    const led = result.componentStates.led1 as { burned?: boolean; stressZone?: string }
+    expect(result.currents.led1).toBeGreaterThan(0.1)
+    expect(led.stressZone).toBe("bruciato")
     expect(led.burned).toBe(true)
   })
 })

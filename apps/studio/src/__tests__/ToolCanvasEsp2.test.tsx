@@ -75,7 +75,7 @@ describe("post-it esp2 — la UI dichiara il LED bruciato", () => {
     expect(container.textContent).toContain("BRUCIATO")
     expect(container.textContent).toContain("sovracorrente")
     const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("2/88")
+    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("3/88")
   })
 
   it("SVG: LED marcato bruciato (aria-label) e monito del libro visibile", () => {

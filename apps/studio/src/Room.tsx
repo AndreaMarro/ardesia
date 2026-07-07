@@ -704,6 +704,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           >
             sim esp2
           </button>
+          <button
+            onClick={() => insertSimulationPlugin("v1-cap6-esp3")}
+            className="st-ghost"
+            aria-label="Inserisci esperimento luminosità con resistenze diverse sulla lavagna"
+          >
+            sim esp3
+          </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>

@@ -79,6 +79,79 @@ export function engineLedForwardVoltsForColor(color: string | null | undefined):
   return engineLedForwardVolts(color)
 }
 
+// ── Zone di stress LED (ADR-0003, decisione autonoma D4-2) ─────────────────
+// Il motore vendored ha un burn BINARIO a >30mA che contraddice il libro:
+// Vol.1 p.33 presenta 220Ω (LED verde → 30.9mA) come "più luminoso" e
+// 100Ω (68mA) come pavimento di sicurezza. Fisica (datasheet LED 5mm
+// tipico): 20mA nominale, ~30mA massimo continuo, ~100mA picco impulsivo —
+// tra 30 e 100mA il LED si degrada NEL TEMPO, non esplode all'istante.
+// Riconciliazione QUI nel wrapper (il motore resta byte-identico, drift-guard
+// intatto): il verdetto binario viene reinterpretato in 4 zone oneste.
+// Rollback: rimuovere reinterpretLedStress e le soglie (il binario torna).
+
+export type LedStressZone = "nominale" | "overdrive" | "pericolo" | "bruciato"
+
+export const LED_STRESS_THRESHOLDS = {
+  /** Fino a qui il LED lavora nel rating continuo (20mA nominale + margine). */
+  nominaleMaxAmps: 0.025,
+  /** "Più luminoso" del libro: sopra il rating, vita ridotta, ma acceso. */
+  overdriveMaxAmps: 0.05,
+  /** Zona pericolo: il pavimento del libro ("mai sotto 100Ω" → 68mA) vive qui. */
+  pericoloMaxAmps: 0.1,
+  // > pericoloMaxAmps: oltre il picco impulsivo di datasheet → bruciato
+  // all'istante (il caso "senza resistore", ~1A).
+} as const
+
+export function ledStressZone(currentAmps: number): LedStressZone {
+  if (currentAmps <= LED_STRESS_THRESHOLDS.nominaleMaxAmps) return "nominale"
+  if (currentAmps <= LED_STRESS_THRESHOLDS.overdriveMaxAmps) return "overdrive"
+  if (currentAmps <= LED_STRESS_THRESHOLDS.pericoloMaxAmps) return "pericolo"
+  return "bruciato"
+}
+
+export const LED_STRESS_ZONE_LABELS: Record<LedStressZone, string> = {
+  nominale: "corrente nominale",
+  overdrive: "sopra corrente nominale: più luminoso, vita del LED ridotta",
+  pericolo: "ZONA PERICOLO: rischio concreto di bruciatura (il libro dice: mai sotto 100 Ohm)",
+  bruciato: "BRUCIATO: corrente oltre il picco sopportabile",
+}
+
+/**
+ * Reinterpreta i flag visivi del LED secondo le zone. Le grandezze elettriche
+ * (correnti/tensioni) NON vengono toccate: il burn del motore non altera la
+ * soluzione MNA (il LED bruciato conserva la caduta diretta, vedi
+ * CircuitSolver.js:1810), quindi la reinterpretazione dei soli flag è sana.
+ */
+function reinterpretLedStress(result: SolveResult, ledIds: ReadonlySet<string>): SolveResult {
+  for (const [id, state] of Object.entries(result.componentStates)) {
+    if (!ledIds.has(id)) continue
+    const current = result.currents[id]
+    if (current === undefined) continue
+    const zone = ledStressZone(current)
+    ;(state as Record<string, unknown>).stressZone = zone
+    if (zone === "bruciato") continue // il verdetto del motore resta
+    if (state.burned === true) {
+      // Il motore ha bruciato un LED in zona overdrive/pericolo: acceso ma
+      // sotto stress, con warning STRUTTURATO (mai un downgrade silenzioso).
+      state.burned = false
+      ;(state as { on?: boolean }).on = current > 0.0001
+      ;(state as { brightness?: number }).brightness = Math.min(1, current / 0.03)
+      result.diagnostics.overloadWarnings.push({
+        compId: id,
+        type: zone,
+        message: `LED "${id}" a ${Math.round(current * 1000)}mA — ${LED_STRESS_ZONE_LABELS[zone]}`,
+      })
+    } else if (zone !== "nominale") {
+      result.diagnostics.overloadWarnings.push({
+        compId: id,
+        type: zone,
+        message: `LED "${id}" a ${Math.round(current * 1000)}mA — ${LED_STRESS_ZONE_LABELS[zone]}`,
+      })
+    }
+  }
+  return result
+}
+
 /** Risolve un esperimento col motore vendored. Fail-closed sui tipi non catalogati. */
 export function solveElabExperiment(
   experiment: SolverExperiment,
@@ -116,14 +189,22 @@ export function solveElabExperiment(
       pinAssignments: experiment.pinAssignments,
     })
     const diagnostics = solver.getDiagnostics()
-    return {
-      ok: !diagnostics.shortCircuit,
-      componentStates: solver.getState(),
-      currents: solver.getComponentCurrents(),
-      nodeVoltages: solver.getNodeVoltages(),
-      diagnostics,
-      warnings,
-    }
+    const ledIds = new Set(
+      experiment.components
+        .filter((component) => component.type === "led")
+        .map((component) => component.id),
+    )
+    return reinterpretLedStress(
+      {
+        ok: !diagnostics.shortCircuit,
+        componentStates: solver.getState(),
+        currents: solver.getComponentCurrents(),
+        nodeVoltages: solver.getNodeVoltages(),
+        diagnostics,
+        warnings,
+      },
+      ledIds,
+    )
   } finally {
     solver.destroy()
   }
