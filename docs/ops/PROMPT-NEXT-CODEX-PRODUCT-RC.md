@@ -9,7 +9,9 @@ Sei Codex Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il 
 - #142, #143, #144 risultano `MERGED`.
 - #144 non e' persa: `6386e172` ha come parent `fa6fb6ce` (#144), quindi il renderer multi-pin/esp6 e' gia'
   nella storia di `main`.
-- PR recovery Codex: #145 `docs(ops): Codex post-FABLE recovery audit`, draft, CI verde alla creazione.
+- PR recovery Codex: #145 `docs(ops): Codex post-FABLE recovery audit`, ready, CI verde alla creazione.
+- PR dashboard/nav Codex: #146 `feat(dashboard): live lesson graph and primary shell nav`, ready, CI verde
+  alla creazione; shell primaria corretta a `lavagna` + plugin caricabile, non quattro pillole.
 - Documento di recovery: `docs/ops/CODEX-POST-FABLE-RECOVERY-2026-07-15.md`.
 
 ## Regole operative
@@ -21,6 +23,21 @@ Sei Codex Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il 
 - Per visual/UI: screenshot desktop/tablet/mobile e Playwright mirato.
 - Per ogni PR: `tsc -b`, vitest full x3 con exit catturato, build, pytest se FastAPI, NUL scan, secret scan,
   PII scan, `gh pr checks`; `bin/pr-merge-verify.sh` prima di merge se disponibile.
+- Andrea ha autorizzato autonomia piena per merge, deploy e test live prodotto: procedi con PR mergeate e deploy
+  solo se check verdi, worktree pulita e nessun segreto/PII/corpus grezzo/pagamento reale e' coinvolto.
+
+## Correzione prodotto Andrea — shell e plugin
+
+- Il prodotto principale percepito deve essere la **lavagna Ardesia**: semplice, bella, LIM/iPad-first.
+- ELABTutorPlugin / ELAB Plugin / Simulation Plugin devono essere **caricabili** dalla lavagna e molto completi,
+  ma **non** devono apparire come feature primaria o come tab principale aggressiva.
+- La shell primaria deve restare corta: `lavagna` + ingresso plugin caricabile. Cruscotto, lezioni salvate,
+  dashboard scuola e strumenti avanzati restano route/superfici interne contestuali, non la prima cosa che vede
+  il docente.
+- Ogni plugin deve sentirsi come un'estensione professionale della lavagna, non come un prodotto separato:
+  caricamento chiaro, stato installato/attivo, permessi, provenance, test live, fallback onesto.
+- Next UI work: migliorare bellezza/semplicita' della lavagna e rendere il caricamento ELABTutorPlugin evidente
+  ma sobrio; evitare nav a quattro pillole e feature creep visibile in header.
 
 ## Cosa FABLE ha gia' chiuso
 
@@ -31,8 +48,9 @@ Sei Codex Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il 
 
 ## Prossima PR consigliata: Dashboard Docente/Scuola
 
-Obiettivo: trasformare il cruscotto da architettura corretta ma sottoutilizzata a superficie vendibile
-con grafici e grafo navigabile da event-log reale, senza PII default.
+Obiettivo: trasformare il cruscotto da architettura corretta ma sottoutilizzata a superficie vendibile interna
+con grafici e grafo navigabile da event-log reale, senza PII default. Non promuoverlo a feature primaria
+nella shell: resta dashboard contestuale per docente/scuola.
 
 Vincoli:
 
@@ -65,6 +83,8 @@ File probabili:
 - FastAPI/GDPR-ready: servizio sandbox pronto, non ancora cablato alla UI/prodotto.
 - UI/UX Studente/Tutor/Scuola: shell navigabile, ma LIM/iPad e dashboard vendibile ancora aperti.
 - Plugin/Skill Factory: manifest/install/signing solidi; mancano plugin utili installabili e trust story remota.
+- Posizionamento UX aggiornato: lavagna come prodotto primario; ELABTutorPlugin caricabile e completo ma non
+  headline feature.
 
 ## Handoff breve
 
