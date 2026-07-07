@@ -403,6 +403,22 @@ body {
 /* ELAB Lab: colonna dei pannelli laterali — solve, citazione dal libro,
    marcatura errori in stack verticale scrollabile, MAI sovrapposti
    (il .reference-tool-panel nudo resta absolute per le altre viste). */
+.elab-lab-header {
+  gap: 10px;
+}
+.elab-lab-title {
+  flex: 0 1 280px;
+  min-width: 0;
+}
+.elab-lab-experiment-select {
+  flex: 0 1 360px;
+  min-width: 180px;
+  max-width: 360px;
+}
+.elab-lab-experiment-chip {
+  flex: 0 1 210px;
+  min-width: 0;
+}
 .elab-lab-panels {
   position: absolute; top: 24px; right: 24px; z-index: 50;
   display: flex; flex-direction: column; gap: 12px;
@@ -410,6 +426,27 @@ body {
 }
 .elab-lab-panels .reference-tool-panel {
   position: static; width: auto; flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .elab-lab-header {
+    gap: 6px;
+    padding: 0 8px;
+  }
+  .elab-lab-title,
+  .elab-lab-experiment-chip {
+    display: none;
+  }
+  .elab-lab-experiment-select {
+    flex: 1 1 96px;
+    min-width: 86px;
+    max-width: 130px;
+  }
+  .elab-lab-panels {
+    left: 6px;
+    right: 6px;
+    width: auto;
+  }
 }
 
 /* Officina plugin (?vista=officina-plugin) — P0-D authoring.

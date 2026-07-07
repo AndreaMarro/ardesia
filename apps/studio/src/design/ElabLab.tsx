@@ -10,6 +10,7 @@
 // (ElabSolver.test.ts).
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import "@elab-tutor-plugin/styles/design-system.css"
 import { renderEmbeddable } from "@elab-tutor-plugin/plugin/renderEmbeddable"
 import type { ElabVolumeExperiment } from "@elab-tutor-plugin/data/experiments-vol1"
 import {
@@ -29,8 +30,16 @@ import { getVolumeLabel, getVolumeRef } from "@elab-pack/data/volume-references"
 import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
 // Import con side-effect deliberato: registra l'entry del Simulation Plugin
 // (render + solve reale) nel registry — lo stesso dispatch usato dal canvas.
-import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
+import {
+  REFERENCE_SIM_TOOL_ID,
+  createReferenceSimulationScene,
+  createV1Cap6Esp2SimulationScene,
+  createV1Cap6Esp3SimulationScene,
+  createV1Cap9Esp6SimulationScene,
+  type SimulationSceneV1,
+} from "../toolhost/ToolCanvasEmbeddable"
 import type { SolveResult, SolverExperiment } from "../../sim/solver/elabSolver"
+import { stepByStepModel } from "../toolhost/simulationStepMode"
 import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
 import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
@@ -46,6 +55,10 @@ import {
   lessonMemoryFileName,
 } from "../lessonos/exportLessonMemory"
 import { analyzeFreeAssembly } from "../../sim/freeAssembly"
+import {
+  checkEntitlementAccess,
+  type EntitlementAccessResult,
+} from "../entitlements/entitlementApiClient"
 import ViewNav from "./ViewNav"
 
 export const ELAB_LAB_EXPERIMENT_ID = ELAB_LAB_DEFAULT_EXPERIMENT_ID
@@ -90,12 +103,78 @@ interface ElabLabProps {
    * (IndexedDB, fallback InMemory — la marcatura parte comunque).
    */
   eventLog?: EventLogStore
+  /**
+   * Loader iniettabile nei test. Di default legge il contratto FastAPI sandbox
+   * via VITE_ENTITLEMENT_* e fallisce chiuso se manca la configurazione.
+   */
+  entitlementAccess?: () => Promise<EntitlementAccessResult>
 }
 
-export default function ElabLab({ eventLog }: ElabLabProps = {}) {
+type EntitlementPanelState = EntitlementAccessResult | { kind: "checking" }
+type ElabLabMode = "ready" | "step" | "free"
+
+function mountedSceneForExperiment(experimentId: string): SimulationSceneV1 | null {
+  switch (experimentId) {
+    case "v1-cap6-esp1":
+      return createReferenceSimulationScene()
+    case "v1-cap6-esp2":
+      return createV1Cap6Esp2SimulationScene()
+    case "v1-cap6-esp3":
+      return createV1Cap6Esp3SimulationScene()
+    case "v1-cap9-esp6":
+      return createV1Cap9Esp6SimulationScene()
+    default:
+      return null
+  }
+}
+
+function entitlementTitle(state: EntitlementPanelState): string {
+  switch (state.kind) {
+    case "checking":
+      return "FastAPI entitlement: verifica in corso"
+    case "granted":
+      return "FastAPI entitlement: accesso verificato"
+    case "denied":
+      return "FastAPI entitlement: accesso da attivare"
+    case "not-configured":
+      return state.reason === "missing-scope"
+        ? "FastAPI entitlement: scope assente"
+        : "FastAPI entitlement: non configurato"
+    case "unreachable":
+      return "FastAPI entitlement: non raggiungibile"
+  }
+}
+
+function entitlementDetail(state: EntitlementPanelState): string {
+  switch (state.kind) {
+    case "checking":
+      return "Controllo read-only su /healthz e /access."
+    case "granted":
+      return "Il servizio sandbox ha confermato accesso per lo scope configurato."
+    case "denied":
+      return "Il servizio sandbox risponde ma non concede accesso allo scope configurato."
+    case "not-configured":
+      return "Il plugin resta locale: nessuna chiamata esterna e nessuno stato accesso dichiarato."
+    case "unreachable":
+      return `Chiamata fallita su ${state.detail}; il plugin resta locale.`
+  }
+}
+
+function entitlementEndpoint(state: EntitlementPanelState): string {
+  if (state.kind === "granted" || state.kind === "denied" || state.kind === "unreachable") {
+    return state.endpoint
+  }
+  return "nessun endpoint"
+}
+
+export default function ElabLab({
+  eventLog,
+  entitlementAccess = checkEntitlementAccess,
+}: ElabLabProps = {}) {
   const canvasRef = useRef<HTMLDivElement>(null)
   const experimentId = useMemo(readElabLabExperimentId, [])
   const experiment = useMemo(() => findElabLabExperiment(experimentId), [experimentId])
+  const mountedScene = useMemo(() => mountedSceneForExperiment(experimentId), [experimentId])
   const solve = useMemo(
     () => (experiment === null ? null : dispatchSolve(experiment)),
     [experiment],
@@ -136,6 +215,10 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   }> | null>(null)
   const [newAssignmentPin, setNewAssignmentPin] = useState("")
   const [newAssignmentRef, setNewAssignmentRef] = useState("")
+  const [labMode, setLabMode] = useState<ElabLabMode>("ready")
+  const [entitlementState, setEntitlementState] = useState<EntitlementPanelState>({
+    kind: "checking",
+  })
   const [newComponentId, setNewComponentId] = useState("")
   const [newComponentType, setNewComponentType] = useState("")
 
@@ -154,6 +237,28 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     setNewComponentType("")
   }
 
+  const activeStepModel = useMemo(() => {
+    if (mountedScene === null) return null
+    return stepByStepModel(
+      {
+        ...mountedScene,
+        pinAssignments: studentAssignments ?? mountedScene.pinAssignments,
+      },
+      [],
+    )
+  }, [mountedScene, studentAssignments])
+
+  const activateReadyMode = () => {
+    setLabMode("ready")
+    setStudentAssignments(null)
+    setStudentComponents(null)
+  }
+
+  const activateFreeMode = () => {
+    setLabMode("free")
+    if (studentAssignments === null) startFreeAssembly()
+  }
+
   useEffect(() => {
     if (eventLog !== undefined) return
     let cancelled = false
@@ -164,6 +269,28 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
       cancelled = true
     }
   }, [eventLog])
+
+  useEffect(() => {
+    let cancelled = false
+    setEntitlementState({ kind: "checking" })
+    entitlementAccess()
+      .then((result) => {
+        if (!cancelled) setEntitlementState(result)
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setEntitlementState({
+            kind: "unreachable",
+            endpoint: "entitlement-api",
+            detail: error instanceof Error ? error.message : "network",
+            scope: null,
+          })
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [entitlementAccess])
 
   useEffect(() => {
     if (log === null) return
@@ -263,13 +390,13 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
       style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}
       data-elab-lab-state={experiment === null ? "no-experiment" : "mounted"}
     >
-      <header className="st-bar">
+      <header className="st-bar elab-lab-header">
         <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
           <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
-        <span className="st-name">
+        <span className="st-name elab-lab-title">
           <span className="st-name-text">ELAB Lab — Simulation Plugin (motore reale via registry)</span>
         </span>
         <ViewNav current="elab-lab" />
@@ -279,6 +406,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
             resurrezione via URL di un id fuori whitelist resta possibile:
             in quel caso l'id corrente compare come voce disabilitata. */}
         <select
+          className="elab-lab-experiment-select"
           data-elab-experiment-select
           value={experimentId}
           title="Scegli l'esperimento del libro"
@@ -300,7 +428,10 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
           )}
         </select>
         {experiment !== null && (
-          <span className="st-chip-student st-chip-lesson" title="Esperimento del Pack ELAB">
+          <span
+            className="st-chip-student st-chip-lesson elab-lab-experiment-chip"
+            title="Esperimento del Pack ELAB"
+          >
             {experiment.title}
           </span>
         )}
@@ -318,6 +449,128 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
           <>
             <div ref={canvasRef} data-elab-canvas style={{ position: "absolute", inset: 0 }} />
             <div className="elab-lab-panels">
+            <div
+              className="reference-tool-panel"
+              data-elab-lab-mode-panel
+              data-elab-lab-mode={labMode}
+            >
+              <div className="reference-tool-panel-bar">modalità lezione</div>
+              <div style={{ padding: "6px 8px", display: "grid", gap: 6 }}>
+                <div role="group" aria-label="Modalità ELAB Lab" style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  <button
+                    type="button"
+                    data-elab-lab-mode-ready
+                    aria-pressed={labMode === "ready"}
+                    onClick={activateReadyMode}
+                  >
+                    Già montato
+                  </button>
+                  <button
+                    type="button"
+                    data-elab-lab-mode-step
+                    aria-pressed={labMode === "step"}
+                    disabled={activeStepModel === null || activeStepModel.total === 0}
+                    onClick={() => setLabMode("step")}
+                  >
+                    Passo-passo
+                  </button>
+                  <button
+                    type="button"
+                    data-elab-lab-mode-free
+                    aria-pressed={labMode === "free"}
+                    onClick={activateFreeMode}
+                  >
+                    Monta tu
+                  </button>
+                </div>
+                {bookRef !== null && (
+                  <div data-elab-lab-manual-summary>
+                    <strong>manuale: </strong>
+                    {bookLabel} · {bookRef.chapter}
+                    {mountedScene?.bookLayout.manualSource.crop ? " · pagina reale collegata" : ""}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {labMode === "step" && activeStepModel !== null && (
+              <div
+                className="reference-tool-panel"
+                data-elab-lab-step-mode
+                data-step-passed={`${activeStepModel.passedCount}/${activeStepModel.total}`}
+              >
+                <div className="reference-tool-panel-bar">
+                  passo-passo dal manuale ({activeStepModel.passedCount}/{activeStepModel.total})
+                </div>
+                <div style={{ padding: "6px 8px", display: "grid", gap: 6 }}>
+                  {mountedScene?.bookLayout.manualSource.crop && (
+                    <img
+                      data-elab-lab-step-manual-crop
+                      src={mountedScene.bookLayout.manualSource.crop}
+                      alt={`Pagina reale del manuale ELAB Volume ${mountedScene.manual.volume}`}
+                      style={{ width: "100%", maxHeight: 150, objectFit: "contain", border: "1px solid var(--m-line)", borderRadius: 6, background: "var(--m-canvas)" }}
+                    />
+                  )}
+                  {activeStepModel.steps.length === 0 ? (
+                    <div>Passo-passo non ancora disponibile per questo esperimento.</div>
+                  ) : (
+                    activeStepModel.steps.map((step) => (
+                      <div
+                        key={step.id}
+                        data-elab-lab-step-id={step.id}
+                        data-step-passed={step.passed ? "true" : "false"}
+                      >
+                        <strong>{step.passed ? "OK" : "da verificare"} · {step.order}. </strong>
+                        {step.instructionIt}
+                        <div style={{ color: "var(--m-ink-3)", fontSize: "var(--m-fs-xs)" }}>
+                          {step.evidence.map((entry) => `Vol.${mountedScene?.manual.volume ?? 1} pag.${entry.page}`).join(" · ")}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+            <div
+              className="reference-tool-panel"
+              data-elab-lab-entitlement
+              data-entitlement-state={entitlementState.kind}
+            >
+              <div className="reference-tool-panel-bar">
+                <span
+                  className="reference-tool-dot"
+                  data-on={entitlementState.kind === "granted" ? "1" : "0"}
+                  aria-hidden
+                />
+                accesso ELAB Plugin
+              </div>
+              <div style={{ padding: "6px 8px", display: "grid", gap: 4 }}>
+                <strong data-entitlement-title>{entitlementTitle(entitlementState)}</strong>
+                <div data-entitlement-detail>{entitlementDetail(entitlementState)}</div>
+                <dl style={{ margin: 0, display: "grid", gap: 3 }}>
+                  <div>
+                    <dt style={{ display: "inline", fontWeight: 600 }}>plugin: </dt>
+                    <dd style={{ display: "inline", margin: 0 }}>
+                      installato · attivo · {experiment.title}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt style={{ display: "inline", fontWeight: 600 }}>capability: </dt>
+                    <dd style={{ display: "inline", margin: 0 }}>
+                      canvas locale · registry.solve · graph.query read-only nel Tutor
+                    </dd>
+                  </div>
+                  <div>
+                    <dt style={{ display: "inline", fontWeight: 600 }}>provenienza: </dt>
+                    <dd style={{ display: "inline", margin: 0 }}>
+                      {REFERENCE_SIM_TOOL_ID} · {entitlementEndpoint(entitlementState)}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
             <div className="reference-tool-panel" data-elab-lab-solve={solve?.kind ?? "no-solve"}>
               <div className="reference-tool-panel-bar">
                 <span className="reference-tool-dot" data-on={ledOn ? "1" : "0"} aria-hidden />
