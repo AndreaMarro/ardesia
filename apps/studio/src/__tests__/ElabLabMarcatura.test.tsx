@@ -79,7 +79,7 @@ describe("ElabLab — marcatura common_mistakes → error.observed", () => {
       errorId: "v1-cap6-esp1:mistake-1",
       conceptId: "polarita-led-anodo-catodo",
       labels: { it: "LED inserito al contrario" },
-      evidence: ["pack:elab-tutor:v1-cap6-esp1"],
+      evidence: ["pack:io.elab.tutor:v1-cap6-esp1"],
     })
     expect(view.querySelector("[data-marked-count]")?.textContent).toContain("1")
   })

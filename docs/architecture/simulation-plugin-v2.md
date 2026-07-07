@@ -1,6 +1,6 @@
 # Simulation Plugin v2
 
-Status: design approved, implementation pending
+Status: design approved, contract-first implementation slice is implemented in this branch; full runtime migration remains future work
 Date: 2026-07-07
 Primary slice: contract-first refoundation of the simulator as an autonomous ARDESIA plugin.
 
