@@ -1007,7 +1007,7 @@ const EXPERIMENTS_VOL3 = {
       "id": "v3-cap6-esp4",
       "title": "Due LED che si alternano",
       "bookRef": "Vol. 3 pag. 54 - ESERCIZIO 6.4",
-      "hexFile": "/hex/v3-cap6-sirena.hex",
+      "hexFile": "/hex/v3-cap6-esp4.hex",
       "desc": "Due LED sui pin 6 e 9 si accendono uno dopo l altro, creando un effetto alternato.",
       "description": "Due LED sui pin 6 e 9 si accendono uno dopo l altro, creando un effetto alternato.",
       "chapter": "Capitolo 6 - Il mondo discreto: i pin digitali",
