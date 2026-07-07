@@ -7,6 +7,7 @@
 // Onestà (spec §0.4): event log illeggibile → errore dichiarato, MAI una coda
 // vuota spacciata per vera. Ogni riga porta le sue evidence refs (spec §0.3).
 
+import ViewNav from "./ViewNav"
 import { useCallback, useEffect, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
@@ -190,6 +191,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
         <span className="st-name">
           <span className="st-name-text">Cruscotto docente — projection LessonOS (read-only) + azioni append-only</span>
         </span>
+        <ViewNav current="cruscotto" />
       </header>
 
       <div style={{ flex: 1, overflow: "auto", padding: 16 }}>
