@@ -11,6 +11,7 @@ import { PATHS, type StorageMode } from "./store/types"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
+import ViewNav from "./design/ViewNav"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
@@ -684,6 +685,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         </button>
 
         <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
+          {/* Product Flow Shell: il docente naviga tra le viste senza digitare
+              URL (lavagna → ELAB Lab → cruscotto → lezioni). */}
+          {!studentView && <ViewNav current="lavagna" />}
           <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine o PDF">media</button>

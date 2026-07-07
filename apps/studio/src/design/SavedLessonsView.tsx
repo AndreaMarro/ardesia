@@ -7,6 +7,7 @@
 // localStorage (mai dall'URL): la configurazione è del chiamante, il
 // pannello resta ignaro di baseUrl/token (vedi SavedLessonsPanel).
 
+import ViewNav from "./ViewNav"
 import { useEffect, useMemo, useState } from "react"
 import SavedLessonsPanel from "../SavedLessonsPanel"
 import EmptyState from "./EmptyState"
@@ -51,6 +52,7 @@ export default function SavedLessonsView() {
         <span className="st-name">
           <span className="st-name-text">Lezioni salvate — quiz e flashcard</span>
         </span>
+        <ViewNav current="lezioni-salvate" />
       </header>
 
       <div style={{ flex: 1, overflow: "auto", padding: 16 }}>

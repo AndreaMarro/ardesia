@@ -46,6 +46,7 @@ import {
   lessonMemoryFileName,
 } from "../lessonos/exportLessonMemory"
 import { analyzeFreeAssembly } from "../../sim/freeAssembly"
+import ViewNav from "./ViewNav"
 
 export const ELAB_LAB_EXPERIMENT_ID = ELAB_LAB_DEFAULT_EXPERIMENT_ID
 
@@ -271,6 +272,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         <span className="st-name">
           <span className="st-name-text">ELAB Lab — Simulation Plugin (motore reale via registry)</span>
         </span>
+        <ViewNav current="elab-lab" />
         {/* Disciplina Scene Forge: il picker offre SOLO la whitelist
             VISIBLE_EXP_IDS (fonte di verità, selezione Andrea 25/05/2026).
             La scelta naviga (?esperimento=) — la vista resta URL-driven e la
