@@ -11,9 +11,11 @@ import {
   breadboardGeometry,
   generateBreadboardPoints,
   isBreadboardRef,
+  parseBreadboardRef,
   pointForBreadboardRef,
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
+import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
@@ -997,6 +999,10 @@ function Battery9vSvg({ scene }: { scene: SimulationSceneV1 }) {
 }
 
 function DetailedBreadboard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
+  // Hover node highlight: ref sotto il puntatore → nodeId della sua strip.
+  const [hoverRef, setHoverRef] = useState<string | null>(null);
+  const hoverNodeId = hoverRef === null ? null : (parseBreadboardRef(hoverRef)?.nodeId ?? null);
+  const hoverLabel = hoverRef === null ? null : `${hoverRef} — ${describeHole(hoverRef).labelIt}`;
   const active = new Map<string, string>();
   for (const [pinRef, hole] of Object.entries(scene.pinAssignments)) {
     active.set(hole, pinRef.startsWith("led") ? "#2fa764" : "#b6852f");
@@ -1059,9 +1065,19 @@ function DetailedBreadboard({ scene, montaggio }: { scene: SimulationSceneV1; mo
             holeRef={ref}
             pending={montaggio?.pending === ref}
             onTap={montaggio && montaggio.tool !== null ? montaggio.onHoleTap : undefined}
+            highlighted={hoverNodeId !== null && point.nodeId === hoverNodeId}
+            onHover={setHoverRef}
           />
         );
       })}
+      {/* Hover node highlight (breadboard copy system): il foro sotto il
+          puntatore illumina TUTTA la sua tie-strip/rail e dichiara il ref col
+          vocabolario del libro — il docente vede la net, non un puntino. */}
+      {hoverLabel !== null && (
+        <text x="126.5" y="-4" textAnchor="middle" style={bbHoverLabelStyle} data-bb-hover-label>
+          {hoverLabel}
+        </text>
+      )}
       <text x="126.5" y="75" textAnchor="middle" style={bbChannelStyle}>ELAB volume grammar: j..f / e..a</text>
     </g>
   );
@@ -1084,6 +1100,8 @@ function BreadboardHole({
   holeRef,
   pending,
   onTap,
+  highlighted,
+  onHover,
 }: {
   x: number;
   y: number;
@@ -1091,14 +1109,20 @@ function BreadboardHole({
   holeRef?: string;
   pending?: boolean;
   onTap?: (ref: string) => void;
+  highlighted?: boolean;
+  onHover?: (ref: string | null) => void;
 }) {
   return (
     <g
       data-bb-hole={holeRef}
       data-pending={pending ? "1" : undefined}
+      data-highlight={highlighted ? "1" : undefined}
       onClick={onTap && holeRef ? () => onTap(holeRef) : undefined}
+      onMouseEnter={onHover && holeRef ? () => onHover(holeRef) : undefined}
+      onMouseLeave={onHover ? () => onHover(null) : undefined}
       style={onTap ? { cursor: "pointer" } : undefined}
     >
+      {highlighted && <circle cx={x} cy={y} r="3.4" fill="#2f68ad" opacity="0.22" />}
       {pending && <circle cx={x} cy={y} r="3.6" fill="none" stroke="#2f68ad" strokeWidth="1" />}
       {activeColor && <circle cx={x} cy={y} r="3.2" fill={activeColor} opacity="0.24" />}
       <circle cx={x} cy={y} r={breadboardGeometry.holeRadius} fill={activeColor ?? "#b8b2a7"} />
@@ -1604,6 +1628,12 @@ const bbChannelStyle: CSSProperties = {
   fill: "#958b7b",
   fontSize: 4.6,
   fontWeight: 750,
+};
+
+const bbHoverLabelStyle: CSSProperties = {
+  fill: "#2f68ad",
+  fontSize: 5.4,
+  fontWeight: 800,
 };
 
 const sideStyle = {

@@ -93,6 +93,6 @@ la superficie visiva book-aligned è il POST-IT Simulation Plugin (SVG scena).
 
 1. ~~PR2: v1-cap6-esp2 end-to-end~~ FATTO (fixture, sovracorrente onesta, toolbar "sim esp2", e2e screenshot desktop/mobile).
 2. ~~PR3: v1-cap6-esp3~~ FATTO fino al gate (crop p.33, fixture, F1-F6, correnti 220/470/1k falsificate OK, conflitto burn caratterizzato). Resta: decisione Andrea D4-2 → poi catalogo/post-it.
-3. PR4: breadboard copy system (coordinate helper, bend-points, hover highlight, grader endpoint/pose più severo).
+3. ~~PR4: breadboard copy system~~ FATTO (helper `sceneAuthoring.ts`, bend-points nel modello dati con `insertBendPoint`, hover node highlight nel post-it, `gradeSceneGeometryStrict` con copertura obbligatoria; procedura ripetibile in docs/ops/BREADBOARD-COPY-SYSTEM-2026-07-13.md).
 4. PR5 (se tempo): v3-cap6-esp4/esp5 SOLO con HEX riconciliato/quarantenato e stato compile dichiarato.
 5. Gate-Andrea: overlay CV (dipendenze), promozione verified-human, board full-size per Vol.2.

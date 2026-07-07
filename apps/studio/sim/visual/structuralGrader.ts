@@ -125,3 +125,69 @@ export function gradeSceneGeometry(scene: ElabScene): StructuralGradeReport {
     visualMatch: "unknown",
   }
 }
+
+export type StrictGradeReport = StructuralGradeReport & {
+  /** Wires SENZA path autorato: in modalità severa la copertura è obbligatoria. */
+  uncoveredWires: string[]
+  /** Componenti con pin su griglia ma SENZA pose autorata. */
+  unposedComponents: string[]
+  /** Errore per-filo (endpoint peggiore), per diagnosi puntuale. */
+  wireErrors: Array<{ id: string; errorPx: number }>
+  /** onGrid E copertura completa (nessun filo/pose mancante). */
+  strictOnGrid: boolean
+}
+
+/**
+ * Modalità SEVERA del grader (breadboard copy system): oltre agli errori px,
+ * pretende COPERTURA — ogni wire ha path autorato, ogni componente con pin su
+ * griglia ha pose. Una scena "book-aligned" senza un filo autorato non è più
+ * un pass silenzioso: è un buco elencato per nome.
+ * Additivo: gradeSceneGeometry resta invariato (compat con le scene esistenti).
+ */
+export function gradeSceneGeometryStrict(scene: ElabScene): StrictGradeReport {
+  const base = gradeSceneGeometry(scene)
+
+  const uncoveredWires = scene.wires
+    .filter((wire) => wire.path === undefined || wire.path.points.length < 2)
+    .map((wire) => wire.id)
+
+  const wireErrors: Array<{ id: string; errorPx: number }> = []
+  for (const wire of scene.wires) {
+    if (wire.path === undefined || wire.path.points.length < 2) continue
+    let worst = 0
+    let checked = false
+    const start = wire.path.points[0]!
+    const end = wire.path.points[wire.path.points.length - 1]!
+    for (const [ref, point] of [
+      [wire.from, start],
+      [wire.to, end],
+    ] as const) {
+      const grid = pointForBreadboardRef(ref)
+      if (grid === null) continue
+      worst = Math.max(worst, distance(point, { x: grid.x, y: grid.y }))
+      checked = true
+    }
+    if (checked) wireErrors.push({ id: wire.id, errorPx: worst })
+  }
+
+  // Componenti con almeno un pin mappato su griglia ma senza pose: in strict
+  // sono buchi dichiarati (la batteria/breadboard senza pin su griglia non
+  // contano — non hanno una pose derivabile dai fori).
+  const componentsWithGridPins = new Set<string>()
+  for (const [pinRef, holeRef] of Object.entries(scene.pinAssignments)) {
+    if (pointForBreadboardRef(holeRef) !== null) {
+      componentsWithGridPins.add(componentIdOf(pinRef))
+    }
+  }
+  const unposedComponents = scene.components
+    .filter((component) => componentsWithGridPins.has(component.id) && component.pose === undefined)
+    .map((component) => component.id)
+
+  return {
+    ...base,
+    uncoveredWires,
+    unposedComponents,
+    wireErrors,
+    strictOnGrid: base.onGrid && uncoveredWires.length === 0 && unposedComponents.length === 0,
+  }
+}
