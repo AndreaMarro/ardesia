@@ -438,6 +438,11 @@ Slice C: ELABTutor dependency.
 
 - Convert ELABTutor pack metadata to `io.elab.tutor`.
 - Add boundary test preventing solver/render imports from pack code.
+- Legacy debt accepted for this contract slice: `apps/studio/src/design/ElabLab.tsx`
+  still imports `@elab-tutor-plugin/plugin/renderEmbeddable` and other
+  `@elab-tutor-plugin/*` modules from the legacy ELAB integration path. That
+  path is explicitly out of scope here; only the pack boundary under
+  `packs/elab-tutor` is enforced in this slice.
 
 Slice D: `v3-cap6-esp4` blocker.
 

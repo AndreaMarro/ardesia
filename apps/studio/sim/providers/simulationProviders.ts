@@ -35,6 +35,11 @@ export type SimulationProvider = {
   solve: (request: SolverRequest) => SolverResult
 }
 
+function providerErrorMessage(error: unknown): string {
+  if (error instanceof Error && error.message.trim() !== "") return error.message
+  return String(error)
+}
+
 function solverExperimentFromScene(scene: SceneForSolve): SolverExperiment {
   return {
     components: [...(scene.components ?? [])].map((component) => ({
@@ -56,21 +61,33 @@ const localProvider: SimulationProvider = {
   id: "local",
   status: () => ({ id: "local", available: true }),
   solve: (request) => {
-    const result = solveElabExperiment(solverExperimentFromScene(request.scene))
-    return {
-      ok: result.ok,
-      provider: "local",
-      diagnostics: [
-        "local solver available",
-        ...result.warnings,
-        ...result.diagnostics.overloadWarnings.map(
-          (warning) => warning.message ?? warning.type ?? warning.compId,
-        ),
-      ],
-      solverDiagnostics: result.diagnostics,
-      componentStates: result.componentStates,
-      currents: result.currents,
-      voltages: result.nodeVoltages,
+    try {
+      const result = solveElabExperiment(solverExperimentFromScene(request.scene))
+      return {
+        ok: result.ok,
+        provider: "local",
+        diagnostics: [
+          "local solver available",
+          ...result.warnings,
+          ...result.diagnostics.overloadWarnings.map(
+            (warning) => warning.message ?? warning.type ?? warning.compId,
+          ),
+        ],
+        solverDiagnostics: result.diagnostics,
+        componentStates: result.componentStates,
+        currents: result.currents,
+        voltages: result.nodeVoltages,
+      }
+    } catch (error) {
+      return {
+        ok: false,
+        provider: "local",
+        diagnostics: [`Local solver failed: ${providerErrorMessage(error)}`],
+        solverDiagnostics: null,
+        componentStates: {},
+        currents: {},
+        voltages: {},
+      }
     }
   },
 }

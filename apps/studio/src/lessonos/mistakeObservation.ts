@@ -88,6 +88,6 @@ export function mistakeObservedBusEvent(input: MistakeObservedInput): MistakeObs
     ...(input.studentId !== undefined ? { studentId: input.studentId } : {}),
     labels: { it: input.observation.mistake },
     t: input.t,
-    evidence: [`pack:elab-tutor:${input.experimentId}`],
+    evidence: [`pack:io.elab.tutor:${input.experimentId}`],
   }
 }

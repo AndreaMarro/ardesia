@@ -187,7 +187,8 @@ type SimulationToolState =
   | { kind: "reference-blink"; ledOn?: boolean; millis?: number; montaggio?: MontaggioState };
 
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
-export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
+export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
+export const LEGACY_REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
 export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
@@ -600,6 +601,7 @@ const referenceSimulationEntry = {
   solve: solveElabExperiment,
 };
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
+registerSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch

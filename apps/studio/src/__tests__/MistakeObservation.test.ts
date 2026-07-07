@@ -82,7 +82,7 @@ describe("mistakeObservedBusEvent", () => {
       conceptId: "polarita-led-anodo-catodo",
       labels: { it: "LED inserito al contrario" },
       t: 1720300000000,
-      evidence: ["pack:elab-tutor:v1-cap6-esp1"],
+      evidence: ["pack:io.elab.tutor:v1-cap6-esp1"],
     })
   })
 

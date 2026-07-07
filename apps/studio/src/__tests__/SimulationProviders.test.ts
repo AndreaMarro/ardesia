@@ -1,11 +1,16 @@
 // @vitest-environment node
 
-import { describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { createReferenceSimulationScene } from "../toolhost/ToolCanvasEmbeddable"
 import {
   providerStatus,
   solveWithProvider,
 } from "../../sim/providers/simulationProviders"
+import * as elabSolver from "../../sim/solver/elabSolver"
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe("Simulation provider boundary", () => {
   it("local provider is available and preserves diagnostics", () => {
@@ -50,5 +55,27 @@ describe("Simulation provider boundary", () => {
     expect(result.componentStates).toEqual({})
     expect(result.currents).toEqual({})
     expect(result.voltages).toEqual({})
+  })
+
+  it("local provider converts solver exceptions into user-visible failure results", () => {
+    vi.spyOn(elabSolver, "solveElabExperiment").mockImplementation(() => {
+      throw new Error("solver exploded")
+    })
+
+    const result = solveWithProvider("local", {
+      scene: createReferenceSimulationScene(),
+      provider: "local",
+      mode: "static",
+    })
+
+    expect(result).toEqual({
+      ok: false,
+      provider: "local",
+      diagnostics: ["Local solver failed: solver exploded"],
+      solverDiagnostics: null,
+      componentStates: {},
+      currents: {},
+      voltages: {},
+    })
   })
 })
