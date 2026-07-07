@@ -1,5 +1,6 @@
 import { defineManifest } from "../../src/sdk/index.ts"
 import type { ToolManifest } from "../../src/sdk/index.ts"
+import sourceManifest from "../../sim/manifest-source.json"
 
 export const manifest: ToolManifest = defineManifest({
   manifestVersion: 1,
@@ -18,7 +19,7 @@ export const manifest: ToolManifest = defineManifest({
     storage: { quotaMB: 16 },
     ui: {},
   },
-  publisher: { id: "ardesia-core", pubkey: "ed25519:AAAA" },
+  publisher: sourceManifest.publisher,
   privacy: { dataOut: "none" },
   i18n: {
     it: {

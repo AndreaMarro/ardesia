@@ -7,6 +7,7 @@ import {
   protocolSatisfies,
 } from "../sdk/index.ts"
 import { manifest } from "../../plugins/simulation/manifest.ts"
+import sourceManifest from "../../sim/manifest-source.json"
 
 function parseSemver(version: string): [number, number, number] {
   const match = /^(\d+)\.(\d+)\.(\d+)$/.exec(version)
@@ -46,5 +47,10 @@ describe("Simulation Plugin v2 manifest", () => {
     expect(manifest.capabilities["llm.generate"]).toBeUndefined()
     expect(manifest.capabilities["net.fetch"]).toBeUndefined()
     expect(manifest.privacy.dataOut).toBe("none")
+  })
+
+  it("uses the first-party publisher key from manifest-source", () => {
+    expect(manifest.publisher.pubkey).not.toBe("ed25519:AAAA")
+    expect(manifest.publisher).toEqual(sourceManifest.publisher)
   })
 })
