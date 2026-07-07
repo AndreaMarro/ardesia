@@ -1,5 +1,5 @@
 import { solveElabExperiment } from "../solver/elabSolver"
-import type { SolverExperiment } from "../solver/elabSolver"
+import type { SolveResult as ElabSolveResult, SolverExperiment } from "../solver/elabSolver"
 
 export type ProviderId = "local" | "fastapi"
 
@@ -19,6 +19,7 @@ export type SolverResult = {
   ok: boolean
   provider: ProviderId
   diagnostics: string[]
+  solverDiagnostics: ElabSolveResult["diagnostics"] | null
   componentStates: Record<string, { on?: boolean } & Record<string, unknown>>
   currents: Record<string, number>
   voltages: Record<string, number>
@@ -66,6 +67,7 @@ const localProvider: SimulationProvider = {
           (warning) => warning.message ?? warning.type ?? warning.compId,
         ),
       ],
+      solverDiagnostics: result.diagnostics,
       componentStates: result.componentStates,
       currents: result.currents,
       voltages: result.nodeVoltages,
@@ -84,6 +86,7 @@ const fastapiProvider: SimulationProvider = {
     ok: false,
     provider: "fastapi",
     diagnostics: ["FastAPI provider hub not configured"],
+    solverDiagnostics: null,
     componentStates: {},
     currents: {},
     voltages: {},

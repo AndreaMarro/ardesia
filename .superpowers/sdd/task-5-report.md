@@ -105,3 +105,52 @@ Result: passed. Existing Vite chunk-size warnings remained warnings only.
 - Local provider uses the real solver and scene payload only.
 - FastAPI path is fail-closed and does not invent values.
 - No unrelated files were edited.
+
+## Review Fix 2026-07-07
+
+### Finding addressed
+- Local provider no longer collapses the real solver diagnostics into strings only.
+- `SolverResult` now carries `solverDiagnostics` with the exact `result.diagnostics` object from `solveElabExperiment`.
+- FastAPI unavailable results now set `solverDiagnostics: null` and keep empty `componentStates`, `currents`, and `voltages`.
+
+### Test updates
+- Local provider asserts:
+  - `solverDiagnostics.shortCircuit === false`
+  - `solverDiagnostics.disconnectedPins` is an array
+  - `solverDiagnostics.overloadWarnings` is an array
+- FastAPI provider asserts `solverDiagnostics === null`
+
+### Focused test output
+Command:
+
+```bash
+npm --prefix apps/studio test -- --run src/__tests__/SimulationProviders.test.ts
+```
+
+Observed pass:
+
+```text
+RUN  v4.1.8 /Users/andreamarro/ardesia-wt/tutor-ux/apps/studio
+
+Test Files  1 passed (1)
+     Tests  2 passed (2)
+  Start at  19:52:36
+  Duration  1.99s (transform 1.22s, setup 0ms, import 1.57s, tests 47ms, environment 0ms)
+```
+
+### Typecheck output
+Command:
+
+```bash
+npm run typecheck
+```
+
+Observed pass:
+
+```text
+> ardesia-monorepo@0.1.0 typecheck
+> bash bin/monorepo.sh typecheck-core
+
+> studio@0.0.0 typecheck
+> tsc -b --noEmit
+```
