@@ -2,7 +2,12 @@
 // docente. Cruscotto e lezioni salvate restano route interne/profonde, non
 // comandi principali nella shell.
 
-export type ArdesiaViewId = "lavagna" | "elab-lab" | "cruscotto" | "lezioni-salvate"
+export type ArdesiaViewId =
+  | "lavagna"
+  | "simulatore"
+  | "elab-lab"
+  | "cruscotto"
+  | "lezioni-salvate"
 
 export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
   id: ArdesiaViewId
@@ -10,7 +15,8 @@ export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
   title: string
 }> = [
   { id: "lavagna", label: "lavagna", title: "Lavagna Ardesia (stanza corrente)" },
-  { id: "elab-lab", label: "ELAB Plugin", title: "Simulation Plugin — esperimenti del libro" },
+  { id: "simulatore", label: "Simulatore", title: "Simulation Plugin autonomo" },
+  { id: "elab-lab", label: "ELABTutor", title: "Pack ELABTutor sopra il simulatore" },
 ]
 
 /**

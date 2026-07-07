@@ -1,6 +1,6 @@
 # Simulation Plugin v2
 
-Status: design approved, contract-first implementation slice is implemented in this branch; full runtime migration remains future work
+Status: design approved; autonomous workbench slice implemented in this branch; full runtime migration remains future work
 Date: 2026-07-07
 Primary slice: contract-first refoundation of the simulator as an autonomous ARDESIA plugin.
 
@@ -15,6 +15,34 @@ The canonical identities are:
 - ELABTutor Pack: `io.elab.tutor`, kind `pack`, depends on `io.ardesia.simulation >=2.0.0`, owns only ELAB didactic data and method.
 
 This continues the current `origin/main` direction: ToolHost SDK 1.1.0 already exposes a plugin contract and `graph.query`; the current simulator code still lives inside `ToolCanvasEmbeddable.tsx` and must be lifted behind a real plugin manifest and contract.
+
+## Current Branch Implementation
+
+This branch now contains both the first contract slice and a visible autonomous workbench slice:
+
+- `apps/studio/plugins/simulation/manifest.ts` declares `io.ardesia.simulation`.
+- `packs/elab-tutor/manifest.json` declares `io.elab.tutor` depending on `io.ardesia.simulation >=2.0.0`.
+- `apps/studio/sim/core/simulationScene.ts` defines the generic `simulation-scene/2` core contract.
+- `apps/studio/sim/core/wokwiDiagramAdapter.ts` converts an external `diagram.json`-style source into that generic scene.
+- `apps/studio/src/design/SimulationPluginWorkbench.tsx` exposes `?vista=simulatore` as a standalone Simulation Plugin workbench before ELABTutor.
+
+This corrects the first visual slice: opening ARDESIA no longer presents the simulator primarily as "ELAB Plugin". The route order is now:
+
+1. `lavagna`
+2. `simulatore`
+3. `ELABTutor`
+
+ELAB Lab remains temporarily available as a legacy consumer path while its circuit render/solve ownership is migrated behind the Simulation Plugin runtime.
+
+## External Research Notes
+
+The generic simulator core is shaped by these external references:
+
+- Wokwi `diagram.json` defines a compact browser-simulator scene format: parts have `id`, `type`, `left`, `top`, attributes, and rotation; connections use `partId:pinName` endpoints plus optional orthogonal wire-placement instructions.
+- Wokwi Custom Chips show the provider-adapter direction for extensible simulation models compiled to WebAssembly.
+- ngspice is the right long-term analog/mixed-signal provider boundary: it consumes netlists and returns currents/voltages/graphs, but it does not provide visual schematic entry.
+- KiCad and Fritzing confirm why ARDESIA needs its own visual/physical scene layer: serious EDA tools separate geometry/coordinates/connectors from solver netlists and part metadata.
+- Circuit-image extraction research supports a staged image pipeline: detect components/text, segment strokes/wires, assemble topology, then validate against a schema. Image import must therefore produce structured `SimulationScene` evidence and blockers, not a guessed circuit.
 
 ## Current State Audit
 
