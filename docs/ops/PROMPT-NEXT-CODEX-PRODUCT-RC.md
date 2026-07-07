@@ -2,6 +2,9 @@
 
 Destinatario: **4.8 opus desktop**.
 
+Nota sessione: questa sessione corrente e' Codex; il presente file e' l'handoff per la sessione successiva
+su **4.8 opus desktop**.
+
 Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e non usare il checkout storico
 `/Users/andreamarro/VOLUME 3/ardesia` come base di implementazione.
 
@@ -27,6 +30,33 @@ Sei 4.8 opus desktop Product-RC per ARDESIA/ELAB. Riprendi da `origin/main` e no
   PII scan, `gh pr checks`; `bin/pr-merge-verify.sh` prima di merge se disponibile.
 - Andrea ha autorizzato autonomia piena per merge, deploy e test live prodotto: procedi con PR mergeate e deploy
   solo se check verdi, worktree pulita e nessun segreto/PII/corpus grezzo/pagamento reale e' coinvolto.
+
+## AgentMemory obbligatorio
+
+- Per questo progetto **Codex e Opus devono usare AgentMemory** prima di decidere architettura o codice.
+- Primo step della prossima sessione Opus: richiamare `memory_sessions` / `memory_smart_search` / `memory_recall`
+  su ARDESIA, LessonOS, Fabbrica, ELABTutorPlugin, Graphify/Grapiphy, dashboard docente/scuola.
+- Se gli strumenti MCP `memory_*` non sono esposti nella sessione, usare fallback REST/CLI:
+  `agentmemory status`, `agentmemory doctor --dry-run`, e se necessario il server su `http://localhost:3111`.
+- Stato MacBook verificato in questa sessione Codex:
+  - AgentMemory locale healthy su `http://localhost:3111`, viewer `http://localhost:3113`.
+  - `agentmemory status`: 85 sessioni, 12602 osservazioni, grafo 142 nodi / 142 archi.
+  - Codex CLI/Desktop cablati in `~/.codex/config.toml`; hook workaround installato in `~/.codex/hooks.json`.
+  - Claude Code CLI cablato in `~/.claude.json`.
+  - Claude Desktop cablato in `~/Library/Application Support/Claude/claude_desktop_config.json`.
+  - Claude-3p Desktop cablato in `~/Library/Application Support/Claude-3p/claude_desktop_config.json`.
+  - Skills AgentMemory aggiornate con `npx skills add rohitg00/agentmemory -y`.
+- Dopo apertura nuova sessione, riavviare/riaprire Codex o Claude/Opus se i tool non appaiono: i config MCP
+  vengono letti al launch.
+
+## Stato fabbrica da analizzare con Opus
+
+- Leggere `docs/ops/FACTORY-LIVE-STATUS.md`, `ops/knowledge/FACTORY-STATE.md`,
+  `docs/vault/11-ARCH-fabbrica-autonoma-2026-06-16.md` e richiamare AgentMemory sullo stesso tema.
+- Stato documentato piu' recente nel repo: factory live ma storicamente degradata da AgentMemory sul Mini;
+  MacBook ora ha AgentMemory locale healthy, ma il Mini/fabbrica va verificato di nuovo via fonti vive.
+- Non assumere che la fabbrica sia pronta: fare audit di scheduler, Mini, Headroom, LiteLLM, Hermes,
+  LessonOS, queue/worktree sporchi, e solo poi decidere merge/deploy.
 
 ## Correzione prodotto Andrea — shell e plugin
 
