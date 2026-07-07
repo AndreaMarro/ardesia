@@ -8,6 +8,12 @@
 // vuota spacciata per vera. Ogni riga porta le sue evidence refs (spec §0.3).
 
 import ViewNav from "./ViewNav"
+import {
+  buildStudentPackArtifact,
+  parseStudentPackArtifact,
+  studentPackFileName,
+  type StudentPackParseResult,
+} from "../lessonos/studentPackArtifact"
 import { useCallback, useEffect, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
@@ -83,6 +89,9 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   const eventLog = deps?.eventLog ?? realEventLog
   const [state, setState] = useState<Z7State>({ phase: "loading" })
   const [busyPackId, setBusyPackId] = useState<string | null>(null)
+  // Import/riapertura pack: null = nessun import tentato; il risultato del
+  // parse fail-closed (ok o errore) è SEMPRE visibile.
+  const [importedPack, setImportedPack] = useState<StudentPackParseResult | null>(null)
   const [ripasso, setRipasso] = useState<RipassoZoneState>({ phase: "loading" })
 
   // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
@@ -169,8 +178,10 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       candidate.candidateId,
     )
 
-  const onExport = (candidate: Z7Candidate) =>
-    runPackAction(
+  // Esporta = evento sull'event-log E artefatto scaricabile (NOTTE-13):
+  // il pack che il docente consegna è un FILE, non solo uno stato in coda.
+  const onExport = async (candidate: Z7Candidate) => {
+    await runPackAction(
       {
         kind: "studentpack.exported",
         packId: candidate.candidateId,
@@ -179,6 +190,23 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       },
       candidate.candidateId,
     )
+    const artifact = buildStudentPackArtifact(candidate, { now: Date.now() })
+    const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement("a")
+    anchor.href = url
+    anchor.download = studentPackFileName(candidate.candidateId, artifact.exportedAt)
+    anchor.click()
+    URL.revokeObjectURL(url)
+  }
+
+  // Import/riapertura del pack (round-trip): parse fail-closed, errore
+  // VISIBILE, mai un pack parzialmente ricostruito.
+  const onImportPack = async (file: File) => {
+    const text = await file.text()
+    const result = parseStudentPackArtifact(text)
+    setImportedPack(result)
+  }
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -334,6 +362,55 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
               ))}
             </ul>
           )}
+
+          {/* Riapertura pack (round-trip export→import): parse fail-closed,
+              esito sempre dichiarato. Zero PII: il pack porta solo id ed
+              evidenze del libro. */}
+          <div style={{ marginTop: 14, display: "grid", gap: 6 }}>
+            <label style={{ fontSize: 13 }}>
+              Riapri uno student pack esportato (JSON):{" "}
+              <input
+                type="file"
+                accept="application/json"
+                data-z7-import
+                onChange={(event) => {
+                  const file = event.target.files?.[0]
+                  if (file !== undefined) void onImportPack(file)
+                }}
+              />
+            </label>
+            {importedPack !== null && !importedPack.ok && (
+              <div role="alert" data-z7-import-error style={{ fontSize: 13 }}>
+                Import fallito: {importedPack.error}
+              </div>
+            )}
+            {importedPack !== null && importedPack.ok && (
+              <div
+                data-imported-pack
+                style={{
+                  border: "1px solid var(--st-line, #d8d2c6)",
+                  borderRadius: 8,
+                  padding: "10px 14px",
+                  display: "grid",
+                  gap: 4,
+                }}
+              >
+                <strong>Pack riaperto — {importedPack.artifact.packs.length} elemento/i</strong>
+                {importedPack.artifact.packs.map((pack) => (
+                  <div key={pack.candidateId} data-imported-pack-id={pack.candidateId}>
+                    <div>{pack.label.it}</div>
+                    <div style={{ fontSize: 12, opacity: 0.7 }}>
+                      errore: {pack.errorId}
+                      {pack.fromRoom !== "" ? ` — lezione: ${pack.fromRoom}` : ""}
+                    </div>
+                    <div style={{ fontSize: 12, opacity: 0.7 }}>
+                      evidenze: {pack.evidence.join(", ")}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </section>
 
         <section
