@@ -33,3 +33,12 @@
 - **Red:** none.
 - **Not verified this run:** the other ~17 e2e specs; live-browser free-manipulation trace (palette→add→wire→solve→break→diagnostic→save/reopen) — that is the NEXT patch, not this one.
 - **This run did NOT declare Tinkercad parity.** Adoption ≠ parity. Free-manipulation is not yet proven visible/tested/reopenable end-to-end.
+
+## PR #149 merge gate (2026-07-09 18:xx)
+- **GitHub state:** OPEN, not draft, `mergeable=MERGEABLE`, `mergeStateStatus=CLEAN`, base `main`, no blocking review.
+- **CI checks (pre-hygiene, head 704d3cf5):** all SUCCESS — `studio (typecheck+test+build)`, `engine (pytest)`, `no-deploy-check`, `hygiene (NUL+secrets+boundary+whitespace)`.
+- **Diff hygiene:** 191 files; 42 generated `output/playwright/**` artifacts identified → removed. See `P30-149-DIFF-HYGIENE.md`.
+- **Artifact cleanup:** commit `7fd97794` — `git rm output/playwright` (−2081) + `.gitignore` rules. Runtime dir regenerated via `mkdir(recursive)`; no fixture reads.
+- **Re-run gates (post-hygiene):** typecheck=0 · build=0 · targeted 57/57 · e2e 4 passed (montaggio-canvas + first-led-ipad-touch + plugin-postit-room-reload).
+- **Repair cycles:** 0/1 used.
+- **Final merge decision:** GREEN → merge (merge commit, preserve lane history; no auto-bypass of branch protection).
