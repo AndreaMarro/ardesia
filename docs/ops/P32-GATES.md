@@ -8,6 +8,12 @@ l'exit di `tail`, NON di `cmd` — falso verde. Pattern corretto:
 `cmd > log 2>&1; X=$?` poi leggere il log. L'iter-6 tsc RED è stato scoperto
 dal TESTO dell'errore, non dall'exit code.
 
+## Loop close (10 jul, 00:2x)
+CI su `42ed7e13` (iter 7): **4/4 PASS** (engine · hygiene · no-deploy · studio).
+Ogni commit del loop (7/7) è CI-validato. Loop CHIUSO pulito — ripresa: vedi
+[P32-NEXT.md](P32-NEXT.md) (gate umani: un-Draft #150, R10b, battery9v, U3;
+gate macchina: R14 hardening montaggio-canvas su macchina fresca).
+
 ## Iter 7 — Annulla one-step (D8)
 
 | Gate | Result |

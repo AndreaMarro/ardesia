@@ -20,6 +20,12 @@
 - Secret scan on `origin/main...HEAD` diff (patterns: `sk-…`, `sk-proj-`, `AKIA…`, `eyJ…` JWT, `supabase.co`, `SUPABASE_SERVICE_ROLE`, PEM private keys): **0 hits**.
 - CI hygiene job runs `bin/ci/secret_scan.py` — green on `6082555b`.
 
+## LOOP CLOSED — 10 jul 00:2x
+7/7 iterazioni GREEN, ognuna CI-validata (ultima: `42ed7e13`, CI 4/4).
+Stop pulito per: (1) macchina e2e-degradata dopo ~7.5h (R14, control-run-proof);
+(2) gate umani accumulati (un-Draft #150 con 7 slice, R10b, battery9v, U3).
+**Ripresa:** `/loop` + questo file + [P32-NEXT.md](P32-NEXT.md).
+
 ## Iterations
 - **Iter 1 (Phase 0 — P31 lockdown, reachability caveat):** DONE, GREEN.
   Closed the documented reachability caveat (P31-NEXT follow-up #1) with a real
