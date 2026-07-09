@@ -1,5 +1,39 @@
 # P32 — Run Report
 
+## Iter 2 — Phase 0 verify + Phase 1 state audit
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `69f928c8` → +1 doc commit.
+**Single-writer:** re-gate PASS (clean tree, HEAD==anchor, no lock).
+**Security:** no code changes; doc-only diff secret-scanned pre-commit.
+
+### What happened
+1. **CI on `69f928c8`: 4/4 PASS** (engine · hygiene · no-deploy · studio). PR #150 did
+   not regress → **Phase 0 formally CLOSED** (recorded in P32-GATES.md).
+2. **Phase 1 audit executed** via 5 parallel read-only Explore agents (toolhost,
+   simulator, LessonOS+storage, ElabTutor, engine+deploy) → synthesized into
+   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md). No product code touched.
+
+### Headline findings (detail in the audit)
+- Signed-manifest/capability system is real and fail-closed, **but the live board
+  bypasses it** (direct React import) — R8, Phase 2 target.
+- Two diverging sim scene models (V1 live / V2 workbench) — R9; undo/redo absent — R11.
+- `.lesson` export includes the LessonOS event snapshot but **import never restores
+  it** — R10, cheapest high-value next slice.
+- Product host verified **ZERO-LLM**; tutor chat exists only in legacy plugin,
+  proxied via Supabase Edge (no client keys).
+- Python engine completely disconnected from studio; zero deploy config for studio;
+  CI has no Playwright (confirmed again).
+
+### Honest caveats
+- Audit is static (agents read code; nothing executed beyond Phase-0 gates).
+- file:line refs are agent reads; loop lead spot-checked only convergent claims
+  (e.g. both toolhost and elabtutor agents independently confirmed the direct-mount bypass).
+
+### Should continue? **Yes** — next slice per [P32-NEXT.md](P32-NEXT.md): R10 `.lesson`
+import restore (narrow, testable), unless Andrea redirects.
+
+---
+
 ## Iter 1 — Phase 0: P31 lockdown, close the pointer-reachability caveat
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `6082555b` → +1 commit this iter.

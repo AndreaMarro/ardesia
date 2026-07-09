@@ -26,6 +26,11 @@
   raw-mouse activation + `elementFromPoint` topmost hit-test on `[data-sim-break]`,
   without reintroducing the flaky click path. Logic click stays `dispatchEvent`.
   Gates: see [P32-GATES.md](P32-GATES.md). Report: [P32-RUN-REPORT.md](P32-RUN-REPORT.md).
+- **Iter 2 (Phase 0 close + Phase 1 audit):** DONE, GREEN. Re-gate PASS; **CI 4/4
+  PASS on `69f928c8`** → Phase 0 CLOSED. Phase 1: 5 read-only agents → synthesis in
+  [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
+  Headline: capability layer bypassed on live board path (R8); `.lesson` import
+  doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
 
 ## Verified facts
 - The Excalidraw embed (ToolCanvasEmbeddable) is **inert until activated by a

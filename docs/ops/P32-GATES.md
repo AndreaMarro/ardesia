@@ -21,6 +21,16 @@ output is read directly (not through a `tail` pipe that masks the exit code).
 - full `vitest` (1574) — **not run**. No product/shared code changed. Covered by CI `studio` job on push.
 - The 1 skipped regression test = `first-led-ipad-touch.spec.ts:56` (pre-existing `test.fixme`, touch tap-tap). Not introduced by this change.
 
+### Post-push CI (verified at iter 2 re-gate)
+| Gate | Result |
+|---|---|
+| CI on `69f928c8` — engine (pytest) | **pass** ✅ |
+| CI on `69f928c8` — hygiene (NUL+secrets+boundary+whitespace) | **pass** ✅ |
+| CI on `69f928c8` — no-deploy-check | **pass** ✅ |
+| CI on `69f928c8` — studio (typecheck+test+build) | **pass** ✅ |
+
+PR #150 did **not** regress. Phase 0 verified end-to-end (local e2e ×5 + CI 4/4).
+
 ### First attempt (RED, informative — kept for the record)
 The reachability probe **without** activation failed 3/3 with
 `Error: puntatore reale colpisce CANVAS, atteso il controllo stesso`.
