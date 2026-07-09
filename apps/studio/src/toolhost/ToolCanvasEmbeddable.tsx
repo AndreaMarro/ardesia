@@ -689,6 +689,9 @@ export type MontaggioCanvas = {
   onSelectTool: (tool: MontaggioTool | null) => void;
   onHoleTap: (ref: string) => void;
   onReset: () => void;
+  /** ANNULLA one-step (D8): toggle sull'ultima mutazione; VOLATILE (no reopen). */
+  canUndo: boolean;
+  onUndo: () => void;
 };
 
 export function createBoardSceneWithPlacements(
@@ -868,6 +871,8 @@ function ReferenceSimulationCanvasTool({
     () => marker?.state?.montaggio?.placements ?? [],
   );
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
+  // ANNULLA one-step (D8): lista placements precedente all'ultima mutazione.
+  const [undoSnapshot, setUndoSnapshot] = useState<MontaggioPlacement[] | null>(null);
 
   // Passo-passo VIVO: i predicati del libro valutati sul circuito attivo
   // (scena + placements). Nessuna persistenza del toggle: è una vista.
@@ -903,6 +908,9 @@ function ReferenceSimulationCanvasTool({
   }, [host, scene, sideMnaView, validation.ok]);
 
   function applyPlacements(next: MontaggioPlacement[]) {
+    // ANNULLA one-step (D8): fotografa lo stato PRIMA della mutazione. Toggle
+    // onesto: annullare un annulla ri-applica. Volatile: non persiste nel reopen.
+    setUndoSnapshot(placements);
     setPlacements(next);
     if (host?.persistEmbedState && marker?.state) {
       host.persistEmbedState(toolLink.embedId, {
@@ -1050,6 +1058,13 @@ function ReferenceSimulationCanvasTool({
       ? "monta-tu"
       : "gia-montato";
 
+  function handleMontaggioUndo() {
+    if (undoSnapshot === null) return;
+    applyPlacements(undoSnapshot); // fotografa il corrente → toggle one-step
+    setPendingHole(null);
+    setMontaggioNotice(null);
+  }
+
   const montaggio: MontaggioCanvas = {
     tool: montaggioTool,
     pending: pendingHole,
@@ -1058,6 +1073,8 @@ function ReferenceSimulationCanvasTool({
     onSelectTool: handleSelectTool,
     onHoleTap: handleHoleTap,
     onReset: handleMontaggioReset,
+    canUndo: undoSnapshot !== null,
+    onUndo: handleMontaggioUndo,
   };
   const isArduinoScene = scene.runtime.kind === "arduino-blink";
 
@@ -1698,6 +1715,25 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
               <text x="0" y="98" style={diagnosticSvgStyle} data-montaggio-canvas-notice>
                 {montaggio.notice ?? ""}
               </text>
+              {montaggio.canUndo && (
+                <g
+                  transform="translate(332 88)"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="annulla ultima modifica"
+                  data-montaggio-canvas-undo
+                  style={{ cursor: "pointer" }}
+                  onClick={montaggio.onUndo}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") montaggio.onUndo();
+                  }}
+                >
+                  <rect x="0" y="0" width="90" height="14" rx="7" fill="#f6f9fc" stroke="#dce6ef" />
+                  <text x="45" y="10" textAnchor="middle" fill="#52677f" fontSize="7" fontWeight="700">
+                    annulla
+                  </text>
+                </g>
+              )}
               <g
                 transform="translate(430 88)"
                 role="button"

@@ -27,7 +27,9 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
    b. cablare `onComponentAdd` host→plugin canvas (palette del canvas plugin viva);
    c. wire endpoint-retarget (manca anche nel plugin canvas);
    d. battery9v in palette — richiede decisione solver multi-sorgente (D6) = design;
-   e. undo/redo sulle operazioni (envelope già strutturati);
+   e. undo/redo PIENO sulle operazioni (envelope già strutturati) — l'ANNULLA
+      one-step (toggle, volatile) è DONE Iter 7 (D8); qui resta lo stack
+      event-sourced multi-step con redo;
    f. netlist export (import Wokwi già esiste);
    g. ~~cancellare un singolo placement~~ **DONE Iter 6** (strumento Gomma, D7).
 

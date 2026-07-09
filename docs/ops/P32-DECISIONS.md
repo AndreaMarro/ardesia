@@ -54,6 +54,22 @@ Tinkercad) è un follow-up esplicito; il cavo tra fori liberi estende comunque
 le net reali (tie↔tie). Step-mode ignora i cavi (predicati del libro invariati).
 **Status:** implemented (Iter 4).
 
+## D8 — ANNULLA one-step del montaggio (Iter 7) — scelto su (b) onComponentAdd
+**Decision:** undo a UN passo per il montaggio libero: bottone "Annulla" accanto
+a "riparti dal manuale"; ripristina la lista placements PRECEDENTE all'ultima
+mutazione (piazza/gomma/reset). Semantica a TOGGLE onesta: due "Annulla"
+consecutivi si annullano a vicenda (one-step, non uno stack). NIENTE redo,
+NIENTE event-sourcing (il kind `delete`/gli envelope restano per NEXT e-full).
+Lo snapshot di undo è VOLATILE (in-memory): non persiste nel reopen — onesto,
+documentato; ciò che persiste resta la sola lista placements.
+**Perché non (b) `onComponentAdd`:** tutte le mutazioni passano GIÀ per
+`applyPlacements` → un solo punto di intercettazione (~30 righe + specchio
+workbench); (b) richiede un adapter nuovo + validazione descriptor + verifica
+NON fatta che la palette del plugin canvas sia raggiungibile nell'embed
+(rischio dead-end). A lezione, il recupero immediato dall'errore (gomma o
+piazzamento sbagliato) vale più di una seconda palette.
+**Status:** implemented (Iter 7).
+
 ## D7 — Rimozione singolo placement: strumento GOMMA in palette (Iter 6)
 **Decision:** rimozione di UN placement (resistor/led/cavo) tramite strumento
 esplicito **Gomma** nella palette (sostituisce il glifo inerte "Altro", che non

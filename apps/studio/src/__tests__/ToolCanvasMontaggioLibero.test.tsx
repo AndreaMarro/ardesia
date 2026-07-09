@@ -475,6 +475,70 @@ describe("SimulationBoard — palette CAVO come connection reale (P32 D6)", () =
     expect(count(container)).toBe("0")
   })
 
+  it("ANNULLA (D8): ripristina lo stato precedente all'ultima mutazione (toggle one-step)", () => {
+    const container = mountSim()
+    const digestOf = () =>
+      container
+        .querySelector("[data-simulation-free-mode]")
+        ?.getAttribute("data-sim-scene-digest") ?? null
+    const baseDigest = digestOf()
+    // Senza storia: il bottone Annulla non c'è.
+    expect(container.querySelector('[aria-label="annulla ultima modifica"]')).toBeNull()
+
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("1")
+
+    const undo = () => {
+      const btn = container.querySelector('[aria-label="annulla ultima modifica"]')
+      if (btn === null) throw new Error("bottone annulla non trovato")
+      fireEvent.click(btn)
+    }
+    undo()
+    expect(count(container)).toBe("0")
+    expect(digestOf()).toBe(baseDigest)
+    // Toggle onesto: un secondo Annulla ri-applica il cavo.
+    undo()
+    expect(count(container)).toBe("1")
+  })
+
+  it("ANNULLA (D8): recupera da una cancellazione con la Gomma", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Resistenza"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    fireEvent.click(palette(container, "Gomma"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    expect(count(container)).toBe("0")
+
+    const btn = container.querySelector('[aria-label="annulla ultima modifica"]')
+    if (btn === null) throw new Error("bottone annulla non trovato")
+    fireEvent.click(btn)
+    expect(count(container)).toBe("1")
+  })
+
+  it("ANNULLA (D8): recupera anche dal reset totale", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Resistenza"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:d12"))
+    fireEvent.click(hole(container, "bb1:d13"))
+    expect(count(container)).toBe("2")
+
+    const reset = container.querySelector('[aria-label="riparti dal manuale"]')
+    if (reset === null) throw new Error("reset non trovato")
+    fireEvent.click(reset)
+    expect(count(container)).toBe("0")
+
+    const btn = container.querySelector('[aria-label="annulla ultima modifica"]')
+    if (btn === null) throw new Error("bottone annulla non trovato")
+    fireEvent.click(btn)
+    expect(count(container)).toBe("2")
+  })
+
   it("'riparti dal manuale' azzera anche i cavi", () => {
     const container = mountSim()
     fireEvent.click(palette(container, "Cavo"))

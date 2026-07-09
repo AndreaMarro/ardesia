@@ -8,6 +8,24 @@ l'exit di `tail`, NON di `cmd` — falso verde. Pattern corretto:
 `cmd > log 2>&1; X=$?` poi leggere il log. L'iter-6 tsc RED è stato scoperto
 dal TESTO dell'errore, non dall'exit code.
 
+## Iter 7 — Annulla one-step (D8)
+
+| Gate | Result |
+|---|---|
+| single-writer / CI su `e4b11f32` | PASS / **4/4** ✅ |
+| RED first | 3/26 fail pre-impl ✅ |
+| targeted | **26/26** ✅ |
+| typecheck / build | **0 / 0** ✅ |
+| full vitest | **1597 pass / 5 skip / 0 fail** (+3) ✅ |
+| e2e montaggio-canvas | **HONEST RED — ambiente, NON la slice.** Evidenza: ①×5 su macchina scarica 4/5 fail, failure-line VAGANTE (35/42/46/88), incl. fail a linea 46 con `canUndo=false` (bottone Annulla NON nel DOM); ②**CONTROL: stash del diff → stesso spec ×5 su `e4b11f32` pulito (CI-green, 6/6 alle 23:37) → 4/5 FAIL identici**; ③fresh vite server → invariato; ④kill orfani chromium (15) → invariato. p30-free-manipulation: **3/3 verde in OGNI run**. |
+| secret scan | 0 ✅ |
+
+**Method note 3:** prima di attribuire un fail e2e alla slice, CONTROL RUN con
+`git stash` sul commit pulito — 20 minuti di diagnosi risparmiati da un esperimento
+da 2 minuti. montaggio-canvas (raw-mouse + timeout default 30s) è il canarino
+della salute-macchina; p30 (app-ready gate + 60s) sopravvive. → Candidato
+reliability: hardening di montaggio-canvas come P31 fece per p30.
+
 ## Iter 6 — Gomma (D7)
 
 | Gate | Result |

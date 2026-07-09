@@ -338,6 +338,8 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
   const [pendingHole, setPendingHole] = useState<string | null>(null)
   const [placements, setPlacements] = useState<MontaggioPlacement[]>([])
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null)
+  // ANNULLA one-step (D8): specchio dell'embed, volatile.
+  const [undoSnapshot, setUndoSnapshot] = useState<MontaggioPlacement[] | null>(null)
   const occupiedHoles = useMemo(() => {
     const occupied = new Set(Object.values(previewScene.pinAssignments))
     for (const placement of placements) {
@@ -394,6 +396,7 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
         )
         return
       }
+      setUndoSnapshot(placements)
       setPlacements(placements.filter((p) => p.id !== target.id))
       setMontaggioNotice(null)
       return
@@ -419,16 +422,26 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
         : montaggioTool === "wire"
           ? `cavo-libero-${ordinal}`
           : `led-libero-${ordinal}`
+    setUndoSnapshot(placements)
     setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }])
     setPendingHole(null)
     setMontaggioNotice(null)
   }
 
   function handleMontaggioReset() {
+    setUndoSnapshot(placements)
     setPlacements([])
     setPendingHole(null)
     setMontaggioNotice(null)
     setMontaggioTool(null)
+  }
+
+  function handleMontaggioUndo() {
+    if (undoSnapshot === null) return
+    setUndoSnapshot(placements) // toggle one-step, specchio dell'embed (D8)
+    setPlacements(undoSnapshot)
+    setPendingHole(null)
+    setMontaggioNotice(null)
   }
 
   const montaggio: MontaggioCanvas = {
@@ -439,6 +452,8 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
     onSelectTool: handleSelectTool,
     onHoleTap: handleHoleTap,
     onReset: handleMontaggioReset,
+    canUndo: undoSnapshot !== null,
+    onUndo: handleMontaggioUndo,
   }
   const liveCurrentMa = (liveSolve.currents.led1 ?? 0) * 1000
   const liveLedState = liveSolve.componentStates.led1

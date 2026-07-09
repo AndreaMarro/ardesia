@@ -31,6 +31,10 @@
   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
   Headline: capability layer bypassed on live board path (R8); `.lesson` import
   doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
+- **Iter 7 (Annulla one-step, D8):** DONE, GREEN. Toggle one-step su
+  piazza/gomma/reset (snapshot volatile; niente redo/event-sourcing — onesto).
+  TDD 3 RED→26/26. Scelto su (b) onComponentAdd (punto unico `applyPlacements`
+  vs adapter+validazione con raggiungibilità UI non verificata).
 - **Iter 6 (Gomma, D7):** DONE, GREEN. Rimozione singolo placement via strumento
   Gomma in palette (ex glifo inerte "Altro"). TDD 4 RED→23/23; digest torna
   identico dopo piazza+cancella; manuale intoccabile. Gates in P32-GATES.

@@ -1,5 +1,36 @@
 # P32 — Run Report
 
+## Iter 7 — ANNULLA one-step del montaggio (D8)
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `e4b11f32` → +1 commit.
+**Single-writer:** PASS. **CI su `e4b11f32`:** 4/4 green.
+
+### Slice (D8, scelta su (b) onComponentAdd)
+Bottone "annulla" accanto a "riparti dal manuale": ripristina la lista placements
+precedente all'ultima mutazione (piazza / gomma / reset). **Toggle one-step
+onesto** (annullare l'annulla ri-applica); niente redo, niente event-sourcing;
+snapshot **volatile** (non sopravvive al reopen — persiste solo la lista placements).
+Perché non (b): tutte le mutazioni passano già per `applyPlacements` = un solo
+punto di intercettazione; (b) richiede adapter+validazione e la raggiungibilità
+della palette del plugin canvas nell'embed non è verificata (rischio dead-end).
+
+### What changed
+- `ToolCanvasEmbeddable`: `undoSnapshot` state; fotografia in `applyPlacements`;
+  `handleMontaggioUndo` (toggle); `MontaggioCanvas` + `canUndo`/`onUndo`;
+  bottone SVG `[data-montaggio-canvas-undo]` renderizzato solo con storia.
+- `SimulationPluginWorkbench`: specchio (3 siti di mutazione fotografati).
+- Test +3 (TDD RED 3/26 → GREEN 26/26): undo di piazzamento (digest torna base,
+  toggle verificato), undo di gomma, undo di reset totale; bottone assente senza storia.
+
+### Honest caveats
+- One-step, NON uno stack: due errori consecutivi ⇒ recuperabile solo l'ultimo.
+  Undo/redo pieno (event-sourced sugli envelope) resta NEXT (e-full).
+- Volatile per design: dopo reopen niente annulla (lo stato persistito è la verità).
+
+### Should continue? Yes.
+
+---
+
 ## Iter 6 — GOMMA: rimozione di un singolo placement (D7)
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `2e5b7eae` → +1 commit.
