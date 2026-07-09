@@ -9,11 +9,14 @@
 //   LessonOS → digest topologico → persistenza attraverso reopen. I click sui
 //   controlli embedded usano `dispatchEvent` (→ onClick) per evitare la
 //   flakiness del routing pointer di Excalidraw.
-// - NON prova la RAGGIUNGIBILITÀ a puntatore reale dell'embed (attivazione
-//   Excalidraw doppio-click, hit-testing/overlay): quella copertura è di
-//   `montaggio-canvas.spec.ts` (palette + fori via mouse raw). La free-mode strip
-//   (`data-sim-break`) NON è ancora coperta da un gesto pointer reale → follow-up
-//   in docs/ops/P31-PR150-HARDENING-NEXT.md.
+// - La RAGGIUNGIBILITÀ a puntatore reale della free-mode strip (`data-sim-break`)
+//   È ORA verificata da un hit-test topmost (`assertPointerReachable`:
+//   `elementFromPoint` sul centro del controllo → dev'essere visibile, abilitato
+//   e non coperto da un overlay/canvas). NON esegue un click via mouse raw: il
+//   routing pointer di Excalidraw resta flaky, e l'attivazione a doppio-click
+//   dell'embed è già coperta da `montaggio-canvas.spec.ts` (palette + fori via
+//   mouse raw). Il click di LOGICA sui controlli embedded resta `dispatchEvent`
+//   (→ onClick), etichettato come tale.
 // NON dichiara Tinkercad parity completa: è la trace v0, con contratto DOM stabile.
 import { test, expect, type Locator, type Page } from "@playwright/test"
 
@@ -64,6 +67,48 @@ async function insertSimulationPlugin(page: Page, room: string) {
 async function domClick(target: Locator) {
   await expect(target).toBeVisible({ timeout: 15_000 })
   await target.dispatchEvent("click")
+}
+
+/** Attiva l'embed Excalidraw con un doppio click a puntatore REALE. L'embeddable è
+ *  inerte (il canvas Excalidraw sta sopra e intercetta i pointer) finché non viene
+ *  attivato — stesso modello di `montaggio-canvas.spec.ts` (l'unico gesto raw che
+ *  Excalidraw richiede). Solo dopo l'attivazione i controlli embedded ricevono i
+ *  pointer reali; senza attivazione `elementFromPoint` ritorna il CANVAS (atteso). */
+async function activateEmbed(page: Page, anchor: Locator) {
+  await expect(anchor).toBeVisible({ timeout: 15_000 })
+  await anchor.scrollIntoViewIfNeeded()
+  const box = await anchor.boundingBox()
+  expect(box, "l'ancora dell'embed deve avere un box misurabile").not.toBeNull()
+  await page.mouse.dblclick(box!.x + box!.width / 2, box!.y + box!.height / 2)
+}
+
+/** Raggiungibilità a puntatore REALE (senza click flaky): il controllo dev'essere
+ *  visibile, abilitato e TOPMOST al proprio centro. `document.elementFromPoint`
+ *  ritorna l'elemento più in alto a quelle coordinate viewport; se un overlay o il
+ *  canvas Excalidraw coprisse il controllo (embed non attivato, o regressione di
+ *  z-order/overlay), ritornerebbe altro → il test fallisce. Nessun click/hover →
+ *  deterministico, niente flake. Chiude il follow-up di reachability in
+ *  docs/ops/P31-PR150-HARDENING-NEXT.md. */
+async function assertPointerReachable(target: Locator) {
+  await expect(target).toBeVisible({ timeout: 15_000 })
+  await expect(target).toBeEnabled()
+  await target.scrollIntoViewIfNeeded()
+  const box = await target.boundingBox()
+  expect(box, "il controllo deve avere un box misurabile").not.toBeNull()
+  const hit = await target.evaluate((el) => {
+    const rect = el.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const top = document.elementFromPoint(cx, cy)
+    return {
+      hitSelf: !!top && (el === top || el.contains(top)),
+      topTag: top ? top.tagName : null,
+    }
+  })
+  expect(
+    hit.hitSelf,
+    `puntatore reale colpisce ${hit.topTag ?? "null"}, atteso il controllo stesso`,
+  ).toBe(true)
 }
 
 /** Apre il pannello legacy `<details>` in modo deterministico (l'embed Excalidraw
@@ -122,6 +167,12 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   //    l'errore e lo proietta come simulation.error.observed. Click diretto sul
   //    bottone embedded (dispatch → React onClick), niente dipendenza da overlay.
   const breakButton = freeMode.locator("[data-sim-break]")
+  // Reachability a puntatore reale: prima ATTIVA l'embed (doppio click raw, come
+  // montaggio-canvas), poi verifica che il break sia TOPMOST (elementFromPoint).
+  // Un overlay/regressione che coprisse la strip anche da attivata farebbe fallire
+  // QUI, prima del click di logica. Il click di LOGICA resta dispatchEvent (onClick).
+  await activateEmbed(page, freeMode)
+  await assertPointerReachable(breakButton)
   await domClick(breakButton)
   await expect(freeMode).toHaveAttribute("data-sim-solve-kind", "error")
   await expect(freeMode).toHaveAttribute(
