@@ -12,7 +12,7 @@
 
 import type { AppendedEvent, EvidenceRef, Labels } from "./eventlog"
 
-export type LessonNodeKind = "lesson" | "materiale" | "errore" | "esercizio" | "concetto"
+export type LessonNodeKind = "lesson" | "materiale" | "errore" | "esercizio" | "concetto" | "plugin"
 export type LessonEdgeKind = "cita" | "deriva-da" | "corregge"
 
 export interface LessonNode {
@@ -138,6 +138,49 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
           }
           // correctsErrorId sconosciuto: nessun arco inventato — l'evidenza prima di tutto.
         }
+        break
+      }
+
+      case "simulation.step.completed": {
+        upsertNode(ev.stepId, "esercizio", ev.labels, ev.evidence, ev.t)
+        if (ev.conceptId) {
+          upsertNode(ev.conceptId, "concetto", {}, ev.evidence, ev.t)
+          addEdge(ev.stepId, ev.conceptId, "cita", ev.evidence, ev.t)
+        }
+        break
+      }
+
+      case "plugin.mounted": {
+        upsertNode(
+          `plugin:${ev.pluginId}#${ev.instanceId}`,
+          "plugin",
+          ev.labels,
+          ev.evidence,
+          ev.t,
+        )
+        if (ev.room !== undefined) {
+          upsertNode(`lesson:${ev.room}`, "lesson", { und: ev.room }, ev.evidence, ev.t)
+        }
+        break
+      }
+
+      case "simulation.circuit.solved": {
+        // Esperimento risolto = nodo esercizio verificato; l'esito elettrico
+        // (currentMa/bookLayoutValid) resta nel payload dell'evento (provenance).
+        upsertNode(ev.experimentId, "esercizio", ev.labels, ev.evidence, ev.t)
+        if (ev.conceptId) {
+          upsertNode(ev.conceptId, "concetto", {}, ev.evidence, ev.t)
+          addEdge(ev.experimentId, ev.conceptId, "cita", ev.evidence, ev.t)
+        }
+        break
+      }
+
+      case "simulation.error.observed": {
+        // Errore elettrico = stessa grammatica di grafo di error.observed
+        // (nodo errore + arco deriva-da concetto): una sola memoria, più sorgenti.
+        upsertNode(ev.errorId, "errore", ev.labels, ev.evidence, ev.t)
+        upsertNode(ev.conceptId, "concetto", {}, ev.evidence, ev.t)
+        addEdge(ev.errorId, ev.conceptId, "deriva-da", ev.evidence, ev.t)
         break
       }
     }

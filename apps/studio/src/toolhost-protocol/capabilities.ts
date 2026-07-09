@@ -9,6 +9,7 @@ export const CapabilitiesSchema = z.strictObject({
   "board.write": z.strictObject({ scope: z.literal("own-embeds") }).optional(),
   "graph.query": z.strictObject({}).optional(),
   "graph.proposeClaims": z.strictObject({}).optional(),
+  "lesson.event.emit": z.strictObject({}).optional(),
   storage: z.strictObject({ quotaMB: z.number().int().min(1).max(1024) }).optional(),
   "llm.generate": z.strictObject({ maxTokensPerCall: z.number().int().min(1).max(200_000) }).optional(),
   "net.fetch": z.strictObject({ domains: z.array(z.string().regex(domainRe)).min(1) }).optional(),

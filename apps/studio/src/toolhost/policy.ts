@@ -9,6 +9,7 @@ export const CAPABILITY_LABELS_IT: Readonly<Record<CapabilityName, string>> = {
   "board.write": "Disegnare e aggiornare i propri riquadri sulla lavagna",
   "graph.query": "Consultare i concetti delle tue lezioni (sola lettura)",
   "graph.proposeClaims": "Proporre osservazioni al motore, marcate come provenienti dal tool",
+  "lesson.event.emit": "Registrare eventi didattici verificabili nella lezione",
   storage: "Salvare dati nel proprio spazio dedicato",
   "llm.generate": "Usare l'AI del tuo piano",
   "net.fetch": "Contattare i domini dichiarati, attraverso il proxy controllato",

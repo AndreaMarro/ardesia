@@ -7,11 +7,13 @@ import { createElement } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 
+import { EMBED_DATA_KEY } from "../toolhost/caps/board"
 import {
   getSimulationTool,
   registerSimulationTool,
 } from "../toolhost/simulationPluginRegistry"
 import {
+  LEGACY_REFERENCE_SIM_TOOL_ID,
   REFERENCE_PLUGIN_REF_ID,
   REFERENCE_SIM_EMBED_ID,
   REFERENCE_SIM_TOOL_ID,
@@ -24,6 +26,7 @@ import {
 describe("simulationPluginRegistry", () => {
   it("i tool reference sono registrati al load del modulo ToolCanvasEmbeddable", () => {
     expect(getSimulationTool(REFERENCE_SIM_TOOL_ID)).toBeDefined()
+    expect(getSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID)).toBeDefined()
     expect(getSimulationTool(REFERENCE_PLUGIN_REF_ID)).toBeDefined()
     expect(getSimulationTool(REFERENCE_SIM_TOOL_ID)!.embedId).toBe(REFERENCE_SIM_EMBED_ID)
   })
@@ -37,6 +40,8 @@ describe("simulationPluginRegistry", () => {
     const embed = entry.createEmbed()
     expect(embed.id).toBe(REFERENCE_SIM_EMBED_ID)
     expect(embed.type).toBe("embeddable")
+    expect(embed.link).toBe(`${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`)
+    expect((embed.customData as Record<string, { owner: string }>)[EMBED_DATA_KEY]?.owner).toBe(REFERENCE_SIM_TOOL_ID)
   })
 
   it("validate della entry accetta la scena di riferimento", () => {
@@ -72,6 +77,14 @@ describe("simulationPluginRegistry", () => {
 
   it("link non maestro-tool → null (comportamento preservato)", () => {
     expect(renderToolCanvasEmbeddable(createToolEmbedElement({ link: "https://example.test/x" }))).toBeNull()
+  })
+
+  it("saved links legacy restano renderizzabili via alias del registry", () => {
+    const view = renderToolCanvasEmbeddable({
+      link: `${TOOL_EMBED_SCHEME}${LEGACY_REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`,
+    })
+    expect(view).not.toBeNull()
+    expect(renderToStaticMarkup(view!)).toContain("Accendi il tuo primo LED")
   })
 
   // ── Fase 2 simulature: motore elettrico dietro il registry (confine P2) ──

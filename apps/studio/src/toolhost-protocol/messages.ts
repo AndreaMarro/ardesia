@@ -138,7 +138,7 @@ export const StorageListResultSchema = z.strictObject({ keys: z.array(z.string()
 // Il grafo NON è un secondo store: l'host lo deriva on-demand dall'event-log
 // (materializer). Vocabolario kinds allineato a lessonos/materializer.ts —
 // il wire lo ridichiara per non accoppiare il protocollo al modulo interno.
-export const GRAPH_NODE_KINDS = ["lesson", "materiale", "errore", "esercizio", "concetto"] as const
+export const GRAPH_NODE_KINDS = ["lesson", "materiale", "errore", "esercizio", "concetto", "plugin"] as const
 export const GRAPH_EDGE_KINDS = ["cita", "deriva-da", "corregge"] as const
 
 const graphNodeKind = z.enum(GRAPH_NODE_KINDS)
@@ -193,11 +193,122 @@ export const GraphQueryResultSchema = z.strictObject({
 })
 export type GraphQueryResult = z.infer<typeof GraphQueryResultSchema>
 
+// ---- lesson.event.emit v0 (tool → host): append controllato nell'event-log LessonOS ----
+// Non è una write API generica sul grafo: il grafo resta una vista derivata dal
+// log. In questa slice il tool può registrare solo eventi già supportati dal
+// log, sempre con evidenza obbligatoria. La lista resta chiusa: ogni nuovo
+// evento didattico entra qui solo quando EventLogStore/materializer lo sanno
+// validare o ignorare deterministicamente.
+const evidenceRef = z.string().regex(/^[a-z][a-z0-9-]*:.+$/)
+const lessonLabels = z.record(z.string(), z.string())
+const lessonEventBase = z.strictObject({
+  t: z.number().finite(),
+  evidence: z.array(evidenceRef).min(1),
+})
+
+export const LessonStartedEventSchema = lessonEventBase.extend({
+  kind: z.literal("lesson.started"),
+  room: z.string().min(1),
+})
+
+export const LessonEndedEventSchema = lessonEventBase.extend({
+  kind: z.literal("lesson.ended"),
+  room: z.string().min(1),
+})
+
+export const LessonConceptIntroducedEventSchema = lessonEventBase.extend({
+  kind: z.literal("concept.introduced"),
+  conceptId: z.string().min(1),
+  labels: lessonLabels,
+})
+
+export const LessonMaterialCitedEventSchema = lessonEventBase.extend({
+  kind: z.literal("material.cited"),
+  materialId: z.string().min(1),
+  conceptId: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonErrorObservedEventSchema = lessonEventBase.extend({
+  kind: z.literal("error.observed"),
+  errorId: z.string().min(1),
+  conceptId: z.string().min(1),
+  studentId: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonExerciseCompletedEventSchema = lessonEventBase.extend({
+  kind: z.literal("exercise.completed"),
+  exerciseId: z.string().min(1),
+  conceptId: z.string().min(1).optional(),
+  correctsErrorId: z.string().min(1).optional(),
+  studentId: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonSimulationStepCompletedEventSchema = lessonEventBase.extend({
+  kind: z.literal("simulation.step.completed"),
+  stepId: z.string().min(1),
+  sceneId: z.string().min(1).optional(),
+  experimentId: z.string().min(1).optional(),
+  conceptId: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonSimulationCircuitSolvedEventSchema = lessonEventBase.extend({
+  kind: z.literal("simulation.circuit.solved"),
+  experimentId: z.string().min(1),
+  sceneId: z.string().min(1).optional(),
+  conceptId: z.string().min(1).optional(),
+  currentMa: z.number().finite().optional(),
+  bookLayoutValid: z.boolean().optional(),
+  labels: lessonLabels,
+})
+
+export const LessonSimulationErrorObservedEventSchema = lessonEventBase.extend({
+  kind: z.literal("simulation.error.observed"),
+  errorId: z.string().min(1),
+  conceptId: z.string().min(1),
+  sceneId: z.string().min(1).optional(),
+  experimentId: z.string().min(1).optional(),
+  studentId: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonPluginMountedEventSchema = lessonEventBase.extend({
+  kind: z.literal("plugin.mounted"),
+  pluginId: z.string().min(1),
+  pluginKind: z.string().min(1),
+  instanceId: z.string().min(1),
+  room: z.string().min(1).optional(),
+  labels: lessonLabels,
+})
+
+export const LessonEventEmitParamsSchema = z.strictObject({
+  event: z.discriminatedUnion("kind", [
+    LessonStartedEventSchema,
+    LessonEndedEventSchema,
+    LessonConceptIntroducedEventSchema,
+    LessonMaterialCitedEventSchema,
+    LessonErrorObservedEventSchema,
+    LessonExerciseCompletedEventSchema,
+    LessonSimulationStepCompletedEventSchema,
+    LessonSimulationCircuitSolvedEventSchema,
+    LessonSimulationErrorObservedEventSchema,
+    LessonPluginMountedEventSchema,
+  ]),
+})
+export const LessonEventEmitResultSchema = z.strictObject({
+  seq: z.number().int().positive(),
+})
+export type LessonEventEmitParams = z.infer<typeof LessonEventEmitParamsSchema>
+
 // ---- Registro metodi tool→host: method → capability richiesta + schemi ----
-// Deny-by-default: un metodo fuori da questo registro NON esiste. In v1.1 il wire
-// copre board.*, storage.* (pin T1) e graph.query read-only (P0-D); llm/net/ui e
-// graph.proposeClaims restano capability dichiarabili a manifest ma senza metodi
-// raggiungibili finché T2/T3 non li aggiunge.
+// Deny-by-default: un metodo fuori da questo registro NON esiste. In v1.2 il wire
+// copre board.*, storage.* (pin T1), graph.query read-only (P0-D) e
+// lesson.event.emit append-only controllato; llm/net/ui e graph.proposeClaims
+// restano capability dichiarabili a manifest ma senza metodi raggiungibili
+// finché T2/T3 non li aggiunge.
 export interface MethodSpec {
   cap: CapabilityName
   params: z.ZodType
@@ -212,4 +323,9 @@ export const TOOL_METHODS: Record<string, MethodSpec> = {
   "storage.delete": { cap: "storage", params: StorageDeleteParamsSchema, result: StorageDeleteResultSchema },
   "storage.list": { cap: "storage", params: StorageListParamsSchema, result: StorageListResultSchema },
   "graph.query": { cap: "graph.query", params: GraphQueryParamsSchema, result: GraphQueryResultSchema },
+  "lesson.event.emit": {
+    cap: "lesson.event.emit",
+    params: LessonEventEmitParamsSchema,
+    result: LessonEventEmitResultSchema,
+  },
 }

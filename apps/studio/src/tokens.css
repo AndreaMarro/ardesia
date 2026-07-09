@@ -1,14 +1,17 @@
 /* DESIGN-MAESTRO-v1 §2 — design tokens DEFINITIVI "carta & inchiostro".
    Hex ammessi SOLO qui dentro (:root e scope .excalidraw) — enforcement: design-tokens.test.ts. */
 :root {
-  /* CARTA */
-  --m-paper:#faf9f6; --m-paper-veil:rgba(250,249,246,.92); --m-canvas:#fffefb;
-  /* INCHIOSTRO */
-  --m-ink:#14130f; --m-ink-2:#3a382f; --m-ink-3:#6d6a61; --m-ink-4:#747166;
-  --m-line:rgba(20,20,18,.08); --m-line-2:rgba(20,20,18,.14); --m-fill:rgba(20,20,18,.05);
-  /* BLU BRAND (FISSO: wordmark/punto blu, mai plastico) */
+  /* CARTA — "ardesioso": bianco-ardesia FREDDO, tinto verso il blu brand
+     (impeccable: tint neutrals toward brand hue → coesione sottile) */
+  --m-paper:#f5f6f8; --m-paper-veil:rgba(245,246,248,.92); --m-canvas:#fdfdff;
+  /* INCHIOSTRO — nero-ardesia freddo (lavagna di ardesia), mai nero puro */
+  --m-ink:#111420; --m-ink-2:#33384a; --m-ink-3:#5f6577; --m-ink-4:#6b7183;
+  --m-line:rgba(17,20,32,.09); --m-line-2:rgba(17,20,32,.15); --m-fill:rgba(17,20,32,.05);
+  /* BLU BRAND (FISSO: wordmark/punto blu, mai plastico) — cobalto Kandinsky */
   --m-blue:#1763ff; --m-blue-down:#0e4fd6; --m-blue-deep:#0a3da6;
   --m-blue-off:#9db9f5; --m-blue-wash:rgba(23,99,255,.06); --m-blue-light:rgba(23,99,255,.12);
+  /* ACCENTI KANDINSKY (ardesioso) — con parsimonia, per significato non decorazione */
+  --m-ochre:#d98a1f; --m-ochre-wash:rgba(217,138,31,.10); --m-viridian:#1f9e73;
   /* TOKEN PLASTICI (gli UNICI 11 che PL-3 può riscrivere; default = neutro odierno) */
   --m-accent:var(--m-blue); --m-accent-down:var(--m-blue-down); --m-accent-deep:var(--m-blue-deep);
   --m-accent-off:var(--m-blue-off); --m-accent-wash:var(--m-blue-wash); --m-accent-light:var(--m-blue-light);
@@ -36,8 +39,8 @@
   --color-primary:var(--m-accent); --color-primary-darker:var(--m-accent-down);
   --color-primary-darkest:var(--m-accent-deep); --color-primary-hover:var(--m-accent-down);
   --color-primary-light:var(--m-accent-light);
-  --island-bg-color:rgba(250,249,246,.96); --color-surface-lowest:#faf9f6;
-  --color-surface-low:#f1efe9; --color-surface-mid:#e9e7df; --color-surface-high:#ffffff;
+  --island-bg-color:rgba(245,246,248,.96); --color-surface-lowest:#f5f6f8;
+  --color-surface-low:#eceef2; --color-surface-mid:#e3e6ec; --color-surface-high:#ffffff;
   --ui-font:var(--m-font-ui); --border-radius-lg:var(--m-r-card); --border-radius-md:var(--m-r-field);
 }
 .excalidraw .default-sidebar-trigger { display:none; } /* Library nascosta in v1 */

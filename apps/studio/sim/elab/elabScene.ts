@@ -57,7 +57,7 @@ const boardSchema = z.strictObject({
     columns: z.number().int().positive(),
     columnPitch: z.number().positive(),
   }),
-  orientation: z.string().min(1),
+  orientation: z.enum(["elab-volume", "manual-figure-horizontal", "manual-figure-vertical"]),
 })
 
 const componentSchema = z.strictObject({

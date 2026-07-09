@@ -207,6 +207,13 @@ export class WorkspaceStore {
   async importLessonBlob(blob: Blob): Promise<void> {
     await parseLessonImport(this, blob)
   }
+
+  async importLessonBlobForRoom(blob: Blob, room: string): Promise<void> {
+    await parseLessonImport(this, blob)
+    const flatScene = await this.read(PATHS.SCENE)
+    if (!flatScene) return
+    await this.saveScene(room, await flatScene.text())
+  }
 }
 
 /** Istanza singleton globale */

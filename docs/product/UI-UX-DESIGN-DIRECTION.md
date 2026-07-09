@@ -1,6 +1,6 @@
 # UI-UX-DESIGN-DIRECTION
 
-Date: 2026-07-01  
+Date: 2026-07-01
 Status: product direction, not implementation claim
 
 ## Product Frame
@@ -14,6 +14,10 @@ The first screen should feel like the work surface:
 - plugin objects placed on the sheet;
 - lesson context visible without overwhelming the teacher;
 - export/import and student-pack available as natural lesson actions.
+
+The personal/product hub is called **Pagina Personale**. Do not use
+"pagina docente", "cruscotto docente", or "teacher dashboard" as user-facing
+labels.
 
 ## GoodNotes Baseline
 

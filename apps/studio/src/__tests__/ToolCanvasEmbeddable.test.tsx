@@ -1,8 +1,10 @@
+// @vitest-environment jsdom
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
+import { cleanup, render, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 
 import { EMBED_DATA_KEY } from "../toolhost/caps/board";
 import {
@@ -25,6 +27,19 @@ import {
   renderToolCanvasEmbeddable,
   validateBookLayoutScene,
 } from "../toolhost/ToolCanvasEmbeddable";
+import {
+  applyElabCanvasConnectionAdd,
+  applyElabCanvasLayoutChange,
+  applyElabCanvasWireDelete,
+  applyElabCanvasWireUpdate,
+  elabCanvasConnectionAddOperation,
+  elabCanvasLayoutChangeOperation,
+  elabCanvasWireDeleteOperation,
+  elabCanvasWireUpdateOperation,
+  simulationSceneToElabCanvasState,
+} from "../../sim/elab/elabCanvasAdapter";
+
+afterEach(cleanup);
 
 describe("ToolCanvasEmbeddable", () => {
   it("parses maestro-tool links into tool and embed identity", () => {
@@ -121,14 +136,63 @@ describe("ToolCanvasEmbeddable", () => {
 
     // Scena bridgata: wires bookLayout = wire-w1/wire-w2 (id fixture); nessuna
     // regola spaziale autorata dal libro, quindi nessun errore spatial.
+    // Ricolorare una connessione crea DUE drift: il filo del libro non trova più
+    // corrispondenza (wire drift) e la connessione ricolorata non è più dichiarata
+    // dal libro (extra wire — parità numero cavi).
     expect(validateBookLayoutScene(drifted as never)).toEqual({
       ok: false,
       errors: [
         "layout drift led1",
         "pin target drift led1:anode",
         "wire drift wire-w2",
+        "extra wire bat1:negative->bb1:a9",
       ],
     });
+  });
+
+  it("rifiuta un filo in più non previsto dal libro (numero cavi perfect)", () => {
+    const scene = createReferenceSimulationScene();
+    const withExtraWire = {
+      ...scene,
+      connections: [
+        ...scene.connections,
+        { from: "bb1:a1", to: "bb1:a2", color: "green", kind: "wire" as const },
+      ],
+    };
+    const result = validateBookLayoutScene(withExtraWire as never);
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContain("extra wire bb1:a1->bb1:a2");
+  });
+
+  it("rifiuta un componente in più non previsto dal libro (numero componenti perfect)", () => {
+    const scene = createReferenceSimulationScene();
+    const withExtraComponent = {
+      ...scene,
+      components: [...scene.components, { ...scene.components[0], id: "resistor-extra-1" }],
+    };
+    const result = validateBookLayoutScene(withExtraComponent as never);
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContain("extra component resistor-extra-1");
+  });
+
+  it("verifica la curvatura del filo quando il libro la dichiara (curvatura cavi perfect)", () => {
+    const scene = createReferenceSimulationScene();
+    const firstWireId = scene.bookLayout.wires[0].id;
+    const withBookCurvature = {
+      ...scene,
+      bookLayout: {
+        ...scene.bookLayout,
+        wires: scene.bookLayout.wires.map((wire, index) =>
+          index === 0
+            ? { ...wire, path: { kind: "polyline" as const, points: [{ x: 0, y: 0 }, { x: 50, y: 50 }] } }
+            : wire,
+        ),
+      },
+      // La connessione della scena non riproduce quella polyline → curvature drift.
+    };
+    const result = validateBookLayoutScene(withBookCurvature as never);
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContain(`wire curvature drift ${firstWireId}`);
   });
 
   it("blocks verified status until a reviewed manual crop is attached", () => {
@@ -155,6 +219,14 @@ describe("ToolCanvasEmbeddable", () => {
     const html = renderToStaticMarkup(view);
 
     expect(html).toContain("Accendi il tuo primo LED");
+    expect(html).toContain("Simulation Plugin Canvas");
+    expect(html).toContain("simulation plugin: canvas ELABTutor core montato su SimulationScene canonica");
+    expect(html).toContain('data-simulation-surface="elab-core-canvas"');
+    expect(html).toContain('data-elab-core-canvas-mounted="true"');
+    expect(html).toContain('data-elab-canvas-source-of-truth="simulation-scene"');
+    expect(html).toContain('data-elab-canvas-build-mode="complete"');
+    expect(html).toContain('data-elab-canvas-projection-mode="gia-montato"');
+    expect(html).toContain("Montaggio libero legacy");
     expect(html).toContain("Vol.1 pag.29-31 - ESPERIMENTO");
     expect(html).toContain("draft");
     // La scena bridgata non ha regole spaziali autorate dal libro (lista vuota onesta).
@@ -170,6 +242,263 @@ describe("ToolCanvasEmbeddable", () => {
     expect(html).toContain('alt="Zoom reale sulla pagina passo passo del manuale ELAB Volume 1"');
     expect(html).toContain(">Mostra montato</button>");
     expect(html).toContain(">Reset</button>");
+  });
+
+  it("adatta SimulationScene canonica al canvas ELABTutor senza usare lo SVG come fonte dati", () => {
+    const scene = createReferenceSimulationScene();
+    const canvas = simulationSceneToElabCanvasState(scene);
+    const breadboardState = canvas.componentStates.bb1 as { activeHoles?: Record<string, string> };
+    const ledState = canvas.componentStates.led1 as { brightness?: number };
+
+    expect(canvas.sourceOfTruth).toBe("simulation-scene");
+    expect(canvas.projectionMode).toBe("gia-montato");
+    expect(canvas.experiment).toMatchObject({
+      id: scene.experimentId,
+      title: scene.title,
+      buildMode: "complete",
+      pinAssignments: scene.pinAssignments,
+    });
+    expect(canvas.experiment.components.map((component) => component.id).sort()).toEqual(
+      scene.components.map((component) => component.id).sort(),
+    );
+    expect(canvas.experiment.layout).toEqual(scene.layout);
+    expect(canvas.experiment.layout).not.toBe(scene.layout);
+    expect(canvas.experiment.connections[0]).toMatchObject({
+      from: scene.connections[0].from,
+      to: scene.connections[0].to,
+      color: scene.connections[0].color,
+    });
+    expect(breadboardState.activeHoles?.["bus-top-plus-9"]).toBeDefined();
+    expect(ledState.brightness).toBeGreaterThan(0);
+
+    const sandboxCanvas = simulationSceneToElabCanvasState(scene, {
+      projectionMode: "monta-tu",
+    });
+    expect(sandboxCanvas.projectionMode).toBe("monta-tu");
+    expect(sandboxCanvas.experiment.buildMode).toBe("sandbox");
+    expect(sandboxCanvas.experiment.pinAssignments).toEqual(scene.pinAssignments);
+  });
+
+  it("transposes persisted legacy free assembly state into the ELAB core canvas projection", () => {
+    const scene = createReferenceSimulationScene();
+    const element = createToolEmbedElement({
+      state: {
+        kind: "simulation-scene-v1",
+        scene,
+        montaggio: {
+          placements: [
+            { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+          ],
+        },
+      },
+    });
+    const view = renderToolCanvasEmbeddable(element);
+    expect(view).not.toBeNull();
+    const html = renderToStaticMarkup(view);
+
+    expect(html).toContain('data-elab-canvas-build-mode="sandbox"');
+    expect(html).toContain('data-elab-canvas-projection-mode="monta-tu"');
+    expect(html).toContain(`data-elab-canvas-components="${scene.components.length + 1}"`);
+  });
+
+  it("converte eventi layout del canvas ELAB in operazioni SimulationOperation e patch scena", () => {
+    const scene = createReferenceSimulationScene();
+    const next = applyElabCanvasLayoutChange(scene, "led1", { x: 333, y: 222, rotation: 90 });
+    const op = elabCanvasLayoutChangeOperation({
+      id: "op-move-led1",
+      componentId: "led1",
+      pose: { x: 333, y: 222, rotation: 90 },
+    });
+
+    expect(scene.layout.led1).not.toEqual(next.layout.led1);
+    expect(next.layout.led1).toMatchObject({ x: 333, y: 222, rotation: 90 });
+    expect(op).toMatchObject({
+      schema: "simulation-operation/1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+      operation: {
+        kind: "move-component",
+        componentId: "led1",
+        pose: { x: 333, y: 222, rotation: 90 },
+      },
+    });
+  });
+
+  it("converte eventi wire del canvas ELAB in operazioni canoniche e patch scena", () => {
+    const scene = createReferenceSimulationScene();
+    const firstWire = scene.connections[0]!;
+    const updated = applyElabCanvasWireUpdate(scene, 0, {
+      ...firstWire,
+      color: "red",
+      waypoints: [
+        { x: 11, y: 12 },
+        { x: 77, y: 88 },
+        { x: 44, y: 45 },
+      ],
+    });
+    const updateOperation = elabCanvasWireUpdateOperation({
+      id: "op-wire-update-0",
+      scene,
+      wireIndex: 0,
+      connection: {
+        ...firstWire,
+        waypoints: [
+          { x: 11, y: 12 },
+          { x: 77, y: 88 },
+          { x: 44, y: 45 },
+        ],
+      },
+    });
+
+    expect(updated.connections[0]?.path).toEqual({
+      kind: "polyline",
+      points: [
+        { x: 11, y: 12 },
+        { x: 77, y: 88 },
+        { x: 44, y: 45 },
+      ],
+    });
+    expect(updateOperation).toMatchObject({
+      schema: "simulation-operation/1",
+      actor: "manual",
+      origin: "canvas",
+      operation: {
+        kind: "edit-wire",
+        wireId: "wire-1",
+        edit: {
+          kind: "replace-path",
+          path: {
+            kind: "polyline",
+            points: [
+              { x: 11, y: 12 },
+              { x: 77, y: 88 },
+              { x: 44, y: 45 },
+            ],
+          },
+        },
+      },
+    });
+
+    const added = applyElabCanvasConnectionAdd(updated, {
+      id: "wire-free-1",
+      from: "bb1:j7",
+      to: "bb1:f7",
+      color: "green",
+      waypoints: [
+        { x: 120, y: 130 },
+        { x: 120, y: 170 },
+      ],
+    });
+    const addOperation = elabCanvasConnectionAddOperation({
+      id: "op-wire-add",
+      connection: {
+        id: "wire-free-1",
+        from: "bb1:j7",
+        to: "bb1:f7",
+        color: "green",
+        waypoints: [
+          { x: 120, y: 130 },
+          { x: 120, y: 170 },
+        ],
+      },
+    });
+
+    expect(added.connections.at(-1)).toMatchObject({
+      from: "bb1:j7",
+      to: "bb1:f7",
+      color: "green",
+      kind: "wire",
+      path: {
+        kind: "polyline",
+        points: [
+          { x: 120, y: 130 },
+          { x: 120, y: 170 },
+        ],
+      },
+    });
+    expect(addOperation.operation).toEqual({
+      kind: "connect-wire",
+      wire: {
+        id: "wire-free-1",
+        from: "bb1:j7",
+        to: "bb1:f7",
+        color: "green",
+        path: {
+          kind: "polyline",
+          points: [
+            { x: 120, y: 130 },
+            { x: 120, y: 170 },
+          ],
+        },
+      },
+    });
+
+    const deleted = applyElabCanvasWireDelete(added, added.connections.length - 1);
+    const deleteOperation = elabCanvasWireDeleteOperation({
+      id: "op-wire-delete",
+      scene: added,
+      wireIndex: added.connections.length - 1,
+    });
+
+    expect(deleted.connections).toHaveLength(updated.connections.length);
+    expect(deleteOperation.operation).toEqual({
+      kind: "delete",
+      target: { kind: "wire", id: "wire-free-1" },
+    });
+    expect(scene.connections[0]?.path).not.toBe(updated.connections[0]?.path);
+  });
+
+  it("monta nel post-it il canvas ELABTutor reale via renderEmbeddable", async () => {
+    const element = createToolEmbedElement();
+    const view = renderToolCanvasEmbeddable(element);
+    expect(view).not.toBeNull();
+
+    const { container } = render(view!);
+    const mount = await waitFor(
+      () => {
+        const node = container.querySelector<HTMLElement>(
+          '[data-elab-canvas-source-of-truth="simulation-scene"]',
+        );
+        expect(node).not.toBeNull();
+        expect(node!.querySelector("[data-elab-core-canvas-host] svg")).not.toBeNull();
+        return node!;
+      },
+      { timeout: 8000 },
+    );
+    expect(mount.getAttribute("data-elab-canvas-experiment-id")).toBe(ELAB_V1_FIRST_LED_EXPERIMENT_ID);
+    expect(["pending", "true"]).toContain(mount.getAttribute("data-elab-core-canvas-mounted"));
+  });
+
+  it("host-observes-solve (G7): emette simulation.circuit.solved al solve del circuito reference", async () => {
+    const emitted: { kind: string; currentMa?: number; experimentId?: string }[] = [];
+    const scene = createReferenceSimulationScene();
+    const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
+    const view = renderToolCanvasEmbeddable(element, { emitLessonEvent: (ev) => emitted.push(ev) });
+    render(view!);
+    await waitFor(
+      () => expect(emitted.some((e) => e.kind === "simulation.circuit.solved")).toBe(true),
+      { timeout: 8000 },
+    );
+    const solved = emitted.find((e) => e.kind === "simulation.circuit.solved");
+    expect(solved?.currentMa).toBeCloseTo(15.3, 1);
+  });
+
+  it("host-observes-solve (G7): emette simulation.error.observed su circuito aperto (break→explain)", async () => {
+    const emitted: { kind: string; conceptId?: string; labels?: Record<string, string> }[] = [];
+    const scene = createReferenceSimulationScene();
+    // Rompi il circuito: togli il filo del negativo → loop aperto, corrente 0.
+    scene.connections = scene.connections.filter((connection) => connection.from !== "bat1:negative");
+    const element = createToolEmbedElement({ state: { kind: "simulation-scene-v1", scene } });
+    const view = renderToolCanvasEmbeddable(element, { emitLessonEvent: (ev) => emitted.push(ev) });
+    render(view!);
+    await waitFor(
+      () => expect(emitted.some((e) => e.kind === "simulation.error.observed")).toBe(true),
+      { timeout: 8000 },
+    );
+    const err = emitted.find((e) => e.kind === "simulation.error.observed");
+    expect(err?.conceptId).toBe("circuito_chiuso");
   });
 
   it("GOLDEN: la corrente reference resta 15.3 mA ma deriva dal traversal del circuito", () => {

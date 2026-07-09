@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useMemo, useState, type CSSProperties, type ReactElement } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
 
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
@@ -17,10 +17,29 @@ import {
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
+import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
+import { renderPluginPostitBoardEmbeddable } from "./pluginPostitBoardRender";
+import {
+  applyElabCanvasConnectionAdd,
+  applyElabCanvasLayoutChange,
+  applyElabCanvasWireDelete,
+  applyElabCanvasWireUpdate,
+  elabCanvasConnectionAddOperation,
+  elabCanvasLayoutChangeOperation,
+  elabCanvasWireDeleteOperation,
+  elabCanvasWireUpdateOperation,
+  simulationSceneToElabCanvasState,
+  type ElabCanvasProjectionMode,
+  type ElabCanvasWireEventConnection,
+} from "../../sim/elab/elabCanvasAdapter";
+import type {
+  PlaceComponentOperation,
+  SimulationOperationEnvelope,
+} from "../../sim/core/simulationOperations";
 import elabSceneCandidateV1Cap6Esp1 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json";
 import elabSceneCandidateV1Cap6Esp2 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json";
 import elabSceneCandidateV1Cap6Esp3 from "../../sim/fixtures/elab-scene-v2-candidate-v1cap6esp3.json";
@@ -84,6 +103,10 @@ type BookLayoutWire = {
   to: BookLayoutEndpoint;
   color: string;
   kind: "internal" | "wire";
+  // Curvatura autorata dal volume: quando presente, la scena deve riprodurre la
+  // STESSA polyline (parità curvatura cavi). Tolleranza = tolerances.coordinatePx.
+  // Opzionale/additivo: i book-layout che non la dichiarano non vengono ristretti.
+  path?: { kind: "polyline"; points: Array<{ x: number; y: number }> };
 };
 
 type BookLayoutV1 = {
@@ -187,7 +210,8 @@ type SimulationToolState =
   | { kind: "reference-blink"; ledOn?: boolean; millis?: number; montaggio?: MontaggioState };
 
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
-export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
+export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
+export const LEGACY_REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
 export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
@@ -338,6 +362,9 @@ const SCENE_MANUAL_ANCHORS: Record<string, { volume: 1 | 2 | 3; page: number }> 
   [ELAB_V1_RGB_LAMP_EXPERIMENT_ID]: { volume: 1, page: 71 },
 };
 
+const SIMULATION_CORE_CANVAS_STATUS =
+  "simulation plugin: canvas ELABTutor core montato su SimulationScene canonica";
+
 export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
   const componentIds = new Set(scene.components.map((component) => component.id));
@@ -391,7 +418,43 @@ export function validateBookLayoutScene(scene: SimulationSceneV1): { ok: boolean
         connection.color === wire.color &&
         connection.kind === wire.kind,
     );
-    if (!matchingConnection) errors.push(`wire drift ${wire.id}`);
+    if (!matchingConnection) {
+      errors.push(`wire drift ${wire.id}`);
+      continue;
+    }
+    // Parità curvatura cavi: se il libro dichiara la polyline, la scena deve
+    // riprodurla punto-per-punto entro tolleranza (curvatura cavi perfect).
+    if (wire.path) {
+      const tolerance = bookLayout.tolerances.coordinatePx;
+      const actualPath = matchingConnection.path;
+      if (
+        !actualPath ||
+        actualPath.points.length !== wire.path.points.length ||
+        wire.path.points.some((expected, index) => {
+          const got = actualPath.points[index];
+          return Math.abs(got.x - expected.x) > tolerance || Math.abs(got.y - expected.y) > tolerance;
+        })
+      ) {
+        errors.push(`wire curvature drift ${wire.id}`);
+      }
+    }
+  }
+
+  // Parità esatta di conteggio (numero componenti e numero cavi perfect): il
+  // book-layout è esaustivo, quindi la scena non può avere elementi in più.
+  const bookComponentIds = new Set(bookLayout.components.map((component) => component.id));
+  for (const component of scene.components) {
+    if (!bookComponentIds.has(component.id)) errors.push(`extra component ${component.id}`);
+  }
+  for (const connection of scene.connections) {
+    const declared = bookLayout.wires.some(
+      (wire) =>
+        wire.from.ref === connection.from &&
+        wire.to.ref === connection.to &&
+        wire.color === connection.color &&
+        wire.kind === connection.kind,
+    );
+    if (!declared) errors.push(`extra wire ${connection.from}->${connection.to}`);
   }
 
   for (const rule of bookLayout.spatialRules) {
@@ -577,6 +640,9 @@ export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
 ): ReactElement | null {
+  const pluginPostitBoard = renderPluginPostitBoardEmbeddable(element);
+  if (pluginPostitBoard !== null) return pluginPostitBoard;
+
   const toolLink = parseToolLink(element.link);
   if (!toolLink) return null;
   const entry = getSimulationTool(toolLink.toolId);
@@ -600,15 +666,19 @@ const referenceSimulationEntry = {
   solve: solveElabExperiment,
 };
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
+registerSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
-type MontaggioPlacementType = "resistor" | "led";
-type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
-type MontaggioState = { placements: MontaggioPlacement[] };
-type MontaggioCanvas = {
+export type MontaggioPlacementType = "resistor" | "led";
+export type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
+type MontaggioState = {
+  placements: MontaggioPlacement[];
+  operations?: SimulationOperationEnvelope[];
+};
+export type MontaggioCanvas = {
   tool: MontaggioPlacementType | null;
   pending: string | null;
   notice: string | null;
@@ -617,6 +687,111 @@ type MontaggioCanvas = {
   onHoleTap: (ref: string) => void;
   onReset: () => void;
 };
+
+export function createBoardSceneWithPlacements(
+  scene: SimulationSceneV1,
+  placements: readonly MontaggioPlacement[],
+): SimulationSceneV1 {
+  if (placements.length === 0) return scene;
+  const components = [...scene.components];
+  const pinAssignments = { ...scene.pinAssignments };
+  for (const placement of placements) {
+    if (placement.type === "resistor") {
+      components.push({
+        id: placement.id,
+        type: "resistor",
+        label: "Resistore montaggio libero",
+        value: 470,
+        anchor: "bb1",
+      });
+      pinAssignments[`${placement.id}:pin1`] = placement.holes[0];
+      pinAssignments[`${placement.id}:pin2`] = placement.holes[1];
+    } else {
+      components.push({
+        id: placement.id,
+        type: "led",
+        label: "LED montaggio libero",
+        color: "red",
+        anchor: "bb1",
+      });
+      pinAssignments[`${placement.id}:anode`] = placement.holes[0];
+      pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
+    }
+  }
+  return { ...scene, components, pinAssignments };
+}
+
+export function createMontaggioPlacementOperations({
+  embedId,
+  placements,
+}: {
+  embedId: string;
+  placements: readonly MontaggioPlacement[];
+}): SimulationOperationEnvelope[] {
+  return placements.map((placement) => ({
+    schema: "simulation-operation/1",
+    id: `${embedId}:montaggio:place:${placement.id}`,
+    actor: "manual",
+    origin: "canvas",
+    targetProvider: "local",
+    providerMode: "static",
+    operation: {
+      kind: "place-component",
+      component: montaggioComponentDescriptor(placement),
+      pose: poseFromMontaggioHoles(placement.holes),
+      pinAssignments: montaggioPinAssignments(placement),
+    },
+  }));
+}
+
+function montaggioComponentDescriptor(
+  placement: MontaggioPlacement,
+): PlaceComponentOperation["component"] {
+  if (placement.type === "resistor") {
+    return {
+      id: placement.id,
+      type: "resistor",
+      label: "Resistore montaggio libero",
+      attrs: { value: 470 },
+      pins: [{ id: "pin1" }, { id: "pin2" }],
+    };
+  }
+  return {
+    id: placement.id,
+    type: "led",
+    label: "LED montaggio libero",
+    attrs: { color: "red" },
+    pins: [{ id: "anode" }, { id: "cathode" }],
+  };
+}
+
+function montaggioPinAssignments(placement: MontaggioPlacement): Record<string, string> {
+  if (placement.type === "resistor") {
+    return {
+      [`${placement.id}:pin1`]: placement.holes[0],
+      [`${placement.id}:pin2`]: placement.holes[1],
+    };
+  }
+  return {
+    [`${placement.id}:anode`]: placement.holes[0],
+    [`${placement.id}:cathode`]: placement.holes[1],
+  };
+}
+
+function poseFromMontaggioHoles(
+  holes: MontaggioPlacement["holes"],
+): { x: number; y: number; rotation?: number } {
+  const first = pointForBreadboardRef(holes[0]);
+  const second = pointForBreadboardRef(holes[1]);
+  if (first === null || second === null) return { x: 0, y: 0 };
+  const dx = second.x - first.x;
+  const dy = second.y - first.y;
+  return {
+    x: Math.round((first.x + second.x) / 2),
+    y: Math.round((first.y + second.y) / 2),
+    rotation: Math.abs(dx) >= Math.abs(dy) ? 0 : 90,
+  };
+}
 
 function ReferenceSimulationCanvasTool({
   element,
@@ -662,10 +837,40 @@ function ReferenceSimulationCanvasTool({
     [scene],
   );
 
+  // host-observes-solve (G7): quando l'esito del solve cambia in modo
+  // significativo (risolto con corrente / errore elettrico), registra un evento
+  // LessonOS tipato per il loop break→explain. Dedup per firma: nessuno spam su
+  // ri-render; nessuna emissione per esiti idle. Il mapping esito→evento è la
+  // funzione PURA e testata simulationSolveEvent.
+  const lastEmittedSolveRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!host?.emitLessonEvent) return;
+    const outcome = deriveSimulationSolveOutcome(scene, sideMnaView, validation.ok);
+    if (outcome.kind === "idle") return;
+    const signature =
+      outcome.kind === "solved"
+        ? `solved:${outcome.currentMa.toFixed(1)}:${outcome.bookLayoutValid}`
+        : `error:${outcome.code}`;
+    if (lastEmittedSolveRef.current === signature) return;
+    const event = simulationSolveEvent({ experimentId: scene.experimentId, outcome, t: Date.now() });
+    if (!event) return;
+    lastEmittedSolveRef.current = signature;
+    host.emitLessonEvent(event);
+  }, [host, scene, sideMnaView, validation.ok]);
+
   function applyPlacements(next: MontaggioPlacement[]) {
     setPlacements(next);
     if (host?.persistEmbedState && marker?.state) {
-      host.persistEmbedState(toolLink.embedId, { ...marker.state, montaggio: { placements: next } });
+      host.persistEmbedState(toolLink.embedId, {
+        ...marker.state,
+        montaggio: {
+          placements: next,
+          operations: createMontaggioPlacementOperations({
+            embedId: toolLink.embedId,
+            placements: next,
+          }),
+        },
+      });
     }
   }
 
@@ -716,23 +921,14 @@ function ReferenceSimulationCanvasTool({
   // Scena AUMENTATA per la sola board: i piazzamenti entrano in components e
   // pinAssignments (i fori si accendono via DetailedBreadboard, stessa via
   // del manuale). runtime/bookLayout restano quelli del libro.
-  const boardScene = useMemo(() => {
-    if (placements.length === 0) return scene;
-    const components = [...scene.components];
-    const pinAssignments = { ...scene.pinAssignments };
-    for (const placement of placements) {
-      if (placement.type === "resistor") {
-        components.push({ id: placement.id, type: "resistor", label: "Resistore montaggio libero", value: 470, anchor: "bb1" });
-        pinAssignments[`${placement.id}:pin1`] = placement.holes[0];
-        pinAssignments[`${placement.id}:pin2`] = placement.holes[1];
-      } else {
-        components.push({ id: placement.id, type: "led", label: "LED montaggio libero", color: "red", anchor: "bb1" });
-        pinAssignments[`${placement.id}:anode`] = placement.holes[0];
-        pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
-      }
-    }
-    return { ...scene, components, pinAssignments };
-  }, [scene, placements]);
+  const boardScene = useMemo(
+    () => createBoardSceneWithPlacements(scene, placements),
+    [scene, placements],
+  );
+  const coreCanvasProjectionMode: ElabCanvasProjectionMode =
+    placements.length > 0 || montaggioTool !== null || marker?.state?.montaggio !== undefined
+      ? "monta-tu"
+      : "gia-montato";
 
   const montaggio: MontaggioCanvas = {
     tool: montaggioTool,
@@ -768,12 +964,18 @@ function ReferenceSimulationCanvasTool({
   }
 
   return (
-    <section style={shellStyle}>
+    <section
+      style={shellStyle}
+      data-simulation-surface="elab-core-canvas"
+      data-elab-core-canvas-mounted="true"
+      aria-label={SIMULATION_CORE_CANVAS_STATUS}
+    >
       <header style={headerStyle}>
         <div>
-          <div style={eyebrowStyle}>Simulation Plugin</div>
+          <div style={eyebrowStyle}>Simulation Plugin Canvas</div>
           <h2 style={titleStyle}>{scene.title}</h2>
           <div style={manualRefStyle}>{scene.manual.label}</div>
+          <div style={harnessBannerStyle}>{SIMULATION_CORE_CANVAS_STATUS}</div>
           {/* Onestà di catalogo: la UI non vende esperimenti non montati. */}
           <div
             style={catalogBannerStyle}
@@ -786,7 +988,19 @@ function ReferenceSimulationCanvasTool({
       </header>
 
       <main style={mainStyle}>
-        <SimulationBoard scene={boardScene} montaggio={montaggio} />
+        <div style={boardStackStyle}>
+          <ElabCoreCanvasMount
+            scene={boardScene}
+            projectionMode={coreCanvasProjectionMode}
+            markerState={marker?.state}
+            toolLink={toolLink}
+            host={host}
+          />
+          <details style={legacyHarnessDetailsStyle} data-legacy-free-assembly-harness>
+            <summary style={legacyHarnessSummaryStyle}>Montaggio libero legacy</summary>
+            <SimulationBoard scene={boardScene} montaggio={montaggio} />
+          </details>
+        </div>
 
         <aside style={sideStyle}>
           <ManualCard scene={scene} />
@@ -852,6 +1066,154 @@ function ReferenceSimulationCanvasTool({
       </main>
     </section>
   );
+}
+
+function ElabCoreCanvasMount({
+  scene,
+  projectionMode,
+  markerState,
+  toolLink,
+  host,
+}: {
+  scene: SimulationSceneV1;
+  projectionMode: ElabCanvasProjectionMode;
+  markerState?: SimulationToolState;
+  toolLink: ToolLink;
+  host?: SimulationToolHost;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [localScene, setLocalScene] = useState(scene);
+  const [mountStatus, setMountStatus] = useState<"pending" | "mounted" | "error">("pending");
+  const [lastOperationId, setLastOperationId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLocalScene(scene);
+  }, [scene]);
+
+  const canvasState = useMemo(
+    () => simulationSceneToElabCanvasState(localScene, { projectionMode }),
+    [localScene, projectionMode],
+  );
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (node === null) return;
+    let disposed = false;
+    let handle: { dispose(): void } | null = null;
+    setMountStatus("pending");
+    void import("@elab-tutor-plugin/plugin/renderEmbeddable")
+      .then(({ renderEmbeddable }) => {
+        if (disposed) return;
+        handle = renderEmbeddable(node, {
+          experiment: canvasState.experiment,
+          componentStates: canvasState.componentStates,
+          onLayoutChange: (componentId: string, pose: { x: number; y: number; rotation?: number; parentId?: string }) => {
+            const operation = elabCanvasLayoutChangeOperation({
+              id: `${toolLink.embedId}:move:${componentId}:${Math.round(pose.x)}:${Math.round(pose.y)}`,
+              componentId,
+              pose,
+            });
+            setLastOperationId(operation.id);
+            setLocalScene((current) => {
+              const nextScene = applyElabCanvasLayoutChange(current, componentId, pose);
+              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+              }
+              return nextScene;
+            });
+          },
+          onConnectionAdd: (from: string, to: string) => {
+            const connection: ElabCanvasWireEventConnection = {
+              id: `${toolLink.embedId}:wire:${canvasState.experiment.connections.length + 1}`,
+              from,
+              to,
+              color: inferCanvasWireColor(from, to),
+            };
+            const operation = elabCanvasConnectionAddOperation({
+              id: `${toolLink.embedId}:connect:${connection.id}`,
+              connection,
+            });
+            setLastOperationId(operation.id);
+            setLocalScene((current) => {
+              const nextScene = applyElabCanvasConnectionAdd(current, connection);
+              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+              }
+              return nextScene;
+            });
+          },
+          onWireUpdate: (wireIndex: number, connection: ElabCanvasWireEventConnection) => {
+            setLocalScene((current) => {
+              const operation = elabCanvasWireUpdateOperation({
+                id: `${toolLink.embedId}:wire-update:${wireIndex}`,
+                scene: current,
+                wireIndex,
+                connection,
+              });
+              setLastOperationId(operation.id);
+              const nextScene = applyElabCanvasWireUpdate(current, wireIndex, connection);
+              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+              }
+              return nextScene;
+            });
+          },
+          onWireDelete: (wireIndex: number) => {
+            setLocalScene((current) => {
+              const operation = elabCanvasWireDeleteOperation({
+                id: `${toolLink.embedId}:wire-delete:${wireIndex}`,
+                scene: current,
+                wireIndex,
+              });
+              setLastOperationId(operation.id);
+              const nextScene = applyElabCanvasWireDelete(current, wireIndex);
+              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+              }
+              return nextScene;
+            });
+          },
+          className: "ardesia-simulation-elab-core-canvas",
+          style: { width: "100%", height: "100%" },
+        });
+        setMountStatus("mounted");
+      })
+      .catch(() => {
+        if (!disposed) setMountStatus("error");
+      });
+    return () => {
+      disposed = true;
+      handle?.dispose();
+    };
+  }, [canvasState, host, markerState, toolLink.embedId]);
+
+  return (
+    <section
+      style={elabCoreStageStyle}
+      data-elab-core-canvas-mounted={mountStatus === "mounted" ? "true" : mountStatus}
+      data-elab-canvas-source-of-truth={canvasState.sourceOfTruth}
+      data-elab-canvas-experiment-id={canvasState.experiment.id}
+      data-elab-canvas-components={String(canvasState.experiment.components.length)}
+      data-elab-canvas-build-mode={canvasState.experiment.buildMode}
+      data-elab-canvas-projection-mode={canvasState.projectionMode}
+      data-elab-canvas-last-operation={lastOperationId ?? undefined}
+      aria-label={`Canvas ELABTutor core ${canvasState.experiment.id}`}
+    >
+      <div ref={containerRef} style={elabCoreMountNodeStyle} data-elab-core-canvas-host />
+      {canvasState.diagnostics.length > 0 && (
+        <div style={elabCoreDiagnosticStyle} role="status">
+          {canvasState.diagnostics.join("; ")}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function inferCanvasWireColor(from: string, to: string): string {
+  const joined = `${from} ${to}`.toLowerCase();
+  if (joined.includes("positive") || joined.includes("plus")) return "red";
+  if (joined.includes("negative") || joined.includes("minus") || joined.includes("gnd")) return "black";
+  return "green";
 }
 
 function ManualCard({ scene }: { scene: SimulationSceneV1 }) {
@@ -1024,11 +1386,69 @@ function computeElabMnaView(scene: SimulationSceneV1): ElabMnaView {
   };
 }
 
+// Normalizza l'esito del solve (multi-runtime) in un outcome uniforme per
+// simulationSolveEvent. Riusa le viste già calcolate: computeElabMnaView per le
+// scene elab-mna, batteryLedCurrentMa per le scene battery-led. Puro sul dato.
+function deriveSimulationSolveOutcome(
+  scene: SimulationSceneV1,
+  mnaView: ElabMnaView | null,
+  bookLayoutValid: boolean,
+): SimulationSolveOutcome {
+  if (scene.runtime.kind === "battery-led-senza-resistore") {
+    return {
+      kind: "error",
+      code: "missing-resistor",
+      conceptId: "resistenza",
+      message: "Resistore mancante: corrente pericolosa per il LED",
+    };
+  }
+  if (scene.runtime.kind === "elab-mna") {
+    if (mnaView && !mnaView.ok) {
+      return { kind: "error", code: "solve-failed", conceptId: "circuito_chiuso", message: mnaView.error };
+    }
+    if (mnaView && mnaView.ok && mnaView.anyOn) {
+      const lit = mnaView.channels.red.on
+        ? mnaView.channels.red
+        : mnaView.channels.green.on
+          ? mnaView.channels.green
+          : mnaView.channels.blue;
+      return { kind: "solved", currentMa: Number(lit.currentMa.toFixed(1)), bookLayoutValid };
+    }
+    return { kind: "idle" };
+  }
+  const ma = batteryLedCurrentMa(scene);
+  if (ma > 0) return { kind: "solved", currentMa: Number(ma.toFixed(1)), bookLayoutValid };
+  // Corrente 0: distinguere "spento per scelta" (idle) da "circuito ROTTO" (error),
+  // così un break reale durante la manipolazione libera emette simulation.error.observed
+  // ("spiegare errori"). Verdetto da fisica reale: solveSeriesLoop.closed /
+  // resistanceOhms, mai da una formula hard-coded.
+  if (scene.runtime.kind === "battery-led" && scene.runtime.ledOn) {
+    const loop = solveSeriesLoop(scene);
+    if (!loop.closed) {
+      return {
+        kind: "error",
+        code: "open-circuit",
+        conceptId: "circuito_chiuso",
+        message: "Circuito aperto: la corrente non scorre — controlla i collegamenti",
+      };
+    }
+    if (loop.resistanceOhms <= 0) {
+      return {
+        kind: "error",
+        code: "no-resistor",
+        conceptId: "resistenza",
+        message: "Nessuna resistenza sul percorso: corrente pericolosa per il LED",
+      };
+    }
+  }
+  return { kind: "idle" };
+}
+
 function formatChannelMa(channel: ElabMnaChannel): string {
   return channel.brightness >= 1 ? ">= 30 mA" : `${channel.currentMa.toFixed(1)} mA`;
 }
 
-function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
+export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
   const mnaView = useMemo(
     () => (scene.runtime.kind === "elab-mna" ? computeElabMnaView(scene) : null),
@@ -1037,7 +1457,7 @@ function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; monta
   const hasBattery = scene.components.some((component) => component.type === "battery9v");
   return (
     <div style={boardStageStyle} data-experiment-id={scene.experimentId}>
-      <svg width="100%" height="100%" viewBox="0 0 920 520" role="img" aria-label={`Simulation Plugin breadboard ELABTutor ${scene.experimentId}`}>
+      <svg width="100%" height="100%" viewBox="0 0 920 520" role="img" aria-label={`Simulation harness breadboard ELABTutor ${scene.experimentId}`}>
         <defs>
           <filter id="bb-shadow" x="-10%" y="-10%" width="120%" height="130%">
             <feDropShadow dx="0" dy="12" stdDeviation="9" floodColor="#152638" floodOpacity="0.18" />
@@ -1644,8 +2064,8 @@ function PaletteItem({
   );
 }
 
-/** Corpi dei piazzamenti tap-tap: LED sempre reso spento (il solve del
- *  montaggio libero è una slice futura — niente accensioni inventate). */
+/** Corpi dei piazzamenti tap-tap: la geometria entra in components/pinAssignments;
+ *  il mapping solve->glifo dei LED liberi resta spento finché non è tracciato. */
 function PlacedPartsSvg({ scene, placements }: { scene: SimulationSceneV1; placements: MontaggioPlacement[] }) {
   // Decorativo come i fili: i corpi piazzati non bloccano i tap sui fori vicini.
   return (
@@ -1865,6 +2285,13 @@ const manualRefStyle = {
   fontWeight: 750,
 } as const;
 
+const harnessBannerStyle = {
+  marginTop: 8,
+  color: "#6f4c13",
+  fontSize: 12,
+  fontWeight: 800,
+} as const;
+
 const toolIdStyle = {
   fontSize: 12,
   color: "#52677f",
@@ -1891,6 +2318,54 @@ const boardStageStyle = {
   border: "1px solid #d8e1eb",
   background: "#eef4f8",
   overflow: "hidden",
+} as const;
+
+const boardStackStyle = {
+  minHeight: 0,
+  display: "grid",
+  gridTemplateRows: "minmax(420px, 1fr) auto",
+  gap: 10,
+} as const;
+
+const elabCoreStageStyle = {
+  ...boardStageStyle,
+  minHeight: 470,
+  background: "#f3f7fb",
+} as const;
+
+const elabCoreMountNodeStyle = {
+  position: "absolute",
+  inset: 0,
+  overflow: "hidden",
+} as const;
+
+const elabCoreDiagnosticStyle = {
+  position: "absolute",
+  left: 12,
+  bottom: 12,
+  maxWidth: "calc(100% - 24px)",
+  borderRadius: 7,
+  background: "#fff4d6",
+  border: "1px solid #e8cb76",
+  color: "#6f4c13",
+  padding: "6px 8px",
+  fontSize: 12,
+  fontWeight: 750,
+} as const;
+
+const legacyHarnessDetailsStyle = {
+  border: "1px solid #d8e1eb",
+  borderRadius: 8,
+  background: "#ffffff",
+  overflow: "hidden",
+} as const;
+
+const legacyHarnessSummaryStyle = {
+  cursor: "pointer",
+  padding: "8px 10px",
+  color: "#52677f",
+  fontSize: 12,
+  fontWeight: 850,
 } as const;
 
 const svgBadgeTextStyle: CSSProperties = {

@@ -3,7 +3,7 @@ import { materialize, type LessonEdge, type LessonGraph, type LessonNode } from 
 import { neighbors } from "./recall"
 import type { JournalEvent } from "../store/JournalRecorder"
 
-export type DashboardNodeKind = "concept" | "lesson" | "material" | "error" | "exercise"
+export type DashboardNodeKind = "concept" | "lesson" | "material" | "error" | "exercise" | "plugin"
 
 export interface TeacherDashboardProjection {
   v: 1
@@ -41,7 +41,21 @@ export interface TeacherDashboardProjection {
     version: string
     publisher: string
     kind?: "tool" | "pack"
+    readiness?: "ready" | "preview" | "planned"
     lastUsedAt: number | null
+  }>
+  /**
+   * Contenuti CREATI, derivati da studentpack.generated/exported: "generated" =
+   * creato/pronto, "exported" = condiviso. Copre le zone "content-created" e
+   * "content-readiness": rigenerabile da zero, ogni riga porta le sue evidenze.
+   */
+  contentCreated: Array<{
+    contentId: string
+    kind: "student-pack"
+    createdAt: number
+    fromRoom: string
+    readiness: "generated" | "exported"
+    evidenceRefs: EvidenceRef[]
   }>
   studentPackQueue: Array<{
     candidateId: string
@@ -66,6 +80,19 @@ export interface TeacherDashboardProjection {
   unavailable: Array<{ zone: string; reason: string }>
 }
 
+/**
+ * Voce di registro plugin passata dal chiamante (che conosce toolhost): dato
+ * PLAIN, così il projector resta puro e senza dipendenza da toolhost. Assente
+ * = la zona plugin (Z6) resta dichiarata "non disponibile".
+ */
+export interface PluginRegistryEntry {
+  id: string
+  version: string
+  publisher: string
+  kind?: "tool" | "pack"
+  readiness?: "ready" | "preview" | "planned"
+}
+
 export interface ProjectTeacherDashboardInput {
   lessonEvents: readonly AppendedEvent[]
   journalEvents?: readonly JournalEvent[]
@@ -75,6 +102,8 @@ export interface ProjectTeacherDashboardInput {
   /** Room that owns journal events from raw/events.jsonl until JournalRecorder carries room ids. */
   journalRoom?: string
   focusNodeId?: string | null
+  /** Registro plugin installati (dato plain dal chiamante). Assente = Z6 non disponibile. */
+  pluginRegistry?: readonly PluginRegistryEntry[]
 }
 
 interface LessonSegment {
@@ -115,6 +144,8 @@ function dashboardKind(node: LessonNode): DashboardNodeKind {
       return "exercise"
     case "lesson":
       return "lesson"
+    case "plugin":
+      return "plugin"
   }
 }
 
@@ -224,17 +255,33 @@ function buildLessons(input: ProjectTeacherDashboardInput): LessonSegment[] {
 
 function projectGraphView(graph: LessonGraph, focusNodeId: string | null | undefined): TeacherDashboardProjection["graphView"] {
   const focus = focusNodeId ?? null
-  // Z1: vicinato a profondità ≤2 del nodo in focus.
-  const view = focus ? neighbors(graph, focus, 2) : null
-  if (!view) return { focusNodeId: null, nodes: [], edges: [] }
-  return {
-    focusNodeId: focus,
-    nodes: view.nodes.map((node) => ({
+  // Z6 additivo: i nodi plugin (plugin.mounted) sono nodi reali del grafo ma
+  // isolati (nessun arco), quindi il vicinato del focus non li raggiunge mai:
+  // vanno aggiunti esplicitamente, deduplicati per id, in ordine deterministico.
+  const pluginNodes = [...graph.nodes.values()]
+    .filter((node) => node.kind === "plugin")
+    .sort((a, b) => byString(a.id, b.id))
+    .map((node) => ({
       id: node.id,
       kind: dashboardKind(node),
       label: { ...node.labels },
       evidenceRefs: [...node.evidenceRefs],
-    })),
+    }))
+  // Z1: vicinato a profondità ≤2 del nodo in focus.
+  const view = focus ? neighbors(graph, focus, 2) : null
+  if (!view) return { focusNodeId: null, nodes: pluginNodes, edges: [] }
+  const seen = new Set(view.nodes.map((node) => node.id))
+  return {
+    focusNodeId: focus,
+    nodes: [
+      ...view.nodes.map((node) => ({
+        id: node.id,
+        kind: dashboardKind(node),
+        label: { ...node.labels },
+        evidenceRefs: [...node.evidenceRefs],
+      })),
+      ...pluginNodes.filter((node) => !seen.has(node.id)),
+    ],
     edges: view.edges.map((edge) => ({
       from: edge.from,
       to: edge.to,
@@ -384,6 +431,55 @@ function buildStats(
   ]
 }
 
+// Plugin installati dal registro passato dal chiamante (dato plain: il projector
+// resta puro). lastUsedAt = null finché non esiste un evento plugin.used nel log:
+// i conteggi d'uso restano fuori v0, dichiarati non derivabili, mai inventati.
+function projectPlugins(
+  registry: readonly PluginRegistryEntry[] | undefined,
+  lessonEvents: readonly AppendedEvent[],
+): TeacherDashboardProjection["plugins"] {
+  if (!registry) return []
+  const lastUsedByPlugin = new Map<string, number>()
+  for (const ev of lessonEvents) {
+    if (ev.kind !== "plugin.mounted") continue
+    lastUsedByPlugin.set(ev.pluginId, Math.max(lastUsedByPlugin.get(ev.pluginId) ?? 0, ev.t))
+  }
+  return [...registry]
+    .sort((a, b) => byString(a.id, b.id))
+    .map((entry) => ({
+      id: entry.id,
+      version: entry.version,
+      publisher: entry.publisher,
+      ...(entry.kind !== undefined ? { kind: entry.kind } : {}),
+      ...(entry.readiness !== undefined ? { readiness: entry.readiness } : {}),
+      lastUsedAt: lastUsedByPlugin.get(entry.id) ?? null,
+    }))
+}
+
+// Contenuti creati DERIVATI dagli eventi già nel log: uno studentpack.generated
+// è un contenuto creato; un successivo studentpack.exported lo lifta a
+// "exported" (pronto a condividere). Nessun secondo store, evidenze intatte.
+function contentCreated(
+  lessonEvents: readonly AppendedEvent[],
+): TeacherDashboardProjection["contentCreated"] {
+  const sorted = [...lessonEvents].sort((a, b) => a.seq - b.seq)
+  const exported = new Set<string>()
+  for (const ev of sorted) if (ev.kind === "studentpack.exported") exported.add(ev.packId)
+  const rows: TeacherDashboardProjection["contentCreated"] = []
+  for (const ev of sorted) {
+    if (ev.kind !== "studentpack.generated") continue
+    rows.push({
+      contentId: ev.packId,
+      kind: "student-pack",
+      createdAt: ev.t,
+      fromRoom: ev.fromRoom ?? "",
+      readiness: exported.has(ev.packId) ? "exported" : "generated",
+      evidenceRefs: [...ev.evidence],
+    })
+  }
+  return rows.sort((a, b) => byString(a.contentId, b.contentId))
+}
+
 export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): TeacherDashboardProjection {
   const graph = materialize(input.lessonEvents)
   const lessons = buildLessons(input)
@@ -409,7 +505,8 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
     lessons: lessonRows,
     graphView: projectGraphView(graph, input.focusNodeId),
     recurringErrors: recurringErrors(input.lessonEvents, graph, input.locale),
-    plugins: [],
+    plugins: projectPlugins(input.pluginRegistry, input.lessonEvents),
+    contentCreated: contentCreated(input.lessonEvents),
     studentPackQueue: studentPackQueue(input.lessonEvents),
     stats: buildStats(lessons, graph),
     publicProfile: null,
@@ -417,7 +514,10 @@ export function projectTeacherDashboard(input: ProjectTeacherDashboardInput): Te
       { zone: "Z3", reason: "student aggregates require consent-scoped event types not present in v0" },
       { zone: "Z4", reason: "planned lessons require lesson.planned events" },
       { zone: "Z5", reason: "workspace material registry is not wired into this pure projector slice" },
-      { zone: "Z6", reason: "plugin manifest registry is not wired into this pure projector slice" },
+      // Z6 esce da "non disponibile" SOLO quando il chiamante passa pluginRegistry (dato plain).
+      ...(input.pluginRegistry
+        ? []
+        : [{ zone: "Z6", reason: "plugin manifest registry is not wired into this pure projector slice" }]),
       { zone: "Z10", reason: "export/import events are not in the current event-log schema" },
       { zone: "Z11", reason: "integrazione Drive fuori v0/v1 (spec §Z11)" },
       { zone: "Z12", reason: "public profile has no local source contract yet" },

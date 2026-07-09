@@ -166,6 +166,107 @@ describe("materializer (eventi → grafo derivato)", () => {
     const graph = materialize(await log.readAll())
     expect(graph.edges.filter((e) => e.kind === "corregge")).toHaveLength(0)
   })
+
+  it("simulation.step.completed materializza uno step verificato come esercizio con evidence di plugin/scena", async () => {
+    const log = new InMemoryEventLog()
+    await log.append({
+      kind: "simulation.step.completed",
+      stepId: "step:v1-cap6-esp1:2",
+      sceneId: "scene:v1-cap6-esp1",
+      experimentId: "v1-cap6-esp1",
+      conceptId: "led_polarity",
+      labels: { it: "LED orientato correttamente" },
+      t: 1450,
+      evidence: ["plugin:io.ardesia.simulation@2.0.0", "scene:v1-cap6-esp1@candidate"],
+    })
+
+    const graph = materialize(await log.readAll())
+    expect(graph.nodes.get("step:v1-cap6-esp1:2")).toMatchObject({
+      kind: "esercizio",
+      labels: { it: "LED orientato correttamente" },
+      evidenceRefs: ["plugin:io.ardesia.simulation@2.0.0", "scene:v1-cap6-esp1@candidate"],
+    })
+    expect(graph.edges).toContainEqual(
+      expect.objectContaining({
+        from: "step:v1-cap6-esp1:2",
+        kind: "cita",
+        to: "led_polarity",
+      }),
+    )
+  })
+
+  it("simulation.circuit.solved materializza l'esperimento risolto come esercizio + cita concetto", async () => {
+    const log = new InMemoryEventLog()
+    await log.append({
+      kind: "simulation.circuit.solved",
+      experimentId: "v1-cap6-esp1",
+      sceneId: "scene:v1-cap6-esp1",
+      conceptId: "led_polarity",
+      currentMa: 15.3,
+      bookLayoutValid: true,
+      labels: { it: "Primo LED acceso" },
+      t: 1500,
+      evidence: ["plugin:io.ardesia.simulation@2.0.0", "scene:v1-cap6-esp1@solved"],
+    })
+
+    const graph = materialize(await log.readAll())
+    expect(graph.nodes.get("v1-cap6-esp1")).toMatchObject({
+      kind: "esercizio",
+      labels: { it: "Primo LED acceso" },
+      evidenceRefs: ["plugin:io.ardesia.simulation@2.0.0", "scene:v1-cap6-esp1@solved"],
+    })
+    expect(graph.edges).toContainEqual(
+      expect.objectContaining({ from: "v1-cap6-esp1", kind: "cita", to: "led_polarity" }),
+    )
+  })
+
+  it("simulation.error.observed materializza l'errore elettrico come errore + deriva-da concetto", async () => {
+    const log = new InMemoryEventLog()
+    await log.append({
+      kind: "simulation.error.observed",
+      errorId: "error:filo-scollegato-1",
+      conceptId: "circuito_chiuso",
+      sceneId: "scene:v1-cap6-esp1",
+      experimentId: "v1-cap6-esp1",
+      labels: { it: "Filo scollegato: circuito aperto" },
+      t: 1480,
+      evidence: ["plugin:io.ardesia.simulation@2.0.0", "scene:v1-cap6-esp1@broken"],
+    })
+
+    const graph = materialize(await log.readAll())
+    expect(graph.nodes.get("error:filo-scollegato-1")).toMatchObject({
+      kind: "errore",
+      labels: { it: "Filo scollegato: circuito aperto" },
+    })
+    expect(graph.edges).toContainEqual(
+      expect.objectContaining({
+        from: "error:filo-scollegato-1",
+        kind: "deriva-da",
+        to: "circuito_chiuso",
+      }),
+    )
+  })
+
+  it("plugin.mounted materializza il plugin montato con instanceId e evidence del catalogo", async () => {
+    const log = new InMemoryEventLog()
+    await log.append({
+      kind: "plugin.mounted",
+      pluginId: "io.ardesia.simulation",
+      pluginKind: "simulation",
+      instanceId: "sim-a",
+      room: "lezione-led",
+      labels: { it: "Simulatore" },
+      t: 1500,
+      evidence: ["plugin:io.ardesia.simulation@0.1.0", "board:plugin-postit-sim-a-board"],
+    })
+
+    const graph = materialize(await log.readAll())
+    expect(graph.nodes.get("plugin:io.ardesia.simulation#sim-a")).toMatchObject({
+      kind: "plugin",
+      labels: { it: "Simulatore" },
+      evidenceRefs: ["plugin:io.ardesia.simulation@0.1.0", "board:plugin-postit-sim-a-board"],
+    })
+  })
 })
 
 describe("recall deterministico (query O(vicinato))", () => {

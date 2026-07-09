@@ -21,6 +21,7 @@ import type { StorageReadWriteDelete } from "./killList.ts"
 import { ToolHostSession, createNonce } from "./session.ts"
 import type { MethodHandler } from "./router.ts"
 import type { PortLike } from "./session.ts"
+import type { EventLogStore, LessonOsEvent } from "../lessonos/eventlog.ts"
 
 export function statePath(toolId: string): string {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
@@ -53,6 +54,12 @@ export interface ToolHostDeps {
    * a storage senza quota. L'host non crea mai un log proprio.
    */
   eventLog?: EventLogReadLike
+  /**
+   * Event-log LessonOS in append controllato per lesson.event.emit. Separato
+   * dalla view read-only di graph.query: concedere la lettura non implica mai
+   * scrittura, e viceversa.
+   */
+  lessonEventLog?: EventLogStore
   /**
    * Identità di ISTANZA (P0-C, multi-istanza dello stesso plugin): namespace
    * storage e ownership board diventano per-istanza, così due post-it dello
@@ -270,6 +277,14 @@ export class ToolHost {
     const graph = this._graph
     if (graph !== null) {
       handlers["graph.query"] = (p) => graph.query(p as Parameters<ToolGraph["query"]>[0])
+    }
+    const lessonEventLog = this._deps.lessonEventLog
+    if (lessonEventLog !== undefined) {
+      handlers["lesson.event.emit"] = async (p) => {
+        const { event } = p as { event: LessonOsEvent }
+        const appended = await lessonEventLog.append(event)
+        return { seq: appended.seq }
+      }
     }
     return handlers
   }

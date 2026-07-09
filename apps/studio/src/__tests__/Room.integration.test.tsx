@@ -7,8 +7,15 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
+import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
+import { createPluginPostitBoardScene } from "../design/multiPostitBoardPersistence"
+import { exportLesson } from "../store/lessonBundle"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
+
+const mockExcalidrawHarness = vi.hoisted(() => ({
+  updateSceneCalls: [] as Array<{ elements?: Array<{ id?: string }> }>,
+}))
 
 vi.mock("@excalidraw/excalidraw", () => {
   let serialized = JSON.stringify({ type: "excalidraw", elements: [], v: 1 })
@@ -19,7 +26,9 @@ vi.mock("@excalidraw/excalidraw", () => {
           const unsubs: Array<() => void> = []
           props.excalidrawAPI({
             getSceneElements: vi.fn(() => []),
-            updateScene: vi.fn(),
+            updateScene: vi.fn((scene: { elements?: Array<{ id?: string }> }) => {
+              mockExcalidrawHarness.updateSceneCalls.push(scene)
+            }),
             addFiles: vi.fn(),
             onPointerDown: vi.fn(() => {
               const unsub = () => {}
@@ -159,6 +168,7 @@ beforeEach(() => {
   })
   globalThis.location.hash = "#test-room-1"
   document.body.innerHTML = '<div id="root"></div>'
+  mockExcalidrawHarness.updateSceneCalls = []
   vi.clearAllMocks()
 })
 
@@ -1213,16 +1223,19 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
     const mediaBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "media")!
     expect(mediaBtn).toBeDefined()
-    expect(mediaBtn.getAttribute("aria-label")).toMatch(/immagine|pdf/i)
+    expect(mediaBtn.getAttribute("aria-label")).toMatch(/immagine|pdf|lesson/i)
 
     root.unmount()
   })
 })
 
 describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coerente, no alert)", () => {
-  async function mountRoomAndGetFileInput() {
+  async function mountRoomAndGetFileInput(options: { mockLoadScene?: boolean } = {}) {
+    const { mockLoadScene = true } = options
     const { store } = await createMockStore()
-    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    if (mockLoadScene) {
+      vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    }
     // Drena i timer pendenti dei test precedenti: OGNI re-render del mock Excalidraw
     // accoda una consegna API via setTimeout(0); una consegna stantia (Room già
     // smontato) setterebbe l'attributo qui sotto SENZA settare l'apiRef di QUESTO
@@ -1262,6 +1275,41 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     await vi.waitFor(() => {
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Formato non supportato")
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("import .lesson dalla Room scrive la board nel path della stanza e aggiorna Excalidraw", async () => {
+    const { store: sourceStore } = await createMockStore()
+    const boardScene = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits())
+    await sourceStore.saveScene("source-room", JSON.stringify(boardScene))
+    const bundle = await exportLesson(sourceStore, "source-room")
+
+    const { root, input, store } = await mountRoomAndGetFileInput({ mockLoadScene: false })
+
+    selectFile(input, new File([bundle], "source.lesson", { type: "application/zip" }))
+
+    await vi.waitFor(async () => {
+      const roomSceneBlob = await store.read("raw/test-room-1/board.excalidraw")
+      expect(roomSceneBlob).not.toBeNull()
+      const roomScene = JSON.parse(await roomSceneBlob!.text()) as { elements: Array<{ id?: string }> }
+      expect(roomScene.elements.map((element) => element.id)).toEqual(
+        boardScene.elements.map((element) => element.id),
+      )
+    }, { timeout: 5000, interval: 10 })
+
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent ?? "").not.toContain("Formato non supportato")
+      expect(err?.textContent ?? "").not.toContain("Caricamento non riuscito")
+    }, { timeout: 5000, interval: 10 })
+
+    await vi.waitFor(() => {
+      const updateSceneElementIds = mockExcalidrawHarness.updateSceneCalls.map((scene) =>
+        scene.elements?.map((element) => element.id),
+      )
+      expect(updateSceneElementIds).toContainEqual(boardScene.elements.map((element) => element.id))
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()

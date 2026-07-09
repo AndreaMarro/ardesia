@@ -19,6 +19,11 @@ body {
 .st-bar {
   display: flex; align-items: center; gap: 14px;
   padding: 0 14px; height: 52px; flex: 0 0 52px;
+  /* Header sopra il canvas Excalidraw: .st-bar ha backdrop-filter (crea uno
+     stacking context che intrappola il dropdown .st-actions-open fixed); senza
+     z-index il dropdown finiva SOTTO la toolbar Excalidraw (ToolIcon intercetta
+     i tap). z-index alto ma < 999999 (i modali Excalidraw restano sopra). */
+  position: relative; z-index: 500;
   background: var(--m-paper-veil);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border-bottom: var(--m-rule-weight) solid var(--m-line);
@@ -30,7 +35,18 @@ body {
   font-family: var(--m-font-display);
   font-size: var(--m-fs-xl); font-weight: 600; letter-spacing: 0.2px; color: var(--m-ink);
 }
-.st-bdot { width: 6px; height: 6px; border-radius: 50%; background: var(--m-blue); align-self: center; }
+/* Marchio Ardesia — "mobile di Calder" in miniatura: dischi primari
+   (blu · ocra · viridian) bilanciati su un perno, oscillazione lieve.
+   Firma memorabile, tutta CSS. */
+.st-bdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--m-blue); align-self: center;
+  box-shadow: 9px -4px 0 -1.5px var(--m-ochre), 15px 2px 0 -2px var(--m-viridian);
+  transform-origin: 3.5px 3.5px;
+  animation: st-bdot-sway 5.5s var(--m-ease) infinite alternate;
+}
+@keyframes st-bdot-sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+@media (prefers-reduced-motion: reduce) { .st-bdot { animation: none; } }
 .st-sub { font-size: var(--m-fs-2xs); letter-spacing: var(--m-track); text-transform: uppercase; color: var(--m-ink-4); }
 .st-room {
   font-family: var(--m-font-mono); font-size: var(--m-fs-2xs);
@@ -280,6 +296,8 @@ body {
   padding: var(--m-sp-5) var(--m-sp-3); gap: var(--m-sp-1);
   max-width: 36ch;
 }
+/* Segno Miró/Calder dello stato vuoto: non deve restringersi nel flex-column. */
+.st-state-mark { flex: none; margin: 0 0 var(--m-sp-1); }
 .st-state-title {
   margin: 0;
   font-family: var(--m-font-display);
@@ -365,6 +383,30 @@ body {
 
   /* zero overflow orizzontale */
   .st-bar { overflow: hidden; }
+}
+
+/* ── Tablet / LIM dead-zone (769–1024px) ──────────────────────────────────
+   La toolbar completa (~1356px) non entra nel viewport e l'hamburger
+   compariva SOLO ≤768px → i controlli oltre il bordo (es. il pulsante "sim"
+   per inserire il Simulation Plugin) restavano irraggiungibili su iPad/LIM,
+   sia a tocco che a mouse. Estende il MENU A SCOMPARSA già collaudato
+   (hamburger + dropdown che va a capo) a tutta la fascia tablet, senza
+   toccare gli altri adattamenti mobile (brand/drawer/composer).
+   Verificato firsthand: prima btn.right=893 > innerWidth=810 (fuori viewport);
+   dopo, l'hamburger apre il dropdown e "sim" è raggiungibile.
+   Regressione guardata da e2e/first-led-ipad-touch.spec.ts. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .st-menu-btn { display: inline-flex; align-items: center; }
+  .st-actions { display: none; }
+  .st-actions.st-actions-open {
+    display: flex; flex-wrap: wrap;
+    position: fixed; top: 52px; left: 0; right: 0;
+    background: var(--m-paper-veil);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: var(--m-rule-weight) solid var(--m-line);
+    padding: var(--m-sp-2); z-index: 99; gap: var(--m-sp-1);
+    box-shadow: var(--m-shadow-pop);
+  }
 }
 
 @supports (height: 100dvh) {

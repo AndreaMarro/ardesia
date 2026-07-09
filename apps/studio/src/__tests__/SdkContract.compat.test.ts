@@ -31,6 +31,7 @@ const GOLDEN_CAPABILITIES: readonly CapabilityName[] = [
   "board.write",
   "graph.proposeClaims",
   "graph.query",
+  "lesson.event.emit",
   "llm.generate",
   "net.fetch",
   "storage",
@@ -43,6 +44,8 @@ const GOLDEN_TOOL_METHODS: Record<string, CapabilityName> = {
   // v1.1.0 (P0-D): graph.query read-only entra nel wire — aggiunta
   // retro-compatibile ⇒ MINOR (regola SemVer in sdk/index.ts).
   "graph.query": "graph.query",
+  // v1.2.0: append controllato di eventi didattici verificabili nel log LessonOS.
+  "lesson.event.emit": "lesson.event.emit",
   "storage.delete": "storage",
   "storage.get": "storage",
   "storage.list": "storage",

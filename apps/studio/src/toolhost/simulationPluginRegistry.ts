@@ -5,6 +5,7 @@
 
 import type { ReactElement } from "react";
 import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
+import type { LessonOsEvent } from "../lessonos/eventlog";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
 export type ToolEmbedLike = {
@@ -26,6 +27,12 @@ export type ToolLinkRef = {
  */
 export type SimulationToolHost = {
   persistEmbedState?: (embedId: string, state: unknown) => void;
+  /**
+   * host-observes-solve: il tool riporta l'esito del solve come evento LessonOS
+   * tipato; l'host lo accoda al log. Opzionale/fail-soft: senza host, il tool
+   * resta funzionante e semplicemente non registra eventi.
+   */
+  emitLessonEvent?: (event: LessonOsEvent) => void;
 };
 
 export interface SimulationToolEntry {

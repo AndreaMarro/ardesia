@@ -34,24 +34,23 @@ test("copy/paste del post-it = nuova istanza con identità coerente", async ({ p
   await page.goto("/")
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }).click()
-  await expect(page.getByRole("button", { name: "palette Resistenza" }).first()).toBeVisible({
+  const coreCanvas = page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first()
+  await expect(coreCanvas).toBeVisible({
     timeout: 15_000,
   })
+  await expect(page.locator("[data-elab-core-canvas-host] svg").first()).toBeVisible()
 
   // Il focus dopo l'insert è sul bottone della toolbar: un click raw sul
   // post-it lo seleziona E porta il focus sul canvas (serve per la clipboard
   // di Excalidraw). Poi copy/paste da tastiera (gesto utente reale): il paste
   // clona link+customData con id nuovo.
-  const paletteBox = await page
-    .getByRole("button", { name: "palette Resistenza" })
-    .first()
-    .boundingBox()
-  if (!paletteBox) throw new Error("post-it senza bounding box")
-  await page.mouse.click(paletteBox.x + paletteBox.width / 2, paletteBox.y - 40)
+  const canvasBox = await coreCanvas.boundingBox()
+  if (!canvasBox) throw new Error("post-it senza bounding box")
+  await page.mouse.click(canvasBox.x + canvasBox.width / 2, canvasBox.y + 20)
   await page.keyboard.press("ControlOrMeta+c")
   await page.keyboard.press("ControlOrMeta+v")
 
-  await expect(page.getByRole("button", { name: "palette Resistenza" })).toHaveCount(2, {
+  await expect(page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')).toHaveCount(2, {
     timeout: 15_000,
   })
 
