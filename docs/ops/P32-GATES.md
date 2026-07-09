@@ -3,6 +3,27 @@
 Binary gates per iteration. GREEN only when the command's own exit is 0 and the
 output is read directly (not through a `tail` pipe that masks the exit code).
 
+**Method note (bitten twice, iter 1 e iter 6):** `cmd | tail; echo $?` riporta
+l'exit di `tail`, NON di `cmd` — falso verde. Pattern corretto:
+`cmd > log 2>&1; X=$?` poi leggere il log. L'iter-6 tsc RED è stato scoperto
+dal TESTO dell'errore, non dall'exit code.
+
+## Iter 6 — Gomma (D7)
+
+| Gate | Result |
+|---|---|
+| single-writer / CI su `2e5b7eae` | PASS / **4/4** ✅ |
+| RED first | 4/23 fail pre-impl ✅ |
+| targeted | **23/23** ✅ |
+| typecheck | prima RED (workbench `MontaggioPlacementType | null` stantio → repair cycle 1: widen a `MontaggioTool` + specchio gomma + fix drift id cavo iter-4) → **0** ✅ |
+| build | **0** ✅ |
+| full vitest | **1594 pass / 5 skip / 0 fail** (+4) ✅ |
+| e2e ×3 | prima run **3/6 FAIL** con load-average **39.81** (tutti timeout di readiness, zero assertion) → retry macchina scarica **6/6 (45.5s)** ✅ — load-flake, non regressione |
+| secret scan | 0 ✅ |
+
+**Method note 2:** non lanciare l'e2e mentre vitest/build girano in parallelo —
+sopra load ~40 i timeout di readiness (15-60s) scattano. Gates seriali.
+
 ## Iter 5 — Slice (a) rigettata; invarianti affordance locked (D6-bis)
 
 | Gate | Command | Result |

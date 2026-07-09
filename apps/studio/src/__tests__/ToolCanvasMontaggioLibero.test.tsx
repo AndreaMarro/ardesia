@@ -412,6 +412,69 @@ describe("SimulationBoard — palette CAVO come connection reale (P32 D6)", () =
     expect(count(container)).toBe("0")
   })
 
+  it("GOMMA (D7): rimuove UN placement e il digest topologico torna quello di base", () => {
+    const container = mountSim()
+    const digestOf = () =>
+      container
+        .querySelector("[data-simulation-free-mode]")
+        ?.getAttribute("data-sim-scene-digest") ?? null
+    const baseDigest = digestOf()
+    expect(baseDigest).toMatch(/^[0-9a-f]{8}$/)
+
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("1")
+    expect(digestOf()).not.toBe(baseDigest)
+
+    fireEvent.click(palette(container, "Gomma"))
+    expect(palette(container, "Gomma").getAttribute("aria-pressed")).toBe("true")
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("0")
+    // FISICA/topologia: rimosso il cavo, la scena è identica a prima (digest).
+    expect(digestOf()).toBe(baseDigest)
+    expect(notice(container)).toBe("")
+  })
+
+  it("GOMMA (D7): il manuale è intoccabile — foro occupato dal libro ⇒ notice, nulla rimosso", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Resistenza"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("1")
+
+    fireEvent.click(palette(container, "Gomma"))
+    fireEvent.click(hole(container, "bb1:i9")) // occupato dal MANUALE, non da un placement
+    expect(count(container)).toBe("1")
+    expect(notice(container)).not.toBe("")
+  })
+
+  it("GOMMA (D7): foro vuoto ⇒ notice esplicita, mai silenzio", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Gomma"))
+    fireEvent.click(hole(container, "bb1:d20"))
+    expect(notice(container)).not.toBe("")
+    expect(count(container)).toBe("0")
+  })
+
+  it("GOMMA (D7): rimuove il placement giusto quando ce ne sono più d'uno", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Resistenza"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:d12"))
+    fireEvent.click(hole(container, "bb1:d13"))
+    expect(count(container)).toBe("2")
+
+    fireEvent.click(palette(container, "Gomma"))
+    fireEvent.click(hole(container, "bb1:d12")) // estremo del cavo
+    expect(count(container)).toBe("1")
+    // La resistenza sopravvive: i suoi fori restano occupati.
+    fireEvent.click(hole(container, "bb1:c3"))
+    expect(count(container)).toBe("0")
+  })
+
   it("'riparti dal manuale' azzera anche i cavi", () => {
     const container = mountSim()
     fireEvent.click(palette(container, "Cavo"))

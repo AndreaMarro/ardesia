@@ -31,6 +31,9 @@
   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
   Headline: capability layer bypassed on live board path (R8); `.lesson` import
   doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
+- **Iter 6 (Gomma, D7):** DONE, GREEN. Rimozione singolo placement via strumento
+  Gomma in palette (ex glifo inerte "Altro"). TDD 4 RED→23/23; digest torna
+  identico dopo piazza+cancella; manuale intoccabile. Gates in P32-GATES.
 - **Iter 5 (slice (a) → D6-bis):** DONE, GREEN (test+docs only). Proposta
   "cavo su foro occupato" RIGETTATA con evidenza fisica (un foro = un reoforo);
   le affordance equivalenti (pin via tie, jumper via rail) già operative e ora

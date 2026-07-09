@@ -1,5 +1,42 @@
 # P32 — Run Report
 
+## Iter 6 — GOMMA: rimozione di un singolo placement (D7)
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `2e5b7eae` → +1 commit.
+**Single-writer:** PASS. **CI su `2e5b7eae`:** 4/4 green.
+
+### Slice
+Prima di questa iterazione l'unica rimozione era il reset totale ("riparti dal
+manuale"). Ora: strumento **Gomma** in palette (sostituisce il glifo inerte
+"Altro", zero riferimenti altrove) — tap su un foro di un placement → rimosso.
+Manuale strutturalmente intoccabile; foro vuoto/manuale → notice, mai silenzio.
+
+### Design (D7)
+- `MontaggioTool = MontaggioPlacementType | "eraser"` (la gomma è uno strumento,
+  non un tipo piazzabile); branch dedicato in `handleHoleTap` PRIMA del check di
+  occupazione; al più un placement per foro → mai ambiguità.
+- Event-vs-state onesto: le operations sono una proiezione dello stato corrente
+  → la rimozione non emette envelope `delete` (riservato al futuro event-sourced
+  undo/redo, NEXT e).
+
+### Tests (TDD RED 4/23 → GREEN 23/23)
+Digest topologico torna IDENTICO a quello base dopo piazza+cancella (fisica
+topologica via `data-sim-scene-digest`); manuale intoccabile; foro vuoto notice;
+rimozione selettiva con 2 placements (il cavo cade, la resistenza resta).
+
+### Gates
+Vedi [P32-GATES.md](P32-GATES.md) (tsc/build/full vitest/e2e ×3).
+
+### Honest caveats
+- Gomma rimuove solo PLACEMENTS (libera manipolazione); i fili del MANUALE non
+  si toccano — coerente col contratto "il libro fa fede", ma significa che il
+  break/restore della strip resta l'unico modo di alterare il circuito del libro.
+- Nessun undo: cancellazione errata ⇒ ripiazzare a mano (undo/redo = NEXT e).
+
+### Should continue? **Yes.**
+
+---
+
 ## Iter 5 — Slice (a) RIGETTATA con evidenza; affordance Tinkercad-equivalenti LOCKED (D6-bis)
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `a67ae0b1` → +1 commit (test+docs only).

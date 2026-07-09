@@ -29,8 +29,7 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
    d. battery9v in palette — richiede decisione solver multi-sorgente (D6) = design;
    e. undo/redo sulle operazioni (envelope già strutturati);
    f. netlist export (import Wokwi già esiste);
-   g. cancellare un cavo piazzato dal tap-tap (oggi solo reset totale) — candidato
-      NUOVO più piccolo: selezione cavo + delete, envelope `delete` già nel vocabolario.
+   g. ~~cancellare un singolo placement~~ **DONE Iter 6** (strumento Gomma, D7).
 
 3. **Phase 2 — plugin-grammar enforcement gap (R8).**
    Either route board-embed mounts through the capability layer or ADR the

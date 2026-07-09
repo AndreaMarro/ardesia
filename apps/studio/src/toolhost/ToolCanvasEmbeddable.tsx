@@ -674,17 +674,19 @@ registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
 export type MontaggioPlacementType = "resistor" | "led" | "wire";
+/** Strumenti della palette: i tipi piazzabili + la gomma (rimozione, D7). */
+export type MontaggioTool = MontaggioPlacementType | "eraser";
 export type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
 type MontaggioState = {
   placements: MontaggioPlacement[];
   operations?: SimulationOperationEnvelope[];
 };
 export type MontaggioCanvas = {
-  tool: MontaggioPlacementType | null;
+  tool: MontaggioTool | null;
   pending: string | null;
   notice: string | null;
   placements: MontaggioPlacement[];
-  onSelectTool: (tool: MontaggioPlacementType | null) => void;
+  onSelectTool: (tool: MontaggioTool | null) => void;
   onHoleTap: (ref: string) => void;
   onReset: () => void;
 };
@@ -858,7 +860,7 @@ function ReferenceSimulationCanvasTool({
   // dello studente non sono un drift del libro.
   const validation = validateBookLayoutScene(scene);
 
-  const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null);
+  const [montaggioTool, setMontaggioTool] = useState<MontaggioTool | null>(null);
   const [pendingHole, setPendingHole] = useState<string | null>(null);
   // Ripristino al mount dallo state persistito; da lì in poi lo stato locale
   // guida la UI e ogni cambio viene riscritto nell'embed (se l'host lo offre).
@@ -925,7 +927,7 @@ function ReferenceSimulationCanvasTool({
     return occupied;
   }, [scene, placements]);
 
-  function handleSelectTool(tool: MontaggioPlacementType | null) {
+  function handleSelectTool(tool: MontaggioTool | null) {
     setMontaggioTool(tool);
     setPendingHole(null);
     setMontaggioNotice(null);
@@ -933,6 +935,23 @@ function ReferenceSimulationCanvasTool({
 
   function handleHoleTap(ref: string) {
     if (montaggioTool === null) return;
+    if (montaggioTool === "eraser") {
+      // GOMMA (D7): rimuove il placement che possiede questo foro. Il manuale è
+      // strutturalmente intoccabile (i componenti del libro NON sono placements).
+      // Al più un placement per foro (regola un-foro-un-reoforo) → mai ambiguo.
+      const target = placements.find((p) => p.holes[0] === ref || p.holes[1] === ref);
+      if (!target) {
+        setMontaggioNotice(
+          occupiedHoles.has(ref)
+            ? `foro ${ref}: componente del manuale, non si cancella`
+            : `foro ${ref}: nessun componente libero da cancellare`,
+        );
+        return;
+      }
+      applyPlacements(placements.filter((p) => p.id !== target.id));
+      setMontaggioNotice(null);
+      return;
+    }
     if (occupiedHoles.has(ref)) {
       setMontaggioNotice(`foro ${ref} occupato: scegline uno libero`);
       return;
@@ -1658,7 +1677,13 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             pressed={montaggio ? montaggio.tool === "wire" : undefined}
             onSelect={montaggio ? () => montaggio.onSelectTool("wire") : undefined}
           />
-          <PaletteItem x={418} label="Altro" glyph="M13 26 H15 M23 26 H25 M33 26 H35" />
+          <PaletteItem
+            x={418}
+            label="Gomma"
+            glyph="M12 34 L26 12 L38 20 L26 40 H16 Z M20 40 H40"
+            pressed={montaggio ? montaggio.tool === "eraser" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("eraser") : undefined}
+          />
           {montaggio && (
             <>
               <text

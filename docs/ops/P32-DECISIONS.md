@@ -54,6 +54,26 @@ Tinkercad) è un follow-up esplicito; il cavo tra fori liberi estende comunque
 le net reali (tie↔tie). Step-mode ignora i cavi (predicati del libro invariati).
 **Status:** implemented (Iter 4).
 
+## D7 — Rimozione singolo placement: strumento GOMMA in palette (Iter 6)
+**Decision:** rimozione di UN placement (resistor/led/cavo) tramite strumento
+esplicito **Gomma** nella palette (sostituisce il glifo inerte "Altro", che non
+era referenziato da nessun test/e2e): selezioni la Gomma, tocchi un foro di un
+placement → rimosso. Il manuale è strutturalmente intoccabile (i componenti del
+libro non sono placements). Tap su foro senza placement → notice, mai silenzio.
+**Perché Gomma e non "Seleziona-per-cancellare":** (1) "Seleziona" a tool nullo
+oggi è un no-op sui fori, con test che lo blinda — riusarlo per DELETE cambierebbe
+la semantica di selezione (che in futuro serve per ispezione); (2) la gomma è la
+metafora familiare LIM/GoodNotes; (3) additivo puro: un tipo `MontaggioTool =
+MontaggioPlacementType | "eraser"`, un branch in `handleHoleTap`.
+**Event-vs-state (onestà sul modello):** le operations del montaggio sono una
+PROIEZIONE dello stato corrente (`createMontaggioPlacementOperations` ricostruisce
+la lista dai placements attuali) — la rimozione NON emette un envelope `delete`:
+lo stato post-rimozione È la nuova lista. Il kind `delete` del vocabolario resta
+per il futuro modello event-sourced (undo/redo, NEXT e).
+**Invariante di occupazione:** al più UN placement per foro (regola uniforme
+un-foro-un-reoforo) → la Gomma non è mai ambigua.
+**Status:** implemented (Iter 6).
+
 ## D6-bis — RIGETTATO "cavo verso foro occupato"; le affordance Tinkercad-equivalenti esistono già (Iter 5)
 **Decision:** NON implementare il jumper verso un foro occupato. La regola di
 occupazione resta uniforme (un foro = un reoforo) anche per il cavo.

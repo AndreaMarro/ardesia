@@ -30,7 +30,7 @@ import {
   SimulationBoard,
   type MontaggioCanvas,
   type MontaggioPlacement,
-  type MontaggioPlacementType,
+  type MontaggioTool,
 } from "../toolhost/ToolCanvasEmbeddable"
 import ViewNav from "./ViewNav"
 
@@ -334,7 +334,7 @@ function buildScene(sourceMode: SourceMode) {
 
 function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
   const previewScene = useMemo(() => createReferenceSimulationScene({ ledOn: true }), [])
-  const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null)
+  const [montaggioTool, setMontaggioTool] = useState<MontaggioTool | null>(null)
   const [pendingHole, setPendingHole] = useState<string | null>(null)
   const [placements, setPlacements] = useState<MontaggioPlacement[]>([])
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null)
@@ -375,7 +375,7 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
     [boardScene],
   )
 
-  function handleSelectTool(tool: MontaggioPlacementType | null) {
+  function handleSelectTool(tool: MontaggioTool | null) {
     setMontaggioTool(tool)
     setPendingHole(null)
     setMontaggioNotice(null)
@@ -383,6 +383,21 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
 
   function handleHoleTap(ref: string) {
     if (montaggioTool === null) return
+    if (montaggioTool === "eraser") {
+      // Specchio del gesto GOMMA dell'embed (D7): rimuove il placement del foro.
+      const target = placements.find((p) => p.holes[0] === ref || p.holes[1] === ref)
+      if (!target) {
+        setMontaggioNotice(
+          occupiedHoles.has(ref)
+            ? `foro ${ref}: componente del manuale, non si cancella`
+            : `foro ${ref}: nessun componente libero da cancellare`,
+        )
+        return
+      }
+      setPlacements(placements.filter((p) => p.id !== target.id))
+      setMontaggioNotice(null)
+      return
+    }
     if (occupiedHoles.has(ref)) {
       setMontaggioNotice(`foro ${ref} occupato: scegline uno libero`)
       return
@@ -397,7 +412,13 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
       return
     }
     const ordinal = placements.filter((placement) => placement.type === montaggioTool).length + 1
-    const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`
+    // Fix drift iter-4: anche qui il cavo ha il suo prefisso id (era led-libero).
+    const id =
+      montaggioTool === "resistor"
+        ? `r-libero-${ordinal}`
+        : montaggioTool === "wire"
+          ? `cavo-libero-${ordinal}`
+          : `led-libero-${ordinal}`
     setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }])
     setPendingHole(null)
     setMontaggioNotice(null)
