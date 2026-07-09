@@ -18,6 +18,7 @@ import {
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
+import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
@@ -808,10 +809,19 @@ function ReferenceSimulationCanvasTool({
     millis: readStateMillis(marker?.state) ?? machine.runtime.millis(),
     ledOn: readStateLed(marker?.state) ?? machine.runtime.isLit(LED_BUILTIN),
   });
-  const scene = useMemo(
+  const baseScene = useMemo(
     () => resolveSimulationScene(marker?.state, snapshot),
     [marker?.state, snapshot],
   );
+  // Manipolazione libera: un override locale della scena (es. break di un
+  // collegamento) ha la precedenza finché non si cambia esperimento. Il break
+  // reale muta le connections → la fisica reale (deriveSimulationSolveOutcome)
+  // osserva l'open-circuit; lo stato viene persistito per il reopen.
+  const [sceneOverride, setSceneOverride] = useState<SimulationSceneV1 | null>(null);
+  useEffect(() => {
+    setSceneOverride(null);
+  }, [baseScene.experimentId]);
+  const scene = sceneOverride ?? baseScene;
   // La validazione book-layout resta sulla scena del MANUALE: i piazzamenti
   // dello studente non sono un drift del libro.
   const validation = validateBookLayoutScene(scene);
@@ -925,6 +935,60 @@ function ReferenceSimulationCanvasTool({
     () => createBoardSceneWithPlacements(scene, placements),
     [scene, placements],
   );
+  // Fisica reale proiettata nel DOM (contratto stabile per la trace v0). La
+  // fisica è quella del circuito EFFETTIVAMENTE costruito = boardScene (scena
+  // del libro ± break ± componenti piazzati dalla palette), NON la sola scena
+  // del manuale: badge/diagnostica/digest riflettono ciò che lo studente ha
+  // davanti. Stesso deriveSimulationSolveOutcome dell'emit verso l'host.
+  const boardMnaView = useMemo(
+    () => (boardScene.runtime.kind === "elab-mna" ? computeElabMnaView(boardScene) : null),
+    [boardScene],
+  );
+  const solveOutcome = useMemo(
+    () => deriveSimulationSolveOutcome(boardScene, boardMnaView, validation.ok),
+    [boardScene, boardMnaView, validation.ok],
+  );
+  const solveEvent = useMemo(
+    () => simulationSolveEvent({ experimentId: boardScene.experimentId, outcome: solveOutcome, t: 0 }),
+    [boardScene.experimentId, solveOutcome],
+  );
+  const sceneDigest = useMemo(() => simulationSceneDigest(boardScene), [boardScene]);
+
+  function persistScene(nextScene: SimulationSceneV1) {
+    if (host?.persistEmbedState && marker?.state?.kind === "simulation-scene-v1") {
+      host.persistEmbedState(toolLink.embedId, { ...marker.state, scene: nextScene });
+    }
+  }
+
+  function handleBreakConnections() {
+    // Break reale = apri il circuito scollegando la batteria. La connettività
+    // reale (buildNets) unisce sia pinAssignments sia connections: per un
+    // open-circuit deterministico va rimossa OGNI incidenza della batteria in
+    // entrambi. Il solver (solveSeriesLoop) allora non trova più il cammino
+    // battery:positive→battery:negative → deriveSimulationSolveOutcome emette
+    // open-circuit. Nessuna scorciatoia: è la stessa fisica del canvas.
+    const battery = scene.components.find((component) => component.type === "battery9v");
+    if (!battery) return;
+    const prefix = `${battery.id}:`;
+    const nextPinAssignments = Object.fromEntries(
+      Object.entries(scene.pinAssignments).filter(([pinRef]) => !pinRef.startsWith(prefix)),
+    );
+    const nextConnections = scene.connections.filter(
+      (connection) => !connection.from.startsWith(prefix) && !connection.to.startsWith(prefix),
+    );
+    const next: SimulationSceneV1 = {
+      ...scene,
+      pinAssignments: nextPinAssignments,
+      connections: nextConnections,
+    };
+    setSceneOverride(next);
+    persistScene(next);
+  }
+
+  function handleRestoreConnections() {
+    setSceneOverride(null);
+    persistScene(baseScene);
+  }
   const coreCanvasProjectionMode: ElabCanvasProjectionMode =
     placements.length > 0 || montaggioTool !== null || marker?.state?.montaggio !== undefined
       ? "monta-tu"
@@ -989,6 +1053,49 @@ function ReferenceSimulationCanvasTool({
 
       <main style={mainStyle}>
         <div style={boardStackStyle}>
+          <section
+            data-simulation-free-mode
+            data-sim-solve-kind={solveOutcome.kind}
+            data-sim-current-ma={
+              solveOutcome.kind === "solved" ? solveOutcome.currentMa.toFixed(1) : "0.0"
+            }
+            data-sim-last-event-kind={solveEvent?.kind ?? "idle"}
+            data-sim-error-id={
+              solveEvent?.kind === "simulation.error.observed" ? solveEvent.errorId : ""
+            }
+            data-sim-scene-digest={sceneDigest}
+            aria-label="Manipolazione libera — fisica reale"
+            style={freeModeStripStyle}
+          >
+            <span style={freeModeBadgeStyle}>
+              {solveOutcome.kind === "solved"
+                ? `corrente ${solveOutcome.currentMa.toFixed(1)} mA`
+                : solveOutcome.kind === "error"
+                  ? `errore: ${solveOutcome.message}`
+                  : "in attesa"}
+            </span>
+            {solveEvent?.kind === "simulation.error.observed" && (
+              <span data-sim-diagnostic role="status" style={freeModeDiagnosticStyle}>
+                {solveEvent.labels.it ?? "errore elettrico osservato"}
+              </span>
+            )}
+            <button
+              type="button"
+              data-sim-break
+              onClick={handleBreakConnections}
+              style={freeModeButtonStyle}
+            >
+              Rompi i collegamenti
+            </button>
+            <button
+              type="button"
+              data-sim-restore
+              onClick={handleRestoreConnections}
+              style={freeModeButtonStyle}
+            >
+              Ripristina
+            </button>
+          </section>
           <ElabCoreCanvasMount
             scene={boardScene}
             projectionMode={coreCanvasProjectionMode}
@@ -2323,8 +2430,45 @@ const boardStageStyle = {
 const boardStackStyle = {
   minHeight: 0,
   display: "grid",
-  gridTemplateRows: "minmax(420px, 1fr) auto",
+  gridTemplateRows: "auto minmax(420px, 1fr) auto",
   gap: 10,
+} as const;
+
+const freeModeStripStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "center",
+  gap: "8px 12px",
+  padding: "8px 12px",
+  border: "1px solid #c9d7e2",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#203044",
+  font: "650 13px var(--m-font-ui)",
+} as const;
+
+const freeModeBadgeStyle = {
+  fontWeight: 800,
+  padding: "2px 8px",
+  borderRadius: 6,
+  background: "#eef4f8",
+} as const;
+
+const freeModeDiagnosticStyle = {
+  color: "#9a1f1f",
+  fontWeight: 700,
+} as const;
+
+const freeModeButtonStyle = {
+  minHeight: 34,
+  minWidth: 44,
+  padding: "0 12px",
+  border: "1px solid #9f7a2f",
+  borderRadius: 6,
+  background: "#fff6d8",
+  color: "#573d09",
+  font: "750 12px var(--m-font-ui)",
+  cursor: "pointer",
 } as const;
 
 const elabCoreStageStyle = {
