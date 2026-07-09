@@ -673,7 +673,7 @@ registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
-export type MontaggioPlacementType = "resistor" | "led";
+export type MontaggioPlacementType = "resistor" | "led" | "wire";
 export type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
 type MontaggioState = {
   placements: MontaggioPlacement[];
@@ -696,8 +696,19 @@ export function createBoardSceneWithPlacements(
   if (placements.length === 0) return scene;
   const components = [...scene.components];
   const pinAssignments = { ...scene.pinAssignments };
+  const connections = [...scene.connections];
   for (const placement of placements) {
-    if (placement.type === "resistor") {
+    if (placement.type === "wire") {
+      // Il cavo è una CONNECTION, non un component (D6): buildNets unisce già
+      // pinAssignments ∪ connections, quindi la continuità elettrica è reale
+      // a solver invariato; BoardWires lo disegna con la bezier di fallback.
+      connections.push({
+        from: placement.holes[0],
+        to: placement.holes[1],
+        color: "green",
+        kind: "wire",
+      });
+    } else if (placement.type === "resistor") {
       components.push({
         id: placement.id,
         type: "resistor",
@@ -719,7 +730,7 @@ export function createBoardSceneWithPlacements(
       pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
     }
   }
-  return { ...scene, components, pinAssignments };
+  return { ...scene, components, pinAssignments, connections };
 }
 
 export function createMontaggioPlacementOperations({
@@ -729,20 +740,41 @@ export function createMontaggioPlacementOperations({
   embedId: string;
   placements: readonly MontaggioPlacement[];
 }): SimulationOperationEnvelope[] {
-  return placements.map((placement) => ({
-    schema: "simulation-operation/1",
-    id: `${embedId}:montaggio:place:${placement.id}`,
-    actor: "manual",
-    origin: "canvas",
-    targetProvider: "local",
-    providerMode: "static",
-    operation: {
-      kind: "place-component",
-      component: montaggioComponentDescriptor(placement),
-      pose: poseFromMontaggioHoles(placement.holes),
-      pinAssignments: montaggioPinAssignments(placement),
-    },
-  }));
+  return placements.map((placement) => {
+    const envelopeBase = {
+      schema: "simulation-operation/1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+    } as const;
+    if (placement.type === "wire") {
+      // Cavo = connect-wire (vocabolario esistente), non place-component (D6).
+      return {
+        ...envelopeBase,
+        id: `${embedId}:montaggio:connect:${placement.id}`,
+        operation: {
+          kind: "connect-wire",
+          wire: {
+            id: placement.id,
+            from: placement.holes[0],
+            to: placement.holes[1],
+            color: "green",
+          },
+        },
+      };
+    }
+    return {
+      ...envelopeBase,
+      id: `${embedId}:montaggio:place:${placement.id}`,
+      operation: {
+        kind: "place-component",
+        component: montaggioComponentDescriptor(placement),
+        pose: poseFromMontaggioHoles(placement.holes),
+        pinAssignments: montaggioPinAssignments(placement),
+      },
+    };
+  });
 }
 
 function montaggioComponentDescriptor(
@@ -915,7 +947,12 @@ function ReferenceSimulationCanvasTool({
       return;
     }
     const ordinal = placements.filter((p) => p.type === montaggioTool).length + 1;
-    const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`;
+    const id =
+      montaggioTool === "resistor"
+        ? `r-libero-${ordinal}`
+        : montaggioTool === "wire"
+          ? `cavo-libero-${ordinal}`
+          : `led-libero-${ordinal}`;
     applyPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
     setPendingHole(null);
     setMontaggioNotice(null);
@@ -1614,7 +1651,13 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             onSelect={montaggio ? () => montaggio.onSelectTool("led") : undefined}
           />
           <PaletteItem x={258} label="Pulsante" glyph="M9 17 H31 V37 H9 Z M15 11 H25 V17" />
-          <PaletteItem x={338} label="Cavo" glyph="M9 35 C18 10 34 12 39 30" />
+          <PaletteItem
+            x={338}
+            label="Cavo"
+            glyph="M9 35 C18 10 34 12 39 30"
+            pressed={montaggio ? montaggio.tool === "wire" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("wire") : undefined}
+          />
           <PaletteItem x={418} label="Altro" glyph="M13 26 H15 M23 26 H25 M33 26 H35" />
           {montaggio && (
             <>
@@ -2178,6 +2221,9 @@ function PlacedPartsSvg({ scene, placements }: { scene: SimulationSceneV1; place
   return (
     <g pointerEvents="none">
       {placements.map((placement) => {
+        // Il cavo NON ha un corpo-componente: è già disegnato da BoardWires
+        // come connection di boardScene (bezier di fallback) — D6.
+        if (placement.type === "wire") return null;
         const [firstHole, secondHole] = placement.holes;
         const a = pointForBreadboardRef(firstHole);
         const b = pointForBreadboardRef(secondHole);

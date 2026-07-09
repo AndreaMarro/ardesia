@@ -244,3 +244,113 @@ describe("SimulationBoard — palette tap-tap (montaggio libero slice 3)", () =>
     expect(hole(container, "bb1:c3").getAttribute("data-pending")).not.toBe("1")
   })
 })
+
+describe("SimulationBoard — palette CAVO come connection reale (P32 D6)", () => {
+  it("il cavo entra in connections (kind wire), NON in components/pinAssignments; il digest cambia", async () => {
+    const { simulationSceneDigest } = await import("../../sim/core/simulationSceneDigest")
+    const base = createReferenceSimulationScene()
+    const boardScene = createBoardSceneWithPlacements(base, [
+      { id: "cavo-libero-1", type: "wire", holes: ["bb1:c3", "bb1:d12"] },
+    ])
+
+    expect(boardScene.connections).toContainEqual(
+      expect.objectContaining({ from: "bb1:c3", to: "bb1:d12", kind: "wire" }),
+    )
+    expect(boardScene.connections).toHaveLength(base.connections.length + 1)
+    expect(boardScene.components).toHaveLength(base.components.length)
+    expect(boardScene.pinAssignments).toEqual(base.pinAssignments)
+    expect(simulationSceneDigest(boardScene)).not.toBe(simulationSceneDigest(base))
+  })
+
+  it("FISICA: il cavo unisce le net reali e chiude un circuito serie aperto", async () => {
+    const { solveSeriesLoop, resolveNet } = await import("../../sim/breadboard/simulationBreadboard")
+    const base = createReferenceSimulationScene()
+    // Circuito serie sintetico con un GAP: tie-top-10 e tie-top-20 non comunicano.
+    const synthetic: SimulationSceneV1 = {
+      ...base,
+      components: [
+        { id: "bat1", type: "battery9v", label: "Batteria 9V", anchor: "bb1" },
+        { id: "r1", type: "resistor", label: "Resistore", value: 470, anchor: "bb1" },
+        { id: "led1", type: "led", label: "LED", color: "red", anchor: "bb1" },
+      ],
+      pinAssignments: {
+        "bat1:positive": "bb1:f1",
+        "r1:pin1": "bb1:g1",
+        "r1:pin2": "bb1:f5",
+        "led1:anode": "bb1:g5",
+        "led1:cathode": "bb1:f10",
+        "bat1:negative": "bb1:f20",
+      },
+      connections: [],
+    }
+    expect(solveSeriesLoop(synthetic).closed).toBe(false)
+    expect(resolveNet("bb1:g10", synthetic)).not.toBe(resolveNet("bb1:g20", synthetic))
+
+    const bridged = createBoardSceneWithPlacements(synthetic, [
+      { id: "cavo-libero-1", type: "wire", holes: ["bb1:g10", "bb1:g20"] },
+    ])
+    expect(resolveNet("bb1:g10", bridged)).toBe(resolveNet("bb1:g20", bridged))
+    const solved = solveSeriesLoop(bridged)
+    expect(solved.closed).toBe(true)
+    expect(solved.resistanceOhms).toBe(470)
+    expect(solved.ledCount).toBe(1)
+  })
+
+  it("il cavo produce un envelope connect-wire (vocabolario operazioni esistente)", () => {
+    const operations = createMontaggioPlacementOperations({
+      embedId: "sim-embed-1",
+      placements: [{ id: "cavo-libero-1", type: "wire", holes: ["bb1:c3", "bb1:d12"] }],
+    })
+
+    expect(operations).toHaveLength(1)
+    expect(operations[0]).toMatchObject({
+      schema: "simulation-operation/1",
+      id: "sim-embed-1:montaggio:connect:cavo-libero-1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+      operation: {
+        kind: "connect-wire",
+        wire: {
+          id: "cavo-libero-1",
+          from: "bb1:c3",
+          to: "bb1:d12",
+        },
+      },
+    })
+  })
+
+  it("la palette Cavo si seleziona (aria-pressed) e il tap-tap piazza un cavo", () => {
+    const container = mountSim()
+    const cavo = palette(container, "Cavo")
+    fireEvent.click(cavo)
+    expect(cavo.getAttribute("aria-pressed")).toBe("true")
+
+    fireEvent.click(hole(container, "bb1:c3"))
+    expect(hole(container, "bb1:c3").getAttribute("data-pending")).toBe("1")
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("1")
+    expect(notice(container)).toBe("")
+  })
+
+  it("cavo su foro occupato dal manuale: notice, nessun piazzamento (regola v1 uniforme)", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:i9"))
+    expect(notice(container)).toContain("occupato")
+    expect(count(container)).toBe("0")
+  })
+
+  it("'riparti dal manuale' azzera anche i cavi", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+    expect(count(container)).toBe("1")
+    const reset = container.querySelector('[aria-label="riparti dal manuale"]')
+    if (reset === null) throw new Error("reset non trovato")
+    fireEvent.click(reset)
+    expect(count(container)).toBe("0")
+  })
+})

@@ -31,6 +31,11 @@
   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
   Headline: capability layer bypassed on live board path (R8); `.lesson` import
   doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
+- **Iter 4 (Phase 5 slice 1 — cavo):** DONE, GREEN. U1 risolto (plugin IN-REPO;
+  audit corretto). D6: cavo in palette come CONNECTION su V1 — fisica reale via
+  buildNets invariato (test: gap serie chiuso dal solo cavo, false→true).
+  Gates: tsc0/build0, full vitest **1587/5skip/0** (+6), e2e ×3 6/6. battery9v
+  rinviata (design solver multi-sorgente). Follow-up a-f in P32-NEXT.
 - **Iter 3 (R10 mechanism):** DONE, GREEN. `.lesson` import now restores the
   LessonOS event log (explicit status union, D5; empty-log-only, never blocking,
   never silent). TDD RED→GREEN; full vitest **1581/5skip/0** (+7); tsc0/build0.

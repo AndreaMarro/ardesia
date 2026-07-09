@@ -1,5 +1,49 @@
 # P32 — Run Report
 
+## Iter 4 — Phase 5 slice 1: il CAVO entra nella palette (connection reale, D6)
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `884f6b38` → +1 commit.
+**Single-writer:** PASS. **CI su `884f6b38`:** 4/4 green (commit prodotto iter 3 validato).
+
+### Pre-work (U1 risolto, correzione all'audit)
+`@elab-tutor-plugin` è IN-REPO (`plugins/elab-tutor/src`, alias `vite.config.ts:16`) —
+l'audit iter 2 lo diceva out-of-repo: SBAGLIATO. Gesti reali del canvas plugin:
+wire pin-pin (`SimulatorCanvas.jsx:1155`), waypoint-drag (`:1387`, NIENTE
+endpoint-retarget), palette `pendingPlacement`→`onComponentAdd` (`:1065-1123`)
+NON cablato dall'host (solo 4 callback, `ToolCanvasEmbeddable.tsx:1217-1282`).
+
+### Slice (D6)
+Cavo = terza voce viva della palette tap-tap; produce una **connection**
+(`{from,to,kind:"wire",color:"green"}`), NON un component. Fisica reale gratis:
+`buildNets` unisce già pinAssignments ∪ connections; digest già copre `W:`;
+`BoardWires` disegna già le connections; envelope `connect-wire` già nel
+vocabolario. battery9v RINVIATA (rompe l'assunzione single-loop del solver = design).
+
+### What changed
+- `ToolCanvasEmbeddable.tsx`: union `+"wire"`; `createBoardSceneWithPlacements`
+  → connections; ops builder → `connect-wire`; id `cavo-libero-N`; palette Cavo
+  interattiva; `PlacedPartsSvg` skip (il cavo lo disegna BoardWires).
+- `simulationStepMode.ts`: cavo → `wires` del circuito valutabile (mai pinAssignments).
+- Test: +6 in `ToolCanvasMontaggioLibero.test.tsx`, incl. **fisica**: circuito serie
+  sintetico con gap → `solveSeriesLoop.closed` false→true col solo cavo piazzato;
+  `resolveNet` unificata; occupato→notice; reset azzera.
+
+### Gates
+tsc 0 · build 0 · targeted 16/16 · **full vitest 1587/5skip/0** (+6) · **e2e
+p30+montaggio `--repeat-each=3` 6/6** · secret 0. → [P32-GATES.md](P32-GATES.md)
+
+### Honest caveats
+- Cavo solo tra fori LIBERI (regola occupazione v1 uniforme): il jumper verso
+  foro occupato — uso canonico Tinkercad — è il follow-up (a) in NEXT.
+- Nessun drag: gesto = tap-tap (scelta LIM/iPad di #93). Niente e2e nuovo per il
+  cavo (montaggio-canvas copre il meccanismo palette; candidato follow-up).
+- **NON è Tinkercad parity**: mancano jumper-su-occupato, retarget, undo/redo,
+  battery/strumenti/netlist-export (NEXT a-f).
+
+### Should continue? **Yes.**
+
+---
+
 ## Iter 3 — R10: `.lesson` import ripristina la memoria didattica (meccanismo)
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `5be02e38` → +1 commit.

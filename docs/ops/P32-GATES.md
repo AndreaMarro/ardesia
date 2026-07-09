@@ -3,6 +3,19 @@
 Binary gates per iteration. GREEN only when the command's own exit is 0 and the
 output is read directly (not through a `tail` pipe that masks the exit code).
 
+## Iter 4 — Phase 5 slice 1 (cavo in palette, D6)
+
+| Gate | Command | Result |
+|---|---|---|
+| single-writer | clean, HEAD==`884f6b38`, no lock | PASS ✅ |
+| CI on `884f6b38` | `gh pr checks 150` | **4/4 pass** ✅ |
+| RED first | 6 nuovi test pre-impl | 6/16 fail ✅ |
+| targeted | `vitest ToolCanvasMontaggioLibero` | **16/16** ✅ |
+| typecheck / build | `tsc -b` / `npm run build` | **0 / 0** ✅ |
+| full vitest | CI-deterministic profile | **1587 pass / 5 skip / 0 fail** (+6) ✅ |
+| e2e regression | `p30-free-manipulation + montaggio-canvas --repeat-each=3` | **6/6** ✅ |
+| secret scan diff | grep patterns | 0 hit ✅ |
+
 ## Iter 3 — R10 (.lesson import → event-log restore)
 
 | Gate | Command | Result |

@@ -14,11 +14,19 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
    log vuoto → import `.lesson` → `restored`. Solo lì il restore diventa
    user-facing; oggi il default live è `skipped-non-empty` (onesto, documentato).
 
-2. **Phase 5 slice 1 — battery9v/wire toward first-class palette.**
-   Pre-work now explicit: reconcile V1 vs V2 scene model (R9) and read the
-   out-of-repo `@elab-tutor-plugin/plugin/renderEmbeddable` drag semantics (U1)
-   BEFORE modeling. Wire exists in solver catalog (`catalog.ts:95`) but not in the
-   V1 component union nor palette (inert glyph `ToolCanvasEmbeddable.tsx:1616-1618`).
+2. ~~**Phase 5 slice 1 — wire palette.**~~ **DONE Iter 4** (D6: cavo = connection su V1;
+   fisica reale via buildNets invariato; tap-tap; connect-wire envelope). U1 RISOLTO:
+   `@elab-tutor-plugin` è IN-REPO (`plugins/elab-tutor/src`, alias vite.config.ts:16);
+   gesti reali: wire pin-pin `SimulatorCanvas.jsx:1155`, waypoint-drag `:1387` (NO
+   endpoint-retarget), palette `pendingPlacement`+`onComponentAdd` `:1065-1123` che
+   l'host NON cabla (`ToolCanvasEmbeddable.tsx:1217-1282` = solo 4 callback).
+   **Follow-up espliciti Phase 5 (in ordine):**
+   a. jumper verso foro OCCUPATO (uso canonico Tinkercad; oggi regola v1 uniforme rifiuta);
+   b. cablare `onComponentAdd` host→plugin canvas (palette del canvas plugin viva);
+   c. wire endpoint-retarget (manca anche nel plugin canvas);
+   d. battery9v in palette — richiede decisione solver multi-sorgente (D6) = design;
+   e. undo/redo sulle operazioni (envelope già strutturati);
+   f. netlist export (import Wokwi già esiste).
 
 3. **Phase 2 — plugin-grammar enforcement gap (R8).**
    Either route board-embed mounts through the capability layer or ADR the

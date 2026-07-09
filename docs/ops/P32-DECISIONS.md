@@ -29,6 +29,31 @@ green (CI 4/4 + local e2e ×5 + reachability closed); the decision to un-Draft/m
 belongs to Andrea.
 **Status:** open (human gate).
 
+## D6 — Phase 5 slice 1: il CAVO entra nella palette come CONNECTION su modello V1 (Iter 4)
+**Decision:** la prima estensione della palette live è il **cavo (wire)** come
+`MontaggioPlacementType`, che produce una **connection** (`{from,to,kind:"wire"}`)
+in `boardScene.connections` — NON un component. Il modello resta **V1** (live
+embed); V2 (`simulation-scene/2`) non si tocca.
+**Why (evidence-backed, tutte parti esistenti):**
+- `buildNets` unisce già pinAssignments ∪ connections (`simulationBreadboard.ts:216-238`) → la fisica del cavo è REALE a solver invariato;
+- il digest topologico copre già le connections (sezione `W:`, `simulationSceneDigest.ts:33-36`) → save/reopen invariante gratis;
+- `BoardWires` disegna già `scene.connections` con fallback bezier (`ToolCanvasEmbeddable.tsx:1854+`) e riceve `boardScene` → rendering gratis;
+- il vocabolario operazioni ha già `connect-wire` (`simulationOperations.ts:70-75`) → envelope senza nuovi kind;
+- il gesto è il tap-tap ESISTENTE (`handleHoleTap`), affidabile su LIM/iPad (stessa scelta di #93).
+**Perché NON battery9v ora:** una seconda sorgente rompe l'assunzione single-loop
+di `solveSeriesLoop` (`simulationBreadboard.ts:248`) → richiede decisione solver
+(multi-sorgente/MNA generale) = slice separata con design, non additiva.
+**Perché NON il canvas plugin (`SimulatorCanvas.jsx`) per questo slice:** ha palette
+e wire-mode propri (`pendingPlacement`/`onComponentAdd` :1065-1123, wire pin-pin
+:1155) ma l'host NON cabla `onComponentAdd` (solo i 4 callback wire/layout,
+`ToolCanvasEmbeddable.tsx:1217-1282`); cablarlo = superficie molto più ampia
+(descriptor arbitrari, validazione, id-collision) = slice successiva.
+**Limite onesto (v1):** gli estremi del cavo occupano i fori come ogni placement
+(`occupiedHoles` :887-894) — il jumper VERSO un foro occupato (uso canonico
+Tinkercad) è un follow-up esplicito; il cavo tra fori liberi estende comunque
+le net reali (tie↔tie). Step-mode ignora i cavi (predicati del libro invariati).
+**Status:** implemented (Iter 4).
+
 ## D5 — `.lesson` restore semantics: explicit status union, empty-log-only, never blocking (Iter 3, R10)
 **Decision:** `importLesson(store, blob, lessonOsLog?)` returns
 `ImportLessonResult.lessonOsRestore` with a closed status union:

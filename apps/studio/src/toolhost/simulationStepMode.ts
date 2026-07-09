@@ -16,7 +16,7 @@ import {
 /** Placement del montaggio libero (twin strutturale di MontaggioPlacement). */
 export type StepModePlacement = {
   id: string
-  type: "resistor" | "led"
+  type: "resistor" | "led" | "wire"
   holes: [string, string]
 }
 
@@ -76,18 +76,24 @@ export function buildEvaluationCircuit(
   placements: readonly StepModePlacement[],
 ): ElabCircuitSlice {
   const pinAssignments: Record<string, string> = { ...scene.pinAssignments }
+  const placedWires: Array<{ from: string; to: string; color: string }> = []
   for (const placement of placements) {
     if (placement.type === "resistor") {
       pinAssignments[`${placement.id}:pin1`] = placement.holes[0]
       pinAssignments[`${placement.id}:pin2`] = placement.holes[1]
-    } else {
+    } else if (placement.type === "led") {
       pinAssignments[`${placement.id}:anode`] = placement.holes[0]
       pinAssignments[`${placement.id}:cathode`] = placement.holes[1]
+    } else {
+      // Cavo del montaggio libero = jumper fisico (P32 D6): entra tra i wires
+      // (stessa proiezione di boardScene.connections), MAI nei pinAssignments.
+      placedWires.push({ from: placement.holes[0], to: placement.holes[1], color: "green" })
     }
   }
   const wires = scene.connections
     .filter((connection) => connection.kind === "wire")
     .map(({ from, to, color }) => ({ from, to, color }))
+    .concat(placedWires)
   return { pinAssignments, wires }
 }
 
