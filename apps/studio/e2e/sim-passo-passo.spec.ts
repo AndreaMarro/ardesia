@@ -8,12 +8,13 @@ async function openSimWithSteps(page: import("@playwright/test").Page) {
   await page.goto("/")
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }).click()
-  // Gotcha Excalidraw: attendere l'ELEMENTO stabile (la palette) prima di
+  // Gotcha Excalidraw: attendere l'ELEMENTO stabile (il canvas core) prima di
   // qualunque query sul contenuto dell'embed — l'embed si ri-renderizza
   // durante lo scrollToContent e i locator presi troppo presto flakano.
-  await expect(page.getByRole("button", { name: "palette Resistenza" }).first()).toBeVisible({
+  await expect(page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first()).toBeVisible({
     timeout: 15_000,
   })
+  await expect(page.locator("[data-elab-core-canvas-host] svg").first()).toBeVisible()
   const toggle = page.getByTestId("step-mode-toggle").first()
   await expect(toggle).toBeVisible({ timeout: 15_000 })
   // Gotcha Excalidraw: l'embed appena inserito NON è interattivo — il canvas

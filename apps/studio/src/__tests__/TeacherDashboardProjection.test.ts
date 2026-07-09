@@ -435,3 +435,89 @@ describe("studentPackQueue (Z7) — lift candidate→generated→exported dagli 
     expect(projection.studentPackQueue[0]?.status).toBe("candidate")
   })
 })
+
+// S4 (additivo) — plugin registry (Z6) + contenuti creati, senza rompere lo
+// schema esistente e restando rigenerabile da zero.
+describe("plugin registry (Z6) additivo", () => {
+  it("senza pluginRegistry: plugins vuoto e Z6 resta non disponibile", async () => {
+    const p = makeProjection(await appendFixture())
+    expect(p.plugins).toEqual([])
+    expect(p.unavailable.map((e) => e.zone)).toContain("Z6")
+  })
+
+  it("con pluginRegistry: plugins popolati e plugin.mounted aggiorna lastUsedAt", async () => {
+    const mountedLog = new InMemoryEventLog()
+    for (const event of LESSON_EVENTS) await mountedLog.append(event)
+    await mountedLog.append({
+      kind: "plugin.mounted",
+      pluginId: "com.ardesia.concept-map",
+      pluginKind: "essential",
+      instanceId: "concept-map-1",
+      room: "3b-elab",
+      labels: { it: "Mappa concetti" },
+      t: 1800,
+      evidence: ["plugin:com.ardesia.concept-map@0.1.0", "board:plugin-postit-concept-map-1-board"],
+    })
+
+    const p = projectTeacherDashboard({
+      lessonEvents: await mountedLog.readAll(),
+      teacherId: "teacher-a",
+      locale: "it",
+      generatedAt: 5000,
+      pluginRegistry: [
+        { id: "com.ardesia.concept-map", version: "0.1.0", publisher: "ardesia", kind: "tool", readiness: "preview" },
+        { id: "com.ardesia.manual-evidence", version: "0.1.0", publisher: "ardesia", readiness: "ready" },
+      ],
+    })
+    expect(p.plugins.map((x) => [x.id, x.readiness, x.lastUsedAt])).toEqual([
+      ["com.ardesia.concept-map", "preview", 1800],
+      ["com.ardesia.manual-evidence", "ready", null],
+    ])
+    expect(p.graphView.nodes).toContainEqual(
+      expect.objectContaining({
+        id: "plugin:com.ardesia.concept-map#concept-map-1",
+        kind: "plugin",
+      }),
+    )
+    expect(p.unavailable.map((e) => e.zone)).toEqual(["Z3", "Z4", "Z5", "Z10", "Z11", "Z12"])
+  })
+})
+
+describe("contentCreated (content-created + readiness) additivo", () => {
+  const BASE_CONTENT: LessonOsEvent[] = [
+    { kind: "lesson.started", room: "3b-elab", t: 1000, evidence: ["lesson:3b-elab@1000"] },
+    { kind: "error.observed", errorId: "error:corto-1", conceptId: "ohm_law", labels: { it: "Corto" }, t: 1500, evidence: ["board:wire9"] },
+    { kind: "lesson.ended", room: "3b-elab", t: 2000, evidence: ["lesson:3b-elab@2000"] },
+  ]
+
+  it("vuoto senza eventi studentpack (fixture canonica)", async () => {
+    const p = makeProjection(await appendFixture())
+    expect(p.contentCreated).toEqual([])
+  })
+
+  it("studentpack.generated → contenuto 'generated' con evidenze", async () => {
+    const events = await appendEvents([
+      ...BASE_CONTENT,
+      { kind: "studentpack.generated", packId: "sp-error:corto-1", errorId: "error:corto-1", fromRoom: "3b-elab", t: 2500, evidence: ["board:wire9"] },
+    ])
+    expect(makeProjection(events).contentCreated).toEqual([
+      {
+        contentId: "sp-error:corto-1",
+        kind: "student-pack",
+        createdAt: 2500,
+        fromRoom: "3b-elab",
+        readiness: "generated",
+        evidenceRefs: ["board:wire9"],
+      },
+    ])
+  })
+
+  it("generated + exported → readiness 'exported'", async () => {
+    const events = await appendEvents([
+      ...BASE_CONTENT,
+      { kind: "studentpack.generated", packId: "sp-error:corto-1", errorId: "error:corto-1", fromRoom: "3b-elab", t: 2500, evidence: ["board:wire9"] },
+      { kind: "studentpack.exported", packId: "sp-error:corto-1", t: 2600, evidence: ["board:wire9"] },
+    ])
+    expect(makeProjection(events).contentCreated[0]?.readiness).toBe("exported")
+  })
+})

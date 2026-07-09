@@ -45,6 +45,7 @@ const KIND_COLOR: Record<DashboardNodeKind, string> = {
   error: "#e5484d",
   exercise: "#7c5cff",
   lesson: "#64748b",
+  plugin: "#f59e0b",
 }
 const KIND_LABEL_IT: Record<DashboardNodeKind, string> = {
   concept: "concetto",
@@ -52,6 +53,7 @@ const KIND_LABEL_IT: Record<DashboardNodeKind, string> = {
   error: "errore",
   exercise: "esercizio",
   lesson: "lezione",
+  plugin: "plugin",
 }
 const EDGE_LABEL_IT: Record<EdgeKind, string> = {
   cita: "cita",

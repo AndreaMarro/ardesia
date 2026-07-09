@@ -77,9 +77,17 @@ describe("SimulationBoard — persistenza piazzamenti (montaggio libero slice 4)
     expect(embedId).toBe("elab-v1-cap6-esp1-first-led")
     expect(state.kind).toBe("simulation-scene-v1")
     expect((state.scene as { experimentId: string }).experimentId).toBe("v1-cap6-esp1")
-    expect(state.montaggio).toEqual({
+    expect(state.montaggio).toMatchObject({
       placements: [{ id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] }],
     })
+    expect((state.montaggio as { operations?: Array<{ id: string; operation: { kind: string } }> }).operations).toEqual([
+      expect.objectContaining({
+        id: "elab-v1-cap6-esp1-first-led:montaggio:place:r-libero-1",
+        operation: expect.objectContaining({
+          kind: "place-component",
+        }),
+      }),
+    ])
   })
 
   it("i piazzamenti nello stato embed vengono ripristinati al mount (re-mount survivor)", () => {
@@ -126,7 +134,7 @@ describe("SimulationBoard — persistenza piazzamenti (montaggio libero slice 4)
     expect(count(container)).toBe("0")
     expect(persist).toHaveBeenCalledTimes(1)
     const [, state] = persist.mock.calls[0] as [string, Record<string, unknown>]
-    expect(state.montaggio).toEqual({ placements: [] })
+    expect(state.montaggio).toEqual({ placements: [], operations: [] })
   })
 
   it("senza host il tap-tap resta funzionante (fail-soft slice 3)", () => {

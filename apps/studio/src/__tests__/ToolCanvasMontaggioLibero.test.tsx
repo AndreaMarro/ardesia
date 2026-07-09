@@ -13,12 +13,31 @@
 
 import { cleanup, fireEvent, render } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
+import { analyzeFreeAssembly, type FreeAssemblyScene } from "../../sim/freeAssembly"
 import {
+  createMontaggioPlacementOperations,
+  createBoardSceneWithPlacements,
+  createReferenceSimulationScene,
   createToolEmbedElement,
   renderToolCanvasEmbeddable,
+  type SimulationSceneV1,
 } from "../toolhost/ToolCanvasEmbeddable"
 
 afterEach(cleanup)
+
+function freeAssemblySceneOf(scene: SimulationSceneV1): FreeAssemblyScene {
+  return {
+    components: scene.components.map((component) => ({
+      id: component.id,
+      type: component.type,
+    })),
+    pinAssignments: scene.pinAssignments,
+    wires: scene.connections.map((connection) => ({
+      from: connection.from,
+      to: connection.to,
+    })),
+  }
+}
 
 function mountSim() {
   const element = createToolEmbedElement()
@@ -52,6 +71,91 @@ function notice(container: HTMLElement): string {
 }
 
 describe("SimulationBoard — palette tap-tap (montaggio libero slice 3)", () => {
+  it("i piazzamenti liberi scrivono componenti e pinAssignments strutturati", () => {
+    const base = createReferenceSimulationScene()
+    const boardScene = createBoardSceneWithPlacements(base, [
+      { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+      { id: "led-libero-1", type: "led", holes: ["bb1:d12", "bb1:d13"] },
+    ])
+
+    expect(base.pinAssignments["r-libero-1:pin1"]).toBeUndefined()
+    expect(base.pinAssignments["led-libero-1:anode"]).toBeUndefined()
+    expect(boardScene.components.map((component) => component.id)).toContain("r-libero-1")
+    expect(boardScene.components.map((component) => component.id)).toContain("led-libero-1")
+    expect(boardScene.pinAssignments).toMatchObject({
+      "r-libero-1:pin1": "bb1:c3",
+      "r-libero-1:pin2": "bb1:c4",
+      "led-libero-1:anode": "bb1:d12",
+      "led-libero-1:cathode": "bb1:d13",
+    })
+    expect(analyzeFreeAssembly(freeAssemblySceneOf(boardScene)).ok).toBe(true)
+  })
+
+  it("i piazzamenti liberi producono operazioni strutturate per il placement pipeline", () => {
+    const operations = createMontaggioPlacementOperations({
+      embedId: "sim-embed-1",
+      placements: [
+        { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+        { id: "led-libero-1", type: "led", holes: ["bb1:d12", "bb1:d13"] },
+      ],
+    })
+
+    expect(operations.map((operation) => operation.operation.kind)).toEqual([
+      "place-component",
+      "place-component",
+    ])
+    expect(operations[0]).toMatchObject({
+      schema: "simulation-operation/1",
+      id: "sim-embed-1:montaggio:place:r-libero-1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+      operation: {
+        kind: "place-component",
+        component: {
+          id: "r-libero-1",
+          type: "resistor",
+          attrs: { value: 470 },
+          pins: [{ id: "pin1" }, { id: "pin2" }],
+        },
+        pinAssignments: {
+          "r-libero-1:pin1": "bb1:c3",
+          "r-libero-1:pin2": "bb1:c4",
+        },
+      },
+    })
+    expect(operations[1]).toMatchObject({
+      id: "sim-embed-1:montaggio:place:led-libero-1",
+      operation: {
+        kind: "place-component",
+        component: {
+          id: "led-libero-1",
+          type: "led",
+          attrs: { color: "red" },
+          pins: [{ id: "anode" }, { id: "cathode" }],
+        },
+        pinAssignments: {
+          "led-libero-1:anode": "bb1:d12",
+          "led-libero-1:cathode": "bb1:d13",
+        },
+      },
+    })
+  })
+
+  it("un piazzamento su foro gia occupato resta bloccabile dal netlist validator", () => {
+    const base = createReferenceSimulationScene()
+    const boardScene = createBoardSceneWithPlacements(base, [
+      { id: "led-libero-1", type: "led", holes: ["bb1:i9", "bb1:d13"] },
+    ])
+    const report = analyzeFreeAssembly(freeAssemblySceneOf(boardScene))
+
+    expect(report.ok).toBe(false)
+    expect(
+      report.findings.some((finding) => finding.source === "occupancy" && finding.ref === "bb1:i9"),
+    ).toBe(true)
+  })
+
   it("la palette Resistenza si seleziona e deseleziona (aria-pressed)", () => {
     const container = mountSim()
     const resistenza = palette(container, "Resistenza")

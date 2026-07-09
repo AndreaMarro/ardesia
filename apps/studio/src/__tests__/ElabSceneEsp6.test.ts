@@ -64,6 +64,9 @@ describe("fixture v1-cap9-esp6 — schema e provenance", () => {
     expect(scene.experimentId).toBe("v1-cap9-esp6")
     expect(scene.provenance.status).toBe("candidate")
     expect(scene.book.pages).toEqual([71, 72, 73, 74])
+    expect(scene.board.orientation).toBe("manual-figure-vertical")
+    expect(scene.board.pose.rotationDeg).toBe(90)
+    expect(scene.components.find((component) => component.id === "bb1")?.pose?.rotationDeg).toBe(90)
     const types = scene.components.map((component) => component.type)
     expect(types.filter((type) => type === "potentiometer").length).toBe(3)
     expect(types.filter((type) => type === "resistor").length).toBe(3)
@@ -150,10 +153,10 @@ describe("solve reale sui dati della FIXTURE — canali indipendenti falsificabi
 })
 
 describe("bookConstraints pp.71-74 — verdetto calcolato e falsificabile", () => {
-  it("la fixture esp6 passa G1-G6 e ogni vincolo cita Vol.1", () => {
+  it("la fixture esp6 passa G1-G7 e ogni vincolo cita Vol.1", () => {
     const report = checkBookConstraintsV1Cap9Esp6(validScene(esp6Fixture()))
     expect(report.ok, JSON.stringify(report.results, null, 1)).toBe(true)
-    expect(report.results.length).toBe(6)
+    expect(report.results.length).toBe(7)
     for (const result of report.results) {
       expect(result.bookRef).toContain("Vol.1")
     }
@@ -197,6 +200,26 @@ describe("bookConstraints pp.71-74 — verdetto calcolato e falsificabile", () =
     const report = checkBookConstraintsV1Cap9Esp6(tampered)
     const common = report.results.find((result) => result.id === "rgb-common-to-battery-negative")
     expect(common?.ok).toBe(false)
+  })
+
+  it("FALSIFICA il vecchio fallback orizzontale: la figura p.74 richiede breadboard verticale", () => {
+    const scene = validScene(esp6Fixture())
+    const tampered = {
+      ...scene,
+      board: {
+        ...scene.board,
+        orientation: "elab-volume" as const,
+        pose: { ...scene.board.pose, rotationDeg: 0 },
+      },
+      components: scene.components.map((component) =>
+        component.id === "bb1"
+          ? { ...component, pose: { ...component.pose!, rotationDeg: 0 } }
+          : component,
+      ),
+    }
+    const report = checkBookConstraintsV1Cap9Esp6(tampered)
+    const orientation = report.results.find((result) => result.id === "manual-breadboard-vertical")
+    expect(orientation?.ok).toBe(false)
   })
 
   it("controprova incrociata: esp6 NON passa i vincoli C1-C5 di esp1", () => {

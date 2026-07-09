@@ -1,6 +1,6 @@
 # Simulation Plugin v2
 
-Status: design approved; autonomous workbench slice implemented in this branch; full runtime migration remains future work
+Status: design approved; primary board embed now mounts the ELABTutor core canvas adapter; ELAB canvas wire add/update/delete events are bridged into structured `connect-wire`, `edit-wire.replace-path`, and `delete` operations; AI/runtime mutations now pass through structured placement, wire-edit validation, provider-derived voltmeter/probe/ammeter readings, advanced instrument capability blockers, and board-scoped runtime diagnostics; persisted legacy free-assembly state is projected into the ELAB core canvas as sandbox/monta-tu; standalone workbench/generic post-it slices remain harnesses; advanced canvas-native instruments/tools, executable AVR/runtime providers, and full native free-assembly tooling remain future work
 Date: 2026-07-07
 Primary slice: contract-first refoundation of the simulator as an autonomous ARDESIA plugin.
 
@@ -14,11 +14,11 @@ The canonical identities are:
 - Simulation Plugin: `io.ardesia.simulation`, kind `plugin`, version floor `2.0.0`, mounted as a board post-it with multiple functions and explicit capabilities.
 - ELABTutor Pack: `io.elab.tutor`, kind `pack`, depends on `io.ardesia.simulation >=2.0.0`, owns only ELAB didactic data and method.
 
-This continues the current `origin/main` direction: ToolHost SDK 1.1.0 already exposes a plugin contract and `graph.query`; the current simulator code still lives inside `ToolCanvasEmbeddable.tsx` and must be lifted behind a real plugin manifest and contract.
+This continues the current ToolHost direction: SDK 1.2.0 exposes a plugin contract, `graph.query`, and the append-only `lesson.event.emit` write channel for supported LessonOS events. The current simulator code still lives partly inside `ToolCanvasEmbeddable.tsx` and must keep moving behind a real plugin manifest and contract.
 
 ## Current Branch Implementation
 
-This branch now contains both the first contract slice and a visible autonomous workbench slice:
+This branch now contains the first contract slice plus a visible board-embed canvas slice:
 
 - `apps/studio/plugins/simulation/manifest.ts` declares `io.ardesia.simulation`.
 - `packs/elab-tutor/manifest.json` declares `io.elab.tutor` depending on `io.ardesia.simulation >=2.0.0`.
@@ -26,6 +26,12 @@ This branch now contains both the first contract slice and a visible autonomous 
 - `apps/studio/sim/core/wokwiDiagramAdapter.ts` converts an external `diagram.json`-style source into that generic scene.
 - `apps/studio/sim/core/sourceIntake.ts` converts structured image/description observations into the same generic scene without inventing missing geometry.
 - `apps/studio/src/design/SimulationPluginWorkbench.tsx` exposes `?vista=simulatore` as a standalone Simulation Plugin workbench before ELABTutor.
+- `apps/studio/sim/elab/elabCanvasAdapter.ts` maps the canonical `SimulationScene` into the ELABTutor canvas experiment/state shape and converts ELAB canvas wire add/update/delete callbacks into canonical operation envelopes.
+- `apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx` mounts the ELABTutor `renderEmbeddable()` canvas as the primary board surface for the Simulation Plugin embed.
+- `apps/studio/sim/core/simulationRuntime.ts`, `simulationPlacementPipeline.ts`, and `simulationAiApi.ts` route mutating AI/runtime operations through structured scene patching, wire endpoint/waypoint edits, occupancy validation, pin-vocabulary validation, and the active provider solve.
+- `apps/studio/sim/core/instrumentContract.ts` keeps instrument readings provider-bound. AI/runtime `probe` operations can store voltmeter/probe voltage readings from `SolverResult.voltages` and ammeter current readings from `SolverResult.currents`; missing refs, missing negative leads, unavailable providers, and unsupported instrument physics fail closed with structured diagnostics. AI/runtime `runInstrument` operations can request serial monitor/plotter, oscilloscope, SPICE transient, and custom-chip tools as structured `run` operations, but they only return provider-bound diagnostics and block until a runtime/SPICE/custom-chip provider is wired.
+- `apps/studio/sim/core/runtimeScopeContract.ts` scopes microcontroller runtime requests. ATmega328p boards are recognized as metadata-only runtime targets until a provider is wired; Nano R4/Renesas RA4M1 is blocked and cannot fall back to the ATmega328p bridge.
+- Persisted legacy free-assembly placements are folded into the scene passed to the ELAB core canvas, projected as `buildMode: "sandbox"` / `projectionMode: "monta-tu"`, and persisted with structured `place-component` operation envelopes for the placement pipeline. The legacy SVG palette remains a harness until those placement tools are canvas-native in the extracted core.
 
 This corrects the first visual slice: opening ARDESIA no longer presents the simulator primarily as "ELAB Plugin". The route order is now:
 
@@ -33,7 +39,100 @@ This corrects the first visual slice: opening ARDESIA no longer presents the sim
 2. `simulatore`
 3. `ELABTutor`
 
-ELAB Lab remains temporarily available as a legacy consumer path while its circuit render/solve ownership is migrated behind the Simulation Plugin runtime.
+ELAB Lab remains temporarily available as a legacy consumer path while its circuit render/solve ownership is migrated behind the Simulation Plugin runtime. The visible standalone `simulatore` workbench and generic multi-post-it workbench remain harness surfaces; they must not be described as Tinkercad parity or as the completed Simulation Plugin.
+
+## Migration Decision: Extract the ELABTutor Simulator Core
+
+The reusable Simulation Plugin must be built by extracting and hardening the
+existing ELABTutor simulator core, not by growing the current workbench SVG into
+a second simulator.
+
+Canonical source modules to migrate behind `io.ardesia.simulation`:
+
+- `plugins/elab-tutor/src/components/simulator/canvas/SimulatorCanvas.jsx`
+- `plugins/elab-tutor/src/components/simulator/engine/CircuitSolver.js`
+- `plugins/elab-tutor/src/components/simulator/engine/PlacementEngine.js`
+- `plugins/elab-tutor/src/components/simulator/engine/AVRBridge.js`
+- the simulator component registry, breadboard renderer, component SVGs, wire
+  renderer, validators, and interaction model.
+
+The primary board embed now mounts the ELABTutor canvas through an adapter, with
+`SimulationScene` still treated as the source of truth and SVG output treated as
+rendering. Mutating AI/runtime operations now pass through the shared placement
+pipeline before state is accepted, including structured `edit-wire` operations
+for waypoint movement, endpoint retargeting, and full path replacement from the
+ELAB canvas `onWireUpdate` event. Probe operations can derive
+voltmeter/probe readings from active provider voltage results and ammeter
+readings from active provider current results, but only when the provider
+returns the requested refs. `runInstrument` operations can request serial
+monitor/plotter, oscilloscope, SPICE transient, and custom-chip tools through
+the same runtime envelope; they remain blocked when their provider is missing
+instead of producing fake traces. This is still partial: the
+workbench route is a contract/harness surface, the legacy free-assembly SVG now
+persists structured placement operations but is still secondary, and the full
+production simulator is not accepted until instrument UI/tools,
+executable AVR/runtime providers, and native free-assembly tools all operate on
+the same scene graph.
+
+The production simulator must use the extracted core so ELABTutor, and later
+other plugins, share one scene graph, one breadboard geometry model, one
+placement engine, one solver boundary, and one interaction model.
+
+The extraction must not port the ELABTutor standalone shell, auth, dashboards,
+Supabase functions, UNLIM memory, reports, or app bootstrap. Those remain
+outside the Simulation Plugin boundary.
+
+## Competitive Target: Complete Tinkercad Parity
+
+This is the target state, not a claim about the current mounted UI. The current
+primary board embed mounts the ELABTutor core canvas adapter and bridges ELAB
+wire add/update/delete callbacks to structured scene operations, but it is still
+a partial simulation harness until the component registry, advanced instrument
+UI/tools, executable AVR/runtime bridge, native free-assembly controls, and
+persistence are fully extracted behind `io.ardesia.simulation`. The AI/runtime
+mutation path is no longer allowed to bypass placement validation, wire-edit
+validation, occupancy checks, pin vocabulary, provider-derived voltage/current
+readings, free-assembly projection into the core canvas, or the active provider
+solve.
+
+The Simulation Plugin target is not a lightweight teaching illustration. It must
+become a full ARDESIA-native circuit simulator with nothing structurally missing
+against Tinkercad for the electronic learning workflows ARDESIA supports.
+
+Parity means the plugin must eventually support:
+
+- drag/drop placement, rotation, deletion, duplication, undo/redo, zoom, pan, and
+  board-level persistence;
+- breadboard, Arduino-style boards, discrete components, sensors, instruments,
+  probes, and code/runtime interaction;
+- live electrical solving after every user mutation;
+- realistic diagnostics for shorts, overload, wrong polarity, floating pins,
+  missing resistors, unsupported parts, and provider failures;
+- editable wires with real endpoints, colors, routing, and node semantics;
+- serial/plotter-style runtime views where the simulated board supports them;
+- import/export and restoration of the complete simulator state inside ARDESIA
+  board objects;
+- provider expansion through local solver, wasm/ngspice-style analog solving,
+  and host-mediated remote providers without fake fallback values.
+
+The current ELABTutor simulator is the starting asset, not the final standard.
+Its limits must be corrected or removed while migrating:
+
+- `NewElabSimulator` is a god-component and cannot define the plugin boundary;
+  extract the simulator runtime/canvas/tools, leave the standalone app shell out.
+- `CircuitSolver` is valuable and must remain drift-guarded, but unsupported
+  physics must fail closed until provider coverage exists.
+- `PlacementEngine` and breadboard geometry must become a general authored
+  geometry system, including per-scene board orientation and manual-figure
+  transforms.
+- `AVRBridge` currently models ATmega328p behavior; it must not be presented as
+  exact Nano R4/Renesas RA4M1 behavior until that runtime is supported or
+  explicitly scoped.
+- Component registry and canvas interaction must become plugin-general, not
+  ELAB-only.
+- Book fidelity and physics must be tested together: a visually correct but
+  electrically wrong scene fails; an electrically valid but book-wrong ELAB
+  scene also fails.
 
 ## External Research Notes
 
@@ -47,11 +146,12 @@ The generic simulator core is shaped by these external references:
 
 ## Current State Audit
 
-`origin/main` already contains useful foundations:
+The current branch already contains useful foundations:
 
-- ToolHost SDK boundary in `apps/studio/src/sdk/index.ts` with `CONTRACT_VERSION = "1.1.0"`.
-- Capability vocabulary: `board.read`, `board.write`, `graph.query`, `graph.proposeClaims`, `storage`, `llm.generate`, `net.fetch`, `ui`.
+- ToolHost SDK boundary in `apps/studio/src/sdk/index.ts` with `CONTRACT_VERSION = "1.2.0"`.
+- Capability vocabulary: `board.read`, `board.write`, `graph.query`, `graph.proposeClaims`, `lesson.event.emit`, `storage`, `llm.generate`, `net.fetch`, `ui`.
 - A real LessonOS read channel through `graph.query`, consumed by `apps/studio/plugins/ripasso`.
+- A host-mediated LessonOS write channel through `lesson.event.emit`, currently schema-limited to supported append-only events such as `lesson.started`, `lesson.ended`, `material.cited`, `error.observed`, `exercise.completed`, and `simulation.step.completed`.
 - Simulation registry in `apps/studio/src/toolhost/simulationPluginRegistry.ts`.
 - Scene schema and fail-closed validation in `apps/studio/sim/elab/elabScene.ts`.
 - Bridge from `circuit-scene/2` to the current renderer in `apps/studio/src/toolhost/elabSceneBridge.ts`.
@@ -93,6 +193,25 @@ Plugins do not write directly to LessonOS storage. They use ToolHost capabilitie
 5. First slice must not fake `v3-cap6-esp4`.
 
 `v3-cap6-esp4` is the target, but current `origin/main` lacks verified scene data. The first implementation must mark it blocked until verified scene data exists, or use an already existing fixture only as a technical harness without claiming manual verification.
+
+6. Real interaction, not image playback.
+
+Every accepted simulator interaction must mutate structured circuit state:
+component placement, pin assignment, wire endpoint, orientation, code/runtime
+state, probe position, or mode projection. After each mutation the plugin must
+rerun the relevant validators and solver provider, then render the resulting
+diagnostics. A canvas that only changes SVG pixels without updating scene state,
+netlist, occupancy, and diagnostics is not a simulator-ready implementation.
+
+7. Book geometry is an acceptance gate.
+
+For ELAB experiments, the visual layout must match the authored manual figure
+for that exact volume/chapter/experiment/page. Breadboard orientation, component
+orientation, relative placement, polarity, and wire routing are part of the
+scene contract. If a manual page shows a vertical breadboard, the verified scene
+must encode and render that vertical breadboard; a horizontal canonical fallback
+is a blocker unless the manual explicitly permits arbitrary placement and the
+scene provenance records that canonicalization.
 
 ## Module Boundaries
 
@@ -371,8 +490,8 @@ Read path:
 
 Write path:
 
-- First slice writes only board embed state with `board.write`.
-- Didactic observations must go through host-approved producers and evidence refs.
+- The plugin writes board embed state with `board.write`.
+- Didactic observations go through host-approved `lesson.event.emit` events with evidence refs; the graph remains a derived view.
 - Direct writes to the LessonOS event log are forbidden.
 
 Evidence examples:
@@ -413,8 +532,8 @@ Create a failing test that expects:
 - `io.ardesia.simulation` is the canonical plugin id.
 - Manifest kind is `plugin`.
 - Version is at least `2.0.0`.
-- Contract range includes SDK `1.1.0`.
-- Capabilities are exactly board read/write own embeds, graph query, storage, ui.
+- Contract range includes SDK `1.2.0`.
+- Capabilities are exactly board read/write own embeds, graph query, lesson event emit, storage, ui.
 - No `llm.generate` and no `net.fetch` in the first slice.
 
 ### 2. ELABTutor dependency boundary

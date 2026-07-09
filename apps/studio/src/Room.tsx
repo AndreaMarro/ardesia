@@ -8,6 +8,7 @@ import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { PATHS, type StorageMode } from "./store/types"
+import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
@@ -42,6 +43,10 @@ function getRoomId(): string {
 /** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
 function sharedClock(): number {
   return Date.now()
+}
+
+function isLessonFile(file: File): boolean {
+  return file.name.toLowerCase().endsWith(LESSON_EXTENSION)
 }
 
 export default function Room({ store }: { store?: WorkspaceStore }) {
@@ -528,9 +533,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const file = e.target.files?.[0]
     e.target.value = ""
     if (!file) return
-    const supported = file.type === "application/pdf" || file.type.startsWith("image/")
+    const lessonFile = isLessonFile(file)
+    const supported = lessonFile || file.type === "application/pdf" || file.type.startsWith("image/")
     if (!supported) {
-      setStorageError("Formato non supportato (usa immagine o PDF).")
+      setStorageError("Formato non supportato (usa immagine, PDF o .lesson).")
       return
     }
     if (!apiRef.current) {
@@ -538,7 +544,25 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       return
     }
     try {
-      if (file.type === "application/pdf") {
+      if (lessonFile) {
+        await actualStore.importLessonBlobForRoom(file, room)
+        const sceneJson = await actualStore.loadScene(room)
+        if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
+        const parsed = JSON.parse(sceneJson)
+        if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
+        const elements = Array.isArray(parsed.elements) ? parsed.elements : []
+        const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
+        const files = parsed.files ?? {}
+        setSceneData(parsed)
+        latestElementsRef.current = elements
+        latestAppStateRef.current = appState
+        latestFilesRef.current = files
+        journalRef.current?.seed(elements)
+        apiRef.current.updateScene({ elements, appState, files })
+        setStorageError(null)
+        setSaved(true)
+        window.setTimeout(() => setSaved(false), 1200)
+      } else if (file.type === "application/pdf") {
         const pages = await pdfToImages(file)
         let y = 100
         const totalPages = pages[0]?.totalPages ?? pages.length
@@ -713,8 +737,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           {!studentView && <ViewNav current="lavagna" />}
           <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
-          <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine o PDF">media</button>
-          <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
+          <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
+          <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
           <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
             sim
           </button>
@@ -894,6 +918,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   : {
                       persistEmbedState: (embedId, state) => {
                         if (apiRef.current) persistEmbedState(apiRef.current, embedId, state)
+                      },
+                      emitLessonEvent: (event) => {
+                        // host-observes-solve: accoda l'evento del Simulation
+                        // Plugin nel log LessonOS (fail-soft; nessuna chiave client).
+                        lessonOsRef.current?.store?.append(event).catch(() => {})
                       },
                     },
               )

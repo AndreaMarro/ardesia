@@ -1,14 +1,37 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState, type PointerEvent as ReactPointerEvent } from "react"
 import {
+  editableWiresForScene,
   normalizeSimulationScene,
   sceneReadiness,
+  validateSimulationScene,
+  type SimulationEditableWire,
+  type SimulationEditableWirePoint,
   type SimulationScene,
 } from "../../sim/core/simulationScene"
+import {
+  moveSimulationWireWaypoint,
+  retargetSimulationWireEndpoint,
+  type SimulationWireEditAction,
+} from "../../sim/core/simulationWireEditor"
+import {
+  providerStatus,
+  solveWithProvider,
+  type ProviderId,
+} from "../../sim/providers/simulationProviders"
 import { wokwiDiagramToSimulationScene } from "../../sim/core/wokwiDiagramAdapter"
 import {
   structuredObservationToSimulationScene,
   type StructuredSceneObservation,
 } from "../../sim/core/sourceIntake"
+import { analyzeFreeAssembly } from "../../sim/freeAssembly"
+import {
+  createBoardSceneWithPlacements,
+  createReferenceSimulationScene,
+  SimulationBoard,
+  type MontaggioCanvas,
+  type MontaggioPlacement,
+  type MontaggioPlacementType,
+} from "../toolhost/ToolCanvasEmbeddable"
 import ViewNav from "./ViewNav"
 
 const technicalHarnessDiagram = {
@@ -16,32 +39,48 @@ const technicalHarnessDiagram = {
   author: "Simulation Plugin technical harness",
   editor: "wokwi",
   parts: [
-    { id: "uno", type: "wokwi-arduino-uno", left: 78, top: 108 },
-    { id: "led1", type: "wokwi-led", left: 548, top: 134, attrs: { color: "red" } },
-    { id: "r1", type: "wokwi-resistor", left: 412, top: 158, attrs: { value: "220" } },
+    { id: "bat1", type: "wokwi-battery-9v", left: 112, top: 286 },
+    { id: "bb1", type: "wokwi-breadboard-half", left: 410, top: 390 },
+    { id: "led1", type: "wokwi-led", left: 656, top: 236, attrs: { color: "red" } },
+    { id: "r1", type: "wokwi-resistor", left: 464, top: 252, attrs: { value: "470" } },
   ],
   connections: [
-    ["uno:13", "r1:1", "#16a34a", ["h100", "v30", "*", "h-28"]],
-    ["r1:2", "led1:A", "#f59e0b", ["h42"]],
-    ["led1:C", "uno:GND.1", "#111827", ["v140", "h-430"]],
+    ["bat1:+", "bb1:bus-top-plus-1", "#dc2626", ["h166", "v-126"]],
+    ["bb1:bus-top-plus-8", "r1:1", "#dc2626", ["v-132", "h52"]],
+    ["r1:2", "led1:A", "#f59e0b", ["h74"]],
+    ["led1:C", "bb1:a8", "#64748b", ["v146", "h-236"]],
+    ["bb1:a8", "bat1:-", "#111827", ["h-260", "v-64"]],
   ],
 }
 
 type SourceMode = "wokwi" | "image" | "description"
 
+const SIMULATION_HARNESS_STATUS =
+  "simulation harness: canvas ELABTutor reale non ancora montato"
+
 const imageObservation: StructuredSceneObservation = {
   kind: "image-observation" as const,
   label: "structured bench image observation",
   components: [
+    { id: "battery1", type: "battery9v", x: 72, y: 168 },
     { id: "breadboard1", type: "breadboard-half", x: 150, y: 168 },
     { id: "led1", type: "led", x: 546, y: 158, attrs: { color: "red" } },
-    { id: "r1", type: "resistor", x: 374, y: 184, attrs: { value: 220 } },
+    { id: "r1", type: "resistor", x: 374, y: 184, attrs: { value: 470 } },
   ],
   wires: [
     {
-      from: "breadboard1:bb1:j8",
+      from: "battery1:+",
+      to: "breadboard1:bus-top-plus-1",
+      color: "#dc2626",
+      points: [
+        { x: 100, y: 196 },
+        { x: 178, y: 196 },
+      ],
+    },
+    {
+      from: "breadboard1:bus-top-plus-8",
       to: "r1:1",
-      color: "#16a34a",
+      color: "#dc2626",
       points: [
         { x: 178, y: 196 },
         { x: 374, y: 212 },
@@ -56,6 +95,24 @@ const imageObservation: StructuredSceneObservation = {
         { x: 546, y: 186 },
       ],
     },
+    {
+      from: "led1:C",
+      to: "breadboard1:a8",
+      color: "#64748b",
+      points: [
+        { x: 580, y: 202 },
+        { x: 238, y: 238 },
+      ],
+    },
+    {
+      from: "breadboard1:a8",
+      to: "battery1:-",
+      color: "#111827",
+      points: [
+        { x: 238, y: 238 },
+        { x: 100, y: 238 },
+      ],
+    },
   ],
 }
 
@@ -64,16 +121,26 @@ const descriptionObservation: StructuredSceneObservation = {
   label: "structured teacher description",
   components: [
     { id: "supply", type: "battery9v", x: 86, y: 160 },
+    { id: "bb1", type: "breadboard-half", x: 150, y: 168 },
     { id: "r1", type: "resistor", x: 338, y: 178, attrs: { value: 470 } },
     { id: "led1", type: "led", x: 556, y: 158, attrs: { color: "red" } },
   ],
   wires: [
     {
       from: "supply:+",
-      to: "r1:1",
+      to: "bb1:bus-top-plus-1",
       color: "#dc2626",
       points: [
         { x: 114, y: 188 },
+        { x: 178, y: 188 },
+      ],
+    },
+    {
+      from: "bb1:bus-top-plus-8",
+      to: "r1:1",
+      color: "#dc2626",
+      points: [
+        { x: 208, y: 188 },
         { x: 338, y: 206 },
       ],
     },
@@ -88,12 +155,20 @@ const descriptionObservation: StructuredSceneObservation = {
     },
     {
       from: "led1:C",
+      to: "bb1:a8",
+      color: "#64748b",
+      points: [
+        { x: 584, y: 214 },
+        { x: 238, y: 238 },
+      ],
+    },
+    {
+      from: "bb1:a8",
       to: "supply:-",
       color: "#111827",
       points: [
-        { x: 584, y: 214 },
-        { x: 584, y: 388 },
-        { x: 114, y: 388 },
+        { x: 238, y: 238 },
+        { x: 114, y: 238 },
       ],
     },
   ],
@@ -101,12 +176,18 @@ const descriptionObservation: StructuredSceneObservation = {
 
 export default function SimulationPluginWorkbench() {
   const [sourceMode, setSourceMode] = useState<SourceMode>("wokwi")
+  const narrowViewport = useNarrowViewport()
   const scene = useMemo(
     () => buildScene(sourceMode),
     [sourceMode],
   )
   const readiness = useMemo(() => sceneReadiness(scene), [scene])
   const normalized = useMemo(() => normalizeSimulationScene(scene), [scene])
+  const validation = useMemo(() => validateSimulationScene(scene), [scene])
+  const providerRows = useMemo(
+    () => (["local", "fastapi", "ngspice-wasm"] satisfies ProviderId[]).map(providerStatus),
+    [],
+  )
 
   return (
     <div
@@ -120,15 +201,25 @@ export default function SimulationPluginWorkbench() {
           <span className="st-sub">studio</span>
         </div>
         <span className="st-name">
-          <span className="st-name-text">ARDESIA Simulation</span>
+          <span className="st-name-text">ARDESIA Simulation Harness</span>
         </span>
         <ViewNav current="simulatore" />
       </header>
-      <main style={shellStyle}>
-        <section aria-label="Simulation Plugin canvas" style={canvasShellStyle}>
+      <main
+        data-simulation-workbench-main
+        style={narrowViewport ? narrowShellStyle : shellStyle}
+      >
+        <section aria-label="Simulation harness canvas" style={canvasShellStyle}>
           <SimulationSceneCanvas scene={scene} />
         </section>
-        <aside style={panelColumnStyle}>
+        <aside style={narrowViewport ? narrowPanelColumnStyle : panelColumnStyle}>
+          <section className="reference-tool-panel" style={panelStyle}>
+            <div className="reference-tool-panel-bar">stato canvas</div>
+            <div style={contractStyle}>
+              <strong>harness</strong>
+              <span>{SIMULATION_HARNESS_STATUS}</span>
+            </div>
+          </section>
           <section className="reference-tool-panel" style={panelStyle}>
             <div className="reference-tool-panel-bar">sorgenti scena</div>
             <div style={sourceGridStyle}>
@@ -158,18 +249,14 @@ export default function SimulationPluginWorkbench() {
           <section className="reference-tool-panel" style={panelStyle}>
             <div className="reference-tool-panel-bar">provider</div>
             <dl style={definitionListStyle}>
-              <div>
-                <dt style={termStyle}>local</dt>
-                <dd style={descriptionStyle}>available</dd>
-              </div>
-              <div>
-                <dt style={termStyle}>fastapi</dt>
-                <dd style={descriptionStyle}>adapter boundary</dd>
-              </div>
-              <div>
-                <dt style={termStyle}>ngspice-wasm</dt>
-                <dd style={descriptionStyle}>planned</dd>
-              </div>
+              {providerRows.map((provider) => (
+                <div key={provider.id}>
+                  <dt style={termStyle}>{provider.id}</dt>
+                  <dd style={descriptionStyle}>
+                    {provider.available ? "available" : provider.reason}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </section>
           <section className="reference-tool-panel" style={panelStyle}>
@@ -182,10 +269,48 @@ export default function SimulationPluginWorkbench() {
               <span>{readiness.ok ? "ready" : readiness.blockers.join(", ")}</span>
             </div>
           </section>
+          <section className="reference-tool-panel" style={panelStyle}>
+            <div className="reference-tool-panel-bar">diagnostica scena</div>
+            <div style={contractStyle}>
+              <strong data-scene-diagnostic-status>
+                {validation.ok ? "ready" : "blocked"}
+              </strong>
+              <span>{validation.blockers.length} blocker</span>
+              {validation.issues.length === 0 ? (
+                <span>nessun blocker tecnico</span>
+              ) : (
+                validation.issues.map((issue) => (
+                  <span key={`${issue.code}:${issue.message}`}>
+                    {issue.code}: {issue.message}
+                  </span>
+                ))
+              )}
+            </div>
+          </section>
         </aside>
       </main>
     </div>
   )
+}
+
+function useNarrowViewport(): boolean {
+  const [narrowViewport, setNarrowViewport] = useState(readNarrowViewport)
+
+  useEffect(() => {
+    const handleResize = () => setNarrowViewport(readNarrowViewport())
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return narrowViewport
+}
+
+function readNarrowViewport(): boolean {
+  if (typeof window === "undefined") return false
+  if (typeof window.matchMedia === "function") {
+    return window.matchMedia("(max-width: 760px)").matches
+  }
+  return window.innerWidth <= 760
 }
 
 function buildScene(sourceMode: SourceMode) {
@@ -202,136 +327,336 @@ function buildScene(sourceMode: SourceMode) {
     })
   }
   return wokwiDiagramToSimulationScene(technicalHarnessDiagram, {
-        id: "simulation-plugin-technical-harness",
-        title: "ARDESIA Simulation",
-      })
+    id: "simulation-plugin-technical-harness",
+    title: "ARDESIA Simulation",
+  })
 }
 
 function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
+  const previewScene = useMemo(() => createReferenceSimulationScene({ ledOn: true }), [])
+  const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null)
+  const [pendingHole, setPendingHole] = useState<string | null>(null)
+  const [placements, setPlacements] = useState<MontaggioPlacement[]>([])
+  const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null)
+  const occupiedHoles = useMemo(() => {
+    const occupied = new Set(Object.values(previewScene.pinAssignments))
+    for (const placement of placements) {
+      occupied.add(placement.holes[0])
+      occupied.add(placement.holes[1])
+    }
+    return occupied
+  }, [previewScene, placements])
+  const boardScene = useMemo(
+    () => createBoardSceneWithPlacements(previewScene, placements),
+    [previewScene, placements],
+  )
+  const freeAssemblyScene = useMemo(
+    () => ({
+      components: boardScene.components.map((component) => ({
+        id: component.id,
+        type: component.type,
+      })),
+      wires: boardScene.connections.map((connection) => ({
+        from: connection.from,
+        to: connection.to,
+      })),
+      pinAssignments: boardScene.pinAssignments,
+    }),
+    [boardScene],
+  )
+  const freeAssembly = useMemo(() => analyzeFreeAssembly(freeAssemblyScene), [freeAssemblyScene])
+  const liveSolve = useMemo(
+    () =>
+      solveWithProvider("local", {
+        scene: boardScene,
+        provider: "local",
+        mode: "static",
+      }),
+    [boardScene],
+  )
+
+  function handleSelectTool(tool: MontaggioPlacementType | null) {
+    setMontaggioTool(tool)
+    setPendingHole(null)
+    setMontaggioNotice(null)
+  }
+
+  function handleHoleTap(ref: string) {
+    if (montaggioTool === null) return
+    if (occupiedHoles.has(ref)) {
+      setMontaggioNotice(`foro ${ref} occupato: scegline uno libero`)
+      return
+    }
+    if (pendingHole === null) {
+      setPendingHole(ref)
+      setMontaggioNotice(null)
+      return
+    }
+    if (pendingHole === ref) {
+      setMontaggioNotice("stesso foro del primo tap: tocca un secondo foro diverso")
+      return
+    }
+    const ordinal = placements.filter((placement) => placement.type === montaggioTool).length + 1
+    const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`
+    setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }])
+    setPendingHole(null)
+    setMontaggioNotice(null)
+  }
+
+  function handleMontaggioReset() {
+    setPlacements([])
+    setPendingHole(null)
+    setMontaggioNotice(null)
+    setMontaggioTool(null)
+  }
+
+  const montaggio: MontaggioCanvas = {
+    tool: montaggioTool,
+    pending: pendingHole,
+    notice: montaggioNotice,
+    placements,
+    onSelectTool: handleSelectTool,
+    onHoleTap: handleHoleTap,
+    onReset: handleMontaggioReset,
+  }
+  const liveCurrentMa = (liveSolve.currents.led1 ?? 0) * 1000
+  const liveLedState = liveSolve.componentStates.led1
+
   return (
-    <svg
+    <div
       data-simulation-canvas
-      viewBox="0 0 920 620"
       role="img"
       aria-label={scene.title}
-      style={{ display: "block", width: "100%", height: "100%" }}
+      data-elab-comparable-canvas="false"
+      data-elab-core-canvas-mounted="false"
+      data-simulation-surface="harness"
+      data-preview-source-kind={scene.adapters.source}
+      style={elabCanvasFrameStyle}
     >
-      <defs>
-        <pattern id="simulation-grid" width="28" height="28" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1.6" fill="var(--m-line)" />
-        </pattern>
-      </defs>
-      <rect x="0" y="0" width="920" height="620" fill="var(--m-canvas)" />
-      <rect x="0" y="0" width="920" height="620" fill="url(#simulation-grid)" />
-      {scene.wires.map((wire) => (
-        <polyline
-          key={wire.id}
-          data-wire-id={wire.id}
-          points={(wire.path?.points ?? []).map((point) => `${point.x},${point.y}`).join(" ")}
-          fill="none"
-          stroke={wire.color}
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ))}
-      {scene.components.map((component) => (
-        <g
-          key={component.id}
-          data-component-id={component.id}
-          transform={`translate(${component.pose.x} ${component.pose.y}) rotate(${component.pose.rotation ?? 0})`}
-        >
-          <ComponentGlyph type={component.type} attrs={component.attrs} />
-          <text
-            x="0"
-            y="76"
-            textAnchor="middle"
-            style={{ font: "600 13px var(--m-font-ui)", fill: "var(--m-ink)" }}
-          >
-            {component.id}
-          </text>
-        </g>
-      ))}
-    </svg>
+      <SimulationBoard scene={boardScene} montaggio={montaggio} />
+      <SimulationWireEditorPanel key={scene.id} scene={scene} />
+      <div
+        data-live-physics-status={liveSolve.ok ? "ok" : "blocked"}
+        data-live-physics-current-ma={liveCurrentMa.toFixed(1)}
+        data-live-physics-disconnected={String(liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0)}
+        data-free-assembly-findings={String(freeAssembly.findings.length)}
+        style={physicsStripStyle}
+      >
+        <strong>fisica reale</strong>
+        <span>{liveSolve.ok ? "solver local OK" : liveSolve.diagnostics.join(", ")}</span>
+        <span>LED {liveLedState?.on === true ? "ON" : "OFF"}</span>
+        <span>{liveCurrentMa.toFixed(1)} mA</span>
+        <span>{liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0} pin scollegati</span>
+        {freeAssembly.findings.length > 0 && (
+          <span>{freeAssembly.findings[0]?.message}</span>
+        )}
+      </div>
+    </div>
   )
 }
 
-function ComponentGlyph({
-  type,
-  attrs,
-}: {
-  type: string
-  attrs?: Record<string, string | number | boolean>
-}) {
-  if (type.includes("breadboard")) {
-    return (
-      <>
-        <rect x="-96" y="-34" width="192" height="68" rx="8" fill="#ffffff" stroke="#94a3b8" strokeWidth="2" />
-        {Array.from({ length: 12 }, (_, index) => (
-          <circle
-            key={index}
-            cx={-68 + index * 12}
-            cy="-10"
-            r="2.2"
-            fill="#cbd5e1"
-          />
-        ))}
-        {Array.from({ length: 12 }, (_, index) => (
-          <circle
-            key={index}
-            cx={-68 + index * 12}
-            cy="12"
-            r="2.2"
-            fill="#cbd5e1"
-          />
-        ))}
-      </>
-    )
-  }
-  if (type.includes("battery")) {
-    return (
-      <>
-        <rect x="-42" y="-30" width="84" height="60" rx="7" fill="#111827" />
-        <rect x="42" y="-16" width="12" height="12" rx="2" fill="#111827" />
-        <rect x="42" y="4" width="12" height="12" rx="2" fill="#111827" />
-        <text x="0" y="5" textAnchor="middle" style={{ ...smallGlyphTextStyle, fill: "#ffffff" }}>
-          9V
-        </text>
-      </>
-    )
-  }
-  if (type.includes("arduino")) {
-    return (
-      <>
-        <rect x="-46" y="-28" width="170" height="92" rx="8" fill="#f8fafc" stroke="#1f3f63" strokeWidth="2" />
-        <text x="38" y="8" textAnchor="middle" style={glyphTextStyle}>
-          ARDUINO
-        </text>
-        <text x="38" y="28" textAnchor="middle" style={smallGlyphTextStyle}>
-          13 · GND
-        </text>
-      </>
-    )
-  }
-  if (type.includes("led")) {
-    const color = typeof attrs?.color === "string" ? attrs.color : "#ef4444"
-    return (
-      <>
-        <circle cx="0" cy="12" r="28" fill={color} fillOpacity="0.82" stroke="#7f1d1d" strokeWidth="2" />
-        <line x1="-38" y1="52" x2="38" y2="52" stroke="#111827" strokeWidth="3" />
-      </>
-    )
-  }
-  return (
-    <>
-      <rect x="-54" y="-13" width="108" height="26" rx="6" fill="#fff7ed" stroke="#b45309" strokeWidth="2" />
-      <line x1="-84" y1="0" x2="-54" y2="0" stroke="#111827" strokeWidth="3" />
-      <line x1="54" y1="0" x2="84" y2="0" stroke="#111827" strokeWidth="3" />
-      <text x="0" y="5" textAnchor="middle" style={smallGlyphTextStyle}>
-        {String(attrs?.value ?? "R")}
-      </text>
-    </>
+function SimulationWireEditorPanel({ scene }: { scene: SimulationScene }) {
+  const [editableScene, setEditableScene] = useState(scene)
+  const [selectedWireId, setSelectedWireId] = useState<string | null>(null)
+  const [wireDiagnostics, setWireDiagnostics] = useState<string[]>([])
+  const [wireLastAction, setWireLastAction] = useState<SimulationWireEditAction | "idle">("idle")
+  const [draggingWaypoint, setDraggingWaypoint] = useState<string | null>(null)
+  const editableWires = useMemo(() => editableWiresForScene(editableScene), [editableScene])
+  const selectedWire = useMemo(
+    () => editableWires.find((wire) => wire.id === selectedWireId) ?? null,
+    [editableWires, selectedWireId],
   )
+  const wireEditorNormalized = useMemo(
+    () => JSON.stringify(normalizeSimulationScene(editableScene)),
+    [editableScene],
+  )
+  const wireEditorPath = useMemo(
+    () => JSON.stringify(selectedWire?.pathPoints.map(serializedWirePoint) ?? []),
+    [selectedWire],
+  )
+  const validRetargetEndpoint = firstValidWireRetargetEndpoint(editableScene)
+
+  function handleWireSelect(wireId: string) {
+    setSelectedWireId(wireId)
+    setWireDiagnostics([])
+    setWireLastAction("idle")
+  }
+
+  function handleWaypointMove(wireId: string, pointIndex: number, point: { x: number; y: number }) {
+    const result = moveSimulationWireWaypoint(editableScene, { wireId, pointIndex, point })
+    setEditableScene(result.scene)
+    setWireDiagnostics(result.diagnostics)
+    setWireLastAction(result.action)
+  }
+
+  function handleEndpointRetarget(endpoint: string) {
+    if (selectedWireId === null) return
+    const result = retargetSimulationWireEndpoint(editableScene, {
+      wireId: selectedWireId,
+      side: "to",
+      endpoint,
+    })
+    setEditableScene(result.scene)
+    setWireDiagnostics(result.diagnostics)
+    setWireLastAction(result.action)
+  }
+
+  function handleWaypointPointerMove(
+    wireId: string,
+    point: SimulationEditableWirePoint,
+    event: ReactPointerEvent,
+  ) {
+    if (draggingWaypoint !== `${wireId}:${point.index}`) return
+    handleWaypointMove(wireId, point.index, {
+      x: Number.isFinite(event.clientX) ? event.clientX : point.x,
+      y: Number.isFinite(event.clientY) ? event.clientY : point.y,
+    })
+  }
+
+  return (
+    <div
+      data-simulation-wire-editor
+      data-selected-wire-id={selectedWire?.id ?? ""}
+      data-wire-editor-normalized={wireEditorNormalized}
+      data-wire-editor-path={wireEditorPath}
+      data-wire-editor-diagnostics={wireDiagnostics.join(" | ")}
+      data-wire-editor-last-action={wireLastAction}
+      style={wireEditorStyle}
+    >
+      <div style={wireSelectorRowStyle}>
+        {editableWires.map((wire) => (
+          <button
+            key={wire.id}
+            type="button"
+            data-wire-select={wire.id}
+            aria-pressed={selectedWireId === wire.id}
+            onClick={() => handleWireSelect(wire.id)}
+            style={wireButtonStyle}
+          >
+            {wire.id}
+          </button>
+        ))}
+      </div>
+      {selectedWire !== null && (
+        <WireHandles
+          wire={selectedWire}
+          validRetargetEndpoint={validRetargetEndpoint}
+          onInvalidRetarget={() => handleEndpointRetarget("bb1:z99")}
+          onValidRetarget={() => handleEndpointRetarget(validRetargetEndpoint)}
+          onWaypointPointerDown={(wireId, point) => {
+            setDraggingWaypoint(`${wireId}:${point.index}`)
+            setWireDiagnostics([])
+          }}
+          onWaypointPointerMove={handleWaypointPointerMove}
+          onWaypointPointerUp={() => setDraggingWaypoint(null)}
+        />
+      )}
+    </div>
+  )
+}
+
+function WireHandles({
+  wire,
+  validRetargetEndpoint,
+  onInvalidRetarget,
+  onValidRetarget,
+  onWaypointPointerDown,
+  onWaypointPointerMove,
+  onWaypointPointerUp,
+}: {
+  wire: SimulationEditableWire
+  validRetargetEndpoint: string
+  onInvalidRetarget: () => void
+  onValidRetarget: () => void
+  onWaypointPointerDown: (wireId: string, point: SimulationEditableWirePoint) => void
+  onWaypointPointerMove: (
+    wireId: string,
+    point: SimulationEditableWirePoint,
+    event: ReactPointerEvent,
+  ) => void
+  onWaypointPointerUp: () => void
+}) {
+  return (
+    <div style={wireHandlesStyle}>
+      <button
+        type="button"
+        data-wire-endpoint-anchor="from"
+        data-wire-endpoint-ref={wire.from.ref}
+        data-wire-endpoint-anchor-locked="true"
+        aria-disabled="true"
+        style={wireAnchorStyle}
+      >
+        {wire.from.ref}
+      </button>
+      {wire.pathPoints.map((point) =>
+        point.editable ? (
+          <button
+            key={`${wire.id}:${point.index}`}
+            type="button"
+            data-wire-waypoint-handle={`${wire.id}:${point.index}`}
+            aria-disabled="false"
+            onPointerDown={() => onWaypointPointerDown(wire.id, point)}
+            onPointerMove={(event) => onWaypointPointerMove(wire.id, point, event)}
+            onPointerUp={onWaypointPointerUp}
+            style={wireWaypointStyle}
+          >
+            {point.index}
+          </button>
+        ) : (
+          <span
+            key={`${wire.id}:${point.index}`}
+            data-wire-waypoint-anchor={`${wire.id}:${point.index}`}
+            aria-disabled="true"
+            style={wireAnchorDotStyle}
+          >
+            {point.index}
+          </span>
+        ),
+      )}
+      <button
+        type="button"
+        data-wire-endpoint-anchor="to"
+        data-wire-endpoint-ref={wire.to.ref}
+        data-wire-endpoint-anchor-locked="true"
+        aria-disabled="true"
+        style={wireAnchorStyle}
+      >
+        {wire.to.ref}
+      </button>
+      <button
+        type="button"
+        data-wire-retarget-valid-to
+        data-wire-retarget-endpoint={validRetargetEndpoint}
+        onClick={onValidRetarget}
+        style={wireActionStyle}
+      >
+        endpoint valido
+      </button>
+      <button
+        type="button"
+        data-wire-retarget-invalid-to
+        onClick={onInvalidRetarget}
+        style={wireActionStyle}
+      >
+        endpoint invalido
+      </button>
+    </div>
+  )
+}
+
+function serializedWirePoint(point: SimulationEditableWirePoint) {
+  return {
+    index: point.index,
+    role: point.role,
+    editable: point.editable,
+    x: point.x,
+    y: point.y,
+  }
+}
+
+function firstValidWireRetargetEndpoint(scene: SimulationScene): string {
+  const board = scene.components.find((component) => component.type.includes("breadboard"))
+  return `${board?.id ?? "bb1"}:bus-top-plus-2`
 }
 
 const shellStyle = {
@@ -342,10 +667,120 @@ const shellStyle = {
   background: "var(--m-paper)",
 } as const
 
+const narrowShellStyle = {
+  ...shellStyle,
+  gridTemplateColumns: "1fr",
+  gridTemplateRows: "minmax(360px, 52vh) auto",
+  overflow: "auto",
+} as const
+
 const canvasShellStyle = {
   minWidth: 0,
   minHeight: 0,
   borderRight: "var(--m-rule-weight) solid var(--m-line)",
+} as const
+
+const elabCanvasFrameStyle = {
+  width: "100%",
+  height: "100%",
+  minHeight: 0,
+  padding: 12,
+  boxSizing: "border-box",
+  overflow: "auto",
+  background: "#f3f7f9",
+} as const
+
+const wireEditorStyle = {
+  display: "grid",
+  gap: 8,
+  marginTop: 10,
+  padding: 10,
+  border: "1px solid #b8c6d2",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#203044",
+  font: "650 12px var(--m-font-ui)",
+} as const
+
+const wireSelectorRowStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 6,
+  minHeight: 30,
+} as const
+
+const wireButtonStyle = {
+  minWidth: 64,
+  height: 28,
+  border: "1px solid #b8c6d2",
+  borderRadius: 6,
+  background: "#eef4f8",
+  color: "#203044",
+  font: "700 12px var(--m-font-ui)",
+} as const
+
+const wireHandlesStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "center",
+  gap: 6,
+  minHeight: 32,
+} as const
+
+const wireAnchorStyle = {
+  minWidth: 96,
+  height: 28,
+  border: "1px solid #cfd7df",
+  borderRadius: 6,
+  background: "#f7f9fb",
+  color: "#52677f",
+  font: "700 11px var(--m-font-ui)",
+} as const
+
+const wireAnchorDotStyle = {
+  display: "inline-grid",
+  placeItems: "center",
+  width: 28,
+  height: 28,
+  border: "1px solid #cfd7df",
+  borderRadius: 14,
+  background: "#f7f9fb",
+  color: "#52677f",
+} as const
+
+const wireWaypointStyle = {
+  width: 28,
+  height: 28,
+  border: "1px solid #0f766e",
+  borderRadius: 14,
+  background: "#ccfbf1",
+  color: "#134e4a",
+  font: "800 12px var(--m-font-ui)",
+  cursor: "grab",
+} as const
+
+const wireActionStyle = {
+  minWidth: 112,
+  height: 28,
+  border: "1px solid #9f7a2f",
+  borderRadius: 6,
+  background: "#fff6d8",
+  color: "#573d09",
+  font: "750 12px var(--m-font-ui)",
+} as const
+
+const physicsStripStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "10px 14px",
+  alignItems: "center",
+  marginTop: 10,
+  padding: "10px 12px",
+  border: "1px solid #c9d7e2",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#203044",
+  font: "650 13px var(--m-font-ui)",
 } as const
 
 const panelColumnStyle = {
@@ -355,6 +790,11 @@ const panelColumnStyle = {
   padding: 12,
   overflow: "auto",
   background: "var(--m-fill)",
+} as const
+
+const narrowPanelColumnStyle = {
+  ...panelColumnStyle,
+  overflow: "visible",
 } as const
 
 const panelStyle = {
@@ -380,7 +820,7 @@ const buttonStyle = {
 
 const activeButtonStyle = {
   ...buttonStyle,
-  borderColor: "var(--m-accent)",
+  border: "1px solid var(--m-accent)",
   color: "var(--m-accent)",
   background: "var(--m-accent-wash)",
 } as const
@@ -409,14 +849,4 @@ const contractStyle = {
   gap: 6,
   padding: 8,
   fontSize: 13,
-} as const
-
-const glyphTextStyle = {
-  font: "700 16px var(--m-font-ui)",
-  fill: "#1f3f63",
-} as const
-
-const smallGlyphTextStyle = {
-  font: "600 12px var(--m-font-ui)",
-  fill: "#41556d",
 } as const

@@ -4,7 +4,7 @@
   "provenance": {
     "status": "candidate",
     "origin": "agent-authored",
-    "sourceRef": "Vol.1 pp.71-74; crop: apps/studio/public/elab/manuals/vol1/page-072-esercizio-9-6.png (primi passi) + page-074-esercizio-9-6.png (build finale, hash in source). Topologia elettrica = corpus experiments-vol1.js v1-cap9-esp6 (catalogo multi-pin sbloccato in #140, canali falsificati in ElabSolverEsp6Rgb): 3 divider pot 10k -> 470 Ohm -> canale RGB, common alla striscia nera. Il testo pp.72-74 vincola le net (negativo->striscia nera, catodo->negativo, un 470 per potenziometro), non i fori esatti: colonne 2-14 e 17-30 = canonical simulator placement.",
+    "sourceRef": "Vol.1 pp.71-74; crop: apps/studio/public/elab/manuals/vol1/page-072-esercizio-9-6.png (primi passi) + page-074-esercizio-9-6.png (build finale, hash in source). La figura finale p.74 mostra la breadboard ruotata verticalmente: board.orientation=manual-figure-vertical e rotazione 90 sono parte del contratto di book-fidelity, anche se visualMatch resta unknown finche' il renderer non consuma questa rotazione. Topologia elettrica = corpus experiments-vol1.js v1-cap9-esp6 (catalogo multi-pin sbloccato in #140, canali falsificati in ElabSolverEsp6Rgb): 3 divider pot 10k -> 470 Ohm -> canale RGB, common alla striscia nera. Il testo pp.72-74 vincola le net (negativo->striscia nera, catodo->negativo, un 470 per potenziometro), non i fori esatti: colonne 2-14 e 17-30 = canonical simulator placement.",
     "checks": {
       "electrical": "pass",
       "geometry": "pass",
@@ -17,13 +17,13 @@
     "sourceImageHash": "698b1df8ca3238096c7ed5be3027f38e2072d8431eade431a4606e7039632053"
   },
   "board": {
-    "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 },
+    "pose": { "x": 0, "y": 0, "rotationDeg": 90, "scale": 1 },
     "grid": { "columns": 30, "columnPitch": 7.5 },
-    "orientation": "elab-volume"
+    "orientation": "manual-figure-vertical"
   },
   "components": [
     { "id": "bat1", "type": "battery9v", "pose": { "x": -120, "y": 45, "rotationDeg": 0, "scale": 1 } },
-    { "id": "bb1", "type": "breadboard-half", "pose": { "x": 0, "y": 0, "rotationDeg": 0, "scale": 1 } },
+    { "id": "bb1", "type": "breadboard-half", "pose": { "x": 0, "y": 0, "rotationDeg": 90, "scale": 1 } },
     { "id": "pot1", "type": "potentiometer", "value": 10000, "pose": { "x": 32.75, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
     { "id": "pot2", "type": "potentiometer", "value": 10000, "pose": { "x": 70.25, "y": 81.25, "rotationDeg": 0, "scale": 1 } },
     { "id": "pot3", "type": "potentiometer", "value": 10000, "pose": { "x": 107.75, "y": 81.25, "rotationDeg": 0, "scale": 1 } },

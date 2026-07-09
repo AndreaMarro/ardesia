@@ -17,16 +17,18 @@ test("lavagna: due inserimenti del Simulation Plugin = due istanze distinte", as
 
   const insertButton = page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" })
   await insertButton.click()
-  // Gotcha Excalidraw: attendere l'ELEMENTO (la palette del primo embed), mai lo stato.
-  await expect(page.getByRole("button", { name: "palette Resistenza" }).first()).toBeVisible({
+  // Gotcha Excalidraw: attendere il canvas core del primo embed, mai lo stato.
+  await expect(page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first()).toBeVisible({
     timeout: 15_000,
   })
+  await expect(page.locator("[data-elab-core-canvas-host] svg").first()).toBeVisible()
 
   await insertButton.click()
-  // Due embed montati = due palette renderizzate (una per istanza).
-  await expect(page.getByRole("button", { name: "palette Resistenza" })).toHaveCount(2, {
+  // Due embed montati = due canvas core renderizzati (uno per istanza).
+  await expect(page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')).toHaveCount(2, {
     timeout: 15_000,
   })
+  await expect(page.locator("[data-elab-core-canvas-host] svg")).toHaveCount(2)
 
   // Identità distinte in scena: id diversi, link maestro-tool:// diversi.
   const embeds = await page.evaluate(() => {

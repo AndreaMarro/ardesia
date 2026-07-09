@@ -17,8 +17,25 @@ ARDESIA Core
     student-pack, user/tutor dashboard, auth future, integrations.
 
 Simulation Plugin
-  = reusable technical circuit simulator, Tinkercad-like but ARDESIA-native,
-    embeddable on the board as a post-it/tool object.
+  = reusable technical circuit simulator, targeting Tinkercad parity but
+    ARDESIA-native, embeddable on the board as a post-it/tool object. The
+    current primary board embed mounts the ELABTutor core canvas through a
+    `SimulationScene` adapter, while the standalone/generic post-it workbenches
+    remain harnesses. Mutating AI/runtime operations now pass through
+    placement validation, wire endpoint/waypoint/path editing, occupancy validation,
+    pin-vocabulary validation, active-provider solve, provider-derived
+    voltmeter/probe/ammeter readings, and fail-closed advanced instrument
+    capability checks. Runtime requests are board-scoped so Nano R4 cannot fall
+    back to ATmega328p, but executable microcontroller providers are still
+    partial. Persisted legacy free-assembly state is projected into the ELAB
+    core canvas as sandbox/monta-tu and now carries structured
+    `place-component` envelopes for the placement pipeline, while native canvas
+    tools remain incomplete. ELAB canvas wire add/update/delete callbacks are
+    bridged into structured simulator operations; this is still not full
+    Tinkercad parity. ToolHost also exposes a host-mediated `lesson.event.emit`
+    channel for evidence-backed LessonOS events, including lifecycle, material,
+    error, exercise, and `simulation.step.completed`; plugins still never write
+    the graph directly.
 
 ELABTutor Plugin/Pack
   = discipline-specific pack built on top of the Simulation Plugin, containing
@@ -333,6 +350,120 @@ State must include:
 - plugin version;
 - lesson/board embed ID.
 
+### 6.7 Tinkercad parity target
+
+Current status: the ARDESIA board embed mounts the ELABTutor core canvas through
+the Simulation Plugin adapter, with `SimulationScene` as the source of truth and
+the SVG/canvas layer as rendering. ELAB canvas wire creation, update, and delete
+callbacks now produce structured `connect-wire`, `edit-wire.replace-path`, and
+`delete` operations. This is not Tinkercad parity and not the finished ELABTutor
+simulator runtime. It may show solver-backed diagnostics for verified fixture
+slices, but it must stay labeled as a partial simulation harness until component
+registry/SVG tools, advanced probes/tools, scoped AVR/runtime bridges,
+persistence, native free-assembly controls, and the remaining canvas interaction
+model are all extracted into
+`io.ardesia.simulation`. The AI/runtime mutation path already uses the
+structured placement and `edit-wire` pipeline, can derive voltmeter/probe
+voltages plus ammeter current only from provider results, and exposes
+provider-bound `runInstrument` operations for serial monitor/plotter,
+oscilloscope, SPICE transient, and custom-chip requests. Those tools still
+block when their provider is missing, and logic-probe readings still require a
+runtime trace. Runtime requests already carry board scope diagnostics; these
+paths must not regress to direct scene patches, unscoped AVR fallback, fake
+instrument readings, or legacy-only free-assembly state.
+
+The Simulation Plugin must fully emulate the relevant Tinkercad circuit
+experience inside ARDESIA, starting from the existing ELABTutor simulator and
+removing its architectural, geometry, physics, and interaction limits.
+
+This is a product target, not a nice-to-have. A partial slice can ship only when
+it is honestly labeled as partial and does not block the path to parity.
+
+Required parity capabilities:
+
+- component palette with real drag/drop, tap placement, rotation, deletion,
+  duplication, undo/redo, selection, zoom, pan, and persistent board state;
+- editable breadboards, boards, discrete components, sensors, probes,
+  instruments, wire endpoints, wire colors, and routed waypoints;
+- live solve after every mutation of component placement, pin assignment, wire,
+  code/runtime state, probe position, or provider setting;
+- current, voltage, LED state, signal values, serial output, and graph/plotter
+  readings derived from solver/runtime providers;
+- explicit unsupported-state diagnostics instead of decorative approximations;
+- import/export/restore of the complete simulator state as an ARDESIA board
+  object;
+- provider path for local solving, wasm/ngspice-class solving, and host-mediated
+  remote solving without browser-side uncontrolled network access.
+
+For every experiment marked supported, the simulator must behave as a real
+interactive circuit simulator, not as a static illustration.
+
+Required behavior:
+
+- placing, moving, rotating, or removing a component updates the scene graph;
+- connecting or moving a wire updates explicit endpoints and waypoints;
+- every component pin maps to a known breadboard hole, board pin, or connector;
+- every user mutation reruns placement validation, occupancy validation, pin
+  vocabulary validation, and the active solver provider;
+- diagnostics distinguish physical impossibility, missing connection, wrong
+  polarity, short circuit, overload, unsupported component, and provider
+  unavailability;
+- current, voltage, LED state, and runtime observations come from the solver or
+  provider result, never from decorative UI state;
+- unsupported physics are blocked with a visible reason instead of simulated by
+  fake values.
+
+This is not a requirement to finish all parity work in the first PR. It is the
+acceptance bar for the final Simulation Plugin and the compatibility direction
+for every intermediate slice.
+
+### 6.7.1 ELABTutor simulator limits to remove
+
+The existing ELABTutor simulator is the starting point, not the bar.
+
+Migration must remove these limits:
+
+- standalone shell coupling: no `App.jsx`, auth, dashboard, Supabase functions,
+  memory, or report subsystem inside the Simulation Plugin;
+- god-component coupling: extract the useful simulator runtime/canvas/tools from
+  `NewElabSimulator` instead of making that component the plugin API;
+- geometry drift: replace ad hoc scene layouts with authored, tested,
+  manual-figure geometry and board orientation;
+- runtime mismatch: `AVRBridge` ATmega328p behavior must not be sold as exact
+  Nano R4/Renesas RA4M1 behavior; runtime scope diagnostics already block this,
+  and executable Nano R4 support remains unavailable until a Renesas provider is
+  wired;
+- physics gaps: unsupported components, nonlinear behavior, sensors, and
+  instruments must fail closed or route to a provider, never fake values;
+- interaction gaps: canvas-native wiring, probes, undo/redo, code/runtime,
+  diagnostics, persistence, and the free-assembly canvas must become
+  plugin-general primitives; persisted legacy free-assembly state is already
+  projected into the core canvas as sandbox/monta-tu and persisted as
+  structured placement envelopes, but the placement tools themselves still need
+  to become canvas-native.
+
+### 6.8 Manual figure fidelity gates
+
+ELAB experiments must be drawn exactly like the manual figure for the selected
+volume/chapter/experiment whenever that figure is part of the instruction.
+
+Required gates:
+
+- each verified scene records the manual page/crop or evidence identifier used
+  for geometry;
+- breadboard orientation is explicit (`horizontal`, `vertical`, or rotation
+  degrees) and tested against the manual figure;
+- component poses, polarity, and relative placement have authored provenance;
+- wire routes are authored or reviewed; generated routes cannot drive a verified
+  lesson unless the provenance records the manual allows arbitrary placement;
+- visual/structural drift tests fail if a verified scene silently changes
+  breadboard orientation, hole mapping, polarity, or required component layout;
+- when a volume figure shows a vertical breadboard, the simulator must render a
+  vertical breadboard for that scene.
+
+Scenes without this evidence may be technical harnesses, drafts, or blocked
+states, but must not be presented as manual-faithful ELAB simulations.
+
 ## 7. Manual-aligned presentation
 
 The plugin must present:
@@ -557,13 +688,17 @@ Purpose:
 - maintain own-embeds scope;
 - no UI mount yet.
 
-### Stage 2 — demo harness mount
+### Stage 2 — ELAB core canvas mount
 
 Goal:
 
 ```text
-existing ARDESIA board can mount ELAB Vol.1 cap.6 esp.1 board payload in a deterministic local/demo harness.
+existing ARDESIA board can mount ELAB Vol.1 cap.6 esp.1 board payload through the ELABTutor core canvas adapter.
 ```
+
+Acceptance wording: the visible UI and docs may say the board embed mounts the
+ELABTutor core canvas adapter, but must still call the slice a partial
+simulation harness, not Tinkercad parity or the final Simulation Plugin runtime.
 
 Constraints:
 
@@ -619,7 +754,13 @@ Do not implement now:
 - AgentMemory mutation;
 - automatic CV/manual-to-scene;
 - arbitrary image recognition;
-- full Tinkercad clone.
+
+Tinkercad parity is not out of scope for the product. It is out of scope only as
+a single-slice deliverable; every slice must either advance parity or preserve a
+clear path to it. Even after the first ELABTutor core canvas mount, slices remain
+partial simulation harnesses until advanced probes/tools, executable runtime
+providers, persistence, robust component catalog, and free-assembly placement
+tools inside the core canvas are complete.
 
 ## 20. Risks
 
@@ -642,7 +783,12 @@ The first usable slice is done only when:
 - user mounts ELAB/Simulation plugin;
 - plugin shows Vol.1 cap.6 esp.1 manual-aligned circuit;
 - circuit can run/interact;
+- every supported interaction updates scene state, validators, and solver
+  diagnostics;
+- the slice declares its Tinkercad parity gaps explicitly and does not hide them
+  behind static drawings;
 - manual reference is visible as Vol.1 pages 29-31;
+- verified geometry has manual-figure provenance and drift tests;
 - export produces lesson JSON with plugin state;
 - import restores the plugin state;
 - drift tests pass;

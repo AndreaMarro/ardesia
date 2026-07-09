@@ -35,12 +35,13 @@ describe("Simulation Plugin v2 manifest", () => {
   })
 
   it("requires the current SDK contract and least-privilege capabilities", () => {
-    expect(manifest.contract).toBe(">=1.1 <2.0")
+    expect(manifest.contract).toBe(">=1.2 <2.0")
     expect(protocolSatisfies(CONTRACT_VERSION, manifest.contract ?? "")).toBe(true)
     expect(manifest.capabilities).toEqual({
       "board.read": {},
       "board.write": { scope: "own-embeds" },
       "graph.query": {},
+      "lesson.event.emit": {},
       storage: { quotaMB: 16 },
       ui: {},
     })

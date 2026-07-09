@@ -53,3 +53,34 @@ declare module "@elab-pack/data/volume-references" {
   const VOLUME_REFERENCES: Record<string, PackVolumeReference>
   export default VOLUME_REFERENCES
 }
+
+declare module "@elab-pack/postitFunctions.json" {
+  export interface PackPostitFunctionSurface {
+    label: string
+    role: "contextual" | "primary" | "workspace"
+  }
+
+  export interface PackPostitFunctionDescriptor {
+    id: string
+    label: string
+    priority: number
+    dependencies?: {
+      pluginIds?: string[]
+      runtimeApi?: string
+      forbiddenImports?: string[]
+    }
+    surfaces: Partial<Record<"compact" | "normal" | "expanded", PackPostitFunctionSurface>>
+  }
+
+  const value: {
+    schema: "elabtutor-postit-functions/1"
+    packId: "io.elab.tutor"
+    dependsOn: {
+      pluginId: "io.ardesia.simulation"
+      runtimeApi: "simulation-runtime/1"
+    }
+    functions: PackPostitFunctionDescriptor[]
+  }
+
+  export default value
+}

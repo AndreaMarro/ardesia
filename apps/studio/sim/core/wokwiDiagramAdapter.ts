@@ -4,6 +4,10 @@ import type {
   SimulationScene,
   SimulationWire,
 } from "./simulationScene"
+import {
+  createBreadboardModel,
+  pointForSimulationSnapRef,
+} from "./simulationScene"
 
 type WokwiPart = {
   id: string
@@ -157,7 +161,52 @@ function orthogonalPath(
 function partAnchor(endpoint: string, parts: WokwiPart[]): SimulationPoint {
   const partId = endpoint.split(":")[0] ?? endpoint
   const part = parts.find((candidate) => candidate.id === partId)
-  return { x: (part?.left ?? 0) + 28, y: (part?.top ?? 0) + 28 }
+  if (part === undefined) return { x: 0, y: 0 }
+  const breadboardAnchor = anchorForBreadboardEndpoint(endpoint, part)
+  if (breadboardAnchor !== null) return breadboardAnchor
+  return anchorForComponentEndpoint(endpoint, part)
+}
+
+function anchorForBreadboardEndpoint(endpoint: string, part: WokwiPart): SimulationPoint | null {
+  if (!part.type.includes("breadboard")) return null
+  const scene: SimulationScene = {
+    schemaVersion: "simulation-scene/2",
+    id: `${part.id}-anchor`,
+    title: part.id,
+    domain: "electronics",
+    breadboards: [createBreadboardModel(part.id)],
+    components: [partToComponent(part)],
+    wires: [],
+    provenance: {
+      source: {
+        kind: "wokwi-diagram-json",
+        label: "endpoint anchor",
+        status: "draft",
+      },
+    },
+    adapters: { source: "wokwi-diagram-json", solver: ["local"] },
+  }
+  const point = pointForSimulationSnapRef(endpoint, scene)
+  if (point === null) return null
+  return { x: (part.left ?? 0) + point.x, y: (part.top ?? 0) + point.y }
+}
+
+function anchorForComponentEndpoint(endpoint: string, part: WokwiPart): SimulationPoint {
+  const pin = endpoint.slice(endpoint.indexOf(":") + 1)
+  const x = part.left ?? 0
+  const y = part.top ?? 0
+  if (part.type.includes("resistor")) {
+    return pin === "2" ? { x: x + 84, y } : { x: x - 84, y }
+  }
+  if (part.type.includes("led")) {
+    if (pin === "C" || pin.toLowerCase() === "cathode") return { x: x + 34, y: y + 44 }
+    return { x: x - 34, y: y + 44 }
+  }
+  if (part.type.includes("arduino")) {
+    if (pin.startsWith("GND")) return { x: x + 124, y: y + 28 }
+    if (pin === "13") return { x: x + 124, y: y + 2 }
+  }
+  return { x: x + 28, y: y + 28 }
 }
 
 function labelForPartType(type: string): string {

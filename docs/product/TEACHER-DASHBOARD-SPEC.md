@@ -1,7 +1,11 @@
-# TEACHER-DASHBOARD-SPEC — Cruscotto docente come projection del grafo LessonOS
+# TEACHER-DASHBOARD-SPEC — Pagina Personale come projection del grafo LessonOS
 
 - **Status**: spec di prodotto, zero codice UI. Nessun claim di implementazione.
 - **Data**: 2026-07-02
+- **Naming prodotto**: la superficie user-facing si chiama **Pagina Personale**.
+  Non usare "pagina docente", "cruscotto docente" o "teacher dashboard" come
+  label di prodotto. Il filename e i tipi tecnici storici possono restare finché
+  rinominarli non diventa una slice dedicata.
 - **Fonti** (lette firsthand in questa sessione):
   - `docs/ops/PER-USER-AIOS-CRITICAL-ANALYSIS.md` (§DashboardProjection, §Implementazione minima → `UserAIOSSnapshot`, secondo slice → `UserAIOSPanel`) — *local-only, import pending*
   - `docs/product/UI-UX-DESIGN-DIRECTION.md` (paper-first, plugin-on-paper, layouts, accessibilità) — *in PR #20*
@@ -10,12 +14,12 @@
 
 ## 0. Principio non negoziabile
 
-> **Il cruscotto docente è una PROJECTION read-only del grafo LessonOS e dell'event log. MAI un secondo store.**
+> **La Pagina Personale è una PROJECTION read-only del grafo LessonOS e dell'event log. MAI un secondo store.**
 
 Conseguenze vincolanti:
 
-1. Nessuna tabella/DB/file "del cruscotto" che possieda dati propri. Ogni pixel del cruscotto deve essere derivabile (e ri-derivabile da zero) da: **event log** (`raw/events.jsonl` oggi, SQLite domani) + **grafo LessonOS materializzato** + **manifest registry plugin** + **WorkspaceStore `derived/`**.
-2. Le azioni del cruscotto (fase ②) **non scrivono mai il grafo direttamente**: appendono eventi all'event log; il materializer aggiorna il grafo; la projection si rinfresca. Un solo flusso di scrittura.
+1. Nessuna tabella/DB/file della Pagina Personale possiede dati propri. Ogni pixel deve essere derivabile (e ri-derivabile da zero) da: **event log** (`raw/events.jsonl` oggi, SQLite domani) + **grafo LessonOS materializzato** + **manifest registry plugin** + **WorkspaceStore `derived/`**.
+2. Le azioni della Pagina Personale (fase ②) **non scrivono mai il grafo direttamente**: appendono eventi all'event log; il materializer aggiorna il grafo; la projection si rinfresca. Un solo flusso di scrittura.
 3. Ogni dato mostrato ha **evidence ref** (lesson-id, board object, manuale vol:pagina, plugin state). Niente numeri senza provenienza — coerente con `docs/PRODUCT-CANON.md` (vietate metriche inventate).
 4. Se una zona non ha ancora una fonte dati reale, la zona mostra "non disponibile" con la ragione — **mai** dati mock spacciati per veri.
 
@@ -24,18 +28,18 @@ Pipeline di riferimento (da PER-USER-AIOS, già decisa):
 ```text
 board event → lesson object → plugin state → concept/error/evidence extraction
   → UserAIOS memory event → LessonOS graph update → student-pack candidate
-  → dashboard projection   ← il cruscotto vive QUI, in fondo, read-only
+  → personal page projection   ← la Pagina Personale vive QUI, in fondo, read-only
 ```
 
 ## 1. Personas
 
-| Persona | Contesto | Cosa gli serve dal cruscotto |
+| Persona | Contesto | Cosa gli serve dalla Pagina Personale |
 |---|---|---|
 | **P1 — Docente curricolare** | Scuola secondaria; LIM in classe + iPad a casa; 3–6 classi, ~25 studenti/classe | Riprendere il filo tra lezioni, vedere lacune ricorrenti della classe, preparare la prossima lezione, generare student-pack |
 | **P2 — Tutor 1:1** (caso ELAB) | Lezioni individuali; percorso personalizzato per studente; manuali come fonte | Stato del percorso del singolo studente, errori ricorrenti individuali, materiali/esperimenti già usati, cosa assegnare dopo |
 | **P3 — Docente-creator** (secondaria) | Pubblica pack/materiali sul marketplace | Vetrina del proprio profilo pubblico, stato dei materiali pubblicati |
 
-Non-persona del cruscotto: lo **studente** (la sua superficie è lo student-pack e la vista studente della lavagna, non questo cruscotto).
+Non-persona della Pagina Personale: lo **studente** (la sua superficie è lo student-pack e la vista studente della lavagna, non questa pagina).
 
 ## 2. Jobs-to-be-done
 
@@ -47,9 +51,9 @@ Non-persona del cruscotto: lo **studente** (la sua superficie è lo student-pack
 6. **Rendicontazione onesta**: "Come sta andando la classe?" → statistiche deterministiche (conteggi con evidenza), non punteggi opachi.
 7. **Presenza pubblica** (P3): "Come appare il mio profilo? Cosa ho pubblicato?" → profilo pubblico + materiali pubblicati.
 
-## 3. Zone del cruscotto → informazione → fonte dati
+## 3. Zone della Pagina Personale → informazione → fonte dati
 
-Regola UI ereditata da UI-UX-DESIGN-DIRECTION: il cruscotto **non è la prima schermata** (paper-first); è una superficie di consultazione raggiungibile dalla lavagna. Desktop: pannelli collassabili; iPad: drawer/schermata dedicata; LIM: non prioritario (il cruscotto è privato del docente, non da proiettare).
+Regola UI ereditata da UI-UX-DESIGN-DIRECTION: la Pagina Personale **non è la prima schermata** (paper-first); è una superficie di consultazione raggiungibile dalla lavagna. Desktop: pannelli collassabili; iPad: drawer/schermata dedicata; LIM: non prioritario (è una pagina privata, non da proiettare).
 
 | # | Zona | Informazione mostrata | Fonte (projection di…) | Fase |
 |---|---|---|---|---|
@@ -72,7 +76,7 @@ Privacy (vincolo GDPR Mode A su `apps/`+`packages/`+`plugins/`, README §Guardra
 
 ### 4.1 Rapporto con `UserAIOSSnapshot` (già disegnato)
 
-`UserAIOSSnapshot` (PER-USER-AIOS §Implementazione minima: `v, userId, room, locale, lessonState, memoryMap[], modelRoutes[]`) resta il contratto della projection **per-utente/per-room**. Il cruscotto docente è una vista **sopra** quelle snapshot più il grafo: NON si duplica ciò che la snapshot già porta — si aggrega.
+`UserAIOSSnapshot` (PER-USER-AIOS §Implementazione minima: `v, userId, room, locale, lessonState, memoryMap[], modelRoutes[]`) resta il contratto della projection **per-utente/per-room**. La Pagina Personale è una vista **sopra** quelle snapshot più il grafo: NON si duplica ciò che la snapshot già porta — si aggrega.
 
 ```text
 raw/events.jsonl (per room)

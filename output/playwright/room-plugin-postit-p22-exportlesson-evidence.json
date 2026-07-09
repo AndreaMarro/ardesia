@@ -1,0 +1,240 @@
+{
+  "route": "http://127.0.0.1:5187/#p22-export-import-1783531670416",
+  "sourceRoom": "p22-export-source-1783531670416",
+  "targetRoom": "p22-export-import-1783531670416",
+  "generatedByWorkspaceStoreExportLesson": true,
+  "lessonPath": "/Users/andreamarro/ardesia-wt/tutor-ux/output/playwright/p22-workspace-exportlesson-room-import.lesson",
+  "boardPath": "/Users/andreamarro/ardesia-wt/tutor-ux/output/playwright/p22-workspace-exportlesson-board.json",
+  "desktopScreenshot": "/Users/andreamarro/ardesia-wt/tutor-ux/output/playwright/room-plugin-postit-p22-exportlesson-desktop.png",
+  "mobileScreenshot": "/Users/andreamarro/ardesia-wt/tutor-ux/output/playwright/room-plugin-postit-p22-exportlesson-mobile.png",
+  "zipEntries": [
+    "raw/",
+    "raw/board.excalidraw"
+  ],
+  "exportedShape": [
+    {
+      "id": "plugin-postit-sim-a-board",
+      "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-a-board",
+      "hasFullShape": true,
+      "linkUsesElementId": true,
+      "instanceId": "sim-a",
+      "pluginId": "io.ardesia.simulation",
+      "bounds": {
+        "x": 48,
+        "y": 72,
+        "width": 560,
+        "height": 380
+      }
+    },
+    {
+      "id": "plugin-postit-sim-b-board",
+      "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-b-board",
+      "hasFullShape": true,
+      "linkUsesElementId": true,
+      "instanceId": "sim-b",
+      "pluginId": "io.ardesia.simulation",
+      "bounds": {
+        "x": 48,
+        "y": 492,
+        "width": 560,
+        "height": 380
+      }
+    },
+    {
+      "id": "plugin-postit-elab-consumer-board",
+      "link": "maestro-tool://io.elab.tutor/plugin-postit-elab-consumer-board",
+      "hasFullShape": true,
+      "linkUsesElementId": true,
+      "instanceId": "elab-consumer",
+      "pluginId": "io.elab.tutor",
+      "bounds": {
+        "x": 640,
+        "y": 72,
+        "width": 740,
+        "height": 420
+      }
+    }
+  ],
+  "loadedScene": {
+    "hasLoadedScene": true,
+    "elementIds": [
+      "plugin-postit-sim-a-board",
+      "plugin-postit-sim-b-board",
+      "plugin-postit-elab-consumer-board"
+    ],
+    "links": [
+      "maestro-tool://io.ardesia.simulation/plugin-postit-sim-a-board",
+      "maestro-tool://io.ardesia.simulation/plugin-postit-sim-b-board",
+      "maestro-tool://io.elab.tutor/plugin-postit-elab-consumer-board"
+    ],
+    "allLinksUseElementId": true,
+    "allElementsHaveFullShape": true
+  },
+  "desktopDom": {
+    "instances": [
+      "sim-a",
+      "sim-b",
+      "elab-consumer"
+    ],
+    "plugins": [
+      "io.ardesia.simulation",
+      "io.ardesia.simulation",
+      "io.elab.tutor"
+    ],
+    "functionModes": {
+      "sim-a": "normal",
+      "sim-b": "normal",
+      "elab-consumer": "normal"
+    },
+    "providerText": {
+      "sim-a": "local: local solver available",
+      "sim-b": "fastapi: fastapi provider hub not configured"
+    },
+    "solverText": {
+      "sim-a": "led current 0.0153",
+      "sim-b": "led current 0"
+    },
+    "elabTutorRuntimeApi": "simulation-runtime/1",
+    "elabTutorSimulationInstance": "sim-a",
+    "duplicatePluginControlIds": 0,
+    "overlaps": [],
+    "rects": [
+      {
+        "instanceId": "sim-a",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 125,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "sim-b",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 545,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "elab-consumer",
+        "pluginId": "io.elab.tutor",
+        "x": 642,
+        "y": 125,
+        "width": 736,
+        "height": 420
+      }
+    ]
+  },
+  "reloadDom": {
+    "instances": [
+      "sim-a",
+      "sim-b",
+      "elab-consumer"
+    ],
+    "plugins": [
+      "io.ardesia.simulation",
+      "io.ardesia.simulation",
+      "io.elab.tutor"
+    ],
+    "functionModes": {
+      "sim-a": "normal",
+      "sim-b": "normal",
+      "elab-consumer": "normal"
+    },
+    "providerText": {
+      "sim-a": "local: local solver available",
+      "sim-b": "fastapi: fastapi provider hub not configured"
+    },
+    "solverText": {
+      "sim-a": "led current 0.0153",
+      "sim-b": "led current 0"
+    },
+    "elabTutorRuntimeApi": "simulation-runtime/1",
+    "elabTutorSimulationInstance": "sim-a",
+    "duplicatePluginControlIds": 0,
+    "overlaps": [],
+    "rects": [
+      {
+        "instanceId": "sim-a",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 125,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "sim-b",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 545,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "elab-consumer",
+        "pluginId": "io.elab.tutor",
+        "x": 642,
+        "y": 125,
+        "width": 736,
+        "height": 420
+      }
+    ]
+  },
+  "mobileDom": {
+    "instances": [
+      "sim-a",
+      "sim-b",
+      "elab-consumer"
+    ],
+    "plugins": [
+      "io.ardesia.simulation",
+      "io.ardesia.simulation",
+      "io.elab.tutor"
+    ],
+    "functionModes": {
+      "sim-a": "normal",
+      "sim-b": "normal",
+      "elab-consumer": "normal"
+    },
+    "providerText": {
+      "sim-a": "local: local solver available",
+      "sim-b": "fastapi: fastapi provider hub not configured"
+    },
+    "solverText": {
+      "sim-a": "led current 0.0153",
+      "sim-b": "led current 0"
+    },
+    "elabTutorRuntimeApi": "simulation-runtime/1",
+    "elabTutorSimulationInstance": "sim-a",
+    "duplicatePluginControlIds": 0,
+    "overlaps": [],
+    "rects": [
+      {
+        "instanceId": "sim-a",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 125,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "sim-b",
+        "pluginId": "io.ardesia.simulation",
+        "x": 50,
+        "y": 545,
+        "width": 556,
+        "height": 380
+      },
+      {
+        "instanceId": "elab-consumer",
+        "pluginId": "io.elab.tutor",
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    ]
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

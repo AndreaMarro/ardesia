@@ -66,6 +66,44 @@ export type LessonOsEvent =
       labels: Labels
     })
   | (BaseEvent & {
+      kind: "simulation.step.completed"
+      stepId: string
+      sceneId?: string
+      experimentId?: string
+      conceptId?: string
+      labels: Labels
+    })
+  | (BaseEvent & {
+      /** Il solve reale ha prodotto un risultato per l'esperimento (telemetria break→explain). */
+      kind: "simulation.circuit.solved"
+      experimentId: string
+      sceneId?: string
+      conceptId?: string
+      /** Corrente misurata dal solve in mA (es. 15.3): payload per provenance/product-factory. */
+      currentMa?: number
+      /** Il circuito risolto è conforme al book-layout del volume (parità). */
+      bookLayoutValid?: boolean
+      labels: Labels
+    })
+  | (BaseEvent & {
+      /** Errore elettrico osservato dal solver (filo scollegato, LED invertito, R mancante/pericolosa). */
+      kind: "simulation.error.observed"
+      errorId: string
+      conceptId: string
+      sceneId?: string
+      experimentId?: string
+      studentId?: string
+      labels: Labels
+    })
+  | (BaseEvent & {
+      kind: "plugin.mounted"
+      pluginId: string
+      pluginKind: string
+      instanceId: string
+      room?: string
+      labels: Labels
+    })
+  | (BaseEvent & {
       /** Tentativo quiz per-studente: fatto registrato; ogni vista (media, debito) è derivata. */
       kind: "quiz.attempted"
       quizId: string

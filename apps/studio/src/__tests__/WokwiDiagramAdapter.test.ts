@@ -6,6 +6,7 @@ import {
   sceneReadiness,
 } from "../../sim/core/simulationScene"
 import { wokwiDiagramToSimulationScene } from "../../sim/core/wokwiDiagramAdapter"
+import { pointForBreadboardRef } from "../../sim/breadboard/simulationBreadboard"
 
 const diagram = {
   version: 1,
@@ -52,6 +53,29 @@ describe("wokwiDiagramToSimulationScene", () => {
     expect(normalizeSimulationScene(scene)).toEqual({
       components: ["led1:wokwi-led", "r1:wokwi-resistor", "uno:wokwi-arduino-uno"],
       wires: ["led1:C->uno:GND.1", "r1:2->led1:A", "uno:13->r1:1"],
+    })
+  })
+
+  it("anchors breadboard endpoints to generic snap coordinates", () => {
+    const scene = wokwiDiagramToSimulationScene(
+      {
+        version: 1,
+        parts: [
+          { id: "bb1", type: "wokwi-breadboard-half", left: 200, top: 300 },
+          { id: "r1", type: "wokwi-resistor", left: 420, top: 220 },
+        ],
+        connections: [["bb1:j5", "r1:1", "green", []]],
+      },
+      {
+        id: "breadboard-anchor",
+        title: "Breadboard anchor harness",
+      },
+    )
+
+    const j5 = pointForBreadboardRef("bb1:j5")
+    expect(scene.wires[0]?.path?.points[0]).toEqual({
+      x: 200 + (j5?.x ?? 0),
+      y: 300 + (j5?.y ?? 0),
     })
   })
 })

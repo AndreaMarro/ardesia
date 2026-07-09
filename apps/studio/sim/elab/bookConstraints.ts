@@ -40,6 +40,12 @@ function isTerminalHole(parsed: ParsedBreadboardRef | null): parsed is ParsedBre
   return parsed?.kind === "terminal"
 }
 
+function isVerticalBreadboardRotation(rotationDeg: number | undefined): boolean {
+  if (rotationDeg === undefined) return false
+  const normalized = ((rotationDeg % 360) + 360) % 360
+  return normalized === 90 || normalized === 270
+}
+
 /** Estremo opposto di un wire rispetto a un pin componente (`bat1:positive`). */
 function wireEndpointOpposite(scene: ElabScene, componentPinRef: string): string | null {
   for (const wire of scene.wires) {
@@ -455,6 +461,28 @@ export function checkBookConstraintsV1Cap9Esp6(scene: ElabScene): BookConstraint
         ? "3 catene indipendenti pot → 470 Ohm → canale RGB (biiezione completa)"
         : "catena pot→470→canale mancante o duplicata per almeno un colore",
       bookRef: `${BOOK_REF_P74} — "Inserisci il 3° potenzometro con la sua resistenza da 470r" + collegamenti canale (pin 2 → LED rosso/verde/blu)`,
+    })
+  }
+
+  // G7 — la figura finale p.74 mostra la breadboard in verticale. Questo non
+  // e' un vincolo elettrico: e' un gate di book-fidelity per impedire che la
+  // scena resti su fallback orizzontale quando viene venduta come fedele al
+  // libro. Il renderer attuale non consuma ancora la rotazione: visualMatch
+  // resta unknown finche' il passaggio visuale non viene estratto.
+  {
+    const boardRotation = scene.board.pose.rotationDeg
+    const breadboardRotation = breadboard?.pose?.rotationDeg
+    const ok =
+      scene.board.orientation === "manual-figure-vertical" &&
+      isVerticalBreadboardRotation(boardRotation) &&
+      isVerticalBreadboardRotation(breadboardRotation)
+    results.push({
+      id: "manual-breadboard-vertical",
+      ok,
+      detail: ok
+        ? `breadboard verticale dichiarata (board ${boardRotation}°, bb1 ${breadboardRotation}°)`
+        : `breadboard non verticale (orientation=${scene.board.orientation}, board=${boardRotation}°, bb1=${breadboardRotation ?? "missing"}°)`,
+      bookRef: `${BOOK_REF_P74} — figura finale: breadboard ruotata verticalmente nella pagina del manuale`,
     })
   }
 

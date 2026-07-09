@@ -1,0 +1,163 @@
+{
+  "diag": {
+    "room": "p20-room-diagnostic-1783528286246",
+    "ready": true,
+    "inputAccept": "image/*,application/pdf,.lesson",
+    "err": null,
+    "saved": true,
+    "postits": [],
+    "hasRoomBlob": true,
+    "hasFlatBlob": true,
+    "roomTextSample": "{\n  \"type\": \"excalidraw\",\n  \"version\": 2,\n  \"source\": \"http://127.0.0.1:5187\",\n  \"elements\": [\n    {\n      \"id\": \"plugin-postit-sim-a-board\",\n      \"type\": \"embeddable\",\n      \"x\": 48,\n      \"y\": 72,\n      \"width\": 260,\n      \"height\": 180,\n      \"link\": \"maestro-tool://io.ardesia.simulation/plugin-postit-sim-a-board\",\n      \"customData\": {\n        \"maestroTool\": {\n          \"owner\": \"io.ardesia.simulation#sim-a\",\n          \"schema\": \"plugin-postit-board-state/1\",\n          \"state\": {\n            \"kind\": \"plugin-postit-object\",\n            \"instanceId\": \"sim-a\",\n            \"pluginId\": \"io.ardesia.simulation\",\n            \"bounds\": {\n              \"x\": 48,\n              \"y\": 72,\n              \"width\": 260,\n              \"height\": 180\n            },\n            \"zIndex\": 1,\n            \"selected\": true,\n            \"hovered\": false,\n            \"proximity\": \"far\",\n            \"pluginState\": {\n              \"sceneId\": \"reference-circuit-a\",\n              \"selectedComponentId\": null,\n    ",
+    "apiElements": [
+      {
+        "id": "plugin-postit-sim-a-board",
+        "type": "embeddable",
+        "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-a-board",
+        "x": 48,
+        "y": 72,
+        "width": 260,
+        "height": 180,
+        "customData": {
+          "maestroTool": {
+            "owner": "io.ardesia.simulation#sim-a",
+            "schema": "plugin-postit-board-state/1",
+            "state": {
+              "kind": "plugin-postit-object",
+              "instanceId": "sim-a",
+              "pluginId": "io.ardesia.simulation",
+              "bounds": {
+                "x": 48,
+                "y": 72,
+                "width": 260,
+                "height": 180
+              },
+              "zIndex": 1,
+              "selected": true,
+              "hovered": false,
+              "proximity": "far",
+              "pluginState": {
+                "sceneId": "reference-circuit-a",
+                "selectedComponentId": null,
+                "providerOutput": {
+                  "instanceId": "sim-a",
+                  "pluginId": "io.ardesia.simulation",
+                  "providerId": "local",
+                  "diagnostics": [
+                    "local solver available"
+                  ],
+                  "solverOutput": {
+                    "currents": {
+                      "led": 0.0153
+                    },
+                    "componentStates": {
+                      "led": {
+                        "on": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "plugin-postit-sim-b-board",
+        "type": "embeddable",
+        "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-b-board",
+        "x": 340,
+        "y": 72,
+        "width": 760,
+        "height": 560,
+        "customData": {
+          "maestroTool": {
+            "owner": "io.ardesia.simulation#sim-b",
+            "schema": "plugin-postit-board-state/1",
+            "state": {
+              "kind": "plugin-postit-object",
+              "instanceId": "sim-b",
+              "pluginId": "io.ardesia.simulation",
+              "bounds": {
+                "x": 340,
+                "y": 72,
+                "width": 760,
+                "height": 560
+              },
+              "zIndex": 2,
+              "selected": true,
+              "hovered": false,
+              "proximity": "far",
+              "pluginState": {
+                "sceneId": "reference-circuit-b",
+                "selectedComponentId": null,
+                "providerOutput": {
+                  "instanceId": "sim-b",
+                  "pluginId": "io.ardesia.simulation",
+                  "providerId": "fastapi",
+                  "diagnostics": [
+                    "fastapi provider hub not configured"
+                  ],
+                  "solverOutput": {
+                    "currents": {},
+                    "componentStates": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "plugin-postit-elab-consumer-board",
+        "type": "embeddable",
+        "link": "maestro-tool://io.elab.tutor/plugin-postit-elab-consumer-board",
+        "x": 48,
+        "y": 650,
+        "width": 480,
+        "height": 250,
+        "customData": {
+          "maestroTool": {
+            "owner": "io.elab.tutor#elab-consumer",
+            "schema": "plugin-postit-board-state/1",
+            "state": {
+              "kind": "plugin-postit-object",
+              "instanceId": "elab-consumer",
+              "pluginId": "io.elab.tutor",
+              "bounds": {
+                "x": 48,
+                "y": 650,
+                "width": 480,
+                "height": 250
+              },
+              "zIndex": 3,
+              "selected": false,
+              "hovered": false,
+              "proximity": "active",
+              "pluginState": {
+                "activeFunction": "simulatore",
+                "simulationInstanceId": "sim-a",
+                "runtimeApi": "simulation-runtime/1"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "bodyText": "\n    Ardesiastudiop20-room-diagnostic-1783528286246dai un nomesolo in questo browser — scegli cartella…salvato☰lavagnaSimulatoreELABTutorinvita studenteformulamediasimsim esp2sim esp3sim esp6lezioniaudioesporta lezioneMeetPer spostare la tela, tieni premuta la rotellina del mouse o la barra spaziatrice mentre trascini oppure usa lo strumento manoForme123456780LibreriaAzioni sulla Tela100% Uscire dalla modalità zenScorri indietro fino al contenutoArea di disegno\n    \n  \n\n"
+  },
+  "events": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected."
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    }
+  ]
+}

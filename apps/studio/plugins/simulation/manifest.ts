@@ -8,7 +8,7 @@ export const manifest: ToolManifest = defineManifest({
   name: "ARDESIA Simulation",
   version: "2.0.0",
   protocol: ">=1.0 <2.0",
-  contract: ">=1.1 <2.0",
+  contract: ">=1.2 <2.0",
   kind: "plugin",
   entry: "dist/index.html",
   surfaces: ["board-embed", "panel"],
@@ -16,6 +16,7 @@ export const manifest: ToolManifest = defineManifest({
     "board.read": {},
     "board.write": { scope: "own-embeds" },
     "graph.query": {},
+    "lesson.event.emit": {},
     storage: { quotaMB: 16 },
     ui: {},
   },
@@ -25,7 +26,7 @@ export const manifest: ToolManifest = defineManifest({
     it: {
       name: "Simulatore ARDESIA",
       consentBlurb:
-        "Mostra circuiti, strumenti e diagnostica nel proprio post-it e legge il grafo LessonOS in sola lettura.",
+        "Mostra circuiti, strumenti e diagnostica nel proprio post-it, legge il grafo LessonOS e registra eventi didattici con evidenza.",
     },
   },
 })

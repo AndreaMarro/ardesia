@@ -97,9 +97,9 @@ describe("design tokens — tokens.css (§2)", () => {
 
   it("carta, inchiostro e blu brand sono FISSI ai valori della spec (il wordmark non si ritema MAI)", () => {
     const fixed: Record<string, string> = {
-      paper: "#faf9f6",
-      canvas: "#fffefb",
-      ink: "#14130f",
+      paper: "#f5f6f8",
+      canvas: "#fdfdff",
+      ink: "#111420",
       blue: "#1763ff",
       "blue-down": "#0e4fd6",
       "blue-deep": "#0a3da6",

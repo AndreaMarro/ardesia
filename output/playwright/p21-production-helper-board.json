@@ -1,0 +1,202 @@
+{
+  "type": "excalidraw",
+  "elements": [
+    {
+      "id": "plugin-postit-sim-a-board",
+      "type": "embeddable",
+      "x": 48,
+      "y": 72,
+      "width": 560,
+      "height": 380,
+      "angle": 0,
+      "strokeColor": "#1f3f63",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1733,
+      "version": 1,
+      "versionNonce": 1733001,
+      "index": null,
+      "isDeleted": false,
+      "groupIds": [],
+      "frameId": null,
+      "boundElements": null,
+      "updated": 0,
+      "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-a-board",
+      "locked": false,
+      "customData": {
+        "maestroTool": {
+          "owner": "io.ardesia.simulation#sim-a",
+          "schema": "plugin-postit-board-state/1",
+          "state": {
+            "kind": "plugin-postit-object",
+            "instanceId": "sim-a",
+            "pluginId": "io.ardesia.simulation",
+            "bounds": {
+              "x": 48,
+              "y": 72,
+              "width": 560,
+              "height": 380
+            },
+            "zIndex": 1,
+            "selected": true,
+            "hovered": false,
+            "proximity": "far",
+            "pluginState": {
+              "sceneId": "reference-circuit-a",
+              "selectedComponentId": null,
+              "providerOutput": {
+                "instanceId": "sim-a",
+                "pluginId": "io.ardesia.simulation",
+                "providerId": "local",
+                "diagnostics": [
+                  "local solver available"
+                ],
+                "solverOutput": {
+                  "currents": {
+                    "led": 0.0153
+                  },
+                  "componentStates": {
+                    "led": {
+                      "on": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "plugin-postit-sim-b-board",
+      "type": "embeddable",
+      "x": 48,
+      "y": 492,
+      "width": 560,
+      "height": 380,
+      "angle": 0,
+      "strokeColor": "#1f3f63",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1734,
+      "version": 1,
+      "versionNonce": 1733002,
+      "index": null,
+      "isDeleted": false,
+      "groupIds": [],
+      "frameId": null,
+      "boundElements": null,
+      "updated": 0,
+      "link": "maestro-tool://io.ardesia.simulation/plugin-postit-sim-b-board",
+      "locked": false,
+      "customData": {
+        "maestroTool": {
+          "owner": "io.ardesia.simulation#sim-b",
+          "schema": "plugin-postit-board-state/1",
+          "state": {
+            "kind": "plugin-postit-object",
+            "instanceId": "sim-b",
+            "pluginId": "io.ardesia.simulation",
+            "bounds": {
+              "x": 48,
+              "y": 492,
+              "width": 560,
+              "height": 380
+            },
+            "zIndex": 2,
+            "selected": true,
+            "hovered": false,
+            "proximity": "far",
+            "pluginState": {
+              "sceneId": "reference-circuit-b",
+              "selectedComponentId": null,
+              "providerOutput": {
+                "instanceId": "sim-b",
+                "pluginId": "io.ardesia.simulation",
+                "providerId": "fastapi",
+                "diagnostics": [
+                  "fastapi provider hub not configured"
+                ],
+                "solverOutput": {
+                  "currents": {},
+                  "componentStates": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "plugin-postit-elab-consumer-board",
+      "type": "embeddable",
+      "x": 640,
+      "y": 72,
+      "width": 740,
+      "height": 420,
+      "angle": 0,
+      "strokeColor": "#1f3f63",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1735,
+      "version": 1,
+      "versionNonce": 1733003,
+      "index": null,
+      "isDeleted": false,
+      "groupIds": [],
+      "frameId": null,
+      "boundElements": null,
+      "updated": 0,
+      "link": "maestro-tool://io.elab.tutor/plugin-postit-elab-consumer-board",
+      "locked": false,
+      "customData": {
+        "maestroTool": {
+          "owner": "io.elab.tutor#elab-consumer",
+          "schema": "plugin-postit-board-state/1",
+          "state": {
+            "kind": "plugin-postit-object",
+            "instanceId": "elab-consumer",
+            "pluginId": "io.elab.tutor",
+            "bounds": {
+              "x": 640,
+              "y": 72,
+              "width": 740,
+              "height": 420
+            },
+            "zIndex": 3,
+            "selected": false,
+            "hovered": false,
+            "proximity": "active",
+            "pluginState": {
+              "activeFunction": "simulatore",
+              "simulationInstanceId": "sim-a",
+              "runtimeApi": "simulation-runtime/1"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "appState": {}
+}

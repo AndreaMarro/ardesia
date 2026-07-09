@@ -1,0 +1,907 @@
+[
+  {
+    "id": "multi-esp1",
+    "type": "embeddable",
+    "x": 120,
+    "y": 90,
+    "width": 1180,
+    "height": 760,
+    "angle": 0,
+    "strokeColor": "#1f3f63",
+    "backgroundColor": "#ffffff",
+    "fillStyle": "solid",
+    "strokeWidth": 2,
+    "strokeStyle": "solid",
+    "roughness": 0,
+    "opacity": 100,
+    "roundness": {
+      "type": 3
+    },
+    "seed": 1733,
+    "version": 1,
+    "versionNonce": 1733001,
+    "index": null,
+    "isDeleted": false,
+    "groupIds": [],
+    "frameId": null,
+    "boundElements": null,
+    "updated": 1783575427107,
+    "link": "maestro-tool://io.ardesia.simulation/multi-esp1",
+    "locked": false,
+    "customData": {
+      "maestroTool": {
+        "owner": "io.ardesia.simulation",
+        "state": {
+          "kind": "simulation-scene-v1",
+          "scene": {
+            "v": 1,
+            "experimentId": "v1-cap6-esp1",
+            "title": "Accendi il tuo primo LED",
+            "manual": {
+              "volume": 1,
+              "page": 29,
+              "chapter": "Capitolo 6 - Cos'e il diodo LED?",
+              "label": "Vol.1 pag.29-31 - ESPERIMENTO",
+              "bookText": "Per accendere il LED e fare il nostro primo esperimento abbiamo bisogno di: un LED, una breadboard, una batteria 9V, la clip per la batteria 9V, un resistore da 470 Ohm.",
+              "bookInstructions": [
+                "Ragazzi, collegate la clip alla batteria e il positivo alla striscia rossa superiore della breadboard.",
+                "Ragazzi, collegate il resistore da 470 Ohm tra un punto qualsiasi della striscia rossa e un punto qualsiasi della zona sotto.",
+                "Ragazzi, inserite il LED a cavallo della separazione centrale: gambetta lunga verso il resistore, gambetta corta dopo la divisione.",
+                "Ragazzi, collegate il negativo della batteria nella stessa colonna della gambetta corta del LED."
+              ],
+              "bookQuote": "Il LED si e acceso! Bellissimo vero?"
+            },
+            "components": [
+              {
+                "id": "bat1",
+                "type": "battery9v",
+                "label": "Batteria 9V"
+              },
+              {
+                "id": "bb1",
+                "type": "breadboard-half",
+                "label": "Breadboard"
+              },
+              {
+                "id": "r1",
+                "type": "resistor",
+                "label": "Resistore 470 Ohm",
+                "value": 470,
+                "anchor": "bb1"
+              },
+              {
+                "id": "led1",
+                "type": "led",
+                "label": "LED red",
+                "color": "red",
+                "anchor": "bb1"
+              }
+            ],
+            "pinAssignments": {
+              "r1:pin1": "bb1:bus-top-plus-9",
+              "r1:pin2": "bb1:i9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:e9"
+            },
+            "connections": [
+              {
+                "from": "bat1:positive",
+                "to": "bb1:bus-top-plus-1",
+                "color": "red",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 65
+                    },
+                    {
+                      "x": -40,
+                      "y": 4
+                    },
+                    {
+                      "x": 17.75,
+                      "y": 21.25
+                    }
+                  ]
+                }
+              },
+              {
+                "from": "bat1:negative",
+                "to": "bb1:a9",
+                "color": "black",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 93
+                    },
+                    {
+                      "x": -20,
+                      "y": 138
+                    },
+                    {
+                      "x": 77.75,
+                      "y": 111.25
+                    }
+                  ]
+                }
+              }
+            ],
+            "layout": {
+              "bat1": {
+                "x": -120,
+                "y": 45
+              },
+              "bb1": {
+                "x": 0,
+                "y": 0
+              },
+              "r1": {
+                "x": 77.75,
+                "y": 31.25
+              },
+              "led1": {
+                "x": 77.75,
+                "y": 72.5
+              }
+            },
+            "bookLayout": {
+              "v": 1,
+              "experimentId": "v1-cap6-esp1",
+              "volume": 1,
+              "page": 29,
+              "status": "draft",
+              "manualSource": {
+                "pdf": "VOLUMI pdf e MD/MANUALE VOLUME 1 ITALIANO 2.pdf",
+                "pdfPage": 29,
+                "figurePage": 30,
+                "textSource": "Vol.1 pp.29-31; crop: apps/studio/public/elab/manuals/vol1/page-030-esercizio-6-1.png + page-031-esercizio-6-1.png. Il testo lascia liberi i fori esatti ('un punto qualsiasi'): colonna 9 = canonical simulator placement, non vincolo del libro.",
+                "crop": "/elab/manuals/vol1/page-030-esercizio-6-1.png",
+                "finalCrop": "/elab/manuals/vol1/page-031-esercizio-6-1.png",
+                "blocker": "Scena bridgata da circuit-scene/2 (fixture reale): il bookLayout è speculare alla scena, la verifica indipendente resta bookConstraints+electrical sul formato sorgente."
+              },
+              "components": [
+                {
+                  "id": "bat1",
+                  "type": "battery9v",
+                  "expected": {
+                    "x": -120,
+                    "y": 45
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "bb1",
+                  "type": "breadboard-half",
+                  "expected": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "r1",
+                  "type": "resistor",
+                  "expected": {
+                    "x": 77.75,
+                    "y": 31.25
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "led1",
+                  "type": "led",
+                  "expected": {
+                    "x": 77.75,
+                    "y": 72.5
+                  },
+                  "tolerancePx": 0
+                }
+              ],
+              "pins": [
+                {
+                  "ref": "r1:pin1",
+                  "componentId": "r1",
+                  "pin": "pin1",
+                  "target": "bb1:bus-top-plus-9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "r1:pin2",
+                  "componentId": "r1",
+                  "pin": "pin2",
+                  "target": "bb1:i9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "led1:anode",
+                  "componentId": "led1",
+                  "pin": "anode",
+                  "target": "bb1:f9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "led1:cathode",
+                  "componentId": "led1",
+                  "pin": "cathode",
+                  "target": "bb1:e9",
+                  "targetKind": "breadboard-hole"
+                }
+              ],
+              "wires": [
+                {
+                  "id": "wire-w1",
+                  "from": {
+                    "ref": "bat1:positive",
+                    "componentId": "bat1",
+                    "pin": "positive",
+                    "target": "positive",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:bus-top-plus-1",
+                    "componentId": "bb1",
+                    "pin": "bus-top-plus-1",
+                    "target": "bb1:bus-top-plus-1",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "red",
+                  "kind": "wire"
+                },
+                {
+                  "id": "wire-w2",
+                  "from": {
+                    "ref": "bat1:negative",
+                    "componentId": "bat1",
+                    "pin": "negative",
+                    "target": "negative",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:a9",
+                    "componentId": "bb1",
+                    "pin": "a9",
+                    "target": "bb1:a9",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "black",
+                  "kind": "wire"
+                }
+              ],
+              "spatialRules": [],
+              "tolerances": {
+                "coordinatePx": 0,
+                "relationPx": 2
+              }
+            },
+            "runtime": {
+              "kind": "battery-led",
+              "supplyVolts": 9,
+              "resistorOhms": 470,
+              "ledForwardVolts": 1.8,
+              "ledOn": true
+            },
+            "compile": {
+              "sketchKind": "none",
+              "targetFqbn": null,
+              "provider": "none"
+            },
+            "provenance": {
+              "lessonPath": "packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json",
+              "experimentData": "apps/studio/sim/fixtures/elab-scene-v2-candidate-v1cap6esp1.json",
+              "volumeReference": "packs/elab-tutor/data/volume-references.js",
+              "status": "draft",
+              "blocker": "Scena reale candidate: promozione a verified = gate umano (canon §3); visualMatch assente."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "multi-esp2",
+    "type": "embeddable",
+    "x": 130,
+    "y": 100,
+    "width": 1180,
+    "height": 760,
+    "angle": 0,
+    "strokeColor": "#1f3f63",
+    "backgroundColor": "#ffffff",
+    "fillStyle": "solid",
+    "strokeWidth": 2,
+    "strokeStyle": "solid",
+    "roughness": 0,
+    "opacity": 100,
+    "roundness": {
+      "type": 3
+    },
+    "seed": 1733,
+    "version": 1,
+    "versionNonce": 1733001,
+    "index": null,
+    "isDeleted": false,
+    "groupIds": [],
+    "frameId": null,
+    "boundElements": null,
+    "updated": 1783575427107,
+    "link": "maestro-tool://io.ardesia.simulation/multi-esp2",
+    "locked": false,
+    "customData": {
+      "maestroTool": {
+        "owner": "io.ardesia.simulation",
+        "state": {
+          "kind": "simulation-scene-v1",
+          "scene": {
+            "v": 1,
+            "experimentId": "v1-cap6-esp2",
+            "title": "LED senza resistore (cosa NON fare!)",
+            "manual": {
+              "volume": 1,
+              "page": 32,
+              "chapter": "Capitolo 6 - Cos'e il diodo LED?",
+              "label": "Vol.1 pag.32 - ESPERIMENTO",
+              "bookText": "Il nostro circuito include un resistore, ma perché? I resistori servono per limitare la corrente. Ogni LED può sopportare una corrente massima che non deve essere superata altrimenti il led si rompe.",
+              "bookInstructions": [
+                "Collega il LED direttamente alla batteria senza resistore (ATTENZIONE: il LED si brucia!)"
+              ],
+              "bookQuote": "RICORDA: NON collegare MAI il LED direttamente alla batteria, ma inserisci sempre un resistore al centro!"
+            },
+            "components": [
+              {
+                "id": "bat1",
+                "type": "battery9v",
+                "label": "Batteria 9V"
+              },
+              {
+                "id": "bb1",
+                "type": "breadboard-half",
+                "label": "Breadboard"
+              },
+              {
+                "id": "led1",
+                "type": "led",
+                "label": "LED blue",
+                "color": "blue",
+                "anchor": "bb1"
+              }
+            ],
+            "pinAssignments": {
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:e9"
+            },
+            "connections": [
+              {
+                "from": "bat1:positive",
+                "to": "bb1:bus-top-plus-1",
+                "color": "red",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 65
+                    },
+                    {
+                      "x": -40,
+                      "y": 4
+                    },
+                    {
+                      "x": 17.75,
+                      "y": 21.25
+                    }
+                  ]
+                }
+              },
+              {
+                "from": "bb1:bus-top-plus-9",
+                "to": "bb1:i9",
+                "color": "red",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": 77.75,
+                      "y": 21.25
+                    },
+                    {
+                      "x": 77.75,
+                      "y": 41.25
+                    }
+                  ]
+                }
+              },
+              {
+                "from": "bat1:negative",
+                "to": "bb1:a9",
+                "color": "black",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 93
+                    },
+                    {
+                      "x": -20,
+                      "y": 138
+                    },
+                    {
+                      "x": 77.75,
+                      "y": 111.25
+                    }
+                  ]
+                }
+              }
+            ],
+            "layout": {
+              "bat1": {
+                "x": -120,
+                "y": 45
+              },
+              "bb1": {
+                "x": 0,
+                "y": 0
+              },
+              "led1": {
+                "x": 77.75,
+                "y": 72.5
+              }
+            },
+            "bookLayout": {
+              "v": 1,
+              "experimentId": "v1-cap6-esp2",
+              "volume": 1,
+              "page": 32,
+              "status": "draft",
+              "manualSource": {
+                "pdf": "VOLUMI pdf e MD/MANUALE VOLUME 1 ITALIANO 2.pdf",
+                "pdfPage": 32,
+                "figurePage": 32,
+                "textSource": "Vol.1 p.32 (ESPERIMENTO 2 — LED senza resistore, 'cosa NON fare'); crop: apps/studio/public/elab/manuals/vol1/page-032-esercizio-6-2.png. Figura: filo rosso da bat+ al rail rosso destro e da lì DIRETTO nella strip dell'anodo (colonna 9, nessun resistore); LED a cavallo del divisorio; filo nero da bat- alla strip del catodo. Il foro esatto dentro la strip non è leggibile con certezza dalla figura: i9/a9 = canonical simulator placement nella stessa tie-strip, come per esp1. NOTA DRIFT: il record corpus e il lesson-path usano colonne 2/3 (anode f2, cathode f3) — topologia equivalente ma non fedele alla figura; non riconciliato in silenzio.",
+                "crop": "/elab/manuals/vol1/page-032-esercizio-6-2.png",
+                "finalCrop": null,
+                "blocker": "Scena bridgata da circuit-scene/2 (fixture reale): il bookLayout è speculare alla scena, la verifica indipendente resta bookConstraints+electrical sul formato sorgente."
+              },
+              "components": [
+                {
+                  "id": "bat1",
+                  "type": "battery9v",
+                  "expected": {
+                    "x": -120,
+                    "y": 45
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "bb1",
+                  "type": "breadboard-half",
+                  "expected": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "led1",
+                  "type": "led",
+                  "expected": {
+                    "x": 77.75,
+                    "y": 72.5
+                  },
+                  "tolerancePx": 0
+                }
+              ],
+              "pins": [
+                {
+                  "ref": "led1:anode",
+                  "componentId": "led1",
+                  "pin": "anode",
+                  "target": "bb1:f9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "led1:cathode",
+                  "componentId": "led1",
+                  "pin": "cathode",
+                  "target": "bb1:e9",
+                  "targetKind": "breadboard-hole"
+                }
+              ],
+              "wires": [
+                {
+                  "id": "wire-w1",
+                  "from": {
+                    "ref": "bat1:positive",
+                    "componentId": "bat1",
+                    "pin": "positive",
+                    "target": "positive",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:bus-top-plus-1",
+                    "componentId": "bb1",
+                    "pin": "bus-top-plus-1",
+                    "target": "bb1:bus-top-plus-1",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "red",
+                  "kind": "wire"
+                },
+                {
+                  "id": "wire-w2",
+                  "from": {
+                    "ref": "bb1:bus-top-plus-9",
+                    "componentId": "bb1",
+                    "pin": "bus-top-plus-9",
+                    "target": "bb1:bus-top-plus-9",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "to": {
+                    "ref": "bb1:i9",
+                    "componentId": "bb1",
+                    "pin": "i9",
+                    "target": "bb1:i9",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "red",
+                  "kind": "wire"
+                },
+                {
+                  "id": "wire-w3",
+                  "from": {
+                    "ref": "bat1:negative",
+                    "componentId": "bat1",
+                    "pin": "negative",
+                    "target": "negative",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:a9",
+                    "componentId": "bb1",
+                    "pin": "a9",
+                    "target": "bb1:a9",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "black",
+                  "kind": "wire"
+                }
+              ],
+              "spatialRules": [],
+              "tolerances": {
+                "coordinatePx": 0,
+                "relationPx": 2
+              }
+            },
+            "runtime": {
+              "kind": "battery-led-senza-resistore",
+              "supplyVolts": 9,
+              "ledForwardVolts": 3,
+              "ledOn": false
+            },
+            "compile": {
+              "sketchKind": "none",
+              "targetFqbn": null,
+              "provider": "none"
+            },
+            "provenance": {
+              "lessonPath": "packs/elab-tutor/data/lesson-paths/v1-cap6-esp2.json",
+              "experimentData": "apps/studio/sim/fixtures/elab-scene-v2-candidate-v1cap6esp2.json",
+              "volumeReference": "packs/elab-tutor/data/volume-references.js",
+              "status": "draft",
+              "blocker": "Scena reale candidate: promozione a verified = gate umano (canon §3); visualMatch assente."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "multi-esp3",
+    "type": "embeddable",
+    "x": 140,
+    "y": 110,
+    "width": 1180,
+    "height": 760,
+    "angle": 0,
+    "strokeColor": "#1f3f63",
+    "backgroundColor": "#ffffff",
+    "fillStyle": "solid",
+    "strokeWidth": 2,
+    "strokeStyle": "solid",
+    "roughness": 0,
+    "opacity": 100,
+    "roundness": {
+      "type": 3
+    },
+    "seed": 1733,
+    "version": 1,
+    "versionNonce": 1733001,
+    "index": null,
+    "isDeleted": false,
+    "groupIds": [],
+    "frameId": null,
+    "boundElements": null,
+    "updated": 1783575427108,
+    "link": "maestro-tool://io.ardesia.simulation/multi-esp3",
+    "locked": false,
+    "customData": {
+      "maestroTool": {
+        "owner": "io.ardesia.simulation",
+        "state": {
+          "kind": "simulation-scene-v1",
+          "scene": {
+            "v": 1,
+            "experimentId": "v1-cap6-esp3",
+            "title": "Cambia luminosità con resistenze diverse",
+            "manual": {
+              "volume": 1,
+              "page": 33,
+              "chapter": "Capitolo 6 - Cos'e il diodo LED?",
+              "label": "Vol.1 pag.33 - ESPERIMENTO",
+              "bookText": "Per rendere il led più luminoso ci basta partire dal circuito che abbiamo realizzato. Basta cambiare il resistore da 470 Ohm con uno da 220 Ohm.",
+              "bookInstructions": [
+                "Parti dal circuito dell'Esperimento 1",
+                "Cambia il resistore da 470 Ohm con uno da 220 Ohm"
+              ],
+              "bookQuote": "Ti ricordi i colori delle resistenze?"
+            },
+            "components": [
+              {
+                "id": "bat1",
+                "type": "battery9v",
+                "label": "Batteria 9V"
+              },
+              {
+                "id": "bb1",
+                "type": "breadboard-half",
+                "label": "Breadboard"
+              },
+              {
+                "id": "r1",
+                "type": "resistor",
+                "label": "Resistore 220 Ohm",
+                "value": 220,
+                "anchor": "bb1"
+              },
+              {
+                "id": "led1",
+                "type": "led",
+                "label": "LED green",
+                "color": "green",
+                "anchor": "bb1"
+              }
+            ],
+            "pinAssignments": {
+              "r1:pin1": "bb1:bus-top-plus-9",
+              "r1:pin2": "bb1:i9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:e9"
+            },
+            "connections": [
+              {
+                "from": "bat1:positive",
+                "to": "bb1:bus-top-plus-1",
+                "color": "red",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 65
+                    },
+                    {
+                      "x": -40,
+                      "y": 4
+                    },
+                    {
+                      "x": 17.75,
+                      "y": 21.25
+                    }
+                  ]
+                }
+              },
+              {
+                "from": "bat1:negative",
+                "to": "bb1:a9",
+                "color": "black",
+                "kind": "wire",
+                "path": {
+                  "kind": "polyline",
+                  "points": [
+                    {
+                      "x": -6,
+                      "y": 93
+                    },
+                    {
+                      "x": -20,
+                      "y": 138
+                    },
+                    {
+                      "x": 77.75,
+                      "y": 111.25
+                    }
+                  ]
+                }
+              }
+            ],
+            "layout": {
+              "bat1": {
+                "x": -120,
+                "y": 45
+              },
+              "bb1": {
+                "x": 0,
+                "y": 0
+              },
+              "r1": {
+                "x": 77.75,
+                "y": 31.25
+              },
+              "led1": {
+                "x": 77.75,
+                "y": 72.5
+              }
+            },
+            "bookLayout": {
+              "v": 1,
+              "experimentId": "v1-cap6-esp3",
+              "volume": 1,
+              "page": 33,
+              "status": "draft",
+              "manualSource": {
+                "pdf": "VOLUMI pdf e MD/MANUALE VOLUME 1 ITALIANO 2.pdf",
+                "pdfPage": 33,
+                "figurePage": 33,
+                "textSource": "Vol.1 p.33 (ESPERIMENTO 3 — Cambia luminosità con resistenze diverse); crop: apps/studio/public/elab/manuals/vol1/page-033-esercizio-6-3.png. Le DUE figure di p.33 (220 Ohm e 1 kOhm) hanno layout identico alla figura di esp1: resistore a cavallo rail-rosso/strip colonna 9, LED verde a cavallo del divisorio colonna 9, nero da bat- ad a9. Scena canonica = figura 1 (220 Ohm). Vincolo testo: 'NON scendere mai al di sotto dei 100 Ohm'. D4-2 RISOLTO (ADR-0003, decisione autonoma NOTTE-13): zone di stress LED nel wrapper del solve — 220 Ohm (30.9mA) = overdrive (acceso, più luminoso, vita ridotta, come dice il libro), 100 Ohm (68mA) = zona pericolo (il pavimento del libro), >100mA = bruciato. Il motore vendored resta byte-identico; electrical=pass è il verdetto calcolato col wrapper. NOTA DRIFT: record corpus/lesson-path usano colonne 2/9-10 rail-heavy, non fedeli alla figura.",
+                "crop": "/elab/manuals/vol1/page-033-esercizio-6-3.png",
+                "finalCrop": null,
+                "blocker": "Scena bridgata da circuit-scene/2 (fixture reale): il bookLayout è speculare alla scena, la verifica indipendente resta bookConstraints+electrical sul formato sorgente."
+              },
+              "components": [
+                {
+                  "id": "bat1",
+                  "type": "battery9v",
+                  "expected": {
+                    "x": -120,
+                    "y": 45
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "bb1",
+                  "type": "breadboard-half",
+                  "expected": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "r1",
+                  "type": "resistor",
+                  "expected": {
+                    "x": 77.75,
+                    "y": 31.25
+                  },
+                  "tolerancePx": 0
+                },
+                {
+                  "id": "led1",
+                  "type": "led",
+                  "expected": {
+                    "x": 77.75,
+                    "y": 72.5
+                  },
+                  "tolerancePx": 0
+                }
+              ],
+              "pins": [
+                {
+                  "ref": "r1:pin1",
+                  "componentId": "r1",
+                  "pin": "pin1",
+                  "target": "bb1:bus-top-plus-9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "r1:pin2",
+                  "componentId": "r1",
+                  "pin": "pin2",
+                  "target": "bb1:i9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "led1:anode",
+                  "componentId": "led1",
+                  "pin": "anode",
+                  "target": "bb1:f9",
+                  "targetKind": "breadboard-hole"
+                },
+                {
+                  "ref": "led1:cathode",
+                  "componentId": "led1",
+                  "pin": "cathode",
+                  "target": "bb1:e9",
+                  "targetKind": "breadboard-hole"
+                }
+              ],
+              "wires": [
+                {
+                  "id": "wire-w1",
+                  "from": {
+                    "ref": "bat1:positive",
+                    "componentId": "bat1",
+                    "pin": "positive",
+                    "target": "positive",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:bus-top-plus-1",
+                    "componentId": "bb1",
+                    "pin": "bus-top-plus-1",
+                    "target": "bb1:bus-top-plus-1",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "red",
+                  "kind": "wire"
+                },
+                {
+                  "id": "wire-w2",
+                  "from": {
+                    "ref": "bat1:negative",
+                    "componentId": "bat1",
+                    "pin": "negative",
+                    "target": "negative",
+                    "targetKind": "internal-net"
+                  },
+                  "to": {
+                    "ref": "bb1:a9",
+                    "componentId": "bb1",
+                    "pin": "a9",
+                    "target": "bb1:a9",
+                    "targetKind": "breadboard-hole"
+                  },
+                  "color": "black",
+                  "kind": "wire"
+                }
+              ],
+              "spatialRules": [],
+              "tolerances": {
+                "coordinatePx": 0,
+                "relationPx": 2
+              }
+            },
+            "runtime": {
+              "kind": "battery-led",
+              "supplyVolts": 9,
+              "resistorOhms": 220,
+              "ledForwardVolts": 2.2,
+              "ledOn": true
+            },
+            "compile": {
+              "sketchKind": "none",
+              "targetFqbn": null,
+              "provider": "none"
+            },
+            "provenance": {
+              "lessonPath": "packs/elab-tutor/data/lesson-paths/v1-cap6-esp3.json",
+              "experimentData": "apps/studio/sim/fixtures/elab-scene-v2-candidate-v1cap6esp3.json",
+              "volumeReference": "packs/elab-tutor/data/volume-references.js",
+              "status": "draft",
+              "blocker": "Scena reale candidate: promozione a verified = gate umano (canon §3); visualMatch assente."
+            }
+          }
+        }
+      }
+    }
+  }
+]
