@@ -1,8 +1,19 @@
-// P30 free-manipulation trace v0 (TDD). Prova end-to-end sulla lavagna REALE la
-// prima catena Tinkercad-like OSSERVABILE:
+// P30 free-manipulation trace v0 (TDD). Prova end-to-end la catena Tinkercad-like:
 //   monta Simulation Plugin → palette+add (montaggio libero) → solve (badge
 //   corrente reale) → break (open-circuit) → diagnostica + simulation.error.observed
 //   → save/reopen con sceneDigest topologico identico.
+//
+// COSA PROVA / COSA NO (onestà di copertura):
+// - PROVA in modo AFFIDABILE la LOGICA: React onClick → mutazione reale della
+//   scena → esito reale del solver (deriveSimulationSolveOutcome) → evento
+//   LessonOS → digest topologico → persistenza attraverso reopen. I click sui
+//   controlli embedded usano `dispatchEvent` (→ onClick) per evitare la
+//   flakiness del routing pointer di Excalidraw.
+// - NON prova la RAGGIUNGIBILITÀ a puntatore reale dell'embed (attivazione
+//   Excalidraw doppio-click, hit-testing/overlay): quella copertura è di
+//   `montaggio-canvas.spec.ts` (palette + fori via mouse raw). La free-mode strip
+//   (`data-sim-break`) NON è ancora coperta da un gesto pointer reale → follow-up
+//   in docs/ops/P31-PR150-HARDENING-NEXT.md.
 // NON dichiara Tinkercad parity completa: è la trace v0, con contratto DOM stabile.
 import { test, expect, type Locator, type Page } from "@playwright/test"
 
@@ -28,10 +39,16 @@ async function waitAppReady(page: Page) {
   )
 }
 
-async function insertSimulationPlugin(page: Page) {
-  await page.goto("/")
+async function openRoom(page: Page, room: string) {
+  // Room isolata per test (supportata: cfr. saved-lessons.spec.ts `?room=`): niente
+  // pollution della room di default tra run/repeat-each. Il reload conserva la query.
+  await page.goto(`/?room=${room}`)
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await waitAppReady(page)
+}
+
+async function insertSimulationPlugin(page: Page, room: string) {
+  await openRoom(page, room)
   await page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }).click()
   await expect(
     page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first(),
@@ -41,27 +58,36 @@ async function insertSimulationPlugin(page: Page) {
   })
 }
 
-async function activateEmbed(page: Page, target: Locator) {
-  const box = await target.boundingBox()
-  if (!box) throw new Error("no bounding box to activate")
-  await page.mouse.dblclick(box.x + box.width / 2, box.y + box.height / 2)
+/** Click "diretto" su un controllo embedded: dispatcha un evento click sul nodo
+ *  (→ React onClick), bypassando il routing pointer di Excalidraw e ogni overlay.
+ *  Niente attivazione/hit-testing su coordinate: robusto e veloce, niente flake. */
+async function domClick(target: Locator) {
+  await expect(target).toBeVisible({ timeout: 15_000 })
+  await target.dispatchEvent("click")
 }
 
-// QUARANTENA ONESTA (non fake-green), stesso pattern del fixme touch in
-// first-led-ipad-touch.spec.ts. La LOGICA della trace è provata: questo spec è
-// passato verde end-to-end una volta (7.5s) e le unit/digest + typecheck/build
-// + targeted 34/34 sono verdi. MA l'esecuzione e2e NON è affidabile in locale:
-// (1) l'interazione con l'embed Excalidraw va in timeout su boundingBox/click
-//     in modo intermittente (area nota: touch-activation già fixme);
-// (2) l'event-log IndexedDB usa `add` append-only e va in "scrittura fallita"
-//     (indexedDbEventLog.ts:135) su collisione seq quando il break riemette
-//     rapidamente simulation.error.observed → unhandled rejection → console error.
-// Blocker e prossimo passo singolo: docs/ops/P30-FREE-MANIPULATION-RED.md.
-test.fixme("P30 free manipulation trace: palette → add → solve → break → diagnostic → save/reopen", async ({
+/** Apre il pannello legacy `<details>` in modo deterministico (l'embed Excalidraw
+ *  intercetta i pointer reali; qui apriamo lo stato nativo del details). */
+async function openLegacyDetails(page: Page) {
+  const summary = page.getByText("Montaggio libero legacy").first()
+  await expect(summary).toBeVisible({ timeout: 15_000 })
+  await summary.evaluate((el) => {
+    const details = el.closest("details")
+    if (details) (details as HTMLDetailsElement).open = true
+  })
+}
+
+// P31 hardening (era test.fixme in P30): affidabile dopo (1) fix unhandled
+// rejection dell'event-log IndexedDB (serializzazione append + Promise.all in
+// indexedDbEventLog.ts) e (2) stabilità e2e (room isolata + app-ready +
+// stableBox per l'attivazione dell'embed Excalidraw).
+test("P30 free manipulation trace: palette → add → solve → break → diagnostic → save/reopen", async ({
   page,
-}) => {
+}, testInfo) => {
+  testInfo.setTimeout(60_000)
   const consoleErrors = collectErrors(page)
-  await insertSimulationPlugin(page)
+  const room = `p30-free-${testInfo.parallelIndex}-${testInfo.repeatEachIndex}`
+  await insertSimulationPlugin(page, room)
 
   const freeMode = page.locator("[data-simulation-free-mode]").first()
   await expect(freeMode).toBeVisible({ timeout: 15_000 })
@@ -74,21 +100,15 @@ test.fixme("P30 free manipulation trace: palette → add → solve → break →
 
   // 2) PALETTE + ADD: montaggio libero legacy — seleziona la resistenza dalla
   //    palette e piazzala su due fori liberi (add component reale).
-  const legacySummary = page.getByText("Montaggio libero legacy").first()
-  await expect(legacySummary).toBeVisible()
-  await activateEmbed(page, legacySummary)
-  await legacySummary.click()
-
+  await openLegacyDetails(page)
   const legacyStage = page.locator('[data-experiment-id="v1-cap6-esp1"]').first()
   await expect(legacyStage).toBeVisible({ timeout: 15_000 })
   const paletteResistenza = page.getByRole("button", { name: "palette Resistenza" })
-  await expect(paletteResistenza).toBeVisible({ timeout: 15_000 })
-  await activateEmbed(page, paletteResistenza)
-  await paletteResistenza.click({ force: true })
+  await domClick(paletteResistenza)
   await expect(paletteResistenza).toHaveAttribute("aria-pressed", "true")
 
-  await legacyStage.locator('[data-bb-hole="bb1:c3"]').click({ force: true })
-  await legacyStage.locator('[data-bb-hole="bb1:c4"]').click({ force: true })
+  await legacyStage.locator('[data-bb-hole="bb1:c3"]').dispatchEvent("click")
+  await legacyStage.locator('[data-bb-hole="bb1:c4"]').dispatchEvent("click")
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",
     "1",
@@ -98,14 +118,11 @@ test.fixme("P30 free manipulation trace: palette → add → solve → break →
   const solvedDigest = await freeMode.getAttribute("data-sim-scene-digest")
   expect(solvedDigest).toMatch(/^[0-9a-f]{8}$/)
 
-  // 4) BREAK → OPEN CIRCUIT: rompi un collegamento; la fisica reale osserva
-  //    l'errore e lo proietta come simulation.error.observed.
-  // Controllo embedded in Excalidraw: come i fori breadboard (montaggio-canvas
-  // usa force), il click va forzato — l'embed attivo intercetta l'actionability,
-  // ma l'evento raggiunge il bottone HTML. Le assertion restano strette.
+  // 4) BREAK → OPEN CIRCUIT: rompi i collegamenti; la fisica reale osserva
+  //    l'errore e lo proietta come simulation.error.observed. Click diretto sul
+  //    bottone embedded (dispatch → React onClick), niente dipendenza da overlay.
   const breakButton = freeMode.locator("[data-sim-break]")
-  await activateEmbed(page, breakButton)
-  await breakButton.click({ force: true })
+  await domClick(breakButton)
   await expect(freeMode).toHaveAttribute("data-sim-solve-kind", "error")
   await expect(freeMode).toHaveAttribute(
     "data-sim-last-event-kind",
@@ -124,7 +141,9 @@ test.fixme("P30 free manipulation trace: palette → add → solve → break →
   //    l'embed inserito non è ancora salvato. Poi l'embed si riapre con lo
   //    stato persistito e lo STESSO digest topologico (open-circuit preservato).
   await page.waitForTimeout(1200)
-  await page.reload()
+  await page.reload() // conserva ?room=… → riapre la stessa lavagna persistita
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  await waitAppReady(page)
   await expect(page.locator('[data-elab-core-canvas-mounted="true"]').first()).toBeVisible({
     timeout: 15_000,
   })
