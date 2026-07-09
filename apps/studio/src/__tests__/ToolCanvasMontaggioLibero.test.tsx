@@ -334,6 +334,76 @@ describe("SimulationBoard — palette CAVO come connection reale (P32 D6)", () =
     expect(notice(container)).toBe("")
   })
 
+  it("FISICA (D6-bis): il pin di un componente si raggiunge dal foro LIBERO della stessa tie", async () => {
+    // L'equivalente breadboard-reale del "wire al terminale" di Tinkercad NON è
+    // due reofori nello stesso foro (impossibile fisicamente) ma un foro libero
+    // della STESSA tie-strip (colonna a 5 fori). Qui il cavo tocca g10 (libero)
+    // e la net risultante include f10 (occupato dal catodo del LED).
+    const { resolveNet } = await import("../../sim/breadboard/simulationBreadboard")
+    const base = createReferenceSimulationScene()
+    const synthetic: SimulationSceneV1 = {
+      ...base,
+      components: [
+        { id: "bat1", type: "battery9v", label: "Batteria 9V", anchor: "bb1" },
+        { id: "led1", type: "led", label: "LED", color: "red", anchor: "bb1" },
+      ],
+      pinAssignments: {
+        "bat1:positive": "bb1:f1",
+        "led1:anode": "bb1:g1",
+        "led1:cathode": "bb1:f10",
+        "bat1:negative": "bb1:f20",
+      },
+      connections: [],
+    }
+    expect(resolveNet("bb1:f10", synthetic)).not.toBe(resolveNet("bb1:f20", synthetic))
+    const bridged = createBoardSceneWithPlacements(synthetic, [
+      { id: "cavo-libero-1", type: "wire", holes: ["bb1:g10", "bb1:g20"] },
+    ])
+    // Il cavo non ha toccato f10, eppure la net del PIN è unificata via tie.
+    expect(resolveNet("bb1:f10", bridged)).toBe(resolveNet("bb1:f20", bridged))
+  })
+
+  it("FISICA (D6-bis): il cavo verso un foro LIBERO della rail unifica la net della rail", async () => {
+    const { solveSeriesLoop } = await import("../../sim/breadboard/simulationBreadboard")
+    const base = createReferenceSimulationScene()
+    // Circuito instradato ATTRAVERSO la rail plus: si chiude SOLO se il cavo
+    // g1→bus-top-plus-3 unifica la rail (r1:pin1 sta su bus-top-plus-7: stessa
+    // rail-net, colonna diversa).
+    const synthetic: SimulationSceneV1 = {
+      ...base,
+      components: [
+        { id: "bat1", type: "battery9v", label: "Batteria 9V", anchor: "bb1" },
+        { id: "r1", type: "resistor", label: "Resistore", value: 470, anchor: "bb1" },
+        { id: "led1", type: "led", label: "LED", color: "red", anchor: "bb1" },
+      ],
+      pinAssignments: {
+        "bat1:positive": "bb1:f1",
+        "r1:pin1": "bb1:bus-top-plus-7",
+        "r1:pin2": "bb1:f5",
+        "led1:anode": "bb1:g5",
+        "led1:cathode": "bb1:f10",
+        "bat1:negative": "bb1:f20",
+      },
+      connections: [],
+    }
+    expect(solveSeriesLoop(synthetic).closed).toBe(false)
+    const bridged = createBoardSceneWithPlacements(synthetic, [
+      { id: "cavo-libero-1", type: "wire", holes: ["bb1:g1", "bb1:bus-top-plus-3"] },
+      { id: "cavo-libero-2", type: "wire", holes: ["bb1:g10", "bb1:g20"] },
+    ])
+    expect(solveSeriesLoop(bridged).closed).toBe(true)
+  })
+
+  it("UI (D6-bis): un foro di RAIL libero è tappabile col Cavo (jumper verso la rail)", () => {
+    const container = mountSim()
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:bus-top-plus-3"))
+    expect(hole(container, "bb1:bus-top-plus-3").getAttribute("data-pending")).toBe("1")
+    fireEvent.click(hole(container, "bb1:c3"))
+    expect(count(container)).toBe("1")
+    expect(notice(container)).toBe("")
+  })
+
   it("cavo su foro occupato dal manuale: notice, nessun piazzamento (regola v1 uniforme)", () => {
     const container = mountSim()
     fireEvent.click(palette(container, "Cavo"))

@@ -31,6 +31,10 @@
   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
   Headline: capability layer bypassed on live board path (R8); `.lesson` import
   doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
+- **Iter 5 (slice (a) → D6-bis):** DONE, GREEN (test+docs only). Proposta
+  "cavo su foro occupato" RIGETTATA con evidenza fisica (un foro = un reoforo);
+  le affordance equivalenti (pin via tie, jumper via rail) già operative e ora
+  LOCKED da 3 test invarianti (verdi al primo run). Full vitest **1590/5skip/0**.
 - **Iter 4 (Phase 5 slice 1 — cavo):** DONE, GREEN. U1 risolto (plugin IN-REPO;
   audit corretto). D6: cavo in palette come CONNECTION su V1 — fisica reale via
   buildNets invariato (test: gap serie chiuso dal solo cavo, false→true).

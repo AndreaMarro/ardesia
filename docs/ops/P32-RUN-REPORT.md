@@ -1,5 +1,38 @@
 # P32 — Run Report
 
+## Iter 5 — Slice (a) RIGETTATA con evidenza; affordance Tinkercad-equivalenti LOCKED (D6-bis)
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `a67ae0b1` → +1 commit (test+docs only).
+**Single-writer:** PASS. **CI su `a67ae0b1`:** 4/4 green (iter 4 validato).
+
+### Cosa è successo (metodo scientifico, non feature-factory)
+Il piano proponeva "cavo verso foro OCCUPATO (uso canonico Tinkercad)". Verifica
+del modello fisico PRIMA di costruire: su breadboard reale un foro ospita UN
+reoforo; l'equivalente del "wire al terminale" è (1) foro libero della stessa
+tie (continuità di colonna) e (2) foro libero della rail (net unica su 30
+colonne). Entrambe già operative → slice rigettata, invarianti locked con test.
+
+### What changed
+- 3 test nuovi in `ToolCanvasMontaggioLibero.test.tsx` (passati al PRIMO run):
+  pin-access via tie (`resolveNet` unificata senza toccare il foro occupato),
+  rail-jumper chiude circuito reale (`solveSeriesLoop` via `bus-top-plus`),
+  fori rail tappabili in UI. Nessun product code toccato.
+- D6-bis in P32-DECISIONS; NEXT aggiornato (a→rigettata; +g cancella-cavo).
+
+### Gates
+targeted 19/19 · tsc 0 · full vitest (vedi GATES) · e2e NON rirun (nessuna
+superficie e2e toccata; ultimo run ×3 6/6 su a67ae0b1).
+
+### Honest caveats
+- I 3 test sono passati subito: valore = lock dell'invariante + smentita
+  documentata della slice proposta, NON nuovo comportamento.
+- Il gesto "collega al pin" richiede che il docente sappia della continuità di
+  tie — affordance UI (hover-highlight della tie ESISTE già, :1831-1837).
+
+### Should continue? **Yes** — next: (g) cancella-cavo o (e) undo/redo.
+
+---
+
 ## Iter 4 — Phase 5 slice 1: il CAVO entra nella palette (connection reale, D6)
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `884f6b38` → +1 commit.

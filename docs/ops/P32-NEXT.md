@@ -20,13 +20,17 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
    gesti reali: wire pin-pin `SimulatorCanvas.jsx:1155`, waypoint-drag `:1387` (NO
    endpoint-retarget), palette `pendingPlacement`+`onComponentAdd` `:1065-1123` che
    l'host NON cabla (`ToolCanvasEmbeddable.tsx:1217-1282` = solo 4 callback).
-   **Follow-up espliciti Phase 5 (in ordine):**
-   a. jumper verso foro OCCUPATO (uso canonico Tinkercad; oggi regola v1 uniforme rifiuta);
+   **Follow-up espliciti Phase 5 (in ordine, aggiornato iter 5):**
+   a. ~~jumper verso foro occupato~~ **RIGETTATO con evidenza (D6-bis)**: fisica
+      un-foro-un-reoforo; le affordance equivalenti (pin via tie, jumper via rail)
+      esistono già e ora sono LOCKED da 3 test invarianti;
    b. cablare `onComponentAdd` host→plugin canvas (palette del canvas plugin viva);
    c. wire endpoint-retarget (manca anche nel plugin canvas);
    d. battery9v in palette — richiede decisione solver multi-sorgente (D6) = design;
    e. undo/redo sulle operazioni (envelope già strutturati);
-   f. netlist export (import Wokwi già esiste).
+   f. netlist export (import Wokwi già esiste);
+   g. cancellare un cavo piazzato dal tap-tap (oggi solo reset totale) — candidato
+      NUOVO più piccolo: selezione cavo + delete, envelope `delete` già nel vocabolario.
 
 3. **Phase 2 — plugin-grammar enforcement gap (R8).**
    Either route board-embed mounts through the capability layer or ADR the

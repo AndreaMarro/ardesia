@@ -3,6 +3,19 @@
 Binary gates per iteration. GREEN only when the command's own exit is 0 and the
 output is read directly (not through a `tail` pipe that masks the exit code).
 
+## Iter 5 — Slice (a) rigettata; invarianti affordance locked (D6-bis)
+
+| Gate | Command | Result |
+|---|---|---|
+| single-writer | clean, HEAD==`a67ae0b1`, no lock | PASS ✅ |
+| CI on `a67ae0b1` | `gh pr checks 150` | **4/4 pass** ✅ |
+| targeted | `vitest ToolCanvasMontaggioLibero` | **19/19** (3 invarianti nuovi, verdi al primo run) ✅ |
+| typecheck | `tsc -b` | **0** ✅ |
+| full vitest | CI-deterministic profile | **1590 pass / 5 skip / 0 fail** (+3) ✅ |
+| e2e | non rirun (nessuna superficie e2e toccata; ultimo ×3 6/6 su a67ae0b1) | n/a — onesto |
+| build | non rirun (diff test+docs only; CI lo esegue su push) | n/a — onesto |
+| secret scan diff | grep patterns | 0 hit ✅ |
+
 ## Iter 4 — Phase 5 slice 1 (cavo in palette, D6)
 
 | Gate | Command | Result |
