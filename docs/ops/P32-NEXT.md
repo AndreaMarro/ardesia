@@ -7,12 +7,12 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
 
 ## Next smallest slice — candidates in order (post-audit refinement)
 
-1. **R10 quick win — wire `.lesson` import → event-log restore.**
-   `indexedDbEventLog.importSnapshot` exists (empty-log-only, contiguity-checked,
-   `indexedDbEventLog.ts:189-243`) but `lessonBundle.importLesson` never calls it
-   (`lessonBundle.ts:52-56`). One narrow slice, direct product-promise value
-   ("reopen senza perdere stato"), testable with existing JSONL round-trip helpers.
-   Gate: unit tests on import path + full vitest + typecheck/build.
+1. ~~**R10 quick win — wire `.lesson` import → event-log restore.**~~ **DONE Iter 3**
+   (mechanism + status union D5; tests 1581 green). Follow-up spawned: **R10b —
+   recovery-mode UX**: quando `runtime.dataLoss/corrupted` (Room già mostra
+   "ripristina dall'export .lesson"), offrire il flusso destroy-con-conferma →
+   log vuoto → import `.lesson` → `restored`. Solo lì il restore diventa
+   user-facing; oggi il default live è `skipped-non-empty` (onesto, documentato).
 
 2. **Phase 5 slice 1 — battery9v/wire toward first-class palette.**
    Pre-work now explicit: reconcile V1 vs V2 scene model (R9) and read the

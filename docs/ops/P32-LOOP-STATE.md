@@ -31,6 +31,11 @@
   [P32-STATE-AUDIT.md](P32-STATE-AUDIT.md) (9 unknowns U1-U9; new risks R8-R13).
   Headline: capability layer bypassed on live board path (R8); `.lesson` import
   doesn't restore event log (R10 = next candidate slice); host ZERO-LLM verified.
+- **Iter 3 (R10 mechanism):** DONE, GREEN. `.lesson` import now restores the
+  LessonOS event log (explicit status union, D5; empty-log-only, never blocking,
+  never silent). TDD RED→GREEN; full vitest **1581/5skip/0** (+7); tsc0/build0.
+  Honest limit: live Room defaults to `skipped-non-empty` (lesson.started at
+  mount) — recovery-mode UX = follow-up slice.
 
 ## Verified facts
 - The Excalidraw embed (ToolCanvasEmbeddable) is **inert until activated by a

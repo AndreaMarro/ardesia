@@ -29,6 +29,25 @@ green (CI 4/4 + local e2e ×5 + reachability closed); the decision to un-Draft/m
 belongs to Andrea.
 **Status:** open (human gate).
 
+## D5 — `.lesson` restore semantics: explicit status union, empty-log-only, never blocking (Iter 3, R10)
+**Decision:** `importLesson(store, blob, lessonOsLog?)` returns
+`ImportLessonResult.lessonOsRestore` with a closed status union:
+`restored | no-snapshot | not-attempted | unsupported | skipped-non-empty | failed`.
+Restore runs AFTER file writes, is secondary (a failed restore never breaks the
+board import), honors `importSnapshot`'s empty-log-only contract (never merge —
+seq collide = corruption), and never throws (every outcome, including failure,
+is an explicit status; Room surfaces `failed` to the teacher via storage error).
+The `EventLogStore` interface stays minimal (append+readAll); restore is an
+optional capability detected at runtime (`supportsSnapshotRestore` type guard) —
+the InMemory fallback reports `unsupported` instead of being forced to implement it.
+**Why:** "no silent swallow" (loop brief) + spec #35 §4.4 telemetry-never-silent +
+`importSnapshot`'s designed disaster-recovery semantics (indexedDbEventLog.ts:183-188).
+**Honest limit:** in the live Room the log already holds `lesson.started` from
+mount ⇒ default import yields `skipped-non-empty`. The real recovery flow
+(user-confirmed `destroyEventLogStorage` → empty log → restore) is a follow-up
+UX slice; the mechanism + statuses + tests land now.
+**Status:** implemented (Iter 3).
+
 ## D4 — Write only the `tutor-ux` worktree
 **Decision:** confine all writes to `~/ardesia-wt/tutor-ux`.
 **Why:** 28 worktrees share one `.git`; `VOLUME 3/ardesia` is dirty on a codex

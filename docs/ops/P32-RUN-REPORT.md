@@ -1,5 +1,44 @@
 # P32 — Run Report
 
+## Iter 3 — R10: `.lesson` import ripristina la memoria didattica (meccanismo)
+
+**Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `5be02e38` → +1 commit.
+**Single-writer:** PASS. **CI on `5be02e38`:** 4/4 green. **Security:** diff scan 0 hit.
+
+### Slice
+Chiudere R10 (audit §3): lo snapshot LessonOS viaggiava nel bundle ma l'import non
+lo ripristinava mai (`lessonBundle.ts:52-56` "fase successiva"). TDD: RED 6/7 → GREEN.
+
+### What changed (surgical)
+- `store/lessonBundle.ts`: `importLesson(store, blob, lessonOsLog?)` →
+  `ImportLessonResult` con union esplicita `restored | no-snapshot | not-attempted |
+  unsupported | skipped-non-empty | failed` (D5). Restore DOPO le scritture, mai
+  bloccante, empty-log-only (contratto `importSnapshot`), capability rilevata a
+  runtime (type guard; interfaccia `EventLogStore` invariata).
+- `store/WorkspaceStore.ts`: param opzionale + pass-through result su
+  `importLessonBlob`/`importLessonBlobForRoom` (additive).
+- `Room.tsx`: passa `lessonOsRef.current?.store` all'import (simmetrico all'export);
+  `failed` → `setStorageError` (telemetria mai silenziosa §4.4).
+- Test: +7 in `LessonBundle.test.ts` (tutti gli stati + bundle malevolo non tocca il
+  log); 3 assertion pre-esistenti aggiornate al nuovo contratto (`resolves.toEqual`).
+
+### Gates
+tsc 0 · build 0 · targeted 50/50 · **full vitest 1581/5skip/0fail** (+7) · RED-first
+verificato · secret scan 0. Dettaglio in [P32-GATES.md](P32-GATES.md).
+
+### Honest caveats
+- Nella Room live il log ha già `lesson.started` dal mount ⇒ l'import di default
+  esita `skipped-non-empty`: il RESTORE REALE user-facing richiede il flusso
+  recovery (destroy con conferma → log vuoto → restore) = slice successiva.
+- Il fake di test (`RestorableFakeLog`) replica il contratto documentato; la
+  semantica reale di `importSnapshot` è coperta da IndexedDbEventLog.test.ts.
+  Integrazione reale IndexedDbEventLog+importLesson = candidata con fake-indexeddb.
+- Nessun e2e nuovo (import via file picker non ha e2e esistente).
+
+### Should continue? **Yes.**
+
+---
+
 ## Iter 2 — Phase 0 verify + Phase 1 state audit
 
 **Branch / SHA:** `p30/free-manipulation-trace-v0-20260709-185100` @ `69f928c8` → +1 doc commit.

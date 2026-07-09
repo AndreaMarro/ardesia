@@ -7,7 +7,7 @@ import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type Sto
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
-import { exportLesson as buildLessonExport, importLesson as parseLessonImport } from "./lessonBundle"
+import { exportLesson as buildLessonExport, importLesson as parseLessonImport, type ImportLessonResult } from "./lessonBundle"
 import type { EventLogStore } from "../lessonos/eventlog"
 
 export interface WorkspaceState {
@@ -204,15 +204,20 @@ export class WorkspaceStore {
     return buildLessonExport(this, room, lessonOsLog)
   }
 
-  async importLessonBlob(blob: Blob): Promise<void> {
-    await parseLessonImport(this, blob)
+  async importLessonBlob(blob: Blob, lessonOsLog?: EventLogStore | null): Promise<ImportLessonResult> {
+    return parseLessonImport(this, blob, lessonOsLog)
   }
 
-  async importLessonBlobForRoom(blob: Blob, room: string): Promise<void> {
-    await parseLessonImport(this, blob)
+  async importLessonBlobForRoom(
+    blob: Blob,
+    room: string,
+    lessonOsLog?: EventLogStore | null,
+  ): Promise<ImportLessonResult> {
+    const result = await parseLessonImport(this, blob, lessonOsLog)
     const flatScene = await this.read(PATHS.SCENE)
-    if (!flatScene) return
+    if (!flatScene) return result
     await this.saveScene(room, await flatScene.text())
+    return result
   }
 }
 

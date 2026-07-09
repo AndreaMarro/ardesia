@@ -3,6 +3,21 @@
 Binary gates per iteration. GREEN only when the command's own exit is 0 and the
 output is read directly (not through a `tail` pipe that masks the exit code).
 
+## Iter 3 — R10 (.lesson import → event-log restore)
+
+| Gate | Command | Result |
+|---|---|---|
+| single-writer | `git status` clean, HEAD==`5be02e38`, no lock | PASS ✅ |
+| CI on `5be02e38` | `gh pr checks 150` | **4/4 pass** ✅ |
+| RED first | new describe-block before impl | 6/7 fail (7° = guard pre-esistente) ✅ |
+| targeted | `vitest run LessonBundle + IndexedDbEventLog` | **50/50** ✅ |
+| typecheck | `tsc -b --noEmit` | **0** ✅ |
+| build | `npm run build` | **0** (chunk-size warning pre-esistente) ✅ |
+| full vitest | CI-deterministic profile | **1581 pass / 5 skip / 0 fail** (174 file; era 1574 → +7 nuovi) ✅ |
+| secret scan diff | grep patterns su `git diff` | 0 hit ✅ |
+
+Not run: Playwright e2e (diff non tocca superfici e2e: import file-picker flow non coperto da e2e esistenti; contratto DOM sim invariato).
+
 ## Iter 1 — Phase 0 (reachability caveat close)
 
 | Gate | Command | Result |
