@@ -77,11 +77,11 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(ensureBookCitation(reply, 'v1-cap6-esp1')).toBe(reply);
     });
 
-    it('does not append citations automatically for conceptual explanations', () => {
+    it('appends citations for conceptual explanations tied to a known experiment', () => {
       const reply = 'Il LED si accende quando la corrente scorre dal + al -.';
       const out = ensureBookCitation(reply, 'v1-cap6-esp1');
-      expect(out).toBe(reply);
-      expect(alreadyCitesBook(out)).toBe(false);
+      expect(out).toBe(`${reply}\n(Riferimento: Vol. 1, pag. 29 del libro ELAB.)`);
+      expect(alreadyCitesBook(out)).toBe(true);
     });
 
     it('does not append citations to short confirmations', () => {
@@ -89,10 +89,10 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(out).toBe('Perfetto!');
     });
 
-    it('does not append citations to operational diagnosis or direct instructions', () => {
+    it('appends citations to book-grounded diagnosis or direct instructions', () => {
       const out = ensureBookCitation('Controlla il verso del LED', 'v1-cap6-esp1');
-      expect(out).toBe('Controlla il verso del LED');
-      expect(alreadyCitesBook(out)).toBe(false);
+      expect(out).toBe('Controlla il verso del LED\n(Riferimento: Vol. 1, pag. 29 del libro ELAB.)');
+      expect(alreadyCitesBook(out)).toBe(true);
     });
 
     it('does not append citations to hidden action-tag responses', () => {
@@ -111,17 +111,17 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(ensureBookCitation(reply, 'unknown-id-xyz')).toBe(reply);
     });
 
-    it('separates conceptual replies from operational replies instead of citing everything', () => {
+    it('separates class replies from confirmations/action payloads instead of citing everything', () => {
       const replies = [
-        ['Il LED si accende quando la corrente fluisce.', false],
-        ['La resistenza è come un tubo stretto per la corrente.', false],
-        ['digitalWrite(13, HIGH) mette il pin 13 a 5V e accende il LED.', false],
-        ['Prova a girare il LED: la gamba lunga va verso il +.', false],
-        ['Controlla il collegamento della breadboard.', false],
-        ['Il circuito è pronto, ora compila il codice!', false],
-        ['Perfetto! Adesso il LED dovrebbe lampeggiare.', false],
-        ['Attenzione, potresti aver invertito il LED.', false],
-        ['Non funziona? Prova a rimettere il cavo sul bus +.', false],
+        ['Il LED si accende quando la corrente fluisce.', true],
+        ['La resistenza è come un tubo stretto per la corrente.', true],
+        ['digitalWrite(13, HIGH) mette il pin 13 a 5V e accende il LED.', true],
+        ['Prova a girare il LED: la gamba lunga va verso il +.', true],
+        ['Controlla il collegamento della breadboard.', true],
+        ['Il circuito è pronto, ora compila il codice!', true],
+        ['Perfetto! Adesso il LED dovrebbe lampeggiare.', true],
+        ['[AZIONE:compile]', false],
+        ['Apro il semaforo.\n[AZIONE:loadexp:v3-cap6-semaforo]', false],
       ];
       for (const [reply, expected] of replies) {
         const out = ensureBookCitation(reply, 'v1-cap6-esp1');
@@ -130,8 +130,8 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
     });
 
     it('exposes the citation decision as a small, testable policy', () => {
-      expect(shouldAppendBookCitation('La corrente scorre dal positivo al negativo.')).toBe(false);
-      expect(shouldAppendBookCitation('Compilo il codice adesso.')).toBe(false);
+      expect(shouldAppendBookCitation('La corrente scorre dal positivo al negativo.')).toBe(true);
+      expect(shouldAppendBookCitation('Compilo il codice adesso.')).toBe(true);
       expect(shouldAppendBookCitation('Perfetto!')).toBe(false);
       expect(shouldAppendBookCitation('[AZIONE:compile]')).toBe(false);
     });

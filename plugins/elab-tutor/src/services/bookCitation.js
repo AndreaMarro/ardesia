@@ -4,23 +4,21 @@
  * Post-processing helper that anchors UNLIM's conceptual explanations to the
  * physical ELAB book when the student is working on a known experiment.
  *
- * The old policy appended a short reference line to many conceptual answers.
- * That made UNLIM sound like a document summary. Live chat now keeps the
- * volume reference available, but cites it only when the response already
- * chose to use a useful micro-anchor.
+ * UNLIM must keep the physical book visible when answering inside a known
+ * experiment. The helper appends a short Vol./pag. anchor only when the reply
+ * has not already cited the book and is not an action payload.
  *
- * It must NOT turn every operational reply into a citation footer. UNLIM still
- * has to sound natural, diagnose the live circuit, and act through tags without
- * constantly repeating volume/page anchors.
+ * It must NOT alter action-tag payloads. UNLIM still has to act through tags
+ * without putting citation text inside command-only responses.
  *
  * Behaviour:
  *  - If there is no experimentId or no volume reference → return unchanged.
  *  - If the reply already mentions a real page ("pagina N"/"pag. N") or a
  *    complete volume+page pair → return unchanged to avoid duplicates.
  *    "Vol. N" alone is not enough: Andrea needs exact physical-book anchors.
- *  - If the reply is operational, a short confirmation, or an action-tag
+ *  - If the reply is a short confirmation or contains an action-tag
  *    payload -> return unchanged.
- *  - Otherwise return unchanged: no automatic citation footer.
+ *  - Otherwise append one short physical-book anchor.
  *
  * © Andrea Marro — 18/04/2026 — Ralph Loop iteration 1
  */
@@ -31,6 +29,8 @@ import { getVolumeRef } from '../../../../packs/elab-tutor/data/volume-reference
 // "Volume 2 pagina 45", "V1P45". Do not accept "Vol. 1" without a page.
 const PAGE_REGEX = /\b(pagina\s*\d+|pag\.\s*\d+|V\d+P\d+)\b/i;
 const VOL_PAGE_REGEX = /\b(vol\.?|volume)\s*[1-3]\b[^.!?\n]{0,80}\b(pagina|pag\.?)\s*\d+\b/i;
+const ACTION_TAG_REGEX = /\[AZIONE:[^\]]+\]/i;
+const SHORT_CONFIRMATION_REGEX = /^(ok|perfetto|fatto|certo|va bene|bravi|ottimo)[!. ]*$/i;
 
 export function alreadyCitesBook(text) {
   if (typeof text !== 'string') return false;
@@ -50,12 +50,19 @@ export function shouldAppendBookCitation(responseText) {
 
   const trimmed = responseText.trim();
   if (!trimmed) return false;
-  return false;
+  if (alreadyCitesBook(trimmed)) return false;
+  if (ACTION_TAG_REGEX.test(trimmed)) return false;
+  if (SHORT_CONFIRMATION_REGEX.test(trimmed) || trimmed.length < 24) return false;
+  return true;
 }
 
 export function ensureBookCitation(responseText, experimentId) {
   if (typeof responseText !== 'string') return responseText;
   if (!experimentId) return responseText;
   if (alreadyCitesBook(responseText)) return responseText;
-  return responseText;
+  if (!shouldAppendBookCitation(responseText)) return responseText;
+  const suffix = buildCitationSuffix(experimentId);
+  if (!suffix) return responseText;
+  const separator = responseText.endsWith('\n') ? '' : '\n';
+  return `${responseText}${separator}${suffix}`;
 }
