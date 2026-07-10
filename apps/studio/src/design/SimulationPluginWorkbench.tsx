@@ -34,7 +34,7 @@ import {
 } from "../toolhost/ToolCanvasEmbeddable"
 import ViewNav from "./ViewNav"
 
-const technicalHarnessDiagram = {
+const teacherStarterDiagram = {
   version: 1,
   author: "Simulation Plugin technical harness",
   editor: "wokwi",
@@ -55,8 +55,10 @@ const technicalHarnessDiagram = {
 
 type SourceMode = "wokwi" | "image" | "description"
 
-const SIMULATION_HARNESS_STATUS =
-  "simulation harness: canvas ELABTutor reale non ancora montato"
+const TEACHER_STATUS =
+  "Pronto: scegli un componente, tocca due fori liberi e osserva il LED."
+
+const FLOW_STEPS = ["costruisci", "collega", "simula", "spiega"] as const
 
 const imageObservation: StructuredSceneObservation = {
   kind: "image-observation" as const,
@@ -201,7 +203,7 @@ export default function SimulationPluginWorkbench() {
           <span className="st-sub">studio</span>
         </div>
         <span className="st-name">
-          <span className="st-name-text">ARDESIA Simulation Harness</span>
+          <span className="st-name-text">Simulazione circuito LED</span>
         </span>
         <ViewNav current="simulatore" />
       </header>
@@ -209,45 +211,57 @@ export default function SimulationPluginWorkbench() {
         data-simulation-workbench-main
         style={narrowViewport ? narrowShellStyle : shellStyle}
       >
-        <section aria-label="Simulation harness canvas" style={canvasShellStyle}>
+        <section aria-label="Lavagna di simulazione circuito LED" style={canvasShellStyle}>
           <SimulationSceneCanvas scene={scene} />
         </section>
         <aside style={narrowViewport ? narrowPanelColumnStyle : panelColumnStyle}>
-          <section className="reference-tool-panel" style={panelStyle}>
-            <div className="reference-tool-panel-bar">stato canvas</div>
-            <div style={contractStyle}>
-              <strong>harness</strong>
-              <span>{SIMULATION_HARNESS_STATUS}</span>
+          <section className="reference-tool-panel" style={heroPanelStyle}>
+            <div style={eyebrowStyle}>Percorso docente</div>
+            <h1 style={titleStyle}>Accendi il LED sulla breadboard</h1>
+            <div style={flowStyle} aria-label="Fasi della simulazione">
+              {FLOW_STEPS.map((step, index) => (
+                <span
+                  key={step}
+                  style={index === 0 ? activeFlowStepStyle : flowStepStyle}
+                  aria-current={index === 0 ? "step" : undefined}
+                >
+                  {index + 1}. {step}
+                </span>
+              ))}
+            </div>
+            <div style={nextActionStyle}>
+              <strong>Prossima azione</strong>
+              <span>{TEACHER_STATUS}</span>
             </div>
           </section>
           <section className="reference-tool-panel" style={panelStyle}>
-            <div className="reference-tool-panel-bar">sorgenti scena</div>
+            <div className="reference-tool-panel-bar">Punto di partenza</div>
             <div style={sourceGridStyle}>
               <button
                 type="button"
                 style={sourceMode === "wokwi" ? activeButtonStyle : buttonStyle}
                 onClick={() => setSourceMode("wokwi")}
               >
-                Wokwi diagram.json
+                Banco pronto
               </button>
               <button
                 type="button"
                 style={sourceMode === "image" ? activeButtonStyle : buttonStyle}
                 onClick={() => setSourceMode("image")}
               >
-                Immagine
+                Da immagine
               </button>
               <button
                 type="button"
                 style={sourceMode === "description" ? activeButtonStyle : buttonStyle}
                 onClick={() => setSourceMode("description")}
               >
-                Descrizione
+                Da descrizione
               </button>
             </div>
           </section>
-          <section className="reference-tool-panel" style={panelStyle}>
-            <div className="reference-tool-panel-bar">provider</div>
+          <details className="reference-tool-panel" style={panelStyle}>
+            <summary style={summaryStyle}>Inspector tecnico</summary>
             <dl style={definitionListStyle}>
               {providerRows.map((provider) => (
                 <div key={provider.id}>
@@ -258,35 +272,18 @@ export default function SimulationPluginWorkbench() {
                 </div>
               ))}
             </dl>
-          </section>
-          <section className="reference-tool-panel" style={panelStyle}>
-            <div className="reference-tool-panel-bar">contratto scena</div>
             <div style={contractStyle}>
               <strong>{scene.schemaVersion}</strong>
               <span data-simulation-source-kind>{scene.adapters.source}</span>
               <span>{normalized.components.length} componenti</span>
               <span>{normalized.wires.length} fili</span>
               <span>{readiness.ok ? "ready" : readiness.blockers.join(", ")}</span>
-            </div>
-          </section>
-          <section className="reference-tool-panel" style={panelStyle}>
-            <div className="reference-tool-panel-bar">diagnostica scena</div>
-            <div style={contractStyle}>
               <strong data-scene-diagnostic-status>
                 {validation.ok ? "ready" : "blocked"}
               </strong>
               <span>{validation.blockers.length} blocker</span>
-              {validation.issues.length === 0 ? (
-                <span>nessun blocker tecnico</span>
-              ) : (
-                validation.issues.map((issue) => (
-                  <span key={`${issue.code}:${issue.message}`}>
-                    {issue.code}: {issue.message}
-                  </span>
-                ))
-              )}
             </div>
-          </section>
+          </details>
         </aside>
       </main>
     </div>
@@ -326,8 +323,8 @@ function buildScene(sourceMode: SourceMode) {
       title: "ARDESIA Simulation",
     })
   }
-  return wokwiDiagramToSimulationScene(technicalHarnessDiagram, {
-    id: "simulation-plugin-technical-harness",
+  return wokwiDiagramToSimulationScene(teacherStarterDiagram, {
+    id: "simulation-plugin-teacher-starter",
     title: "ARDESIA Simulation",
   })
 }
@@ -465,7 +462,7 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
       aria-label={scene.title}
       data-elab-comparable-canvas="false"
       data-elab-core-canvas-mounted="false"
-      data-simulation-surface="harness"
+      data-simulation-surface="teacher"
       data-preview-source-kind={scene.adapters.source}
       style={elabCanvasFrameStyle}
     >
@@ -478,8 +475,8 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
         data-free-assembly-findings={String(freeAssembly.findings.length)}
         style={physicsStripStyle}
       >
-        <strong>fisica reale</strong>
-        <span>{liveSolve.ok ? "solver local OK" : liveSolve.diagnostics.join(", ")}</span>
+        <strong>Simulazione attiva</strong>
+        <span>{liveSolve.ok ? "Circuito leggibile" : liveSolve.diagnostics.join(", ")}</span>
         <span>LED {liveLedState?.on === true ? "ON" : "OFF"}</span>
         <span>{liveCurrentMa.toFixed(1)} mA</span>
         <span>{liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0} pin scollegati</span>
@@ -699,7 +696,7 @@ const shellStyle = {
   flex: 1,
   minHeight: 0,
   display: "grid",
-  gridTemplateColumns: "minmax(0, 1fr) 360px",
+  gridTemplateColumns: "minmax(0, 1fr) 336px",
   background: "var(--m-paper)",
 } as const
 
@@ -720,10 +717,10 @@ const elabCanvasFrameStyle = {
   width: "100%",
   height: "100%",
   minHeight: 0,
-  padding: 12,
+  padding: 16,
   boxSizing: "border-box",
   overflow: "auto",
-  background: "#f3f7f9",
+  background: "var(--m-canvas)",
 } as const
 
 const wireEditorStyle = {
@@ -822,8 +819,8 @@ const physicsStripStyle = {
 const panelColumnStyle = {
   display: "flex",
   flexDirection: "column",
-  gap: 12,
-  padding: 12,
+  gap: 14,
+  padding: 14,
   overflow: "auto",
   background: "var(--m-fill)",
 } as const
@@ -838,6 +835,73 @@ const panelStyle = {
   width: "auto",
 } as const
 
+const heroPanelStyle = {
+  ...panelStyle,
+  padding: 14,
+  background: "var(--m-canvas)",
+  border: "1px solid var(--m-line-2)",
+  borderRadius: "var(--m-r-card)",
+  boxShadow: "var(--m-shadow-pop)",
+} as const
+
+const eyebrowStyle = {
+  color: "var(--m-blue-deep)",
+  font: "800 12px var(--m-font-ui)",
+} as const
+
+const titleStyle = {
+  margin: "6px 0 12px",
+  color: "var(--m-ink)",
+  font: "650 24px var(--m-font-display)",
+  lineHeight: 1.12,
+} as const
+
+const flowStyle = {
+  display: "grid",
+  gap: 8,
+  marginBottom: 12,
+} as const
+
+const flowStepStyle = {
+  minHeight: 44,
+  display: "flex",
+  alignItems: "center",
+  padding: "0 12px",
+  border: "1px solid var(--m-line-2)",
+  borderRadius: 8,
+  background: "var(--m-paper)",
+  color: "var(--m-ink-2)",
+  font: "750 13px var(--m-font-ui)",
+} as const
+
+const activeFlowStepStyle = {
+  ...flowStepStyle,
+  border: "1px solid var(--m-ochre)",
+  background: "var(--m-ochre-wash)",
+  color: "var(--m-ink)",
+} as const
+
+const nextActionStyle = {
+  display: "grid",
+  gap: 4,
+  padding: 12,
+  borderRadius: 8,
+  background: "var(--m-blue-wash)",
+  color: "var(--m-ink)",
+  fontSize: 13,
+  lineHeight: 1.35,
+} as const
+
+const summaryStyle = {
+  minHeight: 44,
+  display: "flex",
+  alignItems: "center",
+  padding: "0 10px",
+  color: "var(--m-ink-2)",
+  font: "700 13px var(--m-font-ui)",
+  cursor: "pointer",
+} as const
+
 const sourceGridStyle = {
   display: "grid",
   gridTemplateColumns: "1fr",
@@ -846,7 +910,7 @@ const sourceGridStyle = {
 } as const
 
 const buttonStyle = {
-  minHeight: 34,
+  minHeight: 44,
   border: "1px solid var(--m-line-2)",
   borderRadius: 8,
   background: "var(--m-paper)",

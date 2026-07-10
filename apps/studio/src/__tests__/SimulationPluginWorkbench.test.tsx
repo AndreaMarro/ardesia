@@ -50,19 +50,19 @@ describe("SimulationPluginWorkbench", () => {
     expect(
       container.querySelector('[data-simulation-workbench-state="ready"]'),
     ).not.toBeNull()
-    expect(screen.getByText("ARDESIA Simulation Harness")).toBeTruthy()
-    expect(screen.getByText("stato canvas")).toBeTruthy()
+    expect(screen.getByText("Simulazione circuito LED")).toBeTruthy()
+    expect(screen.getByText("Accendi il LED sulla breadboard")).toBeTruthy()
     expect(
-      screen.getByText("simulation harness: canvas ELABTutor reale non ancora montato"),
+      screen.getByText("Pronto: scegli un componente, tocca due fori liberi e osserva il LED."),
     ).toBeTruthy()
-    expect(screen.getByText("Wokwi diagram.json")).toBeTruthy()
-    expect(screen.getByText("Immagine")).toBeTruthy()
-    expect(screen.getByText("Descrizione")).toBeTruthy()
-    expect(screen.getByText("diagnostica scena")).toBeTruthy()
+    expect(screen.getByText("Banco pronto")).toBeTruthy()
+    expect(screen.getByText("Da immagine")).toBeTruthy()
+    expect(screen.getByText("Da descrizione")).toBeTruthy()
+    expect(screen.getByText("Inspector tecnico")).toBeTruthy()
     expect(container.querySelector("[data-simulation-canvas]")).not.toBeNull()
     expect(container.querySelector('[data-elab-comparable-canvas="false"]')).not.toBeNull()
     expect(container.querySelector('[data-elab-core-canvas-mounted="false"]')).not.toBeNull()
-    expect(container.querySelector('[data-simulation-surface="harness"]')).not.toBeNull()
+    expect(container.querySelector('[data-simulation-surface="teacher"]')).not.toBeNull()
     expect(container.querySelector('[data-experiment-id="v1-cap6-esp1"]')).not.toBeNull()
     expect(container.querySelector('[data-bb-hole="bb1:j8"]')).not.toBeNull()
     expect(container.querySelector("[data-component-id='uno']")).toBeNull()
@@ -80,6 +80,8 @@ describe("SimulationPluginWorkbench", () => {
     )
     expect(container.textContent).not.toContain("ELAB Lab")
     expect(container.textContent).not.toContain("dal libro")
+    expect(container.textContent).not.toContain("Simulation Harness")
+    expect(container.textContent).not.toContain("harness")
   })
 
   it("switches between Wokwi, image, and description scene sources", () => {
@@ -88,13 +90,13 @@ describe("SimulationPluginWorkbench", () => {
     expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
       "wokwi-diagram-json",
     )
-    fireEvent.click(screen.getByText("Immagine"))
+    fireEvent.click(screen.getByText("Da immagine"))
     expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
       "image-observation",
     )
     expect(container.querySelector('[data-experiment-id="v1-cap6-esp1"]')).not.toBeNull()
     expect(container.querySelector('[data-bb-hole="bb1:j8"]')).not.toBeNull()
-    fireEvent.click(screen.getByText("Descrizione"))
+    fireEvent.click(screen.getByText("Da descrizione"))
     expect(container.querySelector("[data-simulation-source-kind]")?.textContent).toBe(
       "manual-description",
     )
@@ -156,7 +158,7 @@ describe("SimulationPluginWorkbench", () => {
 
     expect((main as HTMLElement).style.gridTemplateColumns).toBe("1fr")
     expect(main?.firstElementChild?.getAttribute("aria-label")).toBe(
-      "Simulation harness canvas",
+      "Lavagna di simulazione circuito LED",
     )
   })
 })
