@@ -83,16 +83,12 @@ function collectErrors(page: Page): string[] {
 }
 
 async function waitAppReady(page: Page) {
-  // Attendi l'app-ready reale prima di interagire (stesso gate di
-  // plugin-postit-room-reload): interagire prima che l'app sia pronta rende gli
-  // embed Excalidraw "visibili ma non stabili" → boundingBox/click in timeout.
-  await page.waitForFunction(
-    () =>
-      (window as Window & { __MAESTRO_TEST__?: { ready?: boolean } }).__MAESTRO_TEST__?.ready ===
-      true,
-    undefined,
-    { timeout: 15_000 },
-  )
+  // In dev `__MAESTRO_TEST__` is available, but production intentionally omits
+  // it. Use user-visible readiness signals so the same trace can run live.
+  await expect(page.locator("[data-view-nav]").first()).toBeVisible({ timeout: 15_000 })
+  await expect(
+    page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }),
+  ).toBeVisible({ timeout: 15_000 })
 }
 
 async function openRoom(page: Page, room: string) {

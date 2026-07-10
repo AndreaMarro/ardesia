@@ -1,78 +1,61 @@
 # ARDESIA V1 — next slice
 
-Updated: 2026-07-10 after P36 current SHA deploy proof. Base for this
-contract: `origin/main@b86ce8b67795d3239196fbd1a70d8e57a4444314`.
+Updated: 2026-07-10 after P37 production P30 audit smoke. Base for this
+contract: `origin/main@b3a8522424f29303900e1fc738a16f106bc26bc5`.
 
 ## Slice
 
-`P37-PRODUCTION-P30-AUDIT-SMOKE-001`
+`P38-P30-LESSONOS-EVENT-PROJECTION-001`
 
-Objective: prove the deployed production alias exercises the P30 browser path
-with ToolHost `board.write` audit visibility, not only the broader Studio
-scenario smoke.
-
-Do not add new product behavior unless the production proof fails because of a
-small test harness gap. This is a live verification slice for the already
-integrated P34/P35/P36 path.
+Objective: prove whether the P30 circuit action that now crosses ToolHost audit
+also produces durable LessonOS event evidence. Do not start backend/RLS work
+until the local LessonOS boundary is proven or honestly red.
 
 ## Why This Slice
 
-- P34 is merged in PR #166 and CI-green.
-- P35 is merged in PR #167 and proves the P30 browser Room path observes
-  ToolHost `board.write` audit locally and in CI.
-- P36 deploys `main@b86ce8b6` to production and base/scenario smokes pass.
-- The current blocker is narrower: production smoke does not yet read the
-  ToolHost audit log for the P30 path.
+- P34 routes Simulation Plugin write-back through ToolHost `board.write`.
+- P35 proves browser audit locally and in CI.
+- P36 proves the deployed Studio runtime and production scenario smoke.
+- P37 proves the P30 audit-specific path against the production alias.
+- The next unproven integration boundary is LessonOS durable event evidence,
+  not another UI feature.
 
 ## File Ownership
 
 Maximum initial write set:
 
-- one smoke/e2e helper or script if the existing P30 spec cannot target the
-  production alias cleanly;
-- focused docs under `docs/ops/`;
-- no runtime product code unless the live proof exposes a real regression.
+- P30 e2e/test helper only if the existing trace can expose LessonOS evidence
+  without runtime coupling;
+- focused LessonOS test files if a targeted local test is the safer proof;
+- `docs/ops/` evidence updates.
 
-Do not touch runtime code for harness convenience.
+No backend migrations, RLS changes, graph storage or tutor retrieval in this
+slice unless the local LessonOS boundary is already green and the next command
+is trivial.
 
 ## Acceptance Criteria
 
 The slice is complete when it produces one of:
 
-- `GREEN_SLICE`: production alias proves P30 browser path plus
-  `board.write`/`ok` audit visibility with command/URL evidence; or
-- `HONEST_RED`: production P30 audit proof cannot be run or fails with
-  preserved evidence; or
-- `SECURITY_RED` / `ARCHITECTURE_RED` / `ENVIRONMENT_RED` if those gates block
-  a trustworthy verdict.
+- `GREEN_SLICE`: P30 solve/break emits durable LessonOS event evidence with
+  command/test proof and reload/persistence scope clearly stated; or
+- `HONEST_RED`: the current P30 path only exposes DOM/audit signals and does
+  not append the required LessonOS event evidence; or
+- `ARCHITECTURE_RED`: there are multiple incompatible event sources and an ADR
+  is required before patching.
 
 Minimum evidence:
 
 1. current branch/SHA/worktree receipt;
-2. production alias and deployment id;
-3. exact P30 production audit smoke command and result;
-4. browser-observed audit entry count or snapshot;
-5. updated claim/failure/integration map.
-
-## Commands To Define Before Coding
-
-- `git status --short --branch`
-- `git rev-parse HEAD`
-- `vercel inspect https://ardesia-lavagna.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup`
-- inspect whether `apps/studio/e2e/p30-free-manipulation.spec.ts` can run
-  against an external `baseURL` without writing to production data outside the
-  browser-local room
-- run the focused production-safe P30 audit command
-- `python3 bin/ci/secret_scan.py`
-- `git diff --check`
+2. exact command proving or falsifying LessonOS event evidence;
+3. event kind(s), source, persistence location and reload behavior;
+4. updated claim/failure/integration map;
+5. local gates: targeted test, typecheck when TS changes, diff check, secret
+   scans.
 
 ## Stop Conditions
 
-- dirty path ownership is ambiguous;
-- another writer owns the same files;
-- security scan reports a high-confidence secret;
-- the required boundary needs external credentials/access;
-- remediation would require broad backend/RLS/export work;
-- the production proof would mutate shared remote data instead of an isolated
-  room/hash/local browser state;
+- the proof requires backend credentials or shared production data;
+- the proof would depend on dev-only globals as the only evidence;
+- the fix would broaden into backend/RLS/graph/export;
 - two repair cycles fail.
