@@ -10,4 +10,3 @@ Ultimo aggiornamento: 2026-07-10T13:27:39+0200 CEST.
 | R-004 | Chunk grandi possono peggiorare cold load | VERIFIED | Vite production warning: chunk sopra `500 kB`, inclusi `Room`, `ElabLab`, Excalidraw chunks | Code splitting/perf slice, non blocca deploy |
 | R-005 | Source-of-truth runtime ancora non risolta | OPEN_RED | `V1-REPOSITORY-TRUTH.md` mantiene `ARCHITECTURE_RED` | Non dichiarare V1 green; ogni slice deve dichiarare owner e SHA |
 | R-006 | Security history/rotation non chiusa | OPEN_RED | `V1-SECURITY-MATRIX.md`: rotation/provider/history restano UNKNOWN anche con scanner S0 verde | Rotazione provider e history audit senza stampare valori |
-

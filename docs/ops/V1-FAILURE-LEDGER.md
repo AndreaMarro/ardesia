@@ -14,4 +14,3 @@ riga di chiusura.
 | F-004 | Playwright wrapper skill `@playwright/mcp playwright-cli` non avviabile | DEFERRED | comando wrapper: `sh: playwright-cli: command not found` | Smoke equivalente eseguito con Playwright `1.60.0` installato in `apps/studio`; valutare fix skill/tooling separato |
 | F-005 | Dependency audit Studio non verde | OPEN_RED | `npm --prefix apps/studio ci` durante `vercel build --prod`: `11 vulnerabilities (9 moderate, 2 high)` | Aprire slice dependency audit; non usare `npm audit fix --force` dentro slice deploy |
 | F-006 | V1 globale resta bloccata da architettura/source-of-truth | OPEN_RED | `V1-REPOSITORY-TRUTH.md`: Engine/Studio/ELAB ownership ancora parziale o UNKNOWN | Cutover/ADR dedicato con Mini, external heads, tests e deploy bindings |
-

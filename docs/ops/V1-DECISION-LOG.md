@@ -9,4 +9,3 @@ Ultimo aggiornamento: 2026-07-10T13:27:39+0200 CEST.
 | D-003 | Non risolvere npm audit dentro lo slice deploy | VERIFIED | audit segnala 11 vulnerabilita'; nessun fix richiesto per sbloccare deploy monorepo | Aprire slice separata per dependency risk |
 | D-004 | Mantenere `ARCHITECTURE_RED` anche dopo deploy verde | VERIFIED | deploy prova solo `ardesia-lavagna` Studio surface; `V1-REPOSITORY-TRUTH.md` conserva owners runtime parziali/UNKNOWN | Vietato dichiarare V1/PILOT green |
 | D-005 | Usare production browser smoke come evidenza, non preview smoke | VERIFIED | preview protette/403; production alias pubblico HTTP 200 e browser smoke verde | Review esterna deve puntare a production deploy o a preview con access policy corretta |
-
