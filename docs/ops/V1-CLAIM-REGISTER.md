@@ -16,11 +16,11 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-010 | Un Certified LED Lesson Scenario esiste | REPORTED | P29/P30 docs e CI | deve passare book, pointer, reopen, tutor, deploy sullo stesso SHA |
 | C-011 | Principio Zero autentico è recuperato | VERIFIED | `plugins/elab-tutor/CLAUDE.md:5-16` | alta; fonte canonica di progetto |
 | C-012 | Backend/RLS/deploy sono verificati sullo SHA | RED come claim | nessun event-sync, policy/test RLS o deploy Studio legato a `204ffefc` | HTTP 200 o config non bastano |
-| C-013 | Repository/prassi privi di segreti esposti | UNKNOWN / SECURITY HOLD | `V1-SECURITY-MATRIX.md`; nessun valore provider verificato | design client-secret RED, validità credential-like da verificare |
+| C-013 | Repository/prassi privi di segreti esposti | SECURITY_RED come claim globale | `V1-SECURITY-MATRIX.md`; scanner S0 pulito sull'HEAD candidato, ma design client-side/history/rotazione restano aperti | non dichiarare repo sicuro finche' provider e browser boundary non sono verificati |
 | C-014 | V1 è usabile in lezione | UNKNOWN | nessun test Andrea sul deploy osservato | claim vietato |
 | C-015 | Gli `automa/ORDERS` del plugin sono tutti applicabili oggi | RED | ordini 2026-04-07 confliggono su priorità e operazioni Git | richiede riconciliazione umana; prevalgono guardrail correnti |
 | C-016 | Il prompt runtime UNLIM rispetta il requisito verbatim/citazioni | RED | `src/services/api.js:126-127` contraddice `CLAUDE.md:11-15` | alta sul conflitto statico; comportamento end-to-end non rieseguito |
-| C-017 | Il secret scan CI copre integralmente S-001/S-002 | RED / PARTIAL | S0 aggiunge ratchet per Google API key e JWT generici, ma non risolve i finding legacy allowlistati né il design client-side `VITE_*` | alta; non dichiarare sicurezza pulita |
+| C-017 | Il secret scan CI copre integralmente S-001/S-002 | RED / PARTIAL | S0 aggiunge ratchet per Google API key, JWT generici e named hex secret; non risolve S-001 non-pattern né il design client-side `VITE_*` | alta; non dichiarare sicurezza pulita |
 | C-018 | La chiave privata ToolHost è assente da HEAD | VERIFIED | `f2fb36b2` ancestor; `keys.json` ha solo `pubkey` | alta per HEAD, history/rotazione ancora UNKNOWN |
 | C-019 | Steps e mounted sono book-equivalent | RED come prova corrente | `simulationSceneModes.ts:57-83` usa un solo step finale sintetico | test attuale è tautologico, non prova sequenza editoriale |
 | C-020 | Il Simulation Plugin attraversa ToolHost reale | RED | `ToolCanvasEmbeddable.tsx:1125-1174`, `Room.tsx:913-927` usano callback dirette | alta, audit statico + test gap |
@@ -28,7 +28,8 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-022 | RLS tenant isolation è provata | UNKNOWN | nessuna migration/policy/test tenant-negative tracked | alta sulla mancanza di prova |
 | C-023 | Deploy Studio corrisponde a `204ffefc` | RED come claim | CI ha `no-deploy-check`; Vercel map non lega live allo SHA | alta |
 | C-024 | `BookCircuitSpec` è un tipo canonico esistente | RED | nessun simbolo/canon tracciato; modello corrente è `SimulationScene`/`ElabScene` | richiede ADR, non assunzione dal prompt |
-| C-025 | S0 blocca nuovi `.env*`, Google API key e JWT generici in CI | GREEN_SLICE locale | branch `codex/v1-security-s0-20260710`: `git check-ignore -v`, `python3 bin/ci/test_secret_scan.py`, `python3 bin/ci/secret_scan.py`, synthetic repo leak test | non chiude i 23 finding legacy allowlistati, né i segreti client-side `VITE_*` |
+| C-025 | S0 blocca nuovi `.env*`, Google API key, JWT generici e named hex secret in CI | GREEN_SLICE locale | branch `codex/v1-security-s0-20260710`: `git check-ignore -v`, `python3 bin/ci/test_secret_scan.py`, `python3 bin/ci/secret_scan.py`, synthetic repo leak test | non chiude S-001, né i segreti client-side `VITE_*`, né history/rotazione |
+| C-026 | L'HEAD candidato S0 non richiede piu' allowlist per token-shaped legacy literals | GREEN_SLICE locale | `bin/ci/secret_scan_allowlist.tsv` rimosso; token-shaped literals redatti o parametrizzati; `python3 bin/ci/secret_scan.py` OK; custom scan count 0 | non prova revoca provider o assenza in history remota |
 
 Regola: aggiornare una riga solo con comando/test/URL e SHA; non cancellare
 un RED storico, chiuderlo con nuova evidenza e data.
@@ -44,5 +45,7 @@ un RED storico, chiuderlo con nuova evidenza e data.
 - C-025: `git check-ignore -v .env ...`, `python3 bin/ci/test_secret_scan.py`,
   `python3 bin/ci/secret_scan.py`, synthetic temp git repo with one unallowlisted
   Google-key-shaped value returning exit 1.
+- C-026: `python3 bin/ci/secret_scan.py`; custom tracked-file scan for
+  `google-api-key`, `generic-jwt`, `named-hex-secret` returning count 0.
 
 Ultima verifica di tutti i comandi sopra: 2026-07-10 Europe/Rome.

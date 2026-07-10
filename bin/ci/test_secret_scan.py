@@ -22,11 +22,13 @@ class SecretScanTest(unittest.TestCase):
             sample = Path(tmp) / "sample.js"
             google_key = "AIza" + "SyDUMMYDUMMYDUMMYDUMMYDUMMYDUMMYDUM"
             jwt = "eyJ" + "aaaaaaaaaaa" + "." + "bbbbbbbbbbbbb" + "." + "ccccccccccccc"
+            hex_key = "0123456789abcdef" + "0123456789abcdef"
             sample.write_text(
                 "\n".join(
                     [
                         f"const google = '{google_key}';",
                         f"const jwt = '{jwt}';",
+                        f"const ELAB_API_KEY = process.env.ELAB_API_KEY || '{hex_key}';",
                     ]
                 ),
                 encoding="utf-8",
@@ -37,6 +39,7 @@ class SecretScanTest(unittest.TestCase):
         names = [name for _, name in findings]
         self.assertIn("google-api-key", names)
         self.assertIn("generic-jwt", names)
+        self.assertIn("named-hex-secret", names)
 
     def test_allowlist_is_a_counted_ratchet_not_a_global_bypass(self) -> None:
         findings = [

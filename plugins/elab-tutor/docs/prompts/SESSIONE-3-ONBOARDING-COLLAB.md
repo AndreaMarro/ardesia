@@ -276,7 +276,7 @@ Fai un audit con `/design:design-system audit` e correggi:
 Supabase: euqpdueopmlllqjmqnyb
 URL: https://euqpdueopmlllqjmqnyb.supabase.co
 Token: sbp_REVOKED_20260423_REDACTED
-Gemini: AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
+Gemini: [REDACTED_GOOGLE_API_KEY]
 VPS: 72.60.129.50
 Admin: #admin → [REDACTED-MOVED-TO-ENV]
 Anon Key: (in supabase/DEPLOY-GUIDE.md)

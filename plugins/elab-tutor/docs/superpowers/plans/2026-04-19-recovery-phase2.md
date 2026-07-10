@@ -81,7 +81,7 @@ Documentato `docs/audits/2026-04-19-postmortem-caveman-session.md` (generato da 
   curl -X POST "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat" \
     -H "Content-Type: application/json" \
     -H "Origin: https://www.elabtutor.school" \
-    -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ" \
+    -H "apikey: [REDACTED_JWT]" \
     -d '{"message":"ciao","sessionId":"test-post-deploy","experimentId":"v1-cap6-esp1"}'
   ```
   Expected: JSON con `"success": true` + response UNLIM.

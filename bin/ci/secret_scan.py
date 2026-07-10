@@ -23,6 +23,7 @@ PATTERNS = [
     ("supabase-service-role", re.compile(rb"\bservice_role['\"]?\s*[:=]\s*['\"]eyJ")),
     ("google-api-key", re.compile(rb"\bAIza[0-9A-Za-z_-]{35}\b")),
     ("generic-jwt", re.compile(rb"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b")),
+    ("named-hex-secret", re.compile(rb"\b[A-Za-z0-9_]*(?:API_KEY|TOKEN|SECRET|KEY)[A-Za-z0-9_]*[^\n]{0,120}['\"][0-9a-fA-F]{32,}['\"]")),
 ]
 
 ALLOWLIST_PATH = Path("bin/ci/secret_scan_allowlist.tsv")
