@@ -1,6 +1,6 @@
 # ARDESIA V1 — failure ledger
 
-Ultimo aggiornamento: 2026-07-10T21:15:00+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T21:45:00+0200 CEST.
 
 Regola: ogni failure resta aperta finche' non ha una chiusura con comando,
 SHA, URL o provider receipt. Non cancellare righe storiche; aggiungere una
@@ -22,3 +22,4 @@ riga di chiusura.
 | F-012 | `break-connections` write-back lacked ToolHost audit proof | GREEN_SLICE | PR #166 merged in `main@6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; `persistEmbedStateThroughToolHost` routes write-back through `board.write`; local targeted 11/11, adjacent ToolHost/caps 74/74, typecheck, CI and post-merge checks pass | Deploy proof remains separate |
 | F-013 | P30 browser path did not prove ToolHost audit visibility | GREEN_SLICE | P35 adds browser localStorage audit assertion to `p30-free-manipulation.spec.ts`; command `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` PASS 1/1 after break and reload; PR #167 merged with CI/readiness green | Backend/deploy audit still not proven |
 | F-014 | Current integrated `main` lacked production deploy proof after P35 | GREEN_SLICE | P36 started from local `main@b86ce8b67795d3239196fbd1a70d8e57a4444314`; pre-deploy alias inspect showed older `dpl_3LmGUXKofdHtUW2s8UawXrekEW89`; new production deploy `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3` is Ready and aliased to `https://ardesia-lavagna.vercel.app`; `npm run smoke:studio:production` and `npm run smoke:studio:production:scenario` PASS | Does not close V1 global, backend sync, RLS, or production P30 audit-specific proof |
+| F-015 | Production smoke did not prove the P30 ToolHost audit-specific path | GREEN_SLICE_LOCAL | P37 adds `npm run smoke:studio:production:p30-audit`; first run failed because P30 waited on dev-only `__MAESTRO_TEST__`, then harness switched to user-visible readiness signals; rerun PASS 1/1 against `https://ardesia-lavagna.vercel.app`; local P30 e2e and typecheck pass | Await PR CI; LessonOS/backend audit still not proven |

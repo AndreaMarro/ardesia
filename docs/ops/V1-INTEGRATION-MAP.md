@@ -118,3 +118,25 @@ deployment.
 Next boundary: run or adapt a production-safe P30 audit smoke so the deployed
 alias proves the browser-visible ToolHost `board.write` audit path, not just
 the broader scenario smoke.
+
+## P37 Result
+
+Status: `GREEN_SLICE_LOCAL`.
+
+Production boundary audited: deployed Studio alias -> P30 browser trace ->
+ToolHost `board.write` audit log -> break diagnostic -> reload persistence.
+
+P37 reused the existing P30 Playwright trace instead of writing a separate
+scenario. The only harness changes are: Playwright can accept an external
+`ARDESIA_STUDIO_E2E_BASE_URL`, local `webServer` is disabled for that mode, and
+a root smoke command calls the same P30 spec against the production alias.
+
+| Boundary | Status | Evidence | Limit |
+|---|---|---|---|
+| Production alias under test | VERIFIED | `ARDESIA_STUDIO_E2E_BASE_URL=https://ardesia-lavagna.vercel.app` via `npm run smoke:studio:production:p30-audit` | alias serves P36 runtime deployment `dpl_42...`; exact repo head `b3a85224` is docs-only and not redeployed |
+| P30 user/browser path | VERIFIED | production P30 audit smoke PASS 1/1 | Playwright uses DOM click for embedded controls, as documented in the P30 trace |
+| ToolHost audit visibility | VERIFIED | same P30 spec reads browser localStorage audit JSONL and asserts `board.write`/`ok` count increases after break and persists after reload | browser-local audit only; backend audit still not proven |
+| Local regression safety | VERIFIED | local P30 e2e PASS 1/1 after the production-readiness fallback | PR CI still required |
+
+Next boundary: prove the same P30 circuit action produces durable LessonOS
+event evidence, rather than only DOM attributes and ToolHost audit localStorage.

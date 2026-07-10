@@ -1,15 +1,15 @@
 # ARDESIA V1 — claim register
 
-## Current overlay — 2026-07-10 after P36 current SHA deploy proof
+## Current overlay — 2026-07-10 after P37 production P30 audit smoke
 
 | ID | Claim | Stato | Evidenza | Confidenza / limite |
 |---|---|---|---|---|
-| C-043 | `origin/main` corrente e' `b86ce8b67795d3239196fbd1a70d8e57a4444314` | VERIFIED | `git fetch --prune origin`; `git rev-parse origin/main`; PR #167 merge commit; post-merge `ci` run `29116176704` success and `studio-preview-readiness` run `29116176674` success | alta; CI-green and deployed in C-059/C-060 |
+| C-043 | `origin/main` corrente e' `b3a8522424f29303900e1fc738a16f106bc26bc5` | VERIFIED | PR #168 merge commit; post-merge `ci` run `29117719147` success and `studio-preview-readiness` run `29117718963` success | alta; #168 was docs/.gitignore only, not a runtime deploy |
 | C-044 | PR #150 non e' piu' draft/aperta | VERIFIED | `gh pr view 150`: state `MERGED`, merge commit `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and readiness success | alta; non prova V1 globale |
 | C-045 | PR #163 e' integrata in `main` | VERIFIED | `gh pr view 163`: state `MERGED`, merge commit `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | alta; docs/prompt/P0 runtime slice only |
 | C-046 | Browser-side P0 prompt conflict "non copiare, non citare se non serve" e' stato rimosso | VERIFIED | PR #163 commit `b43d14ed`; changed `plugins/elab-tutor/src/services/api.js`; `tests/unit/api.test.js` 12/12 pass and `unlimCitesBook.test.js` 21/21 pass locally before merge; CI green after merge | non prova edge/backend prompt or full tutor journey |
 | C-047 | `ensureBookCitation` now appends Vol./pag. anchors for known-experiment class replies while preserving `[AZIONE:]` payloads | VERIFIED | PR #163; `unlimCitesBook.test.js` 21 tests pass; post-merge CI green | does not prove every provider path calls it |
-| C-048 | Current `main@b86ce8b6` is deployed to production | VERIFIED | P36 deployed from local `main@b86ce8b67795d3239196fbd1a70d8e57a4444314`; Vercel deployment `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`; alias `https://ardesia-lavagna.vercel.app`; production smokes pass | Vercel CLI inspect did not print Git metadata for the prebuilt deploy; provenance is local SHA plus deployment receipt |
+| C-048 | Latest production runtime deployment is P36 `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3` from `main@b86ce8b6` | VERIFIED | `vercel inspect https://ardesia-lavagna.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup`; #168 moved repo head to `b3a85224` with docs/.gitignore only | exact `b3a85224` deploy is DEFERRED because runtime code did not change |
 | C-049 | `.claude` regate skill, A1/A7 agents and Claude PreToolUse hook are present in repo | VERIFIED | `find .claude`; `.claude/skills/ardesia-regate/SKILL.md`; `.claude/agents/*.md`; `.claude/settings.json` | file presence only; runtime enforcement in Codex is UNKNOWN |
 | C-050 | P33 Integration Spine regate/audit was selected and executed as one slice | VERIFIED | `docs/ops/V1-INTEGRATION-MAP.md` records `HONEST_RED` | superseded by next slice C-054 |
 | C-051 | A7 review findings on the loop rewrite were repaired locally | VERIFIED | first read-only A7 review `019f4c92-1c2a-7bf3-bddb-85e9ed3f47fe` reported six findings; follow-up read-only A7 review `019f4c96-98d5-78f2-8b29-aa54647d8a42` returned PASS; local gates `git diff --check`, `test_secret_scan.py`, `secret_scan.py` pass | PR CI still required |
@@ -22,9 +22,11 @@
 | C-058 | P36 current-SHA deploy proof was selected | VERIFIED | `docs/ops/V1-NEXT.md` named `P36-CURRENT-SHA-DEPLOY-PROOF-001` | selected after P35 merged |
 | C-059 | P36 production deployment is ready and aliased | GREEN_SLICE | `vercel inspect https://ardesia-lavagna.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup` resolves to `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`, status Ready, URL `https://ardesia-lavagna-gh9u94qzt-andreas-projects-6d4e9791.vercel.app` | deploy proof only; no backend/RLS claim |
 | C-060 | P36 production smoke and scenario smoke pass | GREEN_SLICE | `npm run smoke:studio:production` PASS; `npm run smoke:studio:production:scenario` PASS with 9 checkpoints, citation `Vol. 1, p. 29`, same-room return, Simulation Plugin canvas/core SVG, zero browser/request errors | smoke scenario, not full V1/pilot certification |
+| C-061 | P37 production P30 audit smoke command exists and passes | GREEN_SLICE_LOCAL | `npm run smoke:studio:production:p30-audit` PASS 1/1 against `https://ardesia-lavagna.vercel.app`; it reuses `p30-free-manipulation.spec.ts` with `ARDESIA_STUDIO_E2E_BASE_URL` and no local dev server | branch-local until PR/CI; proves live browser/localStorage audit, not backend audit |
+| C-062 | P37 local regression gates are green | VERIFIED | production P30 audit smoke PASS; local P30 e2e PASS; `npm --prefix apps/studio run typecheck` PASS; `git diff --check` PASS; `python3 bin/ci/test_secret_scan.py` PASS; `python3 bin/ci/secret_scan.py` PASS | lint/full build deferred to CI for this harness-only slice |
 
 Rows below predate this overlay; do not use stale rows without checking whether
-C-043 through C-060 supersede them. Historical `RED` rows remain useful as
+C-043 through C-062 supersede them. Historical `RED` rows remain useful as
 evidence trail, not as current work selection.
 
 Snapshot: 2026-07-10 · base SHA
@@ -141,6 +143,11 @@ un RED storico, chiuderlo con nuova evidenza e data.
   https://ardesia-lavagna.vercel.app --scope
   team_23uD0RgdInaTaOPEL0EGltup`; `npm run smoke:studio:production`;
   `npm run smoke:studio:production:scenario`.
+- C-061-C-062: `npm run smoke:studio:production:p30-audit`;
+  `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts
+  --workers=1 --reporter=line`; `npm --prefix apps/studio run typecheck`;
+  `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3
+  bin/ci/secret_scan.py`.
 - C-049: `find .claude -maxdepth 3 -type f | sort`; inspect
   `.claude/skills/ardesia-regate/SKILL.md`, `.claude/agents/*.md`,
   `.claude/settings.json`.

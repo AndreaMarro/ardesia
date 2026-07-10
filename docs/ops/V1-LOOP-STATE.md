@@ -1,34 +1,36 @@
 # ARDESIA V1 — loop state
 
-## Current overlay — 2026-07-10 after P36 current SHA deploy proof
+## Current overlay — 2026-07-10 after P37 production P30 audit smoke
 
 | Field | Status | Evidence | Limit |
 |---|---|---|---|
 | Canonical repo candidate | VERIFIED | `AndreaMarro/ardesia`; `git fetch --prune origin` in `/Users/andreamarro/VOLUME 3/ardesia` | Behavioral SoT across satellite/legacy repos still not fully reconciled |
-| Current `origin/main` | VERIFIED | `b86ce8b67795d3239196fbd1a70d8e57a4444314`; PR #167 merge commit | CI-green and production deployed in P36; not V1 global |
+| Current `origin/main` | VERIFIED | `b3a8522424f29303900e1fc738a16f106bc26bc5`; PR #168 merge commit | CI-green; #168 was docs/.gitignore only, runtime deploy remains P36 `dpl_42...` |
 | PR #150 | VERIFIED | merged at `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and `studio-preview-readiness` success | P30/P32 trace is not global Tinkercad parity |
 | PR #163 | VERIFIED | merged at `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | P0 browser prompt/book anchor improvement only; tutor e2e remains UNKNOWN |
 | PR #164 | VERIFIED | merged at `177f5c731ffc68fd69a86573ddf08670d3d5226f`; post-merge `ci` run `29103272760` success | docs-only loop rewrite; no product-code claim |
 | PR #165 | VERIFIED | merged at `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; post-merge `ci` run `29104077469` success | docs-only P33 audit; no deploy proof |
 | PR #166 | VERIFIED | merged at `6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; post-merge `ci` run `29105802058` and `studio-preview-readiness` run `29105802133` success | P34 ToolHost write-back remediation; no deploy proof |
 | PR #167 | VERIFIED | merged at `b86ce8b67795d3239196fbd1a70d8e57a4444314`; post-merge `ci` run `29116176704` and `studio-preview-readiness` run `29116176674` success | P35 browser audit proof; backend audit still not proven |
+| PR #168 | VERIFIED | merged at `b3a8522424f29303900e1fc738a16f106bc26bc5`; post-merge `ci` run `29117719147` and `studio-preview-readiness` run `29117718963` success | docs/.gitignore deploy-proof ledger; no runtime deploy change |
 | Dirty main checkout | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` has modified/untracked files | Do not use as write lane |
-| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p36-current-sha-deploy-proof-20260710`, based on local `main@b86ce8b6` | Reused worktree; `.vercel` local metadata ignored |
+| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p37-production-p30-audit-smoke-20260710`, based on `main@b3a85224` | Reused worktree; one writer |
 | Disk headroom | VERIFIED | `df -h`: about 7.9 GiB available after cleanup outside this slice | Enough for focused e2e; avoid large installs/new worktrees |
 | Prompt rewrite artifacts | VERIFIED | PR #164 merged; first A7 review found six issues; follow-up A7 returned PASS | Docs-only |
 | P33 result | HONEST_RED | `V1-INTEGRATION-MAP.md`: Simulation Plugin write path uses direct callbacks before ToolHost JSON-RPC/capability/audit | Next remediation is P34 ToolHost wire |
 | P34 result | GREEN_SLICE | PR #166 merged; `persistEmbedStateThroughToolHost`; break-button audit, cross-owner denied audit, Room denial reporting, concurrent audit serialization; CI green | Deploy proof remains separate |
 | P35 result | GREEN_SLICE | P30 browser e2e asserts `board.write` audit from browser localStorage after break and after reload; PR #167 merged; CI/readiness green | Backend audit still not proven |
 | P36 result | GREEN_SLICE | Vercel deployment `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3` Ready and aliased to `https://ardesia-lavagna.vercel.app`; `npm run smoke:studio:production` PASS; `npm run smoke:studio:production:scenario` PASS | Deploy/smoke proof, not V1 global |
-| Next slice | VERIFIED | `V1-NEXT.md` names `P37-PRODUCTION-P30-AUDIT-SMOKE-001` | Production browser audit proof only; no broad backend/RLS refactor |
+| P37 result | GREEN_SLICE_LOCAL | `npm run smoke:studio:production:p30-audit` PASS 1/1 against production; local P30 e2e PASS; typecheck/diff/secret scans pass | Await PR/CI; backend/LessonOS event log still not proven |
+| Next slice | VERIFIED | `V1-NEXT.md` names `P38-P30-LESSONOS-EVENT-PROJECTION-001` | Local/live ToolHost audit is green; next boundary is LessonOS event evidence |
 | Security | RED/UNKNOWN | `V1-SECURITY-MATRIX.md`: S-002 client-side API key boundary, ToolHost sandbox/origin, RLS/history/rotation | Secret scans passing do not close these |
-| Deploy proof for current SHA | VERIFIED | Current production alias resolves to `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`; smoke and scenario smoke pass against the alias | Vercel inspect did not print Git metadata for the prebuilt deploy |
-| Local P36 gates | VERIFIED | `git diff --check` PASS; `python3 bin/ci/test_secret_scan.py` PASS; `python3 bin/ci/secret_scan.py` PASS | docs-only branch |
+| Deploy proof for runtime SHA | VERIFIED | Production alias resolves to `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`; smoke, scenario smoke and P30 audit smoke pass against the alias | exact repo head `b3a85224` is docs-only and not redeployed |
+| Local P37 gates | VERIFIED | `npm run smoke:studio:production:p30-audit` PASS; local P30 e2e PASS; `npm --prefix apps/studio run typecheck` PASS; `git diff --check` PASS; secret scans PASS | harness-only branch |
 
 Historical entries below are retained as evidence trail and may contain stale
 state superseded by this overlay. They are not active next-slice instructions.
 
-Ultimo aggiornamento: 2026-07-10T18:32:00+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T21:45:00+0200 CEST.
 
 ## Historical Superseded Identity
 

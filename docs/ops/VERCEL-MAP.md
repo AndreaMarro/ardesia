@@ -1,5 +1,27 @@
 # ARDESIA — Vercel map
 
+## Update 2026-07-10 21:35-21:45 CEST - production P30 audit smoke
+
+No deploy, no alias change.
+
+Verified in this pass:
+
+| Surface | Probe | Result | Interpretation |
+|---|---|---:|---|
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production:p30-audit` first run | RED | The live app loaded, but the P30 trace waited on dev-only `window.__MAESTRO_TEST__.ready`, intentionally absent from production. |
+| P30 smoke harness | user-visible readiness fallback | OK | `p30-free-manipulation.spec.ts` now waits for production-safe DOM readiness (`data-view-nav` plus insert Simulation Plugin button), not a dev-only hook. |
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production:p30-audit` rerun | PASS | P30 trace passes 1/1 against production: Simulation Plugin insert, free manipulation, break diagnostic, `board.write` audit increase, reload persistence and audit snapshot. |
+| local dev server | `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` | PASS | The production harness fallback did not regress the local P30 trace. |
+
+Limitations:
+
+- This proves browser-local ToolHost audit visibility on the live alias. It
+  does not prove backend sync, RLS, LessonOS durable event log, graph projection
+  or ElabTutor retrieval.
+- The live alias still serves the P36 runtime deployment
+  `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`. The later #168 merge is docs/.gitignore
+  only and was not redeployed.
+
 ## Update 2026-07-10 21:05-21:09 CEST - current SHA production deploy proof
 
 Deployment action autorizzata da Andrea nella sessione corrente.

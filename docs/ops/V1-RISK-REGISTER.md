@@ -1,6 +1,6 @@
 # ARDESIA V1 — risk register
 
-Ultimo aggiornamento: 2026-07-10T21:15:00+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T21:45:00+0200 CEST.
 
 | ID | Rischio | Stato | Evidenza | Mitigazione |
 |---|---|---|---|---|
@@ -15,4 +15,5 @@ Ultimo aggiornamento: 2026-07-10T21:15:00+0200 CEST.
 | R-009 | Book fidelity viene sovravenduta oltre l'evidenza | RED | `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`: 4/88 mounted candidates, 4 structural-only, 0 certified | Vietare claim "certified/book faithful" finche' ogni gate per-esperimento passa |
 | R-010 | `BookCircuitSpec` diventa terzo modello runtime non governato | RED | Nessun simbolo runtime esiste oggi; `V1-BOOK-FIDELITY-ARCHITECTURE.md` raccomanda envelope su una scena canonica | ADR prima di modifiche modello; no duplicazione di fonte di verita' |
 | R-011 | Current SHA deploy proof poteva restare indimostrato dopo l'integrazione P35 | VERIFIED | P36 ha trovato l'alias production ancora sul deployment precedente, poi ha creato `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3` da `main@b86ce8b6`; alias inspect e smoke/scenario production PASS | Mitigato per lo SHA corrente; ogni merge successivo richiede nuova prova deploy |
-| R-012 | Production smoke non prova ancora l'audit P30 specifico | RED | P36 scenario smoke verifica flow ELAB/Simulation Plugin, ma non legge `maestro:tools/io.ardesia.simulation/audit.jsonl` sul live alias | Prossima slice: P37 production-safe P30 audit smoke |
+| R-012 | Production smoke non provava ancora l'audit P30 specifico | GREEN_SLICE_LOCAL | P37 `npm run smoke:studio:production:p30-audit` PASS contro `https://ardesia-lavagna.vercel.app`, leggendo l'audit browser `maestro:tools/io.ardesia.simulation/audit.jsonl` | Await PR CI; non prova backend/LessonOS event log |
+| R-013 | P30 audit resta browser-local, non LessonOS/backend | RED | P37 prova ToolHost audit in localStorage sul live; non ispeziona event log LessonOS, graph projection, sync o retrieval tutor | Prossima slice: P38 P30 LessonOS event projection |
