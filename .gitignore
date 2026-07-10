@@ -1,6 +1,13 @@
 # corpus reale / PII — MAI nel repo (GDPR, invariante)
 maestro-data/
 **/maestro-data/
+
+# Environment files / secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
 # runtime / artefatti
 .builds_today
 .iters_today

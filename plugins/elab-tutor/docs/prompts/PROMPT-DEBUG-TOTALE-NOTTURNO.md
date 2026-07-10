@@ -358,10 +358,10 @@ PLAYWRIGHT_BASE_URL=https://elab-builder.vercel.app npx playwright test
 Supabase Project:  euqpdueopmlllqjmqnyb
 Supabase URL:      https://euqpdueopmlllqjmqnyb.supabase.co
 Supabase Token:    sbp_REVOKED_20260423_REDACTED
-Gemini API Key:    AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
+Gemini API Key:    [REDACTED_GOOGLE_API_KEY]
 VPS:               72.60.129.50 (Ollama :11434, Voxtral :8880)
 Admin:             #admin → [REDACTED-MOVED-TO-ENV]
-Anon Key:          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ
+Anon Key:          [REDACTED_JWT]
 Vercel Prod:       https://elab-builder.vercel.app
 Netlify Scuole:    https://funny-pika-3d1029.netlify.app/scuole.html
 ```

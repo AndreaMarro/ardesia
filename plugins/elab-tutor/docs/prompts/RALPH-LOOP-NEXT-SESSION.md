@@ -162,7 +162,7 @@ Usa `/elab-quality-gate`, `/lavagna-benchmark`, `/quality-audit`:
   POST .../unlim-hints
   POST .../unlim-tts
   ```
-  Anon key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ`
+  Anon key: `[REDACTED_JWT]`
 
 - Stress test: 20 messaggi sequenziali → tutti devono rispondere
 - Test onnipotenza: UNLIM genera [AZIONE:play], [AZIONE:highlight], [AZIONE:addcomponent]
@@ -404,9 +404,9 @@ Usa `/skill-creator` per creare e migliorare skill:
 Supabase Project: elab-unlim (euqpdueopmlllqjmqnyb)
 Supabase URL: https://euqpdueopmlllqjmqnyb.supabase.co
 Supabase Token: sbp_REVOKED_20260423_REDACTED
-Gemini API Key: AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
+Gemini API Key: [REDACTED_GOOGLE_API_KEY]
 VPS: 72.60.129.50 (Ollama :11434, Voxtral TTS :8880)
-Anon Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ
+Anon Key: [REDACTED_JWT]
 ```
 
 ## SKILL DA USARE
