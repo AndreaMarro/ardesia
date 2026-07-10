@@ -1,25 +1,28 @@
 # ARDESIA V1 — claim register
 
-## Current overlay — 2026-07-10 after P34 local remediation
+## Current overlay — 2026-07-10 after P35 browser regression
 
 | ID | Claim | Stato | Evidenza | Confidenza / limite |
 |---|---|---|---|---|
-| C-043 | `origin/main` corrente e' `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6` | VERIFIED | `git fetch --prune origin`; `git rev-parse origin/main`; log mostra merge PR #165; post-merge `ci` run `29104077469` success | alta; CI-green, non deploy-proof |
+| C-043 | `origin/main` corrente e' `6f9665b12b64d2fdaedcf28a471391f758cd8e9d` | VERIFIED | `git rev-parse origin/main`; PR #166 merge commit; post-merge `ci` run `29105802058` success and `studio-preview-readiness` run `29105802133` success | alta; CI-green, non deploy-proof |
 | C-044 | PR #150 non e' piu' draft/aperta | VERIFIED | `gh pr view 150`: state `MERGED`, merge commit `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and readiness success | alta; non prova V1 globale |
 | C-045 | PR #163 e' integrata in `main` | VERIFIED | `gh pr view 163`: state `MERGED`, merge commit `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | alta; docs/prompt/P0 runtime slice only |
 | C-046 | Browser-side P0 prompt conflict "non copiare, non citare se non serve" e' stato rimosso | VERIFIED | PR #163 commit `b43d14ed`; changed `plugins/elab-tutor/src/services/api.js`; `tests/unit/api.test.js` 12/12 pass and `unlimCitesBook.test.js` 21/21 pass locally before merge; CI green after merge | non prova edge/backend prompt or full tutor journey |
 | C-047 | `ensureBookCitation` now appends Vol./pag. anchors for known-experiment class replies while preserving `[AZIONE:]` payloads | VERIFIED | PR #163; `unlimCitesBook.test.js` 21 tests pass; post-merge CI green | does not prove every provider path calls it |
-| C-048 | Current `main@e61e7dcd` is deployed to production | UNKNOWN | no production deploy/smoke tied to `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6` observed in this turn | do not advertise current deploy proof |
+| C-048 | Current `main@6f9665b1` is deployed to production | UNKNOWN | no production deploy/smoke tied to `6f9665b12b64d2fdaedcf28a471391f758cd8e9d` observed in this turn | do not advertise current deploy proof; P36 targets this |
 | C-049 | `.claude` regate skill, A1/A7 agents and Claude PreToolUse hook are present in repo | VERIFIED | `find .claude`; `.claude/skills/ardesia-regate/SKILL.md`; `.claude/agents/*.md`; `.claude/settings.json` | file presence only; runtime enforcement in Codex is UNKNOWN |
 | C-050 | P33 Integration Spine regate/audit was selected and executed as one slice | VERIFIED | `docs/ops/V1-INTEGRATION-MAP.md` records `HONEST_RED` | superseded by next slice C-054 |
 | C-051 | A7 review findings on the loop rewrite were repaired locally | VERIFIED | first read-only A7 review `019f4c92-1c2a-7bf3-bddb-85e9ed3f47fe` reported six findings; follow-up read-only A7 review `019f4c96-98d5-78f2-8b29-aa54647d8a42` returned PASS; local gates `git diff --check`, `test_secret_scan.py`, `secret_scan.py` pass | PR CI still required |
 | C-052 | PR #164 is integrated in `main` | VERIFIED | merge commit `177f5c731ffc68fd69a86573ddf08670d3d5226f`; post-merge `ci` run `29103272760` success | docs-only loop rewrite; no deploy proof |
 | C-053 | P33 first failing boundary is Simulation Plugin write -> ToolHost | HONEST_RED | `V1-INTEGRATION-MAP.md`; `p30-free-manipulation.spec.ts:110-116,201-205,223-225`; `ToolCanvasEmbeddable.tsx:1287-1354`; `Room.tsx:929-944`; `simulationPluginRegistry.ts:23-36` | static/read-only audit due low disk; no product patch yet |
-| C-054 | P34 Simulation ToolHost wire remediation is locally green for `break-connections` write-back | GREEN_SLICE_LOCAL | `persistEmbedStateThroughToolHost`; `roomWriteBack.ts`; `Room.tsx`; `ToolCanvasMontaggioPersistenza.test.tsx` proves break-button audit, cross-owner denied audit, Room denial reporting, and concurrent audit serialization; `npm --prefix apps/studio test -- --run src/__tests__/ToolCanvasMontaggioPersistenza.test.tsx` PASS 11/11; `npm --prefix apps/studio run typecheck` PASS | PR CI still required; P30 browser e2e/audit visibility not rerun locally |
-| C-055 | Next loop slice is one P35 browser regression/audit proof | VERIFIED | `docs/ops/V1-NEXT.md` names `P35-P30-ROOM-AUDIT-REGRESSION-001` | not implemented yet |
+| C-054 | P34 Simulation ToolHost wire remediation is integrated in `main` | VERIFIED | PR #166 merge commit `6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; PR checks and post-merge checks green | browser/deploy proof is separate C-057/C-058 |
+| C-055 | P35 browser regression/audit proof was selected | VERIFIED | `docs/ops/V1-NEXT.md` named `P35-P30-ROOM-AUDIT-REGRESSION-001`; branch `codex/p35-p30-room-audit-regression-20260710` from `origin/main@6f9665b1` | one e2e file only |
+| C-056 | P35 proves browser-visible ToolHost audit for the P30 Room path | GREEN_SLICE_LOCAL | `apps/studio/e2e/p30-free-manipulation.spec.ts` reads `maestro:tools/io.ardesia.simulation/audit.jsonl` from browser localStorage, baselines `board.write`/`ok` count before break, asserts count increase after break, then asserts the same audit snapshot remains after reload; `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` PASS 1/1 | local browser proof; PR CI still required after commit |
+| C-057 | P35 local gates are green | VERIFIED | `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` PASS; `npm --prefix apps/studio run typecheck` PASS; `git diff --check` PASS; `python3 bin/ci/test_secret_scan.py` PASS; `python3 bin/ci/secret_scan.py` PASS | lint/build deferred to CI unless PR requires more |
+| C-058 | Next loop slice is current-SHA deploy proof | VERIFIED | `docs/ops/V1-NEXT.md` names `P36-CURRENT-SHA-DEPLOY-PROOF-001` | deploy not executed in P35 |
 
 Rows below predate this overlay; do not use stale rows without checking whether
-C-043 through C-055 supersede them. Historical `RED` rows remain useful as
+C-043 through C-058 supersede them. Historical `RED` rows remain useful as
 evidence trail, not as current work selection.
 
 Snapshot: 2026-07-10 · base SHA
@@ -121,8 +124,10 @@ un RED storico, chiuderlo con nuova evidenza e data.
 - C-038-C-042: static inspection of the named docs and paths on
   `82bf629d0d73e837b4c58bed370b7f1d24509316`.
 - C-043: `git fetch --prune origin`; `git rev-parse origin/main`;
-  `git log --oneline -5 origin/main`; `gh run list --repo AndreaMarro/ardesia
-  --commit e61e7dcd5b842351f3ee8ae3a671ad7e158deec6 --limit 10 --json ...`.
+  `git log --oneline -5 origin/main`; `gh pr view 166 --repo
+  AndreaMarro/ardesia --json state,mergedAt,mergeCommit,statusCheckRollup`;
+  `gh run list --repo AndreaMarro/ardesia --commit
+  6f9665b12b64d2fdaedcf28a471391f758cd8e9d --limit 10 --json ...`.
 - C-044: `gh pr view 150 --repo AndreaMarro/ardesia --json
   number,state,isDraft,mergedAt,mergeCommit,statusCheckRollup`.
 - C-045-C-047: `gh pr view 163 --repo AndreaMarro/ardesia --json
@@ -131,7 +136,7 @@ un RED storico, chiuderlo con nuova evidenza e data.
   tests/unit/api.test.js tests/unit/unlimCitesBook.test.js` if plugin
   dependencies are available.
 - C-048: compare current deploy provider metadata or smoke provenance against
-  `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; absent proof keeps the row
+  `6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; absent proof keeps the row
   `UNKNOWN`.
 - C-049: `find .claude -maxdepth 3 -type f | sort`; inspect
   `.claude/skills/ardesia-regate/SKILL.md`, `.claude/agents/*.md`,
@@ -148,7 +153,14 @@ un RED storico, chiuderlo con nuova evidenza e data.
   src/__tests__/ToolHostE2E.test.ts`; `npm --prefix apps/studio run typecheck`;
   `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3
   bin/ci/secret_scan.py`.
-- C-055: inspect `docs/ops/V1-NEXT.md` on the P34 branch.
+- C-055: inspect `docs/ops/V1-NEXT.md` on the P34/P35 branches.
+- C-056: inspect `apps/studio/e2e/p30-free-manipulation.spec.ts`; run
+  `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts
+  --workers=1 --reporter=line`.
+- C-057: run `npm --prefix apps/studio run typecheck`; `git diff --check`;
+  `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py`.
+- C-058: inspect `docs/ops/V1-NEXT.md` on the P35 branch and verify it names
+  `P36-CURRENT-SHA-DEPLOY-PROOF-001`.
 
 Nota: i comandi sono il playbook di riproduzione. In questa slice sono stati
 rieseguiti i gate P34 elencati in C-054; i comandi storici restano evidenza

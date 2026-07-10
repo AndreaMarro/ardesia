@@ -1,34 +1,33 @@
 # ARDESIA V1 — next slice
 
-Updated: 2026-07-10 after P34 local remediation. Base for this contract:
-`origin/main@e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`.
+Updated: 2026-07-10 after P35 browser regression. Base for this contract:
+`origin/main@6f9665b12b64d2fdaedcf28a471391f758cd8e9d`.
 
 ## Slice
 
-`P35-P30-ROOM-AUDIT-REGRESSION-001`
+`P36-CURRENT-SHA-DEPLOY-PROOF-001`
 
-Objective: prove the real browser Room/P30 path still passes after the governed
-write-back change, and decide whether audit visibility needs a browser-level
-assertion.
+Objective: prove whether the current integrated Studio SHA is deployed, and if
+not, produce a current-SHA deploy/preview plus smoke evidence.
 
-Do not add backend/RLS/export/deploy work. This is a regression/proof slice for
-the existing P30 flow plus the new ToolHost `board.write` audit path.
+Do not add new product behavior. This is a deploy/provenance slice for the
+already integrated P34/P35 path.
 
 ## Why This Slice
 
-- P34 makes `break-connections` write-back cross `board.write` capability and
-  audit locally.
-- The remaining risk is browser integration: P30 e2e was not rerun locally due
-  disk headroom, and audit visibility is only unit-tested.
-- The next proof should be a focused regression, not a new feature.
+- P34 is merged in PR #166 and CI-green.
+- P35 proves the P30 browser Room path observes ToolHost `board.write` audit
+  locally.
+- The current blocker is deploy provenance: an old production URL or HTTP 200
+  does not prove `main@6f9665b1` is deployed.
 
 ## File Ownership
 
 Maximum initial write set:
 
-- `apps/studio/e2e/p30-free-manipulation.spec.ts` only if adding a minimal audit assertion is feasible
-- `docs/ops/V1-FAILURE-LEDGER.md`
-- `docs/ops/V1-CLAIM-REGISTER.md`
+- deploy/readiness docs under `docs/ops/`
+- deployment config only if a verified deploy command proves a small config gap
+- no runtime code unless the smoke reveals a regression
 
 Do not touch runtime code unless the regression fails.
 
@@ -36,19 +35,19 @@ Do not touch runtime code unless the regression fails.
 
 The slice is complete when it produces one of:
 
-- `GREEN_SLICE`: P30 browser regression passes with the governed write-back, and
-  audit visibility is either asserted or explicitly deferred with reason; or
-- `HONEST_RED`: P30 fails or audit cannot be observed from the browser without a
-  smaller enabling patch; or
+- `GREEN_SLICE`: current SHA is deployed/previewed and smoke passes with
+  command/URL/run evidence; or
+- `HONEST_RED`: deploy provenance cannot be tied to the SHA, or smoke fails with
+  preserved evidence; or
 - `SECURITY_RED` / `ARCHITECTURE_RED` / `ENVIRONMENT_RED` if those gates block
   a trustworthy verdict.
 
 Minimum evidence:
 
 1. current branch/SHA/worktree receipt;
-2. exact browser command or CI run for P30;
-3. evidence that break/write-back still persists after reload;
-4. evidence for or against audit visibility from Room/P30;
+2. exact deploy/provenance command and URL;
+3. exact smoke command and result;
+4. commit SHA shown in deploy metadata or equivalent provenance;
 5. updated claim/failure/integration map.
 
 ## Commands To Define Before Coding
@@ -56,7 +55,9 @@ Minimum evidence:
 - `git status --short --branch`
 - `git rev-parse HEAD`
 - `gh run list --repo AndreaMarro/ardesia --branch main --limit 5`
-- focused P30 e2e command if disk permits, otherwise CI-only PR gate
+- `gh run list --repo AndreaMarro/ardesia --commit 6f9665b12b64d2fdaedcf28a471391f758cd8e9d --limit 10 --json ...`
+- Vercel inspect/deploy command selected from current repo config
+- smoke command selected from `package.json`
 - `python3 bin/ci/secret_scan.py`
 - `git diff --check`
 
@@ -66,6 +67,6 @@ Minimum evidence:
 - another writer owns the same files;
 - security scan reports a high-confidence secret;
 - the required boundary needs external credentials/access;
-- disk headroom is too low for a reliable test/install;
+- deploy command would write production without an explicit approval trail;
 - remediation would require broad backend/RLS/export work;
 - two repair cycles fail.

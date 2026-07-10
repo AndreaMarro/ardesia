@@ -23,8 +23,15 @@ import { mkdir, rm, stat, writeFile } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 
+const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation"
 const P30_LOCK_DIR = join(tmpdir(), "ardesia-p30-free-manipulation.lock")
 const P30_LOCK_STALE_MS = 180_000
+
+type BrowserAuditEntry = {
+  method?: unknown
+  outcome?: unknown
+  [key: string]: unknown
+}
 
 // This scenario is a long, stateful Excalidraw + simulator + reload trace.
 // Playwright still schedules repeat-each cases across workers, so guard this
@@ -94,6 +101,59 @@ async function openRoom(page: Page, room: string) {
   await page.goto(`/#${room}`)
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await waitAppReady(page)
+}
+
+async function readBrowserAuditEntries(page: Page, toolId: string): Promise<BrowserAuditEntry[]> {
+  return page.evaluate((id) => {
+    const raw = localStorage.getItem(`maestro:tools/${id}/audit.jsonl`)
+    if (raw === null) return []
+    const bytes = Uint8Array.from(atob(raw), (char) => char.charCodeAt(0))
+    const text = new TextDecoder().decode(bytes)
+    return text
+      .split("\n")
+      .filter((line) => line.trim().length > 0)
+      .map((line) => JSON.parse(line)) as BrowserAuditEntry[]
+  }, toolId)
+}
+
+function boardWriteOkEntries(entries: BrowserAuditEntry[]): BrowserAuditEntry[] {
+  return entries.filter((entry) => entry.method === "board.write" && entry.outcome === "ok")
+}
+
+function auditEntryKey(entry: BrowserAuditEntry): string {
+  return JSON.stringify(entry)
+}
+
+async function expectBoardWriteAuditIncrease(
+  page: Page,
+  baselineCount: number,
+): Promise<BrowserAuditEntry[]> {
+  let observed: BrowserAuditEntry[] = []
+  await expect
+    .poll(
+      async () => {
+        observed = boardWriteOkEntries(await readBrowserAuditEntries(page, REFERENCE_SIM_TOOL_ID))
+        return observed.length
+      },
+      { timeout: 5_000 },
+    )
+    .toBeGreaterThan(baselineCount)
+  return observed
+}
+
+async function expectBoardWriteAuditSnapshot(page: Page, expected: BrowserAuditEntry[]) {
+  const expectedKeys = expected.map(auditEntryKey)
+  await expect
+    .poll(
+      async () => {
+        const currentKeys = boardWriteOkEntries(
+          await readBrowserAuditEntries(page, REFERENCE_SIM_TOOL_ID),
+        ).map(auditEntryKey)
+        return expectedKeys.every((key) => currentKeys.includes(key))
+      },
+      { timeout: 5_000 },
+    )
+    .toBe(true)
 }
 
 async function insertSimulationPlugin(page: Page, room: string) {
@@ -216,6 +276,9 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   //    l'errore e lo proietta come simulation.error.observed. Click diretto sul
   //    bottone embedded (dispatch → React onClick), niente dipendenza da overlay.
   const breakButton = freeMode.locator("[data-sim-break]")
+  const boardWriteAuditBeforeBreak = boardWriteOkEntries(
+    await readBrowserAuditEntries(page, REFERENCE_SIM_TOOL_ID),
+  ).length
   // Reachability a puntatore reale: prima ATTIVA l'embed (doppio click raw, come
   // montaggio-canvas), poi verifica che il break sia TOPMOST (elementFromPoint).
   // Un overlay/regressione che coprisse la strip anche da attivata farebbe fallire
@@ -230,6 +293,10 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   )
   await expect(freeMode).toHaveAttribute("data-sim-error-id", /open-circuit/)
   await expect(freeMode.locator("[data-sim-diagnostic]")).toBeVisible()
+  const boardWriteAuditAfterBreak = await expectBoardWriteAuditIncrease(
+    page,
+    boardWriteAuditBeforeBreak,
+  )
 
   // Il break cambia la topologia → il digest deve cambiare.
   const brokenDigest = await freeMode.getAttribute("data-sim-scene-digest")
@@ -251,6 +318,7 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   await expect(reopened).toBeVisible({ timeout: 15_000 })
   await expect(reopened).toHaveAttribute("data-sim-scene-digest", brokenDigest!)
   await expect(reopened).toHaveAttribute("data-sim-solve-kind", "error")
+  await expectBoardWriteAuditSnapshot(page, boardWriteAuditAfterBreak)
   // La componente piazzata dalla palette deve sopravvivere al reopen: il digest
   // include boardScene (placements), quindi l'uguaglianza sopra già lo prova,
   // ma lo asseriamo esplicitamente per non nascondere una perdita di placement.
