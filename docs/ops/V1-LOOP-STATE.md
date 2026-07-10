@@ -1,18 +1,28 @@
 # ARDESIA V1 — loop state
 
-Ultimo aggiornamento: 2026-07-10T13:27:39+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T14:01:45+0200 CEST.
 
 ## Identità
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-main-deploy-20260710`
-- Branch corrente: `codex/v1-deploy-ops-ledger-20260710`
-- `origin/main` verificato: `8b9fbe1dd1a471029dce18b5a72adc15004e0298`
-- Macro-fase: 1 — integrazione e deploy spine minimo
-- Writer: singolo, scope `docs/ops` per questo aggiornamento
-- Stato terminale corrente: `DEPLOY_GREEN_SLICE` per `ardesia-lavagna` su
-  `8b9fbe1d`; `SECURITY_PARTIAL` e `ARCHITECTURE_RED` restano aperti per V1
-  globale.
+- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-scenario-smoke-20260710`
+- Branch corrente: `codex/v1-scenario-smoke-gate-20260710`
+- `origin/main` verificato: `bf511a4420fba6011de31eb5d2b3f886e54fc9d4`
+- Macro-fase: 1 — integrazione e production gate minimi
+- Writer: singolo, scope `bin/monorepo.sh`, root `package.json`,
+  `apps/studio/scripts`, `docs/ops` per questo aggiornamento
+- Stato terminale corrente: `DEPLOY_GREEN_SLICE` per `ardesia-lavagna` e
+  `SCENARIO_GATE_GREEN_SLICE` locale; `SECURITY_PARTIAL` e
+  `ARCHITECTURE_RED` restano aperti per V1 globale.
+
+## Update 2026-07-10 — production scenario gate
+
+| Claim | Stato | Evidenza | Limite |
+|---|---|---|---|
+| PR #157 e' stata mergiata in `main` | VERIFIED | merge commit `bf511a4420fba6011de31eb5d2b3f886e54fc9d4`; post-merge `ci` e readiness green | Aggiunge smoke base riproducibile, non nuova app behavior |
+| Production smoke base e' riproducibile da comando root | VERIFIED | `npm run smoke:studio:production`: HTTP `200`, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | Prova caricamento e browser health iniziale |
+| Production scenario smoke passa localmente su branch candidata | GREEN_SLICE locale | `npm run smoke:studio:production:scenario`: 9 checkpoint, room hash preservato, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88` | Non merged finche' PR non passa CI; non prova backend sync, RLS o persistenza avanzata |
+| npm dependency health e' pulita | RED / DEFERRED | baseline invariata: install/build Studio segnala vulnerabilita' moderate/high | Slice dependency audit dedicata resta necessaria |
 
 ## Update 2026-07-10 — deploy spine
 

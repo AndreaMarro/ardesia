@@ -35,6 +35,8 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-029 | `main@8b9fbe1d` ha CI post-merge verde | VERIFIED | GitHub Actions: `ci` run `29089070501` success; `studio-preview-readiness` run `29089070505` success | workflow evidence, non prova deploy/browser |
 | C-030 | La production alias pubblica carica senza errori browser immediati | VERIFIED | `curl` HTTP 200; Playwright Chromium title `Ardesia · studio`; zero console errors/pageerrors/failed requests/bad same-origin responses | non prova scenario docente completo o persistenza avanzata |
 | C-031 | Le dipendenze Studio sono audit-clean | RED / DEFERRED | `npm --prefix apps/studio ci` durante build: `11 vulnerabilities (9 moderate, 2 high)` | aprire slice dependency audit dedicata |
+| C-032 | Il production smoke base e' riproducibile da comando root | VERIFIED | PR #157 merged; `main@bf511a44`; `npm run smoke:studio:production` contro `https://ardesia-lavagna.vercel.app` PASS: HTTP 200, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | smoke base, non scenario docente |
+| C-033 | Esiste un gate scenario produzione per lavagna -> ELABTutor -> stessa lavagna -> Simulation Plugin | GREEN_SLICE locale | branch `codex/v1-scenario-smoke-gate-20260710`: `npm run smoke:studio:production:scenario` PASS con 9 checkpoint, room hash preservato, citazione `Vol. 1, p. 29`, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors | non ancora merged; non prova persistenza avanzata, backend sync, RLS o Pilot Ready |
 
 Regola: aggiornare una riga solo con comando/test/URL e SHA; non cancellare
 un RED storico, chiuderlo con nuova evidenza e data.
@@ -62,5 +64,8 @@ un RED storico, chiuderlo con nuova evidenza e data.
 - C-030: `curl -L https://ardesia-lavagna.vercel.app`; Playwright Chromium
   smoke from `apps/studio/node_modules/playwright`.
 - C-031: `npm --prefix apps/studio ci` as run by `vercel build --prod`.
+- C-032: `npm run smoke:studio:production` on `main@bf511a44`.
+- C-033: `npm run smoke:studio:production:scenario` on
+  `codex/v1-scenario-smoke-gate-20260710`.
 
 Ultima verifica di tutti i comandi sopra: 2026-07-10 Europe/Rome.
