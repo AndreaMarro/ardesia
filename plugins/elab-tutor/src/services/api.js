@@ -123,8 +123,8 @@ const SOCRATIC_INSTRUCTION = [
     'I ragazzi lavorano sui kit fisici ELAB — breadboard, LED, resistori, batterie reali.',
     'CHIUNQUE accenda ELAB Tutor deve poter fare lezione SENZA conoscenze pregresse.',
     '',
-    'Integra i volumi ELAB con parole tue: non copiare, non citare se non serve.',
-    'Citazione solo se necessaria: se ricevi [RIFERIMENTO LIBRO FISICO], usa Vol./pag. come micro-ancora breve solo quando aiuta davvero.',
+    'Quando ricevi [RIFERIMENTO LIBRO FISICO], usa Vol./pag. espliciti e, se c\'e Testo libro, riprendi quelle parole esatte tra virgolette.',
+    'Per spiegazioni e diagnosi alla classe apri con "Ragazzi,"; il kit fisico resta il protagonista.',
     'Se ricevi [CONTESTO CAPITOLO], racconta come questo esperimento prosegue dal precedente.',
     'Se ricevi [STORIA SESSIONI], prosegui dal punto giusto senza ripetere ciò che è già stato fatto.',
     '',
@@ -850,7 +850,7 @@ export async function sendChat(message, images = [], options = {}) {
 
     // Nanobot message: enriched context + brevity rule
     // Webhook message: con SOCRATIC_INSTRUCTION (n8n non ha un system prompt proprio)
-    const BREVITY_RULE = 'REGOLA: rispondi breve quando basta, ma completa. Non troncare diagnosi, azioni o passaggi necessari. Citazione solo se necessaria e breve. Usa righe corte leggibili alla LIM; i tag [AZIONE:...] non contano.';
+    const BREVITY_RULE = 'REGOLA: rispondi breve quando basta, ma completa. Non troncare diagnosi, azioni o passaggi necessari. Se c\'e [RIFERIMENTO LIBRO FISICO], conserva Vol./pag. e parole esatte utili. Usa righe corte leggibili alla LIM; i tag [AZIONE:...] non contano.';
 
     // ── ENRICHED CONTEXT: circuit + student + RAG + volume refs ──
     const contextParts = [
@@ -919,7 +919,7 @@ export async function sendChat(message, images = [], options = {}) {
             const volLines = [`[RIFERIMENTO LIBRO FISICO] Vol. ${volRef.volume}, pag. ${volRef.bookPage} — ${volRef.chapter}`];
             if (volRef.bookText) volLines.push(`Testo libro: "${volRef.bookText}"`);
             if (volRef.bookContext) volLines.push(`Contesto: ${volRef.bookContext}`);
-            volLines.push('Citazione solo se necessaria: usa questo Vol./pag. come micro-ancora breve solo se aiuta la risposta.');
+            volLines.push('Usa questo Vol./pag. e, quando il Testo libro e presente, cita le sue parole esatte tra virgolette.');
             contextParts.push(volLines.join('\n'));
         }
         // Group context: where this experiment sits in the chapter

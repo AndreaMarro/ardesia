@@ -69,12 +69,15 @@ describe('UNLIM live chat RAG bypass', () => {
     expect(apiSource).not.toMatch(/searchRAGChunks\(message,\s*3\)/);
   });
 
-  it('does not force Nanobot to cite book anchors from the browser payload', () => {
+  it('keeps the browser payload aligned with Principio Zero book anchors', () => {
     const apiSource = fs.readFileSync(path.join(ROOT, 'src/services/api.js'), 'utf8');
 
-    expect(apiSource).not.toContain('Quando rispondi, cita il libro');
-    expect(apiSource).not.toContain('Usa le STESSE PAROLE dei volumi ELAB');
-    expect(apiSource).toContain('Citazione solo se necessaria');
+    expect(apiSource).toContain('Quando ricevi [RIFERIMENTO LIBRO FISICO]');
+    expect(apiSource).toContain('Vol./pag.');
+    expect(apiSource).toContain('parole esatte');
+    expect(apiSource).toContain('Ragazzi,');
+    expect(apiSource).not.toContain('non copiare, non citare se non serve');
+    expect(apiSource).not.toContain('Citazione solo se necessaria');
   });
 
   it('uses a super live prompt: UNLIM UNICO power with strict brevity and necessary-only citations', async () => {
