@@ -84,7 +84,7 @@ Confirm the deployed function responds 200 on a minimal text-only payload and on
 curl -s -w "\nHTTP %{http_code}" -X POST \
   "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ" \
+  -H "Authorization: Bearer [REDACTED_JWT]" \
   -d '{"message":"Ciao ragazzi","sessionId":"s_smoketest_slice1c_a"}'
 ```
 
@@ -95,7 +95,7 @@ Expected: `HTTP 200` and a JSON body with `"success":true`.
 curl -s -w "\nHTTP %{http_code}" -X POST \
   "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ" \
+  -H "Authorization: Bearer [REDACTED_JWT]" \
   -d '{
     "message": "Cosa vedi sul circuito?",
     "sessionId": "s_smoketest_slice1c_b",

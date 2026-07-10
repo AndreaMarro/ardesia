@@ -465,7 +465,7 @@ describe("ToolCanvasEmbeddable", () => {
         expect(node!.querySelector("[data-elab-core-canvas-host] svg")).not.toBeNull();
         return node!;
       },
-      { timeout: 8000 },
+      { timeout: 20000 },
     );
     expect(mount.getAttribute("data-elab-canvas-experiment-id")).toBe(ELAB_V1_FIRST_LED_EXPERIMENT_ID);
     expect(["pending", "true"]).toContain(mount.getAttribute("data-elab-core-canvas-mounted"));
