@@ -1,6 +1,7 @@
 # ARDESIA V1 — claim register
 
-Snapshot: 2026-07-10 · base SHA `204ffefc`.
+Snapshot: 2026-07-10 · base SHA `204ffefc`; ultimo deploy verificato
+`ce209b310c8c3f7432d2c8878df0d235386ac9f9`.
 
 | ID | Claim | Stato | Evidenza | Confidenza / limite |
 |---|---|---|---|---|
@@ -38,6 +39,8 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-032 | Il production smoke base e' riproducibile da comando root | VERIFIED | PR #157 merged; `main@bf511a44`; `npm run smoke:studio:production` contro `https://ardesia-lavagna.vercel.app` PASS: HTTP 200, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | smoke base, non scenario docente |
 | C-033 | Esiste un gate scenario produzione per lavagna -> ELABTutor -> stessa lavagna -> Simulation Plugin | VERIFIED / GREEN_SLICE | PR #158 merged; `main@d19faae3`; scenario PASS su head `14f71b48` con 9 checkpoint, room hash preservato, citazione `Vol. 1, p. 29`, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors; post-merge `ci` e readiness green | gate esistente e integrato; non prova persistenza avanzata, backend sync, RLS o Pilot Ready |
 | C-034 | `npm --prefix apps/studio run lint` e' verde | RED | branch dependency audit: lint fallisce con 172 errori / 5 warning in file preesistenti non toccati (`Room.tsx`, `ReplayView.tsx`, test, design views, toolhost, ecc.) | non blocca questa remediation se CI non usa lint; richiede slice baseline lint dedicata |
+| C-035 | La remediation npm audit Studio e' integrata in `main` con CI verde | VERIFIED | PR #160 merged; merge commit `ce209b310c8c3f7432d2c8878df0d235386ac9f9`; post-merge `ci` run `29095910144` success e `studio-preview-readiness` run `29095910290` success | chiude il rischio audit per lo SHA integrato; non chiude lint baseline o advisory future |
+| C-036 | Production `ardesia-lavagna` serve il deploy post dependency audit | VERIFIED / GREEN_SLICE | deployment `dpl_3LmGUXKofdHtUW2s8UawXrekEW89` READY, alias `https://ardesia-lavagna.vercel.app`; `curl -L` HTTP 200; `npm run smoke:studio:production` PASS; `npm run smoke:studio:production:scenario` PASS con 9 checkpoint, `catalogSummary=4/88`, citazione `Vol. 1, p. 29`, zero console/page/request/bad same-origin errors | prova deploy e scenario smoke minimo sullo SHA `ce209b31`; non prova backend sync, RLS, ToolHost globale o V1/Pilot Ready |
 
 Regola: aggiornare una riga solo con comando/test/URL e SHA; non cancellare
 un RED storico, chiuderlo con nuova evidenza e data.
@@ -76,5 +79,11 @@ un RED storico, chiuderlo con nuova evidenza e data.
   `npm run smoke:studio:production:scenario` on PR head `14f71b48`.
 - C-034: `npm --prefix apps/studio run lint` on branch
   `codex/v1-studio-dependency-audit-20260710`.
+- C-035: `gh pr view 160 --json state,mergedAt,mergeCommit`;
+  `gh run list --commit ce209b310c8c3f7432d2c8878df0d235386ac9f9 --json ...`.
+- C-036: `vercel inspect ardesia-lavagna-43raj4p0w-andreas-projects-6d4e9791.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup`;
+  `curl -L -s -o /tmp/ardesia-prod-after-dependency.html -w '%{http_code} %{url_effective}\n' https://ardesia-lavagna.vercel.app`;
+  `npm run smoke:studio:production`;
+  `npm run smoke:studio:production:scenario`.
 
 Ultima verifica di tutti i comandi sopra: 2026-07-10 Europe/Rome.
