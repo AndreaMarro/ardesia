@@ -25,12 +25,16 @@ import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveR
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import { renderPluginPostitBoardEmbeddable } from "./pluginPostitBoardRender";
 import {
+  applyElabCanvasComponentAdd,
   applyElabCanvasConnectionAdd,
   applyElabCanvasLayoutChange,
   applyElabCanvasWireDelete,
   applyElabCanvasWireUpdate,
+  elabCanvasComponentAddOperation,
+  elabCanvasComponentForAdd,
   elabCanvasConnectionAddOperation,
   elabCanvasLayoutChangeOperation,
+  elabCanvasNextComponentId,
   elabCanvasWireDeleteOperation,
   elabCanvasWireUpdateOperation,
   simulationSceneToElabCanvasState,
@@ -1287,6 +1291,29 @@ function ElabCoreCanvasMount({
         handle = renderEmbeddable(node, {
           experiment: canvasState.experiment,
           componentStates: canvasState.componentStates,
+          // P32 slice 2b: palette/tap-to-place/paste/duplica del canvas plugin
+          // → place-component nella SCENA (source of truth), stesso canale di
+          // write-back delle wire. Il componente nasce flottante (nessun
+          // pinAssignment): elettricamente inerte finché non viene cablato.
+          onComponentAdd: (type: string, position: { x: number; y: number }): string | null => {
+            const componentId = elabCanvasNextComponentId(canvasState.experiment.components, type);
+            const component = elabCanvasComponentForAdd(componentId, type);
+            if (component === null) return null;
+            const operation = elabCanvasComponentAddOperation({
+              id: `${toolLink.embedId}:place:${componentId}`,
+              component: { id: component.id, type: component.type },
+              pose: position,
+            });
+            setLastOperationId(operation.id);
+            setLocalScene((current) => {
+              const nextScene = applyElabCanvasComponentAdd(current, component, position);
+              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
+              }
+              return nextScene;
+            });
+            return componentId;
+          },
           onLayoutChange: (componentId: string, pose: { x: number; y: number; rotation?: number; parentId?: string }) => {
             const operation = elabCanvasLayoutChangeOperation({
               id: `${toolLink.embedId}:move:${componentId}:${Math.round(pose.x)}:${Math.round(pose.y)}`,

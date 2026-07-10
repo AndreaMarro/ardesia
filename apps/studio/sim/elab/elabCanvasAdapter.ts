@@ -2,6 +2,8 @@ import {
   applySimulationRuntimeOperation,
   type SimulationRuntimeState,
 } from "../core/simulationRuntime"
+import { getComponent } from "../solver/components/registry.js"
+import { registerElectricalCatalog } from "../solver/catalog"
 import type {
   SimulationOperationEnvelope,
   SimulationOperationOrigin,
@@ -179,6 +181,70 @@ export function applyElabCanvasConnectionAdd<TScene extends ElabCanvasSceneLike>
     ...cloneConnections(scene.connections),
     sceneConnectionFromElabWire(connection, undefined, wireId),
   ])
+}
+
+// P32 slice 2b — add componente dal canvas plugin (palette/paste/duplica viva).
+// Tipi piazzabili = catalogo elettrico MENO le esclusioni decise altrove:
+// battery9v (multi-sorgente: design aperto, P32-NEXT d), wire (D6: il cavo è
+// una CONNECTION e arriva da onConnectionAdd), breadboard-half (semantica
+// anchor non decisa). Rifiuto fail-soft: null, mai throw (il plugin guarda
+// `if (newId)`).
+const ELAB_CANVAS_COMPONENT_ADD_DENYLIST = new Set(["battery9v", "wire", "breadboard-half"])
+
+export function elabCanvasComponentForAdd(
+  id: string,
+  type: string,
+): ElabCanvasSceneComponent | null {
+  registerElectricalCatalog()
+  if (ELAB_CANVAS_COMPONENT_ADD_DENYLIST.has(type)) return null
+  if (getComponent(type) === null) return null
+  // Default del LIBRO, identici al montaggio libero (createBoardSceneWithPlacements).
+  if (type === "resistor") return { id, type, value: 470 }
+  if (type === "led") return { id, type, color: "red" }
+  return { id, type }
+}
+
+export function elabCanvasNextComponentId(
+  components: ReadonlyArray<{ id: string }>,
+  type: string,
+): string {
+  const ids = new Set(components.map((component) => component.id))
+  const prefix = `${type}-libero-`
+  let ordinal = components.filter((component) => component.id.startsWith(prefix)).length + 1
+  while (ids.has(`${prefix}${ordinal}`)) ordinal += 1
+  return `${prefix}${ordinal}`
+}
+
+export function applyElabCanvasComponentAdd<TScene extends ElabCanvasSceneLike>(
+  scene: TScene,
+  component: ElabCanvasSceneComponent,
+  pose: { x: number; y: number; rotation?: number; parentId?: string },
+): TScene {
+  // Fail-soft sul duplicato: scena invariata (clonata), mai due id uguali.
+  if (scene.components.some((existing) => existing.id === component.id)) {
+    return cloneSceneLike(scene) as TScene
+  }
+  const next = cloneSceneLike(scene) as TScene
+  next.components.push({ ...component })
+  next.layout[component.id] = { ...pose }
+  return next
+}
+
+export function elabCanvasComponentAddOperation(
+  input: {
+    id: string
+    component: { id: string; type: string; label?: string }
+    pose: { x: number; y: number; rotation?: number }
+    origin?: SimulationOperationOrigin
+  },
+): SimulationOperationEnvelope {
+  // Il componente nasce FLOTTANTE: nessun pinAssignments nell'operazione —
+  // l'aggancio elettrico arriva solo dai connect-wire successivi.
+  return operationEnvelope(input.id, input.origin, {
+    kind: "place-component",
+    component: { ...input.component },
+    pose: { ...input.pose },
+  })
 }
 
 export function applyElabCanvasWireDelete<TScene extends ElabCanvasSceneLike>(

@@ -28,12 +28,16 @@ import {
   validateBookLayoutScene,
 } from "../toolhost/ToolCanvasEmbeddable";
 import {
+  applyElabCanvasComponentAdd,
   applyElabCanvasConnectionAdd,
   applyElabCanvasLayoutChange,
   applyElabCanvasWireDelete,
   applyElabCanvasWireUpdate,
+  elabCanvasComponentAddOperation,
+  elabCanvasComponentForAdd,
   elabCanvasConnectionAddOperation,
   elabCanvasLayoutChangeOperation,
+  elabCanvasNextComponentId,
   elabCanvasWireDeleteOperation,
   elabCanvasWireUpdateOperation,
   simulationSceneToElabCanvasState,
@@ -448,6 +452,74 @@ describe("ToolCanvasEmbeddable", () => {
       target: { kind: "wire", id: "wire-free-1" },
     });
     expect(scene.connections[0]?.path).not.toBe(updated.connections[0]?.path);
+  });
+
+  it("converte l'add componente del canvas ELAB in place-component e patch scena (P32 slice 2b)", () => {
+    const scene = createReferenceSimulationScene();
+    const componentId = elabCanvasNextComponentId(scene.components, "led");
+    expect(componentId).toBe("led-libero-1");
+
+    const component = elabCanvasComponentForAdd(componentId, "led");
+    expect(component).toMatchObject({ id: "led-libero-1", type: "led", color: "red" });
+
+    const next = applyElabCanvasComponentAdd(scene, component!, { x: 120, y: 96 });
+    expect(next.components.at(-1)).toMatchObject({ id: "led-libero-1", type: "led" });
+    expect(next.layout["led-libero-1"]).toEqual({ x: 120, y: 96 });
+    // immutabilità: la scena originale non è toccata
+    expect(scene.components.some((c) => c.id === "led-libero-1")).toBe(false);
+    expect(scene.layout["led-libero-1"]).toBeUndefined();
+    // componente flottante: pinAssignments INVARIATI (inerte finché non cablato)
+    expect(next.pinAssignments).toEqual(scene.pinAssignments);
+
+    // fisica onesta: il circuito del libro NON degrada per un componente flottante
+    const projected = simulationSceneToElabCanvasState(next);
+    expect(projected.diagnostics).toEqual([]);
+    const bookLed = projected.componentStates.led1 as { brightness?: number };
+    const freeLed = projected.componentStates["led-libero-1"] as { brightness?: number };
+    expect(bookLed.brightness).toBeGreaterThan(0);
+    expect(freeLed.brightness).toBe(0);
+
+    const operation = elabCanvasComponentAddOperation({
+      id: "op-component-add",
+      component: { id: "led-libero-1", type: "led" },
+      pose: { x: 120, y: 96 },
+    });
+    expect(operation).toMatchObject({
+      schema: "simulation-operation/1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+    });
+    expect(operation.operation).toEqual({
+      kind: "place-component",
+      component: { id: "led-libero-1", type: "led" },
+      pose: { x: 120, y: 96 },
+    });
+
+    // id successivo: conta i -libero- esistenti e salta le collisioni
+    expect(elabCanvasNextComponentId(next.components, "led")).toBe("led-libero-2");
+
+    // duplicato: fail-soft, scena invariata
+    const duplicated = applyElabCanvasComponentAdd(next, component!, { x: 10, y: 10 });
+    expect(duplicated.components.filter((c) => c.id === "led-libero-1")).toHaveLength(1);
+    expect(duplicated.layout["led-libero-1"]).toEqual({ x: 120, y: 96 });
+  });
+
+  it("nega i tipi non piazzabili dal canvas: battery9v (design multi-sorgente aperto), wire (D6: cavo=connection), breadboard-half, non catalogati", () => {
+    expect(elabCanvasComponentForAdd("bat-libero-1", "battery9v")).toBeNull();
+    expect(elabCanvasComponentForAdd("cavo-libero-1", "wire")).toBeNull();
+    expect(elabCanvasComponentForAdd("bb-libero-1", "breadboard-half")).toBeNull();
+    expect(elabCanvasComponentForAdd("x-libero-1", "buzzer")).toBeNull();
+    expect(elabCanvasComponentForAdd("resistor-libero-1", "resistor")).toMatchObject({
+      id: "resistor-libero-1",
+      type: "resistor",
+      value: 470,
+    });
+    expect(elabCanvasComponentForAdd("potentiometer-libero-1", "potentiometer")).toMatchObject({
+      id: "potentiometer-libero-1",
+      type: "potentiometer",
+    });
   });
 
   it("monta nel post-it il canvas ELABTutor reale via renderEmbeddable", async () => {
