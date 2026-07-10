@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|NotebookEdit|Read|Grep|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/guardrails/claude-pretool-safety.sh\"",
+            "timeout": 15,
+            "statusMessage": "Verifica guardrail ARDESIA"
+          }
+        ]
+      }
+    ]
+  }
+}
