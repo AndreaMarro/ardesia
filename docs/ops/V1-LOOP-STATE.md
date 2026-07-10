@@ -1,19 +1,29 @@
 # ARDESIA V1 — loop state
 
-Ultimo aggiornamento: 2026-07-10T14:12:34+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T15:17:44+0200 CEST.
 
 ## Identità
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-scenario-smoke-20260710`
-- Branch corrente: `codex/v1-scenario-gate-ledger-20260710`
-- `origin/main` verificato: `d19faae3b03f2d684f26a49430ef11e935cdad97`
-- Macro-fase: 1 — integrazione e production gate minimi
-- Writer: singolo, scope `bin/monorepo.sh`, root `package.json`,
-  `apps/studio/scripts`, `docs/ops` per questo aggiornamento
-- Stato terminale corrente: `DEPLOY_GREEN_SLICE` per `ardesia-lavagna` e
-  `SCENARIO_GATE_MERGED` per il gate produzione; `SECURITY_PARTIAL` e
-  `ARCHITECTURE_RED` restano aperti per V1 globale.
+- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-dependency-audit-20260710`
+- Branch corrente: `codex/v1-studio-dependency-audit-20260710`
+- `origin/main` verificato: `063b609c6f8a42e704a75f43e3f4256aaf28e662`
+- Macro-fase: 1 — integrazione, production gate minimi e hardening supply-chain
+- Writer: singolo, scope `apps/studio/package.json`,
+  `apps/studio/package-lock.json`, `docs/ops` per questo aggiornamento
+- Stato terminale corrente: `DEPENDENCY_AUDIT_GREEN_SLICE` sul candidato
+  `742ed1e4`; `SECURITY_PARTIAL`, lint baseline RED e `ARCHITECTURE_RED`
+  restano aperti per V1 globale.
+
+## Update 2026-07-10 — Studio dependency audit
+
+| Claim | Stato | Evidenza | Limite |
+|---|---|---|---|
+| Baseline npm audit Studio era vulnerabile | VERIFIED | `npm --prefix apps/studio audit --json` prima della patch: 11 vulnerabilita' totali, 9 moderate e 2 high (`undici`, `lodash-es`, `dompurify`, `nanoid`, Mermaid/Langium/Chevrotain chain) | Snapshot npm registry 2026-07-10 |
+| Override npm mirati riducono l'audit a zero | VERIFIED / GREEN_SLICE locale | commit `742ed1e4278053fa25c297a2fba864284bbe31ad`; `npm --prefix apps/studio audit --json` dopo `npm ci`: `total: 0`; `npm ls` mostra `undici@7.28.0`, `dompurify@3.4.11`, `lodash-es@4.18.1`, `nanoid@3.3.12/5.0.9`, `@mermaid-js/parser@1.2.0` | Non sostituisce monitoraggio advisory futuro |
+| Studio resta funzionale con gli override | VERIFIED | `npm --prefix apps/studio run typecheck` PASS; Vitest `172 passed | 1 skipped`, `1565 passed | 5 skipped`; `npm --prefix apps/studio run build` PASS; preview locale + `ARDESIA_STUDIO_SMOKE_URL=http://127.0.0.1:4188 npm run smoke:studio:production:scenario` PASS con 9 checkpoint e zero browser/request errors | Scenario locale sul bundle costruito, non deploy production aggiornato |
+| Lint Studio e' release-clean | RED | `npm --prefix apps/studio run lint` fallisce con 172 errori e 5 warning in file preesistenti non toccati dalla slice | Serve slice lint baseline dedicata; non allargare questa patch |
+| Security scan del diff e' pulito | VERIFIED | `python3 bin/ci/test_secret_scan.py` OK; `python3 bin/ci/secret_scan.py` OK; `git diff --check` OK | Non chiude history/rotation/provider risks |
 
 ## Update 2026-07-10 — production scenario gate
 
