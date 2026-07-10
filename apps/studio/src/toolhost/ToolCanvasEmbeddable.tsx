@@ -922,7 +922,7 @@ function ReferenceSimulationCanvasTool({
             placements: next,
           }),
         },
-      });
+      }, toolLink.toolId);
     }
   }
 
@@ -1020,7 +1020,7 @@ function ReferenceSimulationCanvasTool({
 
   function persistScene(nextScene: SimulationSceneV1) {
     if (host?.persistEmbedState && marker?.state?.kind === "simulation-scene-v1") {
-      host.persistEmbedState(toolLink.embedId, { ...marker.state, scene: nextScene });
+      host.persistEmbedState(toolLink.embedId, { ...marker.state, scene: nextScene }, toolLink.toolId);
     }
   }
 
@@ -1297,7 +1297,7 @@ function ElabCoreCanvasMount({
             setLocalScene((current) => {
               const nextScene = applyElabCanvasLayoutChange(current, componentId, pose);
               if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
               }
               return nextScene;
             });
@@ -1317,7 +1317,7 @@ function ElabCoreCanvasMount({
             setLocalScene((current) => {
               const nextScene = applyElabCanvasConnectionAdd(current, connection);
               if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
               }
               return nextScene;
             });
@@ -1333,7 +1333,7 @@ function ElabCoreCanvasMount({
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireUpdate(current, wireIndex, connection);
               if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
               }
               return nextScene;
             });
@@ -1348,7 +1348,7 @@ function ElabCoreCanvasMount({
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireDelete(current, wireIndex);
               if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene });
+                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
               }
               return nextScene;
             });

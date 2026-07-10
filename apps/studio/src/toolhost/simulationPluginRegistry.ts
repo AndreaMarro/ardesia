@@ -26,7 +26,7 @@ export type ToolLinkRef = {
  * del PROPRIO embed in scena — la persistenza segue quella della scena.
  */
 export type SimulationToolHost = {
-  persistEmbedState?: (embedId: string, state: unknown) => void;
+  persistEmbedState?: (embedId: string, state: unknown, toolId: string) => void;
   /**
    * host-observes-solve: il tool riporta l'esito del solve come evento LessonOS
    * tipato; l'host lo accoda al log. Opzionale/fail-soft: senza host, il tool

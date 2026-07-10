@@ -1,66 +1,54 @@
 # ARDESIA V1 — next slice
 
-Updated: 2026-07-10 after P33 regate. Base for this contract:
-`origin/main@177f5c731ffc68fd69a86573ddf08670d3d5226f`.
+Updated: 2026-07-10 after P34 local remediation. Base for this contract:
+`origin/main@e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`.
 
 ## Slice
 
-`P34-SIMULATION-TOOLHOST-WIRE-REMEDIATION-001`
+`P35-P30-ROOM-AUDIT-REGRESSION-001`
 
-Objective: remediate the first boundary found by P33:
+Objective: prove the real browser Room/P30 path still passes after the governed
+write-back change, and decide whether audit visibility needs a browser-level
+assertion.
 
-Simulation Plugin write operation -> ToolHost capability/RPC/audit boundary.
-
-Pick one write operation, preferably `wire-add` or `break-connections`, and make
-its governed path explicit:
-
-operation schema -> ToolHost method/capability -> audit event -> host mutation.
-
-If ToolHost is intentionally not the boundary for first-party Simulation Plugin
-writes, this slice must produce a ratified ADR exception plus a test that proves
-the alternate boundary. Do not expand to backend/RLS/export before this boundary
-is green.
+Do not add backend/RLS/export/deploy work. This is a regression/proof slice for
+the existing P30 flow plus the new ToolHost `board.write` audit path.
 
 ## Why This Slice
 
-- P33 found `HONEST_RED`: P30 proves local behavior but not ToolHost
-  capability/RPC/audit for Simulation Plugin writes.
-- Current code uses direct React callbacks/host closures for write-back:
-  `ToolCanvasEmbeddable.tsx:1287-1354`, `Room.tsx:929-944`.
-- ToolHost already has JSON-RPC/capability/audit machinery; this slice should
-  connect one concrete operation to it, not build a new subsystem.
+- P34 makes `break-connections` write-back cross `board.write` capability and
+  audit locally.
+- The remaining risk is browser integration: P30 e2e was not rerun locally due
+  disk headroom, and audit visibility is only unit-tested.
+- The next proof should be a focused regression, not a new feature.
 
 ## File Ownership
 
 Maximum initial write set:
 
-- `apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`
-- one ToolHost protocol/router/cap file if required
-- one focused unit/e2e test file
+- `apps/studio/e2e/p30-free-manipulation.spec.ts` only if adding a minimal audit assertion is feasible
 - `docs/ops/V1-FAILURE-LEDGER.md`
 - `docs/ops/V1-CLAIM-REGISTER.md`
 
-Do not touch backend/RLS/export in this slice.
+Do not touch runtime code unless the regression fails.
 
 ## Acceptance Criteria
 
 The slice is complete when it produces one of:
 
-- `GREEN_SLICE`: one Simulation Plugin write operation is proven to cross a
-  governed ToolHost method/capability/audit boundary with focused tests; or
-- `ADR_EXCEPTION`: first-party Simulation Plugin bypass is explicitly ratified
-  with an alternate tested boundary and updated claims; or
-- `HONEST_RED`: the chosen remediation is blocked by a smaller reproduced
-  boundary with exact file/command evidence; or
+- `GREEN_SLICE`: P30 browser regression passes with the governed write-back, and
+  audit visibility is either asserted or explicitly deferred with reason; or
+- `HONEST_RED`: P30 fails or audit cannot be observed from the browser without a
+  smaller enabling patch; or
 - `SECURITY_RED` / `ARCHITECTURE_RED` / `ENVIRONMENT_RED` if those gates block
   a trustworthy verdict.
 
 Minimum evidence:
 
 1. current branch/SHA/worktree receipt;
-2. exact operation under test and its schema;
-3. focused test proving method/capability/audit or ADR exception;
-4. regression check for existing P30 behavior where feasible;
+2. exact browser command or CI run for P30;
+3. evidence that break/write-back still persists after reload;
+4. evidence for or against audit visibility from Room/P30;
 5. updated claim/failure/integration map.
 
 ## Commands To Define Before Coding
@@ -68,7 +56,7 @@ Minimum evidence:
 - `git status --short --branch`
 - `git rev-parse HEAD`
 - `gh run list --repo AndreaMarro/ardesia --branch main --limit 5`
-- focused unit/e2e command after the operation is selected
+- focused P30 e2e command if disk permits, otherwise CI-only PR gate
 - `python3 bin/ci/secret_scan.py`
 - `git diff --check`
 
