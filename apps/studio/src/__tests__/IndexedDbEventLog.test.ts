@@ -549,3 +549,79 @@ describe("bootstrapLessonOs \u2014 telemetria di perdita (spec \u00a74.4, marker
     expect(marker.getItem(KEY)).toBe("1")
   })
 })
+
+// ---------------------------------------------------------------------------
+// P31 — affidabilità emit: gli append concorrenti/rapidi del Simulation Plugin
+// (solved→error→solved durante break/restore) NON devono collidere sul seq né
+// lasciare promise rejected orfane (era la causa dell'unhandled rejection
+// "scrittura fallita" che rendeva flaky la trace P30).
+// ---------------------------------------------------------------------------
+
+const simError = (t: number): LessonOsEvent => ({
+  kind: "simulation.error.observed",
+  errorId: "sim-error:v1-cap6-esp1:open-circuit",
+  conceptId: "circuito_chiuso",
+  sceneId: "v1-cap6-esp1",
+  experimentId: "v1-cap6-esp1",
+  labels: { it: "Circuito aperto" },
+  t,
+  evidence: ["simulation:scene:v1-cap6-esp1"],
+})
+
+const simSolved = (t: number, currentMa: number): LessonOsEvent => ({
+  kind: "simulation.circuit.solved",
+  experimentId: "v1-cap6-esp1",
+  sceneId: "v1-cap6-esp1",
+  currentMa,
+  bookLayoutValid: true,
+  labels: { it: `Circuito risolto: ${currentMa} mA` },
+  t,
+  evidence: ["simulation:scene:v1-cap6-esp1"],
+})
+
+describe("IndexedDbEventLog — affidabilità emit (P31)", () => {
+  it("append CONCORRENTI: seq distinti e monotoni, nessun reject (no seq-collision)", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    const events = [1, 2, 3, 4, 5, 6].map((n) => simSolved(1000 + n, n))
+    const results = await Promise.all(events.map((ev) => log.append(ev)))
+    expect(results.map((r) => r.seq).sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6])
+    expect((await log.readAll()).map((e) => e.seq)).toEqual([1, 2, 3, 4, 5, 6])
+  })
+
+  it("solved→error→solved rapido: tre eventi distinti persistiti, seq distinti", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    const [a, b, c] = await Promise.all([
+      log.append(simSolved(2001, 15.3)),
+      log.append(simError(2002)),
+      log.append(simSolved(2003, 15.3)),
+    ])
+    expect(new Set([a.seq, b.seq, c.seq]).size).toBe(3)
+    const kinds = (await log.readAll()).map((e) => e.kind)
+    expect(kinds).toContain("simulation.error.observed")
+    expect(kinds.filter((k) => k === "simulation.circuit.solved")).toHaveLength(2)
+  })
+
+  it("emit rapido dello STESSO errore (benign): tutti risolvono, nessuna unhandled rejection", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    // dedup è responsabilità del chiamante (lastEmittedSolveRef): qui verifichiamo
+    // solo che, anche senza dedup, append rapidi identici NON rigettano/collidono.
+    const many = Array.from({ length: 8 }, (_, i) => log.append(simError(3000 + i)))
+    const settled = await Promise.allSettled(many)
+    expect(settled.every((s) => s.status === "fulfilled")).toBe(true)
+    expect((await log.readAll()).length).toBe(8)
+  })
+
+  it("errore NON benigno resta VISIBILE al chiamante (no swallow)", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    await expect(
+      log.append({ kind: "simulation.error.observed", errorId: "x", conceptId: "c", labels: {}, t: 1, evidence: [] } as unknown as LessonOsEvent),
+    ).rejects.toThrow(/evidence obbligatoria/)
+    // dopo un errore visibile, la coda continua a funzionare
+    const ok = await log.append(simSolved(4000, 15.3))
+    expect(ok.seq).toBe(1)
+  })
+})

@@ -66,6 +66,11 @@ export class IndexedDbEventLog implements EventLogStore {
   private db: IDBDatabase | null = null
   private lastSeq = 0
   private lastReport: RecoveryReport | null = null
+  // Serializzazione degli append: due append concorrenti leggerebbero lo stesso
+  // `lastSeq` e calcolerebbero lo stesso `seq` prima che l'uno lo aggiorni →
+  // `add` (append-only) collide → "scrittura fallita". La coda garantisce seq
+  // monotoni e distinti anche sotto emit rapido (solved→error→solved).
+  private writeQueue: Promise<unknown> = Promise.resolve()
 
   constructor(options: IndexedDbEventLogOptions = {}) {
     this.factory = options.factory ?? (globalThis as { indexedDB?: IDBFactory }).indexedDB
@@ -114,6 +119,19 @@ export class IndexedDbEventLog implements EventLogStore {
   }
 
   async append(event: LessonOsEvent): Promise<AppendedEvent> {
+    // Accoda dietro l'append precedente: seq assegnati in serie, mai in race.
+    // Il ramo di errore della coda continua comunque (append successivo non
+    // deve restare bloccato da un fallimento precedente). `run.catch` tiene la
+    // catena "gestita" (no unhandled), ma `run` propaga l'errore al chiamante.
+    const run = this.writeQueue.then(
+      () => this.appendNow(event),
+      () => this.appendNow(event),
+    )
+    this.writeQueue = run.catch(() => {})
+    return run
+  }
+
+  private async appendNow(event: LessonOsEvent): Promise<AppendedEvent> {
     const db = this.requireOpenDb()
     // Validazione identica a InMemoryEventLog, PRIMA di toccare lo storage (invariante 4).
     assertEvidence(event.evidence, event.kind)
@@ -134,9 +152,11 @@ export class IndexedDbEventLog implements EventLogStore {
       txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
       txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
     })
+    // Promise.all: un handler è attaccato SIA alla add-request SIA alla txn
+    // `done`; se una fallisce, l'altra non resta una promise rejected orfana
+    // (era la causa dell'unhandled rejection su collisione seq).
     // `add`, mai `put`: su chiave esistente fallisce — il log non riscrive mai (append-only).
-    await requestToPromise(txn.objectStore(STORE_NAME).add(record))
-    await done
+    await Promise.all([requestToPromise(txn.objectStore(STORE_NAME).add(record)), done])
     this.lastSeq = seq
     return Object.freeze({ ...structuredClone(event), seq })
   }

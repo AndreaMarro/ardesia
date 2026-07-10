@@ -545,7 +545,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
     try {
       if (lessonFile) {
-        await actualStore.importLessonBlobForRoom(file, room)
+        // P32 R10: passa l'event-log LessonOS così il bundle può ripristinare la
+        // memoria didattica. Restore SOLO su log vuoto (disaster-recovery); nella
+        // Room live il log ha già lesson.started ⇒ esito atteso "skipped-non-empty".
+        const importResult = await actualStore.importLessonBlobForRoom(
+          file,
+          room,
+          lessonOsRef.current?.store,
+        )
         const sceneJson = await actualStore.loadScene(room)
         if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
         const parsed = JSON.parse(sceneJson)
@@ -559,7 +566,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         latestFilesRef.current = files
         journalRef.current?.seed(elements)
         apiRef.current.updateScene({ elements, appState, files })
-        setStorageError(null)
+        // Telemetria mai silenziosa (§4.4): un restore FALLITO va detto al docente
+        // (il board è importato; è la memoria didattica a non essere tornata).
+        if (importResult.lessonOsRestore.kind === "failed") {
+          setStorageError(
+            "Lezione importata, ma memoria didattica NON ripristinata: " +
+              importResult.lessonOsRestore.error,
+          )
+        } else {
+          setStorageError(null)
+        }
         setSaved(true)
         window.setTimeout(() => setSaved(false), 1200)
       } else if (file.type === "application/pdf") {

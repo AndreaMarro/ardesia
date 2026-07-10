@@ -18,6 +18,7 @@ import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
 import { parseSessionYaml } from "./AudioRecorder"
 import type { EventLogStore } from "../lessonos/eventlog"
+import type { RecoveryReport } from "../lessonos/indexedDbEventLog"
 import { exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
 
 /** Nome del file bundle .lesson */
@@ -125,19 +126,64 @@ export async function exportLesson(
 }
 
 /**
+ * Esito del restore dell'event-log LessonOS all'import (P32 R10).
+ * Sempre esplicito, mai silenzioso: il chiamante sa PERCHÉ la memoria
+ * didattica è stata o non è stata ripristinata.
+ */
+export type LessonOsRestoreStatus =
+  /** Snapshot presente, log vuoto, restore riuscito (seq originali preservati). */
+  | { kind: "restored"; recovered: number }
+  /** Il bundle non contiene raw/lessonos-events.jsonl (export senza memoria). */
+  | { kind: "no-snapshot" }
+  /** Il chiamante non ha fornito un log: restore non richiesto. */
+  | { kind: "not-attempted" }
+  /** Il log fornito non supporta importSnapshot (fallback InMemory). */
+  | { kind: "unsupported" }
+  /** Il log ha già eventi: restore SOLO su log vuoto (mai merge — i seq collidono). */
+  | { kind: "skipped-non-empty" }
+  /** importSnapshot ha fallito (snapshot malformato / scrittura): i file del
+   *  bundle restano importati, l'errore è riportato qui — mai swallow. */
+  | { kind: "failed"; error: string }
+
+export interface ImportLessonResult {
+  lessonOsRestore: LessonOsRestoreStatus
+}
+
+/** Log capace di restore da snapshot (oggi: IndexedDbEventLog). L'interfaccia
+ *  EventLogStore resta minima (append+readAll); il restore è una capacità
+ *  opzionale rilevata a runtime, MAI richiesta ai fallback. */
+type SnapshotRestorableLog = EventLogStore & {
+  importSnapshot(snapshot: Blob): Promise<RecoveryReport>
+}
+
+function supportsSnapshotRestore(log: EventLogStore): log is SnapshotRestorableLog {
+  return typeof (log as Partial<SnapshotRestorableLog>).importSnapshot === "function"
+}
+
+/**
  * Importa una lezione da un Blob .lesson (ZIP).
- * Scrive ogni entry sullo store.
+ * Scrive ogni entry sullo store e — se fornito un log restorabile — ripristina
+ * la memoria didattica da raw/lessonos-events.jsonl (P32 R10).
  *
  * Validazioni PRIMA della scrittura:
  *   1. ZipSlip: path devono iniziare con raw/ e nessun segmento deve essere ".."
  *   2. Coerenza GDPR: se session.yaml riporta audioConsent=false,
  *      il bundle NON deve contenere entry raw/audio/ (dati revocati che
  *      non devono mai essere reintrodotti)
+ *
+ * Il restore avviene DOPO la scrittura dei file (bundle valido) ed è
+ * SECONDARIO: un restore fallito non compromette l'import del board; l'esito
+ * è sempre esplicito in ImportLessonResult.lessonOsRestore.
+ * NOTA onestà: importSnapshot accetta solo log VUOTI (semantica disaster-recovery,
+ * indexedDbEventLog.ts). Nella Room live il log contiene già lesson.started al
+ * mount ⇒ l'esito atteso lì è "skipped-non-empty"; il flusso di recovery
+ * esplicito (destroy con conferma utente → restore) è una slice successiva.
  */
 export async function importLesson(
   store: WorkspaceStore,
   blob: Blob,
-): Promise<void> {
+  lessonOsLog?: EventLogStore | null,
+): Promise<ImportLessonResult> {
   const zip = await JSZip.loadAsync(blob)
 
   // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR
@@ -189,5 +235,29 @@ export async function importLesson(
   for (const entry of entriesToWrite) {
     const data = await entry.dataPromise
     await store.write(entry.path, data)
+  }
+
+  return { lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog) }
+}
+
+/** Restore della memoria didattica dal bundle (vedi ImportLessonResult).
+ *  Non lancia MAI: ogni esito, incluso il fallimento, è uno status esplicito. */
+async function restoreLessonOsSnapshot(
+  zip: JSZip,
+  lessonOsLog: EventLogStore | null | undefined,
+): Promise<LessonOsRestoreStatus> {
+  if (!lessonOsLog) return { kind: "not-attempted" }
+  const snapshotEntry = zip.file(LESSON_PATHS.LESSONOS)
+  if (!snapshotEntry || snapshotEntry.dir) return { kind: "no-snapshot" }
+  if (!supportsSnapshotRestore(lessonOsLog)) return { kind: "unsupported" }
+  try {
+    // Pre-check esplicito (stato leggibile) prima del guard interno di
+    // importSnapshot: distingue "log non vuoto" (esito atteso, non un errore)
+    // da un fallimento vero di parse/scrittura.
+    if ((await lessonOsLog.readAll()).length > 0) return { kind: "skipped-non-empty" }
+    const report = await lessonOsLog.importSnapshot(await snapshotEntry.async("blob"))
+    return { kind: "restored", recovered: report.recovered }
+  } catch (err) {
+    return { kind: "failed", error: err instanceof Error ? err.message : String(err) }
   }
 }

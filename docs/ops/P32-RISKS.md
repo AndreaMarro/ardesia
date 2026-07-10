@@ -1,0 +1,18 @@
+# P32 — Risks
+
+| # | Risk | Severity | Evidence / status | Mitigation |
+|---|---|---|---|---|
+| R1 | CI never runs Playwright → e2e regressions (like the reachability one) land silently on main | med | CI `ci.yml` has no browser job; caught only locally | D2: candidate CI smoke; meanwhile reachability + logic now asserted in-spec and run pre-merge |
+| R2 | Concurrent writer on the shared `.git` (multiple worktrees, prior Codex sessions) | med | 28 worktrees; `VOLUME 3/ardesia` dirty on codex branch | Single-writer gate each iter (status+index.lock+HEAD); write only tutor-ux (D4) |
+| R3 | Real-pointer *click-through* to embedded controls still unproven (logic uses `dispatchEvent`) | low | intentional; Excalidraw routing flake | montaggio-canvas covers real-mouse clicks post-activation on `[data-bb-hole]`; reachability now covers topmost-ness of the strip |
+| R4 | Historical OpenAI key exposure noted in memory (pasted into prompts / png in a past rescue commit) | high (if unrotated) | memory: "ruotare chiave OpenAI storica"; **not** in this branch's diff (scan clean) | Andrea to rotate; not introduced or reachable via #150 |
+| R5 | LessonOS "backend" is client-only (IndexedDB); Phases 3–4/8 are greenfield (no Supabase/Vercel config in repo) | med | no `supabase/`, no `vercel.json/.ts` | scope Phase 3 as ADR-first; keep secrets server-side; honest RED if unverifiable |
+| R6 | Overclaiming parity (Tinkercad/GoodNotes/ElabTutor) | high (credibility) | NON-GOALS in loop brief | every doc states "trace v0 / no parity"; gates before claims |
+| R7 | Full vitest (1574) not run this iter | low | e2e-spec-only diff; CI runs it on push | acceptable; re-run before any shared-code slice |
+| R8 | **Manifest/capability enforcement bypassed on the live board path** — simulation embed mounted via direct React import, not ToolHost (signature/caps/audit not applied) | high (architecture) | `ToolCanvasEmbeddable.tsx:1211-1214` vs signed `plugins/simulation/manifest.ts`; audit §1 | Phase 2 target: route board-embeds through the capability layer OR ADR "first-party trusted" boundary |
+| R9 | Two diverging scene models (V1 live embed vs V2 `simulation-scene/2`) | med | audit §2 | Phase 5 slice must pick/reconcile before adding component kinds |
+| R10 | `.lesson` round-trip loses didactic memory — LessonOS snapshot exported but not restored on import | med (product promise "reopen senza perdere stato") | `lessonBundle.ts:52-56`; `importSnapshot` exists unwired | cheap slice: wire `importSnapshot` into `importLesson` (empty-log-only semantics already built) |
+| R11 | No undo/redo anywhere in circuit ops | med (Tinkercad direction) | grep empty; audit §2 | dedicated later slice; operation envelopes exist to build inverses on |
+| R12 | Engine (Python `lessonos`) fully disconnected from product; MCP grounded-memory has no transport | low now, med for Phase 4/6 | `mcp/grounded_memory.py:42`; zero studio calls | decide wire-or-park in Phase 3/4 ADR |
+| R13 | Placeholder pubkeys `ed25519:AAAA` in-tree; no publisher trust store; remote kill-switch absent | low (local-only marketplace) | `essentialPlugins.ts:18`, `installer.ts:316-320`, `killList.ts:3-4` | before any real marketplace/deploy phase |
+| R14 | `montaggio-canvas.spec.ts` fragile su macchina degradata (raw-mouse + timeout 30s default): 4/5 fail su commit CI-green dopo ~7h di run stacked; p30 (app-ready gate + 60s) sopravvive sempre | med (gate e2e inaffidabile a fine sessione lunga) | iter 7 GATES: control-run stash-proof | hardening spec come P31 (waitAppReady, setTimeout 60s, room isolata); CI senza Playwright non copre (R1) |

@@ -18,6 +18,7 @@ import {
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
+import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
@@ -672,20 +673,25 @@ registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
-export type MontaggioPlacementType = "resistor" | "led";
+export type MontaggioPlacementType = "resistor" | "led" | "wire";
+/** Strumenti della palette: i tipi piazzabili + la gomma (rimozione, D7). */
+export type MontaggioTool = MontaggioPlacementType | "eraser";
 export type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
 type MontaggioState = {
   placements: MontaggioPlacement[];
   operations?: SimulationOperationEnvelope[];
 };
 export type MontaggioCanvas = {
-  tool: MontaggioPlacementType | null;
+  tool: MontaggioTool | null;
   pending: string | null;
   notice: string | null;
   placements: MontaggioPlacement[];
-  onSelectTool: (tool: MontaggioPlacementType | null) => void;
+  onSelectTool: (tool: MontaggioTool | null) => void;
   onHoleTap: (ref: string) => void;
   onReset: () => void;
+  /** ANNULLA one-step (D8): toggle sull'ultima mutazione; VOLATILE (no reopen). */
+  canUndo: boolean;
+  onUndo: () => void;
 };
 
 export function createBoardSceneWithPlacements(
@@ -695,8 +701,19 @@ export function createBoardSceneWithPlacements(
   if (placements.length === 0) return scene;
   const components = [...scene.components];
   const pinAssignments = { ...scene.pinAssignments };
+  const connections = [...scene.connections];
   for (const placement of placements) {
-    if (placement.type === "resistor") {
+    if (placement.type === "wire") {
+      // Il cavo è una CONNECTION, non un component (D6): buildNets unisce già
+      // pinAssignments ∪ connections, quindi la continuità elettrica è reale
+      // a solver invariato; BoardWires lo disegna con la bezier di fallback.
+      connections.push({
+        from: placement.holes[0],
+        to: placement.holes[1],
+        color: "green",
+        kind: "wire",
+      });
+    } else if (placement.type === "resistor") {
       components.push({
         id: placement.id,
         type: "resistor",
@@ -718,7 +735,7 @@ export function createBoardSceneWithPlacements(
       pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
     }
   }
-  return { ...scene, components, pinAssignments };
+  return { ...scene, components, pinAssignments, connections };
 }
 
 export function createMontaggioPlacementOperations({
@@ -728,20 +745,41 @@ export function createMontaggioPlacementOperations({
   embedId: string;
   placements: readonly MontaggioPlacement[];
 }): SimulationOperationEnvelope[] {
-  return placements.map((placement) => ({
-    schema: "simulation-operation/1",
-    id: `${embedId}:montaggio:place:${placement.id}`,
-    actor: "manual",
-    origin: "canvas",
-    targetProvider: "local",
-    providerMode: "static",
-    operation: {
-      kind: "place-component",
-      component: montaggioComponentDescriptor(placement),
-      pose: poseFromMontaggioHoles(placement.holes),
-      pinAssignments: montaggioPinAssignments(placement),
-    },
-  }));
+  return placements.map((placement) => {
+    const envelopeBase = {
+      schema: "simulation-operation/1",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+    } as const;
+    if (placement.type === "wire") {
+      // Cavo = connect-wire (vocabolario esistente), non place-component (D6).
+      return {
+        ...envelopeBase,
+        id: `${embedId}:montaggio:connect:${placement.id}`,
+        operation: {
+          kind: "connect-wire",
+          wire: {
+            id: placement.id,
+            from: placement.holes[0],
+            to: placement.holes[1],
+            color: "green",
+          },
+        },
+      };
+    }
+    return {
+      ...envelopeBase,
+      id: `${embedId}:montaggio:place:${placement.id}`,
+      operation: {
+        kind: "place-component",
+        component: montaggioComponentDescriptor(placement),
+        pose: poseFromMontaggioHoles(placement.holes),
+        pinAssignments: montaggioPinAssignments(placement),
+      },
+    };
+  });
 }
 
 function montaggioComponentDescriptor(
@@ -808,15 +846,24 @@ function ReferenceSimulationCanvasTool({
     millis: readStateMillis(marker?.state) ?? machine.runtime.millis(),
     ledOn: readStateLed(marker?.state) ?? machine.runtime.isLit(LED_BUILTIN),
   });
-  const scene = useMemo(
+  const baseScene = useMemo(
     () => resolveSimulationScene(marker?.state, snapshot),
     [marker?.state, snapshot],
   );
+  // Manipolazione libera: un override locale della scena (es. break di un
+  // collegamento) ha la precedenza finché non si cambia esperimento. Il break
+  // reale muta le connections → la fisica reale (deriveSimulationSolveOutcome)
+  // osserva l'open-circuit; lo stato viene persistito per il reopen.
+  const [sceneOverride, setSceneOverride] = useState<SimulationSceneV1 | null>(null);
+  useEffect(() => {
+    setSceneOverride(null);
+  }, [baseScene.experimentId]);
+  const scene = sceneOverride ?? baseScene;
   // La validazione book-layout resta sulla scena del MANUALE: i piazzamenti
   // dello studente non sono un drift del libro.
   const validation = validateBookLayoutScene(scene);
 
-  const [montaggioTool, setMontaggioTool] = useState<MontaggioPlacementType | null>(null);
+  const [montaggioTool, setMontaggioTool] = useState<MontaggioTool | null>(null);
   const [pendingHole, setPendingHole] = useState<string | null>(null);
   // Ripristino al mount dallo state persistito; da lì in poi lo stato locale
   // guida la UI e ogni cambio viene riscritto nell'embed (se l'host lo offre).
@@ -824,6 +871,8 @@ function ReferenceSimulationCanvasTool({
     () => marker?.state?.montaggio?.placements ?? [],
   );
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
+  // ANNULLA one-step (D8): lista placements precedente all'ultima mutazione.
+  const [undoSnapshot, setUndoSnapshot] = useState<MontaggioPlacement[] | null>(null);
 
   // Passo-passo VIVO: i predicati del libro valutati sul circuito attivo
   // (scena + placements). Nessuna persistenza del toggle: è una vista.
@@ -859,6 +908,9 @@ function ReferenceSimulationCanvasTool({
   }, [host, scene, sideMnaView, validation.ok]);
 
   function applyPlacements(next: MontaggioPlacement[]) {
+    // ANNULLA one-step (D8): fotografa lo stato PRIMA della mutazione. Toggle
+    // onesto: annullare un annulla ri-applica. Volatile: non persiste nel reopen.
+    setUndoSnapshot(placements);
     setPlacements(next);
     if (host?.persistEmbedState && marker?.state) {
       host.persistEmbedState(toolLink.embedId, {
@@ -883,7 +935,7 @@ function ReferenceSimulationCanvasTool({
     return occupied;
   }, [scene, placements]);
 
-  function handleSelectTool(tool: MontaggioPlacementType | null) {
+  function handleSelectTool(tool: MontaggioTool | null) {
     setMontaggioTool(tool);
     setPendingHole(null);
     setMontaggioNotice(null);
@@ -891,6 +943,23 @@ function ReferenceSimulationCanvasTool({
 
   function handleHoleTap(ref: string) {
     if (montaggioTool === null) return;
+    if (montaggioTool === "eraser") {
+      // GOMMA (D7): rimuove il placement che possiede questo foro. Il manuale è
+      // strutturalmente intoccabile (i componenti del libro NON sono placements).
+      // Al più un placement per foro (regola un-foro-un-reoforo) → mai ambiguo.
+      const target = placements.find((p) => p.holes[0] === ref || p.holes[1] === ref);
+      if (!target) {
+        setMontaggioNotice(
+          occupiedHoles.has(ref)
+            ? `foro ${ref}: componente del manuale, non si cancella`
+            : `foro ${ref}: nessun componente libero da cancellare`,
+        );
+        return;
+      }
+      applyPlacements(placements.filter((p) => p.id !== target.id));
+      setMontaggioNotice(null);
+      return;
+    }
     if (occupiedHoles.has(ref)) {
       setMontaggioNotice(`foro ${ref} occupato: scegline uno libero`);
       return;
@@ -905,7 +974,12 @@ function ReferenceSimulationCanvasTool({
       return;
     }
     const ordinal = placements.filter((p) => p.type === montaggioTool).length + 1;
-    const id = montaggioTool === "resistor" ? `r-libero-${ordinal}` : `led-libero-${ordinal}`;
+    const id =
+      montaggioTool === "resistor"
+        ? `r-libero-${ordinal}`
+        : montaggioTool === "wire"
+          ? `cavo-libero-${ordinal}`
+          : `led-libero-${ordinal}`;
     applyPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
     setPendingHole(null);
     setMontaggioNotice(null);
@@ -925,10 +999,71 @@ function ReferenceSimulationCanvasTool({
     () => createBoardSceneWithPlacements(scene, placements),
     [scene, placements],
   );
+  // Fisica reale proiettata nel DOM (contratto stabile per la trace v0). La
+  // fisica è quella del circuito EFFETTIVAMENTE costruito = boardScene (scena
+  // del libro ± break ± componenti piazzati dalla palette), NON la sola scena
+  // del manuale: badge/diagnostica/digest riflettono ciò che lo studente ha
+  // davanti. Stesso deriveSimulationSolveOutcome dell'emit verso l'host.
+  const boardMnaView = useMemo(
+    () => (boardScene.runtime.kind === "elab-mna" ? computeElabMnaView(boardScene) : null),
+    [boardScene],
+  );
+  const solveOutcome = useMemo(
+    () => deriveSimulationSolveOutcome(boardScene, boardMnaView, validation.ok),
+    [boardScene, boardMnaView, validation.ok],
+  );
+  const solveEvent = useMemo(
+    () => simulationSolveEvent({ experimentId: boardScene.experimentId, outcome: solveOutcome, t: 0 }),
+    [boardScene.experimentId, solveOutcome],
+  );
+  const sceneDigest = useMemo(() => simulationSceneDigest(boardScene), [boardScene]);
+
+  function persistScene(nextScene: SimulationSceneV1) {
+    if (host?.persistEmbedState && marker?.state?.kind === "simulation-scene-v1") {
+      host.persistEmbedState(toolLink.embedId, { ...marker.state, scene: nextScene });
+    }
+  }
+
+  function handleBreakConnections() {
+    // Break reale = apri il circuito scollegando la batteria. La connettività
+    // reale (buildNets) unisce sia pinAssignments sia connections: per un
+    // open-circuit deterministico va rimossa OGNI incidenza della batteria in
+    // entrambi. Il solver (solveSeriesLoop) allora non trova più il cammino
+    // battery:positive→battery:negative → deriveSimulationSolveOutcome emette
+    // open-circuit. Nessuna scorciatoia: è la stessa fisica del canvas.
+    const battery = scene.components.find((component) => component.type === "battery9v");
+    if (!battery) return;
+    const prefix = `${battery.id}:`;
+    const nextPinAssignments = Object.fromEntries(
+      Object.entries(scene.pinAssignments).filter(([pinRef]) => !pinRef.startsWith(prefix)),
+    );
+    const nextConnections = scene.connections.filter(
+      (connection) => !connection.from.startsWith(prefix) && !connection.to.startsWith(prefix),
+    );
+    const next: SimulationSceneV1 = {
+      ...scene,
+      pinAssignments: nextPinAssignments,
+      connections: nextConnections,
+    };
+    setSceneOverride(next);
+    persistScene(next);
+  }
+
+  function handleRestoreConnections() {
+    setSceneOverride(null);
+    persistScene(baseScene);
+  }
   const coreCanvasProjectionMode: ElabCanvasProjectionMode =
     placements.length > 0 || montaggioTool !== null || marker?.state?.montaggio !== undefined
       ? "monta-tu"
       : "gia-montato";
+
+  function handleMontaggioUndo() {
+    if (undoSnapshot === null) return;
+    applyPlacements(undoSnapshot); // fotografa il corrente → toggle one-step
+    setPendingHole(null);
+    setMontaggioNotice(null);
+  }
 
   const montaggio: MontaggioCanvas = {
     tool: montaggioTool,
@@ -938,6 +1073,8 @@ function ReferenceSimulationCanvasTool({
     onSelectTool: handleSelectTool,
     onHoleTap: handleHoleTap,
     onReset: handleMontaggioReset,
+    canUndo: undoSnapshot !== null,
+    onUndo: handleMontaggioUndo,
   };
   const isArduinoScene = scene.runtime.kind === "arduino-blink";
 
@@ -989,6 +1126,49 @@ function ReferenceSimulationCanvasTool({
 
       <main style={mainStyle}>
         <div style={boardStackStyle}>
+          <section
+            data-simulation-free-mode
+            data-sim-solve-kind={solveOutcome.kind}
+            data-sim-current-ma={
+              solveOutcome.kind === "solved" ? solveOutcome.currentMa.toFixed(1) : "0.0"
+            }
+            data-sim-last-event-kind={solveEvent?.kind ?? "idle"}
+            data-sim-error-id={
+              solveEvent?.kind === "simulation.error.observed" ? solveEvent.errorId : ""
+            }
+            data-sim-scene-digest={sceneDigest}
+            aria-label="Manipolazione libera — fisica reale"
+            style={freeModeStripStyle}
+          >
+            <span style={freeModeBadgeStyle}>
+              {solveOutcome.kind === "solved"
+                ? `corrente ${solveOutcome.currentMa.toFixed(1)} mA`
+                : solveOutcome.kind === "error"
+                  ? `errore: ${solveOutcome.message}`
+                  : "in attesa"}
+            </span>
+            {solveEvent?.kind === "simulation.error.observed" && (
+              <span data-sim-diagnostic role="status" style={freeModeDiagnosticStyle}>
+                {solveEvent.labels.it ?? "errore elettrico osservato"}
+              </span>
+            )}
+            <button
+              type="button"
+              data-sim-break
+              onClick={handleBreakConnections}
+              style={freeModeButtonStyle}
+            >
+              Rompi i collegamenti
+            </button>
+            <button
+              type="button"
+              data-sim-restore
+              onClick={handleRestoreConnections}
+              style={freeModeButtonStyle}
+            >
+              Ripristina
+            </button>
+          </section>
           <ElabCoreCanvasMount
             scene={boardScene}
             projectionMode={coreCanvasProjectionMode}
@@ -1507,8 +1687,20 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             onSelect={montaggio ? () => montaggio.onSelectTool("led") : undefined}
           />
           <PaletteItem x={258} label="Pulsante" glyph="M9 17 H31 V37 H9 Z M15 11 H25 V17" />
-          <PaletteItem x={338} label="Cavo" glyph="M9 35 C18 10 34 12 39 30" />
-          <PaletteItem x={418} label="Altro" glyph="M13 26 H15 M23 26 H25 M33 26 H35" />
+          <PaletteItem
+            x={338}
+            label="Cavo"
+            glyph="M9 35 C18 10 34 12 39 30"
+            pressed={montaggio ? montaggio.tool === "wire" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("wire") : undefined}
+          />
+          <PaletteItem
+            x={418}
+            label="Gomma"
+            glyph="M12 34 L26 12 L38 20 L26 40 H16 Z M20 40 H40"
+            pressed={montaggio ? montaggio.tool === "eraser" : undefined}
+            onSelect={montaggio ? () => montaggio.onSelectTool("eraser") : undefined}
+          />
           {montaggio && (
             <>
               <text
@@ -1523,6 +1715,25 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
               <text x="0" y="98" style={diagnosticSvgStyle} data-montaggio-canvas-notice>
                 {montaggio.notice ?? ""}
               </text>
+              {montaggio.canUndo && (
+                <g
+                  transform="translate(332 88)"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="annulla ultima modifica"
+                  data-montaggio-canvas-undo
+                  style={{ cursor: "pointer" }}
+                  onClick={montaggio.onUndo}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") montaggio.onUndo();
+                  }}
+                >
+                  <rect x="0" y="0" width="90" height="14" rx="7" fill="#f6f9fc" stroke="#dce6ef" />
+                  <text x="45" y="10" textAnchor="middle" fill="#52677f" fontSize="7" fontWeight="700">
+                    annulla
+                  </text>
+                </g>
+              )}
               <g
                 transform="translate(430 88)"
                 role="button"
@@ -2071,6 +2282,9 @@ function PlacedPartsSvg({ scene, placements }: { scene: SimulationSceneV1; place
   return (
     <g pointerEvents="none">
       {placements.map((placement) => {
+        // Il cavo NON ha un corpo-componente: è già disegnato da BoardWires
+        // come connection di boardScene (bezier di fallback) — D6.
+        if (placement.type === "wire") return null;
         const [firstHole, secondHole] = placement.holes;
         const a = pointForBreadboardRef(firstHole);
         const b = pointForBreadboardRef(secondHole);
@@ -2323,8 +2537,45 @@ const boardStageStyle = {
 const boardStackStyle = {
   minHeight: 0,
   display: "grid",
-  gridTemplateRows: "minmax(420px, 1fr) auto",
+  gridTemplateRows: "auto minmax(420px, 1fr) auto",
   gap: 10,
+} as const;
+
+const freeModeStripStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "center",
+  gap: "8px 12px",
+  padding: "8px 12px",
+  border: "1px solid #c9d7e2",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#203044",
+  font: "650 13px var(--m-font-ui)",
+} as const;
+
+const freeModeBadgeStyle = {
+  fontWeight: 800,
+  padding: "2px 8px",
+  borderRadius: 6,
+  background: "#eef4f8",
+} as const;
+
+const freeModeDiagnosticStyle = {
+  color: "#9a1f1f",
+  fontWeight: 700,
+} as const;
+
+const freeModeButtonStyle = {
+  minHeight: 34,
+  minWidth: 44,
+  padding: "0 12px",
+  border: "1px solid #9f7a2f",
+  borderRadius: 6,
+  background: "#fff6d8",
+  color: "#573d09",
+  font: "750 12px var(--m-font-ui)",
+  cursor: "pointer",
 } as const;
 
 const elabCoreStageStyle = {

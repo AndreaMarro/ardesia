@@ -295,7 +295,7 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
 
     const journalBlob = await store2.read(LESSON_PATHS.JOURNAL)
     expect(journalBlob).not.toBeNull()
@@ -315,7 +315,7 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
 
     const audioBlob = await store2.read("raw/audio/chunk-0.webm")
     expect(audioBlob).not.toBeNull()
@@ -335,7 +335,7 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
 
     const notesBlob = await store2.read("raw/notes..2024.jsonl")
     expect(notesBlob).not.toBeNull()
@@ -425,5 +425,154 @@ describe("LessonBundle — snapshot event-log LessonOS", () => {
     const restored = await store2.read(LESSON_PATHS.LESSONOS)
     expect(restored).not.toBeNull()
     expect((await restored!.text()).trimEnd().split("\n")).toHaveLength(2)
+  })
+})
+
+describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () => {
+  let store: WorkspaceStore
+  let mock: MockDriver
+  const ROOM = "test-room-restore"
+
+  beforeEach(async () => {
+    store = new WorkspaceStore()
+    mock = new MockDriver()
+    withMockDriver(store, mock)
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
+  })
+
+  async function filledLog() {
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    const log = new InMemoryEventLog()
+    await log.append({ kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] })
+    await log.append({
+      kind: "concept.introduced",
+      conceptId: "led_polarity",
+      labels: { it: "Polarità del LED" },
+      t: 1100,
+      evidence: ["manual:vol1:p30"],
+    })
+    return log
+  }
+
+  /** Fake contract-fedele di un log restorabile: STESSA semantica documentata di
+   *  IndexedDbEventLog.importSnapshot (solo-su-log-vuoto, seq contigui preservati).
+   *  La semantica REALE è coperta da IndexedDbEventLog.test.ts; qui si testa il
+   *  CABLAGGIO di importLesson (mappatura stati, ordinamento, niente swallow). */
+  async function restorableLog() {
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    class RestorableFakeLog extends InMemoryEventLog {
+      async importSnapshot(snapshot: Blob) {
+        const existing = await this.readAll()
+        if (existing.length > 0) {
+          throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
+        }
+        const lines = (await snapshot.text()).split("\n").filter((line) => line.length > 0)
+        for (const line of lines) {
+          const { seq: _seq, ...event } = JSON.parse(line)
+          await this.append(event)
+        }
+        return { recovered: lines.length, lastSeq: lines.length, droppedTail: 0, corrupted: false }
+      }
+    }
+    return new RestorableFakeLog()
+  }
+
+  async function bundleWithSnapshot() {
+    return exportLesson(store, ROOM, await filledLog())
+  }
+
+  it("log restorabile VUOTO ⇒ status restored, eventi ripristinati con seq originali", async () => {
+    const bundle = await bundleWithSnapshot()
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const target = await restorableLog()
+
+    const result = await importLesson(store2, bundle, target)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "restored", recovered: 2 })
+    const events = await target.readAll()
+    expect(events).toHaveLength(2)
+    expect(events.map((e) => e.seq)).toEqual([1, 2])
+    expect(events[1]!.kind).toBe("concept.introduced")
+  })
+
+  it("log NON vuoto ⇒ status skipped-non-empty, log INVARIATO (mai merge)", async () => {
+    const bundle = await bundleWithSnapshot()
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const target = await restorableLog()
+    await target.append({ kind: "lesson.started", room: "altra", t: 500, evidence: ["lesson:altra@500"] })
+
+    const result = await importLesson(store2, bundle, target)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "skipped-non-empty" })
+    expect(await target.readAll()).toHaveLength(1)
+    // I file del bundle sono comunque importati (il board non dipende dal restore)
+    expect(await store2.read(LESSON_PATHS.SCENE)).not.toBeNull()
+  })
+
+  it("bundle SENZA snapshot ⇒ status no-snapshot, log intatto", async () => {
+    const senzaSnapshot = await exportLesson(store, ROOM) // nessun log ⇒ nessun file lessonos
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const target = await restorableLog()
+
+    const result = await importLesson(store2, senzaSnapshot, target)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "no-snapshot" })
+    expect(await target.readAll()).toHaveLength(0)
+  })
+
+  it("nessun log fornito ⇒ status not-attempted (comportamento pre-esistente conservato)", async () => {
+    const bundle = await bundleWithSnapshot()
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+
+    const result = await importLesson(store2, bundle)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "not-attempted" })
+    // Il file snapshot viaggia comunque nello store (comportamento invariato)
+    expect(await store2.read(LESSON_PATHS.LESSONOS)).not.toBeNull()
+  })
+
+  it("log senza importSnapshot (fallback InMemory) ⇒ status unsupported, niente throw", async () => {
+    const bundle = await bundleWithSnapshot()
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    const plain = new InMemoryEventLog()
+
+    const result = await importLesson(store2, bundle, plain)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "unsupported" })
+  })
+
+  it("importSnapshot che fallisce ⇒ status failed con messaggio, import file NON compromesso", async () => {
+    const bundle = await bundleWithSnapshot()
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const target = await restorableLog()
+    target.importSnapshot = async () => {
+      throw new Error("scrittura fallita")
+    }
+
+    const result = await importLesson(store2, bundle, target)
+
+    expect(result.lessonOsRestore).toEqual({ kind: "failed", error: "scrittura fallita" })
+    // Il board resta importato: il restore è secondario, mai bloccante
+    expect(await store2.read(LESSON_PATHS.SCENE)).not.toBeNull()
+  })
+
+  it("bundle malevolo ⇒ import rigetta PRIMA di toccare il log (restore mai su bundle invalido)", async () => {
+    const zip = new JSZip()
+    zip.file("raw/../etc/passwd", "x")
+    zip.file(LESSON_PATHS.LESSONOS, '{"kind":"lesson.started"}\n')
+    const malicious = await zip.generateAsync({ type: "blob" })
+    const store2 = new WorkspaceStore()
+    withMockDriver(store2, new MockDriver())
+    const target = await restorableLog()
+
+    await expect(importLesson(store2, malicious, target)).rejects.toThrow(/ZipSlip/)
+    expect(await target.readAll()).toHaveLength(0)
   })
 })
