@@ -12,10 +12,15 @@ import urllib.request
 import urllib.error
 
 # Config
-GEMINI_API_KEY = 'AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g'
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '').strip()
 SUPABASE_URL = 'https://euqpdueopmlllqjmqnyb.supabase.co'
-SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ'
-SUPABASE_SERVICE_KEY = os.environ.get('SUPABASE_SERVICE_KEY', '')  # Need service role for inserts
+SUPABASE_KEY = os.environ.get('SUPABASE_ANON_KEY', '').strip()
+SUPABASE_SERVICE_KEY = os.environ.get('SUPABASE_SERVICE_KEY', '').strip()  # Need service role for inserts
+
+if not GEMINI_API_KEY:
+    raise SystemExit('GEMINI_API_KEY is required')
+if not (SUPABASE_SERVICE_KEY or SUPABASE_KEY):
+    raise SystemExit('SUPABASE_SERVICE_KEY or SUPABASE_ANON_KEY is required')
 
 CHUNKS_FILE = '/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/data/rag/all-chunks-expanded.json'
 EMBEDDINGS_CACHE = '/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/data/rag/embeddings-cache.json'
@@ -70,7 +75,7 @@ def upload_to_supabase(chunk, embedding):
         'embedding': embedding,
     }).encode('utf-8')
 
-    # Use service role key for inserts, fall back to anon key
+    # Use service role key for inserts, fall back to anon key.
     auth_key = SUPABASE_SERVICE_KEY or SUPABASE_KEY
 
     req = urllib.request.Request(url, data=payload, headers={

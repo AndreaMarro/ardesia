@@ -237,7 +237,7 @@ FAIL sendVoiceChat adds Supabase auth headers when Edge key is configured
 In `src/services/voiceService.js`, define:
 
 ```js
-const DEFAULT_SUPABASE_EDGE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+const DEFAULT_SUPABASE_EDGE_KEY = '[REDACTED_JWT]';
 const SUPABASE_EDGE_KEY = (import.meta.env.VITE_SUPABASE_EDGE_KEY || DEFAULT_SUPABASE_EDGE_KEY).trim();
 ```
 

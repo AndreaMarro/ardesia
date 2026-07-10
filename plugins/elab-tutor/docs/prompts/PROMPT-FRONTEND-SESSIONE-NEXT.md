@@ -240,7 +240,7 @@ Docente scrive "Come accendo il LED?"
 ```
 Admin: #admin → [REDACTED-MOVED-TO-ENV]
 Supabase: euqpdueopmlllqjmqnyb | Token: sbp_REVOKED_20260423_REDACTED
-Gemini: AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
+Gemini: [REDACTED_GOOGLE_API_KEY]
 VPS: 72.60.129.50
 Anon Key: (in supabase/DEPLOY-GUIDE.md)
 ```

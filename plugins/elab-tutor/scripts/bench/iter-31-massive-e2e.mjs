@@ -19,11 +19,17 @@ const REPO = path.resolve(__dirname, '..', '..');
 
 // ── Config ──
 const SUPABASE_URL = 'https://euqpdueopmlllqjmqnyb.supabase.co';
-const ANON =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
-const ELAB_API_KEY = (process.env.ELAB_API_KEY || 'f673b9a0ba541addb02d69912611a92941359b63fa29ff666153433c3419326d').trim();
+const ANON = (process.env.SUPABASE_ANON_KEY || '').trim();
+const ELAB_API_KEY = (process.env.ELAB_API_KEY || '').trim();
 const ORIGIN = 'https://www.elabtutor.school';
 const ANDREA_VOICE_ID = '9234f1b6-766a-485f-acc4-e2cf6dc42327';
+
+if (!ANON) {
+  throw new Error('SUPABASE_ANON_KEY is required');
+}
+if (!ELAB_API_KEY) {
+  throw new Error('ELAB_API_KEY is required');
+}
 
 const BASE_HEADERS = {
   Authorization: `Bearer ${ANON}`,
