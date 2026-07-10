@@ -1,23 +1,25 @@
 # ARDESIA V1 — loop state
 
-## Current overlay — 2026-07-10 after PR #164 and P33 regate
+## Current overlay — 2026-07-10 after P34 local remediation
 
 | Field | Status | Evidence | Limit |
 |---|---|---|---|
 | Canonical repo candidate | VERIFIED | `AndreaMarro/ardesia`; `git fetch --prune origin` in `/Users/andreamarro/VOLUME 3/ardesia` | Behavioral SoT across satellite/legacy repos still not fully reconciled |
-| Current `origin/main` | VERIFIED | `177f5c731ffc68fd69a86573ddf08670d3d5226f`; PR #164 merge commit | CI-green, not production-deploy-proven |
+| Current `origin/main` | VERIFIED | `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; PR #165 merge commit | CI-green, not production-deploy-proven |
 | PR #150 | VERIFIED | merged at `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and `studio-preview-readiness` success | P30/P32 trace is not global Tinkercad parity |
 | PR #163 | VERIFIED | merged at `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | P0 browser prompt/book anchor improvement only; tutor e2e remains UNKNOWN |
 | PR #164 | VERIFIED | merged at `177f5c731ffc68fd69a86573ddf08670d3d5226f`; post-merge `ci` run `29103272760` success | docs-only loop rewrite; no product-code claim |
+| PR #165 | VERIFIED | merged at `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; post-merge `ci` run `29104077469` success | docs-only P33 audit; no deploy proof |
 | Dirty main checkout | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` has modified/untracked files | Do not use as write lane |
-| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p33-integration-spine-regate-20260710`, based on `origin/main@177f5c73` | Reused worktree because disk is low |
-| Disk headroom | VERIFIED | `df -h`: about 690 MiB available | Avoid creating large new worktrees, installs or builds |
+| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p34-simulation-toolhost-wire-20260710`, based on `origin/main@e61e7dcd` | Reused worktree because disk is low |
+| Disk headroom | VERIFIED | `df -h`: about 156 MiB available | Avoid creating large new worktrees, installs or builds; local build deferred to PR CI |
 | Prompt rewrite artifacts | VERIFIED | PR #164 merged; first A7 review found six issues; follow-up A7 returned PASS | Docs-only |
 | P33 result | HONEST_RED | `V1-INTEGRATION-MAP.md`: Simulation Plugin write path uses direct callbacks before ToolHost JSON-RPC/capability/audit | Next remediation is P34 ToolHost wire |
-| Next slice | VERIFIED | `V1-NEXT.md` names one P34 Simulation ToolHost wire remediation slice | Not backend/RLS/export work |
+| P34 result | GREEN_SLICE_LOCAL | `persistEmbedStateThroughToolHost`; break-button audit, cross-owner denied audit, Room denial reporting, concurrent audit serialization; targeted 11/11; adjacent ToolHost/caps 63/63; typecheck pass | PR CI still required; P30 browser e2e not rerun locally due disk |
+| Next slice | VERIFIED | `V1-NEXT.md` names one P35 P30 browser regression/audit proof slice | Not backend/RLS/export work |
 | Security | RED/UNKNOWN | `V1-SECURITY-MATRIX.md`: S-002 client-side API key boundary, ToolHost sandbox/origin, RLS/history/rotation | Secret scans passing do not close these |
-| Deploy proof for current SHA | UNKNOWN | latest current `main@177f5c73` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
-| Local docs gates | VERIFIED | `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | Docs-only gates; no product runtime claim |
+| Deploy proof for current SHA | UNKNOWN | latest current `main@e61e7dcd` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
+| Local P34 gates | VERIFIED | targeted 11/11; ToolHost/caps combined 74/74; `npm --prefix apps/studio run typecheck`; `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | local build and browser e2e deferred to PR CI because disk is at 156 MiB free |
 
 Historical entries below are retained as evidence trail and may contain stale
 state superseded by this overlay. They are not active next-slice instructions.

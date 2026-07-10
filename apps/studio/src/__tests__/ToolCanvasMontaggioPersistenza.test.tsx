@@ -8,14 +8,22 @@
 // renderToolCanvasEmbeddable; il tool lo chiama ad ogni cambio piazzamenti.
 // Senza host il tap-tap resta funzionante (fail-soft, comportamento slice 3).
 
-import { cleanup, fireEvent, render } from "@testing-library/react"
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import {
   createReferenceSimulationScene,
   createToolEmbedElement,
   renderToolCanvasEmbeddable,
 } from "../toolhost/ToolCanvasEmbeddable"
-import { EMBED_DATA_KEY, persistEmbedState } from "../toolhost/caps/board"
+import { ERR } from "../toolhost-protocol"
+import { readAuditLog, type AuditStore } from "../toolhost/audit"
+import { persistRoomEmbedStateThroughToolHost } from "../toolhost/roomWriteBack"
+import {
+  EMBED_DATA_KEY,
+  persistEmbedState,
+  persistEmbedStateThroughToolHost,
+  type BoardElementLike,
+} from "../toolhost/caps/board"
 
 afterEach(cleanup)
 
@@ -147,6 +155,18 @@ describe("SimulationBoard — persistenza piazzamenti (montaggio libero slice 4)
 })
 
 describe("persistEmbedState — write-back host-side in scena (caps/board)", () => {
+  class MemoryAuditStore implements AuditStore {
+    files = new Map<string, Blob>()
+
+    async read(path: string): Promise<Blob | null> {
+      return this.files.get(path) ?? null
+    }
+
+    async write(path: string, data: Blob): Promise<void> {
+      this.files.set(path, data)
+    }
+  }
+
   function makeApi(elements: Array<Record<string, unknown>>) {
     const updateScene = vi.fn()
     return {
@@ -186,5 +206,145 @@ describe("persistEmbedState — write-back host-side in scena (caps/board)", () 
     persistEmbedState(api, "missing", { hack: true })
 
     expect(updateScene).not.toHaveBeenCalled()
+  })
+
+  it("puo' aggiornare lo state attraversando board.write ToolHost e audit", async () => {
+    const owner = "io.ardesia.simulation"
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner, state: { a: 1 } } },
+    }
+    const { api, updateScene } = makeApi([embed])
+    const store = new MemoryAuditStore()
+
+    await expect(
+      persistEmbedStateThroughToolHost(api, store, "embed-1", { a: 2 }, { toolId: owner, now: () => 123 }),
+    ).resolves.toBe(true)
+
+    expect(updateScene).toHaveBeenCalledTimes(1)
+    const next = updateScene.mock.calls[0][0].elements.find(
+      (el: { id: string }) => el.id === "embed-1",
+    )
+    expect(next.customData[EMBED_DATA_KEY]).toEqual({
+      owner,
+      state: { a: 2 },
+    })
+    await expect(readAuditLog(store, owner)).resolves.toEqual({
+      entries: [{ v: 1, t: 123, tool: owner, method: "board.write", outcome: "ok" }],
+      malformed: 0,
+    })
+  })
+
+  it("break-connections passa dal write-back governato e produce audit board.write", async () => {
+    const owner = "io.ardesia.simulation"
+    const element = createToolEmbedElement()
+    let elements: BoardElementLike[] = [element as BoardElementLike]
+    const api = {
+      getSceneElements: () => elements,
+      getAppState: () => ({ selectedElementIds: {} }),
+      updateScene: (scene: { elements: BoardElementLike[] }) => {
+        elements = scene.elements
+      },
+    }
+    const store = new MemoryAuditStore()
+    const view = renderToolCanvasEmbeddable(element as never, {
+      persistEmbedState: (embedId, state) => {
+        void persistEmbedStateThroughToolHost(api, store, embedId, state, {
+          toolId: owner,
+          now: () => 456,
+        })
+      },
+    })
+    if (view === null) throw new Error("embeddable non renderizzato")
+    const container = render(view).container
+    const breakButton = container.querySelector("[data-sim-break]")
+    if (breakButton === null) throw new Error("break button non trovato")
+
+    fireEvent.click(breakButton)
+
+    await waitFor(async () => {
+      const audit = await readAuditLog(store, owner)
+      expect(audit.entries).toEqual([
+        { v: 1, t: 456, tool: owner, method: "board.write", outcome: "ok" },
+      ])
+    })
+    const marker = elements[0]?.customData?.[EMBED_DATA_KEY] as { owner: string; state: { scene: { connections: unknown[] } } }
+    expect(marker.owner).toBe(owner)
+    expect(marker.state.scene.connections).toEqual([])
+  })
+
+  it("rifiuta un write-back quando il caller non possiede l'embed", async () => {
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner: "io.ardesia.simulation", state: { a: 1 } } },
+    }
+    const { api, updateScene } = makeApi([embed])
+    const store = new MemoryAuditStore()
+
+    await expect(
+      persistEmbedStateThroughToolHost(api, store, "embed-1", { a: 2 }, { toolId: "io.ardesia.other" }),
+    ).resolves.toBe(false)
+
+    expect(updateScene).not.toHaveBeenCalled()
+    await expect(readAuditLog(store, "io.ardesia.other")).resolves.toEqual({
+      entries: [
+        {
+          v: 1,
+          t: expect.any(Number),
+          tool: "io.ardesia.other",
+          method: "board.write",
+          outcome: "denied",
+          code: ERR.CAPABILITY_DENIED,
+        },
+      ],
+      malformed: 0,
+    })
+  })
+
+  it("segnala a Room un write-back governato negato", async () => {
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner: "io.ardesia.simulation", state: { a: 1 } } },
+    }
+    const { api, updateScene } = makeApi([embed])
+    const store = new MemoryAuditStore()
+    const reportError = vi.fn()
+
+    await persistRoomEmbedStateThroughToolHost(
+      api,
+      store,
+      "embed-1",
+      { a: 2 },
+      "io.ardesia.other",
+      reportError,
+    )
+
+    expect(updateScene).not.toHaveBeenCalled()
+    expect(reportError).toHaveBeenCalledWith("Write-back ToolHost fallito: richiesta negata")
+  })
+
+  it("serializza audit concorrenti sullo stesso tool/store", async () => {
+    const owner = "io.ardesia.simulation"
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner, state: { a: 1 } } },
+    }
+    const { api } = makeApi([embed])
+    const store = new MemoryAuditStore()
+    let t = 1
+
+    await Promise.all([
+      persistEmbedStateThroughToolHost(api, store, "embed-1", { a: 2 }, { toolId: owner, now: () => t++ }),
+      persistEmbedStateThroughToolHost(api, store, "embed-1", { a: 3 }, { toolId: owner, now: () => t++ }),
+    ])
+
+    const audit = await readAuditLog(store, owner)
+    expect(audit).toEqual({
+      entries: [
+        { v: 1, t: 1, tool: owner, method: "board.write", outcome: "ok" },
+        { v: 1, t: 2, tool: owner, method: "board.write", outcome: "ok" },
+      ],
+      malformed: 0,
+    })
   })
 })

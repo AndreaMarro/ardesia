@@ -1,6 +1,6 @@
 # ARDESIA V1 — integration map
 
-Updated: 2026-07-10. Base: `main@177f5c731ffc68fd69a86573ddf08670d3d5226f`.
+Updated: 2026-07-10. Base: `main@e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`.
 
 ## P33 Result
 
@@ -43,3 +43,28 @@ Binary objective: pick one Simulation Plugin write operation, preferably
 operation schema -> ToolHost method/capability -> audit event -> host mutation
 or ratified exception. Do not expand to backend/RLS/export until this boundary
 is green.
+
+## P34 Result
+
+Status: `GREEN_SLICE_LOCAL`.
+
+Operation audited: `break-connections` write-back from the Simulation Plugin.
+
+The host-side write-back now routes through the ToolHost `board.write` gate:
+`persistEmbedStateThroughToolHost` wraps the existing embed-state update in a
+JSON-RPC-shaped `board.write` request, runs the own-embed capability check, and
+records a ToolHost audit entry. `Room.tsx` uses that governed path for
+Simulation Plugin persist callbacks. The caller identity is explicit
+(`toolLink.toolId`); the helper no longer derives authority from the target
+embed marker.
+
+| Boundary | Status | Evidence | Limit |
+|---|---|---|---|
+| Operation schema | VERIFIED | ToolHost `board.write` schema: `{ embedId, state }` in `toolhost-protocol/messages.ts`; helper sends `method: "board.write"` | operation metadata is inside embed state, not a separate method yet |
+| Capability and ownership | VERIFIED | `persistEmbedStateThroughToolHost` grants only `board.write` own-embeds, receives explicit `toolId`, uses `ToolBoard.isOwnEmbed`, and tests cross-owner denied audit | focused on host write-back, not every plugin capability |
+| Audit | VERIFIED | `ToolCanvasMontaggioPersistenza.test.tsx` asserts audit `{ method: "board.write", outcome: "ok" }` for break button, denied audit for cross-owner writes, and two serialized audit rows for concurrent writes | local Vitest evidence; PR CI still required |
+| Existing behavior | VERIFIED | `npm --prefix apps/studio test -- --run src/__tests__/ToolCanvasMontaggioPersistenza.test.tsx` PASS 11/11; adjacent ToolHost/caps tests pass 63/63; `npm --prefix apps/studio run typecheck` PASS | P30 browser e2e not rerun locally due disk headroom |
+
+Next boundary: prove the browser Room/P30 path still passes with the governed
+write-back and decide whether to add a dedicated browser assertion for audit
+visibility.

@@ -28,7 +28,7 @@ import EmptyState from "./design/EmptyState"
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
-import { persistEmbedState } from "./toolhost/caps/board"
+import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -932,8 +932,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 studentView
                   ? undefined
                   : {
-                      persistEmbedState: (embedId, state) => {
-                        if (apiRef.current) persistEmbedState(apiRef.current, embedId, state)
+                      persistEmbedState: (embedId, state, toolId) => {
+                        if (apiRef.current) {
+                          void persistRoomEmbedStateThroughToolHost(
+                            apiRef.current,
+                            actualStore,
+                            embedId,
+                            state,
+                            toolId,
+                            setStorageError,
+                          )
+                        }
                       },
                       emitLessonEvent: (event) => {
                         // host-observes-solve: accoda l'evento del Simulation

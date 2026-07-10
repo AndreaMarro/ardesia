@@ -5,6 +5,8 @@
 // e a save/load del workspace insieme agli elementi.
 
 import { assertInstanceId } from "./instance.ts"
+import { ToolAuditLog, type AuditStore } from "../audit.ts"
+import { routeRequest } from "../router.ts"
 
 export const EMBED_DATA_KEY = "maestroTool"
 
@@ -121,4 +123,62 @@ export function persistEmbedState(api: BoardApiLike, embedId: string, state: unk
   const owner = embedOwner(existing)
   if (owner === undefined) return
   new ToolBoard(api, owner).write(embedId, state)
+}
+
+const auditLogsByStore = new WeakMap<AuditStore, Map<string, ToolAuditLog>>()
+
+function auditLogFor(store: AuditStore, toolId: string, now?: () => number): ToolAuditLog {
+  let logs = auditLogsByStore.get(store)
+  if (logs === undefined) {
+    logs = new Map<string, ToolAuditLog>()
+    auditLogsByStore.set(store, logs)
+  }
+  let log = logs.get(toolId)
+  if (log === undefined) {
+    log = new ToolAuditLog(store, toolId, now)
+    logs.set(toolId, log)
+  }
+  return log
+}
+
+/**
+ * Same write-back semantics as persistEmbedState, but routed through the
+ * ToolHost board.write gate so capability, own-embed scope and audit all run.
+ */
+export async function persistEmbedStateThroughToolHost(
+  api: BoardApiLike,
+  store: AuditStore,
+  embedId: string,
+  state: unknown,
+  options: { toolId: string; instanceId?: string; now?: () => number },
+): Promise<boolean> {
+  const existing = api.getSceneElements().find((el) => el.id === embedId)
+  if (existing === undefined) return false
+
+  const board = new ToolBoard(api, options.toolId, undefined, options.instanceId)
+  const audit = auditLogFor(store, options.toolId, options.now)
+  const auditWrites: Array<Promise<void>> = []
+  const response = await routeRequest(
+    {
+      jsonrpc: "2.0",
+      id: `persist:${embedId}`,
+      method: "board.write",
+      params: { embedId, state },
+    },
+    {
+      grantedCaps: { "board.write": { scope: "own-embeds" } },
+      handlers: {
+        "board.write": (params) => {
+          const write = params as { embedId: string; state: unknown }
+          return board.write(write.embedId, write.state)
+        },
+      },
+      isOwnEmbed: board.isOwnEmbed,
+      onAudit: (event) => {
+        auditWrites.push(audit.append(event))
+      },
+    },
+  )
+  await Promise.all(auditWrites)
+  return response !== null && "result" in response
 }
