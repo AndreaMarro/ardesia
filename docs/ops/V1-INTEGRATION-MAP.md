@@ -1,6 +1,7 @@
 # ARDESIA V1 — integration map
 
-Updated: 2026-07-10. Base: `main@e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`.
+Updated: 2026-07-10. Current overlay base:
+`main@b86ce8b67795d3239196fbd1a70d8e57a4444314`.
 
 ## P33 Result
 
@@ -89,5 +90,31 @@ audit visibility without introducing runtime code.
 | ToolHost audit visibility | VERIFIED | P35 e2e parses `maestro:tools/io.ardesia.simulation/audit.jsonl`, proves `board.write`/`ok` count increases after break, and proves the same snapshot remains after reload | localStorage-backed audit only; remote/backend audit still not proven |
 | Persistence/reopen | VERIFIED | existing P30 assertions still compare broken digest after reload and assert solve-kind `error` plus placement count `1` | does not prove backend sync |
 
-Next boundary: current-SHA deploy proof. `main@6f9665b1` is CI-green, but
-production/preview provenance for that SHA is still `UNKNOWN`.
+P35 next boundary was current-SHA deploy proof. At that point
+`main@6f9665b1` was CI-green, but production/preview provenance for that SHA
+was still `UNKNOWN`; P36 below supersedes that status.
+
+## P36 Result
+
+Status: `GREEN_SLICE`.
+
+Deploy boundary audited: current integrated Studio SHA -> Vercel production
+alias -> production smoke/scenario smoke.
+
+P36 first inspected the live alias and found it still served the older
+dependency-audit deployment. The worktree was then linked to the canonical
+Vercel project, built as production from monorepo root, deployed prebuilt to
+production, and inspected again. The public alias now resolves to the new Ready
+deployment.
+
+| Boundary | Status | Evidence | Limit |
+|---|---|---|---|
+| Source SHA | VERIFIED | local deploy source `main@b86ce8b67795d3239196fbd1a70d8e57a4444314`, PR #167 merge commit | Vercel inspect text does not print Git metadata for the prebuilt deploy |
+| Production deployment | VERIFIED | `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`, URL `https://ardesia-lavagna-gh9u94qzt-andreas-projects-6d4e9791.vercel.app`, status Ready | deploy proof, not behavior proof by itself |
+| Public alias | VERIFIED | `vercel inspect https://ardesia-lavagna.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup` resolves to the new deployment | Vercel account/project only |
+| Base production smoke | VERIFIED | `npm run smoke:studio:production` PASS: HTTP 200, title `Ardesia · studio`, no browser/request errors | initial load only |
+| Scenario smoke | VERIFIED | `npm run smoke:studio:production:scenario` PASS: 9 checkpoints, book citation, same-room return, Simulation Plugin canvas/core SVG, no browser/request errors | not the P30 audit assertion; that remains local+CI |
+
+Next boundary: run or adapt a production-safe P30 audit smoke so the deployed
+alias proves the browser-visible ToolHost `board.write` audit path, not just
+the broader scenario smoke.

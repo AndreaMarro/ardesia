@@ -1,5 +1,31 @@
 # ARDESIA — Vercel map
 
+## Update 2026-07-10 21:05-21:09 CEST - current SHA production deploy proof
+
+Deployment action autorizzata da Andrea nella sessione corrente.
+
+Verified in this pass:
+
+| Surface | Probe | Result | Interpretation |
+|---|---|---:|---|
+| `main` | local deploy worktree | VERIFIED | Clean deploy source before docs branch: `main@b86ce8b67795d3239196fbd1a70d8e57a4444314`, the PR #167 merge commit. |
+| `https://ardesia-lavagna.vercel.app` | `vercel inspect` before deploy | STALE | Alias still pointed at older deployment `dpl_3LmGUXKofdHtUW2s8UawXrekEW89`, created 2026-07-10 15:32 CEST for the dependency-audit slice. |
+| `ardesia-lavagna` | `vercel link --yes --team team_23uD0RgdInaTaOPEL0EGltup --project prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98` | OK | Local worktree linked to canonical project `ardesia-lavagna`. The command created local `.vercel/`; `.vercel` is ignored and must not be committed. |
+| `ardesia-lavagna` | `vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` | OK | Production build completed from monorepo root; Vercel build output ended with `status: ok`, `target: production`. |
+| `ardesia-lavagna` | `vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` | READY | Production deployment `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`, URL `https://ardesia-lavagna-gh9u94qzt-andreas-projects-6d4e9791.vercel.app`, aliased to `https://ardesia-lavagna.vercel.app`. |
+| `https://ardesia-lavagna.vercel.app` | `vercel inspect` after deploy | READY | Alias resolves to `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3`; created 2026-07-10 21:05:51 CEST. |
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production` | PASS | HTTP 200, final hash room URL, title `Ardesia · studio`, zero console/page/request/bad-response errors. |
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production:scenario` | PASS | 9 checkpoints, ELAB Lab mounted, citation `Vol. 1, p. 29`, solve ok, same-room return, Simulation Plugin canvas/core SVG visible, `catalogSummary=4/88`, zero browser/request errors. |
+
+Limitations:
+
+- This proves deploy provenance by local source SHA plus Vercel deployment
+  receipt and smoke evidence. The CLI inspect output did not print Git commit
+  metadata for the prebuilt deployment.
+- This is not `V1_GREEN`: backend sync, RLS tenant isolation, full ToolHost
+  coverage, export/reopen beyond the smoke path and book certification remain
+  separate risks.
+
 ## Update 2026-07-10 15:30-15:33 CEST - dependency audit production deploy
 
 Deployment action autorizzata da Andrea nella sessione corrente.

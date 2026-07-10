@@ -1,6 +1,6 @@
 # ARDESIA V1 — risk register
 
-Ultimo aggiornamento: 2026-07-10T15:52:44+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T21:15:00+0200 CEST.
 
 | ID | Rischio | Stato | Evidenza | Mitigazione |
 |---|---|---|---|---|
@@ -14,3 +14,5 @@ Ultimo aggiornamento: 2026-07-10T15:52:44+0200 CEST.
 | R-008 | Principle Zero runtime non conforme | RED | `V1-PRINCIPIO-ZERO-RESEARCH.md`; `api.js:126-127,707,825-826,853,915-923`; `bookCitation.js:48-60` | Ratifica Andrea + patch prodotto + route matrix test |
 | R-009 | Book fidelity viene sovravenduta oltre l'evidenza | RED | `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`: 4/88 mounted candidates, 4 structural-only, 0 certified | Vietare claim "certified/book faithful" finche' ogni gate per-esperimento passa |
 | R-010 | `BookCircuitSpec` diventa terzo modello runtime non governato | RED | Nessun simbolo runtime esiste oggi; `V1-BOOK-FIDELITY-ARCHITECTURE.md` raccomanda envelope su una scena canonica | ADR prima di modifiche modello; no duplicazione di fonte di verita' |
+| R-011 | Current SHA deploy proof poteva restare indimostrato dopo l'integrazione P35 | VERIFIED | P36 ha trovato l'alias production ancora sul deployment precedente, poi ha creato `dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3` da `main@b86ce8b6`; alias inspect e smoke/scenario production PASS | Mitigato per lo SHA corrente; ogni merge successivo richiede nuova prova deploy |
+| R-012 | Production smoke non prova ancora l'audit P30 specifico | RED | P36 scenario smoke verifica flow ELAB/Simulation Plugin, ma non legge `maestro:tools/io.ardesia.simulation/audit.jsonl` sul live alias | Prossima slice: P37 production-safe P30 audit smoke |
