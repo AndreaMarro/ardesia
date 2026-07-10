@@ -1,20 +1,22 @@
 # ARDESIA V1 — loop state
 
-## Current overlay — 2026-07-10 after PR #163
+## Current overlay — 2026-07-10 after PR #164 and P33 regate
 
 | Field | Status | Evidence | Limit |
 |---|---|---|---|
 | Canonical repo candidate | VERIFIED | `AndreaMarro/ardesia`; `git fetch --prune origin` in `/Users/andreamarro/VOLUME 3/ardesia` | Behavioral SoT across satellite/legacy repos still not fully reconciled |
-| Current `origin/main` | VERIFIED | `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d` | CI-green, not production-deploy-proven |
+| Current `origin/main` | VERIFIED | `177f5c731ffc68fd69a86573ddf08670d3d5226f`; PR #164 merge commit | CI-green, not production-deploy-proven |
 | PR #150 | VERIFIED | merged at `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and `studio-preview-readiness` success | P30/P32 trace is not global Tinkercad parity |
 | PR #163 | VERIFIED | merged at `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | P0 browser prompt/book anchor improvement only; tutor e2e remains UNKNOWN |
+| PR #164 | VERIFIED | merged at `177f5c731ffc68fd69a86573ddf08670d3d5226f`; post-merge `ci` run `29103272760` success | docs-only loop rewrite; no product-code claim |
 | Dirty main checkout | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` has modified/untracked files | Do not use as write lane |
-| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/v1-loop-executable-20260710`, based on `origin/main` | Reused worktree because disk is low |
-| Disk headroom | VERIFIED | `df -h`: about 3.1 GiB available | Avoid creating large new worktrees or installs |
-| Prompt rewrite artifacts | VERIFIED | `ARDESIA-V1-LOOP-EXECUTABLE.md`, `ARDESIA-V1-LOOP-REWRITE-REPORT.md` updated in this branch; first A7 review found six issues; follow-up A7 returned PASS | Needs PR CI before product-code slice |
-| Next slice | VERIFIED | `V1-NEXT.md` names one P33 Integration Spine regate/audit slice | Not a feature implementation yet |
+| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p33-integration-spine-regate-20260710`, based on `origin/main@177f5c73` | Reused worktree because disk is low |
+| Disk headroom | VERIFIED | `df -h`: about 690 MiB available | Avoid creating large new worktrees, installs or builds |
+| Prompt rewrite artifacts | VERIFIED | PR #164 merged; first A7 review found six issues; follow-up A7 returned PASS | Docs-only |
+| P33 result | HONEST_RED | `V1-INTEGRATION-MAP.md`: Simulation Plugin write path uses direct callbacks before ToolHost JSON-RPC/capability/audit | Next remediation is P34 ToolHost wire |
+| Next slice | VERIFIED | `V1-NEXT.md` names one P34 Simulation ToolHost wire remediation slice | Not backend/RLS/export work |
 | Security | RED/UNKNOWN | `V1-SECURITY-MATRIX.md`: S-002 client-side API key boundary, ToolHost sandbox/origin, RLS/history/rotation | Secret scans passing do not close these |
-| Deploy proof for current SHA | UNKNOWN | latest current `main@9b7342fc` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
+| Deploy proof for current SHA | UNKNOWN | latest current `main@177f5c73` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
 | Local docs gates | VERIFIED | `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | Docs-only gates; no product runtime claim |
 
 Historical entries below are retained as evidence trail and may contain stale
@@ -141,7 +143,6 @@ Rollback: eliminare i soli file `ARDESIA-V1-*`/`V1-*` creati su questa branch.
 
 ## Superseded Candidate Score
 
-The older S0/P33/Golden Book ordering is inactive. The only active next slice is
-`P33-INTEGRATION-SPINE-REGATE-001` in `docs/ops/V1-NEXT.md`. That slice may
-stop at `SECURITY_RED`, `ARCHITECTURE_RED`, `ENVIRONMENT_RED` or `HONEST_RED`
-before reaching any product-code change.
+The older S0/P33/Golden Book ordering is inactive, and P33 has now closed as
+`HONEST_RED`. The only active next slice is
+`P34-SIMULATION-TOOLHOST-WIRE-REMEDIATION-001` in `docs/ops/V1-NEXT.md`.

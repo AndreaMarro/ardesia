@@ -1,83 +1,76 @@
 # ARDESIA V1 — next slice
 
-Updated: 2026-07-10. Base for this contract:
-`origin/main@9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`.
+Updated: 2026-07-10 after P33 regate. Base for this contract:
+`origin/main@177f5c731ffc68fd69a86573ddf08670d3d5226f`.
 
 ## Slice
 
-`P33-INTEGRATION-SPINE-REGATE-001`
+`P34-SIMULATION-TOOLHOST-WIRE-REMEDIATION-001`
 
-Objective: prove the first real integration boundary that fails between a
-current simulation/free-wire behavior and the required V1 spine:
+Objective: remediate the first boundary found by P33:
 
-pointer/touch -> domain operation -> plugin capability -> ToolHost ->
-LessonOS event -> local persistence -> backend persistence -> graph projection
--> ElabTutor retrieval -> export -> close/reopen -> exact-SHA deploy proof
-when the approved deploy route is part of the slice.
+Simulation Plugin write operation -> ToolHost capability/RPC/audit boundary.
 
-This is an audit/regate slice first. It may end as `HONEST_RED`; it should not
-add a new product feature before the boundary and ownership are proven.
+Pick one write operation, preferably `wire-add` or `break-connections`, and make
+its governed path explicit:
+
+operation schema -> ToolHost method/capability -> audit event -> host mutation.
+
+If ToolHost is intentionally not the boundary for first-party Simulation Plugin
+writes, this slice must produce a ratified ADR exception plus a test that proves
+the alternate boundary. Do not expand to backend/RLS/export before this boundary
+is green.
 
 ## Why This Slice
 
-- PR #150 is merged and repeat-gated, so the free manipulation trace is now an
-  integration anchor.
-- PR #163 reduced the browser-side Principio Zero runtime conflict, so the next
-  highest leverage blocker is not more tutor prose; it is proving whether real
-  circuit operations cross the product spine.
-- Existing evidence still indicates ToolHost/direct-callback, LessonOS sync,
-  backend/RLS, graph/tutor and deploy proof gaps.
+- P33 found `HONEST_RED`: P30 proves local behavior but not ToolHost
+  capability/RPC/audit for Simulation Plugin writes.
+- Current code uses direct React callbacks/host closures for write-back:
+  `ToolCanvasEmbeddable.tsx:1287-1354`, `Room.tsx:929-944`.
+- ToolHost already has JSON-RPC/capability/audit machinery; this slice should
+  connect one concrete operation to it, not build a new subsystem.
 
 ## File Ownership
 
-Read-only first:
+Maximum initial write set:
 
-- `apps/studio/e2e/`
-- `apps/studio/src/toolhost/`
-- `apps/studio/src/Room.tsx`
-- `apps/studio/src/lessonos/`
-- `apps/studio/src/store/`
-- `docs/ops/V1-INTEGRATION-MAP.md`
+- `apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`
+- one ToolHost protocol/router/cap file if required
+- one focused unit/e2e test file
 - `docs/ops/V1-FAILURE-LEDGER.md`
 - `docs/ops/V1-CLAIM-REGISTER.md`
 
-If a write slice is selected afterward, assign one owner and no more than five
-files before editing.
+Do not touch backend/RLS/export in this slice.
 
 ## Acceptance Criteria
 
 The slice is complete when it produces one of:
 
-- `GREEN_SLICE`: one existing operation is proven through every applicable
-  boundary listed above with commands/tests/CI evidence; or
-- `HONEST_RED`: the first failing boundary is reproduced, documented with exact
-  command/file evidence, and converted into the next smallest remediation; or
+- `GREEN_SLICE`: one Simulation Plugin write operation is proven to cross a
+  governed ToolHost method/capability/audit boundary with focused tests; or
+- `ADR_EXCEPTION`: first-party Simulation Plugin bypass is explicitly ratified
+  with an alternate tested boundary and updated claims; or
+- `HONEST_RED`: the chosen remediation is blocked by a smaller reproduced
+  boundary with exact file/command evidence; or
 - `SECURITY_RED` / `ARCHITECTURE_RED` / `ENVIRONMENT_RED` if those gates block
   a trustworthy verdict.
 
 Minimum evidence:
 
 1. current branch/SHA/worktree receipt;
-2. exact operation under test;
-3. test or command showing pointer/domain behavior;
-4. evidence for or against ToolHost/capability crossing;
-5. evidence for or against LessonOS event emission and persistence/reopen;
-6. evidence for or against backend/RLS if the path claims backend sync;
-7. evidence for or against graph/tutor/export/deploy only when that boundary is
-   actually reached; deploy evidence must name the exact SHA, URL and smoke
-   command, otherwise record `DEPLOY_UNKNOWN_FOR_HEAD`;
-8. updated claim/failure/integration map.
+2. exact operation under test and its schema;
+3. focused test proving method/capability/audit or ADR exception;
+4. regression check for existing P30 behavior where feasible;
+5. updated claim/failure/integration map.
 
 ## Commands To Define Before Coding
 
 - `git status --short --branch`
 - `git rev-parse HEAD`
 - `gh run list --repo AndreaMarro/ardesia --branch main --limit 5`
-- targeted test/e2e command after the operation is selected
+- focused unit/e2e command after the operation is selected
 - `python3 bin/ci/secret_scan.py`
 - `git diff --check`
-- deploy inspect/smoke command only if the slice reaches deploy proof on an
-  approved exact-SHA route
 
 ## Stop Conditions
 
@@ -86,6 +79,5 @@ Minimum evidence:
 - security scan reports a high-confidence secret;
 - the required boundary needs external credentials/access;
 - disk headroom is too low for a reliable test/install;
-- deploy proof would require an external route that cannot be tied to the exact
-  SHA under test;
+- remediation would require broad backend/RLS/export work;
 - two repair cycles fail.
