@@ -1,12 +1,22 @@
 # ARDESIA V1 — Worktree Register
 
-Snapshot: `2026-07-10T03:35:08+02:00`
-Evidence base: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
+Snapshot: `2026-07-10T03:35:08+02:00`; refreshed for current writer
+`2026-07-10T15:52:44+0200 CEST`
+Evidence base: original `cedfa932dc91088e6bd30af49ed0f648157c6e1b`; current
+writer base `82bf629d0d73e837b4c58bed370b7f1d24509316`
 Command: `git worktree list --porcelain` plus per-path
 `git status --porcelain=v1 --untracked-files=all`
 Scope: inventory, not ownership proof
-Confidence: HIGH for paths/heads/porcelain counts at snapshot; UNKNOWN for
-human/process ownership and changes after the snapshot.
+Confidence: HIGH for paths/heads/porcelain counts at each snapshot; UNKNOWN for
+human/process ownership and changes after each snapshot.
+
+## Refresh 2026-07-10T15:52:44+0200 CEST
+
+| Claim | Status | Evidence | Limit |
+|---|---|---|---|
+| Current writable lane is isolated | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710` on `codex/v1-principle-zero-book-fidelity-20260710`, HEAD `82bf629d0d73e837b4c58bed370b7f1d24509316` | Does not prove ownership of other worktrees |
+| Canonical checkout remains off-limits | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` is a separate dirty checkout on `codex/ardesia-ops-headroom-20260701` | Do not write there for this slice |
+| File ownership for this slice | VERIFIED | `docs/ops` only | Docs-only; no product code |
 
 ## Summary
 

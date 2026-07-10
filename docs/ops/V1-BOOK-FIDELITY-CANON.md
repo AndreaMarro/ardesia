@@ -1,10 +1,10 @@
 # ARDESIA V1 — Book Fidelity Canon
 
-Evidence commit: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
-Snapshot / last verified: `2026-07-10T03:49:35+02:00`
+Evidence commit: `82bf629d0d73e837b4c58bed370b7f1d24509316`
+Snapshot / last verified: `2026-07-10T15:52:44+0200 CEST`
 Canon recovery: **VERIFIED**
 Corpus certification: **0 real experiments CERTIFIED**
-Release terminal: **BOOK_FIDELITY_RED**
+Release terminal: **RED** (book fidelity)
 
 Confidence rule: HIGH for tracked schemas, fixtures, hashes, catalog entries and
 static tests at the evidence commit; MEDIUM for historical reports not rerun;
@@ -18,9 +18,30 @@ Every scoped fraction below uses the 88-entry lesson-path registry as denominato
 | Required fidelity dimensions and `BookCircuitSpec` mandate | **VERIFIED** from the current direct mandate |
 | Schemas, fixtures, catalog entries, predicates and tests listed below | **VERIFIED** by static inspection at the evidence commit |
 | Historic standalone coverage claims | **REPORTED** lineage only; not reused as current counts |
-| Visual identity of any real experiment with the physical book | **UNKNOWN / RED** because all real fixtures record `visualMatch: unknown` |
-| Proposed role of a future `BookCircuitSpec` relative to current models | **INFERRED / ADR_REQUIRED** |
+| Visual identity of any real experiment with the physical book | **UNKNOWN** because all real fixtures record `visualMatch: unknown`; release claim remains RED |
+| Proposed role of a future `BookCircuitSpec` relative to current models | **INFERRED**; architecture decision required |
 | Exact currently deployed Studio/Simulation behavior | **UNKNOWN**; no live runtime was exercised in this slice |
+
+## Refresh 2026-07-10 on current HEAD
+
+Status: **VERIFIED** for static evidence, **RED** for certification.
+
+The canon was re-read on `82bf629d0d73e837b4c58bed370b7f1d24509316`.
+The current repo state remains:
+
+- 4 mounted real candidate scenes out of 88 lesson paths;
+- 4 structural-only overlay receipts;
+- 2 experiments with dedicated step predicates;
+- 0 real experiments with `visualMatch: pass`;
+- 0 real experiments with human visual review;
+- 0 real experiments certified.
+
+The visible-experiment tracked matrix reports 8 visible targets, 4/8 with
+fixtures/structural overlay evidence and 0/8 `verified-human`. That file is
+future-dated relative to this run, so it is used only as tracked repository
+state, not chronological proof. The current certification matrix is now
+recorded in `docs/ops/V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`; the architecture
+decision frame is in `docs/ops/V1-BOOK-FIDELITY-ARCHITECTURE.md`.
 
 ## Definition
 
@@ -93,7 +114,7 @@ do not yield the same circuit and the figures leave it open. This conflict is
 **VERIFIED as a tracked implementation premise**, not independently adjudicated
 against the physical book in this slice. The current code chooses the text as
 authoritative, but that precedence is an implemented choice rather than a
-human-ratified book rule. Experiment 1 remains **RATIFY_REQUIRED** and cannot be
+human-ratified book rule. Experiment 1 remains **UNKNOWN** and cannot be
 certified until a reviewer checks the physical volume/revision and records
 whether text, figure, or an erratum wins.
 
@@ -124,20 +145,20 @@ third independent scene source or silently preselect `ElabScene` as owner.
 
 | Area | Evidence | Honest status |
 |---|---|---|
-| Structured scene schema | `elabScene.ts:100-170`; strict Zod, provenance and four checks | BUILT |
-| Lesson-driving gate | `canDriveLesson` requires `verified` and all four checks pass (`elabScene.ts:164-170`) | BUILT as predicate; **NOT ENFORCED** by candidate mount path |
-| Real candidate scenes | Four candidate JSON fixtures: v1 c6 e1/e2/e3 and v1 c9 e6 | 4/88 MOUNTED, all CANDIDATE |
+| Structured scene schema | `elabScene.ts:100-170`; strict Zod, provenance and four checks | VERIFIED |
+| Lesson-driving gate | `canDriveLesson` requires `verified` and all four checks pass (`elabScene.ts:164-170`) | RED because predicate exists but is not enforced by candidate mount path |
+| Real candidate scenes | Four candidate JSON fixtures: v1 c6 e1/e2/e3 and v1 c9 e6 | VERIFIED as 4/88 mounted candidates; RED as certification |
 | Geometry | All four candidates have authored component poses/wire paths and committed structural overlay receipts | VERIFIED structural-only for 4/88 |
-| Source evidence | All four carry source image hashes; no crop bounding boxes | PARTIAL |
-| Book predicates | Four experiment-specific functions in `bookConstraints.ts` | 4/88 PARTIAL |
+| Source evidence | All four carry source image hashes; no crop bounding boxes | RED for certification because source evidence is incomplete |
+| Book predicates | Four experiment-specific functions in `bookConstraints.ts` | VERIFIED for 4/88 only |
 | Structural overlay receipts | Four `docs/ops/overlays/*-report.json` receipts bind crop SHA, 0.5 px grid tolerance and recomputable scene metrics; companion PNGs place crop and scene side by side | VERIFIED artifact, not CV/human comparison |
 | Visual fidelity | All four real candidates retain `visualMatch: unknown`; overlay metrics grade scene-to-grid consistency, not image similarity to the book | **RED** |
 | Human verification | Only `elab-scene-v2-verified-synthetic.json` is verified; it is schema coverage, not a book experiment | **0 real verified** |
-| Catalog honesty | `elabExperimentCatalog.ts:28-116` exposes four mounted candidates of 88 | BUILT; not certification |
-| Real didactic steps | `simulationStepMode.ts:40-123` and `didacticSteps.ts`; e1/e2 only | 2/88 PARTIAL |
+| Catalog honesty | `elabExperimentCatalog.ts:28-116` exposes four mounted candidates of 88 | VERIFIED; not certification |
+| Real didactic steps | `simulationStepMode.ts:40-123` and `didacticSteps.ts`; e1/e2 only | RED for certification because coverage and operation semantics are incomplete |
 | Step falsifiability | Removing battery wires makes real predicates fail (`SimulationStepByStep.test.tsx:46-95`) | VERIFIED for tested slice |
 | Temporal operations | `didacticSteps.ts:12-16` explicitly uses cumulative final-state predicates; per-delta semantics is future work | **RED** against strict invariant |
-| Generic mode derivation | `simulationSceneModes.ts:57-83` creates one final step containing the full scene | NON-DISCRIMINATING |
+| Generic mode derivation | `simulationSceneModes.ts:57-83` creates one final step containing the full scene | RED |
 | Generic equality test | `SimulationSceneModes.test.ts:27-34` compares that synthetic final scene to itself | must not count as book-step proof |
 | Candidate mount enforcement | `ElabSceneAdapter.test.ts:23-30` proves a real candidate has `canDriveLesson:false`; `elabSceneBridge.ts:102-170` does not enforce it and `ToolCanvasEmbeddable.tsx:595-633,966-1010` can insert/mount candidates | **RED** |
 | Independent `bookLayout` evidence | `elabSceneBridge.ts:202-238` derives `bookLayout` from the same candidate scene and explicitly leaves independent verification elsewhere | circular internal-drift check only; **RED** as book proof |
@@ -226,4 +247,4 @@ structural overlay receipts exist but `visualMatch` is still unknown, the
 lesson-driving predicate is bypassed by the candidate mount path, `bookLayout`
 is derived circularly from the candidate, temporal steps are cumulative
 predicates rather than reducible operations, and most of the 88-experiment
-corpus is unmapped. The scientific terminal is **BOOK_FIDELITY_RED**.
+corpus is unmapped. The scientific terminal is **RED**.

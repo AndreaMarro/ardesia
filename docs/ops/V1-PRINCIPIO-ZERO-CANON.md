@@ -1,11 +1,11 @@
 # ARDESIA V1 — Principio Zero Canon
 
-Evidence commit: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
-Snapshot / last verified: `2026-07-10T03:49:35+02:00`
+Evidence commit: `82bf629d0d73e837b4c58bed370b7f1d24509316`
+Snapshot / last verified: `2026-07-10T15:52:44+0200 CEST`
 Canon recovery: **VERIFIED**
-Operational precedence: **RATIFY_REQUIRED**
+Operational precedence: **UNKNOWN** (Andrea ratification required)
 Runtime compliance: **RED**
-Release terminal: **PRINCIPLE_ZERO_RUNTIME_RED**
+Release terminal: **RED** (Principle Zero runtime)
 
 Confidence rule: HIGH for quoted tracked text, Git provenance and static call
 paths at the evidence commit; UNKNOWN for deployed behavior and human classroom
@@ -42,10 +42,28 @@ but must not be cited as complete Principle Zero evidence.
 |---|---|
 | Authentic definition and authorship | **VERIFIED** |
 | Tracked operational rules in `plugins/elab-tutor/CLAUDE.md` | **VERIFIED as written policy**, not as runtime behavior |
-| Precedence across conflicting human-authored sources | **UNKNOWN / RATIFY_REQUIRED** |
+| Precedence across conflicting human-authored sources | **UNKNOWN**; Andrea ratification required |
 | Proposed response-channel split below | **INFERRED** |
 | Static runtime non-compliance described below | **VERIFIED at evidence commit** |
 | Behavior of any currently deployed ELAB instance | **UNKNOWN**; no live deployment was tested in this slice |
+
+## Refresh 2026-07-10 on current HEAD
+
+Status: **VERIFIED** for static evidence, **RED** for runtime compliance.
+
+The canon was re-read on `82bf629d0d73e837b4c58bed370b7f1d24509316`.
+The authentic quote is still present in
+`plugins/elab-tutor/automa/context/project-history.md:19-23`, and the
+operational extension is still present in `plugins/elab-tutor/CLAUDE.md:5-16`.
+The runtime conflict remains present in
+`plugins/elab-tutor/src/services/api.js:126-127,707,825-826,853,915-923` and
+`plugins/elab-tutor/src/services/bookCitation.js:48-60`. Four companion files
+now hold the current research and matrices:
+
+- `docs/ops/V1-PRINCIPIO-ZERO-RESEARCH.md`
+- `docs/ops/V1-PRINCIPIO-ZERO-MATRIX.md`
+- `docs/ops/V1-BOOK-FIDELITY-ARCHITECTURE.md`
+- `docs/ops/V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`
 
 ## Current operational extension
 
@@ -72,7 +90,7 @@ lineage, not current naming authority.
 words. `CLAUDE.md:15,33,81-84` requires verbatim volume wording. Runtime text
 authored later by Andrea repeats “parole tue” and makes citation optional
 (`plugins/elab-tutor/src/services/api.js:126-127`). No tracked source settles
-the precedence. The honest status is **RATIFY_REQUIRED**.
+the precedence. The honest status is **UNKNOWN** until Andrea ratifies it.
 
 The following channel split is an **INFERRED proposal**, not recovered canon.
 It is the smallest testable reconciliation found, and becomes authoritative
@@ -98,7 +116,7 @@ implement.
 | Requirement | Source | Current implementation/evidence | Test/gate required | Severity | State |
 |---|---|---|---|---:|---|
 | Anyone can teach with no prior knowledge | exact definition; `CLAUDE.md:14` | Prompt contains the claim, but `sendChat` defaults `socraticMode=false` (`api.js:825-826`), adds the instruction only conditionally (`:707`), and production calls omit the flag (`CircuitReview.jsx:87`; `sessionReportService.js:91`) | first-use teacher task with no electronics knowledge, no hidden setup | P0 | **RED** |
-| Teacher remains mediator, not replaced | history `:25-32`; `CLAUDE.md:7-11` | Runtime says “UNLIM fa la domanda, i ragazzi rispondono” (`api.js:117-123`). This is interactive, not passive reading, but conflicts with the strict teacher-as-conduit interpretation | Andrea must ratify the speaking role; then test all routes against it | P0 | **UNKNOWN / RATIFY_REQUIRED** |
+| Teacher remains mediator, not replaced | history `:25-32`; `CLAUDE.md:7-11` | Runtime says “UNLIM fa la domanda, i ragazzi rispondono” (`api.js:117-123`). This is interactive, not passive reading, but conflicts with the strict teacher-as-conduit interpretation | Andrea must ratify the speaking role; then test all routes against it | P0 | **UNKNOWN** |
 | Physical kit is protagonist | `CLAUDE.md:7,13,92-99` | Kit wording exists only inside the conditionally injected Socratic prompt (`api.js:123,707,825-826`); validator does not require it | every lesson-driving response links action to available physical kit | P0 | **RED** |
 | Class-facing plural voice | `CLAUDE.md:12,33` | Route-specific tests exist, but are fragmented. The conditional prompt has one example; `validatePrincipioZero()` has no production caller and does not require the opening, kit, or source (`principioZeroValidator.js:41-81`) | production route matrix across text, voice, image, fallback and errors | P0 | **RED** |
 | Exact book provenance | `CLAUDE.md:12,15,81-84`; current mandate | `shouldAppendBookCitation()` always returns false and `ensureBookCitation()` is a no-op (`bookCitation.js:48-60`); always-on prompt makes citation optional (`api.js:853,919-922`) | source-backed quote plus volume/page/revision; mutation test for wrong page/text | P0 | **RED** |
@@ -149,5 +167,5 @@ is not fully settled: tracked human-authored sources conflict on “own words”
 versus verbatim delivery and on the teacher/UNLIM speaking role. Runtime is
 independently non-conformant because key behavior is optional and citation
 enforcement is a no-op. Therefore authentic-core recovery is **VERIFIED**,
-conflict resolution is **RATIFY_REQUIRED**, implementation is **RED**, and
-neither ELAB nor the Simulation Plugin is `PILOT_READY`.
+conflict resolution is **UNKNOWN**, implementation is **RED**, and neither ELAB
+nor the Simulation Plugin is ready for pilot claims.

@@ -4,7 +4,7 @@ Snapshot: `2026-07-10T03:35:08+02:00`
 Last verified: `2026-07-10T03:54:46+02:00`
 Evidence commit: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
 Structural base: `origin/main@204ffefc7f375ecd717fcbf4ba3aaa35a6e5c2fa`
-Terminal: **ARCHITECTURE_RED**
+Terminal: **RED** (architecture/source-of-truth)
 
 Confidence rule: HIGH for local Git/tree facts and GitHub API snapshots tied to
 the times above; MEDIUM for classifications inherited from the 2 July map and
@@ -82,15 +82,15 @@ the only scientific answer is `UNKNOWN`, with the conflict made blocking.
 | Integrated code and governance | `AndreaMarro/ardesia` | **VERIFIED structural SoT**; not a blanket behavior cutover |
 | Documentation/canon | `ardesia/docs` on the ratified `main` lineage | **VERIFIED target**, but conflicting documents must be reconciled by PR |
 | Plugin SDK / ToolHost behavior | external `ardesia-studio` / Mini `~/maestro-studio` per canon | **VERIFIED-as-canon; live SHA UNKNOWN** |
-| Simulator behavior | no single owner proved among standalone ELAB, `apps/studio/sim`, and prototype repos | **UNKNOWN / ARCHITECTURE_RED** |
+| Simulator behavior | no single owner proved among standalone ELAB, `apps/studio/sim`, and prototype repos | **UNKNOWN**; architecture remains RED |
 | LessonOS / Engine behavior | `AndreaMarro/lessonos@auto/main` per canon | **VERIFIED-as-canon; live Mini SHA UNKNOWN** |
-| Backend/API | Engine API, ELAB Supabase functions and legacy Nanobot coexist | **UNKNOWN / ARCHITECTURE_RED** |
+| Backend/API | Engine API, ELAB Supabase functions and legacy Nanobot coexist | **UNKNOWN**; architecture remains RED |
 | Database | Engine SQLite/local state and ELAB Supabase are domain-specific and unreconciled | **UNKNOWN**; no global DB SoT or live provider audit |
-| Deploy | `ardesia-lavagna` production now has a monorepo commit-to-artifact proof | **PARTIAL VERIFIED** for Studio surface at `8b9fbe1d`; full V1 release, backend/RLS, and cutover remain UNKNOWN |
-| ELAB assets | physical volumes, `elab-volumi`, local licensed files and pack copies form multiple lineages | **UNKNOWN / BOOK_FIDELITY_RED** |
+| Deploy | `ardesia-lavagna` production now has a monorepo commit-to-artifact proof | **VERIFIED** for Studio surface at `8b9fbe1d`; full V1 release, backend/RLS, and cutover remain UNKNOWN |
+| ELAB assets | physical volumes, `elab-volumi`, local licensed files and pack copies form multiple lineages | **UNKNOWN**; book-fidelity release remains RED |
 | Development memory | ratified Git history, ADR and tracked ops evidence in `ardesia` | **VERIFIED governance rule**; agent memory/chat is discovery cache only |
-| Product knowledge base | `ardesia/docs/{wiki,vault}` is the integration target; external wiki/vault remain source lineages | **PARTIAL / precedence unresolved** |
-| Release | `ardesia/main` is the governed integration branch; no V1 release artifact exists | **RELEASE_RED** until human merge, exact-SHA gates and deploy proof |
+| Product knowledge base | `ardesia/docs/{wiki,vault}` is the integration target; external wiki/vault remain source lineages | **UNKNOWN** until precedence is reconciled |
+| Release | `ardesia/main` is the governed integration branch; no V1 release artifact exists | **RED** until human merge, exact-SHA gates and deploy proof |
 
 ## Deploy update 2026-07-10
 
@@ -110,7 +110,7 @@ the only scientific answer is `UNKNOWN`, with the conflict made blocking.
 | Formal cutover packet says no cutover performed | VERIFIED as document | `docs/ops/MONOREPO-TOTAL-CUTOVER-PACKET.md:1-5,24-33,133-147` | Packet contains session-date caveats and historical states. |
 | The three imported product trees have diverged in different directions | VERIFIED | exact import-tree equality and path-history counts below | Divergence proves neither parity nor behavioral ownership. |
 | MacBook lacks `~/lessonos` and `~/maestro-studio` checkouts | VERIFIED | local filesystem probe, exit 0 | The formal behavior repos live on the Mini according to canon. |
-| Mini live state was not reachable | BLOCKED_EXTERNAL | `ssh -o BatchMode=yes -o ConnectTimeout=8 macmini true` → exit 255, timeout | No claim about current factory pointer, dirty state, or unpushed commits is allowed. |
+| Mini live state was not reachable | DEFERRED | `ssh -o BatchMode=yes -o ConnectTimeout=8 macmini true` → exit 255, timeout | No claim about current factory pointer, dirty state, or unpushed commits is allowed. |
 | Standalone ELAB checkout exists at `~/VOLUME 3/PRODOTTO/elab-builder@7681789d` | VERIFIED | local `git status`, `git log -1` | It is heavily dirty and not an authorized write lane. |
 | `ardesia-simulator@b6f8c974` exists separately | VERIFIED | local repo and GitHub | Canon classifies it as prototype/salvage candidate, not Simulation behavior SoT. |
 
@@ -176,7 +176,7 @@ is enumerated in `V1-PR-REGISTER.md` and the 31 registered lanes in
 | Concurrent writers/processes | only this lane has a named V1 write lease; other ownership was not discoverable | **UNKNOWN; do not touch** |
 | Git/worktree lock files | 0 `locked`, `index.lock`, `HEAD.lock`, or `config.lock` files observed | VERIFIED only at snapshot; does not prove no active process |
 | Duplicate repositories | historical `~/ardesia-monorepo` duplicate is reported on the Mini | **REPORTED; Mini unreachable; no archive action** |
-| Dirty/unpushed Mini state | SSH timed out | **BLOCKED_EXTERNAL** |
+| Dirty/unpushed Mini state | SSH timed out | **DEFERRED** |
 
 Re-run with `git worktree list --porcelain`, `git for-each-ref`, per-worktree
 `git status --porcelain=v1 --untracked-files=all`, `gh pr list`, and the Mini
@@ -197,13 +197,13 @@ git branch --format='%(refname:short)' --no-merged origin/main | wc -l
 |---|---|---|---|
 | Structure/governance | `~/ardesia` | GitHub monorepo active and root claims one work surface | `ardesia` VERIFIED |
 | Engine behavior | `~/lessonos@auto/main` | Runtime subtree is the exact imported snapshot; external `auto/main` is 1450 commits ahead of that split | external owner **VERIFIED-as-canon**; monorepo snapshot **VERIFIED stale**; live Mini SHA/runtime **UNKNOWN** |
-| Studio/ToolHost behavior | `~/maestro-studio`; monorepo subtree called stale | Both lineages advanced after import (189 monorepo path commits, 45 external commits) | **UNKNOWN / ARCHITECTURE_RED** |
+| Studio/ToolHost behavior | `~/maestro-studio`; monorepo subtree called stale | Both lineages advanced after import (189 monorepo path commits, 45 external commits) | **UNKNOWN**; architecture remains RED |
 | ELAB behavior | standalone ELAB lineage | Both lineages advanced; local standalone checkout is dirty and not at current remote `main` | lineage split; no silent overwrite |
 | Simulation | extract from ELAB; separate repo is prototype | Monorepo contains a richer `apps/studio/sim` package | package ownership still requires cutover ratification |
 
 ## Allowed and blocked lanes
 
-Allowed while `ARCHITECTURE_RED` is live:
+Allowed while architecture is RED:
 
 - documentation and evidence reconciliation;
 - non-product guardrails and discriminating tests;
@@ -216,9 +216,9 @@ Blocked:
 - feature implementation based on a guessed behavior repository;
 - deleting, archiving, overwriting, or syncing a lineage repo;
 - changing factory paths or deployment bindings;
-- declaring the monorepo cut over, deployed, PILOT_READY, or V1_GREEN.
+- declaring the monorepo cut over, deployed, pilot-ready, or V1 green.
 
-## Exit gate for ARCHITECTURE_RED
+## Exit gate for architecture RED
 
 All are required in one dedicated, human-ratified cutover/ADR slice:
 
@@ -231,5 +231,5 @@ All are required in one dedicated, human-ratified cutover/ADR slice:
    deploy bindings, and drift guards without weakening any gate.
 5. Obtain explicit Andrea ratification. No agent may infer it.
 
-Until then, the scientifically correct result is **ARCHITECTURE_RED**, not a
+Until then, the scientifically correct result is **RED** for architecture, not a
 forced choice between stale prose and newer code.

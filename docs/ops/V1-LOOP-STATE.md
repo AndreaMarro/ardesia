@@ -1,18 +1,32 @@
 # ARDESIA V1 — loop state
 
-Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T16:01:09+0200 CEST.
 
 ## Identità
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-dependency-deploy-20260710`
-- Branch corrente: `codex/v1-dependency-audit-deploy-ledger-20260710`
-- `origin/main` verificato: `ce209b310c8c3f7432d2c8878df0d235386ac9f9`
-- Macro-fase: 1 — integrazione, production gate minimi e hardening supply-chain
-- Writer: singolo, scope `docs/ops` per questo aggiornamento post-deploy
-- Stato terminale corrente: `DEPENDENCY_AUDIT_DEPLOYED_GREEN_SLICE` su
-  `main@ce209b310c8c3f7432d2c8878df0d235386ac9f9`; `SECURITY_PARTIAL`,
-  lint baseline RED e `ARCHITECTURE_RED` restano aperti per V1 globale.
+- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710`
+- Branch corrente: `codex/v1-principle-zero-book-fidelity-20260710`
+- `origin/main` verificato: `82bf629d0d73e837b4c58bed370b7f1d24509316`
+- Macro-fase: 1 — integrazione, P0 canon, book-fidelity gate
+- Writer: singolo, scope `docs/ops` per questa slice P0
+- Stato terminale corrente: `P0_CANON_MATRIX_DOCS_VERIFIED_LOCAL` su
+  `main@82bf629d0d73e837b4c58bed370b7f1d24509316`; security history/rotation,
+  lint baseline, Principle Zero runtime e book-fidelity certification restano
+  RED per V1 globale.
+
+## Update 2026-07-10 — P0 canon and book-fidelity matrices
+
+| Claim | Stato | Evidenza | Limite |
+|---|---|---|---|
+| `origin/main` corrente e' `82bf629d0d73e837b4c58bed370b7f1d24509316` | VERIFIED | `git rev-parse HEAD` nella lane P0; `gh run list --commit 82bf629d...` mostra `ci` run `29096978340` success | Docs #161 only; production resta quella della dependency audit slice |
+| PR #161 e' stata mergiata in `main` | VERIFIED | `gh pr view 161`: merge commit `82bf629d0d73e837b4c58bed370b7f1d24509316`, mergedAt `2026-07-10T13:41:07Z` | Registra ledger docs; non cambia prodotto runtime |
+| La lane scrivibile corrente e' isolata | VERIFIED | Worktree `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710`, branch `codex/v1-principle-zero-book-fidelity-20260710`, status clean prima della patch | Non prova ownership delle altre worktree |
+| I documenti P0 richiesti dal mandato erano incompleti su HEAD | VERIFIED | Prima della patch mancavano `V1-PRINCIPIO-ZERO-RESEARCH.md`, `V1-PRINCIPIO-ZERO-MATRIX.md`, `V1-BOOK-FIDELITY-ARCHITECTURE.md`, `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`; ora sono versionati nella branch corrente | La mancanza storica era RED; questa patch e' docs-only e non rende runtime compliant |
+| Principio Zero autentico resta recuperato | VERIFIED | `project-history.md:19-23` + `CLAUDE.md:5-16`; vedi `V1-PRINCIPIO-ZERO-RESEARCH.md` | Precedenza "parole tue" vs verbatim resta UNKNOWN |
+| Runtime Principio Zero resta non conforme | RED | `api.js:126-127,707,825-826,853,915-923`; `bookCitation.js:48-60` | Richiede slice prodotto dedicata e ratifica Andrea |
+| Book fidelity certificata resta zero | VERIFIED | 4/88 mounted candidates, 4 structural-only receipts, 0 human/visual certified; vedi `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md` | Release book-fidelity resta RED; non vieta ispezione candidate, vieta claim di certificazione |
+| Local docs and evidence gates pass | VERIFIED | `git diff --check` OK; `python3 bin/ci/test_secret_scan.py` OK; `python3 bin/ci/secret_scan.py` OK; `npm --prefix apps/studio ci --no-fund` found 0 vulnerabilities; `npm --prefix apps/studio test -- --run src/__tests__/SimulationStepByStep.test.tsx src/__tests__/VisualOverlayReport.test.ts src/__tests__/ElabSceneAdapter.test.ts src/__tests__/SimulationSceneModes.test.ts` PASS, 4 files / 36 tests | Docs-only local gate; full CI/PR still required |
 
 ## Update 2026-07-10 — dependency audit production deploy
 
@@ -22,15 +36,15 @@ Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
 | `main@ce209b31` ha CI post-merge verde | VERIFIED | `ci` run `29095910144` success; `studio-preview-readiness` run `29095910290` success | Workflow evidence; non prova browser production da solo |
 | Production `ardesia-lavagna` e' stata redeployata dopo il merge #160 | VERIFIED | `vercel build --prod` sul project id `prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98`; `npm ci` durante build riporta `found 0 vulnerabilities`; deploy `dpl_3LmGUXKofdHtUW2s8UawXrekEW89` READY; alias `https://ardesia-lavagna.vercel.app` | Il primo build tentativo aveva link locale errato; e' stato relinkato al project id canonico prima del deploy production |
 | Production HTTP e browser base sono verdi | VERIFIED | `curl -L https://ardesia-lavagna.vercel.app`: HTTP `200`; `npm run smoke:studio:production` PASS, title `Ardesia · studio`, hash `#wbstudio-tkin23m`, zero console/page/request/bad same-origin errors | Smoke base, non scenario completo |
-| Production scenario smoke resta verde dopo dependency audit | VERIFIED / GREEN_SLICE | `npm run smoke:studio:production:scenario` PASS: 9 checkpoint, room hash `#wbstudio-vcz7o5n`, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors | Non prova backend sync, RLS, persistenza avanzata o ToolHost globale |
-| npm dependency health della build deployed e' pulita | VERIFIED / GREEN_SLICE | override merge #160 + `npm ci` in Vercel build: `found 0 vulnerabilities`; local candidate audit gia' `total: 0` | Non sostituisce monitoraggio advisory futuro |
+| Production scenario smoke resta verde dopo dependency audit | VERIFIED | `npm run smoke:studio:production:scenario` PASS: 9 checkpoint, room hash `#wbstudio-vcz7o5n`, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors | Non prova backend sync, RLS, persistenza avanzata o ToolHost globale |
+| npm dependency health della build deployed e' pulita | VERIFIED | override merge #160 + `npm ci` in Vercel build: `found 0 vulnerabilities`; local candidate audit gia' `total: 0` | Non sostituisce monitoraggio advisory futuro |
 
 ## Update 2026-07-10 — Studio dependency audit
 
 | Claim | Stato | Evidenza | Limite |
 |---|---|---|---|
 | Baseline npm audit Studio era vulnerabile | VERIFIED | `npm --prefix apps/studio audit --json` prima della patch: 11 vulnerabilita' totali, 9 moderate e 2 high (`undici`, `lodash-es`, `dompurify`, `nanoid`, Mermaid/Langium/Chevrotain chain) | Snapshot npm registry 2026-07-10 |
-| Override npm mirati riducono l'audit a zero | VERIFIED / GREEN_SLICE locale | commit `742ed1e4278053fa25c297a2fba864284bbe31ad`; `npm --prefix apps/studio audit --json` dopo `npm ci`: `total: 0`; `npm ls` mostra `undici@7.28.0`, `dompurify@3.4.11`, `lodash-es@4.18.1`, `nanoid@3.3.12/5.0.9`, `@mermaid-js/parser@1.2.0` | Non sostituisce monitoraggio advisory futuro |
+| Override npm mirati riducono l'audit a zero | VERIFIED | commit `742ed1e4278053fa25c297a2fba864284bbe31ad`; `npm --prefix apps/studio audit --json` dopo `npm ci`: `total: 0`; `npm ls` mostra `undici@7.28.0`, `dompurify@3.4.11`, `lodash-es@4.18.1`, `nanoid@3.3.12/5.0.9`, `@mermaid-js/parser@1.2.0` | Non sostituisce monitoraggio advisory futuro |
 | Studio resta funzionale con gli override | VERIFIED | `npm --prefix apps/studio run typecheck` PASS; Vitest `172 passed | 1 skipped`, `1565 passed | 5 skipped`; `npm --prefix apps/studio run build` PASS; preview locale + `ARDESIA_STUDIO_SMOKE_URL=http://127.0.0.1:4188 npm run smoke:studio:production:scenario` PASS con 9 checkpoint e zero browser/request errors | Scenario locale sul bundle costruito, non deploy production aggiornato |
 | Lint Studio e' release-clean | RED | `npm --prefix apps/studio run lint` fallisce con 172 errori e 5 warning in file preesistenti non toccati dalla slice | Serve slice lint baseline dedicata; non allargare questa patch |
 | Security scan del diff e' pulito | VERIFIED | `python3 bin/ci/test_secret_scan.py` OK; `python3 bin/ci/secret_scan.py` OK; `git diff --check` OK | Non chiude history/rotation/provider risks |
@@ -42,8 +56,8 @@ Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
 | PR #157 e' stata mergiata in `main` | VERIFIED | merge commit `bf511a4420fba6011de31eb5d2b3f886e54fc9d4`; post-merge `ci` e readiness green | Aggiunge smoke base riproducibile, non nuova app behavior |
 | Production smoke base e' riproducibile da comando root | VERIFIED | `npm run smoke:studio:production`: HTTP `200`, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | Prova caricamento e browser health iniziale |
 | PR #158 e' stata mergiata in `main` | VERIFIED | merge commit `d19faae3b03f2d684f26a49430ef11e935cdad97`; post-merge `ci` run `29091615862` success e readiness run `29091615849` success | Gate integrato, non nuova app behavior |
-| Production scenario smoke e' integrato | VERIFIED / GREEN_SLICE | `npm run smoke:studio:production:scenario` PASS su head `14f71b48`: 9 checkpoint, room hash preservato, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88` | Non prova backend sync, RLS o persistenza avanzata |
-| npm dependency health e' pulita | CLOSED_VERIFIED in later slice | Vedere update "dependency audit production deploy": #160 merged, CI verde, Vercel build `found 0 vulnerabilities`, production smoke e scenario PASS | Storico della scenario-gate slice; la chiusura e' successiva |
+| Production scenario smoke e' integrato | VERIFIED | `npm run smoke:studio:production:scenario` PASS su head `14f71b48`: 9 checkpoint, room hash preservato, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88` | Non prova backend sync, RLS o persistenza avanzata |
+| npm dependency health e' pulita | VERIFIED | Vedere update "dependency audit production deploy": #160 merged, CI verde, Vercel build `found 0 vulnerabilities`, production smoke e scenario PASS | Storico della scenario-gate slice; la chiusura e' successiva |
 
 ## Update 2026-07-10 — deploy spine
 
@@ -56,7 +70,7 @@ Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
 | Production deploy `ardesia-lavagna` serve il commit integrato | VERIFIED | deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s`, target `production`, status `Ready`, alias `https://ardesia-lavagna.vercel.app` | Vercel CLI inspect non mostra nel testo il commit metadata, ma il deploy e' stato creato da worktree `8b9fbe1d` con `-m gitCommitSha` |
 | Production HTTP smoke e' verde | VERIFIED | `curl -L https://ardesia-lavagna.vercel.app`: HTTP `200`, title HTML `Ardesia · studio` | HTTP non prova interazione canvas |
 | Production browser smoke e' verde | VERIFIED | Playwright Chromium: HTTP `200`, title `Ardesia · studio`, nessun `console.error`, `pageerror`, failed request o bad response; screenshot `output/playwright/ardesia-lavagna-production.png` | Smoke iniziale, non scenario docente completo |
-| npm dependency health e' pulita | RED / DEFERRED | `npm --prefix apps/studio ci` durante build segnala `11 vulnerabilities (9 moderate, 2 high)` | Non affrontato nello slice deploy |
+| npm dependency health e' pulita | RED | `npm --prefix apps/studio ci` durante build segnala `11 vulnerabilities (9 moderate, 2 high)` | Non affrontato nello slice deploy; chiuso in slice successiva |
 
 ## Evidenze osservate
 
@@ -72,11 +86,12 @@ Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
   non prova il percorso docente.
 - `VERIFIED`: Claude Code embedded `2.1.205`; Codex CLI npm locale non avviabile
   (`ENOENT`), mentre la sessione Desktop è operativa.
-- `SECURITY_RED`: vedere `V1-SECURITY-MATRIX.md`.
+- `RED`: vedere `V1-SECURITY-MATRIX.md` per security history/rotation.
 - `RED`: `python3 bin/ci/secret_scan.py` passa ma non intercetta le superfici
   S-001/S-002; il gate corrente ha copertura insufficiente per questi casi.
 - `VERIFIED`: Principio Zero autentico recuperato in
-  `plugins/elab-tutor/CLAUDE.md:5-16`.
+  `plugins/elab-tutor/automa/context/project-history.md:19-23`; operational
+  extension in `plugins/elab-tutor/CLAUDE.md:5-16`.
 - `RED`: `plugins/elab-tutor/src/services/api.js:126-127` ordina di
   parafrasare/non citare salvo necessità, in conflitto col canon verbatim.
 - `RED`: `apps/studio/sim/simulationSceneModes.ts:57-83` costruisce un solo
@@ -86,7 +101,7 @@ Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
   `Room.tsx:913-927` non attraversa ToolHost grant/capability/RPC/audit.
 - `RED`: nessun sync event-log locale→backend, nessun test RLS tenant-negative,
   reopen non reidrata gli eventi LessonOS e nessun deploy prova `204ffefc`.
-- `ARCHITECTURE_RED`: `ARCHITECTURE-CANON.md:8-17` ordina di usare
+- `RED`: `ARCHITECTURE-CANON.md:8-17` ordina di usare
   `lessonos`/`maestro-studio` per il comportamento, ma il monorepo ha commit più
   recenti. La SoT comportamentale deve essere riverificata prima di scrivere.
 
