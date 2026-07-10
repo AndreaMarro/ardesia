@@ -57,6 +57,8 @@ None of these nodes is a claim of `PILOT_READY` or `V1_GREEN`.
 |---:|---|---|---|---|
 | [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `main` ← `codex/v1-baseline-20260710` | `7c2ae9d6f0487958f463bbe43165c43507d0f4b1` | VERIFIED merged; post-merge `ci` and `studio-preview-readiness` green | Baseline/harness/docs integrated; not V1 green |
 | [#155](https://github.com/AndreaMarro/ardesia/pull/155) | `main` ← `codex/v1-vercel-monorepo-deploy-20260710` | `8b9fbe1dd1a471029dce18b5a72adc15004e0298` | VERIFIED merged; post-merge `ci` run `29089070501` success and readiness run `29089070505` success | Vercel monorepo deploy config integrated |
+| [#156](https://github.com/AndreaMarro/ardesia/pull/156) | `main` ← `codex/v1-deploy-ops-ledger-20260710` | `a5684387ba3073f1aa50d4c5646b0cb17765333a` | VERIFIED merged; post-merge `ci` run `29089978696` success | Deploy evidence recorded; not V1 green |
+| [#157](https://github.com/AndreaMarro/ardesia/pull/157) | `main` ← `codex/v1-production-smoke-gate-20260710` | `bf511a4420fba6011de31eb5d2b3f886e54fc9d4` | VERIFIED merged; post-merge `ci` run `29090602715` success and readiness run `29090602823` success | Production smoke command integrated; base smoke, not scenario proof |
 
 Current production deploy evidence from the #155 merge: `ardesia-lavagna`
 deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s`, alias

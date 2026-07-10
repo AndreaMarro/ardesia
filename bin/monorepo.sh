@@ -24,6 +24,8 @@ Root scripts:
                      Check Vercel readiness plus the no-deploy Studio gate.
   smoke:studio:production
                      Run browser smoke against ARDESIA Studio production URL.
+  smoke:studio:production:scenario
+                     Run golden-path browser scenario against production URL.
   verify             Run core tests plus builds.
   verify:elab        Run ELABTutor tests plus build.
   factory:readonly   Print remote factory health without mutation.
@@ -230,6 +232,16 @@ smoke_studio_production() {
   node apps/studio/scripts/productionSmoke.mjs
 }
 
+smoke_studio_production_scenario() {
+  cd "$ROOT"
+
+  echo "== studio production scenario smoke =="
+  require_file "apps/studio/package.json"
+  require_studio_playwright
+
+  node apps/studio/scripts/productionScenarioSmoke.mjs
+}
+
 # STOP-safe: probe di stato process-only. Non esegue MAI script del repo
 # lessonos (niente eval/gate.sh, niente pytest): solo curl di health endpoint
 # e ispezione launchctl/ps. Se compare una riga hourly/gate/pytest, va
@@ -287,6 +299,7 @@ main() {
     preview-studio-check) preview_studio_check ;;
     preview-studio-preflight) preview_studio_preflight ;;
     smoke-studio-production) smoke_studio_production ;;
+    smoke-studio-production-scenario) smoke_studio_production_scenario ;;
     verify-core) verify_core ;;
     verify-elab) verify_elab ;;
     factory-readonly) factory_readonly ;;
