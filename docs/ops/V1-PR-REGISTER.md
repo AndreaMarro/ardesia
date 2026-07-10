@@ -1,72 +1,63 @@
-# ARDESIA V1 — Pull Request Register
+# ARDESIA V1 - Pull Request Register
 
-Snapshot time: `2026-07-10T03:58:32+02:00`
+Snapshot time: `2026-07-10T15:52:44+0200 CEST`
 Repository: `AndreaMarro/ardesia`
-Evidence base: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
+Evidence base: `82bf629d0d73e837b4c58bed370b7f1d24509316`
+
+Commands:
 
 ```bash
-gh pr list --repo AndreaMarro/ardesia --state open --limit 100 --json number,title,body,isDraft,baseRefName,headRefName,headRefOid,mergeStateStatus,statusCheckRollup,updatedAt,url
+gh pr list --repo AndreaMarro/ardesia --state open --limit 30 --json number,title,isDraft,baseRefName,headRefName,headRefOid,mergeStateStatus,statusCheckRollup,updatedAt,url
+gh pr view 161 --repo AndreaMarro/ardesia --json number,title,state,isDraft,baseRefName,headRefName,headRefOid,mergedAt,mergeCommit,url,statusCheckRollup
+gh run list --repo AndreaMarro/ardesia --commit 82bf629d0d73e837b4c58bed370b7f1d24509316 --limit 10 --json databaseId,workflowName,headSha,status,conclusion,createdAt,updatedAt,url
 ```
 
-Confidence is HIGH for the returned snapshot only. PR heads, checks and merge
-state are volatile; every later head update requires a fresh query.
+Allowed claim labels: `VERIFIED`, `REPORTED`, `INFERRED`, `UNKNOWN`, `RED`,
+`DEFERRED`.
+
+## Current Main
+
+| Claim | Status | Evidence | Limit |
+|---|---|---|---|
+| Current `origin/main` is `82bf629d0d73e837b4c58bed370b7f1d24509316` | VERIFIED | local branch tracks `origin/main`; `gh run list --commit 82bf629d...` | Volatile after future merges |
+| PR #161 is merged | VERIFIED | merge commit `82bf629d0d73e837b4c58bed370b7f1d24509316`; mergedAt `2026-07-10T13:41:07Z` | Docs-only ledger |
+| Post-merge CI for `82bf629d` passed | VERIFIED | `ci` run `29096978340` conclusion `success` | Workflow evidence, not production redeploy |
 
 ## Open PRs
 
-| PR | Base ← head @ OID | Draft | Checks at snapshot | Merge state | Ruling |
+| PR | Base <- head @ OID | Draft | Checks at snapshot | Merge state | Ruling |
 |---:|---|:---:|---|---|---|
-| [#153](https://github.com/AndreaMarro/ardesia/pull/153) | `codex/v1-harness-20260710` ← `codex/v1-repository-truth-20260710@459174f6bdbc` | yes | Engine/Studio/hygiene QUEUED | UNSTABLE | This five-document evidence slice; no CI claim until exact-head completion |
-| [#152](https://github.com/AndreaMarro/ardesia/pull/152) | `codex/v1-baseline-20260710` ← `codex/v1-harness-20260710@cedfa932dc91` | yes | Engine/Studio/hygiene SUCCESS | CLEAN | Harness-only; successful scoped checks are not V1 proof |
-| [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `main` ← `codex/v1-baseline-20260710@ece0138f0ca1` | no | Engine/Studio/hygiene SUCCESS | CLEAN | Baseline docs only; SUCCESS is not V1 proof |
-| [#150](https://github.com/AndreaMarro/ardesia/pull/150) | `main` ← `p30/free-manipulation-trace-v0-20260709-185100@f63219758ab2` | yes | Engine/Studio/hygiene/no-deploy SUCCESS | CLEAN | Title retains `e2e RED_BLOCKER`; body does not; do not infer e2e green from CI |
-| [#6](https://github.com/AndreaMarro/ardesia/pull/6) | `main` ← `codex/add-codex-minimax-worker@9a694c603e99` | yes | none | BLOCKED | Historical proposal; body/content discrepancy reported; no merge |
-| [#5](https://github.com/AndreaMarro/ardesia/pull/5) | `main` ← `docs/canon-2026-06-27@0af9007dcf5d` | yes | none | BLOCKED | Reconcile, never treat as current runtime evidence |
-| [#4](https://github.com/AndreaMarro/ardesia/pull/4) | `main` ← `docs/ops-maps-2026-06-26@f09be5914c46` | yes | none | BLOCKED | Historical maps; dated evidence only |
-| [#2](https://github.com/AndreaMarro/ardesia/pull/2) | `main` ← `docs/knowledge-maps-2026-06-25@3420b180d430` | yes | none | DIRTY | Conflicting historical docs; no merge |
-| [#1](https://github.com/AndreaMarro/ardesia/pull/1) | `main` ← `session/long-2026-06-25@902b98b6d101` | yes | none | DIRTY | Session lineage; no merge |
+| [#150](https://github.com/AndreaMarro/ardesia/pull/150) | `main` <- `p30/free-manipulation-trace-v0-20260709-185100@f63219758ab2` | yes | `ci` + readiness `SUCCESS` | CLEAN | VERIFIED CI, RED for e2e readiness because title still says `e2e RED_BLOCKER` |
+| [#6](https://github.com/AndreaMarro/ardesia/pull/6) | `main` <- `codex/add-codex-minimax-worker@9a694c603e99` | yes | none | BLOCKED | DEFERRED historical proposal |
+| [#5](https://github.com/AndreaMarro/ardesia/pull/5) | `main` <- `docs/canon-2026-06-27@0af9007dcf5d` | yes | none | BLOCKED | DEFERRED historical docs |
+| [#4](https://github.com/AndreaMarro/ardesia/pull/4) | `main` <- `docs/ops-maps-2026-06-26@f09be5914c46` | yes | none | BLOCKED | DEFERRED historical maps |
+| [#2](https://github.com/AndreaMarro/ardesia/pull/2) | `main` <- `docs/knowledge-maps-2026-06-25@3420b180d430` | yes | none | DIRTY | DEFERRED conflicting historical docs |
+| [#1](https://github.com/AndreaMarro/ardesia/pull/1) | `main` <- `session/long-2026-06-25@902b98b6d101` | yes | none | DIRTY | DEFERRED session lineage |
 
-PR #153 is stacked on #152. Its queued checks are independent; it inherits no
-CI conclusion from #152 even though all product code comes from that parent.
+## Merged V1 Stack 2026-07-10
 
-## Interpretation rules
+| PR | Merge commit | Status | Ruling |
+|---:|---|---|---|
+| [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `7c2ae9d6f0487958f463bbe43165c43507d0f4b1` | VERIFIED | Baseline/harness/docs integrated; not V1 green |
+| [#155](https://github.com/AndreaMarro/ardesia/pull/155) | `8b9fbe1dd1a471029dce18b5a72adc15004e0298` | VERIFIED | Vercel monorepo deploy config integrated |
+| [#156](https://github.com/AndreaMarro/ardesia/pull/156) | `a5684387ba3073f1aa50d4c5646b0cb17765333a` | VERIFIED | Deploy evidence recorded; docs only |
+| [#157](https://github.com/AndreaMarro/ardesia/pull/157) | `bf511a4420fba6011de31eb5d2b3f886e54fc9d4` | VERIFIED | Production smoke command integrated |
+| [#158](https://github.com/AndreaMarro/ardesia/pull/158) | `d19faae3b03f2d684f26a49430ef11e935cdad97` | VERIFIED | Production scenario smoke gate integrated |
+| [#159](https://github.com/AndreaMarro/ardesia/pull/159) | `063b609c6f8a42e704a75f43e3f4256aaf28e662` | VERIFIED | Scenario gate ledger corrected |
+| [#160](https://github.com/AndreaMarro/ardesia/pull/160) | `ce209b310c8c3f7432d2c8878df0d235386ac9f9` | VERIFIED | Studio dependency audit hardening integrated and production deployed |
+| [#161](https://github.com/AndreaMarro/ardesia/pull/161) | `82bf629d0d73e837b4c58bed370b7f1d24509316` | VERIFIED | Dependency deploy ledger recorded; docs only, no redeploy |
 
-- `SUCCESS` applies only to the named workflow, exact head OID, and code it ran.
-- Draft, mergeable, clean, and successful checks are independent properties.
-- `no-deploy-check` proves that the workflow did not deploy; it is not deploy
-  evidence.
-- A stacked branch never inherits `pr_ci: VERIFIED` from its parent or another
-  branch at the same OID.
-- No PR may auto-merge to `main`; deploy and ratification require Andrea.
+Current production deploy evidence after #160 remains `ardesia-lavagna`
+deployment `dpl_3LmGUXKofdHtUW2s8UawXrekEW89`, alias
+`https://ardesia-lavagna.vercel.app`, HTTP 200, base smoke PASS and scenario
+smoke PASS with 9 checkpoints. This is deploy + scenario-smoke evidence only,
+not V1 or classroom readiness.
+
+## Interpretation Rules
+
+- `SUCCESS` applies only to the named workflow, exact head OID and code it ran.
+- Draft, mergeable, clean and successful checks are independent properties.
+- `no-deploy-check` proves that the workflow did not deploy.
+- No direct push to `main`; integration still goes through PR.
 - Any head update invalidates this snapshot until checks are tied to the new
   OID.
-
-## Current V1 stack
-
-```text
-origin/main@204ffefc
-  └─ #151 baseline docs @ ece0138f
-       └─ #152 Claude harness @ cedfa932
-            └─ #153 repository/didactic truth @ 459174f6
-```
-
-None of these nodes is a claim of `PILOT_READY` or `V1_GREEN`.
-
-## Post-snapshot merged stack 2026-07-10
-
-| PR | Base ← head | Merge commit | Status | Ruling |
-|---:|---|---|---|---|
-| [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `main` ← `codex/v1-baseline-20260710` | `7c2ae9d6f0487958f463bbe43165c43507d0f4b1` | VERIFIED merged; post-merge `ci` and `studio-preview-readiness` green | Baseline/harness/docs integrated; not V1 green |
-| [#155](https://github.com/AndreaMarro/ardesia/pull/155) | `main` ← `codex/v1-vercel-monorepo-deploy-20260710` | `8b9fbe1dd1a471029dce18b5a72adc15004e0298` | VERIFIED merged; post-merge `ci` run `29089070501` success and readiness run `29089070505` success | Vercel monorepo deploy config integrated |
-| [#156](https://github.com/AndreaMarro/ardesia/pull/156) | `main` ← `codex/v1-deploy-ops-ledger-20260710` | `a5684387ba3073f1aa50d4c5646b0cb17765333a` | VERIFIED merged; post-merge `ci` run `29089978696` success | Deploy evidence recorded; not V1 green |
-| [#157](https://github.com/AndreaMarro/ardesia/pull/157) | `main` ← `codex/v1-production-smoke-gate-20260710` | `bf511a4420fba6011de31eb5d2b3f886e54fc9d4` | VERIFIED merged; post-merge `ci` run `29090602715` success and readiness run `29090602823` success | Production smoke command integrated; base smoke, not scenario proof |
-| [#158](https://github.com/AndreaMarro/ardesia/pull/158) | `main` ← `codex/v1-scenario-smoke-gate-20260710` | `d19faae3b03f2d684f26a49430ef11e935cdad97` | VERIFIED merged; post-merge `ci` run `29091615862` success and readiness run `29091615849` success | Production scenario smoke gate integrated; not V1 green |
-| [#159](https://github.com/AndreaMarro/ardesia/pull/159) | `main` ← `codex/v1-scenario-gate-ledger-20260710` | `063b609c6f8a42e704a75f43e3f4256aaf28e662` | VERIFIED merged; post-merge `ci` run `29092125905` success | Scenario gate ledger corrected; docs only, not V1 green |
-| [#160](https://github.com/AndreaMarro/ardesia/pull/160) | `main` ← `codex/v1-studio-dependency-audit-20260710` | `ce209b310c8c3f7432d2c8878df0d235386ac9f9` | VERIFIED merged; post-merge `ci` run `29095910144` success and readiness run `29095910290` success | Studio dependency audit hardening integrated; not V1 green |
-
-Current production deploy evidence after #160: `ardesia-lavagna` deployment
-`dpl_3LmGUXKofdHtUW2s8UawXrekEW89`, alias
-`https://ardesia-lavagna.vercel.app`, HTTP 200, `npm run
-smoke:studio:production` PASS and `npm run
-smoke:studio:production:scenario` PASS with 9 checkpoints. This is
-dependency-audit deploy + scenario-smoke evidence only, not `PILOT_READY` or
-`V1_GREEN`.
