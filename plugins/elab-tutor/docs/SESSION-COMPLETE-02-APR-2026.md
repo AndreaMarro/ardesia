@@ -132,7 +132,7 @@ Tutte con CORS ristretto + API key in header + RAG integrato:
 |----------|--------|
 | Supabase Project | `euqpdueopmlllqjmqnyb` |
 | Supabase URL | `https://euqpdueopmlllqjmqnyb.supabase.co` |
-| Gemini API Key | `AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g` |
+| Gemini API Key | `[REDACTED_GOOGLE_API_KEY]` |
 | VPS | `72.60.129.50` (Ollama :11434, Voxtral :8880) |
 | Admin Panel | `#admin` → password: `password` (CAMBIARE!) |
 | Supabase Token | `sbp_REVOKED_20260423_REDACTED` |

@@ -25,7 +25,7 @@ POST https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-tts
 
 # Supabase DB (progetto sessioni)
 URL: https://vxvqalmxqtezvgiboxyv.supabase.co
-Anon Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4dnFhbG14cXRlenZnaWJveHl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4Njk1NjAsImV4cCI6MjA4MzQ0NTU2MH0.FDBSCTOajfu0C3wWWfAQoM8qLQcmodxI5k6H_pkJOhQ
+Anon Key: [REDACTED_JWT]
 
 # Compiler
 POST https://n8n.srv1022317.hstgr.cloud/webhook/elab-compile
