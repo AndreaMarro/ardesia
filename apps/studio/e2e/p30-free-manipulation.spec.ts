@@ -19,6 +19,52 @@
 //   (→ onClick), etichettato come tale.
 // NON dichiara Tinkercad parity completa: è la trace v0, con contratto DOM stabile.
 import { test, expect, type Locator, type Page } from "@playwright/test"
+import { mkdir, rm, stat, writeFile } from "node:fs/promises"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
+
+const P30_LOCK_DIR = join(tmpdir(), "ardesia-p30-free-manipulation.lock")
+const P30_LOCK_STALE_MS = 180_000
+
+// This scenario is a long, stateful Excalidraw + simulator + reload trace.
+// Playwright still schedules repeat-each cases across workers, so guard this
+// file with a cross-worker lock: the gate measures product behavior, not local
+// CPU contention across multiple canvas-heavy browsers.
+async function acquireP30TraceLock(label: string) {
+  const startedAt = Date.now()
+  while (true) {
+    try {
+      await mkdir(P30_LOCK_DIR)
+      await writeFile(join(P30_LOCK_DIR, "owner"), `${process.pid} ${label}\n`)
+      return
+    } catch (error) {
+      if ((error as { code?: string }).code !== "EEXIST") throw error
+      try {
+        const info = await stat(P30_LOCK_DIR)
+        if (Date.now() - info.mtimeMs > P30_LOCK_STALE_MS) {
+          await rm(P30_LOCK_DIR, { recursive: true, force: true })
+          continue
+        }
+      } catch {
+        // The lock disappeared between mkdir/stat; retry.
+        continue
+      }
+      if (Date.now() - startedAt > P30_LOCK_STALE_MS) {
+        throw new Error("timeout waiting for p30 free-manipulation e2e lock")
+      }
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+  }
+}
+
+test.beforeEach(async ({}, testInfo) => {
+  testInfo.setTimeout(120_000)
+  await acquireP30TraceLock(`${testInfo.title} repeat=${testInfo.repeatEachIndex}`)
+})
+
+test.afterEach(async () => {
+  await rm(P30_LOCK_DIR, { recursive: true, force: true })
+})
 
 function collectErrors(page: Page): string[] {
   const errors: string[] = []
@@ -43,16 +89,16 @@ async function waitAppReady(page: Page) {
 }
 
 async function openRoom(page: Page, room: string) {
-  // Room isolata per test (supportata: cfr. saved-lessons.spec.ts `?room=`): niente
-  // pollution della room di default tra run/repeat-each. Il reload conserva la query.
-  await page.goto(`/?room=${room}`)
+  // Room isolata per test: Room.tsx legge location.hash, non `?room=`.
+  // Usare `/#${room}` rende l'isolamento reale e il reload conserva la stessa room.
+  await page.goto(`/#${room}`)
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await waitAppReady(page)
 }
 
 async function insertSimulationPlugin(page: Page, room: string) {
   await openRoom(page, room)
-  await page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }).click()
+  await domClick(page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }))
   await expect(
     page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first(),
   ).toBeVisible({ timeout: 15_000 })
@@ -129,7 +175,10 @@ async function openLegacyDetails(page: Page) {
 test("P30 free manipulation trace: palette → add → solve → break → diagnostic → save/reopen", async ({
   page,
 }, testInfo) => {
-  testInfo.setTimeout(60_000)
+  // The route is intentionally end-to-end and reloads Excalidraw + the
+  // embedded simulator. Parallel repeat-each runs can exceed 60s on a loaded
+  // local runner, while selector/assertion timeouts below remain tight.
+  testInfo.setTimeout(120_000)
   const consoleErrors = collectErrors(page)
   const room = `p30-free-${testInfo.parallelIndex}-${testInfo.repeatEachIndex}`
   await insertSimulationPlugin(page, room)
@@ -192,7 +241,7 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   //    l'embed inserito non è ancora salvato. Poi l'embed si riapre con lo
   //    stato persistito e lo STESSO digest topologico (open-circuit preservato).
   await page.waitForTimeout(1200)
-  await page.reload() // conserva ?room=… → riapre la stessa lavagna persistita
+  await page.reload() // conserva #room → riapre la stessa lavagna persistita
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   await waitAppReady(page)
   await expect(page.locator('[data-elab-core-canvas-mounted="true"]').first()).toBeVisible({
