@@ -8,7 +8,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SCREENSHOTS = path.join(__dirname, '..', 'screenshots', 'session18');
 const BASE = 'https://elab-builder.vercel.app';
-const CREDS = { email: 'debug@test.com', password: 'Xk9#mL2!nR4' };
+const CREDS = {
+  email: (process.env.ELAB_E2E_EMAIL || '').trim(),
+  password: (process.env.ELAB_E2E_PASSWORD || '').trim(),
+};
+
+if (!CREDS.email || !CREDS.password) {
+  throw new Error('ELAB_E2E_EMAIL and ELAB_E2E_PASSWORD are required');
+}
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function dismissOverlays(page) {
