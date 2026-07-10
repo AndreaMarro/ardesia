@@ -1,6 +1,6 @@
 # ARDESIA V1 — Pull Request Register
 
-Snapshot time: `2026-07-10T03:56:27+02:00`
+Snapshot time: `2026-07-10T03:58:32+02:00`
 Repository: `AndreaMarro/ardesia`
 Evidence base: `cedfa932dc91088e6bd30af49ed0f648157c6e1b`
 
@@ -15,6 +15,7 @@ state are volatile; every later head update requires a fresh query.
 
 | PR | Base ← head @ OID | Draft | Checks at snapshot | Merge state | Ruling |
 |---:|---|:---:|---|---|---|
+| [#153](https://github.com/AndreaMarro/ardesia/pull/153) | `codex/v1-harness-20260710` ← `codex/v1-repository-truth-20260710@459174f6bdbc` | yes | Engine/Studio/hygiene QUEUED | UNSTABLE | This five-document evidence slice; no CI claim until exact-head completion |
 | [#152](https://github.com/AndreaMarro/ardesia/pull/152) | `codex/v1-baseline-20260710` ← `codex/v1-harness-20260710@cedfa932dc91` | yes | Engine/Studio/hygiene SUCCESS | CLEAN | Harness-only; successful scoped checks are not V1 proof |
 | [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `main` ← `codex/v1-baseline-20260710@ece0138f0ca1` | no | Engine/Studio/hygiene SUCCESS | CLEAN | Baseline docs only; SUCCESS is not V1 proof |
 | [#150](https://github.com/AndreaMarro/ardesia/pull/150) | `main` ← `p30/free-manipulation-trace-v0-20260709-185100@f63219758ab2` | yes | Engine/Studio/hygiene/no-deploy SUCCESS | CLEAN | Title retains `e2e RED_BLOCKER`; body does not; do not infer e2e green from CI |
@@ -24,10 +25,8 @@ state are volatile; every later head update requires a fresh query.
 | [#2](https://github.com/AndreaMarro/ardesia/pull/2) | `main` ← `docs/knowledge-maps-2026-06-25@3420b180d430` | yes | none | DIRTY | Conflicting historical docs; no merge |
 | [#1](https://github.com/AndreaMarro/ardesia/pull/1) | `main` ← `session/long-2026-06-25@902b98b6d101` | yes | none | DIRTY | Session lineage; no merge |
 
-The current branch `codex/v1-repository-truth-20260710@cedfa932` had no PR at
-this snapshot. Its PR number must be appended after creation; absence here is
-not permission to inherit checks from #152 even though the commit is initially
-the same.
+PR #153 is stacked on #152. Its queued checks are independent; it inherits no
+CI conclusion from #152 even though all product code comes from that parent.
 
 ## Interpretation rules
 
@@ -47,7 +46,7 @@ the same.
 origin/main@204ffefc
   └─ #151 baseline docs @ ece0138f
        └─ #152 Claude harness @ cedfa932
-            └─ repository-truth branch (this five-document slice)
+            └─ #153 repository/didactic truth @ 459174f6
 ```
 
 None of these nodes is a claim of `PILOT_READY` or `V1_GREEN`.
