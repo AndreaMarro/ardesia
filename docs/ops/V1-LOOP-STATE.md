@@ -1,30 +1,32 @@
 # ARDESIA V1 — loop state
 
-## Current overlay — 2026-07-10 after P34 local remediation
+## Current overlay — 2026-07-10 after P35 browser regression
 
 | Field | Status | Evidence | Limit |
 |---|---|---|---|
 | Canonical repo candidate | VERIFIED | `AndreaMarro/ardesia`; `git fetch --prune origin` in `/Users/andreamarro/VOLUME 3/ardesia` | Behavioral SoT across satellite/legacy repos still not fully reconciled |
-| Current `origin/main` | VERIFIED | `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; PR #165 merge commit | CI-green, not production-deploy-proven |
+| Current `origin/main` | VERIFIED | `6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; PR #166 merge commit | CI-green, not production-deploy-proven |
 | PR #150 | VERIFIED | merged at `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and `studio-preview-readiness` success | P30/P32 trace is not global Tinkercad parity |
 | PR #163 | VERIFIED | merged at `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | P0 browser prompt/book anchor improvement only; tutor e2e remains UNKNOWN |
 | PR #164 | VERIFIED | merged at `177f5c731ffc68fd69a86573ddf08670d3d5226f`; post-merge `ci` run `29103272760` success | docs-only loop rewrite; no product-code claim |
 | PR #165 | VERIFIED | merged at `e61e7dcd5b842351f3ee8ae3a671ad7e158deec6`; post-merge `ci` run `29104077469` success | docs-only P33 audit; no deploy proof |
+| PR #166 | VERIFIED | merged at `6f9665b12b64d2fdaedcf28a471391f758cd8e9d`; post-merge `ci` run `29105802058` and `studio-preview-readiness` run `29105802133` success | P34 ToolHost write-back remediation; no deploy proof |
 | Dirty main checkout | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` has modified/untracked files | Do not use as write lane |
-| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p34-simulation-toolhost-wire-20260710`, based on `origin/main@e61e7dcd` | Reused worktree because disk is low |
-| Disk headroom | VERIFIED | `df -h`: about 156 MiB available | Avoid creating large new worktrees, installs or builds; local build deferred to PR CI |
+| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/p35-p30-room-audit-regression-20260710`, based on `origin/main@6f9665b1` | Reused worktree |
+| Disk headroom | VERIFIED | `df -h`: about 7.9 GiB available after cleanup outside this slice | Enough for focused e2e; avoid large installs/new worktrees |
 | Prompt rewrite artifacts | VERIFIED | PR #164 merged; first A7 review found six issues; follow-up A7 returned PASS | Docs-only |
 | P33 result | HONEST_RED | `V1-INTEGRATION-MAP.md`: Simulation Plugin write path uses direct callbacks before ToolHost JSON-RPC/capability/audit | Next remediation is P34 ToolHost wire |
-| P34 result | GREEN_SLICE_LOCAL | `persistEmbedStateThroughToolHost`; break-button audit, cross-owner denied audit, Room denial reporting, concurrent audit serialization; targeted 11/11; adjacent ToolHost/caps 63/63; typecheck pass | PR CI still required; P30 browser e2e not rerun locally due disk |
-| Next slice | VERIFIED | `V1-NEXT.md` names one P35 P30 browser regression/audit proof slice | Not backend/RLS/export work |
+| P34 result | GREEN_SLICE | PR #166 merged; `persistEmbedStateThroughToolHost`; break-button audit, cross-owner denied audit, Room denial reporting, concurrent audit serialization; CI green | Deploy proof remains separate |
+| P35 result | GREEN_SLICE_LOCAL | P30 browser e2e asserts `board.write` audit from browser localStorage after break and after reload; `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` PASS 1/1; typecheck, diff check and secret scans pass | PR CI still required |
+| Next slice | VERIFIED | `V1-NEXT.md` names `P36-CURRENT-SHA-DEPLOY-PROOF-001` | Deploy proof, not new product feature |
 | Security | RED/UNKNOWN | `V1-SECURITY-MATRIX.md`: S-002 client-side API key boundary, ToolHost sandbox/origin, RLS/history/rotation | Secret scans passing do not close these |
-| Deploy proof for current SHA | UNKNOWN | latest current `main@e61e7dcd` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
-| Local P34 gates | VERIFIED | targeted 11/11; ToolHost/caps combined 74/74; `npm --prefix apps/studio run typecheck`; `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | local build and browser e2e deferred to PR CI because disk is at 156 MiB free |
+| Deploy proof for current SHA | UNKNOWN | latest current `main@6f9665b1` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
+| Local P35 gates | VERIFIED | P30 e2e `1 passed`; `npm --prefix apps/studio run typecheck`; `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | local build deferred to PR CI unless needed |
 
 Historical entries below are retained as evidence trail and may contain stale
 state superseded by this overlay. They are not active next-slice instructions.
 
-Ultimo aggiornamento: 2026-07-10T16:01:09+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T18:32:00+0200 CEST.
 
 ## Historical Superseded Identity
 

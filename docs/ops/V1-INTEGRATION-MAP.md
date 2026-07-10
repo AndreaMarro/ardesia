@@ -68,3 +68,26 @@ embed marker.
 Next boundary: prove the browser Room/P30 path still passes with the governed
 write-back and decide whether to add a dedicated browser assertion for audit
 visibility.
+
+## P35 Result
+
+Status: `GREEN_SLICE_LOCAL`.
+
+Browser path audited: P30 free manipulation trace in Room, after P34 governed
+write-back.
+
+`apps/studio/e2e/p30-free-manipulation.spec.ts` now reads the Simulation
+Plugin ToolHost audit log from browser localStorage, baselines `board.write` /
+`ok` entries before `break-connections`, asserts the count increases after the
+break, and asserts the same post-break audit snapshot is still present after
+reload. This keeps the existing P30 save/reopen proof and adds browser-level
+audit visibility without introducing runtime code.
+
+| Boundary | Status | Evidence | Limit |
+|---|---|---|---|
+| User/browser path | VERIFIED | `npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line` PASS 1/1 | local browser proof; PR CI still required |
+| ToolHost audit visibility | VERIFIED | P35 e2e parses `maestro:tools/io.ardesia.simulation/audit.jsonl`, proves `board.write`/`ok` count increases after break, and proves the same snapshot remains after reload | localStorage-backed audit only; remote/backend audit still not proven |
+| Persistence/reopen | VERIFIED | existing P30 assertions still compare broken digest after reload and assert solve-kind `error` plus placement count `1` | does not prove backend sync |
+
+Next boundary: current-SHA deploy proof. `main@6f9665b1` is CI-green, but
+production/preview provenance for that SHA is still `UNKNOWN`.
