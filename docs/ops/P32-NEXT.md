@@ -24,7 +24,20 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
    a. ~~jumper verso foro occupato~~ **RIGETTATO con evidenza (D6-bis)**: fisica
       un-foro-un-reoforo; le affordance equivalenti (pin via tie, jumper via rail)
       esistono già e ora sono LOCKED da 3 test invarianti;
-   b. cablare `onComponentAdd` host→plugin canvas (palette del canvas plugin viva);
+   b. ~~cablare `onComponentAdd` host→plugin canvas~~ **DONE (slice 2b,
+      branch claude/p32b-palette-live-20260710)**: host cabla `onComponentAdd`
+      in `ElabCoreCanvasMount` → `place-component` nella scena (componente
+      FLOTTANTE: zero pinAssignments, inerte finché non cablato — test prova
+      che il circuito del libro NON degrada, 15.3 mA invariata). Attiva
+      tap-to-place, drag-drop, Ctrl+V paste, Ctrl+D duplica già scritti nel
+      plugin. Deny fail-soft (`null`): `battery9v` (design d ancora aperto),
+      `wire` (D6: cavo=connection → onConnectionAdd), `breadboard-half`
+      (anchor non deciso), tipi non catalogati. Verificato in browser reale:
+      place → 4→5 componenti, `lastOp …:place:led-libero-1`, reload → stato
+      ripristinato. Follow-up spawned: **b-bis — palette UI nel canvas
+      embeddable**: il trigger oggi è l'evento `elab-component-selected`
+      (palette esterna/AI/tutor) o paste/duplica/drop; le chips
+      ComponentPalette/ComponentDrawer del plugin NON sono montate nell'embed;
    c. wire endpoint-retarget (manca anche nel plugin canvas);
    d. battery9v in palette — richiede decisione solver multi-sorgente (D6) = design;
    e. undo/redo PIENO sulle operazioni (envelope già strutturati) — l'ANNULLA
