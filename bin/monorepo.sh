@@ -22,6 +22,8 @@ Root scripts:
                      Run the no-deploy Studio preview readiness gate.
   preview:studio:preflight
                      Check Vercel readiness plus the no-deploy Studio gate.
+  smoke:studio:production
+                     Run browser smoke against ARDESIA Studio production URL.
   verify             Run core tests plus builds.
   verify:elab        Run ELABTutor tests plus build.
   factory:readonly   Print remote factory health without mutation.
@@ -134,6 +136,13 @@ require_studio_deps() {
   fi
 }
 
+require_studio_playwright() {
+  if [[ ! -d "$ROOT/apps/studio/node_modules/@playwright/test" ]]; then
+    echo "miss  apps/studio Playwright dependency (run npm --prefix apps/studio ci, or npm run bootstrap, first)"
+    return 1
+  fi
+}
+
 verify_core() {
   test_core
   typecheck_core
@@ -211,6 +220,16 @@ preview_studio_preflight() {
   echo "ready: local build and Vercel preflight passed. Preview deploy still requires GATE-Andrea."
 }
 
+smoke_studio_production() {
+  cd "$ROOT"
+
+  echo "== studio production smoke =="
+  require_file "apps/studio/package.json"
+  require_studio_playwright
+
+  node apps/studio/scripts/productionSmoke.mjs
+}
+
 # STOP-safe: probe di stato process-only. Non esegue MAI script del repo
 # lessonos (niente eval/gate.sh, niente pytest): solo curl di health endpoint
 # e ispezione launchctl/ps. Se compare una riga hourly/gate/pytest, va
@@ -267,6 +286,7 @@ main() {
     build-elab) build_elab ;;
     preview-studio-check) preview_studio_check ;;
     preview-studio-preflight) preview_studio_preflight ;;
+    smoke-studio-production) smoke_studio_production ;;
     verify-core) verify_core ;;
     verify-elab) verify_elab ;;
     factory-readonly) factory_readonly ;;
