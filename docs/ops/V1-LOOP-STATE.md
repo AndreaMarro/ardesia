@@ -1,19 +1,29 @@
 # ARDESIA V1 — loop state
 
-Ultimo aggiornamento: 2026-07-10T15:17:44+0200 CEST.
+Ultimo aggiornamento: 2026-07-10T15:35:17+0200 CEST.
 
 ## Identità
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-dependency-audit-20260710`
-- Branch corrente: `codex/v1-studio-dependency-audit-20260710`
-- `origin/main` verificato: `063b609c6f8a42e704a75f43e3f4256aaf28e662`
+- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-dependency-deploy-20260710`
+- Branch corrente: `codex/v1-dependency-audit-deploy-ledger-20260710`
+- `origin/main` verificato: `ce209b310c8c3f7432d2c8878df0d235386ac9f9`
 - Macro-fase: 1 — integrazione, production gate minimi e hardening supply-chain
-- Writer: singolo, scope `apps/studio/package.json`,
-  `apps/studio/package-lock.json`, `docs/ops` per questo aggiornamento
-- Stato terminale corrente: `DEPENDENCY_AUDIT_GREEN_SLICE` sul candidato
-  `742ed1e4`; `SECURITY_PARTIAL`, lint baseline RED e `ARCHITECTURE_RED`
-  restano aperti per V1 globale.
+- Writer: singolo, scope `docs/ops` per questo aggiornamento post-deploy
+- Stato terminale corrente: `DEPENDENCY_AUDIT_DEPLOYED_GREEN_SLICE` su
+  `main@ce209b310c8c3f7432d2c8878df0d235386ac9f9`; `SECURITY_PARTIAL`,
+  lint baseline RED e `ARCHITECTURE_RED` restano aperti per V1 globale.
+
+## Update 2026-07-10 — dependency audit production deploy
+
+| Claim | Stato | Evidenza | Limite |
+|---|---|---|---|
+| PR #160 e' stata mergiata in `main` | VERIFIED | merge commit `ce209b310c8c3f7432d2c8878df0d235386ac9f9`; mergedAt `2026-07-10T13:23:56Z` | Integra hardening supply-chain; non e' V1 globale |
+| `main@ce209b31` ha CI post-merge verde | VERIFIED | `ci` run `29095910144` success; `studio-preview-readiness` run `29095910290` success | Workflow evidence; non prova browser production da solo |
+| Production `ardesia-lavagna` e' stata redeployata dopo il merge #160 | VERIFIED | `vercel build --prod` sul project id `prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98`; `npm ci` durante build riporta `found 0 vulnerabilities`; deploy `dpl_3LmGUXKofdHtUW2s8UawXrekEW89` READY; alias `https://ardesia-lavagna.vercel.app` | Il primo build tentativo aveva link locale errato; e' stato relinkato al project id canonico prima del deploy production |
+| Production HTTP e browser base sono verdi | VERIFIED | `curl -L https://ardesia-lavagna.vercel.app`: HTTP `200`; `npm run smoke:studio:production` PASS, title `Ardesia · studio`, hash `#wbstudio-tkin23m`, zero console/page/request/bad same-origin errors | Smoke base, non scenario completo |
+| Production scenario smoke resta verde dopo dependency audit | VERIFIED / GREEN_SLICE | `npm run smoke:studio:production:scenario` PASS: 9 checkpoint, room hash `#wbstudio-vcz7o5n`, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors | Non prova backend sync, RLS, persistenza avanzata o ToolHost globale |
+| npm dependency health della build deployed e' pulita | VERIFIED / GREEN_SLICE | override merge #160 + `npm ci` in Vercel build: `found 0 vulnerabilities`; local candidate audit gia' `total: 0` | Non sostituisce monitoraggio advisory futuro |
 
 ## Update 2026-07-10 — Studio dependency audit
 
@@ -33,7 +43,7 @@ Ultimo aggiornamento: 2026-07-10T15:17:44+0200 CEST.
 | Production smoke base e' riproducibile da comando root | VERIFIED | `npm run smoke:studio:production`: HTTP `200`, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | Prova caricamento e browser health iniziale |
 | PR #158 e' stata mergiata in `main` | VERIFIED | merge commit `d19faae3b03f2d684f26a49430ef11e935cdad97`; post-merge `ci` run `29091615862` success e readiness run `29091615849` success | Gate integrato, non nuova app behavior |
 | Production scenario smoke e' integrato | VERIFIED / GREEN_SLICE | `npm run smoke:studio:production:scenario` PASS su head `14f71b48`: 9 checkpoint, room hash preservato, ELAB Lab mounted, citazione `Vol. 1, p. 29`, solve ok, Simulation Plugin canvas e core SVG visibili, `catalogSummary=4/88` | Non prova backend sync, RLS o persistenza avanzata |
-| npm dependency health e' pulita | RED / DEFERRED | baseline invariata: install/build Studio segnala vulnerabilita' moderate/high | Slice dependency audit dedicata resta necessaria |
+| npm dependency health e' pulita | CLOSED_VERIFIED in later slice | Vedere update "dependency audit production deploy": #160 merged, CI verde, Vercel build `found 0 vulnerabilities`, production smoke e scenario PASS | Storico della scenario-gate slice; la chiusura e' successiva |
 
 ## Update 2026-07-10 — deploy spine
 

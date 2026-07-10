@@ -1,5 +1,34 @@
 # ARDESIA — Vercel map
 
+## Update 2026-07-10 15:30-15:33 CEST - dependency audit production deploy
+
+Deployment action autorizzata da Andrea nella sessione corrente.
+
+Verified in this pass:
+
+| Surface | Probe | Result | Interpretation |
+|---|---|---:|---|
+| `main` | PR #160 merge + post-merge checks | OK | `main@ce209b310c8c3f7432d2c8878df0d235386ac9f9`; `ci` run `29095910144` success; `studio-preview-readiness` run `29095910290` success. |
+| `ardesia-lavagna` | `vercel link --yes --team team_23uD0RgdInaTaOPEL0EGltup --project prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98` | OK | Local deploy worktree linked to canonical project `ardesia-lavagna`, project id `prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98`. |
+| `ardesia-lavagna` | `vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` | OK | Production build completed from monorepo root; build-time `npm ci` reported `found 0 vulnerabilities`. |
+| `ardesia-lavagna` | `vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` | READY | Production deployment `dpl_3LmGUXKofdHtUW2s8UawXrekEW89`, URL `https://ardesia-lavagna-43raj4p0w-andreas-projects-6d4e9791.vercel.app`. |
+| `https://ardesia-lavagna.vercel.app` | `vercel inspect` | READY | Alias points at the post-#160 production deployment. |
+| `https://ardesia-lavagna.vercel.app` | `curl -L` | HTTP 200 | Public production alias reachable after dependency-audit deploy. |
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production` | PASS | Title `Ardesia · studio`; no `console.error`, `pageerror`, failed request, or same-origin bad response. |
+| `https://ardesia-lavagna.vercel.app` | `npm run smoke:studio:production:scenario` | PASS | 9 checkpoints, room hash preserved, ELAB Lab mounted, citation `Vol. 1, p. 29`, Simulation Plugin canvas/core SVG visible, `catalogSummary=4/88`, zero browser/request errors. |
+
+Limitations:
+
+- This closes the current npm audit deploy risk for `main@ce209b31`; it does
+  not prove future advisory safety.
+- This does not prove backend sync, RLS tenant isolation, full ToolHost
+  capability coverage, source-of-truth cutover, or `V1_GREEN`.
+- `npm --prefix apps/studio run lint` remains RED with the previously recorded
+  pre-existing lint baseline.
+- A first build attempt in this worktree used an unintended local Vercel link;
+  the worktree was relinked to the canonical project id before the production
+  build and deploy recorded above.
+
 ## Update 2026-07-10 13:25-13:27 CEST - monorepo production deploy
 
 Deployment action autorizzata da Andrea nella sessione corrente.
