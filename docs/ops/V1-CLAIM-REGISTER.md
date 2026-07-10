@@ -1,5 +1,23 @@
 # ARDESIA V1 — claim register
 
+## Current overlay — 2026-07-10 after PR #163
+
+| ID | Claim | Stato | Evidenza | Confidenza / limite |
+|---|---|---|---|---|
+| C-043 | `origin/main` corrente e' `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d` | VERIFIED | `git fetch --prune origin`; `git rev-parse origin/main`; log mostra merge PR #163 | alta; CI-green, non deploy-proof |
+| C-044 | PR #150 non e' piu' draft/aperta | VERIFIED | `gh pr view 150`: state `MERGED`, merge commit `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and readiness success | alta; non prova V1 globale |
+| C-045 | PR #163 e' integrata in `main` | VERIFIED | `gh pr view 163`: state `MERGED`, merge commit `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | alta; docs/prompt/P0 runtime slice only |
+| C-046 | Browser-side P0 prompt conflict "non copiare, non citare se non serve" e' stato rimosso | VERIFIED | PR #163 commit `b43d14ed`; changed `plugins/elab-tutor/src/services/api.js`; `tests/unit/api.test.js` 12/12 pass and `unlimCitesBook.test.js` 21/21 pass locally before merge; CI green after merge | non prova edge/backend prompt or full tutor journey |
+| C-047 | `ensureBookCitation` now appends Vol./pag. anchors for known-experiment class replies while preserving `[AZIONE:]` payloads | VERIFIED | PR #163; `unlimCitesBook.test.js` 21 tests pass; post-merge CI green | does not prove every provider path calls it |
+| C-048 | Current `main@9b7342fc` is deployed to production | UNKNOWN | no production deploy/smoke tied to `9b7342fc` observed in this turn | do not advertise current deploy proof |
+| C-049 | `.claude` regate skill, A1/A7 agents and Claude PreToolUse hook are present in repo | VERIFIED | `find .claude`; `.claude/skills/ardesia-regate/SKILL.md`; `.claude/agents/*.md`; `.claude/settings.json` | file presence only; runtime enforcement in Codex is UNKNOWN |
+| C-050 | Next loop slice is selected as one P33 Integration Spine regate/audit | VERIFIED | `docs/ops/V1-NEXT.md` in this branch | not yet implemented; acceptance is a falsifiable boundary receipt |
+| C-051 | A7 review findings on the loop rewrite were repaired locally | VERIFIED | first read-only A7 review `019f4c92-1c2a-7bf3-bddb-85e9ed3f47fe` reported six findings; follow-up read-only A7 review `019f4c96-98d5-78f2-8b29-aa54647d8a42` returned PASS; local gates `git diff --check`, `test_secret_scan.py`, `secret_scan.py` pass | PR CI still required |
+
+Rows below predate this overlay; do not use stale rows without checking whether
+C-043 through C-050 supersede them. Historical `RED` rows remain useful as
+evidence trail, not as current work selection.
+
 Snapshot: 2026-07-10 · base SHA
 `82bf629d0d73e837b4c58bed370b7f1d24509316`; ultimo deploy prodotto verificato
 `ce209b310c8c3f7432d2c8878df0d235386ac9f9` (#161 e' docs-only, nessun

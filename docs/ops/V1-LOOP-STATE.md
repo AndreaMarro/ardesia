@@ -1,30 +1,50 @@
 # ARDESIA V1 — loop state
 
+## Current overlay — 2026-07-10 after PR #163
+
+| Field | Status | Evidence | Limit |
+|---|---|---|---|
+| Canonical repo candidate | VERIFIED | `AndreaMarro/ardesia`; `git fetch --prune origin` in `/Users/andreamarro/VOLUME 3/ardesia` | Behavioral SoT across satellite/legacy repos still not fully reconciled |
+| Current `origin/main` | VERIFIED | `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d` | CI-green, not production-deploy-proven |
+| PR #150 | VERIFIED | merged at `4f25f72c1975c5aaf66fc13272583fa28e3b4c70`; post-merge `ci` and `studio-preview-readiness` success | P30/P32 trace is not global Tinkercad parity |
+| PR #163 | VERIFIED | merged at `9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`; post-merge `ci` run `29101655495` success | P0 browser prompt/book anchor improvement only; tutor e2e remains UNKNOWN |
+| Dirty main checkout | VERIFIED | `/Users/andreamarro/VOLUME 3/ardesia` has modified/untracked files | Do not use as write lane |
+| Current write lane | VERIFIED | `/Users/andreamarro/ardesia-wt/tutor-ux`, branch `codex/v1-loop-executable-20260710`, based on `origin/main` | Reused worktree because disk is low |
+| Disk headroom | VERIFIED | `df -h`: about 3.1 GiB available | Avoid creating large new worktrees or installs |
+| Prompt rewrite artifacts | VERIFIED | `ARDESIA-V1-LOOP-EXECUTABLE.md`, `ARDESIA-V1-LOOP-REWRITE-REPORT.md` updated in this branch; first A7 review found six issues; follow-up A7 returned PASS | Needs PR CI before product-code slice |
+| Next slice | VERIFIED | `V1-NEXT.md` names one P33 Integration Spine regate/audit slice | Not a feature implementation yet |
+| Security | RED/UNKNOWN | `V1-SECURITY-MATRIX.md`: S-002 client-side API key boundary, ToolHost sandbox/origin, RLS/history/rotation | Secret scans passing do not close these |
+| Deploy proof for current SHA | UNKNOWN | latest current `main@9b7342fc` has CI success only | Earlier production smoke evidence applies to older deployed SHA |
+| Local docs gates | VERIFIED | `git diff --check`; `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py` | Docs-only gates; no product runtime claim |
+
+Historical entries below are retained as evidence trail and may contain stale
+state superseded by this overlay. They are not active next-slice instructions.
+
 Ultimo aggiornamento: 2026-07-10T16:01:09+0200 CEST.
 
-## Identità
+## Historical Superseded Identity
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710`
-- Branch corrente: `codex/v1-principle-zero-book-fidelity-20260710`
-- `origin/main` verificato: `82bf629d0d73e837b4c58bed370b7f1d24509316`
-- Macro-fase: 1 — integrazione, P0 canon, book-fidelity gate
-- Writer: singolo, scope `docs/ops` per questa slice P0
-- Stato terminale corrente: `P0_CANON_MATRIX_DOCS_VERIFIED_LOCAL` su
+- Worktree allora corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710`
+- Branch allora corrente: `codex/v1-principle-zero-book-fidelity-20260710`
+- `origin/main` allora verificato: `82bf629d0d73e837b4c58bed370b7f1d24509316`
+- Macro-fase storica: 1 — integrazione, P0 canon, book-fidelity gate
+- Writer storico: singolo, scope `docs/ops` per questa slice P0
+- Stato terminale allora corrente: `P0_CANON_MATRIX_DOCS_VERIFIED_LOCAL` su
   `main@82bf629d0d73e837b4c58bed370b7f1d24509316`; security history/rotation,
   lint baseline, Principle Zero runtime e book-fidelity certification restano
   RED per V1 globale.
 
-## Update 2026-07-10 — P0 canon and book-fidelity matrices
+## Historical Update 2026-07-10 — P0 canon and book-fidelity matrices
 
 | Claim | Stato | Evidenza | Limite |
 |---|---|---|---|
-| `origin/main` corrente e' `82bf629d0d73e837b4c58bed370b7f1d24509316` | VERIFIED | `git rev-parse HEAD` nella lane P0; `gh run list --commit 82bf629d...` mostra `ci` run `29096978340` success | Docs #161 only; production resta quella della dependency audit slice |
+| `origin/main` allora corrente era `82bf629d0d73e837b4c58bed370b7f1d24509316` | SUPERSEDED_BY_OVERLAY | `git rev-parse HEAD` nella lane P0; `gh run list --commit 82bf629d...` mostra `ci` run `29096978340` success | Docs #161 only; superseded by `9b7342fc` |
 | PR #161 e' stata mergiata in `main` | VERIFIED | `gh pr view 161`: merge commit `82bf629d0d73e837b4c58bed370b7f1d24509316`, mergedAt `2026-07-10T13:41:07Z` | Registra ledger docs; non cambia prodotto runtime |
 | La lane scrivibile corrente e' isolata | VERIFIED | Worktree `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-principle-zero-20260710`, branch `codex/v1-principle-zero-book-fidelity-20260710`, status clean prima della patch | Non prova ownership delle altre worktree |
 | I documenti P0 richiesti dal mandato erano incompleti su HEAD | VERIFIED | Prima della patch mancavano `V1-PRINCIPIO-ZERO-RESEARCH.md`, `V1-PRINCIPIO-ZERO-MATRIX.md`, `V1-BOOK-FIDELITY-ARCHITECTURE.md`, `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md`; ora sono versionati nella branch corrente | La mancanza storica era RED; questa patch e' docs-only e non rende runtime compliant |
 | Principio Zero autentico resta recuperato | VERIFIED | `project-history.md:19-23` + `CLAUDE.md:5-16`; vedi `V1-PRINCIPIO-ZERO-RESEARCH.md` | Precedenza "parole tue" vs verbatim resta UNKNOWN |
-| Runtime Principio Zero resta non conforme | RED | `api.js:126-127,707,825-826,853,915-923`; `bookCitation.js:48-60` | Richiede slice prodotto dedicata e ratifica Andrea |
+| Runtime Principio Zero restava non conforme nella lane P0 | SUPERSEDED_BY_C-046_C-047 | `api.js:126-127,707,825-826,853,915-923`; `bookCitation.js:48-60` | PR #163 ha chiuso parte del conflitto browser; tutor e2e resta UNKNOWN |
 | Book fidelity certificata resta zero | VERIFIED | 4/88 mounted candidates, 4 structural-only receipts, 0 human/visual certified; vedi `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md` | Release book-fidelity resta RED; non vieta ispezione candidate, vieta claim di certificazione |
 | Local docs and evidence gates pass | VERIFIED | `git diff --check` OK; `python3 bin/ci/test_secret_scan.py` OK; `python3 bin/ci/secret_scan.py` OK; `npm --prefix apps/studio ci --no-fund` found 0 vulnerabilities; `npm --prefix apps/studio test -- --run src/__tests__/SimulationStepByStep.test.tsx src/__tests__/VisualOverlayReport.test.ts src/__tests__/ElabSceneAdapter.test.ts src/__tests__/SimulationSceneModes.test.ts` PASS, 4 files / 36 tests | Docs-only local gate; full CI/PR still required |
 
@@ -80,10 +100,10 @@ Ultimo aggiornamento: 2026-07-10T16:01:09+0200 CEST.
   base integrabile.
 - `VERIFIED`: 31 worktree registrati dopo la creazione di questa lane; la
   single-writer property globale non è dimostrata.
-- `VERIFIED`: PR #150 è open/draft, head `f6321975`; quattro check CI osservati
-  `SUCCESS` sullo SHA della PR.
-- `RED`: titolo/caveat della PR #150 dichiarano `e2e RED_BLOCKER`; CI core verde
-  non prova il percorso docente.
+- `SUPERSEDED_BY_C-044`: PR #150 era open/draft, head `f6321975`; quattro check
+  CI erano stati osservati `SUCCESS` sullo SHA della PR.
+- `SUPERSEDED_BY_C-044`: titolo/caveat della PR #150 dichiaravano
+  `e2e RED_BLOCKER`; CI core verde non provava il percorso docente.
 - `VERIFIED`: Claude Code embedded `2.1.205`; Codex CLI npm locale non avviabile
   (`ENOENT`), mentre la sessione Desktop è operativa.
 - `RED`: vedere `V1-SECURITY-MATRIX.md` per security history/rotation.
@@ -119,23 +139,9 @@ Acceptance:
 
 Rollback: eliminare i soli file `ARDESIA-V1-*`/`V1-*` creati su questa branch.
 
-## Candidate slice score
+## Superseded Candidate Score
 
-| Slice | Valore/unblock/verificabilità/leva | Rischio/dipendenze/scope | Esito |
-|---|---|---|---|
-| S0 validare/remediare segreti client-side | molto alto | medio; alcune rotazioni sono esterne | 1 |
-| P33 ToolHost→LessonOS spine | molto alto | alto finché security e bypass sono aperti | 2 |
-| Golden Book Circuit | alto | alto; runtime P0 e step sequence sono RED | 3 |
-
-## Stop/next
-
-Non iniziare feature. Prossima decisione dopo gli audit indipendenti:
-
-1. chiudere i gate della `V1-SECURITY-MATRIX`; una singola chiave riclassificata
-   non autorizza il passaggio a P33;
-2. produrre la repository truth e risolvere la SoT comportamentale;
-3. creare/testare la minima harness slice (regate skill + agent + hook/CI) e
-   rieseguire la review della riscrittura;
-4. solo dopo: P33 ToolHost seam, quindi sync/reopen/RLS/deploy;
-5. le slice tutor restano bloccate finché il conflitto runtime del Principio
-   Zero non ha un test falsificabile e una correzione dedicata.
+The older S0/P33/Golden Book ordering is inactive. The only active next slice is
+`P33-INTEGRATION-SPINE-REGATE-001` in `docs/ops/V1-NEXT.md`. That slice may
+stop at `SECURITY_RED`, `ARCHITECTURE_RED`, `ENVIRONMENT_RED` or `HONEST_RED`
+before reaching any product-code change.
