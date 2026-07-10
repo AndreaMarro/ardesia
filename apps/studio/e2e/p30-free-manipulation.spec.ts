@@ -33,6 +33,16 @@ type BrowserAuditEntry = {
   [key: string]: unknown
 }
 
+type PersistedLessonOsEvent = {
+  seq: number
+  kind: string
+  payload: Record<string, unknown>
+  evidence: string[]
+}
+
+const REFERENCE_EXPERIMENT_ID = "v1-cap6-esp1"
+const REFERENCE_SIMULATION_EVIDENCE = `simulation:scene:${REFERENCE_EXPERIMENT_ID}`
+
 // This scenario is a long, stateful Excalidraw + simulator + reload trace.
 // Playwright still schedules repeat-each cases across workers, so guard this
 // file with a cross-worker lock: the gate measures product behavior, not local
@@ -99,6 +109,71 @@ async function openRoom(page: Page, room: string) {
   await waitAppReady(page)
 }
 
+async function readPersistedLessonOsEvents(page: Page): Promise<PersistedLessonOsEvent[]> {
+  return page.evaluate(async () => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open("lessonos-eventlog")
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error)
+    })
+    try {
+      return await new Promise<PersistedLessonOsEvent[]>((resolve, reject) => {
+        let records: PersistedLessonOsEvent[] = []
+        const transaction = db.transaction("lessonos_events", "readonly")
+        transaction.oncomplete = () => resolve(records)
+        transaction.onabort = () => reject(transaction.error)
+        transaction.onerror = () => reject(transaction.error)
+        const request = transaction.objectStore("lessonos_events").getAll()
+        request.onerror = () => reject(request.error)
+        request.onsuccess = () => {
+          records = (request.result as Array<{
+            seq: number
+            kind: string
+            payload: string
+            evidence: string[]
+          }>)
+            .map((record) => ({
+              seq: record.seq,
+              kind: record.kind,
+              payload: JSON.parse(record.payload) as Record<string, unknown>,
+              evidence: record.evidence,
+            }))
+            .sort((a, b) => a.seq - b.seq)
+        }
+      })
+    } finally {
+      db.close()
+    }
+  })
+}
+
+async function expectPersistedEvent(
+  page: Page,
+  predicate: (event: PersistedLessonOsEvent) => boolean,
+): Promise<PersistedLessonOsEvent> {
+  let matched: PersistedLessonOsEvent | undefined
+  await expect
+    .poll(
+      async () => {
+        matched = (await readPersistedLessonOsEvents(page)).find(predicate)
+        return matched !== undefined
+      },
+      { timeout: 15_000 },
+    )
+    .toBe(true)
+  expect(matched).toBeDefined()
+  return matched!
+}
+
+function isReferenceSimulationEvent(event: PersistedLessonOsEvent, kind: string) {
+  return (
+    event.kind === kind &&
+    event.payload.experimentId === REFERENCE_EXPERIMENT_ID &&
+    event.payload.sceneId === REFERENCE_EXPERIMENT_ID &&
+    event.evidence.includes(REFERENCE_SIMULATION_EVIDENCE)
+  )
+}
+
 async function readBrowserAuditEntries(page: Page, toolId: string): Promise<BrowserAuditEntry[]> {
   return page.evaluate((id) => {
     const raw = localStorage.getItem(`maestro:tools/${id}/audit.jsonl`)
@@ -154,6 +229,10 @@ async function expectBoardWriteAuditSnapshot(page: Page, expected: BrowserAuditE
 
 async function insertSimulationPlugin(page: Page, room: string) {
   await openRoom(page, room)
+  await expectPersistedEvent(
+    page,
+    (event) => event.kind === "lesson.started" && event.payload.room === room,
+  )
   await domClick(page.getByRole("button", { name: "Inserisci Simulation Plugin sulla lavagna" }))
   await expect(
     page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]').first(),
@@ -247,6 +326,12 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   const solvedCurrent = Number(await freeMode.getAttribute("data-sim-current-ma"))
   expect(solvedCurrent).toBeGreaterThan(0)
   await expect(freeMode).toHaveAttribute("data-sim-last-event-kind", "simulation.circuit.solved")
+  const persistedSolved = await expectPersistedEvent(
+    page,
+    (event) => isReferenceSimulationEvent(event, "simulation.circuit.solved"),
+  )
+  expect(persistedSolved.payload.currentMa).toEqual(expect.any(Number))
+  expect(persistedSolved.payload.currentMa as number).toBeGreaterThan(0)
 
   // 2) PALETTE + ADD: montaggio libero legacy — seleziona la resistenza dalla
   //    palette e piazzala su due fori liberi (add component reale).
@@ -289,6 +374,13 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   )
   await expect(freeMode).toHaveAttribute("data-sim-error-id", /open-circuit/)
   await expect(freeMode.locator("[data-sim-diagnostic]")).toBeVisible()
+  const persistedOpenCircuitError = await expectPersistedEvent(
+    page,
+    (event) =>
+      isReferenceSimulationEvent(event, "simulation.error.observed") &&
+      typeof event.payload.errorId === "string" &&
+      event.payload.errorId.includes("open-circuit"),
+  )
   const boardWriteAuditAfterBreak = await expectBoardWriteAuditIncrease(
     page,
     boardWriteAuditBeforeBreak,
@@ -314,6 +406,11 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   await expect(reopened).toBeVisible({ timeout: 15_000 })
   await expect(reopened).toHaveAttribute("data-sim-scene-digest", brokenDigest!)
   await expect(reopened).toHaveAttribute("data-sim-solve-kind", "error")
+  const persistedAfterReload = await readPersistedLessonOsEvents(page)
+  for (const expectedEvent of [persistedSolved, persistedOpenCircuitError]) {
+    const reloadedEvent = persistedAfterReload.find((event) => event.seq === expectedEvent.seq)
+    expect(reloadedEvent).toEqual(expectedEvent)
+  }
   await expectBoardWriteAuditSnapshot(page, boardWriteAuditAfterBreak)
   // La componente piazzata dalla palette deve sopravvivere al reopen: il digest
   // include boardScene (placements), quindi l'uguaglianza sopra già lo prova,
