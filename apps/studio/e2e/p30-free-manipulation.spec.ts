@@ -229,7 +229,7 @@ async function expectBoardWriteAuditSnapshot(page: Page, expected: BrowserAuditE
 
 async function insertSimulationPlugin(page: Page, room: string) {
   await openRoom(page, room)
-  await expectPersistedEvent(
+  const lessonStarted = await expectPersistedEvent(
     page,
     (event) => event.kind === "lesson.started" && event.payload.room === room,
   )
@@ -240,6 +240,7 @@ async function insertSimulationPlugin(page: Page, room: string) {
   await expect(page.locator('[data-elab-core-canvas-mounted="true"]').first()).toBeVisible({
     timeout: 15_000,
   })
+  return lessonStarted
 }
 
 /** Click "diretto" su un controllo embedded: dispatcha un evento click sul nodo
@@ -316,7 +317,7 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   testInfo.setTimeout(120_000)
   const consoleErrors = collectErrors(page)
   const room = `p30-free-${testInfo.parallelIndex}-${testInfo.repeatEachIndex}`
-  await insertSimulationPlugin(page, room)
+  const lessonStarted = await insertSimulationPlugin(page, room)
 
   const freeMode = page.locator("[data-simulation-free-mode]").first()
   await expect(freeMode).toBeVisible({ timeout: 15_000 })
@@ -328,7 +329,9 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   await expect(freeMode).toHaveAttribute("data-sim-last-event-kind", "simulation.circuit.solved")
   const persistedSolved = await expectPersistedEvent(
     page,
-    (event) => isReferenceSimulationEvent(event, "simulation.circuit.solved"),
+    (event) =>
+      event.seq > lessonStarted.seq &&
+      isReferenceSimulationEvent(event, "simulation.circuit.solved"),
   )
   expect(persistedSolved.payload.currentMa).toEqual(expect.any(Number))
   expect(persistedSolved.payload.currentMa as number).toBeGreaterThan(0)
@@ -377,6 +380,7 @@ test("P30 free manipulation trace: palette → add → solve → break → diagn
   const persistedOpenCircuitError = await expectPersistedEvent(
     page,
     (event) =>
+      event.seq > lessonStarted.seq &&
       isReferenceSimulationEvent(event, "simulation.error.observed") &&
       typeof event.payload.errorId === "string" &&
       event.payload.errorId.includes("open-circuit"),
