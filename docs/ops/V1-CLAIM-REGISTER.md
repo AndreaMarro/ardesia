@@ -34,9 +34,10 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-028 | Il deploy production `ardesia-lavagna` ora e' collegato a una build Studio monorepo | VERIFIED | PR #155 merged; `main@8b9fbe1d`; `vercel build --prod` OK; deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s` READY; alias `https://ardesia-lavagna.vercel.app` | prova solo deploy spine Studio, non V1 end-to-end |
 | C-029 | `main@8b9fbe1d` ha CI post-merge verde | VERIFIED | GitHub Actions: `ci` run `29089070501` success; `studio-preview-readiness` run `29089070505` success | workflow evidence, non prova deploy/browser |
 | C-030 | La production alias pubblica carica senza errori browser immediati | VERIFIED | `curl` HTTP 200; Playwright Chromium title `Ardesia · studio`; zero console errors/pageerrors/failed requests/bad same-origin responses | non prova scenario docente completo o persistenza avanzata |
-| C-031 | Le dipendenze Studio sono audit-clean | RED / DEFERRED | `npm --prefix apps/studio ci` durante build: `11 vulnerabilities (9 moderate, 2 high)` | aprire slice dependency audit dedicata |
+| C-031 | Le dipendenze Studio sono audit-clean sul candidato dependency audit | VERIFIED / GREEN_SLICE locale | branch `codex/v1-studio-dependency-audit-20260710`, commit `742ed1e4278053fa25c297a2fba864284bbe31ad`: baseline `11 vulnerabilities (9 moderate, 2 high)`; dopo override mirati `npm --prefix apps/studio audit --json` riporta `total: 0`; `npm --prefix apps/studio ci --no-fund` audit `0`; `npm --prefix apps/studio ls ...` mostra `undici@7.28.0`, `dompurify@3.4.11`, `lodash-es@4.18.1`, `nanoid@3.3.12/5.0.9`, `@mermaid-js/parser@1.2.0` | non prova future advisory; Excalidraw resta `0.18.1`; lint baseline resta RED separato |
 | C-032 | Il production smoke base e' riproducibile da comando root | VERIFIED | PR #157 merged; `main@bf511a44`; `npm run smoke:studio:production` contro `https://ardesia-lavagna.vercel.app` PASS: HTTP 200, title `Ardesia · studio`, zero console/page/request/bad same-origin errors | smoke base, non scenario docente |
 | C-033 | Esiste un gate scenario produzione per lavagna -> ELABTutor -> stessa lavagna -> Simulation Plugin | VERIFIED / GREEN_SLICE | PR #158 merged; `main@d19faae3`; scenario PASS su head `14f71b48` con 9 checkpoint, room hash preservato, citazione `Vol. 1, p. 29`, `catalogSummary=4/88`, zero console/page/request/bad same-origin errors; post-merge `ci` e readiness green | gate esistente e integrato; non prova persistenza avanzata, backend sync, RLS o Pilot Ready |
+| C-034 | `npm --prefix apps/studio run lint` e' verde | RED | branch dependency audit: lint fallisce con 172 errori / 5 warning in file preesistenti non toccati (`Room.tsx`, `ReplayView.tsx`, test, design views, toolhost, ecc.) | non blocca questa remediation se CI non usa lint; richiede slice baseline lint dedicata |
 
 Regola: aggiornare una riga solo con comando/test/URL e SHA; non cancellare
 un RED storico, chiuderlo con nuova evidenza e data.
@@ -63,9 +64,17 @@ un RED storico, chiuderlo con nuova evidenza e data.
 - C-029: `gh run list --commit 8b9fbe1dd1a471029dce18b5a72adc15004e0298 --limit 10 --json ...`.
 - C-030: `curl -L https://ardesia-lavagna.vercel.app`; Playwright Chromium
   smoke from `apps/studio/node_modules/playwright`.
-- C-031: `npm --prefix apps/studio ci` as run by `vercel build --prod`.
+- C-031: baseline `npm --prefix apps/studio audit --json` prima della patch;
+  dopo commit `742ed1e4`: `npm --prefix apps/studio ci --no-fund`;
+  `npm --prefix apps/studio audit --json`; `npm --prefix apps/studio ls ...`;
+  `npm --prefix apps/studio run typecheck`; `npm --prefix apps/studio test -- --run`;
+  `npm --prefix apps/studio run build`;
+  `ARDESIA_STUDIO_SMOKE_URL=http://127.0.0.1:4188 npm run smoke:studio:production:scenario`;
+  `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py`; `git diff --check`.
 - C-032: `npm run smoke:studio:production` on `main@bf511a44`.
 - C-033: `gh pr view 158`; `gh run list --commit d19faae3...`;
   `npm run smoke:studio:production:scenario` on PR head `14f71b48`.
+- C-034: `npm --prefix apps/studio run lint` on branch
+  `codex/v1-studio-dependency-audit-20260710`.
 
 Ultima verifica di tutti i comandi sopra: 2026-07-10 Europe/Rome.
