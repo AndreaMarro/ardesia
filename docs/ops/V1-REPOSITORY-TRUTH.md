@@ -86,11 +86,19 @@ the only scientific answer is `UNKNOWN`, with the conflict made blocking.
 | LessonOS / Engine behavior | `AndreaMarro/lessonos@auto/main` per canon | **VERIFIED-as-canon; live Mini SHA UNKNOWN** |
 | Backend/API | Engine API, ELAB Supabase functions and legacy Nanobot coexist | **UNKNOWN / ARCHITECTURE_RED** |
 | Database | Engine SQLite/local state and ELAB Supabase are domain-specific and unreconciled | **UNKNOWN**; no global DB SoT or live provider audit |
-| Deploy | no canonical URL has current commit-to-artifact proof | **UNKNOWN / DEPLOY_RED**; historic demo URLs do not qualify |
+| Deploy | `ardesia-lavagna` production now has a monorepo commit-to-artifact proof | **PARTIAL VERIFIED** for Studio surface at `8b9fbe1d`; full V1 release, backend/RLS, and cutover remain UNKNOWN |
 | ELAB assets | physical volumes, `elab-volumi`, local licensed files and pack copies form multiple lineages | **UNKNOWN / BOOK_FIDELITY_RED** |
 | Development memory | ratified Git history, ADR and tracked ops evidence in `ardesia` | **VERIFIED governance rule**; agent memory/chat is discovery cache only |
 | Product knowledge base | `ardesia/docs/{wiki,vault}` is the integration target; external wiki/vault remain source lineages | **PARTIAL / precedence unresolved** |
 | Release | `ardesia/main` is the governed integration branch; no V1 release artifact exists | **RELEASE_RED** until human merge, exact-SHA gates and deploy proof |
+
+## Deploy update 2026-07-10
+
+| Claim | Status | Evidence | Limitation |
+|---|---|---|---|
+| `ardesia-lavagna` is a current monorepo Studio deploy surface | VERIFIED | PR #155 merged; `main@8b9fbe1dd1a471029dce18b5a72adc15004e0298`; deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s` READY | Does not establish global V1 release or all runtime owners |
+| Production alias is public and loads | VERIFIED | `curl -L https://ardesia-lavagna.vercel.app` returned HTTP 200; Playwright Chromium title `Ardesia · studio` | Smoke does not prove lesson scenario, ToolHost third-party safety, backend sync, or RLS |
+| Historic deploy uncertainty is fully removed | RED | `ardesia-canvas`, `ardesia-api-vercel`, `ardesia-workspace`, ELAB domains and external runtime owners were not redeployed/reverified in this slice | Keep non-lavagna deploy claims scoped and dated |
 
 ## Verified facts
 

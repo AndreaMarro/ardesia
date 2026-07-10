@@ -1,5 +1,37 @@
 # ARDESIA — Vercel map
 
+## Update 2026-07-10 13:25-13:27 CEST - monorepo production deploy
+
+Deployment action autorizzata da Andrea nella sessione corrente.
+
+Verified in this pass:
+
+| Surface | Probe | Result | Interpretation |
+|---|---|---:|---|
+| `ardesia-lavagna` | `vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` from monorepo root at `8b9fbe1d` | OK | Root `vercel.json` can build `apps/studio` while preserving monorepo-local `plugins/` and `packs/` imports. |
+| `ardesia-lavagna` | `vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` | READY | Production deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s`. |
+| `https://ardesia-lavagna.vercel.app` | `vercel inspect` | READY | Alias points at `ardesia-lavagna-bmxmgxqi2-andreas-projects-6d4e9791.vercel.app`. |
+| `https://ardesia-lavagna.vercel.app` | `curl -L` | HTTP 200 | Public production alias reachable. |
+| `https://ardesia-lavagna.vercel.app` | Playwright Chromium smoke | PASS | Title `Ardesia · studio`; no `console.error`, `pageerror`, failed request, or same-origin bad response. |
+
+GitHub evidence:
+
+- PR #155 `chore(deploy): add monorepo Vercel config` merged into `main`.
+- Merge commit: `8b9fbe1dd1a471029dce18b5a72adc15004e0298`.
+- Post-merge workflows on that commit: `ci` run `29089070501` success;
+  `studio-preview-readiness` run `29089070505` success.
+
+Limitations:
+
+- This proves the `ardesia-lavagna` Studio surface deploy spine only. It does
+  not prove a full V1 lesson scenario, backend/RLS, ToolHost third-party safety,
+  or global source-of-truth cutover.
+- Vercel preview URLs observed in this slice were access-protected/403 from the
+  current tooling, so browser smoke evidence is from the public production
+  alias after CI green.
+- `npm --prefix apps/studio ci` still reports `11 vulnerabilities (9 moderate,
+  2 high)`; dependency remediation is a separate risk slice.
+
 ## Update 2026-07-02 01:27 CEST - read-only demo probe
 
 No deploy, no alias change, no production action.
