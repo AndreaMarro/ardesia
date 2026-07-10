@@ -9,7 +9,7 @@ import { describe, it, expect, beforeEach } from "vitest"
 import JSZip from "jszip"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
-import { exportLesson, importLesson, LESSON_PATHS } from "../store/lessonBundle"
+import { exportLesson, importLesson, restoreLessonOsSnapshotFromBundle, LESSON_PATHS } from "../store/lessonBundle"
 
 // --- Mock driver (stesso pattern degli altri test) ---
 
@@ -574,5 +574,84 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
 
     await expect(importLesson(store2, malicious, target)).rejects.toThrow(/ZipSlip/)
     expect(await target.readAll()).toHaveLength(0)
+  })
+})
+
+// P32 R10b — helper per il SOLO restore della memoria dal bundle, senza
+// riscrivere i file (la Room lo usa nel flusso recovery: il board è già stato
+// importato dal primo importLesson; qui si riprova solo il restore sul log
+// appena ricreato vuoto).
+describe("LessonBundle — restoreLessonOsSnapshotFromBundle (P32 R10b)", () => {
+  let store: WorkspaceStore
+  const ROOM = "test-room-recovery"
+
+  beforeEach(async () => {
+    store = new WorkspaceStore()
+    withMockDriver(store, new MockDriver())
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
+  })
+
+  async function filledLog() {
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    const log = new InMemoryEventLog()
+    await log.append({ kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] })
+    await log.append({
+      kind: "concept.introduced",
+      conceptId: "led_polarity",
+      labels: { it: "Polarità del LED" },
+      t: 1100,
+      evidence: ["manual:vol1:p30"],
+    })
+    return log
+  }
+
+  async function restorableLog() {
+    const { InMemoryEventLog } = await import("../lessonos/eventlog")
+    class RestorableFakeLog extends InMemoryEventLog {
+      async importSnapshot(snapshot: Blob) {
+        const existing = await this.readAll()
+        if (existing.length > 0) {
+          throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
+        }
+        const lines = (await snapshot.text()).split("\n").filter((line) => line.length > 0)
+        for (const line of lines) {
+          const { seq: _seq, ...event } = JSON.parse(line)
+          await this.append(event)
+        }
+        return { recovered: lines.length, lastSeq: lines.length, droppedTail: 0, corrupted: false }
+      }
+    }
+    return new RestorableFakeLog()
+  }
+
+  it("bundle con snapshot + log vuoto ⇒ restored, SENZA riscrivere i file dello store", async () => {
+    const bundle = await exportLesson(store, ROOM, await filledLog())
+    const target = await restorableLog()
+
+    const status = await restoreLessonOsSnapshotFromBundle(bundle, target)
+
+    expect(status).toEqual({ kind: "restored", recovered: 2 })
+    expect(await target.readAll()).toHaveLength(2)
+  })
+
+  it("bundle senza snapshot ⇒ no-snapshot (bundle esportato senza memoria)", async () => {
+    const bundle = await exportLesson(store, ROOM)
+    const target = await restorableLog()
+
+    const status = await restoreLessonOsSnapshotFromBundle(bundle, target)
+
+    expect(status).toEqual({ kind: "no-snapshot" })
+    expect(await target.readAll()).toHaveLength(0)
+  })
+
+  it("log non vuoto ⇒ skipped-non-empty anche via helper (mai merge)", async () => {
+    const bundle = await exportLesson(store, ROOM, await filledLog())
+    const target = await restorableLog()
+    await target.append({ kind: "lesson.started", room: "viva", t: 1, evidence: ["lesson:viva@1"] })
+
+    const status = await restoreLessonOsSnapshotFromBundle(bundle, target)
+
+    expect(status).toEqual({ kind: "skipped-non-empty" })
+    expect(await target.readAll()).toHaveLength(1)
   })
 })

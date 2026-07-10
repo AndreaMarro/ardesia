@@ -8,7 +8,7 @@ import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { PATHS, type StorageMode } from "./store/types"
-import { LESSON_EXTENSION } from "./store/lessonBundle"
+import { LESSON_EXTENSION, restoreLessonOsSnapshotFromBundle } from "./store/lessonBundle"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
@@ -16,6 +16,13 @@ import ViewNav from "./design/ViewNav"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
+import {
+  IndexedDbEventLog,
+  createEventLogStore,
+  destroyEventLogStorage,
+} from "./lessonos/indexedDbEventLog"
+import { recoverLessonOsFromBundle } from "./lessonos/recovery"
+import type { EventLogStore } from "./lessonos/eventlog"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
@@ -503,6 +510,94 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
+  /** Stesso lesson.started del mount: la sessione corrente resta tracciata
+   *  anche sul log appena ricreato dalla recovery (best-effort come al mount). */
+  function appendLessonStarted(store: EventLogStore) {
+    const startedAt = sharedClock()
+    store
+      .append({ kind: "lesson.started", room, t: startedAt, evidence: [`lesson:${room}@${startedAt}`] })
+      .catch(() => {})
+  }
+
+  /**
+   * P32 R10b — recovery-mode UX: l'unico percorso che rende il restore .lesson
+   * effettivo quando la memoria è persa/danneggiata (D5: import su log vivo ⇒
+   * "skipped-non-empty"). Contratto di destroyEventLogStorage rispettato:
+   * conferma esplicita dell'utente + backup best-effort PRIMA della distruzione.
+   */
+  async function offerLessonOsRecovery(bundle: Blob): Promise<void> {
+    const runtime = lessonOsRef.current
+    if (!runtime) return
+    const outcome = await recoverLessonOsFromBundle({
+      currentStore: runtime.store,
+      confirm: () =>
+        window.confirm(
+          "La memoria di questa lezione risulta persa o danneggiata.\n" +
+            "Sostituirla con la memoria contenuta nel file .lesson importato?\n" +
+            "Il log attuale verrà eliminato (prima ne viene scaricato un backup).",
+        ),
+      saveBackup: (snapshot) => {
+        // Stesso pattern di download di handleExportLesson: il backup del log
+        // finisce in mano al docente PRIMA che il log venga distrutto.
+        const url = URL.createObjectURL(snapshot)
+        const a = document.createElement("a")
+        a.href = url
+        a.download = `lessonos-backup-${room}-${sharedClock()}.jsonl`
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      },
+      destroyStorage: () => destroyEventLogStorage({ userConfirmed: true }),
+      recreateStore: () => createEventLogStore(),
+      restoreFromBundle: (log) => restoreLessonOsSnapshotFromBundle(bundle, log),
+    })
+    switch (outcome.kind) {
+      case "declined":
+        // Niente è stato toccato; l'avviso resta onesto e riattivabile.
+        setStorageError(
+          "Memoria didattica non ripristinata (operazione annullata): reimporta il file .lesson per riprovare.",
+        )
+        return
+      case "destroy-failed":
+        lessonOsRef.current = { ...runtime, store: outcome.store }
+        setStorageError(
+          "Recovery non riuscita: impossibile eliminare il log attuale (" +
+            outcome.error +
+            "). Nulla è andato perso.",
+        )
+        return
+      case "restore-failed":
+        // Il log vecchio non esiste più: si adotta comunque lo store nuovo
+        // (vuoto), la sessione resta tracciata, l'errore è visibile.
+        lessonOsRef.current = {
+          ...runtime,
+          store: outcome.store,
+          dataLoss: false,
+          corrupted: false,
+          persistent: outcome.store instanceof IndexedDbEventLog,
+        }
+        appendLessonStarted(outcome.store)
+        setStorageError(
+          "Memoria didattica NON ripristinata: " +
+            outcome.error +
+            (outcome.backupTaken ? " (il log precedente è nel backup scaricato)" : ""),
+        )
+        return
+      case "recovered":
+        lessonOsRef.current = {
+          ...runtime,
+          store: outcome.store,
+          dataLoss: false,
+          corrupted: false,
+          persistent: outcome.store instanceof IndexedDbEventLog,
+        }
+        appendLessonStarted(outcome.store)
+        setStorageError(null)
+        return
+    }
+  }
+
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
@@ -573,6 +668,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             "Lezione importata, ma memoria didattica NON ripristinata: " +
               importResult.lessonOsRestore.error,
           )
+        } else if (
+          importResult.lessonOsRestore.kind === "skipped-non-empty" &&
+          (lessonOsRef.current?.dataLoss || lessonOsRef.current?.corrupted)
+        ) {
+          // P32 R10b — recovery-mode: la memoria risulta persa/danneggiata e il
+          // bundle ne contiene una. L'import normale (D5) l'ha giustamente
+          // saltata (il log vivo non è vuoto): SOLO qui il restore diventa
+          // user-facing — conferma esplicita, backup scaricato, destroy del
+          // log corrente, restore dal bundle.
+          await offerLessonOsRecovery(file)
         } else {
           setStorageError(null)
         }

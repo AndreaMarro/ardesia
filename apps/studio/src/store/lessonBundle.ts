@@ -240,6 +240,26 @@ export async function importLesson(
   return { lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog) }
 }
 
+/**
+ * P32 R10b — restore della SOLA memoria didattica da un bundle .lesson, senza
+ * riscrivere i file dello store. Serve al flusso recovery della Room: il board
+ * è già stato importato da importLesson (esito "skipped-non-empty" su log
+ * vivo); dopo destroy-con-conferma → log vuoto, si riprova QUI il solo restore.
+ * Stessa semantica esplicita di ImportLessonResult.lessonOsRestore, mai throw.
+ */
+export async function restoreLessonOsSnapshotFromBundle(
+  blob: Blob,
+  lessonOsLog: EventLogStore,
+): Promise<LessonOsRestoreStatus> {
+  try {
+    const zip = await JSZip.loadAsync(blob)
+    return await restoreLessonOsSnapshot(zip, lessonOsLog)
+  } catch (err) {
+    // Bundle non apribile (ZIP corrotto): stesso vocabolario degli altri esiti.
+    return { kind: "failed", error: err instanceof Error ? err.message : String(err) }
+  }
+}
+
 /** Restore della memoria didattica dal bundle (vedi ImportLessonResult).
  *  Non lancia MAI: ogni esito, incluso il fallimento, è uno status esplicito. */
 async function restoreLessonOsSnapshot(

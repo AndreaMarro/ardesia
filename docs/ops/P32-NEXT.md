@@ -8,11 +8,18 @@ specific, file:line-backed, 9 consolidated unknowns. Un-Draft/merge #150 = Andre
 ## Next smallest slice — candidates in order (post-audit refinement)
 
 1. ~~**R10 quick win — wire `.lesson` import → event-log restore.**~~ **DONE Iter 3**
-   (mechanism + status union D5; tests 1581 green). Follow-up spawned: **R10b —
-   recovery-mode UX**: quando `runtime.dataLoss/corrupted` (Room già mostra
-   "ripristina dall'export .lesson"), offrire il flusso destroy-con-conferma →
-   log vuoto → import `.lesson` → `restored`. Solo lì il restore diventa
-   user-facing; oggi il default live è `skipped-non-empty` (onesto, documentato).
+   (mechanism + status union D5; tests 1581 green). Follow-up: ~~**R10b —
+   recovery-mode UX**~~ **DONE (branch claude/p32-r10b-recovery-20260710)**:
+   quando l'import risponde `skipped-non-empty` E `runtime.dataLoss/corrupted`,
+   la Room offre il flusso completo — conferma esplicita (`window.confirm`) →
+   backup `.jsonl` scaricato (best-effort, contratto destroyEventLogStorage) →
+   close → destroy → store ricreato vuoto → restore dal bundle → `restored`,
+   con swap di `lessonOsRef` e `lesson.started` ri-appeso (sessione tracciata).
+   Orchestratore testabile `lessonos/recovery.ts` (deps iniettate, esiti
+   espliciti declined/recovered/destroy-failed/restore-failed) + helper
+   `restoreLessonOsSnapshotFromBundle` (solo memoria, niente riscrittura file).
+   Fuori dalla condizione recovery il default resta `skipped-non-empty`
+   (onesto, invariato).
 
 2. ~~**Phase 5 slice 1 — wire palette.**~~ **DONE Iter 4** (D6: cavo = connection su V1;
    fisica reale via buildNets invariato; tap-tap; connect-wire envelope). U1 RISOLTO:
