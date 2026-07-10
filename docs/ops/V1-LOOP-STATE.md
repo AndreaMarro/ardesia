@@ -1,16 +1,31 @@
 # ARDESIA V1 — loop state
 
-Ultimo aggiornamento: 2026-07-10 Europe/Rome.
+Ultimo aggiornamento: 2026-07-10T13:27:39+0200 CEST.
 
 ## Identità
 
 - Repository: `AndreaMarro/ardesia`
-- Worktree: `/Users/andreamarro/VOLUME 3/ardesia-wt-v1-baseline`
-- Branch: `codex/v1-baseline-20260710`
-- Base/HEAD iniziale: `204ffefc7f375ecd717fcbf4ba3aaa35a6e5c2fa`
-- Macro-fase: 0 — riscrittura e baseline prevalentemente read-only
-- Writer: A0 soltanto; tre worker read-only con ruoli A1, A4/A5 e A7
-- Stato terminale corrente: `SECURITY_RED` + `ARCHITECTURE_RED`
+- Worktree corrente: `/Users/andreamarro/VOLUME 3/ardesia-wt-main-deploy-20260710`
+- Branch corrente: `codex/v1-deploy-ops-ledger-20260710`
+- `origin/main` verificato: `8b9fbe1dd1a471029dce18b5a72adc15004e0298`
+- Macro-fase: 1 — integrazione e deploy spine minimo
+- Writer: singolo, scope `docs/ops` per questo aggiornamento
+- Stato terminale corrente: `DEPLOY_GREEN_SLICE` per `ardesia-lavagna` su
+  `8b9fbe1d`; `SECURITY_PARTIAL` e `ARCHITECTURE_RED` restano aperti per V1
+  globale.
+
+## Update 2026-07-10 — deploy spine
+
+| Claim | Stato | Evidenza | Limite |
+|---|---|---|---|
+| PR #151 e' stata mergiata in `main` | VERIFIED | `origin/main@7c2ae9d6`, CI run `29087725189` green, readiness run `29087725221` green | Baseline/harness/evidence stack, non V1 prodotto |
+| PR #155 e' stata mergiata in `main` | VERIFIED | `gh pr view 155`; merge commit `8b9fbe1dd1a471029dce18b5a72adc15004e0298`; mergedAt `2026-07-10T11:19:25Z` | Deploy config, non feature product |
+| `main@8b9fbe1d` ha CI verde | VERIFIED | `gh run list --commit 8b9fbe1d`: `ci` run `29089070501` success; `studio-preview-readiness` run `29089070505` success | Prova workflow, non browser/deploy |
+| Root monorepo Vercel build production funziona | VERIFIED | `vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup` su `8b9fbe1d`, status `ok`, target `production` | Avvisi chunk-size e peer dependency non risolti |
+| Production deploy `ardesia-lavagna` serve il commit integrato | VERIFIED | deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s`, target `production`, status `Ready`, alias `https://ardesia-lavagna.vercel.app` | Vercel CLI inspect non mostra nel testo il commit metadata, ma il deploy e' stato creato da worktree `8b9fbe1d` con `-m gitCommitSha` |
+| Production HTTP smoke e' verde | VERIFIED | `curl -L https://ardesia-lavagna.vercel.app`: HTTP `200`, title HTML `Ardesia · studio` | HTTP non prova interazione canvas |
+| Production browser smoke e' verde | VERIFIED | Playwright Chromium: HTTP `200`, title `Ardesia · studio`, nessun `console.error`, `pageerror`, failed request o bad response; screenshot `output/playwright/ardesia-lavagna-production.png` | Smoke iniziale, non scenario docente completo |
+| npm dependency health e' pulita | RED / DEFERRED | `npm --prefix apps/studio ci` durante build segnala `11 vulnerabilities (9 moderate, 2 high)` | Non affrontato nello slice deploy |
 
 ## Evidenze osservate
 

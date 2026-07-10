@@ -50,3 +50,15 @@ origin/main@204ffefc
 ```
 
 None of these nodes is a claim of `PILOT_READY` or `V1_GREEN`.
+
+## Post-snapshot merged stack 2026-07-10
+
+| PR | Base ← head | Merge commit | Status | Ruling |
+|---:|---|---|---|---|
+| [#151](https://github.com/AndreaMarro/ardesia/pull/151) | `main` ← `codex/v1-baseline-20260710` | `7c2ae9d6f0487958f463bbe43165c43507d0f4b1` | VERIFIED merged; post-merge `ci` and `studio-preview-readiness` green | Baseline/harness/docs integrated; not V1 green |
+| [#155](https://github.com/AndreaMarro/ardesia/pull/155) | `main` ← `codex/v1-vercel-monorepo-deploy-20260710` | `8b9fbe1dd1a471029dce18b5a72adc15004e0298` | VERIFIED merged; post-merge `ci` run `29089070501` success and readiness run `29089070505` success | Vercel monorepo deploy config integrated |
+
+Current production deploy evidence from the #155 merge: `ardesia-lavagna`
+deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s`, alias
+`https://ardesia-lavagna.vercel.app`, Playwright smoke PASS. This is deploy
+spine evidence only, not `PILOT_READY` or `V1_GREEN`.

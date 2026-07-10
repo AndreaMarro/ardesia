@@ -31,6 +31,10 @@ Snapshot: 2026-07-10 · base SHA `204ffefc`.
 | C-025 | S0 blocca nuovi `.env*`, Google API key, JWT generici, named hex secret e `CREDS` inline in CI | GREEN_SLICE locale | branch `codex/v1-security-s0-20260710`: `git check-ignore -v`, `python3 bin/ci/test_secret_scan.py`, `python3 bin/ci/secret_scan.py`, synthetic repo leak test | non chiude i segreti client-side `VITE_*`, né history/rotazione |
 | C-026 | L'HEAD candidato S0 non richiede piu' allowlist per token-shaped legacy literals | GREEN_SLICE locale | `bin/ci/secret_scan_allowlist.tsv` rimosso; token-shaped literals redatti o parametrizzati; `python3 bin/ci/secret_scan.py` OK; custom scan count 0 | non prova revoca provider o assenza in history remota |
 | C-027 | Gli script browser legacy Session 18 non contengono piu' credenziali inline nell'HEAD candidato | GREEN_SLICE locale | i `plugins/elab-tutor/scripts/session18-*.mjs` col pattern `CREDS` inline usano `ELAB_E2E_EMAIL`/`ELAB_E2E_PASSWORD`; scanner ratchet `hardcoded-creds-object`; `python3 bin/ci/secret_scan.py` OK | non prova che le credenziali storiche fossero invalide; rotazione resta esterna |
+| C-028 | Il deploy production `ardesia-lavagna` ora e' collegato a una build Studio monorepo | VERIFIED | PR #155 merged; `main@8b9fbe1d`; `vercel build --prod` OK; deployment `dpl_Dfqd7wa1VisEmZMcdUeZkeSJGX8s` READY; alias `https://ardesia-lavagna.vercel.app` | prova solo deploy spine Studio, non V1 end-to-end |
+| C-029 | `main@8b9fbe1d` ha CI post-merge verde | VERIFIED | GitHub Actions: `ci` run `29089070501` success; `studio-preview-readiness` run `29089070505` success | workflow evidence, non prova deploy/browser |
+| C-030 | La production alias pubblica carica senza errori browser immediati | VERIFIED | `curl` HTTP 200; Playwright Chromium title `Ardesia · studio`; zero console errors/pageerrors/failed requests/bad same-origin responses | non prova scenario docente completo o persistenza avanzata |
+| C-031 | Le dipendenze Studio sono audit-clean | RED / DEFERRED | `npm --prefix apps/studio ci` durante build: `11 vulnerabilities (9 moderate, 2 high)` | aprire slice dependency audit dedicata |
 
 Regola: aggiornare una riga solo con comando/test/URL e SHA; non cancellare
 un RED storico, chiuderlo con nuova evidenza e data.
@@ -50,5 +54,13 @@ un RED storico, chiuderlo con nuova evidenza e data.
   `google-api-key`, `generic-jwt`, `named-hex-secret` returning count 0.
 - C-027: `python3 bin/ci/test_secret_scan.py`; `python3 bin/ci/secret_scan.py`;
   masked inspection of the two Session 18 scripts.
+- C-028: `gh pr view 155 --json number,state,mergedAt,mergeCommit`;
+  `vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup`;
+  `vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup`;
+  `vercel inspect ardesia-lavagna-bmxmgxqi2-andreas-projects-6d4e9791.vercel.app --scope team_23uD0RgdInaTaOPEL0EGltup`.
+- C-029: `gh run list --commit 8b9fbe1dd1a471029dce18b5a72adc15004e0298 --limit 10 --json ...`.
+- C-030: `curl -L https://ardesia-lavagna.vercel.app`; Playwright Chromium
+  smoke from `apps/studio/node_modules/playwright`.
+- C-031: `npm --prefix apps/studio ci` as run by `vercel build --prod`.
 
 Ultima verifica di tutti i comandi sopra: 2026-07-10 Europe/Rome.
