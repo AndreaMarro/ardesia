@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactElement, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import { BOARDS, getBoardById, supportsInBrowserCompile, type ArduinoBoardCatalogEntry } from "@elab-tutor-plugin/services/arduinoBoards.js";
@@ -22,7 +22,6 @@ import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
-import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
 import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
@@ -899,24 +898,74 @@ function PluginRuntimeOverlay({
   onClose: () => void;
   children: ReactNode;
 }) {
+  const dialogRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    const root = document.getElementById("root");
+    const previousAriaHidden = root?.getAttribute("aria-hidden") ?? null;
+    const previousInert = root?.inert ?? false;
+    if (root) {
+      root.inert = true;
+      root.setAttribute("aria-hidden", "true");
+    }
+    closeButtonRef.current?.focus();
+
+    return () => {
+      if (!root) return;
+      root.inert = previousInert;
+      if (previousAriaHidden === null) root.removeAttribute("aria-hidden");
+      else root.setAttribute("aria-hidden", previousAriaHidden);
+    };
+  }, []);
+
+  function handleKeyDown(event: ReactKeyboardEvent<HTMLElement>) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      onClose();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
+    ));
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+    if (event.shiftKey && (active === first || !dialog.contains(active))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (active === last || !dialog.contains(active))) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   if (typeof document === "undefined") return null;
   return createPortal(
     <div className="st-plugin-runtime-backdrop" onMouseDown={(event) => {
       if (event.target === event.currentTarget) onClose();
     }}>
       <section
+        ref={dialogRef}
         className="st-plugin-runtime-overlay"
         role="dialog"
         aria-modal="true"
         aria-label={title}
         data-plugin-runtime-instance-id={instanceId}
-        onKeyDown={(event) => {
-          if (event.key === "Escape") onClose();
-        }}
+        onKeyDown={handleKeyDown}
       >
         <header className="st-plugin-runtime-bar">
           <strong>{title}</strong>
           <button
+            ref={closeButtonRef}
             type="button"
             className="st-plugin-runtime-close"
             aria-label={`Riduci ${title}`}
@@ -1038,7 +1087,6 @@ function ArduinoToolchainPostit({
         data-motion-state="settled"
         data-arduino-fqbn={state.project.fqbn}
         data-arduino-compile-status={state.diagnostics.status}
-        aria-hidden={expanded || undefined}
         aria-label="Sketch Arduino"
       >
         <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
@@ -1227,7 +1275,6 @@ function ElabTutorLinkedPostit({
         data-elabtutor-simulation-instance={state.links.simulationInstanceId}
         data-elabtutor-toolchain-instance={state.links.toolchainInstanceId}
         data-elabtutor-grounded={state.lastCommand ? "true" : "pending"}
-        aria-hidden={expanded || undefined}
         aria-label="Guida della lezione"
       >
         <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
@@ -1522,7 +1569,6 @@ function ReferenceSimulationCanvasTool({
   // (scena + placements). Nessuna persistenza del toggle: è una vista.
   const [stepMode, setStepMode] = useState(false);
   const stepModel = useMemo(() => stepByStepModel(scene, placements), [scene, placements]);
-  const catalog = catalogSummary();
   // Metriche per canale delle scene multi-pin (elab-mna): stesso solve della
   // board, memoizzato sulla scena.
   const sideMnaView = useMemo(
@@ -1777,7 +1823,6 @@ function ReferenceSimulationCanvasTool({
         data-elab-canvas-build-mode={coreCanvasProjectionMode === "monta-tu" ? "sandbox" : "complete"}
         data-elab-canvas-projection-mode={coreCanvasProjectionMode}
         data-elab-canvas-components={String(boardScene.components.length)}
-        aria-hidden={expanded || undefined}
         aria-label={scene.title}
       >
         <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
@@ -1834,13 +1879,6 @@ function ReferenceSimulationCanvasTool({
           </div>
           <div style={nextActionStyle}>
             Prossima azione: scegli un componente, poi tocca due fori liberi.
-          </div>
-          {/* Onestà di catalogo: la UI non vende esperimenti non montati. */}
-          <div
-            style={catalogBannerStyle}
-            data-elab-catalog-summary={`${catalog.mounted}/${catalog.total}`}
-          >
-            {catalog.label}
           </div>
               </div>
             </header>
@@ -2159,7 +2197,6 @@ function ManualCard({ scene }: { scene: SimulationSceneV1 }) {
           <strong>{scene.manual.label}</strong>
           <span>manuale collegato</span>
         </div>
-        <span style={manualStatusStyle}>draft</span>
       </div>
       <div style={manualPageStyle}>
         {pageImage ? (
@@ -3712,16 +3749,6 @@ const manualTitleStackStyle = {
   lineHeight: 1.18,
 } as const;
 
-const manualStatusStyle = {
-  border: "1px solid #cfe2d3",
-  borderRadius: 999,
-  padding: "3px 7px",
-  color: "#287a43",
-  background: "#f1faf3",
-  fontWeight: 850,
-  fontSize: 10,
-} as const;
-
 const manualPageStyle = {
   border: "1px solid #e0e6ed",
   borderRadius: 7,
@@ -3866,18 +3893,6 @@ const stepFailureStyle = {
   color: "#a3492c",
   fontSize: 9.5,
   fontWeight: 700,
-} as const;
-
-const catalogBannerStyle = {
-  marginTop: 4,
-  color: "#7c6a2f",
-  background: "#fdf6df",
-  border: "1px solid #ecd9a0",
-  borderRadius: 6,
-  padding: "2px 8px",
-  fontSize: 10,
-  fontWeight: 700,
-  display: "inline-block",
 } as const;
 
 const metricGridStyle = {

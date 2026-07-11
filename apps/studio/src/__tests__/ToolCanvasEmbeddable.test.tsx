@@ -324,6 +324,56 @@ describe("ToolCanvasEmbeddable", () => {
     rendered.unmount();
   });
 
+  it("keeps catalog and provenance status out of expanded Simulation primary copy", () => {
+    const rendered = render(renderToolCanvasEmbeddable(createToolEmbedElement())!);
+
+    fireEvent.click(rendered.getByRole("button", { name: /^Espandi / }));
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"]');
+    const visibleClone = dialog?.cloneNode(true) as HTMLElement | undefined;
+    visibleClone?.querySelectorAll("details").forEach((details) => details.remove());
+    const visibleCopy = visibleClone?.textContent ?? "";
+
+    expect(visibleCopy).not.toMatch(/esperimenti montati|nel corpus|draft|provenance/i);
+    rendered.unmount();
+  });
+
+  it("focuses and traps the runtime modal while keeping its compact origin restorable", async () => {
+    const root = document.getElementById("root") ?? document.body.appendChild(document.createElement("div"));
+    root.id = "root";
+    const rendered = render(renderToolCanvasEmbeddable(createToolEmbedElement())!, { container: root });
+    const expand = rendered.getByRole("button", { name: /^Espandi / });
+
+    fireEvent.click(expand);
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"]')!;
+    const close = dialog.querySelector<HTMLButtonElement>('button[aria-label^="Riduci "]')!;
+    const focusable = Array.from(dialog.querySelectorAll<HTMLElement>("button:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary"));
+    const last = focusable.at(-1)!;
+
+    await waitFor(() => {
+      expect(document.activeElement).toBe(close);
+      expect(root.getAttribute("aria-hidden")).toBe("true");
+      expect((root as HTMLElement & { inert?: boolean }).inert).toBe(true);
+    });
+
+    last.focus();
+    fireEvent.keyDown(last, { key: "Tab" });
+    expect(document.activeElement).toBe(close);
+
+    close.focus();
+    fireEvent.keyDown(close, { key: "Tab", shiftKey: true });
+    expect(document.activeElement).toBe(last);
+
+    close.focus();
+    fireEvent.keyDown(close, { key: "Escape" });
+    await waitFor(() => {
+      expect(document.querySelector('[role="dialog"]')).toBeNull();
+      expect(root.hasAttribute("aria-hidden")).toBe(false);
+      expect((root as HTMLElement & { inert?: boolean }).inert).toBe(false);
+      expect(document.activeElement).toBe(expand);
+    });
+    rendered.unmount();
+  });
+
   it("adatta SimulationScene canonica al canvas ELABTutor senza usare lo SVG come fonte dati", () => {
     const scene = createReferenceSimulationScene();
     const canvas = simulationSceneToElabCanvasState(scene);

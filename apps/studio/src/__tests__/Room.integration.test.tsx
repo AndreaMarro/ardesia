@@ -5,7 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, within } from "@testing-library/react"
 import { readFileSync } from "node:fs"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
@@ -370,7 +370,8 @@ describe("Room ↔ WorkspaceStore integration", () => {
     })!)
 
     fireEvent.click(rendered.getByRole("button", { name: "Espandi Guida collegata" }))
-    const action = await screen.findByRole("button", { name: "Invia comando alla simulazione" })
+    const dialog = await screen.findByRole("dialog", { name: "Guida collegata" })
+    const action = within(dialog).getByRole("button", { name: "Invia comando alla simulazione" })
     expect(action.textContent).toBe("Invia comando alla simulazione")
     fireEvent.click(action)
     expect(emitted.at(-1)).toMatchObject({
