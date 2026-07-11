@@ -645,7 +645,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     if (!api) return
     const pluginElements = elements.filter(isToolCanvasEmbed)
     if (pluginElements.length === 0) return
-    api.scrollToContent?.(pluginElements, { fitToContent: true, animate: false })
+    const compactViewport = window.innerWidth <= 1024
+    const leftGutter = window.innerWidth <= 768 ? 140 : 150
+    const rightGutter = 16
+    api.scrollToContent?.(pluginElements, {
+      fitToContent: true,
+      animate: false,
+      viewportZoomFactor: 1,
+      ...(compactViewport ? { canvasOffsets: { left: leftGutter, right: rightGutter, top: 58, bottom: 0 } } : {}),
+    })
     window.setTimeout(() => {
       if (apiRef.current !== api || typeof api.getAppState !== "function") return
       const appState = api.getAppState()
@@ -654,6 +662,25 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       api.updateScene({ appState: { scrollY: 58 / zoom - minY } })
     }, 0)
   }
+
+  useEffect(() => {
+    let frameTimer: number | null = null
+    const frameResponsivePluginRow = () => {
+      if (frameTimer !== null) window.clearTimeout(frameTimer)
+      frameTimer = window.setTimeout(() => {
+        const api = apiRef.current
+        if (!api || typeof api.getSceneElements !== "function") return
+        framePluginRow(api.getSceneElements())
+      }, 0)
+    }
+
+    window.addEventListener("resize", frameResponsivePluginRow)
+    frameResponsivePluginRow()
+    return () => {
+      window.removeEventListener("resize", frameResponsivePluginRow)
+      if (frameTimer !== null) window.clearTimeout(frameTimer)
+    }
+  }, [sceneData])
 
   function insertSimulationPlugin(experimentId?: string) {
     if (!apiRef.current) {

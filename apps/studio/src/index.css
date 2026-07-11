@@ -1178,8 +1178,16 @@ body,
 
 @media (max-width: 768px) {
   .st-room-board .st-radial-tools { right: 16px; bottom: 20px; }
-}
-
-@media (max-width: 768px) and (min-height: 800px) {
-  .st-view-nav { top: auto; bottom: 84px; }
+  .st-room-board [data-plugin-instance-id] button {
+    transform: scale(1.7);
+  }
+  .st-room-board [data-plugin-instance-id] button[aria-label^="Espandi"] {
+    transform: scale(1.7);
+  }
+  .st-room-board [data-plugin-instance-id] summary {
+    transform: scaleY(1.7);
+  }
+  .st-room-board [data-plugin-postit-kind="arduino-toolchain"] > [data-plugin-primary-copy] > span {
+    display: none;
+  }
 }

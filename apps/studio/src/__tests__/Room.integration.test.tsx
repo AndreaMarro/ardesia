@@ -426,12 +426,48 @@ describe("Room ↔ WorkspaceStore integration", () => {
     )
     expect(reducedMotion).toMatch(/\.st-library-shelf,\s*\.st-library-asset\s*\{[^}]*animation:\s*none !important;[^}]*transform:\s*none !important;/s)
     expect(reducedMotion).toMatch(/\.st-shell-launcher:hover,\s*\.st-shell-launcher\[aria-expanded="true"\][^{]*\{[^}]*transform:\s*none !important;/s)
+    expect(css).not.toMatch(/@media \(max-width:\s*768px\) and \(min-height:\s*800px\)[\s\S]*?\.st-view-nav\s*\{[^}]*bottom:/)
 
     const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
     const rendered = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!)
     expect(rendered.getByRole("button", { name: /Espandi/ }).style.minHeight).toBe("44px")
     expect(rendered.container.querySelector("summary")?.style.minHeight).toBe("44px")
     rendered.unmount()
+  })
+
+  it("riframe i plugin reali quando il viewport passa a iPad", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const plugins = [
+      { id: "sim-a", link: "maestro-tool://io.ardesia.simulation/sim-a" },
+      { id: "arduino-a", link: "maestro-tool://io.ardesia.arduino-toolchain/arduino-a" },
+      { id: "tutor-a", link: "maestro-tool://io.ardesia.elabtutor/tutor-a" },
+    ]
+    mockExcalidrawHarness.sceneElements = plugins
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1"))
+    mockExcalidrawHarness.scrollToContentCalls = []
+
+    const originalWidth = window.innerWidth
+    Object.defineProperty(window, "innerWidth", { value: 768, configurable: true })
+    fireEvent(window, new Event("resize"))
+
+    await vi.waitFor(() => {
+      expect(mockExcalidrawHarness.scrollToContentCalls).toContainEqual({
+        elements: plugins,
+        options: {
+          fitToContent: true,
+          animate: false,
+          viewportZoomFactor: 1,
+          canvasOffsets: { left: 140, right: 16, top: 58, bottom: 0 },
+        },
+      })
+    })
+    Object.defineProperty(window, "innerWidth", { value: originalWidth, configurable: true })
+    root.unmount()
   })
 
   it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {
