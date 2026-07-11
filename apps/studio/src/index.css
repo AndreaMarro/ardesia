@@ -1121,6 +1121,10 @@ body,
 @keyframes st-library-asset-arrive { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
 
 /* Literal Room shell: iPad e LIM mantengono rail, ricerca e creazione raggiungibili. */
+@media (min-width: 1600px) {
+  .st-shell-actions { box-sizing: border-box; padding-right: var(--m-sp-5); }
+}
+
 @media (max-width: 1024px) {
   .st-shell-topbar {
     grid-template-columns: minmax(142px, .65fr) minmax(300px, 1.5fr) minmax(112px, .55fr);
