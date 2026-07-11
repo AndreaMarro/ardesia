@@ -42,6 +42,7 @@ async function mountCoreCanvas(persist?: (embedId: string, state: unknown, toolI
   const view = renderToolCanvasEmbeddable(
     element as never,
     persist === undefined ? undefined : { persistEmbedState: persist },
+    "runtime",
   )
   if (view === null) throw new Error("embeddable non renderizzato")
   const utils = render(view)

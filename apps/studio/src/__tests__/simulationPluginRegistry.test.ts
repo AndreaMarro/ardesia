@@ -82,9 +82,9 @@ describe("simulationPluginRegistry", () => {
   it("saved links legacy restano renderizzabili via alias del registry", () => {
     const view = renderToolCanvasEmbeddable({
       link: `${TOOL_EMBED_SCHEME}${LEGACY_REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`,
-    })
+    }, undefined, "runtime")
     expect(view).not.toBeNull()
-    expect(renderToStaticMarkup(view!)).toContain("Accendi il LED sulla breadboard")
+    expect(renderToStaticMarkup(view!)).toContain("Accendi il tuo primo LED")
   })
 
   // ── Fase 2 simulature: motore elettrico dietro il registry (confine P2) ──

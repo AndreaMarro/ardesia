@@ -103,10 +103,10 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     return root
   }
 
-  it("renders header with st-bar class", async () => {
+  it("renders the shared Studio shell header", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      const bars = document.querySelectorAll(".st-bar")
+      const bars = document.querySelectorAll(".st-shell-topbar")
       expect(bars.length).toBe(1)
       expect(document.querySelector(".st-name-text")?.textContent).toBe("Lezione senza titolo")
     }, { timeout: 1000, interval: 10 })
@@ -118,7 +118,7 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     await vi.waitFor(() => {
       const btns = document.querySelectorAll('[data-orbit-action="launcher"]')
       expect(btns.length).toBe(1)
-      expect(btns[0].textContent).toContain("Cerca e crea")
+      expect(btns[0].getAttribute("aria-label")).toBe("Cerca e crea")
     }, { timeout: 1000, interval: 10 })
     root.unmount()
   })
@@ -126,9 +126,9 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
   it("il launcher apre e chiude lo stesso pannello", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-orbit-launcher")).toBeTruthy()
+      expect(document.querySelector(".st-shell-launcher")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
-    const launcher = document.querySelector(".st-orbit-launcher") as HTMLButtonElement
+    const launcher = document.querySelector(".st-shell-launcher") as HTMLButtonElement
     expect(document.querySelector(".st-launcher-panel")).toBeNull()
 
     launcher.click()
@@ -168,7 +168,7 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
   it("mantiene al massimo due azioni persistenti in testata", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-orbit-shell")).toBeTruthy()
+      expect(document.querySelector(".st-shell-topbar")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
     expect(document.querySelectorAll("[data-orbit-action]").length).toBe(2)
     expect(document.querySelector(".st-actions")).toBeNull()
@@ -178,7 +178,7 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
   it("drawer overlay is absent when not open", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-bar")).toBeTruthy()
+      expect(document.querySelector(".st-shell-topbar")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
     const overlay = document.querySelector(".st-drawer-overlay")
     expect(overlay).toBeNull()
@@ -188,7 +188,7 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
   it("recstrip is absent when not recording", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-bar")).toBeTruthy()
+      expect(document.querySelector(".st-shell-topbar")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
     const recstrip = document.querySelector(".st-recstrip")
     expect(recstrip).toBeNull()
