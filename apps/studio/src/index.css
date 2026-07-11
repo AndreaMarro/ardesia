@@ -919,6 +919,12 @@ body,
     width: calc(100vw - 24px); height: calc(100vh - 312px);
     grid-template-rows: 52px minmax(0, 1fr);
   }
+  .st-plugin-runtime-overlay [data-plugin-runtime-surface="simulation"] > main {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .st-plugin-runtime-overlay [data-plugin-runtime-surface="simulation"] > main > * {
+    min-width: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
