@@ -111,6 +111,12 @@ describe("LibraryView", () => {
     expect(container.querySelector('[data-library-shelf="postit"]')).toBeTruthy()
     expect(container.querySelector('[data-library-shelf="resource"]')).toBeTruthy()
     expect(container.querySelector("[data-library-layout]")?.getAttribute("data-library-layout")).toBe("grid")
+    expect(screen.getByRole("link", { name: "Crea un nuovo materiale sulla lavagna" }).getAttribute("href")).toBe(
+      "/?crea=1#corrente-continua",
+    )
+    expect(screen.getByRole("link", { name: "Crea qualcosa di nuovo" }).getAttribute("href")).toBe(
+      "/?crea=1#corrente-continua",
+    )
     expect(screen.getByText("Arduino compile"))
     expect(screen.getByText("Schema immagine"))
     const compileCard = screen.getByText("Arduino compile").closest("article")

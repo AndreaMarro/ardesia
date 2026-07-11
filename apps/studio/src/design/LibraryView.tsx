@@ -112,6 +112,11 @@ function boardFocusHref(room: string, elementId: string): string {
   return `/?focus=${encodeURIComponent(elementId)}${hash}`
 }
 
+function creationLauncherHref(room: string): string {
+  const hash = room.length > 0 ? `#${room}` : ""
+  return `/?crea=1${hash}`
+}
+
 /**
  * Legge solo la scena della stanza corrente. Il journal legacy non contiene
  * ancora lo scope room: audio, PDF e transcript restano esplicitamente fuori.
@@ -337,7 +342,7 @@ export default function LibraryView({ deps }: { deps?: LibraryViewDeps }) {
   const launcher = (
     <a
       className="st-shell-launcher"
-      href={viewHref("lavagna", room)}
+      href={creationLauncherHref(room)}
       aria-label="Crea un nuovo materiale sulla lavagna"
       title="Crea un nuovo materiale sulla lavagna"
     >
@@ -490,7 +495,7 @@ export default function LibraryView({ deps }: { deps?: LibraryViewDeps }) {
                 </div>
               )}
 
-              <a className="st-library-create" href={viewHref("lavagna", room)}>
+              <a className="st-library-create" href={creationLauncherHref(room)}>
                 <span aria-hidden>+</span>
                 Crea qualcosa di nuovo
               </a>

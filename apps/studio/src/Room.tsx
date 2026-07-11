@@ -49,6 +49,14 @@ function focusedElementId(): string | null {
   }
 }
 
+function hasInitialCreationIntent(): boolean {
+  try {
+    return new URL(window.location.href).searchParams.get("crea") === "1"
+  } catch {
+    return false
+  }
+}
+
 /** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
 function sharedClock(): number {
   return Date.now()
@@ -84,7 +92,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   /** Mostra stato registrazione nell'header */
   const [audioRecording, setAudioRecording] = useState(false)
   /** Launcher unico per note, media, plugin e comandi della lezione. */
-  const [launcherOpen, setLauncherOpen] = useState(false)
+  const [launcherOpen, setLauncherOpen] = useState(hasInitialCreationIntent)
   const [launcherQuery, setLauncherQuery] = useState("")
   const [radialOpen, setRadialOpen] = useState(false)
   const [boardState, setBoardState] = useState<"empty" | "populated">("empty")

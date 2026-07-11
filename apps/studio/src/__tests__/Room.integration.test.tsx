@@ -177,7 +177,7 @@ beforeEach(() => {
     configurable: true,
     writable: true,
   })
-  globalThis.location.hash = "#test-room-1"
+  window.history.replaceState(null, "", "/#test-room-1")
   document.body.innerHTML = '<div id="root"></div>'
   mockExcalidrawHarness.updateSceneCalls = []
   mockExcalidrawHarness.scrollToContentCalls = []
@@ -201,6 +201,22 @@ async function launcherAction(label: string): Promise<HTMLButtonElement> {
 }
 
 describe("Room ↔ WorkspaceStore integration", () => {
+  it("apre il launcher condiviso quando la Library porta l'intento iniziale", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    window.history.replaceState(null, "", "/?crea=1#library-room")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    expect(await screen.findByRole("dialog", { name: "Cerca e crea" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Cerca e crea" }).getAttribute("aria-expanded")).toBe("true")
+    expect(mockExcalidrawHarness.updateSceneCalls).toHaveLength(0)
+
+    root.unmount()
+  })
+
   it("espone la lavagna vuota e apre gli strumenti radiali reali", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
@@ -404,6 +420,12 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const css = readFileSync("src/index.css", "utf8")
     expect(css).toMatch(/\.st-shell-launcher\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;/s)
     expect(css).not.toMatch(/\.st-radial-tools\s*\{[^}]*transform:\s*scale\(/s)
+    const reducedMotion = css.slice(
+      css.indexOf("@media (prefers-reduced-motion: reduce) {", css.indexOf("/* ── Library")),
+      css.indexOf("/* La shell approvata affida la creazione all'orbita"),
+    )
+    expect(reducedMotion).toMatch(/\.st-library-shelf,\s*\.st-library-asset\s*\{[^}]*animation:\s*none !important;[^}]*transform:\s*none !important;/s)
+    expect(reducedMotion).toMatch(/\.st-shell-launcher:hover,\s*\.st-shell-launcher\[aria-expanded="true"\][^{]*\{[^}]*transform:\s*none !important;/s)
 
     const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
     const rendered = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!)

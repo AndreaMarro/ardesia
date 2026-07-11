@@ -1129,13 +1129,17 @@ body,
     transition-duration: 1ms !important;
     scroll-behavior: auto !important;
   }
+  .st-library-shelf,
+  .st-library-asset { animation: none !important; transform: none !important; }
+  .st-shell-launcher:hover,
+  .st-shell-launcher[aria-expanded="true"],
   .st-library-asset:hover,
   .st-library-asset:focus-within,
   .st-library-filter:hover,
   .st-library-shell-action:hover,
   .st-library-shell-action:focus-visible,
   .st-library-create:hover,
-  .st-library-create:focus-visible { transform: none; }
+  .st-library-create:focus-visible { transform: none !important; }
 }
 
 /* La shell approvata affida la creazione all'orbita; Excalidraw resta il
