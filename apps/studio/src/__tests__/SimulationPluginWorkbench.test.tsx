@@ -23,10 +23,11 @@ describe("Simulation Plugin route", () => {
     expect(isSimulationPluginView()).toBe(false)
   })
 
-  it("puts the simulator before ELAB in the primary nav", () => {
+  it("puts the simulator before Knowledge and ELAB in the primary nav", () => {
     expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual([
       "lavagna",
       "simulatore",
+      "knowledge",
       "elab-lab",
     ])
     expect(viewHref("simulatore", "#wbstudio-abc")).toBe(

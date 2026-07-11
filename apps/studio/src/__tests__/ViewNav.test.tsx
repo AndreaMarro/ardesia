@@ -11,9 +11,10 @@ afterEach(() => {
 })
 
 describe("viewHref — hash stanza preservato attraverso le viste", () => {
-  it("lavagna con hash = stessa stanza; Simulatore ed ELABTutor portano lo hash", () => {
+  it("lavagna con hash = stessa stanza; Simulation, Knowledge ed ELABTutor portano lo hash", () => {
     expect(viewHref("lavagna", "#wbstudio-abc")).toBe("/#wbstudio-abc")
     expect(viewHref("simulatore", "#wbstudio-abc")).toBe("/?vista=simulatore#wbstudio-abc")
+    expect(viewHref("knowledge", "#wbstudio-abc")).toBe("/?vista=knowledge#wbstudio-abc")
     expect(viewHref("elab-lab", "#wbstudio-abc")).toBe("/?vista=elab-lab#wbstudio-abc")
   })
 })
@@ -27,9 +28,11 @@ describe("ViewNav — sobria, lavagna/Simulatore/ELABTutor", () => {
     expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual([
       "lavagna",
       "simulatore",
+      "knowledge",
       "elab-lab",
     ])
     expect(container.textContent).toContain("Simulatore")
+    expect(container.textContent).toContain("Knowledge")
     expect(container.textContent).toContain("ELABTutor")
     expect(container.textContent).not.toContain("cruscotto")
     expect(container.textContent).not.toContain("lezioni")

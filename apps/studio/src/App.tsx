@@ -19,6 +19,7 @@ const ElabLab = lazy(() => import("./design/ElabLab"))
 const SavedLessonsView = lazy(() => import("./design/SavedLessonsView"))
 const PluginWizard = lazy(() => import("./design/PluginWizard"))
 const TeacherDashboardView = lazy(() => import("./design/TeacherDashboardView"))
+const KnowledgeExplorerView = lazy(() => import("./design/KnowledgeExplorerView"))
 
 /** Fallback neutro: header brand senza testo di stato (nessun flash di layout). */
 function ViewFallback() {
@@ -35,10 +36,19 @@ function isMultiPostitWorkbenchView(): boolean {
   }
 }
 
+function isKnowledgeExplorerView(): boolean {
+  try {
+    if (typeof window === "undefined") return false
+    return new URL(window.location.href).searchParams.get("vista") === "knowledge"
+  } catch {
+    return false
+  }
+}
+
 export default function App() {
   return (
     <Suspense fallback={<ViewFallback />}>
-      {isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
+      {isTeacherDashboardView() ? <TeacherDashboardView /> : isKnowledgeExplorerView() ? <KnowledgeExplorerView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
     </Suspense>
   )
 }
