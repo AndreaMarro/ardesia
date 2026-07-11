@@ -28,6 +28,19 @@ afterEach(() => {
 })
 
 describe("Browser-hosted multi post-it workbench", () => {
+  it("renders Marketplace through the shared shell instead of Room or the workbench", async () => {
+    window.history.replaceState(null, "", "/?vista=marketplace#room")
+    const { container } = render(<App />)
+
+    await screen.findAllByText("Marketplace")
+    expect(
+      container.querySelector('[data-studio-shell][data-current-view="marketplace"]'),
+    ).not.toBeNull()
+    expect(container.querySelector("[data-marketplace-view]")).not.toBeNull()
+    expect(screen.queryByTestId("app-default-route")).toBeNull()
+    expect(screen.queryByTestId("multi-postit-workbench")).toBeNull()
+  })
+
   it("is not a product route and imports no private simulator internals", async () => {
     window.history.replaceState(null, "", "/?vista=simulatore-postit")
     render(<App />)

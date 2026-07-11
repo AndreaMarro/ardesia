@@ -1,10 +1,13 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
+import App from "../App"
 import SimulationPluginWorkbench from "../design/SimulationPluginWorkbench"
-import ViewNav, { ARDESIA_VIEW_LINKS, viewHref } from "../design/ViewNav"
-import { isSimulationPluginView } from "../store/simulationPluginView"
+
+vi.mock("../Room", () => ({
+  default: () => <div data-testid="app-default-route" />,
+}))
 
 afterEach(() => {
   cleanup()
@@ -15,31 +18,17 @@ afterEach(() => {
   })
 })
 
-describe("Simulation Plugin route", () => {
-  it("has its own query route, separate from ELABTutor", () => {
-    window.history.replaceState(null, "", "/?vista=simulatore")
-    expect(isSimulationPluginView()).toBe(true)
-    window.history.replaceState(null, "", "/?vista=elab-lab")
-    expect(isSimulationPluginView()).toBe(false)
-  })
+describe("Legacy product routes", () => {
+  it("does not mount standalone Simulation or ELAB Lab pages", async () => {
+    for (const route of ["simulatore", "elab-lab"]) {
+      window.history.replaceState(null, "", `/?vista=${route}`)
+      const { container, unmount } = render(<App />)
 
-  it("keeps the simulator route available without exposing it in global navigation", () => {
-    expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual([
-      "lavagna",
-      "knowledge",
-      "library",
-      "marketplace",
-    ])
-    expect(viewHref("simulatore", "#wbstudio-abc")).toBe(
-      "/?vista=simulatore#wbstudio-abc",
-    )
-
-    window.history.replaceState(null, "", "/?vista=simulatore#wbstudio-room1")
-    const { container } = render(<ViewNav current="simulatore" />)
-    expect(container.textContent).not.toContain("Simulatore")
-    expect(container.textContent).not.toContain("ELABTutor")
-    expect(container.textContent).toContain("Marketplace")
-    expect(container.querySelector('[aria-current="page"]')).toBeNull()
+      await screen.findByTestId("app-default-route")
+      expect(container.querySelector('[data-simulation-workbench-state="ready"]')).toBeNull()
+      expect(container.querySelector("[data-elab-lab-state]")).toBeNull()
+      unmount()
+    }
   })
 })
 
