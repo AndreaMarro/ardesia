@@ -97,11 +97,11 @@ describe("bridge ElabScene -> SimulationSceneV1 (round-trip render della scena r
     const element = createToolEmbedElement({
       state: { kind: "simulation-scene-v1", scene: bridged },
     })
-    const view = renderToolCanvasEmbeddable(element)
+    const view = renderToolCanvasEmbeddable(element, undefined, "runtime")
     expect(view).not.toBeNull()
     const html = renderToStaticMarkup(view!)
     expect(html).toContain("15.3 mA")
-    expect(html).toContain("Accendi il LED sulla breadboard")
+    expect(html).toContain("Accendi il tuo primo LED")
   })
 
   it("la provenance NON viene gonfiata: candidate -> draft, mai verified", () => {
@@ -144,8 +144,8 @@ describe("bridge ElabScene -> SimulationSceneV1 (round-trip render della scena r
     const element = createToolEmbedElement({
       state: { kind: "simulation-scene-v1", scene: bridged },
     })
-    const firstRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!)
-    const secondRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element)!)
+    const firstRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element, undefined, "runtime")!)
+    const secondRender = renderToStaticMarkup(renderToolCanvasEmbeddable(element, undefined, "runtime")!)
     // Determinismo: render ripetuto su dati identici = markup identico.
     expect(secondRender).toBe(firstRender)
     // Il d del filo = ESATTAMENTE i punti autorati (M/L), zero geometria inventata.

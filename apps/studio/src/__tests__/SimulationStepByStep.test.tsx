@@ -38,7 +38,7 @@ afterEach(cleanup)
 
 function mountSim() {
   const element = createToolEmbedElement()
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }
@@ -151,12 +151,9 @@ describe("Simulation Plugin — pannello passo-passo nel post-it (S3)", () => {
     expect(container.querySelector("[data-step-id]")).toBeNull()
   })
 
-  it("il banner onestà catalogo è visibile nel post-it", () => {
+  it("mantiene il conteggio tecnico del catalogo fuori dalla UI primaria", () => {
     const container = mountSim()
     const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner, "banner catalogo assente").not.toBeNull()
-    // Ancora esterna intenzionale (mai derivata dal catalogo stesso):
-    // 3 montati = esp1 + esp2 + esp3 (ADR-0003, NOTTE-13).
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
+    expect(banner).toBeNull()
   })
 })

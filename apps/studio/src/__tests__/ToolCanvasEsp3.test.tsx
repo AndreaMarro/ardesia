@@ -23,7 +23,7 @@ function mountEsp3() {
     embedId: ELAB_V1_LUMINOSITA_EMBED_ID,
     state: { kind: "simulation-scene-v1", scene: createV1Cap6Esp3SimulationScene() },
   })
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }
@@ -55,14 +55,12 @@ describe("post-it esp3 — zona di stress dichiarata", () => {
     const zone = container.querySelector("[data-led-stress-zone]")
     expect(zone?.getAttribute("data-led-stress-zone")).toBe("overdrive")
     expect(zone?.textContent).toContain("vita del LED ridotta")
-    // Banner onestà: 4 scene montate.
-    const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
+    expect(container.querySelector("[data-elab-catalog-summary]")).toBeNull()
   })
 
   it("controprova esp1 (470 Ohm, 15.3mA): NESSUN avviso di zona", () => {
     const element = createToolEmbedElement()
-    const view = renderToolCanvasEmbeddable(element as never)
+    const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
     const { container } = render(view!)
     expect(container.querySelector("[data-led-stress-zone]")).toBeNull()
   })

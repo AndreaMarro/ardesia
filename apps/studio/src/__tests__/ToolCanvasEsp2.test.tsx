@@ -29,7 +29,7 @@ function mountEsp2() {
     embedId: ELAB_V1_NO_RESISTOR_EMBED_ID,
     state: { kind: "simulation-scene-v1", scene: createV1Cap6Esp2SimulationScene() },
   })
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }
@@ -69,13 +69,12 @@ describe("createV1Cap6Esp2SimulationScene — bridge onesto", () => {
 })
 
 describe("post-it esp2 — la UI dichiara il LED bruciato", () => {
-  it("metriche: resistore ASSENTE, LED BRUCIATO, sovracorrente; banner 2/88", () => {
+  it("metriche: resistore ASSENTE, LED BRUCIATO e sovracorrente", () => {
     const container = mountEsp2()
     expect(container.textContent).toContain("ASSENTE")
     expect(container.textContent).toContain("BRUCIATO")
     expect(container.textContent).toContain("sovracorrente")
-    const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
+    expect(container.querySelector("[data-elab-catalog-summary]")).toBeNull()
   })
 
   it("SVG: LED marcato bruciato (aria-label) e monito del libro visibile", () => {

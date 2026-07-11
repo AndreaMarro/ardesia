@@ -23,7 +23,7 @@ function mountEsp6() {
     embedId: ELAB_V1_RGB_LAMP_EMBED_ID,
     state: { kind: "simulation-scene-v1", scene: createV1Cap9Esp6SimulationScene() },
   })
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }
@@ -76,10 +76,9 @@ describe("post-it esp6 — canali dal motore reale", () => {
     expect(rgb?.getAttribute("aria-label")).toContain("acceso")
   })
 
-  it("banner onestà: 4 scene montate su 88", () => {
+  it("non espone il conteggio tecnico del catalogo nella UI primaria", () => {
     const container = mountEsp6()
-    const banner = container.querySelector("[data-elab-catalog-summary]")
-    expect(banner?.getAttribute("data-elab-catalog-summary")).toBe("4/88")
+    expect(container.querySelector("[data-elab-catalog-summary]")).toBeNull()
   })
 })
 
