@@ -11,9 +11,24 @@ Mandato canonico congelato per questa esecuzione:
   SHA-256 `4a59deec58d0e1ca23720da3a958a6d30148e71224f4be15ebc18476ea86916b`;
 - addendum corrente: `/Users/andreamarro/.codex/attachments/c1f75ee2-e5ee-467e-b69a-02ca9ddf9742/pasted-text.txt`,
   SHA-256 `17000115531d1bacc62d06025f89a3bea5e1ac0342f364dd00ff8805e0186a50`.
+- chiarimenti consolidati: `docs/ops/ARDESIA-MANDATE-ADDENDUM-20260711.md`,
+  SHA-256 `88967a453389d128a646ae984fa0ab9752d5a500b2d97528b6cb64ad33cd8310`.
 
-La baseline e' l'unione ordinata dei due file. Un cambio di hash, rimozione o
+La baseline e' l'unione ordinata delle tre fonti. Un cambio di hash, rimozione o
 reinterpretazione richiede approvazione esplicita di Andrea e decision log.
+
+Addendum vincolante 2026-07-11: massimizzare velocita', qualita' e riuso come
+un progettista di prodotto. Tutti i link e i riferimenti forniti da Andrea
+devono essere valutati; la ricerca deve trovare ulteriori soluzioni mature;
+codice, asset e pattern open source/open licensed vanno adottati o adattati
+quando riducono tempo e costo totale senza degradare il prodotto. Nessun
+requisito esplicito puo' sparire per semplificazione dell'agente.
+
+Chiarimento vincolante 2026-07-11: **ogni plugin e' un post-it/Knowledge Card e
+non e' mai una pagina separata**. `Tinkercad parity` significa esperienza
+equivalente dentro un post-it, tramite un'istanza del Simulation Plugin. Una
+route Simulatore, un iframe Tinkercad, uno screenshot o una demo statica non
+soddisfano il requisito.
 
 ## 1. Outcome
 
@@ -23,10 +38,13 @@ rapido su iPad/LIM, locale-first, verificabile e migliorabile senza riscrivere
 il core.
 
 La V1 e' la prima matrice obbligatoria: accesso/local mode; creazione lezione;
-notebook/canvas con mouse, touch e Pencil; Knowledge Card; import PDF, immagine
-e audio; manuale ELAB; costruzione, modifica, solve, diagnosi, undo/redo e
+**taccuino a pagine e lavagna infinita**, entrambi con mouse, touch e Pencil;
+Knowledge Card; import PDF, immagine e audio; manuale ELAB; costruzione,
+modifica, solve, diagnosi, undo/redo e
 persistence del circuito LED; LessonOS, graph ed ElabTutor grounded;
-generazione di appunti, esercizi e quiz; export PDF, Markdown e Lesson Package;
+Knowledge Explorer navigabile per lezione e insieme di lezioni; generazione di
+appunti, esercizi e quiz; Library ordinata di audio, materiali, appunti e
+artifact; storage locale o Drive; export PDF, Markdown e Lesson Package;
 close/reopen; prova iPad e LIM.
 
 Il circuito LED e' la prima spina verticale riutilizzabile, non una riduzione
@@ -54,9 +72,63 @@ Andrea senza assistenza tecnica bloccante.
   import/export, tutorial, touch, accessibilita', performance e AI control;
 - piattaforma di contenuti, memoria, graph e materiali esportabili/vendibili
   descritta nel mandato, senza riduzioni implicite.
+- Teacher Network e Marketplace: profili/portfolio, discovery sociale,
+  pubblicazione e vendita di contenuti originali o AI-assisted, abbonamenti,
+  reputazione, licenze, acquisto, payout e qualita' verificabile.
+- Creator Ecosystem aperto: chiunque puo' creare plugin no-code o tecnici e
+  scegliere se distribuirli gratuitamente, open source o monetizzarli; uso e
+  composizione restano sempre nel modello plugin-post-it.
+- separazione ruoli: il docente genera/approva/pubblica; lo studente non genera
+  materiali ma consulta riassunti completi e interagisce con la propria
+  conoscenza, esercizi, simulazioni e annotazioni private.
 
 Il goal termina solo con `FULL_GOAL_GREEN`, non con una demo LED o una V1
 ristretta.
+
+### Topologia prodotto scelta
+
+Poche pagine shell, nessuna pagina-plugin:
+
+```text
+Lezioni
+  -> Taccuino a pagine
+  -> Lavagna infinita
+Knowledge Explorer
+Library
+Teacher/Creator Network + Marketplace
+Impostazioni, account e connector
+```
+
+Gli oggetti canonici sono pochi e componibili:
+
+```text
+Lesson
+LessonAsset
+PluginInstance -> PostItFrame
+LessonEvent -> graph/notes/analytics projections
+ContentArtifact
+PluginPackage
+UserKnowledgeGraph
+```
+
+I servizi core hanno responsabilita' strette:
+
+```text
+ToolHost         plugin registry, capability, lifecycle e sandbox
+LessonOS         event backbone, replay, projection e provenance
+StorageProvider  local-first oppure Drive, stesso formato portabile
+ConnectorHub     adapter esterni, consent, scope, sync e revoca
+Marketplace      catalogo, discovery, licenze, checkout e payout provider
+```
+
+Percorsi principali:
+
+- docente: lezione -> taccuino/lavagna -> plugin-post-it -> LessonOS ->
+  Graph/Library -> genera/approva -> assegna o pubblica/vende;
+- studente: lezione assegnata -> riassunto completo -> graph personale ->
+  pratica/simula/annota -> evidenze LessonOS, senza generation;
+- creator plugin: Creator post-it -> package -> preview/test -> installa ->
+  pubblica free/open source/paid -> acquirente lo usa come post-it.
 
 ## 2. Regole di velocita'
 
@@ -85,25 +157,63 @@ ristretta.
     tecniche: non chiedere consenso. Fermarsi solo per `SECURITY_RED`, azione
     irreversibile, side effect esterno non gia' autorizzato o scelta di prodotto
     non deducibile dal canon e dall'evidenza.
+13. Ragionare dal percorso utente e dal rischio maggiore verso il codice:
+    definire outcome, riusare, comporre una verticale, provarla nel runtime
+    reale, poi generalizzare solo cio' che si ripete davvero.
+14. Recon + ricerca per una decisione sono timeboxed a 20 minuti. Devono
+    terminare con `ADOPT`, `ADAPT` o `BUILD`, owner e prova imminente; una
+    ricerca senza decisione non conta come progresso.
+15. Ottimizzare il tempo al primo comportamento completo e verificato, non
+    volume di codice, numero di agenti o documenti. Integrare presto; evitare
+    astrazioni speculative, migrazioni ampie e parallelismo sul critical path.
+16. Montare pezzi maturi dietro adapter/contract stabili. Prima di sostituire
+    comportamento esistente: characterization baseline; dopo: contract/replay,
+    migrazione additiva, browser proof e rollback. Nessuna regressione nota si
+    scambia per velocita'.
 
 ## 3. Riuso prima della costruzione
 
-Ordine obbligatorio:
+Default: non reinventare e non buttare cio' che funziona. Il codice nuovo e'
+un costo permanente; il riuso e' preferito solo quando mantiene controllo,
+coerenza e costo totale inferiore.
 
-1. cercare nel monorepo e nei worktree attivi;
-2. riusare API, componenti, solver, asset e test esistenti;
-3. confrontare al massimo tre candidati esterni mirati;
-4. preferire `USE` quando un componente mantenuto e con licenza compatibile
-   riduce il costo totale build+integrazione+manutenzione; usare `ABSORB` solo
-   per una parte piccola e isolabile;
-5. registrare URL, versione/SHA, SPDX, file copiati, attribution/NOTICE,
+Ordine obbligatorio per ogni sottosistema:
+
+1. cercare nel monorepo, nella storia Git e nei worktree attivi, inclusi WIP
+   altrui leggibili ma non modificabili;
+2. inventariare e aprire tutti i link forniti da Andrea; nessun link puo'
+   essere ignorato: stato `ADOPTED`, `ADAPTED`, `REFERENCE`, `REJECTED` o
+   `BLOCKED`, con una riga di motivazione;
+3. cercare in modo mirato ulteriori repository, package e standard ufficiali,
+   privilegiando progetti mantenuti, diffusi, testati e con API stabili;
+4. confrontare al massimo tre candidati esterni sulla decisione imminente per
+   licenza, fit, accessibilita', performance, sicurezza, manutenzione,
+   lock-in, bundle e costo di integrazione;
+5. scegliere `ADOPT` per una dipendenza pubblica, `ADAPT` per una parte
+   isolabile o `BUILD` da zero. `BUILD` richiede evidenza che riuso locale e
+   candidati esterni falliscono i gate precedenti;
+6. registrare URL canonico, versione/SHA, SPDX, file copiati, copyright,
+   attribution/NOTICE,
    dipendenze transitive/SBOM, CVE scan, owner aggiornamenti/drift e rollback;
-6. nessun import host da internals plugin: il riuso attraversa confini solo
+7. preservare test e comportamento valido del materiale esistente. Sostituire
+   una soluzione funzionante richiede confronto prima/dopo, migrazione e
+   rollback; riscriverla per gusto personale e' vietato;
+8. nessun import host da internals plugin: il riuso attraversa confini solo
    tramite export pubblici/capability e contract test.
 
-Non copiare UI, brand, opere o composizioni. Riferimenti come Miro, GoodNotes,
-Tinkercad, Matisse, Calder e Haring descrivono principi funzionali o astratti,
-non un risultato da clonare.
+E' consentito copiare e adattare codice o asset solo quando la licenza lo
+permette e gli obblighi sono rispettati. Licenza assente, ambigua, source-
+available incompatibile, segreti o provenienza incerta producono `REJECTED` o
+`LEGAL_RED`: non si copiano. Idee, architetture e pattern si possono studiare;
+non si clonano UI protette, brand, opere o composizioni riconoscibili.
+
+Miro, GoodNotes, Notability, Jamboard, Mixboard e Tinkercad sono reference
+funzionali da analizzare comparativamente, non codice o identita' da clonare.
+Il risultato deve restare originale ARDESIA.
+
+Registro operativo obbligatorio:
+`docs/ops/ARDESIA-REUSE-AND-INSPIRATION-REGISTER.md`. Contiene i link forniti,
+le nuove fonti trovate, cosa apprendere/adottare, licenza, decisione e milestone.
 
 ## 4. Acceleratori: gate, non progetto
 
@@ -121,8 +231,70 @@ misura non dimostra il collo di bottiglia che ciascuno dovrebbe rimuovere.
 - Operazioni manuali e AI usano comandi tipati, reversibili e auditabili.
 - Plugin comunicano tramite capability e interfacce pubbliche; nessun accesso a
   internals, permessi ereditati o dipendenze cicliche.
+- Il modello plugin e' object-oriented per contratto, non per gerarchie fragili:
+  ogni `PluginInstance` ha identita'/tipo/versione, stato incapsulato, comandi,
+  query, eventi, capability provided/required, view e lifecycle. ToolHost e'
+  registry/runtime; il creator e' una factory; il post-it contiene e presenta
+  un riferimento all'istanza.
+- Polimorfismo tramite manifest e capability, composizione prima
+  dell'ereditarieta'. Nessun plugin legge o muta direttamente stato/internals
+  di un altro; usa comandi/eventi/capability pubbliche.
+- Collapse, expand, duplicate, move, save/reopen ed export operano sulla stessa
+  istanza e sullo stesso stato. L'espansione e' un overlay del post-it dentro la
+  lavagna, mai una route/pagina dedicata, e non crea una seconda source of truth.
+- Nessun plugin aggiunge una voce di navigazione primaria o una pagina
+  prodotto. Anche Simulation, ElabTutor, Graph, Plot, Export e Plugin Creator
+  nascono, vivono e si compongono come post-it nel taccuino o sulla lavagna.
+- Taccuino e lavagna infinita sono due superfici shell complementari, non due
+  prodotti: il taccuino ordina pagine, sezioni, scrittura e cronologia della
+  lezione; la lavagna organizza liberamente oggetti, gruppi e relazioni nello
+  spazio. Lo stesso plugin-post-it puo' essere referenziato in entrambe senza
+  duplicare istanza o stato.
 - LessonOS usa un event log append-only con ordering, idempotenza, replay,
   snapshot, recovery, export e delete.
+- Ogni `PluginInstance` e' collegata a LessonOS. Create/attach, comandi
+  semantici, risultati, error/recovery, export e remove emettono eventi tipati
+  con `lessonId`, `pluginInstanceId`, schema/versione, command/causation ID,
+  sequence e provenance. Pointer move intermedi e rendering non inquinano il
+  log; una mutazione durevole non puo' bypassarlo.
+- LessonOS proietta lo stesso log in timeline, knowledge graph, indice appunti,
+  analytics e contesto grounded. Le projection sono ricostruibili, versionate e
+  non diventano fonti di verita' concorrenti.
+- Ogni audio, trascrizione, PDF, immagine, nota, source e artifact e' un
+  `LessonAsset` con ID, type, content hash, provenance, lesson scope, graph
+  links, provider ref, revision e timestamps. Nessun blob orfano o file senza
+  indice puo' soddisfare il gate.
+- `Knowledge Explorer` e' una pagina shell, non un plugin: naviga corso,
+  insieme di lezioni, lezione, concetto, nota/evidenza, sorgente e post-it con
+  breadcrumb, back/forward, filtri, profondita' e ritorno al contesto originale.
+- `Library` e' la vista ordinata degli stessi asset: inbox, lezione/raccolta,
+  tipo, concetto/tag, fonte e tempo. Graph, Library, taccuino e lavagna aprono lo
+  stesso asset e la stessa provenance, senza copie divergenti.
+- Lo storage usa un contratto `StorageProvider`. `LocalStorageProvider` e'
+  default e rende l'app completa offline; `DriveStorageProvider` e' opzionale e
+  usa file/revisioni Drive con scope minimo. Il formato LessonPackage, gli ID e
+  il modello dati sono identici e portabili tra provider.
+- Le app esterne entrano tramite connector/adapter e capability pubbliche.
+  OAuth/token e webhook secret non vivono nel client; permessi, provenance,
+  sync status, disconnect, export/delete e degradazione offline sono espliciti.
+- Ogni contenuto pubblicabile deriva da un artifact versionato collegato a
+  LessonOS/graph. Distingue `human-authored`, `AI-assisted` e `AI-generated`,
+  con autore responsabile, fonti, licenza, revisioni e quality evidence.
+- Teacher Network/Marketplace sono pagine shell per discovery, profilo,
+  storefront e acquisto, non pagine plugin. Gli strumenti di authoring,
+  preview, graph, analytics ed export restano plugin-post-it o Knowledge
+  Explorer collegati allo stesso artifact.
+- Le capability di ruolo sono enforcement di dominio/backend: solo `teacher`
+  puo' invocare `content.generate`, `content.publish` e configurare generation
+  provider. `student` puo' leggere artifact assegnati,
+  navigare il proprio graph, rispondere, esercitarsi, simulare e creare note
+  private, ma non generare o pubblicare materiali.
+- `plugin.create` e' disponibile a ogni ruolo. `plugin.publish` e
+  `plugin.monetize` richiedono creator/seller eligibility, non il ruolo docente:
+  identita', eta'/tutore o organizzazione, paese, payout e gate security/quality.
+- Il knowledge graph studente contiene progresso, evidenze, risposte,
+  misconception e mastery del solo studente; e' privato, pseudonimizzato e
+  visibile soltanto allo studente e ai docenti autorizzati, mai al marketplace.
 - Dati didattici e PII restano sotto controllo ARDESIA; nessuna chiave
   privilegiata nel client.
 - Principio Zero: docente centrale, kit e manuale reali, citazioni/provenance,
@@ -135,15 +307,23 @@ misura non dimostra il collo di bottiglia che ciascuno dovrebbe rimuovere.
 | Area | Teaching V1 | Pilot | Commercial Beta | Later |
 |---|---|---|---|---|
 | Shell | lezione, navigazione, error/recovery | multiutente assistito | ruoli/amministrazione | booking/video |
-| Lavagna | penna, forme, selezione, zoom, undo/redo, autosave | notebook avanzato, template | collaborazione realtime | suite creativa estesa |
+| Taccuino | pagine/sezioni, penna, Pencil, import, selezione, undo/redo, autosave | template e cross-link | collaborazione realtime | publishing avanzato |
+| Lavagna infinita | pan/zoom infinito, penna, forme, gruppi, selezione, link, undo/redo, autosave | spatial graph e template | collaborazione realtime | suite creativa estesa |
 | Knowledge Card | nota, formula, source, quiz, simulation observation, plugin view attach/detach | conversioni, graph links, audio, plugin state/history | publishing/licensing | marketplace aperto |
 | Simulation | scenario LED completo, wire, solve, diagnosi, persistence e matrice parity attiva | strumenti, Arduino, code/serial/plot e piu' esperimenti | matrice Tinkercad completa certificata | nuove discipline hardware |
 | Plugin | manifest, capability, lifecycle, audit, storage/eventi, creator template e una composizione plugin-su-plugin | package/install/update/disable/uninstall, creator tecnico+docente e dependency graph | review, signing e publishing | ecosistema pubblico aperto |
 | LessonOS | event log locale, snapshot, graph projection verticale | sync staging e conflict policy | multi-tenant production | federation |
+| Knowledge Explorer | grafo/appunti navigabile per singola lezione | selezione multi-lezione, filtri, livelli e grafici | corso/scuola con policy privacy | federazione graph |
+| Library | audio/materiali/appunti ordinati, search e provenance | raccolte, transcript/timeline e dedupe | publishing/licensing | federation asset |
 | ElabTutor | risposta grounded sullo scenario LED con citazioni | mastery/misconception | provider/cost control estesi | tutor generalista |
 | Content | appunti, quiz, Markdown/PDF/JSON package | slide/HTML/transcript | package vendibile | commerce |
+| Studente | riassunti completi, fonti, graph personale, quiz/sim e note private | percorso adattivo approvato | portfolio privato | interoperabilita' |
 | Audio | registrazione/import/export con consenso | transcript e timeline | provider EU | processing avanzato |
 | Backend | staging, auth, tenant, RLS, eventi, export | backup/observability | scaling e billing | multi-region |
+| Connector | import/export file con provenance | Drive/LMS/MCP adapter con scope minimi | catalogo connector governato | ecosistema esterno |
+| Storage | local-first offline e LessonPackage portabile | Drive provider, sync/revision/conflict | school storage policy | multi-provider |
+| Teacher Network | profilo, portfolio, follow/save e preview | review, collection e discovery | community/moderation | federation sociale |
+| Marketplace | artifact gratuito/privato e licenza | vendita singola/raccolta e abbonamento creator | payout, tax, ranking e sponsorship | marketplace federato |
 
 Le colonne sono ordine di consegna, non categorie eliminabili. `Later` significa
 solo "dopo i gate precedenti": resta nel denominatore di `FULL_GOAL_GREEN`.
@@ -160,9 +340,11 @@ backend e security; non rinvia questo baseline gate.
 
 Prima di qualsiasi writer prodotto deve esistere
 `docs/ops/ARDESIA-FULL-TRACEABILITY.md`: una riga per ogni requisito atomico dei
-due file congelati, con ID sorgente univoco, citazione/parafrasi, milestone,
-prova e stato. Un controllo deve provare copertura 100%, nessuna omissione e
-nessun duplicato; il baseline puo' cambiare solo con approvazione Andrea.
+tre baseline congelati e degli addenda successivi, con ID sorgente univoco,
+citazione/parafrasi, milestone, prova e stato. Include un registro di ogni URL
+fornito da Andrea e delle fonti aggiuntive effettivamente valutate. Un controllo
+deve provare copertura 100%, nessuna omissione e nessun duplicato; il baseline
+puo' cambiare solo con approvazione Andrea.
 
 ### M0 - Visual Rescue
 
@@ -172,6 +354,10 @@ harness tecnico.
 Acceptance:
 
 - la UI e' organizzata per compiti del docente, non per moduli tecnici;
+- la lavagna con i post-it e' la superficie prodotto; una vista plugin separata
+  puo' esistere solo come harness di sviluppo e non vale come acceptance UX;
+- taccuino e lavagna infinita sono entrambi raggiungibili senza perdere
+  selezione, contesto di lezione o stato dei plugin;
 - a riposo esiste una sola azione primaria e non piu' di tre comandi primari;
 - il percorso `costruisci -> collega -> simula -> spiega` e' leggibile senza
   onboarding tecnico e mostra sempre fase corrente e prossima azione;
@@ -200,11 +386,20 @@ Acceptance:
 
 Direzione distintiva ARDESIA:
 
-- Matisse -> campiture nette e ritmo per categorie e stati;
-- Calder -> relazioni spaziali leggere e motion che spiega connessioni;
-- Haring -> segno immediato, inclusivo e leggibile da lontano;
+- Henri Matisse -> campiture nette, forme ritagliate, ritmo, leggibilita' ed
+  energia per categorie e stati;
+- Alexander Calder -> equilibrio, movimento, forme sospese e relazioni
+  spaziali; il motion deve spiegare connessioni, non decorare;
+- Keith Haring -> segno immediato, energia, inclusivita' e leggibilita' da
+  lontano;
+- minimalismo allegro -> pochi elementi vivi, chiari e pieni di personalita';
 - sintesi originale -> grafite morbida, bianco neutro, corallo/blu/giallo/verde
   funzionali, forme compatte e touch-first, senza imitare opere o composizioni.
+
+Questi riferimenti non sono un moodboard opzionale: ogni superficie
+user-facing deve dimostrare ritmo/gerarchia, chiarezza spaziale, immediatezza e
+personalita' ARDESIA. Non deve necessariamente mostrare tutti i tratti insieme
+e non deve imitare lo stile riconoscibile di un artista.
 
 Il gate non e' una ripulita CSS: deve trasformare comprensione, gerarchia,
 azione e piacere d'uso mantenendo una densita' professionale da lezione.
@@ -215,6 +410,11 @@ Acceptance:
 
 - una Knowledge Card puo' ospitare, collassare, espandere, duplicare,
   salvare, riaprire, esportare e rimuovere un plugin senza perdere dati;
+- un plugin-post-it puo' essere collocato nella pagina del taccuino o nella
+  lavagna infinita; eventuali riferimenti multipli puntano alla stessa istanza;
+- l'utente crea un post-it, sceglie un tipo plugin e ottiene una vera
+  `PluginInstance`; card, inspector ed eventuale fullscreen usano lo stesso ID
+  e lo stesso stato;
 - un plugin e' una superficie interattiva guidata da stato semantico e comandi;
   screenshot, immagini e SVG statici sono solo source/thumbnail/fallback
   etichettati e non possono soddisfare il gate `plugin funzionante`;
@@ -263,10 +463,38 @@ Acceptance:
 
 Acceptance:
 
-- azione circuito -> comando -> evento plugin -> LessonOS locale;
-- projection a graph con provenance;
-- query ElabTutor grounded sul fatto osservato;
-- artifact appunti/quiz con citazioni;
+- ogni tipo plugin registra manifest, schema eventi e reducer/replay LessonOS;
+- azione plugin -> comando tipato -> evento plugin -> LessonOS locale, con
+  lesson/plugin instance ID, sequence, causation, versione e provenance;
+- lifecycle `create/attach/save/reopen/export/remove` e failure/recovery sono
+  ricostruibili; nessuna mutazione durevole esiste solo nel componente React;
+- projection deterministiche e ricostruibili a timeline, knowledge graph,
+  indice appunti e metriche, con provenance fino all'evento/sorgente/post-it;
+- asset registry indicizza audio, transcript, PDF, immagini, note e artifact
+  per hash, tipo, lezione/raccolta, concetto/tag, fonte e tempo;
+- Library offre import, inbox, ordinamento, ricerca, preview/playback, link al
+  graph/post-it e raccolte senza duplicare i file;
+- audio supporta waveform/timeline, marker, note collegate e transcript con
+  consenso/stato; ogni segmento citabile torna al timestamp originale;
+- Knowledge Explorer naviga almeno cinque livelli senza perdere contesto:
+  `insieme lezioni -> lezione -> concetto -> nota/evidenza -> sorgente/post-it`;
+- selettore scope `lezione singola | insieme selezionato | corso`, filtri per
+  tipo/tempo/fonte/plugin e profondita' 1..N; breadcrumb e ritorno al nodo;
+- click su un nodo apre nota, evidenza, source e posizione originale nel
+  taccuino/lavagna; la vista locale e globale restano sincronizzate;
+- grafici reali derivano da query versionate sul graph/event log, non da mock:
+  copertura concetti, evidenze/fonti, attivita' temporale, misconception e
+  relazioni tra lezioni, con drill-down ai dati sottostanti;
+- query ElabTutor e generazione sono grounded sul sottografo selezionato;
+- appunti, sintesi, quiz, esercizi, slide/outline e lesson package riportano
+  graph node ID, event/source ID, scope lezioni, prompt/versione e citazioni;
+- ogni riassunto studente e' teacher-approved e passa coverage del sottografo,
+  correttezza/citazioni, struttura, leggibilita' e assenza di claim unsupported;
+- lo studente naviga il proprio graph, apre riassunti/fonti, marca comprensione,
+  risponde e pratica; queste interazioni aggiornano evidenze/mastery LessonOS
+  senza abilitare generation di nuovi artifact;
+- contenuto senza supporto resta `UNKNOWN` o richiesta di integrazione, mai
+  completato silenziosamente dal modello;
 - export Markdown, PDF e Lesson Package;
 - reopen conserva eventi e artefatti.
 
@@ -276,9 +504,27 @@ Acceptance:
 
 - staging canonico legato allo SHA;
 - auth/tenant/RLS con test tenant-negative;
+- capability/RLS role-negative: uno studente non puo' generare, pubblicare,
+  vendere, cambiare provider o leggere graph/asset di altri studenti, anche
+  chiamando API/ToolHost direttamente;
 - sync offline, retry, idempotenza e conflict policy;
+- `LocalStorageProvider` e `DriveStorageProvider` passano lo stesso contract
+  test: create/read/update/delete, large audio, dedupe hash, revision, offline
+  queue, retry, conflict, export/import e provider switch senza data loss;
+- local mode non richiede account; Drive usa picker e scope per-file minimo,
+  resumable upload, revision/etag e revoca. Nessun overwrite silenzioso;
+- metadata e blob restano coerenti: tombstone/retention e garbage collection
+  rimuovono orfani solo dopo verifica e rollback window;
 - export/delete GDPR, backup e rollback;
 - secret, dependency, CSP, sandbox e supply-chain gate.
+- connector OAuth/OIDC con scope minimi, token server-side cifrati, revoca,
+  webhook verification, audit, tenant isolation e test provider-negative;
+- valutare prima standard aperti: LTI 1.3 per LMS, xAPI per learning activity,
+  MCP per tool AI, quindi adapter Drive/OneDrive/Classroom specifici.
+- esporre lo stesso gateway capability a ChatGPT Apps tramite Apps SDK/MCP, a
+  GPT custom tramite OpenAPI Actions e a Claude Team/Enterprise tramite remote
+  MCP connector; auth per utente/workspace, allowlist, consent e audit sono
+  obbligatori e nessuna piattaforma esterna riceve accesso implicito al lesson;
 
 ### M6 - Plugin Creator and Composition
 
@@ -290,13 +536,29 @@ Acceptance:
 - almeno tre composizioni reali: Simulation -> Plot/Export, ElabTutor ->
   Citation/Graph/Simulation Explanation, Knowledge Card -> plugin view;
 - capability negotiation, health, failure isolation e migration testate;
+- un plugin richiede connector esterni tramite capability (`content.import`,
+  `artifact.export`, `storage.attach`, `classroom.publish`, `tool.invoke`), mai
+  tramite SDK segreti o chiamate provider sparse nel componente;
 - SDK/starter e creator docente producono lo stesso formato di package;
+- creator no-code e tecnico sono disponibili a tutti; package, preview e test
+  sono identici indipendentemente dal ruolo;
+- il creator sceglie licenza e modello: `private`, `free`, `open-source`,
+  `one-time`, `subscription` o `school-seat`; dipendenze, diritti commerciali,
+  revenue share e costi provider sono dichiarati prima della pubblicazione;
 - nessun plugin first-party bypassa il contratto senza ADR e label esplicita.
 
 ### M7 - Full Tinkercad Parity
 
 Acceptance:
 
+- la superficie canonica e' un Simulation Plugin dentro un post-it/Knowledge
+  Card creato dall'utente. Da li' si costruisce, modifica, programma, simula,
+  misura, salva e riapre; una route separata e' vietata nel prodotto;
+- il post-it e' ridimensionabile e puo' espandersi/fullscreen mantenendo la
+  stessa `PluginInstance`, undo stack, selezione, viewport e simulation state;
+  l'espansione resta un overlay della lavagna e torna allo stesso post-it;
+- il percorso e2e parte da `nuovo post-it -> aggiungi Simulation Plugin` e
+  termina nel post-it riaperto con circuito e strumenti persistiti;
 - matrice completa con target behavior, stato, evidenza, test e limite per:
   catalogo, breadboard, power, pin topology, placement/move/rotate/select,
   wire/route/waypoint/disconnect/retarget/delete, undo/redo, netlist/solver,
@@ -316,7 +578,44 @@ Acceptance:
   indipendente e sign-off Andrea; solo il 100% GREEN consente
   `FULL_GOAL_GREEN`.
 
-### M8 - Pilot Hardening
+### M8 - Teacher Network and Marketplace
+
+Acceptance:
+
+- il docente crea un profilo/storefront, portfolio, discipline, livelli,
+  metodo, credenziali dichiarate e contenuti pubblicati;
+- ogni account puo' creare `PluginPackage`; ogni account legalmente idoneo puo'
+  aprire un creator storefront e monetizzarlo. Minori usano payout e
+  pubblicazione gestiti da tutore/scuola secondo policy verificata;
+- solo account docente puo' generare/pubblicare `ContentArtifact` didattici;
+  lo studente resta deny server-side su content generation/publishing;
+- pubblicazione da artifact manuale o generato dal sottografo di una o piu'
+  lezioni, con preview, versione, fonti, livello AI, licenza e accessibility;
+- prodotti singoli e raccolte supportano free/paid, prezzo, classroom/school
+  license, aggiornamenti, refund policy e download/reopen verificabile;
+- il catalogo unifica `ContentArtifact` e `PluginPackage` ma rende evidente il
+  tipo; il plugin acquistato si installa come post-it e passa permission review;
+- social utile: follow, save, collection, review verificata, comment/Q&A,
+  con report, moderation, block e tutela minori/PII;
+- discovery per materia, livello, kit/volume, formato, lingua, prezzo e graph
+  concepts; ogni risultato spiega perche' e' mostrato;
+- ranking organico versionato combina qualita' pedagogica, evidence/citazioni,
+  accessibilita', uso, vendite, conversione, rating verificati, refund/report,
+  freschezza e affidabilita' autore; raw sales non domina da sola;
+- cold-start e piccoli creator ricevono esplorazione/fairness misurabile;
+  self-purchase, review fraud, plagiarism e ranking gaming sono rilevati;
+- abbonamento creator offre strumenti, analytics e opportunita' di visibilita'.
+  Ogni posizione pagata e' etichettata `Sponsorizzato` e separata dal ranking
+  organico; nessun pagamento compra una falsa qualita';
+- checkout, commissione, seller onboarding/KYC, payout, dispute, VAT/tax e
+  refund usano un provider marketplace verificato; nessun flusso denaro reale
+  prima di sandbox, legal review e approvazione release;
+- provenance, diritti e plagiarism gate impediscono vendita di manuali/corpus,
+  asset o output AI non licenziabili; takedown e audit sono operativi;
+- dashboard creator mostra vendite, conversione, quality signals, refund,
+  provenienza traffico e azioni concrete senza esporre PII di studenti.
+
+### M9 - Pilot Hardening
 
 Acceptance:
 
@@ -327,9 +626,9 @@ Acceptance:
 - Andrea completa il protocollo docente e registra confusioni/recovery;
 - GO/NO-GO per pilot assistito.
 
-### M9+ - Full Goal Closure Waves
+### M10+ - Full Goal Closure Waves
 
-M8 chiude il primo pilot, non la roadmap completa. Dopo M8, A0 genera milestone
+M9 chiude il primo pilot, non la roadmap completa. Dopo M9, A0 genera milestone
 ordinate e finite dalle righe non-GREEN della traceability, privilegiando ogni
 volta valore utente, dipendenze e rischio. Le wave continuano finche'
 `LATER + DEFERRED + UNKNOWN + RED + BLOCKED = 0`; nessuna voce puo' essere
@@ -420,6 +719,10 @@ Traccia per macrofase:
 - cycle time e repair count;
 - costo build/manutenzione evitato dal riuso, costo di integrazione introdotto,
   dependency/license/security drift;
+- decisioni `ADOPT/ADAPT/BUILD`, tempo ricerca e tempo al primo percorso verde;
+- link forniti valutati / link forniti totali, con target 100%;
+- creator attivi, content quality, conversione, refund/report, ranking fairness,
+  vendite organiche/sponsorizzate e payout correctness;
 
 Numero di commit, test o documenti non e' una metrica di prodotto.
 
@@ -428,18 +731,37 @@ Numero di commit, test o documenti non e' una metrica di prodotto.
 - `GREEN_SLICE`: slice visibile/integrata, testata, review e CI verdi.
 - `HONEST_RED`: fallimento riprodotto con causa/prossimo esperimento.
 - `SECURITY_RED`: secret/RLS/privacy/sandbox blocker.
+- `LEGAL_RED`: licenza, copyright, attribution o provenienza impediscono il
+  riuso; cercare subito il candidato successivo senza bloccare il prodotto.
 - `ARCHITECTURE_RED`: due verita' o contratto incompatibile.
 - `BLOCKED_EXTERNAL`: accesso/hardware/account umano indispensabile.
 - `PILOT_READY`: percorso completo, manca solo validazione esterna.
+- `MARKETPLACE_READY`: sandbox end-to-end verde, legal/security/moderation
+  gates verdi; non significa pagamenti reali attivi.
 - `V1_GREEN`: percorso completo sul deploy, sicurezza verde e prova Andrea.
-- `FULL_GOAL_GREEN`: ogni requisito del mandato sorgente e' presente in una
+- `FULL_GOAL_GREEN`: ogni requisito delle tre baseline e' presente in una
   traceability matrix con ID, milestone, prova eseguibile o protocollo umano,
   evidenza sul runtime canonico e stato GREEN. Nessuna voce puo' essere omessa,
   raggruppata come "fondamentale", o restare `LATER`, `DEFERRED`, `UNKNOWN`,
   `RED` o `BLOCKED` senza modifica esplicita del mandato approvata da Andrea.
-  Richiede inoltre il golden journey completo
-  `shell -> canvas -> card/plugin creator -> simulation -> tutor -> export`,
-  senza assistenza tecnica bloccante, su desktop, iPad e LIM.
+  Tutti i link forniti devono risultare valutati, anche quando correttamente
+  rifiutati; ogni `BUILD` deve avere una decisione di non-riuso verificabile.
+  Richiede inoltre, senza assistenza tecnica bloccante:
+  - product journey su desktop/iPad/LIM: `shell -> taccuino/lavagna -> post-it
+    Simulation -> LessonOS -> Knowledge Explorer/Graph/Library -> tutor ->
+    contenuto/grafico -> export`;
+  - cross-surface journey: la stessa `PluginInstance` passa/riferisce tra
+    taccuino e lavagna, expand/collapse, save/reopen senza fork di stato;
+  - teacher/student journey: docente genera e approva -> studente consulta
+    riassunto e graph personale -> pratica/simula/annota -> LessonOS aggiorna
+    evidence/mastery, mentre generation/publish studente sono negati;
+  - creator journey: qualsiasi utente crea/testa un plugin -> creator idoneo lo
+    pubblica/monetizza -> discovery/acquisto -> permission review -> install e
+    uso come post-it, con update/uninstall e dati integri;
+  - storage/connector journey: consenso -> local/Drive import e sync -> offline
+    edit/reopen -> conflict/recovery -> revoca -> export/provider switch senza
+    perdita; ChatGPT App/GPT o Claude connector usa capability scoped e produce
+    provenance/audit LessonOS.
 - `GREEN_CANDIDATE`: branch/PR verde ma non integrata; non conta come
   `GREEN_SLICE`, che richiede merge umano e re-gate sul branch canonico.
 
@@ -452,6 +774,9 @@ una matrice e prova della stessa ampiezza.
 - PR #171 open, CI verde, decisione umana merge/reject richiesta.
 - PR #172/P38 open, CI verde, prova test-only della persistenza LessonOS locale;
   non e' graph projection e non e' merged.
+- PR #174 open, CI verde: miglioramento riusabile della teacher surface, ma
+  dopo il chiarimento `plugin = post-it` resta `PARTIAL/RED` per M0 finche' lo
+  stesso flusso non vive nel post-it reale su taccuino/lavagna con LessonOS.
 - Claude b-bis worktree: 6 modified + 2 untracked, live su `5193`; solo
   candidato. Import host da internals plugin, registry exposure, colori raw e
   eccezione >5 file richiedono review architetturale/UX.
@@ -461,6 +786,7 @@ una matrice e prova della stessa ampiezza.
 - Tinkercad parity generale, 88 esperimenti certificati, backend/RLS e tutor
   verticale restano `UNKNOWN` o `RED` finche' non provati.
 
-Prossima sequenza: decisione merge/reject su #171 e #172; review e reshape o
-reject del WIP Claude senza duplicazione; poi M0. P38 e' l'ultima slice
-invisibile consentita prima di due slice UX visibili, salvo `SECURITY_RED` G0.
+Prossima sequenza: riusare la teacher surface #174 nel vero post-it Simulation;
+e2e `taccuino/lavagna -> nuovo post-it -> Simulation Plugin -> azione ->
+LessonOS -> reopen`; poi Graph/Library verticale. Decisione merge/reject su
+#171/#172 e WIP Claude solo senza duplicare o perdere lavoro valido.
