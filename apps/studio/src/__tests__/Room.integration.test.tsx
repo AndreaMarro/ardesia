@@ -234,6 +234,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(container.querySelector("[data-radial-tools]")).toBeTruthy()
     }, { timeout: 5000, interval: 10 })
 
+    fireEvent.click(screen.getByRole("button", { name: "Inizia da qui" }))
+    expect(screen.getByRole("dialog", { name: "Cerca e crea" })).toBeTruthy()
+
     fireEvent.click(screen.getByRole("button", { name: "Apri strumenti" }))
     expect(screen.getByRole("button", { name: "Aggiungi plugin" })).toBeTruthy()
     await vi.waitFor(() => {

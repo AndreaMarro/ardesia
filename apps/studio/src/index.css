@@ -88,6 +88,22 @@ body,
   position: absolute; inset: 0; z-index: 505;
   pointer-events: none;
 }
+.st-empty-orbit-cue {
+  position: absolute; z-index: 506; top: 24%; left: 50%;
+  width: min(320px, calc(100vw - 220px)); min-height: 108px;
+  display: flex; align-items: center; justify-content: center; gap: var(--m-sp-2);
+  transform: translateX(-50%); border: 1px dashed var(--m-line-2); border-radius: 50%;
+  background: color-mix(in srgb, var(--m-canvas) 72%, transparent); color: var(--m-ink-3);
+  font: 600 var(--m-fs-sm)/1 var(--m-font-ui); cursor: pointer;
+  animation: st-empty-orbit-breathe 3.6s var(--m-ease) infinite;
+}
+.st-empty-orbit-cue > span {
+  width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--m-accent); color: var(--m-canvas); font-size: 22px; font-weight: 400;
+}
+.st-empty-orbit-cue:hover,
+.st-empty-orbit-cue:focus-visible { border-color: var(--m-accent); color: var(--m-accent-deep); outline: none; }
+@keyframes st-empty-orbit-breathe { 50% { border-color: var(--m-accent-off); transform: translateX(-50%) scale(1.02); } }
 
 /* Strumenti di creazione fuori dal transform-layer di Excalidraw. */
 .st-radial-tools {
@@ -1141,6 +1157,9 @@ body,
   }
   .st-plugin-runtime-overlay [data-plugin-runtime-surface="simulation"] > main > * {
     min-width: 0;
+  }
+  .st-empty-orbit-cue {
+    left: calc(50% + 54px); width: min(270px, calc(100vw - 160px));
   }
 }
 

@@ -973,6 +973,18 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
       {audioRecording && <div className="st-recstrip" data-rec-strip />}
 
+      {!studentView && boardState === "empty" && (
+        <button
+          type="button"
+          className="st-empty-orbit-cue"
+          aria-label="Inizia da qui"
+          onClick={() => setLauncherOpen(true)}
+        >
+          <span aria-hidden>+</span>
+          <strong>Inizia da qui</strong>
+        </button>
+      )}
+
       {/* Drawer lezioni */}
       {drawerOpen && (
         <div className="st-drawer-overlay" onClick={closeDrawer}>
