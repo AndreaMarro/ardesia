@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { workspaceStore } from "../store/WorkspaceStore"
 import { EMBED_DATA_KEY } from "../toolhost/caps/board"
 import EmptyState from "./EmptyState"
-import ViewNav, { viewHref } from "./ViewNav"
+import StudioShell from "./StudioShell"
+import { viewHref } from "./ViewNav"
 
 export type LibraryAssetKind = "note" | "image" | "postit" | "arduino-artifact"
 
@@ -239,7 +240,7 @@ type LibraryState =
   | { phase: "ready"; snapshot: LibrarySnapshot }
 
 function typeLabel(kind: LibraryAssetKind): string {
-  if (kind === "arduino-artifact") return "artefatto"
+  if (kind === "arduino-artifact") return "risorsa"
   if (kind === "postit") return "post-it"
   if (kind === "note") return "nota"
   return "immagine"
@@ -256,26 +257,62 @@ function formatBytes(value: number | null): string {
   return `${(value / 1024).toFixed(1)} KB`
 }
 
+type LibraryFilter = "all" | "lesson" | "postit" | "resource"
+type LibraryLayout = "grid" | "list"
+type LibraryShelfId = Exclude<LibraryFilter, "all">
+
+const SHELF_DEFINITIONS: ReadonlyArray<{
+  id: LibraryShelfId
+  label: string
+  kinds: readonly LibraryAssetKind[]
+}> = [
+  { id: "lesson", label: "Lezioni", kinds: ["note", "image"] },
+  { id: "postit", label: "Post-it salvati", kinds: ["postit"] },
+  { id: "resource", label: "Guide e risorse", kinds: ["arduino-artifact"] },
+]
+
+const FILTER_OPTIONS: ReadonlyArray<{ id: LibraryFilter; label: string }> = [
+  { id: "all", label: "Tutti" },
+  { id: "lesson", label: "Lezioni" },
+  { id: "postit", label: "Post-it" },
+  { id: "resource", label: "Guide" },
+]
+
+function matchesFilter(asset: LibraryAsset, filter: LibraryFilter): boolean {
+  if (filter === "all") return true
+  return SHELF_DEFINITIONS.find((shelf) => shelf.id === filter)?.kinds.includes(asset.kind) ?? false
+}
+
 export default function LibraryView({ deps }: { deps?: LibraryViewDeps }) {
   const room = deps?.room ?? roomFromHash()
   const loadScene = deps?.loadScene ?? loadSceneFromWorkspace
   const [state, setState] = useState<LibraryState>({ phase: "loading" })
   const [query, setQuery] = useState("")
-  const [kind, setKind] = useState<"all" | LibraryAssetKind>("all")
+  const [filter, setFilter] = useState<LibraryFilter>("all")
   const [sort, setSort] = useState<"recent" | "title">("recent")
+  const [layout, setLayout] = useState<LibraryLayout>("grid")
+  const refreshGenerationRef = useRef(0)
 
   const refresh = useCallback(async () => {
+    const generation = refreshGenerationRef.current + 1
+    refreshGenerationRef.current = generation
     setState({ phase: "loading" })
     try {
       const scene = await loadScene(room)
-      setState({ phase: "ready", snapshot: await buildLibrarySnapshot(scene, room) })
+      const snapshot = await buildLibrarySnapshot(scene, room)
+      if (generation !== refreshGenerationRef.current) return
+      setState({ phase: "ready", snapshot })
     } catch (error) {
+      if (generation !== refreshGenerationRef.current) return
       setState({ phase: "error", detail: error instanceof Error ? error.message : String(error) })
     }
   }, [loadScene, room])
 
   useEffect(() => {
     void refresh()
+    return () => {
+      refreshGenerationRef.current += 1
+    }
   }, [refresh])
 
   const snapshot = state.phase === "ready" ? state.snapshot : null
@@ -283,179 +320,221 @@ export default function LibraryView({ deps }: { deps?: LibraryViewDeps }) {
     if (snapshot === null) return []
     const normalizedQuery = query.trim().toLocaleLowerCase("it")
     return snapshot.assets
-      .filter((asset) => kind === "all" || asset.kind === kind)
+      .filter((asset) => matchesFilter(asset, filter))
       .filter((asset) => normalizedQuery.length === 0 || `${asset.title} ${asset.tags.join(" ")} ${asset.source}`.toLocaleLowerCase("it").includes(normalizedQuery))
       .sort((a, b) => sort === "recent" ? assetSort(a, b) : a.title.localeCompare(b.title, "it"))
-  }, [kind, query, snapshot, sort])
-  const postitCount = snapshot?.assets.filter((asset) => asset.kind === "postit").length ?? 0
+  }, [filter, query, snapshot, sort])
+  const shelves = useMemo(
+    () => SHELF_DEFINITIONS
+      .map((definition) => ({
+        ...definition,
+        assets: filteredAssets.filter((asset) => definition.kinds.includes(asset.kind)),
+      }))
+      .filter((shelf) => shelf.assets.length > 0),
+    [filteredAssets],
+  )
+
+  const launcher = (
+    <a
+      className="st-shell-launcher"
+      href={viewHref("lavagna", room)}
+      aria-label="Crea un nuovo materiale sulla lavagna"
+      title="Crea un nuovo materiale sulla lavagna"
+    >
+      <span aria-hidden>+</span>
+    </a>
+  )
+  const actions = (
+    <>
+      <button
+        type="button"
+        className="st-library-shell-action"
+        aria-label="Aggiorna la Library"
+        title="Aggiorna la Library"
+        onClick={() => void refresh()}
+        disabled={state.phase === "loading"}
+      >
+        <span aria-hidden>↻</span>
+      </button>
+      <a
+        className="st-library-shell-action"
+        aria-label="Apri la lavagna"
+        title="Apri la lavagna"
+        href={viewHref("lavagna", room)}
+      >
+        <span aria-hidden>↗</span>
+      </a>
+    </>
+  )
 
   return (
-    <div style={pageStyle} data-library-view>
-      <header className="st-bar" style={headerStyle}>
-        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
-          <span className="st-word">Ardesia</span>
-          <span className="st-bdot" aria-hidden />
-          <span className="st-sub">studio</span>
-        </div>
-        <div style={titleBlockStyle}>
-          <span style={eyebrowStyle}>Library</span>
-          <strong style={titleStyle}>Materiali della lezione</strong>
-        </div>
-        <div style={headerActionsStyle} data-library-header-actions>
-          <ViewNav current="library" />
-          <button type="button" className="st-ghost" onClick={() => void refresh()} disabled={state.phase === "loading"}>aggiorna</button>
-          <a className="st-ghost" href={viewHref("lavagna", room)}>lavagna</a>
-        </div>
-      </header>
+    <StudioShell
+      current="library"
+      searchLabel="Cerca nella tua libreria..."
+      launcher={launcher}
+      actions={actions}
+    >
+      <div className="st-library-view" data-library-view>
+        <div className="st-library-inner">
+          {state.phase === "loading" && <p className="st-library-status" aria-busy="true">Indicizzo i materiali della stanza...</p>}
 
-      <main style={mainStyle}>
-        <section aria-label="Contesto Library" style={contextStyle}>
-          <div>
-            <span style={eyebrowStyle}>Stanza corrente</span>
-            <h1 style={headingStyle}>{room || "Nessuna lezione selezionata"}</h1>
-          </div>
-          <a href={viewHref("knowledge", room)} style={knowledgeLinkStyle}>vedi il grafo della lezione</a>
-        </section>
+          {state.phase === "error" && (
+            <EmptyState
+              tone="error"
+              title="Library non disponibile"
+              detail="La scena della lezione non e' leggibile: non mostro materiali parziali come se fossero completi."
+              hint={state.detail}
+            />
+          )}
 
-        {state.phase === "loading" && <p aria-busy="true" style={quietStyle}>Indicizzo i materiali persistiti della stanza…</p>}
+          {snapshot !== null && room.length === 0 && (
+            <EmptyState
+              title="Seleziona una lezione"
+              detail="Apri una lavagna per vedere gli asset effettivamente salvati nella sua stanza."
+            />
+          )}
 
-        {state.phase === "error" && (
-          <EmptyState
-            tone="error"
-            title="Library non disponibile"
-            detail="La scena della lezione non e' leggibile: non mostro materiali parziali come se fossero completi."
-            hint={state.detail}
-          />
-        )}
+          {snapshot !== null && room.length > 0 && (
+            <>
+              <header className="st-library-toolbar">
+                <div className="st-library-heading">
+                  <span className="st-library-room">{room}</span>
+                  <h1>I tuoi materiali</h1>
+                  <span className="st-library-count" aria-live="polite">{snapshot.assets.length} asset</span>
+                </div>
 
-        {snapshot !== null && room.length === 0 && (
-          <EmptyState
-            title="Seleziona una lezione"
-            detail="Apri una lavagna per vedere gli asset effettivamente salvati nella sua stanza."
-          />
-        )}
+                <label className="st-library-search">
+                  <span className="sr-only">Cerca nella Library</span>
+                  <input
+                    type="search"
+                    aria-label="Cerca nella Library"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Cerca nei materiali"
+                  />
+                </label>
 
-        {snapshot !== null && room.length > 0 && (
-          <>
-            <section aria-label="Sintesi Library" style={summaryStyle}>
-              <div><span style={summaryLabelStyle}>Catalogo</span><strong style={summaryValueStyle}>{snapshot.assets.length} asset</strong></div>
-              <div><span style={summaryLabelStyle}>Superfici vive</span><strong style={summaryValueStyle}>{postitCount} post-it</strong></div>
-              <div><span style={summaryLabelStyle}>Scope</span><strong style={summaryValueStyle}>solo questa stanza</strong></div>
-            </section>
+                <div className="st-library-filter-row">
+                  <div className="st-library-filters" role="group" aria-label="Filtra i materiali">
+                    {FILTER_OPTIONS.map((option) => (
+                      <button
+                        key={option.id}
+                        type="button"
+                        className="st-library-filter"
+                        aria-pressed={filter === option.id}
+                        onClick={() => setFilter(option.id)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="st-library-view-options">
+                    <select
+                      aria-label="Ordina i materiali"
+                      value={sort}
+                      onChange={(event) => setSort(event.target.value as "recent" | "title")}
+                    >
+                      <option value="recent">Più recenti</option>
+                      <option value="title">Titolo</option>
+                    </select>
+                    <div className="st-library-layout-switch" role="group" aria-label="Layout dei materiali">
+                      <button
+                        type="button"
+                        aria-label="Vista griglia"
+                        aria-pressed={layout === "grid"}
+                        onClick={() => setLayout("grid")}
+                      >
+                        <span aria-hidden>▦</span>
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Vista elenco"
+                        aria-pressed={layout === "list"}
+                        onClick={() => setLayout("list")}
+                      >
+                        <span aria-hidden>☰</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </header>
 
-            <section aria-label="Ricerca e ordinamento Library" style={toolbarStyle}>
-              <label style={searchLabelStyle}>
-                <span style={eyebrowStyle}>Cerca</span>
-                <input
-                  type="search"
-                  aria-label="Cerca nella Library"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="nome, tipo o provenienza"
-                  style={searchInputStyle}
+              {snapshot.assets.length === 0 ? (
+                <EmptyState
+                  title="Nessun materiale salvato"
+                  detail="Note, immagini, post-it e compilazioni reali appariranno qui dopo il salvataggio sulla lavagna."
                 />
-              </label>
-              <label style={selectLabelStyle}>
-                <span style={eyebrowStyle}>Tipo</span>
-                <select value={kind} onChange={(event) => setKind(event.target.value as "all" | LibraryAssetKind)} style={selectStyle}>
-                  <option value="all">tutti</option>
-                  <option value="note">note</option>
-                  <option value="image">immagini</option>
-                  <option value="postit">post-it</option>
-                  <option value="arduino-artifact">artefatti</option>
-                </select>
-              </label>
-              <label style={selectLabelStyle}>
-                <span style={eyebrowStyle}>Ordina</span>
-                <select value={sort} onChange={(event) => setSort(event.target.value as "recent" | "title")} style={selectStyle}>
-                  <option value="recent">piu' recenti</option>
-                  <option value="title">titolo</option>
-                </select>
-              </label>
-            </section>
+              ) : shelves.length === 0 ? (
+                <EmptyState compact title="Nessun risultato" detail="Modifica la ricerca o il filtro per vedere i materiali della stanza." />
+              ) : (
+                <div className="st-library-shelves" data-library-layout={layout}>
+                  {shelves.map((shelf) => (
+                    <section
+                      key={shelf.id}
+                      className="st-library-shelf"
+                      data-library-shelf={shelf.id}
+                      aria-labelledby={`library-shelf-${shelf.id}`}
+                    >
+                      <header className="st-library-shelf-heading">
+                        <h2 id={`library-shelf-${shelf.id}`}>
+                          <span className="st-library-shelf-dot" aria-hidden />
+                          {shelf.label}
+                        </h2>
+                        <span>{shelf.assets.length}</span>
+                      </header>
+                      <div className="st-library-shelf-track">
+                        {shelf.assets.map((asset) => <AssetTile key={asset.id} asset={asset} room={room} />)}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              )}
 
-            {snapshot.assets.length === 0 ? (
-              <EmptyState
-                title="Nessun asset persistito in questa stanza"
-                detail="Note, immagini, post-it e compilazioni reali appariranno qui dopo il salvataggio sulla lavagna."
-              />
-            ) : filteredAssets.length === 0 ? (
-              <EmptyState compact title="Nessun risultato" detail="Modifica la ricerca o il filtro per vedere gli asset della stanza." />
-            ) : (
-              <section aria-label="Asset della Library" style={assetGridStyle}>
-                {filteredAssets.map((asset) => <AssetCard key={asset.id} asset={asset} room={room} />)}
-              </section>
-            )}
+              <a className="st-library-create" href={viewHref("lavagna", room)}>
+                <span aria-hidden>+</span>
+                Crea qualcosa di nuovo
+              </a>
 
-            <aside style={integrityStyle} aria-label="Copertura della Library">
-              <strong>Copertura attuale</strong>
-              <span>Note, immagini, post-it e artefatti leggibili dalla scena sono indicizzati con scope e provenienza.</span>
-              <span>{snapshot.unavailableKinds.join(", ")}: non mostrati finche' il loro storage non porta lo scope della stanza.</span>
-            </aside>
-          </>
-        )}
-      </main>
-    </div>
+              <details className="st-library-index-details">
+                <summary>Dettagli tecnici dell'indice</summary>
+                <p>Audio, PDF e trascrizioni non sono mostrati finche' il loro storage non registra la stanza.</p>
+                <p>Tipi non disponibili: {snapshot.unavailableKinds.join(", ")}.</p>
+              </details>
+            </>
+          )}
+        </div>
+      </div>
+    </StudioShell>
   )
 }
 
-function AssetCard({ asset, room }: { asset: LibraryAsset; room: string }) {
+function AssetTile({ asset, room }: { asset: LibraryAsset; room: string }) {
   return (
-    <article data-library-asset={asset.kind} style={{ ...assetCardStyle, borderTopColor: accentFor(asset.kind) }}>
-      <div style={cardTopStyle}>
-        <span style={typeBadgeStyle}>{typeLabel(asset.kind)}</span>
-        <span style={timeStyle}>{formatTimestamp(asset.updatedAt)}</span>
+    <article className="st-library-asset" data-library-asset={asset.kind}>
+      <div className="st-library-asset-mark" data-library-asset-mark={asset.kind} aria-hidden />
+      <div className="st-library-asset-copy">
+        <span className="st-library-kind">{typeLabel(asset.kind)}</span>
+        <h3>{asset.title}</h3>
+        <span className="st-library-updated">{formatTimestamp(asset.updatedAt)}</span>
       </div>
-      <h2 style={assetTitleStyle}>{asset.title}</h2>
-      <dl style={metadataStyle}>
-        <div><dt>Fonte</dt><dd>{asset.source}</dd></div>
-        <div><dt>Scope</dt><dd>{asset.scope}</dd></div>
-        <div><dt>Formato</dt><dd>{asset.mimeType ?? "non registrato"}</dd></div>
-        <div><dt>Dimensione</dt><dd>{formatBytes(asset.sizeBytes)}</dd></div>
-        <div><dt>Hash</dt><dd><code>{asset.contentHash ?? "non disponibile"}</code></dd></div>
-      </dl>
-      <div style={cardFooterStyle}>
-        <span style={tagsStyle}>{asset.tags.join(" · ")}</span>
-        <a href={boardFocusHref(room, asset.boardElementId)} style={boardLinkStyle}>apri sulla lavagna</a>
-      </div>
+      <a
+        className="st-library-open"
+        href={boardFocusHref(room, asset.boardElementId)}
+        aria-label={`Apri ${asset.title} sulla lavagna`}
+        title="Apri sulla lavagna"
+      >
+        <span aria-hidden>↗</span>
+      </a>
+      <details className="st-library-technical-details">
+        <summary>Dettagli tecnici</summary>
+        <dl>
+          <div><dt>Fonte</dt><dd>{asset.source}</dd></div>
+          <div><dt>Scope</dt><dd>{asset.scope}</dd></div>
+          <div><dt>Formato</dt><dd>{asset.mimeType ?? "non registrato"}</dd></div>
+          <div><dt>Dimensione</dt><dd>{formatBytes(asset.sizeBytes)}</dd></div>
+          <div><dt>Hash</dt><dd><code>{asset.contentHash ?? "non disponibile"}</code></dd></div>
+        </dl>
+      </details>
     </article>
   )
 }
-
-function accentFor(kind: LibraryAssetKind): string {
-  if (kind === "note") return "#db5f3b"
-  if (kind === "image") return "#2f78c4"
-  if (kind === "postit") return "#267a68"
-  return "#9b5fa5"
-}
-
-const pageStyle = { minHeight: "100vh", background: "#f4f8f7", color: "#17324d" } as const
-const headerStyle = { height: "auto", minHeight: 60, flexWrap: "wrap", gap: 10, paddingTop: 8, paddingBottom: 8 } as const
-const titleBlockStyle = { display: "grid", gap: 1, minWidth: 150 } as const
-const headerActionsStyle = { marginLeft: "auto", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, maxWidth: "100%", flexWrap: "wrap", paddingBottom: 2 } as const
-const mainStyle = { boxSizing: "border-box", width: "min(1320px, 100%)", margin: "0 auto", padding: "24px clamp(16px, 3vw, 40px) 44px", display: "grid", gap: 20 } as const
-const contextStyle = { display: "flex", alignItems: "end", justifyContent: "space-between", gap: 16, flexWrap: "wrap", paddingBottom: 16, borderBottom: "2px solid #17324d" } as const
-const eyebrowStyle = { display: "block", color: "#5c6f81", fontSize: 12, fontWeight: 700, letterSpacing: 0, textTransform: "uppercase" } as const
-const titleStyle = { fontSize: 16, letterSpacing: 0 } as const
-const headingStyle = { margin: "2px 0 0", fontSize: 26, letterSpacing: 0, overflowWrap: "anywhere" } as const
-const knowledgeLinkStyle = { color: "#1e5f9a", fontSize: 14, fontWeight: 700, textDecoration: "none" } as const
-const quietStyle = { color: "#556a7e", margin: 0 } as const
-const summaryStyle = { display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16, padding: "14px 0", borderBottom: "1px solid #c9dbd4" } as const
-const summaryLabelStyle = { display: "block", color: "#5c6f81", fontSize: 13, marginBottom: 4 } as const
-const summaryValueStyle = { fontSize: 20, letterSpacing: 0, overflowWrap: "anywhere" } as const
-const toolbarStyle = { display: "flex", alignItems: "end", gap: 12, flexWrap: "wrap", padding: "14px 0", borderBottom: "1px solid #c9dbd4" } as const
-const searchLabelStyle = { display: "grid", gap: 5, flex: "1 1 280px", minWidth: "min(100%, 220px)" } as const
-const selectLabelStyle = { display: "grid", gap: 5, flex: "0 1 165px", minWidth: 140 } as const
-const searchInputStyle = { boxSizing: "border-box", width: "100%", minHeight: 38, border: "1px solid #9ab9b0", borderRadius: 6, padding: "8px 10px", font: "inherit", color: "#17324d", background: "#ffffff" } as const
-const selectStyle = { boxSizing: "border-box", width: "100%", minHeight: 38, border: "1px solid #9ab9b0", borderRadius: 6, padding: "7px 8px", font: "inherit", color: "#17324d", background: "#ffffff" } as const
-const assetGridStyle = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 255px), 1fr))", gap: 14 } as const
-const assetCardStyle = { minWidth: 0, display: "grid", gap: 12, alignContent: "start", minHeight: 246, padding: 16, border: "1px solid #c9dbd4", borderTop: "5px solid", borderRadius: 8, background: "#ffffff" } as const
-const cardTopStyle = { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, minWidth: 0 } as const
-const typeBadgeStyle = { display: "inline-flex", alignItems: "center", padding: "4px 7px", borderRadius: 5, background: "#e2efeb", color: "#245a52", fontSize: 12, fontWeight: 700, whiteSpace: "nowrap" } as const
-const timeStyle = { color: "#5c6f81", fontSize: 12, textAlign: "right" } as const
-const assetTitleStyle = { margin: 0, fontSize: 18, letterSpacing: 0, overflowWrap: "anywhere" } as const
-const metadataStyle = { margin: 0, display: "grid", gap: 7, minWidth: 0, overflowWrap: "anywhere" } as const
-const cardFooterStyle = { display: "flex", justifyContent: "space-between", alignItems: "end", gap: 10, flexWrap: "wrap", paddingTop: 10, borderTop: "1px solid #e0ebe7" } as const
-const tagsStyle = { color: "#527169", fontSize: 12, overflowWrap: "anywhere" } as const
-const boardLinkStyle = { color: "#1e5f9a", fontSize: 13, fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap" } as const
-const integrityStyle = { display: "grid", gap: 5, padding: "14px 0", borderTop: "1px solid #c9dbd4", color: "#46645e", fontSize: 13, lineHeight: 1.45 } as const
