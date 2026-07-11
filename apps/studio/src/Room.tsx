@@ -683,6 +683,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const frameResponsivePluginRow = () => {
       if (frameTimer !== null) window.clearTimeout(frameTimer)
       frameTimer = window.setTimeout(() => {
+        if (focusedElementId() !== null) return
         const api = apiRef.current
         if (!api || typeof api.getSceneElements !== "function") return
         framePluginRow(api.getSceneElements())
@@ -1060,11 +1061,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
-              window.setTimeout(() => {
-                if (apiRef.current !== eapi) return
-                framePluginRow(eapi.getSceneElements())
-              }, 0)
               const targetId = focusedElementId()
+              if (targetId === null) {
+                window.setTimeout(() => {
+                  if (apiRef.current !== eapi) return
+                  framePluginRow(eapi.getSceneElements())
+                }, 0)
+              }
               if (targetId !== null && focusedElementRef.current !== targetId) {
                 // L'API arriva prima che Excalidraw completi il primo layout:
                 // il focus al ciclo successivo evita un viewport calcolato vuoto.

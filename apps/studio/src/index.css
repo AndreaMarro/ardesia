@@ -1187,8 +1187,9 @@ body,
 }
 
 /* La shell approvata affida la creazione all'orbita; Excalidraw resta il
-   motore della tela e mantiene zoom/pan, menu e runtime embed. */
+   motore della tela e mantiene zoom/pan, object handles e runtime embed. */
 .st-room-board .excalidraw .App-toolbar-container,
+.st-room-board .excalidraw .App-menu__left,
 .st-room-board .excalidraw .welcome-screen-center,
 .st-room-board .excalidraw .welcome-screen-decor-hint--toolbar,
 .st-room-board .excalidraw .undo-redo-buttons,
@@ -1202,23 +1203,31 @@ body,
   .st-room-board .st-radial-tools { right: 34px; bottom: 34px; }
   /* Excalidraw riduce gli embed quando i tre post-it entrano su una LIM/iPad.
      Il fattore non deve alterare il flusso del post-it compatto. */
-  .st-room-board [data-plugin-instance-id] button,
+  .st-room-board [data-plugin-instance-id] button {
+    position: relative;
+    z-index: 1;
+    transform: scale(1.55);
+    transform-origin: center;
+  }
   .st-room-board [data-plugin-instance-id] summary {
     position: relative;
     z-index: 1;
-    transform: scaleY(1.28);
+    transform: scaleY(1.55);
     transform-origin: center;
   }
   .st-room-board [data-plugin-instance-id] button[aria-label^="Espandi"] {
-    transform: scale(1.28);
+    transform: scale(1.55);
   }
   .st-room-board [data-plugin-postit-kind="elabtutor"] button[aria-label="Invia comando alla simulazione"] {
-    transform: scaleY(1.28);
+    transform: scaleY(1.55);
     transform-origin: left center;
   }
   .st-room-board [data-plugin-ink-density="compact"] > [data-plugin-ink-interactive-surface] > button[data-plugin-ink-control],
   .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] button {
-    transform: scale(1.28);
+    transform: scale(1.55);
+  }
+  .st-room-board [data-plugin-live-preview="arduino"] .st-compact-code-preview {
+    margin-left: 12px;
   }
   .st-plugin-runtime-overlay button,
   .st-plugin-runtime-overlay select,

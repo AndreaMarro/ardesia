@@ -435,6 +435,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
     expect(css).not.toMatch(/@media \(max-width:\s*768px\) and \(min-height:\s*800px\)[\s\S]*?\.st-view-nav\s*\{[^}]*bottom:/)
     expect(css).toMatch(/@media \(max-width:\s*768px\)[\s\S]*?\.st-library-inner\s*\{[^}]*padding:\s*var\(--m-sp-4\) var\(--m-sp-4\) 180px 140px;/)
     expect(css).toMatch(/@media \(min-width:\s*1600px\)[\s\S]*?\.st-shell-actions\s*\{[^}]*padding-right:\s*var\(--m-sp-5\);/)
+    expect(css).toMatch(/@media \(max-width:\s*1024px\)[\s\S]*?\.st-room-board \[data-plugin-instance-id\] button\s*\{[^}]*transform:\s*scale\(1\.55\);/)
+    expect(css).toMatch(/@media \(max-width:\s*1024px\)[\s\S]*?button\[data-plugin-ink-control\],[^}]*\{[^}]*transform:\s*scale\(1\.55\);/)
+    expect(css).toMatch(/\.st-room-board \.excalidraw \.App-menu__left,/)
 
     const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
     const rendered = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!)
@@ -483,9 +486,10 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
   it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {
     const { store } = await createMockStore()
-    const element = { id: "postit-focus", type: "rectangle" }
-    mockExcalidrawHarness.sceneElements = [element]
-    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify({ elements: [element], appState: {}, files: {} }))
+    const element = { id: "postit-focus", type: "embeddable", link: "maestro-tool://io.ardesia.simulation/postit-focus" }
+    const sibling = { id: "postit-sibling", type: "embeddable", link: "maestro-tool://io.ardesia.arduino-toolchain/postit-sibling" }
+    mockExcalidrawHarness.sceneElements = [element, sibling]
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify({ elements: [element, sibling], appState: {}, files: {} }))
     window.history.replaceState(null, "", "/?focus=postit-focus#focus-room")
 
     const root = createRoot(document.getElementById("root")!)
@@ -500,6 +504,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
         elements: [element],
         options: { fitToContent: false, animate: false },
       })
+      expect(mockExcalidrawHarness.scrollToContentCalls.some((call) => (
+        (call.options as { fitToContent?: boolean } | undefined)?.fitToContent === true
+      ))).toBe(false)
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()

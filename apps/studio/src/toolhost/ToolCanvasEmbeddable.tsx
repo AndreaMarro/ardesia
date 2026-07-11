@@ -1094,7 +1094,7 @@ function ArduinoToolchainPostit({
   const selectedBoard = getBoardById(state.project.boardId);
   const projectTitle = arduinoProjectTitle(state, selectedBoard ?? undefined);
   const statusLabel = arduinoStatusLabel(state);
-  const sketchPreview = state.project.source.split(/\r?\n/).filter((line) => line.trim()).slice(0, 2).join(" ");
+  const sketchPreview = state.project.source.split(/\r?\n/).find((line) => line.trim()) ?? "";
 
   function closeRuntime() {
     setExpanded(false);
