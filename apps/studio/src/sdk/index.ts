@@ -37,9 +37,11 @@ import type { ToolManifest } from "../toolhost-protocol/manifest.ts"
 // metodo, capability o codice errore esistente è cambiato.
 // 1.3.0 — MINOR: capability Arduino Toolchain dichiarate; i provider restano
 // negoziati dal manifest e nessun nuovo metodo wire è aggiunto.
+// 1.4.0 — MINOR: capability pubbliche Simulation dichiarate per link/dock tra
+// post-it, senza nuovi metodi wire.
 // 1.1.0 — MINOR: nuovo metodo wire retro-compatibile `graph.query` (P0-D):
 // vista READ-ONLY sul grafo LessonOS derivato dall'event-log.
-export const CONTRACT_VERSION = "1.3.0"
+export const CONTRACT_VERSION = "1.4.0"
 
 // ---- Descrittore macchina-verificabile del contratto (i 4 pilastri) --------
 

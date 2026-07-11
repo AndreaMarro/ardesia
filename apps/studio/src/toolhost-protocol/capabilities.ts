@@ -10,6 +10,10 @@ export const CapabilitiesSchema = z.strictObject({
   "graph.query": z.strictObject({}).optional(),
   "graph.proposeClaims": z.strictObject({}).optional(),
   "lesson.event.emit": z.strictObject({}).optional(),
+  "simulation.scene.read": z.strictObject({}).optional(),
+  "simulation.command": z.strictObject({}).optional(),
+  "simulation.diagnostics": z.strictObject({}).optional(),
+  "simulation.events": z.strictObject({}).optional(),
   "arduino.project": z.strictObject({}).optional(),
   "arduino.board.catalog": z.strictObject({}).optional(),
   "arduino.compile": z.strictObject({

@@ -39,6 +39,10 @@ const GOLDEN_CAPABILITIES: readonly CapabilityName[] = [
   "lesson.event.emit",
   "llm.generate",
   "net.fetch",
+  "simulation.command",
+  "simulation.diagnostics",
+  "simulation.events",
+  "simulation.scene.read",
   "storage",
   "ui",
 ]

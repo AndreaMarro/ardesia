@@ -27,7 +27,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildArduinoToolchainInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildArduinoToolchainInsert, buildElabTutorLinkedInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -624,10 +624,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       return
     }
 
+    const nextElements = [...currentElements, insert.embed]
     apiRef.current.updateScene({
-      elements: [...currentElements, insert.embed],
+      elements: nextElements,
       appState: { selectedElementIds: {} },
     })
+    window.setTimeout(() => {
+      if (!apiRef.current) return
+      latestElementsRef.current = apiRef.current.getSceneElements()
+      latestAppStateRef.current = apiRef.current.getAppState()
+      void flushPersist()
+    }, 0)
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
 
@@ -644,10 +651,44 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       return
     }
 
+    const nextElements = [...currentElements, insert.embed]
     apiRef.current.updateScene({
-      elements: [...currentElements, insert.embed],
+      elements: nextElements,
       appState: { selectedElementIds: {} },
     })
+    window.setTimeout(() => {
+      if (!apiRef.current) return
+      latestElementsRef.current = apiRef.current.getSceneElements()
+      latestAppStateRef.current = apiRef.current.getAppState()
+      void flushPersist()
+    }, 0)
+    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+  }
+
+  function insertElabTutorPlugin() {
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+
+    const currentElements = apiRef.current.getSceneElements()
+    const insert = buildElabTutorLinkedInsert(currentElements as readonly { id?: string }[])
+    if (!insert) {
+      setStorageError("ElabTutor non disponibile.")
+      return
+    }
+
+    const nextElements = [...currentElements, insert.embed]
+    apiRef.current.updateScene({
+      elements: nextElements,
+      appState: { selectedElementIds: {} },
+    })
+    window.setTimeout(() => {
+      if (!apiRef.current) return
+      latestElementsRef.current = apiRef.current.getSceneElements()
+      latestAppStateRef.current = apiRef.current.getAppState()
+      void flushPersist()
+    }, 0)
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
   const shareUrl = studentView
@@ -780,6 +821,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           </button>
           <button onClick={insertArduinoToolchainPlugin} className="st-ghost" aria-label="Inserisci Arduino Toolchain post-it sulla lavagna">
             arduino
+          </button>
+          <button onClick={insertElabTutorPlugin} className="st-ghost" aria-label="Inserisci ElabTutor post-it sulla lavagna">
+            tutor
           </button>
           {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
               banner del post-it dichiara sempre montati/totale). */}

@@ -20,9 +20,12 @@ import { describe, expect, it } from "vitest"
 import {
   ARDUINO_TOOLCHAIN_EMBED_ID,
   ARDUINO_TOOLCHAIN_TOOL_ID,
+  ELABTUTOR_LINKED_EMBED_ID,
+  ELABTUTOR_LINKED_TOOL_ID,
   REFERENCE_SIM_EMBED_ID,
   REFERENCE_SIM_TOOL_ID,
   buildArduinoToolchainInsert,
+  buildElabTutorLinkedInsert,
   buildSimulationInsert,
   createToolEmbedElement,
   nextSimulationEmbedId,
@@ -101,5 +104,24 @@ describe("buildArduinoToolchainInsert (PluginInstance autonoma)", () => {
     expect(marker.owner).toBe(ARDUINO_TOOLCHAIN_TOOL_ID)
     expect(marker.state.kind).toBe("arduino-toolchain-v1")
     expect(marker.state.project.fqbn).toBe("arduino:avr:nano:cpu=atmega328old")
+  })
+})
+
+describe("buildElabTutorLinkedInsert (PluginInstance autonoma)", () => {
+  it("crea un post-it ElabTutor separato collegato via PluginLink pubblico", () => {
+    const insert = buildElabTutorLinkedInsert([])!
+    expect(insert.embedId).toBe(ELABTUTOR_LINKED_EMBED_ID)
+    const link = parseToolLink((insert.embed as { link?: string }).link)
+    expect(link).toEqual({ toolId: ELABTUTOR_LINKED_TOOL_ID, embedId: ELABTUTOR_LINKED_EMBED_ID })
+    const marker = ((insert.embed.customData as Record<string, unknown>)[EMBED_DATA_KEY] as {
+      owner: string
+      state: { kind: string; links: { simulationInstanceId: string; toolchainInstanceId: string } }
+    })
+    expect(marker.owner).toBe(ELABTUTOR_LINKED_TOOL_ID)
+    expect(marker.state.kind).toBe("elabtutor-linked-v1")
+    expect(marker.state.links).toEqual({
+      simulationInstanceId: REFERENCE_SIM_EMBED_ID,
+      toolchainInstanceId: ARDUINO_TOOLCHAIN_EMBED_ID,
+    })
   })
 })

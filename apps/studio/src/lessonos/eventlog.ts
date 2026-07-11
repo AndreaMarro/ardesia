@@ -126,6 +126,16 @@ export type LessonOsEvent =
       labels: Labels
     })
   | (BaseEvent & {
+      kind: "elabtutor.command.issued"
+      pluginId: string
+      command: "simulation.command"
+      targetInstanceId: string
+      toolchainInstanceId?: string
+      grounded: boolean
+      diagnostic: string
+      labels: Labels
+    })
+  | (BaseEvent & {
       /** Tentativo quiz per-studente: fatto registrato; ogni vista (media, debito) è derivata. */
       kind: "quiz.attempted"
       quizId: string

@@ -17,8 +17,10 @@ import {
 import {
   ARDUINO_TOOLCHAIN_TOOL_ID,
   createArduinoToolchainEmbedElement,
+  createElabTutorLinkedEmbedElement,
   ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE,
   ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE,
+  ELABTUTOR_LINKED_TOOL_ID,
   ELAB_V1_FIRST_LED_EXPERIMENT_ID,
   REFERENCE_SIM_EMBED_ID,
   REFERENCE_SIM_LINK,
@@ -143,6 +145,40 @@ describe("ToolCanvasEmbeddable", () => {
       provider: "browser-avr",
       ok: true,
       artifactFormat: "intel-hex",
+    });
+  });
+
+  it("renderizza ElabTutor come post-it collegato e invia un comando LessonOS grounded", () => {
+    const element = createElabTutorLinkedEmbedElement();
+    const emitted: unknown[] = [];
+    const persisted: unknown[] = [];
+    const view = renderToolCanvasEmbeddable(element, {
+      persistEmbedState: (_embedId, state) => persisted.push(state),
+      emitLessonEvent: (event) => emitted.push(event),
+    });
+    expect(view).not.toBeNull();
+
+    const { container, getByRole } = render(view!);
+    const postit = container.querySelector('[data-plugin-postit-kind="elabtutor"]');
+    expect(postit).not.toBeNull();
+    expect(postit?.getAttribute("data-elabtutor-simulation-instance")).toBe(REFERENCE_SIM_EMBED_ID);
+    expect(postit?.getAttribute("data-elabtutor-toolchain-instance")).toBe("arduino-toolchain-postit");
+    expect(container.textContent).toContain("simulation.scene.read");
+    expect(container.textContent).toContain("arduino.compile");
+
+    fireEvent.click(getByRole("button", { name: "Invia fix a Simulation" }));
+
+    expect(persisted.at(-1)).toMatchObject({
+      kind: "elabtutor-linked-v1",
+      lastCommand: { targetInstanceId: REFERENCE_SIM_EMBED_ID, status: "issued" },
+    });
+    expect(emitted.at(-1)).toMatchObject({
+      kind: "elabtutor.command.issued",
+      pluginId: ELABTUTOR_LINKED_TOOL_ID,
+      command: "simulation.command",
+      targetInstanceId: REFERENCE_SIM_EMBED_ID,
+      toolchainInstanceId: "arduino-toolchain-postit",
+      grounded: true,
     });
   });
 

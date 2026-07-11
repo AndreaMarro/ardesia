@@ -171,6 +171,32 @@ type ArduinoToolchainState = {
   artifact: ArduinoCompileArtifact | null;
 };
 
+type ElabTutorLinkedState = {
+  kind: "elabtutor-linked-v1";
+  links: {
+    simulationInstanceId: string;
+    toolchainInstanceId: string;
+  };
+  requiredCapabilities: [
+    "simulation.scene.read",
+    "simulation.command",
+    "simulation.diagnostics",
+    "simulation.events",
+    "arduino.project",
+    "arduino.compile",
+    "arduino.serial",
+    "lesson.event.emit",
+  ];
+  tutorNote: string;
+  lastCommand: {
+    id: string;
+    targetInstanceId: string;
+    issuedAt: number;
+    status: "issued" | "degraded";
+    summary: string;
+  } | null;
+};
+
 export type SimulationSceneV1 = {
   v: 1;
   experimentId: string;
@@ -249,10 +275,12 @@ type SimulationToolState =
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
 export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
 export const ARDUINO_TOOLCHAIN_TOOL_ID = "io.ardesia.arduino-toolchain";
+export const ELABTUTOR_LINKED_TOOL_ID = "io.elab.tutor";
 export const LEGACY_REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
 export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
 export const ARDUINO_TOOLCHAIN_EMBED_ID = "arduino-toolchain-postit";
+export const ELABTUTOR_LINKED_EMBED_ID = "elabtutor-linked-postit";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
 export const ELAB_V1_FIRST_LED_EXPERIMENT_ID = "v1-cap6-esp1";
 export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
@@ -616,6 +644,37 @@ export function createArduinoToolchainEmbedElement(embedId = ARDUINO_TOOLCHAIN_E
   });
 }
 
+function createElabTutorLinkedState(
+  simulationInstanceId = REFERENCE_SIM_EMBED_ID,
+  toolchainInstanceId = ARDUINO_TOOLCHAIN_EMBED_ID,
+): ElabTutorLinkedState {
+  return {
+    kind: "elabtutor-linked-v1",
+    links: { simulationInstanceId, toolchainInstanceId },
+    requiredCapabilities: [
+      "simulation.scene.read",
+      "simulation.command",
+      "simulation.diagnostics",
+      "simulation.events",
+      "arduino.project",
+      "arduino.compile",
+      "arduino.serial",
+      "lesson.event.emit",
+    ],
+    tutorNote:
+      "Leggo solo capability pubbliche: scena Simulation, progetto/diagnostics Arduino e audit LessonOS.",
+    lastCommand: null,
+  };
+}
+
+export function createElabTutorLinkedEmbedElement(embedId = ELABTUTOR_LINKED_EMBED_ID) {
+  return createToolEmbedElement({
+    toolId: ELABTUTOR_LINKED_TOOL_ID,
+    embedId,
+    state: createElabTutorLinkedState(),
+  });
+}
+
 export function isToolCanvasEmbed(element: EmbedLike): boolean {
   return parseToolLink(element.link) !== null;
 }
@@ -721,7 +780,17 @@ export function buildArduinoToolchainInsert(
   if (!entry) return null;
   const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
   const embedId = nextSimulationEmbedId(ids, entry.embedId);
-  return { embed: entry.createEmbed(embedId), embedId };
+  return { embed: { ...entry.createEmbed(embedId), x: 1340, y: 90 }, embedId };
+}
+
+export function buildElabTutorLinkedInsert(
+  currentElements: readonly { id?: string }[],
+): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
+  const entry = getSimulationTool(ELABTUTOR_LINKED_TOOL_ID);
+  if (!entry) return null;
+  const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
+  const embedId = nextSimulationEmbedId(ids, entry.embedId);
+  return { embed: { ...entry.createEmbed(embedId), x: 2560, y: 90 }, embedId };
 }
 
 export function renderToolCanvasEmbeddable(
@@ -763,6 +832,10 @@ function stateFromElement(element: EmbedLike): unknown {
 
 function isArduinoToolchainState(state: unknown): state is ArduinoToolchainState {
   return typeof state === "object" && state !== null && (state as { kind?: unknown }).kind === "arduino-toolchain-v1";
+}
+
+function isElabTutorLinkedState(state: unknown): state is ElabTutorLinkedState {
+  return typeof state === "object" && state !== null && (state as { kind?: unknown }).kind === "elabtutor-linked-v1";
 }
 
 function compileToolchainState(state: ArduinoToolchainState): ArduinoToolchainState {
@@ -972,6 +1045,127 @@ const arduinoToolchainEntry = {
   createEmbed: (embedId?: string) => createArduinoToolchainEmbedElement(embedId),
 };
 registerSimulationTool(ARDUINO_TOOLCHAIN_TOOL_ID, arduinoToolchainEntry);
+
+function ElabTutorLinkedPostit({
+  element,
+  toolLink,
+  host,
+}: {
+  element: EmbedLike;
+  toolLink: ToolLink;
+  host?: SimulationToolHost;
+}) {
+  const initial = stateFromElement(element);
+  const [state, setState] = useState<ElabTutorLinkedState>(
+    isElabTutorLinkedState(initial) ? initial : createElabTutorLinkedState(),
+  );
+
+  function persist(next: ElabTutorLinkedState) {
+    setState(next);
+    host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
+  }
+
+  function issueSimulationCommand() {
+    const commandId = `${toolLink.embedId}:simulation-command:${Date.now()}`;
+    const next: ElabTutorLinkedState = {
+      ...state,
+      tutorNote:
+        "Scena letta via simulation.scene.read: il circuito LED e il compile Arduino restano sorgenti separate, collegate dal dock.",
+      lastCommand: {
+        id: commandId,
+        targetInstanceId: state.links.simulationInstanceId,
+        issuedAt: Date.now(),
+        status: "issued",
+        summary: "Mostra il montaggio e usa diagnostics per spiegare il prossimo fix.",
+      },
+    };
+    persist(next);
+    host?.emitLessonEvent?.({
+      kind: "elabtutor.command.issued",
+      pluginId: toolLink.toolId,
+      command: "simulation.command",
+      targetInstanceId: state.links.simulationInstanceId,
+      toolchainInstanceId: state.links.toolchainInstanceId,
+      grounded: true,
+      diagnostic: next.lastCommand!.summary,
+      t: next.lastCommand!.issuedAt,
+      evidence: [
+        `plugin:${toolLink.toolId}@${toolLink.embedId}`,
+        `plugin:${REFERENCE_SIM_TOOL_ID}@${state.links.simulationInstanceId}`,
+        `plugin:${ARDUINO_TOOLCHAIN_TOOL_ID}@${state.links.toolchainInstanceId}`,
+      ],
+      causationId: commandId,
+      provenance: {
+        surface: "postit",
+        pluginId: toolLink.toolId,
+        source: "ElabTutor public capability bridge",
+      },
+      labels: { it: "Comando tutor verso Simulation" },
+    });
+  }
+
+  return (
+    <section
+      style={elabTutorShellStyle}
+      data-plugin-postit-kind="elabtutor"
+      data-plugin-instance-id={toolLink.embedId}
+      data-elabtutor-simulation-instance={state.links.simulationInstanceId}
+      data-elabtutor-toolchain-instance={state.links.toolchainInstanceId}
+      data-elabtutor-grounded={state.lastCommand ? "true" : "pending"}
+      aria-label="ElabTutor post-it collegato"
+    >
+      <header style={headerStyle}>
+        <div>
+          <div style={eyebrowStyle}>Post-it ElabTutor</div>
+          <h2 style={titleStyle}>Spiega e corregge dai post-it collegati</h2>
+          <div style={flowRailStyle} aria-label="Percorso ElabTutor">
+            <span style={flowStepOnStyle}>1. scena</span>
+            <span style={flowStepStyle}>2. codice</span>
+            <span style={flowStepStyle}>3. diagnostics</span>
+            <span style={flowStepStyle}>4. comando</span>
+          </div>
+          <div style={nextActionStyle}>Prossima azione: collega, leggi diagnostics, invia comando tipato.</div>
+        </div>
+        <div style={instanceBadgeStyle}>{toolLink.embedId}</div>
+      </header>
+      <main style={elabTutorMainStyle}>
+        <section style={elabTutorPanelStyle}>
+          <strong>Dock PluginLink</strong>
+          <span>Simulation: {state.links.simulationInstanceId}</span>
+          <span>Arduino Toolchain: {state.links.toolchainInstanceId}</span>
+          <span>Seriale: RED, provider assente; il tutor degrada senza corrompere il circuito.</span>
+        </section>
+        <section style={elabTutorPanelStyle}>
+          <strong>Capability richieste</strong>
+          <div style={capabilityGridStyle}>
+            {state.requiredCapabilities.map((capability) => (
+              <span key={capability} style={capabilityChipStyle}>{capability}</span>
+            ))}
+          </div>
+        </section>
+        <section style={elabTutorPanelStyle}>
+          <strong>Spiegazione grounded</strong>
+          <p style={tutorNoteStyle}>{state.tutorNote}</p>
+          {state.lastCommand && (
+            <p style={tutorNoteStyle}>Ultimo comando: {state.lastCommand.summary}</p>
+          )}
+          <button type="button" onClick={issueSimulationCommand} style={primaryToolchainButtonStyle}>
+            Invia fix a Simulation
+          </button>
+        </section>
+      </main>
+    </section>
+  );
+}
+
+const elabTutorLinkedEntry = {
+  embedId: ELABTUTOR_LINKED_EMBED_ID,
+  render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost) => (
+    <ElabTutorLinkedPostit element={element} toolLink={toolLink} host={host} />
+  ),
+  createEmbed: (embedId?: string) => createElabTutorLinkedEmbedElement(embedId),
+};
+registerSimulationTool(ELABTUTOR_LINKED_TOOL_ID, elabTutorLinkedEntry);
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
@@ -3082,6 +3276,53 @@ const hexPreviewStyle = {
   color: "#e8f2ff",
   padding: 8,
   fontSize: 11,
+} as const;
+
+const elabTutorShellStyle = {
+  ...shellStyle,
+  background: "linear-gradient(135deg, #fffdf2 0%, #f4fbff 48%, #f8fff4 100%)",
+} as const;
+
+const elabTutorMainStyle = {
+  display: "grid",
+  gridTemplateColumns: "minmax(220px, 0.85fr) minmax(260px, 1fr) minmax(260px, 1fr)",
+  gap: 14,
+  padding: 16,
+  minHeight: 620,
+} as const;
+
+const elabTutorPanelStyle = {
+  border: "1px solid #d8e1eb",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#24364b",
+  padding: 14,
+  display: "grid",
+  gap: 10,
+  alignContent: "start",
+  fontSize: 13,
+  lineHeight: 1.4,
+} as const;
+
+const capabilityGridStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 6,
+} as const;
+
+const capabilityChipStyle = {
+  border: "1px solid #b9cbe0",
+  borderRadius: 6,
+  background: "#eef6ff",
+  color: "#19324d",
+  padding: "5px 7px",
+  fontSize: 12,
+  fontWeight: 800,
+} as const;
+
+const tutorNoteStyle = {
+  margin: 0,
+  color: "#263b50",
 } as const;
 
 const svgBadgeTextStyle: CSSProperties = {
