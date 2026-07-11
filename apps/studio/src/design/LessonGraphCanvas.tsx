@@ -61,6 +61,7 @@ const EDGE_COLOR: Record<EdgeKind, string> = {
 
 const LEVEL_COLOR = ["#44709e", "#7cab78", "#e3ad38", "#dd7458"]
 export const MAX_DISPLAY_LEVEL = 3
+const MAX_INITIAL_GRAPH_ZOOM = 1.25
 
 const GRAPH_CSS = `
 .zgraph-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px;min-height:0;height:100%}
@@ -161,7 +162,13 @@ function edgeId(edge: GraphCanvasEdge, index: number): string {
   return `edge:${index}:${edge.from}:${edge.kind}:${edge.to}`
 }
 
-function layoutGraph(cy: Core, focusNodeId: string | null, animate: boolean, afterLayout: () => void): () => void {
+function layoutGraph(
+  cy: Core,
+  focusNodeId: string | null,
+  animate: boolean,
+  frameAll: boolean,
+  afterLayout: () => void,
+): () => void {
   const focus = focusNodeId === null ? cy.collection() : cy.getElementById(focusNodeId)
   const depths = new Map<string, number>()
   cy.nodes().forEach((node) => {
@@ -189,9 +196,13 @@ function layoutGraph(cy: Core, focusNodeId: string | null, animate: boolean, aft
   const finish = () => {
     frame = null
     if (!active()) return
-    const framed = focus.nonempty() ? focus.closedNeighborhood() : cy.elements()
+    const framed = frameAll || !focus.nonempty() ? cy.elements() : focus.closedNeighborhood()
     if (!active()) return
-    cy.fit(framed, focus.nonempty() ? 88 : 58)
+    cy.fit(framed, frameAll || !focus.nonempty() ? 58 : 88)
+    if (frameAll && cy.zoom() > MAX_INITIAL_GRAPH_ZOOM) {
+      cy.zoom(MAX_INITIAL_GRAPH_ZOOM)
+      cy.center(framed)
+    }
     if (active()) afterLayout()
   }
   const onLayoutStop = () => {
@@ -430,7 +441,7 @@ export default function LessonGraphCanvas({
       const neighborhood = focus.closedNeighborhood()
       cy.elements().not(neighborhood).addClass("is-muted")
     }
-    return layoutGraph(cy, focusNodeId, !dataChanged && !isJsdom() && !reducedMotion(), () => {
+    return layoutGraph(cy, focusNodeId, !dataChanged && !isJsdom() && !reducedMotion(), dataChanged, () => {
       if (cyRef.current === cy && !cy.destroyed()) setMiniGraph(snapshotMiniGraph(cy, focusRef.current))
     })
   }, [deltaSet, edges, focusNodeId, locale, modelSignature, nodes, sortedNodes])

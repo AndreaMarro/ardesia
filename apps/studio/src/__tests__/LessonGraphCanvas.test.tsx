@@ -65,7 +65,9 @@ class FakeCore {
   edgeItems: FakeElement[] = []
   layoutRuns = 0
   layoutStops = 0
-  fit = vi.fn()
+  zoomValue = 1
+  fit = vi.fn((_collection: FakeCollection, _padding: number) => { this.zoomValue = 2.4 })
+  center = vi.fn()
   destroy = vi.fn(() => { this.destroyedValue = true })
   stop = vi.fn()
   private destroyedValue = false
@@ -100,7 +102,10 @@ class FakeCore {
   resize() {}
   minZoom() { return 0.42 }
   maxZoom() { return 2.4 }
-  zoom() { return 1 }
+  zoom(value?: number) {
+    if (value !== undefined) this.zoomValue = value
+    return this.zoomValue
+  }
   animate() {}
   selectNode(id: string) {
     const node = this.getElementById(id).first()
@@ -150,6 +155,16 @@ describe("LessonGraphCanvas", () => {
     expect(core?.edgeItems).toHaveLength(EDGES.length)
     expect(core?.layoutRuns).toBeGreaterThan(0)
     expect(core?.fit).toHaveBeenCalled()
+  })
+
+  it("frames every real node on initial load even when the focus has no edges", () => {
+    renderCanvas({ nodes: NODES.slice(0, 2), edges: [] })
+
+    const core = fakeCores.at(-1) as FakeCore
+    const framed = core.fit.mock.calls.at(-1)?.[0] as FakeCollection
+    expect(framed.items.map((item) => item.id())).toEqual(["c-ohm", "e-short"])
+    expect(core.zoom()).toBe(1.25)
+    expect(core.center).toHaveBeenCalledWith(framed)
   })
 
   it("repopulates the replacement primary core after a StrictMode effect remount", () => {
