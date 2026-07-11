@@ -1094,6 +1094,7 @@ function ArduinoToolchainPostit({
   const selectedBoard = getBoardById(state.project.boardId);
   const projectTitle = arduinoProjectTitle(state, selectedBoard ?? undefined);
   const statusLabel = arduinoStatusLabel(state);
+  const sketchPreview = state.project.source.split(/\r?\n/).filter((line) => line.trim()).slice(0, 2).join(" ");
 
   function closeRuntime() {
     setExpanded(false);
@@ -1136,9 +1137,9 @@ function ArduinoToolchainPostit({
             Apri
           </button>
         </div>
-        <div style={compactPostitActionsStyle} data-plugin-primary-copy>
+        <div style={compactPostitActionsStyle} data-plugin-primary-copy data-plugin-live-preview="arduino">
           <button type="button" onClick={compile} style={compactActionButtonStyle}>Compila</button>
-          <span>{state.artifact ? `${state.artifact.sizeBytes} byte` : selectedBoard?.label ?? "Scheda pronta"}</span>
+          <code className="st-compact-code-preview">{sketchPreview}</code>
         </div>
         <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
           <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>
@@ -1312,6 +1313,7 @@ function ElabTutorLinkedPostit({
   const hasSimulationLink = state.links.simulationInstanceId.trim().length > 0;
   const hasToolchainLink = state.links.toolchainInstanceId.trim().length > 0;
   const hasTutorNote = state.tutorNote.trim().length > 0;
+  const readyLinkCount = [hasSimulationLink, hasToolchainLink, hasTutorNote].filter(Boolean).length;
 
   function closeRuntime() {
     setExpanded(false);
@@ -1355,14 +1357,16 @@ function ElabTutorLinkedPostit({
             Apri
           </button>
         </div>
-        <div style={compactStatusGridStyle} data-plugin-primary-copy>
+        <div style={compactStatusGridStyle} data-plugin-primary-copy data-plugin-live-preview="elabtutor">
+          <strong>{readyLinkCount} collegamenti pronti</strong>
           <span>{hasSimulationLink ? "Circuito collegato" : "Circuito da collegare"}</span>
           <span>{hasToolchainLink ? "Sketch collegato" : "Sketch da collegare"}</span>
           <span>{hasTutorNote ? "Nota pronta" : "Nota da preparare"}</span>
         </div>
         <div style={compactPostitActionsStyle} data-plugin-primary-copy>
           <button type="button" aria-label={ELABTUTOR_COMMAND_LABEL} onClick={issueSimulationCommand} style={compactActionButtonStyle}>
-            {ELABTUTOR_COMMAND_LABEL}
+            <span data-plugin-action-copy="full">{ELABTUTOR_COMMAND_LABEL}</span>
+            <span data-plugin-action-copy="short">Invia comando</span>
           </button>
         </div>
         <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
@@ -1948,9 +1952,12 @@ function ReferenceSimulationCanvasTool({
             Apri
           </button>
         </div>
-        <div style={compactPostitActionsStyle} data-plugin-primary-copy>
-          <span>{snapshot.ledOn ? "LED acceso" : "LED spento"}</span>
-          <span>{validation.ok ? "Montaggio verificato" : "Montaggio da controllare"}</span>
+        <div style={compactPostitActionsStyle} data-plugin-primary-copy data-plugin-live-preview="simulation">
+          <span className="st-compact-live-status" data-on={snapshot.ledOn ? "true" : "false"}>
+            <span className="st-compact-live-dot" aria-hidden />
+            {snapshot.ledOn ? "LED acceso" : "LED spento"}
+          </span>
+          <span>{compactSolveLabel}</span>
         </div>
         <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
           <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>

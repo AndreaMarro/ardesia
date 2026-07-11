@@ -324,6 +324,21 @@ describe("ToolCanvasEmbeddable", () => {
     rendered.unmount();
   });
 
+  it("keeps every compact plugin visibly live from its real instance state", () => {
+    const simulation = render(renderToolCanvasEmbeddable(createToolEmbedElement())!);
+    expect(simulation.container.querySelector('[data-plugin-live-preview="simulation"]')?.textContent).toContain("15.3 mA");
+    simulation.unmount();
+
+    const arduino = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!);
+    expect(arduino.container.querySelector('[data-plugin-live-preview="arduino"]')?.textContent).toContain("void setup() {");
+    arduino.unmount();
+
+    const tutor = render(renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement())!);
+    expect(tutor.container.querySelector('[data-plugin-live-preview="elabtutor"]')?.textContent).toContain("3 collegamenti pronti");
+    expect(tutor.container.querySelector('[data-plugin-action-copy="short"]')?.textContent).toBe("Invia comando");
+    tutor.unmount();
+  });
+
   it("keeps catalog and provenance status out of expanded Simulation primary copy", () => {
     const rendered = render(renderToolCanvasEmbeddable(createToolEmbedElement())!);
 
