@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactElement, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactElement, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import { BOARDS, getBoardById, supportsInBrowserCompile, type ArduinoBoardCatalogEntry } from "@elab-tutor-plugin/services/arduinoBoards.js";
@@ -1013,43 +1013,55 @@ function ArduinoToolchainPostit({
   host?: SimulationToolHost;
 }) {
   const initial = stateFromElement(element);
+  const incomingState = isArduinoToolchainState(initial) ? initial : undefined;
   const [state, setState] = useState<ArduinoToolchainState>(
-    isArduinoToolchainState(initial) ? initial : createArduinoToolchainState(),
+    incomingState ?? createArduinoToolchainState(),
   );
+  const latestStateRef = useRef(state);
   const [expanded, setExpanded] = useState(false);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    if (!incomingState) return;
+    latestStateRef.current = incomingState;
+    setState(incomingState);
+  }, [incomingState]);
+
   function persist(next: ArduinoToolchainState) {
+    latestStateRef.current = next;
     setState(next);
     host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
   }
 
   function persistAnnotations(annotations: PluginAnnotationDocument) {
-    persist({ ...state, annotations });
+    persist({ ...latestStateRef.current, annotations });
   }
 
   function updateBoard(boardId: string) {
     const board = getBoardById(boardId);
     if (!board) return;
+    const current = latestStateRef.current;
     persist({
-      ...state,
-      project: { ...state.project, boardId: board.id, fqbn: board.fqbn },
+      ...current,
+      project: { ...current.project, boardId: board.id, fqbn: board.fqbn },
       diagnostics: { status: "idle", message: "Board aggiornata: ricompila per generare un artifact coerente." },
       artifact: null,
     });
   }
 
   function updateSource(source: string) {
+    const current = latestStateRef.current;
     persist({
-      ...state,
-      project: { ...state.project, source },
+      ...current,
+      project: { ...current.project, source },
       diagnostics: { status: "idle", message: "Sorgente modificato: compila per aggiornare diagnostics e artifact." },
       artifact: null,
     });
   }
 
   function compile() {
-    const next = compileToolchainState(state);
+    const current = latestStateRef.current;
+    const next = compileToolchainState(current);
     persist(next);
     host?.emitLessonEvent?.({
       kind: "arduino.compile.completed",
@@ -1067,7 +1079,7 @@ function ArduinoToolchainPostit({
       diagnostic: next.diagnostics.message,
       t: Date.now(),
       evidence: [`plugin:${toolLink.toolId}@${toolLink.embedId}`],
-      causationId: `${toolLink.embedId}:compile:${state.project.boardId}`,
+      causationId: `${toolLink.embedId}:compile:${current.project.boardId}`,
       provenance: {
         surface: "postit",
         pluginId: toolLink.toolId,
@@ -1231,30 +1243,40 @@ function ElabTutorLinkedPostit({
   host?: SimulationToolHost;
 }) {
   const initial = stateFromElement(element);
+  const incomingState = isElabTutorLinkedState(initial) ? initial : undefined;
   const [state, setState] = useState<ElabTutorLinkedState>(
-    isElabTutorLinkedState(initial) ? initial : createElabTutorLinkedState(),
+    incomingState ?? createElabTutorLinkedState(),
   );
+  const latestStateRef = useRef(state);
   const [expanded, setExpanded] = useState(false);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    if (!incomingState) return;
+    latestStateRef.current = incomingState;
+    setState(incomingState);
+  }, [incomingState]);
+
   function persist(next: ElabTutorLinkedState) {
+    latestStateRef.current = next;
     setState(next);
     host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
   }
 
   function persistAnnotations(annotations: PluginAnnotationDocument) {
-    persist({ ...state, annotations });
+    persist({ ...latestStateRef.current, annotations });
   }
 
   function issueSimulationCommand() {
+    const current = latestStateRef.current;
     const commandId = `${toolLink.embedId}:simulation-command:${Date.now()}`;
     const next: ElabTutorLinkedState = {
-      ...state,
+      ...current,
       tutorNote:
         "Scena letta via simulation.scene.read: il circuito LED e il compile Arduino restano sorgenti separate, collegate dal dock.",
       lastCommand: {
         id: commandId,
-        targetInstanceId: state.links.simulationInstanceId,
+        targetInstanceId: current.links.simulationInstanceId,
         issuedAt: Date.now(),
         status: "issued",
         summary: "Mostra il montaggio e usa diagnostics per spiegare il prossimo fix.",
@@ -1265,15 +1287,15 @@ function ElabTutorLinkedPostit({
       kind: "elabtutor.command.issued",
       pluginId: toolLink.toolId,
       command: "simulation.command",
-      targetInstanceId: state.links.simulationInstanceId,
-      toolchainInstanceId: state.links.toolchainInstanceId,
+      targetInstanceId: current.links.simulationInstanceId,
+      toolchainInstanceId: current.links.toolchainInstanceId,
       grounded: true,
       diagnostic: next.lastCommand!.summary,
       t: next.lastCommand!.issuedAt,
       evidence: [
         `plugin:${toolLink.toolId}@${toolLink.embedId}`,
-        `plugin:${REFERENCE_SIM_TOOL_ID}@${state.links.simulationInstanceId}`,
-        `plugin:${ARDUINO_TOOLCHAIN_TOOL_ID}@${state.links.toolchainInstanceId}`,
+        `plugin:${REFERENCE_SIM_TOOL_ID}@${current.links.simulationInstanceId}`,
+        `plugin:${ARDUINO_TOOLCHAIN_TOOL_ID}@${current.links.toolchainInstanceId}`,
       ],
       causationId: commandId,
       provenance: {
@@ -1577,9 +1599,10 @@ function ReferenceSimulationCanvasTool({
   host?: SimulationToolHost;
 }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
-  const latestStateRef = useRef<SimulationToolState | undefined>(marker?.state);
+  const incomingState = marker?.state;
+  const latestStateRef = useRef<SimulationToolState | undefined>(incomingState);
   const [annotations, setAnnotations] = useState<PluginAnnotationDocument>(
-    () => marker?.state?.annotations ?? emptyPluginAnnotations(),
+    () => incomingState?.annotations ?? emptyPluginAnnotations(),
   );
   const [expanded, setExpanded] = useState(false);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
@@ -1610,11 +1633,19 @@ function ReferenceSimulationCanvasTool({
   // Ripristino al mount dallo state persistito; da lì in poi lo stato locale
   // guida la UI e ogni cambio viene riscritto nell'embed (se l'host lo offre).
   const [placements, setPlacements] = useState<MontaggioPlacement[]>(
-    () => marker?.state?.montaggio?.placements ?? [],
+    () => incomingState?.montaggio?.placements ?? [],
   );
   const [montaggioNotice, setMontaggioNotice] = useState<string | null>(null);
   // ANNULLA one-step (D8): lista placements precedente all'ultima mutazione.
   const [undoSnapshot, setUndoSnapshot] = useState<MontaggioPlacement[] | null>(null);
+
+  useEffect(() => {
+    if (!incomingState) return;
+    latestStateRef.current = incomingState;
+    setAnnotations(incomingState.annotations ?? emptyPluginAnnotations());
+    setPlacements(incomingState.montaggio?.placements ?? []);
+    setSceneOverride(null);
+  }, [incomingState]);
 
   // Passo-passo VIVO: i predicati del libro valutati sul circuito attivo
   // (scena + placements). Nessuna persistenza del toggle: è una vista.
@@ -1773,14 +1804,14 @@ function ReferenceSimulationCanvasTool({
   );
   const sceneDigest = useMemo(() => simulationSceneDigest(boardScene), [boardScene]);
 
-  function persistScene(nextScene: SimulationSceneV1) {
+  const persistScene = useCallback((nextScene: SimulationSceneV1) => {
     const current = latestStateRef.current;
     if (host?.persistEmbedState && current?.kind === "simulation-scene-v1") {
       const nextState: SimulationToolState = { ...current, scene: nextScene };
       latestStateRef.current = nextState;
       host.persistEmbedState(toolLink.embedId, nextState, toolLink.toolId);
     }
-  }
+  }, [host?.persistEmbedState, toolLink.embedId, toolLink.toolId]);
 
   function handleBreakConnections() {
     // Break reale = apri il circuito scollegando la batteria. La connettività
@@ -1863,14 +1894,14 @@ function ReferenceSimulationCanvasTool({
     window.setTimeout(() => expandButtonRef.current?.focus(), 0);
   }
 
-  function persistAnnotations(nextAnnotations: PluginAnnotationDocument) {
+  const persistAnnotations = useCallback((nextAnnotations: PluginAnnotationDocument) => {
     setAnnotations(nextAnnotations);
     const current = latestStateRef.current;
     if (!host?.persistEmbedState || !current) return;
     const nextState: SimulationToolState = { ...current, annotations: nextAnnotations };
     latestStateRef.current = nextState;
     host.persistEmbedState(toolLink.embedId, nextState, toolLink.toolId);
-  }
+  }, [host?.persistEmbedState, toolLink.embedId, toolLink.toolId]);
 
   const compactSolveLabel = solveOutcome.kind === "solved"
     ? `Corrente ${solveOutcome.currentMa.toFixed(1)} mA`
@@ -2112,6 +2143,11 @@ function ElabCoreCanvasMount({
   const [localScene, setLocalScene] = useState(scene);
   const [mountStatus, setMountStatus] = useState<"pending" | "mounted" | "error">("pending");
   const [lastOperationId, setLastOperationId] = useState<string | null>(null);
+  const onSceneChangeRef = useRef(onSceneChange);
+
+  useEffect(() => {
+    onSceneChangeRef.current = onSceneChange;
+  }, [onSceneChange]);
 
   useEffect(() => {
     setLocalScene(scene);
@@ -2150,7 +2186,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasComponentAdd(current, component, position);
-              onSceneChange(nextScene);
+              onSceneChangeRef.current(nextScene);
               return nextScene;
             });
             return componentId;
@@ -2164,7 +2200,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasLayoutChange(current, componentId, pose);
-              onSceneChange(nextScene);
+              onSceneChangeRef.current(nextScene);
               return nextScene;
             });
           },
@@ -2182,7 +2218,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasConnectionAdd(current, connection);
-              onSceneChange(nextScene);
+              onSceneChangeRef.current(nextScene);
               return nextScene;
             });
           },
@@ -2196,7 +2232,7 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireUpdate(current, wireIndex, connection);
-              onSceneChange(nextScene);
+              onSceneChangeRef.current(nextScene);
               return nextScene;
             });
           },
@@ -2209,7 +2245,7 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireDelete(current, wireIndex);
-              onSceneChange(nextScene);
+              onSceneChangeRef.current(nextScene);
               return nextScene;
             });
           },
@@ -2225,7 +2261,7 @@ function ElabCoreCanvasMount({
       disposed = true;
       handle?.dispose();
     };
-  }, [canvasState, onSceneChange, toolLink.embedId]);
+  }, [canvasState, toolLink.embedId]);
 
   return (
     <section

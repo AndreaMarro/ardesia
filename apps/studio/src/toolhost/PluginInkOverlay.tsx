@@ -1,4 +1,6 @@
 import {
+  useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -54,6 +56,8 @@ export type PluginAnnotationDocument = {
 type AnnotationEvent = Extract<LessonOsEvent, { kind: "plugin.annotation.changed" }>;
 type AnnotationOperation = AnnotationEvent["operation"];
 
+export const PLUGIN_ANNOTATION_HISTORY_LIMIT = 50;
+
 export function emptyPluginAnnotations(): PluginAnnotationDocument {
   return { v: 1, visible: true, locked: false, items: [], undo: [], redo: [] };
 }
@@ -77,6 +81,8 @@ type SelectionDrag = {
   annotationId: string;
   from: PluginAnnotationPoint;
 };
+
+type AnnotationDialog = "text" | "clear";
 
 const TOOL_BUTTONS: Array<{ tool: PluginAnnotationTool; label: string; glyph: string }> = [
   { tool: "pen", label: "Penna", glyph: "P" },
@@ -119,6 +125,16 @@ function pointFromEvent(event: ReactPointerEvent<HTMLElement>, bounds: Element |
 function appendPoint(points: PluginAnnotationPoint[], next: PluginAnnotationPoint): PluginAnnotationPoint[] {
   const last = points.at(-1);
   return last?.x === next.x && last.y === next.y ? points : [...points, next];
+}
+
+function appendSnapshot(history: PluginAnnotationItem[][], snapshot: PluginAnnotationItem[]): PluginAnnotationItem[][] {
+  return [...history, snapshot].slice(-PLUGIN_ANNOTATION_HISTORY_LIMIT);
+}
+
+function dialogFocusables(dialog: HTMLElement): HTMLElement[] {
+  return Array.from(dialog.querySelectorAll<HTMLElement>(
+    "button:not([disabled]), input:not([disabled]), [href], select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])",
+  )).filter((element) => !element.hasAttribute("hidden"));
 }
 
 function translatePoint(point: PluginAnnotationPoint, dx: number, dy: number): PluginAnnotationPoint {
@@ -172,13 +188,36 @@ export function PluginInkOverlay({
   const [textAt, setTextAt] = useState<PluginAnnotationPoint | null>(null);
   const [text, setText] = useState("");
   const [alternativeText, setAlternativeText] = useState("");
-  const [confirmClear, setConfirmClear] = useState(false);
+  const [dialog, setDialog] = useState<AnnotationDialog | null>(null);
+  const surfaceRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogOpenerRef = useRef<HTMLElement | null>(null);
   const stageRef = useRef<SVGSVGElement>(null);
   const nextIdRef = useRef(nextOrdinal(instanceId, value));
+  const overlayId = useId();
   const arrowMarkerId = useMemo(
-    () => `plugin-ink-arrow-${instanceId.replace(/[^a-zA-Z0-9_-]/g, "-")}`,
-    [instanceId],
+    () => `plugin-ink-arrow-${instanceId.replace(/[^a-zA-Z0-9_-]/g, "-")}-${overlayId.replace(/[^a-zA-Z0-9_-]/g, "-")}`,
+    [instanceId, overlayId],
   );
+
+  useEffect(() => {
+    if (!dialog) return;
+    const surface = surfaceRef.current;
+    const previousAriaHidden = surface?.getAttribute("aria-hidden") ?? null;
+    const previousInert = surface?.inert ?? false;
+    if (surface) {
+      surface.inert = true;
+      surface.setAttribute("aria-hidden", "true");
+    }
+    const focusTarget = dialogRef.current?.querySelector<HTMLElement>("[data-plugin-ink-dialog-initial-focus]");
+    focusTarget?.focus();
+    return () => {
+      if (!surface) return;
+      surface.inert = previousInert;
+      if (previousAriaHidden === null) surface.removeAttribute("aria-hidden");
+      else surface.setAttribute("aria-hidden", previousAriaHidden);
+    };
+  }, [dialog]);
 
   function emit(operation: AnnotationOperation, annotationId?: string) {
     emitLessonEvent?.({
@@ -206,7 +245,7 @@ export function PluginInkOverlay({
   }
 
   function commitItems(items: PluginAnnotationItem[], operation: "add" | "update" | "remove" | "clear", annotationId?: string) {
-    commit({ ...value, items, undo: [...value.undo, value.items], redo: [] }, operation, annotationId);
+    commit({ ...value, items, undo: appendSnapshot(value.undo, value.items), redo: [] }, operation, annotationId);
   }
 
   function createId(): string {
@@ -224,11 +263,46 @@ export function PluginInkOverlay({
     commitItems(items, "remove", annotationId);
   }
 
-  function chooseTool(tool: PluginAnnotationTool) {
+  function chooseTool(tool: PluginAnnotationTool, opener: HTMLButtonElement) {
     if (value.locked || !value.visible) return;
+    dialogOpenerRef.current = opener;
     setActiveTool(tool);
     setAnnotationMode(true);
     setSelectedId(null);
+  }
+
+  function openDialog(nextDialog: AnnotationDialog, opener: HTMLElement) {
+    dialogOpenerRef.current = opener;
+    setDialog(nextDialog);
+  }
+
+  function closeDialog() {
+    setDialog(null);
+    setTextAt(null);
+    window.setTimeout(() => dialogOpenerRef.current?.focus(), 0);
+  }
+
+  function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    event.stopPropagation();
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDialog();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const currentDialog = dialogRef.current;
+    if (!currentDialog) return;
+    const focusables = dialogFocusables(currentDialog);
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables.at(-1)!;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
@@ -260,6 +334,8 @@ export function PluginInkOverlay({
       setTextAt(point);
       setText("");
       setAlternativeText("");
+      event.currentTarget.releasePointerCapture?.(event.pointerId);
+      openDialog("text", dialogOpenerRef.current ?? event.currentTarget);
       return;
     }
     if (tool === "arrow") {
@@ -328,6 +404,14 @@ export function PluginInkOverlay({
     commitItems([...value.items, item], "add", id);
   }
 
+  function handlePointerCancel(event: ReactPointerEvent<HTMLDivElement>) {
+    if (draft?.pointerId === event.pointerId || selectionDrag?.pointerId === event.pointerId) {
+      event.currentTarget.releasePointerCapture?.(event.pointerId);
+    }
+    setDraft(null);
+    setSelectionDrag(null);
+  }
+
   function addText() {
     const shortText = text.trim();
     if (!textAt || !shortText) return;
@@ -341,7 +425,7 @@ export function PluginInkOverlay({
       alternativeText: alternativeText.trim() || shortText,
       authorRole,
     };
-    setTextAt(null);
+    closeDialog();
     commitItems([...value.items, item], "add", id);
   }
 
@@ -352,7 +436,7 @@ export function PluginInkOverlay({
       ...value,
       items: previous,
       undo: value.undo.slice(0, -1),
-      redo: [...value.redo, value.items],
+      redo: appendSnapshot(value.redo, value.items),
     }, "undo");
   }
 
@@ -362,7 +446,7 @@ export function PluginInkOverlay({
     commit({
       ...value,
       items: next,
-      undo: [...value.undo, value.items],
+      undo: appendSnapshot(value.undo, value.items),
       redo: value.redo.slice(0, -1),
     }, "redo");
   }
@@ -382,7 +466,7 @@ export function PluginInkOverlay({
   }
 
   function clear() {
-    setConfirmClear(false);
+    closeDialog();
     if (value.locked || value.items.length === 0) return;
     setSelectedId(null);
     commitItems([], "clear");
@@ -421,9 +505,10 @@ export function PluginInkOverlay({
       onPointerDownCapture={handlePointerDown}
       onPointerMoveCapture={handlePointerMove}
       onPointerUpCapture={handlePointerUp}
-      onPointerCancelCapture={() => { setDraft(null); setSelectionDrag(null); }}
+      onPointerCancelCapture={handlePointerCancel}
       onKeyDown={handleStageKeyDown}
     >
+      <div ref={surfaceRef} data-plugin-ink-interactive-surface style={surfaceStyle}>
       <div data-plugin-ink-content style={contentStyle}>{children}</div>
       <svg
         ref={stageRef}
@@ -464,7 +549,7 @@ export function PluginInkOverlay({
             title={label}
             disabled={value.locked || !value.visible}
             style={toolButtonStyle(annotationMode && activeTool === tool)}
-            onClick={() => chooseTool(tool)}
+            onClick={(event) => chooseTool(tool, event.currentTarget)}
           >
             <span aria-hidden>{glyph}</span>
           </button>
@@ -500,38 +585,39 @@ export function PluginInkOverlay({
           title="Cancella annotazioni"
           disabled={value.locked || value.items.length === 0}
           style={buttonStyle}
-          onClick={() => setConfirmClear(true)}
+          onClick={(event) => openDialog("clear", event.currentTarget)}
         >
           <span aria-hidden>×</span>
         </button>
       </div>
+      </div>
 
-      {textAt && (
-        <div role="dialog" aria-modal="true" aria-label="Aggiungi annotazione testuale" data-plugin-ink-control style={dialogBackdropStyle}>
+      {dialog === "text" && textAt && (
+        <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Aggiungi annotazione testuale" data-plugin-ink-control style={dialogBackdropStyle} onKeyDown={handleDialogKeyDown}>
           <form style={dialogStyle} onSubmit={(event) => { event.preventDefault(); addText(); }}>
             <strong>Aggiungi testo</strong>
             <label style={fieldStyle}>
               Testo breve
-              <input autoFocus maxLength={120} value={text} onChange={(event) => setText(event.currentTarget.value)} />
+              <input data-plugin-ink-dialog-initial-focus style={dialogInputStyle} maxLength={120} value={text} onChange={(event) => setText(event.currentTarget.value)} />
             </label>
             <label style={fieldStyle}>
               Testo alternativo
-              <input maxLength={180} value={alternativeText} onChange={(event) => setAlternativeText(event.currentTarget.value)} />
+              <input style={dialogInputStyle} maxLength={180} value={alternativeText} onChange={(event) => setAlternativeText(event.currentTarget.value)} />
             </label>
             <div style={dialogActionsStyle}>
-              <button type="button" style={dialogButtonStyle} onClick={() => setTextAt(null)}>Annulla</button>
+              <button type="button" style={dialogButtonStyle} onClick={closeDialog}>Annulla</button>
               <button type="submit" style={dialogButtonStyle} disabled={!text.trim()}>Aggiungi testo</button>
             </div>
           </form>
         </div>
       )}
 
-      {confirmClear && (
-        <div role="dialog" aria-modal="true" aria-label="Conferma cancellazione annotazioni" data-plugin-ink-control style={dialogBackdropStyle}>
+      {dialog === "clear" && (
+        <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Conferma cancellazione annotazioni" data-plugin-ink-control style={dialogBackdropStyle} onKeyDown={handleDialogKeyDown}>
           <div style={dialogStyle}>
             <strong>Cancellare tutte le annotazioni?</strong>
             <div style={dialogActionsStyle}>
-              <button type="button" style={dialogButtonStyle} onClick={() => setConfirmClear(false)}>Annulla</button>
+              <button data-plugin-ink-dialog-initial-focus type="button" style={dialogButtonStyle} onClick={closeDialog}>Annulla</button>
               <button type="button" style={dialogButtonStyle} onClick={clear}>Conferma cancellazione</button>
             </div>
           </div>
@@ -636,6 +722,7 @@ const overlayRootStyle: CSSProperties = {
   minHeight: "100%",
 };
 
+const surfaceStyle: CSSProperties = { position: "relative", width: "100%", height: "100%", minWidth: 0, minHeight: "100%" };
 const contentStyle: CSSProperties = { minWidth: 0, minHeight: "100%" };
 
 const stageStyle: CSSProperties = {
@@ -708,5 +795,6 @@ const dialogStyle: CSSProperties = {
 };
 
 const fieldStyle: CSSProperties = { display: "grid", gap: 5, fontSize: 13, fontWeight: 700 };
+const dialogInputStyle: CSSProperties = { minHeight: 44, boxSizing: "border-box", padding: "8px 10px", font: "inherit" };
 const dialogActionsStyle: CSSProperties = { display: "flex", justifyContent: "flex-end", gap: 8, flexWrap: "wrap" };
 const dialogButtonStyle: CSSProperties = { ...buttonStyle, width: "auto", padding: "0 12px", flex: "0 0 auto" };
