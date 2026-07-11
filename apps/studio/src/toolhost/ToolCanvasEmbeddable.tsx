@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 import { BOARDS, getBoardById, supportsInBrowserCompile, type ArduinoBoardCatalogEntry } from "@elab-tutor-plugin/services/arduinoBoards.js";
 import { compileArduinoInBrowser, type BrowserAvrCompileResult } from "@elab-tutor-plugin/services/inBrowserAvrCompiler.js";
@@ -281,6 +282,13 @@ export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
 export const ARDUINO_TOOLCHAIN_EMBED_ID = "arduino-toolchain-postit";
 export const ELABTUTOR_LINKED_EMBED_ID = "elabtutor-linked-postit";
+const COMPACT_POSTIT_WIDTH = 300;
+const COMPACT_POSTIT_HEIGHT = 180;
+const COMPACT_POSTIT_Y = 56;
+const SIMULATION_POSTIT_X = 220;
+const ARDUINO_POSTIT_X = 544;
+const ELABTUTOR_POSTIT_X = 868;
+const ELABTUTOR_COMMAND_LABEL = "Invia comando alla simulazione";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
 export const ELAB_V1_FIRST_LED_EXPERIMENT_ID = "v1-cap6-esp1";
 export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
@@ -572,10 +580,10 @@ export function createToolEmbedElement({
   return {
     id: embedId,
     type: "embeddable",
-    x: 120,
-    y: 90,
-    width: 1180,
-    height: 760,
+    x: SIMULATION_POSTIT_X,
+    y: COMPACT_POSTIT_Y,
+    width: COMPACT_POSTIT_WIDTH,
+    height: COMPACT_POSTIT_HEIGHT,
     angle: 0,
     strokeColor: "#1f3f63",
     backgroundColor: "#ffffff",
@@ -780,7 +788,7 @@ export function buildArduinoToolchainInsert(
   if (!entry) return null;
   const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
   const embedId = nextSimulationEmbedId(ids, entry.embedId);
-  return { embed: { ...entry.createEmbed(embedId), x: 1340, y: 90 }, embedId };
+  return { embed: { ...entry.createEmbed(embedId), x: ARDUINO_POSTIT_X, y: COMPACT_POSTIT_Y }, embedId };
 }
 
 export function buildElabTutorLinkedInsert(
@@ -790,7 +798,7 @@ export function buildElabTutorLinkedInsert(
   if (!entry) return null;
   const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
   const embedId = nextSimulationEmbedId(ids, entry.embedId);
-  return { embed: { ...entry.createEmbed(embedId), x: 2560, y: 90 }, embedId };
+  return { embed: { ...entry.createEmbed(embedId), x: ELABTUTOR_POSTIT_X, y: COMPACT_POSTIT_Y }, embedId };
 }
 
 export function renderToolCanvasEmbeddable(
@@ -880,6 +888,65 @@ function compileToolchainState(state: ArduinoToolchainState): ArduinoToolchainSt
   };
 }
 
+function PluginRuntimeOverlay({
+  instanceId,
+  title,
+  onClose,
+  children,
+}: {
+  instanceId: string;
+  title: string;
+  onClose: () => void;
+  children: ReactNode;
+}) {
+  if (typeof document === "undefined") return null;
+  return createPortal(
+    <div className="st-plugin-runtime-backdrop" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}>
+      <section
+        className="st-plugin-runtime-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        data-plugin-runtime-instance-id={instanceId}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") onClose();
+        }}
+      >
+        <header className="st-plugin-runtime-bar">
+          <strong>{title}</strong>
+          <button
+            type="button"
+            className="st-plugin-runtime-close"
+            aria-label={`Riduci ${title}`}
+            onClick={onClose}
+          >
+            <span aria-hidden>×</span>
+          </button>
+        </header>
+        <div className="st-plugin-runtime-body">{children}</div>
+      </section>
+    </div>,
+    document.body,
+  );
+}
+
+function arduinoProjectTitle(state: ArduinoToolchainState, selectedBoard: ArduinoBoardCatalogEntry | undefined): string {
+  const lineCount = state.project.source.split(/\r?\n/).length;
+  return `${selectedBoard?.label ?? state.project.boardId} · ${lineCount} righe`;
+}
+
+function arduinoStatusLabel(state: ArduinoToolchainState): string {
+  if (state.diagnostics.status === "success") return "Codice compilato";
+  if (state.diagnostics.status === "error") return "Controlla il codice";
+  return state.project.source.trim() ? "Pronto per compilare" : "Aggiungi il codice";
+}
+
+function elabTutorTitle(state: ElabTutorLinkedState): string {
+  return state.lastCommand ? "Guida aggiornata" : "Guida collegata";
+}
+
 function ArduinoToolchainPostit({
   element,
   toolLink,
@@ -893,6 +960,8 @@ function ArduinoToolchainPostit({
   const [state, setState] = useState<ArduinoToolchainState>(
     isArduinoToolchainState(initial) ? initial : createArduinoToolchainState(),
   );
+  const [expanded, setExpanded] = useState(false);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
 
   function persist(next: ArduinoToolchainState) {
     setState(next);
@@ -951,103 +1020,120 @@ function ArduinoToolchainPostit({
   }
 
   const selectedBoard = getBoardById(state.project.boardId);
+  const projectTitle = arduinoProjectTitle(state, selectedBoard ?? undefined);
+  const statusLabel = arduinoStatusLabel(state);
+
+  function closeRuntime() {
+    setExpanded(false);
+    window.setTimeout(() => expandButtonRef.current?.focus(), 0);
+  }
 
   return (
-    <section
-      style={toolchainShellStyle}
-      data-plugin-postit-kind="arduino-toolchain"
-      data-plugin-instance-id={toolLink.embedId}
-      data-plugin-connector-anchor
-      data-motion-state="settled"
-      data-arduino-fqbn={state.project.fqbn}
-      data-arduino-compile-status={state.diagnostics.status}
-      aria-label="Sketch Arduino interattivo"
-    >
-      <header style={headerStyle} data-plugin-primary-copy>
-        <div>
-          <div style={eyebrowStyle}>Sketch: lampeggio</div>
-          <h2 style={titleStyle}>Compila il codice della scheda</h2>
-          <div style={flowRailStyle} aria-label="Percorso dello sketch Arduino">
-            <span style={flowStepOnStyle}>1. scheda</span>
-            <span style={flowStepStyle}>2. codice</span>
-            <span style={flowStepStyle}>3. verifica</span>
-            <span style={flowStepStyle}>4. collega</span>
+    <>
+      <section
+        style={compactPostitStyle}
+        data-plugin-postit-kind="arduino-toolchain"
+        data-plugin-instance-id={toolLink.embedId}
+        data-plugin-connector-anchor
+        data-motion-state="settled"
+        data-arduino-fqbn={state.project.fqbn}
+        data-arduino-compile-status={state.diagnostics.status}
+        aria-hidden={expanded || undefined}
+        aria-label="Sketch Arduino"
+      >
+        <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
+          <div style={compactPostitCopyStyle}>
+            <div style={compactEyebrowStyle}>Sketch Arduino</div>
+            <h2 style={compactTitleStyle}>{projectTitle}</h2>
+            <span style={compactStatusStyle}>{statusLabel}</span>
           </div>
-          <div style={nextActionStyle}>Scegli la scheda, poi compila il codice.</div>
-        </div>
-      </header>
-      <main style={toolchainMainStyle}>
-        <section style={toolchainEditorStyle} data-plugin-primary-copy>
-          <label style={toolchainLabelStyle}>
-            Scheda
-            <select
-              aria-label="Scegli scheda Arduino"
-              value={state.project.boardId}
-              onChange={(event) => updateBoard(event.currentTarget.value)}
-              style={toolchainSelectStyle}
-            >
-              {BOARDS.map((board: ArduinoBoardCatalogEntry) => (
-                <option key={board.id} value={board.id}>
-                  {board.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label style={toolchainLabelStyle}>
-            C++ Arduino
-            <textarea
-              aria-label="Sorgente C++ Arduino"
-              value={state.project.source}
-              onChange={(event) => updateSource(event.currentTarget.value)}
-              spellCheck={false}
-              style={toolchainTextareaStyle}
-            />
-          </label>
-        </section>
-        <aside style={toolchainAsideStyle}>
-          <div
-            style={state.diagnostics.status === "success" ? toolchainSuccessStyle : state.diagnostics.status === "error" ? toolchainErrorStyle : toolchainCardStyle}
-            data-plugin-primary-copy
+          <button
+            ref={expandButtonRef}
+            type="button"
+            style={compactExpandButtonStyle}
+            aria-label={`Espandi ${projectTitle}`}
+            onClick={() => setExpanded(true)}
           >
-            <strong>
-              {state.diagnostics.status === "success"
-                ? "Codice compilato"
-                : state.diagnostics.status === "error"
-                  ? "Controlla il codice"
-                  : "Pronto per compilare"}
-            </strong>
-            <span>{selectedBoard?.label ?? "Scheda Arduino"}</span>
-            <button type="button" onClick={compile} style={primaryToolchainButtonStyle}>
-              Compila
-            </button>
+            Apri
+          </button>
+        </div>
+        <div style={compactPostitActionsStyle} data-plugin-primary-copy>
+          <button type="button" onClick={compile} style={compactActionButtonStyle}>Compila</button>
+          <span>{state.artifact ? `${state.artifact.sizeBytes} byte` : selectedBoard?.label ?? "Scheda pronta"}</span>
+        </div>
+        <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
+          <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>
+          <div style={technicalDetailsBodyStyle}>
+            <span>Istanza: {toolLink.embedId}</span>
+            <strong>Capability pubbliche</strong>
+            <span>arduino.project</span>
+            <span>arduino.board.catalog</span>
+            <span>arduino.compile</span>
+            <span>arduino.upload RED: conferma hardware richiesta</span>
+            <span>arduino.serial RED: provider non connesso</span>
+            <strong>{selectedBoard?.label ?? state.project.boardId}</strong>
+            <span>FQBN: {state.project.fqbn}</span>
+            <span>Compile provider: browser-avr {selectedBoard && supportsInBrowserCompile(selectedBoard) ? "VERIFIED" : "RED"}</span>
+            <span>Upload: non avviato, nessun hardware scelto</span>
+            <strong>Diagnostics</strong>
+            <span>{state.diagnostics.message}</span>
+            {state.artifact && (
+              <>
+                <span>Artifact: {state.artifact.artifactFormat}, {state.artifact.sizeBytes} byte</span>
+                <code style={hexPreviewStyle}>{state.artifact.hexPreview}</code>
+              </>
+            )}
           </div>
-          <details style={legacyHarnessDetailsStyle} data-plugin-technical-details>
-            <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>
-            <div style={technicalDetailsBodyStyle}>
-              <span>Istanza: {toolLink.embedId}</span>
-              <strong>Capability pubbliche</strong>
-              <span>arduino.project</span>
-              <span>arduino.board.catalog</span>
-              <span>arduino.compile</span>
-              <span>arduino.upload RED: conferma hardware richiesta</span>
-              <span>arduino.serial RED: provider non connesso</span>
-              <strong>{selectedBoard?.label ?? state.project.boardId}</strong>
-              <span>FQBN: {state.project.fqbn}</span>
-              <span>Compile provider: browser-avr {selectedBoard && supportsInBrowserCompile(selectedBoard) ? "VERIFIED" : "RED"}</span>
-              <span>Upload: non avviato, nessun hardware scelto</span>
-              <strong>Diagnostics</strong>
-              <span>{state.diagnostics.message}</span>
-              {state.artifact && (
-                <>
-                  <span>Artifact: {state.artifact.artifactFormat}, {state.artifact.sizeBytes} byte</span>
-                  <code style={hexPreviewStyle}>{state.artifact.hexPreview}</code>
-                </>
-              )}
-            </div>
-          </details>
-        </aside>
-      </main>
-    </section>
+        </details>
+      </section>
+      {expanded && (
+        <PluginRuntimeOverlay instanceId={toolLink.embedId} title={projectTitle} onClose={closeRuntime}>
+          <section style={toolchainShellStyle} data-plugin-runtime-surface="arduino-toolchain" aria-label="Editor Arduino">
+            <header style={headerStyle} data-plugin-primary-copy>
+              <div>
+                <div style={eyebrowStyle}>Sketch Arduino</div>
+                <h2 style={titleStyle}>{projectTitle}</h2>
+                <div style={nextActionStyle}>{statusLabel}</div>
+              </div>
+            </header>
+            <main style={toolchainMainStyle}>
+              <section style={toolchainEditorStyle} data-plugin-primary-copy>
+                <label style={toolchainLabelStyle}>
+                  Scheda
+                  <select
+                    aria-label="Scegli scheda Arduino"
+                    value={state.project.boardId}
+                    onChange={(event) => updateBoard(event.currentTarget.value)}
+                    style={toolchainSelectStyle}
+                  >
+                    {BOARDS.map((board: ArduinoBoardCatalogEntry) => (
+                      <option key={board.id} value={board.id}>{board.label}</option>
+                    ))}
+                  </select>
+                </label>
+                <label style={toolchainLabelStyle}>
+                  C++ Arduino
+                  <textarea
+                    aria-label="Sorgente C++ Arduino"
+                    value={state.project.source}
+                    onChange={(event) => updateSource(event.currentTarget.value)}
+                    spellCheck={false}
+                    style={toolchainTextareaStyle}
+                  />
+                </label>
+              </section>
+              <aside style={toolchainAsideStyle}>
+                <div style={state.diagnostics.status === "success" ? toolchainSuccessStyle : state.diagnostics.status === "error" ? toolchainErrorStyle : toolchainCardStyle} data-plugin-primary-copy>
+                  <strong>{statusLabel}</strong>
+                  <span>{selectedBoard?.label ?? "Scheda Arduino"}</span>
+                  <button type="button" onClick={compile} style={primaryToolchainButtonStyle}>Compila</button>
+                </div>
+              </aside>
+            </main>
+          </section>
+        </PluginRuntimeOverlay>
+      )}
+    </>
   );
 }
 
@@ -1073,6 +1159,8 @@ function ElabTutorLinkedPostit({
   const [state, setState] = useState<ElabTutorLinkedState>(
     isElabTutorLinkedState(initial) ? initial : createElabTutorLinkedState(),
   );
+  const [expanded, setExpanded] = useState(false);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
 
   function persist(next: ElabTutorLinkedState) {
     setState(next);
@@ -1114,56 +1202,61 @@ function ElabTutorLinkedPostit({
         pluginId: toolLink.toolId,
         source: "ElabTutor public capability bridge",
       },
-      labels: { it: "Comando tutor verso Simulation" },
+      labels: { it: ELABTUTOR_COMMAND_LABEL },
     });
   }
 
+  const title = elabTutorTitle(state);
+  const hasSimulationLink = state.links.simulationInstanceId.trim().length > 0;
+  const hasToolchainLink = state.links.toolchainInstanceId.trim().length > 0;
+  const hasTutorNote = state.tutorNote.trim().length > 0;
+
+  function closeRuntime() {
+    setExpanded(false);
+    window.setTimeout(() => expandButtonRef.current?.focus(), 0);
+  }
+
   return (
-    <section
-      style={elabTutorShellStyle}
-      data-plugin-postit-kind="elabtutor"
-      data-plugin-instance-id={toolLink.embedId}
-      data-plugin-connector-anchor
-      data-motion-state="settled"
-      data-elabtutor-simulation-instance={state.links.simulationInstanceId}
-      data-elabtutor-toolchain-instance={state.links.toolchainInstanceId}
-      data-elabtutor-grounded={state.lastCommand ? "true" : "pending"}
-      aria-label="Guida della lezione"
-    >
-      <header style={headerStyle} data-plugin-primary-copy>
-        <div>
-          <div style={eyebrowStyle}>Guida: Corso base</div>
-          <h2 style={titleStyle}>Prepara la spiegazione della lezione</h2>
-          <div style={flowRailStyle} aria-label="Percorso della guida">
-            <span style={flowStepOnStyle}>1. circuito</span>
-            <span style={flowStepStyle}>2. codice</span>
-            <span style={flowStepStyle}>3. verifica</span>
-            <span style={flowStepStyle}>4. guida</span>
+    <>
+      <section
+        style={compactPostitStyle}
+        data-plugin-postit-kind="elabtutor"
+        data-plugin-instance-id={toolLink.embedId}
+        data-plugin-connector-anchor
+        data-motion-state="settled"
+        data-elabtutor-simulation-instance={state.links.simulationInstanceId}
+        data-elabtutor-toolchain-instance={state.links.toolchainInstanceId}
+        data-elabtutor-grounded={state.lastCommand ? "true" : "pending"}
+        aria-hidden={expanded || undefined}
+        aria-label="Guida della lezione"
+      >
+        <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
+          <div style={compactPostitCopyStyle}>
+            <div style={compactEyebrowStyle}>Guida della lezione</div>
+            <h2 style={compactTitleStyle}>{title}</h2>
+            <span style={compactStatusStyle}>{state.lastCommand ? "Comando inviato" : "Pronta per il prossimo passaggio"}</span>
           </div>
-          <div style={nextActionStyle}>Leggi i risultati e prepara il prossimo passaggio.</div>
-        </div>
-      </header>
-      <main style={elabTutorMainStyle}>
-        <section style={elabTutorPanelStyle} data-plugin-primary-copy>
-          <strong>{state.lastCommand ? "Guida aggiornata" : "Guida pronta"}</strong>
-          <p style={tutorNoteStyle}>
-            {state.lastCommand
-              ? "Il circuito e lo sketch sono stati riletti. La guida è pronta per il passaggio successivo."
-              : "Collega il circuito e lo sketch per preparare una spiegazione coerente."}
-          </p>
-          {state.lastCommand && (
-            <p style={tutorNoteStyle}>Passaggio completato.</p>
-          )}
           <button
+            ref={expandButtonRef}
             type="button"
-            aria-label="Invia fix a Simulation"
-            onClick={issueSimulationCommand}
-            style={primaryToolchainButtonStyle}
+            style={compactExpandButtonStyle}
+            aria-label={`Espandi ${title}`}
+            onClick={() => setExpanded(true)}
           >
-            Aggiorna la guida
+            Apri
           </button>
-        </section>
-        <details style={legacyHarnessDetailsStyle} data-plugin-technical-details>
+        </div>
+        <div style={compactStatusGridStyle} data-plugin-primary-copy>
+          <span>{hasSimulationLink ? "Circuito collegato" : "Circuito da collegare"}</span>
+          <span>{hasToolchainLink ? "Sketch collegato" : "Sketch da collegare"}</span>
+          <span>{hasTutorNote ? "Nota pronta" : "Nota da preparare"}</span>
+        </div>
+        <div style={compactPostitActionsStyle} data-plugin-primary-copy>
+          <button type="button" aria-label={ELABTUTOR_COMMAND_LABEL} onClick={issueSimulationCommand} style={compactActionButtonStyle}>
+            {ELABTUTOR_COMMAND_LABEL}
+          </button>
+        </div>
+        <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
           <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>
           <div style={technicalDetailsBodyStyle}>
             <span>Istanza: {toolLink.embedId}</span>
@@ -1182,8 +1275,31 @@ function ElabTutorLinkedPostit({
             {state.lastCommand && <p style={tutorNoteStyle}>Ultimo comando: {state.lastCommand.summary}</p>}
           </div>
         </details>
-      </main>
-    </section>
+      </section>
+      {expanded && (
+        <PluginRuntimeOverlay instanceId={toolLink.embedId} title={title} onClose={closeRuntime}>
+          <section style={elabTutorShellStyle} data-plugin-runtime-surface="elabtutor" aria-label="Guida collegata live">
+            <header style={headerStyle} data-plugin-primary-copy>
+              <div>
+                <div style={eyebrowStyle}>Guida della lezione</div>
+                <h2 style={titleStyle}>{title}</h2>
+                <div style={nextActionStyle}>{state.lastCommand ? "Comando inviato" : "Leggi i collegamenti e prepara il passaggio."}</div>
+              </div>
+            </header>
+            <main style={elabTutorMainStyle}>
+              <section style={elabTutorPanelStyle} data-plugin-primary-copy>
+                <strong>{hasSimulationLink ? "Circuito collegato" : "Circuito da collegare"}</strong>
+                <span>{hasToolchainLink ? "Sketch collegato" : "Sketch da collegare"}</span>
+                <p style={tutorNoteStyle}>{hasTutorNote ? "Nota del tutor disponibile." : "Prepara la nota del tutor."}</p>
+                <button type="button" aria-label={ELABTUTOR_COMMAND_LABEL} onClick={issueSimulationCommand} style={primaryToolchainButtonStyle}>
+                  {ELABTUTOR_COMMAND_LABEL}
+                </button>
+              </section>
+            </main>
+          </section>
+        </PluginRuntimeOverlay>
+      )}
+    </>
   );
 }
 
@@ -1367,6 +1483,8 @@ function ReferenceSimulationCanvasTool({
   host?: SimulationToolHost;
 }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
+  const [expanded, setExpanded] = useState(false);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
   const [machine, setMachine] = useState(createBlinkMachine);
   const [snapshot, setSnapshot] = useState({
     millis: readStateMillis(marker?.state) ?? machine.runtime.millis(),
@@ -1637,21 +1755,77 @@ function ReferenceSimulationCanvasTool({
     setSnapshot({ millis: nextMachine.runtime.millis(), ledOn: nextMachine.runtime.isLit(LED_BUILTIN) });
   }
 
+  function closeRuntime() {
+    setExpanded(false);
+    window.setTimeout(() => expandButtonRef.current?.focus(), 0);
+  }
+
+  const compactSolveLabel = solveOutcome.kind === "solved"
+    ? `Corrente ${solveOutcome.currentMa.toFixed(1)} mA`
+    : solveOutcome.kind === "error"
+      ? "Corrente 0.0 mA · circuito da controllare"
+      : "Circuito pronto";
+
   return (
-    <section
-      style={shellStyle}
-      data-simulation-surface="elab-core-canvas"
-      data-elab-core-canvas-mounted="true"
-      data-plugin-instance-id={toolLink.embedId}
-      data-plugin-postit-kind="simulation"
-      data-plugin-connector-anchor
-      data-motion-state="settled"
-      aria-label="Circuito LED interattivo"
-    >
-      <header style={headerStyle} data-plugin-primary-copy>
-        <div>
-          <div style={eyebrowStyle}>LED: accendi il tuo LED</div>
-          <h2 style={titleStyle}>Accendi il LED sulla breadboard</h2>
+    <>
+      <section
+        style={compactPostitStyle}
+        data-plugin-instance-id={toolLink.embedId}
+        data-plugin-postit-kind="simulation"
+        data-plugin-connector-anchor
+        data-motion-state="settled"
+        data-elab-canvas-build-mode={coreCanvasProjectionMode === "monta-tu" ? "sandbox" : "complete"}
+        data-elab-canvas-projection-mode={coreCanvasProjectionMode}
+        data-elab-canvas-components={String(boardScene.components.length)}
+        aria-hidden={expanded || undefined}
+        aria-label={scene.title}
+      >
+        <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
+          <div style={compactPostitCopyStyle}>
+            <div style={compactEyebrowStyle}>Circuito LED</div>
+            <h2 style={compactTitleStyle}>{scene.title}</h2>
+            <span style={compactStatusStyle}>{compactSolveLabel}</span>
+          </div>
+          <button
+            ref={expandButtonRef}
+            type="button"
+            style={compactExpandButtonStyle}
+            aria-label={`Espandi ${scene.title}`}
+            onClick={() => setExpanded(true)}
+          >
+            Apri
+          </button>
+        </div>
+        <div style={compactPostitActionsStyle} data-plugin-primary-copy>
+          <span>{snapshot.ledOn ? "LED acceso" : "LED spento"}</span>
+          <span>{validation.ok ? "Montaggio verificato" : "Montaggio da controllare"}</span>
+        </div>
+        <details style={compactTechnicalDetailsStyle} data-plugin-technical-details>
+          <summary style={legacyHarnessSummaryStyle}>Dettagli tecnici</summary>
+          <div style={technicalDetailsBodyStyle}>
+            <span>Post-it interattivo</span>
+            <span>{SIMULATION_CORE_CANVAS_STATUS}</span>
+            <span>Istanza: {toolLink.embedId}</span>
+            <strong>{scene.bookLayout.status}</strong>
+            <span>{validation.ok ? `${scene.bookLayout.wires.length} wire guard, ${scene.bookLayout.spatialRules.length} layout guard` : validation.errors.join(", ")}</span>
+            <span>PDF p.{scene.bookLayout.manualSource.pdfPage} - {scene.bookLayout.manualSource.crop ? "crop presente" : "crop assente"}</span>
+            <p style={noteStyle}>{scene.provenance.blocker}</p>
+          </div>
+        </details>
+      </section>
+      {expanded && (
+        <PluginRuntimeOverlay instanceId={toolLink.embedId} title={scene.title} onClose={closeRuntime}>
+          <section
+            style={shellStyle}
+            data-simulation-surface="elab-core-canvas"
+            data-elab-core-canvas-mounted="true"
+            data-plugin-runtime-surface="simulation"
+            aria-label="Circuito LED interattivo"
+          >
+            <header style={headerStyle} data-plugin-primary-copy>
+              <div>
+                <div style={eyebrowStyle}>Circuito LED</div>
+                <h2 style={titleStyle}>{scene.title}</h2>
           <div style={flowRailStyle} aria-label="Percorso del circuito LED">
             <span style={flowStepOnStyle}>1. costruisci</span>
             <span style={flowStepStyle}>2. collega</span>
@@ -1668,8 +1842,8 @@ function ReferenceSimulationCanvasTool({
           >
             {catalog.label}
           </div>
-        </div>
-      </header>
+              </div>
+            </header>
 
       <main style={mainStyle}>
         <div style={boardStackStyle}>
@@ -1796,8 +1970,11 @@ function ReferenceSimulationCanvasTool({
             </div>
           </details>
         </aside>
-      </main>
-    </section>
+            </main>
+          </section>
+        </PluginRuntimeOverlay>
+      )}
+    </>
   );
 }
 
@@ -3035,6 +3212,87 @@ function Metric({ label, value }: { label: string; value: string }) {
   );
 }
 
+const compactPostitStyle = {
+  width: "100%",
+  height: "100%",
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  overflow: "auto",
+  background: "#fffef9",
+  color: "#102034",
+  border: "1px solid #d8e1eb",
+  borderRadius: 8,
+  fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+} as const;
+
+const compactPostitHeaderStyle = {
+  minHeight: 68,
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  gap: 8,
+  boxSizing: "border-box",
+  padding: "9px 10px 6px",
+  borderBottom: "1px solid #e1e6ec",
+} as const;
+
+const compactPostitCopyStyle = { minWidth: 0, display: "grid", gap: 2 } as const;
+const compactEyebrowStyle = { fontSize: 11, color: "#52677f", fontWeight: 800 } as const;
+const compactTitleStyle = {
+  margin: 0,
+  fontSize: 16,
+  lineHeight: 1.18,
+  fontWeight: 800,
+  overflowWrap: "anywhere",
+} as const;
+const compactStatusStyle = { fontSize: 12, color: "#40556b", fontWeight: 700 } as const;
+const compactExpandButtonStyle = {
+  minWidth: 44,
+  minHeight: 44,
+  padding: "0 10px",
+  border: "1px solid #b9c8d8",
+  borderRadius: 7,
+  background: "#ffffff",
+  color: "#1f4f80",
+  fontWeight: 800,
+  cursor: "pointer",
+} as const;
+const compactPostitActionsStyle = {
+  minHeight: 44,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 8,
+  boxSizing: "border-box",
+  padding: "0 10px",
+  fontSize: 11,
+  color: "#40556b",
+} as const;
+const compactStatusGridStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 4,
+  padding: "4px 10px 0",
+  fontSize: 10,
+  color: "#40556b",
+} as const;
+const compactActionButtonStyle = {
+  minWidth: 44,
+  minHeight: 44,
+  border: 0,
+  background: "transparent",
+  color: "#1f4f80",
+  fontWeight: 850,
+  textAlign: "left",
+  cursor: "pointer",
+} as const;
+const compactTechnicalDetailsStyle = {
+  marginTop: "auto",
+  borderTop: "1px solid #e1e6ec",
+  background: "#ffffff",
+} as const;
+
 const shellStyle = {
   width: "100%",
   height: "100%",
@@ -3163,7 +3421,7 @@ const freeModeDiagnosticStyle = {
 } as const;
 
 const freeModeButtonStyle = {
-  minHeight: 34,
+  minHeight: 44,
   minWidth: 44,
   padding: "0 12px",
   border: "1px solid #9f7a2f",
@@ -3209,6 +3467,10 @@ const legacyHarnessDetailsStyle = {
 
 const legacyHarnessSummaryStyle = {
   cursor: "pointer",
+  minHeight: 44,
+  boxSizing: "border-box",
+  display: "flex",
+  alignItems: "center",
   padding: "8px 10px",
   color: "#52677f",
   fontSize: 12,

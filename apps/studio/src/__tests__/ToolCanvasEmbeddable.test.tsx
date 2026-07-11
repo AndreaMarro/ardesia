@@ -166,7 +166,7 @@ describe("ToolCanvasEmbeddable", () => {
     expect(container.textContent).toContain("simulation.scene.read");
     expect(container.textContent).toContain("arduino.compile");
 
-    fireEvent.click(getByRole("button", { name: "Invia fix a Simulation" }));
+    fireEvent.click(getByRole("button", { name: "Invia comando alla simulazione" }));
 
     expect(persisted.at(-1)).toMatchObject({
       kind: "elabtutor-linked-v1",
@@ -292,9 +292,11 @@ describe("ToolCanvasEmbeddable", () => {
     const element = createToolEmbedElement();
     const view = renderToolCanvasEmbeddable(element);
     expect(view).not.toBeNull();
-    const html = renderToStaticMarkup(view);
+    const rendered = render(view!);
+    fireEvent.click(rendered.getByRole("button", { name: /^Espandi / }));
+    const html = document.body.innerHTML;
 
-    expect(html).toContain("Accendi il LED sulla breadboard");
+    expect(html).toContain("Accendi il tuo primo LED");
     expect(html).toContain("Post-it interattivo");
     expect(html).not.toContain("Simulation Plugin Canvas");
     expect(html).toContain("simulation plugin: canvas ELABTutor core montato su SimulationScene canonica");
@@ -319,6 +321,7 @@ describe("ToolCanvasEmbeddable", () => {
     expect(html).toContain('alt="Zoom reale sulla pagina passo passo del manuale ELAB Volume 1"');
     expect(html).toContain(">Mostra montato</button>");
     expect(html).toContain(">Reset</button>");
+    rendered.unmount();
   });
 
   it("adatta SimulationScene canonica al canvas ELABTutor senza usare lo SVG come fonte dati", () => {
@@ -600,10 +603,11 @@ describe("ToolCanvasEmbeddable", () => {
     const view = renderToolCanvasEmbeddable(element);
     expect(view).not.toBeNull();
 
-    const { container } = render(view!);
+    const rendered = render(view!);
+    fireEvent.click(rendered.getByRole("button", { name: /^Espandi / }));
     const mount = await waitFor(
       () => {
-        const node = container.querySelector<HTMLElement>(
+        const node = document.querySelector<HTMLElement>(
           '[data-elab-canvas-source-of-truth="simulation-scene"]',
         );
         expect(node).not.toBeNull();
@@ -614,6 +618,7 @@ describe("ToolCanvasEmbeddable", () => {
     );
     expect(mount.getAttribute("data-elab-canvas-experiment-id")).toBe(ELAB_V1_FIRST_LED_EXPERIMENT_ID);
     expect(["pending", "true"]).toContain(mount.getAttribute("data-elab-core-canvas-mounted"));
+    rendered.unmount();
   });
 
   it("host-observes-solve (G7): emette simulation.circuit.solved al solve del circuito reference", async () => {

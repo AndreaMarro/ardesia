@@ -27,7 +27,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildArduinoToolchainInsert, buildElabTutorLinkedInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildArduinoToolchainInsert, buildElabTutorLinkedInsert, buildSimulationInsert, isToolCanvasEmbed, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -632,6 +632,21 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
+  function framePluginRow(elements: any[]): void {
+    const api = apiRef.current
+    if (!api) return
+    const pluginElements = elements.filter(isToolCanvasEmbed)
+    if (pluginElements.length === 0) return
+    api.scrollToContent?.(pluginElements, { fitToContent: true, animate: false })
+    window.setTimeout(() => {
+      if (apiRef.current !== api || typeof api.getAppState !== "function") return
+      const appState = api.getAppState()
+      const zoom = typeof appState.zoom?.value === "number" ? appState.zoom.value : 1
+      const minY = Math.min(...pluginElements.map((element) => Number(element.y) || 0))
+      api.updateScene({ appState: { scrollY: 58 / zoom - minY } })
+    }, 0)
+  }
+
   function insertSimulationPlugin(experimentId?: string) {
     if (!apiRef.current) {
       setStorageError("Lavagna non pronta: riprova tra un istante.")
@@ -652,7 +667,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
-    setBoardState("populated")
+    setBoardState(boardStateFromElements(nextElements))
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -663,7 +678,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       latestAppStateRef.current = apiRef.current.getAppState()
       void flushPersist()
     }, 0)
-    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+    framePluginRow(nextElements)
   }
 
   function insertArduinoToolchainPlugin() {
@@ -680,7 +695,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
-    setBoardState("populated")
+    setBoardState(boardStateFromElements(nextElements))
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -691,7 +706,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       latestAppStateRef.current = apiRef.current.getAppState()
       void flushPersist()
     }, 0)
-    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+    framePluginRow(nextElements)
   }
 
   function insertElabTutorPlugin() {
@@ -708,7 +723,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
-    setBoardState("populated")
+    setBoardState(boardStateFromElements(nextElements))
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -719,7 +734,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       latestAppStateRef.current = apiRef.current.getAppState()
       void flushPersist()
     }, 0)
-    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+    framePluginRow(nextElements)
   }
   const shareUrl = studentView
     ? `${location.origin}${location.pathname}#${room}`
@@ -1109,6 +1124,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           data-radial-tools
           data-motion-state={radialOpen ? "open" : "settled"}
         >
+          <button
+            type="button"
+            className="st-radial-trigger"
+            aria-label={radialOpen ? "Chiudi strumenti" : "Apri strumenti"}
+            aria-expanded={radialOpen}
+            onClick={() => setRadialOpen((open) => !open)}
+          >
+            <span aria-hidden>{radialOpen ? "×" : "+"}</span>
+          </button>
           {radialOpen && (
             <div className="st-radial-tool-items">
               <button
@@ -1167,22 +1191,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 onClick={() => {
                   setLauncherOpen(true)
                   setRadialOpen(false)
-                  window.setTimeout(() => launcherButtonRef.current?.focus(), 0)
                 }}
               >
                 <span aria-hidden>+</span>
               </button>
             </div>
           )}
-          <button
-            type="button"
-            className="st-radial-trigger"
-            aria-label={radialOpen ? "Chiudi strumenti" : "Apri strumenti"}
-            aria-expanded={radialOpen}
-            onClick={() => setRadialOpen((open) => !open)}
-          >
-            <span aria-hidden>{radialOpen ? "×" : "+"}</span>
-          </button>
         </div>
       )}
       <div className="st-board-annotation-anchor" data-annotation-layer-anchor aria-hidden />

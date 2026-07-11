@@ -6,6 +6,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { fireEvent, render, screen } from "@testing-library/react"
+import { readFileSync } from "node:fs"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
 import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
@@ -265,17 +266,149 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(view).not.toBeNull()
       const rendered = render(view!)
       const postit = rendered.container.querySelector("[data-plugin-instance-id]")
-      const primaryCopy = Array.from(postit?.querySelectorAll("[data-plugin-primary-copy]") ?? [])
-        .map((node) => node.textContent)
-        .join(" ")
       const technicalDetails = postit?.querySelector("details[data-plugin-technical-details]")
+      const visibleClone = postit?.cloneNode(true) as HTMLElement | undefined
+      visibleClone?.querySelectorAll("details").forEach((details) => details.remove())
+      const primaryCopy = visibleClone?.textContent ?? ""
       expect(postit?.getAttribute("data-motion-state")).toBe("settled")
       expect(primaryCopy).toBeTruthy()
-      expect(primaryCopy).not.toMatch(/FQBN|capabilit|provider|diagnostics|instance-id/i)
+      expect(primaryCopy).not.toMatch(/FQBN|capabilit|provider|diagnostics?|instance(?:-id)?|sha(?:256)?|image\/[a-z]+|application\/[a-z]+|scope|provenance|maestro-tool|io\.[a-z]/i)
       expect(technicalDetails).toBeTruthy()
       expect(technicalDetails?.hasAttribute("open")).toBe(false)
       rendered.unmount()
     }
+  })
+
+  it("inserisce i tre PluginInstance come post-it compatti sulla stessa riga", async () => {
+    const {
+      buildArduinoToolchainInsert,
+      buildElabTutorLinkedInsert,
+      buildSimulationInsert,
+    } = await import("../toolhost/ToolCanvasEmbeddable")
+    const simulation = buildSimulationInsert([])!
+    const arduino = buildArduinoToolchainInsert([simulation.embed])!
+    const tutor = buildElabTutorLinkedInsert([simulation.embed, arduino.embed])!
+    const geometry = [simulation.embed, arduino.embed, tutor.embed].map((embed) => ({
+      x: embed.x,
+      y: embed.y,
+      width: embed.width,
+      height: embed.height,
+    }))
+
+    expect(geometry).toEqual([
+      { x: 220, y: 56, width: 300, height: 180 },
+      { x: 544, y: 56, width: 300, height: 180 },
+      { x: 868, y: 56, width: 300, height: 180 },
+    ])
+  })
+
+  it("espande e riduce il runtime Simulation della stessa istanza senza duplicarlo", async () => {
+    const {
+      createReferenceSimulationScene,
+      createToolEmbedElement,
+      renderToolCanvasEmbeddable,
+    } = await import("../toolhost/ToolCanvasEmbeddable")
+    const scene = { ...createReferenceSimulationScene(), title: "LED reale della scena" }
+    const element = createToolEmbedElement({
+      embedId: "simulation-same-instance",
+      state: { kind: "simulation-scene-v1", scene },
+    })
+    const rendered = render(renderToolCanvasEmbeddable(element)!)
+
+    const anchor = rendered.container.querySelector('[data-plugin-instance-id="simulation-same-instance"]')
+    expect(anchor?.textContent).toContain("LED reale della scena")
+    expect(document.querySelectorAll('[data-plugin-instance-id="simulation-same-instance"]')).toHaveLength(1)
+
+    fireEvent.click(rendered.getByRole("button", { name: "Espandi LED reale della scena" }))
+    const overlay = await screen.findByRole("dialog", { name: "LED reale della scena" })
+    expect(overlay.getAttribute("data-plugin-runtime-instance-id")).toBe("simulation-same-instance")
+    expect(document.querySelectorAll('[data-plugin-instance-id="simulation-same-instance"]')).toHaveLength(1)
+    expect(document.querySelectorAll('[data-simulation-surface="elab-core-canvas"]')).toHaveLength(1)
+
+    fireEvent.click(screen.getByRole("button", { name: "Riduci LED reale della scena" }))
+    expect(screen.queryByRole("dialog", { name: "LED reale della scena" })).toBeNull()
+    expect(rendered.container.querySelector('[data-plugin-instance-id="simulation-same-instance"]')?.textContent).toContain("LED reale della scena")
+    rendered.unmount()
+  })
+
+  it("deriva le etichette compatte dallo stato reale di Simulation, Arduino ed ElabTutor", async () => {
+    const {
+      createArduinoToolchainEmbedElement,
+      createElabTutorLinkedEmbedElement,
+      createReferenceSimulationScene,
+      createToolEmbedElement,
+      renderToolCanvasEmbeddable,
+    } = await import("../toolhost/ToolCanvasEmbeddable")
+    const simulation = createToolEmbedElement({
+      state: { kind: "simulation-scene-v1", scene: { ...createReferenceSimulationScene(), title: "Titolo dalla scena" } },
+    })
+    const arduino = createArduinoToolchainEmbedElement()
+    const tutor = createElabTutorLinkedEmbedElement()
+
+    const simulationView = render(renderToolCanvasEmbeddable(simulation)!)
+    expect(simulationView.container.textContent).toContain("Titolo dalla scena")
+    simulationView.unmount()
+
+    const arduinoView = render(renderToolCanvasEmbeddable(arduino)!)
+    expect(arduinoView.container.textContent).toMatch(/Arduino Nano.*\d+ righe/i)
+    expect(arduinoView.container.textContent).not.toContain("lampeggio")
+    arduinoView.unmount()
+
+    const tutorView = render(renderToolCanvasEmbeddable(tutor)!)
+    expect(tutorView.container.textContent).toContain("Circuito collegato")
+    expect(tutorView.container.textContent).toContain("Sketch collegato")
+    expect(tutorView.container.textContent).toContain("Nota pronta")
+    expect(tutorView.container.textContent).not.toContain("Corso base")
+    tutorView.unmount()
+  })
+
+  it("allinea azione visibile, nome accessibile ed evento ElabTutor", async () => {
+    const { createElabTutorLinkedEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
+    const emitted: Array<{ labels?: { it?: string }; command?: string }> = []
+    const rendered = render(renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement(), {
+      emitLessonEvent: (event) => emitted.push(event as { labels?: { it?: string }; command?: string }),
+    })!)
+
+    fireEvent.click(rendered.getByRole("button", { name: "Espandi Guida collegata" }))
+    const action = await screen.findByRole("button", { name: "Invia comando alla simulazione" })
+    expect(action.textContent).toBe("Invia comando alla simulazione")
+    fireEvent.click(action)
+    expect(emitted.at(-1)).toMatchObject({
+      command: "simulation.command",
+      labels: { it: "Invia comando alla simulazione" },
+    })
+    rendered.unmount()
+  })
+
+  it("ordina il trigger radiale prima degli strumenti e lascia il focus alla ricerca plugin", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const trigger = await screen.findByRole("button", { name: "Apri strumenti" })
+    fireEvent.click(trigger)
+    const select = screen.getByRole("button", { name: "Seleziona" })
+    expect(trigger.compareDocumentPosition(select) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    fireEvent.click(screen.getByRole("button", { name: "Aggiungi plugin" }))
+    await vi.waitFor(() => {
+      expect(document.activeElement).toBe(screen.getByRole("searchbox"))
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("mantiene i target della shell, dell'orbita e dei dettagli ad almeno 44px", async () => {
+    const css = readFileSync("src/index.css", "utf8")
+    expect(css).toMatch(/\.st-shell-launcher\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;/s)
+    expect(css).not.toMatch(/\.st-radial-tools\s*\{[^}]*transform:\s*scale\(/s)
+
+    const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
+    const rendered = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!)
+    expect(rendered.getByRole("button", { name: /Espandi/ }).style.minHeight).toBe("44px")
+    expect(rendered.container.querySelector("summary")?.style.minHeight).toBe("44px")
+    rendered.unmount()
   })
 
   it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {

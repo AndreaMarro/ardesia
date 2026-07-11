@@ -52,7 +52,7 @@ body,
   font-size: var(--m-fs-sm);
 }
 .st-shell-launcher {
-  width: 36px; height: 36px; min-width: 36px;
+  width: 44px; height: 44px; min-width: 44px;
   display: inline-flex; align-items: center; justify-content: center;
   border: 0; border-radius: 50%;
   background: var(--m-accent); color: var(--m-canvas);
@@ -144,6 +144,48 @@ body,
 }
 .st-studio-shell [data-plugin-technical-details] { margin: 0; }
 @keyframes st-postit-settle { from { opacity: .01; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
+
+.st-plugin-runtime-backdrop {
+  position: fixed; inset: 0; z-index: 999998;
+  display: flex; align-items: flex-start; justify-content: center;
+  box-sizing: border-box; padding: 320px 28px 28px;
+  background: rgba(245, 246, 248, .16);
+}
+.st-plugin-runtime-overlay {
+  width: min(1180px, calc(100vw - 56px));
+  height: calc(100vh - 348px);
+  min-width: 0; min-height: 0;
+  display: grid; grid-template-rows: 52px minmax(0, 1fr);
+  overflow: hidden; border: 1px solid var(--m-line-2); border-radius: var(--m-r-field);
+  background: var(--m-canvas); box-shadow: var(--m-shadow-card);
+}
+.st-plugin-runtime-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-sp-3);
+  box-sizing: border-box; padding: 4px 6px 4px var(--m-sp-4);
+  border-bottom: 1px solid var(--m-line); background: var(--m-paper);
+}
+.st-plugin-runtime-bar strong {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: var(--m-fs-md);
+}
+.st-plugin-runtime-close {
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+  border: 0; border-radius: 50%; background: transparent; color: var(--m-ink-2);
+  font-size: 24px; cursor: pointer;
+}
+.st-plugin-runtime-close:hover { background: var(--m-fill); }
+.st-plugin-runtime-body { min-width: 0; min-height: 0; overflow: auto; }
+.st-plugin-runtime-body > [data-plugin-runtime-surface] { min-height: 100%; }
+.st-plugin-runtime-overlay button,
+.st-plugin-runtime-overlay select,
+.st-plugin-runtime-overlay summary,
+.st-plugin-runtime-overlay [role="button"],
+.st-studio-shell [data-plugin-instance-id] button,
+.st-studio-shell [data-plugin-instance-id] summary {
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+}
 
 /* ── shell header ─────────────────────────────────────────────────────── */
 .st-bar {
@@ -871,7 +913,12 @@ body,
   }
   .st-shell-search { min-height: 44px; padding-left: var(--m-sp-3); }
   .st-shell-actions .st-orbit-save { display: none; }
-  .st-radial-tools { right: 10px; bottom: 12px; transform: scale(.88); transform-origin: right bottom; }
+  .st-radial-tools { right: 10px; bottom: 12px; }
+  .st-plugin-runtime-backdrop { padding: 300px 12px 12px; }
+  .st-plugin-runtime-overlay {
+    width: calc(100vw - 24px); height: calc(100vh - 312px);
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -884,7 +931,7 @@ body,
 
 /* La shell approvata affida la creazione all'orbita; Excalidraw resta il
    motore della tela e mantiene zoom/pan, menu e runtime embed. */
-.st-room-board .excalidraw .App-top-bar,
+.st-room-board .excalidraw .App-toolbar-container,
 .st-room-board .excalidraw .welcome-screen-center,
 .st-room-board .excalidraw .welcome-screen-decor-hint--toolbar,
 .st-room-board .excalidraw .undo-redo-buttons,
@@ -896,8 +943,30 @@ body,
 
 @media (max-width: 1024px) {
   .st-room-board .st-radial-tools { right: 34px; bottom: 34px; }
+  /* Excalidraw riduce gli embed quando i tre post-it entrano su una LIM/iPad.
+     Il fattore non deve alterare il flusso del post-it compatto. */
+  .st-room-board [data-plugin-instance-id] button,
+  .st-room-board [data-plugin-instance-id] summary {
+    position: relative;
+    z-index: 1;
+    transform: scaleY(1.28);
+    transform-origin: center;
+  }
+  .st-room-board [data-plugin-instance-id] button[aria-label^="Espandi"] {
+    transform: scale(1.28);
+  }
+  .st-plugin-runtime-overlay button,
+  .st-plugin-runtime-overlay select,
+  .st-plugin-runtime-overlay summary {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
 }
 
 @media (max-width: 768px) {
   .st-room-board .st-radial-tools { right: 16px; bottom: 20px; }
+}
+
+@media (max-width: 768px) and (min-height: 800px) {
+  .st-view-nav { top: auto; bottom: 84px; }
 }
