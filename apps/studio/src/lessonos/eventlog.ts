@@ -114,6 +114,15 @@ export type LessonOsEvent =
       labels: Labels
     })
   | (BaseEvent & {
+      kind: "plugin.annotation.changed"
+      pluginId: string
+      instanceId: string
+      operation: "add" | "update" | "remove" | "clear" | "undo" | "redo" | "visibility" | "lock"
+      annotationId?: string
+      authorRole: "teacher" | "student"
+      labels: Labels
+    })
+  | (BaseEvent & {
       kind: "arduino.compile.completed"
       pluginId: string
       boardId: string

@@ -27,6 +27,11 @@ import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveR
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import { renderPluginPostitBoardEmbeddable } from "./pluginPostitBoardRender";
 import {
+  PluginInkOverlay,
+  emptyPluginAnnotations,
+  type PluginAnnotationDocument,
+} from "./PluginInkOverlay";
+import {
   applyElabCanvasComponentAdd,
   applyElabCanvasConnectionAdd,
   applyElabCanvasLayoutChange,
@@ -156,6 +161,7 @@ type ArduinoCompileDiagnostics =
 
 type ArduinoToolchainState = {
   kind: "arduino-toolchain-v1";
+  annotations?: PluginAnnotationDocument;
   project: {
     sourceKind: "cpp";
     source: string;
@@ -173,6 +179,7 @@ type ArduinoToolchainState = {
 
 type ElabTutorLinkedState = {
   kind: "elabtutor-linked-v1";
+  annotations?: PluginAnnotationDocument;
   links: {
     simulationInstanceId: string;
     toolchainInstanceId: string;
@@ -269,8 +276,8 @@ export type SimulationSceneV1 = {
 // I piazzamenti del montaggio libero viaggiano NELLO state dell'embed
 // (slice 4, persistenza): sopravvivono a re-mount e save/load con la scena.
 type SimulationToolState =
-  | { kind: "simulation-scene-v1"; scene: SimulationSceneV1; montaggio?: MontaggioState }
-  | { kind: "reference-blink"; ledOn?: boolean; millis?: number; montaggio?: MontaggioState };
+  | { kind: "simulation-scene-v1"; scene: SimulationSceneV1; montaggio?: MontaggioState; annotations?: PluginAnnotationDocument }
+  | { kind: "reference-blink"; ledOn?: boolean; millis?: number; montaggio?: MontaggioState; annotations?: PluginAnnotationDocument };
 
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
 export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
@@ -1017,6 +1024,10 @@ function ArduinoToolchainPostit({
     host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
   }
 
+  function persistAnnotations(annotations: PluginAnnotationDocument) {
+    persist({ ...state, annotations });
+  }
+
   function updateBoard(boardId: string) {
     const board = getBoardById(boardId);
     if (!board) return;
@@ -1079,7 +1090,14 @@ function ArduinoToolchainPostit({
 
   return (
     <>
-      <section
+      <PluginInkOverlay
+        instanceId={toolLink.embedId}
+        pluginId={toolLink.toolId}
+        value={state.annotations ?? emptyPluginAnnotations()}
+        onChange={persistAnnotations}
+        emitLessonEvent={host?.emitLessonEvent}
+      >
+        <section
         style={compactPostitStyle}
         data-plugin-postit-kind="arduino-toolchain"
         data-plugin-instance-id={toolLink.embedId}
@@ -1133,10 +1151,18 @@ function ArduinoToolchainPostit({
             )}
           </div>
         </details>
-      </section>
+        </section>
+      </PluginInkOverlay>
       {expanded && (
         <PluginRuntimeOverlay instanceId={toolLink.embedId} title={projectTitle} onClose={closeRuntime}>
-          <section style={toolchainShellStyle} data-plugin-runtime-surface="arduino-toolchain" aria-label="Editor Arduino">
+          <PluginInkOverlay
+            instanceId={toolLink.embedId}
+            pluginId={toolLink.toolId}
+            value={state.annotations ?? emptyPluginAnnotations()}
+            onChange={persistAnnotations}
+            emitLessonEvent={host?.emitLessonEvent}
+          >
+            <section style={toolchainShellStyle} data-plugin-runtime-surface="arduino-toolchain" aria-label="Editor Arduino">
             <header style={headerStyle} data-plugin-primary-copy>
               <div>
                 <div style={eyebrowStyle}>Sketch Arduino</div>
@@ -1178,7 +1204,8 @@ function ArduinoToolchainPostit({
                 </div>
               </aside>
             </main>
-          </section>
+            </section>
+          </PluginInkOverlay>
         </PluginRuntimeOverlay>
       )}
     </>
@@ -1213,6 +1240,10 @@ function ElabTutorLinkedPostit({
   function persist(next: ElabTutorLinkedState) {
     setState(next);
     host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
+  }
+
+  function persistAnnotations(annotations: PluginAnnotationDocument) {
+    persist({ ...state, annotations });
   }
 
   function issueSimulationCommand() {
@@ -1266,7 +1297,14 @@ function ElabTutorLinkedPostit({
 
   return (
     <>
-      <section
+      <PluginInkOverlay
+        instanceId={toolLink.embedId}
+        pluginId={toolLink.toolId}
+        value={state.annotations ?? emptyPluginAnnotations()}
+        onChange={persistAnnotations}
+        emitLessonEvent={host?.emitLessonEvent}
+      >
+        <section
         style={compactPostitStyle}
         data-plugin-postit-kind="elabtutor"
         data-plugin-instance-id={toolLink.embedId}
@@ -1322,10 +1360,18 @@ function ElabTutorLinkedPostit({
             {state.lastCommand && <p style={tutorNoteStyle}>Ultimo comando: {state.lastCommand.summary}</p>}
           </div>
         </details>
-      </section>
+        </section>
+      </PluginInkOverlay>
       {expanded && (
         <PluginRuntimeOverlay instanceId={toolLink.embedId} title={title} onClose={closeRuntime}>
-          <section style={elabTutorShellStyle} data-plugin-runtime-surface="elabtutor" aria-label="Guida collegata live">
+          <PluginInkOverlay
+            instanceId={toolLink.embedId}
+            pluginId={toolLink.toolId}
+            value={state.annotations ?? emptyPluginAnnotations()}
+            onChange={persistAnnotations}
+            emitLessonEvent={host?.emitLessonEvent}
+          >
+            <section style={elabTutorShellStyle} data-plugin-runtime-surface="elabtutor" aria-label="Guida collegata live">
             <header style={headerStyle} data-plugin-primary-copy>
               <div>
                 <div style={eyebrowStyle}>Guida della lezione</div>
@@ -1343,7 +1389,8 @@ function ElabTutorLinkedPostit({
                 </button>
               </section>
             </main>
-          </section>
+            </section>
+          </PluginInkOverlay>
         </PluginRuntimeOverlay>
       )}
     </>
@@ -1530,6 +1577,10 @@ function ReferenceSimulationCanvasTool({
   host?: SimulationToolHost;
 }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
+  const latestStateRef = useRef<SimulationToolState | undefined>(marker?.state);
+  const [annotations, setAnnotations] = useState<PluginAnnotationDocument>(
+    () => marker?.state?.annotations ?? emptyPluginAnnotations(),
+  );
   const [expanded, setExpanded] = useState(false);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
   const [machine, setMachine] = useState(createBlinkMachine);
@@ -1613,9 +1664,10 @@ function ReferenceSimulationCanvasTool({
     // onesto: annullare un annulla ri-applica. Volatile: non persiste nel reopen.
     setUndoSnapshot(placements);
     setPlacements(next);
-    if (host?.persistEmbedState && marker?.state) {
-      host.persistEmbedState(toolLink.embedId, {
-        ...marker.state,
+    const current = latestStateRef.current;
+    if (host?.persistEmbedState && current) {
+      const nextState: SimulationToolState = {
+        ...current,
         montaggio: {
           placements: next,
           operations: createMontaggioPlacementOperations({
@@ -1623,7 +1675,9 @@ function ReferenceSimulationCanvasTool({
             placements: next,
           }),
         },
-      }, toolLink.toolId);
+      };
+      latestStateRef.current = nextState;
+      host.persistEmbedState(toolLink.embedId, nextState, toolLink.toolId);
     }
   }
 
@@ -1720,8 +1774,11 @@ function ReferenceSimulationCanvasTool({
   const sceneDigest = useMemo(() => simulationSceneDigest(boardScene), [boardScene]);
 
   function persistScene(nextScene: SimulationSceneV1) {
-    if (host?.persistEmbedState && marker?.state?.kind === "simulation-scene-v1") {
-      host.persistEmbedState(toolLink.embedId, { ...marker.state, scene: nextScene }, toolLink.toolId);
+    const current = latestStateRef.current;
+    if (host?.persistEmbedState && current?.kind === "simulation-scene-v1") {
+      const nextState: SimulationToolState = { ...current, scene: nextScene };
+      latestStateRef.current = nextState;
+      host.persistEmbedState(toolLink.embedId, nextState, toolLink.toolId);
     }
   }
 
@@ -1806,6 +1863,15 @@ function ReferenceSimulationCanvasTool({
     window.setTimeout(() => expandButtonRef.current?.focus(), 0);
   }
 
+  function persistAnnotations(nextAnnotations: PluginAnnotationDocument) {
+    setAnnotations(nextAnnotations);
+    const current = latestStateRef.current;
+    if (!host?.persistEmbedState || !current) return;
+    const nextState: SimulationToolState = { ...current, annotations: nextAnnotations };
+    latestStateRef.current = nextState;
+    host.persistEmbedState(toolLink.embedId, nextState, toolLink.toolId);
+  }
+
   const compactSolveLabel = solveOutcome.kind === "solved"
     ? `Corrente ${solveOutcome.currentMa.toFixed(1)} mA`
     : solveOutcome.kind === "error"
@@ -1814,7 +1880,14 @@ function ReferenceSimulationCanvasTool({
 
   return (
     <>
-      <section
+      <PluginInkOverlay
+        instanceId={toolLink.embedId}
+        pluginId={toolLink.toolId}
+        value={annotations}
+        onChange={persistAnnotations}
+        emitLessonEvent={host?.emitLessonEvent}
+      >
+        <section
         style={compactPostitStyle}
         data-plugin-instance-id={toolLink.embedId}
         data-plugin-postit-kind="simulation"
@@ -1857,10 +1930,18 @@ function ReferenceSimulationCanvasTool({
             <p style={noteStyle}>{scene.provenance.blocker}</p>
           </div>
         </details>
-      </section>
+        </section>
+      </PluginInkOverlay>
       {expanded && (
         <PluginRuntimeOverlay instanceId={toolLink.embedId} title={scene.title} onClose={closeRuntime}>
-          <section
+          <PluginInkOverlay
+            instanceId={toolLink.embedId}
+            pluginId={toolLink.toolId}
+            value={annotations}
+            onChange={persistAnnotations}
+            emitLessonEvent={host?.emitLessonEvent}
+          >
+            <section
             style={shellStyle}
             data-simulation-surface="elab-core-canvas"
             data-elab-core-canvas-mounted="true"
@@ -1934,9 +2015,8 @@ function ReferenceSimulationCanvasTool({
             <ElabCoreCanvasMount
               scene={boardScene}
               projectionMode={coreCanvasProjectionMode}
-              markerState={marker?.state}
               toolLink={toolLink}
-              host={host}
+              onSceneChange={persistScene}
             />
           </details>
         </div>
@@ -2009,7 +2089,8 @@ function ReferenceSimulationCanvasTool({
           </details>
         </aside>
             </main>
-          </section>
+            </section>
+          </PluginInkOverlay>
         </PluginRuntimeOverlay>
       )}
     </>
@@ -2019,15 +2100,13 @@ function ReferenceSimulationCanvasTool({
 function ElabCoreCanvasMount({
   scene,
   projectionMode,
-  markerState,
   toolLink,
-  host,
+  onSceneChange,
 }: {
   scene: SimulationSceneV1;
   projectionMode: ElabCanvasProjectionMode;
-  markerState?: SimulationToolState;
   toolLink: ToolLink;
-  host?: SimulationToolHost;
+  onSceneChange: (nextScene: SimulationSceneV1) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [localScene, setLocalScene] = useState(scene);
@@ -2071,9 +2150,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasComponentAdd(current, component, position);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              onSceneChange(nextScene);
               return nextScene;
             });
             return componentId;
@@ -2087,9 +2164,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasLayoutChange(current, componentId, pose);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              onSceneChange(nextScene);
               return nextScene;
             });
           },
@@ -2107,9 +2182,7 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasConnectionAdd(current, connection);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              onSceneChange(nextScene);
               return nextScene;
             });
           },
@@ -2123,9 +2196,7 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireUpdate(current, wireIndex, connection);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              onSceneChange(nextScene);
               return nextScene;
             });
           },
@@ -2138,9 +2209,7 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireDelete(current, wireIndex);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              onSceneChange(nextScene);
               return nextScene;
             });
           },
@@ -2156,7 +2225,7 @@ function ElabCoreCanvasMount({
       disposed = true;
       handle?.dispose();
     };
-  }, [canvasState, host, markerState, toolLink.embedId]);
+  }, [canvasState, onSceneChange, toolLink.embedId]);
 
   return (
     <section
