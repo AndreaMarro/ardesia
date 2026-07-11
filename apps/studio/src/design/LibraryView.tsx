@@ -8,6 +8,7 @@ export type LibraryAssetKind = "note" | "image" | "postit" | "arduino-artifact"
 
 export interface LibraryAsset {
   id: string
+  boardElementId: string
   kind: LibraryAssetKind
   title: string
   scope: string
@@ -105,6 +106,11 @@ function assetTitleForNote(text: string): string {
   return firstLine.length <= 48 ? firstLine : `${firstLine.slice(0, 45).trimEnd()}...`
 }
 
+function boardFocusHref(room: string, elementId: string): string {
+  const hash = room.length > 0 ? `#${room}` : ""
+  return `/?focus=${encodeURIComponent(elementId)}${hash}`
+}
+
 /**
  * Legge solo la scena della stanza corrente. Il journal legacy non contiene
  * ancora lo scope room: audio, PDF e transcript restano esplicitamente fuori.
@@ -135,6 +141,7 @@ export async function buildLibrarySnapshot(sceneJson: string | null, room: strin
       if (text !== null) {
         assets.push(await createAsset({
           id: `note:${elementId}`,
+          boardElementId: elementId,
           kind: "note",
           title: assetTitleForNote(text),
           scope: room,
@@ -156,6 +163,7 @@ export async function buildLibrarySnapshot(sceneJson: string | null, room: strin
       if (fileId !== null && fileRecord !== null && dataUrl !== null) {
         assets.push(await createAsset({
           id: `image:${fileId}`,
+          boardElementId: elementId,
           kind: "image",
           title: "Schema immagine",
           scope: room,
@@ -176,6 +184,7 @@ export async function buildLibrarySnapshot(sceneJson: string | null, room: strin
     const pluginName = readablePluginName(kind, marker.owner)
     assets.push(await createAsset({
       id: `postit:${elementId}`,
+      boardElementId: elementId,
       kind: "postit",
       title: `${pluginName} post-it`,
       scope: room,
@@ -198,6 +207,7 @@ export async function buildLibrarySnapshot(sceneJson: string | null, room: strin
 
     assets.push(await createAsset({
       id: `arduino-artifact:${elementId}`,
+      boardElementId: elementId,
       kind: "arduino-artifact",
       title: "Arduino compile",
       scope: room,
@@ -406,7 +416,7 @@ function AssetCard({ asset, room }: { asset: LibraryAsset; room: string }) {
       </dl>
       <div style={cardFooterStyle}>
         <span style={tagsStyle}>{asset.tags.join(" · ")}</span>
-        <a href={viewHref("lavagna", room)} style={boardLinkStyle}>apri lavagna</a>
+        <a href={boardFocusHref(room, asset.boardElementId)} style={boardLinkStyle}>apri sulla lavagna</a>
       </div>
     </article>
   )

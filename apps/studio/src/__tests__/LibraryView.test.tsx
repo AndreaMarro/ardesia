@@ -108,6 +108,10 @@ describe("LibraryView", () => {
     expect(await screen.findByText("4 asset"))
     expect(screen.getByText("Arduino compile"))
     expect(screen.getByText("Schema immagine"))
+    const compileCard = screen.getByText("Arduino compile").closest("article")
+    expect(compileCard?.querySelector("a")?.getAttribute("href")).toBe(
+      "/?focus=postit-arduino#corrente-continua",
+    )
 
     fireEvent.change(screen.getByRole("searchbox", { name: "Cerca nella Library" }), { target: { value: "arduino" } })
 

@@ -15,6 +15,8 @@ import { exportLesson } from "../store/lessonBundle"
 
 const mockExcalidrawHarness = vi.hoisted(() => ({
   updateSceneCalls: [] as Array<{ elements?: Array<{ id?: string }> }>,
+  scrollToContentCalls: [] as Array<{ elements: Array<{ id?: string }>; options?: unknown }>,
+  sceneElements: [] as Array<{ id?: string }>,
 }))
 
 vi.mock("@excalidraw/excalidraw", () => {
@@ -25,11 +27,14 @@ vi.mock("@excalidraw/excalidraw", () => {
         setTimeout(() => {
           const unsubs: Array<() => void> = []
           props.excalidrawAPI({
-            getSceneElements: vi.fn(() => []),
+            getSceneElements: vi.fn(() => mockExcalidrawHarness.sceneElements),
             updateScene: vi.fn((scene: { elements?: Array<{ id?: string }> }) => {
               mockExcalidrawHarness.updateSceneCalls.push(scene)
             }),
             addFiles: vi.fn(),
+            scrollToContent: vi.fn((elements: Array<{ id?: string }>, options?: unknown) => {
+              mockExcalidrawHarness.scrollToContentCalls.push({ elements, options })
+            }),
             onPointerDown: vi.fn(() => {
               const unsub = () => {}
               unsubs.push(unsub)
@@ -169,10 +174,36 @@ beforeEach(() => {
   globalThis.location.hash = "#test-room-1"
   document.body.innerHTML = '<div id="root"></div>'
   mockExcalidrawHarness.updateSceneCalls = []
+  mockExcalidrawHarness.scrollToContentCalls = []
+  mockExcalidrawHarness.sceneElements = []
   vi.clearAllMocks()
 })
 
 describe("Room ↔ WorkspaceStore integration", () => {
+  it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {
+    const { store } = await createMockStore()
+    const element = { id: "postit-focus", type: "rectangle" }
+    mockExcalidrawHarness.sceneElements = [element]
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify({ elements: [element], appState: {}, files: {} }))
+    window.history.replaceState(null, "", "/?focus=postit-focus#focus-room")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(mockExcalidrawHarness.updateSceneCalls).toContainEqual({
+        appState: { selectedElementIds: { "postit-focus": true } },
+      })
+      expect(mockExcalidrawHarness.scrollToContentCalls).toContainEqual({
+        elements: [element],
+        options: { fitToContent: false, animate: false },
+      })
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
   it("chiama store.init() e store.loadScene() al mount", async () => {
     const { store } = await createMockStore()
     const initSpy = vi.spyOn(store, "init")

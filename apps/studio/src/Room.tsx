@@ -40,6 +40,15 @@ function getRoomId(): string {
   return h
 }
 
+function focusedElementId(): string | null {
+  try {
+    const requested = new URL(window.location.href).searchParams.get("focus")
+    return requested?.trim() || null
+  } catch {
+    return null
+  }
+}
+
 /** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
 function sharedClock(): number {
   return Date.now()
@@ -94,6 +103,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
+  const focusedElementRef = useRef<string | null>(null)
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
   const initialLoadDone = useRef(false)
@@ -949,6 +959,19 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
+              const targetId = focusedElementId()
+              if (targetId !== null && focusedElementRef.current !== targetId) {
+                // L'API arriva prima che Excalidraw completi il primo layout:
+                // il focus al ciclo successivo evita un viewport calcolato vuoto.
+                window.setTimeout(() => {
+                  if (apiRef.current !== eapi || focusedElementRef.current === targetId) return
+                  const target = eapi.getSceneElements().find((element: { id?: string }) => element.id === targetId)
+                  if (!target) return
+                  focusedElementRef.current = targetId
+                  eapi.updateScene({ appState: { selectedElementIds: { [targetId]: true } } })
+                  eapi.scrollToContent?.([target], { fitToContent: false, animate: false })
+                }, 0)
+              }
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
