@@ -27,6 +27,11 @@ import { manifest as refManifest } from "../../plugins/reference/manifest.ts"
 // Cambiare uno di questi valori SENZA bumpare CONTRACT_VERSION è un errore: il
 // reviewer lo vede come modifica deliberata della superficie pubblica.
 const GOLDEN_CAPABILITIES: readonly CapabilityName[] = [
+  "arduino.board.catalog",
+  "arduino.compile",
+  "arduino.project",
+  "arduino.serial",
+  "arduino.upload",
   "board.read",
   "board.write",
   "graph.proposeClaims",
