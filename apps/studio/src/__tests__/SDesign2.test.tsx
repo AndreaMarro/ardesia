@@ -136,7 +136,7 @@ describe("S-DESIGN-2 — RECSTRIP", () => {
 })
 
 describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
-  it("mostra 'solo in questo browser' con bottone 'scegli cartella…' in localStorage mode", async () => {
+  it("dichiara il salvataggio browser e offre 'Scegli cartella' nel launcher", async () => {
     const store = await createStore("localStorage")
     const connectSpy = vi.spyOn(store, "connectFolder")
 
@@ -148,24 +148,24 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, ROOM_MOUNT_WAIT)
 
-    // Deve mostrare l'indicatore locale
-    expect(document.body.textContent).toContain("solo in questo browser")
+    const saveState = document.querySelector(".st-orbit-save")
+    expect(saveState?.getAttribute("title")).toMatch(/browser/i)
 
-    // Deve esserci il bottone "scegli cartella…"
-    const connectBtn = document.querySelector(".st-indicator-connect")
-    expect(connectBtn).not.toBeNull()
-    expect(connectBtn?.textContent).toContain("cartella")
+    const launcher = document.querySelector('[data-orbit-action="launcher"]') as HTMLButtonElement
+    launcher.click()
+    let connectBtn: HTMLButtonElement | null = null
+    await vi.waitFor(() => {
+      connectBtn = document.querySelector('[aria-label="Scegli cartella: Salva sul computer"]')
+      expect(connectBtn).not.toBeNull()
+    }, ROOM_MOUNT_WAIT)
 
-    // Click sul bottone deve chiamare connectFolder
-    if (connectBtn) {
-      (connectBtn as HTMLButtonElement).click()
-      expect(connectSpy).toHaveBeenCalledTimes(1)
-    }
+    connectBtn!.click()
+    expect(connectSpy).toHaveBeenCalledTimes(1)
 
     root.unmount()
   })
 
-  it("mostra 'salvato sul computer' in FSA mode", async () => {
+  it("dichiara il salvataggio sul computer e non ripropone la cartella in FSA mode", async () => {
     const store = await createStore("fsa")
 
     const root = createRoot(document.getElementById("root")!)
@@ -176,10 +176,11 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, ROOM_MOUNT_WAIT)
 
-    // Deve mostrare l'indicatore FSA
-    expect(document.body.textContent).toContain("salvato sul computer")
-    // NON deve mostrare il bottone connect (FSA già attivo)
-    expect(document.querySelector(".st-indicator-connect")).toBeNull()
+    const saveState = document.querySelector(".st-orbit-save")
+    expect(saveState?.getAttribute("title")).toMatch(/computer/i)
+    const launcher = document.querySelector('[data-orbit-action="launcher"]') as HTMLButtonElement
+    launcher.click()
+    expect(document.querySelector('[aria-label="Scegli cartella: Salva sul computer"]')).toBeNull()
 
     root.unmount()
   })
@@ -195,7 +196,7 @@ describe("S-DESIGN-2 — connectFolder & indicatore dati", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, ROOM_MOUNT_WAIT)
 
-    const statusArea = document.querySelector(".st-status")
+    const statusArea = document.querySelector(".st-orbit-actions")
     const statusText = statusArea?.textContent ?? ""
 
     // Il lessico vietato non deve apparire nell'indicatore dati

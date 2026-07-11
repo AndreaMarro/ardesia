@@ -23,13 +23,12 @@ describe("Simulation Plugin route", () => {
     expect(isSimulationPluginView()).toBe(false)
   })
 
-  it("puts the simulator before Knowledge, Library and ELAB in the primary nav", () => {
+  it("keeps the simulator route available without exposing it in global navigation", () => {
     expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual([
       "lavagna",
-      "simulatore",
       "knowledge",
       "library",
-      "elab-lab",
+      "marketplace",
     ])
     expect(viewHref("simulatore", "#wbstudio-abc")).toBe(
       "/?vista=simulatore#wbstudio-abc",
@@ -37,11 +36,10 @@ describe("Simulation Plugin route", () => {
 
     window.history.replaceState(null, "", "/?vista=simulatore#wbstudio-room1")
     const { container } = render(<ViewNav current="simulatore" />)
-    expect(container.textContent).toContain("Simulatore")
-    expect(container.textContent).toContain("ELABTutor")
-    expect(
-      container.querySelector('[data-view-nav-item="simulatore"]')?.getAttribute("aria-current"),
-    ).toBe("page")
+    expect(container.textContent).not.toContain("Simulatore")
+    expect(container.textContent).not.toContain("ELABTutor")
+    expect(container.textContent).toContain("Marketplace")
+    expect(container.querySelector('[aria-current="page"]')).toBeNull()
   })
 })
 
