@@ -65,6 +65,7 @@ export function emptyPluginAnnotations(): PluginAnnotationDocument {
 type PluginInkOverlayProps = {
   instanceId: string;
   pluginId?: string;
+  compact?: boolean;
   value: PluginAnnotationDocument;
   onChange: (next: PluginAnnotationDocument) => void;
   emitLessonEvent?: (event: LessonOsEvent) => void;
@@ -174,6 +175,7 @@ function nextOrdinal(instanceId: string, value: PluginAnnotationDocument): numbe
 export function PluginInkOverlay({
   instanceId,
   pluginId = instanceId,
+  compact = false,
   value,
   onChange,
   emitLessonEvent,
@@ -182,6 +184,7 @@ export function PluginInkOverlay({
 }: PluginInkOverlayProps) {
   const [activeTool, setActiveTool] = useState<PluginAnnotationTool>("select");
   const [annotationMode, setAnnotationMode] = useState(false);
+  const [toolbarOpen, setToolbarOpen] = useState(!compact);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [selectionDrag, setSelectionDrag] = useState<SelectionDrag | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -270,6 +273,7 @@ export function PluginInkOverlay({
     setActiveTool(tool);
     setAnnotationMode(true);
     setSelectedId(null);
+    if (compact) setToolbarOpen(false);
   }
 
   function openDialog(nextDialog: AnnotationDialog, opener: HTMLElement) {
@@ -504,6 +508,7 @@ export function PluginInkOverlay({
   return (
     <div
       data-plugin-annotation-surface={instanceId}
+      data-plugin-ink-density={compact ? "compact" : "full"}
       style={overlayRootStyle}
       onPointerDownCapture={handlePointerDown}
       onPointerMoveCapture={handlePointerMove}
@@ -542,7 +547,33 @@ export function PluginInkOverlay({
         ))}
       </svg>
 
-      <div role="toolbar" aria-label="Strumenti annotazione plugin" data-plugin-ink-control style={toolbarStyle}>
+      {compact && !toolbarOpen && (
+        <button
+          type="button"
+          aria-label="Annota il plugin"
+          aria-expanded="false"
+          aria-controls={`plugin-ink-toolbar-${overlayId}`}
+          data-active-tool={annotationMode ? activeTool : undefined}
+          data-plugin-ink-control
+          style={compactToolbarTriggerStyle(annotationMode)}
+          onClick={() => setToolbarOpen(true)}
+        >
+          <span aria-hidden>✎</span>
+        </button>
+      )}
+
+      {toolbarOpen && <div id={`plugin-ink-toolbar-${overlayId}`} role="toolbar" aria-label="Strumenti annotazione plugin" data-plugin-ink-control style={toolbarStyle}>
+        {compact && (
+          <button
+            type="button"
+            aria-label="Chiudi strumenti annotazione"
+            title="Chiudi strumenti annotazione"
+            style={buttonStyle}
+            onClick={() => setToolbarOpen(false)}
+          >
+            <span aria-hidden>×</span>
+          </button>
+        )}
         {TOOL_BUTTONS.map(({ tool, label, glyph }) => (
           <button
             key={tool}
@@ -593,7 +624,7 @@ export function PluginInkOverlay({
         >
           <span aria-hidden>×</span>
         </button>
-      </div>
+      </div>}
       </div>
 
       {dialog === "text" && textAt && (
@@ -754,6 +785,20 @@ const toolbarStyle: CSSProperties = {
   background: "rgba(255, 255, 255, .94)",
   boxShadow: "0 3px 10px rgba(37, 58, 82, .14)",
 };
+
+function compactToolbarTriggerStyle(active: boolean): CSSProperties {
+  return {
+    ...buttonStyle,
+    position: "absolute",
+    zIndex: 5,
+    right: 6,
+    bottom: 6,
+    borderRadius: "50%",
+    borderColor: active ? "#315f91" : "#cbd3dc",
+    background: active ? "#e8f0f8" : "rgba(255, 255, 255, .94)",
+    boxShadow: "0 3px 10px rgba(37, 58, 82, .14)",
+  };
+}
 
 const buttonStyle: CSSProperties = {
   minWidth: 44,

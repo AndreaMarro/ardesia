@@ -151,6 +151,28 @@ describe("PluginInkOverlay", () => {
     expect(pencil.onChange.mock.calls.at(-1)?.[0].items[0]).toMatchObject({ kind: "stroke", tool: "pen" });
   });
 
+  it("keeps compact post-its readable and reveals the full annotation toolbar on demand", () => {
+    const onChange = vi.fn<(next: PluginAnnotationDocument) => void>();
+    render(
+      <PluginInkOverlay compact instanceId="sim-a" value={emptyPluginAnnotations()} onChange={onChange}>
+        <div data-testid="compact-runtime">Runtime compatto</div>
+      </PluginInkOverlay>,
+    );
+
+    expect(screen.queryByRole("toolbar", { name: "Strumenti annotazione plugin" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Penna" })).toBeNull();
+    const reveal = screen.getByRole("button", { name: "Annota il plugin" });
+    expect(reveal.getAttribute("aria-expanded")).toBe("false");
+
+    fireEvent.click(reveal);
+    expect(screen.getByRole("toolbar", { name: "Strumenti annotazione plugin" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Penna" }));
+
+    expect(screen.queryByRole("toolbar", { name: "Strumenti annotazione plugin" })).toBeNull();
+    expect(screen.getByTestId("plugin-ink-stage").style.pointerEvents).toBe("auto");
+    expect(screen.getByRole("button", { name: "Annota il plugin" }).getAttribute("data-active-tool")).toBe("pen");
+  });
+
   it("creates highlighter, arrow, and short accessible text vectors", () => {
     const highlighter = renderOverlay();
     fireEvent.click(screen.getByRole("button", { name: "Evidenziatore" }));
@@ -440,6 +462,7 @@ describe("PluginInkOverlay", () => {
     })!);
 
     const compactStage = rendered.getByTestId("plugin-ink-stage");
+    fireEvent.click(rendered.getByRole("button", { name: "Annota il plugin" }));
     fireEvent.click(rendered.getByRole("button", { name: "Penna" }));
     fireEvent.pointerDown(compactStage, { pointerId: 9, pointerType: "pen", clientX: 10, clientY: 10 });
     fireEvent.pointerUp(compactStage, { pointerId: 9, pointerType: "pen", clientX: 80, clientY: 80 });
@@ -466,6 +489,7 @@ describe("PluginInkOverlay", () => {
       persistEmbedState: (_embedId, state) => arduinoPersisted.push(state),
     })!);
     const arduinoStage = arduino.getByTestId("plugin-ink-stage");
+    fireEvent.click(arduino.getByRole("button", { name: "Annota il plugin" }));
     fireEvent.click(arduino.getByRole("button", { name: "Penna" }));
     fireEvent.pointerDown(arduinoStage, { pointerId: 10, pointerType: "pen", clientX: 10, clientY: 10 });
     fireEvent.pointerUp(arduinoStage, { pointerId: 10, pointerType: "pen", clientX: 80, clientY: 80 });
@@ -484,6 +508,7 @@ describe("PluginInkOverlay", () => {
       persistEmbedState: (_embedId, state) => tutorPersisted.push(state),
     })!);
     const tutorStage = tutor.getByTestId("plugin-ink-stage");
+    fireEvent.click(tutor.getByRole("button", { name: "Annota il plugin" }));
     fireEvent.click(tutor.getByRole("button", { name: "Penna" }));
     fireEvent.pointerDown(tutorStage, { pointerId: 11, pointerType: "pen", clientX: 10, clientY: 10 });
     fireEvent.pointerUp(tutorStage, { pointerId: 11, pointerType: "pen", clientX: 80, clientY: 80 });

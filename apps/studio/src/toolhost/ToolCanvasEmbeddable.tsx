@@ -1103,6 +1103,7 @@ function ArduinoToolchainPostit({
   return (
     <>
       <PluginInkOverlay
+        compact
         instanceId={toolLink.embedId}
         pluginId={toolLink.toolId}
         value={state.annotations ?? emptyPluginAnnotations()}
@@ -1320,6 +1321,7 @@ function ElabTutorLinkedPostit({
   return (
     <>
       <PluginInkOverlay
+        compact
         instanceId={toolLink.embedId}
         pluginId={toolLink.toolId}
         value={state.annotations ?? emptyPluginAnnotations()}
@@ -1912,6 +1914,7 @@ function ReferenceSimulationCanvasTool({
   return (
     <>
       <PluginInkOverlay
+        compact
         instanceId={toolLink.embedId}
         pluginId={toolLink.toolId}
         value={annotations}
