@@ -39,9 +39,9 @@ function freeAssemblySceneOf(scene: SimulationSceneV1): FreeAssemblyScene {
   }
 }
 
-function mountSim() {
+function mountSim(presentation: "postit" | "runtime" = "runtime") {
   const element = createToolEmbedElement()
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, presentation)
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }
@@ -72,11 +72,10 @@ function notice(container: HTMLElement): string {
 
 describe("SimulationBoard — palette tap-tap (montaggio libero slice 3)", () => {
   it("renderizza il Simulation Plugin come post-it docente, non come pagina harness", () => {
-    const container = mountSim()
+    const container = mountSim("postit")
     expect(container.querySelector('[data-plugin-postit-kind="simulation"]')).not.toBeNull()
-    expect(container.textContent).toContain("Accendi il LED sulla breadboard")
-    expect(container.textContent).toContain("Prossima azione")
-    expect(container.textContent).toContain("1. costruisci")
+    expect(container.textContent).toContain("Accendi il tuo primo LED")
+    expect(container.textContent).toContain("LED acceso")
     expect(container.textContent).not.toContain("Simulation Plugin Canvas")
   })
 

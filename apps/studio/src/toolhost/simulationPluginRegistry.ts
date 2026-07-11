@@ -35,11 +35,18 @@ export type SimulationToolHost = {
   emitLessonEvent?: (event: LessonOsEvent) => void;
 };
 
+export type ToolCanvasPresentation = "postit" | "runtime";
+
 export interface SimulationToolEntry {
   /** EmbedId BASE del tool: prima istanza; le successive suffissano (P0-C). */
   embedId: string;
   /** Render del tool dentro l'embed Excalidraw. */
-  render(element: ToolEmbedLike, toolLink: ToolLinkRef, host?: SimulationToolHost): ReactElement | null;
+  render(
+    element: ToolEmbedLike,
+    toolLink: ToolLinkRef,
+    host?: SimulationToolHost,
+    presentation?: ToolCanvasPresentation,
+  ): ReactElement | null;
   /**
    * Crea l'elemento embeddable Excalidraw completo del tool. embedId opzionale
    * per le istanze successive alla prima (P0-C multi-istanza): id e link

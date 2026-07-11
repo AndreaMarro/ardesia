@@ -15,7 +15,7 @@ afterEach(cleanup)
 
 function mountSim() {
   const element = createToolEmbedElement()
-  const view = renderToolCanvasEmbeddable(element as never)
+  const view = renderToolCanvasEmbeddable(element as never, undefined, "runtime")
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
 }

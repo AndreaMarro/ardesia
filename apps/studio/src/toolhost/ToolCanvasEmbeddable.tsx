@@ -19,7 +19,7 @@ import {
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
-import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
+import { registerSimulationTool, getSimulationTool, type SimulationToolHost, type ToolCanvasPresentation } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
@@ -810,6 +810,7 @@ export function buildElabTutorLinkedInsert(
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
+  presentation: ToolCanvasPresentation = "postit",
 ): ReactElement | null {
   const pluginPostitBoard = renderPluginPostitBoardEmbeddable(element);
   if (pluginPostitBoard !== null) return pluginPostitBoard;
@@ -817,7 +818,7 @@ export function renderToolCanvasEmbeddable(
   const toolLink = parseToolLink(element.link);
   if (!toolLink) return null;
   const entry = getSimulationTool(toolLink.toolId);
-  if (entry) return entry.render(element, toolLink, host);
+  if (entry) return entry.render(element, toolLink, host, presentation);
   return <UnknownToolCanvasTool toolLink={toolLink} />;
 }
 
@@ -826,8 +827,8 @@ export function renderToolCanvasEmbeddable(
 // hard-codati. Tool non registrati non vengono mai dispatchati (deny-by-default).
 const referenceSimulationEntry = {
   embedId: REFERENCE_SIM_EMBED_ID,
-  render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost) => (
-    <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} host={host} />
+  render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost, presentation?: ToolCanvasPresentation) => (
+    <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} host={host} presentation={presentation} />
   ),
   createEmbed: (embedId?: string) =>
     createToolEmbedElement(embedId === undefined ? {} : { embedId }),
@@ -899,16 +900,19 @@ function PluginRuntimeOverlay({
   title,
   onClose,
   children,
+  inline = false,
 }: {
   instanceId: string;
   title: string;
   onClose: () => void;
   children: ReactNode;
+  inline?: boolean;
 }) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useLayoutEffect(() => {
+    if (inline) return;
     const root = document.getElementById("root");
     const previousAriaHidden = root?.getAttribute("aria-hidden") ?? null;
     const previousInert = root?.inert ?? false;
@@ -924,7 +928,7 @@ function PluginRuntimeOverlay({
       if (previousAriaHidden === null) root.removeAttribute("aria-hidden");
       else root.setAttribute("aria-hidden", previousAriaHidden);
     };
-  }, []);
+  }, [inline]);
 
   function handleKeyDown(event: ReactKeyboardEvent<HTMLElement>) {
     if (event.key === "Escape") {
@@ -955,6 +959,7 @@ function PluginRuntimeOverlay({
     }
   }
 
+  if (inline) return <>{children}</>;
   if (typeof document === "undefined") return null;
   return createPortal(
     <div className="st-plugin-runtime-backdrop" onMouseDown={(event) => {
@@ -1599,10 +1604,12 @@ function ReferenceSimulationCanvasTool({
   element,
   toolLink,
   host,
+  presentation = "postit",
 }: {
   element: EmbedLike;
   toolLink: ToolLink;
   host?: SimulationToolHost;
+  presentation?: ToolCanvasPresentation;
 }) {
   const marker = element.customData?.[EMBED_DATA_KEY] as { state?: SimulationToolState } | undefined;
   const incomingState = marker?.state;
@@ -1917,7 +1924,7 @@ function ReferenceSimulationCanvasTool({
 
   return (
     <>
-      <PluginInkOverlay
+      {presentation === "postit" && <PluginInkOverlay
         compact
         instanceId={toolLink.embedId}
         pluginId={toolLink.toolId}
@@ -1972,9 +1979,9 @@ function ReferenceSimulationCanvasTool({
           </div>
         </details>
         </section>
-      </PluginInkOverlay>
-      {expanded && (
-        <PluginRuntimeOverlay instanceId={toolLink.embedId} title={scene.title} onClose={closeRuntime}>
+      </PluginInkOverlay>}
+      {(presentation === "runtime" || expanded) && (
+        <PluginRuntimeOverlay inline={presentation === "runtime"} instanceId={toolLink.embedId} title={scene.title} onClose={closeRuntime}>
           <PluginInkOverlay
             instanceId={toolLink.embedId}
             pluginId={toolLink.toolId}

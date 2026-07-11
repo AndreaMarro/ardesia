@@ -40,6 +40,7 @@ function mountSim({
   const view = renderToolCanvasEmbeddable(
     element as never,
     persist === undefined ? undefined : { persistEmbedState: persist },
+    "runtime",
   )
   if (view === null) throw new Error("embeddable non renderizzato")
   return render(view).container
@@ -254,7 +255,7 @@ describe("persistEmbedState — write-back host-side in scena (caps/board)", () 
           now: () => 456,
         })
       },
-    })
+    }, "runtime")
     if (view === null) throw new Error("embeddable non renderizzato")
     const container = render(view).container
     const breakButton = container.querySelector("[data-sim-break]")
