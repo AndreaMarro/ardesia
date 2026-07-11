@@ -2,12 +2,13 @@
 
 Spec canoniche del prodotto/architettura, ricavate dai repo reali e verificate firsthand (workflow `wf_a3b09ee4`, 10 agenti, file:riga). Autorità: queste 4 + questo indice. NON marketing.
 
-## I quattro documenti
+## Documenti canonici
 1. **[ARCHITECTURE-CANON](ARCHITECTURE-CANON.md)** — mappa sorgenti canoniche, regola di classificazione, 4 layer AS-IS vs AS-DESIGNED, confine Core da disegnare, persisted-vs-ephemeral, roadmap A–H grounded.
 2. **[PRODUCT-CANON](PRODUCT-CANON.md)** — ARDESIA≠ELAB≠simulatore, reality-test camminato sullo stato reale, 2 modalità→`LessonMode`, funzioni Core cross-materia, statement moat onesto, responsive, tagli duri.
 3. **[PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md)** — `ArdesiaPluginManifest` (as-built + `kind`/visibility/marketplace da-aggiungere), kernel sicurezza, 2 item aperti (TOCTOU, bundleHash), wire-reachability, tipi vendibili, P0=montare l'host.
 4. **[ELAB-AS-PLUGIN-CANON](ELAB-AS-PLUGIN-CANON.md)** — stato brutale (ELAB = app intera in `plugins/`), split Simulation-Plugin vs ELABTutor-Pack, salvage/do-not-port file-ref, confine di decoupling + lint-gate.
 5. **[ELAB-SCENE-FORGE-CANON](ELAB-SCENE-FORGE-CANON.md)** — il moat profondo: manuale→scena-fisica-fedele. Geometria ~60% esiste (pose+grid) / wire-path il 40% gap; `ElabScene`=`circuit-scene/2` (estendi non forkare); **hand-author 5 scene prima (consumer prima del producer)**, CV-forge differita; licenze AGPL=trap marketplace.
+6. **[ARDESIA-UI-CANON](ARDESIA-UI-CANON.md)** — fonte visiva vincolante per lavagna vuota, tre plugin-post-it vivi, Knowledge e Library; gerarchia, comportamento e responsive del workspace docente.
 
 ## La REGOLA DI CLASSIFICAZIONE (legge)
 Universale → **Core Ardesia** · Strumento riusabile → **Plugin** · Materia/metodo → **Pack** · Sequenza vendibile → **Workflow**.

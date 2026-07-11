@@ -1,49 +1,50 @@
-# ARDESIA Slice H Design QA
+# ARDESIA Visual Convergence Design QA
 
-- Source visual truth: `/Users/andreamarro/.codex/generated_images/019f4e49-3ad4-7330-a5c3-a5c9939b50b9/exec-ca837aa8-61fe-40f1-8e79-db67e7955407.png`
-- Implementation: `http://127.0.0.1:5204/#visual-qa`
-- Desktop capture: `/tmp/ardesia-slice-h-qa/desktop-empty-1440x900-final.png`
-- iPad capture: `/tmp/ardesia-slice-h-qa/ipad-empty-768x1024-final.png`
-- LIM capture: `/tmp/ardesia-slice-h-qa/lim-empty-1920x1080.png`
-- Full comparison: `/tmp/ardesia-slice-h-qa/source-vs-ipad-shell-final.png`
-- Focused shell comparison: `/tmp/ardesia-slice-h-qa/source-vs-ipad-shell-focus.png`
-- Second-pass desktop capture: `/tmp/ardesia-slice-h-qa2/desktop-final.png`
-- Second-pass iPad capture: `/tmp/ardesia-slice-h-qa2/ipad-final.png`
-- Second-pass source comparison: `/tmp/ardesia-slice-h-qa2/source-vs-ipad-final.png`
-- Viewports: 1440x900, 768x1024, 1920x1080
-- State: empty teacher canvas; launcher closed and open; search filtered to `arduino`
-- Scope: selected direction 2 shell, global navigation, empty canvas hierarchy, and single launcher. Plugin post-its, annotation overlay, Knowledge, and Library remain outside this slice.
+- Approved visual truth: `docs/product/ARDESIA-UI-CANON.png` (see `docs/ARDESIA-UI-CANON.md`)
+- Live implementation: `http://127.0.0.1:5204/#visual-qa-2`
+- Viewports: desktop 1440x900, iPad 768x1024, LIM 1920x1080
+- Real state: empty board; three live PluginInstances; expanded Simulation instance; four LessonOS events; four Library assets
+- Data policy: no mock, demo, or synthetic evidence was added for visual richness
 
-## Findings
+## Evidence
 
-No actionable P0, P1, or P2 findings remain in the slice scope.
+- Empty board: `output/playwright/01-empty-board-1440x900.png`
+- Three post-its and same-instance expand: `output/playwright/02-three-live-plugins-expanded-1440x900.png`
+- Knowledge from real LessonOS events: `output/playwright/03-knowledge-real-events-1440x900.png`
+- Library from real assets: `output/playwright/04-library-real-assets-1440x900.png`
+- Library iPad: `output/playwright/05-library-ipad-768x1024.png`
+- Pencil/touch surface iPad: `output/playwright/06-board-ink-ipad-768x1024.png`
+- Board LIM: `output/playwright/07-board-lim-1920x1080.png`
+- Target/implementation comparison: `output/playwright/compare-target-vs-board.png`
 
-- Typography: the existing local display/UI stacks preserve the ARDESIA hierarchy. Text does not clip or scale with viewport width; the empty canvas exposes one teacher-facing question and an untitled lesson never leaks its room id.
-- Spacing and layout: the canvas fills the viewport under a 64px shell; the floating rail has four 44px targets. No horizontal overflow or out-of-viewport controls were found at any tested viewport.
-- Colors and tokens: all new styles use existing `--m-*` tokens. Blue, ochre, and viridian identify the launcher groups and active canvas tool rather than acting as decoration.
-- Image quality: the empty state has no required raster product asset. The maintained interactive Excalidraw toolbar is intentionally retained instead of recreating the reference's radial control as static or custom-drawn art.
-- Copy: primary UI uses teacher-language labels. Simulation, Arduino, and ELAB are available only through the launcher; technical identifiers and provider status are absent from the shell.
-- Interaction: launcher opens by pointer at desktop and iPad viewport, groups real actions under Crea/Attività/Lezione, search reduces ten real actions to `Sketch Arduino`, and the console reports no warnings or errors.
-- Accessibility: launcher, share, navigation, search, and action rows have visible focus styles. Primary touch targets are at least 44px.
+## Verified
+
+- Shared shell exposes four destinations and one searchable launcher. Simulation and ELABTutor are not global pages.
+- Every real plugin appears as a compact post-it; expand opens the same PluginInstance and returns focus to it.
+- Primary copy uses teacher tasks. IDs, capabilities, FQBN, hashes, MIME and provider state remain in technical details.
+- Compact post-its expose real live state for circuit current/LED, Arduino source/compile, and tutor links.
+- The annotation layer supports pen, highlighter, arrow, short text, eraser, selection, hide/show, lock, undo/redo and confirmed clear over the live plugin.
+- Library opens the requested post-it without the delayed row fit overriding focus. Excalidraw's technical style panel stays out of the primary shell while object handles remain.
+- Tablet targets are compensated at 841-1024px and 768-840px. No visible clipping was found in the accepted desktop, iPad, or LIM captures.
+- Browser interactions exercised launcher, compile, tutor command, expand/collapse, annotation controls, Library focus and Knowledge controls. No runtime error was observed in the final navigation check.
+- Targeted gate: 92/92 policy, Room and annotation tests pass; typecheck and production build pass.
+
+## Red
+
+- Full suite: 50 failures, 1606 passes, 5 skipped. Three policy failures were fixed in this pass; most remaining failures assert the previous full-runtime result of `renderToolCanvasEmbeddable` instead of the approved compact post-it contract. This contract migration is not complete.
+- Knowledge displays only the two nodes currently materialized from four real LessonOS events. The approved image shows a richer lesson graph, but adding invented nodes would violate the real-data gate.
+- The expanded Simulation surface is live and functional, but its above-the-fold visual density is still below the approved composition. It must improve through the real runtime, not a raster preview.
+- Physical Apple Pencil hardware was not available. Pointer-type tests cover pen/touch/mouse behavior, but device-level Pencil verification remains UNKNOWN.
 
 ## Comparison History
 
-1. P2: the canvas began after a 156px gutter instead of extending beneath the floating rail. Fixed by removing the canvas margin; post-fix evidence shows `canvasLeft: 0` and no overflow.
-2. P2: the welcome copy referenced a `+` control while the implementation labels the command `Crea`. Fixed the copy and then reduced the visible empty state to one next action.
-3. P2: the transparent canvas composited dark beneath the open launcher in the browser capture. Fixed with an explicit tokenized canvas background; post-fix iPad launcher capture remains light and readable.
-4. P2: the second review found a duplicated Excalidraw Library control and room id in the teacher shell. The duplicate is now hidden in favor of global Library and the fallback reads `Lezione senza titolo`.
-5. P2: the launcher was a flat catalog and the selected canvas tool used a foreign purple state. Actions are now grouped by teacher task and the active tool uses ARDESIA blue tokens.
-6. P2: the canvas exposed two simultaneous instructional messages. The generic pan hint is removed while the maintained hand-drawn toolbar cue remains.
+1. Removed the global Simulation/ELABTutor routes and separated technical provenance from teacher copy.
+2. Replaced page-sized plugins with three compact, live post-its and a same-instance runtime overlay.
+3. Added an actionable empty-canvas orbit, responsive row framing and real-state motion.
+4. Replaced the fixed radial Knowledge SVG with the maintained Cytoscape runtime over LessonOS data.
+5. Rebuilt Library as real lesson shelves and removed its iPad rail collision.
+6. Closed the 841-1024px touch-target gap and the LIM shell-action clip.
+7. Prevented Library focus from being overwritten and hid the Excalidraw style panel exposed by selection.
+8. Restored token-only colors, visible focus outlines and the zero-emoji source policy.
 
-## Residual P3
-
-- The reference uses a radial tool arrangement and decorative orbit marks. This slice retains the mature Excalidraw toolbar and omits non-functional drawn decoration; any later reskin must preserve keyboard, pointer, and tool parity.
-- The reference uses icon-only undo/share controls. The implementation keeps a labeled share action and Excalidraw's existing undo/redo controls for clarity and regression safety.
-
-## Verification
-
-- Primary interactions: launcher open/close, searchable filtering, share affordance presence, navigation targets.
-- Browser console: zero warnings and zero errors in desktop, iPad, and LIM runs.
-- Layout: zero detected clipping or overlap at 1440x900, 768x1024, and 1920x1080.
-
-final result: passed
+final result: blocked
