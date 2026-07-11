@@ -1072,7 +1072,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 const target = targetId === null
                   ? undefined
                   : elements.find((element: { id?: string }) => element.id === targetId)
-                if (target && focusedElementRef.current !== targetId) {
+                if (target && targetId !== null && focusedElementRef.current !== targetId) {
                   focusedElementRef.current = targetId
                   eapi.updateScene({ appState: { selectedElementIds: { [targetId]: true } } })
                   eapi.scrollToContent?.([target], { fitToContent: false, animate: false })
