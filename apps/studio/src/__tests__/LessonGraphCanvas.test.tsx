@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { StrictMode } from "react"
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react"
+import { cleanup, render, screen, within } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import LessonGraphCanvas, { displayedLevel } from "../design/LessonGraphCanvas"
 
@@ -10,8 +10,14 @@ type ElementInput = { group: "nodes" | "edges"; data: Record<string, unknown>; c
 class FakeElement {
   classes = new Set<string>()
   selected = false
+  readonly core: FakeCore
+  readonly input: ElementInput
+  readonly index: number
 
-  constructor(readonly core: FakeCore, readonly input: ElementInput, readonly index: number) {
+  constructor(core: FakeCore, input: ElementInput, index: number) {
+    this.core = core
+    this.input = input
+    this.index = index
     for (const className of input.classes?.split(" ") ?? []) if (className) this.classes.add(className)
   }
 
@@ -26,7 +32,13 @@ class FakeElement {
 }
 
 class FakeCollection {
-  constructor(readonly core: FakeCore, readonly items: FakeElement[]) {}
+  readonly core: FakeCore
+  readonly items: FakeElement[]
+
+  constructor(core: FakeCore, items: FakeElement[]) {
+    this.core = core
+    this.items = items
+  }
   forEach(callback: (element: FakeElement) => void) { this.items.forEach(callback); return this }
   map<T>(callback: (element: FakeElement) => T) { return this.items.map(callback) }
   remove() { this.core.clear(); return this }
