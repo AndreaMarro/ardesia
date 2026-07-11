@@ -6,6 +6,7 @@ export type ArdesiaViewId =
   | "lavagna"
   | "simulatore"
   | "knowledge"
+  | "library"
   | "elab-lab"
   | "cruscotto"
   | "lezioni-salvate"
@@ -18,6 +19,7 @@ export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
   { id: "lavagna", label: "lavagna", title: "Lavagna Ardesia (stanza corrente)" },
   { id: "simulatore", label: "Simulatore", title: "Simulation Plugin autonomo" },
   { id: "knowledge", label: "Knowledge", title: "Knowledge Explorer della lezione" },
+  { id: "library", label: "Library", title: "Materiali persistiti della lezione" },
   { id: "elab-lab", label: "ELABTutor", title: "Pack ELABTutor sopra il simulatore" },
 ]
 
