@@ -31,7 +31,7 @@ export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
 export function viewHref(id: ArdesiaViewId, currentHash: string = ""): string {
   const hash = currentHash.startsWith("#") ? currentHash : currentHash ? `#${currentHash}` : ""
   if (id === "lavagna") return `/${hash}`
-  if (id === "marketplace") return `/?vista=simulatore-postit${hash}`
+  if (id === "marketplace") return `/?vista=marketplace${hash}`
   return `/?vista=${id}${hash}`
 }
 

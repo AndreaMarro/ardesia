@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 // Product Flow Shell — la nav espone gli ingressi caricabili e preserva la stanza.
 
-import { cleanup, render } from "@testing-library/react"
+import { cleanup, render, screen } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
 import ViewNav, { ARDESIA_VIEW_LINKS, viewHref } from "../design/ViewNav"
 
@@ -15,7 +15,32 @@ describe("viewHref — hash stanza preservato attraverso le viste", () => {
     expect(viewHref("lavagna", "#wbstudio-abc")).toBe("/#wbstudio-abc")
     expect(viewHref("knowledge", "#wbstudio-abc")).toBe("/?vista=knowledge#wbstudio-abc")
     expect(viewHref("library", "#wbstudio-abc")).toBe("/?vista=library#wbstudio-abc")
-    expect(viewHref("marketplace", "#wbstudio-abc")).toBe("/?vista=simulatore-postit#wbstudio-abc")
+    expect(viewHref("marketplace", "#wbstudio-abc")).toBe("/?vista=marketplace#wbstudio-abc")
+  })
+})
+
+describe("StudioShell — struttura condivisa delle viste prodotto", () => {
+  it("rende wordmark, launcher, azioni, rail e stage", async () => {
+    const { default: StudioShell } = await import("../design/StudioShell")
+
+    const { container } = render(
+      <StudioShell
+        current="knowledge"
+        searchLabel="Cerca nella lezione"
+        launcher={<button type="button">Cerca</button>}
+        actions={<button type="button">Aggiorna</button>}
+      >
+        <p>Contenuto Knowledge</p>
+      </StudioShell>,
+    )
+
+    expect(container.querySelector("[data-studio-shell]")?.getAttribute("data-current-view"))
+      .toBe("knowledge")
+    expect(container.querySelector(".st-shell-topbar")?.textContent).toContain("Ardesia")
+    expect(screen.getByText("Cerca nella lezione")).not.toBeNull()
+    expect(screen.getByRole("button", { name: "Cerca" })).not.toBeNull()
+    expect(screen.getByRole("button", { name: "Aggiorna" })).not.toBeNull()
+    expect(container.querySelector(".st-shell-stage")?.textContent).toContain("Contenuto Knowledge")
   })
 })
 

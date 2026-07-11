@@ -4,8 +4,9 @@ import { readFileSync } from "node:fs"
 import { join } from "node:path"
 
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import App from "../App"
+import MultiPostitWorkbench from "../design/MultiPostitWorkbench"
 import {
   createMultiPostitWorkbenchPostits,
   resizeMultiPostitInstance,
@@ -17,14 +18,22 @@ import { deriveFunctionSurfaceMode, pluginPostitControlIds } from "../toolhost/p
 
 const WORKBENCH_LOAD_TIMEOUT_MS = 15_000
 
+vi.mock("../Room", () => ({
+  default: () => <div data-testid="app-default-route" />,
+}))
+
 afterEach(() => {
   cleanup()
   window.history.replaceState(null, "", "/")
 })
 
-describe("Browser-hosted multi post-it evidence route", () => {
-  it("has a dedicated route and imports no private simulator internals", () => {
+describe("Browser-hosted multi post-it workbench", () => {
+  it("is not a product route and imports no private simulator internals", async () => {
     window.history.replaceState(null, "", "/?vista=simulatore-postit")
+    render(<App />)
+
+    await screen.findByTestId("app-default-route")
+    expect(screen.queryByTestId("multi-postit-workbench")).toBeNull()
 
     const source = readFileSync(join(process.cwd(), "src", "design", "MultiPostitWorkbench.tsx"), "utf8")
     const modelSource = readFileSync(
@@ -48,7 +57,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
   it("renders two Simulation post-its and one ELABTutor consumer with instance-scoped state", async () => {
     window.history.replaceState(null, "", "/?vista=simulatore-postit")
 
-    const { container } = render(<App />)
+    const { container } = render(<MultiPostitWorkbench />)
 
     const workbench = await screen.findByTestId("multi-postit-workbench", {}, { timeout: WORKBENCH_LOAD_TIMEOUT_MS })
     expect(workbench.getAttribute("data-multi-postit-workbench")).toBe("ready")
@@ -147,7 +156,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
   it("exports, mutates, and restores the visible board-hosted post-it payload", async () => {
     window.history.replaceState(null, "", "/?vista=simulatore-postit")
 
-    const { container } = render(<App />)
+    const { container } = render(<MultiPostitWorkbench />)
     const workbench = await screen.findByTestId("multi-postit-workbench", {}, { timeout: WORKBENCH_LOAD_TIMEOUT_MS })
 
     fireEvent.click(screen.getByRole("button", { name: "esporta post-it" }))
@@ -188,7 +197,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
   it("reloads a visible board scene into three rendered plugin post-its", async () => {
     window.history.replaceState(null, "", "/?vista=simulatore-postit")
 
-    const { container } = render(<App />)
+    const { container } = render(<MultiPostitWorkbench />)
     const workbench = await screen.findByTestId("multi-postit-workbench", {}, { timeout: WORKBENCH_LOAD_TIMEOUT_MS })
 
     fireEvent.click(screen.getByRole("button", { name: "riduci sim-a" }))
