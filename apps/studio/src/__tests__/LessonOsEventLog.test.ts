@@ -267,6 +267,81 @@ describe("materializer (eventi → grafo derivato)", () => {
       evidenceRefs: ["plugin:io.ardesia.simulation@0.1.0", "board:plugin-postit-sim-a-board"],
     })
   })
+
+  it("materializza compile, comando tutor e annotazione dai veri eventi PluginInstance", async () => {
+    const log = new InMemoryEventLog()
+    await log.append({
+      kind: "arduino.compile.completed",
+      pluginId: "io.ardesia.arduino-toolchain",
+      instanceId: "arduino-a",
+      boardId: "nano-old",
+      fqbn: "arduino:avr:nano:cpu=atmega328old",
+      provider: "browser-avr",
+      ok: true,
+      diagnostic: "Compile completata",
+      labels: { it: "Compile Arduino completata" },
+      t: 1600,
+      evidence: ["plugin:io.ardesia.arduino-toolchain@arduino-a"],
+    })
+    await log.append({
+      kind: "elabtutor.command.issued",
+      pluginId: "io.elab.tutor",
+      instanceId: "tutor-a",
+      command: "simulation.command",
+      targetInstanceId: "sim-a",
+      toolchainInstanceId: "arduino-a",
+      grounded: true,
+      diagnostic: "Mostra il montaggio",
+      labels: { it: "Invia comando alla simulazione" },
+      t: 1700,
+      evidence: [
+        "plugin:io.elab.tutor@tutor-a",
+        "plugin:io.ardesia.simulation@sim-a",
+        "plugin:io.ardesia.arduino-toolchain@arduino-a",
+      ],
+    })
+    await log.append({
+      kind: "plugin.annotation.changed",
+      pluginId: "io.ardesia.simulation",
+      instanceId: "sim-a",
+      operation: "add",
+      annotationId: "stroke-1",
+      authorRole: "teacher",
+      labels: { it: "Annotazione aggiunta" },
+      t: 1800,
+      evidence: ["plugin:io.ardesia.simulation@sim-a"],
+    })
+    await log.append({
+      kind: "simulation.circuit.solved",
+      experimentId: "v1-cap6-esp1",
+      sceneId: "scene:v1-cap6-esp1",
+      currentMa: 15.3,
+      bookLayoutValid: true,
+      labels: { it: "Circuito risolto: 15.3 mA" },
+      instanceId: "sim-a",
+      provenance: {
+        surface: "postit",
+        pluginId: "io.ardesia.simulation",
+        source: "Simulation Plugin post-it",
+      },
+      t: 1900,
+      evidence: ["simulation:scene:v1-cap6-esp1"],
+    })
+
+    const graph = materialize(await log.readAll())
+    expect(graph.nodes.get("arduino-compile:arduino-a:1")).toMatchObject({ kind: "esercizio" })
+    expect(graph.nodes.get("elabtutor-command:tutor-a:2")).toMatchObject({ kind: "materiale" })
+    expect(graph.nodes.get("annotation:sim-a:stroke-1")).toMatchObject({ kind: "materiale" })
+    expect(graph.nodes.get("plugin:io.ardesia.simulation#sim-a")?.labels).toEqual({ it: "Simulation" })
+    expect(graph.nodes.get("plugin:io.ardesia.arduino-toolchain#arduino-a")?.labels).toEqual({ it: "Sketch Arduino" })
+    expect(graph.nodes.get("plugin:io.elab.tutor#tutor-a")?.labels).toEqual({ it: "Guida ELABTutor" })
+    expect(graph.edges).toEqual(expect.arrayContaining([
+      expect.objectContaining({ from: "arduino-compile:arduino-a:1", kind: "deriva-da", to: "plugin:io.ardesia.arduino-toolchain#arduino-a" }),
+      expect.objectContaining({ from: "elabtutor-command:tutor-a:2", kind: "cita", to: "plugin:io.ardesia.simulation#sim-a" }),
+      expect.objectContaining({ from: "annotation:sim-a:stroke-1", kind: "deriva-da", to: "plugin:io.ardesia.simulation#sim-a" }),
+      expect.objectContaining({ from: "v1-cap6-esp1", kind: "deriva-da", to: "plugin:io.ardesia.simulation#sim-a" }),
+    ]))
+  })
 })
 
 describe("recall deterministico (query O(vicinato))", () => {

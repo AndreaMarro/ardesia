@@ -46,6 +46,23 @@ function mergeEvidence(target: EvidenceRef[], extra: EvidenceRef[]): void {
   for (const ref of extra) if (!target.includes(ref)) target.push(ref)
 }
 
+function pluginIdentity(pluginId: string, instanceId: string): { nodeId: string; label: string } {
+  const label = pluginId === "io.ardesia.simulation"
+    ? "Simulation"
+    : pluginId === "io.ardesia.arduino-toolchain"
+      ? "Sketch Arduino"
+      : pluginId.includes("elabtutor") || pluginId.includes("elab.tutor")
+        ? "Guida ELABTutor"
+        : "Plugin"
+  return { nodeId: `plugin:${pluginId}#${instanceId}`, label }
+}
+
+function pluginEvidence(ref: EvidenceRef): { nodeId: string; label: string } | null {
+  const match = /^plugin:([^@]+)@(.+)$/.exec(ref)
+  if (!match) return null
+  return pluginIdentity(match[1], match[2])
+}
+
 /**
  * Materializza il grafo dall'intero log (ordine `seq`).
  * Regole deterministiche:
@@ -88,6 +105,20 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
     const edge: LessonEdge = { from, to, kind, introducedAt: t, evidenceRefs: [...evidence] }
     edgeIndex.set(key, edge)
     edges.push(edge)
+  }
+
+  function connectEventToEvidencePlugins(
+    eventNodeId: string,
+    evidence: EvidenceRef[],
+    kind: LessonEdgeKind,
+    t: number,
+  ): void {
+    for (const ref of evidence) {
+      const plugin = pluginEvidence(ref)
+      if (!plugin) continue
+      upsertNode(plugin.nodeId, "plugin", { it: plugin.label }, [ref], t)
+      addEdge(eventNodeId, plugin.nodeId, kind, [ref], t)
+    }
   }
 
   const sorted = [...events].sort((a, b) => a.seq - b.seq)
@@ -172,6 +203,11 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
           upsertNode(ev.conceptId, "concetto", {}, ev.evidence, ev.t)
           addEdge(ev.experimentId, ev.conceptId, "cita", ev.evidence, ev.t)
         }
+        if (ev.instanceId && ev.provenance?.pluginId) {
+          const plugin = pluginIdentity(ev.provenance.pluginId, ev.instanceId)
+          upsertNode(plugin.nodeId, "plugin", { it: plugin.label }, ev.evidence, ev.t)
+          addEdge(ev.experimentId, plugin.nodeId, "deriva-da", ev.evidence, ev.t)
+        }
         break
       }
 
@@ -181,6 +217,27 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
         upsertNode(ev.errorId, "errore", ev.labels, ev.evidence, ev.t)
         upsertNode(ev.conceptId, "concetto", {}, ev.evidence, ev.t)
         addEdge(ev.errorId, ev.conceptId, "deriva-da", ev.evidence, ev.t)
+        break
+      }
+
+      case "arduino.compile.completed": {
+        const id = `arduino-compile:${ev.instanceId ?? ev.boardId}:${ev.seq}`
+        upsertNode(id, ev.ok ? "esercizio" : "errore", ev.labels, ev.evidence, ev.t)
+        connectEventToEvidencePlugins(id, ev.evidence, "deriva-da", ev.t)
+        break
+      }
+
+      case "elabtutor.command.issued": {
+        const id = `elabtutor-command:${ev.instanceId ?? ev.pluginId}:${ev.seq}`
+        upsertNode(id, "materiale", ev.labels, ev.evidence, ev.t)
+        connectEventToEvidencePlugins(id, ev.evidence, "cita", ev.t)
+        break
+      }
+
+      case "plugin.annotation.changed": {
+        const id = `annotation:${ev.instanceId}:${ev.annotationId ?? "document"}`
+        upsertNode(id, "materiale", ev.labels, ev.evidence, ev.t)
+        connectEventToEvidencePlugins(id, ev.evidence, "deriva-da", ev.t)
         break
       }
     }

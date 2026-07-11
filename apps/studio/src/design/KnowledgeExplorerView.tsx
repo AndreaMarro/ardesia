@@ -40,7 +40,7 @@ const KIND_LABEL: Record<DashboardNodeKind, string> = {
 }
 
 const KNOWLEDGE_CSS = `
-.st-knowledge-view{height:100%;box-sizing:border-box;overflow:auto;padding:20px clamp(18px,3vw,42px) 22px;background:var(--m-paper,#f8f5ed)}
+.st-knowledge-view{height:100%;box-sizing:border-box;overflow:auto;padding:20px clamp(18px,3vw,42px) 22px max(148px,3vw);background:var(--m-paper,#f8f5ed)}
 .st-knowledge-inner{width:min(1180px,100%);min-height:100%;margin:0 auto;display:grid;grid-template-rows:auto minmax(520px,1fr);gap:12px}
 .st-knowledge-toolbar{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;align-items:center;gap:12px;min-width:0}
 .st-knowledge-title{min-width:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
@@ -51,11 +51,11 @@ const KNOWLEDGE_CSS = `
 .st-knowledge-filters{display:flex;align-items:center;justify-content:flex-end;gap:7px;min-width:0}
 .st-knowledge-search{position:relative;min-width:180px;width:min(260px,30vw)}
 .st-knowledge-search::before{content:'⌕';position:absolute;left:10px;top:50%;transform:translateY(-52%);color:var(--m-ink-4,#718092);pointer-events:none}
-.st-knowledge-search input,.st-knowledge-filters select{height:36px;box-sizing:border-box;border:1px solid var(--m-line-2,#d8d2c6);border-radius:7px;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:500 11px/1 var(--m-font-ui,system-ui)}
+.st-knowledge-search input,.st-knowledge-filters select{height:44px;box-sizing:border-box;border:1px solid var(--m-line-2,#d8d2c6);border-radius:7px;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:500 11px/1 var(--m-font-ui,system-ui)}
 .st-knowledge-search input{width:100%;padding:0 10px 0 29px}
 .st-knowledge-filters select{padding:0 28px 0 10px}
 .st-knowledge-graph{min-width:0;min-height:0;padding-top:10px;border-top:1px solid var(--m-line,#e3ded5)}
-.st-knowledge-shell-action{width:42px;height:42px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:600 18px/1 var(--m-font-ui,system-ui);text-decoration:none;cursor:pointer}
+.st-knowledge-shell-action{width:44px;height:44px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:600 18px/1 var(--m-font-ui,system-ui);text-decoration:none;cursor:pointer}
 @media(max-width:980px){.st-knowledge-toolbar{grid-template-columns:1fr}.st-knowledge-filters{justify-content:flex-start;overflow-x:auto;padding-bottom:2px}.st-knowledge-search{width:min(340px,65vw)}.st-knowledge-inner{grid-template-rows:auto auto}}
 @media(max-width:600px){.st-knowledge-view{padding:14px 12px}.st-knowledge-filters{align-items:stretch;flex-wrap:wrap}.st-knowledge-search{width:100%;min-width:100%}.st-knowledge-filters select{flex:1;min-width:130px}.st-knowledge-metrics{gap:4px}}
 `
@@ -90,7 +90,12 @@ export function selectRoomSession(events: readonly AppendedEvent[], room: string
 export function buildKnowledgeExplorerSnapshot(events: readonly AppendedEvent[], room: string): KnowledgeExplorerSnapshot {
   const session = selectRoomSession(events, room)
   const graph = materialize([...session])
-  const nodes = [...graph.nodes.values()]
+  const graphNodes = [...graph.nodes.values()]
+  const visibleNodes = graphNodes.some((node) => node.kind !== "lesson")
+    ? graphNodes.filter((node) => node.kind !== "lesson")
+    : graphNodes
+  const visibleIds = new Set(visibleNodes.map((node) => node.id))
+  const nodes = visibleNodes
     .map((node) => ({
       id: node.id,
       kind: NODE_KIND[node.kind],
@@ -103,7 +108,9 @@ export function buildKnowledgeExplorerSnapshot(events: readonly AppendedEvent[],
     sessionFound: session.length > 0,
     events: session,
     nodes,
-    edges: graph.edges.map((edge) => ({ from: edge.from, to: edge.to, kind: edge.kind })),
+    edges: graph.edges
+      .filter((edge) => visibleIds.has(edge.from) && visibleIds.has(edge.to))
+      .map((edge) => ({ from: edge.from, to: edge.to, kind: edge.kind })),
     evidenceRefs,
   }
 }

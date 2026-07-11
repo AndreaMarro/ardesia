@@ -130,6 +130,7 @@ describe("KnowledgeExplorerView", () => {
       "lesson.ended",
     ])
     expect(snapshot.nodes.map((node) => node.id)).toContain("v1-cap6-esp1")
+    expect(snapshot.nodes.map((node) => node.id)).not.toContain("lesson:led-room")
     expect(snapshot.nodes.map((node) => node.id)).not.toContain("other-experiment")
     expect(snapshot.nodes.find((node) => node.id === "circuito-serie")?.label).toEqual({ und: "circuito serie" })
     expect(snapshot.evidenceRefs).toEqual([
@@ -152,6 +153,58 @@ describe("KnowledgeExplorerView", () => {
     await waitFor(() => {
       expect(document.querySelector('[data-testid="zgraph-descriptor"]')?.textContent).toContain("Circuito aperto")
     })
+  })
+
+  it("rende nel grafo gli eventi reali di Arduino, tutor e annotazioni", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "plugin-room", t: 1, evidence: ["lesson:plugin-room@1"] },
+      {
+        kind: "arduino.compile.completed",
+        pluginId: "io.ardesia.arduino-toolchain",
+        instanceId: "arduino-a",
+        boardId: "nano-old",
+        fqbn: "arduino:avr:nano:cpu=atmega328old",
+        provider: "browser-avr",
+        ok: true,
+        diagnostic: "Compile completata",
+        labels: { it: "Compile Arduino completata" },
+        t: 2,
+        evidence: ["plugin:io.ardesia.arduino-toolchain@arduino-a"],
+      },
+      {
+        kind: "elabtutor.command.issued",
+        pluginId: "io.elab.tutor",
+        instanceId: "tutor-a",
+        command: "simulation.command",
+        targetInstanceId: "sim-a",
+        toolchainInstanceId: "arduino-a",
+        grounded: true,
+        diagnostic: "Mostra il montaggio",
+        labels: { it: "Invia comando alla simulazione" },
+        t: 3,
+        evidence: ["plugin:io.elab.tutor@tutor-a", "plugin:io.ardesia.simulation@sim-a"],
+      },
+      {
+        kind: "plugin.annotation.changed",
+        pluginId: "io.ardesia.simulation",
+        instanceId: "sim-a",
+        operation: "add",
+        annotationId: "stroke-1",
+        authorRole: "teacher",
+        labels: { it: "Annotazione aggiunta" },
+        t: 4,
+        evidence: ["plugin:io.ardesia.simulation@sim-a"],
+      },
+    ])
+    render(<KnowledgeExplorerView deps={{ room: "plugin-room", loadEvents: async () => events }} />)
+
+    expect(await screen.findByRole("button", { name: "Compile Arduino completata" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Invia comando alla simulazione" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Annotazione aggiunta" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Simulation" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Sketch Arduino" })).toBeTruthy()
+    expect(screen.getByRole("button", { name: "Guida ELABTutor" })).toBeTruthy()
+    expect(screen.queryByRole("button", { name: "plugin-room" })).toBeNull()
   })
 
   it("ignora il risultato di un caricamento superseded quando la stanza cambia", async () => {

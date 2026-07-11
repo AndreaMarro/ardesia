@@ -68,12 +68,12 @@ const GRAPH_CSS = `
 .zgraph-stage{position:relative;min-width:0;min-height:440px;overflow:hidden;border:1px solid var(--m-line-2,#d8d2c6);border-radius:8px;background:var(--m-canvas,#fffdf8)}
 .zgraph-cy{position:absolute;inset:0;touch-action:none}
 .zgraph-tools{position:absolute;left:12px;bottom:12px;z-index:3;display:flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:8px;background:rgba(255,253,248,.94);box-shadow:var(--m-shadow-pop,0 4px 16px rgba(31,45,61,.12))}
-.zgraph-tool{width:34px;height:34px;border:0;border-radius:6px;background:transparent;color:var(--m-ink-2,#28425d);font:600 18px/1 var(--m-font-ui,system-ui);cursor:pointer}
+.zgraph-tool{width:44px;height:44px;border:0;border-radius:6px;background:transparent;color:var(--m-ink-2,#28425d);font:600 18px/1 var(--m-font-ui,system-ui);cursor:pointer}
 .zgraph-tool:hover,.zgraph-tool:focus-visible{background:var(--m-fill,#eef0f2);outline:2px solid transparent}
 .zgraph-node-list{position:absolute;left:12px;top:12px;z-index:3;max-width:min(260px,calc(100% - 24px));font-size:12px}
-.zgraph-node-list summary{width:max-content;padding:6px 9px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:6px;background:rgba(255,253,248,.94);cursor:pointer}
+.zgraph-node-list summary{width:max-content;min-height:44px;box-sizing:border-box;padding:11px 9px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:6px;background:rgba(255,253,248,.94);cursor:pointer}
 .zgraph-node-list ul{max-height:220px;overflow:auto;list-style:none;margin:4px 0 0;padding:5px;display:grid;gap:3px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:6px;background:rgba(255,253,248,.98);box-shadow:var(--m-shadow-pop,0 4px 16px rgba(31,45,61,.12))}
-.zgraph-node-list button{width:100%;min-height:32px;padding:5px 8px;border:0;border-radius:4px;background:transparent;color:var(--m-ink-2,#28425d);font:inherit;text-align:left;cursor:pointer}
+.zgraph-node-list button{width:100%;min-height:44px;padding:8px;border:0;border-radius:4px;background:transparent;color:var(--m-ink-2,#28425d);font:inherit;text-align:left;cursor:pointer}
 .zgraph-node-list button[aria-pressed=true]{background:var(--m-accent-wash,#e8eef8);font-weight:700}
 .zgraph-minimap{position:absolute;right:12px;bottom:12px;z-index:3;width:150px;height:94px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:6px;background:rgba(255,253,248,.96);box-shadow:var(--m-shadow-pop,0 4px 16px rgba(31,45,61,.12))}
 .zgraph-empty{position:absolute;inset:0;z-index:2;display:grid;place-items:center;padding:24px;color:var(--m-ink-3,#607080);font-size:13px;text-align:center;pointer-events:none}
@@ -84,7 +84,7 @@ const GRAPH_CSS = `
 .zgraph-rail ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;overflow-wrap:anywhere}
 .zgraph-legend{position:absolute;left:50%;bottom:17px;z-index:3;transform:translateX(-50%);list-style:none;margin:0;padding:6px 10px;display:flex;align-items:center;gap:9px;border:1px solid var(--m-line,#e3ded5);border-radius:8px;background:rgba(255,253,248,.94);font-size:10px}
 .zgraph-legend li{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-@media(max-width:760px){.zgraph-layout{grid-template-columns:1fr;height:auto}.zgraph-stage{min-height:400px}.zgraph-rail{border-left:0;border-top:1px solid var(--m-line,#e3ded5);padding:10px 0 0;max-height:220px}.zgraph-minimap{width:120px;height:76px}.zgraph-legend{left:auto;right:12px;bottom:96px;transform:none}}
+@media(max-width:900px){.zgraph-layout{grid-template-columns:1fr;height:auto}.zgraph-stage{min-height:520px}.zgraph-rail{border-left:0;border-top:1px solid var(--m-line,#e3ded5);padding:10px 0 0;max-height:220px}.zgraph-minimap{width:120px;height:76px}.zgraph-legend{left:auto;right:12px;bottom:96px;transform:none}}
 `
 
 interface MiniNode {
@@ -180,11 +180,10 @@ function layoutGraph(
     fit: false,
     padding: 58,
     avoidOverlap: true,
-    minNodeSpacing: 54,
+    minNodeSpacing: 28,
     startAngle: -Math.PI / 2,
-    sweep: Math.PI * 2,
     clockwise: true,
-    equidistant: true,
+    equidistant: false,
     animate,
     animationDuration: animate ? 280 : 0,
     concentric: (node: NodeSingular) => maximumDepth - (depths.get(node.id()) ?? maximumDepth),
@@ -298,39 +297,41 @@ export default function LessonGraphCanvas({
         {
           selector: "node",
           style: {
-            width: 66,
-            height: 66,
+            width: 78,
+            height: 78,
             "background-color": "#fffdf8",
             "border-color": "data(color)",
             "border-width": 2,
             label: "data(label)",
             color: "#263f5a",
             "font-family": "Inter, ui-sans-serif, system-ui, sans-serif",
-            "font-size": 11,
+            "font-size": 12,
             "font-weight": 600,
             "text-wrap": "wrap",
-            "text-max-width": "74px",
+            "text-max-width": "82px",
             "text-valign": "center",
             "text-halign": "center",
             "overlay-opacity": 0,
+            "transition-property": "width height border-width opacity",
+            "transition-duration": reducedMotion() ? 0 : 240,
           },
         },
         {
           selector: "node.is-focus",
           style: {
-            width: 88,
-            height: 88,
+            width: 98,
+            height: 98,
             "background-color": "#294968",
             "border-color": "#294968",
             "border-width": 4,
             color: "#ffffff",
-            "font-size": 12,
-            "text-max-width": "82px",
+            "font-size": 13,
+            "text-max-width": "92px",
           },
         },
         {
           selector: "node.is-muted",
-          style: { opacity: 0.34 },
+          style: { opacity: 0.62 },
         },
         {
           selector: "node.is-new",
@@ -357,7 +358,7 @@ export default function LessonGraphCanvas({
         },
         {
           selector: "edge.is-muted",
-          style: { opacity: 0.16 },
+          style: { opacity: 0.28 },
         },
       ],
       minZoom: 0.42,
