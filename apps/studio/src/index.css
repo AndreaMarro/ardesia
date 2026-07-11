@@ -15,6 +15,136 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body,
+#root { width: 100%; height: 100%; overflow: hidden; }
+
+/* ── StudioShell: tela letterale condivisa dalle quattro viste ─────────── */
+.st-studio-shell {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  min-width: 0; min-height: 0;
+  background: var(--m-paper); color: var(--m-ink);
+  isolation: isolate;
+}
+.st-shell-topbar {
+  position: relative; z-index: 540;
+  min-height: 72px; flex: 0 0 72px;
+  display: grid; grid-template-columns: minmax(180px, 1fr) minmax(360px, 620px) minmax(180px, 1fr);
+  align-items: center; gap: var(--m-sp-4);
+  box-sizing: border-box; padding: 0 var(--m-sp-5);
+  background: var(--m-paper-veil);
+  border-bottom: 1px solid var(--m-line);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.st-shell-search {
+  position: relative;
+  min-height: 44px; min-width: 0;
+  display: flex; align-items: center; gap: var(--m-sp-2);
+  box-sizing: border-box; padding: 4px 5px 4px var(--m-sp-4);
+  border: 1px solid var(--m-line-2); border-radius: var(--m-r-pill);
+  background: var(--m-canvas); color: var(--m-ink-3);
+  box-shadow: var(--m-shadow-pop);
+}
+.st-shell-search > span:first-child {
+  min-width: 0; flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: var(--m-fs-sm);
+}
+.st-shell-launcher {
+  width: 36px; height: 36px; min-width: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 50%;
+  background: var(--m-accent); color: var(--m-canvas);
+  font: 500 24px/1 var(--m-font-ui); cursor: pointer;
+  transition: transform var(--m-t-fast) var(--m-ease), background var(--m-t-fast) var(--m-ease);
+}
+.st-shell-launcher:hover,
+.st-shell-launcher[aria-expanded="true"] { background: var(--m-accent-down); transform: scale(1.04); }
+.st-shell-actions {
+  min-width: 0;
+  display: flex; align-items: center; justify-content: flex-end; gap: var(--m-sp-2);
+}
+.st-shell-actions .st-name { max-width: 150px; font-size: var(--m-fs-xs); }
+.st-shell-actions .st-orbit-save { width: 10px; overflow: hidden; font-size: 0; }
+.st-shell-actions .st-orbit-share {
+  width: 44px; height: 44px; padding: 0; justify-content: center;
+}
+.st-shell-actions .st-orbit-share span { display: none; }
+.st-shell-stage { position: relative; z-index: 1; flex: 1; min-width: 0; min-height: 0; overflow: hidden; }
+
+.st-room-board {
+  position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--m-paper);
+}
+.st-room-board > .st-orbit-canvas { flex: 1; min-height: 0; }
+.st-board-annotation-anchor {
+  position: absolute; inset: 0; z-index: 505;
+  pointer-events: none;
+}
+
+/* Strumenti di creazione fuori dal transform-layer di Excalidraw. */
+.st-radial-tools {
+  position: absolute; right: 28px; bottom: 26px; z-index: 530;
+  width: 190px; height: 190px;
+  pointer-events: none;
+}
+.st-radial-tools::before,
+.st-radial-tools::after {
+  content: ""; position: absolute; right: 8px; bottom: 8px;
+  border: 1px dashed var(--m-line-2); border-radius: 50%;
+  opacity: .62; pointer-events: none;
+}
+.st-radial-tools::before { width: 166px; height: 166px; }
+.st-radial-tools::after { width: 112px; height: 112px; right: 35px; bottom: 35px; }
+.st-radial-trigger,
+.st-radial-tool {
+  position: absolute; pointer-events: auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-sizing: border-box; border-radius: 50%; cursor: pointer;
+  color: var(--m-ink-2); background: var(--m-canvas);
+  border: 1px solid var(--m-line-2); box-shadow: var(--m-shadow-pop);
+  font-family: var(--m-font-ui);
+  transition: transform var(--m-t-fast) var(--m-ease), border-color var(--m-t-fast) var(--m-ease), background var(--m-t-fast) var(--m-ease);
+}
+.st-radial-trigger {
+  right: 0; bottom: 0; width: 58px; height: 58px;
+  border: 5px solid var(--m-accent-light);
+  background: var(--m-accent); color: var(--m-canvas);
+  font-size: 28px; font-weight: 400;
+}
+.st-radial-tool { width: 46px; height: 46px; min-width: 46px; font-size: 20px; }
+.st-radial-tool:hover,
+.st-radial-tool:focus-visible { transform: scale(1.08); border-color: var(--m-accent); }
+.st-radial-tool[data-radial-tool="select"] { right: 75px; bottom: 42px; }
+.st-radial-tool[data-radial-tool="pen"] { right: 42px; bottom: 97px; }
+.st-radial-tool[data-radial-tool="text"] { right: 104px; bottom: 0; font-family: var(--m-font-display); }
+.st-radial-tool[data-radial-tool="media"] { right: 0; bottom: 76px; }
+.st-radial-tool[data-radial-tool="plugin"] { right: 96px; bottom: 96px; color: var(--m-accent); font-size: 25px; }
+.st-radial-tools[data-motion-state="open"] .st-radial-tool { animation: st-radial-arrive var(--m-t-gentle) var(--m-ease) both; }
+@keyframes st-radial-arrive { from { opacity: 0; transform: scale(.72); } to { opacity: 1; transform: scale(1); } }
+
+/* I runtime restano dentro gli embed reali; questi hook convergono il loro
+   involucro visivo e lasciano un punto stabile ai connettori di scena. */
+.st-studio-shell [data-plugin-instance-id] {
+  position: relative;
+  border-radius: var(--m-r-field);
+  box-shadow: var(--m-shadow-card);
+  transition: box-shadow var(--m-t-gentle) var(--m-ease), transform var(--m-t-gentle) var(--m-ease);
+}
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="simulation"] { box-shadow: inset 0 3px 0 var(--m-viridian), var(--m-shadow-card); }
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="arduino-toolchain"] { box-shadow: inset 0 3px 0 var(--m-blue), var(--m-shadow-card); }
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="elabtutor"] { box-shadow: inset 0 3px 0 var(--m-ochre), var(--m-shadow-card); }
+.st-studio-shell [data-plugin-instance-id][data-motion-state="settled"] { animation: st-postit-settle var(--m-t-gentle) var(--m-ease) both; }
+.st-studio-shell [data-plugin-connector-anchor]::before {
+  content: ""; position: absolute; z-index: 2; top: 10px; right: 10px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--m-verified);
+  box-shadow: 0 0 0 3px var(--m-verified-wash);
+}
+.st-studio-shell [data-plugin-technical-details] { margin: 0; }
+@keyframes st-postit-settle { from { opacity: .01; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
+
 /* ── shell header ─────────────────────────────────────────────────────── */
 .st-bar {
   display: flex; align-items: center; gap: 14px;
@@ -722,3 +852,52 @@ body {
 .ow-marketplace { display: flex; flex-direction: column; gap: var(--m-sp-3); }
 .ow-marketplace summary { cursor: pointer; margin-bottom: var(--m-sp-1); }
 .ow-marketplace[open] summary { color: var(--m-ink-2); }
+
+/* Literal Room shell: iPad e LIM mantengono rail, ricerca e creazione raggiungibili. */
+@media (max-width: 1024px) {
+  .st-shell-topbar {
+    grid-template-columns: minmax(142px, .65fr) minmax(300px, 1.5fr) minmax(112px, .55fr);
+    gap: var(--m-sp-2); padding-inline: var(--m-sp-3);
+  }
+  .st-shell-actions .st-name { display: none; }
+  .st-radial-tools { right: 18px; bottom: 18px; }
+}
+
+@media (max-width: 768px) {
+  .st-shell-topbar {
+    min-height: 64px; flex-basis: 64px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding-inline: var(--m-sp-2);
+  }
+  .st-shell-search { min-height: 44px; padding-left: var(--m-sp-3); }
+  .st-shell-actions .st-orbit-save { display: none; }
+  .st-radial-tools { right: 10px; bottom: 12px; transform: scale(.88); transform-origin: right bottom; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-studio-shell *, .st-studio-shell *::before, .st-studio-shell *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* La shell approvata affida la creazione all'orbita; Excalidraw resta il
+   motore della tela e mantiene zoom/pan, menu e runtime embed. */
+.st-room-board .excalidraw .App-top-bar,
+.st-room-board .excalidraw .welcome-screen-center,
+.st-room-board .excalidraw .welcome-screen-decor-hint--toolbar,
+.st-room-board .excalidraw .undo-redo-buttons,
+.st-room-board .excalidraw .help-icon { display: none !important; }
+.st-room-board .st-orbit-canvas,
+.st-room-board .st-orbit-canvas .excalidraw,
+.st-room-board .st-orbit-canvas .excalidraw .excalidraw__canvas { background: var(--m-canvas) !important; }
+.st-room-board .st-radial-tools { right: 60px; bottom: 58px; }
+
+@media (max-width: 1024px) {
+  .st-room-board .st-radial-tools { right: 34px; bottom: 34px; }
+}
+
+@media (max-width: 768px) {
+  .st-room-board .st-radial-tools { right: 16px; bottom: 20px; }
+}

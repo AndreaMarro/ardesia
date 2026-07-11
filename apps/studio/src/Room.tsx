@@ -12,7 +12,7 @@ import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconDownload, IconFunction, IconImage, IconLink, IconMic } from "./design/icons"
-import ViewNav from "./design/ViewNav"
+import StudioShell from "./design/StudioShell"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
@@ -58,6 +58,13 @@ function isLessonFile(file: File): boolean {
   return file.name.toLowerCase().endsWith(LESSON_EXTENSION)
 }
 
+function boardStateFromElements(elements: unknown): "empty" | "populated" {
+  if (!Array.isArray(elements)) return "empty"
+  return elements.some((element) => {
+    return typeof element === "object" && element !== null && (element as { isDeleted?: boolean }).isDeleted !== true
+  }) ? "populated" : "empty"
+}
+
 export default function Room({ store }: { store?: WorkspaceStore }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
@@ -79,6 +86,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   /** Launcher unico per note, media, plugin e comandi della lezione. */
   const [launcherOpen, setLauncherOpen] = useState(false)
   const [launcherQuery, setLauncherQuery] = useState("")
+  const [radialOpen, setRadialOpen] = useState(false)
+  const [boardState, setBoardState] = useState<"empty" | "populated">("empty")
   const launcherButtonRef = useRef<HTMLButtonElement>(null)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
@@ -189,6 +198,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             // valori JSON falsy ("" / 0 / false) o non-oggetto = scena corrotta: parti da zero
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
             setSceneData(parsed)
+            setBoardState(boardStateFromElements(parsed.elements))
             // Seed journal con elementi esistenti: NON registrarli come element.add
             const jr = journalRef.current
             if (jr && parsed?.elements) {
@@ -343,9 +353,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     // al giro dopo changed=false, nessun loop di updateScene).
     const normalized = normalizeDuplicatedToolEmbeds(elements as readonly { id?: string }[])
     if (normalized.changed && apiRef.current) {
+      setBoardState(boardStateFromElements(normalized.elements))
       apiRef.current.updateScene({ elements: normalized.elements })
       return
     }
+    setBoardState(boardStateFromElements(elements))
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
@@ -527,7 +539,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const els = convertToExcalidrawElements(
       files.map((f) => ({ type: "image", x: f.x, y: f.y, width: f.width, height: f.height, fileId: f._id }) as any)
     )
-    apiRef.current.updateScene({ elements: [...apiRef.current.getSceneElements(), ...els] })
+    const nextElements = [...apiRef.current.getSceneElements(), ...els]
+    setBoardState(boardStateFromElements(nextElements))
+    apiRef.current.updateScene({ elements: nextElements })
   }
 
   async function insertMath(latex: string) {
@@ -573,6 +587,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
         const files = parsed.files ?? {}
         setSceneData(parsed)
+        setBoardState(boardStateFromElements(elements))
         latestElementsRef.current = elements
         latestAppStateRef.current = appState
         latestFilesRef.current = files
@@ -637,6 +652,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
+    setBoardState("populated")
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -664,6 +680,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
+    setBoardState("populated")
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -691,6 +708,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
 
     const nextElements = [...currentElements, insert.embed]
+    setBoardState("populated")
     apiRef.current.updateScene({
       elements: nextElements,
       appState: { selectedElementIds: {} },
@@ -756,12 +774,115 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     { id: "lesson", label: "Lezione", items: visibleLauncherItems.filter((item) => item.group === "lesson") },
   ].filter((group) => group.items.length > 0)
 
-  return recapView ? (
-    <RecapView store={actualStore} room={room} />
-  ) : replayView ? (
-    <ReplayView store={actualStore} room={room} />
+  if (recapView) return <RecapView store={actualStore} room={room} />
+  if (replayView) return <ReplayView store={actualStore} room={room} />
+
+  const launcherControl = (
+    <>
+      <button
+        type="button"
+        ref={launcherButtonRef}
+        className="st-shell-launcher"
+        data-orbit-action="launcher"
+        aria-label="Cerca e crea"
+        aria-expanded={launcherOpen}
+        aria-controls="ardesia-launcher"
+        onClick={() => setLauncherOpen((open) => !open)}
+      >
+        <span aria-hidden>+</span>
+      </button>
+      {launcherOpen && (
+        <section id="ardesia-launcher" role="dialog" aria-label="Cerca e crea" className="st-launcher-panel">
+          <label className="st-launcher-search">
+            <span>Cosa vuoi fare?</span>
+            <input
+              autoFocus
+              type="search"
+              value={launcherQuery}
+              onChange={(event) => setLauncherQuery(event.currentTarget.value)}
+              placeholder="Cerca nota, media, circuito..."
+            />
+          </label>
+          <div className="st-launcher-groups">
+            {launcherGroups.map((group) => (
+              <section key={group.id} className={`st-launcher-group st-launcher-group-${group.id}`} aria-labelledby={`launcher-group-${group.id}`}>
+                <h2 id={`launcher-group-${group.id}`}>{group.label}</h2>
+                <div className="st-launcher-grid">
+                  {group.items.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={item.action}
+                      aria-label={`${item.label}: ${item.detail}`}
+                      className={`st-launcher-item st-launcher-item-${item.id}`}
+                    >
+                      {item.icon && <span className="st-launcher-item-icon">{item.icon}</span>}
+                      <span className="st-launcher-item-copy">
+                        <strong>{item.label}</strong>
+                        <span>{item.detail}</span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+          {visibleLauncherItems.length === 0 && <p className="st-launcher-empty">Nessun risultato. Prova con nota, media o plugin.</p>}
+        </section>
+      )}
+    </>
+  )
+
+  const lessonNameControl = editingName ? (
+    <input
+      ref={renameInputRef}
+      className="st-name-input"
+      defaultValue={lessonName ?? ""}
+      onBlur={(event) => saveRename(event.target.value)}
+      onKeyDown={(event: KeyboardEvent) => {
+        if (event.key === "Enter") saveRename((event.target as HTMLInputElement).value)
+        if (event.key === "Escape") setEditingName(false)
+      }}
+      autoFocus
+    />
   ) : (
-    <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
+    <span
+      className="st-name"
+      role="button"
+      tabIndex={0}
+      aria-label={lessonName ? `Rinomina la lezione ${lessonName}` : "Dai un titolo alla lezione"}
+      title={lessonName ? `Rinomina: ${lessonName}` : "Dai un titolo alla lezione"}
+      onClick={startRename}
+      onKeyDown={(event: KeyboardEvent) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); startRename() }
+      }}
+    >
+      <span className="st-name-text">{lessonName ?? "Lezione senza titolo"}</span>
+    </span>
+  )
+
+  const shellActions = (
+    <>
+      {lessonNameControl}
+      {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
+      <span className="st-orbit-save" title={storeMode === "fsa" ? "Salvata sul computer" : exportAdvice ?? "Salvata in questo browser"}>
+        <span className="st-led" aria-hidden />
+        {loading ? "apro" : saved ? "salvata" : "salvataggio automatico"}
+      </span>
+      <button
+        onClick={copyLink}
+        className="st-orbit-share"
+        data-orbit-action="share"
+        aria-label="Condividi con la classe"
+        title="Copia il link per lo studente"
+      >
+        {copied ? <><IconCheck size={18} /><span>copiato</span></> : <><IconLink size={18} /><span>condividi</span></>}
+      </button>
+    </>
+  )
+
+  const roomContent = (
+    <div className="st-room-board" data-board-state={boardState}>
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
         <header className="st-bar st-bar-student">
@@ -781,116 +902,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           )}
           <span className="st-chip-student">stai guardando la lavagna</span>
         </header>
-      ) : (
-      <header className="st-bar st-orbit-shell">
-        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
-          <span className="st-word">Ardesia</span>
-          <span className="st-bdot" aria-hidden />
-          <span className="st-sub">studio</span>
-        </div>
-
-        {/* Nome lezione: editabile inline con matitina hover */}
-        {editingName ? (
-          <input
-            ref={renameInputRef}
-            className="st-name-input"
-            defaultValue={lessonName ?? ""}
-            onBlur={(e) => saveRename(e.target.value)}
-            onKeyDown={(e: KeyboardEvent) => {
-              if (e.key === "Enter") saveRename((e.target as HTMLInputElement).value)
-              if (e.key === "Escape") setEditingName(false)
-            }}
-            autoFocus
-          />
-        ) : (
-          <span
-            className="st-name"
-            role="button"
-            tabIndex={0}
-            aria-label={lessonName ? `Rinomina la lezione ${lessonName}` : "Dai un titolo alla lezione"}
-            title={lessonName ? `Rinomina: ${lessonName}` : "Dai un titolo alla lezione"}
-            onClick={startRename}
-            onKeyDown={(e: KeyboardEvent) => {
-              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startRename() }
-            }}
-          >
-            <span className="st-name-text">{lessonName ?? "Lezione senza titolo"}</span>
-          </span>
-        )}
-
-        <div className="st-orbit-launcher-wrap">
-          <button
-            type="button"
-            ref={launcherButtonRef}
-            className="st-orbit-launcher"
-            data-orbit-action="launcher"
-            aria-expanded={launcherOpen}
-            aria-controls="ardesia-launcher"
-            onClick={() => setLauncherOpen((open) => !open)}
-          >
-            <span>Cerca e crea: nota, media o plugin</span>
-            <strong>Crea</strong>
-          </button>
-          {launcherOpen && (
-            <section id="ardesia-launcher" role="dialog" aria-label="Cerca e crea" className="st-launcher-panel">
-              <label className="st-launcher-search">
-                <span>Cosa vuoi fare?</span>
-                <input
-                  autoFocus
-                  type="search"
-                  value={launcherQuery}
-                  onChange={(event) => setLauncherQuery(event.currentTarget.value)}
-                  placeholder="Cerca nota, media, circuito..."
-                />
-              </label>
-              <div className="st-launcher-groups">
-                {launcherGroups.map((group) => (
-                  <section key={group.id} className={`st-launcher-group st-launcher-group-${group.id}`} aria-labelledby={`launcher-group-${group.id}`}>
-                    <h2 id={`launcher-group-${group.id}`}>{group.label}</h2>
-                    <div className="st-launcher-grid">
-                      {group.items.map((item) => (
-                        <button
-                          key={item.id}
-                          type="button"
-                          onClick={item.action}
-                          aria-label={`${item.label}: ${item.detail}`}
-                          className={`st-launcher-item st-launcher-item-${item.id}`}
-                        >
-                          {item.icon && <span className="st-launcher-item-icon">{item.icon}</span>}
-                          <span className="st-launcher-item-copy">
-                            <strong>{item.label}</strong>
-                            <span>{item.detail}</span>
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-              {visibleLauncherItems.length === 0 && <p className="st-launcher-empty">Nessun risultato. Prova con nota, media o plugin.</p>}
-            </section>
-          )}
-        </div>
-        <div className="st-orbit-actions">
-          {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
-          <span className="st-orbit-save" title={storeMode === "fsa" ? "Salvata sul computer" : exportAdvice ?? "Salvata in questo browser"}>
-            <span className="st-led" aria-hidden />
-            {loading ? "apro" : saved ? "salvata" : "salvataggio automatico"}
-          </span>
-          <button
-            onClick={copyLink}
-            className="st-orbit-share"
-            data-orbit-action="share"
-            aria-label="Condividi con la classe"
-            title="Copia il link per lo studente"
-          >
-            {copied ? <><IconCheck size={18} /><span>copiato</span></> : <><IconLink size={18} /><span>condividi</span></>}
-          </button>
-        </div>
-        <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
-        <ViewNav current="lavagna" />
-      </header>
-      )}
+      ) : null}
+      <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
 
       {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
       {audioRecording && <div className="st-recstrip" data-rec-strip />}
@@ -1090,6 +1103,101 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         )}
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
       </div>
+      {!studentView && (
+        <div
+          className="st-radial-tools"
+          data-radial-tools
+          data-motion-state={radialOpen ? "open" : "settled"}
+        >
+          {radialOpen && (
+            <div className="st-radial-tool-items">
+              <button
+                type="button"
+                className="st-radial-tool"
+                data-radial-tool="select"
+                aria-label="Seleziona"
+                onClick={() => {
+                  apiRef.current?.setActiveTool?.({ type: "selection" })
+                  setRadialOpen(false)
+                }}
+              >
+                <span aria-hidden>↖</span>
+              </button>
+              <button
+                type="button"
+                className="st-radial-tool"
+                data-radial-tool="pen"
+                aria-label="Penna"
+                onClick={() => {
+                  apiRef.current?.setActiveTool?.({ type: "freedraw" })
+                  setRadialOpen(false)
+                }}
+              >
+                <span aria-hidden>✎</span>
+              </button>
+              <button
+                type="button"
+                className="st-radial-tool"
+                data-radial-tool="text"
+                aria-label="Testo"
+                onClick={() => {
+                  startTextNote()
+                  setRadialOpen(false)
+                }}
+              >
+                <span aria-hidden>T</span>
+              </button>
+              <button
+                type="button"
+                className="st-radial-tool"
+                data-radial-tool="media"
+                aria-label="Media"
+                onClick={() => {
+                  fileInputRef.current?.click()
+                  setRadialOpen(false)
+                }}
+              >
+                <IconImage size={20} />
+              </button>
+              <button
+                type="button"
+                className="st-radial-tool"
+                data-radial-tool="plugin"
+                aria-label="Aggiungi plugin"
+                onClick={() => {
+                  setLauncherOpen(true)
+                  setRadialOpen(false)
+                  window.setTimeout(() => launcherButtonRef.current?.focus(), 0)
+                }}
+              >
+                <span aria-hidden>+</span>
+              </button>
+            </div>
+          )}
+          <button
+            type="button"
+            className="st-radial-trigger"
+            aria-label={radialOpen ? "Chiudi strumenti" : "Apri strumenti"}
+            aria-expanded={radialOpen}
+            onClick={() => setRadialOpen((open) => !open)}
+          >
+            <span aria-hidden>{radialOpen ? "×" : "+"}</span>
+          </button>
+        </div>
+      )}
+      <div className="st-board-annotation-anchor" data-annotation-layer-anchor aria-hidden />
     </div>
+  )
+
+  if (studentView) return roomContent
+  return (
+    <StudioShell
+      current="lavagna"
+      searchLabel="Cerca e crea: nota, media o plugin..."
+      launcher={launcherControl}
+      actions={shellActions}
+    >
+      {roomContent}
+    </StudioShell>
   )
 }

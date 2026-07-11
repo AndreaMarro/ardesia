@@ -5,6 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
 import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
@@ -16,6 +17,7 @@ import { exportLesson } from "../store/lessonBundle"
 const mockExcalidrawHarness = vi.hoisted(() => ({
   updateSceneCalls: [] as Array<{ elements?: Array<{ id?: string }> }>,
   scrollToContentCalls: [] as Array<{ elements: Array<{ id?: string }>; options?: unknown }>,
+  activeToolCalls: [] as Array<{ type: string }>,
   sceneElements: [] as Array<{ id?: string }>,
 }))
 
@@ -34,6 +36,9 @@ vi.mock("@excalidraw/excalidraw", () => {
             addFiles: vi.fn(),
             scrollToContent: vi.fn((elements: Array<{ id?: string }>, options?: unknown) => {
               mockExcalidrawHarness.scrollToContentCalls.push({ elements, options })
+            }),
+            setActiveTool: vi.fn((tool: { type: string }) => {
+              mockExcalidrawHarness.activeToolCalls.push(tool)
             }),
             onPointerDown: vi.fn(() => {
               const unsub = () => {}
@@ -175,7 +180,9 @@ beforeEach(() => {
   document.body.innerHTML = '<div id="root"></div>'
   mockExcalidrawHarness.updateSceneCalls = []
   mockExcalidrawHarness.scrollToContentCalls = []
+  mockExcalidrawHarness.activeToolCalls = []
   mockExcalidrawHarness.sceneElements = []
+  document.body.removeAttribute("data-mock-excalidraw-api")
   vi.clearAllMocks()
 })
 
@@ -193,6 +200,84 @@ async function launcherAction(label: string): Promise<HTMLButtonElement> {
 }
 
 describe("Room ↔ WorkspaceStore integration", () => {
+  it("espone la lavagna vuota e apre gli strumenti radiali reali", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const container = document.getElementById("root")!
+    const root = createRoot(container)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(container.querySelector('[data-board-state="empty"]')).toBeTruthy()
+      expect(container.querySelector("[data-radial-tools]")).toBeTruthy()
+    }, { timeout: 5000, interval: 10 })
+
+    fireEvent.click(screen.getByRole("button", { name: "Apri strumenti" }))
+    expect(screen.getByRole("button", { name: "Aggiungi plugin" })).toBeTruthy()
+    await vi.waitFor(() => {
+      expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+    }, { timeout: 5000, interval: 10 })
+    fireEvent.click(screen.getByRole("button", { name: "Penna" }))
+    expect(mockExcalidrawHarness.activeToolCalls.at(-1)).toEqual({ type: "freedraw" })
+    expect(container.textContent).not.toMatch(/FQBN|capability|provider diagnostics|keyboard scope/i)
+
+    root.unmount()
+  })
+
+  it("deriva lo stato popolato dagli elementi vivi della scena", async () => {
+    const { store } = await createMockStore()
+    const liveElement = { id: "nota-live", type: "text", isDeleted: false }
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify({
+      elements: [liveElement, { id: "nota-cancellata", type: "text", isDeleted: true }],
+      appState: {},
+      files: {},
+    }))
+
+    const container = document.getElementById("root")!
+    const root = createRoot(container)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(container.querySelector('[data-board-state="populated"]')).toBeTruthy()
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("mantiene diagnostica e provenienza fuori dalla copia primaria dei post-it", async () => {
+    const {
+      createArduinoToolchainEmbedElement,
+      createElabTutorLinkedEmbedElement,
+      createToolEmbedElement,
+      renderToolCanvasEmbeddable,
+    } = await import("../toolhost/ToolCanvasEmbeddable")
+    const elements = [
+      createToolEmbedElement(),
+      createArduinoToolchainEmbedElement(),
+      createElabTutorLinkedEmbedElement(),
+    ]
+
+    for (const element of elements) {
+      const view = renderToolCanvasEmbeddable(element)
+      expect(view).not.toBeNull()
+      const rendered = render(view!)
+      const postit = rendered.container.querySelector("[data-plugin-instance-id]")
+      const primaryCopy = Array.from(postit?.querySelectorAll("[data-plugin-primary-copy]") ?? [])
+        .map((node) => node.textContent)
+        .join(" ")
+      const technicalDetails = postit?.querySelector("details[data-plugin-technical-details]")
+      expect(postit?.getAttribute("data-motion-state")).toBe("settled")
+      expect(primaryCopy).toBeTruthy()
+      expect(primaryCopy).not.toMatch(/FQBN|capabilit|provider|diagnostics|instance-id/i)
+      expect(technicalDetails).toBeTruthy()
+      expect(technicalDetails?.hasAttribute("open")).toBe(false)
+      rendered.unmount()
+    }
+  })
+
   it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {
     const { store } = await createMockStore()
     const element = { id: "postit-focus", type: "rectangle" }
