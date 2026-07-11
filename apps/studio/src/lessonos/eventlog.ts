@@ -40,6 +40,16 @@ interface BaseEvent {
   /** Timestamp evento (ms epoch), fornito dal chiamante: il log non inventa tempi. */
   t: number
   evidence: EvidenceRef[]
+  /** PluginInstance che ha causato il fatto, quando il producer e' un post-it. */
+  instanceId?: string
+  /** Id dell'azione/comando che ha causato l'evento: utile per replay e audit. */
+  causationId?: string
+  /** Provenienza leggibile della superficie che ha prodotto l'evento. */
+  provenance?: {
+    surface: "postit" | "notebook" | "whiteboard" | "overlay"
+    pluginId?: string
+    source?: string
+  }
 }
 
 export type LessonOsEvent =

@@ -626,7 +626,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
     apiRef.current.updateScene({
       elements: [...currentElements, insert.embed],
-      appState: { selectedElementIds: { [insert.embedId]: true } },
+      appState: { selectedElementIds: {} },
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
@@ -934,14 +934,21 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   : {
                       persistEmbedState: (embedId, state, toolId) => {
                         if (apiRef.current) {
-                          void persistRoomEmbedStateThroughToolHost(
-                            apiRef.current,
-                            actualStore,
-                            embedId,
-                            state,
-                            toolId,
-                            setStorageError,
-                          )
+                          const api = apiRef.current
+                          void (async () => {
+                            await persistRoomEmbedStateThroughToolHost(
+                              api,
+                              actualStore,
+                              embedId,
+                              state,
+                              toolId,
+                              setStorageError,
+                            )
+                            if (apiRef.current !== api) return
+                            latestElementsRef.current = api.getSceneElements() as any
+                            latestAppStateRef.current = api.getAppState()
+                            await flushPersist()
+                          })()
                         }
                       },
                       emitLessonEvent: (event) => {

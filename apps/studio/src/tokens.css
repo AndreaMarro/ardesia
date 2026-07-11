@@ -44,3 +44,12 @@
   --ui-font:var(--m-font-ui); --border-radius-lg:var(--m-r-card); --border-radius-md:var(--m-r-field);
 }
 .excalidraw .default-sidebar-trigger { display:none; } /* Library nascosta in v1 */
+
+/* PluginInstance ARDESIA: gli embeddable Excalidraw sono anche oggetti
+   disegnabili, ma i post-it plugin devono ricevere pointer/touch reali. */
+.excalidraw .excalidraw__embeddable__outer {
+  pointer-events:auto;
+  position:relative;
+  z-index:3;
+}
+.excalidraw .excalidraw__embeddable__outer * { pointer-events:auto; }

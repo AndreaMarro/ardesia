@@ -14,12 +14,29 @@ export type SimulationSolveEventInput = {
   outcome: SimulationSolveOutcome
   /** Timestamp epoch(ms) fornito dal chiamante. */
   t: number
+  /** PluginInstance post-it che produce l'evento. */
+  instanceId?: string
+  /** Comando/azione che ha causato il solve osservato. */
+  causationId?: string
+  /** Provenienza della superficie: per Slice A il default e' il post-it Simulation. */
+  provenance?: {
+    surface: "postit" | "notebook" | "whiteboard" | "overlay"
+    pluginId?: string
+    source?: string
+  }
 }
 
 export function simulationSolveEvent(input: SimulationSolveEventInput): LessonOsEvent | null {
-  const { experimentId, outcome, t } = input
+  const { experimentId, outcome, t, instanceId, causationId, provenance } = input
   if (!experimentId) return null
   const evidence = [`simulation:scene:${experimentId}`]
+  const base = {
+    t,
+    evidence,
+    ...(instanceId ? { instanceId } : {}),
+    ...(causationId ? { causationId } : {}),
+    ...(provenance ? { provenance } : {}),
+  }
   if (outcome.kind === "solved") {
     return {
       kind: "simulation.circuit.solved",
@@ -28,8 +45,7 @@ export function simulationSolveEvent(input: SimulationSolveEventInput): LessonOs
       currentMa: outcome.currentMa,
       bookLayoutValid: outcome.bookLayoutValid,
       labels: { it: `Circuito risolto: ${outcome.currentMa.toFixed(1)} mA` },
-      t,
-      evidence,
+      ...base,
     }
   }
   if (outcome.kind === "error") {
@@ -40,8 +56,7 @@ export function simulationSolveEvent(input: SimulationSolveEventInput): LessonOs
       sceneId: experimentId,
       experimentId,
       labels: { it: outcome.message },
-      t,
-      evidence,
+      ...base,
     }
   }
   return null

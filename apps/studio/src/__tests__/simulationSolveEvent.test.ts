@@ -6,6 +6,9 @@ describe("simulationSolveEvent (esito solve → evento LessonOS)", () => {
     const ev = simulationSolveEvent({
       experimentId: "v1-cap6-esp1",
       t: 1500,
+      instanceId: "sim-a",
+      causationId: "sim-a:solve:solved:15.3:true",
+      provenance: { surface: "postit", pluginId: "io.ardesia.simulation", source: "Simulation Plugin post-it" },
       outcome: { kind: "solved", currentMa: 15.3, bookLayoutValid: true },
     })
     expect(ev).toMatchObject({
@@ -16,6 +19,9 @@ describe("simulationSolveEvent (esito solve → evento LessonOS)", () => {
       bookLayoutValid: true,
       t: 1500,
       evidence: ["simulation:scene:v1-cap6-esp1"],
+      instanceId: "sim-a",
+      causationId: "sim-a:solve:solved:15.3:true",
+      provenance: { surface: "postit", pluginId: "io.ardesia.simulation" },
     })
   })
 

@@ -905,7 +905,18 @@ function ReferenceSimulationCanvasTool({
         ? `solved:${outcome.currentMa.toFixed(1)}:${outcome.bookLayoutValid}`
         : `error:${outcome.code}`;
     if (lastEmittedSolveRef.current === signature) return;
-    const event = simulationSolveEvent({ experimentId: scene.experimentId, outcome, t: Date.now() });
+    const event = simulationSolveEvent({
+      experimentId: scene.experimentId,
+      outcome,
+      t: Date.now(),
+      instanceId: toolLink.embedId,
+      causationId: `${toolLink.embedId}:solve:${signature}`,
+      provenance: {
+        surface: "postit",
+        pluginId: toolLink.toolId,
+        source: "Simulation Plugin post-it",
+      },
+    });
     if (!event) return;
     lastEmittedSolveRef.current = signature;
     host.emitLessonEvent(event);
@@ -1109,14 +1120,23 @@ function ReferenceSimulationCanvasTool({
       style={shellStyle}
       data-simulation-surface="elab-core-canvas"
       data-elab-core-canvas-mounted="true"
+      data-plugin-instance-id={toolLink.embedId}
+      data-plugin-postit-kind="simulation"
       aria-label={SIMULATION_CORE_CANVAS_STATUS}
     >
       <header style={headerStyle}>
         <div>
-          <div style={eyebrowStyle}>Simulation Plugin Canvas</div>
-          <h2 style={titleStyle}>{scene.title}</h2>
-          <div style={manualRefStyle}>{scene.manual.label}</div>
-          <div style={harnessBannerStyle}>{SIMULATION_CORE_CANVAS_STATUS}</div>
+          <div style={eyebrowStyle}>Post-it interattivo</div>
+          <h2 style={titleStyle}>Accendi il LED sulla breadboard</h2>
+          <div style={flowRailStyle} aria-label="Percorso Simulation">
+            <span style={flowStepOnStyle}>1. costruisci</span>
+            <span style={flowStepStyle}>2. collega</span>
+            <span style={flowStepStyle}>3. simula</span>
+            <span style={flowStepStyle}>4. spiega</span>
+          </div>
+          <div style={nextActionStyle}>
+            Prossima azione: scegli un componente, poi tocca due fori liberi.
+          </div>
           {/* Onestà di catalogo: la UI non vende esperimenti non montati. */}
           <div
             style={catalogBannerStyle}
@@ -1125,7 +1145,7 @@ function ReferenceSimulationCanvasTool({
             {catalog.label}
           </div>
         </div>
-        <div style={toolIdStyle}>{toolLink.toolId}</div>
+        <div style={instanceBadgeStyle}>{toolLink.embedId}</div>
       </header>
 
       <main style={mainStyle}>
@@ -1162,7 +1182,7 @@ function ReferenceSimulationCanvasTool({
               onClick={handleBreakConnections}
               style={freeModeButtonStyle}
             >
-              Rompi i collegamenti
+              Apri circuito
             </button>
             <button
               type="button"
@@ -1170,19 +1190,19 @@ function ReferenceSimulationCanvasTool({
               onClick={handleRestoreConnections}
               style={freeModeButtonStyle}
             >
-              Ripristina
+              Ripristina circuito
             </button>
           </section>
-          <ElabCoreCanvasMount
-            scene={boardScene}
-            projectionMode={coreCanvasProjectionMode}
-            markerState={marker?.state}
-            toolLink={toolLink}
-            host={host}
-          />
+          <SimulationBoard scene={boardScene} montaggio={montaggio} />
           <details style={legacyHarnessDetailsStyle} data-legacy-free-assembly-harness>
-            <summary style={legacyHarnessSummaryStyle}>Montaggio libero legacy</summary>
-            <SimulationBoard scene={boardScene} montaggio={montaggio} />
+            <summary style={legacyHarnessSummaryStyle}>Proiezione tecnica scena</summary>
+            <ElabCoreCanvasMount
+              scene={boardScene}
+              projectionMode={coreCanvasProjectionMode}
+              markerState={marker?.state}
+              toolLink={toolLink}
+              host={host}
+            />
           </details>
         </div>
 
@@ -1744,7 +1764,7 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
               </text>
               {montaggio.canUndo && (
                 <g
-                  transform="translate(332 88)"
+                  transform="translate(308 80)"
                   role="button"
                   tabIndex={0}
                   aria-label="annulla ultima modifica"
@@ -1755,14 +1775,14 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
                     if (event.key === "Enter" || event.key === " ") montaggio.onUndo();
                   }}
                 >
-                  <rect x="0" y="0" width="90" height="14" rx="7" fill="#f6f9fc" stroke="#dce6ef" />
-                  <text x="45" y="10" textAnchor="middle" fill="#52677f" fontSize="7" fontWeight="700">
+                  <rect x="0" y="0" width="104" height="36" rx="12" fill="#f6f9fc" stroke="#dce6ef" />
+                  <text x="52" y="22" textAnchor="middle" fill="#52677f" fontSize="8" fontWeight="700">
                     annulla
                   </text>
                 </g>
               )}
               <g
-                transform="translate(430 88)"
+                transform="translate(418 80)"
                 role="button"
                 tabIndex={0}
                 aria-label="riparti dal manuale"
@@ -1773,8 +1793,8 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
                   if (event.key === "Enter" || event.key === " ") montaggio.onReset();
                 }}
               >
-                <rect x="0" y="0" width="90" height="14" rx="7" fill="#f6f9fc" stroke="#dce6ef" />
-                <text x="45" y="10" textAnchor="middle" fill="#52677f" fontSize="7" fontWeight="700">
+                <rect x="0" y="0" width="112" height="36" rx="12" fill="#f6f9fc" stroke="#dce6ef" />
+                <text x="56" y="22" textAnchor="middle" fill="#52677f" fontSize="8" fontWeight="700">
                   riparti dal manuale
                 </text>
               </g>
@@ -2468,7 +2488,7 @@ function UnknownToolCanvasTool({ toolLink }: { toolLink: ToolLink }) {
           <div style={eyebrowStyle}>Tool Canvas</div>
           <h2 style={titleStyle}>Tool non installato</h2>
         </div>
-        <div style={toolIdStyle}>{toolLink.toolId}</div>
+        <div style={instanceBadgeStyle}>{toolLink.toolId}</div>
       </header>
       <div style={{ padding: 18, color: "#52677f", fontSize: 14 }}>
         Embed {toolLink.embedId} rilevato. Serve il bundle tool firmato per montare il runtime.
@@ -2502,14 +2522,14 @@ const headerStyle = {
   justifyContent: "space-between",
   gap: 12,
   alignItems: "start",
-  padding: "14px 16px 10px",
+  padding: "14px 16px 12px",
   borderBottom: "1px solid #d8e1eb",
-  background: "#ffffff",
+  background: "linear-gradient(90deg, #ffffff 0%, #f7fbff 58%, #fff7e9 100%)",
 } as const;
 
 const eyebrowStyle = {
   fontSize: 12,
-  color: "#2d6a4f",
+  color: "#0a3da6",
   fontWeight: 850,
 } as const;
 
@@ -2519,21 +2539,7 @@ const titleStyle = {
   lineHeight: 1.1,
 } as const;
 
-const manualRefStyle = {
-  marginTop: 5,
-  fontSize: 12,
-  color: "#52677f",
-  fontWeight: 750,
-} as const;
-
-const harnessBannerStyle = {
-  marginTop: 8,
-  color: "#6f4c13",
-  fontSize: 12,
-  fontWeight: 800,
-} as const;
-
-const toolIdStyle = {
+const instanceBadgeStyle = {
   fontSize: 12,
   color: "#52677f",
   border: "1px solid #d8e1eb",
@@ -2542,6 +2548,40 @@ const toolIdStyle = {
   background: "#fbfdff",
   maxWidth: 230,
   wordBreak: "break-word",
+} as const;
+
+const flowRailStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 6,
+  marginTop: 10,
+} as const;
+
+const flowStepStyle = {
+  border: "1px solid #d8e1eb",
+  borderRadius: 999,
+  background: "#ffffff",
+  color: "#52677f",
+  padding: "5px 9px",
+  fontSize: 12,
+  fontWeight: 800,
+} as const;
+
+const flowStepOnStyle = {
+  ...flowStepStyle,
+  borderColor: "#d98a1f",
+  background: "#fff6d8",
+  color: "#102034",
+} as const;
+
+const nextActionStyle = {
+  marginTop: 10,
+  borderRadius: 8,
+  background: "#eaf1ff",
+  color: "#102034",
+  padding: "8px 10px",
+  fontSize: 13,
+  fontWeight: 750,
 } as const;
 
 const mainStyle = {
@@ -2843,7 +2883,8 @@ const stepToggleStyle = {
   color: "#1f4f80",
   fontSize: 10,
   fontWeight: 800,
-  padding: "3px 10px",
+  minHeight: 32,
+  padding: "6px 12px",
   cursor: "pointer",
 } as const;
 
@@ -2919,6 +2960,7 @@ const buttonStyle = {
   background: "#ffffff",
   color: "#102034",
   borderRadius: 7,
+  minHeight: 44,
   padding: "8px 10px",
   fontWeight: 750,
   cursor: "pointer",

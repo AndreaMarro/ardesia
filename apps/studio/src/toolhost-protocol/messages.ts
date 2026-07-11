@@ -204,6 +204,15 @@ const lessonLabels = z.record(z.string(), z.string())
 const lessonEventBase = z.strictObject({
   t: z.number().finite(),
   evidence: z.array(evidenceRef).min(1),
+  instanceId: z.string().min(1).optional(),
+  causationId: z.string().min(1).optional(),
+  provenance: z
+    .strictObject({
+      surface: z.enum(["postit", "notebook", "whiteboard", "overlay"]),
+      pluginId: z.string().min(1).optional(),
+      source: z.string().min(1).optional(),
+    })
+    .optional(),
 })
 
 export const LessonStartedEventSchema = lessonEventBase.extend({

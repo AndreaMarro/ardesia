@@ -71,6 +71,15 @@ function notice(container: HTMLElement): string {
 }
 
 describe("SimulationBoard — palette tap-tap (montaggio libero slice 3)", () => {
+  it("renderizza il Simulation Plugin come post-it docente, non come pagina harness", () => {
+    const container = mountSim()
+    expect(container.querySelector('[data-plugin-postit-kind="simulation"]')).not.toBeNull()
+    expect(container.textContent).toContain("Accendi il LED sulla breadboard")
+    expect(container.textContent).toContain("Prossima azione")
+    expect(container.textContent).toContain("1. costruisci")
+    expect(container.textContent).not.toContain("Simulation Plugin Canvas")
+  })
+
   it("i piazzamenti liberi scrivono componenti e pinAssignments strutturati", () => {
     const base = createReferenceSimulationScene()
     const boardScene = createBoardSceneWithPlacements(base, [
