@@ -2,7 +2,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
-import { cleanup, render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it } from "vitest";
 
@@ -15,6 +15,8 @@ import {
   pointForBreadboardRef,
 } from "../../sim/breadboard/simulationBreadboard";
 import {
+  ARDUINO_TOOLCHAIN_TOOL_ID,
+  createArduinoToolchainEmbedElement,
   ELAB_V1_CAP6_ESP1_FINAL_PAGE_IMAGE,
   ELAB_V1_CAP6_ESP1_MANUAL_PAGE_IMAGE,
   ELAB_V1_FIRST_LED_EXPERIMENT_ID,
@@ -108,6 +110,40 @@ describe("ToolCanvasEmbeddable", () => {
       ]),
     );
     expect(validateBookLayoutScene(state.scene)).toEqual({ ok: true, errors: [] });
+  });
+
+  it("renderizza Arduino Toolchain come post-it autonomo e compila con provider reale browser-avr", async () => {
+    const element = createArduinoToolchainEmbedElement();
+    const persisted: unknown[] = [];
+    const emitted: unknown[] = [];
+    const view = renderToolCanvasEmbeddable(element, {
+      persistEmbedState: (_embedId, state) => persisted.push(state),
+      emitLessonEvent: (event) => emitted.push(event),
+    });
+    expect(view).not.toBeNull();
+
+    const { container, getByText } = render(view!);
+    expect(container.querySelector("[data-plugin-postit-kind='arduino-toolchain']")).not.toBeNull();
+    expect(container.querySelector("[data-arduino-fqbn]")?.getAttribute("data-arduino-fqbn")).toBe("arduino:avr:nano:cpu=atmega328old");
+
+    fireEvent.click(getByText("Compila"));
+
+    await waitFor(() => {
+      expect(container.querySelector("[data-arduino-compile-status]")?.getAttribute("data-arduino-compile-status")).toBe("success");
+      expect(persisted.length).toBeGreaterThan(0);
+      expect(emitted).toHaveLength(1);
+    });
+    const next = persisted.at(-1) as { artifact: { artifactFormat: string; sizeBytes: number } | null; diagnostics: { status: string } };
+    expect(next.diagnostics.status).toBe("success");
+    expect(next.artifact).toMatchObject({ artifactFormat: "intel-hex" });
+    expect(next.artifact!.sizeBytes).toBeGreaterThan(0);
+    expect(emitted[0]).toMatchObject({
+      kind: "arduino.compile.completed",
+      pluginId: ARDUINO_TOOLCHAIN_TOOL_ID,
+      provider: "browser-avr",
+      ok: true,
+      artifactFormat: "intel-hex",
+    });
   });
 
   it("keeps the ELABTutor breadboard topology electrically falsifiable", () => {

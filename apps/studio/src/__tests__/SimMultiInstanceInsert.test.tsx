@@ -18,8 +18,11 @@
 
 import { describe, expect, it } from "vitest"
 import {
+  ARDUINO_TOOLCHAIN_EMBED_ID,
+  ARDUINO_TOOLCHAIN_TOOL_ID,
   REFERENCE_SIM_EMBED_ID,
   REFERENCE_SIM_TOOL_ID,
+  buildArduinoToolchainInsert,
   buildSimulationInsert,
   createToolEmbedElement,
   nextSimulationEmbedId,
@@ -85,5 +88,18 @@ describe("buildSimulationInsert (logica inserimento Room, pura)", () => {
     expect(a).not.toBe(b)
     ;(a as Record<string, unknown>).__tap = "solo-A"
     expect((b as Record<string, unknown>).__tap).toBeUndefined()
+  })
+})
+
+describe("buildArduinoToolchainInsert (PluginInstance autonoma)", () => {
+  it("crea post-it Toolchain con id/link owner propri, separati da Simulation", () => {
+    const insert = buildArduinoToolchainInsert([])!
+    expect(insert.embedId).toBe(ARDUINO_TOOLCHAIN_EMBED_ID)
+    const link = parseToolLink((insert.embed as { link?: string }).link)
+    expect(link).toEqual({ toolId: ARDUINO_TOOLCHAIN_TOOL_ID, embedId: ARDUINO_TOOLCHAIN_EMBED_ID })
+    const marker = ((insert.embed.customData as Record<string, unknown>)[EMBED_DATA_KEY] as { owner: string; state: { kind: string; project: { fqbn: string } } })
+    expect(marker.owner).toBe(ARDUINO_TOOLCHAIN_TOOL_ID)
+    expect(marker.state.kind).toBe("arduino-toolchain-v1")
+    expect(marker.state.project.fqbn).toBe("arduino:avr:nano:cpu=atmega328old")
   })
 })

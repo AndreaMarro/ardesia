@@ -27,7 +27,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildArduinoToolchainInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -630,6 +630,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
+
+  function insertArduinoToolchainPlugin() {
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+
+    const currentElements = apiRef.current.getSceneElements()
+    const insert = buildArduinoToolchainInsert(currentElements as readonly { id?: string }[])
+    if (!insert) {
+      setStorageError("Arduino Toolchain non disponibile.")
+      return
+    }
+
+    apiRef.current.updateScene({
+      elements: [...currentElements, insert.embed],
+      appState: { selectedElementIds: {} },
+    })
+    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+  }
   const shareUrl = studentView
     ? `${location.origin}${location.pathname}#${room}`
     : `${location.origin}${location.pathname}?vista=studente#${room}`
@@ -757,6 +777,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
           <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
             sim
+          </button>
+          <button onClick={insertArduinoToolchainPlugin} className="st-ghost" aria-label="Inserisci Arduino Toolchain post-it sulla lavagna">
+            arduino
           </button>
           {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
               banner del post-it dichiara sempre montati/totale). */}

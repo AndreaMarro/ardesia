@@ -293,6 +293,19 @@ export const LessonPluginMountedEventSchema = lessonEventBase.extend({
   labels: lessonLabels,
 })
 
+export const LessonArduinoCompileCompletedEventSchema = lessonEventBase.extend({
+  kind: z.literal("arduino.compile.completed"),
+  pluginId: z.string().min(1),
+  boardId: z.string().min(1),
+  fqbn: z.string().min(1),
+  provider: z.enum(["browser-avr", "local-agent", "remote"]),
+  ok: z.boolean(),
+  artifactFormat: z.enum(["intel-hex", "elf", "bin"]).optional(),
+  artifactBytes: z.number().int().positive().optional(),
+  diagnostic: z.string().min(1),
+  labels: lessonLabels,
+})
+
 export const LessonEventEmitParamsSchema = z.strictObject({
   event: z.discriminatedUnion("kind", [
     LessonStartedEventSchema,
@@ -305,6 +318,7 @@ export const LessonEventEmitParamsSchema = z.strictObject({
     LessonSimulationCircuitSolvedEventSchema,
     LessonSimulationErrorObservedEventSchema,
     LessonPluginMountedEventSchema,
+    LessonArduinoCompileCompletedEventSchema,
   ]),
 })
 export const LessonEventEmitResultSchema = z.strictObject({

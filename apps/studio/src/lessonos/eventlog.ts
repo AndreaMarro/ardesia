@@ -114,6 +114,18 @@ export type LessonOsEvent =
       labels: Labels
     })
   | (BaseEvent & {
+      kind: "arduino.compile.completed"
+      pluginId: string
+      boardId: string
+      fqbn: string
+      provider: "browser-avr" | "local-agent" | "remote"
+      ok: boolean
+      artifactFormat?: "intel-hex" | "elf" | "bin"
+      artifactBytes?: number
+      diagnostic: string
+      labels: Labels
+    })
+  | (BaseEvent & {
       /** Tentativo quiz per-studente: fatto registrato; ogni vista (media, debito) è derivata. */
       kind: "quiz.attempted"
       quizId: string

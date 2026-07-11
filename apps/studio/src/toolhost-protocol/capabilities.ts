@@ -10,6 +10,13 @@ export const CapabilitiesSchema = z.strictObject({
   "graph.query": z.strictObject({}).optional(),
   "graph.proposeClaims": z.strictObject({}).optional(),
   "lesson.event.emit": z.strictObject({}).optional(),
+  "arduino.project": z.strictObject({}).optional(),
+  "arduino.board.catalog": z.strictObject({}).optional(),
+  "arduino.compile": z.strictObject({
+    providers: z.array(z.enum(["browser-avr", "local-agent", "remote"])).min(1),
+  }).optional(),
+  "arduino.upload": z.strictObject({ requiresHumanConfirm: z.literal(true) }).optional(),
+  "arduino.serial": z.strictObject({}).optional(),
   storage: z.strictObject({ quotaMB: z.number().int().min(1).max(1024) }).optional(),
   "llm.generate": z.strictObject({ maxTokensPerCall: z.number().int().min(1).max(200_000) }).optional(),
   "net.fetch": z.strictObject({ domains: z.array(z.string().regex(domainRe)).min(1) }).optional(),

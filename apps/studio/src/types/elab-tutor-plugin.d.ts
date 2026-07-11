@@ -68,3 +68,31 @@ declare module "@elab-tutor-plugin/data/experiments-index" {
   export const ALL_EXPERIMENTS: ElabVolumeExperiment[]
   export function findExperimentById(id: string): ElabVolumeExperiment | null
 }
+
+declare module "@elab-tutor-plugin/services/arduinoBoards.js" {
+  export interface ArduinoBoardCatalogEntry {
+    id: string
+    label: string
+    fqbn: string
+    mcuFamily: string
+    uploadProtocol: string
+    inBrowserCompileSupported?: boolean
+    baudRate?: number
+    flashSize?: number
+  }
+
+  export const BOARDS: readonly ArduinoBoardCatalogEntry[]
+  export function getBoardById(id: string): ArduinoBoardCatalogEntry | null
+  export function supportsInBrowserCompile(board: ArduinoBoardCatalogEntry | null | undefined): boolean
+}
+
+declare module "@elab-tutor-plugin/services/inBrowserAvrCompiler.js" {
+  export type BrowserAvrCompileResult =
+    | { success: true; hex: string; size: number; board: string }
+    | { success: false; reason: string }
+
+  export function compileArduinoInBrowser(
+    source: string,
+    options?: { board?: string },
+  ): BrowserAvrCompileResult
+}

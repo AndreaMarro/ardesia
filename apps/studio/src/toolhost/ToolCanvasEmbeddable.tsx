@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
 
+import { BOARDS, getBoardById, supportsInBrowserCompile, type ArduinoBoardCatalogEntry } from "@elab-tutor-plugin/services/arduinoBoards.js";
+import { compileArduinoInBrowser, type BrowserAvrCompileResult } from "@elab-tutor-plugin/services/inBrowserAvrCompiler.js";
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
 import {
@@ -139,6 +141,36 @@ type BookLayoutV1 = {
   };
 };
 
+type ArduinoCompileArtifact = {
+  provider: "browser-avr";
+  artifactFormat: "intel-hex";
+  sizeBytes: number;
+  hexPreview: string;
+  compiledAt: number;
+};
+
+type ArduinoCompileDiagnostics =
+  | { status: "idle"; message: string }
+  | { status: "success"; message: string; sizeBytes: number }
+  | { status: "error"; message: string; reason: string };
+
+type ArduinoToolchainState = {
+  kind: "arduino-toolchain-v1";
+  project: {
+    sourceKind: "cpp";
+    source: string;
+    boardId: string;
+    fqbn: string;
+  };
+  providers: {
+    compile: "browser-avr";
+    upload: "requires-hardware-confirmation";
+    serial: "provider-absent";
+  };
+  diagnostics: ArduinoCompileDiagnostics;
+  artifact: ArduinoCompileArtifact | null;
+};
+
 export type SimulationSceneV1 = {
   v: 1;
   experimentId: string;
@@ -216,9 +248,11 @@ type SimulationToolState =
 
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
 export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
+export const ARDUINO_TOOLCHAIN_TOOL_ID = "io.ardesia.arduino-toolchain";
 export const LEGACY_REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation-plugin";
 export const REFERENCE_PLUGIN_REF_ID = "io.maestro.plugin-ref";
 export const REFERENCE_SIM_EMBED_ID = "elab-v1-cap6-esp1-first-led";
+export const ARDUINO_TOOLCHAIN_EMBED_ID = "arduino-toolchain-postit";
 export const REFERENCE_SIM_LINK = `${TOOL_EMBED_SCHEME}${REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`;
 export const ELAB_V1_FIRST_LED_EXPERIMENT_ID = "v1-cap6-esp1";
 export const ELAB_V1_NO_RESISTOR_EXPERIMENT_ID = "v1-cap6-esp2";
@@ -543,6 +577,45 @@ export function createToolEmbedElement({
   };
 }
 
+export function createArduinoToolchainState(boardId = "nano"): ArduinoToolchainState {
+  const board = getBoardById(boardId) ?? getBoardById("nano") ?? BOARDS[0];
+  return {
+    kind: "arduino-toolchain-v1",
+    project: {
+      sourceKind: "cpp",
+      boardId: board.id,
+      fqbn: board.fqbn,
+      source: [
+        "void setup() {",
+        "  pinMode(13, OUTPUT);",
+        "}",
+        "",
+        "void loop() {",
+        "  digitalWrite(13, HIGH);",
+        "  delay(500);",
+        "  digitalWrite(13, LOW);",
+        "  delay(500);",
+        "}",
+      ].join("\n"),
+    },
+    providers: {
+      compile: "browser-avr",
+      upload: "requires-hardware-confirmation",
+      serial: "provider-absent",
+    },
+    diagnostics: { status: "idle", message: "Pronto: scegli board e compila il progetto." },
+    artifact: null,
+  };
+}
+
+export function createArduinoToolchainEmbedElement(embedId = ARDUINO_TOOLCHAIN_EMBED_ID) {
+  return createToolEmbedElement({
+    toolId: ARDUINO_TOOLCHAIN_TOOL_ID,
+    embedId,
+    state: createArduinoToolchainState(),
+  });
+}
+
 export function isToolCanvasEmbed(element: EmbedLike): boolean {
   return parseToolLink(element.link) !== null;
 }
@@ -641,6 +714,16 @@ export function buildSimulationInsert(
   return null;
 }
 
+export function buildArduinoToolchainInsert(
+  currentElements: readonly { id?: string }[],
+): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
+  const entry = getSimulationTool(ARDUINO_TOOLCHAIN_TOOL_ID);
+  if (!entry) return null;
+  const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
+  const embedId = nextSimulationEmbedId(ids, entry.embedId);
+  return { embed: entry.createEmbed(embedId), embedId };
+}
+
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
@@ -673,6 +756,222 @@ const referenceSimulationEntry = {
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
+
+function stateFromElement(element: EmbedLike): unknown {
+  return element.customData?.[EMBED_DATA_KEY] && (element.customData[EMBED_DATA_KEY] as { state?: unknown }).state;
+}
+
+function isArduinoToolchainState(state: unknown): state is ArduinoToolchainState {
+  return typeof state === "object" && state !== null && (state as { kind?: unknown }).kind === "arduino-toolchain-v1";
+}
+
+function compileToolchainState(state: ArduinoToolchainState): ArduinoToolchainState {
+  const board = getBoardById(state.project.boardId);
+  if (!board || !supportsInBrowserCompile(board)) {
+    return {
+      ...state,
+      diagnostics: {
+        status: "error",
+        reason: "unsupported_board",
+        message: "Questa board richiede agent o compilatore remoto: compile browser non disponibile.",
+      },
+      artifact: null,
+    };
+  }
+  const result: BrowserAvrCompileResult = compileArduinoInBrowser(state.project.source, { board: board.id });
+  if (!result.success) {
+    return {
+      ...state,
+      diagnostics: {
+        status: "error",
+        reason: result.reason,
+        message: `Compile fallita: ${result.reason}`,
+      },
+      artifact: null,
+    };
+  }
+  return {
+    ...state,
+    diagnostics: {
+      status: "success",
+      message: `Compile reale completata per ${board.fqbn}.`,
+      sizeBytes: result.size,
+    },
+    artifact: {
+      provider: "browser-avr",
+      artifactFormat: "intel-hex",
+      sizeBytes: result.size,
+      hexPreview: result.hex.slice(0, 180),
+      compiledAt: Date.now(),
+    },
+  };
+}
+
+function ArduinoToolchainPostit({
+  element,
+  toolLink,
+  host,
+}: {
+  element: EmbedLike;
+  toolLink: ToolLink;
+  host?: SimulationToolHost;
+}) {
+  const initial = stateFromElement(element);
+  const [state, setState] = useState<ArduinoToolchainState>(
+    isArduinoToolchainState(initial) ? initial : createArduinoToolchainState(),
+  );
+
+  function persist(next: ArduinoToolchainState) {
+    setState(next);
+    host?.persistEmbedState?.(toolLink.embedId, next, toolLink.toolId);
+  }
+
+  function updateBoard(boardId: string) {
+    const board = getBoardById(boardId);
+    if (!board) return;
+    persist({
+      ...state,
+      project: { ...state.project, boardId: board.id, fqbn: board.fqbn },
+      diagnostics: { status: "idle", message: "Board aggiornata: ricompila per generare un artifact coerente." },
+      artifact: null,
+    });
+  }
+
+  function updateSource(source: string) {
+    persist({
+      ...state,
+      project: { ...state.project, source },
+      diagnostics: { status: "idle", message: "Sorgente modificato: compila per aggiornare diagnostics e artifact." },
+      artifact: null,
+    });
+  }
+
+  function compile() {
+    const next = compileToolchainState(state);
+    persist(next);
+    host?.emitLessonEvent?.({
+      kind: "arduino.compile.completed",
+      pluginId: toolLink.toolId,
+      boardId: next.project.boardId,
+      fqbn: next.project.fqbn,
+      provider: "browser-avr",
+      ok: next.diagnostics.status === "success",
+      ...(next.artifact
+        ? {
+            artifactFormat: next.artifact.artifactFormat,
+            artifactBytes: next.artifact.sizeBytes,
+          }
+        : {}),
+      diagnostic: next.diagnostics.message,
+      t: Date.now(),
+      evidence: [`plugin:${toolLink.toolId}@${toolLink.embedId}`],
+      causationId: `${toolLink.embedId}:compile:${state.project.boardId}`,
+      provenance: {
+        surface: "postit",
+        pluginId: toolLink.toolId,
+        source: "Arduino Toolchain compile",
+      },
+      labels: {
+        it: next.diagnostics.status === "success" ? "Compile Arduino completata" : "Compile Arduino non riuscita",
+      },
+    });
+  }
+
+  const selectedBoard = getBoardById(state.project.boardId);
+
+  return (
+    <section
+      style={toolchainShellStyle}
+      data-plugin-postit-kind="arduino-toolchain"
+      data-plugin-instance-id={toolLink.embedId}
+      data-arduino-fqbn={state.project.fqbn}
+      data-arduino-compile-status={state.diagnostics.status}
+      aria-label="Arduino Toolchain post-it"
+    >
+      <header style={headerStyle}>
+        <div>
+          <div style={eyebrowStyle}>Post-it Arduino Toolchain</div>
+          <h2 style={titleStyle}>Compila il codice della scheda</h2>
+          <div style={flowRailStyle} aria-label="Percorso Arduino Toolchain">
+            <span style={flowStepOnStyle}>1. board</span>
+            <span style={flowStepStyle}>2. codice</span>
+            <span style={flowStepStyle}>3. compile</span>
+            <span style={flowStepStyle}>4. seriale</span>
+          </div>
+          <div style={nextActionStyle}>Prossima azione: scegli FQBN, poi compila senza inviare su hardware.</div>
+        </div>
+        <div style={instanceBadgeStyle}>{toolLink.embedId}</div>
+      </header>
+      <main style={toolchainMainStyle}>
+        <section style={toolchainEditorStyle}>
+          <label style={toolchainLabelStyle}>
+            Board / FQBN
+            <select
+              aria-label="Scegli board FQBN"
+              value={state.project.boardId}
+              onChange={(event) => updateBoard(event.currentTarget.value)}
+              style={toolchainSelectStyle}
+            >
+              {BOARDS.map((board: ArduinoBoardCatalogEntry) => (
+                <option key={board.id} value={board.id}>
+                  {board.label} - {board.fqbn}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label style={toolchainLabelStyle}>
+            C++ Arduino
+            <textarea
+              aria-label="Sorgente C++ Arduino"
+              value={state.project.source}
+              onChange={(event) => updateSource(event.currentTarget.value)}
+              spellCheck={false}
+              style={toolchainTextareaStyle}
+            />
+          </label>
+        </section>
+        <aside style={toolchainAsideStyle}>
+          <div style={toolchainCardStyle}>
+            <strong>Capability pubbliche</strong>
+            <span>arduino.project</span>
+            <span>arduino.board.catalog</span>
+            <span>arduino.compile</span>
+            <span>arduino.upload RED: conferma hardware richiesta</span>
+            <span>arduino.serial RED: provider non connesso</span>
+          </div>
+          <div style={toolchainCardStyle}>
+            <strong>{selectedBoard?.label ?? state.project.boardId}</strong>
+            <span>{state.project.fqbn}</span>
+            <span>Compile provider: browser-avr {selectedBoard && supportsInBrowserCompile(selectedBoard) ? "VERIFIED" : "RED"}</span>
+            <span>Upload: non avviato, nessun hardware scelto</span>
+          </div>
+          <button type="button" onClick={compile} style={primaryToolchainButtonStyle}>
+            Compila
+          </button>
+          <div style={state.diagnostics.status === "success" ? toolchainSuccessStyle : state.diagnostics.status === "error" ? toolchainErrorStyle : toolchainCardStyle}>
+            <strong>Diagnostics</strong>
+            <span>{state.diagnostics.message}</span>
+            {state.artifact && (
+              <>
+                <span>Artifact: {state.artifact.artifactFormat}, {state.artifact.sizeBytes} byte</span>
+                <code style={hexPreviewStyle}>{state.artifact.hexPreview}</code>
+              </>
+            )}
+          </div>
+        </aside>
+      </main>
+    </section>
+  );
+}
+
+const arduinoToolchainEntry = {
+  embedId: ARDUINO_TOOLCHAIN_EMBED_ID,
+  render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost) => (
+    <ArduinoToolchainPostit element={element} toolLink={toolLink} host={host} />
+  ),
+  createEmbed: (embedId?: string) => createArduinoToolchainEmbedElement(embedId),
+};
+registerSimulationTool(ARDUINO_TOOLCHAIN_TOOL_ID, arduinoToolchainEntry);
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
@@ -2684,6 +2983,105 @@ const legacyHarnessSummaryStyle = {
   color: "#52677f",
   fontSize: 12,
   fontWeight: 850,
+} as const;
+
+const toolchainShellStyle = {
+  ...shellStyle,
+  background: "linear-gradient(135deg, #f8fbff 0%, #fff8ea 54%, #f6fff9 100%)",
+} as const;
+
+const toolchainMainStyle = {
+  display: "grid",
+  gridTemplateColumns: "minmax(0, 1.5fr) minmax(280px, 0.8fr)",
+  gap: 14,
+  padding: 16,
+  minHeight: 620,
+} as const;
+
+const toolchainEditorStyle = {
+  display: "grid",
+  gap: 12,
+  alignContent: "start",
+} as const;
+
+const toolchainLabelStyle = {
+  display: "grid",
+  gap: 6,
+  color: "#1d3557",
+  fontSize: 12,
+  fontWeight: 850,
+} as const;
+
+const toolchainSelectStyle = {
+  minHeight: 44,
+  border: "1px solid #cbd8e6",
+  borderRadius: 8,
+  padding: "8px 10px",
+  background: "#ffffff",
+  color: "#102034",
+  fontWeight: 750,
+} as const;
+
+const toolchainTextareaStyle = {
+  minHeight: 430,
+  border: "1px solid #cbd8e6",
+  borderRadius: 8,
+  padding: 14,
+  background: "#101824",
+  color: "#e8f2ff",
+  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+  fontSize: 14,
+  lineHeight: 1.5,
+  resize: "vertical",
+} as const;
+
+const toolchainAsideStyle = {
+  display: "grid",
+  gap: 12,
+  alignContent: "start",
+} as const;
+
+const toolchainCardStyle = {
+  border: "1px solid #d8e1eb",
+  borderRadius: 8,
+  background: "#ffffff",
+  color: "#24364b",
+  padding: 12,
+  display: "grid",
+  gap: 6,
+  fontSize: 13,
+} as const;
+
+const toolchainSuccessStyle = {
+  ...toolchainCardStyle,
+  borderColor: "#73c48f",
+  background: "#f2fff6",
+} as const;
+
+const toolchainErrorStyle = {
+  ...toolchainCardStyle,
+  borderColor: "#e07b7b",
+  background: "#fff6f3",
+} as const;
+
+const primaryToolchainButtonStyle = {
+  minHeight: 48,
+  border: "1px solid #1f4f80",
+  borderRadius: 8,
+  background: "#1f4f80",
+  color: "#ffffff",
+  fontWeight: 850,
+  cursor: "pointer",
+} as const;
+
+const hexPreviewStyle = {
+  whiteSpace: "pre-wrap",
+  wordBreak: "break-word",
+  borderRadius: 6,
+  background: "#102034",
+  color: "#e8f2ff",
+  padding: 8,
+  fontSize: 11,
 } as const;
 
 const svgBadgeTextStyle: CSSProperties = {
