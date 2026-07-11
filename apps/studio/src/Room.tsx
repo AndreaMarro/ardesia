@@ -1226,7 +1226,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   setRadialOpen(false)
                 }}
               >
-                <span aria-hidden>✎</span>
+                <span aria-hidden>P</span>
               </button>
               <button
                 type="button"

@@ -558,7 +558,7 @@ export function PluginInkOverlay({
           style={compactToolbarTriggerStyle(annotationMode)}
           onClick={() => setToolbarOpen(true)}
         >
-          <span aria-hidden>✎</span>
+          <span aria-hidden>P</span>
         </button>
       )}
 

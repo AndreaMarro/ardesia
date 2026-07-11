@@ -93,7 +93,7 @@ body,
   width: min(320px, calc(100vw - 220px)); min-height: 108px;
   display: flex; align-items: center; justify-content: center; gap: var(--m-sp-2);
   transform: translateX(-50%); border: 1px dashed var(--m-line-2); border-radius: 50%;
-  background: color-mix(in srgb, var(--m-canvas) 72%, transparent); color: var(--m-ink-3);
+  background: var(--m-canvas-veil); color: var(--m-ink-3);
   font: 600 var(--m-fs-sm)/1 var(--m-font-ui); cursor: pointer;
   animation: st-empty-orbit-breathe 3.6s var(--m-ease) infinite;
 }
@@ -102,7 +102,7 @@ body,
   border-radius: 50%; background: var(--m-accent); color: var(--m-canvas); font-size: 22px; font-weight: 400;
 }
 .st-empty-orbit-cue:hover,
-.st-empty-orbit-cue:focus-visible { border-color: var(--m-accent); color: var(--m-accent-deep); outline: none; }
+.st-empty-orbit-cue:focus-visible { border-color: var(--m-accent); color: var(--m-accent-deep); outline: 3px solid var(--m-accent); outline-offset: 3px; }
 @keyframes st-empty-orbit-breathe { 50% { border-color: var(--m-accent-off); transform: translateX(-50%) scale(1.02); } }
 
 /* Strumenti di creazione fuori dal transform-layer di Excalidraw. */
@@ -157,9 +157,9 @@ body,
 .st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="simulation"] { box-shadow: inset 0 3px 0 var(--m-viridian), var(--m-shadow-card); }
 .st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="arduino-toolchain"] { box-shadow: inset 0 3px 0 var(--m-blue), var(--m-shadow-card); }
 .st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="elabtutor"] { box-shadow: inset 0 3px 0 var(--m-ochre), var(--m-shadow-card); }
-.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="simulation"] { background: color-mix(in srgb, var(--m-viridian) 6%, var(--m-canvas)) !important; }
-.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="arduino-toolchain"] { background: color-mix(in srgb, var(--m-blue) 5%, var(--m-canvas)) !important; }
-.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="elabtutor"] { background: color-mix(in srgb, var(--m-ochre) 8%, var(--m-canvas)) !important; }
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="simulation"] { background: var(--m-simulation-surface) !important; }
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="arduino-toolchain"] { background: var(--m-arduino-surface) !important; }
+.st-studio-shell [data-plugin-instance-id][data-plugin-postit-kind="elabtutor"] { background: var(--m-tutor-surface) !important; }
 .st-studio-shell [data-plugin-instance-id]:hover { transform: translateY(-2px); box-shadow: var(--m-shadow-card); }
 .st-studio-shell [data-plugin-live-preview] { min-width: 0; }
 .st-studio-shell [data-plugin-action-copy="short"] { display: none; }
@@ -191,7 +191,7 @@ body,
   position: fixed; inset: 0; z-index: 999998;
   display: flex; align-items: flex-start; justify-content: center;
   box-sizing: border-box; padding: 320px 28px 28px;
-  background: rgba(245, 246, 248, .16);
+  background: var(--m-backdrop);
 }
 .st-plugin-runtime-overlay {
   width: min(1180px, calc(100vw - 56px));
@@ -1079,7 +1079,7 @@ body,
   transition: color var(--m-t-fast) var(--m-ease), background var(--m-t-fast) var(--m-ease);
 }
 .st-library-open:hover,
-.st-library-open:focus-visible { color: var(--m-accent); background: var(--m-accent-wash); outline: none; }
+.st-library-open:focus-visible { color: var(--m-accent); background: var(--m-accent-wash); outline: 3px solid var(--m-accent); outline-offset: 2px; }
 .st-library-technical-details { grid-column: 1 / -1; min-width: 0; border-top: 1px solid var(--m-line); }
 .st-library-technical-details summary,
 .st-library-index-details summary {
