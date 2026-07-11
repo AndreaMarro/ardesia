@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
@@ -215,7 +216,7 @@ describe("PluginInkOverlay", () => {
       authorRole: "teacher" as const,
     };
     const clear = renderOverlay({ ...emptyPluginAnnotations(), items: [item] });
-    const clearButton = screen.getByRole("button", { name: "Cancella annotazioni" });
+    const clearButton = screen.getByRole("button", { name: "Cancella annotazioni" }) as HTMLButtonElement;
     fireEvent.click(clearButton);
     const clearDialog = screen.getByRole("dialog", { name: "Conferma cancellazione annotazioni" });
     const clearCancel = within(clearDialog).getByRole("button", { name: "Annulla" });
@@ -230,6 +231,32 @@ describe("PluginInkOverlay", () => {
     fireEvent.keyDown(clearDialog, { key: "Escape" });
     expect(screen.queryByRole("dialog", { name: "Conferma cancellazione annotazioni" })).toBeNull();
     await waitFor(() => expect(document.activeElement).toBe(clearButton));
+  });
+
+  it("restores successful clear focus to an enabled toolbar control after controlled state updates", async () => {
+    const item = {
+      id: "sim-a:annotation:1",
+      kind: "stroke" as const,
+      tool: "pen" as const,
+      points: [{ x: 0.1, y: 0.1 }, { x: 0.9, y: 0.9 }],
+      color: "#173f73",
+      width: 0.008,
+      authorRole: "teacher" as const,
+    };
+    function ControlledOverlay() {
+      const [value, setValue] = useState<PluginAnnotationDocument>({ ...emptyPluginAnnotations(), items: [item] });
+      return <PluginInkOverlay instanceId="sim-a" value={value} onChange={setValue} />;
+    }
+
+    render(<ControlledOverlay />);
+    fireEvent.click(screen.getByRole("button", { name: "Cancella annotazioni" }));
+    fireEvent.click(within(screen.getByRole("dialog", { name: "Conferma cancellazione annotazioni" })).getByRole("button", { name: "Conferma cancellazione" }));
+
+    await waitFor(() => expect(screen.queryByRole("dialog", { name: "Conferma cancellazione annotazioni" })).toBeNull());
+    const clearButton = screen.getByRole("button", { name: "Cancella annotazioni" }) as HTMLButtonElement;
+    const visibilityButton = screen.getByRole("button", { name: "Nascondi annotazioni" });
+    expect(clearButton.disabled).toBe(true);
+    await waitFor(() => expect(document.activeElement).toBe(visibilityButton));
   });
 
   it("supports selection, erasing, undo, redo, visibility, locking, and confirmed clear", () => {

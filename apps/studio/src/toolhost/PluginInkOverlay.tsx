@@ -192,6 +192,7 @@ export function PluginInkOverlay({
   const surfaceRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const dialogOpenerRef = useRef<HTMLElement | null>(null);
+  const stableToolbarControlRef = useRef<HTMLButtonElement>(null);
   const stageRef = useRef<SVGSVGElement>(null);
   const nextIdRef = useRef(nextOrdinal(instanceId, value));
   const overlayId = useId();
@@ -276,10 +277,12 @@ export function PluginInkOverlay({
     setDialog(nextDialog);
   }
 
-  function closeDialog() {
+  function closeDialog(restoreTarget: "opener" | "stable" = "opener") {
     setDialog(null);
     setTextAt(null);
-    window.setTimeout(() => dialogOpenerRef.current?.focus(), 0);
+    window.setTimeout(() => {
+      (restoreTarget === "stable" ? stableToolbarControlRef.current : dialogOpenerRef.current)?.focus();
+    }, 0);
   }
 
   function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
@@ -466,7 +469,7 @@ export function PluginInkOverlay({
   }
 
   function clear() {
-    closeDialog();
+    closeDialog("stable");
     if (value.locked || value.items.length === 0) return;
     setSelectedId(null);
     commitItems([], "clear");
@@ -555,6 +558,7 @@ export function PluginInkOverlay({
           </button>
         ))}
         <button
+          ref={stableToolbarControlRef}
           type="button"
           aria-label={value.visible ? "Nascondi annotazioni" : "Mostra annotazioni"}
           title={value.visible ? "Nascondi annotazioni" : "Mostra annotazioni"}
@@ -605,7 +609,7 @@ export function PluginInkOverlay({
               <input style={dialogInputStyle} maxLength={180} value={alternativeText} onChange={(event) => setAlternativeText(event.currentTarget.value)} />
             </label>
             <div style={dialogActionsStyle}>
-              <button type="button" style={dialogButtonStyle} onClick={closeDialog}>Annulla</button>
+              <button type="button" style={dialogButtonStyle} onClick={() => closeDialog()}>Annulla</button>
               <button type="submit" style={dialogButtonStyle} disabled={!text.trim()}>Aggiungi testo</button>
             </div>
           </form>
@@ -617,7 +621,7 @@ export function PluginInkOverlay({
           <div style={dialogStyle}>
             <strong>Cancellare tutte le annotazioni?</strong>
             <div style={dialogActionsStyle}>
-              <button data-plugin-ink-dialog-initial-focus type="button" style={dialogButtonStyle} onClick={closeDialog}>Annulla</button>
+              <button data-plugin-ink-dialog-initial-focus type="button" style={dialogButtonStyle} onClick={() => closeDialog()}>Annulla</button>
               <button type="button" style={dialogButtonStyle} onClick={clear}>Conferma cancellazione</button>
             </div>
           </div>
