@@ -3,7 +3,6 @@
 import { StrictMode } from "react"
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import cytoscape from "cytoscape"
 import LessonGraphCanvas, { displayedLevel } from "../design/LessonGraphCanvas"
 
 type ElementInput = { group: "nodes" | "edges"; data: Record<string, unknown>; classes?: string }
