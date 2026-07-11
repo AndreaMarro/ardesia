@@ -46,6 +46,8 @@ explicit Andrea decision recorded separately; they are never silent deletions.
 - External targets explicitly include ChatGPT Apps, custom GPTs and Claude
   Team/Enterprise connectors. They consume governed ARDESIA MCP/OpenAPI
   capabilities and never bypass post-it, LessonOS, role or privacy contracts.
+- ARDESIA must spread into other software through reusable embed/capability
+  surfaces (web, LMS/LTI, MCP, OpenAPI), while keeping one domain model.
 - Teachers may author or generate, approve, publish and sell educational
   content. Teacher/Creator Network and Marketplace provide profile, portfolio,
   social discovery, subscription and visibility based on transparent quality,
@@ -56,6 +58,22 @@ explicit Andrea decision recorded separately; they are never silent deletions.
 - Every user may create no-code or technical plugins. Every legally eligible
   creator may choose free, open-source or monetized distribution; minors require
   a guardian/school seller arrangement.
+- Tinkercad parity in the Simulation Plugin is the capability foundation for
+  attaching the ElabTutor Plugin. Use the real first-party GitHub repository
+  `AndreaMarro/elab-tutor` as a harvest source; do not duplicate its shell,
+  auth, secrets/config or protected corpus.
+- ElabTutor and Simulation remain separate plugin-post-it instances. They can
+  link/dock through public capabilities and detach without losing state.
+- A separate Arduino Toolchain Plugin post-it must support Blockly and C++,
+  dynamic Arduino board/core packages, cross-compile, diagnostics, physical
+  upload and serial. It links to Simulation and ElabTutor through capabilities.
+- For Tinkercad parity, the independent Toolchain instance docks through a
+  `PluginLink` slot inside the Simulation post-it. It remains detachable with
+  its own identity/state, but adjacent unrelated cards do not satisfy parity.
+- "Any Arduino model" means an extensible FQBN/board-package matrix with honest
+  provider support per model, not a hardcoded list or unverified universal claim.
+- UI and UX must be beautiful, intuitive and distinct. Matisse, Calder and
+  Haring principles remain mandatory quality lenses, not decorative notes.
 - The final organization must be the simplest coherent architecture that is
   innovative, powerful, scalable and at least current with leading products.
 - Assemble proven pieces behind stable adapters. Characterization, contract,

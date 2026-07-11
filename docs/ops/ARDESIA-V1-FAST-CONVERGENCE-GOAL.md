@@ -12,7 +12,7 @@ Mandato canonico congelato per questa esecuzione:
 - addendum corrente: `/Users/andreamarro/.codex/attachments/c1f75ee2-e5ee-467e-b69a-02ca9ddf9742/pasted-text.txt`,
   SHA-256 `17000115531d1bacc62d06025f89a3bea5e1ac0342f364dd00ff8805e0186a50`.
 - chiarimenti consolidati: `docs/ops/ARDESIA-MANDATE-ADDENDUM-20260711.md`,
-  SHA-256 `88967a453389d128a646ae984fa0ab9752d5a500b2d97528b6cb64ad33cd8310`.
+  SHA-256 `c33f4a377aaa2a30337a3277c872284645edef5c92ee056f826b26dd03b2bfc4`.
 
 La baseline e' l'unione ordinata delle tre fonti. Un cambio di hash, rimozione o
 reinterpretazione richiede approvazione esplicita di Andrea e decision log.
@@ -239,6 +239,13 @@ misura non dimostra il collo di bottiglia che ciascuno dovrebbe rimuovere.
 - Polimorfismo tramite manifest e capability, composizione prima
   dell'ereditarieta'. Nessun plugin legge o muta direttamente stato/internals
   di un altro; usa comandi/eventi/capability pubbliche.
+- `PluginLink` collega istanze con capability provided/required, mount slot,
+  lifecycle e failure isolation. Un post-it puo' dockarsi a un altro ma conserva
+  ID, stato, permessi e possibilita' di detach; nessun nesting crea ownership
+  implicita o accesso agli internals.
+- `ArduinoToolchainPlugin` e' un post-it autonomo collegabile a Simulation ed
+  ElabTutor. `ArduinoProject` conserva board FQBN/core/versione, librerie,
+  sorgente C++, Blockly/AST, build artifact, diagnostics e serial state.
 - Collapse, expand, duplicate, move, save/reopen ed export operano sulla stessa
   istanza e sullo stesso stato. L'espansione e' un overlay del post-it dentro la
   lavagna, mai una route/pagina dedicata, e non crea una seconda source of truth.
@@ -311,6 +318,7 @@ misura non dimostra il collo di bottiglia che ciascuno dovrebbe rimuovere.
 | Lavagna infinita | pan/zoom infinito, penna, forme, gruppi, selezione, link, undo/redo, autosave | spatial graph e template | collaborazione realtime | suite creativa estesa |
 | Knowledge Card | nota, formula, source, quiz, simulation observation, plugin view attach/detach | conversioni, graph links, audio, plugin state/history | publishing/licensing | marketplace aperto |
 | Simulation | scenario LED completo, wire, solve, diagnosi, persistence e matrice parity attiva | strumenti, Arduino, code/serial/plot e piu' esperimenti | matrice Tinkercad completa certificata | nuove discipline hardware |
+| Arduino Toolchain | Blockly/C++, board select, compile/diagnostics e provider status | FQBN/core dinamici, upload/seriale reali | matrice board/protocol completa | ecosistema hardware esteso |
 | Plugin | manifest, capability, lifecycle, audit, storage/eventi, creator template e una composizione plugin-su-plugin | package/install/update/disable/uninstall, creator tecnico+docente e dependency graph | review, signing e publishing | ecosistema pubblico aperto |
 | LessonOS | event log locale, snapshot, graph projection verticale | sync staging e conflict policy | multi-tenant production | federation |
 | Knowledge Explorer | grafo/appunti navigabile per singola lezione | selezione multi-lezione, filtri, livelli e grafici | corso/scuola con policy privacy | federazione graph |
@@ -322,6 +330,7 @@ misura non dimostra il collo di bottiglia che ciascuno dovrebbe rimuovere.
 | Backend | staging, auth, tenant, RLS, eventi, export | backup/observability | scaling e billing | multi-region |
 | Connector | import/export file con provenance | Drive/LMS/MCP adapter con scope minimi | catalogo connector governato | ecosistema esterno |
 | Storage | local-first offline e LessonPackage portabile | Drive provider, sync/revision/conflict | school storage policy | multi-provider |
+| Distribution | share/export e PWA | Embed SDK, LTI, MCP/OpenAPI | partner/catalog integration | federation |
 | Teacher Network | profilo, portfolio, follow/save e preview | review, collection e discovery | community/moderation | federation sociale |
 | Marketplace | artifact gratuito/privato e licenza | vendita singola/raccolta e abbonamento creator | payout, tax, ranking e sponsorship | marketplace federato |
 
@@ -535,6 +544,11 @@ Acceptance:
   sandbox preview, test, package, sign, install, update, rollback, uninstall;
 - almeno tre composizioni reali: Simulation -> Plot/Export, ElabTutor ->
   Citation/Graph/Simulation Explanation, Knowledge Card -> plugin view;
+- composizione fondamentale: un ElabTutor post-it richiede e si collega a un
+  Simulation post-it tramite `simulation.scene.read`, `simulation.command`,
+  `simulation.diagnostics`, `simulation.events` e `lesson.event.append`;
+- attach/dock/detach/reopen dell'ElabTutor conserva due istanze indipendenti;
+  provider mancante degrada il tutor senza corrompere il circuito;
 - capability negotiation, health, failure isolation e migration testate;
 - un plugin richiede connector esterni tramite capability (`content.import`,
   `artifact.export`, `storage.attach`, `classroom.publish`, `tool.invoke`), mai
@@ -546,6 +560,52 @@ Acceptance:
   `one-time`, `subscription` o `school-seat`; dipendenze, diritti commerciali,
   revenue share e costi provider sono dichiarati prima della pubblicazione;
 - nessun plugin first-party bypassa il contratto senza ADR e label esplicita.
+- `Embed SDK` espone shell/lesson/post-it governati a software web esterni; LTI,
+  MCP e OpenAPI riusano lo stesso capability gateway. Nessun embed implementa
+  un secondo LessonOS, stato plugin o modello autorizzativo.
+
+### M6A - Arduino Toolchain Plugin
+
+Acceptance:
+
+- e' un vero plugin-post-it, collassabile/espandibile, persistente e collegato a
+  LessonOS/Library; nessuna IDE pagina separata;
+- modalita' `Blocchi` e `C++` condividono un `ArduinoProject`. Harvest mirato di
+  Blockly, CodeMirror e `elabArduinoAst` da ELABTutor, con characterization
+  test prima dell'adattamento;
+- il subset round-trip Blockly <-> Arduino AST <-> C++ e' dichiarato/testato;
+  C++ fuori subset resta intatto e marcato non convertibile, mai distrutto;
+- board catalog deriva da package index/core e FQBN, con version pin, opzioni,
+  librerie e capability; nessuna lista chiusa spacciata per universalita';
+- package index/core/library provengono da registry allowlisted o approvati,
+  con URL/versione/hash/licenza e rollback; nessun toolchain download esegue
+  codice non verificato sul host;
+- `CompilerProvider` supporta almeno Arduino CLI isolato e provider remoto/
+  locale sostituibile; cache per source+FQBN+core+library lock e diagnostica
+  strutturata/riproducibile;
+- compile gira in sandbox effimera senza host secret, filesystem o rete
+  illimitati, con CPU/RAM/time/output quota e cleanup. Invio sorgente a provider
+  remoto richiede consenso, region/retention dichiarati e delete/audit;
+- `UploadProvider` negozia Web Serial, WebUSB, loopback/desktop agent o provider
+  board-specific. Mostra compatibilita' reale per browser/OS/board e non finge
+  upload su iPad/Safari o protocolli non implementati;
+- upload fisico richiede gesto e conferma umana, device/port espliciti,
+  progress, verify, cancel/retry e recovery; AI non puo' flashare da sola;
+- serial monitor/plotter hanno connect/disconnect, baud, log bounded, export e
+  collegamento a graph/note; input non fidato e' sanitizzato;
+- build artifact, code hash, FQBN/core/provider/versione, diagnostics e upload
+  result entrano in Library/LessonOS; source privato non finisce nei log;
+- capability pubbliche: `arduino.project`, `arduino.board.catalog`,
+  `arduino.compile`, `arduino.upload`, `arduino.serial` e
+  `arduino.blockly.codegen`;
+- Simulation consuma firmware/runtime quando supportato; ElabTutor consuma
+  project/diagnostics/serial e puo' proporre fix, ma ogni mutazione passa da
+  comando tipato e ogni upload resta human-confirmed;
+- matrice per board family/core/upload protocol/browser. Una board e' GREEN
+  solo con compile reale; upload GREEN richiede hardware evidence separata;
+- e2e minimo: Blockly -> C++ -> compile reale -> diagnostics/artifact ->
+  ElabTutor explanation -> LessonOS -> reopen. Hardware upload e' un gate
+  aggiuntivo, mai simulato come prova reale.
 
 ### M7 - Full Tinkercad Parity
 
@@ -557,8 +617,17 @@ Acceptance:
 - il post-it e' ridimensionabile e puo' espandersi/fullscreen mantenendo la
   stessa `PluginInstance`, undo stack, selezione, viewport e simulation state;
   l'espansione resta un overlay della lavagna e torna allo stesso post-it;
+- per code/compile/upload/serial parity, Arduino Toolchain resta una
+  `PluginInstance` indipendente ma si monta tramite `PluginLink` in uno slot del
+  Simulation post-it. L'esperienza e' interna al post-it canonico; due card solo
+  affiancate non soddisfano il gate;
 - il percorso e2e parte da `nuovo post-it -> aggiungi Simulation Plugin` e
   termina nel post-it riaperto con circuito e strumenti persistiti;
+- golden composition: aggiungi ElabTutor post-it -> collegalo al Simulation
+  post-it -> osserva scena esatta -> spiega/diagnostica grounded -> applica un
+  comando tipato -> LessonOS audit -> save/reopen -> detach senza data loss;
+- collega anche Arduino Toolchain post-it: ElabTutor correla circuito, Blockly/
+  C++, compile diagnostics e serial output senza leggere internals;
 - matrice completa con target behavior, stato, evidenza, test e limite per:
   catalogo, breadboard, power, pin topology, placement/move/rotate/select,
   wire/route/waypoint/disconnect/retarget/delete, undo/redo, netlist/solver,
@@ -638,9 +707,10 @@ rimossa dal denominatore per chiudere il goal.
 
 1. Integrare la palette WIP Claude solo dopo commit, test e review; nessuna
    duplicazione nel worktree Codex.
-2. Ridisegnare la vista Simulation dedicata: canvas dominante, toolbar docente,
-   diagnostica progressiva, nessun gergo harness.
-3. Rendere il post-it un host plugin persistente con attach/detach/expand.
+2. Ridisegnare il Simulation Plugin nel vero post-it su taccuino/lavagna:
+   canvas dominante, toolbar docente, diagnostica progressiva, nessun gergo.
+3. Persistenza della stessa PluginInstance attraverso attach/detach/expand,
+   passaggio taccuino/lavagna e close/reopen.
 4. Creator template dichiarativo: crea -> preview -> installa un plugin card.
 5. Prima composizione reale plugin-su-plugin tramite capability pubblica.
 6. Feedback di placement visibile e test pointer/touch desktop+iPad.
@@ -777,6 +847,10 @@ una matrice e prova della stessa ampiezza.
 - PR #174 open, CI verde: miglioramento riusabile della teacher surface, ma
   dopo il chiarimento `plugin = post-it` resta `PARTIAL/RED` per M0 finche' lo
   stesso flusso non vive nel post-it reale su taccuino/lavagna con LessonOS.
+- fonte ELABTutor verificata: repository privato
+  `AndreaMarro/elab-tutor@732ff07754e15a2859e4823f16490505221725ce`, senza
+  licenza dichiarata. Solo harvesting first-party controllato; security/corpus
+  gate prima di copiare codice o asset.
 - Claude b-bis worktree: 6 modified + 2 untracked, live su `5193`; solo
   candidato. Import host da internals plugin, registry exposure, colori raw e
   eccezione >5 file richiedono review architetturale/UX.

@@ -174,6 +174,7 @@ gate still apply.
 | https://github.com/pfalstad/circuitjs1 | GPL-2.0 | `LEGAL-REVIEW` | solver/diagnostic reference; no code absorption without compatibility decision |
 | https://github.com/fritzing/fritzing-app | license requires manual verification | `REFERENCE` | breadboard affordances and documentation workflow; do not copy assets blindly |
 | https://github.com/arduino/arduino-cli | GPL-3.0 | `ADAPTER-CANDIDATE` | isolated compile service boundary, never bundled into the browser without review |
+| https://github.com/RaspberryPiFoundation/blockly | Apache-2.0 | `ADAPT-M6A` | existing ELABTutor dependency; retain visual editor and adapt Arduino AST/generators |
 | https://github.com/microsoft/monaco-editor | MIT | `CANDIDATE-M7` | Arduino/code editor only if current editor cannot meet parity |
 | https://github.com/xtermjs/xterm.js | MIT | `CANDIDATE-M7` | serial monitor rendering behind a typed serial capability |
 | https://github.com/yjs/yjs | verify license file before adoption | `CANDIDATE-PILOT` | collaboration/sync only after local LessonOS is stable |
@@ -185,6 +186,7 @@ gate still apply.
 | https://github.com/logseq/logseq | AGPL-3.0 | `REFERENCE` | graph/note navigation patterns only; no code absorption without legal review |
 | https://github.com/apache/echarts | Apache-2.0 | `REJECT-FOR-NOW` | broad chart reference, but existing D3/Cytoscape should be reused first |
 | https://github.com/microsoft/graphrag | MIT | `REFERENCE-M4` | study grounded subgraph/provenance patterns; do not adopt its expensive indexing pipeline by default |
+| https://github.com/AndreaMarro/elab-tutor | private first-party, no declared license | `HARVEST-M3/M7` | source `main@732ff077`: extract tutor/simulator/assets/tests behind ARDESIA contracts; exclude shell/auth/config/protected corpus |
 | https://github.com/medusajs/medusa | MIT | `CANDIDATE-M8` | compare marketplace primitives before building catalog/order logic |
 | https://github.com/saleor/saleor | BSD-3-Clause | `CANDIDATE-M8` | compare mature digital catalog/order architecture and operational cost |
 | https://github.com/mastodon/mastodon | AGPL-3.0 | `REFERENCE-M8` | social moderation/federation patterns; do not absorb code without review |
@@ -244,6 +246,37 @@ plugin. Expand is an overlay of the same object; close, reopen, duplicate,
 export and uninstall invoke lifecycle methods. Plugin-to-plugin behavior uses
 capabilities and events. Composition is preferred over inheritance; direct
 internal imports and hidden shared state are forbidden.
+
+`PluginLink` represents provider/consumer composition. The required reference
+composition is `ElabTutorPlugin -> SimulationPlugin`: two post-it instances
+that can dock visually while retaining separate identity/state. Simulation
+provides scene, typed commands, diagnostics and events; ElabTutor consumes them
+to observe, explain and act, with every operation audited by LessonOS.
+
+The second composition is
+`ElabTutorPlugin -> ArduinoToolchainPlugin <-> SimulationPlugin`. Harvest only
+the useful first-party seams from ELABTutor: `features/elabArduinoAst`, Blockly/
+CodeMirror editors, board/FQBN catalog, compile agent detection, upload facade,
+serial monitor/plotter and tests. Existing upload code openly contains stubs or
+partial protocols (including board-specific paths); each must stay RED until a
+real provider/hardware proof exists.
+
+When docked for Tinkercad parity, Toolchain renders through a declared slot in
+the Simulation post-it while retaining a separate instance and detach path.
+Core/library indexes are executable supply chain: allowlist, integrity hash,
+license, sandbox limits, no host secrets/network and remote-source consent are
+mandatory before adoption.
+
+Toolchain primary sources:
+
+- https://docs.arduino.cc/arduino-cli/ - dynamic board/core/library, FQBN,
+  compile, upload and monitor source of truth;
+- https://github.com/arduino/arduino-cli - GPL-3.0 process/service adapter;
+- https://developers.google.com/blockly - visual programming concepts and API;
+- https://github.com/RaspberryPiFoundation/blockly - current Apache-2.0 source;
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API - limited,
+  secure-context browser capability, never assumed universal;
+- https://cloud.arduino.cc/download-agent/ - official desktop bridge reference.
 
 The post-it can be placed on a notebook page or the infinite whiteboard. Those
 placements reference the same `PluginInstance`; they do not fork state. Every
