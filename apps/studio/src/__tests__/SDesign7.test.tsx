@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-// MAESTRO-Studio — Test S-DESIGN-7: responsive <=768px
-// hamburger menu, drawer full-screen, recstrip sempre visibile
+// MAESTRO-Studio — Test S-DESIGN-7: shell responsive <=768px
+// launcher unico, navigazione stabile, drawer e recstrip
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot, type Root } from "react-dom/client"
@@ -58,7 +58,15 @@ vi.mock("../latexToImage", () => ({ latexToImage: () => Promise.resolve({ dataUR
 vi.mock("../loadFile", () => ({ imageToDataURL: () => {}, pdfToImages: () => Promise.resolve([]) }))
 vi.mock("pdfjs-dist", () => ({}))
 vi.mock("pdfjs-dist/build/pdf.worker.min.mjs?url", () => ({}))
-vi.mock("../design/icons", () => ({ IconAlert: () => null, IconCheck: () => null, IconArrowUpRight: () => null }))
+vi.mock("../design/icons", () => ({
+  IconAlert: () => null,
+  IconCheck: () => null,
+  IconDownload: () => null,
+  IconFunction: () => null,
+  IconImage: () => null,
+  IconLink: () => null,
+  IconMic: () => null,
+}))
 vi.mock("../MathComposer", () => ({ default: () => null }))
 vi.mock("../RecapView", () => ({ default: () => null }))
 
@@ -104,69 +112,62 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     root.unmount()
   })
 
-  it("renders hamburger menu button in header", async () => {
+  it("rende un solo launcher in testata", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      const btns = document.querySelectorAll(".st-menu-btn")
+      const btns = document.querySelectorAll('[data-orbit-action="launcher"]')
       expect(btns.length).toBe(1)
-      expect(btns[0].getAttribute("aria-label")).toBe("Apri menu")
+      expect(btns[0].textContent).toContain("Cerca e crea")
     }, { timeout: 1000, interval: 10 })
     root.unmount()
   })
 
-  it("hamburger toggles st-actions-open class on st-actions", async () => {
+  it("il launcher apre e chiude lo stesso pannello", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-menu-btn")).toBeTruthy()
+      expect(document.querySelector(".st-orbit-launcher")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
-    const menuBtn = document.querySelector(".st-menu-btn") as HTMLButtonElement
+    const launcher = document.querySelector(".st-orbit-launcher") as HTMLButtonElement
+    expect(document.querySelector(".st-launcher-panel")).toBeNull()
 
-    const actions = document.querySelector(".st-actions")
-    expect(actions).toBeTruthy()
-    expect(actions!.className).not.toContain("st-actions-open")
-
-    menuBtn.click()
+    launcher.click()
     await vi.waitFor(() => {
-      expect(actions!.className).toContain("st-actions-open")
+      expect(document.querySelector(".st-launcher-panel")).toBeTruthy()
+      expect(launcher.getAttribute("aria-expanded")).toBe("true")
     }, { timeout: 1000, interval: 10 })
 
-    menuBtn.click()
+    launcher.click()
     await vi.waitFor(() => {
-      expect(actions!.className).not.toContain("st-actions-open")
-    }, { timeout: 1000, interval: 10 })
-
-    root.unmount()
-  })
-
-  it("hamburger button shows ☰ when closed, ✕ when open", async () => {
-    const root = await renderRoom()
-    await vi.waitFor(() => {
-      expect(document.querySelector(".st-menu-btn")).toBeTruthy()
-    }, { timeout: 1000, interval: 10 })
-    const menuBtn = document.querySelector(".st-menu-btn") as HTMLButtonElement
-    expect(menuBtn.textContent).toBe("☰")
-
-    menuBtn.click()
-    await vi.waitFor(() => {
-      expect(menuBtn.textContent).toBe("✕")
-    }, { timeout: 1000, interval: 10 })
-
-    menuBtn.click()
-    await vi.waitFor(() => {
-      expect(menuBtn.textContent).toBe("☰")
+      expect(document.querySelector(".st-launcher-panel")).toBeNull()
+      expect(launcher.getAttribute("aria-expanded")).toBe("false")
     }, { timeout: 1000, interval: 10 })
 
     root.unmount()
   })
 
-  it("renders all action buttons inside st-actions", async () => {
+  it("espone esattamente quattro destinazioni globali", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
-      expect(document.querySelector(".st-actions")).toBeTruthy()
+      expect(document.querySelectorAll("[data-view-nav-item]").length).toBe(4)
     }, { timeout: 1000, interval: 10 })
-    const actions = document.querySelector(".st-actions")!
-    const buttons = actions.querySelectorAll("button")
-    expect(buttons.length).toBeGreaterThanOrEqual(7)
+    const nav = document.querySelector(".st-view-nav")!
+    expect(nav.textContent).toContain("Lavagna")
+    expect(nav.textContent).toContain("Knowledge")
+    expect(nav.textContent).toContain("Library")
+    expect(nav.textContent).toContain("Marketplace")
+    expect(nav.textContent).not.toContain("Simulatore")
+    expect(nav.textContent).not.toContain("ELABTutor")
+
+    root.unmount()
+  })
+
+  it("mantiene al massimo due azioni persistenti in testata", async () => {
+    const root = await renderRoom()
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-orbit-shell")).toBeTruthy()
+    }, { timeout: 1000, interval: 10 })
+    expect(document.querySelectorAll("[data-orbit-action]").length).toBe(2)
+    expect(document.querySelector(".st-actions")).toBeNull()
     root.unmount()
   })
 

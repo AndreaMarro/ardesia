@@ -11,7 +11,7 @@ import { PATHS, type StorageMode } from "./store/types"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
-import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
+import { IconAlert, IconCheck, IconDownload, IconFunction, IconImage, IconLink, IconMic } from "./design/icons"
 import ViewNav from "./design/ViewNav"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
@@ -76,8 +76,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [audioOn, setAudioOn] = useState(false)
   /** Mostra stato registrazione nell'header */
   const [audioRecording, setAudioRecording] = useState(false)
-  /** Hamburger menu mobile */
-  const [menuOpen, setMenuOpen] = useState(false)
+  /** Launcher unico per note, media, plugin e comandi della lezione. */
+  const [launcherOpen, setLauncherOpen] = useState(false)
+  const [launcherQuery, setLauncherQuery] = useState("")
+  const launcherButtonRef = useRef<HTMLButtonElement>(null)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
   /** Nome lezione (da meta.json) — null = non ancora caricato */
@@ -356,13 +358,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   }
 
   /** Apre/chiude il drawer delle lezioni */
-  async function toggleDrawer() {
+  async function toggleDrawer(returnTarget?: HTMLElement | null) {
     if (drawerOpen) {
       closeDrawer()
       return
     }
     // Ricorda chi ha aperto il dialog per ripristinare il focus alla chiusura
-    drawerReturnRef.current = (document.activeElement as HTMLElement) ?? null
+    drawerReturnRef.current = returnTarget ?? (document.activeElement as HTMLElement) ?? null
     setLoadingRooms(true)
     setDrawerOpen(true)
     try {
@@ -717,6 +719,38 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     )
   }
 
+  function closeLauncher(): void {
+    setLauncherOpen(false)
+    setLauncherQuery("")
+  }
+
+  function startTextNote(): void {
+    const api = apiRef.current
+    if (!api) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+    api.setActiveTool?.({ type: "text" })
+    closeLauncher()
+  }
+
+  const launcherItems = [
+    { id: "note", label: "Nota", detail: "Scrivi sulla lavagna", icon: null, action: startTextNote },
+    { id: "media", label: "Media", detail: "Aggiungi immagine o PDF", icon: <IconImage size={18} />, action: () => { fileInputRef.current?.click(); closeLauncher() } },
+    { id: "simulation", label: "Circuito LED", detail: "Apri un'attivita' di simulazione", icon: null, action: () => { insertSimulationPlugin(); closeLauncher() } },
+    { id: "arduino", label: "Sketch Arduino", detail: "Scrivi e compila il codice", icon: null, action: () => { insertArduinoToolchainPlugin(); closeLauncher() } },
+    { id: "tutor", label: "Guida ELAB", detail: "Segui i passaggi della lezione", icon: null, action: () => { insertElabTutorPlugin(); closeLauncher() } },
+    { id: "formula", label: "Formula", detail: "Inserisci una formula", icon: <IconFunction size={18} />, action: () => { setMathOn(true); closeLauncher() } },
+    { id: "lessons", label: "Lezioni", detail: "Riapri una lavagna salvata", icon: null, action: () => { void toggleDrawer(launcherButtonRef.current); closeLauncher() } },
+    { id: "audio", label: audioOn ? "Ferma audio" : "Registra audio", detail: "Microfono del docente", icon: <IconMic size={18} />, action: () => { void toggleAudio(); closeLauncher() } },
+    { id: "export", label: exporting ? "Esportazione..." : "Esporta lezione", detail: "Salva una copia portatile", icon: <IconDownload size={18} />, action: () => { void handleExportLesson(); closeLauncher() } },
+    ...(storeMode === "fsa" ? [] : [{ id: "folder", label: "Scegli cartella", detail: "Salva sul computer", icon: null, action: () => { void handleConnectFolder(); closeLauncher() } }]),
+  ]
+  const normalizedLauncherQuery = launcherQuery.trim().toLocaleLowerCase("it")
+  const visibleLauncherItems = launcherItems.filter((item) =>
+    normalizedLauncherQuery.length === 0 || `${item.label} ${item.detail}`.toLocaleLowerCase("it").includes(normalizedLauncherQuery),
+  )
+
   return recapView ? (
     <RecapView store={actualStore} room={room} />
   ) : replayView ? (
@@ -743,7 +777,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <span className="st-chip-student">stai guardando la lavagna</span>
         </header>
       ) : (
-      <header className="st-bar">
+      <header className="st-bar st-orbit-shell">
         <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
           <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
@@ -780,104 +814,70 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           </span>
         )}
 
-        <div className="st-status">
-          {loading && <span className="st-quiet">caricamento…</span>}
-          {!loading && (
-            storeMode === "fsa"
-              ? (
-                <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
-                  <span className="st-led" aria-hidden />
-                  salvato sul computer
-                </span>
-              )
-              : (
-                <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
-                  <span className="st-led" aria-hidden />
-                  solo in questo browser
-                  {" — "}
-                  <button onClick={handleConnectFolder} className="st-indicator-connect">
-                    scegli cartella…
+        <div className="st-orbit-launcher-wrap">
+          <button
+            type="button"
+            ref={launcherButtonRef}
+            className="st-orbit-launcher"
+            data-orbit-action="launcher"
+            aria-expanded={launcherOpen}
+            aria-controls="ardesia-launcher"
+            onClick={() => setLauncherOpen((open) => !open)}
+          >
+            <span>Cerca e crea: nota, media o plugin</span>
+            <strong>Crea</strong>
+          </button>
+          {launcherOpen && (
+            <section id="ardesia-launcher" role="dialog" aria-label="Cerca e crea" className="st-launcher-panel">
+              <label className="st-launcher-search">
+                <span>Cosa vuoi fare?</span>
+                <input
+                  autoFocus
+                  type="search"
+                  value={launcherQuery}
+                  onChange={(event) => setLauncherQuery(event.currentTarget.value)}
+                  placeholder="Cerca nota, media, circuito..."
+                />
+              </label>
+              <div className="st-launcher-grid">
+                {visibleLauncherItems.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={item.action}
+                    aria-label={`${item.label}: ${item.detail}`}
+                    className={`st-launcher-item st-launcher-item-${item.id}`}
+                  >
+                    {item.icon && <span className="st-launcher-item-icon">{item.icon}</span>}
+                    <span className="st-launcher-item-copy">
+                      <strong>{item.label}</strong>
+                      <span>{item.detail}</span>
+                    </span>
                   </button>
-                </span>
-              )
+                ))}
+              </div>
+              {visibleLauncherItems.length === 0 && <p className="st-launcher-empty">Nessun risultato. Prova con nota, media o plugin.</p>}
+            </section>
           )}
-          {saved && <span className="st-quiet">salvato</span>}
-          {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
-          {exportAdvice && !loading && (
-            <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
-          )}
+        </div>
+        <div className="st-orbit-actions">
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
-        </div>
-
-        {/* Hamburger menu mobile (visibile solo <=768px via CSS) */}
-        <button
-          className={`st-menu-btn${menuOpen ? " st-on" : ""}`}
-          onClick={() => setMenuOpen(v => !v)}
-          aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-
-        <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
-          {/* Product Flow Shell: il docente naviga tra le viste senza digitare
-              URL (lavagna → ELAB Lab → cruscotto → lezioni). */}
-          {!studentView && <ViewNav current="lavagna" />}
-          <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
-          <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
-          <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
-          <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
-          <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
-            sim
-          </button>
-          <button onClick={insertArduinoToolchainPlugin} className="st-ghost" aria-label="Inserisci Arduino Toolchain post-it sulla lavagna">
-            arduino
-          </button>
-          <button onClick={insertElabTutorPlugin} className="st-ghost" aria-label="Inserisci ElabTutor post-it sulla lavagna">
-            tutor
-          </button>
-          {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
-              banner del post-it dichiara sempre montati/totale). */}
+          <span className="st-orbit-save" title={storeMode === "fsa" ? "Salvata sul computer" : exportAdvice ?? "Salvata in questo browser"}>
+            <span className="st-led" aria-hidden />
+            {loading ? "apro" : saved ? "salvata" : "salvataggio automatico"}
+          </span>
           <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp2")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento LED senza resistore sulla lavagna"
+            onClick={copyLink}
+            className="st-orbit-share"
+            data-orbit-action="share"
+            aria-label="Condividi con la classe"
+            title="Copia il link per lo studente"
           >
-            sim esp2
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp3")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento luminosità con resistenze diverse sulla lavagna"
-          >
-            sim esp3
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap9-esp6")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento lampada RGB con 3 potenziometri sulla lavagna"
-          >
-            sim esp6
-          </button>
-          <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
-            lezioni
-          </button>
-          {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
-          <button
-            onClick={toggleAudio}
-            className={audioOn ? (audioRecording ? "st-ghost st-rec" : "st-ghost st-on") : "st-ghost"}
-            title="Registra SOLO il microfono del docente. Default spento."
-          >
-            {audioOn ? (audioRecording ? <><span className="st-recdot" aria-hidden />registrando</> : "audio attivo") : "audio"}
-          </button>
-          {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
-          <button onClick={handleExportLesson} disabled={exporting} className="st-primary">
-            {exporting ? "esporto…" : "esporta lezione"}
-          </button>
-          {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
-          <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} className="st-ghost st-meet">
-            Meet<span className="st-ext" aria-hidden><IconArrowUpRight /></span>
+            {copied ? <><IconCheck /><span>copiato</span></> : <><IconLink /><span>condividi</span></>}
           </button>
         </div>
+        <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
+        <ViewNav current="lavagna" />
       </header>
       )}
 
@@ -939,7 +939,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         </div>
       )}
 
-      <div style={{ flex: 1, position: "relative" }}>
+      <div className="st-orbit-canvas" style={{ flex: 1, position: "relative" }}>
         {!loading && studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
@@ -1066,9 +1066,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   <span className="st-welcome-heading">La lavagna che ricorda la tua lezione</span>
                 </WelcomeScreen.Center.Heading>
                 <div className="st-welcome-guide">
+                  <p>Usa «Cerca e crea» per aggiungere note, media e attivita'.</p>
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
-                  <p>Per le formule premi «formula», per slide e immagini «media».</p>
-                  <p>L'audio parte solo se lo accendi tu, dal bottone «audio».</p>
+                  <p>Il microfono parte solo quando scegli «Registra audio».</p>
                 </div>
               </WelcomeScreen.Center>
               <WelcomeScreen.Hints.ToolbarHint>

@@ -179,6 +179,19 @@ beforeEach(() => {
   vi.clearAllMocks()
 })
 
+async function launcherAction(label: string): Promise<HTMLButtonElement> {
+  const launcher = document.querySelector('[data-orbit-action="launcher"]') as HTMLButtonElement | null
+  expect(launcher).not.toBeNull()
+  if (!document.querySelector(".st-launcher-panel")) launcher!.click()
+  let action: HTMLButtonElement | null = null
+  await vi.waitFor(() => {
+    action = Array.from(document.querySelectorAll<HTMLButtonElement>(".st-launcher-item"))
+      .find((button) => button.querySelector("strong")?.textContent === label) ?? null
+    expect(action).not.toBeNull()
+  }, { timeout: 5000, interval: 10 })
+  return action!
+}
+
 describe("Room ↔ WorkspaceStore integration", () => {
   it("focus query centra e seleziona l'elemento richiesto dalla Library", async () => {
     const { store } = await createMockStore()
@@ -221,7 +234,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     root.unmount()
   })
 
-  it("mostra 'caricamento…' durante il load iniziale", async () => {
+  it("mostra 'apro' durante il load iniziale", async () => {
     const { store } = await createMockStore()
     // Delay loadScene per vedere lo stato loading (Excalidraw NON monta finché loading=true)
     vi.spyOn(store, "loadScene").mockImplementationOnce(
@@ -234,10 +247,10 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    // Il div.st-status contiene 'caricamento…' durante il load iniziale
+    // Lo stato compatto resta leggibile senza esporre dettagli di storage.
     await vi.waitFor(() => {
-      const el = container.querySelector(".st-status")
-      expect(el?.textContent).toContain("caricamento")
+      const el = container.querySelector(".st-orbit-save")
+      expect(el?.textContent).toContain("apro")
     }, { timeout: 300, interval: 50 })
 
     // In questo stato, Excalidraw NON è ancora montato (condizionale su !loading)
@@ -245,7 +258,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     // Aspetta che loadScene si risolva e loading diventi false
     await vi.waitFor(() => {
-      expect(container.textContent).not.toContain("caricamento")
+      expect(container.querySelector(".st-orbit-save")?.textContent).not.toContain("apro")
     }, { timeout: 1500, interval: 10 })
 
     // Ora Excalidraw è montato
@@ -435,7 +448,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
   // --- Audio toggle tests ---
 
-  it("header mostra bottone audio default OFF", async () => {
+  it("launcher mostra registrazione audio default OFF", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
@@ -447,11 +460,8 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Bottone audio presente con label OFF (shell v1: testo "audio", MAI
-    // "audio attivo"/"registrando" — default GDPR spento)
-    const audioBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "audio")
-    expect(audioBtn).toBeDefined()
+    const audioBtn = await launcherAction("Registra audio")
+    expect(audioBtn.getAttribute("aria-label")).toMatch(/microfono del docente/i)
     expect(document.body.textContent).not.toContain("audio attivo")
     expect(document.body.textContent).not.toContain("registrando")
 
@@ -480,16 +490,8 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Trova il bottone audio e cliccalo (shell v1: label esatta "audio")
-    const allButtons = document.querySelectorAll("button")
-    const audioBtn = Array.from(allButtons).find((b) => b.textContent?.trim() === "audio")
-    expect(audioBtn).toBeDefined()
-    audioBtn!.click()
-
-    // In jsdom MediaRecorder non esiste → start() fallisce → button torna a "audio" (OFF)
-    await vi.waitFor(() => {
-      expect(audioBtn!.textContent?.trim()).toBe("audio")
-    }, { timeout: 500, interval: 10 })
+    const audioBtn = await launcherAction("Registra audio")
+    audioBtn.click()
 
     // Verifica che getUserMedia sia stato chiamato
     expect(navigator.mediaDevices.getUserMedia).toHaveBeenCalledWith({ audio: true })
@@ -500,7 +502,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
   // --- T2b punto 4: indicatore quota REALE in header ---
 
-  it("header mostra l'indicatore dati onesto (localStorage → 'solo in questo browser')", async () => {
+  it("shell e launcher descrivono onestamente il salvataggio locale", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
@@ -508,12 +510,10 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    // S-DESIGN-2: l'indicatore dati sostituisce la micro-barra cache.
-    // In localStorage mode mostra "solo in questo browser" + "scegli cartella…"
     await vi.waitFor(() => {
-      expect(document.body.textContent).toContain("solo in questo browser")
-      expect(document.querySelector(".st-indicator-connect")).not.toBeNull()
+      expect(document.querySelector(".st-orbit-save")?.getAttribute("title")).toMatch(/browser/i)
     }, { timeout: 5000, interval: 10 })
+    expect(await launcherAction("Scegli cartella")).toBeDefined()
 
     root.unmount()
   })
@@ -766,7 +766,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     root.unmount()
   })
 
-  it("shareUrl per vista docente: 'invita studente' copia un link con ?vista=studente", async () => {
+  it("shareUrl per vista docente: 'condividi' copia un link con ?vista=studente", async () => {
     // Reset isStudentView a false per vista docente
     const { isStudentView } = await import("../store/studentView")
     vi.mocked(isStudentView).mockReturnValue(false)
@@ -784,14 +784,13 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    let inviteBtn: HTMLButtonElement | undefined
+    let shareBtn: HTMLButtonElement | null = null
     await vi.waitFor(() => {
-      inviteBtn = Array.from(document.querySelectorAll("button"))
-        .find((b) => b.textContent?.trim() === "invita studente")
-      expect(inviteBtn).toBeDefined()
+      shareBtn = document.querySelector('[data-orbit-action="share"]') as HTMLButtonElement | null
+      expect(shareBtn).not.toBeNull()
     }, { timeout: 5000, interval: 10 })
 
-    inviteBtn!.click()
+    shareBtn!.click()
 
     await vi.waitFor(() => {
       expect(writeText).toHaveBeenCalledTimes(1)
@@ -810,7 +809,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     }
   })
 
-  it("invita studente: se la copia clipboard fallisce, mostra l'errore e non segna 'copiato'", async () => {
+  it("condividi: se la copia clipboard fallisce, mostra l'errore e non segna 'copiato'", async () => {
     const { isStudentView } = await import("../store/studentView")
     vi.mocked(isStudentView).mockReturnValue(false)
     const { store } = await createMockStore()
@@ -829,14 +828,13 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    let inviteBtn: HTMLButtonElement | undefined
+    let shareBtn: HTMLButtonElement | null = null
     await vi.waitFor(() => {
-      inviteBtn = Array.from(document.querySelectorAll("button"))
-        .find((b) => b.textContent?.trim() === "invita studente")
-      expect(inviteBtn).toBeDefined()
+      shareBtn = document.querySelector('[data-orbit-action="share"]') as HTMLButtonElement | null
+      expect(shareBtn).not.toBeNull()
     }, { timeout: 5000, interval: 10 })
 
-    inviteBtn!.click()
+    shareBtn!.click()
 
     // La reiezione di writeText viene risuperficiata come errore, non ingoiata.
     await vi.waitFor(() => {
@@ -1096,11 +1094,8 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Trova e clicca il bottone "lezioni"
-    const lezioniBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "lezioni")
-    expect(lezioniBtn).toBeDefined()
-    lezioniBtn!.click()
+    const lezioniBtn = await launcherAction("Lezioni")
+    lezioniBtn.click()
 
     // L'errore deve apparire come banner st-err nel DOM
     await vi.waitFor(() => {
@@ -1125,10 +1120,8 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    const lezioniBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "lezioni")
-    expect(lezioniBtn).toBeDefined()
-    lezioniBtn!.click()
+    const lezioniBtn = await launcherAction("Lezioni")
+    lezioniBtn.click()
 
     await vi.waitFor(() => {
       const empty = document.querySelector(".st-drawer-body .st-state-compact")
@@ -1198,10 +1191,8 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    const lezioniBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "lezioni")!
-    // Focus esplicito sul trigger: così il dialog può restituirgli il focus alla chiusura.
-    lezioniBtn.focus()
+    const launcher = document.querySelector('[data-orbit-action="launcher"]') as HTMLButtonElement
+    const lezioniBtn = await launcherAction("Lezioni")
     lezioniBtn.click()
 
     let dialog: Element | null = null
@@ -1234,7 +1225,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
       expect(document.querySelector(".st-drawer")).toBeNull()
     }, { timeout: 5000, interval: 10 })
     // …e ridà il focus al trigger (WCAG 2.4.3)
-    expect(document.activeElement).toBe(lezioniBtn)
+    expect(document.activeElement).toBe(launcher)
 
     root.unmount()
   })
@@ -1251,9 +1242,7 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    const mediaBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "media")!
-    expect(mediaBtn).toBeDefined()
+    const mediaBtn = await launcherAction("Media")
     expect(mediaBtn.getAttribute("aria-label")).toMatch(/immagine|pdf|lesson/i)
 
     root.unmount()
@@ -1531,9 +1520,7 @@ describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegne
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    const audioBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "audio")!
-    expect(audioBtn).toBeDefined()
+    const audioBtn = await launcherAction("Registra audio")
     audioBtn.click()
 
     await vi.waitFor(() => {
@@ -1562,9 +1549,8 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Apre il composer (bottone "formula") -> il mock cattura onInsert=insertMath
-    const formulaBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "formula")!
+    // Apre il composer dal launcher -> il mock cattura onInsert=insertMath.
+    const formulaBtn = await launcherAction("Formula")
     formulaBtn.click()
 
     await vi.waitFor(() => {
