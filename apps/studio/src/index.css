@@ -101,7 +101,7 @@ body,
   width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
   border-radius: 50%; background: var(--m-accent); color: var(--m-canvas); font-size: 22px; font-weight: 400;
 }
-.st-empty-orbit-cue:hover,
+.st-empty-orbit-cue:hover { border-color: var(--m-accent); color: var(--m-accent-deep); }
 .st-empty-orbit-cue:focus-visible { border-color: var(--m-accent); color: var(--m-accent-deep); outline: 3px solid var(--m-accent); outline-offset: 3px; }
 @keyframes st-empty-orbit-breathe { 50% { border-color: var(--m-accent-off); transform: translateX(-50%) scale(1.02); } }
 
@@ -1078,7 +1078,7 @@ body,
   color: var(--m-ink-3); text-decoration: none; font-size: 16px;
   transition: color var(--m-t-fast) var(--m-ease), background var(--m-t-fast) var(--m-ease);
 }
-.st-library-open:hover,
+.st-library-open:hover { color: var(--m-accent); background: var(--m-accent-wash); }
 .st-library-open:focus-visible { color: var(--m-accent); background: var(--m-accent-wash); outline: 3px solid var(--m-accent); outline-offset: 2px; }
 .st-library-technical-details { grid-column: 1 / -1; min-width: 0; border-top: 1px solid var(--m-line); }
 .st-library-technical-details summary,
@@ -1225,6 +1225,12 @@ body,
   .st-room-board [data-plugin-ink-density="compact"] > [data-plugin-ink-interactive-surface] > button[data-plugin-ink-control],
   .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] button {
     transform: scale(1.55);
+  }
+  .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] {
+    min-height: 70px;
+    align-items: center;
+    gap: 25px !important;
+    padding: 13px !important;
   }
   .st-room-board [data-plugin-live-preview="arduino"] .st-compact-code-preview {
     margin-left: 12px;

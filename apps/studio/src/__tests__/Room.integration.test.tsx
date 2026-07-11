@@ -437,6 +437,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     expect(css).toMatch(/@media \(min-width:\s*1600px\)[\s\S]*?\.st-shell-actions\s*\{[^}]*padding-right:\s*var\(--m-sp-5\);/)
     expect(css).toMatch(/@media \(max-width:\s*1024px\)[\s\S]*?\.st-room-board \[data-plugin-instance-id\] button\s*\{[^}]*transform:\s*scale\(1\.55\);/)
     expect(css).toMatch(/@media \(max-width:\s*1024px\)[\s\S]*?button\[data-plugin-ink-control\],[^}]*\{[^}]*transform:\s*scale\(1\.55\);/)
+    expect(css).toMatch(/@media \(max-width:\s*1024px\)[\s\S]*?\[role="toolbar"\]\s*\{[^}]*gap:\s*25px !important;[^}]*padding:\s*13px !important;/)
     expect(css).toMatch(/\.st-room-board \.excalidraw \.App-menu__left,/)
 
     const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
@@ -507,6 +508,27 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(mockExcalidrawHarness.scrollToContentCalls.some((call) => (
         (call.options as { fitToContent?: boolean } | undefined)?.fitToContent === true
       ))).toBe(false)
+    }, { timeout: 5000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("focus query obsoleta ripristina il framing dei post-it reali", async () => {
+    const { store } = await createMockStore()
+    const element = { id: "postit-live", type: "embeddable", link: "maestro-tool://io.ardesia.simulation/postit-live" }
+    mockExcalidrawHarness.sceneElements = [element]
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify({ elements: [element], appState: {}, files: {} }))
+    window.history.replaceState(null, "", "/?focus=postit-deleted#focus-room")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(mockExcalidrawHarness.scrollToContentCalls).toContainEqual({
+        elements: [element],
+        options: expect.objectContaining({ fitToContent: true }),
+      })
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()

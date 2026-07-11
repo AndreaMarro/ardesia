@@ -683,10 +683,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const frameResponsivePluginRow = () => {
       if (frameTimer !== null) window.clearTimeout(frameTimer)
       frameTimer = window.setTimeout(() => {
-        if (focusedElementId() !== null) return
         const api = apiRef.current
         if (!api || typeof api.getSceneElements !== "function") return
-        framePluginRow(api.getSceneElements())
+        const elements = api.getSceneElements()
+        const targetId = focusedElementId()
+        if (targetId !== null && elements.some((element: { id?: string }) => element.id === targetId)) return
+        framePluginRow(elements)
       }, 0)
     }
 
@@ -1062,24 +1064,22 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
               const targetId = focusedElementId()
-              if (targetId === null) {
-                window.setTimeout(() => {
-                  if (apiRef.current !== eapi) return
-                  framePluginRow(eapi.getSceneElements())
-                }, 0)
-              }
-              if (targetId !== null && focusedElementRef.current !== targetId) {
-                // L'API arriva prima che Excalidraw completi il primo layout:
-                // il focus al ciclo successivo evita un viewport calcolato vuoto.
-                window.setTimeout(() => {
-                  if (apiRef.current !== eapi || focusedElementRef.current === targetId) return
-                  const target = eapi.getSceneElements().find((element: { id?: string }) => element.id === targetId)
-                  if (!target) return
+              // L'API arriva prima che Excalidraw completi il primo layout:
+              // focus o fallback al ciclo successivo evitano un viewport vuoto.
+              window.setTimeout(() => {
+                if (apiRef.current !== eapi) return
+                const elements = eapi.getSceneElements()
+                const target = targetId === null
+                  ? undefined
+                  : elements.find((element: { id?: string }) => element.id === targetId)
+                if (target && focusedElementRef.current !== targetId) {
                   focusedElementRef.current = targetId
                   eapi.updateScene({ appState: { selectedElementIds: { [targetId]: true } } })
                   eapi.scrollToContent?.([target], { fitToContent: false, animate: false })
-                }, 0)
-              }
+                  return
+                }
+                if (!target) framePluginRow(elements)
+              }, 0)
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
