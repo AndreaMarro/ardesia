@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { AppendedEvent } from "../lessonos/eventlog"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { materialize, type LessonNode } from "../lessonos/materializer"
 import type { DashboardNodeKind } from "../lessonos/teacherDashboardProjection"
 import EmptyState from "./EmptyState"
-import LessonGraphCanvas, { graphDepths } from "./LessonGraphCanvas"
+import LessonGraphCanvas, { displayedLevel, graphDepths } from "./LessonGraphCanvas"
 import StudioShell from "./StudioShell"
 import { viewHref } from "./ViewNav"
 
@@ -121,8 +121,37 @@ type ExplorerState =
   | { phase: "error"; detail: string }
   | { phase: "ready"; snapshot: KnowledgeExplorerSnapshot }
 
-type LevelFilter = "all" | "1" | "2"
-type KindFilter = "all" | DashboardNodeKind
+export type LevelFilter = "all" | "1" | "1-2"
+export type KindFilter = "all" | DashboardNodeKind
+
+function preferredFocusNodeId(snapshot: KnowledgeExplorerSnapshot, current: string | null): string | null {
+  if (current !== null && snapshot.nodes.some((node) => node.id === current)) return current
+  return snapshot.nodes.find((node) => node.kind === "concept")?.id ?? snapshot.nodes[0]?.id ?? null
+}
+
+export function filterKnowledgeExplorerGraph(
+  snapshot: KnowledgeExplorerSnapshot,
+  focusNodeId: string | null,
+  query: string,
+  kindFilter: KindFilter,
+  levelFilter: LevelFilter,
+) {
+  const normalizedQuery = query.trim().toLocaleLowerCase("it")
+  const depth = graphDepths(snapshot.nodes, snapshot.edges, focusNodeId)
+  const maximumLevel = levelFilter === "all" ? Number.POSITIVE_INFINITY : levelFilter === "1" ? 1 : 2
+  const nodes = snapshot.nodes.filter((node) => {
+    const matchesQuery = normalizedQuery.length === 0
+      || `${node.id} ${labelOf(node.label, node.id)}`.toLocaleLowerCase("it").includes(normalizedQuery)
+    const matchesKind = kindFilter === "all" || node.kind === kindFilter
+    return matchesQuery && matchesKind && displayedLevel(depth.get(node.id)) <= maximumLevel
+  })
+  const ids = new Set(nodes.map((node) => node.id))
+  return {
+    nodes,
+    edges: snapshot.edges.filter((edge) => ids.has(edge.from) && ids.has(edge.to)),
+    focusNodeId: focusNodeId !== null && ids.has(focusNodeId) ? focusNodeId : null,
+  }
+}
 
 export default function KnowledgeExplorerView({ deps }: { deps?: KnowledgeExplorerViewDeps }) {
   const room = deps?.room ?? roomFromHash()
@@ -130,45 +159,37 @@ export default function KnowledgeExplorerView({ deps }: { deps?: KnowledgeExplor
   const [state, setState] = useState<ExplorerState>({ phase: "loading" })
   const [focusNodeId, setFocusNodeId] = useState<string | null>(null)
   const [query, setQuery] = useState("")
-  const [levelFilter, setLevelFilter] = useState<LevelFilter>("2")
+  const [levelFilter, setLevelFilter] = useState<LevelFilter>("all")
   const [kindFilter, setKindFilter] = useState<KindFilter>("all")
+  const refreshGenerationRef = useRef(0)
 
   const refresh = useCallback(async () => {
+    const generation = ++refreshGenerationRef.current
     setState({ phase: "loading" })
     try {
       const events = await loadEvents()
+      if (generation !== refreshGenerationRef.current) return
       const snapshot = buildKnowledgeExplorerSnapshot(events, room)
       setState({ phase: "ready", snapshot })
-      setFocusNodeId((current) => current ?? snapshot.nodes.find((node) => node.kind === "concept")?.id ?? snapshot.nodes[0]?.id ?? null)
+      setFocusNodeId((current) => preferredFocusNodeId(snapshot, current))
     } catch (error) {
+      if (generation !== refreshGenerationRef.current) return
       setState({ phase: "error", detail: error instanceof Error ? error.message : String(error) })
     }
   }, [loadEvents, room])
 
   useEffect(() => {
     void refresh()
+    return () => {
+      refreshGenerationRef.current += 1
+    }
   }, [refresh])
 
   const snapshot = state.phase === "ready" ? state.snapshot : null
-  const filteredGraph = useMemo(() => {
-    if (snapshot === null) return { nodes: [], edges: [], focusNodeId: null }
-    const normalizedQuery = query.trim().toLocaleLowerCase("it")
-    const depth = graphDepths(snapshot.nodes, snapshot.edges, focusNodeId)
-    const maximumDepth = levelFilter === "all" ? Number.POSITIVE_INFINITY : Number(levelFilter)
-    const nodes = snapshot.nodes.filter((node) => {
-      const matchesQuery = normalizedQuery.length === 0
-        || `${node.id} ${labelOf(node.label, node.id)}`.toLocaleLowerCase("it").includes(normalizedQuery)
-      const matchesKind = kindFilter === "all" || node.kind === kindFilter
-      const matchesLevel = focusNodeId === null || (depth.get(node.id) ?? 2) <= maximumDepth
-      return matchesQuery && matchesKind && matchesLevel
-    })
-    const ids = new Set(nodes.map((node) => node.id))
-    return {
-      nodes,
-      edges: snapshot.edges.filter((edge) => ids.has(edge.from) && ids.has(edge.to)),
-      focusNodeId: focusNodeId !== null && ids.has(focusNodeId) ? focusNodeId : null,
-    }
-  }, [focusNodeId, kindFilter, levelFilter, query, snapshot])
+  const filteredGraph = useMemo(
+    () => snapshot === null ? { nodes: [], edges: [], focusNodeId: null } : filterKnowledgeExplorerGraph(snapshot, focusNodeId, query, kindFilter, levelFilter),
+    [focusNodeId, kindFilter, levelFilter, query, snapshot],
+  )
 
   const actions = (
     <>
@@ -245,7 +266,7 @@ export default function KnowledgeExplorerView({ deps }: { deps?: KnowledgeExplor
                   </select>
                   <select aria-label="Livelli" value={levelFilter} onChange={(event) => setLevelFilter(event.target.value as LevelFilter)}>
                     <option value="1">Livello 1</option>
-                    <option value="2">Livelli 1–2</option>
+                    <option value="1-2">Livelli 1–2</option>
                     <option value="all">Tutti i livelli</option>
                   </select>
                 </div>

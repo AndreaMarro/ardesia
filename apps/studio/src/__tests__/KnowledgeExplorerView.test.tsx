@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/re
 import { afterEach, describe, expect, it } from "vitest"
 import KnowledgeExplorerView, {
   buildKnowledgeExplorerSnapshot,
+  filterKnowledgeExplorerGraph,
   selectRoomSession,
 } from "../design/KnowledgeExplorerView"
 import { InMemoryEventLog, type AppendedEvent, type LessonOsEvent } from "../lessonos/eventlog"
@@ -16,6 +17,22 @@ async function appendEvents(events: readonly LessonOsEvent[]): Promise<AppendedE
   const log = new InMemoryEventLog()
   for (const event of events) await log.append(event)
   return log.readAll()
+}
+
+function deferred<T>() {
+  let resolve: (value: T) => void = () => undefined
+  const promise = new Promise<T>((complete) => {
+    resolve = complete
+  })
+  return { promise, resolve }
+}
+
+async function eventsForRoom(room: string, conceptId: string, label: string): Promise<AppendedEvent[]> {
+  return appendEvents([
+    { kind: "lesson.started", room, t: 1, evidence: [`lesson:${room}@1`] },
+    { kind: "concept.introduced", conceptId, labels: { it: label }, t: 2, evidence: [`manual:${conceptId}`] },
+    { kind: "lesson.ended", room, t: 3, evidence: [`lesson:${room}@3`] },
+  ])
 }
 
 const EVENTS: LessonOsEvent[] = [
@@ -75,6 +92,32 @@ describe("KnowledgeExplorerView", () => {
     expect(container.querySelectorAll("[data-zgraph-node]")).toHaveLength(0)
   })
 
+  it("interpreta 1 e 1-2 come livelli visualizzati esatti, lasciando i nodi scollegati al livello 3", () => {
+    const snapshot = {
+      sessionFound: true,
+      events: [],
+      evidenceRefs: [],
+      nodes: [
+        { id: "root", kind: "concept" as const, label: { it: "Radice" }, evidenceRefs: [] },
+        { id: "one", kind: "material" as const, label: { it: "Primo" }, evidenceRefs: [] },
+        { id: "two", kind: "error" as const, label: { it: "Secondo" }, evidenceRefs: [] },
+        { id: "three", kind: "plugin" as const, label: { it: "Terzo" }, evidenceRefs: [] },
+        { id: "orphan", kind: "lesson" as const, label: { it: "Scollegato" }, evidenceRefs: [] },
+      ],
+      edges: [
+        { from: "root", to: "one", kind: "cita" as const },
+        { from: "one", to: "two", kind: "cita" as const },
+        { from: "two", to: "three", kind: "cita" as const },
+      ],
+    }
+
+    expect(filterKnowledgeExplorerGraph(snapshot, "root", "", "all", "1").nodes.map((node) => node.id)).toEqual(["root"])
+    expect(filterKnowledgeExplorerGraph(snapshot, "root", "", "all", "1-2").nodes.map((node) => node.id)).toEqual(["root", "one"])
+    expect(filterKnowledgeExplorerGraph(snapshot, "root", "", "all", "all").nodes.map((node) => node.id)).toEqual([
+      "root", "one", "two", "three", "orphan",
+    ])
+  })
+
   it("restringe il grafo alla sessione della lezione invece di combinare il log globale", async () => {
     const events = await appendEvents(EVENTS)
     const session = selectRoomSession(events, "led-room")
@@ -108,6 +151,52 @@ describe("KnowledgeExplorerView", () => {
 
     await waitFor(() => {
       expect(document.querySelector('[data-testid="zgraph-descriptor"]')?.textContent).toContain("Circuito aperto")
+    })
+  })
+
+  it("ignora il risultato di un caricamento superseded quando la stanza cambia", async () => {
+    const roomA = await eventsForRoom("room-a", "concept-a", "Concetto A")
+    const roomB = await eventsForRoom("room-b", "concept-b", "Concetto B")
+    const first = deferred<readonly AppendedEvent[]>()
+    const second = deferred<readonly AppendedEvent[]>()
+    let calls = 0
+    const loadEvents = () => (calls++ === 0 ? first.promise : second.promise)
+    const view = render(<KnowledgeExplorerView deps={{ room: "room-a", loadEvents }} />)
+
+    view.rerender(<KnowledgeExplorerView deps={{ room: "room-b", loadEvents }} />)
+    second.resolve(roomB)
+
+    expect(await screen.findByRole("button", { name: "Concetto B" })).toBeTruthy()
+    first.resolve(roomA)
+
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: "Concetto A" })).toBeNull()
+      expect(screen.getByRole("button", { name: "Concetto B" })).toBeTruthy()
+    })
+  })
+
+  it("replaces focus with a valid concept when a room refresh removes the focused node", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      { kind: "concept.introduced", conceptId: "concept-a", labels: { it: "Concetto A" }, t: 2, evidence: ["manual:concept-a"] },
+      { kind: "error.observed", errorId: "error-a", conceptId: "concept-a", labels: { it: "Errore A" }, t: 3, evidence: ["board:error-a"] },
+      { kind: "lesson.ended", room: "room-a", t: 4, evidence: ["lesson:room-a@4"] },
+      { kind: "lesson.started", room: "room-b", t: 5, evidence: ["lesson:room-b@5"] },
+      { kind: "concept.introduced", conceptId: "concept-b", labels: { it: "Concetto B" }, t: 6, evidence: ["manual:concept-b"] },
+      { kind: "lesson.ended", room: "room-b", t: 7, evidence: ["lesson:room-b@7"] },
+    ])
+    const loadEvents = async () => events
+    const view = render(<KnowledgeExplorerView deps={{ room: "room-a", loadEvents }} />)
+
+    const error = await screen.findByRole("button", { name: "Errore A" })
+    fireEvent.click(error)
+    expect(error.getAttribute("aria-pressed")).toBe("true")
+
+    view.rerender(<KnowledgeExplorerView deps={{ room: "room-b", loadEvents }} />)
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Concetto B" }).getAttribute("aria-pressed")).toBe("true")
+      expect(screen.queryByRole("button", { name: "Errore A" })).toBeNull()
     })
   })
 })

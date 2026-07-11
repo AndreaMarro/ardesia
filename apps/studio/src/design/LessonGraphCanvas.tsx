@@ -60,6 +60,7 @@ const EDGE_COLOR: Record<EdgeKind, string> = {
 }
 
 const LEVEL_COLOR = ["#44709e", "#7cab78", "#e3ad38", "#dd7458"]
+export const MAX_DISPLAY_LEVEL = 3
 
 const GRAPH_CSS = `
 .zgraph-layout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px;min-height:0;height:100%}
@@ -139,6 +140,11 @@ export function graphDepths(
     frontier = next
   }
   return depth
+}
+
+/** Graph depth is zero-based internally; displayed levels are one-based and capped. */
+export function displayedLevel(depth: number | undefined): number {
+  return Math.min(Math.max(depth ?? MAX_DISPLAY_LEVEL - 1, 0), MAX_DISPLAY_LEVEL - 1) + 1
 }
 
 function reducedMotion(): boolean {
@@ -265,7 +271,7 @@ export default function LessonGraphCanvas({
     : edges.filter((edge) => edge.from === focusNode.id || edge.to === focusNode.id)
   const levels = useMemo(() => {
     const values = new Set<number>()
-    for (const node of nodes) values.add(Math.min(depth.get(node.id) ?? 3, 3))
+    for (const node of nodes) values.add(displayedLevel(depth.get(node.id)))
     return [...values].sort((a, b) => a - b)
   }, [depth, nodes])
 
@@ -354,6 +360,10 @@ export default function LessonGraphCanvas({
       zoomingEnabled: true,
       userZoomingEnabled: true,
     })
+    // StrictMode and HMR recreate this core while refs survive. Its model must
+    // therefore be considered empty even when the props signature is unchanged.
+    modelSignatureRef.current = ""
+    setMiniGraph({ nodes: [], edges: [] })
     cyRef.current = cy
     cy.on("select", "node", (event) => {
       const id = event.target.id()
@@ -390,7 +400,7 @@ export default function LessonGraphCanvas({
             label: labelText(node.label, locale),
             kind: node.kind,
             color: KIND_COLOR[node.kind],
-            depth: Math.min(depths.get(node.id) ?? 3, 3),
+            depth: displayedLevel(depths.get(node.id)) - 1,
           },
           classes: deltaSet.has(node.id) ? "is-new" : "",
         })),
@@ -409,7 +419,7 @@ export default function LessonGraphCanvas({
       modelSignatureRef.current = modelSignature
     } else {
       cy.nodes().forEach((node) => {
-        node.data("depth", Math.min(depths.get(node.id()) ?? 3, 3))
+        node.data("depth", displayedLevel(depths.get(node.id())) - 1)
       })
     }
     const focus = focusNodeId === null ? cy.collection() : cy.getElementById(focusNodeId)
@@ -486,8 +496,8 @@ export default function LessonGraphCanvas({
           <li>Livelli</li>
           {levels.map((level) => (
             <li key={level}>
-              <span aria-hidden style={{ width: 7, height: 7, borderRadius: "50%", background: LEVEL_COLOR[level], display: "inline-block" }} />
-              {level + 1}
+              <span aria-hidden style={{ width: 7, height: 7, borderRadius: "50%", background: LEVEL_COLOR[level - 1], display: "inline-block" }} />
+              {level}
             </li>
           ))}
         </ul>

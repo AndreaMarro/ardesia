@@ -168,7 +168,7 @@ gate still apply.
 | Candidate | License observed | Decision | Intended use |
 |---|---|---|---|
 | https://github.com/excalidraw/excalidraw | MIT | `ADOPTED` | keep the existing ARDESIA canvas dependency; reuse its open format, undo/redo, zoom/pan and local-first behavior |
-| https://github.com/cytoscape/cytoscape.js | MIT | `ADOPTED` | keep the existing graph dependency; do not add a second graph renderer |
+| https://github.com/cytoscape/cytoscape.js | MIT | `ADOPTED` | direct `cytoscape@3.34.0`; MIT, no runtime service or paid tier, `npm audit --omit=dev` 0 production vulnerabilities; selected over vis-network to avoid a second renderer |
 | https://github.com/tldraw/tldraw | custom production license | `REFERENCE` | study runtime canvas APIs and embeds; do not adopt while Excalidraw fits and license cost is unjustified |
 | https://github.com/wokwi/wokwi-elements | MIT | `ADAPT-CANDIDATE` | evaluate individual electronics web components/assets behind ARDESIA scene adapters |
 | https://github.com/pfalstad/circuitjs1 | GPL-2.0 | `LEGAL-REVIEW` | solver/diagnostic reference; no code absorption without compatibility decision |
