@@ -430,6 +430,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     expect(reducedMotion).toMatch(/\.st-library-shelf,\s*\.st-library-asset\s*\{[^}]*animation:\s*none !important;[^}]*transform:\s*none !important;/s)
     expect(reducedMotion).toMatch(/\.st-shell-launcher:hover,\s*\.st-shell-launcher\[aria-expanded="true"\][^{]*\{[^}]*transform:\s*none !important;/s)
     expect(css).not.toMatch(/@media \(max-width:\s*768px\) and \(min-height:\s*800px\)[\s\S]*?\.st-view-nav\s*\{[^}]*bottom:/)
+    expect(css).toMatch(/@media \(max-width:\s*768px\)[\s\S]*?\.st-library-inner\s*\{[^}]*padding:\s*var\(--m-sp-4\) var\(--m-sp-4\) 180px 140px;/)
 
     const { createArduinoToolchainEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
     const rendered = render(renderToolCanvasEmbeddable(createArduinoToolchainEmbedElement())!)
