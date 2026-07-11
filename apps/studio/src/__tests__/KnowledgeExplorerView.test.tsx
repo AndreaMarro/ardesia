@@ -50,6 +50,31 @@ const EVENTS: LessonOsEvent[] = [
 ]
 
 describe("KnowledgeExplorerView", () => {
+  it("espone ricerca, filtro livelli, runtime Cytoscape e minimappa", async () => {
+    const events = await appendEvents(EVENTS)
+    const { container } = render(<KnowledgeExplorerView deps={{ room: "led-room", loadEvents: async () => events }} />)
+
+    await screen.findByRole("searchbox", { name: "Cerca nel grafo" })
+
+    expect(screen.getByRole("combobox", { name: "Livelli" })).toBeTruthy()
+    expect(container.querySelector("[data-knowledge-minimap]")).toBeTruthy()
+    expect(container.querySelector("[data-cytoscape-graph]")).toBeTruthy()
+  })
+
+  it("filtra solo nodi materializzati e mantiene onesto un risultato vuoto", async () => {
+    const events = await appendEvents(EVENTS)
+    const { container } = render(<KnowledgeExplorerView deps={{ room: "led-room", loadEvents: async () => events }} />)
+    const search = await screen.findByRole("searchbox", { name: "Cerca nel grafo" })
+
+    fireEvent.change(search, { target: { value: "Circuito aperto" } })
+    expect(screen.getByRole("button", { name: "Circuito aperto" })).toBeTruthy()
+    expect(container.querySelectorAll("[data-zgraph-node]")).toHaveLength(1)
+
+    fireEvent.change(search, { target: { value: "nodo che LessonOS non contiene" } })
+    expect(screen.getByText("Nessun nodo corrisponde ai filtri correnti.")).toBeTruthy()
+    expect(container.querySelectorAll("[data-zgraph-node]")).toHaveLength(0)
+  })
+
   it("restringe il grafo alla sessione della lezione invece di combinare il log globale", async () => {
     const events = await appendEvents(EVENTS)
     const session = selectRoomSession(events, "led-room")

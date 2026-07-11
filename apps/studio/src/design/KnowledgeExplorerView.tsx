@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
+import type { AppendedEvent } from "../lessonos/eventlog"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { materialize, type LessonNode } from "../lessonos/materializer"
-import type { AppendedEvent } from "../lessonos/eventlog"
 import type { DashboardNodeKind } from "../lessonos/teacherDashboardProjection"
 import EmptyState from "./EmptyState"
-import LessonGraphCanvas from "./LessonGraphCanvas"
-import ViewNav, { viewHref } from "./ViewNav"
+import LessonGraphCanvas, { graphDepths } from "./LessonGraphCanvas"
+import StudioShell from "./StudioShell"
+import { viewHref } from "./ViewNav"
 
 export interface KnowledgeExplorerViewDeps {
   loadEvents?: () => Promise<readonly AppendedEvent[]>
@@ -29,6 +30,36 @@ const NODE_KIND: Record<LessonNode["kind"], DashboardNodeKind> = {
   plugin: "plugin",
 }
 
+const KIND_LABEL: Record<DashboardNodeKind, string> = {
+  concept: "Concetti",
+  material: "Materiali",
+  error: "Errori",
+  exercise: "Prove",
+  lesson: "Lezioni",
+  plugin: "Plugin",
+}
+
+const KNOWLEDGE_CSS = `
+.st-knowledge-view{height:100%;box-sizing:border-box;overflow:auto;padding:20px clamp(18px,3vw,42px) 22px;background:var(--m-paper,#f8f5ed)}
+.st-knowledge-inner{width:min(1180px,100%);min-height:100%;margin:0 auto;display:grid;grid-template-rows:auto minmax(520px,1fr);gap:12px}
+.st-knowledge-toolbar{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;align-items:center;gap:12px;min-width:0}
+.st-knowledge-title{min-width:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.st-knowledge-title h1{margin:0;font-size:16px;letter-spacing:0;overflow-wrap:anywhere}
+.st-knowledge-metrics{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.st-knowledge-metric{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:0 9px;border:1px solid var(--m-line,#e3ded5);border-radius:8px;background:var(--m-canvas,#fffdf8);color:var(--m-ink-3,#607080);font-size:10px;white-space:nowrap}
+.st-knowledge-metric strong{color:var(--m-ink,#1f3247);font-size:11px}
+.st-knowledge-filters{display:flex;align-items:center;justify-content:flex-end;gap:7px;min-width:0}
+.st-knowledge-search{position:relative;min-width:180px;width:min(260px,30vw)}
+.st-knowledge-search::before{content:'⌕';position:absolute;left:10px;top:50%;transform:translateY(-52%);color:var(--m-ink-4,#718092);pointer-events:none}
+.st-knowledge-search input,.st-knowledge-filters select{height:36px;box-sizing:border-box;border:1px solid var(--m-line-2,#d8d2c6);border-radius:7px;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:500 11px/1 var(--m-font-ui,system-ui)}
+.st-knowledge-search input{width:100%;padding:0 10px 0 29px}
+.st-knowledge-filters select{padding:0 28px 0 10px}
+.st-knowledge-graph{min-width:0;min-height:0;padding-top:10px;border-top:1px solid var(--m-line,#e3ded5)}
+.st-knowledge-shell-action{width:42px;height:42px;border:1px solid var(--m-line-2,#d8d2c6);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--m-canvas,#fffdf8);color:var(--m-ink-2,#28425d);font:600 18px/1 var(--m-font-ui,system-ui);text-decoration:none;cursor:pointer}
+@media(max-width:980px){.st-knowledge-toolbar{grid-template-columns:1fr}.st-knowledge-filters{justify-content:flex-start;overflow-x:auto;padding-bottom:2px}.st-knowledge-search{width:min(340px,65vw)}.st-knowledge-inner{grid-template-rows:auto auto}}
+@media(max-width:600px){.st-knowledge-view{padding:14px 12px}.st-knowledge-filters{align-items:stretch;flex-wrap:wrap}.st-knowledge-search{width:100%;min-width:100%}.st-knowledge-filters select{flex:1;min-width:130px}.st-knowledge-metrics{gap:4px}}
+`
+
 async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
   const store = await createEventLogStore()
   try {
@@ -47,7 +78,6 @@ function bySequence(a: AppendedEvent, b: AppendedEvent): number {
   return a.seq - b.seq
 }
 
-/** La vista usa l'ultima sessione effettivamente aperta per la stanza, mai un log globale implicito. */
 export function selectRoomSession(events: readonly AppendedEvent[], room: string): readonly AppendedEvent[] {
   if (!room) return []
   const sorted = [...events].sort(bySequence)
@@ -64,9 +94,6 @@ export function buildKnowledgeExplorerSnapshot(events: readonly AppendedEvent[],
     .map((node) => ({
       id: node.id,
       kind: NODE_KIND[node.kind],
-      // Il materializer conserva correttamente una label vuota quando l'evento
-      // non ne dichiara una. La superficie docente mostra allora l'ID reso
-      // leggibile, non un placeholder che sembri un dato mancante.
       label: Object.keys(node.labels).length > 0 ? node.labels : { und: readableNodeId(node.id) },
       evidenceRefs: [...node.evidenceRefs],
     }))
@@ -89,25 +116,22 @@ function labelOf(labels: Record<string, string>, fallback: string): string {
   return labels.it ?? Object.values(labels)[0] ?? fallback
 }
 
-function eventLabel(event: AppendedEvent): string {
-  if (event.kind === "arduino.compile.completed") return event.diagnostic
-  if (event.kind === "elabtutor.command.issued") return event.diagnostic
-  if ("labels" in event) return labelOf(event.labels, event.kind)
-  if (event.kind === "lesson.started") return "Lezione avviata"
-  if (event.kind === "lesson.ended") return "Lezione conclusa"
-  return event.kind
-}
-
 type ExplorerState =
   | { phase: "loading" }
   | { phase: "error"; detail: string }
   | { phase: "ready"; snapshot: KnowledgeExplorerSnapshot }
+
+type LevelFilter = "all" | "1" | "2"
+type KindFilter = "all" | DashboardNodeKind
 
 export default function KnowledgeExplorerView({ deps }: { deps?: KnowledgeExplorerViewDeps }) {
   const room = deps?.room ?? roomFromHash()
   const loadEvents = deps?.loadEvents ?? loadEventsFromStore
   const [state, setState] = useState<ExplorerState>({ phase: "loading" })
   const [focusNodeId, setFocusNodeId] = useState<string | null>(null)
+  const [query, setQuery] = useState("")
+  const [levelFilter, setLevelFilter] = useState<LevelFilter>("2")
+  const [kindFilter, setKindFilter] = useState<KindFilter>("all")
 
   const refresh = useCallback(async () => {
     setState({ phase: "loading" })
@@ -125,173 +149,125 @@ export default function KnowledgeExplorerView({ deps }: { deps?: KnowledgeExplor
     void refresh()
   }, [refresh])
 
-  const focusedNode = useMemo(() => {
-    if (state.phase !== "ready" || focusNodeId === null) return null
-    return state.snapshot.nodes.find((node) => node.id === focusNodeId) ?? null
-  }, [focusNodeId, state])
-
   const snapshot = state.phase === "ready" ? state.snapshot : null
+  const filteredGraph = useMemo(() => {
+    if (snapshot === null) return { nodes: [], edges: [], focusNodeId: null }
+    const normalizedQuery = query.trim().toLocaleLowerCase("it")
+    const depth = graphDepths(snapshot.nodes, snapshot.edges, focusNodeId)
+    const maximumDepth = levelFilter === "all" ? Number.POSITIVE_INFINITY : Number(levelFilter)
+    const nodes = snapshot.nodes.filter((node) => {
+      const matchesQuery = normalizedQuery.length === 0
+        || `${node.id} ${labelOf(node.label, node.id)}`.toLocaleLowerCase("it").includes(normalizedQuery)
+      const matchesKind = kindFilter === "all" || node.kind === kindFilter
+      const matchesLevel = focusNodeId === null || (depth.get(node.id) ?? 2) <= maximumDepth
+      return matchesQuery && matchesKind && matchesLevel
+    })
+    const ids = new Set(nodes.map((node) => node.id))
+    return {
+      nodes,
+      edges: snapshot.edges.filter((edge) => ids.has(edge.from) && ids.has(edge.to)),
+      focusNodeId: focusNodeId !== null && ids.has(focusNodeId) ? focusNodeId : null,
+    }
+  }, [focusNodeId, kindFilter, levelFilter, query, snapshot])
+
+  const actions = (
+    <>
+      <button
+        type="button"
+        className="st-knowledge-shell-action"
+        aria-label="Aggiorna il grafo"
+        title="Aggiorna il grafo"
+        onClick={() => void refresh()}
+        disabled={state.phase === "loading"}
+      >
+        ↻
+      </button>
+      <a className="st-knowledge-shell-action" aria-label="Apri la lavagna" title="Apri la lavagna" href={viewHref("lavagna", room)}>↗</a>
+    </>
+  )
 
   return (
-    <div style={pageStyle} data-knowledge-explorer>
-      <header className="st-bar" style={headerStyle}>
-        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
-          <span className="st-word">Ardesia</span>
-          <span className="st-bdot" aria-hidden />
-          <span className="st-sub">studio</span>
-        </div>
-        <div style={titleBlockStyle}>
-          <span style={eyebrowStyle}>Knowledge Explorer</span>
-          <strong style={titleStyle}>Tracce della lezione</strong>
-        </div>
-        <div style={headerActionsStyle}>
-          <ViewNav current="knowledge" />
-          <button type="button" className="st-ghost" onClick={() => void refresh()} disabled={state.phase === "loading"}>
-            aggiorna
-          </button>
-          <a className="st-ghost" href={viewHref("lavagna", room)}>
-            lavagna
-          </a>
-        </div>
-      </header>
+    <StudioShell current="knowledge" searchLabel="Cerca nella conoscenza…" actions={actions}>
+      <style>{KNOWLEDGE_CSS}</style>
+      <div className="st-knowledge-view" data-knowledge-explorer>
+        <div className="st-knowledge-inner">
+          {state.phase === "loading" && <p aria-busy="true">Leggo la memoria della lezione…</p>}
 
-      <main style={mainStyle}>
-        <section aria-label="Contesto lezione" style={contextStyle}>
-          <div>
-            <span style={eyebrowStyle}>Lezione</span>
-            <h1 style={headingStyle}>{room || "Nessuna lezione selezionata"}</h1>
-          </div>
-          <div style={breadcrumbStyle} aria-label="Percorso Knowledge Explorer">
-            <span>Lezione</span>
-            <span aria-hidden>›</span>
-            <span>Eventi</span>
-            <span aria-hidden>›</span>
-            <strong>Grafo</strong>
-          </div>
-        </section>
+          {state.phase === "error" && (
+            <EmptyState
+              tone="error"
+              title="Knowledge Explorer non disponibile"
+              detail="L'event log della lezione non e' leggibile: non mostro un grafo vuoto come se fosse completo."
+              hint={state.detail}
+            />
+          )}
 
-        {state.phase === "loading" && <p aria-busy="true" style={quietStyle}>Leggo la memoria della lezione…</p>}
+          {snapshot !== null && !snapshot.sessionFound && (
+            <EmptyState
+              title="Nessuna traccia per questa lezione"
+              detail="Apri la lavagna e compi un'azione: qui compariranno solo i nodi materializzati da LessonOS."
+              hint="La vista non combina eventi di lezioni diverse."
+            />
+          )}
 
-        {state.phase === "error" && (
-          <EmptyState
-            tone="error"
-            title="Knowledge Explorer non disponibile"
-            detail="L'event log della lezione non e' leggibile: non mostro un grafo vuoto come se fosse completo."
-            hint={state.detail}
-          />
-        )}
-
-        {snapshot !== null && !snapshot.sessionFound && (
-          <EmptyState
-            title="Nessuna traccia per questa lezione"
-            detail="Apri la lavagna, aggiungi un post-it e compi un'azione: qui compariranno solo gli eventi registrati da LessonOS."
-            hint="La vista non combina eventi di lezioni diverse."
-          />
-        )}
-
-        {snapshot !== null && snapshot.sessionFound && (
-          <>
-            <section aria-label="Sintesi della sessione" style={summaryGridStyle}>
-              <Metric label="Eventi" value={snapshot.events.length} color="#ed6b4f" />
-              <Metric label="Nodi" value={snapshot.nodes.length} color="#2f6fed" />
-              <Metric label="Evidenze" value={snapshot.evidenceRefs.length} color="#dfaa23" />
-            </section>
-
-            <section aria-labelledby="knowledge-graph-title" style={graphSectionStyle}>
-              <div style={sectionHeadingStyle}>
-                <div>
-                  <span style={eyebrowStyle}>Mappa</span>
-                  <h2 id="knowledge-graph-title" style={sectionTitleStyle}>Concetti e prove</h2>
+          {snapshot !== null && snapshot.sessionFound && (
+            <>
+              <header className="st-knowledge-toolbar">
+                <div className="st-knowledge-title">
+                  <h1>Grafo della lezione</h1>
+                  <div className="st-knowledge-metrics" aria-label="Metriche del grafo">
+                    <Metric label="eventi" value={snapshot.events.length} />
+                    <Metric label="nodi" value={snapshot.nodes.length} />
+                    <Metric label="evidenze" value={snapshot.evidenceRefs.length} />
+                  </div>
                 </div>
-                {focusedNode !== null && <span style={focusChipStyle}>{labelOf(focusedNode.label, focusedNode.id)}</span>}
-              </div>
-              {snapshot.nodes.length === 0 ? (
-                <EmptyState
-                  compact
-                  title="Gli eventi sono registrati, il grafo e' ancora vuoto"
-                  detail="Il prossimo solve, errore o concetto con evidenza rendera' la relazione navigabile."
-                />
-              ) : (
+
+                <div className="st-knowledge-metric" aria-live="polite">
+                  <strong>{filteredGraph.nodes.length}</strong> visibili
+                </div>
+
+                <div className="st-knowledge-filters">
+                  <label className="st-knowledge-search">
+                    <span className="sr-only">Cerca nel grafo</span>
+                    <input
+                      type="search"
+                      aria-label="Cerca nel grafo"
+                      placeholder="Cerca nel grafo"
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                    />
+                  </label>
+                  <select aria-label="Tipi" value={kindFilter} onChange={(event) => setKindFilter(event.target.value as KindFilter)}>
+                    <option value="all">Tutti i tipi</option>
+                    {(Object.keys(KIND_LABEL) as DashboardNodeKind[]).map((kind) => (
+                      <option key={kind} value={kind}>{KIND_LABEL[kind]}</option>
+                    ))}
+                  </select>
+                  <select aria-label="Livelli" value={levelFilter} onChange={(event) => setLevelFilter(event.target.value as LevelFilter)}>
+                    <option value="1">Livello 1</option>
+                    <option value="2">Livelli 1–2</option>
+                    <option value="all">Tutti i livelli</option>
+                  </select>
+                </div>
+              </header>
+
+              <section className="st-knowledge-graph" aria-label="Mappa della conoscenza">
                 <LessonGraphCanvas
-                  focusNodeId={focusNodeId}
-                  nodes={snapshot.nodes}
-                  edges={snapshot.edges}
+                  focusNodeId={filteredGraph.focusNodeId}
+                  nodes={filteredGraph.nodes}
+                  edges={filteredGraph.edges}
                   onFocusNode={setFocusNodeId}
                   locale="it"
                 />
-              )}
-            </section>
-
-            <section aria-label="Eventi ed evidenze" style={detailGridStyle}>
-              <div style={detailSectionStyle}>
-                <div style={sectionHeadingStyle}>
-                  <div>
-                    <span style={eyebrowStyle}>Sequenza</span>
-                    <h2 style={sectionTitleStyle}>Eventi</h2>
-                  </div>
-                </div>
-                <ol style={timelineStyle}>
-                  {snapshot.events.map((event) => (
-                    <li key={event.seq} data-knowledge-event={event.kind} style={timelineItemStyle}>
-                      <span style={sequenceStyle}>#{event.seq}</span>
-                      <span>{eventLabel(event)}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div style={detailSectionStyle}>
-                <div style={sectionHeadingStyle}>
-                  <div>
-                    <span style={eyebrowStyle}>Provenienza</span>
-                    <h2 style={sectionTitleStyle}>Evidenze</h2>
-                  </div>
-                </div>
-                <ul style={evidenceListStyle}>
-                  {snapshot.evidenceRefs.map((ref) => <li key={ref}><code>{ref}</code></li>)}
-                </ul>
-              </div>
-            </section>
-          </>
-        )}
-      </main>
-    </div>
+              </section>
+            </>
+          )}
+        </div>
+      </div>
+    </StudioShell>
   )
 }
 
-function Metric({ label, value, color }: { label: string; value: number; color: string }) {
-  return (
-    <div style={metricStyle}>
-      <span style={{ ...metricAccentStyle, background: color }} aria-hidden />
-      <span style={metricLabelStyle}>{label}</span>
-      <strong style={metricValueStyle}>{value}</strong>
-    </div>
-  )
+function Metric({ label, value }: { label: string; value: number }) {
+  return <span className="st-knowledge-metric"><strong>{value}</strong> {label}</span>
 }
-
-const pageStyle = { minHeight: "100vh", background: "#f8f5ed", color: "#17324d" } as const
-const headerStyle = { height: "auto", minHeight: 60, flexWrap: "wrap", gap: 10, paddingTop: 8, paddingBottom: 8 } as const
-const titleBlockStyle = { display: "grid", gap: 1, minWidth: 150 } as const
-const headerActionsStyle = { marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, maxWidth: "100%", overflowX: "auto", paddingBottom: 2 } as const
-const mainStyle = { boxSizing: "border-box", width: "min(1320px, 100%)", margin: "0 auto", padding: "24px clamp(16px, 3vw, 40px) 44px", display: "grid", gap: 20 } as const
-const contextStyle = { display: "flex", alignItems: "end", justifyContent: "space-between", gap: 16, flexWrap: "wrap", paddingBottom: 16, borderBottom: "2px solid #17324d" } as const
-const eyebrowStyle = { display: "block", color: "#5c6f81", fontSize: 12, fontWeight: 700, letterSpacing: 0, textTransform: "uppercase" } as const
-const titleStyle = { fontSize: 16, letterSpacing: 0 } as const
-const headingStyle = { margin: "2px 0 0", fontSize: 26, letterSpacing: 0, overflowWrap: "anywhere" } as const
-const breadcrumbStyle = { display: "flex", gap: 8, alignItems: "center", color: "#556a7e", fontSize: 14, flexWrap: "wrap" } as const
-const quietStyle = { color: "#556a7e", margin: 0 } as const
-const summaryGridStyle = { display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 } as const
-const metricStyle = { minWidth: 0, minHeight: 92, padding: 14, border: "1px solid #d9d2c5", borderRadius: 8, background: "#fffdf8", display: "grid", gridTemplateColumns: "6px 1fr", columnGap: 10, alignItems: "center" } as const
-const metricAccentStyle = { gridRow: "1 / span 2", width: 6, height: "100%", borderRadius: 4 } as const
-const metricLabelStyle = { color: "#556a7e", fontSize: 13 } as const
-const metricValueStyle = { fontSize: 30, lineHeight: 1, letterSpacing: 0 } as const
-const graphSectionStyle = { display: "grid", gap: 12, padding: "20px 0", borderTop: "1px solid #d9d2c5", borderBottom: "1px solid #d9d2c5" } as const
-const sectionHeadingStyle = { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" } as const
-const sectionTitleStyle = { margin: "2px 0 0", fontSize: 20, letterSpacing: 0 } as const
-const focusChipStyle = { maxWidth: "100%", overflowWrap: "anywhere", padding: "4px 9px", borderRadius: 999, background: "#dce9ff", color: "#1e4d95", fontSize: 13, fontWeight: 700 } as const
-const detailGridStyle = { display: "grid", gridTemplateColumns: "minmax(0, 1.2fr) minmax(280px, 0.8fr)", gap: 28 } as const
-const detailSectionStyle = { minWidth: 0, display: "grid", gap: 12 } as const
-const timelineStyle = { listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 8 } as const
-const timelineItemStyle = { display: "grid", gridTemplateColumns: "auto minmax(0, 1fr)", gap: 10, alignItems: "baseline", padding: "8px 0", borderBottom: "1px solid #e6dfd2", overflowWrap: "anywhere" } as const
-const sequenceStyle = { color: "#5c6f81", fontFamily: "var(--m-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace)", fontSize: 12 } as const
-const evidenceListStyle = { listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 7, overflowWrap: "anywhere" } as const
