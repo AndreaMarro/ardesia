@@ -735,21 +735,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   }
 
   const launcherItems = [
-    { id: "note", label: "Nota", detail: "Scrivi sulla lavagna", icon: null, action: startTextNote },
-    { id: "media", label: "Media", detail: "Aggiungi immagine o PDF", icon: <IconImage size={18} />, action: () => { fileInputRef.current?.click(); closeLauncher() } },
-    { id: "simulation", label: "Circuito LED", detail: "Apri un'attivita' di simulazione", icon: null, action: () => { insertSimulationPlugin(); closeLauncher() } },
-    { id: "arduino", label: "Sketch Arduino", detail: "Scrivi e compila il codice", icon: null, action: () => { insertArduinoToolchainPlugin(); closeLauncher() } },
-    { id: "tutor", label: "Guida ELAB", detail: "Segui i passaggi della lezione", icon: null, action: () => { insertElabTutorPlugin(); closeLauncher() } },
-    { id: "formula", label: "Formula", detail: "Inserisci una formula", icon: <IconFunction size={18} />, action: () => { setMathOn(true); closeLauncher() } },
-    { id: "lessons", label: "Lezioni", detail: "Riapri una lavagna salvata", icon: null, action: () => { void toggleDrawer(launcherButtonRef.current); closeLauncher() } },
-    { id: "audio", label: audioOn ? "Ferma audio" : "Registra audio", detail: "Microfono del docente", icon: <IconMic size={18} />, action: () => { void toggleAudio(); closeLauncher() } },
-    { id: "export", label: exporting ? "Esportazione..." : "Esporta lezione", detail: "Salva una copia portatile", icon: <IconDownload size={18} />, action: () => { void handleExportLesson(); closeLauncher() } },
-    ...(storeMode === "fsa" ? [] : [{ id: "folder", label: "Scegli cartella", detail: "Salva sul computer", icon: null, action: () => { void handleConnectFolder(); closeLauncher() } }]),
+    { id: "note", group: "create", label: "Nota", detail: "Scrivi sulla lavagna", icon: null, action: startTextNote },
+    { id: "media", group: "create", label: "Media", detail: "Aggiungi immagine o PDF", icon: <IconImage size={18} />, action: () => { fileInputRef.current?.click(); closeLauncher() } },
+    { id: "formula", group: "create", label: "Formula", detail: "Inserisci una formula", icon: <IconFunction size={18} />, action: () => { setMathOn(true); closeLauncher() } },
+    { id: "simulation", group: "activity", label: "Circuito LED", detail: "Apri un'attivita' di simulazione", icon: null, action: () => { insertSimulationPlugin(); closeLauncher() } },
+    { id: "arduino", group: "activity", label: "Sketch Arduino", detail: "Scrivi e compila il codice", icon: null, action: () => { insertArduinoToolchainPlugin(); closeLauncher() } },
+    { id: "tutor", group: "activity", label: "Guida ELAB", detail: "Segui i passaggi della lezione", icon: null, action: () => { insertElabTutorPlugin(); closeLauncher() } },
+    { id: "lessons", group: "lesson", label: "Lezioni", detail: "Riapri una lavagna salvata", icon: null, action: () => { void toggleDrawer(launcherButtonRef.current); closeLauncher() } },
+    { id: "audio", group: "lesson", label: audioOn ? "Ferma audio" : "Registra audio", detail: "Microfono del docente", icon: <IconMic size={18} />, action: () => { void toggleAudio(); closeLauncher() } },
+    { id: "export", group: "lesson", label: exporting ? "Esportazione..." : "Esporta lezione", detail: "Salva una copia portatile", icon: <IconDownload size={18} />, action: () => { void handleExportLesson(); closeLauncher() } },
+    ...(storeMode === "fsa" ? [] : [{ id: "folder", group: "lesson", label: "Scegli cartella", detail: "Salva sul computer", icon: null, action: () => { void handleConnectFolder(); closeLauncher() } }]),
   ]
   const normalizedLauncherQuery = launcherQuery.trim().toLocaleLowerCase("it")
   const visibleLauncherItems = launcherItems.filter((item) =>
     normalizedLauncherQuery.length === 0 || `${item.label} ${item.detail}`.toLocaleLowerCase("it").includes(normalizedLauncherQuery),
   )
+  const launcherGroups = [
+    { id: "create", label: "Crea", items: visibleLauncherItems.filter((item) => item.group === "create") },
+    { id: "activity", label: "Attività", items: visibleLauncherItems.filter((item) => item.group === "activity") },
+    { id: "lesson", label: "Lezione", items: visibleLauncherItems.filter((item) => item.group === "lesson") },
+  ].filter((group) => group.items.length > 0)
 
   return recapView ? (
     <RecapView store={actualStore} room={room} />
@@ -789,7 +794,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <input
             ref={renameInputRef}
             className="st-name-input"
-            defaultValue={lessonName ?? room}
+            defaultValue={lessonName ?? ""}
             onBlur={(e) => saveRename(e.target.value)}
             onKeyDown={(e: KeyboardEvent) => {
               if (e.key === "Enter") saveRename((e.target as HTMLInputElement).value)
@@ -802,15 +807,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             className="st-name"
             role="button"
             tabIndex={0}
-            aria-label={lessonName ? `Rinomina la lezione ${lessonName}` : "Assegna un nome a questa lezione"}
-            title={lessonName ? `Rinomina: ${lessonName}` : `Assegna un nome a questa lezione (id: ${room})`}
+            aria-label={lessonName ? `Rinomina la lezione ${lessonName}` : "Dai un titolo alla lezione"}
+            title={lessonName ? `Rinomina: ${lessonName}` : "Dai un titolo alla lezione"}
             onClick={startRename}
             onKeyDown={(e: KeyboardEvent) => {
               if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startRename() }
             }}
           >
-            <span className="st-name-text">{lessonName ?? room}</span>
-            {!lessonName && <span className="st-name-prompt">dai un nome</span>}
+            <span className="st-name-text">{lessonName ?? "Lezione senza titolo"}</span>
           </span>
         )}
 
@@ -839,21 +843,28 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   placeholder="Cerca nota, media, circuito..."
                 />
               </label>
-              <div className="st-launcher-grid">
-                {visibleLauncherItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={item.action}
-                    aria-label={`${item.label}: ${item.detail}`}
-                    className={`st-launcher-item st-launcher-item-${item.id}`}
-                  >
-                    {item.icon && <span className="st-launcher-item-icon">{item.icon}</span>}
-                    <span className="st-launcher-item-copy">
-                      <strong>{item.label}</strong>
-                      <span>{item.detail}</span>
-                    </span>
-                  </button>
+              <div className="st-launcher-groups">
+                {launcherGroups.map((group) => (
+                  <section key={group.id} className={`st-launcher-group st-launcher-group-${group.id}`} aria-labelledby={`launcher-group-${group.id}`}>
+                    <h2 id={`launcher-group-${group.id}`}>{group.label}</h2>
+                    <div className="st-launcher-grid">
+                      {group.items.map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={item.action}
+                          aria-label={`${item.label}: ${item.detail}`}
+                          className={`st-launcher-item st-launcher-item-${item.id}`}
+                        >
+                          {item.icon && <span className="st-launcher-item-icon">{item.icon}</span>}
+                          <span className="st-launcher-item-copy">
+                            <strong>{item.label}</strong>
+                            <span>{item.detail}</span>
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </section>
                 ))}
               </div>
               {visibleLauncherItems.length === 0 && <p className="st-launcher-empty">Nessun risultato. Prova con nota, media o plugin.</p>}
@@ -873,7 +884,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             aria-label="Condividi con la classe"
             title="Copia il link per lo studente"
           >
-            {copied ? <><IconCheck /><span>copiato</span></> : <><IconLink /><span>condividi</span></>}
+            {copied ? <><IconCheck size={18} /><span>copiato</span></> : <><IconLink size={18} /><span>condividi</span></>}
           </button>
         </div>
         <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
@@ -1066,7 +1077,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   <span className="st-welcome-heading">La lavagna che ricorda la tua lezione</span>
                 </WelcomeScreen.Center.Heading>
                 <div className="st-welcome-guide">
-                  <p>Usa «Cerca e crea» per aggiungere note, media e attivita'.</p>
+                  <p>Cosa vuoi portare in classe oggi?</p>
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
                   <p>Il microfono parte solo quando scegli «Registra audio».</p>
                 </div>

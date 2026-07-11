@@ -108,6 +108,7 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     await vi.waitFor(() => {
       const bars = document.querySelectorAll(".st-bar")
       expect(bars.length).toBe(1)
+      expect(document.querySelector(".st-name-text")?.textContent).toBe("Lezione senza titolo")
     }, { timeout: 1000, interval: 10 })
     root.unmount()
   })
@@ -135,6 +136,9 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
       expect(document.querySelector(".st-launcher-panel")).toBeTruthy()
       expect(launcher.getAttribute("aria-expanded")).toBe("true")
     }, { timeout: 1000, interval: 10 })
+    expect(
+      Array.from(document.querySelectorAll(".st-launcher-group h2"), (heading) => heading.textContent),
+    ).toEqual(["Crea", "Attività", "Lezione"])
 
     launcher.click()
     await vi.waitFor(() => {

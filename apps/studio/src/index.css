@@ -63,9 +63,9 @@ body {
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 .st-orbit-shell .st-brand { flex: 0 0 auto; }
-.st-orbit-shell .st-name { max-width: 180px; }
+.st-orbit-shell .st-name { max-width: 168px; color: var(--m-ink-3); }
 .st-orbit-launcher-wrap {
-  position: relative; flex: 1 1 440px; max-width: 560px;
+  position: relative; flex: 1 1 480px; max-width: 640px;
   min-width: 240px; margin-inline: auto;
 }
 .st-orbit-launcher {
@@ -88,9 +88,10 @@ body {
   font-size: var(--m-fs-sm); font-weight: 650;
 }
 .st-launcher-panel {
-  position: absolute; z-index: 620; top: calc(100% + var(--m-sp-2)); left: 0; right: 0;
+  position: absolute; z-index: 620; top: calc(100% + var(--m-sp-2)); left: 50%;
+  width: min(720px, calc(100vw - 32px)); transform: translateX(-50%);
   max-height: min(620px, calc(100vh - 92px)); overflow: auto;
-  padding: var(--m-sp-4); border: 1px solid var(--m-line-2); border-radius: var(--m-r-field);
+  padding: var(--m-sp-4); border: 1px solid var(--m-line-2); border-top: 3px solid var(--m-accent); border-radius: var(--m-r-field);
   background: var(--m-paper); box-shadow: var(--m-shadow-card);
 }
 .st-launcher-search { display: grid; gap: var(--m-sp-2); }
@@ -102,10 +103,16 @@ body {
   padding: 0 var(--m-sp-3); border: 1px solid var(--m-line-2); border-radius: var(--m-r-field);
   background: var(--m-canvas); color: var(--m-ink); font: inherit;
 }
-.st-launcher-grid {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--m-sp-2); margin-top: var(--m-sp-3);
+.st-launcher-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--m-sp-3); margin-top: var(--m-sp-4); }
+.st-launcher-group { min-width: 0; }
+.st-launcher-group h2 {
+  margin: 0 0 var(--m-sp-2); font-size: var(--m-fs-xs); font-weight: 700;
+  color: var(--m-ink-3); letter-spacing: 0; text-transform: uppercase;
 }
+.st-launcher-group-create h2 { color: var(--m-blue-deep); }
+.st-launcher-group-activity h2 { color: var(--m-viridian); }
+.st-launcher-group-lesson h2 { color: var(--m-warn); }
+.st-launcher-grid { display: grid; gap: var(--m-sp-2); }
 .st-launcher-item {
   min-height: 64px; display: flex; align-items: center; gap: var(--m-sp-2);
   padding: var(--m-sp-3); border: 1px solid var(--m-line); border-radius: var(--m-r-field);
@@ -143,13 +150,26 @@ body {
 }
 .st-view-nav-item {
   min-height: 44px; display: flex; align-items: center; padding: 0 var(--m-sp-3);
-  box-sizing: border-box; border-radius: var(--m-r-pill); color: var(--m-ink-3);
+  box-sizing: border-box; border-left: 3px solid transparent; border-radius: var(--m-r-pill); color: var(--m-ink-3);
   font-size: var(--m-fs-sm); font-weight: 600; text-decoration: none; white-space: nowrap;
   transition: background var(--m-t-fast) var(--m-ease), color var(--m-t-fast) var(--m-ease);
 }
 .st-view-nav-item:hover { background: var(--m-fill); color: var(--m-ink); }
-.st-view-nav-item-active { background: var(--m-accent-wash); color: var(--m-accent-deep); }
-.st-orbit-canvas { min-width: 0; background: var(--m-canvas); }
+.st-view-nav-item-active {
+  border-left-color: var(--m-accent); background: var(--m-canvas); color: var(--m-accent-deep);
+  box-shadow: var(--m-shadow-pop);
+}
+.st-orbit-canvas { min-width: 0; background: var(--m-paper); }
+.st-orbit-canvas .excalidraw,
+.st-orbit-canvas .excalidraw .excalidraw__canvas { background: var(--m-paper) !important; }
+.st-orbit-canvas .excalidraw .sidebar-trigger__label-element[title="Libreria"] { display: none !important; }
+.st-orbit-canvas .excalidraw .HintViewer { display: none !important; }
+.st-orbit-canvas .excalidraw .App-toolbar {
+  border: 1px solid var(--m-line-2); box-shadow: var(--m-shadow-pop);
+}
+.st-orbit-canvas .excalidraw .App-toolbar .ToolIcon_type_radio:checked + .ToolIcon__icon {
+  background: var(--m-accent-light) !important; color: var(--m-accent-deep) !important;
+}
 
 /* ── nome lezione (editabile inline) ────────────────────────────────── */
 .st-name {
@@ -358,7 +378,7 @@ body {
 .st-orbit-canvas .st-welcome-guide p ~ p { display: none; }
 .st-orbit-canvas .st-welcome-guide {
   margin-top: 0; max-width: 34ch; line-height: 1.45;
-  font-family: var(--m-font-display); font-size: var(--m-fs-lg);
+  font-family: var(--m-font-display); font-size: var(--m-fs-xl); color: var(--m-ink-2);
 }
 .st-welcome-hint { margin: 0; font-size: var(--m-fs-md); color: var(--m-ink-4); }
 
@@ -510,8 +530,8 @@ body {
   .st-orbit-share span { display: none; }
   .st-view-nav { top: 76px; left: var(--m-sp-2); width: 116px; }
   .st-view-nav-item { padding-inline: var(--m-sp-2); font-size: var(--m-fs-xs); }
-  .st-launcher-panel { position: fixed; top: 72px; left: var(--m-sp-2); right: var(--m-sp-2); }
-  .st-launcher-grid { grid-template-columns: 1fr; }
+  .st-launcher-panel { position: fixed; top: 72px; left: var(--m-sp-2); right: var(--m-sp-2); width: auto; transform: none; }
+  .st-launcher-groups { grid-template-columns: 1fr; }
 }
 
 /* ── Tablet / LIM dead-zone (769–1024px) ──────────────────────────────────
