@@ -222,15 +222,16 @@ describe("ToolCanvasEmbeddable", () => {
     expect(view).not.toBeNull();
     const html = renderToStaticMarkup(view);
 
-    expect(html).toContain("Accendi il tuo primo LED");
-    expect(html).toContain("Simulation Plugin Canvas");
+    expect(html).toContain("Accendi il LED sulla breadboard");
+    expect(html).toContain("Post-it interattivo");
+    expect(html).not.toContain("Simulation Plugin Canvas");
     expect(html).toContain("simulation plugin: canvas ELABTutor core montato su SimulationScene canonica");
     expect(html).toContain('data-simulation-surface="elab-core-canvas"');
     expect(html).toContain('data-elab-core-canvas-mounted="true"');
     expect(html).toContain('data-elab-canvas-source-of-truth="simulation-scene"');
     expect(html).toContain('data-elab-canvas-build-mode="complete"');
     expect(html).toContain('data-elab-canvas-projection-mode="gia-montato"');
-    expect(html).toContain("Montaggio libero legacy");
+    expect(html).toContain("Proiezione tecnica scena");
     expect(html).toContain("Vol.1 pag.29-31 - ESPERIMENTO");
     expect(html).toContain("draft");
     // La scena bridgata non ha regole spaziali autorate dal libro (lista vuota onesta).

@@ -71,7 +71,7 @@ describe("simulationPluginRegistry", () => {
     expect(view).not.toBeNull()
     const html = renderToStaticMarkup(view!)
     // non deve dispatchare al tool reference
-    expect(html).not.toContain("Accendi il tuo primo LED")
+    expect(html).not.toContain("Accendi il LED sulla breadboard")
     expect(html).toContain("io.unknown.tool")
   })
 
@@ -84,7 +84,7 @@ describe("simulationPluginRegistry", () => {
       link: `${TOOL_EMBED_SCHEME}${LEGACY_REFERENCE_SIM_TOOL_ID}/${REFERENCE_SIM_EMBED_ID}`,
     })
     expect(view).not.toBeNull()
-    expect(renderToStaticMarkup(view!)).toContain("Accendi il tuo primo LED")
+    expect(renderToStaticMarkup(view!)).toContain("Accendi il LED sulla breadboard")
   })
 
   // ── Fase 2 simulature: motore elettrico dietro il registry (confine P2) ──

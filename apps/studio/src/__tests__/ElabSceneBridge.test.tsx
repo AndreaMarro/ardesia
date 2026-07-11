@@ -101,7 +101,7 @@ describe("bridge ElabScene -> SimulationSceneV1 (round-trip render della scena r
     expect(view).not.toBeNull()
     const html = renderToStaticMarkup(view!)
     expect(html).toContain("15.3 mA")
-    expect(html).toContain("Accendi il tuo primo LED")
+    expect(html).toContain("Accendi il LED sulla breadboard")
   })
 
   it("la provenance NON viene gonfiata: candidate -> draft, mai verified", () => {
