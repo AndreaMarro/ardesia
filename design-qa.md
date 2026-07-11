@@ -25,13 +25,13 @@
 - Compact post-its expose real live state for circuit current/LED, Arduino source/compile, and tutor links.
 - The annotation layer supports pen, highlighter, arrow, short text, eraser, selection, hide/show, lock, undo/redo and confirmed clear over the live plugin.
 - Library opens the requested post-it without the delayed row fit overriding focus. Excalidraw's technical style panel stays out of the primary shell while object handles remain.
-- Tablet targets are compensated at 841-1024px and 768-840px. No visible clipping was found in the accepted desktop, iPad, or LIM captures.
+- Tablet targets are compensated at 841-1024px and 768-840px. At 1024px the compact annotation toolbar measured `overlaps: false`, remained horizontally scrollable and exposed five controls without collision. No visible clipping was found in the accepted desktop, iPad, or LIM captures.
 - Browser interactions exercised launcher, compile, tutor command, expand/collapse, annotation controls, Library focus and Knowledge controls. No runtime error was observed in the final navigation check.
 - Targeted gate: 92/92 policy, Room and annotation tests pass; typecheck and production build pass.
 
 ## Red
 
-- Full suite: 50 failures, 1606 passes, 5 skipped. Three policy failures were fixed in this pass; most remaining failures assert the previous full-runtime result of `renderToolCanvasEmbeddable` instead of the approved compact post-it contract. This contract migration is not complete.
+- Full suite: 47 failures, 1609 passes, 5 skipped. Independent review classified 41 as stale full-runtime assertions and 6 as stale shell-contract assertions. The compact post-it test migration is not complete, so the merge gate remains RED.
 - Knowledge displays only the two nodes currently materialized from four real LessonOS events. The approved image shows a richer lesson graph, but adding invented nodes would violate the real-data gate.
 - The expanded Simulation surface is live and functional, but its above-the-fold visual density is still below the approved composition. It must improve through the real runtime, not a raster preview.
 - Physical Apple Pencil hardware was not available. Pointer-type tests cover pen/touch/mouse behavior, but device-level Pencil verification remains UNKNOWN.
