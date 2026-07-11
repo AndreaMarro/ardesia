@@ -1,106 +1,92 @@
 # ARDESIA V1 — loop rewrite report
 
-Date: 2026-07-10. Current verified base:
-`origin/main@9b7342fcbe8363a8033bc17be86766a1a0bdfd7d`.
+Date: 2026-07-11. Scope: first read-only macrophase after the independently
+reviewed goal published in PR #173. This report records a correction to the
+control plane, not product completion.
 
 ## Verdict
 
-The attached loop constitution remains directionally correct but is not
-directly executable as-is: it repeats itself, mixes Claude-only and Codex
-runtime assumptions, and contains stale facts about PR #150, `origin/main` and
-Principio Zero runtime state. The rewritten prompt in
-`ARDESIA-V1-LOOP-EXECUTABLE.md` is shorter, evidence-bound and executable for
-regate, audit and one-slice execution. It does not reduce product ambition and
-does not certify V1.
+The previous executable prompt was useful as historical evidence but was stale:
+it named `origin/main@9b7342fc`, while the observed canonical head is now
+`91ec22ed`; it described older PR #150/#163 conditions; and its traceability
+index did not satisfy the new mandate's complete-denominator rule. The revised
+prompt preserves the ambition while making the next action falsifiable.
 
-Current verdict: `A7_REVIEW_PASS_LOCAL`, pending PR CI before any product-code
-slice.
+Result: `G0_TRACEABILITY_VERIFIED_LOCAL` for frozen-source coverage and basic
+local secret scan only. The validator is not CI-enforced. `V1_GREEN`, product
+security, ToolHost compliance, book fidelity, graph retrieval, artifact
+generation and deploy proof remain open.
 
-## What Changed
+## What changed
 
-| Area | Change | Why | Risk reduced |
-|---|---|---|---|
-| Reality gate | Updated baseline from stale `204ffefc/82bf629d` to `9b7342fc` | PR #150 and #163 are now merged and CI-green | stale execution plan |
-| PR #150 | Changed from draft/blocker to merged evidence | GitHub PR #150 merged at `4f25f72c`; post-merge CI/readiness green | repeating obsolete integration work |
-| P0 runtime | Changed from absolute RED to partial improvement + unknown e2e | PR #163 removed the browser prompt conflict and made book anchors active | hiding remaining tutor proof gaps |
-| Tooling | Distinguished repository Claude artifacts from Codex runtime enforcement | `.claude` files exist, but Codex does not execute Claude hooks | imaginary enforcement |
-| Scope | Kept only next mandatory slice in `V1-NEXT.md` | Prevents backlog-as-progress | activity without convergence |
-| Security | Preserved RED/UNKNOWN gates despite scanner success | S-002/RLS/history/rotation remain unresolved | false security GREEN |
-| Deploy | Split CI-green from deploy-proof | `9b7342fc` has CI evidence, not production smoke evidence | HTTP/deploy overclaim |
-
-## Capability Mapping
-
-| Capability | Evidence | Status |
+| Change | Why | Risk reduced |
 |---|---|---|
-| Codex local shell/git | Commands in this run against `/Users/andreamarro/ardesia-wt/tutor-ux` | VERIFIED |
-| Worktree isolation | `GIT_DIR != GIT_COMMON`, branch `codex/v1-loop-executable-20260710` | VERIFIED |
-| Multi-agent reviewer | `tool_search` exposed `multi_agent_v1.spawn_agent`; first A7 review `019f4c92-1c2a-7bf3-bddb-85e9ed3f47fe` found six issues; follow-up A7 review `019f4c96-98d5-78f2-8b29-aa54647d8a42` returned PASS | VERIFIED for this Codex Desktop run only; future runtime availability UNKNOWN |
-| Claude project skill | `.claude/skills/ardesia-regate/SKILL.md` exists | VERIFIED as file, not runtime-executed here |
-| Claude agents | `.claude/agents/ardesia-*.md` exist | VERIFIED as files, not runtime-executed here |
-| Claude hook | `.claude/settings.json` references `scripts/guardrails/claude-pretool-safety.sh` | VERIFIED as config, runtime UNKNOWN in Codex |
-| Production deploy proof for current SHA | No deploy/smoke evidence for `9b7342fc` | UNKNOWN |
+| Added lossless JSONL traceability mirror and validator | The old seed had a few grouped milestones, not one source unit per frozen-line denominator | omission, duplicate or altered mandate text |
+| Updated reality gate to `origin/main@91ec22ed` and PRs #170–#174 | Older SHA/PR facts were stale | executing against obsolete topology |
+| Separated scanner success from RLS/sandbox/deploy/history claims | A local secret scan cannot prove backend security | false `SECURITY_GREEN` |
+| Recorded real ToolHost bypasses in the M0 WIP | A global event and swallowed append failure evade the declared contract | fake integration and a second control plane |
+| Narrowed next work to review/reshape before M0 implementation | The working M0 UI lacks its required browser/architecture gate | compounding an unverified surface |
 
-## Rule Destinations
+## Runtime and tool applicability
 
-| Rule type | Destination now | Enforcement status |
+| Requirement | Actual enforcement in this run | Limit |
 |---|---|---|
-| Stable repo guardrails | `AGENTS.md`, `.claude/settings.json` | partial; model + Claude hook when active |
-| Regate procedure | `.claude/skills/ardesia-regate/SKILL.md` | file exists; use manually in Codex |
-| Roles | `.claude/agents/ardesia-repo-cartographer.md`, `.claude/agents/ardesia-adversarial-reviewer.md` | file exists; Codex reviewer spawned manually when needed |
-| Volatile state | `docs/ops/V1-LOOP-STATE.md`, `V1-NEXT.md`, claim/security matrices | document enforcement |
-| Security hooks | CI secret scan plus documented hook targets | partial; S-002/RLS/history not closed |
-| Product acceptance | prompt + future tests/matrices | not product-complete |
+| Frozen source integrity | Local `node scripts/check-full-traceability.mjs` checks 7,113 lossless rows and both approved SHA-256 values | It is not wired into CI yet; external source paths are local |
+| Worktree isolation | Isolated branch `codex/g0-traceability-20260711` has a clean base stacked on #173 | Its own five-file diff is intentionally uncommitted; other worktrees remain dirty and unowned |
+| Current working-tree secrets | `python3 bin/ci/secret_scan.py` covers tracked files; the three untracked additions receive the explicit path scan below | Does not prove key rotation, RLS, CSP or provider setup |
+| Recent history secrets | 20 commits / 77 changed text blobs: zero high-confidence secret shapes | This is a bounded recent-history sample, not a lifetime attestation |
+| A7 independence | Required before this document slice can become `GREEN_SLICE` | Review has not yet run |
+| Claude hooks/skills/agents | Repository files may exist | Their runtime execution is not inferred in Codex Desktop |
 
-## Fundamental Requirement Check
+The reproducible untracked-path scan for this five-file slice is:
 
-| Fundamental requirement | Present? | Enforcement | Evidence | Residual risk |
-|---|---:|---|---|---|
-| Principio Zero authentic wording | yes | canon + prompt + tests target | `V1-PRINCIPIO-ZERO-CANON.md`, PR #163 | tutor e2e UNKNOWN |
-| Teacher centrality and kit | yes | prompt/canon | `plugins/elab-tutor/CLAUDE.md` | runtime surfaces not fully audited |
-| Vol./pag. anchors and exact book words target | yes | prompt target + limited PR #163 tests | PR #163 verifies browser prompt conflict removal and Vol./pag. anchor post-processing | exact wording e2e, backend and edge paths remain UNKNOWN |
-| Book semantic/topological/visual parity | yes | prompt + matrices | `V1-BOOK-CIRCUIT-CERTIFICATION-MATRIX.md` | 0 certified experiments |
-| mounted/steps equivalence | yes | prompt/test target | executable prompt | current implementation RED/UNKNOWN |
-| SimulationScene as domain truth | yes | prompt/canon | executable prompt | duplicated models possible |
-| Typed AI circuit commands | yes | prompt/schema target | executable prompt | implementation incomplete |
-| ToolHost enforcement | yes | release gate | first P33 boundary | direct callback path likely RED |
-| LessonOS spine | yes | integration gate | executable prompt | backend sync/reopen unknown |
-| Graph/memory | yes | integration gate | executable prompt | not end-to-end proven |
-| Knowledge Cards/post-it | yes | product gate | executable prompt | not next slice |
-| UI simple/joyful/iPad/LIM | yes | UX gate | executable prompt | not verified now |
-| Backend/RLS | yes | security/backend gate | security matrix | UNKNOWN |
-| Deploy tied to SHA | yes | deploy-proof gate | executable prompt | current SHA deploy UNKNOWN |
-| Security/GDPR/minors | yes | security matrix + scans | `V1-SECURITY-MATRIX.md` | S-002/history/RLS open |
-| Independent verification | yes | agent/reviewer rule | multi-agent availability + A7 file | review must be run per slice |
-| Honest RED/stop | yes | terminal states | executable prompt | operator discipline required |
+```bash
+matches=$(rg -l \
+  -e '-----BEGIN (RSA|EC|DSA|OPENSSH|PGP) PRIVATE KEY-----' \
+  -e 'AKIA[0-9A-Z]{16}' \
+  -e 'gh[pousr]_[A-Za-z0-9]{36,}' \
+  -e 'xox[baprs]-[A-Za-z0-9-]{10,}' \
+  -e 'sk-[A-Za-z0-9_-]{32,}' \
+  -e 'sk_live_[A-Za-z0-9]{16,}' \
+  -e 'AIza[0-9A-Za-z_-]{35}' \
+  docs/ops/ARDESIA-FULL-TRACEABILITY.jsonl \
+  docs/ops/ARDESIA-FULL-TRACEABILITY.md \
+  scripts/check-full-traceability.mjs)
+scan_rc=$?
+if [ "$scan_rc" -eq 1 ]; then
+  echo 'untracked_slice_secret_scan=OK'
+elif [ "$scan_rc" -eq 0 ]; then
+  printf 'untracked_slice_secret_paths=%s\n' "$(printf '%s\n' "$matches" | wc -l | tr -d ' ')"
+  exit 1
+else
+  exit "$scan_rc"
+fi
+```
 
-The table proves preservation of requirements in the prompt, not product
-completion.
+Observed result: `untracked_slice_secret_scan=OK` (zero exit). The two modified
+tracked documents are covered by the regular tracked-file scanner. This is
+evidence for this slice only, not a replacement for CI secret enforcement.
 
-## Instructions Removed or Reframed
+## Fundamental requirement preservation
 
-- Removed stale claim that PR #150 is draft/open.
-- Removed stale base SHA and stale `204ffefc` deploy assumptions.
-- Reframed “create many docs/skills/agents” into “use/create only when the
-  current slice exercises them”.
-- Reframed broad swarm language into bounded reviewer/cartographer usage.
-- Preserved the ambition of Tinkercad/book/teacher journey as matrices and
-  gated scenarios, not slogans.
+| Requirement | Preserved in executable loop | Enforcement now | Residual risk |
+|---|---:|---|---|
+| Principio Zero and teacher centrality | yes | canon + prompt + future acceptance review | runtime conformance RED/UNKNOWN |
+| Book semantic/topology/visual/temporal parity | yes | per-experiment matrix and certification gate | zero real certified experiment |
+| One SimulationScene; mounted/steps equality | yes | architecture invariant + test gate | implementation not certified |
+| Typed AI circuit actions | yes | contract/release gate | incomplete runtime evidence |
+| Public ToolHost/plugin capabilities | yes | invariant + A7 bypass review | M0 global event is RED |
+| LessonOS → graph → tutor → artifact chain | yes | first-failed-boundary integration iteration | local persistence only candidate evidence |
+| Knowledge Cards, creator and composition | yes | M1/M6 gated roadmap | not yet proven |
+| UI quality, touch, iPad and LIM | yes | browser/M0 protocol + Andrea review | current UI remains RED |
+| Security, GDPR, RLS and deploy SHA | yes | G0/M5/release gates | partial scan only |
+| Full goal denominator and honest stop | yes | lossless matrix + terminal states | no product rows are GREEN |
 
-## Current Non-Applicability Notes
+## Next prompt
 
-- Claude hook and agent files may be valid for Claude Code, but Codex Desktop
-  does not prove their runtime execution.
-- No provider key rotation, Vercel/Supabase secret inspection, or production
-  deploy was performed in this docs update.
-- No new product-code claim is made by this rewrite.
-
-## Next Review Target
-
-A7 should review these changed docs against:
-
-1. stale facts;
-2. weakened requirements;
-3. overclaim around PR #150/#163;
-4. fake enforcement from `.claude` files;
-5. missing security/deploy caveats;
-6. whether `V1-NEXT.md` names exactly one next slice.
+Do not start a new session merely to restate the goal. Continue from this clean
+G0 branch, obtain independent review and CI, then retain human ownership of the
+#171/#172 merge decisions. Only after that re-gate the M0 candidate and select
+one visible, contract-compliant teacher-surface slice. The first broken
+LessonOS boundary remains the retrieval/artifact side, not a reason to build a
+parallel graph or tutor implementation.
