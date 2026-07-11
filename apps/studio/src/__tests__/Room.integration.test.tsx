@@ -20,6 +20,7 @@ const mockExcalidrawHarness = vi.hoisted(() => ({
   scrollToContentCalls: [] as Array<{ elements: Array<{ id?: string }>; options?: unknown }>,
   activeToolCalls: [] as Array<{ type: string }>,
   sceneElements: [] as Array<{ id?: string }>,
+  appState: { zoom: { value: 1 } },
 }))
 
 vi.mock("@excalidraw/excalidraw", () => {
@@ -31,6 +32,7 @@ vi.mock("@excalidraw/excalidraw", () => {
           const unsubs: Array<() => void> = []
           props.excalidrawAPI({
             getSceneElements: vi.fn(() => mockExcalidrawHarness.sceneElements),
+            getAppState: vi.fn(() => mockExcalidrawHarness.appState),
             updateScene: vi.fn((scene: { elements?: Array<{ id?: string }> }) => {
               mockExcalidrawHarness.updateSceneCalls.push(scene)
             }),
@@ -183,6 +185,7 @@ beforeEach(() => {
   mockExcalidrawHarness.scrollToContentCalls = []
   mockExcalidrawHarness.activeToolCalls = []
   mockExcalidrawHarness.sceneElements = []
+  mockExcalidrawHarness.appState = { zoom: { value: 1 } }
   document.body.removeAttribute("data-mock-excalidraw-api")
   vi.clearAllMocks()
 })
@@ -464,6 +467,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
           viewportZoomFactor: 1,
           canvasOffsets: { left: 140, right: 16, top: 58, bottom: 0 },
         },
+      })
+      expect(mockExcalidrawHarness.updateSceneCalls).toContainEqual({
+        appState: expect.objectContaining({ zoom: { value: 0.64 } }),
       })
     })
     Object.defineProperty(window, "innerWidth", { value: originalWidth, configurable: true })

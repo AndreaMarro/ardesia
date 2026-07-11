@@ -640,7 +640,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
-  function framePluginRow(elements: any[]): void {
+  function framePluginRow(elements: readonly any[]): void {
     const api = apiRef.current
     if (!api) return
     const pluginElements = elements.filter(isToolCanvasEmbed)
@@ -654,13 +654,28 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       viewportZoomFactor: 1,
       ...(compactViewport ? { canvasOffsets: { left: leftGutter, right: rightGutter, top: 58, bottom: 0 } } : {}),
     })
+    // Excalidraw commits scrollToContent on its next render; apply the mobile
+    // zoom cap afterwards so the fit pass cannot overwrite it.
     window.setTimeout(() => {
       if (apiRef.current !== api || typeof api.getAppState !== "function") return
       const appState = api.getAppState()
-      const zoom = typeof appState.zoom?.value === "number" ? appState.zoom.value : 1
+      const fittedZoom = typeof appState.zoom?.value === "number" ? appState.zoom.value : 1
+      const maxCompactZoom = window.innerWidth <= 840 ? 0.64 : 0.8
+      const zoom = compactViewport ? Math.min(fittedZoom, maxCompactZoom) : fittedZoom
+      const minX = Math.min(...pluginElements.map((element) => Number(element.x) || 0))
+      const maxX = Math.max(...pluginElements.map((element) => (Number(element.x) || 0) + (Number(element.width) || 0)))
       const minY = Math.min(...pluginElements.map((element) => Number(element.y) || 0))
-      api.updateScene({ appState: { scrollY: 58 / zoom - minY } })
-    }, 0)
+      const viewportCenterX = compactViewport
+        ? leftGutter + (window.innerWidth - leftGutter - rightGutter) / 2
+        : window.innerWidth / 2
+      api.updateScene({
+        appState: {
+          zoom: { value: zoom },
+          scrollX: viewportCenterX / zoom - (minX + maxX) / 2,
+          scrollY: 58 / zoom - minY,
+        },
+      })
+    }, 120)
   }
 
   useEffect(() => {
@@ -1033,6 +1048,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
+              window.setTimeout(() => {
+                if (apiRef.current !== eapi) return
+                framePluginRow(eapi.getSceneElements())
+              }, 0)
               const targetId = focusedElementId()
               if (targetId !== null && focusedElementRef.current !== targetId) {
                 // L'API arriva prima che Excalidraw completi il primo layout:

@@ -1168,6 +1168,10 @@ body,
   .st-room-board [data-plugin-instance-id] button[aria-label^="Espandi"] {
     transform: scale(1.28);
   }
+  .st-room-board [data-plugin-ink-density="compact"] > [data-plugin-ink-interactive-surface] > button[data-plugin-ink-control],
+  .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] button {
+    transform: scale(1.28);
+  }
   .st-plugin-runtime-overlay button,
   .st-plugin-runtime-overlay select,
   .st-plugin-runtime-overlay summary {
@@ -1176,8 +1180,7 @@ body,
   }
 }
 
-@media (max-width: 768px) {
-  .st-room-board .st-radial-tools { right: 16px; bottom: 20px; }
+@media (max-width: 840px) {
   .st-room-board [data-plugin-instance-id] button {
     transform: scale(1.7);
   }
@@ -1187,7 +1190,21 @@ body,
   .st-room-board [data-plugin-instance-id] summary {
     transform: scaleY(1.7);
   }
+  .st-room-board [data-plugin-ink-density="compact"] > [data-plugin-ink-interactive-surface] > button[data-plugin-ink-control],
+  .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] button {
+    transform: scale(1.7);
+  }
+  .st-room-board [data-plugin-ink-density="compact"] [role="toolbar"] {
+    min-height: 78px;
+    align-items: center;
+    gap: 31px !important;
+    padding: 16px !important;
+  }
   .st-room-board [data-plugin-postit-kind="arduino-toolchain"] > [data-plugin-primary-copy] > span {
     display: none;
   }
+}
+
+@media (max-width: 768px) {
+  .st-room-board .st-radial-tools { right: 16px; bottom: 20px; }
 }
