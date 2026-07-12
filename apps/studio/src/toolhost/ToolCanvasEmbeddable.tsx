@@ -1319,7 +1319,7 @@ function ElabTutorLinkedPostit({
   const hasToolchainLink = state.links.toolchainInstanceId.trim().length > 0;
   const hasTutorNote = state.tutorNote.trim().length > 0;
   const readyLinkCount = [hasSimulationLink, hasToolchainLink, hasTutorNote].filter(Boolean).length;
-
+  const commandStatusCopy = state.lastCommand?.status === "issued" ? "Comando inviato" : state.lastCommand?.status === "blocked" ? "Comando bloccato" : null;
   function closeRuntime() {
     setExpanded(false);
     window.setTimeout(() => expandButtonRef.current?.focus(), 0);
@@ -1350,7 +1350,7 @@ function ElabTutorLinkedPostit({
           <div style={compactPostitCopyStyle}>
             <div style={compactEyebrowStyle}>Guida della lezione</div>
             <h2 style={compactTitleStyle}>{title}</h2>
-            <span style={compactStatusStyle}>{state.lastCommand ? "Comando inviato" : "Pronta per il prossimo passaggio"}</span>
+            <span style={compactStatusStyle}>{commandStatusCopy ?? "Pronta per il prossimo passaggio"}</span>
           </div>
           <button
             ref={expandButtonRef}
@@ -1409,7 +1409,7 @@ function ElabTutorLinkedPostit({
               <div>
                 <div style={eyebrowStyle}>Guida della lezione</div>
                 <h2 style={titleStyle}>{title}</h2>
-                <div style={nextActionStyle}>{state.lastCommand ? "Comando inviato" : "Leggi i collegamenti e prepara il passaggio."}</div>
+                <div style={nextActionStyle}>{commandStatusCopy ?? "Leggi i collegamenti e prepara il passaggio."}</div>
               </div>
             </header>
             <main style={elabTutorMainStyle}>

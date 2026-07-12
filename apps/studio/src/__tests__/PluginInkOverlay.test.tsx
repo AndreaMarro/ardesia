@@ -504,20 +504,24 @@ describe("PluginInkOverlay", () => {
     arduino.unmount();
 
     const tutorPersisted: unknown[] = [];
+    const tutorEmitted: LessonOsEvent[] = [];
     const tutor = render(renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement(), {
       persistEmbedState: (_embedId, state) => tutorPersisted.push(state),
+      emitLessonEvent: (event) => tutorEmitted.push(event),
     })!);
     const tutorStage = tutor.getByTestId("plugin-ink-stage");
     fireEvent.click(tutor.getByRole("button", { name: "Annota il plugin" }));
     fireEvent.click(tutor.getByRole("button", { name: "Penna" }));
     fireEvent.pointerDown(tutorStage, { pointerId: 11, pointerType: "pen", clientX: 10, clientY: 10 });
     fireEvent.pointerUp(tutorStage, { pointerId: 11, pointerType: "pen", clientX: 80, clientY: 80 });
+    tutorEmitted.length = 0;
     fireEvent.click(tutor.getByRole("button", { name: "Invia comando alla simulazione" }));
     expect(tutorPersisted.at(-1)).toMatchObject({
       kind: "elabtutor-linked-v1",
       annotations: { items: [expect.objectContaining({ kind: "stroke" })] },
       lastCommand: expect.objectContaining({ status: "blocked", reason: "host_unavailable" }),
     });
+    expect(tutorEmitted).toEqual([]);
     fireEvent.click(tutor.getByRole("button", { name: /^Espandi / }));
     expect(document.querySelectorAll('[data-plugin-runtime-surface="elabtutor"]')).toHaveLength(1);
     expect(document.querySelectorAll('[data-plugin-annotation-id]').length).toBeGreaterThanOrEqual(2);

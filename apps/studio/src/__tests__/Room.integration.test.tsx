@@ -384,10 +384,12 @@ describe("Room ↔ WorkspaceStore integration", () => {
     tutorView.unmount()
   })
 
-  it("allinea azione visibile, nome accessibile ed evento ElabTutor", async () => {
+  it("allinea azione visibile e nome accessibile al blocco hostless ElabTutor", async () => {
     const { createElabTutorLinkedEmbedElement, renderToolCanvasEmbeddable } = await import("../toolhost/ToolCanvasEmbeddable")
     const emitted: Array<{ labels?: { it?: string }; command?: string }> = []
+    const persisted: unknown[] = []
     const rendered = render(renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement(), {
+      persistEmbedState: (_embedId, state) => persisted.push(state),
       emitLessonEvent: (event) => emitted.push(event as { labels?: { it?: string }; command?: string }),
     })!)
 
@@ -396,6 +398,10 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const action = within(dialog).getByRole("button", { name: "Invia comando alla simulazione" })
     expect(action.textContent).toBe("Invia comando alla simulazione")
     fireEvent.click(action)
+    expect(persisted.at(-1)).toMatchObject({
+      kind: "elabtutor-linked-v1",
+      lastCommand: { status: "blocked", reason: "host_unavailable" },
+    })
     expect(emitted).toEqual([])
     rendered.unmount()
   })

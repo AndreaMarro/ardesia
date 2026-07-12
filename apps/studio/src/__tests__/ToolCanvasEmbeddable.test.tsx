@@ -218,6 +218,10 @@ describe("ToolCanvasEmbeddable", () => {
     });
     expect(emitted).toEqual([]);
     expect(postit?.getAttribute("data-elabtutor-grounded")).toBe("blocked");
+    expect(postit?.textContent).toContain("Comando bloccato");
+
+    fireEvent.click(getByRole("button", { name: "Espandi Guida aggiornata" }));
+    expect(getByRole("dialog", { name: "Guida aggiornata" }).textContent).toContain("Comando bloccato");
   });
 
   it("blocca una receipt forged senza emettere evidenza grounded", () => {
