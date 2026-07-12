@@ -96,7 +96,7 @@ export const MANUAL_EVIDENCE_PLUGIN: EssentialPlugin<ManualEvidenceState> = {
       },
     },
   }),
-  readiness: "ready",
+  readiness: "preview",
   defaultBounds: { x: 0, y: 0, width: 320, height: 220 },
   fixtureState: {
     fixture: true,
@@ -131,7 +131,7 @@ export const LESSON_CHECKLIST_PLUGIN: EssentialPlugin<LessonChecklistState> = {
       },
     },
   }),
-  readiness: "ready",
+  readiness: "preview",
   defaultBounds: { x: 0, y: 0, width: 280, height: 320 },
   fixtureState: {
     fixture: true,
@@ -205,7 +205,7 @@ export const DRAWING_HD_PLUGIN: EssentialPlugin<DrawingHdState> = {
       },
     },
   }),
-  readiness: "ready",
+  readiness: "preview",
   family: "drawing-hd",
   defaultBounds: { x: 0, y: 0, width: 520, height: 360 },
   fixtureState: {

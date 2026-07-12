@@ -32,6 +32,14 @@ describe("ESSENTIAL_PLUGINS catalogo", () => {
     expect(new Set(ids).size).toBe(ids.length)
     for (const id of ids) expect(isValidToolId(id)).toBe(true)
   })
+
+  it("classifica come preview ogni plugin essenziale basato su fixture", () => {
+    const falseReadyFixtureIds = ESSENTIAL_PLUGINS.filter(
+      (plugin) => plugin.fixtureState.fixture && plugin.readiness !== "preview",
+    ).map((plugin) => plugin.manifest.id)
+
+    expect(falseReadyFixtureIds).toEqual([])
+  })
 })
 
 describe.each(ESSENTIAL_PLUGINS.map((p) => [p.manifest.id, p] as const))(
