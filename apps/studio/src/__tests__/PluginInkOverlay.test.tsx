@@ -516,7 +516,7 @@ describe("PluginInkOverlay", () => {
     expect(tutorPersisted.at(-1)).toMatchObject({
       kind: "elabtutor-linked-v1",
       annotations: { items: [expect.objectContaining({ kind: "stroke" })] },
-      lastCommand: expect.objectContaining({ status: "issued" }),
+      lastCommand: expect.objectContaining({ status: "blocked", reason: "host_unavailable" }),
     });
     fireEvent.click(tutor.getByRole("button", { name: /^Espandi / }));
     expect(document.querySelectorAll('[data-plugin-runtime-surface="elabtutor"]')).toHaveLength(1);

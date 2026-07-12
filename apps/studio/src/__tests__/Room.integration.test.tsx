@@ -396,10 +396,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const action = within(dialog).getByRole("button", { name: "Invia comando alla simulazione" })
     expect(action.textContent).toBe("Invia comando alla simulazione")
     fireEvent.click(action)
-    expect(emitted.at(-1)).toMatchObject({
-      command: "simulation.command",
-      labels: { it: "Invia comando alla simulazione" },
-    })
+    expect(emitted).toEqual([])
     rendered.unmount()
   })
 

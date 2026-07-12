@@ -15,6 +15,7 @@ import {
   pointForBreadboardRef,
 } from "../../sim/breadboard/simulationBreadboard";
 import {
+  ARDUINO_TOOLCHAIN_EMBED_ID,
   ARDUINO_TOOLCHAIN_TOOL_ID,
   createArduinoToolchainEmbedElement,
   createElabTutorLinkedEmbedElement,
@@ -31,6 +32,11 @@ import {
   renderToolCanvasEmbeddable,
   validateBookLayoutScene,
 } from "../toolhost/ToolCanvasEmbeddable";
+import {
+  dispatchSimulationCommand,
+  SIMULATION_COMMAND_CAPABILITY,
+  type SimulationCommandRequest,
+} from "../toolhost/simulationPluginRegistry";
 import {
   applyElabCanvasComponentAdd,
   applyElabCanvasConnectionAdd,
@@ -49,6 +55,18 @@ import {
 
 afterEach(cleanup);
 
+const simulationCommandRequest = {
+  command: "simulation.command",
+  operation: "explain-next-fix",
+  capability: SIMULATION_COMMAND_CAPABILITY,
+  sourcePluginId: ELABTUTOR_LINKED_TOOL_ID,
+  sourceInstanceId: "elabtutor-linked-postit",
+  targetPluginId: REFERENCE_SIM_TOOL_ID,
+  targetInstanceId: REFERENCE_SIM_EMBED_ID,
+  causationId: "test-command",
+  issuedAt: 123,
+} satisfies SimulationCommandRequest;
+
 describe("ToolCanvasEmbeddable", () => {
   it("parses maestro-tool links into tool and embed identity", () => {
     expect(parseToolLink(REFERENCE_SIM_LINK)).toEqual({
@@ -56,6 +74,28 @@ describe("ToolCanvasEmbeddable", () => {
       embedId: REFERENCE_SIM_EMBED_ID,
     });
     expect(parseToolLink("https://example.test/not-a-tool")).toBeNull();
+  });
+
+  it("blocca il dispatch quando manca l'istanza Simulation target", () => {
+    expect(dispatchSimulationCommand([], simulationCommandRequest)).toMatchObject({
+      status: "blocked",
+      reason: "target_missing",
+      evidence: [],
+    });
+  });
+
+  it("nega simulation.command a un entry che non dichiara la capability", () => {
+    const request: SimulationCommandRequest = {
+      ...simulationCommandRequest,
+      targetPluginId: ARDUINO_TOOLCHAIN_TOOL_ID,
+      targetInstanceId: ARDUINO_TOOLCHAIN_EMBED_ID,
+    };
+
+    expect(dispatchSimulationCommand([createArduinoToolchainEmbedElement()], request)).toMatchObject({
+      status: "blocked",
+      reason: "capability_denied",
+      evidence: [],
+    });
   });
 
   it("creates a full Excalidraw embeddable with own-embed metadata", () => {
@@ -148,7 +188,7 @@ describe("ToolCanvasEmbeddable", () => {
     });
   });
 
-  it("renderizza ElabTutor come post-it collegato e invia un comando LessonOS grounded", () => {
+  it("blocca il comando ELABTutor quando il Simulation host non è disponibile", () => {
     const element = createElabTutorLinkedEmbedElement();
     const emitted: unknown[] = [];
     const persisted: unknown[] = [];
@@ -170,16 +210,91 @@ describe("ToolCanvasEmbeddable", () => {
 
     expect(persisted.at(-1)).toMatchObject({
       kind: "elabtutor-linked-v1",
-      lastCommand: { targetInstanceId: REFERENCE_SIM_EMBED_ID, status: "issued" },
+      lastCommand: {
+        targetInstanceId: REFERENCE_SIM_EMBED_ID,
+        status: "blocked",
+        reason: "host_unavailable",
+      },
     });
-    expect(emitted.at(-1)).toMatchObject({
+    expect(emitted).toEqual([]);
+    expect(postit?.getAttribute("data-elabtutor-grounded")).toBe("blocked");
+  });
+
+  it("blocca una receipt forged senza emettere evidenza grounded", () => {
+    const persisted: unknown[] = [];
+    const emitted: unknown[] = [];
+    const view = renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement(), {
+      persistEmbedState: (_embedId, state) => persisted.push(state),
+      emitLessonEvent: (event) => emitted.push(event),
+      invokeSimulationCommand: (request) => ({
+        status: "issued",
+        command: "simulation.command",
+        capability: SIMULATION_COMMAND_CAPABILITY,
+        targetPluginId: request.targetPluginId,
+        targetInstanceId: "forged-target",
+        causationId: request.causationId,
+        handledAt: request.issuedAt + 1,
+        result: "forged",
+        evidence: [],
+      }),
+    });
+
+    const { container, getByRole } = render(view!);
+    fireEvent.click(getByRole("button", { name: "Invia comando alla simulazione" }));
+
+    expect(persisted.at(-1)).toMatchObject({
+      kind: "elabtutor-linked-v1",
+      lastCommand: {
+        targetInstanceId: REFERENCE_SIM_EMBED_ID,
+        status: "blocked",
+        reason: "receipt_invalid",
+      },
+    });
+    expect(emitted).toEqual([]);
+    expect(container.querySelector('[data-plugin-postit-kind="elabtutor"]')?.getAttribute("data-elabtutor-grounded")).toBe("blocked");
+  });
+
+  it("emette grounded solo dopo una receipt valida del Simulation host", () => {
+    const persisted: unknown[] = [];
+    const emitted: unknown[] = [];
+    const view = renderToolCanvasEmbeddable(createElabTutorLinkedEmbedElement(), {
+      persistEmbedState: (_embedId, state) => persisted.push(state),
+      emitLessonEvent: (event) => emitted.push(event),
+      invokeSimulationCommand: (request) =>
+        dispatchSimulationCommand([createToolEmbedElement()], request),
+    });
+
+    const { container, getByRole } = render(view!);
+    fireEvent.click(getByRole("button", { name: "Invia comando alla simulazione" }));
+
+    expect(persisted).toHaveLength(1);
+    expect(persisted[0]).toMatchObject({
+      kind: "elabtutor-linked-v1",
+      lastCommand: {
+        targetInstanceId: REFERENCE_SIM_EMBED_ID,
+        status: "issued",
+        receipt: {
+          status: "issued",
+          causationId: expect.any(String),
+          evidence: [
+            `plugin:${REFERENCE_SIM_TOOL_ID}@${REFERENCE_SIM_EMBED_ID}`,
+            `scene:${ELAB_V1_FIRST_LED_EXPERIMENT_ID}@mounted`,
+          ],
+        },
+      },
+    });
+    const receipt = (persisted[0] as { lastCommand: { receipt: { causationId: string; evidence: string[] } } }).lastCommand.receipt;
+    expect(emitted).toHaveLength(1);
+    expect(emitted[0]).toMatchObject({
       kind: "elabtutor.command.issued",
       pluginId: ELABTUTOR_LINKED_TOOL_ID,
       command: "simulation.command",
       targetInstanceId: REFERENCE_SIM_EMBED_ID,
-      toolchainInstanceId: "arduino-toolchain-postit",
       grounded: true,
+      causationId: receipt.causationId,
+      evidence: receipt.evidence,
     });
+    expect(container.querySelector('[data-plugin-postit-kind="elabtutor"]')?.getAttribute("data-elabtutor-grounded")).toBe("true");
   });
 
   it("keeps the ELABTutor breadboard topology electrically falsifiable", () => {

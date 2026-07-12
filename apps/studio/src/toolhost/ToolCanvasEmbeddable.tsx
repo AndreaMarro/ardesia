@@ -19,7 +19,7 @@ import {
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
-import { registerSimulationTool, getSimulationTool, type SimulationToolHost, type ToolCanvasPresentation } from "./simulationPluginRegistry";
+import { getSimulationTool, isSimulationCommandReceiptForRequest, registerSimulationTool, SIMULATION_COMMAND_CAPABILITY, type SimulationCommandBlockReason, type SimulationCommandReceipt, type SimulationToolHost, type ToolCanvasPresentation } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
@@ -195,13 +195,7 @@ type ElabTutorLinkedState = {
     "lesson.event.emit",
   ];
   tutorNote: string;
-  lastCommand: {
-    id: string;
-    targetInstanceId: string;
-    issuedAt: number;
-    status: "issued" | "degraded";
-    summary: string;
-  } | null;
+  lastCommand: { id: string; targetInstanceId: string; issuedAt: number; status: "issued" | "blocked"; summary: string; reason?: SimulationCommandBlockReason; receipt?: SimulationCommandReceipt } | null;
 };
 
 export type SimulationSceneV1 = {
@@ -827,6 +821,7 @@ export function renderToolCanvasEmbeddable(
 // hard-codati. Tool non registrati non vengono mai dispatchati (deny-by-default).
 const referenceSimulationEntry = {
   embedId: REFERENCE_SIM_EMBED_ID,
+  capabilities: [SIMULATION_COMMAND_CAPABILITY],
   render: (element: EmbedLike, toolLink: ToolLink, host?: SimulationToolHost, presentation?: ToolCanvasPresentation) => (
     <ReferenceSimulationCanvasTool element={element} toolLink={toolLink} host={host} presentation={presentation} />
   ),
@@ -836,6 +831,12 @@ const referenceSimulationEntry = {
   // Confine P2: il motore elettrico reale (CircuitSolver vendored) dietro il
   // dispatch del registry. Il render resta traversal-driven (golden 14.9 mA).
   solve: solveElabExperiment,
+  invokeCommand: (request: import("./simulationPluginRegistry").SimulationCommandRequest, target: EmbedLike) => {
+    const state = stateFromElement(target) as { kind?: unknown; scene?: SimulationSceneV1 } | undefined;
+    if (state?.kind !== "simulation-scene-v1") return { accepted: false as const, reason: "target_state_invalid" as const, result: "Simulation target state non valido." };
+    return { accepted: true as const, result: "Simulation host ha letto la scena montata per spiegare il prossimo fix.",
+      evidence: [`plugin:${request.targetPluginId}@${request.targetInstanceId}`, `scene:${state.scene!.experimentId}@mounted`] };
+  },
 };
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
@@ -1276,35 +1277,34 @@ function ElabTutorLinkedPostit({
 
   function issueSimulationCommand() {
     const current = latestStateRef.current;
-    const commandId = `${toolLink.embedId}:simulation-command:${Date.now()}`;
-    const next: ElabTutorLinkedState = {
-      ...current,
-      tutorNote:
-        "Scena letta via simulation.scene.read: il circuito LED e il compile Arduino restano sorgenti separate, collegate dal dock.",
-      lastCommand: {
-        id: commandId,
-        targetInstanceId: current.links.simulationInstanceId,
-        issuedAt: Date.now(),
-        status: "issued",
-        summary: "Mostra il montaggio e usa diagnostics per spiegare il prossimo fix.",
-      },
+    const issuedAt = Date.now();
+    const request = {
+      command: "simulation.command" as const, operation: "explain-next-fix" as const,
+      capability: SIMULATION_COMMAND_CAPABILITY, sourcePluginId: toolLink.toolId,
+      sourceInstanceId: toolLink.embedId, targetPluginId: REFERENCE_SIM_TOOL_ID,
+      targetInstanceId: current.links.simulationInstanceId,
+      causationId: `${toolLink.embedId}:simulation-command:${issuedAt}`, issuedAt,
     };
-    persist(next);
+    const receipt = host?.invokeSimulationCommand?.(request);
+    const valid = receipt && isSimulationCommandReceiptForRequest(request, receipt);
+    const status = valid ? "issued" : "blocked";
+    const reason = valid ? undefined : receipt?.status === "blocked" ? receipt.reason ?? "receipt_invalid" : host?.invokeSimulationCommand ? "receipt_invalid" : "host_unavailable";
+    const summary = receipt?.result ?? "Simulation host non disponibile.";
+    persist({ ...current, tutorNote: valid ? "Scena letta via simulation.scene.read: il circuito LED e il compile Arduino restano sorgenti separate, collegate dal dock." : current.tutorNote,
+      lastCommand: { id: request.causationId, targetInstanceId: request.targetInstanceId, issuedAt, status, summary, reason, receipt },
+    });
+    if (!valid) return;
     host?.emitLessonEvent?.({
       kind: "elabtutor.command.issued",
       pluginId: toolLink.toolId,
       command: "simulation.command",
-      targetInstanceId: current.links.simulationInstanceId,
+      targetInstanceId: request.targetInstanceId,
       toolchainInstanceId: current.links.toolchainInstanceId,
       grounded: true,
-      diagnostic: next.lastCommand!.summary,
-      t: next.lastCommand!.issuedAt,
-      evidence: [
-        `plugin:${toolLink.toolId}@${toolLink.embedId}`,
-        `plugin:${REFERENCE_SIM_TOOL_ID}@${current.links.simulationInstanceId}`,
-        `plugin:${ARDUINO_TOOLCHAIN_TOOL_ID}@${current.links.toolchainInstanceId}`,
-      ],
-      causationId: commandId,
+      diagnostic: receipt.result,
+      t: receipt.handledAt,
+      evidence: receipt.evidence,
+      causationId: receipt.causationId,
       provenance: {
         surface: "postit",
         pluginId: toolLink.toolId,
@@ -1343,7 +1343,7 @@ function ElabTutorLinkedPostit({
         data-motion-state="settled"
         data-elabtutor-simulation-instance={state.links.simulationInstanceId}
         data-elabtutor-toolchain-instance={state.links.toolchainInstanceId}
-        data-elabtutor-grounded={state.lastCommand ? "true" : "pending"}
+        data-elabtutor-grounded={state.lastCommand?.status === "issued" ? "true" : state.lastCommand?.status === "blocked" ? "blocked" : "pending"}
         aria-label="Guida della lezione"
       >
         <div style={compactPostitHeaderStyle} data-plugin-primary-copy>
