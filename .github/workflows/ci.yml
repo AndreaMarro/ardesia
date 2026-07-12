@@ -31,6 +31,20 @@ jobs:
           --pool=threads --maxWorkers=1 --no-file-parallelism
           --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
       - run: npm run build
+      - name: install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Playwright four-destination smoke (3x)
+        run: npx playwright test e2e/product-flow-shell.spec.ts --workers=1 --repeat-each=3
+      - name: upload Playwright artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: studio-playwright-artifacts
+          path: |
+            apps/studio/playwright-report
+            apps/studio/test-results
+          if-no-files-found: warn
+          retention-days: 7
 
   engine:
     name: engine (pytest)
