@@ -29,6 +29,7 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildArduinoToolchainInsert, buildElabTutorLinkedInsert, buildSimulationInsert, isToolCanvasEmbed, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { dispatchSimulationCommand } from "./toolhost/simulationPluginRegistry"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -1154,6 +1155,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                         // Plugin nel log LessonOS (fail-soft; nessuna chiave client).
                         lessonOsRef.current?.store?.append(event).catch(() => {})
                       },
+                      invokeSimulationCommand: (request) =>
+                        dispatchSimulationCommand(apiRef.current?.getSceneElements() ?? [], request),
                     },
               )
             }

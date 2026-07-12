@@ -884,6 +884,40 @@ describe("Room ↔ WorkspaceStore integration", () => {
     root.unmount()
   })
 
+  it("il docente invia un comando grounded alla Simulation viva tramite renderEmbeddable di Room", async () => {
+    const { createElabTutorLinkedEmbedElement, createToolEmbedElement } = await import("../toolhost/ToolCanvasEmbeddable")
+    const simulation = createToolEmbedElement()
+    const tutor = createElabTutorLinkedEmbedElement()
+    mockExcalidrawHarness.sceneElements = [simulation, tutor]
+
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+      expect(vi.mocked(Excalidraw).mock.calls.at(-1)?.[0].renderEmbeddable).toEqual(expect.any(Function))
+    }, { timeout: 5000, interval: 10 })
+
+    const renderEmbeddable = vi.mocked(Excalidraw).mock.calls.at(-1)![0].renderEmbeddable!
+    const rendered = render(renderEmbeddable(
+      tutor as Parameters<typeof renderEmbeddable>[0],
+      mockExcalidrawHarness.appState as Parameters<typeof renderEmbeddable>[1],
+    ))
+    fireEvent.click(rendered.getByRole("button", { name: "Invia comando alla simulazione" }))
+
+    const postit = rendered.container.querySelector('[data-plugin-postit-kind="elabtutor"]')
+    expect(postit?.getAttribute("data-elabtutor-grounded")).toBe("true")
+    expect(postit?.textContent).toContain("Comando inviato")
+    expect(postit?.textContent).toContain("Simulation host ha letto la scena montata per spiegare il prossimo fix.")
+
+    rendered.unmount()
+    root.unmount()
+  })
+
   it("room NUOVA: initialData.appState è NEW_ROOM_APPSTATE (Nunito, ink, canvas)", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
@@ -1040,6 +1074,44 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
       expect(props!.viewModeEnabled).toBe(true)
     }, { timeout: 5000, interval: 10 })
 
+    root.unmount()
+  })
+
+  it("la vista studente mantiene bloccato il comando Simulation tramite renderEmbeddable di Room", async () => {
+    const { createElabTutorLinkedEmbedElement, createToolEmbedElement } = await import("../toolhost/ToolCanvasEmbeddable")
+    const simulation = createToolEmbedElement()
+    const tutor = createElabTutorLinkedEmbedElement()
+    const sceneData = {
+      type: "excalidraw",
+      elements: [simulation, tutor],
+      appState: {},
+    }
+    mockExcalidrawHarness.sceneElements = sceneData.elements
+
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify(sceneData))
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+      expect(vi.mocked(Excalidraw).mock.calls.at(-1)?.[0].viewModeEnabled).toBe(true)
+    }, { timeout: 5000, interval: 10 })
+
+    const renderEmbeddable = vi.mocked(Excalidraw).mock.calls.at(-1)![0].renderEmbeddable!
+    const rendered = render(renderEmbeddable(
+      tutor as Parameters<typeof renderEmbeddable>[0],
+      mockExcalidrawHarness.appState as Parameters<typeof renderEmbeddable>[1],
+    ))
+    fireEvent.click(rendered.getByRole("button", { name: "Invia comando alla simulazione" }))
+
+    const postit = rendered.container.querySelector('[data-plugin-postit-kind="elabtutor"]')
+    expect(postit?.getAttribute("data-elabtutor-grounded")).toBe("blocked")
+    expect(postit?.textContent).toContain("Comando bloccato")
+
+    rendered.unmount()
     root.unmount()
   })
 
