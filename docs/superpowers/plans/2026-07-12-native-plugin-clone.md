@@ -159,16 +159,34 @@ Run focused lint and the full focused Playwright spec on the Mac Mini.
 
 ## Step 4 — Ratchet the exact quality improvement
 
-First assert the immutable comparison base, then run the repository Studio
-quality ratchet against that exact base on the Mac Mini. Record exact totals and
-per-file counts, then edit only
-`bin/ci/studio-quality-baseline.json` so it equals that observed lower state.
+Before the implementation commit, assert that `HEAD` is still the immutable O1-A0
+base. Run the repository-pinned Studio ESLint in JSON mode on the Mac Mini, retain
+the raw JSON, derive exact total and per-file error/warning counts from every
+message with severity 1 or 2, and record the current ToolCanvas line count. Then
+edit only `bin/ci/studio-quality-baseline.json` so it equals that observed lower
+state.
 
 ```bash
 O1_A0_BASE_SHA="<exact final O1-A0 head from its EvidenceReceipt>"
-test "$(git rev-parse HEAD^)" = "$O1_A0_BASE_SHA"
-python3 bin/ci/studio_quality_ratchet.py --base "$O1_A0_BASE_SHA"
+test "$(git rev-parse HEAD)" = "$O1_A0_BASE_SHA"
+cd apps/studio
+./node_modules/.bin/eslint . --format json > /tmp/o1a-eslint.json || test "$?" -eq 1
+jq '[.[] | .filePath as $path
+    | ([.messages[] | select(.severity == 2)] | length) as $errors
+    | ([.messages[] | select(.severity == 1)] | length) as $warnings
+    | select(($errors + $warnings) > 0)
+    | {key: ($path | sub("^.*/apps/studio/"; "")),
+       value: {errors: $errors, warnings: $warnings}}]
+    | sort_by(.key) | from_entries as $files
+    | {totals: {errors: ([$files[].errors] | add // 0),
+                warnings: ([$files[].warnings] | add // 0)},
+       files: $files}' /tmp/o1a-eslint.json
+wc -l src/toolhost/ToolCanvasEmbeddable.tsx
 ```
+
+The ratchet is intentionally not declared green while the implementation remains
+uncommitted: its base comparison uses Git commits. The binding reduction gate runs
+after the single O1-A1 commit in Step 5, where `HEAD^` is the exact O1-A0 base.
 
 The gate must reject:
 
