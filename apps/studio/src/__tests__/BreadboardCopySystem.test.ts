@@ -110,6 +110,7 @@ describe("grader severo — copertura obbligatoria, buchi nominati", () => {
       wires: scene.wires.map((wire) => {
         if (wire.id !== "w2") return wire
         const { path: _dropped, ...rest } = wire
+        expect(_dropped).toBeDefined()
         return rest
       }),
     }
@@ -128,6 +129,7 @@ describe("grader severo — copertura obbligatoria, buchi nominati", () => {
       components: scene.components.map((component) => {
         if (component.id !== "led1") return component
         const { pose: _dropped, ...rest } = component
+        expect(_dropped).toBeDefined()
         return rest
       }),
     }

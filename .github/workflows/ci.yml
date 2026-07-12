@@ -18,12 +18,20 @@ jobs:
         working-directory: apps/studio
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
       - run: npm ci --no-audit --no-fund
+      - name: Studio quality ratchet tests
+        run: python3 ../../bin/ci/test_studio_quality_ratchet.py
+      - name: Studio quality ratchet (ESLint + ToolCanvas)
+        env:
+          STUDIO_QUALITY_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python3 ../../bin/ci/studio_quality_ratchet.py --base "$STUDIO_QUALITY_BASE_SHA"
       - run: npm run typecheck
       - name: vitest (deterministic profile)
         run: >
