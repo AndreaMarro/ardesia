@@ -32,14 +32,16 @@ three identity projections:
 - marker owner `<pluginId>#<instanceId>`.
 
 The canonical element ID is produced by `pluginPostitBoardElementId(instanceId)`.
-Restore and rendering deliberately reject disagreement among these projections.
+The renderer and restore/persistence boundary deliberately reject disagreement
+among these projections.
 
 Excalidraw correctly gives a native clone a new element ID while copying its link
 and `customData`. The generic `normalizeDuplicatedToolEmbeds` path currently rewrites
 only the link to the new Excalidraw ID. The copied marker still contains the source
 `state.instanceId`, source owner, and source plugin state identity. The resulting
-element is neither a valid source nor a valid clone: the strict plugin renderer sees
-the ID, link, owner, and marker mismatch and rejects it.
+element is neither a valid source nor a valid clone: the strict plugin renderer and
+restore/persistence boundary see the ID, link, owner, and marker mismatch and reject
+it.
 
 ## Decision
 

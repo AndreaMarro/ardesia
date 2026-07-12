@@ -45,7 +45,7 @@ O1-A1 may touch exactly these four files:
 4. `bin/ci/studio-quality-baseline.json`
 
 Forbidden paths include every other file, especially
-`apps/studio/src/ToolCanvasEmbeddable.tsx`, package manifests, lockfiles,
+`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`, package manifests, lockfiles,
 workflow files, persisted schemas, and visual styles.
 
 ## Invariants
@@ -159,9 +159,16 @@ Run focused lint and the full focused Playwright spec on the Mac Mini.
 
 ## Step 4 — Ratchet the exact quality improvement
 
-Run the repository Studio quality ratchet in observation mode on the Mac Mini,
-record exact totals and per-file counts, then edit only
+First assert the immutable comparison base, then run the repository Studio
+quality ratchet against that exact base on the Mac Mini. Record exact totals and
+per-file counts, then edit only
 `bin/ci/studio-quality-baseline.json` so it equals that observed lower state.
+
+```bash
+O1_A0_BASE_SHA="<exact final O1-A0 head from its EvidenceReceipt>"
+test "$(git rev-parse HEAD^)" = "$O1_A0_BASE_SHA"
+python3 bin/ci/studio_quality_ratchet.py --base "$O1_A0_BASE_SHA"
+```
 
 The gate must reject:
 
@@ -200,7 +207,9 @@ npx eslint src/design/multiPostitBoardPersistence.ts src/Room.tsx
 npx playwright test e2e/plugin-postit-room-reload.spec.ts --workers=1 --repeat-each=3
 
 cd ../..
-python3 bin/ci/studio_quality_ratchet.py
+O1_A0_BASE_SHA="<exact final O1-A0 head from its EvidenceReceipt>"
+test "$(git rev-parse HEAD^)" = "$O1_A0_BASE_SHA"
+python3 bin/ci/studio_quality_ratchet.py --base "$O1_A0_BASE_SHA"
 npm run verify
 ```
 
