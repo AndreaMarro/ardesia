@@ -8,6 +8,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { AudioRecorder, parseSessionYaml, serializeSessionYaml } from "../store/AudioRecorder"
+import { roomPaths } from "../store/roomPaths"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
 
 // --- Mock driver (stesso pattern di JournalRecorder.test.ts) ---
@@ -91,7 +92,7 @@ function createMockMediaRecorderFactory(): {
 } {
   const instances: MockMediaRecorder[] = []
 
-  const factory = (_stream: MediaStream): MediaRecorder => {
+  const factory = (): MediaRecorder => {
     const mr: MockMediaRecorder = {
       start: vi.fn((_timeslice?: number) => {
         mr.state = "recording"
@@ -129,6 +130,8 @@ function createMockMediaRecorderFactory(): {
 
 // --- Tests ---
 
+const TEST_PATHS = roomPaths("audio-test-room")
+
 describe("AudioRecorder", () => {
   let store: WorkspaceStore
   let mock: MockDriver
@@ -155,6 +158,8 @@ describe("AudioRecorder", () => {
 
     recorder = new AudioRecorder({
       store,
+      sessionPath: TEST_PATHS.session,
+      audioDir: TEST_PATHS.audioDir,
       clock,
       onChunk: (chunkIndex, startEpoch, endEpoch) => {
         chunks.push({ chunkIndex, startEpoch, endEpoch })
@@ -175,12 +180,79 @@ describe("AudioRecorder", () => {
     expect(recorder.startEpoch).toBeNull()
   })
 
+  it("isola consenso, chunk e revoca GDPR tra due stanze", async () => {
+    const pathsA = roomPaths("room-a")
+    const pathsB = roomPaths("room-b")
+    const mediaA = createMockMediaRecorderFactory()
+    const mediaB = createMockMediaRecorderFactory()
+    const recorderA = new AudioRecorder({
+      store,
+      sessionPath: pathsA.session,
+      audioDir: pathsA.audioDir,
+      clock: makeClock(),
+      createMediaRecorder: mediaA.factory,
+    })
+    const recorderB = new AudioRecorder({
+      store,
+      sessionPath: pathsB.session,
+      audioDir: pathsB.audioDir,
+      clock: makeClock(),
+      createMediaRecorder: mediaB.factory,
+    })
+
+    recorderA.consent = true
+    recorderB.consent = true
+    await recorderA.start()
+    await recorderB.start()
+    mediaA.emitChunk()
+    mediaB.emitChunk()
+
+    await vi.waitFor(async () => {
+      expect(await store.read(pathsA.session)).not.toBeNull()
+      expect(await store.read(pathsB.session)).not.toBeNull()
+      expect(await store.list(pathsA.audioDir)).toHaveLength(1)
+      expect(await store.list(pathsB.audioDir)).toHaveLength(1)
+    }, { timeout: 500, interval: 10 })
+
+    recorderA.consent = false
+    await recorderA.lastRevoke
+
+    expect(await store.list(pathsA.audioDir)).toHaveLength(0)
+    expect(await store.list(pathsB.audioDir)).toHaveLength(1)
+    await vi.waitFor(async () => {
+      expect(await (await store.read(pathsA.session))!.text()).toContain("audioConsent: false")
+      expect(await (await store.read(pathsB.session))!.text()).toContain("audioConsent: true")
+    }, { timeout: 500, interval: 10 })
+  })
+
+  it("rifiuta percorsi flat, ostili o di stanze diverse prima di accedere allo store", () => {
+    const read = vi.spyOn(store, "read")
+    const write = vi.spyOn(store, "write")
+    const list = vi.spyOn(store, "list")
+    const validA = roomPaths("room-a")
+    const validB = roomPaths("room-b")
+    const construct = (sessionPath: string, audioDir: string) => () => new AudioRecorder({
+      store,
+      sessionPath,
+      audioDir,
+      clock: makeClock(),
+      createMediaRecorder: createMockMediaRecorderFactory().factory,
+    })
+
+    expect(construct("raw/session.yaml", "raw/audio/")).toThrow()
+    expect(construct(validA.session, validB.audioDir)).toThrow()
+    expect(construct("raw/../session.yaml", "raw/../audio/")).toThrow()
+    expect(read).not.toHaveBeenCalled()
+    expect(write).not.toHaveBeenCalled()
+    expect(list).not.toHaveBeenCalled()
+  })
+
   // --- TEST 2: Consenso OFF → nessun chunk scritto su store ---
 
   it("consent OFF, start() non fa nulla e non scrive chunk", async () => {
     await recorder.start()
     expect(recorder.recording).toBe(false)
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     expect(entries).toHaveLength(0)
   })
 
@@ -189,10 +261,10 @@ describe("AudioRecorder", () => {
   it("consent ON persiste session.yaml con audioConsent e audioStartEpoch", async () => {
     recorder.consent = true
     await vi.waitFor(async () => {
-      const blob = await store.read("raw/session.yaml")
+      const blob = await store.read(TEST_PATHS.session)
       expect(blob).not.toBeNull()
     })
-    const blob = await store.read("raw/session.yaml")
+    const blob = await store.read(TEST_PATHS.session)
     expect(blob).not.toBeNull()
     const text = await blob!.text()
     expect(text).toContain("audioConsent: true")
@@ -221,11 +293,11 @@ describe("AudioRecorder", () => {
 
     // Chunk scritto su store (async — attendi)
     await vi.waitFor(async () => {
-      const entries = await store.list("raw/audio/")
+      const entries = await store.list(TEST_PATHS.audioDir)
       expect(entries).toHaveLength(1)
     }, { timeout: 500, interval: 10 })
-    const entries = await store.list("raw/audio/")
-    expect(entries[0].path).toBe("raw/audio/chunk-0.webm")
+    const entries = await store.list(TEST_PATHS.audioDir)
+    expect(entries[0].path).toBe(`${TEST_PATHS.audioDir}chunk-0.webm`)
   })
 
   // --- TEST 5: Multipli chunk producono timestamps progressivi ---
@@ -246,15 +318,15 @@ describe("AudioRecorder", () => {
     expect(chunks[2].chunkIndex).toBe(2)
 
     await vi.waitFor(async () => {
-      const entries = await store.list("raw/audio/")
+      const entries = await store.list(TEST_PATHS.audioDir)
       expect(entries).toHaveLength(3)
     }, { timeout: 500, interval: 10 })
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     const paths = entries.map((e) => e.path).sort()
     expect(paths).toEqual([
-      "raw/audio/chunk-0.webm",
-      "raw/audio/chunk-1.webm",
-      "raw/audio/chunk-2.webm",
+      `${TEST_PATHS.audioDir}chunk-0.webm`,
+      `${TEST_PATHS.audioDir}chunk-1.webm`,
+      `${TEST_PATHS.audioDir}chunk-2.webm`,
     ])
   })
 
@@ -313,7 +385,7 @@ describe("AudioRecorder", () => {
     mrHelper.emitChunk(0)
     mrHelper.emitChunk(0)
     await vi.waitFor(async () => {
-      const entries = await store.list("raw/audio/")
+      const entries = await store.list(TEST_PATHS.audioDir)
       expect(entries).toHaveLength(2)
     }, { timeout: 500, interval: 10 })
 
@@ -321,12 +393,12 @@ describe("AudioRecorder", () => {
     recorder.consent = false
     await recorder.lastRevoke
 
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     expect(entries).toHaveLength(0)
 
     // E la revoca è persistita in session.yaml
     await vi.waitFor(async () => {
-      const blob = await store.read("raw/session.yaml")
+      const blob = await store.read(TEST_PATHS.session)
       expect(blob).not.toBeNull()
       expect(await blob!.text()).toContain("audioConsent: false")
     }, { timeout: 500, interval: 10 })
@@ -343,7 +415,7 @@ describe("AudioRecorder", () => {
     mrHelper.emitChunk(0)
     await new Promise((r) => setTimeout(r, 20))
 
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     expect(entries).toHaveLength(0)
     expect(chunks).toHaveLength(0)
   })
@@ -384,7 +456,7 @@ describe("AudioRecorder", () => {
 
     mrHelper.emitChunk(0)
     await vi.waitFor(() => {
-      expect(writeSpy).toHaveBeenCalledWith("raw/audio/chunk-0.webm", expect.any(Blob))
+      expect(writeSpy).toHaveBeenCalledWith(`${TEST_PATHS.audioDir}chunk-0.webm`, expect.any(Blob))
     }, { timeout: 500, interval: 10 })
 
     // Write in sospeso ⇒ il marker NON deve ancora esistere
@@ -409,7 +481,7 @@ describe("AudioRecorder", () => {
     await new Promise((r) => setTimeout(r, 20))
 
     expect(chunks).toHaveLength(0)
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     expect(entries).toHaveLength(0)
   })
 
@@ -430,7 +502,7 @@ describe("AudioRecorder", () => {
 
     mrHelper.emitChunk(0)
     await vi.waitFor(async () => {
-      const entries = await store.list("raw/audio/")
+      const entries = await store.list(TEST_PATHS.audioDir)
       expect(entries).toHaveLength(1)
     }, { timeout: 500, interval: 10 })
 
@@ -464,7 +536,7 @@ describe("AudioRecorder", () => {
     // Attendi che handleChunk abbia chiamato store.write (ora in sospeso)
     await vi.waitFor(() => {
       expect(writeSpy).toHaveBeenCalledWith(
-        "raw/audio/chunk-0.webm",
+        `${TEST_PATHS.audioDir}chunk-0.webm`,
         expect.any(Blob)
       )
     }, { timeout: 500, interval: 10 })
@@ -480,7 +552,7 @@ describe("AudioRecorder", () => {
     await expect(recorder.lastRevoke).resolves.toBeUndefined()
 
     // Verifica finale: nessun chunk sopravvissuto
-    const entries = await store.list("raw/audio/")
+    const entries = await store.list(TEST_PATHS.audioDir)
     expect(entries).toHaveLength(0)
   })
 })

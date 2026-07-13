@@ -6,12 +6,12 @@
 // - Clock iniettato (`now`) per testabilità deterministica (stessa firma di JournalRecorder.now).
 // - MediaRecorder factory iniettabile per test (jsdom non ha MediaRecorder nativo).
 // - Chunk ogni 30s via timeslice di MediaRecorder.start().
-// - Ogni chunk è salvato su WorkspaceStore (raw/audio/chunk-{index}.webm).
+// - Ogni chunk è salvato nel percorso esplicito raw/<room>/audio/chunk-{index}.webm.
 // - Un marker audio.chunk è emesso nel journal via callback onChunk.
-// - session.yaml registra il consenso: audioConsent + audioStartEpoch.
+// - raw/<room>/session.yaml registra il consenso: audioConsent + audioStartEpoch.
 
 import { type WorkspaceStore } from "./WorkspaceStore"
-import { PATHS } from "./types"
+import { validateRoomId } from "./roomPaths"
 
 // --- Tipi per session.yaml ---
 
@@ -54,6 +54,10 @@ export function serializeSessionYaml(data: Partial<SessionData>): string {
 
 export interface AudioRecorderOptions {
   store: WorkspaceStore
+  /** Percorso sessione esplicito della stanza: raw/<room>/session.yaml */
+  sessionPath: string
+  /** Directory audio esplicita della stessa stanza: raw/<room>/audio/ */
+  audioDir: string
   /** Clock condiviso col journal (stesso riferimento epoch) */
   clock: () => number
   /** Chiamato quando un chunk audio è completato */
@@ -62,21 +66,37 @@ export interface AudioRecorderOptions {
   createMediaRecorder?: (stream: MediaStream) => MediaRecorder
 }
 
+function validateAudioStoragePaths(sessionPath: string, audioDir: string): void {
+  const sessionMatch = /^raw\/([^/]+)\/session\.yaml$/.exec(sessionPath)
+  const audioMatch = /^raw\/([^/]+)\/audio\/$/.exec(audioDir)
+  if (!sessionMatch || !audioMatch) {
+    throw new Error("Percorsi audio room-scoped non validi")
+  }
+
+  const sessionRoom = validateRoomId(sessionMatch[1])
+  const audioRoom = validateRoomId(audioMatch[1])
+  if (sessionRoom !== audioRoom) {
+    throw new Error("Sessione e audio devono appartenere alla stessa stanza")
+  }
+}
+
 /**
  * AudioRecorder: registra audio dal microfono docente in chunk da 30s.
  *
  * Lifecycle:
- *   recorder = new AudioRecorder({ store, clock, onChunk })
+ *   recorder = new AudioRecorder({ store, sessionPath, audioDir, clock, onChunk })
  *   recorder.start()  // chiede permesso microfono, inizia registrazione
  *   recorder.stop()   // ferma registrazione
  *
  * Consenso:
  *   recorder.consent = true   // attiva registrazione
  *   recorder.consent = false  // disattiva (default)
- *   Al toggle ON: scrive audioConsent + audioStartEpoch in session.yaml
+ *   Al toggle ON: scrive audioConsent + audioStartEpoch nella sessione della stanza
  */
 export class AudioRecorder {
   private store: WorkspaceStore
+  private sessionPath: string
+  private audioDir: string
   private clock: () => number
   private onChunk: ((chunkIndex: number, startEpoch: number, endEpoch: number) => void) | undefined
   private _consent: boolean = false
@@ -92,7 +112,10 @@ export class AudioRecorder {
   private _pendingChunkWrites: Promise<void> = Promise.resolve()
 
   constructor(options: AudioRecorderOptions) {
+    validateAudioStoragePaths(options.sessionPath, options.audioDir)
     this.store = options.store
+    this.sessionPath = options.sessionPath
+    this.audioDir = options.audioDir
     this.clock = options.clock
     this.onChunk = options.onChunk
     this.createMediaRecorder = options.createMediaRecorder ?? ((stream) => new MediaRecorder(stream))
@@ -141,17 +164,17 @@ export class AudioRecorder {
 
   /** GDPR-DELETE: cancella TUTTI i chunk audio dal workspace con verifica post-operazione */
   async purgeAudioChunks(): Promise<void> {
-    const entries = await this.store.list(PATHS.AUDIO_DIR)
+    const entries = await this.store.list(this.audioDir)
     for (const entry of entries) {
       await this.store.delete(entry.path)
     }
     // Verifica: store.list vuoto — se non vuoto, retry una volta
-    const remaining = await this.store.list(PATHS.AUDIO_DIR)
+    const remaining = await this.store.list(this.audioDir)
     if (remaining.length > 0) {
       for (const entry of remaining) {
         await this.store.delete(entry.path)
       }
-      const stillThere = await this.store.list(PATHS.AUDIO_DIR)
+      const stillThere = await this.store.list(this.audioDir)
       if (stillThere.length > 0) {
         throw new Error(
           `GDPR purge fallita: ${stillThere.length} chunk rimasti dopo retry`
@@ -239,7 +262,7 @@ export class AudioRecorder {
       audioConsent: this._consent,
       audioStartEpoch: this._startEpoch,
     })
-    await this.store.saveSessionYaml(yaml)
+    await this.store.write(this.sessionPath, new Blob([yaml], { type: "text/yaml" }))
   }
 
   /** Gestisce un chunk ricevuto da MediaRecorder */
@@ -248,7 +271,7 @@ export class AudioRecorder {
     const now = this.clock()
     const chunkStart = this._chunkStartEpoch ?? now
     const index = this._chunkIndex
-    const fileName = `${PATHS.AUDIO_DIR}chunk-${index}.webm`
+    const fileName = `${this.audioDir}chunk-${index}.webm`
 
     // Incrementa PRIMA dell'await per evitare race su chunkIndex
     this._chunkIndex++

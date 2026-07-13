@@ -176,6 +176,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           // Crea AudioRecorder con clock condiviso
           const ar = new AudioRecorder({
             store: actualStore,
+            sessionPath: paths.session,
+            audioDir: paths.audioDir,
             clock,
             onChunk: (chunkIndex, startEpoch, endEpoch) => {
               jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
@@ -263,7 +265,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               serializeEvents,
               deserializeEvents,
               AudioRecorder,
-              PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
+              PATHS: {
+                JOURNAL: paths.journal,
+                SCENE: paths.scene,
+                SESSION: paths.session,
+                AUDIO_DIR: paths.audioDir,
+              },
               navigateToLesson,
               flushPersist,
               promoteJournalToLessonOs,
