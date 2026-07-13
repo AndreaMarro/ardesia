@@ -6,6 +6,7 @@ import { WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
 import { LocalStorageDriver } from "../store/drivers/localStorage"
+import { roomPaths, validateRoomId } from "../store/roomPaths"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
 let storage: Record<string, string> = {}
@@ -66,8 +67,12 @@ class MockDriver implements WorkspaceDriver {
 }
 
 function withMockDriver(store: WorkspaceStore, mock: MockDriver) {
-  ;(store as any).driver = mock
-  ;(store as any)._mode = "localStorage"
+  const mutableStore = store as unknown as {
+    driver: WorkspaceDriver
+    _mode: "localStorage"
+  }
+  mutableStore.driver = mock
+  mutableStore._mode = "localStorage"
 }
 
 describe("WorkspaceStore", () => {
@@ -94,12 +99,83 @@ describe("WorkspaceStore", () => {
   })
 
   it("saveScene con 2 room diverse NON collide (room-aware path)", async () => {
-    await store.saveScene("roomA", JSON.stringify({ room: "A" }))
-    await store.saveScene("roomB", JSON.stringify({ room: "B" }))
-    const roomA = await store.loadScene("roomA")
-    const roomB = await store.loadScene("roomB")
+    await store.saveScene("room-a", JSON.stringify({ room: "A" }))
+    await store.saveScene("room-b", JSON.stringify({ room: "B" }))
+    const roomA = await store.loadScene("room-a")
+    const roomB = await store.loadScene("room-b")
     expect(roomA).toBe(JSON.stringify({ room: "A" }))
     expect(roomB).toBe(JSON.stringify({ room: "B" }))
+  })
+
+  it("rifiuta room ID ostili prima di qualunque lettura o scrittura", async () => {
+    const invalidRooms = [
+      "",
+      ".",
+      "..",
+      "../escape",
+      "room/child",
+      "room\\child",
+      "room\nchild",
+      " room",
+      "room ",
+      "room%2Fchild",
+      "stanza-é",
+      "RoomA",
+      "room.",
+      "con",
+      "con.txt",
+      "nul",
+      "com1",
+      "lpt9.log",
+      "r".repeat(129),
+    ]
+
+    for (const room of invalidRooms) {
+      const beforeEntries = await mock.list()
+      const beforeStorage = { ...storage }
+
+      await expect(store.saveScene(room, '{"room":"hostile"}')).rejects.toThrow(/room/i)
+      await expect(store.loadScene(room)).rejects.toThrow(/room/i)
+      await expect(
+        store.saveMeta(room, { v: 1, name: "Hostile", createdAt: 1 }),
+      ).rejects.toThrow(/room/i)
+      await expect(store.loadMeta(room)).rejects.toThrow(/room/i)
+
+      expect(await mock.list()).toEqual(beforeEntries)
+      expect(storage).toEqual(beforeStorage)
+    }
+  })
+
+  it("usa il layout canonico raw/<room> per scena e meta", async () => {
+    await store.saveScene("room_a.1", '{"room":"A"}')
+    await store.saveMeta("room_a.1", { v: 1, name: "A", createdAt: 1 })
+
+    expect((await mock.list()).map((entry) => entry.path).sort()).toEqual([
+      "raw/room_a.1/board.excalidraw",
+      "raw/room_a.1/meta.json",
+    ])
+  })
+
+  it("roomPaths espone deterministicamente tutti i path room-scoped", () => {
+    expect(validateRoomId("room_a.1")).toBe("room_a.1")
+    expect(roomPaths("room_a.1")).toEqual({
+      scene: "raw/room_a.1/board.excalidraw",
+      meta: "raw/room_a.1/meta.json",
+      journal: "raw/room_a.1/events.jsonl",
+      session: "raw/room_a.1/session.yaml",
+      audioDir: "raw/room_a.1/audio/",
+      lessonOsSnapshot: "raw/room_a.1/lessonos-events.jsonl",
+    })
+    expect(roomPaths("room_a.1")).toEqual(roomPaths("room_a.1"))
+  })
+
+  it("listRooms ignora path persistiti con room ID non validi", async () => {
+    await store.write("raw/../board.excalidraw", new Blob(["{}"], { type: "application/json" }))
+    await store.write("raw/room/child/board.excalidraw", new Blob(["{}"], { type: "application/json" }))
+    await store.write("raw/RoomA/board.excalidraw", new Blob(["{}"], { type: "application/json" }))
+    await store.write("raw/con/board.excalidraw", new Blob(["{}"], { type: "application/json" }))
+
+    expect(await store.listRooms()).toEqual([])
   })
 
   it("write e read di blob binario (non-UTF8) preserva i byte", async () => {
@@ -208,19 +284,19 @@ describe("WorkspaceStore", () => {
 
   it("listRooms restituisce room ordinate per mtime discendente", async () => {
     // Crea 2 room con scene
-    await store.saveScene("roomA", JSON.stringify({ v: 1 }))
+    await store.saveScene("room-a", JSON.stringify({ v: 1 }))
     await sleep(2)
-    await store.saveScene("roomB", JSON.stringify({ v: 1 }))
+    await store.saveScene("room-b", JSON.stringify({ v: 1 }))
 
     // Assegna nome a roomA
-    await store.saveMeta("roomA", { v: 1, name: "Alpha", createdAt: 1000 })
+    await store.saveMeta("room-a", { v: 1, name: "Alpha", createdAt: 1000 })
 
     const rooms = await store.listRooms()
     // roomB è la più recente (scritta dopo)
     expect(rooms.length).toBe(2)
-    expect(rooms[0].room).toBe("roomB")
-    expect(rooms[0].name).toBe("roomB") // fallback-id senza meta
-    expect(rooms[1].room).toBe("roomA")
+    expect(rooms[0].room).toBe("room-b")
+    expect(rooms[0].name).toBe("room-b") // fallback-id senza meta
+    expect(rooms[1].room).toBe("room-a")
     expect(rooms[1].name).toBe("Alpha")
   })
 
