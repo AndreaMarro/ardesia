@@ -2,7 +2,8 @@
 
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import LibraryView, { buildLibrarySnapshot } from "../design/LibraryView"
+import LibraryView from "../design/LibraryView"
+import { buildLibrarySnapshot } from "../design/librarySnapshot"
 import { workspaceStore } from "../store/WorkspaceStore"
 
 afterEach(() => {
@@ -49,6 +50,16 @@ const SCENE = JSON.stringify({
 })
 
 describe("LibraryView", () => {
+  it("rifiuta una room ostile prima di caricare o indicizzare la scena", async () => {
+    const loadScene = vi.fn().mockResolvedValue(SCENE)
+
+    render(<LibraryView deps={{ room: "../escape", loadScene }} />)
+
+    expect(await screen.findByText("Library non disponibile")).toBeTruthy()
+    expect(loadScene).not.toHaveBeenCalled()
+    await expect(buildLibrarySnapshot(SCENE, "../escape")).rejects.toThrow(/room/i)
+  })
+
   it("indicizza asset reali della scena con hash, scope, provenienza e senza duplicare la stessa immagine", async () => {
     const snapshot = await buildLibrarySnapshot(SCENE, ROOM)
 
