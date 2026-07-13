@@ -3,7 +3,7 @@
 // Linguaggio docente: mai flush/cache, "appunti salvati".
 
 import { type WorkspaceStore } from "./WorkspaceStore"
-import { PATHS } from "./types"
+import { roomPaths } from "./roomPaths"
 import type { JournalEvent } from "./JournalRecorder"
 
 export interface LessonRecap {
@@ -32,15 +32,18 @@ export interface LessonRecap {
  * Linguaggio: mai "flush"/"cache"/"workspace" nei label — solo "appunti salvati".
  */
 export async function buildRecap(
-  store: WorkspaceStore,
+  store: Pick<WorkspaceStore, "loadMeta" | "read">,
   room: string,
 ): Promise<LessonRecap | null> {
+  // Validate before the first store access: hostile IDs must fail without reads.
+  const paths = roomPaths(room)
+
   // 1. Carica meta (nome lezione)
   const meta = await store.loadMeta(room)
   const title = meta?.name ?? "Lezione senza nome"
 
   // 2. Carica events.jsonl e analizza
-  const journalBlob = await store.read(PATHS.JOURNAL)
+  const journalBlob = await store.read(paths.journal)
   if (!journalBlob) {
     return {
       v: 1,

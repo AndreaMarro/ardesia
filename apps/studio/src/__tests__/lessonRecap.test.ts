@@ -3,26 +3,28 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { buildRecap, formatDuration } from "../store/lessonRecap"
+import type { JournalEvent } from "../store/JournalRecorder"
+
+const JOURNAL_PATH = "raw/room-1/events.jsonl"
 
 /** Factory per JournalEvent di test */
-function mkEvent(props: Record<string, unknown>) {
+function mkEvent(props: Record<string, unknown>): JournalEvent {
   return {
     t: props.t as number ?? Date.now(),
     type: props.type as string,
     ...props,
-  } as any
+  } as unknown as JournalEvent
 }
 
 function mockStore(entries: Record<string, string>) {
-  const store: any = {
+  return {
     loadMeta: vi.fn().mockResolvedValue(null),
     read: vi.fn(async (path: string) => {
-      const content = (entries as any)[path]
+      const content = entries[path]
       if (!content) return null
       return new Blob([content], { type: "application/json" })
     }),
   }
-  return store
 }
 
 describe("formatDuration", () => {
@@ -65,6 +67,29 @@ describe("buildRecap", () => {
     vi.restoreAllMocks()
   })
 
+  it("legge soltanto il journal della room richiesta e ignora room B e legacy flat", async () => {
+    const store = mockStore({
+      "raw/room-a/events.jsonl": JSON.stringify(mkEvent({ t: 1000, type: "math.insert", latex: "A" })),
+      "raw/room-b/events.jsonl": JSON.stringify(mkEvent({ t: 2000, type: "math.insert", latex: "B" })),
+      "raw/events.jsonl": JSON.stringify(mkEvent({ t: 3000, type: "math.insert", latex: "LEGACY" })),
+    })
+
+    const recap = await buildRecap(store, "room-a")
+
+    expect(recap?.mathFormulas).toEqual(["A"])
+    expect(store.read).toHaveBeenCalledWith("raw/room-a/events.jsonl")
+    expect(store.read).not.toHaveBeenCalledWith("raw/room-b/events.jsonl")
+    expect(store.read).not.toHaveBeenCalledWith("raw/events.jsonl")
+  })
+
+  it("rifiuta una room ostile prima di qualsiasi accesso allo store", async () => {
+    const store = mockStore({})
+
+    await expect(buildRecap(store, "../escape")).rejects.toThrow(/room/i)
+    expect(store.loadMeta).not.toHaveBeenCalled()
+    expect(store.read).not.toHaveBeenCalled()
+  })
+
   it("restituisce LessonRecap con titolo di default se nessun meta", async () => {
     const store = mockStore({})
     const recap = await buildRecap(store, "room-1")
@@ -85,7 +110,7 @@ describe("buildRecap", () => {
 
   it("calcola durata da primo e ultimo evento journal", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         mkEvent({ t: 1000, type: "t0" }),
         mkEvent({ t: 2000, type: "t1" }),
         mkEvent({ t: 5000, type: "t0" }),
@@ -100,7 +125,7 @@ describe("buildRecap", () => {
 
   it("estrae formula math.insert uniche", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         mkEvent({ t: 1000, type: "math.insert", latex: "E = mc^2" }),
         mkEvent({ t: 2000, type: "math.insert", latex: "\\int_a^b f(x) dx" }),
         mkEvent({ t: 3000, type: "math.insert", latex: "E = mc^2" }), // duplicata
@@ -112,7 +137,7 @@ describe("buildRecap", () => {
 
   it("conta elementi aggiunti per tipo", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         mkEvent({ t: 1000, type: "element.add", element: { id: "a", type: "rectangle", version: 1 } }),
         mkEvent({ t: 2000, type: "element.add", element: { id: "b", type: "text", version: 1 } }),
         mkEvent({ t: 3000, type: "element.add", element: { id: "c", type: "rectangle", version: 1 } }),
@@ -130,7 +155,7 @@ describe("buildRecap", () => {
 
   it("conta pagine PDF uniche", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         mkEvent({ t: 1000, type: "pdf.page.view", page: 1, totalPages: 10 }),
         mkEvent({ t: 2000, type: "pdf.page.view", page: 2, totalPages: 10 }),
         mkEvent({ t: 3000, type: "pdf.page.view", page: 1, totalPages: 10 }), // duplicata
@@ -143,7 +168,7 @@ describe("buildRecap", () => {
 
   it("gestisce journal vuoto (solo newline)", async () => {
     const store = mockStore({
-      "raw/events.jsonl": "\n\n",
+      [JOURNAL_PATH]: "\n\n",
     })
     const recap = await buildRecap(store, "room-1")
     expect(recap!.durationMs).toBe(0)
@@ -161,7 +186,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1 (report 20260612-1321): journal out-of-order non deve produrre durata negativa
   it("journal out-of-order: durata = max-min, mai negativa", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         mkEvent({ t: 9000, type: "t0" }),
         mkEvent({ t: 1000, type: "t1" }),
         mkEvent({ t: 5000, type: "t0" }),
@@ -177,7 +202,7 @@ describe("buildRecap", () => {
   // ma l'evento RESTA contato nelle aggregazioni (formule/elementi)
   it("t non numerico: durata sui validi, aggregazioni su tutti gli eventi", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         JSON.stringify({ t: "non-un-numero", type: "math.insert", latex: "E = mc^2" }),
         JSON.stringify({ t: 2000, type: "t0" }),
         JSON.stringify({ t: 7000, type: "t1" }),
@@ -195,7 +220,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1 SELF-ADV: math.insert senza latex (o non stringa) non deve far crashare buildRecap
   it("math.insert con latex mancante/non stringa viene ignorato senza crash", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         JSON.stringify({ t: 1000, type: "math.insert" }),
         JSON.stringify({ t: 2000, type: "math.insert", latex: 42 }),
         JSON.stringify({ t: 3000, type: "math.insert", latex: "f(x)" }),
@@ -208,7 +233,7 @@ describe("buildRecap", () => {
   // SOLO eventi con t corrotto: nessuna durata, ma recap non vuoto
   it("solo t corrotti: durata 0, first/last null", async () => {
     const store = mockStore({
-      "raw/events.jsonl": JSON.stringify({ t: null, type: "math.insert", latex: "x" }),
+      [JOURNAL_PATH]: JSON.stringify({ t: null, type: "math.insert", latex: "x" }),
     })
     const recap = await buildRecap(store, "room-1")
     expect(recap!.durationMs).toBe(0)
@@ -220,7 +245,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1: page invalida (stringa, negativa, non intera) non entra in pdfPagesViewed
   it("pdf.page.view con page invalida viene ignorata", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         JSON.stringify({ t: 1000, type: "pdf.page.view", page: "3", totalPages: 10 }),
         JSON.stringify({ t: 2000, type: "pdf.page.view", page: -1, totalPages: 10 }),
         JSON.stringify({ t: 3000, type: "pdf.page.view", page: 2.5, totalPages: 10 }),
@@ -235,7 +260,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1: element null/array/undefined non contati come elementi aggiunti
   it("element.add con element null/array/undefined non viene contato", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      [JOURNAL_PATH]: [
         JSON.stringify({ t: 1000, type: "element.add", element: null }),
         JSON.stringify({ t: 2000, type: "element.add", element: [1, 2] }),
         JSON.stringify({ t: 3000, type: "element.add" }),
@@ -249,7 +274,7 @@ describe("buildRecap", () => {
 
   it("salta righe JSON malformate", async () => {
     const store = mockStore({
-      "raw/events.jsonl": "{valido}\n{corrotto\n{valido2}\n",
+      [JOURNAL_PATH]: "{valido}\n{corrotto\n{valido2}\n",
     })
     // Solo {valido} e {valido2} vengono parsati (se sono JSON validi)
     const recap = await buildRecap(store, "room-1")

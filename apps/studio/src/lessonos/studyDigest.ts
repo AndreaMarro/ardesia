@@ -6,6 +6,7 @@
 // porta la sua evidenza.
 import { materialize, type LessonGraph, type LessonNode } from "./materializer"
 import type { AppendedEvent } from "./eventlog"
+import { validateRoomId } from "../store/roomPaths"
 
 export interface StudyDigestConcept {
   id: string
@@ -63,20 +64,37 @@ export function buildStudyDigest(graph: LessonGraph): StudyDigest {
 }
 
 /**
- * Digesto ROOM-SCOPED: il log LessonOS è app-wide, quindi per il materiale di
- * UNA lezione si restringono gli eventi alla finestra lesson.started/ended di
- * quella room prima di materializzare. Senza finestra (lezione mai "avviata"
- * formalmente) si usa best-effort l'intero log (caso comune: sessione singola).
- * Puro e deterministico.
+ * Digesto ROOM-SCOPED per il log LessonOS app-wide legacy. La sequenza del log,
+ * non i timestamp, delimita ogni sessione. Un nuovo lesson.started trasferisce
+ * la sessione attiva; più sessioni della stessa room vengono concatenate.
+ * Senza un lesson.started della room il risultato è vuoto: mai fallback globale.
+ * Puro, deterministico e senza mutare l'input.
  */
 export function buildRoomStudyDigest(events: readonly AppendedEvent[], room: string): StudyDigest {
-  const startTs = events.filter((e) => e.kind === "lesson.started" && e.room === room).map((e) => e.t)
-  const endTs = events.filter((e) => e.kind === "lesson.ended" && e.room === room).map((e) => e.t)
-  let scoped: readonly AppendedEvent[] = events
-  if (startTs.length > 0) {
-    const from = Math.min(...startTs)
-    const to = endTs.length > 0 ? Math.max(...endTs) : Number.POSITIVE_INFINITY
-    scoped = events.filter((e) => e.t >= from && e.t <= to)
+  validateRoomId(room)
+  const scoped: AppendedEvent[] = []
+  let activeRoom: string | null = null
+
+  for (const event of [...events].sort((a, b) => a.seq - b.seq)) {
+    if (event.kind === "lesson.started") {
+      activeRoom = event.room
+      if (activeRoom === room) scoped.push(event)
+      continue
+    }
+
+    if (event.kind === "lesson.ended") {
+      if (activeRoom === event.room) {
+        if (activeRoom === room) scoped.push(event)
+        activeRoom = null
+      }
+      continue
+    }
+
+    if (activeRoom !== room) continue
+    const explicitRoom = "room" in event ? event.room : undefined
+    if (explicitRoom !== undefined && explicitRoom !== room) continue
+    scoped.push(event)
   }
-  return buildStudyDigest(materialize([...scoped]))
+
+  return buildStudyDigest(materialize(scoped))
 }
