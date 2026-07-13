@@ -7,6 +7,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { ReplayEngine } from "../store/ReplayEngine"
 import { PATHS } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
+import type { WorkspaceStore } from "../store/WorkspaceStore"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { hasEmoji } from "./emojiGuard"
 
@@ -81,12 +83,13 @@ function journalBlob(events: JournalEvent[]): Blob {
   return new Blob([events.map((e) => JSON.stringify(e)).join("\n") + "\n"])
 }
 
-function makeMockStore(events: JournalEvent[] | null) {
+function makeMockStore(events: JournalEvent[] | null, room = "test-room") {
   const journal = events ? journalBlob(events) : null
+  const paths = roomPaths(room)
   return {
     read: vi.fn(async (path: string) => {
-      if (path === PATHS.JOURNAL) return journal
-      if (path.startsWith(PATHS.AUDIO_DIR)) return new Blob([new Uint8Array([1, 2, 3])])
+      if (path === paths.journal) return journal
+      if (path.startsWith(paths.audioDir)) return new Blob([new Uint8Array([1, 2, 3])])
       return null
     }),
     write: vi.fn(async (_path: string, _data: Blob) => {}),
@@ -125,11 +128,11 @@ describe("ReplayView", () => {
     vi.restoreAllMocks()
   })
 
-  async function renderReplayView(store: any) {
+  async function renderReplayView(store: ReturnType<typeof makeMockStore>, room = "test-room") {
     const { default: ReplayView } = await import("../ReplayView")
     const root = createRoot(container)
     mountedRoots.push(root)
-    root.render(<ReplayView store={store} room="test-room" />)
+    root.render(<ReplayView store={store as unknown as WorkspaceStore} room={room} />)
     // attesa fine caricamento: l'header renderizza subito, quindi il testo
     // deve essere NON vuoto e fuori dallo stato "caricamento…"
     await vi.waitFor(() => {
@@ -184,6 +187,31 @@ describe("ReplayView", () => {
     expect(range.max).toBe("3000")
   })
 
+  it("con journal A/B e flat legacy proietta soltanto la stanza richiesta", async () => {
+    const pathsA = roomPaths("room-a")
+    const pathsB = roomPaths("room-b")
+    const eventsA: JournalEvent[] = [{ t: 1000, type: "element.add", element: el("only-a") }]
+    const eventsB: JournalEvent[] = [{ t: 9000, type: "element.add", element: el("only-b") }]
+    const legacy: JournalEvent[] = [{ t: 8000, type: "element.add", element: el("legacy") }]
+    const blobs = new Map([
+      [pathsA.journal, journalBlob(eventsA)],
+      [pathsB.journal, journalBlob(eventsB)],
+      [PATHS.JOURNAL, journalBlob(legacy)],
+    ])
+    const store = makeMockStore(null)
+    store.read.mockImplementation(async (path: string) => blobs.get(path) ?? null)
+
+    await renderReplayView(store, "room-a")
+
+    const range = container.querySelector('input[type="range"]') as HTMLInputElement
+    expect(range.min).toBe("1000")
+    expect(range.max).toBe("1000")
+    expect((capturedExcalidrawProps.initialData.elements as Array<{ id: string }>).map((event) => event.id)).toEqual(["only-a"])
+    expect(store.read).toHaveBeenCalledWith(pathsA.journal)
+    expect(store.read).not.toHaveBeenCalledWith(pathsB.journal)
+    expect(store.read).not.toHaveBeenCalledWith(PATHS.JOURNAL)
+  })
+
   it("initialData contiene la scena a firstEventTime (niente lavagna vuota al mount)", async () => {
     // Regressione trovata in smoke: initialData vuoto viene applicato DOPO la
     // prima updateScene e cancella la scena iniziale finché non si scrubba.
@@ -219,6 +247,23 @@ describe("ReplayView", () => {
     })
   })
 
+  it("marker audio con traversal non crea player né letture fuori dalla stanza", async () => {
+    const malicious = [{
+      t: 1000,
+      type: "audio.chunk",
+      chunkIndex: "0/../../../room-b/audio/chunk-0",
+      startEpoch: 1000,
+      endEpoch: 2000,
+    }] as unknown as JournalEvent[]
+    const store = makeMockStore(malicious)
+
+    await renderReplayView(store)
+    await new Promise((resolve) => setTimeout(resolve, 20))
+
+    expect(container.querySelector("audio")).toBeNull()
+    expect(store.read.mock.calls.map(([path]) => path)).toEqual([roomPaths("test-room").journal])
+  })
+
   /** Rende la vista con audio e attende la sorgente audio pronta */
   async function renderWithLoadedAudio() {
     const store = makeMockStore(AUDIO_EVENTS)
@@ -236,8 +281,9 @@ describe("ReplayView", () => {
     // MediaRecorder con timeslice: solo chunk-0 contiene l'init segment WebM.
     // La sorgente audio deve essere la concatenazione ordinata di tutti i chunk.
     const { store } = await renderWithLoadedAudio()
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-0.webm`)
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-1.webm`)
+    const paths = roomPaths("test-room")
+    expect(store.read).toHaveBeenCalledWith(`${paths.audioDir}chunk-0.webm`)
+    expect(store.read).toHaveBeenCalledWith(`${paths.audioDir}chunk-1.webm`)
     // un solo object URL creato per l'audio (blob unico), non uno per chunk
     const urlCalls = vi.mocked(URL.createObjectURL).mock.calls.length
     expect(urlCalls).toBe(1)
@@ -309,7 +355,7 @@ describe("Room in ?vista=replay", () => {
     const { isReplayView } = await import("../store/isReplayView")
     vi.mocked(isReplayView).mockReturnValue(true)
 
-    const store = makeMockStore(JOURNAL_EVENTS)
+    const store = makeMockStore(JOURNAL_EVENTS, "replay-room-1")
     const { default: Room } = await import("../Room")
     const root = createRoot(container)
     root.render(<Room store={store as any} />)
@@ -322,7 +368,7 @@ describe("Room in ?vista=replay", () => {
     expect(harness.recorder).toBeNull()
     expect(harness.audioRecorder).toBeNull()
     // zero write sul journal durante il replay
-    const journalWrites = store.write.mock.calls.filter(([p]) => p === PATHS.JOURNAL)
+    const journalWrites = store.write.mock.calls.filter(([p]) => p === roomPaths("replay-room-1").journal)
     expect(journalWrites).toHaveLength(0)
     // la vista replay è renderizzata (timeline presente dopo il load)
     await vi.waitFor(() => {

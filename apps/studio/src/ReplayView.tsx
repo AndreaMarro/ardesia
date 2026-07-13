@@ -50,7 +50,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     let cancelled = false
     setLoading(true)
     Promise.all([
-      loadReplayTimeline(store),
+      loadReplayTimeline(store, room),
       store.loadMeta(room).catch(() => null),
     ])
       .then(([tl, meta]) => {
