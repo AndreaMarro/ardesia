@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
-import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
+import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type ComponentProps, type KeyboardEvent } from "react"
+import { CaptureUpdateAction, Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
+import { normalizeDuplicatedPluginPostits } from "./design/multiPostitBoardPersistence"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { lessonSlug } from "./lessonSlug"
@@ -30,6 +31,9 @@ import EmptyState from "./design/EmptyState"
 import { buildArduinoToolchainInsert, buildElabTutorLinkedInsert, buildSimulationInsert, isToolCanvasEmbed, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { dispatchSimulationCommand } from "./toolhost/simulationPluginRegistry"
+
+type ExcalidrawChangeHandler = NonNullable<ComponentProps<typeof Excalidraw>["onChange"]>
+type ExcalidrawDuplicateHandler = NonNullable<ComponentProps<typeof Excalidraw>["onDuplicate"]>
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -123,6 +127,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
+  // Excalidraw calcola selectedElementIds prima di invocare onDuplicate. Quando
+  // il clone plugin viene promosso dall'ID opaco nativo all'ID canonico, la
+  // selezione della stessa transazione va quindi riallineata esplicitamente.
+  // Conserviamo la mappa anche per redo: onDuplicate non viene reinvocato
+  // quando Excalidraw ripristina una voce della cronologia.
+  const duplicatedElementIdsRef = useRef(new Map<string, string>())
   const focusedElementRef = useRef<string | null>(null)
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
@@ -355,21 +365,60 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   }
 
   /** Handler composito: salva scena + registra eventi journal */
-  function handleChange(elements: any, appState: any, files: any) {
+  function handleChange(
+    elements: Parameters<ExcalidrawChangeHandler>[0],
+    appState: Parameters<ExcalidrawChangeHandler>[1],
+    files: Parameters<ExcalidrawChangeHandler>[2],
+  ) {
     // P0-C residuo: un duplicato dal canvas (copy/paste/Alt-drag) clona il
     // link → id ≠ embedId e il duplicato scriverebbe sullo stato dell'
     // ORIGINALE. La normalizzazione lo promuove a NUOVA istanza (idempotente:
     // al giro dopo changed=false, nessun loop di updateScene).
-    const normalized = normalizeDuplicatedToolEmbeds(elements as readonly { id?: string }[])
-    if (normalized.changed && apiRef.current) {
+    const pluginNormalized = normalizeDuplicatedPluginPostits(
+      elements,
+      duplicatedElementIdsRef.current,
+    )
+    const normalized = normalizeDuplicatedToolEmbeds(pluginNormalized.elements)
+    const remappedSelectedElementIds = { ...appState.selectedElementIds }
+    let selectionChanged = false
+    for (const [nativeId, canonicalId] of duplicatedElementIdsRef.current) {
+      if (!remappedSelectedElementIds[nativeId]) continue
+      delete remappedSelectedElementIds[nativeId]
+      remappedSelectedElementIds[canonicalId] = true
+      selectionChanged = true
+    }
+    if (pluginNormalized.changed || normalized.changed || selectionChanged) {
+      if (!apiRef.current) return
       setBoardState(boardStateFromElements(normalized.elements))
-      apiRef.current.updateScene({ elements: normalized.elements })
+      apiRef.current.updateScene({
+        elements: normalized.elements,
+        ...(selectionChanged
+          ? { appState: { selectedElementIds: remappedSelectedElementIds } }
+          : {}),
+        captureUpdate: CaptureUpdateAction.NEVER,
+      })
       return
     }
     setBoardState(boardStateFromElements(elements))
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
+  }
+
+  function handleDuplicate(
+    nextElements: Parameters<ExcalidrawDuplicateHandler>[0],
+  ): ReturnType<ExcalidrawDuplicateHandler> {
+    const pluginNormalized = normalizeDuplicatedPluginPostits(nextElements)
+    const normalized = normalizeDuplicatedToolEmbeds(pluginNormalized.elements)
+    if (!pluginNormalized.changed && !normalized.changed) return undefined
+    const remappedElements = normalized.elements as Parameters<ExcalidrawDuplicateHandler>[0][number][]
+    for (const [index, nativeElement] of nextElements.entries()) {
+      const canonicalElement = remappedElements[index]
+      if (canonicalElement !== undefined && canonicalElement.id !== nativeElement.id) {
+        duplicatedElementIdsRef.current.set(nativeElement.id, canonicalElement.id)
+      }
+    }
+    return remappedElements
   }
 
   /** Chiude il drawer e restituisce il focus al controllo che l'ha aperto (WCAG 2.4.3) */
@@ -1120,6 +1169,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             }
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
             onChange={studentView ? undefined : handleChange}
+            onDuplicate={studentView ? undefined : handleDuplicate}
             validateEmbeddable={/^maestro-tool:\/\//}
             // Host per i tool embed (slice 4): write-back dei piazzamenti nello
             // state dell'embed → la persistenza segue quella della scena. In

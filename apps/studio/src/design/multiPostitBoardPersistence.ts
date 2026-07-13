@@ -9,6 +9,7 @@ import {
   type SimulationPostitState,
 } from "./multiPostitWorkbenchModel"
 import { EMBED_DATA_KEY, instanceOwner } from "../toolhost/caps/board"
+import { isValidToolId } from "../toolhost-protocol"
 import {
   deriveFunctionSurfaceMode,
   pluginPostitControlIds,
@@ -28,6 +29,28 @@ type PluginPostitBoardMarker = {
   owner: string
   schema: typeof PLUGIN_POSTIT_BOARD_STATE_SCHEMA
   state: PluginPostitObject
+}
+
+type PluginPostitNormalizableElement = {
+  id?: string
+  type?: string
+  x?: unknown
+  y?: unknown
+  width?: unknown
+  height?: unknown
+  link?: string | null
+  customData?: Record<string, unknown> | null
+  startBinding?: { elementId?: unknown; [key: string]: unknown } | null
+  endBinding?: { elementId?: unknown; [key: string]: unknown } | null
+  containerId?: string | null
+}
+
+type ValidatedPluginPostitElement<TElement extends PluginPostitNormalizableElement> = {
+  element: TElement
+  marker: PluginPostitBoardMarker
+  postit: MultiPostitObject
+  bounds: PostitBounds
+  canonical: boolean
 }
 
 export type PluginPostitBoardElement = {
@@ -99,6 +122,135 @@ export type PluginPostitBoardHydration = {
 
 export function pluginPostitBoardElementId(instanceId: string): string {
   return `${pluginPostitControlIds({ instanceId }).rootId}-board`
+}
+
+export function normalizeDuplicatedPluginPostits<
+  TElement extends PluginPostitNormalizableElement,
+>(
+  elements: readonly TElement[],
+  knownIdRemap: ReadonlyMap<string, string> = new Map(),
+): { elements: TElement[]; changed: boolean } {
+  const validated = new Map<number, ValidatedPluginPostitElement<TElement>>()
+  const canonicalSources = new Map<string, number>()
+  const reservedInstanceIds = new Set<string>()
+  const reservedElementIds = new Set<string>()
+  const canonicalPluginElementIds = new Set<string>()
+  const allocations = new Map<number, { instanceId: string; elementId: string }>()
+  const structuralIdRemap = new Map<string, string>()
+
+  elements.forEach((element, index) => {
+    if (typeof element.id === "string") reservedElementIds.add(element.id)
+    const pluginElement = validatePluginPostitElement(element)
+    if (pluginElement === null) return
+
+    validated.set(index, pluginElement)
+    reservedInstanceIds.add(pluginElement.postit.instanceId)
+    if (!pluginElement.canonical) return
+    if (typeof pluginElement.element.id === "string") {
+      canonicalPluginElementIds.add(pluginElement.element.id)
+    }
+    if (canonicalSources.has(pluginElement.postit.instanceId)) {
+      throw new Error(`duplicate canonical plugin post-it for ${pluginElement.postit.instanceId}`)
+    }
+    canonicalSources.set(pluginElement.postit.instanceId, index)
+  })
+
+  for (const pluginElement of validated.values()) {
+    if (
+      !pluginElement.canonical &&
+      !canonicalSources.has(pluginElement.postit.instanceId)
+    ) {
+      throw new Error(
+        `plugin post-it clone has no canonical source for ${pluginElement.postit.instanceId}`,
+      )
+    }
+  }
+
+  for (const [index, pluginElement] of validated) {
+    if (pluginElement.canonical) continue
+    if (typeof pluginElement.element.id !== "string") {
+      throw new Error(`plugin post-it clone id must be a string for ${pluginElement.postit.instanceId}`)
+    }
+    const instanceId = allocatePluginPostitCopyId(
+      pluginElement.postit.instanceId,
+      reservedInstanceIds,
+      reservedElementIds,
+    )
+    const elementId = pluginPostitBoardElementId(instanceId)
+    reservedInstanceIds.add(instanceId)
+    reservedElementIds.add(elementId)
+    canonicalPluginElementIds.add(elementId)
+    if (structuralIdRemap.has(pluginElement.element.id)) {
+      throw new Error(`duplicate plugin post-it clone id ${pluginElement.element.id}`)
+    }
+    structuralIdRemap.set(pluginElement.element.id, elementId)
+    allocations.set(index, { instanceId, elementId })
+  }
+
+  for (const [from, to] of knownIdRemap) {
+    if (from !== to && canonicalPluginElementIds.has(to) && !structuralIdRemap.has(from)) {
+      structuralIdRemap.set(from, to)
+    }
+  }
+
+  let changed = allocations.size > 0
+  const pluginNormalized = elements.map((element, index) => {
+    const pluginElement = validated.get(index)
+    const allocation = allocations.get(index)
+    if (pluginElement === undefined || allocation === undefined) return element
+
+    const state = clonePluginPostitForInstance(
+      pluginElement.postit,
+      allocation.instanceId,
+      pluginElement.bounds,
+    )
+    const customData = structuredClone(pluginElement.element.customData ?? {})
+    customData[EMBED_DATA_KEY] = {
+      owner: instanceOwner(state.pluginId, allocation.instanceId),
+      schema: PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
+      state,
+    } satisfies PluginPostitBoardMarker
+
+    return {
+      ...pluginElement.element,
+      id: allocation.elementId,
+      link: pluginPostitBoardLink(state.pluginId, allocation.elementId),
+      customData,
+    } as TElement
+  })
+
+  const normalized = pluginNormalized.map((element) => {
+    const remapped = remapPluginPostitStructuralReferences(element, structuralIdRemap)
+    if (remapped !== element) changed = true
+    return remapped
+  })
+
+  return changed ? { elements: normalized, changed } : { elements: [...elements], changed }
+}
+
+function remapPluginPostitStructuralReferences<
+  TElement extends PluginPostitNormalizableElement,
+>(element: TElement, idRemap: ReadonlyMap<string, string>): TElement {
+  let remapped: TElement | null = null
+
+  for (const bindingKey of ["startBinding", "endBinding"] as const) {
+    const binding = element[bindingKey]
+    if (binding === null || binding === undefined || typeof binding.elementId !== "string") continue
+    const canonicalId = idRemap.get(binding.elementId)
+    if (canonicalId === undefined || canonicalId === binding.elementId) continue
+    remapped ??= { ...element }
+    remapped[bindingKey] = { ...binding, elementId: canonicalId }
+  }
+
+  if (typeof element.containerId === "string") {
+    const canonicalId = idRemap.get(element.containerId)
+    if (canonicalId !== undefined && canonicalId !== element.containerId) {
+      remapped ??= { ...element }
+      remapped.containerId = canonicalId
+    }
+  }
+
+  return remapped ?? element
 }
 
 export function createPluginPostitBoardScene(
@@ -249,6 +401,9 @@ function restorePluginPostitFromBoardElement(element: unknown): MultiPostitObjec
   }
 
   const postit = restorePluginPostitObject(marker.state) as MultiPostitObject
+  if (!isValidToolId(postit.pluginId)) {
+    throw new Error(`invalid plugin id for ${postit.instanceId}`)
+  }
   const expectedOwner = instanceOwner(postit.pluginId, postit.instanceId)
   if (marker.owner !== expectedOwner) {
     throw new Error(`plugin post-it owner mismatch for ${postit.instanceId}`)
@@ -283,6 +438,104 @@ function readPluginPostitBoardMarker(element: Record<string, unknown>): PluginPo
     schema: PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
     state: marker.state as PluginPostitObject,
   }
+}
+
+function validatePluginPostitElement<TElement extends PluginPostitNormalizableElement>(
+  element: TElement,
+): ValidatedPluginPostitElement<TElement> | null {
+  const rawElement = element as Record<string, unknown>
+  const customData = rawElement.customData
+  if (!isRecord(customData)) return null
+  const rawMarker = customData[EMBED_DATA_KEY]
+  if (!isRecord(rawMarker)) return null
+
+  const markerState = rawMarker.state
+  const claimsPluginPostit =
+    (typeof rawMarker.schema === "string" &&
+      rawMarker.schema.startsWith("plugin-postit-board-state/")) ||
+    (isRecord(markerState) && markerState.kind === "plugin-postit-object")
+  if (rawMarker.schema !== PLUGIN_POSTIT_BOARD_STATE_SCHEMA) {
+    if (claimsPluginPostit) throw new Error("invalid plugin post-it board schema")
+    return null
+  }
+
+  const marker = readPluginPostitBoardMarker(rawElement)
+  if (marker === null) {
+    throw new Error("invalid plugin post-it board marker")
+  }
+  if (element.type !== "embeddable") {
+    throw new Error("plugin post-it board element must be embeddable")
+  }
+
+  const postit = restoreMultiPostitWorkbench({
+    schema: "multi-postit-workbench-state/1",
+    postits: [marker.state],
+  })[0]!
+  if (!isValidToolId(postit.pluginId)) {
+    throw new Error(`invalid plugin id for ${postit.instanceId}`)
+  }
+  const expectedOwner = instanceOwner(postit.pluginId, postit.instanceId)
+  if (marker.owner !== expectedOwner) {
+    throw new Error(`plugin post-it owner mismatch for ${postit.instanceId}`)
+  }
+
+  const canonicalElementId = pluginPostitBoardElementId(postit.instanceId)
+  const canonicalLink = pluginPostitBoardLink(postit.pluginId, canonicalElementId)
+  const legacyElementId = postit.instanceId
+  const legacyLink = pluginPostitBoardLink(postit.pluginId, legacyElementId)
+  const canonical =
+    (element.id === canonicalElementId && element.link === canonicalLink) ||
+    (element.id === legacyElementId && element.link === legacyLink)
+  if (element.link !== canonicalLink && element.link !== legacyLink) {
+    throw new Error(`plugin post-it board link mismatch for ${postit.instanceId}`)
+  }
+  if (
+    !canonical &&
+    (element.id === canonicalElementId || element.id === legacyElementId)
+  ) {
+    throw new Error(`plugin post-it board identity mismatch for ${postit.instanceId}`)
+  }
+
+  const bounds = readBoardBounds(rawElement)
+  resizePluginPostitObject(postit, bounds)
+  return { element, marker, postit, bounds, canonical }
+}
+
+function allocatePluginPostitCopyId(
+  sourceInstanceId: string,
+  reservedInstanceIds: ReadonlySet<string>,
+  reservedElementIds: ReadonlySet<string>,
+): string {
+  const attemptLimit = reservedInstanceIds.size + reservedElementIds.size + 2
+  for (let ordinal = 1; ordinal <= attemptLimit; ordinal += 1) {
+    const suffix = ordinal === 1 ? "--copy" : `--copy-${ordinal}`
+    const sourceLength = 64 - suffix.length
+    if (sourceLength < 1) break
+    const candidate = `${sourceInstanceId.slice(0, sourceLength)}${suffix}`
+    const elementId = pluginPostitBoardElementId(candidate)
+    if (!reservedInstanceIds.has(candidate) && !reservedElementIds.has(elementId)) {
+      return candidate
+    }
+  }
+  throw new Error(`unable to allocate plugin post-it clone identity for ${sourceInstanceId}`)
+}
+
+function clonePluginPostitForInstance(
+  source: MultiPostitObject,
+  instanceId: string,
+  bounds: PostitBounds,
+): MultiPostitObject {
+  const state = structuredClone(source) as MultiPostitObject
+  state.instanceId = instanceId
+  state.bounds = { ...bounds }
+  if (isSimulationPostitState(state.pluginState)) {
+    state.pluginState.runtimeState.instanceId = instanceId
+    state.pluginState.providerOutput.instanceId = instanceId
+  }
+  return restoreMultiPostitWorkbench({
+    schema: "multi-postit-workbench-state/1",
+    postits: [state],
+  })[0]!
 }
 
 function readBoardBounds(element: Record<string, unknown>): PostitBounds {
