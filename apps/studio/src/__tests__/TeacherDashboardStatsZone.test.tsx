@@ -9,7 +9,7 @@
 // zero lezioni = zero, dichiarato — mai una card nascosta o un dato finto.
 
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { InMemoryEventLog, type AppendedEvent, type LessonOsEvent } from "../lessonos/eventlog"
 import TeacherDashboardView from "../design/TeacherDashboardView"
 import type { JournalEvent } from "../store/JournalRecorder"
@@ -51,6 +51,149 @@ const JOURNAL_EVENTS: JournalEvent[] = [
 ]
 
 describe("TeacherDashboardView — zona Statistiche (D10, solo event-log)", () => {
+  it("proietta soltanto LessonOS e journal della room richiesta", async () => {
+    const events = await appendEvents([
+      ...LESSON_EVENTS,
+      { kind: "lesson.started", room: "room-b", t: 3000, evidence: ["lesson:room-b@3000"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:b",
+        conceptId: "concetto:b",
+        labels: { it: "Errore B" },
+        t: 3100,
+        evidence: ["board:b"],
+      },
+      { kind: "lesson.ended", room: "room-b", t: 3200, evidence: ["lesson:room-b@3200"] },
+    ])
+    const loadJournalEvents = vi.fn(async () => JOURNAL_EVENTS)
+
+    render(
+      <TeacherDashboardView
+        deps={{
+          loadEvents: async () => events,
+          loadJournalEvents,
+          journalRoom: "3b-elab",
+        }}
+      />,
+    )
+
+    expect((await screen.findByTestId("zstat-lessons.count")).getAttribute("data-zstat-value")).toBe("1")
+    expect(screen.getByTestId("zstat-errors.count").getAttribute("data-zstat-value")).toBe("1")
+    expect(screen.queryByText("Errore B")).toBeNull()
+    expect(loadJournalEvents).toHaveBeenCalledWith("3b-elab")
+  })
+
+  it("rifiuta una room ostile prima di leggere LessonOS o journal", async () => {
+    const loadEvents = vi.fn(async () => [] as AppendedEvent[])
+    const loadJournalEvents = vi.fn(async () => [] as JournalEvent[])
+    const eventLog = { readAll: vi.fn(async () => [] as AppendedEvent[]) }
+
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents, loadJournalEvents, eventLog, journalRoom: "../escape" }}
+      />,
+    )
+
+    expect(await screen.findByText(/memoria della lezione non leggibile/i)).toBeTruthy()
+    expect(loadEvents).not.toHaveBeenCalled()
+    expect(loadJournalEvents).not.toHaveBeenCalled()
+    expect(eventLog.readAll).not.toHaveBeenCalled()
+  })
+
+  it("mantiene il lifecycle student-pack della room quando l'ownership è univoca", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of LESSON_EVENTS) await log.append(event)
+    await log.append({
+      kind: "studentpack.generated",
+      packId: "sp-errore:corto-1",
+      errorId: "errore:corto-1",
+      fromRoom: "3b-elab",
+      t: 2100,
+      evidence: ["board:wire9"],
+    })
+    await log.append({
+      kind: "studentpack.exported",
+      packId: "sp-errore:corto-1",
+      t: 2200,
+      evidence: ["board:wire9"],
+    })
+
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents: () => log.readAll(), journalRoom: "3b-elab" }}
+      />,
+    )
+
+    const row = await waitFor(() => {
+      const candidate = document.querySelector('[data-z7-candidate="sp-errore:corto-1"]')
+      expect(candidate).not.toBeNull()
+      return candidate!
+    })
+    expect(row.querySelector("[data-z7-status=exported]")).not.toBeNull()
+  })
+
+  it("non attribuisce un export legacy quando lo stesso pack è generato in due room", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of LESSON_EVENTS) await log.append(event)
+    await log.append({
+      kind: "lesson.started",
+      room: "room-b",
+      t: 3000,
+      evidence: ["lesson:room-b@3000"],
+    })
+    await log.append({
+      kind: "error.observed",
+      errorId: "errore:corto-1",
+      conceptId: "concetto:b",
+      labels: { it: "Errore omonimo B" },
+      t: 3100,
+      evidence: ["board:b"],
+    })
+    await log.append({
+      kind: "lesson.ended",
+      room: "room-b",
+      t: 3200,
+      evidence: ["lesson:room-b@3200"],
+    })
+    await log.append({
+      kind: "studentpack.generated",
+      packId: "sp-errore:corto-1",
+      errorId: "errore:corto-1",
+      fromRoom: "3b-elab",
+      t: 3300,
+      evidence: ["board:wire9"],
+    })
+    await log.append({
+      kind: "studentpack.generated",
+      packId: "sp-errore:corto-1",
+      errorId: "errore:corto-1",
+      fromRoom: "room-b",
+      t: 3400,
+      evidence: ["board:b"],
+    })
+    await log.append({
+      kind: "studentpack.exported",
+      packId: "sp-errore:corto-1",
+      t: 3500,
+      evidence: ["board:export"],
+    })
+
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents: () => log.readAll(), journalRoom: "3b-elab" }}
+      />,
+    )
+
+    const row = await waitFor(() => {
+      const candidate = document.querySelector('[data-z7-candidate="sp-errore:corto-1"]')
+      expect(candidate).not.toBeNull()
+      return candidate!
+    })
+    expect(row.querySelector("[data-z7-status=generated]")).not.toBeNull()
+    expect(row.querySelector("[data-z7-status=exported]")).toBeNull()
+    expect(row.textContent).not.toContain("Errore omonimo B")
+  })
+
   it("mostra le stat del proiettore reale: lezioni ed errori con valore e finestra", async () => {
     const events = await appendEvents(LESSON_EVENTS)
     render(<TeacherDashboardView deps={{ loadEvents: async () => events }} />)

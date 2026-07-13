@@ -15,13 +15,13 @@ import {
   studentPackFileName,
   type StudentPackParseResult,
 } from "../lessonos/studentPackArtifact"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { deserializeEvents } from "../store/ReplayEngine"
-import { PATHS } from "../store/types"
+import { roomPaths, validateRoomId } from "../store/roomPaths"
 import { workspaceStore } from "../store/WorkspaceStore"
 import {
   projectTeacherDashboard,
@@ -29,13 +29,14 @@ import {
 } from "../lessonos/teacherDashboardProjection"
 import { mountRipassoPanel } from "../toolhost/panelHost"
 import type { EventLogReadLike } from "../toolhost/caps/graph"
+import { selectDashboardRoomEvents } from "./knowledgeRoomSession"
 
 export interface TeacherDashboardViewDeps {
   /** Sorgente eventi (seam per i test jsdom); default: event log IndexedDB reale. */
   loadEvents?: () => Promise<readonly AppendedEvent[]>
-  /** Journal lavagna della stessa stanza; default: raw/events.jsonl dal WorkspaceStore reale. */
-  loadJournalEvents?: () => Promise<readonly JournalEvent[]>
-  /** Room a cui associare il journal finché JournalRecorder non porta room id nativi. */
+  /** Journal lavagna della stessa stanza; default: raw/<room>/events.jsonl dal WorkspaceStore reale. */
+  loadJournalEvents?: (room: string) => Promise<readonly JournalEvent[]>
+  /** Room di cui proiettare eventi LessonOS e journal. */
   journalRoom?: string
   /** Nodo iniziale del grafo; se assente viene derivato dal primo concetto/evento didattico. */
   focusNodeId?: string | null
@@ -46,6 +47,8 @@ export interface TeacherDashboardViewDeps {
    * default lo STESSO store LessonOS di loadEvents, mai un log separato.
    */
   eventLog?: EventLogReadLike
+  /** Orologio iniettabile: il render resta puro e i test possono essere deterministici. */
+  now?: () => number
 }
 
 /** Vista read-only sull'event log reale: l'unico accesso concesso al ToolHost. */
@@ -61,9 +64,10 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
   return store.readAll()
 }
 
-async function loadJournalEventsFromStore(): Promise<readonly JournalEvent[]> {
+async function loadJournalEventsFromStore(room: string): Promise<readonly JournalEvent[]> {
+  const paths = roomPaths(room)
   if (workspaceStore.mode === "unavailable") await workspaceStore.init()
-  const blob = await workspaceStore.read(PATHS.JOURNAL)
+  const blob = await workspaceStore.read(paths.journal)
   if (!blob) return []
   return deserializeEvents(await blob.text())
 }
@@ -123,6 +127,18 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   const journalRoom = deps?.journalRoom ?? roomFromHash()
   const appendEvent = deps?.appendEvent ?? appendEventToStore
   const eventLog = deps?.eventLog ?? realEventLog
+  const scopeByRoom = deps === undefined || deps.journalRoom !== undefined
+  const now = deps?.now ?? Date.now
+  const scopedEventLog = useMemo<EventLogReadLike>(
+    () => ({
+      async readAll() {
+        if (scopeByRoom) validateRoomId(journalRoom)
+        const events = await eventLog.readAll()
+        return scopeByRoom ? [...selectDashboardRoomEvents(events, journalRoom)] : events
+      },
+    }),
+    [eventLog, journalRoom, scopeByRoom],
+  )
   const [state, setState] = useState<Z7State>({ phase: "loading" })
   const [focusNodeId, setFocusNodeId] = useState<string | null>(deps?.focusNodeId ?? null)
   const [busyPackId, setBusyPackId] = useState<string | null>(null)
@@ -142,7 +158,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   useEffect(() => {
     let cancelled = false
     let close: (() => void) | null = null
-    mountRipassoPanel({ eventLog })
+    mountRipassoPanel({ eventLog: scopedEventLog })
       .then((handle) => {
         if (cancelled) {
           handle.close()
@@ -159,13 +175,15 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       cancelled = true
       close?.()
     }
-    // eventLog è stabile per contratto del seam (default modulo o dep dei test)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [scopedEventLog])
 
   const refresh = useCallback(async () => {
-    const events = await loadEvents()
-    const journalEvents = await loadJournalEvents()
+    if (scopeByRoom) validateRoomId(journalRoom)
+    const loadedEvents = await loadEvents()
+    const events = scopeByRoom
+      ? selectDashboardRoomEvents(loadedEvents, journalRoom)
+      : loadedEvents
+    const journalEvents = await loadJournalEvents(journalRoom)
     const focus = focusNodeId ?? defaultFocusNodeId(events)
     const projection = projectTeacherDashboard({
       lessonEvents: events,
@@ -174,7 +192,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       focusNodeId: focus,
       teacherId: "docente-locale",
       locale: "it",
-      generatedAt: Date.now(),
+      generatedAt: now(),
     })
     // Delta a parità di focus: differenza dei nodi del vicinato dal refresh
     // precedente. Cambio focus (navigazione) → delta vuoto, mai un falso "new".
@@ -185,9 +203,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
     prevGraphRef.current = { focus: gv.focusNodeId, ids: nowIds }
     setDeltaNodeIds(delta)
     setState({ phase: "ready", projection })
-    // loadEvents/loadJournalEvents sono stabili per contratto del seam (default modulo o dep dei test)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [focusNodeId, journalRoom])
+  }, [focusNodeId, journalRoom, loadEvents, loadJournalEvents, now, scopeByRoom])
 
   useEffect(() => {
     let cancelled = false
@@ -213,38 +229,39 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       } finally {
         setBusyPackId(null)
       }
-      // appendEvent/refresh stabili per contratto del seam
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [refresh],
+    [appendEvent, refresh],
   )
 
-  const onGenerate = (candidate: Z7Candidate) =>
-    runPackAction(
+  const onGenerate = (candidate: Z7Candidate) => {
+    const generatedAt = now()
+    return runPackAction(
       {
         kind: "studentpack.generated",
         packId: candidate.candidateId,
         errorId: candidate.errorId,
         ...(candidate.fromRoom !== "" ? { fromRoom: candidate.fromRoom } : {}),
-        t: Date.now(),
+        t: generatedAt,
         evidence: [...candidate.evidenceRefs],
       },
       candidate.candidateId,
     )
+  }
 
   // Esporta = evento sull'event-log E artefatto scaricabile (NOTTE-13):
   // il pack che il docente consegna è un FILE, non solo uno stato in coda.
   const onExport = async (candidate: Z7Candidate) => {
+    const exportedAt = now()
     await runPackAction(
       {
         kind: "studentpack.exported",
         packId: candidate.candidateId,
-        t: Date.now(),
+        t: exportedAt,
         evidence: [...candidate.evidenceRefs],
       },
       candidate.candidateId,
     )
-    const artifact = buildStudentPackArtifact(candidate, { now: Date.now() })
+    const artifact = buildStudentPackArtifact(candidate, { now: exportedAt })
     const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: "application/json" })
     const url = URL.createObjectURL(blob)
     const anchor = document.createElement("a")
