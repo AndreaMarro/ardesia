@@ -107,12 +107,6 @@ export class WorkspaceStore {
     if (blob) {
       return await blob.text()
     }
-    // Fallback flat storico: verrà rimosso insieme alla migrazione esplicita
-    // nella slice import/recovery; fino ad allora resta compatibilità legacy.
-    const legacyBlob = await this.read(PATHS.SCENE)
-    if (legacyBlob) {
-      return await legacyBlob.text()
-    }
     // Fallback localStorage già namespaced dalla room.
     return this.fallback.getLegacyScene(room)
   }
@@ -205,8 +199,13 @@ export class WorkspaceStore {
     return buildLessonExport(this, room, lessonOsLog)
   }
 
-  async importLessonBlob(blob: Blob, lessonOsLog?: EventLogStore | null): Promise<ImportLessonResult> {
-    return parseLessonImport(this, blob, lessonOsLog)
+  async importLessonBlob(
+    blob: Blob,
+    room: string,
+    lessonOsLog?: EventLogStore | null,
+  ): Promise<ImportLessonResult> {
+    validateRoomId(room)
+    return parseLessonImport(this, blob, room, lessonOsLog)
   }
 
   async importLessonBlobForRoom(
@@ -214,13 +213,8 @@ export class WorkspaceStore {
     room: string,
     lessonOsLog?: EventLogStore | null,
   ): Promise<ImportLessonResult> {
-    // Fail before parseLessonImport writes any portable flat entry.
     validateRoomId(room)
-    const result = await parseLessonImport(this, blob, lessonOsLog)
-    const flatScene = await this.read(PATHS.SCENE)
-    if (!flatScene) return result
-    await this.saveScene(room, await flatScene.text())
-    return result
+    return parseLessonImport(this, blob, room, lessonOsLog)
   }
 }
 

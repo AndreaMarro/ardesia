@@ -230,7 +230,7 @@ describe("Board plugin post-it persistence", () => {
     const bundle = await exportLesson(store, ROOM)
 
     const restoredStore = createStore()
-    await importLesson(restoredStore, bundle)
+    await importLesson(restoredStore, bundle, ROOM)
     const restoredSceneText = await restoredStore.loadScene(ROOM)
     expect(restoredSceneText).not.toBeNull()
 
@@ -316,7 +316,7 @@ describe("Board plugin post-it persistence", () => {
     const bundle = await exportLesson(sourceStore, ROOM)
 
     const importedStore = createStore()
-    await importLesson(importedStore, bundle)
+    await importLesson(importedStore, bundle, ROOM)
 
     const hydration = await loadPluginPostitBoardHydrationFromStore(importedStore, ROOM)
     expect(hydration.renderModels.map((model) => `${model.pluginId}:${model.instanceId}`)).toEqual([

@@ -17,9 +17,9 @@ import JSZip from "jszip"
 import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
 import { parseSessionYaml } from "./AudioRecorder"
-import type { EventLogStore } from "../lessonos/eventlog"
+import type { AppendedEvent, EventLogStore } from "../lessonos/eventlog"
 import type { RecoveryReport } from "../lessonos/indexedDbEventLog"
-import { exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
+import { roomPaths } from "./roomPaths"
 
 /** Nome del file bundle .lesson */
 export const LESSON_EXTENSION = ".lesson"
@@ -35,14 +35,79 @@ export const LESSON_PATHS = {
   LESSONOS: "raw/lessonos-events.jsonl",
 } as const
 
+const WINDOWS_RESERVED_SEGMENT = /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\..*)?$/i
+
+function isPortableSegment(segment: string): boolean {
+  return segment.length > 0
+    && segment.length <= 255
+    && segment === segment.trim()
+    && !segment.endsWith(".")
+    && !/[<>:"|?*]/.test(segment)
+    && !WINDOWS_RESERVED_SEGMENT.test(segment)
+}
+
+function portablePayloadPath(relativePath: string): string {
+  const portablePath = relativePath.startsWith("raw/") ? relativePath.slice(4) : ""
+  const segments = portablePath.split("/")
+  if (
+    portablePath.length === 0
+    || relativePath.includes("\\")
+    || [...relativePath].some((char) => {
+      const code = char.charCodeAt(0)
+      return code <= 31 || code === 127
+    })
+    || relativePath.length > 1024
+    || segments.some((segment) => segment === "." || segment === ".." || !isPortableSegment(segment))
+  ) {
+    throw new Error(
+      `ZipSlip: path rifiutato "${relativePath}" — deve essere un path portabile sotto raw/`,
+    )
+  }
+  return portablePath
+}
+
+function roomSessionSnapshot(events: readonly AppendedEvent[], room: string): Blob | null {
+  const sorted = [...events].sort((a, b) => a.seq - b.seq)
+  let startIndex = -1
+  for (let index = 0; index < sorted.length; index += 1) {
+    const event = sorted[index]
+    if (event.kind === "lesson.started" && event.room === room) startIndex = index
+  }
+  if (startIndex < 0) return null
+
+  let endIndex = sorted.length
+  for (let index = startIndex + 1; index < sorted.length; index += 1) {
+    const event = sorted[index]
+    if (event.kind === "lesson.started") {
+      endIndex = index
+      break
+    }
+    if (event.kind === "lesson.ended" && event.room === room) {
+      endIndex = index + 1
+      break
+    }
+  }
+
+  const session = sorted.slice(startIndex, endIndex)
+  if (session.some((event) =>
+    ("room" in event && event.room !== undefined && event.room !== room)
+    || ("fromRoom" in event && event.fromRoom !== undefined && event.fromRoom !== room),
+  )) {
+    return null
+  }
+  const portableSession = session.map((event, index) => ({ ...event, seq: index + 1 }))
+  return new Blob([portableSession.map((event) => JSON.stringify(event)).join("\n") + "\n"], {
+    type: "application/x-ndjson",
+  })
+}
+
 /**
  * Esporta la lezione corrente come Blob .lesson (ZIP).
  *
  * Strategy:
- *   - Elenca tutti i file raw/ dallo store
- *   - Esclude scene per-room (raw/{room}/board.excalidraw) — la scena
- *     corrente viene iniettata flat come raw/board.excalidraw
- *   - Costruisce una Map per-path per dedup (l'iniettato vince)
+ *   - Elenca esclusivamente raw/<room>/ nello store
+ *   - Converte i path della stanza nel formato portabile flat raw/ del bundle
+ *   - Costruisce una Map per-path per dedup (lo snapshot LessonOS vince)
  *   - Crea ZIP via JSZip e restituisce Blob
  */
 export async function exportLesson(
@@ -56,45 +121,31 @@ export async function exportLesson(
    */
   lessonOsLog?: EventLogStore | null,
 ): Promise<Blob> {
-  const allRaw = await store.list("raw/")
+  const paths = roomPaths(room)
+  const roomRoot = `raw/${room}/`
+  const roomEntries = await store.list(roomRoot)
   const entries = new Map<string, FileEntry>()
 
   // Legge session.yaml per verificare il consenso audio (GDPR Mode A)
   // Se audioConsent !== true, i chunk raw/audio/ NON devono finire nel bundle
   let audioConsent: boolean | undefined
-  const sessionBlob = await store.read(LESSON_PATHS.SESSION)
+  const sessionBlob = await store.read(paths.session)
   if (sessionBlob) {
     const sessionText = await sessionBlob.text()
     audioConsent = parseSessionYaml(sessionText).audioConsent
   }
 
-  // Filtra: escludi scene per-room (raw/<room>/board.excalidraw etc.)
-  // e tieni solo file flat in raw/ o raw/audio/ (se consentito)
-  for (const entry of allRaw) {
-    // Salta scene per-room (es. raw/sala123/board.excalidraw),
-    // ma tieni raw/audio/chunk-*.webm
-    const parts = entry.path.split("/")
-    if (parts.length >= 3 && parts[0] === "raw" && parts[2] && parts[1] !== "audio") {
-      // raw/<room>/board.excalidraw → skip (verrà iniettato flat)
+  for (const entry of roomEntries) {
+    if (!entry.path.startsWith(roomRoot)) continue
+    if (entry.path.startsWith(paths.audioDir) && audioConsent !== true) {
       continue
     }
-
-    // GDPR: se audioConsent !== true, escludi TUTTI i file raw/audio/
-    if (entry.path.startsWith(LESSON_PATHS.AUDIO_DIR) && audioConsent !== true) {
-      continue
-    }
-
-    // raw/events.jsonl, raw/session.yaml, raw/audio/chunk-*.webm → keep
-    entries.set(entry.path, entry)
-  }
-
-  // Inietta la scena corrente come raw/board.excalidraw (normalizzata flat)
-  const sceneJson = await store.loadScene(room)
-  if (sceneJson !== null) {
-    entries.set(LESSON_PATHS.SCENE, {
-      path: LESSON_PATHS.SCENE,
-      mtime: Date.now(),
-      data: new Blob([sceneJson], { type: "application/json" }),
+    const portablePath = `raw/${entry.path.slice(roomRoot.length)}`
+    portablePayloadPath(portablePath)
+    entries.set(portablePath, {
+      path: portablePath,
+      mtime: entry.mtime,
+      data: entry.data,
     })
   }
 
@@ -102,8 +153,8 @@ export async function exportLesson(
   // della lezione — il bundle resta valido, semplicemente senza memoria didattica)
   if (lessonOsLog) {
     try {
-      const snapshot = await exportEventLogSnapshot(lessonOsLog)
-      if (snapshot.size > 0) {
+      const snapshot = roomSessionSnapshot(await lessonOsLog.readAll(), room)
+      if (snapshot !== null && snapshot.size > 0) {
         entries.set(LESSON_PATHS.LESSONOS, {
           path: LESSON_PATHS.LESSONOS,
           mtime: Date.now(),
@@ -182,8 +233,14 @@ function supportsSnapshotRestore(log: EventLogStore): log is SnapshotRestorableL
 export async function importLesson(
   store: WorkspaceStore,
   blob: Blob,
+  room: string,
   lessonOsLog?: EventLogStore | null,
 ): Promise<ImportLessonResult> {
+  roomPaths(room)
+  const roomRoot = `raw/${room}/`
+  if ((await store.list(roomRoot)).length > 0) {
+    throw new Error(`Import rifiutato: la stanza "${room}" non vuota`)
+  }
   const zip = await JSZip.loadAsync(blob)
 
   // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR
@@ -205,21 +262,14 @@ export async function importLesson(
 
     // ZipSlip: per-segment check (non includes("..") che blocca filename
     // legittimi come "raw/notes..2024.jsonl")
-    if (
-      !relativePath.startsWith("raw/") ||
-      relativePath.split("/").some((s) => s === "..")
-    ) {
-      throw new Error(
-        `ZipSlip: path rifiutato "${relativePath}" — deve iniziare con raw/ e non contenere .. come segmento`,
-      )
-    }
+    const portablePath = portablePayloadPath(relativePath)
 
     // Rileva entry audio per validazione coerenza
     if (relativePath.startsWith(LESSON_PATHS.AUDIO_DIR)) {
       hasAudioEntry = true
     }
 
-    entriesToWrite.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
+    entriesToWrite.push({ path: `${roomRoot}${portablePath}`, dataPromise: zipEntry.async("blob") })
   })
 
   // Coerenza GDPR: bundle con audioConsent=false MA con chunk audio dentro è
@@ -231,10 +281,16 @@ export async function importLesson(
     )
   }
 
-  // Seconda passata: tutte le validazioni passate, scrivi
-  for (const entry of entriesToWrite) {
-    const data = await entry.dataPromise
-    await store.write(entry.path, data)
+  // Materializza ogni Blob prima della prima write: anche un errore di lettura ZIP
+  // deve lasciare lo store completamente intatto.
+  const resolvedEntries = await Promise.all(entriesToWrite.map(async (entry) => ({
+    path: entry.path,
+    data: await entry.dataPromise,
+  })))
+
+  // Seconda passata: tutte le validazioni e letture passate, scrivi nella stanza scelta.
+  for (const entry of resolvedEntries) {
+    await store.write(entry.path, entry.data)
   }
 
   return { lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog) }
