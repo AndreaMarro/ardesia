@@ -34,6 +34,13 @@ import { dispatchSimulationCommand } from "./toolhost/simulationPluginRegistry"
 
 type ExcalidrawChangeHandler = NonNullable<ComponentProps<typeof Excalidraw>["onChange"]>
 type ExcalidrawDuplicateHandler = NonNullable<ComponentProps<typeof Excalidraw>["onDuplicate"]>
+type ExcalidrawApi = Parameters<
+  NonNullable<ComponentProps<typeof Excalidraw>["excalidrawAPI"]>
+>[0]
+type RoomExcalidrawApi = Omit<ExcalidrawApi, "addFiles" | "updateScene"> & {
+  addFiles: (files: readonly unknown[]) => void
+  updateScene: (scene: Record<string, unknown>) => void
+}
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -126,7 +133,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
-  const apiRef = useRef<any>(null)
+  const apiRef = useRef<RoomExcalidrawApi | null>(null)
   // Excalidraw calcola selectedElementIds prima di invocare onDuplicate. Quando
   // il clone plugin viene promosso dall'ID opaco nativo all'ID canonico, la
   // selezione della stessa transazione va quindi riallineata esplicitamente.
@@ -1112,7 +1119,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             viewModeEnabled={studentView}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
-              apiRef.current = eapi
+              apiRef.current = eapi as RoomExcalidrawApi
               const targetId = focusedElementId()
               // L'API arriva prima che Excalidraw completi il primo layout:
               // focus o fallback al ciclo successivo evitano un viewport vuoto.

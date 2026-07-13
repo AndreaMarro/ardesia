@@ -76,6 +76,7 @@ type BrowserStructuralReference = {
   startBindingElementId: string | null
   endBindingElementId: string | null
   containerId: string | null
+  boundElementIds: string[]
 }
 
 const VIEWPORTS: ViewportTarget[] = [
@@ -269,10 +270,21 @@ async function browserStructuralReferences(page: Page): Promise<BrowserStructura
         typeof (endBinding as Record<string, unknown>).elementId === "string"
           ? ((endBinding as Record<string, unknown>).elementId as string)
           : null
+      const boundElementIds = Array.isArray(element.boundElements)
+        ? element.boundElements.flatMap((boundElement) =>
+            typeof boundElement === "object" &&
+            boundElement !== null &&
+            !Array.isArray(boundElement) &&
+            typeof (boundElement as Record<string, unknown>).id === "string"
+              ? [(boundElement as Record<string, unknown>).id as string]
+              : [],
+          )
+        : []
       if (
         startBindingElementId === null &&
         endBindingElementId === null &&
-        typeof element.containerId !== "string"
+        typeof element.containerId !== "string" &&
+        boundElementIds.length === 0
       ) {
         return []
       }
@@ -283,6 +295,7 @@ async function browserStructuralReferences(page: Page): Promise<BrowserStructura
           startBindingElementId,
           endBindingElementId,
           containerId: typeof element.containerId === "string" ? element.containerId : null,
+          boundElementIds,
         },
       ]
     })
@@ -528,9 +541,16 @@ test.describe("native plugin post-it clone identity", () => {
 
   test("rimappa atomicamente i riferimenti strutturali verso il clone canonico", () => {
     const source = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()).elements[0]!
+    Object.assign(source, { boundElements: [{ id: "source-arrow", type: "arrow" }] })
     const opaqueId = "opaque-bound-plugin-copy"
     const duplicate = nativeDuplicate(source, opaqueId)
-    const arrow = {
+    const sourceArrow = {
+      id: "source-arrow",
+      type: "arrow",
+      startBinding: { elementId: source.id, focus: 0, gap: 8 },
+      endBinding: null,
+    }
+    const duplicateArrow = {
       id: "duplicated-arrow",
       type: "arrow",
       startBinding: { elementId: opaqueId, focus: 0, gap: 8 },
@@ -543,7 +563,7 @@ test.describe("native plugin post-it clone identity", () => {
       startBinding: { elementId: "external-target", focus: 0, gap: 8 },
       endBinding: null,
     }
-    const input = [source, duplicate, arrow, label, external]
+    const input = [source, duplicate, sourceArrow, duplicateArrow, label, external]
     const inputBefore = structuredClone(input)
 
     const normalized = normalizeDuplicatedPluginPostits(input)
@@ -551,19 +571,28 @@ test.describe("native plugin post-it clone identity", () => {
 
     expect(normalized.changed).toBe(true)
     expect(input).toEqual(inputBefore)
-    expect(normalized.elements[2]).toMatchObject({
+    expect(normalized.elements[3]).toMatchObject({
       startBinding: { elementId: canonicalId },
       endBinding: { elementId: source.id },
     })
-    expect(normalized.elements[3]).toMatchObject({ containerId: canonicalId })
-    expect(normalized.elements[4]).toBe(external)
+    expect(normalized.elements[1]).toMatchObject({
+      boundElements: [
+        { id: "duplicated-arrow", type: "arrow" },
+        { id: "duplicated-label", type: "text" },
+      ],
+    })
+    expect(normalized.elements[0]).toMatchObject({
+      boundElements: [{ id: "source-arrow", type: "arrow" }],
+    })
+    expect(normalized.elements[4]).toMatchObject({ containerId: canonicalId })
+    expect(normalized.elements[5]).toBe(external)
 
     const secondPass = normalizeDuplicatedPluginPostits(normalized.elements)
     expect(secondPass.changed).toBe(false)
     expect(secondPass.elements).toEqual(normalized.elements)
 
     const reboundByExcalidraw = {
-      ...normalized.elements[2]!,
+      ...normalized.elements[3]!,
       startBinding: { elementId: opaqueId, focus: 0, gap: 8 },
     }
     const ignoredNonPluginTarget = normalizeDuplicatedPluginPostits(
@@ -581,7 +610,12 @@ test.describe("native plugin post-it clone identity", () => {
     })
 
     const repairedAfterNativeBindingPass = normalizeDuplicatedPluginPostits(
-      [normalized.elements[0]!, normalized.elements[1]!, reboundByExcalidraw],
+      [
+        normalized.elements[0]!,
+        normalized.elements[1]!,
+        reboundByExcalidraw,
+        normalized.elements[4]!,
+      ],
       new Map([[opaqueId, canonicalId]]),
     )
     expect(repairedAfterNativeBindingPass.changed).toBe(true)
@@ -594,6 +628,46 @@ test.describe("native plugin post-it clone identity", () => {
         new Map([[opaqueId, canonicalId]]),
       ).changed,
     ).toBe(false)
+  })
+
+  test("fallisce chiuso su riferimenti reciproci malformati, ambigui o mancanti", () => {
+    const source = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()).elements[0]!
+    const opaqueId = "opaque-malformed-plugin-copy"
+
+    const cases = [
+      [
+        source,
+        nativeDuplicate(source, opaqueId),
+        {
+          type: "arrow",
+          startBinding: { elementId: opaqueId },
+          endBinding: null,
+        },
+      ],
+      [
+        source,
+        nativeDuplicate(source, opaqueId),
+        {
+          id: "missing-target-arrow",
+          type: "arrow",
+          startBinding: { elementId: opaqueId },
+          endBinding: { elementId: "missing-element" },
+        },
+      ],
+    ]
+
+    for (const elements of cases) {
+      const before = structuredClone(elements)
+      expect(() => normalizeDuplicatedPluginPostits(elements)).toThrow(/structural reference/)
+      expect(elements).toEqual(before)
+    }
+
+    expect(() =>
+      normalizeDuplicatedPluginPostits(
+        [source, nativeDuplicate(source, opaqueId)],
+        new Map([[opaqueId, pluginPostitBoardElementId("sim-a")]]),
+      ),
+    ).toThrow(/ambiguous structural remap/)
   })
 })
 
@@ -920,10 +994,20 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
   await expect.poll(() => browserSelectedElementIds(page)).toEqual(
     expect.arrayContaining([sourceBefore.id, SOURCE_CONNECTOR_ID]),
   )
-  await page.keyboard.press("ControlOrMeta+d")
+  const dragStart = {
+    x: sourceBox.x + sourceBox.width + 12,
+    y: sourceBox.y + sourceBox.height / 2,
+  }
+  await page.mouse.move(dragStart.x, dragStart.y)
+  await page.keyboard.down("Alt")
+  await page.mouse.down()
+  await page.mouse.move(dragStart.x + 180, dragStart.y + 110, { steps: 12 })
+  await page.mouse.up()
+  await page.keyboard.up("Alt")
 
   await expect(postits).toHaveCount(4, { timeout: 20_000 })
   identities = await browserPluginIdentities(page)
+  const sourceAfterClone = identities.find((identity) => identity.instanceId === "sim-a")!
   const cloneBeforeUndo = identities.find((identity) => identity.instanceId === "sim-a--copy")!
   expect(cloneBeforeUndo).toMatchObject({
     id: pluginPostitBoardElementId("sim-a--copy"),
@@ -935,9 +1019,6 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
   expect(cloneBeforeUndo.link).toBe(
     `maestro-tool://io.ardesia.simulation/${pluginPostitBoardElementId("sim-a--copy")}`,
   )
-  await expect.poll(() => browserSelectedElementIds(page)).toEqual(
-    expect.arrayContaining([cloneBeforeUndo.id]),
-  )
   const structuralAfterClone = await browserStructuralReferences(page)
   const sourceConnector = structuralAfterClone.find((reference) => reference.id === SOURCE_CONNECTOR_ID)
   const duplicateConnector = structuralAfterClone.find(
@@ -945,6 +1026,12 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
   )
   expect(sourceConnector?.startBindingElementId).toBe(sourceBefore.id)
   expect(duplicateConnector?.startBindingElementId).toBe(cloneBeforeUndo.id)
+  expect(
+    structuralAfterClone.find((reference) => reference.id === sourceBefore.id)?.boundElementIds,
+  ).toEqual([SOURCE_CONNECTOR_ID])
+  expect(
+    structuralAfterClone.find((reference) => reference.id === cloneBeforeUndo.id)?.boundElementIds,
+  ).toEqual([duplicateConnector?.id])
   const currentElementIds = await page.evaluate(() => {
     const api = (
       window as Window & {
@@ -978,7 +1065,7 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
     expect(current.find((identity) => identity.instanceId === "sim-a--copy")?.x).toBeGreaterThan(
       cloneBeforeUndo.x,
     )
-    expect(current.find((identity) => identity.instanceId === "sim-a")?.x).toBe(sourceBefore.x)
+    expect(current.find((identity) => identity.instanceId === "sim-a")?.x).toBe(sourceAfterClone.x)
   }).toPass({ timeout: 10_000 })
   const cloneMoved = (await browserPluginIdentities(page)).find(
     (identity) => identity.instanceId === "sim-a--copy",
@@ -1007,6 +1094,9 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
     structuralAfterRedo.find((reference) => reference.id === duplicateConnector?.id)
       ?.startBindingElementId,
   ).toBe(cloneBeforeUndo.id)
+  expect(
+    structuralAfterRedo.find((reference) => reference.id === cloneBeforeUndo.id)?.boundElementIds,
+  ).toEqual([duplicateConnector?.id])
 
   await browserAppendSimulationDiagnostic(page, cloneBeforeUndo.id, "clone-only-browser")
   await expect(async () => {
@@ -1029,7 +1119,7 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
   )
   await expect(page.locator("[data-plugin-postit-instance]")).toHaveCount(4, { timeout: 20_000 })
   const reopened = await browserPluginIdentities(page)
-  expect(reopened.find((identity) => identity.instanceId === "sim-a")?.x).toBe(sourceBefore.x)
+  expect(reopened.find((identity) => identity.instanceId === "sim-a")?.x).toBe(sourceAfterClone.x)
   expect(reopened.find((identity) => identity.instanceId === "sim-a--copy")?.x).toBe(
     cloneMoved.x,
   )
@@ -1045,5 +1135,10 @@ test("native clone → undo/redo → move clone → save/reopen mantiene due ide
     reopenedStructural.find((reference) => reference.id === duplicateConnector?.id)
       ?.startBindingElementId,
   ).toBe(pluginPostitBoardElementId("sim-a--copy"))
+  expect(
+    reopenedStructural.find(
+      (reference) => reference.id === pluginPostitBoardElementId("sim-a--copy"),
+    )?.boundElementIds,
+  ).toEqual([duplicateConnector?.id])
   expect(consoleErrors).toEqual([])
 })

@@ -43,6 +43,16 @@ type PluginPostitNormalizableElement = {
   startBinding?: { elementId?: unknown; [key: string]: unknown } | null
   endBinding?: { elementId?: unknown; [key: string]: unknown } | null
   containerId?: string | null
+  boundElements?: ReadonlyArray<{
+    id?: unknown
+    type?: unknown
+    [key: string]: unknown
+  }> | null
+}
+
+type ReciprocalBoundElement = {
+  id: string
+  type: string
 }
 
 type ValidatedPluginPostitElement<TElement extends PluginPostitNormalizableElement> = {
@@ -188,9 +198,12 @@ export function normalizeDuplicatedPluginPostits<
   }
 
   for (const [from, to] of knownIdRemap) {
-    if (from !== to && canonicalPluginElementIds.has(to) && !structuralIdRemap.has(from)) {
-      structuralIdRemap.set(from, to)
+    if (from === to || !canonicalPluginElementIds.has(to)) continue
+    const existingTarget = structuralIdRemap.get(from)
+    if (existingTarget !== undefined && existingTarget !== to) {
+      throw new Error(`ambiguous structural remap for ${from}`)
     }
+    if (existingTarget === undefined) structuralIdRemap.set(from, to)
   }
 
   let changed = allocations.size > 0
@@ -219,13 +232,20 @@ export function normalizeDuplicatedPluginPostits<
     } as TElement
   })
 
-  const normalized = pluginNormalized.map((element) => {
+  const structurallyNormalized = pluginNormalized.map((element) => {
     const remapped = remapPluginPostitStructuralReferences(element, structuralIdRemap)
     if (remapped !== element) changed = true
     return remapped
   })
+  const reciprocallyNormalized = reconcilePluginPostitReciprocalBindings(
+    structurallyNormalized,
+    new Set(structuralIdRemap.values()),
+  )
+  if (reciprocallyNormalized.changed) changed = true
 
-  return changed ? { elements: normalized, changed } : { elements: [...elements], changed }
+  return changed
+    ? { elements: reciprocallyNormalized.elements, changed }
+    : { elements: [...elements], changed }
 }
 
 function remapPluginPostitStructuralReferences<
@@ -251,6 +271,142 @@ function remapPluginPostitStructuralReferences<
   }
 
   return remapped ?? element
+}
+
+function reconcilePluginPostitReciprocalBindings<
+  TElement extends PluginPostitNormalizableElement,
+>(
+  elements: readonly TElement[],
+  canonicalTargetIds: ReadonlySet<string>,
+): { elements: TElement[]; changed: boolean } {
+  if (canonicalTargetIds.size === 0) return { elements: [...elements], changed: false }
+
+  const elementsById = new Map<string, TElement>()
+  for (const element of elements) {
+    if (typeof element.id !== "string") continue
+    if (elementsById.has(element.id)) {
+      throw new Error(`ambiguous structural reference: duplicate element id ${element.id}`)
+    }
+    elementsById.set(element.id, element)
+  }
+
+  for (const targetId of canonicalTargetIds) {
+    const target = elementsById.get(targetId)
+    if (target === undefined) {
+      throw new Error(`structural reference target ${targetId} does not exist`)
+    }
+    const pluginTarget = validatePluginPostitElement(target)
+    if (pluginTarget === null || !pluginTarget.canonical || target.id !== targetId) {
+      throw new Error(`structural reference target ${targetId} is not a canonical plugin post-it`)
+    }
+  }
+
+  const reciprocalByTarget = new Map<string, ReciprocalBoundElement[]>()
+  const reciprocalIdsByTarget = new Map<string, Set<string>>()
+  for (const targetId of canonicalTargetIds) {
+    reciprocalByTarget.set(targetId, [])
+    reciprocalIdsByTarget.set(targetId, new Set())
+  }
+
+  for (const element of elements) {
+    const startTarget = readStructuralBindingTarget(element, "startBinding")
+    const endTarget = readStructuralBindingTarget(element, "endBinding")
+    const containerTarget = readStructuralContainerTarget(element)
+    const targets = [startTarget, endTarget, containerTarget].filter(
+      (target): target is string => target !== null,
+    )
+    if (!targets.some((target) => canonicalTargetIds.has(target))) continue
+
+    if (
+      typeof element.id !== "string" ||
+      element.id.length === 0 ||
+      typeof element.type !== "string" ||
+      element.type.length === 0
+    ) {
+      throw new Error("structural reference contributor must have string id and type")
+    }
+    for (const target of targets) {
+      if (!elementsById.has(target)) {
+        throw new Error(`structural reference target ${target} does not exist`)
+      }
+      if (!canonicalTargetIds.has(target)) continue
+      const seenIds = reciprocalIdsByTarget.get(target)!
+      if (seenIds.has(element.id)) continue
+      seenIds.add(element.id)
+      reciprocalByTarget.get(target)!.push({ id: element.id, type: element.type })
+    }
+  }
+
+  let changed = false
+  const normalized = elements.map((element) => {
+    if (typeof element.id !== "string" || !canonicalTargetIds.has(element.id)) return element
+    validateExistingReciprocalBindings(element, elementsById)
+    const expected = reciprocalByTarget.get(element.id)!
+    const nextBoundElements = expected.length === 0 ? null : expected
+    if (reciprocalBindingsEqual(element.boundElements, nextBoundElements)) return element
+    changed = true
+    return { ...element, boundElements: nextBoundElements } as TElement
+  })
+
+  return { elements: normalized, changed }
+}
+
+function readStructuralBindingTarget(
+  element: PluginPostitNormalizableElement,
+  bindingKey: "startBinding" | "endBinding",
+): string | null {
+  const binding = element[bindingKey]
+  if (binding === null || binding === undefined) return null
+  if (!isRecord(binding) || typeof binding.elementId !== "string" || binding.elementId.length === 0) {
+    throw new Error(`malformed structural reference in ${bindingKey}`)
+  }
+  return binding.elementId
+}
+
+function readStructuralContainerTarget(element: PluginPostitNormalizableElement): string | null {
+  if (element.containerId === null || element.containerId === undefined) return null
+  if (typeof element.containerId !== "string" || element.containerId.length === 0) {
+    throw new Error("malformed structural reference in containerId")
+  }
+  return element.containerId
+}
+
+function validateExistingReciprocalBindings<TElement extends PluginPostitNormalizableElement>(
+  element: TElement,
+  elementsById: ReadonlyMap<string, TElement>,
+): void {
+  if (element.boundElements === null || element.boundElements === undefined) return
+  if (!Array.isArray(element.boundElements)) {
+    throw new Error(`malformed reciprocal structural reference on ${element.id}`)
+  }
+  for (const boundElement of element.boundElements) {
+    if (
+      !isRecord(boundElement) ||
+      typeof boundElement.id !== "string" ||
+      boundElement.id.length === 0 ||
+      typeof boundElement.type !== "string" ||
+      boundElement.type.length === 0
+    ) {
+      throw new Error(`malformed reciprocal structural reference on ${element.id}`)
+    }
+    if (!elementsById.has(boundElement.id)) {
+      throw new Error(`reciprocal structural reference target ${boundElement.id} does not exist`)
+    }
+  }
+}
+
+function reciprocalBindingsEqual(
+  current: PluginPostitNormalizableElement["boundElements"],
+  expected: readonly ReciprocalBoundElement[] | null,
+): boolean {
+  if (current === null || current === undefined) return expected === null
+  if (expected === null || current.length !== expected.length) return false
+  return current.every(
+    (entry, index) =>
+      entry.id === expected[index]!.id &&
+      entry.type === expected[index]!.type &&
+      Object.keys(entry).length === 2,
+  )
 }
 
 export function createPluginPostitBoardScene(
