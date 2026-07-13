@@ -4,6 +4,7 @@ import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { materialize, type LessonNode } from "../lessonos/materializer"
 import type { DashboardNodeKind } from "../lessonos/teacherDashboardProjection"
 import EmptyState from "./EmptyState"
+import { selectRoomSession } from "./knowledgeRoomSession"
 import LessonGraphCanvas, { displayedLevel, graphDepths } from "./LessonGraphCanvas"
 import StudioShell from "./StudioShell"
 import { viewHref } from "./ViewNav"
@@ -72,19 +73,6 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
 function roomFromHash(): string {
   if (typeof window === "undefined") return ""
   return window.location.hash.replace(/^#/, "").trim()
-}
-
-function bySequence(a: AppendedEvent, b: AppendedEvent): number {
-  return a.seq - b.seq
-}
-
-export function selectRoomSession(events: readonly AppendedEvent[], room: string): readonly AppendedEvent[] {
-  if (!room) return []
-  const sorted = [...events].sort(bySequence)
-  const start = [...sorted].reverse().find((event) => event.kind === "lesson.started" && event.room === room)
-  if (!start) return []
-  const end = sorted.find((event) => event.seq > start.seq && event.kind === "lesson.ended" && event.room === room)
-  return sorted.filter((event) => event.seq >= start.seq && (end === undefined || event.seq <= end.seq))
 }
 
 export function buildKnowledgeExplorerSnapshot(events: readonly AppendedEvent[], room: string): KnowledgeExplorerSnapshot {

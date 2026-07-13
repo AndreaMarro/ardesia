@@ -5,8 +5,8 @@ import { afterEach, describe, expect, it } from "vitest"
 import KnowledgeExplorerView, {
   buildKnowledgeExplorerSnapshot,
   filterKnowledgeExplorerGraph,
-  selectRoomSession,
 } from "../design/KnowledgeExplorerView"
+import { selectRoomSession } from "../design/knowledgeRoomSession"
 import { InMemoryEventLog, type AppendedEvent, type LessonOsEvent } from "../lessonos/eventlog"
 
 afterEach(() => {
@@ -138,6 +138,48 @@ describe("KnowledgeExplorerView", () => {
       "lesson:led-room@140",
       "simulation:scene:v1-cap6-esp1",
     ])
+  })
+
+  it("concatena per seq le sessioni della room senza includere una room interposta", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "room-a", t: 100, evidence: ["lesson:room-a@100"] },
+      { kind: "concept.introduced", conceptId: "a-1", labels: { it: "A uno" }, t: 110, evidence: ["manual:a-1"] },
+      { kind: "lesson.ended", room: "room-a", t: 120, evidence: ["lesson:room-a@120"] },
+      { kind: "lesson.started", room: "room-a", t: 130, evidence: ["lesson:room-a@130"] },
+      { kind: "concept.introduced", conceptId: "a-2", labels: { it: "A due" }, t: 140, evidence: ["manual:a-2"] },
+      { kind: "lesson.started", room: "room-b", t: 150, evidence: ["lesson:room-b@150"] },
+      { kind: "concept.introduced", conceptId: "b-1", labels: { it: "B uno" }, t: 160, evidence: ["manual:b-1"] },
+      { kind: "lesson.ended", room: "room-b", t: 170, evidence: ["lesson:room-b@170"] },
+      { kind: "lesson.ended", room: "room-a", t: 180, evidence: ["lesson:room-a@180"] },
+    ])
+
+    const snapshot = buildKnowledgeExplorerSnapshot(events, "room-a")
+    expect(snapshot.nodes.map((node) => node.id)).toEqual(["a-1", "a-2"])
+    expect(snapshot.events.some((event) => "room" in event && event.room === "room-b")).toBe(false)
+    expect(snapshot.evidenceRefs).not.toContain("manual:b-1")
+  })
+
+  it("rifiuta una room ostile prima di selezionare il log", async () => {
+    const events = await appendEvents(EVENTS)
+    expect(() => selectRoomSession(events, "../escape")).toThrow(/room/i)
+  })
+
+  it("fallisce chiuso dopo un lesson.ended discordante senza mutare il log", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "room-a", t: 100, evidence: ["lesson:room-a@100"] },
+      { kind: "concept.introduced", conceptId: "a-1", labels: { it: "A uno" }, t: 110, evidence: ["manual:a-1"] },
+      { kind: "lesson.ended", room: "room-b", t: 120, evidence: ["lesson:room-b@120"] },
+      { kind: "concept.introduced", conceptId: "ambiguous", labels: { it: "Ambiguo" }, t: 130, evidence: ["manual:ambiguous"] },
+      { kind: "lesson.started", room: "room-a", t: 140, evidence: ["lesson:room-a@140"] },
+      { kind: "concept.introduced", conceptId: "a-2", labels: { it: "A due" }, t: 150, evidence: ["manual:a-2"] },
+    ])
+    const before = structuredClone(events)
+
+    const snapshot = buildKnowledgeExplorerSnapshot(events, "room-a")
+
+    expect(snapshot.nodes.map((node) => node.id)).toEqual(["a-1", "a-2"])
+    expect(snapshot.evidenceRefs).not.toContain("manual:ambiguous")
+    expect(events).toEqual(before)
   })
 
   it("rende solve, errore ed evidenze dal log reale e consente di cambiare il focus del grafo", async () => {
