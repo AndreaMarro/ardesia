@@ -7,7 +7,7 @@
 //         math.insert, pdf.page.view
 
 import { type WorkspaceStore } from "./WorkspaceStore"
-import { PATHS } from "./types"
+import { validateRoomId } from "./roomPaths"
 
 // --- Tipi evento journal ---
 
@@ -72,6 +72,21 @@ export type JournalEvent = JournalEventBody & {
   t: number
 }
 
+export type JournalRecorderOptions = {
+  store: WorkspaceStore
+  journalPath: string
+  now?: () => number
+}
+
+function validateJournalPath(path: string): string {
+  const parts = path.split("/")
+  if (parts.length !== 3 || parts[0] !== "raw" || parts[2] !== "events.jsonl") {
+    throw new Error("Invalid room journal path")
+  }
+  validateRoomId(parts[1])
+  return path
+}
+
 /**
  * JournalRecorder: cattura eventi Excalidraw e li serializza in events.jsonl.
  *
@@ -84,6 +99,7 @@ export type JournalEvent = JournalEventBody & {
  */
 export class JournalRecorder {
   private store: WorkspaceStore
+  private journalPath: string
   private buffer: JournalEvent[] = []
   /** id → version degli elementi visti nell'ultimo onChange */
   private prevElements: Map<string, number> = new Map()
@@ -92,9 +108,10 @@ export class JournalRecorder {
   /** Stato pointer: true = t0 emesso, in attesa di t1 */
   private _pointerDown: boolean = false
 
-  constructor(store: WorkspaceStore, now?: () => number) {
-    this.store = store
-    this.now = now ?? (() => Date.now())
+  constructor(options: JournalRecorderOptions) {
+    this.store = options.store
+    this.journalPath = validateJournalPath(options.journalPath)
+    this.now = options.now ?? (() => Date.now())
   }
 
   /**
@@ -231,7 +248,7 @@ export class JournalRecorder {
       try {
         const newLines = batch.map((e) => JSON.stringify(e)).join("\n") + "\n"
 
-        const existing = await this.store.read(PATHS.JOURNAL)
+        const existing = await this.store.read(this.journalPath)
         let content = ""
         if (existing) {
           const text = await existing.text()
@@ -241,7 +258,7 @@ export class JournalRecorder {
         }
         content += newLines
         await this.store.write(
-          PATHS.JOURNAL,
+          this.journalPath,
           new Blob([content], { type: "application/x-ndjson" }),
         )
       } catch (err) {

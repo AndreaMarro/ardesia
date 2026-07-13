@@ -7,7 +7,8 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { fireEvent, render, screen, within } from "@testing-library/react"
 import { readFileSync } from "node:fs"
-import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
+import { type WorkspaceDriver, type FileEntry } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
 import { hasEmoji } from "./emojiGuard"
 import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
 import { createPluginPostitBoardScene } from "../design/multiPostitBoardPersistence"
@@ -24,7 +25,7 @@ const mockExcalidrawHarness = vi.hoisted(() => ({
 }))
 
 vi.mock("@excalidraw/excalidraw", () => {
-  let serialized = JSON.stringify({ type: "excalidraw", elements: [], v: 1 })
+  const serialized = JSON.stringify({ type: "excalidraw", elements: [], v: 1 })
   return {
     Excalidraw: vi.fn((props: any) => {
       if (props.excalidrawAPI) {
@@ -204,6 +205,25 @@ async function launcherAction(label: string): Promise<HTMLButtonElement> {
 }
 
 describe("Room ↔ WorkspaceStore integration", () => {
+  it("rifiuta un room ID ostile con UI esplicita e zero accessi allo store", async () => {
+    window.history.replaceState(null, "", "/#RoomA")
+    const { store } = await createMockStore()
+    const init = vi.spyOn(store, "init")
+    const read = vi.spyOn(store, "read")
+    const write = vi.spyOn(store, "write")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    expect((await screen.findByRole("alert")).textContent).toContain("Link stanza non valido")
+    expect(init).not.toHaveBeenCalled()
+    expect(read).not.toHaveBeenCalled()
+    expect(write).not.toHaveBeenCalled()
+
+    root.unmount()
+  })
+
   it("apre il launcher condiviso quando la Library porta l'intento iniziale", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
@@ -1777,7 +1797,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     }, { timeout: 5000, interval: 10 })
 
     await (window as any).__MAESTRO_TEST__.recorder.flush()
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(roomPaths("test-room-1").journal)
     const events = (await blob!.text())
       .trim()
       .split("\n")
@@ -1865,7 +1885,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     const all = await harness.lessonOs.current.store.readAll()
     expect(all.filter((e: any) => e.kind === "material.cited")).toHaveLength(0)
     // il journal registra comunque pdf.page.view (promote flusha prima di leggere)
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(roomPaths("test-room-1").journal)
     expect(blob).not.toBeNull()
     expect(await blob!.text()).toContain('"pdf.page.view"')
 

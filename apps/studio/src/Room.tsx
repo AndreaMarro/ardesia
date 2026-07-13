@@ -7,7 +7,8 @@ import { latexToImage } from "./latexToImage"
 import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
-import { PATHS, type StorageMode } from "./store/types"
+import { type StorageMode } from "./store/types"
+import { roomPaths } from "./store/roomPaths"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
@@ -77,6 +78,13 @@ function boardStateFromElements(elements: unknown): "empty" | "populated" {
 export default function Room({ store }: { store?: WorkspaceStore }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
+  const paths = useMemo(() => {
+    try {
+      return roomPaths(room)
+    } catch {
+      return null
+    }
+  }, [room])
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
@@ -145,6 +153,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
+    if (!paths) return
     let cancelled = false
     setLoading(true)
     actualStore.init()
@@ -157,7 +166,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           const clock = sharedClock
 
           // Crea JournalRecorder dopo init store con clock condiviso
-          const jr = new JournalRecorder(actualStore, clock)
+          const jr = new JournalRecorder({
+            store: actualStore,
+            journalPath: paths.journal,
+            now: clock,
+          })
           journalRef.current = jr
 
           // Crea AudioRecorder con clock condiviso
@@ -250,7 +263,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               serializeEvents,
               deserializeEvents,
               AudioRecorder,
-              PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
+              PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
               navigateToLesson,
               flushPersist,
               promoteJournalToLessonOs,
@@ -486,6 +499,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
    * non deve mai bloccare l'export — il journal resta la fonte di verità.
    */
   async function promoteJournalToLessonOs(): Promise<void> {
+    if (!paths) return
     const run = _pendingPromote.current.then(async () => {
       const runtime = lessonOsRef.current
       if (!runtime) return
@@ -493,7 +507,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         // Flush del buffer journal: le viste PDF appena registrate devono essere
         // sul file PRIMA della lettura (stessa fonte dell'export, Room.read sotto).
         await journalRef.current?.flush()
-        const blob = await actualStore.read(PATHS.JOURNAL)
+        const blob = await actualStore.read(paths.journal)
         if (!blob) return
         const events = deserializeEvents(await blob.text())
         await appendJournalBridgeTail(runtime.store, events, {
@@ -842,6 +856,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     { id: "activity", label: "Attività", items: visibleLauncherItems.filter((item) => item.group === "activity") },
     { id: "lesson", label: "Lezione", items: visibleLauncherItems.filter((item) => item.group === "lesson") },
   ].filter((group) => group.items.length > 0)
+
+  if (!paths) {
+    return (
+      <StudioShell current="lavagna" searchLabel="Cerca e crea">
+        <section role="alert" aria-labelledby="invalid-room-heading">
+          <h1 id="invalid-room-heading">Link stanza non valido</h1>
+          <p>Apri un link ARDESIA valido oppure crea una nuova lavagna.</p>
+        </section>
+      </StudioShell>
+    )
+  }
 
   if (recapView) return <RecapView store={actualStore} room={room} />
   if (replayView) return <ReplayView store={actualStore} room={room} />

@@ -12,6 +12,9 @@ import { JournalRecorder } from "../store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "../store/ReplayEngine"
 import { PATHS } from "../store/types"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
+
+const JOURNAL_PATH = roomPaths("journal-test-room").journal
 
 // --- Mock driver (stesso pattern di WorkspaceStore.test.ts) ---
 
@@ -108,7 +111,40 @@ describe("JournalRecorder", () => {
     mock = new MockDriver()
     withMockDriver(store, mock)
     clock = makeClock()
-    recorder = new JournalRecorder(store, clock)
+    recorder = new JournalRecorder({ store, journalPath: JOURNAL_PATH, now: clock })
+  })
+
+  it("separa atomicamente i journal di due room nello stesso store", async () => {
+    const recorderA = new JournalRecorder({
+      store,
+      journalPath: roomPaths("room-a").journal,
+      now: () => 1000,
+    })
+    const recorderB = new JournalRecorder({
+      store,
+      journalPath: roomPaths("room-b").journal,
+      now: () => 2000,
+    })
+
+    recorderA.recordMathInsert("a")
+    recorderB.recordMathInsert("b")
+    await Promise.all([recorderA.flush(), recorderB.flush()])
+
+    const journalA = await store.read(roomPaths("room-a").journal)
+    const journalB = await store.read(roomPaths("room-b").journal)
+    expect(await journalA?.text()).toContain('"latex":"a"')
+    expect(await journalA?.text()).not.toContain('"latex":"b"')
+    expect(await journalB?.text()).toContain('"latex":"b"')
+    expect(await journalB?.text()).not.toContain('"latex":"a"')
+    expect(await store.read(PATHS.JOURNAL)).toBeNull()
+  })
+
+  it("rifiuta un journal flat o con room ID ostile prima di accedere allo store", () => {
+    expect(() => new JournalRecorder({ store, journalPath: PATHS.JOURNAL })).toThrow(/journal path/i)
+    expect(() => new JournalRecorder({
+      store,
+      journalPath: "raw/../events.jsonl",
+    })).toThrow(/room/i)
   })
 
   it("recordChange rileva un element.add per nuovo elemento", () => {
@@ -209,7 +245,7 @@ describe("JournalRecorder", () => {
     recorder.recordChange([el])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(JOURNAL_PATH)
     expect(blob).not.toBeNull()
     const text = await blob!.text()
     expect(text).toContain('"element.add"')
@@ -227,7 +263,7 @@ describe("JournalRecorder", () => {
     recorder.recordChange([el1, el2])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(JOURNAL_PATH)
     const text = await blob!.text()
     const lines = text.trim().split("\n")
     expect(lines).toHaveLength(2)
@@ -260,7 +296,7 @@ describe("JournalRecorder", () => {
     recorder.recordChange([makeElement("el1", 2)])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(JOURNAL_PATH)
     const text = await blob!.text()
     const lines = text.trim().split("\n")
     // Due flush separati: primo ha add(el1), secondo ha update(el1)
@@ -282,7 +318,7 @@ describe("JournalRecorder", () => {
     // La chain NON è avvelenata: il flush successivo scrive davvero
     await recorder.flush()
     expect(recorder.getBuffer()).toHaveLength(0)
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(JOURNAL_PATH)
     expect(blob).not.toBeNull()
     const text = await blob!.text()
     expect(text).toContain("E=mc^2")
@@ -297,7 +333,7 @@ describe("JournalRecorder", () => {
     recorder.recordMathInsert("secondo")
     await recorder.flush()
 
-    const text = await (await store.read(PATHS.JOURNAL))!.text()
+    const text = await (await store.read(JOURNAL_PATH))!.text()
     const latex = text.trim().split("\n").map((l) => (JSON.parse(l) as { latex: string }).latex)
     expect(latex).toEqual(["primo", "secondo"])
     writeSpy.mockRestore()
@@ -316,7 +352,7 @@ describe("JournalRecorder", () => {
 
     await recorder.flush()
     expect(recorder.getBuffer()).toHaveLength(0)
-    const text = await (await store.read(PATHS.JOURNAL))!.text()
+    const text = await (await store.read(JOURNAL_PATH))!.text()
     expect(text).toContain('"a"')
     writeSpy.mockRestore()
   })
