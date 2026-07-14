@@ -1,6 +1,49 @@
 # SCHEDULED-PROCESSES-INVENTORY
 
-## Update 2026-07-02 01:40 CEST
+## Update 2026-07-15 01:12 CEST — attività Codex di convergenza
+
+Mode: preparazione verificabile. Nessun job è stato ancora attivato da questo
+aggiornamento.
+
+- È stata osservata una sola automazione Codex:
+  `ardesia-continuous-convergence-90m`. È `PAUSED` e il suo contratto legacy
+  richiede cinque sessioni da 40 minuti.
+- La configurazione proposta conserva l'ID per non creare un secondo scheduler,
+  ma la rinomina come ciclo Ardesia continuo da 60 minuti e la rende ricorrente
+  ogni giorno alle 06:00 Europe/Rome, senza limite di cinque run.
+- Prima dell'attivazione devono essere verdi review indipendente, link check,
+  governance gate e validazione del prompt contro
+  `AUTOMATED-LOOP-RUNBOOK.md` e `COV-AUDIT-PROTOCOL.md`.
+- Prima dell'update ufficiale la configurazione precedente viene conservata
+  fuori repository con SHA-256. Il primo run è un canary read-only; overrun,
+  lock residuo, artefatti mancanti, false-green o scrittura sotto WIP gate
+  azionano il kill switch, la pausa ufficiale e il rollback sullo stesso ID.
+- Il ciclo usa un lock esterno e termina senza scrivere nel repository quando
+  rileva un altro writer; produce comunque CoV, audit e tutti gli artefatti
+  esterni minimi. Non abilita né modifica job launchd o scheduler del Mac Mini.
+- Questo aggiornamento supera soltanto la decisione del 2 luglio di tenere
+  ferma l'automazione Codex finché AgentMemory non fosse sano: AgentMemory è
+  ora ritirato dal loop; Git+Obsidian+receipt sono il fallback mentre
+  `MemoryIndexPort` confronta sostituti. Restano invariati i divieti launchd.
+- Stato live fino alla ricevuta di attivazione: `PREPARED / NOT ACTIVE`.
+
+### CoV pre-avvio
+
+- Worktree canonico pulito a `33c2d0cf`; candidato 11 commit avanti e senza PR.
+- 40 worktree, 40 branch locali non integrati e 18 PR aperte osservate.
+- Esito prodotto: `0 YES / 3 PARTIAL / 5 RED-UNKNOWN`.
+- Conseguenza: il primo run non può aprire una nuova feature; deve verificare il
+  WIP gate e produrre soltanto audit/packet read-only o `HUMAN_GATE`; nessuna
+  integrazione mutante è ammessa finché il gate resta rosso.
+- AgentMemory è `RETIREMENT_DECIDED / NO-READ / NO-WRITE`; Sentry, PostHog,
+  Storybook, Chromatic e CodeRabbit non sono integrazioni Ardesia attive.
+
+## Update storico 2026-07-02 01:40 CEST — superato solo per la pausa Codex/AgentMemory
+
+Questa sezione resta una fotografia storica. La decisione di non avviare
+l'automazione Codex finché AgentMemory non fosse sano è sostituita dall'update
+del 15 luglio, dal ritiro del servizio e dal fallback Git+Obsidian. Tutti i
+divieti relativi a launchd, deploy e mutazioni AgentMemory restano validi.
 
 Mode: inventory/update only. No job deleted, disabled, booted out, restarted, or re-enabled.
 
