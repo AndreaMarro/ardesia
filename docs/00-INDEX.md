@@ -1,8 +1,8 @@
 ---
 id: ardesia-versioned-knowledge-index
 status: active
-freshness: 2026-07-14T23:28:39+02:00
-baseline_sha: a7167657ba027e957731775895911d2428036071
+freshness: 2026-07-15T00:18:05+02:00
+baseline_sha: d1c24c602a1c5bb66c04e23e13f885a0a079343a
 authority: navigation-only
 ---
 
@@ -37,10 +37,11 @@ stati riportati nelle note sono snapshot, mai sostituti della verifica.
 | Gate canone locale | verde | commit `ce89aec6b76bd99b8a885bbfe05804b221f5510f` |
 | `origin/main` osservato | baseline remota arretrata | `91ec22eda16cf4ed12e14c565358dedc3656979f` |
 | Pubblicazione del branch | HUMAN_GATE | nessun push o PR effettuato |
-| Vault operativo corrente | working copy Git di `docs/` | versionato localmente fino a `a7167657`; cutover stabile dopo merge |
+| Vault operativo corrente | working copy Git di `docs/` | versionato localmente fino a `d1c24c60`; cutover stabile dopo merge |
 | Vault esterno curato | migration source read-only, non autorità | 118 file; procedura di manifest in `KNOWLEDGE-OPERATIONS.md` |
 | AgentMemory | `DEGRADED / NO-WRITE` | oltre ai problemi runtime mancano isolamento e adapter pointer V1; una sorgente di restart abilita injection |
-| Toolchain qualità/cloud | `AUDITED / NOT INTEGRATED` | responsabilità, gap, ordine e gate in `ops/TOOLING-READINESS.md` |
+| GitHub Actions root | `HARDENED_LOCAL / REMOTE_PENDING` | pin, runtime, identity e gate a `d1c24c60`; manca CI remota allo stesso SHA |
+| Vendor qualità/cloud | `AUDITED / NOT INTEGRATED` | responsabilità, gap, ordine e gate in `ops/TOOLING-READINESS.md` |
 
 ## Contratto di aggiornamento
 
