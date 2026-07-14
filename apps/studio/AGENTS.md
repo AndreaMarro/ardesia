@@ -1,40 +1,81 @@
-> ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
+# AGENTS.md — Ardesia Studio
 
-# AGENTS.md — MAESTRO-Studio (regole per Hermes)
+> **Prima di operare:** leggere
+> [`../../docs/adr/ADR-0004-ai-native-evidence-authority.md`](../../docs/adr/ADR-0004-ai-native-evidence-authority.md),
+> [`../../docs/CANON-INDEX.md`](../../docs/CANON-INDEX.md) e l'`AGENTS.md` root.
+> Riferimenti esterni e vecchi vault sono materiale storico, non fonte di verità.
 
-## 1. Identità e missione
-MAESTRO-Studio = la superficie di CATTURA del progetto MAESTRO: **la lavagna che registra**.
-Stack: React 19 + TypeScript + Vite 8, Excalidraw 0.18 (MIT), MathLive (MIT), pdfjs (Apache).
-Milestone M0, task in ordine VINCOLANTE: **T0 WorkspaceStore → T1 JournalRecorder (KILL-TEST replay deterministico) → T2 Audio Mode A → T3 bundle `.lesson`**.
-Gli ORDINI con i criteri di accettazione = `~/lessonos/COORDINATION.md` § CLAUDE-SAYS. Se il file non esiste sulla macchina corrente (es. MacBook: vive solo sul Mini), fai fede su `docs/CANON-INDEX.md` + i PR aperti del monorepo. NON inventare task fuori ordine.
+## 1. Missione e confine
 
-## 2. Pipeline iterazione (UNA task per iterazione)
-ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; UNA ipotesi) → BUILD (codice + test vitest NON tautologici) → REVIEW (`./bin/review.sh`, applica i fix VERI) → GATE `bash eval/gate.sh` VERDE → COMMIT + append STATUS.md + append log.jsonl.
+Ardesia Studio è la superficie iPad/Safari-first di cattura, continuità e
+revisione. Il codice conserva ancora nomi storici come MAESTRO o LessonOS: non
+rinominarli incidentalmente e non dedurne un'autorità separata.
 
-## 3. Regole tecniche (gotcha REALI già pagati — non ri-sbattere)
-- **`tsc -b` è la fonte di verità del typecheck: vitest/esbuild NON typechecka.** `erasableSyntaxOnly` vieta le parameter-properties TS (constructor `private x`): vitest verde + `tsc -b` rosso = false-green già pagato più volte. Gira SEMPRE `npm run typecheck` prima di dichiarare verde.
-- Vitest deterministico solo coi flag runner: `--pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000` (senza, flakka in full-suite).
-- tsconfig è STRICT (`noUnusedLocals`/`noUnusedParameters`): import/variabili inutilizzati FALLISCONO il gate (TS6133) — pulisci prima di consegnare.
-- jsdom di vitest NON fornisce un localStorage completo: nei test stub esplicito (`Object.defineProperty(globalThis, 'localStorage', …)`) in beforeEach/setup — niente try/catch silenziosi che mascherano il guasto.
-- Blob binari (audio/immagini): MAI `data.text()` per serializzare — corrompe i byte; usa arrayBuffer → base64.
-- React duplicato: `resolve.dedupe ['react','react-dom']` già in vite.config — NON rimuovere.
-- Nuova dipendenza → `npm install` aggiorna package.json + package-lock.json: COMMITTALI entrambi. I test girano headless (vitest), niente dev server nel loop.
-- DOM nei test: devDep `jsdom` (già installata) + `// @vitest-environment jsdom` in testa al file di test.
-- `mathjax-full` npm = CJS rotto → MathJax via CDN (latexToImage.ts) — non toccare.
-- Eventi journal: `events.jsonl` APPEND-ONLY, timestamp epoch ms, replay deterministico (nessun `Math.random`/`Date.now` nel percorso di REPLAY).
-- localStorage = CACHE, mai fonte di verità (la verità = cartella FSA / export bundle).
-- Playwright è installato sul Mini: per il replay-test T1 "a schermo" usalo headless (chromium). MAI dichiarare "verificato" senza un test che gira.
-- **Solver vendored** (`sim/solver/{engine,components}/*.js`): copie BYTE-IDENTICHE della sorgente `plugins/elab-tutor`, protette da drift-guard sha256 (`SolverVendoredDrift.test.ts`). MAI "sistemare" la copia (nemmeno trailing whitespace): se la sorgente evolve, refresh consapevole + rerun. Tipi via `.d.ts` companion (niente allowJs).
-- **Due golden elettrici DISTINTI by-design**: UI 14.9 mA (traversal, scena `ledForwardVolts: 2`) vs motore 15.3 mA (`LED_VF.red = 1.8`, canone CircuitSolver). Conflitto Vf tracciato come warning in `elabSolver.ts` — NON riconciliare un golden con l'altro senza decisione di Andrea.
+La UI può:
 
-## 4. Vincoli duri (violarli = REVERT)
-- `eval/gate.sh` INTOCCABILE; mai indebolire/skippare test per far passare il gate.
-- ZERO codice/brand ELAB. ZERO "Numeria". Niente video embed (Meet esterno). Niente cloud/Supabase in M0. Niente dipendenze pesanti senza giustificazione scritta in STATUS.md.
-- GDPR Mode A strutturale: audio SOLO microfono docente, default OFF, consenso registrato in session.yaml. MAI voci di studenti.
-- Formati aperti e longevi: JSONL / Markdown / SVG / zip. Schema dati versionato (campo `v`).
+- raccogliere eventi della lavagna, note, selezioni e input autorizzati;
+- mostrare proiezioni deterministiche e stato reale della persistenza;
+- presentare proposte AI citate e permettere decisioni esplicite del docente.
 
-## 5. Quando sei bloccato
-2 tentativi falliti sulla stessa task → scrivi una voce in `~/lessonos/COORDINATION.md` § NEEDS-CLAUDE e fermati. NON grindare.
+La UI non può assegnare autonomamente scope, attestare un claim, pubblicare un
+artefatto o applicare una modifica alla lavagna. Queste operazioni attraversano
+porte e command gateway del kernel.
 
-## ARCHITECT-CURRENT.md (design opus pre-build)
-Se nella root del repo esiste `ARCHITECT-CURRENT.md` e il suo PIN-SIG corrisponde alla task pinnata corrente, e il DESIGN autoredatto da opus PRIMA del build: leggilo PER PRIMO (dopo questo AGENTS.md) e seguilo; migliora solo motivando in STATUS.md. Se PIN-SIG non corrisponde al pin attuale e stantio: ignoralo.
+## 2. Pipeline per ogni slice
+
+`OBSERVE → BASELINE → PLAN → RED → WRITE → TARGETED_VERIFY → FULL_VERIFY →
+INDEPENDENT_REVIEW → CHECKPOINT`
+
+- Una sola responsabilità osservabile e massimo cinque file di prodotto.
+- Dopo due tentativi falliti sulla stessa `plan_version`, tornare a `OBSERVE` e
+  ripianificare.
+- Un edit successivo alla verifica invalida test e review precedenti.
+- Il checkpoint registra SHA/base, diff, test prima/dopo, rischi, verdetto e
+  prossimo passo; non dichiara completato ciò che non è stato provato.
+
+## 3. Gate tecnici già verificati
+
+- `tsc -b` è la fonte del typecheck; Vitest/esbuild non lo sostituiscono.
+- Eseguire `npm run typecheck`, la suite Vitest deterministica e `npm run build`.
+- Per la full suite Vitest usare `--pool=threads --maxWorkers=1
+  --no-file-parallelism --testTimeout=30000 --hookTimeout=30000
+  --teardownTimeout=30000`.
+- `tsconfig` è strict: nessun import o parametro inutilizzato.
+- `localStorage` è cache, mai fonte di verità.
+- Eventi e replay non dipendono da `Math.random()` o `Date.now()` nel percorso
+  deterministico.
+- Per i blob binari usare `arrayBuffer`, mai `Blob.text()`.
+- Le copie vendored del solver sono protette dal drift guard: non modificarle
+  incidentalmente.
+- Non riconciliare i due golden elettrici storici senza una decisione dedicata.
+- Non modificare o aggirare `eval/gate.sh` per ottenere un verde artificiale.
+
+## 4. Confini provider, privacy e audio
+
+- Nessun segreto, service key o SDK di provider nel browser, nei componenti UI o
+  nei moduli di dominio.
+- I modelli sono accessibili soltanto tramite una porta provider-neutral e un
+  adapter server-side; il test adapter resta deterministico.
+- Gli output del modello sono `model-proposal`: forma strutturata non significa
+  correttezza semantica.
+- Audio disattivato per default, consent receipt esplicita e indicatore visibile.
+- L'audio va trattato come potenzialmente multi-speaker anche con cuffie; non
+  assumere mai che contenga soltanto la voce del docente.
+- Raw audio escluso dalla persistenza ordinaria; nessun contenuto didattico reale
+  o sensibile in log, error reporting o analytics. Fixture visuali e Storybook
+  usano soltanto contenuti deterministici, sintetici o de-identificati e test-only.
+- Cloud e replica non possono mascherare un fallimento locale né diventare
+  autorità semantica.
+
+## 5. Manutenibilità
+
+- Nessun nuovo import di SDK o moduli di provider AI nel dominio o nella UI.
+- Nessuna seconda definizione manuale di uno schema pubblico.
+- Nessun nuovo file oltre 400 LOC senza eccezione motivata.
+- Ogni compatibility shim dichiara proprietario, condizione e milestone di
+  rimozione.
+- Nessun TODO senza issue o decisione collegata.
+- Ogni nuova dipendenza richiede approvazione esplicita e aggiornamento coerente
+  di manifest e lockfile.
+- Testare WebKit/iPad viewport; la prova finale del beta richiede anche iPad
+  Safari reale, non soltanto emulazione desktop.
