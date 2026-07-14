@@ -1,0 +1,59 @@
+---
+id: ardesia-versioned-knowledge-index
+status: active
+freshness: 2026-07-14T22:54:13+02:00
+baseline_sha: ce89aec6b76bd99b8a885bbfe05804b221f5510f
+authority: navigation-only
+---
+
+# Ardesia — indice operativo della knowledge
+
+Questo è l'entrypoint umano e agentico della knowledge versionata. Obsidian è
+l'interfaccia; Git, gli schemi, i test e le ricevute runtime restano le fonti
+tecniche. Questo indice orienta: non rende vera una nota per il solo fatto di
+collegarla.
+
+## Ordine di lettura al resume
+
+1. [Canone corrente](CANON-INDEX.md)
+2. [ADR-0004 — AI-native, evidence-authoritative, deterministic authority](adr/ADR-0004-ai-native-evidence-authority.md)
+3. [Operazioni della knowledge e migrazione Obsidian](KNOWLEDGE-OPERATIONS.md)
+4. [Stato AgentMemory](ops/AGENTMEMORY-HEALTH-STATUS.md)
+5. [Piano di manutenzione AgentMemory](ops/AGENTMEMORY-MAINTENANCE-PLAN.md)
+
+Poi il run deve verificare branch, HEAD, status, ref remoti e CI live. SHA o
+stati riportati nelle note sono snapshot, mai sostituti della verifica.
+
+## Stato verificato di questo checkpoint
+
+| Oggetto | Stato | Evidenza |
+|---|---|---|
+| North star | ratificata | ADR-0004 digest-pinned dal gate CI |
+| Gate canone locale | verde | commit `ce89aec6b76bd99b8a885bbfe05804b221f5510f` |
+| `origin/main` osservato | baseline remota arretrata | `91ec22eda16cf4ed12e14c565358dedc3656979f` |
+| Pubblicazione del branch | HUMAN_GATE | nessun push o PR effettuato |
+| Vault operativo corrente | preview della working copy Git di `docs/` | diventa durevole al commit; cutover stabile dopo merge |
+| Vault esterno curato | migration source read-only, non autorità | 118 file; procedura di manifest in `KNOWLEDGE-OPERATIONS.md` |
+| AgentMemory | degradato, cache soltanto | usare Git+Markdown come fallback immediato |
+
+## Contratto di aggiornamento
+
+- Ogni comportamento cambia insieme a test e documentazione canonica nella
+  stessa slice.
+- Decisioni correnti vanno in ADR; prove in ricevute; stato temporaneo in
+  checkpoint o handoff. Una chat non è una decisione.
+- Note supersedute non vengono cancellate: ricevono stato e puntatore al
+  successore.
+- Niente segreti, audio, trascrizioni, prompt, nomi di studenti o contenuto
+  didattico sensibile nel vault.
+- AgentMemory riceve soltanto puntatori ricostruibili a SHA, decision ID,
+  receipt hash e percorso relativo.
+- Se un link o uno stato non è verificabile, viene marcato `UNKNOWN`; non viene
+  completato per somiglianza.
+
+## Confini
+
+`docs/vault/` è materiale legacy versionato e non torna a essere il punto di
+ingresso. `ops/knowledge/`, `docs/wiki/` e gli handoff storici sono fonti da
+classificare, non mappe concorrenti. La migrazione avviene per tranche di
+massimo cinque file, senza copia massiva né cancellazione.
