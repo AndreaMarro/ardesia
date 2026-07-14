@@ -5,6 +5,35 @@ function bySequence(a: AppendedEvent, b: AppendedEvent): number {
   return a.seq - b.seq
 }
 
+function isStudentPackLifecycle(event: AppendedEvent): boolean {
+  return event.kind === "studentpack.generated" || event.kind === "studentpack.exported"
+}
+
+function candidateOwnersByPackId(
+  events: readonly AppendedEvent[],
+): ReadonlyMap<string, ReadonlySet<string>> {
+  const owners = new Map<string, Set<string>>()
+  let activeRoom: string | null = null
+
+  for (const event of events) {
+    if (event.kind === "lesson.started") {
+      activeRoom = event.room
+      continue
+    }
+    if (event.kind === "lesson.ended") {
+      activeRoom = null
+      continue
+    }
+    if (activeRoom === null || event.kind !== "error.observed") continue
+    const packId = `sp-${event.errorId}`
+    const packOwners = owners.get(packId) ?? new Set<string>()
+    packOwners.add(activeRoom)
+    owners.set(packId, packOwners)
+  }
+
+  return owners
+}
+
 /**
  * Selects every segment owned by one room from the legacy app-wide event log.
  * A new lesson.started transfers ownership; timestamps never define boundaries.
@@ -48,30 +77,26 @@ export function selectDashboardRoomEvents(
   events: readonly AppendedEvent[],
   room: string,
 ): readonly AppendedEvent[] {
-  const selected = [...selectRoomSession(events, room)]
+  const selected = selectRoomSession(events, room).filter((event) => !isStudentPackLifecycle(event))
   const selectedSequences = new Set(selected.map((event) => event.seq))
-  const candidatePackIds = new Set(
-    selected
-      .filter((event) => event.kind === "error.observed")
-      .map((event) => `sp-${event.errorId}`),
-  )
   const selectedGeneratedSequences = new Set<number>()
-  const selectedGeneratedPackIds = new Set<string>()
-  const foreignGeneratedPackIds = new Set<string>()
   const sortedEvents = [...events].sort(bySequence)
+  const candidateOwners = candidateOwnersByPackId(sortedEvents)
+  const generatedOwners = new Map<string, Set<string>>()
 
   for (const event of sortedEvents) {
     if (event.kind !== "studentpack.generated") continue
-    const belongsToRoom =
-      event.fromRoom !== undefined
-        ? event.fromRoom === room
-        : candidatePackIds.has(event.packId)
-    if (belongsToRoom) {
-      selectedGeneratedSequences.add(event.seq)
-      selectedGeneratedPackIds.add(event.packId)
-    } else if (event.fromRoom !== undefined) {
-      foreignGeneratedPackIds.add(event.packId)
-    }
+    const inferredOwners = candidateOwners.get(event.packId)
+    const owner = event.fromRoom !== undefined
+      ? event.fromRoom
+      : inferredOwners?.size === 1
+        ? [...inferredOwners][0]
+        : undefined
+    if (owner === undefined) continue
+    const packOwners = generatedOwners.get(event.packId) ?? new Set<string>()
+    packOwners.add(owner)
+    generatedOwners.set(event.packId, packOwners)
+    if (owner === room) selectedGeneratedSequences.add(event.seq)
   }
 
   for (const event of sortedEvents) {
@@ -85,8 +110,8 @@ export function selectDashboardRoomEvents(
 
     if (
       event.kind === "studentpack.exported" &&
-      selectedGeneratedPackIds.has(event.packId) &&
-      !foreignGeneratedPackIds.has(event.packId)
+      generatedOwners.get(event.packId)?.size === 1 &&
+      generatedOwners.get(event.packId)?.has(room) === true
     ) {
       if (!selectedSequences.has(event.seq)) {
         selected.push(event)

@@ -150,6 +150,9 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   // per un evento appeso, non per la navigazione). Evidenziati come "new" nel canvas.
   const [deltaNodeIds, setDeltaNodeIds] = useState<readonly string[]>([])
   const prevGraphRef = useRef<{ focus: string | null; ids: Set<string> }>({ focus: null, ids: new Set() })
+  const refreshGenerationRef = useRef(0)
+  const refreshScopeGenerationRef = useRef(0)
+  const packActionGenerationRef = useRef(0)
 
   // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
   // l'event-log LessonOS cablato — graph.query vivo fuori dai test. Il plugin
@@ -178,12 +181,15 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   }, [scopedEventLog])
 
   const refresh = useCallback(async () => {
+    const generation = ++refreshGenerationRef.current
     if (scopeByRoom) validateRoomId(journalRoom)
     const loadedEvents = await loadEvents()
+    if (generation !== refreshGenerationRef.current) return
     const events = scopeByRoom
       ? selectDashboardRoomEvents(loadedEvents, journalRoom)
       : loadedEvents
     const journalEvents = await loadJournalEvents(journalRoom)
+    if (generation !== refreshGenerationRef.current) return
     const focus = focusNodeId ?? defaultFocusNodeId(events)
     const projection = projectTeacherDashboard({
       lessonEvents: events,
@@ -206,12 +212,17 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   }, [focusNodeId, journalRoom, loadEvents, loadJournalEvents, now, scopeByRoom])
 
   useEffect(() => {
+    const scopeGeneration = ++refreshScopeGenerationRef.current
     let cancelled = false
     refresh().catch((err: unknown) => {
       if (!cancelled) setState({ phase: "error", detail: String(err) })
     })
     return () => {
       cancelled = true
+      refreshGenerationRef.current += 1
+      if (refreshScopeGenerationRef.current === scopeGeneration) {
+        refreshScopeGenerationRef.current += 1
+      }
     }
   }, [refresh])
 
@@ -220,14 +231,22 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   // vanno nello STESSO event log; il projector lifta lo status al ricarico.
   const runPackAction = useCallback(
     async (event: LessonOsEvent, packId: string) => {
+      const scopeGeneration = refreshScopeGenerationRef.current
+      const actionGeneration = ++packActionGenerationRef.current
+      const isCurrentAction = () =>
+        scopeGeneration === refreshScopeGenerationRef.current &&
+        actionGeneration === packActionGenerationRef.current
       setBusyPackId(packId)
       try {
         await appendEvent(event)
+        if (!isCurrentAction()) return false
         await refresh()
+        return isCurrentAction()
       } catch (err) {
-        setState({ phase: "error", detail: String(err) })
+        if (isCurrentAction()) setState({ phase: "error", detail: String(err) })
+        return false
       } finally {
-        setBusyPackId(null)
+        if (actionGeneration === packActionGenerationRef.current) setBusyPackId(null)
       }
     },
     [appendEvent, refresh],
@@ -252,7 +271,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   // il pack che il docente consegna è un FILE, non solo uno stato in coda.
   const onExport = async (candidate: Z7Candidate) => {
     const exportedAt = now()
-    await runPackAction(
+    const refreshed = await runPackAction(
       {
         kind: "studentpack.exported",
         packId: candidate.candidateId,
@@ -261,6 +280,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
       },
       candidate.candidateId,
     )
+    if (!refreshed) return
     const artifact = buildStudentPackArtifact(candidate, { now: exportedAt })
     const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: "application/json" })
     const url = URL.createObjectURL(blob)
