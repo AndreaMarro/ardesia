@@ -15,7 +15,7 @@ import {
   studentPackFileName,
   type StudentPackParseResult,
 } from "../lessonos/studentPackArtifact"
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import EmptyState from "./EmptyState"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
@@ -101,6 +101,16 @@ type Z7State =
   | { phase: "error"; detail: string }
   | { phase: "ready"; projection: TeacherDashboardProjection }
 
+type PackOperation = "generate" | "export" | "download"
+
+function packOperationKey(room: string, packId: string, operation: PackOperation): string {
+  return `${room}\u0000${packId}\u0000${operation}`
+}
+
+function packDeliveryKey(room: string, packId: string): string {
+  return `${room}\u0000${packId}`
+}
+
 // D10: etichette docente per le stat del proiettore. Key sconosciuta → key
 // verbatim (mai inventare né nascondere una stat che il proiettore ha derivato).
 const STAT_LABELS_IT: Record<string, string> = {
@@ -141,7 +151,8 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   )
   const [state, setState] = useState<Z7State>({ phase: "loading" })
   const [focusNodeId, setFocusNodeId] = useState<string | null>(deps?.focusNodeId ?? null)
-  const [busyPackId, setBusyPackId] = useState<string | null>(null)
+  const [busyPackOperations, setBusyPackOperations] = useState<ReadonlySet<string>>(() => new Set())
+  const [packDeliveryErrors, setPackDeliveryErrors] = useState<Readonly<Record<string, string>>>({})
   // Import/riapertura pack: null = nessun import tentato; il risultato del
   // parse fail-closed (ok o errore) è SEMPRE visibile.
   const [importedPack, setImportedPack] = useState<StudentPackParseResult | null>(null)
@@ -151,8 +162,11 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   const [deltaNodeIds, setDeltaNodeIds] = useState<readonly string[]>([])
   const prevGraphRef = useRef<{ focus: string | null; ids: Set<string> }>({ focus: null, ids: new Set() })
   const refreshGenerationRef = useRef(0)
-  const refreshScopeGenerationRef = useRef(0)
-  const packActionGenerationRef = useRef(0)
+  const currentRoomRef = useRef(journalRoom)
+  const activePackOperationsRef = useRef(new Set<string>())
+  useLayoutEffect(() => {
+    currentRoomRef.current = journalRoom
+  }, [journalRoom])
 
   // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
   // l'event-log LessonOS cablato — graph.query vivo fuori dai test. Il plugin
@@ -210,9 +224,12 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
     setDeltaNodeIds(delta)
     setState({ phase: "ready", projection })
   }, [focusNodeId, journalRoom, loadEvents, loadJournalEvents, now, scopeByRoom])
+  const refreshRef = useRef(refresh)
+  useLayoutEffect(() => {
+    refreshRef.current = refresh
+  }, [refresh])
 
   useEffect(() => {
-    const scopeGeneration = ++refreshScopeGenerationRef.current
     let cancelled = false
     refresh().catch((err: unknown) => {
       if (!cancelled) setState({ phase: "error", detail: String(err) })
@@ -220,36 +237,53 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
     return () => {
       cancelled = true
       refreshGenerationRef.current += 1
-      if (refreshScopeGenerationRef.current === scopeGeneration) {
-        refreshScopeGenerationRef.current += 1
-      }
     }
   }, [refresh])
+
+  const beginPackOperation = useCallback((key: string): boolean => {
+    if (activePackOperationsRef.current.has(key)) return false
+    activePackOperationsRef.current.add(key)
+    setBusyPackOperations(new Set(activePackOperationsRef.current))
+    return true
+  }, [])
+
+  const endPackOperation = useCallback((key: string) => {
+    activePackOperationsRef.current.delete(key)
+    setBusyPackOperations(new Set(activePackOperationsRef.current))
+  }, [])
 
   // Genera pack: appende studentpack.generated con le evidenze del candidato
   // (mai un fatto senza provenienza). Esporta: studentpack.exported. Entrambi
   // vanno nello STESSO event log; il projector lifta lo status al ricarico.
   const runPackAction = useCallback(
-    async (event: LessonOsEvent, packId: string) => {
-      const scopeGeneration = refreshScopeGenerationRef.current
-      const actionGeneration = ++packActionGenerationRef.current
-      const isCurrentAction = () =>
-        scopeGeneration === refreshScopeGenerationRef.current &&
-        actionGeneration === packActionGenerationRef.current
-      setBusyPackId(packId)
+    async (event: LessonOsEvent, packId: string, operation: Exclude<PackOperation, "download">) => {
+      const actionRoom = journalRoom
+      const operationKey = packOperationKey(actionRoom, packId, operation)
+      if (!beginPackOperation(operationKey)) return false
       try {
-        await appendEvent(event)
-        if (!isCurrentAction()) return false
-        await refresh()
-        return isCurrentAction()
-      } catch (err) {
-        if (isCurrentAction()) setState({ phase: "error", detail: String(err) })
-        return false
+        try {
+          await appendEvent(event)
+        } catch (err) {
+          if (currentRoomRef.current === actionRoom) {
+            setState({ phase: "error", detail: String(err) })
+          }
+          return false
+        }
+        if (currentRoomRef.current === actionRoom) {
+          try {
+            await refreshRef.current()
+          } catch (err) {
+            if (currentRoomRef.current === actionRoom) {
+              setState({ phase: "error", detail: String(err) })
+            }
+          }
+        }
+        return true
       } finally {
-        if (actionGeneration === packActionGenerationRef.current) setBusyPackId(null)
+        endPackOperation(operationKey)
       }
     },
-    [appendEvent, refresh],
+    [appendEvent, beginPackOperation, endPackOperation, journalRoom],
   )
 
   const onGenerate = (candidate: Z7Candidate) => {
@@ -264,8 +298,44 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
         evidence: [...candidate.evidenceRefs],
       },
       candidate.candidateId,
+      "generate",
     )
   }
+
+  const deliverStudentPack = useCallback(
+    (candidate: Z7Candidate, exportedAt: number): boolean => {
+      const actionRoom = journalRoom
+      const operationKey = packOperationKey(actionRoom, candidate.candidateId, "download")
+      const deliveryKey = packDeliveryKey(actionRoom, candidate.candidateId)
+      if (!beginPackOperation(operationKey)) return false
+      try {
+        const artifact = buildStudentPackArtifact(candidate, { now: exportedAt })
+        const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: "application/json" })
+        const url = URL.createObjectURL(blob)
+        try {
+          const anchor = document.createElement("a")
+          anchor.href = url
+          anchor.download = studentPackFileName(candidate.candidateId, artifact.exportedAt)
+          anchor.click()
+        } finally {
+          URL.revokeObjectURL(url)
+        }
+        setPackDeliveryErrors((current) => {
+          if (current[deliveryKey] === undefined) return current
+          const next = { ...current }
+          delete next[deliveryKey]
+          return next
+        })
+        return true
+      } catch (err) {
+        setPackDeliveryErrors((current) => ({ ...current, [deliveryKey]: String(err) }))
+        return false
+      } finally {
+        endPackOperation(operationKey)
+      }
+    },
+    [beginPackOperation, endPackOperation, journalRoom],
+  )
 
   // Esporta = evento sull'event-log E artefatto scaricabile (NOTTE-13):
   // il pack che il docente consegna è un FILE, non solo uno stato in coda.
@@ -279,16 +349,9 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
         evidence: [...candidate.evidenceRefs],
       },
       candidate.candidateId,
+      "export",
     )
-    if (!refreshed) return
-    const artifact = buildStudentPackArtifact(candidate, { now: exportedAt })
-    const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: "application/json" })
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement("a")
-    anchor.href = url
-    anchor.download = studentPackFileName(candidate.candidateId, artifact.exportedAt)
-    anchor.click()
-    URL.revokeObjectURL(url)
+    if (refreshed) deliverStudentPack(candidate, exportedAt)
   }
 
   // Import/riapertura del pack (round-trip): parse fail-closed, errore
@@ -517,7 +580,7 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                       <button
                         type="button"
                         data-z7-generate={candidate.candidateId}
-                        disabled={busyPackId === candidate.candidateId}
+                        disabled={busyPackOperations.has(packOperationKey(journalRoom, candidate.candidateId, "generate"))}
                         onClick={() => onGenerate(candidate)}
                       >
                         Genera pack
@@ -527,16 +590,32 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                       <button
                         type="button"
                         data-z7-export={candidate.candidateId}
-                        disabled={busyPackId === candidate.candidateId}
+                        disabled={busyPackOperations.has(packOperationKey(journalRoom, candidate.candidateId, "export"))}
                         onClick={() => onExport(candidate)}
                       >
                         Esporta
                       </button>
                     )}
                     {candidate.status === "exported" && (
-                      <span style={{ fontSize: 12, opacity: 0.7 }}>pack esportato</span>
+                      <>
+                        <span style={{ fontSize: 12, opacity: 0.7 }}>pack esportato</span>
+                        <button
+                          type="button"
+                          data-z7-download={candidate.candidateId}
+                          disabled={busyPackOperations.has(packOperationKey(journalRoom, candidate.candidateId, "download"))}
+                          onClick={() => deliverStudentPack(candidate, now())}
+                        >
+                          Scarica di nuovo
+                        </button>
+                      </>
                     )}
                   </div>
+                  {packDeliveryErrors[packDeliveryKey(journalRoom, candidate.candidateId)] !== undefined && (
+                    <div role="alert" data-z7-download-error={candidate.candidateId} style={{ fontSize: 12 }}>
+                      Consegna file fallita: {packDeliveryErrors[packDeliveryKey(journalRoom, candidate.candidateId)]}.
+                      Puoi usare “Scarica di nuovo”.
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

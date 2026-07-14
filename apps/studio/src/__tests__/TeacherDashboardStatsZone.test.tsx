@@ -35,6 +35,23 @@ function deferred<T>() {
   return { promise, reject, resolve }
 }
 
+function recordStudentPackDownloads(downloads: string[]): () => void {
+  const realCreate = URL.createObjectURL
+  const realRevoke = URL.revokeObjectURL
+  URL.createObjectURL = vi.fn(() => "blob:studentpack-race") as never
+  URL.revokeObjectURL = vi.fn() as never
+  const clickSpy = vi
+    .spyOn(HTMLAnchorElement.prototype, "click")
+    .mockImplementation(function (this: HTMLAnchorElement) {
+      downloads.push(this.download)
+    })
+  return () => {
+    clickSpy.mockRestore()
+    URL.createObjectURL = realCreate
+    URL.revokeObjectURL = realRevoke
+  }
+}
+
 async function errorEventsForRoom(
   room: string,
   suffix: string,
@@ -376,6 +393,264 @@ describe("TeacherDashboardView — zona Statistiche (D10, solo event-log)", () =
     })
     expect(screen.queryByText(/memoria della lezione non leggibile/i)).toBeNull()
     expect(screen.getByRole("button", { name: "Errore stabile B" })).toBeTruthy()
+  })
+
+  it("non lascia che un'azione sospesa in A disabiliti lo stesso candidate ID in B", async () => {
+    const events = await appendEvents([
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:condiviso",
+        conceptId: "concetto:a",
+        labels: { it: "Errore A" },
+        t: 2,
+        evidence: ["board:a"],
+      },
+      { kind: "lesson.ended", room: "room-a", t: 3, evidence: ["lesson:room-a@3"] },
+      { kind: "lesson.started", room: "room-b", t: 4, evidence: ["lesson:room-b@4"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:condiviso",
+        conceptId: "concetto:b",
+        labels: { it: "Errore B" },
+        t: 5,
+        evidence: ["board:b"],
+      },
+      { kind: "lesson.ended", room: "room-b", t: 6, evidence: ["lesson:room-b@6"] },
+    ])
+    const slowAppend = deferred<void>()
+    const appendEvent = vi.fn(() => slowAppend.promise)
+    const view = render(
+      <TeacherDashboardView
+        deps={{ loadEvents: async () => events, appendEvent, journalRoom: "room-a" }}
+      />,
+    )
+
+    fireEvent.click(await screen.findByRole("button", { name: "Genera pack" }))
+    await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+    view.rerender(
+      <TeacherDashboardView
+        deps={{ loadEvents: async () => events, appendEvent, journalRoom: "room-b" }}
+      />,
+    )
+    const buttonB = await screen.findByRole("button", { name: "Genera pack" })
+    const disabledInB = buttonB.hasAttribute("disabled")
+
+    await act(async () => {
+      slowAppend.resolve()
+    })
+    expect(disabledInB).toBe(false)
+  })
+
+  it("completa due generate concorrenti senza farle supersedere globalmente", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of [
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:x",
+        conceptId: "concetto:x",
+        labels: { it: "Errore X" },
+        t: 2,
+        evidence: ["board:x"],
+      },
+      {
+        kind: "error.observed",
+        errorId: "errore:y",
+        conceptId: "concetto:y",
+        labels: { it: "Errore Y" },
+        t: 3,
+        evidence: ["board:y"],
+      },
+      { kind: "lesson.ended", room: "room-a", t: 4, evidence: ["lesson:room-a@4"] },
+    ] satisfies LessonOsEvent[]) await log.append(event)
+    const pendingX = deferred<void>()
+    const pendingY = deferred<void>()
+    const appendEvent = vi.fn(async (event: LessonOsEvent) => {
+      if (event.kind !== "studentpack.generated") throw new Error("evento inatteso")
+      await (event.packId === "sp-errore:x" ? pendingX.promise : pendingY.promise)
+      await log.append(event)
+    })
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-a" }}
+      />,
+    )
+
+    fireEvent.click(await waitFor(() => {
+      const button = document.querySelector('[data-z7-generate="sp-errore:x"]')
+      expect(button).not.toBeNull()
+      return button!
+    }))
+    fireEvent.click(document.querySelector('[data-z7-generate="sp-errore:y"]')!)
+    await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(2))
+    await act(async () => {
+      pendingY.resolve()
+    })
+    await waitFor(() => {
+      expect(document.querySelector('[data-z7-candidate="sp-errore:y"] [data-z7-status=generated]')).not.toBeNull()
+    })
+    await act(async () => {
+      pendingX.resolve()
+    })
+    await waitFor(async () => {
+      const generated = (await log.readAll()).filter((event) => event.kind === "studentpack.generated")
+      expect(generated).toHaveLength(2)
+    })
+
+    const generatedRows = ["sp-errore:x", "sp-errore:y"].map(
+      (packId) => document.querySelector(`[data-z7-candidate="${packId}"] [data-z7-status=generated]`) !== null,
+    )
+    expect(generatedRows).toEqual([true, true])
+  })
+
+  it("consegna entrambi gli export concorrenti e conserva un retry download-only", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of [
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:x",
+        conceptId: "concetto:x",
+        labels: { it: "Errore X" },
+        t: 2,
+        evidence: ["board:x"],
+      },
+      {
+        kind: "error.observed",
+        errorId: "errore:y",
+        conceptId: "concetto:y",
+        labels: { it: "Errore Y" },
+        t: 3,
+        evidence: ["board:y"],
+      },
+      { kind: "lesson.ended", room: "room-a", t: 4, evidence: ["lesson:room-a@4"] },
+      {
+        kind: "studentpack.generated",
+        packId: "sp-errore:x",
+        errorId: "errore:x",
+        fromRoom: "room-a",
+        t: 5,
+        evidence: ["board:x"],
+      },
+      {
+        kind: "studentpack.generated",
+        packId: "sp-errore:y",
+        errorId: "errore:y",
+        fromRoom: "room-a",
+        t: 6,
+        evidence: ["board:y"],
+      },
+    ] satisfies LessonOsEvent[]) await log.append(event)
+    const pendingX = deferred<void>()
+    const pendingY = deferred<void>()
+    const appendEvent = vi.fn(async (event: LessonOsEvent) => {
+      if (event.kind !== "studentpack.exported") throw new Error("evento inatteso")
+      await (event.packId === "sp-errore:x" ? pendingX.promise : pendingY.promise)
+      await log.append(event)
+    })
+    const downloads: string[] = []
+    const restoreDownloads = recordStudentPackDownloads(downloads)
+    let observedDownloads: number
+    let observedRetries: number
+    try {
+      render(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-a" }}
+        />,
+      )
+      fireEvent.click(await waitFor(() => {
+        const button = document.querySelector('[data-z7-export="sp-errore:x"]')
+        expect(button).not.toBeNull()
+        return button!
+      }))
+      fireEvent.click(document.querySelector('[data-z7-export="sp-errore:y"]')!)
+      await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(2))
+      await act(async () => {
+        pendingX.resolve()
+      })
+      await act(async () => {
+        pendingY.resolve()
+      })
+      await waitFor(() => {
+        expect(document.querySelectorAll("[data-z7-status=exported]")).toHaveLength(2)
+        expect(downloads.length).toBeGreaterThan(0)
+      })
+      observedDownloads = downloads.length
+      observedRetries = document.querySelectorAll("[data-z7-download]").length
+    } finally {
+      restoreDownloads()
+    }
+
+    expect(observedDownloads).toBe(2)
+    expect(observedRetries).toBe(2)
+  })
+
+  it("dichiara un download fallito e lascia il retry abilitato", async () => {
+    const events = await appendEvents([
+      ...LESSON_EVENTS,
+      {
+        kind: "studentpack.generated",
+        packId: "sp-errore:corto-1",
+        errorId: "errore:corto-1",
+        fromRoom: "3b-elab",
+        t: 2100,
+        evidence: ["board:wire9"],
+      },
+      {
+        kind: "studentpack.exported",
+        packId: "sp-errore:corto-1",
+        t: 2200,
+        evidence: ["board:wire9"],
+      },
+    ])
+    const realCreate = URL.createObjectURL
+    URL.createObjectURL = vi.fn(() => {
+      throw new Error("download browser negato")
+    }) as never
+    try {
+      render(
+        <TeacherDashboardView
+          deps={{ loadEvents: async () => events, journalRoom: "3b-elab" }}
+        />,
+      )
+      const retry = await screen.findByRole("button", { name: "Scarica di nuovo" })
+      fireEvent.click(retry)
+
+      expect((await screen.findByRole("alert")).textContent).toContain("download browser negato")
+      await waitFor(() => expect(retry.hasAttribute("disabled")).toBe(false))
+    } finally {
+      URL.createObjectURL = realCreate
+    }
+  })
+
+  it("un cambio focus nella stessa room non invalida una generate già appesa", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of LESSON_EVENTS) await log.append(event)
+    const pending = deferred<void>()
+    const appendEvent = vi.fn(async (event: LessonOsEvent) => {
+      await pending.promise
+      await log.append(event)
+    })
+    render(
+      <TeacherDashboardView
+        deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "3b-elab" }}
+      />,
+    )
+
+    fireEvent.click(await screen.findByRole("button", { name: "Genera pack" }))
+    await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+    fireEvent.click(screen.getByRole("button", { name: /Corto circuito/i }))
+    await waitFor(() => expect(screen.getByTestId("zgraph-focus").textContent).toContain("Corto circuito"))
+    await act(async () => {
+      pending.resolve()
+    })
+    await waitFor(async () => {
+      const generated = (await log.readAll()).filter((event) => event.kind === "studentpack.generated")
+      expect(generated).toHaveLength(1)
+    })
+
+    expect(document.querySelector("[data-z7-status=generated]")).not.toBeNull()
   })
 
   it("mostra le stat del proiettore reale: lezioni ed errori con valore e finestra", async () => {
