@@ -30,6 +30,48 @@ model-authoritative writes**. Non vieta l'uso centrale del modello per comprende
 e proporre; vieta che il modello governi identità, scope, consenso, persistenza,
 provenienza, replay, decisioni e applicazione.
 
+## Gate automatico e ricevuta di ratifica
+
+governance_receipt_version: 1
+north_star_adr_policy: immutable
+governance_gate_ci: enabled
+north_star: Ardesia è AI-native nell'esperienza, evidence-authoritative nella verità e deterministica nell'autorità.
+
+La CI root verifica entrypoint, puntatori, formule obsolete e il digest UTF-8
+dell'ADR ratificato dopo la sola normalizzazione dei terminatori a LF. Il digest
+autorevole vive soltanto nel gate: questo `ADR-0004` north-star è immutabile e
+una decisione nuova richiede un nuovo ADR ratificato che lo sostituisca. Gli
+altri ADR non sono digest-pinned da questo gate. I puntatori canonici usano
+soltanto la forma inline esatta
+`[label](percorso/relativo.md)`, senza HTML, escape CommonMark, angle bracket,
+reference-style, encoding, query o titolo, nelle prime 24 righe dell'entrypoint;
+la label deve contenere almeno una lettera o un numero Unicode e il link non può
+essere inglobato in un autolink GFM;
+frontmatter, esempi, commenti HTML/Obsidian, il blocco storico
+`claude-mem-context` e blocchi di codice non conferiscono autorità. Inline code
+su più righe, fence non top-level, delimitatori matematici e sintassi template
+con `<` fuori da codice e commenti sono fuori dal subset canonico. Ogni target locale deve risolvere a un
+file esistente nel repository e non può tornare alle copie legacy del vault. I
+link pericolosi vengono scansionati in tutto il testo operativo, anche oltre le
+prime 24 righe; gli schemi bare `file`, `javascript`, `data`, `vscode` e
+`obsidian` sono vietati. Il gate prova coerenza documentale sintattica
+all'esatto SHA, non ratifica umana, implementazione del comportamento nel prodotto
+o assenza di ogni possibile parafrasi contraddittoria. Review e protezione del
+branch restano il confine di fiducia per modificare il gate.
+
+Il gate combina una lista minima di entrypoint obbligatori, che rende visibile
+una loro cancellazione, con la discovery dinamica in ogni directory non
+ignorata dei basename `AGENTS.md`, `CLAUDE.md`, `AUTOPILOT.md`, `GOVERNANCE.md`
+e `CODEX-WORKFLOW.md`. Ogni `AGENTS.md` deve puntare all'ADR north-star e a
+questo indice; gli altri documenti vengono sottoposti alla scansione di
+sicurezza e contraddizione senza acquisire autorità per il solo nome. Per tutti
+questi documenti le forme di link renderizzabili ma non canoniche sono rifiutate,
+i target inline sono validati e symlink o risoluzioni fuori repository non
+possono entrare nel gate all'esatto SHA.
+`COORDINATION.md` e `STATUS.md` descrivono storia o stato e non sono fonti di
+regole operative; ricevute runtime e checkpoint mantengono invece il posto
+assegnato loro nell'ordine delle fonti.
+
 ## Snapshot verificato, non release implicita
 
 Al 2026-07-14 la baseline remota ratificata osservata è
@@ -45,7 +87,9 @@ prova del candidato corrente.
 | Documento | Stato | Uso corretto |
 |---|---|---|
 | [ADR-0004](adr/ADR-0004-ai-native-evidence-authority.md) | **ACCEPTED** | North star, autorità e confine AI/kernel |
+| [ADR-0003](adr/ADR-0003-led-stress-zones.md) | ACCEPTED / NON PINNED | Decisione ELAB sulle zone di stress LED; fuori dal digest di questo gate |
 | [ADR-0002](adr/ADR-0002-agentmemory-memory-plane.md) | PROPOSED | Evidenza architetturale; non decisione ratificata |
+| [ADR-0001](adr/ADR-0001-toolhost-origin-binding.md) | PROPOSED | Decisione ToolHost ancora aperta |
 | [ARCHITECTURE-CANON](ARCHITECTURE-CANON.md) | LEGACY / DA RIVERIFICARE | Inventario storico e ipotesi |
 | [PRODUCT-CANON](PRODUCT-CANON.md) | LEGACY / DA RIVERIFICARE | Evidenza di prodotto, non ordine corrente |
 | [PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md) | LEGACY / DA RIVERIFICARE | Analisi del confine plugin |
@@ -85,8 +129,8 @@ devono essere classificati e resi read-only prima del cutover Obsidian.
 
 ## Debito esplicito successivo a questo indice
 
-1. rendere automatico in CI il controllo di puntatori e formule canoniche;
-2. collegare Obsidian alla directory versionata e archiviare read-only le copie
+1. collegare Obsidian alla directory versionata e archiviare read-only le copie
    esterne dopo classificazione;
-3. creare la linea d'integrazione verificata dei candidati locali;
-4. consolidare i contratti pubblici e poi migrare il kernel senza big-bang.
+2. creare la linea d'integrazione verificata dei candidati locali;
+3. consolidare i contratti pubblici e poi migrare il kernel senza big-bang;
+4. introdurre un manifest di digest se il pinning deve estendersi ad altri ADR.

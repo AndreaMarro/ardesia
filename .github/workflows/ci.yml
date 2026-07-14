@@ -57,6 +57,10 @@ jobs:
         run: python3 bin/ci/secret_scan.py
       - name: secret scan tests
         run: python3 bin/ci/test_secret_scan.py
+      - name: governance canon gate tests
+        run: python3 bin/ci/test_governance_canon_gate.py
+      - name: governance canon
+        run: python3 bin/ci/governance_canon_gate.py
       - name: ELAB standalone boundary (ratchet)
         run: python3 bin/ci/elab_boundary_gate.py
       - name: whitespace errors (git diff --check)
