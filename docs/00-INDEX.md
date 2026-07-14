@@ -1,8 +1,8 @@
 ---
 id: ardesia-versioned-knowledge-index
 status: active
-freshness: 2026-07-14T23:18:04+02:00
-baseline_sha: 5e5e482229d6450a55f84c1b577125db8265ce25
+freshness: 2026-07-14T23:28:39+02:00
+baseline_sha: a7167657ba027e957731775895911d2428036071
 authority: navigation-only
 ---
 
@@ -21,6 +21,10 @@ collegarla.
 4. [Stato AgentMemory](ops/AGENTMEMORY-HEALTH-STATUS.md)
 5. [Piano di manutenzione AgentMemory](ops/AGENTMEMORY-MAINTENANCE-PLAN.md)
 6. [Protocollo pointer-only AgentMemory](ops/AGENTMEMORY-SEMANTIC-PROTOCOL.md)
+7. [Tooling readiness e fonti esterne](ops/TOOLING-READINESS.md)
+8. [Matrice GitHub Actions](ops/CI-COVERAGE-MATRIX.md)
+9. [Contratto privacy Sentry/PostHog](ops/TELEMETRY-PRIVACY-CONTRACT.md)
+10. [Piano Storybook/Chromatic](ops/UI-QUALITY-PLAN.md)
 
 Poi il run deve verificare branch, HEAD, status, ref remoti e CI live. SHA o
 stati riportati nelle note sono snapshot, mai sostituti della verifica.
@@ -33,9 +37,10 @@ stati riportati nelle note sono snapshot, mai sostituti della verifica.
 | Gate canone locale | verde | commit `ce89aec6b76bd99b8a885bbfe05804b221f5510f` |
 | `origin/main` osservato | baseline remota arretrata | `91ec22eda16cf4ed12e14c565358dedc3656979f` |
 | Pubblicazione del branch | HUMAN_GATE | nessun push o PR effettuato |
-| Vault operativo corrente | working copy Git di `docs/` | versionato localmente a `5e5e4822`; cutover stabile dopo merge |
+| Vault operativo corrente | working copy Git di `docs/` | versionato localmente fino a `a7167657`; cutover stabile dopo merge |
 | Vault esterno curato | migration source read-only, non autorità | 118 file; procedura di manifest in `KNOWLEDGE-OPERATIONS.md` |
 | AgentMemory | `DEGRADED / NO-WRITE` | oltre ai problemi runtime mancano isolamento e adapter pointer V1; una sorgente di restart abilita injection |
+| Toolchain qualità/cloud | `AUDITED / NOT INTEGRATED` | responsabilità, gap, ordine e gate in `ops/TOOLING-READINESS.md` |
 
 ## Contratto di aggiornamento
 
