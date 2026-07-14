@@ -442,6 +442,139 @@ describe("TeacherDashboardView — zona Statistiche (D10, solo event-log)", () =
     expect(disabledInB).toBe(false)
   })
 
+  it("non scarica automaticamente l'export di A se l'append termina dopo il passaggio a B", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of [
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:a",
+        conceptId: "concetto:a",
+        labels: { it: "Errore A" },
+        t: 2,
+        evidence: ["board:a"],
+      },
+      { kind: "lesson.ended", room: "room-a", t: 3, evidence: ["lesson:room-a@3"] },
+      { kind: "lesson.started", room: "room-b", t: 4, evidence: ["lesson:room-b@4"] },
+      { kind: "lesson.ended", room: "room-b", t: 5, evidence: ["lesson:room-b@5"] },
+      {
+        kind: "studentpack.generated",
+        packId: "sp-errore:a",
+        errorId: "errore:a",
+        fromRoom: "room-a",
+        t: 6,
+        evidence: ["board:a"],
+      },
+    ] satisfies LessonOsEvent[]) await log.append(event)
+    const pending = deferred<void>()
+    const appendEvent = vi.fn(async (event: LessonOsEvent) => {
+      await pending.promise
+      await log.append(event)
+    })
+    const downloads: string[] = []
+    const restoreDownloads = recordStudentPackDownloads(downloads)
+    let observedDownloads: number
+    try {
+      const view = render(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-a" }}
+        />,
+      )
+      fireEvent.click(await screen.findByRole("button", { name: "Esporta" }))
+      await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+      view.rerender(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-b" }}
+        />,
+      )
+      expect(await screen.findByText("Nessun candidato in coda")).toBeTruthy()
+      await act(async () => {
+        pending.resolve()
+      })
+      await waitFor(async () => {
+        const exported = (await log.readAll()).filter((event) => event.kind === "studentpack.exported")
+        expect(exported).toHaveLength(1)
+      })
+      await act(async () => {
+        await Promise.resolve()
+      })
+      observedDownloads = downloads.length
+    } finally {
+      restoreDownloads()
+    }
+
+    expect(observedDownloads).toBe(0)
+  })
+
+  it("non scarica un export della visita A precedente dopo A→B→A e mostra il retry", async () => {
+    const log = new InMemoryEventLog()
+    for (const event of [
+      { kind: "lesson.started", room: "room-a", t: 1, evidence: ["lesson:room-a@1"] },
+      {
+        kind: "error.observed",
+        errorId: "errore:a",
+        conceptId: "concetto:a",
+        labels: { it: "Errore A" },
+        t: 2,
+        evidence: ["board:a"],
+      },
+      { kind: "lesson.ended", room: "room-a", t: 3, evidence: ["lesson:room-a@3"] },
+      { kind: "lesson.started", room: "room-b", t: 4, evidence: ["lesson:room-b@4"] },
+      { kind: "lesson.ended", room: "room-b", t: 5, evidence: ["lesson:room-b@5"] },
+      {
+        kind: "studentpack.generated",
+        packId: "sp-errore:a",
+        errorId: "errore:a",
+        fromRoom: "room-a",
+        t: 6,
+        evidence: ["board:a"],
+      },
+    ] satisfies LessonOsEvent[]) await log.append(event)
+    const pending = deferred<void>()
+    const appendEvent = vi.fn(async (event: LessonOsEvent) => {
+      await pending.promise
+      await log.append(event)
+    })
+    const downloads: string[] = []
+    const restoreDownloads = recordStudentPackDownloads(downloads)
+    let observedDownloads: number
+    let retryVisible: boolean
+    try {
+      const view = render(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-a" }}
+        />,
+      )
+      fireEvent.click(await screen.findByRole("button", { name: "Esporta" }))
+      await waitFor(() => expect(appendEvent).toHaveBeenCalledTimes(1))
+      view.rerender(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-b" }}
+        />,
+      )
+      expect(await screen.findByText("Nessun candidato in coda")).toBeTruthy()
+      view.rerender(
+        <TeacherDashboardView
+          deps={{ loadEvents: () => log.readAll(), appendEvent, journalRoom: "room-a" }}
+        />,
+      )
+      await screen.findByRole("button", { name: "Esporta" })
+      await act(async () => {
+        pending.resolve()
+      })
+      await waitFor(() => {
+        expect(document.querySelector("[data-z7-status=exported]")).not.toBeNull()
+      })
+      observedDownloads = downloads.length
+      retryVisible = document.querySelector('[data-z7-download="sp-errore:a"]') !== null
+    } finally {
+      restoreDownloads()
+    }
+
+    expect(observedDownloads).toBe(0)
+    expect(retryVisible).toBe(true)
+  })
+
   it("completa due generate concorrenti senza farle supersedere globalmente", async () => {
     const log = new InMemoryEventLog()
     for (const event of [

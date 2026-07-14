@@ -162,10 +162,16 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   const [deltaNodeIds, setDeltaNodeIds] = useState<readonly string[]>([])
   const prevGraphRef = useRef<{ focus: string | null; ids: Set<string> }>({ focus: null, ids: new Set() })
   const refreshGenerationRef = useRef(0)
-  const currentRoomRef = useRef(journalRoom)
+  const currentRoomRef = useRef<string | null>(journalRoom)
+  const roomVisitGenerationRef = useRef(0)
   const activePackOperationsRef = useRef(new Set<string>())
   useLayoutEffect(() => {
     currentRoomRef.current = journalRoom
+    roomVisitGenerationRef.current += 1
+    return () => {
+      currentRoomRef.current = null
+      roomVisitGenerationRef.current += 1
+    }
   }, [journalRoom])
 
   // Zona ripasso (P0-LIVE): monta il plugin #117 su ToolHost REALE con
@@ -258,13 +264,17 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
   const runPackAction = useCallback(
     async (event: LessonOsEvent, packId: string, operation: Exclude<PackOperation, "download">) => {
       const actionRoom = journalRoom
+      const actionRoomVisit = roomVisitGenerationRef.current
       const operationKey = packOperationKey(actionRoom, packId, operation)
+      const isCurrentRoomVisit = () =>
+        currentRoomRef.current === actionRoom &&
+        roomVisitGenerationRef.current === actionRoomVisit
       if (!beginPackOperation(operationKey)) return false
       try {
         try {
           await appendEvent(event)
         } catch (err) {
-          if (currentRoomRef.current === actionRoom) {
+          if (isCurrentRoomVisit()) {
             setState({ phase: "error", detail: String(err) })
           }
           return false
@@ -273,12 +283,12 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
           try {
             await refreshRef.current()
           } catch (err) {
-            if (currentRoomRef.current === actionRoom) {
+            if (isCurrentRoomVisit()) {
               setState({ phase: "error", detail: String(err) })
             }
           }
         }
-        return true
+        return isCurrentRoomVisit()
       } finally {
         endPackOperation(operationKey)
       }
