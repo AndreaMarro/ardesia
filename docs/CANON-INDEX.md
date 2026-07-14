@@ -51,10 +51,12 @@ prova del candidato corrente.
 | [PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md) | LEGACY / DA RIVERIFICARE | Analisi del confine plugin |
 | [ELAB-AS-PLUGIN-CANON](ELAB-AS-PLUGIN-CANON.md) | LEGACY / DA RIVERIFICARE | Analisi della separazione ELAB |
 | [ELAB-SCENE-FORGE-CANON](ELAB-SCENE-FORGE-CANON.md) | LEGACY / DA RIVERIFICARE | Evidenza di dominio ELAB |
+| [`../ARDESIA-MAP.md`](../ARDESIA-MAP.md) | CURRENT / NAVIGATION ONLY | Mappa dei percorsi, senza stato live o autorità normativa |
+| [`vault/ARDESIA-MAP.md`](vault/ARDESIA-MAP.md) | ARCHIVED / NO AUTHORITY | Puntatore compatibile alla storia della vecchia mappa vault |
 
-`docs/vault/ARDESIA-MAP.md` e vault esterni non sono fonti operative. Devono essere
-archiviati o riallineati in una slice dedicata; fino ad allora ogni loro istruzione
-in conflitto è storica.
+La vecchia `docs/vault/ARDESIA-MAP.md` è ora un puntatore archiviato: il corpo
+precedente resta nella storia Git. I vault esterni non sono fonti operative e
+devono essere classificati e resi read-only prima del cutover Obsidian.
 
 ## Verità operativa e knowledge
 
@@ -83,7 +85,8 @@ in conflitto è storica.
 
 ## Debito esplicito successivo a questo indice
 
-1. riallineare o archiviare la mappa vault obsoleta;
-2. rendere automatico in CI il controllo di puntatori e formule canoniche;
+1. rendere automatico in CI il controllo di puntatori e formule canoniche;
+2. collegare Obsidian alla directory versionata e archiviare read-only le copie
+   esterne dopo classificazione;
 3. creare la linea d'integrazione verificata dei candidati locali;
 4. consolidare i contratti pubblici e poi migrare il kernel senza big-bang.
