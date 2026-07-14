@@ -1,3 +1,12 @@
+## Autorità dell'integrazione Ardesia
+
+Quando questo subtree viene modificato nel monorepo Ardesia, le regole locali
+ELAB estendono, ma non sostituiscono, il governo cross-boundary del monorepo.
+Prima di intervenire leggere [`ADR-0004`](../../docs/adr/ADR-0004-ai-native-evidence-authority.md)
+e il [`Canon Index`](../../docs/CANON-INDEX.md). L'LLM può produrre proposte
+tipizzate e citate; scope, consenso, persistenza e applicazione restano sotto
+autorità deterministica.
+
 <claude-mem-context>
 # Memory Context
 

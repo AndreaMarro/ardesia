@@ -4,6 +4,12 @@ Durable guidance for Codex CLI (GPT-5.5) running in this repo. Read before any t
 Companion: `docs/dev/CODEX-WORKFLOW.md` (the full workflow). Source of truth for
 product/architecture: `CLAUDE.md` (root).
 
+When this subtree is changed inside the Ardesia monorepo, this guidance extends
+the cross-boundary [`ADR-0004`](../../../docs/adr/ADR-0004-ai-native-evidence-authority.md)
+and [`Canon Index`](../../../docs/CANON-INDEX.md); it cannot override their
+authority boundary. Model output remains a typed, cited proposal. Scope,
+consent, persistence and command application remain deterministic.
+
 ## What this repo is
 
 ELAB Tutor — educational electronics tutor for kids 8-14. React 19 + Vite 7
