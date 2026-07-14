@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -13,14 +16,17 @@ jobs:
   studio:
     name: studio (typecheck + test + build)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: apps/studio
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - run: python3 bin/ci/action_pin_gate.py
+        working-directory: ${{ github.workspace }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
+          node-version: "22.12.0"
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
       - run: npm ci --no-audit --no-fund
@@ -35,22 +41,50 @@ jobs:
   engine:
     name: engine (pytest)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: packages/engine
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - run: python3 bin/ci/action_pin_gate.py
+        working-directory: ${{ github.workspace }}
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
+        with:
+          version: "0.11.28"
+          python-version: "3.13.14"
       - name: pytest (live tests self-skip without API keys)
-        run: uv run pytest -q
+        run: uv run --locked pytest -q
 
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
+      - name: Candidate identity
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          TESTED_SHA: ${{ github.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          checked_out="$(git rev-parse HEAD)"
+          test "$checked_out" = "$TESTED_SHA"
+          head_sha="${PR_HEAD_SHA:-$TESTED_SHA}"
+          base_sha="${PR_BASE_SHA:-$PUSH_BEFORE_SHA}"
+          test -n "$head_sha"
+          test -n "$base_sha"
+          printf 'event=%s\ntested_sha=%s\nhead_sha=%s\nbase_sha=%s\ntree_sha=%s\n' \
+            "$EVENT_NAME" "$TESTED_SHA" "$head_sha" "$base_sha" \
+            "$(git rev-parse HEAD^{tree})"
+      - name: action pin gate tests
+        run: python3 bin/ci/test_action_pin_gate.py
+      - name: action pin gate
+        run: python3 bin/ci/action_pin_gate.py
       - name: NUL scan (tracked text files)
         run: python3 bin/ci/nul_scan.py
       - name: secret scan (high-confidence patterns)

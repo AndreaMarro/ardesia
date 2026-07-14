@@ -32,8 +32,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Candidate identity
+        env:
+          TESTED_SHA: ${{ github.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$TESTED_SHA"
+          test -n "${PR_HEAD_SHA:-$TESTED_SHA}"
+          test -n "${PR_BASE_SHA:-$PUSH_BEFORE_SHA}"
+      - run: python3 bin/ci/action_pin_gate.py
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22.12.0"
           cache: npm

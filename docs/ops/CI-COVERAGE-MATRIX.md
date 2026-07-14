@@ -1,27 +1,29 @@
 ---
 id: ardesia-ci-coverage-matrix
 status: active
-freshness: 2026-07-14T23:28:39+02:00
-baseline_sha: a7167657ba027e957731775895911d2428036071
+freshness: 2026-07-14T23:48:31+02:00
+baseline_sha: 4421a542ea2ca0429d30d0d56f7e9e7e50e01975
 authority: operational-snapshot
 ---
 
 # Ardesia — matrice GitHub Actions e protezione del branch
 
-## Verità osservata
+## Verità osservata e candidato locale
 
 GitHub esegue workflow soltanto da `.github/workflows/` alla root. Al baseline
 di questo documento sono attivi `ci.yml` e `studio-preview-readiness.yml`.
 Workflow collocati sotto `apps/`, `packages/` o `plugins/` non vanno conteggiati
-come workflow root attivi.
+come workflow root attivi. Le righe marcate `LOCAL_CANDIDATE` descrivono il
+diff di questa slice: non diventano prova remota finché GitHub non esegue lo
+stesso SHA.
 
 | Superficie | Prova root corrente | Stato | Gap bloccante |
 |---|---|---|---|
 | Studio | typecheck, Vitest, build | `PARTIAL` | lint, WebKit/iPad, a11y e UI visuale assenti |
 | Studio lint | non eseguito dalla CI root | `INVALID_BASELINE` | 176 errori e 6 warning osservati con `npm run lint` |
-| Engine | pytest | `COVERED` | versione Python/uv e timeout non congelati |
-| Hygiene | NUL, secret, canon, boundary, whitespace PR | `COVERED` | action pinning e timeout incompleti |
-| Preview Studio | check senza deploy | `COVERED` | non prova un artefatto Vercel promosso |
+| Engine | pytest con uv/Python congelati | `COVERED / LOCAL_CANDIDATE` | manca il run remoto sullo stesso SHA |
+| Hygiene | NUL, secret, action pin, canon, boundary, whitespace PR | `COVERED / LOCAL_CANDIDATE` | manca il run remoto sullo stesso SHA |
+| Preview Studio | check senza deploy | `COVERED / LOCAL_CANDIDATE` | non prova un artefatto Vercel promosso |
 | Entitlement service | nessun job root | `MISSING` | pytest non eseguito dalla CI root |
 | Plugin ELAB | nessun job root | `MISSING` | workflow annidati non costituiscono copertura root |
 | Ops tools | nessun job root | `INVALID_BASELINE` | script `test` termina intenzionalmente con errore |
@@ -35,11 +37,20 @@ come workflow root attivi.
 test reale oppure si dimostra che non è superficie pubblicabile e lo si esclude
 esplicitamente dal release manifest.
 
+Il candidato hardening imposta permessi read-only e timeout, congela Node
+`22.12.0`, setup-uv `v5.4.2`, uv `0.11.28` e Python `3.13.14`, ed esegue engine
+con lock `--locked`. Tutte le action esterne sono riferite a commit SHA
+verificati. Un gate standard-library, con nove test, rifiuta tag, branch,
+expression, forme YAML flow/quoted/escaped/alias e Docker image senza digest;
+segue anche le local composite action. Viene eseguito dalla root subito dopo il
+checkout e prima delle altre action remote. I check richiesti conservano i nomi
+esistenti.
+
 ## Slice di convergenza
 
-1. **Hardening workflow** — `permissions: contents: read`, timeout per job,
-   action pinning a commit SHA, runtime espliciti, nomi di check stabili e
-   ricevuta con commit/tree SHA. Nessuna modifica funzionale nello stesso PR.
+1. **Hardening workflow — `LOCAL_CANDIDATE / REMOTE_PENDING`** — permessi,
+   timeout, action e runtime pinning, nomi di check stabili e log di
+   commit/head/base/tree identity. La slice non cambia logica di prodotto.
 2. **Lint ratchet** — salvare il baseline machine-readable per regola/file,
    fallire su nuove violazioni e ridurre il debito in slice dedicate. Il job non
    diventa verde ignorando errori o escludendo file senza decisione.
