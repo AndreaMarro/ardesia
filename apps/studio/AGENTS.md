@@ -23,8 +23,7 @@ porte e command gateway del kernel.
 
 ## 2. Pipeline per ogni slice
 
-`OBSERVE → BASELINE → PLAN → RED → WRITE → TARGETED_VERIFY → FULL_VERIFY →
-INDEPENDENT_REVIEW → CHECKPOINT`
+`OBSERVE → BASELINE → PLAN → RED → WRITE → TARGETED_VERIFY → FULL_VERIFY → INDEPENDENT_REVIEW → CHECKPOINT`
 
 - Una sola responsabilità osservabile e massimo cinque file di prodotto.
 - Dopo due tentativi falliti sulla stessa `plan_version`, tornare a `OBSERVE` e
@@ -37,9 +36,11 @@ INDEPENDENT_REVIEW → CHECKPOINT`
 
 - `tsc -b` è la fonte del typecheck; Vitest/esbuild non lo sostituiscono.
 - Eseguire `npm run typecheck`, la suite Vitest deterministica e `npm run build`.
-- Per la full suite Vitest usare `--pool=threads --maxWorkers=1
-  --no-file-parallelism --testTimeout=30000 --hookTimeout=30000
-  --teardownTimeout=30000`.
+- Per la full suite Vitest usare il profilo seguente.
+
+```text
+--pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+```
 - `tsconfig` è strict: nessun import o parametro inutilizzato.
 - `localStorage` è cache, mai fonte di verità.
 - Eventi e replay non dipendono da `Math.random()` o `Date.now()` nel percorso

@@ -86,7 +86,7 @@ revert it.
 ## What Codex is asked to do here
 
 Primary roles in this repo: parallel **implementer** (in its own worktree),
-**verifier** (file/symbol/regex/dead-code checks), and **reviewer** (`codex exec
-review`). Always structure tasks with goal / context / constraints / completion
+**verifier** (file/symbol/regex/dead-code checks), and **reviewer** (`codex exec review`).
+Always structure tasks with goal / context / constraints / completion
 criteria. For genuinely open-ended analytical synthesis, defer to the
 orchestrator (Claude) — Codex returns best results on bounded, well-specified work.

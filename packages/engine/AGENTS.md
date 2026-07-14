@@ -35,8 +35,7 @@ immutabile nello scope dichiarato.
 
 ## 3. Pipeline per ogni slice
 
-`OBSERVE → BASELINE → PLAN → RED → WRITE → TARGETED_VERIFY → FULL_VERIFY →
-INDEPENDENT_REVIEW → CHECKPOINT`
+`OBSERVE → BASELINE → PLAN → RED → WRITE → TARGETED_VERIFY → FULL_VERIFY → INDEPENDENT_REVIEW → CHECKPOINT`
 
 - Una sola ipotesi, massimo cinque file di prodotto, un solo writer.
 - Test RED minimo prima della correzione quando si cambia comportamento.
