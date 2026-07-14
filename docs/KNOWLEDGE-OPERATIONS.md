@@ -1,8 +1,8 @@
 ---
 id: ardesia-knowledge-operations
 status: active
-freshness: 2026-07-14T22:54:13+02:00
-baseline_sha: ce89aec6b76bd99b8a885bbfe05804b221f5510f
+freshness: 2026-07-14T23:18:04+02:00
+baseline_sha: 5e5e482229d6450a55f84c1b577125db8265ce25
 owner: Andrea Marro
 ---
 
@@ -19,8 +19,8 @@ ADR, schemi, test, CI o ricevute runtime.
 
 | Superficie | Inventario | Classificazione |
 |---|---:|---|
-| `docs/` versionato | 215 file, 196 Markdown | destinazione durevole |
-| repository intero | 2.547 Markdown | corpus ampio, non tutto canonico |
+| `docs/` a `5e5e4822` | 220 file, 198 Markdown | destinazione durevole |
+| repository a `5e5e4822` | 2.549 Markdown | corpus ampio, non tutto canonico |
 | `ardesia-vault-local` | 118 file, 105 Markdown | sorgente di migrazione read-only |
 | `ARDESIA-VAULT` | rimosso dal registro Obsidian | archivio legacy da classificare |
 | `ardesia-wt/Ardesia` | rimosso dal registro Obsidian | vault incompleto/non canonico |
@@ -51,8 +51,8 @@ Il digest prova l'identità osservata, non la correttezza delle note.
    Publish, audio recorder o plugin community.
 3. **Preview applicata:** il registro locale contiene e apre soltanto la working
    copy di `docs/`; le tre registrazioni precedenti sono state rimosse.
-4. **Transitorio:** i cinque file diventano versionati al commit locale. Dopo merge e
-   checkout pulito, spostare l'apertura al percorso stabile
+4. **Versionato localmente:** i cinque file sono nel commit `5e5e4822`. Dopo
+   merge e checkout pulito, spostare l'apertura al percorso stabile
    `/Users/andreamarro/VOLUME 3/ardesia/docs` e verificare `00-INDEX`.
 5. **Da fare per tranche:** classificare le 105 note esterne come
    `canonical-candidate | evidence | historical | duplicate | sensitive`.
@@ -92,21 +92,11 @@ canone Git resta superiore e il finding viene registrato nel journal esterno.
 
 - aggiornare decisione, prova e indice nella stessa slice del comportamento;
 - registrare comandi conclusi, fallimenti e unknown senza contenuti sensibili;
-- creare un solo puntatore AgentMemory se il servizio è sano e autenticato;
-- se è degradato o non autenticato, non scrivere: Git+Markdown basta.
-
-Schema minimo ammesso in AgentMemory:
-
-```json
-{
-  "project": "ardesia",
-  "commit_sha": "<sha>",
-  "decision_id": "<optional-id>",
-  "receipt_hash": "<hash>",
-  "relative_path": "<repo-relative-path>",
-  "status": "<terminal-state>"
-}
-```
+- creare un solo puntatore soltanto quando lo stato esatto è
+  `READY_POINTER_ONLY` e l'adapter versionato è verde;
+- usare l'unico schema in
+  [AGENTMEMORY-SEMANTIC-PROTOCOL](ops/AGENTMEMORY-SEMANTIC-PROTOCOL.md);
+- in ogni altro stato non scrivere: Git+Markdown basta.
 
 Sono vietati audio, trascrizioni, nomi, email, room ID reali, prompt, diff,
 segreti e contenuto di lezione.

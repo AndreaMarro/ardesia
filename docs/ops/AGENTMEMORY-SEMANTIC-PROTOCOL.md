@@ -1,123 +1,119 @@
-# AGENTMEMORY-SEMANTIC-PROTOCOL
+---
+id: ardesia-agentmemory-pointer-protocol
+status: design-only-no-adapter
+freshness: 2026-07-14T23:18:04+02:00
+authority: operational-policy
+---
 
-Version: 2026-07-01 04:45 CEST  
-Status: operational protocol for meaningful ARDESIA memory.
+# AgentMemory — protocollo pointer-only
 
-## Role
+## Ruolo
 
-AgentMemory is the factory memory fabric, not the source of truth.
+AgentMemory è un indice derivato e ricostruibile. Non conserva la verità di
+prodotto e non riassume liberamente le lezioni. La knowledge autorevole resta
+nei commit, nelle ADR, negli schemi, nei test, nella CI all'esatto SHA e nelle
+ricevute runtime.
 
-It should help agents recall verified decisions, failures, context packets, and next actions. It must not replace filesystem, GitHub, Vercel, tests, logs, or official docs.
+Lo stato corrente è `NO-WRITE`; questo protocollo diventa eseguibile solo dopo
+tutti i gate di [AGENTMEMORY-HEALTH-STATUS](AGENTMEMORY-HEALTH-STATUS.md).
 
-## What "True Sense" Means
+## Record logico ammesso
 
-Useful memory has four parts:
+Un record contiene soltanto:
 
-1. a verified outcome or decision;
-2. evidence source or file path;
-3. concepts that future agents will actually search;
-4. the next implication or guardrail.
-
-Bad memory is:
-
-- raw long logs;
-- generic "worked on ARDESIA";
-- broad project summaries without evidence;
-- unverified claims copied from chat;
-- secrets, env values, PII, or real student corpus content.
-
-## Recall Before Work
-
-Before diagnosis or planning, do a narrow recall.
-
-Use 2-4 precise concepts from the current task, for example:
-
-- `ardesia-factory-routing`;
-- `headroom-context-packet`;
-- `agentmemory-degraded`;
-- `chatgpt-apps-fastapi-mcp`;
-- `demo-vertical-slice`;
-- `monorepo-cutover`.
-
-Preferred REST call on the Mini:
-
-```bash
-curl -fsS -X POST http://127.0.0.1:3111/agentmemory/smart-search \
-  -H "content-type: application/json" \
-  --data '{"query":"ardesia factory routing headroom","limit":5}'
+```json
+{
+  "schema": "ardesia-pointer-v1",
+  "project": "ardesia",
+  "commit_sha": "<40 lowercase hex>",
+  "decision_id": "<optional stable id>",
+  "receipt_hash": "<64 lowercase hex>",
+  "relative_path": "<repo-relative path>",
+  "status": "verified|superseded|withdrawn"
+}
 ```
 
-If recall is low-signal, say so and continue from primary sources.
+Invarianti:
 
-If AgentMemory is degraded, keep queries small and avoid exploratory broad searches.
+- `commit_sha` deve esistere nel repository autorizzato;
+- `schema` è obbligatorio ed è esattamente `ardesia-pointer-v1`;
+- `relative_path` deve risolversi dentro quel tree, senza symlink escape;
+- `receipt_hash` deve corrispondere alla ricevuta redatta indicata;
+- `decision_id`, se presente, deve essere dichiarato nel documento risolto;
+- `project` è esattamente `ardesia`;
+- nessun campo addizionale o testo libero.
 
-## Remember After Work
+## Compatibilità con l'API installata
 
-After a material outcome, save exactly one short memory unless multiple independent decisions were verified.
+Il record logico **non è oggi scrivibile direttamente**. L'endpoint installato
+`/agentmemory/remember` richiede `content` e inoltra soltanto `content`, `type`,
+`concepts`, `files`, `ttlDays`, `sourceObservationIds` e `project`; gli altri
+campi top-level vengono persi. Nel repository non esiste ancora un adapter.
 
-Required fields:
+Il target wire, da implementare e testare dietro `MemoryIndexPort`, è:
 
-- project: `ardesia`;
-- content: 1-4 sentences, verified only;
-- concepts: 3-7 concrete terms;
-- files: real paths touched or used as evidence when available;
-- status words such as `verified`, `not_proven`, `target`, or `blocked`.
+- `content`: JSON canonico del record logico, senza whitespace né campi extra;
+- `type`: `fact`, uno dei tipi accettati dal server installato;
+- `concepts`: esattamente `["ardesia-pointer-v1"]`;
+- `files`: il solo `relative_path` già validato;
+- `project`: `ardesia-pointer-v1` come etichetta aggiuntiva, non come confine.
 
-Preferred REST call on the Mini:
+Il discriminatore `ardesia-pointer-v1` vive nel JSON canonico e nei `concepts`;
+non nel wrapper `type`, che altrimenti verrebbe coercito a `fact`. L'adapter deve
+possedere serializzazione, parsing e validazione byte-for-byte.
+Non si usano chiamate `curl` costruite a mano. Poiché lo smart search corrente
+non applica `project` ai risultati observation, il target richiede una istanza
+o namespace fisicamente pulita e un negative scan dell'intero corpus.
 
-```bash
-curl -fsS -X POST http://127.0.0.1:3111/agentmemory/remember \
-  -H "content-type: application/json" \
-  --data '{"project":"ardesia","content":"Verified outcome here.","concepts":["ardesia","headroom"],"files":["docs/ops/NEXT-AUTOMATION-PACKET.md"]}'
-```
+## Dati vietati
 
-If save fails, append the memory payload to `docs/ops/SCHEDULED-ACTIVITY-LOG.md` under a `Memory fallback` note.
+Audio, trascrizioni, nomi, email, identificatori reali di room o studente,
+prompt, diff, token, segreti, URL firmati, contenuto didattico e riassunti di
+chat non entrano mai in AgentMemory. Un hash non rende lecito un payload che
+contiene o permette di ricostruire questi dati.
 
-## Memory Taxonomy
+## Resume deterministico
 
-Use concepts from this controlled set when possible:
+1. leggere `docs/00-INDEX.md`, canone, ADR e ultima ricevuta;
+2. verificare branch, SHA, status e CI live;
+3. controllare lo stato AgentMemory;
+4. soltanto se `READY_POINTER_ONLY`, eseguire una ricerca stretta;
+5. risolvere ogni risultato contro Git e receipt; scartare mismatch o stale;
+6. continuare da fonti primarie anche quando il recall è vuoto.
 
-- `ardesia-product-truth`
-- `ardesia-monorepo-cutover`
-- `ardesia-demo-vertical-slice`
-- `ardesia-factory-routing`
-- `headroom-context-packet`
-- `opus-quota`
-- `hermes-minimax-m3`
-- `gpt-55-hermes-target`
-- `agentmemory-semantic-protocol`
-- `agentmemory-degraded`
-- `fastapi-chatgpt-mcp-gateway`
-- `vercel-preview`
-- `github-repo-map`
-- `lesson-os-graph`
-- `simulation-plugin`
-- `elab-pack`
+La memoria non può scegliere il branch, ampliare scope o sostituire una
+verifica live.
 
-New concepts are allowed when they are specific and likely to be reused.
+## Scrittura e supersessione
 
-## Scheduled Automation Requirements
+Una singola decisione terminale potrà produrre al massimo un puntatore. La
+scrittura avviene dopo commit e receipt finale, mai durante una slice. Una
+correzione crea il nuovo puntatore e l'adapter ritira l'ID precedente con
+ricevuta; una tombstone `superseded` o `withdrawn` preserva il lineage senza
+rendere selezionabile il record vecchio.
 
-Every scheduled ARDESIA run must:
+Ogni write richiede:
 
-1. read `docs/ops/ARDESIA-KNOWLEDGE-PACKET-FOR-AGENTS.md`;
-2. recall AgentMemory with 2-4 precise concepts;
-3. state whether recall was useful;
-4. do one verified micro-task;
-5. remember one verified result;
-6. update `NEXT-AUTOMATION-PACKET.md` and `SCHEDULED-ACTIVITY-LOG.md`.
+- servizio `READY_POINTER_ONLY`;
+- API autenticata e client pinning verificato;
+- adapter versionato e istanza/namespace pulita;
+- schema chiuso validato prima dell'invio;
+- ricevuta di write con ID e hash, fuori dal repository se operativa;
+- lettura di ritorno e risoluzione all'esatto SHA;
+- delete/export provabili per il canary.
 
-## Health Protocol
+## Automazioni
 
-If AgentMemory is degraded/critical:
+Auto-capture di chat, sessioni, transcript, file o diff resta disattivato sia
+nella configurazione effettiva sia in ogni sorgente usata al restart.
+AgentMemory non viene aggiornato “a ogni checkpoint”: si aggiorna soltanto per
+stati terminali verificati. Se non è pronto, non esiste una coda occulta; Git e
+la ricevuta costituiscono già l'handoff sufficiente.
 
-- no bulk import;
-- no full export reads;
-- no restart or compaction without explicit maintenance decision;
-- keep recall/remember payloads short;
-- document heap/status and continue with filesystem evidence.
+## Misura di qualità
 
-## COV
-
-- Based on the installed AgentMemory skills and live REST endpoints used in prior ARDESIA checks.
-- Treat this as protocol. Actual memories still require live save verification.
+Il golden set non esiste ancora e deve diventare una fixture versionata prima
+della readiness. Conterrà dieci query stabili associate a puntatori correnti.
+Il gate richiede almeno 9/10 target nei top-3, zero record legacy/cross-project
+e zero record malformed, superseded o withdrawn presentati come correnti. La
+qualità viene rivalutata dopo ogni cambio di versione, indice o configurazione.

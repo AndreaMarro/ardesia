@@ -1,145 +1,88 @@
-# AGENTMEMORY-HEALTH-STATUS
+---
+id: ardesia-agentmemory-health
+status: active
+freshness: 2026-07-14T23:18:04+02:00
+authority: runtime-snapshot
+---
 
-Verified: 2026-07-02 02:20-02:22 CEST
-Host: `macmini` / `Mac.homenet.telecomitalia.it`
-Mode: read-only health probe. No restart, no compaction, no import, no process kill.
+# AgentMemory — stato operativo per Ardesia
 
-## Verdict
+## Verdetto
 
-AgentMemory is live at the socket/process level but unhealthy for normal use.
+**DEGRADED / NO-WRITE.** Il servizio risponde, ma non supera il gate Ardesia
+per sicurezza, coerenza delle versioni, headroom e qualità del richiamo. Git,
+Markdown versionato e ricevute restano il percorso operativo. AgentMemory non
+blocca il prodotto e non riceve nuovi ricordi finché tutti i gate sotto sono
+verdi.
 
-Treat it as a degraded cache until maintenance is completed. Do not use broad
-recall, `agentmemory stats`, bulk import, graph rebuild, manual compaction, or
-restart flows while `/agentmemory/livez` is timing out.
+“Healthy” nell'endpoint descrive la raggiungibilità tecnica del worker, non
+l'idoneità a custodire knowledge Ardesia.
 
-## Livez
+## Evidenza osservata il 14 luglio 2026
 
-Both local tunnel and Mini loopback probes timed out.
+Prove eseguite in sola lettura, salvo una ricerca semantica stretta che non ha
+creato memoria. Nessun restart, compaction, import, forget o modifica al
+servizio.
 
-| Probe | Result |
-|---|---|
-| MacBook `127.0.0.1:3111/agentmemory/livez` | timeout after 5.006s, HTTP 000 |
-| Mini `127.0.0.1:3111/agentmemory/livez` | timeout after 5.011s, HTTP 000 |
-| Mini `127.0.0.1:3111/agentmemory/graph/stats` | timeout after 2.005s, HTTP 000 |
+| Segnale | Evidenza | Valutazione |
+|---|---|---|
+| `GET /agentmemory/livez` | `status: ok` | verde soltanto per liveness |
+| Health | circuit breaker chiuso; KV `0.37 ms` | verde |
+| Heap | 156,267,288 / 162,103,296 byte, circa 96% | rosso; target `<85%` |
+| RSS | 477,888,512 byte, circa 456 MiB | osservare dopo remediation |
+| Summarizer | 18 successi, 931 fallimenti su 949 chiamate | rosso |
+| Versioni | servizio `0.9.27`, worker `0.11.2` | rosso |
+| REST auth | liveness, health e search accettati senza credenziale | rosso |
+| Trasporto locale | solo tunnel SSH loopback su `127.0.0.1:3111` | non sostituisce auth |
+| MCP osservato | lancio con `npx -y @agentmemory/mcp` | rosso; non pinning |
+| File env | `~/.agentmemory/.env` ora `0600` | verde locale |
+| Context injection | servizio effettivo `false`, sorgente locale di restart `enabled` | rosso; riavvio può cambiare policy |
+| Wire contract | `/remember` richiede `content` e non conserva i sette campi logici come campi top-level | rosso; adapter assente |
+| Isolamento | recall restituisce record legacy; `project` non filtra i risultati observation | rosso |
+| Recall corrente | risultati con score circa `0.007` e contenuto non pertinente al canone corrente | rosso |
 
-## Processes
+È stato letto soltanto il booleano non segreto di context injection; valori
+segreti non sono stati stampati. Il permesso `0600` è l'unico hardening locale
+applicato in questa sessione. L'endpoint effettivo espone inoltre graph,
+consolidation e auto-compress disattivati e provider `noop`.
 
-Observed at 2026-07-02 02:21-02:22 CEST:
+## Policy immediata
 
-| PID | Role | Elapsed | CPU | MEM | RSS | Status |
-|---:|---|---:|---:|---:|---:|---|
-| 33892 | `node /Users/progettibelli/node-local/bin/agentmemory` | 11m | 477.2% | 17.7% | 2,968,160 KB | hot/high memory |
-| 20051 | `iii --config .../iii-config.yaml` | 6h09m | 0.0% | 14.7% | 2,471,456 KB | high memory, listening |
+- nessun `remember`, auto-import, transcript capture o context injection;
+- nessun audio, trascrizione, nome, email, prompt, diff o contenuto didattico;
+- recall solo manuale, stretto e non autorevole quando serve diagnosticare;
+- ogni risultato viene ignorato se non risolve un SHA e una ricevuta correnti;
+- niente restart, upgrade, auth change o pinning senza finestra separata,
+  backup, rollback e gate umano;
+- fallback immediato a `docs/00-INDEX.md`, Git e journal esterno.
 
-Launchd view:
+## Gate per passare a pointer-only
 
-| Label | State |
-|---|---|
-| `com.elab.agentmemory` | PID 33892, status `-9` |
-| `com.elab.agentmemory-consolidate` | listed, no PID |
-| `com.elab.agentmemory-restart` | listed, no PID |
-| `com.elab.agentmemory-mini-capture` | listed, no PID |
+Tutti obbligatori:
 
-Port ownership:
+1. endpoint mutativi e di ricerca rifiutano richieste senza autenticazione;
+2. service e worker convergono; il client MCP usa una versione compatibile
+   approvata e pinning riproducibile, senza `npx -y`;
+3. heap resta sotto l'85% durante una finestra di osservazione di 15 minuti;
+4. circuit breaker resta chiuso e non compaiono nuovi burst di errori;
+5. i flag effettivi e tutte le sorgenti di restart mantengono injection,
+   auto-import, graph, consolidation e auto-compress disattivati;
+6. una istanza/namespace fisicamente pulita contiene solo record pointer V1;
+   il solo campo `project` non soddisfa questo gate;
+7. un adapter versionato serializza il record logico nel wire contract
+   installato e supera schema, round-trip e malformed-record test;
+8. un golden set versionato recupera almeno 9 puntatori su 10 nei top-3, con
+   zero record legacy, cross-project, malformed, superseded o withdrawn;
+9. un canary pointer-only viene scritto, letto e risolto all'esatto commit;
+10. export e delete del canary sono provati con ricevute e senza payload
+    residuo dopo la finestra di consistenza dichiarata.
 
-| Port | Listener |
-|---:|---|
-| 3111 | `iii` PID 20051 |
-| 3112 | `iii` PID 20051 |
-| 3113 | `node` PID 33892 |
-| 3114 | no listener in this sample |
+Solo dopo questi gate AgentMemory può indicizzare il formato definito in
+[AGENTMEMORY-SEMANTIC-PROTOCOL](AGENTMEMORY-SEMANTIC-PROTOCOL.md).
 
-## Storage
+## Limiti della prova
 
-Filesystem has headroom; AgentMemory itself is not large, but error logs are.
-
-| Item | Size / State |
-|---|---:|
-| `/System/Volumes/Data` | 460 Gi total, 276 Gi used, 110 Gi available |
-| `~/.agentmemory` | 253 MB |
-| `~/.agentmemory/worker.err` | about 225 MB |
-| `~/.agentmemory/worker.log` | about 416 KB |
-| `~/.agentmemory/consolidate.log` | about 84 KB |
-| `~/.agentmemory/backups` | about 36 KB |
-
-Large files sampled:
-
-- `~/.agentmemory/worker.err`, about 222 MB at `ls -ls` sample time.
-- `~/.agentmemory/bin/iii`, about 27 MB.
-
-No SQLite/DB-sized local data file was found under `~/.agentmemory` in the
-sampled `*.db`, `*.sqlite*`, `*.json`, `*.jsonl` search. This suggests the live
-state is primarily in the iii engine/KV path, not in an obvious local DB file.
-
-## Logs
-
-Redacted tails only; no raw env secret values were printed.
-
-`worker.err` repeats:
-
-- viewer proxy failures on `/graph/stats` and `/memories`;
-- `connect ECONNREFUSED 127.0.0.1:3111`;
-- repeated `[OTel] WebSocket error`;
-- repeated AgentMemory warning: BM25 shard missing for
-  `mem:index:bm25:bm25:idx_mr1s9wwt_45a34393b765:00002`.
-
-`worker.log` shows repeated clean startup banners for AgentMemory `v0.9.26`:
-
-- REST API `http://localhost:3111`;
-- Viewer `http://localhost:3113`;
-- Streams `ws://localhost:3112`;
-- Engine `ws://localhost:49134`.
-
-`consolidate.log` shows hourly cycles ending with:
-
-- `nodes_post=-1 edges_post=-1 mem_post=-1 verdict=no-growth`;
-- `post-consolidation worker restart (RSS drop)`.
-
-## Config Signals
-
-Sanitized wrapper/env flags observed:
-
-| Flag | Value |
-|---|---|
-| `EMBEDDING_PROVIDER` | `local` |
-| `AGENTMEMORY_AUTO_COMPRESS` | `true` |
-| `GRAPH_EXTRACTION_ENABLED` | `true` |
-| `CONSOLIDATION_ENABLED` | `true` |
-| `AGENTMEMORY_REFLECT` | `true` |
-| `AGENTMEMORY_INJECT_CONTEXT` | `true` |
-| `AGENTMEMORY_LLM_TIMEOUT_MS` | wrapper `45000`, `.env` `120000` |
-| `FALLBACK_PROVIDERS` | empty |
-
-The active wrapper contains local LiteLLM/OpenAI-compatible and Gemini fallback
-settings, with values redacted in this probe.
-
-## Immediate Risk
-
-1. `livez` timeout means the REST surface is not safe for routine recall.
-2. Hot `node` process plus high RSS can overlap with factory gates.
-3. Hourly consolidation currently performs graph/consolidation calls and then
-   restarts the worker, which may hide the root cause.
-4. BM25 shard warnings suggest index persistence or shard lookup damage.
-5. `worker.err` growth can keep consuming disk if the loop remains noisy.
-
-## COV
-
-Commands/probes used:
-
-- `curl --max-time 5 .../agentmemory/livez` locally and on Mini.
-- `curl --max-time 2 .../agentmemory/graph/stats` on Mini.
-- `ps -axo pid,ppid,etime,%cpu,%mem,rss,comm,args`.
-- `lsof -nP -iTCP:3111..3114 -sTCP:LISTEN`.
-- `launchctl list | grep -i agentmemory`.
-- `du -sh ~/.agentmemory`, `df -h ~/.agentmemory`.
-- redacted `tail` of `worker.err`, `worker.log`, `consolidate.log`.
-- sanitized reads of `agentmemory-run.sh`, launchd plists, and AgentMemory flags.
-
-Not done:
-
-- no restart;
-- no process kill;
-- no compaction/consolidation trigger;
-- no bulk import;
-- no env secret dump;
-- no destructive storage action.
+Non sono stati eseguiti penetration test, upgrade, misure remote dei listener,
+test mutativi o un ciclo completo remember/delete. Il verdetto è quindi
+conservativo: sufficiente per vietare la scrittura, non per diagnosticare la
+causa primaria del 96% di heap o dei 931 fallimenti.
