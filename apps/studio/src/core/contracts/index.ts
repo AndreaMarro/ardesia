@@ -27,3 +27,5 @@ export {
   ArdesiaModuleKindSchema,
   type ArdesiaModuleKind,
 } from "../../toolhost-protocol/manifest"
+export * from "./kernel"
+export * from "./kernelIntake"
