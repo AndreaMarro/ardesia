@@ -1,7 +1,7 @@
 ---
 id: ardesia-versioned-knowledge-index
 status: active
-freshness: 2026-07-15T03:22:00+02:00
+freshness: 2026-07-15T04:47:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: navigation-only
 ---
@@ -46,8 +46,8 @@ stati riportati nelle note sono snapshot, mai sostituti della verifica.
 | Vault esterno curato | migration source read-only, non autorità | 118 file; procedura di manifest in `KNOWLEDGE-OPERATIONS.md` |
 | AgentMemory | `RETIREMENT_DECIDED / NO-READ / NO-WRITE` | sostituzione dietro `MemoryIndexPort`; Git+Obsidian+receipt restano il fallback verificabile |
 | GitHub Actions root | `HARDENED_LOCAL / REMOTE_PENDING` | pin, runtime, identity e gate a `d1c24c60`; manca CI remota allo stesso SHA |
-| Vendor qualità/cloud | `AUDITED / NOT INTEGRATED` | responsabilità, gap, ordine e gate in `ops/TOOLING-READINESS.md` |
-| Attività programmata 60 minuti | `ACTIVE / CANARY_TERMINAL_STALE_LOCK` | canary `ardesia-20260715T004800Z-77086` concluso read-only con root verificabile; prossima esecuzione 03:45 Europe/Rome, poi ogni 60 minuti al minuto 45 |
+| Vendor qualità/cloud | `REPORTED_INPUT / NOT_INTEGRATED` | Storybook 10.5.0, Chromatic CLI 18.0.1 e build statica esistono solo nel worktree esterno non revisionato `/Users/andreamarro/ardesia-wt/claude-storybook-setup`; nessuna integrazione o upload da questa linea, token osservato da ruotare |
+| Attività programmata 60 minuti | `ACTIVE / OPERATOR_RESCHEDULED_0415` | canary `ardesia-20260715T004800Z-77086` e run incidentale `ardesia-20260715T014719Z-92587` hanno root verificabili; ripresa autorizzata alle 04:15 Europe/Rome, poi ogni ora al minuto 15 |
 
 ## Contratto di aggiornamento
 

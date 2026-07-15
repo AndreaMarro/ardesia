@@ -1,7 +1,7 @@
 ---
 id: ardesia-cov-audit-protocol
 status: active
-freshness: 2026-07-15T03:27:00+02:00
+freshness: 2026-07-15T05:27:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: verification-contract
 ---
@@ -98,6 +98,14 @@ azione `fix | replan | defer | human_gate`.
 Il release verifier indipendente controlla dopo l'ultimo edit:
 
 - file toccati entro scope e massimo cinque;
+- `allowed_paths` non vuoto, repository-relative, canonico `allowed-paths/v1` e
+  immutato dal pre-write; nessun glob, duplicato, directory, root-wide scope,
+  traversal o symlink; `allowed_paths_sha256` e `scope_binding_sha256` vengono
+  ricalcolati dai campi dell'evento append-only `SCOPE_ANCHORED` e coincidono;
+  il `ContextManifest` conserva distinti `before_sha256`/`ABSENT` immutabile e
+  `after_sha256`/`ABSENT` ricalcolato sul closing candidate; path e after-state
+  usano l'array JSON canonico senza control byte; l'evento append-only
+  `SCOPE_CLOSED` lega gli hash finali a `closing-candidate/v1`;
 - diff e untracked attribuibili;
 - test RED→GREEN e full verify sull'esatto candidato;
 - nessun test rimosso, skip aggiunto o gate indebolito;
@@ -120,7 +128,8 @@ Il release verifier indipendente controlla dopo l'ultimo edit:
   prima e `decision_rule` completa; risultati, genealogia e rollback provato;
   `retain/reject` non mutano stato; per promote/deprecate/activate/install Sol
   Ultra è diverso da writer, autori di entrambi i candidati ed esecutore del
-  benchmark; WIP/write/canary devono essere verdi; autonomia vietata con termini,
+  benchmark; gate scoped locale/canary e publication gate applicabile devono
+  essere verdi; autonomia vietata con termini,
   spesa, secret, produzione o dati reali; con gate rosso sono ammessi soltanto
   benchmark e `retain/reject`; mutazione salvo minimal-exit prima di `SELECT`;
 - non-claim, rischi, debito e gate umano;
@@ -166,7 +175,7 @@ Snapshot baseline verificato alle `2026-07-15T00:30:15+02:00`:
 
 Addendum live verificato alle `2026-07-15T02:50:00+02:00`:
 
-- Sentry, Storybook e Chromatic non integrati; CodeRabbit CLI `0.6.5` è ora
+- Sentry, Storybook e Chromatic non integrati a questo candidato; CodeRabbit CLI `0.6.5` è ora
   `AUTHENTICATED / INTEGRATION_PENDING`; PostHog espone un solo progetto default
   ELAB vuoto, non Ardesia; Vercel è autenticato ma non linkato al worktree;
   Render CLI/account non verificabili e core `DEFERRED`;
@@ -189,9 +198,33 @@ Addendum canary verificato alle `2026-07-15T03:00:00+02:00`:
 - nove artefatti esterni prodotti; manifest SHA-256
   `8034f5f860180c0a53cdef3f0c5e48db2851ca959def717f6604970de0a30af1` e
   root regolare in `.ardesia-loop/roots/ardesia-20260715T004800Z-77086.json`;
-- WIP ancora rosso: 40 worktree, 40 branch non integrati, 18 PR, candidato senza
-  PR/check exact-SHA. La run delle 03:45 deve validare questa root e restare
-  read-only finché proprietà dei lock e gate WIP/write non siano verdi.
+- Snapshot allora rosso: 40 worktree, 40 branch non integrati, 18 PR, candidato
+  senza PR/check exact-SHA. La run delle 03:45 ha validato questa root ed è poi
+  terminata con la propria root incidentale descritta nell'addendum seguente.
+
+Addendum operatore relativo allo slot `04:15`, verificato alle
+`2026-07-15T04:47:00+02:00`:
+
+- run delle 03:45 `ardesia-20260715T014719Z-92587`, terminale
+  `CONCURRENT_WRITE_DETECTED / OPERATOR_RESCHEDULED_0415`, root e otto allegati
+  validati per contenimento e SHA-256;
+- l'oggetto `d11d3f82e161a150427aaecad1c94836622b999c` è il tree esatto di HEAD
+  `4ecc2dc8372fdeeb042326057b54e96a59a02176`; non sono state osservate
+  variazioni di ref, indice o identità del worktree dovute all'incidente;
+- schedule ripresa alle 04:15 Europe/Rome, poi ogni ora al minuto 15; task
+  osservato alle 04:16:11, latenza approssimata di 71 secondi e non prova di
+  puntualità esatta;
+- 41 worktree, 18 PR, processi in altri worktree, branch locale non pubblicato
+  e check remoti assenti sono warning/publication gate. La slice locale è
+  bloccata soltanto da lock, collisioni nello stesso worktree/indice/path,
+  variazioni non attribuite, segreti/dati o baseline locale non definita;
+- `docs/.obsidian/app.json` e `docs/.obsidian/core-plugins.json` restano
+  user-owned, fuori scope, unstaged e byte-stabili;
+- Storybook 10.5.0, Chromatic CLI 18.0.1 e `storybook-static` nel worktree
+  esterno `/Users/andreamarro/ardesia-wt/claude-storybook-setup` sono input non revisionati e non
+  vengono integrati. Il token Chromatic osservato in chiaro è compromesso:
+  nessun riuso o upload fino alla rotazione; una build Storybook locale è
+  riservata a una futura slice dedicata.
 
 Il report `PRODUCT-READINESS-AUDIT-2026-07-15.md` riguarda un altro worktree e
 un'altra baseline (`755179c8`): i suoi finding restano `REPORTED` per questa

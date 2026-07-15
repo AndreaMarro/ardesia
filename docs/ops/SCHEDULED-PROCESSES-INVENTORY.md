@@ -1,17 +1,25 @@
 # SCHEDULED-PROCESSES-INVENTORY
 
-## Update 2026-07-15 03:40 CEST — attività Codex di convergenza
+## Update 2026-07-15 05:27 CEST — ripresa operatore al minuto 15
 
-Mode: automazione attiva; canary concluso fail-closed e read-only.
+Mode: automazione attiva; due run precedenti concluse fail-closed, ripresa
+autorizzata con gate locale scoped.
 
 - L'unica automazione Codex conserva l'ID
   `ardesia-continuous-convergence-90m`, è rinominata
   `ARDESIA — Continuous Loop Engineering 60m` ed è `ACTIVE`.
 - L'invocazione iniziale è stata segnalata durante le 02:46; la run ha registrato
   avvio alle 02:48 e terminale alle 02:57; manifest e root sono stati
-  finalizzati entro le 03:00. La prossima esecuzione è alle 03:45 Europe/Rome;
-  poi ogni 60 minuti. Il lock esclude writer concorrenti; overlap read-only
-  bounded falliscono chiuso e restano possibili finché non si prova un singleton.
+  finalizzati entro le 03:00. La run delle 03:45 è terminata
+  `CONCURRENT_WRITE_DETECTED / OPERATOR_RESCHEDULED_0415` con root
+  `.ardesia-loop/roots/ardesia-20260715T014719Z-92587.json`.
+- La review operatore ha provato che l'oggetto tree
+  `d11d3f82e161a150427aaecad1c94836622b999c` è il tree esatto di HEAD
+  `4ecc2dc8372fdeeb042326057b54e96a59a02176`, senza variazioni osservate a ref,
+  indice o identità del worktree. Ha autorizzato la ripresa alle 04:15
+  Europe/Rome e poi ogni ora al minuto 15.
+- Il task delle 04:15 è stato osservato creato alle 04:16:11: circa 71 secondi
+  di latenza scheduler, misura approssimata e non puntualità esatta.
 - Review indipendente, governance gate, suite engine/Studio e validazione del
   prompt erano verdi sull'esatto tree prima dell'attivazione.
 - Il canary `ardesia-20260715T004800Z-77086` è terminato
@@ -30,18 +38,25 @@ Mode: automazione attiva; canary concluso fail-closed e read-only.
 - Manifest del canary: SHA-256
   `8034f5f860180c0a53cdef3f0c5e48db2851ca959def717f6604970de0a30af1`;
   root `.ardesia-loop/roots/ardesia-20260715T004800Z-77086.json`.
-- Stato live: `ACTIVE / CANARY_TERMINAL_STALE_LOCK`. La run delle 03:45 valida
-  la root precedente e resta read-only finché lock, WIP e write gate non sono verdi.
+- Stato live: `ACTIVE / OPERATOR_RESCHEDULED_0415`. Le run validano la root
+  precedente; una slice locale è ammessa soltanto con i tre lock, identità del
+  worktree, `allowed_paths`, baseline locale e privacy verdi. Worktree/PR e
+  check remoti restano publication gate.
 
 ### CoV dopo il canary
 
 - Worktree canonico pulito a `33c2d0cf`; candidato 11 commit avanti e senza PR.
 - 40 worktree, 40 branch locali non integrati e 18 PR aperte osservate.
 - Esito prodotto: `0 YES / 3 PARTIAL / 5 RED-UNKNOWN`.
-- Conseguenza: la prossima run non può aprire una nuova feature; usa la finestra
-  read-only per root/lock/WIP, riuso/readiness e packet finché il gate resta rosso.
+- Conseguenza: nessun nuovo WIP di prodotto; una slice locale documentale o di
+  convergenza è ammessa soltanto entro il gate scoped e non autorizza publication.
 - AgentMemory è `RETIREMENT_DECIDED / NO-READ / NO-WRITE`; Sentry, PostHog,
-  Storybook e Chromatic non sono attivi; CodeRabbit è autenticato ma non integrato.
+  e CodeRabbit non sono integrazioni Ardesia attive.
+- Il worktree esterno `/Users/andreamarro/ardesia-wt/claude-storybook-setup` contiene Storybook
+  10.5.0, Chromatic CLI 18.0.1 e una build statica, tutti input non revisionati:
+  questa linea non integra stories di esempio o `storybook-static`. Il token
+  Chromatic osservato in chiaro è compromesso; nessun riuso o nuovo upload fino
+  alla rotazione. Una build Storybook locale richiede una futura slice dedicata.
 
 ## Update storico 2026-07-02 01:40 CEST — superato solo per la pausa Codex/AgentMemory
 
@@ -54,7 +69,12 @@ Mode: inventory/update only. No job deleted, disabled, booted out, restarted, or
 
 ### Current Scheduler Decision
 
-- Keep Codex app automation paused. Verified local file: `/Users/andreamarro/.codex/automations/ardesia-factory-audit-and-concrete-progress/automation.toml` has `status = "PAUSED"`.
+- Evidenza storica del 2 luglio: il file
+  `/Users/andreamarro/.codex/automations/ardesia-factory-audit-and-concrete-progress/automation.toml`
+  allora riportava `status = "PAUSED"`. Il live scan del 15 luglio mostra quel
+  path assente; l'unica automazione presente è
+  `ardesia-continuous-convergence-90m`, `ACTIVE`, come registrato nell'update
+  corrente. Questa riga non ordina di ricreare o riattivare la factory storica.
 - Keep Mini factory launchd state unchanged. The sampled filtered `launchctl list` did not show `com.elab.lessonos-hourly`; do not recreate or re-enable it without Andrea's explicit OK.
 - Treat the LessonOS `--lf` run from this session as manual COV, not a scheduler-owned tick: PID `31601`, command `pytest -q --lf -x --no-header`, started 01:20 CEST and exited green with `4587 passed, 4 skipped`.
 - Keep AgentMemory as a degraded cache only. REST liveness timed out and the process was hot/high-memory. Do not run broad recall, stats, compaction, restart, or import without a maintenance packet and explicit operator decision.
@@ -89,7 +109,8 @@ Filtered `launchctl list` at 2026-07-02 01:27 CEST:
 
 ### COV
 
-- Local automation TOML read confirmed `status = "PAUSED"`.
+- Il TOML allora presente confermava `status = "PAUSED"`; al live scan del 15
+  luglio il path è assente e questa resta esclusivamente evidenza storica.
 - `ssh macmini launchctl list | grep -iE ...`
 - `ssh macmini ps aux | grep -iE ...`
 - Headroom health curl returned healthy.
@@ -106,7 +127,7 @@ The Mini has many launchd jobs. The main risk is not a single malicious job; it 
 
 | ID/job | Type | File | Frequency | Command | Status | Owner | Risk | Action |
 |---|---|---|---|---|---|---|---|---|
-| ardesia-factory-audit-and-concrete-progress | Codex cron | `/Users/andreamarro/.codex/automations/ardesia-factory-audit-and-concrete-progress/automation.toml` | 90 min | Codex ARDESIA audit/progress prompt | PAUSED | Andrea/Codex | Low while paused | KEEP PAUSED |
+| ardesia-factory-audit-and-concrete-progress | Codex cron storico | path storico `/Users/andreamarro/.codex/automations/ardesia-factory-audit-and-concrete-progress/automation.toml` | 90 min (storico) | vecchio prompt audit/progress | ABSENT al live scan 2026-07-15 | Andrea/Codex | Nessun processo corrente; rischio di falsa ricreazione | NON RICREARE; usare solo l'automazione attiva corrente |
 
 ## Mini Launchd Jobs
 

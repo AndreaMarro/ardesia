@@ -1,7 +1,7 @@
 ---
 id: ardesia-automated-loop-runbook
 status: active-contract
-freshness: 2026-07-15T03:40:00+02:00
+freshness: 2026-07-15T05:27:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: operational-contract
 ---
@@ -21,7 +21,12 @@ servizi. Se non esiste una slice sicura, il risultato corretto è un audit
 read-only e uno stato terminale esplicito.
 
 Il canary iniziale è terminato read-only con `STALE_LOCK_REVIEW_REQUIRED`. La
-prossima esecuzione è alle 03:45 Europe/Rome; poi ogni ora. Il lock esclude writer paralleli.
+run delle 03:45 Europe/Rome è terminata
+`CONCURRENT_WRITE_DETECTED / OPERATOR_RESCHEDULED_0415` con root
+`ardesia-20260715T014719Z-92587`; la review operatore ha poi autorizzato la
+ripresa alle 04:15 e ogni ora al minuto 15. La latenza osservata di circa 71
+secondi fra schedule e creazione del task è una misura approssimata, non prova
+di puntualità esatta. Il lock esclude writer paralleli sullo stesso candidato.
 
 ## North star e ordine delle fonti
 
@@ -150,26 +155,70 @@ branch non integrati e PR. Un solo writer può modificare il worktree. Agenti
 investigator, tester e reviewer sono read-only; un test engineer può scrivere
 solo se è stato scelto come unico writer della slice.
 
-## WIP gate
+## Gate scoped locale e publication gate
 
-È vietato iniziare nuova feature di prodotto quando si verifica almeno una
-condizione:
+L'ordine operatore corrente distingue il gate bloccante della singola slice dal
+publication gate. Sono warning e bloccano push, PR, merge e claim remoti, ma non
+una slice locale isolata: più di tre PR, altri worktree o processi fuori dal
+worktree candidato, branch locale non pubblicato e assenza di check remoti.
 
-- più di tre PR di prodotto attive;
-- worktree o writer concorrenti non attribuibili;
-- branch candidato oltre tre commit avanti rispetto alla sua base e senza PR;
-- branch, base SHA o release candidate non univoci;
+Prima di qualunque write, `allowed_paths` è una lista non vuota di uno fino a
+cinque file. Ogni voce è repository-relative, senza glob, `.`/`..`, traversal,
+directory, root-wide scope o duplicati; la normalizzazione contro il top-level
+deve restare nel repository. Il target esistente e ogni suo parent devono essere
+non-symlink; per un file nuovo si verificano i parent. Sono rifiutati C0
+(`U+0000`–`U+001F`) e `U+007F` nel path. La forma canonica `allowed-paths/v1`
+richiede le stringhe NFC già ordinate lessicograficamente per byte UTF-8 e le
+serializza come array JSON UTF-8 tramite `jq -cS`, con esattamente un LF finale;
+`allowed_paths_sha256` è lo SHA-256 lowercase di questi byte. La lista viene congelata per il
+`plan_version`: writer, test o handoff non possono ampliarla, sostituirla o
+riordinarla durante la slice. Qualunque mutazione produce `REPLAN_REQUIRED`,
+non un permesso retroattivo.
+
+Il `ContextManifest` di apertura registra lista e digest, più per ogni voce path
+canonico, `before_sha256` dei byte o sentinel `ABSENT`, autorità, producer e
+scope. Prima del primo write si registrano gli object ID raw di `HEAD` e tree e
+si calcolano i digest SHA-256 lowercase di status, diff binario, manifest
+untracked e ContextManifest. Quest'ultimo è il JSON UTF-8 prodotto da `jq -cS`
+con esattamente un LF finale e ordine dell'array già congelato. Il preimage
+`scope-binding/v1` contiene, in quest'ordine e con un LF finale per riga:
+versione, `plan_version`, `allowed_paths_sha256`, `head`, `tree`,
+`status_sha256`, `diff_sha256`, `untracked_manifest_sha256` e
+`context_manifest_sha256`. Il suo `scope_binding_sha256` e tutti i campi preimage
+vengono ancorati prima del write in un evento `SCOPE_ANCHORED` di
+`events.jsonl`, append-only; `state.json` da solo non è un anchor.
+
+Al closing CoV si ricalcolano allowlist e `scope_binding_sha256` dai campi
+immutabili dell'evento e devono coincidere. Per ogni voce si registra
+separatamente `after_sha256` dei byte, oppure `ABSENT` per una cancellazione
+esplicita, e lo si verifica contro il closing
+candidate; `before_sha256`/`ABSENT` non viene sovrascritto. Un secondo preimage
+canonico `closing-candidate/v1` lega, nello stesso formato `chiave=valore` con LF
+finale, `head`, `tree`, `status_sha256`, `diff_sha256`,
+`untracked_manifest_sha256`, `allowed_paths_sha256` e `after_paths_sha256`.
+Quest'ultimo digerisce un array JSON canonico di oggetti
+`{"path": <NFC>, "after_sha256": <lowercase hex | ABSENT>}`, già ordinato per
+path e prodotto da `jq -cS` con esattamente un LF finale. Il relativo digest entra
+nell'evento append-only `SCOPE_CLOSED`. Symlink, traversal, root-wide scope,
+variazioni fuori allowlist o mismatch dell'anchor fanno fallire chiuso la slice.
+
+La scrittura locale è invece vietata quando si verifica almeno una condizione:
+
+- collisione o ownership non verificabile di uno dei tre lock;
+- altro writer, processo o variazione non attribuita nello stesso worktree,
+  indice o insieme di `allowed_paths`;
+- branch, HEAD, base locale o candidato non univoci per la slice;
 - precedente sessione in `FIX_REQUIRED`, `REPLAN_REQUIRED` o `HUMAN_GATE` non
-  risolta;
+  risolta dall'autorità richiesta;
 - test o review invalidati da edit successivi;
+- baseline locale necessaria alla responsabilità non definita o rossa;
+- rischio di segreti, dati reali, PII o contenuto di lezione;
 - fonte di verità o confine di autorità non determinabile.
 
-In tali casi il repository è strettamente read-only. Sono ammessi audit,
-riproduzione non mutante di un RED e preparazione del packet soltanto nella
-directory esterna dei receipt. Un commit documentale diventa ammissibile solo
-dopo un nuovo ordine umano che nomini esplicitamente obiettivo e file; il prompt
-ricorrente non costituisce tale autorizzazione. Nessuna modifica cosmetica viene
-creata per simulare avanzamento.
+In tali casi il repository è strettamente read-only. Con il gate locale verde,
+la run può produrre una sola slice locale nei path dichiarati, ma publication e
+claim remoti restano chiusi finché warning, PR, branch e CI non sono riconciliati.
+Nessuna modifica cosmetica viene creata per simulare avanzamento.
 
 ## Selezione della slice
 
@@ -242,7 +291,7 @@ una mutazione: anche miglior riuso, test, precisione, costo, latenza o debito.
 Champion/challenger e fixture sono hashati; una `decision_rule` predefinisce
 direzione metriche, hard gate, aggregazione, tie-break e dati mancanti. Risultati,
 genealogia Obsidian e rollback sono obbligatori. `retain/reject` non mutano stato;
-promote/deprecate/activate/install richiedono WIP/write/canary verdi e Sol Ultra diverso da writer, autori dei candidati ed esecutore benchmark. Sono autonomi
+promote/deprecate/activate/install richiedono gate scoped locale/canary verdi e publication gate compatibile con il cambio di stato, oltre a Sol Ultra diverso da writer, autori dei candidati ed esecutore benchmark. Sono autonomi
 solo se reversibili e senza termini, spesa, secret, produzione o dati reali;
 altrimenti `BLOCKED_EXTERNAL`. Con gate rosso: solo benchmark e `retain/reject`.
 
@@ -284,8 +333,8 @@ un'authority standing corrente, verificata e circoscritta.
 | Review | CodeRabbit | secondo reviewer advisory sull'exact diff; mai writer, reviewer unico o merge authority |
 | Error slice | Sentry | query read-only solo dopo `ErrorReporterPort`, progetto e redazione verificati; mai contenuto didattico |
 | Evidence/UX slice | PostHog | aggregati allowlisted solo dopo `TelemetryPort`, consenso e progetto UE; mai autocapture o testo libero |
-| UI slice | Storybook | stati isolati con fixture sintetiche dopo approvazione dipendenze |
-| UI review | Chromatic | diff advisory privato dopo baseline Storybook; nessuna lezione reale |
+| UI slice | Storybook | il worktree esterno non revisionato con 10.5.0 è solo input; una futura slice locale può provarne la build senza integrare sample o `storybook-static` |
+| UI review | Chromatic | CLI 18.0.1 resta input non revisionato; token osservato compromesso, nessun riuso o upload prima della rotazione |
 | Release audit | Vercel | inventario del piano, preview exact-artifact e mapping SHA→deploy; mai produzione, rebuild o spesa impliciti |
 | Backend lungo | Render | piano e staging solo dopo ADR, exact-SHA e rollback; mai fallback ELAB o egress didattico legacy |
 | Data/security | Supabase | schema/RLS read-only solo su progetto Ardesia dedicato; migrazioni e dati reali richiedono gate |
@@ -301,10 +350,11 @@ questa attività programmata. Non autorizza push, PR, deploy, account, secret o
 trasmissioni a provider.
 
 Un ordine successivo concede autonomia standing, condizionata e revocabile a
-**GitHub Actions, Sentry, PostHog, Storybook, Chromatic, CodeRabbit, Vercel e Render**. Elimina soltanto la
-richiesta ripetuta: non sostituisce ADR, WIP/write/canary/max-5/one-writer,
-prerequisiti o la sequenza di `TOOLING-READINESS.md`. Con WIP rosso non muta
-progetto, account, secret o vendor. A gate verdi, una slice dedicata può
+**GitHub Actions, Sentry, PostHog, CodeRabbit, Vercel e Render**. Elimina soltanto la
+richiesta ripetuta: non sostituisce ADR, gate scoped locale/publication
+gate/canary/max-5/one-writer, prerequisiti o la sequenza di
+`TOOLING-READINESS.md`. Con il gate scoped locale rosso non muta progetto,
+account, secret o vendor. A gate verdi, una slice dedicata può
 inventariare entitlements e configurare progetto, SDK, test o preview/staging
 solo se inclusi, separati per Ardesia, synthetic-only, deny-by-default e reversibili.
 CodeRabbit riceve solo l'exact staged diff dopo scan verdi; env, untracked, audio e trascrizioni restano esclusi. Prima di mutare GitHub/Vercel/Render serve
@@ -312,10 +362,21 @@ CodeRabbit riceve solo l'exact staged diff dopo scan verdi; env, untracked, audi
 Dato reale/PII, replay, autocapture, produzione, spesa, termini nuovi o capability
 assente producono `BLOCKED_EXTERNAL`, senza workaround.
 
+Per Storybook e Chromatic l'ordine operatore più recente autorizza soltanto una
+futura build Storybook locale in una slice dedicata. Il worktree
+`/Users/andreamarro/ardesia-wt/claude-storybook-setup`, le stories di esempio e `storybook-static`
+sono input non revisionati e non vengono integrati qui. Il token Chromatic
+apparso in chiaro è compromesso: nessun riuso, configurazione o nuovo upload è
+ammesso prima della rotazione.
+
 Prima dell'update ufficiale viene salvata fuori repository una copia esatta
 della configurazione precedente con SHA-256. L'update riusa lo stesso ID; non
 crea una seconda automazione. Il canary iniziale è concluso read-only con
-`STALE_LOCK_REVIEW_REQUIRED` e root `ardesia-20260715T004800Z-77086`. Ogni run successivo verifica la root e resta read-only finché lock, WIP e write gate exact-SHA non sono verdi; un lock senza owner non viene rimosso o ritentato.
+`STALE_LOCK_REVIEW_REQUIRED` e root `ardesia-20260715T004800Z-77086`. Ogni run
+successivo verifica la root e abilita il writer soltanto quando i tre lock,
+l'identità exact-SHA, lo stesso worktree/indice/`allowed_paths`, la baseline
+locale e i gate privacy sono verdi; un lock senza owner non viene rimosso o
+ritentato. PR, altri worktree e check remoti restano publication gate.
 
 Il canary fallisce per almeno una di queste condizioni:
 
@@ -324,7 +385,8 @@ Il canary fallisce per almeno una di queste condizioni:
 - uno dei nove artefatti obbligatori assente, invalido o con hash errato;
 - root receipt assente, non regolare, symlink, esterna a `roots/`, con
   `run_id`/path discordante o SHA-256 del manifest errato;
-- qualunque scrittura repository sotto WIP gate;
+- qualunque scrittura repository con gate scoped locale rosso o fuori dagli
+  `allowed_paths` dichiarati;
 - claim verde senza prova, segreto o contenuto di lezione nel packet;
 - tentativo di push, PR, merge, deploy o cambio di stato di vendor, skill, profilo agente, plugin, champion o challenger.
 
