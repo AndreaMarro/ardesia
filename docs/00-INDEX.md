@@ -1,7 +1,7 @@
 ---
 id: ardesia-versioned-knowledge-index
 status: active
-freshness: 2026-07-15T04:47:00+02:00
+freshness: 2026-07-15T06:26:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: navigation-only
 ---
@@ -25,6 +25,13 @@ collegarla.
 8. [Runbook attività programmata 60 minuti](ops/AUTOMATED-LOOP-RUNBOOK.md)
 9. [Protocollo CoV e audit](ops/COV-AUDIT-PROTOCOL.md)
 10. [Template del packet successivo](ops/NEXT-SESSION-PACKET-TEMPLATE.md)
+
+## Strumenti di convergenza fra soci
+
+Il documento canonico per registrare le scelte senza presumere accordo è
+raggiungibile come [questionario socio](product/PARTNER-VISION-ALIGNMENT-QUESTIONNAIRE-40.md),
+[allineamento visione](product/PARTNER-VISION-ALIGNMENT-QUESTIONNAIRE-40.md) e
+[40 domande Ardesia](product/PARTNER-VISION-ALIGNMENT-QUESTIONNAIRE-40.md).
 
 I documenti AgentMemory su [health](ops/AGENTMEMORY-HEALTH-STATUS.md),
 [manutenzione](ops/AGENTMEMORY-MAINTENANCE-PLAN.md) e
