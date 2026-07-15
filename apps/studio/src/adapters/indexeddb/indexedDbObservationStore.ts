@@ -13,6 +13,11 @@ import {
   type ObservationStore,
   type ObservationStoreLifecycle,
 } from "../../core/kernel/observationStore"
+import {
+  validateObservationJournal,
+  type ObservationPartitionReader,
+  type SequencedObservationV1,
+} from "../../core/kernel/observationReplay"
 
 const DATABASE_PREFIX = "ardesia.kernel.observations:"
 const DATABASE_VERSION = 1
@@ -92,7 +97,7 @@ export async function partitionDatabaseName(
   return `${DATABASE_PREFIX}${hex}`
 }
 
-class IndexedDbObservationStore implements ObservationStore {
+class IndexedDbObservationStore implements ObservationStore, ObservationPartitionReader {
   private state: ObservationStoreLifecycle = "open"
   private readonly db: IDBDatabase
   private readonly partition: TeachingScopeV1
@@ -199,12 +204,62 @@ class IndexedDbObservationStore implements ObservationStore {
       }
     })
   }
+
+  async readPartition(scopeInput: unknown): Promise<readonly SequencedObservationV1[]> {
+    const requestedScope = TeachingScopeV1Schema.parse(scopeInput)
+    if (!samePartition(this.partition, requestedScope)) throw new ObservationStoreError("scope-mismatch")
+    if (this.state !== "open") throw new ObservationStoreError(this.state)
+
+    return new Promise<readonly SequencedObservationV1[]>((resolve, reject) => {
+      let rows: unknown[] | undefined
+      let requestFailure: unknown
+      let settled = false
+      let tx: IDBTransaction
+      try {
+        tx = this.db.transaction(STORE, "readonly")
+      } catch (error) {
+        reject(classifyObservationStoreError(error))
+        return
+      }
+      const finish = (action: () => void) => {
+        if (settled) return
+        settled = true
+        clearTimeout(watchdog)
+        action()
+      }
+      const watchdog = setTimeout(() => finish(() => {
+        this.degrade()
+        reject(new ObservationStoreError("unknown", "unknown"))
+      }), this.commitTimeoutMs)
+
+      tx.oncomplete = () => finish(() => {
+        if (!rows) {
+          reject(new ObservationStoreError("unknown", "unknown"))
+          return
+        }
+        try {
+          resolve(validateObservationJournal(rows, requestedScope).observations)
+        } catch (error) {
+          if (error instanceof ObservationStoreError) reject(error)
+          else if (error instanceof Error && "code" in error && error.code === "scope-mismatch") {
+            reject(new ObservationStoreError("scope-mismatch"))
+          } else reject(new ObservationStoreError("unknown", "unknown"))
+        }
+      })
+      tx.onabort = () => finish(() => reject(classifyObservationStoreError(requestFailure ?? tx.error)))
+      tx.onerror = () => undefined
+
+      const request = tx.objectStore(STORE).getAll()
+      request.onerror = () => { requestFailure = request.error }
+      request.onsuccess = () => { rows = request.result as unknown[] }
+    })
+  }
 }
 
 export async function openIndexedDbObservationStore(
   scopeInput: unknown,
   options: IndexedDbObservationStoreOptions = {},
-): Promise<ObservationStore> {
+): Promise<ObservationStore & ObservationPartitionReader> {
   const scope = TeachingScopeV1Schema.parse(scopeInput)
   const settings = {
     openTimeoutMs: positiveTimeout(options.openTimeoutMs, DEFAULT_OPTIONS.openTimeoutMs),
@@ -212,7 +267,7 @@ export async function openIndexedDbObservationStore(
     commitTimeoutMs: positiveTimeout(options.commitTimeoutMs, DEFAULT_OPTIONS.commitTimeoutMs),
   }
   const name = await partitionDatabaseName(scope)
-  return new Promise<ObservationStore>((resolve, reject) => {
+  return new Promise<ObservationStore & ObservationPartitionReader>((resolve, reject) => {
     let request: IDBOpenDBRequest
     try {
       request = indexedDB.open(name, DATABASE_VERSION)
