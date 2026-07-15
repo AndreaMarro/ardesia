@@ -1,6 +1,7 @@
 """Test pipeline cross-fixture generality: spaced_path domain."""
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -78,11 +79,13 @@ class TestPipelineSpacedPath:
         )
 
     def test_deterministic_across_runs(self) -> None:
-        """Two identical runs produce identical summaries."""
+        """Two identical runs produce identical semantic results."""
         r1 = run_pipeline(fixture_root=FIXTURE_ROOT)
         r2 = run_pipeline(fixture_root=FIXTURE_ROOT)
-        assert r1.summary == r2.summary, (
-            f"Non-deterministic pipeline:\n  run1: {r1.summary}\n  run2: {r2.summary}"
+        assert r1.elapsed_seconds >= 0.0
+        assert r2.elapsed_seconds >= 0.0
+        assert replace(r1, store=None, elapsed_seconds=0.0) == replace(
+            r2, store=None, elapsed_seconds=0.0
         )
 
     def test_fresh_store_each_run(self) -> None:
