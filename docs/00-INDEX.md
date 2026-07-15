@@ -25,6 +25,7 @@ collegarla.
 8. [Runbook attività programmata 60 minuti](ops/AUTOMATED-LOOP-RUNBOOK.md)
 9. [Protocollo CoV e audit](ops/COV-AUDIT-PROTOCOL.md)
 10. [Template del packet successivo](ops/NEXT-SESSION-PACKET-TEMPLATE.md)
+11. [NightProfileV1 — template dell'overlay giornaliero](ops/NIGHT-PROFILE-V1-TEMPLATE.md)
 
 ## Strumenti di convergenza fra soci
 
