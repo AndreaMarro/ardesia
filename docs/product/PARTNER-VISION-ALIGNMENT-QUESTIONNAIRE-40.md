@@ -383,7 +383,7 @@ owner e una data; nessun automatismo trasforma checkbox simili in consenso.
 | D02 | Autorità AI e pubblicazione | Q03, Q07 | Da compilare | Da assegnare | `IRRISOLTA` |
 | D03 | Superfici, knowledge, plugin e UX | Q04, Q08, Q09, Q10 | Da compilare | Da assegnare | `IRRISOLTA` |
 | D04 | Kernel, storage e journal | Q11, Q12, Q15, Q17 | Da compilare | Da assegnare | `IRRISOLTA` |
-| D05 | Cloud, provider, recovery e qualità | Q13, Q14, Q16, Q18, Q19, Q20 | Da compilare | Da assegnare | `IRRISOLTA` |
+| D05 | Cloud, provider, recovery e qualità | Q06, Q13, Q14, Q16, Q18, Q19, Q20 | Da compilare | Da assegnare | `IRRISOLTA` |
 | D06 | Segmento, prezzo e time-to-value | Q21, Q22, Q23 | Da compilare | Da assegnare | `IRRISOLTA` |
 | D07 | Verticali, marketplace e prova economica | Q24, Q25, Q26 | Da compilare | Da assegnare | `IRRISOLTA` |
 | D08 | Servizio, costi, canale e stop rule | Q27, Q28, Q29, Q30 | Da compilare | Da assegnare | `IRRISOLTA` |
