@@ -7,6 +7,8 @@ on:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
       - "apps/studio/**"
+      - "bin/ci/candidate_identity.py"
+      - "bin/ci/test_candidate_identity.py"
       - "bin/monorepo.sh"
       - "package.json"
       - "vercel.json"
@@ -16,6 +18,8 @@ on:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
       - "apps/studio/**"
+      - "bin/ci/candidate_identity.py"
+      - "bin/ci/test_candidate_identity.py"
       - "bin/monorepo.sh"
       - "package.json"
       - "vercel.json"
@@ -27,22 +31,27 @@ concurrency:
   group: studio-preview-readiness-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+
 jobs:
   no-deploy-check:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          persist-credentials: false
       - name: Candidate identity
-        env:
-          TESTED_SHA: ${{ github.sha }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PUSH_BEFORE_SHA: ${{ github.event.before }}
         run: |
-          test "$(git rev-parse HEAD)" = "$TESTED_SHA"
-          test -n "${PR_HEAD_SHA:-$TESTED_SHA}"
-          test -n "${PR_BASE_SHA:-$PUSH_BEFORE_SHA}"
+          python3 bin/ci/candidate_identity.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --event "$GITHUB_EVENT_NAME" \
+            --expected-sha "$CANDIDATE_SHA" \
+            --base-sha "$BASE_SHA" \
+            > candidate-identity.json
       - run: python3 bin/ci/action_pin_gate.py
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
