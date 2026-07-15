@@ -1,42 +1,47 @@
 # SCHEDULED-PROCESSES-INVENTORY
 
-## Update 2026-07-15 01:12 CEST — attività Codex di convergenza
+## Update 2026-07-15 03:40 CEST — attività Codex di convergenza
 
-Mode: preparazione verificabile. Nessun job è stato ancora attivato da questo
-aggiornamento.
+Mode: automazione attiva; canary concluso fail-closed e read-only.
 
-- È stata osservata una sola automazione Codex:
-  `ardesia-continuous-convergence-90m`. È `PAUSED` e il suo contratto legacy
-  richiede cinque sessioni da 40 minuti.
-- La configurazione proposta conserva l'ID per non creare un secondo scheduler,
-  ma la rinomina come ciclo Ardesia continuo da 60 minuti e la rende ricorrente
-  ogni giorno alle 06:00 Europe/Rome, senza limite di cinque run.
-- Prima dell'attivazione devono essere verdi review indipendente, link check,
-  governance gate e validazione del prompt contro
-  `AUTOMATED-LOOP-RUNBOOK.md` e `COV-AUDIT-PROTOCOL.md`.
-- Prima dell'update ufficiale la configurazione precedente viene conservata
-  fuori repository con SHA-256. Il primo run è un canary read-only; overrun,
-  lock residuo, artefatti mancanti, false-green o scrittura sotto WIP gate
-  azionano il kill switch, la pausa ufficiale e il rollback sullo stesso ID.
-- Il ciclo usa un lock esterno e termina senza scrivere nel repository quando
-  rileva un altro writer; produce comunque CoV, audit e tutti gli artefatti
-  esterni minimi. Non abilita né modifica job launchd o scheduler del Mac Mini.
+- L'unica automazione Codex conserva l'ID
+  `ardesia-continuous-convergence-90m`, è rinominata
+  `ARDESIA — Continuous Loop Engineering 60m` ed è `ACTIVE`.
+- L'invocazione iniziale è stata segnalata durante le 02:46; la run ha registrato
+  avvio alle 02:48 e terminale alle 02:57; manifest e root sono stati
+  finalizzati entro le 03:00. La prossima esecuzione è alle 03:45 Europe/Rome;
+  poi ogni 60 minuti. Il lock esclude writer concorrenti; overlap read-only
+  bounded falliscono chiuso e restano possibili finché non si prova un singleton.
+- Review indipendente, governance gate, suite engine/Studio e validazione del
+  prompt erano verdi sull'esatto tree prima dell'attivazione.
+- Il canary `ardesia-20260715T004800Z-77086` è terminato
+  `STALE_LOCK_REVIEW_REQUIRED`: il lock globale esisteva senza metadata owner,
+  poi è scomparso. Non è stato ritentato o rimosso e il repository è rimasto
+  read-only. Nove artefatti e la root receipt sono stati prodotti e verificati.
+- Con writer concorrente il ciclo resta repository read-only e usa la finestra
+  sicura per diagnosi, riuso, readiness, CoV, audit e packet; chiude prima del
+  minuto 57 solo se proseguire è unsafe, mai per busywork. Non modifica launchd.
 - Questo aggiornamento supera soltanto la decisione del 2 luglio di tenere
   ferma l'automazione Codex finché AgentMemory non fosse sano: AgentMemory è
   ora ritirato dal loop; Git+Obsidian+receipt sono il fallback mentre
   `MemoryIndexPort` confronta sostituti. Restano invariati i divieti launchd.
-- Stato live fino alla ricevuta di attivazione: `PREPARED / NOT ACTIVE`.
+- Configurazione attiva osservata: SHA-256
+  `cb20d82a50c13debb62fc3a02584d4e90265101e1daf5e6d8fd789400d046f92`.
+- Manifest del canary: SHA-256
+  `8034f5f860180c0a53cdef3f0c5e48db2851ca959def717f6604970de0a30af1`;
+  root `.ardesia-loop/roots/ardesia-20260715T004800Z-77086.json`.
+- Stato live: `ACTIVE / CANARY_TERMINAL_STALE_LOCK`. La run delle 03:45 valida
+  la root precedente e resta read-only finché lock, WIP e write gate non sono verdi.
 
-### CoV pre-avvio
+### CoV dopo il canary
 
 - Worktree canonico pulito a `33c2d0cf`; candidato 11 commit avanti e senza PR.
 - 40 worktree, 40 branch locali non integrati e 18 PR aperte osservate.
 - Esito prodotto: `0 YES / 3 PARTIAL / 5 RED-UNKNOWN`.
-- Conseguenza: il primo run non può aprire una nuova feature; deve verificare il
-  WIP gate e produrre soltanto audit/packet read-only o `HUMAN_GATE`; nessuna
-  integrazione mutante è ammessa finché il gate resta rosso.
+- Conseguenza: la prossima run non può aprire una nuova feature; usa la finestra
+  read-only per root/lock/WIP, riuso/readiness e packet finché il gate resta rosso.
 - AgentMemory è `RETIREMENT_DECIDED / NO-READ / NO-WRITE`; Sentry, PostHog,
-  Storybook, Chromatic e CodeRabbit non sono integrazioni Ardesia attive.
+  Storybook e Chromatic non sono attivi; CodeRabbit è autenticato ma non integrato.
 
 ## Update storico 2026-07-02 01:40 CEST — superato solo per la pausa Codex/AgentMemory
 

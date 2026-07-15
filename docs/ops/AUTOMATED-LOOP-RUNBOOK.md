@@ -1,7 +1,7 @@
 ---
 id: ardesia-automated-loop-runbook
-status: proposed-contract
-freshness: 2026-07-15T01:12:57+02:00
+status: active-contract
+freshness: 2026-07-15T03:40:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: operational-contract
 ---
@@ -10,8 +10,8 @@ authority: operational-contract
 
 ## Scopo
 
-L'automazione `ardesia-continuous-convergence-90m` è la candidata a unica
-attività Codex ricorrente per continuare il lavoro Ardesia. Il suo identificatore
+L'automazione `ardesia-continuous-convergence-90m` è l'unica attività Codex
+ricorrente attiva per continuare il lavoro Ardesia. Il suo identificatore
 legacy viene conservato per evitare un secondo scheduler concorrente; nome,
 durata e contratto sono invece sostituiti da questo runbook.
 
@@ -20,9 +20,8 @@ Non è un permesso per lavorare senza limiti, accumulare branch o attivare
 servizi. Se non esiste una slice sicura, il risultato corretto è un audit
 read-only e uno stato terminale esplicito.
 
-La cadenza prevista è giornaliera alle 06:00 Europe/Rome. La ricorrenza non ha
-un conteggio massimo, ma ogni run conserva il proprio limite di 60 minuti. Non
-sono previsti catch-up paralleli: il lock prevale sempre sulla schedulazione.
+Il canary iniziale è terminato read-only con `STALE_LOCK_REVIEW_REQUIRED`. La
+prossima esecuzione è alle 03:45 Europe/Rome; poi ogni ora. Il lock esclude writer paralleli.
 
 ## North star e ordine delle fonti
 
@@ -30,6 +29,9 @@ La sessione applica:
 
 > Ardesia è AI-native nell'esperienza, evidence-authoritative nella verità e
 > deterministica nell'autorità.
+
+Il piano stabile `ARDESIA-FOUNDING-PLAN-1-9-v1` è: 1 canone/baseline/fonte di verità; 2 dominio/golden path; 3 kernel atomico/isolamento; 4 lifecycle/contratti/API/export/recovery;
+5 continuità deterministica; 6 lavagna/note/plugin/audio come evidenze; 7 verticale AI-native; 8 qualità/cloud/osservabilità/knowledge; 9 founder beta. Liste e sottostadi non lo rinumerano.
 
 Ordine obbligatorio:
 
@@ -51,8 +53,7 @@ Tre gate hanno la stessa forza di test, privacy e correttezza in ogni run:
    prossima azione realmente cambiati. Se il gate è rosso, registrare il delta
    come `DEFERRED_OBSIDIAN_UPDATE` in audit e next-prompt esterni, senza
    modificare il repository;
-2. **manutenibilità non regressiva:** niente nuove duplicazioni, dipendenze,
-   file sovradimensionati, boundary violation o debito senza owner/rimozione;
+2. **manutenibilità non regressiva:** dichiarare i criteri applicabili: SRP; OCP/DIP tramite porte inward; LSP con contract test; ISP con interfacce minime; Clean Code con naming, size, duplicazioni e debito misurati;
 3. **coerenza verificata:** canone, codice, test, documenti, receipt e runtime
    devono essere legati allo SHA realmente osservato; ogni piano non allineato
    è marcato `REPORTED`, `UNKNOWN` o `DEFERRED` con mismatch esplicito. È
@@ -78,11 +79,12 @@ writer.
 | 53–57 | `AUDIT → CHECKPOINT → HANDOFF` | ricevuta, CoV, audit, prompt e manifest successivi |
 | 57–60 | `CONTROLLED_SHUTDOWN` | finalizzazione atomica, cleanup dei soli processi posseduti e lock release |
 
-Dopo il minuto 38 non si apre nuovo scope. Dopo il minuto 50 si applica un fix
-solo se è locale e può essere completamente riverificato entro il budget. Un
-test non terminato non diventa verde per timeout: viene fermato in modo pulito
-e registrato come non verificato. Nessun processo di build o test deve essere
-lasciato in background dopo la sessione.
+Una run normale usa la finestra fino al minuto 57: WIP rosso o read-only non
+giustificano l'uscita anticipata. Il tempo residuo serve a verify, review,
+CoV/audit, ricerca di riuso, readiness e packet successivo, mai a inventare lavoro.
+Dopo il minuto 38 non si apre nuovo scope; dopo il 50 si applica solo un fix
+locale interamente riverificabile. Test incompleti restano non verificati e
+nessun processo posseduto sopravvive. Early exit solo se continuare è unsafe.
 
 All'avvio vengono registrati `started_at`, `start_monotonic`, `deadline_at` e
 `deadline_monotonic = start_monotonic + 3600s`, usando l'orologio monotono della
@@ -204,10 +206,9 @@ Limiti per sessione:
 
 ## Sistema agenti, riuso, Mini e auto-miglioramento
 
-Il routing segue il manuale come distribuzione di lavoro e autorità, non come
-quota artificiale: **Sol Max circa 60%**, chief/planning/core/review;
-**Terra Max circa 33%**, task delimitati, test e fix; **Sol Ultra circa 7%**,
-solo architettura critica, sicurezza, dati o due piani falliti. Reviewer e
+Il routing segue il manuale come distribuzione di lavoro e autorità, non come quota artificiale: **Sol Max circa 50%**, chief/planning/core/review;
+**Terra Max circa 30%**, task delimitati, test e fix; **Sol Ultra fino al 20%**,
+solo architettura critica, sicurezza, privacy, dati, milestone o due piani falliti; la quota inutilizzata non va consumata artificialmente. Reviewer e
 writer sono sempre istanze/ruoli separati. Rimane un solo writer; gli altri
 agenti operano read-only e in parallelo soltanto su sottoproblemi indipendenti.
 Se il runtime non espone un modello/ruolo richiesto, si registra `DEFERRED` e
@@ -236,15 +237,16 @@ torna come commit/diff/receipt con hash. Nessuna modifica launchd, restart,
 segreto o dato di lezione; se il candidato locale non è disponibile sul Mini,
 la verifica Mini è `DEFERRED`, mai equiparata al candidato.
 
-L'auto-miglioramento è bounded: a fine run misura first-pass approval, tentativi,
-tempo, regressioni, skip, scope drift e costo; propone al massimo un
-miglioramento falsificabile. Prompt, runbook, gate o agent routing cambiano solo
-in una slice separata con baseline, review indipendente e rollback; il loop non
-può auto-approvare, auto-installare o indebolire i propri arbitri. Con WIP gate
-rosso la proposta resta esterna e non modifica il repository.
+Ogni run che supera i minimal-exit di lock/stale-lock/kill-switch/deadline valuta
+una mutazione: anche miglior riuso, test, precisione, costo, latenza o debito.
+Champion/challenger e fixture sono hashati; una `decision_rule` predefinisce
+direzione metriche, hard gate, aggregazione, tie-break e dati mancanti. Risultati,
+genealogia Obsidian e rollback sono obbligatori. `retain/reject` non mutano stato;
+promote/deprecate/activate/install richiedono WIP/write/canary verdi e Sol Ultra diverso da writer, autori dei candidati ed esecutore benchmark. Sono autonomi
+solo se reversibili e senza termini, spesa, secret, produzione o dati reali;
+altrimenti `BLOCKED_EXTERNAL`. Con gate rosso: solo benchmark e `retain/reject`.
 
-GitHub viene osservato a ogni resume: remote, PR, basi stacked, review, check e
-artefatti devono essere legati all'exact SHA. Sopra tre PR di prodotto non se ne
+GitHub viene osservato a ogni resume: remote, PR, basi stacked, review e check devono essere legati all'exact SHA. Sopra tre PR di prodotto non se ne
 aprono altre; si produce una mappa di integrazione. Nessun direct push a main,
 force push, merge, deploy o modifica protection/CODEOWNERS automatica. Un push o
 una PR richiedono ancora un ordine umano distinto e includono CoV, rischi,
@@ -278,14 +280,14 @@ un'authority standing corrente, verificata e circoscritta.
 |---|---|---|
 | Resume | Obsidian/Git Markdown | leggere indice, ADR, stato e ultimo receipt; aggiornare solo decisioni realmente cambiate |
 | Resume | Memory index | Git+Obsidian+receipt restano il fallback; AgentMemory è `RETIRED / NO-READ / NO-WRITE`; Hindsight, TencentDB, Supermemory e Mem0 solo benchmark dietro `MemoryIndexPort` |
-| Observe/review | GitHub | fetch, PR, review e CI read-only; nessun push, PR o merge automatico |
+| Observe/review | GitHub Actions | check, log, artifact e copertura exact-SHA; workflow locali in slice, nessun push/PR/merge implicito |
 | Review | CodeRabbit | secondo reviewer advisory sull'exact diff; mai writer, reviewer unico o merge authority |
 | Error slice | Sentry | query read-only solo dopo `ErrorReporterPort`, progetto e redazione verificati; mai contenuto didattico |
 | Evidence/UX slice | PostHog | aggregati allowlisted solo dopo `TelemetryPort`, consenso e progetto UE; mai autocapture o testo libero |
 | UI slice | Storybook | stati isolati con fixture sintetiche dopo approvazione dipendenze |
 | UI review | Chromatic | diff advisory privato dopo baseline Storybook; nessuna lezione reale |
-| Release audit | Vercel | inspection read-only e mapping SHA→artefatto→deployment; deploy/promote/rollback sono umani |
-| Backend lungo | Render | ignorato finché un ADR approvato non dimostra il workload; poi inspection read-only |
+| Release audit | Vercel | inventario del piano, preview exact-artifact e mapping SHA→deploy; mai produzione, rebuild o spesa impliciti |
+| Backend lungo | Render | piano e staging solo dopo ADR, exact-SHA e rollback; mai fallback ELAB o egress didattico legacy |
 | Data/security | Supabase | schema/RLS read-only solo su progetto Ardesia dedicato; migrazioni e dati reali richiedono gate |
 | Export | Drive | il loop prepara solo un bundle locale minimizzato e cifrato; ogni singolo upload richiede `HUMAN_GATE` su contenuto e destinazione |
 
@@ -299,22 +301,21 @@ questa attività programmata. Non autorizza push, PR, deploy, account, secret o
 trasmissioni a provider.
 
 Un ordine successivo concede autonomia standing, condizionata e revocabile a
-**Sentry, PostHog, Storybook, Chromatic e CodeRabbit**. Elimina soltanto la
+**GitHub Actions, Sentry, PostHog, Storybook, Chromatic, CodeRabbit, Vercel e Render**. Elimina soltanto la
 richiesta ripetuta: non sostituisce ADR, WIP/write/canary/max-5/one-writer,
 prerequisiti o la sequenza di `TOOLING-READINESS.md`. Con WIP rosso non muta
 progetto, account, secret o vendor. A gate verdi, una slice dedicata può
-configurare progetto, SDK, synthetic event e test solo se gratuita, separata
-per Ardesia, synthetic-only, deny-by-default, con secret manager e rollback.
-Eccezione CodeRabbit: può ricevere solo l'exact staged diff dopo scan verdi di
-secret, PII e contenuto didattico; env, untracked, audio e trascrizioni restano
-esclusi. Sono vietati dati reali/PII, replay, autocapture, produzione, spesa o
-nuovi termini. Capability assente produce `BLOCKED_EXTERNAL`, senza workaround.
+inventariare entitlements e configurare progetto, SDK, test o preview/staging
+solo se inclusi, separati per Ardesia, synthetic-only, deny-by-default e reversibili.
+CodeRabbit riceve solo l'exact staged diff dopo scan verdi; env, untracked, audio e trascrizioni restano esclusi. Prima di mutare GitHub/Vercel/Render serve
+`legacy_egress_disabled=true`: workflow ELAB annidati dormienti, fallback Render, webhook e chiavi `VITE_*` non riusati, provati da static/config/runtime test.
+Dato reale/PII, replay, autocapture, produzione, spesa, termini nuovi o capability
+assente producono `BLOCKED_EXTERNAL`, senza workaround.
 
 Prima dell'update ufficiale viene salvata fuori repository una copia esatta
 della configurazione precedente con SHA-256. L'update riusa lo stesso ID; non
-crea una seconda automazione. La configurazione attiva inizia nello stato
-`CANARY_PENDING`: il primo run è obbligatoriamente read-only perché il WIP gate
-pre-avvio è rosso.
+crea una seconda automazione. Il canary iniziale è concluso read-only con
+`STALE_LOCK_REVIEW_REQUIRED` e root `ardesia-20260715T004800Z-77086`. Ogni run successivo verifica la root e resta read-only finché lock, WIP e write gate exact-SHA non sono verdi; un lock senza owner non viene rimosso o ritentato.
 
 Il canary fallisce per almeno una di queste condizioni:
 
@@ -325,7 +326,7 @@ Il canary fallisce per almeno una di queste condizioni:
   `run_id`/path discordante o SHA-256 del manifest errato;
 - qualunque scrittura repository sotto WIP gate;
 - claim verde senza prova, segreto o contenuto di lezione nel packet;
-- tentativo di push, PR, merge, deploy o attivazione vendor.
+- tentativo di push, PR, merge, deploy o cambio di stato di vendor, skill, profilo agente, plugin, champion o challenger.
 
 Al fallimento viene creato il kill switch esterno
 `.ardesia-loop/AUTOMATION_DISABLED`, non viene eseguito altro lavoro e, se la

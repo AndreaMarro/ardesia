@@ -1,7 +1,7 @@
 ---
 id: ardesia-next-session-packet-template
 status: active
-freshness: 2026-07-15T01:12:57+02:00
+freshness: 2026-07-15T03:22:00+02:00
 authority: handoff-template
 ---
 
@@ -85,6 +85,7 @@ nuovamente hash, decisioni e campi di provenienza al closing CoV.
 - dipendenze/account/secret: nessuno salvo authority standing corrente e
   verificata oppure `HUMAN_GATE` esplicito; elencare ADR e condizioni applicabili
 - invarianti:
+- criteri SRP/OCP/LSP/ISP/DIP e Clean Code applicabili, prova o `N/A` motivato:
 - debito ammesso e condizione di rimozione:
 
 ## RED e criteri di accettazione
@@ -112,23 +113,43 @@ nuovamente hash, decisioni e campi di provenienza al closing CoV.
   TencentDB, Supermemory, Mem0 e altre fonti solo dietro `MemoryIndexPort`
 - Sentry/PostHog/Storybook/Chromatic/CodeRabbit:
 - Vercel/Render/Supabase/Drive:
+- entitlements del piano: usati, non usati con motivo, limite e prossima prova:
 - skill da leggere integralmente:
 
-Per ciascuno dei cinque vendor applicabili registra e verifica, senza valori
+Per ciascuna capability applicabile registra e verifica, senza valori
 segreti: `authority_current`, `cost_verified_zero`, `project_and_region`,
 `technical_prerequisite`, `synthetic_only_no_pii`, `deny_by_default`,
 `secret_reference`, `rollback_verified`, `terms_or_spend=none`. Un campo
 assente o non verificato chiude il gate in fail-closed.
+Per GitHub Actions/Vercel/Render aggiungi `legacy_egress_disabled=true` con
+prove static/config/runtime; `false | unknown` produce `BLOCKED_EXTERNAL`.
 Per CodeRabbit `synthetic_only_no_pii=code_diff_scanned` è ammesso soltanto per
 l'exact staged diff dopo scan secret/PII/contenuto didattico verdi; env,
 untracked, audio e trascrizioni non vengono trasmessi.
 
 ## Auto-miglioramento bounded
 
-- metriche prima/dopo:
-- unica ipotesi falsificabile:
-- proposta esterna oppure slice separata:
+- mutazione migliorativa e ipotesi falsificabile, oppure minimal-exit motivato:
+- tipo candidato (`skill | agent_profile | plugin`):
+- champion `id`, versione e SHA-256:
+- challenger `id`, versione e SHA-256:
+- fixture/casi e SHA-256:
+- metriche e soglie fissate prima del benchmark:
+- `decision_rule`: direzione metriche, hard gate, aggregazione, tie-break e dati mancanti:
+- risultati osservati sull'esatto candidato:
+- genealogia/nota Obsidian e rollback target:
+- verdetto proposto (`retain | promote | deprecate | reject`):
+- identità di writer, autori champion/challenger ed esecutore benchmark:
+- reviewer e verdetto; Sol Ultra obbligatorio solo per cambi di stato:
+- WIP gate, write gate e canary status per il cambio di stato:
+- prova di rollback e perimetro locale/reversibile:
+- termini, spesa, secret, produzione e dati reali: `none`:
 - prova che nessun gate è stato indebolito:
+
+Benchmark e `retain/reject` possono chiudere con reviewer ordinario e non mutano
+il champion. Un cambio di stato è autonomo solo con WIP/write/canary verdi, tutti
+i campi verificati e Sol Ultra diverso da writer, autori e benchmark executor;
+altrimenti nessuna proposta cambia il champion: `BLOCKED_EXTERNAL`.
 
 ## Stop e rollback
 

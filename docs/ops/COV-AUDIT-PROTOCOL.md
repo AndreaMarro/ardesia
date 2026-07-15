@@ -1,7 +1,7 @@
 ---
 id: ardesia-cov-audit-protocol
 status: active
-freshness: 2026-07-15T01:12:57+02:00
+freshness: 2026-07-15T03:27:00+02:00
 baseline_sha: 33c2d0cfaad480f6ed8e2a8f989802ace3d29de1
 authority: verification-contract
 ---
@@ -75,7 +75,7 @@ Anche se non viene scritto codice, la sessione produce un audit breve:
 | Asse | Domanda falsificabile |
 |---|---|
 | Coerenza | il claim coincide con canone, runtime, test, documento e SHA? |
-| Manutenibilità | aumenta file grandi, duplicazioni, provider import o seconde fonti? |
+| Manutenibilità | quali SRP/OCP/LSP/ISP/DIP sono applicabili e provati; aumentano size, duplicazioni, provider import o seconde fonti? |
 | Integrazione | chiude un confine reale o aggiunge un percorso parallelo? |
 | Sicurezza/privacy | espone secret, PII, minori, contenuto didattico o autorità impropria? |
 | Affidabilità | fallimento, offline, retry, recovery e rollback sono visibili? |
@@ -85,8 +85,10 @@ Anche se non viene scritto codice, la sessione produce un audit breve:
 
 L'audit registra inoltre: agenti/ruoli realmente usati e separazione writer;
 fonti riusate o scartate con motivazione; health/exact-SHA del Mac Mini; stato
-GitHub/WIP; metrica prima/dopo dell'eventuale proposta di auto-miglioramento;
-uso iniziale e delta finale di Obsidian. L'indisponibilità non viene nascosta.
+GitHub/WIP; per ogni torneo ID/versione/hash di champion e challenger, hash
+fixture, metriche/soglie predefinite, risultati, genealogia Obsidian, rollback
+target e verdetto; uso iniziale e delta finale di Obsidian. L'indisponibilità
+non viene nascosta.
 
 Ogni finding ha severità, evidenza, confidenza, owner, criterio di chiusura e
 azione `fix | replan | defer | human_gate`.
@@ -100,6 +102,7 @@ Il release verifier indipendente controlla dopo l'ultimo edit:
 - test RED→GREEN e full verify sull'esatto candidato;
 - nessun test rimosso, skip aggiunto o gate indebolito;
 - review indipendente successiva all'ultimo edit;
+- matrice SOLID/Clean Code applicabile con prova o `N/A` motivato, senza slogan;
 - documentazione canonica aggiornata nella stessa slice del comportamento;
 - branch, HEAD, tree, status/diff hash e receipt;
 - `state.json.context_manifest[]` completo: hash ricalcolati, authority,
@@ -110,7 +113,16 @@ Il release verifier indipendente controlla dopo l'ultimo edit:
   per `run_id`, path e SHA-256 del manifest;
 - per ciascun vendor applicabile: `authority_current`, costo zero, progetto e
   regione, prerequisito tecnico, synthetic-only/no-PII, deny-by-default,
-  riferimento al secret, rollback e assenza di termini o spesa;
+  riferimento al secret, rollback, entitlements usati/non usati con motivo e
+  assenza di nuovi termini o spesa; per GitHub/Vercel/Render prova
+  `legacy_egress_disabled=true` da static/config/runtime test;
+- per auto-miglioramento: identità e hash dei candidati/fixture, soglie fissate
+  prima e `decision_rule` completa; risultati, genealogia e rollback provato;
+  `retain/reject` non mutano stato; per promote/deprecate/activate/install Sol
+  Ultra è diverso da writer, autori di entrambi i candidati ed esecutore del
+  benchmark; WIP/write/canary devono essere verdi; autonomia vietata con termini,
+  spesa, secret, produzione o dati reali; con gate rosso sono ammessi soltanto
+  benchmark e `retain/reject`; mutazione salvo minimal-exit prima di `SELECT`;
 - non-claim, rischi, debito e gate umano;
 - assenza di push, merge, deploy o trasmissioni non autorizzate.
 
@@ -129,7 +141,7 @@ manifest o root vieta sempre `APPROVED_LOCAL`, non soltanto durante il canary.
 
 ## CoV pre-avvio del 15 luglio 2026
 
-Snapshot locale verificato alle `2026-07-15T00:30:15+02:00`:
+Snapshot baseline verificato alle `2026-07-15T00:30:15+02:00`:
 
 - worktree canonico senza diff di prodotto:
   `/Users/andreamarro/VOLUME 3/ardesia-wt-ai-native-governance`; durante la
@@ -151,17 +163,35 @@ Snapshot locale verificato alle `2026-07-15T00:30:15+02:00`:
   `session/long-2026-06-25` a `b6de567324db7b05e1a659bd88760e0b39aa0dc4`,
   diverso dal candidato; due processi build/test osservati, quindi nessun job
   o writer è stato avviato sul Mini;
-- Sentry, Storybook e Chromatic non integrati; CodeRabbit CLI `0.6.5`
-  installata ma `AUTH_REQUIRED / BLOCKED_EXTERNAL`; PostHog
-  espone solo il progetto ELAB preesistente, non un progetto Ardesia dedicato;
-  Vercel privo di prova remota sul candidato; Render `DEFERRED`;
+
+Addendum live verificato alle `2026-07-15T02:50:00+02:00`:
+
+- Sentry, Storybook e Chromatic non integrati; CodeRabbit CLI `0.6.5` è ora
+  `AUTHENTICATED / INTEGRATION_PENDING`; PostHog espone un solo progetto default
+  ELAB vuoto, non Ardesia; Vercel è autenticato ma non linkato al worktree;
+  Render CLI/account non verificabili e core `DEFERRED`;
+- i workflow root Actions sono attivi ma non producono artefatti; i workflow
+  ELAB annidati sono dormienti e insicuri, non prova di CI/deploy; fallback Render
+  e webhook legacy possono inviare contenuto didattico e sono esclusi da Ardesia;
 - `sendDefaultPii=false` resta canonico ma da solo è insufficiente. L'evidenza
   SDK corrente su opt-out `dataCollection`, `beforeSend` allowlist, niente
   Replay/allegati/tracing e transport spy è `REPORTED` e blocca l'integrazione
   finché una slice dedicata non riconcilia il contratto privacy;
-- un token credential-shaped è stato rilevato in un allegato storico: non è
-  stato copiato o allegato; la fonte è esclusa e la rotazione resta un gate di
-  sicurezza umano.
+- il secret scan non copre `.env.example`; i valori esempio richiedono verifica
+  senza esposizione. Un credential-shaped storico non è stato copiato; la fonte
+  è esclusa e la rotazione resta un gate di sicurezza umano.
+
+Addendum canary verificato alle `2026-07-15T03:00:00+02:00`:
+
+- run `ardesia-20260715T004800Z-77086`, repository rigorosamente read-only;
+- stato terminale `STALE_LOCK_REVIEW_REQUIRED`: primo lock globale già presente
+  senza metadata owner, poi scomparso; nessun retry o rimozione;
+- nove artefatti esterni prodotti; manifest SHA-256
+  `8034f5f860180c0a53cdef3f0c5e48db2851ca959def717f6604970de0a30af1` e
+  root regolare in `.ardesia-loop/roots/ardesia-20260715T004800Z-77086.json`;
+- WIP ancora rosso: 40 worktree, 40 branch non integrati, 18 PR, candidato senza
+  PR/check exact-SHA. La run delle 03:45 deve validare questa root e restare
+  read-only finché proprietà dei lock e gate WIP/write non siano verdi.
 
 Il report `PRODUCT-READINESS-AUDIT-2026-07-15.md` riguarda un altro worktree e
 un'altra baseline (`755179c8`): i suoi finding restano `REPORTED` per questa
