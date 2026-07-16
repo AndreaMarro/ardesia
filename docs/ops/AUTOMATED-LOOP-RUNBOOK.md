@@ -146,6 +146,19 @@ identità e tipo, quindi esegue un secondo `fsync` del parent. Soltanto quando
 esistono tutti e tre i claim verifica per ciascun path canonico dev/inode, tipo
 regolare, modo `0600` e i campi owner selezionati.
 
+Con gli handler SIGTERM/SIGINT installati, `pthread_sigmask` è un prerequisito:
+se non è disponibile il controller termina prima di pubblicare claim con
+`REPLAN_REQUIRED / SIGNAL_MASK_UNAVAILABLE`. Dopo la verifica finale dei tre
+claim blocca SIGTERM e SIGINT e conserva la mask precedente esatta. Se un
+segnale è già stato osservato, rilascia in ordine inverso ed emette soltanto il
+risultato terminale con motivo `*_DURING_LOCK_ACQUISITION`, senza mai emettere
+`LOCKS_ACQUIRED`. Altrimenti l'emissione di `LOCKS_ACQUIRED` mentre i due segnali
+sono mascherati è il punto di linearizzazione della readiness. La mask
+precedente viene ripristinata prima del command loop o del ritorno; un segnale
+diventato pending dopo il blocco viene quindi elaborato dopo tale ripristino.
+Errori di blocco o ripristino attivano cleanup fail-closed e non lasciano claim
+posseduti senza un risultato terminale di difetto.
+
 La lettura owner è no-follow, limitata a 65.536 byte e richiede JSON valido.
 L'ownership corrente confronta esattamente `run_id`, token, PID,
 process-start-time e primitive. Non confronta oggi `schema_version`, branch,

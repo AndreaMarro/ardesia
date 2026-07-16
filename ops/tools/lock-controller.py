@@ -34,6 +34,7 @@ SHUTDOWN_OFFSET_NS = 3_420_000_000_000
 MAX_FUTURE_SKEW_NS = 5_000_000_000
 CLOCK_DOMAIN = "controller-local-monotonic-rebased-from-utc-v1"
 STDIN_CLOSED = "__STDIN_CLOSED__"
+DEFAULT_SIGNAL_MASK = object()
 
 
 class ScheduleError(ValueError):
@@ -188,6 +189,7 @@ def run_controller(
     close_fn=None,
     unlink_fn=None,
     signal_setter_fn=None,
+    signal_mask_fn=DEFAULT_SIGNAL_MASK,
     install_signal_handlers=True,
     stdin=None,
 ):
@@ -209,6 +211,8 @@ def run_controller(
     close_fn = os.close if close_fn is None else close_fn
     unlink_fn = pathlib.Path.unlink if unlink_fn is None else unlink_fn
     signal_setter_fn = signal.signal if signal_setter_fn is None else signal_setter_fn
+    if signal_mask_fn is DEFAULT_SIGNAL_MASK:
+        signal_mask_fn = getattr(signal, "pthread_sigmask", None)
     lock_paths = [pathlib.Path(path) for path in lock_paths]
 
     run_dir = pathlib.Path(run_root) / args.run_id
@@ -531,6 +535,16 @@ def run_controller(
             raise
 
     try:
+        if install_signal_handlers and signal_mask_fn is None:
+            emit_fn(
+                {
+                    "status": "REPLAN_REQUIRED",
+                    "reason": "SIGNAL_MASK_UNAVAILABLE",
+                    "run_id": args.run_id,
+                }
+            )
+            return 44
+
         collision_path = None
         try:
             for lock_value in lock_paths:
@@ -687,7 +701,103 @@ def run_controller(
                 "run_dir": str(run_dir),
             }
         )
-        emit_fn(safe)
+        if install_signal_handlers:
+            try:
+                previous_mask = signal_mask_fn(
+                    signal.SIG_BLOCK,
+                    frozenset((signal.SIGTERM, signal.SIGINT)),
+                )
+            except Exception as exc:
+                failures, released_paths = release()
+                failures.extend(cleanup_staged())
+                emit_fn(
+                    {
+                        "status": (
+                            "LOCK_ACQUISITION_DEFECT"
+                            if not failures
+                            else "LOCK_RELEASE_FAILED"
+                        ),
+                        "reason": "SIGNAL_MASK_BLOCK_FAILED",
+                        "run_id": args.run_id,
+                        "error": type(exc).__name__,
+                        "released": len(released_paths),
+                        "released_paths": released_paths,
+                        "failures": failures,
+                    }
+                )
+                terminal_release_emitted = True
+                return 74
+
+            readiness_result = None
+            readiness_release = None
+            readiness_error = None
+            readiness_traceback = None
+            try:
+                if stopping:
+                    failures, released_paths = release()
+                    failures.extend(cleanup_staged())
+                    readiness_release = (failures, released_paths)
+                    readiness_result = 0 if not failures else 74
+                else:
+                    emit_fn(safe)
+            except BaseException as exc:
+                readiness_error = exc
+                readiness_traceback = exc.__traceback__
+
+            restore_error = None
+            try:
+                signal_mask_fn(signal.SIG_SETMASK, previous_mask)
+            except Exception as exc:
+                restore_error = exc
+
+            if restore_error is not None:
+                if readiness_release is None:
+                    failures, released_paths = release()
+                    failures.extend(cleanup_staged())
+                else:
+                    failures, released_paths = readiness_release
+                emit_fn(
+                    {
+                        "status": (
+                            "LOCK_ACQUISITION_DEFECT"
+                            if not failures
+                            else "LOCK_RELEASE_FAILED"
+                        ),
+                        "reason": "SIGNAL_MASK_RESTORE_FAILED",
+                        "run_id": args.run_id,
+                        "error": type(restore_error).__name__,
+                        "released": len(released_paths),
+                        "released_paths": released_paths,
+                        "failures": failures,
+                    }
+                )
+                terminal_release_emitted = True
+                return 74
+
+            if readiness_error is not None:
+                raise readiness_error.with_traceback(readiness_traceback)
+            if readiness_result is not None:
+                failures, released_paths = readiness_release
+                emit_fn(
+                    {
+                        "status": (
+                            "LOCKS_RELEASED"
+                            if not failures
+                            else "LOCK_RELEASE_FAILED"
+                        ),
+                        "reason": signal_reason(
+                            "_DURING_LOCK_ACQUISITION"
+                        ),
+                        "run_id": args.run_id,
+                        "released": len(released_paths),
+                        "released_paths": released_paths,
+                        "failures": failures,
+                    }
+                )
+                terminal_release_emitted = True
+                return readiness_result
+        else:
+            emit_fn(safe)
 
         reason = "REQUESTED"
         while not stopping:

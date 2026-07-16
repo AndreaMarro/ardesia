@@ -674,6 +674,175 @@ class LockControllerTests(unittest.TestCase):
             )
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
+    def test_signal_during_final_verification_never_claims_readiness(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+            signaled = False
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            def open_read_and_signal(path, flags):
+                nonlocal signaled
+                descriptor = os.open(path, flags)
+                if not signaled:
+                    signaled = True
+                    handlers[signal.SIGTERM](signal.SIGTERM, None)
+                return descriptor
+
+            code, records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "open_read_fn": open_read_and_signal,
+                },
+            )
+            self.assertTrue(signaled)
+            self.assertEqual(code, 0)
+            self.assertNotIn("LOCKS_ACQUIRED", [record["status"] for record in records])
+            self.assertEqual(records[-1]["status"], "LOCKS_RELEASED")
+            self.assertEqual(
+                records[-1]["reason"],
+                "SIGTERM_DURING_LOCK_ACQUISITION",
+            )
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
+    def test_readiness_is_emitted_while_termination_signals_are_blocked(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+            timeline = []
+            previous_mask = frozenset({signal.SIGUSR1})
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            def mask_signals(how, mask):
+                if how == signal.SIG_BLOCK:
+                    self.assertEqual(set(mask), {signal.SIGTERM, signal.SIGINT})
+                    timeline.append("mask:block")
+                    return previous_mask
+                self.assertEqual(how, signal.SIG_SETMASK)
+                self.assertIs(mask, previous_mask)
+                timeline.append("mask:restore")
+                return frozenset()
+
+            def emit(record):
+                timeline.append("emit:" + record["status"])
+
+            code, _records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "signal_mask_fn": mask_signals,
+                    "emit_fn": emit,
+                },
+            )
+            self.assertEqual(code, 0)
+            self.assertEqual(
+                timeline,
+                [
+                    "mask:block",
+                    "emit:LOCKS_ACQUIRED",
+                    "mask:restore",
+                    "emit:LOCKS_RELEASED",
+                ],
+            )
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
+    def test_missing_signal_mask_support_fails_closed_before_publication(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            code, records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "signal_mask_fn": None,
+                },
+            )
+            self.assertEqual(code, 44)
+            self.assertEqual(records[-1]["status"], "REPLAN_REQUIRED")
+            self.assertEqual(records[-1]["reason"], "SIGNAL_MASK_UNAVAILABLE")
+            self.assertNotIn("LOCKS_ACQUIRED", [record["status"] for record in records])
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
+    def test_restore_failure_after_observed_signal_emits_one_defect_terminal(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+            signaled = False
+            previous_mask = frozenset({signal.SIGUSR1})
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            def open_read_and_signal(path, flags):
+                nonlocal signaled
+                descriptor = os.open(path, flags)
+                if not signaled:
+                    signaled = True
+                    handlers[signal.SIGTERM](signal.SIGTERM, None)
+                return descriptor
+
+            def fail_restore(how, mask):
+                if how == signal.SIG_BLOCK:
+                    return previous_mask
+                self.assertEqual(how, signal.SIG_SETMASK)
+                self.assertIs(mask, previous_mask)
+                raise RuntimeError("injected-mask-restore-failure")
+
+            code, records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "signal_mask_fn": fail_restore,
+                    "open_read_fn": open_read_and_signal,
+                },
+            )
+            self.assertTrue(signaled)
+            self.assertEqual(code, 74)
+            self.assertEqual(
+                [record["status"] for record in records],
+                ["LOCK_ACQUISITION_DEFECT"],
+            )
+            self.assertEqual(records[0]["reason"], "SIGNAL_MASK_RESTORE_FAILED")
+            self.assertEqual(records[0]["released"], 3)
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
     def test_published_claims_are_complete_regular_files(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
