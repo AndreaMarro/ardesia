@@ -703,9 +703,13 @@ def run_controller(
         )
         if install_signal_handlers:
             try:
+                termination_signals = frozenset((signal.SIGTERM, signal.SIGINT))
                 previous_mask = signal_mask_fn(
                     signal.SIG_BLOCK,
-                    frozenset((signal.SIGTERM, signal.SIGINT)),
+                    termination_signals,
+                )
+                inherited_termination_blocked = bool(
+                    termination_signals.intersection(previous_mask)
                 )
             except Exception as exc:
                 failures, released_paths = release()
@@ -730,10 +734,19 @@ def run_controller(
 
             readiness_result = None
             readiness_release = None
+            readiness_terminal_reason = None
             readiness_error = None
             readiness_traceback = None
             try:
-                if stopping:
+                if inherited_termination_blocked:
+                    failures, released_paths = release()
+                    failures.extend(cleanup_staged())
+                    readiness_release = (failures, released_paths)
+                    readiness_result = 74
+                    readiness_terminal_reason = (
+                        "TERMINATION_SIGNAL_ALREADY_BLOCKED"
+                    )
+                elif stopping:
                     failures, released_paths = release()
                     failures.extend(cleanup_staged())
                     readiness_release = (failures, released_paths)
@@ -778,16 +791,24 @@ def run_controller(
                 raise readiness_error.with_traceback(readiness_traceback)
             if readiness_result is not None:
                 failures, released_paths = readiness_release
+                if readiness_terminal_reason is None:
+                    status = (
+                        "LOCKS_RELEASED"
+                        if not failures
+                        else "LOCK_RELEASE_FAILED"
+                    )
+                    reason = signal_reason("_DURING_LOCK_ACQUISITION")
+                else:
+                    status = (
+                        "LOCK_ACQUISITION_DEFECT"
+                        if not failures
+                        else "LOCK_RELEASE_FAILED"
+                    )
+                    reason = readiness_terminal_reason
                 emit_fn(
                     {
-                        "status": (
-                            "LOCKS_RELEASED"
-                            if not failures
-                            else "LOCK_RELEASE_FAILED"
-                        ),
-                        "reason": signal_reason(
-                            "_DURING_LOCK_ACQUISITION"
-                        ),
+                        "status": status,
+                        "reason": reason,
                         "run_id": args.run_id,
                         "released": len(released_paths),
                         "released_paths": released_paths,

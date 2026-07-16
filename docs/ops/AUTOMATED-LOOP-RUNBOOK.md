@@ -149,13 +149,19 @@ regolare, modo `0600` e i campi owner selezionati.
 Con gli handler SIGTERM/SIGINT installati, `pthread_sigmask` è un prerequisito:
 se non è disponibile il controller termina prima di pubblicare claim con
 `REPLAN_REQUIRED / SIGNAL_MASK_UNAVAILABLE`. Dopo la verifica finale dei tre
-claim blocca SIGTERM e SIGINT e conserva la mask precedente esatta. Se un
-segnale è già stato osservato, rilascia in ordine inverso ed emette soltanto il
-risultato terminale con motivo `*_DURING_LOCK_ACQUISITION`, senza mai emettere
-`LOCKS_ACQUIRED`. Altrimenti l'emissione di `LOCKS_ACQUIRED` mentre i due segnali
-sono mascherati è il punto di linearizzazione della readiness. La mask
-precedente viene ripristinata prima del command loop o del ritorno; un segnale
-diventato pending dopo il blocco viene quindi elaborato dopo tale ripristino.
+claim blocca SIGTERM e SIGINT e conserva la mask precedente esatta. Se quella
+mask conteneva già uno dei due segnali, rilascia i claim mentre restano
+mascherati, ripristina la mask esatta ed emette un solo terminale
+`LOCK_ACQUISITION_DEFECT / TERMINATION_SIGNAL_ALREADY_BLOCKED`, senza
+`LOCKS_ACQUIRED`; se il cleanup è incompleto lo stato è invece
+`LOCK_RELEASE_FAILED`. Se la mask precedente è idonea ma un segnale è già stato
+osservato, rilascia in ordine inverso ed emette soltanto il risultato terminale
+con motivo `*_DURING_LOCK_ACQUISITION`, ancora senza `LOCKS_ACQUIRED`.
+Altrimenti l'emissione di `LOCKS_ACQUIRED` mentre i due segnali sono mascherati
+è il punto di linearizzazione della readiness. La mask precedente viene
+ripristinata prima del command loop o del ritorno; un segnale che non era già
+bloccato dalla mask precedente e diventa pending dopo il nuovo blocco viene
+quindi elaborato dopo tale ripristino.
 Errori di blocco o ripristino attivano cleanup fail-closed e non lasciano claim
 posseduti senza un risultato terminale di difetto.
 

@@ -843,6 +843,91 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[0]["released"], 3)
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
+    def test_inherited_blocked_termination_signal_fails_closed_before_readiness(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+            previous_mask = frozenset({signal.SIGTERM, signal.SIGUSR1})
+            restored = False
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            def mask_signals(how, mask):
+                nonlocal restored
+                if how == signal.SIG_BLOCK:
+                    return previous_mask
+                self.assertEqual(how, signal.SIG_SETMASK)
+                self.assertIs(mask, previous_mask)
+                restored = True
+                return frozenset()
+
+            code, records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "signal_mask_fn": mask_signals,
+                },
+            )
+            self.assertTrue(restored)
+            self.assertEqual(code, 74)
+            self.assertEqual(
+                [record["status"] for record in records],
+                ["LOCK_ACQUISITION_DEFECT"],
+            )
+            self.assertEqual(
+                records[0]["reason"],
+                "TERMINATION_SIGNAL_ALREADY_BLOCKED",
+            )
+            self.assertEqual(records[0]["released"], 3)
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
+    def test_inherited_blocked_signal_restore_failure_emits_only_restore_defect(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths = self._paths(pathlib.Path(temp))
+            start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
+            clock = FakeClock(start + datetime.timedelta(seconds=10), 20_000_000)
+            handlers = {}
+            previous_mask = frozenset({signal.SIGINT})
+
+            def set_signal(signum, handler):
+                previous = handlers.get(signum, signal.SIG_DFL)
+                handlers[signum] = handler
+                return previous
+
+            def fail_restore(how, mask):
+                if how == signal.SIG_BLOCK:
+                    return previous_mask
+                self.assertEqual(how, signal.SIG_SETMASK)
+                self.assertIs(mask, previous_mask)
+                raise RuntimeError("injected-inherited-mask-restore-failure")
+
+            code, records = self._run(
+                paths,
+                clock,
+                start,
+                controller_kwargs={
+                    "install_signal_handlers": True,
+                    "signal_setter_fn": set_signal,
+                    "signal_mask_fn": fail_restore,
+                },
+            )
+            self.assertEqual(code, 74)
+            self.assertEqual(
+                [record["status"] for record in records],
+                ["LOCK_ACQUISITION_DEFECT"],
+            )
+            self.assertEqual(records[0]["reason"], "SIGNAL_MASK_RESTORE_FAILED")
+            self.assertEqual(records[0]["released"], 3)
+            self.assertTrue(all(not path.exists() for path in paths["locks"]))
+
     def test_published_claims_are_complete_regular_files(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
