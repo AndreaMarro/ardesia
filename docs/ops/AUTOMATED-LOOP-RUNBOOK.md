@@ -10,10 +10,11 @@ authority: operational-contract
 
 ## Scopo
 
-L'automazione `ardesia-continuous-convergence-90m` è l'unica attività Codex
-ricorrente attiva per continuare il lavoro Ardesia. Il suo identificatore
-legacy viene conservato per evitare un secondo scheduler concorrente; nome,
-durata e contratto sono invece sostituiti da questo runbook.
+L'automazione `ardesia-continuous-convergence-90m` è configurata ma non
+attiva: il suo stato operativo osservato è currently `PAUSED` e il kill switch
+resta armato. Il suo identificatore legacy viene conservato per evitare un
+secondo scheduler concorrente; nome, durata e contratto sono invece sostituiti
+da questo runbook.
 
 Una sessione produce al massimo una slice piccola, verificata e attribuibile.
 Non è un permesso per lavorare senza limiti, accumulare branch o attivare
@@ -107,9 +108,11 @@ vengono mai terminati processi preesistenti o di altri worktree.
 
 ## Lock e concorrenza
 
-L'activation preflight crea e verifica la directory `locks/` con permessi `0700`.
-Prima di leggere un piano operativo, la sessione acquisisce mediante `mkdir`
-atomico, in quest'ordine, tre directory; nessun test-then-create è ammesso:
+Il controller versionato descritto in questa sezione non è attivato
+dall'automazione. Il preflight dell'orchestratore, non il controller, crea e
+verifica il parent esterno `locks/` con permessi `0700`. Prima di leggere un
+piano operativo, ogni writer conforme pubblica tre claim nell'ordine globale →
+git-common → worktree, sui path canonici:
 
 ```text
 /Users/andreamarro/VOLUME 3/.ardesia-loop/locks/ardesia-continuous-60m.lock
@@ -117,32 +120,96 @@ atomico, in quest'ordine, tre directory; nessun test-then-create è ammesso:
 <git-path>/loop-writer.lock
 ```
 
-Il lock condiviso viene risolto con `git rev-parse --git-common-dir`, poi
-canonicalizzato fisicamente, e impedisce writer concorrenti nell'intero
-repository. Il terzo path usa `git rev-parse --git-path loop-writer.lock` come
-difesa del singolo worktree. Ogni writer Ardesia, manuale o programmato, deve
-acquisire entrambi prima di qualunque scrittura. Un conflitto vieta la scrittura
-repository; il run conserva gli artefatti esterni e rilascia in ordine inverso
-soltanto i lock precedenti di cui è proprietario.
+Il CLI corrente è vincolato all'identità git-common e worktree attesa da
+questa checkout: risolve entrambi i path con `git rev-parse`, li confronta con
+quelli configurati e fallisce `REPLAN_REQUIRED / GIT_IDENTITY_DRIFT` con exit
+44 in caso di drift. Questa è una proprietà locale verificata, non una promessa
+di portabilità generica. Ciascun claim è un file regolare JSON con modo `0600`,
+schema `3.0` e `lock_primitive` `prepared-file-hardlink-v1`.
 
-Il lock contiene `run_id`, token owner casuale, PID, process-start-time,
-timestamp, branch, HEAD e percorso del worktree. Se il PID è vivo e
-process-start-time, `run_id` e token coincidono esattamente, la sessione termina
-`CONCURRENT_WRITE_DETECTED`. PID assente, riusato, dati discordanti o ownership
-non verificabile producono `STALE_LOCK_REVIEW_REQUIRED`. Il lock non viene mai
-rimosso automaticamente da un run che non ne è proprietario.
+### Preparazione e pubblicazione
 
-In entrambi i casi è vietata ogni scrittura nel repository, ma la nuova
-directory esterna contiene comunque tutti i nove artefatti obbligatori, con
-campi non eseguiti marcati `UNKNOWN` o `DEFERRED`; CoV e audit sono minimali ma
-presenti. Non esiste quindi un percorso “receipt-only” privo di audit.
+L'entrypoint CLI imposta `umask 077`. Per ogni claim crea nello stesso parent un
+file di staging `.candidate.<pid>.<digest>` con
+`O_WRONLY|O_CREAT|O_EXCL` e modo `0600`; gestisce le short write fino al payload
+completo. Il record owner è JSON deterministico, compatto, con chiavi ordinate
+e un solo LF finale. Il controller esegue `fsync` del file, verifica via
+descriptor che staging sia regolare e modo `0600`, quindi chiude il descriptor
+prima della pubblicazione.
 
-Il corpo del run usa sempre un blocco di cleanup equivalente a `finally`.
-Prima del rilascio rilegge gli owner: può rimuovere un lock soltanto se il
-`run_id` e il token coincidono e il processo ne è ancora proprietario. Il cleanup registra
-elapsed monotono, processi figli terminati e stato della ricevuta. Se receipt o
-ownership non sono verificabili, il lock resta al suo posto e il fallimento è
-fail-closed per la sessione seguente.
+La pubblicazione usa un hard link atomico dallo staging al path canonico.
+`EEXIST` è una collisione one-shot: non sostituisce l'occupante, non riprova
+l'acquisizione e non tenta claim successivi. Subito dopo il link il controller
+verifica soltanto identità dev/inode e tipo regolare del path canonico, esegue
+`fsync` del parent, rimuove il link di staging solo dopo averne riverificato
+identità e tipo, quindi esegue un secondo `fsync` del parent. Soltanto quando
+esistono tutti e tre i claim verifica per ciascun path canonico dev/inode, tipo
+regolare, modo `0600` e i campi owner selezionati.
+
+La lettura owner è no-follow, limitata a 65.536 byte e richiede JSON valido.
+L'ownership corrente confronta esattamente `run_id`, token, PID,
+process-start-time e primitive. Non confronta oggi `schema_version`, branch,
+HEAD, ogni altro campo o i byte completi del record. Il claim include anche
+timestamp, worktree e metadati temporali, ma la loro presenza non amplia la
+verifica di ownership.
+
+### Collisione ed evidenza straniera
+
+Il controller ordinario non legge né classifica l'occupante che causa `EEXIST`:
+lo lascia invariato, rilascia in ordine inverso soltanto i claim precedenti che
+possiede e non tenta quelli successivi. Se il cleanup riesce termina
+`LOCK_COLLISION` con exit 73; se è incompleto termina `LOCK_RELEASE_FAILED` con
+exit 74. Ogni altro difetto di acquisizione termina
+`LOCK_ACQUISITION_DEFECT` con exit 74 dopo il cleanup possibile.
+
+L'orchestratore o l'operatore, fuori dal normale controller, tratta directory
+legacy, record malformati o sovradimensionati, symlink, claim non regolari,
+primitive o schema sconosciuti, staging orfani e insiemi mixed-version come
+evidenza straniera. Un run ordinario non li elimina, converte, ripara o ritenta
+automaticamente. Una collisione o ownership non verificabile vieta la scrittura
+repository; il run conserva comunque tutti i nove artefatti esterni obbligatori
+con campi non eseguiti `UNKNOWN` o `DEFERRED`, CoV e audit minimali ma presenti.
+Non esiste un percorso “receipt-only” privo di audit.
+
+### Rilascio e matrice di crash
+
+Il rilascio procede worktree → git-common → globale. Per ogni claim esegue
+`lstat` di identità e tipo, apre l'owner senza seguire symlink, riverifica sul
+descriptor dev/inode e tipo regolare, applica il limite di 65.536 byte e i campi
+owner selezionati, poi ricontrolla l'identità del pathname prima di `unlink` e
+`fsync` del parent. Un mismatch preserva quel path e il cleanup continua sugli
+altri claim. Non ogni errore conserva evidenza completa: un fallimento dopo
+`unlink`, per esempio nel `fsync` persistente del parent, può lasciare il path
+assente pur restituendo `LOCK_RELEASE_FAILED` con exit 74.
+
+La matrice di crash resta esplicita e fail-closed:
+
+- prima del link può restare uno staging orfano;
+- dopo il link possono restare staging e canonico oppure il solo canonico;
+- durante l'acquisizione multipla può restare un insieme canonico parziale;
+- fra `unlink` e `fsync` del parent lo stato durevole richiede una nuova
+  osservazione.
+
+Nessuno di questi stati autorizza una cancellazione. La riconciliazione degli
+staging orfani non è implementata dal controller ordinario ed è un gap
+esplicito.
+
+### `operator recovery` separato
+
+Il protocollo di recupero operatore è separato dal controller, non appartiene a
+un run ordinario e non è implementato da questo CLI. La prova locale copre
+soltanto il set osservato di 3/3 directory legacy. Prima di qualunque recupero
+richiede automazione `PAUSED`, kill switch armato, assenza della coppia
+PID/process-start-time e dei relativi helper, evidenza esatta di inode, modo e
+hash, e un singolo mutex esclusivo che copra tutti i parent coinvolti.
+
+Il recupero provato usa un journal durevole `PREPARED`, rename esclusivo verso
+un sibling sullo stesso filesystem (`RENAME_EXCL` su Darwin), `fsync` dei
+parent, rollback deterministico prima di `COMMITTED`, CoV indipendente, nove
+artefatti e una root receipt. Non autorizza eliminazione, non dimostra set
+diversi dai 3/3 osservati e non rende il controller capace di recovery. La
+verifica di `schema_version` nell'owner e la riconciliazione degli staging
+orfani restano follow-up espliciti, non garanzie implementate.
 
 Il lock condiviso non sostituisce i controlli di attribuzione: l'assenza del
 lock da parte di un writer non conforme non dimostra esclusività. Prima di ogni
