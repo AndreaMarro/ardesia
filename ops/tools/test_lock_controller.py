@@ -2,6 +2,7 @@ import argparse
 import datetime
 import hashlib
 import importlib.util
+import inspect
 import io
 import json
 import os
@@ -34,12 +35,26 @@ class FakeClock:
 
 
 class LockControllerTests(unittest.TestCase):
+    def test_adversarial_suite_has_no_fail_open_skip_decorators(self):
+        skipped = []
+        for name, value in vars(type(self)).items():
+            if not name.startswith("test_"):
+                continue
+            source_lines = inspect.getsource(value).splitlines()
+            has_skip_decorator = any(
+                line.strip().startswith("@unittest.skip") for line in source_lines
+            )
+            if getattr(value, "__unittest_skip__", False) or has_skip_decorator:
+                skipped.append(name)
+        skipped.sort()
+        self.maxDiff = None
+        self.assertEqual(skipped, [])
+
     def test_launcher_monotonic_is_not_control_authority(self):
         source = CONTROLLER_PATH.read_text()
         self.assertNotIn("start_ns = args.task_start_monotonic_ns", source)
         self.assertIn("build_schedule", source)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "build_schedule"), "repair not implemented")
     def test_rebases_task_start_into_controller_local_clock(self):
         start = datetime.datetime(2026, 7, 16, 1, 0, tzinfo=datetime.timezone.utc)
         clock = FakeClock(start + datetime.timedelta(seconds=480), 125_000_000)
@@ -52,7 +67,6 @@ class LockControllerTests(unittest.TestCase):
         self.assertEqual(schedule.shutdown_ns - schedule.start_ns, 3_420_000_000_000)
         self.assertEqual(schedule.deadline_ns - schedule.start_ns, 3_600_000_000_000)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "build_schedule"), "repair not implemented")
     def test_legacy_monotonic_flag_is_optional_and_audit_only(self):
         without_legacy = CONTROLLER.parse_args(
             ["--run-id", "test-run", "--plan-version", "1", "--task-started-at", "2026-07-16T01:00:00Z"]
@@ -67,7 +81,6 @@ class LockControllerTests(unittest.TestCase):
         self.assertIsNone(without_legacy.reported_task_start_monotonic_ns)
         self.assertEqual(with_legacy.reported_task_start_monotonic_ns, 147399054127922)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_exact_shutdown_boundary_before_lock_writes_nothing(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -78,7 +91,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["status"], "BUDGET_EXHAUSTED")
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_one_microsecond_before_shutdown_can_acquire_then_release(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -92,7 +104,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["status"], "LOCKS_RELEASED")
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_one_shot_collision_does_not_touch_later_locks(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -109,7 +120,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertFalse(paths["locks"][1].exists())
             self.assertFalse(paths["locks"][2].exists())
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_second_lock_collision_rolls_back_first_without_retrying_third(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -127,7 +137,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(sentinel.read_bytes(), before)
             self.assertFalse(paths["locks"][2].exists())
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_minute_57_releases_owned_locks_in_reverse(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -149,7 +158,6 @@ class LockControllerTests(unittest.TestCase):
             )
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_unverifiable_owner_variants_preserve_the_affected_lock(self):
         variants = ("owner_token", "run_id", "pid", "process_start_time", "malformed", "missing")
         for variant in variants:
@@ -191,7 +199,6 @@ class LockControllerTests(unittest.TestCase):
                     self.assertTrue(owner_path.exists())
                     self.assertEqual(owner_path.read_bytes(), changed_bytes)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_crossing_shutdown_between_locks_rolls_back_partial_acquisition(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -210,7 +217,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["released_paths"], [str(paths["locks"][0])])
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_crossing_shutdown_during_preflight_writes_no_first_lock(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -228,7 +234,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["locks_acquired"], 0)
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_monotonic_anchor_is_sampled_before_wall_anchor(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -254,7 +259,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertEqual(calls[:2], ["monotonic", "wall"])
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_owner_record_tags_local_clock_and_legacy_value_as_audit_only(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -283,7 +287,6 @@ class LockControllerTests(unittest.TestCase):
                 acquired["reported_task_start_monotonic_ns"],
             )
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_wait_and_emit_exceptions_release_every_owned_lock(self):
         for failure in ("wait", "emit"):
             with self.subTest(failure=failure), tempfile.TemporaryDirectory() as temp:
@@ -309,7 +312,6 @@ class LockControllerTests(unittest.TestCase):
                     )
                 self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_signal_during_acquisition_releases_partial_lock_set(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -348,7 +350,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["released_paths"], [str(paths["locks"][0])])
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_open_failure_never_leaves_an_ownerless_canonical_lock(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -368,7 +369,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["status"], "LOCK_ACQUISITION_DEFECT")
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_link_interruption_after_publication_unwinds_and_reraises(self):
         for interruption in (KeyboardInterrupt, lambda: SystemExit(23)):
             with self.subTest(interruption=interruption), tempfile.TemporaryDirectory() as temp:
@@ -389,7 +389,6 @@ class LockControllerTests(unittest.TestCase):
                     )
                 self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_transient_release_failure_is_retried_without_ownerless_residue(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -427,7 +426,6 @@ class LockControllerTests(unittest.TestCase):
             )
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_unlink_effect_then_exception_is_recognized_as_released(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -457,7 +455,6 @@ class LockControllerTests(unittest.TestCase):
             )
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_persistent_release_failure_preserves_complete_claim(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -484,7 +481,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertFalse(paths["locks"][1].exists())
             self.assertFalse(paths["locks"][0].exists())
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_publication_loss_or_replacement_never_claims_acquisition(self):
         for variant in ("missing", "replaced"):
             with self.subTest(variant=variant), tempfile.TemporaryDirectory() as temp:
@@ -515,7 +511,6 @@ class LockControllerTests(unittest.TestCase):
                 self.assertFalse(paths["locks"][1].exists())
                 self.assertFalse(paths["locks"][2].exists())
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_transient_parent_fsync_after_release_is_retried(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -548,7 +543,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["status"], "LOCKS_RELEASED")
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_collision_rollback_failure_is_not_reported_as_plain_collision(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -575,7 +569,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertTrue(paths["locks"][1].is_dir())
             self.assertFalse(paths["locks"][2].exists())
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_partial_signal_handler_install_restores_the_installed_handler(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -605,7 +598,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertIn((signal.SIGTERM, previous_term), calls)
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_cleanup_baseexception_cannot_skip_signal_restoration(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -642,7 +634,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertIn((signal.SIGTERM, previous[signal.SIGTERM]), calls)
             self.assertIn((signal.SIGINT, previous[signal.SIGINT]), calls)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_signal_during_final_publication_is_attributed_and_never_claims_success(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -683,7 +674,6 @@ class LockControllerTests(unittest.TestCase):
             )
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_published_claims_are_complete_regular_files(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -709,7 +699,6 @@ class LockControllerTests(unittest.TestCase):
             self.assertEqual(records[-1]["status"], "LOCKS_RELEASED")
             self.assertTrue(all(not path.exists() for path in paths["locks"]))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_owner_preparation_io_faults_publish_no_canonical_claim(self):
         cases = ("write-zero", "partial-write", "fsync")
         for case in cases:
@@ -752,7 +741,6 @@ class LockControllerTests(unittest.TestCase):
                 )
                 self.assertNotIn("owner-token", json.dumps(records, sort_keys=True))
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_baseexceptions_during_owner_fsync_unwind_and_reraise(self):
         interruptions = (KeyboardInterrupt, lambda: SystemExit(23))
         for interruption in interruptions:
@@ -777,7 +765,6 @@ class LockControllerTests(unittest.TestCase):
                     any(".candidate." in path.name for path in root.rglob("*"))
                 )
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_two_process_collision_preserves_winner_then_sigterm_releases(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
@@ -825,7 +812,6 @@ class LockControllerTests(unittest.TestCase):
                         process.kill()
                         process.communicate(timeout=5)
 
-    @unittest.skipUnless(hasattr(CONTROLLER, "run_controller"), "repair not implemented")
     def test_injected_fixture_guards_every_write_primitive_and_release_order(self):
         with tempfile.TemporaryDirectory() as temp:
             paths = self._paths(pathlib.Path(temp))
