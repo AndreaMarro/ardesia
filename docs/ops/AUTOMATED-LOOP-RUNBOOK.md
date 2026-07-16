@@ -165,9 +165,12 @@ exit 74. Ogni altro difetto di acquisizione termina
 L'orchestratore o l'operatore, fuori dal normale controller, tratta directory
 legacy, record malformati o sovradimensionati, symlink, claim non regolari,
 primitive o schema sconosciuti, staging orfani e insiemi mixed-version come
-evidenza straniera. Un run ordinario non li elimina, converte, ripara o ritenta
-automaticamente. Una collisione o ownership non verificabile vieta la scrittura
-repository; il run conserva comunque tutti i nove artefatti esterni obbligatori
+evidenza straniera. L'occupante preesistente che causa `EEXIST` non viene letto né eliminato
+dal run ordinario, non viene convertito o riparato e la collisione non viene
+ritentata. Questa garanzia non si estende a un claim già posseduto.
+Una mutazione del solo `schema_version` su un claim già posseduto può superare l'ownership check e venire rimossa dalla release attuale.
+Una collisione o ownership non verificabile vieta la scrittura repository; il
+run conserva comunque tutti i nove artefatti esterni obbligatori
 con campi non eseguiti `UNKNOWN` o `DEFERRED`, CoV e audit minimali ma presenti.
 Non esiste un percorso “receipt-only” privo di audit.
 
