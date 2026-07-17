@@ -6,20 +6,38 @@ import { WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
 import { LocalStorageDriver } from "../store/drivers/localStorage"
+import { roomPaths, validateRoomId } from "../store/roomPaths"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
 let storage: Record<string, string> = {}
+let storageOperations: string[] = []
 
 beforeEach(() => {
   storage = {}
+  storageOperations = []
   Object.defineProperty(globalThis, "localStorage", {
     value: {
-      getItem: (k: string) => storage[k] ?? null,
-      setItem: (k: string, v: string) => { storage[k] = v },
-      removeItem: (k: string) => { delete storage[k] },
-      clear: () => { storage = {} },
+      getItem: (k: string) => {
+        storageOperations.push(`get:${k}`)
+        return storage[k] ?? null
+      },
+      setItem: (k: string, v: string) => {
+        storageOperations.push(`set:${k}`)
+        storage[k] = v
+      },
+      removeItem: (k: string) => {
+        storageOperations.push(`remove:${k}`)
+        delete storage[k]
+      },
+      clear: () => {
+        storageOperations.push("clear")
+        storage = {}
+      },
       get length() { return Object.keys(storage).length },
-      key: (i: number) => Object.keys(storage)[i] ?? null,
+      key: (i: number) => {
+        storageOperations.push(`key:${i}`)
+        return Object.keys(storage)[i] ?? null
+      },
     },
     configurable: true,
     writable: true,
@@ -31,27 +49,33 @@ class MockDriver implements WorkspaceDriver {
   // Store raw bytes as ArrayBuffer (not Uint8Array) to avoid TS strict issues
   private store = new Map<string, ArrayBuffer>()
   private mtim = new Map<string, number>()
+  private clock = 0
+  readonly operations: string[] = []
 
   available(): boolean { return true }
   async init(): Promise<boolean> { return true }
 
   async read(path: string): Promise<Blob | null> {
+    this.operations.push(`read:${path}`)
     const raw = this.store.get(path)
     if (!raw) return null
     return new Blob([raw])
   }
 
   async write(path: string, data: Blob): Promise<void> {
+    this.operations.push(`write:${path}`)
     this.store.set(path, await data.arrayBuffer())
-    this.mtim.set(path, Date.now())
+    this.mtim.set(path, ++this.clock)
   }
 
   async delete(path: string): Promise<void> {
+    this.operations.push(`delete:${path}`)
     this.store.delete(path)
     this.mtim.delete(path)
   }
 
   async list(prefix?: string): Promise<FileEntry[]> {
+    this.operations.push(`list:${prefix ?? ""}`)
     const entries: FileEntry[] = []
     for (const [path, buf] of this.store) {
       if (prefix && !path.startsWith(prefix)) continue
@@ -62,6 +86,10 @@ class MockDriver implements WorkspaceDriver {
       })
     }
     return entries
+  }
+
+  clearOperations(): void {
+    this.operations.length = 0
   }
 }
 
@@ -78,6 +106,71 @@ describe("WorkspaceStore", () => {
     store = new WorkspaceStore()
     mock = new MockDriver()
     withMockDriver(store, mock)
+  })
+
+  it("costruisce path canonici deterministici per una room", () => {
+    expect(roomPaths("roomA.1")).toEqual({
+      scene: "raw/roomA.1/board.excalidraw",
+      meta: "raw/roomA.1/meta.json",
+      journal: "raw/roomA.1/events.jsonl",
+      session: "raw/roomA.1/session.yaml",
+      audioDir: "raw/roomA.1/audio/",
+      lessonOsSnapshot: "raw/roomA.1/lessonos-events.jsonl",
+    })
+  })
+
+  it("preserva gli id compatibili senza normalizzarli", () => {
+    const compatible = ["wbstudio-2026", "roomA", "_", "-", "roomA.1", "A".repeat(128)]
+    for (const room of compatible) {
+      expect(validateRoomId(room)).toBe(room)
+    }
+  })
+
+  it("rifiuta id ostili, riservati e device Windows senza riflettere input", () => {
+    const invalid = [
+      "", ".", "..", "private/secret", "private\\secret", "room\u0000id", "room\nid",
+      "room id", " room", "room\t", "%2e%2e", "room%2Fchild", "caffè", "room.",
+      "A".repeat(129), "con", "PRN", "AuX.txt", "nul", "COM1", "com9.log", "lpt1",
+      "LPT9.backup", "audio", "BOARD.EXCALIDRAW", "events.jsonl", "Session.Yaml",
+      "lessonos-events.jsonl",
+    ]
+    const messages: string[] = []
+
+    for (const room of invalid) {
+      let error: unknown
+      try {
+        validateRoomId(room)
+      } catch (caught) {
+        error = caught
+      }
+      expect(error).toBeInstanceOf(Error)
+      const message = (error as Error).message
+      expect(message).toMatch(/room/i)
+      messages.push(message)
+    }
+    expect(new Set(messages).size).toBe(1)
+    expect(messages[0]).not.toContain("private/secret")
+  })
+
+  it("rifiuta room non valide prima di driver e cache legacy in ogni operazione room-scoped", async () => {
+    for (const invalidRoom of ["private/secret", "audio"]) {
+      const operations: Array<() => Promise<unknown>> = [
+        () => store.saveScene(invalidRoom, "{}"),
+        () => store.loadScene(invalidRoom),
+        () => store.saveMeta(invalidRoom, { v: 1, name: "Hostile", createdAt: 1 }),
+        () => store.loadMeta(invalidRoom),
+        () => store.exportLesson(invalidRoom),
+        () => store.importLessonBlobForRoom(new Blob(["not-a-zip"]), invalidRoom),
+      ]
+
+      for (const operation of operations) {
+        mock.clearOperations()
+        storageOperations = []
+        await expect(operation()).rejects.toThrow(/room/i)
+        expect(mock.operations).toEqual([])
+        expect(storageOperations).toEqual([])
+      }
+    }
   })
 
   it("init restituisce localStorage quando FSA non disponibile", async () => {
@@ -222,6 +315,19 @@ describe("WorkspaceStore", () => {
     expect(rooms[0].name).toBe("roomB") // fallback-id senza meta
     expect(rooms[1].room).toBe("roomA")
     expect(rooms[1].name).toBe("Alpha")
+  })
+
+  it("listRooms ignora path invalidi, riservati o più profondi", async () => {
+    await store.write("raw/roomA/board.excalidraw", new Blob(["{}"]))
+    await store.write("raw/../board.excalidraw", new Blob(["{}"]))
+    await store.write("raw/audio/board.excalidraw", new Blob(["{}"]))
+    await store.write("raw/room./board.excalidraw", new Blob(["{}"]))
+    await store.write("raw/deeper/board.excalidraw/extra", new Blob(["{}"]))
+    await store.write("raw/roomB/board.excalidraw", new Blob(["{}"]))
+
+    const rooms = await store.listRooms()
+
+    expect(rooms.map(({ room }) => room)).toEqual(["roomB", "roomA"])
   })
 
   it("listRooms su store vuoto = []", async () => {
