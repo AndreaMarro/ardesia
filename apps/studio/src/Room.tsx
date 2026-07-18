@@ -15,7 +15,11 @@ import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import ViewNav from "./design/ViewNav"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
-import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
+import {
+  openLessonOsSession,
+  type LessonOsSessionHandle,
+  type LessonOsSessionOpener,
+} from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
@@ -29,15 +33,16 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { validateRoomId } from "./store/roomPaths"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
-  let h = location.hash.replace(/^#/, "").trim()
+  let h = location.hash.replace(/^#/, "")
   if (!h) {
     h = "wbstudio-" + Math.random().toString(36).slice(2, 9)
     location.hash = h
   }
-  return h
+  return validateRoomId(h)
 }
 
 /** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
@@ -49,7 +54,13 @@ function isLessonFile(file: File): boolean {
   return file.name.toLowerCase().endsWith(LESSON_EXTENSION)
 }
 
-export default function Room({ store }: { store?: WorkspaceStore }) {
+export default function Room({
+  store,
+  lessonOsOpener = openLessonOsSession,
+}: {
+  store?: WorkspaceStore
+  lessonOsOpener?: LessonOsSessionOpener
+}) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
@@ -104,7 +115,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
-  const lessonOsRef = useRef<LessonOsRuntime | null>(null)
+  const lessonOsRef = useRef<LessonOsSessionHandle | null>(null)
   // persist() va chiesto UNA volta, su chiara interazione utente (spec #35 §4.1)
   const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
@@ -142,17 +153,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
           // LessonOS: event-log persistente + preflight storage (spec #35 §4).
           // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
-          bootstrapLessonOs()
-            .then((runtime) => {
-              if (cancelled) return
+          lessonOsOpener({ room })
+            .then(async (runtime) => {
+              if (cancelled) {
+                try {
+                  await runtime.close()
+                } catch (error) {
+                  console.error("LessonOS session cleanup failed after Room unmount", error)
+                }
+                return
+              }
               lessonOsRef.current = runtime
-              const startedAt = clock()
-              runtime.store.append({
-                kind: "lesson.started",
-                room,
-                t: startedAt,
-                evidence: [`lesson:${room}@${startedAt}`],
-              }).catch(() => {})
               // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
               if (runtime.dataLoss) {
                 setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
@@ -164,7 +175,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
               if (advice === "export-advised") setExportAdvice(reason)
             })
-            .catch(() => {})
+            .catch((error) => {
+              if (cancelled) {
+                console.error("LessonOS session open failed after Room unmount", error)
+                return
+              }
+              setStorageError("Avvio memoria lezione fallito: " + (error as Error).message)
+            })
         }
 
         return actualStore.loadScene(room)
@@ -239,35 +256,20 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       audioRecorderRef.current?.dispose()
       journalRef.current = null
       audioRecorderRef.current = null
-      // Chiudi il backend persistente LessonOS (open() è idempotente al prossimo mount)
-      const lessonOsStore = lessonOsRef.current?.store
+      // La Room possiede la sessione: close appende un solo lesson.ended v2 e
+      // rilascia il backend persistente. Gli errori di cleanup non sono silenti.
+      const lessonOs = lessonOsRef.current
       lessonOsRef.current = null
-      if (lessonOsStore && "close" in lessonOsStore) {
-        const endedAt = sharedClock()
-        lessonOsStore.append({
-          kind: "lesson.ended",
-          room,
-          t: endedAt,
-          evidence: [`lesson:${room}@${endedAt}`],
-        }).catch(() => {}).finally(() => {
-          ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
-        })
-      } else if (lessonOsStore) {
-        const endedAt = sharedClock()
-        lessonOsStore.append({
-          kind: "lesson.ended",
-          room,
-          t: endedAt,
-          evidence: [`lesson:${room}@${endedAt}`],
-        }).catch(() => {})
-      }
+      lessonOs?.close().catch((error) => {
+        console.error("LessonOS session cleanup failed during Room unmount", error)
+      })
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {
         unsub()
       }
       unsubsRef.current = []
     }
-  }, [room, actualStore])
+  }, [room, actualStore, lessonOsOpener])
 
   /** document.title: rec ← "● REC — Ardesia · studio", altrimenti "Ardesia · studio" */
   useEffect(() => {

@@ -5,11 +5,19 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
+import { Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
 import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
 import { createPluginPostitBoardScene } from "../design/multiPostitBoardPersistence"
 import { exportLesson } from "../store/lessonBundle"
+import {
+  openLessonOsSession,
+  type LessonOsSessionHandle,
+  type LessonOsSessionOpener,
+} from "../lessonos/bootstrap"
+import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
+import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 
@@ -79,6 +87,8 @@ vi.mock("../MathComposer", () => ({
 vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
 vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
+vi.mock("../store/isRecapView", () => ({ isRecapView: vi.fn(() => false) }))
+vi.mock("../store/isReplayView", () => ({ isReplayView: vi.fn(() => false) }))
 // LessonOS bridge: nei test il registry di default riconosce il manuale di prova
 // (in prod defaultManualRegistry è vuoto finché non esiste una config manuali).
 vi.mock("../lessonos/manualRegistry", async (importOriginal) => {
@@ -168,6 +178,7 @@ beforeEach(() => {
   })
   globalThis.location.hash = "#test-room-1"
   document.body.innerHTML = '<div id="root"></div>'
+  delete (window as any).__MAESTRO_TEST__
   mockExcalidrawHarness.updateSceneCalls = []
   vi.clearAllMocks()
 })
@@ -618,6 +629,576 @@ describe("Room ↔ WorkspaceStore integration", () => {
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()
+  })
+})
+
+// ── FB-3C: sessione canonica LessonOS v2 ───────────────────────────────────────
+
+const SESSION_A = "10000000-0000-4000-8000-000000000001"
+const SESSION_B = "10000000-0000-4000-8000-000000000002"
+const EVENT_START = "20000000-0000-4000-8000-000000000001"
+const EVENT_FACT = "20000000-0000-4000-8000-000000000002"
+const EVENT_END = "20000000-0000-4000-8000-000000000003"
+
+function deterministicSessionDeps(options: {
+  sessionId?: string
+  eventIds?: string[]
+  times?: number[]
+} = {}) {
+  const eventIds = [...(options.eventIds ?? [EVENT_START, EVENT_FACT, EVENT_END])]
+  const times = [...(options.times ?? [
+    "2026-07-18T10:00:00.000Z",
+    "2026-07-18T10:01:00.000Z",
+    "2026-07-18T10:02:00.000Z",
+  ].map(Date.parse))]
+  return {
+    newSessionId: vi.fn(() => options.sessionId ?? SESSION_A),
+    newEventId: vi.fn(() => {
+      const next = eventIds.shift()
+      if (!next) throw new Error("event id fixture esaurita")
+      return next
+    }),
+    now: vi.fn(() => {
+      const next = times.shift()
+      if (!next) throw new Error("clock fixture esaurito")
+      return next
+    }),
+  }
+}
+
+async function openInMemorySession(
+  lessonId = "test-room-1",
+  deps = deterministicSessionDeps(),
+): Promise<LessonOsSessionHandle> {
+  return openLessonOsSession({
+    room: lessonId,
+    env: { indexedDB: undefined, markerStorage: undefined },
+    ...deps,
+  })
+}
+
+describe("FB-3C: openLessonOsSession", () => {
+  it("due aperture della stessa lezione hanno sessionId canonici distinti", async () => {
+    const first = await openInMemorySession(
+      "test-room-1",
+      deterministicSessionDeps({ sessionId: SESSION_A, eventIds: [EVENT_START] }),
+    )
+    const second = await openInMemorySession(
+      "test-room-1",
+      deterministicSessionDeps({
+        sessionId: SESSION_B,
+        eventIds: ["20000000-0000-4000-8000-000000000004"],
+      }),
+    )
+
+    expect(first.identity.lessonId).toBe("test-room-1")
+    expect(first.identity.sessionId).toBe(SESSION_A)
+    expect(second.identity.lessonId).toBe("test-room-1")
+    expect(second.identity.sessionId).toBe(SESSION_B)
+    expect(first.identity.sessionId).not.toBe(second.identity.sessionId)
+    expect(Object.isFrozen(first.identity)).toBe(true)
+    expect(Object.isFrozen(first.identity.actor)).toBe(true)
+    expect(Object.isFrozen(first.producer)).toBe(true)
+  })
+
+  it("rifiuta una room non valida prima di UUID, IndexedDB, preflight o marker", async () => {
+    const open = vi.fn()
+    const markerStorage = {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+    }
+    const deps = deterministicSessionDeps()
+
+    await expect(openLessonOsSession({
+      room: "../escape",
+      env: { indexedDB: { open } as unknown as IDBFactory, markerStorage },
+      ...deps,
+    })).rejects.toThrow("Invalid room identifier")
+
+    expect(deps.newSessionId).not.toHaveBeenCalled()
+    expect(deps.newEventId).not.toHaveBeenCalled()
+    expect(deps.now).not.toHaveBeenCalled()
+    expect(open).not.toHaveBeenCalled()
+    expect(markerStorage.getItem).not.toHaveBeenCalled()
+    expect(markerStorage.setItem).not.toHaveBeenCalled()
+    expect(markerStorage.removeItem).not.toHaveBeenCalled()
+  })
+
+  it("degrada se il getter globale localStorage lancia SecurityError", async () => {
+    const indexedDbModule = await import("../lessonos/indexedDbEventLog")
+    const canonical = await createEventLogStore({ factory: undefined })
+    const persistent = Object.create(indexedDbModule.IndexedDbEventLog.prototype) as any
+    Object.defineProperties(persistent, {
+      databaseName: { configurable: true, value: "fb3c-localstorage-getter" },
+      open: {
+        configurable: true,
+        value: vi.fn(async () => ({ recovered: 0, lastSeq: 0, droppedTail: 0, corrupted: false })),
+      },
+      append: { configurable: true, value: canonical.append.bind(canonical) },
+      readAll: { configurable: true, value: canonical.readAll.bind(canonical) },
+      appendEnvelope: { configurable: true, value: canonical.appendEnvelope.bind(canonical) },
+      readAllEnvelopes: { configurable: true, value: canonical.readAllEnvelopes.bind(canonical) },
+      readEnvelopesByLesson: { configurable: true, value: canonical.readEnvelopesByLesson.bind(canonical) },
+      readEnvelopesBySession: { configurable: true, value: canonical.readEnvelopesBySession.bind(canonical) },
+      close: { configurable: true, value: vi.fn(async () => {}) },
+    })
+    const createStoreSpy = vi.spyOn(indexedDbModule, "createEventLogStore").mockResolvedValue(persistent)
+    const localStorageDescriptor = Object.getOwnPropertyDescriptor(globalThis, "localStorage")
+    Object.defineProperty(globalThis, "localStorage", {
+      configurable: true,
+      get() {
+        throw new DOMException("storage negato", "SecurityError")
+      },
+    })
+
+    try {
+      const handle = await openLessonOsSession({
+        room: "test-room-1",
+        env: { storage: undefined },
+        ...deterministicSessionDeps(),
+      })
+      expect(handle.persistent).toBe(true)
+      await handle.close()
+    } finally {
+      createStoreSpy.mockRestore()
+      if (localStorageDescriptor) {
+        Object.defineProperty(globalThis, "localStorage", localStorageDescriptor)
+      } else {
+        delete (globalThis as { localStorage?: Storage }).localStorage
+      }
+    }
+  })
+
+  it("rifiuta a runtime un actor non-teacher prima dello storage", async () => {
+    const open = vi.fn()
+    await expect(openLessonOsSession({
+      room: "test-room-1",
+      actor: { type: "system", id: "forged-authority" } as any,
+      env: { indexedDB: { open } as unknown as IDBFactory, markerStorage: undefined },
+      ...deterministicSessionDeps(),
+    })).rejects.toThrow(/teacher/i)
+    expect(open).not.toHaveBeenCalled()
+  })
+
+  it("rifiuta una collisione start invece di riusare una sessione precedente", async () => {
+    const probe = await createEventLogStore({ factory: undefined })
+    const prototype = Object.getPrototypeOf(probe) as {
+      appendEnvelope: typeof probe.appendEnvelope
+    }
+    const appendSpy = vi.spyOn(prototype, "appendEnvelope").mockImplementation(async (envelope) => ({
+      event: Object.freeze({ ...structuredClone(envelope), seq: 1 }),
+      appended: false,
+    }))
+    try {
+      await expect(openInMemorySession()).rejects.toThrow(/fresh|collision|already/i)
+    } finally {
+      appendSpy.mockRestore()
+    }
+  })
+
+  it("scrive start/end v2 completi con SHA, evidenza verificata e chiavi lifecycle stabili", async () => {
+    const handle = await openInMemorySession()
+    const store = handle.store
+    await handle.close()
+    await handle.close()
+
+    const rows = await store.readEnvelopesBySession("test-room-1", SESSION_A)
+    expect(rows).toHaveLength(2)
+    const [started, ended] = rows
+    const expectedProducer = studioProducerIdentity()
+    expect(started).toMatchObject({
+      schemaVersion: 2,
+      eventId: EVENT_START,
+      lessonId: "test-room-1",
+      sessionId: SESSION_A,
+      kind: "lesson.started",
+      occurredAt: "2026-07-18T10:00:00.000Z",
+      actor: { type: "teacher", id: "founder-beta-teacher" },
+      producer: expectedProducer,
+      causationId: null,
+      idempotencyKey: `session:${SESSION_A}:started`,
+      evidence: [{ ref: "lesson:test-room-1@1784368800000", resolution: "verified" }],
+      payload: { room: "test-room-1" },
+    })
+    expect(ended).toMatchObject({
+      eventId: EVENT_FACT,
+      kind: "lesson.ended",
+      occurredAt: "2026-07-18T10:01:00.000Z",
+      idempotencyKey: `session:${SESSION_A}:ended`,
+      evidence: [{ ref: "lesson:test-room-1@1784368860000", resolution: "verified" }],
+      payload: { room: "test-room-1" },
+    })
+    expect(Object.keys(started!.payload)).toEqual(["room"])
+    expect(Object.keys(ended!.payload)).toEqual(["room"])
+    expect(handle.producer).toEqual(expectedProducer)
+    expect(handle.producer.commitSha).toMatch(/^[0-9a-f]{40}$/)
+  })
+
+  it("appendFact applica identità trusted e rifiuta override o lifecycle", async () => {
+    const handle = await openInMemorySession()
+
+    await handle.appendFact(
+      "concept.introduced",
+      { conceptId: "ohm-law", labels: { it: "Legge di Ohm" } },
+      {
+        evidence: [{ ref: "board:element-1", resolution: "verified" }],
+        idempotencyKey: "board:element-1:introduced",
+      },
+    )
+
+    const rows = await handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+    expect(rows[1]).toMatchObject({
+      eventId: EVENT_FACT,
+      lessonId: "test-room-1",
+      sessionId: SESSION_A,
+      actor: handle.identity.actor,
+      producer: handle.producer,
+      kind: "concept.introduced",
+      occurredAt: "2026-07-18T10:01:00.000Z",
+      causationId: null,
+      idempotencyKey: "board:element-1:introduced",
+      evidence: [{ ref: "board:element-1", resolution: "verified" }],
+      payload: { conceptId: "ohm-law", labels: { it: "Legge di Ohm" } },
+    })
+
+    await expect(handle.appendFact(
+      "concept.introduced",
+      { conceptId: "bad", labels: {} },
+      {
+        evidence: [{ ref: "board:bad", resolution: "verified" }],
+        actor: { type: "system", id: "forged" },
+      } as any,
+    )).rejects.toThrow(/override|trusted/i)
+    await expect(handle.appendFact(
+      "lesson.ended" as any,
+      { room: "test-room-1" },
+      { evidence: [{ ref: "lesson:test-room-1", resolution: "verified" }] },
+    )).rejects.toThrow(/lifecycle|factual/i)
+  })
+
+  it("close concorrente/ripetuto riusa un solo end envelope e blocca nuovi fatti", async () => {
+    const deps = deterministicSessionDeps()
+    const handle = await openInMemorySession("test-room-1", deps)
+    const store = handle.store
+
+    await Promise.all([handle.close(), handle.close(), handle.close()])
+    await handle.close()
+
+    const rows = await store.readEnvelopesBySession("test-room-1", SESSION_A)
+    expect(rows.filter((row) => row.kind === "lesson.ended")).toHaveLength(1)
+    expect(rows.map((row) => row.eventId)).toEqual([EVENT_START, EVENT_FACT])
+    expect(deps.newEventId).toHaveBeenCalledTimes(2)
+    expect(deps.now).toHaveBeenCalledTimes(2)
+    await expect(handle.appendFact(
+      "concept.introduced",
+      { conceptId: "late", labels: {} },
+      { evidence: [{ ref: "board:late", resolution: "verified" }] },
+    )).rejects.toThrow(/closing|closed/i)
+  })
+
+  it("close rilascia il backend fisico soltanto dopo avere accodato end", async () => {
+    const probe = await createEventLogStore({ factory: undefined })
+    const prototype = Object.getPrototypeOf(probe) as Record<PropertyKey, unknown>
+    const originalClose = Object.getOwnPropertyDescriptor(prototype, "close")
+    const calls: string[] = []
+    Object.defineProperty(prototype, "close", {
+      configurable: true,
+      value: vi.fn(async () => { calls.push("physical-close") }),
+    })
+    try {
+      const handle = await openInMemorySession()
+      const originalAppend = handle.store.appendEnvelope.bind(handle.store)
+      vi.spyOn(handle.store, "appendEnvelope").mockImplementation(async (envelope) => {
+        const result = await originalAppend(envelope)
+        calls.push(envelope.kind)
+        return result
+      })
+
+      await handle.close()
+
+      expect(calls).toEqual(["lesson.ended", "physical-close"])
+      expect(prototype.close).toHaveBeenCalledTimes(1)
+    } finally {
+      if (originalClose) {
+        Object.defineProperty(prototype, "close", originalClose)
+      } else {
+        delete prototype.close
+      }
+    }
+  })
+
+  it("close ritenta con lo stesso envelope se il primo append end fallisce", async () => {
+    const deps = deterministicSessionDeps()
+    const handle = await openInMemorySession("test-room-1", deps)
+    const originalAppend = handle.store.appendEnvelope.bind(handle.store)
+    const appendSpy = vi.spyOn(handle.store, "appendEnvelope")
+      .mockRejectedValueOnce(new Error("transient end append failure"))
+      .mockImplementation(originalAppend)
+
+    await expect(handle.close()).rejects.toThrow("transient end append failure")
+    await handle.close()
+
+    const rows = await handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+    expect(rows.filter((row) => row.kind === "lesson.ended")).toHaveLength(1)
+    expect(rows.at(-1)?.eventId).toBe(EVENT_FACT)
+    expect(appendSpy).toHaveBeenCalledTimes(2)
+    expect(appendSpy.mock.calls[0]?.[0]).toEqual(appendSpy.mock.calls[1]?.[0])
+    expect(deps.newEventId).toHaveBeenCalledTimes(2)
+    expect(deps.now).toHaveBeenCalledTimes(2)
+  })
+
+  it("un errore della factory end diventa una Promise rigettata, mai un throw sincrono", async () => {
+    const deps = deterministicSessionDeps({
+      eventIds: [EVENT_START],
+      times: [Date.parse("2026-07-18T10:00:00.000Z"), Date.parse("2026-07-18T10:01:00.000Z")],
+    })
+    const handle = await openInMemorySession("test-room-1", deps)
+    let closeResult: Promise<unknown> | undefined
+
+    expect(() => {
+      closeResult = handle.close()
+    }).not.toThrow()
+    await expect(closeResult).rejects.toThrow("event id fixture esaurita")
+  })
+})
+
+function makeDeferred<T>() {
+  let resolve!: (value: T) => void
+  let reject!: (reason?: unknown) => void
+  const promise = new Promise<T>((res, rej) => {
+    resolve = res
+    reject = rej
+  })
+  return { promise, resolve, reject }
+}
+
+class TestErrorBoundary extends Component<
+  { children: ReactNode },
+  { error: Error | null }
+> {
+  state = { error: null as Error | null }
+
+  static getDerivedStateFromError(error: Error) {
+    return { error }
+  }
+
+  render() {
+    return this.state.error ? this.state.error.message : this.props.children
+  }
+}
+
+describe("FB-3C: ownership Room della sessione LessonOS", () => {
+  it("hash con whitespace fallisce esattamente prima di store e opener", async () => {
+    vi.stubGlobal("location", { hash: "# roomA " })
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const { store } = await createMockStore()
+    const initSpy = vi.spyOn(store, "init")
+    const opener: LessonOsSessionOpener = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(
+      <TestErrorBoundary>
+        <RoomModule.default store={store} lessonOsOpener={opener} />
+      </TestErrorBoundary>,
+    )
+
+    await vi.waitFor(() => expect(document.body.textContent).toContain("Invalid room identifier"))
+    expect(initSpy).not.toHaveBeenCalled()
+    expect(opener).not.toHaveBeenCalled()
+    root.unmount()
+    consoleSpy.mockRestore()
+    vi.unstubAllGlobals()
+  })
+
+  it("chiude immediatamente un handle che risolve dopo unmount", async () => {
+    const deferred = makeDeferred<LessonOsSessionHandle>()
+    const opener: LessonOsSessionOpener = vi.fn(() => deferred.promise)
+    const lateHandle = await openInMemorySession()
+    const closeSpy = vi.spyOn(lateHandle, "close")
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => expect(opener).toHaveBeenCalledWith({ room: "test-room-1" }))
+    root.unmount()
+    deferred.resolve(lateHandle)
+    await vi.waitFor(() => expect(closeSpy).toHaveBeenCalledTimes(1))
+    expect(consoleSpy).not.toHaveBeenCalled()
+    consoleSpy.mockRestore()
+  })
+
+  it("rende diagnostico un close tardivo fallito dopo unmount", async () => {
+    const deferred = makeDeferred<LessonOsSessionHandle>()
+    const opener: LessonOsSessionOpener = vi.fn(() => deferred.promise)
+    const lateHandle = await openInMemorySession()
+    const closeSpy = vi.spyOn(lateHandle, "close")
+      .mockRejectedValueOnce(new Error("late lifecycle close failed"))
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => expect(opener).toHaveBeenCalledWith({ room: "test-room-1" }))
+    root.unmount()
+    deferred.resolve(lateHandle)
+    await vi.waitFor(() => {
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "LessonOS session cleanup failed after Room unmount",
+        expect.objectContaining({ message: "late lifecycle close failed" }),
+      )
+    })
+    closeSpy.mockRestore()
+    consoleSpy.mockRestore()
+    await lateHandle.close()
+  })
+
+  it("rende diagnostico il rigetto reale della factory end durante unmount", async () => {
+    const handle = await openInMemorySession(
+      "test-room-1",
+      deterministicSessionDeps({
+        eventIds: [EVENT_START],
+        times: [Date.parse("2026-07-18T10:00:00.000Z"), Date.parse("2026-07-18T10:01:00.000Z")],
+      }),
+    )
+    const opener: LessonOsSessionOpener = vi.fn(async () => handle)
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(handle))
+
+    expect(() => root.unmount()).not.toThrow()
+    await vi.waitFor(() => {
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "LessonOS session cleanup failed during Room unmount",
+        expect.objectContaining({ message: "event id fixture esaurita" }),
+      )
+    })
+    consoleSpy.mockRestore()
+  })
+
+  it("rimontare la stessa lezione apre una nuova sessione", async () => {
+    const opened: LessonOsSessionHandle[] = []
+    const ids = [SESSION_A, SESSION_B]
+    const opener: LessonOsSessionOpener = vi.fn(async ({ room: lessonId }) => {
+      const index = opened.length
+      const handle = await openInMemorySession(
+        lessonId,
+        deterministicSessionDeps({
+          sessionId: ids[index],
+          eventIds: [
+            `30000000-0000-4000-8000-00000000000${index + 1}`,
+            `40000000-0000-4000-8000-00000000000${index + 1}`,
+          ],
+        }),
+      )
+      opened.push(handle)
+      return handle
+    })
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const RoomModule = await import("../Room")
+
+    const firstRoot = createRoot(document.getElementById("root")!)
+    firstRoot.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => {
+      expect(opened).toHaveLength(1)
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(opened[0])
+    })
+    firstRoot.unmount()
+
+    document.body.innerHTML = '<div id="root"></div>'
+    delete (window as any).__MAESTRO_TEST__
+    const secondRoot = createRoot(document.getElementById("root")!)
+    secondRoot.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => {
+      expect(opened).toHaveLength(2)
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(opened[1])
+    })
+
+    expect(opened.map((handle) => handle.identity.sessionId)).toEqual([SESSION_A, SESSION_B])
+    secondRoot.unmount()
+  })
+
+  it("rende visibile il rigetto dell'opener", async () => {
+    const opener: LessonOsSessionOpener = vi.fn(async () => {
+      throw new Error("canonical session unavailable")
+    })
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-err")?.textContent).toContain("canonical session unavailable")
+    })
+    root.unmount()
+  })
+
+  it("audio resta OFF e non produce eventi/evidenze canonici audio", async () => {
+    const handle = await openInMemorySession()
+    const opener: LessonOsSessionOpener = vi.fn(async () => handle)
+    const appendFactSpy = vi.spyOn(handle, "appendFact")
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(handle)
+      const audioBtn = Array.from(document.querySelectorAll("button"))
+        .find((button) => button.textContent?.trim() === "audio")
+      expect(audioBtn).toBeDefined()
+    })
+    const rows = await handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+    expect(rows).toHaveLength(1)
+    expect(rows.some((row) => row.kind.includes("audio"))).toBe(false)
+    expect(rows.flatMap((row) => row.evidence).some((item) => item.ref.startsWith("audio:"))).toBe(false)
+    expect(appendFactSpy).not.toHaveBeenCalled()
+    root.unmount()
+  })
+
+  it("non apre sessioni in vista studente", async () => {
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReturnValue(true)
+    const opener: LessonOsSessionOpener = vi.fn()
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect((window as any).__MAESTRO_TEST__?.ready).toBe(true))
+    expect(opener).not.toHaveBeenCalled()
+    root.unmount()
+    vi.mocked(isStudentView).mockReturnValue(false)
+  })
+
+  it.each(["recap", "replay"])("non apre sessioni in vista %s", async (view) => {
+    const { isRecapView } = await import("../store/isRecapView")
+    const { isReplayView } = await import("../store/isReplayView")
+    vi.mocked(isRecapView).mockReturnValue(view === "recap")
+    vi.mocked(isReplayView).mockReturnValue(view === "replay")
+    const opener: LessonOsSessionOpener = vi.fn()
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect((window as any).__MAESTRO_TEST__?.ready).toBe(true))
+    expect(opener).not.toHaveBeenCalled()
+    root.unmount()
+    vi.mocked(isRecapView).mockReturnValue(false)
+    vi.mocked(isReplayView).mockReturnValue(false)
   })
 })
 
