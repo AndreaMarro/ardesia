@@ -3,9 +3,8 @@
 // eventi, stesso grafo). jsdom non fornisce IndexedDB e fake-indexeddb non è tra
 // le dipendenze: qui c'è un fake in-file del SOLO subset IDB usato dall'adapter
 // (open/upgrade, transaction, objectStore, add, getAll, getAllKeys), con dati che
-// persistono nel factory attraverso close/reopen — è ciò che serve per testare la
-// sopravvivenza. La fedeltà piena a IDB reale (eventi, ordering) resta delegata a
-// fake-indexeddb come devDep, proponibile quando #24 è su main.
+// persistono nel factory attraverso close/reopen e transazioni readwrite FIFO sullo
+// stesso store. La fedeltà piena a IDB reale resta coperta dall'E2E browser.
 
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog, type LessonOsEvent } from "../lessonos/eventlog"
@@ -71,81 +70,140 @@ class FakeRequest<T> {
 }
 
 class FakeObjectStore {
-  private records: Map<number, StoredRecord>
   private keyPath: string
   private txn: FakeTransaction
-  constructor(records: Map<number, StoredRecord>, keyPath: string, txn: FakeTransaction) {
-    this.records = records
+  constructor(keyPath: string, txn: FakeTransaction) {
     this.keyPath = keyPath
     this.txn = txn
   }
 
   add(value: StoredRecord): FakeRequest<number> {
-    const req = new FakeRequest<number>()
-    const key = value[this.keyPath]
-    this.txn.pending += 1
-    if (typeof key !== "number" || !Number.isInteger(key) || key <= 0) {
-      req.settleError(`chiave non valida: ${String(key)}`)
-      this.txn.opSettled(false)
-    } else if (this.records.has(key)) {
-      req.settleError(`chiave duplicata: ${key}`)
-      this.txn.opSettled(false)
-    } else {
-      this.records.set(key, structuredClone(value))
-      req.settleSuccess(key)
-      this.txn.opSettled(true)
-    }
-    return req
+    return this.txn.request((records) => {
+      const key = value[this.keyPath]
+      if (typeof key !== "number" || !Number.isInteger(key) || key <= 0) {
+        throw new DOMException(`chiave non valida: ${String(key)}`, "ConstraintError")
+      }
+      if (records.has(key)) {
+        throw new DOMException(`chiave duplicata: ${key}`, "ConstraintError")
+      }
+      records.set(key, structuredClone(value))
+      return key
+    })
   }
 
   getAll(): FakeRequest<StoredRecord[]> {
-    const req = new FakeRequest<StoredRecord[]>()
-    this.txn.pending += 1
-    const keys = [...this.records.keys()].sort((a, b) => a - b)
-    req.settleSuccess(keys.map((k) => structuredClone(this.records.get(k)!)))
-    this.txn.opSettled(true)
-    return req
+    return this.txn.request((records) => {
+      const keys = [...records.keys()].sort((a, b) => a - b)
+      return keys.map((key) => structuredClone(records.get(key)!))
+    })
   }
 
   getAllKeys(): FakeRequest<number[]> {
-    const req = new FakeRequest<number[]>()
-    this.txn.pending += 1
-    req.settleSuccess([...this.records.keys()].sort((a, b) => a - b))
-    this.txn.opSettled(true)
-    return req
+    return this.txn.request((records) => [...records.keys()].sort((a, b) => a - b))
   }
 }
 
 class FakeTransaction {
   pending = 0
+  error: DOMException | null = null
   private failed = false
+  private active = false
+  private completed = false
+  private activity = 0
+  private operations: Array<() => void> = []
+  private working: Map<number, StoredRecord> | null = null
   oncomplete: ((ev: unknown) => void) | null = null
   onabort: ((ev: unknown) => void) | null = null
   onerror: ((ev: unknown) => void) | null = null
 
   private db: FakeDatabase
   private storeName: string
-  constructor(db: FakeDatabase, storeName: string) {
+  private mode: IDBTransactionMode
+  private release: () => void
+  constructor(db: FakeDatabase, storeName: string, mode: IDBTransactionMode, release: () => void) {
     this.db = db
     this.storeName = storeName
-    // Il complete arriva dopo che tutte le richieste sincrone sono state accodate.
-    queueMicrotask(() => {
-      queueMicrotask(() => {
-        if (!this.failed) this.oncomplete?.({ target: this })
-      })
-    })
+    this.mode = mode
+    this.release = release
+  }
+
+  start() {
+    if (this.active || this.completed) return
+    this.active = true
+    this.working = new Map(
+      [...this.db.data(this.storeName)].map(([key, value]) => [key, structuredClone(value)]),
+    )
+    this.drain()
+    this.scheduleComplete()
   }
 
   objectStore(name: string): FakeObjectStore {
     if (name !== this.storeName) throw new DOMException(`store sconosciuto: ${name}`, "NotFoundError")
-    return new FakeObjectStore(this.db.data(name), this.db.keyPathOf(name), this)
+    return new FakeObjectStore(this.db.keyPathOf(name), this)
   }
 
-  opSettled(ok: boolean) {
-    this.pending -= 1
-    if (!ok) {
+  request<T>(operation: (records: Map<number, StoredRecord>) => T): FakeRequest<T> {
+    if (this.completed) throw new DOMException("transazione non attiva", "TransactionInactiveError")
+    const request = new FakeRequest<T>()
+    this.pending += 1
+    this.activity += 1
+    this.operations.push(() => {
+      try {
+        request.settleSuccess(operation(this.working!))
+        this.pending -= 1
+        this.scheduleComplete()
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        request.settleError(message)
+        this.pending -= 1
+        this.error = request.error
+        this.fail()
+      }
+    })
+    this.drain()
+    return request
+  }
+
+  private drain() {
+    if (!this.active || this.failed || this.completed) return
+    while (this.operations.length > 0 && !this.failed) this.operations.shift()!()
+  }
+
+  private scheduleComplete() {
+    const activity = this.activity
+    // Lascia passare l'onsuccess della request e la continuazione Promise che
+    // può accodare la richiesta successiva nella stessa transazione attiva.
+    queueMicrotask(() => {
+      queueMicrotask(() => {
+        if (
+          this.active &&
+          !this.failed &&
+          !this.completed &&
+          this.pending === 0 &&
+          this.operations.length === 0 &&
+          this.activity === activity
+        ) {
+          this.completed = true
+          this.active = false
+          if (this.mode === "readwrite") this.db.replaceData(this.storeName, this.working!)
+          this.release()
+          this.oncomplete?.({ target: this })
+        }
+      })
+    })
+  }
+
+  private fail() {
+    if (!this.failed) {
       this.failed = true
-      queueMicrotask(() => this.onerror?.({ target: this }))
+      queueMicrotask(() => {
+        if (this.completed) return
+        this.completed = true
+        this.active = false
+        this.release()
+        this.onerror?.({ target: this })
+        this.onabort?.({ target: this })
+      })
     }
   }
 }
@@ -160,23 +218,59 @@ class FakeDatabase {
   }
   createObjectStore(name: string, opts: { keyPath: string }) {
     this.backing.stores.set(name, { keyPath: opts.keyPath, records: new Map() })
-    return new FakeObjectStore(this.data(name), opts.keyPath, new FakeTransaction(this, name))
+    const txn = new FakeTransaction(this, name, "readwrite", () => {})
+    txn.start()
+    return new FakeObjectStore(opts.keyPath, txn)
   }
-  transaction(name: string, _mode: IDBTransactionMode): FakeTransaction {
+  transaction(name: string, mode: IDBTransactionMode): FakeTransaction {
     if (!this.backing.stores.has(name)) throw new DOMException(`store sconosciuto: ${name}`, "NotFoundError")
-    return new FakeTransaction(this, name)
+    const txn = new FakeTransaction(
+      this,
+      name,
+      mode,
+      mode === "readwrite" ? () => this.releaseWriter(name) : () => {},
+    )
+    if (mode === "readwrite") {
+      const queue = this.backing.waitingWriters.get(name) ?? []
+      this.backing.waitingWriters.set(name, queue)
+      if (this.backing.activeWriters.has(name)) {
+        queue.push(txn)
+      } else {
+        this.backing.activeWriters.add(name)
+        queueMicrotask(() => txn.start())
+      }
+    } else {
+      queueMicrotask(() => txn.start())
+    }
+    return txn
   }
   close() {}
   data(name: string): Map<number, StoredRecord> {
     return this.backing.stores.get(name)!.records
   }
+  replaceData(name: string, source: Map<number, StoredRecord>) {
+    this.backing.stores.get(name)!.records = new Map(
+      [...source].map(([key, value]) => [key, structuredClone(value)]),
+    )
+  }
   keyPathOf(name: string): string {
     return this.backing.stores.get(name)!.keyPath
+  }
+  private releaseWriter(name: string) {
+    const queue = this.backing.waitingWriters.get(name)!
+    const next = queue.shift()
+    if (next) {
+      queueMicrotask(() => next.start())
+    } else {
+      this.backing.activeWriters.delete(name)
+    }
   }
 }
 
 interface FakeBacking {
   stores: Map<string, { keyPath: string; records: Map<number, StoredRecord> }>
+  activeWriters: Set<string>
+  waitingWriters: Map<string, FakeTransaction[]>
 }
 
 class FakeOpenRequest extends FakeRequest<FakeDatabase> {
@@ -199,7 +293,7 @@ class FakeIdbFactory {
     let backing = this.databases.get(name)
     const isNew = !backing
     if (!backing) {
-      backing = { stores: new Map() }
+      backing = { stores: new Map(), activeWriters: new Set(), waitingWriters: new Map() }
       this.databases.set(name, backing)
     }
     const db = new FakeDatabase(backing)
@@ -215,7 +309,7 @@ class FakeIdbFactory {
 
   /** Accesso diretto per seminare corruzione nei test. */
   seed(dbName: string, storeName: string, keyPath: string, records: StoredRecord[]) {
-    const backing: FakeBacking = { stores: new Map() }
+    const backing: FakeBacking = { stores: new Map(), activeWriters: new Set(), waitingWriters: new Map() }
     const map = new Map<number, StoredRecord>()
     for (const r of records) map.set(r[keyPath] as number, structuredClone(r))
     backing.stores.set(storeName, { keyPath, records: map })
@@ -251,6 +345,30 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     expect(all.map((e) => e.seq)).toEqual([1, 2, 3, 4, 5])
     expect(all.map((e) => e.kind)).toEqual(FIXTURE.map((e) => e.kind))
     expect(Object.isFrozen(all[0])).toBe(true)
+  })
+
+  it("due adapter già aperti appendono insieme con seq contigui e persistono al cold reopen", async () => {
+    const factory = new FakeIdbFactory()
+    const first = new IndexedDbEventLog({ factory: asFactory(factory) })
+    const second = new IndexedDbEventLog({ factory: asFactory(factory) })
+    await Promise.all([first.open(), second.open()])
+
+    const appended = await Promise.all([first.append(FIXTURE[0]), second.append(FIXTURE[1])])
+    expect(appended.map((event) => event.seq).sort((a, b) => a - b)).toEqual([1, 2])
+
+    const persisted = await first.readAll()
+    expect(persisted.map((event) => event.seq)).toEqual([1, 2])
+    expect(persisted.map((event) => event.kind).sort()).toEqual(
+      [FIXTURE[0].kind, FIXTURE[1].kind].sort(),
+    )
+    expect(new Set(persisted.map((event) => `${event.kind}:${event.t}`))).toEqual(
+      new Set(FIXTURE.slice(0, 2).map((event) => `${event.kind}:${event.t}`)),
+    )
+
+    await Promise.all([first.close(), second.close()])
+    const cold = new IndexedDbEventLog({ factory: asFactory(factory) })
+    expect(await cold.open()).toEqual({ recovered: 2, lastSeq: 2, droppedTail: 0, corrupted: false })
+    expect(await cold.readAll()).toEqual(persisted)
   })
 
   it("SOPRAVVIVE al reload: close → riapri stesso storage → recovery e grafo identici", async () => {

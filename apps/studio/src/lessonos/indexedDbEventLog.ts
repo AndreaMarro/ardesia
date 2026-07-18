@@ -8,10 +8,11 @@
 // recall, bridge e projection non cambiano di una riga. Il backend SQLite/OPFS
 // (opfs-sahpool) resta GATE ANDREA ⑦ e arriverà come implementazione sorella.
 //
-// seq: gestito esplicitamente (lastSeq + 1) con `add()` — che fallisce su chiave
-// esistente — invece del key generator nativo IDB: il generator incrementa anche
-// su transazioni abortite, e i buchi che ne nascerebbero sono indistinguibili
-// dalla corruzione per la recovery conservativa (spec §5, invariante 5).
+// seq: gestito esplicitamente (max chiave fisica + 1, letto nella stessa
+// transazione readwrite) con `add()` — che fallisce su chiave esistente — invece
+// del key generator nativo IDB: il generator incrementa anche su transazioni
+// abortite, e i buchi che ne nascerebbero sono indistinguibili dalla corruzione
+// per la recovery conservativa (spec §5, invariante 5).
 
 import {
   InMemoryEventLog,
@@ -25,7 +26,7 @@ import {
 export interface RecoveryReport {
   /** Eventi validi recuperati (ordine seq). */
   recovered: number
-  /** Ultimo seq presente; il prossimo append usa lastSeq + 1. */
+  /** Ultimo seq presente al recovery; cache/report, non autorità per il prossimo append. */
   lastSeq: number
   /** Record scartati in coda (torn write). Con IndexedDB le transazioni sono atomiche: sempre 0. */
   droppedTail: number
@@ -66,10 +67,9 @@ export class IndexedDbEventLog implements EventLogStore {
   private db: IDBDatabase | null = null
   private lastSeq = 0
   private lastReport: RecoveryReport | null = null
-  // Serializzazione degli append: due append concorrenti leggerebbero lo stesso
-  // `lastSeq` e calcolerebbero lo stesso `seq` prima che l'uno lo aggiorni →
-  // `add` (append-only) collide → "scrittura fallita". La coda garantisce seq
-  // monotoni e distinti anche sotto emit rapido (solved→error→solved).
+  // Serializzazione per istanza: evita lavoro concorrente superfluo sotto emit
+  // rapido (solved→error→solved). Fra istanze/tab l'autorità resta la transazione
+  // IndexedDB readwrite, che legge il massimo fisico dopo aver acquisito il lock.
   private writeQueue: Promise<unknown> = Promise.resolve()
 
   constructor(options: IndexedDbEventLogOptions = {}) {
@@ -138,7 +138,19 @@ export class IndexedDbEventLog implements EventLogStore {
     if (!Number.isFinite(event.t)) {
       throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
     }
-    const seq = this.lastSeq + 1
+    const txn = db.transaction(STORE_NAME, "readwrite")
+    const done = new Promise<void>((resolve, reject) => {
+      txn.oncomplete = () => resolve()
+      txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
+      txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
+    })
+    const store = txn.objectStore(STORE_NAME)
+    const keys = await requestToPromise(store.getAllKeys())
+    const maxSeq = keys.reduce<number>(
+      (max, key) => (typeof key === "number" && Number.isFinite(key) ? Math.max(max, key) : max),
+      0,
+    )
+    const seq = maxSeq + 1
     const record: StoredEventRecord = {
       seq,
       t: event.t,
@@ -146,17 +158,11 @@ export class IndexedDbEventLog implements EventLogStore {
       payload: JSON.stringify(event),
       evidence: [...event.evidence],
     }
-    const txn = db.transaction(STORE_NAME, "readwrite")
-    const done = new Promise<void>((resolve, reject) => {
-      txn.oncomplete = () => resolve()
-      txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
-      txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
-    })
     // Promise.all: un handler è attaccato SIA alla add-request SIA alla txn
     // `done`; se una fallisce, l'altra non resta una promise rejected orfana
     // (era la causa dell'unhandled rejection su collisione seq).
     // `add`, mai `put`: su chiave esistente fallisce — il log non riscrive mai (append-only).
-    await Promise.all([requestToPromise(txn.objectStore(STORE_NAME).add(record)), done])
+    await Promise.all([requestToPromise(store.add(record)), done])
     this.lastSeq = seq
     return Object.freeze({ ...structuredClone(event), seq })
   }
