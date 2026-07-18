@@ -119,28 +119,27 @@ export class IndexedDbEventLog implements EventLogStore {
   }
 
   async append(event: LessonOsEvent): Promise<AppendedEvent> {
+    // Validazione identica a InMemoryEventLog e snapshot PRIMA di entrare
+    // nella coda: il caller può mutare il proprio oggetto subito dopo append().
+    assertEvidence(event.evidence, event.kind)
+    if (!Number.isFinite(event.t)) {
+      throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
+    }
+    const snapshot = structuredClone(event)
     // Accoda dietro l'append precedente: seq assegnati in serie, mai in race.
     // Il ramo di errore della coda continua comunque (append successivo non
     // deve restare bloccato da un fallimento precedente). `run.catch` tiene la
     // catena "gestita" (no unhandled), ma `run` propaga l'errore al chiamante.
     const run = this.writeQueue.then(
-      () => this.appendNow(event),
-      () => this.appendNow(event),
+      () => this.appendNow(snapshot),
+      () => this.appendNow(snapshot),
     )
     this.writeQueue = run.catch(() => {})
     return run
   }
 
-  private async appendNow(event: LessonOsEvent): Promise<AppendedEvent> {
+  private async appendNow(snapshot: LessonOsEvent): Promise<AppendedEvent> {
     const db = this.requireOpenDb()
-    // Validazione identica a InMemoryEventLog, PRIMA di toccare lo storage (invariante 4).
-    assertEvidence(event.evidence, event.kind)
-    if (!Number.isFinite(event.t)) {
-      throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
-    }
-    // Il caller conserva l'ownership dell'oggetto passato: fotografiamo
-    // esattamente ciò che è stato validato prima di qualunque await.
-    const snapshot = structuredClone(event)
     const txn = db.transaction(STORE_NAME, "readwrite")
     const done = new Promise<void>((resolve, reject) => {
       txn.oncomplete = () => resolve()
@@ -206,9 +205,6 @@ export class IndexedDbEventLog implements EventLogStore {
    */
   async importSnapshot(snapshot: Blob): Promise<RecoveryReport> {
     const db = this.requireOpenDb()
-    if (this.lastSeq !== 0) {
-      throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
-    }
     const lines = (await snapshot.text()).split("\n").filter((line) => line.length > 0)
     const records: StoredEventRecord[] = []
     for (const line of lines) {
@@ -237,18 +233,33 @@ export class IndexedDbEventLog implements EventLogStore {
     if (!records.every((record, i) => record.seq === i + 1)) {
       throw new Error("LessonOS event log: snapshot corrotto (sequenza non contigua) — non si ripara")
     }
-    if (records.length > 0) {
-      const txn = db.transaction(STORE_NAME, "readwrite")
-      const done = new Promise<void>((resolve, reject) => {
-        txn.oncomplete = () => resolve()
-        txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
-        txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
-      })
+
+    // `lastSeq` è solo cache/report: l'autorità sull'emptiness è lo store
+    // fisico, letto sotto lo stesso lock readwrite che protegge il restore.
+    // Anche uno snapshot vuoto attraversa questa transazione, così un adapter
+    // stale non può scambiare per vuoto un log scritto da un'altra istanza.
+    const txn = db.transaction(STORE_NAME, "readwrite")
+    const done = new Promise<void>((resolve, reject) => {
+      txn.oncomplete = () => resolve()
+      txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
+    })
+    const settled = done.then(
+      () => {},
+      () => {},
+    )
+    try {
       const store = txn.objectStore(STORE_NAME)
+      const keys = await requestToPromise(store.getAllKeys())
+      if (keys.length > 0) {
+        throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
+      }
       for (const record of records) {
         await requestToPromise(store.add(record))
       }
       await done
+    } catch (primaryError) {
+      await settled
+      throw primaryError
     }
     this.lastSeq = records.length
     this.lastReport = {

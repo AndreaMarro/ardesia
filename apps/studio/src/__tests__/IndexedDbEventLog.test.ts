@@ -363,7 +363,7 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     expect(await log.readAll()).toEqual([])
   })
 
-  it("append fotografa l'evento validato prima di await e ignora mutazioni successive del caller", async () => {
+  it("append fotografa l'evento alla chiamata anche se attende una write e il caller lo muta subito", async () => {
     const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
     await log.open()
     const callerOwned = {
@@ -372,17 +372,17 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
       t: 123,
       evidence: ["lesson:validated-room@123"],
     }
-    const validatedSnapshot = structuredClone(callerOwned)
+    const invocationSnapshot = structuredClone(callerOwned)
 
+    const blocker = log.append(FIXTURE[0])
     const pending = log.append(callerOwned)
-    queueMicrotask(() => {
-      callerOwned.room = "mutated-after-validation"
-      callerOwned.t = Number.NaN
-      callerOwned.evidence.length = 0
-    })
+    callerOwned.room = "mutated-but-valid"
+    callerOwned.t = 456
+    callerOwned.evidence.splice(0, 1, "lesson:mutated-but-valid@456")
 
-    expect(await pending).toEqual({ ...validatedSnapshot, seq: 1 })
-    expect(await log.readAll()).toEqual([{ ...validatedSnapshot, seq: 1 }])
+    expect((await blocker).seq).toBe(1)
+    expect(await pending).toEqual({ ...invocationSnapshot, seq: 2 })
+    expect((await log.readAll())[1]).toEqual({ ...invocationSnapshot, seq: 2 })
   })
 
   it("getAllKeys fallito produce una rejection al caller e zero rejection orfane", async () => {
@@ -577,7 +577,53 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
     const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
     await log.open()
     await log.append(FIXTURE[0])
-    await expect(log.importSnapshot(new Blob(["{}"]))).rejects.toThrow(/log vuoto/)
+    const validSnapshot = JSON.stringify({ ...FIXTURE[1], seq: 1 })
+    await expect(log.importSnapshot(new Blob([validSnapshot]))).rejects.toThrow(/log vuoto/)
+  })
+
+  it("importSnapshot vuoto rifiuta se un altro adapter ha scritto e lascia bytes/evento intatti", async () => {
+    const factory = new FakeIdbFactory()
+    const writer = new IndexedDbEventLog({ factory: asFactory(factory) })
+    const stale = new IndexedDbEventLog({ factory: asFactory(factory) })
+    await Promise.all([writer.open(), stale.open()])
+    await writer.append(FIXTURE[0])
+    const beforeLogical = await writer.readAll()
+    const beforeBytes = await (await writer.exportSnapshot()).text()
+
+    await expect(stale.importSnapshot(new Blob([]))).rejects.toThrow(/log vuoto/)
+
+    expect(await stale.readAll()).toEqual(beforeLogical)
+    expect(await (await stale.exportSnapshot()).text()).toBe(beforeBytes)
+  })
+
+  it("importSnapshot non vuoto su adapter stale rigetta una volta senza orphan e non altera il log", async () => {
+    const factory = new FakeIdbFactory()
+    const writer = new IndexedDbEventLog({ factory: asFactory(factory) })
+    const stale = new IndexedDbEventLog({ factory: asFactory(factory) })
+    await Promise.all([writer.open(), stale.open()])
+    await writer.append(FIXTURE[0])
+    const beforeLogical = await writer.readAll()
+    const beforeBytes = await (await writer.exportSnapshot()).text()
+    const replacement = new Blob([`${JSON.stringify({ ...FIXTURE[1], seq: 1 })}\n`])
+    const unhandled: unknown[] = []
+    const captureUnhandled = (reason: unknown) => unhandled.push(reason)
+    process.on("unhandledRejection", captureUnhandled)
+
+    try {
+      const settled = await Promise.allSettled([stale.importSnapshot(replacement)])
+      expect(settled).toHaveLength(1)
+      expect(settled[0]?.status).toBe("rejected")
+      const callerReason = settled[0]?.status === "rejected" ? String(settled[0].reason) : ""
+      await new Promise<void>((resolve) => setImmediate(resolve))
+      expect({ callerReason, unhandled: unhandled.map(String) }).toEqual({
+        callerReason: expect.stringContaining("log vuoto"),
+        unhandled: [],
+      })
+      expect(await stale.readAll()).toEqual(beforeLogical)
+      expect(await (await stale.exportSnapshot()).text()).toBe(beforeBytes)
+    } finally {
+      process.off("unhandledRejection", captureUnhandled)
+    }
   })
 
   it("importSnapshot con sequenza bucata o riga non-JSON: rifiutato, il log resta vuoto", async () => {
