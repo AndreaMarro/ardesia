@@ -1,17 +1,26 @@
-# ARDESIA — MAPPA D'ORIENTAMENTO (SoT) · agg. 2026-06-17
+# ARDESIA — MAPPA D'ORIENTAMENTO · struttura + snapshot storico · agg. 2026-07-18
 
-> Documento UNICO per orientarsi: umani **e** agenti della fabbrica. Se un altro doc contraddice
-> questo per la struttura/navigazione, **vale questo**. Dettaglio operativo ordini = `COORDINATION.md`.
+> Documento di orientamento per umani **e** agenti della fabbrica. Per struttura e navigazione vale
+> questa mappa e `docs/CANON-INDEX.md`. Gli ordini espliciti di Andrea, la decisione corrente e i relativi
+> gate determinano intento e autorità; evidenza prodotto/test/Git e receipt legati allo SHA determinano
+> i fatti, ma non concedono permessi. Un conflitto o un path stale è STOP e va riconciliato.
 > NB: codename interno = **MAESTRO** (locale `~/maestro-*`); su GitHub i repo sono **`ardesia-*`**.
 
+> **Avviso di freschezza:** le sezioni 1–4 e 7 conservano lo snapshot operativo del 17/06/2026
+> per orientamento storico. Porte, processi, branch, conteggi e loop lì descritti non sono istruzioni
+> da eseguire e devono essere riverificati firsthand. La nuova governance memoria è soltanto
+> **PROPOSED / NO CUTOVER**: AgentMemory è escluso dai workflow attivi e dal fallback; il servizio
+> storico non è stato disabilitato e non va fermato o descritto come sostituito senza i gate A8a/A8b.
+
 ---
-## 1. Le due macchine
+## 1. Le due macchine — inventario storico del 17/06
 | Macchina | Ruolo | Cosa ci gira |
 |---|---|---|
-| **Mac mini** (`progettibelli@Mac16,10`, Tailscale `100.124.198.59`) — *la FABBRICA, always-on* | Dove succede tutto il lavoro | Loop autonomo (launchd tick 300s), gateway LiteLLM (:4000), agentmemory (:3111), tg-bridge, deadman, strategos, replenish, architect, hermes2-adjudicate |
-| **MacBook** (`andreamarro`) — *supervisore + autoring prodotto + vault, intermittente* | Supervisione + sorgente prodotto ELAB + Obsidian vault | `com.elab.lessonos-supervisor` (orario), tunnel agentmemory→Mini (:3111), `~/ardesia-vault`, `VOLUME 3/PRODOTTO/elab-builder` (= repo elab-tutor) |
+| **Mac mini** (`progettibelli@Mac16,10`, Tailscale `100.124.198.59`) — *la FABBRICA, always-on* | Snapshot storico: dove avveniva il lavoro automatico | Snapshot storico: loop launchd, gateway LiteLLM, AgentMemory, tg-bridge, deadman, strategos, replenish, architect, hermes2-adjudicate. Riverificare prima di qualsiasi azione. |
+| **MacBook** (`andreamarro`) — *supervisore + autoring prodotto + vault, intermittente* | Supervisione + sorgente prodotto ELAB + Obsidian | Snapshot storico: supervisor, tunnel AgentMemory, vault legacy e `VOLUME 3/PRODOTTO/elab-builder`. Non usare i vault legacy come fonte corrente senza riconciliazione. |
 
-Accesso Mini dal MacBook: `ssh macmini`. Tunnel agentmemory: ssh -L :3111 (KeepAlive).
+Accesso Mini dal MacBook: `ssh macmini`. Il tunnel AgentMemory indicato in precedenza è un fatto storico,
+non un fallback autorizzato. Nessun listener o tunnel Basic Memory permanente è approvato da questa mappa.
 
 ---
 ## 2. I repo (tutti PRIVATI su github.com/AndreaMarro)
@@ -21,8 +30,12 @@ Accesso Mini dal MacBook: `ssh macmini`. Tunnel agentmemory: ssh -L :3111 (KeepA
 | `lessonos` | `~/lessonos` | **Engine** Python: ingest lezioni → grafo-metodo per-docente → recap grounded (ZERO-LLM) → retrieval-hybrid → CRM. Gate: `uv run pytest`. |
 | `ardesia-studio` | `~/maestro-studio` | **Lavagna** TS/React/Vite, canvas **Excalidraw**, ToolHost↔plugin SDK Layer-0. Gate: `tsc -b` + vitest. |
 | `ardesia-tools` | `~/maestro-tools` | **Tooling fabbrica**: deadman, strategos, research, notify-telegram, factory-metrics. |
-| `ardesia-vault` | `~/ardesia-vault` (+ MacBook) | **SoT**: direttive, brainstorm, spec, questo doc. |
+| `ardesia-vault` | `~/ardesia-vault` (+ MacBook) | Sorgente legacy/storica da inventariare e riconciliare; non promuovere o indicizzare in massa. |
 | `ardesia-wiki` | — | Wiki di progetto. |
+
+Il piano corrente propone come fonte canonica umana un repository Git **privato e pulito**, aperto in
+Obsidian: `/Users/andreamarro/ARDESIA-KNOWLEDGE` sul MacBook e
+`/Users/progettibelli/ARDESIA-KNOWLEDGE` sul Mini. Non confonderlo con vault sporchi o corpus legacy.
 
 ### Prodotti SEPARATI (la fabbrica NON li tocca)
 - `elab-tutor` — **prodotto ELAB** (React 19, simulatore + tutor Galileo). 6 PR aperte/draft FERME (#195-#200). ⚠️ DA PROGETTARE a parte (decisione Andrea).
@@ -30,14 +43,14 @@ Accesso Mini dal MacBook: `ssh macmini`. Tunnel agentmemory: ssh -L :3111 (KeepA
 - `numeria`, `numeria-lab`, `numerical-lab-journey` — **Numeria** (progetto separato; MAI confondere con ARDESIA/ELAB).
 
 ---
-## 3. Branch — REGOLA D'ORO
+## 3. Branch — snapshot storico, non policy operativa corrente
 - **`auto/main`** = branch del BOT. Il loop pusha qui DIRETTAMENTE (push diretti, niente PR). Protetto SOLO dal gate locale (`eval/gate.sh`, tieni-se-verde) + CI-visibilità. **MAI** branch-protection PR qui (bloccherebbe il loop).
 - **`main`** = branch RATIFICATO (umano). Il loop NON lo tocca. Merge `auto/main→main` SOLO via PR validata dalla CI (+ OK Andrea). → protetto (richiede check CI + PR).
-- Stato 17/06: lessonos `auto/main` 824 commit (default branch), `main` fossile (8/06). studio `main` vuoto, lavoro su `auto/main`. tools su `main` diretto.
+- Stato **storico** 17/06: lessonos `auto/main` 824 commit (default branch), `main` fossile (8/06). studio `main` vuoto, lavoro su `auto/main`. tools su `main` diretto. Riverificare gli SHA e i branch remoti prima di lavorare.
 - Durabilità: `origin` = dual-pushurl (mirror locale + GitHub). Il **deadman** ogni 600s fa SELF-HEAL (pusha i commit non-da-build, allerta solo su push fallito reale).
 
 ---
-## 4. Il LOOP (come la fabbrica costruisce)
+## 4. Il LOOP — descrizione storica, non autorizzazione all'avvio
 `launchd com.elab.lessonos-hourly` ogni **300s** → `bin/hourly-tick.sh` (repo da `~/.maestro_active_repo` = `both` → dual-lane parallelo):
 1. **ARCHITECT** (opus, se pin architetturale): `bin/architect.sh` → design pre-build → `ARCHITECT-CURRENT.md`.
 2. **ORCHESTRATORE** (DeepSeek): OODA — orient → plan → PLAN-CHECK (`fable.sh`=opus).
@@ -45,10 +58,15 @@ Accesso Mini dal MacBook: `ssh macmini`. Tunnel agentmemory: ssh -L :3111 (KeepA
 4. **SELF-ADV** (opus, sul proprio diff) + **REVIEW** (`review.sh`=opus decorrelato).
 5. **HERMES-2** (kimi, red-team decorrelato post-keep) → se CRITICO → **AGGIUDICA** (opus, `hermes2-adjudicate.sh`).
 6. **DIGEST** (zero-LLM) → Telegram. **REPLENISH** (`bin/replenish.sh`, deepseek): se backlog<2 genera task.
-- **Pin**: `COORDINATION.md §PROSSIMA TASK` (1 riga/repo, la tiene Claude) ; backlog `§ROADMAP-AUTO` `[AUTO-OK]` → `promote_pin.py` promuove a esaurimento. Mai-vuoto = `replenish` (auto) + supervisore.
+- **Pin storico**: `COORDINATION.md §PROSSIMA TASK` nel repo originario (oggi archiviato come
+  `packages/engine/COORDINATION.md`); non è un ordine corrente. Backlog `§ROADMAP-AUTO` `[AUTO-OK]` →
+  `promote_pin.py` promuoveva a esaurimento.
 - **Cap**: `LESSONOS_DAILY_CAP=96` (esplicito, plist) — ceiling soft. **Limitatore vero = `quota.sh`** (hard-stop a quota-out → degrada a DeepSeek). Visibilità burn opus nel digest.
 
-### Ruoli-modello (canonico)
+Questa sequenza documenta il comportamento storico. **Prompt B e loop overnight restano OFF**;
+non avviarli, riattivarli o assumerli sani senza una decisione umana esplicita e nuovi controlli firsthand.
+
+### Ruoli-modello — snapshot storico
 | Ruolo | Modello |
 |---|---|
 | architect, build, self-adv, review, plan-check, research, strategos, **aggiudica-critici** | **opus-4-8** (claude -p, A1/A2; quota-gated, fallback DeepSeek) |
@@ -87,8 +105,36 @@ ardesia/                      (nuovo repo privato, Nx)
 - **Decisioni irreversibili tue**: (a) nome/posizione repo (`ardesia`?); (b) conferma confine GDPR; (c) quando fare il cutover del loop live.
 
 ---
-## 7. Salute (17/06) — onesto
+## 7. Salute — snapshot storico del 17/06, non stato corrente
 - Loop sano: gate lessonos **1996** / studio **572** verdi; ~6 build opus/giorno.
 - ✅ CI GitHub Actions deployata (gate su push auto/main + PR main). ⏳ prima passata rossa = 12 test env-coupled → fix CI-PORTABILITY pinnato al loop → poi verde → poi merge auto→main + branch-protection.
 - ✅ Durabilità: deadman self-heal (push automatico).
 - ⚠️ Prodotto user-facing deployato = ~zero. È una fabbrica che produce engine+studio su `auto/main`, non-mergato, non-deployato. Il moat (method-graph per-docente) è early + non validato su corpus reale.
+
+I conteggi e gli stati CI sopra non attestano la salute corrente. Ogni nuovo lavoro deve fissare base SHA,
+test count e score con comandi eseguiti nel worktree corrente.
+
+---
+## 8. Memory plane proposto — Markdown/Git/Obsidian + indice Basic Memory
+
+**Stato: PROPOSED / NO CUTOVER.** La gerarchia proposta è:
+
+1. ordini/approvazioni umane e decisione Obsidian per intento e autorità;
+2. evidenza prodotto/test/Git legata allo SHA per i fatti;
+3. Markdown in repository Git privato e pulito, aperto in Obsidian, come conoscenza umana canonica;
+4. Basic Memory come indice locale SQLite/FastEmbed ricostruibile e mai writer autorevole;
+5. filesystem/`rg` come percorso di degradazione.
+
+Il receipt canary corrente è
+`30-Evidence-Receipts/2026-07-18-FOUNDER-BETA-FB3A-REVIEWED.md` nel vault Obsidian; i fatti datati sono
+riepilogati nel §2 del runbook. Per il canary il branch verificato è `canary/basic-memory-20260717`, con
+MacBook unico writer e Mini mirror fast-forward-only. Basic Memory deve indicizzare uno snapshot Mini
+dedicato e read-only, separato dal clone di sync. Il canary non autorizza servizio permanente o cutover.
+
+AgentMemory resta fuori dai workflow attivi e dal fallback. Il servizio storico rimane intatto finché
+un gate umano separato non approva il cutover; solo dopo tale gate potrà essere conservato come sorgente
+di migrazione congelata. Un'indisponibilità dell'indice non blocca una correzione locale: si usa
+filesystem/`rg`, si accoda il receipt e si riconcilia Obsidian prima della release.
+
+Decisione proposta: `docs/adr/ADR-0003-markdown-git-basic-memory-plane.md`.
+Runbook proposto: `docs/ops/BASIC-MEMORY-CANARY-AND-CUTOVER.md`.
