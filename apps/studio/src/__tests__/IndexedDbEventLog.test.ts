@@ -99,7 +99,11 @@ class FakeObjectStore {
   }
 
   getAllKeys(): FakeRequest<number[]> {
-    return this.txn.request((records) => [...records.keys()].sort((a, b) => a - b))
+    return this.txn.request((records) => {
+      const failure = this.txn.takeGetAllKeysFailure()
+      if (failure) throw new DOMException(failure, "UnknownError")
+      return [...records.keys()].sort((a, b) => a - b)
+    })
   }
 }
 
@@ -140,6 +144,10 @@ class FakeTransaction {
   objectStore(name: string): FakeObjectStore {
     if (name !== this.storeName) throw new DOMException(`store sconosciuto: ${name}`, "NotFoundError")
     return new FakeObjectStore(this.db.keyPathOf(name), this)
+  }
+
+  takeGetAllKeysFailure(): string | undefined {
+    return this.db.takeGetAllKeysFailure()
   }
 
   request<T>(operation: (records: Map<number, StoredRecord>) => T): FakeRequest<T> {
@@ -256,6 +264,9 @@ class FakeDatabase {
   keyPathOf(name: string): string {
     return this.backing.stores.get(name)!.keyPath
   }
+  takeGetAllKeysFailure(): string | undefined {
+    return this.backing.getAllKeysFailures.shift()
+  }
   private releaseWriter(name: string) {
     const queue = this.backing.waitingWriters.get(name)!
     const next = queue.shift()
@@ -271,6 +282,7 @@ interface FakeBacking {
   stores: Map<string, { keyPath: string; records: Map<number, StoredRecord> }>
   activeWriters: Set<string>
   waitingWriters: Map<string, FakeTransaction[]>
+  getAllKeysFailures: string[]
 }
 
 class FakeOpenRequest extends FakeRequest<FakeDatabase> {
@@ -293,7 +305,12 @@ class FakeIdbFactory {
     let backing = this.databases.get(name)
     const isNew = !backing
     if (!backing) {
-      backing = { stores: new Map(), activeWriters: new Set(), waitingWriters: new Map() }
+      backing = {
+        stores: new Map(),
+        activeWriters: new Set(),
+        waitingWriters: new Map(),
+        getAllKeysFailures: [],
+      }
       this.databases.set(name, backing)
     }
     const db = new FakeDatabase(backing)
@@ -309,11 +326,22 @@ class FakeIdbFactory {
 
   /** Accesso diretto per seminare corruzione nei test. */
   seed(dbName: string, storeName: string, keyPath: string, records: StoredRecord[]) {
-    const backing: FakeBacking = { stores: new Map(), activeWriters: new Set(), waitingWriters: new Map() }
+    const backing: FakeBacking = {
+      stores: new Map(),
+      activeWriters: new Set(),
+      waitingWriters: new Map(),
+      getAllKeysFailures: [],
+    }
     const map = new Map<number, StoredRecord>()
     for (const r of records) map.set(r[keyPath] as number, structuredClone(r))
     backing.stores.set(storeName, { keyPath, records: map })
     this.databases.set(dbName, backing)
+  }
+
+  failNextGetAllKeys(message: string, dbName = "lessonos-eventlog") {
+    const backing = this.databases.get(dbName)
+    if (!backing) throw new Error(`database non aperto: ${dbName}`)
+    backing.getAllKeysFailures.push(message)
   }
 }
 
@@ -333,6 +361,51 @@ describe("IndexedDbEventLog — fase 1 spec #35", () => {
       log.append({ kind: "lesson.started", room: "x", t: Number.NaN, evidence: ["lesson:x@1"] }),
     ).rejects.toThrow(/timestamp non valido/)
     expect(await log.readAll()).toEqual([])
+  })
+
+  it("append fotografa l'evento validato prima di await e ignora mutazioni successive del caller", async () => {
+    const log = new IndexedDbEventLog({ factory: asFactory(new FakeIdbFactory()) })
+    await log.open()
+    const callerOwned = {
+      kind: "lesson.started" as const,
+      room: "validated-room",
+      t: 123,
+      evidence: ["lesson:validated-room@123"],
+    }
+    const validatedSnapshot = structuredClone(callerOwned)
+
+    const pending = log.append(callerOwned)
+    queueMicrotask(() => {
+      callerOwned.room = "mutated-after-validation"
+      callerOwned.t = Number.NaN
+      callerOwned.evidence.length = 0
+    })
+
+    expect(await pending).toEqual({ ...validatedSnapshot, seq: 1 })
+    expect(await log.readAll()).toEqual([{ ...validatedSnapshot, seq: 1 }])
+  })
+
+  it("getAllKeys fallito produce una rejection al caller e zero rejection orfane", async () => {
+    const factory = new FakeIdbFactory()
+    const log = new IndexedDbEventLog({ factory: asFactory(factory) })
+    await log.open()
+    factory.failNextGetAllKeys("getAllKeys failure injected")
+    const unhandled: unknown[] = []
+    const captureUnhandled = (reason: unknown) => unhandled.push(reason)
+    process.on("unhandledRejection", captureUnhandled)
+
+    try {
+      const settled = await Promise.allSettled([log.append(FIXTURE[0])])
+      expect(settled).toHaveLength(1)
+      expect(settled[0]?.status).toBe("rejected")
+      if (settled[0]?.status === "rejected") {
+        expect(String(settled[0].reason)).toContain("getAllKeys failure injected")
+      }
+      await new Promise<void>((resolve) => setImmediate(resolve))
+      expect(unhandled).toEqual([])
+    } finally {
+      process.off("unhandledRejection", captureUnhandled)
+    }
   })
 
   it("append assegna seq monotono da 1 e readAll restituisce l'ordine del log", async () => {

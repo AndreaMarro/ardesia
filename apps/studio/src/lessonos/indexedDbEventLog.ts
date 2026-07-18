@@ -138,33 +138,45 @@ export class IndexedDbEventLog implements EventLogStore {
     if (!Number.isFinite(event.t)) {
       throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
     }
+    // Il caller conserva l'ownership dell'oggetto passato: fotografiamo
+    // esattamente ciò che è stato validato prima di qualunque await.
+    const snapshot = structuredClone(event)
     const txn = db.transaction(STORE_NAME, "readwrite")
     const done = new Promise<void>((resolve, reject) => {
       txn.oncomplete = () => resolve()
       txn.onabort = () => reject(txn.error ?? new Error("LessonOS event log: transazione abortita"))
-      txn.onerror = () => reject(txn.error ?? new Error("LessonOS event log: scrittura fallita"))
     })
-    const store = txn.objectStore(STORE_NAME)
-    const keys = await requestToPromise(store.getAllKeys())
-    const maxSeq = keys.reduce<number>(
-      (max, key) => (typeof key === "number" && Number.isFinite(key) ? Math.max(max, key) : max),
-      0,
+    // Osserva subito l'eventuale abort: `done` resta poi awaitato nel percorso
+    // normale, mentre `settled` permette al catch di attendere la chiusura senza
+    // creare una rejection orfana e senza sostituire l'errore primario.
+    const settled = done.then(
+      () => {},
+      () => {},
     )
-    const seq = maxSeq + 1
-    const record: StoredEventRecord = {
-      seq,
-      t: event.t,
-      kind: event.kind,
-      payload: JSON.stringify(event),
-      evidence: [...event.evidence],
+    try {
+      const store = txn.objectStore(STORE_NAME)
+      const keys = await requestToPromise(store.getAllKeys())
+      const maxSeq = keys.reduce<number>(
+        (max, key) => (typeof key === "number" && Number.isFinite(key) ? Math.max(max, key) : max),
+        0,
+      )
+      const seq = maxSeq + 1
+      const record: StoredEventRecord = {
+        seq,
+        t: snapshot.t,
+        kind: snapshot.kind,
+        payload: JSON.stringify(snapshot),
+        evidence: [...snapshot.evidence],
+      }
+      // `add`, mai `put`: su chiave esistente fallisce — il log non riscrive mai.
+      await requestToPromise(store.add(record))
+      await done
+      this.lastSeq = seq
+      return Object.freeze({ ...snapshot, seq })
+    } catch (primaryError) {
+      await settled
+      throw primaryError
     }
-    // Promise.all: un handler è attaccato SIA alla add-request SIA alla txn
-    // `done`; se una fallisce, l'altra non resta una promise rejected orfana
-    // (era la causa dell'unhandled rejection su collisione seq).
-    // `add`, mai `put`: su chiave esistente fallisce — il log non riscrive mai (append-only).
-    await Promise.all([requestToPromise(store.add(record)), done])
-    this.lastSeq = seq
-    return Object.freeze({ ...structuredClone(event), seq })
   }
 
   async readAll(): Promise<AppendedEvent[]> {
