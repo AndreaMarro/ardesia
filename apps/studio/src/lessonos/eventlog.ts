@@ -8,6 +8,13 @@
 // o nativo) è una decisione separata — qui c'è un'implementazione in-memory di
 // riferimento con la stessa disciplina, usata dai test e dal materializer.
 
+import type {
+  EventActor,
+  EventEnvelopeV2,
+  JsonObject,
+  ProducerIdentity,
+} from "../core/contracts/eventEnvelope"
+
 /**
  * Riferimento di evidenza: ogni nodo/arco del grafo DEVE citare da dove viene
  * (canone `provenance`). Formato `namespace:payload`, es.:
@@ -130,6 +137,245 @@ export type LessonOsEvent =
       kind: "studentpack.exported"
       packId: string
     })
+
+/** Nome esplicito del contratto storico, mantenendo LessonOsEvent compatibile. */
+export type LegacyLessonOsEventV1 = LessonOsEvent
+
+type LessonOsPayloadV2<K extends LessonOsEvent["kind"]> = Omit<
+  Extract<LessonOsEvent, { kind: K }>,
+  "kind" | "t" | "evidence"
+> &
+  JsonObject
+
+/** Union fattuale v2: ogni kind LessonOS conserva soltanto il payload corrispondente. */
+export type LessonOsEnvelopeV2 = {
+  [K in LessonOsEvent["kind"]]: EventEnvelopeV2<K, LessonOsPayloadV2<K>>
+}[LessonOsEvent["kind"]]
+
+export type AnyEventEnvelopeV2 = EventEnvelopeV2<string, JsonObject>
+
+/** Envelope canonico accodato; seq è identità fisica, non parte dello schema v2. */
+export type AppendedEventEnvelopeV2 = Readonly<AnyEventEnvelopeV2 & { readonly seq: number }>
+
+export type AppendEnvelopeResult = Readonly<{
+  event: AppendedEventEnvelopeV2
+  appended: boolean
+}>
+
+export type EnvelopeQuery = Readonly<{
+  lessonId: string
+  sessionId?: string
+}>
+
+export interface EnvelopeEventLogStore extends EventLogStore {
+  appendEnvelope(envelope: AnyEventEnvelopeV2): Promise<AppendEnvelopeResult>
+  readAllEnvelopes(): Promise<AppendedEventEnvelopeV2[]>
+  readEnvelopesByLesson(lessonId: string): Promise<AppendedEventEnvelopeV2[]>
+  readEnvelopesBySession(lessonId: string, sessionId: string): Promise<AppendedEventEnvelopeV2[]>
+}
+
+export const UNASSIGNED_LESSON_ID = "unassigned"
+
+export interface LegacyEnvelopeIdentity {
+  lessonId: string
+  sessionId: string
+  eventId: string
+  actor: EventActor
+  producer: ProducerIdentity
+  idempotencyKey: string | null
+}
+
+function legacyOccurredAt(t: number): string {
+  const date = new Date(t)
+  if (!Number.isFinite(t) || !Number.isFinite(date.getTime())) {
+    throw new Error("LessonOS event log: timestamp legacy fuori dal range ISO-8601")
+  }
+  return date.toISOString()
+}
+
+function legacyPayload(event: LessonOsEvent): JsonObject {
+  const snapshot = structuredClone(event) as LessonOsEvent
+  const mutable = snapshot as unknown as Record<string, unknown>
+  delete mutable.kind
+  delete mutable.t
+  delete mutable.evidence
+  return mutable as JsonObject
+}
+
+/** Adatta un nuovo append v1 usando esclusivamente identità già fidate dal backend. */
+export function adaptLegacyLessonOsV1Append(
+  event: LegacyLessonOsEventV1,
+  identity: LegacyEnvelopeIdentity,
+): AnyEventEnvelopeV2 {
+  return {
+    schemaVersion: 2,
+    eventId: identity.eventId,
+    lessonId: identity.lessonId,
+    sessionId: identity.sessionId,
+    kind: event.kind,
+    occurredAt: legacyOccurredAt(event.t),
+    actor: structuredClone(identity.actor),
+    producer: structuredClone(identity.producer),
+    causationId: null,
+    idempotencyKey: identity.idempotencyKey,
+    evidence: event.evidence.map((ref) => ({ ref, resolution: "missing" as const })),
+    payload: legacyPayload(event),
+  }
+}
+
+/** Adatta una riga fisica v1 senza riscriverla; seq e identità derivata sono espliciti. */
+export function adaptLegacyLessonOsV1Log(
+  event: AppendedEvent,
+  identity: LegacyEnvelopeIdentity,
+): AppendedEventEnvelopeV2 {
+  const { seq, ...legacy } = event
+  return Object.freeze({ ...adaptLegacyLessonOsV1Append(legacy, identity), seq })
+}
+
+type LegacyPayloadField = "string" | "number" | "boolean" | "labels"
+type LegacyPayloadRule = Readonly<{
+  required: Readonly<Record<string, LegacyPayloadField>>
+  optional?: Readonly<Record<string, LegacyPayloadField>>
+}>
+
+const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> = {
+  "lesson.started": { required: { room: "string" } },
+  "lesson.ended": { required: { room: "string" } },
+  "concept.introduced": { required: { conceptId: "string", labels: "labels" } },
+  "material.cited": {
+    required: { materialId: "string", labels: "labels" },
+    optional: { conceptId: "string" },
+  },
+  "error.observed": {
+    required: { errorId: "string", conceptId: "string", labels: "labels" },
+    optional: { studentId: "string" },
+  },
+  "exercise.completed": {
+    required: { exerciseId: "string", labels: "labels" },
+    optional: { conceptId: "string", correctsErrorId: "string", studentId: "string" },
+  },
+  "simulation.step.completed": {
+    required: { stepId: "string", labels: "labels" },
+    optional: { sceneId: "string", experimentId: "string", conceptId: "string" },
+  },
+  "simulation.circuit.solved": {
+    required: { experimentId: "string", labels: "labels" },
+    optional: {
+      sceneId: "string",
+      conceptId: "string",
+      currentMa: "number",
+      bookLayoutValid: "boolean",
+    },
+  },
+  "simulation.error.observed": {
+    required: { errorId: "string", conceptId: "string", labels: "labels" },
+    optional: { sceneId: "string", experimentId: "string", studentId: "string" },
+  },
+  "plugin.mounted": {
+    required: { pluginId: "string", pluginKind: "string", instanceId: "string", labels: "labels" },
+    optional: { room: "string" },
+  },
+  "quiz.attempted": {
+    required: { quizId: "string", correct: "number", total: "number", labels: "labels" },
+    optional: { conceptId: "string", studentId: "string" },
+  },
+  "studentpack.generated": {
+    required: { packId: "string", errorId: "string" },
+    optional: { fromRoom: "string" },
+  },
+  "studentpack.exported": { required: { packId: "string" } },
+}
+
+const FACTUAL_KINDS = new Set<LessonOsEvent["kind"]>(
+  Object.keys(LESSON_OS_PAYLOAD_RULES) as LessonOsEvent["kind"][],
+)
+
+function assertLegacyPayloadField(value: unknown, expected: LegacyPayloadField, context: string): void {
+  if (expected === "string" && typeof value === "string") return
+  if (expected === "number" && typeof value === "number" && Number.isFinite(value)) return
+  if (expected === "boolean" && typeof value === "boolean") return
+  if (
+    expected === "labels" &&
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) === Object.prototype &&
+    Object.values(value).every((label) => typeof label === "string")
+  ) {
+    return
+  }
+  throw new Error(`LessonOS event log: payload ${context} deve essere ${expected}`)
+}
+
+/** I kind fattuali hanno un payload runtime strict; kind advisory/unknown restano generici. */
+export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject): void {
+  if (!FACTUAL_KINDS.has(kind as LessonOsEvent["kind"])) return
+  const factualKind = kind as LessonOsEvent["kind"]
+  const rule = LESSON_OS_PAYLOAD_RULES[factualKind]
+  const allowed = new Set([...Object.keys(rule.required), ...Object.keys(rule.optional ?? {})])
+  const unknown = Object.keys(payload).find((key) => !allowed.has(key))
+  if (unknown) throw new Error(`LessonOS event log: payload ${factualKind} contiene chiave unknown "${unknown}"`)
+  for (const [key, expected] of Object.entries(rule.required)) {
+    if (!Object.prototype.hasOwnProperty.call(payload, key)) {
+      throw new Error(`LessonOS event log: payload ${factualKind}.${key} mancante`)
+    }
+    assertLegacyPayloadField(payload[key], expected, `${factualKind}.${key}`)
+  }
+  for (const [key, expected] of Object.entries(rule.optional ?? {})) {
+    if (Object.prototype.hasOwnProperty.call(payload, key)) {
+      assertLegacyPayloadField(payload[key], expected, `${factualKind}.${key}`)
+    }
+  }
+}
+
+export function assertLegacyLessonOsEvent(value: unknown): asserts value is LessonOsEvent {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    throw new Error("LessonOS event log: evento legacy deve essere un oggetto")
+  }
+  const event = value as Record<string, unknown>
+  if (typeof event.kind !== "string" || !FACTUAL_KINDS.has(event.kind as LessonOsEvent["kind"])) {
+    throw new Error(`LessonOS event log: kind legacy sconosciuto "${String(event.kind)}"`)
+  }
+  assertEvidence(event.evidence, event.kind)
+  if (!Number.isFinite(event.t)) {
+    throw new Error(`LessonOS event log: timestamp non valido per ${event.kind}`)
+  }
+  legacyOccurredAt(event.t as number)
+  const payload = structuredClone(event)
+  delete payload.kind
+  delete payload.t
+  delete payload.evidence
+  assertLessonOsEnvelopePayload(event.kind, payload as JsonObject)
+}
+
+function exactLegacyPayload(kind: LessonOsEvent["kind"], payload: JsonObject): Record<string, unknown> {
+  assertLessonOsEnvelopePayload(kind, payload)
+  const rule = LESSON_OS_PAYLOAD_RULES[kind]
+  const exact: Record<string, unknown> = {}
+  for (const key of [...Object.keys(rule.required), ...Object.keys(rule.optional ?? {})]) {
+    if (Object.prototype.hasOwnProperty.call(payload, key)) exact[key] = structuredClone(payload[key])
+  }
+  return exact
+}
+
+/** Proiezione compatibile: advisory/unknown non diventano mai fatti LessonOS v1. */
+export function toLegacyLessonOsEvent(event: AppendedEventEnvelopeV2): AppendedEvent | null {
+  if (!FACTUAL_KINDS.has(event.kind as LessonOsEvent["kind"])) return null
+  const kind = event.kind as LessonOsEvent["kind"]
+  const t = new Date(event.occurredAt).getTime()
+  const projected = {
+    ...exactLegacyPayload(kind, event.payload),
+    kind,
+    t,
+    evidence: event.evidence.map((item) => item.ref),
+    seq: event.seq,
+  } as AppendedEvent
+  assertEvidence(projected.evidence, projected.kind)
+  if (!Number.isFinite(projected.t)) {
+    throw new Error(`LessonOS event log: timestamp non valido per ${projected.kind}`)
+  }
+  return Object.freeze(projected)
+}
 
 /** Evento accettato dal log: immutabile, con numero di sequenza monotono. */
 export type AppendedEvent = LessonOsEvent & { readonly seq: number }
