@@ -27,6 +27,23 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   await expect(nav).not.toContainText("ELABTutor")
   await expect(nav).not.toContainText("Marketplace")
 
+  const founderPlugin = page.locator("[data-founder-plugin-id]")
+  await expect(founderPlugin).toHaveCount(1)
+  await expect(founderPlugin).toHaveAttribute("data-founder-plugin-id", "io.ardesia.simulation")
+  await expect(founderPlugin).toHaveAttribute("data-plugin-trust-tier", "builtin-reviewed")
+  const lessonActions = page.locator(".st-actions")
+  for (const excluded of [
+    "invita studente",
+    "audio",
+    "Meet",
+    "esporta lezione",
+    "sim esp2",
+    "sim esp3",
+    "sim esp6",
+  ]) {
+    await expect(lessonActions).not.toContainText(excluded)
+  }
+
   // 2. L'ultima mutazione journal deve diventare durevole PRIMA che la route
   // cambi. Ritardiamo la write reale, poi la sblocchiamo e verifichiamo il
   // marker dopo il ritorno a freddo sulla stessa Lezione.

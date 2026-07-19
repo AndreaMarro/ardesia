@@ -4,16 +4,14 @@ import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
-import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { type StorageMode } from "./store/types"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder, toLegacyJournalEvent } from "./store/JournalRecorder"
 import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
-import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
+import { IconAlert } from "./design/icons"
 import ViewNav from "./design/ViewNav"
-import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import {
   openLessonOsSession,
@@ -33,6 +31,7 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -45,7 +44,7 @@ function getRoomId(): string {
   return validateRoomId(h)
 }
 
-/** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
+/** Clock del journal canonico della lezione. */
 function sharedClock(): number {
   return Date.now()
 }
@@ -97,19 +96,12 @@ export default function Room({
   const recapView = useMemo(() => isRecapView(), [])
   const replayView = useMemo(() => isReplayView(), [])
   const [mathOn, setMathOn] = useState(false)
-  const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
   const [storageError, setStorageError] = useState<string | null>(null)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
-  /** Audio toggle: default OFF (GDPR by design — nessuna registrazione nascosta) */
-  const [audioOn, setAudioOn] = useState(false)
-  /** Mostra stato registrazione nell'header */
-  const [audioRecording, setAudioRecording] = useState(false)
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
-  /** Stato export .lesson */
-  const [exporting, setExporting] = useState(false)
   /** Nome lezione (da meta.json) — null = non ancora caricato */
   const [lessonName, setLessonName] = useState<string | null>(null)
   /** Stato rename inline */
@@ -138,8 +130,6 @@ export default function Room({
   const initialLoadDone = useRef(false)
   // Riferimento al JournalRecorder (creato dopo init store)
   const journalRef = useRef<JournalRecorder | null>(null)
-  // Riferimento all'AudioRecorder (creato dopo init store)
-  const audioRecorderRef = useRef<AudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
@@ -199,10 +189,6 @@ export default function Room({
             })
             lessonOsRef.current = runtime
             journalRef.current = jr
-            // Audio resta un sottosistema legacy default-OFF: nessun chunk entra nel
-            // journal canonico o nelle evidenze Founder Beta.
-            audioRecorderRef.current = new AudioRecorder({ store: actualStore, clock })
-
             if (runtime.dataLoss) {
               setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
             } else if (runtime.corrupted) {
@@ -252,13 +238,12 @@ export default function Room({
                 identity: runtime.identity,
                 producer: runtime.producer,
               } : null,
-              audioRecorder: audioRecorderRef.current,
+              audioRecorder: null,
               lessonOs: lessonOsRef,
               apiRef,
               ReplayEngine,
               serializeEvents,
               deserializeEvents,
-              AudioRecorder,
               PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
               navigateToLesson,
               flushPersist,
@@ -279,9 +264,7 @@ export default function Room({
       // attende cleanup async, ma la chain mantiene l'ordine e rende entrambi gli errori diagnostici.
       const journal = journalRef.current
       const lessonOs = lessonOsRef.current
-      audioRecorderRef.current?.dispose()
       journalRef.current = null
-      audioRecorderRef.current = null
       lessonOsRef.current = null
       void (async () => {
         try {
@@ -303,10 +286,9 @@ export default function Room({
     }
   }, [room, actualStore, lessonOsOpener])
 
-  /** document.title: rec ← "● REC — Ardesia · studio", altrimenti "Ardesia · studio" */
   useEffect(() => {
-    document.title = audioRecording ? "● REC — Ardesia · studio" : "Ardesia · studio"
-  }, [audioRecording])
+    document.title = "Ardesia · studio"
+  }, [])
 
   /** All'apertura del drawer porta il focus dentro al dialog (bottone chiudi) */
   useEffect(() => {
@@ -462,38 +444,6 @@ export default function Room({
     return run
   }
 
-  /** Toggle audio: ON = chiede consenso + avvia registrazione, OFF = ferma */
-  function toggleAudio() {
-    const ar = audioRecorderRef.current
-    if (!ar) return
-    if (ar.consent) {
-      // Spegni: la revoca CANCELLA i chunk (GDPR) — a fine purge aggiorna lo stato
-      ar.consent = false
-      setAudioOn(false)
-      setAudioRecording(false)
-      ar.lastRevoke
-        .catch((err) => {
-          setStorageError("Revoca dati audio fallita: " + (err as Error).message)
-        })
-    } else {
-      // Accendi
-      ar.consent = true
-      setAudioOn(true)
-      ar.start().then(() => {
-        setAudioRecording(ar.recording)
-        // start() inghiotte il fallimento getUserMedia (azzera consent); se la
-        // registrazione non parte resetta lo stato e — come ogni altra azione
-        // async — segnala il microfono negato invece di spegnersi in silenzio.
-        if (!ar.recording) {
-          setAudioOn(false)
-          if (!ar.consent) {
-            setStorageError("Microfono non disponibile: consenti l'accesso per registrare.")
-          }
-        }
-      })
-    }
-  }
-
   /** Avvia rename inline del nome lezione */
   function startRename() {
     setEditingName(true)
@@ -562,31 +512,6 @@ export default function Room({
       () => {},
     )
     return run
-  }
-
-  /** Export .lesson: genera ZIP e avvia download */
-  async function handleExportLesson() {
-    setExporting(true)
-    try {
-      // Il flush è parte del contratto di export: un errore resta visibile e
-      // impedisce di produrre un bundle dichiarato riuscito.
-      await promoteJournalToLessonOs()
-      // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
-      const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)
-      const url = URL.createObjectURL(zipBlob)
-      const a = document.createElement("a")
-      a.href = url
-      // Usa il nome lezione (slugificato) se disponibile, altrimenti room id
-      a.download = `lezione-${lessonSlug(lessonName ?? "", room)}.lesson`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    } catch (err) {
-      setStorageError("Export fallito: " + (err as Error).message)
-    } finally {
-      setExporting(false)
-    }
   }
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -716,22 +641,6 @@ export default function Room({
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
-  const shareUrl = studentView
-    ? `${location.origin}${location.pathname}#${room}`
-    : `${location.origin}${location.pathname}?vista=studente#${room}`
-
-  function copyLink() {
-    navigator.clipboard?.writeText(shareUrl).then(
-      () => {
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
-      },
-      (err) => {
-        setStorageError("Copia del link non riuscita: " + (err as Error).message)
-      },
-    )
-  }
-
   return recapView ? (
     <RecapView store={actualStore} room={room} />
   ) : replayView ? (
@@ -841,61 +750,25 @@ export default function Room({
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
           )}
-          <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
-          <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
+          <button
+            onClick={() => insertSimulationPlugin()}
+            className="st-ghost"
+            aria-label="Inserisci Simulation Plugin sulla lavagna"
+            data-founder-plugin-id={FOUNDER_BETA_PLUGIN.id}
+            data-plugin-version={FOUNDER_BETA_PLUGIN.version}
+            data-plugin-trust-tier={FOUNDER_BETA_PLUGIN.trustTier}
+          >
             sim
-          </button>
-          {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
-              banner del post-it dichiara sempre montati/totale). */}
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp2")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento LED senza resistore sulla lavagna"
-          >
-            sim esp2
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp3")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento luminosità con resistenze diverse sulla lavagna"
-          >
-            sim esp3
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap9-esp6")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento lampada RGB con 3 potenziometri sulla lavagna"
-          >
-            sim esp6
           </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
-          {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
-          <button
-            onClick={toggleAudio}
-            className={audioOn ? (audioRecording ? "st-ghost st-rec" : "st-ghost st-on") : "st-ghost"}
-            title="Registra SOLO il microfono del docente. Default spento."
-          >
-            {audioOn ? (audioRecording ? <><span className="st-recdot" aria-hidden />registrando</> : "audio attivo") : "audio"}
-          </button>
-          {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
-          <button onClick={handleExportLesson} disabled={exporting} className="st-primary">
-            {exporting ? "esporto…" : "esporta lezione"}
-          </button>
-          {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
-          <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} className="st-ghost st-meet">
-            Meet<span className="st-ext" aria-hidden><IconArrowUpRight /></span>
-          </button>
         </div>
       </header>
       )}
-
-      {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
-      {audioRecording && <div className="st-recstrip" data-rec-strip />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (
@@ -959,7 +832,6 @@ export default function Room({
             <EmptyState
               title="La lavagna è ancora vuota"
               detail="Il docente non ha ancora condiviso appunti per questa lezione."
-              hint="Segui la spiegazione in diretta su Meet: appena scrive, la lavagna compare qui."
             />
           </div>
         )}
@@ -1061,7 +933,7 @@ export default function Room({
                 <div className="st-welcome-guide">
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
                   <p>Per le formule premi «formula», per slide e immagini «media».</p>
-                  <p>L'audio parte solo se lo accendi tu, dal bottone «audio».</p>
+                  <p>Il simulatore integrato è l'unico plugin disponibile in questa beta.</p>
                 </div>
               </WelcomeScreen.Center>
               <WelcomeScreen.Hints.ToolbarHint>

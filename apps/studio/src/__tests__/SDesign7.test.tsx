@@ -159,14 +159,26 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     root.unmount()
   })
 
-  it("renders all action buttons inside st-actions", async () => {
+  it("espone soltanto la capability Founder Beta builtin-reviewed", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
       expect(document.querySelector(".st-actions")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
     const actions = document.querySelector(".st-actions")!
-    const buttons = actions.querySelectorAll("button")
-    expect(buttons.length).toBeGreaterThanOrEqual(7)
+    const founderPlugins = actions.querySelectorAll("[data-founder-plugin-id]")
+    expect(founderPlugins).toHaveLength(1)
+    expect(founderPlugins[0].getAttribute("data-founder-plugin-id")).toBe("io.ardesia.simulation")
+    expect(founderPlugins[0].getAttribute("data-plugin-trust-tier")).toBe("builtin-reviewed")
+
+    const controls = Array.from(actions.querySelectorAll("button, a, [role='button']"))
+    const text = controls.map((control) => [
+      control.textContent ?? "",
+      control.getAttribute("aria-label") ?? "",
+      control.getAttribute("title") ?? "",
+    ].join(" ")).join(" ").toLocaleLowerCase()
+    for (const excluded of ["invita studente", "audio", "meet", "esporta lezione", "sim esp2", "sim esp3", "sim esp6"]) {
+      expect(text).not.toContain(excluded)
+    }
     root.unmount()
   })
 

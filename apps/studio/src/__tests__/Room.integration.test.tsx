@@ -19,6 +19,8 @@ import {
 import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { roomPaths } from "../store/roomPaths"
+import { FOUNDER_BETA_PLUGINS } from "../toolhost/founderBetaPlugin"
+import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 
@@ -428,9 +430,9 @@ describe("Room ↔ WorkspaceStore integration", () => {
     root.unmount()
   })
 
-  // --- Audio toggle tests ---
+  // --- Founder Beta: audio escluso dalla superficie e nessun permesso implicito ---
 
-  it("header mostra bottone audio default OFF", async () => {
+  it("header non espone audio né stato di registrazione", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
@@ -442,29 +444,24 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Bottone audio presente con label OFF (shell v1: testo "audio", MAI
-    // "audio attivo"/"registrando" — default GDPR spento)
     const audioBtn = Array.from(document.querySelectorAll("button"))
       .find((b) => b.textContent?.trim() === "audio")
-    expect(audioBtn).toBeDefined()
+    expect(audioBtn).toBeUndefined()
     expect(document.body.textContent).not.toContain("audio attivo")
     expect(document.body.textContent).not.toContain("registrando")
+    expect(document.querySelector("[data-rec-strip]")).toBeNull()
 
     root.unmount()
   })
 
-  it("click su audio button tenta di attivare registrazione", async () => {
+  it("il mount della Lezione non richiede accesso al microfono", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
-    // Stub getUserMedia per jsdom
+    const getUserMedia = vi.fn().mockRejectedValue(new Error("non deve essere chiamato"))
     vi.stubGlobal("navigator", {
       ...navigator,
-      mediaDevices: {
-        getUserMedia: vi.fn().mockResolvedValue({
-          getTracks: () => [{ stop: vi.fn() }],
-        } as unknown as MediaStream),
-      },
+      mediaDevices: { getUserMedia },
     })
 
     const root = createRoot(document.getElementById("root")!)
@@ -475,19 +472,10 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    // Trova il bottone audio e cliccalo (shell v1: label esatta "audio")
-    const allButtons = document.querySelectorAll("button")
-    const audioBtn = Array.from(allButtons).find((b) => b.textContent?.trim() === "audio")
-    expect(audioBtn).toBeDefined()
-    audioBtn!.click()
-
-    // In jsdom MediaRecorder non esiste → start() fallisce → button torna a "audio" (OFF)
-    await vi.waitFor(() => {
-      expect(audioBtn!.textContent?.trim()).toBe("audio")
-    }, { timeout: 500, interval: 10 })
-
-    // Verifica che getUserMedia sia stato chiamato
-    expect(navigator.mediaDevices.getUserMedia).toHaveBeenCalledWith({ audio: true })
+    expect(getUserMedia).not.toHaveBeenCalled()
+    expect(Array.from(document.querySelectorAll("button")).some(
+      (button) => button.textContent?.trim() === "audio",
+    )).toBe(false)
 
     vi.unstubAllGlobals()
     root.unmount()
@@ -1159,7 +1147,20 @@ describe("FB-3C: ownership Room della sessione LessonOS", () => {
     root.unmount()
   })
 
-  it("audio resta OFF e non produce eventi/evidenze canonici audio", async () => {
+  it("allowlist Founder Beta contiene un solo plugin first-party senza capability remote", async () => {
+    expect(FOUNDER_BETA_PLUGINS).toHaveLength(1)
+    const plugin = FOUNDER_BETA_PLUGINS[0]
+    expect(plugin.id).toBe(REFERENCE_SIM_TOOL_ID)
+    expect(plugin.trustTier).toBe("builtin-reviewed")
+    expect(plugin.manifest.publisher).toEqual({
+      id: "maestro-sdk",
+      pubkey: "ed25519:Jr4+9LNWwK1Mxs6qCzr+qgLZI72pbGZaXEZ87HALHFk=",
+    })
+    expect(plugin.manifest.privacy.dataOut).toBe("none")
+    expect(plugin.manifest.capabilities["net.fetch"]).toBeUndefined()
+    expect(plugin.manifest.capabilities["llm.generate"]).toBeUndefined()
+    expect(plugin.manifest.capabilities["board.write"]).toEqual({ scope: "own-embeds" })
+
     const handle = await openInMemorySession()
     const opener: LessonOsSessionOpener = vi.fn(async () => handle)
     const appendFactSpy = vi.spyOn(handle, "appendFact")
@@ -1171,9 +1172,7 @@ describe("FB-3C: ownership Room della sessione LessonOS", () => {
 
     await vi.waitFor(() => {
       expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(handle)
-      const audioBtn = Array.from(document.querySelectorAll("button"))
-        .find((button) => button.textContent?.trim() === "audio")
-      expect(audioBtn).toBeDefined()
+      expect(document.querySelectorAll("[data-founder-plugin-id]")).toHaveLength(1)
     })
     const rows = await handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
     expect(rows).toHaveLength(1)
@@ -1315,19 +1314,12 @@ describe("FB-4C: Room usa il journal v2 della sessione canonica", () => {
     consoleSpy.mockRestore()
   })
 
-  it("un flush fallito resta visibile e impedisce un export dichiarato riuscito", async () => {
-    const { root, store, harness } = await mountWithSession()
-    vi.spyOn(harness.recorder, "flush").mockRejectedValue(new Error("journal non persistito"))
+  it("Lezione non duplica l'export: il workflow .lesson vive solo in Materiali", async () => {
+    const { root, store } = await mountWithSession()
     const exportSpy = vi.spyOn(store, "exportLesson")
     const exportButton = Array.from(document.querySelectorAll("button"))
       .find((button) => button.textContent?.trim() === "esporta lezione")
-    expect(exportButton).toBeDefined()
-
-    exportButton!.click()
-
-    await vi.waitFor(() => {
-      expect(document.querySelector(".st-err")?.textContent ?? "").toContain("journal non persistito")
-    })
+    expect(exportButton).toBeUndefined()
     expect(exportSpy).not.toHaveBeenCalled()
     root.unmount()
   })
@@ -1440,15 +1432,14 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
 
     const empty = document.querySelector(".st-student-empty .st-state")!
     expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/lavagna è ancora vuota/i)
-    // cosa fare: seguire la diretta su Meet
-    expect(empty.querySelector(".st-state-hint")?.textContent).toMatch(/diretta su Meet/i)
+    expect(empty.querySelector(".st-state-hint")).toBeNull()
+    expect(empty.textContent).not.toContain("Meet")
     expect(hasEmoji(empty.textContent ?? "")).toBe(false)
 
     root.unmount()
   })
 
-  it("shareUrl per vista docente: 'invita studente' copia un link con ?vista=studente", async () => {
-    // Reset isStudentView a false per vista docente
+  it("la Lezione docente non pubblicizza sharing e non scrive negli appunti", async () => {
     const { isStudentView } = await import("../store/studentView")
     vi.mocked(isStudentView).mockReturnValue(false)
     const { store } = await createMockStore()
@@ -1465,25 +1456,16 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    let inviteBtn: HTMLButtonElement | undefined
     await vi.waitFor(() => {
-      inviteBtn = Array.from(document.querySelectorAll("button"))
-        .find((b) => b.textContent?.trim() === "invita studente")
-      expect(inviteBtn).toBeDefined()
+      expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    inviteBtn!.click()
-
-    await vi.waitFor(() => {
-      expect(writeText).toHaveBeenCalledTimes(1)
-      const copiedUrl = writeText.mock.calls[0]![0]
-      expect(copiedUrl).toContain("?vista=studente")
-      // L'hash della stanza resta nel link (stessa stanza, vista sola-lettura)
-      expect(copiedUrl).toMatch(/\?vista=studente#.+/)
-    }, { timeout: 5000, interval: 10 })
+    expect(Array.from(document.querySelectorAll("button")).some(
+      (button) => button.textContent?.trim() === "invita studente",
+    )).toBe(false)
+    expect(writeText).not.toHaveBeenCalled()
 
     root.unmount()
-    // Ripristina il clipboard originale: niente contaminazione dei test successivi
     if (originalClipboard) {
       Object.defineProperty(navigator, "clipboard", originalClipboard)
     } else {
@@ -1491,53 +1473,28 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     }
   })
 
-  it("invita studente: se la copia clipboard fallisce, mostra l'errore e non segna 'copiato'", async () => {
+  it("la Lezione docente non espone controlli esterni o workflow Materiali duplicati", async () => {
     const { isStudentView } = await import("../store/studentView")
     vi.mocked(isStudentView).mockReturnValue(false)
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
-    const writeText = vi.fn((_text: string) =>
-      Promise.reject(new Error("permesso negato")),
-    )
-    const originalClipboard = Object.getOwnPropertyDescriptor(navigator, "clipboard")
-    Object.defineProperty(navigator, "clipboard", {
-      value: { writeText },
-      configurable: true,
-    })
-
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    let inviteBtn: HTMLButtonElement | undefined
     await vi.waitFor(() => {
-      inviteBtn = Array.from(document.querySelectorAll("button"))
-        .find((b) => b.textContent?.trim() === "invita studente")
-      expect(inviteBtn).toBeDefined()
+      expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    inviteBtn!.click()
-
-    // La reiezione di writeText viene risuperficiata come errore, non ingoiata.
-    await vi.waitFor(() => {
-      const err = document.querySelector(".st-err")
-      expect(err?.textContent).toContain("Copia del link non riuscita")
-      expect(err?.textContent).toContain("permesso negato")
-    }, { timeout: 5000, interval: 10 })
-    // Su fallimento il bottone NON deve passare a 'copiato'.
-    expect(
-      Array.from(document.querySelectorAll("button")).some(
-        (b) => b.textContent?.trim() === "copiato",
-      ),
-    ).toBe(false)
+    const actions = document.querySelector(".st-actions")
+    expect(actions).not.toBeNull()
+    const text = actions?.textContent ?? ""
+    for (const excluded of ["Meet", "esporta lezione", "audio", "invita studente", "sim esp2", "sim esp3", "sim esp6"]) {
+      expect(text).not.toContain(excluded)
+    }
 
     root.unmount()
-    if (originalClipboard) {
-      Object.defineProperty(navigator, "clipboard", originalClipboard)
-    } else {
-      delete (navigator as any).clipboard
-    }
   })
 
   it("vista studente: onChange non è cablato (nessun persist dal browser dello studente)", async () => {
@@ -2398,10 +2355,10 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 })
 
-describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegnersi muto", () => {
-  it("getUserMedia non disponibile (permesso negato): risuperficia nel chip st-err", async () => {
-    // jsdom non espone navigator.mediaDevices.getUserMedia -> AudioRecorder.start()
-    // cattura il fallimento e azzera consent: e' esattamente il path permesso-negato.
+describe("Founder Beta: audio fuori perimetro", () => {
+  it("non espone alcuna azione capace di chiedere il permesso microfono", async () => {
+    const getUserMedia = vi.fn()
+    vi.stubGlobal("navigator", { ...navigator, mediaDevices: { getUserMedia } })
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const root = createRoot(document.getElementById("root")!)
@@ -2412,16 +2369,12 @@ describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegne
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
-    const audioBtn = Array.from(document.querySelectorAll("button"))
-      .find((b) => b.textContent?.trim() === "audio")!
-    expect(audioBtn).toBeDefined()
-    audioBtn.click()
+    expect(Array.from(document.querySelectorAll("button")).some(
+      (button) => button.textContent?.trim() === "audio",
+    )).toBe(false)
+    expect(getUserMedia).not.toHaveBeenCalled()
 
-    await vi.waitFor(() => {
-      const err = document.querySelector(".st-err")
-      expect(err?.textContent).toContain("Microfono non disponibile")
-    }, { timeout: 5000, interval: 10 })
-
+    vi.unstubAllGlobals()
     root.unmount()
   })
 })
