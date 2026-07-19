@@ -186,6 +186,18 @@ describe("WorkspaceStore", () => {
     expect(loaded).toBe(scene)
   })
 
+  it("non attiva fallback legacy quando il driver primario segnala collisione FSA", async () => {
+    const collisionDriver = new MockDriver()
+    collisionDriver.read = async () => { throw new Error("FSA path casing collision") }
+    withMockDriver(store, collisionDriver)
+    const fallback = (store as unknown as { fallback: LocalStorageDriver }).fallback
+    fallback.setLegacyScene("rooma", "legacy-che-non-va-letto")
+    storageOperations = []
+
+    await expect(store.loadScene("rooma")).rejects.toThrow(/casing|collision/i)
+    expect(storageOperations).toEqual([])
+  })
+
   it("saveScene con 2 room diverse NON collide (room-aware path)", async () => {
     await store.saveScene("roomA", JSON.stringify({ room: "A" }))
     await store.saveScene("roomB", JSON.stringify({ room: "B" }))
