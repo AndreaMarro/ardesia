@@ -7,7 +7,12 @@ import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type Sto
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
-import { exportLesson as buildLessonExport, importLesson as parseLessonImport, type ImportLessonResult } from "./lessonBundle"
+import {
+  exportLesson as buildLessonExport,
+  importLesson as parseLessonImport,
+  type ImportLessonOptions,
+  type ImportLessonResult,
+} from "./lessonBundle"
 import { roomPaths, validateRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
 
@@ -212,12 +217,15 @@ export class WorkspaceStore {
     blob: Blob,
     room: string,
     lessonOsLog?: EventLogStore | null,
+    legacyClaim: NonNullable<ImportLessonOptions["legacyClaim"]> = { userConfirmed: true },
   ): Promise<ImportLessonResult> {
     const validRoom = validateRoomId(room)
-    const result = await parseLessonImport(this, blob, lessonOsLog)
-    const flatScene = await this.read(PATHS.SCENE)
-    if (!flatScene) return result
-    await this.saveScene(validRoom, await flatScene.text())
+    const result = await parseLessonImport(this, blob, lessonOsLog, {
+      destinationLessonId: validRoom,
+      legacyClaim,
+    })
+    const importedScene = await this.read(roomPaths(validRoom).scene)
+    if (importedScene) this.fallback.setLegacyScene(validRoom, await importedScene.text())
     return result
   }
 }

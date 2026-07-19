@@ -10,6 +10,17 @@ import JSZip from "jszip"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
 import { exportLesson, importLesson, LESSON_PATHS } from "../store/lessonBundle"
+import { roomPaths } from "../store/roomPaths"
+import {
+  toLegacyLessonOsEvent,
+  type AnyEventEnvelopeV2,
+  type AppendedEvent,
+  type AppendedEventEnvelopeV2,
+  type AppendEnvelopeResult,
+  type EnvelopeEventLogStore,
+  type LessonOsEvent,
+} from "../lessonos/eventlog"
+import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
 
 // --- Mock driver (stesso pattern degli altri test) ---
 
@@ -17,6 +28,7 @@ class MockDriver implements WorkspaceDriver {
   readonly name = "mock"
   private store = new Map<string, ArrayBuffer>()
   private mtim = new Map<string, number>()
+  private legacyScenes = new Map<string, string>()
 
   available(): boolean { return true }
   async init(): Promise<boolean> { return true }
@@ -50,8 +62,8 @@ class MockDriver implements WorkspaceDriver {
     return entries
   }
 
-  getLegacyScene(_room: string): string | null { return null }
-  setLegacyScene(_room: string, _data: string): void {}
+  getLegacyScene(room: string): string | null { return this.legacyScenes.get(room) ?? null }
+  setLegacyScene(room: string, data: string): void { this.legacyScenes.set(room, data) }
 }
 
 function withMockDriver(store: WorkspaceStore, mock: MockDriver) {
@@ -76,6 +88,139 @@ async function readZipText(blob: Blob, path: string): Promise<string | null> {
   return await entry.async("text")
 }
 
+const FIXED_PRODUCER = Object.freeze({
+  id: "com.github.andreamarro.ardesia.studio",
+  version: "0.0.0",
+  commitSha: "a".repeat(40),
+})
+
+function canonicalLessonEvent(
+  lessonId: string,
+  sessionId = "11111111-1111-4111-8111-111111111111",
+  eventId = "22222222-2222-4222-8222-222222222222",
+): AnyEventEnvelopeV2 {
+  return createEventEnvelopeV2(
+    {
+      lessonId,
+      sessionId,
+      kind: "lesson.started",
+      actor: { type: "teacher", id: "founder-beta-teacher" },
+      producer: FIXED_PRODUCER,
+      causationId: null,
+      idempotencyKey: `session:${sessionId}:started`,
+      evidence: [{ ref: `lesson:${lessonId}@1000`, resolution: "verified" }],
+      payload: { room: lessonId },
+    },
+    { eventId: () => eventId, now: () => new Date(1000) },
+  )
+}
+
+function canonicalConceptEvent(
+  lessonId: string,
+  sessionId = "11111111-1111-4111-8111-111111111111",
+): AnyEventEnvelopeV2 {
+  return createEventEnvelopeV2(
+    {
+      lessonId,
+      sessionId,
+      kind: "concept.introduced",
+      actor: { type: "teacher", id: "founder-beta-teacher" },
+      producer: FIXED_PRODUCER,
+      causationId: null,
+      idempotencyKey: `concept:${sessionId}:led_polarity`,
+      evidence: [{ ref: "manual:vol1:p30", resolution: "verified" }],
+      payload: { conceptId: "led_polarity", labels: { it: "Polarità del LED" } },
+    },
+    {
+      eventId: () => "44444444-4444-4444-8444-444444444444",
+      now: () => new Date(1100),
+    },
+  )
+}
+
+function canonicalJournalLine(
+  lessonId: string,
+  sessionId = "11111111-1111-4111-8111-111111111111",
+): string {
+  return JSON.stringify(createEventEnvelopeV2(
+    {
+      lessonId,
+      sessionId,
+      kind: "journal.pointer.down",
+      actor: { type: "teacher", id: "founder-beta-teacher" },
+      producer: FIXED_PRODUCER,
+      causationId: null,
+      idempotencyKey: `journal:${sessionId}:33333333-3333-4333-8333-333333333333`,
+      evidence: [{ ref: "board:pointer", resolution: "verified" }],
+      payload: {},
+    },
+    {
+      eventId: () => "33333333-3333-4333-8333-333333333333",
+      now: () => new Date(1100),
+    },
+  ))
+}
+
+class CanonicalRestorableLog implements EnvelopeEventLogStore {
+  private envelopes: AppendedEventEnvelopeV2[]
+  restoreCalls = 0
+
+  constructor(initial: readonly AnyEventEnvelopeV2[] = []) {
+    this.envelopes = initial.map((envelope, index) => Object.freeze({
+      ...structuredClone(envelope),
+      seq: index + 1,
+    }))
+  }
+
+  async append(_event: LessonOsEvent): Promise<AppendedEvent> {
+    throw new Error("legacy append not supported by canonical test log")
+  }
+
+  async readAll(): Promise<AppendedEvent[]> {
+    return this.envelopes
+      .map(toLegacyLessonOsEvent)
+      .filter((event): event is AppendedEvent => event !== null)
+  }
+
+  async appendEnvelope(envelope: AnyEventEnvelopeV2): Promise<AppendEnvelopeResult> {
+    const event = Object.freeze({
+      ...structuredClone(envelope),
+      seq: this.envelopes.length + 1,
+    }) as AppendedEventEnvelopeV2
+    this.envelopes.push(event)
+    return { event, appended: true }
+  }
+
+  async readAllEnvelopes(): Promise<AppendedEventEnvelopeV2[]> {
+    return structuredClone(this.envelopes)
+  }
+
+  async readEnvelopesByLesson(lessonId: string): Promise<AppendedEventEnvelopeV2[]> {
+    return (await this.readAllEnvelopes()).filter((event) => event.lessonId === lessonId)
+  }
+
+  async readEnvelopesBySession(
+    lessonId: string,
+    sessionId: string,
+  ): Promise<AppendedEventEnvelopeV2[]> {
+    return (await this.readAllEnvelopes()).filter(
+      (event) => event.lessonId === lessonId && event.sessionId === sessionId,
+    )
+  }
+
+  async importSnapshot(snapshot: Blob) {
+    this.restoreCalls += 1
+    const lines = (await snapshot.text()).split("\n").filter(Boolean)
+    this.envelopes = lines.map((line) => Object.freeze(JSON.parse(line) as AppendedEventEnvelopeV2))
+    return {
+      recovered: this.envelopes.length,
+      lastSeq: this.envelopes.length,
+      droppedTail: 0,
+      corrupted: false,
+    }
+  }
+}
+
 describe("LessonBundle", () => {
   let store: WorkspaceStore
   let mock: MockDriver
@@ -91,7 +236,7 @@ describe("LessonBundle", () => {
 
   it("bundle contiene sempre raw/events.jsonl, raw/session.yaml, raw/board.excalidraw", async () => {
     // Seed dei 3 file obbligatori
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
 
@@ -106,7 +251,7 @@ describe("LessonBundle", () => {
   // --- TEST (1): consenso OFF ⇒ bundle NON contiene audio (anche se chunk su disco) ---
 
   it("consenso OFF con chunk audio su disco — bundle non contiene raw/audio/", async () => {
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
     // Seeda chunk audio come se fossero ancora su disco (consenso revocato)
@@ -122,7 +267,7 @@ describe("LessonBundle", () => {
   // --- TEST gemello: consenso ON + chunk esistenti ⇒ bundle CONTIENE audio ---
 
   it("consenso ON con chunk audio esistenti — bundle contiene raw/audio/chunk-*.webm", async () => {
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
     await store.write("raw/audio/chunk-0.webm", new Blob(["audio-data-0"], { type: "audio/webm" }))
@@ -144,7 +289,7 @@ describe("LessonBundle", () => {
 
   it("export→import→export è idempotente (stessi file e contenuti)", async () => {
     // Seed: journal + session + scene + un audio chunk
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":100,"type":"element.add"}\n{"t":200,"type":"t0"}\n'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}\n{"t":200,"type":"t0"}\n'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [{ id: "rect1", type: "rectangle", x: 0, y: 0 }] }))
     await store.write("raw/audio/chunk-0.webm", new Blob(["fake-audio-data-0"], { type: "audio/webm" }))
@@ -156,7 +301,7 @@ describe("LessonBundle", () => {
     const store2 = new WorkspaceStore()
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
-    await importLesson(store2, bundle1)
+    await store2.importLessonBlobForRoom(bundle1, ROOM)
 
     // Secondo export dal secondo store
     const bundle2 = await exportLesson(store2, ROOM)
@@ -184,7 +329,7 @@ describe("LessonBundle", () => {
     await store.write(LESSON_PATHS.SCENE, new Blob([flatScene], { type: "application/json" }))
 
     // Salva anche journal e session
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":1,"type":"element.add"}'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":1,"type":"element.add"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1\naudioConsent: false\n")
 
     const bundle = await exportLesson(store, ROOM)
@@ -205,7 +350,7 @@ describe("LessonBundle", () => {
   // --- TEST: import scrive tutti i file sullo store ---
 
   it("importLesson ripristina tutti i file sul nuovo store", async () => {
-    await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":10,"type":"t0"}'], { type: "application/x-ndjson" }))
+    await store.write(roomPaths(ROOM).journal, new Blob(['{"t":10,"type":"t0"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 10\naudioConsent: false\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
 
@@ -295,7 +440,10 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
+    await expect(importLesson(store2, blob)).resolves.toEqual({
+      lessonOsRestore: { kind: "not-attempted" },
+      identity: { kind: "unassigned" },
+    })
 
     const journalBlob = await store2.read(LESSON_PATHS.JOURNAL)
     expect(journalBlob).not.toBeNull()
@@ -315,7 +463,10 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
+    await expect(importLesson(store2, blob)).resolves.toEqual({
+      lessonOsRestore: { kind: "not-attempted" },
+      identity: { kind: "unassigned" },
+    })
 
     const audioBlob = await store2.read("raw/audio/chunk-0.webm")
     expect(audioBlob).not.toBeNull()
@@ -335,7 +486,10 @@ describe("LessonBundle", () => {
     const mock2 = new MockDriver()
     withMockDriver(store2, mock2)
 
-    await expect(importLesson(store2, blob)).resolves.toEqual({ lessonOsRestore: { kind: "not-attempted" } })
+    await expect(importLesson(store2, blob)).resolves.toEqual({
+      lessonOsRestore: { kind: "not-attempted" },
+      identity: { kind: "unassigned" },
+    })
 
     const notesBlob = await store2.read("raw/notes..2024.jsonl")
     expect(notesBlob).not.toBeNull()
@@ -369,17 +523,10 @@ describe("LessonBundle — snapshot event-log LessonOS", () => {
   })
 
   async function filledLog() {
-    const { InMemoryEventLog } = await import("../lessonos/eventlog")
-    const log = new InMemoryEventLog()
-    await log.append({ kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] })
-    await log.append({
-      kind: "concept.introduced",
-      conceptId: "led_polarity",
-      labels: { it: "Polarità del LED" },
-      t: 1100,
-      evidence: ["manual:vol1:p30"],
-    })
-    return log
+    return new CanonicalRestorableLog([
+      canonicalLessonEvent(ROOM),
+      canonicalConceptEvent(ROOM),
+    ])
   }
 
   it("log fornito e non vuoto ⇒ raw/lessonos-events.jsonl nel bundle, una riga per evento", async () => {
@@ -388,15 +535,14 @@ describe("LessonBundle — snapshot event-log LessonOS", () => {
     const text = await readZipText(bundle, LESSON_PATHS.LESSONOS)
     expect(text).not.toBeNull()
     const parsed = text!.trimEnd().split("\n").map((line) => JSON.parse(line))
-    expect(parsed).toEqual(await log.readAll())
+    expect(parsed).toEqual(await log.readAllEnvelopes())
   })
 
   it("senza log (o log vuoto) ⇒ NESSUN raw/lessonos-events.jsonl (niente file fantasma)", async () => {
     const senzaLog = await exportLesson(store, ROOM)
     expect(await readZipText(senzaLog, LESSON_PATHS.LESSONOS)).toBeNull()
 
-    const { InMemoryEventLog } = await import("../lessonos/eventlog")
-    const conLogVuoto = await exportLesson(store, ROOM, new InMemoryEventLog())
+    const conLogVuoto = await exportLesson(store, ROOM, new CanonicalRestorableLog())
     expect(await readZipText(conLogVuoto, LESSON_PATHS.LESSONOS)).toBeNull()
   })
 
@@ -441,40 +587,16 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
   })
 
   async function filledLog() {
-    const { InMemoryEventLog } = await import("../lessonos/eventlog")
-    const log = new InMemoryEventLog()
-    await log.append({ kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] })
-    await log.append({
-      kind: "concept.introduced",
-      conceptId: "led_polarity",
-      labels: { it: "Polarità del LED" },
-      t: 1100,
-      evidence: ["manual:vol1:p30"],
-    })
-    return log
+    return new CanonicalRestorableLog([
+      canonicalLessonEvent(ROOM),
+      canonicalConceptEvent(ROOM),
+    ])
   }
 
-  /** Fake contract-fedele di un log restorabile: STESSA semantica documentata di
-   *  IndexedDbEventLog.importSnapshot (solo-su-log-vuoto, seq contigui preservati).
-   *  La semantica REALE è coperta da IndexedDbEventLog.test.ts; qui si testa il
-   *  CABLAGGIO di importLesson (mappatura stati, ordinamento, niente swallow). */
+  /** Il fake canonico testa solo il cablaggio; la semantica IndexedDB reale è
+   * coperta da IndexedDbEventLog.test.ts. */
   async function restorableLog() {
-    const { InMemoryEventLog } = await import("../lessonos/eventlog")
-    class RestorableFakeLog extends InMemoryEventLog {
-      async importSnapshot(snapshot: Blob) {
-        const existing = await this.readAll()
-        if (existing.length > 0) {
-          throw new Error("LessonOS event log: importSnapshot richiede un log vuoto (restore, mai merge)")
-        }
-        const lines = (await snapshot.text()).split("\n").filter((line) => line.length > 0)
-        for (const line of lines) {
-          const { seq: _seq, ...event } = JSON.parse(line)
-          await this.append(event)
-        }
-        return { recovered: lines.length, lastSeq: lines.length, droppedTail: 0, corrupted: false }
-      }
-    }
-    return new RestorableFakeLog()
+    return new CanonicalRestorableLog()
   }
 
   async function bundleWithSnapshot() {
@@ -501,7 +623,11 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
     const store2 = new WorkspaceStore()
     withMockDriver(store2, new MockDriver())
     const target = await restorableLog()
-    await target.append({ kind: "lesson.started", room: "altra", t: 500, evidence: ["lesson:altra@500"] })
+    await target.appendEnvelope(canonicalLessonEvent(
+      "altra",
+      "55555555-5555-4555-8555-555555555555",
+      "66666666-6666-4666-8666-666666666666",
+    ))
 
     const result = await importLesson(store2, bundle, target)
 
@@ -574,5 +700,171 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
 
     await expect(importLesson(store2, malicious, target)).rejects.toThrow(/ZipSlip/)
     expect(await target.readAll()).toHaveLength(0)
+  })
+})
+
+describe("LessonBundle — FB-4B portable room boundary", () => {
+  it("esporta soltanto A e lascia B e i residui flat byte-identici", async () => {
+    const store = new WorkspaceStore()
+    const mock = new MockDriver()
+    withMockDriver(store, mock)
+    const roomA = roomPaths("room-A")
+    const roomB = roomPaths("room-B")
+    const journalA = `${canonicalJournalLine("room-A")}\n`
+    const journalB = `${canonicalJournalLine("room-B")}\n`
+    const snapshotA = `${JSON.stringify({ ...canonicalLessonEvent("room-A"), seq: 1 })}\n`
+    const snapshotB = `${JSON.stringify({ ...canonicalLessonEvent("room-B"), seq: 1 })}\n`
+    const flatJournal = '{"t":9,"type":"t0","sentinel":"flat"}\n'
+    const flatLessonOs = '{"seq":1,"kind":"lesson.started","room":"flat","t":9,"evidence":["flat"]}\n'
+
+    await store.write(roomA.scene, new Blob(['{"room":"A"}']))
+    await store.write(roomA.journal, new Blob([journalA]))
+    await store.write(roomA.lessonOsSnapshot, new Blob([snapshotA]))
+    await store.write(roomB.scene, new Blob(['{"room":"B"}']))
+    await store.write(roomB.journal, new Blob([journalB]))
+    await store.write(roomB.lessonOsSnapshot, new Blob([snapshotB]))
+    await store.write(LESSON_PATHS.JOURNAL, new Blob([flatJournal]))
+    await store.write(LESSON_PATHS.LESSONOS, new Blob([flatLessonOs]))
+
+    const bundle = await exportLesson(store, "room-A")
+
+    expect(await readZipText(bundle, LESSON_PATHS.SCENE)).toBe('{"room":"A"}')
+    expect(await readZipText(bundle, LESSON_PATHS.JOURNAL)).toBe(journalA)
+    expect(await readZipText(bundle, LESSON_PATHS.LESSONOS)).toBe(snapshotA)
+    expect(JSON.stringify(await listZipPaths(bundle))).not.toContain("room-B")
+    expect(await (await store.read(roomB.journal))!.text()).toBe(journalB)
+    expect(await (await store.read(roomB.lessonOsSnapshot))!.text()).toBe(snapshotB)
+    expect(await (await store.read(LESSON_PATHS.JOURNAL))!.text()).toBe(flatJournal)
+    expect(await (await store.read(LESSON_PATHS.LESSONOS))!.text()).toBe(flatLessonOs)
+  })
+
+  it("round-trip canonico preserva eventId, sessionId e SHA esatti", async () => {
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    const paths = roomPaths("room-A")
+    const envelope = canonicalLessonEvent("room-A")
+    await source.write(paths.scene, new Blob(['{"room":"A","elements":[]}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine("room-A")}\n`]))
+    const bundle = await exportLesson(source, "room-A", new CanonicalRestorableLog([
+      envelope,
+      canonicalLessonEvent(
+        "room-B",
+        "77777777-7777-4777-8777-777777777777",
+        "88888888-8888-4888-8888-888888888888",
+      ),
+    ]))
+    const exportedText = await readZipText(bundle, LESSON_PATHS.LESSONOS)
+    expect(exportedText).not.toBeNull()
+    const exportedLines = exportedText!.trim().split("\n")
+    expect(exportedLines).toHaveLength(1)
+    const exported = JSON.parse(exportedLines[0]!)
+
+    expect(exported.eventId).toBe(envelope.eventId)
+    expect(exported.sessionId).toBe(envelope.sessionId)
+    expect(exported.producer.commitSha).toBe(FIXED_PRODUCER.commitSha)
+
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetLog = new CanonicalRestorableLog()
+    const result = await importLesson(target, bundle, targetLog, {
+      destinationLessonId: "room-A",
+      legacyClaim: { userConfirmed: true },
+    })
+
+    expect(result.identity).toEqual({ kind: "embedded", lessonId: "room-A" })
+    expect(result.lessonOsRestore).toEqual({ kind: "restored", recovered: 1 })
+    expect(targetLog.restoreCalls).toBe(1)
+    expect(await targetLog.readAllEnvelopes()).toEqual([{ ...envelope, seq: 1 }])
+    expect(await (await target.read(paths.journal))!.text()).toBe(`${canonicalJournalLine("room-A")}\n`)
+    expect(await target.read(LESSON_PATHS.JOURNAL)).toBeNull()
+  })
+
+  it("rifiuta mismatch destinazione/identità prima di store e log", async () => {
+    const zip = new JSZip()
+    zip.file(LESSON_PATHS.SCENE, '{"room":"A"}')
+    zip.file(LESSON_PATHS.JOURNAL, `${canonicalJournalLine("room-A")}\n`)
+    zip.file(
+      LESSON_PATHS.LESSONOS,
+      `${JSON.stringify({ ...canonicalLessonEvent("room-A"), seq: 1 })}\n`,
+    )
+    const bundle = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetLog = new CanonicalRestorableLog()
+
+    await expect(importLesson(target, bundle, targetLog, {
+      destinationLessonId: "room-B",
+      legacyClaim: { userConfirmed: true },
+    })).rejects.toThrow(/identity|lesson|destination|destinazione/i)
+
+    expect(await target.list()).toEqual([])
+    expect(await targetLog.readAllEnvelopes()).toEqual([])
+    expect(targetLog.restoreCalls).toBe(0)
+  })
+
+  it("rifiuta journal e LessonOS v2 con lessonId discordanti prima di ogni write", async () => {
+    const zip = new JSZip()
+    zip.file(LESSON_PATHS.SCENE, '{"room":"A"}')
+    zip.file(LESSON_PATHS.JOURNAL, `${canonicalJournalLine("room-A")}\n`)
+    zip.file(
+      LESSON_PATHS.LESSONOS,
+      `${JSON.stringify({ ...canonicalLessonEvent("room-B"), seq: 1 })}\n`,
+    )
+    const bundle = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetLog = new CanonicalRestorableLog()
+
+    await expect(importLesson(target, bundle, targetLog, {
+      destinationLessonId: "room-A",
+      legacyClaim: { userConfirmed: true },
+    })).rejects.toThrow(/identity|lesson|differenti/i)
+
+    expect(await target.list()).toEqual([])
+    expect(await targetLog.readAllEnvelopes()).toEqual([])
+    expect(targetLog.restoreCalls).toBe(0)
+  })
+
+  it("assegna un bundle legacy alla room solo con conferma esplicita e non muta il ZIP", async () => {
+    const zip = new JSZip()
+    const legacyJournal = '{"t":100,"type":"t0"}\n'
+    zip.file(LESSON_PATHS.SCENE, '{"legacy":true}')
+    zip.file(LESSON_PATHS.JOURNAL, legacyJournal)
+    const bundle = await zip.generateAsync({ type: "blob" })
+    const originalBytes = new Uint8Array(await bundle.arrayBuffer())
+
+    const unconfirmed = new WorkspaceStore()
+    withMockDriver(unconfirmed, new MockDriver())
+    const unconfirmedResult = await importLesson(unconfirmed, bundle, null, {
+      destinationLessonId: "legacy-room",
+    })
+    expect(unconfirmedResult.identity).toEqual({ kind: "unassigned" })
+    expect(await (await unconfirmed.read(LESSON_PATHS.JOURNAL))!.text()).toBe(legacyJournal)
+    expect(await unconfirmed.read(roomPaths("legacy-room").journal)).toBeNull()
+
+    const confirmed = new WorkspaceStore()
+    withMockDriver(confirmed, new MockDriver())
+    const confirmedResult = await importLesson(confirmed, bundle, null, {
+      destinationLessonId: "legacy-room",
+      legacyClaim: { userConfirmed: true },
+    })
+    expect(confirmedResult.identity).toEqual({ kind: "claimed", lessonId: "legacy-room" })
+    expect(await (await confirmed.read(roomPaths("legacy-room").journal))!.text()).toBe(legacyJournal)
+    expect(await confirmed.read(LESSON_PATHS.JOURNAL)).toBeNull()
+    expect(new Uint8Array(await bundle.arrayBuffer())).toEqual(originalBytes)
+  })
+
+  it("l'import esplicito per room sincronizza la scena nella cache legacy", async () => {
+    const zip = new JSZip()
+    const scene = '{"cached":true}'
+    zip.file(LESSON_PATHS.SCENE, scene)
+    const bundle = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    const mock = new MockDriver()
+    withMockDriver(target, mock)
+
+    await target.importLessonBlobForRoom(bundle, "cached-room")
+
+    expect(mock.getLegacyScene("cached-room")).toBe(scene)
   })
 })

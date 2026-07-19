@@ -17,9 +17,23 @@ import JSZip from "jszip"
 import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
 import { parseSessionYaml } from "./AudioRecorder"
-import type { EventLogStore } from "../lessonos/eventlog"
+import {
+  assertLessonOsEnvelopePayload,
+  type AnyEventEnvelopeV2,
+  type EnvelopeEventLogStore,
+  type EventLogStore,
+} from "../lessonos/eventlog"
 import type { RecoveryReport } from "../lessonos/indexedDbEventLog"
-import { exportEventLogSnapshot } from "../lessonos/indexedDbEventLog"
+import { exportEnvelopeEventLogSnapshot } from "../lessonos/indexedDbEventLog"
+import {
+  assertEventEnvelopeV2,
+  assertFounderBetaAuthority,
+} from "../core/contracts/eventEnvelope"
+import {
+  assertJournalEnvelopeV2,
+  looksLikeRawJournalEnvelopeV2,
+} from "./JournalRecorder"
+import { roomPaths, validateRoomId } from "./roomPaths"
 
 /** Nome del file bundle .lesson */
 export const LESSON_EXTENSION = ".lesson"
@@ -34,6 +48,48 @@ export const LESSON_PATHS = {
   /** Snapshot event-log LessonOS (JSONL, spec #35 §4.3) — distinto dal journal. */
   LESSONOS: "raw/lessonos-events.jsonl",
 } as const
+
+function readOnlyLessonScope(
+  log: EnvelopeEventLogStore,
+  lessonId: string,
+): EnvelopeEventLogStore {
+  const rejectWrite = async (): Promise<never> => {
+    throw new Error("Lesson bundle: read-only LessonOS export scope")
+  }
+  return {
+    append: rejectWrite,
+    readAll: async () => [],
+    appendEnvelope: rejectWrite,
+    readAllEnvelopes: () => log.readEnvelopesByLesson(lessonId),
+    readEnvelopesByLesson: (requestedLessonId) => (
+      requestedLessonId === lessonId ? log.readEnvelopesByLesson(lessonId) : Promise.resolve([])
+    ),
+    readEnvelopesBySession: (requestedLessonId, sessionId) => (
+      requestedLessonId === lessonId
+        ? log.readEnvelopesBySession(lessonId, sessionId)
+        : Promise.resolve([])
+    ),
+  }
+}
+
+function supportsEnvelopeExport(log: EventLogStore): log is EnvelopeEventLogStore {
+  const candidate = log as Partial<EnvelopeEventLogStore>
+  return (
+    typeof candidate.readAllEnvelopes === "function" &&
+    typeof candidate.readEnvelopesByLesson === "function" &&
+    typeof candidate.readEnvelopesBySession === "function"
+  )
+}
+
+function addEntry(
+  entries: Map<string, FileEntry>,
+  path: string,
+  data: Blob | null,
+  mtime = Date.now(),
+): void {
+  if (!data) return
+  entries.set(path, { path, data, mtime })
+}
 
 /**
  * Esporta la lezione corrente come Blob .lesson (ZIP).
@@ -56,7 +112,8 @@ export async function exportLesson(
    */
   lessonOsLog?: EventLogStore | null,
 ): Promise<Blob> {
-  const allRaw = await store.list("raw/")
+  const lessonId = validateRoomId(room)
+  const paths = roomPaths(lessonId)
   const entries = new Map<string, FileEntry>()
 
   // Legge session.yaml per verificare il consenso audio (GDPR Mode A)
@@ -66,54 +123,39 @@ export async function exportLesson(
   if (sessionBlob) {
     const sessionText = await sessionBlob.text()
     audioConsent = parseSessionYaml(sessionText).audioConsent
+    addEntry(entries, LESSON_PATHS.SESSION, sessionBlob)
   }
 
-  // Filtra: escludi scene per-room (raw/<room>/board.excalidraw etc.)
-  // e tieni solo file flat in raw/ o raw/audio/ (se consentito)
-  for (const entry of allRaw) {
-    // Salta scene per-room (es. raw/sala123/board.excalidraw),
-    // ma tieni raw/audio/chunk-*.webm
-    const parts = entry.path.split("/")
-    if (parts.length >= 3 && parts[0] === "raw" && parts[2] && parts[1] !== "audio") {
-      // raw/<room>/board.excalidraw → skip (verrà iniettato flat)
-      continue
+  // L'audio resta il comportamento legacy già esistente: non è room identity e
+  // questa slice non lo promuove. Il consenso OFF continua a escluderlo.
+  if (audioConsent === true) {
+    for (const entry of await store.list(LESSON_PATHS.AUDIO_DIR)) {
+      entries.set(entry.path, entry)
     }
-
-    // GDPR: se audioConsent !== true, escludi TUTTI i file raw/audio/
-    if (entry.path.startsWith(LESSON_PATHS.AUDIO_DIR) && audioConsent !== true) {
-      continue
-    }
-
-    // raw/events.jsonl, raw/session.yaml, raw/audio/chunk-*.webm → keep
-    entries.set(entry.path, entry)
   }
 
-  // Inietta la scena corrente come raw/board.excalidraw (normalizzata flat)
-  const sceneJson = await store.loadScene(room)
-  if (sceneJson !== null) {
-    entries.set(LESSON_PATHS.SCENE, {
-      path: LESSON_PATHS.SCENE,
-      mtime: Date.now(),
-      data: new Blob([sceneJson], { type: "application/json" }),
-    })
-  }
+  // Il workspace live è esclusivamente room-scoped. I tre file trasportabili
+  // vengono adattati a path flat dentro lo ZIP, senza leggere residui flat o B.
+  addEntry(entries, LESSON_PATHS.SCENE, await store.read(paths.scene))
+  addEntry(entries, LESSON_PATHS.JOURNAL, await store.read(paths.journal))
+  const storedLessonOsSnapshot = await store.read(paths.lessonOsSnapshot)
 
-  // Snapshot event-log LessonOS (best-effort: un log guasto non blocca l'export
-  // della lezione — il bundle resta valido, semplicemente senza memoria didattica)
-  if (lessonOsLog) {
+  // Snapshot canonico v2 e limitato alla lezione. Un log v1 non viene proiettato:
+  // perdere event/session/producer identity sarebbe un falso export canonico.
+  let lessonOsSnapshot: Blob | null = storedLessonOsSnapshot
+  if (lessonOsLog && supportsEnvelopeExport(lessonOsLog)) {
     try {
-      const snapshot = await exportEventLogSnapshot(lessonOsLog)
+      const snapshot = await exportEnvelopeEventLogSnapshot(
+        readOnlyLessonScope(lessonOsLog, lessonId),
+      )
       if (snapshot.size > 0) {
-        entries.set(LESSON_PATHS.LESSONOS, {
-          path: LESSON_PATHS.LESSONOS,
-          mtime: Date.now(),
-          data: snapshot,
-        })
+        lessonOsSnapshot = snapshot
       }
     } catch {
-      // log illeggibile: l'export procede senza snapshot
+      // Il file room-scoped già persistito rimane il fallback; mai usare flat.
     }
   }
+  addEntry(entries, LESSON_PATHS.LESSONOS, lessonOsSnapshot)
 
   // Costruisce ZIP
   const zip = new JSZip()
@@ -145,8 +187,21 @@ export type LessonOsRestoreStatus =
    *  bundle restano importati, l'errore è riportato qui — mai swallow. */
   | { kind: "failed"; error: string }
 
+export type LessonImportIdentity =
+  | Readonly<{ kind: "embedded"; lessonId: string }>
+  | Readonly<{ kind: "claimed"; lessonId: string }>
+  | Readonly<{ kind: "unassigned" }>
+
+export interface ImportLessonOptions {
+  /** Destinazione selezionata esplicitamente dal file-import UI. */
+  destinationLessonId?: string
+  /** Necessaria soltanto per assegnare un bundle legacy privo di envelope v2. */
+  legacyClaim?: Readonly<{ userConfirmed: true }>
+}
+
 export interface ImportLessonResult {
   lessonOsRestore: LessonOsRestoreStatus
+  identity: LessonImportIdentity
 }
 
 /** Log capace di restore da snapshot (oggi: IndexedDbEventLog). L'interfaccia
@@ -158,6 +213,81 @@ type SnapshotRestorableLog = EventLogStore & {
 
 function supportsSnapshotRestore(log: EventLogStore): log is SnapshotRestorableLog {
   return typeof (log as Partial<SnapshotRestorableLog>).importSnapshot === "function"
+}
+
+type StagedZipEntry = Readonly<{ path: string; data: Blob }>
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
+}
+
+function canonicalEnvelopeFromSnapshotRow(value: unknown): AnyEventEnvelopeV2 {
+  if (!isRecord(value)) throw new Error("Bundle identity: riga LessonOS v2 non-oggetto")
+  const seq = value.seq
+  if (!Number.isInteger(seq) || (seq as number) < 1) {
+    throw new Error("Bundle identity: seq LessonOS v2 non valido")
+  }
+  const { seq: _seq, ...envelope } = value
+  void _seq
+  assertEventEnvelopeV2(envelope)
+  assertFounderBetaAuthority(envelope)
+  assertLessonOsEnvelopePayload(envelope.kind, envelope.payload)
+  return envelope
+}
+
+async function embeddedLessonIds(
+  journal: Blob | null,
+  lessonOs: Blob | null,
+): Promise<Set<string>> {
+  const lessonIds = new Set<string>()
+
+  if (journal) {
+    for (const rawLine of (await journal.text()).split("\n")) {
+      if (!rawLine || !looksLikeRawJournalEnvelopeV2(rawLine)) continue
+      let parsed: unknown
+      try {
+        parsed = JSON.parse(rawLine)
+      } catch {
+        throw new Error("Bundle identity: journal v2 malformato")
+      }
+      assertJournalEnvelopeV2(parsed)
+      lessonIds.add(parsed.lessonId)
+    }
+  }
+
+  if (lessonOs) {
+    for (const rawLine of (await lessonOs.text()).split("\n")) {
+      if (!rawLine) continue
+      let parsed: unknown
+      try {
+        parsed = JSON.parse(rawLine)
+      } catch {
+        if (rawLine.includes('"schemaVersion"')) {
+          throw new Error("Bundle identity: snapshot LessonOS v2 malformato")
+        }
+        continue
+      }
+      if (!isRecord(parsed) || !("schemaVersion" in parsed)) continue
+      lessonIds.add(canonicalEnvelopeFromSnapshotRow(parsed).lessonId)
+    }
+  }
+
+  return lessonIds
+}
+
+function importedPath(path: string, destinationLessonId: string | null): string {
+  if (!destinationLessonId) return path
+  const destination = roomPaths(destinationLessonId)
+  switch (path) {
+    case LESSON_PATHS.SCENE:
+      return destination.scene
+    case LESSON_PATHS.JOURNAL:
+      return destination.journal
+    case LESSON_PATHS.LESSONOS:
+      return destination.lessonOsSnapshot
+    default:
+      return path
+  }
 }
 
 /**
@@ -183,21 +313,15 @@ export async function importLesson(
   store: WorkspaceStore,
   blob: Blob,
   lessonOsLog?: EventLogStore | null,
+  options: ImportLessonOptions = {},
 ): Promise<ImportLessonResult> {
+  const requestedDestination = options.destinationLessonId === undefined
+    ? null
+    : validateRoomId(options.destinationLessonId)
   const zip = await JSZip.loadAsync(blob)
 
-  // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR
-  // Il parse è best-effort: se il file manca (bundle legacy pre-T2), saltiamo
-  // la validazione coerenza audio — non possiamo giudicare un consenso assente.
-  let audioConsent: boolean | undefined
-  const sessionEntry = zip.file(LESSON_PATHS.SESSION)
-  if (sessionEntry && !sessionEntry.dir) {
-    const sessionText = await sessionEntry.async("text")
-    audioConsent = parseSessionYaml(sessionText).audioConsent
-  }
-
-  // Prima passata: valida TUTTI i path + rileva entry audio (tutto prima di scrivere)
-  const entriesToWrite: Array<{ path: string; dataPromise: Promise<Blob> }> = []
+  // Prima passata: valida ogni path e raccoglie le letture, senza I/O sul workspace.
+  const pendingEntries: Array<{ path: string; dataPromise: Promise<Blob> }> = []
   let hasAudioEntry = false
 
   zip.forEach((relativePath, zipEntry) => {
@@ -219,8 +343,22 @@ export async function importLesson(
       hasAudioEntry = true
     }
 
-    entriesToWrite.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
+    pendingEntries.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
   })
+
+  // Seconda passata di validazione: materializza tutte le entry prima della prima
+  // write. Errori ZIP/Blob, GDPR e identità non possono lasciare scritture parziali.
+  const stagedEntries: StagedZipEntry[] = await Promise.all(
+    pendingEntries.map(async ({ path, dataPromise }) => ({ path, data: await dataPromise })),
+  )
+  const byPortablePath = new Map(stagedEntries.map((entry) => [entry.path, entry.data]))
+
+  // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR.
+  // Se manca (bundle legacy pre-T2), il consenso è ignoto e il controllo storico
+  // resta invariato.
+  let audioConsent: boolean | undefined
+  const sessionBlob = byPortablePath.get(LESSON_PATHS.SESSION)
+  if (sessionBlob) audioConsent = parseSessionYaml(await sessionBlob.text()).audioConsent
 
   // Coerenza GDPR: bundle con audioConsent=false MA con chunk audio dentro è
   // incoerente (dati revocati che non devono MAI essere reintrodotti).
@@ -231,13 +369,56 @@ export async function importLesson(
     )
   }
 
-  // Seconda passata: tutte le validazioni passate, scrivi
-  for (const entry of entriesToWrite) {
-    const data = await entry.dataPromise
-    await store.write(entry.path, data)
+  const lessonIds = await embeddedLessonIds(
+    byPortablePath.get(LESSON_PATHS.JOURNAL) ?? null,
+    byPortablePath.get(LESSON_PATHS.LESSONOS) ?? null,
+  )
+  if (lessonIds.size > 1) {
+    throw new Error("Bundle identity: journal e LessonOS dichiarano lessonId differenti")
+  }
+  const embeddedLessonId = lessonIds.values().next().value as string | undefined
+  if (embeddedLessonId !== undefined) validateRoomId(embeddedLessonId)
+  if (
+    requestedDestination !== null &&
+    embeddedLessonId !== undefined &&
+    embeddedLessonId !== requestedDestination
+  ) {
+    throw new Error("Bundle identity: lessonId embedded non coincide con la destinazione")
   }
 
-  return { lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog) }
+  const confirmedLegacyDestination = (
+    embeddedLessonId === undefined &&
+    requestedDestination !== null &&
+    options.legacyClaim?.userConfirmed === true
+  ) ? requestedDestination : null
+  const mappedDestination = requestedDestination !== null && embeddedLessonId !== undefined
+    ? requestedDestination
+    : confirmedLegacyDestination
+  const identity: LessonImportIdentity = embeddedLessonId !== undefined
+    ? { kind: "embedded", lessonId: embeddedLessonId }
+    : confirmedLegacyDestination !== null
+      ? { kind: "claimed", lessonId: confirmedLegacyDestination }
+      : { kind: "unassigned" }
+
+  const targetPaths = new Set<string>()
+  const entriesToWrite = stagedEntries.map((entry) => {
+    const path = importedPath(entry.path, mappedDestination)
+    if (targetPaths.has(path)) {
+      throw new Error(`Bundle identity: path destinazione duplicato (${path})`)
+    }
+    targetPaths.add(path)
+    return { path, data: entry.data }
+  })
+
+  // Tutte le validazioni sono concluse. Solo ora il workspace può essere scritto.
+  for (const entry of entriesToWrite) {
+    await store.write(entry.path, entry.data)
+  }
+
+  return {
+    lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog),
+    identity,
+  }
 }
 
 /** Restore della memoria didattica dal bundle (vedi ImportLessonResult).
@@ -254,7 +435,10 @@ async function restoreLessonOsSnapshot(
     // Pre-check esplicito (stato leggibile) prima del guard interno di
     // importSnapshot: distingue "log non vuoto" (esito atteso, non un errore)
     // da un fallimento vero di parse/scrittura.
-    if ((await lessonOsLog.readAll()).length > 0) return { kind: "skipped-non-empty" }
+    const existing = supportsEnvelopeExport(lessonOsLog)
+      ? await lessonOsLog.readAllEnvelopes()
+      : await lessonOsLog.readAll()
+    if (existing.length > 0) return { kind: "skipped-non-empty" }
     const report = await lessonOsLog.importSnapshot(await snapshotEntry.async("blob"))
     return { kind: "restored", recovered: report.recovered }
   } catch (err) {
