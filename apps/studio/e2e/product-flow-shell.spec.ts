@@ -35,12 +35,15 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   ).toBeVisible()
   expect(new URL(page.url()).hash).toBe(roomHash)
 
-  // 3. Materiali mantiene l'alias profondo finché FB-6B sostituisce il corpo.
+  // 3. Materiali usa l'alias profondo ma monta il workflow locale Founder Beta.
   await page.locator('[data-view-nav-item="materiali"]').click()
   await expect(
     page.locator('[data-view-nav-item="materiali"][aria-current="page"]'),
   ).toBeVisible({ timeout: 15_000 })
-  await expect(page.getByText("Lezioni salvate — quiz e flashcard")).toBeVisible()
+  await expect(page.getByText("Materiali locali")).toBeVisible()
+  await expect(page.getByLabel("Seleziona bundle .lesson")).toBeVisible()
+  await expect(page.getByRole("button", { name: "Esporta .lesson" })).toBeVisible()
+  await expect(page.getByText("LessonOS non configurato")).toHaveCount(0)
   expect(new URL(page.url()).hash).toBe(roomHash)
 
   // 4. Torna alla superficie Lezione: STESSA stanza.
