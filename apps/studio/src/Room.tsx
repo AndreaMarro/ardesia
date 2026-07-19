@@ -7,10 +7,10 @@ import { latexToImage } from "./latexToImage"
 import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
-import { PATHS, type StorageMode } from "./store/types"
+import { type StorageMode } from "./store/types"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
-import { JournalRecorder } from "./store/JournalRecorder"
-import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
+import { JournalRecorder, toLegacyJournalEvent } from "./store/JournalRecorder"
+import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import ViewNav from "./design/ViewNav"
 import { AudioRecorder } from "./store/AudioRecorder"
@@ -33,7 +33,7 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
-import { validateRoomId } from "./store/roomPaths"
+import { roomPaths, validateRoomId } from "./store/roomPaths"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -128,107 +128,99 @@ export default function Room({
   useEffect(() => {
     let cancelled = false
     setLoading(true)
-    actualStore.init()
-      .then(() => {
+    void (async () => {
+      try {
+        await actualStore.init()
         if (cancelled) return
         setStoreMode(actualStore.mode)
 
-        // In vista studente/recap/replay: niente JournalRecorder né AudioRecorder (sola lettura).
+        // Le viste read-only non aprono né sessione né recorder. Nel percorso docente,
+        // la sessione canonica è l'unica autorità che può costruire il journal live.
         if (!studentView && !recapView && !replayView) {
-          const clock = sharedClock
+          let runtime: LessonOsSessionHandle | null = null
+          try {
+            runtime = await lessonOsOpener({ room })
+          } catch (error) {
+            if (cancelled) {
+              console.error("LessonOS session open failed after Room unmount", error)
+              return
+            }
+            setStorageError("Avvio memoria lezione fallito: " + (error as Error).message)
+          }
 
-          // Crea JournalRecorder dopo init store con clock condiviso
-          const jr = new JournalRecorder(actualStore, clock)
-          journalRef.current = jr
-
-          // Crea AudioRecorder con clock condiviso
-          const ar = new AudioRecorder({
-            store: actualStore,
-            clock,
-            onChunk: (chunkIndex, startEpoch, endEpoch) => {
-              jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
-            },
-          })
-          audioRecorderRef.current = ar
-
-          // LessonOS: event-log persistente + preflight storage (spec #35 §4).
-          // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
-          lessonOsOpener({ room })
-            .then(async (runtime) => {
-              if (cancelled) {
-                try {
-                  await runtime.close()
-                } catch (error) {
-                  console.error("LessonOS session cleanup failed after Room unmount", error)
-                }
-                return
+          if (runtime) {
+            if (cancelled) {
+              try {
+                await runtime.close()
+              } catch (error) {
+                console.error("LessonOS session cleanup failed after Room unmount", error)
               }
-              lessonOsRef.current = runtime
-              // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
-              if (runtime.dataLoss) {
-                setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
-              } else if (runtime.corrupted) {
-                setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
-              }
-              // runtime.persistent = lo store persiste DAVVERO (non il fallback
-              // InMemory): l'advice deve dire "da esportare" anche se l'API c'era.
-              const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
-              if (advice === "export-advised") setExportAdvice(reason)
+              return
+            }
+            const clock = sharedClock
+            const paths = roomPaths(room)
+            const jr = new JournalRecorder({
+              store: actualStore,
+              journalPath: paths.journal,
+              identity: runtime.identity,
+              producer: runtime.producer,
+              now: clock,
             })
-            .catch((error) => {
-              if (cancelled) {
-                console.error("LessonOS session open failed after Room unmount", error)
-                return
-              }
-              setStorageError("Avvio memoria lezione fallito: " + (error as Error).message)
-            })
+            lessonOsRef.current = runtime
+            journalRef.current = jr
+            // Audio resta un sottosistema legacy default-OFF: nessun chunk entra nel
+            // journal canonico o nelle evidenze Founder Beta.
+            audioRecorderRef.current = new AudioRecorder({ store: actualStore, clock })
+
+            if (runtime.dataLoss) {
+              setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
+            } else if (runtime.corrupted) {
+              setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
+            }
+            const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
+            if (advice === "export-advised") setExportAdvice(reason)
+          }
         }
 
-        return actualStore.loadScene(room)
-      })
-      .then((data) => {
+        if (cancelled) return
+        const data = await actualStore.loadScene(room)
         if (cancelled) return
         if (data) {
           try {
             const parsed = JSON.parse(data)
-            // valori JSON falsy ("" / 0 / false) o non-oggetto = scena corrotta: parti da zero
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
             setSceneData(parsed)
-            // Seed journal con elementi esistenti: NON registrarli come element.add
-            const jr = journalRef.current
-            if (jr && parsed?.elements) {
-              jr.seed(parsed.elements)
+            if (journalRef.current && parsed?.elements) {
+              journalRef.current.seed(parsed.elements)
             }
           } catch {
-            // JSON malformato — si parte da zero
+            // JSON malformato — si parte da zero senza riscrivere il blob corrotto.
           }
         }
-      })
-      // Il nome lezione serve all'header docente E alla chip stanza in vista studente.
-      // Meta illeggibile = non fatale: fallback all'id, MAI "Caricamento scena fallito" fuorviante.
-      .then(() => actualStore.loadMeta(room).catch(() => null))
-      .then((meta) => {
-        if (cancelled) return
-        if (meta && meta.name) {
-          setLessonName(meta.name)
-        }
-      })
-      .catch((err) => {
+
+        const meta = await actualStore.loadMeta(room).catch(() => null)
+        if (!cancelled && meta?.name) setLessonName(meta.name)
+      } catch (err) {
         if (!cancelled) {
           setStorageError("Caricamento scena fallito: " + (err as Error).message)
         }
-      })
-      .finally(() => {
+      } finally {
         if (!cancelled) {
           initialLoadDone.current = true
           setLoading(false)
-          // Esponi test harness per Playwright kill-test (solo dev)
           if (import.meta.env.DEV) {
+            const paths = roomPaths(room)
+            const runtime = lessonOsRef.current
             ;(window as any).__MAESTRO_TEST__ = {
               ready: true,
               room,
               store: actualStore,
               recorder: journalRef.current,
+              journal: runtime && journalRef.current ? {
+                path: paths.journal,
+                identity: runtime.identity,
+                producer: runtime.producer,
+              } : null,
               audioRecorder: audioRecorderRef.current,
               lessonOs: lessonOsRef,
               apiRef,
@@ -236,14 +228,15 @@ export default function Room({
               serializeEvents,
               deserializeEvents,
               AudioRecorder,
-              PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
+              PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
               navigateToLesson,
               flushPersist,
               promoteJournalToLessonOs,
             }
           }
         }
-      })
+      }
+    })()
     return () => {
       cancelled = true
       // Pulisci il debounce timer persist() se ancora in sospeso
@@ -251,18 +244,26 @@ export default function Room({
         window.clearTimeout(saveTimer.current)
         saveTimer.current = null
       }
-      // Flush journal rimanente e dispose AudioRecorder
-      journalRef.current?.flush().catch(() => {})
+      // Il close viene tentato solo dopo che il flush ha risolto o fallito. React non
+      // attende cleanup async, ma la chain mantiene l'ordine e rende entrambi gli errori diagnostici.
+      const journal = journalRef.current
+      const lessonOs = lessonOsRef.current
       audioRecorderRef.current?.dispose()
       journalRef.current = null
       audioRecorderRef.current = null
-      // La Room possiede la sessione: close appende un solo lesson.ended v2 e
-      // rilascia il backend persistente. Gli errori di cleanup non sono silenti.
-      const lessonOs = lessonOsRef.current
       lessonOsRef.current = null
-      lessonOs?.close().catch((error) => {
-        console.error("LessonOS session cleanup failed during Room unmount", error)
-      })
+      void (async () => {
+        try {
+          await journal?.flush()
+        } catch (error) {
+          console.error("Room journal flush failed before LessonOS close", error)
+        }
+        try {
+          await lessonOs?.close()
+        } catch (error) {
+          console.error("LessonOS session cleanup failed during Room unmount", error)
+        }
+      })()
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {
         unsub()
@@ -374,8 +375,14 @@ export default function Room({
       setDrawerOpen(false)
       return
     }
-    // Flush prima di navigare: zero tratti persi
-    await flushPersist()
+    // Entrambe le fonti live devono essere durevoli prima di cambiare identità.
+    try {
+      await flushPersist()
+      await journalRef.current?.flush()
+    } catch (error) {
+      setStorageError("Cambio lezione annullato: " + (error as Error).message)
+      return
+    }
     // Cambia hash — guidare re-init via room state
     location.hash = targetRoom
     setDrawerOpen(false)
@@ -451,27 +458,32 @@ export default function Room({
   /**
    * Bridge Journal → LessonOS (spec #34): promuove le pdf.page.view riconosciute
    * dal ManualRegistry in material.cited sull'event-log. Idempotente al replay
-   * (cursore lastPromotedJournalT dentro appendJournalBridgeTail). Best-effort:
-   * non deve mai bloccare l'export — il journal resta la fonte di verità.
+   * (cursore lastPromotedJournalT dentro appendJournalBridgeTail). Soltanto una
+   * page-observed v2 con evidence verified può attraversare il bridge: un import
+   * PDF è materiale disponibile, non prova che il docente abbia visto la pagina.
    */
   async function promoteJournalToLessonOs(): Promise<void> {
     const run = _pendingPromote.current.then(async () => {
       const runtime = lessonOsRef.current
-      if (!runtime) return
-      try {
-        // Flush del buffer journal: le viste PDF appena registrate devono essere
-        // sul file PRIMA della lettura (stessa fonte dell'export, Room.read sotto).
-        await journalRef.current?.flush()
-        const blob = await actualStore.read(PATHS.JOURNAL)
-        if (!blob) return
-        const events = deserializeEvents(await blob.text())
-        await appendJournalBridgeTail(runtime.store, events, {
-          registry: defaultManualRegistry,
-          room,
-        })
-      } catch {
-        // promozione fallita: l'export prosegue col journal come verità
+      const recorder = journalRef.current
+      if (!runtime || !recorder) {
+        throw new Error("Sessione o journal canonico non disponibile")
       }
+      await recorder.flush()
+      const path = roomPaths(room).journal
+      const blob = await actualStore.read(path)
+      if (!blob) return
+      const decoded = decodeJournalJsonl(await blob.text(), path)
+      const observed = decoded.envelopes.flatMap((envelope) => {
+        if (envelope.kind !== "journal.pdf.page-observed") return []
+        if (envelope.evidence.some((entry) => entry.resolution !== "verified")) return []
+        const event = toLegacyJournalEvent(envelope)
+        return event ? [event] : []
+      })
+      await appendJournalBridgeTail(runtime.store, observed, {
+        registry: defaultManualRegistry,
+        room,
+      })
     })
     _pendingPromote.current = run.then(
       () => {},
@@ -484,8 +496,8 @@ export default function Room({
   async function handleExportLesson() {
     setExporting(true)
     try {
-      // Promuovi le citazioni manuale PRIMA dello snapshot event-log nel bundle:
-      // l'export è il momento "fine lezione" (stand-in finché non esiste lesson.ended).
+      // Il flush è parte del contratto di export: un errore resta visibile e
+      // impedisce di produrre un bundle dichiarato riuscito.
       await promoteJournalToLessonOs()
       // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
       const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)

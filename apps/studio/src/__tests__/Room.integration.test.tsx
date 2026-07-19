@@ -18,6 +18,7 @@ import {
 } from "../lessonos/bootstrap"
 import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { roomPaths } from "../store/roomPaths"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 
@@ -177,6 +178,20 @@ beforeEach(() => {
     writable: true,
   })
   globalThis.location.hash = "#test-room-1"
+  let lockTail = Promise.resolve()
+  Object.defineProperty(navigator, "locks", {
+    configurable: true,
+    value: {
+      request: vi.fn((name: string, options: { mode: LockMode }, callback: (lock: Lock) => unknown) => {
+        const run = lockTail.then(() => callback({ name, mode: options.mode } as Lock))
+        lockTail = run.then(
+          () => undefined,
+          () => undefined,
+        )
+        return run
+      }),
+    },
+  })
   document.body.innerHTML = '<div id="root"></div>'
   delete (window as any).__MAESTRO_TEST__
   mockExcalidrawHarness.updateSceneCalls = []
@@ -1202,6 +1217,122 @@ describe("FB-3C: ownership Room della sessione LessonOS", () => {
   })
 })
 
+describe("FB-4C: Room usa il journal v2 della sessione canonica", () => {
+  async function mountWithSession(
+    providedHandle?: LessonOsSessionHandle,
+  ) {
+    const handle = providedHandle ?? await openInMemorySession(
+      "test-room-1",
+      deterministicSessionDeps({
+        sessionId: SESSION_A,
+        eventIds: [EVENT_START, EVENT_END],
+      }),
+    )
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn(async () => handle)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness?.lessonOs?.current).toBe(handle)
+      expect(harness?.recorder).toBeTruthy()
+    })
+    return { root, store, handle, harness }
+  }
+
+  it("scrive solo nel path room e usa identita/producer esatti della sessione", async () => {
+    const { root, store, handle, harness } = await mountWithSession()
+
+    harness.recorder.recordMathInsert("V = RI")
+    await harness.recorder.flush()
+
+    const canonicalPath = roomPaths("test-room-1").journal
+    const canonical = await store.read(canonicalPath)
+    expect(canonical).not.toBeNull()
+    expect(await store.read(PATHS.JOURNAL)).toBeNull()
+    const rows = (await canonical!.text()).trim().split("\n").map((line) => JSON.parse(line))
+    expect(rows).toHaveLength(1)
+    expect(rows[0]).toMatchObject({
+      schemaVersion: 2,
+      lessonId: handle.identity.lessonId,
+      sessionId: handle.identity.sessionId,
+      actor: handle.identity.actor,
+      producer: handle.producer,
+      kind: "journal.math.insert",
+    })
+    expect(harness.journal).toEqual({
+      path: canonicalPath,
+      identity: handle.identity,
+      producer: handle.producer,
+    })
+    expect(harness.PATHS.JOURNAL).toBe(canonicalPath)
+
+    root.unmount()
+  })
+
+  it("attende il flush journal prima di chiudere la sessione", async () => {
+    const { root, store, handle, harness } = await mountWithSession()
+    const closeSpy = vi.spyOn(handle, "close")
+    const originalWrite = store.write.bind(store)
+    const writeStarted = makeDeferred<void>()
+    const allowWrite = makeDeferred<void>()
+    vi.spyOn(store, "write").mockImplementation(async (path, data) => {
+      writeStarted.resolve()
+      await allowWrite.promise
+      await originalWrite(path, data)
+    })
+    harness.recorder.recordMathInsert("P = VI")
+
+    root.unmount()
+    try {
+      await writeStarted.promise
+      expect(closeSpy).not.toHaveBeenCalled()
+      allowWrite.resolve()
+      await vi.waitFor(() => expect(closeSpy).toHaveBeenCalledTimes(1))
+    } finally {
+      allowWrite.resolve()
+    }
+  })
+
+  it("se il flush di unmount fallisce lo diagnostica e rilascia comunque LessonOS", async () => {
+    const { root, handle, harness } = await mountWithSession()
+    const closeSpy = vi.spyOn(handle, "close")
+    vi.spyOn(harness.recorder, "flush").mockRejectedValue(new Error("flush cleanup fallito"))
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+
+    root.unmount()
+
+    await vi.waitFor(() => {
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Room journal flush failed before LessonOS close",
+        expect.objectContaining({ message: "flush cleanup fallito" }),
+      )
+      expect(closeSpy).toHaveBeenCalledTimes(1)
+    })
+    consoleSpy.mockRestore()
+  })
+
+  it("un flush fallito resta visibile e impedisce un export dichiarato riuscito", async () => {
+    const { root, store, harness } = await mountWithSession()
+    vi.spyOn(harness.recorder, "flush").mockRejectedValue(new Error("journal non persistito"))
+    const exportSpy = vi.spyOn(store, "exportLesson")
+    const exportButton = Array.from(document.querySelectorAll("button"))
+      .find((button) => button.textContent?.trim() === "esporta lezione")
+    expect(exportButton).toBeDefined()
+
+    exportButton!.click()
+
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-err")?.textContent ?? "").toContain("journal non persistito")
+    })
+    expect(exportSpy).not.toHaveBeenCalled()
+    root.unmount()
+  })
+})
+
 // ── S-DESIGN-5: Vista studente ───────────────────────────────────
 
 describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
@@ -1630,6 +1761,42 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 
+  it("navigateToLesson attende anche il flush journal prima di cambiare hash", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness?.lessonOs?.current).toBeTruthy()
+      expect(harness?.recorder).toBeTruthy()
+    })
+    harness.recorder.recordMathInsert("E = mc^2")
+    const originalWrite = store.write.bind(store)
+    const writeStarted = makeDeferred<void>()
+    const allowWrite = makeDeferred<void>()
+    vi.spyOn(store, "write").mockImplementation(async (path, data) => {
+      writeStarted.resolve()
+      await allowWrite.promise
+      await originalWrite(path, data)
+    })
+
+    const navigation = harness.navigateToLesson("altra-room")
+    try {
+      await writeStarted.promise
+      expect(globalThis.location.hash).toBe("#test-room-1")
+      allowWrite.resolve()
+      await navigation
+      expect(globalThis.location.hash).toBe("#altra-room")
+    } finally {
+      allowWrite.resolve()
+      root.unmount()
+    }
+  })
+
   it("toggleDrawer mostra errore quando listRooms fallisce", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
@@ -1913,7 +2080,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     root.unmount()
   })
 
-  it("import PDF registra pdf.page.view con identita documento esplicita nel journal", async () => {
+  it("import PDF registra journal.pdf.imported con evidence missing nel path della room", async () => {
     const { pdfToImages } = await import("../loadFile")
     vi.mocked(pdfToImages).mockResolvedValueOnce([
       {
@@ -1946,20 +2113,28 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     }, { timeout: 5000, interval: 10 })
 
     await (window as any).__MAESTRO_TEST__.recorder.flush()
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(roomPaths("test-room-1").journal)
     const events = (await blob!.text())
       .trim()
       .split("\n")
       .map((line) => JSON.parse(line))
 
-    expect(events.map((event) => event.type)).toEqual(["pdf.page.view", "pdf.page.view"])
-    expect(events.map((event) => event.documentId)).toEqual([
+    expect(await store.read(PATHS.JOURNAL)).toBeNull()
+    expect(events.map((event) => event.kind)).toEqual([
+      "journal.pdf.imported",
+      "journal.pdf.imported",
+    ])
+    expect(events.map((event) => event.evidence)).toEqual([
+      [{ ref: "pdf:document%3Asha256%3Aabc123#page=1", resolution: "missing" }],
+      [{ ref: "pdf:document%3Asha256%3Aabc123#page=2", resolution: "missing" }],
+    ])
+    expect(events.map((event) => event.payload.documentId)).toEqual([
       "document:sha256:abc123",
       "document:sha256:abc123",
     ])
-    expect(events.map((event) => event.page)).toEqual([1, 2])
-    expect(events.map((event) => event.totalPages)).toEqual([2, 2])
-    expect(events.map((event) => event.documentName)).toEqual(["manuale.pdf", "manuale.pdf"])
+    expect(events.map((event) => event.payload.page)).toEqual([1, 2])
+    expect(events.map((event) => event.payload.totalPages)).toEqual([2, 2])
+    expect(events.map((event) => event.payload.documentName)).toEqual(["manuale.pdf", "manuale.pdf"])
 
     root.unmount()
   })
@@ -1996,23 +2171,19 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     return { root, store, harness: (window as any).__MAESTRO_TEST__ }
   }
 
-  it("bridge LessonOS: pdf riconosciuto dal registry → esattamente UN material.cited con evidence doppia", async () => {
+  it("bridge LessonOS: un PDF soltanto importato non diventa material.cited verificato", async () => {
     const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 3)])
 
     await harness.promoteJournalToLessonOs()
 
     const all = await harness.lessonOs.current.store.readAll()
     const cited = all.filter((e: any) => e.kind === "material.cited")
-    expect(cited).toHaveLength(1)
-    expect(cited[0].materialId).toBe("manual:vol1:p3")
-    expect(cited[0].evidence).toContain("manual:vol1:p3")
-    expect(cited[0].evidence.some((r: string) => /^journal:pdf\.page\.view@\d+$/.test(r))).toBe(true)
-    expect(cited[0].evidence.some((r: string) => r.startsWith("lesson:"))).toBe(true)
+    expect(cited).toHaveLength(0)
 
     root.unmount()
   })
 
-  it("bridge LessonOS: replay completo → nessun duplicato (cursore lastPromotedJournalT)", async () => {
+  it("bridge LessonOS: replay ripetuto di soli import resta privo di fatti verificati", async () => {
     const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 5)])
 
     await harness.promoteJournalToLessonOs()
@@ -2020,7 +2191,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     await harness.promoteJournalToLessonOs()
     const after2 = (await harness.lessonOs.current.store.readAll()).length
 
-    expect(after1).toBeGreaterThan(0)
+    expect(after1).toBe(1) // solo lesson.started
     expect(after2).toBe(after1)
 
     root.unmount()
@@ -2033,10 +2204,10 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
 
     const all = await harness.lessonOs.current.store.readAll()
     expect(all.filter((e: any) => e.kind === "material.cited")).toHaveLength(0)
-    // il journal registra comunque pdf.page.view (promote flusha prima di leggere)
-    const blob = await store.read(PATHS.JOURNAL)
+    // il journal registra comunque l'import missing nel path canonico della room
+    const blob = await store.read(roomPaths("test-room-1").journal)
     expect(blob).not.toBeNull()
-    expect(await blob!.text()).toContain('"pdf.page.view"')
+    expect(await blob!.text()).toContain('"journal.pdf.imported"')
 
     root.unmount()
   })

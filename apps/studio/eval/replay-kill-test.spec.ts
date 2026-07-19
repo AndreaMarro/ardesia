@@ -157,7 +157,9 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
 
     // --- FASE 4: Replay dal journal ---
     const engine = new ReplayEngineCls()
-    const events = deserialize(journalText)
+    // Il live journal è room-scoped e v2: il decoder deve ricevere la stessa
+    // authority path esposta dalla Room, mai il default flat legacy.
+    const events = deserialize(journalText, PATHS.JOURNAL)
     if (events.length === 0) {
       return fail("zero eventi nel journal", { truthLength: truthElements.length })
     }
