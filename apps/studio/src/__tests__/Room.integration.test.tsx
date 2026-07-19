@@ -2031,8 +2031,13 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   it("import .lesson dalla Room scrive la board nel path della stanza e aggiorna Excalidraw", async () => {
     const { store: sourceStore } = await createMockStore()
     const boardScene = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits())
-    await sourceStore.saveScene("source-room", JSON.stringify(boardScene))
-    const bundle = await exportLesson(sourceStore, "source-room")
+    await sourceStore.saveScene("test-room-1", JSON.stringify(boardScene))
+    await sourceStore.write(
+      roomPaths("test-room-1").journal,
+      new Blob(['{"t":1,"type":"t0"}\n'], { type: "application/x-ndjson" }),
+    )
+    await sourceStore.saveSessionYaml("v: 1\ncreated: 1\naudioConsent: false\n")
+    const bundle = await exportLesson(sourceStore, "test-room-1")
 
     const { root, input, store } = await mountRoomAndGetFileInput({ mockLoadScene: false })
 
