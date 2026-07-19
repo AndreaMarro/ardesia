@@ -4,7 +4,19 @@
 // element.delete rimuove. Gli eventi t0/t1/math.insert/pdf.page.view non alterano
 // lo stato elementi (sono metadati per allineamento temporale).
 
-import type { JournalEvent } from "./JournalRecorder"
+import {
+  adaptLegacyJournalEvent,
+  assertJournalEnvelopeV2,
+  freezeJournalEnvelopeV2,
+  journalSourceLessonId,
+  looksLikeJournalEnvelopeV2,
+  looksLikeRawJournalEnvelopeV2,
+  parseLegacyJournalEvent,
+  toLegacyJournalEvent,
+  type JournalEnvelopeV2,
+  type JournalEvent,
+} from "./JournalRecorder"
+import { PATHS } from "./types"
 
 /**
  * ReplayEngine: applica eventi journal in ordine e produce lo stato finale
@@ -177,20 +189,111 @@ export function serializeEvents(events: JournalEvent[]): string {
   return events.map((e) => JSON.stringify(e)).join("\n") + "\n"
 }
 
+export type JournalDecodeIssue = Readonly<{
+  source: string
+  line: number
+  reason: string
+}>
+
+export type JournalDecodeResult = Readonly<{
+  envelopes: readonly JournalEnvelopeV2[]
+  legacy: readonly JournalEvent[]
+  issues: readonly JournalDecodeIssue[]
+}>
+
+/**
+ * Decodifica un journal fisico senza riordinare le righe. V2 malformato è
+ * fail-closed; legacy malformato è saltato ma riportato esplicitamente.
+ */
+export function decodeJournalJsonl(text: string, source: string): JournalDecodeResult {
+  const sourceLessonId = journalSourceLessonId(source)
+  const envelopes: JournalEnvelopeV2[] = []
+  const legacy: JournalEvent[] = []
+  const issues: JournalDecodeIssue[] = []
+  const eventIds = new Set<string>()
+  const idempotencyKeys = new Set<string>()
+  const addEnvelope = (envelope: JournalEnvelopeV2): void => {
+    if (eventIds.has(envelope.eventId)) {
+      throw new Error(`duplicate eventId ${envelope.eventId}`)
+    }
+    if (
+      envelope.idempotencyKey !== null &&
+      idempotencyKeys.has(envelope.idempotencyKey)
+    ) {
+      throw new Error(`duplicate idempotency key ${envelope.idempotencyKey}`)
+    }
+    eventIds.add(envelope.eventId)
+    if (envelope.idempotencyKey !== null) idempotencyKeys.add(envelope.idempotencyKey)
+    envelopes.push(envelope)
+  }
+
+  for (const [index, rawLine] of text.split("\n").entries()) {
+    const line = index + 1
+    const trimmed = rawLine.trim()
+    if (!trimmed) continue
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(trimmed)
+    } catch {
+      if (looksLikeRawJournalEnvelopeV2(rawLine)) {
+        throw new Error(`${source}: line ${line}: invalid JSON in V2 envelope`)
+      }
+      issues.push({ source, line, reason: "invalid JSON legacy row" })
+      continue
+    }
+
+    if (looksLikeJournalEnvelopeV2(parsed)) {
+      try {
+        assertJournalEnvelopeV2(parsed)
+        const envelope = freezeJournalEnvelopeV2(parsed)
+        if (source === PATHS.JOURNAL) {
+          throw new Error("physical V2 envelopes are forbidden in the flat legacy journal")
+        }
+        if (envelope.lessonId !== sourceLessonId) {
+          throw new Error(`lesson/source mismatch (${envelope.lessonId})`)
+        }
+        addEnvelope(envelope)
+        const projection = toLegacyJournalEvent(envelope)
+        if (projection) legacy.push(projection)
+      } catch (error) {
+        throw new Error(`${source}: line ${line}: ${(error as Error).message}`, { cause: error })
+      }
+      continue
+    }
+
+    const event = parseLegacyJournalEvent(parsed)
+    if (!event) {
+      issues.push({ source, line, reason: "invalid legacy journal row" })
+      continue
+    }
+    legacy.push(event)
+    let envelope: JournalEnvelopeV2 | null
+    try {
+      envelope = adaptLegacyJournalEvent(event, source, line, rawLine)
+    } catch (error) {
+      issues.push({ source, line, reason: (error as Error).message })
+      continue
+    }
+    if (envelope) {
+      try {
+        addEnvelope(envelope)
+      } catch (error) {
+        throw new Error(`${source}: line ${line}: ${(error as Error).message}`, { cause: error })
+      }
+    }
+  }
+
+  return {
+    envelopes: Object.freeze(envelopes),
+    legacy: Object.freeze(legacy),
+    issues: Object.freeze(issues),
+  }
+}
+
 /**
  * Deserializza una stringa JSONL in array di eventi.
  * Salta righe vuote o non-JSON.
  */
-export function deserializeEvents(text: string): JournalEvent[] {
-  const events: JournalEvent[] = []
-  for (const line of text.split("\n")) {
-    const trimmed = line.trim()
-    if (!trimmed) continue
-    try {
-      events.push(JSON.parse(trimmed) as JournalEvent)
-    } catch {
-      // riga malformata — skip
-    }
-  }
-  return events
+export function deserializeEvents(text: string, source = PATHS.JOURNAL): JournalEvent[] {
+  return [...decodeJournalJsonl(text, source).legacy]
 }
