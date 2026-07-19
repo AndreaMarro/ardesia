@@ -54,12 +54,40 @@ function isLessonFile(file: File): boolean {
   return file.name.toLowerCase().endsWith(LESSON_EXTENSION)
 }
 
+function navigateDocument(href: string): void {
+  window.location.assign(href)
+}
+
+const SURFACE_FLUSH_TIMEOUT_MS = 10_000
+
+function withSurfaceFlushTimeout(operation: Promise<void>): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const timeoutId = window.setTimeout(() => {
+      reject(new Error(
+        "Salvataggio ancora in corso dopo 10 secondi; resta nella Lezione e riprova.",
+      ))
+    }, SURFACE_FLUSH_TIMEOUT_MS)
+    operation.then(
+      () => {
+        window.clearTimeout(timeoutId)
+        resolve()
+      },
+      (error) => {
+        window.clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
 export default function Room({
   store,
   lessonOsOpener = openLessonOsSession,
+  navigate = navigateDocument,
 }: {
   store?: WorkspaceStore
   lessonOsOpener?: LessonOsSessionOpener
+  navigate?: (href: string) => void
 }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
@@ -123,6 +151,9 @@ export default function Room({
   // Promise-chain mutex per la promozione bridge: due promote sovrapposti
   // leggerebbero lo stesso cursore e duplicherebbero i material.cited
   const _pendingPromote = useRef<Promise<void>>(Promise.resolve())
+  // Un solo cambio superficie per volta: un doppio click non può avviare due
+  // flush concorrenti né scegliere una seconda destinazione a metà preflight.
+  const _pendingSurfaceNavigation = useRef<Promise<void> | null>(null)
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
@@ -293,7 +324,9 @@ export default function Room({
     latestFilesRef.current = files
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
     saveTimer.current = window.setTimeout(() => {
-      _doSave()
+      // Il debounce non ha un caller da rigettare; _doSave ha già reso visibile
+      // l'errore. I caller espliciti (flush/navigazione) ricevono invece il reject.
+      void _doSave().catch(() => {})
     }, 700)
   }
 
@@ -303,7 +336,7 @@ export default function Room({
     const appState = latestAppStateRef.current
     const files = latestFilesRef.current
     if (!elements) return
-    _pendingSave.current = _pendingSave.current.then(async () => {
+    const run = _pendingSave.current.then(async () => {
       try {
         const serialized = serializeAsJSON(elements, appState, files, "local")
         await actualStore.saveScene(room, serialized)
@@ -312,9 +345,16 @@ export default function Room({
         window.setTimeout(() => setSaved(false), 1200)
       } catch (err) {
         setStorageError("Salvataggio non riuscito: " + (err as Error).message)
+        throw err
       }
     })
-    await _pendingSave.current
+    // La coda resta riutilizzabile dopo un errore, mentre il caller corrente
+    // osserva il rigetto e può annullare export/navigazione.
+    _pendingSave.current = run.then(
+      () => {},
+      () => {},
+    )
+    await run
   }
 
   /** Flush immediato: cancella il debounce e salva subito. Attende il completamento. */
@@ -324,6 +364,12 @@ export default function Room({
       saveTimer.current = null
     }
     await _doSave()
+  }
+
+  /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
+  async function flushLiveLesson(): Promise<void> {
+    await flushPersist()
+    await journalRef.current?.flush()
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -377,8 +423,7 @@ export default function Room({
     }
     // Entrambe le fonti live devono essere durevoli prima di cambiare identità.
     try {
-      await flushPersist()
-      await journalRef.current?.flush()
+      await flushLiveLesson()
     } catch (error) {
       setStorageError("Cambio lezione annullato: " + (error as Error).message)
       return
@@ -388,6 +433,33 @@ export default function Room({
     setDrawerOpen(false)
     // Forza un re-mount pulito del componente
     window.location.reload()
+  }
+
+  /**
+   * Cambia superficie soltanto dopo il flush scena+journal. La Promise viene
+   * serializzata: i click successivi durante il preflight non cambiano target.
+   */
+  function navigateToSurface(href: string): Promise<void> {
+    const pending = _pendingSurfaceNavigation.current
+    if (pending) return pending
+
+    const run = (async () => {
+      try {
+        // Un driver bloccato non può tenere il control plane in stallo infinito.
+        // La write sottostante continua; la route resta ferma e il mutex si libera.
+        await withSurfaceFlushTimeout(flushLiveLesson())
+        navigate(href)
+      } catch (error) {
+        setStorageError("Cambio superficie annullato: " + (error as Error).message)
+      }
+    })()
+    _pendingSurfaceNavigation.current = run
+    void run.then(() => {
+      if (_pendingSurfaceNavigation.current === run) {
+        _pendingSurfaceNavigation.current = null
+      }
+    })
+    return run
   }
 
   /** Toggle audio: ON = chiede consenso + avvia registrazione, OFF = ferma */
@@ -762,9 +834,13 @@ export default function Room({
         </button>
 
         <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
-          {/* Product Flow Shell: il docente naviga tra le viste senza digitare
-              URL (lavagna → ELAB Lab → cruscotto → lezioni). */}
-          {!studentView && <ViewNav current="lavagna" />}
+          {/* Founder Beta: tre sole superfici — Lezione, Continuità, Materiali. */}
+          {!studentView && (
+            <ViewNav
+              current="lavagna"
+              onNavigate={(href) => { void navigateToSurface(href) }}
+            />
+          )}
           <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>

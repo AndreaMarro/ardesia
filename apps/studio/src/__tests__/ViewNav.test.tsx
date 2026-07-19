@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 // Product Flow Shell — la nav espone gli ingressi caricabili e preserva la stanza.
 
-import { cleanup, render } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { cleanup, fireEvent, render } from "@testing-library/react"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import ViewNav, { ARDESIA_VIEW_LINKS, viewHref } from "../design/ViewNav"
 
 afterEach(() => {
@@ -45,5 +45,26 @@ describe("ViewNav — sole Lezione, Continuità e Materiali", () => {
     expect(
       container.querySelector('[data-view-nav-item="lezione"]')?.getAttribute("href"),
     ).toBe("/#wbstudio-room1")
+  })
+
+  it("intercetta soltanto il click primario quando la superficie deve fare preflight", () => {
+    window.history.replaceState(null, "", "/#wbstudio-room1")
+    const onNavigate = vi.fn()
+    const { container } = render(
+      <ViewNav current="lavagna" onNavigate={onNavigate} />,
+    )
+    const continuity = container.querySelector<HTMLAnchorElement>(
+      '[data-view-nav-item="continuita"]',
+    )!
+
+    fireEvent.click(continuity)
+    expect(onNavigate).toHaveBeenCalledWith(
+      "/?vista=cruscotto#wbstudio-room1",
+    )
+    expect(window.location.href).toBe("http://localhost:3000/#wbstudio-room1")
+
+    onNavigate.mockClear()
+    fireEvent.click(continuity, { metaKey: true })
+    expect(onNavigate).not.toHaveBeenCalled()
   })
 })

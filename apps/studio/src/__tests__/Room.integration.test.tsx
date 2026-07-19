@@ -5,7 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
-import { Component, type ReactNode } from "react"
+import { act, Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
 import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
@@ -1793,6 +1793,161 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       expect(globalThis.location.hash).toBe("#altra-room")
     } finally {
       allowWrite.resolve()
+      root.unmount()
+    }
+  })
+
+  it("il cambio superficie attende il journal e conserva l'ultimo evento prima della route", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const navigate = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} navigate={navigate} />)
+
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness?.recorder).toBeTruthy()
+    })
+    const marker = "fb6c-last-event-before-surface"
+    harness.recorder.recordMathInsert(marker)
+
+    const originalWrite = store.write.bind(store)
+    const writeStarted = makeDeferred<void>()
+    const allowWrite = makeDeferred<void>()
+    vi.spyOn(store, "write").mockImplementation(async (path, data) => {
+      if (path === roomPaths("test-room-1").journal) {
+        writeStarted.resolve()
+        await allowWrite.promise
+      }
+      await originalWrite(path, data)
+    })
+
+    const link = document.querySelector<HTMLAnchorElement>(
+      '[data-view-nav-item="continuita"]',
+    )!
+    link.dispatchEvent(new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      button: 0,
+    }))
+
+    try {
+      await writeStarted.promise
+      expect(navigate).not.toHaveBeenCalled()
+      expect(globalThis.location.hash).toBe("#test-room-1")
+
+      allowWrite.resolve()
+      await vi.waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith(
+          "/?vista=cruscotto#test-room-1",
+        )
+      })
+      const journal = await store.read(roomPaths("test-room-1").journal)
+      expect(await journal?.text()).toContain(marker)
+    } finally {
+      allowWrite.resolve()
+      root.unmount()
+    }
+  })
+
+  it("un errore journal annulla il cambio superficie e resta visibile", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const navigate = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} navigate={navigate} />)
+
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness?.recorder).toBeTruthy()
+    })
+    harness.recorder.recordMathInsert("fb6c-journal-error")
+    vi.spyOn(store, "write").mockRejectedValue(new Error("journal offline"))
+
+    document.querySelector<HTMLAnchorElement>(
+      '[data-view-nav-item="materiali"]',
+    )!.click()
+
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-err")?.textContent).toContain(
+        "Cambio superficie annullato: journal offline",
+      )
+    })
+    expect(navigate).not.toHaveBeenCalled()
+    root.unmount()
+  })
+
+  it("un errore scena annulla il cambio superficie invece di navigare con dati persi", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "saveScene").mockRejectedValue(new Error("scene offline"))
+    const navigate = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} navigate={navigate} />)
+
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.recorder).toBeTruthy()
+    })
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const onChange = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]?.onChange
+    expect(onChange).toBeDefined()
+    onChange!([{ id: "fb6c-element", version: 1 }] as any, {} as any, {})
+
+    document.querySelector<HTMLAnchorElement>(
+      '[data-view-nav-item="continuita"]',
+    )!.click()
+
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-err")?.textContent).toContain(
+        "Cambio superficie annullato: scene offline",
+      )
+    })
+    expect(navigate).not.toHaveBeenCalled()
+    root.unmount()
+  })
+
+  it("un flush sospeso scade senza cambiare route e libera il cambio superficie", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const navigate = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} navigate={navigate} />)
+
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness?.recorder).toBeTruthy()
+    })
+    harness.recorder.recordMathInsert("fb6c-never-finishes")
+    const writeStarted = makeDeferred<void>()
+    vi.spyOn(store, "write").mockImplementation(async () => {
+      writeStarted.resolve()
+      await new Promise<void>(() => {})
+    })
+
+    vi.useFakeTimers()
+    try {
+      document.querySelector<HTMLAnchorElement>(
+        '[data-view-nav-item="continuita"]',
+      )!.click()
+      await writeStarted.promise
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(10_000)
+      })
+
+      expect(navigate).not.toHaveBeenCalled()
+      expect(globalThis.location.hash).toBe("#test-room-1")
+      expect(document.querySelector(".st-err")?.textContent).toContain(
+        "Salvataggio ancora in corso dopo 10 secondi",
+      )
+    } finally {
+      vi.useRealTimers()
       root.unmount()
     }
   })

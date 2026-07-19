@@ -1,6 +1,8 @@
 // Founder Beta shell: la nav espone soltanto le tre promesse di prodotto.
 // Le route storiche restano alias interni per non spezzare link e test profondi.
 
+import type { MouseEvent } from "react"
+
 export type FounderSurfaceId =
   | "lezione"
   | "continuita"
@@ -48,23 +50,46 @@ export function viewHref(id: ArdesiaViewId, currentHash: string = ""): string {
   return `/?vista=${id}${hash}`
 }
 
-export default function ViewNav({ current }: { current: ArdesiaViewId }) {
+export type ViewNavProps = Readonly<{
+  current: ArdesiaViewId
+  onNavigate?: (href: string) => void
+}>
+
+function isPrimarySameTabClick(event: MouseEvent<HTMLAnchorElement>): boolean {
+  return event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+}
+
+export default function ViewNav({ current, onNavigate }: ViewNavProps) {
   const hash = typeof window === "undefined" ? "" : window.location.hash
   const currentSurface = founderSurfaceFor(current)
   return (
     <nav aria-label="Viste Ardesia" data-view-nav style={navStyle}>
-      {ARDESIA_VIEW_LINKS.map((view) => (
-        <a
-          key={view.id}
-          href={viewHref(view.id, hash)}
-          title={view.title}
-          data-view-nav-item={view.id}
-          aria-current={view.id === currentSurface ? "page" : undefined}
-          style={view.id === currentSurface ? { ...linkStyle, ...activeStyle } : linkStyle}
-        >
-          {view.label}
-        </a>
-      ))}
+      {ARDESIA_VIEW_LINKS.map((view) => {
+        const href = viewHref(view.id, hash)
+        return (
+          <a
+            key={view.id}
+            href={href}
+            title={view.title}
+            data-view-nav-item={view.id}
+            aria-current={view.id === currentSurface ? "page" : undefined}
+            style={view.id === currentSurface ? { ...linkStyle, ...activeStyle } : linkStyle}
+            onClick={onNavigate ? (event) => {
+              // Cmd/Ctrl/Shift/Alt-click apre un nuovo contesto: la Room corrente
+              // non viene smontata e il normale comportamento del link resta intatto.
+              if (event.defaultPrevented || !isPrimarySameTabClick(event)) return
+              event.preventDefault()
+              onNavigate(href)
+            } : undefined}
+          >
+            {view.label}
+          </a>
+        )
+      })}
     </nav>
   )
 }
