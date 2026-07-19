@@ -9,7 +9,12 @@ import { describe, it, expect, beforeEach } from "vitest"
 import JSZip from "jszip"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
-import { exportLesson, importLesson, LESSON_PATHS } from "../store/lessonBundle"
+import {
+  exportLesson,
+  importLesson,
+  LESSON_PATHS,
+  recoverPendingLessonImport,
+} from "../store/lessonBundle"
 import { roomPaths } from "../store/roomPaths"
 import {
   toLegacyLessonOsEvent,
@@ -65,6 +70,15 @@ class MockDriver implements WorkspaceDriver {
 
   getLegacyScene(room: string): string | null { return this.legacyScenes.get(room) ?? null }
   setLegacyScene(room: string, data: string): void { this.legacyScenes.set(room, data) }
+}
+
+class FaultInjectingDriver extends MockDriver {
+  failWrite: ((path: string, data: Blob) => boolean) | null = null
+
+  override async write(path: string, data: Blob): Promise<void> {
+    if (this.failWrite?.(path, data)) throw new Error(`fault injection write: ${path}`)
+    await super.write(path, data)
+  }
 }
 
 function withMockDriver(store: WorkspaceStore, mock: MockDriver) {
@@ -965,10 +979,12 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
     expect(result.lessonOsRestore).toEqual({ kind: "unsupported" })
   })
 
-  it("importSnapshot che fallisce ⇒ status failed con messaggio, import file NON compromesso", async () => {
+  it("importSnapshot che fallisce ⇒ status failed e workspace precedente byte-identico", async () => {
     const bundle = await bundleWithSnapshot()
     const store2 = new WorkspaceStore()
     withMockDriver(store2, new MockDriver())
+    const previousScene = new Blob(['{"previous":true}'])
+    await store2.write(roomPaths(ROOM).scene, previousScene)
     const target = await restorableLog()
     target.importSnapshot = async () => {
       throw new Error("scrittura fallita")
@@ -977,8 +993,8 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
     const result = await importLesson(store2, bundle, target)
 
     expect(result.lessonOsRestore).toEqual({ kind: "failed", error: "scrittura fallita" })
-    // Il board resta importato: il restore è secondario, mai bloccante
-    expect(await store2.read(roomPaths(ROOM).scene)).not.toBeNull()
+    expect(new Uint8Array(await (await store2.read(roomPaths(ROOM).scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await previousScene.arrayBuffer()))
   })
 
   it("bundle malevolo ⇒ import rigetta PRIMA di toccare il log (restore mai su bundle invalido)", async () => {
@@ -1170,5 +1186,124 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
     await target.importLessonBlobForRoom(bundle, "cached-room")
 
     expect(mock.getLegacyScene("cached-room")).toBe(scene)
+  })
+})
+
+describe("LessonBundle — FB-5B transactional import", () => {
+  it("ripristina byte per byte la lezione se una write fallisce a commit iniziato", async () => {
+    const room = "room-transaction-write-failure"
+    const paths = roomPaths(room)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(paths.scene, new Blob(['{"version":"new"}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    const bundle = await exportLesson(source, room)
+
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    const originalScene = new Blob(['{"version":"original"}'])
+    const originalJournal = new Blob(["original-journal\n"])
+    const originalSession = new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"])
+    await target.write(paths.scene, originalScene)
+    await target.write(paths.journal, originalJournal)
+    await target.write(LESSON_PATHS.SESSION, originalSession)
+
+    const liveTargets = new Set([LESSON_PATHS.SESSION, paths.scene, paths.journal])
+    let liveWrites = 0
+    driver.failWrite = (path) => liveTargets.has(path) && ++liveWrites === 3
+
+    await expect(importLesson(target, bundle, null, {
+      destinationLessonId: room,
+    })).rejects.toThrow(/fault injection|rollback|transaction/i)
+
+    expect(liveWrites).toBeGreaterThan(1)
+    expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await originalScene.arrayBuffer()))
+    expect(new Uint8Array(await (await target.read(paths.journal))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await originalJournal.arrayBuffer()))
+    expect(new Uint8Array(await (await target.read(LESSON_PATHS.SESSION))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await originalSession.arrayBuffer()))
+    const transactionEvidence = await target.list("raw/.ardesia/import-transactions/")
+    expect(transactionEvidence.some((entry) => entry.path.endsWith("/transaction.json"))).toBe(true)
+    expect(transactionEvidence.some((entry) => entry.path.endsWith("/active.json"))).toBe(false)
+  })
+
+  it("riprende dopo riavvio un rollback interrotto senza perdere gli originali", async () => {
+    const room = "room-transaction-restart"
+    const paths = roomPaths(room)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(paths.scene, new Blob(['{"version":"new"}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    const bundle = await exportLesson(source, room)
+
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    const originals = new Map<string, Blob>([
+      [paths.scene, new Blob(['{"version":"original"}'])],
+      [paths.journal, new Blob(["original-journal\n"])],
+      [LESSON_PATHS.SESSION, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"])],
+    ])
+    for (const [path, data] of originals) await target.write(path, data)
+
+    const liveTargets = new Set(originals.keys())
+    let liveWrites = 0
+    driver.failWrite = (path) => {
+      if (!liveTargets.has(path)) return false
+      liveWrites += 1
+      return liveWrites === 3 || liveWrites === 5
+    }
+
+    await expect(importLesson(target, bundle, null, {
+      destinationLessonId: room,
+    })).rejects.toThrow(/recovery pendente/i)
+    expect(await target.read("raw/.ardesia/import-transactions/active.json")).not.toBeNull()
+
+    driver.failWrite = null
+    await expect(recoverPendingLessonImport(target)).resolves.toBeNull()
+    expect(await target.read("raw/.ardesia/import-transactions/active.json")).toBeNull()
+    for (const [path, original] of originals) {
+      expect(new Uint8Array(await (await target.read(path))!.arrayBuffer()))
+        .toEqual(new Uint8Array(await original.arrayBuffer()))
+    }
+  })
+
+  it("abbandona uno stage stale senza mutare la lezione e conserva la diagnosi", async () => {
+    const room = "room-transaction-stale-stage"
+    const paths = roomPaths(room)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(paths.scene, new Blob(['{"version":"new"}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    const bundle = await exportLesson(source, room)
+
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    const previousScene = new Blob(['{"version":"original"}'])
+    await target.write(paths.scene, previousScene)
+    driver.failWrite = (path) => path.includes("/stage/1.blob")
+
+    await expect(importLesson(target, bundle, null, {
+      destinationLessonId: room,
+    })).rejects.toThrow(/fault injection/i)
+    expect(await target.read("raw/.ardesia/import-transactions/active.json")).not.toBeNull()
+    expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await previousScene.arrayBuffer()))
+
+    driver.failWrite = null
+    await expect(recoverPendingLessonImport(target)).resolves.toBeNull()
+    expect(await target.read("raw/.ardesia/import-transactions/active.json")).toBeNull()
+    const evidence = await target.list("raw/.ardesia/import-transactions/")
+    const record = evidence.find((entry) => entry.path.endsWith("/transaction.json"))
+    expect(record).toBeDefined()
+    expect(await record!.data.text()).toContain('"phase": "aborted"')
+    expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await previousScene.arrayBuffer()))
   })
 })

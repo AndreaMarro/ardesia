@@ -42,6 +42,17 @@ import {
   verifyLessonBundleManifestPayload,
   type LessonBundleManifestV1,
 } from "./lessonBundleManifest"
+import {
+  abandonStagedLessonImport,
+  commitLessonImportWorkspace,
+  finalizeLessonImport,
+  lessonImportWorkspaceMatchesNext,
+  prepareLessonImport,
+  readPendingLessonImport,
+  rollbackLessonImport,
+  stagedLessonImportSource,
+  type PendingLessonImport,
+} from "./lessonImportTransaction"
 import { roomPaths, validateRoomId } from "./roomPaths"
 
 export { LESSON_PATHS } from "./lessonBundleManifest"
@@ -198,8 +209,8 @@ export type LessonOsRestoreStatus =
   | { kind: "unsupported" }
   /** Il log ha già eventi: restore SOLO su log vuoto (mai merge — i seq collidono). */
   | { kind: "skipped-non-empty" }
-  /** importSnapshot ha fallito (snapshot malformato / scrittura): i file del
-   *  bundle restano importati, l'errore è riportato qui — mai swallow. */
+  /** importSnapshot ha fallito (snapshot malformato / scrittura): il workspace
+   *  viene ripristinato byte per byte e l'errore resta esplicito. */
   | { kind: "failed"; error: string }
 
 export type LessonImportIdentity =
@@ -334,6 +345,7 @@ export async function importLesson(
   lessonOsLog?: EventLogStore | null,
   options: ImportLessonOptions = {},
 ): Promise<ImportLessonResult> {
+  await recoverPendingLessonImport(store, lessonOsLog)
   const requestedDestination = options.destinationLessonId === undefined
     ? null
     : validateRoomId(options.destinationLessonId)
@@ -465,26 +477,122 @@ export async function importLesson(
     return { path, data: entry.data }
   })
 
-  // Tutte le validazioni sono concluse. Solo ora il workspace può essere scritto.
-  for (const entry of entriesToWrite) {
-    await store.write(entry.path, entry.data)
+  // Tutte le validazioni sono concluse. Stage e backup durevoli precedono ogni
+  // mutazione dei target; un errore di commit viene compensato byte per byte.
+  const transaction = await prepareLessonImport(
+    store,
+    entriesToWrite.map((entry, index) => ({
+      sourcePath: stagedEntries[index]!.path,
+      targetPath: entry.path,
+      data: entry.data,
+    })),
+  )
+
+  let restoringTransaction: PendingLessonImport
+  try {
+    restoringTransaction = await commitLessonImportWorkspace(store, transaction)
+  } catch (error) {
+    const pending = await readPendingLessonImport(store) ?? transaction
+    try {
+      await rollbackLessonImport(store, pending)
+    } catch (rollbackError) {
+      throw new Error(
+        `Lesson import transaction: commit fallito e recovery pendente: ${
+          rollbackError instanceof Error ? rollbackError.message : String(rollbackError)
+        }`,
+        { cause: error },
+      )
+    }
+    throw new Error(
+      `Lesson import transaction: commit fallito, rollback verificato: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+      { cause: error },
+    )
+  }
+
+  const lessonOsRestore = await restoreLessonOsSnapshot(
+    await stagedLessonImportSource(store, restoringTransaction, LESSON_PATHS.LESSONOS),
+    lessonOsLog,
+  )
+  if (lessonOsRestore.kind === "failed") {
+    await rollbackLessonImport(store, restoringTransaction)
+    return { lessonOsRestore, identity }
+  }
+
+  try {
+    await finalizeLessonImport(store, restoringTransaction)
+  } catch {
+    // Il workspace e il log sono gia verificati: il record in fase restoring
+    // permette al prossimo avvio di completare idempotentemente il cleanup.
   }
 
   return {
-    lessonOsRestore: await restoreLessonOsSnapshot(zip, lessonOsLog),
+    lessonOsRestore,
     identity,
   }
+}
+
+/**
+ * Riprende una transazione lasciata da un arresto precedente. Lo staging non
+ * ancora committato viene abbandonato senza toccare la lezione; un commit
+ * incompleto viene compensato; la fase restore viene completata idempotentemente.
+ */
+export async function recoverPendingLessonImport(
+  store: WorkspaceStore,
+  lessonOsLog?: EventLogStore | null,
+): Promise<LessonOsRestoreStatus | null> {
+  const transaction = await readPendingLessonImport(store)
+  if (!transaction) return null
+
+  if (transaction.phase === "staging" || transaction.phase === "prepared") {
+    await abandonStagedLessonImport(store, transaction)
+    return null
+  }
+  if (
+    transaction.phase === "committing" ||
+    transaction.phase === "rollback-needed"
+  ) {
+    await rollbackLessonImport(store, transaction)
+    return null
+  }
+  if (
+    transaction.phase === "committed" ||
+    transaction.phase === "rolled-back" ||
+    transaction.phase === "aborted"
+  ) {
+    await finalizeLessonImport(store, transaction)
+    return null
+  }
+
+  if (!await lessonImportWorkspaceMatchesNext(store, transaction)) {
+    await rollbackLessonImport(store, transaction)
+    return null
+  }
+  const status = await restoreLessonOsSnapshot(
+    await stagedLessonImportSource(store, transaction, LESSON_PATHS.LESSONOS),
+    lessonOsLog,
+  )
+  if (status.kind === "failed") {
+    await rollbackLessonImport(store, transaction)
+    return status
+  }
+  try {
+    await finalizeLessonImport(store, transaction)
+  } catch {
+    // Lascia il record attivo per un retry futuro; i target sono gia verificati.
+  }
+  return status
 }
 
 /** Restore della memoria didattica dal bundle (vedi ImportLessonResult).
  *  Non lancia MAI: ogni esito, incluso il fallimento, è uno status esplicito. */
 async function restoreLessonOsSnapshot(
-  zip: JSZip,
+  snapshot: Blob | null,
   lessonOsLog: EventLogStore | null | undefined,
 ): Promise<LessonOsRestoreStatus> {
   if (!lessonOsLog) return { kind: "not-attempted" }
-  const snapshotEntry = zip.file(LESSON_PATHS.LESSONOS)
-  if (!snapshotEntry || snapshotEntry.dir) return { kind: "no-snapshot" }
+  if (!snapshot) return { kind: "no-snapshot" }
   if (!supportsSnapshotRestore(lessonOsLog)) return { kind: "unsupported" }
   try {
     // Pre-check esplicito (stato leggibile) prima del guard interno di
@@ -494,7 +602,7 @@ async function restoreLessonOsSnapshot(
       ? await lessonOsLog.readAllEnvelopes()
       : await lessonOsLog.readAll()
     if (existing.length > 0) return { kind: "skipped-non-empty" }
-    const report = await lessonOsLog.importSnapshot(await snapshotEntry.async("blob"))
+    const report = await lessonOsLog.importSnapshot(snapshot)
     return { kind: "restored", recovered: report.recovered }
   } catch (err) {
     return { kind: "failed", error: err instanceof Error ? err.message : String(err) }
