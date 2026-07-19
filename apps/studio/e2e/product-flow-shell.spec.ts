@@ -1,8 +1,8 @@
-// Product Flow Shell: il docente attraversa solo gli ingressi caricabili della
-// shell — lavagna → ELAB Plugin → torna alla STESSA lavagna (hash preservato).
+// Founder Beta shell: il docente attraversa soltanto Lezione, Continuità e
+// Materiali e torna alla stessa lezione (hash preservato).
 import { test, expect } from "@playwright/test"
 
-test("flusso docente: lavagna → ELAB Plugin → torna lavagna (stessa stanza)", async ({
+test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione", async ({
   page,
 }) => {
   const consoleErrors: string[] = []
@@ -18,23 +18,33 @@ test("flusso docente: lavagna → ELAB Plugin → torna lavagna (stessa stanza)"
   expect(roomHash).toMatch(/^#wbstudio-/)
   const nav = page.locator("[data-view-nav]").first()
   await expect(nav).toBeVisible()
-  await expect(nav.locator('[data-view-nav-item="lavagna"]')).toHaveAttribute(
+  await expect(nav.locator('[data-view-nav-item="lezione"]')).toHaveAttribute(
     "aria-current",
     "page",
   )
+  await expect(nav.locator("[data-view-nav-item]")).toHaveCount(3)
+  await expect(nav).not.toContainText("Simulatore")
+  await expect(nav).not.toContainText("ELABTutor")
+  await expect(nav).not.toContainText("Marketplace")
 
-  // 2. Entra in ELAB Lab dalla nav.
-  await nav.locator('[data-view-nav-item="elab-lab"]').click()
-  await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
+  // 2. Continuità usa la projection read-only già esistente.
+  await nav.locator('[data-view-nav-item="continuita"]').click()
+  await expect(page.locator("[data-zstat]")).toBeVisible({ timeout: 15_000 })
   await expect(
-    page.locator('[data-view-nav-item="elab-lab"][aria-current="page"]'),
+    page.locator('[data-view-nav-item="continuita"][aria-current="page"]'),
   ).toBeVisible()
-  await expect(page.locator("[data-view-nav-item]")).toHaveCount(2)
-  await expect(page.locator('[data-view-nav-item="cruscotto"]')).toHaveCount(0)
-  await expect(page.locator('[data-view-nav-item="lezioni-salvate"]')).toHaveCount(0)
+  expect(new URL(page.url()).hash).toBe(roomHash)
 
-  // 3. Torna alla lavagna: STESSA stanza (hash preservato attraverso le viste).
-  await page.locator('[data-view-nav-item="lavagna"]').click()
+  // 3. Materiali mantiene l'alias profondo finché FB-6B sostituisce il corpo.
+  await page.locator('[data-view-nav-item="materiali"]').click()
+  await expect(
+    page.locator('[data-view-nav-item="materiali"][aria-current="page"]'),
+  ).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByText("Lezioni salvate — quiz e flashcard")).toBeVisible()
+  expect(new URL(page.url()).hash).toBe(roomHash)
+
+  // 4. Torna alla superficie Lezione: STESSA stanza.
+  await page.locator('[data-view-nav-item="lezione"]').click()
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   expect(new URL(page.url()).hash).toBe(roomHash)
 
