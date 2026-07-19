@@ -33,21 +33,22 @@ import {
   assertJournalEnvelopeV2,
   looksLikeRawJournalEnvelopeV2,
 } from "./JournalRecorder"
+import {
+  LESSON_PATHS,
+  assertRequiredLessonBundleEntries,
+  buildLessonBundleManifest,
+  parseLessonBundleManifestV1,
+  sameOrderedStrings,
+  verifyLessonBundleManifestPayload,
+  type LessonBundleManifestV1,
+} from "./lessonBundleManifest"
 import { roomPaths, validateRoomId } from "./roomPaths"
+
+export { LESSON_PATHS } from "./lessonBundleManifest"
 
 /** Nome del file bundle .lesson */
 export const LESSON_EXTENSION = ".lesson"
 export const LESSON_MIME = "application/zip"
-
-/** Path normalizzati dentro il bundle .lesson */
-export const LESSON_PATHS = {
-  SCENE: "raw/board.excalidraw",
-  JOURNAL: "raw/events.jsonl",
-  SESSION: "raw/session.yaml",
-  AUDIO_DIR: "raw/audio/",
-  /** Snapshot event-log LessonOS (JSONL, spec #35 §4.3) — distinto dal journal. */
-  LESSONOS: "raw/lessonos-events.jsonl",
-} as const
 
 function readOnlyLessonScope(
   log: EnvelopeEventLogStore,
@@ -157,8 +158,22 @@ export async function exportLesson(
   }
   addEntry(entries, LESSON_PATHS.LESSONOS, lessonOsSnapshot)
 
+  assertRequiredLessonBundleEntries(entries)
+
+  const identity = await embeddedIdentity(
+    entries.get(LESSON_PATHS.JOURNAL)?.data ?? null,
+    entries.get(LESSON_PATHS.LESSONOS)?.data ?? null,
+  )
+  for (const embeddedLessonId of identity.lessonIds) {
+    if (embeddedLessonId !== lessonId) {
+      throw new Error("Lesson bundle: payload identity differs from requested lesson")
+    }
+  }
+  const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries)
+
   // Costruisce ZIP
   const zip = new JSZip()
+  zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`)
   for (const [, entry] of entries) {
     zip.file(entry.path, entry.data, { date: new Date(entry.mtime) })
   }
@@ -235,11 +250,12 @@ function canonicalEnvelopeFromSnapshotRow(value: unknown): AnyEventEnvelopeV2 {
   return envelope
 }
 
-async function embeddedLessonIds(
+async function embeddedIdentity(
   journal: Blob | null,
   lessonOs: Blob | null,
-): Promise<Set<string>> {
+): Promise<Readonly<{ lessonIds: Set<string>; sessionIds: Set<string> }>> {
   const lessonIds = new Set<string>()
+  const sessionIds = new Set<string>()
 
   if (journal) {
     for (const rawLine of (await journal.text()).split("\n")) {
@@ -252,6 +268,7 @@ async function embeddedLessonIds(
       }
       assertJournalEnvelopeV2(parsed)
       lessonIds.add(parsed.lessonId)
+      sessionIds.add(parsed.sessionId)
     }
   }
 
@@ -268,11 +285,13 @@ async function embeddedLessonIds(
         continue
       }
       if (!isRecord(parsed) || !("schemaVersion" in parsed)) continue
-      lessonIds.add(canonicalEnvelopeFromSnapshotRow(parsed).lessonId)
+      const envelope = canonicalEnvelopeFromSnapshotRow(parsed)
+      lessonIds.add(envelope.lessonId)
+      sessionIds.add(envelope.sessionId)
     }
   }
 
-  return lessonIds
+  return { lessonIds, sessionIds }
 }
 
 function importedPath(path: string, destinationLessonId: string | null): string {
@@ -322,10 +341,16 @@ export async function importLesson(
 
   // Prima passata: valida ogni path e raccoglie le letture, senza I/O sul workspace.
   const pendingEntries: Array<{ path: string; dataPromise: Promise<Blob> }> = []
+  let manifestTextPromise: Promise<string> | null = null
   let hasAudioEntry = false
 
   zip.forEach((relativePath, zipEntry) => {
     if (zipEntry.dir) return
+
+    if (relativePath === LESSON_PATHS.MANIFEST) {
+      manifestTextPromise = zipEntry.async("text")
+      return
+    }
 
     // ZipSlip: per-segment check (non includes("..") che blocca filename
     // legittimi come "raw/notes..2024.jsonl")
@@ -353,6 +378,21 @@ export async function importLesson(
   )
   const byPortablePath = new Map(stagedEntries.map((entry) => [entry.path, entry.data]))
 
+  let manifest: LessonBundleManifestV1 | null = null
+  if (manifestTextPromise !== null) {
+    let parsedManifest: unknown
+    try {
+      parsedManifest = JSON.parse(await manifestTextPromise)
+    } catch {
+      throw new Error("Bundle manifest: JSON malformato")
+    }
+    manifest = parseLessonBundleManifestV1(parsedManifest)
+    await verifyLessonBundleManifestPayload(manifest, stagedEntries)
+    if (requestedDestination !== null && manifest.lessonId !== requestedDestination) {
+      throw new Error("Bundle manifest: lessonId non coincide con la destinazione")
+    }
+  }
+
   // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR.
   // Se manca (bundle legacy pre-T2), il consenso è ignoto e il controllo storico
   // resta invariato.
@@ -369,15 +409,28 @@ export async function importLesson(
     )
   }
 
-  const lessonIds = await embeddedLessonIds(
+  const { lessonIds, sessionIds } = await embeddedIdentity(
     byPortablePath.get(LESSON_PATHS.JOURNAL) ?? null,
     byPortablePath.get(LESSON_PATHS.LESSONOS) ?? null,
   )
+  if (manifest === null && (lessonIds.size > 0 || sessionIds.size > 0)) {
+    throw new Error("Bundle manifest mancante: downgrade di payload canonico v2 rifiutato")
+  }
+  if (manifest !== null && !sameOrderedStrings(manifest.sessionIds, [...sessionIds].sort())) {
+    throw new Error("Bundle identity: manifest sessionIds e payload canonico sono discordanti")
+  }
   if (lessonIds.size > 1) {
     throw new Error("Bundle identity: journal e LessonOS dichiarano lessonId differenti")
   }
   const embeddedLessonId = lessonIds.values().next().value as string | undefined
   if (embeddedLessonId !== undefined) validateRoomId(embeddedLessonId)
+  if (
+    manifest !== null &&
+    embeddedLessonId !== undefined &&
+    manifest.lessonId !== embeddedLessonId
+  ) {
+    throw new Error("Bundle identity: manifest e payload dichiarano lessonId differenti")
+  }
   if (
     requestedDestination !== null &&
     embeddedLessonId !== undefined &&
@@ -386,16 +439,18 @@ export async function importLesson(
     throw new Error("Bundle identity: lessonId embedded non coincide con la destinazione")
   }
 
+  const authoritativeLessonId = embeddedLessonId ?? manifest?.lessonId
+
   const confirmedLegacyDestination = (
-    embeddedLessonId === undefined &&
+    authoritativeLessonId === undefined &&
     requestedDestination !== null &&
     options.legacyClaim?.userConfirmed === true
   ) ? requestedDestination : null
-  const mappedDestination = requestedDestination !== null && embeddedLessonId !== undefined
-    ? requestedDestination
+  const mappedDestination = authoritativeLessonId !== undefined
+    ? requestedDestination ?? authoritativeLessonId
     : confirmedLegacyDestination
-  const identity: LessonImportIdentity = embeddedLessonId !== undefined
-    ? { kind: "embedded", lessonId: embeddedLessonId }
+  const identity: LessonImportIdentity = authoritativeLessonId !== undefined
+    ? { kind: "embedded", lessonId: authoritativeLessonId }
     : confirmedLegacyDestination !== null
       ? { kind: "claimed", lessonId: confirmedLegacyDestination }
       : { kind: "unassigned" }

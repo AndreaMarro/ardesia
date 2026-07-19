@@ -21,6 +21,7 @@ import {
   type LessonOsEvent,
 } from "../lessonos/eventlog"
 import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
+import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 
 // --- Mock driver (stesso pattern degli altri test) ---
 
@@ -86,6 +87,27 @@ async function readZipText(blob: Blob, path: string): Promise<string | null> {
   const entry = zip.file(path)
   if (!entry) return null
   return await entry.async("text")
+}
+
+async function sha256Hex(data: Uint8Array): Promise<string> {
+  const bytes = Uint8Array.from(data)
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))
+  return [...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")
+}
+
+async function refreshManifestFile(zip: JSZip, path: string): Promise<void> {
+  const manifestEntry = zip.file(LESSON_PATHS.MANIFEST)
+  const payloadEntry = zip.file(path)
+  if (!manifestEntry || !payloadEntry) throw new Error(`fixture manifest incompleta: ${path}`)
+  const manifest = JSON.parse(await manifestEntry.async("text")) as {
+    files: Array<{ path: string; bytes: number; sha256: string }>
+  }
+  const bytes = await payloadEntry.async("uint8array")
+  const record = manifest.files.find((file) => file.path === path)
+  if (!record) throw new Error(`fixture manifest senza record: ${path}`)
+  record.bytes = bytes.byteLength
+  record.sha256 = await sha256Hex(bytes)
+  zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
 }
 
 const FIXED_PRODUCER = Object.freeze({
@@ -232,6 +254,272 @@ describe("LessonBundle", () => {
     withMockDriver(store, mock)
   })
 
+  it("FB-5A esporta un manifest che lega identità, payload, byte e SHA-256", async () => {
+    const sessionId = "11111111-1111-4111-8111-111111111111"
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM, sessionId)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+
+    const bundle = await exportLesson(
+      store,
+      ROOM,
+      new CanonicalRestorableLog([canonicalLessonEvent(ROOM, sessionId)]),
+    )
+    const zip = await JSZip.loadAsync(bundle)
+    const manifestText = await readZipText(bundle, "manifest.json")
+
+    expect(manifestText).not.toBeNull()
+    const manifest = JSON.parse(manifestText!) as {
+      bundleVersion: number
+      schemaVersion: number
+      lessonId: string
+      sessionIds: string[]
+      producer: unknown
+      requiredArtifacts: string[]
+      optionalArtifacts: string[]
+      lessonOs: { status: string; warnings: string[] }
+      files: Array<{ path: string; bytes: number; sha256: string; required: boolean }>
+    }
+    expect(manifest).toMatchObject({
+      bundleVersion: 1,
+      schemaVersion: 1,
+      lessonId: ROOM,
+      sessionIds: [sessionId],
+      producer: studioProducerIdentity(),
+      requiredArtifacts: [
+        LESSON_PATHS.SCENE,
+        LESSON_PATHS.JOURNAL,
+        LESSON_PATHS.SESSION,
+      ],
+      optionalArtifacts: [LESSON_PATHS.LESSONOS, `${LESSON_PATHS.AUDIO_DIR}*`],
+      lessonOs: { status: "included", warnings: [] },
+    })
+    expect(manifest.files.map((file) => file.path)).toEqual([
+      LESSON_PATHS.SCENE,
+      LESSON_PATHS.JOURNAL,
+      LESSON_PATHS.LESSONOS,
+      LESSON_PATHS.SESSION,
+    ])
+
+    for (const file of manifest.files) {
+      const entry = zip.file(file.path)
+      expect(entry, file.path).not.toBeNull()
+      const bytes = await entry!.async("uint8array")
+      expect(file.bytes, file.path).toBe(bytes.byteLength)
+      expect(file.sha256, file.path).toBe(await sha256Hex(bytes))
+      expect(file.required, file.path).toBe(new Set<string>([
+        LESSON_PATHS.SCENE,
+        LESSON_PATHS.JOURNAL,
+        LESSON_PATHS.SESSION,
+      ]).has(file.path))
+    }
+  })
+
+  it("FB-5A importa un bundle manifestato senza materializzare il manifest nel workspace", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const bundle = await exportLesson(store, ROOM)
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+
+    await expect(importLesson(target, bundle, null, {
+      destinationLessonId: ROOM,
+    })).resolves.toMatchObject({ identity: { kind: "embedded", lessonId: ROOM } })
+    expect(await target.read(roomPaths(ROOM).scene)).not.toBeNull()
+    expect(await target.read(LESSON_PATHS.MANIFEST)).toBeNull()
+  })
+
+  it("FB-5A rifiuta payload manomesso prima di workspace e LessonOS", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const bundle = await exportLesson(
+      store,
+      ROOM,
+      new CanonicalRestorableLog([canonicalLessonEvent(ROOM)]),
+    )
+    const zip = await JSZip.loadAsync(bundle)
+    zip.file(LESSON_PATHS.SCENE, JSON.stringify({ tampered: true }))
+    const tampered = await zip.generateAsync({ type: "blob" })
+
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetPaths = roomPaths(ROOM)
+    await target.write(targetPaths.scene, new Blob(["original-scene"]))
+    const targetLog = new CanonicalRestorableLog()
+
+    await expect(importLesson(target, tampered, targetLog, {
+      destinationLessonId: ROOM,
+    })).rejects.toThrow(/SHA-256|hash|integrit/i)
+    expect(await (await target.read(targetPaths.scene))!.text()).toBe("original-scene")
+    expect(await target.read(targetPaths.journal)).toBeNull()
+    expect(await targetLog.readAllEnvelopes()).toEqual([])
+    expect(targetLog.restoreCalls).toBe(0)
+  })
+
+  it("FB-5A non esporta un bundle senza tutti i required artifacts", async () => {
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+
+    await expect(exportLesson(store, ROOM)).rejects.toThrow(/obbligatorio|required/i)
+  })
+
+  it("FB-5A rifiuta uno schema manifest non supportato prima di ogni write", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const zip = await JSZip.loadAsync(await exportLesson(store, ROOM))
+    const manifest = JSON.parse((await zip.file(LESSON_PATHS.MANIFEST)!.async("text")))
+    manifest.schemaVersion = 2
+    zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
+    const unsupported = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetPaths = roomPaths(ROOM)
+    await target.write(targetPaths.scene, new Blob(["original-scene"]))
+
+    await expect(importLesson(target, unsupported, null, {
+      destinationLessonId: ROOM,
+    })).rejects.toThrow(/schema non supportato/i)
+    expect(await (await target.read(targetPaths.scene))!.text()).toBe("original-scene")
+    expect(await target.read(targetPaths.journal)).toBeNull()
+  })
+
+  it("FB-5A rifiuta producer manifest non reverse-DNS o non SemVer prima di ogni write", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const sourceBundle = await exportLesson(store, ROOM)
+
+    for (const producer of [
+      { id: "studio", version: "1.0.0", commitSha: FIXED_PRODUCER.commitSha },
+      { id: FIXED_PRODUCER.id, version: "latest", commitSha: FIXED_PRODUCER.commitSha },
+    ]) {
+      const zip = await JSZip.loadAsync(sourceBundle)
+      const manifest = JSON.parse(await zip.file(LESSON_PATHS.MANIFEST)!.async("text"))
+      manifest.producer = producer
+      zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
+      const invalid = await zip.generateAsync({ type: "blob" })
+      const target = new WorkspaceStore()
+      withMockDriver(target, new MockDriver())
+      await target.write("raw/sentinel", new Blob(["intatto"]))
+
+      await expect(importLesson(target, invalid, null, {
+        destinationLessonId: ROOM,
+      })).rejects.toThrow(/producer/i)
+      expect((await target.list()).map((entry) => entry.path)).toEqual(["raw/sentinel"])
+    }
+  })
+
+  it("FB-5A rifiuta un required artifact mancante anche se omesso dall'inventario", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const zip = await JSZip.loadAsync(await exportLesson(store, ROOM))
+    const manifest = JSON.parse(await zip.file(LESSON_PATHS.MANIFEST)!.async("text"))
+    manifest.files = manifest.files.filter((file: { path: string }) => (
+      file.path !== LESSON_PATHS.JOURNAL
+    ))
+    zip.remove(LESSON_PATHS.JOURNAL)
+    zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
+    const missing = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    await target.write("raw/sentinel", new Blob(["intatto"]))
+
+    await expect(importLesson(target, missing, null, {
+      destinationLessonId: ROOM,
+    })).rejects.toThrow(/obbligatorio|required/i)
+    expect(await (await target.read("raw/sentinel"))!.text()).toBe("intatto")
+    expect((await target.list()).map((entry) => entry.path)).toEqual(["raw/sentinel"])
+  })
+
+  it("FB-5A rifiuta il downgrade ottenuto rimuovendo il manifest da payload v2", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const zip = await JSZip.loadAsync(await exportLesson(
+      store,
+      ROOM,
+      new CanonicalRestorableLog([canonicalLessonEvent(ROOM)]),
+    ))
+    zip.remove(LESSON_PATHS.MANIFEST)
+    const downgraded = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    const targetPaths = roomPaths(ROOM)
+    await target.write(targetPaths.scene, new Blob(["original-scene"]))
+    const targetLog = new CanonicalRestorableLog()
+
+    await expect(importLesson(target, downgraded, targetLog, {
+      destinationLessonId: ROOM,
+    })).rejects.toThrow(/manifest.*mancante|downgrade/i)
+    expect(await (await target.read(targetPaths.scene))!.text()).toBe("original-scene")
+    expect(await target.read(targetPaths.journal)).toBeNull()
+    expect(await targetLog.readAllEnvelopes()).toEqual([])
+    expect(targetLog.restoreCalls).toBe(0)
+  })
+
+  it("FB-5A rifiuta sessionIds manifest discordanti dal payload canonico", async () => {
+    await store.write(
+      roomPaths(ROOM).journal,
+      new Blob([`${canonicalJournalLine(ROOM)}\n`], { type: "application/x-ndjson" }),
+    )
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const zip = await JSZip.loadAsync(await exportLesson(store, ROOM))
+    const manifest = JSON.parse(await zip.file(LESSON_PATHS.MANIFEST)!.async("text"))
+    manifest.sessionIds = ["99999999-9999-4999-8999-999999999999"]
+    zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
+    const mismatched = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+    await target.write("raw/sentinel", new Blob(["intatto"]))
+
+    await expect(importLesson(target, mismatched, null, {
+      destinationLessonId: ROOM,
+    })).rejects.toThrow(/sessionIds|session/i)
+    expect((await target.list()).map((entry) => entry.path)).toEqual(["raw/sentinel"])
+  })
+
+  it("FB-5A usa il manifest come identità per un journal legacy verificato", async () => {
+    const legacyJournal = '{"t":100,"type":"t0"}\n'
+    await store.write(roomPaths(ROOM).journal, new Blob([legacyJournal]))
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    const bundle = await exportLesson(store, ROOM)
+    const target = new WorkspaceStore()
+    withMockDriver(target, new MockDriver())
+
+    const result = await importLesson(target, bundle, null, { destinationLessonId: ROOM })
+
+    expect(result.identity).toEqual({ kind: "embedded", lessonId: ROOM })
+    expect(await (await target.read(roomPaths(ROOM).journal))!.text()).toBe(legacyJournal)
+    expect(await target.read(LESSON_PATHS.JOURNAL)).toBeNull()
+  })
+
   // --- TEST (3): struttura raw/ conforme ---
 
   it("bundle contiene sempre raw/events.jsonl, raw/session.yaml, raw/board.excalidraw", async () => {
@@ -361,7 +649,7 @@ describe("LessonBundle", () => {
     withMockDriver(store2, mock2)
     await importLesson(store2, bundle)
 
-    const journalBlob = await store2.read(LESSON_PATHS.JOURNAL)
+    const journalBlob = await store2.read(roomPaths(ROOM).journal)
     expect(journalBlob).not.toBeNull()
     const journalText = await journalBlob!.text()
     expect(journalText).toContain('{"t":10,"type":"t0"}')
@@ -520,6 +808,8 @@ describe("LessonBundle — snapshot event-log LessonOS", () => {
     mock = new MockDriver()
     withMockDriver(store, mock)
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
+    await store.write(roomPaths(ROOM).journal, new Blob([`${canonicalJournalLine(ROOM)}\n`]))
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
   })
 
   async function filledLog() {
@@ -568,7 +858,7 @@ describe("LessonBundle — snapshot event-log LessonOS", () => {
     const store2 = new WorkspaceStore()
     withMockDriver(store2, new MockDriver())
     await importLesson(store2, bundle)
-    const restored = await store2.read(LESSON_PATHS.LESSONOS)
+    const restored = await store2.read(roomPaths(ROOM).lessonOsSnapshot)
     expect(restored).not.toBeNull()
     expect((await restored!.text()).trimEnd().split("\n")).toHaveLength(2)
   })
@@ -584,6 +874,8 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
     mock = new MockDriver()
     withMockDriver(store, mock)
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
+    await store.write(roomPaths(ROOM).journal, new Blob([`${canonicalJournalLine(ROOM)}\n`]))
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
   })
 
   async function filledLog() {
@@ -634,7 +926,7 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
     expect(result.lessonOsRestore).toEqual({ kind: "skipped-non-empty" })
     expect(await target.readAll()).toHaveLength(1)
     // I file del bundle sono comunque importati (il board non dipende dal restore)
-    expect(await store2.read(LESSON_PATHS.SCENE)).not.toBeNull()
+    expect(await store2.read(roomPaths(ROOM).scene)).not.toBeNull()
   })
 
   it("bundle SENZA snapshot ⇒ status no-snapshot, log intatto", async () => {
@@ -658,7 +950,7 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
 
     expect(result.lessonOsRestore).toEqual({ kind: "not-attempted" })
     // Il file snapshot viaggia comunque nello store (comportamento invariato)
-    expect(await store2.read(LESSON_PATHS.LESSONOS)).not.toBeNull()
+    expect(await store2.read(roomPaths(ROOM).lessonOsSnapshot)).not.toBeNull()
   })
 
   it("log senza importSnapshot (fallback InMemory) ⇒ status unsupported, niente throw", async () => {
@@ -686,7 +978,7 @@ describe("LessonBundle — restore event-log LessonOS all'import (P32 R10)", () 
 
     expect(result.lessonOsRestore).toEqual({ kind: "failed", error: "scrittura fallita" })
     // Il board resta importato: il restore è secondario, mai bloccante
-    expect(await store2.read(LESSON_PATHS.SCENE)).not.toBeNull()
+    expect(await store2.read(roomPaths(ROOM).scene)).not.toBeNull()
   })
 
   it("bundle malevolo ⇒ import rigetta PRIMA di toccare il log (restore mai su bundle invalido)", async () => {
@@ -720,6 +1012,7 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
     await store.write(roomA.scene, new Blob(['{"room":"A"}']))
     await store.write(roomA.journal, new Blob([journalA]))
     await store.write(roomA.lessonOsSnapshot, new Blob([snapshotA]))
+    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
     await store.write(roomB.scene, new Blob(['{"room":"B"}']))
     await store.write(roomB.journal, new Blob([journalB]))
     await store.write(roomB.lessonOsSnapshot, new Blob([snapshotB]))
@@ -745,6 +1038,7 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
     const envelope = canonicalLessonEvent("room-A")
     await source.write(paths.scene, new Blob(['{"room":"A","elements":[]}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine("room-A")}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
     const bundle = await exportLesson(source, "room-A", new CanonicalRestorableLog([
       envelope,
       canonicalLessonEvent(
@@ -780,14 +1074,16 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
   })
 
   it("rifiuta mismatch destinazione/identità prima di store e log", async () => {
-    const zip = new JSZip()
-    zip.file(LESSON_PATHS.SCENE, '{"room":"A"}')
-    zip.file(LESSON_PATHS.JOURNAL, `${canonicalJournalLine("room-A")}\n`)
-    zip.file(
-      LESSON_PATHS.LESSONOS,
-      `${JSON.stringify({ ...canonicalLessonEvent("room-A"), seq: 1 })}\n`,
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(roomPaths("room-A").scene, new Blob(['{"room":"A"}']))
+    await source.write(roomPaths("room-A").journal, new Blob([`${canonicalJournalLine("room-A")}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    const bundle = await exportLesson(
+      source,
+      "room-A",
+      new CanonicalRestorableLog([canonicalLessonEvent("room-A")]),
     )
-    const bundle = await zip.generateAsync({ type: "blob" })
     const target = new WorkspaceStore()
     withMockDriver(target, new MockDriver())
     const targetLog = new CanonicalRestorableLog()
@@ -803,13 +1099,21 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
   })
 
   it("rifiuta journal e LessonOS v2 con lessonId discordanti prima di ogni write", async () => {
-    const zip = new JSZip()
-    zip.file(LESSON_PATHS.SCENE, '{"room":"A"}')
-    zip.file(LESSON_PATHS.JOURNAL, `${canonicalJournalLine("room-A")}\n`)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(roomPaths("room-A").scene, new Blob(['{"room":"A"}']))
+    await source.write(roomPaths("room-A").journal, new Blob([`${canonicalJournalLine("room-A")}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    const zip = await JSZip.loadAsync(await exportLesson(
+      source,
+      "room-A",
+      new CanonicalRestorableLog([canonicalLessonEvent("room-A")]),
+    ))
     zip.file(
       LESSON_PATHS.LESSONOS,
       `${JSON.stringify({ ...canonicalLessonEvent("room-B"), seq: 1 })}\n`,
     )
+    await refreshManifestFile(zip, LESSON_PATHS.LESSONOS)
     const bundle = await zip.generateAsync({ type: "blob" })
     const target = new WorkspaceStore()
     withMockDriver(target, new MockDriver())
