@@ -144,7 +144,7 @@ export interface JournalRecorderV2Options {
 
 type BufferedJournalRow = Readonly<{
   legacy: JournalEvent
-  envelope: JournalEnvelopeV2 | null
+  envelope: JournalEnvelopeV2
 }>
 
 const JOURNAL_KIND_SET = new Set<string>(JOURNAL_KINDS)
@@ -327,10 +327,6 @@ const withWebExclusiveLock: JournalExclusiveLock = async <T>(
   })
 }
 
-function isV2Options(value: WorkspaceStore | JournalRecorderV2Options): value is JournalRecorderV2Options {
-  return Object.prototype.hasOwnProperty.call(value, "store")
-}
-
 function pdfPayload(event: JournalPdfPageView): JournalPayloadByKind["journal.pdf.imported"] {
   return {
     page: event.page,
@@ -438,12 +434,11 @@ function indexStoredEnvelopes(text: string, lessonId: string): {
 export class JournalRecorder {
   private store: WorkspaceStore
   private journalPath: string
-  private mode: "legacy" | "v2"
   private buffer: BufferedJournalRow[] = []
-  private identity: JournalRecorderV2Options["identity"] | null = null
-  private producer: ProducerIdentity | null = null
+  private identity: JournalRecorderV2Options["identity"]
+  private producer: ProducerIdentity
   private newEventId: () => string = canonicalRandomUuid
-  private withExclusiveLock: JournalExclusiveLock | null = null
+  private withExclusiveLock: JournalExclusiveLock
   /** id → version degli elementi visti nell'ultimo onChange */
   private prevElements: Map<string, number> = new Map()
   private flushTimer: ReturnType<typeof setTimeout> | null = null
@@ -451,21 +446,14 @@ export class JournalRecorder {
   /** Stato pointer: true = t0 emesso, in attesa di t1 */
   private _pointerDown: boolean = false
 
-  constructor(store: WorkspaceStore, now?: () => number)
-  constructor(options: JournalRecorderV2Options)
-  constructor(
-    storeOrOptions: WorkspaceStore | JournalRecorderV2Options,
-    legacyNow?: () => number,
-  ) {
-    if (!isV2Options(storeOrOptions)) {
-      this.store = storeOrOptions
-      this.journalPath = PATHS.JOURNAL
-      this.mode = "legacy"
-      this.now = legacyNow ?? (() => Date.now())
-      return
+  constructor(options: JournalRecorderV2Options) {
+    if (
+      typeof options !== "object" ||
+      options === null ||
+      !Object.prototype.hasOwnProperty.call(options, "store")
+    ) {
+      failJournal("canonical options object required; flat positional constructor removed")
     }
-
-    const options = storeOrOptions
     if (options.identity.lessonId === "unassigned") {
       failJournal("unassigned is reserved for legacy flat journal recovery")
     }
@@ -480,7 +468,6 @@ export class JournalRecorder {
     const producer = structuredClone(options.producer)
     this.store = options.store
     this.journalPath = expectedPath
-    this.mode = "v2"
     this.identity = deepFreeze(identity) as JournalRecorderV2Options["identity"]
     this.producer = deepFreeze(producer) as ProducerIdentity
     this.now = options.now ?? (() => Date.now())
@@ -490,15 +477,9 @@ export class JournalRecorder {
 
   private prepareRow(
     event: JournalEvent,
-    kind?: JournalKind,
-    evidence?: readonly EventEvidence[],
+    kind: JournalKind,
+    evidence: readonly EventEvidence[],
   ): BufferedJournalRow {
-    if (this.mode === "legacy") {
-      return Object.freeze({ legacy: event, envelope: null })
-    }
-    if (!kind || !evidence || !this.identity || !this.producer) {
-      failJournal("canonical enqueue requires trusted context")
-    }
     const eventId = this.newEventId()
     const payload = journalPayload(event, kind)
     const envelope = createEventEnvelopeV2(
@@ -519,7 +500,7 @@ export class JournalRecorder {
     return Object.freeze({ legacy: event, envelope })
   }
 
-  private enqueue(event: JournalEvent, kind?: JournalKind, evidence?: readonly EventEvidence[]): void {
+  private enqueue(event: JournalEvent, kind: JournalKind, evidence: readonly EventEvidence[]): void {
     this.buffer.push(this.prepareRow(event, kind, evidence))
   }
 
@@ -662,12 +643,8 @@ export class JournalRecorder {
   }
 
   /** Marker chunk audio allineato al clock del journal (stesso epoch del recorder) */
-  recordAudioChunk(chunkIndex: number, startEpoch: number, endEpoch: number): void {
-    if (this.mode === "v2") {
-      failJournal("audio is outside Founder Beta canonical journal")
-    }
-    this.enqueue({ t: this.now(), type: "audio.chunk", chunkIndex, startEpoch, endEpoch })
-    this.scheduleFlush()
+  recordAudioChunk(_chunkIndex: number, _startEpoch: number, _endEpoch: number): void {
+    failJournal("audio is outside Founder Beta canonical journal")
   }
 
   private scheduleFlush(): void {
@@ -688,39 +665,31 @@ export class JournalRecorder {
       ? new Uint8Array(await existingBlob.arrayBuffer())
       : new Uint8Array()
     const existing = new TextDecoder().decode(existingBytes)
-    let serializedRows: string[]
-
-    if (this.mode === "legacy") {
-      serializedRows = batch.map((row) => JSON.stringify(row.legacy))
-    } else {
-      if (!this.identity) failJournal("canonical identity unavailable")
-      const { byEventId, byIdempotencyKey } = indexStoredEnvelopes(
-        existing,
-        this.identity.lessonId,
-      )
-      serializedRows = []
-      for (const row of batch) {
-        if (!row.envelope) failJournal("canonical batch contains a legacy-only row")
-        const serialized = JSON.stringify(row.envelope)
-        const eventBinding = byEventId.get(row.envelope.eventId)
-        const keyBinding = row.envelope.idempotencyKey === null
-          ? undefined
-          : byIdempotencyKey.get(row.envelope.idempotencyKey)
-        if (eventBinding && eventBinding.serialized !== serialized) {
-          failJournal(`eventId conflict ${row.envelope.eventId}`)
-        }
-        if (keyBinding && keyBinding.serialized !== serialized) {
-          failJournal(`idempotency conflict ${row.envelope.idempotencyKey}`)
-        }
-        if (eventBinding || keyBinding) continue
-
-        const binding = { serialized, envelope: row.envelope }
-        byEventId.set(row.envelope.eventId, binding)
-        if (row.envelope.idempotencyKey !== null) {
-          byIdempotencyKey.set(row.envelope.idempotencyKey, binding)
-        }
-        serializedRows.push(serialized)
+    const { byEventId, byIdempotencyKey } = indexStoredEnvelopes(
+      existing,
+      this.identity.lessonId,
+    )
+    const serializedRows: string[] = []
+    for (const row of batch) {
+      const serialized = JSON.stringify(row.envelope)
+      const eventBinding = byEventId.get(row.envelope.eventId)
+      const keyBinding = row.envelope.idempotencyKey === null
+        ? undefined
+        : byIdempotencyKey.get(row.envelope.idempotencyKey)
+      if (eventBinding && eventBinding.serialized !== serialized) {
+        failJournal(`eventId conflict ${row.envelope.eventId}`)
       }
+      if (keyBinding && keyBinding.serialized !== serialized) {
+        failJournal(`idempotency conflict ${row.envelope.idempotencyKey}`)
+      }
+      if (eventBinding || keyBinding) continue
+
+      const binding = { serialized, envelope: row.envelope }
+      byEventId.set(row.envelope.eventId, binding)
+      if (row.envelope.idempotencyKey !== null) {
+        byIdempotencyKey.set(row.envelope.idempotencyKey, binding)
+      }
+      serializedRows.push(serialized)
     }
 
     if (serializedRows.length === 0) return
@@ -750,17 +719,10 @@ export class JournalRecorder {
 
       const batch = this.buffer.splice(0)
       try {
-        if (this.mode === "v2") {
-          if (!this.identity || !this.withExclusiveLock) {
-            failJournal("exclusive lock context unavailable")
-          }
-          await this.withExclusiveLock(
-            `ardesia:journal:${this.identity.lessonId}`,
-            () => this.appendBatch(batch),
-          )
-        } else {
-          await this.appendBatch(batch)
-        }
+        await this.withExclusiveLock(
+          `ardesia:journal:${this.identity.lessonId}`,
+          () => this.appendBatch(batch),
+        )
       } catch (err) {
         this.buffer.unshift(...batch)
         throw err
@@ -781,7 +743,7 @@ export class JournalRecorder {
 
   /** Envelope canonici già mintati; slice copy per impedire mutazioni del buffer. */
   getEnvelopeBuffer(): readonly JournalEnvelopeV2[] {
-    return this.buffer.flatMap((row) => row.envelope ? [row.envelope] : [])
+    return this.buffer.map((row) => row.envelope)
   }
 
   /** Esposto per test: stato pointerDown interno */

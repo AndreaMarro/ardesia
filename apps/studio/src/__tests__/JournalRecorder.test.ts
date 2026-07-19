@@ -103,6 +103,14 @@ function makeClock() {
   }
 }
 
+function makeIncrementingEventIdSource() {
+  let index = 0
+  return () => {
+    index += 1
+    return `00000000-0000-4000-8000-${index.toString(16).padStart(12, "0")}`
+  }
+}
+
 // --- Tests ---
 
 describe("JournalRecorder", () => {
@@ -110,13 +118,33 @@ describe("JournalRecorder", () => {
   let mock: MockDriver
   let clock: () => number
   let recorder: JournalRecorder
+  let journalPath: string
 
   beforeEach(() => {
     store = new WorkspaceStore()
     mock = new MockDriver()
     withMockDriver(store, mock)
     clock = makeClock()
-    recorder = new JournalRecorder(store, clock)
+    journalPath = roomPaths("roomA").journal
+    recorder = new JournalRecorder({
+      store,
+      journalPath,
+      identity: {
+        lessonId: "roomA",
+        sessionId: "11111111-1111-4111-8111-111111111111",
+        actor: { type: "teacher", id: "founder-beta-teacher" },
+      },
+      producer: studioProducerIdentity(),
+      now: clock,
+      newEventId: makeIncrementingEventIdSource(),
+      withExclusiveLock: async (_name, work) => work(),
+    })
+  })
+
+  it("rifiuta il costruttore posizionale che scriverebbe nel journal flat", () => {
+    expect(() => new (JournalRecorder as any)(store, clock)).toThrow(
+      /options|canonical|journal|flat/i,
+    )
   })
 
   it("recordChange rileva un element.add per nuovo elemento", () => {
@@ -217,10 +245,10 @@ describe("JournalRecorder", () => {
     recorder.recordChange([el])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(journalPath)
     expect(blob).not.toBeNull()
     const text = await blob!.text()
-    expect(text).toContain('"element.add"')
+    expect(text).toContain('"kind":"journal.element.add"')
     expect(text).toContain("el1")
     expect(recorder.getBuffer()).toHaveLength(0)
   })
@@ -235,7 +263,7 @@ describe("JournalRecorder", () => {
     recorder.recordChange([el1, el2])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(journalPath)
     const text = await blob!.text()
     const lines = text.trim().split("\n")
     expect(lines).toHaveLength(2)
@@ -268,7 +296,7 @@ describe("JournalRecorder", () => {
     recorder.recordChange([makeElement("el1", 2)])
     await recorder.flush()
 
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(journalPath)
     const text = await blob!.text()
     const lines = text.trim().split("\n")
     // Due flush separati: primo ha add(el1), secondo ha update(el1)
@@ -290,7 +318,7 @@ describe("JournalRecorder", () => {
     // La chain NON è avvelenata: il flush successivo scrive davvero
     await recorder.flush()
     expect(recorder.getBuffer()).toHaveLength(0)
-    const blob = await store.read(PATHS.JOURNAL)
+    const blob = await store.read(journalPath)
     expect(blob).not.toBeNull()
     const text = await blob!.text()
     expect(text).toContain("E=mc^2")
@@ -305,8 +333,11 @@ describe("JournalRecorder", () => {
     recorder.recordMathInsert("secondo")
     await recorder.flush()
 
-    const text = await (await store.read(PATHS.JOURNAL))!.text()
-    const latex = text.trim().split("\n").map((l) => (JSON.parse(l) as { latex: string }).latex)
+    const text = await (await store.read(journalPath))!.text()
+    const latex = text.trim().split("\n").map((line) => {
+      const row = JSON.parse(line) as { payload: { latex: string } }
+      return row.payload.latex
+    })
     expect(latex).toEqual(["primo", "secondo"])
     writeSpy.mockRestore()
   })
@@ -324,7 +355,7 @@ describe("JournalRecorder", () => {
 
     await recorder.flush()
     expect(recorder.getBuffer()).toHaveLength(0)
-    const text = await (await store.read(PATHS.JOURNAL))!.text()
+    const text = await (await store.read(journalPath))!.text()
     expect(text).toContain('"a"')
     writeSpy.mockRestore()
   })
