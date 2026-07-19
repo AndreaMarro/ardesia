@@ -10,8 +10,12 @@ import { createBundleBlob, parseBundleBlob } from "./zipBundle"
 import {
   exportLesson as buildLessonExport,
   importLesson as parseLessonImport,
+  previewLessonImport as buildLessonPreview,
+  recoverPendingLessonImport as recoverLessonImport,
   type ImportLessonOptions,
   type ImportLessonResult,
+  type LessonImportPreview,
+  type LessonOsRestoreStatus,
 } from "./lessonBundle"
 import { roomPaths, validateRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
@@ -227,6 +231,24 @@ export class WorkspaceStore {
     const importedScene = await this.read(roomPaths(validRoom).scene)
     if (importedScene) this.fallback.setLegacyScene(validRoom, await importedScene.text())
     return result
+  }
+
+  async previewLessonBlobForRoom(
+    blob: Blob,
+    room: string,
+    legacyClaim?: NonNullable<ImportLessonOptions["legacyClaim"]>,
+  ): Promise<LessonImportPreview> {
+    const validRoom = validateRoomId(room)
+    return buildLessonPreview(this, blob, {
+      destinationLessonId: validRoom,
+      ...(legacyClaim ? { legacyClaim } : {}),
+    })
+  }
+
+  async recoverPendingLessonImport(
+    lessonOsLog?: EventLogStore | null,
+  ): Promise<LessonOsRestoreStatus | null> {
+    return recoverLessonImport(this, lessonOsLog)
   }
 }
 

@@ -1187,6 +1187,82 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
 
     expect(mock.getLegacyScene("cached-room")).toBe(scene)
   })
+
+  it("FB-6B valida in preview senza scrivere stage, target o cache legacy", async () => {
+    const room = "room-materials-preview"
+    const paths = roomPaths(room)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(paths.scene, new Blob(['{"version":"candidate"}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    const bundle = await exportLesson(source, room)
+
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    const originalScene = new Blob(['{"version":"original"}'])
+    await target.write(paths.scene, originalScene)
+    driver.failWrite = () => true
+
+    const preview = await target.previewLessonBlobForRoom(bundle, room)
+
+    expect(preview).toMatchObject({
+      kind: "validated",
+      identity: { kind: "embedded", lessonId: room },
+      lessonOs: "missing",
+      pendingRecovery: null,
+      commitReady: true,
+      manifest: {
+        lessonId: room,
+        producer: studioProducerIdentity(),
+      },
+    })
+    expect(preview.files).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        sourcePath: LESSON_PATHS.SCENE,
+        targetPath: paths.scene,
+        bytes: expect.any(Number),
+        action: "replace",
+      }),
+      expect.objectContaining({
+        sourcePath: LESSON_PATHS.JOURNAL,
+        targetPath: paths.journal,
+        bytes: expect.any(Number),
+        action: "create",
+      }),
+    ]))
+    expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await originalScene.arrayBuffer()))
+    expect(await target.list("raw/.ardesia/import-transactions/")).toEqual([])
+    expect(driver.getLegacyScene(room)).toBeNull()
+  })
+
+  it("FB-6B rifiuta in preview il namespace transazionale riservato", async () => {
+    const zip = new JSZip()
+    zip.file("raw/.ardesia/import-transactions/active.json", "{}")
+    const bundle = await zip.generateAsync({ type: "blob" })
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    driver.failWrite = () => true
+
+    await expect(target.previewLessonBlobForRoom(bundle, "room-reserved-namespace"))
+      .rejects.toThrow(/transaction|target|riservat/i)
+    expect(await target.list()).toEqual([])
+
+    const rootZip = new JSZip()
+    rootZip.file("raw/.ardesia/import-transactions", "{}")
+    await expect(target.previewLessonBlobForRoom(
+      await rootZip.generateAsync({ type: "blob" }),
+      "room-reserved-root",
+    )).rejects.toThrow(/transaction|target|riservat/i)
+    expect(await target.list()).toEqual([])
+
+    await expect(target.previewLessonBlobForRoom(new Blob(["not-a-zip"]), "private/secret"))
+      .rejects.toThrow(/room/i)
+    expect(await target.list()).toEqual([])
+  })
 })
 
 describe("LessonBundle — FB-5B transactional import", () => {
@@ -1264,7 +1340,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     expect(await target.read("raw/.ardesia/import-transactions/active.json")).not.toBeNull()
 
     driver.failWrite = null
-    await expect(recoverPendingLessonImport(target)).resolves.toBeNull()
+    await expect(target.recoverPendingLessonImport()).resolves.toBeNull()
     expect(await target.read("raw/.ardesia/import-transactions/active.json")).toBeNull()
     for (const [path, original] of originals) {
       expect(new Uint8Array(await (await target.read(path))!.arrayBuffer()))
@@ -1305,5 +1381,40 @@ describe("LessonBundle — FB-5B transactional import", () => {
     expect(await record!.data.text()).toContain('"phase": "aborted"')
     expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
       .toEqual(new Uint8Array(await previousScene.arrayBuffer()))
+  })
+
+  it("FB-6B segnala una recovery pendente in preview senza eseguirla", async () => {
+    const room = "room-materials-pending-recovery"
+    const paths = roomPaths(room)
+    const source = new WorkspaceStore()
+    withMockDriver(source, new MockDriver())
+    await source.write(paths.scene, new Blob(['{"version":"candidate"}']))
+    await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
+    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    const bundle = await exportLesson(source, room)
+
+    const target = new WorkspaceStore()
+    const driver = new FaultInjectingDriver()
+    withMockDriver(target, driver)
+    const originalScene = new Blob(['{"version":"original"}'])
+    await target.write(paths.scene, originalScene)
+    driver.failWrite = (path) => path.includes("/stage/1.blob")
+
+    await expect(importLesson(target, bundle, null, {
+      destinationLessonId: room,
+    })).rejects.toThrow(/fault injection/i)
+    const activeBefore = await (await target.read(
+      "raw/.ardesia/import-transactions/active.json",
+    ))!.text()
+
+    driver.failWrite = () => true
+    const preview = await target.previewLessonBlobForRoom(bundle, room)
+
+    expect(preview.commitReady).toBe(false)
+    expect(preview.pendingRecovery).toMatchObject({ phase: "staging" })
+    expect(await (await target.read("raw/.ardesia/import-transactions/active.json"))!.text())
+      .toBe(activeBefore)
+    expect(new Uint8Array(await (await target.read(paths.scene))!.arrayBuffer()))
+      .toEqual(new Uint8Array(await originalScene.arrayBuffer()))
   })
 })

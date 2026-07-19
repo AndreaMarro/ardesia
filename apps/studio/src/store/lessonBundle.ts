@@ -43,6 +43,7 @@ import {
   type LessonBundleManifestV1,
 } from "./lessonBundleManifest"
 import {
+  LESSON_IMPORT_TRANSACTION_ROOT,
   abandonStagedLessonImport,
   commitLessonImportWorkspace,
   finalizeLessonImport,
@@ -230,6 +231,21 @@ export interface ImportLessonResult {
   identity: LessonImportIdentity
 }
 
+export type LessonImportPreview = Readonly<{
+  kind: "validated"
+  identity: LessonImportIdentity
+  manifest: LessonBundleManifestV1 | null
+  lessonOs: "included" | "missing"
+  files: readonly Readonly<{
+    sourcePath: string
+    targetPath: string
+    bytes: number
+    action: "create" | "replace"
+  }>[]
+  pendingRecovery: Readonly<Pick<PendingLessonImport, "id" | "phase" | "createdAt">> | null
+  commitReady: boolean
+}>
+
 /** Log capace di restore da snapshot (oggi: IndexedDbEventLog). L'interfaccia
  *  EventLogStore resta minima (append+readAll); il restore è una capacità
  *  opzionale rilevata a runtime, MAI richiesta ai fallback. */
@@ -339,13 +355,28 @@ function importedPath(path: string, destinationLessonId: string | null): string 
  * mount ⇒ l'esito atteso lì è "skipped-non-empty"; il flusso di recovery
  * esplicito (destroy con conferma utente → restore) è una slice successiva.
  */
-export async function importLesson(
+async function runLessonImport(
   store: WorkspaceStore,
   blob: Blob,
-  lessonOsLog?: EventLogStore | null,
-  options: ImportLessonOptions = {},
-): Promise<ImportLessonResult> {
-  await recoverPendingLessonImport(store, lessonOsLog)
+  lessonOsLog: EventLogStore | null | undefined,
+  options: ImportLessonOptions,
+  mode: "preview",
+): Promise<LessonImportPreview>
+async function runLessonImport(
+  store: WorkspaceStore,
+  blob: Blob,
+  lessonOsLog: EventLogStore | null | undefined,
+  options: ImportLessonOptions,
+  mode: "commit",
+): Promise<ImportLessonResult>
+async function runLessonImport(
+  store: WorkspaceStore,
+  blob: Blob,
+  lessonOsLog: EventLogStore | null | undefined,
+  options: ImportLessonOptions,
+  mode: "preview" | "commit",
+): Promise<LessonImportPreview | ImportLessonResult> {
+  if (mode === "commit") await recoverPendingLessonImport(store, lessonOsLog)
   const requestedDestination = options.destinationLessonId === undefined
     ? null
     : validateRoomId(options.destinationLessonId)
@@ -470,12 +501,39 @@ export async function importLesson(
   const targetPaths = new Set<string>()
   const entriesToWrite = stagedEntries.map((entry) => {
     const path = importedPath(entry.path, mappedDestination)
+    if (
+      path === LESSON_IMPORT_TRANSACTION_ROOT ||
+      path.startsWith(`${LESSON_IMPORT_TRANSACTION_ROOT}/`)
+    ) {
+      throw new Error("Lesson import transaction: target riservato")
+    }
     if (targetPaths.has(path)) {
       throw new Error(`Bundle identity: path destinazione duplicato (${path})`)
     }
     targetPaths.add(path)
     return { path, data: entry.data }
   })
+
+  if (mode === "preview") {
+    const pending = await readPendingLessonImport(store)
+    const files = await Promise.all(entriesToWrite.map(async (entry, index) => ({
+      sourcePath: stagedEntries[index]!.path,
+      targetPath: entry.path,
+      bytes: entry.data.size,
+      action: await store.read(entry.path) === null ? "create" as const : "replace" as const,
+    })))
+    return {
+      kind: "validated",
+      identity,
+      manifest,
+      lessonOs: byPortablePath.has(LESSON_PATHS.LESSONOS) ? "included" : "missing",
+      files,
+      pendingRecovery: pending === null
+        ? null
+        : { id: pending.id, phase: pending.phase, createdAt: pending.createdAt },
+      commitReady: pending === null,
+    }
+  }
 
   // Tutte le validazioni sono concluse. Stage e backup durevoli precedono ogni
   // mutazione dei target; un errore di commit viene compensato byte per byte.
@@ -531,6 +589,26 @@ export async function importLesson(
     lessonOsRestore,
     identity,
   }
+}
+
+export async function importLesson(
+  store: WorkspaceStore,
+  blob: Blob,
+  lessonOsLog?: EventLogStore | null,
+  options: ImportLessonOptions = {},
+): Promise<ImportLessonResult> {
+  return runLessonImport(store, blob, lessonOsLog, options, "commit")
+}
+
+/** Valida e descrive un bundle senza creare stage, recuperare transazioni o
+ * mutare target/cache. Una recovery pendente rende il commit non pronto ma
+ * resta osservabile, cosi la UI puo richiederne l'esecuzione esplicita. */
+export async function previewLessonImport(
+  store: WorkspaceStore,
+  blob: Blob,
+  options: ImportLessonOptions = {},
+): Promise<LessonImportPreview> {
+  return runLessonImport(store, blob, null, options, "preview")
 }
 
 /**
