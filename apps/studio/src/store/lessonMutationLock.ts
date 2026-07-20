@@ -11,6 +11,10 @@ export type MutationLockOptions = Readonly<{
   mode: MutationLockMode
 }>
 
+export type MutationTryLockResult<T> =
+  | Readonly<{ acquired: true; value: T }>
+  | Readonly<{ acquired: false }>
+
 export interface MutationLockBroker {
   readonly safety: MutationSafety
   request<T>(
@@ -18,17 +22,36 @@ export interface MutationLockBroker {
     options: MutationLockOptions,
     work: () => Promise<T>,
   ): Promise<T>
+  tryRequest<T>(
+    name: string,
+    options: MutationLockOptions,
+    work: () => Promise<T>,
+  ): Promise<MutationTryLockResult<T>>
 }
+
+export type ActiveLessonRegistration = Readonly<{
+  lessonId: string
+  release(): Promise<void>
+}>
+
+export type InactiveLessonProbe =
+  | Readonly<{ status: "inactive" }>
+  | Readonly<{ status: "unavailable"; reason: "active" | "local-only" }>
 
 /**
  * Coordinator non reentrant: una callback eseguita sotto lease non deve
  * riacquisire questo coordinator. Il codice già protetto deve usare la porta
  * driver interna, non una public operation che acquisirebbe nuovamente i lock.
+ * Il lifetime activity resta una registration esplicita: un callback pubblico
+ * potrebbe invertire activity -> workspace -> lesson. Il futuro macro-import
+ * deve invece possedere internamente l'intero ordine workspace -> activity -> lesson.
  */
 export interface LessonMutationCoordinator {
   readonly safety: MutationSafety
   withPathMutation<T>(path: string, work: () => Promise<T>): Promise<T>
   withWorkspaceExclusive<T>(work: () => Promise<T>): Promise<T>
+  registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration>
+  probeInactiveLesson(lessonId: string): Promise<InactiveLessonProbe>
 }
 
 export const WORKSPACE_MUTATION_LOCK = "ardesia:workspace-mutation"
@@ -36,6 +59,11 @@ export const WORKSPACE_MUTATION_LOCK = "ardesia:workspace-mutation"
 export function lessonMutationLockName(lessonId: string): string {
   const validLessonId = validateRoomId(lessonId)
   return `ardesia:lesson-mutation:${asciiCaseFold(validLessonId)}`
+}
+
+function lessonActivityLockName(lessonId: string): string {
+  const validLessonId = validateRoomId(lessonId)
+  return `ardesia:lesson-active:${asciiCaseFold(validLessonId)}`
 }
 
 function asciiCaseFold(value: string): string {
@@ -89,16 +117,50 @@ class InProcessMutationLockBroker implements MutationLockBroker {
           const state = this.state(name)
           if (options.mode === "shared") state.readers += 1
           else state.writer = true
-          void Promise.resolve().then(work).then(resolve, reject).finally(() => {
-            if (options.mode === "shared") state.readers -= 1
-            else state.writer = false
-            this.drain(name)
-          })
+          void this.runGranted(name, options.mode, work).then(resolve, reject)
         },
       }
       this.state(name).queue.push(queued)
       this.drain(name)
     })
+  }
+
+  tryRequest<T>(
+    name: string,
+    options: MutationLockOptions,
+    work: () => Promise<T>,
+  ): Promise<MutationTryLockResult<T>> {
+    const state = this.state(name)
+    const available = (
+      state.queue.length === 0 &&
+      !state.writer &&
+      (options.mode === "shared" || state.readers === 0)
+    )
+    if (!available) {
+      this.deleteIdleState(name, state)
+      return Promise.resolve(Object.freeze({ acquired: false as const }))
+    }
+
+    if (options.mode === "shared") state.readers += 1
+    else state.writer = true
+    return this.runGranted(name, options.mode, work).then((value) => (
+      Object.freeze({ acquired: true as const, value })
+    ))
+  }
+
+  private async runGranted<T>(
+    name: string,
+    mode: MutationLockMode,
+    work: () => Promise<T>,
+  ): Promise<T> {
+    try {
+      return await work()
+    } finally {
+      const state = this.state(name)
+      if (mode === "shared") state.readers -= 1
+      else state.writer = false
+      this.drain(name)
+    }
   }
 
   private state(name: string): InProcessLockState {
@@ -155,6 +217,29 @@ class WebLocksMutationLockBroker implements MutationLockBroker {
       return work()
     })
   }
+
+  tryRequest<T>(
+    name: string,
+    options: MutationLockOptions,
+    work: () => Promise<T>,
+  ): Promise<MutationTryLockResult<T>> {
+    return this.locks.request(
+      name,
+      { mode: options.mode, ifAvailable: true },
+      async (lock): Promise<MutationTryLockResult<T>> => {
+        if (lock === null) {
+          return Object.freeze({ acquired: false as const })
+        }
+        return Object.freeze({ acquired: true as const, value: await work() })
+      },
+    )
+  }
+}
+
+export function createWebLocksMutationLockBroker(
+  locks: LockManager,
+): MutationLockBroker {
+  return new WebLocksMutationLockBroker(locks)
 }
 
 class DefaultLessonMutationCoordinator implements LessonMutationCoordinator {
@@ -185,6 +270,59 @@ class DefaultLessonMutationCoordinator implements LessonMutationCoordinator {
   withWorkspaceExclusive<T>(work: () => Promise<T>): Promise<T> {
     return this.broker.request(WORKSPACE_MUTATION_LOCK, { mode: "exclusive" }, work)
   }
+
+  async registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration> {
+    const validLessonId = validateRoomId(lessonId)
+    let releaseHold: (() => void) | undefined
+    let releaseRequested = false
+    const hold = new Promise<void>((resolve) => { releaseHold = resolve })
+    let resolveGrant: ((registration: ActiveLessonRegistration) => void) | undefined
+    let rejectGrant: ((error: unknown) => void) | undefined
+    let granted = false
+    const grant = new Promise<ActiveLessonRegistration>((resolve, reject) => {
+      resolveGrant = resolve
+      rejectGrant = reject
+    })
+
+    const completion = Promise.resolve().then(() => this.broker.request(
+      lessonActivityLockName(validLessonId),
+      { mode: "shared" },
+      async () => {
+        granted = true
+        resolveGrant?.(registration)
+        await hold
+      },
+    ))
+    const registration: ActiveLessonRegistration = Object.freeze({
+      lessonId: validLessonId,
+      release: (): Promise<void> => {
+        if (!releaseRequested) {
+          releaseRequested = true
+          releaseHold?.()
+        }
+        return completion
+      },
+    })
+    void completion.catch((error) => {
+      if (!granted) rejectGrant?.(error)
+    })
+    return grant
+  }
+
+  async probeInactiveLesson(lessonId: string): Promise<InactiveLessonProbe> {
+    const lockName = lessonActivityLockName(lessonId)
+    if (this.safety === "local-only") {
+      return Object.freeze({ status: "unavailable", reason: "local-only" })
+    }
+    const attempt = await this.broker.tryRequest(
+      lockName,
+      { mode: "exclusive" },
+      async () => undefined,
+    )
+    return attempt.acquired
+      ? Object.freeze({ status: "inactive" })
+      : Object.freeze({ status: "unavailable", reason: "active" })
+  }
 }
 
 function browserLockManager(): LockManager | null {
@@ -200,7 +338,7 @@ function browserLockManager(): LockManager | null {
 const localOnlyBroker = new InProcessMutationLockBroker()
 const browserLocks = browserLockManager()
 const originBroker: MutationLockBroker = browserLocks
-  ? new WebLocksMutationLockBroker(browserLocks)
+  ? createWebLocksMutationLockBroker(browserLocks)
   : localOnlyBroker
 
 export function createLessonMutationCoordinator(

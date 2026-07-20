@@ -21,6 +21,8 @@ import { roomPaths, validateRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   originLessonMutationCoordinator,
+  type ActiveLessonRegistration,
+  type InactiveLessonProbe,
   type LessonMutationCoordinator,
   type MutationSafety,
 } from "./lessonMutationLock"
@@ -163,6 +165,14 @@ export class WorkspaceStore {
 
   get mutationSafety(): MutationSafety {
     return this.mutationCoordinator.safety
+  }
+
+  registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration> {
+    return this.mutationCoordinator.registerActiveLesson(lessonId)
+  }
+
+  probeInactiveLesson(lessonId: string): Promise<InactiveLessonProbe> {
+    return this.mutationCoordinator.probeInactiveLesson(lessonId)
   }
 
   /**

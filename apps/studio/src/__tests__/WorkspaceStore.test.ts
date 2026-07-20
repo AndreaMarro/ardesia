@@ -9,8 +9,12 @@ import { LocalStorageDriver } from "../store/drivers/localStorage"
 import { roomPaths, validateRoomId } from "../store/roomPaths"
 import {
   createLessonMutationCoordinator,
+  createWebLocksMutationLockBroker,
+  type LessonMutationCoordinator,
   type MutationLockBroker,
   type MutationLockMode,
+  type MutationSafety,
+  type MutationTryLockResult,
 } from "../store/lessonMutationLock"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
@@ -110,9 +114,13 @@ type LockState = {
 }
 
 class AdversarialMutationLockBroker implements MutationLockBroker {
-  readonly safety = "origin-exclusive" as const
+  readonly safety: MutationSafety
   readonly ledger: string[] = []
   private readonly states = new Map<string, LockState>()
+
+  constructor(safety: MutationSafety = "origin-exclusive") {
+    this.safety = safety
+  }
 
   request<T>(
     name: string,
@@ -128,17 +136,52 @@ class AdversarialMutationLockBroker implements MutationLockBroker {
           if (options.mode === "shared") state.readers += 1
           else state.writer = true
           this.ledger.push(`enter:${options.mode}:${name}`)
-          void work().then(resolve, reject).finally(() => {
-            this.ledger.push(`exit:${options.mode}:${name}`)
-            if (options.mode === "shared") state.readers -= 1
-            else state.writer = false
-            this.drain(name)
-          })
+          void this.runGranted(name, options.mode, work).then(resolve, reject)
         },
       }
       this.state(name).queue.push(queued)
       this.drain(name)
     })
+  }
+
+  tryRequest<T>(
+    name: string,
+    options: Readonly<{ mode: MutationLockMode }>,
+    work: () => Promise<T>,
+  ): Promise<MutationTryLockResult<T>> {
+    this.ledger.push(`try:${options.mode}:${name}`)
+    const state = this.state(name)
+    const available = (
+      state.queue.length === 0 &&
+      !state.writer &&
+      (options.mode === "shared" || state.readers === 0)
+    )
+    if (!available) {
+      this.ledger.push(`miss:${options.mode}:${name}`)
+      return Promise.resolve(Object.freeze({ acquired: false as const }))
+    }
+    if (options.mode === "shared") state.readers += 1
+    else state.writer = true
+    this.ledger.push(`enter:${options.mode}:${name}`)
+    return this.runGranted(name, options.mode, work).then((value) => (
+      Object.freeze({ acquired: true as const, value })
+    ))
+  }
+
+  private async runGranted<T>(
+    name: string,
+    mode: MutationLockMode,
+    work: () => Promise<T>,
+  ): Promise<T> {
+    try {
+      return await work()
+    } finally {
+      const state = this.state(name)
+      this.ledger.push(`exit:${mode}:${name}`)
+      if (mode === "shared") state.readers -= 1
+      else state.writer = false
+      this.drain(name)
+    }
   }
 
   private state(name: string): LockState {
@@ -602,10 +645,212 @@ describe("WorkspaceStore", () => {
     }
   })
 
-  it("non espone ancora una lease clone o macro-import .lesson nella foundation S0A", () => {
+  it("non espone ancora una lease clone o macro-import .lesson nella foundation S0A2", () => {
     const coordinator = createLessonMutationCoordinator(new AdversarialMutationLockBroker())
     expect("withLessonImport" in coordinator).toBe(false)
-    expect("registerActiveLesson" in coordinator).toBe(false)
+    expect("registerActiveLesson" in coordinator).toBe(true)
+  })
+
+  it("registra activity shared case-folded e probe exclusive non si accoda", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const activityLock = "ardesia:lesson-active:c"
+
+    const first = await coordinator.registerActiveLesson("C")
+    const second = await coordinator.registerActiveLesson("c")
+    expect(Object.isFrozen(first)).toBe(true)
+    expect(Object.isFrozen(second)).toBe(true)
+    expect(first.lessonId).toBe("C")
+    expect(second.lessonId).toBe("c")
+    expect(broker.ledger.filter((entry) => entry === `enter:shared:${activityLock}`)).toHaveLength(2)
+
+    const firstProbe = coordinator.probeInactiveLesson("C")
+    expect(broker.ledger.at(-1)).toBe(`miss:exclusive:${activityLock}`)
+    await expect(firstProbe).resolves.toEqual({ status: "unavailable", reason: "active" })
+    expect(broker.ledger).not.toContain(`request:exclusive:${activityLock}`)
+
+    const firstRelease = first.release()
+    expect(first.release()).toBe(firstRelease)
+    await firstRelease
+    expect(broker.ledger.filter((entry) => entry === `exit:shared:${activityLock}`)).toHaveLength(1)
+    await expect(coordinator.probeInactiveLesson("c")).resolves.toEqual({
+      status: "unavailable",
+      reason: "active",
+    })
+
+    const secondRelease = second.release()
+    expect(second.release()).toBe(secondRelease)
+    await secondRelease
+    expect(broker.ledger.filter((entry) => entry === `exit:shared:${activityLock}`)).toHaveLength(2)
+
+    const inactive = await coordinator.probeInactiveLesson("c")
+    expect(inactive).toEqual({ status: "inactive" })
+    expect(broker.ledger.slice(-2)).toEqual([
+      `enter:exclusive:${activityLock}`,
+      `exit:exclusive:${activityLock}`,
+    ])
+  })
+
+  it("separa activity di lesson diverse e propaga rejection prima del grant", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const registration = await coordinator.registerActiveLesson("C")
+
+    await expect(coordinator.probeInactiveLesson("D")).resolves.toEqual({ status: "inactive" })
+    expect(broker.ledger).toContain("enter:shared:ardesia:lesson-active:c")
+    expect(broker.ledger).toContain("enter:exclusive:ardesia:lesson-active:d")
+    await registration.release()
+
+    const rejection = new Error("broker rejected before grant")
+    const rejectingBroker: MutationLockBroker = {
+      safety: "origin-exclusive",
+      request: () => Promise.reject(rejection),
+      tryRequest: () => Promise.resolve({ acquired: false }),
+    }
+    const rejectingCoordinator = createLessonMutationCoordinator(rejectingBroker)
+    await expect(rejectingCoordinator.registerActiveLesson("C")).rejects.toBe(rejection)
+  })
+
+  it("fallisce closed local-only senza consultare il broker e delega dal WorkspaceStore", async () => {
+    const localBroker = new AdversarialMutationLockBroker("local-only")
+    const coordinator = createLessonMutationCoordinator(localBroker)
+    const guardedStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+
+    expect(guardedStore.mutationSafety).toBe("local-only")
+    await expect(guardedStore.probeInactiveLesson("C")).resolves.toEqual({
+      status: "unavailable",
+      reason: "local-only",
+    })
+    expect(localBroker.ledger).toEqual([])
+
+    const registration = await guardedStore.registerActiveLesson("C")
+    expect(localBroker.ledger).toContain("enter:shared:ardesia:lesson-active:c")
+    await registration.release()
+    expect(localBroker.ledger).toContain("exit:shared:ardesia:lesson-active:c")
+  })
+
+  it("converte un lesson id invalido in rejection Promise senza throw sincrono", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const guardedStore = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    let registration: ReturnType<WorkspaceStore["registerActiveLesson"]> | undefined
+
+    expect(() => {
+      registration = guardedStore.registerActiveLesson("private/lesson")
+    }).not.toThrow()
+    expect(registration).toBeDefined()
+    await expect(registration).rejects.toThrow(/room/i)
+    expect(broker.ledger).toEqual([])
+  })
+
+  it("il facade WorkspaceStore restituisce esattamente handle e probe del coordinator iniettato", async () => {
+    const releaseCompletion = Promise.resolve()
+    const handle = Object.freeze({ lessonId: "C", release: () => releaseCompletion })
+    const calls: string[] = []
+    const coordinator: LessonMutationCoordinator = {
+      safety: "origin-exclusive",
+      withPathMutation: async (_path, work) => work(),
+      withWorkspaceExclusive: async (work) => work(),
+      registerActiveLesson: async (lessonId) => {
+        calls.push(`register:${lessonId}`)
+        return handle
+      },
+      probeInactiveLesson: async (lessonId) => {
+        calls.push(`probe:${lessonId}`)
+        return Object.freeze({ status: "inactive" as const })
+      },
+    }
+    const guardedStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+
+    await expect(guardedStore.registerActiveLesson("C")).resolves.toBe(handle)
+    await expect(guardedStore.probeInactiveLesson("c")).resolves.toEqual({ status: "inactive" })
+    expect(calls).toEqual(["register:C", "probe:c"])
+  })
+
+  it("adatta Web Locks con ifAvailable intrinseco e completa soltanto dopo il rilascio", async () => {
+    const calls: Array<{ name: string; options: LockOptions }> = []
+    const lifecycle: string[] = []
+    let grantTry = false
+    const fakeLock = Object.freeze({ name: "controlled", mode: "exclusive" as const }) as Lock
+    const lockManager = {
+      request: <T>(
+        name: string,
+        options: LockOptions,
+        callback: (lock: Lock | null) => T | PromiseLike<T>,
+      ): Promise<T> => {
+        calls.push({ name, options: { ...options } })
+        const granted = options.ifAvailable === true ? grantTry : true
+        lifecycle.push(`callback:${granted ? "grant" : "null"}`)
+        return Promise.resolve(callback(granted ? fakeLock : null)).finally(() => {
+          lifecycle.push("unlock")
+        })
+      },
+    } as unknown as LockManager
+    const broker = createWebLocksMutationLockBroker(lockManager)
+
+    const normal = broker.request("normal", { mode: "shared" }, async () => {
+      lifecycle.push("normal-work")
+      return 7
+    })
+    await expect(normal).resolves.toBe(7)
+    expect(calls[0]).toEqual({ name: "normal", options: { mode: "shared" } })
+    expect(lifecycle.at(-1)).toBe("unlock")
+
+    const unavailable = broker.tryRequest("try", { mode: "exclusive" }, async () => {
+      throw new Error("work must not run")
+    })
+    await expect(unavailable).resolves.toEqual({ acquired: false })
+    expect(calls[1]).toEqual({
+      name: "try",
+      options: { mode: "exclusive", ifAvailable: true },
+    })
+
+    grantTry = true
+    let workCalls = 0
+    const acquired = broker.tryRequest("try", { mode: "exclusive" }, async () => {
+      workCalls += 1
+      lifecycle.push("try-work")
+      return "value"
+    })
+    await expect(acquired).resolves.toEqual({ acquired: true, value: "value" })
+    expect(workCalls).toBe(1)
+    expect(lifecycle.at(-1)).toBe("unlock")
+
+    const rejection = new Error("controlled rejection")
+    await expect(broker.tryRequest("try", { mode: "exclusive" }, async () => {
+      throw rejection
+    })).rejects.toBe(rejection)
+    expect(lifecycle.at(-1)).toBe("unlock")
+  })
+
+  it("il broker fallback completa una request soltanto dopo unlock e drain causale", async () => {
+    const coordinator = createLessonMutationCoordinator()
+    expect(coordinator.safety).toBe("local-only")
+    const broker = (
+      coordinator as unknown as { broker: MutationLockBroker }
+    ).broker
+    expect(broker).toBeDefined()
+    const lockName = "ardesia:test:s0a2:settlement"
+    const firstEntered = deferred()
+    const releaseFirst = deferred()
+    let secondEntered = false
+
+    const first = broker.request(lockName, { mode: "exclusive" }, async () => {
+      firstEntered.resolve()
+      await releaseFirst.promise
+      return "first"
+    })
+    await firstEntered.promise
+    const second = broker.request(lockName, { mode: "exclusive" }, async () => {
+      secondEntered = true
+      return "second"
+    })
+
+    releaseFirst.resolve()
+    await expect(first).resolves.toBe("first")
+    expect(secondEntered).toBe(true)
+    await expect(second).resolves.toBe("second")
   })
 
   it("mantiene importBundle workspace-exclusive rispetto alle mutazioni lesson", async () => {
