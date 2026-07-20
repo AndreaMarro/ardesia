@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 // MAESTRO-Studio — Test WorkspaceStore
 
-import { describe, it, expect, beforeEach } from "vitest"
+import { describe, it, expect, beforeEach, vi } from "vitest"
 import { WorkspaceCompensationError, WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
@@ -16,12 +16,20 @@ import {
   type MutationSafety,
   type MutationTryLockResult,
 } from "../store/lessonMutationLock"
+import {
+  parseSessionYamlV2,
+  serializeSessionYamlV2,
+  sessionPaths,
+  SessionPostWriteVerificationError,
+  SessionYamlParseError,
+} from "../store/sessionState"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
 let storage: Record<string, string> = {}
 let storageOperations: string[] = []
 
 beforeEach(() => {
+  vi.restoreAllMocks()
   storage = {}
   storageOperations = []
   Object.defineProperty(globalThis, "localStorage", {
@@ -1215,6 +1223,1307 @@ describe("WorkspaceStore", () => {
 })
 
 function sleep(ms: number) { return new Promise(r => setTimeout(r, ms)) }
+
+const SESSION_A = "10000000-0000-4000-8000-000000000001"
+const SESSION_B = "20000000-0000-4000-8000-000000000002"
+const SESSION_PATH_A = `raw/lesson-A/${SESSION_A}/session.yaml`
+const H_CREATE = "13585ca24497dd02d65bbb0327d65b5b9ece5d0aaa75ddeedb4a2b3f38a8cf10"
+const H_DIFFERENT = "d414f608b2cc6142df622d351237b4729017146297c3b1afb198e2cb10407f07"
+const H_UPDATED = "42f590f90f191ad7711cfda98435a674e83e0d01ab297ae959b3e38ba4d7628f"
+const H_STALE_OBSERVED = "d833a47bc8b6465b97a379b2ad04e62ec50515bf379dec9064e1690529f671e0"
+const H_CONNECT_CAS_INITIAL = "816dc2e5d10b80716b530d7de095b295fccc028744eae02048b0a83ccd73903f"
+const H_CONNECT_CAS_UPDATED = "3727276581d76a570d604420e84cbd55dae949d10cfe595dacd0d19a0ff53257"
+
+const YAML_CREATE =
+  `v: 2\n` +
+  `lessonId: lesson-A\n` +
+  `sessionId: ${SESSION_A}\n` +
+  `created: 1784491200000\n` +
+  `revision: 0\n` +
+  `audioConsent: false\n` +
+  `audioStartEpoch: null\n`
+
+const YAML_DIFFERENT = YAML_CREATE.replace(
+  "created: 1784491200000",
+  "created: 1784491200001",
+)
+const YAML_UPDATED = YAML_CREATE
+  .replace("revision: 0", "revision: 1")
+  .replace("audioConsent: false", "audioConsent: true")
+  .replace("audioStartEpoch: null", "audioStartEpoch: 1784491201000")
+const YAML_STALE_OBSERVED = YAML_CREATE.replace("revision: 0", "revision: 2")
+const YAML_CONNECT_CAS_INITIAL = YAML_CREATE
+  .replace("created: 1784491200000", "created: 1784491200123")
+  .replace("revision: 0", "revision: 7")
+const YAML_CONNECT_CAS_UPDATED = YAML_CONNECT_CAS_INITIAL
+  .replace("revision: 7", "revision: 8")
+  .replace("audioConsent: false", "audioConsent: true")
+  .replace("audioStartEpoch: null", "audioStartEpoch: 1784491201999")
+
+function fixtureBytes(text: string): Uint8Array {
+  return new TextEncoder().encode(text)
+}
+
+function fixtureBlob(bytes: Uint8Array, type = ""): Blob {
+  const copy = new Uint8Array(bytes.byteLength)
+  copy.set(bytes)
+  return new Blob([copy.buffer], type ? { type } : undefined)
+}
+
+class DeferredPathCoordinator implements LessonMutationCoordinator {
+  readonly safety = "origin-exclusive" as const
+  readonly paths: string[] = []
+  workCalls = 0
+  private readonly releaseGate = deferred()
+
+  withPathMutation<T>(path: string, work: () => Promise<T>): Promise<T> {
+    this.paths.push(path)
+    return this.releaseGate.promise.then(() => {
+      this.workCalls += 1
+      return work()
+    })
+  }
+
+  withWorkspaceExclusive<T>(work: () => Promise<T>): Promise<T> { return work() }
+  async registerActiveLesson(lessonId: string) {
+    return Object.freeze({ lessonId, release: async () => undefined })
+  }
+  async probeInactiveLesson() { return Object.freeze({ status: "inactive" as const }) }
+  release(): void { this.releaseGate.resolve() }
+}
+
+type AccessLedger = Readonly<{
+  proxy: Map<string, number>
+  getter: Map<string, number>
+}>
+
+function adversarialProxy<T extends object>(
+  first: Readonly<Record<string, unknown>>,
+  second: Readonly<Record<string, unknown>>,
+): Readonly<{ value: T; ledger: AccessLedger }> {
+  const proxyLedger = new Map<string, number>()
+  const getterLedger = new Map<string, number>()
+  const target: Record<string, unknown> = {}
+  for (const key of Object.keys(first)) {
+    Object.defineProperty(target, key, {
+      enumerable: true,
+      configurable: true,
+      get: () => {
+        const call = (getterLedger.get(key) ?? 0) + 1
+        getterLedger.set(key, call)
+        if (call === 1) return first[key]
+        if (call === 2) return second[key]
+        throw new Error("THIRD_ACCESS_SENTINEL")
+      },
+    })
+  }
+  const value = new Proxy(target, {
+    get: (proxyTarget, property, receiver) => {
+      if (typeof property === "string" && property in first) {
+        proxyLedger.set(property, (proxyLedger.get(property) ?? 0) + 1)
+      }
+      return Reflect.get(proxyTarget, property, receiver)
+    },
+  }) as T
+  return Object.freeze({
+    value,
+    ledger: Object.freeze({ proxy: proxyLedger, getter: getterLedger }),
+  })
+}
+
+function expectExactOne(ledger: AccessLedger, fields: readonly string[]): void {
+  for (const field of fields) {
+    expect(ledger.proxy.get(field), `proxy ${field}`).toBe(1)
+    expect(ledger.getter.get(field), `getter ${field}`).toBe(1)
+  }
+}
+
+async function putFixture(driver: MockDriver, path: string, yaml: string): Promise<void> {
+  await driver.write(path, fixtureBlob(fixtureBytes(yaml), "text/yaml"))
+  driver.clearOperations()
+}
+
+function expectVerificationPhase(
+  caught: unknown,
+  phase: "create-readback" | "cas-readback",
+): void {
+  expect(caught).toBeInstanceOf(SessionPostWriteVerificationError)
+  expect((caught as SessionPostWriteVerificationError).phase).toBe(phase)
+}
+
+async function captureRejection(work: Promise<unknown>): Promise<unknown> {
+  try {
+    await work
+  } catch (error) {
+    return error
+  }
+  throw new Error("expected rejection")
+}
+
+describe("SessionYamlV2 authority", () => {
+  it("espone dal modulo sessionState soltanto il boundary puro previsto", async () => {
+    const sessionState = await import("../store/sessionState")
+
+    const forbiddenExports = [
+      "SessionPort",
+      "createSessionOnceAtPort",
+      "updateSessionAudioCASAtPort",
+    ]
+    for (const exportName of forbiddenExports) {
+      expect(Object.keys(sessionState), exportName).not.toContain(exportName)
+    }
+  })
+
+  it("deriva path distinti dalla coppia lesson/session senza usare il flat legacy", () => {
+    expect(sessionPaths({ lessonId: "lesson-A", sessionId: SESSION_A })).toEqual({
+      root: `raw/lesson-A/${SESSION_A}/`,
+      session: SESSION_PATH_A,
+      audioDir: `raw/lesson-A/${SESSION_A}/audio/`,
+    })
+    expect(sessionPaths({ lessonId: "lesson-A", sessionId: SESSION_B }).session)
+      .not.toBe(SESSION_PATH_A)
+    expect(sessionPaths({ lessonId: "lesson-B", sessionId: SESSION_A }).session)
+      .not.toBe(SESSION_PATH_A)
+    expect(sessionPaths({ lessonId: "lesson-A", sessionId: SESSION_A }).session)
+      .not.toBe("raw/session.yaml")
+    expect(sessionPaths({ lessonId: "lesson-A", sessionId: SESSION_A }).session)
+      .not.toBe("raw/lesson-A/session.yaml")
+  })
+
+  it("serializza sette righe byte-exact e il parser schema-only fa roundtrip", () => {
+    const value = {
+      v: 2 as const,
+      lessonId: "lesson-A",
+      sessionId: SESSION_A,
+      created: 1784491200000,
+      revision: 0,
+      audioConsent: false,
+      audioStartEpoch: null,
+    }
+    const bytes = serializeSessionYamlV2(value)
+    expect(bytes).toEqual(fixtureBytes(YAML_CREATE))
+    expect(bytes.byteLength).toBe(149)
+    expect(parseSessionYamlV2(bytes)).toEqual(value)
+
+    const embeddedOther = fixtureBytes(YAML_CREATE
+      .replace("lessonId: lesson-A", "lessonId: lesson-B")
+      .replace(`sessionId: ${SESSION_A}`, `sessionId: ${SESSION_B}`))
+    expect(parseSessionYamlV2(embeddedOther)).toMatchObject({
+      lessonId: "lesson-B",
+      sessionId: SESSION_B,
+    })
+  })
+
+  const invalidCases: ReadonlyArray<Readonly<{
+    name: string
+    bytes: Uint8Array
+    code: "invalid-utf8" | "noncanonical-utf8" | "invalid-grammar" | "invalid-schema"
+  }>> = [
+    { name: "BOM", bytes: new Uint8Array([0xef, 0xbb, 0xbf, ...fixtureBytes(YAML_CREATE)]), code: "noncanonical-utf8" },
+    { name: "continuation isolata", bytes: new Uint8Array([0x80]), code: "invalid-utf8" },
+    { name: "multibyte troncato", bytes: new Uint8Array([0xe2, 0x82]), code: "invalid-utf8" },
+    { name: "overlong", bytes: new Uint8Array([0xc0, 0xaf]), code: "invalid-utf8" },
+    { name: "NUL", bytes: new Uint8Array([...fixtureBytes(YAML_CREATE), 0]), code: "invalid-grammar" },
+    { name: "CRLF", bytes: fixtureBytes(YAML_CREATE.replaceAll("\n", "\r\n")), code: "invalid-grammar" },
+    { name: "newline mancante", bytes: fixtureBytes(YAML_CREATE.slice(0, -1)), code: "invalid-grammar" },
+    { name: "newline extra", bytes: fixtureBytes(`${YAML_CREATE}\n`), code: "invalid-grammar" },
+    { name: "chiave duplicata", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "created: 0")), code: "invalid-grammar" },
+    { name: "chiave unknown", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "unknown: 0")), code: "invalid-grammar" },
+    { name: "chiave mancante", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0\n", "")), code: "invalid-grammar" },
+    { name: "chiavi riordinate", bytes: fixtureBytes(YAML_CREATE.replace("created: 1784491200000\nrevision: 0", "revision: 0\ncreated: 1784491200000")), code: "invalid-grammar" },
+    { name: "quote", bytes: fixtureBytes(YAML_CREATE.replace("lessonId: lesson-A", 'lessonId: "lesson-A"')), code: "invalid-grammar" },
+    { name: "commento con raw marker", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: 0 # RAW_YAML_SECRET_SENTINEL")), code: "invalid-grammar" },
+    { name: "tag", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: !!int 0")), code: "invalid-grammar" },
+    { name: "alias", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: *r")), code: "invalid-grammar" },
+    { name: "document marker", bytes: fixtureBytes(`---\n${YAML_CREATE}`), code: "invalid-grammar" },
+    { name: "multiline", bytes: fixtureBytes(YAML_CREATE.replace("lessonId: lesson-A", "lessonId: |\n  LEAK_LESSON_SENTINEL")), code: "invalid-grammar" },
+    { name: "negativo", bytes: fixtureBytes(YAML_CREATE.replace("created: 1784491200000", "created: -1")), code: "invalid-schema" },
+    { name: "decimale", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: 1.0")), code: "invalid-schema" },
+    { name: "esponente", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: 1e2")), code: "invalid-schema" },
+    { name: "leading zero", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: 00")), code: "invalid-schema" },
+    { name: "oltre safe integer", bytes: fixtureBytes(YAML_CREATE.replace("revision: 0", "revision: 9007199254740992")), code: "invalid-schema" },
+    { name: "UUID uppercase", bytes: fixtureBytes(YAML_CREATE.replace(SESSION_A, "ABCDEFAB-CDEF-4ABC-8ABC-ABCDEFABCDEF")), code: "invalid-schema" },
+    { name: "UUID non v4", bytes: fixtureBytes(YAML_CREATE.replace(SESSION_A, "10000000-0000-3000-8000-000000000001")), code: "invalid-schema" },
+    { name: "UUID variant", bytes: fixtureBytes(YAML_CREATE.replace(SESSION_A, "10000000-0000-4000-7000-000000000001")), code: "invalid-schema" },
+    { name: "false con epoch", bytes: fixtureBytes(YAML_CREATE.replace("audioStartEpoch: null", "audioStartEpoch: 1")), code: "invalid-schema" },
+    { name: "true con null", bytes: fixtureBytes(YAML_CREATE.replace("audioConsent: false", "audioConsent: true")), code: "invalid-schema" },
+    { name: "trailing ASCII", bytes: fixtureBytes(`${YAML_CREATE}RAW_YAML_SECRET_SENTINEL`), code: "invalid-grammar" },
+    { name: "trailing UTF-8 invalido", bytes: new Uint8Array([...fixtureBytes(YAML_CREATE), 0x80]), code: "invalid-utf8" },
+  ]
+
+  it.each(invalidCases)("rifiuta $name con code e messaggio non data-bearing", ({ bytes, code }) => {
+    let caught: unknown
+    try {
+      parseSessionYamlV2(bytes)
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toBeInstanceOf(SessionYamlParseError)
+    const diagnostic = caught as SessionYamlParseError
+    expect(diagnostic.code).toBe(code)
+    expect(diagnostic.message).toBe("SessionYamlV2 parse failed")
+    expect(String(diagnostic)).toBe("SessionYamlParseError: SessionYamlV2 parse failed")
+    expect(diagnostic.message).not.toContain("LEAK_LESSON_SENTINEL")
+    expect(diagnostic.message).not.toContain("LEAK_SESSION_SENTINEL")
+    expect(diagnostic.message).not.toContain("RAW_YAML_SECRET_SENTINEL")
+    expect(String(diagnostic)).not.toContain("raw/")
+  })
+
+  it.each([
+    "v",
+    "lessonId",
+    "sessionId",
+    "created",
+    "revision",
+    "audioConsent",
+    "audioStartEpoch",
+  ])("rifiuta una seconda occorrenza della chiave %s", (key) => {
+    const line = YAML_CREATE.split("\n").find((candidate) => candidate.startsWith(`${key}: `))!
+    const duplicate = fixtureBytes(YAML_CREATE.replace(`${line}\n`, `${line}\n${line}\n`))
+    expect(() => parseSessionYamlV2(duplicate)).toThrow(SessionYamlParseError)
+    try {
+      parseSessionYamlV2(duplicate)
+    } catch (error) {
+      expect((error as SessionYamlParseError).code).toBe("invalid-grammar")
+    }
+  })
+
+  it("conserva il decoder error solo come cause del boundary fatal", () => {
+    let caught: unknown
+    try {
+      parseSessionYamlV2(new Uint8Array([0x80]))
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toBeInstanceOf(SessionYamlParseError)
+    expect((caught as SessionYamlParseError).code).toBe("invalid-utf8")
+    expect((caught as SessionYamlParseError).cause).toBeDefined()
+  })
+
+  it("create-once produce H_CREATE, retry idempotente e conflitto diverso con hash indipendenti", async () => {
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+
+    const created = await sessionStore.createSessionOnce(identity, { created: 1784491200000 })
+    expect(created.kind).toBe("created")
+    if (created.kind !== "created") throw new Error("created result required")
+    expect(created.snapshot.sha256).toBe(H_CREATE)
+    expect(await created.snapshot.bytes.text()).toBe(YAML_CREATE)
+    expect(created.snapshot.value).toMatchObject({ revision: 0, audioConsent: false })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+
+    const retry = await sessionStore.createSessionOnce(identity, { created: 1784491200000 })
+    expect(retry.kind).toBe("idempotent")
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+
+    await putFixture(driver, SESSION_PATH_A, YAML_DIFFERENT)
+    const conflict = await sessionStore.createSessionOnce(identity, { created: 1784491200000 })
+    expect(conflict).toEqual({
+      kind: "conflict",
+      reason: "different-existing",
+      observedSha256: H_DIFFERENT,
+    })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it("CAS usa H_CREATE indipendente, produce H_UPDATED e rende il retry stale idempotente", async () => {
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+
+    const updated = await sessionStore.updateSessionAudioCAS(identity, {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    })
+    expect(updated.kind).toBe("updated")
+    if (updated.kind !== "updated") throw new Error("updated result required")
+    expect(updated.snapshot.sha256).toBe(H_UPDATED)
+    expect(await updated.snapshot.bytes.text()).toBe(YAML_UPDATED)
+    expect(updated.snapshot.value).toMatchObject({
+      created: 1784491200000,
+      revision: 1,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    })
+
+    const retry = await sessionStore.updateSessionAudioCAS(identity, {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    })
+    expect(retry.kind).toBe("idempotent")
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+  })
+
+  it("CAS osserva stale hash prima della write e conserva l'exact observed SHA", async () => {
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    await putFixture(driver, SESSION_PATH_A, YAML_STALE_OBSERVED)
+
+    await expect(sessionStore.updateSessionAudioCAS(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491201000,
+      },
+    )).resolves.toEqual({
+      kind: "conflict",
+      reason: "stale-hash",
+      observedSha256: H_STALE_OBSERVED,
+    })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it("CAS distingue absent, corrupt e identity mismatch senza mutare", async () => {
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    const input = {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    }
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    await expect(sessionStore.updateSessionAudioCAS(identity, input))
+      .resolves.toEqual({ kind: "absent" })
+
+    await driver.write(SESSION_PATH_A, new Blob([new Uint8Array([0x80])]))
+    driver.clearOperations()
+    await expect(sessionStore.updateSessionAudioCAS(identity, input)).resolves.toEqual({
+      kind: "corrupt",
+      reason: "invalid-utf8",
+      observedSha256: "76be8b528d0075f7aae98d6fa57a6d3c83ae480a8469e668d7b0af968995ac71",
+    })
+
+    const mismatchYaml = YAML_CREATE
+      .replace("lessonId: lesson-A", "lessonId: lesson-B")
+      .replace(SESSION_A, SESSION_B)
+    await putFixture(driver, SESSION_PATH_A, mismatchYaml)
+    await expect(sessionStore.updateSessionAudioCAS(identity, input)).resolves.toEqual({
+      kind: "conflict",
+      reason: "identity-mismatch",
+      observedSha256: "732a06f03bfdba8fabe73b2cf9d4e905e1799d7fbfc0aceb02305f81a7835701",
+    })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it("create non legge né modifica sessioni sibling o path flat sentinella", async () => {
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const sentinels = new Map<string, string>([
+      [`raw/lesson-A/${SESSION_B}/session.yaml`, "A/SB sentinel"],
+      [`raw/lesson-B/${SESSION_A}/session.yaml`, "B/SA sentinel"],
+      ["raw/session.yaml", "flat sentinel"],
+      ["raw/lesson-A/session.yaml", "room-flat sentinel"],
+    ])
+    for (const [path, text] of sentinels) await driver.write(path, new Blob([text]))
+    driver.clearOperations()
+
+    await expect(sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )).resolves.toMatchObject({ kind: "created" })
+    for (const [path, text] of sentinels) {
+      expect(await (await driver.read(path))!.text(), path).toBe(text)
+    }
+    const sessionOperations = driver.operations.filter((entry) => (
+      entry.startsWith("read:") || entry.startsWith("write:")
+    ))
+    expect(sessionOperations.slice(0, 3)).toEqual([
+      `read:${SESSION_PATH_A}`,
+      `write:${SESSION_PATH_A}`,
+      `read:${SESSION_PATH_A}`,
+    ])
+  })
+
+  it("fa hash prima del parse e distingue corrupt iniziale da identity mismatch", async () => {
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const corruptBytes = new Uint8Array([0x80])
+    await driver.write(SESSION_PATH_A, new Blob([corruptBytes]))
+    driver.clearOperations()
+    const corrupt = await sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )
+    expect(corrupt).toEqual({
+      kind: "corrupt",
+      reason: "invalid-utf8",
+      observedSha256: "76be8b528d0075f7aae98d6fa57a6d3c83ae480a8469e668d7b0af968995ac71",
+    })
+
+    const otherYaml = YAML_CREATE
+      .replace("lessonId: lesson-A", "lessonId: lesson-B")
+      .replace(SESSION_A, SESSION_B)
+    await putFixture(driver, SESSION_PATH_A, otherYaml)
+    const expectedOtherHash = "732a06f03bfdba8fabe73b2cf9d4e905e1799d7fbfc0aceb02305f81a7835701"
+    const mismatch = await sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )
+    expect(mismatch).toEqual({
+      kind: "conflict",
+      reason: "identity-mismatch",
+      observedSha256: expectedOtherHash,
+    })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it.each(["corrupt", "identity-mismatch"] as const)(
+    "WebCrypto rejection su %s precede parse/identity e propaga identity-exact",
+    async (fixture) => {
+      const sentinel = Object.freeze({ sentinel: `digest-before-${fixture}` })
+      const driver = new MockDriver()
+      const yaml = fixture === "corrupt"
+        ? new Uint8Array([0x80])
+        : fixtureBytes(YAML_CREATE
+            .replace("lessonId: lesson-A", "lessonId: lesson-B")
+            .replace(SESSION_A, SESSION_B))
+      await driver.write(SESSION_PATH_A, fixtureBlob(yaml))
+      driver.clearOperations()
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest")
+        .mockRejectedValueOnce(sentinel)
+      await expect(sessionStore.createSessionOnce(
+        { lessonId: "lesson-A", sessionId: SESSION_A },
+        { created: 1784491200000 },
+      )).rejects.toBe(sentinel)
+      expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+      digestSpy.mockRestore()
+    },
+  )
+
+  it("snapshotta ogni getter create exact-one prima del work deferred", async () => {
+    const coordinator = new DeferredPathCoordinator()
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    const identity = adversarialProxy<{ lessonId: string; sessionId: string }>(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { lessonId: "lesson-B", sessionId: SESSION_B },
+    )
+    const input = adversarialProxy<{ created: number }>(
+      { created: 1784491200000 },
+      { created: 1784491200001 },
+    )
+    const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest")
+
+    const pending = sessionStore.createSessionOnce(identity.value, input.value)
+    expectExactOne(identity.ledger, ["lessonId", "sessionId"])
+    expectExactOne(input.ledger, ["created"])
+    expect(coordinator.paths).toEqual([SESSION_PATH_A])
+    expect(coordinator.workCalls).toBe(0)
+    expect(driver.operations).toEqual([])
+    expect(digestSpy).not.toHaveBeenCalled()
+
+    coordinator.release()
+    const result = await pending
+    expect(result.kind).toBe("created")
+    if (result.kind !== "created") throw new Error("created result required")
+    expect(result.snapshot.sha256).toBe(H_CREATE)
+    expectExactOne(identity.ledger, ["lessonId", "sessionId"])
+    expectExactOne(input.ledger, ["created"])
+    digestSpy.mockRestore()
+  })
+
+  it("snapshotta ogni getter CAS exact-one e costruisce il candidate solo dopo release", async () => {
+    const coordinator = new DeferredPathCoordinator()
+    const driver = new MockDriver()
+    await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    const identity = adversarialProxy<{ lessonId: string; sessionId: string }>(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { lessonId: "lesson-B", sessionId: SESSION_B },
+    )
+    const input = adversarialProxy<{
+      expectedSha256: string
+      audioConsent: boolean
+      audioStartEpoch: number | null
+    }>(
+      {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491201000,
+      },
+      {
+        expectedSha256: H_DIFFERENT,
+        audioConsent: false,
+        audioStartEpoch: null,
+      },
+    )
+    const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest")
+
+    const pending = sessionStore.updateSessionAudioCAS(identity.value, input.value)
+    expectExactOne(identity.ledger, ["lessonId", "sessionId"])
+    expectExactOne(input.ledger, ["expectedSha256", "audioConsent", "audioStartEpoch"])
+    expect(coordinator.paths).toEqual([SESSION_PATH_A])
+    expect(coordinator.workCalls).toBe(0)
+    expect(driver.operations).toEqual([])
+    expect(digestSpy).not.toHaveBeenCalled()
+
+    coordinator.release()
+    const result = await pending
+    expect(result.kind).toBe("updated")
+    if (result.kind !== "updated") throw new Error("updated result required")
+    expect(result.snapshot.sha256).toBe(H_UPDATED)
+    expectExactOne(identity.ledger, ["lessonId", "sessionId"])
+    expectExactOne(input.ledger, ["expectedSha256", "audioConsent", "audioStartEpoch"])
+    digestSpy.mockRestore()
+  })
+
+  it("stacca gli alias mutabili create e CAS nella riga successiva alla chiamata", async () => {
+    const createCoordinator = new DeferredPathCoordinator()
+    const createDriver = new MockDriver()
+    const createStore = new WorkspaceStore({ mutationCoordinator: createCoordinator })
+    withMockDriver(createStore, createDriver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    const createInput = { created: 1784491200000 }
+    const createPending = createStore.createSessionOnce(identity, createInput)
+    identity.lessonId = "lesson-B"
+    identity.sessionId = SESSION_B
+    createInput.created = 1784491200001
+    createCoordinator.release()
+    const created = await createPending
+    expect(created.kind).toBe("created")
+    if (created.kind !== "created") throw new Error("created result required")
+    expect(created.snapshot.path).toBe(SESSION_PATH_A)
+    expect(created.snapshot.sha256).toBe(H_CREATE)
+
+    const casCoordinator = new DeferredPathCoordinator()
+    const casDriver = new MockDriver()
+    await putFixture(casDriver, SESSION_PATH_A, YAML_CREATE)
+    const casStore = new WorkspaceStore({ mutationCoordinator: casCoordinator })
+    withMockDriver(casStore, casDriver)
+    const casIdentity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    const casInput = {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000 as number | null,
+    }
+    const casPending = casStore.updateSessionAudioCAS(casIdentity, casInput)
+    casIdentity.lessonId = "lesson-B"
+    casIdentity.sessionId = SESSION_B
+    casInput.expectedSha256 = H_DIFFERENT
+    casInput.audioConsent = false
+    casInput.audioStartEpoch = null
+    casCoordinator.release()
+    const updated = await casPending
+    expect(updated.kind).toBe("updated")
+    if (updated.kind !== "updated") throw new Error("updated result required")
+    expect(updated.snapshot.path).toBe(SESSION_PATH_A)
+    expect(updated.snapshot.sha256).toBe(H_UPDATED)
+  })
+
+  it("rigetta caller input invalido come Promise prima di coordinator e driver", async () => {
+    const paths: string[] = []
+    const coordinator: LessonMutationCoordinator = {
+      safety: "origin-exclusive",
+      withPathMutation: async (path, work) => {
+        paths.push(path)
+        return work()
+      },
+      withWorkspaceExclusive: async (work) => work(),
+      registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
+      probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+    }
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    let invalidCreate: Promise<unknown> | undefined
+    expect(() => {
+      invalidCreate = sessionStore.createSessionOnce(
+        { lessonId: "private/lesson", sessionId: SESSION_A },
+        { created: -1 },
+      )
+    }).not.toThrow()
+    await expect(invalidCreate).rejects.toBeInstanceOf(Error)
+    await expect(sessionStore.updateSessionAudioCAS(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { expectedSha256: "not-a-hash", audioConsent: true, audioStartEpoch: null },
+    )).rejects.toBeInstanceOf(Error)
+    expect(paths).toEqual([])
+    expect(driver.operations).toEqual([])
+  })
+
+  it.each([
+    ["create session uppercase", () => ({
+      kind: "create" as const,
+      identity: { lessonId: "lesson-A", sessionId: "ABCDEFAB-CDEF-4ABC-8ABC-ABCDEFABCDEF" },
+      input: { created: 1784491200000 },
+    })],
+    ["create created fractional", () => ({
+      kind: "create" as const,
+      identity: { lessonId: "lesson-A", sessionId: SESSION_A },
+      input: { created: 1.5 },
+    })],
+    ["CAS false plus epoch", () => ({
+      kind: "cas" as const,
+      identity: { lessonId: "lesson-A", sessionId: SESSION_A },
+      input: { expectedSha256: H_CREATE, audioConsent: false, audioStartEpoch: 1 },
+    })],
+    ["CAS true plus null", () => ({
+      kind: "cas" as const,
+      identity: { lessonId: "lesson-A", sessionId: SESSION_A },
+      input: { expectedSha256: H_CREATE, audioConsent: true, audioStartEpoch: null },
+    })],
+  ])("%s rigetta prima di coordinator/driver", async (_name, buildCase) => {
+    const paths: string[] = []
+    const coordinator: LessonMutationCoordinator = {
+      safety: "origin-exclusive",
+      withPathMutation: async (path, work) => {
+        paths.push(path)
+        return work()
+      },
+      withWorkspaceExclusive: async (work) => work(),
+      registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
+      probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+    }
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    const invalid = buildCase()
+    const pending = invalid.kind === "create"
+      ? sessionStore.createSessionOnce(invalid.identity, invalid.input)
+      : sessionStore.updateSessionAudioCAS(invalid.identity, invalid.input)
+    await expect(pending).rejects.toBeInstanceOf(Error)
+    expect(paths).toEqual([])
+    expect(driver.operations).toEqual([])
+  })
+
+  it.each(["null", "identity", "bytes", "parse"] as const)(
+    "create read-back %s rigetta con classe e phase nominali",
+    async (anomaly) => {
+      const driver = new MockDriver()
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      let reads = 0
+      driver.read = async (path) => {
+        driver.operations.push(`read:${path}`)
+        reads += 1
+        if (reads === 1 || anomaly === "null") return null
+        if (anomaly === "parse") return new Blob([new Uint8Array([0x80])])
+        if (anomaly === "bytes") return fixtureBlob(fixtureBytes(YAML_DIFFERENT))
+        return fixtureBlob(fixtureBytes(YAML_CREATE
+          .replace("lessonId: lesson-A", "lessonId: lesson-B")
+          .replace(SESSION_A, SESSION_B)))
+      }
+
+      const caught = await captureRejection(sessionStore.createSessionOnce(
+        { lessonId: "lesson-A", sessionId: SESSION_A },
+        { created: 1784491200000 },
+      ))
+      expectVerificationPhase(caught, "create-readback")
+      if (anomaly === "parse") {
+        expect((caught as SessionPostWriteVerificationError).cause)
+          .toBeInstanceOf(SessionYamlParseError)
+      }
+    },
+  )
+
+  it.each(["null", "identity", "bytes", "parse"] as const)(
+    "CAS read-back %s rigetta con classe e phase nominali",
+    async (anomaly) => {
+      const driver = new MockDriver()
+      await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+      const originalRead = driver.read.bind(driver)
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      let reads = 0
+      driver.read = async (path) => {
+        reads += 1
+        if (reads === 1) return originalRead(path)
+        driver.operations.push(`read:${path}`)
+        if (anomaly === "null") return null
+        if (anomaly === "parse") return new Blob([new Uint8Array([0x80])])
+        if (anomaly === "bytes") return fixtureBlob(fixtureBytes(YAML_CREATE))
+        return fixtureBlob(fixtureBytes(YAML_UPDATED
+          .replace("lessonId: lesson-A", "lessonId: lesson-B")
+          .replace(SESSION_A, SESSION_B)))
+      }
+
+      const caught = await captureRejection(sessionStore.updateSessionAudioCAS(
+        { lessonId: "lesson-A", sessionId: SESSION_A },
+        {
+          expectedSha256: H_CREATE,
+          audioConsent: true,
+          audioStartEpoch: 1784491201000,
+        },
+      ))
+      expectVerificationPhase(caught, "cas-readback")
+      if (anomaly === "parse") {
+        expect((caught as SessionPostWriteVerificationError).cause)
+          .toBeInstanceOf(SessionYamlParseError)
+      }
+    },
+  )
+
+  it.each(["create", "cas"] as const)(
+    "%s read-back exact bytes con hash risolto divergente rigetta nominalmente",
+    async (operation) => {
+      const driver = new MockDriver()
+      if (operation === "cas") await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      const realDigest = globalThis.crypto.subtle.digest.bind(globalThis.crypto.subtle)
+      let digestCalls = 0
+      const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest").mockImplementation(
+        async (algorithm, data) => {
+          digestCalls += 1
+          if (digestCalls === (operation === "create" ? 2 : 3)) {
+            return new Uint8Array(32).buffer
+          }
+          return realDigest(algorithm, data)
+        },
+      )
+      const work = operation === "create"
+        ? sessionStore.createSessionOnce(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            { created: 1784491200000 },
+          )
+        : sessionStore.updateSessionAudioCAS(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            {
+              expectedSha256: H_CREATE,
+              audioConsent: true,
+              audioStartEpoch: 1784491201000,
+            },
+          )
+      const caught = await captureRejection(work)
+      expectVerificationPhase(caught, operation === "create" ? "create-readback" : "cas-readback")
+      digestSpy.mockRestore()
+    },
+  )
+
+  it.each(["create", "cas"] as const)(
+    "%s read-back byte-divergente rigetta anche se il digest osservato eguaglia il candidate",
+    async (operation) => {
+      const driver = new MockDriver()
+      if (operation === "cas") await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+      const originalRead = driver.read.bind(driver)
+      let reads = 0
+      driver.read = async (path) => {
+        reads += 1
+        if (reads === 1) return operation === "create" ? null : originalRead(path)
+        driver.operations.push(`read:${path}`)
+        return fixtureBlob(fixtureBytes(operation === "create" ? YAML_DIFFERENT : YAML_CREATE))
+      }
+      const realDigest = globalThis.crypto.subtle.digest.bind(globalThis.crypto.subtle)
+      const candidateCall = operation === "create" ? 1 : 2
+      const readBackCall = operation === "create" ? 2 : 3
+      let digestCalls = 0
+      let candidateDigest: ArrayBuffer | undefined
+      const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest").mockImplementation(
+        async (algorithm, data) => {
+          digestCalls += 1
+          if (digestCalls === readBackCall) return candidateDigest!.slice(0)
+          const digest = await realDigest(algorithm, data)
+          if (digestCalls === candidateCall) candidateDigest = digest.slice(0)
+          return digest
+        },
+      )
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      const work = operation === "create"
+        ? sessionStore.createSessionOnce(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            { created: 1784491200000 },
+          )
+        : sessionStore.updateSessionAudioCAS(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            {
+              expectedSha256: H_CREATE,
+              audioConsent: true,
+              audioStartEpoch: 1784491201000,
+            },
+          )
+
+      const caught = await captureRejection(work)
+      expectVerificationPhase(caught, operation === "create" ? "create-readback" : "cas-readback")
+      digestSpy.mockRestore()
+    },
+  )
+
+  it.each(["create", "cas"] as const)(
+    "%s propaga identity-exact i sentinel read, Blob, digest e write",
+    async (operation) => {
+      const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+      const invoke = (sessionStore: WorkspaceStore) => operation === "create"
+        ? sessionStore.createSessionOnce(identity, { created: 1784491200000 })
+        : sessionStore.updateSessionAudioCAS(identity, {
+            expectedSha256: H_CREATE,
+            audioConsent: true,
+            audioStartEpoch: 1784491201000,
+          })
+
+      const readSentinel = Object.freeze({ sentinel: `${operation}-read` })
+      const readDriver = new MockDriver()
+      readDriver.read = async () => { throw readSentinel }
+      const readStore = new WorkspaceStore()
+      withMockDriver(readStore, readDriver)
+      await expect(invoke(readStore)).rejects.toBe(readSentinel)
+
+      const blobSentinel = Object.freeze({ sentinel: `${operation}-blob` })
+      const blobDriver = new MockDriver()
+      blobDriver.read = async () => ({
+        arrayBuffer: async () => { throw blobSentinel },
+      }) as unknown as Blob
+      const blobStore = new WorkspaceStore()
+      withMockDriver(blobStore, blobDriver)
+      await expect(invoke(blobStore)).rejects.toBe(blobSentinel)
+
+      const digestSentinel = Object.freeze({ sentinel: `${operation}-digest` })
+      const digestDriver = new MockDriver()
+      await putFixture(digestDriver, SESSION_PATH_A, YAML_CREATE)
+      const digestStore = new WorkspaceStore()
+      withMockDriver(digestStore, digestDriver)
+      const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest")
+        .mockRejectedValueOnce(digestSentinel)
+      await expect(invoke(digestStore)).rejects.toBe(digestSentinel)
+      expect(digestDriver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+      digestSpy.mockRestore()
+
+      const writeSentinel = Object.freeze({ sentinel: `${operation}-write` })
+      const writeDriver = new MockDriver()
+      if (operation === "cas") await putFixture(writeDriver, SESSION_PATH_A, YAML_CREATE)
+      writeDriver.write = async () => { throw writeSentinel }
+      const writeStore = new WorkspaceStore()
+      withMockDriver(writeStore, writeDriver)
+      await expect(invoke(writeStore)).rejects.toBe(writeSentinel)
+    },
+  )
+
+  it.each(["create", "cas"] as const)(
+    "%s propaga un read-back transport sentinel senza wrapping",
+    async (operation) => {
+      const sentinel = Object.freeze({ sentinel: `${operation}-readback` })
+      const driver = new MockDriver()
+      if (operation === "cas") await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+      const originalRead = driver.read.bind(driver)
+      let reads = 0
+      driver.read = async (path) => {
+        reads += 1
+        if (reads === 1) return operation === "create" ? null : originalRead(path)
+        throw sentinel
+      }
+      const sessionStore = new WorkspaceStore()
+      withMockDriver(sessionStore, driver)
+      const work = operation === "create"
+        ? sessionStore.createSessionOnce(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            { created: 1784491200000 },
+          )
+        : sessionStore.updateSessionAudioCAS(
+            { lessonId: "lesson-A", sessionId: SESSION_A },
+            {
+              expectedSha256: H_CREATE,
+              audioConsent: true,
+              audioStartEpoch: 1784491201000,
+            },
+          )
+      await expect(work).rejects.toBe(sentinel)
+    },
+  )
+
+  it.each(["create", "cas"] as const)(
+    "%s propaga Blob e WebCrypto read-back sentinel senza wrapping",
+    async (operation) => {
+      const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+      const invoke = (sessionStore: WorkspaceStore) => operation === "create"
+        ? sessionStore.createSessionOnce(identity, { created: 1784491200000 })
+        : sessionStore.updateSessionAudioCAS(identity, {
+            expectedSha256: H_CREATE,
+            audioConsent: true,
+            audioStartEpoch: 1784491201000,
+          })
+
+      const blobSentinel = Object.freeze({ sentinel: `${operation}-readback-blob` })
+      const blobDriver = new MockDriver()
+      if (operation === "cas") await putFixture(blobDriver, SESSION_PATH_A, YAML_CREATE)
+      const originalBlobRead = blobDriver.read.bind(blobDriver)
+      let blobReads = 0
+      blobDriver.read = async (path) => {
+        blobReads += 1
+        if (blobReads === 1) return operation === "create" ? null : originalBlobRead(path)
+        return {
+          arrayBuffer: async () => { throw blobSentinel },
+        } as unknown as Blob
+      }
+      const blobStore = new WorkspaceStore()
+      withMockDriver(blobStore, blobDriver)
+      await expect(invoke(blobStore)).rejects.toBe(blobSentinel)
+
+      const digestSentinel = Object.freeze({ sentinel: `${operation}-readback-digest` })
+      const digestDriver = new MockDriver()
+      if (operation === "cas") await putFixture(digestDriver, SESSION_PATH_A, YAML_CREATE)
+      const digestStore = new WorkspaceStore()
+      withMockDriver(digestStore, digestDriver)
+      const realDigest = globalThis.crypto.subtle.digest.bind(globalThis.crypto.subtle)
+      let digestCalls = 0
+      const rejectAt = operation === "create" ? 2 : 3
+      const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest").mockImplementation(
+        async (algorithm, data) => {
+          digestCalls += 1
+          if (digestCalls === rejectAt) throw digestSentinel
+          return realDigest(algorithm, data)
+        },
+      )
+      await expect(invoke(digestStore)).rejects.toBe(digestSentinel)
+      digestSpy.mockRestore()
+    },
+  )
+
+  it("rigetto coordinator prima del work lascia I/O e WebCrypto a zero per create e CAS", async () => {
+    const sentinel = Object.freeze({ sentinel: "coordinator" })
+    const paths: string[] = []
+    let workCalls = 0
+    const coordinator: LessonMutationCoordinator = {
+      safety: "origin-exclusive",
+      withPathMutation: (path) => {
+        paths.push(path)
+        return Promise.reject(sentinel)
+      },
+      withWorkspaceExclusive: async (work) => work(),
+      registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
+      probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+    }
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    const digestSpy = vi.spyOn(globalThis.crypto.subtle, "digest")
+    await expect(sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )).rejects.toBe(sentinel)
+    await expect(sessionStore.updateSessionAudioCAS(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { expectedSha256: H_CREATE, audioConsent: true, audioStartEpoch: 1784491201000 },
+    )).rejects.toBe(sentinel)
+    expect(paths).toEqual([SESSION_PATH_A, SESSION_PATH_A])
+    expect(workCalls).toBe(0)
+    expect(driver.operations).toEqual([])
+    expect(digestSpy).not.toHaveBeenCalled()
+    digestSpy.mockRestore()
+  })
+
+  it("persist-then-reject create converge al retry idempotente senza seconda write", async () => {
+    const sentinel = Object.freeze({ sentinel: "persist-create" })
+    const driver = new MockDriver()
+    const originalWrite = driver.write.bind(driver)
+    let first = true
+    driver.write = async (path, data) => {
+      await originalWrite(path, data)
+      if (first) {
+        first = false
+        throw sentinel
+      }
+    }
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    await expect(sessionStore.createSessionOnce(identity, { created: 1784491200000 }))
+      .rejects.toBe(sentinel)
+    await expect(sessionStore.createSessionOnce(identity, { created: 1784491200000 }))
+      .resolves.toMatchObject({ kind: "idempotent" })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+    expect(await (await driver.read(SESSION_PATH_A))!.text()).toBe(YAML_CREATE)
+  })
+
+  it("persist-then-reject CAS converge al retry idempotente senza revision 2", async () => {
+    const sentinel = Object.freeze({ sentinel: "persist-cas" })
+    const driver = new MockDriver()
+    await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+    const originalWrite = driver.write.bind(driver)
+    let first = true
+    driver.write = async (path, data) => {
+      await originalWrite(path, data)
+      if (first) {
+        first = false
+        throw sentinel
+      }
+    }
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    const input = {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    }
+    await expect(sessionStore.updateSessionAudioCAS(identity, input)).rejects.toBe(sentinel)
+    await expect(sessionStore.updateSessionAudioCAS(identity, input))
+      .resolves.toMatchObject({ kind: "idempotent" })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+    expect(await (await driver.read(SESSION_PATH_A))!.text()).toBe(YAML_UPDATED)
+  })
+
+  it("due store sullo stesso driver linearizzano create e CAS senza lost update", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const driver = new MockDriver()
+    const firstStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    const secondStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(firstStore, driver)
+    withMockDriver(secondStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+
+    const createResults = await Promise.all([
+      firstStore.createSessionOnce(identity, { created: 1784491200000 }),
+      secondStore.createSessionOnce(identity, { created: 1784491200000 }),
+    ])
+    expect(createResults.map(({ kind }) => kind).sort()).toEqual(["created", "idempotent"])
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+
+    driver.clearOperations()
+    const casResults = await Promise.all([
+      firstStore.updateSessionAudioCAS(identity, {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491201000,
+      }),
+      secondStore.updateSessionAudioCAS(identity, {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491201000,
+      }),
+    ])
+    expect(casResults.map(({ kind }) => kind).sort()).toEqual(["idempotent", "updated"])
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+  })
+
+  it("due CAS con desired diversi producono updated più stale conflict", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const driver = new MockDriver()
+    await putFixture(driver, SESSION_PATH_A, YAML_CREATE)
+    const firstStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    const secondStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(firstStore, driver)
+    withMockDriver(secondStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+
+    const results = await Promise.all([
+      firstStore.updateSessionAudioCAS(identity, {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491201000,
+      }),
+      secondStore.updateSessionAudioCAS(identity, {
+        expectedSha256: H_CREATE,
+        audioConsent: true,
+        audioStartEpoch: 1784491202000,
+      }),
+    ])
+    expect(results.map(({ kind }) => kind).sort()).toEqual(["conflict", "updated"])
+    const conflict = results.find(({ kind }) => kind === "conflict")
+    expect(conflict).toMatchObject({ kind: "conflict", reason: "stale-hash" })
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(1)
+  })
+
+  it("CAS dà priorità a desired-idempotent prima di stale e overflow", async () => {
+    const maxYaml = YAML_UPDATED.replace("revision: 1", `revision: ${Number.MAX_SAFE_INTEGER}`)
+    const driver = new MockDriver()
+    await putFixture(driver, SESSION_PATH_A, maxYaml)
+    const sessionStore = new WorkspaceStore()
+    withMockDriver(sessionStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+
+    await expect(sessionStore.updateSessionAudioCAS(identity, {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    })).resolves.toMatchObject({ kind: "idempotent" })
+
+    const observed = await sessionStore.updateSessionAudioCAS(identity, {
+      expectedSha256: "9795219179a38b6c1aabab735d51b79707b1220180ade21edfeb6a141893687f",
+      audioConsent: false,
+      audioStartEpoch: null,
+    })
+    expect(observed).toMatchObject({ kind: "conflict" })
+    if (observed.kind !== "conflict") throw new Error("conflict required")
+    expect(observed.reason).toBe("revision-overflow")
+    expect(observed.observedSha256)
+      .toBe("9795219179a38b6c1aabab735d51b79707b1220180ade21edfeb6a141893687f")
+    expect(driver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it("una acquisition non-reentrant copre l'intera create e CAS", async () => {
+    const nested = Object.freeze({ sentinel: "nested" })
+    let depth = 0
+    let acquisitions = 0
+    const coordinator: LessonMutationCoordinator = {
+      safety: "origin-exclusive",
+      withPathMutation: async (_path, work) => {
+        if (depth !== 0) throw nested
+        acquisitions += 1
+        depth += 1
+        try {
+          return await work()
+        } finally {
+          depth -= 1
+        }
+      },
+      withWorkspaceExclusive: async (work) => work(),
+      registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
+      probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+    }
+    const driver = new MockDriver()
+    const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
+    withMockDriver(sessionStore, driver)
+    const identity = { lessonId: "lesson-A", sessionId: SESSION_A }
+    await expect(sessionStore.createSessionOnce(identity, { created: 1784491200000 }))
+      .resolves.toMatchObject({ kind: "created" })
+    await expect(sessionStore.updateSessionAudioCAS(identity, {
+      expectedSha256: H_CREATE,
+      audioConsent: true,
+      audioStartEpoch: 1784491201000,
+    })).resolves.toMatchObject({ kind: "updated" })
+    expect(acquisitions).toBe(2)
+    expect(depth).toBe(0)
+  })
+
+  it("create accodata dietro connectFolder risolve il driver FSA dinamicamente", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const fallback = new MockDriver()
+    const fsa = new MockDriver()
+    const probePath = "raw/Z/connection-probe/create.bin"
+    await fallback.write(probePath, new Blob(["probe"]))
+    fallback.clearOperations()
+    const probeEntered = deferred()
+    const releaseProbe = deferred()
+    const originalFsaWrite = fsa.write.bind(fsa)
+    fsa.write = async (path, data) => {
+      if (path === probePath) {
+        probeEntered.resolve()
+        await releaseProbe.promise
+      }
+      await originalFsaWrite(path, data)
+    }
+    const sessionStore = new WorkspaceStore({
+      mutationCoordinator: coordinator,
+      createFsaDriver: () => fsa,
+    })
+    ;(sessionStore as unknown as { fallback: WorkspaceDriver }).fallback = fallback
+    withMockDriver(sessionStore, fallback)
+    ;(sessionStore as unknown as { _mode: string })._mode = "localStorage"
+
+    const connection = sessionStore.connectFolder()
+    await probeEntered.promise
+    const pending = sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )
+    await waitForLedger(broker, "request:shared:ardesia:workspace-mutation")
+    expect(fallback.operations.some((entry) => entry.includes(SESSION_PATH_A))).toBe(false)
+    expect(fsa.operations.some((entry) => entry.includes(SESSION_PATH_A))).toBe(false)
+
+    releaseProbe.resolve()
+    await expect(connection).resolves.toBe(true)
+    await expect(pending).resolves.toMatchObject({ kind: "created" })
+    expect(fallback.operations.some((entry) => entry.includes(SESSION_PATH_A))).toBe(false)
+    expect(fsa.operations).toContain(`write:${SESSION_PATH_A}`)
+    expect(await (await fsa.read(SESSION_PATH_A))!.text()).toBe(YAML_CREATE)
+  })
+
+  it("CAS accodata dietro connectFolder legge revision/created dal solo FSA", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const fallback = new MockDriver()
+    const fsa = new MockDriver()
+    const probePath = "raw/Z/connection-probe/cas.bin"
+    await fallback.write(probePath, new Blob(["probe"]))
+    await putFixture(fsa, SESSION_PATH_A, YAML_CONNECT_CAS_INITIAL)
+    fallback.clearOperations()
+    const probeEntered = deferred()
+    const releaseProbe = deferred()
+    const originalFsaWrite = fsa.write.bind(fsa)
+    fsa.write = async (path, data) => {
+      if (path === probePath) {
+        probeEntered.resolve()
+        await releaseProbe.promise
+      }
+      await originalFsaWrite(path, data)
+    }
+    const sessionStore = new WorkspaceStore({
+      mutationCoordinator: coordinator,
+      createFsaDriver: () => fsa,
+    })
+    ;(sessionStore as unknown as { fallback: WorkspaceDriver }).fallback = fallback
+    withMockDriver(sessionStore, fallback)
+    ;(sessionStore as unknown as { _mode: string })._mode = "localStorage"
+
+    const connection = sessionStore.connectFolder()
+    await probeEntered.promise
+    const pending = sessionStore.updateSessionAudioCAS(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      {
+        expectedSha256: H_CONNECT_CAS_INITIAL,
+        audioConsent: true,
+        audioStartEpoch: 1784491201999,
+      },
+    )
+    await waitForLedger(broker, "request:shared:ardesia:workspace-mutation")
+    expect(fallback.operations.some((entry) => entry.includes(SESSION_PATH_A))).toBe(false)
+    releaseProbe.resolve()
+    await expect(connection).resolves.toBe(true)
+    const result = await pending
+    expect(result.kind).toBe("updated")
+    if (result.kind !== "updated") throw new Error("updated required")
+    expect(result.snapshot.sha256).toBe(H_CONNECT_CAS_UPDATED)
+    expect(await result.snapshot.bytes.text()).toBe(YAML_CONNECT_CAS_UPDATED)
+    expect(fallback.operations.some((entry) => entry.includes(SESSION_PATH_A))).toBe(false)
+  })
+
+  it("S0D: storage/Blob vuoto non diventano false absent e zero mutation su corrupt", async () => {
+    const storageSentinel = Object.freeze({ sentinel: "storage-get" })
+    const throwingDriver = new MockDriver()
+    throwingDriver.read = async () => { throw storageSentinel }
+    const throwingStore = new WorkspaceStore()
+    withMockDriver(throwingStore, throwingDriver)
+    await expect(throwingStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )).rejects.toBe(storageSentinel)
+
+    const emptyDriver = new MockDriver()
+    await emptyDriver.write(SESSION_PATH_A, new Blob([]))
+    emptyDriver.clearOperations()
+    const emptyStore = new WorkspaceStore()
+    withMockDriver(emptyStore, emptyDriver)
+    const result = await emptyStore.updateSessionAudioCAS(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { expectedSha256: H_CREATE, audioConsent: true, audioStartEpoch: 1784491201000 },
+    )
+    expect(result).toMatchObject({ kind: "corrupt", reason: "invalid-grammar" })
+    expect(emptyDriver.operations.filter((entry) => entry.startsWith("write:"))).toHaveLength(0)
+  })
+
+  it("S0D LocalStorage: base64 valido con YAML invalido resta corrupt senza set/remove", async () => {
+    const { localStorageDriver } = await import("../store/drivers/localStorage")
+    await localStorageDriver.write(SESSION_PATH_A, new Blob([new Uint8Array([0x80])]))
+    storageOperations = []
+    const sessionStore = new WorkspaceStore()
+    await sessionStore.init()
+    const result = await sessionStore.createSessionOnce(
+      { lessonId: "lesson-A", sessionId: SESSION_A },
+      { created: 1784491200000 },
+    )
+    expect(result).toMatchObject({ kind: "corrupt", reason: "invalid-utf8" })
+    expect(storageOperations.some((entry) => entry.startsWith("set:"))).toBe(false)
+    expect(storageOperations.some((entry) => entry.startsWith("remove:"))).toBe(false)
+  })
+})
 
 describe("zipBundle", () => {
   it("createBundleBlob + parseBundleBlob idempotente", async () => {

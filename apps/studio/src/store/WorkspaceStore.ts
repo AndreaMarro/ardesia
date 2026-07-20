@@ -26,6 +26,24 @@ import {
   type LessonMutationCoordinator,
   type MutationSafety,
 } from "./lessonMutationLock"
+import {
+  parseSessionYamlV2,
+  serializeSessionYamlV2,
+  sessionPaths,
+  SessionPostWriteVerificationError,
+  SessionYamlParseError,
+  validateSessionCasSnapshot,
+  validateSessionCreateSnapshot,
+  type LessonSessionIdentityV1,
+  type SessionCasSnapshotV1,
+  type SessionCreateResultV1,
+  type SessionCreateSnapshotV1,
+  type SessionIdentitySnapshotV1,
+  type SessionMutationResultV1,
+  type SessionPostWriteVerificationPhase,
+  type SessionSnapshotV2,
+  type SessionYamlV2,
+} from "./sessionState"
 
 export interface WorkspaceState {
   mode: StorageMode
@@ -142,6 +160,225 @@ async function writeEntriesWithCompensation(
       operationError,
     )
   }
+}
+
+type SessionPort = Readonly<{
+  read(path: string): Promise<Blob | null>
+  write(path: string, data: Blob): Promise<void>
+}>
+
+type ParsedSessionObservation = Readonly<{
+  kind: "parsed"
+  bytes: Uint8Array
+  sha256: string
+  value: SessionYamlV2
+}>
+
+type SessionParseFailureObservation = Readonly<{
+  kind: "parse-error"
+  bytes: Uint8Array
+  sha256: string
+  error: SessionYamlParseError
+}>
+
+type SessionObservation = ParsedSessionObservation | SessionParseFailureObservation
+
+function sessionBytesEqual(left: Uint8Array, right: Uint8Array): boolean {
+  if (left.byteLength !== right.byteLength) return false
+  for (let index = 0; index < left.byteLength; index += 1) {
+    if (left[index] !== right[index]) return false
+  }
+  return true
+}
+
+async function sessionSha256(bytes: Uint8Array): Promise<string> {
+  const exact = Uint8Array.from(bytes)
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", exact)
+  return Array.from(new Uint8Array(digest), (value) => value.toString(16).padStart(2, "0")).join("")
+}
+
+async function observeSession(blob: Blob): Promise<SessionObservation> {
+  const bytes = new Uint8Array(await blob.arrayBuffer()).slice()
+  const observedSha256 = await sessionSha256(bytes)
+  try {
+    return Object.freeze({
+      kind: "parsed" as const,
+      bytes,
+      sha256: observedSha256,
+      value: parseSessionYamlV2(bytes),
+    })
+  } catch (error) {
+    if (!(error instanceof SessionYamlParseError)) throw error
+    return Object.freeze({
+      kind: "parse-error" as const,
+      bytes,
+      sha256: observedSha256,
+      error,
+    })
+  }
+}
+
+function sessionIdentityMatches(
+  value: SessionYamlV2,
+  identity: SessionIdentitySnapshotV1,
+): boolean {
+  return value.lessonId === identity.lessonId && value.sessionId === identity.sessionId
+}
+
+function sessionSnapshot(
+  path: string,
+  observation: ParsedSessionObservation,
+): SessionSnapshotV2 {
+  return Object.freeze({
+    path,
+    value: observation.value,
+    bytes: new Blob([observation.bytes.slice()], { type: "text/yaml" }),
+    sha256: observation.sha256,
+  })
+}
+
+function sessionVerificationFailure(
+  phase: SessionPostWriteVerificationPhase,
+  cause?: unknown,
+): SessionPostWriteVerificationError {
+  return cause === undefined
+    ? new SessionPostWriteVerificationError(phase)
+    : new SessionPostWriteVerificationError(phase, { cause })
+}
+
+async function verifySessionReadBack(
+  port: SessionPort,
+  path: string,
+  identity: SessionIdentitySnapshotV1,
+  candidateBytes: Uint8Array,
+  candidateSha256: string,
+  phase: SessionPostWriteVerificationPhase,
+): Promise<SessionSnapshotV2> {
+  const blob = await port.read(path)
+  if (blob === null) throw sessionVerificationFailure(phase)
+  const observation = await observeSession(blob)
+  if (observation.kind === "parse-error") {
+    throw sessionVerificationFailure(phase, observation.error)
+  }
+  if (!sessionIdentityMatches(observation.value, identity)) throw sessionVerificationFailure(phase)
+  if (!sessionBytesEqual(observation.bytes, candidateBytes)) throw sessionVerificationFailure(phase)
+  if (observation.sha256 !== candidateSha256) throw sessionVerificationFailure(phase)
+  return sessionSnapshot(path, observation)
+}
+
+async function createSessionOnceAtPort(
+  port: SessionPort,
+  path: string,
+  snapshot: SessionCreateSnapshotV1,
+  candidateBytes: Uint8Array,
+): Promise<SessionCreateResultV1> {
+  const existing = await port.read(path)
+  if (existing !== null) {
+    const observation = await observeSession(existing)
+    if (observation.kind === "parse-error") {
+      return Object.freeze({
+        kind: "corrupt" as const,
+        reason: observation.error.code,
+        observedSha256: observation.sha256,
+      })
+    }
+    if (!sessionIdentityMatches(observation.value, snapshot.identity)) {
+      return Object.freeze({
+        kind: "conflict" as const,
+        reason: "identity-mismatch" as const,
+        observedSha256: observation.sha256,
+      })
+    }
+    if (sessionBytesEqual(observation.bytes, candidateBytes)) {
+      return Object.freeze({
+        kind: "idempotent" as const,
+        snapshot: sessionSnapshot(path, observation),
+      })
+    }
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "different-existing" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+
+  const candidateSha256 = await sessionSha256(candidateBytes)
+  await port.write(path, new Blob([candidateBytes.slice()], { type: "text/yaml" }))
+  const readBack = await verifySessionReadBack(
+    port,
+    path,
+    snapshot.identity,
+    candidateBytes,
+    candidateSha256,
+    "create-readback",
+  )
+  return Object.freeze({ kind: "created" as const, snapshot: readBack })
+}
+
+async function updateSessionAudioCASAtPort(
+  port: SessionPort,
+  path: string,
+  snapshot: SessionCasSnapshotV1,
+): Promise<SessionMutationResultV1> {
+  const existing = await port.read(path)
+  if (existing === null) return Object.freeze({ kind: "absent" as const })
+  const observation = await observeSession(existing)
+  if (observation.kind === "parse-error") {
+    return Object.freeze({
+      kind: "corrupt" as const,
+      reason: observation.error.code,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (!sessionIdentityMatches(observation.value, snapshot.identity)) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "identity-mismatch" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (
+    observation.value.audioConsent === snapshot.audioConsent &&
+    observation.value.audioStartEpoch === snapshot.audioStartEpoch
+  ) {
+    return Object.freeze({
+      kind: "idempotent" as const,
+      snapshot: sessionSnapshot(path, observation),
+    })
+  }
+  if (observation.sha256 !== snapshot.expectedSha256) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "stale-hash" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (observation.value.revision === Number.MAX_SAFE_INTEGER) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "revision-overflow" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+
+  const candidate = Object.freeze({
+    ...observation.value,
+    revision: observation.value.revision + 1,
+    audioConsent: snapshot.audioConsent,
+    audioStartEpoch: snapshot.audioStartEpoch,
+  })
+  const candidateBytes = serializeSessionYamlV2(candidate)
+  const candidateSha256 = await sessionSha256(candidateBytes)
+  await port.write(path, new Blob([candidateBytes.slice()], { type: "text/yaml" }))
+  const readBack = await verifySessionReadBack(
+    port,
+    path,
+    snapshot.identity,
+    candidateBytes,
+    candidateSha256,
+    "cas-readback",
+  )
+  return Object.freeze({ kind: "updated" as const, snapshot: readBack })
 }
 
 export class WorkspaceStore {
@@ -349,6 +586,69 @@ export class WorkspaceStore {
   }
 
   // --- SESSION ---
+
+  async createSessionOnce(
+    identity: LessonSessionIdentityV1,
+    input: Readonly<{ created: number }>,
+  ): Promise<SessionCreateResultV1> {
+    const lessonId = identity.lessonId
+    const sessionId = identity.sessionId
+    const created = input.created
+    const identitySnapshot = Object.freeze({ lessonId, sessionId })
+    const snapshot: SessionCreateSnapshotV1 = Object.freeze({
+      identity: identitySnapshot,
+      created,
+    })
+    validateSessionCreateSnapshot(snapshot)
+    const path = sessionPaths(identitySnapshot).session
+    const candidateBytes = serializeSessionYamlV2(Object.freeze({
+      v: 2 as const,
+      lessonId,
+      sessionId,
+      created,
+      revision: 0,
+      audioConsent: false,
+      audioStartEpoch: null,
+    }))
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const port: SessionPort = {
+        read: (target) => this.driver.read(target),
+        write: (target, data) => this.driver.write(target, data),
+      }
+      return createSessionOnceAtPort(port, path, snapshot, candidateBytes)
+    })
+  }
+
+  async updateSessionAudioCAS(
+    identity: LessonSessionIdentityV1,
+    input: Readonly<{
+      expectedSha256: string
+      audioConsent: boolean
+      audioStartEpoch: number | null
+    }>,
+  ): Promise<SessionMutationResultV1> {
+    const lessonId = identity.lessonId
+    const sessionId = identity.sessionId
+    const expectedSha256 = input.expectedSha256
+    const audioConsent = input.audioConsent
+    const audioStartEpoch = input.audioStartEpoch
+    const identitySnapshot = Object.freeze({ lessonId, sessionId })
+    const snapshot: SessionCasSnapshotV1 = Object.freeze({
+      identity: identitySnapshot,
+      expectedSha256,
+      audioConsent,
+      audioStartEpoch,
+    })
+    validateSessionCasSnapshot(snapshot)
+    const path = sessionPaths(identitySnapshot).session
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const port: SessionPort = {
+        read: (target) => this.driver.read(target),
+        write: (target, data) => this.driver.write(target, data),
+      }
+      return updateSessionAudioCASAtPort(port, path, snapshot)
+    })
+  }
 
   async saveSessionYaml(yaml: string): Promise<void> {
     await this.write(PATHS.SESSION, new Blob([yaml], { type: "text/yaml" }))
