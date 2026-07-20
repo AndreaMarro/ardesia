@@ -543,7 +543,10 @@ describe("FSADriver case-stable paths", () => {
 
       await expect(
         driver.write("raw/roomA/events.jsonl", new Blob(["non-committibile"])),
-      ).rejects.toThrow(/write/i)
+      ).rejects.toMatchObject({
+        message: "FSA write fallita",
+        cause: expect.objectContaining({ message: `Injected ${failure} failure` }),
+      })
       metrics.failWrite = false
       metrics.failClose = false
 

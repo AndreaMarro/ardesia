@@ -210,7 +210,7 @@ export class FSADriver implements WorkspaceDriver {
       })
     } catch (error) {
       if (error instanceof FSAPathCasingCollisionError) throw error
-      throw new Error("FSA write fallita")
+      throw new Error("FSA write fallita", { cause: error })
     }
   }
 
