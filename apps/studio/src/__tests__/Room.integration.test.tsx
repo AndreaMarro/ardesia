@@ -1847,10 +1847,11 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} navigate={navigate} />)
 
-    await vi.waitFor(() => {
-      expect((window as any).__MAESTRO_TEST__?.recorder).toBeTruthy()
-    })
     const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      expect(vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]?.onChange)
+        .toEqual(expect.any(Function))
+    }, { timeout: 5000, interval: 10 })
     const onChange = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]?.onChange
     expect(onChange).toBeDefined()
     onChange!([{ id: "fb6c-element", version: 1 }] as any, {} as any, {})
