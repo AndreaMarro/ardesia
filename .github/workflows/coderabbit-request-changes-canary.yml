@@ -1,0 +1,12 @@
+# INTENTIONAL NEGATIVE CANARY — evidence only; must never merge.
+name: coderabbit-request-changes-negative-canary
+
+on: []
+
+permissions: write-all
+
+jobs:
+  inert-policy-violation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
