@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 // MAESTRO-Studio — Test WorkspaceStore
 
-import { describe, it, expect, beforeEach } from "vitest"
+import { describe, it, expect, beforeEach, vi } from "vitest"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
@@ -91,6 +91,18 @@ describe("WorkspaceStore", () => {
     await store.saveScene("room1", scene)
     const loaded = await store.loadScene("room1")
     expect(loaded).toBe(scene)
+  })
+
+  it("non attiva fallback legacy quando il driver primario segnala collisione FSA", async () => {
+    const collisionDriver = new MockDriver()
+    collisionDriver.read = async () => { throw new Error("FSA path casing collision") }
+    withMockDriver(store, collisionDriver)
+    const fallback = (store as unknown as { fallback: LocalStorageDriver }).fallback
+    fallback.setLegacyScene("rooma", "legacy-che-non-va-letto")
+    const legacyRead = vi.spyOn(fallback, "getLegacyScene")
+
+    await expect(store.loadScene("rooma")).rejects.toThrow(/casing|collision/i)
+    expect(legacyRead).not.toHaveBeenCalled()
   })
 
   it("saveScene con 2 room diverse NON collide (room-aware path)", async () => {
