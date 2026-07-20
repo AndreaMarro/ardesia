@@ -28,6 +28,10 @@ vi.mock("@excalidraw/excalidraw", () => {
 
 vi.mock("../store/WorkspaceStore", () => ({
   workspaceStore: {
+    registerActiveLesson: async (lessonId: string) => {
+      const completion = Promise.resolve()
+      return { lessonId, release: () => completion }
+    },
     init: () => Promise.resolve(),
     mode: "localStorage",
     loadScene: () => Promise.resolve(null),
