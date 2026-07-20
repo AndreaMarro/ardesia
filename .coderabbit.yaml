@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# CodeRabbit complements executable gates and independent review; it never replaces them.
+language: "it-IT"
+
+reviews:
+  profile: "assertive"
+  request_changes_workflow: true
+  high_level_summary: true
+  high_level_summary_in_walkthrough: true
+  review_status: true
+  review_details: true
+  in_progress_fortune: false
+  poem: false
+
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    auto_pause_after_reviewed_commits: 0
+    drafts: false
+    base_branches:
+      - ".*"
+
+  path_filters:
+    - "!**/dist/**"
+    - "!**/storybook-static/**"
+    - "!**/coverage/**"
+    - "!**/.nyc_output/**"
+    - "!**/test-results/**"
+    - "!**/playwright-report/**"
+    - "!**/blob-report/**"
+    - "!apps/studio/sim/solver/engine/**"
+
+  path_instructions:
+    - path: "apps/studio/src/store/**"
+      instructions: |
+        - Treat lessonId, roomId, and sessionId scoping as a data-isolation boundary.
+        - Flag cross-room reads or writes, flat/global storage fallbacks, and implicit migration into the current room.
+        - Require transactional imports: a failed or corrupt import must preserve the previous valid bytes and expose explicit recovery.
+        - Require negative isolation, export/import, and cold-reopen tests for every persistence change; never infer safety from a happy path alone.
+
+    - path: "apps/studio/{src/toolhost/**,src/toolhost-protocol/**,plugins/simulation/**}"
+      instructions: |
+        - Bind execution to the exact artifact bytes whose manifest signature and bundle digest were verified before mount; deny by default.
+        - Flag release paths that use direct in-process imports or bypass the ToolHost loader and verification boundary.
+        - Keep one canonical event log. Require resolvable evidence references plus plugin/version, instanceId, scene digest, and full producer commit SHA.
+        - Static labels such as builtin or reviewed are not runtime trust evidence; trust UI must derive from the verification result.
+
+    - path: "apps/studio/{src/design/**,e2e/**}"
+      instructions: |
+        - Keep Founder Beta limited to Lezione, Continuità, Materiali, and one Simulation instance; treat broader prototype surfaces as vNext.
+        - Require semantic assertions for room isolation, provenance, flush, export, cold reopen, continuity content, and evidence jumps; selector presence alone is insufficient.
+        - Enforce 44 px touch targets, keyboard and visible-focus operation, reduced-motion behavior, no overflow, and zero serious/critical accessibility violations.
+        - Fixtures and mocks may support tests but must never be presented as proof that the real product boundary or real lesson workflow works.
+
+    - path: ".github/workflows/**"
+      instructions: |
+        - Pin every third-party action to a full 40-character commit SHA and keep workflow permissions least-privilege and explicit.
+        - Preserve cancellation-safe concurrency, bounded artifact retention, and separation of preview from production secrets.
+        - Tie tests, SBOM, provenance, preview, and visible build metadata to the same full source SHA and verified artifact digest.
+        - Flag skipped, renamed, softened, or conditionally bypassed required checks and any failure-masking configuration.
