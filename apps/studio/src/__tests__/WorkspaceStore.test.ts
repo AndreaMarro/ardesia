@@ -2,11 +2,16 @@
 // MAESTRO-Studio — Test WorkspaceStore
 
 import { describe, it, expect, beforeEach } from "vitest"
-import { WorkspaceStore } from "../store/WorkspaceStore"
+import { WorkspaceCompensationError, WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
 import { LocalStorageDriver } from "../store/drivers/localStorage"
 import { roomPaths, validateRoomId } from "../store/roomPaths"
+import {
+  createLessonMutationCoordinator,
+  type MutationLockBroker,
+  type MutationLockMode,
+} from "../store/lessonMutationLock"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
 let storage: Record<string, string> = {}
@@ -91,6 +96,95 @@ class MockDriver implements WorkspaceDriver {
   clearOperations(): void {
     this.operations.length = 0
   }
+}
+
+type QueuedLock = {
+  mode: MutationLockMode
+  start(): void
+}
+
+type LockState = {
+  readers: number
+  writer: boolean
+  queue: QueuedLock[]
+}
+
+class AdversarialMutationLockBroker implements MutationLockBroker {
+  readonly safety = "origin-exclusive" as const
+  readonly ledger: string[] = []
+  private readonly states = new Map<string, LockState>()
+
+  request<T>(
+    name: string,
+    options: Readonly<{ mode: MutationLockMode }>,
+    work: () => Promise<T>,
+  ): Promise<T> {
+    this.ledger.push(`request:${options.mode}:${name}`)
+    return new Promise<T>((resolve, reject) => {
+      const queued: QueuedLock = {
+        mode: options.mode,
+        start: () => {
+          const state = this.state(name)
+          if (options.mode === "shared") state.readers += 1
+          else state.writer = true
+          this.ledger.push(`enter:${options.mode}:${name}`)
+          void work().then(resolve, reject).finally(() => {
+            this.ledger.push(`exit:${options.mode}:${name}`)
+            if (options.mode === "shared") state.readers -= 1
+            else state.writer = false
+            this.drain(name)
+          })
+        },
+      }
+      this.state(name).queue.push(queued)
+      this.drain(name)
+    })
+  }
+
+  private state(name: string): LockState {
+    let state = this.states.get(name)
+    if (!state) {
+      state = { readers: 0, writer: false, queue: [] }
+      this.states.set(name, state)
+    }
+    return state
+  }
+
+  private drain(name: string): void {
+    const state = this.state(name)
+    if (state.writer || state.queue.length === 0) return
+    const next = state.queue[0]!
+    if (next.mode === "exclusive") {
+      if (state.readers > 0) return
+      state.queue.shift()
+      next.start()
+      return
+    }
+    while (!state.writer && state.queue[0]?.mode === "shared") {
+      state.queue.shift()!.start()
+    }
+  }
+}
+
+function deferred(): { promise: Promise<void>; resolve(): void } {
+  let resolvePromise: (() => void) | undefined
+  const promise = new Promise<void>((resolve) => { resolvePromise = resolve })
+  return {
+    promise,
+    resolve: () => { resolvePromise?.() },
+  }
+}
+
+async function waitForLedger(
+  broker: AdversarialMutationLockBroker,
+  entry: string,
+  count = 1,
+): Promise<void> {
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    if (broker.ledger.filter((candidate) => candidate === entry).length >= count) return
+    await new Promise<void>((resolve) => setTimeout(resolve, 0))
+  }
+  throw new Error(`lock ledger entry missing: ${entry}`)
 }
 
 function withMockDriver(store: WorkspaceStore, mock: MockDriver) {
@@ -345,6 +439,533 @@ describe("WorkspaceStore", () => {
   it("listRooms su store vuoto = []", async () => {
     const rooms = await store.listRooms()
     expect(rooms).toEqual([])
+  })
+
+  it("linearizza write/delete di due store sullo stesso dominio lesson case-folded", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const firstStore = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    const secondStore = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    const firstDriver = new MockDriver()
+    const secondDriver = new MockDriver()
+    withMockDriver(firstStore, firstDriver)
+    withMockDriver(secondStore, secondDriver)
+
+    const firstEnteredDriver = deferred()
+    const releaseFirstDriver = deferred()
+    const originalFirstWrite = firstDriver.write.bind(firstDriver)
+    firstDriver.write = async (path, data) => {
+      firstEnteredDriver.resolve()
+      await releaseFirstDriver.promise
+      await originalFirstWrite(path, data)
+    }
+
+    let secondReachedDriver = false
+    const originalSecondDelete = secondDriver.delete.bind(secondDriver)
+    secondDriver.delete = async (path) => {
+      secondReachedDriver = true
+      await originalSecondDelete(path)
+    }
+
+    const first = firstStore.write("raw/RoomC/board.excalidraw", new Blob(["first"]))
+    await firstEnteredDriver.promise
+    const second = secondStore.delete("raw/roomc/events.jsonl")
+
+    const lessonLock = "ardesia:lesson-mutation:roomc"
+    await waitForLedger(broker, `request:exclusive:${lessonLock}`, 2)
+    expect(broker.ledger.filter((entry) => entry === `request:exclusive:${lessonLock}`)).toHaveLength(2)
+    expect(broker.ledger.filter((entry) => entry === `enter:exclusive:${lessonLock}`)).toHaveLength(1)
+    expect(secondReachedDriver).toBe(false)
+    expect(broker.ledger.filter((entry) => entry === "enter:shared:ardesia:workspace-mutation")).toHaveLength(2)
+
+    releaseFirstDriver.resolve()
+    await Promise.all([first, second])
+
+    expect(secondReachedDriver).toBe(true)
+    expect(broker.ledger.filter((entry) => entry === `enter:exclusive:${lessonLock}`)).toHaveLength(2)
+  })
+
+  it("consente a room diverse di avanzare sotto workspace shared con lesson lock distinti", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const mutationCoordinator = createLessonMutationCoordinator(broker)
+    const firstStore = new WorkspaceStore({ mutationCoordinator })
+    const secondStore = new WorkspaceStore({ mutationCoordinator })
+    const firstDriver = new MockDriver()
+    const secondDriver = new MockDriver()
+    withMockDriver(firstStore, firstDriver)
+    withMockDriver(secondStore, secondDriver)
+
+    const firstEnteredDriver = deferred()
+    const releaseFirstDriver = deferred()
+    const originalFirstWrite = firstDriver.write.bind(firstDriver)
+    firstDriver.write = async (path, data) => {
+      firstEnteredDriver.resolve()
+      await releaseFirstDriver.promise
+      await originalFirstWrite(path, data)
+    }
+
+    let secondReachedDriver = false
+    const originalSecondWrite = secondDriver.write.bind(secondDriver)
+    secondDriver.write = async (path, data) => {
+      secondReachedDriver = true
+      await originalSecondWrite(path, data)
+    }
+
+    const first = firstStore.write("raw/RoomA/board.excalidraw", new Blob(["first"]))
+    await firstEnteredDriver.promise
+    const second = secondStore.write("raw/RoomB/events.jsonl", new Blob(["second"]))
+
+    const firstLessonLock = "ardesia:lesson-mutation:rooma"
+    const secondLessonLock = "ardesia:lesson-mutation:roomb"
+    try {
+      await waitForLedger(broker, `enter:exclusive:${secondLessonLock}`)
+      expect(secondReachedDriver).toBe(true)
+      expect(broker.ledger).toContain(`enter:exclusive:${firstLessonLock}`)
+      expect(firstLessonLock).not.toBe(secondLessonLock)
+      expect(
+        broker.ledger.filter(
+          (entry) => entry === "enter:shared:ardesia:workspace-mutation",
+        ),
+      ).toHaveLength(2)
+      expect(broker.ledger).not.toContain("request:exclusive:ardesia:workspace-mutation")
+    } finally {
+      releaseFirstDriver.resolve()
+      await Promise.all([first, second])
+    }
+  })
+
+  it("condivide il coordinator fallback module-global fra due WorkspaceStore no-arg", async () => {
+    const firstStore = new WorkspaceStore()
+    const secondStore = new WorkspaceStore()
+    const firstDriver = new MockDriver()
+    const secondDriver = new MockDriver()
+    withMockDriver(firstStore, firstDriver)
+    withMockDriver(secondStore, secondDriver)
+    expect(firstStore.mutationSafety).toBe("local-only")
+    expect(secondStore.mutationSafety).toBe("local-only")
+
+    const firstEnteredDriver = deferred()
+    const releaseFirstDriver = deferred()
+    const originalFirstWrite = firstDriver.write.bind(firstDriver)
+    firstDriver.write = async (path, data) => {
+      firstEnteredDriver.resolve()
+      await releaseFirstDriver.promise
+      await originalFirstWrite(path, data)
+    }
+
+    let secondReachedDriver = false
+    const originalSecondDelete = secondDriver.delete.bind(secondDriver)
+    secondDriver.delete = async (path) => {
+      secondReachedDriver = true
+      await originalSecondDelete(path)
+    }
+
+    const first = firstStore.write("raw/RoomC/board.excalidraw", new Blob(["first"]))
+    await firstEnteredDriver.promise
+    const second = secondStore.delete("raw/roomc/events.jsonl")
+    try {
+      await new Promise<void>((resolve) => setTimeout(resolve, 0))
+      expect(secondReachedDriver).toBe(false)
+    } finally {
+      releaseFirstDriver.resolve()
+      await Promise.all([first, second])
+    }
+    expect(secondReachedDriver).toBe(true)
+  })
+
+  it("tratta alias non canonici e namespace di controllo come workspace-global", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const guardedStore = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    withMockDriver(guardedStore, new MockDriver())
+
+    const aliases = [
+      "/raw/C/file.bin",
+      "Raw/C/file.bin",
+      "derived/C/file.bin",
+      "raw/C",
+      "raw//C/file.bin",
+      "raw/C/",
+      "raw/.ardesia/import-transactions/tx.json",
+      "raw/C/../B/file.bin",
+      "raw/C/\u0000control.bin",
+    ]
+    for (const alias of aliases) {
+      broker.ledger.length = 0
+      await guardedStore.write(alias, new Blob(["x"]))
+      expect(broker.ledger[0], alias).toBe("request:exclusive:ardesia:workspace-mutation")
+      expect(broker.ledger.some((entry) => entry.includes("lesson-mutation")), alias).toBe(false)
+    }
+  })
+
+  it("non espone ancora una lease clone o macro-import .lesson nella foundation S0A", () => {
+    const coordinator = createLessonMutationCoordinator(new AdversarialMutationLockBroker())
+    expect("withLessonImport" in coordinator).toBe(false)
+    expect("registerActiveLesson" in coordinator).toBe(false)
+  })
+
+  it("mantiene importBundle workspace-exclusive rispetto alle mutazioni lesson", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const mutationCoordinator = createLessonMutationCoordinator(broker)
+    const writer = new WorkspaceStore({ mutationCoordinator })
+    const importer = new WorkspaceStore({ mutationCoordinator })
+    const writerDriver = new MockDriver()
+    const importerDriver = new MockDriver()
+    withMockDriver(writer, writerDriver)
+    withMockDriver(importer, importerDriver)
+
+    const writerEnteredDriver = deferred()
+    const releaseWriter = deferred()
+    const originalWrite = writerDriver.write.bind(writerDriver)
+    writerDriver.write = async (path, data) => {
+      writerEnteredDriver.resolve()
+      await releaseWriter.promise
+      await originalWrite(path, data)
+    }
+
+    const bundle = await createBundleBlob([
+      { path: "raw/C/imported.bin", mtime: 1, data: new Blob(["imported"]) },
+    ])
+    const activeWrite = writer.write("raw/C/live.bin", new Blob(["live"]))
+    await writerEnteredDriver.promise
+    const pendingImport = importer.importBundle(bundle)
+
+    await waitForLedger(broker, "request:exclusive:ardesia:workspace-mutation")
+    expect(importerDriver.operations).toEqual([])
+    expect(broker.ledger).not.toContain("enter:exclusive:ardesia:workspace-mutation")
+
+    releaseWriter.resolve()
+    await Promise.all([activeWrite, pendingImport])
+
+    expect(importerDriver.operations).toContain("write:raw/C/imported.bin")
+    expect(broker.ledger).toContain("enter:exclusive:ardesia:workspace-mutation")
+  })
+
+  it("compensa un importBundle fallito byte-identico e rilascia la lease per il retry", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const legacyImporter = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    const driver = new MockDriver()
+    withMockDriver(legacyImporter, driver)
+    const existingPath = "raw/C/existing.bin"
+    const createdPath = "raw/C/created.bin"
+    const failingPath = "raw/C/failing.bin"
+    const neverWrittenPath = "raw/C/never-written.bin"
+    const originalBytes = new Uint8Array([0, 255, 17, 128, 42])
+    await legacyImporter.write(existingPath, new Blob([originalBytes]))
+    const bundle = await createBundleBlob([
+      { path: existingPath, mtime: 1, data: new Blob(["replacement"]) },
+      { path: createdPath, mtime: 2, data: new Blob(["created"]) },
+      { path: failingPath, mtime: 3, data: new Blob(["fails-mid-import"]) },
+      { path: neverWrittenPath, mtime: 4, data: new Blob(["never-written"]) },
+    ])
+    const importFailure = new Error("mid-import failure")
+    let injectFailure = true
+    const originalWrite = driver.write.bind(driver)
+    driver.write = async (path, data) => {
+      if (path === failingPath && injectFailure) {
+        injectFailure = false
+        driver.operations.push(`write-failed:${path}`)
+        throw importFailure
+      }
+      await originalWrite(path, data)
+    }
+    driver.clearOperations()
+
+    await expect(legacyImporter.importBundle(bundle)).rejects.toBe(importFailure)
+
+    const restored = await driver.read(existingPath)
+    expect(Array.from(new Uint8Array(await restored!.arrayBuffer()))).toEqual(Array.from(originalBytes))
+    expect(await driver.read(createdPath)).toBeNull()
+    expect(await driver.read(failingPath)).toBeNull()
+    expect(await driver.read(neverWrittenPath)).toBeNull()
+    const firstWrite = driver.operations.findIndex((entry) => entry.startsWith("write:"))
+    for (const path of [existingPath, createdPath, failingPath, neverWrittenPath]) {
+      expect(driver.operations.indexOf(`read:${path}`), path).toBeLessThan(firstWrite)
+    }
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:workspace-mutation")
+
+    await expect(legacyImporter.importBundle(bundle)).resolves.toBeUndefined()
+    expect(await (await driver.read(existingPath))!.text()).toBe("replacement")
+    expect(await (await driver.read(createdPath))!.text()).toBe("created")
+    expect(await (await driver.read(failingPath))!.text()).toBe("fails-mid-import")
+    expect(await (await driver.read(neverWrittenPath))!.text()).toBe("never-written")
+  })
+
+  it("preserva cause import e rollback quando la compensazione stessa fallisce", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const legacyImporter = new WorkspaceStore({
+      mutationCoordinator: createLessonMutationCoordinator(broker),
+    })
+    const driver = new MockDriver()
+    withMockDriver(legacyImporter, driver)
+    const existingPath = "raw/C/existing.bin"
+    const createdPath = "raw/C/created.bin"
+    const failingPath = "raw/C/failing.bin"
+    await legacyImporter.write(existingPath, new Blob(["original"]))
+    const bundle = await createBundleBlob([
+      { path: existingPath, mtime: 1, data: new Blob(["replacement"]) },
+      { path: createdPath, mtime: 2, data: new Blob(["created"]) },
+      { path: failingPath, mtime: 3, data: new Blob(["fails"]) },
+    ])
+    const importFailure = new Error("import write failed")
+    const rollbackFailure = new Error("rollback delete failed")
+    const originalWrite = driver.write.bind(driver)
+    const originalDelete = driver.delete.bind(driver)
+    let failImport = true
+    let failRollback = true
+    driver.write = async (path, data) => {
+      if (path === failingPath && failImport) {
+        failImport = false
+        throw importFailure
+      }
+      await originalWrite(path, data)
+    }
+    driver.delete = async (path) => {
+      if (path === createdPath && failRollback) {
+        failRollback = false
+        throw rollbackFailure
+      }
+      await originalDelete(path)
+    }
+
+    let caught: unknown
+    try {
+      await legacyImporter.importBundle(bundle)
+    } catch (error) {
+      caught = error
+    }
+
+    expect(caught).toBeInstanceOf(WorkspaceCompensationError)
+    const diagnostic = caught as WorkspaceCompensationError
+    expect(diagnostic.operation).toBe("legacy-bundle-import")
+    expect(diagnostic.originalCause).toBe(importFailure)
+    expect(diagnostic.rollbackFailures).toEqual([
+      { path: createdPath, error: rollbackFailure },
+    ])
+    expect(diagnostic.message).not.toContain(createdPath)
+    const cause = diagnostic.cause
+    expect(cause).toBeInstanceOf(AggregateError)
+    expect((cause as AggregateError).errors[0]).toBe(importFailure)
+    expect((cause as AggregateError).errors).toContain(rollbackFailure)
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:workspace-mutation")
+    await expect(
+      legacyImporter.write("raw/C/after-rollback-failure.bin", new Blob(["lease-released"])),
+    ).resolves.toBeUndefined()
+  })
+
+  it("mantiene connectFolder workspace-exclusive e pubblica la safety tipata", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const writer = new WorkspaceStore({ mutationCoordinator: coordinator })
+    const writerDriver = new MockDriver()
+    withMockDriver(writer, writerDriver)
+
+    const writerEnteredDriver = deferred()
+    const releaseWriter = deferred()
+    const originalWrite = writerDriver.write.bind(writerDriver)
+    writerDriver.write = async (path, data) => {
+      writerEnteredDriver.resolve()
+      await releaseWriter.promise
+      await originalWrite(path, data)
+    }
+
+    const fsa = new MockDriver()
+    const originalFsaInit = fsa.init.bind(fsa)
+    fsa.init = async () => {
+      fsa.operations.push("init")
+      return originalFsaInit()
+    }
+    let fsaFactoryCalls = 0
+    const connector = new WorkspaceStore({
+      mutationCoordinator: coordinator,
+      createFsaDriver: () => {
+        fsaFactoryCalls += 1
+        return fsa
+      },
+    })
+    await connector.write("raw/C/migrate.bin", new Blob(["migrate"]))
+    broker.ledger.length = 0
+    const activeWrite = writer.write("raw/C/live.bin", new Blob(["live"]))
+    await writerEnteredDriver.promise
+    const pendingConnect = connector.connectFolder()
+    const duplicateConnect = connector.connectFolder()
+
+    await waitForLedger(broker, "request:exclusive:ardesia:workspace-mutation")
+    const queuedPath = "raw/C/queued-after-connect.bin"
+    const queuedWrite = connector.write(queuedPath, new Blob(["new-fsa-only"]))
+    await waitForLedger(broker, "request:shared:ardesia:workspace-mutation", 2)
+    const fallback = (connector as unknown as { fallback: LocalStorageDriver }).fallback
+    expect(duplicateConnect).toBe(pendingConnect)
+    expect(fsaFactoryCalls).toBe(1)
+    expect(fsa.operations).toEqual(["init"])
+    expect(await fallback.read(queuedPath)).toBeNull()
+    expect(connector.mode).toBe("unavailable")
+    expect(coordinator.safety).toBe("origin-exclusive")
+
+    releaseWriter.resolve()
+    await activeWrite
+    await expect(pendingConnect).resolves.toBe(true)
+    await queuedWrite
+
+    expect(fsa.operations[0]).toBe("init")
+    expect(fsa.operations).toContain("write:raw/C/migrate.bin")
+    expect(fsa.operations).toContain(`write:${queuedPath}`)
+    expect(await fallback.read(queuedPath)).toBeNull()
+    expect(broker.ledger).toContain("enter:exclusive:ardesia:workspace-mutation")
+    await expect(connector.init()).resolves.toBe("fsa")
+    await expect(connector.connectFolder()).resolves.toBe(true)
+    expect(fsaFactoryCalls).toBe(1)
+    await connector.write("raw/C/after-reopen.bin", new Blob(["still-fsa"]))
+    expect(fsa.operations).toContain("write:raw/C/after-reopen.bin")
+  })
+
+  it("preserva driver e cache dopo migration failure, rilascia la lease e consente retry", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const failingCandidate = new MockDriver()
+    const retryCandidate = new MockDriver()
+    const existingPath = "raw/C/candidate-existing.bin"
+    const createdPath = "raw/C/candidate-created.bin"
+    const failingPath = "raw/C/candidate-failing.bin"
+    const unrelatedPath = "raw/Z/unrelated.bin"
+    const candidateExistingBytes = new Uint8Array([0, 200, 255, 17])
+    const candidateFailingBytes = new Uint8Array([99, 0, 128])
+    const candidateUnrelatedBytes = new Uint8Array([7, 8, 9])
+    await failingCandidate.write(existingPath, new Blob([candidateExistingBytes]))
+    await failingCandidate.write(failingPath, new Blob([candidateFailingBytes]))
+    await failingCandidate.write(unrelatedPath, new Blob([candidateUnrelatedBytes]))
+    failingCandidate.clearOperations()
+    const migrationFailure = new Error("migration failed")
+    const originalCandidateWrite = failingCandidate.write.bind(failingCandidate)
+    let injectFailure = true
+    failingCandidate.write = async (path, data) => {
+      if (path === failingPath && injectFailure) {
+        injectFailure = false
+        failingCandidate.operations.push(`write-failed:${path}`)
+        throw migrationFailure
+      }
+      await originalCandidateWrite(path, data)
+    }
+    const candidates: WorkspaceDriver[] = [failingCandidate, retryCandidate]
+    let factoryCalls = 0
+    const connector = new WorkspaceStore({
+      mutationCoordinator: coordinator,
+      createFsaDriver: () => candidates[factoryCalls++]!,
+    })
+    await expect(connector.init()).resolves.toBe("localStorage")
+    const internals = connector as unknown as {
+      driver: WorkspaceDriver
+      fallback: LocalStorageDriver
+    }
+    const previousDriver = internals.driver
+    await connector.write(existingPath, new Blob(["local-existing"]))
+    await connector.write(createdPath, new Blob(["local-created"]))
+    await connector.write(failingPath, new Blob(["local-failing"]))
+    const localBefore = new Map<string, number[]>()
+    for (const path of [existingPath, createdPath, failingPath]) {
+      const bytes = new Uint8Array(await (await internals.fallback.read(path))!.arrayBuffer())
+      localBefore.set(path, Array.from(bytes))
+    }
+    broker.ledger.length = 0
+
+    await expect(connector.connectFolder()).rejects.toBe(migrationFailure)
+
+    expect(connector.mode).toBe("localStorage")
+    expect(internals.driver).toBe(previousDriver)
+    for (const path of [existingPath, createdPath, failingPath]) {
+      const bytes = new Uint8Array(await (await internals.fallback.read(path))!.arrayBuffer())
+      expect(Array.from(bytes), path).toEqual(localBefore.get(path))
+    }
+    expect(Array.from(new Uint8Array(await (await failingCandidate.read(existingPath))!.arrayBuffer())))
+      .toEqual(Array.from(candidateExistingBytes))
+    expect(await failingCandidate.read(createdPath)).toBeNull()
+    expect(Array.from(new Uint8Array(await (await failingCandidate.read(failingPath))!.arrayBuffer())))
+      .toEqual(Array.from(candidateFailingBytes))
+    expect(Array.from(new Uint8Array(await (await failingCandidate.read(unrelatedPath))!.arrayBuffer())))
+      .toEqual(Array.from(candidateUnrelatedBytes))
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:workspace-mutation")
+
+    const afterFailurePath = "raw/C/cache-after-failure.bin"
+    await connector.write(afterFailurePath, new Blob(["lease-released"]))
+    expect(await internals.fallback.read(afterFailurePath)).not.toBeNull()
+    await expect(connector.connectFolder()).resolves.toBe(true)
+
+    expect(factoryCalls).toBe(2)
+    expect(connector.mode).toBe("fsa")
+    expect(retryCandidate.operations).toContain(`write:${existingPath}`)
+    expect(retryCandidate.operations).toContain(`write:${createdPath}`)
+    expect(retryCandidate.operations).toContain(`write:${failingPath}`)
+    expect(retryCandidate.operations).toContain(`write:${afterFailurePath}`)
+    const afterRetryPath = "raw/C/write-after-retry.bin"
+    await connector.write(afterRetryPath, new Blob(["new-candidate"]))
+    expect(retryCandidate.operations).toContain(`write:${afterRetryPath}`)
+  })
+
+  it("associa il path alla failure di compensazione della migrazione FSA", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const candidate = new MockDriver()
+    const existingPath = "raw/C/existing.bin"
+    const createdPath = "raw/C/created.bin"
+    const failingPath = "raw/C/failing.bin"
+    await candidate.write(existingPath, new Blob(["candidate-original"]))
+    const migrationFailure = new Error("candidate migration write failed")
+    const rollbackFailure = new Error("candidate rollback delete failed")
+    const originalWrite = candidate.write.bind(candidate)
+    const originalDelete = candidate.delete.bind(candidate)
+    let failMigration = true
+    let failRollback = true
+    candidate.write = async (path, data) => {
+      if (path === failingPath && failMigration) {
+        failMigration = false
+        throw migrationFailure
+      }
+      await originalWrite(path, data)
+    }
+    candidate.delete = async (path) => {
+      if (path === createdPath && failRollback) {
+        failRollback = false
+        throw rollbackFailure
+      }
+      await originalDelete(path)
+    }
+    const connector = new WorkspaceStore({
+      mutationCoordinator: coordinator,
+      createFsaDriver: () => candidate,
+    })
+    await connector.init()
+    await connector.write(existingPath, new Blob(["local-existing"]))
+    await connector.write(createdPath, new Blob(["local-created"]))
+    await connector.write(failingPath, new Blob(["local-failing"]))
+
+    let caught: unknown
+    try {
+      await connector.connectFolder()
+    } catch (error) {
+      caught = error
+    }
+
+    expect(caught).toBeInstanceOf(WorkspaceCompensationError)
+    const diagnostic = caught as WorkspaceCompensationError
+    expect(diagnostic.operation).toBe("connect-folder-migration")
+    expect(diagnostic.originalCause).toBe(migrationFailure)
+    expect(diagnostic.rollbackFailures).toEqual([
+      { path: createdPath, error: rollbackFailure },
+    ])
+    expect(diagnostic.message).not.toContain(createdPath)
+    expect(diagnostic.cause).toBeInstanceOf(AggregateError)
+    expect((diagnostic.cause as AggregateError).errors).toEqual([
+      migrationFailure,
+      rollbackFailure,
+    ])
+    expect(connector.mode).toBe("localStorage")
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:workspace-mutation")
   })
 })
 

@@ -19,6 +19,11 @@ import {
 } from "./lessonBundle"
 import { roomPaths, validateRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
+import {
+  originLessonMutationCoordinator,
+  type LessonMutationCoordinator,
+  type MutationSafety,
+} from "./lessonMutationLock"
 
 export interface WorkspaceState {
   mode: StorageMode
@@ -26,18 +31,138 @@ export interface WorkspaceState {
   room: string
 }
 
+export type WorkspaceStoreOptions = Readonly<{
+  mutationCoordinator?: LessonMutationCoordinator
+  createFsaDriver?: () => WorkspaceDriver
+}>
+
+export type WorkspaceCompensationOperation =
+  | "connect-folder-migration"
+  | "legacy-bundle-import"
+
+export type WorkspaceRollbackFailure = Readonly<{
+  path: string
+  error: unknown
+}>
+
+export class WorkspaceCompensationError extends Error {
+  readonly operation: WorkspaceCompensationOperation
+  readonly originalCause: unknown
+  readonly rollbackFailures: readonly WorkspaceRollbackFailure[]
+
+  constructor(
+    operation: WorkspaceCompensationOperation,
+    originalCause: unknown,
+    rollbackFailures: readonly WorkspaceRollbackFailure[],
+  ) {
+    const failures = Object.freeze(rollbackFailures.map(({ path, error }) => (
+      Object.freeze({ path, error })
+    )))
+    super(`Workspace compensation failed (${operation})`, {
+      cause: new AggregateError(
+        [originalCause, ...failures.map(({ error }) => error)],
+        "Workspace operation and rollback causes",
+      ),
+    })
+    this.name = "WorkspaceCompensationError"
+    this.operation = operation
+    this.originalCause = originalCause
+    this.rollbackFailures = failures
+  }
+}
+
+async function snapshotWorkspacePaths(
+  driver: WorkspaceDriver,
+  paths: Iterable<string>,
+): Promise<Map<string, Blob | null>> {
+  const previousByPath = new Map<string, Blob | null>()
+  for (const path of paths) {
+    if (!previousByPath.has(path)) {
+      previousByPath.set(path, await driver.read(path))
+    }
+  }
+  return previousByPath
+}
+
+async function compensateWorkspacePaths(
+  operation: WorkspaceCompensationOperation,
+  driver: WorkspaceDriver,
+  touchedPaths: readonly string[],
+  previousByPath: ReadonlyMap<string, Blob | null>,
+  originalCause: unknown,
+): Promise<never> {
+  const rollbackFailures: WorkspaceRollbackFailure[] = []
+  for (let index = touchedPaths.length - 1; index >= 0; index -= 1) {
+    const path = touchedPaths[index]!
+    try {
+      if (!previousByPath.has(path)) {
+        throw new Error("Workspace rollback snapshot missing")
+      }
+      const previous = previousByPath.get(path)
+      if (previous) await driver.write(path, previous)
+      else await driver.delete(path)
+    } catch (error) {
+      rollbackFailures.push({ path, error })
+    }
+  }
+  if (rollbackFailures.length > 0) {
+    throw new WorkspaceCompensationError(operation, originalCause, rollbackFailures)
+  }
+  throw originalCause
+}
+
+async function writeEntriesWithCompensation(
+  operation: WorkspaceCompensationOperation,
+  driver: WorkspaceDriver,
+  entries: Iterable<Pick<FileEntry, "path" | "data">>,
+): Promise<void> {
+  const materializedEntries = Array.from(entries)
+  const previousByPath = await snapshotWorkspacePaths(
+    driver,
+    materializedEntries.map(({ path }) => path),
+  )
+  const touchedPaths: string[] = []
+  const touched = new Set<string>()
+  try {
+    for (const entry of materializedEntries) {
+      if (!touched.has(entry.path)) {
+        touched.add(entry.path)
+        touchedPaths.push(entry.path)
+      }
+      await driver.write(entry.path, entry.data)
+    }
+  } catch (operationError) {
+    await compensateWorkspacePaths(
+      operation,
+      driver,
+      touchedPaths,
+      previousByPath,
+      operationError,
+    )
+  }
+}
+
 export class WorkspaceStore {
   private driver: WorkspaceDriver
   private fallback: LocalStorageDriver
+  private readonly mutationCoordinator: LessonMutationCoordinator
+  private readonly createFsaDriver: () => WorkspaceDriver
+  private pendingFolderConnection: Promise<boolean> | null = null
   private _mode: StorageMode = "unavailable"
 
-  constructor() {
+  constructor(options: WorkspaceStoreOptions = {}) {
     this.fallback = localStorageDriver
     this.driver = this.fallback
+    this.mutationCoordinator = options.mutationCoordinator ?? originLessonMutationCoordinator
+    this.createFsaDriver = options.createFsaDriver ?? createFSADriver
   }
 
   get mode(): StorageMode {
     return this._mode
+  }
+
+  get mutationSafety(): MutationSafety {
+    return this.mutationCoordinator.safety
   }
 
   /**
@@ -45,6 +170,7 @@ export class WorkspaceStore {
    * MAI chiedere la cartella FSA qui — connectFolder() lo fa su gesto utente.
    */
   async init(): Promise<StorageMode> {
+    if (this._mode === "fsa") return "fsa"
     this.driver = this.fallback
     this._mode = "localStorage"
     return "localStorage"
@@ -54,24 +180,50 @@ export class WorkspaceStore {
    * Chiede all'utente una cartella FSA (showDirectoryPicker) e migra i dati
    * esistenti da localStorage. DA CHIAMARE SOLO SU GESTO UTENTE.
    */
-  async connectFolder(): Promise<boolean> {
-    const fsa = createFSADriver()
-    if (!fsa.available()) return false
-    const ok = await fsa.init()
-    if (!ok) return false
+  connectFolder(): Promise<boolean> {
+    if (this._mode === "fsa") return Promise.resolve(true)
+    if (this.pendingFolderConnection) return this.pendingFolderConnection
 
-    // Migra i dati esistenti da localStorage → FSA
-    const existingEntries = await this.fallback.list()
-    for (const entry of existingEntries) {
-      if (entry.path.startsWith("raw/")) {
-        await fsa.write(entry.path, entry.data)
-      }
+    const fsa = this.createFsaDriver()
+    if (!fsa.available()) return Promise.resolve(false)
+
+    // showDirectoryPicker() richiede transient user activation: init() deve
+    // essere invocato sincronicamente dal gesto, prima di attendere Web Locks.
+    let initialization: Promise<boolean>
+    try {
+      initialization = fsa.init()
+    } catch (error) {
+      return Promise.reject(error)
     }
 
-    // Passa a FSA
-    this.driver = fsa
-    this._mode = "fsa"
-    return true
+    const connection = initialization.then(async (ok) => {
+      if (!ok) return false
+      return this.mutationCoordinator.withWorkspaceExclusive(async () => {
+        if (this._mode === "fsa") return true
+
+        // Migra i dati esistenti da localStorage → FSA. La porta driver resta
+        // interna alla lease workspace-exclusive: non riacquisire path lock.
+        const existingEntries = (await this.fallback.list()).filter(
+          ({ path }) => path.startsWith("raw/"),
+        )
+        await writeEntriesWithCompensation(
+          "connect-folder-migration",
+          fsa,
+          existingEntries,
+        )
+
+        // Passa a FSA soltanto dopo la migrazione completata.
+        this.driver = fsa
+        this._mode = "fsa"
+        return true
+      })
+    })
+    this.pendingFolderConnection = connection
+    void connection.then(
+      () => { if (this.pendingFolderConnection === connection) this.pendingFolderConnection = null },
+      () => { if (this.pendingFolderConnection === connection) this.pendingFolderConnection = null },
+    )
+    return connection
   }
 
   // --- OPERAZIONI FILE ---
@@ -81,11 +233,11 @@ export class WorkspaceStore {
   }
 
   async write(path: string, data: Blob): Promise<void> {
-    await this.driver.write(path, data)
+    await this.mutationCoordinator.withPathMutation(path, () => this.driver.write(path, data))
   }
 
   async delete(path: string): Promise<void> {
-    await this.driver.delete(path)
+    await this.mutationCoordinator.withPathMutation(path, () => this.driver.delete(path))
   }
 
   async list(prefix?: string): Promise<FileEntry[]> {
@@ -201,9 +353,15 @@ export class WorkspaceStore {
 
   async importBundle(blob: Blob): Promise<void> {
     const entries = await parseBundleBlob(blob)
-    for (const entry of entries) {
-      await this.write(entry.path, entry.data)
-    }
+    await this.mutationCoordinator.withWorkspaceExclusive(async () => {
+      // Porta interna già sotto lease: this.write() riacquisirebbe il lock.
+      const driver = this.driver
+      await writeEntriesWithCompensation(
+        "legacy-bundle-import",
+        driver,
+        entries,
+      )
+    })
   }
 
   // --- EXPORT/IMPORT .lesson (ZIP) ---
