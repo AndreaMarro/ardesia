@@ -56,14 +56,10 @@ export class LocalStorageDriver implements WorkspaceDriver {
   }
 
   async read(path: string): Promise<Blob | null> {
-    try {
-      const raw = localStorage.getItem(this.key(path))
-      if (raw === null) return null
-      const type = localStorage.getItem(PREFIX + TYPE_SUFFIX + path) ?? undefined
-      return base64ToBlob(raw, type)
-    } catch {
-      return null
-    }
+    const raw = localStorage.getItem(this.key(path))
+    if (raw === null) return null
+    const type = localStorage.getItem(PREFIX + TYPE_SUFFIX + path) ?? undefined
+    return base64ToBlob(raw, type)
   }
 
   async write(path: string, data: Blob): Promise<void> {
