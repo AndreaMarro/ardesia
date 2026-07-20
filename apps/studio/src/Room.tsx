@@ -33,6 +33,7 @@ import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasE
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
+import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -58,6 +59,14 @@ function navigateDocument(href: string): void {
 }
 
 const SURFACE_FLUSH_TIMEOUT_MS = 10_000
+
+type RoomLifecycleGate = "pending" | "activity-ready" | "failed"
+
+type RoomLifecycleState = {
+  generation: symbol
+  status: RoomLifecycleGate
+  error: string | null
+}
 
 function withSurfaceFlushTimeout(operation: Promise<void>): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -95,9 +104,23 @@ export default function Room({
   const studentView = useMemo(() => isStudentView(), [])
   const recapView = useMemo(() => isRecapView(), [])
   const replayView = useMemo(() => isReplayView(), [])
+  const lifecycleGeneration = useMemo(
+    () => Symbol("room-lifecycle-generation"),
+    [room, actualStore, lessonOsOpener],
+  )
   const [mathOn, setMathOn] = useState(false)
   const [saved, setSaved] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [lifecycleState, setLifecycleState] = useState<RoomLifecycleState>(() => ({
+    generation: lifecycleGeneration,
+    status: "pending",
+    error: null,
+  }))
+  const lifecycleGate = lifecycleState.generation === lifecycleGeneration
+    ? lifecycleState.status
+    : "pending"
+  const lifecycleError = lifecycleState.generation === lifecycleGeneration
+    ? lifecycleState.error
+    : null
   const [storageError, setStorageError] = useState<string | null>(null)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Hamburger menu mobile */
@@ -147,35 +170,212 @@ export default function Room({
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
+    const generation = lifecycleGeneration
     let cancelled = false
-    setLoading(true)
+    let activity: ActiveLessonRegistration | null = null
+    let registrationPromise: Promise<ActiveLessonRegistration> | null = null
+    let openerPromise: Promise<LessonOsSessionHandle> | null = null
+    let runtime: LessonOsSessionHandle | null = null
+    let journal: JournalRecorder | null = null
+    let cleanupPromise: Promise<void> | null = null
+    let registrationFailureReported = false
+    let openerFailureReported = false
+    let lifecycleFailed = false
+
+    const publishLifecycle = (
+      status: Exclude<RoomLifecycleGate, "pending">,
+      error: string | null = null,
+    ): void => {
+      if (cancelled) return
+      setLifecycleState((current) => (
+        current.generation === generation
+          ? { generation, status, error }
+          : current
+      ))
+    }
+
+    // Tutto ciò che può essere mostrato o riusato dalla canvas appartiene alla
+    // generation corrente. Il gate tokenizzato nasconde già il primo render B;
+    // questo reset impedisce che un loadScene/loadMeta B nullo riesponga A.
+    initialLoadDone.current = false
+    if (saveTimer.current) {
+      window.clearTimeout(saveTimer.current)
+      saveTimer.current = null
+    }
+    latestElementsRef.current = null
+    latestAppStateRef.current = null
+    latestFilesRef.current = null
+    apiRef.current = null
+    persistRequestedRef.current = false
+    setSaved(false)
+    setStorageError(null)
+    setStoreMode("localStorage")
+    setMenuOpen(false)
+    setLessonName(null)
+    setEditingName(false)
+    setDrawerOpen(false)
+    setRooms([])
+    setLoadingRooms(false)
+    setSceneData(null)
+    setExportAdvice(null)
+    // Le chain in-flight non vengono sganciate: farlo permetterebbe a B di
+    // sorpassare A. Gli snapshot canvas riusabili sono stati azzerati sopra;
+    // cancellazione/drain dei producer già avviati resta il gate ARD-07.
+    setLifecycleState({ generation, status: "pending", error: null })
+    if (import.meta.env.DEV) delete (window as any).__MAESTRO_TEST__
+
+    const publishTestHarness = (ready: boolean): void => {
+      if (!import.meta.env.DEV) return
+      const paths = roomPaths(room)
+      const liveRuntime = lessonOsRef.current
+      ;(window as any).__MAESTRO_TEST__ = {
+        ready,
+        initialLoadDone: initialLoadDone.current,
+        room,
+        store: actualStore,
+        recorder: journalRef.current,
+        journal: liveRuntime && journalRef.current ? {
+          path: paths.journal,
+          identity: liveRuntime.identity,
+          producer: liveRuntime.producer,
+        } : null,
+        audioRecorder: null,
+        lessonOs: lessonOsRef,
+        apiRef,
+        ReplayEngine,
+        serializeEvents,
+        deserializeEvents,
+        PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
+        navigateToLesson,
+        flushPersist,
+        promoteJournalToLessonOs,
+      }
+    }
+
+    const cleanup = (): Promise<void> => {
+      if (cleanupPromise) return cleanupPromise
+
+      // Gli input vengono fermati tutti, sincronicamente e in modo isolato,
+      // prima di avviare qualunque flush. Il drain pointer/scene completo resta ARD-07.
+      const ownedUnsubscribes = unsubsRef.current
+      unsubsRef.current = []
+      for (const unsubscribe of ownedUnsubscribes) {
+        try {
+          unsubscribe()
+        } catch (error) {
+          console.error("Room subscription cleanup failed during unmount", error)
+        }
+      }
+
+      const ownedJournal = journal
+      if (ownedJournal && journalRef.current === ownedJournal) journalRef.current = null
+      const runtimeWasPending = runtime === null && openerPromise !== null
+      const ownedRuntimeAtCleanup = runtime
+      if (ownedRuntimeAtCleanup && lessonOsRef.current === ownedRuntimeAtCleanup) {
+        lessonOsRef.current = null
+      }
+
+      cleanupPromise = (async () => {
+        if (!activity && registrationPromise) {
+          try {
+            activity = await registrationPromise
+          } catch (error) {
+            if (!registrationFailureReported) {
+              registrationFailureReported = true
+              console.error("Room activity registration failed during cleanup", error)
+            }
+          }
+        }
+
+        if (!runtime && openerPromise) {
+          try {
+            runtime = await openerPromise
+          } catch (error) {
+            if (!openerFailureReported) {
+              openerFailureReported = true
+              console.error("LessonOS session open failed after Room unmount", error)
+            }
+          }
+        }
+
+        try {
+          await ownedJournal?.flush()
+        } catch (error) {
+          console.error("Room journal flush failed before LessonOS close", error)
+        }
+        try {
+          await runtime?.close()
+        } catch (error) {
+          console.error(
+            runtimeWasPending
+              ? "LessonOS session cleanup failed after Room unmount"
+              : "LessonOS session cleanup failed during Room unmount",
+            error,
+          )
+        }
+        const ownedActivity = activity
+        activity = null
+        try {
+          await ownedActivity?.release()
+        } catch (error) {
+          console.error("Room activity release failed during unmount", error)
+        }
+      })()
+      return cleanupPromise
+    }
+
     void (async () => {
       try {
-        await actualStore.init()
+        try {
+          await actualStore.init()
+        } catch (error) {
+          if (cancelled) return
+          lifecycleFailed = true
+          const message = "Inizializzazione archivio fallita: " + (error as Error).message
+          publishLifecycle("failed", message)
+          publishTestHarness(false)
+          return
+        }
         if (cancelled) return
         setStoreMode(actualStore.mode)
+
+        registrationPromise = Promise.resolve().then(() => (
+          actualStore.registerActiveLesson(room)
+        ))
+        try {
+          activity = await registrationPromise
+        } catch (error) {
+          if (cancelled) return
+          lifecycleFailed = true
+          registrationFailureReported = true
+          const message = "Coordinamento lezione fallito: " + (error as Error).message
+          publishLifecycle("failed", message)
+          publishTestHarness(false)
+          return
+        }
+        if (cancelled) {
+          await cleanup()
+          return
+        }
 
         // Le viste read-only non aprono né sessione né recorder. Nel percorso docente,
         // la sessione canonica è l'unica autorità che può costruire il journal live.
         if (!studentView && !recapView && !replayView) {
-          let runtime: LessonOsSessionHandle | null = null
+          openerPromise = Promise.resolve().then(() => lessonOsOpener({ room }))
           try {
-            runtime = await lessonOsOpener({ room })
+            runtime = await openerPromise
           } catch (error) {
             if (cancelled) {
-              console.error("LessonOS session open failed after Room unmount", error)
+              await cleanup()
               return
             }
+            openerFailureReported = true
             setStorageError("Avvio memoria lezione fallito: " + (error as Error).message)
           }
 
           if (runtime) {
             if (cancelled) {
-              try {
-                await runtime.close()
-              } catch (error) {
-                console.error("LessonOS session cleanup failed after Room unmount", error)
-              }
+              await cleanup()
               return
             }
             const clock = sharedClock
@@ -187,6 +387,7 @@ export default function Room({
               producer: runtime.producer,
               now: clock,
             })
+            journal = jr
             lessonOsRef.current = runtime
             journalRef.current = jr
             if (runtime.dataLoss) {
@@ -218,38 +419,14 @@ export default function Room({
         const meta = await actualStore.loadMeta(room).catch(() => null)
         if (!cancelled && meta?.name) setLessonName(meta.name)
       } catch (err) {
-        if (!cancelled) {
+        if (!cancelled && !lifecycleFailed) {
           setStorageError("Caricamento scena fallito: " + (err as Error).message)
         }
       } finally {
-        if (!cancelled) {
+        if (!cancelled && !lifecycleFailed) {
           initialLoadDone.current = true
-          setLoading(false)
-          if (import.meta.env.DEV) {
-            const paths = roomPaths(room)
-            const runtime = lessonOsRef.current
-            ;(window as any).__MAESTRO_TEST__ = {
-              ready: true,
-              room,
-              store: actualStore,
-              recorder: journalRef.current,
-              journal: runtime && journalRef.current ? {
-                path: paths.journal,
-                identity: runtime.identity,
-                producer: runtime.producer,
-              } : null,
-              audioRecorder: null,
-              lessonOs: lessonOsRef,
-              apiRef,
-              ReplayEngine,
-              serializeEvents,
-              deserializeEvents,
-              PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
-              navigateToLesson,
-              flushPersist,
-              promoteJournalToLessonOs,
-            }
-          }
+          publishLifecycle("activity-ready")
+          publishTestHarness(true)
         }
       }
     })()
@@ -260,31 +437,9 @@ export default function Room({
         window.clearTimeout(saveTimer.current)
         saveTimer.current = null
       }
-      // Il close viene tentato solo dopo che il flush ha risolto o fallito. React non
-      // attende cleanup async, ma la chain mantiene l'ordine e rende entrambi gli errori diagnostici.
-      const journal = journalRef.current
-      const lessonOs = lessonOsRef.current
-      journalRef.current = null
-      lessonOsRef.current = null
-      void (async () => {
-        try {
-          await journal?.flush()
-        } catch (error) {
-          console.error("Room journal flush failed before LessonOS close", error)
-        }
-        try {
-          await lessonOs?.close()
-        } catch (error) {
-          console.error("LessonOS session cleanup failed during Room unmount", error)
-        }
-      })()
-      // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
-      for (const unsub of unsubsRef.current) {
-        unsub()
-      }
-      unsubsRef.current = []
+      void cleanup()
     }
-  }, [room, actualStore, lessonOsOpener])
+  }, [room, actualStore, lessonOsOpener, lifecycleGeneration])
 
   useEffect(() => {
     document.title = "Ardesia · studio"
@@ -641,6 +796,26 @@ export default function Room({
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
+  if (lifecycleGate === "pending") {
+    return (
+      <div
+        className="st-status st-lifecycle-loading"
+        role="status"
+        aria-live="polite"
+      >
+        <span className="st-quiet">caricamento…</span>
+      </div>
+    )
+  }
+  if (lifecycleGate === "failed") {
+    return (
+      <div className="st-status st-lifecycle-failed">
+        <span className="st-err st-lifecycle-error" role="alert">
+          <IconAlert /> {lifecycleError ?? "Coordinamento lezione non disponibile."}
+        </span>
+      </div>
+    )
+  }
   return recapView ? (
     <RecapView store={actualStore} room={room} />
   ) : replayView ? (
@@ -655,15 +830,13 @@ export default function Room({
             <span className="st-bdot" aria-hidden />
             <span className="st-sub">studio</span>
           </div>
-          {/* Chip stanza dopo il load: evita il flash dell'id prima che arrivi il nome */}
-          {!loading && (
-            <span
-              className="st-chip-student st-chip-lesson"
-              title={lessonName ? `Lezione: ${lessonName}` : `Stanza: ${room}`}
-            >
-              {lessonName ?? room}
-            </span>
-          )}
+          {/* Il lifecycle gate evita il flash dell'id prima che scena e meta siano risolte. */}
+          <span
+            className="st-chip-student st-chip-lesson"
+            title={lessonName ? `Lezione: ${lessonName}` : `Stanza: ${room}`}
+          >
+            {lessonName ?? room}
+          </span>
           <span className="st-chip-student">stai guardando la lavagna</span>
         </header>
       ) : (
@@ -705,29 +878,26 @@ export default function Room({
         )}
 
         <div className="st-status">
-          {loading && <span className="st-quiet">caricamento…</span>}
-          {!loading && (
-            storeMode === "fsa"
-              ? (
-                <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
-                  <span className="st-led" aria-hidden />
-                  salvato sul computer
-                </span>
-              )
-              : (
-                <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
-                  <span className="st-led" aria-hidden />
-                  solo in questo browser
-                  {" — "}
-                  <button onClick={handleConnectFolder} className="st-indicator-connect">
-                    scegli cartella…
-                  </button>
-                </span>
-              )
-          )}
+          {storeMode === "fsa"
+            ? (
+              <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
+                <span className="st-led" aria-hidden />
+                salvato sul computer
+              </span>
+            )
+            : (
+              <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
+                <span className="st-led" aria-hidden />
+                solo in questo browser
+                {" — "}
+                <button onClick={handleConnectFolder} className="st-indicator-connect">
+                  scegli cartella…
+                </button>
+              </span>
+            )}
           {saved && <span className="st-quiet">salvato</span>}
           {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
-          {exportAdvice && !loading && (
+          {exportAdvice && (
             <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
           )}
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
@@ -826,7 +996,7 @@ export default function Room({
       )}
 
       <div style={{ flex: 1, position: "relative" }}>
-        {!loading && studentView && !sceneData && (
+        {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
             <EmptyState
@@ -835,7 +1005,7 @@ export default function Room({
             />
           </div>
         )}
-        {!loading && !(studentView && !sceneData) && (
+        {!(studentView && !sceneData) && (
           <Excalidraw
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}

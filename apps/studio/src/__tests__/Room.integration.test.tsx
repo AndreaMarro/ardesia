@@ -3,7 +3,7 @@
 // Verifica che Room persista e carichi correttamente via WorkspaceStore,
 // e che gli errori di quota siano visibili all'utente.
 
-import { describe, it, expect, vi, beforeEach } from "vitest"
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { act, Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
@@ -21,11 +21,21 @@ import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { roomPaths } from "../store/roomPaths"
 import { FOUNDER_BETA_PLUGINS } from "../toolhost/founderBetaPlugin"
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
+import {
+  createLessonMutationCoordinator,
+  type MutationLockBroker,
+  type MutationLockMode,
+  type MutationTryLockResult,
+} from "../store/lessonMutationLock"
+import type { WorkspaceStoreOptions } from "../store/WorkspaceStore"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 
 const mockExcalidrawHarness = vi.hoisted(() => ({
   updateSceneCalls: [] as Array<{ elements?: Array<{ id?: string }> }>,
+  cleanupTrace: null as string[] | null,
+  throwOnUnsubDown: false,
+  pointerDown: null as (() => void) | null,
 }))
 
 vi.mock("@excalidraw/excalidraw", () => {
@@ -41,13 +51,21 @@ vi.mock("@excalidraw/excalidraw", () => {
               mockExcalidrawHarness.updateSceneCalls.push(scene)
             }),
             addFiles: vi.fn(),
-            onPointerDown: vi.fn(() => {
-              const unsub = () => {}
+            onPointerDown: vi.fn((callback: () => void) => {
+              mockExcalidrawHarness.pointerDown = callback
+              const unsub = () => {
+                mockExcalidrawHarness.cleanupTrace?.push("unsubDown")
+                if (mockExcalidrawHarness.throwOnUnsubDown) {
+                  throw new Error("unsubscribe down failed")
+                }
+              }
               unsubs.push(unsub)
               return unsub
             }),
             onPointerUp: vi.fn(() => {
-              const unsub = () => {}
+              const unsub = () => {
+                mockExcalidrawHarness.cleanupTrace?.push("unsubUp")
+              }
               unsubs.push(unsub)
               return unsub
             }),
@@ -92,6 +110,8 @@ vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() })
 vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
 vi.mock("../store/isRecapView", () => ({ isRecapView: vi.fn(() => false) }))
 vi.mock("../store/isReplayView", () => ({ isReplayView: vi.fn(() => false) }))
+vi.mock("../RecapView", () => ({ default: () => "mock-recap-view" }))
+vi.mock("../ReplayView", () => ({ default: () => "mock-replay-view" }))
 // LessonOS bridge: nei test il registry di default riconosce il manuale di prova
 // (in prod defaultManualRegistry è vuoto finché non esiste una config manuali).
 vi.mock("../lessonos/manualRegistry", async (importOriginal) => {
@@ -152,9 +172,9 @@ class MockDriver implements WorkspaceDriver {
 }
 
 /** Crea un WorkspaceStore con un MockDriver iniettabile */
-async function createMockStore() {
+async function createMockStore(options: WorkspaceStoreOptions = {}) {
   const { WorkspaceStore } = await import("../store/WorkspaceStore")
-  const store = new WorkspaceStore()
+  const store = new WorkspaceStore(options)
   const driver = new MockDriver()
   ;(store as any).driver = driver
   ;(store as any).fallback = driver
@@ -197,6 +217,9 @@ beforeEach(() => {
   document.body.innerHTML = '<div id="root"></div>'
   delete (window as any).__MAESTRO_TEST__
   mockExcalidrawHarness.updateSceneCalls = []
+  mockExcalidrawHarness.cleanupTrace = null
+  mockExcalidrawHarness.throwOnUnsubDown = false
+  mockExcalidrawHarness.pointerDown = null
   vi.clearAllMocks()
 })
 
@@ -976,6 +999,67 @@ function makeDeferred<T>() {
   return { promise, resolve, reject }
 }
 
+/**
+ * Broker origin-exclusive intenzionalmente indipendente dal mock navigator.locks
+ * globale: quel mock serializza nomi diversi e non puo provare gli invarianti C/c/D.
+ */
+class ImmediateActivityBroker implements MutationLockBroker {
+  readonly safety = "origin-exclusive" as const
+  private readonly readers = new Map<string, number>()
+  private readonly writers = new Set<string>()
+
+  request<T>(
+    name: string,
+    options: { mode: MutationLockMode },
+    work: () => Promise<T>,
+  ): Promise<T> {
+    const readers = this.readers.get(name) ?? 0
+    if (this.writers.has(name) || (options.mode === "exclusive" && readers > 0)) {
+      return Promise.reject(new Error(`test broker lock unavailable: ${name}`))
+    }
+    if (options.mode === "shared") this.readers.set(name, readers + 1)
+    else this.writers.add(name)
+    return Promise.resolve().then(work).finally(() => {
+      if (options.mode === "shared") {
+        const remaining = (this.readers.get(name) ?? 1) - 1
+        if (remaining === 0) this.readers.delete(name)
+        else this.readers.set(name, remaining)
+      } else {
+        this.writers.delete(name)
+      }
+    })
+  }
+
+  async tryRequest<T>(
+    name: string,
+    options: { mode: MutationLockMode },
+    work: () => Promise<T>,
+  ): Promise<MutationTryLockResult<T>> {
+    const readers = this.readers.get(name) ?? 0
+    const unavailable = this.writers.has(name) || (options.mode === "exclusive" && readers > 0)
+    if (unavailable) return Object.freeze({ acquired: false as const })
+    return Object.freeze({ acquired: true as const, value: await this.request(name, options, work) })
+  }
+}
+
+type RoomViewFixture = "teacher" | "student" | "recap" | "replay"
+
+async function selectRoomView(view: RoomViewFixture): Promise<void> {
+  const { isStudentView } = await import("../store/studentView")
+  const { isRecapView } = await import("../store/isRecapView")
+  const { isReplayView } = await import("../store/isReplayView")
+  vi.mocked(isStudentView).mockReturnValue(view === "student")
+  vi.mocked(isRecapView).mockReturnValue(view === "recap")
+  vi.mocked(isReplayView).mockReturnValue(view === "replay")
+}
+
+function expectNoRoomChild(container: HTMLElement): void {
+  expect(container.textContent).not.toContain("mock-excalidraw")
+  expect(container.textContent).not.toContain("mock-recap-view")
+  expect(container.textContent).not.toContain("mock-replay-view")
+  expect(container.querySelector(".st-bar")).toBeNull()
+}
+
 class TestErrorBoundary extends Component<
   { children: ReactNode },
   { error: Error | null }
@@ -990,6 +1074,778 @@ class TestErrorBoundary extends Component<
     return this.state.error ? this.state.error.message : this.props.children
   }
 }
+
+describe("ARD-05-S0B: Room activity lifecycle", () => {
+  afterEach(async () => {
+    await selectRoomView("teacher")
+  })
+
+  it("serializza causalmente init → register → opener → scene → meta → ready", async () => {
+    await selectRoomView("teacher")
+    const order: string[] = []
+    const init = makeDeferred<"localStorage">()
+    const registrationGrant = makeDeferred<{ lessonId: string; release(): Promise<void> }>()
+    const openerGrant = makeDeferred<LessonOsSessionHandle>()
+    const scene = makeDeferred<string | null>()
+    const runtime = await openInMemorySession()
+    vi.spyOn(runtime, "close").mockImplementation(async () => {
+      order.push("close")
+      return {} as any
+    })
+    const release = vi.fn(async () => { order.push("release") })
+    const { store } = await createMockStore()
+    vi.spyOn(store, "init").mockImplementation(async () => {
+      order.push("init")
+      return init.promise
+    })
+    const register = vi.spyOn(store, "registerActiveLesson").mockImplementation(() => {
+      order.push("register")
+      return registrationGrant.promise
+    })
+    const opener: LessonOsSessionOpener = vi.fn(() => {
+      order.push("opener")
+      return openerGrant.promise
+    })
+    const loadScene = vi.spyOn(store, "loadScene").mockImplementation(() => {
+      order.push("scene")
+      return scene.promise
+    })
+    const loadMeta = vi.spyOn(store, "loadMeta").mockImplementation(async () => {
+      order.push("meta")
+      return null
+    })
+    const container = document.getElementById("root")!
+    const root = createRoot(container)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => expect(order).toEqual(["init"]))
+    expectNoRoomChild(container)
+    init.resolve("localStorage")
+    await vi.waitFor(() => expect(register).toHaveBeenCalledWith("test-room-1"))
+    expect(order).toEqual(["init", "register"])
+    expect(opener).not.toHaveBeenCalled()
+    expect(loadScene).not.toHaveBeenCalled()
+
+    registrationGrant.resolve({ lessonId: "test-room-1", release })
+    await vi.waitFor(() => expect(opener).toHaveBeenCalledWith({ room: "test-room-1" }))
+    expect(order).toEqual(["init", "register", "opener"])
+    expect(loadScene).not.toHaveBeenCalled()
+
+    openerGrant.resolve(runtime)
+    await vi.waitFor(() => expect(loadScene).toHaveBeenCalledWith("test-room-1"))
+    expect(order).toEqual(["init", "register", "opener", "scene"])
+    expect(loadMeta).not.toHaveBeenCalled()
+
+    scene.resolve(null)
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect(container.textContent).toContain("mock-excalidraw")
+    })
+    expect(order).toEqual(["init", "register", "opener", "scene", "meta"])
+
+    root.unmount()
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+  })
+
+  it.each<RoomViewFixture>(["teacher", "student", "recap", "replay"])(
+    "gate %s: pending mostra solo loading; reject resta fail-closed",
+    async (view) => {
+      await selectRoomView(view)
+      const registration = makeDeferred<{ lessonId: string; release(): Promise<void> }>()
+      const { store } = await createMockStore()
+      const register = vi.spyOn(store, "registerActiveLesson").mockReturnValue(registration.promise)
+      const loadScene = vi.spyOn(store, "loadScene").mockResolvedValue(null)
+      const loadMeta = vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+      const opener: LessonOsSessionOpener = vi.fn()
+      const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+      const container = document.getElementById("root")!
+      const root = createRoot(container)
+      const RoomModule = await import("../Room")
+      root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+      await vi.waitFor(() => expect(register).toHaveBeenCalledWith("test-room-1"))
+      expect(container.querySelector(".st-lifecycle-loading")?.textContent).toContain("caricamento")
+      expectNoRoomChild(container)
+      expect(opener).not.toHaveBeenCalled()
+      expect(loadScene).not.toHaveBeenCalled()
+      expect(loadMeta).not.toHaveBeenCalled()
+
+      registration.reject(new Error(`activity denied ${view}`))
+      await vi.waitFor(() => {
+        const alert = container.querySelector("[role='alert']")
+        expect(alert).not.toBeNull()
+        expect(alert!.textContent).toContain(`activity denied ${view}`)
+        expect((window as any).__MAESTRO_TEST__).toMatchObject({
+          ready: false,
+          initialLoadDone: false,
+        })
+      })
+      expectNoRoomChild(container)
+      expect(opener).not.toHaveBeenCalled()
+      expect(loadScene).not.toHaveBeenCalled()
+      expect(loadMeta).not.toHaveBeenCalled()
+
+      root.unmount()
+      consoleSpy.mockRestore()
+    },
+  )
+
+  it("unmount con registration pending rilascia il grant tardivo una sola volta senza runtime o I/O", async () => {
+    await selectRoomView("teacher")
+    const registration = makeDeferred<{ lessonId: string; release(): Promise<void> }>()
+    const release = vi.fn(async () => {})
+    const { store } = await createMockStore()
+    const register = vi.spyOn(store, "registerActiveLesson").mockReturnValue(registration.promise)
+    const loadScene = vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const loadMeta = vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn()
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect(register).toHaveBeenCalledTimes(1))
+
+    root.unmount()
+    registration.resolve({ lessonId: "test-room-1", release })
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+    expect(opener).not.toHaveBeenCalled()
+    expect(loadScene).not.toHaveBeenCalled()
+    expect(loadMeta).not.toHaveBeenCalled()
+    expect((window as any).__MAESTRO_TEST__).toBeUndefined()
+  })
+
+  it("unmount con registration pending assorbe il reject tardivo senza opener, I/O o rejection unhandled", async () => {
+    await selectRoomView("teacher")
+    const registration = makeDeferred<{ lessonId: string; release(): Promise<void> }>()
+    const { store } = await createMockStore()
+    const register = vi.spyOn(store, "registerActiveLesson").mockReturnValue(registration.promise)
+    const loadScene = vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const loadMeta = vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn()
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect(register).toHaveBeenCalledTimes(1))
+
+    root.unmount()
+    registration.reject(new Error("late activity denied"))
+    await vi.waitFor(() => {
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Room activity registration failed during cleanup",
+        expect.objectContaining({ message: "late activity denied" }),
+      )
+    })
+    expect(opener).not.toHaveBeenCalled()
+    expect(loadScene).not.toHaveBeenCalled()
+    expect(loadMeta).not.toHaveBeenCalled()
+    expect((window as any).__MAESTRO_TEST__).toBeUndefined()
+    consoleSpy.mockRestore()
+  })
+
+  it("unmount post-grant osserva opener e close tardivi prima dell'unica release", async () => {
+    await selectRoomView("teacher")
+    const trace: string[] = []
+    const openerGrant = makeDeferred<LessonOsSessionHandle>()
+    const closeGate = makeDeferred<any>()
+    const runtime = await openInMemorySession()
+    const close = vi.spyOn(runtime, "close").mockImplementation(() => {
+      trace.push("close")
+      return closeGate.promise
+    })
+    const release = vi.fn(async () => { trace.push("release") })
+    const { store } = await createMockStore()
+    vi.spyOn(store, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release,
+    })
+    const loadScene = vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const loadMeta = vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn(() => openerGrant.promise)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect(opener).toHaveBeenCalledTimes(1))
+
+    root.unmount()
+    await Promise.resolve()
+    expect(close).not.toHaveBeenCalled()
+    expect(release).not.toHaveBeenCalled()
+
+    openerGrant.resolve(runtime)
+    await vi.waitFor(() => expect(close).toHaveBeenCalledTimes(1))
+    expect(release).not.toHaveBeenCalled()
+    closeGate.resolve({})
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+    expect(trace).toEqual(["close", "release"])
+    expect(loadScene).not.toHaveBeenCalled()
+    expect(loadMeta).not.toHaveBeenCalled()
+  })
+
+  it("unmount assorbe opener reject tardivo e rilascia una sola volta", async () => {
+    await selectRoomView("teacher")
+    const openerGate = makeDeferred<LessonOsSessionHandle>()
+    const release = vi.fn(async () => {})
+    const { store } = await createMockStore()
+    vi.spyOn(store, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release,
+    })
+    const loadScene = vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const loadMeta = vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn(() => openerGate.promise)
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => expect(opener).toHaveBeenCalledTimes(1))
+
+    root.unmount()
+    openerGate.reject(new Error("late opener failed"))
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+    expect(loadScene).not.toHaveBeenCalled()
+    expect(loadMeta).not.toHaveBeenCalled()
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "LessonOS session open failed after Room unmount",
+      expect.objectContaining({ message: "late opener failed" }),
+    )
+    consoleSpy.mockRestore()
+  })
+
+  it.each(["reject", "resolve"] as const)(
+    "turnover A ready → B %s applica il gate B prima di montare qualunque child",
+    async (outcome) => {
+      await selectRoomView("teacher")
+      const runtimeA = await openInMemorySession()
+      const runtimeB = await openInMemorySession()
+      vi.spyOn(runtimeA, "close").mockResolvedValue({} as any)
+      vi.spyOn(runtimeB, "close").mockResolvedValue({} as any)
+      const releaseA = vi.fn(async () => {})
+      const releaseB = vi.fn(async () => {})
+      const registrationB = makeDeferred<{
+        lessonId: string
+        release(): Promise<void>
+      }>()
+      const { store: storeA } = await createMockStore()
+      const { store: storeB } = await createMockStore()
+      vi.spyOn(storeA, "registerActiveLesson").mockResolvedValue({
+        lessonId: "test-room-1",
+        release: releaseA,
+      })
+      const registerB = vi.spyOn(storeB, "registerActiveLesson")
+        .mockReturnValue(registrationB.promise)
+      vi.spyOn(storeA, "loadScene").mockResolvedValue(null)
+      vi.spyOn(storeA, "loadMeta").mockResolvedValue(null)
+      const loadSceneB = vi.spyOn(storeB, "loadScene").mockResolvedValue(null)
+      const loadMetaB = vi.spyOn(storeB, "loadMeta").mockResolvedValue(null)
+      const openerA: LessonOsSessionOpener = vi.fn(async () => runtimeA)
+      const openerB: LessonOsSessionOpener = vi.fn(async () => runtimeB)
+      const container = document.getElementById("root")!
+      const root = createRoot(container)
+      const RoomModule = await import("../Room")
+      const { Excalidraw } = await import("@excalidraw/excalidraw")
+
+      root.render(<RoomModule.default store={storeA} lessonOsOpener={openerA} />)
+      await vi.waitFor(() => {
+        expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+        expect((window as any).__MAESTRO_TEST__?.store).toBe(storeA)
+        expect(container.textContent).toContain("mock-excalidraw")
+      })
+      const childRenderCountA = vi.mocked(Excalidraw).mock.calls.length
+
+      root.render(<RoomModule.default store={storeB} lessonOsOpener={openerB} />)
+      await vi.waitFor(() => expect(registerB).toHaveBeenCalledWith("test-room-1"))
+      expect(container.querySelector(".st-lifecycle-loading")).not.toBeNull()
+      expectNoRoomChild(container)
+      expect(vi.mocked(Excalidraw).mock.calls).toHaveLength(childRenderCountA)
+      expect(openerB).not.toHaveBeenCalled()
+      expect(loadSceneB).not.toHaveBeenCalled()
+      expect(loadMetaB).not.toHaveBeenCalled()
+
+      if (outcome === "reject") {
+        registrationB.reject(new Error("generation B activity denied"))
+        await vi.waitFor(() => {
+          const alert = container.querySelector("[role='alert']")
+          expect(alert?.textContent).toContain("generation B activity denied")
+        })
+        expectNoRoomChild(container)
+        expect(vi.mocked(Excalidraw).mock.calls).toHaveLength(childRenderCountA)
+        expect(openerB).not.toHaveBeenCalled()
+        expect(loadSceneB).not.toHaveBeenCalled()
+        expect(loadMetaB).not.toHaveBeenCalled()
+      } else {
+        registrationB.resolve({ lessonId: "test-room-1", release: releaseB })
+        await vi.waitFor(() => {
+          expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+          expect((window as any).__MAESTRO_TEST__?.store).toBe(storeB)
+          expect(container.textContent).toContain("mock-excalidraw")
+          expect(openerB).toHaveBeenCalledWith({ room: "test-room-1" })
+          expect(loadSceneB).toHaveBeenCalledWith("test-room-1")
+          expect(loadMetaB).toHaveBeenCalledWith("test-room-1")
+        })
+        expect(vi.mocked(Excalidraw).mock.calls.length).toBeGreaterThan(childRenderCountA)
+      }
+
+      root.unmount()
+      await vi.waitFor(() => expect(releaseA).toHaveBeenCalledTimes(1))
+      if (outcome === "resolve") {
+        await vi.waitFor(() => expect(releaseB).toHaveBeenCalledTimes(1))
+      }
+    },
+  )
+
+  it("turnover B con scene/meta null non riespone stato o refs persistibili della generation A", async () => {
+    await selectRoomView("teacher")
+    const runtimeABase = await openInMemorySession()
+    const runtimeBBase = await openInMemorySession()
+    const runtimeA: LessonOsSessionHandle = {
+      ...runtimeABase,
+      dataLoss: true,
+    }
+    const runtimeB: LessonOsSessionHandle = {
+      ...runtimeBBase,
+      persistent: true,
+      capabilities: {
+        ...runtimeBBase.capabilities,
+        indexedDb: true,
+        persisted: true,
+      },
+    }
+    vi.spyOn(runtimeA, "close").mockResolvedValue({} as any)
+    vi.spyOn(runtimeB, "close").mockResolvedValue({} as any)
+    const releaseA = vi.fn(async () => {})
+    const releaseB = vi.fn(async () => {})
+    const registrationB = makeDeferred<{
+      lessonId: string
+      release(): Promise<void>
+    }>()
+    const { store: storeA } = await createMockStore()
+    const { store: storeB } = await createMockStore()
+    vi.spyOn(storeA, "init").mockImplementation(async () => {
+      ;(storeA as any)._mode = "fsa"
+      return "fsa"
+    })
+    vi.spyOn(storeA, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release: releaseA,
+    })
+    const registerB = vi.spyOn(storeB, "registerActiveLesson")
+      .mockReturnValue(registrationB.promise)
+    vi.spyOn(storeA, "loadScene").mockResolvedValue(JSON.stringify({
+      type: "excalidraw",
+      elements: [],
+      appState: { generation: "A" },
+      files: {},
+    }))
+    vi.spyOn(storeA, "loadMeta").mockResolvedValue({
+      v: 1,
+      name: "Generation A",
+      createdAt: 1,
+    })
+    vi.spyOn(storeB, "loadScene").mockResolvedValue(null)
+    vi.spyOn(storeB, "loadMeta").mockResolvedValue(null)
+    const saveSceneA = vi.spyOn(storeA, "saveScene")
+    const saveSceneB = vi.spyOn(storeB, "saveScene")
+    const openerA: LessonOsSessionOpener = vi.fn(async () => runtimeA)
+    const openerB: LessonOsSessionOpener = vi.fn(async () => runtimeB)
+    const storageDescriptor = Object.getOwnPropertyDescriptor(navigator, "storage")
+    const persistStorage = vi.fn(async () => true)
+    Object.defineProperty(navigator, "storage", {
+      configurable: true,
+      value: {
+        persist: persistStorage,
+        persisted: vi.fn(async () => true),
+        estimate: vi.fn(async () => ({ usage: 1, quota: 100 })),
+      },
+    })
+    const container = document.getElementById("root")!
+    const root = createRoot(container)
+    const setTimeoutSpy = vi.spyOn(window, "setTimeout")
+    const clearTimeoutSpy = vi.spyOn(window, "clearTimeout")
+    let mounted = true
+    document.body.removeAttribute("data-mock-excalidraw-api")
+
+    try {
+      const RoomModule = await import("../Room")
+      const { Excalidraw } = await import("@excalidraw/excalidraw")
+      root.render(<RoomModule.default store={storeA} lessonOsOpener={openerA} />)
+      await vi.waitFor(() => {
+        expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+        expect((window as any).__MAESTRO_TEST__?.store).toBe(storeA)
+        expect(container.querySelector(".st-name-text")?.textContent).toBe("Generation A")
+        expect(container.querySelector(".st-export-advice")).not.toBeNull()
+        expect(container.querySelector(".st-err")?.textContent).toContain("Memoria della lezione non trovata")
+        expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+      })
+      mockExcalidrawHarness.pointerDown?.()
+      await vi.waitFor(() => {
+        expect(persistStorage).toHaveBeenCalledTimes(1)
+        expect((window as any).__MAESTRO_TEST__?.lessonOs?.current?.capabilities?.persistRequested)
+          .toBe(true)
+      })
+      const generationAProps = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect((generationAProps?.initialData as any)?.appState?.generation).toBe("A")
+      setTimeoutSpy.mockClear()
+      clearTimeoutSpy.mockClear()
+      generationAProps?.onChange?.([], { generation: "A" } as any, {})
+      expect(setTimeoutSpy).toHaveBeenCalledTimes(1)
+      const generationASaveTimer = setTimeoutSpy.mock.results[0]?.value
+      expect(generationASaveTimer).toBeDefined()
+      clearTimeoutSpy.mockClear()
+
+      document.body.removeAttribute("data-mock-excalidraw-api")
+      root.render(<RoomModule.default store={storeB} lessonOsOpener={openerB} />)
+      await vi.waitFor(() => expect(registerB).toHaveBeenCalledWith("test-room-1"))
+      expect(clearTimeoutSpy).toHaveBeenCalledWith(generationASaveTimer)
+      registrationB.resolve({ lessonId: "test-room-1", release: releaseB })
+      await vi.waitFor(() => {
+        expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+        expect((window as any).__MAESTRO_TEST__?.store).toBe(storeB)
+        expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+      })
+
+      const generationBProps = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect((generationBProps?.initialData as any)?.appState?.generation).toBeUndefined()
+      expect(container.querySelector(".st-name-text")?.textContent).toBe("test-room-1")
+      expect(container.querySelector(".st-export-advice")).toBeNull()
+      expect(container.querySelector(".st-err")).toBeNull()
+      expect(container.textContent).toContain("solo in questo browser")
+
+      await (window as any).__MAESTRO_TEST__.flushPersist()
+      expect(saveSceneB).not.toHaveBeenCalled()
+      mockExcalidrawHarness.pointerDown?.()
+      await vi.waitFor(() => expect(persistStorage).toHaveBeenCalledTimes(2))
+      expect(saveSceneA).not.toHaveBeenCalled()
+
+      root.unmount()
+      mounted = false
+      await vi.waitFor(() => {
+        expect(releaseA).toHaveBeenCalledTimes(1)
+        expect(releaseB).toHaveBeenCalledTimes(1)
+      })
+    } finally {
+      setTimeoutSpy.mockRestore()
+      clearTimeoutSpy.mockRestore()
+      if (mounted) root.unmount()
+      document.body.removeAttribute("data-mock-excalidraw-api")
+      if (storageDescriptor) {
+        Object.defineProperty(navigator, "storage", storageDescriptor)
+      } else {
+        delete (navigator as { storage?: unknown }).storage
+      }
+    }
+  })
+
+  it("turnover di generation non permette al cleanup vecchio di azzerare runtime o activity nuovi", async () => {
+    await selectRoomView("teacher")
+    const runtimeA = await openInMemorySession()
+    const runtimeB = await openInMemorySession()
+    const closeADeferred = makeDeferred<any>()
+    const closeA = vi.spyOn(runtimeA, "close").mockImplementation(() => closeADeferred.promise)
+    const closeB = vi.spyOn(runtimeB, "close").mockResolvedValue({} as any)
+    const releaseA = vi.fn(async () => {})
+    const releaseB = vi.fn(async () => {})
+    const { store: storeA } = await createMockStore()
+    const { store: storeB } = await createMockStore()
+    vi.spyOn(storeA, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release: releaseA,
+    })
+    vi.spyOn(storeB, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release: releaseB,
+    })
+    vi.spyOn(storeA, "loadScene").mockResolvedValue(null)
+    vi.spyOn(storeA, "loadMeta").mockResolvedValue(null)
+    vi.spyOn(storeB, "loadScene").mockResolvedValue(null)
+    vi.spyOn(storeB, "loadMeta").mockResolvedValue(null)
+    const openerA: LessonOsSessionOpener = vi.fn(async () => runtimeA)
+    const openerB: LessonOsSessionOpener = vi.fn(async () => runtimeB)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={storeA} lessonOsOpener={openerA} />)
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(runtimeA)
+    })
+
+    root.render(<RoomModule.default store={storeB} lessonOsOpener={openerB} />)
+    await vi.waitFor(() => {
+      expect(closeA).toHaveBeenCalledTimes(1)
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect((window as any).__MAESTRO_TEST__?.store).toBe(storeB)
+      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(runtimeB)
+    })
+    expect(releaseA).not.toHaveBeenCalled()
+    expect(releaseB).not.toHaveBeenCalled()
+    expect(closeB).not.toHaveBeenCalled()
+
+    closeADeferred.resolve({})
+    await vi.waitFor(() => expect(releaseA).toHaveBeenCalledTimes(1))
+    expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(runtimeB)
+    expect(releaseB).not.toHaveBeenCalled()
+    expect(closeB).not.toHaveBeenCalled()
+
+    root.unmount()
+    await vi.waitFor(() => {
+      expect(closeB).toHaveBeenCalledTimes(1)
+      expect(releaseB).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  it("una generation riuscita dopo registration fatal non risuperficia il diagnostico coordination stale", async () => {
+    await selectRoomView("teacher")
+    const runtime = await openInMemorySession()
+    vi.spyOn(runtime, "close").mockResolvedValue({} as any)
+    const release = vi.fn(async () => {})
+    const { store: failingStore } = await createMockStore()
+    const { store: healthyStore } = await createMockStore()
+    vi.spyOn(failingStore, "registerActiveLesson").mockRejectedValue(
+      new Error("first generation coordination failed"),
+    )
+    vi.spyOn(healthyStore, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release,
+    })
+    vi.spyOn(healthyStore, "loadScene").mockResolvedValue(null)
+    vi.spyOn(healthyStore, "loadMeta").mockResolvedValue(null)
+    const healthyOpener: LessonOsSessionOpener = vi.fn(async () => runtime)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={failingStore} lessonOsOpener={healthyOpener} />)
+    await vi.waitFor(() => {
+      const alert = document.querySelector("[role='alert']")
+      expect(alert).not.toBeNull()
+      expect(alert!.textContent).toContain("first generation coordination failed")
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(false)
+    })
+
+    root.render(<RoomModule.default store={healthyStore} lessonOsOpener={healthyOpener} />)
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect(document.querySelector(".st-bar")).not.toBeNull()
+    })
+    expect(document.querySelector(".st-err")?.textContent ?? "").not.toContain(
+      "first generation coordination failed",
+    )
+
+    root.unmount()
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+  })
+
+  it("cleanup tenta tutti gli unsubscribe prima di flush → close → release e isola ogni errore", async () => {
+    await selectRoomView("teacher")
+    await new Promise((resolve) => window.setTimeout(resolve, 1))
+    document.body.removeAttribute("data-mock-excalidraw-api")
+    const trace: string[] = []
+    mockExcalidrawHarness.cleanupTrace = trace
+    mockExcalidrawHarness.throwOnUnsubDown = true
+    const runtime = await openInMemorySession()
+    vi.spyOn(runtime, "close").mockImplementation(async () => {
+      trace.push("close")
+      throw new Error("close failed")
+    })
+    const release = vi.fn(async () => {
+      trace.push("release")
+      throw new Error("release failed")
+    })
+    const { JournalRecorder } = await import("../store/JournalRecorder")
+    const flush = vi.spyOn(JournalRecorder.prototype, "flush").mockImplementation(async () => {
+      trace.push("flush:start")
+      throw new Error("flush failed")
+    })
+    const { store } = await createMockStore()
+    vi.spyOn(store, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release,
+    })
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+    const opener: LessonOsSessionOpener = vi.fn(async () => runtime)
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1")
+    })
+
+    root.unmount()
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+    const flushIndex = trace.indexOf("flush:start")
+    expect(flushIndex).toBeGreaterThan(1)
+    expect(trace.slice(0, flushIndex)).toContain("unsubDown")
+    expect(trace.slice(0, flushIndex)).toContain("unsubUp")
+    expect(trace.slice(flushIndex)).toEqual(["flush:start", "close", "release"])
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Room subscription cleanup failed during unmount",
+      expect.objectContaining({ message: "unsubscribe down failed" }),
+    )
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Room journal flush failed before LessonOS close",
+      expect.objectContaining({ message: "flush failed" }),
+    )
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "LessonOS session cleanup failed during Room unmount",
+      expect.objectContaining({ message: "close failed" }),
+    )
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Room activity release failed during unmount",
+      expect.objectContaining({ message: "release failed" }),
+    )
+    flush.mockRestore()
+    consoleSpy.mockRestore()
+  })
+
+  it("opener reject e scene error restano degradati ma tengono activity fino all'unmount", async () => {
+    await selectRoomView("teacher")
+    const release = vi.fn(async () => {})
+    const { store } = await createMockStore()
+    vi.spyOn(store, "registerActiveLesson").mockResolvedValue({
+      lessonId: "test-room-1",
+      release,
+    })
+    vi.spyOn(store, "loadScene").mockRejectedValue(new Error("scene degraded"))
+    const opener: LessonOsSessionOpener = vi.fn(async () => {
+      throw new Error("runtime degraded")
+    })
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect(document.querySelector(".st-err")?.textContent).toContain("scene degraded")
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    })
+    expect(release).not.toHaveBeenCalled()
+    root.unmount()
+    await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+  })
+
+  it.each<Exclude<RoomViewFixture, "teacher">>(["student", "recap", "replay"])(
+    "%s registra e rilascia activity senza aprire LessonOS",
+    async (view) => {
+      await selectRoomView(view)
+      const release = vi.fn(async () => {})
+      const { store } = await createMockStore()
+      const register = vi.spyOn(store, "registerActiveLesson").mockResolvedValue({
+        lessonId: "test-room-1",
+        release,
+      })
+      vi.spyOn(store, "loadScene").mockResolvedValue(null)
+      vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+      const opener: LessonOsSessionOpener = vi.fn()
+      const root = createRoot(document.getElementById("root")!)
+      const RoomModule = await import("../Room")
+      root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
+
+      if (view === "student") {
+        await vi.waitFor(() => expect(document.querySelector(".st-bar-student")).not.toBeNull())
+      } else {
+        await vi.waitFor(() => expect(document.body.textContent).toContain(`mock-${view}-view`))
+      }
+      expect(register).toHaveBeenCalledWith("test-room-1")
+      expect(opener).not.toHaveBeenCalled()
+      root.unmount()
+      await vi.waitFor(() => expect(release).toHaveBeenCalledTimes(1))
+    },
+  )
+
+  it("coordinator condiviso tratta C/c come attivi insieme e D come lock distinto", async () => {
+    await selectRoomView("student")
+    const actEnvironment = globalThis as typeof globalThis & {
+      IS_REACT_ACT_ENVIRONMENT?: boolean
+    }
+    const previousActEnvironment = actEnvironment.IS_REACT_ACT_ENVIRONMENT
+    actEnvironment.IS_REACT_ACT_ENVIRONMENT = true
+    const coordinator = createLessonMutationCoordinator(new ImmediateActivityBroker())
+    document.body.innerHTML = '<div id="room-c"></div><div id="room-lower-c"></div><div id="room-d"></div>'
+    const { store: storeC } = await createMockStore({ mutationCoordinator: coordinator })
+    const { store: storeLowerC } = await createMockStore({ mutationCoordinator: coordinator })
+    const { store: storeD } = await createMockStore({ mutationCoordinator: coordinator })
+    const registerC = vi.spyOn(storeC, "registerActiveLesson")
+    const registerLowerC = vi.spyOn(storeLowerC, "registerActiveLesson")
+    const registerD = vi.spyOn(storeD, "registerActiveLesson")
+    const opener: LessonOsSessionOpener = vi.fn()
+    const RoomModule = await import("../Room")
+    const rootC = createRoot(document.getElementById("room-c")!)
+    const rootLowerC = createRoot(document.getElementById("room-lower-c")!)
+    const rootD = createRoot(document.getElementById("room-d")!)
+    let mountedC = false
+    let mountedLowerC = false
+    let mountedD = false
+
+    try {
+      globalThis.location.hash = "#RoomC"
+      await act(async () => {
+        rootC.render(<RoomModule.default store={storeC} lessonOsOpener={opener} />)
+        mountedC = true
+      })
+      globalThis.location.hash = "#roomc"
+      await act(async () => {
+        rootLowerC.render(<RoomModule.default store={storeLowerC} lessonOsOpener={opener} />)
+        mountedLowerC = true
+      })
+      globalThis.location.hash = "#RoomD"
+      await act(async () => {
+        rootD.render(<RoomModule.default store={storeD} lessonOsOpener={opener} />)
+        mountedD = true
+      })
+
+      await vi.waitFor(() => {
+        expect(registerC).toHaveBeenCalledWith("RoomC")
+        expect(registerLowerC).toHaveBeenCalledWith("roomc")
+        expect(registerD).toHaveBeenCalledWith("RoomD")
+      })
+      expect(await storeC.probeInactiveLesson("ROOMC")).toEqual({ status: "unavailable", reason: "active" })
+      expect(await storeD.probeInactiveLesson("roomd")).toEqual({ status: "unavailable", reason: "active" })
+      expect(opener).not.toHaveBeenCalled()
+
+      await act(async () => {
+        rootC.unmount()
+        mountedC = false
+      })
+      expect(await storeC.probeInactiveLesson("RoomC")).toEqual({ status: "unavailable", reason: "active" })
+      await act(async () => {
+        rootLowerC.unmount()
+        mountedLowerC = false
+        rootD.unmount()
+        mountedD = false
+      })
+      await vi.waitFor(async () => {
+        expect(await storeC.probeInactiveLesson("ROOMC")).toEqual({ status: "inactive" })
+        expect(await storeD.probeInactiveLesson("roomd")).toEqual({ status: "inactive" })
+      })
+    } finally {
+      await act(async () => {
+        if (mountedC) rootC.unmount()
+        if (mountedLowerC) rootLowerC.unmount()
+        if (mountedD) rootD.unmount()
+      })
+      if (previousActEnvironment === undefined) {
+        delete actEnvironment.IS_REACT_ACT_ENVIRONMENT
+      } else {
+        actEnvironment.IS_REACT_ACT_ENVIRONMENT = previousActEnvironment
+      }
+    }
+  })
+
+  it("safety local-only non impedisce il mount e resta fail-closed al probe", async () => {
+    await selectRoomView("student")
+    const { store } = await createMockStore()
+    expect(store.mutationSafety).toBe("local-only")
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect((window as any).__MAESTRO_TEST__?.ready).toBe(true))
+    expect(await store.probeInactiveLesson("test-room-1")).toEqual({
+      status: "unavailable",
+      reason: "local-only",
+    })
+    root.unmount()
+  })
+})
 
 describe("FB-3C: ownership Room della sessione LessonOS", () => {
   it("hash con whitespace fallisce esattamente prima di store e opener", async () => {
