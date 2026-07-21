@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ARD-11 V4 exposes epoch-bounded publication binding through this command surface.
+# ARD-11 V5 exposes epoch-bounded publication binding through this command surface.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -41,7 +41,7 @@ Root scripts:
 
 Studio dependency commands:
   npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
-  npm --prefix apps/studio install --package-lock-only --ignore-scripts --no-audit --no-fund
+  npm install --package-lock-only --ignore-scripts --no-audit --no-fund
 EOF
 }
 

@@ -13,9 +13,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ARD11_D0P_A_ORACLE_COMMIT_V4=a3d8f1cb8c1222f420c696416d562343b0e1b8fd
-  # ARD11_D0P_A_ORACLE_BINDING_V4=1988e55955fc37d21ff90a8cd4bdbd09387f2d3fe8674379ff516e5f67682623
-  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V4=730b7a33699cdd7c251e934f6bfc43a4938a27fa776245b43eaf2b19290be0ff
+  # ARD11_D0P_A_ORACLE_COMMIT_V5=a73148d34a33de441ae659a856e5573c1fddbaad
+  # ARD11_D0P_A_ORACLE_BINDING_V5=8db6993a4c23e39f20143fef39137846fe57a4230abb46cf6f1cbfc1c7f57c5a
+  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V5=ff9a6d862a3d5d870a1300d59ef32b2256c1624c5cd84666811fb92780db4abf
   studio-install-policy:
     name: studio-install-policy
     runs-on: ubuntu-latest
@@ -27,9 +27,9 @@ jobs:
       POLICY_EVENT_SHA: ${{ github.sha }}
       POLICY_PR_MERGE_SHA: ${{ github.event_name == 'pull_request' && github.sha || '' }}
       POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs
-      POLICY_ORACLE_COMMIT_SHA: a3d8f1cb8c1222f420c696416d562343b0e1b8fd
-      POLICY_ORACLE_SHA256: 1988e55955fc37d21ff90a8cd4bdbd09387f2d3fe8674379ff516e5f67682623
-      POLICY_EXPECTED_F_MANIFEST_SHA256: 730b7a33699cdd7c251e934f6bfc43a4938a27fa776245b43eaf2b19290be0ff
+      POLICY_ORACLE_COMMIT_SHA: a73148d34a33de441ae659a856e5573c1fddbaad
+      POLICY_ORACLE_SHA256: 8db6993a4c23e39f20143fef39137846fe57a4230abb46cf6f1cbfc1c7f57c5a
+      POLICY_EXPECTED_F_MANIFEST_SHA256: ff9a6d862a3d5d870a1300d59ef32b2256c1624c5cd84666811fb92780db4abf
       POLICY_DEBUG: "1"
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
@@ -60,9 +60,9 @@ jobs:
             > "$policy_root/bootstrap.json"
 
           workflow_path=.github/workflows/ci.yml
-          marker=ARD11_D0P_A_ORACLE_BINDING_V4=
-          o_marker=ARD11_D0P_A_ORACLE_COMMIT_V4=
-          f_marker=ARD11_D0P_A_EXPECTED_F_MANIFEST_V4=
+          marker=ARD11_D0P_A_ORACLE_BINDING_V5=
+          o_marker=ARD11_D0P_A_ORACLE_COMMIT_V5=
+          f_marker=ARD11_D0P_A_EXPECTED_F_MANIFEST_V5=
 
           for value in "$POLICY_CANDIDATE_SHA" "$POLICY_EVENT_SHA"; do
             if [[ ! "$value" =~ ^[0-9a-f]{40}$ ]]; then
@@ -101,7 +101,7 @@ jobs:
           fi
 
           o_sha="$(git show "$a_sha:$workflow_path" | sed -n \
-            's/^  # ARD11_D0P_A_ORACLE_COMMIT_V4=\([0-9a-f]\{40\}\)$/\1/p')"
+            's/^  # ARD11_D0P_A_ORACLE_COMMIT_V5=\([0-9a-f]\{40\}\)$/\1/p')"
           if [[ ! "$o_sha" =~ ^[0-9a-f]{40}$ || "$o_sha" != "$POLICY_ORACLE_COMMIT_SHA" ]]; then
             echo 'POLICY_RED:PRE_RECEIPT_O_ANCHOR_INVALID' >&2
             exit 1
@@ -131,9 +131,9 @@ jobs:
           fi
 
           frozen_expected="$(git show "$a_sha:$workflow_path" | sed -n \
-            's/^  # ARD11_D0P_A_ORACLE_BINDING_V4=\([0-9a-f]\{64\}\)$/\1/p')"
+            's/^  # ARD11_D0P_A_ORACLE_BINDING_V5=\([0-9a-f]\{64\}\)$/\1/p')"
           frozen_manifest="$(git show "$a_sha:$workflow_path" | sed -n \
-            's/^  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V4=\([0-9a-f]\{64\}\)$/\1/p')"
+            's/^  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V5=\([0-9a-f]\{64\}\)$/\1/p')"
           if [[ ! "$frozen_expected" =~ ^[0-9a-f]{64}$ ]]; then
             echo 'POLICY_RED:E_FROZEN_DIGEST_INVALID_AT_A' >&2
             exit 1
