@@ -2109,9 +2109,9 @@ function manifestDigestForContents(contents) {
 
 function activeEpochContents(oracleSha, oracleDigest, manifestDigest) {
   const markers = [
-    `  # ARD11_D0P_A_ORACLE_COMMIT_V2=${oracleSha}`,
-    `  # ARD11_D0P_A_ORACLE_BINDING_V2=${oracleDigest}`,
-    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V2=${manifestDigest}`,
+    `  # ARD11_D0P_A_ORACLE_COMMIT_V3=${oracleSha}`,
+    `  # ARD11_D0P_A_ORACLE_BINDING_V3=${oracleDigest}`,
+    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V3=${manifestDigest}`,
   ].join('\n');
   return {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=true\n'),
@@ -3019,6 +3019,7 @@ function nearestAcceptedEvidenceCommit(root, candidateSha, options) {
   const commits = git(root, ['rev-list', '--first-parent', candidateSha]).split('\n').filter(Boolean);
   let revoked = false;
   for (const commit of commits) {
+    if (commit === options.workflowAnchorSha) break;
     const parents = gitParents(root, commit);
     if (parents.length !== 1) continue;
     const scope = changedPaths(root, parents[0], commit);
@@ -3610,9 +3611,9 @@ function verifyFrozenEpoch(root, candidateSha, oracleAnchorSha, workflowAnchorSh
   const currentWorkflow = gitFile(root, candidateSha, WORKFLOW_PATH);
   const frozenWorkflow = gitFile(root, workflowAnchorSha, WORKFLOW_PATH);
   if (!currentWorkflow.equals(frozenWorkflow)) policyRed('E_WORKFLOW_DRIFT_FROM_A');
-  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V2', 40);
-  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V2', 64);
-  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V2', 64);
+  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V3', 40);
+  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V3', 64);
+  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V3', 64);
   if (markerOracle !== oracleAnchorSha) policyRed('PRE_RECEIPT_O_ANCHOR_INVALID');
   if (markerDigest !== sha256(frozenOracle)) policyRed('E_EXPECTED_DIGEST_DRIFT_FROM_A');
   if (!markerManifest) policyRed('PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID');
