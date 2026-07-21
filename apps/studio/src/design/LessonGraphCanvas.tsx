@@ -65,6 +65,12 @@ const EDGE_COLOR: Record<EdgeKind, string> = {
   "deriva-da": "#64748b",
   corregge: "#16a34a",
 }
+const EDGE_TEXT_COLOR: Record<EdgeKind, string> = {
+  // Tutte superano WCAG AA su #f5f6f8 a 13px; le linee mantengono la palette grafica.
+  cita: "#59697e",
+  "deriva-da": "#5e6d82",
+  corregge: "#19743f",
+}
 
 const VIEW_W = 640
 const VIEW_H = 420
@@ -332,7 +338,7 @@ export default function LessonGraphCanvas({
                     const other = posById.get(otherId)
                     return (
                       <li key={`${edge.from}:${edge.kind}:${edge.to}`} style={{ display: "flex", gap: 6, alignItems: "baseline" }}>
-                        <span style={{ color: EDGE_COLOR[edge.kind], fontWeight: 600 }} title={outbound ? "verso" : "da"}>
+                        <span style={{ color: EDGE_TEXT_COLOR[edge.kind], fontWeight: 600 }} title={outbound ? "verso" : "da"}>
                           {outbound ? "↦" : "↤"} {EDGE_LABEL_IT[edge.kind]}
                         </span>
                         <span style={{ opacity: 0.85 }}>{other ? labelText(other.label, locale) : otherId}</span>
