@@ -2,7 +2,10 @@ name: studio-preview-readiness
 
 on:
   push:
-    branches: [main, "codex/**", "feat/**", "docs/**"]
+    # Pull requests already exercise the candidate branch below. Restrict the
+    # push surface to the post-merge main SHA so a branch update cannot run the
+    # same readiness job twice (push + pull_request).
+    branches: [main]
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
