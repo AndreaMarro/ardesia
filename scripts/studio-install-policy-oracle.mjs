@@ -974,7 +974,7 @@ function createSeedRepository(sourceRoot, tempRoot) {
   requireRun('git', ['init', '--initial-branch=harness', seedRoot], { env: fixedGitEnvironment() }, 'SEED_GIT_INIT_FAILED');
   requireRun('git', ['-C', seedRoot, 'config', 'user.name', 'ARDESIA policy harness'], {}, 'SEED_GIT_CONFIG_FAILED');
   requireRun('git', ['-C', seedRoot, 'config', 'user.email', 'policy-harness@invalid.local'], {}, 'SEED_GIT_CONFIG_FAILED');
-  requireRun('git', ['-C', seedRoot, 'add', '-A'], {}, 'SEED_GIT_ADD_FAILED');
+  requireRun('git', ['-C', seedRoot, 'add', '-f', '-A'], {}, 'SEED_GIT_ADD_FAILED');
   requireRun('git', ['-C', seedRoot, 'commit', '-m', 'harness seed'], { env: fixedGitEnvironment() }, 'SEED_GIT_COMMIT_FAILED');
   const seedManifest = candidateManifest(seedRoot);
   if (sourceManifest.tsv !== seedManifest.tsv) policyRed('SEED_MANIFEST_MISMATCH');
@@ -3292,6 +3292,14 @@ jobs:
     copyCandidateEntry(sourceRoot, fixtureRoot, path);
   }
   initializeFixtureRepository(fixtureRoot);
+  const ignoredTrackedProbe = 'tracked-but-ignored-policy-probe.txt';
+  writeBytes(join(fixtureRoot, '.gitignore'), Buffer.from(`${ignoredTrackedProbe}\n`, 'utf8'));
+  writeBytes(join(fixtureRoot, ignoredTrackedProbe), Buffer.from('tracked fixture\n', 'utf8'));
+  requireRun('git', ['-C', fixtureRoot, 'add', '.gitignore'], {}, 'FIXTURE_GIT_ADD_FAILED');
+  requireRun('git', ['-C', fixtureRoot, 'add', '-f', ignoredTrackedProbe], {}, 'FIXTURE_GIT_ADD_FAILED');
+  requireRun('git', ['-C', fixtureRoot, 'commit', '-m', 'fixture tracked ignored probe'], {
+    env: fixedGitEnvironment(),
+  }, 'FIXTURE_GIT_COMMIT_FAILED');
 }
 
 function makeDebtFilesSafe(root) {
@@ -3380,6 +3388,9 @@ function runSelfTest(root) {
     const fixtureRoot = join(tempRoot, 'candidate');
     ensureDirectory(fixtureRoot);
     createSyntheticPolicyRepository(root, fixtureRoot);
+    const seedRegressionRoot = join(tempRoot, 'tracked-ignored-seed-regression');
+    ensureDirectory(seedRegressionRoot);
+    createSeedRepository(fixtureRoot, seedRegressionRoot);
     const fakeBin = createFakeTools(tempRoot);
     const env = caseEnvironment(fakeBin, fixtureRoot);
     const excludedWorkspaceBaseline = capturePolicyReason(() => checkRepository(fixtureRoot, { env }));
