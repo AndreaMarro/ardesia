@@ -10,10 +10,9 @@
 
 import {
   chmodSync,
-  constants,
-  cpSync,
   copyFileSync,
   existsSync,
+  linkSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
@@ -21,6 +20,7 @@ import {
   readdirSync,
   readlinkSync,
   realpathSync,
+  renameSync,
   rmSync,
   statSync,
   symlinkSync,
@@ -912,9 +912,20 @@ function ensureDirectory(path) {
   mkdirSync(path, { recursive: true, mode: 0o700 });
 }
 
+let atomicWriteCounter = 0;
+
 function writeBytes(path, bytes, mode = 0o600) {
   ensureDirectory(dirname(path));
-  writeFileSync(path, bytes, { mode });
+  atomicWriteCounter += 1;
+  const temporary = `${path}.ardesia-policy-${process.pid}-${atomicWriteCounter}.tmp`;
+  if (existsSync(temporary)) policyRed('ATOMIC_WRITE_TEMP_EXISTS');
+  writeFileSync(temporary, bytes, { mode, flag: 'wx' });
+  try {
+    renameSync(temporary, path);
+  } catch (error) {
+    if (existsSync(temporary)) rmSync(temporary, { force: false });
+    throw error;
+  }
 }
 
 function writeJson(path, value) {
@@ -949,6 +960,25 @@ function copyCandidateEntry(sourceRoot, destinationRoot, path) {
   } else if (entry.isFile()) {
     copyFileSync(source, destination);
     chmodSync(destination, entry.mode & 0o777);
+  } else {
+    policyRed('CANDIDATE_ENTRY_NOT_FILE');
+  }
+}
+
+function linkCandidateEntry(sourceRoot, destinationRoot, path) {
+  const source = join(sourceRoot, path);
+  const destination = join(destinationRoot, path);
+  ensureDirectory(dirname(destination));
+  const entry = lstatSync(source);
+  if (entry.isSymbolicLink()) {
+    symlinkSync(readlinkSync(source), destination);
+  } else if (entry.isFile()) {
+    try {
+      linkSync(source, destination);
+    } catch {
+      copyFileSync(source, destination);
+      chmodSync(destination, entry.mode & 0o777);
+    }
   } else {
     policyRed('CANDIDATE_ENTRY_NOT_FILE');
   }
@@ -1011,21 +1041,21 @@ function createSeedRepository(sourceRoot, tempRoot) {
 }
 
 function cloneSeed(seed, destination) {
-  try {
-    cpSync(seed.seedRoot, destination, {
-      recursive: true,
-      dereference: false,
-      errorOnExist: true,
-      force: false,
-      mode: constants.COPYFILE_FICLONE,
-      preserveTimestamps: true,
-      verbatimSymlinks: true,
-    });
-  } catch {
-    policyRed('HARNESS_CLONE_FAILED');
+  requireRun('git', [
+    'clone', '--quiet', '--shared', '--no-checkout', '--local', '--', seed.seedRoot, destination,
+  ], {}, 'HARNESS_CLONE_FAILED');
+  for (const record of seed.manifest.records) {
+    linkCandidateEntry(seed.seedRoot, destination, record.path);
+  }
+  requireRun('git', ['-C', destination, 'read-tree', seed.seedCommit], {}, 'HARNESS_CLONE_INDEX_FAILED');
+  if (git(destination, ['rev-parse', 'HEAD']) !== seed.seedCommit) {
+    policyRed('HARNESS_CLONE_HEAD_MISMATCH');
   }
   const tree = git(destination, ['rev-parse', 'HEAD^{tree}']);
   if (tree !== seed.seedTree) policyRed('HARNESS_CLONE_TREE_MISMATCH');
+  if (gitBuffer(destination, ['status', '--porcelain=v1', '-z']).length !== 0) {
+    policyRed('HARNESS_CLONE_WORKTREE_MISMATCH');
+  }
 }
 
 function createFakeTools(tempRoot) {
@@ -1095,7 +1125,7 @@ function mutateText(root, path, transform) {
   const before = readFileSync(absolute, 'utf8');
   const after = transform(before);
   if (after === before) policyRed('HARNESS_MUTATION_NO_EFFECT');
-  writeFileSync(absolute, after, 'utf8');
+  writeBytes(absolute, Buffer.from(after, 'utf8'), lstatSync(absolute).mode & 0o777);
 }
 
 function surfacePath(surface) {
@@ -1215,10 +1245,15 @@ function buildCoreCases(state, legacyBytes) {
         if (state === 'FULL_GREEN') {
           const legacy = legacyBytes[path];
           if (!legacy || sha256(legacy) !== LEGACY_DEBT[path]) policyRed(`HARNESS_LEGACY_FIXTURE_MISSING:${label}`);
-          writeFileSync(join(root, path), legacy);
+          const absolute = join(root, path);
+          writeBytes(absolute, legacy, lstatSync(absolute).mode & 0o777);
         } else {
           const absolute = join(root, path);
-          writeFileSync(absolute, Buffer.concat([readFileSync(absolute), Buffer.from(' ', 'utf8')]));
+          writeBytes(
+            absolute,
+            Buffer.concat([readFileSync(absolute), Buffer.from(' ', 'utf8')]),
+            lstatSync(absolute).mode & 0o777,
+          );
         }
       },
     });
@@ -1228,7 +1263,11 @@ function buildCoreCases(state, legacyBytes) {
       id: `N12-${historical.id}`, expected: `POLICY_RED:HISTORICAL_EVIDENCE_DRIFT:${historical.id}`, mode: 'atomic-callsite',
       mutate(root) {
         const absolute = join(root, historical.path);
-        writeFileSync(absolute, Buffer.concat([readFileSync(absolute), Buffer.from(' ', 'utf8')]));
+        writeBytes(
+          absolute,
+          Buffer.concat([readFileSync(absolute), Buffer.from(' ', 'utf8')]),
+          lstatSync(absolute).mode & 0o777,
+        );
       },
     });
   }
@@ -1274,6 +1313,7 @@ function ensurePatchIncludesUntracked(caseRoot) {
 
 function runCoreCases(seed, outputRoot, fakeBin, state, legacyBytes) {
   const results = [];
+  const seedRecords = new Map(seed.manifest.records.map((record) => [record.path, record]));
   for (const definition of buildCoreCases(state, legacyBytes)) {
     const caseRoot = join(dirname(seed.seedRoot), `case-${definition.id}`);
     cloneSeed(seed, caseRoot);
@@ -1287,6 +1327,17 @@ function runCoreCases(seed, outputRoot, fakeBin, state, legacyBytes) {
     ensurePatchIncludesUntracked(caseRoot);
     const patch = gitBuffer(caseRoot, ['diff', '--binary', '--no-ext-diff']);
     if (patch.length === 0) policyRed(`HARNESS_RED:MUTATION_PATCH_EMPTY:${definition.id}`);
+    for (const path of parseNul(gitBuffer(caseRoot, ['diff', '--name-only', '-z']))) {
+      const record = seedRecords.get(path);
+      if (!record) continue;
+      const absolute = join(seed.seedRoot, path);
+      if (modeForPath(absolute) !== record.mode || sha256(bytesForPath(absolute)) !== record.sha256) {
+        policyRed(`HARNESS_SEED_MUTATED:${definition.id}:${path}`);
+      }
+    }
+    if (gitBuffer(seed.seedRoot, ['status', '--porcelain=v1', '-z']).length !== 0) {
+      policyRed(`HARNESS_SEED_MUTATED:${definition.id}`);
+    }
     const negative = invokeCheck(caseRoot, env);
     const actualReason = String(negative.stderr || negative.stdout).trim().split('\n').at(-1) ?? '';
     if (negative.status === 0 || actualReason !== definition.expected) {
@@ -4455,6 +4506,10 @@ try {
     process.stderr.write(`${error.reason}\n`);
     process.exitCode = 1;
   } else {
+    if (process.env.POLICY_DEBUG === '1') {
+      const detail = error instanceof Error ? (error.stack ?? error.message) : String(error);
+      process.stderr.write(`${detail}\n`);
+    }
     process.stderr.write('POLICY_RED:INTERNAL_ERROR\n');
     process.exitCode = 1;
   }
