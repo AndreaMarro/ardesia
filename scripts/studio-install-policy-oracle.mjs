@@ -4455,6 +4455,9 @@ try {
     process.stderr.write(`${error.reason}\n`);
     process.exitCode = 1;
   } else {
+    if (process.env.POLICY_DEBUG === '1') {
+      process.stderr.write(`${error?.stack ?? String(error)}\n`);
+    }
     process.stderr.write('POLICY_RED:INTERNAL_ERROR\n');
     process.exitCode = 1;
   }
