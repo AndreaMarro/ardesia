@@ -2109,9 +2109,9 @@ function manifestDigestForContents(contents) {
 
 function activeEpochContents(oracleSha, oracleDigest, manifestDigest) {
   const markers = [
-    `  # ARD11_D0P_A_ORACLE_COMMIT_V5=${oracleSha}`,
-    `  # ARD11_D0P_A_ORACLE_BINDING_V5=${oracleDigest}`,
-    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V5=${manifestDigest}`,
+    `  # ARD11_D0P_A_ORACLE_COMMIT_V6=${oracleSha}`,
+    `  # ARD11_D0P_A_ORACLE_BINDING_V6=${oracleDigest}`,
+    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V6=${manifestDigest}`,
   ].join('\n');
   return {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=true\n'),
@@ -2782,11 +2782,11 @@ function findLegacyDebtBytes(root) {
   return found;
 }
 
-function validateRuntimeIdentity(root, options) {
+function validateRuntimeIdentity(root, options, env = process.env) {
   const head = git(root, ['rev-parse', 'HEAD']);
-  const candidateEnv = process.env.POLICY_CANDIDATE_SHA ?? '';
-  const eventEnv = process.env.POLICY_EVENT_SHA ?? '';
-  const mergeEnv = process.env.POLICY_PR_MERGE_SHA ?? '';
+  const candidateEnv = env.POLICY_CANDIDATE_SHA ?? '';
+  const eventEnv = env.POLICY_EVENT_SHA ?? '';
+  const mergeEnv = env.POLICY_PR_MERGE_SHA ?? '';
   for (const [name, value] of [['CANDIDATE', candidateEnv], ['EVENT', eventEnv], ['PR_MERGE', mergeEnv]]) {
     if (value !== '' && !SHA_RE.test(value)) policyRed(`${name}_SHA_INVALID`);
   }
@@ -3116,8 +3116,9 @@ function runHarness(root, options, internal = {}) {
   const outputRoot = internal.outputValidated
     ? options.output
     : validateOutputDirectory(options.output, root);
-  const identity = validateRuntimeIdentity(root, options);
-  const check = checkRepository(root, { env: internal.env ?? process.env });
+  const env = internal.env ?? process.env;
+  const identity = validateRuntimeIdentity(root, options, env);
+  const check = checkRepository(root, { env });
   const anchors = validateOptionalAnchors(root, options, identity);
   const auditMode = options.auditMode ?? 'functional';
   if (!['functional', 'receipt-intent'].includes(auditMode)) policyRed('AUDIT_MODE_INVALID');
@@ -3361,7 +3362,18 @@ jobs:
   for (const path of [...B_PATHS, ...HISTORICAL.map((record) => record.path), ORACLE_PATH]) {
     copyCandidateEntry(sourceRoot, fixtureRoot, path);
   }
+  const candidateDebt = Object.fromEntries(B_PATHS.map((path) => [path, readBytes(fixtureRoot, path)]));
+  const sourceLegacy = findLegacyDebtBytes(sourceRoot);
+  if (!B_PATHS.every((path) => sourceLegacy[path])) policyRed('SELF_TEST_LEGACY_SOURCE_MISSING');
+  writeContentMap(fixtureRoot, sourceLegacy);
   initializeFixtureRepository(fixtureRoot);
+  writeContentMap(fixtureRoot, candidateDebt);
+  commitFixture(fixtureRoot, 'fixture current debt source', B_PATHS);
+  const fixtureLegacy = findLegacyDebtBytes(fixtureRoot);
+  if (!B_PATHS.every((path) => fixtureLegacy[path]?.equals(sourceLegacy[path]))
+    || !validateSafeDebtFiles(fixtureRoot)) {
+    policyRed('SELF_TEST_LEGACY_HISTORY_INVALID');
+  }
   const ignoredTrackedProbe = 'tracked-but-ignored-policy-probe.txt';
   writeBytes(join(fixtureRoot, '.gitignore'), Buffer.from(`${ignoredTrackedProbe}\n`, 'utf8'));
   writeBytes(join(fixtureRoot, ignoredTrackedProbe), Buffer.from('tracked fixture\n', 'utf8'));
@@ -3454,6 +3466,11 @@ function runAuditRegressionFalsifiers(fixtureRoot, env) {
 
 function runSelfTest(root) {
   const tempRoot = checkedTempRoot('ardesia-policy-selftest-');
+  const selfTestIdentityKeys = ['POLICY_CANDIDATE_SHA', 'POLICY_EVENT_SHA', 'POLICY_PR_MERGE_SHA'];
+  const savedSelfTestIdentity = Object.fromEntries(
+    selfTestIdentityKeys.map((key) => [key, process.env[key]]),
+  );
+  for (const key of selfTestIdentityKeys) process.env[key] = '';
   try {
     const fixtureRoot = join(tempRoot, 'candidate');
     ensureDirectory(fixtureRoot);
@@ -3481,14 +3498,32 @@ function runSelfTest(root) {
     const replayEvidenceOffset = canonicalReplayEvidence.length;
     const control = runControlPlaneGitCases(fixtureRoot);
     const output = join(tempRoot, 'evidence');
-    const result = runHarness(fixtureRoot, {
-      output,
-      auditMode: 'receipt-intent',
-      producerTranche: 'ARD-11-E-POSTCOMMIT',
-      expectedCore: 43,
-      expectedLedgerGeneric: 3,
-      expectedReceiptSemantic: 16,
-    }, { env, selfTest: true, controlFrozen: true });
+    const savedIdentity = Object.fromEntries(selfTestIdentityKeys.map((key) => [key, process.env[key]]));
+    let result;
+    try {
+      process.env.POLICY_CANDIDATE_SHA = TEST_SHA.O;
+      process.env.POLICY_EVENT_SHA = TEST_SHA.A;
+      process.env.POLICY_PR_MERGE_SHA = TEST_SHA.F;
+      result = runHarness(fixtureRoot, {
+        output,
+        auditMode: 'receipt-intent',
+        producerTranche: 'ARD-11-E-POSTCOMMIT',
+        expectedCore: 43,
+        expectedLedgerGeneric: 3,
+        expectedReceiptSemantic: 16,
+      }, { env, selfTest: true, controlFrozen: true });
+      const fixtureHead = git(fixtureRoot, ['rev-parse', 'HEAD']);
+      if (result.summary.candidateSha !== fixtureHead
+        || result.summary.eventSha !== null
+        || result.summary.prMergeSha !== null) {
+        policyRed('SELF_TEST_INJECTED_IDENTITY_IGNORED');
+      }
+    } finally {
+      for (const key of selfTestIdentityKeys) {
+        if (savedIdentity[key] === undefined) delete process.env[key];
+        else process.env[key] = savedIdentity[key];
+      }
+    }
     if (result.summary.counts.total !== 62) policyRed('SELF_TEST_AUDIT_TOTAL_MISMATCH');
     if (!equalJcsValue(control, CONTROL_COUNTS)) policyRed('SELF_TEST_CONTROL_COUNTS_MISMATCH');
     makeDebtFilesSafe(fixtureRoot);
@@ -3561,7 +3596,14 @@ function runSelfTest(root) {
       temporaryOutputsRemovedOnExit: true,
     };
   } finally {
-    removeCheckedTemp(tempRoot, 'ardesia-policy-selftest-');
+    try {
+      removeCheckedTemp(tempRoot, 'ardesia-policy-selftest-');
+    } finally {
+      for (const key of selfTestIdentityKeys) {
+        if (savedSelfTestIdentity[key] === undefined) delete process.env[key];
+        else process.env[key] = savedSelfTestIdentity[key];
+      }
+    }
   }
 }
 
@@ -3618,9 +3660,9 @@ function verifyFrozenEpoch(root, candidateSha, oracleAnchorSha, workflowAnchorSh
   const currentWorkflow = gitFile(root, candidateSha, WORKFLOW_PATH);
   const frozenWorkflow = gitFile(root, workflowAnchorSha, WORKFLOW_PATH);
   if (!currentWorkflow.equals(frozenWorkflow)) policyRed('E_WORKFLOW_DRIFT_FROM_A');
-  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V5', 40);
-  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V5', 64);
-  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V5', 64);
+  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V6', 40);
+  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V6', 64);
+  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V6', 64);
   if (markerOracle !== oracleAnchorSha) policyRed('PRE_RECEIPT_O_ANCHOR_INVALID');
   if (markerDigest !== sha256(frozenOracle)) policyRed('E_EXPECTED_DIGEST_DRIFT_FROM_A');
   if (!markerManifest) policyRed('PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID');
