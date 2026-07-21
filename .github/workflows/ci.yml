@@ -35,6 +35,7 @@ jobs:
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
       - name: Assert exact policy candidate
         shell: bash
         run: |
@@ -266,21 +267,48 @@ jobs:
         working-directory: apps/studio
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 22
+          node-version: "22.14.0"
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
       - name: Studio install policy + materialize
         working-directory: ${{ github.workspace }}
         run: bash bin/monorepo.sh policy-studio-install-check && npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
-      - name: vitest (deterministic profile)
+      - name: vitest unit/integration (deterministic profile)
         run: >
-          npx vitest run
+          npm test --
           --pool=threads --maxWorkers=1 --no-file-parallelism
           --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
       - run: npm run build
+      - name: Install exact Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - run: npm run storybook:build
+      - run: npm run storybook:test
+      - name: Assert Chromatic project token is configured
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CHROMATIC_PROJECT_TOKEN"
+      - name: chromatic-visual-review
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        with:
+          workingDir: apps/studio
+          buildScriptName: storybook:build
+          chromaticSha: ${{ github.sha }}
+          exitZeroOnChanges: false
+          skipUpdateCheck: true
+        # Intentionally no autoAcceptChanges and no onlyChanged/TurboSnap.
 
   engine:
     name: engine (pytest)
