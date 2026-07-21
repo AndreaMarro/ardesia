@@ -58,3 +58,10 @@ reviews:
         - Preserve cancellation-safe concurrency, bounded artifact retention, and separation of preview from production secrets.
         - Tie tests, SBOM, provenance, preview, and visible build metadata to the same full source SHA and verified artifact digest.
         - Flag skipped, renamed, softened, or conditionally bypassed required checks and any failure-masking configuration.
+
+    - path: "apps/studio/.github/workflows/**"
+      instructions: |
+        - Pin every third-party action to a full 40-character commit SHA and keep workflow permissions least-privilege and explicit.
+        - Preserve cancellation-safe concurrency, bounded artifact retention, and separation of preview from production secrets.
+        - Tie tests, SBOM, provenance, preview, and visible build metadata to the same full source SHA and verified artifact digest.
+        - Flag skipped, renamed, softened, or conditionally bypassed required checks and any failure-masking configuration.
