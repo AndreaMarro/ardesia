@@ -20,9 +20,9 @@ test -z "$(git status --porcelain)"
 test "$(git rev-parse HEAD)" = "$candidate_sha"
 workflow_path=.github/workflows/ci.yml
 workflow_anchor_sha="$(git log --first-parent --reverse \
-  -S'ARD11_D0P_A_ORACLE_BINDING_V5=' --format=%H "$candidate_sha" -- "$workflow_path" | head -n 1)"
+  -S'ARD11_D0P_A_ORACLE_BINDING_V6=' --format=%H "$candidate_sha" -- "$workflow_path" | head -n 1)"
 oracle_anchor_sha="$(git show "$workflow_anchor_sha:$workflow_path" | sed -n \
-  's/^  # ARD11_D0P_A_ORACLE_COMMIT_V5=\([0-9a-f]\{40\}\)$/\1/p')"
+  's/^  # ARD11_D0P_A_ORACLE_COMMIT_V6=\([0-9a-f]\{40\}\)$/\1/p')"
 test "${#workflow_anchor_sha}" -eq 40
 test "${#oracle_anchor_sha}" -eq 40
 state_root="$(mktemp -d /tmp/ardesia-studio-policy.XXXXXX)"
