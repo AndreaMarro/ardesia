@@ -175,7 +175,7 @@ const HELP = Object.freeze({
   ].join('\n'),
   postcommit: [
     'Usage: node scripts/studio-install-policy-oracle.mjs postcommit-binding-check',
-    '  --candidate-e-sha <40-hex> --oracle-anchor-sha <40-hex>',
+    '  --candidate-sha <40-hex> --oracle-anchor-sha <40-hex>',
     '  --workflow-anchor-sha <40-hex> --pending-task ARD-11-D0P-B-STUDIO-INSTALL-POLICY',
     '  --index-path <exact-path> --records-dir <exact-path> --canonical-dir <exact-path>',
     '  --revocations-dir <exact-path> --state-output <absolute-file>',
@@ -2109,9 +2109,9 @@ function manifestDigestForContents(contents) {
 
 function activeEpochContents(oracleSha, oracleDigest, manifestDigest) {
   const markers = [
-    `  # ARD11_D0P_A_ORACLE_COMMIT_V1=${oracleSha}`,
-    `  # ARD11_D0P_A_ORACLE_BINDING_V1=${oracleDigest}`,
-    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V1=${manifestDigest}`,
+    `  # ARD11_D0P_A_ORACLE_COMMIT_V2=${oracleSha}`,
+    `  # ARD11_D0P_A_ORACLE_BINDING_V2=${oracleDigest}`,
+    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V2=${manifestDigest}`,
   ].join('\n');
   return {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=true\n'),
@@ -2199,9 +2199,9 @@ function appendReceiptCommit(root, history, functionalSha, operation, policyStat
   return commitFixture(root, `control receipt ${operation}`, [LEDGER_PATH]);
 }
 
-function postcommitFixtureOptions(history, candidateESha) {
+function postcommitFixtureOptions(history, candidateSha) {
   return {
-    candidateESha, oracleAnchorSha: history.O, workflowAnchorSha: history.A,
+    candidateSha, oracleAnchorSha: history.O, workflowAnchorSha: history.A,
     pendingTask: PENDING_TASK, indexPath: EVIDENCE_INDEX_PATH, recordsDir: EVIDENCE_RECORDS_DIR,
     canonicalDir: EVIDENCE_CANONICAL_DIR, revocationsDir: EVIDENCE_REVOCATIONS_DIR,
     auditMode: 'receipt-intent', expectedCore: 43, expectedLedgerGeneric: 3, expectedReceiptSemantic: 16,
@@ -3610,9 +3610,9 @@ function verifyFrozenEpoch(root, candidateSha, oracleAnchorSha, workflowAnchorSh
   const currentWorkflow = gitFile(root, candidateSha, WORKFLOW_PATH);
   const frozenWorkflow = gitFile(root, workflowAnchorSha, WORKFLOW_PATH);
   if (!currentWorkflow.equals(frozenWorkflow)) policyRed('E_WORKFLOW_DRIFT_FROM_A');
-  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V1', 40);
-  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V1', 64);
-  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V1', 64);
+  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V2', 40);
+  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V2', 64);
+  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V2', 64);
   if (markerOracle !== oracleAnchorSha) policyRed('PRE_RECEIPT_O_ANCHOR_INVALID');
   if (markerDigest !== sha256(frozenOracle)) policyRed('E_EXPECTED_DIGEST_DRIFT_FROM_A');
   if (!markerManifest) policyRed('PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID');
@@ -4291,7 +4291,7 @@ function verifyDescendants(root, lineage, initialEvidence, options) {
 }
 
 function postcommitBindingCheck(root, options) {
-  const identity = validateRuntimeIdentity(root, { candidateSha: options.candidateESha });
+  const identity = validateRuntimeIdentity(root, { candidateSha: options.candidateSha });
   if (!readBytes(root, ORACLE_PATH).equals(gitFile(root, identity.candidateSha, ORACLE_PATH))) {
     policyRed('E_RUNTIME_ORACLE_DRIFT');
   }
@@ -4372,7 +4372,7 @@ const HARNESS_OPTIONS = Object.freeze({
 });
 
 const POSTCOMMIT_OPTIONS = Object.freeze({
-  '--candidate-e-sha': { property: 'candidateESha', kind: 'string', required: true },
+  '--candidate-sha': { property: 'candidateSha', kind: 'string', required: true },
   '--oracle-anchor-sha': { property: 'oracleAnchorSha', kind: 'string', required: true },
   '--workflow-anchor-sha': { property: 'workflowAnchorSha', kind: 'string', required: true },
   '--pending-task': { property: 'pendingTask', kind: 'string', required: true },
@@ -4388,7 +4388,7 @@ const POSTCOMMIT_OPTIONS = Object.freeze({
 });
 
 function validatePostcommitOptions(options, root) {
-  if (!SHA_RE.test(options.candidateESha)) policyRed('CANDIDATE_SHA_INVALID');
+  if (!SHA_RE.test(options.candidateSha)) policyRed('CANDIDATE_SHA_INVALID');
   if (!SHA_RE.test(options.oracleAnchorSha)) policyRed('ORACLE_ANCHOR_SHA_INVALID');
   if (!SHA_RE.test(options.workflowAnchorSha)) policyRed('WORKFLOW_ANCHOR_SHA_INVALID');
   if (options.pendingTask !== PENDING_TASK) policyRed('PENDING_TASK_INVALID');
@@ -4475,7 +4475,7 @@ function main(argv) {
     const result = postcommitBindingCheck(root, options);
     writeJson(options.stateOutput, {
       schema: 'studio-install-policy-publication-state/v1',
-      candidateSha: options.candidateESha,
+      candidateSha: options.candidateSha,
       ...result,
     });
     process.stdout.write(`${result.state}\n`);
