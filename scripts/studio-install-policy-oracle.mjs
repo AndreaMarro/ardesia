@@ -2109,13 +2109,13 @@ function manifestDigestForContents(contents) {
 
 function activeEpochContents(oracleSha, oracleDigest, manifestDigest) {
   const markers = [
-    `  # ARD11_D0P_A_ORACLE_COMMIT_V3=${oracleSha}`,
-    `  # ARD11_D0P_A_ORACLE_BINDING_V3=${oracleDigest}`,
-    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V3=${manifestDigest}`,
+    `  # ARD11_D0P_A_ORACLE_COMMIT_V4=${oracleSha}`,
+    `  # ARD11_D0P_A_ORACLE_BINDING_V4=${oracleDigest}`,
+    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V4=${manifestDigest}`,
   ].join('\n');
   return {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=true\n'),
-    '.github/workflows/ci.yml': Buffer.from(`name: ci\n${markers}\njobs:\n  studio:\n    steps:\n      - name: install\n        working-directory: \${{ github.workspace }}\n        run: ${ATOMIC_MATERIALIZE}\n`),
+    '.github/workflows/ci.yml': Buffer.from(`name: ci\n${markers}\njobs:\n  studio:\n    env:\n      POLICY_ORACLE_COMMIT_SHA: ${oracleSha}\n      POLICY_ORACLE_SHA256: ${oracleDigest}\n      POLICY_EXPECTED_F_MANIFEST_SHA256: ${manifestDigest}\n    steps:\n      - name: install\n        working-directory: \${{ github.workspace }}\n        run: ${ATOMIC_MATERIALIZE}\n`),
     '.github/workflows/studio-preview-readiness.yml': Buffer.from(`name: preview\njobs:\n  preview:\n    steps:\n      - run: ${ATOMIC_MATERIALIZE}\n`),
     'bin/monorepo.sh': Buffer.from(syntheticMonorepoScript()),
     'vercel.json': Buffer.from(`${JSON.stringify({ installCommand: ATOMIC_MATERIALIZE, buildCommand: 'npm --prefix apps/studio run build', outputDirectory: 'apps/studio/dist' }, null, 2)}\n`),
@@ -3583,6 +3583,13 @@ function markerValue(workflowBytes, marker, length) {
   return matches.length === 1 ? matches[0][1] : null;
 }
 
+function workflowRuntimeValue(workflowBytes, key, length) {
+  const text = workflowBytes.toString('utf8');
+  const expression = new RegExp(`^\\s+${key}: ([0-9a-f]{${length}})$`, 'gmu');
+  const matches = [...text.matchAll(expression)];
+  return matches.length === 1 ? matches[0][1] : null;
+}
+
 function functionalManifestDigestFromCommit(root, sha) {
   const pieces = [];
   for (const path of bytewise(B_PATHS)) {
@@ -3611,12 +3618,21 @@ function verifyFrozenEpoch(root, candidateSha, oracleAnchorSha, workflowAnchorSh
   const currentWorkflow = gitFile(root, candidateSha, WORKFLOW_PATH);
   const frozenWorkflow = gitFile(root, workflowAnchorSha, WORKFLOW_PATH);
   if (!currentWorkflow.equals(frozenWorkflow)) policyRed('E_WORKFLOW_DRIFT_FROM_A');
-  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V3', 40);
-  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V3', 64);
-  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V3', 64);
+  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V4', 40);
+  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V4', 64);
+  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V4', 64);
   if (markerOracle !== oracleAnchorSha) policyRed('PRE_RECEIPT_O_ANCHOR_INVALID');
   if (markerDigest !== sha256(frozenOracle)) policyRed('E_EXPECTED_DIGEST_DRIFT_FROM_A');
   if (!markerManifest) policyRed('PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID');
+  if (workflowRuntimeValue(frozenWorkflow, 'POLICY_ORACLE_COMMIT_SHA', 40) !== markerOracle) {
+    policyRed('E_WORKFLOW_RUNTIME_O_ANCHOR_INVALID');
+  }
+  if (workflowRuntimeValue(frozenWorkflow, 'POLICY_ORACLE_SHA256', 64) !== markerDigest) {
+    policyRed('E_WORKFLOW_RUNTIME_ORACLE_DIGEST_INVALID');
+  }
+  if (workflowRuntimeValue(frozenWorkflow, 'POLICY_EXPECTED_F_MANIFEST_SHA256', 64) !== markerManifest) {
+    policyRed('E_WORKFLOW_RUNTIME_F_MANIFEST_INVALID');
+  }
   const commitsText = git(root, ['rev-list', '--first-parent', '--reverse', `${workflowAnchorSha}..${candidateSha}`]);
   const commits = commitsText ? commitsText.split('\n') : [];
   for (const commit of commits) {
