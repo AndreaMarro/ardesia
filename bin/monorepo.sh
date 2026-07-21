@@ -22,6 +22,12 @@ Root scripts:
                      Run the no-deploy Studio preview readiness gate.
   preview:studio:preflight
                      Check Vercel readiness plus the no-deploy Studio gate.
+  policy-studio-install-check
+                     Run the read-only Studio install policy oracle.
+  policy-studio-install-harness
+                     Run the Studio install policy mutation harness.
+  policy-studio-postcommit-binding-check
+                     Verify Studio post-commit publication binding.
   smoke:studio:production
                      Run browser smoke against ARDESIA Studio production URL.
   smoke:studio:production:scenario
@@ -31,6 +37,10 @@ Root scripts:
   verify             Run core tests plus builds.
   verify:elab        Run ELABTutor tests plus build.
   factory:readonly   Print remote factory health without mutation.
+
+Studio dependency commands:
+  npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
+  npm install --package-lock-only --ignore-scripts --no-audit --no-fund
 EOF
 }
 
@@ -94,8 +104,9 @@ status() {
 
 bootstrap_core() {
   cd "$ROOT"
+  policy_studio_install_check
   uv --directory packages/engine sync
-  npm --prefix apps/studio ci
+  npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
 }
 
 bootstrap_all() {
@@ -135,16 +146,20 @@ build_elab() {
 
 require_studio_deps() {
   if [[ ! -x "$ROOT/apps/studio/node_modules/.bin/tsc" || ! -x "$ROOT/apps/studio/node_modules/.bin/vite" || ! -x "$ROOT/apps/studio/node_modules/.bin/vitest" ]]; then
-    echo "miss  apps/studio dependencies (run npm --prefix apps/studio ci, or npm run bootstrap, first)"
+    echo "miss  apps/studio dependencies (run npm run bootstrap first)"
     return 1
   fi
 }
 
 require_studio_playwright() {
   if [[ ! -d "$ROOT/apps/studio/node_modules/@playwright/test" ]]; then
-    echo "miss  apps/studio Playwright dependency (run npm --prefix apps/studio ci, or npm run bootstrap, first)"
+    echo "miss  apps/studio Playwright dependency (run npm run bootstrap first)"
     return 1
   fi
+}
+
+policy_studio_install_check() {
+  node "$ROOT/scripts/studio-install-policy-oracle.mjs" check "$@"
 }
 
 verify_core() {
@@ -309,6 +324,18 @@ main() {
     typecheck-core) typecheck_core ;;
     build-core) build_core ;;
     build-elab) build_elab ;;
+    policy-studio-install-check)
+      shift
+      exec node "$ROOT/scripts/studio-install-policy-oracle.mjs" check "$@"
+      ;;
+    policy-studio-install-harness)
+      shift
+      exec node "$ROOT/scripts/studio-install-policy-oracle.mjs" harness "$@"
+      ;;
+    policy-studio-postcommit-binding-check)
+      shift
+      exec node "$ROOT/scripts/studio-install-policy-oracle.mjs" postcommit-binding-check "$@"
+      ;;
     preview-studio-check) preview_studio_check ;;
     preview-studio-preflight) preview_studio_preflight ;;
     smoke-studio-production) smoke_studio_production ;;
