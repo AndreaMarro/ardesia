@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ARD-11 V2 exposes descendant-aware publication binding through this command surface.
+# ARD-11 V3 exposes epoch-bounded publication binding through this command surface.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
