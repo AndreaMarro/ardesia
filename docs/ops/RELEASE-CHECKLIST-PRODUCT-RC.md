@@ -23,16 +23,16 @@ npm --prefix apps/studio run e2e
 
 ## Publication binding gate
 
-Run from the exact final candidate checkout. The candidate remains HEAD so the oracle also verifies every descendant after the evidence commit E.
+Run from the exact final candidate checkout. The candidate remains HEAD so the oracle also verifies every descendant after E and stops evidence discovery at the current V3 workflow anchor.
 
 ```bash
 set -euo pipefail
 candidate_sha="$(git rev-parse HEAD)"
 workflow_path=.github/workflows/ci.yml
 workflow_anchor_sha="$(git log --first-parent --reverse \
-  -S'ARD11_D0P_A_ORACLE_BINDING_V2=' --format=%H "$candidate_sha" -- "$workflow_path" | head -n 1)"
+  -S'ARD11_D0P_A_ORACLE_BINDING_V3=' --format=%H "$candidate_sha" -- "$workflow_path" | head -n 1)"
 oracle_anchor_sha="$(git show "$workflow_anchor_sha:$workflow_path" | sed -n \
-  's/^  # ARD11_D0P_A_ORACLE_COMMIT_V2=\([0-9a-f]\{40\}\)$/\1/p')"
+  's/^  # ARD11_D0P_A_ORACLE_COMMIT_V3=\([0-9a-f]\{40\}\)$/\1/p')"
 test "${#workflow_anchor_sha}" -eq 40
 test "${#oracle_anchor_sha}" -eq 40
 state_root="$(mktemp -d /tmp/ardesia-studio-policy.XXXXXX)"
