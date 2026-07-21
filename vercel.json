@@ -1,6 +1,6 @@
 {
   "framework": "vite",
-  "installCommand": "npm --prefix apps/studio ci",
+  "installCommand": "bash bin/monorepo.sh policy-studio-install-check && npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund",
   "buildCommand": "npm --prefix apps/studio run build",
   "outputDirectory": "apps/studio/dist",
   "rewrites": [

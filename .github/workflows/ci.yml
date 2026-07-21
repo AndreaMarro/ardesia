@@ -5,11 +5,259 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  # ARD11_D0P_A_ORACLE_COMMIT_V1=e924b62dbec4ec90232e1a456e6104be1ca44978
+  # ARD11_D0P_A_ORACLE_BINDING_V1=e677951d6fe27c575cf775cae90738708e98096b4d248d7565aa537e2e675204
+  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V1=e65d1fddcc256d49dc96a7ff0e49935ae36832dbcba9c69af7ab6ff5b69a032b
+  studio-install-policy:
+    name: studio-install-policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      POLICY_CANDIDATE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      POLICY_EVENT_SHA: ${{ github.sha }}
+      POLICY_PR_MERGE_SHA: ${{ github.event_name == 'pull_request' && github.sha || '' }}
+      POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs
+      POLICY_ORACLE_COMMIT_SHA: e924b62dbec4ec90232e1a456e6104be1ca44978
+      POLICY_ORACLE_SHA256: e677951d6fe27c575cf775cae90738708e98096b4d248d7565aa537e2e675204
+      POLICY_EXPECTED_F_MANIFEST_SHA256: e65d1fddcc256d49dc96a7ff0e49935ae36832dbcba9c69af7ab6ff5b69a032b
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert exact policy candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          if [[ "$actual" != "$POLICY_CANDIDATE_SHA" ]]; then
+            echo "POLICY_RED:CANDIDATE_SHA_MISMATCH" >&2
+            exit 1
+          fi
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22.12.0"
+      - name: Verify frozen oracle then run authoritative policy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          policy_root="${{ runner.temp }}/studio-install-policy"
+          mkdir -p "$policy_root"
+          printf '%s\n' '{"schema":"studio-install-policy-bootstrap/v1","oracleInvocationCount":0}' \
+            > "$policy_root/bootstrap.json"
+
+          workflow_path=.github/workflows/ci.yml
+          marker=ARD11_D0P_A_ORACLE_BINDING_V1=
+          o_marker=ARD11_D0P_A_ORACLE_COMMIT_V1=
+          f_marker=ARD11_D0P_A_EXPECTED_F_MANIFEST_V1=
+
+          for value in "$POLICY_CANDIDATE_SHA" "$POLICY_EVENT_SHA"; do
+            if [[ ! "$value" =~ ^[0-9a-f]{40}$ ]]; then
+              echo 'POLICY_RED:CI_IDENTITY_SHA_INVALID' >&2
+              exit 1
+            fi
+          done
+          if [[ -n "$POLICY_PR_MERGE_SHA" && ! "$POLICY_PR_MERGE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo 'POLICY_RED:CI_IDENTITY_SHA_INVALID' >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse HEAD)" != "$POLICY_CANDIDATE_SHA" ]]; then
+            echo 'POLICY_RED:CANDIDATE_SHA_MISMATCH' >&2
+            exit 1
+          fi
+
+          a_sha=''
+          while IFS= read -r commit_sha; do
+            commit_workflow="$(git show "$commit_sha:$workflow_path" 2>/dev/null || true)"
+            if [[ "$commit_workflow" == *"$marker"* && \
+                  "$commit_workflow" == *"$o_marker"* && \
+                  "$commit_workflow" == *"$f_marker"* ]]; then
+              parent_sha="$(git rev-parse "$commit_sha^")"
+              parent_workflow="$(git show "$parent_sha:$workflow_path" 2>/dev/null || true)"
+              if [[ "$parent_workflow" != *"$marker"* && \
+                    "$parent_workflow" != *"$o_marker"* && \
+                    "$parent_workflow" != *"$f_marker"* ]]; then
+                a_sha="$commit_sha"
+                break
+              fi
+            fi
+          done < <(git rev-list --first-parent "$POLICY_CANDIDATE_SHA")
+          if [[ -z "$a_sha" ]]; then
+            echo 'POLICY_RED:E_WORKFLOW_ANCHOR_NOT_FOUND' >&2
+            exit 1
+          fi
+
+          o_sha="$(git show "$a_sha:$workflow_path" | sed -n \
+            's/^  # ARD11_D0P_A_ORACLE_COMMIT_V1=\([0-9a-f]\{40\}\)$/\1/p')"
+          if [[ ! "$o_sha" =~ ^[0-9a-f]{40}$ || "$o_sha" != "$POLICY_ORACLE_COMMIT_SHA" ]]; then
+            echo 'POLICY_RED:PRE_RECEIPT_O_ANCHOR_INVALID' >&2
+            exit 1
+          fi
+          if [[ "$(git rev-list --parents -n 1 "$o_sha" | wc -w | tr -d ' ')" != 2 ]]; then
+            echo 'POLICY_RED:E_ORACLE_ANCHOR_PARENT_INVALID' >&2
+            exit 1
+          fi
+          if [[ "$(git diff-tree --no-commit-id --name-only -r "$o_sha" | LC_ALL=C sort)" != "$POLICY_ORACLE_PATH" ]]; then
+            echo 'POLICY_RED:E_ORACLE_ANCHOR_SCOPE_INVALID' >&2
+            exit 1
+          fi
+          if [[ "$(git rev-parse "$a_sha^")" != "$o_sha" ]]; then
+            echo "POLICY_RED:PRE_RECEIPT_INTERMEDIATE_COMMIT:O_A:$(git rev-parse "$a_sha^")" >&2
+            exit 1
+          fi
+          expected_a_scope="$(printf '%s\n' \
+            .github/workflows/ci.yml \
+            .github/workflows/studio-preview-readiness.yml \
+            apps/studio/.npmrc \
+            bin/monorepo.sh \
+            vercel.json | LC_ALL=C sort)"
+          actual_a_scope="$(git diff-tree --no-commit-id --name-only -r "$a_sha" | LC_ALL=C sort)"
+          if [[ "$actual_a_scope" != "$expected_a_scope" ]]; then
+            echo 'POLICY_RED:E_WORKFLOW_ANCHOR_SCOPE_INVALID' >&2
+            exit 1
+          fi
+
+          frozen_expected="$(git show "$a_sha:$workflow_path" | sed -n \
+            's/^  # ARD11_D0P_A_ORACLE_BINDING_V1=\([0-9a-f]\{64\}\)$/\1/p')"
+          frozen_manifest="$(git show "$a_sha:$workflow_path" | sed -n \
+            's/^  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V1=\([0-9a-f]\{64\}\)$/\1/p')"
+          if [[ ! "$frozen_expected" =~ ^[0-9a-f]{64}$ ]]; then
+            echo 'POLICY_RED:E_FROZEN_DIGEST_INVALID_AT_A' >&2
+            exit 1
+          fi
+          if [[ ! "$frozen_manifest" =~ ^[0-9a-f]{64}$ ]]; then
+            echo 'POLICY_RED:PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID' >&2
+            exit 1
+          fi
+          if [[ "$POLICY_ORACLE_SHA256" != "$frozen_expected" ]]; then
+            echo 'POLICY_RED:E_EXPECTED_DIGEST_DRIFT_FROM_A' >&2
+            exit 1
+          fi
+          if [[ "$POLICY_EXPECTED_F_MANIFEST_SHA256" != "$frozen_manifest" ]]; then
+            echo 'POLICY_RED:PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID' >&2
+            exit 1
+          fi
+          frozen_workflow_sha="$(git show "$a_sha:$workflow_path" | sha256sum | awk '{print $1}')"
+          current_workflow_sha="$(sha256sum "$workflow_path" | awk '{print $1}')"
+          if [[ "$(git rev-parse "$POLICY_CANDIDATE_SHA:$workflow_path")" != \
+                "$(git rev-parse "$a_sha:$workflow_path")" || \
+                "$current_workflow_sha" != "$frozen_workflow_sha" ]]; then
+            echo 'POLICY_RED:E_WORKFLOW_DRIFT_FROM_A' >&2
+            exit 1
+          fi
+          oracle_at_o_sha="$(git show "$o_sha:$POLICY_ORACLE_PATH" | sha256sum | awk '{print $1}')"
+          if [[ "$oracle_at_o_sha" != "$frozen_expected" ]]; then
+            echo 'POLICY_RED:E_FROZEN_ORACLE_MISMATCH_AT_O' >&2
+            exit 1
+          fi
+          if [[ ! -f "$POLICY_ORACLE_PATH" ]]; then
+            echo 'POLICY_RED:E_VERIFIER_MISSING_FROM_O' >&2
+            exit 1
+          fi
+          actual_oracle_sha="$(sha256sum "$POLICY_ORACLE_PATH" | awk '{print $1}')"
+          if [[ "$actual_oracle_sha" != "$frozen_expected" ]]; then
+            echo 'POLICY_RED:E_VERIFIER_DRIFT_FROM_A' >&2
+            exit 1
+          fi
+
+          mapfile -t after_a < <(git rev-list --first-parent --reverse "$a_sha..$POLICY_CANDIDATE_SHA")
+          if (( ${#after_a[@]} > 0 )); then
+            f_sha="${after_a[0]}"
+            if [[ "$(git rev-parse "$f_sha^")" != "$a_sha" ]]; then
+              echo "POLICY_RED:PRE_RECEIPT_INTERMEDIATE_COMMIT:A_F:$f_sha" >&2
+              exit 1
+            fi
+            expected_f_scope="$(printf '%s\n' \
+              apps/studio/.github/workflows/gate.yml \
+              apps/studio/AGENTS.md \
+              docs/ops/RELEASE-CHECKLIST-PRODUCT-RC.md | LC_ALL=C sort)"
+            actual_f_scope="$(git diff-tree --no-commit-id --name-only -r "$f_sha" | LC_ALL=C sort)"
+            if [[ "$actual_f_scope" != "$expected_f_scope" ]]; then
+              first_difference="$(comm -3 \
+                <(printf '%s\n' "$actual_f_scope") \
+                <(printf '%s\n' "$expected_f_scope") | sed -n '1{s/^[[:space:]]*//;p;}')"
+              echo "POLICY_RED:PRE_RECEIPT_EXPECTED_F_AFTER_A:$first_difference" >&2
+              exit 1
+            fi
+            manifest_file="$policy_root/f-manifest.bin"
+            : > "$manifest_file"
+            while IFS= read -r path; do
+              printf '%s\0' "$path" >> "$manifest_file"
+              git show "$f_sha:$path" | sha256sum | awk '{printf "%s%c", $1, 0}' >> "$manifest_file"
+            done < <(printf '%s\n' "$expected_f_scope")
+            actual_f_manifest="$(sha256sum "$manifest_file" | awk '{print $1}')"
+            if [[ "$actual_f_manifest" != "$frozen_manifest" ]]; then
+              echo "POLICY_RED:PRE_RECEIPT_F_CONTENT_MISMATCH:$actual_f_manifest" >&2
+              exit 1
+            fi
+          fi
+          if (( ${#after_a[@]} > 1 )); then
+            r_sha="${after_a[1]}"
+            if [[ "$(git rev-parse "$r_sha^")" != "${after_a[0]}" || \
+                  "$(git diff-tree --no-commit-id --name-only -r "$r_sha")" != apps/studio/log.jsonl ]]; then
+              echo 'POLICY_RED:PRE_RECEIPT_EXPECTED_R_AFTER_F:apps/studio/log.jsonl' >&2
+              exit 1
+            fi
+          fi
+          if (( ${#after_a[@]} > 2 )); then
+            e_sha="${after_a[2]}"
+            expected_e_scope="$(printf '%s\n' \
+              "docs/ops/evidence/studio-install-policy/canonical/${after_a[1]}.json" \
+              docs/ops/evidence/studio-install-policy/index.jsonl \
+              "docs/ops/evidence/studio-install-policy/records/${after_a[1]}.json" | LC_ALL=C sort)"
+            actual_e_scope="$(git diff-tree --no-commit-id --name-only -r "$e_sha" | LC_ALL=C sort)"
+            if [[ "$(git rev-parse "$e_sha^")" != "${after_a[1]}" || "$actual_e_scope" != "$expected_e_scope" ]]; then
+              echo 'POLICY_RED:E_BINDING_REQUIRED_BEFORE_NEXT_TRANCHE' >&2
+              exit 1
+            fi
+          fi
+
+          printf '%s\n' '{"schema":"studio-install-policy-bootstrap/v1","oracleInvocationCount":1}' \
+            > "$policy_root/bootstrap.json"
+          node "$POLICY_ORACLE_PATH" harness \
+            --candidate-sha "$POLICY_CANDIDATE_SHA" \
+            --oracle-anchor-sha "$o_sha" \
+            --workflow-anchor-sha "$a_sha" \
+            --audit-mode functional \
+            --output "$policy_root/harness" \
+            --expected-core 43 \
+            --expected-ledger-generic 3 \
+            --forbid-receipt-semantic-output
+          node "$POLICY_ORACLE_PATH" postcommit-binding-check \
+            --candidate-e-sha "$POLICY_CANDIDATE_SHA" \
+            --oracle-anchor-sha "$o_sha" \
+            --workflow-anchor-sha "$a_sha" \
+            --pending-task ARD-11-D0P-B-STUDIO-INSTALL-POLICY \
+            --index-path docs/ops/evidence/studio-install-policy/index.jsonl \
+            --records-dir docs/ops/evidence/studio-install-policy/records \
+            --canonical-dir docs/ops/evidence/studio-install-policy/canonical \
+            --revocations-dir docs/ops/evidence/studio-install-policy/revocations \
+            --state-output "$policy_root/publication-state.json" \
+            --audit-mode receipt-intent \
+            --expected-core 43 \
+            --expected-ledger-generic 3 \
+            --expected-receipt-semantic 16
+      - name: Upload raw Studio install policy evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: studio-install-policy-raw-${{ env.POLICY_CANDIDATE_SHA }}-${{ runner.os }}-${{ runner.arch }}
+          path: ${{ runner.temp }}/studio-install-policy/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
   studio:
     name: studio (typecheck + test + build)
     runs-on: ubuntu-latest
@@ -17,13 +265,15 @@ jobs:
       run:
         working-directory: apps/studio
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
-      - run: npm ci --no-audit --no-fund
+      - name: Studio install policy + materialize
+        working-directory: ${{ github.workspace }}
+        run: bash bin/monorepo.sh policy-studio-install-check && npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
       - name: vitest (deterministic profile)
         run: >
@@ -39,8 +289,8 @@ jobs:
       run:
         working-directory: packages/engine
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
       - name: pytest (live tests self-skip without API keys)
         run: uv run pytest -q
 
@@ -48,7 +298,7 @@ jobs:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
       - name: NUL scan (tracked text files)
