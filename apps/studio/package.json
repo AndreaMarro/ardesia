@@ -7,11 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run --project=unit --passWithNoTests",
     "typecheck": "tsc -b --noEmit",
     "preview": "vite preview",
     "shots": "node scripts/shots.mjs",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook dev --port 6006 --no-open",
+    "storybook:build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build --output-dir dist/storybook",
+    "storybook:test": "STORYBOOK_DISABLE_TELEMETRY=1 vitest run --project=storybook"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",
