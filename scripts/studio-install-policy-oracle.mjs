@@ -2267,6 +2267,9 @@ function writeAcceptanceCommit(root, history, receiptSha, functionalSha, canonic
 function createControlHistory(sourceRoot, fixtureRoot, fakeBin, scratchRoot) {
   ensureDirectory(fixtureRoot);
   for (const path of [...B_PATHS, ...HISTORICAL.map((record) => record.path)]) copyCandidateEntry(sourceRoot, fixtureRoot, path);
+  const legacyBytes = findLegacyDebtBytes(sourceRoot);
+  if (!B_PATHS.every((path) => legacyBytes[path])) policyRed('CONTROL_LEGACY_FIXTURE_MISSING');
+  writeContentMap(fixtureRoot, legacyBytes);
   writeBytes(join(fixtureRoot, LEDGER_PATH), Buffer.from('{"historical":true}\n'));
   writeContentMap(fixtureRoot, {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=false\n'),
@@ -3421,6 +3424,8 @@ function runSelfTest(root) {
       policyRed('SELF_TEST_NON_STUDIO_WORKSPACE_EXCLUSION_RED');
     }
     runAuditRegressionFalsifiers(fixtureRoot, env);
+    makeDebtFilesSafe(fixtureRoot);
+    commitFixture(fixtureRoot, 'fixture safe source regression', B_PATHS);
     const replayEvidenceOffset = canonicalReplayEvidence.length;
     const control = runControlPlaneGitCases(fixtureRoot);
     const output = join(tempRoot, 'evidence');
