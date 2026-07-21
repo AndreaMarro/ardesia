@@ -10,6 +10,8 @@
 
 import {
   chmodSync,
+  constants,
+  cpSync,
   copyFileSync,
   existsSync,
   lstatSync,
@@ -1009,7 +1011,19 @@ function createSeedRepository(sourceRoot, tempRoot) {
 }
 
 function cloneSeed(seed, destination) {
-  requireRun('git', ['clone', '--quiet', '--no-hardlinks', '--local', seed.seedRoot, destination], {}, 'HARNESS_CLONE_FAILED');
+  try {
+    cpSync(seed.seedRoot, destination, {
+      recursive: true,
+      dereference: false,
+      errorOnExist: true,
+      force: false,
+      mode: constants.COPYFILE_FICLONE,
+      preserveTimestamps: true,
+      verbatimSymlinks: true,
+    });
+  } catch {
+    policyRed('HARNESS_CLONE_FAILED');
+  }
   const tree = git(destination, ['rev-parse', 'HEAD^{tree}']);
   if (tree !== seed.seedTree) policyRed('HARNESS_CLONE_TREE_MISMATCH');
 }
@@ -1316,6 +1330,7 @@ function runCoreCases(seed, outputRoot, fakeBin, state, legacyBytes) {
       supervisorExit: supervisor.status,
     });
     results.push({ id: definition.id, reason: actualReason, oracleMode: definition.mode });
+    removeCheckedTemp(caseRoot, 'case-');
   }
   return results;
 }
@@ -3390,7 +3405,15 @@ function runSelfTest(root) {
     createSyntheticPolicyRepository(root, fixtureRoot);
     const seedRegressionRoot = join(tempRoot, 'tracked-ignored-seed-regression');
     ensureDirectory(seedRegressionRoot);
-    createSeedRepository(fixtureRoot, seedRegressionRoot);
+    const seedRegression = createSeedRepository(fixtureRoot, seedRegressionRoot);
+    const cloneRegressionRoot = join(tempRoot, 'tracked-ignored-clone-regression');
+    cloneSeed(seedRegression, cloneRegressionRoot);
+    const seedNpmrc = readBytes(seedRegression.seedRoot, 'apps/studio/.npmrc');
+    writeBytes(join(cloneRegressionRoot, 'apps/studio/.npmrc'), Buffer.from('mutated clone\n', 'utf8'));
+    if (!readBytes(seedRegression.seedRoot, 'apps/studio/.npmrc').equals(seedNpmrc)) {
+      policyRed('SELF_TEST_CLONE_ISOLATION_FAILED');
+    }
+    removeCheckedTemp(cloneRegressionRoot, 'tracked-ignored-clone-regression');
     const fakeBin = createFakeTools(tempRoot);
     const env = caseEnvironment(fakeBin, fixtureRoot);
     const excludedWorkspaceBaseline = capturePolicyReason(() => checkRepository(fixtureRoot, { env }));
