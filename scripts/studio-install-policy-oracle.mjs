@@ -2109,9 +2109,9 @@ function manifestDigestForContents(contents) {
 
 function activeEpochContents(oracleSha, oracleDigest, manifestDigest) {
   const markers = [
-    `  # ARD11_D0P_A_ORACLE_COMMIT_V4=${oracleSha}`,
-    `  # ARD11_D0P_A_ORACLE_BINDING_V4=${oracleDigest}`,
-    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V4=${manifestDigest}`,
+    `  # ARD11_D0P_A_ORACLE_COMMIT_V5=${oracleSha}`,
+    `  # ARD11_D0P_A_ORACLE_BINDING_V5=${oracleDigest}`,
+    `  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V5=${manifestDigest}`,
   ].join('\n');
   return {
     'apps/studio/.npmrc': Buffer.from('ignore-scripts=true\n'),
@@ -3618,9 +3618,9 @@ function verifyFrozenEpoch(root, candidateSha, oracleAnchorSha, workflowAnchorSh
   const currentWorkflow = gitFile(root, candidateSha, WORKFLOW_PATH);
   const frozenWorkflow = gitFile(root, workflowAnchorSha, WORKFLOW_PATH);
   if (!currentWorkflow.equals(frozenWorkflow)) policyRed('E_WORKFLOW_DRIFT_FROM_A');
-  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V4', 40);
-  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V4', 64);
-  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V4', 64);
+  const markerOracle = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_COMMIT_V5', 40);
+  const markerDigest = markerValue(frozenWorkflow, 'ARD11_D0P_A_ORACLE_BINDING_V5', 64);
+  const markerManifest = markerValue(frozenWorkflow, 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V5', 64);
   if (markerOracle !== oracleAnchorSha) policyRed('PRE_RECEIPT_O_ANCHOR_INVALID');
   if (markerDigest !== sha256(frozenOracle)) policyRed('E_EXPECTED_DIGEST_DRIFT_FROM_A');
   if (!markerManifest) policyRed('PRE_RECEIPT_F_MANIFEST_ANCHOR_INVALID');
