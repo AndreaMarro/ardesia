@@ -2,7 +2,10 @@ name: studio-preview-readiness
 
 on:
   push:
-    branches: [main, "codex/**", "feat/**", "docs/**"]
+    # Pull requests already exercise the candidate branch below. Restrict the
+    # push surface to the post-merge main SHA so a branch update cannot run the
+    # same readiness job twice (push + pull_request).
+    branches: [main]
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
@@ -31,13 +34,22 @@ jobs:
   no-deploy-check:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      POLICY_CANDIDATE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      POLICY_EVENT_SHA: ${{ github.sha }}
+      POLICY_PR_MERGE_SHA: ${{ github.event_name == 'pull_request' && github.sha || '' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          node-version: "22.12.0"
+          ref: ${{ env.POLICY_CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22.14.0"
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
       - run: bash -n bin/monorepo.sh
-      - run: npm --prefix apps/studio ci
+      - name: Studio install policy + materialize
+        run: bash bin/monorepo.sh policy-studio-install-check && npm --prefix apps/studio ci --ignore-scripts --no-audit --no-fund
       - run: npm run preview:studio:check
