@@ -10,13 +10,17 @@
 
 import {
   chmodSync,
+  closeSync,
   copyFileSync,
   existsSync,
+  fstatSync,
   linkSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
+  openSync,
   readFileSync,
+  readSync,
   readdirSync,
   readlinkSync,
   realpathSync,
@@ -25,6 +29,7 @@ import {
   statSync,
   symlinkSync,
   writeFileSync,
+  constants as fsConstants,
 } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -162,7 +167,9 @@ const HELP = Object.freeze({
     '  check',
     '  harness --output <absolute-empty-directory> [frozen arguments]',
     '  postcommit-binding-check <frozen arguments>',
-    '  self-test --profile all',
+    '  disable-project-json-f7-manifest --package <absolute-private-directory> --oracle-anchor-sha <40-hex> --oracle-sha256 <64-hex>',
+    '  disable-project-json-ci-check --candidate-sha <40-hex> --output <absolute-empty-directory> --state-output <absolute-file>',
+    '  self-test --profile all|disable-project-json-v1',
   ].join('\n'),
   check: 'Usage: node scripts/studio-install-policy-oracle.mjs check',
   harness: [
@@ -182,7 +189,17 @@ const HELP = Object.freeze({
     '  --audit-mode receipt-intent --expected-core 43',
     '  --expected-ledger-generic 3 --expected-receipt-semantic 16',
   ].join('\n'),
-  selfTest: 'Usage: node scripts/studio-install-policy-oracle.mjs self-test --profile all',
+  disableProjectJsonF7Manifest: [
+    'Usage: node scripts/studio-install-policy-oracle.mjs disable-project-json-f7-manifest',
+    '  --package <absolute-private-directory> --oracle-anchor-sha <40-hex>',
+    '  --oracle-sha256 <64-hex>',
+  ].join('\n'),
+  disableProjectJsonCiCheck: [
+    'Usage: node scripts/studio-install-policy-oracle.mjs disable-project-json-ci-check',
+    '  --candidate-sha <40-hex> --output <absolute-empty-directory>',
+    '  --state-output <absolute-file>',
+  ].join('\n'),
+  selfTest: 'Usage: node scripts/studio-install-policy-oracle.mjs self-test --profile all|disable-project-json-v1',
 });
 
 class PolicyViolation extends Error {
@@ -3113,6 +3130,9 @@ function detectReceiptIntentV1(root, candidateSha, options = {}) {
 }
 
 function runHarness(root, options, internal = {}) {
+  if (installPolicyEpochForWorkflow(readBytes(root, WORKFLOW_PATH)) === DISABLE_PROJECT_JSON_V1.profile) {
+    return runDisableProjectJsonHarness(root, options, internal);
+  }
   const outputRoot = internal.outputValidated
     ? options.output
     : validateOutputDirectory(options.output, root);
@@ -4491,6 +4511,2029 @@ function defaultHarnessOptions(parsed) {
   };
 }
 
+// Additive V7 profile.  The V6 verifier above remains the authority for every
+// workflow that does not opt in with the three exact V7 epoch markers.
+const DISABLE_PROJECT_JSON_V1 = Object.freeze({
+  profile: 'DISABLE_PROJECT_JSON_V1',
+  remediationBaseSha: '7857914105ee9f68e31673fb6a793b600ef6c64c',
+  remediationBaseState: 'REMEDIATION_BASE_UNACCEPTED',
+  configPath: 'apps/studio/.storybook/main.ts',
+  oraclePaths: Object.freeze([ORACLE_PATH]),
+  activationPaths: Object.freeze([WORKFLOW_PATH, 'apps/studio/.storybook/main.ts'].sort()),
+  freezePaths: Object.freeze([...B_PATHS]),
+  receiptPaths: Object.freeze([LEDGER_PATH]),
+  markerOracle: 'ARD11_D0P_A_ORACLE_COMMIT_V7',
+  markerDigest: 'ARD11_D0P_A_ORACLE_BINDING_V7',
+  markerManifest: 'ARD11_D0P_A_EXPECTED_F_MANIFEST_V7',
+  envOracle: 'POLICY_ORACLE_COMMIT_SHA_V7',
+  envDigest: 'POLICY_ORACLE_SHA256_V7',
+  envManifest: 'POLICY_EXPECTED_F_MANIFEST_SHA256_V7',
+});
+
+const DISABLE_PROJECT_JSON_JOBS = Object.freeze([
+  'studio-install-policy',
+  'studio',
+  'chromatic-visual-review',
+  'engine',
+  'hygiene',
+]);
+const DISABLE_PROJECT_JSON_WORKFLOW_PREFIX = [
+  'name: ci',
+  '',
+  'on:',
+  '  pull_request:',
+  '  push:',
+  '    branches: [main]',
+  '',
+  'permissions:',
+  '  contents: read',
+  '',
+  'concurrency:',
+  '  group: ci-${{ github.workflow }}-${{ github.ref }}',
+  '  cancel-in-progress: true',
+  '',
+  'jobs:',
+].join('\n');
+const DISABLE_PROJECT_JSON_UNOWNED_JOB_SHA256 = Object.freeze({
+  engine: 'c82c299eccf2b694d2bf7b0804598d906667f9771ce1cd6596c382c2238fb608',
+  hygiene: '96f39e96b31c34e527ac7ea67d981350f1a09d79a29e968e610f03ca437a7bba',
+});
+const DISABLE_PROJECT_JSON_ACTION_SHA = '94713c544284a14195de3b50ef24301579f1877e';
+const DISABLE_PROJECT_JSON_POLICY_CALL = `node ${ORACLE_PATH} check`;
+const DISABLE_PROJECT_JSON_ATOMIC_MATERIALIZE = `${DISABLE_PROJECT_JSON_POLICY_CALL} && ${MATERIALIZE}`;
+const DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS = 91;
+const DISABLE_PROJECT_JSON_F7_MANIFEST_ALGORITHM = 'bytewise-path-utf8-nul-sha256-lowerhex-nul/v1';
+const DISABLE_PROJECT_JSON_KNOWN_PREDECESSOR_IDENTITIES = Object.freeze([
+  DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+  'b4454113ff8d57fdb3ad2ff50f1bb7d177a7f8eb55e62bbac7c327856deb964e',
+]);
+
+function projectJsonRed(reason) {
+  throw new PolicyViolation(`PROJECT_JSON_POLICY_RED:${reason}`);
+}
+
+function assertDisableProjectJsonScope(actual, expected) {
+  if (!arraysEqual(bytewise(actual), bytewise(expected))) projectJsonRed('EPOCH_MIXING');
+}
+
+function assertDisableProjectJsonJcsLf(bytes) {
+  try {
+    return assertJcsLf(bytes, 'EPOCH_MIXING');
+  } catch (error) {
+    if (error instanceof PolicyViolation) projectJsonRed('EPOCH_MIXING');
+    throw error;
+  }
+}
+
+function validateDisableProjectJsonIndexShape(entry) {
+  try {
+    return validateIndexEntryShape(entry);
+  } catch (error) {
+    if (error instanceof PolicyViolation) projectJsonRed('EPOCH_MIXING');
+    throw error;
+  }
+}
+
+function tokenizeRestrictedTypeScript(text) {
+  const tokens = [];
+  let index = 0;
+  while (index < text.length) {
+    const current = text[index];
+    if (/\s/u.test(current)) {
+      index += 1;
+      continue;
+    }
+    if (current === '/' && text[index + 1] === '/') {
+      index += 2;
+      while (index < text.length && text[index] !== '\n') index += 1;
+      continue;
+    }
+    if (current === '/' && text[index + 1] === '*') {
+      const end = text.indexOf('*/', index + 2);
+      if (end < 0) projectJsonRed('CONFIG_MISSING');
+      index = end + 2;
+      continue;
+    }
+    if (current === "'" || current === '"') {
+      const quote = current;
+      let value = '';
+      index += 1;
+      let closed = false;
+      while (index < text.length) {
+        const character = text[index];
+        if (character === quote) {
+          index += 1;
+          closed = true;
+          break;
+        }
+        if (character === '\\') {
+          const escaped = text[index + 1];
+          if (escaped === undefined || escaped === '\n' || escaped === '\r') projectJsonRed('CONFIG_MISSING');
+          const escapes = { n: '\n', r: '\r', t: '\t', '\\': '\\', "'": "'", '"': '"' };
+          value += escapes[escaped] ?? escaped;
+          index += 2;
+          continue;
+        }
+        value += character;
+        index += 1;
+      }
+      if (!closed) projectJsonRed('CONFIG_MISSING');
+      tokens.push({ type: 'string', value });
+      continue;
+    }
+    if (/[A-Za-z_$]/u.test(current)) {
+      let end = index + 1;
+      while (end < text.length && /[A-Za-z0-9_$]/u.test(text[end])) end += 1;
+      tokens.push({ type: 'identifier', value: text.slice(index, end) });
+      index = end;
+      continue;
+    }
+    if ('{}[]:,=;'.includes(current)) {
+      tokens.push({ type: 'punctuation', value: current });
+      index += 1;
+      continue;
+    }
+    if (current === '.' && text.slice(index, index + 3) === '...') {
+      tokens.push({ type: 'punctuation', value: '...' });
+      index += 3;
+      continue;
+    }
+    projectJsonRed('CONFIG_MISSING');
+  }
+  return tokens;
+}
+
+function parseRestrictedValue(tokens, cursor) {
+  const token = tokens[cursor.index];
+  if (!token) projectJsonRed('CONFIG_MISSING');
+  if (token.type === 'string') {
+    cursor.index += 1;
+    return { kind: 'string', value: token.value };
+  }
+  if (token.type === 'identifier' && ['true', 'false'].includes(token.value)) {
+    cursor.index += 1;
+    return { kind: 'boolean', value: token.value === 'true' };
+  }
+  if (token.value === '[') {
+    cursor.index += 1;
+    const items = [];
+    while (tokens[cursor.index]?.value !== ']') {
+      items.push(parseRestrictedValue(tokens, cursor));
+      if (tokens[cursor.index]?.value === ',') {
+        cursor.index += 1;
+        if (tokens[cursor.index]?.value === ']') break;
+      } else if (tokens[cursor.index]?.value !== ']') {
+        projectJsonRed('CONFIG_MISSING');
+      }
+    }
+    if (tokens[cursor.index]?.value !== ']') projectJsonRed('CONFIG_MISSING');
+    cursor.index += 1;
+    return { kind: 'array', items };
+  }
+  if (token.value === '{') {
+    cursor.index += 1;
+    const entries = [];
+    while (tokens[cursor.index]?.value !== '}') {
+      const key = tokens[cursor.index];
+      if (!key || !['identifier', 'string'].includes(key.type)) projectJsonRed('CONFIG_MISSING');
+      cursor.index += 1;
+      if (tokens[cursor.index]?.value !== ':') projectJsonRed('CONFIG_MISSING');
+      cursor.index += 1;
+      entries.push({ key: key.value, value: parseRestrictedValue(tokens, cursor) });
+      if (tokens[cursor.index]?.value === ',') {
+        cursor.index += 1;
+        if (tokens[cursor.index]?.value === '}') break;
+      } else if (tokens[cursor.index]?.value !== '}') {
+        projectJsonRed('CONFIG_MISSING');
+      }
+    }
+    if (tokens[cursor.index]?.value !== '}') projectJsonRed('CONFIG_MISSING');
+    cursor.index += 1;
+    return { kind: 'object', entries };
+  }
+  projectJsonRed('CONFIG_FALSE');
+}
+
+function restrictedObjectMembers(object, name) {
+  if (object?.kind !== 'object') projectJsonRed('CONFIG_MISSING');
+  return object.entries.filter((entry) => entry.key === name).map((entry) => entry.value);
+}
+
+function requireRestrictedMember(object, name) {
+  const matches = restrictedObjectMembers(object, name);
+  if (matches.length === 0) projectJsonRed('CONFIG_MISSING');
+  if (matches.length !== 1) projectJsonRed('CONFIG_DUPLICATE');
+  return matches[0];
+}
+
+function restrictedShape(value) {
+  if (value.kind === 'string' || value.kind === 'boolean') return [value.kind, value.value];
+  if (value.kind === 'array') return ['array', value.items.map(restrictedShape)];
+  return ['object', value.entries.map((entry) => [entry.key, restrictedShape(entry.value)])];
+}
+
+function validateDisableProjectJsonConfigBytes(bytes) {
+  let text;
+  try {
+    text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  } catch {
+    projectJsonRed('CONFIG_MISSING');
+  }
+  const tokens = tokenizeRestrictedTypeScript(text);
+  const cursor = { index: 0 };
+  const consume = (value) => {
+    if (tokens[cursor.index]?.value !== value) projectJsonRed('CONFIG_MISSING');
+    cursor.index += 1;
+  };
+  for (const value of [
+    'import', 'type', '{', 'StorybookConfig', '}', 'from', '@storybook/react-vite',
+  ]) consume(value);
+  if (tokens[cursor.index]?.value === ';') cursor.index += 1;
+  for (const value of ['const', 'config', ':', 'StorybookConfig', '=']) consume(value);
+  const config = parseRestrictedValue(tokens, cursor);
+  if (config.kind !== 'object') projectJsonRed('CONFIG_MISSING');
+  const expectedTopLevel = ['stories', 'addons', 'framework', 'core'];
+  if (!arraysEqual(config.entries.map((entry) => entry.key), expectedTopLevel)) {
+    const duplicate = expectedTopLevel.some((name) => restrictedObjectMembers(config, name).length > 1);
+    projectJsonRed(duplicate ? 'CONFIG_DUPLICATE' : 'CONFIG_MISSING');
+  }
+  const core = requireRestrictedMember(config, 'core');
+  const disableTelemetry = requireRestrictedMember(core, 'disableTelemetry');
+  const disableProjectJson = requireRestrictedMember(core, 'disableProjectJson');
+  if (disableTelemetry.kind !== 'boolean' || disableTelemetry.value !== true
+    || disableProjectJson.kind !== 'boolean' || disableProjectJson.value !== true) {
+    projectJsonRed('CONFIG_FALSE');
+  }
+  const frozenShape = [
+    ['stories', ['array', [['string', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)']]]],
+    ['addons', ['array', [
+      ['string', '@storybook/addon-a11y'],
+      ['string', '@storybook/addon-vitest'],
+    ]]],
+    ['framework', ['object', [
+      ['name', ['string', '@storybook/react-vite']],
+      ['options', ['object', []]],
+    ]]],
+  ];
+  const actualFrozenShape = config.entries.slice(0, 3).map((entry) => [entry.key, restrictedShape(entry.value)]);
+  if (canonicalizeJcs(actualFrozenShape) !== canonicalizeJcs(frozenShape)) projectJsonRed('CONFIG_MISSING');
+  const coreKeys = core.entries.map((entry) => entry.key);
+  if (!arraysEqual(coreKeys, ['disableTelemetry', 'disableProjectJson'])) {
+    const duplicate = ['disableTelemetry', 'disableProjectJson'].some((name) => restrictedObjectMembers(core, name).length > 1);
+    projectJsonRed(duplicate ? 'CONFIG_DUPLICATE' : 'CONFIG_MISSING');
+  }
+  if (tokens[cursor.index]?.value === ';') cursor.index += 1;
+  for (const value of ['export', 'default', 'config']) consume(value);
+  if (tokens[cursor.index]?.value === ';') cursor.index += 1;
+  if (cursor.index !== tokens.length) projectJsonRed('CONFIG_DUPLICATE');
+  return { profile: DISABLE_PROJECT_JSON_V1.profile, config: 'STRUCTURAL_GREEN' };
+}
+
+function yamlJobBlocks(text) {
+  const lines = text.split(/\r?\n/u);
+  const jobsIndexes = lines.map((line, index) => line === 'jobs:' ? index : -1).filter((index) => index >= 0);
+  const jobsKeys = lines.filter((line) => /^jobs\s*:/u.test(line));
+  if (jobsIndexes.length !== 1 || jobsKeys.length !== 1) projectJsonRed('WORKFLOW_SECURITY');
+  const result = new Map();
+  const start = jobsIndexes[0] + 1;
+  let end = lines.length;
+  for (let index = start; index < lines.length; index += 1) {
+    if (/^[^\s#]/u.test(lines[index])) {
+      end = index;
+      break;
+    }
+  }
+  const seenJobNames = new Set();
+  for (const line of lines.slice(start, end)) {
+    const header = line.match(/^  ([A-Za-z0-9_-]+):/u);
+    if (header) {
+      if (seenJobNames.has(header[1])) projectJsonRed(`WORKFLOW_SECURITY:DUPLICATE_JOB:${header[1]}`);
+      seenJobNames.add(header[1]);
+    } else if (/^  \S/u.test(line) && !/^  #/u.test(line)) {
+      projectJsonRed('WORKFLOW_SECURITY');
+    }
+  }
+  let current = null;
+  let currentLines = [];
+  const flush = () => {
+    if (current !== null) {
+      if (result.has(current)) projectJsonRed(`WORKFLOW_SECURITY:DUPLICATE_JOB:${current}`);
+      result.set(current, currentLines.join('\n'));
+    }
+  };
+  for (let index = start; index < end; index += 1) {
+    const line = lines[index];
+    const job = line.match(/^  ([A-Za-z0-9_-]+):(.*)$/u);
+    if (job) {
+      flush();
+      if (!/^\s*(?:#.*)?$/u.test(job[2])) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${job[1]}`);
+      current = job[1];
+      currentLines = [line];
+    } else if (current !== null) {
+      currentLines.push(line);
+    }
+  }
+  flush();
+  return result;
+}
+
+function parseRestrictedYamlMap(lines, indent, owner) {
+  const result = new Map();
+  let index = 0;
+  const prefix = ' '.repeat(indent);
+  while (index < lines.length) {
+    const line = lines[index];
+    if (line.trim() === '' || line.includes('\t')) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${owner}`);
+    const match = line.match(new RegExp(`^${prefix}([A-Za-z0-9_-]+):(?:\\s*(.*))?$`, 'u'));
+    if (!match || result.has(match[1])) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${owner}`);
+    const [, key, raw = ''] = match;
+    if (raw !== '') {
+      result.set(key, raw);
+      index += 1;
+      continue;
+    }
+    let end = index + 1;
+    while (end < lines.length) {
+      const childIndent = lines[end].match(/^ */u)?.[0].length ?? 0;
+      if (childIndent <= indent) break;
+      end += 1;
+    }
+    if (end === index + 1) {
+      result.set(key, null);
+    } else {
+      result.set(key, parseRestrictedYamlMap(lines.slice(index + 1, end), indent + 2, owner));
+    }
+    index = end;
+  }
+  return result;
+}
+
+function exactRestrictedYamlMap(actual, expected) {
+  if (!(actual instanceof Map) || actual.size !== Object.keys(expected).length) return false;
+  return Object.entries(expected).every(([key, expectedValue]) => {
+    const actualValue = actual.get(key);
+    if (expectedValue !== null && typeof expectedValue === 'object') {
+      return exactRestrictedYamlMap(actualValue, expectedValue);
+    }
+    return actualValue === expectedValue;
+  });
+}
+
+function parseRestrictedYamlJob(jobName, jobText) {
+  if (!jobText) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  const lines = jobText.split('\n');
+  if (lines[0] !== `  ${jobName}:`) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  const stepsIndexes = lines.map((line, index) => line === '    steps:' ? index : -1)
+    .filter((index) => index >= 0);
+  if (stepsIndexes.length !== 1) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  const stepsIndex = stepsIndexes[0];
+  if (lines.slice(stepsIndex + 1).some((line) => /^    [A-Za-z0-9_-]+:/u.test(line))) {
+    projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  }
+  const firstStepLine = lines.slice(stepsIndex + 1).find((line) => line.trim() !== '');
+  if (!firstStepLine || !/^      -(?:\s|$)/u.test(firstStepLine)) {
+    projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  }
+  const header = parseRestrictedYamlMap(lines.slice(1, stepsIndex), 4, jobName);
+  const steps = yamlSteps(jobText).map(parseRestrictedYamlStep);
+  if (steps.length === 0) projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  return { header, steps };
+}
+
+function yamlSteps(jobText) {
+  const lines = jobText.split('\n');
+  const stepsLine = lines.findIndex((line) => /^    steps:\s*(?:#.*)?$/u.test(line));
+  if (stepsLine < 0) return [];
+  const result = [];
+  let current = null;
+  for (let index = stepsLine + 1; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (/^    [A-Za-z0-9_-]+:/u.test(line) && !/^      /u.test(line)) break;
+    if (/^      -(?:\s|$)/u.test(line)) {
+      if (current) result.push(current.join('\n'));
+      current = [line];
+    } else if (current) {
+      current.push(line);
+    }
+  }
+  if (current) result.push(current.join('\n'));
+  return result;
+}
+
+function parseRestrictedYamlStep(stepText) {
+  const lines = stepText.split('\n');
+  const fields = new Map();
+  const nested = new Map();
+  let activeBlock = null;
+  let activeNested = null;
+  const addField = (key, value) => {
+    if (fields.has(key)) projectJsonRed('WORKFLOW_SECURITY');
+    fields.set(key, value);
+  };
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const first = line.match(/^      -\s+([A-Za-z0-9_-]+):(?:\s*(.*))?$/u);
+    const field = line.match(/^        ([A-Za-z0-9_-]+):(?:\s*(.*))?$/u);
+    const child = line.match(/^          ([A-Za-z0-9_-]+):(?:\s*(.*))?$/u);
+    if (first || field) {
+      const match = first ?? field;
+      const [, key, raw = ''] = match;
+      activeNested = null;
+      if (/^[>|][+-]?$/u.test(raw)) {
+        addField(key, '');
+        activeBlock = key;
+      } else if (raw === '') {
+        addField(key, null);
+        activeBlock = null;
+        activeNested = key;
+        nested.set(key, new Map());
+      } else {
+        addField(key, raw);
+        activeBlock = null;
+      }
+      continue;
+    }
+    if (child && activeNested) {
+      const [, key, raw = ''] = child;
+      const map = nested.get(activeNested);
+      if (map.has(key)) projectJsonRed('WORKFLOW_SECURITY');
+      map.set(key, raw);
+      continue;
+    }
+    if (activeBlock && /^          /u.test(line)) {
+      const previous = fields.get(activeBlock);
+      fields.set(activeBlock, `${previous}${previous === '' ? '' : '\n'}${line.slice(10)}`);
+      continue;
+    }
+    if (line.trim() !== '') projectJsonRed('WORKFLOW_SECURITY');
+  }
+  return { fields, nested, raw: stepText };
+}
+
+function exactMap(map, expected) {
+  const entries = [...map.entries()];
+  return entries.length === Object.keys(expected).length
+    && Object.entries(expected).every(([key, value]) => map.get(key) === value);
+}
+
+function disableProjectJsonCallsiteScript() {
+  return ['set -euo pipefail', DISABLE_PROJECT_JSON_ATOMIC_MATERIALIZE].join('\n');
+}
+
+function disableProjectJsonAssertionScript(jobName) {
+  return [
+    'set -euo pipefail',
+    'studio_physical="$(pwd -P)"',
+    'output_relative=dist/storybook',
+    'expected_dist="$studio_physical/dist"',
+    'expected_output="$expected_dist/storybook"',
+    'assert_physical_output_root() {',
+    '  [[ -d dist && ! -L dist ]] &&',
+    '    [[ -d "$output_relative" && ! -L "$output_relative" ]] &&',
+    '    [[ "$(realpath dist)" == "$expected_dist" ]] &&',
+    '    [[ "$(realpath "$output_relative")" == "$expected_output" ]]',
+    '}',
+    `assert_physical_output_root || { echo 'POSTBUILD_ASSERTION:${jobName}' >&2; exit 1; }`,
+    'output="$expected_output"',
+    'for required in index.html index.json iframe.html; do',
+    `  [[ -f "$output/$required" && ! -L "$output/$required" ]] || { echo 'POSTBUILD_ASSERTION:${jobName}' >&2; exit 1; }`,
+    'done',
+    'if [[ -e "$output/project.json" || -L "$output/project.json" ]]; then',
+    `  echo 'POSTBUILD_ASSERTION:${jobName}' >&2`,
+    '  exit 1',
+    'fi',
+    'if find "$output" -mindepth 1 ! -type d ! -type f -print -quit | grep -q .; then',
+    `  echo 'POSTBUILD_ASSERTION:${jobName}' >&2`,
+    '  exit 1',
+    'fi',
+    `assert_physical_output_root || { echo 'POSTBUILD_ASSERTION:${jobName}' >&2; exit 1; }`,
+    "mapfile -d '' -t regular_files < <(find \"$output\" -type f -print0)",
+    `assert_physical_output_root || { echo 'POSTBUILD_ASSERTION:${jobName}' >&2; exit 1; }`,
+    'if (( ${#regular_files[@]} != 44 )); then',
+    `  echo 'FILESET_44_ASSERTION:${jobName}' >&2`,
+    '  exit 1',
+    'fi',
+  ].join('\n');
+}
+
+function disableProjectJsonAuthorityScript() {
+  return [
+    'set -euo pipefail',
+    'policy_root="${{ runner.temp }}/studio-install-policy-v7"',
+    'mkdir -p "$policy_root"',
+    'oracle_path="${{ github.workspace }}/scripts/studio-install-policy-oracle.mjs"',
+    'if [[ "$POLICY_ORACLE_PATH" != "scripts/studio-install-policy-oracle.mjs" || ! -f "$oracle_path" || -L "$oracle_path" ]]; then',
+    "  echo 'PROJECT_JSON_POLICY_RED:WORKFLOW_SECURITY:AUTHORITY_EXECUTABLE' >&2",
+    '  exit 1',
+    'fi',
+    'if [[ "$(realpath "$oracle_path")" != "${{ github.workspace }}/scripts/studio-install-policy-oracle.mjs" ]]; then',
+    "  echo 'PROJECT_JSON_POLICY_RED:WORKFLOW_SECURITY:AUTHORITY_EXECUTABLE' >&2",
+    '  exit 1',
+    'fi',
+    "working_oracle_sha256=\"$(sha256sum \"$oracle_path\" | awk '{print $1}')\"",
+    "committed_oracle_sha256=\"$(git show \"$POLICY_ORACLE_COMMIT_SHA_V7:scripts/studio-install-policy-oracle.mjs\" | sha256sum | awk '{print $1}')\"",
+    'if [[ "$working_oracle_sha256" != "$POLICY_ORACLE_SHA256_V7" || "$committed_oracle_sha256" != "$POLICY_ORACLE_SHA256_V7" ]]; then',
+    "  echo 'PROJECT_JSON_POLICY_RED:WORKFLOW_SECURITY:AUTHORITY_EXECUTABLE' >&2",
+    '  exit 1',
+    'fi',
+    'node "$oracle_path" disable-project-json-ci-check \\',
+    '  --candidate-sha "$POLICY_CANDIDATE_SHA" \\',
+    '  --output "$policy_root/harness" \\',
+    '  --state-output "$policy_root/publication-state.json"',
+  ].join('\n');
+}
+
+function v7MarkerValue(workflowBytes, marker, length) {
+  const value = markerValue(workflowBytes, marker, length);
+  if (!value) projectJsonRed('EPOCH_MIXING');
+  return value;
+}
+
+function workflowHasDisableProjectJsonV1(bytes) {
+  return bytes.includes(Buffer.from(`${DISABLE_PROJECT_JSON_V1.markerOracle}=`, 'utf8'))
+    || bytes.includes(Buffer.from(`${DISABLE_PROJECT_JSON_V1.markerDigest}=`, 'utf8'))
+    || bytes.includes(Buffer.from(`${DISABLE_PROJECT_JSON_V1.markerManifest}=`, 'utf8'));
+}
+
+const DISABLE_PROJECT_JSON_FORK_GUARD = "github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository";
+const DISABLE_PROJECT_JSON_TOKEN_EXPRESSION = '${{ secrets.CHROMATIC_PROJECT_TOKEN }}';
+const DISABLE_PROJECT_JSON_CANDIDATE_EXPRESSION = '${{ env.POLICY_CANDIDATE_SHA }}';
+const DISABLE_PROJECT_JSON_CANDIDATE_VALUE = "${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}";
+const DISABLE_PROJECT_JSON_EVENT_VALUE = '${{ github.sha }}';
+const DISABLE_PROJECT_JSON_MERGE_VALUE = "${{ github.event_name == 'pull_request' && github.sha || '' }}";
+
+function disableProjectJsonAuthorityHeader(bindings) {
+  return {
+    name: 'studio-install-policy',
+    'runs-on': 'ubuntu-latest',
+    'timeout-minutes': '120',
+    permissions: { contents: 'read' },
+    env: {
+      POLICY_CANDIDATE_SHA: DISABLE_PROJECT_JSON_CANDIDATE_VALUE,
+      POLICY_EVENT_SHA: DISABLE_PROJECT_JSON_EVENT_VALUE,
+      POLICY_PR_MERGE_SHA: DISABLE_PROJECT_JSON_MERGE_VALUE,
+      POLICY_ORACLE_PATH: ORACLE_PATH,
+      [DISABLE_PROJECT_JSON_V1.envOracle]: bindings.oracle,
+      [DISABLE_PROJECT_JSON_V1.envDigest]: bindings.digest,
+      [DISABLE_PROJECT_JSON_V1.envManifest]: bindings.manifest,
+      POLICY_DEBUG: '"1"',
+    },
+  };
+}
+
+function disableProjectJsonTargetHeader(jobName) {
+  const chromatic = jobName === 'chromatic-visual-review';
+  return {
+    name: chromatic ? 'chromatic-visual-review (non-blocking)' : 'studio (typecheck + test + build)',
+    ...(chromatic ? { needs: 'studio' } : {}),
+    'runs-on': 'ubuntu-latest',
+    'timeout-minutes': chromatic ? '20' : '30',
+    permissions: { contents: 'read' },
+    env: {
+      POLICY_CANDIDATE_SHA: DISABLE_PROJECT_JSON_CANDIDATE_VALUE,
+      POLICY_EVENT_SHA: DISABLE_PROJECT_JSON_EVENT_VALUE,
+      POLICY_PR_MERGE_SHA: DISABLE_PROJECT_JSON_MERGE_VALUE,
+    },
+    defaults: { run: { 'working-directory': 'apps/studio' } },
+  };
+}
+
+function disableProjectJsonCandidateAssertionScript() {
+  return [
+    'set -euo pipefail',
+    'actual="$(git rev-parse HEAD)"',
+    'if [[ "$actual" != "$POLICY_CANDIDATE_SHA" ]]; then',
+    '  echo "POLICY_RED:CANDIDATE_SHA_MISMATCH" >&2',
+    '  exit 1',
+    'fi',
+  ].join('\n');
+}
+
+function validateDisableProjectJsonAuthorityJob(job, bindings) {
+  const parsed = parseRestrictedYamlJob('studio-install-policy', job);
+  if (!exactRestrictedYamlMap(parsed.header, disableProjectJsonAuthorityHeader(bindings))) {
+    projectJsonRed('WORKFLOW_SECURITY:JOB_SHAPE:studio-install-policy');
+  }
+  const { steps } = parsed;
+  if (steps.length !== 5) projectJsonRed('WORKFLOW_SECURITY:AUTHORITY_BINDING');
+  const checkout = validateDisableProjectJsonCheckout(steps, DISABLE_PROJECT_JSON_CANDIDATE_VALUE);
+  if (steps[0] !== checkout || !exactMap(steps[1].fields, {
+    name: 'Assert exact policy candidate',
+    shell: 'bash',
+    run: disableProjectJsonCandidateAssertionScript(),
+  }) || steps[1].nested.size !== 0
+    || !exactMap(steps[2].fields, {
+      uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0',
+      with: null,
+    }) || !exactMap(steps[2].nested.get('with') ?? new Map(), { 'node-version': '"22.12.0"' })) {
+    projectJsonRed('WORKFLOW_SECURITY:AUTHORITY_BINDING');
+  }
+  const authority = steps.filter((step) => step.fields.get('run')?.includes('disable-project-json-ci-check'));
+  if (authority.length !== 1 || job.split('disable-project-json-ci-check').length - 1 !== 1) {
+    projectJsonRed('WORKFLOW_SECURITY:AUTHORITY_BINDING');
+  }
+  if (steps[3] !== authority[0] || !exactMap(authority[0].fields, {
+    name: 'Verify frozen V7 oracle and run authoritative policy',
+    'working-directory': '${{ github.workspace }}',
+    shell: 'bash',
+    run: disableProjectJsonAuthorityScript(),
+  }) || authority[0].nested.size !== 0) {
+    projectJsonRed('WORKFLOW_SECURITY:AUTHORITY_BINDING');
+  }
+  if (!exactMap(steps[4].fields, {
+    name: 'Upload raw Studio install policy evidence',
+    if: 'always()',
+    uses: 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2',
+    with: null,
+  }) || !exactMap(steps[4].nested.get('with') ?? new Map(), {
+    name: 'studio-install-policy-raw-${{ env.POLICY_CANDIDATE_SHA }}-${{ runner.os }}-${{ runner.arch }}',
+    path: '${{ runner.temp }}/studio-install-policy-v7/',
+    'if-no-files-found': 'error',
+    'retention-days': '14',
+    'compression-level': '0',
+  })) projectJsonRed('WORKFLOW_SECURITY:AUTHORITY_BINDING');
+  return parsed;
+}
+
+function validateDisableProjectJsonCheckout(steps, expectedRef = DISABLE_PROJECT_JSON_CANDIDATE_EXPRESSION) {
+  const checkoutSha = '34e114876b0b11c390a56381ad16ebd13914f8d5';
+  const checkoutUse = `actions/checkout@${checkoutSha} # v4.3.1`;
+  const checkouts = steps.filter((step) => step.fields.get('uses')?.startsWith('actions/checkout@'));
+  if (checkouts.length !== 1 || checkouts[0].fields.get('uses') !== checkoutUse
+    || !exactMap(checkouts[0].fields, { uses: checkoutUse, with: null })
+    || !exactMap(checkouts[0].nested.get('with') ?? new Map(), {
+      ref: expectedRef,
+      'fetch-depth': '0',
+      'persist-credentials': 'false',
+    })) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  return checkouts[0];
+}
+
+function validateDisableProjectJsonTargetJob(jobName, job, bindings) {
+  if (!job || /(?:^|\s)[&*][A-Za-z0-9_-]+/mu.test(job)
+    || /(?:upload|download)-artifact@/iu.test(job)
+    || /actions\/(?:cache|upload-artifact|download-artifact)@/iu.test(job)
+    || /\b(?:bootstrap|uv\s+sync)\b/iu.test(job)) {
+    projectJsonRed(`JOB_CALLSITE:${jobName}`);
+  }
+  const parsed = parseRestrictedYamlJob(jobName, job);
+  if (!exactRestrictedYamlMap(parsed.header, disableProjectJsonTargetHeader(jobName))) {
+    projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+  }
+  const { steps } = parsed;
+  const checkout = validateDisableProjectJsonCheckout(steps);
+  if (steps[0] !== checkout || !exactMap(steps[1]?.fields ?? new Map(), {
+    uses: 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0',
+    with: null,
+  }) || !exactMap(steps[1]?.nested.get('with') ?? new Map(), {
+    'node-version': '"22.14.0"',
+    cache: 'npm',
+    'cache-dependency-path': 'apps/studio/package-lock.json',
+  })) projectJsonRed(`JOB_CALLSITE:${jobName}`);
+  const callsites = steps.filter((step) => step.fields.get('run')?.includes(DISABLE_PROJECT_JSON_POLICY_CALL)
+    || step.fields.get('run')?.includes(MATERIALIZE));
+  if (callsites.length !== 1 || job.split(DISABLE_PROJECT_JSON_POLICY_CALL).length - 1 !== 1
+    || job.split(MATERIALIZE).length - 1 !== 1
+    || !exactMap(callsites[0].fields, {
+      name: 'Studio install policy V7 + materialize',
+      'working-directory': '${{ github.workspace }}',
+      shell: 'bash',
+      run: disableProjectJsonCallsiteScript(),
+      env: null,
+    }) || !exactMap(callsites[0].nested.get('env') ?? new Map(), {
+      [DISABLE_PROJECT_JSON_V1.envOracle]: bindings.oracle,
+      [DISABLE_PROJECT_JSON_V1.envDigest]: bindings.digest,
+      [DISABLE_PROJECT_JSON_V1.envManifest]: bindings.manifest,
+    })) {
+    projectJsonRed(`JOB_CALLSITE:${jobName}`);
+  }
+  const callsiteIndex = steps.indexOf(callsites[0]);
+  if (callsiteIndex !== 2) projectJsonRed(`STEP_ORDER:${jobName}`);
+  for (const step of steps) {
+    const run = step.fields.get('run') ?? '';
+    if (/\b(?:rm|mv|cp|rename|unlink|rsync|truncate|touch)\b/iu.test(run)) {
+      projectJsonRed('PROJECT_POSTPROCESSING');
+    }
+  }
+  const buildIndexes = steps.map((step, index) => (
+    step.fields.get('run') === 'npm run storybook:build' ? index : -1
+  )).filter((index) => index >= 0);
+  if (buildIndexes.length !== 1 || !exactMap(steps[buildIndexes[0]].fields, {
+    run: 'npm run storybook:build',
+  }) || steps[buildIndexes[0]].nested.size !== 0) {
+    projectJsonRed(`STORYBOOK_BUILD_STEP:${jobName}`);
+  }
+  if (callsiteIndex >= buildIndexes[0] || !steps[buildIndexes[0] + 1]) projectJsonRed(`STEP_ORDER:${jobName}`);
+  const assertion = steps[buildIndexes[0] + 1];
+  const expectedAssertion = disableProjectJsonAssertionScript(jobName);
+  if (assertion.fields.get('name') !== 'Assert Storybook output has no project.json and 44 regular files') {
+    projectJsonRed(`POSTBUILD_ASSERTION:${jobName}`);
+  }
+  if (assertion.fields.get('run') !== expectedAssertion) {
+    if (!/regular_files/u.test(assertion.fields.get('run') ?? '')
+      || !/!= 44/u.test(assertion.fields.get('run') ?? '')) projectJsonRed('FILESET_44_ASSERTION');
+    projectJsonRed(`POSTBUILD_ASSERTION:${jobName}`);
+  }
+  if (!exactMap(assertion.fields, {
+    name: 'Assert Storybook output has no project.json and 44 regular files',
+    shell: 'bash',
+    run: expectedAssertion,
+  }) || assertion.nested.size !== 0) {
+    projectJsonRed(`POSTBUILD_ASSERTION:${jobName}`);
+  }
+  const assertionIndex = buildIndexes[0] + 1;
+  if (jobName === 'studio') {
+    const testIndexes = steps.map((step, index) => (
+      step.fields.get('run') === 'npm run storybook:test' ? index : -1
+    )).filter((index) => index >= 0);
+    if (testIndexes.length !== 1 || !exactMap(steps[testIndexes[0]].fields, {
+      run: 'npm run storybook:test',
+    }) || steps[testIndexes[0]].nested.size !== 0) {
+      projectJsonRed('STORYBOOK_TEST_STEP:studio');
+    }
+    if (testIndexes[0] !== assertionIndex + 1 || testIndexes[0] !== steps.length - 1) {
+      projectJsonRed('STEP_ORDER:studio');
+    }
+  }
+  return { ...parsed, callsite: callsites[0], callsiteIndex, buildIndex: buildIndexes[0], assertionIndex };
+}
+
+function validateDisableProjectJsonChromaticSteps(target, job) {
+  const { steps, assertionIndex } = target;
+  const actionPrefix = 'chromaui/action@';
+  const actionUse = `${actionPrefix}${DISABLE_PROJECT_JSON_ACTION_SHA} # v18.0.1`;
+  const actions = steps.filter((step) => step.fields.get('uses')?.startsWith(actionPrefix));
+  if (actions.length !== 1 || actions[0].fields.get('uses') !== actionUse) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const action = actions[0];
+  if (!exactMap(action.fields, {
+    name: 'chromatic-visual-review',
+    if: DISABLE_PROJECT_JSON_FORK_GUARD,
+    uses: actionUse,
+    env: null,
+    with: null,
+  }) || !exactMap(action.nested.get('env') ?? new Map(), {
+    CHROMATIC_PROJECT_TOKEN: DISABLE_PROJECT_JSON_TOKEN_EXPRESSION,
+  }) || !exactMap(action.nested.get('with') ?? new Map(), {
+    workingDir: 'apps/studio',
+    storybookBuildDir: 'dist/storybook',
+    chromaticSha: DISABLE_PROJECT_JSON_CANDIDATE_EXPRESSION,
+    autoAcceptChanges: 'false',
+    exitZeroOnChanges: 'false',
+    skipUpdateCheck: 'true',
+  })) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const tokenAssertions = steps.filter((step) => step.fields.get('name') === 'Assert Chromatic project token is configured');
+  if (tokenAssertions.length !== 1 || !exactMap(tokenAssertions[0].fields, {
+    name: 'Assert Chromatic project token is configured',
+    if: DISABLE_PROJECT_JSON_FORK_GUARD,
+    env: null,
+    shell: 'bash',
+    run: ['set -euo pipefail', 'test -n "$CHROMATIC_PROJECT_TOKEN"'].join('\n'),
+  }) || !exactMap(tokenAssertions[0].nested.get('env') ?? new Map(), {
+    CHROMATIC_PROJECT_TOKEN: DISABLE_PROJECT_JSON_TOKEN_EXPRESSION,
+  })) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const secretSteps = steps.filter((step) => step.raw.includes(DISABLE_PROJECT_JSON_TOKEN_EXPRESSION));
+  if (secretSteps.length !== 2 || !secretSteps.includes(action) || !secretSteps.includes(tokenAssertions[0])
+    || job.split(DISABLE_PROJECT_JSON_TOKEN_EXPRESSION).length - 1 !== 2
+    || /(?:onlyChanged|turboSnap):/iu.test(job)) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const actionIndex = steps.indexOf(action);
+  const tokenIndex = steps.indexOf(tokenAssertions[0]);
+  if (tokenIndex !== assertionIndex + 1 || actionIndex !== tokenIndex + 1
+    || actionIndex !== steps.length - 1) projectJsonRed('STEP_ORDER:chromatic-visual-review');
+}
+
+function assertDisableProjectJsonRuntimeOwnerCardinality(text, bindings) {
+  for (const [key, expected] of [
+    [DISABLE_PROJECT_JSON_V1.envOracle, bindings.oracle],
+    [DISABLE_PROJECT_JSON_V1.envDigest, bindings.digest],
+    [DISABLE_PROJECT_JSON_V1.envManifest, bindings.manifest],
+  ]) {
+    const expression = new RegExp(`^\\s+${key}:\\s*([^\\s#]+)\\s*$`, 'gmu');
+    const values = [...text.matchAll(expression)].map((match) => match[1]);
+    if (values.length !== 3 || values.some((value) => value !== expected)) {
+      projectJsonRed(`EPOCH_MIXING:RUNTIME_OWNER_CARDINALITY:${key}`);
+    }
+  }
+}
+
+function validateDisableProjectJsonWorkflowEnvelope(text, bindings) {
+  if (text.includes('\r') || text.includes('\t') || !text.endsWith('\n')) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const lines = text.split('\n');
+  const jobsIndexes = lines.map((line, index) => line === 'jobs:' ? index : -1)
+    .filter((index) => index >= 0);
+  if (jobsIndexes.length !== 1
+    || lines.slice(0, jobsIndexes[0] + 1).join('\n') !== DISABLE_PROJECT_JSON_WORKFLOW_PREFIX) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  const jobsIndex = jobsIndexes[0];
+  const expectedMarkers = [
+    `  # ${DISABLE_PROJECT_JSON_V1.markerOracle}=${bindings.oracle}`,
+    `  # ${DISABLE_PROJECT_JSON_V1.markerDigest}=${bindings.digest}`,
+    `  # ${DISABLE_PROJECT_JSON_V1.markerManifest}=${bindings.manifest}`,
+  ];
+  if (!arraysEqual(lines.slice(jobsIndex + 1, jobsIndex + 4), expectedMarkers)
+    || lines[jobsIndex + 4] !== '  studio-install-policy:'
+    || lines.slice(jobsIndex + 1).some((line) => /^[^\s#]/u.test(line))) {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  return yamlJobBlocks(text);
+}
+
+function validateDisableProjectJsonCompleteJobSet(jobs) {
+  if (!arraysEqual([...jobs.keys()], DISABLE_PROJECT_JSON_JOBS)) {
+    projectJsonRed('WORKFLOW_SECURITY:JOB_SET');
+  }
+  for (const [jobName, expectedDigest] of Object.entries(DISABLE_PROJECT_JSON_UNOWNED_JOB_SHA256)) {
+    const job = jobs.get(jobName);
+    if (typeof job !== 'string' || sha256(Buffer.from(job, 'utf8')) !== expectedDigest) {
+      projectJsonRed(`WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`);
+    }
+  }
+}
+
+function validateDisableProjectJsonWorkflowBytes(bytes) {
+  let text;
+  try {
+    text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  } catch {
+    projectJsonRed('WORKFLOW_SECURITY');
+  }
+  if (/ARD11_D0P_A_(?:ORACLE_COMMIT|ORACLE_BINDING|EXPECTED_F_MANIFEST)_V[1-6]=/u.test(text)
+    || /studio-policy-materialize-v[1-6]/iu.test(text)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const oracle = v7MarkerValue(bytes, DISABLE_PROJECT_JSON_V1.markerOracle, 40);
+  const digest = v7MarkerValue(bytes, DISABLE_PROJECT_JSON_V1.markerDigest, 64);
+  const manifest = v7MarkerValue(bytes, DISABLE_PROJECT_JSON_V1.markerManifest, 64);
+  const bindings = { oracle, digest, manifest };
+  const jobs = validateDisableProjectJsonWorkflowEnvelope(text, bindings);
+  validateDisableProjectJsonAuthorityJob(jobs.get('studio-install-policy'), bindings);
+  const studio = jobs.get('studio');
+  const chromatic = jobs.get('chromatic-visual-review');
+  validateDisableProjectJsonTargetJob('studio', studio, bindings);
+  const chromaticTarget = validateDisableProjectJsonTargetJob('chromatic-visual-review', chromatic, bindings);
+  validateDisableProjectJsonChromaticSteps(chromaticTarget, chromatic);
+  assertDisableProjectJsonRuntimeOwnerCardinality(text, bindings);
+  validateDisableProjectJsonCompleteJobSet(jobs);
+  return { oracle, digest, manifest, jobs: [...DISABLE_PROJECT_JSON_JOBS] };
+}
+
+function validateActivatedDisableProjectJsonV1(root) {
+  const workflow = readBytes(root, WORKFLOW_PATH);
+  if (!workflowHasDisableProjectJsonV1(workflow)) return null;
+  validateDisableProjectJsonConfigBytes(readBytes(root, DISABLE_PROJECT_JSON_V1.configPath));
+  return validateDisableProjectJsonWorkflowBytes(workflow);
+}
+
+function installPolicyEpochForWorkflow(workflowBytes) {
+  return workflowHasDisableProjectJsonV1(workflowBytes)
+    ? DISABLE_PROJECT_JSON_V1.profile
+    : 'V6';
+}
+
+function checkRepositoryForEpoch(root, options = {}) {
+  const epoch = installPolicyEpochForWorkflow(readBytes(root, WORKFLOW_PATH));
+  if (epoch === 'V6') return checkRepository(root, options);
+  const workflow = validateActivatedDisableProjectJsonV1(root);
+  return {
+    state: 'DISABLE_PROJECT_JSON_V1_STATIC_GREEN',
+    epoch,
+    workflow,
+  };
+}
+
+function runDisableProjectJsonHarness(root, options, internal = {}) {
+  const outputRoot = internal.outputValidated
+    ? options.output
+    : validateOutputDirectory(options.output, root);
+  const env = internal.env ?? process.env;
+  const identity = validateRuntimeIdentity(root, options, env);
+  const check = checkRepositoryForEpoch(root, { env });
+  if (check.epoch !== DISABLE_PROJECT_JSON_V1.profile) projectJsonRed('EPOCH_MIXING');
+  if (options.expectedCore !== DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS) {
+    projectJsonRed('EPOCH_MIXING:EXPECTED_MUTATION_COUNT');
+  }
+  if ((options.auditMode ?? 'functional') !== 'functional'
+    || options.producerTranche !== undefined || options.canonicalOutput !== undefined) {
+    projectJsonRed('EPOCH_MIXING:AUDIT_MODE');
+  }
+  const activationSha = findDisableProjectJsonActivation(root, identity.candidateSha);
+  const markers = validateDisableProjectJsonWorkflowBytes(gitFile(root, activationSha, WORKFLOW_PATH));
+  if ((options.oracleAnchorSha !== undefined && options.oracleAnchorSha !== markers.oracle)
+    || (options.workflowAnchorSha !== undefined && options.workflowAnchorSha !== activationSha)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const lineage = postcommitDisableProjectJsonV1Check(root, {
+    candidateSha: identity.candidateSha,
+    oracleAnchorSha: markers.oracle,
+    workflowAnchorSha: activationSha,
+  });
+  const mutations = runDisableProjectJsonMutationCorpus(
+    readText(root, DISABLE_PROJECT_JSON_V1.configPath),
+    readText(root, WORKFLOW_PATH),
+  );
+  if (mutations.results.length !== DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS) {
+    projectJsonRed('EPOCH_MIXING:EXPECTED_MUTATION_COUNT');
+  }
+  const summary = {
+    schema: 'studio-install-policy-disable-project-json-harness/v1',
+    profile: DISABLE_PROJECT_JSON_V1.profile,
+    state: lineage.state,
+    candidateSha: identity.candidateSha,
+    candidateTree: git(root, ['rev-parse', `${identity.candidateSha}^{tree}`]),
+    oracleAnchorSha: markers.oracle,
+    oracleSha256: markers.digest,
+    workflowAnchorSha: activationSha,
+    workflowSha256: sha256(gitFile(root, activationSha, WORKFLOW_PATH)),
+    remediationBaseSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+    remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+    counts: {
+      core: mutations.results.length,
+      total: mutations.results.length,
+      exactReasonMatches: mutations.results.length,
+    },
+    mutationCorpusSha256: mutations.sha256,
+    npmMaterializerStarted: 0,
+    uvSyncStarted: 0,
+    buildStarted: 0,
+    cloudActionsStarted: 0,
+  };
+  writeJson(join(outputRoot, 'schema.json'), {
+    schema: summary.schema,
+    profile: summary.profile,
+  });
+  writeJson(join(outputRoot, 'mutations.json'), {
+    schema: 'studio-install-policy-disable-project-json-mutations/v1',
+    cases: mutations.results,
+    corpusSha256: mutations.sha256,
+  });
+  writeJson(join(outputRoot, 'summary.json'), summary);
+  const sumsSha256 = writeSha256Sums(outputRoot);
+  return { outputRoot, summary, canonical: summary, sumsSha256, lineage };
+}
+
+function runDisableProjectJsonCiAuthority(root, options) {
+  const output = validateOutputDirectory(options.output, root);
+  const stateOutput = validateOutputFile(options.stateOutput, root);
+  const harness = runDisableProjectJsonHarness(root, {
+    output,
+    candidateSha: options.candidateSha,
+    auditMode: 'functional',
+    expectedCore: DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS,
+    noMaterialize: true,
+    forbidReceiptSemanticOutput: true,
+  }, { outputValidated: true });
+  writeJson(stateOutput, {
+    schema: 'studio-install-policy-disable-project-json-state/v1',
+    candidateSha: options.candidateSha,
+    ...harness.lineage,
+  });
+  return harness;
+}
+
+function validateDisableProjectJsonF7Blob(path, bytes, allowedIdentities = []) {
+  let text;
+  try {
+    text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  } catch {
+    projectJsonRed(`EPOCH_MIXING:${path}`);
+  }
+  if (text.includes('\0') || /\bHEAD\b/u.test(text)
+    || /\b(?:TBD|TBC|PLACEHOLDER|TO_BE_FILLED|FUTURE_SHA|UNKNOWN_SHA|REPLACE_ME)\b/iu.test(text)
+    || /\b(?:activationSha|workflowDigest|functionalSha|receiptSha|evidenceSha)\b/u.test(text)
+    || /\b(?:A7|F7|R7|E7)[_-]?(?:SHA|COMMIT|IDENTITY|DIGEST)\b/iu.test(text)
+    || /\b(?:sha|commit|identity|digest)\s*[:=]\s*[0-9a-f]{7,39}\b/iu.test(text)
+    || /\b0{40}\b|\b0{64}\b/u.test(text)) {
+    projectJsonRed(`EPOCH_MIXING:${path}`);
+  }
+  const identities = text.match(/\b(?:[0-9a-f]{40}|[0-9a-f]{64})\b/gu) ?? [];
+  if (identities.some((identity) => !allowedIdentities.includes(identity))) {
+    projectJsonRed(`EPOCH_MIXING:${path}`);
+  }
+}
+
+function disableProjectJsonF7ManifestFromContents(contents, allowedIdentities = []) {
+  const paths = bytewise(Object.keys(contents));
+  if (!arraysEqual(paths, bytewise(DISABLE_PROJECT_JSON_V1.freezePaths))) {
+    projectJsonRed(`EPOCH_MIXING:${firstSetDifference(paths, DISABLE_PROJECT_JSON_V1.freezePaths)}`);
+  }
+  const tuples = [];
+  const raw = [];
+  for (const path of paths) {
+    const bytes = Buffer.from(contents[path]);
+    validateDisableProjectJsonF7Blob(path, bytes, [
+      ...DISABLE_PROJECT_JSON_KNOWN_PREDECESSOR_IDENTITIES,
+      ...allowedIdentities,
+    ]);
+    const blobSha256 = sha256(bytes);
+    tuples.push({ path, byteLength: bytes.length, blobSha256 });
+    raw.push(Buffer.from(path, 'utf8'), Buffer.from([0]), Buffer.from(blobSha256, 'ascii'), Buffer.from([0]));
+  }
+  const manifestBytes = Buffer.concat(raw);
+  const descriptor = {
+    algorithm: DISABLE_PROJECT_JSON_F7_MANIFEST_ALGORITHM,
+    tuples,
+  };
+  return {
+    schema: 'studio-disable-project-json-f7-preregistration/v1',
+    profile: DISABLE_PROJECT_JSON_V1.profile,
+    algorithm: DISABLE_PROJECT_JSON_F7_MANIFEST_ALGORITHM,
+    paths,
+    tuples,
+    manifestByteLength: manifestBytes.length,
+    manifestSha256: sha256(manifestBytes),
+    packageDescriptorSha256: sha256(jcsLf(descriptor)),
+    futureIdentityPolicy: 'REJECTED_FROM_F7_BLOBS',
+  };
+}
+
+function enumerateDisableProjectJsonPackage(root, current = root) {
+  const result = [];
+  for (const name of readdirSync(current)) {
+    const absolute = join(current, name);
+    const entry = lstatSync(absolute);
+    if (entry.isSymbolicLink() || (!entry.isDirectory() && !entry.isFile())) {
+      projectJsonRed('EPOCH_MIXING:PACKAGE_ENTRY_TYPE');
+    }
+    if (entry.isDirectory()) result.push(...enumerateDisableProjectJsonPackage(root, absolute));
+    else result.push(relative(root, absolute).split(sep).join('/'));
+  }
+  return bytewise(result);
+}
+
+function readDisableProjectJsonPackageSnapshot(packageRoot, path) {
+  const absolute = join(packageRoot, path);
+  const beforePath = lstatSync(absolute);
+  if (!beforePath.isFile() || beforePath.isSymbolicLink() || beforePath.nlink !== 1) {
+    projectJsonRed('EPOCH_MIXING:PACKAGE_ENTRY_TYPE');
+  }
+  if (fsConstants.O_NOFOLLOW === undefined) projectJsonRed('EPOCH_MIXING:NOFOLLOW_UNAVAILABLE');
+  let descriptor;
+  try {
+    descriptor = openSync(absolute, fsConstants.O_RDONLY | fsConstants.O_NOFOLLOW);
+  } catch {
+    projectJsonRed('EPOCH_MIXING:PACKAGE_ENTRY_TYPE');
+  }
+  try {
+    const before = fstatSync(descriptor);
+    if (!before.isFile() || before.nlink !== 1 || before.dev !== beforePath.dev || before.ino !== beforePath.ino
+      || before.size !== beforePath.size || realpathSync(absolute) !== absolute) {
+      projectJsonRed('EPOCH_MIXING:PACKAGE_TOCTOU');
+    }
+    const bytes = Buffer.alloc(before.size);
+    let offset = 0;
+    while (offset < bytes.length) {
+      const count = readSync(descriptor, bytes, offset, bytes.length - offset, offset);
+      if (count <= 0) projectJsonRed('EPOCH_MIXING:PACKAGE_TOCTOU');
+      offset += count;
+    }
+    const overflow = Buffer.alloc(1);
+    if (readSync(descriptor, overflow, 0, 1, offset) !== 0) projectJsonRed('EPOCH_MIXING:PACKAGE_TOCTOU');
+    const after = fstatSync(descriptor);
+    const afterPath = lstatSync(absolute);
+    for (const field of ['dev', 'ino', 'size', 'mtimeMs', 'ctimeMs', 'nlink']) {
+      if (after[field] !== before[field] || afterPath[field] !== beforePath[field]) {
+        projectJsonRed('EPOCH_MIXING:PACKAGE_TOCTOU');
+      }
+    }
+    if (!afterPath.isFile() || afterPath.isSymbolicLink() || realpathSync(absolute) !== absolute) {
+      projectJsonRed('EPOCH_MIXING:PACKAGE_TOCTOU');
+    }
+    return bytes;
+  } finally {
+    closeSync(descriptor);
+  }
+}
+
+function validateRealDisableProjectJsonOracleIdentity(root, oracleAnchorSha, oracleSha256) {
+  const object = runFile('git', ['-C', root, 'cat-file', '-e', `${oracleAnchorSha}^{commit}`]);
+  if (object.status !== 0) projectJsonRed('EPOCH_MIXING:KNOWN_ORACLE_IDENTITY');
+  const parents = gitParents(root, oracleAnchorSha);
+  if (parents.length !== 1 || parents[0] !== DISABLE_PROJECT_JSON_V1.remediationBaseSha) {
+    projectJsonRed('EPOCH_MIXING:KNOWN_ORACLE_IDENTITY');
+  }
+  assertDisableProjectJsonScope(commitScope(root, oracleAnchorSha), DISABLE_PROJECT_JSON_V1.oraclePaths);
+  const committedOracle = gitFile(root, oracleAnchorSha, ORACLE_PATH);
+  if (sha256(committedOracle) !== oracleSha256 || !readBytes(root, ORACLE_PATH).equals(committedOracle)) {
+    projectJsonRed('EPOCH_MIXING:KNOWN_ORACLE_IDENTITY');
+  }
+  return committedOracle;
+}
+
+function checkDisableProjectJsonF7Package(repositoryRoot, options) {
+  if (!isAbsolute(options.packageRoot) || !existsSync(options.packageRoot)) {
+    projectJsonRed('EPOCH_MIXING:PACKAGE_ROOT');
+  }
+  const packageRoot = realpathSync(options.packageRoot);
+  const packageEntry = lstatSync(packageRoot);
+  if (!packageEntry.isDirectory()) projectJsonRed('EPOCH_MIXING:PACKAGE_ROOT');
+  const relation = relative(repositoryRoot, packageRoot);
+  if (relation === '' || (!relation.startsWith(`..${sep}`) && relation !== '..')) {
+    projectJsonRed('EPOCH_MIXING:PACKAGE_MUST_BE_PRIVATE');
+  }
+  if (!SHA_RE.test(options.oracleAnchorSha) || !SHA256_RE.test(options.oracleSha256)) {
+    projectJsonRed('EPOCH_MIXING:KNOWN_ORACLE_IDENTITY');
+  }
+  validateRealDisableProjectJsonOracleIdentity(repositoryRoot, options.oracleAnchorSha, options.oracleSha256);
+  const paths = enumerateDisableProjectJsonPackage(packageRoot);
+  if (!arraysEqual(paths, bytewise(DISABLE_PROJECT_JSON_V1.freezePaths))) {
+    projectJsonRed(`EPOCH_MIXING:${firstSetDifference(paths, DISABLE_PROJECT_JSON_V1.freezePaths)}`);
+  }
+  const contents = Object.fromEntries(paths.map((path) => [
+    path,
+    readDisableProjectJsonPackageSnapshot(packageRoot, path),
+  ]));
+  return disableProjectJsonF7ManifestFromContents(
+    contents,
+    [options.oracleAnchorSha, options.oracleSha256],
+  );
+}
+
+function disableProjectJsonScopes() {
+  return {
+    O7: [...DISABLE_PROJECT_JSON_V1.oraclePaths],
+    A7: [...DISABLE_PROJECT_JSON_V1.activationPaths],
+    F7: [...DISABLE_PROJECT_JSON_V1.freezePaths],
+    R7: [...DISABLE_PROJECT_JSON_V1.receiptPaths],
+    E7: ['canonical/<R7>.json', 'index.jsonl', 'records/<R7>.json'],
+  };
+}
+
+function assertDisableProjectJsonExactObject(actual, expected) {
+  if (actual === null || typeof actual !== 'object' || Array.isArray(actual)
+    || !arraysEqual(bytewise(Object.keys(actual)), bytewise(Object.keys(expected)))
+    || canonicalizeJcs(actual) !== canonicalizeJcs(expected)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+}
+
+function validateDisableProjectJsonReceipt(root, functionalSha, receiptSha, context) {
+  const parentBytes = gitFile(root, functionalSha, LEDGER_PATH, Buffer.alloc(0));
+  const candidateBytes = gitFile(root, receiptSha, LEDGER_PATH, Buffer.alloc(0));
+  if (candidateBytes.length <= parentBytes.length || !candidateBytes.subarray(0, parentBytes.length).equals(parentBytes)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const suffix = candidateBytes.subarray(parentBytes.length);
+  if (suffix.length === 0 || suffix.at(-1) !== 0x0a || suffix.subarray(0, -1).includes(0x0a)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const payload = assertDisableProjectJsonJcsLf(suffix);
+  const expected = {
+    schema: 'studio-install-policy-disable-project-json-receipt/v1',
+    profile: DISABLE_PROJECT_JSON_V1.profile,
+    remediationBaseSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+    remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+    oracleSha: context.oracleSha,
+    activationSha: context.activationSha,
+    functionalSha,
+    oracleDigest: context.oracleDigest,
+    workflowDigest: context.workflowDigest,
+    functionalManifest: context.functionalManifest,
+    scopes: disableProjectJsonScopes(),
+    policyState: 'DISABLE_PROJECT_JSON_CONFIG_FROZEN_PENDING_CANARY',
+    validation: ['B1_NOT_EXECUTED', 'B2_NOT_EXECUTED', 'B3_NOT_EXECUTED', 'CHROMATIC_NOT_EXECUTED'],
+  };
+  assertDisableProjectJsonExactObject(payload, expected);
+  return { payload, receiptBlobSha256: sha256(suffix) };
+}
+
+function validateDisableProjectJsonEvidence(root, receiptSha, evidenceSha, context) {
+  const expected = [
+    EVIDENCE_INDEX_PATH,
+    `${EVIDENCE_RECORDS_DIR}/${receiptSha}.json`,
+    `${EVIDENCE_CANONICAL_DIR}/${receiptSha}.json`,
+  ];
+  assertDisableProjectJsonScope(commitScope(root, evidenceSha), expected);
+  const parent = gitParents(root, evidenceSha)[0];
+  const parentIndex = gitFile(root, parent, EVIDENCE_INDEX_PATH, Buffer.alloc(0));
+  const candidateIndex = gitFile(root, evidenceSha, EVIDENCE_INDEX_PATH);
+  if (!candidateIndex.subarray(0, parentIndex.length).equals(parentIndex)) projectJsonRed('EPOCH_MIXING');
+  const suffix = candidateIndex.subarray(parentIndex.length);
+  const entry = validateDisableProjectJsonIndexShape(assertDisableProjectJsonJcsLf(suffix));
+  const recordPath = expected[1];
+  const canonicalPath = expected[2];
+  const recordBytes = gitFile(root, evidenceSha, recordPath);
+  const canonicalBytes = gitFile(root, evidenceSha, canonicalPath);
+  const record = assertDisableProjectJsonJcsLf(recordBytes);
+  const canonical = assertDisableProjectJsonJcsLf(canonicalBytes);
+  if (entry.receiptSha !== receiptSha || entry.recordPath !== recordPath
+    || entry.canonicalPath !== canonicalPath || entry.recordSha256 !== sha256(recordBytes)
+    || entry.canonicalRawSha256 !== sha256(canonicalBytes)) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const common = {
+    schema: 'studio-install-policy-disable-project-json-evidence/v1',
+    profile: DISABLE_PROJECT_JSON_V1.profile,
+    remediationBaseSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+    remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+    oracleSha: context.oracleSha,
+    activationSha: context.activationSha,
+    functionalSha: context.functionalSha,
+    receiptSha,
+    oracleDigest: context.oracleDigest,
+    workflowDigest: context.workflowDigest,
+    functionalManifest: context.functionalManifest,
+    receiptBlobSha256: context.receiptBlobSha256,
+    scopes: disableProjectJsonScopes(),
+  };
+  assertDisableProjectJsonExactObject(canonical, { ...common, kind: 'canonical' });
+  assertDisableProjectJsonExactObject(record, {
+    ...common,
+    kind: 'record',
+    canonicalPath,
+    canonicalRawSha256: sha256(canonicalBytes),
+  });
+}
+
+function findDisableProjectJsonActivation(root, candidateSha) {
+  const candidates = git(root, ['rev-list', '--first-parent', candidateSha]).split('\n').filter(Boolean);
+  const matches = [];
+  for (const sha of candidates) {
+    const workflow = gitFile(root, sha, WORKFLOW_PATH, Buffer.alloc(0));
+    if (!workflowHasDisableProjectJsonV1(workflow)) continue;
+    const parents = gitParents(root, sha);
+    if (parents.length !== 1) projectJsonRed('EPOCH_MIXING');
+    const parentWorkflow = gitFile(root, parents[0], WORKFLOW_PATH, Buffer.alloc(0));
+    if (!workflowHasDisableProjectJsonV1(parentWorkflow)) matches.push(sha);
+  }
+  if (matches.length !== 1) projectJsonRed('EPOCH_MIXING');
+  return matches[0];
+}
+
+function postcommitDisableProjectJsonV1Check(root, options) {
+  const identity = validateRuntimeIdentity(root, { candidateSha: options.candidateSha });
+  const activationSha = findDisableProjectJsonActivation(root, identity.candidateSha);
+  const activationWorkflow = gitFile(root, activationSha, WORKFLOW_PATH);
+  const markers = validateDisableProjectJsonWorkflowBytes(activationWorkflow);
+  const oracleSha = markers.oracle;
+  if (options.oracleAnchorSha !== oracleSha || options.workflowAnchorSha !== activationSha) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  const oracleParents = gitParents(root, oracleSha);
+  if (oracleParents.length !== 1 || oracleParents[0] !== DISABLE_PROJECT_JSON_V1.remediationBaseSha) {
+    projectJsonRed('EPOCH_MIXING');
+  }
+  assertDisableProjectJsonScope(commitScope(root, oracleSha), DISABLE_PROJECT_JSON_V1.oraclePaths);
+  const activationParents = gitParents(root, activationSha);
+  if (activationParents.length !== 1 || activationParents[0] !== oracleSha) projectJsonRed('EPOCH_MIXING');
+  assertDisableProjectJsonScope(commitScope(root, activationSha), DISABLE_PROJECT_JSON_V1.activationPaths);
+  const oracleBytes = gitFile(root, oracleSha, ORACLE_PATH);
+  if (markers.digest !== sha256(oracleBytes)) projectJsonRed('EPOCH_MIXING');
+  validateDisableProjectJsonConfigBytes(gitFile(root, activationSha, DISABLE_PROJECT_JSON_V1.configPath));
+  const workflowDigest = sha256(activationWorkflow);
+  const afterText = git(root, ['rev-list', '--first-parent', '--reverse', `${activationSha}..${identity.candidateSha}`]);
+  const after = afterText ? afterText.split('\n') : [];
+  const [functionalSha, receiptSha, evidenceSha, ...descendants] = after;
+  if (descendants.length > 0) projectJsonRed('EPOCH_MIXING');
+  const base = {
+    profile: DISABLE_PROJECT_JSON_V1.profile,
+    remediationBaseSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+    remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+    oracleSha,
+    activationSha,
+  };
+  if (!functionalSha) return { ...base, state: 'DISABLE_PROJECT_JSON_A7_F7_PENDING', publicationBindingV1: 'INCOMPLETE' };
+  if (gitParents(root, functionalSha)[0] !== activationSha) projectJsonRed('EPOCH_MIXING');
+  assertDisableProjectJsonScope(commitScope(root, functionalSha), DISABLE_PROJECT_JSON_V1.freezePaths);
+  const functionalContents = Object.fromEntries(DISABLE_PROJECT_JSON_V1.freezePaths.map((path) => [
+    path,
+    gitFile(root, functionalSha, path),
+  ]));
+  const functionalManifest = disableProjectJsonF7ManifestFromContents(
+    functionalContents,
+    [oracleSha, markers.digest],
+  ).manifestSha256;
+  if (functionalManifest !== markers.manifest) projectJsonRed('EPOCH_MIXING');
+  for (const sha of after) {
+    if (!gitFile(root, sha, ORACLE_PATH).equals(oracleBytes)
+      || !gitFile(root, sha, WORKFLOW_PATH).equals(activationWorkflow)
+      || !gitFile(root, sha, DISABLE_PROJECT_JSON_V1.configPath)
+        .equals(gitFile(root, activationSha, DISABLE_PROJECT_JSON_V1.configPath))) {
+      projectJsonRed('EPOCH_MIXING');
+    }
+  }
+  const context = {
+    oracleSha,
+    activationSha,
+    functionalSha,
+    oracleDigest: markers.digest,
+    workflowDigest,
+    functionalManifest,
+  };
+  if (!receiptSha) return { ...base, functionalSha, state: 'DISABLE_PROJECT_JSON_F7_R7_PENDING', publicationBindingV1: 'INCOMPLETE' };
+  if (gitParents(root, receiptSha)[0] !== functionalSha) projectJsonRed('EPOCH_MIXING');
+  assertDisableProjectJsonScope(commitScope(root, receiptSha), DISABLE_PROJECT_JSON_V1.receiptPaths);
+  const receipt = validateDisableProjectJsonReceipt(root, functionalSha, receiptSha, context);
+  context.receiptBlobSha256 = receipt.receiptBlobSha256;
+  if (!evidenceSha) return { ...base, functionalSha, receiptSha, state: 'DISABLE_PROJECT_JSON_R7_E7_PENDING', publicationBindingV1: 'INCOMPLETE' };
+  if (gitParents(root, evidenceSha)[0] !== receiptSha) projectJsonRed('EPOCH_MIXING');
+  validateDisableProjectJsonEvidence(root, receiptSha, evidenceSha, context);
+  return {
+    ...base,
+    functionalSha,
+    receiptSha,
+    evidenceSha,
+    state: 'STORYBOOK_DISABLE_PROJECT_JSON_V1_CONFIG_FROZEN',
+    privacyOracleState: 'PRIVACY_ORACLE_DISABLE_PROJECT_JSON_UNSEALED',
+    localValidationState: 'LOCAL_VALIDATION_PENDING_B1_B2_B3',
+    chromaticState: 'CHROMATIC_FALLBACK_DEFERRED_PENDING_EXTERNAL_AUTHORIZATION',
+    predecessorState: 'E6_REMAINS_LOCAL_VALIDATION_RED',
+    publicationBindingV1: 'COMPLETE',
+  };
+}
+
+function disableProjectJsonConfigFixture() {
+  return `import type { StorybookConfig } from '@storybook/react-vite'
+
+const config: StorybookConfig = {
+  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-vitest'],
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  core: {
+    disableTelemetry: true,
+    disableProjectJson: true,
+  },
+}
+
+export default config
+`;
+}
+
+function indentScript(script, spaces = 10) {
+  const prefix = ' '.repeat(spaces);
+  return script.split('\n').map((line) => `${prefix}${line}`).join('\n');
+}
+
+function replaceRegexExactlyOnce(text, expression, replacement) {
+  const global = new RegExp(expression.source, expression.flags.includes('g') ? expression.flags : `${expression.flags}g`);
+  const matches = [...text.matchAll(global)];
+  if (matches.length !== 1) policyRed('SELF_TEST_V7_CI_SHAPE_MISSING');
+  return text.replace(expression, replacement);
+}
+
+function disableProjectJsonBoundEnv(oracleSha, oracleDigest, manifestDigest, spaces = 10) {
+  const prefix = ' '.repeat(spaces);
+  return [
+    `${prefix}${DISABLE_PROJECT_JSON_V1.envOracle}: ${oracleSha}`,
+    `${prefix}${DISABLE_PROJECT_JSON_V1.envDigest}: ${oracleDigest}`,
+    `${prefix}${DISABLE_PROJECT_JSON_V1.envManifest}: ${manifestDigest}`,
+  ].join('\n');
+}
+
+function disableProjectJsonCallsiteYaml(oracleSha, oracleDigest, manifestDigest) {
+  return [
+    '      - name: Studio install policy V7 + materialize',
+    '        working-directory: ${{ github.workspace }}',
+    '        shell: bash',
+    '        run: |',
+    indentScript(disableProjectJsonCallsiteScript()),
+    '        env:',
+    disableProjectJsonBoundEnv(oracleSha, oracleDigest, manifestDigest),
+  ].join('\n');
+}
+
+function disableProjectJsonAssertionYaml(jobName) {
+  return [
+    '      - name: Assert Storybook output has no project.json and 44 regular files',
+    '        shell: bash',
+    '        run: |',
+    indentScript(disableProjectJsonAssertionScript(jobName)),
+  ].join('\n');
+}
+
+function disableProjectJsonWorkflowFixture(sourceWorkflow, oracleSha, oracleDigest, manifestDigest) {
+  let workflow = sourceWorkflow;
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^  # ARD11_D0P_A_ORACLE_COMMIT_V6=[0-9a-f]{40}$/mu,
+    `  # ${DISABLE_PROJECT_JSON_V1.markerOracle}=${oracleSha}`);
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^  # ARD11_D0P_A_ORACLE_BINDING_V6=[0-9a-f]{64}$/mu,
+    `  # ${DISABLE_PROJECT_JSON_V1.markerDigest}=${oracleDigest}`);
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^  # ARD11_D0P_A_EXPECTED_F_MANIFEST_V6=[0-9a-f]{64}$/mu,
+    `  # ${DISABLE_PROJECT_JSON_V1.markerManifest}=${manifestDigest}`);
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^      POLICY_ORACLE_COMMIT_SHA: [0-9a-f]{40}$/mu,
+    `      ${DISABLE_PROJECT_JSON_V1.envOracle}: ${oracleSha}`);
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^      POLICY_ORACLE_SHA256: [0-9a-f]{64}$/mu,
+    `      ${DISABLE_PROJECT_JSON_V1.envDigest}: ${oracleDigest}`);
+  workflow = replaceRegexExactlyOnce(workflow,
+    /^      POLICY_EXPECTED_F_MANIFEST_SHA256: [0-9a-f]{64}$/mu,
+    `      ${DISABLE_PROJECT_JSON_V1.envManifest}: ${manifestDigest}`);
+  const authorityStart = workflow.indexOf('      - name: Verify frozen oracle then run authoritative policy\n');
+  const authorityEnd = workflow.indexOf('      - name: Upload raw Studio install policy evidence\n', authorityStart);
+  if (authorityStart < 0 || authorityEnd < 0) policyRed('SELF_TEST_V7_CI_SHAPE_MISSING');
+  const authorityStep = [
+    '      - name: Verify frozen V7 oracle and run authoritative policy',
+    '        working-directory: ${{ github.workspace }}',
+    '        shell: bash',
+    '        run: |',
+    indentScript(disableProjectJsonAuthorityScript()),
+    '',
+  ].join('\n');
+  workflow = `${workflow.slice(0, authorityStart)}${authorityStep}${workflow.slice(authorityEnd)}`;
+  const legacyCallsite = [
+    '      - &studio-policy-materialize-v6',
+    '        name: Studio install policy + materialize',
+    '        working-directory: ${{ github.workspace }}',
+    `        run: ${ATOMIC_MATERIALIZE}`,
+  ].join('\n');
+  workflow = replaceOnce(workflow, legacyCallsite,
+    disableProjectJsonCallsiteYaml(oracleSha, oracleDigest, manifestDigest));
+  workflow = replaceOnce(workflow, '      - *studio-policy-materialize-v6',
+    disableProjectJsonCallsiteYaml(oracleSha, oracleDigest, manifestDigest));
+  let buildCount = 0;
+  workflow = workflow.replace(/^      - run: npm run storybook:build$/gmu, (line, offset) => {
+    buildCount += 1;
+    const before = workflow.slice(0, offset);
+    const jobName = before.lastIndexOf('\n  chromatic-visual-review:') > before.lastIndexOf('\n  studio:')
+      ? 'chromatic-visual-review' : 'studio';
+    return `${line}\n${disableProjectJsonAssertionYaml(jobName)}`;
+  });
+  if (buildCount !== 2) policyRed('SELF_TEST_V7_CI_BUILD_SHAPE_MISMATCH');
+  workflow = workflow.replaceAll('${{ runner.temp }}/studio-install-policy/', '${{ runner.temp }}/studio-install-policy-v7/');
+  return workflow;
+}
+
+function runDisableProjectJsonMutationCorpus(config, workflow) {
+  const configCases = [
+    ['C01', 'CONFIG_MISSING', (text) => text.replace('    disableProjectJson: true,\n', '')],
+    ['C02', 'CONFIG_FALSE', (text) => text.replace('disableProjectJson: true', 'disableProjectJson: false')],
+    ['C03', 'CONFIG_FALSE', (text) => text.replace('disableProjectJson: true', "disableProjectJson: 'true'")],
+    ['C04', 'CONFIG_DUPLICATE', (text) => text.replace('    disableProjectJson: true,', '    disableProjectJson: true,\n    disableProjectJson: true,')],
+    ['C05', 'CONFIG_MISSING', (text) => text.replace('  core: {\n    disableTelemetry: true,\n    disableProjectJson: true,\n  },', '  disableProjectJson: true,\n  core: {\n    disableTelemetry: true,\n  },')],
+    ['C06', 'CONFIG_FALSE', (text) => text.replace('disableTelemetry: true', 'disableTelemetry: false')],
+    ['C07', 'CONFIG_MISSING', (text) => text.replace('@storybook/addon-a11y', '@storybook/addon-links')],
+    ['C08', 'CONFIG_MISSING', (text) => text.replace('../src/**/*.stories.@(js|jsx|mjs|ts|tsx)', '../src/**/*.story.tsx')],
+    ['C09', 'CONFIG_MISSING', (text) => text.replace("name: '@storybook/react-vite'", "name: '@storybook/react-webpack5'")],
+    ['C10', 'CONFIG_MISSING', (text) => text.replace('options: {},', 'options: { changed: true },')],
+    ['C11', 'CONFIG_DUPLICATE', (text) => text.replace('  core: {', '  core: { disableTelemetry: true, disableProjectJson: true },\n  core: {')],
+    ['C12', 'CONFIG_MISSING', (text) => text.replace('    disableProjectJson: true,', '    // disableProjectJson: true,')],
+    ['C13', 'CONFIG_MISSING', (text) => text.replace('export default config', 'export default { core: { disableProjectJson: false } }')],
+    ['C14', 'CONFIG_MISSING', (text) => text.replace('\nexport default config', '\nconfig = { core: { disableProjectJson: false } }\nexport default config')],
+    ['C15', 'CONFIG_DUPLICATE', (text) => `${text}\nconst config2: StorybookConfig = { core: { disableProjectJson: false } }\n`],
+  ];
+  const replaceLast = (text, needle, replacement) => {
+    const index = text.lastIndexOf(needle);
+    if (index < 0) policyRed('SELF_TEST_V7_MUTATION_TARGET_MISSING');
+    return `${text.slice(0, index)}${replacement}${text.slice(index + needle.length)}`;
+  };
+  const workflowCases = [
+    ['W01', 'JOB_CALLSITE:studio', (text) => text.replace(DISABLE_PROJECT_JSON_POLICY_CALL, 'node unsafe-helper.mjs')],
+    ['W02', 'JOB_CALLSITE:chromatic-visual-review', (text) => replaceLast(text, DISABLE_PROJECT_JSON_POLICY_CALL, 'node unsafe-helper.mjs')],
+    ['W03', 'JOB_CALLSITE:studio', (text) => text.replace('      - name: Studio install policy V7 + materialize', '      - &studio-policy-materialize-v7\n        name: Studio install policy V7 + materialize')],
+    ['W04', 'POSTBUILD_ASSERTION:studio', (text) => text.replace('[[ -d dist && ! -L dist ]]', '[[ -d "$other" && ! -L "$other" ]]')],
+    ['W05', 'POSTBUILD_ASSERTION:studio', (text) => text.replace('      - run: npm run storybook:build\n', '      - name: Premature producer assertion\n        run: test ! -e dist/storybook/project.json\n      - run: npm run storybook:build\n      - run: echo no-postbuild-assertion\n')],
+    ['W06', 'PROJECT_POSTPROCESSING', (text) => text.replace('          set -euo pipefail\n          studio_physical="$(pwd -P)"', '          set -euo pipefail\n          out=dist/storybook\n          name=project.json\n          rm -f "$out/$name"\n          studio_physical="$(pwd -P)"')],
+    ['W07', 'FILESET_44_ASSERTION', (text) => text.replace('!= 44', '!= 43')],
+    ['W08', 'EPOCH_MIXING', (text) => text.replace('jobs:\n', 'jobs:\n  # ARD11_D0P_A_ORACLE_COMMIT_V6=1111111111111111111111111111111111111111\n')],
+    ['W09', 'WORKFLOW_SECURITY:JOB_SHAPE:chromatic-visual-review', (text) => text.replace('    needs: studio', '    needs: engine')],
+    ['W10', 'WORKFLOW_SECURITY', (text) => text.replace('          autoAcceptChanges: false', '          autoAcceptChanges: true')],
+    ['W11', 'WORKFLOW_SECURITY', (text) => text.replace('          exitZeroOnChanges: false', '          exitZeroOnChanges: true')],
+    ['W12', 'WORKFLOW_SECURITY', (text) => text.replace('          exitZeroOnChanges: false', '          exitZeroOnChanges: false\n          onlyChanged: true')],
+    ['W13', 'WORKFLOW_SECURITY', (text) => replaceLast(text, `        if: ${DISABLE_PROJECT_JSON_FORK_GUARD}`, '        if: always()')],
+    ['W14', 'WORKFLOW_SECURITY', (text) => replaceLast(text, `          CHROMATIC_PROJECT_TOKEN: ${DISABLE_PROJECT_JSON_TOKEN_EXPRESSION}`, '          CHROMATIC_PROJECT_TOKEN: decoy')
+      .replace('      - name: chromatic-visual-review', `      - name: guarded-decoy\n        if: ${DISABLE_PROJECT_JSON_FORK_GUARD}\n        env:\n          CHROMATIC_PROJECT_TOKEN: ${DISABLE_PROJECT_JSON_TOKEN_EXPRESSION}\n        run: echo decoy\n      - name: chromatic-visual-review`)],
+    ['W15', 'WORKFLOW_SECURITY', (text) => text.replace('      - name: chromatic-visual-review', `      - uses: chromaui/action@${DISABLE_PROJECT_JSON_ACTION_SHA}\n      - name: chromatic-visual-review`)],
+    ['W16', 'EPOCH_MIXING', (text) => text.replace(new RegExp(`^  # ${DISABLE_PROJECT_JSON_V1.markerDigest}=.*\\n`, 'mu'), '')],
+    ['WE01', 'WORKFLOW_SECURITY', (text) => text.replace('name: ci', 'name: ci-unsafe')],
+    ['WE02', 'WORKFLOW_SECURITY', (text) => text.replace('  pull_request:\n', '  pull_request_target:\n')],
+    ['WE03', 'WORKFLOW_SECURITY', (text) => text.replace('\npermissions:\n', '\nenv:\n  NODE_OPTIONS: --require ./unsafe.cjs\n\npermissions:\n')],
+    ['WE04', 'WORKFLOW_SECURITY', (text) => text.replace('\npermissions:\n', '\nenv:\n  NPM_CONFIG_IGNORE_SCRIPTS: false\n\npermissions:\n')],
+    ['WE05', 'WORKFLOW_SECURITY', (text) => text.replace('\npermissions:\n', '\ndefaults:\n  run:\n    shell: bash -e {0}\n\npermissions:\n')],
+    ['WE06', 'WORKFLOW_SECURITY', (text) => text.replace('permissions:\n  contents: read', 'permissions:\n  contents: write')],
+    ['WE07', 'WORKFLOW_SECURITY', (text) => text.replace('  group: ci-${{ github.workflow }}-${{ github.ref }}', '  group: unsafe-global')],
+    ['WE08', 'WORKFLOW_SECURITY', (text) => text.replace('\njobs:\n', '\ntimeout-minutes: 999\n\njobs:\n')],
+    ['WE09', 'WORKFLOW_SECURITY', (text) => text.replace('\npermissions:\n', '\non:\n  workflow_dispatch:\n\npermissions:\n')],
+    ['WE10', 'WORKFLOW_SECURITY', (text) => text.replace('\npermissions:\n', '\nworkflow-template: &workflow-template\n  permissions:\n    contents: write\npermissions:\n  <<: *workflow-template\n')],
+    ['FS01', 'POSTBUILD_ASSERTION:studio', (text) => text.replace('[[ -d dist && ! -L dist ]]', 'test -d dist')],
+    ['FS02', 'POSTBUILD_ASSERTION:studio', (text) => text.replace('[[ -f "$output/$required" && ! -L "$output/$required" ]]', 'test -f "$output/$required"')],
+  ];
+  const mutateJob = (text, jobName, mutate) => {
+    const block = yamlJobBlocks(text).get(jobName);
+    if (!block) policyRed(`SELF_TEST_V7_MUTATION_JOB_MISSING:${jobName}`);
+    const changed = mutate(block);
+    if (changed === block) policyRed(`SELF_TEST_V7_MUTATION_TARGET_MISSING:${jobName}`);
+    return replaceOnce(text, block, changed);
+  };
+  const replaceInJob = (block, needle, replacement) => {
+    if (block.split(needle).length - 1 !== 1) policyRed('SELF_TEST_V7_MUTATION_TARGET_AMBIGUOUS');
+    return block.replace(needle, replacement);
+  };
+  const jobDefinitions = [
+    ['studio-install-policy', '120'],
+    ['studio', '30'],
+    ['chromatic-visual-review', '20'],
+  ];
+  let jobCaseIndex = 1;
+  for (const [jobName, timeoutMinutes] of jobDefinitions) {
+    const reason = `WORKFLOW_SECURITY:JOB_SHAPE:${jobName}`;
+    const id = () => `JS${String(jobCaseIndex++).padStart(2, '0')}`;
+    workflowCases.push(
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => block.replace(
+        /^    name:.*$/mu, (line) => `${line}\n    if: false`,
+      ))],
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => block.replace(
+        /^    name:.*$/mu, (line) => `${line}\n    continue-on-error: true`,
+      ))],
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => replaceInJob(
+        block,
+        '    permissions:\n      contents: read',
+        '    permissions:\n      contents: read\n      actions: write',
+      ))],
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => replaceInJob(
+        block, '    runs-on: ubuntu-latest', '    runs-on: self-hosted',
+      ))],
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => replaceInJob(
+        block, `    timeout-minutes: ${timeoutMinutes}`, '    timeout-minutes: 999',
+      ))],
+      [id(), reason, (text) => mutateJob(text, jobName, (block) => (
+        jobName === 'studio-install-policy'
+          ? replaceInJob(block, '    timeout-minutes: 120', [
+            '    timeout-minutes: 120',
+            '    defaults:',
+            '      run:',
+            '        working-directory: /tmp',
+          ].join('\n'))
+          : replaceInJob(block, '        working-directory: apps/studio', '        working-directory: /tmp')
+      ))],
+    );
+  }
+  for (const [id, jobName] of [
+    ['JD01', 'studio-install-policy'],
+    ['JD02', 'studio'],
+    ['JD03', 'chromatic-visual-review'],
+    ['JD04', 'engine'],
+  ]) {
+    workflowCases.push([id, `WORKFLOW_SECURITY:DUPLICATE_JOB:${jobName}`, (text) => mutateJob(
+      text, jobName, (block) => `${block}\n${block.trimEnd()}\n`,
+    )]);
+  }
+  workflowCases.push(
+    ['JX01', 'WORKFLOW_SECURITY:JOB_SET', (text) => text.replace(
+      '\n  engine:\n',
+      '\n  unsafe-secret-job:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "${{ secrets.UNSAFE_TOKEN }}"\n\n  engine:\n',
+    )],
+    ['JX02', 'WORKFLOW_SECURITY:JOB_SET', (text) => {
+      const block = yamlJobBlocks(text).get('engine');
+      if (!block) policyRed('SELF_TEST_V7_MUTATION_JOB_MISSING:engine');
+      return replaceOnce(text, block, '');
+    }],
+    ['JX03', 'WORKFLOW_SECURITY:JOB_SHAPE:engine', (text) => mutateJob(
+      text, 'engine', (block) => replaceInJob(block, 'uv run pytest -q', 'uv run pytest -q --unsafe'),
+    )],
+    ['JX04', 'WORKFLOW_SECURITY:JOB_SET', (text) => {
+      const block = yamlJobBlocks(text).get('hygiene');
+      if (!block) policyRed('SELF_TEST_V7_MUTATION_JOB_MISSING:hygiene');
+      return replaceOnce(text, block, '');
+    }],
+    ['JD05', 'WORKFLOW_SECURITY', (text) => `${text.trimEnd()}\njobs: {}\n`],
+    ['JD06', 'WORKFLOW_SECURITY:DUPLICATE_JOB:studio', (text) => text.replace(
+      '\n  studio:\n', '\n  studio: {}\n  studio:\n',
+    )],
+    ['RV01', `EPOCH_MIXING:RUNTIME_OWNER_CARDINALITY:${DISABLE_PROJECT_JSON_V1.envOracle}`, (text) => mutateJob(
+      text, 'engine', (block) => replaceInJob(block, '    timeout-minutes: 15', [
+        '    timeout-minutes: 15',
+        '    env:',
+        `      ${DISABLE_PROJECT_JSON_V1.envOracle}: ${workflow.match(new RegExp(`${DISABLE_PROJECT_JSON_V1.markerOracle}=([0-9a-f]{40})`, 'u'))?.[1]}`,
+      ].join('\n')),
+    )],
+    ['RV02', 'WORKFLOW_SECURITY:JOB_SHAPE:studio-install-policy', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => block.replace(
+        new RegExp(`^      ${DISABLE_PROJECT_JSON_V1.envDigest}:.*\\n`, 'mu'), '',
+      ),
+    )],
+    ['RV03', 'WORKFLOW_SECURITY:JOB_SHAPE:studio', (text) => mutateJob(text, 'studio', (block) => {
+      const match = block.match(new RegExp(`^          ${DISABLE_PROJECT_JSON_V1.envManifest}: ([0-9a-f]{64})$`, 'mu'));
+      if (!match) policyRed('SELF_TEST_V7_MUTATION_TARGET_MISSING:runtime-relocation');
+      return block.replace(`${match[0]}\n`, '').replace(
+        /^      POLICY_PR_MERGE_SHA:.*$/mu,
+        (line) => `${line}\n      ${DISABLE_PROJECT_JSON_V1.envManifest}: ${match[1]}`,
+      );
+    })],
+    ['RV04', 'WORKFLOW_SECURITY:JOB_SHAPE:studio-install-policy', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => block.replace(
+        new RegExp(`(^      ${DISABLE_PROJECT_JSON_V1.envOracle}: )[0-9a-f]{40}$`, 'mu'),
+        `$1${'f'.repeat(40)}`,
+      ),
+    )],
+    ['RV05', 'WORKFLOW_SECURITY', (text) => mutateJob(text, 'studio', (block) => block.replace(
+      new RegExp(`(^          ${DISABLE_PROJECT_JSON_V1.envDigest}: [0-9a-f]{64}$)`, 'mu'),
+      '$1\n$1',
+    ))],
+    ['AB01', 'WORKFLOW_SECURITY:JOB_SHAPE:studio-install-policy', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => replaceInJob(
+        block,
+        '      POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs',
+        '      POLICY_ORACLE_PATH: scripts/alternate-oracle.mjs\n      # POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs',
+      ),
+    )],
+    ['AB02', 'WORKFLOW_SECURITY:JOB_SHAPE:studio-install-policy', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => replaceInJob(
+        block,
+        '      POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs',
+        '      POLICY_ORACLE_PATH: scripts/studio-install-policy-oracle.mjs\n      POLICY_ORACLE_PATH: scripts/alternate-oracle.mjs',
+      ),
+    )],
+    ['AB03', 'WORKFLOW_SECURITY', (text) => mutateJob(text, 'studio-install-policy', (block) => replaceInJob(
+      block, `          ref: ${DISABLE_PROJECT_JSON_CANDIDATE_VALUE}`, '          ref: main',
+    ))],
+    ['AB04', 'WORKFLOW_SECURITY:AUTHORITY_BINDING', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => replaceInJob(
+        block, '          node "$oracle_path" disable-project-json-ci-check \\',
+        '          node "$POLICY_ORACLE_PATH" disable-project-json-ci-check \\',
+      ),
+    )],
+    ['AB05', 'WORKFLOW_SECURITY:AUTHORITY_BINDING', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => block.replace(
+        /^          committed_oracle_sha256=.*\n/mu, '',
+      ),
+    )],
+    ['AB06', 'WORKFLOW_SECURITY:AUTHORITY_BINDING', (text) => mutateJob(
+      text, 'studio-install-policy', (block) => replaceInJob(
+        block,
+        '      - name: Verify frozen V7 oracle and run authoritative policy',
+        [
+          '      - name: Replace authority before execution',
+          '        shell: bash',
+          '        run: cp scripts/alternate-oracle.mjs scripts/studio-install-policy-oracle.mjs',
+          '      - name: Verify frozen V7 oracle and run authoritative policy',
+        ].join('\n'),
+      ),
+    )],
+    ['ST01', 'STORYBOOK_BUILD_STEP:studio', (text) => mutateJob(text, 'studio', (block) => replaceInJob(
+      block, '      - run: npm run storybook:build',
+      '      - run: npm run storybook:build\n        continue-on-error: true',
+    ))],
+    ['ST02', 'STORYBOOK_BUILD_STEP:chromatic-visual-review', (text) => mutateJob(
+      text, 'chromatic-visual-review', (block) => replaceInJob(
+        block, '      - run: npm run storybook:build',
+        '      - run: npm run storybook:build\n        continue-on-error: true',
+      ),
+    )],
+    ['ST03', 'STORYBOOK_TEST_STEP:studio', (text) => mutateJob(text, 'studio', (block) => replaceInJob(
+      block, '      - run: npm run storybook:test\n', '',
+    ))],
+    ['ST04', 'STORYBOOK_TEST_STEP:studio', (text) => mutateJob(text, 'studio', (block) => replaceInJob(
+      block, '      - run: npm run storybook:test',
+      '      - run: npm run storybook:test\n        continue-on-error: true',
+    ))],
+    ['ST05', 'STORYBOOK_BUILD_STEP:chromatic-visual-review', (text) => mutateJob(
+      text, 'chromatic-visual-review', (block) => replaceInJob(
+        block, '      - run: npm run storybook:build\n', '',
+      ),
+    )],
+    ['ST06', 'STEP_ORDER:chromatic-visual-review', (text) => mutateJob(
+      text, 'chromatic-visual-review', (block) => {
+        const actionStart = block.indexOf('      - name: chromatic-visual-review\n');
+        if (actionStart < 0) policyRed('SELF_TEST_V7_MUTATION_TARGET_MISSING:chromatic-action');
+        const action = block.slice(actionStart).trimEnd();
+        const beforeAction = block.slice(0, actionStart);
+        return `${replaceInJob(
+          beforeAction,
+          '      - run: npm run storybook:build\n',
+          `${action}\n      - run: npm run storybook:build\n`,
+        )}\n`;
+      },
+    )],
+    ['ST07', 'STEP_ORDER:chromatic-visual-review', (text) => mutateJob(
+      text, 'chromatic-visual-review', (block) => `${block.trimEnd()}\n      - name: Post-cloud producer mutation\n        run: echo after-cloud\n`,
+    )],
+  );
+  const results = [];
+  for (const [id, expected, mutate] of configCases) {
+    const actual = capturePolicyReason(() => validateDisableProjectJsonConfigBytes(Buffer.from(mutate(config))));
+    const expectedReason = `PROJECT_JSON_POLICY_RED:${expected}`;
+    if (actual !== expectedReason) policyRed(`SELF_TEST_DISABLE_PROJECT_JSON_REASON_MISMATCH:${id}:${safeToken(actual)}:${safeToken(expectedReason)}`);
+    results.push({ id, expectedReason });
+  }
+  for (const [id, expected, mutate] of workflowCases) {
+    const actual = capturePolicyReason(() => validateDisableProjectJsonWorkflowBytes(Buffer.from(mutate(workflow))));
+    const expectedReason = `PROJECT_JSON_POLICY_RED:${expected}`;
+    if (actual !== expectedReason) policyRed(`SELF_TEST_DISABLE_PROJECT_JSON_REASON_MISMATCH:${id}:${safeToken(actual)}:${safeToken(expectedReason)}`);
+    results.push({ id, expectedReason });
+  }
+  const filesystemRoot = checkedTempRoot('ardesia-disable-project-json-output-path-');
+  try {
+    const writeValidLookingOutput = (root) => {
+      mkdirSync(root, { recursive: true });
+      for (const required of ['index.html', 'index.json', 'iframe.html']) {
+        writeBytes(join(root, required), Buffer.from(`${required}\n`));
+      }
+      for (let index = 1; index <= 41; index += 1) {
+        writeBytes(join(root, `asset-${String(index).padStart(2, '0')}.js`), Buffer.from(`${index}\n`));
+      }
+    };
+    const cases = [
+      ['FS03', 'dist', (studioRoot, externalRoot) => {
+        writeValidLookingOutput(join(externalRoot, 'storybook'));
+        symlinkSync(externalRoot, join(studioRoot, 'dist'));
+      }],
+      ['FS04', 'dist/storybook', (studioRoot, externalRoot) => {
+        mkdirSync(join(studioRoot, 'dist'), { recursive: true });
+        writeValidLookingOutput(externalRoot);
+        symlinkSync(externalRoot, join(studioRoot, 'dist/storybook'));
+      }],
+    ];
+    for (const [id, component, arrange] of cases) {
+      const caseRoot = join(filesystemRoot, id.toLowerCase());
+      const studioRoot = join(caseRoot, 'physical-studio');
+      const externalRoot = join(caseRoot, 'external-real-tree');
+      mkdirSync(studioRoot, { recursive: true });
+      arrange(studioRoot, externalRoot);
+      const result = runFile('bash', ['-c', disableProjectJsonAssertionScript('studio')], { cwd: studioRoot });
+      const expectedReason = 'POSTBUILD_ASSERTION:studio';
+      if (result.status === 0 || String(result.stderr).trim() !== expectedReason) {
+        projectJsonRed(`SELF_TEST_DISABLE_PROJECT_JSON_OUTPUT_PATH_FAIL_OPEN:${id}:${component}`);
+      }
+      results.push({ id, expectedReason });
+    }
+  } finally {
+    removeCheckedTemp(filesystemRoot, 'ardesia-disable-project-json-output-path-');
+  }
+  return { results, sha256: sha256(jcsLf({ cases: results })) };
+}
+
+function assertDisableProjectJsonHelpContract(sourceRoot) {
+  const executable = join(sourceRoot, ORACLE_PATH);
+  const cases = [
+    ['root', ['--help'], HELP.root],
+    ['self-test', ['self-test', '--help'], HELP.selfTest],
+    ['f7-manifest', ['disable-project-json-f7-manifest', '--help'], HELP.disableProjectJsonF7Manifest],
+    ['ci-check', ['disable-project-json-ci-check', '--help'], HELP.disableProjectJsonCiCheck],
+  ];
+  for (const [id, args, expected] of cases) {
+    const result = runFile(process.execPath, [executable, ...args], { cwd: sourceRoot });
+    if (result.status !== 0 || String(result.stdout) !== `${expected}\n` || String(result.stderr) !== '') {
+      policyRed(`SELF_TEST_DISABLE_PROJECT_JSON_HELP_RED:${id}`);
+    }
+  }
+  return cases.length;
+}
+
+function runDisableProjectJsonV1SelfTest(sourceRoot) {
+  const tempRoot = checkedTempRoot('ardesia-disable-project-json-v1-');
+  try {
+    const helpOutputChecks = assertDisableProjectJsonHelpContract(sourceRoot);
+    const fixtureRoot = join(tempRoot, 'lineage');
+    requireRun('git', ['clone', '--quiet', '--no-hardlinks', '--local', sourceRoot, fixtureRoot], {}, 'V7_FIXTURE_CLONE_FAILED');
+    checkoutFixture(fixtureRoot, DISABLE_PROJECT_JSON_V1.remediationBaseSha);
+    copyFileSync(join(sourceRoot, ORACLE_PATH), join(fixtureRoot, ORACLE_PATH));
+    const oracleSha = commitFixture(fixtureRoot, 'v7 oracle fixture', DISABLE_PROJECT_JSON_V1.oraclePaths);
+    const oracleDigest = sha256(readBytes(fixtureRoot, ORACLE_PATH));
+    const freezeContents = {
+      'apps/studio/.github/workflows/gate.yml': Buffer.from('policy: DISABLE_PROJECT_JSON_V1\nproducer: storybook\n'),
+      'apps/studio/AGENTS.md': Buffer.from('# Studio policy\n\nDISABLE_PROJECT_JSON_V1 is additive and canary-gated.\n'),
+      'docs/ops/RELEASE-CHECKLIST-PRODUCT-RC.md': Buffer.from('# Release checklist\n\nRequire the frozen three-blob manifest before activation.\n'),
+    };
+    const manifestDigest = disableProjectJsonF7ManifestFromContents(
+      freezeContents,
+      [oracleSha, oracleDigest],
+    ).manifestSha256;
+    const config = disableProjectJsonConfigFixture();
+    const workflow = disableProjectJsonWorkflowFixture(
+      gitFile(fixtureRoot, DISABLE_PROJECT_JSON_V1.remediationBaseSha, WORKFLOW_PATH).toString('utf8'),
+      oracleSha,
+      oracleDigest,
+      manifestDigest,
+    );
+    validateDisableProjectJsonConfigBytes(Buffer.from(config));
+    validateDisableProjectJsonWorkflowBytes(Buffer.from(workflow));
+    const mutations = runDisableProjectJsonMutationCorpus(config, workflow);
+    const futureIdentityContents = { ...freezeContents };
+    futureIdentityContents['apps/studio/AGENTS.md'] = Buffer.from('activationSha: PLACEHOLDER\n');
+    const futureIdentityReason = capturePolicyReason(() => disableProjectJsonF7ManifestFromContents(
+      futureIdentityContents,
+      [oracleSha, oracleDigest],
+    ));
+    if (futureIdentityReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING:apps/studio/AGENTS.md') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_F7_IDENTITY_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'F01', expectedReason: futureIdentityReason });
+    mutations.sha256 = sha256(jcsLf({ cases: mutations.results }));
+    const packageRoot = join(tempRoot, 'f7-package');
+    writeContentMap(packageRoot, freezeContents);
+    const packageManifest = checkDisableProjectJsonF7Package(fixtureRoot, {
+      packageRoot,
+      oracleAnchorSha: oracleSha,
+      oracleSha256: oracleDigest,
+    });
+    if (packageManifest.manifestSha256 !== manifestDigest
+      || !arraysEqual(packageManifest.paths, bytewise(B_PATHS))) {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_F7_PACKAGE_RED');
+    }
+    const fakeIdentityReason = capturePolicyReason(() => checkDisableProjectJsonF7Package(fixtureRoot, {
+      packageRoot,
+      oracleAnchorSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+      oracleSha256: oracleDigest,
+    }));
+    if (fakeIdentityReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING:KNOWN_ORACLE_IDENTITY') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_FAKE_O7_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'F02', expectedReason: fakeIdentityReason });
+    const fakeDigestReason = capturePolicyReason(() => checkDisableProjectJsonF7Package(fixtureRoot, {
+      packageRoot,
+      oracleAnchorSha: oracleSha,
+      oracleSha256: 'f'.repeat(64),
+    }));
+    if (fakeDigestReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING:KNOWN_ORACLE_IDENTITY') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_FAKE_DIGEST_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'F03', expectedReason: fakeDigestReason });
+    const symlinkPackageRoot = join(tempRoot, 'f7-package-symlink');
+    writeContentMap(symlinkPackageRoot, freezeContents);
+    rmSync(join(symlinkPackageRoot, 'apps/studio/AGENTS.md'), { force: false });
+    symlinkSync(join(packageRoot, 'apps/studio/AGENTS.md'), join(symlinkPackageRoot, 'apps/studio/AGENTS.md'));
+    const symlinkReason = capturePolicyReason(() => checkDisableProjectJsonF7Package(fixtureRoot, {
+      packageRoot: symlinkPackageRoot,
+      oracleAnchorSha: oracleSha,
+      oracleSha256: oracleDigest,
+    }));
+    if (symlinkReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING:PACKAGE_ENTRY_TYPE') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_PACKAGE_SYMLINK_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'F04', expectedReason: symlinkReason });
+    writeBytes(join(fixtureRoot, DISABLE_PROJECT_JSON_V1.configPath), Buffer.from(config));
+    writeBytes(join(fixtureRoot, WORKFLOW_PATH), Buffer.from(workflow));
+    const activationSha = commitFixture(fixtureRoot, 'v7 activation fixture', DISABLE_PROJECT_JSON_V1.activationPaths);
+    const ciOutput = join(tempRoot, 'ci-authority-output');
+    const ciState = join(tempRoot, 'ci-authority-state.json');
+    const ciEnvironment = {
+      ...process.env,
+      POLICY_CANDIDATE_SHA: '',
+      POLICY_EVENT_SHA: '',
+      POLICY_PR_MERGE_SHA: '',
+      GITHUB_ACTIONS: '',
+    };
+    const ciAuthority = runFile(process.execPath, [
+      join(fixtureRoot, ORACLE_PATH),
+      'disable-project-json-ci-check',
+      '--candidate-sha', activationSha,
+      '--output', ciOutput,
+      '--state-output', ciState,
+    ], { cwd: fixtureRoot, env: ciEnvironment });
+    if (ciAuthority.status !== 0
+      || !String(ciAuthority.stdout).includes('DISABLE_PROJECT_JSON_A7_F7_PENDING')
+      || !String(ciAuthority.stdout).includes(`HARNESS_GREEN:${DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS}/${DISABLE_PROJECT_JSON_EXPECTED_MUTATIONS}`)
+      || !existsSync(ciState)) {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_CI_AUTHORITY_RED');
+    }
+    writeContentMap(fixtureRoot, freezeContents);
+    const functionalSha = commitFixture(fixtureRoot, 'v7 freeze fixture', DISABLE_PROJECT_JSON_V1.freezePaths);
+    const context = {
+      profile: DISABLE_PROJECT_JSON_V1.profile,
+      remediationBaseSha: DISABLE_PROJECT_JSON_V1.remediationBaseSha,
+      remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+      oracleSha,
+      activationSha,
+      functionalSha,
+      oracleDigest,
+      workflowDigest: sha256(Buffer.from(workflow)),
+      functionalManifest: manifestDigest,
+    };
+    const receipt = {
+      schema: 'studio-install-policy-disable-project-json-receipt/v1',
+      ...context,
+      scopes: disableProjectJsonScopes(),
+      policyState: 'DISABLE_PROJECT_JSON_CONFIG_FROZEN_PENDING_CANARY',
+      validation: ['B1_NOT_EXECUTED', 'B2_NOT_EXECUTED', 'B3_NOT_EXECUTED', 'CHROMATIC_NOT_EXECUTED'],
+    };
+    const parentLedger = gitFile(fixtureRoot, functionalSha, LEDGER_PATH, Buffer.alloc(0));
+    const receiptBytes = jcsLf(receipt);
+    writeBytes(join(fixtureRoot, LEDGER_PATH), Buffer.concat([parentLedger, receiptBytes]));
+    const receiptSha = commitFixture(fixtureRoot, 'v7 receipt fixture', DISABLE_PROJECT_JSON_V1.receiptPaths);
+    const forgedReceiptRoot = join(tempRoot, 'forged-receipt');
+    cloneFixture(fixtureRoot, forgedReceiptRoot, functionalSha);
+    const forgedReceipt = { ...receipt, irrelevant: DISABLE_PROJECT_JSON_V1.profile };
+    writeBytes(join(forgedReceiptRoot, LEDGER_PATH), Buffer.concat([parentLedger, jcsLf(forgedReceipt)]));
+    const forgedReceiptSha = commitFixture(forgedReceiptRoot, 'v7 forged receipt fixture', DISABLE_PROJECT_JSON_V1.receiptPaths);
+    const forgedReceiptReason = capturePolicyReason(() => postcommitDisableProjectJsonV1Check(forgedReceiptRoot, {
+      candidateSha: forgedReceiptSha,
+      oracleAnchorSha: oracleSha,
+      workflowAnchorSha: activationSha,
+    }));
+    if (forgedReceiptReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_RECEIPT_SCHEMA_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'R01', expectedReason: forgedReceiptReason });
+    const canonicalPath = `${EVIDENCE_CANONICAL_DIR}/${receiptSha}.json`;
+    const recordPath = `${EVIDENCE_RECORDS_DIR}/${receiptSha}.json`;
+    const evidencePayload = {
+      schema: 'studio-install-policy-disable-project-json-evidence/v1',
+      ...context,
+      receiptSha,
+      receiptBlobSha256: sha256(receiptBytes),
+      scopes: disableProjectJsonScopes(),
+    };
+    const canonicalBytes = jcsLf({ ...evidencePayload, kind: 'canonical' });
+    const recordBytes = jcsLf({ ...evidencePayload, kind: 'record', canonicalPath, canonicalRawSha256: sha256(canonicalBytes) });
+    writeBytes(join(fixtureRoot, canonicalPath), canonicalBytes);
+    writeBytes(join(fixtureRoot, recordPath), recordBytes);
+    const parentIndex = gitFile(fixtureRoot, receiptSha, EVIDENCE_INDEX_PATH, Buffer.alloc(0));
+    const entry = {
+      schema: INDEX_SCHEMA,
+      operation: 'accept',
+      sequence: parseIndexBytes(parentIndex).length + 1,
+      receiptSha,
+      recordPath,
+      recordSha256: sha256(recordBytes),
+      canonicalPath,
+      canonicalRawSha256: sha256(canonicalBytes),
+    };
+    const forgedEvidenceRoot = join(tempRoot, 'forged-evidence');
+    cloneFixture(fixtureRoot, forgedEvidenceRoot, receiptSha);
+    const forgedCanonicalBytes = jcsLf({ ...evidencePayload, kind: 'canonical', irrelevant: oracleSha });
+    const forgedRecordBytes = jcsLf({
+      ...evidencePayload,
+      kind: 'record',
+      canonicalPath,
+      canonicalRawSha256: sha256(forgedCanonicalBytes),
+      irrelevant: activationSha,
+    });
+    const forgedEntry = {
+      ...entry,
+      recordSha256: sha256(forgedRecordBytes),
+      canonicalRawSha256: sha256(forgedCanonicalBytes),
+    };
+    writeBytes(join(forgedEvidenceRoot, canonicalPath), forgedCanonicalBytes);
+    writeBytes(join(forgedEvidenceRoot, recordPath), forgedRecordBytes);
+    writeBytes(join(forgedEvidenceRoot, EVIDENCE_INDEX_PATH), Buffer.concat([parentIndex, jcsLf(forgedEntry)]));
+    const forgedEvidenceSha = commitFixture(forgedEvidenceRoot, 'v7 forged evidence fixture', [
+      EVIDENCE_INDEX_PATH, recordPath, canonicalPath,
+    ]);
+    const forgedEvidenceReason = capturePolicyReason(() => postcommitDisableProjectJsonV1Check(forgedEvidenceRoot, {
+      candidateSha: forgedEvidenceSha,
+      oracleAnchorSha: oracleSha,
+      workflowAnchorSha: activationSha,
+    }));
+    if (forgedEvidenceReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_EVIDENCE_SCHEMA_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'E01', expectedReason: forgedEvidenceReason });
+    writeBytes(join(fixtureRoot, EVIDENCE_INDEX_PATH), Buffer.concat([parentIndex, jcsLf(entry)]));
+    const evidenceSha = commitFixture(fixtureRoot, 'v7 evidence fixture', [EVIDENCE_INDEX_PATH, recordPath, canonicalPath]);
+    const result = postcommitDisableProjectJsonV1Check(fixtureRoot, {
+      candidateSha: evidenceSha,
+      oracleAnchorSha: oracleSha,
+      workflowAnchorSha: activationSha,
+    });
+    if (result.state !== 'STORYBOOK_DISABLE_PROJECT_JSON_V1_CONFIG_FROZEN'
+      || result.remediationBaseState !== DISABLE_PROJECT_JSON_V1.remediationBaseState
+      || result.predecessorState !== 'E6_REMAINS_LOCAL_VALIDATION_RED') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_LINEAGE_RED');
+    }
+    const scopeMutationRoot = join(tempRoot, 'scope-mutation');
+    cloneFixture(fixtureRoot, scopeMutationRoot, oracleSha);
+    writeBytes(join(scopeMutationRoot, 'v7-extra.txt'), Buffer.from('extra\n'));
+    const badActivation = commitFixture(scopeMutationRoot, 'v7 bad activation scope', ['v7-extra.txt']);
+    const scopeReason = capturePolicyReason(() => postcommitDisableProjectJsonV1Check(scopeMutationRoot, {
+      candidateSha: badActivation,
+      oracleAnchorSha: oracleSha,
+      workflowAnchorSha: badActivation,
+    }));
+    if (scopeReason !== 'PROJECT_JSON_POLICY_RED:EPOCH_MIXING') {
+      policyRed('SELF_TEST_DISABLE_PROJECT_JSON_SCOPE_FAIL_OPEN');
+    }
+    mutations.results.push({ id: 'L01', expectedReason: scopeReason });
+    mutations.sha256 = sha256(jcsLf({ cases: mutations.results }));
+    return {
+      profile: DISABLE_PROJECT_JSON_V1.profile,
+      remediationBaseState: DISABLE_PROJECT_JSON_V1.remediationBaseState,
+      configPositive: 1,
+      workflowPositive: 1,
+      lineagePositive: 1,
+      mutationCases: mutations.results.length,
+      mutationCorpusSha256: mutations.sha256,
+      f7ManifestAlgorithm: DISABLE_PROJECT_JSON_F7_MANIFEST_ALGORITHM,
+      f7ManifestPaths: [...DISABLE_PROJECT_JSON_V1.freezePaths],
+      f7PackagePositive: 1,
+      helpOutputChecks,
+      npmMaterializerStarted: 0,
+      uvSyncStarted: 0,
+      buildStarted: 0,
+      cloudActionsStarted: 0,
+      temporaryOutputsRemovedOnExit: true,
+    };
+  } finally {
+    removeCheckedTemp(tempRoot, 'ardesia-disable-project-json-v1-');
+  }
+}
+
 function emitHelp(text) {
   process.stdout.write(`${text}\n`);
 }
@@ -4503,6 +6546,35 @@ function main(argv) {
   }
   const [command, ...args] = argv;
   const root = resolveRepositoryRoot();
+  if (command === 'disable-project-json-f7-manifest') {
+    if (args.length === 1 && args[0] === '--help') {
+      emitHelp(HELP.disableProjectJsonF7Manifest);
+      return;
+    }
+    const options = parseOptions(args, {
+      '--package': { property: 'packageRoot', kind: 'string', required: true },
+      '--oracle-anchor-sha': { property: 'oracleAnchorSha', kind: 'string', required: true },
+      '--oracle-sha256': { property: 'oracleSha256', kind: 'string', required: true },
+    });
+    const result = checkDisableProjectJsonF7Package(root, options);
+    process.stdout.write(`${canonicalizeJcs(result)}\n`);
+    return;
+  }
+  if (command === 'disable-project-json-ci-check') {
+    if (args.length === 1 && args[0] === '--help') {
+      emitHelp(HELP.disableProjectJsonCiCheck);
+      return;
+    }
+    const options = parseOptions(args, {
+      '--candidate-sha': { property: 'candidateSha', kind: 'string', required: true },
+      '--output': { property: 'output', kind: 'string', required: true },
+      '--state-output': { property: 'stateOutput', kind: 'string', required: true },
+    });
+    const result = runDisableProjectJsonCiAuthority(root, options);
+    process.stdout.write(`${result.summary.state}\n`);
+    process.stdout.write(`HARNESS_GREEN:${result.summary.counts.total}/${result.summary.counts.total}\n`);
+    return;
+  }
   if (command === 'check') {
     if (args.length === 1 && args[0] === '--help') {
       emitHelp(HELP.check);
@@ -4510,7 +6582,7 @@ function main(argv) {
     }
     if (args.length !== 0) policyRed(`CLI_UNKNOWN_ARGUMENT:${safeToken(args[0])}`);
     checkCiIdentity(root);
-    const result = checkRepository(root);
+    const result = checkRepositoryForEpoch(root);
     process.stdout.write(`${result.state}\n`);
     return;
   }
@@ -4531,7 +6603,10 @@ function main(argv) {
       return;
     }
     const options = validatePostcommitOptions(parseOptions(args, POSTCOMMIT_OPTIONS), root);
-    const result = postcommitBindingCheck(root, options);
+    const candidateWorkflow = gitFile(root, options.candidateSha, WORKFLOW_PATH, Buffer.alloc(0));
+    const result = workflowHasDisableProjectJsonV1(candidateWorkflow)
+      ? postcommitDisableProjectJsonV1Check(root, options)
+      : postcommitBindingCheck(root, options);
     writeJson(options.stateOutput, {
       schema: 'studio-install-policy-publication-state/v1',
       candidateSha: options.candidateSha,
@@ -4548,10 +6623,19 @@ function main(argv) {
       emitHelp(HELP.selfTest);
       return;
     }
-    if (args.length !== 2 || args[0] !== '--profile' || args[1] !== 'all') {
+    if (args.length !== 2 || args[0] !== '--profile'
+      || !['all', 'disable-project-json-v1'].includes(args[1])) {
       policyRed('SELF_TEST_PROFILE_INVALID');
     }
-    const result = runSelfTest(root);
+    if (args[1] === 'disable-project-json-v1') {
+      const result = runDisableProjectJsonV1SelfTest(root);
+      process.stdout.write(`SELF_TEST_GREEN:${canonicalizeJcs(result)}\n`);
+      return;
+    }
+    const result = {
+      ...runSelfTest(root),
+      disableProjectJsonV1: runDisableProjectJsonV1SelfTest(root),
+    };
     process.stdout.write(`SELF_TEST_GREEN:${canonicalizeJcs(result)}\n`);
     return;
   }
