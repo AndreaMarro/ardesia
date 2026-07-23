@@ -64,6 +64,29 @@ gate esce **1** e nomina regola e port; rimosso, esce 0. E' esattamente la class
 due blocker di isolamento del 23-07 (export `.lesson` flat, Continuita' su journal
 flat), intercettata a check-time invece che in review.
 
+## Action 2 — ratchet sticky ed evidenza non auto-referenziale
+
+| File | Ruolo |
+|---|---|
+| `ratchet.py` | il debito non cresce in silenzio: LOC monoliti (self-computing) + lint (fornito dalla CI) |
+| `ratchet_baseline.json` | tetti reali misurati oggi: ToolCanvas 2943, Room 1119, lint 237 |
+| `evidence_guard.py` | rifiuta i file di evidenza **SHA-nominati** — il punto fisso Chromatic che non converge |
+| `test_gates.py` | controlli negativi di entrambi |
+
+```bash
+python3 bin/convergence/ratchet.py --lint-errors 237   # gate; crescita -> exit 1
+python3 bin/convergence/evidence_guard.py              # gate; file SHA-nominati -> exit 1
+python3 bin/convergence/test_gates.py                  # controlli negativi
+```
+
+- **ratchet:** il tetto e' il valore alla baseline; superarlo fallisce, ridurlo e'
+  permesso e puo' abbassare il tetto (`--update-baseline`). LOC e' segnale secondario:
+  l'obiettivo vero (Action 8) e' ridurre accoppiamento, non lunghezza.
+- **evidence_guard:** il 23-07 ho misurato che i PR Chromatic #194-#197 non convergono
+  perche' l'evidenza e' nominata con lo SHA del commit che la produce (nome nuovo -> tree
+  nuovo -> patch-id diverso a ogni retry). Il guard rifiuta quel naming; rimedio:
+  content-addressing per attestazione, o evidenza fuori dall'albero.
+
 ## Cosa questi script NON fanno
 
 Non rimuovono worktree, non chiudono PR, non applicano label, non deployano, non
