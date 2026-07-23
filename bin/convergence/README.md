@@ -87,6 +87,28 @@ python3 bin/convergence/test_gates.py                  # controlli negativi
   nuovo -> patch-id diverso a ogni retry). Il guard rifiuta quel naming; rimedio:
   content-addressing per attestazione, o evidenza fuori dall'albero.
 
+## Action 10 (porzione) — inventario componenti/licenze
+
+| File | Ruolo |
+|---|---|
+| `license_inventory.py` | inventaria licenze proprie e delle dipendenze; **non sceglie** la licenza (D-2 umana) |
+| `test_inventory.py` | controlli negativi |
+
+```bash
+python3 bin/convergence/license_inventory.py        # bloccante se LICENSE assente
+python3 bin/convergence/license_inventory.py --report-only
+python3 bin/convergence/test_inventory.py
+```
+
+Stato misurato oggi:
+
+- **LICENSE/NOTICE root: assenti** -> nessuna distribuzione a terzi ha base legale.
+  E' il blocco a monte di FB-06/FB-07 e resta una decisione umana (D-2);
+- `plugins/elab-tutor` dichiara `UNLICENSED`, `apps/studio` e root nessuna licenza;
+- 440 dipendenze installate, **1 senza campo license**;
+- l'albero e' **quasi tutto permissivo**: MIT 337, ISC 45, Apache-2.0 30, poche
+  BSD/MPL, zero GPL. Il blocco e' una scelta da fare, non un campo minato.
+
 ## Cosa questi script NON fanno
 
 Non rimuovono worktree, non chiudono PR, non applicano label, non deployano, non
