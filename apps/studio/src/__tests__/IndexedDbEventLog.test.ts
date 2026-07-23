@@ -1417,6 +1417,9 @@ describe("IndexedDbEventLog — FB-3B canonical envelope v2", () => {
 // Questi test usano fake-indexeddb, che implementa la spec IDB per davvero:
 // un indice implementato per finta passerebbe qualunque asserzione.
 
+const LESSON_NEUTRAL_A = "lezione-a"
+const LESSON_NEUTRAL_B = "lezione-b"
+
 describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", () => {
   async function realIdbLog(): Promise<IndexedDbEventLog> {
     const { IDBFactory, IDBKeyRange: FakeKeyRange } = await import("fake-indexeddb")
@@ -1433,28 +1436,31 @@ describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", 
   it("legge soltanto la coppia (lesson, session) richiesta, ordinata per seq", async () => {
     const log = await realIdbLog()
     await log.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "51000000-0000-4000-8000-000000000001", idempotencyKey: "idx:1",
     }))
     await log.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "52000000-0000-4000-8000-000000000002", idempotencyKey: "idx:2",
       sessionId: SESSION_B,
     }))
     await log.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "53000000-0000-4000-8000-000000000003", idempotencyKey: "idx:3",
     }))
     await log.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_B,
       eventId: "54000000-0000-4000-8000-000000000004", idempotencyKey: "idx:4",
-      lessonId: "elab-v1-cap7",
     }))
 
-    const rows = await log.readEnvelopesBySession("elab-v1-cap6", SESSION_A)
+    const rows = await log.readEnvelopesBySession(LESSON_NEUTRAL_A, SESSION_A)
 
     expect(rows.map((row) => row.seq)).toEqual([1, 3])
-    expect(rows.every((row) => row.lessonId === "elab-v1-cap6" && row.sessionId === SESSION_A))
+    expect(rows.every((row) => row.lessonId === LESSON_NEUTRAL_A && row.sessionId === SESSION_A))
       .toBe(true)
-    expect(await log.readEnvelopesBySession("elab-v1-cap6", SESSION_B))
+    expect(await log.readEnvelopesBySession(LESSON_NEUTRAL_A, SESSION_B))
       .toHaveLength(1)
-    expect(await log.readEnvelopesBySession("elab-v1-cap6", "30000000-0000-4000-8000-000000000003"))
+    expect(await log.readEnvelopesBySession(LESSON_NEUTRAL_A, "30000000-0000-4000-8000-000000000003"))
       .toEqual([])
     await log.close()
   })
@@ -1462,6 +1468,7 @@ describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", 
   it("non passa da readAllEnvelopes: una regressione scan-then-filter FALLISCE", async () => {
     const log = await realIdbLog()
     await log.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "55000000-0000-4000-8000-000000000005", idempotencyKey: "idx:5",
     }))
 
@@ -1473,7 +1480,7 @@ describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", 
       throw new Error("scan-then-filter vietato nel path Founder")
     }
 
-    const rows = await log.readEnvelopesBySession("elab-v1-cap6", SESSION_A)
+    const rows = await log.readEnvelopesBySession(LESSON_NEUTRAL_A, SESSION_A)
 
     expect(scanned).toBe(false)
     expect(rows).toHaveLength(1)
@@ -1489,9 +1496,11 @@ describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", 
     const writer = new IndexedDbEventLog({ factory, dbName })
     await writer.open()
     await writer.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "56000000-0000-4000-8000-000000000006", idempotencyKey: "idx:6",
     }))
     await writer.appendEnvelope(canonicalEnvelope({
+      lessonId: LESSON_NEUTRAL_A,
       eventId: "57000000-0000-4000-8000-000000000007", idempotencyKey: "idx:7",
       sessionId: SESSION_B,
     }))
@@ -1499,9 +1508,9 @@ describe("IndexedDbEventLog — indice composto lesson+session (ARD-06 §5.2)", 
 
     const cold = new IndexedDbEventLog({ factory, dbName })
     await cold.open()
-    expect((await cold.readEnvelopesBySession("elab-v1-cap6", SESSION_A)).map((row) => row.seq))
+    expect((await cold.readEnvelopesBySession(LESSON_NEUTRAL_A, SESSION_A)).map((row) => row.seq))
       .toEqual([1])
-    expect((await cold.readEnvelopesBySession("elab-v1-cap6", SESSION_B)).map((row) => row.seq))
+    expect((await cold.readEnvelopesBySession(LESSON_NEUTRAL_A, SESSION_B)).map((row) => row.seq))
       .toEqual([2])
     await cold.close()
   })
