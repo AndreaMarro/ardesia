@@ -1,4 +1,3 @@
-// @vitest-environment jsdom
 // ARD-06 §6 — precedenza della phase e normalizzazione corrupt.
 // La regola che conta: una sorgente corrotta NON autorizza una projection
 // parziale dalle altre sorgenti.
