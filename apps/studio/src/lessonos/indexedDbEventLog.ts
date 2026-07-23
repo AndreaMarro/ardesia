@@ -40,7 +40,8 @@ export interface RecoveryReport {
 
 const DB_NAME = "lessonos-eventlog"
 const STORE_NAME = "lessonos_events"
-const DB_VERSION = 1
+const DB_VERSION = 2
+const SESSION_INDEX_NAME = "by_lesson_session_seq"
 
 interface StoredLegacyEventRecord {
   seq: number
@@ -459,7 +460,18 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
       const request = this.factory!.open(this.dbName, DB_VERSION)
       request.onupgradeneeded = () => {
         const db = request.result
-        if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME, { keyPath: "seq" })
+        const upgrade = request.transaction!
+        const store = db.objectStoreNames.contains(STORE_NAME)
+          ? upgrade.objectStore(STORE_NAME)
+          : db.createObjectStore(STORE_NAME, { keyPath: "seq" })
+        // Migration additiva (ARD-06 §5.2): nessuno store cancellato, nessun
+        // record riscritto. Le righe fisiche V1 prive di lessonId/sessionId
+        // canonici non entrano nell'indice e restano materia di recovery.
+        if (!store.indexNames.contains(SESSION_INDEX_NAME)) {
+          store.createIndex(SESSION_INDEX_NAME, ["lessonId", "sessionId", "seq"], {
+            unique: false,
+          })
+        }
       }
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error ?? new Error("LessonOS event log: apertura IndexedDB fallita"))
@@ -585,10 +597,23 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
     return (await this.readAllEnvelopes()).filter((event) => event.lessonId === lessonId)
   }
 
+  /**
+   * Query esatta (lessonId, sessionId) sul solo key-range dell'indice composto
+   * (ARD-06 §5.2). NON legge tutto per poi filtrare: quello non e' un oracolo
+   * privacy, e' soltanto un filtro piu' lento.
+   */
   async readEnvelopesBySession(lessonId: string, sessionId: string): Promise<AppendedEventEnvelopeV2[]> {
-    return (await this.readAllEnvelopes()).filter(
-      (event) => event.lessonId === lessonId && event.sessionId === sessionId,
+    const db = this.db
+    if (!db) throw new Error("LessonOS event log: database non aperto")
+    const store = db.transaction(STORE_NAME, "readonly").objectStore(STORE_NAME)
+    const range = IDBKeyRange.bound(
+      [lessonId, sessionId, 0],
+      [lessonId, sessionId, Number.MAX_SAFE_INTEGER],
     )
+    const rows = (await requestToPromise(
+      store.index(SESSION_INDEX_NAME).getAll(range) as IDBRequest<StoredEnvelopeRecord[]>,
+    )) as AppendedEventEnvelopeV2[]
+    return [...rows].sort((left, right) => left.seq - right.seq)
   }
 
   async readAll(): Promise<AppendedEvent[]> {
