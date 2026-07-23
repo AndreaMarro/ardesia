@@ -21,7 +21,7 @@ import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { deserializeEvents } from "../store/ReplayEngine"
-import { PATHS } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
 import { workspaceStore } from "../store/WorkspaceStore"
 import {
   projectTeacherDashboard,
@@ -33,9 +33,9 @@ import type { EventLogReadLike } from "../toolhost/caps/graph"
 export interface TeacherDashboardViewDeps {
   /** Sorgente eventi (seam per i test jsdom); default: event log IndexedDB reale. */
   loadEvents?: () => Promise<readonly AppendedEvent[]>
-  /** Journal lavagna della stessa stanza; default: raw/events.jsonl dal WorkspaceStore reale. */
+  /** Journal lavagna della stessa stanza; default: raw/<room>/events.jsonl dal WorkspaceStore reale. */
   loadJournalEvents?: () => Promise<readonly JournalEvent[]>
-  /** Room a cui associare il journal finché JournalRecorder non porta room id nativi. */
+  /** Room del journal letto e attribuito; default: quella dell'hash corrente. */
   journalRoom?: string
   /** Nodo iniziale del grafo; se assente viene derivato dal primo concetto/evento didattico. */
   focusNodeId?: string | null
@@ -61,9 +61,12 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
   return store.readAll()
 }
 
-async function loadJournalEventsFromStore(): Promise<readonly JournalEvent[]> {
+// Il journal è room-scoped da FB-4C2: leggere il path flat mostrerebbe nella
+// lezione corrente gli eventi lasciati lì da un'altra (o nulla, dato che nessun
+// writer scrive più flat) attribuendoli comunque a journalRoom.
+async function loadJournalEventsFromStore(room: string): Promise<readonly JournalEvent[]> {
   if (workspaceStore.mode === "unavailable") await workspaceStore.init()
-  const blob = await workspaceStore.read(PATHS.JOURNAL)
+  const blob = await workspaceStore.read(roomPaths(room).journal)
   if (!blob) return []
   return deserializeEvents(await blob.text())
 }
@@ -119,8 +122,9 @@ function labelText(label: Record<string, string>): string {
 
 export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboardViewDeps }) {
   const loadEvents = deps?.loadEvents ?? loadEventsFromStore
-  const loadJournalEvents = deps?.loadJournalEvents ?? loadJournalEventsFromStore
   const journalRoom = deps?.journalRoom ?? roomFromHash()
+  const loadJournalEvents = deps?.loadJournalEvents
+    ?? ((): Promise<readonly JournalEvent[]> => loadJournalEventsFromStore(journalRoom))
   const appendEvent = deps?.appendEvent ?? appendEventToStore
   const eventLog = deps?.eventLog ?? realEventLog
   const [state, setState] = useState<Z7State>({ phase: "loading" })
