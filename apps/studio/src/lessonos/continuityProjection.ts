@@ -474,6 +474,57 @@ function deriveOpenLoops(
     })))
 }
 
+function unavailableSimulation(
+  reason: Extract<ContinuitySimulationStateV1, { status: "unavailable" }>["reason"],
+): ContinuitySimulationStateV1 {
+  return Object.freeze({
+    status: "unavailable" as const,
+    instance: null,
+    openError: null,
+    evidenceBlock: null,
+    reason,
+  })
+}
+
+/**
+ * Stato Simulation fail-closed (design §6, §7.5, gate G2).
+ * Finche' ARD-07 non e' accepted gli eventi correnti sono legacy: nessuno
+ * stato ready o error-open e' raggiungibile, e nessun solve viene associato a
+ * un embed per euristica "tanto ce n'e' uno solo".
+ */
+function deriveSimulationState(
+  lessonEvents: readonly AppendedEventEnvelopeV2[],
+  scene: ScopedContinuitySnapshotV1["scene"],
+  roomId: string,
+): ContinuitySimulationStateV1 {
+  const embeds = scene?.simulationEmbeds ?? []
+  const mounts = lessonEvents.filter((event) => event.kind === "plugin.mounted")
+
+  if (embeds.length === 0 && mounts.length === 0) {
+    return Object.freeze({
+      status: "not-mounted" as const,
+      instance: null,
+      openError: null,
+      evidenceBlock: null,
+    })
+  }
+  if (embeds.length > 1) return unavailableSimulation("multiple-instances")
+
+  const strictMounts = mounts.filter((event) => (
+    readString(event.payload as JsonObject, "room") === roomId
+  ))
+  if (mounts.length > 0 && strictMounts.length === 0) {
+    // plugin.mounted storico privo di room: contratto non supportato, non
+    // promosso a istanza (design §5.4, §12 RED-06-02).
+    return unavailableSimulation("event-contract-legacy")
+  }
+  if (strictMounts.length === 0) return unavailableSimulation("mount-receipt-missing")
+
+  // G2 non accepted: un mount strict esiste ma il contratto simulation.*
+  // canonico (pluginVersion, sceneDigest, producer full SHA) non lo e'.
+  return unavailableSimulation("event-contract-legacy")
+}
+
 /**
  * Projection pura della Continuità (design §6, §7, §9).
  * Nessun I/O, nessun clock: lo stesso snapshot produce gli stessi byte.
@@ -541,12 +592,7 @@ export function projectContinuityV1(
     lastUncorrectedError,
     recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
     missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
-    simulation: Object.freeze({
-      status: "not-mounted" as const,
-      instance: null,
-      openError: null,
-      evidenceBlock: null,
-    }),
+    simulation: deriveSimulationState(snapshot.lessonEvents, snapshot.scene, identity.roomId),
     nextAction: openLoops.length > 0
       ? Object.freeze({
           kind: "resume-open-loop" as const,

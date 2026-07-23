@@ -243,3 +243,112 @@ describe("projectContinuityV1 — open loop (RED-06-04)", () => {
     expect(projection.phase).toBe("ready")
   })
 })
+
+// --- RED-06-06: Simulation fail-closed ---
+//
+// G2 (ARD-07) NON e' accepted su origin/main@fddda617: simulationSolveEvent.ts
+// non porta instanceId, sceneDigest, pluginVersion ne' commitSha. Quindi in
+// questa slice gli stati ready ed error-open sono irraggiungibili PER
+// COSTRUZIONE, e questi test lo congelano.
+
+const SCENE_DIGEST = "d".repeat(64)
+
+function sceneWithEmbeds(
+  embeds: readonly { instanceId: string; pluginId: string; sceneDigest: string | null }[],
+): NonNullable<ScopedContinuitySnapshotV1["scene"]> {
+  return {
+    sha256: "e".repeat(64),
+    elements: [],
+    simulationEmbeds: embeds,
+  }
+}
+
+describe("projectContinuityV1 — Simulation fail-closed (RED-06-06)", () => {
+  beforeEach(() => { nextSeq = 1 })
+
+  it("zero mount e zero embed -> not-mounted", () => {
+    const projection = projectContinuityV1(emptySnapshot())
+    expect(projection.simulation.status).toBe("not-mounted")
+    expect(projection.simulation.instance).toBeNull()
+  })
+
+  it("embed nella scena senza plugin.mounted -> unavailable/mount-receipt-missing", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      scene: sceneWithEmbeds([
+        { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+      ]),
+    }))
+    expect(projection.simulation.status).toBe("unavailable")
+    expect(projection.simulation).toMatchObject({ reason: "mount-receipt-missing" })
+    expect(projection.simulation.instance).toBeNull()
+  })
+
+  it("due embed -> unavailable/multiple-instances", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      scene: sceneWithEmbeds([
+        { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+        { instanceId: "embed-2", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+      ]),
+    }))
+    expect(projection.simulation.status).toBe("unavailable")
+    expect(projection.simulation).toMatchObject({ reason: "multiple-instances" })
+  })
+
+  it("un plugin.mounted senza payload.room non crea istanza (ARD-07 non accepted)", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [lessonEvent("plugin.mounted", { instanceId: "embed-1" }, "2026-07-23T00:00:01.000Z")],
+      scene: sceneWithEmbeds([
+        { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+      ]),
+    }))
+    expect(projection.simulation.status).toBe("unavailable")
+    expect(projection.simulation).toMatchObject({ reason: "event-contract-legacy" })
+    expect(projection.lastVerifiedResult).toBeNull()
+  })
+
+  it("un plugin.mounted con room canonica resta legacy finche' ARD-07 non e' accepted", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [lessonEvent(
+        "plugin.mounted",
+        { room: SCOPE.roomId, instanceId: "embed-1" },
+        "2026-07-23T00:00:01.000Z",
+      )],
+      scene: sceneWithEmbeds([
+        { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+      ]),
+    }))
+    expect(projection.simulation.status).toBe("unavailable")
+    expect(projection.simulation).toMatchObject({ reason: "event-contract-legacy" })
+  })
+
+  it("un evento simulation legacy senza instanceId non produce mai lastVerifiedResult", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [lessonEvent(
+        "simulation.solved",
+        { room: SCOPE.roomId, currentMa: 15.3 },
+        "2026-07-23T00:00:01.000Z",
+      )],
+    }))
+    expect(projection.lastVerifiedResult).toBeNull()
+    expect(projection.simulation.status).not.toBe("ready")
+  })
+
+  it("nessuna fixture di questo file puo' produrre ready o error-open", () => {
+    for (const snapshot of [
+      emptySnapshot(),
+      emptySnapshot({ scene: sceneWithEmbeds([
+        { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+      ]) }),
+      emptySnapshot({
+        lessonEvents: [lessonEvent("plugin.mounted", { room: SCOPE.roomId, instanceId: "embed-1" }, "2026-07-23T00:00:01.000Z")],
+        scene: sceneWithEmbeds([
+          { instanceId: "embed-1", pluginId: "io.ardesia.simulation", sceneDigest: SCENE_DIGEST },
+        ]),
+      }),
+    ]) {
+      const status = projectContinuityV1(snapshot).simulation.status
+      expect(status).not.toBe("ready")
+      expect(status).not.toBe("error-open")
+    }
+  })
+})
