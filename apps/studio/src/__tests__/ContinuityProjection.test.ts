@@ -352,3 +352,159 @@ describe("projectContinuityV1 — Simulation fail-closed (RED-06-06)", () => {
     }
   })
 })
+
+// --- RED-06-05: required set, ordine P0 totale, permutation oracle ---
+
+function issue(
+  source: ContinuitySourceIssueV1["source"],
+  severity: ContinuitySourceIssueV1["severity"],
+  code: ContinuitySourceIssueV1["code"],
+  preserved: ContinuitySourceIssueV1["preserved"] = null,
+): ContinuitySourceIssueV1 {
+  return { source, severity, code, preserved }
+}
+
+/** Shuffle deterministico: nessun Math.random nei test. */
+function seededShuffle<T>(items: readonly T[], seed: number): T[] {
+  const out = [...items]
+  let state = seed
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    state = (state * 1103515245 + 12345) & 0x7fffffff
+    const j = state % (i + 1)
+    const swap = out[i]!
+    out[i] = out[j]!
+    out[j] = swap
+  }
+  return out
+}
+
+function permutations<T>(items: readonly T[]): T[][] {
+  if (items.length <= 1) return [[...items]]
+  const out: T[][] = []
+  for (let i = 0; i < items.length; i += 1) {
+    const rest = [...items.slice(0, i), ...items.slice(i + 1)]
+    for (const tail of permutations(rest)) out.push([items[i]!, ...tail])
+  }
+  return out
+}
+
+describe("projectContinuityV1 — nextAction P0 (RED-06-05)", () => {
+  beforeEach(() => { nextSeq = 1 })
+
+  it("una issue corrupt su sorgente opzionale e' comunque P0", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [issue("plugin-artifact", "corrupt", "digest-mismatch")],
+    }))
+    expect(projection.nextAction.kind).toBe("recover-continuity")
+  })
+
+  it("una issue degraded su sorgente RICHIESTA e' P0", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [issue("session", "degraded", "unavailable")],
+    }))
+    expect(projection.nextAction.kind).toBe("recover-continuity")
+    expect(projection.nextAction).toMatchObject({
+      reason: { kind: "source", source: "session" },
+    })
+  })
+
+  it("una issue degraded su sorgente OPZIONALE non forza P0", () => {
+    // plugin-artifact non e' richiesto: nessun evento Simulation, nessun embed.
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [issue("plugin-artifact", "degraded", "missing")],
+      lessonEvents: [observed("err-X", "2026-07-23T00:00:01.000Z")],
+    }))
+    expect(projection.phase).toBe("degraded")
+    expect(projection.nextAction.kind).toBe("resume-open-loop")
+  })
+
+  it("corrupt precede degraded richiesta", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [
+        issue("session", "degraded", "unavailable"),
+        issue("journal", "corrupt", "invalid-schema"),
+      ],
+    }))
+    expect(projection.nextAction).toMatchObject({
+      reason: { source: "journal", severity: "corrupt" },
+    })
+  })
+
+  it("a parita' di severity vince SOURCE_ORDER", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [
+        issue("journal", "corrupt", "invalid-schema"),
+        issue("session", "corrupt", "invalid-schema"),
+      ],
+    }))
+    expect(projection.nextAction).toMatchObject({ reason: { source: "session" } })
+  })
+
+  it("a parita' di source vince SOURCE_CODE_ORDER", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [
+        issue("journal", "corrupt", "invalid-schema"),
+        issue("journal", "corrupt", "duplicate-event-id"),
+      ],
+    }))
+    expect(projection.nextAction).toMatchObject({ reason: { code: "duplicate-event-id" } })
+  })
+
+  it("a parita' di source e code, path/sha256/bytes rendono l'ordine totale", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      issues: [
+        issue("journal", "corrupt", "invalid-schema", { path: "b.jsonl", sha256: "0".repeat(64), bytes: 2 }),
+        issue("journal", "corrupt", "invalid-schema", { path: "a.jsonl", sha256: "0".repeat(64), bytes: 1 }),
+      ],
+    }))
+    expect(projection.nextAction).toMatchObject({
+      reason: { preserved: { path: "a.jsonl" } },
+    })
+  })
+
+  it("permutation oracle: 3! ordini + 100 shuffle seeded danno byte identici", () => {
+    const issues = [
+      issue("journal", "corrupt", "invalid-schema", { path: "a.jsonl", sha256: "1".repeat(64), bytes: 10 }),
+      issue("session", "degraded", "unavailable"),
+      issue("scene", "corrupt", "digest-mismatch", { path: "s.excalidraw", sha256: "2".repeat(64), bytes: 20 }),
+    ]
+    const baseline = JSON.stringify(projectContinuityV1(emptySnapshot({ issues })))
+
+    const orders = permutations(issues)
+    expect(orders).toHaveLength(6)
+    for (const permutation of orders) {
+      expect(JSON.stringify(projectContinuityV1(emptySnapshot({ issues: permutation }))))
+        .toBe(baseline)
+    }
+    for (let seed = 1; seed <= 100; seed += 1) {
+      expect(JSON.stringify(projectContinuityV1(emptySnapshot({ issues: seededShuffle(issues, seed) }))))
+        .toBe(baseline)
+    }
+  })
+
+  it("sourceHealth.issues usa lo stesso comparator della selezione", () => {
+    const issues = [
+      issue("scene", "corrupt", "digest-mismatch"),
+      issue("session", "corrupt", "invalid-schema"),
+      issue("journal", "degraded", "missing"),
+    ]
+    const forward = projectContinuityV1(emptySnapshot({ issues }))
+    const reversed = projectContinuityV1(emptySnapshot({ issues: [...issues].reverse() }))
+    expect(forward.sourceHealth.issues.map((entry) => entry.source))
+      .toEqual(reversed.sourceHealth.issues.map((entry) => entry.source))
+    expect(forward.sourceHealth.issues[0]!.source).toBe("session")
+  })
+
+  it("esiste sempre esattamente una nextAction in ogni fixture", () => {
+    for (const snapshot of [
+      emptySnapshot(),
+      emptySnapshot({ issues: [issue("session", "degraded", "unavailable")] }),
+      emptySnapshot({ issues: [issue("journal", "corrupt", "invalid-schema")] }),
+      emptySnapshot({ lessonEvents: [observed("err-X", "2026-07-23T00:00:01.000Z")] }),
+    ]) {
+      const projection = projectContinuityV1(snapshot)
+      expect(typeof projection.nextAction.kind).toBe("string")
+      expect(Array.isArray(projection.nextAction)).toBe(false)
+    }
+  })
+})

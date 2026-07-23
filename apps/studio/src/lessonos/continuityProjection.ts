@@ -525,6 +525,126 @@ function deriveSimulationState(
   return unavailableSimulation("event-contract-legacy")
 }
 
+// --- Required set e ordine P0 totale: design §9.1, §9.2 ---
+
+const SOURCE_ORDER = [
+  "session",
+  "lesson-event-log",
+  "journal",
+  "event-union",
+  "scene",
+  "plugin-artifact",
+  "build",
+] as const
+
+const SOURCE_CODE_ORDER = [
+  "duplicate-event-id",
+  "scope-violation",
+  "invalid-schema",
+  "digest-mismatch",
+  "data-loss",
+  "unavailable",
+  "missing",
+  "multiple-simulation-instances",
+  "unsupported-event-contract",
+  "legacy-recovery-required",
+] as const
+
+/**
+ * Design §9.1. "Richiesta" distingue la disponibilita' della SORGENTE dalla
+ * presenza del DOCUMENTO: una sorgente richiesta ma con documento assente
+ * produce una issue missing, non trasforma la sessione in empty.
+ */
+function requiredSourceSet(
+  snapshot: ScopedContinuitySnapshotV1,
+): ReadonlySet<ContinuitySourceNameV1> {
+  const required = new Set<ContinuitySourceNameV1>([
+    "session",
+    "lesson-event-log",
+    "journal",
+    "scene",
+  ])
+  const hasEvents = snapshot.lessonEvents.length > 0 || snapshot.journalEvents.length > 0
+  if (hasEvents) {
+    required.add("event-union")
+    required.add("build")
+  }
+  const hasSimulation =
+    (snapshot.scene?.simulationEmbeds.length ?? 0) > 0
+    || snapshot.lessonEvents.some((event) => (
+      event.kind === "plugin.mounted" || event.kind.startsWith("simulation.")
+    ))
+  if (hasSimulation) {
+    required.add("plugin-artifact")
+    required.add("build")
+  }
+  return required
+}
+
+function compareNullableString(left: string | null, right: string | null): number {
+  return compareCodePoints(left ?? "", right ?? "")
+}
+
+/**
+ * Chiave totale source (design §9.2). Copre TUTTI i campi di
+ * ContinuitySourceIssueV1, quindi due candidati che comparano uguali sono
+ * byte-identici e vengono deduplicati prima della selezione: l'ordine e'
+ * totale per costruzione.
+ */
+function compareSourceCandidates(
+  left: ContinuitySourceIssueV1,
+  right: ContinuitySourceIssueV1,
+): number {
+  const severityRank = (issue: ContinuitySourceIssueV1): number => (
+    issue.severity === "corrupt" ? 0 : 1
+  )
+  return (
+    severityRank(left) - severityRank(right)
+    || SOURCE_ORDER.indexOf(left.source) - SOURCE_ORDER.indexOf(right.source)
+    || SOURCE_CODE_ORDER.indexOf(left.code) - SOURCE_CODE_ORDER.indexOf(right.code)
+    || compareNullableString(left.preserved?.path ?? null, right.preserved?.path ?? null)
+    || compareNullableString(left.preserved?.sha256 ?? null, right.preserved?.sha256 ?? null)
+    || (left.preserved?.bytes ?? -1) - (right.preserved?.bytes ?? -1)
+  )
+}
+
+/**
+ * Una issue corrupt e' sempre P0, anche su sorgente opzionale. Una degraded
+ * entra in P0 soltanto se la sua sorgente e' nel required set, cosi' una
+ * sorgente opzionale degradata non oscura un'azione sicura (design §9.1).
+ */
+function p0SourceCandidates(
+  snapshot: ScopedContinuitySnapshotV1,
+): readonly ContinuitySourceIssueV1[] {
+  const required = requiredSourceSet(snapshot)
+  const candidates = snapshot.issues.filter((entry) => (
+    entry.severity === "corrupt" || required.has(entry.source)
+  ))
+  // Deduplica soltanto issue byte-identiche, mai evidence occurrence.
+  const byKey = new Map<string, ContinuitySourceIssueV1>()
+  for (const entry of candidates) byKey.set(JSON.stringify(entry), entry)
+  return [...byKey.values()].sort(compareSourceCandidates)
+}
+
+function recoverContinuityAction(
+  scope: ContinuityScopeV1,
+  candidate: ContinuitySourceIssueV1,
+): ContinuityNextActionV1 {
+  return Object.freeze({
+    kind: "recover-continuity" as const,
+    priority: 0 as const,
+    reason: Object.freeze({
+      kind: "source" as const,
+      source: candidate.source,
+      severity: candidate.severity,
+      code: candidate.code,
+      preserved: candidate.preserved,
+    }),
+    href: continuityRecoveryHref(scope),
+    evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+  })
+}
+
 /**
  * Projection pura della Continuità (design §6, §7, §9).
  * Nessun I/O, nessun clock: lo stesso snapshot produce gli stessi byte.
@@ -539,12 +659,13 @@ export function projectContinuityV1(
   if (health === "corrupt") {
     // Design §6: una source corruption non autorizza una projection parziale
     // dalle altre sorgenti. Restano identità, issue bounded e recover.
-    const reason = issues.find((issue) => issue.severity === "corrupt")!
+    const sortedIssues = Object.freeze([...issues].sort(compareSourceCandidates))
+    const candidate = p0SourceCandidates(snapshot)[0]!
     return Object.freeze({
       v: 1 as const,
       identity,
       phase: "corrupt" as const,
-      sourceHealth: Object.freeze({ status: health, issues: Object.freeze(issues) }),
+      sourceHealth: Object.freeze({ status: health, issues: sortedIssues }),
       session: null,
       lastVerifiedResult: null,
       openLoops: Object.freeze([]) as readonly ContinuityOpenLoopV1[],
@@ -558,22 +679,12 @@ export function projectContinuityV1(
         evidenceBlock: null,
         reason: "source-corrupt" as const,
       }),
-      nextAction: Object.freeze({
-        kind: "recover-continuity" as const,
-        priority: 0 as const,
-        reason: Object.freeze({
-          kind: "source" as const,
-          source: reason.source,
-          severity: reason.severity,
-          code: reason.code,
-          preserved: reason.preserved,
-        }),
-        href: continuityRecoveryHref(identity),
-        evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
-      }),
+      nextAction: recoverContinuityAction(identity, candidate),
     })
   }
 
+  const sortedIssues = Object.freeze([...issues].sort(compareSourceCandidates))
+  const p0 = p0SourceCandidates(snapshot)
   const openLoops = deriveOpenLoops(snapshot.lessonEvents)
   const lastUncorrectedError = openLoops[0] ?? null
   const hasResumableFacts = openLoops.length > 0
@@ -585,7 +696,7 @@ export function projectContinuityV1(
     v: 1 as const,
     identity,
     phase,
-    sourceHealth: Object.freeze({ status: health, issues: Object.freeze(issues) }),
+    sourceHealth: Object.freeze({ status: health, issues: sortedIssues }),
     session: null,
     lastVerifiedResult: null,
     openLoops,
@@ -593,7 +704,9 @@ export function projectContinuityV1(
     recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
     missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
     simulation: deriveSimulationState(snapshot.lessonEvents, snapshot.scene, identity.roomId),
-    nextAction: openLoops.length > 0
+    nextAction: p0.length > 0
+      ? recoverContinuityAction(identity, p0[0]!)
+      : openLoops.length > 0
       ? Object.freeze({
           kind: "resume-open-loop" as const,
           priority: 2 as const,
