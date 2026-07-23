@@ -366,3 +366,99 @@ export function validateContinuityScopeV1(input: {
   }
   return Object.freeze({ lessonId, roomId, sessionId: input.sessionId })
 }
+
+// --- Derivazione pura: design §6, §7, §9 ---
+
+/** Href interno alla lezione, mai un link esterno (design §8.3). */
+function continuityLessonHref(scope: ContinuityScopeV1): string {
+  return `/#${scope.roomId}`
+}
+
+function continuityRecoveryHref(scope: ContinuityScopeV1): string {
+  return `/?vista=continuita&lessonId=${encodeURIComponent(scope.lessonId)}`
+    + `&sessionId=${scope.sessionId}#${scope.roomId}`
+}
+
+function sourceHealthStatus(
+  issues: readonly ContinuitySourceIssueV1[],
+): "verified" | "degraded" | "corrupt" {
+  if (issues.some((issue) => issue.severity === "corrupt")) return "corrupt"
+  if (issues.length > 0) return "degraded"
+  return "verified"
+}
+
+/**
+ * Projection pura della Continuità (design §6, §7, §9).
+ * Nessun I/O, nessun clock: lo stesso snapshot produce gli stessi byte.
+ */
+export function projectContinuityV1(
+  snapshot: ScopedContinuitySnapshotV1,
+): ContinuityProjectionV1 {
+  const identity = validateContinuityScopeV1(snapshot.scope)
+  const issues = [...snapshot.issues]
+  const health = sourceHealthStatus(issues)
+
+  if (health === "corrupt") {
+    // Design §6: una source corruption non autorizza una projection parziale
+    // dalle altre sorgenti. Restano identità, issue bounded e recover.
+    const reason = issues.find((issue) => issue.severity === "corrupt")!
+    return Object.freeze({
+      v: 1 as const,
+      identity,
+      phase: "corrupt" as const,
+      sourceHealth: Object.freeze({ status: health, issues: Object.freeze(issues) }),
+      session: null,
+      lastVerifiedResult: null,
+      openLoops: Object.freeze([]) as readonly ContinuityOpenLoopV1[],
+      lastUncorrectedError: null,
+      recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
+      missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+      simulation: Object.freeze({
+        status: "unavailable" as const,
+        instance: null,
+        openError: null,
+        evidenceBlock: null,
+        reason: "source-corrupt" as const,
+      }),
+      nextAction: Object.freeze({
+        kind: "recover-continuity" as const,
+        priority: 0 as const,
+        reason: Object.freeze({
+          kind: "source" as const,
+          source: reason.source,
+          severity: reason.severity,
+          code: reason.code,
+          preserved: reason.preserved,
+        }),
+        href: continuityRecoveryHref(identity),
+        evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+      }),
+    })
+  }
+
+  const phase = health === "degraded" ? ("degraded" as const) : ("empty" as const)
+  return Object.freeze({
+    v: 1 as const,
+    identity,
+    phase,
+    sourceHealth: Object.freeze({ status: health, issues: Object.freeze(issues) }),
+    session: null,
+    lastVerifiedResult: null,
+    openLoops: Object.freeze([]) as readonly ContinuityOpenLoopV1[],
+    lastUncorrectedError: null,
+    recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
+    missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+    simulation: Object.freeze({
+      status: "not-mounted" as const,
+      instance: null,
+      openError: null,
+      evidenceBlock: null,
+    }),
+    nextAction: Object.freeze({
+      kind: "reopen-lesson" as const,
+      priority: 4 as const,
+      href: continuityLessonHref(identity),
+      evidence: Object.freeze([]) as readonly [],
+    }),
+  })
+}
