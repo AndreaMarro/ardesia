@@ -1,6 +1,7 @@
 """Test pipeline cross-fixture generality: bio_path (fotosintesi) domain."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -113,10 +114,14 @@ class TestPipelineBioPath:
         r2 = run_pipeline(fixture_root=FIXTURE_ROOT)
         # elapsed_seconds is a wall-clock measurement: it is not part of the
         # determinism contract and made this test flaky under load (2/10).
-        def strip_elapsed(summary: str) -> str:
-            return summary.rsplit(", ", 1)[0]
+        # Mask it by shape rather than dropping the last comma-separated field,
+        # so a field appended to the summary later stays inside the comparison.
+        def mask_elapsed(summary: str) -> str:
+            masked, count = re.subn(r"\b\d+\.\d+s\b", "<elapsed>", summary)
+            assert count == 1, f"expected exactly one elapsed field in: {summary}"
+            return masked
 
-        assert strip_elapsed(r1.summary) == strip_elapsed(r2.summary), (
+        assert mask_elapsed(r1.summary) == mask_elapsed(r2.summary), (
             f"Non-deterministic pipeline:\n  run1: {r1.summary}\n  run2: {r2.summary}"
         )
 
