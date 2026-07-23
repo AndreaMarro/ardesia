@@ -294,6 +294,6 @@ export function decodeJournalJsonl(text: string, source: string): JournalDecodeR
  * Deserializza una stringa JSONL in array di eventi.
  * Salta righe vuote o non-JSON.
  */
-export function deserializeEvents(text: string, source = PATHS.JOURNAL): JournalEvent[] {
+export function deserializeEvents(text: string, source: string = PATHS.JOURNAL): JournalEvent[] {
   return [...decodeJournalJsonl(text, source).legacy]
 }

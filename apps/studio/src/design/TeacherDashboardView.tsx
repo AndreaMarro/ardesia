@@ -66,9 +66,13 @@ async function loadEventsFromStore(): Promise<readonly AppendedEvent[]> {
 // writer scrive più flat) attribuendoli comunque a journalRoom.
 async function loadJournalEventsFromStore(room: string): Promise<readonly JournalEvent[]> {
   if (workspaceStore.mode === "unavailable") await workspaceStore.init()
-  const blob = await workspaceStore.read(roomPaths(room).journal)
+  const journalPath = roomPaths(room).journal
+  const blob = await workspaceStore.read(journalPath)
   if (!blob) return []
-  return deserializeEvents(await blob.text())
+  // Il source path non è decorativo: decodeJournalJsonl ne ricava la lessonId
+  // attesa e rifiuta gli envelope v2 che dichiarano un'altra lezione. Omesso,
+  // il default è il journal flat legacy, dove gli envelope v2 sono vietati.
+  return deserializeEvents(await blob.text(), journalPath)
 }
 
 async function appendEventToStore(event: LessonOsEvent): Promise<void> {

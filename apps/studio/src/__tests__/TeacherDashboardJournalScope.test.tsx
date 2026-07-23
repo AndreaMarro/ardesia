@@ -47,6 +47,28 @@ function journalLine(marker: string, t: number): string {
   return `${JSON.stringify({ t, type: "math.insert", latex: marker })}\n`
 }
 
+/** Envelope v2 come quelli scritti davvero da JournalRecorder nel journal room. */
+function envelopeLine(lessonId: string, suffix: string, occurredAt: string): string {
+  return `${JSON.stringify({
+    schemaVersion: 2,
+    eventId: `758810e3-4b3a-4c41-bb33-bb34517a1b${suffix}`,
+    lessonId,
+    sessionId: "7c74ea85-2d7a-437a-a94b-2cf444bebad6",
+    kind: "journal.math.insert",
+    occurredAt,
+    actor: { type: "teacher", id: "founder-beta-teacher" },
+    producer: {
+      id: "com.github.andreamarro.ardesia.studio",
+      version: "0.0.0",
+      commitSha: "a".repeat(40),
+    },
+    causationId: null,
+    idempotencyKey: `journal:7c74ea85-2d7a-437a-a94b-2cf444bebad6:${suffix}`,
+    evidence: [{ ref: "journal:math-input", resolution: "verified" }],
+    payload: { latex: `formula-${suffix}` },
+  })}\n`
+}
+
 afterEach(() => {
   cleanup()
 })
@@ -97,6 +119,28 @@ describe("Continuità — sorgente del journal", () => {
     const events = await appendEvents([
       { kind: "lesson.started", room: ROOM, t: 1000, evidence: [`lesson:${ROOM}@1000`] },
       { kind: "lesson.ended", room: ROOM, t: 2000, evidence: [`lesson:${ROOM}@2000`] },
+    ])
+
+    render(<TeacherDashboardView deps={{ loadEvents: async () => events, appendEvent: async () => {} }} />)
+
+    const card = await screen.findByTestId("zstat-math.inserts.count")
+    expect(card.getAttribute("data-zstat-value")).toBe("2")
+  })
+
+  it("proietta gli envelope v2 del journal room senza perdere la zona statistiche", async () => {
+    // Il journal room contiene envelope v2, non righe legacy. Se il source path
+    // non arriva al decoder, questo applica il default flat — dove gli envelope
+    // v2 sono vietati — la refresh va in errore e le card spariscono in silenzio.
+    files.set(
+      `raw/${ROOM}/events.jsonl`,
+      envelopeLine(ROOM, "01", "2026-07-23T01:48:04.780Z")
+      + envelopeLine(ROOM, "02", "2026-07-23T01:48:05.780Z"),
+    )
+    // La lezione deve contenere gli occurredAt degli envelope: il proiettore
+    // conta per finestra temporale, non per semplice appartenenza al file.
+    const events = await appendEvents([
+      { kind: "lesson.started", room: ROOM, t: 1784771284000, evidence: [`lesson:${ROOM}@start`] },
+      { kind: "lesson.ended", room: ROOM, t: 1784771286000, evidence: [`lesson:${ROOM}@end`] },
     ])
 
     render(<TeacherDashboardView deps={{ loadEvents: async () => events, appendEvent: async () => {} }} />)

@@ -103,5 +103,16 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
     return journal ? (await journal.text()).includes(marker) : false
   }, lastEventMarker)).toBe(true)
 
+  // 6. Continuità, ora che la write è durevole, deve PROIETTARE quell'evento:
+  // la presenza del selettore non dice se la projection legge la lezione giusta.
+  await page.locator('[data-view-nav-item="continuita"]').click()
+  const mathInserts = page.getByTestId("zstat-math.inserts.count")
+  await expect(mathInserts).toBeVisible({ timeout: 15_000 })
+  await expect
+    .poll(async () => Number(await mathInserts.getAttribute("data-zstat-value")), {
+      timeout: 15_000,
+    })
+    .toBeGreaterThanOrEqual(1)
+
   expect(consoleErrors).toEqual([])
 })
