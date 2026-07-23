@@ -6,6 +6,17 @@ il remoto o i dati: sono in **sola lettura** e producono evidenza o falliscono.
 
 Precedente di stile: `bin/ci/*.py` (nul_scan, secret_scan, elab_boundary_gate).
 
+## Runner unico
+
+```bash
+bash bin/convergence/gate.sh            # tutti i gate T1 + controlli negativi
+bash bin/convergence/gate.sh --strict   # blocca anche sulla LICENSE assente (D-2)
+```
+
+**Non** cablato in `.github/workflows/ci.yml`: aggiungere un required check e' un
+gate umano (design §10). Il runner esiste perche' la CI, quando l'umano lo decide,
+chiami una sola cosa.
+
 ## Action 1 — control plane
 
 | File | Ruolo |
