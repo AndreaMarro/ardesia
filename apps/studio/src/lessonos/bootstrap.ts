@@ -10,8 +10,27 @@
 //     una volta, non a ogni reload di una lavagna volutamente nuova.
 // I consumer (bridge #34, projection #30) vedranno SOLO EventLogStore.
 
-import type { EventLogStore } from "./eventlog"
-import { IndexedDbEventLog, createEventLogStore } from "./indexedDbEventLog"
+import type {
+  AnyEventEnvelopeV2,
+  AppendEnvelopeResult,
+  EnvelopeEventLogStore,
+  EventLogStore,
+  LessonOsEvent,
+} from "./eventlog"
+import {
+  IndexedDbEventLog,
+  createEventLogStore,
+  type IndexedDbEventLogOptions,
+} from "./indexedDbEventLog"
+import {
+  createEventEnvelopeV2,
+  studioProducerIdentity,
+  type EventActor,
+  type EventEvidence,
+  type JsonObject,
+  type ProducerIdentity,
+} from "../core/contracts/eventEnvelope"
+import { validateRoomId } from "../store/roomPaths"
 import {
   runStoragePreflight,
   type StorageCapabilitySnapshot,
@@ -56,17 +75,125 @@ export interface LessonOsRuntime {
   corrupted: boolean
 }
 
+export type LessonOsFactKind = Exclude<
+  LessonOsEvent["kind"],
+  "lesson.started" | "lesson.ended"
+>
+
+export type LessonPayload<K extends LessonOsFactKind> = Omit<
+  Extract<LessonOsEvent, { kind: K }>,
+  "kind" | "t" | "evidence"
+> & JsonObject
+
+export type FactMeta = Readonly<{
+  evidence: readonly EventEvidence[]
+  causationId?: string | null
+  idempotencyKey?: string | null
+}>
+
+export interface OpenLessonOsSessionOptions {
+  room: string
+  actor?: Extract<EventActor, { type: "teacher" }>
+  now?: () => number
+  newSessionId?: () => string
+  newEventId?: () => string
+  env?: LessonOsBootstrapEnv
+}
+
+export interface LessonOsSessionHandle extends LessonOsRuntime {
+  store: EnvelopeEventLogStore
+  identity: Readonly<{
+    lessonId: string
+    sessionId: string
+    actor: EventActor
+  }>
+  producer: ProducerIdentity
+  appendFact<K extends LessonOsFactKind>(
+    kind: K,
+    payload: LessonPayload<K>,
+    meta: FactMeta,
+  ): Promise<AppendEnvelopeResult>
+  close(): Promise<AppendEnvelopeResult>
+}
+
+export type LessonOsSessionOpener = (
+  options: OpenLessonOsSessionOptions,
+) => Promise<LessonOsSessionHandle>
+
+export const DEFAULT_LESSON_ACTOR = Object.freeze({
+  type: "teacher" as const,
+  id: "founder-beta-teacher",
+})
+
+const FACTUAL_KINDS = new Set<LessonOsFactKind>([
+  "concept.introduced",
+  "material.cited",
+  "error.observed",
+  "exercise.completed",
+  "simulation.step.completed",
+  "simulation.circuit.solved",
+  "simulation.error.observed",
+  "plugin.mounted",
+  "quiz.attempted",
+  "studentpack.generated",
+  "studentpack.exported",
+])
+
+const FACT_META_KEYS = new Set(["evidence", "causationId", "idempotencyKey"])
+
+function canonicalRandomUuid(): string {
+  const crypto = (globalThis as { crypto?: Crypto }).crypto
+  if (!crypto) throw new Error("LessonOS session: Web Crypto non disponibile")
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID().toLowerCase()
+  const bytes = crypto.getRandomValues(new Uint8Array(16))
+  bytes[6] = (bytes[6]! & 0x0f) | 0x40
+  bytes[8] = (bytes[8]! & 0x3f) | 0x80
+  const hex = [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("")
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+}
+
+function frozenTeacherActor(
+  actor: OpenLessonOsSessionOptions["actor"],
+): Extract<EventActor, { type: "teacher" }> {
+  const snapshot = structuredClone(actor ?? DEFAULT_LESSON_ACTOR) as EventActor
+  if (snapshot.type !== "teacher") {
+    throw new Error("LessonOS session: actor must be teacher")
+  }
+  return Object.freeze(snapshot)
+}
+
+function assertFactMetaHasNoAuthorityOverrides(meta: FactMeta): void {
+  for (const key of Reflect.ownKeys(meta)) {
+    if (typeof key !== "string" || !FACT_META_KEYS.has(key)) {
+      throw new Error(`LessonOS session: trusted context override rifiutato (${String(key)})`)
+    }
+  }
+}
+
+function closePhysicalStore(store: EnvelopeEventLogStore): Promise<void> {
+  const candidate = store as EnvelopeEventLogStore & { close?: () => Promise<void> }
+  return typeof candidate.close === "function" ? candidate.close() : Promise.resolve()
+}
+
 function resolveMarkerStorage(env: LessonOsBootstrapEnv): MarkerStorageLike | undefined {
   if ("markerStorage" in env) return env.markerStorage
-  return (globalThis as { localStorage?: MarkerStorageLike }).localStorage
+  try {
+    return (globalThis as { localStorage?: MarkerStorageLike }).localStorage
+  } catch {
+    return undefined
+  }
 }
 
 /** Mai throwing: ogni degrado (no IndexedDB, open fallita, marker illeggibile) è assorbito. */
-export async function bootstrapLessonOs(
+async function bootstrapLessonOsWithStoreOptions(
   env: LessonOsBootstrapEnv = {},
-): Promise<LessonOsRuntime> {
+  storeOptions: IndexedDbEventLogOptions = {},
+): Promise<LessonOsRuntime & { store: EnvelopeEventLogStore }> {
   const [store, capabilities] = await Promise.all([
-    createEventLogStore("indexedDB" in env ? { factory: env.indexedDB } : {}),
+    createEventLogStore({
+      ...storeOptions,
+      ...("indexedDB" in env ? { factory: env.indexedDB } : {}),
+    }),
     runStoragePreflight(env),
   ])
 
@@ -103,4 +230,128 @@ export async function bootstrapLessonOs(
   }
 
   return { store, capabilities, persistent, dataLoss, corrupted }
+}
+
+/** Compatibility entry point for non-session consumers. */
+export async function bootstrapLessonOs(
+  env: LessonOsBootstrapEnv = {},
+): Promise<LessonOsRuntime> {
+  return bootstrapLessonOsWithStoreOptions(env)
+}
+
+/**
+ * Opens one fresh, room-bound Founder Beta session. Room validation happens
+ * before UUID generation and before every IndexedDB/preflight/marker access.
+ */
+export async function openLessonOsSession(
+  options: OpenLessonOsSessionOptions,
+): Promise<LessonOsSessionHandle> {
+  const lessonId = validateRoomId(options.room)
+  const now = options.now ?? Date.now
+  const newSessionId = options.newSessionId ?? canonicalRandomUuid
+  const newEventId = options.newEventId ?? canonicalRandomUuid
+  const sessionId = newSessionId()
+  const actor = frozenTeacherActor(options.actor)
+  const producer = studioProducerIdentity()
+  const identity = Object.freeze({ lessonId, sessionId, actor })
+
+  const lifecycleEnvelope = (
+    kind: "lesson.started" | "lesson.ended",
+    suffix: "started" | "ended",
+  ): AnyEventEnvelopeV2 => {
+    const occurredAt = now()
+    return createEventEnvelopeV2(
+      {
+        lessonId,
+        sessionId,
+        kind,
+        actor,
+        producer,
+        causationId: null,
+        idempotencyKey: `session:${sessionId}:${suffix}`,
+        evidence: [{ ref: `lesson:${lessonId}@${occurredAt}`, resolution: "verified" }],
+        payload: { room: lessonId },
+      },
+      { eventId: newEventId, now: () => new Date(occurredAt) },
+    )
+  }
+
+  // Assemble and validate the start envelope before storage/preflight I/O.
+  const started = lifecycleEnvelope("lesson.started", "started")
+  const runtime = await bootstrapLessonOsWithStoreOptions(options.env, {
+    trustedContext: { lessonId, sessionId, actor, producer },
+  })
+  try {
+    const startResult = await runtime.store.appendEnvelope(started)
+    if (!startResult.appended) {
+      throw new Error("LessonOS session: fresh session collision; start already exists")
+    }
+  } catch (error) {
+    try {
+      await closePhysicalStore(runtime.store)
+    } catch (closeError) {
+      throw new AggregateError([error, closeError], "LessonOS session: start e cleanup falliti")
+    }
+    throw error
+  }
+
+  let closing = false
+  let closed = false
+  let ended: AnyEventEnvelopeV2 | null = null
+  let endedResult: AppendEnvelopeResult | null = null
+  let closeAttempt: Promise<AppendEnvelopeResult> | null = null
+
+  const handle: LessonOsSessionHandle = {
+    ...runtime,
+    identity,
+    producer,
+    async appendFact<K extends LessonOsFactKind>(
+      kind: K,
+      payload: LessonPayload<K>,
+      meta: FactMeta,
+    ): Promise<AppendEnvelopeResult> {
+      if (closing || closed) throw new Error("LessonOS session: closing/closed; appendFact rifiutato")
+      if (!FACTUAL_KINDS.has(kind)) {
+        throw new Error(`LessonOS session: kind lifecycle/non-factual rifiutato (${String(kind)})`)
+      }
+      assertFactMetaHasNoAuthorityOverrides(meta)
+      const envelope = createEventEnvelopeV2(
+        {
+          lessonId,
+          sessionId,
+          kind,
+          actor,
+          producer,
+          causationId: meta.causationId ?? null,
+          idempotencyKey: meta.idempotencyKey ?? null,
+          evidence: meta.evidence,
+          payload,
+        },
+        { eventId: newEventId, now: () => new Date(now()) },
+      )
+      return runtime.store.appendEnvelope(envelope)
+    },
+    close(): Promise<AppendEnvelopeResult> {
+      closing = true
+      if (closed && endedResult) return Promise.resolve(endedResult)
+      if (closeAttempt) return closeAttempt
+
+      const attempt = (async () => {
+        ended ??= lifecycleEnvelope("lesson.ended", "ended")
+        endedResult ??= await runtime.store.appendEnvelope(ended!)
+        await closePhysicalStore(runtime.store)
+        closed = true
+        return endedResult
+      })()
+      closeAttempt = attempt.then(
+        (result) => result,
+        (error) => {
+          closeAttempt = null
+          throw error
+        },
+      )
+      return closeAttempt
+    },
+  }
+  return handle
 }

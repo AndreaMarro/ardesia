@@ -23,11 +23,11 @@ describe("Simulation Plugin route", () => {
     expect(isSimulationPluginView()).toBe(false)
   })
 
-  it("puts the simulator before ELAB in the primary nav", () => {
+  it("keeps the simulator as a deep route but removes it from the Founder Beta nav", () => {
     expect(ARDESIA_VIEW_LINKS.map((view) => view.id)).toEqual([
-      "lavagna",
-      "simulatore",
-      "elab-lab",
+      "lezione",
+      "continuita",
+      "materiali",
     ])
     expect(viewHref("simulatore", "#wbstudio-abc")).toBe(
       "/?vista=simulatore#wbstudio-abc",
@@ -35,10 +35,13 @@ describe("Simulation Plugin route", () => {
 
     window.history.replaceState(null, "", "/?vista=simulatore#wbstudio-room1")
     const { container } = render(<ViewNav current="simulatore" />)
-    expect(container.textContent).toContain("Simulatore")
-    expect(container.textContent).toContain("ELABTutor")
+    expect(container.textContent).toContain("Lezione")
+    expect(container.textContent).toContain("Continuità")
+    expect(container.textContent).toContain("Materiali")
+    expect(container.textContent).not.toContain("Simulatore")
+    expect(container.textContent).not.toContain("ELABTutor")
     expect(
-      container.querySelector('[data-view-nav-item="simulatore"]')?.getAttribute("aria-current"),
+      container.querySelector('[data-view-nav-item="lezione"]')?.getAttribute("aria-current"),
     ).toBe("page")
   })
 })

@@ -7,8 +7,43 @@ import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type Sto
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
-import { exportLesson as buildLessonExport, importLesson as parseLessonImport, type ImportLessonResult } from "./lessonBundle"
+import {
+  exportLesson as buildLessonExport,
+  importLesson as parseLessonImport,
+  previewLessonImport as buildLessonPreview,
+  recoverPendingLessonImport as recoverLessonImport,
+  type ImportLessonOptions,
+  type ImportLessonResult,
+  type LessonImportPreview,
+  type LessonOsRestoreStatus,
+} from "./lessonBundle"
+import { roomPaths, validateRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
+import {
+  originLessonMutationCoordinator,
+  type ActiveLessonRegistration,
+  type InactiveLessonProbe,
+  type LessonMutationCoordinator,
+  type MutationSafety,
+} from "./lessonMutationLock"
+import {
+  parseSessionYamlV2,
+  serializeSessionYamlV2,
+  sessionPaths,
+  SessionPostWriteVerificationError,
+  SessionYamlParseError,
+  validateSessionCasSnapshot,
+  validateSessionCreateSnapshot,
+  type LessonSessionIdentityV1,
+  type SessionCasSnapshotV1,
+  type SessionCreateResultV1,
+  type SessionCreateSnapshotV1,
+  type SessionIdentitySnapshotV1,
+  type SessionMutationResultV1,
+  type SessionPostWriteVerificationPhase,
+  type SessionSnapshotV2,
+  type SessionYamlV2,
+} from "./sessionState"
 
 export interface WorkspaceState {
   mode: StorageMode
@@ -16,23 +51,365 @@ export interface WorkspaceState {
   room: string
 }
 
-/** Costruisce il path della scena per una specifica room */
-function roomScenePath(room: string): string {
-  return `raw/${room}/board.excalidraw`
+export type WorkspaceStoreOptions = Readonly<{
+  mutationCoordinator?: LessonMutationCoordinator
+  createFsaDriver?: () => WorkspaceDriver
+}>
+
+export type WorkspaceCompensationOperation =
+  | "connect-folder-migration"
+  | "legacy-bundle-import"
+
+export type WorkspaceRollbackFailure = Readonly<{
+  path: string
+  error: unknown
+}>
+
+export class WorkspaceCompensationError extends Error {
+  readonly operation: WorkspaceCompensationOperation
+  readonly originalCause: unknown
+  readonly rollbackFailures: readonly WorkspaceRollbackFailure[]
+
+  constructor(
+    operation: WorkspaceCompensationOperation,
+    originalCause: unknown,
+    rollbackFailures: readonly WorkspaceRollbackFailure[],
+  ) {
+    const failures = Object.freeze(rollbackFailures.map(({ path, error }) => (
+      Object.freeze({ path, error })
+    )))
+    super(`Workspace compensation failed (${operation})`, {
+      cause: new AggregateError(
+        [originalCause, ...failures.map(({ error }) => error)],
+        "Workspace operation and rollback causes",
+      ),
+    })
+    this.name = "WorkspaceCompensationError"
+    this.operation = operation
+    this.originalCause = originalCause
+    this.rollbackFailures = failures
+  }
+}
+
+async function snapshotWorkspacePaths(
+  driver: WorkspaceDriver,
+  paths: Iterable<string>,
+): Promise<Map<string, Blob | null>> {
+  const previousByPath = new Map<string, Blob | null>()
+  for (const path of paths) {
+    if (!previousByPath.has(path)) {
+      previousByPath.set(path, await driver.read(path))
+    }
+  }
+  return previousByPath
+}
+
+async function compensateWorkspacePaths(
+  operation: WorkspaceCompensationOperation,
+  driver: WorkspaceDriver,
+  touchedPaths: readonly string[],
+  previousByPath: ReadonlyMap<string, Blob | null>,
+  originalCause: unknown,
+): Promise<never> {
+  const rollbackFailures: WorkspaceRollbackFailure[] = []
+  for (let index = touchedPaths.length - 1; index >= 0; index -= 1) {
+    const path = touchedPaths[index]!
+    try {
+      if (!previousByPath.has(path)) {
+        throw new Error("Workspace rollback snapshot missing")
+      }
+      const previous = previousByPath.get(path)
+      if (previous) await driver.write(path, previous)
+      else await driver.delete(path)
+    } catch (error) {
+      rollbackFailures.push({ path, error })
+    }
+  }
+  if (rollbackFailures.length > 0) {
+    throw new WorkspaceCompensationError(operation, originalCause, rollbackFailures)
+  }
+  throw originalCause
+}
+
+async function writeEntriesWithCompensation(
+  operation: WorkspaceCompensationOperation,
+  driver: WorkspaceDriver,
+  entries: Iterable<Pick<FileEntry, "path" | "data">>,
+): Promise<void> {
+  const materializedEntries = Array.from(entries)
+  const previousByPath = await snapshotWorkspacePaths(
+    driver,
+    materializedEntries.map(({ path }) => path),
+  )
+  const touchedPaths: string[] = []
+  const touched = new Set<string>()
+  try {
+    for (const entry of materializedEntries) {
+      if (!touched.has(entry.path)) {
+        touched.add(entry.path)
+        touchedPaths.push(entry.path)
+      }
+      await driver.write(entry.path, entry.data)
+    }
+  } catch (operationError) {
+    await compensateWorkspacePaths(
+      operation,
+      driver,
+      touchedPaths,
+      previousByPath,
+      operationError,
+    )
+  }
+}
+
+type SessionPort = Readonly<{
+  read(path: string): Promise<Blob | null>
+  write(path: string, data: Blob): Promise<void>
+}>
+
+type ParsedSessionObservation = Readonly<{
+  kind: "parsed"
+  bytes: Uint8Array
+  sha256: string
+  value: SessionYamlV2
+}>
+
+type SessionParseFailureObservation = Readonly<{
+  kind: "parse-error"
+  bytes: Uint8Array
+  sha256: string
+  error: SessionYamlParseError
+}>
+
+type SessionObservation = ParsedSessionObservation | SessionParseFailureObservation
+
+function sessionBytesEqual(left: Uint8Array, right: Uint8Array): boolean {
+  if (left.byteLength !== right.byteLength) return false
+  for (let index = 0; index < left.byteLength; index += 1) {
+    if (left[index] !== right[index]) return false
+  }
+  return true
+}
+
+async function sessionSha256(bytes: Uint8Array): Promise<string> {
+  const exact = Uint8Array.from(bytes)
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", exact)
+  return Array.from(new Uint8Array(digest), (value) => value.toString(16).padStart(2, "0")).join("")
+}
+
+async function observeSession(blob: Blob): Promise<SessionObservation> {
+  const bytes = new Uint8Array(await blob.arrayBuffer()).slice()
+  const observedSha256 = await sessionSha256(bytes)
+  try {
+    return Object.freeze({
+      kind: "parsed" as const,
+      bytes,
+      sha256: observedSha256,
+      value: parseSessionYamlV2(bytes),
+    })
+  } catch (error) {
+    if (!(error instanceof SessionYamlParseError)) throw error
+    return Object.freeze({
+      kind: "parse-error" as const,
+      bytes,
+      sha256: observedSha256,
+      error,
+    })
+  }
+}
+
+function sessionIdentityMatches(
+  value: SessionYamlV2,
+  identity: SessionIdentitySnapshotV1,
+): boolean {
+  return value.lessonId === identity.lessonId && value.sessionId === identity.sessionId
+}
+
+function sessionSnapshot(
+  path: string,
+  observation: ParsedSessionObservation,
+): SessionSnapshotV2 {
+  return Object.freeze({
+    path,
+    value: observation.value,
+    bytes: new Blob([observation.bytes.slice()], { type: "text/yaml" }),
+    sha256: observation.sha256,
+  })
+}
+
+function sessionVerificationFailure(
+  phase: SessionPostWriteVerificationPhase,
+  cause?: unknown,
+): SessionPostWriteVerificationError {
+  return cause === undefined
+    ? new SessionPostWriteVerificationError(phase)
+    : new SessionPostWriteVerificationError(phase, { cause })
+}
+
+async function verifySessionReadBack(
+  port: SessionPort,
+  path: string,
+  identity: SessionIdentitySnapshotV1,
+  candidateBytes: Uint8Array,
+  candidateSha256: string,
+  phase: SessionPostWriteVerificationPhase,
+): Promise<SessionSnapshotV2> {
+  const blob = await port.read(path)
+  if (blob === null) throw sessionVerificationFailure(phase)
+  const observation = await observeSession(blob)
+  if (observation.kind === "parse-error") {
+    throw sessionVerificationFailure(phase, observation.error)
+  }
+  if (!sessionIdentityMatches(observation.value, identity)) throw sessionVerificationFailure(phase)
+  if (!sessionBytesEqual(observation.bytes, candidateBytes)) throw sessionVerificationFailure(phase)
+  if (observation.sha256 !== candidateSha256) throw sessionVerificationFailure(phase)
+  return sessionSnapshot(path, observation)
+}
+
+async function createSessionOnceAtPort(
+  port: SessionPort,
+  path: string,
+  snapshot: SessionCreateSnapshotV1,
+  candidateBytes: Uint8Array,
+): Promise<SessionCreateResultV1> {
+  const existing = await port.read(path)
+  if (existing !== null) {
+    const observation = await observeSession(existing)
+    if (observation.kind === "parse-error") {
+      return Object.freeze({
+        kind: "corrupt" as const,
+        reason: observation.error.code,
+        observedSha256: observation.sha256,
+      })
+    }
+    if (!sessionIdentityMatches(observation.value, snapshot.identity)) {
+      return Object.freeze({
+        kind: "conflict" as const,
+        reason: "identity-mismatch" as const,
+        observedSha256: observation.sha256,
+      })
+    }
+    if (sessionBytesEqual(observation.bytes, candidateBytes)) {
+      return Object.freeze({
+        kind: "idempotent" as const,
+        snapshot: sessionSnapshot(path, observation),
+      })
+    }
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "different-existing" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+
+  const candidateSha256 = await sessionSha256(candidateBytes)
+  await port.write(path, new Blob([candidateBytes.slice()], { type: "text/yaml" }))
+  const readBack = await verifySessionReadBack(
+    port,
+    path,
+    snapshot.identity,
+    candidateBytes,
+    candidateSha256,
+    "create-readback",
+  )
+  return Object.freeze({ kind: "created" as const, snapshot: readBack })
+}
+
+async function updateSessionAudioCASAtPort(
+  port: SessionPort,
+  path: string,
+  snapshot: SessionCasSnapshotV1,
+): Promise<SessionMutationResultV1> {
+  const existing = await port.read(path)
+  if (existing === null) return Object.freeze({ kind: "absent" as const })
+  const observation = await observeSession(existing)
+  if (observation.kind === "parse-error") {
+    return Object.freeze({
+      kind: "corrupt" as const,
+      reason: observation.error.code,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (!sessionIdentityMatches(observation.value, snapshot.identity)) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "identity-mismatch" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (
+    observation.value.audioConsent === snapshot.audioConsent &&
+    observation.value.audioStartEpoch === snapshot.audioStartEpoch
+  ) {
+    return Object.freeze({
+      kind: "idempotent" as const,
+      snapshot: sessionSnapshot(path, observation),
+    })
+  }
+  if (observation.sha256 !== snapshot.expectedSha256) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "stale-hash" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+  if (observation.value.revision === Number.MAX_SAFE_INTEGER) {
+    return Object.freeze({
+      kind: "conflict" as const,
+      reason: "revision-overflow" as const,
+      observedSha256: observation.sha256,
+    })
+  }
+
+  const candidate = Object.freeze({
+    ...observation.value,
+    revision: observation.value.revision + 1,
+    audioConsent: snapshot.audioConsent,
+    audioStartEpoch: snapshot.audioStartEpoch,
+  })
+  const candidateBytes = serializeSessionYamlV2(candidate)
+  const candidateSha256 = await sessionSha256(candidateBytes)
+  await port.write(path, new Blob([candidateBytes.slice()], { type: "text/yaml" }))
+  const readBack = await verifySessionReadBack(
+    port,
+    path,
+    snapshot.identity,
+    candidateBytes,
+    candidateSha256,
+    "cas-readback",
+  )
+  return Object.freeze({ kind: "updated" as const, snapshot: readBack })
 }
 
 export class WorkspaceStore {
   private driver: WorkspaceDriver
   private fallback: LocalStorageDriver
+  private readonly mutationCoordinator: LessonMutationCoordinator
+  private readonly createFsaDriver: () => WorkspaceDriver
+  private pendingFolderConnection: Promise<boolean> | null = null
   private _mode: StorageMode = "unavailable"
 
-  constructor() {
+  constructor(options: WorkspaceStoreOptions = {}) {
     this.fallback = localStorageDriver
     this.driver = this.fallback
+    this.mutationCoordinator = options.mutationCoordinator ?? originLessonMutationCoordinator
+    this.createFsaDriver = options.createFsaDriver ?? createFSADriver
   }
 
   get mode(): StorageMode {
     return this._mode
+  }
+
+  get mutationSafety(): MutationSafety {
+    return this.mutationCoordinator.safety
+  }
+
+  registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration> {
+    return this.mutationCoordinator.registerActiveLesson(lessonId)
+  }
+
+  probeInactiveLesson(lessonId: string): Promise<InactiveLessonProbe> {
+    return this.mutationCoordinator.probeInactiveLesson(lessonId)
   }
 
   /**
@@ -40,6 +417,7 @@ export class WorkspaceStore {
    * MAI chiedere la cartella FSA qui — connectFolder() lo fa su gesto utente.
    */
   async init(): Promise<StorageMode> {
+    if (this._mode === "fsa") return "fsa"
     this.driver = this.fallback
     this._mode = "localStorage"
     return "localStorage"
@@ -49,24 +427,50 @@ export class WorkspaceStore {
    * Chiede all'utente una cartella FSA (showDirectoryPicker) e migra i dati
    * esistenti da localStorage. DA CHIAMARE SOLO SU GESTO UTENTE.
    */
-  async connectFolder(): Promise<boolean> {
-    const fsa = createFSADriver()
-    if (!fsa.available()) return false
-    const ok = await fsa.init()
-    if (!ok) return false
+  connectFolder(): Promise<boolean> {
+    if (this._mode === "fsa") return Promise.resolve(true)
+    if (this.pendingFolderConnection) return this.pendingFolderConnection
 
-    // Migra i dati esistenti da localStorage → FSA
-    const existingEntries = await this.fallback.list()
-    for (const entry of existingEntries) {
-      if (entry.path.startsWith("raw/")) {
-        await fsa.write(entry.path, entry.data)
-      }
+    const fsa = this.createFsaDriver()
+    if (!fsa.available()) return Promise.resolve(false)
+
+    // showDirectoryPicker() richiede transient user activation: init() deve
+    // essere invocato sincronicamente dal gesto, prima di attendere Web Locks.
+    let initialization: Promise<boolean>
+    try {
+      initialization = fsa.init()
+    } catch (error) {
+      return Promise.reject(error)
     }
 
-    // Passa a FSA
-    this.driver = fsa
-    this._mode = "fsa"
-    return true
+    const connection = initialization.then(async (ok) => {
+      if (!ok) return false
+      return this.mutationCoordinator.withWorkspaceExclusive(async () => {
+        if (this._mode === "fsa") return true
+
+        // Migra i dati esistenti da localStorage → FSA. La porta driver resta
+        // interna alla lease workspace-exclusive: non riacquisire path lock.
+        const existingEntries = (await this.fallback.list()).filter(
+          ({ path }) => path.startsWith("raw/"),
+        )
+        await writeEntriesWithCompensation(
+          "connect-folder-migration",
+          fsa,
+          existingEntries,
+        )
+
+        // Passa a FSA soltanto dopo la migrazione completata.
+        this.driver = fsa
+        this._mode = "fsa"
+        return true
+      })
+    })
+    this.pendingFolderConnection = connection
+    void connection.then(
+      () => { if (this.pendingFolderConnection === connection) this.pendingFolderConnection = null },
+      () => { if (this.pendingFolderConnection === connection) this.pendingFolderConnection = null },
+    )
+    return connection
   }
 
   // --- OPERAZIONI FILE ---
@@ -76,11 +480,11 @@ export class WorkspaceStore {
   }
 
   async write(path: string, data: Blob): Promise<void> {
-    await this.driver.write(path, data)
+    await this.mutationCoordinator.withPathMutation(path, () => this.driver.write(path, data))
   }
 
   async delete(path: string): Promise<void> {
-    await this.driver.delete(path)
+    await this.mutationCoordinator.withPathMutation(path, () => this.driver.delete(path))
   }
 
   async list(prefix?: string): Promise<FileEntry[]> {
@@ -96,16 +500,18 @@ export class WorkspaceStore {
   // --- OPERAZIONI SCENA (Excalidraw) ---
 
   async saveScene(room: string, sceneJson: string): Promise<void> {
+    const paths = roomPaths(room)
     const blob = new Blob([sceneJson], { type: "application/json" })
     // Path per-room: raw/<room>/board.excalidraw — due room NON si sovrascrivono
-    await this.write(roomScenePath(room), blob)
+    await this.write(paths.scene, blob)
     // Sync su localStorage come cache
     this.fallback.setLegacyScene(room, sceneJson)
   }
 
   async loadScene(room: string): Promise<string | null> {
+    const paths = roomPaths(room)
     // Prima: tenta dal driver primario con path per-room
-    const blob = await this.read(roomScenePath(room))
+    const blob = await this.read(paths.scene)
     if (blob) {
       return await blob.text()
     }
@@ -118,20 +524,17 @@ export class WorkspaceStore {
     return this.fallback.getLegacyScene(room)
   }
 
-  /** Path del file meta.json per una room */
-  private roomMetaPath(room: string): string {
-    return `raw/${room}/meta.json`
-  }
-
   // --- OPERAZIONI META (nome lezione) ---
 
   async saveMeta(room: string, meta: LessonMeta): Promise<void> {
+    const paths = roomPaths(room)
     const json = JSON.stringify(meta)
-    await this.write(this.roomMetaPath(room), new Blob([json], { type: "application/json" }))
+    await this.write(paths.meta, new Blob([json], { type: "application/json" }))
   }
 
   async loadMeta(room: string): Promise<LessonMeta | null> {
-    const blob = await this.read(this.roomMetaPath(room))
+    const paths = roomPaths(room)
+    const blob = await this.read(paths.meta)
     if (!blob) return null
     try {
       const parsed = JSON.parse(await blob.text()) as LessonMeta
@@ -153,12 +556,16 @@ export class WorkspaceStore {
 
     for (const entry of all) {
       const parts = entry.path.split("/")
-      if (parts.length >= 3 && parts[0] === "raw" && parts[2] === "board.excalidraw") {
-        const room = parts[1]
-        const existing = rooms.get(room)
-        if (!existing || entry.mtime > existing.mtime) {
-          rooms.set(room, { mtime: entry.mtime })
-        }
+      if (parts.length !== 3 || parts[0] !== "raw" || parts[2] !== "board.excalidraw") continue
+      const room = parts[1]
+      try {
+        if (entry.path !== roomPaths(room).scene) continue
+      } catch {
+        continue
+      }
+      const existing = rooms.get(room)
+      if (!existing || entry.mtime > existing.mtime) {
+        rooms.set(room, { mtime: entry.mtime })
       }
     }
 
@@ -180,6 +587,69 @@ export class WorkspaceStore {
 
   // --- SESSION ---
 
+  async createSessionOnce(
+    identity: LessonSessionIdentityV1,
+    input: Readonly<{ created: number }>,
+  ): Promise<SessionCreateResultV1> {
+    const lessonId = identity.lessonId
+    const sessionId = identity.sessionId
+    const created = input.created
+    const identitySnapshot = Object.freeze({ lessonId, sessionId })
+    const snapshot: SessionCreateSnapshotV1 = Object.freeze({
+      identity: identitySnapshot,
+      created,
+    })
+    validateSessionCreateSnapshot(snapshot)
+    const path = sessionPaths(identitySnapshot).session
+    const candidateBytes = serializeSessionYamlV2(Object.freeze({
+      v: 2 as const,
+      lessonId,
+      sessionId,
+      created,
+      revision: 0,
+      audioConsent: false,
+      audioStartEpoch: null,
+    }))
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const port: SessionPort = {
+        read: (target) => this.driver.read(target),
+        write: (target, data) => this.driver.write(target, data),
+      }
+      return createSessionOnceAtPort(port, path, snapshot, candidateBytes)
+    })
+  }
+
+  async updateSessionAudioCAS(
+    identity: LessonSessionIdentityV1,
+    input: Readonly<{
+      expectedSha256: string
+      audioConsent: boolean
+      audioStartEpoch: number | null
+    }>,
+  ): Promise<SessionMutationResultV1> {
+    const lessonId = identity.lessonId
+    const sessionId = identity.sessionId
+    const expectedSha256 = input.expectedSha256
+    const audioConsent = input.audioConsent
+    const audioStartEpoch = input.audioStartEpoch
+    const identitySnapshot = Object.freeze({ lessonId, sessionId })
+    const snapshot: SessionCasSnapshotV1 = Object.freeze({
+      identity: identitySnapshot,
+      expectedSha256,
+      audioConsent,
+      audioStartEpoch,
+    })
+    validateSessionCasSnapshot(snapshot)
+    const path = sessionPaths(identitySnapshot).session
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const port: SessionPort = {
+        read: (target) => this.driver.read(target),
+        write: (target, data) => this.driver.write(target, data),
+      }
+      return updateSessionAudioCASAtPort(port, path, snapshot)
+    })
+  }
+
   async saveSessionYaml(yaml: string): Promise<void> {
     await this.write(PATHS.SESSION, new Blob([yaml], { type: "text/yaml" }))
   }
@@ -193,15 +663,22 @@ export class WorkspaceStore {
 
   async importBundle(blob: Blob): Promise<void> {
     const entries = await parseBundleBlob(blob)
-    for (const entry of entries) {
-      await this.write(entry.path, entry.data)
-    }
+    await this.mutationCoordinator.withWorkspaceExclusive(async () => {
+      // Porta interna già sotto lease: this.write() riacquisirebbe il lock.
+      const driver = this.driver
+      await writeEntriesWithCompensation(
+        "legacy-bundle-import",
+        driver,
+        entries,
+      )
+    })
   }
 
   // --- EXPORT/IMPORT .lesson (ZIP) ---
 
   async exportLesson(room: string, lessonOsLog?: EventLogStore | null): Promise<Blob> {
-    return buildLessonExport(this, room, lessonOsLog)
+    const validRoom = validateRoomId(room)
+    return buildLessonExport(this, validRoom, lessonOsLog)
   }
 
   async importLessonBlob(blob: Blob, lessonOsLog?: EventLogStore | null): Promise<ImportLessonResult> {
@@ -212,12 +689,34 @@ export class WorkspaceStore {
     blob: Blob,
     room: string,
     lessonOsLog?: EventLogStore | null,
+    legacyClaim: NonNullable<ImportLessonOptions["legacyClaim"]> = { userConfirmed: true },
   ): Promise<ImportLessonResult> {
-    const result = await parseLessonImport(this, blob, lessonOsLog)
-    const flatScene = await this.read(PATHS.SCENE)
-    if (!flatScene) return result
-    await this.saveScene(room, await flatScene.text())
+    const validRoom = validateRoomId(room)
+    const result = await parseLessonImport(this, blob, lessonOsLog, {
+      destinationLessonId: validRoom,
+      legacyClaim,
+    })
+    const importedScene = await this.read(roomPaths(validRoom).scene)
+    if (importedScene) this.fallback.setLegacyScene(validRoom, await importedScene.text())
     return result
+  }
+
+  async previewLessonBlobForRoom(
+    blob: Blob,
+    room: string,
+    legacyClaim?: NonNullable<ImportLessonOptions["legacyClaim"]>,
+  ): Promise<LessonImportPreview> {
+    const validRoom = validateRoomId(room)
+    return buildLessonPreview(this, blob, {
+      destinationLessonId: validRoom,
+      ...(legacyClaim ? { legacyClaim } : {}),
+    })
+  }
+
+  async recoverPendingLessonImport(
+    lessonOsLog?: EventLogStore | null,
+  ): Promise<LessonOsRestoreStatus | null> {
+    return recoverLessonImport(this, lessonOsLog)
   }
 }
 

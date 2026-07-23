@@ -1,8 +1,14 @@
-// Product Flow Shell: la nav espone SOLO gli ingressi primari caricabili dal
-// docente. Cruscotto e lezioni salvate restano route interne/profonde, non
-// comandi principali nella shell.
+// Founder Beta shell: la nav espone soltanto le tre promesse di prodotto.
+// Le route storiche restano alias interni per non spezzare link e test profondi.
 
-export type ArdesiaViewId =
+import type { MouseEvent } from "react"
+
+export type FounderSurfaceId =
+  | "lezione"
+  | "continuita"
+  | "materiali"
+
+export type ArdesiaViewId = FounderSurfaceId
   | "lavagna"
   | "simulatore"
   | "elab-lab"
@@ -10,14 +16,26 @@ export type ArdesiaViewId =
   | "lezioni-salvate"
 
 export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
-  id: ArdesiaViewId
+  id: FounderSurfaceId
   label: string
   title: string
 }> = [
-  { id: "lavagna", label: "lavagna", title: "Lavagna Ardesia (stanza corrente)" },
-  { id: "simulatore", label: "Simulatore", title: "Simulation Plugin autonomo" },
-  { id: "elab-lab", label: "ELABTutor", title: "Pack ELABTutor sopra il simulatore" },
+  { id: "lezione", label: "Lezione", title: "Lavagna e plugin della lezione corrente" },
+  { id: "continuita", label: "Continuità", title: "Chiusura, replay e ripresa della lezione" },
+  { id: "materiali", label: "Materiali", title: "Export, import e recovery della lezione" },
 ]
+
+function founderSurfaceFor(id: ArdesiaViewId): FounderSurfaceId | null {
+  if (
+    id === "lezione" ||
+    id === "lavagna" ||
+    id === "simulatore" ||
+    id === "elab-lab"
+  ) return "lezione"
+  if (id === "continuita" || id === "cruscotto") return "continuita"
+  if (id === "materiali" || id === "lezioni-salvate") return "materiali"
+  return null
+}
 
 /**
  * Href della vista. La lavagna preserva lo hash della stanza (#wbstudio-…)
@@ -26,26 +44,52 @@ export const ARDESIA_VIEW_LINKS: ReadonlyArray<{
  */
 export function viewHref(id: ArdesiaViewId, currentHash: string = ""): string {
   const hash = currentHash.startsWith("#") ? currentHash : currentHash ? `#${currentHash}` : ""
-  if (id === "lavagna") return `/${hash}`
+  if (id === "lezione" || id === "lavagna") return `/${hash}`
+  if (id === "continuita") return `/?vista=cruscotto${hash}`
+  if (id === "materiali") return `/?vista=lezioni-salvate${hash}`
   return `/?vista=${id}${hash}`
 }
 
-export default function ViewNav({ current }: { current: ArdesiaViewId }) {
+export type ViewNavProps = Readonly<{
+  current: ArdesiaViewId
+  onNavigate?: (href: string) => void
+}>
+
+function isPrimarySameTabClick(event: MouseEvent<HTMLAnchorElement>): boolean {
+  return event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+}
+
+export default function ViewNav({ current, onNavigate }: ViewNavProps) {
   const hash = typeof window === "undefined" ? "" : window.location.hash
+  const currentSurface = founderSurfaceFor(current)
   return (
     <nav aria-label="Viste Ardesia" data-view-nav style={navStyle}>
-      {ARDESIA_VIEW_LINKS.map((view) => (
-        <a
-          key={view.id}
-          href={viewHref(view.id, hash)}
-          title={view.title}
-          data-view-nav-item={view.id}
-          aria-current={view.id === current ? "page" : undefined}
-          style={view.id === current ? { ...linkStyle, ...activeStyle } : linkStyle}
-        >
-          {view.label}
-        </a>
-      ))}
+      {ARDESIA_VIEW_LINKS.map((view) => {
+        const href = viewHref(view.id, hash)
+        return (
+          <a
+            key={view.id}
+            href={href}
+            title={view.title}
+            data-view-nav-item={view.id}
+            aria-current={view.id === currentSurface ? "page" : undefined}
+            style={view.id === currentSurface ? { ...linkStyle, ...activeStyle } : linkStyle}
+            onClick={onNavigate ? (event) => {
+              // Cmd/Ctrl/Shift/Alt-click apre un nuovo contesto: la Room corrente
+              // non viene smontata e il normale comportamento del link resta intatto.
+              if (event.defaultPrevented || !isPrimarySameTabClick(event)) return
+              event.preventDefault()
+              onNavigate(href)
+            } : undefined}
+          >
+            {view.label}
+          </a>
+        )
+      })}
     </nav>
   )
 }

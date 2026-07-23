@@ -37,6 +37,10 @@ vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
 
 const fakeStore = {
+  registerActiveLesson: async (lessonId: string) => {
+    const completion = Promise.resolve()
+    return { lessonId, release: () => completion }
+  },
   init: async () => {},
   loadScene: async () => null,
   saveScene: async () => {},

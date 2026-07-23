@@ -1,121 +1,117 @@
-// Golden-path §8 — lezioni salvate: la route ?vista=lezioni-salvate monta
-// SavedLessonsPanel sul client LessonOS e il producer quiz.attempted (#69)
-// gira nel browser REALE fino all'event-log IndexedDB. Il backend è stubbato
-// con page.route (locale-first: niente token reale, AUTH_STRICT resta gate);
-// il percorso del token è comunque verificato: parte da localStorage e
-// arriva come Bearer nell'header — MAI dall'URL.
+// L'alias storico ?vista=lezioni-salvate è la superficie Founder Beta
+// Materiali. Questa CoV usa un bundle canonico locale e attraversa nel browser
+// reale preview → commit → export → cold reopen → preview replace.
+import { createHash } from "node:crypto"
 import { test, expect } from "@playwright/test"
+import JSZip from "jszip"
 
-// Same-origin: nessun CORS/preflight da stubbare — il client accetta una
-// baseUrl relativa e il Bearer viaggia identico.
-const BASE = "/lessonos-e2e"
+const ROOM = "wbstudio-materials-e2e"
+const SESSION_ID = "11111111-1111-4111-8111-111111111111"
+const EVENT_ID = "22222222-2222-4222-8222-222222222222"
+const COMMIT_SHA = "a".repeat(40)
 
-test("lezioni salvate: quiz svolto → correzione → quiz.attempted nell'event-log", async ({
-  page,
-}) => {
+function sha256(bytes: Buffer): string {
+  return createHash("sha256").update(bytes).digest("hex")
+}
+
+async function canonicalLessonBundle(): Promise<Buffer> {
+  const producer = {
+    id: "com.example.ardesia.e2e",
+    version: "1.0.0",
+    commitSha: COMMIT_SHA,
+  }
+  const payloads = new Map<string, Buffer>([
+    ["raw/board.excalidraw", Buffer.from(JSON.stringify({ elements: [], appState: {}, files: {} }))],
+    ["raw/events.jsonl", Buffer.from(`${JSON.stringify({
+      schemaVersion: 2,
+      eventId: EVENT_ID,
+      lessonId: ROOM,
+      sessionId: SESSION_ID,
+      kind: "journal.pointer.down",
+      occurredAt: "2026-07-19T20:00:00.000Z",
+      actor: { type: "teacher", id: "teacher-e2e" },
+      producer,
+      causationId: null,
+      idempotencyKey: "materials-e2e:pointer-down",
+      evidence: [{ ref: "board:materials-e2e", resolution: "verified" }],
+      payload: {},
+    })}\n`)],
+    ["raw/session.yaml", Buffer.from("v: 1\ncreated: 1784491200000\naudioConsent: false\n")],
+  ])
+  const requiredArtifacts = [
+    "raw/board.excalidraw",
+    "raw/events.jsonl",
+    "raw/session.yaml",
+  ]
+  const manifest = {
+    bundleVersion: 1,
+    schemaVersion: 1,
+    lessonId: ROOM,
+    sessionIds: [SESSION_ID],
+    producer,
+    requiredArtifacts,
+    optionalArtifacts: ["raw/lessonos-events.jsonl", "raw/audio/*"],
+    files: [...payloads.entries()]
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([path, bytes]) => ({
+        path,
+        bytes: bytes.byteLength,
+        sha256: sha256(bytes),
+        required: requiredArtifacts.includes(path),
+      })),
+    lessonOs: { status: "missing", warnings: ["LessonOS snapshot missing"] },
+    compatibility: { minimumReaderSchemaVersion: 1, migrations: [] },
+  }
+
+  const zip = new JSZip()
+  for (const [path, bytes] of payloads) zip.file(path, bytes)
+  zip.file("manifest.json", JSON.stringify(manifest))
+  return zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" })
+}
+
+test("Materiali locale: preview → commit → export → cold reopen", async ({ page }) => {
   const consoleErrors: string[] = []
+  const nonLocalRequests: string[] = []
   page.on("console", (message) => {
     if (message.type() === "error") consoleErrors.push(message.text())
   })
-  page.on("pageerror", (error) => {
-    consoleErrors.push(`pageerror: ${error.message}`)
+  page.on("pageerror", (error) => consoleErrors.push(`pageerror: ${error.message}`))
+  page.on("request", (request) => {
+    const host = new URL(request.url()).hostname
+    if (host !== "localhost" && host !== "127.0.0.1") nonLocalRequests.push(request.url())
   })
 
-  await page.addInitScript(() => {
-    window.localStorage.setItem("ardesia.lessonos.baseUrl", "/lessonos-e2e")
-    window.localStorage.setItem("ardesia.lessonos.token", "tok-e2e")
+  await page.goto(`/?vista=lezioni-salvate#${ROOM}`)
+  await expect(page.getByText("Materiali locali")).toBeVisible()
+
+  await page.getByLabel("Seleziona bundle .lesson").setInputFiles({
+    name: "materiali-e2e.lesson",
+    mimeType: "application/zip",
+    buffer: await canonicalLessonBundle(),
   })
+  await expect(page.getByRole("heading", { name: "Anteprima import" })).toBeVisible()
+  await expect(page.getByText(ROOM, { exact: true })).toBeVisible()
+  await expect(page.getByText("raw/board.excalidraw", { exact: true })).toBeVisible()
+  await expect(page.getByText("Crea").first()).toBeVisible()
 
-  const authHeaders: Array<string | undefined> = []
-  await page.route(`**${BASE}/**`, async (route) => {
-    const request = route.request()
-    const url = new URL(request.url())
-    const path = url.pathname
-    authHeaders.push(request.headers()["authorization"])
-    if (path === `${BASE}/v1/saved-lessons`) {
-      return route.fulfill({
-        json: {
-          saved_lessons: [
-            { saved_id: "s1", lesson_id: "l1", title: "Il primo LED", n_quiz: 2 },
-          ],
-        },
-      })
-    }
-    if (path === `${BASE}/v1/saved-lessons/s1/quiz`) {
-      return route.fulfill({
-        json: {
-          saved_id: "s1",
-          questions: [
-            {
-              atom_id: "a1",
-              question: "Cosa serve per accendere il LED?",
-              options: ["Un circuito chiuso", "Un circuito aperto"],
-            },
-            {
-              atom_id: "a2",
-              question: "Dove va il catodo?",
-              options: ["Al polo positivo", "Al polo negativo"],
-            },
-          ],
-        },
-      })
-    }
-    if (path === `${BASE}/v1/saved-lessons/s1/flashcards`) {
-      return route.fulfill({ json: { saved_id: "s1", flashcards: [] } })
-    }
-    if (path === `${BASE}/v1/saved-lessons/s1/quiz/grade`) {
-      return route.fulfill({
-        json: {
-          saved_id: "s1",
-          lesson_id: "l1",
-          results: [
-            { atom_id: "a1", correct: true, correct_index: 0 },
-            { atom_id: "a2", correct: false, correct_index: 1 },
-          ],
-        },
-      })
-    }
-    return route.fulfill({ status: 404, json: { detail: `stub mancante: ${path}` } })
-  })
-
-  await page.goto("/?vista=lezioni-salvate&room=e2e-room")
-
-  // Lista dal backend (stub) → apertura della lezione.
-  await page.getByRole("button", { name: "Il primo LED" }).click()
-
-  // Svolgimento: una risposta giusta e una sbagliata (fatto reale del grade).
-  await page.getByRole("radio", { name: "Un circuito chiuso" }).check()
-  await page.getByRole("radio", { name: "Al polo positivo" }).check()
-  await page.getByRole("button", { name: "Correggi il quiz" }).click()
-
-  // Correzione del backend presentata (mai calcolata dal client).
-  await expect(
-    page.getByRole("status").filter({ hasText: "risposte corrette" }),
-  ).toHaveText("1 risposte corrette su 2")
-  // Registrazione riuscita: nessun avviso di memoria persa.
-  await expect(page.getByText("Tentativo non registrato", { exact: false })).toHaveCount(0)
-
-  // Il Bearer arriva dal localStorage su OGNI chiamata (mai dall'URL).
-  expect(authHeaders.length).toBeGreaterThanOrEqual(4)
-  for (const header of authHeaders) expect(header).toBe("Bearer tok-e2e")
-
-  // quiz.attempted persistito nell'event-log IndexedDB della lezione.
-  const kinds = await page.evaluate(
-    () =>
-      new Promise<string[]>((resolve, reject) => {
-        const open = indexedDB.open("lessonos-eventlog")
-        open.onerror = () => reject(open.error)
-        open.onsuccess = () => {
-          const db = open.result
-          const txn = db.transaction("lessonos_events", "readonly")
-          const all = txn.objectStore("lessonos_events").getAll()
-          all.onerror = () => reject(all.error)
-          all.onsuccess = () =>
-            resolve((all.result as Array<{ kind?: string }>).map((r) => r.kind ?? "?"))
-        }
-      }),
+  await page.getByRole("button", { name: "Importa il bundle" }).click()
+  await expect(page.getByRole("status")).toContainText(
+    "il bundle non contiene memoria LessonOS",
   )
-  expect(kinds).toContain("quiz.attempted")
 
+  const downloadPromise = page.waitForEvent("download")
+  await page.getByRole("button", { name: "Esporta .lesson" }).click()
+  const download = await downloadPromise
+  expect(download.suggestedFilename()).toBe(`lezione-${ROOM}.lesson`)
+  const exportedPath = await download.path()
+  expect(exportedPath).not.toBeNull()
+
+  await page.reload()
+  await expect(page.getByText("Materiali locali")).toBeVisible()
+  await page.getByLabel("Seleziona bundle .lesson").setInputFiles(exportedPath!)
+  await expect(page.getByRole("heading", { name: "Anteprima import" })).toBeVisible()
+  await expect(page.getByText("Sostituisce").first()).toBeVisible()
+
+  expect(nonLocalRequests).toEqual([])
   expect(consoleErrors).toEqual([])
 })

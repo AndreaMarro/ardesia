@@ -26,6 +26,7 @@ import { renderPluginPostitBoardEmbeddable } from "../toolhost/pluginPostitBoard
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import type { FileEntry, WorkspaceDriver } from "../store/types"
 import { exportLesson, importLesson } from "../store/lessonBundle"
+import { roomPaths } from "../store/roomPaths"
 
 const ROOM = "plugin-postit-board-room"
 
@@ -96,6 +97,14 @@ function createStore(): WorkspaceStore {
   const store = new WorkspaceStore()
   withMockDriver(store, new MockDriver())
   return store
+}
+
+async function seedRequiredLessonArtifacts(store: WorkspaceStore, room: string): Promise<void> {
+  await store.write(
+    roomPaths(room).journal,
+    new Blob(['{"t":1,"type":"t0"}\n'], { type: "application/x-ndjson" }),
+  )
+  await store.saveSessionYaml("v: 1\ncreated: 1\naudioConsent: false\n")
 }
 
 type ToolEmbedLike = {
@@ -227,6 +236,7 @@ describe("Board plugin post-it persistence", () => {
 
     const store = createStore()
     await store.saveScene(ROOM, JSON.stringify(boardResizedScene))
+    await seedRequiredLessonArtifacts(store, ROOM)
     const bundle = await exportLesson(store, ROOM)
 
     const restoredStore = createStore()
@@ -313,6 +323,7 @@ describe("Board plugin post-it persistence", () => {
 
     const sourceStore = createStore()
     await sourceStore.saveScene(ROOM, JSON.stringify(sourceScene))
+    await seedRequiredLessonArtifacts(sourceStore, ROOM)
     const bundle = await exportLesson(sourceStore, ROOM)
 
     const importedStore = createStore()
@@ -405,11 +416,12 @@ describe("Board plugin post-it persistence", () => {
   it("normalizes imported .lesson board scene into the target room path before Room hydration", async () => {
     const postits = createMultiPostitWorkbenchPostits()
     const boardScene = createPluginPostitBoardScene(postits)
-    const sourceStore = createStore()
-    await sourceStore.saveScene(ROOM, JSON.stringify(boardScene))
-    const bundle = await exportLesson(sourceStore, ROOM)
-
     const importedRoom = "imported-postit-room"
+    const sourceStore = createStore()
+    await sourceStore.saveScene(importedRoom, JSON.stringify(boardScene))
+    await seedRequiredLessonArtifacts(sourceStore, importedRoom)
+    const bundle = await exportLesson(sourceStore, importedRoom)
+
     const importedStore = createStore()
     await importedStore.importLessonBlobForRoom(bundle, importedRoom)
 

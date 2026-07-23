@@ -4,18 +4,20 @@ import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
-import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
-import { PATHS, type StorageMode } from "./store/types"
+import { type StorageMode } from "./store/types"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
-import { JournalRecorder } from "./store/JournalRecorder"
-import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
-import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
+import { JournalRecorder, toLegacyJournalEvent } from "./store/JournalRecorder"
+import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
+import { IconAlert } from "./design/icons"
 import ViewNav from "./design/ViewNav"
-import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
-import { bootstrapLessonOs, type LessonOsRuntime } from "./lessonos/bootstrap"
+import {
+  openLessonOsSession,
+  type LessonOsSessionHandle,
+  type LessonOsSessionOpener,
+} from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
@@ -29,18 +31,21 @@ import EmptyState from "./design/EmptyState"
 // getSimulationTool, o il registry risulterebbe vuoto.
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
+import { roomPaths, validateRoomId } from "./store/roomPaths"
+import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
-  let h = location.hash.replace(/^#/, "").trim()
+  let h = location.hash.replace(/^#/, "")
   if (!h) {
     h = "wbstudio-" + Math.random().toString(36).slice(2, 9)
     location.hash = h
   }
-  return h
+  return validateRoomId(h)
 }
 
-/** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
+/** Clock del journal canonico della lezione. */
 function sharedClock(): number {
   return Date.now()
 }
@@ -49,7 +54,49 @@ function isLessonFile(file: File): boolean {
   return file.name.toLowerCase().endsWith(LESSON_EXTENSION)
 }
 
-export default function Room({ store }: { store?: WorkspaceStore }) {
+function navigateDocument(href: string): void {
+  window.location.assign(href)
+}
+
+const SURFACE_FLUSH_TIMEOUT_MS = 10_000
+
+type RoomLifecycleGate = "pending" | "activity-ready" | "failed"
+
+type RoomLifecycleState = {
+  generation: symbol
+  status: RoomLifecycleGate
+  error: string | null
+}
+
+function withSurfaceFlushTimeout(operation: Promise<void>): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const timeoutId = window.setTimeout(() => {
+      reject(new Error(
+        "Salvataggio ancora in corso dopo 10 secondi; resta nella Lezione e riprova.",
+      ))
+    }, SURFACE_FLUSH_TIMEOUT_MS)
+    operation.then(
+      () => {
+        window.clearTimeout(timeoutId)
+        resolve()
+      },
+      (error) => {
+        window.clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
+export default function Room({
+  store,
+  lessonOsOpener = openLessonOsSession,
+  navigate = navigateDocument,
+}: {
+  store?: WorkspaceStore
+  lessonOsOpener?: LessonOsSessionOpener
+  navigate?: (href: string) => void
+}) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
@@ -57,20 +104,27 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const studentView = useMemo(() => isStudentView(), [])
   const recapView = useMemo(() => isRecapView(), [])
   const replayView = useMemo(() => isReplayView(), [])
+  const lifecycleGeneration = useMemo(
+    () => Symbol("room-lifecycle-generation"),
+    [room, actualStore, lessonOsOpener],
+  )
   const [mathOn, setMathOn] = useState(false)
-  const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [lifecycleState, setLifecycleState] = useState<RoomLifecycleState>(() => ({
+    generation: lifecycleGeneration,
+    status: "pending",
+    error: null,
+  }))
+  const lifecycleGate = lifecycleState.generation === lifecycleGeneration
+    ? lifecycleState.status
+    : "pending"
+  const lifecycleError = lifecycleState.generation === lifecycleGeneration
+    ? lifecycleState.error
+    : null
   const [storageError, setStorageError] = useState<string | null>(null)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
-  /** Audio toggle: default OFF (GDPR by design — nessuna registrazione nascosta) */
-  const [audioOn, setAudioOn] = useState(false)
-  /** Mostra stato registrazione nell'header */
-  const [audioRecording, setAudioRecording] = useState(false)
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
-  /** Stato export .lesson */
-  const [exporting, setExporting] = useState(false)
   /** Nome lezione (da meta.json) — null = non ancora caricato */
   const [lessonName, setLessonName] = useState<string | null>(null)
   /** Stato rename inline */
@@ -99,12 +153,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const initialLoadDone = useRef(false)
   // Riferimento al JournalRecorder (creato dopo init store)
   const journalRef = useRef<JournalRecorder | null>(null)
-  // Riferimento all'AudioRecorder (creato dopo init store)
-  const audioRecorderRef = useRef<AudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
-  const lessonOsRef = useRef<LessonOsRuntime | null>(null)
+  const lessonOsRef = useRef<LessonOsSessionHandle | null>(null)
   // persist() va chiesto UNA volta, su chiara interazione utente (spec #35 §4.1)
   const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
@@ -112,121 +164,272 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // Promise-chain mutex per la promozione bridge: due promote sovrapposti
   // leggerebbero lo stesso cursore e duplicherebbero i material.cited
   const _pendingPromote = useRef<Promise<void>>(Promise.resolve())
+  // Un solo cambio superficie per volta: un doppio click non può avviare due
+  // flush concorrenti né scegliere una seconda destinazione a metà preflight.
+  const _pendingSurfaceNavigation = useRef<Promise<void> | null>(null)
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
+    const generation = lifecycleGeneration
     let cancelled = false
-    setLoading(true)
-    actualStore.init()
-      .then(() => {
+    let activity: ActiveLessonRegistration | null = null
+    let registrationPromise: Promise<ActiveLessonRegistration> | null = null
+    let openerPromise: Promise<LessonOsSessionHandle> | null = null
+    let runtime: LessonOsSessionHandle | null = null
+    let journal: JournalRecorder | null = null
+    let cleanupPromise: Promise<void> | null = null
+    let registrationFailureReported = false
+    let openerFailureReported = false
+    let lifecycleFailed = false
+
+    const publishLifecycle = (
+      status: Exclude<RoomLifecycleGate, "pending">,
+      error: string | null = null,
+    ): void => {
+      if (cancelled) return
+      setLifecycleState((current) => (
+        current.generation === generation
+          ? { generation, status, error }
+          : current
+      ))
+    }
+
+    // Tutto ciò che può essere mostrato o riusato dalla canvas appartiene alla
+    // generation corrente. Il gate tokenizzato nasconde già il primo render B;
+    // questo reset impedisce che un loadScene/loadMeta B nullo riesponga A.
+    initialLoadDone.current = false
+    if (saveTimer.current) {
+      window.clearTimeout(saveTimer.current)
+      saveTimer.current = null
+    }
+    latestElementsRef.current = null
+    latestAppStateRef.current = null
+    latestFilesRef.current = null
+    apiRef.current = null
+    persistRequestedRef.current = false
+    setSaved(false)
+    setStorageError(null)
+    setStoreMode("localStorage")
+    setMenuOpen(false)
+    setLessonName(null)
+    setEditingName(false)
+    setDrawerOpen(false)
+    setRooms([])
+    setLoadingRooms(false)
+    setSceneData(null)
+    setExportAdvice(null)
+    // Le chain in-flight non vengono sganciate: farlo permetterebbe a B di
+    // sorpassare A. Gli snapshot canvas riusabili sono stati azzerati sopra;
+    // cancellazione/drain dei producer già avviati resta il gate ARD-07.
+    setLifecycleState({ generation, status: "pending", error: null })
+    if (import.meta.env.DEV) delete (window as any).__MAESTRO_TEST__
+
+    const publishTestHarness = (ready: boolean): void => {
+      if (!import.meta.env.DEV) return
+      const paths = roomPaths(room)
+      const liveRuntime = lessonOsRef.current
+      ;(window as any).__MAESTRO_TEST__ = {
+        ready,
+        initialLoadDone: initialLoadDone.current,
+        room,
+        store: actualStore,
+        recorder: journalRef.current,
+        journal: liveRuntime && journalRef.current ? {
+          path: paths.journal,
+          identity: liveRuntime.identity,
+          producer: liveRuntime.producer,
+        } : null,
+        audioRecorder: null,
+        lessonOs: lessonOsRef,
+        apiRef,
+        ReplayEngine,
+        serializeEvents,
+        deserializeEvents,
+        PATHS: { JOURNAL: paths.journal, SCENE: paths.scene },
+        navigateToLesson,
+        flushPersist,
+        promoteJournalToLessonOs,
+      }
+    }
+
+    const cleanup = (): Promise<void> => {
+      if (cleanupPromise) return cleanupPromise
+
+      // Gli input vengono fermati tutti, sincronicamente e in modo isolato,
+      // prima di avviare qualunque flush. Il drain pointer/scene completo resta ARD-07.
+      const ownedUnsubscribes = unsubsRef.current
+      unsubsRef.current = []
+      for (const unsubscribe of ownedUnsubscribes) {
+        try {
+          unsubscribe()
+        } catch (error) {
+          console.error("Room subscription cleanup failed during unmount", error)
+        }
+      }
+
+      const ownedJournal = journal
+      if (ownedJournal && journalRef.current === ownedJournal) journalRef.current = null
+      const runtimeWasPending = runtime === null && openerPromise !== null
+      const ownedRuntimeAtCleanup = runtime
+      if (ownedRuntimeAtCleanup && lessonOsRef.current === ownedRuntimeAtCleanup) {
+        lessonOsRef.current = null
+      }
+
+      cleanupPromise = (async () => {
+        if (!activity && registrationPromise) {
+          try {
+            activity = await registrationPromise
+          } catch (error) {
+            if (!registrationFailureReported) {
+              registrationFailureReported = true
+              console.error("Room activity registration failed during cleanup", error)
+            }
+          }
+        }
+
+        if (!runtime && openerPromise) {
+          try {
+            runtime = await openerPromise
+          } catch (error) {
+            if (!openerFailureReported) {
+              openerFailureReported = true
+              console.error("LessonOS session open failed after Room unmount", error)
+            }
+          }
+        }
+
+        try {
+          await ownedJournal?.flush()
+        } catch (error) {
+          console.error("Room journal flush failed before LessonOS close", error)
+        }
+        try {
+          await runtime?.close()
+        } catch (error) {
+          console.error(
+            runtimeWasPending
+              ? "LessonOS session cleanup failed after Room unmount"
+              : "LessonOS session cleanup failed during Room unmount",
+            error,
+          )
+        }
+        const ownedActivity = activity
+        activity = null
+        try {
+          await ownedActivity?.release()
+        } catch (error) {
+          console.error("Room activity release failed during unmount", error)
+        }
+      })()
+      return cleanupPromise
+    }
+
+    void (async () => {
+      try {
+        try {
+          await actualStore.init()
+        } catch (error) {
+          if (cancelled) return
+          lifecycleFailed = true
+          const message = "Inizializzazione archivio fallita: " + (error as Error).message
+          publishLifecycle("failed", message)
+          publishTestHarness(false)
+          return
+        }
         if (cancelled) return
         setStoreMode(actualStore.mode)
 
-        // In vista studente/recap/replay: niente JournalRecorder né AudioRecorder (sola lettura).
-        if (!studentView && !recapView && !replayView) {
-          const clock = sharedClock
-
-          // Crea JournalRecorder dopo init store con clock condiviso
-          const jr = new JournalRecorder(actualStore, clock)
-          journalRef.current = jr
-
-          // Crea AudioRecorder con clock condiviso
-          const ar = new AudioRecorder({
-            store: actualStore,
-            clock,
-            onChunk: (chunkIndex, startEpoch, endEpoch) => {
-              jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
-            },
-          })
-          audioRecorderRef.current = ar
-
-          // LessonOS: event-log persistente + preflight storage (spec #35 §4).
-          // Fire-and-forget: mai bloccare l'avvio lezione sull'esito.
-          bootstrapLessonOs()
-            .then((runtime) => {
-              if (cancelled) return
-              lessonOsRef.current = runtime
-              const startedAt = clock()
-              runtime.store.append({
-                kind: "lesson.started",
-                room,
-                t: startedAt,
-                evidence: [`lesson:${room}@${startedAt}`],
-              }).catch(() => {})
-              // Telemetria di perdita (§4.4): MAI silenziosa, linguaggio docente.
-              if (runtime.dataLoss) {
-                setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
-              } else if (runtime.corrupted) {
-                setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
-              }
-              // runtime.persistent = lo store persiste DAVVERO (non il fallback
-              // InMemory): l'advice deve dire "da esportare" anche se l'API c'era.
-              const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
-              if (advice === "export-advised") setExportAdvice(reason)
-            })
-            .catch(() => {})
+        registrationPromise = Promise.resolve().then(() => (
+          actualStore.registerActiveLesson(room)
+        ))
+        try {
+          activity = await registrationPromise
+        } catch (error) {
+          if (cancelled) return
+          lifecycleFailed = true
+          registrationFailureReported = true
+          const message = "Coordinamento lezione fallito: " + (error as Error).message
+          publishLifecycle("failed", message)
+          publishTestHarness(false)
+          return
+        }
+        if (cancelled) {
+          await cleanup()
+          return
         }
 
-        return actualStore.loadScene(room)
-      })
-      .then((data) => {
+        // Le viste read-only non aprono né sessione né recorder. Nel percorso docente,
+        // la sessione canonica è l'unica autorità che può costruire il journal live.
+        if (!studentView && !recapView && !replayView) {
+          openerPromise = Promise.resolve().then(() => lessonOsOpener({ room }))
+          try {
+            runtime = await openerPromise
+          } catch (error) {
+            if (cancelled) {
+              await cleanup()
+              return
+            }
+            openerFailureReported = true
+            setStorageError("Avvio memoria lezione fallito: " + (error as Error).message)
+          }
+
+          if (runtime) {
+            if (cancelled) {
+              await cleanup()
+              return
+            }
+            const clock = sharedClock
+            const paths = roomPaths(room)
+            const jr = new JournalRecorder({
+              store: actualStore,
+              journalPath: paths.journal,
+              identity: runtime.identity,
+              producer: runtime.producer,
+              now: clock,
+            })
+            journal = jr
+            lessonOsRef.current = runtime
+            journalRef.current = jr
+            if (runtime.dataLoss) {
+              setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
+            } else if (runtime.corrupted) {
+              setStorageError("Memoria della lezione danneggiata: ripristina da un export .lesson")
+            }
+            const { advice, reason } = deriveStorageAdvice(runtime.capabilities, runtime.persistent)
+            if (advice === "export-advised") setExportAdvice(reason)
+          }
+        }
+
+        if (cancelled) return
+        const data = await actualStore.loadScene(room)
         if (cancelled) return
         if (data) {
           try {
             const parsed = JSON.parse(data)
-            // valori JSON falsy ("" / 0 / false) o non-oggetto = scena corrotta: parti da zero
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
             setSceneData(parsed)
-            // Seed journal con elementi esistenti: NON registrarli come element.add
-            const jr = journalRef.current
-            if (jr && parsed?.elements) {
-              jr.seed(parsed.elements)
+            if (journalRef.current && parsed?.elements) {
+              journalRef.current.seed(parsed.elements)
             }
           } catch {
-            // JSON malformato — si parte da zero
+            // JSON malformato — si parte da zero senza riscrivere il blob corrotto.
           }
         }
-      })
-      // Il nome lezione serve all'header docente E alla chip stanza in vista studente.
-      // Meta illeggibile = non fatale: fallback all'id, MAI "Caricamento scena fallito" fuorviante.
-      .then(() => actualStore.loadMeta(room).catch(() => null))
-      .then((meta) => {
-        if (cancelled) return
-        if (meta && meta.name) {
-          setLessonName(meta.name)
-        }
-      })
-      .catch((err) => {
-        if (!cancelled) {
+
+        const meta = await actualStore.loadMeta(room).catch(() => null)
+        if (!cancelled && meta?.name) setLessonName(meta.name)
+      } catch (err) {
+        if (!cancelled && !lifecycleFailed) {
           setStorageError("Caricamento scena fallito: " + (err as Error).message)
         }
-      })
-      .finally(() => {
-        if (!cancelled) {
+      } finally {
+        if (!cancelled && !lifecycleFailed) {
           initialLoadDone.current = true
-          setLoading(false)
-          // Esponi test harness per Playwright kill-test (solo dev)
-          if (import.meta.env.DEV) {
-            ;(window as any).__MAESTRO_TEST__ = {
-              ready: true,
-              room,
-              store: actualStore,
-              recorder: journalRef.current,
-              audioRecorder: audioRecorderRef.current,
-              lessonOs: lessonOsRef,
-              apiRef,
-              ReplayEngine,
-              serializeEvents,
-              deserializeEvents,
-              AudioRecorder,
-              PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
-              navigateToLesson,
-              flushPersist,
-              promoteJournalToLessonOs,
-            }
-          }
+          publishLifecycle("activity-ready")
+          publishTestHarness(true)
         }
-      })
+      }
+    })()
     return () => {
       cancelled = true
       // Pulisci il debounce timer persist() se ancora in sospeso
@@ -234,45 +437,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         window.clearTimeout(saveTimer.current)
         saveTimer.current = null
       }
-      // Flush journal rimanente e dispose AudioRecorder
-      journalRef.current?.flush().catch(() => {})
-      audioRecorderRef.current?.dispose()
-      journalRef.current = null
-      audioRecorderRef.current = null
-      // Chiudi il backend persistente LessonOS (open() è idempotente al prossimo mount)
-      const lessonOsStore = lessonOsRef.current?.store
-      lessonOsRef.current = null
-      if (lessonOsStore && "close" in lessonOsStore) {
-        const endedAt = sharedClock()
-        lessonOsStore.append({
-          kind: "lesson.ended",
-          room,
-          t: endedAt,
-          evidence: [`lesson:${room}@${endedAt}`],
-        }).catch(() => {}).finally(() => {
-          ;(lessonOsStore as { close(): Promise<void> }).close().catch(() => {})
-        })
-      } else if (lessonOsStore) {
-        const endedAt = sharedClock()
-        lessonOsStore.append({
-          kind: "lesson.ended",
-          room,
-          t: endedAt,
-          evidence: [`lesson:${room}@${endedAt}`],
-        }).catch(() => {})
-      }
-      // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
-      for (const unsub of unsubsRef.current) {
-        unsub()
-      }
-      unsubsRef.current = []
+      void cleanup()
     }
-  }, [room, actualStore])
+  }, [room, actualStore, lessonOsOpener, lifecycleGeneration])
 
-  /** document.title: rec ← "● REC — Ardesia · studio", altrimenti "Ardesia · studio" */
   useEffect(() => {
-    document.title = audioRecording ? "● REC — Ardesia · studio" : "Ardesia · studio"
-  }, [audioRecording])
+    document.title = "Ardesia · studio"
+  }, [])
 
   /** All'apertura del drawer porta il focus dentro al dialog (bottone chiudi) */
   useEffect(() => {
@@ -290,7 +461,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     latestFilesRef.current = files
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
     saveTimer.current = window.setTimeout(() => {
-      _doSave()
+      // Il debounce non ha un caller da rigettare; _doSave ha già reso visibile
+      // l'errore. I caller espliciti (flush/navigazione) ricevono invece il reject.
+      void _doSave().catch(() => {})
     }, 700)
   }
 
@@ -300,7 +473,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const appState = latestAppStateRef.current
     const files = latestFilesRef.current
     if (!elements) return
-    _pendingSave.current = _pendingSave.current.then(async () => {
+    const run = _pendingSave.current.then(async () => {
       try {
         const serialized = serializeAsJSON(elements, appState, files, "local")
         await actualStore.saveScene(room, serialized)
@@ -309,9 +482,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         window.setTimeout(() => setSaved(false), 1200)
       } catch (err) {
         setStorageError("Salvataggio non riuscito: " + (err as Error).message)
+        throw err
       }
     })
-    await _pendingSave.current
+    // La coda resta riutilizzabile dopo un errore, mentre il caller corrente
+    // osserva il rigetto e può annullare export/navigazione.
+    _pendingSave.current = run.then(
+      () => {},
+      () => {},
+    )
+    await run
   }
 
   /** Flush immediato: cancella il debounce e salva subito. Attende il completamento. */
@@ -321,6 +501,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       saveTimer.current = null
     }
     await _doSave()
+  }
+
+  /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
+  async function flushLiveLesson(): Promise<void> {
+    await flushPersist()
+    await journalRef.current?.flush()
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -372,8 +558,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       setDrawerOpen(false)
       return
     }
-    // Flush prima di navigare: zero tratti persi
-    await flushPersist()
+    // Entrambe le fonti live devono essere durevoli prima di cambiare identità.
+    try {
+      await flushLiveLesson()
+    } catch (error) {
+      setStorageError("Cambio lezione annullato: " + (error as Error).message)
+      return
+    }
     // Cambia hash — guidare re-init via room state
     location.hash = targetRoom
     setDrawerOpen(false)
@@ -381,36 +572,31 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     window.location.reload()
   }
 
-  /** Toggle audio: ON = chiede consenso + avvia registrazione, OFF = ferma */
-  function toggleAudio() {
-    const ar = audioRecorderRef.current
-    if (!ar) return
-    if (ar.consent) {
-      // Spegni: la revoca CANCELLA i chunk (GDPR) — a fine purge aggiorna lo stato
-      ar.consent = false
-      setAudioOn(false)
-      setAudioRecording(false)
-      ar.lastRevoke
-        .catch((err) => {
-          setStorageError("Revoca dati audio fallita: " + (err as Error).message)
-        })
-    } else {
-      // Accendi
-      ar.consent = true
-      setAudioOn(true)
-      ar.start().then(() => {
-        setAudioRecording(ar.recording)
-        // start() inghiotte il fallimento getUserMedia (azzera consent); se la
-        // registrazione non parte resetta lo stato e — come ogni altra azione
-        // async — segnala il microfono negato invece di spegnersi in silenzio.
-        if (!ar.recording) {
-          setAudioOn(false)
-          if (!ar.consent) {
-            setStorageError("Microfono non disponibile: consenti l'accesso per registrare.")
-          }
-        }
-      })
-    }
+  /**
+   * Cambia superficie soltanto dopo il flush scena+journal. La Promise viene
+   * serializzata: i click successivi durante il preflight non cambiano target.
+   */
+  function navigateToSurface(href: string): Promise<void> {
+    const pending = _pendingSurfaceNavigation.current
+    if (pending) return pending
+
+    const run = (async () => {
+      try {
+        // Un driver bloccato non può tenere il control plane in stallo infinito.
+        // La write sottostante continua; la route resta ferma e il mutex si libera.
+        await withSurfaceFlushTimeout(flushLiveLesson())
+        navigate(href)
+      } catch (error) {
+        setStorageError("Cambio superficie annullato: " + (error as Error).message)
+      }
+    })()
+    _pendingSurfaceNavigation.current = run
+    void run.then(() => {
+      if (_pendingSurfaceNavigation.current === run) {
+        _pendingSurfaceNavigation.current = null
+      }
+    })
+    return run
   }
 
   /** Avvia rename inline del nome lezione */
@@ -449,58 +635,38 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   /**
    * Bridge Journal → LessonOS (spec #34): promuove le pdf.page.view riconosciute
    * dal ManualRegistry in material.cited sull'event-log. Idempotente al replay
-   * (cursore lastPromotedJournalT dentro appendJournalBridgeTail). Best-effort:
-   * non deve mai bloccare l'export — il journal resta la fonte di verità.
+   * (cursore lastPromotedJournalT dentro appendJournalBridgeTail). Soltanto una
+   * page-observed v2 con evidence verified può attraversare il bridge: un import
+   * PDF è materiale disponibile, non prova che il docente abbia visto la pagina.
    */
   async function promoteJournalToLessonOs(): Promise<void> {
     const run = _pendingPromote.current.then(async () => {
       const runtime = lessonOsRef.current
-      if (!runtime) return
-      try {
-        // Flush del buffer journal: le viste PDF appena registrate devono essere
-        // sul file PRIMA della lettura (stessa fonte dell'export, Room.read sotto).
-        await journalRef.current?.flush()
-        const blob = await actualStore.read(PATHS.JOURNAL)
-        if (!blob) return
-        const events = deserializeEvents(await blob.text())
-        await appendJournalBridgeTail(runtime.store, events, {
-          registry: defaultManualRegistry,
-          room,
-        })
-      } catch {
-        // promozione fallita: l'export prosegue col journal come verità
+      const recorder = journalRef.current
+      if (!runtime || !recorder) {
+        throw new Error("Sessione o journal canonico non disponibile")
       }
+      await recorder.flush()
+      const path = roomPaths(room).journal
+      const blob = await actualStore.read(path)
+      if (!blob) return
+      const decoded = decodeJournalJsonl(await blob.text(), path)
+      const observed = decoded.envelopes.flatMap((envelope) => {
+        if (envelope.kind !== "journal.pdf.page-observed") return []
+        if (envelope.evidence.some((entry) => entry.resolution !== "verified")) return []
+        const event = toLegacyJournalEvent(envelope)
+        return event ? [event] : []
+      })
+      await appendJournalBridgeTail(runtime.store, observed, {
+        registry: defaultManualRegistry,
+        room,
+      })
     })
     _pendingPromote.current = run.then(
       () => {},
       () => {},
     )
     return run
-  }
-
-  /** Export .lesson: genera ZIP e avvia download */
-  async function handleExportLesson() {
-    setExporting(true)
-    try {
-      // Promuovi le citazioni manuale PRIMA dello snapshot event-log nel bundle:
-      // l'export è il momento "fine lezione" (stand-in finché non esiste lesson.ended).
-      await promoteJournalToLessonOs()
-      // Include lo snapshot dell'event-log LessonOS nel bundle (spec #35 §4.3)
-      const zipBlob = await actualStore.exportLesson(room, lessonOsRef.current?.store)
-      const url = URL.createObjectURL(zipBlob)
-      const a = document.createElement("a")
-      a.href = url
-      // Usa il nome lezione (slugificato) se disponibile, altrimenti room id
-      a.download = `lezione-${lessonSlug(lessonName ?? "", room)}.lesson`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    } catch (err) {
-      setStorageError("Export fallito: " + (err as Error).message)
-    } finally {
-      setExporting(false)
-    }
   }
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -630,22 +796,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
   }
-  const shareUrl = studentView
-    ? `${location.origin}${location.pathname}#${room}`
-    : `${location.origin}${location.pathname}?vista=studente#${room}`
-
-  function copyLink() {
-    navigator.clipboard?.writeText(shareUrl).then(
-      () => {
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
-      },
-      (err) => {
-        setStorageError("Copia del link non riuscita: " + (err as Error).message)
-      },
+  if (lifecycleGate === "pending") {
+    return (
+      <div
+        className="st-status st-lifecycle-loading"
+        role="status"
+        aria-live="polite"
+      >
+        <span className="st-quiet">caricamento…</span>
+      </div>
     )
   }
-
+  if (lifecycleGate === "failed") {
+    return (
+      <div className="st-status st-lifecycle-failed">
+        <span className="st-err st-lifecycle-error" role="alert">
+          <IconAlert /> {lifecycleError ?? "Coordinamento lezione non disponibile."}
+        </span>
+      </div>
+    )
+  }
   return recapView ? (
     <RecapView store={actualStore} room={room} />
   ) : replayView ? (
@@ -660,15 +830,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             <span className="st-bdot" aria-hidden />
             <span className="st-sub">studio</span>
           </div>
-          {/* Chip stanza dopo il load: evita il flash dell'id prima che arrivi il nome */}
-          {!loading && (
-            <span
-              className="st-chip-student st-chip-lesson"
-              title={lessonName ? `Lezione: ${lessonName}` : `Stanza: ${room}`}
-            >
-              {lessonName ?? room}
-            </span>
-          )}
+          {/* Il lifecycle gate evita il flash dell'id prima che scena e meta siano risolte. */}
+          <span
+            className="st-chip-student st-chip-lesson"
+            title={lessonName ? `Lezione: ${lessonName}` : `Stanza: ${room}`}
+          >
+            {lessonName ?? room}
+          </span>
           <span className="st-chip-student">stai guardando la lavagna</span>
         </header>
       ) : (
@@ -710,29 +878,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         )}
 
         <div className="st-status">
-          {loading && <span className="st-quiet">caricamento…</span>}
-          {!loading && (
-            storeMode === "fsa"
-              ? (
-                <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
-                  <span className="st-led" aria-hidden />
-                  salvato sul computer
-                </span>
-              )
-              : (
-                <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
-                  <span className="st-led" aria-hidden />
-                  solo in questo browser
-                  {" — "}
-                  <button onClick={handleConnectFolder} className="st-indicator-connect">
-                    scegli cartella…
-                  </button>
-                </span>
-              )
-          )}
+          {storeMode === "fsa"
+            ? (
+              <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
+                <span className="st-led" aria-hidden />
+                salvato sul computer
+              </span>
+            )
+            : (
+              <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
+                <span className="st-led" aria-hidden />
+                solo in questo browser
+                {" — "}
+                <button onClick={handleConnectFolder} className="st-indicator-connect">
+                  scegli cartella…
+                </button>
+              </span>
+            )}
           {saved && <span className="st-quiet">salvato</span>}
           {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
-          {exportAdvice && !loading && (
+          {exportAdvice && (
             <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
           )}
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
@@ -748,64 +913,32 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         </button>
 
         <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
-          {/* Product Flow Shell: il docente naviga tra le viste senza digitare
-              URL (lavagna → ELAB Lab → cruscotto → lezioni). */}
-          {!studentView && <ViewNav current="lavagna" />}
-          <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
+          {/* Founder Beta: tre sole superfici — Lezione, Continuità, Materiali. */}
+          {!studentView && (
+            <ViewNav
+              current="lavagna"
+              onNavigate={(href) => { void navigateToSurface(href) }}
+            />
+          )}
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
-          <button onClick={() => insertSimulationPlugin()} className="st-ghost" aria-label="Inserisci Simulation Plugin sulla lavagna">
+          <button
+            onClick={() => insertSimulationPlugin()}
+            className="st-ghost"
+            aria-label="Inserisci Simulation Plugin sulla lavagna"
+            data-founder-plugin-id={FOUNDER_BETA_PLUGIN.id}
+            data-plugin-version={FOUNDER_BETA_PLUGIN.version}
+            data-plugin-trust-tier={FOUNDER_BETA_PLUGIN.trustTier}
+          >
             sim
-          </button>
-          {/* Catalogo scene montate (fonte: ELAB_EXPERIMENT_CATALOG — il
-              banner del post-it dichiara sempre montati/totale). */}
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp2")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento LED senza resistore sulla lavagna"
-          >
-            sim esp2
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap6-esp3")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento luminosità con resistenze diverse sulla lavagna"
-          >
-            sim esp3
-          </button>
-          <button
-            onClick={() => insertSimulationPlugin("v1-cap9-esp6")}
-            className="st-ghost"
-            aria-label="Inserisci esperimento lampada RGB con 3 potenziometri sulla lavagna"
-          >
-            sim esp6
           </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
-          {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
-          <button
-            onClick={toggleAudio}
-            className={audioOn ? (audioRecording ? "st-ghost st-rec" : "st-ghost st-on") : "st-ghost"}
-            title="Registra SOLO il microfono del docente. Default spento."
-          >
-            {audioOn ? (audioRecording ? <><span className="st-recdot" aria-hidden />registrando</> : "audio attivo") : "audio"}
-          </button>
-          {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
-          <button onClick={handleExportLesson} disabled={exporting} className="st-primary">
-            {exporting ? "esporto…" : "esporta lezione"}
-          </button>
-          {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
-          <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} className="st-ghost st-meet">
-            Meet<span className="st-ext" aria-hidden><IconArrowUpRight /></span>
-          </button>
         </div>
       </header>
       )}
-
-      {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
-      {audioRecording && <div className="st-recstrip" data-rec-strip />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (
@@ -863,17 +996,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       )}
 
       <div style={{ flex: 1, position: "relative" }}>
-        {!loading && studentView && !sceneData && (
+        {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
             <EmptyState
               title="La lavagna è ancora vuota"
               detail="Il docente non ha ancora condiviso appunti per questa lezione."
-              hint="Segui la spiegazione in diretta su Meet: appena scrive, la lavagna compare qui."
             />
           </div>
         )}
-        {!loading && !(studentView && !sceneData) && (
+        {!(studentView && !sceneData) && (
           <Excalidraw
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
@@ -971,7 +1103,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 <div className="st-welcome-guide">
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
                   <p>Per le formule premi «formula», per slide e immagini «media».</p>
-                  <p>L'audio parte solo se lo accendi tu, dal bottone «audio».</p>
+                  <p>Il simulatore integrato è l'unico plugin disponibile in questa beta.</p>
                 </div>
               </WelcomeScreen.Center>
               <WelcomeScreen.Hints.ToolbarHint>

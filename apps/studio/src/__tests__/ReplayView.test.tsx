@@ -84,6 +84,10 @@ function journalBlob(events: JournalEvent[]): Blob {
 function makeMockStore(events: JournalEvent[] | null) {
   const journal = events ? journalBlob(events) : null
   return {
+    registerActiveLesson: vi.fn(async (lessonId: string) => {
+      const completion = Promise.resolve()
+      return { lessonId, release: () => completion }
+    }),
     read: vi.fn(async (path: string) => {
       if (path === PATHS.JOURNAL) return journal
       if (path.startsWith(PATHS.AUDIO_DIR)) return new Blob([new Uint8Array([1, 2, 3])])

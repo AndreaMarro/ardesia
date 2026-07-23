@@ -1,8 +1,8 @@
-// Product Flow Shell: il docente attraversa solo gli ingressi caricabili della
-// shell — lavagna → ELAB Plugin → torna alla STESSA lavagna (hash preservato).
+// Founder Beta shell: il docente attraversa soltanto Lezione, Continuità e
+// Materiali e torna alla stessa lezione (hash preservato).
 import { test, expect } from "@playwright/test"
 
-test("flusso docente: lavagna → ELAB Plugin → torna lavagna (stessa stanza)", async ({
+test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione", async ({
   page,
 }) => {
   const consoleErrors: string[] = []
@@ -18,25 +18,101 @@ test("flusso docente: lavagna → ELAB Plugin → torna lavagna (stessa stanza)"
   expect(roomHash).toMatch(/^#wbstudio-/)
   const nav = page.locator("[data-view-nav]").first()
   await expect(nav).toBeVisible()
-  await expect(nav.locator('[data-view-nav-item="lavagna"]')).toHaveAttribute(
+  await expect(nav.locator('[data-view-nav-item="lezione"]')).toHaveAttribute(
     "aria-current",
     "page",
   )
+  await expect(nav.locator("[data-view-nav-item]")).toHaveCount(3)
+  await expect(nav).not.toContainText("Simulatore")
+  await expect(nav).not.toContainText("ELABTutor")
+  await expect(nav).not.toContainText("Marketplace")
 
-  // 2. Entra in ELAB Lab dalla nav.
-  await nav.locator('[data-view-nav-item="elab-lab"]').click()
-  await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
+  const founderPlugin = page.locator("[data-founder-plugin-id]")
+  await expect(founderPlugin).toHaveCount(1)
+  await expect(founderPlugin).toHaveAttribute("data-founder-plugin-id", "io.ardesia.simulation")
+  await expect(founderPlugin).toHaveAttribute("data-plugin-trust-tier", "builtin-reviewed")
+  const lessonActions = page.locator(".st-actions")
+  for (const excluded of [
+    "invita studente",
+    "audio",
+    "Meet",
+    "esporta lezione",
+    "sim esp2",
+    "sim esp3",
+    "sim esp6",
+  ]) {
+    await expect(lessonActions).not.toContainText(excluded)
+  }
+
+  // 2. L'ultima mutazione journal deve diventare durevole PRIMA che la route
+  // cambi. Ritardiamo la write reale, poi la sblocchiamo e verifichiamo il
+  // marker dopo il ritorno a freddo sulla stessa Lezione.
+  const lastEventMarker = `fb6c-last-event-${Date.now()}`
+  await page.evaluate((marker) => {
+    const harness = (window as any).__MAESTRO_TEST__
+    if (!harness?.recorder || !harness?.store) throw new Error("Room harness non pronto")
+    const originalWrite = harness.store.write.bind(harness.store)
+    let releaseWrite!: () => void
+    const writeGate = new Promise<void>((resolve) => { releaseWrite = resolve })
+    ;(window as any).__FB6C_WRITE_STARTED__ = false
+    ;(window as any).__FB6C_RELEASE_WRITE__ = releaseWrite
+    harness.store.write = async (path: string, data: Blob) => {
+      if (path === harness.PATHS.JOURNAL) {
+        ;(window as any).__FB6C_WRITE_STARTED__ = true
+        await writeGate
+      }
+      return originalWrite(path, data)
+    }
+    harness.recorder.recordMathInsert(marker)
+    document.querySelector<HTMLAnchorElement>(
+      '[data-view-nav-item="continuita"]',
+    )?.click()
+  }, lastEventMarker)
+  await expect.poll(() => page.evaluate(
+    () => Boolean((window as any).__FB6C_WRITE_STARTED__),
+  )).toBe(true)
+  expect(new URL(page.url()).hash).toBe(roomHash)
+  expect(new URL(page.url()).search).toBe("")
+  await page.evaluate(() => (window as any).__FB6C_RELEASE_WRITE__())
+
+  // 3. Continuità usa la projection read-only già esistente.
+  await expect(page.locator("[data-zstat]")).toBeVisible({ timeout: 15_000 })
   await expect(
-    page.locator('[data-view-nav-item="elab-lab"][aria-current="page"]'),
+    page.locator('[data-view-nav-item="continuita"][aria-current="page"]'),
   ).toBeVisible()
-  await expect(page.locator("[data-view-nav-item]")).toHaveCount(2)
-  await expect(page.locator('[data-view-nav-item="cruscotto"]')).toHaveCount(0)
-  await expect(page.locator('[data-view-nav-item="lezioni-salvate"]')).toHaveCount(0)
+  expect(new URL(page.url()).hash).toBe(roomHash)
 
-  // 3. Torna alla lavagna: STESSA stanza (hash preservato attraverso le viste).
-  await page.locator('[data-view-nav-item="lavagna"]').click()
+  // 4. Materiali usa l'alias profondo ma monta il workflow locale Founder Beta.
+  await page.locator('[data-view-nav-item="materiali"]').click()
+  await expect(
+    page.locator('[data-view-nav-item="materiali"][aria-current="page"]'),
+  ).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByText("Materiali locali")).toBeVisible()
+  await expect(page.getByLabel("Seleziona bundle .lesson")).toBeVisible()
+  await expect(page.getByRole("button", { name: "Esporta .lesson" })).toBeVisible()
+  await expect(page.getByText("LessonOS non configurato")).toHaveCount(0)
+  expect(new URL(page.url()).hash).toBe(roomHash)
+
+  // 5. Torna alla superficie Lezione: STESSA stanza e ultimo evento presente.
+  await page.locator('[data-view-nav-item="lezione"]').click()
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
   expect(new URL(page.url()).hash).toBe(roomHash)
+  await expect.poll(() => page.evaluate(async (marker) => {
+    const harness = (window as any).__MAESTRO_TEST__
+    const journal = await harness?.store?.read(harness.PATHS.JOURNAL)
+    return journal ? (await journal.text()).includes(marker) : false
+  }, lastEventMarker)).toBe(true)
+
+  // 6. Continuità, ora che la write è durevole, deve PROIETTARE quell'evento:
+  // la presenza del selettore non dice se la projection legge la lezione giusta.
+  await page.locator('[data-view-nav-item="continuita"]').click()
+  const mathInserts = page.getByTestId("zstat-math.inserts.count")
+  await expect(mathInserts).toBeVisible({ timeout: 15_000 })
+  await expect
+    .poll(async () => Number(await mathInserts.getAttribute("data-zstat-value")), {
+      timeout: 15_000,
+    })
+    .toBeGreaterThanOrEqual(1)
 
   expect(consoleErrors).toEqual([])
 })
