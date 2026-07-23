@@ -2,7 +2,8 @@
 // ARD-06 §6 — precedenza della phase e normalizzazione corrupt.
 // La regola che conta: una sorgente corrotta NON autorizza una projection
 // parziale dalle altre sorgenti.
-import { describe, it, expect } from "vitest"
+import { beforeEach, describe, it, expect } from "vitest"
+import type { AppendedEventEnvelopeV2 } from "../lessonos/eventlog"
 import {
   projectContinuityV1,
   validateContinuityScopeV1,
@@ -107,5 +108,138 @@ describe("projectContinuityV1 — precedenza della phase", () => {
     const projection = projectContinuityV1(emptySnapshot())
     expect(Array.isArray(projection.nextAction)).toBe(false)
     expect(projection.nextAction).not.toBeNull()
+  })
+})
+
+// --- RED-06-04: open loop ---
+
+let nextSeq = 1
+
+function lessonEvent(
+  kind: string,
+  payload: Record<string, unknown>,
+  occurredAt: string,
+): AppendedEventEnvelopeV2 {
+  const seq = nextSeq++
+  return {
+    schemaVersion: 2,
+    eventId: `00000000-0000-4000-8000-${String(seq).padStart(12, "0")}`,
+    lessonId: SCOPE.lessonId,
+    sessionId: SCOPE.sessionId,
+    kind,
+    occurredAt,
+    actor: { type: "teacher", id: "docente" },
+    producer: {
+      id: "com.github.andreamarro.ardesia.studio",
+      version: "0.0.0",
+      commitSha: "a".repeat(40),
+    },
+    causationId: null,
+    idempotencyKey: null,
+    evidence: [],
+    payload,
+    seq,
+  } as unknown as AppendedEventEnvelopeV2
+}
+
+function observed(errorId: string, occurredAt: string, label = "Corto"): AppendedEventEnvelopeV2 {
+  return lessonEvent(
+    "error.observed",
+    { room: SCOPE.roomId, errorId, conceptId: "c-1", label: { it: label } },
+    occurredAt,
+  )
+}
+
+function corrected(errorId: string, occurredAt: string): AppendedEventEnvelopeV2 {
+  return lessonEvent(
+    "exercise.completed",
+    { room: SCOPE.roomId, correctsErrorId: errorId },
+    occurredAt,
+  )
+}
+
+describe("projectContinuityV1 — open loop (RED-06-04)", () => {
+  beforeEach(() => { nextSeq = 1 })
+
+  it("un error.observed apre un loop", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [observed("err-X", "2026-07-23T00:00:01.000Z")],
+    }))
+    expect(projection.openLoops.map((loop) => loop.errorId)).toEqual(["err-X"])
+    expect(projection.openLoops[0]!.observedCount).toBe(1)
+  })
+
+  it("un exercise.completed che corregge X chiude X", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [
+        observed("err-X", "2026-07-23T00:00:01.000Z"),
+        corrected("err-X", "2026-07-23T00:00:02.000Z"),
+      ],
+    }))
+    expect(projection.openLoops).toEqual([])
+  })
+
+  it("una ri-osservazione dopo la correzione riapre il loop con count 2", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [
+        observed("err-X", "2026-07-23T00:00:01.000Z"),
+        corrected("err-X", "2026-07-23T00:00:02.000Z"),
+        observed("err-X", "2026-07-23T00:00:03.000Z"),
+      ],
+    }))
+    expect(projection.openLoops.map((loop) => loop.errorId)).toEqual(["err-X"])
+    expect(projection.openLoops[0]!.observedCount).toBe(2)
+  })
+
+  it("una correzione di un errorId ignoto non chiude X", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [
+        observed("err-X", "2026-07-23T00:00:01.000Z"),
+        corrected("err-IGNOTO", "2026-07-23T00:00:02.000Z"),
+      ],
+    }))
+    expect(projection.openLoops.map((loop) => loop.errorId)).toEqual(["err-X"])
+  })
+
+  it("una correzione PRIMA dell'osservazione non inventa un loop", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [corrected("err-X", "2026-07-23T00:00:01.000Z")],
+    }))
+    expect(projection.openLoops).toEqual([])
+  })
+
+  it("lastUncorrectedError è lo stesso oggetto logico di openLoops[0]", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [
+        observed("err-1", "2026-07-23T00:00:01.000Z", "A"),
+        observed("err-2", "2026-07-23T00:00:02.000Z", "B"),
+      ],
+    }))
+    expect(projection.lastUncorrectedError).toBe(projection.openLoops[0])
+  })
+
+  it("con un open loop la nextAction è resume-open-loop a priorità 2", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [observed("err-X", "2026-07-23T00:00:01.000Z")],
+    }))
+    expect(projection.nextAction.kind).toBe("resume-open-loop")
+    expect(projection.nextAction.priority).toBe(2)
+  })
+
+  it("gli open loop sono ordinati per lastObserved seq DESC, poi errorId ASC", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [
+        observed("err-a", "2026-07-23T00:00:01.000Z", "A"),
+        observed("err-b", "2026-07-23T00:00:02.000Z", "B"),
+      ],
+    }))
+    expect(projection.openLoops.map((loop) => loop.errorId)).toEqual(["err-b", "err-a"])
+  })
+
+  it("con fatti riprendibili la phase diventa ready", () => {
+    const projection = projectContinuityV1(emptySnapshot({
+      lessonEvents: [observed("err-X", "2026-07-23T00:00:01.000Z")],
+    }))
+    expect(projection.phase).toBe("ready")
   })
 })

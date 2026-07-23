@@ -387,6 +387,93 @@ function sourceHealthStatus(
   return "verified"
 }
 
+/** Confronto per code point, mai locale-dependent (design §9.2). */
+function compareCodePoints(left: string, right: string): number {
+  return left < right ? -1 : left > right ? 1 : 0
+}
+
+function readString(payload: JsonObject, key: string): string | null {
+  const value = payload[key]
+  return typeof value === "string" && value.length > 0 ? value : null
+}
+
+function readLabel(payload: JsonObject): Readonly<Record<string, string>> {
+  const raw = payload.label
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return Object.freeze({})
+  const out: Record<string, string> = {}
+  for (const [locale, text] of Object.entries(raw)) {
+    if (typeof text === "string") out[locale] = text
+  }
+  return Object.freeze(out)
+}
+
+type OpenLoopAccumulator = {
+  errorId: string
+  conceptId: string
+  label: Readonly<Record<string, string>>
+  openedAt: string
+  lastObservedAt: string
+  observedCount: number
+  lastSeq: number
+}
+
+/**
+ * Open loop Founder v1 (design §3.6, §7.3): un error.observed non chiuso da un
+ * successivo exercise.completed.correctsErrorId nella STESSA sessione. Una
+ * ri-osservazione dopo la correzione lo riapre; una correzione prima
+ * dell'osservazione non inventa un loop. L'ordine è il seq append-only:
+ * occurredAt è display, non autorità (design §7.1.5).
+ * Output ordinato lastObserved seq DESC, poi errorId codepoint ASC.
+ */
+function deriveOpenLoops(
+  lessonEvents: readonly AppendedEventEnvelopeV2[],
+): readonly ContinuityOpenLoopV1[] {
+  const open = new Map<string, OpenLoopAccumulator>()
+  const observedTotal = new Map<string, number>()
+
+  for (const event of [...lessonEvents].sort((left, right) => left.seq - right.seq)) {
+    const payload = event.payload as JsonObject
+    if (event.kind === "error.observed") {
+      const errorId = readString(payload, "errorId")
+      const conceptId = readString(payload, "conceptId")
+      if (errorId === null || conceptId === null) continue
+      const count = (observedTotal.get(errorId) ?? 0) + 1
+      observedTotal.set(errorId, count)
+      const previous = open.get(errorId)
+      open.set(errorId, {
+        errorId,
+        conceptId,
+        label: readLabel(payload),
+        openedAt: previous?.openedAt ?? event.occurredAt,
+        lastObservedAt: event.occurredAt,
+        observedCount: count,
+        lastSeq: event.seq,
+      })
+      continue
+    }
+    if (event.kind === "exercise.completed") {
+      const corrects = readString(payload, "correctsErrorId")
+      // Una correzione di un ID mai osservato non chiude nulla.
+      if (corrects !== null) open.delete(corrects)
+    }
+  }
+
+  return Object.freeze([...open.values()]
+    .sort((left, right) => (
+      right.lastSeq - left.lastSeq
+      || compareCodePoints(left.errorId, right.errorId)
+    ))
+    .map((loop) => Object.freeze({
+      errorId: loop.errorId,
+      conceptId: loop.conceptId,
+      label: loop.label,
+      openedAt: loop.openedAt,
+      lastObservedAt: loop.lastObservedAt,
+      observedCount: loop.observedCount,
+      evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+    })))
+}
+
 /**
  * Projection pura della Continuità (design §6, §7, §9).
  * Nessun I/O, nessun clock: lo stesso snapshot produce gli stessi byte.
@@ -436,7 +523,13 @@ export function projectContinuityV1(
     })
   }
 
-  const phase = health === "degraded" ? ("degraded" as const) : ("empty" as const)
+  const openLoops = deriveOpenLoops(snapshot.lessonEvents)
+  const lastUncorrectedError = openLoops[0] ?? null
+  const hasResumableFacts = openLoops.length > 0
+  const phase = health === "degraded"
+    ? ("degraded" as const)
+    : hasResumableFacts ? ("ready" as const) : ("empty" as const)
+
   return Object.freeze({
     v: 1 as const,
     identity,
@@ -444,8 +537,8 @@ export function projectContinuityV1(
     sourceHealth: Object.freeze({ status: health, issues: Object.freeze(issues) }),
     session: null,
     lastVerifiedResult: null,
-    openLoops: Object.freeze([]) as readonly ContinuityOpenLoopV1[],
-    lastUncorrectedError: null,
+    openLoops,
+    lastUncorrectedError,
     recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
     missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
     simulation: Object.freeze({
@@ -454,11 +547,19 @@ export function projectContinuityV1(
       openError: null,
       evidenceBlock: null,
     }),
-    nextAction: Object.freeze({
-      kind: "reopen-lesson" as const,
-      priority: 4 as const,
-      href: continuityLessonHref(identity),
-      evidence: Object.freeze([]) as readonly [],
-    }),
+    nextAction: openLoops.length > 0
+      ? Object.freeze({
+          kind: "resume-open-loop" as const,
+          priority: 2 as const,
+          errorId: openLoops[0]!.errorId,
+          href: continuityLessonHref(identity),
+          evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+        })
+      : Object.freeze({
+          kind: "reopen-lesson" as const,
+          priority: 4 as const,
+          href: continuityLessonHref(identity),
+          evidence: Object.freeze([]) as readonly [],
+        }),
   })
 }
