@@ -94,6 +94,13 @@ function supportsEnvelopeExport(log: EventLogStore): log is EnvelopeEventLogStor
   )
 }
 
+/**
+ * Sessione sintetizzata quando la lezione non ne ha ancora una persistita.
+ * Deterministica (created fisso) perché l'export deve restare idempotente:
+ * export → import → export produce gli stessi byte.
+ */
+const DEFAULT_SESSION_YAML = "v: 1\ncreated: 0\naudioConsent: false\n"
+
 function addEntry(
   entries: Map<string, FileEntry>,
   path: string,
@@ -130,20 +137,32 @@ export async function exportLesson(
   const entries = new Map<string, FileEntry>()
 
   // Legge session.yaml per verificare il consenso audio (GDPR Mode A)
-  // Se audioConsent !== true, i chunk raw/audio/ NON devono finire nel bundle
+  // Se audioConsent !== true, i chunk raw/audio/ NON devono finire nel bundle.
+  // La sessione è room-scoped come gli altri artefatti: leggere il path flat
+  // legacy trasporterebbe nel bundle di A la sessione (e il consenso) di B.
   let audioConsent: boolean | undefined
-  const sessionBlob = await store.read(LESSON_PATHS.SESSION)
+  const sessionBlob = await store.read(paths.session)
   if (sessionBlob) {
     const sessionText = await sessionBlob.text()
     audioConsent = parseSessionYaml(sessionText).audioConsent
     addEntry(entries, LESSON_PATHS.SESSION, sessionBlob)
+  } else {
+    // Nessuna sessione persistita per questa lezione: il consenso è assente,
+    // non ignoto. Sintetizza il default esplicito invece di far fallire un
+    // artefatto obbligatorio su un file flat scritto da un'altra lezione.
+    audioConsent = false
+    addEntry(entries, LESSON_PATHS.SESSION, new Blob([DEFAULT_SESSION_YAML], {
+      type: "text/yaml",
+    }))
   }
 
-  // L'audio resta il comportamento legacy già esistente: non è room identity e
-  // questa slice non lo promuove. Il consenso OFF continua a escluderlo.
+  // L'audio non è ancora promosso a room identity nella UI, ma il suo path
+  // resta room-scoped: un chunk registrato in B non deve uscire nel bundle di A.
+  // Il consenso OFF continua a escluderlo.
   if (audioConsent === true) {
-    for (const entry of await store.list(LESSON_PATHS.AUDIO_DIR)) {
-      entries.set(entry.path, entry)
+    for (const entry of await store.list(paths.audioDir)) {
+      const portablePath = `${LESSON_PATHS.AUDIO_DIR}${entry.path.slice(paths.audioDir.length)}`
+      entries.set(portablePath, { ...entry, path: portablePath })
     }
   }
 
@@ -331,7 +350,14 @@ function importedPath(path: string, destinationLessonId: string | null): string 
       return destination.journal
     case LESSON_PATHS.LESSONOS:
       return destination.lessonOsSnapshot
+    case LESSON_PATHS.SESSION:
+      return destination.session
     default:
+      // L'audio segue la lezione: atterrare su raw/audio/ flat lo renderebbe
+      // visibile all'export di qualunque altra lezione.
+      if (path.startsWith(LESSON_PATHS.AUDIO_DIR)) {
+        return `${destination.audioDir}${path.slice(LESSON_PATHS.AUDIO_DIR.length)}`
+      }
       return path
   }
 }

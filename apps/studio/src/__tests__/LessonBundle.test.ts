@@ -539,7 +539,7 @@ describe("LessonBundle", () => {
   it("bundle contiene sempre raw/events.jsonl, raw/session.yaml, raw/board.excalidraw", async () => {
     // Seed dei 3 file obbligatori
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"]))
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [], appState: {} }))
 
     const bundle = await exportLesson(store, ROOM)
@@ -554,10 +554,10 @@ describe("LessonBundle", () => {
 
   it("consenso OFF con chunk audio su disco — bundle non contiene raw/audio/", async () => {
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"]))
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
     // Seeda chunk audio come se fossero ancora su disco (consenso revocato)
-    await store.write("raw/audio/chunk-0.webm", new Blob(["audio-data-0"], { type: "audio/webm" }))
+    await store.write(`${roomPaths(ROOM).audioDir}chunk-0.webm`, new Blob(["audio-data-0"], { type: "audio/webm" }))
 
     const bundle = await exportLesson(store, ROOM)
     const paths = await listZipPaths(bundle)
@@ -570,10 +570,10 @@ describe("LessonBundle", () => {
 
   it("consenso ON con chunk audio esistenti — bundle contiene raw/audio/chunk-*.webm", async () => {
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n"]))
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
-    await store.write("raw/audio/chunk-0.webm", new Blob(["audio-data-0"], { type: "audio/webm" }))
-    await store.write("raw/audio/chunk-1.webm", new Blob(["audio-data-1"], { type: "audio/webm" }))
+    await store.write(`${roomPaths(ROOM).audioDir}chunk-0.webm`, new Blob(["audio-data-0"], { type: "audio/webm" }))
+    await store.write(`${roomPaths(ROOM).audioDir}chunk-1.webm`, new Blob(["audio-data-1"], { type: "audio/webm" }))
 
     const bundle = await exportLesson(store, ROOM)
     const paths = await listZipPaths(bundle)
@@ -592,9 +592,9 @@ describe("LessonBundle", () => {
   it("export→import→export è idempotente (stessi file e contenuti)", async () => {
     // Seed: journal + session + scene + un audio chunk
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":100,"type":"element.add"}\n{"t":200,"type":"t0"}\n'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n"]))
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [{ id: "rect1", type: "rectangle", x: 0, y: 0 }] }))
-    await store.write("raw/audio/chunk-0.webm", new Blob(["fake-audio-data-0"], { type: "audio/webm" }))
+    await store.write(`${roomPaths(ROOM).audioDir}chunk-0.webm`, new Blob(["fake-audio-data-0"], { type: "audio/webm" }))
 
     // Primo export
     const bundle1 = await exportLesson(store, ROOM)
@@ -632,7 +632,7 @@ describe("LessonBundle", () => {
 
     // Salva anche journal e session
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":1,"type":"element.add"}'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 1\naudioConsent: false\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 1\naudioConsent: false\n"]))
 
     const bundle = await exportLesson(store, ROOM)
     const sceneText = await readZipText(bundle, LESSON_PATHS.SCENE)
@@ -653,7 +653,7 @@ describe("LessonBundle", () => {
 
   it("importLesson ripristina tutti i file sul nuovo store", async () => {
     await store.write(roomPaths(ROOM).journal, new Blob(['{"t":10,"type":"t0"}'], { type: "application/x-ndjson" }))
-    await store.saveSessionYaml("v: 1\ncreated: 10\naudioConsent: false\n")
+    await store.write(roomPaths(ROOM).session, new Blob(["v: 1\ncreated: 10\naudioConsent: false\n"]))
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
 
     const bundle = await exportLesson(store, ROOM)
@@ -1195,7 +1195,7 @@ describe("LessonBundle — FB-4B portable room boundary", () => {
     withMockDriver(source, new MockDriver())
     await source.write(paths.scene, new Blob(['{"version":"candidate"}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
-    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    await source.write(paths.session, new Blob(["v: 1\ncreated: 2000\naudioConsent: false\n"]))
     const bundle = await exportLesson(source, room)
 
     const target = new WorkspaceStore()
@@ -1273,7 +1273,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     withMockDriver(source, new MockDriver())
     await source.write(paths.scene, new Blob(['{"version":"new"}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
-    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    await source.write(paths.session, new Blob(["v: 1\ncreated: 2000\naudioConsent: false\n"]))
     const bundle = await exportLesson(source, room)
 
     const target = new WorkspaceStore()
@@ -1284,9 +1284,9 @@ describe("LessonBundle — FB-5B transactional import", () => {
     const originalSession = new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"])
     await target.write(paths.scene, originalScene)
     await target.write(paths.journal, originalJournal)
-    await target.write(LESSON_PATHS.SESSION, originalSession)
+    await target.write(paths.session, originalSession)
 
-    const liveTargets = new Set([LESSON_PATHS.SESSION, paths.scene, paths.journal])
+    const liveTargets = new Set([paths.session, paths.scene, paths.journal])
     let liveWrites = 0
     driver.failWrite = (path) => liveTargets.has(path) && ++liveWrites === 3
 
@@ -1299,7 +1299,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
       .toEqual(new Uint8Array(await originalScene.arrayBuffer()))
     expect(new Uint8Array(await (await target.read(paths.journal))!.arrayBuffer()))
       .toEqual(new Uint8Array(await originalJournal.arrayBuffer()))
-    expect(new Uint8Array(await (await target.read(LESSON_PATHS.SESSION))!.arrayBuffer()))
+    expect(new Uint8Array(await (await target.read(paths.session))!.arrayBuffer()))
       .toEqual(new Uint8Array(await originalSession.arrayBuffer()))
     const transactionEvidence = await target.list("raw/.ardesia/import-transactions/")
     expect(transactionEvidence.some((entry) => entry.path.endsWith("/transaction.json"))).toBe(true)
@@ -1313,7 +1313,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     withMockDriver(source, new MockDriver())
     await source.write(paths.scene, new Blob(['{"version":"new"}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
-    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    await source.write(paths.session, new Blob(["v: 1\ncreated: 2000\naudioConsent: false\n"]))
     const bundle = await exportLesson(source, room)
 
     const target = new WorkspaceStore()
@@ -1322,7 +1322,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     const originals = new Map<string, Blob>([
       [paths.scene, new Blob(['{"version":"original"}'])],
       [paths.journal, new Blob(["original-journal\n"])],
-      [LESSON_PATHS.SESSION, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"])],
+      [paths.session, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"])],
     ])
     for (const [path, data] of originals) await target.write(path, data)
 
@@ -1355,7 +1355,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     withMockDriver(source, new MockDriver())
     await source.write(paths.scene, new Blob(['{"version":"new"}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
-    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    await source.write(paths.session, new Blob(["v: 1\ncreated: 2000\naudioConsent: false\n"]))
     const bundle = await exportLesson(source, room)
 
     const target = new WorkspaceStore()
@@ -1390,7 +1390,7 @@ describe("LessonBundle — FB-5B transactional import", () => {
     withMockDriver(source, new MockDriver())
     await source.write(paths.scene, new Blob(['{"version":"candidate"}']))
     await source.write(paths.journal, new Blob([`${canonicalJournalLine(room)}\n`]))
-    await source.saveSessionYaml("v: 1\ncreated: 2000\naudioConsent: false\n")
+    await source.write(paths.session, new Blob(["v: 1\ncreated: 2000\naudioConsent: false\n"]))
     const bundle = await exportLesson(source, room)
 
     const target = new WorkspaceStore()
