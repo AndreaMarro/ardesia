@@ -1,5 +1,16 @@
 import { manifest as simulationManifest } from "../../plugins/simulation/manifest.ts"
 
+/**
+ * Etichetta di provenienza, NON esito di una verifica crittografica a runtime.
+ * Dichiara due fatti veri e verificabili: il plugin è compilato dentro il
+ * bundle Studio (quindi legato al commit SHA completo che il bundle espone) ed
+ * è passato dalla review umana della Founder Beta. Non dichiara che una firma
+ * del manifest o un digest del bundle siano stati verificati al mount: quel
+ * confine non esiste ancora, perché in Founder Beta non c'è alcun percorso di
+ * caricamento remoto da cui difendersi — l'allowlist è chiusa e il manifest è
+ * un import in-process. Quando il loader ToolHost verificherà firma e digest,
+ * questa costante deve sparire e il tier va derivato da quell'esito.
+ */
 export const FOUNDER_BETA_PLUGIN_TRUST_TIER = "builtin-reviewed" as const
 const FOUNDER_BETA_PUBLISHER = Object.freeze({
   id: "maestro-sdk",
