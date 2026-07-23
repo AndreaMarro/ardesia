@@ -113,7 +113,9 @@ class TestPipelineBioPath:
         r2 = run_pipeline(fixture_root=FIXTURE_ROOT)
         # elapsed_seconds is a wall-clock measurement: it is not part of the
         # determinism contract and made this test flaky under load (2/10).
-        strip_elapsed = lambda summary: summary.rsplit(", ", 1)[0]
+        def strip_elapsed(summary: str) -> str:
+            return summary.rsplit(", ", 1)[0]
+
         assert strip_elapsed(r1.summary) == strip_elapsed(r2.summary), (
             f"Non-deterministic pipeline:\n  run1: {r1.summary}\n  run2: {r2.summary}"
         )

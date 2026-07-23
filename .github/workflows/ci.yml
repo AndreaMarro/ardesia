@@ -21,6 +21,8 @@ jobs:
         working-directory: apps/studio
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
@@ -43,9 +45,13 @@ jobs:
         working-directory: packages/engine
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
-      - name: pytest (live tests self-skip without API keys)
-        run: uv run pytest -q
+      # -rs stampa ogni skip con la sua ragione: il check resta verde solo con
+      # lo skip DICHIARATO nel log, mai con una copertura sparita in silenzio.
+      - name: pytest (skip dei test live esplicito senza API key)
+        run: uv run pytest -q -rs
 
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
@@ -54,6 +60,9 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
+          # Gli step seguenti eseguono script versionati nella PR: nessun
+          # GITHUB_TOKEN deve restare leggibile nella config git.
+          persist-credentials: false
       - name: NUL scan (tracked text files)
         run: python3 bin/ci/nul_scan.py
       - name: secret scan (high-confidence patterns)
@@ -66,11 +75,17 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           BASE_REF: ${{ github.base_ref }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           # niente --depth=1: su clone full (fetch-depth: 0) il fetch shallow
           # innesta il tip di main senza parent -> merge-base vuoto quando la
           # PR e' stale vs main -> "fatal: bad revision ''" (visto su #94).
-          git fetch origin "$BASE_REF"
+          # Repo privato: il fetch ha bisogno di credenziale. La si monta qui e
+          # la si smonta subito, cosi' nessuno step successivo puo' leggerla.
+          trap 'git config --local --unset-all "http.https://github.com/.extraheader" || true' EXIT
+          git config --local "http.https://github.com/.extraheader" \
+            "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')"
+          git fetch --no-tags origin "$BASE_REF"
           base="$(git merge-base "origin/$BASE_REF" HEAD)"
           test -n "$base" || { echo "merge-base vuoto: origin/$BASE_REF vs HEAD" >&2; exit 1; }
           # sim/solver/engine è vendored byte-identico da ELAB (drift-guard

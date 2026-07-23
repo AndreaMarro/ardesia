@@ -174,11 +174,17 @@ export function looksLikeJournalEnvelopeV2(value: unknown): boolean {
   return Object.keys(value).some((key) => ENVELOPE_HINT_KEYS.has(key))
 }
 
-export function looksLikeRawJournalEnvelopeV2(raw: string): boolean {
-  const hintedKey = [...ENVELOPE_HINT_KEYS]
+// Compilata una volta sola: looksLikeRawJournalEnvelopeV2 è invocata riga per
+// riga (anche da embeddedIdentity su lessonBundle), quindi ricostruire il
+// pattern a ogni chiamata sarebbe un costo per-riga sull'intero journal.
+const RAW_ENVELOPE_HINT_RE = new RegExp(
+  `"(?:${[...ENVELOPE_HINT_KEYS]
     .map((key) => key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-    .join("|")
-  return new RegExp(`"(?:${hintedKey})"\\s*:`).test(raw)
+    .join("|")})"\\s*:`,
+)
+
+export function looksLikeRawJournalEnvelopeV2(raw: string): boolean {
+  return RAW_ENVELOPE_HINT_RE.test(raw)
 }
 
 function assertExactKeys(value: JsonObject, keys: readonly string[], context: string): void {
