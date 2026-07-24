@@ -1,4 +1,54 @@
 {
   "schema_version": 1,
-  "violations": []
+  "violations": [
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/RecapView.tsx",
+      "line": 54,
+      "pattern": "\\bcreateEventLogStore\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/ElabLab.tsx",
+      "line": 160,
+      "pattern": "\\bcreateEventLogStore\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/MultiPostitWorkbench.tsx",
+      "line": 99,
+      "pattern": "\\??\\.append(?:Envelope)?\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/TeacherDashboardView.tsx",
+      "line": 80,
+      "pattern": "\\??\\.append(?:Envelope)?\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/TeacherDashboardView.tsx",
+      "line": 54,
+      "pattern": "\\bcreateEventLogStore\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/TeacherDashboardView.tsx",
+      "line": 60,
+      "pattern": "\\bcreateEventLogStore\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    },
+    {
+      "rule": "LESSONOS-SINGLE-WRITER",
+      "file": "apps/studio/src/design/TeacherDashboardView.tsx",
+      "line": 79,
+      "pattern": "\\bcreateEventLogStore\\s*\\(",
+      "port": "la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); le viste ricevono una porta di lettura e emettono comandi"
+    }
+  ]
 }

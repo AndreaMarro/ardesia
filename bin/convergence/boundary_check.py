@@ -99,6 +99,35 @@ RULES: tuple[Rule, ...] = (
         forbidden=(r"store/drivers/fsa", r"store/drivers/localStorage"),
     ),
     Rule(
+        name="LESSONOS-SINGLE-WRITER",
+        description="una vista costruisce lo store degli eventi o vi scrive",
+        port="la storia mutabile ha UN solo scrittore (lessonos/ + toolhost/host.ts); "
+             "le viste ricevono una porta di lettura e emettono comandi",
+        path_globs=(
+            "apps/studio/src/design/**",
+            "apps/studio/src/RecapView.tsx",
+            "apps/studio/src/ReplayView.tsx",
+            "apps/studio/src/SavedLessonsPanel.tsx",
+        ),
+        forbidden=(
+            r"\bcreateEventLogStore\s*\(",
+            r"\bnew\s+IndexedDbEventLog\b",
+            r"\??\.append(?:Envelope)?\s*\(",
+        ),
+    ),
+    Rule(
+        name="PROJECTION-NO-MUTATION",
+        description="una proiezione scrive invece di ricostruire",
+        port="le proiezioni sono pure: leggono il log append-only e ritornano "
+             "una vista ricostruibile; la mutazione appartiene allo scrittore",
+        path_globs=("apps/studio/src/lessonos/*Projection.ts",),
+        forbidden=(
+            r"\??\.append(?:Envelope)?\s*\(",
+            r"\bcreateEventLogStore\s*\(",
+            r"\bnew\s+IndexedDbEventLog\b",
+        ),
+    ),
+    Rule(
         name="PLUGIN-NO-LESSONOS-STORAGE",
         description="un plugin scrive direttamente lo storage LessonOS",
         port="i plugin usano la porta eventi dell'host, non lo store",

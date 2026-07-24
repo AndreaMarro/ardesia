@@ -67,6 +67,53 @@ class BoundaryNegativeControls(unittest.TestCase):
         )
         self.assertTrue(any(x["rule"] == "PLUGIN-NO-LESSONOS-STORAGE" for x in v), v)
 
+    def test_view_building_event_store_caught(self) -> None:
+        v = self._scan_one(
+            "apps/studio/src/design/TeacherDashboardView.tsx",
+            "const store = await createEventLogStore()\n",
+        )
+        self.assertTrue(any(x["rule"] == "LESSONOS-SINGLE-WRITER" for x in v), v)
+
+    def test_view_appending_caught(self) -> None:
+        v = self._scan_one(
+            "apps/studio/src/design/TeacherDashboardView.tsx",
+            "await store.append(event)\n",
+        )
+        self.assertTrue(any(x["rule"] == "LESSONOS-SINGLE-WRITER" for x in v), v)
+
+    def test_view_optional_chained_append_caught(self) -> None:
+        # `eventLog?.append(...)` e' esattamente la forma usata oggi in
+        # MultiPostitWorkbench: se il regex non la coglie, il gate e' cieco
+        # proprio sul caso reale.
+        v = self._scan_one(
+            "apps/studio/src/design/MultiPostitWorkbench.tsx",
+            "void eventLog?.append(makeEvent())\n",
+        )
+        self.assertTrue(any(x["rule"] == "LESSONOS-SINGLE-WRITER" for x in v), v)
+
+    def test_view_receiving_injected_factory_passes(self) -> None:
+        # iniettare la factory NON e' costruire lo store: la vista resta
+        # testabile e non sceglie il driver. E' il rimedio, non la violazione.
+        v = self._scan_one(
+            "apps/studio/src/design/SavedLessonsView.tsx",
+            "export function View({ eventLogFactory = createEventLogStore }) {}\n",
+        )
+        self.assertEqual(v, [], v)
+
+    def test_projection_mutating_caught(self) -> None:
+        v = self._scan_one(
+            "apps/studio/src/lessonos/teacherDashboardProjection.ts",
+            "await store.append(derivedEvent)\n",
+        )
+        self.assertTrue(any(x["rule"] == "PROJECTION-NO-MUTATION" for x in v), v)
+
+    def test_projection_reading_passes(self) -> None:
+        v = self._scan_one(
+            "apps/studio/src/lessonos/continuityProjection.ts",
+            "const rows = envelopes.filter((e) => e.seq > since)\n",
+        )
+        self.assertEqual(v, [], v)
+
     def test_clean_file_passes(self) -> None:
         v = self._scan_one(
             "apps/studio/src/lessonos/continuityLoader.ts",
