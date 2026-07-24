@@ -34,14 +34,16 @@ Quindi qui c'è tutto ciò che serve per decidere in cinque minuti, e la decisio
 resta dov'è. Il gate `license_inventory.py` continuerà a uscire **1** finché il
 file non esiste: è voluto, ed è l'unico rosso residuo del programma.
 
-## Stato misurato oggi
+## Stato misurato **prima** della decisione
 
-| Elemento | Stato |
+Fotografia che ha motivato la scelta; l'esito è in cima al documento.
+
+| Elemento | Stato allora |
 |---|---|
-| `LICENSE` root | **assente** |
-| `NOTICE` root | **assente** |
-| `package.json` root | nessuna licenza dichiarata |
-| `apps/studio/package.json` | nessuna licenza dichiarata |
+| `LICENSE` root | **assente** → ora presente |
+| `NOTICE` root | **assente** → ora generato |
+| `package.json` root | nessuna licenza dichiarata → `UNLICENSED` |
+| `apps/studio/package.json` | nessuna licenza dichiarata → `UNLICENSED` |
 | `plugins/elab-tutor/package.json` | `UNLICENSED` |
 | `ops/tools/package.json` | `ISC` |
 | Dipendenze installate | **440** |
