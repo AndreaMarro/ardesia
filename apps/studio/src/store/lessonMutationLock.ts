@@ -242,6 +242,19 @@ export function createWebLocksMutationLockBroker(
   return new WebLocksMutationLockBroker(locks)
 }
 
+/**
+ * Broker in-process ISOLATO (safety `local-only`), stessa implementazione del
+ * fallback di default ma con stato proprio.
+ *
+ * Serve dove la condivisione dello stato falserebbe la misura: il coordinator
+ * non è reentrante, quindi un'attesa circolare lascia il lock di workspace
+ * preso per sempre. Con il broker di default — che è un singleton di modulo —
+ * quel blocco si propaga a chiunque altro lo usi nello stesso realm.
+ */
+export function createInProcessMutationLockBroker(): MutationLockBroker {
+  return new InProcessMutationLockBroker()
+}
+
 class DefaultLessonMutationCoordinator implements LessonMutationCoordinator {
   readonly safety: MutationSafety
   private readonly broker: MutationLockBroker
