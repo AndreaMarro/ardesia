@@ -681,8 +681,42 @@ export class WorkspaceStore {
     return buildLessonExport(this, validRoom, lessonOsLog)
   }
 
+  /**
+   * Facade con la porta driver GREZZA: `write`/`delete` vanno diritte al driver
+   * senza riacquisire il lock di path.
+   *
+   * Da usare SOLO dentro una lease già presa (ADR-0006). Il coordinator non è
+   * reentrante: una `withPathMutation` annidata dentro `withWorkspaceExclusive`
+   * non si stabilizza mai, ed è dimostrato in
+   * `__tests__/LessonMutationReentrancy.test.ts`.
+   *
+   * È una facade e non un flag di istanza perché il flag resterebbe attivo per
+   * chiunque usi lo store nel frattempo: qui solo chi riceve questo oggetto
+   * scrive grezzo, tutti gli altri continuano a passare dai lock.
+   */
+  private leasedStore(): WorkspaceStore {
+    const owner = this
+    const leased = Object.create(this) as WorkspaceStore
+    Object.defineProperties(leased, {
+      write: {
+        value: (path: string, data: Blob): Promise<void> => owner.driver.write(path, data),
+      },
+      delete: {
+        value: (path: string): Promise<void> => owner.driver.delete(path),
+      },
+    })
+    return leased
+  }
+
   async importLessonBlob(blob: Blob, lessonOsLog?: EventLogStore | null): Promise<ImportLessonResult> {
-    return parseLessonImport(this, blob, lessonOsLog)
+    // L'import è una transazione: o tiene il workspace per intero, o un altro
+    // scrittore può infilarsi fra un file e il successivo. La transazione di
+    // `lessonImportTransaction.ts` è sempre stata atomica sul CONTENUTO
+    // (stage, backup, verifica byte, rollback); questa lease la rende atomica
+    // anche nel TEMPO.
+    return this.mutationCoordinator.withWorkspaceExclusive(
+      () => parseLessonImport(this.leasedStore(), blob, lessonOsLog),
+    )
   }
 
   async importLessonBlobForRoom(
@@ -692,13 +726,18 @@ export class WorkspaceStore {
     legacyClaim: NonNullable<ImportLessonOptions["legacyClaim"]> = { userConfirmed: true },
   ): Promise<ImportLessonResult> {
     const validRoom = validateRoomId(room)
-    const result = await parseLessonImport(this, blob, lessonOsLog, {
-      destinationLessonId: validRoom,
-      legacyClaim,
+    return this.mutationCoordinator.withWorkspaceExclusive(async () => {
+      const leased = this.leasedStore()
+      const result = await parseLessonImport(leased, blob, lessonOsLog, {
+        destinationLessonId: validRoom,
+        legacyClaim,
+      })
+      // Ancora dentro la lease: la cache della scena legacy deve riflettere i
+      // byte appena promossi prima che qualcun altro possa scrivere.
+      const importedScene = await this.read(roomPaths(validRoom).scene)
+      if (importedScene) this.fallback.setLegacyScene(validRoom, await importedScene.text())
+      return result
     })
-    const importedScene = await this.read(roomPaths(validRoom).scene)
-    if (importedScene) this.fallback.setLegacyScene(validRoom, await importedScene.text())
-    return result
   }
 
   async previewLessonBlobForRoom(
@@ -716,7 +755,12 @@ export class WorkspaceStore {
   async recoverPendingLessonImport(
     lessonOsLog?: EventLogStore | null,
   ): Promise<LessonOsRestoreStatus | null> {
-    return recoverLessonImport(this, lessonOsLog)
+    // La recovery muta lo stesso stato dell'import (rollback, finalize, pulizia
+    // dello stage): tiene la stessa lease, o due recovery concorrenti — o una
+    // recovery e un import — si calpesterebbero.
+    return this.mutationCoordinator.withWorkspaceExclusive(
+      () => recoverLessonImport(this.leasedStore(), lessonOsLog),
+    )
   }
 }
 

@@ -1,6 +1,6 @@
 # ADR-0006 — Ordine dei lock e transazione dell'import `.lesson`
 
-- **Stato**: PROPOSED (ratifica = Andrea; nessun macro-import implementato qui)
+- **Stato**: PARTIALLY IMPLEMENTED (ratifica dell'ordine = Andrea; lease e porta grezza eseguite il 24-07)
 - **Data**: 2026-07-24
 - **Programma**: convergenza a dieci azioni — Action 7
 - **Base misurata**: `4d697f5e`
@@ -95,11 +95,57 @@ valida tutti gli input
 - schema futuro → nessun downgrade silenzioso;
 - import fallito → i byte precedenti restano identici.
 
-## Cosa questo ADR NON fa
+## Stato di implementazione (aggiornato il 24-07, dopo la stesura)
 
-Non implementa il macro-import, non introduce `withLessonImport`, non cambia il
-comportamento del coordinator. Congela il fatto e fissa l'ordine: sono le due
-cose che devono esistere *prima* di scrivere la transazione, non dopo.
+Il primo passo è stato eseguito: **l'import possiede la lease di workspace per
+intero e scrive attraverso la porta driver grezza.**
+
+Prima, ogni file dell'import passava da `store.write()`, che prende e rilascia
+il lock di path uno alla volta: fra un file e il successivo un altro scrittore
+poteva infilarsi. La transazione era atomica sul *contenuto* — stage, backup,
+verifica byte-a-byte, rollback — ma non nel *tempo*.
+
+Il rimedio non poteva essere avvolgere l'import in `withWorkspaceExclusive`
+lasciando dentro le `write` pubbliche: quello deadlocca, ed è il fatto
+dimostrato in cima a questo documento. Serve la lease **e** la porta grezza.
+`WorkspaceStore.leasedStore()` è una facade, non un flag di istanza: un flag
+resterebbe attivo per chiunque usi lo store nel frattempo, mentre così solo chi
+riceve quell'oggetto scrive grezzo.
+
+Coperti dalla lease: `importLessonBlob`, `importLessonBlobForRoom` (inclusa la
+cache della scena legacy, che va aggiornata prima che qualcun altro possa
+scrivere) e `recoverPendingLessonImport` — la recovery muta lo stesso stato,
+quindi due recovery concorrenti, o una recovery e un import, si
+calpesterebbero.
+
+Prova: `__tests__/LessonImportIsolation.test.ts`, **5/5**, osservati **4 rossi
+su 5** prima della modifica. I test leggono il *ledger dei lock*, non i tempi:
+nessuna corsa, nessun flake. Verificano una sola lease esclusiva, **zero**
+riacquisizioni al suo interno, nessun rilascio a metà strada, e un intruso che
+entra solo dopo l'uscita.
+
+Nota di metodo, perché è il tipo di errore che rende verde un test inutile: il
+primo ledger era un broker semplificato scritto a mano, e non accodava le
+richieste `shared` dietro uno scrittore esclusivo — l'intruso "passava" anche
+quando la lease funzionava. Ora il ledger **delega al broker di produzione** e
+si limita a registrare. Un oracolo che diverge dall'originale misura sé stesso.
+
+`npm run verify` exit 0: engine 2044/7 skipped, studio 1989 passed / 5 skipped,
+typecheck 0, build 0.
+
+### Ancora aperto
+
+- **fencing token** per lezione/sessione: non implementato. Uno scrittore
+  sopravvissuto a un reload può ancora promuovere byte vecchi;
+- **rifiuto dell'aliasing di case prima della mutazione** su storage
+  case-insensitive: non implementato. Il nome del lock già fonde `RoomA` e
+  `rooma` (test presente), ma la transazione non rifiuta l'alias in ingresso;
+- **`withLessonImport`** come primitiva del coordinator: non introdotta. Oggi
+  l'ordine è posseduto da `WorkspaceStore`, non dal coordinator;
+- i controlli negativi elencati sotto (ZIP troncato, fallimento su ogni arco,
+  schema futuro) **non** sono ancora tutti coperti.
+
+R6 è ridotto, non chiuso.
 
 ## Conseguenze
 
