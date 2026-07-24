@@ -43,6 +43,8 @@ run "license inventory negative controls" python3 bin/convergence/test_inventory
 # Il manifest si EMETTE solo dove esiste un dist (job di build / release umano);
 # qui giro i controlli negativi, che non hanno bisogno di artefatti reali.
 run "release manifest negative controls" python3 bin/convergence/test_release.py
+run "plugin trust negative controls"    python3 bin/convergence/test_plugin_trust.py
+run "plugin trust source invariants"    python3 bin/convergence/plugin_trust.py --check-source
 
 # ratchet: il conteggio lint lo fornisce la CI; senza, controlla solo i tetti LOC.
 run "ratchet (monolith LOC ceilings)"   python3 bin/convergence/ratchet.py

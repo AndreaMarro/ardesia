@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "comment": [
+    "Modi di acquisizione dei plugin e controlli che ciascuno puo' ONESTAMENTE",
+    "fornire. Derivato firsthand dal codice su 4d697f5e:",
+    "- builtin-compiled: apps/studio/src/toolhost/founderBetaPlugin.ts dichiara",
+    "  esplicitamente che 'builtin-reviewed' e' un'etichetta di provenienza e NON",
+    "  l'esito di una verifica crittografica al mount;",
+    "- installed-signed: apps/studio/src/toolhost/installer.ts verifica la firma",
+    "  ed25519 del manifest (WebCrypto) e, quando il manifest firmato impegna",
+    "  integrity.bundleSha256, confronta il digest del bundle consegnato.",
+    "Un receipt che rivendica un controllo fuori da 'provides' viene RIFIUTATO."
+  ],
+  "acquisition_modes": {
+    "builtin-compiled": {
+      "trust_tier": "builtin-reviewed",
+      "provides": [
+        "bundled-in-studio-build",
+        "human-review",
+        "manifest-boundary-assertions",
+        "closed-allowlist"
+      ],
+      "requires_source_sha": true,
+      "requires_bundle_digest": false
+    },
+    "installed-signed": {
+      "trust_tier": "publisher-signed",
+      "provides": [
+        "manifest-signature-ed25519",
+        "bundle-digest-sha256",
+        "kill-list",
+        "capability-gate"
+      ],
+      "requires_source_sha": false,
+      "requires_bundle_digest": true
+    }
+  },
+  "source_invariants": {
+    "apps/studio/src/toolhost/founderBetaPlugin.ts": {
+      "FOUNDER_BETA_PLUGIN_TRUST_TIER": "builtin-reviewed"
+    }
+  }
+}
