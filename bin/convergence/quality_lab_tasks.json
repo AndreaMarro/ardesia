@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "comment": [
+    "Task derivati da FALLIMENTI REALMENTE OSSERVATI, non inventati per fare",
+    "numero. Ogni task ha un grader deterministico che oggi esiste e gira, e un",
+    "controllo negativo che e' stato visto fallire davvero: e' quello che",
+    "distingue una misura da un test teatrale.",
+    "Il design chiedeva 30 task. Qui ce ne sono 10, uno per fallimento",
+    "documentato. Venti task fabbricati misurerebbero la fantasia di chi li",
+    "scrive, non il sistema."
+  ],
+  "forbidden_classes": [
+    "lessonos-authority",
+    "trust-model",
+    "schema-semantics",
+    "lesson-methodology",
+    "history-deletion",
+    "merge",
+    "release"
+  ],
+  "protected_paths": [
+    "bin/convergence/",
+    ".github/workflows/",
+    "docs/adr/"
+  ],
+  "tasks": [
+    {
+      "id": "QL-01-flat-path-read",
+      "title": "Un lettore session-scoped torna a leggere i path flat globali",
+      "class": "boundary",
+      "derived_from": "Blocker B1/B2 del 23-07: export .lesson e Continuita' leggevano i path flat globali mentre gli scrittori erano gia' room-scoped. Ogni suite era verde perche' seminava da se' il path legacy.",
+      "grader": "python3 bin/convergence/boundary_check.py",
+      "negative_control": "iniettare store.readAll() in un reader continuity* reale: exit 1 con regola e port",
+      "observed_red": true
+    },
+    {
+      "id": "QL-02-sha-named-evidence",
+      "title": "L'evidenza viene nominata con lo SHA del commit che la produce",
+      "class": "evidence-hygiene",
+      "derived_from": "PR Chromatic #194-#197 (23-07): nome nuovo -> tree nuovo -> patch-id diverso a ogni retry. Punto fisso che non converge.",
+      "grader": "python3 bin/convergence/evidence_guard.py",
+      "negative_control": "creare docs/ops/evidence/records/<40hex>.json: exit 1",
+      "observed_red": true
+    },
+    {
+      "id": "QL-03-import-nesting-deadlock",
+      "title": "Il macro-import annida withPathMutation dentro withWorkspaceExclusive",
+      "class": "concurrency",
+      "derived_from": "Nota di review del 23-07 sul deadlock di withWorkspaceExclusive, riprodotta il 24-07 sul broker in-process reale.",
+      "grader": "npx vitest run src/__tests__/LessonMutationReentrancy.test.ts",
+      "negative_control": "l'outer non si stabilizza in 50 giri di macrotask e il lock resta preso per tutto il realm",
+      "observed_red": true
+    },
+    {
+      "id": "QL-04-lint-scope-swap",
+      "title": "Il conteggio lint cambia albero e il numero piu' basso passa per miglioramento",
+      "class": "measurement-integrity",
+      "derived_from": "Misura del 24-07: eslint . = 258, eslint src = 237. Senza scope dichiarato il perimetro piu' stretto sembra un progresso.",
+      "grader": "python3 bin/convergence/ratchet.py --lint-json <report> --lint-scope <scope>",
+      "negative_control": "conteggio 12 con scope diverso dalla baseline: exit 1 nonostante sia piu' basso",
+      "observed_red": true
+    },
+    {
+      "id": "QL-05-guest-dep-enters-bundle",
+      "title": "Una dipendenza standalone dell'ospite entra nel grafo di produzione",
+      "class": "dependency-surface",
+      "derived_from": "Superficie misurata il 24-07: 2 dipendenze su 35 raggiungibili dagli entry point dell'host. Lo strangler si inverte in silenzio se nessuno la sorveglia.",
+      "grader": "python3 bin/convergence/guest_deps.py",
+      "negative_control": "importare express dall'entry: exit 1 con 'promossa da standalone-only'",
+      "observed_red": true
+    },
+    {
+      "id": "QL-06-builtin-claims-crypto",
+      "title": "Un plugin built-in rivendica una verifica crittografica che non esegue",
+      "class": "trust-consistency",
+      "derived_from": "founderBetaPlugin.ts dichiara che 'builtin-reviewed' non e' l'esito di una verifica al mount. La distinzione viveva solo nei commenti.",
+      "grader": "python3 bin/convergence/plugin_trust.py --check-source",
+      "negative_control": "tier promosso a 'verified' nel sorgente senza cambiare il registro: exit 1",
+      "observed_red": true
+    },
+    {
+      "id": "QL-07-stale-dist-as-candidate",
+      "title": "Un artefatto costruito da un altro SHA passa per candidato corrente",
+      "class": "release-identity",
+      "derived_from": "Rischio R2 e misura del 24-07: dist costruito da ad8f0f9f mentre HEAD era ef955563.",
+      "grader": "python3 bin/convergence/release_manifest.py --check <manifest> --dist <dist>",
+      "negative_control": "manifest emesso su dist stale: rifiutato per provenance assente e albero sporco",
+      "observed_red": true
+    },
+    {
+      "id": "QL-08-view-becomes-writer",
+      "title": "Una vista costruisce lo store degli eventi o vi appende",
+      "class": "boundary",
+      "derived_from": "Sette violazioni misurate il 24-07 (TeacherDashboardView, ElabLab, MultiPostitWorkbench, RecapView), una delle quali in scrittura.",
+      "grader": "python3 bin/convergence/boundary_check.py",
+      "negative_control": "createEventLogStore() iniettata in SavedLessonsView: exit 1",
+      "observed_red": true
+    },
+    {
+      "id": "QL-09-projection-mutates",
+      "title": "Una proiezione scrive invece di ricostruire",
+      "class": "boundary",
+      "derived_from": "Le tre proiezioni oggi non scrivono: l'invariante regge ma finora nulla lo teneva.",
+      "grader": "python3 bin/convergence/boundary_check.py",
+      "negative_control": "store.append() in teacherDashboardProjection: PROJECTION-NO-MUTATION",
+      "observed_red": true
+    },
+    {
+      "id": "QL-10-unsafe-worktree-removal",
+      "title": "Una worktree con dati non tracciati viene proposta per la rimozione automatica",
+      "class": "data-safety",
+      "derived_from": "64 worktree censite; il control plane propone disposizioni e non deve mai proporre la rimozione di lavoro irrecuperabile.",
+      "grader": "python3 bin/convergence/test_state.py",
+      "negative_control": "worktree dirty/untracked/con commit non raggiungibili mai auto_removable",
+      "observed_red": true
+    }
+  ]
+}

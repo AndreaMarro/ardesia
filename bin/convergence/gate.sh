@@ -47,9 +47,11 @@ run "plugin trust negative controls"    python3 bin/convergence/test_plugin_trus
 run "plugin trust source invariants"    python3 bin/convergence/plugin_trust.py --check-source
 run "guest dependency negative controls" python3 bin/convergence/test_guest_deps.py
 run "guest dependency ratchet (ELAB)" python3 bin/convergence/guest_deps.py
+run "quality lab negative controls"     python3 bin/convergence/test_quality_lab.py
+run "quality lab task registry"         python3 bin/convergence/quality_lab.py
 
 # ratchet: il conteggio lint lo fornisce la CI; senza, controlla solo i tetti LOC.
-run "ratchet (monolith LOC ceilings)"   python3 bin/convergence/ratchet.py
+run "ratchet (monolith loc/fan_out/exports)" python3 bin/convergence/ratchet.py
 
 # inventario licenze: bloccante solo in --strict (la LICENSE e' D-2 umana).
 if [[ "$STRICT" == "--strict" ]]; then
