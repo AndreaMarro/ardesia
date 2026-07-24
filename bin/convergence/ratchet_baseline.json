@@ -1,9 +1,17 @@
 {
   "monoliths": {
-    "apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx": 2943,
-    "apps/studio/src/Room.tsx": 1119
+    "apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx": {
+      "loc": 2943,
+      "fan_out": 20,
+      "exports": 46
+    },
+    "apps/studio/src/Room.tsx": {
+      "loc": 1119,
+      "fan_out": 29,
+      "exports": 1
+    }
   },
   "lint_errors_max": 258,
   "lint_scope": "apps/studio: npx eslint . --format json",
-  "schema_version": 1
+  "schema_version": 2
 }

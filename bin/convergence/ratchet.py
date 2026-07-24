@@ -2,12 +2,25 @@
 """ARDESIA Convergence — ratchet sticky su debito misurabile (Action 2).
 
 Impedisce che il debito cresca in SILENZIO, senza obbligare a ripagarlo subito.
-Due tetti:
 
-- LOC dei monoliti: calcolata direttamente dallo script (nessun toolchain).
-  Il tetto e' il valore alla baseline; il file non puo' crescere oltre. Ridurre
-  e' permesso e puo' abbassare il tetto con --update-baseline.
-- errori di lint: il conteggio viene FORNITO dalla CI, o come intero
+- **metriche dei monoliti** (Action 8): `loc`, `fan_out`, `exports`, calcolate
+  direttamente dallo script. Il tetto e' il valore alla baseline; ridurre e'
+  permesso e puo' abbassare il tetto con --update-baseline.
+
+  Misurato il 24-07 sui due monoliti — i numeri raccontano due malattie diverse:
+
+  | file | loc | fan_out | exports |
+  |---|---|---|---|
+  | `toolhost/ToolCanvasEmbeddable.tsx` | 2943 | 20 | **46** |
+  | `Room.tsx` | 1119 | **29** | 1 |
+
+  ToolCanvas ha una superficie pubblica enorme: 46 dichiarazioni esportate da
+  cui chiunque puo' dipendere. Room importa quasi il doppio dei moduli ma
+  esporta una cosa sola: e' un orchestratore, non una libreria. Estrarre da
+  ToolCanvas significa ridurre `exports`; da Room, ridurre `fan_out`. Sulla sola
+  LOC le due sembrerebbero lo stesso problema.
+
+- **errori di lint**: il conteggio viene FORNITO dalla CI, o come intero
   (--lint-errors N) o come report eslint gia' prodotto (--lint-json FILE). Lo
   script non esegue mai eslint: resta standard-library e veloce. Tetto sticky.
 
@@ -23,22 +36,68 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
 BASELINE_PATH = "bin/convergence/ratchet_baseline.json"
+SCHEMA_VERSION = 2
 
-# File monolitici sorvegliati. LOC come tetto sticky e segnale secondario:
-# il vero obiettivo (design Action 8) e' ridurre accoppiamento e responsabilita',
-# non la sola lunghezza. Il tetto serve a impedire la crescita mentre si decompone.
+# File monolitici sorvegliati. LOC e' il segnale SECONDARIO: si puo' abbassare
+# spostando righe altrove senza guadagnare nulla. I due segnali che contano
+# (design Action 8) misurano quanto bisogna sapere per toccare il file:
+#
+# - fan_out  = quanti moduli distinti importa: quante altre cose devi capire;
+# - exports  = quanto e' larga la sua superficie pubblica: quanti altri file
+#              possono dipendere da un suo dettaglio.
+#
+# Un'estrazione riuscita abbassa fan_out o exports. Un'estrazione che sposta
+# soltanto righe abbassa la LOC e lascia gli altri due dove stanno: il ratchet
+# rende visibile la differenza invece di premiare lo spostamento.
 MONOLITHS = (
     "apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx",
     "apps/studio/src/Room.tsx",
 )
 
+_IMPORT_SPECIFIER = re.compile(
+    r"""(?:^|\s)(?:import|export)\s[^'"]*?from\s*['"]([^'"]+)['"]"""
+    r"""|(?:^|\s)import\s*['"]([^'"]+)['"]"""
+    r"""|\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)""",
+    re.MULTILINE,
+)
+_EXPORT = re.compile(
+    r"^export\s+(?:default\s+|const\s|let\s|var\s|function\s|async\s+function\s"
+    r"|class\s|type\s|interface\s|enum\s|\{)",
+    re.MULTILINE,
+)
+
 
 def _loc(path: Path) -> int:
     return len(path.read_text(encoding="utf-8", errors="replace").splitlines())
+
+
+def _fan_out(text: str) -> int:
+    """Moduli distinti importati dal file."""
+    specifiers: set[str] = set()
+    for groups in _IMPORT_SPECIFIER.findall(text):
+        for g in groups:
+            if g:
+                specifiers.add(g)
+    return len(specifiers)
+
+
+def _exports(text: str) -> int:
+    """Dichiarazioni esportate: ampiezza della superficie pubblica."""
+    return len(_EXPORT.findall(text))
+
+
+def file_metrics(path: Path) -> dict:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    return {
+        "loc": len(text.splitlines()),
+        "fan_out": _fan_out(text),
+        "exports": _exports(text),
+    }
 
 
 def lint_errors_from_report(text: str) -> int:
@@ -65,8 +124,15 @@ def current_metrics(root: Path) -> dict:
     for rel in MONOLITHS:
         p = root / rel
         if p.is_file():
-            monoliths[rel] = _loc(p)
+            monoliths[rel] = file_metrics(p)
     return {"monoliths": monoliths}
+
+
+def _ceilings(entry) -> dict:
+    """Legge un tetto sia in schema 1 (intero = LOC) sia in schema 2 (dict)."""
+    if isinstance(entry, int):
+        return {"loc": entry}
+    return entry if isinstance(entry, dict) else {}
 
 
 def load_baseline(root: Path) -> dict:
@@ -92,12 +158,20 @@ def check(root: Path, lint_errors: int | None, lint_scope: str | None = None) ->
 
     base_mono = baseline.get("monoliths", {})
     cur = current_metrics(root)["monoliths"]
-    for rel, loc in cur.items():
-        ceiling = base_mono.get(rel)
-        if ceiling is None:
+    for rel, metrics in cur.items():
+        ceilings = _ceilings(base_mono.get(rel))
+        if not ceilings:
             failures.append(f"{rel}: nessun tetto in baseline (rigenera con --update-baseline)")
-        elif loc > ceiling:
-            failures.append(f"{rel}: LOC {loc} > tetto {ceiling} (+{loc - ceiling})")
+            continue
+        for metric, value in metrics.items():
+            ceiling = ceilings.get(metric)
+            if ceiling is None:
+                failures.append(
+                    f"{rel}: metrica '{metric}' senza tetto in baseline "
+                    "(rigenera con --update-baseline)")
+            elif value > ceiling:
+                failures.append(
+                    f"{rel}: {metric} {value} > tetto {ceiling} (+{value - ceiling})")
 
     if lint_errors is not None:
         lint_ceiling = baseline.get("lint_errors_max")
@@ -152,7 +226,7 @@ def main(argv: list[str] | None = None) -> int:
                       "--lint-scope", file=sys.stderr)
                 return 1
             base["lint_scope"] = args.lint_scope
-        base["schema_version"] = 1
+        base["schema_version"] = SCHEMA_VERSION
         (root / BASELINE_PATH).write_text(
             json.dumps(base, indent=2, ensure_ascii=False) + "\n")
         print(f"ratchet: baseline aggiornata -> {BASELINE_PATH}")
