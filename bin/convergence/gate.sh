@@ -45,6 +45,8 @@ run "license inventory negative controls" python3 bin/convergence/test_inventory
 run "release manifest negative controls" python3 bin/convergence/test_release.py
 run "plugin trust negative controls"    python3 bin/convergence/test_plugin_trust.py
 run "plugin trust source invariants"    python3 bin/convergence/plugin_trust.py --check-source
+run "guest dependency negative controls" python3 bin/convergence/test_guest_deps.py
+run "guest dependency ratchet (ELAB)" python3 bin/convergence/guest_deps.py
 
 # ratchet: il conteggio lint lo fornisce la CI; senza, controlla solo i tetti LOC.
 run "ratchet (monolith LOC ceilings)"   python3 bin/convergence/ratchet.py

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "comment": "Chiusura transitiva statica dagli entry point consumati dall'host. in_founder_bundle puo' solo restringersi; ogni dipendenza dichiarata deve comparire in una delle due liste.",
+  "entry_points": [
+    "src/plugin/renderEmbeddable",
+    "src/data/experiments-vol1",
+    "src/data/experiments-index",
+    "src/data/experiment-visibility"
+  ],
+  "in_founder_bundle": [
+    "react",
+    "react-dom"
+  ],
+  "standalone_only": [
+    "@codemirror/autocomplete",
+    "@codemirror/commands",
+    "@codemirror/lang-cpp",
+    "@codemirror/language",
+    "@codemirror/lint",
+    "@codemirror/search",
+    "@codemirror/state",
+    "@codemirror/view",
+    "@react-pdf/renderer",
+    "@supabase/supabase-js",
+    "@vercel/analytics",
+    "@vercel/speed-insights",
+    "ai",
+    "avr8js",
+    "blockly",
+    "buffer",
+    "clsx",
+    "codemirror",
+    "cors",
+    "dfu",
+    "events",
+    "express",
+    "fast-xml-parser",
+    "html2canvas",
+    "i18next",
+    "i18next-browser-languagedetector",
+    "mammoth",
+    "mobile-drag-drop",
+    "react-i18next",
+    "react-pdf",
+    "recharts",
+    "uuid",
+    "zod"
+  ]
+}
