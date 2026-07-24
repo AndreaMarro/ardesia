@@ -13,9 +13,12 @@ bash bin/convergence/gate.sh            # tutti i gate T1 + controlli negativi
 bash bin/convergence/gate.sh --strict   # blocca anche sulla LICENSE assente (D-2)
 ```
 
-**Non** cablato in `.github/workflows/ci.yml`: aggiungere un required check e' un
-gate umano (design §10). Il runner esiste perche' la CI, quando l'umano lo decide,
-chiami una sola cosa.
+**Cablato** in `.github/workflows/ci.yml` come job `convergence` (D-8, 24-07). Gira
+su ogni PR e su push a `main`, e richiede `fetch-depth: 0` perche' `state.py`
+risolve la base su `origin/main`.
+
+Renderlo **required** resta un gate umano separato (design §10): cablare un job e'
+una modifica versionata e reversibile dentro la PR; cambiare il ruleset GitHub no.
 
 ## Action 1 — control plane
 
@@ -85,7 +88,8 @@ flat), intercettata a check-time invece che in review.
 | `test_gates.py` | controlli negativi di entrambi |
 
 ```bash
-python3 bin/convergence/ratchet.py --lint-errors 237   # gate; crescita -> exit 1
+python3 bin/convergence/ratchet.py --lint-json eslint.json \
+    --lint-scope "apps/studio: npx eslint . --format json"   # come in CI
 python3 bin/convergence/evidence_guard.py              # gate; file SHA-nominati -> exit 1
 python3 bin/convergence/test_gates.py                  # controlli negativi
 ```
@@ -93,6 +97,13 @@ python3 bin/convergence/test_gates.py                  # controlli negativi
 - **ratchet:** il tetto e' il valore alla baseline; superarlo fallisce, ridurlo e'
   permesso e puo' abbassare il tetto (`--update-baseline`). LOC e' segnale secondario:
   l'obiettivo vero (Action 8) e' ridurre accoppiamento, non lunghezza.
+- **scope del lint dichiarato (24-07):** il conteggio arriva dal report eslint, non
+  da un intero scritto a mano, e la baseline registra **quale comando** l'ha
+  prodotto. Misurato oggi: `eslint .` = **258**, `eslint src` = **237**. Sono alberi
+  diversi: il tetto e' `258` sullo scope piu' ampio (`eslint .`, quello di
+  `npm run lint`), che copre *strettamente piu'* file del precedente `237`. Un
+  conteggio con scope diverso — anche se **piu' basso** — fallisce il gate invece
+  di passare come miglioramento.
 - **evidence_guard:** il 23-07 ho misurato che i PR Chromatic #194-#197 non convergono
   perche' l'evidenza e' nominata con lo SHA del commit che la produce (nome nuovo -> tree
   nuovo -> patch-id diverso a ogni retry). Il guard rifiuta quel naming; rimedio:

@@ -30,6 +30,16 @@ jobs:
           cache-dependency-path: apps/studio/package-lock.json
       - run: npm ci --no-audit --no-fund
       - run: npm run typecheck
+      - name: eslint report + sticky debt ratchet
+        run: |
+          # eslint esce 1 sul debito noto: il verdetto lo da' il ratchet, non
+          # eslint. Se eslint CRASHA il report non viene scritto e il ratchet
+          # fallisce per "report assente" invece di leggere zero errori — cioe'
+          # una regressione della toolchain non si traveste da lint pulito.
+          npx eslint . --format json --output-file "$RUNNER_TEMP/eslint.json" || true
+          python3 ../../bin/convergence/ratchet.py \
+            --lint-json "$RUNNER_TEMP/eslint.json" \
+            --lint-scope "apps/studio: npx eslint . --format json"
       - name: vitest (deterministic profile)
         run: >
           npx vitest run
@@ -52,6 +62,19 @@ jobs:
       # lo skip DICHIARATO nel log, mai con una copertura sparita in silenzio.
       - name: pytest (skip dei test live esplicito senza API key)
         run: uv run pytest -q -rs
+
+  convergence:
+    name: convergence (control plane + boundaries + ratchet + inventory)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          # gate.sh e state.py risolvono la base su refs/remotes/origin/main:
+          # senza storia completa il gate girerebbe su una base che non e' quella.
+          fetch-depth: 0
+          persist-credentials: false
+      - name: convergence gates (Actions 1, 2, 3, 4, 5, 6, 10)
+        run: bash bin/convergence/gate.sh
 
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)

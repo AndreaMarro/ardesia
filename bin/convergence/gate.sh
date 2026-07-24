@@ -28,7 +28,11 @@ run() {  # run "descrizione" comando...
   fi
 }
 
-echo "== convergence gates (base $(git rev-parse --short=8 origin/main)) =="
+# La base e' origin/main. In CI serve un checkout con fetch-depth: 0, altrimenti
+# refs/remotes/origin/main non esiste e state.py fallisce esplicitamente: meglio
+# un errore leggibile qui che un gate che gira su una base che non e' quella.
+base_ref="$(git rev-parse --short=8 origin/main 2>/dev/null || echo 'origin/main ASSENTE')"
+echo "== convergence gates (base ${base_ref}) =="
 run "control-plane negative controls" python3 bin/convergence/test_state.py
 run "control-plane state self-validates" python3 bin/convergence/state.py --out /tmp/conv_state.json
 run "boundary negative controls"        python3 bin/convergence/test_boundary.py
