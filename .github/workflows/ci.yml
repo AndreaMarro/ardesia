@@ -73,7 +73,7 @@ jobs:
           # senza storia completa il gate girerebbe su una base che non e' quella.
           fetch-depth: 0
           persist-credentials: false
-      - name: convergence gates (Actions 1, 2, 3, 4, 5, 6, 10)
+      - name: convergence gates (Actions 1-6, 8, 9, 10)
         run: bash bin/convergence/gate.sh
 
   hygiene:

@@ -21,6 +21,11 @@ Piattaforma didattica **local-first** per docenti: lavagna minimal (solo il doce
 - **Studio:** `cd apps/studio` (npm) — gate: `bash apps/studio/eval/gate.sh`
 - **Plugin elab:** `cd plugins/elab-tutor` (npm)
 - **Fabbrica:** `ops/tools/` (factory-metrics.py, gate, bridge)
+- **Convergenza:** `bash bin/convergence/gate.sh` — confini architetturali, ratchet
+  del debito, superficie delle dipendenze dell'ospite, modello di fiducia dei
+  plugin, identita' di release, inventario licenze. Sola lettura, standard
+  library, gira in CI come job `convergence`. → `bin/convergence/README.md`,
+  stato: `docs/ops/ARDESIA-CONVERGENCE-TEN-ACTIONS-2026-07-24.md`
 
 ## Guardrail
 MAI toccare `eval/gate.sh` - MAI auto-merge a `main` - MAI deploy senza OK Andrea - GDPR (PII/corpus/secret fuori da repo/CI/nodi-agente) - moat-plugin(ELAB) != piattaforma(ARDESIA).

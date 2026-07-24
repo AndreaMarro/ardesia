@@ -95,8 +95,14 @@ python3 bin/convergence/test_gates.py                  # controlli negativi
 ```
 
 - **ratchet:** il tetto e' il valore alla baseline; superarlo fallisce, ridurlo e'
-  permesso e puo' abbassare il tetto (`--update-baseline`). LOC e' segnale secondario:
-  l'obiettivo vero (Action 8) e' ridurre accoppiamento, non lunghezza.
+  permesso e puo' abbassare il tetto (`--update-baseline`).
+- **accoppiamento, non lunghezza (24-07, Action 8):** la LOC si abbassa spostando
+  righe altrove senza che nessuno capisca meglio il file, quindi il ratchet tiene
+  anche `fan_out` (moduli distinti importati) ed `exports` (superficie pubblica).
+  Misurato: `ToolCanvasEmbeddable.tsx` loc 2943 · fan_out 20 · **exports 46**;
+  `Room.tsx` loc 1119 · **fan_out 29** · exports 1. Due malattie diverse che sulla
+  sola LOC sembrerebbero la stessa: da ToolCanvas si estrae riducendo `exports`,
+  da Room riducendo `fan_out`.
 - **scope del lint dichiarato (24-07):** il conteggio arriva dal report eslint, non
   da un intero scritto a mano, e la baseline registra **quale comando** l'ha
   prodotto. Misurato oggi: `eslint .` = **258**, `eslint src` = **237**. Sono alberi
@@ -130,6 +136,69 @@ Stato misurato oggi:
 - 440 dipendenze installate, **1 senza campo license**;
 - l'albero e' **quasi tutto permissivo**: MIT 337, ISC 45, Apache-2.0 30, poche
   BSD/MPL, zero GPL. Il blocco e' una scelta da fare, non un campo minato.
+
+## Action 4 — una sola autorita' mutabile (regole aggiunte il 24-07)
+
+Due regole in `boundary_check.py`, ratchet come le altre:
+
+- `LESSONOS-SINGLE-WRITER` — le viste non costruiscono lo store degli eventi ne'
+  vi appendono; lo scrittore e' `lessonos/` piu' `toolhost/host.ts`;
+- `PROJECTION-NO-MUTATION` — le proiezioni ricostruiscono, non mutano.
+
+Misurato: **7** violazioni reali (`TeacherDashboardView` ×4 di cui una in
+scrittura, `ElabLab`, `MultiPostitWorkbench`, `RecapView`), congelate in
+baseline. Le tre proiezioni sono pulite. Dettaglio e ordine di smontaggio in
+`docs/adr/ADR-0004-lessonos-single-mutable-authority.md`.
+
+## Action 5 — receipt di fiducia dei plugin
+
+| File | Ruolo |
+|---|---|
+| `plugin_trust.py` | valida i receipt e l'invariante incrociato sul sorgente |
+| `plugin_trust_registry.json` | cosa ciascun modo di acquisizione puo' ONESTAMENTE garantire |
+| `test_plugin_trust.py` | 15 controlli negativi |
+
+```bash
+python3 bin/convergence/plugin_trust.py --check-source
+python3 bin/convergence/plugin_trust.py --receipts receipts.json
+```
+
+La regola che porta il peso: **un receipt non puo' rivendicare un controllo che
+il suo percorso non esegue**. Un built-in che dichiara `manifest-signature-ed25519`
+viene rifiutato, perche' `founderBetaPlugin.ts` dice esplicitamente che
+`builtin-reviewed` non e' l'esito di una verifica al mount.
+
+Valida il **modello**, non il mount: nessuna crittografia a runtime.
+→ `docs/adr/ADR-0005-plugin-trust-receipt.md`.
+
+## Action 6 — superficie delle dipendenze dell'ospite
+
+| File | Ruolo |
+|---|---|
+| `guest_deps.py` | chiusura transitiva statica dagli entry point dell'host |
+| `guest_deps_baseline.json` | superficie congelata |
+| `test_guest_deps.py` | 12 controlli negativi, inclusa la tenuta del metodo |
+
+Misurato: delle **35** dipendenze runtime di `plugins/elab-tutor`, **2** sono
+raggiungibili da cio' che lo Studio consuma davvero (`react`, `react-dom`); le
+altre **33** restano nello standalone.
+
+Limite dichiarato: risoluzione statica e testuale, gli import dinamici calcolati
+a runtime non sono seguiti. Un test verifica che gli import relativi siano
+davvero seguiti: senza, la chiusura si svuoterebbe e il gate diventerebbe verde
+per il motivo sbagliato.
+
+## Action 9 — Quality Lab limitato
+
+| File | Ruolo |
+|---|---|
+| `quality_lab.py` | valida il registro dei task e i risultati dichiarati |
+| `quality_lab_tasks.json` | 10 task derivati da fallimenti osservati |
+| `test_quality_lab.py` | 18 controlli negativi |
+
+Due regole portano il peso: **nessun task senza controllo negativo visto rosso**,
+e **il candidato non puo' toccare il proprio giudice**. Non esegue trial e non
+chiama modelli: eseguirli e' un gate umano.
 
 ## Action 10 (porzione) — identita' del candidato di release
 

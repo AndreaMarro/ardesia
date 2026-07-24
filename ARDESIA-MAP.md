@@ -19,10 +19,31 @@ Dove sta cosa e da dove partire. (Mappa del CODICE; la mappa di governance/visio
   - `factory-metrics.py --digest`, gate, `deadman.sh`, bridge Telegram, replenish/strategos. Gira sul Mini.
 - **Docs/visione -> `docs/`** + vault esterno `ardesia-vault` (governance, PDF v2).
 
-## Stato (18/06/2026)
+- **Gate di convergenza -> `bin/convergence/`**
+  - `bash bin/convergence/gate.sh` — confini architetturali, ratchet del debito
+    (loc/fan_out/exports + lint con scope dichiarato), superficie delle
+    dipendenze dell'ospite ELAB, modello di fiducia dei plugin, identita' di
+    release, inventario licenze. Sola lettura, standard library, in CI come job
+    `convergence`.
+  - Stato e numeri misurati: `docs/ops/ARDESIA-CONVERGENCE-TEN-ACTIONS-2026-07-24.md`.
+    Autorita' proposta: ADR-0004 (scrittore unico LessonOS), ADR-0005 (fiducia
+    plugin), ADR-0006 (ordine dei lock dell'import).
+
+## Stato (18/06/2026) — **numeri superati, vedi sotto**
 - Gate: engine ~2041/0, studio ~585/0 (verifica live: `factory-metrics.py --digest`).
 - Pin attivi: studio = TOCTOU (PRD18 P0-2), engine = moat graph-aware. Coda: MOUNT-CANVAS.
 - Cutover monorepo: APPENA FATTO (questo repo). Le sorgenti separate (lessonos/maestro-studio/maestro-tools) restano i repo di lavoro del loop finche non si sposta il loop qui.
+
+## Stato misurato (24/07/2026)
+Rimisurato su questo albero; sostituisce i conteggi di giugno qui sopra, che
+restano come traccia storica.
+- Engine: **2044 passed, 7 skipped**. Studio typecheck: **exit 0**. Build: **exit 0**
+  (warning noto: chunk oltre 500 kB).
+- Lint: **258 errori**, scope dichiarato `apps/studio: npx eslint . --format json`.
+  Il vecchio 237 era misurato su `eslint src` — albero diverso, non una regressione.
+- `bash bin/convergence/gate.sh`: **ALL PASS**. In `--strict` resta rosso solo
+  l'inventario licenze, perche' manca `LICENSE` (D-2, decisione di Andrea).
+- Superficie ospite ELAB nel bundle: **2 dipendenze su 35** (`react`, `react-dom`).
 
 ## Comandi rapidi
 ```
