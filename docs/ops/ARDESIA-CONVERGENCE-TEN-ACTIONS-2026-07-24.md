@@ -131,9 +131,23 @@ conteggio con scope diverso fallisce il gate **anche se più basso**.
 bash bin/convergence/gate.sh
 ```
 
-15 controlli, tutti PASS su `31ebd8ed`, più il rosso dichiarato dell'inventario
-licenze in `--strict`. **93 controlli negativi** in Python (16+15+15+22+12+18+9,
-al netto delle sovrapposizioni fra file) più 7 in vitest: ogni gate è stato visto
+15 controlli, tutti PASS, più il rosso dichiarato dell'inventario licenze in
+`--strict`.
+
+**114 controlli negativi in Python**, contati eseguendo ciascun file:
+
+| file | test |
+|---|---|
+| `test_gates.py` | 22 |
+| `test_boundary.py` | 15 |
+| `test_plugin_trust.py` | 15 |
+| `test_release.py` | 15 |
+| `test_quality_lab.py` | 18 |
+| `test_guest_deps.py` | 12 |
+| `test_inventory.py` | 9 |
+| `test_state.py` | 8 |
+
+più **7** in vitest (`LessonMutationReentrancy.test.ts`). Ogni gate è stato visto
 respingere il proprio controesempio. Un gate mai visto rosso non è un gate.
 
 ## Prove che ciascun gate morde
