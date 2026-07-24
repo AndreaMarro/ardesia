@@ -61,6 +61,42 @@ def _license_of(pkg: dict) -> str | None:
     return None
 
 
+# Un package.json senza campo `license` non significa "senza licenza": molti
+# pacchetti spediscono il testo in un file e omettono il campo. `khroma@2.1.0`
+# e' il caso reale trovato il 24-07 — campo assente, file `license` con "The MIT
+# License (MIT)". Trattarlo come ignoto produce un blocco legale permanente per
+# un errore di metadati. Si legge il file, e se non dice nulla di riconoscibile
+# allora si', resta ignoto.
+LICENSE_FILENAMES = ("LICENSE", "LICENSE.md", "LICENSE.txt", "license",
+                     "license.md", "license.txt", "LICENCE", "licence")
+
+_SPDX_FROM_TEXT = (
+    ("MIT", ("the mit license", "permission is hereby granted, free of charge")),
+    ("Apache-2.0", ("apache license", "version 2.0, january 2004")),
+    ("BSD-3-Clause", ("neither the name of", "redistribution and use in source")),
+    ("BSD-2-Clause", ("redistribution and use in source and binary forms",)),
+    ("ISC", ("permission to use, copy, modify, and/or distribute this software",)),
+    ("MPL-2.0", ("mozilla public license",)),
+    ("GPL-3.0", ("gnu general public license", "version 3")),
+)
+
+
+def license_from_file(pkg_dir: Path) -> str | None:
+    """SPDX dedotto dal testo di licenza spedito nel pacchetto, se riconoscibile."""
+    for name in LICENSE_FILENAMES:
+        path = pkg_dir / name
+        if not path.is_file():
+            continue
+        try:
+            head = path.read_text(encoding="utf-8", errors="replace")[:4000].lower()
+        except OSError:
+            continue
+        for spdx, needles in _SPDX_FROM_TEXT:
+            if all(needle in head for needle in needles):
+                return f"{spdx} (dal file, campo assente)"
+    return None
+
+
 def _iter_installed(nm: Path):
     if not nm.is_dir():
         return
@@ -99,6 +135,8 @@ def build_inventory(root: Path) -> dict:
             seen.add(name)
             pkg = _read_json(j)
             lic = _license_of(pkg) if pkg else None
+            if not lic:
+                lic = license_from_file(j.parent)
             if lic:
                 spdx[lic] += 1
             else:
