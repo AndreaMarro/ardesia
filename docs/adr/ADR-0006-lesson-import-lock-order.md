@@ -142,8 +142,8 @@ typecheck 0, build 0.
   `rooma` (test presente), ma la transazione non rifiuta l'alias in ingresso;
 - **`withLessonImport`** come primitiva del coordinator: non introdotta. Oggi
   l'ordine è posseduto da `WorkspaceStore`, non dal coordinator;
-- i controlli negativi elencati sotto (ZIP troncato, fallimento su ogni arco,
-  schema futuro) **non** sono ancora tutti coperti.
+- i controlli negativi elencati sopra (ZIP troncato, fallimento su ogni arco
+  della macchina a stati, schema futuro) **non** sono ancora tutti coperti.
 
 R6 è ridotto, non chiuso.
 
@@ -152,5 +152,7 @@ R6 è ridotto, non chiuso.
 - Positive: il formato locale resta aperto e offline, nessun database cloud; il
   prossimo che tenterà l'annidamento lo scoprirà da un test, non da una tab
   congelata in aula.
-- Negative: finché il macro-import non esiste, l'import multi-file resta senza
-  isolamento transazionale end-to-end. È il rischio **R6**, e resta aperto.
+- Negative: l'isolamento c'è ora sul percorso di import e di recovery, ma il
+  fencing token e il rifiuto dell'aliasing di case non esistono. **R6 è ridotto,
+  non chiuso**, e chiuderlo richiede quei due pezzi più i controlli negativi
+  mancanti.
