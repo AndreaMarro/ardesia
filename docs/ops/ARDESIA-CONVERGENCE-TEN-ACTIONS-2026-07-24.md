@@ -29,18 +29,38 @@ erano già diventate strumenti locali il 24-07 all'01:37 (linea T1). Le altre se
 lo sono diventate oggi, e la linea T1 è stata **cablata in CI** invece di restare
 un runner che qualcuno doveva ricordarsi di lanciare.
 
+## Seguito eseguito il 24-07, su istruzione di Andrea
+
+Dopo la prima consegna, tre voci della lista «prossimo passo» sono state
+eseguite in serie.
+
+1. **D-2 — licenza.** Opzione A (proprietaria) su istruzione esplicita.
+   `LICENSE` bilingue con rinvio al `NOTICE`; `NOTICE` **generato** dalle 277
+   dipendenze **di produzione** del lockfile (non dalle 526 installate: 249 sono
+   di sviluppo e non vengono spedite); `UNLICENSED` nei manifest root e studio.
+   Nel farlo è caduto un secondo falso blocco: `fuzzy@0.1.3` non ha `license` nel
+   lockfile e usa il `licenses` legacy, spedendo il testo in `LICENSE-MIT` — che
+   una lista di nomi esatti mancava. Licenze ignote in produzione: 1 → **0**.
+   `gate.sh --strict` è ora **verde per intero**.
+2. **Porta di lettura per RecapView ed ElabLab.** `createEventLogStore` era
+   chiamata da cinque punti, ciascuno con la propria connessione IndexedDB allo
+   stesso database, e RecapView la chiudeva. Ora l'istanza è una e appartiene a
+   LessonOS. Violazioni di confine **7 → 5**.
+3. **Import `.lesson` atomico nel tempo.** L'import ora possiede la lease di
+   workspace per intero e scrive dalla porta driver grezza. Prima ogni file
+   prendeva e rilasciava il lock di path da solo: fra un file e il successivo un
+   altro scrittore poteva infilarsi. **4 test su 5 osservati rossi** prima della
+   modifica.
+
 ## Che cosa NON è stato fatto — detto subito
 
-- **Il prodotto non si è mosso.** Nessuna funzionalità nuova, nessun docente
-  vedrà nulla di diverso. L'unica modifica al codice di prodotto è l'export di
-  una factory di broker già esistente, additiva, per poter misurare un deadlock.
-- **Le sette violazioni di scrittura LessonOS non sono riparate**, sono
-  congelate. Congelare non è ripagare.
-- **Il macro-import `.lesson` non esiste.** Il rischio R6 resta aperto: c'è
-  l'ordine dei lock su carta e il deadlock riprodotto in un test, non la
-  transazione.
+- **Il prodotto non ha funzionalità nuove.** Nessun docente vedrà nulla di
+  diverso: ciò che è cambiato è chi possiede la persistenza e quando.
+- **Cinque violazioni di scrittura LessonOS restano congelate**, tutte in
+  `MultiPostitWorkbench` e `TeacherDashboardView`. Congelare non è ripagare.
+- **R6 è ridotto, non chiuso**: mancano il fencing token e il rifiuto
+  dell'aliasing di case prima della mutazione.
 - **Nessun deploy, nessun push, nessuna PR, nessuna mutazione GitHub.**
-- **Nessuna licenza scelta.** È l'unico rosso residuo, ed è voluto.
 - **Nessuna prova di prodotto**: niente browser matrix, device matrix, a11y
   audit, pilota. `NOT_RUN` dichiarati, non omessi.
 
@@ -51,13 +71,13 @@ un runner che qualcuno doveva ricordarsi di lanciare.
 | 1 | Control plane e budget di entropia | strumento, ora **in CI** | `bin/convergence/state.py` |
 | 2 | Piramide CI ed evidenza immutabile | **cablata in CI** (D-8) | `.github/workflows/ci.yml` job `convergence` |
 | 3 | Confini architetturali esecutivi | esteso: 7 regole | `bin/convergence/boundary_check.py` |
-| 4 | Una sola autorità mutabile LessonOS | regole + ADR; 7 violazioni congelate | ADR-0004 |
+| 4 | Una sola autorità mutabile LessonOS | regole + ADR; **7 → 5** violazioni, porta di lettura estratta | ADR-0004 |
 | 5 | Un runtime plugin con fiducia verificata | modello controllabile a macchina | ADR-0005, `plugin_trust.py` |
 | 6 | Strangler ELAB/Simulation | superficie dipendenze misurata e congelata | `guest_deps.py` |
-| 7 | Transazione `.lesson`, recovery, concorrenza | deadlock **riprodotto**; ordine dei lock fissato | ADR-0006, `LessonMutationReentrancy.test.ts` |
+| 7 | Transazione `.lesson`, recovery, concorrenza | deadlock riprodotto; **lease e porta grezza eseguite** | ADR-0006, `LessonImportIsolation.test.ts` |
 | 8 | Decomposizione dei monoliti | metriche di accoppiamento, non solo LOC | `ratchet.py` |
 | 9 | Quality Lab limitato | 10 task da fallimenti osservati | `quality_lab.py` |
-| 10 | Supply chain e identità di release | manifest + inventario licenze | `release_manifest.py`, `license_inventory.py` |
+| 10 | Supply chain e identità di release | manifest + **LICENSE e NOTICE esistenti** | `release_manifest.py`, `license_inventory.py` |
 
 ## I numeri misurati oggi (nessuno riciclato)
 
@@ -178,14 +198,15 @@ Tutti su questo albero, oggi. Nessun numero riciclato da audit precedenti.
 | `npm run verify` | **exit 0** |
 | └ Engine `uv run pytest -q` | **2044 passed, 7 skipped** |
 | └ Studio `tsc -b --noEmit` | **exit 0** |
-| └ Studio vitest | **1977 passed, 5 skipped** (181 file, 1 skipped) |
+| └ Studio vitest | **1989 passed, 5 skipped** (183 file, 1 skipped) |
 | └ `vite build` | **exit 0**, warning noto sui chunk > 500 kB |
-| `bash bin/convergence/gate.sh` | **ALL PASS** (15 controlli) |
+| `bash bin/convergence/gate.sh --strict` | **ALL PASS**, inventario licenze incluso |
 | `python3 bin/convergence/release_manifest.py --dist apps/studio/dist` | manifest **valido**, 201 artefatti |
-| `python3 bin/convergence/license_inventory.py` | **exit 1** — voluto: manca `LICENSE` (D-2) |
+| `python3 bin/convergence/license_inventory.py` | **exit 0** (era 1: mancava `LICENSE`) |
 
-Studio passa da **1970** a **1977** test: i 7 aggiunti sono la caratterizzazione
-della non reentranza. Nessun test preesistente modificato, nessuno rimosso.
+Studio passa da **1970** a **1989**: 7 per la caratterizzazione della non
+reentranza, 7 per la porta di lettura, 5 per l'isolamento dell'import. Nessun
+test preesistente modificato, nessuno rimosso.
 
 Conteggi Engine e Studio appartengono allo stesso SHA e **non si sommano**.
 
@@ -203,7 +224,6 @@ Tutto il resto e' `bin/convergence/`, `docs/` e `.github/workflows/ci.yml`.
 
 | # | Decisione | Perché resta umana |
 |---|---|---|
-| **D-2** | licenza | concessione di Andrea a terzi, difficilmente revocabile → `docs/legal/LICENSE-DECISION-D-2.md` |
 | **D-1** | `required_approving_review_count` 0→1 | con `enforce_admins:true` e un solo maintainer, bloccherebbe ogni PR |
 | D-8b | rendere `convergence` un **required check** | cablare un job è versionato e reversibile; cambiare il ruleset GitHub no |
 | D-3 | disposizione delle 20 PR e delle 64 worktree | il control plane propone, non cancella |
