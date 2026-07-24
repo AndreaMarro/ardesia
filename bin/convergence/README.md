@@ -131,6 +131,37 @@ Stato misurato oggi:
 - l'albero e' **quasi tutto permissivo**: MIT 337, ISC 45, Apache-2.0 30, poche
   BSD/MPL, zero GPL. Il blocco e' una scelta da fare, non un campo minato.
 
+## Action 10 (porzione) — identita' del candidato di release
+
+| File | Ruolo |
+|---|---|
+| `release_manifest.py` | lega SHA sorgente, digest degli artefatti, digest dei lockfile e provenance nei byte |
+| `test_release.py` | controlli negativi: 15, ognuno manomette un invariante alla volta |
+
+```bash
+python3 bin/convergence/release_manifest.py --dist apps/studio/dist --out rel.json
+python3 bin/convergence/release_manifest.py --check rel.json --dist apps/studio/dist
+python3 bin/convergence/test_release.py
+```
+
+Il build **gia'** incide lo SHA sorgente nel bundle (`__ARDESIA_GIT_SHA__` in
+`apps/studio/vite.config.ts`); verificato firsthand nel dist del 24-07:
+`ad8f0f9f42733bfb95dedd05b4a09734f91947f8` compare nei chunk. Cio' che mancava
+(rischio **R2**) e' il documento che rende quel legame *controllabile*: davanti a
+un artefatto servito si poteva solo indovinare quale sorgente lo avesse prodotto.
+
+Il manifest e' invalido se: lo SHA non e' raggiungibile in Git, l'albero era
+sporco, un digest diverge dal disco, compare un artefatto non dichiarato, il
+digest d'albero non si ricalcola, la provenance e' falsa, o un file **dichiarato**
+portatore non contiene davvero lo SHA.
+
+Prova che morde (24-07): eseguito sul dist reale costruito da `ad8f0f9f` mentre
+`HEAD` era `ef955563`, il gate ha respinto il candidato per **due** motivi veri —
+albero sporco e dist stale rispetto a HEAD. Un artefatto vecchio non puo'
+spacciarsi per il candidato corrente.
+
+Il manifest **non** va nominato con lo SHA che attesta (cfr. `evidence_guard.py`).
+
 ## Cosa questi script NON fanno
 
 Non rimuovono worktree, non chiudono PR, non applicano label, non deployano, non

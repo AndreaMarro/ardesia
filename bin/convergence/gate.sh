@@ -40,6 +40,9 @@ run "boundary gate (no new violations)" python3 bin/convergence/boundary_check.p
 run "ratchet/evidence negative controls" python3 bin/convergence/test_gates.py
 run "evidence self-reference guard"     python3 bin/convergence/evidence_guard.py
 run "license inventory negative controls" python3 bin/convergence/test_inventory.py
+# Il manifest si EMETTE solo dove esiste un dist (job di build / release umano);
+# qui giro i controlli negativi, che non hanno bisogno di artefatti reali.
+run "release manifest negative controls" python3 bin/convergence/test_release.py
 
 # ratchet: il conteggio lint lo fornisce la CI; senza, controlla solo i tetti LOC.
 run "ratchet (monolith LOC ceilings)"   python3 bin/convergence/ratchet.py
