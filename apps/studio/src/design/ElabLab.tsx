@@ -33,7 +33,7 @@ import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import type { SolveResult, SolverExperiment } from "../../sim/solver/elabSolver"
 import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
 import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
-import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { lessonEventLog } from "../lessonos/eventLogProvider"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   listLessonConcepts,
@@ -86,8 +86,10 @@ function dispatchSolve(experiment: ElabVolumeExperiment): SolveOutcome {
 
 interface ElabLabProps {
   /**
-   * Event-log della lezione (iniettabile nei test); assente = creato qui
-   * (IndexedDB, fallback InMemory — la marcatura parte comunque).
+   * Event-log della lezione (iniettabile nei test); assente = si usa l'istanza
+   * condivisa di LessonOS (`lessonEventLog()`), non una connessione propria
+   * della vista. Il fallback InMemory resta quello del provider: la marcatura
+   * parte comunque.
    */
   eventLog?: EventLogStore
 }
@@ -157,7 +159,9 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   useEffect(() => {
     if (eventLog !== undefined) return
     let cancelled = false
-    void createEventLogStore().then((store) => {
+    // Istanza condivisa di LessonOS, non una connessione propria della vista
+    // (ADR-0004). Il ciclo di vita appartiene al provider: qui non si chiude.
+    void lessonEventLog().then((store) => {
       if (!cancelled) setLog(store)
     })
     return () => {

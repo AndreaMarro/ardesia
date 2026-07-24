@@ -7,14 +7,19 @@ import { useState, useEffect, useMemo } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { buildRecapHtml } from "./store/recapHtml"
-import { createEventLogStore } from "./lessonos/indexedDbEventLog"
-import { buildRoomStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
+import {
+  defaultStudyDigestReader,
+  type StudyDigestReader,
+} from "./lessonos/studyDigestReader"
+import { type StudyDigest } from "./lessonos/studyDigest"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
 interface RecapViewProps {
   store: WorkspaceStore
   room: string
+  /** Porta di lettura del digesto. Iniettabile: la vista non apre lo store. */
+  digestReader?: StudyDigestReader
 }
 
 /**
@@ -35,7 +40,11 @@ function isRecapEmpty(r: LessonRecap): boolean {
   )
 }
 
-export default function RecapView({ store, room }: RecapViewProps) {
+export default function RecapView({
+  store,
+  room,
+  digestReader = defaultStudyDigestReader,
+}: RecapViewProps) {
   const [recap, setRecap] = useState<LessonRecap | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -47,18 +56,12 @@ export default function RecapView({ store, room }: RecapViewProps) {
     let cancelled = false
     setLoading(true)
     // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
-    // room-scoped. Fail-soft: senza log leggibile il materiale resta valido
-    // senza le sezioni pedagogiche.
-    void (async () => {
-      try {
-        const log = await createEventLogStore()
-        const events = await log.readAll()
-        if (!cancelled) setDigest(buildRoomStudyDigest(events, room))
-        if ("close" in log) await (log as { close(): Promise<void> }).close()
-      } catch {
-        /* fail-soft: nessun digesto */
-      }
-    })()
+    // room-scoped, attraverso la porta di lettura: la vista non apre lo store e
+    // non ne governa il ciclo di vita (ADR-0004). Fail-soft nella porta: senza
+    // log leggibile il materiale resta valido, solo senza sezioni pedagogiche.
+    void digestReader.readRoomDigest(room).then((next) => {
+      if (!cancelled) setDigest(next)
+    })
     buildRecap(store, room)
       .then((r) => {
         if (!cancelled) setRecap(r)
@@ -70,7 +73,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
         if (!cancelled) setLoading(false)
       })
     return () => { cancelled = true }
-  }, [store, room])
+  }, [store, room, digestReader])
 
   // react-best-practices: deriva l'HTML del materiale UNA volta per recap
   // (memoized), unica fonte per anteprima E download — mai rigenerato a ogni render.
