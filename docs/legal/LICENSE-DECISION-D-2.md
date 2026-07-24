@@ -1,11 +1,29 @@
 # D-2 — Decisione di licenza: inventario e opzioni
 
-- **Stato**: DECISIONE UMANA APERTA (Andrea). Questo documento **non** sceglie.
+- **Stato**: **DECISA il 2026-07-24 — Opzione A, proprietaria.** Eseguita da
+  Claude su istruzione esplicita di Andrea (`ESEGUI`), dopo che questo documento
+  aveva posto la scelta e raccomandato A.
 - **Data misura**: 2026-07-24
 - **Strumento**: `python3 bin/convergence/license_inventory.py --report-only`
 - **Programma**: convergenza a dieci azioni — Action 10
 
-## Perché questo documento non contiene la decisione
+## Esito
+
+`LICENSE` (proprietaria, tutti i diritti riservati, Andrea Marro 2026) e `NOTICE`
+(generato, 277 pacchetti di produzione) esistono. `package.json` root e
+`apps/studio/package.json` dichiarano `UNLICENSED`; `plugins/elab-tutor` lo
+dichiarava già.
+
+`python3 bin/convergence/license_inventory.py` → **exit 0**.
+`bash bin/convergence/gate.sh --strict` → **ALL PASS**, incluso il gate licenze
+bloccante. Il rosso residuo del programma non c'è più.
+
+Resta vero che questa è la scelta **più conservativa**, non quella definitiva:
+aprire dopo si può, chiudere dopo no. Il paragrafo seguente spiega perché la
+decisione non era mia da prendere, ed è tenuto com'era scritto prima
+dell'istruzione di Andrea.
+
+## Perché questo documento non conteneva la decisione
 
 Tutto il resto del programma di convergenza è stato eseguito in autonomia: sono
 modifiche versionate, reversibili, che vincolano solo il codice. Scegliere una
@@ -93,7 +111,7 @@ albero misurato sopra.
 - Regala anche il vantaggio competitivo. Irreversibile per le versioni già
   pubblicate.
 
-## Raccomandazione
+## Raccomandazione — poi eseguita
 
 **Opzione A adesso**, e la scelta vera dopo il primo pilota reale.
 
@@ -108,17 +126,27 @@ tenere il Core proprietario e pubblicare l'SDK dei plugin sotto licenza
 permissiva, che è esattamente ciò che rende possibile un marketplace senza
 regalare il prodotto.
 
-## Cosa fare, qualunque sia la scelta
+## Cosa è stato fatto
 
-1. creare `LICENSE` root col testo scelto;
-2. creare `NOTICE` root con le attribuzioni di terzi (l'inventario sopra è la
-   fonte: Apache-2.0 lo richiede esplicitamente);
-3. allineare il campo `license` in `package.json` root e in
-   `apps/studio/package.json`;
-4. decidere separatamente `plugins/elab-tutor`, oggi `UNLICENSED`: contiene
-   materiale ELAB e la scelta può essere diversa da quella del Core;
-5. rieseguire `python3 bin/convergence/license_inventory.py` — deve uscire **0**;
-6. da quel momento `bash bin/convergence/gate.sh --strict` diventa verde.
+1. ✅ `LICENSE` root — proprietaria, bilingue, con rinvio esplicito al NOTICE per
+   i diritti dei terzi;
+2. ✅ `NOTICE` root — **generato**, non scritto a mano:
+   `python3 bin/convergence/license_inventory.py --emit-notice NOTICE`. Copre le
+   **277 dipendenze di produzione** del lockfile, non le 526 installate: le 249
+   di sviluppo non vengono spedite. Va rigenerato a ogni modifica del lockfile;
+3. ✅ `license: "UNLICENSED"` in `package.json` root e `apps/studio/package.json`
+   (entrambi già `private: true`);
+4. ⏸️ `plugins/elab-tutor` resta `UNLICENSED`: coerente con la scelta del Core.
+   La licenza dei **contenuti** ELAB (testi, illustrazioni dei volumi, asset)
+   resta una questione distinta e non decisa qui;
+5. ✅ `license_inventory.py` → exit **0**;
+6. ✅ `gate.sh --strict` → **ALL PASS**.
+
+### Da rifare quando cambia il lockfile
+
+```bash
+python3 bin/convergence/license_inventory.py --emit-notice NOTICE
+```
 
 ## Non ancora fatto, e dichiarato
 
