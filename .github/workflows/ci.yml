@@ -13,6 +13,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  convergence-negative-canary:
+    name: convergence negative canary (expected failure)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: inject forbidden boundary only in runner temp
+        env:
+          CANARY_ROOT: ${{ runner.temp }}/ardesia-convergence-negative-canary
+        run: |
+          mkdir -p "$CANARY_ROOT/apps/studio/src/lessonos"
+          printf 'const rows = await store.readAll()\n' \
+            > "$CANARY_ROOT/apps/studio/src/lessonos/continuityCanary.ts"
+          python3 bin/convergence/boundary_check.py --root "$CANARY_ROOT"
+
   studio:
     name: studio (typecheck + test + build)
     runs-on: ubuntu-latest
