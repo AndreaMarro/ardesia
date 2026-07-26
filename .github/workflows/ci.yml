@@ -37,6 +37,65 @@ jobs:
           --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
       - run: npm run build
 
+  # D-CHROMATIC. Job SEPARATO e NON BLOCCANTE: non compare fra i required status
+  # check di main e non deve mai comparirci. Cablare la review visuale dentro un
+  # check obbligatorio e' gia' stata la causa radice di due lineage divergenti
+  # (21-07): un gate umano dentro un gate automatico ferma tutto.
+  #
+  # exitZeroOnChanges: false => una differenza visuale rende ROSSO questo job.
+  # Rosso qui significa "qualcuno deve guardare", non "il merge e' bloccato".
+  chromatic-visual-review:
+    name: chromatic-visual-review (non-blocking)
+    needs: studio
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    # I fork non ricevono i secret: senza token la run sarebbe un falso rosso.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      # SHA ESATTO del candidato. Su pull_request il default di actions/checkout
+      # e' il merge commit effimero: baseline e diff andrebbero attribuiti a un
+      # commit che non esiste in nessuna storia.
+      CANDIDATE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+          # Chromatic risale la storia per trovare la baseline: uno shallow
+          # clone la fa ripartire da zero a ogni run.
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: canary del secret (fallisce PRIMA di costruire, non dopo)
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: test -n "$CHROMATIC_PROJECT_TOKEN"
+      - run: npm run storybook:build
+      - uses: chromaui/action@14cfaef73576e69f95f47f60058063f46ca38719 # v18.1.0
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        with:
+          workingDir: apps/studio
+          storybookBuildDir: dist/storybook
+          chromaticSha: ${{ env.CANDIDATE_SHA }}
+          # Nessuna accettazione automatica e nessun verde di comodo: ogni
+          # differenza va accettata o rifiutata da una persona.
+          autoAcceptChanges: false
+          exitZeroOnChanges: false
+          # Niente TurboSnap durante il bootstrap: la prima baseline deve
+          # coprire TUTTE le storie, non solo quelle toccate dal diff.
+          onlyChanged: false
+          skipUpdateCheck: true
+
   engine:
     name: engine (pytest)
     runs-on: ubuntu-latest
