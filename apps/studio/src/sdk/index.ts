@@ -37,7 +37,7 @@ import type { ToolManifest } from "../toolhost-protocol/manifest.ts"
 // metodo, capability o codice errore esistente è cambiato.
 // 1.1.0 — MINOR: nuovo metodo wire retro-compatibile `graph.query` (P0-D):
 // vista READ-ONLY sul grafo LessonOS derivato dall'event-log.
-export const CONTRACT_VERSION = "1.2.0"
+export const CONTRACT_VERSION = "1.3.0"
 
 // ---- Descrittore macchina-verificabile del contratto (i 4 pilastri) --------
 

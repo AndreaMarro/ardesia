@@ -10,6 +10,7 @@ export const CAPABILITY_LABELS_IT: Readonly<Record<CapabilityName, string>> = {
   "graph.query": "Consultare i concetti delle tue lezioni (sola lettura)",
   "graph.proposeClaims": "Proporre osservazioni al motore, marcate come provenienti dal tool",
   "lesson.event.emit": "Registrare eventi didattici verificabili nella lezione",
+  "service.simulation": "Usare il simulatore di ARDESIA attraverso l'app, senza copiarne il motore",
   storage: "Salvare dati nel proprio spazio dedicato",
   "llm.generate": "Usare l'AI del tuo piano",
   "net.fetch": "Contattare i domini dichiarati, attraverso il proxy controllato",

@@ -34,6 +34,7 @@ const GOLDEN_CAPABILITIES: readonly CapabilityName[] = [
   "lesson.event.emit",
   "llm.generate",
   "net.fetch",
+  "service.simulation",
   "storage",
   "ui",
 ]
@@ -46,6 +47,14 @@ const GOLDEN_TOOL_METHODS: Record<string, CapabilityName> = {
   "graph.query": "graph.query",
   // v1.2.0: append controllato di eventi didattici verificabili nel log LessonOS.
   "lesson.event.emit": "lesson.event.emit",
+  // v1.3.0 (P0-E): famiglia service.* — un modulo USA il servizio di un altro
+  // modulo attraverso l'host invece di importarne il codice. Additivo ⇒ MINOR.
+  // applyOperation resta fuori: la mutazione ha falsificatori propri.
+  "simulation.describe": "service.simulation",
+  "simulation.loadScene": "service.simulation",
+  "simulation.readDiagnostics": "service.simulation",
+  "simulation.serializeState": "service.simulation",
+  "simulation.solve": "service.simulation",
   "storage.delete": "storage",
   "storage.get": "storage",
   "storage.list": "storage",

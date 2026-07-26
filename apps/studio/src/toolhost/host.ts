@@ -15,6 +15,8 @@ import { ToolGraph } from "./caps/graph.ts"
 import type { EventLogReadLike } from "./caps/graph.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
+import { ToolSimulation } from "./caps/simulation.ts"
+import type { SimulationRuntimeApiLike } from "./caps/simulation.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
 import { checkKillList } from "./killList.ts"
 import type { StorageReadWriteDelete } from "./killList.ts"
@@ -67,6 +69,15 @@ export interface ToolHostDeps {
    * docente (la superficie), mai il tool — non esiste sul wire.
    */
   instanceId?: string
+  /**
+   * Simulation Plugin esposto come SERVIZIO (capability service.simulation): un
+   * Pack disciplinare lo usa via wire invece di importarne il codice. Iniettato
+   * dal composition root — l'host non importa mai `sim/`, così Layer 0 non
+   * impara cos'è un circuito. Senza iniezione il metodo resta concesso-ma-non
+   * -cablato (INTERNAL, mai silenzio), come graph.query senza eventLog.
+   * Richiede `instanceId`: senza identità di istanza non esiste namespace.
+   */
+  simulation?: SimulationRuntimeApiLike
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string
@@ -96,6 +107,7 @@ export class ToolHost {
   private _board: ToolBoard
   private _storage: ToolStorage | null
   private _graph: ToolGraph | null
+  private _simulation: ToolSimulation | null
   private _session: ToolHostSession | null = null
   // suspend/restore serializzati: due suspend concorrenti non devono poter
   // atterrare su state.json fuori ordine (last-write-wins con stato VECCHIO).
@@ -117,6 +129,11 @@ export class ToolHost {
     this._storage =
       quota === undefined ? null : new ToolStorage(deps.store, manifest.id, quota, deps.instanceId)
     this._graph = deps.eventLog === undefined ? null : new ToolGraph(deps.eventLog)
+    // Nessuna identità di istanza → nessun servizio: nel dubbio non si cabla.
+    this._simulation =
+      deps.simulation === undefined || deps.instanceId === undefined
+        ? null
+        : new ToolSimulation(deps.simulation, deps.instanceId)
   }
 
   /** Sessione viva (mount corrente), o null se il tool non è montato. */
@@ -277,6 +294,15 @@ export class ToolHost {
     const graph = this._graph
     if (graph !== null) {
       handlers["graph.query"] = (p) => graph.query(p as Parameters<ToolGraph["query"]>[0])
+    }
+    const simulation = this._simulation
+    if (simulation !== null) {
+      handlers["simulation.describe"] = () => simulation.describe()
+      handlers["simulation.loadScene"] = (p) =>
+        simulation.loadScene(p as Parameters<ToolSimulation["loadScene"]>[0])
+      handlers["simulation.solve"] = (p) => simulation.solve(p as Parameters<ToolSimulation["solve"]>[0])
+      handlers["simulation.readDiagnostics"] = () => simulation.readDiagnostics()
+      handlers["simulation.serializeState"] = () => simulation.serializeState()
     }
     const lessonEventLog = this._deps.lessonEventLog
     if (lessonEventLog !== undefined) {
