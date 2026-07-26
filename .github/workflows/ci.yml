@@ -30,11 +30,12 @@ jobs:
           cache-dependency-path: apps/studio/package-lock.json
       - run: npm ci --no-audit --no-fund
       - run: npm run typecheck
-      - name: vitest (deterministic profile)
-        run: >
-          npx vitest run
-          --pool=threads --maxWorkers=1 --no-file-parallelism
-          --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+      # Il profilo deterministico (pool threads, 1 worker, timeout 30s) sta in
+      # apps/studio/vitest.config.ts: qui si chiama lo STESSO comando che gira
+      # in locale dentro `npm run verify`, così il gate locale e il gate di
+      # merge non possono divergere di nuovo.
+      - name: vitest (stesso profilo di npm run verify)
+        run: npm test
       - run: npm run build
 
   engine:
