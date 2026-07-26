@@ -139,7 +139,11 @@ describe("SavedLessonsView", () => {
     expect(await screen.findByText("Materiali locali")).toBeTruthy()
     expect(fetchSpy).not.toHaveBeenCalled()
 
-    fireEvent.click(screen.getByRole("button", { name: "Esporta .lesson" }))
+    // "Materiali locali" sta nell'<header>, reso al PRIMO paint; il bottone
+    // esiste solo con loading === false (SavedLessonsView.tsx:250-286). Cercarlo
+    // in modo sincrono corre contro l'apertura dell'archivio: a macchina carica
+    // il click arriva mentre la vista mostra ancora "Apro l'archivio locale".
+    fireEvent.click(await screen.findByRole("button", { name: "Esporta .lesson" }))
     await waitFor(() => expect(store.exportLesson).toHaveBeenCalledWith("wbstudio-room1", fakeLog))
     expect(download).toHaveBeenCalledWith(expect.any(Blob), "lezione-wbstudio-room1.lesson")
 

@@ -89,8 +89,14 @@ describe("TeacherDashboardView — zona Statistiche (D10, solo event-log)", () =
     const events = await appendEvents(LESSON_EVENTS)
     render(<TeacherDashboardView deps={{ loadEvents: async () => events }} />)
 
+    // [data-testid=zgraph] è la <section>, presente GIÀ in fase "loading"
+    // (TeacherDashboardView.tsx:382-395): trovarla non dice che la proiezione
+    // è arrivata. Senza questa attesa l'asserzione corre contro il projector e
+    // legge "Materializzo il grafo…" a macchina carica.
     const graph = await screen.findByTestId("zgraph")
-    expect(graph.textContent).toContain("Legge di Ohm")
+    await waitFor(() => {
+      expect(graph.textContent).toContain("Legge di Ohm")
+    })
     expect(graph.textContent).toContain("Corto circuito")
     expect(screen.getByTestId("zgraph-focus").textContent).toContain("Legge di Ohm")
 
