@@ -11,6 +11,7 @@
 // loadScene è un errore esplicito, mai una scena vuota che "sembra funzionare".
 
 import { assertInstanceId } from "./instance.ts"
+import { SimulationDescribeResultSchema } from "../../toolhost-protocol/index.ts"
 import type { SimulationReceipt, SimulationScene } from "../../toolhost-protocol/index.ts"
 
 /**
@@ -40,16 +41,24 @@ export class ToolSimulation {
   }
 
   describe(): { pluginId: string; apiVersion: string; stateSchema: string } {
-    return this._api.describe()
+    return this._contract()
   }
 
   loadScene(params: { scene: SimulationScene; diagnostics?: string[] }): { receipt: SimulationReceipt } {
-    this._state = this._api.loadScene({
+    // Contratto prima di tutto: un servizio fuori contratto non deve poter
+    // scrivere nulla nell'istanza.
+    this._contract()
+    // Stato e digest si aggiornano INSIEME o per niente: uno stato nuovo con un
+    // digest vecchio produrrebbe una ricevuta che mente sulla topologia, ed è
+    // esattamente ciò che la ricevuta esiste per impedire.
+    const state = this._api.loadScene({
       instanceId: this._instanceId,
       scene: params.scene,
       ...(params.diagnostics === undefined ? {} : { diagnostics: params.diagnostics }),
     })
-    this._digest = this._api.sceneDigest(params.scene)
+    const digest = this._api.sceneDigest(params.scene)
+    this._state = state
+    this._digest = digest
     return { receipt: this._receipt() }
   }
 
@@ -75,12 +84,23 @@ export class ToolSimulation {
     return this._state
   }
 
+  /**
+   * Il wire NON valida i `result` degli handler: `routeRequest` inoltra il
+   * payload così com'è. Se il receipt copiasse `apiVersion`/`pluginId` con un
+   * cast, un servizio iniettato malformato o compromesso potrebbe far uscire
+   * una ricevuta fuori dal contratto che la capability ha pinnato a manifest —
+   * cioè un badge che non deriva da una prova. Qui si valida, non si casta.
+   */
+  private _contract(): { pluginId: string; apiVersion: string; stateSchema: string } {
+    return SimulationDescribeResultSchema.parse(this._api.describe())
+  }
+
   private _receipt(): SimulationReceipt {
-    const api = this._api.describe()
+    const api = SimulationDescribeResultSchema.parse(this._api.describe())
     if (this._digest === null) throw new Error(`no scene loaded for instance "${this._instanceId}"`)
     return {
-      apiVersion: api.apiVersion as SimulationReceipt["apiVersion"],
-      pluginId: api.pluginId as SimulationReceipt["pluginId"],
+      apiVersion: api.apiVersion,
+      pluginId: api.pluginId,
       instanceId: this._instanceId,
       sceneDigest: this._digest,
     }

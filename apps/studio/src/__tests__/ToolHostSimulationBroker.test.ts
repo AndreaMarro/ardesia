@@ -353,6 +353,69 @@ describe("service.simulation — gating fail-closed", () => {
 })
 
 // ---------------------------------------------------------------------------
+// RED-10 / RED-11 — riproduzione dei due rilievi CodeRabbit su PR #210
+// ---------------------------------------------------------------------------
+describe("service.simulation — la ricevuta non può mentire", () => {
+  it("RED-10: se il digest fallisce, il receipt non deve mai legare la scena VECCHIA allo stato NUOVO", async () => {
+    const SECONDA_SCENA = {
+      components: [{ id: "r9", type: "resistor", value: 1000 }],
+      connections: [{ from: "r9:a", to: "r9:b" }],
+    }
+    let chiamate = 0
+    const digestRottoAllaSeconda: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      sceneDigest: (scene) => {
+        chiamate += 1
+        if (chiamate === 2) throw new Error("digest non calcolabile")
+        return simulationSceneDigest(scene)
+      },
+    }
+    const host = new ToolHost(elabTutorManifest(SERVICE_CAP), SERVICE_CAP as Capabilities, {
+      store: new MemoryWorkspace(),
+      board,
+      instanceId: "elab-a",
+      simulation: digestRottoAllaSeconda,
+    })
+    const { call } = await mountReady(host)
+
+    await call("simulation.loadScene", { scene: LED_SCENE })
+    const secondo = await call("simulation.loadScene", { scene: SECONDA_SCENA })
+    expect(secondo.error?.code).toBe(ERR.INTERNAL)
+
+    // L'istanza deve essere rimasta INTERAMENTE sulla prima scena: stato e digest
+    // insieme. Uno stato nuovo con un digest vecchio è una prova falsa.
+    const serializzato = await call("simulation.serializeState")
+    const state = (serializzato.result as { state?: { scene?: { components?: Array<{ id: string }> } } }).state
+    const receipt = (serializzato.result as { receipt?: { sceneDigest?: string } }).receipt
+    expect(receipt?.sceneDigest).toBe(SCENE_DIGEST)
+    expect(state?.scene?.components?.map((c) => c.id)).toEqual(["bat1", "r1", "led1"])
+  })
+
+  it("RED-11: un servizio che dichiara un apiVersion fuori contratto è respinto, non trascritto nel receipt", async () => {
+    const servizioFuoriContratto: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      describe: () => ({
+        pluginId: "io.ardesia.simulation",
+        apiVersion: "simulation-runtime/99",
+        stateSchema: "simulation-runtime-state/99",
+      }),
+    }
+    const host = new ToolHost(elabTutorManifest(SERVICE_CAP), SERVICE_CAP as Capabilities, {
+      store: new MemoryWorkspace(),
+      board,
+      instanceId: "elab-a",
+      simulation: servizioFuoriContratto,
+    })
+    const { call } = await mountReady(host)
+
+    const { result, error } = await call("simulation.loadScene", { scene: LED_SCENE })
+
+    expect(result).toBeUndefined()
+    expect(error?.code).toBe(ERR.INTERNAL)
+  })
+})
+
+// ---------------------------------------------------------------------------
 // RED-8 — il kill-switch prevale anche sul servizio
 // ---------------------------------------------------------------------------
 describe("service.simulation — kill-switch", () => {
