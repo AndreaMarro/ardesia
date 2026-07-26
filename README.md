@@ -25,6 +25,8 @@ Piattaforma didattica **local-first** per docenti: lavagna minimal (solo il doce
 ## Guardrail
 MAI toccare `eval/gate.sh` - MAI auto-merge a `main` - MAI deploy senza OK Andrea - GDPR (PII/corpus/secret fuori da repo/CI/nodi-agente) - moat-plugin(ELAB) != piattaforma(ARDESIA).
 
+Unica deroga alla regola PII: la denominazione del titolare dei diritti in `LICENSE` e `NOTICE`, che è identificazione del licenziante e non dato personale di corpus. Portata e limiti in [AGENTS.md](AGENTS.md).
+
 ## Note
 - Il prodotto **standalone `elab-tutor`** (repo separato) resta in **STANDBY**; qui vive la sua incarnazione-**plugin** (`plugins/elab-tutor`), da decoupling progressivo.
 - Mappa di navigazione dettagliata: **`ARDESIA-MAP.md`**.
