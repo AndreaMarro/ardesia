@@ -380,6 +380,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
 
     await call("simulation.loadScene", { scene: LED_SCENE })
     const secondo = await call("simulation.loadScene", { scene: SECONDA_SCENA })
+    expect(secondo.result).toBeUndefined()
     expect(secondo.error?.code).toBe(ERR.INTERNAL)
 
     // L'istanza deve essere rimasta INTERAMENTE sulla prima scena: stato e digest
@@ -389,6 +390,26 @@ describe("service.simulation — la ricevuta non può mentire", () => {
     const receipt = (serializzato.result as { receipt?: { sceneDigest?: string } }).receipt
     expect(receipt?.sceneDigest).toBe(SCENE_DIGEST)
     expect(state?.scene?.components?.map((c) => c.id)).toEqual(["bat1", "r1", "led1"])
+  })
+
+  it("RED-12: un servizio che non restituisce uno stato non deve produrre una ricevuta di successo", async () => {
+    const servizioSenzaStato: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      loadScene: () => undefined,
+    }
+    const host = new ToolHost(elabTutorManifest(SERVICE_CAP), SERVICE_CAP as Capabilities, {
+      store: new MemoryWorkspace(),
+      board,
+      instanceId: "elab-a",
+      simulation: servizioSenzaStato,
+    })
+    const { call } = await mountReady(host)
+
+    // Una ricevuta di successo per uno stato che non esiste è una prova falsa:
+    // il passo dopo direbbe "nessuna scena caricata" dopo un caricamento riuscito.
+    const load = await call("simulation.loadScene", { scene: LED_SCENE })
+    expect(load.result).toBeUndefined()
+    expect(load.error?.code).toBe(ERR.INTERNAL)
   })
 
   it("RED-11: un servizio che dichiara un apiVersion fuori contratto è respinto, non trascritto nel receipt", async () => {
