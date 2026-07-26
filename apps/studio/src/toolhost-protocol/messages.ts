@@ -303,12 +303,91 @@ export const LessonEventEmitResultSchema = z.strictObject({
 })
 export type LessonEventEmitParams = z.infer<typeof LessonEventEmitParamsSchema>
 
+// ---- service.simulation: uso host-mediato del Simulation Plugin (P0-E) ----
+// Il tool NON importa `simulation-runtime/1`: lo CHIEDE all'host. Metodi espliciti
+// e schema stretto per ciascuno — un broker generico `service.call(payload opaco)`
+// distruggerebbe la proprietà più forte di questo protocollo (ogni params validato
+// lato host). L'identità di ISTANZA non compare in nessun params: la possiede
+// l'host (ToolHostDeps.instanceId), come per storage e board.
+// `applyOperation` è DEFERITO: la mutazione trascina placement pipeline, occupancy
+// e pin vocabulary, e merita falsificatori propri.
+
+const SimulationSceneSchema = z.strictObject({
+  components: z
+    .array(
+      z.strictObject({
+        id: z.string().min(1),
+        type: z.string().min(1),
+        label: z.string().optional(),
+        value: z.number().optional(),
+      }),
+    )
+    .max(500),
+  connections: z
+    .array(
+      z.strictObject({
+        id: z.string().min(1).optional(),
+        from: z.string().min(1),
+        to: z.string().min(1),
+      }),
+    )
+    .max(2000),
+  pinAssignments: z.record(z.string(), z.string()).optional(),
+})
+export type SimulationScene = z.infer<typeof SimulationSceneSchema>
+
+/** Ricevuta di ogni chiamata: lega la risposta a istanza, contratto e topologia. */
+export const SimulationReceiptSchema = z.strictObject({
+  apiVersion: z.literal("simulation-runtime/1"),
+  pluginId: z.literal("io.ardesia.simulation"),
+  instanceId: z.string().min(1),
+  sceneDigest: z.string().min(1),
+})
+export type SimulationReceipt = z.infer<typeof SimulationReceiptSchema>
+
+export const SimulationDescribeParamsSchema = z.strictObject({})
+export const SimulationDescribeResultSchema = z.looseObject({
+  pluginId: z.literal("io.ardesia.simulation"),
+  apiVersion: z.literal("simulation-runtime/1"),
+  stateSchema: z.string().min(1),
+})
+
+export const SimulationLoadSceneParamsSchema = z.strictObject({
+  scene: SimulationSceneSchema,
+  diagnostics: z.array(z.string()).max(200).optional(),
+})
+export const SimulationLoadSceneResultSchema = z.strictObject({
+  receipt: SimulationReceiptSchema,
+})
+
+export const SimulationSolveParamsSchema = z.strictObject({
+  provider: z.enum(["local", "fastapi", "ngspice-wasm"]),
+  mode: z.enum(["static", "run"]),
+})
+export const SimulationSolveResultSchema = z.strictObject({
+  receipt: SimulationReceiptSchema,
+  result: z.unknown(),
+})
+
+export const SimulationReadDiagnosticsParamsSchema = z.strictObject({})
+export const SimulationReadDiagnosticsResultSchema = z.strictObject({
+  receipt: SimulationReceiptSchema,
+  diagnostics: z.unknown(),
+})
+
+export const SimulationSerializeStateParamsSchema = z.strictObject({})
+export const SimulationSerializeStateResultSchema = z.strictObject({
+  receipt: SimulationReceiptSchema,
+  state: z.unknown(),
+})
+
 // ---- Registro metodi tool→host: method → capability richiesta + schemi ----
 // Deny-by-default: un metodo fuori da questo registro NON esiste. In v1.2 il wire
 // copre board.*, storage.* (pin T1), graph.query read-only (P0-D) e
-// lesson.event.emit append-only controllato; llm/net/ui e graph.proposeClaims
-// restano capability dichiarabili a manifest ma senza metodi raggiungibili
-// finché T2/T3 non li aggiunge.
+// lesson.event.emit append-only controllato; da P0-E anche simulation.* sotto la
+// capability service.simulation. llm/net/ui e graph.proposeClaims restano
+// capability dichiarabili a manifest ma senza metodi raggiungibili finché
+// T2/T3 non li aggiunge.
 export interface MethodSpec {
   cap: CapabilityName
   params: z.ZodType
@@ -327,5 +406,30 @@ export const TOOL_METHODS: Record<string, MethodSpec> = {
     cap: "lesson.event.emit",
     params: LessonEventEmitParamsSchema,
     result: LessonEventEmitResultSchema,
+  },
+  "simulation.describe": {
+    cap: "service.simulation",
+    params: SimulationDescribeParamsSchema,
+    result: SimulationDescribeResultSchema,
+  },
+  "simulation.loadScene": {
+    cap: "service.simulation",
+    params: SimulationLoadSceneParamsSchema,
+    result: SimulationLoadSceneResultSchema,
+  },
+  "simulation.solve": {
+    cap: "service.simulation",
+    params: SimulationSolveParamsSchema,
+    result: SimulationSolveResultSchema,
+  },
+  "simulation.readDiagnostics": {
+    cap: "service.simulation",
+    params: SimulationReadDiagnosticsParamsSchema,
+    result: SimulationReadDiagnosticsResultSchema,
+  },
+  "simulation.serializeState": {
+    cap: "service.simulation",
+    params: SimulationSerializeStateParamsSchema,
+    result: SimulationSerializeStateResultSchema,
   },
 }
