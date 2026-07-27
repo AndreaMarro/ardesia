@@ -1301,31 +1301,32 @@ describe("Sessione 2 — negative controls del confine", () => {
     expect(after).toEqual(before)
   })
 
-  it("un serializer mutante non può alterare lo stato committato prima del rollback", async () => {
+  it("applyOperation riceve lo stato runtime opaco, non la sua proiezione serializzata", async () => {
     const workspace = new WorkspaceStore()
     await workspace.init()
     const eventLog = await canonicalEventLog()
-    let sabotageNextSerialization = true
-    const mutatingService: SimulationRuntimeApiLike = {
+    const serializeState = vi.fn((state: unknown) =>
+      serializeSimulationRuntimeState(state as SimulationRuntimeState),
+    )
+    const applyOperation = vi.fn((state: unknown, operation: unknown) => {
+      if (
+        typeof state !== "object" ||
+        state === null ||
+        !("runtimeOnly" in state) ||
+        state.runtimeOnly !== "live-state"
+      ) {
+        throw new Error("runtime-only state marker missing")
+      }
+      return realSimulationService.applyOperation!(state, operation as never)
+    })
+    const splitStateService: SimulationRuntimeApiLike = {
       ...realSimulationService,
-      serializeState: (state) => {
-        if (sabotageNextSerialization) {
-          sabotageNextSerialization = false
-          const runtimeState = state as SimulationRuntimeState
-          const connections = runtimeState.scene.connections
-          if (connections === undefined) {
-            throw new Error("test precondition: runtime scene has no connections")
-          }
-          connections.push({
-            id: "malicious-wire",
-            from: "bat1:positive",
-            to: "bat1:negative",
-            color: "red",
-          })
-          return undefined
-        }
-        return serializeSimulationRuntimeState(state as SimulationRuntimeState)
-      },
+      loadScene: (input) => ({
+        ...(realSimulationService.loadScene(input) as SimulationRuntimeState),
+        runtimeOnly: "live-state",
+      }),
+      applyOperation,
+      serializeState,
     }
     const client = await mountReady(hostFor(
       workspace,
@@ -1334,22 +1335,21 @@ describe("Sessione 2 — negative controls del confine", () => {
       ROOM_A,
       undefined,
       ["service.simulation"],
-      mutatingService,
+      splitStateService,
     ))
     wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+    serializeState.mockClear()
 
-    const rejected = await client.call("simulation.applyOperation", {
-      expectedSceneDigest: ORIGINAL_DIGEST,
-      operation: SHORT_CIRCUIT_OPERATION,
-    })
-    expect(rejected.result).toBeUndefined()
-    expect(rejected.error?.code).toBe(ERR.INTERNAL)
-
-    const after = wireResult<SerializedWireResult>(
-      await client.call("simulation.serializeState"),
+    const applied = wireResult<ApplyOperationWireResult>(
+      await client.call("simulation.applyOperation", {
+        expectedSceneDigest: ORIGINAL_DIGEST,
+        operation: SHORT_CIRCUIT_OPERATION,
+      }),
     )
-    expect(after.receipt.sceneDigest).toBe(ORIGINAL_DIGEST)
-    expect(after.state.scene.connections).toEqual(ORIGINAL_SCENE.connections)
+    expect(applied.accepted).toBe(true)
+    expect(applied.receipt.sceneDigest).not.toBe(ORIGINAL_DIGEST)
+    expect(applyOperation).toHaveBeenCalledTimes(1)
+    expect(serializeState).not.toHaveBeenCalled()
   })
 
   it("un provider solve mutante non può cambiare topologia né receipt", async () => {

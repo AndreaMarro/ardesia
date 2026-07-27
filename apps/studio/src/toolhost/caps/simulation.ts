@@ -135,13 +135,9 @@ export class ToolSimulation {
     // proprio argomento non può alterare lo stato committato prima dei check.
     const stateSnapshot = structuredClone(this._requireState())
     const previousScene = this._sceneFromState(stateSnapshot)
-    const serialized = this._checkedState(
-      this._api.serializeState(stateSnapshot),
-    )
-    const isolatedState = structuredClone(serialized)
     const applied: unknown = apply.call(
       this._api,
-      isolatedState,
+      stateSnapshot,
       structuredClone(params.operation),
     )
     if (!isRecord(applied) || typeof applied.accepted !== "boolean") {
