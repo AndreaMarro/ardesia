@@ -1,0 +1,12 @@
+# Output verbatim di revisori esterni archiviato come prova.
+#
+# Negli artifact `*-raw.md` i due spazi a fine riga sono l'hard-break markdown
+# emesso dal revisore: sono semantica del documento, non sciatteria. Il gate
+# `git diff --check` (.github/workflows/ci.yml, job hygiene) li segnala come
+# trailing whitespace, ma riformattarli riscriverebbe la prova che l'artifact
+# esiste per conservare. L'unica risposta corretta e' esentarli.
+#
+# Stesso principio gia' applicato in ci.yml a apps/studio/sim/solver/engine/:
+# il whitespace di un sorgente canonico non si tocca.
+artifacts/**/*raw*.md -whitespace
+artifacts/**/*.jsonl  -whitespace
