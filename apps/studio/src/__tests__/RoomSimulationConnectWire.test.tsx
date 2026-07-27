@@ -634,8 +634,20 @@ describe("Room live Simulation connect-wire", () => {
       },
     )
 
+    // L'assert qui sotto su roomA è di SOLA INVARIANZA («A non è cambiata»):
+    // vale come prova di isolamento soltanto se la precondizione «B ha davvero
+    // mutato» è STABILITA. A stabilirla è la riga successiva, che per questo
+    // deve confrontare B con la PROPRIA baseline.
+    //
+    // Confrontarla con roomABytes la rendeva inerte: `createToolEmbedElement`
+    // scrive `updated = Date.now()` (ToolCanvasEmbeddable.tsx:520) e le due
+    // baseline divergono da sole. Misurato su questo sito: 24 esecuzioni su 30
+    // con baseline diverse. Iniettando una board di room B che ingoia il write,
+    // la forma precedente mancava il guasto in 16 esecuzioni su 20 — a fermare
+    // il test era la riga `roomBAfterOwnMutation` più sotto, non questa.
+    // Nella forma attuale il guasto è stato colto 10 volte su 10.
     expect(roomA.json()).toBe(roomABytes)
-    expect(roomB.json()).not.toBe(roomABytes)
+    expect(roomB.json()).not.toBe(roomBBytes)
     const roomBAfterOwnMutation = roomB.json()
     const resultA = await applyRoomSimulationConnectWire(
       { roomId: "session-2-room-a", store, board: roomA.board },
