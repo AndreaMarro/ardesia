@@ -73,8 +73,9 @@ export interface ToolHostDeps {
    */
   instanceId?: string
   /**
-   * Scope lezione/room imposto dal composition root. I metodi Simulation 1.3
-   * restano compatibili senza; ogni mutazione 1.4 lo richiede fail-closed.
+   * Scope lezione/room imposto dal composition root. `describe` resta
+   * stateless; ogni richiesta che legge, carica, risolve, serializza o muta
+   * stato Simulation richiede il roomId host-owned fail-closed.
    */
   roomId?: string
   /**

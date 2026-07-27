@@ -253,7 +253,7 @@ export class ToolSimulation {
 
   private _requireRoomId(): string {
     if (this._roomId === null) {
-      throw new Error(`simulation mutation requires a host-owned roomId for instance "${this._instanceId}"`)
+      throw new Error(`simulation state access requires a host-owned roomId for instance "${this._instanceId}"`)
     }
     return this._roomId
   }
