@@ -79,6 +79,42 @@ const LED_SCENE = {
 } as const
 
 const SCENE_DIGEST = simulationSceneDigest(LED_SCENE)
+const malformedRuntimeScenes: Array<[
+  name: string,
+  mutate: (scene: Record<string, unknown>) => void,
+]> = [
+  ["empty component id", (scene) => {
+    scene.components = [{ id: "", type: "battery", value: 5 }]
+  }],
+  ["wrong component value", (scene) => {
+    scene.components = [{ id: "bat1", type: "battery", value: "5" }]
+  }],
+  ["wrong connection id", (scene) => {
+    scene.connections = [{ id: 7, from: "bat1:+", to: "bat1:-" }]
+  }],
+  ["unsupported connection kind", (scene) => {
+    scene.connections = [{ from: "bat1:+", to: "bat1:-", kind: "bus" }]
+  }],
+  ["too many components", (scene) => {
+    scene.components = Array.from(
+      { length: 501 },
+      (_, index) => ({ id: `component-${index}`, type: "resistor" }),
+    )
+  }],
+  ["too many connections", (scene) => {
+    scene.connections = Array.from(
+      { length: 2001 },
+      (_, index) => ({
+        id: `connection-${index}`,
+        from: "bat1:+",
+        to: "bat1:-",
+      }),
+    )
+  }],
+  ["non-string pin assignment", (scene) => {
+    scene.pinAssignments = { "bat1:+": 7 }
+  }],
+]
 
 // ---------- doppi minimi (nessun mock del soggetto sotto test) ----------
 
@@ -255,6 +291,41 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
   })
 
   it("RED-2c: ogni richiesta stateful senza room host-owned fallisce chiusa", async () => {
+    let runtimeCalls = 0
+    const roomlessSimulation: SimulationRuntimeApiLike = {
+      describe: () => {
+        runtimeCalls += 1
+        return describeSimulationRuntimeApi()
+      },
+      sceneDigest: (scene) => {
+        runtimeCalls += 1
+        return simulationSceneDigest(scene)
+      },
+      loadScene: (input) => {
+        runtimeCalls += 1
+        return loadSimulationRuntimeScene(input)
+      },
+      applyOperation: () => {
+        runtimeCalls += 1
+        throw new Error("room gate did not run before applyOperation")
+      },
+      solve: (state, request) => {
+        runtimeCalls += 1
+        const solved = solveSimulationRuntimeProvider(
+          state as SimulationRuntimeState,
+          request as SimulationRuntimeProviderRequest,
+        )
+        return { state: solved.state, result: solved.result }
+      },
+      readDiagnostics: (state) => {
+        runtimeCalls += 1
+        return readSimulationRuntimeDiagnostics(state as SimulationRuntimeState)
+      },
+      serializeState: (state) => {
+        runtimeCalls += 1
+        return serializeSimulationRuntimeState(state as SimulationRuntimeState)
+      },
+    }
     const host = new ToolHost(
       elabTutorManifest(SERVICE_CAP),
       SERVICE_CAP as Capabilities,
@@ -262,13 +333,14 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
         store: new MemoryWorkspace(),
         board,
         instanceId: "elab-1",
-        simulation: realSimulationService,
+        simulation: roomlessSimulation,
       },
     )
     const { call } = await mountReady(host)
 
     const described = await call("simulation.describe")
     expect(described.error).toBeUndefined()
+    expect(runtimeCalls).toBe(1)
 
     const statefulCalls: Array<[string, unknown]> = [
       ["simulation.loadScene", { scene: LED_SCENE }],
@@ -300,8 +372,11 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
       const response = await call(method, params)
       expect(response.result, method).toBeUndefined()
       expect(response.error?.code, method).toBe(ERR.INTERNAL)
-      expect(response.error?.message, method).toMatch(/roomId/i)
+      expect(response.error?.message, method).toBe(
+        'simulation state access requires a host-owned roomId for instance "elab-1"',
+      )
     }
+    expect(runtimeCalls).toBe(1)
   })
 })
 
@@ -408,6 +483,46 @@ describe("service.simulation — gating fail-closed", () => {
 // RED-10 / RED-11 — riproduzione dei due rilievi CodeRabbit su PR #210
 // ---------------------------------------------------------------------------
 describe("service.simulation — la ricevuta non può mentire", () => {
+  it.each(malformedRuntimeScenes)(
+    "rifiuta uno stato runtime fuori schema: %s",
+    async (_name, mutate) => {
+      const malformedService: SimulationRuntimeApiLike = {
+        ...realSimulationService,
+        loadScene: (input) => {
+          const state = loadSimulationRuntimeScene(input) as unknown as Record<string, unknown>
+          const scene = state.scene
+          if (typeof scene !== "object" || scene === null || Array.isArray(scene)) {
+            throw new Error("test precondition: runtime scene missing")
+          }
+          mutate(scene as Record<string, unknown>)
+          return state
+        },
+      }
+      const host = new ToolHost(
+        elabTutorManifest(SERVICE_CAP),
+        SERVICE_CAP as Capabilities,
+        {
+          store: new MemoryWorkspace(),
+          board,
+          instanceId: "elab-a",
+          roomId: "broker-room",
+          simulation: malformedService,
+        },
+      )
+      const { call } = await mountReady(host)
+
+      const rejected = await call("simulation.loadScene", { scene: LED_SCENE })
+      expect(rejected.result).toBeUndefined()
+      expect(rejected.error?.code).toBe(ERR.INTERNAL)
+      expect(rejected.error?.message).toMatch(/state scene is malformed/i)
+
+      const serialized = await call("simulation.serializeState")
+      expect(serialized.result).toBeUndefined()
+      expect(serialized.error?.code).toBe(ERR.INTERNAL)
+      expect(serialized.error?.message).toMatch(/no scene loaded/i)
+    },
+  )
+
   it("RED-10: se il digest fallisce, il receipt non deve mai legare la scena VECCHIA allo stato NUOVO", async () => {
     const SECONDA_SCENA = {
       components: [{ id: "r9", type: "resistor", value: 1000 }],

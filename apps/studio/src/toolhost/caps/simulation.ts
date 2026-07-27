@@ -18,6 +18,7 @@ import { validateRoomId } from "../../store/roomPaths.ts"
 import {
   SimulationApplyOperationResultSchema,
   SimulationDescribeResultSchema,
+  SimulationLoadSceneParamsSchema,
 } from "../../toolhost-protocol/index.ts"
 import type {
   SimulationApplyOperationParams,
@@ -116,8 +117,8 @@ export class ToolSimulation {
   }
 
   applyOperation(params: SimulationApplyOperationParams): SimulationApplyOperationResult {
-    const contract = this._contract()
     const roomId = this._requireRoomId()
+    const contract = this._contract()
     const currentDigest = this._requireDigest()
     if (params.expectedSceneDigest !== currentDigest) {
       throw new Error(
@@ -306,32 +307,40 @@ export class ToolSimulation {
     if (!Array.isArray(scene.components) || !Array.isArray(scene.connections)) {
       throw new Error(`simulation state scene is malformed for instance "${this._instanceId}"`)
     }
-    for (const component of scene.components) {
-      if (
-        !isRecord(component) ||
-        typeof component.id !== "string" ||
-        typeof component.type !== "string"
-      ) {
-        throw new Error(`simulation state contains a malformed component`)
+    const malformed = (): never => {
+      throw new Error(
+        `simulation state scene is malformed for instance "${this._instanceId}"`,
+      )
+    }
+    const components = scene.components.map((value) => {
+      if (!isRecord(value)) return malformed()
+      return {
+        id: value.id,
+        type: value.type,
+        ...(value.label === undefined ? {} : { label: value.label }),
+        ...(value.value === undefined ? {} : { value: value.value }),
       }
-    }
-    for (const connection of scene.connections) {
-      if (
-        !isRecord(connection) ||
-        typeof connection.from !== "string" ||
-        typeof connection.to !== "string"
-      ) {
-        throw new Error(`simulation state contains a malformed connection`)
+    })
+    const connections = scene.connections.map((value) => {
+      if (!isRecord(value)) return malformed()
+      if (value.kind !== undefined && value.kind !== "wire") return malformed()
+      return {
+        ...(value.id === undefined ? {} : { id: value.id }),
+        from: value.from,
+        to: value.to,
       }
-    }
-    if (
-      scene.pinAssignments !== undefined &&
-      (!isRecord(scene.pinAssignments) ||
-        Object.values(scene.pinAssignments).some((value) => typeof value !== "string"))
-    ) {
-      throw new Error(`simulation state contains malformed pin assignments`)
-    }
-    return scene as SimulationScene
+    })
+    const parsed = SimulationLoadSceneParamsSchema.safeParse({
+      scene: {
+        components,
+        connections,
+        ...(scene.pinAssignments === undefined
+          ? {}
+          : { pinAssignments: scene.pinAssignments }),
+      },
+    })
+    if (!parsed.success) return malformed()
+    return parsed.data.scene
   }
 
   /**
