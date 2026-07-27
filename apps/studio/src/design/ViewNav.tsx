@@ -104,7 +104,10 @@ const navStyle = {
 } as const
 
 const linkStyle = {
-  minHeight: 30,
+  // Founder Beta: bersaglio tattile minimo 44 CSS px.
+  // Vincolato da src/__tests__/ViewNavTouchTarget.test.tsx, che misura lo
+  // stile calcolato di ogni [data-view-nav-item] e non importa questa soglia.
+  minHeight: 44,
   display: "inline-flex",
   alignItems: "center",
   padding: "5px 12px",
