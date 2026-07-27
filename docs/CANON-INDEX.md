@@ -4,7 +4,7 @@
 > “host non montato”, i conteggi e il P0 qui sotto congelano il 23 giugno.
 > Stato codice corrente: `../ARDESIA-MAP.md` e
 > `../artifacts/session-2/current-flow.md`. Autorità di governance, decisioni e
-> receipt: `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
+> receipt: vault Knowledge esterno, `00-INDEX.md`.
 
 Queste specifiche congelano il corpus ricavato dai repo reali e verificato
 firsthand al 23 giugno (workflow `wf_a3b09ee4`, 10 agenti, file:riga). Sono uno

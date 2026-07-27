@@ -4,7 +4,7 @@
 > descrive lo stato del 17 giugno e contiene nomi, ruoli e claim ormai
 > superseded. Per il codice corrente partire da `../../ARDESIA-MAP.md` e
 > `../../artifacts/session-2/current-flow.md`; per governance, decisioni e receipt
-> usare il vault esterno `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
+> usare il vault Knowledge esterno, a partire da `00-INDEX.md`.
 
 > **CLAUSOLA STORICA (17/06).** All'epoca questa era la mappa unica per
 > struttura/navigazione e `COORDINATION.md` conteneva gli ordini. Oggi, in caso

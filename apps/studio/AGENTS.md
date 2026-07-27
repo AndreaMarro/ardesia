@@ -2,8 +2,8 @@
 
 > Segui `../../AGENTS.md` e `../../ARDESIA-MAP.md`; per la verticale
 > Simulation/ELABTutor segui `../../artifacts/session-2/current-flow.md`.
-> Governance, decisioni e receipt partono da
-> `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
+> Governance, decisioni e receipt partono dal vault Knowledge esterno,
+> `00-INDEX.md`.
 
 ## Scope
 

@@ -1,8 +1,8 @@
 # ARDESIA-MAP — Mappa di navigazione del monorepo
 
 Aggiornata al 2026-07-27. Questa è la mappa del codice; l'autorità di
-governance, decisioni e receipt è il vault esterno
-`/Users/andreamarro/ARDESIA-KNOWLEDGE`, a partire da `00-INDEX.md`.
+governance, decisioni e receipt è il vault Knowledge esterno, a partire da
+`00-INDEX.md`.
 
 ## Da dove partire
 
