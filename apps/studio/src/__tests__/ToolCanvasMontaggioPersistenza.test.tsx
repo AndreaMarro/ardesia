@@ -235,6 +235,40 @@ describe("persistEmbedState — write-back host-side in scena (caps/board)", () 
     })
   })
 
+  it("un audit sink fallito non trasforma un board.write gia' committato in reject", async () => {
+    const owner = "io.ardesia.simulation"
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner, state: { a: 1 } } },
+    }
+    const { api, updateScene } = makeApi([embed])
+    const failingAuditStore: AuditStore = {
+      read: async () => null,
+      write: async () => {
+        throw new Error("injected audit failure")
+      },
+    }
+
+    await expect(
+      persistEmbedStateThroughToolHost(
+        api,
+        failingAuditStore,
+        "embed-1",
+        { a: 2 },
+        { toolId: owner },
+      ),
+    ).resolves.toBe(true)
+
+    expect(updateScene).toHaveBeenCalledTimes(1)
+    const next = updateScene.mock.calls[0][0].elements.find(
+      (element: { id: string }) => element.id === "embed-1",
+    )
+    expect(next.customData[EMBED_DATA_KEY]).toEqual({
+      owner,
+      state: { a: 2 },
+    })
+  })
+
   it("break-connections passa dal write-back governato e produce audit board.write", async () => {
     const owner = "io.ardesia.simulation"
     const element = createToolEmbedElement()

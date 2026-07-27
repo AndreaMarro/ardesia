@@ -189,8 +189,8 @@ export async function applyRoomSimulationConnectWire<TScene>(
       ) {
         throw new Error("simulation operation receipt scope mismatch")
       }
-      await host.audit.idle()
     } finally {
+      await host.audit.idle()
       mounted.close()
     }
 

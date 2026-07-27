@@ -76,6 +76,39 @@ class MemoryStore {
   }
 }
 
+class DelayedSnapshotStore extends MemoryStore {
+  private pending = new Set<Promise<void>>()
+
+  private async delay(): Promise<void> {
+    let pending!: Promise<void>
+    pending = new Promise<void>((resolve) => {
+      setTimeout(resolve, 20)
+    }).finally(() => {
+      this.pending.delete(pending)
+    })
+    this.pending.add(pending)
+    await pending
+  }
+
+  override async read(path: string): Promise<Blob | null> {
+    const snapshot = this.files.get(path) ?? null
+    await this.delay()
+    return snapshot
+  }
+
+  override async write(path: string, data: Blob): Promise<void> {
+    await this.delay()
+    this.files.set(path, data)
+  }
+
+  async idle(): Promise<void> {
+    while (this.pending.size > 0) {
+      await Promise.all([...this.pending])
+      await Promise.resolve()
+    }
+  }
+}
+
 function shortCircuitOperation(
   suffix: string,
 ): SimulationApplyOperationParams["operation"] {
@@ -187,8 +220,8 @@ describe("Room live Simulation connect-wire", () => {
     ])
   })
 
-  it("un'operazione rigettata dal runtime non scrive la board e rilascia la coda", async () => {
-    const store = new MemoryStore()
+  it("un reject drena l'audit prima del retry e non perde righe", async () => {
+    const store = new DelayedSnapshotStore()
     const harness = boardHarness()
     const original = structuredClone(harness.binding().state.scene)
     const before = harness.json()
@@ -209,14 +242,6 @@ describe("Room live Simulation connect-wire", () => {
     )).rejects.toThrow(/operation .* rejected/i)
 
     expect(harness.json()).toBe(before)
-    await waitFor(async () => {
-      expect((await readAuditLog(store, "io.ardesia.simulation")).entries.map(
-        ({ method, outcome }) => ({ method, outcome }),
-      )).toEqual([
-        { method: "simulation.loadScene", outcome: "ok" },
-        { method: "simulation.applyOperation", outcome: "error" },
-      ])
-    })
 
     const accepted = await applyRoomSimulationConnectWire(
       { roomId: "session-2-room-a", store, board: harness.board },
@@ -228,9 +253,16 @@ describe("Room live Simulation connect-wire", () => {
       },
     )
     expect(accepted.result.accepted).toBe(true)
-    expect((await readAuditLog(store, "io.ardesia.simulation")).entries.filter(
-      (entry) => entry.method === "board.write",
-    )).toHaveLength(1)
+    await store.idle()
+    expect((await readAuditLog(store, "io.ardesia.simulation")).entries.map(
+      ({ method, outcome }) => ({ method, outcome }),
+    )).toEqual([
+      { method: "simulation.loadScene", outcome: "ok" },
+      { method: "simulation.applyOperation", outcome: "error" },
+      { method: "simulation.loadScene", outcome: "ok" },
+      { method: "simulation.applyOperation", outcome: "ok" },
+      { method: "board.write", outcome: "ok" },
+    ])
   })
 
   it("nega scene stantie e richieste concorrenti senza write-back aggiuntivi", async () => {
@@ -754,6 +786,74 @@ describe("Room live Simulation connect-wire", () => {
     await act(async () => Promise.resolve())
     expect(noHostProps.experiment.connections).toHaveLength(noHostBaseline)
     expect(persist).not.toHaveBeenCalled()
+  })
+
+  it("non scarta una receipt se l'effect canvas si ricrea durante l'in-flight", async () => {
+    let resolveApply!: (value: unknown) => void
+    const pending = new Promise((resolve) => {
+      resolveApply = resolve
+    })
+    const applyConnectWire = vi.fn((_request: unknown) => pending)
+    const element = createToolEmbedElement()
+    const host = { applyConnectWire: applyConnectWire as never }
+    const view = renderToolCanvasEmbeddable(element as never, host)
+    if (view === null) throw new Error("simulation embed not rendered")
+    const mounted = render(view)
+    await waitFor(() => expect(rendered.length).toBeGreaterThan(0))
+    const baseline = rendered.at(-1)!.experiment.connections.length
+
+    act(() => {
+      rendered.at(-1)!.onConnectionAdd!("bat1:positive", "bat1:negative")
+    })
+    await waitFor(() => expect(applyConnectWire).toHaveBeenCalledTimes(1))
+    const request = applyConnectWire.mock.calls[0]![0] as {
+      scene: ReturnType<typeof createReferenceSimulationScene>
+      operation: SimulationApplyOperationParams["operation"]
+    }
+    const acceptedScene = {
+      ...request.scene,
+      connections: [
+        ...request.scene.connections,
+        {
+          id: request.operation.operation.kind === "connect-wire"
+            ? request.operation.operation.wire.id
+            : "unreachable",
+          from: "bat1:positive",
+          to: "bat1:negative",
+          color: "red",
+          kind: "wire" as const,
+        },
+      ],
+    }
+
+    const rerendered = renderToolCanvasEmbeddable(
+      element as never,
+      { ...host },
+    )
+    if (rerendered === null) throw new Error("simulation embed not rerendered")
+    mounted.rerender(rerendered)
+    await waitFor(() => expect(rendered.length).toBeGreaterThan(1))
+
+    await act(async () => resolveApply({
+      scene: acceptedScene,
+      result: {
+        operationId: request.operation.id,
+        roomId: "session-2-room-a",
+        accepted: true,
+        receipt: {
+          apiVersion: "simulation-runtime/1",
+          pluginId: "io.ardesia.simulation",
+          instanceId: "elab-v1-cap6-esp1-first-led",
+          sceneDigest: "accepted-digest",
+        },
+        solveOutcome: {},
+        diagnostics: {},
+      },
+    }))
+
+    await waitFor(() =>
+      expect(rendered.at(-1)!.experiment.connections).toHaveLength(baseline + 1),
+    )
   })
 
   it("ignora semanticamente una receipt riferita a una scena ormai stantia", () => {

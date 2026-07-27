@@ -1250,6 +1250,12 @@ function ElabCoreCanvasMount({
   const [mountStatus, setMountStatus] = useState<"pending" | "mounted" | "error">("pending");
   const [lastOperationId, setLastOperationId] = useState<string | null>(null);
   const connectWireInFlightRef = useRef(false);
+  const componentMountedRef = useRef(false);
+
+  useEffect(() => {
+    componentMountedRef.current = true;
+    return () => { componentMountedRef.current = false; };
+  }, []);
 
   useEffect(() => {
     setLocalScene(scene);
@@ -1328,7 +1334,7 @@ function ElabCoreCanvasMount({
                 color: inferCanvasWireColor(from, to),
               },
               onAccepted: ({ scene, result }) => {
-                if (disposed) return;
+                if (!componentMountedRef.current) return;
                 setLocalScene((current) => {
                   const next = acceptCanvasReceiptScene(localScene, current, scene);
                   if (next !== current) setLastOperationId(result.operationId);
@@ -1336,7 +1342,7 @@ function ElabCoreCanvasMount({
                 });
               },
               onRejected: () => {
-                if (!disposed) setMountStatus("error");
+                if (componentMountedRef.current) setMountStatus("error");
               },
               onSettled: () => { connectWireInFlightRef.current = false; },
             });
