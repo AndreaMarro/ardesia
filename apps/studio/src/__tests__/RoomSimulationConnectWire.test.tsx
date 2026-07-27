@@ -168,6 +168,52 @@ describe("Room live Simulation connect-wire", () => {
     ])
   })
 
+  it("un'operazione rigettata dal runtime non scrive la board e rilascia la coda", async () => {
+    const store = new MemoryStore()
+    const harness = boardHarness()
+    const original = structuredClone(harness.binding().state.scene)
+    const before = harness.json()
+    const rejectedOperation = shortCircuitOperation("rejected")
+    if (rejectedOperation.operation.kind !== "connect-wire") {
+      throw new Error("test precondition: expected connect-wire")
+    }
+    rejectedOperation.operation.wire.from = "ghost:missing"
+
+    await expect(applyRoomSimulationConnectWire(
+      { roomId: "session-2-room-a", store, board: harness.board },
+      {
+        toolId: "io.ardesia.simulation",
+        embedId: "elab-v1-cap6-esp1-first-led",
+        scene: original,
+        operation: rejectedOperation,
+      },
+    )).rejects.toThrow(/operation .* rejected/i)
+
+    expect(harness.json()).toBe(before)
+    await waitFor(async () => {
+      expect((await readAuditLog(store, "io.ardesia.simulation")).entries.map(
+        ({ method, outcome }) => ({ method, outcome }),
+      )).toEqual([
+        { method: "simulation.loadScene", outcome: "ok" },
+        { method: "simulation.applyOperation", outcome: "error" },
+      ])
+    })
+
+    const accepted = await applyRoomSimulationConnectWire(
+      { roomId: "session-2-room-a", store, board: harness.board },
+      {
+        toolId: "io.ardesia.simulation",
+        embedId: "elab-v1-cap6-esp1-first-led",
+        scene: original,
+        operation: shortCircuitOperation("after-reject"),
+      },
+    )
+    expect(accepted.result.accepted).toBe(true)
+    expect((await readAuditLog(store, "io.ardesia.simulation")).entries.filter(
+      (entry) => entry.method === "board.write",
+    )).toHaveLength(1)
+  })
+
   it("nega scene stantie e richieste concorrenti senza write-back aggiuntivi", async () => {
     const store = new MemoryStore()
     const harness = boardHarness()

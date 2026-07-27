@@ -457,12 +457,14 @@ function migrateLegacySimulationSceneDigest(
   }
   const sceneDigest = trySimulationRuntimeSceneDigest(pluginState.runtimeState)
   if (sceneDigest === null) return postit
+  const migratedState = {
+    ...pluginState,
+    sceneDigest,
+  }
+  if (!isSimulationPostitState(migratedState)) return postit
   return {
     ...postit,
-    pluginState: {
-      ...pluginState,
-      sceneDigest,
-    } as SimulationPostitState,
+    pluginState: migratedState,
   }
 }
 

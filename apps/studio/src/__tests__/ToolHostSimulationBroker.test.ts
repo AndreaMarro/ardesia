@@ -269,10 +269,39 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
 
     const described = await call("simulation.describe")
     expect(described.error).toBeUndefined()
-    const loaded = await call("simulation.loadScene", { scene: LED_SCENE })
-    expect(loaded.result).toBeUndefined()
-    expect(loaded.error?.code).toBe(ERR.INTERNAL)
-    expect(loaded.error?.message).toMatch(/roomId/i)
+
+    const statefulCalls: Array<[string, unknown]> = [
+      ["simulation.loadScene", { scene: LED_SCENE }],
+      ["simulation.applyOperation", {
+        expectedSceneDigest: SCENE_DIGEST,
+        operation: {
+          schema: "simulation-operation/1",
+          id: "roomless-connect-wire",
+          actor: "manual",
+          origin: "canvas",
+          targetProvider: "local",
+          providerMode: "static",
+          operation: {
+            kind: "connect-wire",
+            wire: {
+              id: "roomless-wire",
+              from: "bat1:+",
+              to: "bat1:-",
+              color: "red",
+            },
+          },
+        },
+      }],
+      ["simulation.solve", { provider: "local", mode: "static" }],
+      ["simulation.readDiagnostics", {}],
+      ["simulation.serializeState", {}],
+    ]
+    for (const [method, params] of statefulCalls) {
+      const response = await call(method, params)
+      expect(response.result, method).toBeUndefined()
+      expect(response.error?.code, method).toBe(ERR.INTERNAL)
+      expect(response.error?.message, method).toMatch(/roomId/i)
+    }
   })
 })
 

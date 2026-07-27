@@ -8,6 +8,7 @@ import { afterEach, describe, expect, it } from "vitest"
 import App from "../App"
 import {
   createMultiPostitWorkbenchPostits,
+  isSimulationPostitState,
   MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
   resizeMultiPostitInstance,
   restoreMultiPostitWorkbench,
@@ -176,6 +177,25 @@ describe("Browser-hosted multi post-it evidence route", () => {
       originalSimulation.sceneDigest,
     )
 
+    const staleV1 = structuredClone(snapshot) as unknown as {
+      schema: string
+      postits: Array<{
+        pluginId: string
+        pluginState: Record<string, unknown>
+      }>
+    }
+    staleV1.schema = "multi-postit-workbench-state/1"
+    const staleV1Simulation = staleV1.postits.find(
+      (postit) => postit.pluginId === SIMULATION_PLUGIN_ID,
+    )
+    if (staleV1Simulation === undefined) {
+      throw new Error("test precondition: stale v1 Simulation post-it missing")
+    }
+    staleV1Simulation.pluginState.sceneDigest = "00000000"
+    expect(() => restoreMultiPostitWorkbench(staleV1)).toThrow(
+      /invalid Simulation state/i,
+    )
+
     const invalidV2 = structuredClone(rewritten) as unknown as {
       schema: string
       postits: Array<{
@@ -305,7 +325,7 @@ function findPostit(postits: readonly MultiPostitObject[], instanceId: string): 
 }
 
 function expectSimulationState(postit: MultiPostitObject) {
-  if (!("providerOutput" in postit.pluginState)) {
+  if (!isSimulationPostitState(postit.pluginState)) {
     throw new Error(`expected Simulation state for ${postit.instanceId}`)
   }
   return postit.pluginState
