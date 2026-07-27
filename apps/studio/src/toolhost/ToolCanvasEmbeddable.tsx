@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
 
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
@@ -23,9 +23,11 @@ import {
   type MontaggioPlacementType,
 } from "../../sim/elab/montaggioProjection";
 import {
+  acceptCanvasReceiptScene,
   dispatchSimulationConnectWire,
   registerSimulationTool,
   getSimulationTool,
+  nextCanvasWireId,
   type SimulationToolHost,
 } from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
@@ -164,6 +166,7 @@ export type SimulationSceneV1 = {
   components: SimulationComponent[];
   pinAssignments: Record<string, string>;
   connections: Array<{
+    id?: string;
     from: string;
     to: string;
     color: string;
@@ -954,7 +957,12 @@ function ReferenceSimulationCanvasTool({
     const id = nextMontaggioPlacementId(
       montaggioTool,
       placements,
-      scene.components.map((component) => component.id),
+      [
+        ...scene.components.map((component) => component.id),
+        ...scene.connections.flatMap((connection) =>
+          connection.id === undefined ? [] : [connection.id],
+        ),
+      ],
     );
     applyPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
     setPendingHole(null);
@@ -1241,12 +1249,7 @@ function ElabCoreCanvasMount({
   const [localScene, setLocalScene] = useState(scene);
   const [mountStatus, setMountStatus] = useState<"pending" | "mounted" | "error">("pending");
   const [lastOperationId, setLastOperationId] = useState<string | null>(null);
-  const sceneRef = useRef(localScene);
   const connectWireInFlightRef = useRef(false);
-
-  useLayoutEffect(() => {
-    sceneRef.current = localScene;
-  }, [localScene]);
 
   useEffect(() => {
     setLocalScene(scene);
@@ -1309,8 +1312,10 @@ function ElabCoreCanvasMount({
           onConnectionAdd: (from: string, to: string) => {
             const applyConnectWire = host?.applyConnectWire;
             if (applyConnectWire === undefined || connectWireInFlightRef.current) return;
-            const connectionId =
-              `${toolLink.embedId}:wire:${canvasState.experiment.connections.length + 1}`;
+            const connectionId = nextCanvasWireId(
+              toolLink.embedId,
+              canvasState.experiment.connections,
+            );
             connectWireInFlightRef.current = true;
             dispatchSimulationConnectWire({
               apply: applyConnectWire,
@@ -1323,9 +1328,12 @@ function ElabCoreCanvasMount({
                 color: inferCanvasWireColor(from, to),
               },
               onAccepted: ({ scene, result }) => {
-                if (disposed || sceneRef.current !== localScene) return;
-                setLastOperationId(result.operationId);
-                setLocalScene(scene);
+                if (disposed) return;
+                setLocalScene((current) => {
+                  const next = acceptCanvasReceiptScene(localScene, current, scene);
+                  if (next !== current) setLastOperationId(result.operationId);
+                  return next;
+                });
               },
               onRejected: () => {
                 if (!disposed) setMountStatus("error");

@@ -37,6 +37,34 @@ export type SimulationConnectWireResult<TScene> = {
   result: SimulationApplyOperationResult;
 };
 
+export function nextCanvasWireId(
+  embedId: string,
+  connections: readonly { id?: string }[],
+): string {
+  const prefix = `${embedId}:wire:`;
+  let ordinal = 0;
+  for (const connection of connections) {
+    const id = connection.id;
+    if (id === undefined || !id.startsWith(prefix)) continue;
+    const suffix = id.slice(prefix.length);
+    if (!/^\d+$/.test(suffix)) continue;
+    const value = Number(suffix);
+    if (Number.isSafeInteger(value) && value > ordinal) ordinal = value;
+  }
+  if (ordinal === Number.MAX_SAFE_INTEGER) {
+    throw new Error(`canvas wire id space exhausted for "${embedId}"`);
+  }
+  return `${prefix}${ordinal + 1}`;
+}
+
+export function acceptCanvasReceiptScene<TScene>(
+  requested: TScene,
+  current: TScene,
+  accepted: TScene,
+): TScene {
+  return current === requested ? accepted : current;
+}
+
 export function dispatchSimulationConnectWire<TScene>(input: {
   apply: NonNullable<SimulationToolHost["applyConnectWire"]>;
   scene: TScene;
@@ -57,9 +85,11 @@ export function dispatchSimulationConnectWire<TScene>(input: {
   };
   void Promise.resolve()
     .then(() => input.apply({ scene: input.scene, operation }))
-    .then(input.onAccepted)
-    .catch(input.onRejected)
-    .finally(input.onSettled);
+    .then(input.onAccepted, input.onRejected)
+    .finally(input.onSettled)
+    // Il dispatch è fire-and-forget. Un errore di callback avviene dopo il
+    // commit host: resta contenuto e non viene riclassificato come reject.
+    .catch(() => {});
 }
 
 /**

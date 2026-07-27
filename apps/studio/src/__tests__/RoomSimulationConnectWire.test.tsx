@@ -35,6 +35,11 @@ import {
 import { applyRoomSimulationConnectWire } from "../roomSimulationComposition"
 import { readAuditLog } from "../toolhost/audit"
 import { addToKillList } from "../toolhost/killList"
+import {
+  acceptCanvasReceiptScene,
+  dispatchSimulationConnectWire,
+  nextCanvasWireId,
+} from "../toolhost/simulationPluginRegistry"
 import { EMBED_DATA_KEY, type BoardElementLike } from "../toolhost/caps/board"
 import type { SimulationApplyOperationParams } from "../toolhost-protocol"
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
@@ -446,6 +451,47 @@ describe("Room live Simulation connect-wire", () => {
     )).toThrow(/id space exhausted/i)
   })
 
+  it("alloca gli ID live dei wire dal suffisso massimo, non dalla lunghezza", () => {
+    expect(nextCanvasWireId("sim-embed", [
+      { id: "sim-embed:wire:1" },
+      { id: "sim-embed:wire:3" },
+      { id: "wire-di-un-altro-producer" },
+    ])).toBe("sim-embed:wire:4")
+    expect(nextCanvasWireId("sim-embed", [
+      { id: "sim-embed:wire:2" },
+    ])).toBe("sim-embed:wire:3")
+  })
+
+  it("un errore del callback accepted non viene riclassificato come reject host", async () => {
+    const onAccepted = vi.fn(() => {
+      throw new Error("render callback failed after host commit")
+    })
+    const onRejected = vi.fn()
+    const onSettled = vi.fn()
+
+    dispatchSimulationConnectWire({
+      apply: (() => Promise.resolve({
+        scene: {},
+        result: {},
+      })) as never,
+      scene: {},
+      embedId: "sim-embed",
+      wire: {
+        id: "sim-embed:wire:1",
+        from: "bat1:positive",
+        to: "bat1:negative",
+        color: "red",
+      },
+      onAccepted,
+      onRejected,
+      onSettled,
+    })
+
+    await waitFor(() => expect(onSettled).toHaveBeenCalledTimes(1))
+    expect(onAccepted).toHaveBeenCalledTimes(1)
+    expect(onRejected).not.toHaveBeenCalled()
+  })
+
   it("confronta tutto lo stato ricco ignorando soltanto l'ordine delle chiavi", () => {
     expect(jsonPlainEqual(
       { provenance: { status: "reviewed", blocker: "CoV5" }, layout: { x: 1, y: 2 } },
@@ -708,5 +754,40 @@ describe("Room live Simulation connect-wire", () => {
     await act(async () => Promise.resolve())
     expect(noHostProps.experiment.connections).toHaveLength(noHostBaseline)
     expect(persist).not.toHaveBeenCalled()
+  })
+
+  it("ignora semanticamente una receipt riferita a una scena ormai stantia", () => {
+    const requestedScene = createReferenceSimulationScene()
+    const acceptedScene = {
+      ...requestedScene,
+      connections: [
+        ...requestedScene.connections,
+        {
+          id: "accepted-wire",
+          from: "bat1:positive",
+          to: "bat1:negative",
+          color: "red",
+          kind: "wire" as const,
+        },
+      ],
+    }
+    const externallyUpdatedScene = {
+      ...requestedScene,
+      provenance: {
+        ...requestedScene.provenance,
+        blocker: "newer external state",
+      },
+    }
+
+    expect(acceptCanvasReceiptScene(
+      requestedScene,
+      requestedScene,
+      acceptedScene,
+    )).toBe(acceptedScene)
+    expect(acceptCanvasReceiptScene(
+      requestedScene,
+      externallyUpdatedScene,
+      acceptedScene,
+    )).toBe(externallyUpdatedScene)
   })
 })

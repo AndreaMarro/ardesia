@@ -629,6 +629,10 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
         (diagnostic) => diagnostic.code === "provider-available",
       ),
     ).toBe(true)
+    const shortedLedCurrent =
+      applied.solveOutcome.componentStates.led1?.current
+    expect(shortedLedCurrent).toBeTypeOf("number")
+    expect(shortedLedCurrent as number).toBeLessThan(baselineLedCurrent)
 
     const diagnostics = wireResult<{
       receipt: SimulationReceipt
@@ -939,6 +943,9 @@ describe("Sessione 2 — negative controls del confine", () => {
     })
     expect(invalidTarget.result).toBeUndefined()
     expect(invalidTarget.error?.code).toBe(ERR.INTERNAL)
+    expect(invalidTarget.error?.message).toMatch(
+      /simulation operation "session-2:invalid-target" rejected/i,
+    )
 
     const unsupported = await client.call("simulation.applyOperation", {
       expectedSceneDigest: ORIGINAL_DIGEST,
