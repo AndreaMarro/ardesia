@@ -1,40 +1,40 @@
-> ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
+# ARDESIA Studio — regole correnti per agenti
 
-# AGENTS.md — MAESTRO-Studio (regole per Hermes)
+> Segui `../../AGENTS.md` e `../../ARDESIA-MAP.md`; per la verticale
+> Simulation/ELABTutor segui `../../artifacts/session-2/current-flow.md`.
+> Governance, decisioni e receipt partono dal vault Knowledge esterno,
+> `00-INDEX.md`.
 
-## 1. Identità e missione
-MAESTRO-Studio = la superficie di CATTURA del progetto MAESTRO: **la lavagna che registra**.
-Stack: React 19 + TypeScript + Vite 8, Excalidraw 0.18 (MIT), MathLive (MIT), pdfjs (Apache).
-Milestone M0, task in ordine VINCOLANTE: **T0 WorkspaceStore → T1 JournalRecorder (KILL-TEST replay deterministico) → T2 Audio Mode A → T3 bundle `.lesson`**.
-Gli ORDINI con i criteri di accettazione = `~/lessonos/COORDINATION.md` § CLAUDE-SAYS. Se il file non esiste sulla macchina corrente (es. MacBook: vive solo sul Mini), fai fede su `docs/CANON-INDEX.md` + i PR aperti del monorepo. NON inventare task fuori ordine.
+## Scope
 
-## 2. Pipeline iterazione (UNA task per iterazione)
-ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; UNA ipotesi) → BUILD (codice + test vitest NON tautologici) → REVIEW (`./bin/review.sh`, applica i fix VERI) → GATE `bash eval/gate.sh` VERDE → COMMIT + append STATUS.md + append log.jsonl.
+Studio è la superficie React/TypeScript/Vite di ARDESIA. Il task corrente
+deriva dall'ordine umano e dalle fonti sopra: non esistono code M0, ruoli
+Hermes, fallback storici o branch autonomi che autorizzino lavoro aggiuntivo.
+ELAB può entrare soltanto attraverso i confini Plugin/Pack ratificati; non
+reintrodurre un'app ELAB monolitica dentro Studio.
 
-## 3. Regole tecniche (gotcha REALI già pagati — non ri-sbattere)
-- **`tsc -b` è la fonte di verità del typecheck: vitest/esbuild NON typechecka.** `erasableSyntaxOnly` vieta le parameter-properties TS (constructor `private x`): vitest verde + `tsc -b` rosso = false-green già pagato più volte. Gira SEMPRE `npm run typecheck` prima di dichiarare verde.
-- Vitest deterministico solo coi flag runner: `--pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000` (senza, flakka in full-suite).
-- tsconfig è STRICT (`noUnusedLocals`/`noUnusedParameters`): import/variabili inutilizzati FALLISCONO il gate (TS6133) — pulisci prima di consegnare.
-- jsdom di vitest NON fornisce un localStorage completo: nei test stub esplicito (`Object.defineProperty(globalThis, 'localStorage', …)`) in beforeEach/setup — niente try/catch silenziosi che mascherano il guasto.
-- Blob binari (audio/immagini): MAI `data.text()` per serializzare — corrompe i byte; usa arrayBuffer → base64.
-- React duplicato: `resolve.dedupe ['react','react-dom']` già in vite.config — NON rimuovere.
-- Nuova dipendenza → `npm install` aggiorna package.json + package-lock.json: COMMITTALI entrambi. I test girano headless (vitest), niente dev server nel loop.
-- DOM nei test: devDep `jsdom` (già installata) + `// @vitest-environment jsdom` in testa al file di test.
-- `mathjax-full` npm = CJS rotto → MathJax via CDN (latexToImage.ts) — non toccare.
-- Eventi journal: `events.jsonl` APPEND-ONLY, timestamp epoch ms, replay deterministico (nessun `Math.random`/`Date.now` nel percorso di REPLAY).
-- localStorage = CACHE, mai fonte di verità (la verità = cartella FSA / export bundle).
-- Playwright è installato sul Mini: per il replay-test T1 "a schermo" usalo headless (chromium). MAI dichiarare "verificato" senza un test che gira.
-- **Solver vendored** (`sim/solver/{engine,components}/*.js`): copie BYTE-IDENTICHE della sorgente `plugins/elab-tutor`, protette da drift-guard sha256 (`SolverVendoredDrift.test.ts`). MAI "sistemare" la copia (nemmeno trailing whitespace): se la sorgente evolve, refresh consapevole + rerun. Tipi via `.d.ts` companion (niente allowJs).
-- **Due golden elettrici DISTINTI by-design**: UI 14.9 mA (traversal, scena `ledForwardVolts: 2`) vs motore 15.3 mA (`LED_VF.red = 1.8`, canone CircuitSolver). Conflitto Vf tracciato come warning in `elabSolver.ts` — NON riconciliare un golden con l'altro senza decisione di Andrea.
+## Gate obbligatori
 
-## 4. Vincoli duri (violarli = REVERT)
-- `eval/gate.sh` INTOCCABILE; mai indebolire/skippare test per far passare il gate.
-- ZERO codice/brand ELAB. ZERO "Numeria". Niente video embed (Meet esterno). Niente cloud/Supabase in M0. Niente dipendenze pesanti senza giustificazione scritta in STATUS.md.
-- GDPR Mode A strutturale: audio SOLO microfono docente, default OFF, consenso registrato in session.yaml. MAI voci di studenti.
-- Formati aperti e longevi: JSONL / Markdown / SVG / zip. Schema dati versionato (campo `v`).
+- `tsc -b` è il typecheck autoritativo; Vitest/esbuild non lo sostituiscono.
+- Per ogni commit esegui la suite Vitest completa e `npm run build`.
+- `eval/gate.sh` è frozen: non modificarlo o indebolirlo per ottenere verde.
+- I test devono essere causali e non tautologici; un claim “verificato” richiede
+  evidenza realmente eseguita.
+- Nessuna nuova dipendenza senza approvazione esplicita.
 
-## 5. Quando sei bloccato
-2 tentativi falliti sulla stessa task → scrivi una voce in `~/lessonos/COORDINATION.md` § NEEDS-CLAUDE e fermati. NON grindare.
+## Invarianti tecnici verificati
 
-## ARCHITECT-CURRENT.md (design opus pre-build)
-Se nella root del repo esiste `ARCHITECT-CURRENT.md` e il suo PIN-SIG corrisponde alla task pinnata corrente, e il DESIGN autoredatto da opus PRIMA del build: leggilo PER PRIMO (dopo questo AGENTS.md) e seguilo; migliora solo motivando in STATUS.md. Se PIN-SIG non corrisponde al pin attuale e stantio: ignoralo.
+- Le copie in `sim/solver/{engine,components}/*.js` restano byte-identiche alla
+  sorgente dichiarata e protette da `SolverVendoredDrift.test.ts`.
+- I golden elettrici UI 14,9 mA e motore 15,3 mA sono distinti by-design; non
+  riconciliarli senza una decisione esplicita.
+- `localStorage` è cache, non fonte di verità.
+- Eventi journal e formati persistiti restano deterministici, versionati e
+  migrate-safe.
+- Nessun segreto, PII o corpus privato nei file, nei commit o nei log.
+
+## Consegna
+
+Lavora su branch locale e con diff chirurgici. Push, PR, merge, deploy,
+cancellazioni esterne e altre azioni remote richiedono autorizzazione umana.
+Non usare `--no-verify`, force-push, `git reset --hard` o gate bypass.
