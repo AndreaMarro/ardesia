@@ -26,10 +26,13 @@ concurrency, stale-response, malformed-result, marker-integrity, corrupted
 import, and room/instance isolation controls fail closed in the measured slice.
 
 This proves host mediation only for the live `connect-wire` gesture. Other
-canvas operations still bypass the new broker path. The `v3-cap6-esp4` scene is
-a candidate with `visualMatch: unknown`, and its manual/scene/instance evidence
-has `resolution: missing`. The honest verdict is **partial simulation harness**:
-not a complete plugin, beta, manual-fidelity proof, or Tinkercad parity.
+canvas operations still bypass the new broker path. The mounted Session 2
+fixture is `elab-scene-v2-candidate-v1cap6esp1.json` (`v1-cap6-esp1`), with
+candidate provenance and `visualMatch: unknown`; its manual/scene/instance
+evidence has `resolution: missing`. The requested `v3-cap6-esp4` target remains
+blocked and no verified or candidate fixture for it was mounted or synthesized.
+The honest verdict is **partial simulation harness**: not a complete plugin,
+beta, manual-fidelity proof, or Tinkercad parity.
 
 ## 0. Executive verdict
 

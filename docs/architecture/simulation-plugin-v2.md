@@ -31,9 +31,12 @@ merge, or deploy was performed.
 - The only live host-mediated canvas operation is `connect-wire`. Component
   placement/movement, wire edit/delete, layout, and other callbacks still
   bypass this broker slice.
-- The `v3-cap6-esp4` fixture remains a candidate with
-  `visualMatch: unknown`; manual/scene/instance evidence resolution is
-  `missing`. CoV-5 is therefore blocked.
+- The mounted Session 2 fixture is
+  `elab-scene-v2-candidate-v1cap6esp1.json` (`v1-cap6-esp1`), with candidate
+  provenance and `visualMatch: unknown`; manual/scene/instance evidence
+  resolution is `missing`. The requested `v3-cap6-esp4` target remains blocked:
+  no verified or candidate fixture for it was mounted or synthesized. CoV-5 is
+  therefore blocked.
 
 Accepted wording is **partial simulation harness**. This is not a complete
 autonomous plugin, a beta, a manual-fidelity proof, or Tinkercad parity. The

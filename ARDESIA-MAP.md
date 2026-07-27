@@ -43,8 +43,11 @@ ARDESIA Core
 - Cold reopen, `.lesson` export/import e isolamento room/instance sono provati
   nella slice.
 - Le altre mutazioni canvas non sono ancora host-mediated.
-- La fixture `v3-cap6-esp4` è `candidate`, con
-  `visualMatch: unknown` ed evidence resolution `missing`.
+- La fixture montata nella verticale è
+  `elab-scene-v2-candidate-v1cap6esp1.json` (`v1-cap6-esp1`): stato
+  `candidate`, `visualMatch: unknown` ed evidence resolution `missing`.
+- Il target `v3-cap6-esp4` resta bloccato: non è stata montata o sintetizzata
+  alcuna sua fixture verificata/candidate.
 - Verdetto: `PARTIAL_BLOCKED` / **partial simulation harness**. Nessun claim di
   plugin completo, beta, fedeltà visiva verificata o Tinkercad parity.
 
