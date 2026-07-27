@@ -9,7 +9,6 @@ import App from "../App"
 import {
   createMultiPostitWorkbenchPostits,
   isSimulationPostitState,
-  MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
   resizeMultiPostitInstance,
   restoreMultiPostitWorkbench,
   serializeMultiPostitWorkbench,
@@ -111,7 +110,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
     const snapshot = serializeMultiPostitWorkbench(resized)
     const restored = restoreMultiPostitWorkbench(snapshot)
 
-    expect(snapshot.schema).toBe(MULTI_POSTIT_WORKBENCH_STATE_SCHEMA)
+    expect(snapshot.schema).toBe("multi-postit-workbench-state/2")
     expect(snapshot.postits).toHaveLength(3)
     expect(restored.map((postit) => `${postit.pluginId}:${postit.instanceId}`)).toEqual([
       "io.ardesia.simulation:sim-a",
@@ -172,7 +171,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
     expect(migratedSimulation.sceneDigest).toBe(originalSimulation.sceneDigest)
 
     const rewritten = serializeMultiPostitWorkbench(restored)
-    expect(rewritten.schema).toBe(MULTI_POSTIT_WORKBENCH_STATE_SCHEMA)
+    expect(rewritten.schema).toBe("multi-postit-workbench-state/2")
     expect(expectSimulationState(findPostit(rewritten.postits, "sim-a")).sceneDigest).toBe(
       originalSimulation.sceneDigest,
     )

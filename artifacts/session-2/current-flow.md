@@ -316,10 +316,15 @@ metodi 1.3, ma non possono applicare mutazioni 1.4.
 ## File esclusi dal delta funzionale
 
 - `apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`: deve restare
-  byte-invariato;
+  byte-invariato o diminuire rispetto alla base;
 - `apps/studio/sim/core/simulationRuntime.ts`: il motore necessario esiste;
 - `apps/studio/sim/core/simulationOperations.ts`: il vocabolario necessario
   esiste;
+
+Per `ToolCanvasEmbeddable.tsx` il vincolo ratificato della Sessione 2 è
+**non-growth**, non identità byte-per-byte: ammette soltanto il cablaggio
+funzionale in scope, con diff semantico e test dedicati, purché la dimensione
+finale non superi la base.
 - legacy `plugins/elab-tutor`: nessuna nuova ownership.
 
 ## Falsificatori
@@ -392,8 +397,8 @@ componenti, layout, edit/delete wire e le altre callback del canvas restano
 debito diretto in `ToolCanvasEmbeddable.tsx`; quindi non esiste una prova di
 autonomia universale del plugin.
 
-Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `111130` byte:
-`-1254` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione
+Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `111361` byte:
+`-1023` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione
 di responsabilità resta debito architetturale.
 
 ### Negative controls eseguiti
@@ -425,20 +430,23 @@ di responsabilità resta debito architetturale.
 ## CodeRabbit
 
 Il ledger canonico per-commento è
-[`coderabbit-disposition.md`](coderabbit-disposition.md). Conta 15 review
-concluse, 78 finding raw e due pass a zero finding (`C2`, `T1`). I tentativi
+[`coderabbit-disposition.md`](coderabbit-disposition.md). Conta 22 review
+concluse, 116 finding raw e cinque pass a zero finding. I tentativi
 falliti, incompleti o rate-limited sono registrati separatamente e non contati.
 Ogni finding ha UUID, riproduzione, rischio, test-before, fix, test-after e
 decisione. Dopo la presente append di STATUS le disposition sono:
 
-- `50 ACCEPT_FIXED`;
-- `18 REJECT_INVALID`;
-- `10 DEFERRED`;
+- `67 ACCEPT_FIXED`;
+- `27 REJECT_INVALID`;
+- `22 DEFERRED`;
 - `0 PENDING`.
 
 `T1` è incrementale e lega byte-per-byte la patch poi committata come
-`e07486ff`; non sostituisce la review completa del diff finale, che viene
-registrata nel receipt Knowledge exact-SHA.
+`e07486ff`. La review full `1785139145693` ha invece analizzato byte-per-byte
+il diff base→`da3c592f` e i 32 finding sono classificati `12/8/12`; i fix
+successivi hanno review incrementali a zero. Poiché i fix cambiano lo SHA,
+la review exact-diff terminale viene rieseguita e registrata nel receipt
+Knowledge exact-SHA.
 
 ### Snapshot storico dei primi sei cicli
 
@@ -513,7 +521,7 @@ corretti e riesaminati con zero finding residui.
 | CoV-3 — runtime/provider | `GREEN_BOUNDED` |
 | CoV-4 — persistenza/isolamento | `GREEN_BOUNDED` |
 | CoV-5 — provenienza risolvibile | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| CoV-6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; 15 cicli e 78 finding classificati, `T1` incrementale clean |
+| CoV-6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; 22 review e 116 finding classificati, full predecessor + repair documentale classificato |
 | CoV-7 — docs/canon | `GREEN_PRODUCT_LOCAL_PENDING_EXTERNAL_BINDING`; il receipt Knowledge completa il binding a due SHA |
 | DoD Sessione 2 | `PARTIAL_BLOCKED` |
 

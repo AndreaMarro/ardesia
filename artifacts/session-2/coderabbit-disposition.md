@@ -7,27 +7,29 @@ created: 2026-07-27
 timezone: Europe/Rome
 raw_root: external-receipt:coderabbit-review-6f75e80b
 implementation_sha: e07486fff0a5318c8150289b433184b40119166c
-review_runs: 15
-raw_findings: 78
+full_exact_review_sha: da3c592f3e7da7f30337b59d978af1e0fd80a9e3
+review_runs: 22
+raw_findings: 116
 source_of_truth: false
 ---
 
 # Sessione 2 — ledger CodeRabbit per-commento
 
 Questo ledger include tutte le review CodeRabbit concluse per la Sessione 2:
-due pass preliminari, dodici cicli canonici e il pass incrementale terminale
-`T1`. Gli UUID raw, non i fingerprint ripetuti, sono le chiavi primarie.
-Tentativi falliti, interrotti o rate-limited non sono contati.
+due pass preliminari, dodici cicli canonici, il pass `T1`, due pass artifact,
+una review full exact-diff e quattro pass di repair. Gli UUID raw, non i fingerprint
+ripetuti, sono le chiavi primarie. Tentativi falliti, interrotti o rate-limited
+non sono contati.
 
 Disposition dopo la supersession STATUS nello stesso ciclo documentale:
 
 | Stato | Totale |
 |---|---:|
-| `ACCEPT_FIXED` | 50 |
-| `REJECT_INVALID` | 18 |
-| `DEFERRED` | 10 |
+| `ACCEPT_FIXED` | 67 |
+| `REJECT_INVALID` | 27 |
+| `DEFERRED` | 22 |
 | `PENDING` | 0 |
-| **Totale finding raw** | **78** |
+| **Totale finding raw** | **116** |
 
 ## Registry delle review concluse
 
@@ -48,6 +50,13 @@ Disposition dopo la supersession STATUS nello stesso ciclo documentale:
 | C11 | `1785132665906` | 2026-07-27T06:11:05.906Z | 2 | `a09e2a2a` | `a09e2a2a` |
 | C12 | `1785133278520` | 2026-07-27T06:21:18.520Z | 2 | `f9d8608c` | `a09e2a2a` |
 | T1 | `1785134931963` | 2026-07-27T06:48:51.963Z | 0 | `ad8f6f95` + staged patch | `f9d8608c` |
+| A1 | `1785136537106` | 2026-07-27 | 1 | artifact worktree | implementation freeze |
+| A2 | `1785136885675` | 2026-07-27 | 0 | artifact repair worktree | implementation freeze |
+| X1 | `1785139145693` | 2026-07-27 | 32 | `da3c592f` | CLI `36e6753c`; internal metadata `e07486ff` |
+| R1 | `1785140746441` | 2026-07-27 | 0 | `da3c592f` + broker patch | `da3c592f` |
+| R2 | `1785141582523` | 2026-07-27 | 2 | `92209e1f` + identity patch | `92209e1f` |
+| R3 | `1785142296375` | 2026-07-27 | 0 | `92209e1f` + repaired identity patch | `92209e1f` |
+| R4 | `1785144255694` | 2026-07-27 | 3 | `0380b67c` + documentation patch | `0380b67c` |
 
 `T1` copre soltanto la patch poi committata come `e07486ff`. Il diff del pass e
 `git diff ad8f6f95..e07486ff` hanno SHA-256
@@ -146,18 +155,58 @@ Non è una review completa del diff finale.
 | C11:`41c6d038-6021-4cad-aaf7-10ffc5312a79` | major · montaggio projection · collisione fori non validata | valori foro duplicati | scena fisicamente invalida | NCR | `f9d8608c` | G1 | `ACCEPT_FIXED` |
 | C12:`18b668d9-2a4d-491c-9487-69ac49bdfdcd` | major · engine `AGENTS.md` · istruzioni obsolete | AgentMemory/push/reset restavano operativi | violazione governance/dati | NCR | `1965e1fb` | STATIC | `ACCEPT_FIXED` |
 | C12:`c36aa49b-57c8-4266-a828-8dd1fc2367db` | major · Studio `AGENTS.md` · istruzioni obsolete | code storiche restavano operative | scope errato | NCR | `1965e1fb` | STATIC | `ACCEPT_FIXED` |
+| A1:`f20bce6c-1361-46e4-8c29-3f7285bc7f87` | major · artifact · path home assoluto | ispezione del ledger generato | username e infrastruttura locale nel tree | NCR | `da1d8d58` | A2: zero issue | `ACCEPT_FIXED` |
+| X1:`94ec0813-0b25-4e40-882d-887046318eb0` | trivial · projection · `undefined` non equiparato | il confronto accetta solo valori JSON-plain | nessun difetto; accettarlo indebolirebbe il fail-closed | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`aac06d58-17d1-49a5-8c35-b1133f076b90` | major · Room · errore tecnico non localizzato | messaggio raw esposto alla UI | debito UX/i18n reale | NCR | nessuno; richiede `t(key)` | OPEN | `DEFERRED:I18N` |
+| X1:`cae4c262-2fa1-4460-944d-d69aeed99dad` | minor · persistence test · cast diretto | errore di precondizione poco diagnostico | nessun falso verde corrente | NCR | nessuno; helper test-only | OPEN | `DEFERRED:TEST_DIAGNOSTICS` |
+| X1:`63b328ae-5f25-4021-b531-b483831eed1e` | trivial · board test · schema da costante | lo stesso file congela già lo schema con literal indipendenti | nessun gap causale residuo | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`59846c6a-dca9-4508-ae14-c6514ba0957b` | minor · marker · array assenti normalizzati | contratto persistito richiede entrambi gli array | normalizzare la perdita indebolirebbe il gate | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`cf9d3aae-db4c-4a1f-a613-c8ff45156fd8` | trivial · browser test · schema workbench da costante | serializer e atteso condividevano la stessa fonte | drift di compatibilità non rilevato | NCR | literal indipendente in questo ciclo | test browser mirato + gate completo | `ACCEPT_FIXED` |
+| X1:`5faae0be-d639-405e-a79a-d59fab913bf9` | trivial · browser test · scenari accorpati | fallimento precoce può nascondere rami successivi | solo diagnostica runner | NCR | nessuno; split futuro | OPEN | `DEFERRED:TEST_DIAGNOSTICS` |
+| X1:`dfcd8688-2716-4096-87e0-95ba20f76d3f` | trivial · room test · commento sovra-ampio | wrapper finale usa un mock mentre i test precedenti sono reali | rischio di sovralettura dell'evidenza | NCR | nessuno; chiarire commento | OPEN | `DEFERRED:TEST_DOC` |
+| X1:`a074639c-b161-4ac6-b1d1-5f18119f9b66` | trivial · room test · riordino chiavi non spiegato | oracle key-order esiste già | sola manutenibilità futura | NCR | nessuno; commento futuro | OPEN | `DEFERRED:TEST_DOC` |
+| X1:`ee49a94c-6313-4b78-a2d6-6e372473dcd6` | trivial · canvas test · `rejectOccupiedHoles:false` | il caso è già coperto nel test montaggio libero | finding duplicato cross-file | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`4b937677-48d4-4867-8706-e63f973344d6` | major · canvas · receipt stantia non verificata semanticamente | scena cambiata mentre la request è pending | overwrite di una scena più nuova | NCR | `0380b67c` | test causale + gate completo | `ACCEPT_FIXED` |
+| X1:`1e94547f-48db-4d49-9fa4-f51d1d65ba4b` | trivial · vertical test · manifest derivato | manifest completo già congelato da test indipendente | literal duplicato creerebbe seconda SoT | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`68aba5c0-ce2c-4b67-b35f-d80f294506d9` | minor · vertical test · helper a parametri posizionali | call site correnti coerenti | fragilità futura test-only | NCR | nessuno; options object futuro | OPEN | `DEFERRED:TEST_REFACTOR` |
+| X1:`965c2dd9-9eb4-432d-8932-7c3bc337dea1` | major · vertical test · corrente LED baseline inutilizzata | short poteva lasciare invariati gli output elettrici | falso verde causale | NCR | `0380b67c` | oracle corrente causale + gate completo | `ACCEPT_FIXED` |
+| X1:`b4aa8c07-c8b2-4fa7-a064-f983eb02efc3` | major · vertical test · target invalido troppo permissivo | qualunque `ERR.INTERNAL` soddisfaceva il test | crash non distintivo poteva passare | NCR | `0380b67c` | messaggio esatto + gate completo | `ACCEPT_FIXED` |
+| X1:`7b468408-1379-4bb8-ab19-d5938b593369` | trivial · broker test · rami SDK mancanti | i rami richiesti sono già coperti nella verticale | duplicazione, non gap | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`f2b98b9c-b41a-4658-a665-1df44af865c1` | minor · marker · reader duplicato | due reader oggi coerenti e coperti v1/v2 | rischio di divergenza futura | NCR | nessuno; estrazione futura | OPEN | `DEFERRED:REFACTOR` |
+| X1:`b1591b75-5270-499d-9170-465cab9ae6e1` | minor · digest · `trim()` non persistito | trim è solo predicato; il digest conserva la stringa raw | nessuna non-deterministicità | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`0495cadd-6069-4ecf-869d-5694aa854702` | trivial · composition · validazione con risultato scartato | la chiamata è un assert fail-closed | solo intento poco esplicito | NCR | nessuno; `void`/helper futuro | OPEN | `DEFERRED:CODE_CLARITY` |
+| X1:`9203f76c-af29-43e5-bb4f-14b1e0605311` | trivial · composition · clone ridondante | scena e connessioni copiate due volte | micro-costo entro limiti correnti | NCR | nessuno; semplificazione futura | OPEN | `DEFERRED:PERFORMANCE` |
+| X1:`f7d56fdb-2428-49b4-9bca-637928f4372d` | trivial · projection · placements non-array | il parser li rifiuta già e il test causale esiste | nessun bypass | NCR | nessuno | STATIC | `REJECT_INVALID` |
+| X1:`65e602c6-2490-4c42-9a82-edea12e89197` | major · canvas · ID connessioni non riservati | una connection poteva collidere con un placement | throw durante render | NCR | `0380b67c` | test causalmente riservato + gate completo | `ACCEPT_FIXED` |
+| X1:`9905b395-d481-4ccf-bc65-2577ac5dd46d` | major · canvas · ID da `length + 1` | add/add/delete/add riusava un ID vivo | identità wire duplicata | NCR | `0380b67c` | allocator max-suffix + gate completo | `ACCEPT_FIXED` |
+| X1:`030143af-b58c-4fd3-a474-460a04f8b62d` | major · canvas · mount/operation error conflati | reject operativo modifica lo stato mount; retry resta possibile | UX/a11y ambigua | NCR | nessuno; slice UI Sessione 3 | OPEN | `DEFERRED:UI_A11Y` |
+| X1:`dfbfa2f6-a987-4cef-8e56-c923215fc6d6` | major · broker · serializer prima del support check | runtime senza `applyOperation` poteva eseguire serializer | errore/side effect sbagliato | red causale registrato | `92209e1f` | test mirato + R1 zero | `ACCEPT_FIXED` |
+| X1:`6b370d40-23b0-4de4-bd5b-c79b0c28576d` | minor · broker · live vs serialized ambiguo | runtime corrente usa stato lossless e cold restore è coperto | debito contrattuale, nessuna perdita corrente | NCR | nessuno; chiarimento contratto | OPEN | `DEFERRED:CONTRACT` |
+| X1:`2abcc5c5-7bd0-43b4-9bca-637928f4372d` | major · broker · digest diverso attesta mutazione estranea | runtime malevolo poteva restituire altra topologia | receipt falsa | red causale registrato | `92209e1f` | verifica effetto esatto + R1 zero | `ACCEPT_FIXED` |
+| X1:`de6eaf3f-87f7-4f18-831c-5fa7fd334e9e` | minor · host · room guard diagnostica tardiva | restore fallisce già chiuso tramite `_requireRoomId` | solo messaggio meno preciso | NCR | nessuno; guard esplicita futura | OPEN | `DEFERRED:DIAGNOSTICS` |
+| X1:`358bccd9-07d5-46e0-a30b-e519b1c5823a` | major · registry · throw callback riclassificato come reject | mutazione già committata poteva apparire rifiutata | semantica atomica falsa | NCR | `0380b67c` | test callback + gate completo | `ACCEPT_FIXED` |
+| X1:`366ab0be-7c59-4e6e-936c-69da202626a2` | major · evidence · TCE dichiarato byte-invariato | misura reale è `112384 → 111361` | claim di gate falso | NCR | misura corretta in questo ciclo | diffcheck + gate completo | `ACCEPT_FIXED` |
+| X1:`a04bd2e8-c06e-48b6-87c9-332b88d98c40` | major · spec · CoV6 dichiarato verde prematuramente | review full aveva 32 issue e mancava il terminale | attestazione non supportata | NCR | CoV6 riportato pending in questo ciclo | ledger coerente + gate completo | `ACCEPT_FIXED` |
+| X1:`998ceac5-854a-405e-a6c5-cc5bf40fe079` | major · map · infrastruttura privata storica | snapshot conteneva username, IP, host, porte e repo | esposizione nel tree corrente | NCR | tombstone in questo ciclo documentale | scansione tree/diff | `ACCEPT_FIXED` |
+| R2:`9bbcee97-6fa0-4e28-a990-2a43f6e4efc9` | minor · canvas test · callback non osservata | test copriva write-back ma non invocazione callback | regressione API poteva passare | NCR | `0380b67c` | spy callback + R3 zero | `ACCEPT_FIXED` |
+| R2:`f81bd269-c985-4101-b1de-c68fb8effbb9` | minor · vertical test · corrente mancante coalesciuta a zero | assenza dato poteva sembrare short fisico | falso verde numerico | NCR | `0380b67c` | assert presenza + R3 zero | `ACCEPT_FIXED` |
+| R4:`0ba0b99e-ebed-40ac-ac0b-be157884ad33` | major · map · bonifica storica non definita | il tombstone distingueva tree e history senza criterio di completamento | copie e mirror potevano essere interpretati come già sanificati | NCR | procedura autorizzativa e verifica perimetro in questo ciclo | scansione diff + terminal exact review | `ACCEPT_FIXED` |
+| R4:`466ee4d4-5c33-4ee2-8f0b-b3d03de41e7a` | minor · spec · review ID ambiguo | il numero `1785139145693` non era etichettato | provenienza confondibile con uno SHA | NCR | etichetta `X1` + `review ID` in questo ciclo | terminal exact review | `ACCEPT_FIXED` |
+| R4:`838d0f0a-cd0d-45b6-81c3-9e8a1935202c` | major · flow · richiede identità byte-per-byte | il prompt ratifica non-growth e X1 aveva già corretto il claim byte-invariato | imporre identità contraddirebbe lo scope funzionale autorizzato | NCR | nessun indebolimento; vincolo non-growth chiarito | misura TCE + test dedicati | `REJECT_INVALID` |
 
 ## Tentativi non contati
 
 Le invocazioni terminate per rate limit, base SHA non accettata, errore del
 client o interruzione prima della produzione dei finding non sono review
-concluse e non entrano né nelle 15 run né nei 78 finding. Sono preservate nei
+concluse e non entrano né nelle 22 run né nei 116 finding. Il retry rate-limited
+successivo a `R2` è quindi escluso. Le tracce sono preservate nei
 log raw referenziati da `raw_root`; il path locale resta fuori dal repository e
 non vengono promossi artificialmente a pass verdi.
 
 ## Debito differito
 
-I dieci finding differiti restano espliciti e non bloccano il freeze parziale:
+I ventidue finding differiti restano espliciti e non bloccano il freeze
+parziale:
 
 - `26a4dd1e…` — resolver CoV5 e provenance completa;
 - `03776dc7…` — receipt per `describe`;
@@ -168,13 +217,36 @@ I dieci finding differiti restano espliciti e non bloccano il freeze parziale:
 - `6ca77744…` — generic method type-safe;
 - `eff9b9d2…` — separazione dei tre scenari browser;
 - `37b76703…` — refactor remount con oracolo viewport;
-- `47c59e0a…` — errore Room localizzato via i18n.
+- `47c59e0a…` — errore Room localizzato via i18n;
+- `aac06d58…` — seconda occorrenza dell'errore Room da localizzare;
+- `cae4c262…` — helper diagnostico per il test persistence;
+- `5faae0be…` — separazione degli scenari browser;
+- `dfcd8688…` — commento che delimiti la porzione wrapper mockata;
+- `a074639c…` — commento sull'oracolo di key-order;
+- `68aba5c0…` — options object per l'helper test-only;
+- `f2b98b9c…` — reader marker condiviso;
+- `0495cadd…` — intenzione esplicita della validazione scartata;
+- `9203f76c…` — eliminazione del clone ridondante;
+- `030143af…` — stato UI/a11y separato per gli errori operativi;
+- `6b370d40…` — contratto formale live/serialized;
+- `de6eaf3f…` — room guard diagnostica anticipata.
 
 ## Review terminale
 
-`T1` è un pass incrementale pulito, non la review dell’intero intervallo.
-La review CodeRabbit sul diff esatto fra base autorizzata e SHA documentale
-finale viene eseguita dopo il commit di questo ledger. Il suo esito, insieme
-alla riclassificazione di ogni eventuale nuovo finding, è vincolato nella
-receipt Obsidian esterna; questo file non anticipa un verde non ancora
-osservato.
+`T1`, `A2`, `R1` e `R3` sono pass incrementali puliti, non review dell’intero
+intervallo. `X1` ha invece esaminato il diff esatto
+`36e6753c… → da3c592f…`: 33 file, `+5443/-380`, SHA-256 binario
+`6f642d68324572341974f3e891a66bef0435cd6fffc757868fb9c17eae338fd8`.
+I 32 JSON raw hanno SHA-256 aggregato
+`6d6012e7fddad2f0efe642b784c67225d37df951e1300b3f50c76bd49c044a3a`.
+Il payload diff è risultato byte-per-byte uguale a Git; resta annotata
+l’anomalia metadata: il review context CLI usa la base corretta `36e6753c…`,
+mentre `git.json.baseCommitId` interno riporta `e07486ff…`.
+
+I dodici issue accettati da `X1`, i due issue di repair `R2` e i due issue
+validi di `R4` sono stati corretti; il terzo issue `R4` è rifiutato con il gate
+ratificato e la misura TCE come evidenza. Poiché ogni fix genera un nuovo SHA,
+la review terminale dell’intero diff viene eseguita dopo il commit di questo
+ledger e sostituisce un ulteriore pass incrementale. Il suo esito e l’identità
+Git finale sono vincolati nella receipt Obsidian esterna; questo file non
+anticipa un verde non ancora osservato.
