@@ -14,19 +14,31 @@
 // proprietà più forte di questo protocollo è che ogni params passa da uno
 // strictObject validato lato host. Un envelope opaco la distruggerebbe.
 //
-// FUORI SLICE (deferito, con oracoli propri): `simulation.applyOperation` — la
-// mutazione trascina placement pipeline, occupancy e pin vocabulary e merita
-// falsificatori dedicati. Qui il ciclo dimostrato è load → solve → read →
-// serialize.
+// SDK 1.4 aggiunge `simulation.applyOperation` con falsificatori dedicati nella
+// verticale Sessione 2. Qui resta congelato il ciclo precedente
+// load → solve → read → serialize e la sua compatibilità.
 import { afterEach, describe, expect, it } from "vitest"
-import { ERR, PROTOCOL_VERSION, ToolManifestSchema } from "../toolhost-protocol/index.ts"
-import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
+import {
+  ERR,
+  PROTOCOL_VERSION,
+  SIMULATION_SCENE_COMPONENT_LIMIT,
+  SIMULATION_SCENE_CONNECTION_LIMIT,
+  ToolManifestSchema,
+} from "../toolhost-protocol/index.ts"
+import type {
+  Capabilities,
+  SimulationApplyOperationParams,
+  ToolManifest,
+} from "../toolhost-protocol/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
 import { assertGrantWithinManifest } from "../toolhost/policy.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/storage.ts"
-import type { SimulationRuntimeApiLike } from "../toolhost/caps/simulation.ts"
+import {
+  ToolSimulation,
+  type SimulationRuntimeApiLike,
+} from "../toolhost/caps/simulation.ts"
 import {
   SIMULATION_RUNTIME_API_VERSION,
   SIMULATION_RUNTIME_PLUGIN_ID,
@@ -80,6 +92,42 @@ const LED_SCENE = {
 } as const
 
 const SCENE_DIGEST = simulationSceneDigest(LED_SCENE)
+const malformedRuntimeScenes: Array<[
+  name: string,
+  mutate: (scene: Record<string, unknown>) => void,
+]> = [
+  ["empty component id", (scene) => {
+    scene.components = [{ id: "", type: "battery", value: 5 }]
+  }],
+  ["wrong component value", (scene) => {
+    scene.components = [{ id: "bat1", type: "battery", value: "5" }]
+  }],
+  ["wrong connection id", (scene) => {
+    scene.connections = [{ id: 7, from: "bat1:+", to: "bat1:-" }]
+  }],
+  ["unsupported connection kind", (scene) => {
+    scene.connections = [{ from: "bat1:+", to: "bat1:-", kind: "bus" }]
+  }],
+  ["too many components", (scene) => {
+    scene.components = Array.from(
+      { length: SIMULATION_SCENE_COMPONENT_LIMIT + 1 },
+      (_, index) => ({ id: `component-${index}`, type: "resistor" }),
+    )
+  }],
+  ["too many connections", (scene) => {
+    scene.connections = Array.from(
+      { length: SIMULATION_SCENE_CONNECTION_LIMIT + 1 },
+      (_, index) => ({
+        id: `connection-${index}`,
+        from: "bat1:+",
+        to: "bat1:-",
+      }),
+    )
+  }],
+  ["non-string pin assignment", (scene) => {
+    scene.pinAssignments = { "bat1:+": 7 }
+  }],
+]
 
 // ---------- doppi minimi (nessun mock del soggetto sotto test) ----------
 
@@ -188,6 +236,7 @@ function hostWithSimulation(instanceId: string, grant: Capabilities = SERVICE_CA
     store: new MemoryWorkspace(),
     board,
     instanceId,
+    roomId: "broker-room",
     simulation: realSimulationService,
   })
 }
@@ -244,6 +293,100 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
     )
   })
 
+  it("isola i payload trattenuti dal runtime prima di esporli al chiamante", () => {
+    const retainedApplyOutcome = { nested: { status: "accepted" } }
+    const retainedApplyDiagnostics = { nested: { code: "apply-ok" } }
+    const retainedSolveResult = { nested: { status: "solved" } }
+    const retainedReadDiagnostics = { nested: { code: "read-ok" } }
+    let retainedOperation: SimulationApplyOperationParams["operation"] | undefined
+    let returnUncloneableSolve = false
+    const service: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: (state, operation) => {
+        retainedOperation = operation
+        const nextState = structuredClone(state as SimulationRuntimeState)
+        nextState.scene.connections = [
+          ...(nextState.scene.connections ?? []),
+          {
+            id: operation.operation.wire.id,
+            from: operation.operation.wire.from,
+            to: operation.operation.wire.to,
+          },
+        ]
+        nextState.appliedOperations = [
+          ...nextState.appliedOperations,
+          operation,
+        ]
+        return {
+          state: nextState,
+          accepted: true,
+          result: retainedApplyOutcome,
+          diagnostics: retainedApplyDiagnostics,
+        }
+      },
+      solve: (state) => {
+        if (!returnUncloneableSolve) {
+          return { state, result: retainedSolveResult }
+        }
+        const nextState = structuredClone(state as SimulationRuntimeState)
+        nextState.diagnostics = [...nextState.diagnostics, "must-not-commit"]
+        return { state: nextState, result: () => "not cloneable" }
+      },
+      readDiagnostics: () => retainedReadDiagnostics,
+    }
+    const simulation = new ToolSimulation(service, "payload-owner", {
+      roomId: "broker-room",
+    })
+    simulation.loadScene({
+      scene: {
+        components: LED_SCENE.components.map((component) => ({ ...component })),
+        connections: LED_SCENE.connections.map((connection) => ({ ...connection })),
+      },
+    })
+    const operation: SimulationApplyOperationParams["operation"] = {
+      schema: "simulation-operation/1",
+      id: "payload-owner-connect",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+      operation: {
+        kind: "connect-wire",
+        wire: {
+          id: "payload-owner-wire",
+          from: "bat1:positive",
+          to: "bat1:negative",
+          color: "red",
+        },
+      },
+    }
+    const applied = simulation.applyOperation({
+      expectedSceneDigest: SCENE_DIGEST,
+      operation,
+    })
+
+    operation.operation.wire.color = "blue"
+    expect(retainedOperation?.operation.wire.color).toBe("red")
+    retainedApplyOutcome.nested.status = "mutated"
+    retainedApplyDiagnostics.nested.code = "mutated"
+    expect(applied.solveOutcome).toEqual({ nested: { status: "accepted" } })
+    expect(applied.diagnostics).toEqual({ nested: { code: "apply-ok" } })
+
+    const solved = simulation.solve({ provider: "local", mode: "static" })
+    retainedSolveResult.nested.status = "mutated"
+    expect(solved.result).toEqual({ nested: { status: "solved" } })
+
+    const diagnostics = simulation.readDiagnostics()
+    retainedReadDiagnostics.nested.code = "mutated"
+    expect(diagnostics.diagnostics).toEqual({ nested: { code: "read-ok" } })
+
+    const beforeRejectedSolve = simulation.serializeState()
+    returnUncloneableSolve = true
+    expect(() => simulation.solve({ provider: "local", mode: "static" })).toThrow()
+    returnUncloneableSolve = false
+    expect(simulation.serializeState().state).toEqual(beforeRejectedSolve.state)
+  })
+
   it("RED-2b: solve senza loadScene → errore esplicito, mai una scena vuota implicita", async () => {
     const { call } = await mountReady(hostWithSimulation("elab-1"))
 
@@ -252,6 +395,95 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
     expect(result).toBeUndefined()
     expect(error?.code).toBe(ERR.INTERNAL)
     expect(error?.message).toMatch(/no scene loaded/i)
+  })
+
+  it("RED-2c: ogni richiesta stateful senza room host-owned fallisce chiusa", async () => {
+    let runtimeCalls = 0
+    const roomlessSimulation: SimulationRuntimeApiLike = {
+      describe: () => {
+        runtimeCalls += 1
+        return describeSimulationRuntimeApi()
+      },
+      sceneDigest: (scene) => {
+        runtimeCalls += 1
+        return simulationSceneDigest(scene)
+      },
+      loadScene: (input) => {
+        runtimeCalls += 1
+        return loadSimulationRuntimeScene(input)
+      },
+      applyOperation: () => {
+        runtimeCalls += 1
+        throw new Error("room gate did not run before applyOperation")
+      },
+      solve: (state, request) => {
+        runtimeCalls += 1
+        const solved = solveSimulationRuntimeProvider(
+          state as SimulationRuntimeState,
+          request as SimulationRuntimeProviderRequest,
+        )
+        return { state: solved.state, result: solved.result }
+      },
+      readDiagnostics: (state) => {
+        runtimeCalls += 1
+        return readSimulationRuntimeDiagnostics(state as SimulationRuntimeState)
+      },
+      serializeState: (state) => {
+        runtimeCalls += 1
+        return serializeSimulationRuntimeState(state as SimulationRuntimeState)
+      },
+    }
+    const host = new ToolHost(
+      elabTutorManifest(SERVICE_CAP),
+      SERVICE_CAP as Capabilities,
+      {
+        store: new MemoryWorkspace(),
+        board,
+        instanceId: "elab-1",
+        simulation: roomlessSimulation,
+      },
+    )
+    const { call } = await mountReady(host)
+
+    const described = await call("simulation.describe")
+    expect(described.error).toBeUndefined()
+    expect(runtimeCalls).toBe(1)
+
+    const statefulCalls: Array<[string, unknown]> = [
+      ["simulation.loadScene", { scene: LED_SCENE }],
+      ["simulation.applyOperation", {
+        expectedSceneDigest: SCENE_DIGEST,
+        operation: {
+          schema: "simulation-operation/1",
+          id: "roomless-connect-wire",
+          actor: "manual",
+          origin: "canvas",
+          targetProvider: "local",
+          providerMode: "static",
+          operation: {
+            kind: "connect-wire",
+            wire: {
+              id: "roomless-wire",
+              from: "bat1:+",
+              to: "bat1:-",
+              color: "red",
+            },
+          },
+        },
+      }],
+      ["simulation.solve", { provider: "local", mode: "static" }],
+      ["simulation.readDiagnostics", {}],
+      ["simulation.serializeState", {}],
+    ]
+    for (const [method, params] of statefulCalls) {
+      const response = await call(method, params)
+      expect(response.result, method).toBeUndefined()
+      expect(response.error?.code, method).toBe(ERR.INTERNAL)
+      expect(response.error?.message, method).toBe(
+        'simulation state access requires a host-owned roomId for instance "elab-1"',
+      )
+    }
+    expect(runtimeCalls).toBe(1)
   })
 })
 
@@ -308,6 +540,7 @@ describe("service.simulation — gating fail-closed", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: realSimulationService,
     })
     const { call } = await mountReady(host)
@@ -331,6 +564,7 @@ describe("service.simulation — gating fail-closed", () => {
           store: new MemoryWorkspace(),
           board,
           instanceId: "elab-a",
+          roomId: "broker-room",
           simulation: realSimulationService,
         }),
     ).toThrow()
@@ -356,6 +590,46 @@ describe("service.simulation — gating fail-closed", () => {
 // RED-10 / RED-11 — riproduzione dei due rilievi CodeRabbit su PR #210
 // ---------------------------------------------------------------------------
 describe("service.simulation — la ricevuta non può mentire", () => {
+  it.each(malformedRuntimeScenes)(
+    "rifiuta uno stato runtime fuori schema: %s",
+    async (_name, mutate) => {
+      const malformedService: SimulationRuntimeApiLike = {
+        ...realSimulationService,
+        loadScene: (input) => {
+          const state = loadSimulationRuntimeScene(input) as unknown as Record<string, unknown>
+          const scene = state.scene
+          if (typeof scene !== "object" || scene === null || Array.isArray(scene)) {
+            throw new Error("test precondition: runtime scene missing")
+          }
+          mutate(scene as Record<string, unknown>)
+          return state
+        },
+      }
+      const host = new ToolHost(
+        elabTutorManifest(SERVICE_CAP),
+        SERVICE_CAP as Capabilities,
+        {
+          store: new MemoryWorkspace(),
+          board,
+          instanceId: "elab-a",
+          roomId: "broker-room",
+          simulation: malformedService,
+        },
+      )
+      const { call } = await mountReady(host)
+
+      const rejected = await call("simulation.loadScene", { scene: LED_SCENE })
+      expect(rejected.result).toBeUndefined()
+      expect(rejected.error?.code).toBe(ERR.INTERNAL)
+      expect(rejected.error?.message).toMatch(/state scene is malformed/i)
+
+      const serialized = await call("simulation.serializeState")
+      expect(serialized.result).toBeUndefined()
+      expect(serialized.error?.code).toBe(ERR.INTERNAL)
+      expect(serialized.error?.message).toMatch(/no scene loaded/i)
+    },
+  )
+
   it("RED-10: se il digest fallisce, il receipt non deve mai legare la scena VECCHIA allo stato NUOVO", async () => {
     const SECONDA_SCENA = {
       components: [{ id: "r9", type: "resistor", value: 1000 }],
@@ -374,6 +648,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: digestRottoAllaSeconda,
     })
     const { call } = await mountReady(host)
@@ -401,6 +676,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: servizioSenzaStato,
     })
     const { call } = await mountReady(host)
@@ -425,6 +701,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: servizioFuoriContratto,
     })
     const { call } = await mountReady(host)

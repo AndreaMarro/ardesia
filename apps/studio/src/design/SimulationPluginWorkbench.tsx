@@ -24,6 +24,7 @@ import {
   type StructuredSceneObservation,
 } from "../../sim/core/sourceIntake"
 import { analyzeFreeAssembly } from "../../sim/freeAssembly"
+import { nextMontaggioPlacementId } from "../../sim/elab/montaggioProjection"
 import {
   createBoardSceneWithPlacements,
   createReferenceSimulationScene,
@@ -414,14 +415,11 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
       setMontaggioNotice("stesso foro del primo tap: tocca un secondo foro diverso")
       return
     }
-    const ordinal = placements.filter((placement) => placement.type === montaggioTool).length + 1
-    // Fix drift iter-4: anche qui il cavo ha il suo prefisso id (era led-libero).
-    const id =
-      montaggioTool === "resistor"
-        ? `r-libero-${ordinal}`
-        : montaggioTool === "wire"
-          ? `cavo-libero-${ordinal}`
-          : `led-libero-${ordinal}`
+    const id = nextMontaggioPlacementId(
+      montaggioTool,
+      placements,
+      boardScene.components.map((component) => component.id),
+    )
     setUndoSnapshot(placements)
     setPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }])
     setPendingHole(null)

@@ -4,12 +4,13 @@ import type { CSSProperties, ReactElement } from "react"
 import {
   isElabTutorPostitState,
   isSimulationPostitState,
+  restoreMultiPostitWorkbenchPostit,
   type ElabTutorPostitState,
-  type MultiPostitObject,
-  type SimulationPostitState,
 } from "../design/multiPostitWorkbenchModel"
 import {
   PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
+  assertPluginPostitBoardElementIdentity,
+  pluginPostitBoardStateVersion,
   pluginPostitBoardElementId,
   type PluginPostitBoardRenderModel,
 } from "../design/multiPostitBoardPersistence"
@@ -18,8 +19,6 @@ import {
   deriveFunctionSurfaceMode,
   pluginPostitControlIds,
   resizePluginPostitObject,
-  restorePluginPostitObject,
-  type PluginPostitObject,
   type PostitBounds,
 } from "./postitObject"
 
@@ -50,7 +49,7 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
   }
 
   const postit = resizePluginPostitObject(
-    restorePluginPostitObject(marker.state) as MultiPostitObject,
+    restoreMultiPostitWorkbenchPostit(marker.state, marker.sourceVersion),
     readBoardBounds(element),
   )
   const expectedOwner = instanceOwner(postit.pluginId, postit.instanceId)
@@ -58,9 +57,14 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
     throw new Error(`plugin post-it owner mismatch for ${postit.instanceId}`)
   }
   const expectedElementId = pluginPostitBoardElementId(postit.instanceId)
-  if (element.id !== expectedElementId) {
-    throw new Error(`plugin post-it board id mismatch for ${postit.instanceId}`)
-  }
+  assertPluginPostitBoardElementIdentity({
+    sourceVersion: marker.sourceVersion,
+    elementId: element.id,
+    link: element.link,
+    pluginId: postit.pluginId,
+    instanceId: postit.instanceId,
+    allowMissingLink: true,
+  })
   const simulationState = isSimulationPostitState(postit.pluginState) ? postit.pluginState : null
   const elabTutorState = isElabTutorPostitState(postit.pluginState) ? postit.pluginState : null
 
@@ -97,16 +101,22 @@ function elabTutorRuntime(
 
 function readPluginPostitBoardMarker(
   element: PluginPostitBoardEmbedLike,
-): { owner: string; state: PluginPostitObject<SimulationPostitState | ElabTutorPostitState> } | null {
+): {
+  owner: string
+  sourceVersion: 1 | 2
+  state: unknown
+} | null {
   const marker = element.customData?.[EMBED_DATA_KEY]
   if (!isRecord(marker)) return null
-  if (marker.schema !== PLUGIN_POSTIT_BOARD_STATE_SCHEMA) return null
+  const sourceVersion = pluginPostitBoardStateVersion(marker.schema)
+  if (sourceVersion === null) return null
   if (typeof marker.owner !== "string") {
     throw new Error("plugin post-it board owner must be a string")
   }
   return {
     owner: marker.owner,
-    state: marker.state as PluginPostitObject<SimulationPostitState | ElabTutorPostitState>,
+    sourceVersion,
+    state: marker.state,
   }
 }
 

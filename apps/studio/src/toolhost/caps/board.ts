@@ -179,6 +179,14 @@ export async function persistEmbedStateThroughToolHost(
       },
     },
   )
-  await Promise.all(auditWrites)
+  // Come il router ToolHost, l'audit è fail-soft: a questo punto board.write
+  // può essere già committato e un sink rotto non deve riclassificarlo come
+  // reject. allSettled drena la chain e trattiene ogni rejection.
+  //
+  // Trattenerla non è osservarla: l'esito di ritorno resta quello della board.
+  // Il segnale della perdita vive in `auditDropCount(store, toolId)`, alimentato
+  // in audit.ts nel punto attraversato da ogni append rigettata. Senza quel
+  // contatore questo `allSettled` sarebbe un buco, non una policy.
+  await Promise.allSettled(auditWrites)
   return response !== null && "result" in response
 }

@@ -6,6 +6,10 @@
 import type { ReactElement } from "react";
 import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
 import type { LessonOsEvent } from "../lessonos/eventlog";
+import type {
+  SimulationApplyOperationParams,
+  SimulationApplyOperationResult,
+} from "../toolhost-protocol";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
 export type ToolEmbedLike = {
@@ -20,6 +24,74 @@ export type ToolLinkRef = {
   embedId: string;
 };
 
+export type SimulationConnectWireRequest<TScene> = {
+  scene: TScene;
+  operation: SimulationApplyOperationParams["operation"];
+};
+
+export type BoundSimulationConnectWireRequest<TScene> =
+  SimulationConnectWireRequest<TScene> & ToolLinkRef;
+
+export type SimulationConnectWireResult<TScene> = {
+  scene: TScene;
+  result: SimulationApplyOperationResult;
+};
+
+export function nextCanvasWireId(
+  embedId: string,
+  connections: readonly { id?: string }[],
+): string {
+  const prefix = `${embedId}:wire:`;
+  let ordinal = 0;
+  for (const connection of connections) {
+    const id = connection.id;
+    if (id === undefined || !id.startsWith(prefix)) continue;
+    const suffix = id.slice(prefix.length);
+    if (!/^\d+$/.test(suffix)) continue;
+    const value = Number(suffix);
+    if (Number.isSafeInteger(value) && value > ordinal) ordinal = value;
+  }
+  if (ordinal === Number.MAX_SAFE_INTEGER) {
+    throw new Error(`canvas wire id space exhausted for "${embedId}"`);
+  }
+  return `${prefix}${ordinal + 1}`;
+}
+
+export function acceptCanvasReceiptScene<TScene>(
+  requested: TScene,
+  current: TScene,
+  accepted: TScene,
+): TScene {
+  return current === requested ? accepted : current;
+}
+
+export function dispatchSimulationConnectWire<TScene>(input: {
+  apply: NonNullable<SimulationToolHost["applyConnectWire"]>;
+  scene: TScene;
+  embedId: string;
+  wire: { id: string; from: string; to: string; color: string };
+  onAccepted: (result: SimulationConnectWireResult<TScene>) => void;
+  onRejected: () => void;
+  onSettled: () => void;
+}): void {
+  const operation: SimulationApplyOperationParams["operation"] = {
+    schema: "simulation-operation/1",
+    id: `${input.embedId}:connect:${input.wire.id}`,
+    actor: "manual",
+    origin: "canvas",
+    targetProvider: "local",
+    providerMode: "static",
+    operation: { kind: "connect-wire", wire: input.wire },
+  };
+  void Promise.resolve()
+    .then(() => input.apply({ scene: input.scene, operation }))
+    .then(input.onAccepted, input.onRejected)
+    .finally(input.onSettled)
+    // Il dispatch è fire-and-forget. Un errore di callback avviene dopo il
+    // commit host: resta contenuto e non viene riclassificato come reject.
+    .catch(() => {});
+}
+
 /**
  * Servizi che l'host offre al tool renderizzato (tutti opzionali: un tool
  * senza host resta funzionante, fail-soft). persistEmbedState scrive lo state
@@ -27,6 +99,13 @@ export type ToolLinkRef = {
  */
 export type SimulationToolHost = {
   persistEmbedState?: (embedId: string, state: unknown, toolId: string) => void;
+  /**
+   * Unica mutazione della slice Sessione 2: la UI consegna un envelope
+   * strutturato al composition root; nessun fallback locale è autorizzato.
+   */
+  applyConnectWire?: <TScene>(
+    request: SimulationConnectWireRequest<TScene>,
+  ) => Promise<SimulationConnectWireResult<TScene>>;
   /**
    * host-observes-solve: il tool riporta l'esito del solve come evento LessonOS
    * tipato; l'host lo accoda al log. Opzionale/fail-soft: senza host, il tool

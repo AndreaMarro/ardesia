@@ -49,7 +49,9 @@ const GOLDEN_TOOL_METHODS: Record<string, CapabilityName> = {
   "lesson.event.emit": "lesson.event.emit",
   // v1.3.0 (P0-E): famiglia service.* — un modulo USA il servizio di un altro
   // modulo attraverso l'host invece di importarne il codice. Additivo ⇒ MINOR.
-  // applyOperation resta fuori: la mutazione ha falsificatori propri.
+  // v1.4.0: una sola mutazione connect-wire attraversa lo stesso confine con
+  // digest precondition e scope host-owned. Additivo ⇒ MINOR.
+  "simulation.applyOperation": "service.simulation",
   "simulation.describe": "service.simulation",
   "simulation.loadScene": "service.simulation",
   "simulation.readDiagnostics": "service.simulation",

@@ -16,7 +16,10 @@ import type { EventLogReadLike } from "./caps/graph.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
 import { ToolSimulation } from "./caps/simulation.ts"
-import type { SimulationRuntimeApiLike } from "./caps/simulation.ts"
+import type {
+  SimulationInitialStateEnvelope,
+  SimulationRuntimeApiLike,
+} from "./caps/simulation.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
 import { checkKillList } from "./killList.ts"
 import type { StorageReadWriteDelete } from "./killList.ts"
@@ -70,14 +73,26 @@ export interface ToolHostDeps {
    */
   instanceId?: string
   /**
+   * Scope lezione/room imposto dal composition root. `describe` resta
+   * stateless; ogni richiesta che legge, carica, risolve, serializza o muta
+   * stato Simulation richiede il roomId host-owned fail-closed.
+   */
+  roomId?: string
+  /**
    * Simulation Plugin esposto come SERVIZIO (capability service.simulation): un
-   * Pack disciplinare lo usa via wire invece di importarne il codice. Iniettato
-   * dal composition root — l'host non importa mai `sim/`, così Layer 0 non
-   * impara cos'è un circuito. Senza iniezione il metodo resta concesso-ma-non
+   * workflow disciplinare lo usa via wire invece di importarne il codice.
+   * Iniettato dal composition root — l'host non importa mai `sim/`, così Layer
+   * 0 non impara cos'è un circuito. Senza iniezione il metodo resta concesso-ma-non
    * -cablato (INTERNAL, mai silenzio), come graph.query senza eventLog.
    * Richiede `instanceId`: senza identità di istanza non esiste namespace.
    */
   simulation?: SimulationRuntimeApiLike
+  /**
+   * Stato opaco già verificato e recuperato dal marker room-scoped della
+   * PluginInstance. Non arriva mai dal tool/wire: il provider lo valida e il
+   * broker ricostruisce digest + ownership prima del mount.
+   */
+  simulationInitialState?: SimulationInitialStateEnvelope
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string
@@ -120,6 +135,14 @@ export class ToolHost {
     // difesa in profondità: il grant non può MAI eccedere il manifest, anche se
     // il chiamante ha scavalcato resolveGrant (capability-gating alla radice).
     assertGrantWithinManifest(manifest, grantedCaps)
+    if (
+      deps.simulationInitialState !== undefined &&
+      (deps.simulation === undefined || deps.instanceId === undefined)
+    ) {
+      throw new Error(
+        "simulationInitialState requires both simulation and instanceId",
+      )
+    }
     this.manifest = manifest
     this._grant = grantedCaps
     this._deps = deps
@@ -133,7 +156,12 @@ export class ToolHost {
     this._simulation =
       deps.simulation === undefined || deps.instanceId === undefined
         ? null
-        : new ToolSimulation(deps.simulation, deps.instanceId)
+        : new ToolSimulation(deps.simulation, deps.instanceId, {
+            ...(deps.roomId === undefined ? {} : { roomId: deps.roomId }),
+            ...(deps.simulationInitialState === undefined
+              ? {}
+              : { initialState: deps.simulationInitialState }),
+          })
   }
 
   /** Sessione viva (mount corrente), o null se il tool non è montato. */
@@ -182,7 +210,10 @@ export class ToolHost {
       handlers: this._handlers(),
       isOwnEmbed: this._board.isOwnEmbed,
       // fire-and-forget consapevole: un audit-sink rotto non blocca il tool
-      // (policy ST2); l'errore resta osservabile da audit.idle() nei test.
+      // (policy ST2). L'errore NON è osservabile da `audit.idle()`: la chain è
+      // già convertita in risoluzione in audit.ts, quindi `idle()` risolve
+      // anche quando l'append ha rigettato. Il segnale vive in
+      // `auditDropCount(store, toolId)`.
       onAudit: (event) => void this.audit.append(event).catch(() => {}),
       bearerToken: this._deps.bearerToken ?? createNonce(),
       requestTimeoutMs: this._deps.requestTimeoutMs,
@@ -300,6 +331,10 @@ export class ToolHost {
       handlers["simulation.describe"] = () => simulation.describe()
       handlers["simulation.loadScene"] = (p) =>
         simulation.loadScene(p as Parameters<ToolSimulation["loadScene"]>[0])
+      handlers["simulation.applyOperation"] = (p) =>
+        simulation.applyOperation(
+          p as Parameters<ToolSimulation["applyOperation"]>[0],
+        )
       handlers["simulation.solve"] = (p) => simulation.solve(p as Parameters<ToolSimulation["solve"]>[0])
       handlers["simulation.readDiagnostics"] = () => simulation.readDiagnostics()
       handlers["simulation.serializeState"] = () => simulation.serializeState()

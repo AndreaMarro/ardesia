@@ -12,7 +12,7 @@
 // bb1:bus-top-plus-9 / bb1:i9 / bb1:f9 / bb1:e9.
 
 import { cleanup, fireEvent, render } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { analyzeFreeAssembly, type FreeAssemblyScene } from "../../sim/freeAssembly"
 import {
   createMontaggioPlacementOperations,
@@ -332,6 +332,36 @@ describe("SimulationBoard — palette CAVO come connection reale (P32 D6)", () =
     fireEvent.click(hole(container, "bb1:c4"))
     expect(count(container)).toBe("1")
     expect(notice(container)).toBe("")
+  })
+
+  it("la palette Cavo non riusa un ID già posseduto da una connection base", () => {
+    const scene = createReferenceSimulationScene()
+    scene.connections[0] = {
+      ...scene.connections[0]!,
+      id: "cavo-libero-1",
+    }
+    const persistEmbedState = vi.fn()
+    const view = renderToolCanvasEmbeddable(createToolEmbedElement({
+      state: { kind: "simulation-scene-v1", scene },
+    }) as never, { persistEmbedState })
+    if (view === null) throw new Error("embeddable non renderizzato")
+    const container = render(view).container
+
+    fireEvent.click(palette(container, "Cavo"))
+    fireEvent.click(hole(container, "bb1:c3"))
+    fireEvent.click(hole(container, "bb1:c4"))
+
+    expect(persistEmbedState).toHaveBeenCalledWith(
+      "elab-v1-cap6-esp1-first-led",
+      expect.objectContaining({
+        montaggio: expect.objectContaining({
+          placements: [
+            { id: "cavo-libero-2", type: "wire", holes: ["bb1:c3", "bb1:c4"] },
+          ],
+        }),
+      }),
+      "io.ardesia.simulation",
+    )
   })
 
   it("FISICA (D6-bis): il pin di un componente si raggiunge dal foro LIBERO della stessa tie", async () => {
