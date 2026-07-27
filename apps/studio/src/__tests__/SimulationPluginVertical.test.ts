@@ -411,7 +411,7 @@ function hostFor(
   return new ToolHost(verticalManifest, grant, deps)
 }
 
-async function canonicalEventLog(): Promise<EnvelopeEventLogStore> {
+async function canonicalEventLog(roomId = ROOM_A): Promise<EnvelopeEventLogStore> {
   const {
     IDBFactory: FakeIDBFactory,
     IDBKeyRange: FakeIDBKeyRange,
@@ -422,7 +422,7 @@ async function canonicalEventLog(): Promise<EnvelopeEventLogStore> {
     factory: new FakeIDBFactory() as unknown as IDBFactory,
     dbName: `session-2-${crypto.randomUUID()}`,
     trustedContext: {
-      lessonId: ROOM_A,
+      lessonId: roomId,
       sessionId: SESSION_A,
       actor: { type: "plugin", id: "io.ardesia.simulation" },
       producer: {
@@ -777,7 +777,8 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
     expect(aAfterB).toEqual(aBeforeB)
 
     expect(await workspace.loadScene(ROOM_B)).toBeNull()
-    const roomBHost = hostFor(workspace, eventLog, INSTANCE_A, ROOM_B)
+    const roomBEventLog = await canonicalEventLog(ROOM_B)
+    const roomBHost = hostFor(workspace, roomBEventLog, INSTANCE_A, ROOM_B)
     const roomBClient = await mountReady(roomBHost)
     wireResult<{ receipt: SimulationReceipt }>(
       await roomBClient.call("simulation.loadScene", { scene: ORIGINAL_SCENE }),
@@ -798,6 +799,31 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
     )
     expect(await workspace.loadScene(ROOM_A)).toBe(roomASceneBeforeRoomBSave)
     expect(roomBState.receipt.sceneDigest).toBe(ORIGINAL_DIGEST)
+    wireResult<{ seq: number }>(
+      await roomBClient.call("lesson.event.emit", {
+        event: {
+          kind: "plugin.mounted",
+          pluginId: simulationManifest.id,
+          pluginKind: "plugin",
+          instanceId: INSTANCE_A,
+          room: ROOM_B,
+          labels: { it: "Simulation Plugin montato in Room B" },
+          t: 2_000,
+          evidence: [`simulation:scene:${ORIGINAL_DIGEST}`],
+        },
+      }),
+    )
+    const roomBEnvelopes = await roomBEventLog.readAllEnvelopes()
+    expect(roomBEnvelopes).toHaveLength(1)
+    expect(roomBEnvelopes[0]).toMatchObject({
+      lessonId: ROOM_B,
+      payload: {
+        instanceId: INSTANCE_A,
+        room: ROOM_B,
+      },
+    })
+    expect(await eventLog.readAllEnvelopes()).toEqual(envelopes)
+    expect(roomBEnvelopes.some((event) => event.lessonId === ROOM_A)).toBe(false)
 
     await workspace.write(
       roomPaths(ROOM_A).journal,
@@ -975,6 +1001,57 @@ describe("Sessione 2 — negative controls del confine", () => {
     )).toEqual(unchangedBefore)
   })
 
+  it("un digest valido diventa stantio dopo un commit senza mutare lo stato al retry negato", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    const client = await mountReady(hostFor(workspace, eventLog, INSTANCE_A))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+
+    const first = wireResult<ApplyOperationWireResult>(
+      await client.call("simulation.applyOperation", {
+        expectedSceneDigest: ORIGINAL_DIGEST,
+        operation: SHORT_CIRCUIT_OPERATION,
+      }),
+    )
+    expect(first.receipt.sceneDigest).not.toBe(ORIGINAL_DIGEST)
+    const afterFirst = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+    const secondOperation = {
+      ...SHORT_CIRCUIT_OPERATION,
+      id: "session-2:toctou-second-wire",
+      operation: {
+        ...SHORT_CIRCUIT_OPERATION.operation,
+        wire: {
+          ...SHORT_CIRCUIT_OPERATION.operation.wire,
+          id: "session-2-toctou-second-wire",
+          from: "bat1:positive",
+          to: "r1:pin1",
+        },
+      },
+    }
+
+    const stale = await client.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: secondOperation,
+    })
+    expect(stale.result).toBeUndefined()
+    expect(stale.error?.code).toBe(ERR.INTERNAL)
+    expect(stale.error?.message).toMatch(/scene digest/i)
+    expect(wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )).toEqual(afterFirst)
+
+    const retried = wireResult<ApplyOperationWireResult>(
+      await client.call("simulation.applyOperation", {
+        expectedSceneDigest: first.receipt.sceneDigest,
+        operation: secondOperation,
+      }),
+    )
+    expect(retried.receipt.sceneDigest).not.toBe(first.receipt.sceneDigest)
+  })
+
   it("provider assente resta blocked senza correnti o tensioni decorative", async () => {
     const workspace = new WorkspaceStore()
     await workspace.init()
@@ -1000,9 +1077,9 @@ describe("Sessione 2 — negative controls del confine", () => {
           severity: "blocker",
         },
       ],
-      currents: {},
-      voltages: {},
     })
+    expect(unavailable.result.currents).toStrictEqual({})
+    expect(unavailable.result.voltages).toStrictEqual({})
   })
 
   it("capability non concessa nega applyOperation prima dell'handler", async () => {
