@@ -15,6 +15,11 @@ import {
 } from "../sim/core/simulationRuntime"
 import type { SimulationOperationEnvelope } from "../sim/core/simulationOperations"
 import { simulationSceneDigest } from "../sim/core/simulationSceneDigest"
+import {
+  jsonPlainEqual,
+  projectMontaggioPlacements,
+  requireMontaggioScene,
+} from "../sim/elab/montaggioProjection"
 import { connectTool, type ToolConnection, type WindowLike } from "./sdk"
 import {
   SimulationApplyOperationParamsSchema,
@@ -128,12 +133,10 @@ export async function applyRoomSimulationConnectWire<TScene>(
     releaseStore = await acquireStoreTurn(composition.store)
     const binding = readMarkerBinding(composition.board, request)
     const requestedScene = serviceSceneFrom(request.scene)
-    const boardScene = serviceSceneFrom(binding.scene)
+    serviceSceneFrom(binding.scene)
     if (!activeSceneMatchesBinding(
       request.scene,
       binding.scene,
-      requestedScene,
-      boardScene,
       binding.state,
     )) {
       throw new Error(`stale live scene for "${request.embedId}"`)
@@ -304,46 +307,21 @@ function appendAcceptedWire(
 function activeSceneMatchesBinding(
   requestedRich: unknown,
   persistedRich: unknown,
-  requested: SimulationScene,
-  persisted: SimulationScene,
   state: Record<string, unknown>,
 ): boolean {
   const montage = state.montaggio
   if (montage === undefined) {
-    return JSON.stringify(requestedRich) === JSON.stringify(persistedRich)
+    return jsonPlainEqual(requestedRich, persistedRich)
   }
   const placements = asRecord(montage, "montaggio state").placements
-  if (!Array.isArray(placements) || placements.length === 0) {
-    return JSON.stringify(requestedRich) === JSON.stringify(persistedRich)
+  if (Array.isArray(placements) && placements.length === 0) {
+    return jsonPlainEqual(requestedRich, persistedRich)
   }
-
-  const expected = structuredClone(persisted)
-  expected.pinAssignments = { ...(expected.pinAssignments ?? {}) }
-  for (const value of placements) {
-    const placement = asRecord(value, "montaggio placement")
-    const id = requiredString(placement.id, "montaggio placement.id")
-    const type = requiredString(placement.type, "montaggio placement.type")
-    if (
-      !Array.isArray(placement.holes) ||
-      placement.holes.length !== 2
-    ) return false
-    const from = requiredString(placement.holes[0], "montaggio placement.holes[0]")
-    const to = requiredString(placement.holes[1], "montaggio placement.holes[1]")
-    if (type === "wire") {
-      expected.connections.push({ from, to })
-    } else if (type === "resistor") {
-      expected.components.push({ id, type: "resistor", value: 470 })
-      expected.pinAssignments[`${id}:pin1`] = from
-      expected.pinAssignments[`${id}:pin2`] = to
-    } else if (type === "led") {
-      expected.components.push({ id, type: "led" })
-      expected.pinAssignments[`${id}:anode`] = from
-      expected.pinAssignments[`${id}:cathode`] = to
-    } else {
-      return false
-    }
-  }
-  return simulationSceneDigest(requested) === simulationSceneDigest(expected)
+  const expectedRich = projectMontaggioPlacements(
+    requireMontaggioScene(persistedRich),
+    placements,
+  )
+  return jsonPlainEqual(requestedRich, expectedRich)
 }
 
 async function acquireStoreTurn(store: object): Promise<() => void> {

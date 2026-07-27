@@ -38,6 +38,11 @@ import { addToKillList } from "../toolhost/killList"
 import { EMBED_DATA_KEY, type BoardElementLike } from "../toolhost/caps/board"
 import type { SimulationApplyOperationParams } from "../toolhost-protocol"
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
+import {
+  jsonPlainEqual,
+  nextMontaggioPlacementId,
+  projectMontaggioPlacements,
+} from "../../sim/elab/montaggioProjection"
 
 afterEach(() => {
   cleanup()
@@ -320,13 +325,14 @@ describe("Room live Simulation connect-wire", () => {
     }
     const harness = boardHarness({ state })
     const activeScene = createBoardSceneWithPlacements(baseScene, placements)
+    const { provenance, ...activeSceneRest } = activeScene
 
     const applied = await applyRoomSimulationConnectWire(
       { roomId: "session-2-room-a", store, board: harness.board },
       {
         toolId: "io.ardesia.simulation",
         embedId: "elab-v1-cap6-esp1-first-led",
-        scene: activeScene,
+        scene: { provenance, ...activeSceneRest },
         operation: shortCircuitOperation("montaggio"),
       },
     )
@@ -339,6 +345,154 @@ describe("Room live Simulation connect-wire", () => {
       persisted.scene,
       persisted.montaggio!.placements,
     )).toEqual(applied.scene)
+  })
+
+  it("nega montaggi con identità ambigue prima di audit e write-back", async () => {
+    const baseScene = createReferenceSimulationScene()
+    const baseComponentId = baseScene.components[0]!.id
+    const baseOccupiedHole = Object.values(baseScene.pinAssignments)[0]!
+    const cases: Array<{ name: string; montaggio: unknown; pattern: RegExp }> = [
+      {
+        name: "duplicate placement",
+        montaggio: {
+          placements: [
+            { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+            { id: "r-libero-1", type: "resistor", holes: ["bb1:d3", "bb1:d4"] },
+          ],
+        },
+        pattern: /duplicate placement id/i,
+      },
+      {
+        name: "base component collision",
+        montaggio: {
+          placements: [
+            { id: baseComponentId, type: "led", holes: ["bb1:c3", "bb1:c4"] },
+          ],
+        },
+        pattern: /collides with base scene/i,
+      },
+      {
+        name: "base hole collision",
+        montaggio: {
+          placements: [
+            { id: "r-libero-1", type: "resistor", holes: [baseOccupiedHole, "bb1:c4"] },
+          ],
+        },
+        pattern: /holes already occupied/i,
+      },
+      {
+        name: "placement hole collision",
+        montaggio: {
+          placements: [
+            { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+            { id: "led-libero-1", type: "led", holes: ["bb1:c4", "bb1:c5"] },
+          ],
+        },
+        pattern: /holes already occupied/i,
+      },
+      {
+        name: "non-array placements",
+        montaggio: { placements: "not-an-array" },
+        pattern: /placements must be an array/i,
+      },
+    ]
+
+    for (const testCase of cases) {
+      const store = new MemoryStore()
+      const harness = boardHarness({
+        state: {
+          kind: "simulation-scene-v1",
+          scene: baseScene,
+          montaggio: testCase.montaggio,
+        },
+      })
+      const before = harness.json()
+      await expect(applyRoomSimulationConnectWire(
+        { roomId: "session-2-room-a", store, board: harness.board },
+        {
+          toolId: "io.ardesia.simulation",
+          embedId: "elab-v1-cap6-esp1-first-led",
+          scene: baseScene,
+          operation: shortCircuitOperation(`invalid-${testCase.name}`),
+        },
+      ), testCase.name).rejects.toThrow(testCase.pattern)
+      expect(harness.json(), testCase.name).toBe(before)
+      expect(await readAuditLog(store, "io.ardesia.simulation"), testCase.name).toEqual({
+        entries: [],
+        malformed: 0,
+      })
+    }
+  })
+
+  it("alloca il suffisso successivo senza riusare buchi o ID riservati", () => {
+    expect(nextMontaggioPlacementId(
+      "resistor",
+      [
+        { id: "r-libero-2", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+      ],
+      ["r-libero-1", "r-libero-4"],
+    )).toBe("r-libero-5")
+    expect(nextMontaggioPlacementId(
+      "wire",
+      [
+        { id: "cavo-libero-1", type: "wire", holes: ["bb1:d3", "bb1:d4"] },
+        { id: "cavo-libero-3", type: "wire", holes: ["bb1:e3", "bb1:e4"] },
+      ],
+    )).toBe("cavo-libero-4")
+    expect(() => nextMontaggioPlacementId(
+      "resistor",
+      [],
+      [`r-libero-${Number.MAX_SAFE_INTEGER}`],
+    )).toThrow(/id space exhausted/i)
+  })
+
+  it("confronta tutto lo stato ricco ignorando soltanto l'ordine delle chiavi", () => {
+    expect(jsonPlainEqual(
+      { provenance: { status: "reviewed", blocker: "CoV5" }, layout: { x: 1, y: 2 } },
+      { layout: { y: 2, x: 1 }, provenance: { blocker: "CoV5", status: "reviewed" } },
+    )).toBe(true)
+    expect(jsonPlainEqual(
+      { provenance: { blocker: "CoV5" }, layout: { x: 1, y: 2 } },
+      { provenance: { blocker: "CoV5" }, layout: { x: 1, y: 3 } },
+    )).toBe(false)
+    expect(() => jsonPlainEqual(
+      { toJSON: () => ({ layout: "hidden" }) },
+      { layout: "hidden" },
+    )).toThrow(/JSON-plain/)
+  })
+
+  it("preserva l'identità dei wire e normalizza pinAssignments senza collisioni", () => {
+    const scene = {
+      components: [{ id: "bat1", type: "battery" }],
+      connections: [{ id: "base-wire", from: "bat1:+", to: "bb1:a1" }],
+    }
+    const projected = projectMontaggioPlacements(scene, [
+      { id: "cavo-libero-1", type: "wire", holes: ["bb1:c3", "bb1:c4"] },
+    ])
+
+    expect(projected.connections.at(-1)).toMatchObject({
+      id: "cavo-libero-1",
+      from: "bb1:c3",
+      to: "bb1:c4",
+    })
+    expect(projectMontaggioPlacements(scene, []).pinAssignments).toEqual({})
+    expect(() => projectMontaggioPlacements(scene, [
+      { id: "base-wire", type: "wire", holes: ["bb1:d3", "bb1:d4"] },
+    ])).toThrow(/collides with base scene/i)
+    expect(() => projectMontaggioPlacements({
+      ...scene,
+      pinAssignments: { "bat1:positive": "bb1:c3" },
+    }, [
+      { id: "r-libero-1", type: "resistor", holes: ["bb1:c3", "bb1:c4"] },
+    ])).toThrow(/holes already occupied/i)
+    expect(() => projectMontaggioPlacements(scene, [
+      { id: "r-libero-1", type: "resistor", holes: ["bb1:d3", "bb1:d4"] },
+      { id: "led-libero-1", type: "led", holes: ["bb1:d4", "bb1:d5"] },
+    ])).toThrow(/holes already occupied/i)
+    expect(() => projectMontaggioPlacements({
+      ...scene,
+      components: [{ id: "base-wire", type: "battery" }],
+    }, [])).toThrow(/duplicate id/i)
   })
 
   it("nega kill-list e connection kind lossy prima di qualunque write-back", async () => {

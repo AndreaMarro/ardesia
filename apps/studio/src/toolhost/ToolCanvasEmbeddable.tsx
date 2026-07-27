@@ -17,6 +17,12 @@ import {
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import {
+  nextMontaggioPlacementId,
+  projectMontaggioPlacements,
+  type MontaggioPlacement,
+  type MontaggioPlacementType,
+} from "../../sim/elab/montaggioProjection";
+import {
   dispatchSimulationConnectWire,
   registerSimulationTool,
   getSimulationTool,
@@ -680,10 +686,9 @@ registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:
 // contano i SOLI pinAssignments; foro occupato → notice, MAI piazzamento muto.
-export type MontaggioPlacementType = "resistor" | "led" | "wire";
+export type { MontaggioPlacement, MontaggioPlacementType } from "../../sim/elab/montaggioProjection";
 /** Strumenti della palette: i tipi piazzabili + la gomma (rimozione, D7). */
 export type MontaggioTool = MontaggioPlacementType | "eraser";
-export type MontaggioPlacement = { id: string; type: MontaggioPlacementType; holes: [string, string] };
 type MontaggioState = {
   placements: MontaggioPlacement[];
   operations?: SimulationOperationEnvelope[];
@@ -705,44 +710,10 @@ export function createBoardSceneWithPlacements(
   scene: SimulationSceneV1,
   placements: readonly MontaggioPlacement[],
 ): SimulationSceneV1 {
-  if (placements.length === 0) return scene;
-  const components = [...scene.components];
-  const pinAssignments = { ...scene.pinAssignments };
-  const connections = [...scene.connections];
-  for (const placement of placements) {
-    if (placement.type === "wire") {
-      // Il cavo è una CONNECTION, non un component (D6): buildNets unisce già
-      // pinAssignments ∪ connections, quindi la continuità elettrica è reale
-      // a solver invariato; BoardWires lo disegna con la bezier di fallback.
-      connections.push({
-        from: placement.holes[0],
-        to: placement.holes[1],
-        color: "green",
-        kind: "wire",
-      });
-    } else if (placement.type === "resistor") {
-      components.push({
-        id: placement.id,
-        type: "resistor",
-        label: "Resistore montaggio libero",
-        value: 470,
-        anchor: "bb1",
-      });
-      pinAssignments[`${placement.id}:pin1`] = placement.holes[0];
-      pinAssignments[`${placement.id}:pin2`] = placement.holes[1];
-    } else {
-      components.push({
-        id: placement.id,
-        type: "led",
-        label: "LED montaggio libero",
-        color: "red",
-        anchor: "bb1",
-      });
-      pinAssignments[`${placement.id}:anode`] = placement.holes[0];
-      pinAssignments[`${placement.id}:cathode`] = placement.holes[1];
-    }
-  }
-  return { ...scene, components, pinAssignments, connections };
+  // Il canvas mantiene il contratto diagnostico storico: uno stato persistito
+  // invalido viene proiettato e mostrato come errore dal netlist validator.
+  // Il confine Room usa invece il default fail-closed del proiettore.
+  return projectMontaggioPlacements(scene, placements, { rejectOccupiedHoles: false });
 }
 
 export function createMontaggioPlacementOperations({
@@ -980,13 +951,11 @@ function ReferenceSimulationCanvasTool({
       setMontaggioNotice("stesso foro del primo tap: tocca un secondo foro diverso");
       return;
     }
-    const ordinal = placements.filter((p) => p.type === montaggioTool).length + 1;
-    const id =
-      montaggioTool === "resistor"
-        ? `r-libero-${ordinal}`
-        : montaggioTool === "wire"
-          ? `cavo-libero-${ordinal}`
-          : `led-libero-${ordinal}`;
+    const id = nextMontaggioPlacementId(
+      montaggioTool,
+      placements,
+      scene.components.map((component) => component.id),
+    );
     applyPlacements([...placements, { id, type: montaggioTool, holes: [pendingHole, ref] }]);
     setPendingHole(null);
     setMontaggioNotice(null);
