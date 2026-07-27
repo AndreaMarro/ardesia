@@ -312,6 +312,9 @@ export type LessonEventEmitParams = z.infer<typeof LessonEventEmitParamsSchema>
 // mutazione ammessa sul wire è connect-wire: non è un patch endpoint generico e
 // attraversa la pipeline canonica placement → provider → diagnostica.
 
+export const SIMULATION_SCENE_COMPONENT_LIMIT = 500
+export const SIMULATION_SCENE_CONNECTION_LIMIT = 2000
+
 const SimulationSceneSchema = z.strictObject({
   components: z
     .array(
@@ -322,7 +325,7 @@ const SimulationSceneSchema = z.strictObject({
         value: z.number().optional(),
       }),
     )
-    .max(500),
+    .max(SIMULATION_SCENE_COMPONENT_LIMIT),
   connections: z
     .array(
       z.strictObject({
@@ -331,7 +334,7 @@ const SimulationSceneSchema = z.strictObject({
         to: z.string().min(1),
       }),
     )
-    .max(2000),
+    .max(SIMULATION_SCENE_CONNECTION_LIMIT),
   pinAssignments: z.record(z.string(), z.string()).optional(),
 })
 export type SimulationScene = z.infer<typeof SimulationSceneSchema>

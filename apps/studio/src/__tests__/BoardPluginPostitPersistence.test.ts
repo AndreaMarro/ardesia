@@ -801,6 +801,11 @@ describe("Board plugin post-it persistence", () => {
     const boardScene = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits())
     const roomNormalizedElements = boardScene.elements.map((element) => ({ ...element, link: null }))
 
+    expect(() => restorePluginPostitsFromBoardScene({
+      ...boardScene,
+      elements: roomNormalizedElements,
+    })).toThrow(/board link mismatch/i)
+
     const renderedPostits = roomNormalizedElements
       .map((element) => renderPluginPostitBoardEmbeddable(element))
       .filter((node): node is NonNullable<typeof node> => node !== null)
@@ -814,6 +819,24 @@ describe("Board plugin post-it persistence", () => {
     expect(container.querySelector("[data-elabtutor-simulation-instance]")?.getAttribute(
       "data-elabtutor-simulation-instance",
     )).toBe("sim-a")
+  })
+
+  it("rejects a normalized link when the canonical board id does not match", () => {
+    const [simAElement] = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()).elements
+    const mismatched = {
+      ...simAElement,
+      id: "copied-sim-a-element",
+      link: null,
+    }
+
+    expect(() => restorePluginPostitsFromBoardScene({
+      type: "excalidraw",
+      elements: [mismatched],
+      appState: {},
+    })).toThrow("plugin post-it board id mismatch for sim-a")
+    expect(() => renderPluginPostitBoardEmbeddable(mismatched)).toThrow(
+      "plugin post-it board id mismatch for sim-a",
+    )
   })
 
   it("rejects duplicated render elements whose board id no longer matches the persisted instance", () => {

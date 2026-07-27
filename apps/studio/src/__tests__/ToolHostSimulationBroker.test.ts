@@ -18,14 +18,27 @@
 // verticale Sessione 2. Qui resta congelato il ciclo precedente
 // load → solve → read → serialize e la sua compatibilità.
 import { afterEach, describe, expect, it } from "vitest"
-import { ERR, PROTOCOL_VERSION, ToolManifestSchema } from "../toolhost-protocol/index.ts"
-import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
+import {
+  ERR,
+  PROTOCOL_VERSION,
+  SIMULATION_SCENE_COMPONENT_LIMIT,
+  SIMULATION_SCENE_CONNECTION_LIMIT,
+  ToolManifestSchema,
+} from "../toolhost-protocol/index.ts"
+import type {
+  Capabilities,
+  SimulationApplyOperationParams,
+  ToolManifest,
+} from "../toolhost-protocol/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
 import { assertGrantWithinManifest } from "../toolhost/policy.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/storage.ts"
-import type { SimulationRuntimeApiLike } from "../toolhost/caps/simulation.ts"
+import {
+  ToolSimulation,
+  type SimulationRuntimeApiLike,
+} from "../toolhost/caps/simulation.ts"
 import {
   SIMULATION_RUNTIME_API_VERSION,
   SIMULATION_RUNTIME_PLUGIN_ID,
@@ -97,13 +110,13 @@ const malformedRuntimeScenes: Array<[
   }],
   ["too many components", (scene) => {
     scene.components = Array.from(
-      { length: 501 },
+      { length: SIMULATION_SCENE_COMPONENT_LIMIT + 1 },
       (_, index) => ({ id: `component-${index}`, type: "resistor" }),
     )
   }],
   ["too many connections", (scene) => {
     scene.connections = Array.from(
-      { length: 2001 },
+      { length: SIMULATION_SCENE_CONNECTION_LIMIT + 1 },
       (_, index) => ({
         id: `connection-${index}`,
         from: "bat1:+",
@@ -278,6 +291,100 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
     expect((serialized.result as { state?: { schema?: string } }).state?.schema).toBe(
       SIMULATION_RUNTIME_STATE_SCHEMA,
     )
+  })
+
+  it("isola i payload trattenuti dal runtime prima di esporli al chiamante", () => {
+    const retainedApplyOutcome = { nested: { status: "accepted" } }
+    const retainedApplyDiagnostics = { nested: { code: "apply-ok" } }
+    const retainedSolveResult = { nested: { status: "solved" } }
+    const retainedReadDiagnostics = { nested: { code: "read-ok" } }
+    let retainedOperation: SimulationApplyOperationParams["operation"] | undefined
+    let returnUncloneableSolve = false
+    const service: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: (state, operation) => {
+        retainedOperation = operation
+        const nextState = structuredClone(state as SimulationRuntimeState)
+        nextState.scene.connections = [
+          ...(nextState.scene.connections ?? []),
+          {
+            id: operation.operation.wire.id,
+            from: operation.operation.wire.from,
+            to: operation.operation.wire.to,
+          },
+        ]
+        nextState.appliedOperations = [
+          ...nextState.appliedOperations,
+          operation,
+        ]
+        return {
+          state: nextState,
+          accepted: true,
+          result: retainedApplyOutcome,
+          diagnostics: retainedApplyDiagnostics,
+        }
+      },
+      solve: (state) => {
+        if (!returnUncloneableSolve) {
+          return { state, result: retainedSolveResult }
+        }
+        const nextState = structuredClone(state as SimulationRuntimeState)
+        nextState.diagnostics = [...nextState.diagnostics, "must-not-commit"]
+        return { state: nextState, result: () => "not cloneable" }
+      },
+      readDiagnostics: () => retainedReadDiagnostics,
+    }
+    const simulation = new ToolSimulation(service, "payload-owner", {
+      roomId: "broker-room",
+    })
+    simulation.loadScene({
+      scene: {
+        components: LED_SCENE.components.map((component) => ({ ...component })),
+        connections: LED_SCENE.connections.map((connection) => ({ ...connection })),
+      },
+    })
+    const operation: SimulationApplyOperationParams["operation"] = {
+      schema: "simulation-operation/1",
+      id: "payload-owner-connect",
+      actor: "manual",
+      origin: "canvas",
+      targetProvider: "local",
+      providerMode: "static",
+      operation: {
+        kind: "connect-wire",
+        wire: {
+          id: "payload-owner-wire",
+          from: "bat1:positive",
+          to: "bat1:negative",
+          color: "red",
+        },
+      },
+    }
+    const applied = simulation.applyOperation({
+      expectedSceneDigest: SCENE_DIGEST,
+      operation,
+    })
+
+    operation.operation.wire.color = "blue"
+    expect(retainedOperation?.operation.wire.color).toBe("red")
+    retainedApplyOutcome.nested.status = "mutated"
+    retainedApplyDiagnostics.nested.code = "mutated"
+    expect(applied.solveOutcome).toEqual({ nested: { status: "accepted" } })
+    expect(applied.diagnostics).toEqual({ nested: { code: "apply-ok" } })
+
+    const solved = simulation.solve({ provider: "local", mode: "static" })
+    retainedSolveResult.nested.status = "mutated"
+    expect(solved.result).toEqual({ nested: { status: "solved" } })
+
+    const diagnostics = simulation.readDiagnostics()
+    retainedReadDiagnostics.nested.code = "mutated"
+    expect(diagnostics.diagnostics).toEqual({ nested: { code: "read-ok" } })
+
+    const beforeRejectedSolve = simulation.serializeState()
+    returnUncloneableSolve = true
+    expect(() => simulation.solve({ provider: "local", mode: "static" })).toThrow()
+    returnUncloneableSolve = false
+    expect(simulation.serializeState().state).toEqual(beforeRejectedSolve.state)
   })
 
   it("RED-2b: solve senza loadScene → errore esplicito, mai una scena vuota implicita", async () => {

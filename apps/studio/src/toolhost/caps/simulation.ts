@@ -138,7 +138,11 @@ export class ToolSimulation {
     if (apply === undefined) {
       throw new Error("simulation service does not support operation application")
     }
-    const applied: unknown = apply.call(this._api, isolatedState, params.operation)
+    const applied: unknown = apply.call(
+      this._api,
+      isolatedState,
+      structuredClone(params.operation),
+    )
     if (!isRecord(applied) || typeof applied.accepted !== "boolean") {
       throw new Error("simulation service returned an invalid operation result")
     }
@@ -159,8 +163,8 @@ export class ToolSimulation {
       roomId,
       operationId: params.operation.id,
       accepted: true,
-      solveOutcome: applied.result,
-      diagnostics: applied.diagnostics,
+      solveOutcome: this._isolatedPayload(applied.result),
+      diagnostics: this._isolatedPayload(applied.diagnostics),
     })
 
     // Unico commit point: ogni validazione, solve, digest e result check è
@@ -190,8 +194,12 @@ export class ToolSimulation {
     if (digest !== currentDigest) {
       throw new Error("simulation solve altered the scene digest")
     }
+    const result = this._isolatedPayload(solved.result)
     this._state = state
-    return { receipt: this._receipt(contract, digest), result: solved.result }
+    return {
+      receipt: this._receipt(contract, digest),
+      result,
+    }
   }
 
   readDiagnostics(): { receipt: SimulationReceipt; diagnostics: unknown } {
@@ -200,7 +208,10 @@ export class ToolSimulation {
     const diagnostics = this._api.readDiagnostics(
       structuredClone(this._requireState()),
     )
-    return { receipt: this._receipt(contract, this._requireDigest()), diagnostics }
+    return {
+      receipt: this._receipt(contract, this._requireDigest()),
+      diagnostics: this._isolatedPayload(diagnostics),
+    }
   }
 
   serializeState(): { receipt: SimulationReceipt; state: unknown } {
@@ -236,6 +247,10 @@ export class ToolSimulation {
    */
   private _isolatedState(state: unknown): unknown {
     return structuredClone(this._checkedState(state))
+  }
+
+  private _isolatedPayload(payload: unknown): unknown {
+    return structuredClone(payload)
   }
 
   private _requireState(): unknown {
