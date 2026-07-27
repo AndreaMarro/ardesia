@@ -2,14 +2,20 @@
 
 Data audit: 2026-07-27
 
-Product base: `36e6753cc55c114cb1c0815a7e2f8911a0b71dc7`
+Authorized product base: `36e6753cc55c114cb1c0815a7e2f8911a0b71dc7`
 
-Product tree: `4dc0f51de8c706d7b7cbb2b6e9b314f169a926fb`
+Authorized base tree: `4dc0f51de8c706d7b7cbb2b6e9b314f169a926fb`
+
+Implementation freeze: `e07486fff0a5318c8150289b433184b40119166c`
+
+Implementation tree: `21263254b9936141bbad5c791acbd607ac643cf2`
 
 Worktree: `ardesia-wt-session2-20260727`
 
 Stato: CoV locale; le sezioni fino a “Esito misurato” congelano l'audit
-pre-implementazione, le sezioni successive registrano il candidato osservato
+pre-implementazione, le sezioni successive registrano il candidato osservato.
+Il product SHA comprensivo di questi artifact non è auto-riferibile: viene
+legato alla decisione e al receipt exact-SHA nel vault Knowledge esterno.
 
 ## Gate e PLAN-DEVIATION
 
@@ -347,10 +353,17 @@ Linea locale impilata sul base autorizzato
 | `9af49956ae32b1d90f7b4c46156c011b8c4bde97` | isolamento degli oggetti runtime iniettati |
 | `55a258ff10adf1611107f6f43ae344ed302ada04` | marker/workbench v2 e migrazione digest v1 |
 | `4675ea5fca8505b04e43e5523fc64b80e22ea98b` | contratto documentato room-scoped |
-| `8d5b225b` | riconciliazione della verticale misurata nei documenti prodotto |
-| `8b448057` | tombstone delle copie canoniche incorporate e stantie |
-| `df9ca94d` | falsificatori terminali e validazione della migrazione workbench |
-| `9fd8a2c1` | proiezione digest stretta e room gate prima del provider |
+| `8d5b225bf57caa5bf40adf71c205aa79b6395bf0` | riconciliazione della verticale misurata nei documenti prodotto |
+| `8b4480575013567821848c72cc6bde0c1971638f` | tombstone delle copie canoniche incorporate e stantie |
+| `df9ca94dcdc5ebc539eea9c6c2611f8c8c3bc3cf` | falsificatori terminali e validazione della migrazione workbench |
+| `9fd8a2c1a42e00cca0dbb9aa1291a49deb284ef7` | proiezione digest stretta e room gate prima del provider |
+| `fe6a67797bc480b2c61d350edc77bc61e74dd31f` | classificazione delle evidenze di review |
+| `0b46f3caf1281e7ab35333a35ceab7d67c810909` | ownership e clone dei payload runtime |
+| `a09e2a2ac777d5b397318a0620b12ccc76d05b52` | serializzazione delle mutazioni live e scope room/embed |
+| `f9d8608c2dde8b945ac9dfe7b1b9145f1ff9d793` | proiezione canonica e validazione del montaggio libero |
+| `1965e1fbec449da5b703f443a5aca070404e5107` | disambiguazione delle autorità documentali |
+| `ad8f6f95e1b64cba77b34a1b90a599770bd993ab` | provenance della fixture realmente montata |
+| `e07486fff0a5318c8150289b433184b40119166c` | controlli terminali room-log, TOCTOU e readings vuote |
 
 L'exact SHA prodotto finale, comprensivo dei documenti, viene legato dal
 receipt nel repository Knowledge dopo il commit documentale; non viene
@@ -379,9 +392,9 @@ componenti, layout, edit/delete wire e le altre callback del canvas restano
 debito diretto in `ToolCanvasEmbeddable.tsx`; quindi non esiste una prova di
 autonomia universale del plugin.
 
-Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `112298` byte:
-`-86` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione di
-responsabilità resta debito architetturale.
+Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `111130` byte:
+`-1254` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione
+di responsabilità resta debito architetturale.
 
 ### Negative controls eseguiti
 
@@ -390,13 +403,14 @@ responsabilità resta debito architetturale.
 | solve/apply prima di load | `INTERNAL`, nessuna scena implicita |
 | capability non concessa | `CAPABILITY_DENIED` prima dell'handler |
 | `instanceId` nel payload | `INVALID_PARAMS`; identità sempre host-owned |
-| digest stantio | rifiuto e stato byte/logicamente invariato |
+| digest stantio | vero TOCTOU: digest prima valido, poi stantio dopo commit; rifiuto e stato invariato |
 | target/kind non supportati | rifiuto; nessun commit |
 | result `applyOperation`/`solve` malformato | rifiuto contrattuale |
 | provider mutante o con reference trattenuta | clone host-owned; nessuna mutazione tardiva |
 | serializer/diagnostics mutanti | clone + digest check; stato invariato |
-| provider assente | blocker `provider-unavailable`, readings vuote |
-| istanza A/B e room A/B | nessun byte o audit condiviso |
+| provider assente | blocker `provider-unavailable`; `currents` e `voltages` esattamente `{}` |
+| istanza A/B e room A/B | board/stato/receipt isolati anche sullo stesso store; audit condiviso serializzato senza perdita |
+| event log Room A/B | trusted context e log distinti; nessun envelope cross-room |
 | richiesta concorrente/stale live | rifiuto prima del secondo `board.write` |
 | kill-list | mount/operazione negati |
 | marker v2 senza digest o con digest stantio | restore e render fail-closed |
@@ -408,13 +422,27 @@ responsabilità resta debito architetturale.
 | evidence non risolta | `missing`, mai promossa a `verified` |
 | host SDK 1.3 | consumer 1.4 non soddisfatto |
 
-## Tabella CodeRabbit
+## CodeRabbit
 
-Sono conteggiate soltanto review concluse. Il tentativo intermedio bloccato dal
-rate limit e un invio con base SHA errata, fallito prima dell'analisi, non sono
-contati. Sei cicli sono conclusi; un eventuale pass post-freeze non può essere
-auto-inserito nello stesso commit e viene quindi legato soltanto dal receipt
-Knowledge exact-SHA.
+Il ledger canonico per-commento è
+[`coderabbit-disposition.md`](coderabbit-disposition.md). Conta 15 review
+concluse, 78 finding raw e due pass a zero finding (`C2`, `T1`). I tentativi
+falliti, incompleti o rate-limited sono registrati separatamente e non contati.
+Ogni finding ha UUID, riproduzione, rischio, test-before, fix, test-after e
+decisione. Dopo la presente append di STATUS le disposition sono:
+
+- `50 ACCEPT_FIXED`;
+- `18 REJECT_INVALID`;
+- `10 DEFERRED`;
+- `0 PENDING`.
+
+`T1` è incrementale e lega byte-per-byte la patch poi committata come
+`e07486ff`; non sostituisce la review completa del diff finale, che viene
+registrata nel receipt Knowledge exact-SHA.
+
+### Snapshot storico dei primi sei cicli
+
+La tabella seguente è preservata come cronologia e non è il conteggio corrente.
 
 | Ciclo | Finding | Decisione ed evidenza |
 |---|---|---|
@@ -467,7 +495,7 @@ corretti e riesaminati con zero finding residui.
 | SDK 1.4 espone una sola mutazione stretta | schema/golden/negative controls `applyOperation` | provato |
 | mutazione provider-derived | short battery → `solverDiagnostics.shortCircuit=true` dal provider locale | provato |
 | gesto live attraversa ToolHost | audit ordinato load → apply → board.write | provato solo per `connect-wire` |
-| room e instance isolation | test A/B, store/audit separati, scope host-owned | provato nella slice |
+| room e instance isolation | test A/B sullo stesso store, log Room separati, scope host-owned | provato nella slice |
 | persistence/cold reopen/import | marker runtime v2 + `.lesson` reale + cold host | provato nella slice |
 | LessonOS è derivato dal log | emit host-mediated + `materialize(readAll())` | provato |
 | provenance risolvibile | refs manual/scene/instance hanno `resolution: missing` | **bloccato** |
@@ -485,8 +513,8 @@ corretti e riesaminati con zero finding residui.
 | CoV-3 — runtime/provider | `GREEN_BOUNDED` |
 | CoV-4 — persistenza/isolamento | `GREEN_BOUNDED` |
 | CoV-5 — provenienza risolvibile | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| CoV-6 — review | `GREEN_CLASSIFIED`; sei cicli conclusi, pass post-freeze solo nel receipt exact-SHA |
-| CoV-7 — docs/canon | `GREEN_PRODUCT_LOCAL`; il receipt Knowledge completa il binding a due SHA |
+| CoV-6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; 15 cicli e 78 finding classificati, `T1` incrementale clean |
+| CoV-7 — docs/canon | `GREEN_PRODUCT_LOCAL_PENDING_EXTERNAL_BINDING`; il receipt Knowledge completa il binding a due SHA |
 | DoD Sessione 2 | `PARTIAL_BLOCKED` |
 
 Verdetto ammesso: **partial simulation harness**. La verticale tecnica è
