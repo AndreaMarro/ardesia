@@ -6,8 +6,9 @@
 > `../../artifacts/session-2/current-flow.md`; per governance, decisioni e receipt
 > usare il vault esterno `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
 
-> Documento UNICO per orientarsi: umani **e** agenti della fabbrica. Se un altro doc contraddice
-> questo per la struttura/navigazione, **vale questo**. Dettaglio operativo ordini = `COORDINATION.md`.
+> **CLAUSOLA STORICA (17/06).** All'epoca questa era la mappa unica per
+> struttura/navigazione e `COORDINATION.md` conteneva gli ordini. Oggi, in caso
+> di conflitto, valgono le fonti correnti indicate nel banner sopra.
 > NB: codename interno = **MAESTRO** (locale `~/maestro-*`); su GitHub i repo sono **`ardesia-*`**.
 
 ---
