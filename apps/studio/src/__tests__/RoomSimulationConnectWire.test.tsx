@@ -634,10 +634,19 @@ describe("Room live Simulation connect-wire", () => {
       },
     )
 
-    // L'assert qui sotto su roomA è di SOLA INVARIANZA («A non è cambiata»):
-    // vale come prova di isolamento soltanto se la precondizione «B ha davvero
-    // mutato» è STABILITA. A stabilirla è la riga successiva, che per questo
-    // deve confrontare B con la PROPRIA baseline.
+    // L'assert qui sotto su roomA è di SOLA INVARIANZA («A non è cambiata») e
+    // vale qualcosa soltanto se la precondizione «B ha davvero mutato» è
+    // STABILITA. A stabilirla è la riga successiva, che per questo deve
+    // confrontare B con la PROPRIA baseline.
+    //
+    // ATTENZIONE a quanto NON prova. roomA e roomB sono due closure separate
+    // che condividono solo lo `store`: non esiste un canale per cui B possa
+    // raggiungere la board di A, quindi questa coppia di righe prova due
+    // mutazioni sequenziali isolate per costruzione, non il confine di
+    // sicurezza room/instance della §16.5. Un mutante che facesse scrivere
+    // ToolBoard.write direttamente sull'array restituito da
+    // getSceneElements(), senza passare da updateScene, lascerebbe verdi
+    // byte, wire e audit. §16.5 resta NOT_PROVEN.
     //
     // Confrontarla con roomABytes la rendeva inerte: `createToolEmbedElement`
     // scrive `updated = Date.now()` (ToolCanvasEmbeddable.tsx:520) e le due

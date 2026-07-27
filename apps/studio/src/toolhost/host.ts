@@ -210,7 +210,10 @@ export class ToolHost {
       handlers: this._handlers(),
       isOwnEmbed: this._board.isOwnEmbed,
       // fire-and-forget consapevole: un audit-sink rotto non blocca il tool
-      // (policy ST2); l'errore resta osservabile da audit.idle() nei test.
+      // (policy ST2). L'errore NON è osservabile da `audit.idle()`: la chain è
+      // già convertita in risoluzione in audit.ts, quindi `idle()` risolve
+      // anche quando l'append ha rigettato. Il segnale vive in
+      // `auditDropCount(store, toolId)`.
       onAudit: (event) => void this.audit.append(event).catch(() => {}),
       bearerToken: this._deps.bearerToken ?? createNonce(),
       requestTimeoutMs: this._deps.requestTimeoutMs,
