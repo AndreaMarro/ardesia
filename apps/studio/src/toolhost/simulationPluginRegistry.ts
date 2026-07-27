@@ -5,7 +5,9 @@
 
 import type { ReactElement } from "react";
 import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
+import type { SimulationOperationEnvelope } from "../../sim/core/simulationOperations";
 import type { LessonOsEvent } from "../lessonos/eventlog";
+import type { SimulationApplyOperationResult } from "../toolhost-protocol";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
 export type ToolEmbedLike = {
@@ -20,6 +22,19 @@ export type ToolLinkRef = {
   embedId: string;
 };
 
+export type SimulationConnectWireRequest<TScene> = {
+  scene: TScene;
+  operation: SimulationOperationEnvelope;
+};
+
+export type BoundSimulationConnectWireRequest<TScene> =
+  SimulationConnectWireRequest<TScene> & ToolLinkRef;
+
+export type SimulationConnectWireResult<TScene> = {
+  scene: TScene;
+  result: SimulationApplyOperationResult;
+};
+
 /**
  * Servizi che l'host offre al tool renderizzato (tutti opzionali: un tool
  * senza host resta funzionante, fail-soft). persistEmbedState scrive lo state
@@ -27,6 +42,13 @@ export type ToolLinkRef = {
  */
 export type SimulationToolHost = {
   persistEmbedState?: (embedId: string, state: unknown, toolId: string) => void;
+  /**
+   * Unica mutazione della slice Sessione 2: la UI consegna un envelope
+   * strutturato al composition root; nessun fallback locale è autorizzato.
+   */
+  applyConnectWire?: <TScene>(
+    request: SimulationConnectWireRequest<TScene>,
+  ) => Promise<SimulationConnectWireResult<TScene>>;
   /**
    * host-observes-solve: il tool riporta l'esito del solve come evento LessonOS
    * tipato; l'host lo accoda al log. Opzionale/fail-soft: senza host, il tool

@@ -29,8 +29,9 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, parseToolLink, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { applyRoomSimulationConnectWire } from "./roomSimulationComposition"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
@@ -1074,6 +1075,21 @@ export default function Room({
                             toolId,
                             setStorageError,
                           )
+                        }
+                      },
+                      applyConnectWire: async (request) => {
+                        try {
+                          const board = apiRef.current
+                          if (!board) throw new Error("simulation board unavailable")
+                          const toolLink = parseToolLink(element.link)
+                          if (!toolLink) throw new Error("simulation embed binding unavailable")
+                          return await applyRoomSimulationConnectWire(
+                            { roomId: room, store: actualStore, board },
+                            { ...request, ...toolLink },
+                          )
+                        } catch (error) {
+                          setStorageError(error instanceof Error ? error.message : String(error))
+                          throw error
                         }
                       },
                       emitLessonEvent: (event) => {
