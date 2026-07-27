@@ -54,19 +54,35 @@ export interface SimulationRuntimeApiLike {
   sceneDigest(scene: SimulationScene): string
   loadScene(input: { instanceId: string; scene: SimulationScene; diagnostics?: string[] }): unknown
   /**
-   * Postcontratto obbligatorio del connect-wire, verificato dall'host in
-   * `_assertAppliedOperation` prima di qualunque commit:
+   * Postcontratto del connect-wire, verificato da `_assertAppliedOperation`
+   * prima di qualunque commit. La verifica NON avviene sulla scena completa ma
+   * sulla PROIEZIONE che `_sceneFromState` estrae — components ridotti a
+   * `id/type/label/value`, connections ridotte a `id/from/to`, più
+   * `pinAssignments`. Su quella proiezione l'host impone:
    *
-   * - preserva l'ordine e TUTTE le connessioni esistenti, con gli stessi
+   * - ordine e presenza di TUTTE le connessioni esistenti, con gli stessi
    *   `from`/`to` e gli stessi `id` già assegnati;
-   * - aggiunge il wire richiesto UNA sola volta e in CODA a `connections`;
-   * - nessun riordino, nessuna rimozione, nessuna riscrittura di `id`;
-   * - `components` e `pinAssignments` restano canonicamente identici.
+   * - il wire richiesto aggiunto UNA sola volta e in CODA a `connections`,
+   *   confrontato per `id`/`from`/`to`;
+   * - nessun riordino e nessuna rimozione; un `id` già presente non può essere
+   *   riscritto, mentre un `id` prima assente PUÒ essere assegnato;
+   * - `components` e `pinAssignments` canonicamente invariati.
+   *
+   * Ciò che il postcontratto NON attesta, perché fuori proiezione e fuori
+   * digest: `color` e `path` delle connessioni, e `attrs`/`pins`/layout dei
+   * componenti. Un runtime che restituisce il wire richiesto con un `color`
+   * diverso passa la verifica; la board però scrive il wire dall'envelope della
+   * richiesta, quindi stato runtime e board possono divergere su quei campi
+   * sotto una receipt accettata. Chiuderlo richiede di estendere insieme
+   * proiezione, assert e digest — non basta un controllo in più qui.
    *
    * L'interfaccia è strutturale e il runtime è iniettato: il tipo non può
    * imporre nulla di tutto questo. Una implementazione che riordina, deduplica
    * o normalizza la lista è indistinguibile per il compilatore da una corretta,
-   * e viene respinta a runtime lasciando stato e digest byte-invariati.
+   * e viene respinta a runtime lasciando stato e digest invariati — garanzia
+   * che vale per stato JSON-like: `structuredClone` non isola memoria
+   * condivisa (es. `SharedArrayBuffer`), che resta un canale di mutazione
+   * fuori dal controllo del broker.
    */
   applyOperation?(
     state: unknown,
