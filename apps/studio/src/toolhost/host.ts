@@ -134,6 +134,14 @@ export class ToolHost {
     // difesa in profondità: il grant non può MAI eccedere il manifest, anche se
     // il chiamante ha scavalcato resolveGrant (capability-gating alla radice).
     assertGrantWithinManifest(manifest, grantedCaps)
+    if (
+      deps.simulationInitialState !== undefined &&
+      (deps.simulation === undefined || deps.instanceId === undefined)
+    ) {
+      throw new Error(
+        "simulationInitialState requires both simulation and instanceId",
+      )
+    }
     this.manifest = manifest
     this._grant = grantedCaps
     this._deps = deps

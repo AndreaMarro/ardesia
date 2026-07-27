@@ -103,13 +103,13 @@ export class ToolSimulation {
     // Stato e digest si aggiornano INSIEME o per niente: uno stato nuovo con un
     // digest vecchio produrrebbe una ricevuta che mente sulla topologia, ed è
     // esattamente ciò che la ricevuta esiste per impedire.
-    const state = this._checkedState(this._api.loadScene({
+    const state = this._isolatedState(this._api.loadScene({
       instanceId: this._instanceId,
       scene: params.scene,
       ...(params.diagnostics === undefined ? {} : { diagnostics: params.diagnostics }),
     }))
     this._assertStateInstance(state)
-    const digest = this._api.sceneDigest(this._sceneFromState(state))
+    const digest = this._digestForState(state)
     this._state = state
     this._digest = digest
     return { receipt: this._receipt(contract, digest) }
@@ -137,17 +137,17 @@ export class ToolSimulation {
     if (apply === undefined) {
       throw new Error("simulation service does not support operation application")
     }
-    const applied = apply.call(this._api, isolatedState, params.operation)
-    if (typeof applied.accepted !== "boolean") {
-      throw new Error("simulation service returned an invalid operation acceptance")
+    const applied: unknown = apply.call(this._api, isolatedState, params.operation)
+    if (!isRecord(applied) || typeof applied.accepted !== "boolean") {
+      throw new Error("simulation service returned an invalid operation result")
     }
     if (!applied.accepted) {
       throw new Error(`simulation operation "${params.operation.id}" rejected`)
     }
 
-    const state = this._checkedState(applied.state)
+    const state = this._isolatedState(applied.state)
     this._assertStateInstance(state)
-    const digest = this._api.sceneDigest(this._sceneFromState(state))
+    const digest = this._digestForState(state)
     if (digest === currentDigest) {
       throw new Error(
         `simulation operation "${params.operation.id}" did not change the scene digest`,
@@ -172,25 +172,49 @@ export class ToolSimulation {
   solve(params: { provider: string; mode: string }): { receipt: SimulationReceipt; result: unknown } {
     this._requireRoomId()
     const contract = this._contract()
-    const solved = this._api.solve(this._requireState(), params)
-    const state = this._checkedState(solved.state)
+    const currentDigest = this._requireDigest()
+    // Il provider è iniettato e può essere difettoso o malevolo: riceve una
+    // copia, così una mutazione prima di un throw non può corrompere lo stato
+    // committato. Solve può aggiornare diagnostica/output, non la topologia.
+    const solved: unknown = this._api.solve(
+      structuredClone(this._requireState()),
+      params,
+    )
+    if (!isRecord(solved) || !("state" in solved) || !("result" in solved)) {
+      throw new Error("simulation service returned an invalid solve result")
+    }
+    const state = this._isolatedState(solved.state)
     this._assertStateInstance(state)
+    const digest = this._digestForState(state)
+    if (digest !== currentDigest) {
+      throw new Error("simulation solve altered the scene digest")
+    }
     this._state = state
-    return { receipt: this._receipt(contract, this._requireDigest()), result: solved.result }
+    return { receipt: this._receipt(contract, digest), result: solved.result }
   }
 
   readDiagnostics(): { receipt: SimulationReceipt; diagnostics: unknown } {
     this._requireRoomId()
     const contract = this._contract()
-    const diagnostics = this._api.readDiagnostics(this._requireState())
+    const diagnostics = this._api.readDiagnostics(
+      structuredClone(this._requireState()),
+    )
     return { receipt: this._receipt(contract, this._requireDigest()), diagnostics }
   }
 
   serializeState(): { receipt: SimulationReceipt; state: unknown } {
     this._requireRoomId()
     const contract = this._contract()
-    const state = this._api.serializeState(this._requireState())
-    return { receipt: this._receipt(contract, this._requireDigest()), state }
+    const currentDigest = this._requireDigest()
+    const state = this._isolatedState(
+      this._api.serializeState(structuredClone(this._requireState())),
+    )
+    this._assertStateInstance(state)
+    const digest = this._digestForState(state)
+    if (digest !== currentDigest) {
+      throw new Error("simulation serializer altered the scene digest")
+    }
+    return { receipt: this._receipt(contract, digest), state }
   }
 
   /**
@@ -202,6 +226,15 @@ export class ToolSimulation {
       throw new Error(`simulation service returned no state for instance "${this._instanceId}"`)
     }
     return state
+  }
+
+  /**
+   * Ogni oggetto restituito dal runtime resta di proprietà del runtime finché
+   * non viene clonato. L'host committa o espone solo snapshot propri: il
+   * provider non può trattenere un riferimento e mutarlo dopo il receipt.
+   */
+  private _isolatedState(state: unknown): unknown {
+    return structuredClone(this._checkedState(state))
   }
 
   private _requireState(): unknown {
@@ -237,11 +270,11 @@ export class ToolSimulation {
       throw new Error("simulation service does not support host-owned state restore")
     }
     this._contract()
-    const state = this._checkedState(
+    const state = this._isolatedState(
       restore.call(this._api, structuredClone(initial.state)),
     )
     this._assertStateInstance(state)
-    const digest = this._api.sceneDigest(this._sceneFromState(state))
+    const digest = this._digestForState(state)
     if (
       typeof initial.sceneDigest !== "string" ||
       initial.sceneDigest.length === 0 ||
@@ -299,6 +332,16 @@ export class ToolSimulation {
       throw new Error(`simulation state contains malformed pin assignments`)
     }
     return scene as SimulationScene
+  }
+
+  /**
+   * Anche il digest provider è iniettato: riceve una copia della scena, mai il
+   * riferimento che l'host potrebbe committare dopo la verifica.
+   */
+  private _digestForState(state: unknown): string {
+    return this._api.sceneDigest(
+      structuredClone(this._sceneFromState(state)),
+    )
   }
 
   /**
