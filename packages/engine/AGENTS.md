@@ -1,8 +1,7 @@
 # ARDESIA Core Engine — regole correnti per agenti
 
 > Segui `../../AGENTS.md` e `../../ARDESIA-MAP.md`. Governance, decisioni e
-> receipt partono da
-> `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
+> receipt partono dal vault Knowledge esterno, `00-INDEX.md`.
 > AgentMemory è `RETIRED_NO_READ_NO_WRITE`.
 
 ## Scope
