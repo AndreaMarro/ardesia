@@ -16,7 +16,7 @@ import {
   renderToolCanvasEmbeddable,
 } from "../toolhost/ToolCanvasEmbeddable"
 import { ERR } from "../toolhost-protocol"
-import { readAuditLog, type AuditStore } from "../toolhost/audit"
+import { auditDropCount, readAuditLog, type AuditStore } from "../toolhost/audit"
 import { persistRoomEmbedStateThroughToolHost } from "../toolhost/roomWriteBack"
 import {
   EMBED_DATA_KEY,
@@ -198,6 +198,41 @@ describe("persistEmbedState — write-back host-side in scena (caps/board)", () 
     })
   })
 
+  it("audit rigettato dopo board.write riuscita: il commit resta, e la perdita e' OSSERVABILE", async () => {
+    const owner = "io.ardesia.simulation"
+    const embed = {
+      id: "embed-1",
+      customData: { [EMBED_DATA_KEY]: { owner, state: { a: 1 } } },
+    }
+    const { api, updateScene } = makeApi([embed])
+
+    // Store il cui write fallisce SOLO sul path dell'audit: board.write e'
+    // gia' committato quando l'append rigetta. E' lo scenario che la policy
+    // fail-soft dichiara di gestire.
+    class RejectingAuditStore extends MemoryAuditStore {
+      override async write(path: string, data: Blob): Promise<void> {
+        if (path.endsWith("/audit.jsonl")) {
+          throw new Error("quota exceeded")
+        }
+        return super.write(path, data)
+      }
+    }
+    const store = new RejectingAuditStore()
+
+    // fail-soft: la mutazione della board NON viene riclassificata come reject
+    await expect(
+      persistEmbedStateThroughToolHost(api, store, "embed-1", { a: 2 }, { toolId: owner, now: () => 123 }),
+    ).resolves.toBe(true)
+    expect(updateScene).toHaveBeenCalledTimes(1)
+
+    // il file non contiene la riga: e' andata persa davvero
+    await expect(readAuditLog(store, owner)).resolves.toEqual({ entries: [], malformed: 0 })
+
+    // ...e la perdita deve lasciare ESATTAMENTE un segnale. Senza questa riga
+    // «fail-soft» non e' una policy: e' un buco, indistinguibile dal successo.
+    expect(auditDropCount(store, owner)).toBe(1)
+  })
+
   it("elemento NON marcato (disegno del docente) o assente: no-op, mai scrittura", () => {
     const drawing = { id: "draw-1", customData: {} }
     const { api, updateScene } = makeApi([drawing])
@@ -233,6 +268,10 @@ describe("persistEmbedState — write-back host-side in scena (caps/board)", () 
       entries: [{ v: 1, t: 123, tool: owner, method: "board.write", outcome: "ok" }],
       malformed: 0,
     })
+    // Controllo negativo del contatore di drop: senza questa riga il test
+    // «la perdita e' osservabile» resterebbe verde anche con un contatore
+    // sempre acceso, che non distinguerebbe nulla.
+    expect(auditDropCount(store, owner)).toBe(0)
   })
 
   it("un audit sink fallito non trasforma un board.write gia' committato in reject", async () => {

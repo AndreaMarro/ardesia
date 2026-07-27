@@ -76,9 +76,16 @@ export class ToolAuditLog {
       ...(event.code !== undefined ? { code: event.code } : {}),
     }
     const p = this._chain.then(() => this._doAppend(entry))
+    // La catena non viene avvelenata da un'append fallita, ma il fallimento non
+    // sparisce: qui è l'UNICO punto attraversato da ogni append rigettata,
+    // qualunque sia il chiamante. Prima era `() => {}`, e da lì in poi la
+    // perdita era indistinguibile dal successo — né `idle()` né
+    // `Promise.allSettled` in caps/board.ts emettevano segnale.
     this._chain = p.then(
       () => {},
-      () => {},
+      () => {
+        recordAuditDrop(this._store, this._tool)
+      },
     )
     return p
   }
@@ -94,6 +101,37 @@ export class ToolAuditLog {
     const next = prior + JSON.stringify(entry) + "\n"
     await this._store.write(this._path, new Blob([next], { type: "application/x-ndjson" }))
   }
+}
+
+/**
+ * Append rigettate, per store e per tool. L'audit è deliberatamente fail-soft
+ * (`caps/board.ts`: a valle di board.write il commit è già avvenuto e un sink
+ * rotto non deve riclassificarlo come reject), ma fail-soft è una POLICY solo
+ * se il fallimento resta osservabile. Senza questo contatore non lo era: né
+ * `_chain`, né `idle()`, né `Promise.allSettled` in board.ts emettevano segnale.
+ *
+ * Non entra in `AuditReadResult`: `malformed` descrive il FILE, i drop
+ * descrivono il WRITER, e aggiungerlo lì cambierebbe la forma di ritorno
+ * asserita con `toEqual` in decine di test senza dire nulla di più.
+ */
+const auditDropsByStore = new WeakMap<AuditStore, Map<string, number>>()
+
+function recordAuditDrop(store: AuditStore, toolId: string): void {
+  let byTool = auditDropsByStore.get(store)
+  if (byTool === undefined) {
+    byTool = new Map<string, number>()
+    auditDropsByStore.set(store, byTool)
+  }
+  byTool.set(toolId, (byTool.get(toolId) ?? 0) + 1)
+}
+
+/**
+ * Righe di audit perse per questo store/tool. Contatore lato docente,
+ * compagno di `malformed`: quello conta ciò che è arrivato illeggibile,
+ * questo ciò che non è arrivato affatto.
+ */
+export function auditDropCount(store: AuditStore, toolId: string): number {
+  return auditDropsByStore.get(store)?.get(toolId) ?? 0
 }
 
 export interface AuditReadResult {
