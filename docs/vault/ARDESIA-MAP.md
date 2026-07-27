@@ -1,5 +1,11 @@
 # ARDESIA — MAPPA D'ORIENTAMENTO (SoT) · agg. 2026-06-17
 
+> **SNAPSHOT STORICO, NON AUTORITÀ CORRENTE.** Questa copia incorporata
+> descrive lo stato del 17 giugno e contiene nomi, ruoli e claim ormai
+> superseded. Per il codice corrente partire da `../../ARDESIA-MAP.md` e
+> `../../artifacts/session-2/current-flow.md`; per governance, decisioni e receipt
+> usare il vault esterno `/Users/andreamarro/ARDESIA-KNOWLEDGE/00-INDEX.md`.
+
 > Documento UNICO per orientarsi: umani **e** agenti della fabbrica. Se un altro doc contraddice
 > questo per la struttura/navigazione, **vale questo**. Dettaglio operativo ordini = `COORDINATION.md`.
 > NB: codename interno = **MAESTRO** (locale `~/maestro-*`); su GitHub i repo sono **`ardesia-*`**.
