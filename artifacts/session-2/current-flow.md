@@ -8,7 +8,8 @@ Product tree: `4dc0f51de8c706d7b7cbb2b6e9b314f169a926fb`
 
 Worktree: `ardesia-wt-session2-20260727`
 
-Stato: audit osservato prima di qualunque modifica funzionale
+Stato: CoV locale; le sezioni fino a “Esito misurato” congelano l'audit
+pre-implementazione, le sezioni successive registrano il candidato osservato
 
 ## Gate e PLAN-DEVIATION
 
@@ -329,3 +330,159 @@ La verticale non è accettata se:
 - `ToolCanvasEmbeddable.tsx` cresce;
 - una scena candidate viene descritta come visualmente verificata;
 - compare un claim Tinkercad parity, beta o plugin completo.
+
+## Esito misurato dopo l'implementazione
+
+Linea locale impilata sul base autorizzato
+`36e6753cc55c114cb1c0815a7e2f8911a0b71dc7`; nessun push, PR, merge o deploy:
+
+| Commit | Scopo |
+|---|---|
+| `3d73be0b2c3ce663ecceda2c5d234ac40951a827` | test causale della verticale e cold restore |
+| `5a716f0ad4999a945a842ce7860c7ccdd1386a62` | contratto SDK 1.4 `simulation.applyOperation` |
+| `bc8b50fa6a4b59556625d1873ab9ec63c3050ccc` | binding al runtime/provider reale |
+| `f8ebacc2627c2aedaea332877ed7a3f9949a3b40` | rollback e validation hardening |
+| `f686ef2dbd7bfa6d6259d8df7872de7c8e9568c7` | marker, cold restore ed export/import reali |
+| `25c37a1243ee01ab40650e38514f820a7434e3de` | gesto live `connect-wire` via ToolHost |
+| `9af49956ae32b1d90f7b4c46156c011b8c4bde97` | isolamento degli oggetti runtime iniettati |
+| `55a258ff10adf1611107f6f43ae344ed302ada04` | marker/workbench v2 e migrazione digest v1 |
+| `4675ea5fca8505b04e43e5523fc64b80e22ea98b` | contratto documentato room-scoped |
+
+L'exact SHA prodotto finale, comprensivo dei documenti, viene legato dal
+receipt nel repository Knowledge dopo il commit documentale; non viene
+anticipato con un placeholder o ottenuto riscrivendo la storia.
+
+### Flusso live provato
+
+```text
+Room.renderEmbeddable
+  → callback applyConnectWire senza identità fidate dal canvas
+  → applyRoomSimulationConnectWire
+  → identità room/tool/embed ricavate dal composition root
+  → SDK client su MessageChannel
+  → ToolHost + capability service.simulation
+  → simulation.loadScene
+  → simulation.applyOperation
+  → applySimulationRuntimeOperation
+  → provider locale reale
+  → receipt room/instance/digest + diagnostica short-circuit
+  → board.write own-embed
+  → marker v2 con digest obbligatorio
+```
+
+Il solo gesto live portato oltre il confine è `connect-wire`. Add/move di
+componenti, layout, edit/delete wire e le altre callback del canvas restano
+debito diretto in `ToolCanvasEmbeddable.tsx`; quindi non esiste una prova di
+autonomia universale del plugin.
+
+Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `112298` byte:
+`-86` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione di
+responsabilità resta debito architetturale.
+
+### Negative controls eseguiti
+
+| Caso | Esito misurato |
+|---|---|
+| solve/apply prima di load | `INTERNAL`, nessuna scena implicita |
+| capability non concessa | `CAPABILITY_DENIED` prima dell'handler |
+| `instanceId` nel payload | `INVALID_PARAMS`; identità sempre host-owned |
+| digest stantio | rifiuto e stato byte/logicamente invariato |
+| target/kind non supportati | rifiuto; nessun commit |
+| result `applyOperation`/`solve` malformato | rifiuto contrattuale |
+| provider mutante o con reference trattenuta | clone host-owned; nessuna mutazione tardiva |
+| serializer/diagnostics mutanti | clone + digest check; stato invariato |
+| provider assente | blocker `provider-unavailable`, readings vuote |
+| istanza A/B e room A/B | nessun byte o audit condiviso |
+| richiesta concorrente/stale live | rifiuto prima del secondo `board.write` |
+| kill-list | mount/operazione negati |
+| marker v2 senza digest o con digest stantio | restore e render fail-closed |
+| marker v1 senza digest | migrazione limitata al v1, poi writer v2 |
+| marker v1 con digest discordante | rifiuto, mai “sanato” |
+| topologia legacy malformata | nessuna promozione a v2 |
+| export corrotto | import atomico, stato precedente preservato |
+| cold reopen/import `.lesson` | stesso digest, stato runtime e diagnostica |
+| evidence non risolta | `missing`, mai promossa a `verified` |
+| host SDK 1.3 | consumer 1.4 non soddisfatto |
+
+## Tabella CodeRabbit
+
+Sono conteggiate soltanto review concluse. La review finale full-stack verrà
+aggiunta prima del freeze del candidato; un tentativo intermedio è stato
+bloccato dal rate limit e non è contato.
+
+| Ciclo | Finding | Decisione ed evidenza |
+|---|---|---|
+| 1 | room requirement vs commento compatibilità 1.3 | codice room-scoped mantenuto per l'invariante Sessione 2; commento contraddittorio corretto e test no-room verde |
+| 1 | shape di `applyOperation` dereferenziata | valido; guard `isRecord`, falsificatori `null/string/{}` |
+| 1 | rimozione digest marker canonico | valido; schema marker/workbench v2, migrazione soltanto v1, test omissione/mismatch |
+| 1 | `simulationInitialState` ignorato | valido; constructor fail-fast, due test di dipendenza mancante |
+| 1 | `localStorage` jsdom implicito | respinto: ambiente jsdom installa lo storage, suite completa e isolamento `beforeEach` verdi; nessun difetto prodotto |
+| 1 | `solve` committa stato con digest vecchio | valido; clone, ricalcolo, confronto e rollback |
+| 1 | manca test rimozione digest canonico | valido; v2 omissione coperta in restore e render |
+| 1 | response asincrona può sovrascrivere scena nuova | valido; scene ref + stale check + coda/in-flight; test pending/reject/stale |
+| 1 | board guard fuori dal `try` | valido; errore convogliato nel percorso visibile |
+| 2 | review incrementale gesto live | `0 findings` su cinque file |
+| 3 | oggetti restituiti dal runtime restano mutabili | valido; snapshot host-owned per load/apply/solve/restore/serialize e digest su copia |
+| 3 | result `solve` non validato | valido; shape guard prima della dereference |
+| 4 | render legacy asserito solo non-null | valido; instance/plugin verificati e digest ristretto |
+| 4 | `expectedDigest` poteva essere `undefined` | valido; precondition stringa non vuota |
+| 4 | test non-promozione legacy ambiguo | valido nel nucleo: input v1 e digest assente restano immutati dopo il reject |
+| 4 | costante schema hardcoded | valido; test usa costante corrente, literal v1 resta intenzionalmente storico |
+| 4 | plugin id hardcoded | valido; lookup usa `SIMULATION_PLUGIN_ID` |
+| 4 | digest ricalcolato due volte | respinto: la seconda validazione è defense-in-depth sul post-it migrato, non stato condiviso |
+| 4 | trattare `sceneDigest: null` come legacy missing | respinto: i writer legacy omettevano il campo; `null` è dato esplicito invalido e deve fallire chiuso |
+
+Review indipendente aggiuntiva: due Major sul marker (topologie malformate
+hashabili e policy bare-id divergente tra restore/render), entrambi riprodotti,
+corretti e riesaminati con zero finding residui.
+
+## Claim / evidence matrix
+
+| Claim | Evidenza | Stato |
+|---|---|---|
+| SDK 1.4 espone una sola mutazione stretta | schema/golden/negative controls `applyOperation` | provato |
+| mutazione provider-derived | short battery → `solverDiagnostics.shortCircuit=true` dal provider locale | provato |
+| gesto live attraversa ToolHost | audit ordinato load → apply → board.write | provato solo per `connect-wire` |
+| room e instance isolation | test A/B, store/audit separati, scope host-owned | provato nella slice |
+| persistence/cold reopen/import | marker runtime v2 + `.lesson` reale + cold host | provato nella slice |
+| LessonOS è derivato dal log | emit host-mediated + `materialize(readAll())` | provato |
+| provenance risolvibile | refs manual/scene/instance hanno `resolution: missing` | **bloccato** |
+| fedeltà visiva al manuale | fixture v2 è `candidate`, `visualMatch: unknown` | non provato |
+| plugin autonomo completo | altre callback UI bypassano il broker | non provato |
+| Tinkercad parity / beta | nessun oracolo o copertura sufficiente | vietato |
+
+## CoV e verdetto
+
+| CoV | Stato |
+|---|---|
+| CoV-0 — confine osservato | `GREEN_MEASURED` |
+| CoV-1 — test rosso causale | `GREEN_CAUSAL_RED_TO_GREEN` |
+| CoV-2 — protocollo | `GREEN_BOUNDED` |
+| CoV-3 — runtime/provider | `GREEN_BOUNDED` |
+| CoV-4 — persistenza/isolamento | `GREEN_BOUNDED` |
+| CoV-5 — provenienza risolvibile | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
+| CoV-6 — review | `GREEN_CLASSIFIED`; review full-stack finale da congelare nel receipt |
+| CoV-7 — docs/canon | `IN_PROGRESS_LOCAL` fino ai commit prodotto e Knowledge |
+| DoD Sessione 2 | `PARTIAL_BLOCKED` |
+
+Verdetto ammesso: **partial simulation harness**. La verticale tecnica è
+eseguibile, ma la Definition of Done della Sessione 2 non è chiusa perché
+CoV-5 è bloccato e il percorso live non copre tutte le operazioni.
+
+## Rollback e handoff Sessione 3
+
+Rollback: revert chirurgico dei commit locali in ordine inverso e rerun degli
+stessi falsificatori; nessuna migrazione distruttiva. I reader v1 restano
+migrate-safe, mentre i writer emettono soltanto v2.
+
+Superfici UI alimentabili da dati reali nella Sessione 3:
+
+- stato pending/accepted/rejected del gesto `connect-wire`;
+- receipt con room, instance, operation id e digest;
+- diagnostica provider, incluso short-circuit e provider unavailable;
+- stato di provenance `candidate`/`missing`, mai badge “verified”;
+- stato cold-restore/import e isolamento per istanza;
+- errore kill-list, stale scene o richiesta concorrente.
+
+Non sono alimentabili onestamente badge di parità, fedeltà visiva verificata,
+strumenti avanzati o copertura universale delle operazioni canvas.

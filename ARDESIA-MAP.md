@@ -1,32 +1,57 @@
 # ARDESIA-MAP — Mappa di navigazione del monorepo
 
-Dove sta cosa e da dove partire. (Mappa del CODICE; la mappa di governance/visione e in `ardesia-vault/ARDESIA-MAP.md`.)
+Aggiornata al 2026-07-27. Questa è la mappa del codice; l'autorità di
+governance, decisioni e receipt è il vault esterno
+`/Users/andreamarro/ARDESIA-KNOWLEDGE`, a partire da `00-INDEX.md`.
 
-## Entry point per area
-- **Motore (AI-metodologica) -> `packages/engine/`**
-  - Grafo del metodo / bridge-concept: cerca `expansion.py`, `grounding.py`, `serve_method_graph`.
-  - Retrieval (MOAT, oggi debole recall@10 0.23): `teacher.py` (default LexiconEmbedder = lexical), `recall_eval.py` (harness). Leva aperta: wirare `retrieve_teacher_context_with_bridges` nel path.
-  - MCP grounded-memory: `mcp/grounded_memory.py`. CRM: `crm`/`sqlite.py`. Recap: `recap_export`.
-  - Coordinamento loop: `COORDINATION.md` (PROSSIMA TASK / ROADMAP-AUTO / CLAUDE-SAYS / NEEDS-CLAUDE).
-- **Lavagna + plugin-host -> `apps/studio/`**
-  - ToolHost / mount: `ToolFrame`, `host.mount`. Plugin manager, kill-switch, firma ed25519.
-  - P0 in corso (PRD18): NO-MODIFY TOCTOU (bundleHash nel manifest firmato + re-hash al mount); poi MOUNT-CANVAS (`renderEmbeddable` -> `<Excalidraw>` in `Room.tsx`).
-  - Reference plugins: `plugins/` interni (es. outline, sim-reference).
-- **Plugin ELAB (nuovo) -> `plugins/elab-tutor/`**
-  - Simulatore: `src/components/simulator/` (CircuitSolver union-find, WireRenderer, BreadboardHalf). I 5 tipi di collegamento sono GIA modellati.
-  - CircuitScene v1 = spec/work-order in PR#195 (branch `claude/elab-simulator-codebase-graph-mhT32`): provenance + validatori (electrical/geometry/bookMatch). Fix dati noto: `c21 -> e21` su 3 esperimenti vol3.
-- **Fabbrica -> `ops/tools/`**
-  - `factory-metrics.py --digest`, gate, `deadman.sh`, bridge Telegram, replenish/strategos. Gira sul Mini.
-- **Docs/visione -> `docs/`** + vault esterno `ardesia-vault` (governance, PDF v2).
+## Da dove partire
 
-## Stato (18/06/2026)
-- Gate: engine ~2041/0, studio ~585/0 (verifica live: `factory-metrics.py --digest`).
-- Pin attivi: studio = TOCTOU (PRD18 P0-2), engine = moat graph-aware. Coda: MOUNT-CANVAS.
-- Cutover monorepo: APPENA FATTO (questo repo). Le sorgenti separate (lessonos/maestro-studio/maestro-tools) restano i repo di lavoro del loop finche non si sposta il loop qui.
+- Stato misurato della verticale Simulation/ELABTutor:
+  `artifacts/session-2/current-flow.md`.
+- Architettura del plugin:
+  `docs/architecture/simulation-plugin-v2.md`.
+- Specifica prodotto:
+  `docs/product/ELABTUTOR-PLUGIN-SPEC.md`.
+- Motore metodologico e LessonOS: `packages/engine/`.
+- Lavagna, Room, SDK e ToolHost: `apps/studio/`.
+- Plugin simulazione riusabile: `apps/studio/plugins/simulation/` e
+  `apps/studio/sim/`.
+- Pack didattico ELABTutor: `packs/elab-tutor/` e
+  `plugins/elab-tutor/`.
+- Tooling della fabbrica: `ops/tools/`.
 
-## Comandi rapidi
+## Confini di prodotto
+
+```text
+ARDESIA Core
+  └─ io.ardesia.simulation     plugin tecnico riusabile
+       └─ io.elab.tutor        pack didattico/manuali/metodo
 ```
-bash packages/engine/eval/gate.sh      # gate motore
-bash apps/studio/eval/gate.sh          # gate lavagna
-python3 ops/tools/factory-metrics.py --digest
+
+- Core possiede board, identità, lifecycle, capability, persistenza, LessonOS e
+  import/export.
+- Simulation possiede scena, operazioni elettriche, provider, solve,
+  diagnostica e receipt.
+- ELABTutor possiede contenuti didattici, riferimenti al manuale, lesson path e
+  intent della scena; non possiede il solver o il lifecycle host.
+
+## Stato misurato Sessione 2
+
+- SDK `1.4.0`, runtime reale e marker/workbench v2.
+- Un solo gesto live, `connect-wire`, attraversa
+  `Room → SDK → ToolHost → runtime/provider → board.write`.
+- Cold reopen, `.lesson` export/import e isolamento room/instance sono provati
+  nella slice.
+- Le altre mutazioni canvas non sono ancora host-mediated.
+- La fixture `v3-cap6-esp4` è `candidate`, con
+  `visualMatch: unknown` ed evidence resolution `missing`.
+- Verdetto: `PARTIAL_BLOCKED` / **partial simulation harness**. Nessun claim di
+  plugin completo, beta, fedeltà visiva verificata o Tinkercad parity.
+
+## Comandi di verifica
+
+```bash
+npm run bootstrap
+npm run verify
+python3 bin/ci/elab_boundary_gate.py
 ```

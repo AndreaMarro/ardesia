@@ -1,8 +1,44 @@
 # Simulation Plugin v2
 
-Status: design approved; primary board embed now mounts the ELABTutor core canvas adapter; ELAB canvas wire add/update/delete events are bridged into structured `connect-wire`, `edit-wire.replace-path`, and `delete` operations; AI/runtime mutations now pass through structured placement, wire-edit validation, provider-derived voltmeter/probe/ammeter readings, advanced instrument capability blockers, and board-scoped runtime diagnostics; persisted legacy free-assembly state is projected into the ELAB core canvas as sandbox/monta-tu; standalone workbench/generic post-it slices remain harnesses; advanced canvas-native instruments/tools, executable AVR/runtime providers, and full native free-assembly tooling remain future work
-Date: 2026-07-07
+Status: Session 2 local candidate; one live `connect-wire` gesture is host-mediated end to end, while the remaining canvas mutations are not; `PARTIAL_BLOCKED`
+Date: 2026-07-27
 Primary slice: contract-first refoundation of the simulator as an autonomous ARDESIA plugin.
+
+## Measured Current State — Session 2
+
+The bounded candidate is based on
+`36e6753cc55c114cb1c0815a7e2f8911a0b71dc7` and remains local: no push, PR,
+merge, or deploy was performed.
+
+- SDK `1.4.0` adds strict `simulation.applyOperation` beside the five existing
+  simulation methods. The only accepted mutation is `connect-wire`; room,
+  tool, and instance identity are host-owned, and a non-empty expected digest
+  is mandatory.
+- The live `Room` composition root derives trusted identity and sends
+  `simulation.loadScene → simulation.applyOperation → board.write` through the
+  real SDK, `MessageChannel`, `ToolHost`, runtime broker, and local provider.
+  The canvas callback cannot supply trusted identity.
+- Provider-derived receipts include scope, operation, digest, solve result, and
+  diagnostics. Missing providers, malformed results, stale digests, unsupported
+  targets, denied capabilities, killed plugins, concurrent requests, and stale
+  UI responses fail closed.
+- Marker/workbench schema v2 requires a scene digest. A v1 marker with an
+  omitted digest may be migrated after structural validation; explicit null,
+  mismatch, malformed topology, and v2 omission are rejected. Cold reopen and
+  real `.lesson` export/import preserve the canonical digest and diagnostics.
+- Instance A/B and room A/B isolation are covered. LessonOS materialization is
+  derived from the append-only host event log.
+- The only live host-mediated canvas operation is `connect-wire`. Component
+  placement/movement, wire edit/delete, layout, and other callbacks still
+  bypass this broker slice.
+- The `v3-cap6-esp4` fixture remains a candidate with
+  `visualMatch: unknown`; manual/scene/instance evidence resolution is
+  `missing`. CoV-5 is therefore blocked.
+
+Accepted wording is **partial simulation harness**. This is not a complete
+autonomous plugin, a beta, a manual-fidelity proof, or Tinkercad parity. The
+exact final product SHA and the full review disposition are bound in the
+Session 2 evidence receipt in the external ARDESIA Knowledge vault.
 
 ## Decision
 
@@ -14,7 +50,12 @@ The canonical identities are:
 - Simulation Plugin: `io.ardesia.simulation`, kind `plugin`, version floor `2.0.0`, mounted as a board post-it with multiple functions and explicit capabilities.
 - ELABTutor Pack: `io.elab.tutor`, kind `pack`, depends on `io.ardesia.simulation >=2.0.0`, owns only ELAB didactic data and method.
 
-This continues the current ToolHost direction: SDK 1.2.0 exposes a plugin contract, `graph.query`, and the append-only `lesson.event.emit` write channel for supported LessonOS events. The current simulator code still lives partly inside `ToolCanvasEmbeddable.tsx` and must keep moving behind a real plugin manifest and contract.
+This continues the current ToolHost direction: SDK 1.4.0 exposes the plugin
+contract, five read/solve/restore/serialize simulation methods, the bounded
+`simulation.applyOperation` method, `graph.query`, and the append-only
+`lesson.event.emit` write channel for supported LessonOS events. The current
+simulator code still lives partly inside `ToolCanvasEmbeddable.tsx` and must
+keep moving behind the real plugin manifest and contract.
 
 ## Current Branch Implementation
 
@@ -144,9 +185,13 @@ The generic simulator core is shaped by these external references:
 - KiCad and Fritzing confirm why ARDESIA needs its own visual/physical scene layer: serious EDA tools separate geometry/coordinates/connectors from solver netlists and part metadata.
 - Circuit-image extraction research supports a staged image pipeline: detect components/text, segment strokes/wires, assemble topology, then validate against a schema. Image import must therefore produce structured `SimulationScene` evidence and blockers, not a guessed circuit.
 
-## Current State Audit
+## Historical Audit Snapshot — Superseded
 
-The current branch already contains useful foundations:
+The bullets in this section freeze the pre-implementation audit that originally
+motivated the extraction. They are not current-state claims; the measured
+Session 2 section above supersedes them.
+
+The audited branch already contained useful foundations:
 
 - ToolHost SDK boundary in `apps/studio/src/sdk/index.ts` with `CONTRACT_VERSION = "1.2.0"`.
 - Capability vocabulary: `board.read`, `board.write`, `graph.query`, `graph.proposeClaims`, `lesson.event.emit`, `storage`, `llm.generate`, `net.fetch`, `ui`.

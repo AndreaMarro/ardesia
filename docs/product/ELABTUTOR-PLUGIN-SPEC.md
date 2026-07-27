@@ -1,9 +1,35 @@
 # ELABTutor Plugin — Product and Technical Specification
 
-Status: canonical product specification draft  
-Date: 2026-07-02  
-Scope: ARDESIA ELABTutor Pack/Plugin + Simulation Plugin requirements  
+Status: canonical product specification with measured Session 2 supplement; `PARTIAL_BLOCKED`
+Date: 2026-07-02; measured supplement 2026-07-27
+Scope: ARDESIA ELABTutor Pack/Plugin + Simulation Plugin requirements
 Non-goal: this document does not implement runtime code, deploy, marketplace, auth, AgentMemory mutations, or Vercel changes.
+
+## Measured Session 2 status
+
+The local candidate advances one deliberately narrow vertical:
+
+```text
+Room composition root
+  → SDK 1.4 simulation.loadScene
+  → SDK 1.4 simulation.applyOperation(connect-wire)
+  → ToolHost capability boundary
+  → real simulation runtime/provider
+  → scoped receipt + diagnostics
+  → board.write own-embed
+  → marker v2 / cold restore / .lesson import-export
+```
+
+Room, tool, and instance identities are derived by the host, not trusted from
+the canvas payload. Expected-digest, capability, kill-list, provider,
+concurrency, stale-response, malformed-result, marker-integrity, corrupted
+import, and room/instance isolation controls fail closed in the measured slice.
+
+This proves host mediation only for the live `connect-wire` gesture. Other
+canvas operations still bypass the new broker path. The `v3-cap6-esp4` scene is
+a candidate with `visualMatch: unknown`, and its manual/scene/instance evidence
+has `resolution: missing`. The honest verdict is **partial simulation harness**:
+not a complete plugin, beta, manual-fidelity proof, or Tinkercad parity.
 
 ## 0. Executive verdict
 
@@ -664,7 +690,8 @@ Every ELABTutor implementation PR must declare which of these apply:
 
 ## 17. Current completed chain
 
-Current completed or in-progress chain:
+The older PR #8/#13/#14/#15/#16 sequence below is a historical planning
+snapshot, not the current acceptance chain:
 
 ```text
 PR #8  -> live Vercel vertical-slice evidence
@@ -674,13 +701,28 @@ PR #15 -> adapter contract
 PR #16 -> board payload contract
 ```
 
-This chain is correct because each step is testable and bounded.
+The measured Session 2 chain is local and stacked on product base
+`36e6753cc55c114cb1c0815a7e2f8911a0b71dc7`:
+
+```text
+causal red tests
+  → SDK 1.4 bounded operation contract
+  → real runtime/provider binding
+  → rollback and result-shape hardening
+  → marker v2 + cold restore + .lesson import/export
+  → one live connect-wire gesture through ToolHost
+  → room/instance isolation and legacy migration hardening
+  → classified CodeRabbit review cycles
+```
+
+The exact final product SHA is recorded in the external ARDESIA Knowledge
+Session 2 receipt after documentation is committed.
 
 ## 18. Next implementation stages
 
 ### Stage 1 — board payload contract
 
-Status: implemented in PR #16 as draft at time of this spec.
+Status: implemented historically and exercised by the Session 2 candidate.
 
 Purpose:
 
@@ -690,10 +732,13 @@ Purpose:
 
 ### Stage 2 — ELAB core canvas mount
 
-Goal:
+Status: mounted, with one live host-mediated mutation proved.
+
+Measured boundary:
 
 ```text
-existing ARDESIA board can mount ELAB Vol.1 cap.6 esp.1 board payload through the ELABTutor core canvas adapter.
+existing ARDESIA board mounts the ELABTutor core canvas adapter;
+connect-wire crosses ToolHost, while the remaining mutations do not yet.
 ```
 
 Acceptance wording: the visible UI and docs may say the board embed mounts the
@@ -712,6 +757,8 @@ Constraints:
 
 ### Stage 3 — post-it and sub-post-it UX
 
+Status: product work remains.
+
 Goal:
 
 - main circuit post-it;
@@ -722,6 +769,9 @@ Goal:
 
 ### Stage 4 — LessonOS event bridge
 
+Status: the bounded simulation event is emitted through the host and
+materialized from the append-only log; evidence provenance is still unresolved.
+
 Goal:
 
 - plugin events become lesson events;
@@ -730,7 +780,8 @@ Goal:
 
 ### Stage 5 — ELAB pack expansion
 
-Only after Stage 2/3 are proven:
+Only after the remaining Stage 2 callbacks, Stage 3 UX, and CoV-5 provenance
+resolver are proven:
 
 - add more experiments;
 - add more components;
@@ -817,12 +868,21 @@ Every PR must include:
 
 ## 23. Current COV for this specification
 
-This specification is derived from:
+The 2026-07-27 supplement is grounded in the local product tree, causal
+red-to-green tests, runtime receipts, provider diagnostics, cold restore and
+real `.lesson` import/export tests, room/instance isolation tests, classified
+CodeRabbit findings, and the external Obsidian/Markdown/Git receipt.
 
-- ARDESIA/ELAB conversation requirements from Andrea;
-- current ELAB Vol.1 cap.6 esp.1 context packet;
-- current PR chain #8/#13/#14/#15/#16;
-- existing product direction: ARDESIA Core + Simulation Plugin + ELABTutor Pack;
-- local operational history where Codex used SSH, logs, git, pytest, and AgentMemory recall as evidence rather than pure speculation.
+| CoV | Measured state |
+|---|---|
+| 0 — observed boundary | `GREEN_MEASURED` |
+| 1 — causal red test | `GREEN_CAUSAL_RED_TO_GREEN` |
+| 2 — SDK protocol | `GREEN_BOUNDED` |
+| 3 — runtime/provider | `GREEN_BOUNDED` |
+| 4 — persistence/isolation | `GREEN_BOUNDED` |
+| 5 — resolvable provenance | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
+| 6 — review | `GREEN_CLASSIFIED`; terminal full-stack result is frozen in the receipt |
+| 7 — docs/canon | bound to the committed product and Knowledge SHAs |
 
-No runtime files were changed by this specification. No deploy, no AgentMemory mutation, no scheduler mutation, no PR #6 work.
+No deploy, remote mutation, dependency addition, scheduler change, Basic Memory
+write, or AgentMemory read/write was performed.
