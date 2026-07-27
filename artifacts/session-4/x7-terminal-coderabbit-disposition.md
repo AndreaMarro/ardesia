@@ -63,11 +63,25 @@ Il rilievo asserisce un fallimento di typecheck che **non si verifica**.
 > rifiuto cade. È il controllo che i due cicli precedenti hanno insegnato a
 > scrivere accanto a ogni `REJECT`.
 
-**Nota di processo indipendente dal merito**: `tsc -b` **non è nella lista dei
-gate del protocollo** (§3), pur essendo una lezione dura già registrata —
-vitest/esbuild non typecheccano e producono false-green. Questo ciclo l'ha
-eseguito solo perché un finding lo ha nominato. È un buco del protocollo, non
-di questo commit.
+**Nota di processo — CORRETTA dopo misura. La prima stesura era falsa.**
+
+Questa disposizione affermava: «`tsc -b` non è nella lista dei gate del
+protocollo (§3) … è un buco del protocollo». **Falso.**
+
+```
+bin/monorepo.sh:150   verify_core() { test_core; typecheck_core; build_core; }
+```
+
+`npm run verify` — che **è** nella lista §3 — esegue `tsc -b --noEmit` e
+`vite build` a ogni invocazione. Il typecheck era coperto da tutti i cicli
+precedenti, non solo da questo. Nessun buco di protocollo, e nessuna azione
+richiesta a Sessione 5 su questo punto.
+
+L'errore: ho asserito un'**assenza** leggendo la lista dei gate invece di
+leggere che cosa esegue il gate che stavo nominando. È la stessa famiglia dei
+cinque errori numerici catalogati in questo stesso pacchetto — un'affermazione
+misurata su un referente adiacente — **commessa nel documento che li cataloga**.
+Registrata come `E-58`.
 
 ### #20 `major` — `RoomSimulationConnectWire.test.tsx:765-767` → `ACCEPT_PENDING_ORACLE`
 

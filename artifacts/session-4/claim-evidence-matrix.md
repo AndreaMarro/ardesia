@@ -66,7 +66,7 @@ dopo. Registrati come `E-53`…`E-57`.
 | equivalente CI | `--pool=threads --maxWorkers=1 --no-file-parallelism` → `183 passed \| 1 skipped`, `2043 passed \| 5 skipped` | 0 |
 | `bin/ci/elab_boundary_gate.py` | `OK (12 baseline offenders remain, none added; packs/ clean)` | 0 |
 | `apps/studio/eval/gate.sh` | `{"passed":2044,"failed":0,"exit":0}` | 0 |
-| `npm run typecheck` (`tsc -b --noEmit`) | nessun errore — **non è nella lista §3**, eseguito solo perché un finding lo nominava | 0 |
+| `npm run typecheck` (`tsc -b --noEmit`) | nessun errore. **È già coperto da `npm run verify`**: `bin/monorepo.sh:150` → `verify_core() { test_core; typecheck_core; build_core; }` | 0 |
 | `git diff --check` (working tree) | nessun output | 0 |
 | `git diff --check d7b517cf^..d7b517cf` | trailing whitespace | **2** |
 | `ToolCanvasEmbeddable.tsx` | 111574 byte, invariato | ✅ |
@@ -100,7 +100,10 @@ stata fatta una misura che prima mancava.
 5. **Digest auto-attestato** (`caps/simulation.ts:206-228`) — Slice 3, non aperta.
 6. **Duplicazione post-it → board non idratabile** — Slice 4, non aperta.
 7. **A5 e la sua radice di tipo** (`messages.ts:401-412`) — Slice 5, non aperta.
-8. **`tsc -b` assente dalla lista dei gate del protocollo** — buco di processo.
+8. ~~**`tsc -b` assente dalla lista dei gate**~~ — **ritirato, era falso**:
+   `bin/monorepo.sh:150` mostra che `npm run verify` esegue già
+   `typecheck_core` e `build_core`. Errore mio, `E-58`, stessa famiglia dei
+   cinque numerici sopra: assenza asserita senza leggere il referente.
 9. **PII e path locali** negli artifact grezzi committati; rollback `rm -rf artifacts/session-3` troppo largo.
 
 ## 8. Rollback
