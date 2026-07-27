@@ -1,0 +1,81 @@
+Sei il secondo revisore terminale della Sessione 4 di ARDESIA. Il tuo compito
+NON e' confermare: e' FALSIFICARE.
+
+Albero: /Users/andreamarro/VOLUME 3/ardesia-wt-session2-20260727
+Base autorizzata: 36e6753cc55c114cb1c0815a7e2f8911a0b71dc7
+HEAD corrente:    d5324a44e5426da07fd7e0730dfd93bb3ee78062
+
+In questa sessione sono stati prodotti tre commit sopra il freeze a397263e:
+  d7b517cf  docs: commit dei 5 artifact di Sessione 3 (solo documenti)
+  7cd0a64e  test: correzione dell'oracolo di isolamento in
+            apps/studio/src/__tests__/RoomSimulationConnectWire.test.tsx
+  d5324a44  feat: osservabilita' del fallimento audit in
+            apps/studio/src/toolhost/audit.ts, apps/studio/src/toolhost/caps/board.ts
+            e il test in apps/studio/src/__tests__/ToolCanvasMontaggioPersistenza.test.tsx
+
+CLAIM DA ATTACCARE, uno per uno. Per ciascuno, cerca uno scenario concreto
+input/stato che produca un esito sbagliato, con file e riga.
+
+C1. "La precondizione dell'asserzione di isolamento e' ora stabilita."
+    Il test confronta ora room B con la propria baseline invece che con quella
+    di room A. Domanda: questo prova l'isolamento, o prova soltanto che
+    qualcosa e' cambiato nei byte? Esiste una mutazione sbagliata che lo
+    lascerebbe verde? La riga :637 su room A e' un assert di sola invarianza:
+    la sua precondizione e' davvero stabilita adesso, o ne resta una implicita?
+
+C2. "Il fallimento di un'append di audit e' ora osservabile."
+    auditDropCount conta le append RIGETTATE. Elenca le classi di perdita di
+    righe di audit che NON passano da un rigetto di append e restano quindi
+    invisibili anche adesso. In particolare valuta la race read-modify-write
+    fra due ToolHost (audit.ts:55, audit.ts:91, host.ts:149 contro il WeakMap
+    condiviso di caps/board.ts:128-138): il write riesce e sovrascrive, quindi
+    nessuna append rigetta. Il contatore e' in-memory e per-store: cosa
+    significa dopo un reload?
+
+C3. "Fail-soft e' ora una policy e non un buco."
+    Un segnale che nessun chiamante di produzione interroga e' osservabile in
+    teoria. Cerca chi legge auditDropCount fuori dai test. Se nessuno lo legge,
+    di' esplicitamente che il claim non regge nella forma forte.
+
+C4. "Il contatore discrimina i due percorsi."
+    Il contatore e' per store e per tool e non viene mai azzerato. Cerca
+    interferenze fra test, riuso di store, o percorsi in cui il conteggio
+    risulti sporcato da un'esecuzione precedente.
+
+C5. Regressioni introdotte dai tre commit. Il commento in caps/board.ts e'
+    ora VERO? La modifica ad audit.ts introduce lavoro nel percorso caldo o
+    trattiene riferimenti che impediscono la garbage collection?
+
+AGGIUDICAZIONE — parte obbligatoria, non facoltativa.
+In due cicli consecutivi l'errore non stava nel codice ma nella
+CLASSIFICAZIONE dei rilievi. Devi quindi rivedere anche i GIUDIZI dati in
+questa sessione, non solo il codice:
+
+A1. Si e' affermato che l'oracolo precedente era inerte "in 16 esecuzioni su
+    20", misurato attribuendo per riga il fallimento sotto un guasto iniettato
+    (board di room B che ingoia il write). Attacca il METODO: quel guasto e'
+    rappresentativo di un no-op reale? L'attribuzione per riga puo' essere
+    fuorviante perche' vitest si ferma alla prima asserzione fallita? Il numero
+    e' trasferibile ad altre macchine o e' un artefatto locale?
+
+A2. Si e' affermato che la race read-modify-write NON e' chiusa da questa
+    sessione. Verifica che sia vero e non una scusa: esiste per caso gia' una
+    protezione che la rende impossibile?
+
+A3. Si e' deciso di NON aggiungere il contatore ad AuditReadResult per non
+    rompere decine di asserzioni toEqual. Attacca questa motivazione: e' una
+    ragione tecnica o una comodita'? Quale sarebbe il costo reale?
+
+A4. Si e' dichiarato che la Slice 1 non claima l'isolamento provato. Verifica
+    che nessun documento o commento prodotto in questa sessione lo claimi di
+    fatto.
+
+REGOLE DI OUTPUT.
+- Ogni finding cita file e riga e descrive uno scenario concreto
+  input/stato -> esito sbagliato.
+- Se un claim REGGE, dillo esplicitamente invece di inventare un rilievo.
+  Un rilievo inventato e' peggio di nessun rilievo.
+- Chiudi con TRE sezioni obbligatorie, in questo ordine:
+    FINDING PER SEVERITA'
+    CLAIM CHE REGGONO
+    CLAIM CHE NON REGGONO
