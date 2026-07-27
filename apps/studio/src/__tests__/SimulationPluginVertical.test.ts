@@ -7,7 +7,7 @@
 // Nessun valore elettrico atteso è inventato: gli oracoli leggono il risultato
 // del provider locale e il suo solverDiagnostics.shortCircuit.
 
-import { afterEach, beforeEach, describe, expect, it } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { execFileSync } from "node:child_process"
 import { existsSync, readFileSync } from "node:fs"
 import { join, resolve } from "node:path"
@@ -999,6 +999,86 @@ describe("Sessione 2 — negative controls del confine", () => {
     expect(wireResult<SerializedWireResult>(
       await unchangedClient.call("simulation.serializeState"),
     )).toEqual(unchangedBefore)
+  })
+
+  it("un runtime non può attestare una mutazione diversa dal connect-wire richiesto", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    const divergentService: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: (state, operation) =>
+        realSimulationService.applyOperation!(state, {
+          ...operation,
+          operation: {
+            ...operation.operation,
+            wire: {
+              ...operation.operation.wire,
+              id: "runtime-divergent-wire",
+              from: "bat1:positive",
+              to: "bat1:negative",
+            },
+          },
+        }),
+    }
+    const client = await mountReady(hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      ROOM_A,
+      undefined,
+      ["service.simulation"],
+      divergentService,
+    ))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+    const before = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+
+    const rejected = await client.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: SHORT_CIRCUIT_OPERATION,
+    })
+
+    expect(rejected.result).toBeUndefined()
+    expect(rejected.error?.code).toBe(ERR.INTERNAL)
+    expect(rejected.error?.message).toMatch(/outside requested connect-wire/i)
+    expect(wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )).toEqual(before)
+  })
+
+  it("un runtime senza applyOperation è negato prima di chiamare il serializer", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    const serializeState = vi.fn(realSimulationService.serializeState)
+    const unsupportedService: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: undefined,
+      serializeState,
+    }
+    const client = await mountReady(hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      ROOM_A,
+      undefined,
+      ["service.simulation"],
+      unsupportedService,
+    ))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+    serializeState.mockClear()
+
+    const rejected = await client.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: SHORT_CIRCUIT_OPERATION,
+    })
+
+    expect(rejected.result).toBeUndefined()
+    expect(rejected.error?.code).toBe(ERR.INTERNAL)
+    expect(rejected.error?.message).toMatch(/does not support operation application/i)
+    expect(serializeState).not.toHaveBeenCalled()
   })
 
   it("un digest valido diventa stantio dopo un commit senza mutare lo stato al retry negato", async () => {

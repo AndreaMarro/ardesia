@@ -120,6 +120,10 @@ export class ToolSimulation {
     const roomId = this._requireRoomId()
     const contract = this._contract()
     const currentDigest = this._requireDigest()
+    const apply = this._api.applyOperation
+    if (apply === undefined) {
+      throw new Error("simulation service does not support operation application")
+    }
     if (params.expectedSceneDigest !== currentDigest) {
       throw new Error(
         `scene digest precondition failed: expected "${params.expectedSceneDigest}", current "${currentDigest}"`,
@@ -130,14 +134,11 @@ export class ToolSimulation {
     // consegnato uno snapshot isolato: anche una implementazione che mutasse il
     // proprio argomento non può alterare lo stato committato prima dei check.
     const stateSnapshot = structuredClone(this._requireState())
+    const previousScene = this._sceneFromState(stateSnapshot)
     const serialized = this._checkedState(
       this._api.serializeState(stateSnapshot),
     )
     const isolatedState = structuredClone(serialized)
-    const apply = this._api.applyOperation
-    if (apply === undefined) {
-      throw new Error("simulation service does not support operation application")
-    }
     const applied: unknown = apply.call(
       this._api,
       isolatedState,
@@ -158,6 +159,7 @@ export class ToolSimulation {
         `simulation operation "${params.operation.id}" did not change the scene digest`,
       )
     }
+    this._assertAppliedOperation(previousScene, state, params.operation)
     const result = SimulationApplyOperationResultSchema.parse({
       receipt: this._receipt(contract, digest),
       roomId,
@@ -369,6 +371,58 @@ export class ToolSimulation {
   }
 
   /**
+   * Un receipt attesta l'operazione richiesta, non soltanto "qualche" cambio di
+   * digest. Il runtime iniettato può quindi aggiungere esclusivamente il wire
+   * del connect-wire validato, lasciando invariato tutto il resto della scena.
+   */
+  private _assertAppliedOperation(
+    previousScene: SimulationScene,
+    nextState: unknown,
+    operation: SimulationApplyOperationParams["operation"],
+  ): void {
+    const wire = operation.operation.wire
+    const nextScene = this._sceneFromState(nextState)
+    const previousConnections = previousScene.connections
+    const retainedConnections = nextScene.connections.slice(0, -1)
+    const addedConnection = nextScene.connections.at(-1)
+    const retainedTopologyMatches =
+      retainedConnections.length === previousConnections.length &&
+      retainedConnections.every((connection, index) => {
+        const previous = previousConnections[index]
+        return (
+          previous !== undefined &&
+          connection.from === previous.from &&
+          connection.to === previous.to &&
+          (previous.id === undefined || connection.id === previous.id)
+        )
+      })
+    const addedWireMatches =
+      addedConnection?.id === wire.id &&
+      addedConnection.from === wire.from &&
+      addedConnection.to === wire.to
+    const connectionIds = nextScene.connections.flatMap((connection) =>
+      connection.id === undefined ? [] : [connection.id],
+    )
+    const idsAreUnique = new Set(connectionIds).size === connectionIds.length
+    const componentsMatch =
+      canonicalJson(nextScene.components) === canonicalJson(previousScene.components)
+    const pinAssignmentsMatch =
+      canonicalJson(nextScene.pinAssignments ?? {}) ===
+      canonicalJson(previousScene.pinAssignments ?? {})
+    if (
+      !componentsMatch ||
+      !pinAssignmentsMatch ||
+      !retainedTopologyMatches ||
+      !addedWireMatches ||
+      !idsAreUnique
+    ) {
+      throw new Error(
+        `simulation operation "${operation.id}" changed the scene outside requested connect-wire`,
+      )
+    }
+  }
+
+  /**
    * Il wire NON valida i `result` degli handler: `routeRequest` inoltra il
    * payload così com'è. Se il receipt copiasse `apiVersion`/`pluginId` con un
    * cast, un servizio iniettato malformato o compromesso potrebbe far uscire
@@ -391,4 +445,24 @@ export class ToolSimulation {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value)
+}
+
+function canonicalJson(value: unknown): string {
+  if (value === null || typeof value === "string" || typeof value === "boolean") {
+    return JSON.stringify(value)
+  }
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) throw new Error("simulation scene contains a non-finite number")
+    return Object.is(value, -0) ? "0" : String(value)
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((entry) => canonicalJson(entry)).join(",")}]`
+  }
+  if (!isRecord(value)) {
+    throw new Error("simulation scene contains a non-JSON value")
+  }
+  return `{${Object.keys(value)
+    .sort()
+    .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+    .join(",")}}`
 }
