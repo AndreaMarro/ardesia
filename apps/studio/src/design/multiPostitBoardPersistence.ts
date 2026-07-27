@@ -1,6 +1,8 @@
 import {
   isElabTutorPostitState,
   isSimulationPostitState,
+  MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
+  restoreMultiPostitWorkbenchPostit,
   restoreMultiPostitWorkbench,
   serializeMultiPostitWorkbench,
   type ElabTutorPostitState,
@@ -13,7 +15,6 @@ import {
   deriveFunctionSurfaceMode,
   pluginPostitControlIds,
   resizePluginPostitObject,
-  restorePluginPostitObject,
   type FunctionSurfaceMode,
   type PluginPostitObject,
   type PluginPostitControlIds,
@@ -21,13 +22,20 @@ import {
   type PostitProximity,
 } from "../toolhost/postitObject"
 
-export const PLUGIN_POSTIT_BOARD_STATE_SCHEMA = "plugin-postit-board-state/1"
+export const PLUGIN_POSTIT_BOARD_STATE_SCHEMA = "plugin-postit-board-state/2"
+const LEGACY_PLUGIN_POSTIT_BOARD_STATE_SCHEMA = "plugin-postit-board-state/1"
 const PLUGIN_POSTIT_BOARD_LINK_SCHEME = "maestro-tool://"
 
 type PluginPostitBoardMarker = {
   owner: string
   schema: typeof PLUGIN_POSTIT_BOARD_STATE_SCHEMA
   state: PluginPostitObject
+}
+
+type RestorablePluginPostitBoardMarker = {
+  owner: string
+  sourceVersion: 1 | 2
+  state: unknown
 }
 
 export type PluginPostitBoardElement = {
@@ -128,7 +136,7 @@ export function restorePluginPostitsFromBoardElements(elements: readonly unknown
     return restored === null ? [] : [restored]
   })
   const snapshot: MultiPostitWorkbenchSnapshot = {
-    schema: "multi-postit-workbench-state/1",
+    schema: MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
     postits,
   }
   return restoreMultiPostitWorkbench(snapshot)
@@ -248,40 +256,75 @@ function restorePluginPostitFromBoardElement(element: unknown): MultiPostitObjec
     throw new Error("plugin post-it board element must be embeddable")
   }
 
-  const postit = restorePluginPostitObject(marker.state) as MultiPostitObject
+  const postit = restoreMultiPostitWorkbenchPostit(
+    marker.state,
+    marker.sourceVersion,
+  )
   const expectedOwner = instanceOwner(postit.pluginId, postit.instanceId)
   if (marker.owner !== expectedOwner) {
     throw new Error(`plugin post-it owner mismatch for ${postit.instanceId}`)
   }
-  const expectedElementId = pluginPostitBoardElementId(postit.instanceId)
-  const expectedLink = pluginPostitBoardLink(postit.pluginId, expectedElementId)
-  const legacyElementId = postit.instanceId
-  const legacyLink = pluginPostitBoardLink(postit.pluginId, postit.instanceId)
-  if (element.link === expectedLink && element.id === expectedElementId) {
-    return resizePluginPostitObject(postit, readBoardBounds(element))
-  }
-  if (element.link === legacyLink && element.id === legacyElementId) {
-    return resizePluginPostitObject(postit, readBoardBounds(element))
-  }
-  if (element.link !== expectedLink && element.link !== legacyLink) {
-    throw new Error(`plugin post-it board link mismatch for ${postit.instanceId}`)
-  }
-  throw new Error(`plugin post-it board id mismatch for ${postit.instanceId}`)
+  assertPluginPostitBoardElementIdentity({
+    sourceVersion: marker.sourceVersion,
+    elementId: element.id,
+    link: element.link,
+    pluginId: postit.pluginId,
+    instanceId: postit.instanceId,
+  })
+  return resizePluginPostitObject(postit, readBoardBounds(element))
 }
 
-function readPluginPostitBoardMarker(element: Record<string, unknown>): PluginPostitBoardMarker | null {
+function readPluginPostitBoardMarker(
+  element: Record<string, unknown>,
+): RestorablePluginPostitBoardMarker | null {
   const customData = element.customData
   if (!isRecord(customData)) return null
   const marker = customData[EMBED_DATA_KEY]
   if (!isRecord(marker)) return null
-  if (marker.schema !== PLUGIN_POSTIT_BOARD_STATE_SCHEMA) return null
+  const version = pluginPostitBoardStateVersion(marker.schema)
+  if (version === null) return null
   if (typeof marker.owner !== "string") {
     throw new Error("plugin post-it board owner must be a string")
   }
   return {
     owner: marker.owner,
-    schema: PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
-    state: marker.state as PluginPostitObject,
+    sourceVersion: version,
+    state: marker.state,
+  }
+}
+
+export function pluginPostitBoardStateVersion(schema: unknown): 1 | 2 | null {
+  if (schema === PLUGIN_POSTIT_BOARD_STATE_SCHEMA) return 2
+  if (schema === LEGACY_PLUGIN_POSTIT_BOARD_STATE_SCHEMA) return 1
+  return null
+}
+
+export function assertPluginPostitBoardElementIdentity(input: {
+  sourceVersion: 1 | 2
+  elementId: unknown
+  link: unknown
+  pluginId: string
+  instanceId: string
+  allowMissingLink?: boolean
+}): void {
+  const canonicalId = pluginPostitBoardElementId(input.instanceId)
+  const legacyId = input.instanceId
+  const isLegacyId = input.sourceVersion === 1 && input.elementId === legacyId
+  if (input.elementId !== canonicalId && !isLegacyId) {
+    throw new Error(`plugin post-it board id mismatch for ${input.instanceId}`)
+  }
+  const expectedLink = pluginPostitBoardLink(
+    input.pluginId,
+    isLegacyId ? legacyId : canonicalId,
+  )
+  if (
+    input.allowMissingLink === true &&
+    (input.link === null || input.link === undefined)
+  ) {
+    return
+  }
+  if (input.link !== expectedLink) {
+    throw new Error(`plugin post-it board link mismatch for ${input.instanceId}`)
   }
 }
 

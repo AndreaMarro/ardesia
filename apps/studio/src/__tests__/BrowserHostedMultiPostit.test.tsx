@@ -8,9 +8,11 @@ import { afterEach, describe, expect, it } from "vitest"
 import App from "../App"
 import {
   createMultiPostitWorkbenchPostits,
+  MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
   resizeMultiPostitInstance,
   restoreMultiPostitWorkbench,
   serializeMultiPostitWorkbench,
+  SIMULATION_PLUGIN_ID,
   type MultiPostitObject,
 } from "../design/multiPostitWorkbenchModel"
 import { deriveFunctionSurfaceMode, pluginPostitControlIds } from "../toolhost/postitObject"
@@ -108,7 +110,7 @@ describe("Browser-hosted multi post-it evidence route", () => {
     const snapshot = serializeMultiPostitWorkbench(resized)
     const restored = restoreMultiPostitWorkbench(snapshot)
 
-    expect(snapshot.schema).toBe("multi-postit-workbench-state/1")
+    expect(snapshot.schema).toBe(MULTI_POSTIT_WORKBENCH_STATE_SCHEMA)
     expect(snapshot.postits).toHaveLength(3)
     expect(restored.map((postit) => `${postit.pluginId}:${postit.instanceId}`)).toEqual([
       "io.ardesia.simulation:sim-a",
@@ -142,6 +144,55 @@ describe("Browser-hosted multi post-it evidence route", () => {
 
     const ids = restored.flatMap((postit) => Object.values(pluginPostitControlIds(postit)))
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it("migrates a missing v1 workbench digest and saves the restored snapshot as v2", () => {
+    const snapshot = serializeMultiPostitWorkbench(createMultiPostitWorkbenchPostits())
+    const originalSimulation = expectSimulationState(findPostit(snapshot.postits, "sim-a"))
+    const legacySnapshot = structuredClone(snapshot) as unknown as {
+      schema: string
+      postits: Array<{
+        pluginId: string
+        instanceId: string
+        pluginState: Record<string, unknown>
+      }>
+    }
+    const legacySimulation = legacySnapshot.postits.find(
+      (postit) => postit.pluginId === SIMULATION_PLUGIN_ID,
+    )
+    if (legacySimulation === undefined) {
+      throw new Error("test precondition: legacy Simulation post-it missing")
+    }
+    legacySnapshot.schema = "multi-postit-workbench-state/1"
+    delete legacySimulation.pluginState.sceneDigest
+
+    const restored = restoreMultiPostitWorkbench(legacySnapshot)
+    const migratedSimulation = expectSimulationState(findPostit(restored, "sim-a"))
+    expect(migratedSimulation.sceneDigest).toBe(originalSimulation.sceneDigest)
+
+    const rewritten = serializeMultiPostitWorkbench(restored)
+    expect(rewritten.schema).toBe(MULTI_POSTIT_WORKBENCH_STATE_SCHEMA)
+    expect(expectSimulationState(findPostit(rewritten.postits, "sim-a")).sceneDigest).toBe(
+      originalSimulation.sceneDigest,
+    )
+
+    const invalidV2 = structuredClone(rewritten) as unknown as {
+      schema: string
+      postits: Array<{
+        pluginId: string
+        pluginState: Record<string, unknown>
+      }>
+    }
+    const invalidV2Simulation = invalidV2.postits.find(
+      (postit) => postit.pluginId === SIMULATION_PLUGIN_ID,
+    )
+    if (invalidV2Simulation === undefined) {
+      throw new Error("test precondition: v2 Simulation post-it missing")
+    }
+    delete invalidV2Simulation.pluginState.sceneDigest
+    expect(() => restoreMultiPostitWorkbench(invalidV2)).toThrow(
+      /invalid Simulation state/i,
+    )
   })
 
   it("exports, mutates, and restores the visible board-hosted post-it payload", async () => {

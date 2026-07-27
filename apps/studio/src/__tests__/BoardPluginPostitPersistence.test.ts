@@ -11,8 +11,13 @@ import {
   createMultiPostitWorkbenchPostits,
   isElabTutorPostitState,
   isSimulationPostitState,
+  MULTI_POSTIT_WORKBENCH_STATE_SCHEMA,
+  restoreMultiPostitWorkbench,
+  serializeMultiPostitWorkbench,
+  SIMULATION_PLUGIN_ID,
 } from "../design/multiPostitWorkbenchModel"
 import {
+  PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
   createPluginPostitBoardScene,
   loadPluginPostitBoardHydrationFromStore,
   pluginPostitBoardElementId,
@@ -168,6 +173,7 @@ describe("Board plugin post-it persistence", () => {
 
       expect(element.id).toBe(pluginPostitBoardElementId(instanceId))
       expect(element.link).toBe(`maestro-tool://${sourcePostit.pluginId}/${element.id}`)
+      expect(marker.schema).toBe("plugin-postit-board-state/2")
       expect(rawElement.angle).toBe(0)
       expect(rawElement.strokeColor).toBeTypeOf("string")
       expect(rawElement.backgroundColor).toBeTypeOf("string")
@@ -232,7 +238,7 @@ describe("Board plugin post-it persistence", () => {
     )?.customData?.[EMBED_DATA_KEY]
     expect(simAMarker).toMatchObject({
       owner: "io.ardesia.simulation#sim-a",
-      schema: "plugin-postit-board-state/1",
+      schema: "plugin-postit-board-state/2",
     })
 
     const store = createStore()
@@ -332,6 +338,166 @@ describe("Board plugin post-it persistence", () => {
     expect(() => restorePluginPostitsFromBoardScene(tampered)).toThrow(
       /invalid Simulation state/i,
     )
+  })
+
+  it("migrates only a missing v1 Simulation digest and rewrites the marker as v2", () => {
+    const legacyScene = structuredClone(
+      createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()),
+    )
+    const legacyElement = legacyScene.elements.find(
+      (element) => element.id === pluginPostitBoardElementId("sim-a"),
+    )
+    if (legacyElement === undefined) {
+      throw new Error("test precondition: sim-a board element missing")
+    }
+    const legacyMarker = expectRecord(
+      legacyElement.customData[EMBED_DATA_KEY],
+      "legacy plugin post-it marker",
+    )
+    const legacyState = expectRecord(legacyMarker.state, "legacy plugin post-it state")
+    const legacyPluginState = expectRecord(
+      legacyState.pluginState,
+      "legacy Simulation plugin state",
+    )
+    const expectedDigest = legacyPluginState.sceneDigest
+    if (typeof expectedDigest !== "string" || expectedDigest.length === 0) {
+      throw new Error("test precondition: canonical Simulation digest missing")
+    }
+    legacyMarker.schema = "plugin-postit-board-state/1"
+    delete legacyPluginState.sceneDigest
+    legacyElement.id = "sim-a"
+    legacyElement.link = "maestro-tool://io.ardesia.simulation/sim-a"
+
+    const renderedLegacy = renderPluginPostitBoardEmbeddable(legacyElement)
+    if (renderedLegacy === null) {
+      throw new Error("legacy Simulation marker did not render")
+    }
+    const { container } = render(renderedLegacy)
+    const renderedCard = container.querySelector("[data-plugin-postit-instance]")
+    expect(renderedCard?.getAttribute("data-plugin-postit-instance")).toBe("sim-a")
+    expect(renderedCard?.getAttribute("data-plugin-postit-plugin")).toBe(
+      SIMULATION_PLUGIN_ID,
+    )
+
+    const restored = restorePluginPostitsFromBoardScene(legacyScene)
+    const restoredSimulation = restored.find(
+      (postit) => postit.pluginId === SIMULATION_PLUGIN_ID,
+    )
+    if (restoredSimulation === undefined || !isSimulationPostitState(restoredSimulation.pluginState)) {
+      throw new Error("legacy Simulation state not restored")
+    }
+    expect(restoredSimulation.pluginState.sceneDigest).toBe(expectedDigest)
+
+    const rewrittenScene = createPluginPostitBoardScene(restored)
+    const rewrittenElement = rewrittenScene.elements.find(
+      (element) => element.id === pluginPostitBoardElementId("sim-a"),
+    )
+    if (rewrittenElement === undefined) {
+      throw new Error("test precondition: rewritten sim-a board element missing")
+    }
+    const rewrittenMarker = expectRecord(
+      rewrittenElement.customData[EMBED_DATA_KEY],
+      "rewritten plugin post-it marker",
+    )
+    const rewrittenState = expectRecord(rewrittenMarker.state, "rewritten plugin post-it state")
+    const rewrittenPluginState = expectRecord(
+      rewrittenState.pluginState,
+      "rewritten Simulation plugin state",
+    )
+    expect(rewrittenMarker.schema).toBe(PLUGIN_POSTIT_BOARD_STATE_SCHEMA)
+    expect(rewrittenPluginState.sceneDigest).toBe(expectedDigest)
+  })
+
+  it("rejects a v2 marker missing its digest", () => {
+    const scene = structuredClone(
+      createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()),
+    )
+    const simulationElement = scene.elements.find(
+      (element) => element.id === pluginPostitBoardElementId("sim-a"),
+    )
+    if (simulationElement === undefined) {
+      throw new Error("test precondition: sim-a board element missing")
+    }
+    const marker = expectRecord(
+      simulationElement.customData[EMBED_DATA_KEY],
+      "v2 plugin post-it marker",
+    )
+    const state = expectRecord(marker.state, "v2 plugin post-it state")
+    const pluginState = expectRecord(state.pluginState, "v2 Simulation plugin state")
+    delete pluginState.sceneDigest
+
+    expect(() => restorePluginPostitsFromBoardScene(scene)).toThrow(
+      /invalid Simulation state/i,
+    )
+    expect(() => renderPluginPostitBoardEmbeddable(simulationElement)).toThrow(
+      /invalid Simulation state/i,
+    )
+  })
+
+  it("rejects a v1 Simulation marker when its present digest mismatches runtime state", () => {
+    const scene = structuredClone(
+      createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()),
+    )
+    const simulationElement = scene.elements.find(
+      (element) => element.id === pluginPostitBoardElementId("sim-a"),
+    )
+    if (simulationElement === undefined) {
+      throw new Error("test precondition: sim-a board element missing")
+    }
+    const marker = expectRecord(
+      simulationElement.customData[EMBED_DATA_KEY],
+      "v1 plugin post-it marker",
+    )
+    const state = expectRecord(marker.state, "v1 plugin post-it state")
+    const pluginState = expectRecord(state.pluginState, "v1 Simulation plugin state")
+    marker.schema = "plugin-postit-board-state/1"
+    pluginState.sceneDigest = "00000000"
+
+    expect(() => restorePluginPostitsFromBoardScene(scene)).toThrow(
+      /invalid Simulation state/i,
+    )
+    expect(() => renderPluginPostitBoardEmbeddable(simulationElement)).toThrow(
+      /invalid Simulation state/i,
+    )
+  })
+
+  it("rejects malformed topologies without throwing or promoting a legacy v1", () => {
+    const [simA] = createMultiPostitWorkbenchPostits()
+    if (!isSimulationPostitState(simA.pluginState)) {
+      throw new Error("test precondition: expected Simulation state")
+    }
+    const mutations: Array<(scene: Record<string, unknown>) => void> = [
+      (scene) => { scene.components = [null] },
+      (scene) => { scene.components = [{}] },
+      (scene) => { scene.connections = [{}] },
+      (scene) => { scene.pinAssignments = { "led:anode": 7 } },
+    ]
+
+    for (const mutate of mutations) {
+      const malformedState = structuredClone(simA.pluginState) as unknown as Record<string, unknown>
+      const runtimeState = expectRecord(malformedState.runtimeState, "Simulation runtime state")
+      mutate(expectRecord(runtimeState.scene, "Simulation runtime scene"))
+      expect(() => isSimulationPostitState(malformedState)).not.toThrow()
+      expect(isSimulationPostitState(malformedState)).toBe(false)
+
+      const legacySnapshot = structuredClone(
+        serializeMultiPostitWorkbench([simA]),
+      ) as unknown as {
+        schema: string
+        postits: Array<{ pluginState: Record<string, unknown> }>
+      }
+      legacySnapshot.schema = "multi-postit-workbench-state/1"
+      const legacyState = legacySnapshot.postits[0]!.pluginState
+      delete legacyState.sceneDigest
+      const legacyRuntime = expectRecord(legacyState.runtimeState, "legacy runtime state")
+      mutate(expectRecord(legacyRuntime.scene, "legacy runtime scene"))
+      expect(() => restoreMultiPostitWorkbench(legacySnapshot)).toThrow(
+        /invalid Simulation state/i,
+      )
+      expect(legacySnapshot.schema).toBe("multi-postit-workbench-state/1")
+      expect(legacyState.sceneDigest).toBeUndefined()
+      expect(legacySnapshot.schema).not.toBe(MULTI_POSTIT_WORKBENCH_STATE_SCHEMA)
+    }
   })
 
   it("imports a .lesson into a new store and renders the restored Room embeddables", async () => {
@@ -686,24 +852,22 @@ describe("Board plugin post-it persistence", () => {
     )
   })
 
-  it("restores legacy bare-id plugin post-it elements when the legacy link is present", () => {
+  it("rejects bare-id elements once the marker schema is v2", () => {
     const [simAElement] = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits()).elements
-    const legacyElement = {
+    const invalidV2Element = {
       ...simAElement,
       id: "sim-a",
       link: "maestro-tool://io.ardesia.simulation/sim-a",
     }
 
-    const restored = restorePluginPostitsFromBoardScene({
+    expect(() => restorePluginPostitsFromBoardScene({
       type: "excalidraw",
-      elements: [legacyElement],
+      elements: [invalidV2Element],
       appState: {},
-    })
-
-    expect(restored.map((postit) => `${postit.pluginId}:${postit.instanceId}`)).toEqual([
-      "io.ardesia.simulation:sim-a",
-    ])
-    expect(restored[0]?.bounds).toMatchObject({ x: simAElement.x, y: simAElement.y })
+    })).toThrow(/board id mismatch/i)
+    expect(() => renderPluginPostitBoardEmbeddable(invalidV2Element)).toThrow(
+      /board id mismatch/i,
+    )
   })
 
   it("rejects non-embeddable elements that carry plugin post-it markers", () => {

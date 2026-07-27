@@ -30,12 +30,16 @@ import {
   type SimulationRuntimeSceneForSolve,
   type SimulationRuntimeSerializedState,
 } from "../../sim/core/simulationRuntime"
-import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
+import {
+  simulationSceneDigest,
+  type DigestSceneLike,
+} from "../../sim/core/simulationSceneDigest"
 
 export const SIMULATION_PLUGIN_ID = "io.ardesia.simulation"
 export const ELABTUTOR_PLUGIN_ID = "io.elab.tutor"
 export const SIMULATION_RUNTIME_API = "simulation-runtime/1"
-export const MULTI_POSTIT_WORKBENCH_STATE_SCHEMA = "multi-postit-workbench-state/1"
+export const MULTI_POSTIT_WORKBENCH_STATE_SCHEMA = "multi-postit-workbench-state/2"
+const LEGACY_MULTI_POSTIT_WORKBENCH_STATE_SCHEMA = "multi-postit-workbench-state/1"
 
 const SURFACE_BOUNDS = {
   compact: { width: 260, height: 180 },
@@ -53,8 +57,7 @@ export type SolverSnapshot = {
 
 export type SimulationPostitState = {
   sceneId: string
-  /** Nuovi snapshot canonici lo persistono; assente soltanto nei marker legacy. */
-  sceneDigest?: string
+  sceneDigest: string
   selectedComponentId: string | null
   providerStatus: SimulationRuntimeProviderStatus
   runtimeState: SimulationRuntimeSerializedState
@@ -189,7 +192,8 @@ export function restoreMultiPostitWorkbench(payload: unknown): MultiPostitObject
   if (!isRecord(payload)) {
     throw new Error("serialized multi post-it workbench must be an object")
   }
-  if (payload.schema !== MULTI_POSTIT_WORKBENCH_STATE_SCHEMA) {
+  const sourceVersion = multiPostitWorkbenchSourceVersion(payload.schema)
+  if (sourceVersion === null) {
     throw new Error("invalid multi post-it workbench schema")
   }
   if (!Array.isArray(payload.postits)) {
@@ -197,11 +201,21 @@ export function restoreMultiPostitWorkbench(payload: unknown): MultiPostitObject
   }
 
   const restored = payload.postits.map((postit) =>
-    restorePluginPostitObject<MultiPostitState>(postit),
+    restoreMultiPostitWorkbenchPostit(postit, sourceVersion),
   )
   assertUniquePostitInstances(restored)
-  restored.forEach(assertWorkbenchPostit)
   return restored
+}
+
+export function restoreMultiPostitWorkbenchPostit(
+  payload: unknown,
+  sourceVersion: 1 | 2,
+): MultiPostitObject {
+  const restored = restorePluginPostitObject<MultiPostitState>(payload)
+  const migrated =
+    sourceVersion === 1 ? migrateLegacySimulationSceneDigest(restored) : restored
+  assertWorkbenchPostit(migrated)
+  return migrated
 }
 
 export function isSimulationPostitState(state: unknown): state is SimulationPostitState {
@@ -221,12 +235,11 @@ export function isSimulationPostitState(state: unknown): state is SimulationPost
   )) {
     return false
   }
+  const runtimeDigest = trySimulationRuntimeSceneDigest(runtimeState)
   return (
-    state.sceneDigest === undefined ||
-    (
-      typeof state.sceneDigest === "string" &&
-      state.sceneDigest === simulationRuntimeSceneDigest(runtimeState)
-    )
+    typeof state.sceneDigest === "string" &&
+    runtimeDigest !== null &&
+    state.sceneDigest === runtimeDigest
   )
 }
 
@@ -283,7 +296,7 @@ function createSimulationPostit(
     selected: true,
     pluginState: {
       sceneId,
-      sceneDigest: simulationRuntimeSceneDigest(runtimeState),
+      sceneDigest: requireSimulationRuntimeSceneDigest(runtimeState),
       selectedComponentId: null,
       providerStatus: simulationRuntimeProviderStatus(providerId),
       runtimeState,
@@ -428,21 +441,95 @@ function createSimulationRuntimeScene(sceneId: string): SimulationRuntimeSceneFo
   }
 }
 
-function simulationRuntimeSceneDigest(
+function multiPostitWorkbenchSourceVersion(schema: unknown): 1 | 2 | null {
+  if (schema === MULTI_POSTIT_WORKBENCH_STATE_SCHEMA) return 2
+  if (schema === LEGACY_MULTI_POSTIT_WORKBENCH_STATE_SCHEMA) return 1
+  return null
+}
+
+function migrateLegacySimulationSceneDigest(
+  postit: MultiPostitObject,
+): MultiPostitObject {
+  if (postit.pluginId !== SIMULATION_PLUGIN_ID) return postit
+  const pluginState: unknown = postit.pluginState
+  if (!isRecord(pluginState) || pluginState.sceneDigest !== undefined) {
+    return postit
+  }
+  const sceneDigest = trySimulationRuntimeSceneDigest(pluginState.runtimeState)
+  if (sceneDigest === null) return postit
+  return {
+    ...postit,
+    pluginState: {
+      ...pluginState,
+      sceneDigest,
+    } as SimulationPostitState,
+  }
+}
+
+function requireSimulationRuntimeSceneDigest(
   runtimeState: SimulationRuntimeSerializedState,
 ): string {
-  const components = runtimeState.scene.components
-  const connections = runtimeState.scene.connections
-  if (!Array.isArray(components) || !Array.isArray(connections)) {
-    throw new Error("Simulation runtime scene must expose components and connections")
+  const digest = trySimulationRuntimeSceneDigest(runtimeState)
+  if (digest === null) {
+    throw new Error("Simulation runtime scene must expose a valid topology")
   }
-  return simulationSceneDigest({
-    components,
-    connections,
-    ...(runtimeState.scene.pinAssignments === undefined
-      ? {}
-      : { pinAssignments: runtimeState.scene.pinAssignments }),
-  })
+  return digest
+}
+
+function trySimulationRuntimeSceneDigest(runtimeState: unknown): string | null {
+  if (!isSimulationRuntimeSerializedState(runtimeState)) return null
+  const scene: unknown = runtimeState.scene
+  if (!isDigestSceneLike(scene)) return null
+  try {
+    return simulationSceneDigest(scene)
+  } catch {
+    return null
+  }
+}
+
+function isDigestSceneLike(value: unknown): value is DigestSceneLike {
+  if (!isRecord(value)) return false
+  if (
+    !Array.isArray(value.components) ||
+    !value.components.every(
+      (component) =>
+        isRecord(component) &&
+        isNonEmptyString(component.id) &&
+        isNonEmptyString(component.type) &&
+        (
+          component.value === undefined ||
+          (typeof component.value === "number" && Number.isFinite(component.value))
+        ),
+    )
+  ) {
+    return false
+  }
+  if (
+    !Array.isArray(value.connections) ||
+    !value.connections.every(
+      (connection) =>
+        isRecord(connection) &&
+        isNonEmptyString(connection.from) &&
+        isNonEmptyString(connection.to) &&
+        (connection.id === undefined || isNonEmptyString(connection.id)) &&
+        (connection.kind === undefined || isNonEmptyString(connection.kind)),
+    )
+  ) {
+    return false
+  }
+  return (
+    value.pinAssignments === undefined ||
+    (
+      isRecord(value.pinAssignments) &&
+      Object.entries(value.pinAssignments).every(
+        ([pin, target]) => isNonEmptyString(pin) && isNonEmptyString(target),
+      )
+    )
+  )
+}
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0
 }
 
 function solverSnapshotFromRuntime(runtimeState: SimulationRuntimeSerializedState): SolverSnapshot {
