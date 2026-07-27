@@ -400,8 +400,12 @@ export const SimulationApplyOperationResultSchema = z.strictObject({
   roomId: z.string().min(1).max(128),
   operationId: z.string().min(1).max(256),
   accepted: z.literal(true),
-  solveOutcome: z.unknown(),
-  diagnostics: z.unknown(),
+  solveOutcome: z.unknown().refine((value) => value !== undefined, {
+    message: "solve outcome is required",
+  }),
+  diagnostics: z.unknown().refine((value) => value !== undefined, {
+    message: "diagnostics are required",
+  }),
 })
 export type SimulationApplyOperationResult = z.infer<
   typeof SimulationApplyOperationResultSchema

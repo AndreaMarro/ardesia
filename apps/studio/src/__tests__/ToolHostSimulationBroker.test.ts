@@ -14,10 +14,9 @@
 // proprietà più forte di questo protocollo è che ogni params passa da uno
 // strictObject validato lato host. Un envelope opaco la distruggerebbe.
 //
-// FUORI SLICE (deferito, con oracoli propri): `simulation.applyOperation` — la
-// mutazione trascina placement pipeline, occupancy e pin vocabulary e merita
-// falsificatori dedicati. Qui il ciclo dimostrato è load → solve → read →
-// serialize.
+// SDK 1.4 aggiunge `simulation.applyOperation` con falsificatori dedicati nella
+// verticale Sessione 2. Qui resta congelato il ciclo precedente
+// load → solve → read → serialize e la sua compatibilità.
 import { afterEach, describe, expect, it } from "vitest"
 import { ERR, PROTOCOL_VERSION, ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
@@ -188,6 +187,7 @@ function hostWithSimulation(instanceId: string, grant: Capabilities = SERVICE_CA
     store: new MemoryWorkspace(),
     board,
     instanceId,
+    roomId: "broker-room",
     simulation: realSimulationService,
   })
 }
@@ -253,6 +253,27 @@ describe("service.simulation — composizione ELABTutor→Simulation host-mediat
     expect(error?.code).toBe(ERR.INTERNAL)
     expect(error?.message).toMatch(/no scene loaded/i)
   })
+
+  it("RED-2c: ogni richiesta stateful senza room host-owned fallisce chiusa", async () => {
+    const host = new ToolHost(
+      elabTutorManifest(SERVICE_CAP),
+      SERVICE_CAP as Capabilities,
+      {
+        store: new MemoryWorkspace(),
+        board,
+        instanceId: "elab-1",
+        simulation: realSimulationService,
+      },
+    )
+    const { call } = await mountReady(host)
+
+    const described = await call("simulation.describe")
+    expect(described.error).toBeUndefined()
+    const loaded = await call("simulation.loadScene", { scene: LED_SCENE })
+    expect(loaded.result).toBeUndefined()
+    expect(loaded.error?.code).toBe(ERR.INTERNAL)
+    expect(loaded.error?.message).toMatch(/roomId/i)
+  })
 })
 
 // ---------------------------------------------------------------------------
@@ -308,6 +329,7 @@ describe("service.simulation — gating fail-closed", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: realSimulationService,
     })
     const { call } = await mountReady(host)
@@ -331,6 +353,7 @@ describe("service.simulation — gating fail-closed", () => {
           store: new MemoryWorkspace(),
           board,
           instanceId: "elab-a",
+          roomId: "broker-room",
           simulation: realSimulationService,
         }),
     ).toThrow()
@@ -374,6 +397,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: digestRottoAllaSeconda,
     })
     const { call } = await mountReady(host)
@@ -401,6 +425,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: servizioSenzaStato,
     })
     const { call } = await mountReady(host)
@@ -425,6 +450,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
+      roomId: "broker-room",
       simulation: servizioFuoriContratto,
     })
     const { call } = await mountReady(host)

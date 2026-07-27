@@ -16,7 +16,10 @@ import type { EventLogReadLike } from "./caps/graph.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
 import { ToolSimulation } from "./caps/simulation.ts"
-import type { SimulationRuntimeApiLike } from "./caps/simulation.ts"
+import type {
+  SimulationInitialStateEnvelope,
+  SimulationRuntimeApiLike,
+} from "./caps/simulation.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
 import { checkKillList } from "./killList.ts"
 import type { StorageReadWriteDelete } from "./killList.ts"
@@ -88,7 +91,7 @@ export interface ToolHostDeps {
    * PluginInstance. Non arriva mai dal tool/wire: il provider lo valida e il
    * broker ricostruisce digest + ownership prima del mount.
    */
-  simulationInitialState?: unknown
+  simulationInitialState?: SimulationInitialStateEnvelope
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string

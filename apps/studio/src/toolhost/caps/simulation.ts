@@ -14,6 +14,7 @@
 import type { z } from "zod"
 
 import { assertInstanceId } from "./instance.ts"
+import { validateRoomId } from "../../store/roomPaths.ts"
 import {
   SimulationApplyOperationResultSchema,
   SimulationDescribeResultSchema,
@@ -33,6 +34,12 @@ type SimulationRuntimeApplyResultLike = {
   accepted: boolean
   result: unknown
   diagnostics: unknown
+}
+
+export type SimulationInitialStateEnvelope = {
+  roomId: string
+  instanceId: string
+  state: unknown
 }
 
 /**
@@ -65,10 +72,13 @@ export class ToolSimulation {
   constructor(
     api: SimulationRuntimeApiLike,
     instanceId: string,
-    options: { roomId?: string; initialState?: unknown } = {},
+    options: {
+      roomId?: string
+      initialState?: SimulationInitialStateEnvelope
+    } = {},
   ) {
     assertInstanceId(instanceId)
-    if (options.roomId !== undefined) assertInstanceId(options.roomId)
+    if (options.roomId !== undefined) validateRoomId(options.roomId)
     this._api = api
     this._instanceId = instanceId
     this._roomId = options.roomId ?? null
@@ -83,6 +93,7 @@ export class ToolSimulation {
   }
 
   loadScene(params: { scene: SimulationScene; diagnostics?: string[] }): { receipt: SimulationReceipt } {
+    this._requireRoomId()
     // Contratto prima di tutto: un servizio fuori contratto non deve poter
     // scrivere nulla nell'istanza. Validato UNA volta e riusato: richiamare
     // describe() a fine operazione lascerebbe una finestra in cui il servizio
@@ -116,8 +127,9 @@ export class ToolSimulation {
     // L'API runtime è iniettata e quindi non è implicitamente fidata. Le viene
     // consegnato uno snapshot isolato: anche una implementazione che mutasse il
     // proprio argomento non può alterare lo stato committato prima dei check.
+    const stateSnapshot = structuredClone(this._requireState())
     const serialized = this._checkedState(
-      this._api.serializeState(this._requireState()),
+      this._api.serializeState(stateSnapshot),
     )
     const isolatedState = structuredClone(serialized)
     const apply = this._api.applyOperation
@@ -135,6 +147,11 @@ export class ToolSimulation {
     const state = this._checkedState(applied.state)
     this._assertStateInstance(state)
     const digest = this._api.sceneDigest(this._sceneFromState(state))
+    if (digest === currentDigest) {
+      throw new Error(
+        `simulation operation "${params.operation.id}" did not change the scene digest`,
+      )
+    }
     const result = SimulationApplyOperationResultSchema.parse({
       receipt: this._receipt(contract, digest),
       roomId,
@@ -152,6 +169,7 @@ export class ToolSimulation {
   }
 
   solve(params: { provider: string; mode: string }): { receipt: SimulationReceipt; result: unknown } {
+    this._requireRoomId()
     const contract = this._contract()
     const solved = this._api.solve(this._requireState(), params)
     const state = this._checkedState(solved.state)
@@ -161,12 +179,14 @@ export class ToolSimulation {
   }
 
   readDiagnostics(): { receipt: SimulationReceipt; diagnostics: unknown } {
+    this._requireRoomId()
     const contract = this._contract()
     const diagnostics = this._api.readDiagnostics(this._requireState())
     return { receipt: this._receipt(contract, this._requireDigest()), diagnostics }
   }
 
   serializeState(): { receipt: SimulationReceipt; state: unknown } {
+    this._requireRoomId()
     const contract = this._contract()
     const state = this._api.serializeState(this._requireState())
     return { receipt: this._receipt(contract, this._requireDigest()), state }
@@ -204,14 +224,20 @@ export class ToolSimulation {
     return this._roomId
   }
 
-  private _restoreInitialState(serialized: unknown): void {
+  private _restoreInitialState(initial: SimulationInitialStateEnvelope): void {
+    const roomId = this._requireRoomId()
+    if (initial.roomId !== roomId || initial.instanceId !== this._instanceId) {
+      throw new Error(
+        `simulation restore scope mismatch for room "${roomId}" and instance "${this._instanceId}"`,
+      )
+    }
     const restore = this._api.restoreState
     if (restore === undefined) {
       throw new Error("simulation service does not support host-owned state restore")
     }
     this._contract()
     const state = this._checkedState(
-      restore.call(this._api, structuredClone(serialized)),
+      restore.call(this._api, structuredClone(initial.state)),
     )
     this._assertStateInstance(state)
     const digest = this._api.sceneDigest(this._sceneFromState(state))

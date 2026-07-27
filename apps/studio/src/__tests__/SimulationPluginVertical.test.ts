@@ -373,6 +373,7 @@ function hostFor(
     "service.simulation",
     "lesson.event.emit",
   ],
+  simulationService: SimulationRuntimeApiLike = realSimulationService,
 ): ToolHost {
   const grant = resolveGrant(verticalManifest, approved)
   const deps = Object.assign(
@@ -380,12 +381,20 @@ function hostFor(
       store: workspace,
       board,
       instanceId,
-      simulation: realSimulationService,
+      simulation: simulationService,
       lessonEventLog: eventLog,
     },
     {
       roomId,
-      ...(initialState === undefined ? {} : { simulationInitialState: initialState }),
+      ...(initialState === undefined
+        ? {}
+        : {
+            simulationInitialState: {
+              roomId,
+              instanceId,
+              state: initialState,
+            },
+          }),
     },
   )
   return new ToolHost(verticalManifest, grant, deps)
@@ -806,6 +815,44 @@ describe("Sessione 2 — negative controls del confine", () => {
       await client.call("simulation.serializeState"),
     )
     expect(after).toEqual(before)
+
+    const unchangedService: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: (state) => ({
+        state,
+        accepted: true,
+        result: { ok: true, provider: "local" },
+        diagnostics: { provider: "local" },
+      }),
+    }
+    const unchangedClient = await mountReady(hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_B,
+      ROOM_A,
+      undefined,
+      ["service.simulation"],
+      unchangedService,
+    ))
+    wireResult(await unchangedClient.call("simulation.loadScene", {
+      scene: ORIGINAL_SCENE,
+    }))
+    const unchangedBefore = wireResult<SerializedWireResult>(
+      await unchangedClient.call("simulation.serializeState"),
+    )
+    const unchanged = await unchangedClient.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: {
+        ...SHORT_CIRCUIT_OPERATION,
+        id: "session-2:accepted-noop",
+      },
+    })
+    expect(unchanged.result).toBeUndefined()
+    expect(unchanged.error?.code).toBe(ERR.INTERNAL)
+    expect(unchanged.error?.message).toMatch(/did not change the scene digest/i)
+    expect(wireResult<SerializedWireResult>(
+      await unchangedClient.call("simulation.serializeState"),
+    )).toEqual(unchangedBefore)
   })
 
   it("provider assente resta blocked senza correnti o tensioni decorative", async () => {
@@ -859,6 +906,150 @@ describe("Sessione 2 — negative controls del confine", () => {
     })
     expect(denied.result).toBeUndefined()
     expect(denied.error?.code).toBe(ERR.CAPABILITY_DENIED)
+  })
+
+  it("restore lega insieme room, instance e stato con la grammatica room canonica", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    const client = await mountReady(hostFor(workspace, eventLog, INSTANCE_A))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+    const serialized = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+    const grant = resolveGrant(verticalManifest, ["service.simulation"])
+
+    expect(() => new ToolHost(verticalManifest, grant, {
+      store: workspace,
+      board,
+      instanceId: INSTANCE_A,
+      roomId: ROOM_B,
+      simulation: realSimulationService,
+      simulationInitialState: {
+        roomId: ROOM_A,
+        instanceId: INSTANCE_A,
+        state: serialized.state,
+      },
+    })).toThrow(/restore scope mismatch/i)
+
+    expect(() => new ToolHost(verticalManifest, grant, {
+      store: workspace,
+      board,
+      instanceId: INSTANCE_B,
+      roomId: ROOM_A,
+      simulation: realSimulationService,
+      simulationInitialState: {
+        roomId: ROOM_A,
+        instanceId: INSTANCE_A,
+        state: serialized.state,
+      },
+    })).toThrow(/restore scope mismatch/i)
+
+    expect(() => hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      "Lezione_1.class",
+    )).not.toThrow()
+    expect(() => hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      "..",
+    )).toThrow(/invalid room identifier/i)
+  })
+
+  it("output provider assenti rifiutano il commit e preservano lo stato", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    const incompleteService: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      applyOperation: (state, operation) => {
+        const applied = realSimulationService.applyOperation!(state, operation)
+        return {
+          ...applied,
+          result: undefined,
+          diagnostics: undefined,
+        }
+      },
+    }
+    const client = await mountReady(hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      ROOM_A,
+      undefined,
+      ["service.simulation"],
+      incompleteService,
+    ))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+    const before = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+
+    const rejected = await client.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: SHORT_CIRCUIT_OPERATION,
+    })
+    expect(rejected.result).toBeUndefined()
+    expect(rejected.error?.code).toBe(ERR.INTERNAL)
+
+    const after = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+    expect(after).toEqual(before)
+  })
+
+  it("un serializer mutante non può alterare lo stato committato prima del rollback", async () => {
+    const workspace = new WorkspaceStore()
+    await workspace.init()
+    const eventLog = await canonicalEventLog()
+    let sabotageNextSerialization = true
+    const mutatingService: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      serializeState: (state) => {
+        if (sabotageNextSerialization) {
+          sabotageNextSerialization = false
+          const runtimeState = state as SimulationRuntimeState
+          const connections = runtimeState.scene.connections
+          if (connections === undefined) {
+            throw new Error("test precondition: runtime scene has no connections")
+          }
+          connections.push({
+            id: "malicious-wire",
+            from: "bat1:positive",
+            to: "bat1:negative",
+            color: "red",
+          })
+          return undefined
+        }
+        return serializeSimulationRuntimeState(state as SimulationRuntimeState)
+      },
+    }
+    const client = await mountReady(hostFor(
+      workspace,
+      eventLog,
+      INSTANCE_A,
+      ROOM_A,
+      undefined,
+      ["service.simulation"],
+      mutatingService,
+    ))
+    wireResult(await client.call("simulation.loadScene", { scene: ORIGINAL_SCENE }))
+
+    const rejected = await client.call("simulation.applyOperation", {
+      expectedSceneDigest: ORIGINAL_DIGEST,
+      operation: SHORT_CIRCUIT_OPERATION,
+    })
+    expect(rejected.result).toBeUndefined()
+    expect(rejected.error?.code).toBe(ERR.INTERNAL)
+
+    const after = wireResult<SerializedWireResult>(
+      await client.call("simulation.serializeState"),
+    )
+    expect(after.receipt.sceneDigest).toBe(ORIGINAL_DIGEST)
+    expect(after.state.scene.connections).toEqual(ORIGINAL_SCENE.connections)
   })
 
   it("import corrotto è atomico e conserva i byte precedenti", async () => {
