@@ -881,8 +881,8 @@ CodeRabbit findings, and the external Obsidian/Markdown/Git receipt.
 | 3 — runtime/provider | `GREEN_BOUNDED` |
 | 4 — persistence/isolation | `GREEN_BOUNDED` |
 | 5 — resolvable provenance | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| 6 — review | `GREEN_CLASSIFIED`; terminal full-stack result is frozen in the receipt |
-| 7 — docs/canon | bound to the committed product and Knowledge SHAs |
+| 6 — review | `GREEN_CLASSIFIED`; six completed cycles are classified, while any post-freeze pass is bound only in the exact-SHA receipt |
+| 7 — docs/canon | product leg committed; Knowledge leg binds the final product and vault SHAs |
 
 No deploy, remote mutation, dependency addition, scheduler change, Basic Memory
 write, or AgentMemory read/write was performed.

@@ -51,11 +51,13 @@ The canonical identities are:
 - ELABTutor Pack: `io.elab.tutor`, kind `pack`, depends on `io.ardesia.simulation >=2.0.0`, owns only ELAB didactic data and method.
 
 This continues the current ToolHost direction: SDK 1.4.0 exposes the plugin
-contract, five read/solve/restore/serialize simulation methods, the bounded
-`simulation.applyOperation` method, `graph.query`, and the append-only
-`lesson.event.emit` write channel for supported LessonOS events. The current
-simulator code still lives partly inside `ToolCanvasEmbeddable.tsx` and must
-keep moving behind the real plugin manifest and contract.
+contract, the five `describe`, `loadScene`, `solve`, `readDiagnostics`, and
+`serializeState` simulation methods, the bounded `simulation.applyOperation`
+method, `graph.query`, and the append-only `lesson.event.emit` write channel for
+supported LessonOS events. Restore remains a host responsibility through
+initial state and cold reopen, not a wire method. The current simulator code
+still lives partly inside `ToolCanvasEmbeddable.tsx` and must keep moving behind
+the real plugin manifest and contract.
 
 ## Current Branch Implementation
 

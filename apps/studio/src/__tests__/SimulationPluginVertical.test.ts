@@ -1505,18 +1505,22 @@ describe("Sessione 2 — negative controls del confine", () => {
       "GITHUB_SHA",
       "RENDER_GIT_COMMIT",
     ].some((name) => typeof process.env[name] === "string" && process.env[name]!.length > 0)
-    if (injectedSha || !existsSync(join(repoRoot, ".git"))) return
+    if (!existsSync(join(repoRoot, ".git"))) {
+      expect(injectedSha).toBe(true)
+      return
+    }
 
+    let checkoutSha: string
     try {
-      const checkoutSha = execFileSync(
+      checkoutSha = execFileSync(
         "git",
         ["rev-parse", "HEAD"],
         { cwd: repoRoot, encoding: "utf8" },
       ).replace(/\r?\n$/, "")
-      expect(producerSha).toBe(checkoutSha)
     } catch {
-      // Un artifact senza binario Git resta valido se il producer è un full
-      // SHA già iniettato dal build; il formato è verificato sopra.
+      expect(injectedSha).toBe(true)
+      return
     }
+    expect(producerSha).toBe(checkoutSha)
   })
 })

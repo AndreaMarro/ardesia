@@ -347,6 +347,10 @@ Linea locale impilata sul base autorizzato
 | `9af49956ae32b1d90f7b4c46156c011b8c4bde97` | isolamento degli oggetti runtime iniettati |
 | `55a258ff10adf1611107f6f43ae344ed302ada04` | marker/workbench v2 e migrazione digest v1 |
 | `4675ea5fca8505b04e43e5523fc64b80e22ea98b` | contratto documentato room-scoped |
+| `8d5b225b` | riconciliazione della verticale misurata nei documenti prodotto |
+| `8b448057` | tombstone delle copie canoniche incorporate e stantie |
+| `df9ca94d` | falsificatori terminali e validazione della migrazione workbench |
+| `9fd8a2c1` | proiezione digest stretta e room gate prima del provider |
 
 L'exact SHA prodotto finale, comprensivo dei documenti, viene legato dal
 receipt nel repository Knowledge dopo il commit documentale; non viene
@@ -406,9 +410,11 @@ responsabilità resta debito architetturale.
 
 ## Tabella CodeRabbit
 
-Sono conteggiate soltanto review concluse. La review finale full-stack verrà
-aggiunta prima del freeze del candidato; un tentativo intermedio è stato
-bloccato dal rate limit e non è contato.
+Sono conteggiate soltanto review concluse. Il tentativo intermedio bloccato dal
+rate limit e un invio con base SHA errata, fallito prima dell'analisi, non sono
+contati. Sei cicli sono conclusi; un eventuale pass post-freeze non può essere
+auto-inserito nello stesso commit e viene quindi legato soltanto dal receipt
+Knowledge exact-SHA.
 
 | Ciclo | Finding | Decisione ed evidenza |
 |---|---|---|
@@ -431,6 +437,24 @@ bloccato dal rate limit e non è contato.
 | 4 | plugin id hardcoded | valido; lookup usa `SIMULATION_PLUGIN_ID` |
 | 4 | digest ricalcolato due volte | respinto: la seconda validazione è defense-in-depth sul post-it migrato, non stato condiviso |
 | 4 | trattare `sceneDigest: null` come legacy missing | respinto: i writer legacy omettevano il campo; `null` è dato esplicito invalido e deve fallire chiuso |
+| 5 | CoV-6 dichiarava già congelato il receipt terminale | valido; wording riallineato allo stato realmente committibile |
+| 5 | elenco SDK includeva `restore` come metodo wire | valido; elencati i cinque metodi reali, restore host-owned |
+| 5 | `_sceneFromState` validava manualmente meno del protocollo | valido nel problema; il parse diretto suggerito avrebbe rotto gli extra runtime legittimi, quindi fix con proiezione stretta + sette falsificatori e rollback |
+| 5 | generic `applyConnectWire` per metodo | defer: il registry eterogeneo richiede un'estrazione typed-scene dedicata; il cambio locale sposterebbe l'erasure nella Map senza eliminare il cast |
+| 5 | test room gate copriva solo `loadScene` | valido; matrice dei cinque metodi stateful, errore esatto e zero chiamate provider |
+| 5 | test producer richiedeva sempre checkout Git | valido; full SHA sempre obbligatorio, confronto Git quando disponibile e fallback ammesso solo con provider build iniettato |
+| 5 | `IDBKeyRange` globale non ripristinato | valido; descriptor originale ripristinato o proprietà rimossa dopo ogni test |
+| 5 | malformed `applyOperation` non copriva `undefined` | valido; caso aggiunto, stato invariato |
+| 5 | topologie malformate senza nome parametrico | defer: le quattro mutazioni sono già enumerate e load-bearing; il refactor cambierebbe solo la diagnostica del runner |
+| 5 | cast della migrazione workbench | valido; lo stato migrato passa `isSimulationPostitState` prima del return |
+| 5 | test browser usava una guardia debole e mancava stale v1 | valido; guard canonica + mismatch v1 workbench rifiutato |
+| 5 | cache `WeakMap` del digest | respinto: lo stato ricevuto è mutabile e la cache potrebbe convalidare un hash stantio |
+| 5 | propagare/loggare errori digest nella type guard | respinto: la guardia su input non fidato deve essere no-throw e fail-closed; l'assert di confine produce già l'errore stabile |
+| 5 | mancava test di rigetto live senza `board.write` | valido; endpoint inesistente, board byte-identica, audit error e richiesta successiva verde |
+| 5 | mancava guard `accepted` prima della persistenza | invalido: lo schema ammette `accepted: literal(true)` e il broker trasforma `false` in errore prima della risposta |
+| 5 | sostituire confronto ricco JSON con digest topologico | respinto: ignorerebbe layout/provenance concorrenti e potrebbe sovrascriverli; l'attuale confronto fallisce chiuso |
+| 6 | caso `kind: bus` senza connection id | invalido: `id` è opzionale nello schema, quindi il solo campo invalido è già `kind` |
+| 6 | SHA iniettata saltava il confronto con checkout disponibile | valido; Git ha priorità quando disponibile e l'assert non è più catturato dal fallback |
 
 Review indipendente aggiuntiva: due Major sul marker (topologie malformate
 hashabili e policy bare-id divergente tra restore/render), entrambi riprodotti,
@@ -461,8 +485,8 @@ corretti e riesaminati con zero finding residui.
 | CoV-3 — runtime/provider | `GREEN_BOUNDED` |
 | CoV-4 — persistenza/isolamento | `GREEN_BOUNDED` |
 | CoV-5 — provenienza risolvibile | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| CoV-6 — review | `GREEN_CLASSIFIED`; review full-stack finale da congelare nel receipt |
-| CoV-7 — docs/canon | `IN_PROGRESS_LOCAL` fino ai commit prodotto e Knowledge |
+| CoV-6 — review | `GREEN_CLASSIFIED`; sei cicli conclusi, pass post-freeze solo nel receipt exact-SHA |
+| CoV-7 — docs/canon | `GREEN_PRODUCT_LOCAL`; il receipt Knowledge completa il binding a due SHA |
 | DoD Sessione 2 | `PARTIAL_BLOCKED` |
 
 Verdetto ammesso: **partial simulation harness**. La verticale tecnica è
