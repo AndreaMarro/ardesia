@@ -7,7 +7,8 @@ created: 2026-07-27
 timezone: Europe/Rome
 raw_root: external-receipt:coderabbit-review-6f75e80b
 implementation_sha: e07486fff0a5318c8150289b433184b40119166c
-full_exact_review_sha: da3c592f3e7da7f30337b59d978af1e0fd80a9e3
+x1_reviewed_head_sha: da3c592f3e7da7f30337b59d978af1e0fd80a9e3
+terminal_exact_review_binding: EXTERNAL_KNOWLEDGE_RECEIPT_REQUIRED
 review_runs: 22
 raw_findings: 116
 source_of_truth: false
@@ -15,7 +16,8 @@ source_of_truth: false
 
 # Sessione 2 — ledger CodeRabbit per-commento
 
-Questo ledger include tutte le review CodeRabbit concluse per la Sessione 2:
+Questo ledger è lo snapshot prodotto attraverso `R4` e include le review
+CodeRabbit concluse per la Sessione 2 fino a quel ciclo:
 due pass preliminari, dodici cicli canonici, il pass `T1`, due pass artifact,
 una review full exact-diff e quattro pass di repair. Gli UUID raw, non i fingerprint
 ripetuti, sono le chiavi primarie. Tentativi falliti, interrotti o rate-limited
@@ -245,8 +247,8 @@ mentre `git.json.baseCommitId` interno riporta `e07486ff…`.
 
 I dodici issue accettati da `X1`, i due issue di repair `R2` e i due issue
 validi di `R4` sono stati corretti; il terzo issue `R4` è rifiutato con il gate
-ratificato e la misura TCE come evidenza. Poiché ogni fix genera un nuovo SHA,
-la review terminale dell’intero diff viene eseguita dopo il commit di questo
-ledger e sostituisce un ulteriore pass incrementale. Il suo esito e l’identità
-Git finale sono vincolati nella receipt Obsidian esterna; questo file non
-anticipa un verde non ancora osservato.
+ratificato e la misura TCE come evidenza. La successiva review full `X2`, i
+relativi repair e il rerun terminale non vengono sommati a questo snapshot:
+sono vincolati nella receipt Obsidian esterna insieme all’identità Git finale,
+evitando che il ledger prodotto debba auto-descrivere una review del proprio
+stesso commit. Questo file non anticipa un verde non ancora osservato.

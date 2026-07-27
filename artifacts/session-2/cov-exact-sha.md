@@ -84,7 +84,8 @@ Le evidence ref restano `resolution: missing`.
 - Qualunque cross-room/cross-instance mutation falsifica CoV-4.
 - Component add/move, layout e wire edit/delete restano fuori dal broker live.
 - `v3-cap6-esp4` resta un target bloccato senza fixture montata o sintetizzata.
-- I dieci finding CodeRabbit deferiti restano debito esplicito nel ledger.
+- Al freeze implementativo `e07486ff`, i dieci finding CodeRabbit deferiti
+  restano debito esplicito nel ledger.
 
 ## Rollback e Sessione 3
 

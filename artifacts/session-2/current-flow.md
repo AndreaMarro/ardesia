@@ -397,9 +397,10 @@ componenti, layout, edit/delete wire e le altre callback del canvas restano
 debito diretto in `ToolCanvasEmbeddable.tsx`; quindi non esiste una prova di
 autonomia universale del plugin.
 
-Il file `ToolCanvasEmbeddable.tsx` è passato da `112384` a `111361` byte:
-`-1023` byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione
-di responsabilità resta debito architetturale.
+Dopo i repair culminati in `0380b67c`, il file
+`ToolCanvasEmbeddable.tsx` è passato da `112384` a `111361` byte: `-1023`
+byte. Il vincolo “non cresce” è rispettato, anche se la concentrazione di
+responsabilità resta debito architetturale.
 
 ### Negative controls eseguiti
 
@@ -430,8 +431,9 @@ di responsabilità resta debito architetturale.
 ## CodeRabbit
 
 Il ledger canonico per-commento è
-[`coderabbit-disposition.md`](coderabbit-disposition.md). Conta 22 review
-concluse, 116 finding raw e cinque pass a zero finding. I tentativi
+[`coderabbit-disposition.md`](coderabbit-disposition.md). Lo snapshot prodotto
+attraverso `R4` conta 22 review concluse, 116 finding raw e cinque pass a zero
+finding. I tentativi
 falliti, incompleti o rate-limited sono registrati separatamente e non contati.
 Ogni finding ha UUID, riproduzione, rischio, test-before, fix, test-after e
 decisione. Dopo la presente append di STATUS le disposition sono:
@@ -446,7 +448,8 @@ decisione. Dopo la presente append di STATUS le disposition sono:
 il diff base→`da3c592f` e i 32 finding sono classificati `12/8/12`; i fix
 successivi hanno review incrementali a zero. Poiché i fix cambiano lo SHA,
 la review exact-diff terminale viene rieseguita e registrata nel receipt
-Knowledge exact-SHA.
+Knowledge exact-SHA. Anche `X2` e l’aggregato post-`R4` restano quindi fuori
+da questo snapshot per evitare auto-riferimenti.
 
 ### Snapshot storico dei primi sei cicli
 
@@ -521,7 +524,7 @@ corretti e riesaminati con zero finding residui.
 | CoV-3 — runtime/provider | `GREEN_BOUNDED` |
 | CoV-4 — persistenza/isolamento | `GREEN_BOUNDED` |
 | CoV-5 — provenienza risolvibile | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| CoV-6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; 22 review e 116 finding classificati, full predecessor + repair documentale classificato |
+| CoV-6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; snapshot attraverso `R4` di 22 review e 116 finding classificati; `X2` e rerun terminale vincolati nel receipt Knowledge esterno |
 | CoV-7 — docs/canon | `GREEN_PRODUCT_LOCAL_PENDING_EXTERNAL_BINDING`; il receipt Knowledge completa il binding a due SHA |
 | DoD Sessione 2 | `PARTIAL_BLOCKED` |
 
