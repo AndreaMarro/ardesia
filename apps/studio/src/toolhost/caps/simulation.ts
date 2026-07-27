@@ -39,6 +39,7 @@ type SimulationRuntimeApplyResultLike = {
 export type SimulationInitialStateEnvelope = {
   roomId: string
   instanceId: string
+  sceneDigest: string
   state: unknown
 }
 
@@ -241,6 +242,15 @@ export class ToolSimulation {
     )
     this._assertStateInstance(state)
     const digest = this._api.sceneDigest(this._sceneFromState(state))
+    if (
+      typeof initial.sceneDigest !== "string" ||
+      initial.sceneDigest.length === 0 ||
+      initial.sceneDigest !== digest
+    ) {
+      throw new Error(
+        `simulation restore digest mismatch for room "${roomId}" and instance "${this._instanceId}"`,
+      )
+    }
     // Il contract check sopra impedisce di idratare uno stato con un provider
     // fuori versione; stato e digest entrano insieme come per load/apply.
     this._state = state

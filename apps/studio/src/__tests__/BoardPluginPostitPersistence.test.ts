@@ -27,6 +27,7 @@ import { WorkspaceStore } from "../store/WorkspaceStore"
 import type { FileEntry, WorkspaceDriver } from "../store/types"
 import { exportLesson, importLesson } from "../store/lessonBundle"
 import { roomPaths } from "../store/roomPaths"
+import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
 
 const ROOM = "plugin-postit-board-room"
 
@@ -282,6 +283,11 @@ describe("Board plugin post-it persistence", () => {
       "led",
     ])
     expect(simA.pluginState.runtimeState.diagnostics).toContain("local solver available")
+    expect(simA.pluginState.sceneDigest).toBe(simulationSceneDigest({
+      components: simA.pluginState.runtimeState.scene.components!,
+      connections: simA.pluginState.runtimeState.scene.connections!,
+      pinAssignments: simA.pluginState.runtimeState.scene.pinAssignments,
+    }))
     expect(simB.pluginState.providerOutput.instanceId).toBe("sim-b")
     expect(simB.pluginState.providerOutput.providerId).toBe("fastapi")
     expect(simB.pluginState.providerStatus).toEqual({
@@ -303,6 +309,29 @@ describe("Board plugin post-it persistence", () => {
 
     const ids = restoredPostits.flatMap((postit) => Object.values(pluginPostitControlIds(postit)))
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it("rejects a canonical Simulation marker whose persisted digest is stale", () => {
+    const scene = createPluginPostitBoardScene(
+      createMultiPostitWorkbenchPostits(),
+    )
+    const simulationElement = scene.elements.find(
+      (element) => element.id === pluginPostitBoardElementId("sim-a"),
+    )
+    if (simulationElement === undefined) {
+      throw new Error("test precondition: sim-a board element missing")
+    }
+    const tampered = structuredClone(scene)
+    const tamperedElement = tampered.elements.find(
+      (element) => element.id === simulationElement.id,
+    )!
+    const pluginState = tamperedElement.customData[EMBED_DATA_KEY].state
+      .pluginState as { sceneDigest?: string }
+    pluginState.sceneDigest = "00000000"
+
+    expect(() => restorePluginPostitsFromBoardScene(tampered)).toThrow(
+      /invalid Simulation state/i,
+    )
   })
 
   it("imports a .lesson into a new store and renders the restored Room embeddables", async () => {

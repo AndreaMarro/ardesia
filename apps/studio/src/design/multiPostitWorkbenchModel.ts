@@ -30,6 +30,7 @@ import {
   type SimulationRuntimeSceneForSolve,
   type SimulationRuntimeSerializedState,
 } from "../../sim/core/simulationRuntime"
+import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
 
 export const SIMULATION_PLUGIN_ID = "io.ardesia.simulation"
 export const ELABTUTOR_PLUGIN_ID = "io.elab.tutor"
@@ -52,6 +53,8 @@ export type SolverSnapshot = {
 
 export type SimulationPostitState = {
   sceneId: string
+  /** Nuovi snapshot canonici lo persistono; assente soltanto nei marker legacy. */
+  sceneDigest?: string
   selectedComponentId: string | null
   providerStatus: SimulationRuntimeProviderStatus
   runtimeState: SimulationRuntimeSerializedState
@@ -206,7 +209,7 @@ export function isSimulationPostitState(state: unknown): state is SimulationPost
   const providerOutput = state.providerOutput
   const providerStatus = state.providerStatus
   const runtimeState = state.runtimeState
-  return (
+  if (!(
     typeof state.sceneId === "string" &&
     (state.selectedComponentId === null || typeof state.selectedComponentId === "string") &&
     isPluginPostitProviderOutput(providerOutput) &&
@@ -215,6 +218,15 @@ export function isSimulationPostitState(state: unknown): state is SimulationPost
     runtimeState.instanceId === providerOutput.instanceId &&
     runtimeState.pluginId === SIMULATION_RUNTIME_PLUGIN_ID &&
     providerStatus.id === providerOutput.providerId
+  )) {
+    return false
+  }
+  return (
+    state.sceneDigest === undefined ||
+    (
+      typeof state.sceneDigest === "string" &&
+      state.sceneDigest === simulationRuntimeSceneDigest(runtimeState)
+    )
   )
 }
 
@@ -271,6 +283,7 @@ function createSimulationPostit(
     selected: true,
     pluginState: {
       sceneId,
+      sceneDigest: simulationRuntimeSceneDigest(runtimeState),
       selectedComponentId: null,
       providerStatus: simulationRuntimeProviderStatus(providerId),
       runtimeState,
@@ -413,6 +426,23 @@ function createSimulationRuntimeScene(sceneId: string): SimulationRuntimeSceneFo
       led: { x: 386, y: 148, rotation: 90 },
     },
   }
+}
+
+function simulationRuntimeSceneDigest(
+  runtimeState: SimulationRuntimeSerializedState,
+): string {
+  const components = runtimeState.scene.components
+  const connections = runtimeState.scene.connections
+  if (!Array.isArray(components) || !Array.isArray(connections)) {
+    throw new Error("Simulation runtime scene must expose components and connections")
+  }
+  return simulationSceneDigest({
+    components,
+    connections,
+    ...(runtimeState.scene.pinAssignments === undefined
+      ? {}
+      : { pinAssignments: runtimeState.scene.pinAssignments }),
+  })
 }
 
 function solverSnapshotFromRuntime(runtimeState: SimulationRuntimeSerializedState): SolverSnapshot {

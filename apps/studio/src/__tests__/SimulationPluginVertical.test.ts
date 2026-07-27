@@ -8,6 +8,7 @@
 // del provider locale e il suo solverDiagnostics.shortCircuit.
 
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
+import { execFileSync } from "node:child_process"
 import { readFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 import {
@@ -27,15 +28,15 @@ import type { AuditStore } from "../toolhost/audit.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { SimulationRuntimeApiLike } from "../toolhost/caps/simulation.ts"
 import { WorkspaceStore } from "../store/WorkspaceStore.ts"
-import {
-  createEventLogStore,
-  exportEnvelopeEventLogSnapshot,
-} from "../lessonos/indexedDbEventLog.ts"
+import { createEventLogStore } from "../lessonos/indexedDbEventLog.ts"
 import type {
   EnvelopeEventLogStore,
 } from "../lessonos/eventlog.ts"
 import { materialize } from "../lessonos/materializer.ts"
-import { studioProducerIdentity } from "../core/contracts/eventEnvelope.ts"
+import {
+  createEventEnvelopeV2,
+  studioProducerIdentity,
+} from "../core/contracts/eventEnvelope.ts"
 import {
   applySimulationRuntimeOperation,
   describeSimulationRuntimeApi,
@@ -43,6 +44,7 @@ import {
   readSimulationRuntimeDiagnostics,
   restoreSimulationRuntimeState,
   serializeSimulationRuntimeState,
+  simulationRuntimeProviderStatus,
   solveSimulationRuntimeProvider,
 } from "../../sim/core/simulationRuntime.ts"
 import type {
@@ -52,6 +54,19 @@ import type {
 import type { SimulationOperationEnvelope } from "../../sim/core/simulationOperations.ts"
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest.ts"
 import { createSimulationAdapterPayloadFromElabScene } from "../../sim/elab/elabSceneAdapter.ts"
+import {
+  createPluginPostitBoardScene,
+  restorePluginPostitsFromBoardScene,
+} from "../design/multiPostitBoardPersistence.ts"
+import {
+  isSimulationPostitState,
+  type SimulationPostitState,
+} from "../design/multiPostitWorkbenchModel.ts"
+import {
+  createPluginPostitObject,
+  scopePluginPostitProviderOutput,
+} from "../toolhost/postitObject.ts"
+import { roomPaths } from "../store/roomPaths.ts"
 
 const repoRoot = resolve(import.meta.dirname, "../../../..")
 const ROOM_A = "session-2-room-a"
@@ -154,18 +169,9 @@ type SerializedWireResult = {
   state: SimulationRuntimeState
 }
 
-type PersistedRoomScene = {
-  v: 1
-  roomId: string
-  pluginInstances: Array<{
-    pluginId: string
-    pluginVersion: string
-    packId: string
-    experimentId: string
-    instanceId: string
-    sceneDigest: string
-    runtimeState: SimulationRuntimeState
-  }>
+type RestoreBinding = {
+  sceneDigest: string
+  state: SimulationRuntimeState
 }
 
 function readJson<T>(relativePath: string): T {
@@ -368,7 +374,7 @@ function hostFor(
   eventLog: EnvelopeEventLogStore,
   instanceId: string,
   roomId = ROOM_A,
-  initialState?: unknown,
+  initialState?: RestoreBinding,
   approved: readonly CapabilityName[] = [
     "service.simulation",
     "lesson.event.emit",
@@ -392,7 +398,8 @@ function hostFor(
             simulationInitialState: {
               roomId,
               instanceId,
-              state: initialState,
+              sceneDigest: initialState.sceneDigest,
+              state: initialState.state,
             },
           }),
     },
@@ -401,9 +408,14 @@ function hostFor(
 }
 
 async function canonicalEventLog(): Promise<EnvelopeEventLogStore> {
+  const {
+    IDBFactory: FakeIDBFactory,
+    IDBKeyRange: FakeIDBKeyRange,
+  } = await import("fake-indexeddb")
+  ;(globalThis as { IDBKeyRange?: unknown }).IDBKeyRange = FakeIDBKeyRange
   const buildProducer = studioProducerIdentity()
   return createEventLogStore({
-    factory: undefined,
+    factory: new FakeIDBFactory() as unknown as IDBFactory,
     dbName: `session-2-${crypto.randomUUID()}`,
     trustedContext: {
       lessonId: ROOM_A,
@@ -428,6 +440,101 @@ function graphSnapshot(events: Awaited<ReturnType<EnvelopeEventLogStore["readAll
       ),
     ),
   })
+}
+
+function canonicalBoardSceneFor(
+  serialized: SerializedWireResult,
+  instanceId: string,
+) {
+  if (serialized.receipt.instanceId !== instanceId) {
+    throw new Error("test precondition: receipt and post-it instance differ")
+  }
+  const solverResult = serialized.state.lastSolverResult
+  if (solverResult === undefined || solverResult.provider !== "local") {
+    throw new Error("test precondition: provider-derived local result is required")
+  }
+  const componentStates = Object.fromEntries(
+    Object.entries(solverResult.componentStates).map(([id, state]) => [
+      id,
+      typeof state.on === "boolean" ? { on: state.on } : {},
+    ]),
+  )
+  const providerOutput = scopePluginPostitProviderOutput(
+    { instanceId, pluginId: simulationManifest.id },
+    {
+      providerId: solverResult.provider,
+      diagnostics: serialized.state.diagnostics,
+      solverOutput: {
+        currents: { ...solverResult.currents },
+        componentStates,
+      },
+    },
+  )
+  const postit = createPluginPostitObject<SimulationPostitState>({
+    instanceId,
+    pluginId: simulationManifest.id,
+    bounds: { x: 48, y: 72, width: 560, height: 380 },
+    zIndex: 1,
+    selected: true,
+    proximity: "active",
+    pluginState: {
+      sceneId: lessonPath.experiment_id,
+      sceneDigest: serialized.receipt.sceneDigest,
+      selectedComponentId: null,
+      providerStatus: simulationRuntimeProviderStatus("local"),
+      runtimeState: serialized.state,
+      providerOutput,
+    },
+  })
+  return createPluginPostitBoardScene([postit])
+}
+
+function restoreBindingFromBoardScene(
+  sceneText: string,
+  instanceId: string,
+): RestoreBinding {
+  const restored = restorePluginPostitsFromBoardScene(JSON.parse(sceneText))
+  const postit = restored.find((candidate) => candidate.instanceId === instanceId)
+  if (postit === undefined || !isSimulationPostitState(postit.pluginState)) {
+    throw new Error(`canonical Simulation post-it "${instanceId}" was not restored`)
+  }
+  const state = postit.pluginState.runtimeState
+  const components = state.scene.components
+  const connections = state.scene.connections
+  if (!Array.isArray(components) || !Array.isArray(connections)) {
+    throw new Error(`canonical Simulation post-it "${instanceId}" has no scene`)
+  }
+  const sceneDigest = simulationSceneDigest({
+    components,
+    connections,
+    ...(state.scene.pinAssignments === undefined
+      ? {}
+      : { pinAssignments: state.scene.pinAssignments }),
+  })
+  if (postit.pluginState.sceneDigest !== sceneDigest) {
+    throw new Error(`canonical Simulation post-it "${instanceId}" has a stale digest`)
+  }
+  return { sceneDigest, state }
+}
+
+function canonicalJournalLine(): string {
+  return JSON.stringify(createEventEnvelopeV2(
+    {
+      lessonId: ROOM_A,
+      sessionId: SESSION_A,
+      kind: "journal.pointer.down",
+      actor: { type: "teacher", id: "session-2-teacher" },
+      producer: studioProducerIdentity(),
+      causationId: null,
+      idempotencyKey: `journal:${SESSION_A}:session-2-pointer`,
+      evidence: [{ ref: "board:pointer", resolution: "verified" }],
+      payload: {},
+    },
+    {
+      eventId: () => "20000000-0000-4000-8000-000000000002",
+      now: () => new Date(1_000),
+    },
+  ))
 }
 
 beforeEach(() => {
@@ -588,7 +695,7 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
     )
 
     const legacyEvents = await eventLog.readAll()
-    expect(graphSnapshot(legacyEvents)).toBe(graphSnapshot(legacyEvents))
+    const sourceGraph = graphSnapshot(legacyEvents)
     expect(materialize(legacyEvents).nodes.get(errorId)).toMatchObject({
       kind: "errore",
       evidenceRefs: evidence,
@@ -597,32 +704,22 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
     const serialized = wireResult<SerializedWireResult>(
       await clientA.call("simulation.serializeState"),
     )
-    const persisted: PersistedRoomScene = {
-      v: 1,
-      roomId: ROOM_A,
-      pluginInstances: [{
-        pluginId: simulationManifest.id,
-        pluginVersion: simulationManifest.version,
-        packId: packManifest.id,
-        experimentId: lessonPath.experiment_id,
-        instanceId: INSTANCE_A,
-        sceneDigest: serialized.receipt.sceneDigest,
-        runtimeState: serialized.state,
-      }],
-    }
-    await workspace.saveScene(ROOM_A, JSON.stringify(persisted))
+    const boardSceneA = canonicalBoardSceneFor(serialized, INSTANCE_A)
+    await workspace.saveScene(ROOM_A, JSON.stringify(boardSceneA))
 
     hostA.unmount()
-    const reopenedScene = JSON.parse(
-      (await workspace.loadScene(ROOM_A))!,
-    ) as PersistedRoomScene
-    const reopenedState = reopenedScene.pluginInstances[0]!.runtimeState
+    const reopenedSceneText = await workspace.loadScene(ROOM_A)
+    expect(reopenedSceneText).not.toBeNull()
+    const reopenedBinding = restoreBindingFromBoardScene(
+      reopenedSceneText!,
+      INSTANCE_A,
+    )
     const reopenedHost = hostFor(
       workspace,
       eventLog,
       INSTANCE_A,
       ROOM_A,
-      reopenedState,
+      reopenedBinding,
     )
     const reopenedClient = await mountReady(reopenedHost)
     const reopenedSerialized = wireResult<SerializedWireResult>(
@@ -672,56 +769,66 @@ describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTuto
     wireResult<{ receipt: SimulationReceipt }>(
       await roomBClient.call("simulation.loadScene", { scene: ORIGINAL_SCENE }),
     )
+    wireResult<{ receipt: SimulationReceipt; result: SolverOutcome }>(
+      await roomBClient.call("simulation.solve", {
+        provider: "local",
+        mode: "static",
+      }),
+    )
     const roomBState = wireResult<SerializedWireResult>(
       await roomBClient.call("simulation.serializeState"),
     )
     const roomASceneBeforeRoomBSave = await workspace.loadScene(ROOM_A)
-    const persistedRoomB: PersistedRoomScene = {
-      v: 1,
-      roomId: ROOM_B,
-      pluginInstances: [{
-        pluginId: simulationManifest.id,
-        pluginVersion: simulationManifest.version,
-        packId: packManifest.id,
-        experimentId: lessonPath.experiment_id,
-        instanceId: INSTANCE_A,
-        sceneDigest: roomBState.receipt.sceneDigest,
-        runtimeState: roomBState.state,
-      }],
-    }
-    await workspace.saveScene(ROOM_B, JSON.stringify(persistedRoomB))
+    await workspace.saveScene(
+      ROOM_B,
+      JSON.stringify(canonicalBoardSceneFor(roomBState, INSTANCE_A)),
+    )
     expect(await workspace.loadScene(ROOM_A)).toBe(roomASceneBeforeRoomBSave)
     expect(roomBState.receipt.sceneDigest).toBe(ORIGINAL_DIGEST)
 
-    const eventSnapshotBeforeExport = await exportEnvelopeEventLogSnapshot(eventLog)
-    const eventBytesBeforeExport = await eventSnapshotBeforeExport.text()
     await workspace.write(
-      `raw/${ROOM_A}/lessonos-events.jsonl`,
-      new Blob([eventBytesBeforeExport], { type: "application/x-ndjson" }),
+      roomPaths(ROOM_A).journal,
+      new Blob([`${canonicalJournalLine()}\n`], {
+        type: "application/x-ndjson",
+      }),
     )
     const sourceRoomA = await workspace.loadScene(ROOM_A)
     const sourceRoomB = await workspace.loadScene(ROOM_B)
-    const bundle = await workspace.exportBundle()
+    const sourceEnvelopes = await eventLog.readAllEnvelopes()
+    const bundle = await workspace.exportLesson(ROOM_A, eventLog)
 
     localStorage.clear()
     const importedWorkspace = new WorkspaceStore()
     await importedWorkspace.init()
-    await importedWorkspace.importBundle(bundle)
-
-    expect(await importedWorkspace.loadScene(ROOM_A)).toBe(sourceRoomA)
-    expect(await importedWorkspace.loadScene(ROOM_B)).toBe(sourceRoomB)
-    const importedLogBytes = await importedWorkspace.read(
-      `raw/${ROOM_A}/lessonos-events.jsonl`,
+    const importedEventLog = await canonicalEventLog()
+    const importResult = await importedWorkspace.importLessonBlobForRoom(
+      bundle,
+      ROOM_A,
+      importedEventLog,
     )
-    expect(await importedLogBytes?.text()).toBe(eventBytesBeforeExport)
 
-    const importedRoom = JSON.parse(sourceRoomA!) as PersistedRoomScene
+    expect(importResult.lessonOsRestore).toEqual({
+      kind: "restored",
+      recovered: sourceEnvelopes.length,
+    })
+    expect(await importedWorkspace.loadScene(ROOM_A)).toBe(sourceRoomA)
+    expect(sourceRoomB).not.toBeNull()
+    expect(await importedWorkspace.loadScene(ROOM_B)).toBeNull()
+    expect(await importedEventLog.readAllEnvelopes()).toEqual(sourceEnvelopes)
+    expect(graphSnapshot(await importedEventLog.readAll())).toBe(sourceGraph)
+
+    const importedSceneText = await importedWorkspace.loadScene(ROOM_A)
+    expect(importedSceneText).not.toBeNull()
+    const importedBinding = restoreBindingFromBoardScene(
+      importedSceneText!,
+      INSTANCE_A,
+    )
     const importedHost = hostFor(
       importedWorkspace,
-      eventLog,
+      importedEventLog,
       INSTANCE_A,
       ROOM_A,
-      importedRoom.pluginInstances[0]!.runtimeState,
+      importedBinding,
     )
     const importedClient = await mountReady(importedHost)
     const importedSerialized = wireResult<SerializedWireResult>(
@@ -908,7 +1015,7 @@ describe("Sessione 2 — negative controls del confine", () => {
     expect(denied.error?.code).toBe(ERR.CAPABILITY_DENIED)
   })
 
-  it("restore lega insieme room, instance e stato con la grammatica room canonica", async () => {
+  it("restore lega room, instance, digest e stato con la grammatica room canonica", async () => {
     const workspace = new WorkspaceStore()
     await workspace.init()
     const eventLog = await canonicalEventLog()
@@ -928,6 +1035,7 @@ describe("Sessione 2 — negative controls del confine", () => {
       simulationInitialState: {
         roomId: ROOM_A,
         instanceId: INSTANCE_A,
+        sceneDigest: serialized.receipt.sceneDigest,
         state: serialized.state,
       },
     })).toThrow(/restore scope mismatch/i)
@@ -941,9 +1049,24 @@ describe("Sessione 2 — negative controls del confine", () => {
       simulationInitialState: {
         roomId: ROOM_A,
         instanceId: INSTANCE_A,
+        sceneDigest: serialized.receipt.sceneDigest,
         state: serialized.state,
       },
     })).toThrow(/restore scope mismatch/i)
+
+    expect(() => new ToolHost(verticalManifest, grant, {
+      store: workspace,
+      board,
+      instanceId: INSTANCE_A,
+      roomId: ROOM_A,
+      simulation: realSimulationService,
+      simulationInitialState: {
+        roomId: ROOM_A,
+        instanceId: INSTANCE_A,
+        sceneDigest: "00000000",
+        state: serialized.state,
+      },
+    })).toThrow(/restore digest mismatch/i)
 
     expect(() => hostFor(
       workspace,
@@ -1074,6 +1197,12 @@ describe("Sessione 2 — negative controls del confine", () => {
   })
 
   it("il producer del test usa sempre un full SHA reale del checkout", () => {
-    expect(studioProducerIdentity().commitSha).toMatch(/^[0-9a-f]{40}$/)
+    const checkoutSha = execFileSync(
+      "git",
+      ["rev-parse", "HEAD"],
+      { cwd: repoRoot, encoding: "utf8" },
+    ).replace(/\r?\n$/, "")
+    expect(studioProducerIdentity().commitSha).toBe(checkoutSha)
+    expect(checkoutSha).toMatch(/^[0-9a-f]{40}$/)
   })
 })
