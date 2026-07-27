@@ -5,9 +5,11 @@
 
 import type { ReactElement } from "react";
 import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
-import type { SimulationOperationEnvelope } from "../../sim/core/simulationOperations";
 import type { LessonOsEvent } from "../lessonos/eventlog";
-import type { SimulationApplyOperationResult } from "../toolhost-protocol";
+import type {
+  SimulationApplyOperationParams,
+  SimulationApplyOperationResult,
+} from "../toolhost-protocol";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
 export type ToolEmbedLike = {
@@ -24,7 +26,7 @@ export type ToolLinkRef = {
 
 export type SimulationConnectWireRequest<TScene> = {
   scene: TScene;
-  operation: SimulationOperationEnvelope;
+  operation: SimulationApplyOperationParams["operation"];
 };
 
 export type BoundSimulationConnectWireRequest<TScene> =
@@ -34,6 +36,31 @@ export type SimulationConnectWireResult<TScene> = {
   scene: TScene;
   result: SimulationApplyOperationResult;
 };
+
+export function dispatchSimulationConnectWire<TScene>(input: {
+  apply: NonNullable<SimulationToolHost["applyConnectWire"]>;
+  scene: TScene;
+  embedId: string;
+  wire: { id: string; from: string; to: string; color: string };
+  onAccepted: (result: SimulationConnectWireResult<TScene>) => void;
+  onRejected: () => void;
+  onSettled: () => void;
+}): void {
+  const operation: SimulationApplyOperationParams["operation"] = {
+    schema: "simulation-operation/1",
+    id: `${input.embedId}:connect:${input.wire.id}`,
+    actor: "manual",
+    origin: "canvas",
+    targetProvider: "local",
+    providerMode: "static",
+    operation: { kind: "connect-wire", wire: input.wire },
+  };
+  void Promise.resolve()
+    .then(() => input.apply({ scene: input.scene, operation }))
+    .then(input.onAccepted)
+    .catch(input.onRejected)
+    .finally(input.onSettled);
+}
 
 /**
  * Servizi che l'host offre al tool renderizzato (tutti opzionali: un tool

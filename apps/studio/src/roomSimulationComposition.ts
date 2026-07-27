@@ -144,7 +144,11 @@ export async function applyRoomSimulationConnectWire<TScene>(
       operation: request.operation,
     })
 
-    const instanceId = await runtimeInstanceId(request.embedId)
+    const instanceId = await runtimeInstanceId(
+      composition.roomId,
+      request.toolId,
+      request.embedId,
+    )
     const host = new ToolHost(
       simulationManifest,
       resolveGrant(simulationManifest, ["service.simulation"]),
@@ -357,10 +361,16 @@ async function acquireStoreTurn(store: object): Promise<() => void> {
   }
 }
 
-async function runtimeInstanceId(embedId: string): Promise<string> {
+async function runtimeInstanceId(
+  roomId: string,
+  toolId: string,
+  embedId: string,
+): Promise<string> {
   const bytes = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(`ardesia:simulation-embed:v1:${embedId}`),
+    new TextEncoder().encode(
+      `ardesia:simulation-embed:v2:${JSON.stringify([roomId, toolId, embedId])}`,
+    ),
   )
   const hex = Array.from(new Uint8Array(bytes), (byte) =>
     byte.toString(16).padStart(2, "0"),

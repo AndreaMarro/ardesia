@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactElement } from "react";
 
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
@@ -16,7 +16,12 @@ import {
   solveSeriesLoop,
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
-import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
+import {
+  dispatchSimulationConnectWire,
+  registerSimulationTool,
+  getSimulationTool,
+  type SimulationToolHost,
+} from "./simulationPluginRegistry";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { catalogSummary } from "./elabExperimentCatalog";
@@ -31,7 +36,6 @@ import {
   applyElabCanvasWireUpdate,
   elabCanvasComponentAddOperation,
   elabCanvasComponentForAdd,
-  elabCanvasConnectionAddOperation,
   elabCanvasLayoutChangeOperation,
   elabCanvasNextComponentId,
   elabCanvasWireDeleteOperation,
@@ -1269,7 +1273,11 @@ function ElabCoreCanvasMount({
   const [mountStatus, setMountStatus] = useState<"pending" | "mounted" | "error">("pending");
   const [lastOperationId, setLastOperationId] = useState<string | null>(null);
   const sceneRef = useRef(localScene);
-  sceneRef.current = localScene;
+  const connectWireInFlightRef = useRef(false);
+
+  useLayoutEffect(() => {
+    sceneRef.current = localScene;
+  }, [localScene]);
 
   useEffect(() => {
     setLocalScene(scene);
@@ -1289,12 +1297,16 @@ function ElabCoreCanvasMount({
     void import("@elab-tutor-plugin/plugin/renderEmbeddable")
       .then(({ renderEmbeddable }) => {
         if (disposed) return;
+        const persistScene = (nextScene: SimulationSceneV1): void => {
+          if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
+            host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
+          }
+        };
         handle = renderEmbeddable(node, {
           experiment: canvasState.experiment,
           componentStates: canvasState.componentStates,
-          // Palette/paste/duplica mutano la scena canonica; il componente nasce
-          // flottante e resta elettricamente inerte finché non viene cablato.
           onComponentAdd: (type: string, position: { x: number; y: number }): string | null => {
+            if (connectWireInFlightRef.current) return null;
             const componentId = elabCanvasNextComponentId(canvasState.experiment.components, type);
             const component = elabCanvasComponentForAdd(componentId, type);
             if (component === null) return null;
@@ -1306,14 +1318,13 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasComponentAdd(current, component, position);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              persistScene(nextScene);
               return nextScene;
             });
             return componentId;
           },
           onLayoutChange: (componentId: string, pose: { x: number; y: number; rotation?: number; parentId?: string }) => {
+            if (connectWireInFlightRef.current) return;
             const operation = elabCanvasLayoutChangeOperation({
               id: `${toolLink.embedId}:move:${componentId}:${Math.round(pose.x)}:${Math.round(pose.y)}`,
               componentId,
@@ -1322,36 +1333,39 @@ function ElabCoreCanvasMount({
             setLastOperationId(operation.id);
             setLocalScene((current) => {
               const nextScene = applyElabCanvasLayoutChange(current, componentId, pose);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              persistScene(nextScene);
               return nextScene;
             });
           },
           onConnectionAdd: (from: string, to: string) => {
-            if (!host?.applyConnectWire) return;
-            const connection: ElabCanvasWireEventConnection = {
-              id: `${toolLink.embedId}:wire:${canvasState.experiment.connections.length + 1}`,
-              from,
-              to,
-              color: inferCanvasWireColor(from, to),
-            };
-            const operation = elabCanvasConnectionAddOperation({
-              id: `${toolLink.embedId}:connect:${connection.id}`,
-              connection,
-            });
-            void host.applyConnectWire({
+            const applyConnectWire = host?.applyConnectWire;
+            if (applyConnectWire === undefined || connectWireInFlightRef.current) return;
+            const connectionId =
+              `${toolLink.embedId}:wire:${canvasState.experiment.connections.length + 1}`;
+            connectWireInFlightRef.current = true;
+            dispatchSimulationConnectWire({
+              apply: applyConnectWire,
               scene: localScene,
-              operation,
-            }).then(({ scene, result }) => {
-              if (disposed || sceneRef.current !== localScene) return;
-              setLastOperationId(result.operationId);
-              setLocalScene(scene);
-            }).catch(() => {
-              if (!disposed) setMountStatus("error");
+              embedId: toolLink.embedId,
+              wire: {
+                id: connectionId,
+                from,
+                to,
+                color: inferCanvasWireColor(from, to),
+              },
+              onAccepted: ({ scene, result }) => {
+                if (disposed || sceneRef.current !== localScene) return;
+                setLastOperationId(result.operationId);
+                setLocalScene(scene);
+              },
+              onRejected: () => {
+                if (!disposed) setMountStatus("error");
+              },
+              onSettled: () => { connectWireInFlightRef.current = false; },
             });
           },
           onWireUpdate: (wireIndex: number, connection: ElabCanvasWireEventConnection) => {
+            if (connectWireInFlightRef.current) return;
             setLocalScene((current) => {
               const operation = elabCanvasWireUpdateOperation({
                 id: `${toolLink.embedId}:wire-update:${wireIndex}`,
@@ -1361,13 +1375,12 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireUpdate(current, wireIndex, connection);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              persistScene(nextScene);
               return nextScene;
             });
           },
           onWireDelete: (wireIndex: number) => {
+            if (connectWireInFlightRef.current) return;
             setLocalScene((current) => {
               const operation = elabCanvasWireDeleteOperation({
                 id: `${toolLink.embedId}:wire-delete:${wireIndex}`,
@@ -1376,9 +1389,7 @@ function ElabCoreCanvasMount({
               });
               setLastOperationId(operation.id);
               const nextScene = applyElabCanvasWireDelete(current, wireIndex);
-              if (host?.persistEmbedState && markerState?.kind === "simulation-scene-v1") {
-                host.persistEmbedState(toolLink.embedId, { ...markerState, scene: nextScene }, toolLink.toolId);
-              }
+              persistScene(nextScene);
               return nextScene;
             });
           },

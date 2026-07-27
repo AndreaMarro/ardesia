@@ -7,7 +7,14 @@ import { act, cleanup, render, waitFor } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
 type CapturedCanvasProps = {
-  experiment: { connections: Array<{ from: string; to: string }> }
+  experiment: {
+    components: Array<{ id: string }>
+    connections: Array<{ from: string; to: string }>
+  }
+  onComponentAdd?: (
+    type: string,
+    position: { x: number; y: number },
+  ) => string | null
   onConnectionAdd?: (from: string, to: string) => void
 }
 
@@ -29,7 +36,7 @@ import { applyRoomSimulationConnectWire } from "../roomSimulationComposition"
 import { readAuditLog } from "../toolhost/audit"
 import { addToKillList } from "../toolhost/killList"
 import { EMBED_DATA_KEY, type BoardElementLike } from "../toolhost/caps/board"
-import type { SimulationOperationEnvelope } from "../../sim/core/simulationOperations"
+import type { SimulationApplyOperationParams } from "../toolhost-protocol"
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest"
 
 afterEach(() => {
@@ -59,7 +66,9 @@ class MemoryStore {
   }
 }
 
-function shortCircuitOperation(suffix: string): SimulationOperationEnvelope {
+function shortCircuitOperation(
+  suffix: string,
+): SimulationApplyOperationParams["operation"] {
   return {
     schema: "simulation-operation/1",
     id: `session-2:live-short:${suffix}`,
@@ -376,15 +385,15 @@ describe("Room live Simulation connect-wire", () => {
     })
   })
 
-  it("mantiene room e board B isolate byte-per-byte da A", async () => {
-    const storeA = new MemoryStore()
-    const storeB = new MemoryStore()
+  it("mantiene room, instance receipt e board isolate anche sullo stesso store", async () => {
+    const store = new MemoryStore()
     const roomA = boardHarness()
     const roomB = boardHarness()
     const roomABytes = roomA.json()
+    const roomBBytes = roomB.json()
 
-    await applyRoomSimulationConnectWire(
-      { roomId: "session-2-room-b", store: storeB, board: roomB.board },
+    const resultB = await applyRoomSimulationConnectWire(
+      { roomId: "session-2-room-b", store, board: roomB.board },
       {
         toolId: "io.ardesia.simulation",
         embedId: "elab-v1-cap6-esp1-first-led",
@@ -395,11 +404,41 @@ describe("Room live Simulation connect-wire", () => {
 
     expect(roomA.json()).toBe(roomABytes)
     expect(roomB.json()).not.toBe(roomABytes)
-    expect(await readAuditLog(storeA, "io.ardesia.simulation")).toEqual({
-      entries: [],
-      malformed: 0,
-    })
-    expect((await readAuditLog(storeB, "io.ardesia.simulation")).entries).toHaveLength(3)
+    const roomBAfterOwnMutation = roomB.json()
+    const resultA = await applyRoomSimulationConnectWire(
+      { roomId: "session-2-room-a", store, board: roomA.board },
+      {
+        toolId: "io.ardesia.simulation",
+        embedId: "elab-v1-cap6-esp1-first-led",
+        scene: roomA.binding().state.scene,
+        operation: shortCircuitOperation("room-a"),
+      },
+    )
+
+    expect(roomA.json()).not.toBe(roomABytes)
+    expect(roomB.json()).toBe(roomBAfterOwnMutation)
+    expect(roomBAfterOwnMutation).not.toBe(roomBBytes)
+    expect((roomA.binding().state.scene.connections.at(-1) as { id?: string })?.id).toBe(
+      "session-2-live-short-room-a",
+    )
+    expect((roomB.binding().state.scene.connections.at(-1) as { id?: string })?.id).toBe(
+      "session-2-live-short-room-b",
+    )
+    expect(resultA.result.roomId).toBe("session-2-room-a")
+    expect(resultB.result.roomId).toBe("session-2-room-b")
+    expect(resultA.result.receipt.instanceId).not.toBe(
+      resultB.result.receipt.instanceId,
+    )
+    const audit = await readAuditLog(store, "io.ardesia.simulation")
+    expect(audit.malformed).toBe(0)
+    expect(audit.entries.map((entry) => entry.method)).toEqual([
+      "simulation.loadScene",
+      "simulation.applyOperation",
+      "board.write",
+      "simulation.loadScene",
+      "simulation.applyOperation",
+      "board.write",
+    ])
   })
 
   it("ToolCanvas non muta né persiste prima della receipt e non ha fallback sul reject", async () => {
@@ -423,14 +462,25 @@ describe("Room live Simulation connect-wire", () => {
     )?.getAttribute("data-elab-canvas-last-operation") ?? null
 
     act(() => rendered.at(-1)!.onConnectionAdd!("bat1:positive", "bat1:negative"))
-    expect(applyConnectWire).toHaveBeenCalledTimes(1)
+    act(() => rendered.at(-1)!.onConnectionAdd!("bat1:positive", "bat1:negative"))
+    await waitFor(() => expect(applyConnectWire).toHaveBeenCalledTimes(1))
     expect(rendered.at(-1)!.experiment.connections).toHaveLength(baseline)
+    const componentBaseline = rendered.at(-1)!.experiment.components.length
+    let concurrentComponentId: string | null | undefined
+    act(() => {
+      concurrentComponentId = rendered.at(-1)!.onComponentAdd?.(
+        "resistor",
+        { x: 120, y: 160 },
+      )
+    })
+    expect(concurrentComponentId).toBeNull()
+    expect(rendered.at(-1)!.experiment.components).toHaveLength(componentBaseline)
     expect(operationMarker()).toBeNull()
     expect(persist).not.toHaveBeenCalled()
 
     const request = applyConnectWire.mock.calls[0]![0] as {
       scene: ReturnType<typeof createReferenceSimulationScene>
-      operation: SimulationOperationEnvelope
+      operation: SimulationApplyOperationParams["operation"]
     }
     const acceptedScene = {
       ...request.scene,
@@ -468,6 +518,10 @@ describe("Room live Simulation connect-wire", () => {
     )
     expect(operationMarker()).toBe(request.operation.id)
     expect(persist).not.toHaveBeenCalled()
+    act(() => rendered.at(-1)!.onConnectionAdd!("bat1:positive", "bat1:negative"))
+    await waitFor(() => expect(applyConnectWire).toHaveBeenCalledTimes(2))
+    await act(async () => Promise.resolve())
+    mounted.unmount()
 
     const rejected = vi.fn(() => Promise.reject(new Error("host rejected")))
     const beforeRejectedMount = rendered.length
@@ -475,12 +529,17 @@ describe("Room live Simulation connect-wire", () => {
       persistEmbedState: persist,
       applyConnectWire: rejected as never,
     })
-    render(rejectedView!)
+    const rejectedMount = render(rejectedView!)
     await waitFor(() => expect(rendered.length).toBeGreaterThan(beforeRejectedMount))
     const rejectedProps = rendered.at(-1)!
     const rejectedBaseline = rejectedProps.experiment.connections.length
     act(() => rejectedProps.onConnectionAdd!("bat1:positive", "bat1:negative"))
     await waitFor(() => expect(rejected).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(rejectedMount.container.querySelector(
+      "[data-elab-canvas-experiment-id][data-elab-core-canvas-mounted]",
+    )?.getAttribute("data-elab-core-canvas-mounted")).toBe("error"))
+    act(() => rejectedProps.onConnectionAdd!("bat1:positive", "bat1:negative"))
+    await waitFor(() => expect(rejected).toHaveBeenCalledTimes(2))
     expect(rejectedProps.experiment.connections).toHaveLength(rejectedBaseline)
     expect(persist).not.toHaveBeenCalled()
 
