@@ -1,10 +1,9 @@
 // @vitest-environment jsdom
 //
-// Sessione 2 — verticale causale:
+// Sessione 2 — harness verticale causale parziale:
 // pack reale v1-cap6-esp1 → PluginInstance Simulation → ToolHost JSON-RPC →
 // runtime/provider reali → LessonOS → Workspace save/cold reopen/export-import.
 //
-// Il primo RED deve essere METHOD_NOT_FOUND su simulation.applyOperation.
 // Nessun valore elettrico atteso è inventato: gli oracoli leggono il risultato
 // del provider locale e il suo solverDiagnostics.shortCircuit.
 
@@ -42,6 +41,7 @@ import {
   describeSimulationRuntimeApi,
   loadSimulationRuntimeScene,
   readSimulationRuntimeDiagnostics,
+  restoreSimulationRuntimeState,
   serializeSimulationRuntimeState,
   solveSimulationRuntimeProvider,
 } from "../../sim/core/simulationRuntime.ts"
@@ -219,9 +219,9 @@ const SHORT_CIRCUIT_OPERATION = {
 } as const
 
 /**
- * Manifest atteso dal test rosso. Prima dell'implementazione il manifest vivo
- * non dichiara ancora service.simulation/SDK 1.4: la verifica di convergenza in
- * fondo al file impedisce che questa proiezione resti una seconda verità.
+ * Manifest proiettato usato dal test RED originario. La verifica di convergenza
+ * in fondo al file impedisce che resti una seconda verità rispetto al manifest
+ * vivo ora allineato a service.simulation/SDK 1.4.
  */
 const verticalManifest: ToolManifest = ToolManifestSchema.parse({
   ...simulationManifest,
@@ -257,6 +257,8 @@ const realSimulationService: SimulationRuntimeApiLike = Object.assign(
       readSimulationRuntimeDiagnostics(state as SimulationRuntimeState),
     serializeState: (state: unknown) =>
       serializeSimulationRuntimeState(state as SimulationRuntimeState),
+    restoreState: (serialized: unknown) =>
+      restoreSimulationRuntimeState(serialized as SimulationRuntimeState),
   },
   {
     applyOperation: (state: unknown, operation: unknown) => {
@@ -428,8 +430,8 @@ afterEach(() => {
   localStorage.clear()
 })
 
-describe("Sessione 2 — verticale Simulation Plugin / ELABTutor", () => {
-  it("RED: mutazione reale host-mediated → provider → LessonOS → cold reopen → export/import", async () => {
+describe("Sessione 2 — harness verticale parziale Simulation Plugin / ELABTutor", () => {
+  it("harness: mutazione reale host-mediated → provider → LessonOS → cold reopen → export/import", async () => {
     expect(packManifest).toMatchObject({
       kind: "pack",
       id: "io.elab.tutor",
