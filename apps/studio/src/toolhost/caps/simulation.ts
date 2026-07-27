@@ -53,6 +53,21 @@ export interface SimulationRuntimeApiLike {
   describe(): { pluginId: string; apiVersion: string; stateSchema: string }
   sceneDigest(scene: SimulationScene): string
   loadScene(input: { instanceId: string; scene: SimulationScene; diagnostics?: string[] }): unknown
+  /**
+   * Postcontratto obbligatorio del connect-wire, verificato dall'host in
+   * `_assertAppliedOperation` prima di qualunque commit:
+   *
+   * - preserva l'ordine e TUTTE le connessioni esistenti, con gli stessi
+   *   `from`/`to` e gli stessi `id` già assegnati;
+   * - aggiunge il wire richiesto UNA sola volta e in CODA a `connections`;
+   * - nessun riordino, nessuna rimozione, nessuna riscrittura di `id`;
+   * - `components` e `pinAssignments` restano canonicamente identici.
+   *
+   * L'interfaccia è strutturale e il runtime è iniettato: il tipo non può
+   * imporre nulla di tutto questo. Una implementazione che riordina, deduplica
+   * o normalizza la lista è indistinguibile per il compilatore da una corretta,
+   * e viene respinta a runtime lasciando stato e digest byte-invariati.
+   */
   applyOperation?(
     state: unknown,
     operation: SimulationApplyOperationParams["operation"],

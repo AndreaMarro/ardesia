@@ -884,7 +884,7 @@ CodeRabbit findings, and the external Obsidian/Markdown/Git receipt.
 | 3 — runtime/provider | `GREEN_BOUNDED` |
 | 4 — persistence/isolation | `GREEN_BOUNDED` |
 | 5 — resolvable provenance | `BLOCKED_EVIDENCE_RESOLUTION_MISSING` |
-| 6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; 22 completed reviews and 116 raw findings are classified, but fixes after full review X1 (review ID `1785139145693`) require a new terminal exact-diff pass |
+| 6 — review | `PENDING_FINAL_EXACT_DIFF_REVIEW`; X2 (review ID `1785146002907`) and its repairs are classified, while the terminal exact-diff rerun and post-R4 aggregate remain bound by the external Knowledge receipt |
 | 7 — docs/canon | product leg committed; Knowledge leg binds the final product and vault SHAs |
 
 No deploy, remote mutation, dependency addition, scheduler change, Basic Memory
