@@ -308,9 +308,9 @@ export type LessonEventEmitParams = z.infer<typeof LessonEventEmitParamsSchema>
 // e schema stretto per ciascuno — un broker generico `service.call(payload opaco)`
 // distruggerebbe la proprietà più forte di questo protocollo (ogni params validato
 // lato host). L'identità di ISTANZA non compare in nessun params: la possiede
-// l'host (ToolHostDeps.instanceId), come per storage e board.
-// `applyOperation` è DEFERITO: la mutazione trascina placement pipeline, occupancy
-// e pin vocabulary, e merita falsificatori propri.
+// l'host (ToolHostDeps.instanceId), come per storage e board. Da SDK 1.4 la sola
+// mutazione ammessa sul wire è connect-wire: non è un patch endpoint generico e
+// attraversa la pipeline canonica placement → provider → diagnostica.
 
 const SimulationSceneSchema = z.strictObject({
   components: z
@@ -369,6 +369,44 @@ export const SimulationSolveResultSchema = z.strictObject({
   result: z.unknown(),
 })
 
+const SimulationConnectWireEnvelopeSchema = z.strictObject({
+  schema: z.literal("simulation-operation/1"),
+  id: z.string().min(1).max(256),
+  actor: z.literal("manual"),
+  origin: z.literal("canvas"),
+  targetProvider: z.literal("local"),
+  providerMode: z.literal("static"),
+  operation: z.strictObject({
+    kind: z.literal("connect-wire"),
+    wire: z.strictObject({
+      id: z.string().min(1).max(256),
+      from: z.string().min(1).max(256),
+      to: z.string().min(1).max(256),
+      color: z.string().min(1).max(64),
+    }),
+  }),
+})
+
+export const SimulationApplyOperationParamsSchema = z.strictObject({
+  expectedSceneDigest: z.string().min(1).max(128),
+  operation: SimulationConnectWireEnvelopeSchema,
+})
+export type SimulationApplyOperationParams = z.infer<
+  typeof SimulationApplyOperationParamsSchema
+>
+
+export const SimulationApplyOperationResultSchema = z.strictObject({
+  receipt: SimulationReceiptSchema,
+  roomId: z.string().min(1).max(128),
+  operationId: z.string().min(1).max(256),
+  accepted: z.literal(true),
+  solveOutcome: z.unknown(),
+  diagnostics: z.unknown(),
+})
+export type SimulationApplyOperationResult = z.infer<
+  typeof SimulationApplyOperationResultSchema
+>
+
 export const SimulationReadDiagnosticsParamsSchema = z.strictObject({})
 export const SimulationReadDiagnosticsResultSchema = z.strictObject({
   receipt: SimulationReceiptSchema,
@@ -416,6 +454,11 @@ export const TOOL_METHODS: Record<string, MethodSpec> = {
     cap: "service.simulation",
     params: SimulationLoadSceneParamsSchema,
     result: SimulationLoadSceneResultSchema,
+  },
+  "simulation.applyOperation": {
+    cap: "service.simulation",
+    params: SimulationApplyOperationParamsSchema,
+    result: SimulationApplyOperationResultSchema,
   },
   "simulation.solve": {
     cap: "service.simulation",

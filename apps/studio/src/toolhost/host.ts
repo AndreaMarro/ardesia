@@ -70,14 +70,25 @@ export interface ToolHostDeps {
    */
   instanceId?: string
   /**
+   * Scope lezione/room imposto dal composition root. I metodi Simulation 1.3
+   * restano compatibili senza; ogni mutazione 1.4 lo richiede fail-closed.
+   */
+  roomId?: string
+  /**
    * Simulation Plugin esposto come SERVIZIO (capability service.simulation): un
-   * Pack disciplinare lo usa via wire invece di importarne il codice. Iniettato
-   * dal composition root — l'host non importa mai `sim/`, così Layer 0 non
-   * impara cos'è un circuito. Senza iniezione il metodo resta concesso-ma-non
+   * workflow disciplinare lo usa via wire invece di importarne il codice.
+   * Iniettato dal composition root — l'host non importa mai `sim/`, così Layer
+   * 0 non impara cos'è un circuito. Senza iniezione il metodo resta concesso-ma-non
    * -cablato (INTERNAL, mai silenzio), come graph.query senza eventLog.
    * Richiede `instanceId`: senza identità di istanza non esiste namespace.
    */
   simulation?: SimulationRuntimeApiLike
+  /**
+   * Stato opaco già verificato e recuperato dal marker room-scoped della
+   * PluginInstance. Non arriva mai dal tool/wire: il provider lo valida e il
+   * broker ricostruisce digest + ownership prima del mount.
+   */
+  simulationInitialState?: unknown
   makeSkeleton?: (embedId: string) => BoardElementLike
   theme?: "light" | "dark"
   locale?: string
@@ -133,7 +144,12 @@ export class ToolHost {
     this._simulation =
       deps.simulation === undefined || deps.instanceId === undefined
         ? null
-        : new ToolSimulation(deps.simulation, deps.instanceId)
+        : new ToolSimulation(deps.simulation, deps.instanceId, {
+            ...(deps.roomId === undefined ? {} : { roomId: deps.roomId }),
+            ...(deps.simulationInitialState === undefined
+              ? {}
+              : { initialState: deps.simulationInitialState }),
+          })
   }
 
   /** Sessione viva (mount corrente), o null se il tool non è montato. */
@@ -300,6 +316,10 @@ export class ToolHost {
       handlers["simulation.describe"] = () => simulation.describe()
       handlers["simulation.loadScene"] = (p) =>
         simulation.loadScene(p as Parameters<ToolSimulation["loadScene"]>[0])
+      handlers["simulation.applyOperation"] = (p) =>
+        simulation.applyOperation(
+          p as Parameters<ToolSimulation["applyOperation"]>[0],
+        )
       handlers["simulation.solve"] = (p) => simulation.solve(p as Parameters<ToolSimulation["solve"]>[0])
       handlers["simulation.readDiagnostics"] = () => simulation.readDiagnostics()
       handlers["simulation.serializeState"] = () => simulation.serializeState()

@@ -32,12 +32,17 @@ import type { ToolManifest } from "../toolhost-protocol/manifest.ts"
 // Il protocollo è la grammatica dei messaggi sul filo; il contratto è l'intera
 // superficie pubblica che un plugin compila contro. Possono evolvere insieme o
 // separatamente (es. un nuovo helper SDK = MINOR del contratto, wire invariato).
+// 1.4.0 — MINOR: nuovo metodo wire retro-compatibile
+// `simulation.applyOperation`, limitato a connect-wire e protetto da digest
+// precondition; room e instance identity restano imposte dall'host.
+// 1.3.0 — MINOR: famiglia `service.simulation` host-mediated con discovery,
+// load, solve, diagnostica e serializzazione.
 // 1.2.0 — MINOR: nuovo metodo wire retro-compatibile `lesson.event.emit`:
 // append controllato di eventi didattici verificabili nel log LessonOS. Nessun
 // metodo, capability o codice errore esistente è cambiato.
 // 1.1.0 — MINOR: nuovo metodo wire retro-compatibile `graph.query` (P0-D):
 // vista READ-ONLY sul grafo LessonOS derivato dall'event-log.
-export const CONTRACT_VERSION = "1.3.0"
+export const CONTRACT_VERSION = "1.4.0"
 
 // ---- Descrittore macchina-verificabile del contratto (i 4 pilastri) --------
 

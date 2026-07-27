@@ -1,5 +1,6 @@
-// P0-E — capability `service.simulation`: un modulo (ELABTutor Pack eseguibile)
-// USA il Simulation Plugin attraverso l'host, senza importarne il codice.
+// P0-E — capability `service.simulation`: un consumer di workflow USA il
+// Simulation Plugin attraverso l'host, senza importarne il codice. ELABTutor
+// resta un Pack di dati/metodo, non un eseguibile parallelo.
 //
 // Questo file NON importa nulla da `sim/`: il servizio arriva iniettato come
 // interfaccia strutturale. È la ragione per cui la famiglia `service.*` può
@@ -13,11 +14,26 @@
 import type { z } from "zod"
 
 import { assertInstanceId } from "./instance.ts"
-import { SimulationDescribeResultSchema } from "../../toolhost-protocol/index.ts"
-import type { SimulationReceipt, SimulationScene } from "../../toolhost-protocol/index.ts"
+import {
+  SimulationApplyOperationResultSchema,
+  SimulationDescribeResultSchema,
+} from "../../toolhost-protocol/index.ts"
+import type {
+  SimulationApplyOperationParams,
+  SimulationApplyOperationResult,
+  SimulationReceipt,
+  SimulationScene,
+} from "../../toolhost-protocol/index.ts"
 
 /** Contratto del servizio dopo la validazione: literal pinnati, mai castati. */
 export type SimulationContract = z.infer<typeof SimulationDescribeResultSchema>
+
+type SimulationRuntimeApplyResultLike = {
+  state: unknown
+  accepted: boolean
+  result: unknown
+  diagnostics: unknown
+}
 
 /**
  * Superficie del Simulation Plugin che l'host consuma. La soddisfano le funzioni
@@ -28,21 +44,38 @@ export interface SimulationRuntimeApiLike {
   describe(): { pluginId: string; apiVersion: string; stateSchema: string }
   sceneDigest(scene: SimulationScene): string
   loadScene(input: { instanceId: string; scene: SimulationScene; diagnostics?: string[] }): unknown
+  applyOperation?(
+    state: unknown,
+    operation: SimulationApplyOperationParams["operation"],
+  ): SimulationRuntimeApplyResultLike
   solve(state: unknown, request: { provider: string; mode: string }): { state: unknown; result: unknown }
   readDiagnostics(state: unknown): unknown
   serializeState(state: unknown): unknown
+  /** Restore host-owned, mai raggiungibile dal wire del plugin. */
+  restoreState?(serialized: unknown): unknown
 }
 
 export class ToolSimulation {
   private _api: SimulationRuntimeApiLike
   private _instanceId: string
+  private _roomId: string | null
   private _state: unknown = null
   private _digest: string | null = null
 
-  constructor(api: SimulationRuntimeApiLike, instanceId: string) {
+  constructor(
+    api: SimulationRuntimeApiLike,
+    instanceId: string,
+    options: { roomId?: string; initialState?: unknown } = {},
+  ) {
     assertInstanceId(instanceId)
+    if (options.roomId !== undefined) assertInstanceId(options.roomId)
     this._api = api
     this._instanceId = instanceId
+    this._roomId = options.roomId ?? null
+
+    if (options.initialState !== undefined) {
+      this._restoreInitialState(options.initialState)
+    }
   }
 
   describe(): SimulationContract {
@@ -63,16 +96,67 @@ export class ToolSimulation {
       scene: params.scene,
       ...(params.diagnostics === undefined ? {} : { diagnostics: params.diagnostics }),
     }))
-    const digest = this._api.sceneDigest(params.scene)
+    this._assertStateInstance(state)
+    const digest = this._api.sceneDigest(this._sceneFromState(state))
     this._state = state
     this._digest = digest
     return { receipt: this._receipt(contract, digest) }
   }
 
+  applyOperation(params: SimulationApplyOperationParams): SimulationApplyOperationResult {
+    const contract = this._contract()
+    const roomId = this._requireRoomId()
+    const currentDigest = this._requireDigest()
+    if (params.expectedSceneDigest !== currentDigest) {
+      throw new Error(
+        `scene digest precondition failed: expected "${params.expectedSceneDigest}", current "${currentDigest}"`,
+      )
+    }
+
+    // L'API runtime è iniettata e quindi non è implicitamente fidata. Le viene
+    // consegnato uno snapshot isolato: anche una implementazione che mutasse il
+    // proprio argomento non può alterare lo stato committato prima dei check.
+    const serialized = this._checkedState(
+      this._api.serializeState(this._requireState()),
+    )
+    const isolatedState = structuredClone(serialized)
+    const apply = this._api.applyOperation
+    if (apply === undefined) {
+      throw new Error("simulation service does not support operation application")
+    }
+    const applied = apply.call(this._api, isolatedState, params.operation)
+    if (typeof applied.accepted !== "boolean") {
+      throw new Error("simulation service returned an invalid operation acceptance")
+    }
+    if (!applied.accepted) {
+      throw new Error(`simulation operation "${params.operation.id}" rejected`)
+    }
+
+    const state = this._checkedState(applied.state)
+    this._assertStateInstance(state)
+    const digest = this._api.sceneDigest(this._sceneFromState(state))
+    const result = SimulationApplyOperationResultSchema.parse({
+      receipt: this._receipt(contract, digest),
+      roomId,
+      operationId: params.operation.id,
+      accepted: true,
+      solveOutcome: applied.result,
+      diagnostics: applied.diagnostics,
+    })
+
+    // Unico commit point: ogni validazione, solve, digest e result check è
+    // terminato. Qualunque throw precedente lascia stato e digest byte-invariati.
+    this._state = state
+    this._digest = digest
+    return result
+  }
+
   solve(params: { provider: string; mode: string }): { receipt: SimulationReceipt; result: unknown } {
     const contract = this._contract()
     const solved = this._api.solve(this._requireState(), params)
-    this._state = this._checkedState(solved.state)
+    const state = this._checkedState(solved.state)
+    this._assertStateInstance(state)
+    this._state = state
     return { receipt: this._receipt(contract, this._requireDigest()), result: solved.result }
   }
 
@@ -113,6 +197,74 @@ export class ToolSimulation {
     return this._digest
   }
 
+  private _requireRoomId(): string {
+    if (this._roomId === null) {
+      throw new Error(`simulation mutation requires a host-owned roomId for instance "${this._instanceId}"`)
+    }
+    return this._roomId
+  }
+
+  private _restoreInitialState(serialized: unknown): void {
+    const restore = this._api.restoreState
+    if (restore === undefined) {
+      throw new Error("simulation service does not support host-owned state restore")
+    }
+    this._contract()
+    const state = this._checkedState(
+      restore.call(this._api, structuredClone(serialized)),
+    )
+    this._assertStateInstance(state)
+    const digest = this._api.sceneDigest(this._sceneFromState(state))
+    // Il contract check sopra impedisce di idratare uno stato con un provider
+    // fuori versione; stato e digest entrano insieme come per load/apply.
+    this._state = state
+    this._digest = digest
+  }
+
+  private _assertStateInstance(state: unknown): void {
+    if (!isRecord(state) || state.instanceId !== this._instanceId) {
+      throw new Error(
+        `simulation service returned state outside instance "${this._instanceId}"`,
+      )
+    }
+  }
+
+  private _sceneFromState(state: unknown): SimulationScene {
+    if (!isRecord(state) || !isRecord(state.scene)) {
+      throw new Error(`simulation state has no scene for instance "${this._instanceId}"`)
+    }
+    const scene = state.scene
+    if (!Array.isArray(scene.components) || !Array.isArray(scene.connections)) {
+      throw new Error(`simulation state scene is malformed for instance "${this._instanceId}"`)
+    }
+    for (const component of scene.components) {
+      if (
+        !isRecord(component) ||
+        typeof component.id !== "string" ||
+        typeof component.type !== "string"
+      ) {
+        throw new Error(`simulation state contains a malformed component`)
+      }
+    }
+    for (const connection of scene.connections) {
+      if (
+        !isRecord(connection) ||
+        typeof connection.from !== "string" ||
+        typeof connection.to !== "string"
+      ) {
+        throw new Error(`simulation state contains a malformed connection`)
+      }
+    }
+    if (
+      scene.pinAssignments !== undefined &&
+      (!isRecord(scene.pinAssignments) ||
+        Object.values(scene.pinAssignments).some((value) => typeof value !== "string"))
+    ) {
+      throw new Error(`simulation state contains malformed pin assignments`)
+    }
+    return scene as SimulationScene
+  }
+
   /**
    * Il wire NON valida i `result` degli handler: `routeRequest` inoltra il
    * payload così com'è. Se il receipt copiasse `apiVersion`/`pluginId` con un
@@ -132,4 +284,8 @@ export class ToolSimulation {
       sceneDigest,
     }
   }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
 }
