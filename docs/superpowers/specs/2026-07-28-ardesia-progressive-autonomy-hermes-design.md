@@ -350,6 +350,28 @@ transition receives an append-only receipt. Any safety failure:
 
 No receipt is itself treated as exogenous work.
 
+## Delivery decomposition
+
+This is an umbrella design, not a single implementation slice. Delivery is
+split into five independently reviewable subprojects. Each receives its own
+bounded implementation plan, tests and rollback receipt before the next starts:
+
+1. **Efficiency substrate:** repair the Codex sandbox boundary, skip unchanged
+   AI cycles, bound context packets and record comparable cost/latency metrics.
+2. **Hermes safe adapter:** install the dedicated runtime and `HERMES_HOME`,
+   enforce Headroom-only routing and the minimal tool allow-list, then prove
+   persistence and proxy-down failure.
+3. **Knowledge Steward boundary:** implement `wikillm_read`,
+   `proposal_submit`, append-only source ownership, atomic reindex and protected
+   root denial.
+4. **Shadow experiment harness:** freeze the paired corpus, champion/challenger
+   manifests, randomization, evaluation metrics and promotion receipts.
+5. **Progressive admission:** enable Stage 1 only after the shadow protocol
+   passes; Stage 2 and Stage 3 remain separate later promotions.
+
+The first implementation plan covers subproject 1 only. A passing subproject is
+necessary but never sufficient evidence to skip a later canary.
+
 ## Acceptance criteria for implementation
 
 The implementation is complete only when:
