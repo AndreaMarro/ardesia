@@ -357,6 +357,56 @@ class ControlPlaneTests(unittest.TestCase):
             cp.sha256_text(cp.canonical_json(cp.headroom_semantic_health(second))),
         )
 
+    def test_headroom_stats_reject_boolean_and_negative_efficiency_values(self) -> None:
+        payload = {
+            "requests": {
+                "total": 1,
+                "by_provider": {},
+                "by_model": {},
+                "by_stack": {},
+            },
+            "cost": {"cost_with_headroom_usd": True},
+            "request_logs": [
+                {
+                    "request_id": "bad-metrics",
+                    "provider": "openai",
+                    "model": "gpt-5.6-sol",
+                    "tags": {
+                        "stack": "ardesia-codex-route",
+                        "client": "codex",
+                    },
+                    "input_tokens_original": True,
+                    "input_tokens_optimized": -1,
+                    "output_tokens": 10,
+                    "tokens_saved": 0,
+                    "optimization_latency_ms": 10**400,
+                    "total_latency_ms": -5,
+                    "prompt": "must-not-be-retained",
+                    "headers": {"authorization": "must-not-be-retained"},
+                    "messages": [{"content": "must-not-be-retained"}],
+                }
+            ],
+        }
+        response = mock.MagicMock()
+        response.__enter__.return_value.read.return_value = json.dumps(payload).encode()
+        with mock.patch.object(
+            cp.urllib.request,
+            "urlopen",
+            return_value=response,
+        ):
+            stats = cp.headroom_request_stats(self.policy)
+        route = stats["route_logs"][0]
+        self.assertNotIn("input_tokens_original", route)
+        self.assertNotIn("input_tokens_optimized", route)
+        self.assertNotIn("optimization_latency_ms", route)
+        self.assertNotIn("total_latency_ms", route)
+        self.assertEqual(route["output_tokens"], 10)
+        self.assertEqual(route["tokens_saved"], 0)
+        self.assertNotIn("prompt", route)
+        self.assertNotIn("headers", route)
+        self.assertNotIn("messages", route)
+        self.assertIsNone(stats["cost_with_headroom_usd"])
+
     def test_every_ai_command_requires_observed_headroom_request_delta(self) -> None:
         active = {
             "state": "ACTIVE_REQUIRED_GATEWAY",
@@ -400,11 +450,13 @@ class ControlPlaneTests(unittest.TestCase):
                         "total": 7,
                         "digest": "b" * 64,
                         "route_logs": [],
+                        "cost_with_headroom_usd": 1.0,
                     },
                     RuntimeError("transient stats timeout"),
                     {
                         "total": 8,
                         "digest": "c" * 64,
+                        "cost_with_headroom_usd": 1.48,
                         "route_logs": [
                             {
                                 "stack": "ardesia-claude-clauderoute",
@@ -413,6 +465,13 @@ class ControlPlaneTests(unittest.TestCase):
                                 "request_id": "hr-1",
                                 "model": "claude-opus",
                                 "failed": False,
+                                "input_tokens_original": 25000,
+                                "input_tokens_optimized": 25000,
+                                "output_tokens": 900,
+                                "tokens_saved": 0,
+                                "savings_percent": 0.0,
+                                "optimization_latency_ms": 1.5,
+                                "total_latency_ms": 24000.0,
                             }
                         ],
                     },
@@ -444,6 +503,21 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(result["headroom_binding"]["route_attested"])
         self.assertEqual(result["headroom_binding"]["request_delta"], 1)
         self.assertTrue(Path(result["headroom_binding"]["receipt_path"]).is_file())
+        metrics = result["headroom_binding"]["efficiency_metrics"]
+        self.assertEqual(metrics["request_count"], 1)
+        self.assertEqual(metrics["input_tokens_original"], 25000)
+        self.assertEqual(metrics["input_tokens_optimized"], 25000)
+        self.assertEqual(metrics["output_tokens"], 900)
+        self.assertEqual(metrics["tokens_saved"], 0)
+        self.assertEqual(metrics["total_latency_ms"], 24000.0)
+        self.assertGreaterEqual(metrics["controller_wall_ms"], 0.0)
+        self.assertEqual(metrics["cost_attribution"], "GLOBAL_WINDOW_UPPER_BOUND")
+        self.assertAlmostEqual(metrics["cost_window_delta_usd"], 0.48)
+        receipt = cp.read_json(
+            Path(result["headroom_binding"]["receipt_path"]),
+            {},
+        )
+        self.assertEqual(receipt["efficiency_metrics"], metrics)
 
         with (
             mock.patch.object(cp, "headroom_status", return_value=active),
@@ -1268,6 +1342,113 @@ class ControlPlaneTests(unittest.TestCase):
         directory = Path(result["path"])
         self.assertTrue((directory / "skip.json").is_file())
         self.assertFalse((directory / "scientific-audit.json").exists())
+
+    def test_changed_scientific_cycle_surfaces_bounded_efficiency_metrics(self) -> None:
+        directory = self.runtime / "reviews" / "changed-efficiency"
+        directory.mkdir(parents=True)
+        audit_input = {"bounded": "audit-input"}
+        supervisor_context = {"bounded": "supervisor-context"}
+        route_metrics = {
+            "request_count": 1,
+            "input_tokens_original": 25000.0,
+            "input_tokens_optimized": 25000.0,
+            "output_tokens": 900.0,
+            "tokens_saved": 0.0,
+            "optimization_latency_ms": 1.5,
+            "total_latency_ms": 24000.0,
+            "controller_wall_ms": 24001.0,
+            "cost_attribution": "GLOBAL_WINDOW_UPPER_BOUND",
+            "cost_window_delta_usd": 0.48,
+        }
+        audit = {
+            "classification": "VERIFIED_STABLE",
+            "hypothesis": "the changed material remains governed",
+            "summary": "the bounded audit completed",
+            "observations": [],
+            "falsifiers": ["the route receipt is absent"],
+            "next_action": "retain the evidence boundary",
+            "queue_proposal": None,
+            "model": "gpt-5.6-sol",
+            "reasoning_effort": "xhigh",
+            "headroom_route_receipt": {
+                "route_id": "route-test",
+                "path": "headroom-route.json",
+                "sha256": "f" * 64,
+                "efficiency_metrics": route_metrics,
+            },
+        }
+
+        def complete_audit(
+            policy: dict[str, object],
+            audit_directory: Path,
+            bounded_input: dict[str, object],
+        ) -> dict[str, object]:
+            self.assertEqual(policy, self.policy)
+            self.assertEqual(audit_directory, directory)
+            self.assertEqual(bounded_input, audit_input)
+            cp.write_json(directory / "scientific-audit.json", audit, 0o640)
+            return audit
+
+        with (
+            mock.patch.object(
+                cp,
+                "github_monitor_snapshot",
+                return_value={"state": "CLEAR", "inventory_digest": "a" * 64},
+            ),
+            mock.patch.object(
+                cp,
+                "doctor",
+                return_value={
+                    "state": "READY_FOR_PRODUCTIVE_LOOP",
+                    "reason": "test",
+                    "checks": [],
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "wikillm_ingest",
+                return_value={
+                    "state": "INDEXED_CURRENT",
+                    "source_mode": "OBSIDIAN_HEADLESS_LIVE",
+                    "notes": 1,
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "headroom_status",
+                return_value={"state": "ACTIVE_REQUIRED_GATEWAY"},
+            ),
+            mock.patch.object(cp, "compile_context", return_value=supervisor_context),
+            mock.patch.object(
+                cp,
+                "scientific_material_digest",
+                return_value="a" * 64,
+            ),
+            mock.patch.object(
+                cp,
+                "build_scientific_audit_input",
+                return_value=audit_input,
+            ),
+            mock.patch.object(cp, "codex_scientific_audit", side_effect=complete_audit),
+            mock.patch.object(cp, "generate_reports"),
+        ):
+            result = cp._scientific_review(
+                self.policy,
+                "scheduled-30m",
+                "changed-efficiency",
+                directory,
+            )
+        self.assertEqual(
+            result["efficiency_metrics"],
+            {
+                "ai_calls": 1,
+                "audit_input_chars": len(cp.canonical_json(audit_input)),
+                "supervisor_context_chars": len(
+                    cp.canonical_json(supervisor_context)
+                ),
+                "route": route_metrics,
+            },
+        )
 
     def test_blocked_scheduled_pass_is_not_preserved_by_scientific_skip(self) -> None:
         directory = self.runtime / "reviews" / "blocked-pass-skip"
@@ -2101,10 +2282,19 @@ class ControlPlaneTests(unittest.TestCase):
                 "route_id": "route-test",
                 "receipt_path": "headroom-route.json",
                 "receipt_sha256": "f" * 64,
+                "efficiency_metrics": {
+                    "request_count": 1,
+                    "cost_attribution": "UNAVAILABLE",
+                    "cost_window_delta_usd": None,
+                },
             },
         }
         with mock.patch.object(cp, "run_ai_command", return_value=completed):
-            cp.codex_scientific_audit(self.policy, directory, packet)
+            audit = cp.codex_scientific_audit(self.policy, directory, packet)
+        self.assertEqual(
+            audit["headroom_route_receipt"]["efficiency_metrics"],
+            completed["headroom_binding"]["efficiency_metrics"],
+        )
         input_path = directory / "scientific-audit-input.json"
         exact_input = input_path.read_text(encoding="utf-8")
         self.assertEqual(exact_input, cp.canonical_json(packet))

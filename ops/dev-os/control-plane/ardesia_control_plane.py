@@ -17,6 +17,7 @@ import fcntl
 import fnmatch
 import hashlib
 import json
+import math
 import os
 import plistlib
 import re
@@ -2173,6 +2174,15 @@ def headroom_request_stats(policy: Dict[str, Any]) -> Dict[str, Any]:
     if isinstance(total, bool) or not isinstance(total, int) or total < 0:
         raise RuntimeError("Headroom request statistics contract is invalid")
     route_logs: List[Dict[str, Any]] = []
+    efficiency_keys = (
+        "input_tokens_original",
+        "input_tokens_optimized",
+        "output_tokens",
+        "tokens_saved",
+        "savings_percent",
+        "optimization_latency_ms",
+        "total_latency_ms",
+    )
     raw_logs = payload.get("request_logs") if isinstance(payload, dict) else None
     if isinstance(raw_logs, list):
         for entry in raw_logs:
@@ -2183,28 +2193,37 @@ def headroom_request_stats(policy: Dict[str, Any]) -> Dict[str, Any]:
             client = tags.get("client") if isinstance(tags, dict) else None
             if not isinstance(stack, str) or not stack:
                 continue
-            route_logs.append(
-                {
-                    "stack": stack,
-                    "client": client if isinstance(client, str) else None,
-                    "request_id": (
-                        entry.get("request_id")
-                        if isinstance(entry.get("request_id"), str)
-                        else None
-                    ),
-                    "provider": (
-                        entry.get("provider")
-                        if isinstance(entry.get("provider"), str)
-                        else None
-                    ),
-                    "model": (
-                        entry.get("model")
-                        if isinstance(entry.get("model"), str)
-                        else None
-                    ),
-                    "failed": bool(entry.get("error")),
-                }
-            )
+            route = {
+                "stack": stack,
+                "client": client if isinstance(client, str) else None,
+                "request_id": (
+                    entry.get("request_id")
+                    if isinstance(entry.get("request_id"), str)
+                    else None
+                ),
+                "provider": (
+                    entry.get("provider")
+                    if isinstance(entry.get("provider"), str)
+                    else None
+                ),
+                "model": (
+                    entry.get("model")
+                    if isinstance(entry.get("model"), str)
+                    else None
+                ),
+                "failed": bool(entry.get("error")),
+            }
+            for key in efficiency_keys:
+                value = entry.get(key)
+                if safe_nonnegative_number(value):
+                    route[key] = value
+            route_logs.append(route)
+    cost = payload.get("cost") if isinstance(payload, dict) else None
+    cost_with_headroom_usd = (
+        cost.get("cost_with_headroom_usd") if isinstance(cost, dict) else None
+    )
+    if not safe_nonnegative_number(cost_with_headroom_usd):
+        cost_with_headroom_usd = None
     return {
         "total": total,
         "by_provider": (
@@ -2223,8 +2242,62 @@ def headroom_request_stats(policy: Dict[str, Any]) -> Dict[str, Any]:
             else {}
         ),
         "route_logs": route_logs,
+        "cost_with_headroom_usd": cost_with_headroom_usd,
         "digest": sha256_text(canonical_json(payload)),
     }
+
+
+def safe_nonnegative_number(value: Any) -> bool:
+    if (
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or value < 0
+    ):
+        return False
+    try:
+        return math.isfinite(float(value))
+    except (OverflowError, ValueError):
+        return False
+
+
+def route_efficiency_metrics(
+    matching_routes: Sequence[Dict[str, Any]],
+    binding: Dict[str, Any],
+    request_stats: Dict[str, Any],
+) -> Dict[str, Any]:
+    additive = (
+        "input_tokens_original",
+        "input_tokens_optimized",
+        "output_tokens",
+        "tokens_saved",
+        "optimization_latency_ms",
+        "total_latency_ms",
+    )
+    result: Dict[str, Any] = {
+        "request_count": len(matching_routes),
+        "controller_wall_ms": round(
+            max(0.0, time.monotonic() - float(binding["started_monotonic"]))
+            * 1000.0,
+            3,
+        ),
+        "cost_attribution": "UNAVAILABLE",
+        "cost_window_delta_usd": None,
+    }
+    for key in additive:
+        result[key] = round(
+            sum(float(route.get(key, 0.0)) for route in matching_routes),
+            3,
+        )
+    before = binding.get("cost_before_usd")
+    after = request_stats.get("cost_with_headroom_usd")
+    if (
+        safe_nonnegative_number(before)
+        and safe_nonnegative_number(after)
+        and after >= before
+    ):
+        result["cost_attribution"] = "GLOBAL_WINDOW_UPPER_BOUND"
+        result["cost_window_delta_usd"] = round(float(after - before), 6)
+    return result
 
 
 def require_headroom(policy: Dict[str, Any]) -> Dict[str, Any]:
@@ -2407,6 +2480,8 @@ def prepare_ai_invocation(
         "native_sandbox": native_sandbox,
         "requests_before": request_stats["total"],
         "stats_before_digest": request_stats["digest"],
+        "started_monotonic": time.monotonic(),
+        "cost_before_usd": request_stats.get("cost_with_headroom_usd"),
         "base_url": (
             policy["headroom"]["base_url"]
             if identity == "claude"
@@ -2472,6 +2547,11 @@ def attest_headroom_route(
         raise RuntimeError(
             f"{identity} Headroom route attestation failed: unique route correlation absent"
         )
+    efficiency_metrics = route_efficiency_metrics(
+        matching_routes,
+        binding,
+        request_stats,
+    )
     receipt = {
         "schema_version": 1,
         "service_version": VERSION,
@@ -2490,6 +2570,7 @@ def attest_headroom_route(
         "stats_before_digest": binding["stats_before_digest"],
         "stats_after_digest": request_stats["digest"],
         "route_attested": True,
+        "efficiency_metrics": efficiency_metrics,
         "attested_at": iso_now(),
     }
     receipt_path = (
@@ -2517,6 +2598,7 @@ def attest_headroom_route(
         "stats_after_digest": request_stats["digest"],
         "route_requests": matching_routes,
         "route_attested": True,
+        "efficiency_metrics": efficiency_metrics,
         "receipt_path": str(receipt_path),
         "receipt_sha256": receipt_sha256,
         "attested_at": iso_now(),
@@ -4007,6 +4089,9 @@ paths; the proposal remains non-admitted."""
             "route_id": response["headroom_binding"]["route_id"],
             "path": response["headroom_binding"]["receipt_path"],
             "sha256": response["headroom_binding"]["receipt_sha256"],
+            "efficiency_metrics": response["headroom_binding"][
+                "efficiency_metrics"
+            ],
         },
         "completed_at": iso_now(),
     }
@@ -4372,6 +4457,16 @@ It is not admitted, cannot dispatch a writer and cannot mutate policy or gates.
             "classification": audit.get("classification"),
             "path": str(directory / "scientific-audit.json"),
             "sha256": sha256_file(directory / "scientific-audit.json"),
+        },
+        "efficiency_metrics": {
+            "ai_calls": 1,
+            "audit_input_chars": len(canonical_json(audit_input)),
+            "supervisor_context_chars": len(canonical_json(supervisor_context)),
+            "route": (
+                (audit.get("headroom_route_receipt") or {}).get(
+                    "efficiency_metrics"
+                )
+            ),
         },
         "queue_proposal_publication": proposal_publication,
         "path": str(directory),
