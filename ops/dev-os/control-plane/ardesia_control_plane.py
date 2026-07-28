@@ -38,7 +38,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
-VERSION = "1.8.0"
+VERSION = "1.8.1"
 RUN_ID = "DEVOS-MCP-BOOTSTRAP-001"
 GOAL_ID = "DEVOS-CONTROL-PLANE"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
@@ -639,7 +639,7 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
             "retry_max_attempts",
             "request_timeout_seconds",
             "anthropic_buffered_request_timeout_seconds",
-            "client_network_boundary",
+            "client_network_boundaries",
             "launch_agent",
         },
         {
@@ -667,7 +667,7 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
             "retry_max_attempts",
             "request_timeout_seconds",
             "anthropic_buffered_request_timeout_seconds",
-            "client_network_boundary",
+            "client_network_boundaries",
             "launch_agent",
         },
         "headroom",
@@ -697,7 +697,10 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         "retry_max_attempts": 1,
         "request_timeout_seconds": 10800,
         "anthropic_buffered_request_timeout_seconds": 10800,
-        "client_network_boundary": "SANDBOX_EXEC_HEADROOM_ONLY",
+        "client_network_boundaries": {
+            "claude": "SANDBOX_EXEC_HEADROOM_ONLY",
+            "codex": "CODEX_NATIVE_READ_ONLY_ATTESTED_HEADROOM",
+        },
         "launch_agent": "com.ardesia.headroom-gateway",
     }:
         raise ValueError("policy: Headroom must remain required, loopback and lossless/stateless")
@@ -1911,10 +1914,7 @@ def codex_headroom_config(policy: Dict[str, Any]) -> List[str]:
 
 
 def ai_network_sandbox_profile(policy: Dict[str, Any]) -> str:
-    if policy["headroom"]["client_network_boundary"] != (
-        "SANDBOX_EXEC_HEADROOM_ONLY"
-    ):
-        raise ValueError("unsupported AI client network boundary")
+    ai_network_boundary(policy, "claude")
     port = int(policy["headroom"]["port"])
     return (
         "(version 1) "
@@ -1965,6 +1965,43 @@ def reject_caller_owned_codex_routing(arguments: Sequence[str]) -> None:
             )
 
 
+def ai_network_boundary(policy: Dict[str, Any], identity: str) -> str:
+    boundaries = policy["headroom"]["client_network_boundaries"]
+    if identity not in {"claude", "codex"}:
+        raise ValueError("unsupported AI identity")
+    boundary = boundaries.get(identity)
+    expected = {
+        "claude": "SANDBOX_EXEC_HEADROOM_ONLY",
+        "codex": "CODEX_NATIVE_READ_ONLY_ATTESTED_HEADROOM",
+    }[identity]
+    if boundary != expected:
+        raise ValueError(f"unsupported {identity} AI network boundary")
+    return boundary
+
+
+def codex_native_read_only_contract(arguments: Sequence[str]) -> str:
+    if len(arguments) < 2:
+        raise ValueError("unsupported Codex inference command")
+    command = arguments[1]
+    if command == "app-server":
+        if list(arguments[2:]) != ["--listen", "stdio://"]:
+            raise ValueError("Codex App Server must remain stdio-only")
+        return "app-server-read-only-protocol"
+    if command != "exec":
+        raise ValueError("unsupported Codex inference command")
+    values = list(arguments[2:])
+    for index, value in enumerate(values):
+        if value == "--sandbox" and index + 1 < len(values):
+            if values[index + 1] == "read-only":
+                return "read-only"
+            break
+        if value.startswith("--sandbox="):
+            if value.split("=", 1)[1] == "read-only":
+                return "read-only"
+            break
+    raise ValueError("Codex inference requires its native read-only sandbox")
+
+
 def prepare_ai_invocation(
     policy: Dict[str, Any],
     identity: str,
@@ -1976,12 +2013,11 @@ def prepare_ai_invocation(
         raise ValueError("AI executable does not match the pinned policy tool")
     bound_arguments = list(arguments)
     route_id = f"ardesia-{identity}-{uuid.uuid4().hex}"
+    boundary = ai_network_boundary(policy, identity)
+    native_sandbox: Optional[str] = None
+    sandbox_profile_sha256: Optional[str] = None
     if identity == "codex":
-        if len(bound_arguments) < 2 or bound_arguments[1] not in {
-            "app-server",
-            "exec",
-        }:
-            raise ValueError("unsupported Codex inference command")
+        native_sandbox = codex_native_read_only_contract(bound_arguments)
         reject_caller_owned_codex_routing(bound_arguments[2:])
         controller_config = [
             *codex_headroom_config(policy),
@@ -1992,6 +2028,15 @@ def prepare_ai_invocation(
             ),
         ]
         bound_arguments[2:2] = controller_config
+    else:
+        sandbox_profile = ai_network_sandbox_profile(policy)
+        sandbox_profile_sha256 = sha256_text(sandbox_profile)
+        bound_arguments = [
+            policy["tools"]["sandbox_exec"],
+            "-p",
+            sandbox_profile,
+            *bound_arguments,
+        ]
     headroom = require_headroom(policy)
     request_stats = headroom_request_stats(policy)
     environment = command_environment()
@@ -2001,13 +2046,6 @@ def prepare_ai_invocation(
             f"X-Headroom-Stack: {route_id}"
         )
     environment["ARDESIA_HEADROOM_REQUIRED"] = "1"
-    sandbox_profile = ai_network_sandbox_profile(policy)
-    bound_arguments = [
-        policy["tools"]["sandbox_exec"],
-        "-p",
-        sandbox_profile,
-        *bound_arguments,
-    ]
     binding = {
         "state": headroom["state"],
         "version": headroom["version"],
@@ -2016,8 +2054,10 @@ def prepare_ai_invocation(
         "route_id": route_id,
         "expected_client": "claude-code" if identity == "claude" else "codex",
         "expected_provider": "anthropic" if identity == "claude" else "openai",
-        "network_boundary": policy["headroom"]["client_network_boundary"],
-        "sandbox_profile_sha256": sha256_text(sandbox_profile),
+        "network_boundary": boundary,
+        "outer_sandbox": identity == "claude",
+        "sandbox_profile_sha256": sandbox_profile_sha256,
+        "native_sandbox": native_sandbox,
         "requests_before": request_stats["total"],
         "stats_before_digest": request_stats["digest"],
         "base_url": (

@@ -194,7 +194,13 @@ class ControlPlaneTests(unittest.TestCase):
             cp.prepare_ai_invocation(
                 self.policy,
                 "codex",
-                [self.policy["tools"]["codex"], "exec", "bypass"],
+                [
+                    self.policy["tools"]["codex"],
+                    "exec",
+                    "--sandbox",
+                    "read-only",
+                    "bypass",
+                ],
             )
         with self.assertRaisesRegex(ValueError, "required Headroom gateway adapter"):
             cp.run_command(["/usr/bin/claude", "-p", "bypass"])
@@ -204,8 +210,11 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertFalse(self.policy["headroom"]["subscription_tracking"])
         self.assertFalse(self.policy["headroom"]["read_lifecycle"])
         self.assertEqual(
-            self.policy["headroom"]["client_network_boundary"],
-            "SANDBOX_EXEC_HEADROOM_ONLY",
+            self.policy["headroom"]["client_network_boundaries"],
+            {
+                "claude": "SANDBOX_EXEC_HEADROOM_ONLY",
+                "codex": "CODEX_NATIVE_READ_ONLY_ATTESTED_HEADROOM",
+            },
         )
         self.assertEqual(
             cp.ai_network_sandbox_profile(self.policy),
@@ -441,6 +450,8 @@ class ControlPlaneTests(unittest.TestCase):
                     [
                         self.policy["tools"]["codex"],
                         "exec",
+                        "--sandbox",
+                        "read-only",
                         "probe",
                     ],
                 )
@@ -461,26 +472,84 @@ class ControlPlaneTests(unittest.TestCase):
                 return_value={"total": 1, "digest": "b" * 64, "route_logs": []},
             ),
         ):
-            arguments, _, binding = cp.prepare_ai_invocation(
+            claude_arguments, _, claude_binding = cp.prepare_ai_invocation(
+                self.policy,
+                "claude",
+                [self.policy["tools"]["claude"], "-p", "probe"],
+            )
+            self.assertEqual(
+                claude_arguments[0],
+                self.policy["tools"]["sandbox_exec"],
+            )
+            self.assertTrue(claude_binding["outer_sandbox"])
+            self.assertEqual(
+                claude_binding["network_boundary"],
+                "SANDBOX_EXEC_HEADROOM_ONLY",
+            )
+
+            codex_arguments, _, codex_binding = cp.prepare_ai_invocation(
                 self.policy,
                 "codex",
                 [
                     self.policy["tools"]["codex"],
                     "exec",
+                    "--sandbox",
+                    "read-only",
+                    "probe",
+                ],
+            )
+            self.assertEqual(
+                codex_arguments[0],
+                self.policy["tools"]["codex"],
+            )
+            self.assertNotIn(
+                self.policy["tools"]["sandbox_exec"],
+                codex_arguments,
+            )
+            self.assertFalse(codex_binding["outer_sandbox"])
+            self.assertEqual(codex_binding["native_sandbox"], "read-only")
+            self.assertIsNone(codex_binding["sandbox_profile_sha256"])
+            self.assertIn('model_provider="headroom"', codex_arguments)
+            self.assertTrue(
+                any(
+                    item.startswith("model_providers.headroom.http_headers=")
+                    and codex_binding["route_id"] in item
+                    for item in codex_arguments
+                )
+            )
+            cp.prepare_ai_invocation(
+                self.policy,
+                "codex",
+                [
+                    self.policy["tools"]["codex"],
+                    "exec",
+                    "--sandbox",
+                    "read-only",
                     "--config",
                     'model_reasoning_effort="xhigh"',
                     "probe",
                 ],
             )
-            self.assertEqual(arguments[0], self.policy["tools"]["sandbox_exec"])
-            self.assertIn('model_provider="headroom"', arguments)
-            self.assertTrue(
-                any(
-                    item.startswith("model_providers.headroom.http_headers=")
-                    and binding["route_id"] in item
-                    for item in arguments
+
+            with self.assertRaisesRegex(ValueError, "native read-only sandbox"):
+                cp.prepare_ai_invocation(
+                    self.policy,
+                    "codex",
+                    [self.policy["tools"]["codex"], "exec", "probe"],
                 )
-            )
+
+            with self.assertRaisesRegex(ValueError, "stdio-only"):
+                cp.prepare_ai_invocation(
+                    self.policy,
+                    "codex",
+                    [
+                        self.policy["tools"]["codex"],
+                        "app-server",
+                        "--listen",
+                        "tcp://127.0.0.1:9999",
+                    ],
+                )
+
             for conflicting in (
                 'model_provider="openai"',
                 'model_providers.headroom.base_url="https://api.openai.com/v1"',
@@ -495,6 +564,8 @@ class ControlPlaneTests(unittest.TestCase):
                         [
                             self.policy["tools"]["codex"],
                             "exec",
+                            "--sandbox",
+                            "read-only",
                             "--config",
                             conflicting,
                             "probe",
@@ -510,6 +581,8 @@ class ControlPlaneTests(unittest.TestCase):
                     [
                         self.policy["tools"]["codex"],
                         "exec",
+                        "--sandbox",
+                        "read-only",
                         '-c=model_provider="openai"',
                         "probe",
                     ],
@@ -534,6 +607,8 @@ class ControlPlaneTests(unittest.TestCase):
                         [
                             self.policy["tools"]["codex"],
                             "exec",
+                            "--sandbox",
+                            "read-only",
                             flag,
                             "probe",
                         ],
