@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "service_version": "1.7.0",
+  "service_version": "1.8.0",
   "run_id": "DEVOS-MCP-BOOTSTRAP-001",
   "goal_id": "DEVOS-CONTROL-PLANE",
   "runtime_root": "/Users/progettibelli/ARDESIA-RUNTIME",
@@ -402,15 +402,46 @@
       "40-Product-Canon"
     ]
   },
-  "tencentdb": {
-    "mode": "SHADOW",
-    "capture": true,
-    "recall_injection": false,
-    "offload": false,
-    "persona_generation": false,
-    "automatic_skill_generation": false,
+  "headroom": {
+    "required": true,
+    "version": "0.32.1",
+    "host": "127.0.0.1",
+    "port": 8787,
+    "base_url": "http://127.0.0.1:8787",
+    "openai_base_url": "http://127.0.0.1:8787/v1",
+    "mode": "token",
+    "stateless": true,
+    "lossless": true,
+    "cache": false,
+    "memory": false,
+    "learn": false,
+    "output_shaper": false,
+    "effort_router": false,
+    "verbosity_autotune": false,
+    "telemetry": false,
+    "kompress": false,
+    "rate_limit": false,
+    "subscription_tracking": false,
+    "code_aware": false,
+    "read_lifecycle": false,
+    "retry_max_attempts": 1,
+    "request_timeout_seconds": 10800,
+    "anthropic_buffered_request_timeout_seconds": 10800,
+    "client_network_boundary": "SANDBOX_EXEC_HEADROOM_ONLY",
+    "launch_agent": "com.ardesia.headroom-gateway"
+  },
+  "hermes": {
+    "mode": "DERIVED_MEMORY_PLANNER",
+    "state": "DISABLED_HERMES_HEADROOM_BYPASS_5875",
+    "enabled": false,
+    "provider": "openai-codex",
+    "auth": "OPENAI_AUTH",
+    "headroom_required": true,
+    "scheduler_enabled": false,
+    "write_approval_required": true,
+    "canonical_source": "Obsidian/Markdown/Git",
     "canonical_write": false,
-    "dsn_reference_file": "/Users/progettibelli/ARDESIA-RUNTIME/config/secrets/tencentdb.dsn"
+    "upstream_blocker": "https://github.com/NousResearch/hermes-agent/issues/5875"
   },
   "tools": {
     "python": "/usr/bin/python3",
@@ -418,6 +449,8 @@
     "gh": "/opt/homebrew/bin/gh",
     "codex": "/Users/progettibelli/ARDESIA-RUNTIME/tools/codex-cli/node_modules/.bin/codex",
     "claude": "/opt/homebrew/bin/claude",
+    "headroom": "/Users/progettibelli/ARDESIA-RUNTIME/tools/headroom/bin/headroom",
+    "sandbox_exec": "/usr/bin/sandbox-exec",
     "npm": "/opt/homebrew/bin/npm",
     "ob": "/opt/homebrew/bin/ob"
   },

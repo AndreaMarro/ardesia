@@ -56,6 +56,8 @@ class ControlPlaneTests(unittest.TestCase):
             "gh": "/usr/bin/false",
             "codex": "/usr/bin/false",
             "claude": "/usr/bin/false",
+            "headroom": "/usr/bin/false",
+            "sandbox_exec": "/usr/bin/sandbox-exec",
             "npm": npm,
             "ob": "/usr/bin/false",
         }
@@ -66,7 +68,6 @@ class ControlPlaneTests(unittest.TestCase):
             task["base_sha"] = product_sha
             for command in task["verification_commands"]:
                 command[0] = npm
-        source["tencentdb"]["dsn_reference_file"] = str(self.runtime / "config" / "secrets" / "tencentdb.dsn")
         source["schedules"]["controller_heartbeat_seconds"] = 1
         self.policy = cp.validate_policy(source)
         cp.ensure_runtime(self.runtime)
@@ -163,6 +164,471 @@ class ControlPlaneTests(unittest.TestCase):
             environment = cp.command_environment()
         self.assertEqual(environment["NODE_OPTIONS"], "--no-experimental-webstorage")
         self.assertEqual(environment["GIT_TERMINAL_PROMPT"], "0")
+
+    def test_headroom_policy_and_direct_ai_invocations_are_fail_closed(self) -> None:
+        invalid = copy.deepcopy(self.policy)
+        invalid["headroom"]["required"] = False
+        with self.assertRaisesRegex(ValueError, "Headroom must remain required"):
+            cp.validate_policy(invalid)
+        invalid = copy.deepcopy(self.policy)
+        invalid["hermes"]["enabled"] = True
+        with self.assertRaisesRegex(ValueError, "Hermes must remain gated"):
+            cp.validate_policy(invalid)
+        with self.assertRaisesRegex(ValueError, "Headroom gateway binding missing"):
+            cp.run_tool(self.policy, "claude", ["-p", "bypass"])
+        with (
+            mock.patch.object(
+                cp,
+                "headroom_status",
+                return_value={
+                    "state": "BLOCKED_REQUIRED_GATEWAY",
+                    "failures": ["runtime_readiness"],
+                    "diagnostic": "",
+                },
+            ),
+            self.assertRaisesRegex(
+                RuntimeError,
+                "required Headroom gateway unavailable",
+            ),
+        ):
+            cp.prepare_ai_invocation(
+                self.policy,
+                "codex",
+                [self.policy["tools"]["codex"], "exec", "bypass"],
+            )
+        with self.assertRaisesRegex(ValueError, "required Headroom gateway adapter"):
+            cp.run_command(["/usr/bin/claude", "-p", "bypass"])
+        self.assertEqual(self.policy["headroom"]["retry_max_attempts"], 1)
+        self.assertEqual(self.policy["headroom"]["request_timeout_seconds"], 10800)
+        self.assertFalse(self.policy["headroom"]["rate_limit"])
+        self.assertFalse(self.policy["headroom"]["subscription_tracking"])
+        self.assertFalse(self.policy["headroom"]["read_lifecycle"])
+        self.assertEqual(
+            self.policy["headroom"]["client_network_boundary"],
+            "SANDBOX_EXEC_HEADROOM_ONLY",
+        )
+        self.assertEqual(
+            cp.ai_network_sandbox_profile(self.policy),
+            (
+                "(version 1) (allow default) (deny network-outbound) "
+                '(allow network-outbound (remote ip "localhost:8787"))'
+            ),
+        )
+        with mock.patch.object(cp, "_completed_command") as command:
+            with self.assertRaisesRegex(ValueError, "direct AI command rejected"):
+                cp.run_command(
+                    ["/usr/bin/env", "/opt/homebrew/bin/claude", "-p", "bypass"]
+                )
+            command.assert_not_called()
+
+    def test_headroom_health_contract_is_exact_and_bounded(self) -> None:
+        payload = {
+            "service": "headroom-proxy",
+            "status": "healthy",
+            "ready": True,
+            "version": "0.32.1",
+            "checks": {
+                "cache": {"enabled": False},
+                "rate_limiter": {"enabled": False},
+                "memory": {"enabled": False},
+                "kompress": {"enabled": False},
+            },
+            "config": {
+                "cache": False,
+                "rate_limit": False,
+                "memory": False,
+                "learn": False,
+                "disable_kompress": True,
+                "disable_kompress_fallback": True,
+                "disable_kompress_anthropic": True,
+                "disable_kompress_openai": True,
+                "runtime_env": {
+                    "HEADROOM_OUTPUT_SHAPER": "0",
+                    "HEADROOM_EFFORT_ROUTER": "0",
+                    "HEADROOM_VERBOSITY_AUTOTUNE": "0",
+                },
+            },
+        }
+        frozen_arguments = [
+            self.policy["tools"]["headroom"],
+            "proxy",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "8787",
+            "--workers",
+            "1",
+            "--mode",
+            "token",
+            "--stateless",
+            "--lossless",
+            "--no-cache",
+            "--no-rate-limit",
+            "--no-subscription-tracking",
+            "--retry-max-attempts",
+            "1",
+            "--request-timeout-seconds",
+            "10800",
+            "--anthropic-buffered-request-timeout-seconds",
+            "10800",
+            "--no-memory-tools",
+            "--no-memory-context",
+            "--no-learn",
+            "--no-telemetry",
+            "--disable-kompress",
+            "--disable-kompress-fallback",
+            "--disable-kompress-anthropic",
+            "--disable-kompress-openai",
+            "--no-code-aware",
+            "--no-read-lifecycle",
+        ]
+        frozen_environment = {
+            "HEADROOM_STATELESS": "true",
+            "HEADROOM_LOSSLESS": "1",
+            "HEADROOM_TELEMETRY": "off",
+            "HEADROOM_OUTPUT_SHAPER": "0",
+            "HEADROOM_EFFORT_ROUTER": "0",
+            "HEADROOM_VERBOSITY_AUTOTUNE": "0",
+            "HEADROOM_MEMORY_INJECTION_MODE": "disabled",
+            "HEADROOM_DISABLE_KOMPRESS": "1",
+            "HEADROOM_DISABLE_KOMPRESS_FALLBACK": "1",
+            "HEADROOM_DISABLE_KOMPRESS_ANTHROPIC": "1",
+            "HEADROOM_DISABLE_KOMPRESS_OPENAI": "1",
+        }
+        self.assertEqual(
+            [self.policy["tools"]["headroom"], *cp.headroom_proxy_arguments(self.policy)],
+            frozen_arguments,
+        )
+        self.assertEqual(cp.headroom_gateway_environment(self.policy), frozen_environment)
+        process_command = " ".join(frozen_arguments)
+        self.assertEqual(
+            cp.validate_headroom_health(
+                self.policy,
+                payload,
+                process_command,
+                "headroom, version 0.32.1",
+            ),
+            [],
+        )
+        payload["config"]["runtime_env"]["HEADROOM_OUTPUT_SHAPER"] = None
+        self.assertIn(
+            "runtime_headroom_output_shaper",
+            cp.validate_headroom_health(
+                self.policy,
+                payload,
+                process_command,
+                "headroom, version 0.32.1",
+            ),
+        )
+        first = copy.deepcopy(payload)
+        first.update({"timestamp": "2026-07-28T10:00:00Z", "uptime_seconds": 1.0})
+        first["config"]["pid"] = 100
+        second = copy.deepcopy(first)
+        second.update({"timestamp": "2026-07-28T10:30:00Z", "uptime_seconds": 1801.0})
+        second["config"]["pid"] = 200
+        self.assertEqual(
+            cp.sha256_text(cp.canonical_json(cp.headroom_semantic_health(first))),
+            cp.sha256_text(cp.canonical_json(cp.headroom_semantic_health(second))),
+        )
+
+    def test_every_ai_command_requires_observed_headroom_request_delta(self) -> None:
+        active = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "pid": 4321,
+            "health_digest": "a" * 64,
+            "failures": [],
+        }
+        completed = {
+            "exit": 0,
+            "stdout": "ok",
+            "stderr": "",
+            "argv": [],
+        }
+        captured_environments: list[dict[str, str]] = []
+
+        def complete(
+            arguments: object,
+            *,
+            cwd: object,
+            timeout: int,
+            max_chars: int,
+            input_text: object,
+            environment: dict[str, str],
+        ) -> dict[str, object]:
+            captured_environments.append(environment)
+            return {**completed, "argv": list(arguments)}
+
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(
+                cp.uuid,
+                "uuid4",
+                return_value=mock.Mock(hex="clauderoute"),
+            ),
+            mock.patch.object(
+                cp,
+                "headroom_request_stats",
+                side_effect=[
+                    {
+                        "total": 7,
+                        "digest": "b" * 64,
+                        "route_logs": [],
+                    },
+                    RuntimeError("transient stats timeout"),
+                    {
+                        "total": 8,
+                        "digest": "c" * 64,
+                        "route_logs": [
+                            {
+                                "stack": "ardesia-claude-clauderoute",
+                                "client": "claude-code",
+                                "provider": "anthropic",
+                                "request_id": "hr-1",
+                                "model": "claude-opus",
+                                "failed": False,
+                            }
+                        ],
+                    },
+                ],
+            ),
+            mock.patch.object(cp, "_completed_command", side_effect=complete),
+        ):
+            result = cp.run_ai_command(
+                self.policy,
+                "claude",
+                [self.policy["tools"]["claude"], "-p", "probe"],
+            )
+        self.assertEqual(
+            captured_environments[0]["ANTHROPIC_BASE_URL"],
+            self.policy["headroom"]["base_url"],
+        )
+        self.assertEqual(
+            captured_environments[0]["ANTHROPIC_CUSTOM_HEADERS"],
+            "X-Headroom-Stack: ardesia-claude-clauderoute",
+        )
+        self.assertEqual(
+            result["argv"][:3],
+            [
+                self.policy["tools"]["sandbox_exec"],
+                "-p",
+                cp.ai_network_sandbox_profile(self.policy),
+            ],
+        )
+        self.assertTrue(result["headroom_binding"]["route_attested"])
+        self.assertEqual(result["headroom_binding"]["request_delta"], 1)
+        self.assertTrue(Path(result["headroom_binding"]["receipt_path"]).is_file())
+
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(
+                cp,
+                "headroom_request_stats",
+                side_effect=[
+                    {"total": 9, "digest": "d" * 64, "route_logs": []},
+                    *[
+                        {"total": 9, "digest": "e" * 64, "route_logs": []}
+                        for _ in range(5)
+                    ],
+                ],
+            ),
+            mock.patch.object(cp, "_completed_command", return_value=completed),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "no proxied AI request observed"):
+                cp.run_ai_command(
+                    self.policy,
+                    "codex",
+                    [
+                        self.policy["tools"]["codex"],
+                        "exec",
+                        "probe",
+                    ],
+                )
+
+    def test_codex_routing_is_controller_owned_and_conflicts_are_rejected(self) -> None:
+        active = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "pid": 4321,
+            "health_digest": "a" * 64,
+            "failures": [],
+        }
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(
+                cp,
+                "headroom_request_stats",
+                return_value={"total": 1, "digest": "b" * 64, "route_logs": []},
+            ),
+        ):
+            arguments, _, binding = cp.prepare_ai_invocation(
+                self.policy,
+                "codex",
+                [
+                    self.policy["tools"]["codex"],
+                    "exec",
+                    "--config",
+                    'model_reasoning_effort="xhigh"',
+                    "probe",
+                ],
+            )
+            self.assertEqual(arguments[0], self.policy["tools"]["sandbox_exec"])
+            self.assertIn('model_provider="headroom"', arguments)
+            self.assertTrue(
+                any(
+                    item.startswith("model_providers.headroom.http_headers=")
+                    and binding["route_id"] in item
+                    for item in arguments
+                )
+            )
+            for conflicting in (
+                'model_provider="openai"',
+                'model_providers.headroom.base_url="https://api.openai.com/v1"',
+            ):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "routing config is controller-owned",
+                ):
+                    cp.prepare_ai_invocation(
+                        self.policy,
+                        "codex",
+                        [
+                            self.policy["tools"]["codex"],
+                            "exec",
+                            "--config",
+                            conflicting,
+                            "probe",
+                        ],
+                    )
+            with self.assertRaisesRegex(
+                ValueError,
+                "routing config is controller-owned",
+            ):
+                cp.prepare_ai_invocation(
+                    self.policy,
+                    "codex",
+                    [
+                        self.policy["tools"]["codex"],
+                        "exec",
+                        '-c=model_provider="openai"',
+                        "probe",
+                    ],
+                )
+            for flag in (
+                "--oss",
+                "--local-provider=ollama",
+                "--profile=direct",
+                "-p",
+                "-p=direct",
+                "-pdirect",
+                "--remote",
+                "--remote-auth-token-env=TOKEN",
+            ):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "routing flag is controller-owned",
+                ):
+                    cp.prepare_ai_invocation(
+                        self.policy,
+                        "codex",
+                        [
+                            self.policy["tools"]["codex"],
+                            "exec",
+                            flag,
+                            "probe",
+                        ],
+                    )
+
+    def test_long_lived_claude_and_codex_paths_require_route_attestation(self) -> None:
+        class ImmediateProcess:
+            def __init__(self) -> None:
+                self.pid = 9876
+                self.returncode = 0
+                self.stdin = mock.Mock()
+                self.stdout = mock.Mock()
+                self.stderr = mock.Mock()
+
+            def poll(self) -> int:
+                return 0
+
+            def terminate(self) -> None:
+                return None
+
+            def kill(self) -> None:
+                return None
+
+            def wait(self, timeout: object = None) -> int:
+                return 0
+
+        task = self.policy["loop"]["tasks"][0]
+        worktree = self.runtime / "worktrees" / "long-lived"
+        worktree.mkdir(parents=True)
+        run_directory = self.runtime / "artifacts" / "productive-runs" / "long-lived"
+        run_directory.mkdir(parents=True)
+        binding = {"route_id": "route"}
+        attested = {
+            "route_id": "route",
+            "route_attested": True,
+            "receipt_path": str(self.runtime / "artifacts" / "headroom-routes" / "route.json"),
+            "receipt_sha256": "a" * 64,
+        }
+        with (
+            mock.patch.object(
+                cp,
+                "spawn_ai_process",
+                return_value=(ImmediateProcess(), binding),
+            ),
+            mock.patch.object(
+                cp,
+                "attest_headroom_route",
+                return_value=attested,
+            ) as attester,
+        ):
+            writer = cp.invoke_claude_writer(
+                self.policy,
+                task,
+                worktree,
+                "bounded prompt",
+                "session-id",
+                run_directory,
+                "implement",
+                "lease-id",
+            )
+        self.assertEqual(writer["state"], "PASS")
+        attester.assert_called_once_with(self.policy, "claude", binding)
+
+        messages = [
+            {"id": 0, "result": {}},
+            {"id": 1, "result": {"thread": {"id": "thread"}}},
+            {"id": 2, "result": {"turn": {"id": "turn"}}},
+            {
+                "method": "turn/started",
+                "params": {"turn": {"id": "turn", "status": "inProgress"}},
+            },
+            {"id": 3, "result": {}},
+            {
+                "method": "turn/completed",
+                "params": {"turn": {"id": "turn"}},
+            },
+            {"id": 4, "result": {}},
+        ]
+        with (
+            mock.patch.object(
+                cp,
+                "spawn_ai_process",
+                return_value=(ImmediateProcess(), binding),
+            ),
+            mock.patch.object(cp, "read_message", side_effect=messages),
+            mock.patch.object(cp, "send_message"),
+            mock.patch.object(
+                cp,
+                "attest_headroom_route",
+                return_value=attested,
+            ) as attester,
+        ):
+            probe = cp.codex_live_probe(self.policy)
+        self.assertEqual(probe["state"], "PASS")
+        attester.assert_called_once_with(self.policy, "codex", binding)
 
     def test_reviewer_cli_version_gate_requires_model_compatible_release(self) -> None:
         self.assertFalse(cp.codex_cli_compatible("codex-cli 0.137.0-alpha.4"))
@@ -460,8 +926,18 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertFalse(result["canonical_write"])
         hits = cp.wikillm_search(self.policy, "single scheduler")
         self.assertTrue(any(hit["path"] == "20-Decisions/ADR-001.md" for hit in hits))
-        self.assertFalse(cp.tencent_state(self.policy)["canonical_write"])
-        self.assertEqual(cp.tencent_state(self.policy)["state"], "DEFERRED_NO_CREDENTIAL_REFERENCE")
+        self.assertFalse(cp.hermes_state(self.policy)["canonical_write"])
+        self.assertFalse(cp.hermes_state(self.policy)["enabled"])
+        self.assertFalse(cp.hermes_state(self.policy)["scheduler_enabled"])
+        self.assertTrue(cp.hermes_state(self.policy)["headroom_required"])
+        self.assertEqual(cp.hermes_state(self.policy)["provider"], "openai-codex")
+        self.assertEqual(
+            cp.hermes_state(self.policy)["state"],
+            "DISABLED_HERMES_HEADROOM_BYPASS_5875",
+        )
+        self.assertTrue(
+            cp.hermes_state(self.policy)["upstream_blocker"].endswith("/5875")
+        )
 
     def test_wikillm_does_not_publish_a_moving_source_snapshot(self) -> None:
         initial = cp.wikillm_ingest(self.policy)
@@ -476,6 +952,98 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(cp.sha256_file(database), original_database_sha)
         self.assertEqual(initial["database_sha256"], original_database_sha)
         self.assertFalse(list((self.runtime / "state").glob(".wikillm.*.sqlite")))
+
+    def test_agent_receipts_remain_searchable_without_self_exciting_material_digest(self) -> None:
+        vault = self.runtime / self.policy["obsidian"]["vault_path"]
+        canonical = vault / "20-Decisions" / "ADR-TEST.md"
+        generated = vault / "92-Evidence" / "CYCLE.md"
+        canonical.parent.mkdir(parents=True, exist_ok=True)
+        generated.parent.mkdir(parents=True, exist_ok=True)
+        canonical.write_text("# Canonical decision\n", encoding="utf-8")
+        generated.write_text("# Generated cycle one\n", encoding="utf-8")
+        cp.write_json(
+            self.runtime / "state" / "obsidian.json",
+            {"state": "ACTIVE_CONTINUOUS"},
+        )
+        first = cp.wikillm_source(self.policy)
+        generated.write_text("# Generated cycle two\n", encoding="utf-8")
+        second = cp.wikillm_source(self.policy)
+        self.assertNotEqual(first["source_sha"], second["source_sha"])
+        self.assertEqual(
+            first["material_source_sha"],
+            second["material_source_sha"],
+        )
+        canonical.write_text("# Canonical decision changed\n", encoding="utf-8")
+        third = cp.wikillm_source(self.policy)
+        self.assertNotEqual(
+            second["material_source_sha"],
+            third["material_source_sha"],
+        )
+
+        checks = {"state": "READY", "reason": "stable"}
+        github = {
+            "inventory_digest": "a" * 64,
+            "state": "CLEAR",
+            "task_overlaps": {},
+        }
+        mailbox = {"directives": {}}
+        headroom = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "health_digest": "b" * 64,
+            "launch_contract_digest": "c" * 64,
+        }
+        hermes = {"state": "DISABLED_HERMES_HEADROOM_BYPASS_5875"}
+        obsidian = {"state": "ACTIVE_CONTINUOUS"}
+        productive = {"tasks": {}}
+        context = {
+            "content_digest": "d" * 64,
+            "required_sources": {"manifest_digest": "e" * 64},
+        }
+        wiki = {
+            "source_mode": "OBSIDIAN_HEADLESS_LIVE",
+            "source_sha": first["source_sha"],
+            "material_source_sha": first["material_source_sha"],
+        }
+        digest_one = cp.scientific_material_digest(
+            checks,
+            github,
+            wiki,
+            mailbox,
+            headroom,
+            hermes,
+            obsidian,
+            productive,
+            context,
+        )
+        wiki["source_sha"] = second["source_sha"]
+        context["content_digest"] = "f" * 64
+        digest_two = cp.scientific_material_digest(
+            checks,
+            github,
+            wiki,
+            mailbox,
+            headroom,
+            hermes,
+            obsidian,
+            productive,
+            context,
+        )
+        self.assertEqual(digest_one, digest_two)
+        wiki["material_source_sha"] = third["material_source_sha"]
+        self.assertNotEqual(
+            digest_two,
+            cp.scientific_material_digest(
+                checks,
+                github,
+                wiki,
+                mailbox,
+                headroom,
+                hermes,
+                obsidian,
+                productive,
+                context,
+            ),
+        )
 
     def test_wikillm_ingest_ignores_an_outer_handled_exception(self) -> None:
         try:
@@ -577,6 +1145,24 @@ class ControlPlaneTests(unittest.TestCase):
     def test_launchd_schedules_and_required_reports(self) -> None:
         paths = cp.render_plists(self.policy, HERE / "ardesia_control_plane.py", self.policy_path, self.runtime / "launchd")
         payloads = {Path(path).stem: plistlib.loads(Path(path).read_bytes()) for path in paths}
+        self.assertEqual(
+            set(payloads),
+            {
+                "com.ardesia.headroom-gateway",
+                "com.ardesia.mcp.controller",
+                "com.ardesia.mcp.mailbox",
+                "com.ardesia.mcp.watchdog",
+                "com.ardesia.mcp.review",
+                "com.ardesia.mcp.backup",
+                "com.ardesia.obsidian-sync",
+            },
+        )
+        self.assertTrue(payloads["com.ardesia.headroom-gateway"]["KeepAlive"])
+        self.assertTrue(payloads["com.ardesia.headroom-gateway"]["RunAtLoad"])
+        self.assertEqual(
+            payloads["com.ardesia.headroom-gateway"]["ProgramArguments"][-1],
+            "headroom-gateway",
+        )
         self.assertTrue(payloads["com.ardesia.mcp.controller"]["KeepAlive"])
         self.assertEqual(payloads["com.ardesia.mcp.mailbox"]["StartInterval"], 300)
         self.assertEqual(payloads["com.ardesia.mcp.watchdog"]["StartInterval"], 900)
@@ -585,7 +1171,13 @@ class ControlPlaneTests(unittest.TestCase):
             [{"Minute": 0}, {"Minute": 30}],
         )
         self.assertFalse(payloads["com.ardesia.mcp.review"]["RunAtLoad"])
+        self.assertEqual(
+            payloads["com.ardesia.mcp.backup"]["StartCalendarInterval"],
+            {"Hour": 3, "Minute": 17},
+        )
+        self.assertFalse(payloads["com.ardesia.mcp.backup"]["RunAtLoad"])
         self.assertTrue(payloads["com.ardesia.obsidian-sync"]["KeepAlive"])
+        self.assertNotIn("com.ardesia.hermes", payloads)
         cp.generate_reports(self.policy)
         required = {
             "MCP_CONTROL_PLANE_REPORT.md",
@@ -599,7 +1191,15 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(required, {path.name for path in (self.runtime / "reports").iterdir()})
 
     def test_status_cannot_be_ready_before_true_scheduled_evidence(self) -> None:
-        self.assertEqual(cp.status_payload(self.policy)["state"], "PARTIAL_BOOTSTRAP_SAFE")
+        active_headroom = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "pid": 4321,
+            "health_digest": "a" * 64,
+            "failures": [],
+        }
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(cp.status_payload(self.policy)["state"], "PARTIAL_BOOTSTRAP_SAFE")
         cp.write_json(
             self.runtime / "state" / "mcp-controller.json",
             {"state": "READY_FOR_PRODUCTIVE_LOOP", "heartbeat_count": 3},
@@ -619,6 +1219,7 @@ class ControlPlaneTests(unittest.TestCase):
             key: {"value": "PASS test", "recorded_at": cp.iso_now()}
             for key in {
                 "controller_tests",
+                "headroom_gateway",
                 "codex_app_server",
                 "claude_writer",
                 "watchdog_restart",
@@ -628,19 +1229,22 @@ class ControlPlaneTests(unittest.TestCase):
             }
         }
         cp.write_json(self.runtime / "state" / "verification.json", verification)
-        self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
         cp.write_json(
             self.runtime / "state" / "mcp-controller.json",
             {"state": "RUNNING", "heartbeat_count": 4},
         )
-        self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
         manual = self.runtime / "reviews" / "manual-after-scheduled"
         manual.mkdir()
         cp.write_json(
             manual / "completion.json",
             {"state": "READY_FOR_PRODUCTIVE_LOOP", "trigger": "operator-post-review"},
         )
-        self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
 
     def test_preapproved_queue_is_frozen_and_writer_diff_is_path_bounded(self) -> None:
         active = copy.deepcopy(self.policy)
@@ -914,10 +1518,10 @@ class ControlPlaneTests(unittest.TestCase):
             "stderr": "",
             "argv": [],
         }
-        with mock.patch.object(cp, "run_command", return_value=completed) as runner:
+        with mock.patch.object(cp, "run_ai_command", return_value=completed) as runner:
             with self.assertRaisesRegex(ValueError, "before the queue was terminal"):
                 cp.codex_scientific_audit(self.policy, directory, audit_input)
-        arguments = runner.call_args.args[0]
+        arguments = runner.call_args.args[2]
         self.assertIn("gpt-5.6-sol", arguments)
         self.assertIn('model_reasoning_effort="xhigh"', arguments)
         self.assertIn("read-only", arguments)

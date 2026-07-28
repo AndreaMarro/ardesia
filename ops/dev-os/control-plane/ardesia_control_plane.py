@@ -21,6 +21,7 @@ import os
 import plistlib
 import re
 import select
+import shlex
 import shutil
 import signal
 import sqlite3
@@ -30,12 +31,14 @@ import sys
 import tarfile
 import tempfile
 import time
+import urllib.error
+import urllib.request
 import uuid
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
-VERSION = "1.7.0"
+VERSION = "1.8.0"
 RUN_ID = "DEVOS-MCP-BOOTSTRAP-001"
 GOAL_ID = "DEVOS-CONTROL-PLANE"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
@@ -45,6 +48,13 @@ FRONTMATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.MULTILINE)
 WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)")
 WORKTREE_DEPENDENCY_LINK = "apps/studio/node_modules"
+SELF_GENERATED_OBSIDIAN_ROOTS = (
+    "85-Agent-Proposals",
+    "90-Runs",
+    "91-Auto-Receipts",
+    "92-Evidence",
+    "93-Context-Packets",
+)
 LEGACY_FROZEN_SEED = {
     "manifest_relative_path": (
         "artifacts/productive-runs/BETA-003-CONTINUITY-FAIL-CLOSED-STORAGE/"
@@ -147,7 +157,8 @@ POLICY_KEYS = {
     "loop",
     "wikillm",
     "obsidian",
-    "tencentdb",
+    "headroom",
+    "hermes",
     "tools",
     "required_source_hashes",
 }
@@ -601,16 +612,139 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
             or any(not isinstance(command, list) or not command or any(not isinstance(item, str) for item in command) for command in commands)
         ):
             raise ValueError("policy: task requires exactly test, typecheck and build commands")
-    tencent = strict_object(
-        policy["tencentdb"],
-        {"mode", "capture", "recall_injection", "offload", "persona_generation", "automatic_skill_generation", "canonical_write", "dsn_reference_file"},
-        {"mode", "capture", "recall_injection", "offload", "persona_generation", "automatic_skill_generation", "canonical_write", "dsn_reference_file"},
-        "tencentdb",
+    headroom = strict_object(
+        policy["headroom"],
+        {
+            "required",
+            "version",
+            "host",
+            "port",
+            "base_url",
+            "openai_base_url",
+            "mode",
+            "stateless",
+            "lossless",
+            "cache",
+            "memory",
+            "learn",
+            "output_shaper",
+            "effort_router",
+            "verbosity_autotune",
+            "telemetry",
+            "kompress",
+            "rate_limit",
+            "subscription_tracking",
+            "code_aware",
+            "read_lifecycle",
+            "retry_max_attempts",
+            "request_timeout_seconds",
+            "anthropic_buffered_request_timeout_seconds",
+            "client_network_boundary",
+            "launch_agent",
+        },
+        {
+            "required",
+            "version",
+            "host",
+            "port",
+            "base_url",
+            "openai_base_url",
+            "mode",
+            "stateless",
+            "lossless",
+            "cache",
+            "memory",
+            "learn",
+            "output_shaper",
+            "effort_router",
+            "verbosity_autotune",
+            "telemetry",
+            "kompress",
+            "rate_limit",
+            "subscription_tracking",
+            "code_aware",
+            "read_lifecycle",
+            "retry_max_attempts",
+            "request_timeout_seconds",
+            "anthropic_buffered_request_timeout_seconds",
+            "client_network_boundary",
+            "launch_agent",
+        },
+        "headroom",
     )
-    if any(tencent[key] for key in ("recall_injection", "offload", "persona_generation", "automatic_skill_generation", "canonical_write")):
-        raise ValueError("policy: TencentDB shadow boundary violated")
-    if tencent["mode"] != "SHADOW" or tencent["capture"] is not True:
-        raise ValueError("policy: TencentDB must remain capture-only shadow")
+    if headroom != {
+        "required": True,
+        "version": "0.32.1",
+        "host": "127.0.0.1",
+        "port": 8787,
+        "base_url": "http://127.0.0.1:8787",
+        "openai_base_url": "http://127.0.0.1:8787/v1",
+        "mode": "token",
+        "stateless": True,
+        "lossless": True,
+        "cache": False,
+        "memory": False,
+        "learn": False,
+        "output_shaper": False,
+        "effort_router": False,
+        "verbosity_autotune": False,
+        "telemetry": False,
+        "kompress": False,
+        "rate_limit": False,
+        "subscription_tracking": False,
+        "code_aware": False,
+        "read_lifecycle": False,
+        "retry_max_attempts": 1,
+        "request_timeout_seconds": 10800,
+        "anthropic_buffered_request_timeout_seconds": 10800,
+        "client_network_boundary": "SANDBOX_EXEC_HEADROOM_ONLY",
+        "launch_agent": "com.ardesia.headroom-gateway",
+    }:
+        raise ValueError("policy: Headroom must remain required, loopback and lossless/stateless")
+    hermes = strict_object(
+        policy["hermes"],
+        {
+            "mode",
+            "state",
+            "enabled",
+            "provider",
+            "auth",
+            "headroom_required",
+            "scheduler_enabled",
+            "write_approval_required",
+            "canonical_source",
+            "canonical_write",
+            "upstream_blocker",
+        },
+        {
+            "mode",
+            "state",
+            "enabled",
+            "provider",
+            "auth",
+            "headroom_required",
+            "scheduler_enabled",
+            "write_approval_required",
+            "canonical_source",
+            "canonical_write",
+            "upstream_blocker",
+        },
+        "hermes",
+    )
+    if hermes != {
+        "mode": "DERIVED_MEMORY_PLANNER",
+        "state": "DISABLED_HERMES_HEADROOM_BYPASS_5875",
+        "enabled": False,
+        "provider": "openai-codex",
+        "auth": "OPENAI_AUTH",
+        "headroom_required": True,
+        "scheduler_enabled": False,
+        "write_approval_required": True,
+        "canonical_source": "Obsidian/Markdown/Git",
+        "canonical_write": False,
+        "upstream_blocker": "https://github.com/NousResearch/hermes-agent/issues/5875",
+    }:
+        raise ValueError("policy: Hermes must remain gated and disabled behind upstream bug #5875")
     strict_object(
         policy["wikillm"],
         {"mode", "canonical_source", "derived_index", "canonical_write"},
@@ -648,8 +782,28 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
             raise ValueError("policy: invalid Obsidian root")
     tools = strict_object(
         policy["tools"],
-        {"python", "git", "gh", "codex", "claude", "npm", "ob"},
-        {"python", "git", "gh", "codex", "claude", "npm", "ob"},
+        {
+            "python",
+            "git",
+            "gh",
+            "codex",
+            "claude",
+            "headroom",
+            "sandbox_exec",
+            "npm",
+            "ob",
+        },
+        {
+            "python",
+            "git",
+            "gh",
+            "codex",
+            "claude",
+            "headroom",
+            "sandbox_exec",
+            "npm",
+            "ob",
+        },
         "tools",
     )
     if any(not Path(path).is_absolute() for path in tools.values()):
@@ -716,6 +870,7 @@ def ensure_runtime(runtime: Path) -> None:
         "knowledge-delta/pending",
         "knowledge-delta/quarantine",
         "artifacts/contexts",
+        "artifacts/headroom-routes",
         "artifacts/productive-runs",
         "obsidian-vault",
         "launchd/mcp",
@@ -738,6 +893,94 @@ def command_environment() -> Dict[str, str]:
     return environment
 
 
+def headroom_proxy_arguments(policy: Dict[str, Any]) -> List[str]:
+    headroom = policy["headroom"]
+    return [
+        "proxy",
+        "--host",
+        headroom["host"],
+        "--port",
+        str(headroom["port"]),
+        "--workers",
+        "1",
+        "--mode",
+        headroom["mode"],
+        "--stateless",
+        "--lossless",
+        "--no-cache",
+        "--no-rate-limit",
+        "--no-subscription-tracking",
+        "--retry-max-attempts",
+        str(headroom["retry_max_attempts"]),
+        "--request-timeout-seconds",
+        str(headroom["request_timeout_seconds"]),
+        "--anthropic-buffered-request-timeout-seconds",
+        str(headroom["anthropic_buffered_request_timeout_seconds"]),
+        "--no-memory-tools",
+        "--no-memory-context",
+        "--no-learn",
+        "--no-telemetry",
+        "--disable-kompress",
+        "--disable-kompress-fallback",
+        "--disable-kompress-anthropic",
+        "--disable-kompress-openai",
+        "--no-code-aware",
+        "--no-read-lifecycle",
+    ]
+
+
+def headroom_gateway_environment(policy: Dict[str, Any]) -> Dict[str, str]:
+    headroom = policy["headroom"]
+    return {
+        "HEADROOM_STATELESS": "true" if headroom["stateless"] else "false",
+        "HEADROOM_LOSSLESS": "1" if headroom["lossless"] else "0",
+        "HEADROOM_TELEMETRY": "on" if headroom["telemetry"] else "off",
+        "HEADROOM_OUTPUT_SHAPER": "1" if headroom["output_shaper"] else "0",
+        "HEADROOM_EFFORT_ROUTER": "1" if headroom["effort_router"] else "0",
+        "HEADROOM_VERBOSITY_AUTOTUNE": (
+            "1" if headroom["verbosity_autotune"] else "0"
+        ),
+        "HEADROOM_MEMORY_INJECTION_MODE": "disabled",
+        "HEADROOM_DISABLE_KOMPRESS": "0" if headroom["kompress"] else "1",
+        "HEADROOM_DISABLE_KOMPRESS_FALLBACK": (
+            "0" if headroom["kompress"] else "1"
+        ),
+        "HEADROOM_DISABLE_KOMPRESS_ANTHROPIC": (
+            "0" if headroom["kompress"] else "1"
+        ),
+        "HEADROOM_DISABLE_KOMPRESS_OPENAI": (
+            "0" if headroom["kompress"] else "1"
+        ),
+    }
+
+
+def _completed_command(
+    arguments: Sequence[str],
+    *,
+    cwd: Optional[Path],
+    timeout: int,
+    max_chars: int,
+    input_text: Optional[str],
+    environment: Dict[str, str],
+) -> Dict[str, Any]:
+    completed = subprocess.run(
+        list(arguments),
+        cwd=str(cwd) if cwd else None,
+        env=environment,
+        input=input_text,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        check=False,
+    )
+    return {
+        "exit": completed.returncode,
+        "stdout": completed.stdout[-max_chars:],
+        "stderr": completed.stderr[-max_chars:],
+        "argv": list(arguments),
+    }
+
+
 def run_tool(
     policy: Dict[str, Any],
     tool: str,
@@ -749,6 +992,8 @@ def run_tool(
     executable = policy["tools"].get(tool)
     if not executable or not Path(executable).is_absolute():
         raise ValueError(f"tool not allow-listed: {tool}")
+    if tool in {"claude", "codex"} and list(arguments) != ["--version"]:
+        raise ValueError("direct AI tool invocation rejected: required Headroom gateway binding missing")
     completed = subprocess.run(
         [executable, *arguments],
         cwd=str(cwd) if cwd else None,
@@ -772,22 +1017,74 @@ def run_command(
 ) -> Dict[str, Any]:
     if not arguments or not Path(arguments[0]).is_absolute():
         raise ValueError("command executable must be an absolute pinned path")
-    completed = subprocess.run(
-        list(arguments),
-        cwd=str(cwd) if cwd else None,
-        env=command_environment(),
-        input=input_text,
-        capture_output=True,
-        text=True,
+    if any(
+        re.search(
+            r"(?<![A-Za-z0-9_.-])(?:claude|codex)(?![A-Za-z0-9_.-])",
+            token,
+            re.IGNORECASE,
+        )
+        for token in arguments
+    ):
+        raise ValueError("direct AI command rejected: use the required Headroom gateway adapter")
+    return _completed_command(
+        arguments,
+        cwd=cwd,
         timeout=timeout,
-        check=False,
+        max_chars=max_chars,
+        input_text=input_text,
+        environment=command_environment(),
     )
-    return {
-        "exit": completed.returncode,
-        "stdout": completed.stdout[-max_chars:],
-        "stderr": completed.stderr[-max_chars:],
-        "argv": list(arguments),
-    }
+
+
+def run_ai_command(
+    policy: Dict[str, Any],
+    identity: str,
+    arguments: Sequence[str],
+    cwd: Optional[Path] = None,
+    timeout: int = 30,
+    max_chars: int = 200000,
+    input_text: Optional[str] = None,
+) -> Dict[str, Any]:
+    bound_arguments, environment, binding = prepare_ai_invocation(
+        policy,
+        identity,
+        arguments,
+    )
+    result = _completed_command(
+        bound_arguments,
+        cwd=cwd,
+        timeout=timeout,
+        max_chars=max_chars,
+        input_text=input_text,
+        environment=environment,
+    )
+    result["headroom_binding"] = attest_headroom_route(
+        policy,
+        identity,
+        binding,
+    )
+    return result
+
+
+def run_ai_tool(
+    policy: Dict[str, Any],
+    identity: str,
+    arguments: Sequence[str],
+    cwd: Optional[Path] = None,
+    timeout: int = 30,
+    max_chars: int = 200000,
+) -> Dict[str, Any]:
+    executable = policy["tools"].get(identity)
+    if identity not in {"claude", "codex"} or not executable:
+        raise ValueError("AI identity is not allow-listed")
+    return run_ai_command(
+        policy,
+        identity,
+        [executable, *arguments],
+        cwd=cwd,
+        timeout=timeout,
+        max_chars=max_chars,
+    )
 
 
 def task_by_id(policy: Dict[str, Any], task_id: str) -> Dict[str, Any]:
@@ -1205,6 +1502,7 @@ def doctor(policy: Dict[str, Any]) -> Dict[str, Any]:
     codex_version = run_tool(policy, "codex", ["--version"], timeout=10, max_chars=2000)
     codex_version_text = (codex_version["stdout"] + "\n" + codex_version["stderr"]).strip()
     reviewer_cli_compatible = codex_version["exit"] == 0 and codex_cli_compatible(codex_version_text)
+    headroom = headroom_status(policy)
     checks = [
         {"id": "free_disk_20gib", "pass": disk.free >= 20 * 1024 ** 3, "observed": disk.free},
         {"id": "product_exact_clean", "pass": product_probe["pass"], "observed": product_probe},
@@ -1234,7 +1532,20 @@ def doctor(policy: Dict[str, Any]) -> Dict[str, Any]:
                 "task_overlaps": github_monitor.get("task_overlaps", {}),
             },
         },
-        {"id": "canonical_obsidian_write", "pass": policy["tencentdb"]["canonical_write"] is False, "observed": False},
+        {
+            "id": "headroom_required_gateway",
+            "pass": (not policy["loop"]["enabled"])
+            or headroom["state"] == "ACTIVE_REQUIRED_GATEWAY",
+            "observed": headroom,
+        },
+        {
+            "id": "canonical_obsidian_git",
+            "pass": (
+                policy["hermes"]["canonical_write"] is False
+                and policy["hermes"]["canonical_source"] == "Obsidian/Markdown/Git"
+            ),
+            "observed": policy["hermes"]["canonical_source"],
+        },
     ]
     state = "READY_FOR_PRODUCTIVE_LOOP" if all(item["pass"] for item in checks) else "PAUSED_SAFETY"
     return {
@@ -1257,6 +1568,619 @@ def read_process_command(pid: int) -> str:
         timeout=5,
     )
     return completed.stdout.strip() if completed.returncode == 0 else ""
+
+
+def validate_headroom_health(
+    policy: Dict[str, Any],
+    payload: Any,
+    process_command: str,
+    version_text: str,
+) -> List[str]:
+    headroom = policy["headroom"]
+    failures: List[str] = []
+    if not re.search(rf"(?<![0-9.]){re.escape(headroom['version'])}(?![0-9.])", version_text):
+        failures.append("binary_version")
+    if not isinstance(payload, dict):
+        return [*failures, "health_payload"]
+    if payload.get("service") != "headroom-proxy":
+        failures.append("service_identity")
+    if payload.get("version") != headroom["version"]:
+        failures.append("runtime_version")
+    if payload.get("status") != "healthy" or payload.get("ready") is not True:
+        failures.append("runtime_readiness")
+    checks = payload.get("checks")
+    config = payload.get("config")
+    if not isinstance(checks, dict) or not isinstance(config, dict):
+        return [*failures, "health_contract"]
+    for name in ("cache", "rate_limiter", "memory", "kompress"):
+        check = checks.get(name)
+        if not isinstance(check, dict) or check.get("enabled") is not False:
+            failures.append(f"{name}_disabled")
+    expected_config = {
+        "cache": False,
+        "rate_limit": False,
+        "memory": False,
+        "learn": False,
+        "disable_kompress": True,
+        "disable_kompress_fallback": True,
+        "disable_kompress_anthropic": True,
+        "disable_kompress_openai": True,
+    }
+    for key, expected in expected_config.items():
+        if config.get(key) is not expected:
+            failures.append(f"config_{key}")
+    runtime_environment = config.get("runtime_env")
+    expected_runtime_environment = {
+        "HEADROOM_OUTPUT_SHAPER": "0",
+        "HEADROOM_EFFORT_ROUTER": "0",
+        "HEADROOM_VERBOSITY_AUTOTUNE": "0",
+    }
+    if not isinstance(runtime_environment, dict):
+        failures.append("runtime_environment")
+    else:
+        for key, expected in expected_runtime_environment.items():
+            if runtime_environment.get(key) != expected:
+                failures.append(f"runtime_{key.lower()}")
+    try:
+        process_tokens = shlex.split(process_command)
+    except ValueError:
+        process_tokens = []
+    required_tokens = [
+        policy["tools"]["headroom"],
+        *headroom_proxy_arguments(policy),
+    ]
+    try:
+        executable_index = process_tokens.index(policy["tools"]["headroom"])
+    except ValueError:
+        executable_index = -1
+    if executable_index < 0 or process_tokens[executable_index:] != required_tokens:
+        failures.append("launch_contract")
+    return failures
+
+
+def headroom_semantic_health(payload: Any) -> Dict[str, Any]:
+    if not isinstance(payload, dict):
+        return {}
+    checks = payload.get("checks")
+    config = payload.get("config")
+    stable_checks: Dict[str, Any] = {}
+    if isinstance(checks, dict):
+        for name in (
+            "startup",
+            "http_client",
+            "cache",
+            "rate_limiter",
+            "memory",
+            "upstream",
+            "kompress",
+        ):
+            check = checks.get(name)
+            if not isinstance(check, dict):
+                continue
+            stable_checks[name] = {
+                key: check.get(key)
+                for key in (
+                    "enabled",
+                    "ready",
+                    "status",
+                    "error",
+                    "url",
+                    "backend",
+                    "initialized",
+                    "native_tool",
+                    "bridge_enabled",
+                )
+                if key in check
+            }
+    stable_config: Dict[str, Any] = {}
+    if isinstance(config, dict):
+        for key in (
+            "backend",
+            "optimize",
+            "cache",
+            "rate_limit",
+            "disable_kompress",
+            "disable_kompress_fallback",
+            "disable_kompress_anthropic",
+            "disable_kompress_openai",
+            "memory",
+            "learn",
+            "code_graph",
+            "anthropic_api_url",
+            "openai_api_url",
+            "gemini_api_url",
+            "cloudcode_api_url",
+            "vertex_api_url",
+            "savings_profile",
+            "runtime_env",
+        ):
+            if key in config:
+                stable_config[key] = config.get(key)
+    return {
+        "service": payload.get("service"),
+        "status": payload.get("status"),
+        "ready": payload.get("ready"),
+        "version": payload.get("version"),
+        "checks": stable_checks,
+        "config": stable_config,
+    }
+
+
+def headroom_status(policy: Dict[str, Any]) -> Dict[str, Any]:
+    runtime = runtime_path(policy)
+    try:
+        version_result = run_tool(
+            policy,
+            "headroom",
+            ["--version"],
+            timeout=10,
+            max_chars=2000,
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        version_result = {
+            "exit": 127,
+            "stdout": "",
+            "stderr": redact_diagnostic(str(error)),
+            "argv": [policy["tools"]["headroom"], "--version"],
+        }
+    version_text = (version_result["stdout"] + "\n" + version_result["stderr"]).strip()
+    payload: Any = None
+    diagnostic = ""
+    try:
+        request = urllib.request.Request(
+            policy["headroom"]["base_url"] + "/health",
+            headers={"Accept": "application/json"},
+            method="GET",
+        )
+        with urllib.request.urlopen(request, timeout=5) as response:
+            body = response.read(200_001)
+        if len(body) > 200_000:
+            raise ValueError("Headroom health response exceeded the bounded size")
+        payload = json.loads(body.decode("utf-8"))
+    except (OSError, ValueError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        diagnostic = redact_diagnostic(str(error))
+    config = payload.get("config") if isinstance(payload, dict) else None
+    pid_value = config.get("pid") if isinstance(config, dict) else None
+    pid = (
+        pid_value
+        if isinstance(pid_value, int) and not isinstance(pid_value, bool) and pid_value > 0
+        else 0
+    )
+    process_command = read_process_command(pid) if pid > 0 else ""
+    failures = validate_headroom_health(
+        policy,
+        payload,
+        process_command,
+        version_text,
+    )
+    if version_result["exit"] != 0:
+        failures.insert(0, "binary_unavailable")
+    if not pid:
+        failures.append("runtime_pid")
+    launch_contract_digest = sha256_text(
+        canonical_json(
+            {
+                "argv": [policy["tools"]["headroom"], *headroom_proxy_arguments(policy)],
+                "environment": headroom_gateway_environment(policy),
+            }
+        )
+    )
+    result = {
+        "schema_version": 1,
+        "service_version": VERSION,
+        "state": "ACTIVE_REQUIRED_GATEWAY" if not failures else "BLOCKED_REQUIRED_GATEWAY",
+        "required": True,
+        "version": policy["headroom"]["version"],
+        "base_url": policy["headroom"]["base_url"],
+        "openai_base_url": policy["headroom"]["openai_base_url"],
+        "mode": "STATELESS_LOSSLESS",
+        "cache": False,
+        "memory": False,
+        "learn": False,
+        "output_shaper": False,
+        "effort_router": False,
+        "verbosity_autotune": False,
+        "telemetry": False,
+        "kompress": False,
+        "rate_limit": False,
+        "subscription_tracking": False,
+        "code_aware": False,
+        "read_lifecycle": False,
+        "retry_max_attempts": policy["headroom"]["retry_max_attempts"],
+        "request_timeout_seconds": policy["headroom"]["request_timeout_seconds"],
+        "anthropic_buffered_request_timeout_seconds": policy["headroom"][
+            "anthropic_buffered_request_timeout_seconds"
+        ],
+        "pid": pid or None,
+        "health_digest": (
+            sha256_text(canonical_json(headroom_semantic_health(payload)))
+            if isinstance(payload, dict)
+            else None
+        ),
+        "launch_contract_digest": launch_contract_digest,
+        "failures": sorted(set(failures)),
+        "diagnostic": diagnostic,
+        "checked_at": iso_now(),
+    }
+    write_json(runtime / "state" / "headroom.json", result)
+    return result
+
+
+def headroom_request_stats(policy: Dict[str, Any]) -> Dict[str, Any]:
+    request = urllib.request.Request(
+        policy["headroom"]["base_url"] + "/stats",
+        headers={"Accept": "application/json"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=5) as response:
+            body = response.read(1_000_001)
+    except OSError as error:
+        raise RuntimeError(
+            "required Headroom request statistics unavailable: "
+            + redact_diagnostic(str(error))
+        ) from error
+    if len(body) > 1_000_000:
+        raise RuntimeError("Headroom request statistics exceeded the bounded size")
+    try:
+        payload = json.loads(body.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise RuntimeError("Headroom request statistics were not valid JSON") from error
+    requests = payload.get("requests") if isinstance(payload, dict) else None
+    total = requests.get("total") if isinstance(requests, dict) else None
+    if isinstance(total, bool) or not isinstance(total, int) or total < 0:
+        raise RuntimeError("Headroom request statistics contract is invalid")
+    route_logs: List[Dict[str, Any]] = []
+    raw_logs = payload.get("request_logs") if isinstance(payload, dict) else None
+    if isinstance(raw_logs, list):
+        for entry in raw_logs:
+            if not isinstance(entry, dict):
+                continue
+            tags = entry.get("tags")
+            stack = tags.get("stack") if isinstance(tags, dict) else None
+            client = tags.get("client") if isinstance(tags, dict) else None
+            if not isinstance(stack, str) or not stack:
+                continue
+            route_logs.append(
+                {
+                    "stack": stack,
+                    "client": client if isinstance(client, str) else None,
+                    "request_id": (
+                        entry.get("request_id")
+                        if isinstance(entry.get("request_id"), str)
+                        else None
+                    ),
+                    "provider": (
+                        entry.get("provider")
+                        if isinstance(entry.get("provider"), str)
+                        else None
+                    ),
+                    "model": (
+                        entry.get("model")
+                        if isinstance(entry.get("model"), str)
+                        else None
+                    ),
+                    "failed": bool(entry.get("error")),
+                }
+            )
+    return {
+        "total": total,
+        "by_provider": (
+            requests.get("by_provider")
+            if isinstance(requests.get("by_provider"), dict)
+            else {}
+        ),
+        "by_model": (
+            requests.get("by_model")
+            if isinstance(requests.get("by_model"), dict)
+            else {}
+        ),
+        "by_stack": (
+            requests.get("by_stack")
+            if isinstance(requests.get("by_stack"), dict)
+            else {}
+        ),
+        "route_logs": route_logs,
+        "digest": sha256_text(canonical_json(payload)),
+    }
+
+
+def require_headroom(policy: Dict[str, Any]) -> Dict[str, Any]:
+    state = headroom_status(policy)
+    if state["state"] != "ACTIVE_REQUIRED_GATEWAY":
+        detail = ",".join(state["failures"]) or state["diagnostic"] or "unhealthy"
+        raise RuntimeError(f"required Headroom gateway unavailable: {detail}")
+    return state
+
+
+def codex_headroom_config(policy: Dict[str, Any]) -> List[str]:
+    return [
+        "--config",
+        'model_provider="headroom"',
+        "--config",
+        'model_providers.headroom.name="ARDESIA Headroom required gateway"',
+        "--config",
+        f'model_providers.headroom.base_url="{policy["headroom"]["openai_base_url"]}"',
+        "--config",
+        'model_providers.headroom.wire_api="responses"',
+        "--config",
+        "model_providers.headroom.supports_websockets=true",
+        "--config",
+        "model_providers.headroom.requires_openai_auth=true",
+    ]
+
+
+def ai_network_sandbox_profile(policy: Dict[str, Any]) -> str:
+    if policy["headroom"]["client_network_boundary"] != (
+        "SANDBOX_EXEC_HEADROOM_ONLY"
+    ):
+        raise ValueError("unsupported AI client network boundary")
+    port = int(policy["headroom"]["port"])
+    return (
+        "(version 1) "
+        "(allow default) "
+        "(deny network-outbound) "
+        f'(allow network-outbound (remote ip "localhost:{port}"))'
+    )
+
+
+def codex_config_key(value: str) -> str:
+    return value.split("=", 1)[0].strip()
+
+
+def reject_caller_owned_codex_routing(arguments: Sequence[str]) -> None:
+    routing_flags = {
+        "--oss",
+        "--local-provider",
+        "--profile",
+        "--remote",
+        "--remote-auth-token-env",
+    }
+    for index, token in enumerate(arguments):
+        if token in routing_flags or any(
+            token.startswith(flag + "=") for flag in routing_flags
+        ) or token == "-p" or token.startswith("-p=") or (
+            token.startswith("-p") and len(token) > 2
+        ):
+            raise ValueError(
+                "Codex invocation rejected: routing flag is controller-owned"
+            )
+        value: Optional[str] = None
+        if token in {"--config", "-c"}:
+            if index + 1 >= len(arguments):
+                raise ValueError("Codex invocation contains an incomplete config")
+            value = arguments[index + 1]
+        elif token.startswith("--config="):
+            value = token[len("--config=") :]
+        elif token.startswith("-c="):
+            value = token[3:]
+        elif token.startswith("-c") and token != "-c":
+            value = token[2:]
+        if value is None:
+            continue
+        key = codex_config_key(value)
+        if key == "model_provider" or key.startswith("model_providers."):
+            raise ValueError(
+                "Codex invocation rejected: routing config is controller-owned"
+            )
+
+
+def prepare_ai_invocation(
+    policy: Dict[str, Any],
+    identity: str,
+    arguments: Sequence[str],
+) -> Tuple[List[str], Dict[str, str], Dict[str, Any]]:
+    if identity not in {"claude", "codex"}:
+        raise ValueError("unsupported AI identity")
+    if not arguments or arguments[0] != policy["tools"][identity]:
+        raise ValueError("AI executable does not match the pinned policy tool")
+    bound_arguments = list(arguments)
+    route_id = f"ardesia-{identity}-{uuid.uuid4().hex}"
+    if identity == "codex":
+        if len(bound_arguments) < 2 or bound_arguments[1] not in {
+            "app-server",
+            "exec",
+        }:
+            raise ValueError("unsupported Codex inference command")
+        reject_caller_owned_codex_routing(bound_arguments[2:])
+        controller_config = [
+            *codex_headroom_config(policy),
+            "--config",
+            (
+                "model_providers.headroom.http_headers="
+                f'{{"x-headroom-stack"="{route_id}"}}'
+            ),
+        ]
+        bound_arguments[2:2] = controller_config
+    headroom = require_headroom(policy)
+    request_stats = headroom_request_stats(policy)
+    environment = command_environment()
+    if identity == "claude":
+        environment["ANTHROPIC_BASE_URL"] = policy["headroom"]["base_url"]
+        environment["ANTHROPIC_CUSTOM_HEADERS"] = (
+            f"X-Headroom-Stack: {route_id}"
+        )
+    environment["ARDESIA_HEADROOM_REQUIRED"] = "1"
+    sandbox_profile = ai_network_sandbox_profile(policy)
+    bound_arguments = [
+        policy["tools"]["sandbox_exec"],
+        "-p",
+        sandbox_profile,
+        *bound_arguments,
+    ]
+    binding = {
+        "state": headroom["state"],
+        "version": headroom["version"],
+        "gateway_pid": headroom["pid"],
+        "health_digest": headroom["health_digest"],
+        "route_id": route_id,
+        "expected_client": "claude-code" if identity == "claude" else "codex",
+        "expected_provider": "anthropic" if identity == "claude" else "openai",
+        "network_boundary": policy["headroom"]["client_network_boundary"],
+        "sandbox_profile_sha256": sha256_text(sandbox_profile),
+        "requests_before": request_stats["total"],
+        "stats_before_digest": request_stats["digest"],
+        "base_url": (
+            policy["headroom"]["base_url"]
+            if identity == "claude"
+            else policy["headroom"]["openai_base_url"]
+        ),
+    }
+    return bound_arguments, environment, binding
+
+
+def attest_headroom_route(
+    policy: Dict[str, Any],
+    identity: str,
+    binding: Dict[str, Any],
+) -> Dict[str, Any]:
+    state = require_headroom(policy)
+    if state.get("pid") != binding.get("gateway_pid"):
+        raise RuntimeError(
+            f"{identity} Headroom route attestation failed: gateway restarted during invocation"
+        )
+    before = binding.get("requests_before")
+    request_stats: Dict[str, Any] = {}
+    matching_routes: List[Dict[str, Any]] = []
+    after = -1
+    last_stats_error: Optional[RuntimeError] = None
+    for attempt in range(5):
+        try:
+            request_stats = headroom_request_stats(policy)
+        except RuntimeError as error:
+            last_stats_error = error
+            if attempt < 4:
+                time.sleep(0.25)
+                continue
+            raise RuntimeError(
+                f"{identity} Headroom route attestation failed after bounded "
+                f"statistics retries: {redact_diagnostic(str(error))}"
+            ) from error
+        after = request_stats["total"]
+        matching_routes = [
+            route
+            for route in request_stats["route_logs"]
+            if route.get("stack") == binding.get("route_id")
+            and route.get("client") == binding.get("expected_client")
+            and route.get("provider") == binding.get("expected_provider")
+        ]
+        if (
+            not isinstance(before, bool)
+            and isinstance(before, int)
+            and after > before
+            and matching_routes
+        ):
+            break
+        if attempt < 4:
+            time.sleep(0.25)
+    if not request_stats and last_stats_error is not None:
+        raise RuntimeError(
+            f"{identity} Headroom route attestation statistics unavailable"
+        ) from last_stats_error
+    if isinstance(before, bool) or not isinstance(before, int) or after <= before:
+        raise RuntimeError(
+            f"{identity} Headroom route attestation failed: no proxied AI request observed"
+        )
+    if not matching_routes:
+        raise RuntimeError(
+            f"{identity} Headroom route attestation failed: unique route correlation absent"
+        )
+    receipt = {
+        "schema_version": 1,
+        "service_version": VERSION,
+        "identity": identity,
+        "route_id": binding["route_id"],
+        "gateway_pid": binding["gateway_pid"],
+        "gateway_version": binding["version"],
+        "health_digest": binding["health_digest"],
+        "base_url": binding["base_url"],
+        "expected_client": binding["expected_client"],
+        "expected_provider": binding["expected_provider"],
+        "requests_before": before,
+        "requests_after": after,
+        "request_delta": after - before,
+        "route_requests": matching_routes,
+        "stats_before_digest": binding["stats_before_digest"],
+        "stats_after_digest": request_stats["digest"],
+        "route_attested": True,
+        "attested_at": iso_now(),
+    }
+    receipt_path = (
+        runtime_path(policy)
+        / "artifacts"
+        / "headroom-routes"
+        / f"{binding['route_id']}.json"
+    )
+    receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    write_json(receipt_path, receipt, 0o640)
+    receipt_sha256 = sha256_file(receipt_path)
+    event(
+        runtime_path(policy),
+        "HEADROOM_ROUTE_ATTESTED",
+        identity=identity,
+        route_id=binding["route_id"],
+        receipt_path=str(receipt_path),
+        receipt_sha256=receipt_sha256,
+        request_delta=after - before,
+    )
+    return {
+        **binding,
+        "requests_after": after,
+        "request_delta": after - before,
+        "stats_after_digest": request_stats["digest"],
+        "route_requests": matching_routes,
+        "route_attested": True,
+        "receipt_path": str(receipt_path),
+        "receipt_sha256": receipt_sha256,
+        "attested_at": iso_now(),
+    }
+
+
+def spawn_ai_process(
+    policy: Dict[str, Any],
+    identity: str,
+    arguments: Sequence[str],
+    **kwargs: Any,
+) -> Tuple[subprocess.Popen[Any], Dict[str, Any]]:
+    bound_arguments, environment, binding = prepare_ai_invocation(
+        policy,
+        identity,
+        arguments,
+    )
+    if "env" in kwargs:
+        raise ValueError("AI process environment is controller-owned")
+    process = subprocess.Popen(bound_arguments, env=environment, **kwargs)
+    return process, binding
+
+
+def headroom_gateway(policy: Dict[str, Any]) -> int:
+    executable = policy["tools"]["headroom"]
+    if not Path(executable).is_file():
+        raise RuntimeError("pinned Headroom 0.32.1 executable is not installed")
+    environment = command_environment()
+    environment.update(headroom_gateway_environment(policy))
+    arguments = [executable, *headroom_proxy_arguments(policy)]
+    os.execve(executable, arguments, environment)
+    return 127
+
+
+def hermes_state(policy: Dict[str, Any]) -> Dict[str, Any]:
+    hermes = policy["hermes"]
+    return {
+        "schema_version": 1,
+        "state": hermes["state"],
+        "enabled": False,
+        "mode": hermes["mode"],
+        "provider": hermes["provider"],
+        "auth": hermes["auth"],
+        "headroom_required": True,
+        "scheduler_enabled": False,
+        "write_approval_required": True,
+        "canonical_source": hermes["canonical_source"],
+        "canonical_write": False,
+        "upstream_blocker": hermes["upstream_blocker"],
+        "ts": iso_now(),
+    }
 
 
 def process_matches_controller(pid: int, script: Path) -> bool:
@@ -1613,11 +2537,21 @@ def wikillm_source(policy: Dict[str, Any]) -> Dict[str, Any]:
             for path in sorted(live_notes)
         ]
         snapshot = sha256_text(canonical_json(manifest))
+        material_manifest = [
+            entry
+            for entry in manifest
+            if not path_matches_root(
+                Path(entry["path"]),
+                SELF_GENERATED_OBSIDIAN_ROOTS,
+            )
+        ]
+        material_snapshot = sha256_text(canonical_json(material_manifest))
         return {
             "path": vault,
             "mode": "OBSIDIAN_HEADLESS_LIVE",
             "source_commit": f"obsidian:{snapshot}",
             "source_sha": snapshot,
+            "material_source_sha": material_snapshot,
             "notes": live_notes,
         }
     knowledge = safe_path(runtime, policy["knowledge_repo"])
@@ -1634,6 +2568,7 @@ def wikillm_source(policy: Dict[str, Any]) -> Dict[str, Any]:
         "mode": "GIT_EXACT_SHA_FALLBACK",
         "source_commit": policy["expected_knowledge_sha"],
         "source_sha": policy["expected_knowledge_sha"],
+        "material_source_sha": policy["expected_knowledge_sha"],
         "notes": notes,
     }
 
@@ -1725,6 +2660,7 @@ def _wikillm_ingest_unlocked(policy: Dict[str, Any]) -> Dict[str, Any]:
         "schema_version": 1,
         "state": "INDEXED_CURRENT",
         "source_sha": source["source_sha"],
+        "material_source_sha": source["material_source_sha"],
         "source_mode": source["mode"],
         "canonical_git_sha": policy["expected_knowledge_sha"],
         "notes": count,
@@ -2196,43 +3132,6 @@ def compile_context(
     return packet
 
 
-def tencent_state(policy: Dict[str, Any]) -> Dict[str, Any]:
-    reference = Path(policy["tencentdb"]["dsn_reference_file"])
-    present = reference.is_file() and reference.stat().st_mode & 0o077 == 0
-    return {
-        "schema_version": 1,
-        "mode": "SHADOW",
-        "state": "READY_FOR_BOUNDED_CANARY" if present else "DEFERRED_NO_CREDENTIAL_REFERENCE",
-        "credential_reference_present": bool(present),
-        "capture": True,
-        "recall_injection": False,
-        "offload": False,
-        "persona_generation": False,
-        "automatic_skill_generation": False,
-        "canonical_write": False,
-        "ts": iso_now(),
-    }
-
-
-def tencent_shadow_capture(policy: Dict[str, Any], kind: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-    runtime = runtime_path(policy)
-    minimized = {
-        "schema_version": 1,
-        "event_id": str(uuid.uuid4()),
-        "run_id": RUN_ID,
-        "kind": kind,
-        "payload_digest": sha256_text(canonical_json(payload)),
-        "product_sha": policy["expected_product_sha"],
-        "knowledge_sha": policy["expected_knowledge_sha"],
-        "ts": iso_now(),
-    }
-    append_jsonl(runtime / "state" / "tencent-shadow-outbox.jsonl", minimized)
-    state = tencent_state(policy)
-    state["outbox_event_id"] = minimized["event_id"]
-    write_json(runtime / "state" / "tencentdb.json", state)
-    return state
-
-
 def evidence_manifest(directory: Path) -> Dict[str, Any]:
     files = []
     for path in sorted(directory.iterdir()):
@@ -2287,6 +3186,12 @@ def generate_reports(policy: Dict[str, Any]) -> None:
         "dangerously_skip_permissions": True,
     }
     schedules = {
+        "headroomGateway": {
+            "mode": "continuous",
+            "keepAlive": True,
+            "host": policy["headroom"]["host"],
+            "port": policy["headroom"]["port"],
+        },
         "controller": {"mode": "continuous", "keepAlive": True},
         "mailbox": {"intervalSeconds": 300},
         "watchdog": {"intervalSeconds": 900},
@@ -2306,6 +3211,7 @@ def generate_reports(policy: Dict[str, Any]) -> None:
 
 | Service | launchd schedule | Runtime trigger |
 |---|---|---|
+| Headroom gateway | continuous, `KeepAlive=true` | required loopback AI gateway, fail closed |
 | Controller | continuous, `KeepAlive=true` | heartbeat every {policy['schedules']['controller_heartbeat_seconds']} seconds |
 | GitHub mailbox | every 300 seconds | `scheduled` |
 | Watchdog | every 900 seconds | `scheduled` |
@@ -2325,18 +3231,24 @@ Machine-readable schedule:
 Version `{VERSION}`, run `{RUN_ID}`, exact product `{policy['expected_product_sha']}`.
 
 - One logical scheduler: `com.ardesia.mcp.controller`.
+- Required AI gateway: Headroom `0.32.1`, loopback-only, stateless/lossless, with cache, memory, learning, output shaping, telemetry and Kompress disabled.
 - MCP access mesh: stdio and read-only; no write tool is exposed.
 - Canonical knowledge: Markdown/Git. WikiLLM is a derived SQLite FTS5 projection.
 - Primary writer: Claude Code, pre-approved immutable task + exclusive lease + isolated worktree only.
 - Independent reviewer: Codex App Server, Codex CLI fallback.
 - Automatic dispatch: enabled only for the immutable pre-approved queue.
 - Obsidian: official Headless Sync with append-only agent-owned paths; Git worktree fallback while authentication/setup is incomplete.
+- Hermes: derived memory/planner only, disabled behind upstream issue `NousResearch/hermes-agent#5875`; no scheduler or canonical write.
 - Merge/deploy/main/canonical overwrite: forbidden.
 """
     codex_report = f"""# Codex control report
 
 Primary lifecycle adapter: `codex app-server --listen stdio://`.
-Fallback: official `codex exec` CLI. No API-key fallback.
+Fallback: official `codex exec` CLI. Every Codex invocation carries the explicit
+Headroom `model_provider`, `base_url`, `supports_websockets` and
+`requires_openai_auth` configuration even with `--ignore-user-config`.
+Claude receives only the controller-owned loopback `ANTHROPIC_BASE_URL`.
+There is no direct-provider fallback.
 
 Installed probe evidence: `{verification.get('codex_app_server', 'PENDING')}`.
 Claude writer probe: `{verification.get('claude_writer', 'PENDING')}`.
@@ -2347,6 +3259,7 @@ Controller tests: `{verification.get('controller_tests', 'PENDING')}`.
 Watchdog injection: `{verification.get('watchdog_restart', 'PENDING')}`.
 Scheduled 30-minute review: `{verification.get('scheduled_30m_review', 'PENDING')}`.
 Mailbox scheduled poll: `{verification.get('scheduled_mailbox', 'PENDING')}`.
+Headroom required gateway: `{verification.get('headroom_gateway', 'PENDING')}`.
 """
     rollback = """# Rollback
 
@@ -2355,7 +3268,8 @@ Mailbox scheduled poll: `{verification.get('scheduled_mailbox', 'PENDING')}`.
 3. `launchctl bootout gui/$(id -u)/com.ardesia.mcp.watchdog`
 4. `launchctl bootout gui/$(id -u)/com.ardesia.mcp.mailbox`
 5. `launchctl bootout gui/$(id -u)/com.ardesia.mcp.controller`
-6. Bootstrap the preserved `com.ardesia.control.plist` and `com.ardesia.watchdog.plist`.
+6. `launchctl bootout gui/$(id -u)/com.ardesia.headroom-gateway`
+7. Bootstrap the preserved `com.ardesia.control.plist` and `com.ardesia.watchdog.plist`.
 
 Do not delete runtime state, ledger, bundles or review evidence during rollback.
 """
@@ -2479,15 +3393,18 @@ Read only scientific-audit-input.json in the current evidence directory.
 Do not modify a repository, policy, task, queue or source file; do not use the
 network. Distinguish a live process from useful progress, and useful progress
 from acceptance. Test one explicit hypothesis against exact timestamps,
-digests, gates, GitHub overlap, prior task outcomes, Obsidian/WikiLLM state and
-the optional Tencent shadow boundary. A running writer with no progress
+digests, gates, GitHub overlap, prior task outcomes, Obsidian/WikiLLM state,
+the required Headroom gateway and the explicitly disabled Hermes boundary.
+A running writer with no progress
 heartbeat is INCONCLUSIVE, not verified. A finite empty queue is stable
 maintenance, not a no-stop productive loop. Recommend one bounded next action;
 never auto-admit it or weaken a gate. Set queue_proposal to null while a task
 is active or evidence is insufficient. Only when the queue is terminal and the
 evidence supports it, propose one falsifiable successor with at most five exact
 paths; the proposal remains non-admitted."""
-    response = run_command(
+    response = run_ai_command(
+        policy,
+        "codex",
         [
             policy["tools"]["codex"],
             "exec",
@@ -2607,10 +3524,62 @@ paths; the proposal remains non-admitted."""
         "model": policy["loop"]["reviewer_model"],
         "reasoning_effort": policy["loop"]["reviewer_effort"],
         "sandbox": "read-only",
+        "headroom_route_receipt": {
+            "route_id": response["headroom_binding"]["route_id"],
+            "path": response["headroom_binding"]["receipt_path"],
+            "sha256": response["headroom_binding"]["receipt_sha256"],
+        },
         "completed_at": iso_now(),
     }
     write_json(output_path, audit, 0o640)
     return audit
+
+
+def scientific_material_digest(
+    checks: Dict[str, Any],
+    github: Dict[str, Any],
+    wiki: Dict[str, Any],
+    mailbox: Dict[str, Any],
+    headroom: Dict[str, Any],
+    hermes: Dict[str, Any],
+    obsidian: Dict[str, Any],
+    productive: Dict[str, Any],
+    supervisor_context: Dict[str, Any],
+) -> str:
+    mailbox_directives = mailbox.get("directives")
+    stable_mailbox = (
+        {
+            key: {
+                "directive": value.get("directive"),
+                "payload_digest": value.get("payload_digest"),
+                "state": value.get("state"),
+            }
+            for key, value in sorted(mailbox_directives.items())
+            if isinstance(value, dict)
+        }
+        if isinstance(mailbox_directives, dict)
+        else {}
+    )
+    material = {
+        "controller_state": checks.get("state"),
+        "controller_reason": checks.get("reason"),
+        "github_inventory": github.get("inventory_digest"),
+        "github_state": github.get("state"),
+        "task_overlaps": github.get("task_overlaps"),
+        "mailbox_directives": stable_mailbox,
+        "headroom_state": headroom.get("state"),
+        "headroom_health": headroom.get("health_digest"),
+        "headroom_launch_contract": headroom.get("launch_contract_digest"),
+        "hermes_state": hermes.get("state"),
+        "wikillm_source": wiki.get("source_mode"),
+        "wikillm_material_snapshot": wiki.get("material_source_sha"),
+        "obsidian_state": obsidian.get("state"),
+        "productive_tasks": productive.get("tasks"),
+        "required_sources_digest": (
+            supervisor_context.get("required_sources") or {}
+        ).get("manifest_digest"),
+    }
+    return sha256_text(canonical_json(material))
 
 
 def _scientific_review(
@@ -2625,21 +3594,14 @@ def _scientific_review(
     checks = doctor(policy)
     wiki = wikillm_ingest(policy)
     mailbox = read_json(runtime / "state" / "mailbox.json", {}) or {"state": "NOT_RUN"}
-    tencent = tencent_shadow_capture(
-        policy,
-        "SCIENTIFIC_REVIEW",
-        {
-            "checks_digest": sha256_text(canonical_json(checks["checks"])),
-            "wikillm_digest": wiki["database_sha256"],
-            "mailbox_state": mailbox.get("state"),
-            "github_monitor_state": github.get("state"),
-        },
-    )
+    headroom = read_json(runtime / "state" / "headroom.json", {}) or headroom_status(policy)
+    hermes = hermes_state(policy)
     write_json(directory / "deterministic-checks.json", checks, 0o640)
     write_json(directory / "wikillm.json", wiki, 0o640)
     write_json(directory / "mailbox.json", mailbox, 0o640)
     write_json(directory / "github-monitor.json", github, 0o640)
-    write_json(directory / "tencentdb-shadow.json", tencent, 0o640)
+    write_json(directory / "headroom.json", headroom, 0o640)
+    write_json(directory / "hermes.json", hermes, 0o640)
     productive = read_json(productive_state_path(runtime), {}) or {}
     write_json(directory / "productive-loop.json", productive, 0o640)
     active_states = {
@@ -2682,26 +3644,17 @@ def _scientific_review(
             "reason": redact_diagnostic(str(error)),
         }
     write_json(directory / "supervisor-context.json", supervisor_context, 0o640)
-    material_digest = sha256_text(
-        canonical_json(
-            {
-                "controller_state": checks["state"],
-                "controller_reason": checks["reason"],
-                "github_inventory": github.get("inventory_digest"),
-                "github_state": github.get("state"),
-                "task_overlaps": github.get("task_overlaps"),
-                "wikillm_source": wiki.get("source_mode"),
-                "wikillm_snapshot": wiki.get("source_sha"),
-                "obsidian_state": (
-                    read_json(runtime / "state" / "obsidian.json", {}) or {}
-                ).get("state"),
-                "productive_tasks": productive.get("tasks"),
-                "context_digest": supervisor_context.get("content_digest"),
-                "required_sources_digest": (
-                    supervisor_context.get("required_sources") or {}
-                ).get("manifest_digest"),
-            }
-        )
+    obsidian_state = read_json(runtime / "state" / "obsidian.json", {}) or {}
+    material_digest = scientific_material_digest(
+        checks,
+        github,
+        wiki,
+        mailbox,
+        headroom,
+        hermes,
+        obsidian_state,
+        productive,
+        supervisor_context,
     )
     audit_input = {
         "schema_version": 1,
@@ -2714,14 +3667,16 @@ def _scientific_review(
         "github_monitor": github,
         "wikillm": wiki,
         "mailbox": mailbox,
-        "tencentdb_shadow": tencent,
+        "headroom": headroom,
+        "hermes": hermes,
         "productive_loop": productive,
         "supervisor_context": supervisor_context,
         "authority": {
             "github": "operational coordination oracle",
             "obsidian_markdown_git": "canonical knowledge",
             "wikillm": "derived rebuildable index",
-            "tencentdb": "optional shadow only",
+            "headroom": "required stateless lossless AI gateway",
+            "hermes": "derived planner/memory disabled behind upstream bug #5875",
             "agentmemory": "RETIRED_NO_READ_NO_WRITE",
         },
     }
@@ -2757,7 +3712,8 @@ Review `{review_id}`, trigger `{trigger}`.
 Controller gate `{checks['state']}`; SOL audit execution `{audit_execution_state}`;
 scientific classification `{classification}`.
 Product `{policy['expected_product_sha']}`, Knowledge `{policy['expected_knowledge_sha']}`.
-WikiLLM `{wiki['notes']}` notes from `{wiki.get('source_mode')}`, GitHub monitor `{github.get('state')}`, TencentDB `{tencent['state']}`.
+WikiLLM `{wiki['notes']}` notes from `{wiki.get('source_mode')}`, GitHub monitor `{github.get('state')}`, Headroom `{headroom['state']}`.
+Hermes `{hermes['state']}`; it is not an active scheduler, writer or canonical memory.
 Writer `writer-claude`; pre-approved automatic dispatch `{policy['writer']['automatic_dispatch']}`.
 Scheduled supervisor `{policy['loop']['reviewer_model']}` at `{policy['loop']['reviewer_effort']}` in read-only sandbox.
 
@@ -3216,6 +4172,12 @@ def render_plists(policy: Dict[str, Any], script: Path, policy_path: Path, outpu
     schedules = policy["schedules"]
     definitions = [
         (
+            "com.ardesia.headroom-gateway",
+            [*base, "headroom-gateway"],
+            {"RunAtLoad": True},
+            True,
+        ),
+        (
             "com.ardesia.mcp.controller",
             [*base, "controller"],
             {"RunAtLoad": True},
@@ -3309,14 +4271,20 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
     runtime = runtime_path(policy)
     product = safe_path(runtime, policy["product_repo"])
     executable = policy["tools"]["codex"]
-    process = subprocess.Popen(
-        [executable, "app-server", "--listen", "stdio://"],
+    process, headroom_binding = spawn_ai_process(
+        policy,
+        "codex",
+        [
+            executable,
+            "app-server",
+            "--listen",
+            "stdio://",
+        ],
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
         bufsize=1,
-        env=command_environment(),
     )
     thread_id = None
     turn_id = None
@@ -3410,6 +4378,11 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
         resumed = read_message(process, 30, lambda item: item.get("id") == 4, backlog)
         if "error" in resumed:
             raise RuntimeError(f"thread/resume failed: {resumed['error']}")
+        headroom_binding = attest_headroom_route(
+            policy,
+            "codex",
+            headroom_binding,
+        )
         result = {
             "state": "PASS",
             "thread_id": thread_id,
@@ -3417,6 +4390,7 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             "initialize": "PASS",
             "interrupt": "PASS",
             "resume": "PASS",
+            "headroom_binding": headroom_binding,
             "ts": iso_now(),
         }
         event(runtime, "CODEX_APP_SERVER_PROBE_COMPLETED", state="PASS", thread_id=thread_id, turn_id=turn_id)
@@ -4748,10 +5722,11 @@ def invoke_claude_writer(
     failure_reason: Optional[str] = None
     local_coordination: Optional[Dict[str, Any]] = None
     with stdout_partial.open("wb") as stdout, stderr_partial.open("wb") as stderr:
-        process = subprocess.Popen(
+        process, headroom_binding = spawn_ai_process(
+            policy,
+            "claude",
             arguments,
             cwd=str(worktree),
-            env=command_environment(),
             stdin=subprocess.PIPE,
             stdout=stdout,
             stderr=stderr,
@@ -4861,6 +5836,25 @@ def invoke_claude_writer(
     if failure_reason:
         exit_code = 124
         stderr_text = f"{stderr_text}\n{failure_reason}".strip()
+    try:
+        headroom_binding = attest_headroom_route(
+            policy,
+            "claude",
+            headroom_binding,
+        )
+        write_json(
+            directory / f"{phase}-claude-headroom-route.json",
+            {
+                "route_id": headroom_binding["route_id"],
+                "path": headroom_binding["receipt_path"],
+                "sha256": headroom_binding["receipt_sha256"],
+            },
+            0o640,
+        )
+    except RuntimeError as error:
+        exit_code = 125
+        failure_reason = redact_diagnostic(str(error))
+        stderr_text = f"{stderr_text}\n{failure_reason}".strip()
     atomic_write(output_path, stdout_text.encode("utf-8", errors="replace"), 0o640)
     atomic_write(
         diagnostic_path,
@@ -4880,6 +5874,7 @@ def invoke_claude_writer(
         "heartbeat_count": heartbeat_count,
         "elapsed_seconds": int(time.monotonic() - started),
         "failure_reason": failure_reason,
+        "headroom_binding": headroom_binding,
     }
 
 
@@ -4939,7 +5934,9 @@ Frozen candidate binding: {json.dumps(candidate_binding, ensure_ascii=False)}
 
 Return PASS only when no actionable critical or major finding remains.
 """
-    response = run_command(
+    response = run_ai_command(
+        policy,
+        "codex",
         [
             policy["tools"]["codex"],
             "exec",
@@ -4982,6 +5979,17 @@ Return PASS only when no actionable critical or major finding remains.
     write_json(review_path, review, 0o640)
     review["review_sha256"] = sha256_file(review_path)
     review["review_path"] = str(review_path)
+    route_receipt = {
+        "route_id": response["headroom_binding"]["route_id"],
+        "path": response["headroom_binding"]["receipt_path"],
+        "sha256": response["headroom_binding"]["receipt_sha256"],
+    }
+    write_json(
+        directory / f"{phase}-codex-headroom-route.json",
+        route_receipt,
+        0o640,
+    )
+    review["headroom_route_receipt"] = route_receipt
     return review
 
 
@@ -6083,7 +7091,7 @@ def claude_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
     ]
     try:
         validate_writer_lease(policy, fixture, lease["lease_id"])
-        response = run_tool(
+        response = run_ai_tool(
             policy,
             "claude",
             arguments,
@@ -6115,6 +7123,7 @@ def claude_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
                 else ""
             ),
             "exit": response["exit"],
+            "headroom_binding": response["headroom_binding"],
             "ts": iso_now(),
         }
         event(runtime, "CLAUDE_WRITER_PROBE_COMPLETED", state=result["state"], changed_files=changed, session_id=session_id)
@@ -6145,7 +7154,8 @@ def run_status(policy: Dict[str, Any]) -> Dict[str, Any]:
         "mailbox": read_json(runtime / "state" / "mailbox.json", {}),
         "watchdog": read_json(runtime / "state" / "watchdog.json", {}),
         "wikillm": read_json(runtime / "state" / "wikillm.json", {}),
-        "tencentdb": read_json(runtime / "state" / "tencentdb.json", tencent_state(policy)),
+        "headroom": headroom_status(policy),
+        "hermes": hermes_state(policy),
         "obsidian": obsidian,
         "productive_loop": read_json(productive_state_path(runtime), {}),
         "latest_review": latest_evidence(policy),
@@ -6277,6 +7287,7 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
     latest = status.get("latest_review") or {}
     required_verifications = {
         "controller_tests",
+        "headroom_gateway",
         "codex_app_server",
         "claude_writer",
         "watchdog_restart",
@@ -6297,6 +7308,9 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
         and latest.get("state") != "BLOCKED_CAUSAL"
     )
     scheduled_mailbox = (status.get("mailbox") or {}).get("trigger") == "scheduled"
+    headroom_ready = (
+        (status.get("headroom") or {}).get("state") == "ACTIVE_REQUIRED_GATEWAY"
+    )
     controller_live = controller_state in {
         "RUNNING",
         "READY_FOR_PRODUCTIVE_LOOP",
@@ -6311,7 +7325,13 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
         "COMMIT",
         "MEMORY_DELTA",
     }
-    ready = verified and controller_live and scheduled_review and scheduled_mailbox
+    ready = (
+        verified
+        and headroom_ready
+        and controller_live
+        and scheduled_review
+        and scheduled_mailbox
+    )
     return {
         "schemaVersion": 1,
         "statusId": f"MCP-ACTIVATION-{utcnow().strftime('%Y%m%dT%H%M%SZ')}",
@@ -6336,6 +7356,7 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
             "logs": verification.get("logs_verified"),
         },
         "services": {
+            "headroom": "continuous-loopback-required",
             "controller": "continuous",
             "mailbox": "300s",
             "watchdog": "900s",
@@ -6349,15 +7370,21 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
         },
         "writer": {
             "primary": "writer-claude",
+            "gateway": "headroom-required",
             "dangerouslySkipPermissions": True,
             "automaticDispatch": policy["writer"]["automatic_dispatch"],
             "probe": verification.get("claude_writer"),
         },
-        "reviewer": {"primary": "reviewer-codex", "probe": verification.get("codex_app_server")},
+        "reviewer": {
+            "primary": "reviewer-codex",
+            "gateway": "headroom-required",
+            "probe": verification.get("codex_app_server"),
+        },
+        "headroom": status.get("headroom"),
+        "hermes": status.get("hermes"),
         "wikillm": status.get("wikillm"),
         "obsidian": status.get("obsidian"),
         "productiveLoop": status.get("productive_loop"),
-        "tencentdb": status.get("tencentdb"),
         "merge": "DISABLED",
         "deploy": "DISABLED",
         "idempotencyKey": "devos-mcp-bootstrap-001-activation",
@@ -6385,6 +7412,9 @@ def build_parser() -> argparse.ArgumentParser:
     obsidian = subparsers.add_parser("obsidian-supervisor")
     obsidian.add_argument("--once", action="store_true")
     subparsers.add_parser("obsidian-status")
+    subparsers.add_parser("headroom-gateway")
+    subparsers.add_parser("headroom-status")
+    subparsers.add_parser("hermes-status")
     for command in ("mailbox", "watchdog", "review", "backup"):
         child = subparsers.add_parser(command)
         child.add_argument("--trigger", default="manual")
@@ -6395,7 +7425,6 @@ def build_parser() -> argparse.ArgumentParser:
     compile_parser = subparsers.add_parser("context-compile")
     compile_parser.add_argument("--query", required=True)
     compile_parser.add_argument("--max-chars", type=int, default=16000)
-    subparsers.add_parser("tencent-status")
     subparsers.add_parser("codex-probe")
     subparsers.add_parser("claude-probe")
     render = subparsers.add_parser("render-plists")
@@ -6460,6 +7489,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return obsidian_supervisor(policy, args.once)
     elif args.command == "obsidian-status":
         result = obsidian_sync_status(policy)
+    elif args.command == "headroom-gateway":
+        return headroom_gateway(policy)
+    elif args.command == "headroom-status":
+        result = headroom_status(policy)
+    elif args.command == "hermes-status":
+        result = hermes_state(policy)
     elif args.command == "mailbox":
         result = mailbox_poll(policy, args.trigger)
     elif args.command == "watchdog":
@@ -6474,8 +7509,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         result = wikillm_search(policy, args.query, args.limit)
     elif args.command == "context-compile":
         result = compile_context(policy, args.query, args.max_chars)
-    elif args.command == "tencent-status":
-        result = tencent_state(policy)
     elif args.command == "codex-probe":
         result = codex_live_probe(policy)
     elif args.command == "claude-probe":
