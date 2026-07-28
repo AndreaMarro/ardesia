@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "service_version": "1.5.0",
+  "service_version": "1.7.0",
   "run_id": "DEVOS-MCP-BOOTSTRAP-001",
   "goal_id": "DEVOS-CONTROL-PLANE",
   "runtime_root": "/Users/progettibelli/ARDESIA-RUNTIME",
@@ -238,6 +238,140 @@
             "build"
           ]
         ]
+      },
+      {
+        "task_id": "BETA-004-CONTINUITY-TRUSTED-REOPEN",
+        "title": "Close the six BETA-003 review falsifiers without claiming route reachability",
+        "base_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+        "branch": "agent/beta-004-continuity-trusted-reopen-20260728",
+        "context_query": "ARD-06 Continuity BETA-003 FALSIFIED local-storage non-authoritative FSA handle loss Blob arrayBuffer deep-freeze Simulation build provenance cold reopen exact projection component fault matrix RED-06-08",
+        "max_files": 5,
+        "allowed_path_patterns": [
+          "apps/studio/src/lessonos/continuityRuntime.ts",
+          "apps/studio/src/lessonos/indexedDbEventLog.ts",
+          "apps/studio/src/lessonos/continuityProjection.ts",
+          "apps/studio/src/design/ContinuityResumeCard.tsx",
+          "apps/studio/src/__tests__/ContinuityRuntimePath.test.tsx"
+        ],
+        "seed_candidate": {
+          "source_task_id": "BETA-003-CONTINUITY-FAIL-CLOSED-STORAGE",
+          "manifest_relative_path": "artifacts/productive-runs/BETA-003-CONTINUITY-FAIL-CLOSED-STORAGE/frozen-candidate-b944599ba1e8/manifest.json",
+          "manifest_sha256": "57769a60a01fdd662af832ada88d1deb2fd3ca4fd80b7ca284648fbba3032a77"
+        },
+        "acceptance": [
+          "After the exact clean-base baseline and zero-overlap gate, reconstruct the previously passing BETA-003 scope-before-I/O, strict-envelope, backend-identity, source-isolation and unconditional-disposal behavior from the content-addressed FALSIFIED_UNTRUSTED_SEED; the predecessor is repair input and never an accepted base.",
+          "Workspace authority is explicit and fail closed: only FSA or an imported bundle can be authoritative; local-storage, uninitialized workspace, rejected workspace factory and FSA or read loss produce distinct typed source codes that survive into ContinuityProjectionV1 and the visible component.",
+          "Every session, journal and scene Blob byte read is inside a typed failure boundary; a Blob whose arrayBuffer rejects never rejects the loader and instead yields the exact source-specific unavailable or corrupt issue while all opened readers are disposed.",
+          "Stored LessonOS envelopes are cloned and recursively frozen at the validation boundary, including actor, producer, payload and evidence; mutating any caller-retained nested input after load cannot change replay, evidence occurrences, projection or its canonical serialization.",
+          "Build provenance is required when scoped events, evidence dependencies or a Simulation embed exist; missing or malformed full commit SHA and producer/build disagreement remain typed blocked states, including a Simulation scene with zero events. This does not claim ARD-07 Simulation verification complete.",
+          "The cold-reopen oracle uses production IndexedDB and workspace reader adapters over persistent test backends, creates fresh event-log, WorkspaceStore and reader instances for the second load, proves the second adapters and byte reads were consulted, and asserts exact projectContinuityV1 output plus evidence-occurrence equality without shared source arrays, Maps or process-local caches.",
+          "A production ContinuityResumeCard renders loading, scope-invalid, empty, ready, missing-evidence, degraded and corrupt or recovery states from loader and projector outputs; adversarial component tests prove state-specific roles and text, exactly one data-next-action outside loading, no anchor for unresolved evidence, distinct visible persistence causes and absence of raw corrupt sentinels.",
+          "Full Studio test, typecheck and production build pass; this bounded slice does not wire App, Room or ViewNav and makes no claim that Continuity route reachability is complete."
+        ],
+        "forbidden_changes": [
+          "No edit to App.tsx, Room.tsx, ViewNav.tsx, TeacherDashboardView.tsx, any dependency or package manifest, schema migration, route alias, global journal path or global event-log API.",
+          "No localStorage-as-authority, silent fallback, shared process cache, global or cross-session read, test-only duplicate of production logic, weakened assertion or mocked backend descriptor used as evidence of real persistence.",
+          "No attempt to complete or claim ARD-07 Simulation verification, Room navigation reachability, merge readiness or deployment readiness.",
+          "No commit publication, push, merge, deploy, main write, external network publication or modification of the preserved BETA-003 worktree."
+        ],
+        "verification_commands": [
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "test",
+            "--",
+            "--pool=threads",
+            "--maxWorkers=1",
+            "--no-file-parallelism",
+            "--testTimeout=30000",
+            "--hookTimeout=30000",
+            "--teardownTimeout=30000"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "typecheck"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "build"
+          ]
+        ]
+      },
+      {
+        "task_id": "BETA-005-CONTINUITY-SCOPED-AUTHORITY-ORACLE",
+        "title": "Close the seven bound BETA-004 falsifiers without extending route or Simulation claims",
+        "base_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+        "branch": "agent/beta-005-continuity-scoped-authority-oracle-20260728",
+        "context_query": "ARD-06 BETA-004 bound review seven falsifiers single-read scope snapshot actual WorkspaceStore FSA immutable imported bundle scoped IndexedDB isolation immutable empty envelopes independent disposal journal-only missing-evidence exact cold-reopen golden",
+        "max_files": 5,
+        "allowed_path_patterns": [
+          "apps/studio/src/lessonos/continuityRuntime.ts",
+          "apps/studio/src/lessonos/indexedDbEventLog.ts",
+          "apps/studio/src/lessonos/continuityProjection.ts",
+          "apps/studio/src/design/ContinuityResumeCard.tsx",
+          "apps/studio/src/__tests__/ContinuityRuntimePath.test.tsx"
+        ],
+        "seed_candidate": {
+          "source_task_id": "BETA-004-CONTINUITY-TRUSTED-REOPEN",
+          "manifest_relative_path": "artifacts/productive-runs/BETA-004-CONTINUITY-TRUSTED-REOPEN/frozen-candidate-3e98580fcd48/manifest.json",
+          "manifest_sha256": "587fc590503c60dfc8fd52f1f43cd9ba1673a20ad0f996693909b75c930ed683"
+        },
+        "acceptance": [
+          "Apply the exact content-addressed BETA-004 FALSIFIED_UNTRUSTED_SEED on the exact clean base; preserve every already passing behavior unless one of the seven bound review falsifiers requires a change, and never treat the predecessor as accepted.",
+          "Capture lessonId, roomId and sessionId exactly once before validation and before constructing/opening any persistence factory; adversarial getters that change or throw on later access cannot alter the validated scope or cause I/O.",
+          "Establish workspace authority only from an actual connected WorkspaceStore FSA backend or a validated imported-bundle boundary that snapshots canonical entries and does not retain caller-owned mutable Map authority; structural mode labels and post-construction caller mutations cannot forge or change persistence identity or bytes.",
+          "The envelope validation boundary always returns a new frozen collection, including the zero-envelope case, and recursively clones/freezes accepted envelopes; mutating or appending through any adapter-retained input after load cannot change replay, evidenceByOccurrence, projection or canonical serialization.",
+          "Both reader disposers are invoked exactly once and settled independently after every factory/load outcome; a synchronous throw or asynchronous rejection from either disposer cannot suppress the other cleanup or escape/replace the loader's typed result.",
+          "A scoped IndexedDB continuity read performs no full event-store content scan and never reads or degrades the requested lesson/session because another scope contains legacy or malformed rows. Integrity attributable to the requested scope is determined through scoped/indexable evidence; unattributable legacy material remains explicit quarantine/recovery metadata rather than being assigned to an arbitrary scope or used as verified evidence.",
+          "Journal-only unresolved evidence participates in phase selection and deterministically produces missing-evidence plus its typed recovery action; it cannot project empty/reopen-lesson.",
+          "Cold reopen uses fresh production event-log and WorkspaceStore adapters, proves both second-load sources and byte reads were consulted, and compares the complete ContinuityProjectionV1 and complete evidence occurrences with fixed independent golden values. First-vs-second equality is supplemental, never the oracle.",
+          "Focused adversarial tests falsify all seven conditions without duplicating production logic or asserting implementation trivia; the full Studio test, typecheck and production build gates pass. No App, Room or ViewNav wiring and no ARD-07, reachability, merge or deployment claim is introduced."
+        ],
+        "forbidden_changes": [
+          "No edit outside the five exact paths; ContinuityResumeCard.tsx remains byte-identical to the seed unless a type-level consequence of one of the seven repairs strictly requires adaptation.",
+          "No dependency/package manifest, App, Room, ViewNav, TeacherDashboardView, global journal path, unrelated route, cloud backend or telemetry change.",
+          "No full-store getAll/readAll content scan in the scoped path, no cross-session corruption propagation, no localStorage authority, no structural FSA spoof, no caller-owned mutable bundle authority and no shared process cache.",
+          "No return of adapter-owned arrays, no cleanup sequence where evaluating one disposer can prevent evaluating the other, no swallowed branch that skips cleanup, and no test-only duplicate of validation/projection logic.",
+          "No partial/self-referential golden, mocked persistence descriptor as proof, weakened assertion/gate, commit publication, push, PR, merge, deploy, main write or modification of the preserved BETA-004 worktree."
+        ],
+        "verification_commands": [
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "test",
+            "--",
+            "--pool=threads",
+            "--maxWorkers=1",
+            "--no-file-parallelism",
+            "--testTimeout=30000",
+            "--hookTimeout=30000",
+            "--teardownTimeout=30000"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "typecheck"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "build"
+          ]
+        ]
       }
     ]
   },
@@ -288,11 +422,19 @@
     "ob": "/opt/homebrew/bin/ob"
   },
   "required_source_hashes": {
+    "activation_bundle": "030f34f494a8249eb96031c3fe5168b7de4cf0ce0fb252c13453700d81afd41d",
+    "autopilot_bundle": "0f53fa4b99129db718f623bdd79c43045ad177f19887f4cf979ab4e6c66c3232",
+    "autopilot_nonstop": "b206131cbd306f5ecbbaaf6ae2d9b80622a5efcb18195106fab890381500d8f2",
     "bootstrap": "205eaef0ec05542c5445a2a1eea90d4b3e0af1da55cf4f552be06f50637478bf",
     "readme": "039eb4ab4ae83e2118e724d7bf1843c832674dd74708aae1ebc6aade317b94f0",
-    "ardesia_map": "220e7493175598c0e6bd76e43bfbe226ba4aed70594e36c69bff51ac7e404ca6",
+    "ardesia_map": "512a7a054b8f3f8211b808ef7c3db5c1a79549ee10cac89495fe95d0ad40afce",
     "factory_live_status": "ab08c65a80acf56f258871d309a27d068f8f8db3bfd9ca2eca412ca178c5a381",
     "factory_metrics": "395bcf0210e72ffa6c8875a874a2fca6a3812c95f0537992e1e1e404c1f6efe1",
-    "coordination": "faa587350749dd1cfc48d66ad74966ddae695185098f675b6e0b1882d57a2db8"
+    "coordination": "faa587350749dd1cfc48d66ad74966ddae695185098f675b6e0b1882d57a2db8",
+    "prior_findings": "fa305d1d349ca8b245a898e8fba97885c968bebeaa3b989720c29fdb6d6c7fdd",
+    "root_agents": "8ac53bb3e69394a1c9ec04023c89fdef232cb56a67a1bb0d5a672896c24c8853",
+    "scientific_analysis": "577c05d33ba6ae9b839cc79c49f7d5f69f808490145af0ab79e3e50fa9021f24",
+    "studio_agents": "9915c521ed07c5807c5d02de835c79a4acb65d61516755720e9f2be15874585c",
+    "studio_claude": "f4b0950f3f7337fcfe46ad30832019217e2a4d02873d1ff8a027785583df1cdc"
   }
 }

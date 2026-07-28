@@ -291,12 +291,14 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(result["task_overlaps"][task["task_id"]][0]["number"], 42)
 
     def test_terminal_task_overlap_stays_in_ledger_without_poisoning_later_queue(self) -> None:
-        state = cp.ensure_productive_state(self.policy)
-        first = self.policy["loop"]["tasks"][0]
-        unique_first_path = "apps/studio/src/lessonos/continuityProjection.ts"
-        self.assertIn(unique_first_path, first["allowed_path_patterns"])
+        isolated = copy.deepcopy(self.policy)
+        unique_first_path = "apps/studio/src/lessonos/terminalOnly.ts"
+        isolated["loop"]["tasks"][0]["allowed_path_patterns"][0] = unique_first_path
+        isolated = cp.validate_policy(isolated)
+        state = cp.ensure_productive_state(isolated)
+        first = isolated["loop"]["tasks"][0]
         cp.update_productive_state(
-            self.policy,
+            isolated,
             first["task_id"],
             "BLOCKED_CAUSAL",
             reason="independent review falsified the bounded attempt",
@@ -315,7 +317,7 @@ class ControlPlaneTests(unittest.TestCase):
         ]
         answer = {"exit": 0, "stdout": json.dumps(pull_requests), "stderr": "", "argv": []}
         with mock.patch.object(cp, "run_tool", return_value=answer):
-            result = cp.github_monitor_snapshot(self.policy, "terminal-ledger-test")
+            result = cp.github_monitor_snapshot(isolated, "terminal-ledger-test")
         self.assertEqual(result["state"], "CLEAR")
         self.assertNotIn(first["task_id"], result["actionable_task_ids"])
         self.assertNotIn(first["task_id"], result["task_overlaps"])
@@ -323,10 +325,76 @@ class ControlPlaneTests(unittest.TestCase):
             result["actionable_task_ids"],
             [
                 task["task_id"]
-                for task in self.policy["loop"]["tasks"]
+                for task in isolated["loop"]["tasks"]
                 if state["tasks"][task["task_id"]]["state"] == "PENDING" and task["task_id"] != first["task_id"]
             ],
         )
+
+    def test_later_task_overlap_does_not_stall_current_nonoverlapping_task(self) -> None:
+        active = copy.deepcopy(self.policy)
+        active["writer"]["automatic_dispatch"] = True
+        active["loop"]["enabled"] = True
+        for index, task in enumerate(active["loop"]["tasks"]):
+            task["allowed_path_patterns"] = [f"isolated/task-{index}.ts"]
+            task["max_files"] = 1
+        active = cp.validate_policy(active)
+        cp.ensure_productive_state(active)
+        first, second = active["loop"]["tasks"][:2]
+        pull_requests = [
+            {
+                "number": 88,
+                "headRefName": "other/later-task-only",
+                "headRefOid": "c" * 40,
+                "isDraft": False,
+                "updatedAt": "2026-07-28T00:00:00Z",
+                "mergeStateStatus": "CLEAN",
+                "files": [{"path": second["allowed_path_patterns"][0]}],
+                "statusCheckRollup": [],
+            }
+        ]
+        answer = {
+            "exit": 0,
+            "stdout": json.dumps(pull_requests),
+            "stderr": "",
+            "argv": [],
+        }
+        with mock.patch.object(cp, "run_tool", return_value=answer):
+            snapshot = cp.github_monitor_snapshot(active, "later-overlap")
+        self.assertEqual(snapshot["state"], "BLOCKING_OVERLAP")
+        self.assertEqual(snapshot["task_overlaps"][first["task_id"]], [])
+        self.assertTrue(snapshot["task_overlaps"][second["task_id"]])
+        cp.write_json(
+            self.runtime / "state" / "obsidian.json",
+            {"state": "ACTIVE_CONTINUOUS"},
+        )
+        clean_probe = {"pass": True}
+        disk = shutil._ntuple_diskusage(
+            total=200 * 1024**3,
+            used=20 * 1024**3,
+            free=180 * 1024**3,
+        )
+        version = {
+            "exit": 0,
+            "stdout": "codex-cli 0.145.0",
+            "stderr": "",
+            "argv": [],
+        }
+        with (
+            mock.patch.object(cp, "git_probe", return_value=clean_probe),
+            mock.patch.object(cp, "run_tool", return_value=version),
+            mock.patch.object(cp.shutil, "disk_usage", return_value=disk),
+        ):
+            health = cp.doctor(active)
+        github_check = next(
+            item for item in health["checks"] if item["id"] == "github_continuous_monitor"
+        )
+        self.assertTrue(github_check["pass"])
+        run_directory = self.runtime / "artifacts" / "later-overlap-gate"
+        run_directory.mkdir(parents=True)
+        with mock.patch.object(cp, "github_monitor_snapshot", return_value=snapshot):
+            cp.github_phase_gate(active, first, run_directory, "first")
+            with self.assertRaisesRegex(ValueError, "open PR path overlap"):
+                cp.github_phase_gate(active, second, run_directory, "second")
 
     def test_stale_sha_digest_and_expiry_rejected(self) -> None:
         self.assertFalse(cp.validate_directive(self.policy, self._directive(baseSha="0" * 40))["valid"])
@@ -350,6 +418,40 @@ class ControlPlaneTests(unittest.TestCase):
         isolated.mkdir()
         lease = cp.create_writer_lease(self.policy, isolated, ttl_seconds=30)
         self.assertEqual(cp.validate_writer_lease(self.policy, isolated, lease["lease_id"])["identity"], "writer-claude")
+        renewed = cp.renew_writer_lease(
+            self.policy,
+            isolated,
+            lease["lease_id"],
+            ttl_seconds=30,
+        )
+        self.assertEqual(renewed["renewal_count"], 1)
+        lease_path = cp.writer_lease_path(self.runtime)
+        valid_lease = cp.read_json(lease_path)
+        wrong_identity = dict(valid_lease)
+        wrong_identity["identity"] = "reviewer-codex"
+        cp.write_json(lease_path, wrong_identity)
+        with self.assertRaisesRegex(ValueError, "lease mismatch"):
+            cp.release_writer_lease(self.policy, isolated, lease["lease_id"])
+        wrong_pid = dict(valid_lease)
+        wrong_pid["pid"] = os.getpid() + 1
+        cp.write_json(lease_path, wrong_pid)
+        with self.assertRaisesRegex(ValueError, "owner mismatch"):
+            cp.release_writer_lease(self.policy, isolated, lease["lease_id"])
+        inactive = dict(valid_lease)
+        inactive["state"] = "RELEASED_STALE"
+        cp.write_json(lease_path, inactive)
+        with self.assertRaisesRegex(ValueError, "owner mismatch"):
+            cp.release_writer_lease(self.policy, isolated, lease["lease_id"])
+        cp.write_json(lease_path, valid_lease)
+        released = cp.release_writer_lease(
+            self.policy,
+            isolated,
+            lease["lease_id"],
+            "RELEASED_TEST",
+        )
+        self.assertEqual(released["state"], "RELEASED_TEST")
+        with self.assertRaisesRegex(ValueError, "not active"):
+            cp.validate_writer_lease(self.policy, isolated, lease["lease_id"])
 
     def test_wikillm_is_real_derived_exact_sha_and_never_canonical_write(self) -> None:
         result = cp.wikillm_ingest(self.policy)
@@ -360,6 +462,82 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(any(hit["path"] == "20-Decisions/ADR-001.md" for hit in hits))
         self.assertFalse(cp.tencent_state(self.policy)["canonical_write"])
         self.assertEqual(cp.tencent_state(self.policy)["state"], "DEFERRED_NO_CREDENTIAL_REFERENCE")
+
+    def test_wikillm_does_not_publish_a_moving_source_snapshot(self) -> None:
+        initial = cp.wikillm_ingest(self.policy)
+        database = self.runtime / "state" / "wikillm.sqlite"
+        original_database_sha = cp.sha256_file(database)
+        source = cp.wikillm_source(self.policy)
+        changed = dict(source)
+        changed["source_sha"] = "f" * 64
+        with mock.patch.object(cp, "wikillm_source", side_effect=[source, changed]):
+            with self.assertRaisesRegex(ValueError, "changed during two-phase ingest"):
+                cp.wikillm_ingest(self.policy)
+        self.assertEqual(cp.sha256_file(database), original_database_sha)
+        self.assertEqual(initial["database_sha256"], original_database_sha)
+        self.assertFalse(list((self.runtime / "state").glob(".wikillm.*.sqlite")))
+
+    def test_wikillm_ingest_ignores_an_outer_handled_exception(self) -> None:
+        try:
+            raise RuntimeError("outer handled exception")
+        except RuntimeError:
+            result = cp.wikillm_ingest(self.policy)
+        database = self.runtime / "state" / "wikillm.sqlite"
+        self.assertEqual(result["state"], "INDEXED_CURRENT")
+        self.assertTrue(database.is_file())
+        self.assertEqual(result["database_sha256"], cp.sha256_file(database))
+        self.assertFalse(list((self.runtime / "state").glob(".wikillm.*.sqlite")))
+
+    def test_required_source_budget_cannot_starve_scientific_history(self) -> None:
+        contents = {
+            "bootstrap": "b" * 4_000,
+            "autopilot_nonstop": "a" * 1_000,
+            "prior_findings": "p" * 12_000,
+            "scientific_analysis": "s" * 50_000,
+            "coordination": "c" * 100_000,
+            "root_agents": "r" * 8_000,
+        }
+        allocations = cp.allocate_required_source_content(contents, 20_000)
+        self.assertEqual(sum(allocations.values()), 20_000)
+        self.assertTrue(all(allocations[source_id] > 0 for source_id in contents))
+        self.assertGreater(allocations["scientific_analysis"], 0)
+        self.assertGreater(
+            allocations["prior_findings"],
+            allocations["coordination"],
+        )
+
+    def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
+        task = self.policy["loop"]["tasks"][0]
+        run_directory = (
+            self.runtime
+            / "artifacts"
+            / "productive-runs"
+            / task["task_id"]
+        )
+        run_directory.mkdir(parents=True)
+        review_path = run_directory / "second-codex-review.json"
+        cp.write_json(
+            review_path,
+            {
+                "verdict": "REPAIR_REQUIRED",
+                "summary": "later artifact survives a stale state cache",
+                "findings": [
+                    {
+                        "severity": "major",
+                        "file": "README.md",
+                        "line": 1,
+                        "message": "artifact-backed finding",
+                    }
+                ],
+            },
+        )
+        context = cp.prior_run_context(self.policy, None)
+        first = next(item for item in context if item["task_id"] == task["task_id"])
+        reviews = first["artifact_evidence"]["reviews"]
+        self.assertEqual(len(reviews), 1)
+        self.assertEqual(reviews[0]["state"], "VALIDATED")
+        self.assertEqual(reviews[0]["sha256"], cp.sha256_file(review_path))
+        self.assertEqual(reviews[0]["findings"][0]["message"], "artifact-backed finding")
 
     def test_exact_sha_evidence_and_blocked_task_keep_controller_alive(self) -> None:
         evidence = cp.doctor(self.policy)
@@ -406,6 +584,7 @@ class ControlPlaneTests(unittest.TestCase):
             payloads["com.ardesia.mcp.review"]["StartCalendarInterval"],
             [{"Minute": 0}, {"Minute": 30}],
         )
+        self.assertFalse(payloads["com.ardesia.mcp.review"]["RunAtLoad"])
         self.assertTrue(payloads["com.ardesia.obsidian-sync"]["KeepAlive"])
         cp.generate_reports(self.policy)
         required = {
@@ -428,7 +607,14 @@ class ControlPlaneTests(unittest.TestCase):
         cp.write_json(self.runtime / "state" / "mailbox.json", {"state": "HEALTHY", "trigger": "scheduled"})
         review = self.runtime / "reviews" / "scheduled"
         review.mkdir()
-        cp.write_json(review / "completion.json", {"state": "SAFE_MAINTENANCE", "trigger": "scheduled-30m"})
+        cp.write_json(
+            review / "completion.json",
+            {
+                "state": "SAFE_MAINTENANCE",
+                "trigger": "scheduled-30m",
+                "audit_execution_state": "PASS",
+            },
+        )
         verification = {
             key: {"value": "PASS test", "recorded_at": cp.iso_now()}
             for key in {
@@ -442,6 +628,11 @@ class ControlPlaneTests(unittest.TestCase):
             }
         }
         cp.write_json(self.runtime / "state" / "verification.json", verification)
+        self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        cp.write_json(
+            self.runtime / "state" / "mcp-controller.json",
+            {"state": "RUNNING", "heartbeat_count": 4},
+        )
         self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
         manual = self.runtime / "reviews" / "manual-after-scheduled"
         manual.mkdir()
@@ -464,6 +655,31 @@ class ControlPlaneTests(unittest.TestCase):
         changed = cp.validate_policy(changed)
         with self.assertRaisesRegex(ValueError, "changed after admission"):
             cp.ensure_productive_state(changed)
+        appended = copy.deepcopy(active)
+        successor = copy.deepcopy(appended["loop"]["tasks"][-1])
+        successor["task_id"] = "BETA-APPENDED-TEST"
+        successor["branch"] = "agent/beta-appended-test"
+        appended["loop"]["tasks"].append(successor)
+        appended = cp.validate_policy(appended)
+        appended_state = cp.ensure_productive_state(appended)
+        self.assertEqual(
+            appended_state["admitted_task_order"],
+            [task["task_id"] for task in appended["loop"]["tasks"]],
+        )
+        self.assertEqual(appended_state["tasks"]["BETA-APPENDED-TEST"]["state"], "PENDING")
+        removed = copy.deepcopy(appended)
+        removed["loop"]["tasks"].pop(1)
+        removed = cp.validate_policy(removed)
+        with self.assertRaisesRegex(ValueError, "queue admission violation"):
+            cp.ensure_productive_state(removed)
+        reordered = copy.deepcopy(appended)
+        reordered["loop"]["tasks"][0], reordered["loop"]["tasks"][1] = (
+            reordered["loop"]["tasks"][1],
+            reordered["loop"]["tasks"][0],
+        )
+        reordered = cp.validate_policy(reordered)
+        with self.assertRaisesRegex(ValueError, "queue admission violation"):
+            cp.ensure_productive_state(reordered)
         worktree = self.runtime / "worktrees" / "bounded"
         subprocess.run(
             [self.git, "-C", str(self.runtime / "repos" / "ardesia"), "worktree", "add", "-b", task["branch"], str(worktree)],
@@ -485,6 +701,320 @@ class ControlPlaneTests(unittest.TestCase):
         outside.write_text("rejected\n", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "non-admitted"):
             cp.validate_writer_diff(active, task, worktree)
+
+    def test_falsified_candidate_seed_is_content_addressed_and_applied_after_clean_base(self) -> None:
+        active = copy.deepcopy(self.policy)
+        active["writer"]["automatic_dispatch"] = True
+        active["loop"]["enabled"] = True
+        active = cp.validate_policy(active)
+        source = active["loop"]["tasks"][0]
+        source_worktree = cp.ensure_task_worktree(active, source)
+        seeded_paths = source["allowed_path_patterns"][:2]
+        for index, seeded_path in enumerate(seeded_paths):
+            source_file = source_worktree / seeded_path
+            source_file.parent.mkdir(parents=True, exist_ok=True)
+            source_file.write_text(
+                f"falsified candidate {index}\n",
+                encoding="utf-8",
+            )
+        review_relative = (
+            f"artifacts/productive-runs/{source['task_id']}/second-codex-review.json"
+        )
+        review_path = self.runtime / review_relative
+        verification = {
+            "schema_version": 1,
+            "state": "PASS",
+            "commands": [],
+        }
+        binding = cp.writer_candidate_binding(
+            active,
+            source,
+            source_worktree,
+            verification,
+            "second",
+        )
+        cp.write_json(
+            review_path,
+            {
+                "verdict": "REPAIR_REQUIRED",
+                "summary": "frozen falsifier",
+                "findings": [
+                    {
+                        "severity": "major",
+                        "file": seeded_paths[0],
+                        "line": 1,
+                        "message": "repair",
+                    }
+                ],
+                "binding": binding,
+            },
+        )
+        cp.ensure_productive_state(active)
+        cp.update_productive_state(
+            active,
+            source["task_id"],
+            "BLOCKED_CAUSAL",
+            worktree=str(source_worktree),
+            worker_pid=0,
+            reason="independent review did not pass: REPAIR_REQUIRED",
+        )
+        fake_relative = (
+            f"artifacts/productive-runs/{source['task_id']}/fake-codex-review.json"
+        )
+        cp.write_json(
+            self.runtime / fake_relative,
+            {
+                "verdict": "REPAIR_REQUIRED",
+                "summary": "unbound fake",
+                "findings": [
+                    {
+                        "severity": "major",
+                        "file": seeded_paths[0],
+                        "line": 1,
+                        "message": "not cryptographically bound",
+                    }
+                ],
+            },
+        )
+        with self.assertRaisesRegex(ValueError, "binding"):
+            cp.freeze_falsified_candidate(
+                active,
+                source["task_id"],
+                fake_relative,
+            )
+        frozen = cp.freeze_falsified_candidate(active, source["task_id"], review_relative)
+        self.assertEqual(frozen["state"], "FALSIFIED_UNTRUSTED_SEED")
+        successor_policy = copy.deepcopy(active)
+        successor = copy.deepcopy(source)
+        successor["task_id"] = "BETA-SEED-SUCCESSOR"
+        successor["branch"] = "agent/beta-seed-successor"
+        successor["seed_candidate"] = {
+            "source_task_id": source["task_id"],
+            "manifest_relative_path": frozen["manifest_relative_path"],
+            "manifest_sha256": frozen["manifest_sha256"],
+        }
+        successor_policy["loop"]["tasks"].append(successor)
+        successor_policy = cp.validate_policy(successor_policy)
+        successor_state = cp.ensure_productive_state(successor_policy)
+        self.assertEqual(successor_state["tasks"][successor["task_id"]]["state"], "PENDING")
+        successor_worktree = cp.ensure_task_worktree(successor_policy, successor)
+        descriptor = cp.load_candidate_seed(successor_policy, successor)
+        self.assertIsNotNone(descriptor)
+        assert descriptor is not None
+        run_directory = self.runtime / "artifacts" / "productive-runs" / successor["task_id"]
+        run_directory.mkdir(parents=True)
+        original_atomic_write = cp.atomic_write
+        second_target = successor_worktree / seeded_paths[1]
+
+        def fail_second_target(path: Path, data: bytes, mode: int = 0o600) -> None:
+            if Path(path) == second_target:
+                raise OSError("injected second-file failure")
+            original_atomic_write(Path(path), data, mode)
+
+        with mock.patch.object(cp, "atomic_write", side_effect=fail_second_target):
+            with self.assertRaisesRegex(OSError, "second-file failure"):
+                cp.apply_candidate_seed(
+                    successor_policy,
+                    successor,
+                    successor_worktree,
+                    run_directory,
+                    descriptor,
+                )
+        self.assertEqual(cp.changed_paths(successor_policy, successor_worktree), [])
+        receipt = cp.apply_candidate_seed(
+            successor_policy,
+            successor,
+            successor_worktree,
+            run_directory,
+            descriptor,
+        )
+        self.assertEqual(receipt["state"], "FALSIFIED_UNTRUSTED_SEED_APPLIED")
+        for index, seeded_path in enumerate(seeded_paths):
+            self.assertEqual(
+                (successor_worktree / seeded_path).read_text(encoding="utf-8"),
+                f"falsified candidate {index}\n",
+            )
+        context = cp.context_with_candidate_seed(
+            {"schema_version": 1, "context_digest": "0" * 64, "notes": []},
+            descriptor,
+        )
+        self.assertEqual(context["falsified_untrusted_seed"]["review_sha256"], frozen["review_sha256"])
+        self.assertNotEqual(context["context_digest"], "0" * 64)
+
+    def test_queue_admission_rejects_missing_record_and_mutated_digest(self) -> None:
+        active = copy.deepcopy(self.policy)
+        active["writer"]["automatic_dispatch"] = True
+        active["loop"]["enabled"] = True
+        active = cp.validate_policy(active)
+        state = cp.ensure_productive_state(active)
+        missing = copy.deepcopy(state)
+        missing["tasks"].pop(active["loop"]["tasks"][0]["task_id"])
+        cp.write_json(cp.productive_state_path(self.runtime), missing)
+        with self.assertRaisesRegex(ValueError, "records are missing"):
+            cp.ensure_productive_state(active)
+        cp.write_json(cp.productive_state_path(self.runtime), state)
+        mutated = copy.deepcopy(active)
+        mutated["loop"]["tasks"][0]["title"] += " mutated"
+        mutated = cp.validate_policy(mutated)
+        with self.assertRaisesRegex(ValueError, "changed after admission"):
+            cp.ensure_productive_state(mutated)
+
+    def test_local_coordination_blocks_canonical_rename_touching_task_path(self) -> None:
+        task = copy.deepcopy(self.policy["loop"]["tasks"][0])
+        task["allowed_path_patterns"] = ["README.md"]
+        task["max_files"] = 1
+        product = self.runtime / "repos" / "ardesia"
+        subprocess.run(
+            [self.git, "-C", str(product), "mv", "README.md", "MOVED.md"],
+            check=True,
+            capture_output=True,
+        )
+        snapshot = cp.local_coordination_snapshot(
+            self.policy,
+            task,
+            current_worktree=self.runtime / "worktrees" / "current-task",
+        )
+        self.assertEqual(snapshot["state"], "BLOCKING_LOCAL_OVERLAP")
+        self.assertTrue(snapshot["blockers"])
+        self.assertIn("README.md", snapshot["blockers"][0]["overlap_paths"])
+
+    def test_scientific_audit_rejects_proposal_while_queue_is_nonterminal(self) -> None:
+        directory = self.runtime / "reviews" / "proposal-guard"
+        directory.mkdir(parents=True)
+        cp.write_json(
+            directory / "scientific-audit.json",
+            {
+                "classification": "VERIFIED_STABLE",
+                "hypothesis": "queue remains bounded",
+                "summary": "proposal must not bypass admission",
+                "observations": [],
+                "falsifiers": ["a pending task remains"],
+                "next_action": "finish the admitted task",
+                "queue_proposal": {
+                    "title": "premature proposal",
+                    "hypothesis": "not admissible yet",
+                    "allowed_paths": ["README.md"],
+                    "acceptance": ["one bounded change"],
+                    "falsifiers": ["queue is not terminal"],
+                },
+            },
+        )
+        audit_input = {
+            "productive_loop": {
+                "tasks": {
+                    "BETA-PENDING": {
+                        "state": "PENDING",
+                    }
+                }
+            }
+        }
+        completed = {
+            "exit": 0,
+            "stdout": "",
+            "stderr": "",
+            "argv": [],
+        }
+        with mock.patch.object(cp, "run_command", return_value=completed) as runner:
+            with self.assertRaisesRegex(ValueError, "before the queue was terminal"):
+                cp.codex_scientific_audit(self.policy, directory, audit_input)
+        arguments = runner.call_args.args[0]
+        self.assertIn("gpt-5.6-sol", arguments)
+        self.assertIn('model_reasoning_effort="xhigh"', arguments)
+        self.assertIn("read-only", arguments)
+        self.assertIn("--skip-git-repo-check", arguments)
+
+    def test_scheduled_scientific_review_records_early_failure_instead_of_stopping(self) -> None:
+        with (
+            mock.patch.object(
+                cp,
+                "github_monitor_snapshot",
+                return_value={"state": "CLEAR", "inventory_digest": "a" * 64},
+            ),
+            mock.patch.object(
+                cp,
+                "doctor",
+                return_value={
+                    "state": "READY_FOR_PRODUCTIVE_LOOP",
+                    "reason": "test",
+                    "checks": [],
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "wikillm_ingest",
+                side_effect=ValueError("moving source injected"),
+            ),
+        ):
+            result = cp.scientific_review(self.policy, "scheduled-30m")
+        self.assertEqual(result["state"], "BLOCKED_CAUSAL")
+        self.assertEqual(result["audit_execution_state"], "FAIL")
+        self.assertIn("moving source injected", result["reason"])
+        directory = Path(result["path"])
+        self.assertTrue((directory / "failure.json").is_file())
+        self.assertTrue((directory / "completion.json").is_file())
+        self.assertTrue((directory / "evidence-manifest.json").is_file())
+        latest = cp.read_json(self.runtime / "state" / "latest-review.json", {})
+        self.assertEqual(latest["review_id"], result["review_id"])
+
+    def test_watchdog_records_malformed_heartbeat_as_stale(self) -> None:
+        cp.write_json(
+            self.runtime / "state" / "mcp-controller.json",
+            {
+                "pid": 0,
+                "heartbeat_at": "not-a-timestamp",
+            },
+        )
+        result = cp.watchdog(
+            self.policy,
+            HERE / "ardesia_control_plane.py",
+            "scheduled",
+            allow_kill=False,
+        )
+        self.assertEqual(result["state"], "STALE")
+        self.assertIn("malformed controller heartbeat", result["diagnostic"])
+
+    def test_daily_backup_records_bundle_failure_instead_of_stopping(self) -> None:
+        with mock.patch.object(
+            cp,
+            "create_bundle",
+            side_effect=RuntimeError("bundle failure injected"),
+        ):
+            result = cp.daily_backup(self.policy, "scheduled-daily")
+        self.assertEqual(result["state"], "BLOCKED_CAUSAL")
+        self.assertIn("bundle failure injected", result["reason"])
+        self.assertTrue(Path(result["failure_path"]).is_file())
+        latest = cp.read_json(self.runtime / "state" / "latest-backup.json", {})
+        self.assertEqual(latest["state"], "BLOCKED_CAUSAL")
+
+    def test_controller_pauses_instead_of_crashing_on_queue_admission_violation(self) -> None:
+        active = copy.deepcopy(self.policy)
+        active["writer"]["automatic_dispatch"] = True
+        active["loop"]["enabled"] = True
+        active = cp.validate_policy(active)
+        cp.ensure_productive_state(active)
+        reordered = copy.deepcopy(active)
+        reordered["loop"]["tasks"][0], reordered["loop"]["tasks"][1] = (
+            reordered["loop"]["tasks"][1],
+            reordered["loop"]["tasks"][0],
+        )
+        reordered = cp.validate_policy(reordered)
+        with mock.patch.object(
+            cp,
+            "doctor",
+            return_value={"state": "READY_FOR_PRODUCTIVE_LOOP", "reason": "test", "checks": []},
+        ):
+            self.assertEqual(
+                cp.controller(
+                    reordered,
+                    HERE / "ardesia_control_plane.py",
+                    self.policy_path,
+                    once=True,
+                ),
+                0,
+            )
+        snapshot = cp.read_json(self.runtime / "state" / "mcp-controller.json", {})
+        self.assertEqual(snapshot["state"], "PAUSED_SAFETY")
+        self.assertEqual(snapshot["reason"], "queue_admission_violation")
 
     def test_obsidian_writes_are_append_only_and_protected_paths_are_rejected(self) -> None:
         with mock.patch.object(cp, "obsidian_sync_status", return_value={"state": "NEEDS_AUTH_OR_SETUP"}):
