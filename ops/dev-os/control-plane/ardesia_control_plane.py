@@ -3200,7 +3200,91 @@ def fts_query(query: str) -> str:
     return " OR ".join(f'"{token}"' for token in tokens[:20])
 
 
+WIKILLM_RERANK_STOPWORDS = frozenset(
+    """
+    ancora anche che chi cioe come cosa cui dal dalla dalle davvero dei del
+    della delle deve devono dove essere gia gli il lo la le loro meno modo
+    nei nel nella nelle non ogni opzione perche per piu poi qual quale quali
+    quando quanti quanto realmente resta restano sola solo sono stata state
+    stati stato stanno sua suo sul sulla tra fra una uno vanno
+    """.split()
+)
+WIKILLM_SLUG_NOISE = frozenset({"ardesia"})
+WIKILLM_QUERY_SPLIT = re.compile(r"[^0-9a-zA-Zàèéìòùáéíóú]+")
+WIKILLM_SLUG_SPLIT = re.compile(r"[/\-_.]+")
+
+
+def wikillm_significant_tokens(value: str) -> Tuple[str, ...]:
+    result: List[str] = []
+    seen: set[str] = set()
+    for token in WIKILLM_QUERY_SPLIT.split(value.lower()):
+        if (
+            not token
+            or token.isdigit()
+            or len(token) < 3
+            or token in WIKILLM_RERANK_STOPWORDS
+            or token in seen
+        ):
+            continue
+        seen.add(token)
+        result.append(token)
+    return tuple(result)
+
+
+def wikillm_slug_tokens(path: str) -> set[str]:
+    normalized = path.strip().replace("\\", "/").lower()
+    if normalized.endswith(".md"):
+        normalized = normalized[:-3]
+    return {
+        token
+        for token in WIKILLM_SLUG_SPLIT.split(normalized.strip("/"))
+        if token
+        and not token.isdigit()
+        and len(token) >= 2
+        and token not in WIKILLM_SLUG_NOISE
+    }
+
+
+def wikillm_path_slug_score(
+    query_tokens: Sequence[str],
+    path: str,
+) -> float:
+    slug_tokens = wikillm_slug_tokens(path)
+    if not slug_tokens:
+        return 0.0
+    salient_terms = set(query_tokens)
+    if not salient_terms:
+        return 0.0
+    return len(slug_tokens & salient_terms) / len(slug_tokens)
+
+
+def wikillm_stable_slug_rerank(
+    query: str,
+    candidates: Sequence[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    query_tokens = wikillm_significant_tokens(query)
+    scored = [
+        (
+            wikillm_path_slug_score(
+                query_tokens,
+                str(candidate.get("path", "")),
+            ),
+            candidate,
+        )
+        for candidate in candidates
+    ]
+    return [
+        candidate
+        for _score, candidate in sorted(
+            scored,
+            key=lambda item: -item[0],
+        )
+    ]
+
+
 def wikillm_search(policy: Dict[str, Any], query: str, limit: int = 8, include_body: bool = False) -> List[Dict[str, Any]]:
+    if type(limit) is not int or not 1 <= limit <= 20:
+        raise ValueError("limit must be an integer from 1 to 20")
     runtime = runtime_path(policy)
     database = runtime / "state" / "wikillm.sqlite"
     if not database.exists():
@@ -3222,7 +3306,7 @@ def wikillm_search(policy: Dict[str, Any], query: str, limit: int = 8, include_b
                 ORDER BY score ASC, n.path ASC
                 LIMIT ?
                 """,
-                (fts_query(query), max(1, min(limit, 20))),
+                (fts_query(query), 20),
             ).fetchall()
         finally:
             connection.close()
@@ -3243,7 +3327,7 @@ def wikillm_search(policy: Dict[str, Any], query: str, limit: int = 8, include_b
         if include_body:
             item["body"] = row["body"]
         results.append(item)
-    return results
+    return wikillm_stable_slug_rerank(query, results)[:limit]
 
 
 def allocate_required_source_content(

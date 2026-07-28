@@ -1577,6 +1577,116 @@ class ControlPlaneTests(unittest.TestCase):
             cp.hermes_state(self.policy)["upstream_blocker"].endswith("/5875")
         )
 
+    def test_wikillm_slug_rerank_is_pure_stable_and_conservative(self) -> None:
+        self.assertEqual(
+            cp.wikillm_significant_tokens("Per la Continuità del docente"),
+            ("continuità", "docente"),
+        )
+        self.assertEqual(
+            cp.wikillm_significant_tokens(
+                "Quando ARDESIA teacher dashboard 2026 07 21"
+            ),
+            ("ardesia", "teacher", "dashboard"),
+        )
+        self.assertEqual(
+            cp.wikillm_slug_tokens(
+                "ardesia/2026-07-21-teacher-dashboard.md"
+            ),
+            {"teacher", "dashboard"},
+        )
+        self.assertEqual(
+            cp.wikillm_path_slug_score(
+                ("teacher", "dashboard"),
+                "ardesia/2026-07-21-teacher-dashboard.md",
+            ),
+            1.0,
+        )
+        self.assertGreater(
+            cp.wikillm_path_slug_score(
+                ("teacher", "dashboard"),
+                "40-Product-Canon/teacher-dashboard.md",
+            ),
+            cp.wikillm_path_slug_score(
+                ("teacher", "dashboard"),
+                "40-Product-Canon/dashboard-notes.md",
+            ),
+        )
+        candidates = [
+            {"path": "20-Decisions/ADR-001.md", "sha256": "a" * 64},
+            {"path": "30-Architecture/Runtime.md", "sha256": "b" * 64},
+            {"path": "40-Product-Canon/Teacher-Dashboard.md", "sha256": "c" * 64},
+        ]
+        original = copy.deepcopy(candidates)
+        untouched = cp.wikillm_stable_slug_rerank("unmatched phrase", candidates)
+        self.assertEqual(untouched, original)
+        self.assertEqual([id(item) for item in untouched], [id(item) for item in candidates])
+
+        reranked = cp.wikillm_stable_slug_rerank("teacher dashboard", candidates)
+        self.assertEqual(reranked[0]["path"], candidates[2]["path"])
+        self.assertCountEqual(
+            [item["sha256"] for item in reranked],
+            [item["sha256"] for item in candidates],
+        )
+        self.assertEqual(candidates, original)
+
+    def test_wikillm_search_fetches_twenty_then_reranks_and_slices(self) -> None:
+        database = self.runtime / "state" / "wikillm.sqlite"
+        database.touch()
+        rows = [
+            {
+                "path": "20-Decisions/general-note.md",
+                "sha256": "a" * 64,
+                "title": "General note",
+                "kind": "DECISION",
+                "status": "ACCEPTED",
+                "headings": "General",
+                "supersedes": "",
+                "source_commit": self.policy["expected_knowledge_sha"],
+                "snippet": "teacher dashboard",
+                "score": -9.0,
+                "body": "first body",
+            },
+            {
+                "path": "40-Product-Canon/teacher-dashboard.md",
+                "sha256": "b" * 64,
+                "title": "Product surface",
+                "kind": "CANON",
+                "status": "ACCEPTED",
+                "headings": "Surface",
+                "supersedes": "",
+                "source_commit": self.policy["expected_knowledge_sha"],
+                "snippet": "teacher dashboard",
+                "score": -1.0,
+                "body": "second body",
+            },
+        ]
+        cursor = mock.Mock()
+        cursor.fetchall.return_value = rows
+        connection = mock.Mock()
+        connection.execute.return_value = cursor
+        with mock.patch.object(cp.sqlite3, "connect", return_value=connection):
+            hits = cp.wikillm_search(
+                self.policy,
+                "teacher dashboard",
+                limit=1,
+                include_body=True,
+            )
+        sql_parameters = connection.execute.call_args.args[1]
+        self.assertEqual(sql_parameters[1], 20)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["path"], rows[1]["path"])
+        self.assertEqual(hits[0]["sha256"], rows[1]["sha256"])
+        self.assertEqual(hits[0]["body"], rows[1]["body"])
+        self.assertEqual(hits[0]["score"], rows[1]["score"])
+        connection.close.assert_called_once_with()
+
+        for invalid_limit in (0, 21, True):
+            with self.subTest(invalid_limit=invalid_limit), self.assertRaisesRegex(
+                ValueError,
+                "limit must be an integer from 1 to 20",
+            ):
+                cp.wikillm_search(self.policy, "teacher dashboard", limit=invalid_limit)
+
     def test_wikillm_does_not_publish_a_moving_source_snapshot(self) -> None:
         initial = cp.wikillm_ingest(self.policy)
         database = self.runtime / "state" / "wikillm.sqlite"
