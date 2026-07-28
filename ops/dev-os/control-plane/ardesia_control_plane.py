@@ -40,7 +40,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
-VERSION = "1.8.1"
+VERSION = "1.8.2"
 RUN_ID = "DEVOS-MCP-BOOTSTRAP-001"
 GOAL_ID = "DEVOS-CONTROL-PLANE"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
