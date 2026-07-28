@@ -25,6 +25,27 @@ cp = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(cp)
 
 
+class ImmediateProcess:
+    def __init__(self) -> None:
+        self.pid = 9876
+        self.returncode = 0
+        self.stdin = mock.Mock()
+        self.stdout = mock.Mock()
+        self.stderr = mock.Mock()
+
+    def poll(self) -> int:
+        return 0
+
+    def terminate(self) -> None:
+        return None
+
+    def kill(self) -> None:
+        return None
+
+    def wait(self, timeout: object = None) -> int:
+        return 0
+
+
 class ControlPlaneTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
@@ -123,6 +144,63 @@ class ControlPlaneTests(unittest.TestCase):
         }
         value.update(updates)
         return value
+
+    def _codex_probe_messages(
+        self,
+        *,
+        command: str = "/bin/sleep 30",
+        thread_binding: dict[str, str] | None = None,
+        completion_status: str = "interrupted",
+        resume_binding: dict[str, str] | None = None,
+    ) -> list[dict[str, object]]:
+        expected_binding = {
+            "model": "gpt-5.6-sol",
+            "modelProvider": "headroom",
+            "reasoningEffort": "xhigh",
+        }
+        return [
+            {"id": 0, "result": {}},
+            {
+                "id": 1,
+                "result": {
+                    "thread": {"id": "thread"},
+                    **(thread_binding or expected_binding),
+                },
+            },
+            {"id": 2, "result": {"turn": {"id": "turn"}}},
+            {
+                "method": "turn/started",
+                "params": {"turn": {"id": "turn", "status": "inProgress"}},
+            },
+            {
+                "method": "item/started",
+                "params": {
+                    "threadId": "thread",
+                    "turnId": "turn",
+                    "item": {
+                        "id": "command",
+                        "type": "commandExecution",
+                        "command": command,
+                        "status": "inProgress",
+                    },
+                },
+            },
+            {"id": 3, "result": {}},
+            {
+                "method": "turn/completed",
+                "params": {
+                    "threadId": "thread",
+                    "turn": {"id": "turn", "status": completion_status},
+                },
+            },
+            {
+                "id": 4,
+                "result": {
+                    "thread": {"id": "thread"},
+                    **(resume_binding or expected_binding),
+                },
+            },
+        ]
 
     def test_strict_policy_and_mcp_schemas(self) -> None:
         invalid = copy.deepcopy(self.policy)
@@ -465,6 +543,84 @@ class ControlPlaneTests(unittest.TestCase):
         )
         self.assertFalse(receipt_path.exists())
 
+    def test_codex_route_attestation_rejects_wrong_bound_model(self) -> None:
+        route_id = "ardesia-codex-wrong-model"
+        binding = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "gateway_pid": 4321,
+            "health_digest": "a" * 64,
+            "route_id": route_id,
+            "expected_client": "codex",
+            "expected_provider": "openai",
+            "expected_model": "gpt-5.6-sol",
+            "requests_before": 0,
+            "stats_before_digest": "b" * 64,
+            "started_monotonic": time.monotonic(),
+            "cost_before_usd": 0.0,
+            "base_url": self.policy["headroom"]["openai_base_url"],
+        }
+        active = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "pid": 4321,
+            "health_digest": "a" * 64,
+            "failures": [],
+        }
+        stats = {
+            "total": 1,
+            "digest": "c" * 64,
+            "route_logs": [
+                {
+                    "stack": route_id,
+                    "client": "codex",
+                    "provider": "openai",
+                    "model": "gpt-5.6-sol",
+                    "request_id": "right-model",
+                    "failed": False,
+                },
+                {
+                    "stack": route_id,
+                    "client": "codex",
+                    "provider": "openai",
+                    "model": "gpt-5.5",
+                    "request_id": "wrong-model",
+                    "failed": False,
+                }
+            ],
+            "cost_with_headroom_usd": 0.0,
+        }
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(cp, "headroom_request_stats", return_value=stats),
+            mock.patch.object(cp.time, "sleep"),
+            self.assertRaisesRegex(RuntimeError, "route correlation"),
+        ):
+            cp.attest_headroom_route(self.policy, "codex", binding)
+        self.assertFalse(
+            (
+                self.runtime
+                / "artifacts"
+                / "headroom-routes"
+                / f"{route_id}.json"
+            ).exists()
+        )
+        stats["route_logs"][1]["model"] = "gpt-5.6-sol"
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(cp, "headroom_request_stats", return_value=stats),
+        ):
+            attested = cp.attest_headroom_route(self.policy, "codex", binding)
+        self.assertEqual(attested["expected_model"], "gpt-5.6-sol")
+        receipt = cp.read_json(Path(attested["receipt_path"]), {})
+        self.assertEqual(receipt["expected_model"], "gpt-5.6-sol")
+        self.assertTrue(
+            all(
+                route["model"] == "gpt-5.6-sol"
+                for route in receipt["route_requests"]
+            )
+        )
+
     def test_every_ai_command_requires_observed_headroom_request_delta(self) -> None:
         active = {
             "state": "ACTIVE_REQUIRED_GATEWAY",
@@ -559,6 +715,7 @@ class ControlPlaneTests(unittest.TestCase):
             ],
         )
         self.assertTrue(result["headroom_binding"]["route_attested"])
+        self.assertIsNone(result["headroom_binding"]["expected_model"])
         self.assertEqual(result["headroom_binding"]["request_delta"], 1)
         self.assertTrue(Path(result["headroom_binding"]["receipt_path"]).is_file())
         metrics = result["headroom_binding"]["efficiency_metrics"]
@@ -575,6 +732,7 @@ class ControlPlaneTests(unittest.TestCase):
             Path(result["headroom_binding"]["receipt_path"]),
             {},
         )
+        self.assertIsNone(receipt["expected_model"])
         self.assertEqual(receipt["efficiency_metrics"], metrics)
 
         with (
@@ -659,6 +817,21 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertEqual(codex_binding["native_sandbox"], "read-only")
             self.assertIsNone(codex_binding["sandbox_profile_sha256"])
             self.assertIn('model_provider="headroom"', codex_arguments)
+            self.assertEqual(
+                codex_arguments.count('model="gpt-5.6-sol"'),
+                1,
+            )
+            self.assertEqual(
+                codex_arguments.count('model_reasoning_effort="xhigh"'),
+                1,
+            )
+            self.assertEqual(codex_binding["expected_model"], "gpt-5.6-sol")
+            self.assertFalse(
+                any(
+                    "allowProviderModelFallback" in item
+                    for item in codex_arguments
+                )
+            )
             self.assertTrue(
                 any(
                     item.startswith("model_providers.headroom.http_headers=")
@@ -666,20 +839,32 @@ class ControlPlaneTests(unittest.TestCase):
                     for item in codex_arguments
                 )
             )
-            cp.prepare_ai_invocation(
-                self.policy,
-                "codex",
-                [
-                    self.policy["tools"]["codex"],
-                    "exec",
-                    "--sandbox",
-                    "read-only",
-                    "--config",
-                    'model_reasoning_effort="xhigh"',
-                    "probe",
-                ],
+            app_server_arguments, _, app_server_binding = (
+                cp.prepare_ai_invocation(
+                    self.policy,
+                    "codex",
+                    [
+                        self.policy["tools"]["codex"],
+                        "app-server",
+                        "--listen",
+                        "stdio://",
+                    ],
+                )
             )
-
+            self.assertEqual(
+                app_server_arguments.count('model="gpt-5.6-sol"'),
+                1,
+            )
+            self.assertEqual(
+                app_server_arguments.count(
+                    'model_reasoning_effort="xhigh"'
+                ),
+                1,
+            )
+            self.assertEqual(
+                app_server_binding["expected_model"],
+                "gpt-5.6-sol",
+            )
             with self.assertRaisesRegex(ValueError, "native read-only sandbox"):
                 cp.prepare_ai_invocation(
                     self.policy,
@@ -702,6 +887,8 @@ class ControlPlaneTests(unittest.TestCase):
             for conflicting in (
                 'model_provider="openai"',
                 'model_providers.headroom.base_url="https://api.openai.com/v1"',
+                'model="gpt-5.6-sol"',
+                'model_reasoning_effort="xhigh"',
             ):
                 with self.assertRaisesRegex(
                     ValueError,
@@ -745,6 +932,9 @@ class ControlPlaneTests(unittest.TestCase):
                 "-pdirect",
                 "--remote",
                 "--remote-auth-token-env=TOKEN",
+                "--model=gpt-5.6-sol",
+                "-m",
+                "-m=gpt-5.6-sol",
             ):
                 with self.assertRaisesRegex(
                     ValueError,
@@ -789,26 +979,6 @@ class ControlPlaneTests(unittest.TestCase):
                     )
 
     def test_long_lived_claude_and_codex_paths_require_route_attestation(self) -> None:
-        class ImmediateProcess:
-            def __init__(self) -> None:
-                self.pid = 9876
-                self.returncode = 0
-                self.stdin = mock.Mock()
-                self.stdout = mock.Mock()
-                self.stderr = mock.Mock()
-
-            def poll(self) -> int:
-                return 0
-
-            def terminate(self) -> None:
-                return None
-
-            def kill(self) -> None:
-                return None
-
-            def wait(self, timeout: object = None) -> int:
-                return 0
-
         task = self.policy["loop"]["tasks"][0]
         worktree = self.runtime / "worktrees" / "long-lived"
         worktree.mkdir(parents=True)
@@ -846,41 +1016,25 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(writer["state"], "PASS")
         attester.assert_called_once_with(self.policy, "claude", binding)
 
-        messages = [
-            {"id": 0, "result": {}},
-            {"id": 1, "result": {"thread": {"id": "thread"}}},
-            {"id": 2, "result": {"turn": {"id": "turn"}}},
-            {
-                "method": "turn/started",
-                "params": {"turn": {"id": "turn", "status": "inProgress"}},
-            },
-            {
-                "method": "item/started",
-                "params": {
-                    "threadId": "thread",
-                    "turnId": "turn",
-                    "item": {
-                        "id": "command",
-                        "type": "commandExecution",
-                        "command": "/bin/sleep 30",
-                        "status": "inProgress",
-                    },
-                },
-            },
-            {"id": 3, "result": {}},
-            {
-                "method": "turn/completed",
-                "params": {"turn": {"id": "turn"}},
-            },
-            {"id": 4, "result": {}},
-        ]
+        messages = self._codex_probe_messages()
+
+        def read_fixture(
+            _process: object,
+            _timeout: float,
+            predicate: object,
+            _backlog: object = None,
+        ) -> dict[str, object]:
+            message = messages.pop(0)
+            self.assertTrue(predicate(message))
+            return message
+
         with (
             mock.patch.object(
                 cp,
                 "spawn_ai_process",
                 return_value=(ImmediateProcess(), binding),
             ),
-            mock.patch.object(cp, "read_message", side_effect=messages),
+            mock.patch.object(cp, "read_message", side_effect=read_fixture),
             mock.patch.object(cp, "send_message"),
             mock.patch.object(
                 cp,
@@ -891,28 +1045,9 @@ class ControlPlaneTests(unittest.TestCase):
             probe = cp.codex_live_probe(self.policy)
         self.assertEqual(probe["state"], "PASS")
         attester.assert_called_once_with(self.policy, "codex", binding)
+        self.assertEqual(messages, [])
 
     def test_codex_live_probe_interrupts_only_after_matching_sleep_command_started(self) -> None:
-        class ImmediateProcess:
-            def __init__(self) -> None:
-                self.pid = 9876
-                self.returncode = 0
-                self.stdin = mock.Mock()
-                self.stdout = mock.Mock()
-                self.stderr = mock.Mock()
-
-            def poll(self) -> int:
-                return 0
-
-            def terminate(self) -> None:
-                return None
-
-            def kill(self) -> None:
-                return None
-
-            def wait(self, timeout: object = None) -> int:
-                return 0
-
         binding = {"route_id": "route"}
         attested = {
             "route_id": "route",
@@ -920,116 +1055,218 @@ class ControlPlaneTests(unittest.TestCase):
             "receipt_path": str(self.runtime / "artifacts" / "headroom-routes" / "route.json"),
             "receipt_sha256": "a" * 64,
         }
-        command_started = {
-            "method": "item/started",
-            "params": {
-                "threadId": "thread",
-                "turnId": "turn",
-                "item": {
-                    "id": "command",
-                    "type": "commandExecution",
-                    "command": "/bin/sleep 30",
-                    "status": "inProgress",
-                },
-            },
-        }
-        messages = [
-            {"id": 0, "result": {}},
-            {"id": 1, "result": {"thread": {"id": "thread"}}},
-            {"id": 2, "result": {"turn": {"id": "turn"}}},
-            {
-                "method": "turn/started",
-                "params": {"turn": {"id": "turn", "status": "inProgress"}},
-            },
-            command_started,
-            {"id": 3, "result": {}},
-            {
-                "method": "turn/completed",
-                "params": {"turn": {"id": "turn"}},
-            },
-            {"id": 4, "result": {}},
-        ]
-        command_start_observed = False
+        allowed_commands = (
+            "/bin/sleep 30",
+            "/bin/zsh -lc '/bin/sleep 30'",
+        )
+        for allowed_command in allowed_commands:
+            with self.subTest(command=allowed_command):
+                messages = self._codex_probe_messages(command=allowed_command)
+                command_started = messages[4]
+                command_start_observed = False
+                sent_messages: list[dict[str, object]] = []
 
-        def ordered_read_message(
+                def ordered_read_message(
+                    _process: object,
+                    _timeout: float,
+                    predicate: object,
+                    _backlog: object = None,
+                ) -> dict[str, object]:
+                    nonlocal command_start_observed
+                    message = messages.pop(0)
+                    if message is command_started:
+                        invalid_messages = [
+                            {**command_started, "method": "item/completed"},
+                            {
+                                **command_started,
+                                "params": {**command_started["params"], "threadId": "other-thread"},
+                            },
+                            {
+                                **command_started,
+                                "params": {**command_started["params"], "turnId": "other-turn"},
+                            },
+                            {
+                                **command_started,
+                                "params": {
+                                    **command_started["params"],
+                                    "item": {
+                                        **command_started["params"]["item"],
+                                        "type": "reasoning",
+                                    },
+                                },
+                            },
+                            {
+                                **command_started,
+                                "params": {
+                                    **command_started["params"],
+                                    "item": {
+                                        **command_started["params"]["item"],
+                                        "command": "/bin/zsh -lc '/bin/sleep 30' extra",
+                                    },
+                                },
+                            },
+                            {
+                                **command_started,
+                                "params": {
+                                    **command_started["params"],
+                                    "item": {
+                                        **command_started["params"]["item"],
+                                        "status": "completed",
+                                    },
+                                },
+                            },
+                        ]
+                        for invalid_message in invalid_messages:
+                            self.assertFalse(predicate(invalid_message))
+                        command_start_observed = True
+                    self.assertTrue(predicate(message))
+                    return message
+
+                def ordered_send_message(
+                    _process: object,
+                    message: dict[str, object],
+                ) -> None:
+                    if message.get("method") == "turn/interrupt":
+                        self.assertTrue(command_start_observed)
+                    sent_messages.append(message)
+
+                with (
+                    mock.patch.object(
+                        cp,
+                        "spawn_ai_process",
+                        return_value=(ImmediateProcess(), binding),
+                    ),
+                    mock.patch.object(cp, "read_message", side_effect=ordered_read_message),
+                    mock.patch.object(cp, "send_message", side_effect=ordered_send_message),
+                    mock.patch.object(
+                        cp,
+                        "attest_headroom_route",
+                        return_value=attested,
+                    ),
+                ):
+                    probe = cp.codex_live_probe(self.policy)
+
+                self.assertEqual(probe["state"], "PASS")
+                self.assertTrue(command_start_observed)
+                self.assertEqual(messages, [])
+                by_method = {
+                    message["method"]: message
+                    for message in sent_messages
+                    if "method" in message
+                }
+                thread_params = by_method["thread/start"]["params"]
+                self.assertEqual(thread_params["model"], "gpt-5.6-sol")
+                self.assertEqual(thread_params["modelProvider"], "headroom")
+                self.assertNotIn("allowProviderModelFallback", thread_params)
+                turn_params = by_method["turn/start"]["params"]
+                self.assertEqual(turn_params["model"], "gpt-5.6-sol")
+                self.assertEqual(turn_params["effort"], "xhigh")
+                self.assertNotIn("allowProviderModelFallback", turn_params)
+                resume_params = by_method["thread/resume"]["params"]
+                self.assertEqual(resume_params["model"], "gpt-5.6-sol")
+                self.assertEqual(resume_params["modelProvider"], "headroom")
+                self.assertEqual(resume_params["sandbox"], "read-only")
+                self.assertNotIn("allowProviderModelFallback", resume_params)
+
+    def test_codex_live_probe_rejects_wrong_thread_and_resume_bindings(self) -> None:
+        binding = {"route_id": "route"}
+        attested = {
+            "route_id": "route",
+            "route_attested": True,
+            "receipt_path": str(self.runtime / "artifacts" / "headroom-routes" / "route.json"),
+            "receipt_sha256": "a" * 64,
+        }
+        wrong_bindings = (
+            (
+                "thread-model",
+                {"model": "gpt-5.5", "modelProvider": "headroom", "reasoningEffort": "xhigh"},
+                None,
+            ),
+            (
+                "thread-provider",
+                {"model": "gpt-5.6-sol", "modelProvider": "openai", "reasoningEffort": "xhigh"},
+                None,
+            ),
+            (
+                "thread-effort",
+                {"model": "gpt-5.6-sol", "modelProvider": "headroom", "reasoningEffort": "high"},
+                None,
+            ),
+            (
+                "resume-model",
+                None,
+                {"model": "gpt-5.5", "modelProvider": "headroom", "reasoningEffort": "xhigh"},
+            ),
+            (
+                "resume-provider",
+                None,
+                {"model": "gpt-5.6-sol", "modelProvider": "openai", "reasoningEffort": "xhigh"},
+            ),
+            (
+                "resume-effort",
+                None,
+                {"model": "gpt-5.6-sol", "modelProvider": "headroom", "reasoningEffort": "high"},
+            ),
+        )
+        for label, thread_binding, resume_binding in wrong_bindings:
+            with self.subTest(binding=label):
+                messages = self._codex_probe_messages(
+                    thread_binding=thread_binding,
+                    resume_binding=resume_binding,
+                )
+
+                def read_fixture(
+                    _process: object,
+                    _timeout: float,
+                    predicate: object,
+                    _backlog: object = None,
+                ) -> dict[str, object]:
+                    message = messages.pop(0)
+                    self.assertTrue(predicate(message))
+                    return message
+
+                with (
+                    mock.patch.object(
+                        cp,
+                        "spawn_ai_process",
+                        return_value=(ImmediateProcess(), binding),
+                    ),
+                    mock.patch.object(cp, "read_message", side_effect=read_fixture),
+                    mock.patch.object(cp, "send_message"),
+                    mock.patch.object(
+                        cp,
+                        "attest_headroom_route",
+                        return_value=attested,
+                    ),
+                    self.assertRaisesRegex(RuntimeError, "binding mismatch"),
+                ):
+                    cp.codex_live_probe(self.policy)
+
+    def test_codex_live_probe_requires_interrupted_turn_completion(self) -> None:
+        messages = self._codex_probe_messages(completion_status="completed")
+
+        def read_fixture(
             _process: object,
             _timeout: float,
             predicate: object,
             _backlog: object = None,
         ) -> dict[str, object]:
-            nonlocal command_start_observed
             message = messages.pop(0)
-            if message is command_started:
-                invalid_messages = [
-                    {**command_started, "method": "item/completed"},
-                    {
-                        **command_started,
-                        "params": {**command_started["params"], "threadId": "other-thread"},
-                    },
-                    {
-                        **command_started,
-                        "params": {**command_started["params"], "turnId": "other-turn"},
-                    },
-                    {
-                        **command_started,
-                        "params": {
-                            **command_started["params"],
-                            "item": {
-                                **command_started["params"]["item"],
-                                "type": "reasoning",
-                            },
-                        },
-                    },
-                    {
-                        **command_started,
-                        "params": {
-                            **command_started["params"],
-                            "item": {
-                                **command_started["params"]["item"],
-                                "command": "/bin/sleep 29",
-                            },
-                        },
-                    },
-                    {
-                        **command_started,
-                        "params": {
-                            **command_started["params"],
-                            "item": {
-                                **command_started["params"]["item"],
-                                "status": "completed",
-                            },
-                        },
-                    },
-                ]
-                for invalid_message in invalid_messages:
-                    self.assertFalse(predicate(invalid_message))
-                command_start_observed = True
-            self.assertTrue(predicate(message))
+            if not predicate(message):
+                raise TimeoutError("fixture message did not satisfy predicate")
             return message
-
-        def ordered_send_message(_process: object, message: dict[str, object]) -> None:
-            if message.get("method") == "turn/interrupt":
-                self.assertTrue(command_start_observed)
 
         with (
             mock.patch.object(
                 cp,
                 "spawn_ai_process",
-                return_value=(ImmediateProcess(), binding),
+                return_value=(ImmediateProcess(), {"route_id": "route"}),
             ),
-            mock.patch.object(cp, "read_message", side_effect=ordered_read_message),
-            mock.patch.object(cp, "send_message", side_effect=ordered_send_message),
-            mock.patch.object(
-                cp,
-                "attest_headroom_route",
-                return_value=attested,
-            ),
+            mock.patch.object(cp, "read_message", side_effect=read_fixture),
+            mock.patch.object(cp, "send_message"),
+            self.assertRaisesRegex(TimeoutError, "did not satisfy predicate"),
         ):
-            probe = cp.codex_live_probe(self.policy)
-
-        self.assertEqual(probe["state"], "PASS")
-        self.assertTrue(command_start_observed)
-        self.assertEqual(messages, [])
+            cp.codex_live_probe(self.policy)
 
     def test_reviewer_cli_version_gate_requires_model_compatible_release(self) -> None:
         self.assertFalse(cp.codex_cli_compatible("codex-cli 0.137.0-alpha.4"))
@@ -2424,8 +2661,8 @@ class ControlPlaneTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "before the queue was terminal"):
                 cp.codex_scientific_audit(self.policy, directory, audit_input)
         arguments = runner.call_args.args[2]
-        self.assertIn("gpt-5.6-sol", arguments)
-        self.assertIn('model_reasoning_effort="xhigh"', arguments)
+        self.assertNotIn("--model", arguments)
+        self.assertNotIn('model_reasoning_effort="xhigh"', arguments)
         self.assertIn("read-only", arguments)
         self.assertIn("--skip-git-repo-check", arguments)
 

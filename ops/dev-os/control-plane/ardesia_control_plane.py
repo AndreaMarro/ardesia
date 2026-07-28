@@ -2317,6 +2317,13 @@ def codex_headroom_config(policy: Dict[str, Any]) -> List[str]:
         "--config",
         'model_provider="headroom"',
         "--config",
+        f'model="{policy["loop"]["reviewer_model"]}"',
+        "--config",
+        (
+            "model_reasoning_effort="
+            f'"{policy["loop"]["reviewer_effort"]}"'
+        ),
+        "--config",
         'model_providers.headroom.name="ARDESIA Headroom required gateway"',
         "--config",
         f'model_providers.headroom.base_url="{policy["headroom"]["openai_base_url"]}"',
@@ -2351,12 +2358,14 @@ def reject_caller_owned_codex_routing(arguments: Sequence[str]) -> None:
         "--profile",
         "--remote",
         "--remote-auth-token-env",
+        "--model",
+        "-m",
     }
     for index, token in enumerate(arguments):
         if token in routing_flags or any(
             token.startswith(flag + "=") for flag in routing_flags
-        ) or token == "-p" or token.startswith("-p=") or (
-            token.startswith("-p") and len(token) > 2
+        ) or token in {"-p", "-m"} or token.startswith(("-p=", "-m=")) or (
+            token.startswith(("-p", "-m")) and len(token) > 2
         ):
             raise ValueError(
                 "Codex invocation rejected: routing flag is controller-owned"
@@ -2375,7 +2384,10 @@ def reject_caller_owned_codex_routing(arguments: Sequence[str]) -> None:
         if value is None:
             continue
         key = codex_config_key(value)
-        if key == "model_provider" or key.startswith("model_providers."):
+        if (
+            key in {"model", "model_provider", "model_reasoning_effort"}
+            or key.startswith("model_providers.")
+        ):
             raise ValueError(
                 "Codex invocation rejected: routing config is controller-owned"
             )
@@ -2478,6 +2490,9 @@ def prepare_ai_invocation(
         "route_id": route_id,
         "expected_client": "claude-code" if identity == "claude" else "codex",
         "expected_provider": "anthropic" if identity == "claude" else "openai",
+        "expected_model": (
+            policy["loop"]["reviewer_model"] if identity == "codex" else None
+        ),
         "network_boundary": boundary,
         "outer_sandbox": identity == "claude",
         "sandbox_profile_sha256": sandbox_profile_sha256,
@@ -2508,6 +2523,7 @@ def attest_headroom_route(
     before = binding.get("requests_before")
     request_stats: Dict[str, Any] = {}
     matching_routes: List[Dict[str, Any]] = []
+    correlated_routes: List[Dict[str, Any]] = []
     after = -1
     last_stats_error: Optional[RuntimeError] = None
     for attempt in range(5):
@@ -2523,13 +2539,27 @@ def attest_headroom_route(
                 f"statistics retries: {redact_diagnostic(str(error))}"
             ) from error
         after = request_stats["total"]
-        matching_routes = [
+        correlated_routes = [
             route
             for route in request_stats["route_logs"]
             if route.get("stack") == binding.get("route_id")
-            and route.get("client") == binding.get("expected_client")
-            and route.get("provider") == binding.get("expected_provider")
         ]
+        expected_model = binding.get("expected_model")
+        mismatched_routes = [
+            route
+            for route in correlated_routes
+            if route.get("client") != binding.get("expected_client")
+            or route.get("provider") != binding.get("expected_provider")
+            or (
+                expected_model is not None
+                and route.get("model") != expected_model
+            )
+        ]
+        if mismatched_routes:
+            raise RuntimeError(
+                f"{identity} Headroom route correlation binding mismatch"
+            )
+        matching_routes = correlated_routes
         if (
             not isinstance(before, bool)
             and isinstance(before, int)
@@ -2567,6 +2597,7 @@ def attest_headroom_route(
         "base_url": binding["base_url"],
         "expected_client": binding["expected_client"],
         "expected_provider": binding["expected_provider"],
+        "expected_model": binding.get("expected_model"),
         "requests_before": before,
         "requests_after": after,
         "request_delta": after - before,
@@ -3992,10 +4023,6 @@ paths; the proposal remains non-admitted."""
         [
             policy["tools"]["codex"],
             "exec",
-            "--model",
-            policy["loop"]["reviewer_model"],
-            "--config",
-            f'model_reasoning_effort="{policy["loop"]["reviewer_effort"]}"',
             "--sandbox",
             "read-only",
             "--cd",
@@ -4938,10 +4965,39 @@ def send_message(process: subprocess.Popen, message: Dict[str, Any]) -> None:
     process.stdin.flush()
 
 
+def codex_app_server_binding(
+    message: Dict[str, Any],
+    method: str,
+    expected_model: str,
+    expected_effort: str,
+    expected_thread_id: Optional[str] = None,
+) -> Dict[str, Any]:
+    result = message.get("result")
+    if not isinstance(result, dict):
+        raise RuntimeError(f"{method} binding mismatch")
+    thread = result.get("thread")
+    thread_id = thread.get("id") if isinstance(thread, dict) else None
+    if (
+        not isinstance(thread_id, str)
+        or not thread_id
+        or (
+            expected_thread_id is not None
+            and thread_id != expected_thread_id
+        )
+        or result.get("model") != expected_model
+        or result.get("modelProvider") != "headroom"
+        or result.get("reasoningEffort") != expected_effort
+    ):
+        raise RuntimeError(f"{method} binding mismatch")
+    return result
+
+
 def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
     runtime = runtime_path(policy)
     product = safe_path(runtime, policy["product_repo"])
     executable = policy["tools"]["codex"]
+    expected_model = policy["loop"]["reviewer_model"]
+    expected_effort = policy["loop"]["reviewer_effort"]
     process, headroom_binding = spawn_ai_process(
         policy,
         "codex",
@@ -4983,6 +5039,8 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
                     "approvalPolicy": "never",
                     "sandbox": "read-only",
                     "ephemeral": False,
+                    "model": expected_model,
+                    "modelProvider": "headroom",
                     "serviceName": "ardesia_control",
                     "developerInstructions": (
                         "Read-only lifecycle probe. Do not modify files. "
@@ -4995,7 +5053,13 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
         started = read_message(process, 30, lambda item: item.get("id") == 1, backlog)
         if "error" in started:
             raise RuntimeError(f"thread/start failed: {started['error']}")
-        thread_id = started["result"]["thread"]["id"]
+        started_result = codex_app_server_binding(
+            started,
+            "thread/start",
+            expected_model,
+            expected_effort,
+        )
+        thread_id = started_result["thread"]["id"]
         send_message(
             process,
             {
@@ -5006,6 +5070,8 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
                     "cwd": str(product),
                     "approvalPolicy": "never",
                     "sandboxPolicy": {"type": "readOnly", "access": {"type": "fullAccess"}},
+                    "model": expected_model,
+                    "effort": expected_effort,
                     "input": [
                         {
                             "type": "text",
@@ -5034,7 +5100,11 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             and (item.get("params") or {}).get("threadId") == thread_id
             and (item.get("params") or {}).get("turnId") == turn_id
             and (item.get("params") or {}).get("item", {}).get("type") == "commandExecution"
-            and (item.get("params") or {}).get("item", {}).get("command") == "/bin/sleep 30"
+            and (item.get("params") or {}).get("item", {}).get("command")
+            in {
+                "/bin/sleep 30",
+                "/bin/zsh -lc '/bin/sleep 30'",
+            }
             and (item.get("params") or {}).get("item", {}).get("status") == "inProgress",
             backlog,
         )
@@ -5046,7 +5116,10 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             process,
             60,
             lambda item: item.get("method") == "turn/completed"
-            and (item.get("params") or {}).get("turn", {}).get("id") == turn_id,
+            and (item.get("params") or {}).get("threadId") == thread_id
+            and (item.get("params") or {}).get("turn", {}).get("id") == turn_id
+            and (item.get("params") or {}).get("turn", {}).get("status")
+            == "interrupted",
             backlog,
         )
         send_message(
@@ -5054,12 +5127,26 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             {
                 "method": "thread/resume",
                 "id": 4,
-                "params": {"threadId": thread_id, "cwd": str(product), "approvalPolicy": "never", "sandbox": "read-only"},
+                "params": {
+                    "threadId": thread_id,
+                    "cwd": str(product),
+                    "approvalPolicy": "never",
+                    "sandbox": "read-only",
+                    "model": expected_model,
+                    "modelProvider": "headroom",
+                },
             },
         )
         resumed = read_message(process, 30, lambda item: item.get("id") == 4, backlog)
         if "error" in resumed:
             raise RuntimeError(f"thread/resume failed: {resumed['error']}")
+        codex_app_server_binding(
+            resumed,
+            "thread/resume",
+            expected_model,
+            expected_effort,
+            thread_id,
+        )
         headroom_binding = attest_headroom_route(
             policy,
             "codex",
@@ -6634,10 +6721,6 @@ Return PASS only when no actionable critical or major finding remains.
         [
             policy["tools"]["codex"],
             "exec",
-            "--model",
-            policy["loop"]["reviewer_model"],
-            "--config",
-            f'model_reasoning_effort="{policy["loop"]["reviewer_effort"]}"',
             "--sandbox",
             "read-only",
             "--cd",
