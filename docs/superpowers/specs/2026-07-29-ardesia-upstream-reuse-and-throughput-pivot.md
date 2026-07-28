@@ -194,8 +194,41 @@ Version `1.8.2` was then installed atomically with a complete v1.8.1 backup at:
 The candidate materialized policy differed from live only at
 `service_version: 1.8.1 → 1.8.2`. Post-install doctor returned
 `READY_FOR_PRODUCTIVE_LOOP`, the live suite passed 54/54, and the controller
-was running as PID `95297`. A true post-install scheduled review remains
-required before declaring the scheduled 1.8.2 path observed.
+was running as PID `95297`.
+
+The first true post-install calendar run started at minute 02 without a manual
+kickstart and completed at 2026-07-29 01:04:55 CEST:
+
+- review ID:
+  `20260728T230205540104Z-5c430e36-aa95d177`;
+- trigger: `scheduled-30m`;
+- execution: `PASS`;
+- state: `READY_FOR_PRODUCTIVE_LOOP`;
+- scientific classification: `INCONCLUSIVE`;
+- model: `gpt-5.6-sol`, reasoning effort `xhigh`, sandbox read-only;
+- logical AI calls: 1; Headroom request count: 3;
+- Headroom global-window upper-bound cost: USD 0.428;
+- original/optimized input tokens: 54,437/54,437; saved: 0;
+- Obsidian receipt:
+  `92-Evidence/20260728T230205540104Z-5c430e36-aa95d177-SCIENTIFIC-CYCLE.md`,
+  SHA-256
+  `7d42acee25067b96eaae908a453c1f486d0f5205d31f638563328b686c0936c4`;
+- queue proposal: none.
+
+The Obsidian live file and pending Git delta were byte-identical, and Headless
+logged upload completion followed by `Fully synced`. Product and Knowledge Git
+heads/status remained exact and clean. The derived WikiLLM database SHA changed
+as expected because the new append-only evidence receipt was ingested; that is
+derived-index churn, not canonical Git drift.
+
+The `INCONCLUSIVE` result exposed the next prompt-construction defect: the
+supervisor packet omitted the 497-character WikiLLM state and truncated 20,707
+characters from the productive-task outcomes. The model therefore could verify
+healthy gates, terminal queue, Headroom and disabled Hermes, but could not
+inspect all five task outcomes or infer a new accepted unit. The next context
+slice must provide compact complete outcome and WikiLLM summaries before any
+large research/history body. It must not raise the 24,000-character ceiling or
+dispatch another planner.
 
 ## Measured WIP bottleneck and revised dispatch policy
 
