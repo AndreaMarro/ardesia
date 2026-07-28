@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "service_version": "1.0.0",
+  "run_id": "DEVOS-MCP-BOOTSTRAP-001",
+  "goal_id": "DEVOS-CONTROL-PLANE",
+  "runtime_root": "/Users/progettibelli/ARDESIA-RUNTIME",
+  "product_repo": "repos/ardesia",
+  "knowledge_repo": "repos/ardesia-knowledge",
+  "expected_product_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+  "expected_knowledge_sha": "5a8c50d7cf6b67db652b6fd769034e5d7a317091",
+  "expected_product_branch": "main",
+  "expected_knowledge_branch": "sync/current",
+  "github": {
+    "repository": "AndreaMarro/ardesia",
+    "issue": 215,
+    "trusted_authors": [
+      "AndreaMarro"
+    ]
+  },
+  "schedules": {
+    "controller_heartbeat_seconds": 60,
+    "mailbox_seconds": 300,
+    "watchdog_seconds": 900,
+    "review_minute": 0,
+    "backup_hour": 3,
+    "backup_minute": 17
+  },
+  "security": {
+    "context_digest": "ed3ce7abd22b5c5d73a964c3a822183ce6d2d4978826aac2bc9da53d480b6125",
+    "acceptance_digest": "40988f5a5da713d60a7c4fa76e0a6415f03fe589f55e5253951e8626e91bbceb",
+    "loopback_only": true,
+    "external_sources_data_only": true,
+    "append_only_audit": true
+  },
+  "writer": {
+    "preferred_identity": "writer-claude",
+    "capability_state": "AUTHORIZED_ON_VALID_DIRECTIVE_ONLY",
+    "automatic_dispatch": false,
+    "requires_mailbox_directive": true,
+    "requires_lease": true,
+    "dangerously_skip_permissions": true,
+    "worktree_root": "worktrees",
+    "allowed_path_patterns": [
+      "ops/dev-os/control-plane/**",
+      "docs/ops/ARDESIA-MCP-*.md",
+      "artifacts/dev-os/**",
+      ".gitignore"
+    ],
+    "timeout_seconds": 300,
+    "max_output_chars": 100000
+  },
+  "wikillm": {
+    "mode": "REAL_DERIVED_INDEX",
+    "canonical_source": "Markdown/Git",
+    "derived_index": "SQLite FTS5",
+    "canonical_write": false
+  },
+  "tencentdb": {
+    "mode": "SHADOW",
+    "capture": true,
+    "recall_injection": false,
+    "offload": false,
+    "persona_generation": false,
+    "automatic_skill_generation": false,
+    "canonical_write": false,
+    "dsn_reference_file": "/Users/progettibelli/ARDESIA-RUNTIME/config/secrets/tencentdb.dsn"
+  },
+  "tools": {
+    "python": "/usr/bin/python3",
+    "git": "/usr/bin/git",
+    "gh": "/opt/homebrew/bin/gh",
+    "codex": "/opt/homebrew/bin/codex",
+    "claude": "/opt/homebrew/bin/claude"
+  },
+  "required_source_hashes": {
+    "bootstrap": "205eaef0ec05542c5445a2a1eea90d4b3e0af1da55cf4f552be06f50637478bf",
+    "readme": "039eb4ab4ae83e2118e724d7bf1843c832674dd74708aae1ebc6aade317b94f0",
+    "ardesia_map": "220e7493175598c0e6bd76e43bfbe226ba4aed70594e36c69bff51ac7e404ca6",
+    "factory_live_status": "ab08c65a80acf56f258871d309a27d068f8f8db3bfd9ca2eca412ca178c5a381",
+    "factory_metrics": "395bcf0210e72ffa6c8875a874a2fca6a3812c95f0537992e1e1e404c1f6efe1",
+    "coordination": "faa587350749dd1cfc48d66ad74966ddae695185098f675b6e0b1882d57a2db8"
+  }
+}
