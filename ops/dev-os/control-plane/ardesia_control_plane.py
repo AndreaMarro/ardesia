@@ -3753,7 +3753,10 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
         for key in required_verifications
     )
     controller_state = (status.get("controller") or {}).get("state")
-    scheduled_review = latest.get("trigger") == "scheduled-30m"
+    scheduled_review = (
+        latest.get("trigger") == "scheduled-30m"
+        or str((verification.get("scheduled_30m_review") or {}).get("value", "")).startswith("PASS")
+    )
     scheduled_mailbox = (status.get("mailbox") or {}).get("trigger") == "scheduled"
     controller_live = controller_state in {
         "READY_FOR_PRODUCTIVE_LOOP",

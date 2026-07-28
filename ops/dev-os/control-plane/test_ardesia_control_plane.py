@@ -443,6 +443,13 @@ class ControlPlaneTests(unittest.TestCase):
         }
         cp.write_json(self.runtime / "state" / "verification.json", verification)
         self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        manual = self.runtime / "reviews" / "manual-after-scheduled"
+        manual.mkdir()
+        cp.write_json(
+            manual / "completion.json",
+            {"state": "READY_FOR_PRODUCTIVE_LOOP", "trigger": "operator-post-review"},
+        )
+        self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
 
     def test_preapproved_queue_is_frozen_and_writer_diff_is_path_bounded(self) -> None:
         active = copy.deepcopy(self.policy)
