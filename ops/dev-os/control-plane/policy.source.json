@@ -57,7 +57,7 @@
   },
   "loop": {
     "enabled": true,
-    "queue_mode": "PREAPPROVED_IMMUTABLE",
+    "queue_mode": "PROGRESSIVE_LOW_RISK_V1",
     "reviewer_identity": "reviewer-codex",
     "reviewer_model": "gpt-5.6-sol",
     "reviewer_effort": "xhigh",
@@ -378,6 +378,95 @@
         ]
       }
     ]
+  },
+  "progressive_admission": {
+    "mode": "PROGRESSIVE_LOW_RISK_V1",
+    "maximum_active_tasks": 1,
+    "maximum_paths": 3,
+    "candidate_intake_relative_path": "state/progressive-admission/intake/frontier-candidate.json",
+    "source_snapshot_relative_path": "state/progressive-admission/intake/source-snapshot.json",
+    "candidate_max_bytes": 65536,
+    "source_snapshot_max_bytes": 131072,
+    "github_snapshot_max_age_seconds": 600,
+    "approved_source_namespaces": {
+      "github": [
+        "github://AndreaMarro/ardesia/issues/",
+        "github://AndreaMarro/ardesia/pulls/"
+      ],
+      "obsidian": [
+        "obsidian://00-Control/Operator-Inbox/",
+        "obsidian://10-Requirements/",
+        "obsidian://20-Decisions/",
+        "obsidian://30-Architecture/",
+        "obsidian://40-Product-Canon/"
+      ],
+      "directive": [
+        "directive://AndreaMarro/"
+      ]
+    },
+    "forbidden_path_prefixes": [
+      ".git",
+      ".github",
+      ".circleci",
+      ".codex",
+      "bin",
+      "ops",
+      "docs/ops/ARDESIA-MCP-CONTROL-PLANE.md",
+      "docs/superpowers/specs",
+      "docs/superpowers/plans",
+      "db/migrations",
+      "migrations",
+      "supabase",
+      "cloud",
+      "infra",
+      "infrastructure",
+      "terraform"
+    ],
+    "forbidden_path_classes": [
+      "AUTH",
+      "BILLING",
+      "CI",
+      "CLOUD",
+      "DEPENDENCY_MANIFEST",
+      "INFRASTRUCTURE",
+      "MIGRATION",
+      "PAYMENTS",
+      "PROTECTED_POLICY",
+      "SECRETS",
+      "SECURITY"
+    ],
+    "verification_argv_allow_list": [
+      [
+        "/opt/homebrew/bin/npm",
+        "--prefix",
+        "apps/studio",
+        "run",
+        "test",
+        "--",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      [
+        "/opt/homebrew/bin/npm",
+        "--prefix",
+        "apps/studio",
+        "run",
+        "typecheck"
+      ],
+      [
+        "/opt/homebrew/bin/npm",
+        "--prefix",
+        "apps/studio",
+        "run",
+        "build"
+      ]
+    ],
+    "retry_failure_fingerprint_budget": 2,
+    "remote_writes": false
   },
   "wikillm": {
     "mode": "REAL_DERIVED_INDEX",

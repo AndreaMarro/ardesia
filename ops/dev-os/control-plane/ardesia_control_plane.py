@@ -157,12 +157,117 @@ POLICY_KEYS = {
     "context",
     "writer",
     "loop",
+    "progressive_admission",
     "wikillm",
     "obsidian",
     "headroom",
     "hermes",
     "tools",
     "required_source_hashes",
+}
+PROGRESSIVE_CANDIDATE_SCHEMA = {
+    "schema_version": 1,
+    "required": [
+        "schema_version",
+        "schema_hash",
+        "candidate_id",
+        "goal_id",
+        "source_refs",
+        "exact_base_sha",
+        "allowed_paths",
+        "acceptance",
+        "falsifiers",
+        "risk_class",
+        "overlap_digest",
+        "material_digest",
+    ],
+    "source_ref_required": ["authority", "uri", "sha256"],
+    "acceptance_required": ["assertions", "commands"],
+    "additional_properties": False,
+}
+PROGRESSIVE_TERMINAL_STATES = {
+    "ACCEPTED_LOCAL",
+    "READY_FOR_HUMAN",
+    "BLOCKED_CAUSAL",
+    "REJECTED_REGRESSION",
+    "FAILED_SAFE",
+}
+PROGRESSIVE_ACTIVE_STATES = {
+    "PENDING",
+    "STARTING",
+    "PREFLIGHT",
+    "CONTEXT_COMPILE",
+    "BASELINE",
+    "IMPLEMENT",
+    "VERIFY",
+    "CROSS_PROVIDER_REVIEW",
+    "REPAIR",
+    "COMMIT",
+    "MEMORY_DELTA",
+}
+PROGRESSIVE_FORBIDDEN_BASENAMES = {
+    "package.json",
+    "package-lock.json",
+    "npm-shrinkwrap.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "bun.lock",
+    "bun.lockb",
+    "pyproject.toml",
+    "poetry.lock",
+    "requirements.txt",
+    "pipfile",
+    "pipfile.lock",
+    "cargo.toml",
+    "cargo.lock",
+    "go.mod",
+    "go.sum",
+    "gemfile",
+    "gemfile.lock",
+    "composer.json",
+    "composer.lock",
+    "dockerfile",
+    "docker-compose.yml",
+    "docker-compose.yaml",
+    ".gitattributes",
+    ".gitignore",
+    ".gitmodules",
+    "agents.md",
+    "claude.md",
+    "autopilot.md",
+}
+PROGRESSIVE_FORBIDDEN_SEGMENTS = {
+    "auth": "AUTH",
+    "authentication": "AUTH",
+    "authorization": "AUTH",
+    "iam": "AUTH",
+    "identity": "AUTH",
+    "oauth": "AUTH",
+    "sso": "AUTH",
+    "billing": "BILLING",
+    "ci": "CI",
+    "cloud": "CLOUD",
+    "aws": "CLOUD",
+    "azure": "CLOUD",
+    "gcp": "CLOUD",
+    "deployment": "INFRASTRUCTURE",
+    "deployments": "INFRASTRUCTURE",
+    "infra": "INFRASTRUCTURE",
+    "infrastructure": "INFRASTRUCTURE",
+    "migration": "MIGRATION",
+    "migrations": "MIGRATION",
+    "payment": "PAYMENTS",
+    "payments": "PAYMENTS",
+    "stripe": "PAYMENTS",
+    "credential": "SECRETS",
+    "credentials": "SECRETS",
+    "keys": "SECRETS",
+    "secret": "SECRETS",
+    "secrets": "SECRETS",
+    "security": "SECURITY",
+    "k8s": "INFRASTRUCTURE",
+    "kubernetes": "INFRASTRUCTURE",
+    "terraform": "INFRASTRUCTURE",
 }
 DIRECTIVE_KEYS = {
     "schemaVersion",
@@ -300,6 +405,117 @@ def redact_diagnostic(value: str, limit: int = 2000) -> str:
 
 def canonical_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+
+def progressive_candidate_schema_hash() -> str:
+    return sha256_text(canonical_json(PROGRESSIVE_CANDIDATE_SCHEMA))
+
+
+def frozen_progressive_admission_policy(npm_path: str) -> Dict[str, Any]:
+    return {
+        "mode": "PROGRESSIVE_LOW_RISK_V1",
+        "maximum_active_tasks": 1,
+        "maximum_paths": 3,
+        "candidate_intake_relative_path": (
+            "state/progressive-admission/intake/frontier-candidate.json"
+        ),
+        "source_snapshot_relative_path": (
+            "state/progressive-admission/intake/source-snapshot.json"
+        ),
+        "candidate_max_bytes": 65_536,
+        "source_snapshot_max_bytes": 131_072,
+        "github_snapshot_max_age_seconds": 600,
+        "approved_source_namespaces": {
+            "github": [
+                "github://AndreaMarro/ardesia/issues/",
+                "github://AndreaMarro/ardesia/pulls/",
+            ],
+            "obsidian": [
+                "obsidian://00-Control/Operator-Inbox/",
+                "obsidian://10-Requirements/",
+                "obsidian://20-Decisions/",
+                "obsidian://30-Architecture/",
+                "obsidian://40-Product-Canon/",
+            ],
+            "directive": ["directive://AndreaMarro/"],
+        },
+        "forbidden_path_prefixes": [
+            ".git",
+            ".github",
+            ".circleci",
+            ".codex",
+            "bin",
+            "ops",
+            "docs/ops/ARDESIA-MCP-CONTROL-PLANE.md",
+            "docs/superpowers/specs",
+            "docs/superpowers/plans",
+            "db/migrations",
+            "migrations",
+            "supabase",
+            "cloud",
+            "infra",
+            "infrastructure",
+            "terraform",
+        ],
+        "forbidden_path_classes": [
+            "AUTH",
+            "BILLING",
+            "CI",
+            "CLOUD",
+            "DEPENDENCY_MANIFEST",
+            "INFRASTRUCTURE",
+            "MIGRATION",
+            "PAYMENTS",
+            "PROTECTED_POLICY",
+            "SECRETS",
+            "SECURITY",
+        ],
+        "verification_argv_allow_list": [
+            [
+                npm_path,
+                "--prefix",
+                "apps/studio",
+                "run",
+                "test",
+                "--",
+                "--pool=threads",
+                "--maxWorkers=1",
+                "--no-file-parallelism",
+                "--testTimeout=30000",
+                "--hookTimeout=30000",
+                "--teardownTimeout=30000",
+            ],
+            [npm_path, "--prefix", "apps/studio", "run", "typecheck"],
+            [npm_path, "--prefix", "apps/studio", "run", "build"],
+        ],
+        "retry_failure_fingerprint_budget": 2,
+        "remote_writes": False,
+    }
+
+
+def progressive_material_digest(candidate: Dict[str, Any]) -> str:
+    material = {
+        key: value
+        for key, value in candidate.items()
+        if key not in {"candidate_id", "material_digest", "overlap_digest"}
+    }
+    return sha256_text(canonical_json(material))
+
+
+def progressive_candidate_id(candidate: Dict[str, Any]) -> str:
+    return sha256_text(
+        canonical_json(
+            {
+                "oracle": "PROGRESSIVE_LOW_RISK_V1",
+                "material_digest": candidate.get("material_digest"),
+                "overlap_digest": candidate.get("overlap_digest"),
+            }
+        )
+    )
+
+
+def progressive_overlap_digest(coordination: Dict[str, Any]) -> str:
+    return sha256_text(canonical_json(coordination))
 
 
 def bounded_json_section(value: Any, max_chars: int) -> Dict[str, Any]:
@@ -794,6 +1010,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: Claude must be the primary writer")
     if writer["model"] != "opus" or writer["effort"] != "max":
         raise ValueError("policy: Claude writer must use Opus at max effort")
+    if writer["capability_state"] != "AUTOMATIC_PREAPPROVED_QUEUE_ONLY":
+        raise ValueError("policy: writer dispatch must remain pre-approved queue only")
     if not isinstance(writer["automatic_dispatch"], bool):
         raise ValueError("policy: automatic writer dispatch must be boolean")
     if not isinstance(writer["requires_mailbox_directive"], bool):
@@ -833,16 +1051,16 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
     )
     if not isinstance(loop["enabled"], bool):
         raise ValueError("policy: loop enabled must be boolean")
-    if loop["queue_mode"] != "PREAPPROVED_IMMUTABLE":
-        raise ValueError("policy: loop queue must be immutable and pre-approved")
+    if loop["queue_mode"] != "PROGRESSIVE_LOW_RISK_V1":
+        raise ValueError("policy: loop queue must use the reviewed progressive oracle")
     if loop["reviewer_identity"] != "reviewer-codex":
         raise ValueError("policy: Codex must be the independent reviewer")
     if loop["reviewer_model"] != "gpt-5.6-sol" or loop["reviewer_effort"] != "xhigh":
         raise ValueError("policy: scientific reviewer must use gpt-5.6-sol at xhigh effort")
     if loop["max_repairs"] != 1:
         raise ValueError("policy: productive loop allows exactly one repair")
-    if not isinstance(loop["worker_timeout_seconds"], int) or not 600 <= loop["worker_timeout_seconds"] <= 28800:
-        raise ValueError("policy: worker timeout outside bounded range")
+    if loop["worker_timeout_seconds"] != 10_800:
+        raise ValueError("policy: worker timeout must remain 10800 seconds")
     if loop["enabled"] != writer["automatic_dispatch"]:
         raise ValueError("policy: loop and automatic dispatch state disagree")
     if not isinstance(loop["tasks"], list) or (loop["enabled"] and not loop["tasks"]):
@@ -1151,6 +1369,16 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
     )
     if any(not Path(path).is_absolute() for path in tools.values()):
         raise ValueError("policy: every tool path must be absolute")
+    progressive = strict_object(
+        policy["progressive_admission"],
+        set(frozen_progressive_admission_policy(tools["npm"])),
+        set(frozen_progressive_admission_policy(tools["npm"])),
+        "progressive_admission",
+    )
+    if progressive != frozen_progressive_admission_policy(tools["npm"]):
+        raise ValueError("policy: progressive admission configuration is not exact")
+    if progressive["mode"] != loop["queue_mode"]:
+        raise ValueError("policy: progressive admission and queue mode disagree")
     for task in loop["tasks"]:
         for command in task["verification_commands"]:
             if command[0] != tools["npm"]:
@@ -1205,6 +1433,9 @@ def ensure_runtime(runtime: Path) -> None:
         "config",
         "logs",
         "state",
+        "state/progressive-admission/intake",
+        "state/progressive-admission/admitted",
+        "state/progressive-admission/receipts",
         "locks",
         "reports",
         "reviews",
@@ -1430,6 +1661,958 @@ def run_ai_tool(
     )
 
 
+def progressive_root(runtime: Path) -> Path:
+    return runtime / "state" / "progressive-admission"
+
+
+def progressive_state_path(runtime: Path) -> Path:
+    return progressive_root(runtime) / "runtime.json"
+
+
+def progressive_ledger_path(runtime: Path) -> Path:
+    return runtime / "logs" / "progressive-admission-ledger.jsonl"
+
+
+def read_progressive_state(runtime: Path) -> Dict[str, Any]:
+    return read_json(
+        progressive_state_path(runtime),
+        {
+            "schema_version": 1,
+            "oracle": "PROGRESSIVE_LOW_RISK_V1",
+            "tasks": {},
+            "rejections": {},
+            "updated_at": None,
+        },
+    ) or {}
+
+
+def _strong_progressive_statement(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    normalized = " ".join(value.split())
+    return (
+        len(normalized) >= 20
+        and bool(re.search(r"[A-Za-z]", normalized))
+        and bool(
+            re.search(
+                r"\b(?:assert|command|digest|equal|error|exact|fail|file|output|path|reject|return|state|test|verify|verification)\w*\b",
+                normalized,
+                re.IGNORECASE,
+            )
+        )
+        and normalized.casefold()
+        not in {"it works", "works", "looks good", "should work", "no regressions"}
+    )
+
+
+def _progressive_path_reasons(
+    policy: Dict[str, Any],
+    relative: Any,
+) -> List[str]:
+    if not isinstance(relative, str) or not relative or "\x00" in relative:
+        return ["PATH_INVALID"]
+    if "\\" in relative or any(character in relative for character in "*?[]{}"):
+        return ["PATH_AMBIGUOUS"]
+    candidate = Path(relative)
+    if (
+        candidate.is_absolute()
+        or ".." in candidate.parts
+        or "." in candidate.parts
+        or candidate.as_posix() != relative
+    ):
+        return ["PATH_TRAVERSAL"]
+    lower = relative.casefold()
+    parts = [part.casefold() for part in candidate.parts]
+    path_tokens = {
+        token
+        for part in parts
+        for token in re.split(r"[^a-z0-9]+", part)
+        if token
+    }
+    progressive = policy["progressive_admission"]
+    if any(
+        lower == prefix.casefold()
+        or lower.startswith(prefix.casefold().rstrip("/") + "/")
+        for prefix in progressive["forbidden_path_prefixes"]
+    ):
+        return ["PATH_FORBIDDEN_PREFIX"]
+    basename = candidate.name.casefold()
+    if (
+        basename in PROGRESSIVE_FORBIDDEN_BASENAMES
+        or basename.startswith(".env")
+        or basename.startswith("package")
+        and basename.endswith(".json")
+        or basename.startswith("requirements")
+        and basename.endswith(".txt")
+        or basename.endswith(".lock")
+        or ".config." in basename
+        or basename in {"nx.json", "tsconfig.json", "vite.config.js", "vite.config.ts"}
+    ):
+        return ["PATH_DEPENDENCY_OR_POLICY"]
+    forbidden_classes = {
+        PROGRESSIVE_FORBIDDEN_SEGMENTS[part]
+        for part in path_tokens
+        if part in PROGRESSIVE_FORBIDDEN_SEGMENTS
+    }
+    if forbidden_classes:
+        return [f"PATH_CLASS_{name}" for name in sorted(forbidden_classes)]
+
+    runtime = runtime_path(policy)
+    product = safe_path(runtime, policy["product_repo"])
+    for index in range(1, len(candidate.parts) + 1):
+        prefix = Path(*candidate.parts[:index]).as_posix()
+        stage = run_tool(
+            policy,
+            "git",
+            ["-C", str(product), "ls-files", "--stage", "--", prefix],
+            timeout=30,
+            max_chars=20_000,
+        )
+        if stage["exit"] != 0:
+            return ["PATH_GIT_CLASSIFICATION_UNAVAILABLE"]
+        if any(line.startswith("160000 ") for line in stage["stdout"].splitlines()):
+            return ["PATH_SUBMODULE"]
+        if any(line.startswith("120000 ") for line in stage["stdout"].splitlines()):
+            return ["PATH_SYMLINK"]
+    target = product / candidate
+    try:
+        cursor = product
+        for part in candidate.parts[:-1]:
+            cursor /= part
+            if cursor.is_symlink():
+                return ["PATH_SYMLINK"]
+        resolved_parent = target.parent.resolve(strict=True)
+        if not within(product, resolved_parent):
+            return ["PATH_SYMLINK_ESCAPE"]
+        if target.is_symlink():
+            return ["PATH_SYMLINK"]
+        if not target.exists() or not target.is_file():
+            return ["PATH_NOT_REGULAR_FILE"]
+    except OSError:
+        return ["PATH_NOT_REGULAR_FILE"]
+    return []
+
+
+def _progressive_source_records(
+    policy: Dict[str, Any],
+    snapshot: Any,
+) -> Tuple[List[Dict[str, Any]], List[str]]:
+    reasons: List[str] = []
+    try:
+        strict_object(
+            snapshot,
+            {"schema_version", "snapshot_id", "created_at", "producer", "sources"},
+            {"schema_version", "snapshot_id", "created_at", "producer", "sources"},
+            "progressive source snapshot",
+        )
+    except ValueError:
+        return [], ["SOURCE_SNAPSHOT_SCHEMA"]
+    if snapshot.get("schema_version") != 1 or snapshot.get("producer") != "ardesia-controller":
+        reasons.append("SOURCE_SNAPSHOT_AUTHORITY")
+    body = {key: value for key, value in snapshot.items() if key != "snapshot_id"}
+    if snapshot.get("snapshot_id") != sha256_text(canonical_json(body)):
+        reasons.append("SOURCE_SNAPSHOT_DIGEST")
+    if len(canonical_json(snapshot).encode("utf-8")) > policy["progressive_admission"]["source_snapshot_max_bytes"]:
+        reasons.append("SOURCE_SNAPSHOT_TOO_LARGE")
+    try:
+        parse_time(snapshot.get("created_at"))
+    except (TypeError, ValueError):
+        reasons.append("SOURCE_SNAPSHOT_TIME")
+    raw_sources = snapshot.get("sources")
+    if (
+        not isinstance(raw_sources, list)
+        or not raw_sources
+        or len(raw_sources) > 10
+        or any(not isinstance(source, dict) for source in raw_sources)
+    ):
+        return [], sorted(set([*reasons, "SOURCE_SNAPSHOT_SOURCES"]))
+    sources: List[Dict[str, Any]] = []
+    namespaces = policy["progressive_admission"]["approved_source_namespaces"]
+    for source in raw_sources:
+        authority = source.get("authority")
+        common = {
+            "authority",
+            "uri",
+            "sha256",
+            "content",
+            "author",
+            "observed_at",
+            "immutable",
+            "agent_generated",
+        }
+        authority_fields = {
+            "github": {"repository", "object_type", "object_number"},
+            "obsidian": {"repository_sha", "relative_path"},
+            "directive": {"directive_id", "validated"},
+        }
+        if authority not in authority_fields:
+            reasons.append("SOURCE_AUTHORITY_UNKNOWN")
+            continue
+        try:
+            strict_object(
+                source,
+                common | authority_fields[authority],
+                common | authority_fields[authority],
+                "progressive source",
+            )
+        except ValueError:
+            reasons.append("SOURCE_SCHEMA")
+            continue
+        uri = source.get("uri")
+        if (
+            not isinstance(uri, str)
+            or not any(uri.startswith(prefix) for prefix in namespaces[authority])
+        ):
+            reasons.append("SOURCE_NAMESPACE")
+        content = source.get("content")
+        if (
+            not isinstance(content, str)
+            or not content
+            or len(content) > 30_000
+            or source.get("sha256") != sha256_text(content)
+        ):
+            reasons.append("SOURCE_DIGEST_MISMATCH")
+        if source.get("author") not in policy["github"]["trusted_authors"]:
+            reasons.append("SOURCE_AUTHOR")
+        if source.get("immutable") is not True:
+            reasons.append("SOURCE_MUTABLE")
+        if source.get("agent_generated") is not False:
+            reasons.append("SOURCE_AGENT_GENERATED_ONLY")
+        try:
+            observed_at = parse_time(source.get("observed_at"))
+        except (TypeError, ValueError):
+            reasons.append("SOURCE_TIME")
+            observed_at = None
+        if observed_at is not None and observed_at - utcnow() > dt.timedelta(minutes=1):
+            reasons.append("SOURCE_TIME")
+        if authority == "github":
+            object_number = source.get("object_number")
+            object_path = (
+                "issues"
+                if source.get("object_type") == "issue"
+                else "pulls"
+            )
+            if (
+                source.get("repository") != policy["github"]["repository"]
+                or source.get("object_type") not in {"issue", "pull_request"}
+                or type(object_number) is not int
+                or int(object_number or 0) <= 0
+                or not str(uri).startswith(
+                    f"github://{policy['github']['repository']}/{object_path}/{object_number}"
+                )
+            ):
+                reasons.append("SOURCE_GITHUB_PROVENANCE")
+            if observed_at is not None and (
+                utcnow() - observed_at
+            ).total_seconds() > policy["progressive_admission"]["github_snapshot_max_age_seconds"]:
+                reasons.append("SOURCE_GITHUB_STALE")
+        elif authority == "obsidian":
+            expected_relative = str(uri).removeprefix("obsidian://")
+            relative_path = Path(expected_relative)
+            if (
+                source.get("repository_sha") != policy["expected_knowledge_sha"]
+                or source.get("relative_path") != expected_relative
+                or relative_path.is_absolute()
+                or ".." in relative_path.parts
+                or relative_path.as_posix() != expected_relative
+            ):
+                reasons.append("SOURCE_OBSIDIAN_PROVENANCE")
+        elif (
+            source.get("validated") is not True
+            or not isinstance(source.get("directive_id"), str)
+            or not source.get("directive_id")
+        ):
+            reasons.append("SOURCE_DIRECTIVE_PROVENANCE")
+        sources.append(source)
+    return sources, sorted(set(reasons))
+
+
+def _progressive_coordination_reasons(
+    policy: Dict[str, Any],
+    candidate: Dict[str, Any],
+    coordination: Any,
+) -> List[str]:
+    try:
+        strict_object(
+            coordination,
+            {
+                "schema_version",
+                "product_head",
+                "product_clean",
+                "open_pr_overlaps",
+                "github_inventory_digest",
+                "other_worktree_overlaps",
+                "worktree_inventory_digest",
+                "active_leases",
+                "lease_digest",
+                "active_tasks",
+            },
+            {
+                "schema_version",
+                "product_head",
+                "product_clean",
+                "open_pr_overlaps",
+                "github_inventory_digest",
+                "other_worktree_overlaps",
+                "worktree_inventory_digest",
+                "active_leases",
+                "lease_digest",
+                "active_tasks",
+            },
+            "progressive coordination",
+        )
+    except ValueError:
+        return ["COORDINATION_SCHEMA"]
+    reasons: List[str] = []
+    if coordination.get("schema_version") != 1:
+        reasons.append("COORDINATION_SCHEMA")
+    if (
+        coordination.get("product_head") != policy["expected_product_sha"]
+        or coordination.get("product_head") != candidate.get("exact_base_sha")
+    ):
+        reasons.append("BASE_SHA_MISMATCH")
+    if coordination.get("product_clean") is not True:
+        reasons.append("BASE_DIRTY")
+    for field, code in (
+        ("open_pr_overlaps", "OPEN_PR_OVERLAP"),
+        ("other_worktree_overlaps", "OTHER_WORKTREE_OVERLAP"),
+        ("active_leases", "ACTIVE_LEASE"),
+        ("active_tasks", "ACTIVE_TASK_OVERLAP"),
+    ):
+        value = coordination.get(field)
+        if not isinstance(value, list):
+            reasons.append("COORDINATION_SCHEMA")
+        elif value:
+            reasons.append(code)
+    for field in (
+        "github_inventory_digest",
+        "worktree_inventory_digest",
+        "lease_digest",
+    ):
+        if not isinstance(coordination.get(field), str) or not HEX64.fullmatch(
+            coordination[field]
+        ):
+            reasons.append("COORDINATION_DIGEST")
+    if candidate.get("overlap_digest") != progressive_overlap_digest(coordination):
+        reasons.append("OVERLAP_DIGEST_MISMATCH")
+    return sorted(set(reasons))
+
+
+def evaluate_progressive_candidate(
+    policy: Dict[str, Any],
+    candidate: Any,
+    source_snapshot: Any,
+    coordination_snapshot: Any,
+) -> Dict[str, Any]:
+    reasons: List[str] = []
+    checks: List[Dict[str, Any]] = []
+
+    def check(identifier: str, passed: bool, evidence: Any, code: str) -> None:
+        checks.append(
+            {
+                "id": identifier,
+                "pass": passed,
+                "evidence_digest": sha256_text(canonical_json(evidence)),
+            }
+        )
+        if not passed:
+            reasons.append(code)
+
+    try:
+        strict_object(
+            candidate,
+            set(PROGRESSIVE_CANDIDATE_SCHEMA["required"]),
+            set(PROGRESSIVE_CANDIDATE_SCHEMA["required"]),
+            "frontier_candidate",
+        )
+    except ValueError as error:
+        return {
+            "decision": "PROPOSED_NOT_ADMITTED",
+            "reason_codes": ["CANDIDATE_SCHEMA"],
+            "checks": [
+                {
+                    "id": "candidate_schema",
+                    "pass": False,
+                    "evidence_digest": sha256_text(str(error)),
+                }
+            ],
+            "runtime_task": None,
+        }
+    check(
+        "candidate_size",
+        len(canonical_json(candidate).encode("utf-8"))
+        <= policy["progressive_admission"]["candidate_max_bytes"],
+        len(canonical_json(candidate).encode("utf-8")),
+        "CANDIDATE_TOO_LARGE",
+    )
+    check(
+        "schema_version",
+        candidate.get("schema_version") == 1,
+        candidate.get("schema_version"),
+        "CANDIDATE_SCHEMA_VERSION",
+    )
+    check(
+        "schema_hash",
+        candidate.get("schema_hash") == progressive_candidate_schema_hash(),
+        candidate.get("schema_hash"),
+        "CANDIDATE_SCHEMA_HASH",
+    )
+    goal_id = candidate.get("goal_id")
+    check(
+        "goal_id",
+        isinstance(goal_id, str)
+        and bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{2,120}", goal_id)),
+        goal_id,
+        "GOAL_ID_INVALID",
+    )
+    check(
+        "risk_class",
+        candidate.get("risk_class") == "LOW_NON_CRITICAL",
+        candidate.get("risk_class"),
+        "RISK_CLASS_FORBIDDEN",
+    )
+    check(
+        "exact_base_sha",
+        candidate.get("exact_base_sha") == policy["expected_product_sha"]
+        and isinstance(candidate.get("exact_base_sha"), str)
+        and bool(HEX40.fullmatch(candidate["exact_base_sha"])),
+        candidate.get("exact_base_sha"),
+        "BASE_SHA_MISMATCH",
+    )
+
+    source_records, source_reasons = _progressive_source_records(
+        policy, source_snapshot
+    )
+    reasons.extend(source_reasons)
+    source_refs = candidate.get("source_refs")
+    source_refs_valid = (
+        isinstance(source_refs, list)
+        and bool(source_refs)
+        and len(source_refs) <= 10
+    )
+    if source_refs_valid:
+        for index, source_ref in enumerate(source_refs):
+            try:
+                strict_object(
+                    source_ref,
+                    {"authority", "uri", "sha256"},
+                    {"authority", "uri", "sha256"},
+                    f"source_refs[{index}]",
+                )
+            except ValueError:
+                source_refs_valid = False
+                break
+            matches = [
+                source
+                for source in source_records
+                if all(
+                    source.get(key) == source_ref.get(key)
+                    for key in ("authority", "uri", "sha256")
+                )
+            ]
+            if len(matches) != 1:
+                source_refs_valid = False
+                break
+    check(
+        "source_refs",
+        source_refs_valid and not source_reasons,
+        {
+            "source_refs": source_refs,
+            "snapshot_id": (
+                source_snapshot.get("snapshot_id")
+                if isinstance(source_snapshot, dict)
+                else None
+            ),
+        },
+        "SOURCE_REFERENCE_UNRESOLVED",
+    )
+
+    paths = candidate.get("allowed_paths")
+    paths_valid = (
+        isinstance(paths, list)
+        and 1 <= len(paths) <= policy["progressive_admission"]["maximum_paths"]
+        and len(set(paths)) == len(paths)
+        if isinstance(paths, list) and all(isinstance(path, str) for path in paths)
+        else False
+    )
+    path_reasons: List[str] = []
+    if isinstance(paths, list):
+        for path in paths:
+            path_reasons.extend(_progressive_path_reasons(policy, path))
+    if not paths_valid:
+        path_reasons.append("PATH_COUNT_OR_DUPLICATE")
+    check(
+        "allowed_paths",
+        paths_valid and not path_reasons,
+        {"paths": paths, "reasons": sorted(set(path_reasons))},
+        "PATH_SCOPE_REJECTED",
+    )
+    reasons.extend(path_reasons)
+
+    acceptance = candidate.get("acceptance")
+    acceptance_valid = isinstance(acceptance, dict)
+    if acceptance_valid:
+        try:
+            strict_object(
+                acceptance,
+                {"assertions", "commands"},
+                {"assertions", "commands"},
+                "candidate acceptance",
+            )
+        except ValueError:
+            acceptance_valid = False
+    assertions = acceptance.get("assertions") if acceptance_valid else None
+    commands = acceptance.get("commands") if acceptance_valid else None
+    assertions_valid = (
+        isinstance(assertions, list)
+        and bool(assertions)
+        and len(assertions) <= 20
+        and all(_strong_progressive_statement(item) for item in assertions)
+    )
+    falsifiers = candidate.get("falsifiers")
+    falsifiers_valid = (
+        isinstance(falsifiers, list)
+        and bool(falsifiers)
+        and len(falsifiers) <= 20
+        and all(_strong_progressive_statement(item) for item in falsifiers)
+    )
+    check(
+        "acceptance_assertions",
+        assertions_valid,
+        assertions,
+        "ACCEPTANCE_WEAK_OR_MISSING",
+    )
+    check(
+        "falsifiers",
+        falsifiers_valid,
+        falsifiers,
+        "FALSIFIER_WEAK_OR_MISSING",
+    )
+    allow_list = policy["progressive_admission"]["verification_argv_allow_list"]
+    commands_valid = (
+        isinstance(commands, list)
+        and bool(commands)
+        and len(commands) <= len(allow_list)
+        and all(
+            isinstance(command, list)
+            and bool(command)
+            and all(isinstance(argument, str) and argument for argument in command)
+            and command in allow_list
+            and not any(
+                re.search(r"`|\$\(|[;&|<>]", argument)
+                for argument in command
+            )
+            for command in commands
+        )
+    )
+    check(
+        "verification_argv",
+        commands_valid,
+        commands,
+        "VERIFICATION_ARGV_FORBIDDEN",
+    )
+    check(
+        "material_digest",
+        candidate.get("material_digest") == progressive_material_digest(candidate),
+        candidate.get("material_digest"),
+        "MATERIAL_DIGEST_MISMATCH",
+    )
+    check(
+        "candidate_id",
+        candidate.get("candidate_id") == progressive_candidate_id(candidate)
+        and isinstance(candidate.get("candidate_id"), str)
+        and bool(HEX64.fullmatch(candidate["candidate_id"])),
+        candidate.get("candidate_id"),
+        "CANDIDATE_ID_MISMATCH",
+    )
+    reasons.extend(
+        _progressive_coordination_reasons(
+            policy, candidate, coordination_snapshot
+        )
+    )
+    checks.append(
+        {
+            "id": "coordination",
+            "pass": not _progressive_coordination_reasons(
+                policy, candidate, coordination_snapshot
+            ),
+            "evidence_digest": sha256_text(
+                canonical_json(coordination_snapshot)
+            ),
+        }
+    )
+    runtime_task = None
+    if not reasons:
+        candidate_id = candidate["candidate_id"]
+        runtime_task = {
+            "task_id": candidate_id,
+            "title": str(candidate["goal_id"]),
+            "base_sha": candidate["exact_base_sha"],
+            "branch": f"agent/progressive-{candidate_id[:20]}",
+            "context_query": " ".join(
+                str(source_ref["uri"]) for source_ref in candidate["source_refs"]
+            ),
+            "max_files": len(candidate["allowed_paths"]),
+            "allowed_path_patterns": list(candidate["allowed_paths"]),
+            "acceptance": list(candidate["acceptance"]["assertions"]),
+            "forbidden_changes": [
+                "No scope expansion, dependency, manifest, migration, CI, auth, security, secrets, payment, billing, cloud or infrastructure change.",
+                "No push, pull request, merge, deploy, remote write or protected-canon write.",
+            ],
+            "verification_commands": [
+                list(command) for command in candidate["acceptance"]["commands"]
+            ],
+            "progressive_candidate_id": candidate_id,
+            "progressive_material_digest": candidate["material_digest"],
+            "progressive_overlap_digest": candidate["overlap_digest"],
+            "source_snapshot_id": source_snapshot["snapshot_id"],
+            "falsifiers": list(candidate["falsifiers"]),
+        }
+    return {
+        "decision": "ADMITTED" if not reasons else "PROPOSED_NOT_ADMITTED",
+        "reason_codes": sorted(set(reasons)),
+        "checks": checks,
+        "runtime_task": runtime_task,
+    }
+
+
+def progressive_coordination_snapshot(
+    policy: Dict[str, Any],
+    candidate: Dict[str, Any],
+) -> Dict[str, Any]:
+    runtime = runtime_path(policy)
+    product = safe_path(runtime, policy["product_repo"])
+    head = run_tool(policy, "git", ["-C", str(product), "rev-parse", "HEAD"])
+    status = run_tool(
+        policy,
+        "git",
+        ["-C", str(product), "status", "--porcelain=v1", "--untracked-files=all"],
+    )
+    task = {
+        "task_id": str(candidate.get("candidate_id", "candidate")),
+        "base_sha": str(candidate.get("exact_base_sha", "")),
+        "allowed_path_patterns": list(candidate.get("allowed_paths") or []),
+    }
+    pull_requests = github_open_pr_inventory(policy)
+    open_pr_overlaps = [
+        path
+        for overlap in task_overlap_from_pull_requests(task, pull_requests)["overlaps"]
+        for path in overlap["files"]
+    ]
+    local = local_coordination_snapshot(policy, task)
+    other_worktree_overlaps = [
+        path
+        for blocker in local["blockers"]
+        for path in blocker["overlap_paths"]
+    ]
+    lease = read_json(writer_lease_path(runtime), {}) or {}
+    active_leases: List[str] = []
+    try:
+        if (
+            lease.get("state") == "ACTIVE"
+            and parse_time(lease["expires_at"]) > utcnow()
+        ):
+            active_leases.append(str(lease.get("lease_id", "unknown")))
+    except (KeyError, TypeError, ValueError):
+        if lease:
+            active_leases.append("malformed-writer-lease")
+    legacy = read_json(productive_state_path(runtime), {}) or {}
+    progressive = read_progressive_state(runtime)
+    active_tasks = sorted(
+        [
+            task_id
+            for task_id, record in {
+                **(legacy.get("tasks") or {}),
+                **(progressive.get("tasks") or {}),
+            }.items()
+            if isinstance(record, dict)
+            and record.get("state") in PROGRESSIVE_ACTIVE_STATES
+            and task_id != candidate.get("candidate_id")
+        ]
+    )
+    return {
+        "schema_version": 1,
+        "product_head": head["stdout"].strip() if head["exit"] == 0 else "",
+        "product_clean": status["exit"] == 0 and not status["stdout"].strip(),
+        "open_pr_overlaps": sorted(set(open_pr_overlaps)),
+        "github_inventory_digest": sha256_text(canonical_json(pull_requests)),
+        "other_worktree_overlaps": sorted(set(other_worktree_overlaps)),
+        "worktree_inventory_digest": local["inventory_digest"],
+        "active_leases": active_leases,
+        "lease_digest": sha256_text(canonical_json(lease)),
+        "active_tasks": active_tasks,
+    }
+
+
+def _write_progressive_receipt(
+    policy: Dict[str, Any],
+    *,
+    intake_digest: str,
+    candidate_id: Optional[str],
+    evaluation: Dict[str, Any],
+    runtime_task_digest: Optional[str],
+    admitted_record_path: Optional[Path],
+) -> Dict[str, Any]:
+    runtime = runtime_path(policy)
+    receipt = {
+        "schema_version": 1,
+        "candidate_id": candidate_id,
+        "oracle": "PROGRESSIVE_LOW_RISK_V1",
+        "oracle_digest": sha256_text(
+            canonical_json(policy["progressive_admission"])
+        ),
+        "decision": evaluation["decision"],
+        "reason_codes": evaluation["reason_codes"],
+        "checks": evaluation["checks"],
+        "runtime_task_digest": runtime_task_digest,
+        "lease_id": None,
+        "runtime_state": "PENDING" if runtime_task_digest else None,
+        "intake_digest": intake_digest,
+        "created_at": iso_now(),
+    }
+    receipt_digest = sha256_text(canonical_json(receipt))
+    receipt_path = progressive_root(runtime) / "receipts" / f"{receipt_digest}.json"
+    if receipt_path.exists():
+        if read_json(receipt_path, {}) != receipt:
+            raise ValueError("append-only progressive receipt conflict")
+    else:
+        write_json(receipt_path, receipt, 0o600)
+    receipt.update(
+        {
+            "receipt_digest": receipt_digest,
+            "receipt_path": str(receipt_path),
+            "admitted_record_path": (
+                str(admitted_record_path) if admitted_record_path else None
+            ),
+        }
+    )
+    return receipt
+
+
+def admit_progressive_candidate(
+    policy: Dict[str, Any],
+    candidate: Any,
+    source_snapshot: Any,
+    *,
+    coordination_snapshot: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    runtime = runtime_path(policy)
+    ensure_runtime(runtime)
+    ensure_productive_state(policy)
+    live_coordination = coordination_snapshot is None
+    coordination = (
+        coordination_snapshot
+        if coordination_snapshot is not None
+        else progressive_coordination_snapshot(policy, candidate)
+    )
+    evaluation = evaluate_progressive_candidate(
+        policy, candidate, source_snapshot, coordination
+    )
+    intake_digest = sha256_text(
+        canonical_json(
+            {
+                "candidate": candidate,
+                "source_snapshot": source_snapshot,
+                "coordination": coordination,
+            }
+        )
+    )
+    candidate_id = (
+        candidate.get("candidate_id")
+        if isinstance(candidate, dict)
+        and isinstance(candidate.get("candidate_id"), str)
+        else None
+    )
+    lock_path = runtime / "locks" / "progressive-admission.flock"
+    with lock_path.open("a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        state = read_progressive_state(runtime)
+        tasks = state.setdefault("tasks", {})
+        rejections = state.setdefault("rejections", {})
+        existing = tasks.get(candidate_id) if candidate_id else None
+        existing_receipt: Optional[Dict[str, Any]] = None
+        if isinstance(existing, dict):
+            receipt_value = existing.get("admission_receipt")
+            if (
+                existing.get("state") in PROGRESSIVE_ACTIVE_STATES
+                and isinstance(receipt_value, dict)
+            ):
+                existing_receipt = receipt_value
+            if existing.get("state") in PROGRESSIVE_TERMINAL_STATES:
+                evaluation = {
+                    **evaluation,
+                    "decision": "PROPOSED_NOT_ADMITTED",
+                    "reason_codes": sorted(
+                        set([*evaluation["reason_codes"], "TERMINAL_CANDIDATE"])
+                    ),
+                }
+        repeated_failures = [
+            record
+            for record in tasks.values()
+            if isinstance(record, dict)
+            and record.get("state") in PROGRESSIVE_TERMINAL_STATES
+            and record.get("material_digest")
+            == (
+                candidate.get("material_digest")
+                if isinstance(candidate, dict)
+                else None
+            )
+            and record.get("failure_fingerprint")
+        ]
+        if len(repeated_failures) >= policy["progressive_admission"]["retry_failure_fingerprint_budget"]:
+            evaluation = {
+                **evaluation,
+                "decision": "PROPOSED_NOT_ADMITTED",
+                "reason_codes": sorted(
+                    set(
+                        [
+                            *evaluation["reason_codes"],
+                            "FAILURE_FINGERPRINT_BUDGET_EXHAUSTED",
+                        ]
+                    )
+                ),
+            }
+        legacy = read_json(productive_state_path(runtime), {}) or {}
+        legacy_nonterminal = [
+            task_id
+            for task_id, record in (legacy.get("tasks") or {}).items()
+            if isinstance(record, dict)
+            and record.get("state") not in PROGRESSIVE_TERMINAL_STATES
+        ]
+        if legacy_nonterminal:
+            evaluation = {
+                **evaluation,
+                "decision": "PROPOSED_NOT_ADMITTED",
+                "reason_codes": sorted(
+                    set(
+                        [
+                            *evaluation["reason_codes"],
+                            "LEGACY_QUEUE_NONTERMINAL",
+                        ]
+                    )
+                ),
+            }
+        active = [
+            task_id
+            for task_id, record in tasks.items()
+            if isinstance(record, dict)
+            and record.get("state") in PROGRESSIVE_ACTIVE_STATES
+            and task_id != candidate_id
+        ]
+        if active:
+            evaluation = {
+                **evaluation,
+                "decision": "PROPOSED_NOT_ADMITTED",
+                "reason_codes": sorted(
+                    set([*evaluation["reason_codes"], "ACTIVE_TASK_OVERLAP"])
+                ),
+            }
+        if (
+            existing_receipt is not None
+            and evaluation["decision"] == "ADMITTED"
+        ):
+            return existing_receipt
+        if live_coordination and evaluation["decision"] == "ADMITTED":
+            final_coordination = progressive_coordination_snapshot(
+                policy, candidate
+            )
+            if (
+                final_coordination != coordination
+                or candidate.get("overlap_digest")
+                != progressive_overlap_digest(final_coordination)
+            ):
+                evaluation = {
+                    **evaluation,
+                    "decision": "PROPOSED_NOT_ADMITTED",
+                    "reason_codes": ["COORDINATION_CHANGED_DURING_ADMISSION"],
+                }
+        if evaluation["decision"] != "ADMITTED":
+            cached = rejections.get(intake_digest)
+            if isinstance(cached, dict) and cached.get("reason_codes") == evaluation["reason_codes"]:
+                return cached
+            receipt = _write_progressive_receipt(
+                policy,
+                intake_digest=intake_digest,
+                candidate_id=candidate_id,
+                evaluation=evaluation,
+                runtime_task_digest=None,
+                admitted_record_path=None,
+            )
+            rejections[intake_digest] = receipt
+            state["updated_at"] = iso_now()
+            write_json(progressive_state_path(runtime), state)
+            append_jsonl(
+                progressive_ledger_path(runtime),
+                {
+                    "event": "PROGRESSIVE_CANDIDATE_REJECTED",
+                    "candidate_id": candidate_id,
+                    "receipt_digest": receipt["receipt_digest"],
+                    "reason_codes": receipt["reason_codes"],
+                    "ts": iso_now(),
+                },
+            )
+            return receipt
+
+        runtime_task = evaluation["runtime_task"]
+        runtime_task_digest = sha256_text(canonical_json(runtime_task))
+        admitted_record = {
+            "schema_version": 1,
+            "oracle": "PROGRESSIVE_LOW_RISK_V1",
+            "candidate": candidate,
+            "source_snapshot_id": source_snapshot["snapshot_id"],
+            "source_snapshot": source_snapshot,
+            "runtime_task": runtime_task,
+            "runtime_task_digest": runtime_task_digest,
+        }
+        admitted_digest = sha256_text(canonical_json(admitted_record))
+        admitted_path = (
+            progressive_root(runtime)
+            / "admitted"
+            / f"{admitted_digest}.json"
+        )
+        if admitted_path.exists():
+            if read_json(admitted_path, {}) != admitted_record:
+                raise ValueError("content-addressed progressive admission collision")
+        else:
+            write_json(admitted_path, admitted_record, 0o600)
+        receipt = _write_progressive_receipt(
+            policy,
+            intake_digest=intake_digest,
+            candidate_id=candidate_id,
+            evaluation=evaluation,
+            runtime_task_digest=runtime_task_digest,
+            admitted_record_path=admitted_path,
+        )
+        tasks[candidate_id] = {
+            "state": "PENDING",
+            "task": runtime_task,
+            "task_digest": runtime_task_digest,
+            "candidate_id": candidate_id,
+            "material_digest": candidate["material_digest"],
+            "overlap_digest": candidate["overlap_digest"],
+            "admitted_record_digest": admitted_digest,
+            "admitted_record_path": str(admitted_path),
+            "admission_receipt": receipt,
+            "created_at": iso_now(),
+            "updated_at": iso_now(),
+        }
+        state["updated_at"] = iso_now()
+        write_json(progressive_state_path(runtime), state)
+        append_jsonl(
+            progressive_ledger_path(runtime),
+            {
+                "event": "PROGRESSIVE_CANDIDATE_ADMITTED",
+                "candidate_id": candidate_id,
+                "runtime_task_digest": runtime_task_digest,
+                "admitted_record_digest": admitted_digest,
+                "receipt_digest": receipt["receipt_digest"],
+                "state": "PENDING",
+                "ts": iso_now(),
+            },
+        )
+        return receipt
+
+
 def task_by_id(policy: Dict[str, Any], task_id: str) -> Dict[str, Any]:
     matches = [task for task in policy["loop"]["tasks"] if task["task_id"] == task_id]
     if len(matches) != 1:
@@ -1462,7 +2645,7 @@ def update_productive_state(
                 "service_version": VERSION,
                 "run_id": RUN_ID,
                 "goal_id": GOAL_ID,
-                "queue_mode": policy["loop"]["queue_mode"],
+                "queue_mode": "PREAPPROVED_IMMUTABLE",
                 "enabled": policy["loop"]["enabled"],
                 "updated_at": iso_now(),
             }
@@ -1549,7 +2732,7 @@ def ensure_productive_state(policy: Dict[str, Any]) -> Dict[str, Any]:
                 "service_version": VERSION,
                 "run_id": RUN_ID,
                 "goal_id": GOAL_ID,
-                "queue_mode": policy["loop"]["queue_mode"],
+                "queue_mode": "PREAPPROVED_IMMUTABLE",
                 "enabled": policy["loop"]["enabled"],
                 "admitted_task_order": policy_order,
                 "admitted_task_digests": {
@@ -1619,6 +2802,78 @@ def recover_productive_task(policy: Dict[str, Any], task_id: str, reason: str) -
         "changed_paths": [],
         "worktree": str(worktree),
     }
+
+
+def _bounded_progressive_intake_json(
+    policy: Dict[str, Any],
+    config_key: str,
+    max_bytes_key: str,
+) -> Optional[Any]:
+    runtime = runtime_path(policy)
+    relative = policy["progressive_admission"][config_key]
+    path = safe_path(runtime, relative, must_exist=False)
+    if not path.exists():
+        return None
+    metadata = path.stat()
+    if (
+        path.is_symlink()
+        or not path.is_file()
+        or metadata.st_uid != os.getuid()
+        or stat.S_IMODE(metadata.st_mode) & 0o077
+    ):
+        raise ValueError(f"{config_key}: intake must be a regular runtime file")
+    data = path.read_bytes()
+    if len(data) > policy["progressive_admission"][max_bytes_key]:
+        raise ValueError(f"{config_key}: intake exceeds frozen byte limit")
+    return json.loads(data.decode("utf-8"))
+
+
+def progressive_intake(policy: Dict[str, Any]) -> Dict[str, Any]:
+    try:
+        candidate = _bounded_progressive_intake_json(
+            policy,
+            "candidate_intake_relative_path",
+            "candidate_max_bytes",
+        )
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
+        candidate = {"malformed_intake_sha256": sha256_text(str(error))}
+    if candidate is None:
+        return {"state": "NO_PROGRESSIVE_CANDIDATE"}
+    try:
+        snapshot = _bounded_progressive_intake_json(
+            policy,
+            "source_snapshot_relative_path",
+            "source_snapshot_max_bytes",
+        )
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
+        snapshot = {"malformed_snapshot_sha256": sha256_text(str(error))}
+    if not isinstance(snapshot, dict):
+        snapshot = {}
+    if not isinstance(candidate, dict) or set(PROGRESSIVE_CANDIDATE_SCHEMA["required"]) != set(candidate):
+        coordination = {
+            "schema_version": 1,
+            "product_head": "",
+            "product_clean": False,
+            "open_pr_overlaps": [],
+            "github_inventory_digest": sha256_text(canonical_json([])),
+            "other_worktree_overlaps": [],
+            "worktree_inventory_digest": sha256_text(canonical_json([])),
+            "active_leases": [],
+            "lease_digest": sha256_text(canonical_json({})),
+            "active_tasks": [],
+        }
+    else:
+        coordination = None
+    return admit_progressive_candidate(
+        policy,
+        candidate,
+        snapshot,
+        coordination_snapshot=(
+            coordination
+            if isinstance(coordination, dict)
+            else None
+        ),
+    )
 
 
 def productive_tick(policy: Dict[str, Any], script: Path, policy_path: Path) -> Dict[str, Any]:
@@ -1724,7 +2979,27 @@ def productive_tick(policy: Dict[str, Any], script: Path, policy_path: Path) -> 
         if state["tasks"][task["task_id"]].get("state") == "PENDING"
     ]
     if not pending:
-        terminal = {task_id: record.get("state") for task_id, record in state["tasks"].items()}
+        admission = progressive_intake(policy)
+        terminal = {
+            task_id: record.get("state")
+            for task_id, record in state["tasks"].items()
+        }
+        if admission.get("decision") == "ADMITTED":
+            return {
+                "state": "ADMITTED_PENDING_NO_DISPATCH",
+                "candidate_id": admission.get("candidate_id"),
+                "runtime_task_digest": admission.get("runtime_task_digest"),
+                "writer_dispatched": False,
+                "legacy_tasks": terminal,
+            }
+        if admission.get("decision") == "PROPOSED_NOT_ADMITTED":
+            return {
+                "state": "PROPOSED_NOT_ADMITTED",
+                "candidate_id": admission.get("candidate_id"),
+                "reason_codes": admission.get("reason_codes", []),
+                "writer_dispatched": False,
+                "legacy_tasks": terminal,
+            }
         return {"state": "SAFE_MAINTENANCE", "tasks": terminal}
     task = pending[0]
     # Recompute the admission oracle for the currently actionable queue before
