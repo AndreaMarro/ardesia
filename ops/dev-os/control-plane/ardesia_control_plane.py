@@ -368,7 +368,6 @@ def _bounded_section(value: Any) -> bool:
             for key in (
                 "sha256",
                 "included_chars",
-                "minimum_included_chars",
                 "omitted_chars",
                 "truncated",
             )
@@ -425,7 +424,7 @@ def _trim_bounded_sections(value: Any, remaining: int) -> int:
             omitted_key="omitted_chars",
             truncated_key="truncated",
             remaining=remaining,
-            minimum_chars=value["minimum_included_chars"],
+            minimum_chars=value.get("minimum_included_chars", 0),
         )
     if isinstance(value, dict):
         for key in reversed(list(value)):
@@ -577,7 +576,7 @@ def validate_context_text_metadata(value: Any) -> None:
         included = value["included"]
         included_chars = value["included_chars"]
         omitted_chars = value["omitted_chars"]
-        minimum_chars = value["minimum_included_chars"]
+        minimum_chars = value.get("minimum_included_chars", 0)
         if (
             type(included_chars) is not int
             or type(omitted_chars) is not int
@@ -3713,6 +3712,292 @@ def git_history_context(
     }
 
 
+def _compact_signal_string(value: Any, limit: int) -> Any:
+    return value[:limit] if isinstance(value, str) else value
+
+
+def _compact_signal_paths(value: Any) -> List[str]:
+    if not isinstance(value, list):
+        return []
+    return [path[:120] for path in value[:8] if isinstance(path, str)]
+
+
+def compact_prior_run_signals(raw: List[Dict[str, Any]]) -> Dict[str, Any]:
+    if not isinstance(raw, list):
+        raise ValueError("prior run signal source must be a list")
+    shared_task_fields: Dict[str, Any] = {}
+    for key in ("base_sha", "context_digest", "review_sha256"):
+        values = {
+            value.get(key)
+            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            if isinstance(value, dict) and value.get(key) is not None
+        }
+        if len(values) == 1:
+            shared_task_fields[key] = _compact_signal_string(
+                next(iter(values)),
+                128,
+            )
+    tasks: List[Dict[str, Any]] = []
+    for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]:
+        if not isinstance(value, dict):
+            raise ValueError("prior run signal record must be an object")
+        task = {
+            key: _compact_signal_string(
+                value.get(key),
+                40 if key == "reason" else 128,
+            )
+            for key in (
+                "task_id",
+                "task_digest",
+                "state",
+                "reason",
+                "base_sha",
+                "context_digest",
+                "review_verdict",
+                "review_sha256",
+            )
+            if value.get(key) is not None
+            and key not in shared_task_fields
+        }
+        artifacts = value.get("artifact_evidence")
+        if not isinstance(artifacts, dict):
+            artifacts = {}
+        reviews = artifacts.get("reviews")
+        receipts = artifacts.get("receipts")
+        if not isinstance(reviews, list):
+            reviews = []
+        if not isinstance(receipts, list):
+            receipts = []
+        task["artifact_review_count"] = len(reviews)
+        task["artifact_receipt_count"] = len(receipts)
+        if reviews:
+            task["artifact_reviews_digest"] = sha256_text(canonical_json(reviews))
+            task["artifact_reviews"] = [
+                {
+                    key: _compact_signal_string(review.get(key), 128)
+                    for key in ("sha256", "state", "verdict", "candidate_digest")
+                    if key in review
+                }
+                for review in reviews[:1]
+                if isinstance(review, dict)
+            ]
+        if receipts:
+            task["artifact_receipts_digest"] = sha256_text(
+                canonical_json(receipts)
+            )
+            task["artifact_receipts"] = [
+                {
+                    key: _compact_signal_string(receipt.get(key), 128)
+                    for key in ("sha256", "state", "product_commit")
+                    if key in receipt
+                }
+                for receipt in receipts[:1]
+                if isinstance(receipt, dict)
+            ]
+        tasks.append(task)
+    result = {
+        "total_count": len(raw),
+        "raw_digest": sha256_text(canonical_json(raw)),
+        "tasks": tasks,
+    }
+    if shared_task_fields:
+        result["shared_task_fields"] = shared_task_fields
+    return result
+
+
+def compact_external_directive_signals(
+    raw: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    if not isinstance(raw, list):
+        raise ValueError("external directive signal source must be a list")
+    binding_fields = {
+        "base_sha": "baseSha",
+        "context_digest": "contextDigest",
+        "acceptance_digest": "acceptanceDigest",
+        "action": "action",
+        "capability": "capability",
+        "expires_at": "expiresAt",
+    }
+    shared_binding: Dict[str, Any] = {}
+    for output_key, directive_key in binding_fields.items():
+        values = {
+            value["directive"].get(directive_key)
+            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            if isinstance(value, dict)
+            and isinstance(value.get("directive"), dict)
+            and value["directive"].get(directive_key) is not None
+        }
+        if len(values) == 1:
+            shared_binding[output_key] = _compact_signal_string(
+                next(iter(values)),
+                128,
+            )
+    record_fields = (
+        "comment_id",
+        "author",
+        "state",
+        "payload_digest",
+    )
+    shared_record: Dict[str, Any] = {}
+    for key in record_fields:
+        values = {
+            value.get(key)
+            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            if isinstance(value, dict) and value.get(key) is not None
+        }
+        if len(values) == 1:
+            shared_record[key] = _compact_signal_string(next(iter(values)), 128)
+    compact_path_sets = {
+        canonical_json(
+            _compact_signal_paths(
+                (
+                    value.get("directive", {}).get("payload") or {}
+                ).get("allowed_paths")
+                or (
+                    value.get("directive", {}).get("payload") or {}
+                ).get("allowedPaths")
+            )
+        )
+        for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+        if isinstance(value, dict) and isinstance(value.get("directive"), dict)
+    }
+    if len(compact_path_sets) == 1:
+        shared_binding["allowed_paths"] = json.loads(next(iter(compact_path_sets)))
+    directives: List[Dict[str, Any]] = []
+    for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]:
+        if not isinstance(value, dict):
+            raise ValueError("external directive signal record must be an object")
+        directive = value.get("directive")
+        if not isinstance(directive, dict):
+            raise ValueError("validated external directive signal is missing")
+        payload = directive.get("payload")
+        if not isinstance(payload, dict):
+            payload = {}
+        allowed_paths = payload.get("allowed_paths")
+        if allowed_paths is None:
+            allowed_paths = payload.get("allowedPaths")
+        record = {
+            key: _compact_signal_string(
+                value.get(key),
+                200 if key == "idempotency_key" else 128,
+            )
+            for key in (
+                "idempotency_key",
+                "comment_id",
+                "author",
+                "state",
+                "payload_digest",
+            )
+            if key not in shared_record
+        }
+        record.update(
+            {
+                "directive_id": _compact_signal_string(
+                    directive.get("directiveId"),
+                    200,
+                ),
+            }
+        )
+        for output_key, directive_key in binding_fields.items():
+            if output_key not in shared_binding:
+                record[output_key] = _compact_signal_string(
+                    directive.get(directive_key),
+                    128,
+                )
+        if "allowed_paths" not in shared_binding:
+            record["allowed_paths"] = _compact_signal_paths(allowed_paths)
+        directives.append(record)
+    result = {
+        "total_count": len(raw),
+        "raw_digest": sha256_text(canonical_json(raw)),
+        "directives": directives,
+    }
+    if shared_binding:
+        result["shared_binding"] = shared_binding
+    if shared_record:
+        result["shared_record"] = shared_record
+    return result
+
+
+def compact_git_history_signal(raw: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(raw, dict):
+        raise ValueError("Git history signal source must be an object")
+    entries = raw.get("entries")
+    if not isinstance(entries, list):
+        entries = []
+    return {
+        "state": _compact_signal_string(raw.get("state"), 128),
+        "base_sha": _compact_signal_string(raw.get("base_sha"), 128),
+        "paths": _compact_signal_paths(raw.get("paths")),
+        "digest": _compact_signal_string(raw.get("digest"), 128),
+        "entries_count": len(entries),
+        "recent_entries": [
+            entry[:180] for entry in entries[:8] if isinstance(entry, str)
+        ],
+        "raw_digest": sha256_text(canonical_json(raw)),
+    }
+
+
+def _compact_local_coordination_entry(value: Dict[str, Any]) -> Dict[str, Any]:
+    owner = value.get("owner")
+    if not isinstance(owner, dict):
+        owner = {}
+    dirty_paths = value.get("dirty_paths")
+    ahead_paths = value.get("ahead_paths")
+    overlap_paths = value.get("overlap_paths")
+    return {
+        "worktree": _compact_signal_string(value.get("worktree"), 160),
+        "branch": _compact_signal_string(value.get("branch"), 120),
+        "head": _compact_signal_string(value.get("head"), 128),
+        "classification": _compact_signal_string(
+            value.get("classification"),
+            128,
+        ),
+        "owner_task_id": _compact_signal_string(owner.get("task_id"), 128),
+        "owner_state": _compact_signal_string(owner.get("state"), 128),
+        "dirty_path_count": len(dirty_paths) if isinstance(dirty_paths, list) else 0,
+        "ahead_path_count": len(ahead_paths) if isinstance(ahead_paths, list) else 0,
+        "overlap_path_count": (
+            len(overlap_paths) if isinstance(overlap_paths, list) else 0
+        ),
+        "overlap_paths": _compact_signal_paths(overlap_paths),
+    }
+
+
+def compact_local_coordination_signal(raw: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(raw, dict):
+        raise ValueError("local coordination signal source must be an object")
+    entries = raw.get("entries")
+    blockers = raw.get("blockers")
+    if not isinstance(entries, list):
+        entries = []
+    if not isinstance(blockers, list):
+        blockers = []
+    return {
+        "schema_version": raw.get("schema_version"),
+        "state": _compact_signal_string(raw.get("state"), 128),
+        "task_id": _compact_signal_string(raw.get("task_id"), 128),
+        "base_sha": _compact_signal_string(raw.get("base_sha"), 128),
+        "inventory_digest": _compact_signal_string(
+            raw.get("inventory_digest"),
+            128,
+        ),
+        "entry_count": len(entries),
+        "blocker_count": len(blockers),
+        "entries": [
+            _compact_local_coordination_entry(entry)
+            for entry in entries[:8]
+            if isinstance(entry, dict)
+        ],
+        "blockers": [
+            _compact_local_coordination_entry(blocker)
+            for blocker in blockers[:8]
+            if isinstance(blocker, dict)
+        ],
+        "raw_digest": sha256_text(canonical_json(raw)),
+    }
+
+
 def compile_context(
     policy: Dict[str, Any],
     query: str,
@@ -3759,7 +4044,7 @@ def compile_context(
             "source_sha",
             policy["expected_knowledge_sha"],
         )
-    local_coordination: Dict[str, Any] = {"state": "NOT_TASK_SCOPED"}
+    local_coordination_raw: Dict[str, Any] = {"state": "NOT_TASK_SCOPED"}
     if task is not None:
         expected_worktree = safe_path(
             runtime,
@@ -3771,7 +4056,7 @@ def compile_context(
             task,
             current_worktree=expected_worktree,
         )
-        local_coordination = {
+        local_coordination_raw = {
             key: local_snapshot[key]
             for key in (
                 "schema_version",
@@ -3783,6 +4068,20 @@ def compile_context(
                 "inventory_digest",
             )
         }
+    git_history_raw = git_history_context(policy, task)
+    prior_runs_raw = prior_run_context(policy, task)
+    external_directives_raw = external_directive_context(policy)
+    signal_summary = {
+        "schema_version": 1,
+        "prior_runs": compact_prior_run_signals(prior_runs_raw),
+        "external_directives": compact_external_directive_signals(
+            external_directives_raw
+        ),
+        "git_history": compact_git_history_signal(git_history_raw),
+        "local_coordination": compact_local_coordination_signal(
+            local_coordination_raw
+        ),
+    }
     required_sources = required_source_context(
         policy,
         section_budgets["required_sources"],
@@ -3794,25 +4093,26 @@ def compile_context(
         "max_chars": max_chars,
         "notes": notes,
         "required_sources": required_sources,
+        "signal_summary": signal_summary,
         "git_history": bounded_json_section(
-            git_history_context(policy, task),
+            git_history_raw,
             section_budgets["git_history"],
             minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS["git_history"],
         ),
         "prior_runs": bounded_json_section(
-            prior_run_context(policy, task),
+            prior_runs_raw,
             section_budgets["prior_runs"],
             minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS["prior_runs"],
         ),
         "external_directives": bounded_json_section(
-            external_directive_context(policy),
+            external_directives_raw,
             section_budgets["external_directives"],
             minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS[
                 "external_directives"
             ],
         ),
         "local_coordination": bounded_json_section(
-            local_coordination,
+            local_coordination_raw,
             section_budgets["local_coordination"],
             minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS[
                 "local_coordination"
@@ -4019,21 +4319,38 @@ def compact_wikillm_snapshot(wiki: Dict[str, Any]) -> Dict[str, Any]:
 def compact_supervisor_signal_snapshot(
     supervisor_context: Dict[str, Any],
 ) -> Dict[str, Any]:
-    snapshot: Dict[str, Any] = {}
-    for section_name, capture_limit in SUPERVISOR_SIGNAL_SECTION_FLOORS.items():
-        section = supervisor_context.get(section_name)
-        if not _bounded_section(section):
-            continue
-        validate_context_text_metadata(section)
-        included = section["included"][:capture_limit]
-        snapshot[section_name] = {
-            "sha256": section["sha256"],
-            "included": included,
-            "included_chars": section["included_chars"],
-            "omitted_chars": section["omitted_chars"],
-            "truncated": section["truncated"],
-        }
-    return snapshot
+    summary = supervisor_context.get("signal_summary")
+    if summary is None:
+        return {}
+    if not isinstance(summary, dict):
+        raise ValueError("supervisor signal summary must be an object")
+    expected_keys = {
+        "schema_version",
+        "prior_runs",
+        "external_directives",
+        "git_history",
+        "local_coordination",
+    }
+    if set(summary) != expected_keys or summary.get("schema_version") != 1:
+        raise ValueError("supervisor signal summary schema is invalid")
+    for section_name in expected_keys - {"schema_version"}:
+        if not isinstance(summary.get(section_name), dict):
+            raise ValueError("supervisor signal summary section is invalid")
+    bounded_lists = (
+        ("prior_runs", "tasks"),
+        ("external_directives", "directives"),
+        ("git_history", "recent_entries"),
+        ("local_coordination", "entries"),
+        ("local_coordination", "blockers"),
+    )
+    for section_name, list_name in bounded_lists:
+        values = summary[section_name].get(list_name)
+        if not isinstance(values, list) or len(values) > 8:
+            raise ValueError("supervisor signal summary list is invalid")
+    encoded = canonical_json(summary)
+    if len(encoded) > 16_000:
+        raise ValueError("supervisor signal summary exceeds compact boundary")
+    return json.loads(encoded)
 
 
 def _compact_task_hashes(value: Dict[str, Any]) -> Dict[str, str]:

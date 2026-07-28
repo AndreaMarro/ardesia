@@ -2096,6 +2096,7 @@ class ControlPlaneTests(unittest.TestCase):
         )
 
     def test_context_packet_ceiling_bounds_every_rich_section(self) -> None:
+        huge_finding = "finding-evidence-" * 20_000
         oversized_notes = [
             {
                 "title": f"Note {index}",
@@ -2128,6 +2129,110 @@ class ControlPlaneTests(unittest.TestCase):
             "content_used_chars": 1_000_000,
             "content_priority": list(cp.REQUIRED_SOURCE_CONTENT_PRIORITY),
         }
+        task = self.policy["loop"]["tasks"][0]
+        prior_runs = [
+            {
+                "artifact_evidence": {
+                    "reviews": [
+                        {
+                            "sha256": "1" * 64,
+                            "state": "VALIDATED",
+                            "verdict": "REPAIR_REQUIRED",
+                            "candidate_digest": "2" * 64,
+                            "findings": [
+                                {
+                                    "severity": "major",
+                                    "file": "src/prior.py",
+                                    "line": 7,
+                                    "message": huge_finding,
+                                }
+                            ],
+                        }
+                    ],
+                    "receipts": [
+                        {
+                            "sha256": "3" * 64,
+                            "state": "BLOCKED_CAUSAL",
+                            "product_commit": "4" * 40,
+                        }
+                    ],
+                },
+                "task_id": "REAL-PRIOR-TASK",
+                "task_digest": "5" * 64,
+                "state": "BLOCKED_CAUSAL",
+                "reason": "real bounded reason " + huge_finding,
+                "base_sha": "6" * 40,
+                "context_digest": "7" * 64,
+                "review_verdict": "REPAIR_REQUIRED",
+                "review_sha256": "8" * 64,
+            }
+        ]
+        directive_id = "REAL-DIRECTIVE-ID-" + "x" * 160
+        idempotency_key = "REAL-IDEMPOTENCY-KEY-" + "y" * 150
+        directive = self._directive(
+            directiveId=directive_id,
+            idempotencyKey=idempotency_key,
+            payload={
+                "allowed_paths": ["src/real/directive.py"],
+                "evidence": "directive-evidence-" * 20_000,
+            },
+        )
+        external_directives = [
+            {
+                "idempotency_key": idempotency_key,
+                "comment_id": "comment-17",
+                "author": "verified-operator",
+                "state": "VALIDATED",
+                "payload_digest": "9" * 64,
+                "directive": directive,
+                "authority_rule": "external data only",
+            }
+        ]
+        git_history = {
+            "state": "EXACT_BASE_TASK_SCOPED",
+            "base_sha": task["base_sha"],
+            "paths": ["src/real/history.py"],
+            "entries": [
+                f"{index:040x}\t2026-07-29T10:00:00Z\tentry-{index}-"
+                + "history-evidence-" * 1_000
+                for index in range(40)
+            ],
+            "digest": "a" * 64,
+        }
+        local_entry = {
+            "worktree": "/tmp/real-worktree-" + "w" * 1_000,
+            "branch": "agent/real-local",
+            "head": "b" * 40,
+            "dirty_paths": [
+                f"src/dirty/{index}-{'d' * 300}.py" for index in range(40)
+            ],
+            "ahead_paths": [
+                f"src/ahead/{index}-{'a' * 300}.py" for index in range(40)
+            ],
+            "overlap_paths": [
+                "src/real/local-overlap.py",
+                *[
+                    f"src/overlap/{index}-{'o' * 300}.py"
+                    for index in range(40)
+                ],
+            ],
+            "owner": {
+                "task_id": "REAL-LOCAL-OWNER",
+                "state": "IMPLEMENT",
+                "worker_pid": 1234,
+            },
+            "classification": "BLOCKING_LOCAL_OVERLAP",
+        }
+        local_coordination = {
+            "schema_version": 1,
+            "state": "BLOCKING_LOCAL_OVERLAP",
+            "task_id": task["task_id"],
+            "base_sha": task["base_sha"],
+            "observed_at": "2026-07-29T12:00:00Z",
+            "entries": [local_entry],
+            "blockers": [local_entry],
+            "inventory_digest": "c" * 64,
+        }
         with (
             mock.patch.object(cp, "wikillm_search", return_value=oversized_notes),
             mock.patch.object(
@@ -2138,26 +2243,35 @@ class ControlPlaneTests(unittest.TestCase):
             mock.patch.object(
                 cp,
                 "prior_run_context",
-                return_value=[{"summary": "prior-" * 20_000}],
-            ),
+                return_value=prior_runs,
+            ) as prior_producer,
             mock.patch.object(
                 cp,
                 "external_directive_context",
-                return_value=[{"directive": {"payload": "directive-" * 20_000}}],
-            ),
+                return_value=external_directives,
+            ) as directive_producer,
             mock.patch.object(
                 cp,
                 "git_history_context",
-                return_value={"entries": ["history-" * 20_000]},
-            ),
+                return_value=git_history,
+            ) as history_producer,
+            mock.patch.object(
+                cp,
+                "local_coordination_snapshot",
+                return_value=local_coordination,
+            ) as local_producer,
         ):
             packet = cp.compile_context(
                 self.policy,
                 "bounded scientific context",
                 max_chars=30_000,
                 persist=False,
-                task=None,
+                task=task,
             )
+        self.assertEqual(prior_producer.call_count, 1)
+        self.assertEqual(directive_producer.call_count, 1)
+        self.assertEqual(history_producer.call_count, 1)
+        self.assertEqual(local_producer.call_count, 1)
         self.assertLessEqual(len(cp.canonical_json(packet)), 30_000)
         self.assertEqual(packet["budget"]["limit_chars"], 30_000)
         self.assertEqual(
@@ -2172,16 +2286,51 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(
             all("sha256" in entry for entry in packet["required_sources"]["entries"])
         )
-        for section_name, identity in (
-            ("prior_runs", "prior-"),
-            ("external_directives", "directive-"),
-            ("git_history", "history-"),
-            ("local_coordination", "NOT_TASK_SCOPED"),
-        ):
+        for section_name in cp.SUPERVISOR_SIGNAL_SECTION_FLOORS:
             section = packet[section_name]
             self.assertGreater(section["included_chars"], 0)
             self.assertGreater(section["minimum_included_chars"], 0)
-            self.assertIn(identity, section["included"])
+        summary = packet["signal_summary"]
+        self.assertEqual(
+            summary["prior_runs"]["tasks"][0]["task_id"],
+            "REAL-PRIOR-TASK",
+        )
+        self.assertEqual(
+            summary["prior_runs"]["tasks"][0]["artifact_review_count"],
+            1,
+        )
+        self.assertLessEqual(
+            len(summary["prior_runs"]["tasks"][0]["reason"]),
+            40,
+        )
+        self.assertEqual(
+            summary["external_directives"]["directives"][0]["directive_id"],
+            directive_id,
+        )
+        self.assertEqual(
+            summary["external_directives"]["directives"][0]["idempotency_key"],
+            idempotency_key,
+        )
+        self.assertEqual(
+            summary["external_directives"]["shared_binding"]["allowed_paths"],
+            ["src/real/directive.py"],
+        )
+        self.assertEqual(summary["git_history"]["base_sha"], task["base_sha"])
+        self.assertEqual(
+            summary["git_history"]["paths"],
+            ["src/real/history.py"],
+        )
+        self.assertEqual(
+            summary["local_coordination"]["task_id"],
+            task["task_id"],
+        )
+        self.assertIn(
+            "src/real/local-overlap.py",
+            summary["local_coordination"]["blockers"][0]["overlap_paths"],
+        )
+        self.assertNotIn("REAL-PRIOR-TASK", packet["prior_runs"]["included"])
+        self.assertNotIn("src/real/history.py", packet["git_history"]["included"])
+        self.assertNotIn(huge_finding, cp.canonical_json(summary))
         for entry in packet["required_sources"]["entries"]:
             self.assertGreater(
                 len(entry["content"]),
@@ -2207,6 +2356,12 @@ class ControlPlaneTests(unittest.TestCase):
                 for entry in packet["required_sources"]["entries"]
             ),
         )
+        semantic_chars = (
+            sum(len(note["content"]) for note in packet["notes"])
+            + packet["required_sources"]["content_used_chars"]
+            + len(cp.canonical_json(summary))
+        )
+        self.assertGreaterEqual(semantic_chars, 7_000)
         content_by_source = {
             entry["source_id"]: entry["content"]
             for entry in packet["required_sources"]["entries"]
@@ -2330,8 +2485,9 @@ class ControlPlaneTests(unittest.TestCase):
             cp.validate_context_text_metadata(impossible)
         incomplete = dict(effective)
         incomplete.pop("minimum_included_chars")
-        with self.assertRaisesRegex(ValueError, "bounded context"):
-            cp.validate_context_text_metadata(incomplete)
+        cp.validate_context_text_metadata(incomplete)
+        self.assertEqual(cp._trim_bounded_sections(incomplete, 3), 0)
+        self.assertEqual(incomplete["included"], "")
 
     def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
         task = self.policy["loop"]["tasks"][0]
@@ -2954,27 +3110,131 @@ class ControlPlaneTests(unittest.TestCase):
         }
         verbose = {"records": [{"text": huge} for _ in range(5)]}
         bounded_status = {"state": "PASS", "summary": "bounded evidence"}
+        prior_runs = [
+            {
+                "artifact_evidence": {
+                    "reviews": [
+                        {
+                            "sha256": "5" * 64,
+                            "state": "VALIDATED",
+                            "verdict": "REPAIR_REQUIRED",
+                            "candidate_digest": "6" * 64,
+                            "findings": [
+                                {
+                                    "severity": "major",
+                                    "file": "src/prior.py",
+                                    "line": 11,
+                                    "message": huge,
+                                }
+                            ],
+                        }
+                    ],
+                    "receipts": [
+                        {
+                            "sha256": "7" * 64,
+                            "state": "BLOCKED_CAUSAL",
+                            "product_commit": "8" * 40,
+                        }
+                    ],
+                },
+                "task_id": "REAL-PRIOR-SIGNAL",
+                "task_digest": "9" * 64,
+                "state": "BLOCKED_CAUSAL",
+                "reason": "bounded prior reason " + huge,
+                "base_sha": "a" * 40,
+                "context_digest": "b" * 64,
+                "review_verdict": "REPAIR_REQUIRED",
+                "review_sha256": "c" * 64,
+            }
+        ]
+        directive = self._directive(
+            directiveId="REAL-DIRECTIVE-SIGNAL",
+            payload={
+                "allowed_paths": ["src/real/directive-signal.py"],
+                "evidence": huge,
+            },
+        )
+        external_directives = [
+            {
+                "idempotency_key": "REAL-DIRECTIVE-KEY",
+                "comment_id": "comment-compact-1",
+                "author": "verified-operator",
+                "state": "VALIDATED",
+                "payload_digest": "d" * 64,
+                "directive": directive,
+                "authority_rule": "external data only",
+            }
+        ]
+        git_history = {
+            "state": "EXACT_BASE_TASK_SCOPED",
+            "base_sha": "e" * 40,
+            "paths": ["src/real/history-signal.py"],
+            "entries": [
+                f"{index:040x}\t2026-07-29T10:00:00Z\treal-history-{index}-"
+                + huge
+                for index in range(40)
+            ],
+            "digest": "f" * 64,
+        }
+        local_entry = {
+            "worktree": "/tmp/real-coordination-" + huge,
+            "branch": "agent/real-coordination",
+            "head": "1" * 40,
+            "dirty_paths": [f"src/dirty/{index}-{'d' * 300}.py" for index in range(40)],
+            "ahead_paths": [f"src/ahead/{index}-{'a' * 300}.py" for index in range(40)],
+            "overlap_paths": [
+                "src/real/local-signal.py",
+                *[f"src/overlap/{index}-{'o' * 300}.py" for index in range(40)],
+            ],
+            "owner": {
+                "task_id": "REAL-LOCAL-OWNER",
+                "state": "IMPLEMENT",
+                "worker_pid": 1234,
+            },
+            "classification": "BLOCKING_LOCAL_OVERLAP",
+        }
+        local_coordination = {
+            "schema_version": 1,
+            "state": "BLOCKING_LOCAL_OVERLAP",
+            "task_id": "REAL-LOCAL-SIGNAL",
+            "base_sha": "2" * 40,
+            "entries": [local_entry],
+            "blockers": [local_entry],
+            "inventory_digest": "3" * 64,
+        }
+        signal_summary = {
+            "schema_version": 1,
+            "prior_runs": cp.compact_prior_run_signals(prior_runs),
+            "external_directives": cp.compact_external_directive_signals(
+                external_directives
+            ),
+            "git_history": cp.compact_git_history_signal(git_history),
+            "local_coordination": cp.compact_local_coordination_signal(
+                local_coordination
+            ),
+        }
         supervisor_context = cp.finalize_context_packet(
             {
                 "schema_version": 1,
                 "notes": [{"content": huge}],
+                "signal_summary": signal_summary,
                 "prior_runs": cp.bounded_json_section(
-                    [{"a_identity": "PRIOR-SIGNAL", "detail": huge}],
+                    prior_runs,
                     3_600,
                     minimum_chars=512,
                 ),
                 "external_directives": cp.bounded_json_section(
-                    [{"a_identity": "DIRECTIVE-SIGNAL", "detail": huge}],
+                    external_directives,
                     3_000,
                     minimum_chars=512,
                 ),
                 "git_history": cp.bounded_json_section(
-                    {"entries": ["GIT-SIGNAL", huge]},
+                    git_history,
                     2_400,
                     minimum_chars=256,
                 ),
                 "local_coordination": cp.bounded_json_section(
-                    {"a_identity": "LOCAL-SIGNAL", "detail": huge},
+                    local_coordination,
                     1_500,
                     minimum_chars=256,
                 ),
@@ -3031,34 +3291,46 @@ class ControlPlaneTests(unittest.TestCase):
             cp.compact_supervisor_signal_snapshot(supervisor_context),
         )
         self.assertNotIn("encoding", packet["supervisor_signal_snapshot"])
-        signal_included = sum(
-            len(section["included"])
-            for section in packet["supervisor_signal_snapshot"].values()
+        self.assertEqual(
+            packet["supervisor_signal_snapshot"],
+            signal_summary,
         )
-        self.assertTrue(
-            all(
-                section["included_chars"] > 0
-                for section in packet["supervisor_signal_snapshot"].values()
-            )
+        supervisor_signals = packet["supervisor_signal_snapshot"]
+        self.assertEqual(
+            supervisor_signals["prior_runs"]["tasks"][0]["task_id"],
+            "REAL-PRIOR-SIGNAL",
         )
-        for section_name, identity in (
-            ("prior_runs", "PRIOR-SIGNAL"),
-            ("external_directives", "DIRECTIVE-SIGNAL"),
-            ("git_history", "GIT-SIGNAL"),
-            ("local_coordination", "LOCAL-SIGNAL"),
-        ):
-            signal_section = packet["supervisor_signal_snapshot"][section_name]
-            self.assertIn(identity, signal_section["included"])
-            self.assertEqual(
-                signal_section["sha256"],
-                supervisor_context[section_name]["sha256"],
-            )
+        self.assertEqual(
+            supervisor_signals["external_directives"]["directives"][0][
+                "directive_id"
+            ],
+            "REAL-DIRECTIVE-SIGNAL",
+        )
+        self.assertEqual(
+            supervisor_signals["git_history"]["base_sha"],
+            "e" * 40,
+        )
+        self.assertEqual(
+            supervisor_signals["git_history"]["paths"],
+            ["src/real/history-signal.py"],
+        )
+        self.assertEqual(
+            supervisor_signals["local_coordination"]["task_id"],
+            "REAL-LOCAL-SIGNAL",
+        )
+        self.assertIn(
+            "src/real/local-signal.py",
+            supervisor_signals["local_coordination"]["blockers"][0][
+                "overlap_paths"
+            ],
+        )
         self.assertNotIn("wikillm", packet)
         self.assertNotIn("productive_loop", packet)
         self.assertLessEqual(packet["previous_review"]["included_chars"], 300)
         self.assertLessEqual(packet["mailbox"]["included_chars"], 200)
         self.assertGreaterEqual(
-            packet["supervisor_context"]["included_chars"] + signal_included,
+            packet["supervisor_context"]["included_chars"]
+            + len(cp.canonical_json(supervisor_signals)),
             7_000,
         )
         for key in (
@@ -3118,6 +3390,87 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertNotIn(huge, serialized)
         with self.assertRaisesRegex(ValueError, "task ids must be strings"):
             cp.compact_productive_loop_snapshot({"tasks": {1: {"state": "DONE"}}})
+
+        max8_tasks = copy.deepcopy(tasks)
+        max8_task_ids = list(task_ids)
+        for index in range(6, 9):
+            task_id = f"TASK-{index}"
+            max8_task_ids.append(task_id)
+            max8_tasks[task_id] = {
+                **copy.deepcopy(tasks[task_ids[(index - 1) % len(task_ids)]]),
+                "task_digest": str(index) * 64,
+            }
+        max8_productive = {
+            **productive,
+            "admitted_task_order": max8_task_ids,
+            "tasks": max8_tasks,
+        }
+        max8_prior_runs = [
+            {
+                "task_id": task_id,
+                "task_digest": record["task_digest"],
+                "state": record["state"],
+                "reason": record["reason"],
+                "base_sha": record["base_sha"],
+                "context_digest": record["context_digest"],
+                "review_verdict": (
+                    record.get("review_verdict")
+                    or record.get("review", {}).get("verdict")
+                ),
+                "review_sha256": record.get("review", {}).get("review_sha256"),
+                "artifact_evidence": {"reviews": [], "receipts": []},
+            }
+            for task_id, record in (
+                (task_id, max8_tasks[task_id]) for task_id in max8_task_ids
+            )
+        ]
+        max8_directives = []
+        for index in range(8):
+            record = copy.deepcopy(external_directives[0])
+            record["idempotency_key"] = f"MAX8-DIRECTIVE-KEY-{index}"
+            record["directive"]["directiveId"] = f"MAX8-DIRECTIVE-{index}"
+            record["directive"]["idempotencyKey"] = record["idempotency_key"]
+            max8_directives.append(record)
+        max8_signal_summary = {
+            "schema_version": 1,
+            "prior_runs": cp.compact_prior_run_signals(max8_prior_runs),
+            "external_directives": cp.compact_external_directive_signals(
+                max8_directives
+            ),
+            "git_history": cp.compact_git_history_signal(
+                {"state": "NOT_TASK_SCOPED", "entries": []}
+            ),
+            "local_coordination": cp.compact_local_coordination_signal(
+                {"state": "NOT_TASK_SCOPED"}
+            ),
+        }
+        max8_packet = cp.build_scientific_audit_input(
+            self.policy,
+            **{
+                **arguments,
+                "review_id": "review-combined-max8",
+                "productive": max8_productive,
+                "supervisor_context": {
+                    "schema_version": 1,
+                    "signal_summary": max8_signal_summary,
+                },
+            },
+        )
+        self.assertLessEqual(len(cp.canonical_json(max8_signal_summary)), 16_000)
+        self.assertLessEqual(len(cp.canonical_json(max8_packet)), 24_000)
+        self.assertEqual(
+            len(max8_packet["productive_loop_snapshot"]["tasks"]),
+            8,
+        )
+        self.assertEqual(
+            len(
+                max8_packet["supervisor_signal_snapshot"][
+                    "external_directives"
+                ]["directives"]
+            ),
+            8,
+        )
+        self.assertEqual(max8_packet["wikillm_snapshot"]["state"], wiki["state"])
 
     def test_scientific_audit_task_limit_is_ceiling_bound(self) -> None:
         maximum_policy = copy.deepcopy(self.policy)
