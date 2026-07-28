@@ -3936,6 +3936,170 @@ def record_verification(policy: Dict[str, Any], key: str, value: str) -> Dict[st
     return state
 
 
+def compact_wikillm_snapshot(wiki: Dict[str, Any]) -> Dict[str, Any]:
+    fields = (
+        "state",
+        "source_mode",
+        "material_source_sha",
+        "source_sha",
+        "canonical_git_sha",
+        "notes",
+        "database_sha256",
+        "indexed_at",
+    )
+    return {key: wiki[key] for key in fields if key in wiki}
+
+
+def _compact_task_hashes(value: Dict[str, Any]) -> Dict[str, str]:
+    categories = (
+        "acceptance",
+        "artifact",
+        "verification",
+        "candidate",
+        "context",
+        "review",
+    )
+    return {
+        key: item[:256]
+        for key, item in sorted(value.items())
+        if isinstance(key, str)
+        and isinstance(item, str)
+        and key.lower().endswith(("sha", "sha256", "digest"))
+        and any(category in key.lower() for category in categories)
+    }
+
+
+def compact_productive_loop_snapshot(
+    productive: Dict[str, Any],
+) -> Dict[str, Any]:
+    metadata_fields = (
+        "schema_version",
+        "service_version",
+        "run_id",
+        "goal_id",
+        "queue_mode",
+        "enabled",
+        "admitted_task_order",
+        "updated_at",
+    )
+    snapshot = {
+        key: productive[key]
+        for key in metadata_fields
+        if key in productive
+    }
+    records = productive.get("tasks")
+    if not isinstance(records, dict):
+        snapshot["tasks"] = []
+        return snapshot
+    if any(not isinstance(task_id, str) for task_id in records):
+        raise ValueError("productive loop snapshot task ids must be strings")
+
+    admitted_order = productive.get("admitted_task_order")
+    ordered_ids: List[str] = []
+    if isinstance(admitted_order, list):
+        ordered_ids.extend(
+            task_id
+            for task_id in admitted_order
+            if isinstance(task_id, str)
+            and task_id in records
+            and task_id not in ordered_ids
+        )
+    ordered_ids.extend(sorted(set(records) - set(ordered_ids)))
+
+    scalar_fields = (
+        "state",
+        "task_digest",
+        "base_sha",
+        "branch",
+        "product_commit",
+        "review_verdict",
+        "review_summary",
+        "review_count",
+        "review_findings_count",
+        "phase",
+        "writer_phase",
+        "failed_phase",
+        "heartbeat_at",
+        "heartbeat_count",
+        "writer_heartbeat_at",
+        "writer_heartbeat_count",
+        "writer_lease_renewals",
+        "writer_elapsed_seconds",
+        "updated_at",
+        "completed_at",
+        "committed_at",
+    )
+    compact_tasks: List[Dict[str, Any]] = []
+    for task_id in ordered_ids:
+        record = records[task_id]
+        task_snapshot: Dict[str, Any] = {"task_id": task_id}
+        if not isinstance(record, dict):
+            compact_tasks.append(task_snapshot)
+            continue
+        for key in scalar_fields:
+            value = record.get(key)
+            if key in record and (
+                value is None
+                or isinstance(value, (str, int, float, bool))
+            ):
+                task_snapshot[key] = (
+                    value[:256] if isinstance(value, str) else value
+                )
+        task_snapshot.update(_compact_task_hashes(record))
+        reason = record.get("reason")
+        if isinstance(reason, str):
+            task_snapshot["reason"] = reason[:256]
+        changed_files = record.get("changed_files")
+        if isinstance(changed_files, list):
+            task_snapshot["changed_files"] = [
+                path[:160]
+                for path in changed_files[:8]
+                if isinstance(path, str)
+            ]
+        direct_severity_counts = record.get(
+            "review_findings_severity_counts"
+        )
+        if isinstance(direct_severity_counts, dict):
+            task_snapshot["review_findings_severity_counts"] = {
+                severity: direct_severity_counts[severity]
+                for severity in ("critical", "major", "minor")
+                if type(direct_severity_counts.get(severity)) is int
+                and direct_severity_counts[severity] >= 0
+            }
+
+        review = record.get("review")
+        if isinstance(review, dict):
+            verdict = review.get("verdict")
+            if isinstance(verdict, str):
+                task_snapshot.setdefault("review_verdict", verdict[:256])
+            summary = review.get("summary")
+            if isinstance(summary, str):
+                task_snapshot.setdefault("review_summary", summary[:256])
+            for key, value in _compact_task_hashes(review).items():
+                task_snapshot.setdefault(key, value)
+            binding = review.get("binding")
+            if isinstance(binding, dict):
+                for key, value in _compact_task_hashes(binding).items():
+                    task_snapshot.setdefault(key, value)
+            findings = review.get("findings")
+            if isinstance(findings, list):
+                severity_counts = {
+                    severity: 0
+                    for severity in ("critical", "major", "minor")
+                }
+                for finding in findings:
+                    if not isinstance(finding, dict):
+                        continue
+                    severity = finding.get("severity")
+                    if severity in severity_counts:
+                        severity_counts[severity] += 1
+                task_snapshot["review_findings_count"] = len(findings)
+                task_snapshot["review_findings_severity_counts"] = severity_counts
+        compact_tasks.append(task_snapshot)
+    snapshot["tasks"] = compact_tasks
+    return snapshot
+
+
 def build_scientific_audit_input(
     policy: Dict[str, Any],
     *,
@@ -3975,6 +4139,8 @@ def build_scientific_audit_input(
         "trigger": trigger,
         "material_digest": material_digest,
         "queue_nonterminal": queue_nonterminal,
+        "wikillm_snapshot": compact_wikillm_snapshot(wiki),
+        "productive_loop_snapshot": compact_productive_loop_snapshot(productive),
         "previous_review": bounded_json_section(previous, 1_500),
         "deterministic_checks": bounded_json_section(checks, 2_500),
         "github_monitor": bounded_json_section(github, 2_500),

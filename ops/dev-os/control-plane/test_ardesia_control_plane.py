@@ -2837,6 +2837,193 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(packet["previous_review"]["truncated"])
         self.assertTrue(packet["supervisor_context"]["truncated"])
 
+    def test_scientific_audit_compact_snapshots_survive_verbose_trimming(self) -> None:
+        huge = "unbounded-evidence-" * 20_000
+        task_ids = [f"TASK-{index}" for index in range(1, 6)]
+        states = [
+            "READY_FOR_HUMAN",
+            "BLOCKED_CAUSAL",
+            "READY_FOR_HUMAN",
+            "BLOCKED_CAUSAL",
+            "READY_FOR_HUMAN",
+        ]
+        verdicts = ["PASS", "BLOCKED", "PASS", "REPAIR_REQUIRED", "PASS"]
+        tasks = {}
+        for index, (task_id, state, verdict) in enumerate(
+            zip(task_ids, states, verdicts),
+            start=1,
+        ):
+            tasks[task_id] = {
+                "state": state,
+                "reason": f"terminal-reason-{index}: {huge}",
+                "task_digest": str(index) * 64,
+                "base_sha": str(index) * 40,
+                "acceptance_digest": "a" * 64,
+                "artifact_sha256": "b" * 64,
+                "verification_digest": "c" * 64,
+                "candidate_digest": "d" * 64,
+                "context_digest": "e" * 64,
+                "changed_files": [
+                    f"src/task-{index}/file-{file_index}-{'x' * 300}.py"
+                    for file_index in range(100)
+                ],
+                "writer_phase": f"terminal-phase-{index}",
+                "writer_heartbeat_at": f"2026-07-29T10:0{index}:00Z",
+                "heartbeat_count": index,
+                "writer_lease_renewals": index + 5,
+                "writer_elapsed_seconds": index * 10,
+                "updated_at": f"2026-07-29T11:0{index}:00Z",
+                "completed_at": f"2026-07-29T12:0{index}:00Z",
+                "committed_at": f"2026-07-29T13:0{index}:00Z",
+                "review": {
+                    "verdict": verdict,
+                    "summary": f"review-summary-{index}: {huge}",
+                    "review_sha256": "f" * 64,
+                    "findings": [
+                        {
+                            "severity": severity,
+                            "file": huge,
+                            "line": index,
+                            "message": huge,
+                        }
+                        for severity in ("critical", "major", "minor")
+                    ],
+                },
+                "logs": huge,
+                "artifacts": [{"path": huge, "body": huge}],
+            }
+        tasks[task_ids[0]]["review_verdict"] = verdicts[0]
+        tasks[task_ids[0]]["review"].pop("verdict")
+        tasks[task_ids[0]]["review"].pop("findings")
+        tasks[task_ids[0]]["review_findings_count"] = 3
+        tasks[task_ids[0]]["review_findings_severity_counts"] = {
+            "critical": 1,
+            "major": 1,
+            "minor": 1,
+        }
+        productive = {
+            "schema_version": 1,
+            "service_version": "1.8.2",
+            "run_id": "run-compact-audit",
+            "goal_id": "goal-compact-audit",
+            "queue_mode": "finite",
+            "enabled": True,
+            "admitted_task_order": task_ids,
+            "updated_at": "2026-07-29T14:00:00Z",
+            "tasks": dict(reversed(list(tasks.items()))),
+            "large_queue_blob": huge,
+        }
+        wiki = {
+            "state": "INDEXED_CURRENT",
+            "source_mode": "git-worktree",
+            "material_source_sha": "1" * 64,
+            "source_sha": "2" * 64,
+            "canonical_git_sha": "3" * 40,
+            "notes": 1_881,
+            "database_sha256": "4" * 64,
+            "indexed_at": "2026-07-29T09:00:00Z",
+            "large_index_blob": huge,
+        }
+        verbose = {"records": [{"text": huge} for _ in range(5)]}
+        arguments = {
+            "review_id": "review-compact-snapshots",
+            "trigger": "scheduled-30m",
+            "previous": verbose,
+            "checks": verbose,
+            "github": verbose,
+            "wiki": wiki,
+            "mailbox": verbose,
+            "headroom": verbose,
+            "hermes": verbose,
+            "productive": productive,
+            "supervisor_context": verbose,
+            "material_digest": "9" * 64,
+        }
+        with mock.patch.object(
+            cp,
+            "iso_now",
+            return_value="2026-07-29T15:00:00Z",
+        ):
+            packet = cp.build_scientific_audit_input(self.policy, **arguments)
+            repeated = cp.build_scientific_audit_input(
+                self.policy,
+                **{
+                    **arguments,
+                    "productive": {
+                        **productive,
+                        "tasks": dict(tasks),
+                    },
+                },
+            )
+
+        serialized = cp.canonical_json(packet)
+        self.assertLessEqual(len(serialized), 24_000)
+        self.assertEqual(serialized, cp.canonical_json(repeated))
+        self.assertEqual(
+            packet["wikillm_snapshot"],
+            cp.compact_wikillm_snapshot(wiki),
+        )
+        self.assertEqual(
+            packet["productive_loop_snapshot"],
+            cp.compact_productive_loop_snapshot(productive),
+        )
+        self.assertNotIn("encoding", packet["wikillm_snapshot"])
+        self.assertNotIn("encoding", packet["productive_loop_snapshot"])
+        for key in (
+            "state",
+            "source_mode",
+            "material_source_sha",
+            "source_sha",
+            "canonical_git_sha",
+            "notes",
+            "database_sha256",
+            "indexed_at",
+        ):
+            self.assertEqual(packet["wikillm_snapshot"][key], wiki[key])
+
+        compact_tasks = packet["productive_loop_snapshot"]["tasks"]
+        self.assertEqual(
+            [task["task_id"] for task in compact_tasks],
+            task_ids,
+        )
+        for index, (task, state, verdict) in enumerate(
+            zip(compact_tasks, states, verdicts),
+            start=1,
+        ):
+            self.assertEqual(task["state"], state)
+            self.assertEqual(task["review_verdict"], verdict)
+            self.assertIn(f"terminal-reason-{index}", task["reason"])
+            self.assertIn(f"review-summary-{index}", task["review_summary"])
+            self.assertLessEqual(len(task["reason"]), 256)
+            self.assertLessEqual(len(task["review_summary"]), 256)
+            self.assertLess(len(task["changed_files"]), 100)
+            self.assertEqual(task["review_findings_count"], 3)
+            self.assertEqual(
+                task["review_findings_severity_counts"],
+                {"critical": 1, "major": 1, "minor": 1},
+            )
+            self.assertNotIn("findings", task)
+            for key in (
+                "acceptance_digest",
+                "artifact_sha256",
+                "verification_digest",
+                "candidate_digest",
+                "context_digest",
+                "review_sha256",
+                "writer_phase",
+                "writer_heartbeat_at",
+                "heartbeat_count",
+                "writer_lease_renewals",
+                "writer_elapsed_seconds",
+                "updated_at",
+                "completed_at",
+                "committed_at",
+            ):
+                self.assertIn(key, task)
+        self.assertNotIn(huge, serialized)
+        with self.assertRaisesRegex(ValueError, "task ids must be strings"):
+            cp.compact_productive_loop_snapshot({"tasks": {1: {"state": "DONE"}}})
+
     def test_scientific_audit_writes_exact_canonical_packet_within_ceiling(self) -> None:
         large = {"records": [{"text": "evidence-" * 20_000} for _ in range(20)]}
         packet = cp.build_scientific_audit_input(
