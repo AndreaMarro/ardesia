@@ -3593,7 +3593,10 @@ def scientific_material_digest(
     obsidian: Dict[str, Any],
     productive: Dict[str, Any],
     supervisor_context: Dict[str, Any],
+    policy_digest: str,
 ) -> str:
+    if not isinstance(policy_digest, str) or not HEX64.fullmatch(policy_digest):
+        raise ValueError("scientific policy digest must be a lowercase sha256")
     mailbox_directives = mailbox.get("directives")
     stable_mailbox = (
         {
@@ -3609,6 +3612,8 @@ def scientific_material_digest(
         else {}
     )
     material = {
+        "service_version": VERSION,
+        "policy_digest": policy_digest,
         "controller_state": checks.get("state"),
         "controller_reason": checks.get("reason"),
         "github_inventory": github.get("inventory_digest"),
@@ -3628,6 +3633,71 @@ def scientific_material_digest(
         ).get("manifest_digest"),
     }
     return sha256_text(canonical_json(material))
+
+
+def complete_scientific_skip(
+    policy: Dict[str, Any],
+    trigger: str,
+    review_id: str,
+    directory: Path,
+    material_digest: str,
+    previous: Dict[str, Any],
+    supervisor_context: Dict[str, Any],
+) -> Dict[str, Any]:
+    runtime = runtime_path(policy)
+    prior_success = previous.get("last_successful_scheduled_audit")
+    if (
+        previous.get("trigger") == "scheduled-30m"
+        and previous.get("audit_execution_state") == "PASS"
+    ):
+        prior_success = {
+            "review_id": previous.get("review_id"),
+            "trigger": previous.get("trigger"),
+            "completed_at": previous.get("completed_at"),
+            "manifest_digest": previous.get("manifest_digest"),
+            "audit_execution_state": "PASS",
+        }
+    skip = {
+        "schema_version": 1,
+        "review_id": review_id,
+        "state": "SKIP_NO_AI",
+        "classification": "VERIFIED_STABLE",
+        "trigger": trigger,
+        "material_digest": material_digest,
+        "previous_review_id": previous.get("review_id"),
+        "reason": "exogenous material digest unchanged",
+        "ai_calls": 0,
+        "recorded_at": iso_now(),
+    }
+    write_json(directory / "skip.json", skip, 0o640)
+    manifest = evidence_manifest(directory)
+    write_json(directory / "evidence-manifest.json", manifest, 0o640)
+    completion = {
+        **skip,
+        "completed_at": iso_now(),
+        "manifest_digest": manifest["manifest_digest"],
+        "audit_execution_state": "SKIPPED_NO_AI",
+        "scientific_audit": None,
+        "last_successful_scheduled_audit": prior_success,
+        "efficiency_metrics": {
+            "ai_calls": 0,
+            "supervisor_context_chars": len(canonical_json(supervisor_context)),
+        },
+        "obsidian_publication": {"state": "UNCHANGED_NO_OBSIDIAN_CHURN"},
+        "queue_proposal_publication": {"state": "NOT_ATTEMPTED"},
+        "path": str(directory),
+    }
+    write_json(directory / "completion.json", completion, 0o640)
+    write_json(runtime / "state" / "latest-review.json", completion)
+    generate_reports(policy)
+    event(
+        runtime,
+        "SCIENTIFIC_REVIEW_SKIPPED_NO_AI",
+        review_id=review_id,
+        trigger=trigger,
+        material_digest=material_digest,
+    )
+    return completion
 
 
 def _scientific_review(
@@ -3683,7 +3753,7 @@ def _scientific_review(
                 "history maintenance coherence regression divergence"
             ),
             max_chars=24_000,
-            persist=True,
+            persist=False,
             task=active_task,
         )
     except (OSError, ValueError, RuntimeError) as error:
@@ -3703,7 +3773,18 @@ def _scientific_review(
         obsidian_state,
         productive,
         supervisor_context,
+        sha256_text(canonical_json(policy)),
     )
+    if previous.get("material_digest") == material_digest:
+        return complete_scientific_skip(
+            policy,
+            trigger,
+            review_id,
+            directory,
+            material_digest,
+            previous,
+            supervisor_context,
+        )
     audit_input = {
         "schema_version": 1,
         "review_id": review_id,
@@ -7351,9 +7432,22 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
     )
     controller_state = (status.get("controller") or {}).get("state")
     scheduled_review = (
-        latest.get("trigger") == "scheduled-30m"
-        and latest.get("audit_execution_state") == "PASS"
-        and latest.get("state") != "BLOCKED_CAUSAL"
+        (
+            latest.get("trigger") == "scheduled-30m"
+            and latest.get("audit_execution_state") == "PASS"
+            and latest.get("state") != "BLOCKED_CAUSAL"
+        )
+        or (
+            latest.get("trigger") == "scheduled-30m"
+            and latest.get("state") == "SKIP_NO_AI"
+            and isinstance(latest.get("last_successful_scheduled_audit"), dict)
+            and latest["last_successful_scheduled_audit"].get("trigger")
+            == "scheduled-30m"
+            and latest["last_successful_scheduled_audit"].get(
+                "audit_execution_state"
+            )
+            == "PASS"
+        )
     )
     scheduled_mailbox = (status.get("mailbox") or {}).get("trigger") == "scheduled"
     headroom_ready = (

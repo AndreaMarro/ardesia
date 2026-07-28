@@ -1114,6 +1114,7 @@ class ControlPlaneTests(unittest.TestCase):
             obsidian,
             productive,
             context,
+            "8" * 64,
         )
         wiki["source_sha"] = second["source_sha"]
         context["content_digest"] = "f" * 64
@@ -1127,8 +1128,24 @@ class ControlPlaneTests(unittest.TestCase):
             obsidian,
             productive,
             context,
+            "8" * 64,
         )
         self.assertEqual(digest_one, digest_two)
+        self.assertNotEqual(
+            digest_one,
+            cp.scientific_material_digest(
+                checks,
+                github,
+                wiki,
+                mailbox,
+                headroom,
+                hermes,
+                obsidian,
+                productive,
+                context,
+                "9" * 64,
+            ),
+        )
         wiki["material_source_sha"] = third["material_source_sha"]
         self.assertNotEqual(
             digest_two,
@@ -1142,8 +1159,92 @@ class ControlPlaneTests(unittest.TestCase):
                 obsidian,
                 productive,
                 context,
+                "8" * 64,
             ),
         )
+
+    def test_unchanged_scientific_material_skips_all_ai_and_obsidian(self) -> None:
+        material_digest = "a" * 64
+        cp.write_json(
+            self.runtime / "state" / "latest-review.json",
+            {
+                "review_id": "prior-scheduled-audit",
+                "trigger": "scheduled-30m",
+                "state": "READY_FOR_PRODUCTIVE_LOOP",
+                "audit_execution_state": "PASS",
+                "material_digest": material_digest,
+                "completed_at": "2026-07-28T18:32:10Z",
+                "manifest_digest": "b" * 64,
+            },
+        )
+        cp.write_json(
+            self.runtime / "state" / "obsidian.json",
+            {"state": "ACTIVE_CONTINUOUS"},
+        )
+        deterministic_checks = {
+            "state": "READY_FOR_PRODUCTIVE_LOOP",
+            "reason": "stable",
+            "checks": [],
+        }
+        with (
+            mock.patch.object(
+                cp,
+                "github_monitor_snapshot",
+                return_value={"state": "CLEAR", "inventory_digest": "c" * 64},
+            ),
+            mock.patch.object(cp, "doctor", return_value=deterministic_checks),
+            mock.patch.object(
+                cp,
+                "wikillm_ingest",
+                return_value={
+                    "state": "INDEXED_CURRENT",
+                    "source_mode": "OBSIDIAN_HEADLESS_LIVE",
+                    "notes": 1,
+                    "material_source_sha": "d" * 64,
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "headroom_status",
+                return_value={
+                    "state": "ACTIVE_REQUIRED_GATEWAY",
+                    "health_digest": "e" * 64,
+                    "launch_contract_digest": "f" * 64,
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "compile_context",
+                return_value={
+                    "schema_version": 1,
+                    "required_sources": {"manifest_digest": "1" * 64},
+                    "context_digest": "2" * 64,
+                },
+            ),
+            mock.patch.object(
+                cp,
+                "scientific_material_digest",
+                return_value=material_digest,
+            ),
+            mock.patch.object(cp, "codex_scientific_audit") as audit,
+            mock.patch.object(cp, "run_ai_command") as ai_command,
+            mock.patch.object(cp, "governed_obsidian_write") as obsidian_write,
+        ):
+            result = cp.scientific_review(self.policy, "scheduled-30m")
+
+        self.assertEqual(result["state"], "SKIP_NO_AI")
+        self.assertEqual(result["audit_execution_state"], "SKIPPED_NO_AI")
+        self.assertEqual(result["efficiency_metrics"]["ai_calls"], 0)
+        self.assertEqual(
+            result["last_successful_scheduled_audit"]["review_id"],
+            "prior-scheduled-audit",
+        )
+        audit.assert_not_called()
+        ai_command.assert_not_called()
+        obsidian_write.assert_not_called()
+        directory = Path(result["path"])
+        self.assertTrue((directory / "skip.json").is_file())
+        self.assertFalse((directory / "scientific-audit.json").exists())
 
     def test_wikillm_ingest_ignores_an_outer_handled_exception(self) -> None:
         try:
@@ -1345,6 +1446,40 @@ class ControlPlaneTests(unittest.TestCase):
         )
         with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
             self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+        skip = self.runtime / "reviews" / "zz-skip-after-scheduled"
+        skip.mkdir()
+        cp.write_json(
+            skip / "completion.json",
+            {
+                "state": "SKIP_NO_AI",
+                "trigger": "scheduled-30m",
+                "audit_execution_state": "SKIPPED_NO_AI",
+                "last_successful_scheduled_audit": {
+                    "review_id": "scheduled",
+                    "trigger": "scheduled-30m",
+                    "audit_execution_state": "PASS",
+                },
+            },
+        )
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(
+                cp.status_payload(self.policy)["state"],
+                "READY_FOR_HUMAN_REVIEW",
+            )
+        cp.write_json(
+            skip / "completion.json",
+            {
+                "state": "SKIP_NO_AI",
+                "trigger": "scheduled-30m",
+                "audit_execution_state": "SKIPPED_NO_AI",
+                "last_successful_scheduled_audit": None,
+            },
+        )
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(
+                cp.status_payload(self.policy)["state"],
+                "PARTIAL_BOOTSTRAP_SAFE",
+            )
 
     def test_preapproved_queue_is_frozen_and_writer_diff_is_path_bounded(self) -> None:
         active = copy.deepcopy(self.policy)
