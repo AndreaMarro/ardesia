@@ -129,9 +129,26 @@ class ControlPlaneTests(unittest.TestCase):
         invalid["unexpected"] = True
         with self.assertRaisesRegex(ValueError, "additional properties"):
             cp.validate_policy(invalid)
+        invalid = copy.deepcopy(self.policy)
+        invalid["context"]["writer_max_chars"] = 29_999
+        with self.assertRaisesRegex(ValueError, "frozen writer and supervisor ceilings"):
+            cp.validate_policy(invalid)
+        invalid = copy.deepcopy(self.policy)
+        invalid["context"]["unexpected"] = True
+        with self.assertRaisesRegex(ValueError, "additional properties"):
+            cp.validate_policy(invalid)
         for tool in cp.MCP_TOOLS:
             self.assertEqual(tool["inputSchema"]["$schema"], "https://json-schema.org/draft/2020-12/schema")
             self.assertFalse(tool["inputSchema"]["additionalProperties"])
+        compile_schema = next(
+            tool["inputSchema"]
+            for tool in cp.MCP_TOOLS
+            if tool["name"] == "knowledge.compile"
+        )
+        self.assertEqual(
+            compile_schema["properties"]["maxChars"]["maximum"],
+            30_000,
+        )
         with self.assertRaisesRegex(ValueError, "additional properties"):
             cp.validate_tool_input("run.status", {"write": True})
         call = cp.strict_object(
@@ -1226,6 +1243,7 @@ class ControlPlaneTests(unittest.TestCase):
                 "scientific_material_digest",
                 return_value=material_digest,
             ),
+            mock.patch.object(cp, "build_scientific_audit_input") as build_input,
             mock.patch.object(cp, "codex_scientific_audit") as audit,
             mock.patch.object(cp, "run_ai_command") as ai_command,
             mock.patch.object(cp, "governed_obsidian_write") as obsidian_write,
@@ -1243,6 +1261,7 @@ class ControlPlaneTests(unittest.TestCase):
             result["last_successful_scheduled_audit"]["state"],
             "READY_FOR_PRODUCTIVE_LOOP",
         )
+        build_input.assert_not_called()
         audit.assert_not_called()
         ai_command.assert_not_called()
         obsidian_write.assert_not_called()
@@ -1298,6 +1317,100 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertGreater(
             allocations["prior_findings"],
             allocations["coordination"],
+        )
+
+    def test_context_packet_ceiling_bounds_every_rich_section(self) -> None:
+        oversized_notes = [
+            {
+                "title": f"Note {index}",
+                "path": f"20-Decisions/ADR-{index:03d}.md",
+                "sha256": f"{index:064x}"[-64:],
+                "source_commit": "obsidian:" + "a" * 64,
+                "body": "knowledge-" * 10_000,
+            }
+            for index in range(20)
+        ]
+        oversized_sources = {
+            "schema_version": 1,
+            "entries": [
+                {
+                    "source_id": source_id,
+                    "root": "runtime",
+                    "path": f"sources/{source_id}.md",
+                    "authority": "EXTERNAL_OPERATOR_SOURCE",
+                    "sha256": "b" * 64,
+                    "bytes": 100_000,
+                    "content": "source-" * 20_000,
+                    "content_included_chars": 140_000,
+                    "content_omitted_chars": 0,
+                    "content_truncated": False,
+                }
+                for source_id in cp.REQUIRED_SOURCE_CONTENT_PRIORITY
+            ],
+            "manifest_digest": "c" * 64,
+            "content_budget_chars": 1_000_000,
+            "content_used_chars": 1_000_000,
+            "content_priority": list(cp.REQUIRED_SOURCE_CONTENT_PRIORITY),
+        }
+        with (
+            mock.patch.object(cp, "wikillm_search", return_value=oversized_notes),
+            mock.patch.object(
+                cp,
+                "required_source_context",
+                return_value=oversized_sources,
+            ),
+            mock.patch.object(
+                cp,
+                "prior_run_context",
+                return_value=[{"summary": "prior-" * 20_000}],
+            ),
+            mock.patch.object(
+                cp,
+                "external_directive_context",
+                return_value=[{"directive": {"payload": "directive-" * 20_000}}],
+            ),
+            mock.patch.object(
+                cp,
+                "git_history_context",
+                return_value={"entries": ["history-" * 20_000]},
+            ),
+        ):
+            packet = cp.compile_context(
+                self.policy,
+                "bounded scientific context",
+                max_chars=30_000,
+                persist=False,
+                task=None,
+            )
+        self.assertLessEqual(len(cp.canonical_json(packet)), 30_000)
+        self.assertEqual(packet["budget"]["limit_chars"], 30_000)
+        self.assertEqual(
+            packet["budget"]["serialized_chars"],
+            len(cp.canonical_json(packet)),
+        )
+        self.assertTrue(packet["budget"]["truncated"])
+        self.assertEqual(
+            packet["required_sources"]["manifest_digest"],
+            "c" * 64,
+        )
+        self.assertTrue(
+            all("sha256" in entry for entry in packet["required_sources"]["entries"])
+        )
+        stable_for_digest = {
+            key: value
+            for key, value in packet.items()
+            if key not in {"compiled_at", "content_digest", "context_digest"}
+        }
+        self.assertEqual(
+            packet["content_digest"],
+            cp.sha256_text(cp.canonical_json(stable_for_digest)),
+        )
+        context_for_digest = {
+            key: value for key, value in packet.items() if key != "context_digest"
+        }
+        self.assertEqual(
+            packet["context_digest"],
+            cp.sha256_text(cp.canonical_json(context_for_digest)),
         )
 
     def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
@@ -1722,12 +1835,18 @@ class ControlPlaneTests(unittest.TestCase):
                 (successor_worktree / seeded_path).read_text(encoding="utf-8"),
                 f"falsified candidate {index}\n",
             )
-        context = cp.context_with_candidate_seed(
-            {"schema_version": 1, "context_digest": "0" * 64, "notes": []},
-            descriptor,
+        base_context = cp.finalize_context_packet(
+            {"schema_version": 1, "notes": []},
+            30_000,
+            compiled_at="2026-07-28T18:00:00Z",
         )
+        context = cp.context_with_candidate_seed(base_context, descriptor)
         self.assertEqual(context["falsified_untrusted_seed"]["review_sha256"], frozen["review_sha256"])
         self.assertNotEqual(context["context_digest"], "0" * 64)
+        self.assertLessEqual(
+            len(cp.canonical_json(context)),
+            context["budget"]["limit_chars"],
+        )
 
     def test_queue_admission_rejects_missing_record_and_mutated_digest(self) -> None:
         active = copy.deepcopy(self.policy)
@@ -1787,15 +1906,7 @@ class ControlPlaneTests(unittest.TestCase):
                 },
             },
         )
-        audit_input = {
-            "productive_loop": {
-                "tasks": {
-                    "BETA-PENDING": {
-                        "state": "PENDING",
-                    }
-                }
-            }
-        }
+        audit_input = {"queue_nonterminal": True}
         completed = {
             "exit": 0,
             "stdout": "",
@@ -1810,6 +1921,29 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertIn('model_reasoning_effort="xhigh"', arguments)
         self.assertIn("read-only", arguments)
         self.assertIn("--skip-git-repo-check", arguments)
+
+    def test_complete_scientific_audit_input_respects_supervisor_ceiling(self) -> None:
+        large = {"records": [{"text": "evidence-" * 20_000} for _ in range(20)]}
+        packet = cp.build_scientific_audit_input(
+            self.policy,
+            review_id="review-bound",
+            trigger="scheduled-30m",
+            previous=large,
+            checks=large,
+            github=large,
+            wiki=large,
+            mailbox=large,
+            headroom=large,
+            hermes=large,
+            productive={"tasks": {"ACTIVE": {"state": "IMPLEMENT"}}, **large},
+            supervisor_context=large,
+            material_digest="d" * 64,
+        )
+        self.assertLessEqual(len(cp.canonical_json(packet)), 24_000)
+        self.assertEqual(packet["budget"]["limit_chars"], 24_000)
+        self.assertTrue(packet["queue_nonterminal"])
+        self.assertTrue(packet["previous_review"]["truncated"])
+        self.assertTrue(packet["supervisor_context"]["truncated"])
 
     def test_scheduled_scientific_review_records_early_failure_instead_of_stopping(self) -> None:
         with (

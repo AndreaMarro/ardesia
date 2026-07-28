@@ -32,6 +32,10 @@
     "external_sources_data_only": true,
     "append_only_audit": true
   },
+  "context": {
+    "writer_max_chars": 30000,
+    "supervisor_max_chars": 24000
+  },
   "writer": {
     "preferred_identity": "writer-claude",
     "model": "opus",

@@ -153,6 +153,7 @@ POLICY_KEYS = {
     "github",
     "schedules",
     "security",
+    "context",
     "writer",
     "loop",
     "wikillm",
@@ -202,7 +203,7 @@ MCP_TOOLS = [
             "type": "object",
             "properties": {
                 "query": {"type": "string", "minLength": 1, "maxLength": 500},
-                "maxChars": {"type": "integer", "minimum": 1000, "maximum": 50000},
+                "maxChars": {"type": "integer", "minimum": 1000, "maximum": 30000},
             },
             "required": ["query"],
             "additionalProperties": False,
@@ -298,6 +299,93 @@ def redact_diagnostic(value: str, limit: int = 2000) -> str:
 
 def canonical_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+
+def bounded_json_section(value: Any, max_chars: int) -> Dict[str, Any]:
+    if max_chars < 0:
+        raise ValueError("context section budget cannot be negative")
+    encoded = canonical_json(value)
+    included = encoded[:max_chars]
+    return {
+        "encoding": "canonical-json-prefix",
+        "sha256": sha256_text(encoded),
+        "included": included,
+        "included_chars": len(included),
+        "omitted_chars": len(encoded) - len(included),
+        "truncated": len(included) < len(encoded),
+    }
+
+
+def trim_context_text(value: Any, remaining: int) -> int:
+    if remaining <= 0:
+        return 0
+    if isinstance(value, dict):
+        for key in reversed(list(value)):
+            item = value[key]
+            if key in {"content", "included"} and isinstance(item, str):
+                removed = min(len(item), remaining)
+                value[key] = item[: len(item) - removed]
+                remaining -= removed
+            else:
+                remaining = trim_context_text(item, remaining)
+            if remaining <= 0:
+                break
+    elif isinstance(value, list):
+        for item in reversed(value):
+            remaining = trim_context_text(item, remaining)
+            if remaining <= 0:
+                break
+    return remaining
+
+
+def finalize_context_packet(
+    stable_content: Dict[str, Any],
+    max_chars: int,
+    compiled_at: Optional[str] = None,
+) -> Dict[str, Any]:
+    if not 1_000 <= max_chars <= 30_000:
+        raise ValueError("context packet limit must be between 1000 and 30000")
+    content = json.loads(canonical_json(stable_content))
+    budget = {
+        "limit_chars": max_chars,
+        "serialized_chars": 0,
+        "truncated": False,
+    }
+    content["budget"] = budget
+    while len(canonical_json(content)) > max_chars - 512:
+        excess = len(canonical_json(content)) - (max_chars - 512)
+        before = len(canonical_json(content))
+        remainder = trim_context_text(content, excess)
+        if remainder > 0 or len(canonical_json(content)) >= before:
+            raise ValueError("context metadata exceeds the frozen packet ceiling")
+        budget["truncated"] = True
+    packet = {
+        **content,
+        "compiled_at": compiled_at or iso_now(),
+        "content_digest": "0" * 64,
+        "context_digest": "0" * 64,
+    }
+    for _ in range(4):
+        packet["budget"]["serialized_chars"] = len(canonical_json(packet))
+    if len(canonical_json(packet)) > max_chars:
+        raise ValueError("final context envelope exceeds the frozen packet ceiling")
+    packet["budget"]["serialized_chars"] = len(canonical_json(packet))
+    stable_for_digest = {
+        key: value
+        for key, value in packet.items()
+        if key not in {"compiled_at", "content_digest", "context_digest"}
+    }
+    packet["content_digest"] = sha256_text(canonical_json(stable_for_digest))
+    context_for_digest = {
+        key: value for key, value in packet.items() if key != "context_digest"
+    }
+    packet["context_digest"] = sha256_text(canonical_json(context_for_digest))
+    final_size = len(canonical_json(packet))
+    if packet["budget"]["serialized_chars"] != final_size:
+        raise ValueError("final context size metadata is unstable")
+    if final_size > max_chars:
+        raise ValueError("final context envelope exceeds the frozen packet ceiling")
+    return packet
 
 
 def atomic_write(path: Path, data: bytes, mode: int = 0o600) -> None:
@@ -418,6 +506,21 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: invalid frozen digest")
     if not all(security[key] is True for key in ("loopback_only", "external_sources_data_only", "append_only_audit")):
         raise ValueError("policy: mandatory security boundary disabled")
+    context = strict_object(
+        policy["context"],
+        {"writer_max_chars", "supervisor_max_chars"},
+        {"writer_max_chars", "supervisor_max_chars"},
+        "context",
+    )
+    if (
+        type(context["writer_max_chars"]) is not int
+        or type(context["supervisor_max_chars"]) is not int
+        or context["writer_max_chars"] != 30_000
+        or context["supervisor_max_chars"] != 24_000
+    ):
+        raise ValueError(
+            "policy: context must preserve frozen writer and supervisor ceilings"
+        )
     writer = strict_object(
         policy["writer"],
         {
@@ -3103,17 +3206,28 @@ def compile_context(
     persist: bool = True,
     task: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+    if not 1_000 <= max_chars <= 30_000:
+        raise ValueError("context packet limit must be between 1000 and 30000")
     runtime = runtime_path(policy)
     results = wikillm_search(policy, query, limit=20, include_body=True)
-    remaining = max(1000, min(max_chars, 50000))
+    section_budgets = {
+        "notes": max_chars * 30 // 100,
+        "required_sources": max_chars * 30 // 100,
+        "prior_runs": max_chars * 12 // 100,
+        "external_directives": max_chars * 10 // 100,
+        "git_history": max_chars * 8 // 100,
+        "local_coordination": max_chars * 5 // 100,
+    }
+    remaining = section_budgets["notes"]
     notes = []
     for item in results:
-        header = f"# {item['title']}\nsource={item['path']} sha256={item['sha256']} commit={item['source_commit']}\n"
-        body = item.pop("body")
+        note = dict(item)
+        body = note.pop("body")
+        header = f"# {note['title']}\nsource={note['path']} sha256={note['sha256']} commit={note['source_commit']}\n"
         allocation = min(len(body), max(0, remaining - len(header)))
         if allocation <= 0:
             break
-        notes.append({**item, "content": header + body[:allocation]})
+        notes.append({**note, "content": header + body[:allocation]})
         remaining -= len(header) + allocation
     source_commits = sorted(
         {
@@ -3155,28 +3269,53 @@ def compile_context(
                 "inventory_digest",
             )
         }
+    required_sources = required_source_context(
+        policy,
+        section_budgets["required_sources"],
+    )
     stable_content = {
         "schema_version": 1,
         "query": query,
         "source_sha": source_sha,
         "max_chars": max_chars,
         "notes": notes,
-        "required_sources": required_source_context(policy),
-        "git_history": git_history_context(policy, task),
-        "prior_runs": prior_run_context(policy, task),
-        "external_directives": external_directive_context(policy),
-        "local_coordination": local_coordination,
+        "required_sources": required_sources,
+        "git_history": bounded_json_section(
+            git_history_context(policy, task),
+            section_budgets["git_history"],
+        ),
+        "prior_runs": bounded_json_section(
+            prior_run_context(policy, task),
+            section_budgets["prior_runs"],
+        ),
+        "external_directives": bounded_json_section(
+            external_directive_context(policy),
+            section_budgets["external_directives"],
+        ),
+        "local_coordination": bounded_json_section(
+            local_coordination,
+            section_budgets["local_coordination"],
+        ),
+        "section_sources": {
+            "prior_runs": "artifacts/productive-runs",
+            "external_directives": "state/mailbox.json",
+            "git_history": "exact product Git SHA",
+            "local_coordination": "authenticated local worktree inventory",
+        },
     }
-    packet = {
-        **stable_content,
-        "compiled_at": iso_now(),
-        "content_digest": sha256_text(canonical_json(stable_content)),
-    }
-    packet["context_digest"] = sha256_text(canonical_json(packet))
+    compiled_at = iso_now()
     if persist:
-        target = runtime / "artifacts" / "contexts" / f"{utcnow().strftime('%Y%m%dT%H%M%SZ')}-{packet['context_digest'][:12]}.json"
+        target_digest = sha256_text(canonical_json(stable_content))
+        target = (
+            runtime
+            / "artifacts"
+            / "contexts"
+            / f"{utcnow().strftime('%Y%m%dT%H%M%SZ')}-{target_digest[:12]}.json"
+        )
+        stable_content["path"] = str(target)
+    packet = finalize_context_packet(stable_content, max_chars, compiled_at)
+    if persist:
         write_json(target, packet)
-        packet["path"] = str(target)
     return packet
 
 
@@ -3341,11 +3480,82 @@ def record_verification(policy: Dict[str, Any], key: str, value: str) -> Dict[st
     return state
 
 
+def build_scientific_audit_input(
+    policy: Dict[str, Any],
+    *,
+    review_id: str,
+    trigger: str,
+    previous: Dict[str, Any],
+    checks: Dict[str, Any],
+    github: Dict[str, Any],
+    wiki: Dict[str, Any],
+    mailbox: Dict[str, Any],
+    headroom: Dict[str, Any],
+    hermes: Dict[str, Any],
+    productive: Dict[str, Any],
+    supervisor_context: Dict[str, Any],
+    material_digest: str,
+) -> Dict[str, Any]:
+    active_states = {
+        "PENDING",
+        "STARTING",
+        "PREFLIGHT",
+        "CONTEXT_COMPILE",
+        "BASELINE",
+        "IMPLEMENT",
+        "VERIFY",
+        "CROSS_PROVIDER_REVIEW",
+        "REPAIR",
+        "COMMIT",
+        "MEMORY_DELTA",
+    }
+    queue_nonterminal = any(
+        isinstance(record, dict) and record.get("state") in active_states
+        for record in (productive.get("tasks") or {}).values()
+    )
+    stable = {
+        "schema_version": 1,
+        "review_id": review_id,
+        "trigger": trigger,
+        "material_digest": material_digest,
+        "queue_nonterminal": queue_nonterminal,
+        "previous_review": bounded_json_section(previous, 1_500),
+        "deterministic_checks": bounded_json_section(checks, 2_500),
+        "github_monitor": bounded_json_section(github, 2_500),
+        "wikillm": bounded_json_section(wiki, 1_500),
+        "mailbox": bounded_json_section(mailbox, 2_000),
+        "headroom": bounded_json_section(headroom, 1_500),
+        "hermes": bounded_json_section(hermes, 1_000),
+        "productive_loop": bounded_json_section(productive, 3_000),
+        "supervisor_context": bounded_json_section(
+            supervisor_context,
+            8_000,
+        ),
+        "authority": {
+            "github": "operational coordination oracle",
+            "obsidian_markdown_git": "canonical knowledge",
+            "wikillm": "derived rebuildable index",
+            "headroom": "required stateless lossless AI gateway",
+            "hermes": "disabled during efficiency substrate",
+            "agentmemory": "RETIRED_NO_READ_NO_WRITE",
+        },
+    }
+    return finalize_context_packet(
+        stable,
+        policy["context"]["supervisor_max_chars"],
+    )
+
+
 def codex_scientific_audit(
     policy: Dict[str, Any],
     directory: Path,
     audit_input: Dict[str, Any],
 ) -> Dict[str, Any]:
+    queue_nonterminal = audit_input.get("queue_nonterminal")
+    if not isinstance(queue_nonterminal, bool):
+        raise ValueError(
+            "scheduled scientific audit queue state must be an explicit boolean"
+        )
     schema = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
@@ -3517,30 +3727,11 @@ paths; the proposal remains non-admitted."""
     ):
         raise ValueError("scheduled scientific audit evidence is invalid")
     proposal = audit["queue_proposal"]
-    productive_records = (audit_input.get("productive_loop") or {}).get("tasks") or {}
-    queue_nonterminal = any(
-        isinstance(record, dict)
-        and record.get("state")
-        in {
-            "PENDING",
-            "STARTING",
-            "PREFLIGHT",
-            "CONTEXT_COMPILE",
-            "BASELINE",
-            "IMPLEMENT",
-            "VERIFY",
-            "CROSS_PROVIDER_REVIEW",
-            "REPAIR",
-            "COMMIT",
-            "MEMORY_DELTA",
-        }
-        for record in productive_records.values()
-    )
+    if proposal is not None and queue_nonterminal:
+        raise ValueError(
+            "scheduled scientific audit proposed work before the queue was terminal"
+        )
     if proposal is not None:
-        if queue_nonterminal:
-            raise ValueError(
-                "scheduled scientific audit proposed work before the queue was terminal"
-            )
         proposal = strict_object(
             proposal,
             {
@@ -3773,7 +3964,7 @@ def _scientific_review(
                 "ARDESIA continuous scientific workflow GitHub Obsidian WikiLLM "
                 "history maintenance coherence regression divergence"
             ),
-            max_chars=24_000,
+            max_chars=policy["context"]["supervisor_max_chars"],
             persist=False,
             task=active_task,
         )
@@ -3806,30 +3997,21 @@ def _scientific_review(
             previous,
             supervisor_context,
         )
-    audit_input = {
-        "schema_version": 1,
-        "review_id": review_id,
-        "trigger": trigger,
-        "observed_at": iso_now(),
-        "previous_review": previous,
-        "material_digest": material_digest,
-        "deterministic_checks": checks,
-        "github_monitor": github,
-        "wikillm": wiki,
-        "mailbox": mailbox,
-        "headroom": headroom,
-        "hermes": hermes,
-        "productive_loop": productive,
-        "supervisor_context": supervisor_context,
-        "authority": {
-            "github": "operational coordination oracle",
-            "obsidian_markdown_git": "canonical knowledge",
-            "wikillm": "derived rebuildable index",
-            "headroom": "required stateless lossless AI gateway",
-            "hermes": "derived planner/memory disabled behind upstream bug #5875",
-            "agentmemory": "RETIRED_NO_READ_NO_WRITE",
-        },
-    }
+    audit_input = build_scientific_audit_input(
+        policy,
+        review_id=review_id,
+        trigger=trigger,
+        previous=previous,
+        checks=checks,
+        github=github,
+        wiki=wiki,
+        mailbox=mailbox,
+        headroom=headroom,
+        hermes=hermes,
+        productive=productive,
+        supervisor_context=supervisor_context,
+        material_digest=material_digest,
+    )
     try:
         audit = codex_scientific_audit(policy, directory, audit_input)
         audit_execution_state = "PASS"
@@ -5558,8 +5740,17 @@ def context_with_candidate_seed(
     context: Dict[str, Any],
     descriptor: Dict[str, Any],
 ) -> Dict[str, Any]:
-    packet = dict(context)
-    packet.pop("context_digest", None)
+    packet = {
+        key: value
+        for key, value in context.items()
+        if key
+        not in {
+            "compiled_at",
+            "content_digest",
+            "context_digest",
+            "budget",
+        }
+    }
     packet["falsified_untrusted_seed"] = {
         "state": descriptor["state"],
         "source_task_id": descriptor["source_task_id"],
@@ -5568,10 +5759,13 @@ def context_with_candidate_seed(
         "review_relative_path": descriptor["review_relative_path"],
         "review_sha256": descriptor["review_sha256"],
         "files": descriptor["files"],
-        "independent_review": descriptor["review"],
+        "independent_review": bounded_json_section(descriptor["review"], 2_000),
     }
-    packet["context_digest"] = sha256_text(canonical_json(packet))
-    return packet
+    return finalize_context_packet(
+        packet,
+        context["budget"]["limit_chars"],
+        compiled_at=context["compiled_at"],
+    )
 
 
 def run_verification_commands(
@@ -6531,7 +6725,7 @@ def productive_slice_worker(policy: Dict[str, Any], task_id: str) -> int:
         context = compile_context(
             policy,
             task["context_query"],
-            max_chars=50000,
+            max_chars=policy["context"]["writer_max_chars"],
             persist=True,
             task=task,
         )
