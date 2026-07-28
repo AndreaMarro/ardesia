@@ -1990,16 +1990,24 @@ def codex_native_read_only_contract(arguments: Sequence[str]) -> str:
     if command != "exec":
         raise ValueError("unsupported Codex inference command")
     values = list(arguments[2:])
-    for index, value in enumerate(values):
+    sandbox_values: List[str] = []
+    index = 0
+    while index < len(values):
+        value = values[index]
         if value == "--sandbox" and index + 1 < len(values):
-            if values[index + 1] == "read-only":
-                return "read-only"
-            break
+            sandbox_values.append(values[index + 1])
+            index += 2
+            continue
+        if value == "--sandbox":
+            sandbox_values.append("")
         if value.startswith("--sandbox="):
-            if value.split("=", 1)[1] == "read-only":
-                return "read-only"
-            break
-    raise ValueError("Codex inference requires its native read-only sandbox")
+            sandbox_values.append(value.split("=", 1)[1])
+        index += 1
+    if sandbox_values != ["read-only"]:
+        raise ValueError(
+            "Codex inference requires exactly one native read-only sandbox"
+        )
+    return "read-only"
 
 
 def prepare_ai_invocation(

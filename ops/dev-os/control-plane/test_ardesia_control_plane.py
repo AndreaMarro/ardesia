@@ -614,6 +614,31 @@ class ControlPlaneTests(unittest.TestCase):
                         ],
                     )
 
+    def test_codex_routing_rejects_ambiguous_native_sandbox_flags(self) -> None:
+        codex = self.policy["tools"]["codex"]
+        self.assertEqual(
+            cp.codex_native_read_only_contract(
+                [codex, "exec", "--sandbox=read-only", "probe"]
+            ),
+            "read-only",
+        )
+        for sandbox_arguments in (
+            ["--sandbox", "read-only", "--sandbox", "read-only"],
+            ["--sandbox=read-only", "--sandbox=read-only"],
+            ["--sandbox", "read-only", "--sandbox", "workspace-write"],
+            ["--sandbox=read-only", "--sandbox=workspace-write"],
+            ["--sandbox", "read-only", "--sandbox=workspace-write"],
+            ["--sandbox=workspace-write"],
+        ):
+            with self.subTest(sandbox_arguments=sandbox_arguments):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "native read-only sandbox",
+                ):
+                    cp.codex_native_read_only_contract(
+                        [codex, "exec", *sandbox_arguments, "probe"]
+                    )
+
     def test_long_lived_claude_and_codex_paths_require_route_attestation(self) -> None:
         class ImmediateProcess:
             def __init__(self) -> None:
