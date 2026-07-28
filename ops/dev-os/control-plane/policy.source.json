@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "service_version": "1.0.0",
+  "service_version": "1.5.0",
   "run_id": "DEVOS-MCP-BOOTSTRAP-001",
   "goal_id": "DEVOS-CONTROL-PLANE",
   "runtime_root": "/Users/progettibelli/ARDESIA-RUNTIME",
@@ -34,9 +34,11 @@
   },
   "writer": {
     "preferred_identity": "writer-claude",
-    "capability_state": "AUTHORIZED_ON_VALID_DIRECTIVE_ONLY",
-    "automatic_dispatch": false,
-    "requires_mailbox_directive": true,
+    "model": "opus",
+    "effort": "max",
+    "capability_state": "AUTOMATIC_PREAPPROVED_QUEUE_ONLY",
+    "automatic_dispatch": true,
+    "requires_mailbox_directive": false,
     "requires_lease": true,
     "dangerously_skip_permissions": true,
     "worktree_root": "worktrees",
@@ -49,11 +51,222 @@
     "timeout_seconds": 300,
     "max_output_chars": 100000
   },
+  "loop": {
+    "enabled": true,
+    "queue_mode": "PREAPPROVED_IMMUTABLE",
+    "reviewer_identity": "reviewer-codex",
+    "reviewer_model": "gpt-5.6-sol",
+    "reviewer_effort": "xhigh",
+    "max_repairs": 1,
+    "worker_timeout_seconds": 10800,
+    "tasks": [
+      {
+        "task_id": "BETA-001-CONTINUITY-RUNTIME",
+        "title": "Activate the lesson/session-scoped Continuity read model in the real Founder Beta runtime",
+        "base_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+        "branch": "agent/beta-001-continuity-runtime-20260728",
+        "context_query": "Founder Beta Continuità runtime lesson session scoped empty corrupt recovery cold reopen D-SUPERFICI ARD-06",
+        "max_files": 5,
+        "allowed_path_patterns": [
+          "apps/studio/src/design/TeacherDashboardView.tsx",
+          "apps/studio/src/lessonos/continuityProjection.ts",
+          "apps/studio/src/lessonos/continuityRuntime.ts",
+          "apps/studio/src/__tests__/ContinuityRuntimePath.test.tsx",
+          "apps/studio/src/__tests__/TeacherDashboardJournalScope.test.tsx"
+        ],
+        "acceptance": [
+          "The existing projectContinuityV1 lesson/session-scoped read model is exercised by the actual Continuità runtime path rather than tests alone.",
+          "Empty, corrupt and recovery states remain distinct and fail closed.",
+          "A cold reopen proves that the selected lesson and session scope is reconstructed from persisted evidence without a process-local cache.",
+          "No global or cross-session event fallback is introduced.",
+          "All touched behavior has non-tautological deterministic tests and the full Studio test, typecheck and build gates pass."
+        ],
+        "forbidden_changes": [
+          "No dependency or package manifest change.",
+          "No merge, deploy, push, main write or network publication.",
+          "No product telemetry, cloud backend, PII, mock product data or weakened gate.",
+          "No edits outside the five explicitly allowed paths."
+        ],
+        "verification_commands": [
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "test",
+            "--",
+            "--pool=threads",
+            "--maxWorkers=1",
+            "--no-file-parallelism",
+            "--testTimeout=30000",
+            "--hookTimeout=30000",
+            "--teardownTimeout=30000"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "typecheck"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "build"
+          ]
+        ]
+      },
+      {
+        "task_id": "BETA-002-CONTINUITY-REACHABLE",
+        "title": "Activate reachable fail-closed Founder Beta Continuity after the first bounded attempt was independently falsified",
+        "base_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+        "branch": "agent/beta-002-continuity-reachable-20260728",
+        "context_query": "Founder Beta Continuità reachable Room navigation lesson session FSA persistence corrupt legacy recovery evidence ARD-05 ARD-06 D-SUPERFICI",
+        "max_files": 5,
+        "allowed_path_patterns": [
+          "apps/studio/src/Room.tsx",
+          "apps/studio/src/design/TeacherDashboardView.tsx",
+          "apps/studio/src/lessonos/continuityRuntime.ts",
+          "apps/studio/src/__tests__/ContinuityRuntimePath.test.tsx",
+          "apps/studio/src/__tests__/TeacherDashboardJournalScope.test.tsx"
+        ],
+        "acceptance": [
+          "The real Room navigation path derives exact lessonId and sessionId from the live LessonOS identity after durable flush and reaches the scoped Continuity runtime through the existing production router; an unscoped legacy dashboard link is never treated as Founder Beta Continuity.",
+          "Route and scope validation occurs before opening IndexedDB, WorkspaceStore, journal, scene or any other persistence boundary.",
+          "IndexedDB unavailability, in-memory fallback, FSA handle loss, data loss and corrupt storage remain typed fail-closed states and can never collapse into verified empty or ready.",
+          "Raw stored LessonOS envelopes receive strict runtime validation before projection; malformed same-scope data, duplicate identity or invalid sequence becomes corrupt rather than a generic load error.",
+          "Legacy journal recovery evidence emits legacy-recovery-required instead of being silently filtered into a verified empty session.",
+          "Required build and evidence sources are represented honestly; missing build provenance or unresolved evidence cannot produce a verified ready fact.",
+          "Cold reopen uses fresh real adapter instances, proves the second adapters were consulted and reconstructs the same scoped projection without a shared process-local cache.",
+          "Non-tautological adversarial tests cover real navigation, zero-I/O invalid scope, cross-session isolation, persistence fallback, legacy recovery, malformed envelopes, evidence grounding and cold reopen; full Studio test, typecheck and build gates pass."
+        ],
+        "forbidden_changes": [
+          "No dependency, package manifest, schema migration or route alias outside the five admitted files.",
+          "No merge, deploy, push, main write or network publication.",
+          "No global event-log or journal fallback, no localStorage-as-authority, no product mocks and no weakened test or gate.",
+          "No claim that Simulation is verified before ARD-07 receipts and no ready state without required evidence."
+        ],
+        "verification_commands": [
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "test",
+            "--",
+            "--pool=threads",
+            "--maxWorkers=1",
+            "--no-file-parallelism",
+            "--testTimeout=30000",
+            "--hookTimeout=30000",
+            "--teardownTimeout=30000"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "typecheck"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "build"
+          ]
+        ]
+      },
+      {
+        "task_id": "BETA-003-CONTINUITY-FAIL-CLOSED-STORAGE",
+        "title": "Harden the scoped Continuity evidence loader without overstating blocked route reachability",
+        "base_sha": "36e6753cc55c114cb1c0815a7e2f8911a0b71dc7",
+        "branch": "agent/beta-003-continuity-fail-closed-storage-20260728",
+        "context_query": "Founder Beta Continuità fail closed IndexedDB in-memory fallback FSA loss corrupt envelope legacy recovery evidence grounding cold reopen ARD-06",
+        "max_files": 5,
+        "allowed_path_patterns": [
+          "apps/studio/src/design/TeacherDashboardView.tsx",
+          "apps/studio/src/lessonos/continuityRuntime.ts",
+          "apps/studio/src/lessonos/indexedDbEventLog.ts",
+          "apps/studio/src/__tests__/ContinuityRuntimePath.test.tsx",
+          "apps/studio/src/__tests__/TeacherDashboardJournalScope.test.tsx"
+        ],
+        "acceptance": [
+          "Route and exact lesson/session scope validation completes before constructing or opening IndexedDB, WorkspaceStore, journal, scene or any persistence adapter; invalid or missing scope is proven zero-I/O.",
+          "The event-log adapter reports its real persistence backend: IndexedDB unavailability and in-memory fallback can never be labelled verified-indexeddb or collapse into verified empty/ready.",
+          "Raw stored LessonOS envelopes receive strict runtime validation before projection; malformed records, non-monotonic or duplicate identity, invalid sequence and same-scope corruption become typed fail-closed evidence.",
+          "FSA handle loss, unavailable workspace, data loss, legacy journal recovery and missing build/evidence provenance remain distinct visible blocked or recovery states.",
+          "Cold reopen uses fresh adapter instances, proves the second adapters were consulted and reconstructs the same exact scoped projection without localStorage or a shared process-local cache.",
+          "Non-tautological adversarial component and loader tests cover the fault matrix and the full Studio test, typecheck and build gates pass.",
+          "This bounded slice makes no claim that the real Room navigation is reachable; BETA-002 remains the immutable causal record for that independently blocked requirement."
+        ],
+        "forbidden_changes": [
+          "No edit to Room.tsx, ViewNav.tsx, a dependency, package manifest, schema migration or route alias.",
+          "No merge, deploy, push, main write or network publication.",
+          "No global event-log or journal fallback, no localStorage-as-authority, no product mocks and no weakened test or gate.",
+          "No claim that navigation reachability or Simulation verification is complete."
+        ],
+        "verification_commands": [
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "test",
+            "--",
+            "--pool=threads",
+            "--maxWorkers=1",
+            "--no-file-parallelism",
+            "--testTimeout=30000",
+            "--hookTimeout=30000",
+            "--teardownTimeout=30000"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "typecheck"
+          ],
+          [
+            "/opt/homebrew/bin/npm",
+            "--prefix",
+            "apps/studio",
+            "run",
+            "build"
+          ]
+        ]
+      }
+    ]
+  },
   "wikillm": {
     "mode": "REAL_DERIVED_INDEX",
     "canonical_source": "Markdown/Git",
     "derived_index": "SQLite FTS5",
     "canonical_write": false
+  },
+  "obsidian": {
+    "mode": "HEADLESS_WITH_GIT_FALLBACK",
+    "vault_path": "obsidian-vault",
+    "continuous_sync": true,
+    "write_mode": "AGENT_OWNED_APPEND_ONLY",
+    "allowed_write_roots": [
+      "80-Sources/AI-Inbox",
+      "85-Agent-Proposals",
+      "90-Runs",
+      "91-Auto-Receipts",
+      "92-Evidence",
+      "93-Context-Packets"
+    ],
+    "protected_roots": [
+      "00-Control",
+      "10-Requirements",
+      "20-Decisions",
+      "30-Architecture",
+      "40-Product-Canon"
+    ]
   },
   "tencentdb": {
     "mode": "SHADOW",
@@ -69,8 +282,10 @@
     "python": "/usr/bin/python3",
     "git": "/usr/bin/git",
     "gh": "/opt/homebrew/bin/gh",
-    "codex": "/opt/homebrew/bin/codex",
-    "claude": "/opt/homebrew/bin/claude"
+    "codex": "/Users/progettibelli/ARDESIA-RUNTIME/tools/codex-cli/node_modules/.bin/codex",
+    "claude": "/opt/homebrew/bin/claude",
+    "npm": "/opt/homebrew/bin/npm",
+    "ob": "/opt/homebrew/bin/ob"
   },
   "required_source_hashes": {
     "bootstrap": "205eaef0ec05542c5445a2a1eea90d4b3e0af1da55cf4f552be06f50637478bf",

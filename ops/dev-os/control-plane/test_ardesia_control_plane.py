@@ -49,13 +49,23 @@ class ControlPlaneTests(unittest.TestCase):
                 "expected_knowledge_sha": knowledge_sha,
             }
         )
+        npm = shutil.which("npm") or "/usr/bin/false"
         source["tools"] = {
             "python": shutil.which("python3") or "/usr/bin/python3",
             "git": self.git,
             "gh": "/usr/bin/false",
             "codex": "/usr/bin/false",
             "claude": "/usr/bin/false",
+            "npm": npm,
+            "ob": "/usr/bin/false",
         }
+        source["writer"]["automatic_dispatch"] = False
+        source["writer"]["requires_mailbox_directive"] = False
+        source["loop"]["enabled"] = False
+        for task in source["loop"]["tasks"]:
+            task["base_sha"] = product_sha
+            for command in task["verification_commands"]:
+                command[0] = npm
         source["tencentdb"]["dsn_reference_file"] = str(self.runtime / "config" / "secrets" / "tencentdb.dsn")
         source["schedules"]["controller_heartbeat_seconds"] = 1
         self.policy = cp.validate_policy(source)
@@ -123,6 +133,111 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertFalse(tool["inputSchema"]["additionalProperties"])
         with self.assertRaisesRegex(ValueError, "additional properties"):
             cp.validate_tool_input("run.status", {"write": True})
+        call = cp.strict_object(
+            {"name": "run.status", "arguments": {}, "_meta": {"progressToken": 1}},
+            {"name", "arguments", "_meta"},
+            {"name", "arguments"},
+            "tools/call",
+        )
+        self.assertEqual(call["name"], "run.status")
+        with self.assertRaisesRegex(ValueError, "additional properties"):
+            cp.strict_object(
+                {"name": "run.status", "arguments": {}, "untrusted": True},
+                {"name", "arguments", "_meta"},
+                {"name", "arguments"},
+                "tools/call",
+            )
+
+    def test_github_mcp_reads_only_the_authenticated_monitor_snapshot(self) -> None:
+        snapshot = {
+            "state": "CLEAR",
+            "trigger": "test",
+            "open_pr_count": 1,
+            "task_overlaps": {"BETA-001-CONTINUITY-RUNTIME": []},
+        }
+        cp.write_json(self.runtime / "state" / "github-monitor.json", snapshot)
+        self.assertEqual(cp.mcp_call(self.policy, "github.status", {}), snapshot)
+
+    def test_command_environment_isolates_node25_experimental_webstorage(self) -> None:
+        with mock.patch.dict(os.environ, {"NODE_OPTIONS": "--inspect"}, clear=False):
+            environment = cp.command_environment()
+        self.assertEqual(environment["NODE_OPTIONS"], "--no-experimental-webstorage")
+        self.assertEqual(environment["GIT_TERMINAL_PROMPT"], "0")
+
+    def test_reviewer_cli_version_gate_requires_model_compatible_release(self) -> None:
+        self.assertFalse(cp.codex_cli_compatible("codex-cli 0.137.0-alpha.4"))
+        self.assertFalse(cp.codex_cli_compatible("codex-cli 0.144.99"))
+        self.assertTrue(cp.codex_cli_compatible("codex-cli 0.145.0"))
+        self.assertTrue(cp.codex_cli_compatible("codex-cli 1.0.0"))
+
+    def test_blocked_task_recovery_requires_exact_clean_immutable_worktree(self) -> None:
+        task = self.policy["loop"]["tasks"][0]
+        cp.ensure_productive_state(self.policy)
+        cp.update_productive_state(
+            self.policy,
+            task["task_id"],
+            "BLOCKED_CAUSAL",
+            reason="baseline verification failed before writer dispatch",
+            worker_pid=999999,
+        )
+        recovered = cp.recover_productive_task(
+            self.policy,
+            task["task_id"],
+            "RECOVERED_AFTER_NODE25_WEBSTORAGE_ISOLATION",
+        )
+        self.assertEqual(recovered["state"], "PENDING")
+        worktree = Path(recovered["worktree"])
+        (worktree / "README.md").write_text("# Dirty\n", encoding="utf-8")
+        cp.update_productive_state(
+            self.policy,
+            task["task_id"],
+            "BLOCKED_CAUSAL",
+            reason="synthetic retry",
+            worker_pid=999999,
+        )
+        with self.assertRaisesRegex(ValueError, "exact clean admitted worktree"):
+            cp.recover_productive_task(
+                self.policy,
+                task["task_id"],
+                "RECOVERED_AFTER_SYNTHETIC_FAILURE",
+            )
+
+    def test_transient_claude_overload_recovery_is_session_bound_and_bounded(self) -> None:
+        task = self.policy["loop"]["tasks"][0]
+        run_directory = self.runtime / "artifacts" / "productive-runs" / task["task_id"]
+        run_directory.mkdir(parents=True)
+        cp.ensure_productive_state(self.policy)
+        cp.update_productive_state(
+            self.policy,
+            task["task_id"],
+            "BLOCKED_CAUSAL",
+            reason="Claude repair invocation failed",
+            session_id="session-a",
+            run_directory=str(run_directory),
+            repair_transport_retries=0,
+        )
+        response_path = run_directory / "repair-claude-response.json"
+        cp.write_json(
+            response_path,
+            {
+                "is_error": True,
+                "result": 'API Error: {"type":"overloaded_error","message":"Overloaded"}',
+                "session_id": "session-b",
+            },
+        )
+        record = cp.read_json(cp.productive_state_path(self.runtime), {})["tasks"][task["task_id"]]
+        self.assertFalse(cp.transient_repair_overload_is_recoverable(self.policy, task, record))
+        cp.write_json(
+            response_path,
+            {
+                "is_error": True,
+                "result": 'API Error: {"type":"overloaded_error","message":"Overloaded"}',
+                "session_id": "session-a",
+            },
+        )
+        self.assertTrue(cp.transient_repair_overload_is_recoverable(self.policy, task, record))
+        record["repair_transport_retries"] = 2
+        self.assertFalse(cp.transient_repair_overload_is_recoverable(self.policy, task, record))
 
     def test_path_traversal_and_symlink_escape_rejected(self) -> None:
         with self.assertRaisesRegex(ValueError, "traversal"):
@@ -142,11 +257,76 @@ class ControlPlaneTests(unittest.TestCase):
             {"id": 2, "user": {"login": "AndreaMarro"}, "body": fenced},
             {"id": 3, "user": {"login": "AndreaMarro"}, "body": fenced},
         ]
-        answer = {"exit": 0, "stdout": json.dumps(comments), "stderr": "", "argv": []}
-        with mock.patch.object(cp, "run_tool", return_value=answer):
+        comments_answer = {"exit": 0, "stdout": json.dumps(comments), "stderr": "", "argv": []}
+        prs_answer = {"exit": 0, "stdout": "[]", "stderr": "", "argv": []}
+        with mock.patch.object(cp, "run_tool", side_effect=[comments_answer, prs_answer]):
             result = cp.mailbox_poll(self.policy, "test")
         statuses = [item["status"] for item in result["directive_results"]]
         self.assertEqual(statuses, ["REJECTED", "VALIDATED_PENDING_SINGLE_SCHEDULER", "DUPLICATE_IGNORED"])
+        self.assertEqual(result["github_monitor"]["state"], "CLEAR")
+
+    def test_github_monitor_captures_ci_and_blocks_path_overlap(self) -> None:
+        task = self.policy["loop"]["tasks"][0]
+        pull_requests = [
+            {
+                "number": 42,
+                "headRefName": "other/change",
+                "headRefOid": "a" * 40,
+                "isDraft": False,
+                "updatedAt": "2026-07-28T00:00:00Z",
+                "mergeStateStatus": "BLOCKED",
+                "files": [{"path": task["allowed_path_patterns"][0]}],
+                "statusCheckRollup": [
+                    {"__typename": "CheckRun", "status": "COMPLETED", "conclusion": "FAILURE"},
+                    {"__typename": "CheckRun", "status": "IN_PROGRESS", "conclusion": ""},
+                ],
+            }
+        ]
+        answer = {"exit": 0, "stdout": json.dumps(pull_requests), "stderr": "", "argv": []}
+        with mock.patch.object(cp, "run_tool", return_value=answer):
+            result = cp.github_monitor_snapshot(self.policy, "test")
+        self.assertEqual(result["state"], "BLOCKING_OVERLAP")
+        self.assertEqual(result["pull_requests"][0]["checks"]["failing"], 1)
+        self.assertEqual(result["pull_requests"][0]["checks"]["pending"], 1)
+        self.assertEqual(result["task_overlaps"][task["task_id"]][0]["number"], 42)
+
+    def test_terminal_task_overlap_stays_in_ledger_without_poisoning_later_queue(self) -> None:
+        state = cp.ensure_productive_state(self.policy)
+        first = self.policy["loop"]["tasks"][0]
+        unique_first_path = "apps/studio/src/lessonos/continuityProjection.ts"
+        self.assertIn(unique_first_path, first["allowed_path_patterns"])
+        cp.update_productive_state(
+            self.policy,
+            first["task_id"],
+            "BLOCKED_CAUSAL",
+            reason="independent review falsified the bounded attempt",
+        )
+        pull_requests = [
+            {
+                "number": 77,
+                "headRefName": "other/terminal-overlap",
+                "headRefOid": "b" * 40,
+                "isDraft": False,
+                "updatedAt": "2026-07-28T00:00:00Z",
+                "mergeStateStatus": "CLEAN",
+                "files": [{"path": unique_first_path}],
+                "statusCheckRollup": [],
+            }
+        ]
+        answer = {"exit": 0, "stdout": json.dumps(pull_requests), "stderr": "", "argv": []}
+        with mock.patch.object(cp, "run_tool", return_value=answer):
+            result = cp.github_monitor_snapshot(self.policy, "terminal-ledger-test")
+        self.assertEqual(result["state"], "CLEAR")
+        self.assertNotIn(first["task_id"], result["actionable_task_ids"])
+        self.assertNotIn(first["task_id"], result["task_overlaps"])
+        self.assertEqual(
+            result["actionable_task_ids"],
+            [
+                task["task_id"]
+                for task in self.policy["loop"]["tasks"]
+                if state["tasks"][task["task_id"]]["state"] == "PENDING" and task["task_id"] != first["task_id"]
+            ],
+        )
 
     def test_stale_sha_digest_and_expiry_rejected(self) -> None:
         self.assertFalse(cp.validate_directive(self.policy, self._directive(baseSha="0" * 40))["valid"])
@@ -199,7 +379,7 @@ class ControlPlaneTests(unittest.TestCase):
             text=True,
         )
         try:
-            deadline = time.monotonic() + 8
+            deadline = time.monotonic() + 30
             state = {}
             while time.monotonic() < deadline:
                 state = cp.read_json(self.runtime / "state" / "mcp-controller.json", {}) or {}
@@ -207,10 +387,10 @@ class ControlPlaneTests(unittest.TestCase):
                     break
                 time.sleep(0.1)
             self.assertIsNone(process.poll(), process.stderr.read() if process.poll() is not None else "")
-            self.assertIn(state.get("state"), {"SAFE_MAINTENANCE", "PAUSED_SAFETY"})
+            self.assertIn(state.get("state"), {"DISABLED", "READY_FOR_PRODUCTIVE_LOOP", "PAUSED_SAFETY"})
         finally:
             process.terminate()
-            process.wait(timeout=8)
+            process.wait(timeout=15)
             assert process.stderr is not None
             process.stderr.close()
         (self.runtime / "repos" / "ardesia" / "DIRTY").write_text("dirty\n", encoding="utf-8")
@@ -222,7 +402,11 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(payloads["com.ardesia.mcp.controller"]["KeepAlive"])
         self.assertEqual(payloads["com.ardesia.mcp.mailbox"]["StartInterval"], 300)
         self.assertEqual(payloads["com.ardesia.mcp.watchdog"]["StartInterval"], 900)
-        self.assertEqual(payloads["com.ardesia.mcp.review"]["StartCalendarInterval"]["Minute"], 0)
+        self.assertEqual(
+            payloads["com.ardesia.mcp.review"]["StartCalendarInterval"],
+            [{"Minute": 0}, {"Minute": 30}],
+        )
+        self.assertTrue(payloads["com.ardesia.obsidian-sync"]["KeepAlive"])
         cp.generate_reports(self.policy)
         required = {
             "MCP_CONTROL_PLANE_REPORT.md",
@@ -239,12 +423,12 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(cp.status_payload(self.policy)["state"], "PARTIAL_BOOTSTRAP_SAFE")
         cp.write_json(
             self.runtime / "state" / "mcp-controller.json",
-            {"state": "SAFE_MAINTENANCE", "heartbeat_count": 3},
+            {"state": "READY_FOR_PRODUCTIVE_LOOP", "heartbeat_count": 3},
         )
         cp.write_json(self.runtime / "state" / "mailbox.json", {"state": "HEALTHY", "trigger": "scheduled"})
         review = self.runtime / "reviews" / "scheduled"
         review.mkdir()
-        cp.write_json(review / "completion.json", {"state": "SAFE_MAINTENANCE", "trigger": "scheduled-hourly"})
+        cp.write_json(review / "completion.json", {"state": "SAFE_MAINTENANCE", "trigger": "scheduled-30m"})
         verification = {
             key: {"value": "PASS test", "recorded_at": cp.iso_now()}
             for key in {
@@ -252,13 +436,69 @@ class ControlPlaneTests(unittest.TestCase):
                 "codex_app_server",
                 "claude_writer",
                 "watchdog_restart",
-                "scheduled_hourly_review",
+                "scheduled_30m_review",
                 "scheduled_mailbox",
                 "logs_verified",
             }
         }
         cp.write_json(self.runtime / "state" / "verification.json", verification)
         self.assertEqual(cp.status_payload(self.policy)["state"], "READY_FOR_HUMAN_REVIEW")
+
+    def test_preapproved_queue_is_frozen_and_writer_diff_is_path_bounded(self) -> None:
+        active = copy.deepcopy(self.policy)
+        active["writer"]["automatic_dispatch"] = True
+        active["loop"]["enabled"] = True
+        active = cp.validate_policy(active)
+        state = cp.ensure_productive_state(active)
+        task = active["loop"]["tasks"][0]
+        self.assertEqual(state["tasks"][task["task_id"]]["state"], "PENDING")
+        changed = copy.deepcopy(active)
+        changed["loop"]["tasks"][0]["title"] += " mutated"
+        changed = cp.validate_policy(changed)
+        with self.assertRaisesRegex(ValueError, "changed after admission"):
+            cp.ensure_productive_state(changed)
+        worktree = self.runtime / "worktrees" / "bounded"
+        subprocess.run(
+            [self.git, "-C", str(self.runtime / "repos" / "ardesia"), "worktree", "add", "-b", task["branch"], str(worktree)],
+            check=True,
+            capture_output=True,
+        )
+        dependency_source = self.runtime / "repos" / "ardesia" / cp.WORKTREE_DEPENDENCY_LINK
+        dependency_source.mkdir(parents=True)
+        dependency_target = worktree / cp.WORKTREE_DEPENDENCY_LINK
+        dependency_target.parent.mkdir(parents=True, exist_ok=True)
+        dependency_target.symlink_to(dependency_source, target_is_directory=True)
+        self.assertTrue(cp.exact_dependency_link(active, worktree))
+        self.assertEqual(cp.changed_paths(active, worktree), [])
+        allowed = worktree / task["allowed_path_patterns"][0]
+        allowed.parent.mkdir(parents=True, exist_ok=True)
+        allowed.write_text("bounded\n", encoding="utf-8")
+        self.assertEqual(cp.validate_writer_diff(active, task, worktree), [task["allowed_path_patterns"][0]])
+        outside = worktree / "UNAUTHORIZED.md"
+        outside.write_text("rejected\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "non-admitted"):
+            cp.validate_writer_diff(active, task, worktree)
+
+    def test_obsidian_writes_are_append_only_and_protected_paths_are_rejected(self) -> None:
+        with mock.patch.object(cp, "obsidian_sync_status", return_value={"state": "NEEDS_AUTH_OR_SETUP"}):
+            first = cp.governed_obsidian_write(
+                self.policy,
+                "91-Auto-Receipts/test.md",
+                "---\nproject: ARDESIA\n---\n# Receipt\n",
+            )
+        self.assertEqual(first["state"], "PENDING_HEADLESS_SYNC")
+        with mock.patch.object(cp, "obsidian_sync_status", return_value={"state": "NEEDS_AUTH_OR_SETUP"}):
+            repeated = cp.governed_obsidian_write(
+                self.policy,
+                "91-Auto-Receipts/test.md",
+                "---\nproject: ARDESIA\n---\n# Receipt\n",
+            )
+        self.assertEqual(repeated["sha256"], first["sha256"])
+        with mock.patch.object(cp, "obsidian_sync_status", return_value={"state": "NEEDS_AUTH_OR_SETUP"}):
+            with self.assertRaisesRegex(ValueError, "conflict"):
+                cp.governed_obsidian_write(self.policy, "91-Auto-Receipts/test.md", "changed\n")
+        with self.assertRaisesRegex(ValueError, "outside agent-owned"):
+            cp.governed_obsidian_write(self.policy, "20-Decisions/ADR.md", "forbidden\n")
 
 
 if __name__ == "__main__":
