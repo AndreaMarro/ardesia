@@ -145,3 +145,103 @@ This pivot is falsified if reusing the upstream orchestration/session/wiki
 surfaces requires more custom code or causes more duplicate work, divergence or
 human cleanup than the deterministic Lane P baseline. In that case, keep the
 component disabled and retain the receipts.
+
+## Measured context improvement
+
+At 2026-07-29 00:20–00:38 CEST, the live Mini WikiLLM retrieval path was
+evaluated against the unchanged 30-question golden set
+`9a115dc5acad9fec8e953284d709f71a74baea5021e18a194bf1314532b4a7dc`.
+The treatment retrieves a bounded pool of 20 FTS candidates and applies a
+stable, deterministic filename-slug rerank before returning the requested
+limit.
+
+The first implementation was not promoted even though all 54 tests passed.
+Independent review found three defects: path-depth bias could prefer a partial
+filename, accented Italian queries did not consistently match ASCII slugs, and
+body text was unnecessarily materialized for metadata-only searches. The
+follow-up uses basename-only symmetric Dice scoring, NFKD normalization and a
+body-free SQL projection unless the caller explicitly requests note bodies.
+The second independent review returned `APPROVED` with no findings.
+
+Paired read-only Mini results on the same SQLite database:
+
+| Metric | live 1.8.1 | candidate 1.8.2 |
+|---|---:|---:|
+| hit in top 5 | 22/30 | **24/30** |
+| recall@5 | 0.733333 | **0.800000** |
+| MRR | 0.543889 | **0.636111** |
+| baseline hit → miss | — | **0** |
+| median time, 30 queries | 0.1111 s | 0.2200 s |
+| median time per query | 3.70 ms | 7.33 ms |
+
+The absolute latency cost is approximately 3.63 ms/query. Five alternating
+replicas were used for each arm. The WikiLLM SQLite SHA, golden SHA, Knowledge
+Git head/status and product Git head/status were identical before and after.
+No AI call and no Obsidian write occurred.
+
+The remote test suite initially produced 54 fixture errors because the isolated
+canary directory did not yet contain `policy.source.json`. After copying that
+required test fixture, the exact candidate passed 54/54 under the Mini's Python
+3.9 runtime. This was an environmental canary setup error, not recorded as a
+code pass.
+
+Version `1.8.2` was then installed atomically with a complete v1.8.1 backup at:
+
+```text
+/Users/progettibelli/ARDESIA-RUNTIME/backups/control-plane-v1.8.1-pre-wikillm-rerank-20260729
+```
+
+The candidate materialized policy differed from live only at
+`service_version: 1.8.1 → 1.8.2`. Post-install doctor returned
+`READY_FOR_PRODUCTIVE_LOOP`, the live suite passed 54/54, and the controller
+was running as PID `95297`. A true post-install scheduled review remains
+required before declaring the scheduled 1.8.2 path observed.
+
+## Measured WIP bottleneck and revised dispatch policy
+
+The 2026-07-29 00:30 CEST GitHub inventory contained 33 open pull requests:
+
+- 12 targeted `main`;
+- 21 were stacked on non-main branches;
+- 4 non-draft PRs targeting `main` were clean, green and without requested
+  changes (`#211`–`#214`);
+- 7 PRs had requested changes, dirty merge state or a failed check and were
+  possible repair candidates;
+- no merge was performed.
+
+This inventory is a stronger explanation of low delivered throughput than
+writer-session duration. New product branches increase work in progress while
+four already-green product changes remain behind the human merge gate and 21
+stacked changes depend on earlier branches.
+
+Official Paperclip guidance matches the required correction:
+
+- agents should normally stay dormant until assignment, comment or routine
+  provides real work; timer heartbeats are deliberately off by default:
+  https://docs.paperclip.ing/guides/projects-workflow/routines/
+- only one agent can hold an issue in progress, and a run can reuse an existing
+  workspace to resume prior work:
+  https://docs.paperclip.ing/guides/day-to-day/issues/
+- review and approval transitions can be runtime-enforced rather than trusted
+  to prompt wording:
+  https://docs.paperclip.ing/guides/power/execution-policy/
+
+The next productive mode must therefore be `WIP_AWARE_EXISTING_WORK_V1`:
+
+1. build the GitHub/Knowledge/Obsidian material digest with zero AI;
+2. if a non-human-gated existing PR has requested changes or a deterministic
+   failed gate, bind the run to that exact PR and reuse its workspace/session;
+3. if the eligible PR is clean and waiting for human merge, emit
+   `WAITING_HUMAN_GATE` with zero AI;
+4. create a new product branch only when no repairable existing work overlaps,
+   the task contract is ratified and the WIP budget permits it;
+5. resume one named Claude writer session for that work unit, then run
+   deterministic gates and one Codex review;
+6. use Paperclip assignment/routine coalescing only after a version-pinned,
+   reversible canary; do not keep multiple AI timer heartbeats;
+7. keep Hermes disabled until foreground, auxiliary and background inference
+   paths are independently Headroom-attested.
+
+This policy is falsified if existing-work reuse creates more duplicate edits or
+human cleanup than a fresh isolated unit. The primary outcome remains accepted
+local product units per wall-hour, not run count.
