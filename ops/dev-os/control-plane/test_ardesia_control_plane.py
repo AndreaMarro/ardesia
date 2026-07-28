@@ -407,6 +407,64 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertNotIn("messages", route)
         self.assertIsNone(stats["cost_with_headroom_usd"])
 
+    def test_route_efficiency_aggregation_rejects_nonfinite_receipt(self) -> None:
+        route_id = "ardesia-codex-overflow"
+        binding = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "gateway_pid": 4321,
+            "health_digest": "a" * 64,
+            "route_id": route_id,
+            "expected_client": "codex",
+            "expected_provider": "openai",
+            "requests_before": 0,
+            "stats_before_digest": "b" * 64,
+            "started_monotonic": time.monotonic(),
+            "cost_before_usd": 0.0,
+            "base_url": self.policy["headroom"]["openai_base_url"],
+        }
+        routes = [
+            {
+                "stack": route_id,
+                "client": "codex",
+                "provider": "openai",
+                "request_id": f"overflow-{index}",
+                "model": "gpt-5.6-sol",
+                "failed": False,
+                "input_tokens_original": 1e308,
+            }
+            for index in range(2)
+        ]
+        active = {
+            "state": "ACTIVE_REQUIRED_GATEWAY",
+            "version": "0.32.1",
+            "pid": 4321,
+            "health_digest": "a" * 64,
+            "failures": [],
+        }
+        with (
+            mock.patch.object(cp, "headroom_status", return_value=active),
+            mock.patch.object(
+                cp,
+                "headroom_request_stats",
+                return_value={
+                    "total": 2,
+                    "digest": "c" * 64,
+                    "route_logs": routes,
+                    "cost_with_headroom_usd": 0.0,
+                },
+            ),
+            self.assertRaisesRegex(RuntimeError, "non-finite route aggregate"),
+        ):
+            cp.attest_headroom_route(self.policy, "codex", binding)
+        receipt_path = (
+            self.runtime
+            / "artifacts"
+            / "headroom-routes"
+            / f"{route_id}.json"
+        )
+        self.assertFalse(receipt_path.exists())
+
     def test_every_ai_command_requires_observed_headroom_request_delta(self) -> None:
         active = {
             "state": "ACTIVE_REQUIRED_GATEWAY",

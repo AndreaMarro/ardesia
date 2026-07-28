@@ -2284,10 +2284,14 @@ def route_efficiency_metrics(
         "cost_window_delta_usd": None,
     }
     for key in additive:
-        result[key] = round(
-            sum(float(route.get(key, 0.0)) for route in matching_routes),
-            3,
+        aggregate = sum(
+            float(route.get(key, 0.0)) for route in matching_routes
         )
+        if not safe_nonnegative_number(aggregate):
+            raise RuntimeError(
+                f"Headroom efficiency metrics rejected non-finite route aggregate: {key}"
+            )
+        result[key] = round(aggregate, 3)
     before = binding.get("cost_before_usd")
     after = request_stats.get("cost_with_headroom_usd")
     if (
