@@ -3645,14 +3645,35 @@ def complete_scientific_skip(
     supervisor_context: Dict[str, Any],
 ) -> Dict[str, Any]:
     runtime = runtime_path(policy)
-    prior_success = previous.get("last_successful_scheduled_audit")
+    prior_success = None
+    stored_success = previous.get("last_successful_scheduled_audit")
+    if (
+        isinstance(stored_success, dict)
+        and stored_success.get("trigger") == "scheduled-30m"
+        and stored_success.get("audit_execution_state") == "PASS"
+        and isinstance(stored_success.get("state"), str)
+        and bool(stored_success["state"])
+        and stored_success["state"] != "BLOCKED_CAUSAL"
+    ):
+        prior_success = {
+            "review_id": stored_success.get("review_id"),
+            "trigger": stored_success.get("trigger"),
+            "state": stored_success.get("state"),
+            "completed_at": stored_success.get("completed_at"),
+            "manifest_digest": stored_success.get("manifest_digest"),
+            "audit_execution_state": "PASS",
+        }
     if (
         previous.get("trigger") == "scheduled-30m"
         and previous.get("audit_execution_state") == "PASS"
+        and isinstance(previous.get("state"), str)
+        and bool(previous["state"])
+        and previous["state"] != "BLOCKED_CAUSAL"
     ):
         prior_success = {
             "review_id": previous.get("review_id"),
             "trigger": previous.get("trigger"),
+            "state": previous.get("state"),
             "completed_at": previous.get("completed_at"),
             "manifest_digest": previous.get("manifest_digest"),
             "audit_execution_state": "PASS",
@@ -7447,6 +7468,13 @@ def status_payload(policy: Dict[str, Any]) -> Dict[str, Any]:
                 "audit_execution_state"
             )
             == "PASS"
+            and isinstance(
+                latest["last_successful_scheduled_audit"].get("state"),
+                str,
+            )
+            and bool(latest["last_successful_scheduled_audit"]["state"])
+            and latest["last_successful_scheduled_audit"]["state"]
+            != "BLOCKED_CAUSAL"
         )
     )
     scheduled_mailbox = (status.get("mailbox") or {}).get("trigger") == "scheduled"

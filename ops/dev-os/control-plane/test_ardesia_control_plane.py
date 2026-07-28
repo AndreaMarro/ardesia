@@ -1239,12 +1239,37 @@ class ControlPlaneTests(unittest.TestCase):
             result["last_successful_scheduled_audit"]["review_id"],
             "prior-scheduled-audit",
         )
+        self.assertEqual(
+            result["last_successful_scheduled_audit"]["state"],
+            "READY_FOR_PRODUCTIVE_LOOP",
+        )
         audit.assert_not_called()
         ai_command.assert_not_called()
         obsidian_write.assert_not_called()
         directory = Path(result["path"])
         self.assertTrue((directory / "skip.json").is_file())
         self.assertFalse((directory / "scientific-audit.json").exists())
+
+    def test_blocked_scheduled_pass_is_not_preserved_by_scientific_skip(self) -> None:
+        directory = self.runtime / "reviews" / "blocked-pass-skip"
+        directory.mkdir(parents=True)
+        result = cp.complete_scientific_skip(
+            self.policy,
+            "scheduled-30m",
+            "blocked-pass-skip",
+            directory,
+            "a" * 64,
+            {
+                "review_id": "blocked-scheduled-audit",
+                "trigger": "scheduled-30m",
+                "state": "BLOCKED_CAUSAL",
+                "audit_execution_state": "PASS",
+                "completed_at": "2026-07-28T18:32:10Z",
+                "manifest_digest": "b" * 64,
+            },
+            {"context_digest": "c" * 64},
+        )
+        self.assertIsNone(result["last_successful_scheduled_audit"])
 
     def test_wikillm_ingest_ignores_an_outer_handled_exception(self) -> None:
         try:
@@ -1457,6 +1482,7 @@ class ControlPlaneTests(unittest.TestCase):
                 "last_successful_scheduled_audit": {
                     "review_id": "scheduled",
                     "trigger": "scheduled-30m",
+                    "state": "SAFE_MAINTENANCE",
                     "audit_execution_state": "PASS",
                 },
             },
@@ -1472,7 +1498,30 @@ class ControlPlaneTests(unittest.TestCase):
                 "state": "SKIP_NO_AI",
                 "trigger": "scheduled-30m",
                 "audit_execution_state": "SKIPPED_NO_AI",
-                "last_successful_scheduled_audit": None,
+                "last_successful_scheduled_audit": {
+                    "review_id": "scheduled",
+                    "trigger": "scheduled-30m",
+                    "state": "BLOCKED_CAUSAL",
+                    "audit_execution_state": "PASS",
+                },
+            },
+        )
+        with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
+            self.assertEqual(
+                cp.status_payload(self.policy)["state"],
+                "PARTIAL_BOOTSTRAP_SAFE",
+            )
+        cp.write_json(
+            skip / "completion.json",
+            {
+                "state": "SKIP_NO_AI",
+                "trigger": "scheduled-30m",
+                "audit_execution_state": "SKIPPED_NO_AI",
+                "last_successful_scheduled_audit": {
+                    "review_id": "scheduled",
+                    "trigger": "scheduled-30m",
+                    "audit_execution_state": "PASS",
+                },
             },
         )
         with mock.patch.object(cp, "headroom_status", return_value=active_headroom):
