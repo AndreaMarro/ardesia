@@ -854,6 +854,19 @@ class ControlPlaneTests(unittest.TestCase):
                 "method": "turn/started",
                 "params": {"turn": {"id": "turn", "status": "inProgress"}},
             },
+            {
+                "method": "item/started",
+                "params": {
+                    "threadId": "thread",
+                    "turnId": "turn",
+                    "item": {
+                        "id": "command",
+                        "type": "commandExecution",
+                        "command": "/bin/sleep 30",
+                        "status": "inProgress",
+                    },
+                },
+            },
             {"id": 3, "result": {}},
             {
                 "method": "turn/completed",
@@ -878,6 +891,145 @@ class ControlPlaneTests(unittest.TestCase):
             probe = cp.codex_live_probe(self.policy)
         self.assertEqual(probe["state"], "PASS")
         attester.assert_called_once_with(self.policy, "codex", binding)
+
+    def test_codex_live_probe_interrupts_only_after_matching_sleep_command_started(self) -> None:
+        class ImmediateProcess:
+            def __init__(self) -> None:
+                self.pid = 9876
+                self.returncode = 0
+                self.stdin = mock.Mock()
+                self.stdout = mock.Mock()
+                self.stderr = mock.Mock()
+
+            def poll(self) -> int:
+                return 0
+
+            def terminate(self) -> None:
+                return None
+
+            def kill(self) -> None:
+                return None
+
+            def wait(self, timeout: object = None) -> int:
+                return 0
+
+        binding = {"route_id": "route"}
+        attested = {
+            "route_id": "route",
+            "route_attested": True,
+            "receipt_path": str(self.runtime / "artifacts" / "headroom-routes" / "route.json"),
+            "receipt_sha256": "a" * 64,
+        }
+        command_started = {
+            "method": "item/started",
+            "params": {
+                "threadId": "thread",
+                "turnId": "turn",
+                "item": {
+                    "id": "command",
+                    "type": "commandExecution",
+                    "command": "/bin/sleep 30",
+                    "status": "inProgress",
+                },
+            },
+        }
+        messages = [
+            {"id": 0, "result": {}},
+            {"id": 1, "result": {"thread": {"id": "thread"}}},
+            {"id": 2, "result": {"turn": {"id": "turn"}}},
+            {
+                "method": "turn/started",
+                "params": {"turn": {"id": "turn", "status": "inProgress"}},
+            },
+            command_started,
+            {"id": 3, "result": {}},
+            {
+                "method": "turn/completed",
+                "params": {"turn": {"id": "turn"}},
+            },
+            {"id": 4, "result": {}},
+        ]
+        command_start_observed = False
+
+        def ordered_read_message(
+            _process: object,
+            _timeout: float,
+            predicate: object,
+            _backlog: object = None,
+        ) -> dict[str, object]:
+            nonlocal command_start_observed
+            message = messages.pop(0)
+            if message is command_started:
+                invalid_messages = [
+                    {**command_started, "method": "item/completed"},
+                    {
+                        **command_started,
+                        "params": {**command_started["params"], "threadId": "other-thread"},
+                    },
+                    {
+                        **command_started,
+                        "params": {**command_started["params"], "turnId": "other-turn"},
+                    },
+                    {
+                        **command_started,
+                        "params": {
+                            **command_started["params"],
+                            "item": {
+                                **command_started["params"]["item"],
+                                "type": "reasoning",
+                            },
+                        },
+                    },
+                    {
+                        **command_started,
+                        "params": {
+                            **command_started["params"],
+                            "item": {
+                                **command_started["params"]["item"],
+                                "command": "/bin/sleep 29",
+                            },
+                        },
+                    },
+                    {
+                        **command_started,
+                        "params": {
+                            **command_started["params"],
+                            "item": {
+                                **command_started["params"]["item"],
+                                "status": "completed",
+                            },
+                        },
+                    },
+                ]
+                for invalid_message in invalid_messages:
+                    self.assertFalse(predicate(invalid_message))
+                command_start_observed = True
+            self.assertTrue(predicate(message))
+            return message
+
+        def ordered_send_message(_process: object, message: dict[str, object]) -> None:
+            if message.get("method") == "turn/interrupt":
+                self.assertTrue(command_start_observed)
+
+        with (
+            mock.patch.object(
+                cp,
+                "spawn_ai_process",
+                return_value=(ImmediateProcess(), binding),
+            ),
+            mock.patch.object(cp, "read_message", side_effect=ordered_read_message),
+            mock.patch.object(cp, "send_message", side_effect=ordered_send_message),
+            mock.patch.object(
+                cp,
+                "attest_headroom_route",
+                return_value=attested,
+            ),
+        ):
+            probe = cp.codex_live_probe(self.policy)
+
+        self.assertEqual(probe["state"], "PASS")
+        self.assertTrue(command_start_observed)
+        self.assertEqual(messages, [])
 
     def test_reviewer_cli_version_gate_requires_model_compatible_release(self) -> None:
         self.assertFalse(cp.codex_cli_compatible("codex-cli 0.137.0-alpha.4"))

@@ -5027,6 +5027,17 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             and (item.get("params") or {}).get("turn", {}).get("status") == "inProgress",
             backlog,
         )
+        read_message(
+            process,
+            180,
+            lambda item: item.get("method") == "item/started"
+            and (item.get("params") or {}).get("threadId") == thread_id
+            and (item.get("params") or {}).get("turnId") == turn_id
+            and (item.get("params") or {}).get("item", {}).get("type") == "commandExecution"
+            and (item.get("params") or {}).get("item", {}).get("command") == "/bin/sleep 30"
+            and (item.get("params") or {}).get("item", {}).get("status") == "inProgress",
+            backlog,
+        )
         send_message(process, {"method": "turn/interrupt", "id": 3, "params": {"threadId": thread_id, "turnId": turn_id}})
         interrupted = read_message(process, 30, lambda item: item.get("id") == 3, backlog)
         if "error" in interrupted:
