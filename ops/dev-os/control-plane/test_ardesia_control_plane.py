@@ -2925,16 +2925,17 @@ class ControlPlaneTests(unittest.TestCase):
             "large_index_blob": huge,
         }
         verbose = {"records": [{"text": huge} for _ in range(5)]}
+        bounded_status = {"state": "PASS", "summary": "bounded evidence"}
         arguments = {
             "review_id": "review-compact-snapshots",
             "trigger": "scheduled-30m",
             "previous": verbose,
-            "checks": verbose,
-            "github": verbose,
+            "checks": bounded_status,
+            "github": bounded_status,
             "wiki": wiki,
             "mailbox": verbose,
-            "headroom": verbose,
-            "hermes": verbose,
+            "headroom": bounded_status,
+            "hermes": bounded_status,
             "productive": productive,
             "supervisor_context": verbose,
             "material_digest": "9" * 64,
@@ -2969,6 +2970,14 @@ class ControlPlaneTests(unittest.TestCase):
         )
         self.assertNotIn("encoding", packet["wikillm_snapshot"])
         self.assertNotIn("encoding", packet["productive_loop_snapshot"])
+        self.assertNotIn("wikillm", packet)
+        self.assertNotIn("productive_loop", packet)
+        self.assertLessEqual(packet["previous_review"]["included_chars"], 1_000)
+        self.assertLessEqual(packet["mailbox"]["included_chars"], 200)
+        self.assertGreaterEqual(
+            packet["supervisor_context"]["included_chars"],
+            7_000,
+        )
         for key in (
             "state",
             "source_mode",
@@ -2994,9 +3003,12 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertEqual(task["review_verdict"], verdict)
             self.assertIn(f"terminal-reason-{index}", task["reason"])
             self.assertIn(f"review-summary-{index}", task["review_summary"])
-            self.assertLessEqual(len(task["reason"]), 256)
-            self.assertLessEqual(len(task["review_summary"]), 256)
-            self.assertLess(len(task["changed_files"]), 100)
+            self.assertLessEqual(len(task["reason"]), 150)
+            self.assertLessEqual(len(task["review_summary"]), 180)
+            self.assertLessEqual(len(task["changed_files"]), 5)
+            self.assertTrue(
+                all(len(path) <= 120 for path in task["changed_files"])
+            )
             self.assertEqual(task["review_findings_count"], 3)
             self.assertEqual(
                 task["review_findings_severity_counts"],
@@ -3023,6 +3035,115 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertNotIn(huge, serialized)
         with self.assertRaisesRegex(ValueError, "task ids must be strings"):
             cp.compact_productive_loop_snapshot({"tasks": {1: {"state": "DONE"}}})
+
+    def test_scientific_audit_task_limit_is_ceiling_bound(self) -> None:
+        maximum_policy = copy.deepcopy(self.policy)
+        while len(maximum_policy["loop"]["tasks"]) < cp.MAX_SCIENTIFIC_AUDIT_TASKS:
+            index = len(maximum_policy["loop"]["tasks"]) + 1
+            task = copy.deepcopy(maximum_policy["loop"]["tasks"][0])
+            task["task_id"] = f"BETA-{index:03d}-AUDIT-BOUND"
+            task["branch"] = f"agent/beta-{index:03d}-audit-bound"
+            maximum_policy["loop"]["tasks"].append(task)
+        cp.validate_policy(maximum_policy)
+
+        for queue_size in (9, 125):
+            oversized_policy = copy.deepcopy(maximum_policy)
+            while len(oversized_policy["loop"]["tasks"]) < queue_size:
+                index = len(oversized_policy["loop"]["tasks"]) + 1
+                task = copy.deepcopy(oversized_policy["loop"]["tasks"][0])
+                task["task_id"] = f"BETA-{index:03d}-AUDIT-BOUND"
+                task["branch"] = f"agent/beta-{index:03d}-audit-bound"
+                oversized_policy["loop"]["tasks"].append(task)
+            with self.assertRaisesRegex(
+                ValueError,
+                "scientific audit limit",
+            ):
+                cp.validate_policy(oversized_policy)
+
+        tasks = {}
+        for index in range(cp.MAX_SCIENTIFIC_AUDIT_TASKS):
+            task_id = f"TASK-{index + 1}"
+            tasks[task_id] = {
+                "state": "BLOCKED_CAUSAL",
+                "reason": f"bounded reason {index} " + "r" * 500,
+                "task_digest": str(index + 1) * 64,
+                "base_sha": str(index + 1) * 40,
+                "artifact_sha": "a" * 40,
+                "changed_files": [
+                    f"src/task-{index}/file-{path_index}-{'p' * 200}.py"
+                    for path_index in range(8)
+                ],
+                "context_digest": "c" * 64,
+                "review": {
+                    "verdict": "REPAIR_REQUIRED",
+                    "summary": f"bounded review {index} " + "s" * 500,
+                    "review_sha256": "d" * 64,
+                    "binding": {
+                        "candidate_digest": "e" * 64,
+                        "verification_digest": "f" * 64,
+                    },
+                    "findings": [
+                        {"severity": severity, "message": "not copied"}
+                        for severity in ("critical", "major", "minor")
+                    ],
+                },
+                "writer_phase": "repair",
+                "writer_heartbeat_at": "2026-07-29T10:00:00Z",
+                "writer_lease_renewals": index,
+                "updated_at": "2026-07-29T11:00:00Z",
+                **{
+                    f"arbitrary_{digest_index}_review_digest": "9" * 64
+                    for digest_index in range(100)
+                },
+            }
+        productive = {
+            "schema_version": 1,
+            "service_version": "1.8.2",
+            "queue_mode": "PREAPPROVED_IMMUTABLE",
+            "admitted_task_order": list(tasks),
+            "tasks": tasks,
+        }
+        packet = cp.build_scientific_audit_input(
+            self.policy,
+            review_id="review-eight-task-ceiling",
+            trigger="scheduled-30m",
+            previous={"state": "PASS"},
+            checks={"state": "PASS"},
+            github={"state": "PASS"},
+            wiki={"state": "INDEXED_CURRENT"},
+            mailbox={"state": "PASS"},
+            headroom={"state": "PASS"},
+            hermes={"state": "DISABLED"},
+            productive=productive,
+            supervisor_context={"state": "PASS"},
+            material_digest="8" * 64,
+        )
+        self.assertLessEqual(len(cp.canonical_json(packet)), 24_000)
+        compact_tasks = packet["productive_loop_snapshot"]["tasks"]
+        self.assertEqual(len(compact_tasks), cp.MAX_SCIENTIFIC_AUDIT_TASKS)
+        self.assertTrue(
+            all(task["artifact_sha"] == "a" * 40 for task in compact_tasks)
+        )
+        self.assertFalse(
+            any(
+                key.startswith("arbitrary_")
+                for task in compact_tasks
+                for key in task
+            )
+        )
+        for queue_size in (9, 125):
+            with self.assertRaisesRegex(
+                ValueError,
+                "scientific audit limit",
+            ):
+                cp.compact_productive_loop_snapshot(
+                    {
+                        "tasks": {
+                            f"TASK-{index}": {"state": "PENDING"}
+                            for index in range(queue_size)
+                        }
+                    }
+                )
 
     def test_scientific_audit_writes_exact_canonical_packet_within_ceiling(self) -> None:
         large = {"records": [{"text": "evidence-" * 20_000} for _ in range(20)]}

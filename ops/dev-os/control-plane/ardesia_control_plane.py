@@ -140,6 +140,31 @@ REQUIRED_SOURCE_CONTENT_PRIORITY = (
     "factory_metrics",
     "readme",
 )
+# The adversarial audit-packet test proves eight bounded task snapshots fit 24k.
+MAX_SCIENTIFIC_AUDIT_TASKS = 8
+COMPACT_TASK_HASH_FIELDS = (
+    "acceptance_digest",
+    "acceptance_sha",
+    "acceptance_sha256",
+    "artifact_digest",
+    "artifact_sha",
+    "artifact_sha256",
+    "verification_digest",
+    "verification_sha",
+    "verification_sha256",
+    "candidate_digest",
+    "candidate_sha",
+    "candidate_sha256",
+    "context_digest",
+    "context_sha",
+    "context_sha256",
+    "review_digest",
+    "review_sha",
+    "review_sha256",
+    "seed_manifest_sha256",
+    "github_inventory_digest",
+    "local_inventory_digest",
+)
 POLICY_KEYS = {
     "schema_version",
     "service_version",
@@ -848,6 +873,11 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: loop and automatic dispatch state disagree")
     if not isinstance(loop["tasks"], list) or (loop["enabled"] and not loop["tasks"]):
         raise ValueError("policy: enabled loop requires a pre-approved task queue")
+    if len(loop["tasks"]) > MAX_SCIENTIFIC_AUDIT_TASKS:
+        raise ValueError(
+            "policy: productive queue exceeds the scientific audit limit "
+            f"of {MAX_SCIENTIFIC_AUDIT_TASKS} tasks"
+        )
     task_ids: set[str] = set()
     branches: set[str] = set()
     for index, task_value in enumerate(loop["tasks"]):
@@ -3951,21 +3981,10 @@ def compact_wikillm_snapshot(wiki: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _compact_task_hashes(value: Dict[str, Any]) -> Dict[str, str]:
-    categories = (
-        "acceptance",
-        "artifact",
-        "verification",
-        "candidate",
-        "context",
-        "review",
-    )
     return {
-        key: item[:256]
-        for key, item in sorted(value.items())
-        if isinstance(key, str)
-        and isinstance(item, str)
-        and key.lower().endswith(("sha", "sha256", "digest"))
-        and any(category in key.lower() for category in categories)
+        key: value[key][:128]
+        for key in COMPACT_TASK_HASH_FIELDS
+        if isinstance(value.get(key), str)
     }
 
 
@@ -3991,6 +4010,11 @@ def compact_productive_loop_snapshot(
     if not isinstance(records, dict):
         snapshot["tasks"] = []
         return snapshot
+    if len(records) > MAX_SCIENTIFIC_AUDIT_TASKS:
+        raise ValueError(
+            "productive loop snapshot exceeds the scientific audit limit "
+            f"of {MAX_SCIENTIFIC_AUDIT_TASKS} tasks"
+        )
     if any(not isinstance(task_id, str) for task_id in records):
         raise ValueError("productive loop snapshot task ids must be strings")
 
@@ -4043,17 +4067,21 @@ def compact_productive_loop_snapshot(
                 or isinstance(value, (str, int, float, bool))
             ):
                 task_snapshot[key] = (
-                    value[:256] if isinstance(value, str) else value
+                    value[:180]
+                    if key == "review_summary" and isinstance(value, str)
+                    else value[:256]
+                    if isinstance(value, str)
+                    else value
                 )
         task_snapshot.update(_compact_task_hashes(record))
         reason = record.get("reason")
         if isinstance(reason, str):
-            task_snapshot["reason"] = reason[:256]
+            task_snapshot["reason"] = reason[:150]
         changed_files = record.get("changed_files")
         if isinstance(changed_files, list):
             task_snapshot["changed_files"] = [
-                path[:160]
-                for path in changed_files[:8]
+                path[:120]
+                for path in changed_files[:5]
                 if isinstance(path, str)
             ]
         direct_severity_counts = record.get(
@@ -4074,7 +4102,7 @@ def compact_productive_loop_snapshot(
                 task_snapshot.setdefault("review_verdict", verdict[:256])
             summary = review.get("summary")
             if isinstance(summary, str):
-                task_snapshot.setdefault("review_summary", summary[:256])
+                task_snapshot.setdefault("review_summary", summary[:180])
             for key, value in _compact_task_hashes(review).items():
                 task_snapshot.setdefault(key, value)
             binding = review.get("binding")
@@ -4141,18 +4169,16 @@ def build_scientific_audit_input(
         "queue_nonterminal": queue_nonterminal,
         "wikillm_snapshot": compact_wikillm_snapshot(wiki),
         "productive_loop_snapshot": compact_productive_loop_snapshot(productive),
-        "previous_review": bounded_json_section(previous, 1_500),
-        "deterministic_checks": bounded_json_section(checks, 2_500),
-        "github_monitor": bounded_json_section(github, 2_500),
-        "wikillm": bounded_json_section(wiki, 1_500),
-        "mailbox": bounded_json_section(mailbox, 2_000),
-        "headroom": bounded_json_section(headroom, 1_500),
-        "hermes": bounded_json_section(hermes, 1_000),
-        "productive_loop": bounded_json_section(productive, 3_000),
         "supervisor_context": bounded_json_section(
             supervisor_context,
             8_000,
         ),
+        "previous_review": bounded_json_section(previous, 1_000),
+        "deterministic_checks": bounded_json_section(checks, 2_500),
+        "github_monitor": bounded_json_section(github, 2_500),
+        "mailbox": bounded_json_section(mailbox, 200),
+        "headroom": bounded_json_section(headroom, 1_500),
+        "hermes": bounded_json_section(hermes, 1_000),
         "authority": {
             "github": "operational coordination oracle",
             "obsidian_markdown_git": "canonical knowledge",
