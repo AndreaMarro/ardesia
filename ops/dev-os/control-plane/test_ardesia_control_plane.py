@@ -1580,7 +1580,11 @@ class ControlPlaneTests(unittest.TestCase):
     def test_wikillm_slug_rerank_is_pure_stable_and_conservative(self) -> None:
         self.assertEqual(
             cp.wikillm_significant_tokens("Per la Continuità del docente"),
-            ("continuità", "docente"),
+            ("continuita", "docente"),
+        )
+        self.assertEqual(
+            cp.wikillm_significant_tokens("Perché già più Continuità"),
+            ("continuita",),
         )
         self.assertEqual(
             cp.wikillm_significant_tokens(
@@ -1604,17 +1608,20 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertGreater(
             cp.wikillm_path_slug_score(
                 ("teacher", "dashboard"),
-                "40-Product-Canon/teacher-dashboard.md",
+                "very/deep/directory/teacher-dashboard.md",
             ),
             cp.wikillm_path_slug_score(
                 ("teacher", "dashboard"),
-                "40-Product-Canon/dashboard-notes.md",
+                "dashboard.md",
             ),
         )
         candidates = [
             {"path": "20-Decisions/ADR-001.md", "sha256": "a" * 64},
-            {"path": "30-Architecture/Runtime.md", "sha256": "b" * 64},
-            {"path": "40-Product-Canon/Teacher-Dashboard.md", "sha256": "c" * 64},
+            {"path": "dashboard.md", "sha256": "b" * 64},
+            {
+                "path": "deep/irrelevant/directories/Teacher-Dashboard.md",
+                "sha256": "c" * 64,
+            },
         ]
         original = copy.deepcopy(candidates)
         untouched = cp.wikillm_stable_slug_rerank("unmatched phrase", candidates)
@@ -1628,11 +1635,19 @@ class ControlPlaneTests(unittest.TestCase):
             [item["sha256"] for item in candidates],
         )
         self.assertEqual(candidates, original)
+        accent_match = cp.wikillm_stable_slug_rerank(
+            "continuità",
+            [
+                {"path": "continual.md"},
+                {"path": "deep/path/continuita.md"},
+            ],
+        )
+        self.assertEqual(accent_match[0]["path"], "deep/path/continuita.md")
 
     def test_wikillm_search_fetches_twenty_then_reranks_and_slices(self) -> None:
         database = self.runtime / "state" / "wikillm.sqlite"
         database.touch()
-        rows = [
+        rows_without_body = [
             {
                 "path": "20-Decisions/general-note.md",
                 "sha256": "a" * 64,
@@ -1644,7 +1659,6 @@ class ControlPlaneTests(unittest.TestCase):
                 "source_commit": self.policy["expected_knowledge_sha"],
                 "snippet": "teacher dashboard",
                 "score": -9.0,
-                "body": "first body",
             },
             {
                 "path": "40-Product-Canon/teacher-dashboard.md",
@@ -1657,11 +1671,10 @@ class ControlPlaneTests(unittest.TestCase):
                 "source_commit": self.policy["expected_knowledge_sha"],
                 "snippet": "teacher dashboard",
                 "score": -1.0,
-                "body": "second body",
             },
         ]
         cursor = mock.Mock()
-        cursor.fetchall.return_value = rows
+        cursor.fetchall.return_value = rows_without_body
         connection = mock.Mock()
         connection.execute.return_value = cursor
         with mock.patch.object(cp.sqlite3, "connect", return_value=connection):
@@ -1669,16 +1682,41 @@ class ControlPlaneTests(unittest.TestCase):
                 self.policy,
                 "teacher dashboard",
                 limit=1,
-                include_body=True,
+                include_body=False,
             )
+        sql = connection.execute.call_args.args[0]
         sql_parameters = connection.execute.call_args.args[1]
+        self.assertNotIn("n.body", sql)
         self.assertEqual(sql_parameters[1], 20)
         self.assertEqual(len(hits), 1)
-        self.assertEqual(hits[0]["path"], rows[1]["path"])
-        self.assertEqual(hits[0]["sha256"], rows[1]["sha256"])
-        self.assertEqual(hits[0]["body"], rows[1]["body"])
-        self.assertEqual(hits[0]["score"], rows[1]["score"])
+        self.assertEqual(hits[0]["path"], rows_without_body[1]["path"])
+        self.assertEqual(hits[0]["sha256"], rows_without_body[1]["sha256"])
+        self.assertNotIn("body", hits[0])
+        self.assertEqual(hits[0]["score"], rows_without_body[1]["score"])
         connection.close.assert_called_once_with()
+
+        rows_with_body = [
+            {**row, "body": f"body-{index}"}
+            for index, row in enumerate(rows_without_body)
+        ]
+        body_cursor = mock.Mock()
+        body_cursor.fetchall.return_value = rows_with_body
+        body_connection = mock.Mock()
+        body_connection.execute.return_value = body_cursor
+        with mock.patch.object(
+            cp.sqlite3,
+            "connect",
+            return_value=body_connection,
+        ):
+            body_hits = cp.wikillm_search(
+                self.policy,
+                "teacher dashboard",
+                limit=1,
+                include_body=True,
+            )
+        self.assertIn("n.body", body_connection.execute.call_args.args[0])
+        self.assertEqual(body_hits[0]["body"], rows_with_body[1]["body"])
+        body_connection.close.assert_called_once_with()
 
         for invalid_limit in (0, 21, True):
             with self.subTest(invalid_limit=invalid_limit), self.assertRaisesRegex(

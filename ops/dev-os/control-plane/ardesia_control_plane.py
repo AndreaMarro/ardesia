@@ -32,6 +32,7 @@ import sys
 import tarfile
 import tempfile
 import time
+import unicodedata
 import urllib.error
 import urllib.request
 import uuid
@@ -3212,12 +3213,26 @@ WIKILLM_RERANK_STOPWORDS = frozenset(
 WIKILLM_SLUG_NOISE = frozenset({"ardesia"})
 WIKILLM_QUERY_SPLIT = re.compile(r"[^0-9a-zA-Zàèéìòùáéíóú]+")
 WIKILLM_SLUG_SPLIT = re.compile(r"[/\-_.]+")
+WIKILLM_SEARCH_PROJECTION = (
+    "n.path,n.sha256,n.title,n.kind,n.status,n.headings,n.supersedes,"
+    "n.source_commit,"
+    "snippet(notes_fts,3,'<mark>','</mark>',' … ',24) AS snippet,"
+    "bm25(notes_fts,8.0,12.0,4.0,1.0) AS score"
+)
+
+
+def wikillm_normalize_token_text(value: str) -> str:
+    return "".join(
+        character
+        for character in unicodedata.normalize("NFKD", value.lower())
+        if not unicodedata.combining(character)
+    )
 
 
 def wikillm_significant_tokens(value: str) -> Tuple[str, ...]:
     result: List[str] = []
     seen: set[str] = set()
-    for token in WIKILLM_QUERY_SPLIT.split(value.lower()):
+    for token in WIKILLM_QUERY_SPLIT.split(wikillm_normalize_token_text(value)):
         if (
             not token
             or token.isdigit()
@@ -3232,12 +3247,13 @@ def wikillm_significant_tokens(value: str) -> Tuple[str, ...]:
 
 
 def wikillm_slug_tokens(path: str) -> set[str]:
-    normalized = path.strip().replace("\\", "/").lower()
-    if normalized.endswith(".md"):
-        normalized = normalized[:-3]
+    basename = path.strip().replace("\\", "/").rsplit("/", 1)[-1]
+    if basename.lower().endswith(".md"):
+        basename = basename[:-3]
+    normalized = wikillm_normalize_token_text(basename)
     return {
         token
-        for token in WIKILLM_SLUG_SPLIT.split(normalized.strip("/"))
+        for token in WIKILLM_SLUG_SPLIT.split(normalized)
         if token
         and not token.isdigit()
         and len(token) >= 2
@@ -3255,7 +3271,10 @@ def wikillm_path_slug_score(
     salient_terms = set(query_tokens)
     if not salient_terms:
         return 0.0
-    return len(slug_tokens & salient_terms) / len(slug_tokens)
+    return (
+        2 * len(slug_tokens & salient_terms)
+        / (len(slug_tokens) + len(salient_terms))
+    )
 
 
 def wikillm_stable_slug_rerank(
@@ -3295,12 +3314,12 @@ def wikillm_search(policy: Dict[str, Any], query: str, limit: int = 8, include_b
         connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
         connection.row_factory = sqlite3.Row
         try:
+            projection = WIKILLM_SEARCH_PROJECTION + (
+                ",n.body" if include_body else ""
+            )
             rows = connection.execute(
-                """
-                SELECT n.path,n.sha256,n.title,n.kind,n.status,n.headings,n.supersedes,n.source_commit,
-                       snippet(notes_fts,3,'<mark>','</mark>',' … ',24) AS snippet,
-                       bm25(notes_fts,8.0,12.0,4.0,1.0) AS score,
-                       n.body
+                f"""
+                SELECT {projection}
                 FROM notes_fts JOIN notes n ON n.rowid=notes_fts.rowid
                 WHERE notes_fts MATCH ?
                 ORDER BY score ASC, n.path ASC
