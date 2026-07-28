@@ -165,6 +165,12 @@ COMPACT_TASK_HASH_FIELDS = (
     "github_inventory_digest",
     "local_inventory_digest",
 )
+SUPERVISOR_SIGNAL_SECTION_FLOORS = {
+    "prior_runs": 512,
+    "external_directives": 512,
+    "git_history": 256,
+    "local_coordination": 256,
+}
 POLICY_KEYS = {
     "schema_version",
     "service_version",
@@ -328,16 +334,25 @@ def canonical_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
-def bounded_json_section(value: Any, max_chars: int) -> Dict[str, Any]:
-    if max_chars < 0:
+def bounded_json_section(
+    value: Any,
+    max_chars: int,
+    *,
+    minimum_chars: int = 0,
+) -> Dict[str, Any]:
+    if type(max_chars) is not int or max_chars < 0:
         raise ValueError("context section budget cannot be negative")
+    if type(minimum_chars) is not int or minimum_chars < 0:
+        raise ValueError("context section minimum cannot be negative")
     encoded = canonical_json(value)
     included = encoded[:max_chars]
+    effective_minimum = min(minimum_chars, len(included))
     return {
         "encoding": "canonical-json-prefix",
         "sha256": sha256_text(encoded),
         "included": included,
         "included_chars": len(included),
+        "minimum_included_chars": effective_minimum,
         "omitted_chars": len(encoded) - len(included),
         "truncated": len(included) < len(encoded),
     }
@@ -353,6 +368,7 @@ def _bounded_section(value: Any) -> bool:
             for key in (
                 "sha256",
                 "included_chars",
+                "minimum_included_chars",
                 "omitted_chars",
                 "truncated",
             )
@@ -382,6 +398,8 @@ def _trim_tracked_text(
         or included != len(text)
         or included < 0
         or omitted < 0
+        or type(minimum_chars) is not int
+        or not 0 <= minimum_chars <= included
     ):
         raise ValueError("context text metadata is inconsistent")
     original_chars = included + omitted
@@ -407,6 +425,7 @@ def _trim_bounded_sections(value: Any, remaining: int) -> int:
             omitted_key="omitted_chars",
             truncated_key="truncated",
             remaining=remaining,
+            minimum_chars=value["minimum_included_chars"],
         )
     if isinstance(value, dict):
         for key in reversed(list(value)):
@@ -548,17 +567,26 @@ def _trim_required_source_content(value: Any, remaining: int) -> int:
 
 
 def validate_context_text_metadata(value: Any) -> None:
+    if (
+        isinstance(value, dict)
+        and value.get("encoding") == "canonical-json-prefix"
+        and not _bounded_section(value)
+    ):
+        raise ValueError("bounded context section metadata is incomplete")
     if _bounded_section(value):
         included = value["included"]
         included_chars = value["included_chars"]
         omitted_chars = value["omitted_chars"]
+        minimum_chars = value["minimum_included_chars"]
         if (
             type(included_chars) is not int
             or type(omitted_chars) is not int
+            or type(minimum_chars) is not int
             or not isinstance(value["truncated"], bool)
             or included_chars != len(included)
             or included_chars < 0
             or omitted_chars < 0
+            or not 0 <= minimum_chars <= included_chars
             or value["truncated"] != (omitted_chars > 0)
         ):
             raise ValueError("bounded context section metadata is inconsistent")
@@ -3769,18 +3797,26 @@ def compile_context(
         "git_history": bounded_json_section(
             git_history_context(policy, task),
             section_budgets["git_history"],
+            minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS["git_history"],
         ),
         "prior_runs": bounded_json_section(
             prior_run_context(policy, task),
             section_budgets["prior_runs"],
+            minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS["prior_runs"],
         ),
         "external_directives": bounded_json_section(
             external_directive_context(policy),
             section_budgets["external_directives"],
+            minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS[
+                "external_directives"
+            ],
         ),
         "local_coordination": bounded_json_section(
             local_coordination,
             section_budgets["local_coordination"],
+            minimum_chars=SUPERVISOR_SIGNAL_SECTION_FLOORS[
+                "local_coordination"
+            ],
         ),
         "section_sources": {
             "prior_runs": "artifacts/productive-runs",
@@ -3980,6 +4016,26 @@ def compact_wikillm_snapshot(wiki: Dict[str, Any]) -> Dict[str, Any]:
     return {key: wiki[key] for key in fields if key in wiki}
 
 
+def compact_supervisor_signal_snapshot(
+    supervisor_context: Dict[str, Any],
+) -> Dict[str, Any]:
+    snapshot: Dict[str, Any] = {}
+    for section_name, capture_limit in SUPERVISOR_SIGNAL_SECTION_FLOORS.items():
+        section = supervisor_context.get(section_name)
+        if not _bounded_section(section):
+            continue
+        validate_context_text_metadata(section)
+        included = section["included"][:capture_limit]
+        snapshot[section_name] = {
+            "sha256": section["sha256"],
+            "included": included,
+            "included_chars": section["included_chars"],
+            "omitted_chars": section["omitted_chars"],
+            "truncated": section["truncated"],
+        }
+    return snapshot
+
+
 def _compact_task_hashes(value: Dict[str, Any]) -> Dict[str, str]:
     return {
         key: value[key][:128]
@@ -4067,7 +4123,7 @@ def compact_productive_loop_snapshot(
                 or isinstance(value, (str, int, float, bool))
             ):
                 task_snapshot[key] = (
-                    value[:180]
+                    value[:99]
                     if key == "review_summary" and isinstance(value, str)
                     else value[:256]
                     if isinstance(value, str)
@@ -4076,7 +4132,7 @@ def compact_productive_loop_snapshot(
         task_snapshot.update(_compact_task_hashes(record))
         reason = record.get("reason")
         if isinstance(reason, str):
-            task_snapshot["reason"] = reason[:150]
+            task_snapshot["reason"] = reason[:80]
         changed_files = record.get("changed_files")
         if isinstance(changed_files, list):
             task_snapshot["changed_files"] = [
@@ -4102,7 +4158,7 @@ def compact_productive_loop_snapshot(
                 task_snapshot.setdefault("review_verdict", verdict[:256])
             summary = review.get("summary")
             if isinstance(summary, str):
-                task_snapshot.setdefault("review_summary", summary[:180])
+                task_snapshot.setdefault("review_summary", summary[:99])
             for key, value in _compact_task_hashes(review).items():
                 task_snapshot.setdefault(key, value)
             binding = review.get("binding")
@@ -4169,11 +4225,14 @@ def build_scientific_audit_input(
         "queue_nonterminal": queue_nonterminal,
         "wikillm_snapshot": compact_wikillm_snapshot(wiki),
         "productive_loop_snapshot": compact_productive_loop_snapshot(productive),
+        "supervisor_signal_snapshot": compact_supervisor_signal_snapshot(
+            supervisor_context
+        ),
         "supervisor_context": bounded_json_section(
             supervisor_context,
             8_000,
         ),
-        "previous_review": bounded_json_section(previous, 1_000),
+        "previous_review": bounded_json_section(previous, 300),
         "deterministic_checks": bounded_json_section(checks, 2_500),
         "github_monitor": bounded_json_section(github, 2_500),
         "mailbox": bounded_json_section(mailbox, 200),

@@ -2172,6 +2172,16 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(
             all("sha256" in entry for entry in packet["required_sources"]["entries"])
         )
+        for section_name, identity in (
+            ("prior_runs", "prior-"),
+            ("external_directives", "directive-"),
+            ("git_history", "history-"),
+            ("local_coordination", "NOT_TASK_SCOPED"),
+        ):
+            section = packet[section_name]
+            self.assertGreater(section["included_chars"], 0)
+            self.assertGreater(section["minimum_included_chars"], 0)
+            self.assertIn(identity, section["included"])
         for entry in packet["required_sources"]["entries"]:
             self.assertGreater(
                 len(entry["content"]),
@@ -2246,6 +2256,7 @@ class ControlPlaneTests(unittest.TestCase):
         supplemental = cp.bounded_json_section(
             {"text": "supplemental-" * 1_000},
             5_000,
+            minimum_chars=256,
         )
         packet = cp.finalize_context_packet(
             {
@@ -2281,7 +2292,8 @@ class ControlPlaneTests(unittest.TestCase):
             compiled_at="2026-07-28T18:00:00Z",
         )
         bounded = packet["supplemental"]
-        self.assertEqual(bounded["included"], "")
+        self.assertGreaterEqual(len(bounded["included"]), 256)
+        self.assertEqual(bounded["minimum_included_chars"], 256)
         self.assertEqual(packet["notes"][0]["content"], "")
         self.assertEqual(bounded["included_chars"], len(bounded["included"]))
         self.assertEqual(
@@ -2304,6 +2316,22 @@ class ControlPlaneTests(unittest.TestCase):
                 entry["content_truncated"],
                 entry["content_omitted_chars"] > 0,
             )
+        effective = cp.bounded_json_section(
+            {"text": "short"},
+            3,
+            minimum_chars=100,
+        )
+        self.assertEqual(effective["minimum_included_chars"], 3)
+        with self.assertRaisesRegex(ValueError, "minimum"):
+            cp.bounded_json_section({}, 10, minimum_chars=-1)
+        impossible = dict(effective)
+        impossible["minimum_included_chars"] = 4
+        with self.assertRaisesRegex(ValueError, "bounded context"):
+            cp.validate_context_text_metadata(impossible)
+        incomplete = dict(effective)
+        incomplete.pop("minimum_included_chars")
+        with self.assertRaisesRegex(ValueError, "bounded context"):
+            cp.validate_context_text_metadata(incomplete)
 
     def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
         task = self.policy["loop"]["tasks"][0]
@@ -2926,6 +2954,34 @@ class ControlPlaneTests(unittest.TestCase):
         }
         verbose = {"records": [{"text": huge} for _ in range(5)]}
         bounded_status = {"state": "PASS", "summary": "bounded evidence"}
+        supervisor_context = cp.finalize_context_packet(
+            {
+                "schema_version": 1,
+                "notes": [{"content": huge}],
+                "prior_runs": cp.bounded_json_section(
+                    [{"a_identity": "PRIOR-SIGNAL", "detail": huge}],
+                    3_600,
+                    minimum_chars=512,
+                ),
+                "external_directives": cp.bounded_json_section(
+                    [{"a_identity": "DIRECTIVE-SIGNAL", "detail": huge}],
+                    3_000,
+                    minimum_chars=512,
+                ),
+                "git_history": cp.bounded_json_section(
+                    {"entries": ["GIT-SIGNAL", huge]},
+                    2_400,
+                    minimum_chars=256,
+                ),
+                "local_coordination": cp.bounded_json_section(
+                    {"a_identity": "LOCAL-SIGNAL", "detail": huge},
+                    1_500,
+                    minimum_chars=256,
+                ),
+            },
+            24_000,
+            compiled_at="2026-07-29T14:30:00Z",
+        )
         arguments = {
             "review_id": "review-compact-snapshots",
             "trigger": "scheduled-30m",
@@ -2937,7 +2993,7 @@ class ControlPlaneTests(unittest.TestCase):
             "headroom": bounded_status,
             "hermes": bounded_status,
             "productive": productive,
-            "supervisor_context": verbose,
+            "supervisor_context": supervisor_context,
             "material_digest": "9" * 64,
         }
         with mock.patch.object(
@@ -2970,12 +3026,39 @@ class ControlPlaneTests(unittest.TestCase):
         )
         self.assertNotIn("encoding", packet["wikillm_snapshot"])
         self.assertNotIn("encoding", packet["productive_loop_snapshot"])
+        self.assertEqual(
+            packet["supervisor_signal_snapshot"],
+            cp.compact_supervisor_signal_snapshot(supervisor_context),
+        )
+        self.assertNotIn("encoding", packet["supervisor_signal_snapshot"])
+        signal_included = sum(
+            len(section["included"])
+            for section in packet["supervisor_signal_snapshot"].values()
+        )
+        self.assertTrue(
+            all(
+                section["included_chars"] > 0
+                for section in packet["supervisor_signal_snapshot"].values()
+            )
+        )
+        for section_name, identity in (
+            ("prior_runs", "PRIOR-SIGNAL"),
+            ("external_directives", "DIRECTIVE-SIGNAL"),
+            ("git_history", "GIT-SIGNAL"),
+            ("local_coordination", "LOCAL-SIGNAL"),
+        ):
+            signal_section = packet["supervisor_signal_snapshot"][section_name]
+            self.assertIn(identity, signal_section["included"])
+            self.assertEqual(
+                signal_section["sha256"],
+                supervisor_context[section_name]["sha256"],
+            )
         self.assertNotIn("wikillm", packet)
         self.assertNotIn("productive_loop", packet)
-        self.assertLessEqual(packet["previous_review"]["included_chars"], 1_000)
+        self.assertLessEqual(packet["previous_review"]["included_chars"], 300)
         self.assertLessEqual(packet["mailbox"]["included_chars"], 200)
         self.assertGreaterEqual(
-            packet["supervisor_context"]["included_chars"],
+            packet["supervisor_context"]["included_chars"] + signal_included,
             7_000,
         )
         for key in (
@@ -3003,8 +3086,8 @@ class ControlPlaneTests(unittest.TestCase):
             self.assertEqual(task["review_verdict"], verdict)
             self.assertIn(f"terminal-reason-{index}", task["reason"])
             self.assertIn(f"review-summary-{index}", task["review_summary"])
-            self.assertLessEqual(len(task["reason"]), 150)
-            self.assertLessEqual(len(task["review_summary"]), 180)
+            self.assertLessEqual(len(task["reason"]), 80)
+            self.assertLessEqual(len(task["review_summary"]), 100)
             self.assertLessEqual(len(task["changed_files"]), 5)
             self.assertTrue(
                 all(len(path) <= 120 for path in task["changed_files"])
