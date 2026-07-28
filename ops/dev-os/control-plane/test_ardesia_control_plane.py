@@ -1396,6 +1396,39 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(
             all("sha256" in entry for entry in packet["required_sources"]["entries"])
         )
+        for entry in packet["required_sources"]["entries"]:
+            self.assertGreater(
+                len(entry["content"]),
+                0,
+                msg=f"required source starved: {entry['source_id']}",
+            )
+            self.assertEqual(
+                entry["content_included_chars"],
+                len(entry["content"]),
+            )
+            self.assertEqual(
+                entry["content_omitted_chars"],
+                140_000 - len(entry["content"]),
+            )
+            self.assertEqual(
+                entry["content_truncated"],
+                entry["content_omitted_chars"] > 0,
+            )
+        self.assertEqual(
+            packet["required_sources"]["content_used_chars"],
+            sum(
+                len(entry["content"])
+                for entry in packet["required_sources"]["entries"]
+            ),
+        )
+        content_by_source = {
+            entry["source_id"]: entry["content"]
+            for entry in packet["required_sources"]["entries"]
+        }
+        self.assertGreater(
+            len(content_by_source["bootstrap"]),
+            len(content_by_source["scientific_analysis"]),
+        )
         stable_for_digest = {
             key: value
             for key, value in packet.items()
@@ -1412,6 +1445,89 @@ class ControlPlaneTests(unittest.TestCase):
             packet["context_digest"],
             cp.sha256_text(cp.canonical_json(context_for_digest)),
         )
+        writer_prompt = cp.build_writer_prompt(
+            self.policy,
+            self.policy["loop"]["tasks"][0],
+            packet,
+            {"state": "CLEAR", "overlaps": []},
+        )
+        context_marker = (
+            "VERIFIED sources over proposed/reference material and preserve "
+            "provenance.\n"
+        )
+        embedded_context = writer_prompt.split(context_marker, 1)[1].split(
+            "\n\nBefore editing,",
+            1,
+        )[0]
+        self.assertEqual(embedded_context, cp.canonical_json(packet))
+        self.assertLessEqual(
+            len(embedded_context),
+            self.policy["context"]["writer_max_chars"],
+        )
+
+    def test_final_context_trimming_keeps_section_metadata_truthful(self) -> None:
+        source_content = "required-" * 1_000
+        supplemental = cp.bounded_json_section(
+            {"text": "supplemental-" * 1_000},
+            5_000,
+        )
+        packet = cp.finalize_context_packet(
+            {
+                "schema_version": 1,
+                "supplemental": supplemental,
+                "notes": [{"content": "note-" * 1_000}],
+                "required_sources": {
+                    "schema_version": 1,
+                    "entries": [
+                        {
+                            "source_id": source_id,
+                            "root": "runtime",
+                            "path": f"sources/{source_id}.md",
+                            "authority": "EXTERNAL_OPERATOR_SOURCE",
+                            "sha256": character * 64,
+                            "bytes": len(source_content),
+                            "content": source_content,
+                            "content_included_chars": len(source_content),
+                            "content_omitted_chars": 0,
+                            "content_truncated": False,
+                        }
+                        for source_id, character in (
+                            ("bootstrap", "a"),
+                            ("autopilot_nonstop", "b"),
+                            ("prior_findings", "c"),
+                            ("scientific_analysis", "d"),
+                        )
+                    ],
+                    "manifest_digest": "e" * 64,
+                },
+            },
+            3_000,
+            compiled_at="2026-07-28T18:00:00Z",
+        )
+        bounded = packet["supplemental"]
+        self.assertEqual(bounded["included"], "")
+        self.assertEqual(packet["notes"][0]["content"], "")
+        self.assertEqual(bounded["included_chars"], len(bounded["included"]))
+        self.assertEqual(
+            bounded["included_chars"] + bounded["omitted_chars"],
+            supplemental["included_chars"] + supplemental["omitted_chars"],
+        )
+        self.assertEqual(bounded["truncated"], bounded["omitted_chars"] > 0)
+        for entry in packet["required_sources"]["entries"]:
+            self.assertGreater(len(entry["content"]), 0)
+            self.assertEqual(
+                entry["content_included_chars"],
+                len(entry["content"]),
+            )
+            self.assertEqual(
+                entry["content_included_chars"]
+                + entry["content_omitted_chars"],
+                len(source_content),
+            )
+            self.assertEqual(
+                entry["content_truncated"],
+                entry["content_omitted_chars"] > 0,
+            )
 
     def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
         task = self.policy["loop"]["tasks"][0]
@@ -1944,6 +2060,59 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertTrue(packet["queue_nonterminal"])
         self.assertTrue(packet["previous_review"]["truncated"])
         self.assertTrue(packet["supervisor_context"]["truncated"])
+
+    def test_scientific_audit_writes_exact_canonical_packet_within_ceiling(self) -> None:
+        large = {"records": [{"text": "evidence-" * 20_000} for _ in range(20)]}
+        packet = cp.build_scientific_audit_input(
+            self.policy,
+            review_id="review-file-bound",
+            trigger="scheduled-30m",
+            previous=large,
+            checks=large,
+            github=large,
+            wiki=large,
+            mailbox=large,
+            headroom=large,
+            hermes=large,
+            productive={"tasks": {}, **large},
+            supervisor_context=large,
+            material_digest="d" * 64,
+        )
+        directory = self.runtime / "reviews" / "canonical-audit-input"
+        directory.mkdir(parents=True)
+        cp.write_json(
+            directory / "scientific-audit.json",
+            {
+                "classification": "VERIFIED_STABLE",
+                "hypothesis": "the complete Codex input is bounded",
+                "summary": "the canonical audit input respects its ceiling",
+                "observations": [],
+                "falsifiers": ["the exact input file exceeds its ceiling"],
+                "next_action": "retain the frozen context boundary",
+                "queue_proposal": None,
+            },
+        )
+        completed = {
+            "exit": 0,
+            "stdout": "",
+            "stderr": "",
+            "argv": [],
+            "headroom_binding": {
+                "route_id": "route-test",
+                "receipt_path": "headroom-route.json",
+                "receipt_sha256": "f" * 64,
+            },
+        }
+        with mock.patch.object(cp, "run_ai_command", return_value=completed):
+            cp.codex_scientific_audit(self.policy, directory, packet)
+        input_path = directory / "scientific-audit-input.json"
+        exact_input = input_path.read_text(encoding="utf-8")
+        self.assertEqual(exact_input, cp.canonical_json(packet))
+        self.assertLessEqual(
+            len(exact_input),
+            self.policy["context"]["supervisor_max_chars"],
+        )
+        self.assertEqual(input_path.stat().st_mode & 0o777, 0o640)
 
     def test_scheduled_scientific_review_records_early_failure_instead_of_stopping(self) -> None:
         with (
