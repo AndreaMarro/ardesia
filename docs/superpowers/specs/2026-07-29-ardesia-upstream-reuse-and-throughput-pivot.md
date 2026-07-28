@@ -245,3 +245,28 @@ The next productive mode must therefore be `WIP_AWARE_EXISTING_WORK_V1`:
 This policy is falsified if existing-work reuse creates more duplicate edits or
 human cleanup than a fresh isolated unit. The primary outcome remains accepted
 local product units per wall-hour, not run count.
+
+## Similar efficiency components screened
+
+Adding another gateway is not currently supported by a causal bottleneck.
+Official-source screening found four adjacent categories:
+
+| Component | Relevant capability | ARDESIA decision |
+|---|---|---|
+| Microsoft LLMLingua | model-based prompt compression | challenger only after a frozen answer-quality/citation eval; its Transformers/model dependency and lossy transformation are unnecessary for the deterministic context slice |
+| LiteLLM Proxy | multi-provider normalization, retry/fallback, budgets and cost tracking | do not stack behind/in front of Headroom now; it overlaps routing and does not close Hermes' un-attested auxiliary path |
+| Helicone Gateway | managed multi-provider routing, fallback and observability | do not add a cloud egress/credential surface to solve a local WIP/admission bottleneck |
+| Portkey Gateway | routing, cache, retries, circuit breakers, budgets and canaries | useful feature reference, but a second policy gateway would make route attribution and no-bypass proof harder |
+
+Sources:
+
+- https://github.com/microsoft/LLMLingua
+- https://docs.litellm.ai/
+- https://docs.helicone.ai/gateway/overview
+- https://portkey.ai/docs/product/ai-gateway
+
+Headroom remains the single required AI boundary because it is already live,
+loopback-only and attested for the accepted Claude/Codex paths. Its compression
+transforms remain off: no saving percentage is claimed. Any future challenger
+must beat Headroom-only on accepted-unit cost and quality under paired replay,
+not merely expose more routing features.
