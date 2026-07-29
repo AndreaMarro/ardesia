@@ -1913,6 +1913,48 @@ def codex_cli_compatible(version_output: str) -> bool:
     return bool(match and tuple(int(part) for part in match.groups()) >= (0, 145, 0))
 
 
+def writer_auth_state(policy: Dict[str, Any]) -> Dict[str, Any]:
+    """Decide whether the writer can authenticate, from recorded evidence only.
+
+    No API call: the most recent provider response already says. This exists
+    because a slice builds a worktree, applies its seed and runs the full test
+    suite, typecheck and build - about ten minutes - before the writer is ever
+    invoked. When the credential is dead that entire preamble is burned to learn
+    something the last response already recorded.
+
+    A later success clears an earlier revocation, so recovery needs no manual
+    reset. Transient overload is explicitly not an auth failure.
+    """
+    runtime = runtime_path(policy)
+    root = runtime / "artifacts" / "productive-runs"
+    latest: Optional[Tuple[float, Path]] = None
+    if root.is_dir():
+        for candidate in root.glob("*/*claude-response.json"):
+            try:
+                stamp = candidate.stat().st_mtime
+            except OSError:
+                continue
+            if latest is None or stamp > latest[0]:
+                latest = (stamp, candidate)
+    if latest is None:
+        return {"state": "PRESUMED_VALID", "reason": "no writer response recorded yet"}
+    response = read_json(latest[1], {}) or {}
+    verdict = classify_block_reason("", response)
+    if verdict["class"] == "B_AUTH":
+        return {
+            "state": "REVOKED_NEEDS_LOGIN",
+            "reason": "the most recent writer response was rejected by the provider",
+            "observed_at": dt.datetime.fromtimestamp(latest[0], dt.timezone.utc).isoformat(),
+            "observed_cost": response.get("total_cost_usd"),
+            "evidence_path": str(latest[1]),
+        }
+    return {
+        "state": "PRESUMED_VALID",
+        "reason": "the most recent writer response authenticated",
+        "observed_at": dt.datetime.fromtimestamp(latest[0], dt.timezone.utc).isoformat(),
+    }
+
+
 def doctor(policy: Dict[str, Any]) -> Dict[str, Any]:
     runtime = runtime_path(policy)
     ensure_runtime(runtime)
@@ -1936,6 +1978,7 @@ def doctor(policy: Dict[str, Any]) -> Dict[str, Any]:
         github_monitor.get("state") in {"CLEAR", "BLOCKING_OVERLAP"}
         and github_monitor_age <= int(policy["schedules"]["mailbox_seconds"]) * 2
     )
+    writer_auth = writer_auth_state(policy)
     codex_version = run_tool(policy, "codex", ["--version"], timeout=10, max_chars=2000)
     codex_version_text = (codex_version["stdout"] + "\n" + codex_version["stderr"]).strip()
     reviewer_cli_compatible = codex_version["exit"] == 0 and codex_cli_compatible(codex_version_text)
@@ -1950,6 +1993,14 @@ def doctor(policy: Dict[str, Any]) -> Dict[str, Any]:
             "observed": "controller-only",
         },
         {"id": "writer_primary", "pass": policy["writer"]["preferred_identity"] == "writer-claude", "observed": policy["writer"]["preferred_identity"]},
+        {
+            # Fails closed on a dead credential so a slice is refused in seconds
+            # instead of after ten minutes of worktree, seed and verification work.
+            "id": "writer_auth",
+            "pass": (not policy["loop"]["enabled"])
+            or writer_auth["state"] != "REVOKED_NEEDS_LOGIN",
+            "observed": writer_auth,
+        },
         {
             "id": "reviewer_cli_compatible",
             "pass": (not policy["loop"]["enabled"]) or reviewer_cli_compatible,

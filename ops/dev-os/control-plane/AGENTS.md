@@ -8,8 +8,8 @@ the template.
 ## Commands
 
 ```bash
-python3 -m unittest test_ardesia_control_plane     # 97 tests, must be green before install
-python3 ardesia_control_plane.py --policy <policy> doctor        # 10 admission checks
+python3 -m unittest test_ardesia_control_plane     # 101 tests, must be green before install
+python3 ardesia_control_plane.py --policy <policy> doctor        # 11 admission checks
 python3 ardesia_control_plane.py --policy <policy> loop-audit --trigger manual
 python3 ardesia_control_plane.py --policy <policy> propose-tasks --task-id <id>
 python3 ardesia_control_plane.py --policy <policy> recover-task --task-id <id> --reason RECOVERED_AFTER_<CODE>
@@ -64,6 +64,24 @@ then copied to `~/Library/LaunchAgents`:
 | `com.ardesia.mcp.loop-audit` | hourly at :41 | none, mechanical |
 | `com.ardesia.mcp.mailbox` / `.watchdog` | 300 s / 900 s | none |
 | `com.ardesia.mcp.backup` | 03:17 | none |
+
+## Writer authentication
+
+`command_environment()` passes a tight allowlist and deliberately no
+`ANTHROPIC_API_KEY`, so the writer authenticates only through the `claude` CLI's
+stored OAuth credentials on the runtime host. There is no non-interactive path:
+recovering a revoked token requires `ssh -t macmini 'claude'` then `/login`, run
+by a human. An agent must not do this.
+
+`writer_auth_state` reads the most recent provider response and fails the
+`writer_auth` doctor check on a 401/403 or a revoked-token message. No API call.
+A later success clears it, so recovery needs no manual reset, and a transient
+overload is explicitly not an auth failure.
+
+Why it is a gate and not a warning: a slice builds a worktree, applies its seed
+and runs the full suite, typecheck and build — about ten minutes — before the
+writer is invoked. BETA-005 burned all of that and then died on a 401 in ten
+seconds, while doctor reported 10/10 READY throughout.
 
 ## Block-reason taxonomy
 

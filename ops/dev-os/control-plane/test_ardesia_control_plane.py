@@ -3939,6 +3939,53 @@ class ControlPlaneTests(unittest.TestCase):
                     len(decision["residual_findings"]), len(severities), task_id
                 )
 
+    # ---- writer auth pre-flight ---------------------------------------
+    # BETA-005 built a worktree, applied a seed and ran the full test suite,
+    # typecheck and build - about ten minutes - before the writer died on a 401
+    # in ten seconds. doctor reported 10/10 READY_FOR_PRODUCTIVE_LOOP throughout.
+    # A gate that cannot see a revoked credential is a false green.
+
+    def _writer_response(self, task_id: str, payload: Dict[str, Any]) -> None:
+        target = self.runtime / "artifacts" / "productive-runs" / task_id
+        target.mkdir(parents=True, exist_ok=True)
+        cp.write_json(target / "implement-claude-response.json", payload)
+
+    def test_revoked_credential_is_detected_without_calling_the_api(self) -> None:
+        self._writer_response(
+            "T1",
+            {
+                "api_error_status": 401,
+                "is_error": True,
+                "total_cost_usd": 0,
+                "result": "OAuth access token has been revoked.",
+            },
+        )
+        state = cp.writer_auth_state(self.policy)
+        self.assertEqual(state["state"], "REVOKED_NEEDS_LOGIN")
+        self.assertEqual(state["observed_cost"], 0)
+
+    def test_a_later_success_clears_a_previous_revocation(self) -> None:
+        self._writer_response("T1", {"api_error_status": 401, "total_cost_usd": 0})
+        time.sleep(0.01)
+        self._writer_response("T2", {"is_error": False, "total_cost_usd": 12.5})
+        self.assertEqual(cp.writer_auth_state(self.policy)["state"], "PRESUMED_VALID")
+
+    def test_a_transient_overload_is_not_an_auth_failure(self) -> None:
+        self._writer_response(
+            "T1", {"is_error": True, "total_cost_usd": 3.9, "result": "overloaded_error"}
+        )
+        self.assertEqual(cp.writer_auth_state(self.policy)["state"], "PRESUMED_VALID")
+
+    def test_doctor_refuses_to_admit_work_when_the_writer_cannot_authenticate(self) -> None:
+        self._writer_response("T1", {"api_error_status": 401, "total_cost_usd": 0})
+        policy = copy.deepcopy(self.policy)
+        policy["loop"]["enabled"] = True
+        policy["writer"]["automatic_dispatch"] = True
+        health = cp.doctor(policy)
+        check = next(item for item in health["checks"] if item["id"] == "writer_auth")
+        self.assertFalse(check["pass"])
+        self.assertEqual(health["state"], "PAUSED_SAFETY")
+
     # ---- Obsidian append and read -------------------------------------
     # governed_obsidian_write is immutable per path: it raises on any content
     # change. That is right for receipts and wrong for a running log, which is
