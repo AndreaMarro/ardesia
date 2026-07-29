@@ -351,21 +351,33 @@ function mapUnavailableWorkspaceCode(
  * suoi oggetti originali non puo' mutare replay, evidence o projection
  * dopo il ritorno del loader.
  */
+/**
+ * Collezione vuota condivisa, congelata.
+ *
+ * Ogni ramo di `validateStoredEnvelopes` deve restituire una collezione fresca
+ * e congelata. Il ramo zero-row restituiva `raw`, cioe' l'array POSSEDUTO
+ * dall'adapter: chi lo trattiene poteva mutarlo dopo il load e cambiare replay,
+ * evidenceByOccurrence e proiezione. I rami di fallimento restituivano `[]`
+ * fresco ma non congelato. Un singleton congelato e' sicuro da condividere:
+ * nessuno puo' mutarlo, e la sua identita' non e' mai quella dell'adapter.
+ */
+const EMPTY_ENVELOPES = Object.freeze([]) as readonly AppendedEventEnvelopeV2[]
+
 function validateStoredEnvelopes(
   raw: readonly AppendedEventEnvelopeV2[],
   scope: ContinuityScopeV1,
 ): { events: readonly AppendedEventEnvelopeV2[]; issue: ContinuitySourceIssueV1 | null } {
-  if (raw.length === 0) return { events: raw, issue: null }
+  if (raw.length === 0) return { events: EMPTY_ENVELOPES, issue: null }
   const seqs = new Set<number>()
   const eventIds = new Set<string>()
   const idempotencyKeys = new Set<string>()
   let previousSeq = 0
   for (const envelope of raw) {
     if (!Number.isInteger(envelope.seq) || envelope.seq <= 0 || envelope.seq <= previousSeq) {
-      return { events: [], issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
+      return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
     }
     if (seqs.has(envelope.seq)) {
-      return { events: [], issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
+      return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
     }
     seqs.add(envelope.seq)
     previousSeq = envelope.seq
@@ -375,18 +387,18 @@ function validateStoredEnvelopes(
       assertFounderBetaAuthority(withoutSeq)
       assertLessonOsEnvelopePayload(withoutSeq.kind, withoutSeq.payload)
     } catch {
-      return { events: [], issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
+      return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "invalid-schema") }
     }
     if (envelope.lessonId !== scope.lessonId || envelope.sessionId !== scope.sessionId) {
-      return { events: [], issue: issue("lesson-event-log", "corrupt", "scope-violation") }
+      return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "scope-violation") }
     }
     if (eventIds.has(envelope.eventId)) {
-      return { events: [], issue: issue("lesson-event-log", "corrupt", "duplicate-event-id") }
+      return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "duplicate-event-id") }
     }
     eventIds.add(envelope.eventId)
     if (envelope.idempotencyKey !== null) {
       if (idempotencyKeys.has(envelope.idempotencyKey)) {
-        return { events: [], issue: issue("lesson-event-log", "corrupt", "duplicate-event-id") }
+        return { events: EMPTY_ENVELOPES, issue: issue("lesson-event-log", "corrupt", "duplicate-event-id") }
       }
       idempotencyKeys.add(envelope.idempotencyKey)
     }
@@ -832,7 +844,9 @@ async function buildScopedSnapshot(
   factories: ContinuityRuntimeAdapterFactories,
 ): Promise<LoadScopedContinuityResultV1> {
   const issues: ContinuitySourceIssueV1[] = []
-  let lessonEvents: readonly AppendedEventEnvelopeV2[] = []
+  // Su fallimento di validazione la collezione congelata viene scartata e
+  // sopravvive questo inizializzatore: deve essere congelato anch'esso.
+  let lessonEvents: readonly AppendedEventEnvelopeV2[] = EMPTY_ENVELOPES
 
   const persistenceProblem = persistenceIssueForEvents(eventReader.persistence)
   if (persistenceProblem !== null) {
@@ -850,7 +864,7 @@ async function buildScopedSnapshot(
       raw = await eventReader.readEnvelopesBySession(scope.lessonId, scope.sessionId)
     } catch {
       issues.push(issue("lesson-event-log", "corrupt", "invalid-schema"))
-      raw = []
+      raw = EMPTY_ENVELOPES
     }
     const { events, issue: validationIssue } = validateStoredEnvelopes(raw, scope)
     if (validationIssue !== null) {
@@ -890,7 +904,7 @@ async function buildScopedSnapshot(
     const { violation, legacyPluginMount } = checkRedundantRoomScope(lessonEvents, scope)
     if (violation !== null) {
       issues.push(violation)
-      lessonEvents = []
+      lessonEvents = EMPTY_ENVELOPES
     } else if (legacyPluginMount) {
       // Contratto legacy visibile ma non blocca la union: la Simulation ne
       // deriva `event-contract-legacy` a livello projector.
@@ -920,7 +934,7 @@ async function buildScopedSnapshot(
   let journalEvents = journalResult.entries
   if (unionCorrupted) {
     issues.push(issue("event-union", "corrupt", "duplicate-event-id"))
-    lessonEvents = []
+    lessonEvents = EMPTY_ENVELOPES
     journalEvents = Object.freeze([])
   }
 

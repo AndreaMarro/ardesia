@@ -2032,3 +2032,45 @@ describe("loadScopedContinuitySnapshot — contenimento indipendente di factory 
     expect(workspaceDisposed).toBe(1)
   })
 })
+
+describe("validateStoredEnvelopes — ogni ramo restituisce una collezione fresca e congelata (accept #4)", () => {
+  // Difetto: il ramo zero-row restituiva `raw`, cioe' l'array POSSEDUTO
+  // dall'adapter. Chi lo trattiene puo' mutarlo dopo il load e cambiare la
+  // proiezione. I rami di fallimento restituivano `[]` fresco ma non congelato.
+  it("zero envelope: la collezione non e' l'array dell'adapter, e' congelata, e mutarla non altera lo snapshot", async () => {
+    const adapterArray: AppendedEventEnvelopeV2[] = []
+    const reader = verifiedReader([])
+    reader.readEnvelopesBySession = async () => adapterArray as readonly AppendedEventEnvelopeV2[]
+
+    const factories = {
+      createEventReader: async () => reader,
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    const snapshot = loadedOrThrow(await loadScopedContinuitySnapshot(SCOPE_INPUT, factories))
+
+    expect(snapshot.lessonEvents).not.toBe(adapterArray)
+    expect(Object.isFrozen(snapshot.lessonEvents)).toBe(true)
+
+    adapterArray.push({ seq: 1 } as unknown as AppendedEventEnvelopeV2)
+    expect(snapshot.lessonEvents.length).toBe(0)
+  })
+
+  it("envelope corrotto: il ramo di fallimento restituisce comunque una collezione congelata", async () => {
+    const corrupt = [{ seq: 0 } as unknown as AppendedEventEnvelopeV2]
+    const reader = verifiedReader([])
+    reader.readEnvelopesBySession = async () => corrupt as readonly AppendedEventEnvelopeV2[]
+
+    const factories = {
+      createEventReader: async () => reader,
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    const snapshot = loadedOrThrow(await loadScopedContinuitySnapshot(SCOPE_INPUT, factories))
+
+    expect(Object.isFrozen(snapshot.lessonEvents)).toBe(true)
+    expect(snapshot.lessonEvents.length).toBe(0)
+  })
+})
