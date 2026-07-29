@@ -266,32 +266,46 @@ export type LoadScopedContinuityResultV1 =
 async function sha256Hex(bytes: Uint8Array): Promise<string> {
   const crypto = (globalThis as { crypto?: Crypto }).crypto
   if (!crypto?.subtle) throw new Error("Continuity loader: Web Crypto non disponibile")
-  // Il difetto e' di REALM, non di copia.
+  // Il digest fallisce in un solo ambiente - il gate CI preview-studio-check su
+  // Linux - e non si riproduce qui: non con Node 25, non con Node 22 pinnato al
+  // workflow, non col pool forks forzato, non con dipendenze allineate al
+  // lockfile. Tre correzioni basate su ipotesi di realm hanno fallito.
   //
-  // jsdom converte `BufferSource` con WebIDL, che valida via `instanceof`
-  // contro il PROPRIO realm. Un buffer nato altrove viene rifiutato con
-  // "2nd argument is not instance of ArrayBuffer, Buffer, TypedArray, or
-  // DataView", ed e' quello che la CI Linux mostra mentre macOS non lo espone.
-  //
-  // Due tentativi precedenti hanno sbagliato bersaglio: allocarne uno nuovo nel
-  // modulo (realm del modulo) e passare `bytes.buffer` (realm della sorgente,
-  // che con fake-indexeddb non e' quello di jsdom). Entrambi assumevano di
-  // sapere QUALE realm fosse giusto.
-  //
-  // L'invariante corretta non richiede di saperlo: stiamo invocando
-  // `crypto.subtle` preso da `globalThis`, quindi allochiamo con il costruttore
-  // preso dallo STESSO `globalThis`, al momento della chiamata. Coerenti per
-  // costruzione, in qualunque ambiente. In un browser reale e' un no-op: li'
-  // il costruttore del modulo e quello globale coincidono.
+  // Invece di indovinare una quarta volta, il fallimento viene reso
+  // auto-descrittivo: si valida l'ingresso PRIMA di chiamare la WebCrypto, e in
+  // caso di rifiuto si riporta cosa e' arrivato davvero. Un TypeError WebIDL
+  // opaco non dice se il problema e' il realm, il tipo o un valore assente.
+  // Questo e' comunque codice migliore: un errore che nomina la causa.
+  const describe = (value: unknown): string => {
+    if (value === null || value === undefined) return String(value)
+    const ctor = (value as { constructor?: { name?: string } }).constructor
+    return `${typeof value}/${ctor?.name ?? "anonymous"}`
+  }
+  if (!ArrayBuffer.isView(bytes)) {
+    throw new TypeError(
+      `Continuity loader: sha256Hex richiede una vista tipizzata, ricevuto ${describe(bytes)}`,
+    )
+  }
   const scope = globalThis as unknown as {
     ArrayBuffer: ArrayBufferConstructor
     Uint8Array: Uint8ArrayConstructor
   }
   const owned = new scope.ArrayBuffer(bytes.byteLength)
   new scope.Uint8Array(owned).set(bytes)
-  const digest = new scope.Uint8Array(
-    await crypto.subtle.digest("SHA-256", owned),
-  )
+  let digest: Uint8Array
+  try {
+    digest = new scope.Uint8Array(await crypto.subtle.digest("SHA-256", owned))
+  } catch (error) {
+    throw new TypeError(
+      "Continuity loader: WebCrypto ha rifiutato il buffer del digest. " +
+        `input=${describe(bytes)} ` +
+        `buffer=${describe(owned)} ` +
+        `globalArrayBuffer=${scope.ArrayBuffer === ArrayBuffer ? "same-as-module" : "DIFFERENT-FROM-MODULE"} ` +
+        `crypto=${describe(crypto)} ` +
+        `subtle=${describe(crypto.subtle)} ` +
+        `cause=${error instanceof Error ? error.message : String(error)}`,
+    )
+  }
   return [...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")
 }
 
