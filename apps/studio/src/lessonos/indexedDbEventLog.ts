@@ -627,6 +627,50 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
     return [...rows].sort((left, right) => left.seq - right.seq)
   }
 
+  /**
+   * Sessioni distinte gia' scritte per la lezione, in ordine di indice.
+   *
+   * Serve perche' `bootstrapLessonOs` genera un `sessionId` nuovo a ogni
+   * avvio e non lo espone in nessuna URL: senza enumerazione si potrebbe
+   * riprendere solo una sessione di cui si conosca gia' l'UUID a memoria.
+   *
+   * Non legge il contenuto degli eventi. `openKeyCursor` non materializza mai
+   * il valore della riga, e dopo ogni sessione trovata il cursore salta oltre
+   * tutte le sue `seq` invece di attraversarle: nell'ordinamento delle chiavi
+   * IndexedDB un array e' maggiore di qualunque numero, quindi
+   * `[lessonId, sessionId, []]` e' esattamente la prima chiave della sessione
+   * successiva. Il costo e' una posizione di cursore per sessione, non per
+   * evento.
+   */
+  async listSessionIds(lessonId: string): Promise<readonly string[]> {
+    const db = this.db
+    if (!db) throw new Error("LessonOS event log: database non aperto")
+    const index = db
+      .transaction(STORE_NAME, "readonly")
+      .objectStore(STORE_NAME)
+      .index(SESSION_INDEX_NAME)
+    // `[]` ordina dopo ogni stringa: il bound superiore copre ogni sessionId
+    // della lezione senza nominarne alcuno.
+    const range = IDBKeyRange.bound([lessonId], [lessonId, []])
+    const sessions: string[] = []
+    await new Promise<void>((resolve, reject) => {
+      const request = index.openKeyCursor(range)
+      request.onerror = () =>
+        reject(request.error ?? new Error("LessonOS event log: cursore sessioni fallito"))
+      request.onsuccess = () => {
+        const cursor = request.result
+        if (cursor === null) {
+          resolve()
+          return
+        }
+        const sessionId = (cursor.key as [string, string, number])[1]
+        sessions.push(sessionId)
+        cursor.continue([lessonId, sessionId, []])
+      }
+    })
+    return Object.freeze(sessions)
+  }
+
   async readAll(): Promise<AppendedEvent[]> {
     const projected = (await this.readAllEnvelopes()).map(toLegacyLessonOsEvent)
     return projected.filter((event): event is AppendedEvent => event !== null)
