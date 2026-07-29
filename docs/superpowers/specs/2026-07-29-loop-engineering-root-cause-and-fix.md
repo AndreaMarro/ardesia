@@ -265,7 +265,98 @@ Expected outcome on the next 30-minute tick: the candidate is rebuilt, the mecha
 
 ---
 
-## 9. The general lesson
+## 9. Independent confirmation from the literature
+
+Two parallel research sweeps were run against the published state of the art. Both converged on this system's failure mode without being told what the fix was. The measurements below are external, not ours.
+
+### 9.1 The reviewer configuration is the single worst-documented choice available
+
+*Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement* ([arXiv:2603.00539](https://arxiv.org/html/2603.00539v1)) feeds **provably correct** code to LLM reviewers and measures how often they declare it non-conforming:
+
+| Model / benchmark | Direct prompt | **"Explain + propose corrections" prompt** |
+|---|---:|---:|
+| GPT-4o / HumanEval | 26.2 % | **73.2 %** |
+| GPT-4o / MBPP | 35.9 % | **87.9 %** |
+| Llama-3.1-8B / MBPP | 74.7 % | **88.2 %** |
+
+Verbatim: *"more detailed prompt design, particularly with those requiring explanations and proposed corrections, leads to higher misjudgment rates."*
+
+The right-hand column is a near-exact description of this system's reviewer: `xhigh` effort, required to explain every finding and propose a correction, against a long conjunctive requirement list. A companion paper ([arXiv:2508.12358](https://arxiv.org/html/2508.12358v1)) measures the same configuration's Requirement-Conformance Recognition Rate at **11.0 %** — it calls 89 % of correct programs defective.
+
+**Our observed rate: 0 acceptances in 6 review invocations. That is squarely inside the published distribution.** The reviewer was not reacting to the code. It was doing what that prompt shape makes models do.
+
+Supporting measurements:
+
+- **Precision of review agents: 3.56–5.10 %** (CR-Bench, [arXiv:2603.11078](https://arxiv.org/html/2603.11078v1)). ~95 % of flagged items are not real issues. Applied here: **22 findings ≈ 1 real issue.**
+- **Reviewer verdicts are not deterministic at temperature 0** — run-to-run consistency 0.74–0.82 ([arXiv:2502.20747](https://arxiv.org/html/2502.20747)). A gate built on it is a stochastic gate with no fixed point.
+- **Anthropic's own Claude Agent SDK guidance ranks LLM-as-judge last**, behind rule-based and visual feedback, and calls it *"generally not a very robust method."*
+- **Claude Code best practices state the failure outright**: *"A reviewer prompted to find gaps will usually report some, even when the work is sound, because that is what it was asked to do."*
+
+### 9.2 The retry topology was mathematically guaranteed to block
+
+With `q` = probability the reviewer emits at least one blocking objection on a pass, and repair budget `R`, the reviewer runs `R+1` times:
+
+```
+P(accept) = 1 − q^(R+1)
+```
+
+At `R = 1` and the measured `q ≈ 0.89`, `P(accept) ≈ 20.8 %` per task. Across 3 tasks, `P(zero acceptances) ≈ 0.50` — entirely unremarkable. At `q = 0.95`, `P(accept) = 9.75 %`.
+
+Reaching a 90 % chance of *ever* being accepted requires `R+1 ≥ ln(0.10)/ln(q)`: **22 passes at q = 0.90, 45 at q = 0.95.** A budget of 1 is one to two orders of magnitude short.
+
+Crucially, `q` does not fall after a repair. The reviewer is stateless — it re-samples every category each pass, including the ones that stayed silent last time — and repairs add new surface (new names, signatures, tests) to object to. This is a Bernoulli process with fixed per-pass success probability, not a converging one.
+
+### 9.3 The mechanism I under-weighted: falsified-candidate seeding *is* the ratchet
+
+The strongest external recommendation is one this system does the exact opposite of: **on a failed gate, `git reset --hard` so the attempt leaves no residue.**
+
+This controller does the reverse. `FALSIFIED_CANDIDATE_FROZEN` → `FALSIFIED_CANDIDATE_SEED_APPLIED` carries each rejected candidate forward as the seed of the next task: BETA-003 → BETA-004 → BETA-005. Every retry therefore inherits the previous objection set *and* attracts fresh ones, while the diff grows (+1,955 → +3,424). Requirement count rises, candidate size rises, and per-pass quality falls to context dilution.
+
+That is a monotonically **diverging** loop by construction. The fix in §6 removes most of its fuel — candidates now ship instead of being frozen, so the seeding path is rarely reached — but the mechanism remains in the code and should be removed deliberately.
+
+### 9.4 The scope was outside the tractable band
+
+SWE-bench-Live ([arXiv:2505.23419](https://arxiv.org/html/2505.23419v2)) resolution rate by patch scope:
+
+| Gold patch scope | Resolution rate |
+|---|---:|
+| 1 file, < 5 lines | ~48 % |
+| 3+ files | **< 10 %** |
+| > 100 lines | **< 10 %** |
+| 7+ files | **0 % — never solved** |
+
+Best-in-class systems on the easier SWE-bench Verified multi-file subset top out at **28–30 %**. Epoch AI's analysis shows 90 % of that benchmark is under one hour of experienced-engineer work, averaging 5–14 changed lines.
+
+**Our tasks: 5 files, 2,000–3,400 added lines, ~16 conjunctive clauses.** That is the < 10 % band before the reviewer is even consulted.
+
+Task duration compounds it. Anthropic's autonomy measurements put the 99.9th percentile of real Claude Code turns at **~45 minutes**. Toby Ord's half-life model ([arXiv:2505.05115](https://arxiv.org/abs/2505.05115)) — *"a constant rate of failing during each minute a human would take to do the task"* — makes success decay as `2^(−T/h)`. Raising the acceptance threshold does not tighten a filter; it shrinks the tractable task by roughly **70×** going from 50 % to 99 % confidence.
+
+### 9.5 Scale is not the problem, and never was
+
+`mini-swe-agent` is **~100 lines of Python**, bash-only, no scaffolding — and scores **> 74 % on SWE-bench Verified**.
+
+This control plane is **9,021 lines** and scored **0** over 21 hours.
+
+The correlation between control-plane size and throughput in this comparison is not merely absent; the published guidance is that added orchestration is the standard failed response to a stuck loop: *"When a loop gets stuck, the temptation is to add multi-agent coordination, a planner, a task graph — but this has been tried and failed."*
+
+### 9.6 Recommendations not yet implemented
+
+Ranked by expected effect, from the research and consistent with §7:
+
+1. **Split the five tasks into single-file units of ≤ 50 lines.** Largest remaining lever: moves per-attempt odds from < 10 % to ~48–72 %.
+2. **Delete falsified-candidate seeding; reset to base on a red gate.** Removes the requirement ratchet at its root.
+3. **Convert `forbidden_changes` prose into a mechanical linter.** This is precisely what OpenAI's Codex harness team did for architecture drift — a deny-glob plus import-graph assertions cannot be argued with, whereas prose constraints must be re-interpreted by a stochastic reviewer every cycle.
+4. **Add a no-progress circuit breaker: 3 consecutive cycles with zero accepted units ⇒ halt and escalate.** This system ran 58. Reference implementations use `CB_NO_PROGRESS_THRESHOLD=3`.
+5. **Shorten the reviewer prompt.** Counter-intuitive but measured: the "direct" prompt has a 26–36 % false-rejection rate against the "full" prompt's 60–88 %. Less instruction, not more.
+6. **Require every accepted finding to become a test before it counts.** A finding that cannot be expressed as a failing test is a design note, not an acceptance criterion.
+
+### 9.7 Sources
+
+Overcorrection [arXiv:2603.00539](https://arxiv.org/html/2603.00539v1) · RCRR [arXiv:2508.12358](https://arxiv.org/html/2508.12358v1) · CR-Bench [arXiv:2603.11078](https://arxiv.org/html/2603.11078v1) · determinism [arXiv:2502.20747](https://arxiv.org/html/2502.20747) · repair budgets [arXiv:2604.10508](https://arxiv.org/html/2604.10508v1), [arXiv:2607.05197](https://arxiv.org/html/2607.05197v1) · SWE-bench-Live [arXiv:2505.23419](https://arxiv.org/html/2505.23419v2) · half-life [arXiv:2505.05115](https://arxiv.org/abs/2505.05115) · self-correction [arXiv:2310.01798](https://arxiv.org/abs/2310.01798) · [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) · [OpenHands stuck detector](https://docs.openhands.dev/sdk/guides/agent-stuck-detector) · [Anthropic: harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) · [Anthropic: building agents with the Agent SDK](https://claude.com/blog/building-agents-with-the-claude-agent-sdk) · [Cognition: don't build multi-agents](https://cognition.com/blog/dont-build-multi-agents) · [ghuntley.com/ralph](https://ghuntley.com/ralph/)
+
+---
+
+## 10. The general lesson
 
 The 30 hours were not wasted on a hard problem. They were spent making a *verifier* stricter while never testing whether the verifier could ever say yes.
 

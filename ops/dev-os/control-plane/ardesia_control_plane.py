@@ -920,8 +920,14 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: Codex must be the independent reviewer")
     if loop["reviewer_model"] != "gpt-5.6-sol" or loop["reviewer_effort"] != "xhigh":
         raise ValueError("policy: scientific reviewer must use gpt-5.6-sol at xhigh effort")
-    if loop["max_repairs"] != 1:
-        raise ValueError("policy: productive loop allows exactly one repair")
+    # Two independent 2026 studies converge on the same repair budget: round one
+    # yields 6.7-71.4% relative improvement, round two 1.5-11.0%, round three
+    # 1.0-3.1%, and round four onward is typically under 2%. Two rounds capture
+    # 76-95% of everything a repair loop can recover (arXiv:2604.10508,
+    # arXiv:2607.05197). Pinning the budget at exactly one discarded the round
+    # that recovers most of the recoverable failures.
+    if not isinstance(loop["max_repairs"], int) or not 1 <= loop["max_repairs"] <= 3:
+        raise ValueError("policy: productive loop allows between one and three repairs")
     if not isinstance(loop["worker_timeout_seconds"], int) or not 600 <= loop["worker_timeout_seconds"] <= 28800:
         raise ValueError("policy: worker timeout outside bounded range")
     if loop["enabled"] != writer["automatic_dispatch"]:
