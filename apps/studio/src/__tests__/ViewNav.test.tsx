@@ -13,7 +13,7 @@ afterEach(() => {
 describe("viewHref — hash lezione preservato nelle tre superfici Founder Beta", () => {
   it("Lezione riapre la stanza; Continuità e Materiali portano lo stesso hash", () => {
     expect(viewHref("lezione", "#wbstudio-abc")).toBe("/#wbstudio-abc")
-    expect(viewHref("continuita", "#wbstudio-abc")).toBe("/?vista=cruscotto#wbstudio-abc")
+    expect(viewHref("continuita", "#wbstudio-abc")).toBe("/?vista=continuita#wbstudio-abc")
     expect(viewHref("materiali", "#wbstudio-abc")).toBe("/?vista=lezioni-salvate#wbstudio-abc")
   })
 })
@@ -59,7 +59,7 @@ describe("ViewNav — sole Lezione, Continuità e Materiali", () => {
 
     fireEvent.click(continuity)
     expect(onNavigate).toHaveBeenCalledWith(
-      "/?vista=cruscotto#wbstudio-room1",
+      "/?vista=continuita#wbstudio-room1",
     )
     expect(window.location.href).toBe("http://localhost:3000/#wbstudio-room1")
 

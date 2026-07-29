@@ -6,6 +6,7 @@ import { isSimulationPluginView } from "./store/simulationPluginView"
 import { isSavedLessonsView } from "./store/savedLessonsView"
 import { isPluginWizardView } from "./store/pluginWizardView"
 import { isTeacherDashboardView } from "./store/teacherDashboardView"
+import { isContinuityView } from "./store/continuityView"
 
 // Code-split per vista: Excalidraw (~MB) e le viste che lo usano escono
 // dall'entry — l'entry resta il solo router. Ogni vista arriva come chunk
@@ -19,6 +20,7 @@ const ElabLab = lazy(() => import("./design/ElabLab"))
 const SavedLessonsView = lazy(() => import("./design/SavedLessonsView"))
 const PluginWizard = lazy(() => import("./design/PluginWizard"))
 const TeacherDashboardView = lazy(() => import("./design/TeacherDashboardView"))
+const ContinuityView = lazy(() => import("./design/ContinuityView"))
 
 /** Fallback neutro: header brand senza testo di stato (nessun flash di layout). */
 function ViewFallback() {
@@ -38,7 +40,7 @@ function isMultiPostitWorkbenchView(): boolean {
 export default function App() {
   return (
     <Suspense fallback={<ViewFallback />}>
-      {isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
+      {isContinuityView() ? <ContinuityView /> : isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
     </Suspense>
   )
 }
