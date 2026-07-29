@@ -84,7 +84,14 @@ export interface ContinuityWorkspaceReaderV1 {
 }
 
 export interface ContinuityRuntimeAdapterFactories {
-  createEventReader(): Promise<ContinuityEventReaderV1>
+  /**
+   * Riceve lo scope GIA' validato (clausola 2: catturato e validato prima di
+   * costruire qualunque persistence). Serve perche' l'integrita' del log sia
+   * attribuita allo scope richiesto invece che calcolata globalmente
+   * (clausola 6). Il parametro e' opzionale: una factory a zero argomenti
+   * resta assegnabile, quindi il cablaggio e' additivo.
+   */
+  createEventReader(scope?: ContinuityScopeV1): Promise<ContinuityEventReaderV1>
   createWorkspaceReader(): Promise<ContinuityWorkspaceReaderV1>
   buildCommitSha: string | null
 }
@@ -138,8 +145,13 @@ function cloneFrozen<T>(value: T): T {
  */
 export async function openIndexedDbContinuityEventReader(
   options: IndexedDbEventLogOptions = {},
+  scope?: ContinuityScopeV1,
 ): Promise<ContinuityEventReaderV1> {
-  const handle = await openIndexedDbEventLog(options)
+  const handle = await openIndexedDbEventLog(
+    scope === undefined
+      ? options
+      : { ...options, scope: { lessonId: scope.lessonId, sessionId: scope.sessionId } },
+  )
   const backend = handle.backend
   const dispose = async (): Promise<void> => {
     try { await handle.close() } catch { /* best effort */ }
@@ -838,7 +850,7 @@ export async function loadScopedContinuitySnapshot(
   // untyped, deve tradursi in un reader "unavailable/factory-rejected" cosi'
   // che il loader emetta la issue tipata e proceda.
   const [eventReaderResult, workspaceReaderResult] = await Promise.allSettled([
-    settled(() => factories.createEventReader()),
+    settled(() => factories.createEventReader(scope)),
     settled(() => factories.createWorkspaceReader()),
   ])
   const eventReader: ContinuityEventReaderV1 = eventReaderResult.status === "fulfilled"

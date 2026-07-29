@@ -2264,3 +2264,41 @@ describe("openIndexedDbEventLog — l integrita e attribuita allo scope richiest
     }
   })
 })
+
+describe("loadScopedContinuitySnapshot — lo scope validato raggiunge davvero l apertura del log (accept #6)", () => {
+  it("il loader passa lo scope alla factory, cosi l integrita non e piu globale", async () => {
+    // La capacita' di attribuire esiste in openIndexedDbEventLog, ma senza
+    // cablaggio il loader non la usa e il difetto resta vivo sul percorso reale.
+    const factory = createFactoryWithMalformedRowOfAnotherScope()
+    let captured: ContinuityEventReaderV1 | null = null
+
+    const factories = {
+      createEventReader: async (
+        scope?: Parameters<ContinuityRuntimeAdapterFactories["createEventReader"]>[0],
+      ) => {
+        captured = await openIndexedDbContinuityEventReader({ factory }, scope)
+        return captured
+      },
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    await loadScopedContinuitySnapshot(SCOPE_INPUT, factories)
+
+    expect(captured).not.toBeNull()
+    expect(captured!.persistence.kind).toBe("verified-indexeddb")
+  })
+
+  it("una factory che ignora il parametro resta valida: il cablaggio e additivo", async () => {
+    // Retrocompatibilita': le factory a zero argomenti restano assegnabili.
+    const factories = {
+      createEventReader: async () => verifiedReader([]),
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    const result = await loadScopedContinuitySnapshot(SCOPE_INPUT, factories)
+
+    expect(result.kind).toBe("loaded")
+  })
+})
