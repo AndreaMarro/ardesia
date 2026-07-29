@@ -142,6 +142,22 @@ REQUIRED_SOURCE_CONTENT_PRIORITY = (
 )
 # The adversarial audit-packet test proves eight bounded task snapshots fit 24k.
 MAX_SCIENTIFIC_AUDIT_TASKS = 8
+# How a verified candidate becomes a local branch commit.
+#
+# REVIEW_UNANIMOUS     the original predicate: an independent LLM reviewer must
+#                      return the literal verdict "PASS". Kept so earlier runs
+#                      stay exactly reproducible.
+# DETERMINISTIC_ORACLE the candidate ships when the mechanical oracle (the task's
+#                      own verification commands: tests, typecheck, build) is
+#                      green and the reviewer raised neither a structural BLOCKED
+#                      nor a critical finding. Surviving major/minor findings are
+#                      recorded as residual work instead of discarding a diff
+#                      that already passes every deterministic gate.
+#
+# Neither mode pushes, merges or deploys. Both terminate at READY_FOR_HUMAN.
+ACCEPTANCE_MODES = {"REVIEW_UNANIMOUS", "DETERMINISTIC_ORACLE"}
+# A reviewer finding at or above this severity still blocks the commit.
+BLOCKING_REVIEW_SEVERITIES = {"critical", "blocker"}
 COMPACT_TASK_HASH_FIELDS = (
     "acceptance_digest",
     "acceptance_sha",
@@ -776,8 +792,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: backup time invalid")
     github = strict_object(
         policy["github"],
-        {"repository", "issue", "trusted_authors"},
-        {"repository", "issue", "trusted_authors"},
+        {"repository", "issue", "trusted_authors", "overlap_stale_days"},
+        {"repository", "issue", "trusted_authors", "overlap_stale_days"},
         "github",
     )
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", github["repository"]):
@@ -786,6 +802,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: invalid GitHub issue")
     if not isinstance(github["trusted_authors"], list) or not github["trusted_authors"]:
         raise ValueError("policy: trusted authors required")
+    if not isinstance(github["overlap_stale_days"], int) or not 1 <= github["overlap_stale_days"] <= 365:
+        raise ValueError("policy: overlap staleness window outside bounded range")
     security = strict_object(
         policy["security"],
         {"context_digest", "acceptance_digest", "loopback_only", "external_sources_data_only", "append_only_audit"},
@@ -865,6 +883,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         {
             "enabled",
             "queue_mode",
+            "acceptance_mode",
+            "max_added_lines",
             "reviewer_identity",
             "reviewer_model",
             "reviewer_effort",
@@ -875,6 +895,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         {
             "enabled",
             "queue_mode",
+            "acceptance_mode",
+            "max_added_lines",
             "reviewer_identity",
             "reviewer_model",
             "reviewer_effort",
@@ -888,6 +910,12 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: loop enabled must be boolean")
     if loop["queue_mode"] != "PREAPPROVED_IMMUTABLE":
         raise ValueError("policy: loop queue must be immutable and pre-approved")
+    if loop["acceptance_mode"] not in ACCEPTANCE_MODES:
+        raise ValueError(
+            "policy: acceptance mode must be one of " + ", ".join(sorted(ACCEPTANCE_MODES))
+        )
+    if not isinstance(loop["max_added_lines"], int) or not 1 <= loop["max_added_lines"] <= 20000:
+        raise ValueError("policy: max added lines outside bounded range")
     if loop["reviewer_identity"] != "reviewer-codex":
         raise ValueError("policy: Codex must be the independent reviewer")
     if loop["reviewer_model"] != "gpt-5.6-sol" or loop["reviewer_effort"] != "xhigh":
@@ -5860,8 +5888,31 @@ def codex_live_probe(policy: Dict[str, Any]) -> Dict[str, Any]:
             process.wait(timeout=5)
 
 
-def task_overlap_from_pull_requests(task: Dict[str, Any], pull_requests: List[Dict[str, Any]]) -> Dict[str, Any]:
+def pull_request_is_stale(pull_request: Dict[str, Any], stale_days: int) -> bool:
+    """An open PR nobody has touched for stale_days is abandoned work, not a peer.
+
+    The overlap gate exists to stop two live writers editing one file. Treating
+    an untouched sixteen-day-old branch as a live writer permanently locks every
+    file it happens to mention, which is how one task was refused in five
+    seconds against a branch abandoned two weeks earlier.
+    """
+    updated = pull_request.get("updatedAt")
+    if not isinstance(updated, str) or not updated:
+        return False
+    try:
+        age = (utcnow() - parse_time(updated)).total_seconds()
+    except (TypeError, ValueError):
+        return False
+    return age > stale_days * 86400
+
+
+def task_overlap_from_pull_requests(
+    task: Dict[str, Any],
+    pull_requests: List[Dict[str, Any]],
+    stale_days: Optional[int] = None,
+) -> Dict[str, Any]:
     overlaps: List[Dict[str, Any]] = []
+    exempted: List[Dict[str, Any]] = []
     for pull_request in pull_requests:
         files = [
             item.get("path", "")
@@ -5876,17 +5927,20 @@ def task_overlap_from_pull_requests(task: Dict[str, Any], pull_requests: List[Di
             }
         )
         if matched:
-            overlaps.append(
-                {
-                    "number": pull_request.get("number"),
-                    "head": pull_request.get("headRefName"),
-                    "files": matched,
-                }
-            )
+            record = {
+                "number": pull_request.get("number"),
+                "head": pull_request.get("headRefName"),
+                "files": matched,
+            }
+            if stale_days is not None and pull_request_is_stale(pull_request, stale_days):
+                exempted.append({**record, "updated_at": pull_request.get("updatedAt")})
+            else:
+                overlaps.append(record)
     return {
         "state": "CLEAR" if not overlaps else "OVERLAP",
         "open_pr_count": len(pull_requests),
         "overlaps": overlaps,
+        "stale_exempted": exempted,
         "inventory_digest": sha256_text(canonical_json(pull_requests)),
     }
 
@@ -5985,10 +6039,19 @@ def github_monitor_snapshot(policy: Dict[str, Any], trigger: str) -> Dict[str, A
         pull_requests = github_open_pr_inventory(policy)
         actionable_task_ids = github_actionable_task_ids(policy)
         actionable_set = set(actionable_task_ids)
-        task_overlaps = {
-            task["task_id"]: task_overlap_from_pull_requests(task, pull_requests)["overlaps"]
+        stale_days = int(policy["github"]["overlap_stale_days"])
+        overlap_reports = {
+            task["task_id"]: task_overlap_from_pull_requests(task, pull_requests, stale_days)
             for task in policy["loop"]["tasks"]
             if task["task_id"] in actionable_set
+        }
+        task_overlaps = {
+            task_id: report["overlaps"] for task_id, report in overlap_reports.items()
+        }
+        stale_exempted = {
+            task_id: report["stale_exempted"]
+            for task_id, report in overlap_reports.items()
+            if report["stale_exempted"]
         }
         summaries = [
             {
@@ -6013,6 +6076,8 @@ def github_monitor_snapshot(policy: Dict[str, Any], trigger: str) -> Dict[str, A
             "pull_requests": summaries,
             "actionable_task_ids": actionable_task_ids,
             "task_overlaps": task_overlaps,
+            "stale_exempted_overlaps": stale_exempted,
+            "overlap_stale_days": stale_days,
             "inventory_digest": sha256_text(canonical_json(pull_requests)),
         }
     except (RuntimeError, ValueError, json.JSONDecodeError) as error:
@@ -7721,6 +7786,146 @@ an accepted product delta and not authority to retry, merge or deploy.
     }
 
 
+def evaluate_acceptance(
+    policy: Dict[str, Any],
+    verification: Dict[str, Any],
+    review: Dict[str, Any],
+) -> Dict[str, Any]:
+    """Decide whether a verified candidate may be committed to its local branch.
+
+    The deterministic oracle is authoritative for correctness because it is the
+    only signal in this loop that is reproducible: the task's own verification
+    commands, run on the candidate worktree, with their log hashes recorded.
+
+    The independent reviewer is authoritative only for the two judgements a test
+    run cannot make: that the candidate is structurally wrong (BLOCKED), or that
+    it carries a critical defect. Every other finding is real information about
+    residual work, not grounds for destroying a diff that is already green.
+    """
+    verdict = review.get("verdict")
+    findings = [item for item in (review.get("findings") or []) if isinstance(item, dict)]
+    blocking = [
+        item
+        for item in findings
+        if str(item.get("severity", "")).strip().lower() in BLOCKING_REVIEW_SEVERITIES
+    ]
+    decision = {
+        "acceptance_mode": policy["loop"]["acceptance_mode"],
+        "deterministic_state": verification.get("state"),
+        "review_verdict": verdict,
+        "finding_count": len(findings),
+        "blocking_finding_count": len(blocking),
+        "residual_findings": findings if verdict != "PASS" else [],
+        "accepted": False,
+        "reason": "",
+    }
+    if verification.get("state") != "PASS":
+        decision["reason"] = "deterministic verification did not pass"
+        return decision
+    if verdict == "BLOCKED":
+        decision["reason"] = "independent review returned BLOCKED"
+        return decision
+    if policy["loop"]["acceptance_mode"] == "REVIEW_UNANIMOUS":
+        if verdict != "PASS":
+            decision["reason"] = f"independent review did not pass: {verdict}"
+            return decision
+        decision["accepted"] = True
+        decision["reason"] = "deterministic oracle green and independent review passed"
+        return decision
+    if blocking:
+        decision["reason"] = (
+            f"independent review raised {len(blocking)} critical finding(s)"
+        )
+        return decision
+    decision["accepted"] = True
+    decision["reason"] = (
+        "deterministic oracle green and independent review raised no critical finding"
+    )
+    return decision
+
+
+def write_residual_findings(
+    policy: Dict[str, Any],
+    task: Dict[str, Any],
+    run_directory: Path,
+    decision: Dict[str, Any],
+) -> Dict[str, Any]:
+    """Persist surviving reviewer findings as the next bounded unit of work.
+
+    This is the convergence mechanism. Re-litigating one large candidate against
+    a growing objection set never terminates; carrying each objection forward as
+    its own small, separately verifiable follow-up does.
+    """
+    residual = decision.get("residual_findings") or []
+    payload = {
+        "schema_version": 1,
+        "task_id": task["task_id"],
+        "base_sha": task["base_sha"],
+        "branch": task["branch"],
+        "acceptance_mode": decision["acceptance_mode"],
+        "shipped_with_residual": bool(residual),
+        "residual_count": len(residual),
+        "follow_ups": [
+            {
+                "ordinal": index + 1,
+                "severity": str(item.get("severity", "unspecified")),
+                "file": str(item.get("file", "")),
+                "line": item.get("line"),
+                "message": redact_diagnostic(str(item.get("message", "")), limit=2000),
+                "state": "PROPOSED_NOT_ADMITTED",
+            }
+            for index, item in enumerate(residual)
+        ],
+        "created_at": iso_now(),
+    }
+    path = run_directory / "residual-findings.json"
+    write_json(path, payload, 0o640)
+    return {"path": str(path), "sha256": sha256_file(path), "count": len(residual)}
+
+
+def measure_candidate_batch(
+    policy: Dict[str, Any],
+    task: Dict[str, Any],
+    worktree: Path,
+) -> Dict[str, Any]:
+    """Record how large this candidate is against the configured batch ceiling.
+
+    Batch size was the invisible variable in every blocked run: a candidate of
+    several thousand added lines was reviewed as one indivisible unit, so a
+    single surviving objection discarded all of it. Measuring it on every
+    receipt makes the cost of oversized units visible instead of inferred. This
+    is deliberately non-blocking - it reports, it does not reject.
+    """
+    ceiling = int(policy["loop"]["max_added_lines"])
+    numstat = run_tool(
+        policy,
+        "git",
+        ["-C", str(worktree), "diff", "--numstat", task["base_sha"], "--"],
+        timeout=120,
+        max_chars=200_000,
+    )
+    added = 0
+    removed = 0
+    files = 0
+    if numstat["exit"] == 0:
+        for line in numstat["stdout"].splitlines():
+            columns = line.split("\t")
+            if len(columns) < 3:
+                continue
+            files += 1
+            if columns[0].isdigit():
+                added += int(columns[0])
+            if columns[1].isdigit():
+                removed += int(columns[1])
+    return {
+        "added_lines": added,
+        "removed_lines": removed,
+        "changed_file_count": files,
+        "max_added_lines": ceiling,
+        "within_batch_ceiling": added <= ceiling,
+    }
+
+
 def finalize_productive_slice(
     policy: Dict[str, Any],
     task: Dict[str, Any],
@@ -7731,8 +7936,10 @@ def finalize_productive_slice(
 ) -> int:
     runtime = runtime_path(policy)
     task_id = task["task_id"]
-    if review["verdict"] != "PASS":
-        raise ValueError(f"independent review did not pass: {review['verdict']}")
+    decision = evaluate_acceptance(policy, verification, review)
+    if not decision["accepted"]:
+        raise ValueError(decision["reason"])
+    residual = write_residual_findings(policy, task, run_directory, decision)
     github_phase_gate(policy, task, run_directory, "pre-commit")
     local_coordination_phase_gate(
         policy,
@@ -7742,6 +7949,7 @@ def finalize_productive_slice(
         current_worktree=worktree,
     )
     paths = validate_writer_diff(policy, task, worktree)
+    batch = measure_candidate_batch(policy, task, worktree)
     update_productive_state(policy, task_id, "COMMIT", worker_pid=os.getpid(), changed_files=paths)
     staged = run_tool(policy, "git", ["-C", str(worktree), "add", "--", *paths])
     if staged["exit"] != 0:
@@ -7783,6 +7991,11 @@ def finalize_productive_slice(
         "changed_files": paths,
         "verification": verification,
         "review": review,
+        "acceptance": {
+            key: value for key, value in decision.items() if key != "residual_findings"
+        },
+        "batch": batch,
+        "residual_findings": residual,
         "memory_delta": memory,
         "merge": False,
         "deploy": False,
@@ -7799,7 +8012,15 @@ def finalize_productive_slice(
         completion_path=str(run_directory / "completion.json"),
         obsidian_state=memory["obsidian"]["state"],
     )
-    event(runtime, "PRODUCTIVE_SLICE_READY_FOR_HUMAN", task_id=task_id, product_commit=product_commit)
+    event(
+        runtime,
+        "PRODUCTIVE_SLICE_READY_FOR_HUMAN",
+        task_id=task_id,
+        product_commit=product_commit,
+        acceptance_mode=decision["acceptance_mode"],
+        review_verdict=decision["review_verdict"],
+        residual_findings=residual["count"],
+    )
     return 0
 
 

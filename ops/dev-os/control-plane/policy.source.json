@@ -15,7 +15,8 @@
     "issue": 215,
     "trusted_authors": [
       "AndreaMarro"
-    ]
+    ],
+    "overlap_stale_days": 7
   },
   "schedules": {
     "controller_heartbeat_seconds": 60,
@@ -58,6 +59,8 @@
   "loop": {
     "enabled": true,
     "queue_mode": "PREAPPROVED_IMMUTABLE",
+    "acceptance_mode": "DETERMINISTIC_ORACLE",
+    "max_added_lines": 400,
     "reviewer_identity": "reviewer-codex",
     "reviewer_model": "gpt-5.6-sol",
     "reviewer_effort": "xhigh",

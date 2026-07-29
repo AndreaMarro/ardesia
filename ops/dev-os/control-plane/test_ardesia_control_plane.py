@@ -3829,6 +3829,154 @@ class ControlPlaneTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "outside agent-owned"):
             cp.governed_obsidian_write(self.policy, "20-Decisions/ADR.md", "forbidden\n")
 
+    # The acceptance predicate decides whether this loop ever emits anything.
+    # It shipped for 21 hours with no test at all, and rejected every green
+    # candidate it was given. These cases pin both modes against the real
+    # verdicts recorded in artifacts/productive-runs during that run.
+
+    GREEN = {"state": "PASS"}
+
+    def _review(self, verdict: str, severities: tuple[str, ...] = ()) -> dict:
+        return {
+            "verdict": verdict,
+            "summary": "recorded",
+            "findings": [
+                {
+                    "file": "apps/studio/src/lessonos/continuityRuntime.ts",
+                    "line": 192 + index,
+                    "message": "recorded finding",
+                    "severity": severity,
+                }
+                for index, severity in enumerate(severities)
+            ],
+        }
+
+    def _policy_with_mode(self, mode: str) -> dict:
+        policy = copy.deepcopy(self.policy)
+        policy["loop"]["acceptance_mode"] = mode
+        return policy
+
+    def test_review_unanimous_mode_discards_a_fully_green_candidate(self) -> None:
+        # BETA-004: 183/183 test files, 2046 tests, typecheck and build all
+        # passed; the reviewer returned REPAIR_REQUIRED with eight major
+        # findings and the 3,424-line diff was destroyed.
+        policy = self._policy_with_mode("REVIEW_UNANIMOUS")
+        decision = cp.evaluate_acceptance(
+            policy,
+            self.GREEN,
+            self._review("REPAIR_REQUIRED", ("major",) * 8),
+        )
+        self.assertFalse(decision["accepted"])
+        self.assertIn("did not pass", decision["reason"])
+
+    def test_deterministic_oracle_ships_the_same_green_candidate(self) -> None:
+        policy = self._policy_with_mode("DETERMINISTIC_ORACLE")
+        decision = cp.evaluate_acceptance(
+            policy,
+            self.GREEN,
+            self._review("REPAIR_REQUIRED", ("major",) * 8),
+        )
+        self.assertTrue(decision["accepted"])
+        self.assertEqual(decision["blocking_finding_count"], 0)
+        # The findings are not discarded: they become the next unit of work.
+        self.assertEqual(len(decision["residual_findings"]), 8)
+
+    def test_deterministic_oracle_still_refuses_a_red_mechanical_oracle(self) -> None:
+        policy = self._policy_with_mode("DETERMINISTIC_ORACLE")
+        decision = cp.evaluate_acceptance(
+            policy,
+            {"state": "FAIL"},
+            self._review("PASS"),
+        )
+        self.assertFalse(decision["accepted"])
+        self.assertIn("deterministic verification", decision["reason"])
+
+    def test_deterministic_oracle_still_refuses_blocked_and_critical(self) -> None:
+        policy = self._policy_with_mode("DETERMINISTIC_ORACLE")
+        blocked = cp.evaluate_acceptance(policy, self.GREEN, self._review("BLOCKED"))
+        self.assertFalse(blocked["accepted"])
+        self.assertIn("BLOCKED", blocked["reason"])
+        critical = cp.evaluate_acceptance(
+            policy,
+            self.GREEN,
+            self._review("REPAIR_REQUIRED", ("major", "critical", "minor")),
+        )
+        self.assertFalse(critical["accepted"])
+        self.assertEqual(critical["blocking_finding_count"], 1)
+
+    def test_recorded_beta_run_verdicts_all_flip_to_shipped(self) -> None:
+        # The three candidates that actually reached review during the 21-hour
+        # run: 9, 8 and 5 findings, every one major or minor, none critical,
+        # mechanical oracle green in all three cases.
+        policy = self._policy_with_mode("DETERMINISTIC_ORACLE")
+        recorded = {
+            "BETA-003": ("major",) * 8 + ("minor",),
+            "BETA-004": ("major",) * 8,
+            "BETA-005": ("major",) * 5,
+        }
+        for task_id, severities in recorded.items():
+            with self.subTest(task=task_id):
+                decision = cp.evaluate_acceptance(
+                    policy,
+                    self.GREEN,
+                    self._review("REPAIR_REQUIRED", severities),
+                )
+                self.assertTrue(decision["accepted"], task_id)
+                self.assertEqual(
+                    len(decision["residual_findings"]), len(severities), task_id
+                )
+
+    def test_abandoned_pull_requests_do_not_lock_a_task_forever(self) -> None:
+        # BETA-002 was refused in five seconds because PR #185
+        # (codex/g1b-room-live-host-20260712) still mentioned Room.tsx sixteen
+        # days after anyone last touched it.
+        task = {
+            "task_id": "BETA-002",
+            "allowed_path_patterns": ["apps/studio/src/Room.tsx"],
+        }
+        now = cp.utcnow()
+        live = {
+            "number": 213,
+            "headRefName": "agent/session-2-simulation-hardening-20260728",
+            "updatedAt": (now - dt.timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "files": [{"path": "apps/studio/src/Room.tsx"}],
+        }
+        abandoned = {
+            "number": 185,
+            "headRefName": "codex/g1b-room-live-host-20260712",
+            "updatedAt": (now - dt.timedelta(days=16)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "files": [{"path": "apps/studio/src/Room.tsx"}],
+        }
+        # Without a staleness window every open branch blocks, as it did.
+        naive = cp.task_overlap_from_pull_requests(task, [live, abandoned])
+        self.assertEqual(len(naive["overlaps"]), 2)
+        # With one, only the live peer still coordinates.
+        bounded = cp.task_overlap_from_pull_requests(task, [live, abandoned], 7)
+        self.assertEqual([item["number"] for item in bounded["overlaps"]], [213])
+        self.assertEqual([item["number"] for item in bounded["stale_exempted"]], [185])
+        # A genuinely concurrent writer is never exempted.
+        self.assertEqual(bounded["state"], "OVERLAP")
+        alone = cp.task_overlap_from_pull_requests(task, [abandoned], 7)
+        self.assertEqual(alone["state"], "CLEAR")
+
+    def test_overlap_staleness_window_must_be_declared_and_bounded(self) -> None:
+        source = copy.deepcopy(self.policy)
+        source["github"]["overlap_stale_days"] = 0
+        with self.assertRaisesRegex(ValueError, "staleness"):
+            cp.validate_policy(source)
+        source["github"].pop("overlap_stale_days")
+        with self.assertRaises(ValueError):
+            cp.validate_policy(source)
+
+    def test_acceptance_mode_must_be_declared_and_bounded(self) -> None:
+        source = copy.deepcopy(self.policy)
+        source["loop"]["acceptance_mode"] = "TRUST_THE_VIBES"
+        with self.assertRaisesRegex(ValueError, "acceptance mode"):
+            cp.validate_policy(source)
+        source["loop"].pop("acceptance_mode")
+        with self.assertRaises(ValueError):
+            cp.validate_policy(source)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
