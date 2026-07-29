@@ -44,6 +44,20 @@ import type {
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest.ts"
 
 /**
+ * Digest della topologia CONTENUTA in uno stato del runtime. Vive qui, nel
+ * composition root, perché è il SERVIZIO a sapere com'è fatto il proprio stato:
+ * per l'host lo stato resta opaco.
+ */
+function runtimeStateSceneDigest(state: unknown): string {
+  const scene = (state as SimulationRuntimeState).scene
+  return simulationSceneDigest({
+    components: scene.components ?? [],
+    connections: scene.connections ?? [],
+    ...(scene.pinAssignments === undefined ? {} : { pinAssignments: scene.pinAssignments }),
+  })
+}
+
+/**
  * Composition root del test: lega il servizio REALE `simulation-runtime/1`.
  * Nessun mock del soggetto sotto prova — se il broker funziona qui, funziona
  * contro il motore vero. È anche la prova che l'host NON importa `sim/`: senza
@@ -52,6 +66,7 @@ import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest.ts"
 const realSimulationService: SimulationRuntimeApiLike = {
   describe: () => describeSimulationRuntimeApi(),
   sceneDigest: (scene) => simulationSceneDigest(scene),
+  stateSceneDigest: (state) => runtimeStateSceneDigest(state),
   loadScene: (input) => loadSimulationRuntimeScene(input),
   solve: (state, request) => {
     const solved = solveSimulationRuntimeProvider(
@@ -433,6 +448,127 @@ describe("service.simulation — la ricevuta non può mentire", () => {
 
     expect(result).toBeUndefined()
     expect(error?.code).toBe(ERR.INTERNAL)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// RED-13 / RED-14 / RED-15 — il digest deve derivare dallo STATO, non dalla RICHIESTA
+//
+// RED-10 dimostrava che stato e digest si aggiornano insieme. Non basta: possono
+// essere coerenti FRA LORO e insieme scollegati da ciò che il servizio ha davvero
+// caricato. Il digest nasceva da `params.scene` — la scena CHIESTA — mentre lo
+// stato committato era quello RESTITUITO: un servizio dentro contratto che carica
+// B mentre gli si chiede A produce `sceneDigest = hash(A)` sopra uno stato che
+// contiene B, e `serializeState` ripete la stessa ricevuta falsa.
+// ---------------------------------------------------------------------------
+describe("service.simulation — il digest deve descrivere lo stato davvero caricato", () => {
+  /** Topologia diversa da LED_SCENE: digest necessariamente diverso. */
+  const SCENA_B = {
+    components: [{ id: "r9", type: "resistor", value: 1000 }],
+    connections: [{ from: "r9:a", to: "r9:b" }],
+  }
+
+  function hostConServizio(api: SimulationRuntimeApiLike): ToolHost {
+    return new ToolHost(elabTutorManifest(SERVICE_CAP), SERVICE_CAP as Capabilities, {
+      store: new MemoryWorkspace(),
+      board,
+      instanceId: "elab-a",
+      simulation: api,
+    })
+  }
+
+  it("RED-13: un servizio che carica una scena DIVERSA da quella chiesta non ottiene ricevuta", async () => {
+    // Soddisfa describe() alla lettera — stesso pluginId, stesso apiVersion,
+    // stesso stateSchema — e mente su UNA cosa sola: cosa ha caricato.
+    const caricaAltraScena: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      loadScene: (input) => loadSimulationRuntimeScene({ ...input, scene: SCENA_B }),
+    }
+    const { call } = await mountReady(hostConServizio(caricaAltraScena))
+
+    const load = await call("simulation.loadScene", { scene: LED_SCENE })
+
+    // Una ricevuta che non può essere vera non deve essere emessa: fail-closed.
+    expect(load.result).toBeUndefined()
+    expect(load.error?.code).toBe(ERR.INTERNAL)
+    expect(load.error?.message).toMatch(/digest/i)
+
+    // E l'istanza non deve restare con uno stato committato sotto un digest che
+    // mente: la sonda del review leggeva `receiptAtSerialize = hash(A)` su uno
+    // stato che persisteva B.
+    const serialized = await call("simulation.serializeState")
+    expect(serialized.result).toBeUndefined()
+    expect(serialized.error?.message).toMatch(/no scene loaded/i)
+  })
+
+  it("RED-14: nemmeno solve può sostituire lo stato tenendosi il digest del load", async () => {
+    // solve committa `solved.state` e riusa `_requireDigest()`: stessa forma del
+    // difetto, un passo più in là nel ciclo.
+    const solveCambiaScena: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      solve: (state, request) => {
+        const solved = solveSimulationRuntimeProvider(
+          state as SimulationRuntimeState,
+          request as SimulationRuntimeProviderRequest,
+        )
+        return { state: { ...solved.state, scene: SCENA_B }, result: solved.result }
+      },
+    }
+    const { call } = await mountReady(hostConServizio(solveCambiaScena))
+
+    const load = await call("simulation.loadScene", { scene: LED_SCENE })
+    expect(load.error).toBeUndefined()
+
+    const solved = await call("simulation.solve", { provider: "local", mode: "static" })
+    expect(solved.result).toBeUndefined()
+    expect(solved.error?.code).toBe(ERR.INTERNAL)
+    expect(solved.error?.message).toMatch(/digest/i)
+
+    // Lo stato pre-solve resta quello valido: la scena chiesta, sotto il suo digest.
+    const serialized = await call("simulation.serializeState")
+    expect(serialized.error).toBeUndefined()
+    const state = (serialized.result as { state?: { scene?: { components?: Array<{ id: string }> } } }).state
+    const receipt = (serialized.result as { receipt?: { sceneDigest?: string } }).receipt
+    expect(receipt?.sceneDigest).toBe(SCENE_DIGEST)
+    expect(state?.scene?.components?.map((c) => c.id)).toEqual(["bat1", "r1", "led1"])
+  })
+
+  it("RED-16: serializeState non può consegnare uno stato che la ricevuta non descrive", async () => {
+    // È l'osservabile che la sonda del review misurava: `receiptAtSerialize` diceva
+    // hash(A) mentre `persistedSceneIds` valeva ["b"]. Con load e solve corretti lo
+    // stato TENUTO è giusto, ma i byte CONSEGNATI passano ancora dal servizio.
+    const serializzaAltraScena: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      serializeState: (state) => ({
+        ...serializeSimulationRuntimeState(state as SimulationRuntimeState),
+        scene: SCENA_B,
+      }),
+    }
+    const { call } = await mountReady(hostConServizio(serializzaAltraScena))
+
+    const load = await call("simulation.loadScene", { scene: LED_SCENE })
+    expect(load.error).toBeUndefined()
+
+    const serialized = await call("simulation.serializeState")
+    expect(serialized.result).toBeUndefined()
+    expect(serialized.error?.code).toBe(ERR.INTERNAL)
+    expect(serialized.error?.message).toMatch(/digest/i)
+  })
+
+  it("RED-15: un digest di stato non-stringa è un digest assente, non una ricevuta", async () => {
+    // Il valore arriva da un servizio iniettato e finisce DENTRO la ricevuta:
+    // accettarlo com'è produrrebbe un receipt fuori da SimulationReceiptSchema.
+    const digestNonStringa: SimulationRuntimeApiLike = {
+      ...realSimulationService,
+      stateSceneDigest: () => undefined as unknown as string,
+    }
+    const { call } = await mountReady(hostConServizio(digestNonStringa))
+
+    const load = await call("simulation.loadScene", { scene: LED_SCENE })
+
+    expect(load.result).toBeUndefined()
+    expect(load.error?.code).toBe(ERR.INTERNAL)
+    expect(load.error?.message).toMatch(/digest/i)
   })
 })
 
