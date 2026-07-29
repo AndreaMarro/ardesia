@@ -2641,6 +2641,7 @@ class ControlPlaneTests(unittest.TestCase):
                 "com.ardesia.mcp.watchdog",
                 "com.ardesia.mcp.review",
                 "com.ardesia.mcp.backup",
+                "com.ardesia.mcp.loop-audit",
                 "com.ardesia.obsidian-sync",
             },
         )
@@ -2663,6 +2664,18 @@ class ControlPlaneTests(unittest.TestCase):
             {"Hour": 3, "Minute": 17},
         )
         self.assertFalse(payloads["com.ardesia.mcp.backup"]["RunAtLoad"])
+        # The audit runs once an hour, never at load and never kept alive: it is
+        # an instrument, and an instrument that restarts itself is a second loop.
+        self.assertEqual(
+            payloads["com.ardesia.mcp.loop-audit"]["StartCalendarInterval"],
+            {"Minute": 41},
+        )
+        self.assertFalse(payloads["com.ardesia.mcp.loop-audit"]["RunAtLoad"])
+        self.assertNotIn("KeepAlive", payloads["com.ardesia.mcp.loop-audit"])
+        self.assertEqual(
+            payloads["com.ardesia.mcp.loop-audit"]["ProgramArguments"][-3:],
+            ["loop-audit", "--trigger", "scheduled-hourly"],
+        )
         self.assertTrue(payloads["com.ardesia.obsidian-sync"]["KeepAlive"])
         self.assertNotIn("com.ardesia.hermes", payloads)
         cp.generate_reports(self.policy)
@@ -3925,6 +3938,111 @@ class ControlPlaneTests(unittest.TestCase):
                 self.assertEqual(
                     len(decision["residual_findings"]), len(severities), task_id
                 )
+
+    # ---- hourly loop health audit -------------------------------------
+    # Everything below is mechanical. The audit exists because the loop ran
+    # 21 hours reporting VERIFIED_STABLE while accepting nothing, and no
+    # instrument in the system measured the only number that mattered.
+
+    def _ledger(self, kinds: List[str]) -> List[Dict[str, Any]]:
+        return [{"kind": kind, "ts": cp.iso_now()} for kind in kinds]
+
+    def test_metrics_separate_work_from_self_observation(self) -> None:
+        events = self._ledger(
+            ["CONTROLLER_HEARTBEAT"] * 88
+            + ["GITHUB_MONITOR_SNAPSHOT"] * 10
+            + ["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"] * 2
+        )
+        metrics = cp.loop_health_metrics(events, tasks={}, policy=self.policy)
+        self.assertEqual(metrics["attempts"], 2)
+        self.assertEqual(metrics["accepted_units"], 0)
+        self.assertEqual(metrics["observation_events"], 98)
+        self.assertAlmostEqual(metrics["observation_ratio"], 0.98, places=2)
+
+    def test_metrics_count_accepted_units(self) -> None:
+        events = self._ledger(
+            [
+                "PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED",
+                "PRODUCTIVE_SLICE_READY_FOR_HUMAN",
+                "PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED",
+                "PRODUCTIVE_SLICE_BLOCKED",
+            ]
+        )
+        metrics = cp.loop_health_metrics(events, tasks={}, policy=self.policy)
+        self.assertEqual(metrics["attempts"], 2)
+        self.assertEqual(metrics["accepted_units"], 1)
+        self.assertEqual(metrics["blocked"], 1)
+
+    def test_fully_blocked_queue_is_reported_as_starvation(self) -> None:
+        # The exact silent death: every task terminal, nothing pending, the
+        # controller reporting health while it can no longer do anything.
+        tasks = {f"T{i}": {"state": "BLOCKED_CAUSAL"} for i in range(5)}
+        metrics = cp.loop_health_metrics(self._ledger([]), tasks=tasks, policy=self.policy)
+        findings = cp.loop_health_findings(metrics, self.policy)
+        ids = {item["id"] for item in findings}
+        self.assertIn("QUEUE_STARVED", ids)
+        starved = next(item for item in findings if item["id"] == "QUEUE_STARVED")
+        self.assertEqual(starved["severity"], "critical")
+        self.assertEqual(starved["evidence"]["terminal_tasks"], 5)
+
+    def test_observation_dominance_is_flagged(self) -> None:
+        events = self._ledger(
+            ["CONTROLLER_HEARTBEAT"] * 95 + ["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"] * 5
+        )
+        metrics = cp.loop_health_metrics(events, tasks={}, policy=self.policy)
+        findings = cp.loop_health_findings(metrics, self.policy)
+        self.assertIn("OBSERVATION_DOMINANT", {item["id"] for item in findings})
+
+    def test_falsified_candidate_seeding_is_flagged_as_a_ratchet(self) -> None:
+        events = self._ledger(
+            ["FALSIFIED_CANDIDATE_SEED_APPLIED"] * 2
+            + ["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"]
+        )
+        metrics = cp.loop_health_metrics(events, tasks={}, policy=self.policy)
+        findings = cp.loop_health_findings(metrics, self.policy)
+        ratchet = next(item for item in findings if item["id"] == "RATCHET_ACTIVE")
+        self.assertEqual(ratchet["evidence"]["seeds_applied"], 2)
+
+    def test_review_unanimous_with_zero_throughput_is_critical(self) -> None:
+        policy = copy.deepcopy(self.policy)
+        policy["loop"]["acceptance_mode"] = "REVIEW_UNANIMOUS"
+        events = self._ledger(["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"] * 3)
+        metrics = cp.loop_health_metrics(events, tasks={}, policy=policy)
+        findings = cp.loop_health_findings(metrics, policy)
+        regressed = next(
+            item for item in findings if item["id"] == "ACCEPTANCE_MODE_REGRESSED"
+        )
+        self.assertEqual(regressed["severity"], "critical")
+
+    def test_a_shipping_loop_raises_no_critical_finding(self) -> None:
+        tasks = {"T1": {"state": "READY_FOR_HUMAN"}, "T2": {"state": "PENDING"}}
+        events = self._ledger(
+            ["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"] * 4
+            + ["PRODUCTIVE_SLICE_READY_FOR_HUMAN"] * 4
+            + ["CONTROLLER_HEARTBEAT"] * 6
+        )
+        metrics = cp.loop_health_metrics(events, tasks=tasks, policy=self.policy)
+        findings = cp.loop_health_findings(metrics, self.policy)
+        self.assertEqual([f for f in findings if f["severity"] == "critical"], [])
+        self.assertEqual(metrics["accepted_units"], 4)
+
+    def test_audit_writes_a_trend_row_and_is_idempotent_on_no_change(self) -> None:
+        first = cp.loop_audit(self.policy, trigger="test")
+        second = cp.loop_audit(self.policy, trigger="test")
+        trend = (self.runtime / "reports" / "loop-health-trend.jsonl").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(len(trend.strip().splitlines()), 2)
+        # Same material twice must not churn the published report.
+        self.assertEqual(first["findings_digest"], second["findings_digest"])
+        self.assertEqual(second["publication"], "UNCHANGED_NO_CHURN")
+
+    def test_repeated_identical_findings_stop_escalating(self) -> None:
+        for _ in range(cp.LOOP_AUDIT_SUPPRESS_AFTER):
+            cp.loop_audit(self.policy, trigger="test")
+        final = cp.loop_audit(self.policy, trigger="test")
+        self.assertTrue(final["suppressed"])
+        self.assertGreaterEqual(final["repeat_count"], cp.LOOP_AUDIT_SUPPRESS_AFTER)
 
     def test_abandoned_pull_requests_do_not_lock_a_task_forever(self) -> None:
         # BETA-002 was refused in five seconds because PR #185

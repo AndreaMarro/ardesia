@@ -780,8 +780,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
             raise ValueError(f"policy: {key} must be a safe relative path")
     schedules = strict_object(
         policy["schedules"],
-        {"controller_heartbeat_seconds", "mailbox_seconds", "watchdog_seconds", "review_minute", "backup_hour", "backup_minute"},
-        {"controller_heartbeat_seconds", "mailbox_seconds", "watchdog_seconds", "review_minute", "backup_hour", "backup_minute"},
+        {"controller_heartbeat_seconds", "mailbox_seconds", "watchdog_seconds", "review_minute", "backup_hour", "backup_minute", "loop_audit_minute"},
+        {"controller_heartbeat_seconds", "mailbox_seconds", "watchdog_seconds", "review_minute", "backup_hour", "backup_minute", "loop_audit_minute"},
         "schedules",
     )
     if schedules["mailbox_seconds"] != 300 or schedules["watchdog_seconds"] != 900:
@@ -790,6 +790,8 @@ def validate_policy(policy: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("policy: review minute must select the first half-hour slot")
     if not 0 <= schedules["backup_hour"] <= 23 or not 0 <= schedules["backup_minute"] <= 59:
         raise ValueError("policy: backup time invalid")
+    if not isinstance(schedules["loop_audit_minute"], int) or not 0 <= schedules["loop_audit_minute"] <= 59:
+        raise ValueError("policy: loop audit minute invalid")
     github = strict_object(
         policy["github"],
         {"repository", "issue", "trusted_authors", "overlap_stale_days"},
@@ -5639,6 +5641,15 @@ def render_plists(policy: Dict[str, Any], script: Path, policy_path: Path, outpu
             False,
         ),
         (
+            "com.ardesia.mcp.loop-audit",
+            [*base, "loop-audit", "--trigger", "scheduled-hourly"],
+            {
+                "RunAtLoad": False,
+                "StartCalendarInterval": {"Minute": schedules["loop_audit_minute"]},
+            },
+            False,
+        ),
+        (
             "com.ardesia.obsidian-sync",
             [*base, "obsidian-supervisor"],
             {"RunAtLoad": True},
@@ -7889,6 +7900,321 @@ def write_residual_findings(
     return {"path": str(path), "sha256": sha256_file(path), "count": len(residual)}
 
 
+# ---------------------------------------------------------------------------
+# Hourly loop health audit
+#
+# This exists because the loop ran twenty-one hours reporting VERIFIED_STABLE
+# while accepting nothing, and no instrument in the system measured the only
+# number that mattered: accepted work units per hour. Every check below is
+# mechanical and reads recorded evidence. No model is consulted, so the audit
+# costs nothing to run and cannot itself become another thing that observes
+# instead of producing.
+# ---------------------------------------------------------------------------
+
+# Events that are the machine watching itself rather than doing work.
+OBSERVATION_EVENT_KINDS = frozenset(
+    {
+        "CONTROLLER_HEARTBEAT",
+        "GITHUB_MONITOR_SNAPSHOT",
+        "MAILBOX_POLL_COMPLETED",
+        "WATCHDOG_TICK",
+        "WIKILLM_INGEST_COMPLETED",
+        "OBSIDIAN_GOVERNED_WRITE",
+        "SCIENTIFIC_REVIEW_COMPLETED",
+        "SCIENTIFIC_REVIEW_SKIPPED_NO_AI",
+    }
+)
+# The audit's own events are excluded from every metric. An instrument that
+# counts itself reports rising self-observation caused entirely by measuring,
+# which is the precise error it exists to detect.
+AUDIT_SELF_EVENT_KINDS = frozenset({"LOOP_HEALTH_AUDIT_COMPLETED"})
+# A ratio computed over a handful of events carries no information.
+OBSERVATION_MIN_SAMPLE = 20
+WORK_ATTEMPT_KIND = "PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"
+WORK_ACCEPTED_KIND = "PRODUCTIVE_SLICE_READY_FOR_HUMAN"
+WORK_BLOCKED_KIND = "PRODUCTIVE_SLICE_BLOCKED"
+RATCHET_KIND = "FALSIFIED_CANDIDATE_SEED_APPLIED"
+# A task in one of these states will never move again on its own.
+TERMINAL_TASK_STATES = frozenset({"BLOCKED_CAUSAL", "READY_FOR_HUMAN", "DISABLED"})
+# Above this share of self-observation the loop is watching, not working.
+OBSERVATION_DOMINANCE_THRESHOLD = 0.90
+# Restarts per audit window that indicate the controller is thrashing.
+CONTROLLER_THRASH_THRESHOLD = 8
+# Stop re-publishing an unchanged finding set after this many consecutive runs.
+LOOP_AUDIT_SUPPRESS_AFTER = 3
+
+
+def loop_health_metrics(
+    events: Sequence[Dict[str, Any]],
+    tasks: Dict[str, Any],
+    policy: Dict[str, Any],
+) -> Dict[str, Any]:
+    """Reduce the ledger and the task ledger to the numbers that decide health."""
+    counts: Dict[str, int] = {}
+    for record in events:
+        kind = str(record.get("kind", ""))
+        if kind in AUDIT_SELF_EVENT_KINDS:
+            continue
+        counts[kind] = counts.get(kind, 0) + 1
+    total = sum(counts.values())
+    observation = sum(counts.get(kind, 0) for kind in OBSERVATION_EVENT_KINDS)
+    states = [str(record.get("state", "")) for record in tasks.values()]
+    terminal = sum(1 for state in states if state in TERMINAL_TASK_STATES)
+    pending = sum(1 for state in states if state == "PENDING")
+    attempts = counts.get(WORK_ATTEMPT_KIND, 0)
+    accepted = counts.get(WORK_ACCEPTED_KIND, 0)
+    return {
+        "total_events": total,
+        "observation_events": observation,
+        "observation_ratio": (observation / total) if total else 0.0,
+        "attempts": attempts,
+        "accepted_units": accepted,
+        "blocked": counts.get(WORK_BLOCKED_KIND, 0),
+        "acceptance_rate": (accepted / attempts) if attempts else 0.0,
+        "seeds_applied": counts.get(RATCHET_KIND, 0),
+        "controller_restarts": counts.get("CONTROLLER_STARTED", 0),
+        "total_tasks": len(states),
+        "terminal_tasks": terminal,
+        "pending_tasks": pending,
+        "active_tasks": len(states) - terminal - pending,
+        "acceptance_mode": policy["loop"]["acceptance_mode"],
+        "max_repairs": policy["loop"]["max_repairs"],
+    }
+
+
+def loop_health_findings(
+    metrics: Dict[str, Any],
+    policy: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Apply the failure modes this loop has actually exhibited, in order of cost.
+
+    Each finding names the observed evidence and the next action. None of them
+    is a judgement call: every threshold is a number compared against a count.
+    """
+    findings: List[Dict[str, Any]] = []
+
+    def add(identifier: str, severity: str, summary: str, evidence: Dict[str, Any], action: str) -> None:
+        findings.append(
+            {
+                "id": identifier,
+                "severity": severity,
+                "summary": summary,
+                "evidence": evidence,
+                "action": action,
+            }
+        )
+
+    if metrics["total_tasks"] and metrics["terminal_tasks"] == metrics["total_tasks"]:
+        add(
+            "QUEUE_STARVED",
+            "critical",
+            "Every queued task is terminal, so the loop cannot start work again on its own.",
+            {
+                "terminal_tasks": metrics["terminal_tasks"],
+                "total_tasks": metrics["total_tasks"],
+            },
+            "Re-arm a task with recover-task, or admit a new bounded unit. "
+            "An idle loop reporting VERIFIED_STABLE is starvation, not stability.",
+        )
+    if metrics["attempts"] and not metrics["accepted_units"]:
+        add(
+            "THROUGHPUT_ZERO",
+            "critical",
+            "Work was attempted and nothing was accepted.",
+            {"attempts": metrics["attempts"], "blocked": metrics["blocked"]},
+            "Read the block reasons. If the deterministic oracle was green, the "
+            "acceptance predicate is rejecting verified work.",
+        )
+    if (
+        metrics["acceptance_mode"] == "REVIEW_UNANIMOUS"
+        and metrics["attempts"]
+        and not metrics["accepted_units"]
+    ):
+        add(
+            "ACCEPTANCE_MODE_REGRESSED",
+            "critical",
+            "Acceptance depends on an adversarial reviewer verdict and nothing is shipping.",
+            {"acceptance_mode": metrics["acceptance_mode"], "attempts": metrics["attempts"]},
+            "Set loop.acceptance_mode to DETERMINISTIC_ORACLE. Reviewers prompted to "
+            "explain findings reject provably correct code 73-88% of the time "
+            "(arXiv:2603.00539).",
+        )
+    if (
+        metrics["total_events"] >= OBSERVATION_MIN_SAMPLE
+        and metrics["observation_ratio"] > OBSERVATION_DOMINANCE_THRESHOLD
+    ):
+        add(
+            "OBSERVATION_DOMINANT",
+            "warning",
+            "Most of what the system did was watch itself.",
+            {
+                "observation_ratio": round(metrics["observation_ratio"], 4),
+                "observation_events": metrics["observation_events"],
+                "total_events": metrics["total_events"],
+                "threshold": OBSERVATION_DOMINANCE_THRESHOLD,
+            },
+            "Reduce monitoring cadence or increase work attempts. Adding more "
+            "observation to a stalled loop is the documented wrong response.",
+        )
+    if metrics["seeds_applied"]:
+        add(
+            "RATCHET_ACTIVE",
+            "warning",
+            "Rejected candidates are being carried forward as seeds for the next task.",
+            {"seeds_applied": metrics["seeds_applied"]},
+            "Each retry inherits the previous objection set while the diff grows, "
+            "which diverges. Reset to base on a red gate so a failed attempt leaves "
+            "no residue.",
+        )
+    if metrics["controller_restarts"] > CONTROLLER_THRASH_THRESHOLD:
+        add(
+            "CONTROLLER_THRASH",
+            "warning",
+            "The controller restarted repeatedly inside the audit window.",
+            {
+                "restarts": metrics["controller_restarts"],
+                "threshold": CONTROLLER_THRASH_THRESHOLD,
+            },
+            "Check the watchdog and the stderr logs before trusting any other metric.",
+        )
+    return findings
+
+
+def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
+    """Measure loop health, append one trend row, publish only on change.
+
+    Publishing only on change matters: a report rewritten every hour with the
+    same content is churn, and churn in a vault that is also a git repository
+    destroys the ability to see when something actually moved.
+    """
+    runtime = runtime_path(policy)
+    ensure_runtime(runtime)
+    ledger = runtime / "logs" / "mcp-control-ledger.jsonl"
+    events: List[Dict[str, Any]] = []
+    if ledger.exists():
+        for line in ledger.read_text(encoding="utf-8", errors="replace").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+    state = read_json(productive_state_path(runtime), {}) or {}
+    tasks = state.get("tasks") or {}
+    metrics = loop_health_metrics(events, tasks, policy)
+    findings = loop_health_findings(metrics, policy)
+    digest = sha256_text(canonical_json(findings))
+
+    history_path = runtime / "state" / "loop-health.json"
+    history = read_json(history_path, {}) or {}
+    repeat = int(history.get("repeat_count", 0)) + 1 if history.get("digest") == digest else 1
+    suppressed = repeat > LOOP_AUDIT_SUPPRESS_AFTER
+    publication = "UNCHANGED_NO_CHURN" if history.get("digest") == digest else "PUBLISHED"
+
+    row = {
+        "ts": iso_now(),
+        "trigger": trigger,
+        "findings_digest": digest,
+        "critical": sum(1 for item in findings if item["severity"] == "critical"),
+        "warning": sum(1 for item in findings if item["severity"] == "warning"),
+        **{
+            key: metrics[key]
+            for key in (
+                "attempts",
+                "accepted_units",
+                "blocked",
+                "acceptance_rate",
+                "observation_ratio",
+                "terminal_tasks",
+                "pending_tasks",
+                "acceptance_mode",
+            )
+        },
+    }
+    append_jsonl(runtime / "reports" / "loop-health-trend.jsonl", row)
+
+    if publication == "PUBLISHED":
+        atomic_write(
+            runtime / "reports" / "loop-health-latest.md",
+            render_loop_health_report(metrics, findings, trigger).encode("utf-8"),
+            0o644,
+        )
+    write_json(
+        history_path,
+        {
+            "digest": digest,
+            "repeat_count": repeat,
+            "suppressed": suppressed,
+            "updated_at": iso_now(),
+        },
+    )
+    event(
+        runtime,
+        "LOOP_HEALTH_AUDIT_COMPLETED",
+        trigger=trigger,
+        findings_digest=digest,
+        critical=row["critical"],
+        accepted_units=metrics["accepted_units"],
+        suppressed=suppressed,
+    )
+    return {
+        "schema_version": 1,
+        "service_version": VERSION,
+        "trigger": trigger,
+        "metrics": metrics,
+        "findings": findings,
+        "findings_digest": digest,
+        "repeat_count": repeat,
+        "suppressed": suppressed,
+        "publication": publication,
+        "ts": iso_now(),
+    }
+
+
+def render_loop_health_report(
+    metrics: Dict[str, Any],
+    findings: List[Dict[str, Any]],
+    trigger: str,
+) -> str:
+    lines = [
+        "# Loop health",
+        "",
+        f"- trigger: `{trigger}`",
+        f"- observed at: `{iso_now()}`",
+        "",
+        "## Throughput",
+        "",
+        "| metric | value |",
+        "| --- | ---: |",
+        f"| accepted work units | **{metrics['accepted_units']}** |",
+        f"| work attempts | {metrics['attempts']} |",
+        f"| blocked | {metrics['blocked']} |",
+        f"| acceptance rate | {metrics['acceptance_rate']:.1%} |",
+        f"| self-observation share | {metrics['observation_ratio']:.1%} |",
+        f"| tasks terminal / total | {metrics['terminal_tasks']} / {metrics['total_tasks']} |",
+        f"| acceptance mode | `{metrics['acceptance_mode']}` |",
+        "",
+        "## Findings",
+        "",
+    ]
+    if not findings:
+        lines.append("None. The loop is accepting work and no failure mode is present.")
+    for item in findings:
+        lines.extend(
+            [
+                f"### {item['id']} — {item['severity']}",
+                "",
+                item["summary"],
+                "",
+                f"- evidence: `{canonical_json(item['evidence'])}`",
+                f"- action: {item['action']}",
+                "",
+            ]
+        )
+    return "\n".join(lines) + "\n"
+
+
 def measure_candidate_batch(
     policy: Dict[str, Any],
     task: Dict[str, Any],
@@ -9116,6 +9442,8 @@ def build_parser() -> argparse.ArgumentParser:
     recover_task = subparsers.add_parser("recover-task")
     recover_task.add_argument("--task-id", required=True)
     recover_task.add_argument("--reason", required=True)
+    loop_audit_parser = subparsers.add_parser("loop-audit")
+    loop_audit_parser.add_argument("--trigger", default="manual")
     subparsers.add_parser("admit-queue")
     freeze_candidate = subparsers.add_parser("freeze-candidate")
     freeze_candidate.add_argument("--task-id", required=True)
@@ -9177,6 +9505,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return productive_repair_resume_worker(policy, args.task_id)
     elif args.command == "recover-task":
         result = recover_productive_task(policy, args.task_id, args.reason)
+    elif args.command == "loop-audit":
+        result = loop_audit(policy, args.trigger)
     elif args.command == "admit-queue":
         admitted = ensure_productive_state(policy)
         result = {

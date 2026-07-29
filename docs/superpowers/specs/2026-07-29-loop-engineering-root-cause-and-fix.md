@@ -356,7 +356,63 @@ Overcorrection [arXiv:2603.00539](https://arxiv.org/html/2603.00539v1) · RCRR [
 
 ---
 
-## 10. The general lesson
+## 10. The hourly instrument
+
+The failure was invisible for 30 hours because nothing measured accepted work units. `doctor` reported 10/10, the suite reported 57/57, the scheduled review reported `VERIFIED_STABLE` — and every one of those was true while throughput was zero.
+
+`com.ardesia.mcp.loop-audit` closes that gap. Hourly at `:41`, mechanical, **no model consulted**, so it costs nothing and cannot itself become another observer.
+
+### 10.1 What it measures
+
+Reduces the ledger and task state to the numbers that decide health: accepted units, attempts, blocked, acceptance rate, self-observation share, terminal/pending tasks, seeds applied, controller restarts.
+
+### 10.2 Detectors
+
+Each is a count compared to a threshold. No judgement.
+
+| Finding | Fires when | Severity |
+|---|---|---|
+| `QUEUE_STARVED` | every task terminal — the loop cannot restart itself | critical |
+| `THROUGHPUT_ZERO` | work attempted, nothing accepted | critical |
+| `ACCEPTANCE_MODE_REGRESSED` | `REVIEW_UNANIMOUS` and nothing shipping | critical |
+| `OBSERVATION_DOMINANT` | self-observation > 90 % over ≥ 20 events | warning |
+| `RATCHET_ACTIVE` | rejected candidates seeded into the next task | warning |
+| `CONTROLLER_THRASH` | > 8 restarts in the window | warning |
+
+### 10.3 Design constraints taken from this incident
+
+- **The instrument excludes its own events.** First implementation counted `LOOP_HEALTH_AUDIT_COMPLETED` in the observation ratio, so it drove that ratio to 100 % and would have flagged itself every hour forever. Caught by an idempotence test, not by review.
+- **Publishes only on change.** `loop-health-latest.md` is rewritten only when the finding set changes; `loop-health-trend.jsonl` is append-only. A report rewritten hourly with identical content destroys the ability to see when something actually moved.
+- **Circuit breaker.** After `LOOP_AUDIT_SUPPRESS_AFTER` consecutive identical runs the finding set is marked suppressed and stops escalating. This loop ran 58 review cycles without anything noticing the repetition.
+- **It observes, it does not act.** It cannot modify the loop. An auditor with write access to what it audits is how 27 self-hardening commits happen.
+
+### 10.4 First run against live data
+
+Executed against the real 2,190-event ledger. It rediscovered every root cause of §4 mechanically, in under a second, at zero cost:
+
+```
+| accepted work units    | 0     |
+| work attempts          | 9     |
+| acceptance rate        | 0.0%  |
+| self-observation share | 91.6% |
+| tasks terminal / total | 5 / 5 |
+
+QUEUE_STARVED         critical   {"terminal_tasks":5,"total_tasks":5}
+THROUGHPUT_ZERO       critical   {"attempts":9,"blocked":7}
+OBSERVATION_DOMINANT  warning    {"observation_ratio":0.9155,"total_events":2190}
+RATCHET_ACTIVE        warning    {"seeds_applied":2}
+CONTROLLER_THRASH     warning    {"restarts":25}
+```
+
+**This instrument would have produced that report in hour 1.** The forensics in §3 took a session; the audit takes a second and runs every hour from now on.
+
+### 10.5 Escalation tier
+
+The hourly tier is deliberately model-free. When it raises a critical finding, the analysis tier is Hermes for context continuity plus Codex xhigh as the reasoning brain, routed through Headroom for attestation and token accounting. That tier is **advisory** — the same demotion applied to the reviewer in §6. Hermes stays disabled until all its routes are Headroom-attestable; the audit does not depend on it.
+
+---
+
+## 11. The general lesson
 
 The 30 hours were not wasted on a hard problem. They were spent making a *verifier* stricter while never testing whether the verifier could ever say yes.
 
