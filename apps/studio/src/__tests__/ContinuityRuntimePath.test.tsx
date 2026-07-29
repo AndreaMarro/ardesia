@@ -2356,3 +2356,61 @@ describe("autorità FSA: costruzione provata, non catena di prototipi (accept #3
     expect(reader.persistence.kind).toBe("local-storage")
   })
 })
+
+describe("sha256Hex passa alla WebCrypto il buffer della piattaforma, non uno proprio", () => {
+  // La CI fallisce con:
+  //   TypeError: Failed to execute 'digest' on 'SubtleCrypto':
+  //   2nd argument is not instance of ArrayBuffer, Buffer, TypedArray, or DataView
+  // Formulazione WebIDL di jsdom: valida con instanceof contro il PROPRIO realm.
+  // Il codice allocava `new ArrayBuffer(...)` nel realm del modulo e scartava
+  // quello restituito da blob.arrayBuffer(), che e' del realm di jsdom.
+  // La copia era stata aggiunta per soddisfare TypeScript, non il runtime.
+  it("il buffer digerito e' quello che la piattaforma ha restituito, per identita", async () => {
+    const payload = new TextEncoder().encode('{"schemaVersion":2}')
+    const platformBuffer = payload.buffer.slice(0) as ArrayBuffer
+    const blob = {
+      async arrayBuffer() {
+        return platformBuffer
+      },
+    } as unknown as Blob
+
+    const seen: unknown[] = []
+    const realDigest = globalThis.crypto.subtle.digest.bind(globalThis.crypto.subtle)
+    const spy = async (algorithm: AlgorithmIdentifier, data: BufferSource) => {
+      seen.push(data)
+      return realDigest(algorithm, data)
+    }
+    Object.defineProperty(globalThis.crypto.subtle, "digest", {
+      value: spy,
+      configurable: true,
+      writable: true,
+    })
+
+    try {
+      const factories = {
+        createEventReader: async () => verifiedReader([]),
+        createWorkspaceReader: async () => {
+          const reader = inMemoryWorkspace(new Map())
+          reader.read = async () => blob
+          return reader
+        },
+        buildCommitSha: BUILD_SHA,
+      } as unknown as ContinuityRuntimeAdapterFactories
+
+      await loadScopedContinuitySnapshot(SCOPE_INPUT, factories)
+    } finally {
+      Object.defineProperty(globalThis.crypto.subtle, "digest", {
+        value: realDigest,
+        configurable: true,
+        writable: true,
+      })
+    }
+
+    expect(seen.length).toBeGreaterThan(0)
+    // Ogni buffer digerito deve provenire dalla piattaforma: mai un ArrayBuffer
+    // allocato dentro il modulo, che in un altro realm verrebbe rifiutato.
+    for (const data of seen) {
+      expect(data).toBe(platformBuffer)
+    }
+  })
+})

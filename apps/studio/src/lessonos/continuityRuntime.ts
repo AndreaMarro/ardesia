@@ -266,11 +266,27 @@ export type LoadScopedContinuityResultV1 =
 async function sha256Hex(bytes: Uint8Array): Promise<string> {
   const crypto = (globalThis as { crypto?: Crypto }).crypto
   if (!crypto?.subtle) throw new Error("Continuity loader: Web Crypto non disponibile")
-  // Uint8Array<ArrayBufferLike> non e' assegnabile a BufferSource "stretto"
-  // sotto lib.dom aggiornata: copiare i bytes in un ArrayBuffer canonico.
-  const buffer = new ArrayBuffer(bytes.byteLength)
-  new Uint8Array(buffer).set(bytes)
-  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", buffer))
+  // Passa il buffer ORIGINALE della piattaforma.
+  //
+  // La versione precedente allocava `new ArrayBuffer(...)` qui e ci copiava i
+  // byte dentro. Quell'ArrayBuffer nasce nel realm del MODULO, mentre i byte
+  // arrivano da `blob.arrayBuffer()`, cioe' dal realm di jsdom. Un validatore
+  // BufferSource che usa `instanceof` — jsdom lo fa — rifiuta il buffer
+  // estraneo, e la CI falliva con "2nd argument is not instance of
+  // ArrayBuffer, Buffer, TypedArray, or DataView" mentre in locale passava.
+  // La copia era stata introdotta per soddisfare TypeScript, non il runtime:
+  // un aggiramento a livello di tipi che ha creato un difetto a livello di
+  // esecuzione.
+  //
+  // `ArrayBuffer.prototype.slice` usa lo species del buffer stesso, quindi
+  // anche il ramo della vista parziale resta nel realm di origine.
+  const source =
+    bytes.byteOffset === 0 && bytes.byteLength === bytes.buffer.byteLength
+      ? bytes.buffer
+      : bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
+  const digest = new Uint8Array(
+    await crypto.subtle.digest("SHA-256", source as ArrayBuffer),
+  )
   return [...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")
 }
 
