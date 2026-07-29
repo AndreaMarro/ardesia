@@ -71,6 +71,13 @@ jobs:
         run: python3 bin/ci/test_secret_scan.py
       - name: ELAB standalone boundary (ratchet)
         run: python3 bin/ci/elab_boundary_gate.py
+      # hygiene e' un check REQUIRED su main: la regola "nessun filtro di base
+      # sotto pull_request" vive qui perche' un commento nel workflow lo si
+      # cancella senza che nessuno se ne accorga, un check rosso no.
+      - name: workflow trigger gate (copertura indipendente dalla base)
+        run: python3 bin/ci/workflow_trigger_gate.py
+      - name: workflow trigger gate tests
+        run: python3 bin/ci/workflow_trigger_gate.py --self-test
       - name: whitespace errors (git diff --check)
         if: github.event_name == 'pull_request'
         env:
