@@ -392,7 +392,18 @@ export interface TrustedLegacyEventContext {
   producer?: ProducerIdentity
 }
 
+/** Scope richiesto: rende l'integrita' attribuibile invece che globale. */
+export type EventLogIntegrityScope = Readonly<{ lessonId: string; sessionId: string }>
+
 export interface IndexedDbEventLogOptions {
+  /**
+   * Quando presente, le righe fisiche malformate o legacy ATTRIBUIBILI a un
+   * altro lesson/session non degradano piu' questo scope (design ARD-06 §5.2,
+   * accept #6). Il materiale non attribuibile resta conservativo: non viene
+   * assegnato a uno scope arbitrario ne' usato come evidenza verificata.
+   */
+  scope?: EventLogIntegrityScope
+
   factory?: IDBFactory
   dbName?: string
   crypto?: Crypto
@@ -839,4 +850,186 @@ export async function createEventLogStore(
   } catch {
     return new InMemoryEnvelopeEventLog(options)
   }
+}
+
+/**
+ * BETA-003 accept #2: descrittore tipato del backend reale, senza fallback
+ * silenzioso. Nessuna promozione ottimistica di uno stato in-memory a
+ * verified-indexeddb: verified indica lettura di byte fisici IndexedDB
+ * verificati; unavailable/data-loss/corrupt restano stati distinti. Il
+ * ramo data-loss e' popolato quando la storage contiene righe legacy prive
+ * di identita' canonica (l'adattatore le proietta con UNASSIGNED_LESSON_ID)
+ * o quando la recovery ha droppato la coda del log; un database recovery-only
+ * non deve mai apparire come verified-empty (accept #4).
+ */
+export type IndexedDbBackendDescriptor =
+  | Readonly<{ kind: "verified-indexeddb"; database: string }>
+  | Readonly<{ kind: "unavailable"; code: string }>
+  | Readonly<{ kind: "data-loss"; code: string; database: string }>
+  | Readonly<{ kind: "corrupt"; code: string }>
+
+/**
+ * Descrittore backend + istanza IndexedDbEventLog aperta (o null quando il
+ * backend non e' consultabile). Il chiamante deve `close()` la handle quando
+ * fresca alla propria richiesta: il loader Continuity apre un adapter nuovo
+ * ad ogni chiamata (design §5.2) e lo chiude a fine snapshot.
+ */
+export interface IndexedDbEventLogHandle {
+  readonly backend: IndexedDbBackendDescriptor
+  readonly log: IndexedDbEventLog | null
+  close(): Promise<void>
+}
+
+/**
+ * Ispeziona le righe fisiche del log e le classifica: legacy (nessuno
+ * schemaVersion), canonical (V2 valido), o malformed (schemaVersion presente
+ * ma envelope non conforme allo schema o non indicizzabile). Le righe
+ * malformate non compaiono nell'indice composto lesson+session+seq, quindi
+ * la query scoped restituirebbe 0 righe con backend "verified": e' il
+ * classico verified-empty falso. Il descrittore backend viene quindi
+ * marcato data-loss/malformed-v2-rows cosi' il loader Continuity lo
+ * degrada esplicitamente (design §3.3 / §12 RED-06-03).
+ */
+/**
+ * Una riga e' ATTRIBUIBILE quando porta lessonId e sessionId leggibili, anche
+ * se il resto dell'envelope non e' canonico. Solo allora si puo' dire a quale
+ * scope appartiene un guasto: senza questi campi la riga resta materiale non
+ * attribuibile, e la clausola 6 vieta di assegnarla a uno scope arbitrario.
+ */
+function attributableScope(record: unknown): { lessonId: string; sessionId: string } | null {
+  if (!isRecord(record)) return null
+  const lessonId = record.lessonId
+  const sessionId = record.sessionId
+  if (typeof lessonId !== "string" || lessonId.length === 0) return null
+  if (typeof sessionId !== "string" || sessionId.length === 0) return null
+  return { lessonId, sessionId }
+}
+
+async function inspectPhysicalRows(
+  log: IndexedDbEventLog,
+  scope?: EventLogIntegrityScope,
+): Promise<{
+  legacyCount: number
+  malformedCount: number
+}> {
+  const internal = log as unknown as { db: IDBDatabase | null }
+  const db = internal.db
+  if (db === null) return { legacyCount: 0, malformedCount: 0 }
+  const rows = (await requestToPromise(
+    db.transaction(STORE_NAME, "readonly").objectStore(STORE_NAME).getAll(),
+  )) as StoredEventRecord[]
+  let legacyCount = 0
+  let malformedCount = 0
+  for (const record of rows) {
+    // Un guasto che appartiene dimostrabilmente a un altro lesson/session non
+    // e' evidenza sull'integrita' dello scope richiesto. Le righe senza scope
+    // leggibile non vengono saltate: restano conservative.
+    if (scope !== undefined) {
+      const owner = attributableScope(record)
+      if (owner !== null && (owner.lessonId !== scope.lessonId || owner.sessionId !== scope.sessionId)) {
+        continue
+      }
+    }
+    if (!hasSchemaVersion(record)) {
+      legacyCount += 1
+      continue
+    }
+    try {
+      splitStoredEnvelope(record)
+    } catch {
+      malformedCount += 1
+    }
+  }
+  return { legacyCount, malformedCount }
+}
+
+export async function openIndexedDbEventLog(
+  options: IndexedDbEventLogOptions = {},
+): Promise<IndexedDbEventLogHandle> {
+  const factory = "factory" in options
+    ? options.factory
+    : (globalThis as { indexedDB?: IDBFactory }).indexedDB
+  if (!factory) {
+    return Object.freeze({
+      backend: Object.freeze({ kind: "unavailable" as const, code: "indexeddb-unavailable" }),
+      log: null,
+      async close() {},
+    })
+  }
+  const log = new IndexedDbEventLog({ ...options, factory })
+  let report: RecoveryReport
+  try {
+    report = await log.open()
+  } catch {
+    // Chiusura difensiva: open() puo' aver lasciato un db half-open.
+    try { await log.close() } catch { /* best effort */ }
+    return Object.freeze({
+      backend: Object.freeze({ kind: "unavailable" as const, code: "indexeddb-open-failed" }),
+      log: null,
+      async close() {},
+    })
+  }
+  if (report.corrupted) {
+    return Object.freeze({
+      backend: Object.freeze({ kind: "corrupt" as const, code: "sequence-non-contiguous" }),
+      log,
+      close: () => log.close(),
+    })
+  }
+  if (report.droppedTail > 0) {
+    return Object.freeze({
+      backend: Object.freeze({
+        kind: "data-loss" as const,
+        code: "recovery-dropped-tail",
+        database: log.databaseName,
+      }),
+      log,
+      close: () => log.close(),
+    })
+  }
+  let inspection: { legacyCount: number; malformedCount: number }
+  try {
+    inspection = await inspectPhysicalRows(log, options.scope)
+  } catch {
+    try { await log.close() } catch { /* best effort */ }
+    return Object.freeze({
+      backend: Object.freeze({ kind: "unavailable" as const, code: "indexeddb-inspect-failed" }),
+      log: null,
+      async close() {},
+    })
+  }
+  // Righe V2 malformate: schemaVersion presente ma envelope non canonico ⇒
+  // fuori dall'indice scoped, quindi la query per (lesson,session) tornerebbe
+  // 0 righe con backend "verified". Prevenire il verified-empty falso
+  // classificando il backend come data-loss.
+  if (inspection.malformedCount > 0) {
+    return Object.freeze({
+      backend: Object.freeze({
+        kind: "data-loss" as const,
+        code: "malformed-v2-rows",
+        database: log.databaseName,
+      }),
+      log,
+      close: () => log.close(),
+    })
+  }
+  if (inspection.legacyCount > 0) {
+    return Object.freeze({
+      backend: Object.freeze({
+        kind: "data-loss" as const,
+        code: "legacy-physical-rows",
+        database: log.databaseName,
+      }),
+      log,
+      close: () => log.close(),
+    })
+  }
+  return Object.freeze({
+    backend: Object.freeze({
+      kind: "verified-indexeddb" as const,
+      database: log.databaseName,
+    }),
+    log,
+    close: () => log.close(),
+  })
 }

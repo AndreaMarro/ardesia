@@ -48,6 +48,11 @@ export type ContinuitySourceIssueV1 = Readonly<{
     | "multiple-simulation-instances"
     | "unsupported-event-contract"
     | "digest-mismatch"
+    | "local-storage-non-authoritative"
+    | "workspace-uninitialised"
+    | "workspace-factory-rejected"
+    | "fsa-handle-lost"
+    | "read-rejected"
   preserved: null | Readonly<{ path: string; sha256: string; bytes: number }>
 }>
 
@@ -343,28 +348,51 @@ export function validateContinuityScopeV1(input: {
   roomId: unknown
   sessionId: unknown
 }): ContinuityScopeV1 {
-  if (typeof input.lessonId !== "string") throw new ContinuityScopeError("invalid-lesson-id")
-  if (typeof input.roomId !== "string") throw new ContinuityScopeError("invalid-room-id")
-  if (typeof input.sessionId !== "string") throw new ContinuityScopeError("invalid-session-id")
+  // Cattura esattamente una volta, prima di qualunque validazione e di qualunque
+  // I/O. Un input con getter puo' cambiare valore o lanciare fra una lettura e
+  // l'altra: rileggendo, lo scope validato non sarebbe quello effettivamente
+  // usato per leggere, e un input valido al primo accesso verrebbe rifiutato.
+  let rawLessonId: unknown
+  let rawRoomId: unknown
+  let rawSessionId: unknown
+  try {
+    rawLessonId = input.lessonId
+  } catch {
+    throw new ContinuityScopeError("invalid-lesson-id")
+  }
+  try {
+    rawRoomId = input.roomId
+  } catch {
+    throw new ContinuityScopeError("invalid-room-id")
+  }
+  try {
+    rawSessionId = input.sessionId
+  } catch {
+    throw new ContinuityScopeError("invalid-session-id")
+  }
+
+  if (typeof rawLessonId !== "string") throw new ContinuityScopeError("invalid-lesson-id")
+  if (typeof rawRoomId !== "string") throw new ContinuityScopeError("invalid-room-id")
+  if (typeof rawSessionId !== "string") throw new ContinuityScopeError("invalid-session-id")
 
   let lessonId: string
   try {
-    lessonId = validateRoomId(input.lessonId)
+    lessonId = validateRoomId(rawLessonId)
   } catch {
     throw new ContinuityScopeError("invalid-lesson-id")
   }
   let roomId: string
   try {
-    roomId = validateRoomId(input.roomId)
+    roomId = validateRoomId(rawRoomId)
   } catch {
     throw new ContinuityScopeError("invalid-room-id")
   }
   // La room è alias di routing, non una terza identità (design §5.1 invariante 2).
   if (roomId !== lessonId) throw new ContinuityScopeError("room-lesson-mismatch")
-  if (!CANONICAL_UUID_RE.test(input.sessionId)) {
+  if (!CANONICAL_UUID_RE.test(rawSessionId)) {
     throw new ContinuityScopeError("invalid-session-id")
   }
-  return Object.freeze({ lessonId, roomId, sessionId: input.sessionId })
+  return Object.freeze({ lessonId, roomId, sessionId: rawSessionId })
 }
 
 // --- Derivazione pura: design §6, §7, §9 ---
@@ -543,8 +571,13 @@ const SOURCE_CODE_ORDER = [
   "invalid-schema",
   "digest-mismatch",
   "data-loss",
+  "workspace-uninitialised",
+  "workspace-factory-rejected",
+  "fsa-handle-lost",
+  "read-rejected",
   "unavailable",
   "missing",
+  "local-storage-non-authoritative",
   "multiple-simulation-instances",
   "unsupported-event-contract",
   "legacy-recovery-required",
@@ -645,6 +678,46 @@ function recoverContinuityAction(
   })
 }
 
+function recoverEvidenceAction(
+  scope: ContinuityScopeV1,
+  candidate: ContinuityEvidenceV1,
+  missingEvidence: readonly ContinuityEvidenceV1[],
+): ContinuityNextActionV1 {
+  // Il resolver strict (§8) non e' ancora acceptato: qualsiasi occurrence
+  // dichiarata `verified` resta unsupported/handler-unavailable e non puo'
+  // essere promossa a resolved. Il candidato per il recover porta lo status
+  // effettivo osservato (mai "resolved" per definizione).
+  const status = candidate.status as Exclude<ContinuityEvidenceV1["status"], "resolved">
+  return Object.freeze({
+    kind: "recover-continuity" as const,
+    priority: 0 as const,
+    reason: Object.freeze({
+      kind: "evidence" as const,
+      occurrenceId: candidate.occurrenceId,
+      status,
+    }),
+    href: continuityRecoveryHref(scope),
+    evidence: Object.freeze([...missingEvidence]) as readonly ContinuityEvidenceV1[],
+  })
+}
+
+/**
+ * Deriva le evidence occurrence non risolte dal snapshot.
+ * L'ordinamento e' deterministico: (eventId codepoint ASC, evidenceIndex ASC)
+ * cosi' due snapshot identici producono la stessa lista byte per byte.
+ */
+function deriveMissingEvidence(
+  snapshot: ScopedContinuitySnapshotV1,
+): readonly ContinuityEvidenceV1[] {
+  const unresolved = [...snapshot.evidenceByOccurrence.values()]
+    .filter((entry) => entry.status !== "resolved")
+    .sort((left, right) => (
+      compareCodePoints(left.eventId, right.eventId)
+      || (left.evidenceIndex - right.evidenceIndex)
+    ))
+  return Object.freeze(unresolved)
+}
+
 /**
  * Projection pura della Continuità (design §6, §7, §9).
  * Nessun I/O, nessun clock: lo stesso snapshot produce gli stessi byte.
@@ -688,9 +761,37 @@ export function projectContinuityV1(
   const openLoops = deriveOpenLoops(snapshot.lessonEvents)
   const lastUncorrectedError = openLoops[0] ?? null
   const hasResumableFacts = openLoops.length > 0
+  const missingEvidence = deriveMissingEvidence(snapshot)
+  const hasMissingEvidence = missingEvidence.length > 0
+  // Selezione phase: degraded > missing-evidence > ready > empty. Corrupt e'
+  // gia' stato risolto sopra. missing-evidence copre lo stato "avrei fatti
+  // ricomponibili se il resolver evidence completasse".
   const phase = health === "degraded"
     ? ("degraded" as const)
-    : hasResumableFacts ? ("ready" as const) : ("empty" as const)
+    : hasMissingEvidence && (hasResumableFacts || snapshot.lessonEvents.length > 0)
+    ? ("missing-evidence" as const)
+    : hasResumableFacts
+    ? ("ready" as const)
+    : ("empty" as const)
+
+  const nextAction: ContinuityNextActionV1 = p0.length > 0
+    ? recoverContinuityAction(identity, p0[0]!)
+    : phase === "missing-evidence"
+    ? recoverEvidenceAction(identity, missingEvidence[0]!, missingEvidence)
+    : openLoops.length > 0
+    ? Object.freeze({
+        kind: "resume-open-loop" as const,
+        priority: 2 as const,
+        errorId: openLoops[0]!.errorId,
+        href: continuityLessonHref(identity),
+        evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+      })
+    : Object.freeze({
+        kind: "reopen-lesson" as const,
+        priority: 4 as const,
+        href: continuityLessonHref(identity),
+        evidence: Object.freeze([]) as readonly [],
+      })
 
   return Object.freeze({
     v: 1 as const,
@@ -702,23 +803,8 @@ export function projectContinuityV1(
     openLoops,
     lastUncorrectedError,
     recentMaterials: Object.freeze([]) as readonly ContinuityMaterialV1[],
-    missingEvidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
+    missingEvidence,
     simulation: deriveSimulationState(snapshot.lessonEvents, snapshot.scene, identity.roomId),
-    nextAction: p0.length > 0
-      ? recoverContinuityAction(identity, p0[0]!)
-      : openLoops.length > 0
-      ? Object.freeze({
-          kind: "resume-open-loop" as const,
-          priority: 2 as const,
-          errorId: openLoops[0]!.errorId,
-          href: continuityLessonHref(identity),
-          evidence: Object.freeze([]) as readonly ContinuityEvidenceV1[],
-        })
-      : Object.freeze({
-          kind: "reopen-lesson" as const,
-          priority: 4 as const,
-          href: continuityLessonHref(identity),
-          evidence: Object.freeze([]) as readonly [],
-        }),
+    nextAction,
   })
 }
