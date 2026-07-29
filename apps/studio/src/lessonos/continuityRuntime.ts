@@ -276,10 +276,21 @@ async function sha256Hex(bytes: Uint8Array): Promise<string> {
   // caso di rifiuto si riporta cosa e' arrivato davvero. Un TypeError WebIDL
   // opaco non dice se il problema e' il realm, il tipo o un valore assente.
   // Questo e' comunque codice migliore: un errore che nomina la causa.
+  // `constructor.name` NON distingue i realm: due realm chiamano entrambi la
+  // propria classe "ArrayBuffer". La prima versione di questa diagnostica era
+  // cieca proprio alla cosa che doveva misurare. Serve identita', non nome.
   const describe = (value: unknown): string => {
     if (value === null || value === undefined) return String(value)
-    const ctor = (value as { constructor?: { name?: string } }).constructor
-    return `${typeof value}/${ctor?.name ?? "anonymous"}`
+    const ctor = (value as { constructor?: unknown }).constructor
+    const name = (ctor as { name?: string } | undefined)?.name ?? "anonymous"
+    const owner =
+      ctor === ArrayBuffer
+        ? "OUR-ArrayBuffer"
+        : ctor === Uint8Array
+          ? "OUR-Uint8Array"
+          : "FOREIGN-ctor"
+    const brand = value instanceof ArrayBuffer ? "instanceof-ours" : "NOT-instanceof-ours"
+    return `${typeof value}/${name}/${owner}/${brand}`
   }
   if (!ArrayBuffer.isView(bytes)) {
     throw new TypeError(
