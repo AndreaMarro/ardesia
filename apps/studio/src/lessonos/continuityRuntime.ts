@@ -212,10 +212,17 @@ function derivePersistenceFromWorkspaceMode(
 export function createImportedBundleContinuityWorkspaceReader(
   files: ReadonlyMap<string, Blob>,
 ): ContinuityWorkspaceReaderV1 {
+  // `ReadonlyMap` e' un vincolo di solo tipo: a runtime il chiamante conserva un
+  // Map mutabile. Senza copia, ogni read() consultava la collezione viva del
+  // chiamante, che poteva sostituire, aggiungere o rimuovere entry DOPO la
+  // costruzione - cioe' riscrivere a piacere il contenuto di un bundle che si
+  // dichiara autoritativo per la sessione importata. Le entry vengono acquisite
+  // qui, una volta sola.
+  const owned = new Map<string, Blob>(files)
   return Object.freeze({
     persistence: Object.freeze({ kind: "bundle" as const }),
     async read(path: string) {
-      return files.get(path) ?? null
+      return owned.get(path) ?? null
     },
     dispose: NO_OP_DISPOSE,
   })

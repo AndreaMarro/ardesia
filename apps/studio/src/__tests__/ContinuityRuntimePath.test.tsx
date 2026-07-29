@@ -2145,3 +2145,41 @@ describe("validateContinuityScopeV1 — gli identificatori sono catturati esatta
     expect(result.kind).toBe("loaded")
   })
 })
+
+import { createImportedBundleContinuityWorkspaceReader } from "../lessonos/continuityRuntime"
+
+describe("createImportedBundleContinuityWorkspaceReader — autorità posseduta, non presa a prestito (accept #3)", () => {
+  // Difetto: `files` era catturata per closure ma mai copiata. ReadonlyMap e' un
+  // vincolo solo TypeScript: a runtime il chiamante tiene un Map mutabile, e ogni
+  // read() consultava quello vivo. L'autorita' del bundle era quindi del chiamante.
+  it("sostituire una entry dopo la costruzione non cambia i byte serviti", async () => {
+    const original = new Blob(["ORIGINALE"])
+    const replacement = new Blob(["SOSTITUITO"])
+    const callerMap = new Map<string, Blob>([["scene.json", original]])
+
+    const reader = createImportedBundleContinuityWorkspaceReader(callerMap)
+    callerMap.set("scene.json", replacement)
+
+    const served = await reader.read("scene.json")
+    expect(await served?.text()).toBe("ORIGINALE")
+  })
+
+  it("aggiungere una entry dopo la costruzione non estende l'autorità del bundle", async () => {
+    const callerMap = new Map<string, Blob>()
+
+    const reader = createImportedBundleContinuityWorkspaceReader(callerMap)
+    callerMap.set("intruso.json", new Blob(["INTRUSO"]))
+
+    expect(await reader.read("intruso.json")).toBeNull()
+  })
+
+  it("rimuovere una entry dopo la costruzione non cancella i byte già acquisiti", async () => {
+    const callerMap = new Map<string, Blob>([["scene.json", new Blob(["ACQUISITO"])]])
+
+    const reader = createImportedBundleContinuityWorkspaceReader(callerMap)
+    callerMap.delete("scene.json")
+
+    const served = await reader.read("scene.json")
+    expect(await served?.text()).toBe("ACQUISITO")
+  })
+})
