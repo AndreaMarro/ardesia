@@ -2074,3 +2074,74 @@ describe("validateStoredEnvelopes — ogni ramo restituisce una collezione fresc
     expect(snapshot.lessonEvents.length).toBe(0)
   })
 })
+
+describe("validateContinuityScopeV1 — gli identificatori sono catturati esattamente una volta (accept #2)", () => {
+  // Difetto: lessonId e roomId erano letti due volte, sessionId tre. Un input
+  // con getter puo' cambiare o lanciare fra una lettura e l'altra, quindi lo
+  // scope validato non e' necessariamente quello usato per l'I/O (TOCTOU).
+  it("un input con getter che cambiano dopo il primo accesso non altera lo scope validato", async () => {
+    const counts = { lessonId: 0, roomId: 0, sessionId: 0 }
+    const volatileScope = {
+      get lessonId() {
+        counts.lessonId += 1
+        return counts.lessonId === 1 ? LESSON_ID : "scope-mutato-dopo-la-validazione"
+      },
+      get roomId() {
+        counts.roomId += 1
+        return counts.roomId === 1 ? LESSON_ID : "scope-mutato-dopo-la-validazione"
+      },
+      get sessionId() {
+        counts.sessionId += 1
+        return counts.sessionId === 1 ? SESSION_ID : "scope-mutato-dopo-la-validazione"
+      },
+    }
+
+    const factories = {
+      createEventReader: async () => verifiedReader([]),
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    const result = await loadScopedContinuitySnapshot(
+      volatileScope as unknown as Parameters<typeof loadScopedContinuitySnapshot>[0],
+      factories,
+    )
+
+    expect(result.kind).toBe("loaded")
+    expect(counts).toEqual({ lessonId: 1, roomId: 1, sessionId: 1 })
+  })
+
+  it("un getter che lancia dopo il primo accesso non fa esplodere il loader", async () => {
+    const seen = { lessonId: 0, roomId: 0, sessionId: 0 }
+    const explodingScope = {
+      get lessonId() {
+        seen.lessonId += 1
+        if (seen.lessonId > 1) throw new Error("lessonId getter exploded on re-read")
+        return LESSON_ID
+      },
+      get roomId() {
+        seen.roomId += 1
+        if (seen.roomId > 1) throw new Error("roomId getter exploded on re-read")
+        return LESSON_ID
+      },
+      get sessionId() {
+        seen.sessionId += 1
+        if (seen.sessionId > 1) throw new Error("sessionId getter exploded on re-read")
+        return SESSION_ID
+      },
+    }
+
+    const factories = {
+      createEventReader: async () => verifiedReader([]),
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+
+    const result = await loadScopedContinuitySnapshot(
+      explodingScope as unknown as Parameters<typeof loadScopedContinuitySnapshot>[0],
+      factories,
+    )
+
+    expect(result.kind).toBe("loaded")
+  })
+})

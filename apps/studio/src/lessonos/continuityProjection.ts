@@ -348,28 +348,51 @@ export function validateContinuityScopeV1(input: {
   roomId: unknown
   sessionId: unknown
 }): ContinuityScopeV1 {
-  if (typeof input.lessonId !== "string") throw new ContinuityScopeError("invalid-lesson-id")
-  if (typeof input.roomId !== "string") throw new ContinuityScopeError("invalid-room-id")
-  if (typeof input.sessionId !== "string") throw new ContinuityScopeError("invalid-session-id")
+  // Cattura esattamente una volta, prima di qualunque validazione e di qualunque
+  // I/O. Un input con getter puo' cambiare valore o lanciare fra una lettura e
+  // l'altra: rileggendo, lo scope validato non sarebbe quello effettivamente
+  // usato per leggere, e un input valido al primo accesso verrebbe rifiutato.
+  let rawLessonId: unknown
+  let rawRoomId: unknown
+  let rawSessionId: unknown
+  try {
+    rawLessonId = input.lessonId
+  } catch {
+    throw new ContinuityScopeError("invalid-lesson-id")
+  }
+  try {
+    rawRoomId = input.roomId
+  } catch {
+    throw new ContinuityScopeError("invalid-room-id")
+  }
+  try {
+    rawSessionId = input.sessionId
+  } catch {
+    throw new ContinuityScopeError("invalid-session-id")
+  }
+
+  if (typeof rawLessonId !== "string") throw new ContinuityScopeError("invalid-lesson-id")
+  if (typeof rawRoomId !== "string") throw new ContinuityScopeError("invalid-room-id")
+  if (typeof rawSessionId !== "string") throw new ContinuityScopeError("invalid-session-id")
 
   let lessonId: string
   try {
-    lessonId = validateRoomId(input.lessonId)
+    lessonId = validateRoomId(rawLessonId)
   } catch {
     throw new ContinuityScopeError("invalid-lesson-id")
   }
   let roomId: string
   try {
-    roomId = validateRoomId(input.roomId)
+    roomId = validateRoomId(rawRoomId)
   } catch {
     throw new ContinuityScopeError("invalid-room-id")
   }
   // La room è alias di routing, non una terza identità (design §5.1 invariante 2).
   if (roomId !== lessonId) throw new ContinuityScopeError("room-lesson-mismatch")
-  if (!CANONICAL_UUID_RE.test(input.sessionId)) {
+  if (!CANONICAL_UUID_RE.test(rawSessionId)) {
     throw new ContinuityScopeError("invalid-session-id")
   }
-  return Object.freeze({ lessonId, roomId, sessionId: input.sessionId })
+  return Object.freeze({ lessonId, roomId, sessionId: rawSessionId })
 }
 
 // --- Derivazione pura: design §6, §7, §9 ---
