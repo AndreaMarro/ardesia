@@ -83,6 +83,43 @@ and runs the full suite, typecheck and build — about ten minutes — before th
 writer is invoked. BETA-005 burned all of that and then died on a 401 in ten
 seconds, while doctor reported 10/10 READY throughout.
 
+## The oracle is the full CI gate set, in CI's environment
+
+Three separate false greens in one session, all the same shape - a partial green
+read as complete:
+
+| symptom | cause |
+|---|---|
+| 5 test files red | `NODE_OPTIONS=--no-experimental-webstorage` missing — **environment** |
+| 2072 tests green, PR broken | `typecheck` never run — **missing command** |
+| 3 gates green, CI red | a 4th gate on a different Node — **both** |
+
+CI runs **four** gates, not three. `.github/workflows/ci.yml` runs studio
+typecheck + test + build on **Node 22**; `studio-preview-readiness.yml` runs
+`no-deploy-check` → `bin/monorepo.sh preview-studio-check`, which re-runs the
+suite on the **default vitest pool** — no `--pool=threads`. Both pin Node 22
+while this host runs Node 25.
+
+Before claiming green, run all four, on both:
+
+```bash
+export NODE_OPTIONS="--no-experimental-webstorage"
+# gate 1-3, threads pool, as ci.yml runs them
+npm --prefix apps/studio run test -- --pool=threads --maxWorkers=1 --no-file-parallelism
+npm --prefix apps/studio run typecheck
+npm --prefix apps/studio run build
+# gate 4, default pool, Node 22 — as studio-preview-readiness.yml runs it
+PATH=/opt/homebrew/opt/node@22/bin:$PATH bash bin/monorepo.sh preview-studio-check
+```
+
+`node@22` is installed keg-only on the Mini for exactly this. A CI failure that
+cannot be reproduced locally is permanent debt: every recurrence gets guessed at.
+
+**When a symptom will not reproduce, assert the cause instead.** The realm defect
+in `sha256Hex` never raised its TypeError outside CI, but the invariant it broke -
+*the buffer handed to `digest` must be the one the platform returned* - is
+falsifiable anywhere. The symptom depended on the realm; the invariant did not.
+
 ## Block-reason taxonomy
 
 Every failure terminates as `BLOCKED_CAUSAL`, so a revoked token, an abandoned
