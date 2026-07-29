@@ -1495,10 +1495,16 @@ describe("createWorkspaceStoreContinuityWorkspaceReader — persistence dal back
     expect(reader.persistence.kind).toBe("local-storage")
   })
 
-  it("store.mode=fsa => persistence.kind=fsa (unica sorgente autoritativa)", () => {
+  it("uno stub che si autoetichetta fsa NON ottiene autorita fsa", () => {
+    // Questo test asseriva l'esatto contrario, e passava. Codificava il difetto
+    // come contratto: un oggetto letterale `{ mode: "fsa", read }` otteneva
+    // l'unica persistence autoritativa del sistema. Il test subito sotto
+    // dichiarava nel commento di "blindare" quel buco, ma prova solo che uno
+    // store REALE in localStorage riporta local-storage - cosa diversa.
+    // L'autorita' fsa ora richiede una istanza WorkspaceStore reale.
     const stub = { mode: "fsa" as const, read: async () => null }
     const reader = createWorkspaceStoreContinuityWorkspaceReader(stub)
-    expect(reader.persistence.kind).toBe("fsa")
+    expect(reader.persistence.kind).toBe("unavailable")
   })
 
   it("un test-double che si autoetichetta fsa NON puo' passarsi come autoritativo tramite un WorkspaceStore reale", async () => {
@@ -2181,5 +2187,13 @@ describe("createImportedBundleContinuityWorkspaceReader — autorità posseduta,
 
     const served = await reader.read("scene.json")
     expect(await served?.text()).toBe("ACQUISITO")
+  })
+})
+
+describe("createWorkspaceStoreContinuityWorkspaceReader — l autorita FSA non e autodichiarabile (accept #3)", () => {
+  it("un oggetto letterale che si etichetta fsa non ottiene autorita FSA", () => {
+    const spoof = { mode: "fsa" as const, read: async () => new Blob(["falso"]) }
+    const reader = createWorkspaceStoreContinuityWorkspaceReader(spoof)
+    expect(reader.persistence.kind).not.toBe("fsa")
   })
 })

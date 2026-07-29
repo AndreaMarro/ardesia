@@ -45,7 +45,7 @@ import {
   SessionYamlParseError,
   type SessionYamlV2,
 } from "../store/sessionState"
-import type { WorkspaceStore } from "../store/WorkspaceStore"
+import { WorkspaceStore } from "../store/WorkspaceStore"
 
 // --- Porte read-only (design §5.2) ---
 //
@@ -177,7 +177,10 @@ export async function openIndexedDbContinuityEventReader(
 export function createWorkspaceStoreContinuityWorkspaceReader(
   store: Pick<WorkspaceStore, "mode" | "read">,
 ): ContinuityWorkspaceReaderV1 {
-  const persistence = derivePersistenceFromWorkspaceMode(store.mode)
+  const persistence = derivePersistenceFromWorkspaceMode(
+    store.mode,
+    store instanceof WorkspaceStore,
+  )
   return Object.freeze({
     persistence,
     async read(path: string) {
@@ -189,10 +192,22 @@ export function createWorkspaceStoreContinuityWorkspaceReader(
 
 function derivePersistenceFromWorkspaceMode(
   mode: WorkspaceStore["mode"],
+  connectedStore: boolean,
 ): ContinuityWorkspacePersistenceV1 {
   switch (mode) {
     case "fsa":
-      return Object.freeze({ kind: "fsa" as const })
+      // `Pick<WorkspaceStore, "mode" | "read">` e' un tipo STRUTTURALE: qualunque
+      // oggetto letterale con quei due membri lo soddisfa. `fsa` e' l'unica
+      // persistence autoritativa, quindi e' l'unica che non puo' essere
+      // autodichiarata: richiede uno store reale connesso, non un impostore che
+      // espone `mode` e `read`. Fail-closed - chi non lo e' non degrada ad
+      // autorevole, degrada a non disponibile.
+      return connectedStore
+        ? Object.freeze({ kind: "fsa" as const })
+        : Object.freeze({
+            kind: "unavailable" as const,
+            code: "workspace-uninitialised",
+          })
     case "localStorage":
       return Object.freeze({ kind: "local-storage" as const })
     case "unavailable":
