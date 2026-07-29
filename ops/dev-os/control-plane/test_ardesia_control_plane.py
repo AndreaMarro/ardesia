@@ -3939,6 +3939,97 @@ class ControlPlaneTests(unittest.TestCase):
                     len(decision["residual_findings"]), len(severities), task_id
                 )
 
+    # ---- block-reason taxonomy ----------------------------------------
+    # Every failure in this loop terminates as BLOCKED_CAUSAL, so a revoked
+    # OAuth token, an abandoned PR and a genuine review rejection are
+    # indistinguishable in the state machine. Thirty hours were read as "the
+    # work is bad" when four of nine attempts never reached the writer. The
+    # vault's own P31 taxonomy classifies causes before fixing; same discipline.
+
+    def test_revoked_token_is_an_auth_failure_not_a_work_failure(self) -> None:
+        verdict = cp.classify_block_reason(
+            "Claude writer invocation failed: 1",
+            {
+                "api_error_status": 401,
+                "is_error": True,
+                "total_cost_usd": 0,
+                "result": "OAuth access token has been revoked.",
+            },
+        )
+        self.assertEqual(verdict["class"], "B_AUTH")
+        self.assertTrue(verdict["zero_cost"])
+        self.assertFalse(verdict["work_was_judged"])
+
+    def test_transient_overload_is_transport_not_auth(self) -> None:
+        verdict = cp.classify_block_reason(
+            "Claude repair invocation failed",
+            {"is_error": True, "total_cost_usd": 3.94, "result": 'overloaded_error'},
+        )
+        self.assertEqual(verdict["class"], "C_TRANSPORT")
+        self.assertFalse(verdict["zero_cost"])
+
+    def test_infrastructure_failures_precede_the_writer(self) -> None:
+        for reason in (
+            "new task worktree failed exact-SHA cleanliness probe",
+            "baseline verification failed before writer dispatch",
+            "worker_disappeared_without_terminal_receipt",
+        ):
+            with self.subTest(reason=reason):
+                verdict = cp.classify_block_reason(reason, None)
+                self.assertEqual(verdict["class"], "A_INFRA")
+                self.assertFalse(verdict["work_was_judged"])
+
+    def test_open_pr_overlap_is_coordination(self) -> None:
+        verdict = cp.classify_block_reason(
+            "open PR path overlap at preflight: [{'number': 185}]", None
+        )
+        self.assertEqual(verdict["class"], "D_COORDINATION")
+        self.assertFalse(verdict["work_was_judged"])
+
+    def test_only_a_review_rejection_counts_as_work_judged(self) -> None:
+        verdict = cp.classify_block_reason(
+            "independent review did not pass: REPAIR_REQUIRED", None
+        )
+        self.assertEqual(verdict["class"], "F_REVIEW")
+        self.assertTrue(verdict["work_was_judged"])
+
+    def test_red_deterministic_oracle_is_its_own_class(self) -> None:
+        verdict = cp.classify_block_reason("post-write verification failed", None)
+        self.assertEqual(verdict["class"], "E_ORACLE")
+        self.assertTrue(verdict["work_was_judged"])
+
+    def test_audit_reports_auth_failure_as_its_own_critical_finding(self) -> None:
+        tasks = {
+            "T1": {
+                "state": "BLOCKED_CAUSAL",
+                "reason": "Claude writer invocation failed: 1",
+                "writer_response": {"api_error_status": 401, "total_cost_usd": 0},
+            }
+        }
+        events = self._ledger(["PRODUCTIVE_SLICE_AUTOMATICALLY_STARTED"])
+        metrics = cp.loop_health_metrics(events, tasks, self.policy)
+        findings = cp.loop_health_findings(metrics, self.policy)
+        auth = next(item for item in findings if item["id"] == "WRITER_AUTH_FAILED")
+        self.assertEqual(auth["severity"], "critical")
+        self.assertEqual(auth["evidence"]["blocked_on_auth"], 1)
+        # It must outrank the generic finding, or the operator reads the wrong one.
+        self.assertEqual(findings[0]["id"], "WRITER_AUTH_FAILED")
+        self.assertEqual(metrics["block_taxonomy"]["B_AUTH"], 1)
+
+    def test_taxonomy_counts_appear_in_metrics(self) -> None:
+        tasks = {
+            "A": {"state": "BLOCKED_CAUSAL", "reason": "open PR path overlap at preflight: []"},
+            "B": {"state": "BLOCKED_CAUSAL", "reason": "independent review did not pass: REPAIR_REQUIRED"},
+            "C": {"state": "BLOCKED_CAUSAL", "reason": "baseline verification failed before writer dispatch"},
+        }
+        metrics = cp.loop_health_metrics(self._ledger([]), tasks, self.policy)
+        taxonomy = metrics["block_taxonomy"]
+        self.assertEqual(taxonomy["D_COORDINATION"], 1)
+        self.assertEqual(taxonomy["F_REVIEW"], 1)
+        self.assertEqual(taxonomy["A_INFRA"], 1)
+        # Only one of the three was ever a judgement about the code.
+        self.assertEqual(metrics["work_actually_judged"], 1)
+
     # ---- bounded task proposals ---------------------------------------
     # The measured bottleneck is the failure rate, not the machinery: 91% of a
     # slice is AI wall-clock, and a 5-file/3000-line unit resolves under 10% of

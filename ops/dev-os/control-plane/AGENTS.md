@@ -8,7 +8,7 @@ the template.
 ## Commands
 
 ```bash
-python3 -m unittest test_ardesia_control_plane     # 82 tests, must be green before install
+python3 -m unittest test_ardesia_control_plane     # 90 tests, must be green before install
 python3 ardesia_control_plane.py --policy <policy> doctor        # 10 admission checks
 python3 ardesia_control_plane.py --policy <policy> loop-audit --trigger manual
 python3 ardesia_control_plane.py --policy <policy> propose-tasks --task-id <id>
@@ -65,11 +65,37 @@ then copied to `~/Library/LaunchAgents`:
 | `com.ardesia.mcp.mailbox` / `.watchdog` | 300 s / 900 s | none |
 | `com.ardesia.mcp.backup` | 03:17 | none |
 
+## Block-reason taxonomy
+
+Every failure terminates as `BLOCKED_CAUSAL`, so a revoked token, an abandoned
+pull request and a real review rejection look identical in the state machine.
+That conflation is why thirty hours read as "the work is bad". `classify_block_reason`
+separates them:
+
+| class | meaning | judges the code? |
+|---|---|---|
+| `A_INFRA` | stopped before the writer was dispatched | no |
+| `B_AUTH` | credentials rejected, zero cost | no |
+| `C_TRANSPORT` | transient provider overload | no |
+| `D_COORDINATION` | another branch claims the same paths | no |
+| `E_ORACLE` | deterministic verification was red | yes |
+| `F_REVIEW` | the reviewer judged the candidate | yes |
+
+`work_actually_judged` counts only the last two. Measured on the current queue:
+**3 of 5 blocks ever judged the code.**
+
 ## Reading the audit
 
 `~/ARDESIA-RUNTIME/reports/loop-health-latest.md` is rewritten only when the
 finding set changes. `loop-health-trend.jsonl` is append-only — one row per run,
 so throughput over time is visible without re-deriving it.
+
+The audit is model-free and single-threaded by design: no escalation tier, no
+agent swarm. Adding orchestration to a stalled loop is the documented wrong
+response. It reads GitHub from the snapshot the controller already maintains
+(never re-fetching), attaches WikiLLM hits from the vault index to each finding,
+and publishes to Obsidian at a digest-addressed path so an unchanged finding set
+maps to the same note and the same bytes — the vault cannot churn by construction.
 
 The number that matters is **accepted work units**. A green doctor, a rising test
 count and zero accepted units is the documented failure signature, not health.

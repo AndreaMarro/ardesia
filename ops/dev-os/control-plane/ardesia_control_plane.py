@@ -8039,6 +8039,64 @@ CONTROLLER_THRASH_THRESHOLD = 8
 LOOP_AUDIT_SUPPRESS_AFTER = 3
 
 
+def classify_block_reason(
+    reason: str,
+    writer_response: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Classify why a slice stopped, by cause class rather than by symptom.
+
+    Every failure here terminates as BLOCKED_CAUSAL, so a revoked OAuth token,
+    an abandoned pull request and a genuine review rejection are indistinguish-
+    able in the state machine. That conflation is what made thirty hours read as
+    "the work is bad" when four of nine attempts never reached the writer at all.
+
+    Only E_ORACLE and F_REVIEW are judgements about the code. Everything else is
+    the machine failing to get the code in front of a judge, and must never be
+    counted as evidence about quality.
+    """
+    text = str(reason or "")
+    lowered = text.lower()
+    response = writer_response if isinstance(writer_response, dict) else {}
+    result_text = str(response.get("result", "")).lower()
+    cost = response.get("total_cost_usd")
+    zero_cost = cost == 0 or cost is None and bool(response)
+
+    def verdict(identifier: str, judged: bool, detail: str) -> Dict[str, Any]:
+        return {
+            "class": identifier,
+            "work_was_judged": judged,
+            "zero_cost": bool(zero_cost) if response else False,
+            "detail": detail,
+            "reason": redact_diagnostic(text, limit=400),
+        }
+
+    if response.get("api_error_status") in (401, 403) or any(
+        token in result_text for token in ("revoked", "authenticate", "authentication_error")
+    ):
+        return verdict("B_AUTH", False, "credentials rejected before any work was done")
+    if "overload" in result_text or "overload" in lowered:
+        return verdict("C_TRANSPORT", False, "transient provider error")
+    if any(
+        token in lowered
+        for token in (
+            "worktree",
+            "cleanliness probe",
+            "baseline verification failed",
+            "worker_disappeared",
+            "holds_lock",
+            "preflight failed",
+        )
+    ):
+        return verdict("A_INFRA", False, "stopped before the writer was dispatched")
+    if any(token in lowered for token in ("path overlap", "coordination", "overlap at preflight")):
+        return verdict("D_COORDINATION", False, "another branch claims the same paths")
+    if "independent review" in lowered or "repair_required" in lowered:
+        return verdict("F_REVIEW", True, "the reviewer judged the candidate")
+    if "verification failed" in lowered:
+        return verdict("E_ORACLE", True, "the deterministic oracle was red")
+    return verdict("Z_UNCLASSIFIED", False, "no taxonomy rule matched")
+
+
 def loop_health_metrics(
     events: Sequence[Dict[str, Any]],
     tasks: Dict[str, Any],
@@ -8053,6 +8111,17 @@ def loop_health_metrics(
         counts[kind] = counts.get(kind, 0) + 1
     total = sum(counts.values())
     observation = sum(counts.get(kind, 0) for kind in OBSERVATION_EVENT_KINDS)
+    taxonomy: Dict[str, int] = {}
+    judged = 0
+    for record in tasks.values():
+        if str(record.get("state", "")) != "BLOCKED_CAUSAL":
+            continue
+        verdict = classify_block_reason(
+            record.get("reason", ""), record.get("writer_response")
+        )
+        taxonomy[verdict["class"]] = taxonomy.get(verdict["class"], 0) + 1
+        if verdict["work_was_judged"]:
+            judged += 1
     states = [str(record.get("state", "")) for record in tasks.values()]
     terminal = sum(1 for state in states if state in TERMINAL_TASK_STATES)
     pending = sum(1 for state in states if state == "PENDING")
@@ -8074,6 +8143,8 @@ def loop_health_metrics(
         "active_tasks": len(states) - terminal - pending,
         "acceptance_mode": policy["loop"]["acceptance_mode"],
         "max_repairs": policy["loop"]["max_repairs"],
+        "block_taxonomy": taxonomy,
+        "work_actually_judged": judged,
     }
 
 
@@ -8099,6 +8170,23 @@ def loop_health_findings(
             }
         )
 
+    blocked_on_auth = metrics["block_taxonomy"].get("B_AUTH", 0)
+    if blocked_on_auth:
+        # Ranked first deliberately. An auth failure explains the starvation and
+        # the zero throughput below it; reporting those first sends the operator
+        # to re-scope work that was never judged.
+        add(
+            "WRITER_AUTH_FAILED",
+            "critical",
+            "The writer could not authenticate. No work was produced or judged.",
+            {
+                "blocked_on_auth": blocked_on_auth,
+                "work_actually_judged": metrics["work_actually_judged"],
+                "taxonomy": metrics["block_taxonomy"],
+            },
+            "Re-authenticate the provider CLI on the runtime host. Cost for these "
+            "attempts is zero, so this is not evidence about code quality.",
+        )
     if metrics["total_tasks"] and metrics["terminal_tasks"] == metrics["total_tasks"]:
         add(
             "QUEUE_STARVED",
@@ -8196,9 +8284,36 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
             except json.JSONDecodeError:
                 continue
     state = read_json(productive_state_path(runtime), {}) or {}
-    tasks = state.get("tasks") or {}
+    tasks = dict(state.get("tasks") or {})
+    # The provider response holds the only evidence that separates an auth
+    # failure from a work failure, and it lives beside the run, not in state.
+    for task_id, record in tasks.items():
+        if not isinstance(record, dict) or record.get("state") != "BLOCKED_CAUSAL":
+            continue
+        response = read_json(
+            runtime / "artifacts" / "productive-runs" / task_id / "implement-claude-response.json",
+            {},
+        )
+        if response:
+            tasks[task_id] = {**record, "writer_response": response}
     metrics = loop_health_metrics(events, tasks, policy)
+    # GitHub context is read from the snapshot the controller already maintains,
+    # never re-fetched: the audit must not add API load to diagnose API load.
+    monitor = read_json(runtime / "state" / "github-monitor.json", {}) or {}
+    metrics["github"] = {
+        "state": monitor.get("state", "NOT_OBSERVED"),
+        "open_pr_count": monitor.get("open_pr_count", 0),
+        "observed_at": monitor.get("observed_at"),
+        "blocking_task_ids": sorted(
+            task_id
+            for task_id, overlaps in (monitor.get("task_overlaps") or {}).items()
+            if overlaps
+        ),
+        "stale_exempted": sorted((monitor.get("stale_exempted_overlaps") or {}).keys()),
+    }
     findings = loop_health_findings(metrics, policy)
+    for item in findings:
+        item["prior_knowledge"] = wikillm_context(policy, item)
     digest = sha256_text(canonical_json(findings))
 
     history_path = runtime / "state" / "loop-health.json"
@@ -8229,12 +8344,18 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
     }
     append_jsonl(runtime / "reports" / "loop-health-trend.jsonl", row)
 
+    body = render_loop_health_report(metrics, findings, trigger)
+    vault: Dict[str, Any] = {"state": "UNCHANGED_NO_CHURN"}
     if publication == "PUBLISHED":
-        atomic_write(
-            runtime / "reports" / "loop-health-latest.md",
-            render_loop_health_report(metrics, findings, trigger).encode("utf-8"),
-            0o644,
-        )
+        atomic_write(runtime / "reports" / "loop-health-latest.md", body.encode("utf-8"), 0o644)
+        # Digest-addressed path: an unchanged finding set maps to the same note
+        # and the same bytes, so the vault cannot churn by construction.
+        try:
+            vault = governed_obsidian_write(
+                policy, f"91-Auto-Receipts/loop-health-{digest[:12]}.md", body
+            )
+        except (OSError, ValueError, RuntimeError) as error:
+            vault = {"state": "DEFERRED", "reason": redact_diagnostic(str(error), limit=200)}
     write_json(
         history_path,
         {
@@ -8263,8 +8384,29 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
         "repeat_count": repeat,
         "suppressed": suppressed,
         "publication": publication,
+        "obsidian": vault,
         "ts": iso_now(),
     }
+
+
+def wikillm_context(policy: Dict[str, Any], finding: Dict[str, Any]) -> List[str]:
+    """Attach prior knowledge from the vault index to a finding.
+
+    WikiLLM is a local full-text index, so this costs nothing and keeps the
+    hourly audit model-free. The point is that a recurring finding should arrive
+    with the notes that already discuss it, rather than making the next reader
+    rediscover them.
+    """
+    try:
+        hits = wikillm_search(policy, f"{finding['id']} {finding['summary']}", limit=3)
+    except (OSError, ValueError, RuntimeError, sqlite3.Error):
+        return []
+    titles = []
+    for hit in hits or []:
+        title = str((hit or {}).get("title") or (hit or {}).get("slug") or "").strip()
+        if title:
+            titles.append(title[:160])
+    return titles
 
 
 def render_loop_health_report(
@@ -8288,6 +8430,9 @@ def render_loop_health_report(
         f"| acceptance rate | {metrics['acceptance_rate']:.1%} |",
         f"| self-observation share | {metrics['observation_ratio']:.1%} |",
         f"| tasks terminal / total | {metrics['terminal_tasks']} / {metrics['total_tasks']} |",
+        f"| blocks that judged the code | {metrics['work_actually_judged']} |",
+        f"| block taxonomy | `{canonical_json(metrics['block_taxonomy'])}` |",
+        f"| open pull requests | {metrics.get('github', {}).get('open_pr_count', 0)} |",
         f"| acceptance mode | `{metrics['acceptance_mode']}` |",
         "",
         "## Findings",
@@ -8307,6 +8452,10 @@ def render_loop_health_report(
                 "",
             ]
         )
+        if item.get("prior_knowledge"):
+            lines.append("- prior knowledge in the vault:")
+            lines.extend(f"  - {title}" for title in item["prior_knowledge"])
+            lines.append("")
     return "\n".join(lines) + "\n"
 
 
