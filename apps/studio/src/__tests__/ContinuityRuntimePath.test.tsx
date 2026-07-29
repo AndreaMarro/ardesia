@@ -2197,3 +2197,70 @@ describe("createWorkspaceStoreContinuityWorkspaceReader — l autorita FSA non e
     expect(reader.persistence.kind).not.toBe("fsa")
   })
 })
+
+function createFactoryWithMalformedRowOfAnotherScope(): IDBFactory {
+  // schemaVersion=2 e lessonId/sessionId PRESENTI e indicizzabili, ma envelope
+  // non canonico: la riga e' malformata E attribuibile a lezione-b/sessione-b.
+  const row: StoredRow = {
+    schemaVersion: 2,
+    seq: 1,
+    eventId: "not-a-uuid",
+    kind: "unknown.kind",
+    lessonId: "lezione-b",
+    sessionId: "22222222-2222-4222-8222-222222222222",
+  } as unknown as StoredRow
+  return buildFakeFactory([row])
+}
+
+describe("openIndexedDbEventLog — l integrita e attribuita allo scope richiesto (accept #6)", () => {
+  it("una riga malformata di un ALTRO lesson/session non degrada lo scope richiesto", async () => {
+    const factory = createFactoryWithMalformedRowOfAnotherScope()
+    const handle = await openIndexedDbEventLog({
+      factory,
+      scope: { lessonId: LESSON_ID, sessionId: SESSION_ID },
+    })
+    try {
+      expect(handle.backend.kind).toBe("verified-indexeddb")
+    } finally {
+      await handle.close()
+    }
+  })
+
+  it("una riga malformata DELLO scope richiesto lo degrada comunque", async () => {
+    const factory = createFactoryWithMalformedRowOfAnotherScope()
+    const handle = await openIndexedDbEventLog({
+      factory,
+      scope: { lessonId: "lezione-b", sessionId: "22222222-2222-4222-8222-222222222222" },
+    })
+    try {
+      expect(handle.backend.kind).toBe("data-loss")
+    } finally {
+      await handle.close()
+    }
+  })
+
+  it("senza scope il comportamento resta conservativo: degrada", async () => {
+    const factory = createFactoryWithMalformedRowOfAnotherScope()
+    const handle = await openIndexedDbEventLog({ factory })
+    try {
+      expect(handle.backend.kind).toBe("data-loss")
+    } finally {
+      await handle.close()
+    }
+  })
+
+  it("materiale legacy NON attribuibile resta non-verificato anche con scope", async () => {
+    // Clausola 6: il materiale non attribuibile non va assegnato a uno scope
+    // arbitrario NE usato come evidenza verificata. Resta quindi degradato.
+    const factory = createFactoryWithMalformedV2Row()
+    const handle = await openIndexedDbEventLog({
+      factory,
+      scope: { lessonId: LESSON_ID, sessionId: SESSION_ID },
+    })
+    try {
+      expect(handle.backend.kind).not.toBe("verified-indexeddb")
+    } finally {
+      await handle.close()
+    }
+  })
+})

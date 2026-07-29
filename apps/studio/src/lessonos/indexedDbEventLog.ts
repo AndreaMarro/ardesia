@@ -392,7 +392,18 @@ export interface TrustedLegacyEventContext {
   producer?: ProducerIdentity
 }
 
+/** Scope richiesto: rende l'integrita' attribuibile invece che globale. */
+export type EventLogIntegrityScope = Readonly<{ lessonId: string; sessionId: string }>
+
 export interface IndexedDbEventLogOptions {
+  /**
+   * Quando presente, le righe fisiche malformate o legacy ATTRIBUIBILI a un
+   * altro lesson/session non degradano piu' questo scope (design ARD-06 §5.2,
+   * accept #6). Il materiale non attribuibile resta conservativo: non viene
+   * assegnato a uno scope arbitrario ne' usato come evidenza verificata.
+   */
+  scope?: EventLogIntegrityScope
+
   factory?: IDBFactory
   dbName?: string
   crypto?: Crypto
@@ -879,7 +890,25 @@ export interface IndexedDbEventLogHandle {
  * marcato data-loss/malformed-v2-rows cosi' il loader Continuity lo
  * degrada esplicitamente (design §3.3 / §12 RED-06-03).
  */
-async function inspectPhysicalRows(log: IndexedDbEventLog): Promise<{
+/**
+ * Una riga e' ATTRIBUIBILE quando porta lessonId e sessionId leggibili, anche
+ * se il resto dell'envelope non e' canonico. Solo allora si puo' dire a quale
+ * scope appartiene un guasto: senza questi campi la riga resta materiale non
+ * attribuibile, e la clausola 6 vieta di assegnarla a uno scope arbitrario.
+ */
+function attributableScope(record: unknown): { lessonId: string; sessionId: string } | null {
+  if (!isRecord(record)) return null
+  const lessonId = record.lessonId
+  const sessionId = record.sessionId
+  if (typeof lessonId !== "string" || lessonId.length === 0) return null
+  if (typeof sessionId !== "string" || sessionId.length === 0) return null
+  return { lessonId, sessionId }
+}
+
+async function inspectPhysicalRows(
+  log: IndexedDbEventLog,
+  scope?: EventLogIntegrityScope,
+): Promise<{
   legacyCount: number
   malformedCount: number
 }> {
@@ -892,6 +921,15 @@ async function inspectPhysicalRows(log: IndexedDbEventLog): Promise<{
   let legacyCount = 0
   let malformedCount = 0
   for (const record of rows) {
+    // Un guasto che appartiene dimostrabilmente a un altro lesson/session non
+    // e' evidenza sull'integrita' dello scope richiesto. Le righe senza scope
+    // leggibile non vengono saltate: restano conservative.
+    if (scope !== undefined) {
+      const owner = attributableScope(record)
+      if (owner !== null && (owner.lessonId !== scope.lessonId || owner.sessionId !== scope.sessionId)) {
+        continue
+      }
+    }
     if (!hasSchemaVersion(record)) {
       legacyCount += 1
       continue
@@ -951,7 +989,7 @@ export async function openIndexedDbEventLog(
   }
   let inspection: { legacyCount: number; malformedCount: number }
   try {
-    inspection = await inspectPhysicalRows(log)
+    inspection = await inspectPhysicalRows(log, options.scope)
   } catch {
     try { await log.close() } catch { /* best effort */ }
     return Object.freeze({
