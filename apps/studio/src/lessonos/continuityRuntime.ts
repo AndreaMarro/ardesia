@@ -286,21 +286,26 @@ async function sha256Hex(bytes: Uint8Array): Promise<string> {
       `Continuity loader: sha256Hex richiede una vista tipizzata, ricevuto ${describe(bytes)}`,
     )
   }
-  const scope = globalThis as unknown as {
-    ArrayBuffer: ArrayBufferConstructor
-    Uint8Array: Uint8ArrayConstructor
-  }
-  const owned = new scope.ArrayBuffer(bytes.byteLength)
-  new scope.Uint8Array(owned).set(bytes)
+  // Forma adottata da loadFile.ts:36, che passa questo stesso gate su main:
+  //   crypto.subtle.digest(\"SHA-256\", buf.slice(0))
+  // `ArrayBuffer.prototype.slice` copia usando lo species del buffer di ORIGINE,
+  // quindi il risultato appartiene sempre al realm da cui i byte provengono.
+  // Allocare con un costruttore scelto da noi e lunica forma che questo repo
+  // non usa da nessuna parte, ed e lunica che la CI rifiuta.
+  const owned = bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength,
+  ) as ArrayBuffer
   let digest: Uint8Array
   try {
-    digest = new scope.Uint8Array(await crypto.subtle.digest("SHA-256", owned))
+    digest = new Uint8Array(await crypto.subtle.digest("SHA-256", owned))
   } catch (error) {
     throw new TypeError(
       "Continuity loader: WebCrypto ha rifiutato il buffer del digest. " +
         `input=${describe(bytes)} ` +
         `buffer=${describe(owned)} ` +
-        `globalArrayBuffer=${scope.ArrayBuffer === ArrayBuffer ? "same-as-module" : "DIFFERENT-FROM-MODULE"} ` +
+        `sourceBuffer=${describe(bytes.buffer)} ` +
+        `sliced=${describe(owned)} ` +
         `crypto=${describe(crypto)} ` +
         `subtle=${describe(crypto.subtle)} ` +
         `cause=${error instanceof Error ? error.message : String(error)}`,
