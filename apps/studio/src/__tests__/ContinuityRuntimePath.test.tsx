@@ -2328,3 +2328,31 @@ describe("collezioni vuote: fresche per ogni load, non un singleton condiviso (a
     expect(second.lessonEvents.length).toBe(0)
   })
 })
+
+describe("autorità FSA: costruzione provata, non catena di prototipi (accept #3)", () => {
+  // instanceof prova solo il collegamento al prototipo. Object.create lo
+  // soddisfa senza che il costruttore sia mai stato eseguito, quindi un
+  // impostore poteva ancora ottenere l'unica persistence autoritativa.
+  it("un oggetto con il prototipo di WorkspaceStore ma mai costruito non ottiene autorità fsa", () => {
+    const forged = Object.create(WorkspaceStore.prototype) as WorkspaceStore
+    Object.defineProperty(forged, "mode", { value: "fsa", enumerable: true })
+    Object.defineProperty(forged, "read", {
+      value: async () => new Blob(["falso"]),
+      enumerable: true,
+    })
+
+    expect(forged instanceof WorkspaceStore).toBe(true)
+
+    const reader = createWorkspaceStoreContinuityWorkspaceReader(forged)
+    expect(reader.persistence.kind).not.toBe("fsa")
+  })
+
+  it("uno store realmente costruito conserva la sua autorità dichiarata dal mode", async () => {
+    localStorage.clear()
+    const store = new WorkspaceStore()
+    await store.init()
+
+    const reader = createWorkspaceStoreContinuityWorkspaceReader(store)
+    expect(reader.persistence.kind).toBe("local-storage")
+  })
+})

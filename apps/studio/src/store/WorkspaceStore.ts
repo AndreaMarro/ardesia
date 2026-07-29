@@ -381,6 +381,22 @@ async function updateSessionAudioCASAtPort(
   return Object.freeze({ kind: "updated" as const, snapshot: readBack })
 }
 
+/**
+ * Registro privato delle istanze realmente COSTRUITE.
+ *
+ * `instanceof` prova soltanto il collegamento alla catena di prototipi:
+ * `Object.create(WorkspaceStore.prototype)` lo soddisfa senza che il
+ * costruttore sia mai stato eseguito. Per una autorita' di persistenza serve
+ * la prova della costruzione, non della parentela. Il WeakSet e' privato al
+ * modulo, quindi nessun chiamante puo' registrarvisi da fuori.
+ */
+const constructedStores = new WeakSet<object>()
+
+/** Vero solo per un WorkspaceStore uscito davvero dal costruttore. */
+export function isConstructedWorkspaceStore(value: unknown): boolean {
+  return typeof value === "object" && value !== null && constructedStores.has(value)
+}
+
 export class WorkspaceStore {
   private driver: WorkspaceDriver
   private fallback: LocalStorageDriver
@@ -394,6 +410,7 @@ export class WorkspaceStore {
     this.driver = this.fallback
     this.mutationCoordinator = options.mutationCoordinator ?? originLessonMutationCoordinator
     this.createFsaDriver = options.createFsaDriver ?? createFSADriver
+    constructedStores.add(this)
   }
 
   get mode(): StorageMode {

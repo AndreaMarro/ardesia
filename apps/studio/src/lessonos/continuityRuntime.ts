@@ -45,7 +45,8 @@ import {
   SessionYamlParseError,
   type SessionYamlV2,
 } from "../store/sessionState"
-import { WorkspaceStore } from "../store/WorkspaceStore"
+import type { WorkspaceStore } from "../store/WorkspaceStore"
+import { isConstructedWorkspaceStore } from "../store/WorkspaceStore"
 
 // --- Porte read-only (design §5.2) ---
 //
@@ -191,7 +192,7 @@ export function createWorkspaceStoreContinuityWorkspaceReader(
 ): ContinuityWorkspaceReaderV1 {
   const persistence = derivePersistenceFromWorkspaceMode(
     store.mode,
-    store instanceof WorkspaceStore,
+    isConstructedWorkspaceStore(store),
   )
   return Object.freeze({
     persistence,
@@ -211,9 +212,10 @@ function derivePersistenceFromWorkspaceMode(
       // `Pick<WorkspaceStore, "mode" | "read">` e' un tipo STRUTTURALE: qualunque
       // oggetto letterale con quei due membri lo soddisfa. `fsa` e' l'unica
       // persistence autoritativa, quindi e' l'unica che non puo' essere
-      // autodichiarata: richiede uno store reale connesso, non un impostore che
-      // espone `mode` e `read`. Fail-closed - chi non lo e' non degrada ad
-      // autorevole, degrada a non disponibile.
+      // autodichiarata: richiede la PROVA DELLA COSTRUZIONE di un WorkspaceStore,
+      // non la sola parentela di prototipo - `Object.create(WorkspaceStore.prototype)`
+      // supera `instanceof` senza aver mai eseguito il costruttore. Fail-closed:
+      // chi non lo e' non degrada ad autorevole, degrada a non disponibile.
       return connectedStore
         ? Object.freeze({ kind: "fsa" as const })
         : Object.freeze({
