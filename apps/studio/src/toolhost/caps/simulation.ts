@@ -14,6 +14,34 @@
 // topologia di `_state`, non quella della scena che è stata CHIESTA. Le due cose
 // coincidono solo se il servizio ha caricato ciò che gli si è chiesto — e questo
 // va provato, non presunto. Dove la prova manca non esce ricevuta.
+//
+// CONTRO CHI VALE, e contro chi no. Detto qui perché è meno costoso leggerlo che
+// riscoprirlo, e perché il titolo della slice che ha introdotto la ricevuta
+// prometteva di piu' di quanto una ricevuta possa dare.
+//
+// L'host NON possiede un oracolo indipendente. `sceneDigest` e `stateSceneDigest`
+// arrivano ENTRAMBI dal servizio iniettato, e devono: lo stato è opaco e questo
+// modulo non importa nulla da `sim/` — è la stessa proprietà che tiene il Core
+// ignorante di cos'è un circuito. Quindi i confronti qui sotto:
+//
+//   - smascherano un servizio ONESTO che carica, risolve o serializza la scena
+//     sbagliata. È il caso reale, ed è ciò che prima non era coperto affatto:
+//     il digest finiva nella ricevuta senza decidere nulla.
+//   - NON smascherano un servizio che MENTE, perché mentirebbe su entrambi i lati
+//     del confronto restituendo due stringhe uguali.
+//
+// La ricevuta non è quindi una prova CONTRO il servizio: è una prova contro i suoi
+// ERRORI. Renderla una prova contro il servizio richiede un oracolo che l'host
+// possa calcolare da sé, e quella è una decisione di architettura, non una riga
+// da aggiungere qui.
+//
+// Secondo limite, misurato: `simulationSceneDigest` è FNV-1a a 32 bit, quindi il
+// confronto vale 32 bit e non di piu'. Due scene che differiscono solo per l'id
+// del componente danno entrambe `22e6771a`, e una collisione contro un bersaglio
+// si TROVA in ~640k tentativi (344 ms). Sugli id davvero generati dal prodotto
+// (`${type}-libero-${n}`, elabCanvasAdapter.ts) la collisione accidentale non è
+// raggiungibile — trovarla richiede una ricerca, che un errore non esegue — ma
+// chi si appoggia a questi confronti deve sapere quanto pesano.
 
 import type { z } from "zod"
 
