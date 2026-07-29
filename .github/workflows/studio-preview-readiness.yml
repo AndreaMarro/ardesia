@@ -12,6 +12,12 @@ on:
   # al primo prefisso nuovo (il repo ne ha gia' 18). L'unica forma che non
   # regredisce e' nessun filtro: ogni PR, qualunque base.
   # Invariante applicata da bin/ci/workflow_trigger_gate.py nel job hygiene.
+  #
+  # `paths:` invece filtra sul CONTENUTO del diff ed e' voluto: se la PR non
+  # tocca lo studio non c'e' niente da verificare. Attenzione pero' a renderlo
+  # required in branch protection: un check required che non parte mai lascia
+  # la PR bloccata su "Expected — waiting for status to be reported". Servirebbe
+  # prima un job che riporta sempre, anche a skip.
   pull_request:
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
