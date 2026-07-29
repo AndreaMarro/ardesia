@@ -3725,20 +3725,24 @@ def _compact_signal_paths(value: Any) -> List[str]:
 def compact_prior_run_signals(raw: List[Dict[str, Any]]) -> Dict[str, Any]:
     if not isinstance(raw, list):
         raise ValueError("prior run signal source must be a list")
+    captured = raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
     shared_task_fields: Dict[str, Any] = {}
     for key in ("base_sha", "context_digest", "review_sha256"):
         values = {
             value.get(key)
-            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            for value in captured
             if isinstance(value, dict) and value.get(key) is not None
         }
-        if len(values) == 1:
+        if len(values) == 1 and len(captured) == sum(
+            isinstance(value, dict) and value.get(key) is not None
+            for value in captured
+        ):
             shared_task_fields[key] = _compact_signal_string(
                 next(iter(values)),
                 128,
             )
     tasks: List[Dict[str, Any]] = []
-    for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]:
+    for value in captured:
         if not isinstance(value, dict):
             raise ValueError("prior run signal record must be an object")
         task = {
@@ -3810,6 +3814,7 @@ def compact_external_directive_signals(
 ) -> Dict[str, Any]:
     if not isinstance(raw, list):
         raise ValueError("external directive signal source must be a list")
+    captured = raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
     binding_fields = {
         "base_sha": "baseSha",
         "context_digest": "contextDigest",
@@ -3822,12 +3827,17 @@ def compact_external_directive_signals(
     for output_key, directive_key in binding_fields.items():
         values = {
             value["directive"].get(directive_key)
-            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            for value in captured
             if isinstance(value, dict)
             and isinstance(value.get("directive"), dict)
             and value["directive"].get(directive_key) is not None
         }
-        if len(values) == 1:
+        if len(values) == 1 and len(captured) == sum(
+            isinstance(value, dict)
+            and isinstance(value.get("directive"), dict)
+            and value["directive"].get(directive_key) is not None
+            for value in captured
+        ):
             shared_binding[output_key] = _compact_signal_string(
                 next(iter(values)),
                 128,
@@ -3842,29 +3852,32 @@ def compact_external_directive_signals(
     for key in record_fields:
         values = {
             value.get(key)
-            for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
+            for value in captured
             if isinstance(value, dict) and value.get(key) is not None
         }
-        if len(values) == 1:
+        if len(values) == 1 and len(captured) == sum(
+            isinstance(value, dict) and value.get(key) is not None
+            for value in captured
+        ):
             shared_record[key] = _compact_signal_string(next(iter(values)), 128)
-    compact_path_sets = {
-        canonical_json(
-            _compact_signal_paths(
-                (
-                    value.get("directive", {}).get("payload") or {}
-                ).get("allowed_paths")
-                or (
-                    value.get("directive", {}).get("payload") or {}
-                ).get("allowedPaths")
-            )
-        )
-        for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]
-        if isinstance(value, dict) and isinstance(value.get("directive"), dict)
-    }
-    if len(compact_path_sets) == 1:
+    compact_path_sets = set()
+    path_value_count = 0
+    for value in captured:
+        directive = value.get("directive") if isinstance(value, dict) else None
+        payload = directive.get("payload") if isinstance(directive, dict) else None
+        if not isinstance(payload, dict):
+            continue
+        allowed_paths = payload.get("allowed_paths")
+        if allowed_paths is None:
+            allowed_paths = payload.get("allowedPaths")
+        if allowed_paths is None:
+            continue
+        path_value_count += 1
+        compact_path_sets.add(canonical_json(_compact_signal_paths(allowed_paths)))
+    if len(compact_path_sets) == 1 and path_value_count == len(captured):
         shared_binding["allowed_paths"] = json.loads(next(iter(compact_path_sets)))
     directives: List[Dict[str, Any]] = []
-    for value in raw[:MAX_SCIENTIFIC_AUDIT_TASKS]:
+    for value in captured:
         if not isinstance(value, dict):
             raise ValueError("external directive signal record must be an object")
         directive = value.get("directive")
@@ -3888,7 +3901,7 @@ def compact_external_directive_signals(
                 "state",
                 "payload_digest",
             )
-            if key not in shared_record
+            if key not in shared_record and value.get(key) is not None
         }
         record.update(
             {
@@ -3899,12 +3912,15 @@ def compact_external_directive_signals(
             }
         )
         for output_key, directive_key in binding_fields.items():
-            if output_key not in shared_binding:
+            if (
+                output_key not in shared_binding
+                and directive.get(directive_key) is not None
+            ):
                 record[output_key] = _compact_signal_string(
                     directive.get(directive_key),
                     128,
                 )
-        if "allowed_paths" not in shared_binding:
+        if "allowed_paths" not in shared_binding and allowed_paths is not None:
             record["allowed_paths"] = _compact_signal_paths(allowed_paths)
         directives.append(record)
     result = {

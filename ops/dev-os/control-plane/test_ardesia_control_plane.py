@@ -2489,6 +2489,78 @@ class ControlPlaneTests(unittest.TestCase):
         self.assertEqual(cp._trim_bounded_sections(incomplete, 3), 0)
         self.assertEqual(incomplete["included"], "")
 
+    def test_compact_signal_hoists_only_complete_shared_fields(self) -> None:
+        prior = [
+            {
+                "task_id": "TASK-A",
+                "base_sha": "a" * 40,
+                "context_digest": "b" * 64,
+                "review_sha256": "c" * 64,
+                "artifact_evidence": {"reviews": [], "receipts": []},
+            },
+            {
+                "task_id": "TASK-B",
+                "base_sha": "a" * 40,
+                "artifact_evidence": {"reviews": [], "receipts": []},
+            },
+        ]
+        prior_signals = cp.compact_prior_run_signals(prior)
+        self.assertEqual(
+            prior_signals["shared_task_fields"],
+            {"base_sha": "a" * 40},
+        )
+        self.assertEqual(
+            prior_signals["tasks"][0]["context_digest"],
+            "b" * 64,
+        )
+        self.assertEqual(
+            prior_signals["tasks"][0]["review_sha256"],
+            "c" * 64,
+        )
+        self.assertNotIn("context_digest", prior_signals["tasks"][1])
+        self.assertNotIn("review_sha256", prior_signals["tasks"][1])
+
+        first_directive = self._directive(
+            directiveId="DIRECTIVE-A",
+            idempotencyKey="DIRECTIVE-KEY-A",
+            payload={"allowed_paths": ["src/a.py"]},
+        )
+        second_directive = self._directive(
+            directiveId="DIRECTIVE-B",
+            idempotencyKey="DIRECTIVE-KEY-B",
+            payload={},
+        )
+        directive_signals = cp.compact_external_directive_signals(
+            [
+                {
+                    "idempotency_key": "DIRECTIVE-KEY-A",
+                    "author": "operator",
+                    "state": "VALIDATED",
+                    "directive": first_directive,
+                },
+                {
+                    "idempotency_key": "DIRECTIVE-KEY-B",
+                    "state": "VALIDATED",
+                    "directive": second_directive,
+                },
+            ]
+        )
+        self.assertNotIn(
+            "allowed_paths",
+            directive_signals["shared_binding"],
+        )
+        self.assertEqual(
+            directive_signals["directives"][0]["allowed_paths"],
+            ["src/a.py"],
+        )
+        self.assertNotIn("allowed_paths", directive_signals["directives"][1])
+        self.assertNotIn("author", directive_signals["shared_record"])
+        self.assertEqual(
+            directive_signals["directives"][0]["author"],
+            "operator",
+        )
+        self.assertNotIn("author", directive_signals["directives"][1])
+
     def test_prior_run_context_reads_review_artifacts_not_only_state_cache(self) -> None:
         task = self.policy["loop"]["tasks"][0]
         run_directory = (
