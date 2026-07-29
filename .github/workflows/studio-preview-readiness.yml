@@ -19,6 +19,7 @@ on:
   # la PR bloccata su "Expected — waiting for status to be reported". Servirebbe
   # prima un job che riporta sempre, anche a skip.
   pull_request:
+    branches: [main]
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
