@@ -7618,6 +7618,101 @@ def governed_obsidian_write(
     return result
 
 
+OBSIDIAN_APPEND_MARKER = "<!-- ardesia-append -->"
+
+
+def _obsidian_agent_path(policy: Dict[str, Any], relative: str) -> Path:
+    requested = Path(relative)
+    if requested.is_absolute() or ".." in requested.parts or requested.suffix.lower() != ".md":
+        raise ValueError("unsafe Obsidian note path")
+    if not path_matches_root(requested, policy["obsidian"]["allowed_write_roots"]):
+        raise ValueError("Obsidian write outside agent-owned roots")
+    if path_matches_root(requested, policy["obsidian"]["protected_roots"]):
+        raise ValueError("protected canonical Obsidian path rejected")
+    return requested
+
+
+def governed_obsidian_append(
+    policy: Dict[str, Any],
+    relative: str,
+    block: str,
+) -> Dict[str, Any]:
+    """Append a bounded block to an agent-owned note, preserving prior bytes.
+
+    `governed_obsidian_write` is immutable per path: it raises on any content
+    change. That is correct for a receipt and useless for a running log, so the
+    audit could publish notes but never accumulate a history.
+
+    The guarantee here is mechanical, not asserted: whatever was on disk before
+    remains a byte-exact prefix of what is on disk after. Nothing is rewritten,
+    reordered or removed, and re-appending an identical block is a no-op so a
+    retried run cannot duplicate history.
+    """
+    requested = _obsidian_agent_path(policy, relative)
+    runtime = runtime_path(policy)
+    body = block if block.endswith("\n") else block + "\n"
+    entry = f"{OBSIDIAN_APPEND_MARKER}\n{body}"
+
+    sync = obsidian_sync_status(policy)
+    if sync["state"] not in {"READY", "ACTIVE_CONTINUOUS"}:
+        pending = runtime / "knowledge-delta" / "pending" / requested
+        existing = pending.read_text(encoding="utf-8") if pending.exists() else ""
+        if entry not in existing:
+            atomic_write(pending, (existing + entry).encode("utf-8"), 0o640)
+        return {
+            "state": "PENDING_HEADLESS_SYNC",
+            "relative_path": requested.as_posix(),
+            "live_path": None,
+            "blocks_appended": (existing + entry).count(OBSIDIAN_APPEND_MARKER),
+            "sync": sync["state"],
+            "ts": iso_now(),
+        }
+
+    vault = safe_path(runtime, policy["obsidian"]["vault_path"])
+    target = vault / requested
+    if not within(vault, target):
+        raise ValueError("symlink escape rejected")
+    previous = target.read_text(encoding="utf-8") if target.exists() else ""
+    if entry in previous:
+        state = "IDEMPOTENT_ALREADY_PRESENT"
+        merged = previous
+    else:
+        state = "WRITTEN_LIVE_APPEND_ONLY"
+        merged = previous + entry
+        atomic_write(target, merged.encode("utf-8"), 0o640)
+        if not target.read_text(encoding="utf-8").startswith(previous):
+            raise RuntimeError("append violated the prior-content prefix guarantee")
+    result = {
+        "state": state,
+        "relative_path": requested.as_posix(),
+        "live_path": str(target),
+        "blocks_appended": merged.count(OBSIDIAN_APPEND_MARKER),
+        "sha256": sha256_text(merged),
+        "sync": sync["state"],
+        "ts": iso_now(),
+    }
+    event(runtime, "OBSIDIAN_GOVERNED_APPEND", **result)
+    return result
+
+
+def governed_obsidian_read(policy: Dict[str, Any], relative: str) -> str:
+    """Read a note from the vault. Empty string when absent, never an exception.
+
+    Reading is how the audit gets continuity across runs without keeping its own
+    parallel state. Path rules match the write side so a read cannot escape the
+    vault or be pointed at something outside it.
+    """
+    requested = Path(relative)
+    if requested.is_absolute() or ".." in requested.parts or requested.suffix.lower() != ".md":
+        raise ValueError("unsafe Obsidian note path")
+    runtime = runtime_path(policy)
+    vault = safe_path(runtime, policy["obsidian"]["vault_path"])
+    target = vault / requested
+    if not within(vault, target) or not target.is_file():
+        return ""
+    return target.read_text(encoding="utf-8", errors="replace")
+
+
 def commit_knowledge_delta(
     policy: Dict[str, Any],
     task: Dict[str, Any],
@@ -8272,6 +8367,12 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
     """
     runtime = runtime_path(policy)
     ensure_runtime(runtime)
+    # The instrument observes the system as of the instant it began. It emits
+    # ledger events and writes to the vault, so anything recorded after this
+    # cutoff is its own footprint. Excluding by timestamp closes that for every
+    # side effect at once; excluding by event kind only closes the ones already
+    # thought of, and the audit would drift back into measuring itself.
+    observed_at = iso_now()
     ledger = runtime / "logs" / "mcp-control-ledger.jsonl"
     events: List[Dict[str, Any]] = []
     if ledger.exists():
@@ -8280,9 +8381,12 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
             if not line:
                 continue
             try:
-                events.append(json.loads(line))
+                record = json.loads(line)
             except json.JSONDecodeError:
                 continue
+            if str(record.get("ts", "")) > observed_at:
+                continue
+            events.append(record)
     state = read_json(productive_state_path(runtime), {}) or {}
     tasks = dict(state.get("tasks") or {})
     # The provider response holds the only evidence that separates an auth
@@ -8314,7 +8418,7 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
     findings = loop_health_findings(metrics, policy)
     for item in findings:
         item["prior_knowledge"] = wikillm_context(policy, item)
-    digest = sha256_text(canonical_json(findings))
+    digest = loop_health_digest(findings)
 
     history_path = runtime / "state" / "loop-health.json"
     history = read_json(history_path, {}) or {}
@@ -8345,6 +8449,23 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
     append_jsonl(runtime / "reports" / "loop-health-trend.jsonl", row)
 
     body = render_loop_health_report(metrics, findings, trigger)
+    # Two Obsidian surfaces with different jobs. The running log appends one row
+    # every run, because a health history is only useful if it is continuous.
+    # The detail note is digest-addressed and written only on change, so an
+    # unchanged finding set cannot churn the vault.
+    prior_runs = governed_obsidian_read(policy, LOOP_HEALTH_LOG_NOTE).count(
+        OBSIDIAN_APPEND_MARKER
+    )
+    log_row = (
+        f"| {iso_now()} | {trigger} | {metrics['accepted_units']} | "
+        f"{metrics['attempts']} | {row_taxonomy(metrics)} | "
+        f"{sum(1 for item in findings if item['severity'] == 'critical')} | "
+        f"`{digest[:12]}` |"
+    )
+    try:
+        log = governed_obsidian_append(policy, LOOP_HEALTH_LOG_NOTE, log_row)
+    except (OSError, ValueError, RuntimeError) as error:
+        log = {"state": "DEFERRED", "reason": redact_diagnostic(str(error), limit=200)}
     vault: Dict[str, Any] = {"state": "UNCHANGED_NO_CHURN"}
     if publication == "PUBLISHED":
         atomic_write(runtime / "reports" / "loop-health-latest.md", body.encode("utf-8"), 0o644)
@@ -8385,8 +8506,38 @@ def loop_audit(policy: Dict[str, Any], trigger: str) -> Dict[str, Any]:
         "suppressed": suppressed,
         "publication": publication,
         "obsidian": vault,
+        "obsidian_log": log,
+        "prior_runs_in_vault": prior_runs,
         "ts": iso_now(),
     }
+
+
+LOOP_HEALTH_LOG_NOTE = "91-Auto-Receipts/loop-health-log.md"
+
+
+def loop_health_digest(findings: Sequence[Dict[str, Any]]) -> str:
+    """Digest the health state only, never the retrieved context.
+
+    The audit publishes to the vault and WikiLLM indexes the vault, so the notes
+    retrieved for a finding change as a direct consequence of having published.
+    Feeding retrieval into the digest would make every run look changed, publish
+    again, and change the vault again - the audit exciting itself, which is the
+    exact pattern it exists to detect.
+    """
+    # Identity of the finding SET, not the instantaneous value of its counters.
+    # "Changed" must mean a problem appeared, disappeared or changed severity -
+    # not that a heartbeat counter ticked while the audit was running. Exact
+    # values are still recorded every run in the append-only trend ledger.
+    material = [
+        {"id": item.get("id"), "severity": item.get("severity")}
+        for item in findings
+    ]
+    return sha256_text(canonical_json(material))
+
+
+def row_taxonomy(metrics: Dict[str, Any]) -> str:
+    taxonomy = metrics.get("block_taxonomy") or {}
+    return ", ".join(f"{key}={value}" for key, value in sorted(taxonomy.items())) or "-"
 
 
 def wikillm_context(policy: Dict[str, Any], finding: Dict[str, Any]) -> List[str]:

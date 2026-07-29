@@ -8,7 +8,7 @@ the template.
 ## Commands
 
 ```bash
-python3 -m unittest test_ardesia_control_plane     # 90 tests, must be green before install
+python3 -m unittest test_ardesia_control_plane     # 97 tests, must be green before install
 python3 ardesia_control_plane.py --policy <policy> doctor        # 10 admission checks
 python3 ardesia_control_plane.py --policy <policy> loop-audit --trigger manual
 python3 ardesia_control_plane.py --policy <policy> propose-tasks --task-id <id>
@@ -89,6 +89,20 @@ separates them:
 `~/ARDESIA-RUNTIME/reports/loop-health-latest.md` is rewritten only when the
 finding set changes. `loop-health-trend.jsonl` is append-only — one row per run,
 so throughput over time is visible without re-deriving it.
+
+Obsidian has two surfaces with different jobs. `91-Auto-Receipts/loop-health-log.md`
+is a true append: every run adds one row and prior bytes stay a byte-exact prefix,
+enforced at write time (`governed_obsidian_append`, which raises if the prefix
+guarantee is violated). The digest-addressed detail note is written only when the
+finding set changes. `governed_obsidian_read` gives the audit continuity across
+runs without keeping parallel state.
+
+**The digest covers finding identity — id and severity — never counter values or
+retrieved context.** The audit writes to the vault and WikiLLM indexes the vault,
+so retrieval changes as a direct consequence of publishing; and the audit's own
+ledger events move every count. Digesting either makes the instrument excite
+itself: publish, change the vault, look changed, publish again. Exact values are
+still recorded every run in `loop-health-trend.jsonl`.
 
 The audit is model-free and single-threaded by design: no escalation tier, no
 agent swarm. Adding orchestration to a stalled loop is the documented wrong

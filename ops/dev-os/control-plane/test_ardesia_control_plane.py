@@ -3939,6 +3939,61 @@ class ControlPlaneTests(unittest.TestCase):
                     len(decision["residual_findings"]), len(severities), task_id
                 )
 
+    # ---- Obsidian append and read -------------------------------------
+    # governed_obsidian_write is immutable per path: it raises on any content
+    # change. That is right for receipts and wrong for a running log, which is
+    # why the audit could publish notes but never accumulate a history.
+
+    OBS_LOG = "91-Auto-Receipts/loop-health-log.md"
+
+    def _sync_ready(self):
+        return mock.patch.object(
+            cp, "obsidian_sync_status", return_value={"state": "ACTIVE_CONTINUOUS"}
+        )
+
+    def test_append_creates_the_note_when_absent(self) -> None:
+        with self._sync_ready():
+            result = cp.governed_obsidian_append(self.policy, self.OBS_LOG, "first block\n")
+        self.assertEqual(result["state"], "WRITTEN_LIVE_APPEND_ONLY")
+        self.assertEqual(result["blocks_appended"], 1)
+
+    def test_append_preserves_prior_bytes_as_an_exact_prefix(self) -> None:
+        # The whole guarantee. If earlier content is not a byte-exact prefix of
+        # what is on disk afterwards, this is not append-only, whatever it says.
+        with self._sync_ready():
+            first = cp.governed_obsidian_append(self.policy, self.OBS_LOG, "alpha\n")
+            before = Path(first["live_path"]).read_text(encoding="utf-8")
+            second = cp.governed_obsidian_append(self.policy, self.OBS_LOG, "beta\n")
+            after = Path(second["live_path"]).read_text(encoding="utf-8")
+        self.assertTrue(after.startswith(before))
+        self.assertIn("alpha", after)
+        self.assertIn("beta", after)
+        self.assertEqual(second["blocks_appended"], 2)
+
+    def test_appending_an_identical_block_twice_is_idempotent(self) -> None:
+        with self._sync_ready():
+            cp.governed_obsidian_append(self.policy, self.OBS_LOG, "same\n")
+            repeated = cp.governed_obsidian_append(self.policy, self.OBS_LOG, "same\n")
+            body = Path(repeated["live_path"]).read_text(encoding="utf-8")
+        self.assertEqual(repeated["state"], "IDEMPOTENT_ALREADY_PRESENT")
+        self.assertEqual(body.count("same"), 1)
+
+    def test_append_refuses_protected_and_foreign_roots(self) -> None:
+        with self._sync_ready():
+            with self.assertRaisesRegex(ValueError, "outside agent-owned"):
+                cp.governed_obsidian_append(self.policy, "20-Decisions/ADR-001.md", "x\n")
+            with self.assertRaises(ValueError):
+                cp.governed_obsidian_append(self.policy, "../escape.md", "x\n")
+
+    def test_read_returns_agent_written_content_and_refuses_escape(self) -> None:
+        with self._sync_ready():
+            cp.governed_obsidian_append(self.policy, self.OBS_LOG, "readable\n")
+            body = cp.governed_obsidian_read(self.policy, self.OBS_LOG)
+        self.assertIn("readable", body)
+        self.assertEqual(cp.governed_obsidian_read(self.policy, "91-Auto-Receipts/absent.md"), "")
+        with self.assertRaises(ValueError):
+            cp.governed_obsidian_read(self.policy, "../../etc/passwd")
+
     # ---- block-reason taxonomy ----------------------------------------
     # Every failure in this loop terminates as BLOCKED_CAUSAL, so a revoked
     # OAuth token, an abandoned PR and a genuine review rejection are
@@ -4221,6 +4276,33 @@ class ControlPlaneTests(unittest.TestCase):
         )
         self.assertEqual(len(trend.strip().splitlines()), 2)
         # Same material twice must not churn the published report.
+        self.assertEqual(first["findings_digest"], second["findings_digest"])
+        self.assertEqual(second["publication"], "UNCHANGED_NO_CHURN")
+
+    def test_digest_ignores_retrieval_so_the_audit_cannot_excite_itself(self) -> None:
+        # The audit writes to the vault, WikiLLM indexes the vault, and the next
+        # run's retrieved context therefore differs. If retrieval fed the digest,
+        # every run would look "changed", republish, and change the vault again.
+        base = [{"id": "X", "severity": "critical", "summary": "s", "evidence": {}, "action": "a"}]
+        first = [{**base[0], "prior_knowledge": ["note A"]}]
+        second = [{**base[0], "prior_knowledge": ["note A", "note B", "note C"]}]
+        self.assertEqual(
+            cp.loop_health_digest(first), cp.loop_health_digest(second)
+        )
+        changed = [{**base[0], "severity": "warning", "prior_knowledge": ["note A"]}]
+        self.assertNotEqual(
+            cp.loop_health_digest(first), cp.loop_health_digest(changed)
+        )
+
+    def test_audit_measures_a_fixed_past_window_not_its_own_wake(self) -> None:
+        # The audit emits ledger events and writes to the vault, so anything it
+        # measures after starting includes its own footprint. Chasing individual
+        # event kinds does not close this: the instrument must observe the system
+        # as of the instant it began, and nothing it caused afterwards.
+        for index in range(40):
+            cp.event(self.runtime, "CONTROLLER_HEARTBEAT", seq=index)
+        first = cp.loop_audit(self.policy, trigger="window-1")
+        second = cp.loop_audit(self.policy, trigger="window-2")
         self.assertEqual(first["findings_digest"], second["findings_digest"])
         self.assertEqual(second["publication"], "UNCHANGED_NO_CHURN")
 
