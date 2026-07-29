@@ -2654,7 +2654,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       allowWrite.resolve()
       await vi.waitFor(() => {
         expect(navigate).toHaveBeenCalledWith(
-          "/?vista=cruscotto#test-room-1",
+          "/?vista=continuita#test-room-1",
         )
       })
       const journal = await store.read(roomPaths("test-room-1").journal)

@@ -45,7 +45,11 @@ function founderSurfaceFor(id: ArdesiaViewId): FounderSurfaceId | null {
 export function viewHref(id: ArdesiaViewId, currentHash: string = ""): string {
   const hash = currentHash.startsWith("#") ? currentHash : currentHash ? `#${currentHash}` : ""
   if (id === "lezione" || id === "lavagna") return `/${hash}`
-  if (id === "continuita") return `/?vista=cruscotto${hash}`
+  // "Continuita" puntava al cruscotto docente: un segnaposto, non la
+  // superficie di ripresa. Ora cade nel default `/?vista=<id>` e raggiunge
+  // ContinuityView. `founderSurfaceFor` continua a mappare anche
+  // "cruscotto" su questa superficie, perche' il cruscotto non ha una voce
+  // di nav propria e senza quella riga resterebbe senza evidenziazione.
   if (id === "materiali") return `/?vista=lezioni-salvate${hash}`
   return `/?vista=${id}${hash}`
 }
