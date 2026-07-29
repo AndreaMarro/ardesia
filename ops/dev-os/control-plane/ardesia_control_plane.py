@@ -9899,6 +9899,11 @@ def build_parser() -> argparse.ArgumentParser:
     obsidian = subparsers.add_parser("obsidian-supervisor")
     obsidian.add_argument("--once", action="store_true")
     subparsers.add_parser("obsidian-status")
+    ob_read = subparsers.add_parser("obsidian-read")
+    ob_read.add_argument("--path", required=True)
+    ob_append = subparsers.add_parser("obsidian-append")
+    ob_append.add_argument("--path", required=True)
+    ob_append.add_argument("--body-file", required=True)
     subparsers.add_parser("headroom-gateway")
     subparsers.add_parser("headroom-status")
     subparsers.add_parser("hermes-status")
@@ -9953,6 +9958,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return productive_repair_resume_worker(policy, args.task_id)
     elif args.command == "recover-task":
         result = recover_productive_task(policy, args.task_id, args.reason)
+    elif args.command == "obsidian-read":
+        result = {"path": args.path, "content": governed_obsidian_read(policy, args.path)}
+    elif args.command == "obsidian-append":
+        body = Path(args.body_file).read_text(encoding="utf-8")
+        result = governed_obsidian_append(policy, args.path, body)
     elif args.command == "propose-tasks":
         runtime = runtime_path(policy)
         record = ((read_json(productive_state_path(runtime), {}) or {}).get("tasks") or {}).get(args.task_id) or {}
