@@ -303,3 +303,136 @@ loopback-only and attested for the accepted Claude/Codex paths. Its compression
 transforms remain off: no saving percentage is claimed. Any future challenger
 must beat Headroom-only on accepted-unit cost and quality under paired replay,
 not merely expose more routing features.
+
+## Prompt compiler 1.8.3
+
+Independent review of the 1.8.2 scheduled proof found a truthfulness defect,
+not a model-quality defect: the final audit packet could omit the WikiLLM
+snapshot and most of the five productive-task outcomes while still asking the
+reviewer to judge convergence. Four successive candidate fixes were rejected
+before promotion because they respectively lost too much raw supervisor
+context, admitted no structured producer signals, preserved arbitrary prefixes
+instead of producer identity, or incorrectly hoisted fields that were not
+shared by every record.
+
+The approved implementation builds compact summaries directly from the raw
+producers before any lossy bounding and requires complete non-null coverage
+before hoisting shared task/directive/path fields. It also keeps compact
+WikiLLM and productive-loop snapshots outside the large bounded context body.
+
+Final deterministic evidence:
+
+- exact five-task synthetic packet: 23,696 characters;
+- exact eight-task ceiling packet: 23,250 characters;
+- nine-task and 125-task policies: explicitly rejected;
+- legacy bounded sections without a minimum: still accepted with a zero
+  default;
+- focused prompt tests: 7/7;
+- complete local and Mac mini suites: 57/57;
+- independent cumulative review: `APPROVED`, no findings;
+- live-data canary packet: 23,289/24,000 characters;
+- live-data identities retained: 5/5 task outcomes, 5/5 prior-run task IDs,
+  the validated external directive, Git history state, local coordination
+  state and WikiLLM `INDEXED_CURRENT` with 607 notes;
+- raw per-finding arrays: absent from the compact task snapshot.
+
+The canary materialized policy differed from live only at
+`service_version: 1.8.2 → 1.8.3`. Version 1.8.3 was installed atomically at
+2026-07-29 02:11 CEST after a hash-verified backup at:
+
+```text
+/Users/progettibelli/ARDESIA-RUNTIME/backups/control-plane-v1.8.2-pre-prompt-compiler-20260729
+```
+
+Post-install doctor reported `READY_FOR_PRODUCTIVE_LOOP`; product and Knowledge
+clones stayed exact and clean at `36e6753` and `5a8c50d`; the controller was
+running with the exact canary bytes.
+
+The true minute-32 launchd event then started version 1.8.3 without a manual
+kickstart and completed at 2026-07-29 02:33:58 CEST:
+
+- review ID:
+  `20260729T003203551959Z-5c430e36-37fa882c`;
+- trigger: `scheduled-30m`;
+- audit execution: `PASS`;
+- scientific classification: `FALSIFIED`;
+- model: `gpt-5.6-sol`; effort: `xhigh`; sandbox: read-only;
+- audit input: 23,283/24,000 characters;
+- visible evidence: 5/5 task outcomes, 5/5 prior-run identities, validated
+  directive, Git/local coordination states and WikiLLM `INDEXED_CURRENT`;
+- Headroom route: 3 requests, all `codex`/`gpt-5.6-sol`/OpenAI, route receipt
+  SHA-256
+  `6e4f623b68d234439e9bda51705e3bb4bf56baff65c2827ff806b928ad3f1664`;
+- global-window upper-bound cost: USD 0.4289;
+- original/optimized input tokens: 54,513/54,513; saved: 0;
+- Obsidian live and pending receipt:
+  `92-Evidence/20260729T003203551959Z-5c430e36-37fa882c-SCIENTIFIC-CYCLE.md`,
+  byte-identical at SHA-256
+  `ec8afd82c754edac469c800a93b4e1d042d2f5a9bb36694b051da52e19245f7f`;
+- Headless log: new file, upload complete, then `Fully synced`;
+- launchd: run count 13, exit 0;
+- controller, review and Obsidian service stderr: zero bytes;
+- product and Knowledge Git heads/status: unchanged and clean.
+
+The `FALSIFIED` result is the scientifically correct improvement over the prior
+`INCONCLUSIVE`: the reviewer could now see that all five tasks were
+`BLOCKED_CAUSAL`, no product commit was accepted, the latest writer heartbeat
+was stale and the healthy operational gates did not imply progress. Version
+1.8.3 is therefore scheduled-verified as a control plane, but the productive
+no-stop hypothesis remains false.
+
+The audit also identified the next bounded information need: a task-scoped
+packet for BETA-005 with its complete five repair findings, exact artifact
+receipt, Git history and path-overlap inventory. Those details should not be
+forced into every global 30-minute packet. The next throughput slice must
+reuse one exact existing task/PR workspace and compile this evidence on demand;
+it must not enlarge the global ceiling or restart a generic planner.
+
+## Upstream authority-transfer decision
+
+The current official upstream evidence supports a narrower integration than
+"put every agent in the loop":
+
+- Paperclip's current release is `v2026.722.0`; its documented local
+  installation requires Node 20+ and pnpm 9+:
+  https://github.com/paperclipai/paperclip/releases
+  and
+  https://docs.paperclip.ing/guides/getting-started/installation/
+- Paperclip routines default to `coalesce_if_active` and `skip_missed`, so
+  overlapping ticks do not create a backlog:
+  https://docs.paperclip.ing/guides/projects-workflow/routines/
+- issue/workspace APIs provide revision conflicts, single ownership and
+  explicit isolated or reused execution workspaces:
+  https://docs.paperclip.ing/reference/api/issues/
+  and
+  https://docs.paperclip.ing/guides/projects-workflow/workspaces/
+- execution policy can enforce review/approval transitions in the runtime
+  instead of relying only on prompt wording:
+  https://docs.paperclip.ing/guides/power/execution-policy/
+- the current Pi upstream is `earendil-works/pi`, release `v0.82.1`; its own
+  README states that Pi has no built-in filesystem, process, network or
+  credential permission system:
+  https://github.com/earendil-works/pi/releases
+  and
+  https://github.com/earendil-works/pi
+- Headroom documents native wrappers for Claude, Codex and Oh My Pi, but those
+  compatibility claims do not replace ARDESIA's per-run no-bypass receipt:
+  https://github.com/headroomlabs-ai/headroom
+
+Therefore Paperclip may be canaried only by replacing, for one task class, the
+existing schedule + checkout + workspace authority. Running it as a parallel
+observer with timers enabled would create a second control plane and decrease
+causal attribution. The first canary must use a manual API trigger, disabled
+timer heartbeats, an existing workspace, double-trigger coalescing and a single
+`executionWorkspaceId`; Paperclip failure must leave 1.8.3 unaffected.
+
+Claude remains the only product writer. Codex remains the independent reviewer.
+Pi may be a read-only challenger only inside an outer sandbox and through a
+fail-closed Headroom route; it cannot be a writer or policy actor. Hermes
+`v0.19.0` remains disabled because its observed auxiliary clients still bypass
+the attested Headroom route and its native memory is disabled. No Paperclip or
+Pi installation was performed, and no Hermes activation is claimed.
+
+This decision is falsified unless the canary improves accepted local product
+units per wall-hour, cost per accepted unit or human-cleanup time without
+increasing duplicate work, WIP, regressions or authority ambiguity.
