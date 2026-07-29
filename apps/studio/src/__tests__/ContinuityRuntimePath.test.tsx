@@ -2302,3 +2302,29 @@ describe("loadScopedContinuitySnapshot — lo scope validato raggiunge davvero l
     expect(result.kind).toBe("loaded")
   })
 })
+
+describe("collezioni vuote: fresche per ogni load, non un singleton condiviso (accept #4)", () => {
+  // Regressione introdotta dalla mia stessa riparazione: avevo sostituito gli
+  // array non congelati con EMPTY_ENVELOPES, un singleton a livello di modulo.
+  // Congelare impedisce la mutazione ma la clausola 4 chiede una collezione
+  // NUOVA: due load indipendenti non devono condividere identita'.
+  async function loadEmpty() {
+    const factories = {
+      createEventReader: async () => verifiedReader([]),
+      createWorkspaceReader: async () => inMemoryWorkspace(new Map()),
+      buildCommitSha: BUILD_SHA,
+    } as unknown as ContinuityRuntimeAdapterFactories
+    return loadedOrThrow(await loadScopedContinuitySnapshot(SCOPE_INPUT, factories))
+  }
+
+  it("due load indipendenti a zero envelope non condividono la collezione", async () => {
+    const first = await loadEmpty()
+    const second = await loadEmpty()
+
+    expect(first.lessonEvents).not.toBe(second.lessonEvents)
+    expect(Object.isFrozen(first.lessonEvents)).toBe(true)
+    expect(Object.isFrozen(second.lessonEvents)).toBe(true)
+    expect(first.lessonEvents.length).toBe(0)
+    expect(second.lessonEvents.length).toBe(0)
+  })
+})
