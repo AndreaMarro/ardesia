@@ -266,26 +266,31 @@ export type LoadScopedContinuityResultV1 =
 async function sha256Hex(bytes: Uint8Array): Promise<string> {
   const crypto = (globalThis as { crypto?: Crypto }).crypto
   if (!crypto?.subtle) throw new Error("Continuity loader: Web Crypto non disponibile")
-  // Passa il buffer ORIGINALE della piattaforma.
+  // Il difetto e' di REALM, non di copia.
   //
-  // La versione precedente allocava `new ArrayBuffer(...)` qui e ci copiava i
-  // byte dentro. Quell'ArrayBuffer nasce nel realm del MODULO, mentre i byte
-  // arrivano da `blob.arrayBuffer()`, cioe' dal realm di jsdom. Un validatore
-  // BufferSource che usa `instanceof` — jsdom lo fa — rifiuta il buffer
-  // estraneo, e la CI falliva con "2nd argument is not instance of
-  // ArrayBuffer, Buffer, TypedArray, or DataView" mentre in locale passava.
-  // La copia era stata introdotta per soddisfare TypeScript, non il runtime:
-  // un aggiramento a livello di tipi che ha creato un difetto a livello di
-  // esecuzione.
+  // jsdom converte `BufferSource` con WebIDL, che valida via `instanceof`
+  // contro il PROPRIO realm. Un buffer nato altrove viene rifiutato con
+  // "2nd argument is not instance of ArrayBuffer, Buffer, TypedArray, or
+  // DataView", ed e' quello che la CI Linux mostra mentre macOS non lo espone.
   //
-  // `ArrayBuffer.prototype.slice` usa lo species del buffer stesso, quindi
-  // anche il ramo della vista parziale resta nel realm di origine.
-  const source =
-    bytes.byteOffset === 0 && bytes.byteLength === bytes.buffer.byteLength
-      ? bytes.buffer
-      : bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
-  const digest = new Uint8Array(
-    await crypto.subtle.digest("SHA-256", source as ArrayBuffer),
+  // Due tentativi precedenti hanno sbagliato bersaglio: allocarne uno nuovo nel
+  // modulo (realm del modulo) e passare `bytes.buffer` (realm della sorgente,
+  // che con fake-indexeddb non e' quello di jsdom). Entrambi assumevano di
+  // sapere QUALE realm fosse giusto.
+  //
+  // L'invariante corretta non richiede di saperlo: stiamo invocando
+  // `crypto.subtle` preso da `globalThis`, quindi allochiamo con il costruttore
+  // preso dallo STESSO `globalThis`, al momento della chiamata. Coerenti per
+  // costruzione, in qualunque ambiente. In un browser reale e' un no-op: li'
+  // il costruttore del modulo e quello globale coincidono.
+  const scope = globalThis as unknown as {
+    ArrayBuffer: ArrayBufferConstructor
+    Uint8Array: Uint8ArrayConstructor
+  }
+  const owned = new scope.ArrayBuffer(bytes.byteLength)
+  new scope.Uint8Array(owned).set(bytes)
+  const digest = new scope.Uint8Array(
+    await crypto.subtle.digest("SHA-256", owned),
   )
   return [...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")
 }

@@ -2357,36 +2357,40 @@ describe("autorità FSA: costruzione provata, non catena di prototipi (accept #3
   })
 })
 
-describe("sha256Hex passa alla WebCrypto il buffer della piattaforma, non uno proprio", () => {
-  // La CI fallisce con:
-  //   TypeError: Failed to execute 'digest' on 'SubtleCrypto':
-  //   2nd argument is not instance of ArrayBuffer, Buffer, TypedArray, or DataView
-  // Formulazione WebIDL di jsdom: valida con instanceof contro il PROPRIO realm.
-  // Il codice allocava `new ArrayBuffer(...)` nel realm del modulo e scartava
-  // quello restituito da blob.arrayBuffer(), che e' del realm di jsdom.
-  // La copia era stata aggiunta per soddisfare TypeScript, non il runtime.
-  it("il buffer digerito e' quello che la piattaforma ha restituito, per identita", async () => {
-    const payload = new TextEncoder().encode('{"schemaVersion":2}')
-    const platformBuffer = payload.buffer.slice(0) as ArrayBuffer
-    const blob = {
-      async arrayBuffer() {
-        return platformBuffer
-      },
-    } as unknown as Blob
-
-    const seen: unknown[] = []
+describe("sha256Hex alloca nello stesso realm dell oggetto crypto che invoca", () => {
+  // Il difetto e' di REALM, non di copia. jsdom converte BufferSource con
+  // WebIDL, che valida via `instanceof` contro il PROPRIO realm. Passare un
+  // buffer nato altrove — nel modulo, o in fake-indexeddb — viene rifiutato:
+  //   TypeError: Failed to execute 'digest' on 'SubtleCrypto': 2nd argument is
+  //   not instance of ArrayBuffer, Buffer, TypedArray, or DataView
+  // Non riproducibile su macOS; la CI Linux lo espone. L'invariante invece e'
+  // falsificabile ovunque: poiche' invochiamo globalThis.crypto.subtle, dobbiamo
+  // allocare con globalThis.ArrayBuffer — lo stesso realm, per costruzione.
+  it("il buffer digerito proviene dal costruttore raggiungibile da globalThis", async () => {
+    const realArrayBuffer = globalThis.ArrayBuffer
+    class MarkedArrayBuffer extends realArrayBuffer {}
+    const digested: unknown[] = []
     const realDigest = globalThis.crypto.subtle.digest.bind(globalThis.crypto.subtle)
-    const spy = async (algorithm: AlgorithmIdentifier, data: BufferSource) => {
-      seen.push(data)
-      return realDigest(algorithm, data)
-    }
+
+    Object.defineProperty(globalThis, "ArrayBuffer", {
+      value: MarkedArrayBuffer,
+      configurable: true,
+      writable: true,
+    })
     Object.defineProperty(globalThis.crypto.subtle, "digest", {
-      value: spy,
+      value: async (algorithm: AlgorithmIdentifier, data: BufferSource) => {
+        digested.push(data)
+        return realDigest(algorithm, data)
+      },
       configurable: true,
       writable: true,
     })
 
     try {
+      const payload = new TextEncoder().encode('{"schemaVersion":2}')
+      const foreignBuffer = payload.buffer.slice(0) as ArrayBuffer
+      const blob = { async arrayBuffer() { return foreignBuffer } } as unknown as Blob
+
       const factories = {
         createEventReader: async () => verifiedReader([]),
         createWorkspaceReader: async () => {
@@ -2399,6 +2403,11 @@ describe("sha256Hex passa alla WebCrypto il buffer della piattaforma, non uno pr
 
       await loadScopedContinuitySnapshot(SCOPE_INPUT, factories)
     } finally {
+      Object.defineProperty(globalThis, "ArrayBuffer", {
+        value: realArrayBuffer,
+        configurable: true,
+        writable: true,
+      })
       Object.defineProperty(globalThis.crypto.subtle, "digest", {
         value: realDigest,
         configurable: true,
@@ -2406,11 +2415,11 @@ describe("sha256Hex passa alla WebCrypto il buffer della piattaforma, non uno pr
       })
     }
 
-    expect(seen.length).toBeGreaterThan(0)
-    // Ogni buffer digerito deve provenire dalla piattaforma: mai un ArrayBuffer
-    // allocato dentro il modulo, che in un altro realm verrebbe rifiutato.
-    for (const data of seen) {
-      expect(data).toBe(platformBuffer)
+    expect(digested.length).toBeGreaterThan(0)
+    for (const data of digested) {
+      // Deve essere allocato dal costruttore di globalThis al momento della
+      // chiamata, non da quello catturato nello scope del modulo.
+      expect(data).toBeInstanceOf(MarkedArrayBuffer)
     }
   })
 })
