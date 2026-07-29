@@ -289,7 +289,13 @@ async function sha256Hex(bytes: Uint8Array): Promise<string> {
         : ctor === Uint8Array
           ? "OUR-Uint8Array"
           : "FOREIGN-ctor"
-    const brand = value instanceof ArrayBuffer ? "instanceof-ours" : "NOT-instanceof-ours"
+    // Una view non e' mai `instanceof ArrayBuffer`: riportarla come
+    // "NOT-instanceof-ours" leggerebbe come un difetto che non esiste.
+    const brand = ArrayBuffer.isView(value)
+      ? "view"
+      : value instanceof ArrayBuffer
+        ? "instanceof-ours"
+        : "NOT-instanceof-ours"
     return `${typeof value}/${name}/${owner}/${brand}`
   }
   if (!ArrayBuffer.isView(bytes)) {
@@ -297,28 +303,40 @@ async function sha256Hex(bytes: Uint8Array): Promise<string> {
       `Continuity loader: sha256Hex richiede una vista tipizzata, ricevuto ${describe(bytes)}`,
     )
   }
-  // Forma adottata da loadFile.ts:36, che passa questo stesso gate su main:
-  //   crypto.subtle.digest(\"SHA-256\", buf.slice(0))
-  // `ArrayBuffer.prototype.slice` copia usando lo species del buffer di ORIGINE,
-  // quindi il risultato appartiene sempre al realm da cui i byte provengono.
-  // Allocare con un costruttore scelto da noi e lunica forma che questo repo
-  // non usa da nessuna parte, ed e lunica che la CI rifiuta.
-  const owned = bytes.buffer.slice(
-    bytes.byteOffset,
-    bytes.byteOffset + bytes.byteLength,
-  ) as ArrayBuffer
+  // Il problema non era MAI quale ArrayBuffer allocavamo: la sonda di 60bd0235
+  // riporta `OUR-ArrayBuffer/instanceof-ours` sul buffer che jsdom rifiuta. Era
+  // nostro davvero - ed e' esattamente per questo che veniva rifiutato.
+  //
+  // jsdom converte `BufferSource` in due modi diversi. Una ArrayBufferView passa
+  // per `ArrayBuffer.isView`, predicato NATIVO che ispeziona lo slot interno e
+  // vale quindi anche fra realm. Un ArrayBuffer nudo passa invece per un
+  // `instanceof` contro l'ArrayBuffer del contesto vm di jsdom, che non e' il
+  // nostro. La forma dell'argomento decide quale dei due controlli viene usato.
+  //
+  // Controllo positivo nello stesso ambiente, non teoria: LessonBundle.test.ts
+  // dichiara `@vitest-environment jsdom`, chiama `crypto.subtle.digest` con
+  // `Uint8Array.from(data)` e passa questo gate su main. Gli altri sette test
+  // che toccano il digest girano in ambiente `node`, dove i controlli sono
+  // nativi e il realm non conta - per questo non falsificano nulla.
+  //
+  // La copia serve comunque: il chiamante non deve poter mutare i byte gia'
+  // misurati attraverso la vista che ci ha passato.
+  const owned = Uint8Array.from(bytes)
   let digest: Uint8Array
   try {
     digest = new Uint8Array(await crypto.subtle.digest("SHA-256", owned))
   } catch (error) {
     throw new TypeError(
-      "Continuity loader: WebCrypto ha rifiutato il buffer del digest. " +
+      // `crypto` e `subtle` non sono buffer: giudicarli per identita' contro
+      // ArrayBuffer produce sempre "FOREIGN-ctor", cioe' rumore travestito da
+      // dato. Questa sonda ha gia' sbagliato una volta misurando la cosa
+      // sbagliata; qui riporta solo cio' che e' interpretabile.
+      "Continuity loader: WebCrypto ha rifiutato l'argomento del digest. " +
         `input=${describe(bytes)} ` +
-        `buffer=${describe(owned)} ` +
+        `passed=${describe(owned)} ` +
+        `passedIsView=${ArrayBuffer.isView(owned)} ` +
         `sourceBuffer=${describe(bytes.buffer)} ` +
-        `sliced=${describe(owned)} ` +
-        `crypto=${describe(crypto)} ` +
-        `subtle=${describe(crypto.subtle)} ` +
+        `cryptoCtor=${(crypto as { constructor?: { name?: string } }).constructor?.name ?? "anonymous"} ` +
         `cause=${error instanceof Error ? error.message : String(error)}`,
     )
   }
