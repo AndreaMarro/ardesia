@@ -7900,6 +7900,101 @@ def write_residual_findings(
     return {"path": str(path), "sha256": sha256_file(path), "count": len(residual)}
 
 
+def propose_bounded_tasks(
+    policy: Dict[str, Any],
+    parent_task_id: str,
+    findings: Sequence[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Turn surviving review findings into single-file units the loop can win.
+
+    The measured bottleneck is not the machinery, it is the failure rate: 91% of
+    a slice is AI wall-clock, and a five-file unit with a ten-clause conjunctive
+    acceptance resolves under 10% of the time. One file, one criterion, moves the
+    per-attempt odds into the 48-72% band and costs less per attempt.
+
+    This only proposes. `queue_mode` stays PREAPPROVED_IMMUTABLE and admission
+    remains a human act - the loop must not be able to author its own mandate.
+    """
+    parent = task_by_id(policy, parent_task_id)
+    suffix_match = re.search(r"(\d{8})$", parent["branch"])
+    suffix = suffix_match.group(1) if suffix_match else "00000000"
+    stem_match = re.match(r"([A-Z0-9]+-\d+)", parent_task_id)
+    stem = stem_match.group(1) if stem_match else parent_task_id[:20]
+
+    proposals: List[Dict[str, Any]] = []
+    rejected: List[Dict[str, Any]] = []
+    ordinal = 0
+    for finding in findings:
+        if not isinstance(finding, dict):
+            continue
+        relative = str(finding.get("file", "")).strip()
+        in_scope = relative and any(
+            fnmatch.fnmatchcase(relative, pattern)
+            for pattern in parent["allowed_path_patterns"]
+        )
+        if not in_scope:
+            rejected.append(
+                {
+                    "file": relative,
+                    "reason": "outside the parent task's admitted paths",
+                    "message": redact_diagnostic(str(finding.get("message", "")), limit=400),
+                }
+            )
+            continue
+        ordinal += 1
+        message = " ".join(str(finding.get("message", "")).split())
+        headline = message[:180] or "Close the recorded review finding."
+        proposals.append(
+            {
+                "task_id": f"{stem}-R{ordinal}",
+                "title": f"{relative.rsplit('/', 1)[-1]}: {headline}"[:1000],
+                "base_sha": parent["base_sha"],
+                "branch": f"agent/{stem.lower()}-r{ordinal}-{suffix}",
+                "context_query": f"{parent['context_query']} {relative} {headline}"[:1000],
+                "max_files": 1,
+                "allowed_path_patterns": [relative],
+                # Exactly one criterion. A conjunction of N clauses passes at p^N;
+                # this is the whole reason the parent unit never converged.
+                "acceptance": [headline],
+                "forbidden_changes": [
+                    f"No edit outside the single admitted path {relative}.",
+                    "No dependency or package manifest change.",
+                    "No merge, deploy, push, main write or network publication.",
+                ],
+                "verification_commands": json.loads(
+                    canonical_json(parent["verification_commands"])
+                ),
+            }
+        )
+    # Every unit is pinned to the frozen base SHA, so two units on one file
+    # cannot run independently: the second starts from base and silently drops
+    # the first's work. Report it instead of emitting a set that cannot run.
+    by_path: Dict[str, List[str]] = {}
+    for proposal in proposals:
+        by_path.setdefault(proposal["allowed_path_patterns"][0], []).append(
+            proposal["task_id"]
+        )
+    collisions = [
+        {
+            "path": path,
+            "task_ids": task_ids,
+            "execution": "SEQUENTIAL_REBASE_REQUIRED",
+        }
+        for path, task_ids in sorted(by_path.items())
+        if len(task_ids) > 1
+    ]
+    return {
+        "schema_version": 1,
+        "parent_task_id": parent_task_id,
+        "base_sha": parent["base_sha"],
+        "proposals": proposals,
+        "rejected": rejected,
+        "path_collisions": collisions,
+        "state": "PROPOSED_NOT_ADMITTED",
+        "created_at": iso_now(),
+    }
+
+
 # ---------------------------------------------------------------------------
 # Hourly loop health audit
 #
@@ -9442,6 +9537,8 @@ def build_parser() -> argparse.ArgumentParser:
     recover_task = subparsers.add_parser("recover-task")
     recover_task.add_argument("--task-id", required=True)
     recover_task.add_argument("--reason", required=True)
+    propose = subparsers.add_parser("propose-tasks")
+    propose.add_argument("--task-id", required=True)
     loop_audit_parser = subparsers.add_parser("loop-audit")
     loop_audit_parser.add_argument("--trigger", default="manual")
     subparsers.add_parser("admit-queue")
@@ -9505,6 +9602,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return productive_repair_resume_worker(policy, args.task_id)
     elif args.command == "recover-task":
         result = recover_productive_task(policy, args.task_id, args.reason)
+    elif args.command == "propose-tasks":
+        runtime = runtime_path(policy)
+        record = ((read_json(productive_state_path(runtime), {}) or {}).get("tasks") or {}).get(args.task_id) or {}
+        review = record.get("review") if isinstance(record.get("review"), dict) else {}
+        result = propose_bounded_tasks(policy, args.task_id, review.get("findings") or [])
+        write_json(
+            runtime / "artifacts" / "productive-runs" / args.task_id / "proposed-tasks.json",
+            result,
+            0o640,
+        )
     elif args.command == "loop-audit":
         result = loop_audit(policy, args.trigger)
     elif args.command == "admit-queue":

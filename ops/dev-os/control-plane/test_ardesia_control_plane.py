@@ -3939,6 +3939,102 @@ class ControlPlaneTests(unittest.TestCase):
                     len(decision["residual_findings"]), len(severities), task_id
                 )
 
+    # ---- bounded task proposals ---------------------------------------
+    # The measured bottleneck is the failure rate, not the machinery: 91% of a
+    # slice is AI wall-clock, and a 5-file/3000-line unit resolves under 10% of
+    # the time (SWE-bench-Live). Turning each surviving finding into its own
+    # single-file unit is the one lever that moves both numbers. Proposals are
+    # never admitted automatically - the queue stays immutable.
+
+    PARENT = "BETA-005-CONTINUITY-SCOPED-AUTHORITY-ORACLE"
+
+    def _findings(self) -> List[Dict[str, Any]]:
+        return [
+            {
+                "file": "apps/studio/src/lessonos/continuityRuntime.ts",
+                "line": 234,
+                "severity": "major",
+                "message": "The bundle boundary retains caller-owned Blobs without a validated import receipt.",
+            },
+            {
+                "file": "apps/studio/src/lessonos/indexedDbEventLog.ts",
+                "line": 88,
+                "severity": "major",
+                "message": "Envelope validation does not distinguish a missing record from a corrupt one.",
+            },
+            {
+                "file": "node_modules/whatever/index.js",
+                "line": 1,
+                "severity": "minor",
+                "message": "Filed against a dependency, outside the task scope entirely.",
+            },
+        ]
+
+    def test_each_proposal_is_a_single_file_unit(self) -> None:
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        self.assertTrue(result["proposals"])
+        for proposal in result["proposals"]:
+            self.assertEqual(proposal["max_files"], 1)
+            self.assertEqual(len(proposal["allowed_path_patterns"]), 1)
+
+    def test_each_proposal_has_exactly_one_acceptance_criterion(self) -> None:
+        # A conjunction of ten clauses passes at p^10. One clause passes at p.
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        for proposal in result["proposals"]:
+            self.assertEqual(len(proposal["acceptance"]), 1)
+
+    def test_findings_outside_the_parent_scope_are_rejected(self) -> None:
+        # One real BETA-003 finding was filed against a path inside node_modules.
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        rejected = result["rejected"]
+        self.assertEqual(len(rejected), 1)
+        self.assertIn("node_modules", rejected[0]["file"])
+        for proposal in result["proposals"]:
+            self.assertNotIn("node_modules", proposal["allowed_path_patterns"][0])
+
+    def test_proposals_satisfy_the_real_policy_validator(self) -> None:
+        # The generated units must be admissible as-is, or the proposal is noise.
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        candidate = copy.deepcopy(self.policy)
+        candidate["loop"]["tasks"] = result["proposals"]
+        validated = cp.validate_policy(candidate)
+        self.assertEqual(len(validated["loop"]["tasks"]), len(result["proposals"]))
+
+    def test_proposing_never_mutates_the_live_queue(self) -> None:
+        before = cp.canonical_json(self.policy["loop"]["tasks"])
+        cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        self.assertEqual(cp.canonical_json(self.policy["loop"]["tasks"]), before)
+
+    def test_proposal_ids_and_branches_are_unique(self) -> None:
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, self._findings())
+        ids = [item["task_id"] for item in result["proposals"]]
+        branches = [item["branch"] for item in result["proposals"]]
+        self.assertEqual(len(set(ids)), len(ids))
+        self.assertEqual(len(set(branches)), len(branches))
+
+    def test_proposals_touching_one_file_are_reported_as_sequential(self) -> None:
+        # Three of the five real BETA-005 findings land on continuityRuntime.ts.
+        # Every task is pinned to the frozen base SHA, so two units on one file
+        # cannot run independently - the second would start from base and drop
+        # the first's work. Surface it rather than emit a set that cannot run.
+        findings = [
+            {"file": "apps/studio/src/lessonos/continuityRuntime.ts", "severity": "major", "message": "first"},
+            {"file": "apps/studio/src/lessonos/continuityRuntime.ts", "severity": "major", "message": "second"},
+            {"file": "apps/studio/src/lessonos/indexedDbEventLog.ts", "severity": "major", "message": "third"},
+        ]
+        result = cp.propose_bounded_tasks(self.policy, self.PARENT, findings)
+        collisions = result["path_collisions"]
+        self.assertEqual(len(collisions), 1)
+        self.assertEqual(
+            collisions[0]["path"], "apps/studio/src/lessonos/continuityRuntime.ts"
+        )
+        self.assertEqual(collisions[0]["task_ids"], ["BETA-005-R1", "BETA-005-R2"])
+        self.assertEqual(collisions[0]["execution"], "SEQUENTIAL_REBASE_REQUIRED")
+
+    def test_unknown_parent_task_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            cp.propose_bounded_tasks(self.policy, "NO-SUCH-TASK", self._findings())
+
     # ---- hourly loop health audit -------------------------------------
     # Everything below is mechanical. The audit exists because the loop ran
     # 21 hours reporting VERIFIED_STABLE while accepting nothing, and no

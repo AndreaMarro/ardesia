@@ -8,12 +8,29 @@ the template.
 ## Commands
 
 ```bash
-python3 -m unittest test_ardesia_control_plane     # 74 tests, must be green before install
+python3 -m unittest test_ardesia_control_plane     # 82 tests, must be green before install
 python3 ardesia_control_plane.py --policy <policy> doctor        # 10 admission checks
 python3 ardesia_control_plane.py --policy <policy> loop-audit --trigger manual
+python3 ardesia_control_plane.py --policy <policy> propose-tasks --task-id <id>
 python3 ardesia_control_plane.py --policy <policy> recover-task --task-id <id> --reason RECOVERED_AFTER_<CODE>
 python3 ardesia_control_plane.py --policy <policy> render-plists --output <dir>
 ```
+
+## Sizing work
+
+`propose-tasks` reads a task's surviving review findings and emits one
+single-file unit per finding, each with exactly one acceptance criterion, into
+`artifacts/productive-runs/<task>/proposed-tasks.json`. Output is
+`PROPOSED_NOT_ADMITTED`: the queue stays immutable and admission is a human act.
+The loop must not be able to author its own mandate.
+
+Why it exists: 91 % of a slice is AI wall-clock, and a five-file unit with a
+ten-clause conjunctive acceptance resolves under 10 % of the time. One file, one
+clause, moves per-attempt odds into the 48-72 % band and costs less per attempt.
+
+Read `path_collisions` before admitting. Every unit is pinned to the frozen base
+SHA, so two units on the same file must run sequentially with the base advanced —
+otherwise the second starts from base and silently drops the first's work.
 
 ## Invariants — do not weaken
 
@@ -57,10 +74,35 @@ so throughput over time is visible without re-deriving it.
 The number that matters is **accepted work units**. A green doctor, a rising test
 count and zero accepted units is the documented failure signature, not health.
 
+## Efficiency — where the time actually goes
+
+Measured on a real slice (BETA-004, 78 min end to end):
+
+| phase | share |
+|---|---:|
+| writer, `claude -p` opus at effort max | ~34 min |
+| independent review + repair | ~37 min |
+| all verification commands, every phase | ~5 min |
+
+**91 % is AI wall-clock.** Caching verification results would save ~2.5 % and is
+not worth the complexity. The only lever that matters is reducing the number of
+*failed* attempts, which is what `propose-tasks` addresses.
+
+**Headroom cannot help here, and this is not a misconfiguration.** The policy
+sets `lossless: true` and `stateless: true`, so every feature that compresses
+(`kompress`, `code_aware`, `output_shaper`, `verbosity_autotune`) or remembers
+(`cache`, `memory`, `learn`) is necessarily off, and `headroom savings` reports
+`No savings recorded yet`. Those flags are load-bearing: a proxy that rewrites a
+review payload makes the receipt unable to prove what the model actually saw,
+which is the one thing this system exists to provide. Do not enable the
+`agent-90` profile — it sets `HEADROOM_LOSSLESS=0` and `HEADROOM_FORCE_KOMPRESS=1`.
+Headroom stays for routing and attestation, not for token savings.
+
 ## Known gaps
 
 - Tasks are authored at ~5 files / ~3,000 lines. SWE-bench-Live measures < 10 %
-  resolution at 3+ files. Split into single-file units of ≤ 50 lines.
+  resolution at 3+ files. `propose-tasks` generates the replacement units;
+  admitting them is still manual.
 - `FALSIFIED_CANDIDATE_SEED_APPLIED` carries rejected candidates into the next
   task, so each retry inherits the previous objection set. Reset to base instead.
 - `finalize_productive_slice` hardcodes one commit message for every task.
