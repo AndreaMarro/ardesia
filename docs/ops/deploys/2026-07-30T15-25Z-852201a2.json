@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "deployed_at": "2026-07-30T15:25:00Z",
+  "timezone": "Europe/Rome",
+  "commit_sha": "852201a275defc65ea1a539ce31d013866db3845",
+  "project": "ardesia-lavagna",
+  "project_id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+  "scope": "andreas-projects-6d4e9791",
+  "deployment_id": "dpl_6naFzb3gqMfhxi3QTJ1MY2SMapbM",
+  "deployment_url": "https://ardesia-lavagna-bqchoflqd-andreas-projects-6d4e9791.vercel.app",
+  "alias": "https://ardesia-lavagna.vercel.app",
+  "method": "vercel build --prod --yes && vercel deploy --prebuilt --prod",
+  "_perche_questo_deploy": "prod_scarto era 3: la produzione serviva 291b2942 mentre main era 852201a2. Il progetto non ha git integration, quindi fondere non deploya e lo scarto cresce a ogni merge. Questo lo riporta a 0 a mano; renderlo automatico e' l'unita' F3-4.",
+  "verified_before_deploy": {
+    "sha_nell_output": true,
+    "comando": "grep -rl 852201a275defc65ea1a539ce31d013866db3845 .vercel/output/",
+    "file": [
+      ".vercel/output/static/assets/index-Cw5SAxEw.js",
+      ".vercel/output/static/assets/indexedDbEventLog-Cgyc-ZY7.js"
+    ]
+  },
+  "smoke": {
+    "comando": "npm run smoke:studio:production",
+    "exit": 0,
+    "expected_commit_sha": "852201a275defc65ea1a539ce31d013866db3845",
+    "served_commit_sha": "852201a275defc65ea1a539ce31d013866db3845",
+    "_nota": "Il default del chiamante e' HEAD: nessuna variabile passata a mano, quindi il confronto non poteva essere aggirato per distrazione."
+  },
+  "rollback": {
+    "comando": "npx vercel rollback https://ardesia-lavagna-oppx5i9nx-andreas-projects-6d4e9791.vercel.app --scope andreas-projects-6d4e9791",
+    "target_precedente": "dpl_3CGuUa1Jvc9T1uzTTurAWS5RENvf",
+    "target_precedente_sha": "291b2942b73a1941667370e29614bf3a22099cdb",
+    "_avvertenza": "Il rollback ripristina il CODICE, non i DATI. Lo stato utente vive nel browser sotto il prefisso `maestro:` e nel DB IndexedDB `lessonos-eventlog`."
+  },
+  "non_stabilito": [
+    "Il golden path NON gira contro questa produzione: dipende da window.__MAESTRO_TEST__, esposto solo sotto import.meta.env.DEV.",
+    "La suite e2e completa e' a 24/31 al 852201a2: questo deploy pubblica un albero i cui test e2e NON sono tutti verdi. Dichiarato, non nascosto.",
+    "Il rollback resta documentato e mai eseguito."
+  ]
+}
