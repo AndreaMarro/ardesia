@@ -55,8 +55,29 @@ reviewer that cannot claim total coverage.
 
 ## What the CI workflows guarantee, and why they are shaped that way
 
-`.github/workflows/ci.yml` runs on **every** pull request with no `branches:`
-filter. `studio-preview-readiness.yml` now does too, and that was PR #220.
+`.github/workflows/ci.yml` runs on **every** pull request, with no `branches:` and
+no `paths:` filter — that is why its three jobs are the required checks.
+
+`.github/workflows/studio-preview-readiness.yml` is different, and the difference
+matters. PR #220
+removed its `branches:` filter and **kept** its `paths:` filter. So it runs on every
+PR **whose content touches those paths**, not on every PR. An earlier revision of
+this file said it "now does too", which is false and contradicted the section below
+in the same document; adversarial review caught it.
+
+The two filters are not the same kind of thing:
+
+| filter | matches | verdict |
+|---|---|---|
+| `branches:` under `pull_request:` | the PR's **base** — nothing about its content | removed, and now forbidden by a gate |
+| `paths:` under `pull_request:` | the PR's **content** | kept deliberately |
+
+A base filter withholds a check from a PR that needs it. A paths filter withholds a
+check from a PR that does not. PR #223 — the one that introduced this document — is
+the live example: docs-only, so `no-deploy-check` correctly never ran, and the PR
+showed the three `ci` jobs. Four checks instead of five, for a legitimate reason
+that looks identical from the outside to the illegitimate one #220 fixed. When
+counting checks on a PR, read **why** one is missing before concluding anything.
 
 **Do not add `branches:` under `pull_request:`.** The filter matches the pull
 request's **base**, not its content. Measured 2026-07-29 on this repository:
@@ -180,8 +201,18 @@ then written as a statement about the repository. Adversarial review caught it.
 
 That is worth naming rather than quietly fixing, because it is the defect this
 project keeps paying for: a measurement taken on one referent and reported as a
-claim about the **adjacent** one. `bin/receipt-measurements.py` exists because the
-same shape had already recurred eight times.
+claim about the **adjacent** one. The vault carries a gate written specifically
+against it — `bin/receipt-measurements.py` in the **separate** `ardesia-knowledge`
+repository, not in this one — whose docstring records that the same shape had
+already recurred eight times.
+
+That qualification is itself a correction. An earlier revision cited the path bare,
+as though it lived in this repo; an agent standing in this root and running
+`python3 bin/receipt-measurements.py` gets file-not-found. Adversarial review caught
+it, and the location is worth pausing on: **the defect appeared inside the sentence
+describing the defect** — a file from the adjacent repository presented as belonging
+to this one. Knowing the failure mode by name does not confer immunity from it. That
+is the argument for gates rather than for care.
 
 So the accurate statement is narrower. The **attachment point** was never missing
 here: a repo-level `PreToolUse` hook predates this work by twenty days. What was
@@ -247,10 +278,14 @@ merge.
   on the forms the parser cannot resolve, but no proof of exhaustiveness — the
   adversarial review put the same caveat in its own `not_checked`.
 - Behaviour on events nobody touched: fork, draft, reopened, merge queue.
-- That the `CodeRabbit` column means a review happened. Across #222 and #220 it
-  reported `pass` **five consecutive times** while `reviews` stayed `0`, sometimes
-  next to `Review rate limited`. Nothing currently distinguishes it from a real
-  review, and making it binding would require a required status check.
+- That the `CodeRabbit` column means a review happened. Stated so it can be checked
+  rather than counted from memory: **on every head inspected across #220, #221, #222
+  and #223, `reviews` was `0` and inline comments were `0`**, while the column read
+  `pass` — sometimes next to `Review rate limited`, sometimes next to
+  `Review completed` with a walkthrough carrying no actionable comments. Verify with
+  `gh pr view <n> --json reviews -q '.reviews|length'`. Nothing currently
+  distinguishes that column from a real review, and making it binding would require
+  a required status check.
 
 ## Where the rest lives
 
