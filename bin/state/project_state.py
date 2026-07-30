@@ -511,26 +511,60 @@ def collect_e2e(root: Path) -> dict:
     }
 
 
-def collect_deploy(root: Path) -> dict:
-    """Nessuna ricevuta di deploy leggibile a macchina esiste nel repo.
+DEPLOY_RECEIPTS = "docs/ops/deploys"
 
-    Non e' una svista di questo script: e' la ragione per cui F0-5 non ha un
-    oracolo. Dichiararlo qui lo rende un difetto visibile invece che un campo
-    mancante.
+
+def collect_deploy(root: Path) -> dict:
+    """L'ultimo deploy, dalla sua ricevuta COMMITTATA.
+
+    Perche' qui e non sotto `artifacts/`, che e' gitignorato: la prima versione
+    cercava `artifacts/state/last-deploy.json`, e sarebbe stata una ricevuta che
+    sparisce. La distinzione e' fra due cose diverse che sembrano una:
+
+    - lo **stato corrente** e' derivato e non va committato, perche' un file non
+      puo' contenere lo SHA del commit che lo contiene e invecchierebbe;
+    - una **ricevuta di deploy** e' un fatto storico. Non invecchia: resta vera
+      per sempre su quell'istante. Va committata, o non e' evidenza.
+
+    `matches_main` e' ricalcolato a ogni lettura confrontando la SHA della
+    ricevuta piu' recente con `origin/main`: e' quello il dato che dice se la
+    produzione e' allineata, e va misurato adesso, non memorizzato allora.
     """
-    receipt = root / "artifacts" / "state" / "last-deploy.json"
-    if receipt.exists():
-        try:
-            data = json.loads(receipt.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as exc:
-            return {"status": "UNAVAILABLE", "reason": f"ricevuta illeggibile: {exc}"}
-        return {"status": "MEASURED", "source": str(receipt.relative_to(root)), **data}
-    return {
-        "status": "UNAVAILABLE",
-        "reason": ("nessuna ricevuta di deploy leggibile a macchina nel repo "
-                   "(attesa in artifacts/state/last-deploy.json); F0-5 non ha oracolo"),
-        "source": "artifacts/state/last-deploy.json",
+    d = root / DEPLOY_RECEIPTS
+    if not d.is_dir():
+        return {"status": "UNAVAILABLE",
+                "reason": f"{DEPLOY_RECEIPTS}/ assente: nessun deploy mai registrato",
+                "source": DEPLOY_RECEIPTS}
+    ricevute = sorted(d.glob("*.json"))
+    if not ricevute:
+        return {"status": "UNAVAILABLE",
+                "reason": f"{DEPLOY_RECEIPTS}/ e' vuota: nessun deploy mai registrato",
+                "source": DEPLOY_RECEIPTS}
+    ultima = ricevute[-1]
+    try:
+        data = json.loads(ultima.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return {"status": "UNAVAILABLE",
+                "reason": f"ricevuta illeggibile ({ultima.name}): {exc}",
+                "source": str(ultima.relative_to(root))}
+    sha = str(data.get("commit_sha", ""))
+    rc, main = _run(["git", "rev-parse", "origin/main"], root)
+    if rc != 0:
+        allineato = None
+        motivo = f"git rev-parse origin/main exit {rc}"
+    else:
+        allineato = sha == main.strip()
+        motivo = None
+    out = {
+        "status": "MEASURED",
+        "source": str(ultima.relative_to(root)),
+        "receipts_count": len(ricevute),
+        **data,
+        "matches_main": allineato,
     }
+    if motivo:
+        out["unmeasured"] = {"matches_main": motivo}
+    return out
 
 
 def build_state(root: Path, offline: bool = False) -> dict:

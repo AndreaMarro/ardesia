@@ -267,6 +267,48 @@ def test_finding3_repo_dichiara_i_campi_non_misurati() -> None:
                    "origin_main_sha" in ps.render_current_md(stato))
 
 
+def test_deploy_ricevuta_storica_e_allineamento_ricalcolato() -> None:
+    """La ricevuta di deploy e' un fatto STORICO e va committata; `matches_main`
+    invece e' uno stato corrente e va RICALCOLATO a ogni lettura, non
+    memorizzato. La prima versione cercava il file sotto `artifacts/`, che e'
+    gitignorato: sarebbe stata una ricevuta che sparisce."""
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        for cmd in (["git", "init", "-q"],
+                    ["git", "-c", "user.email=a@b", "-c", "user.name=a",
+                     "commit", "-q", "--allow-empty", "-m", "x"]):
+            subprocess.run(cmd, cwd=root, capture_output=True)
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                             capture_output=True, text=True).stdout.strip()
+        subprocess.run(["git", "branch", "-f", "main"], cwd=root, capture_output=True)
+        subprocess.run(["git", "remote", "add", "origin", "."], cwd=root, capture_output=True)
+        subprocess.run(["git", "update-ref", "refs/remotes/origin/main", sha],
+                       cwd=root, capture_output=True)
+
+        # nessuna ricevuta: dichiarato, non silenzioso
+        vuoto = ps.collect_deploy(root)
+        check("senza ricevute", vuoto["status"], "UNAVAILABLE")
+
+        dep = root / "docs/ops/deploys"
+        dep.mkdir(parents=True)
+        # due ricevute: vince la piu' recente per nome (i nomi portano la data)
+        (dep / "2026-07-01T00-00Z-vecchia.json").write_text(
+            '{"commit_sha": "0000000000000000000000000000000000000000"}')
+        (dep / "2026-07-30T10-45Z-nuova.json").write_text(f'{{"commit_sha": "{sha}"}}')
+
+        out = ps.collect_deploy(root)
+        check("status", out["status"], "MEASURED")
+        check("prende la piu' recente", out["commit_sha"], sha)
+        check("conta le ricevute", out["receipts_count"], 2)
+        check_true("allineato a main", out["matches_main"] is True)
+
+        # una ricevuta a una SHA diversa deve dire NON allineato
+        (dep / "2026-07-31T00-00Z-disallineata.json").write_text(
+            '{"commit_sha": "1111111111111111111111111111111111111111"}')
+        out2 = ps.collect_deploy(root)
+        check_true("disallineato rilevato", out2["matches_main"] is False)
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -280,6 +322,7 @@ def main() -> int:
         test_finding1_la_scoperta_copre_ogni_config_playwright,
         test_finding2_in_ci_non_scatta_su_un_commento,
         test_finding3_repo_dichiara_i_campi_non_misurati,
+        test_deploy_ricevuta_storica_e_allineamento_ricalcolato,
     )
     for fn in tests:
         try:
