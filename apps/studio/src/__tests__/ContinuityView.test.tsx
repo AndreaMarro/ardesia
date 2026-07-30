@@ -76,6 +76,43 @@ describe("ContinuityView", () => {
     )
   })
 
+  it("nessun UUID nel testo VISIBILE: l'obiettivo di prodotto, come assert da due secondi", async () => {
+    // Promozione di un finding del golden path E2E a controllo meccanico.
+    // Il 2026-07-30 `e2e/golden-path.spec.ts` era rosso al passo 4 con
+    // «Continuità mostra un identificatore tecnico come testo visibile:
+    // 26d92fab-…»: la vista rendeva `{sessionId}` come testo del link.
+    // Quel test costa 8 secondi e un browser; questo costa 2 secondi, e la
+    // regola del loop e' che un difetto meccanicamente controllabile diventa
+    // un controllo, non attenzione.
+    //
+    // `textContent` e non `innerText`: jsdom non calcola il layout, quindi
+    // `innerText` non e' affidabile qui. La differenza — testo di nodi nascosti
+    // — non si applica: questa vista non ne ha.
+    at(`/?vista=continuita#${LESSON_ID}`)
+    render(
+      <ContinuityView deps={{ openEventLog: async () => handleWith([SESSION_ONE, SESSION_TWO]) }} />,
+    )
+    // PRECONDIZIONE STABILITA, non sperata. `findByTestId("continuity-surface")`
+    // da solo risolve sullo stato di CARICAMENTO, che porta lo stesso testid:
+    // la prima versione di questo assert leggeva «Continuita'Lettura delle
+    // sessioni…» e passava senza aver mai visto una sessione. L'ha scoperto
+    // l'assert successivo, non questo — se fosse stato l'unico, il repo avrebbe
+    // guadagnato un test verde che non guarda niente.
+    const voci = await screen.findAllByTestId("continuity-session")
+    expect(voci).toHaveLength(2)
+    const superficie = await screen.findByTestId("continuity-surface")
+    expect(superficie.getAttribute("data-state")).toBe("sessions")
+    const visibile = superficie.textContent ?? ""
+    expect(visibile).not.toMatch(
+      /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i,
+    )
+    // e l'identificatore resta disponibile alle MACCHINE, che ne hanno bisogno
+    expect(voci[0].getAttribute("data-continuity-session-id")).toBe(SESSION_ONE)
+    // la vista non deve promettere una cronologia che l'archivio non conserva:
+    // `listSessionIds` ordina lessicograficamente per UUID casuale
+    expect(visibile).toContain("non è quello temporale")
+  })
+
   it("lezione senza sessioni e storage assente sono stati DIVERSI", async () => {
     at(`/?vista=continuita#${LESSON_ID}`)
     const { unmount } = render(

@@ -166,11 +166,39 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
         <section data-testid="continuity-surface" data-state="sessions" className="st-panel">
           <h1>Riprendi una sessione</h1>
           <p>Lezione {surface.lessonId}</p>
+          {/*
+            L'ordine non e' quello temporale, e dirlo e' obbligatorio.
+            `listSessionIds` scorre l'indice `[lessonId, sessionId, seq]`, quindi
+            ordina LESSICOGRAFICAMENTE per `sessionId` — che e' un UUID casuale.
+            Numerare le voci senza questa riga farebbe promettere alla vista una
+            cronologia che l'archivio non conserva: sarebbe una ricevuta che
+            mente, esattamente la classe di difetto che questo sottosistema
+            documenta di voler evitare.
+            La data di ciascuna sessione richiede di leggere il primo envelope
+            per sessione: non e' fatto qui, ed e' il lavoro di F0-6.
+          */}
+          <p className="st-hint">
+            L'archivio elenca le sessioni nel proprio ordine interno, che non è
+            quello temporale: la numerazione qui sotto non dice quale sia la più
+            recente.
+          </p>
           <ul>
-            {surface.sessionIds.map((sessionId) => (
+            {surface.sessionIds.map((sessionId, indice) => (
               <li key={sessionId}>
-                <a data-testid="continuity-session" href={sessionHref(sessionId)}>
-                  {sessionId}
+                {/*
+                  Il testo visibile NON contiene l'identificatore: l'obiettivo
+                  del prodotto e' che il docente non debba conoscere un solo
+                  UUID. L'id resta in `href` e in `data-*`, che sono per le
+                  macchine, e in `title`, che e' un aiuto di debug e non
+                  qualcosa da leggere per usare il prodotto.
+                */}
+                <a
+                  data-testid="continuity-session"
+                  data-continuity-session-id={sessionId}
+                  title={`Identificatore tecnico della sessione: ${sessionId}`}
+                  href={sessionHref(sessionId)}
+                >
+                  Sessione {indice + 1}
                 </a>
               </li>
             ))}
