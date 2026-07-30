@@ -23,6 +23,10 @@
 // Cio' che questa spec NON asserisce piu', e va detto: che l'esperimento
 // compaia come post-it SULLA LAVAGNA. Quella capacita' e' stata ritirata, e
 // asserirla sarebbe chiedere al prodotto di essere quello di dieci giorni fa.
+//
+// AGGIORNATA 2026-07-31 (F5-1): il COMPORTAMENTO — lampada accesa, canali in
+// mA dal motore — e' tornato su questa rotta, quindi la spec lo asserisce
+// invece di fissare lo stato rotto. Vedi il blocco piu' sotto.
 import { test, expect } from "@playwright/test"
 
 async function collectConsoleErrors(page: import("@playwright/test").Page) {
@@ -58,25 +62,25 @@ test("ELAB Lab esp6: 3 potenziometri, LED RGB montato, solve reale del motore", 
   // Il solve viene dal motore reale via registry, non da valori pre-dichiarati.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })
 
-  // ⚠️ QUESTO ASSERT PUNTA A UN DIFETTO, NON A UNA SPECIFICA.
+  // F5-1 CHIUSA (2026-07-31). L'assert qui sotto era il suo opposto:
+  //     data-led-on = "0"  ·  corrente "—"  ·  [data-rgb-channels] ASSENTE
+  // fissato deliberatamente per non dimenticare il difetto, con la nota «il
+  // giorno in cui la lampada si accendera' questo diventera' rosso». E' quel
+  // giorno.
   //
-  // La prima versione di questa spec asseriva soltanto che
-  // `[data-led-current-ma]` fosse VISIBILE, e passava. Il revisore avversariale
-  // ha chiesto cosa contenesse: misurato sulla rotta ELAB Lab per esp6,
-  //     data-led-on = "0"        (la lampada NON si accende)
-  //     corrente     = "—"       (nessun valore)
-  //     [data-rgb-channels]      ASSENTE
-  //     [aria-label='LED RGB acceso']  ASSENTE
-  // mentre la spec RIMOSSA, sulla lavagna, asseriva il LED acceso e i canali in
-  // mA reali. Scrivere che «la copertura si conserva» era falso: si conserva il
-  // MONTAGGIO, non il COMPORTAMENTO.
-  //
-  // Fissare qui lo stato corrente non lo approva: lo rende impossibile da
-  // dimenticare. Il giorno in cui la lampada si accendera', questo assert
-  // diventera' rosso e costringera' a tornare qui — che e' esattamente il
-  // segnale che serve. L'unita' aperta e' F3-7.
-  await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "0")
-  await expect(page.locator("[data-led-current-ma]")).toHaveText("—")
+  // La causa non era elettrica: misurato firsthand, il motore restituiva
+  // gia' `componentStates.rgb1.on = true` sui tre canali. La vista leggeva
+  // `componentStates.led1`, un id che per questo esperimento NON ESISTE, e
+  // `led1?.on === true` vale false tanto per «spento» quanto per «assente».
+  // Ora l'id del componente luminoso si legge dall'esperimento.
+  await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "1")
+  // Il LED RGB non ha una corrente unica nel motore: ha tre canali. La cifra
+  // mostrata e' brightness x 30 (inversione di CircuitSolver._solveRGBLed),
+  // dalla stessa porta che alimenta la diagnostica del post-it sulla lavagna.
+  await expect(page.locator("[data-rgb-channels]")).toBeVisible()
+  await expect(page.locator("[data-rgb-channels]")).toHaveText(/R \d+\.\d mA · G \d+\.\d mA · B \d+\.\d mA/)
+  // Il pannello non mostra piu' la corrente singola quando il componente e' RGB.
+  await expect(page.locator("[data-led-current-ma]")).toHaveCount(0)
 
   // Citazione reale dal Pack: la scena e' legata al libro, non inventata.
   await expect(page.locator("[data-elab-lab-citation]")).toBeVisible()
