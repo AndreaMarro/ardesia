@@ -40,6 +40,7 @@ import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import {
   formatRgbChannelMa,
   rgbChannelsFromSolve,
+  type RgbChannels,
   type SolveResult,
   type SolverExperiment,
 } from "../../sim/solver/elabSolver"
@@ -268,33 +269,65 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   // vale false perché l'id non esiste, e la vista stampava «spento» mentre il
   // motore diceva acceso su tutti e tre i canali. `?.` collassa «assente» e
   // «negativo»: un'assenza travestita da verdetto.
-  const light = useMemo(() => {
-    if (experiment === null) return null
-    const components = experiment.components
-    return (
-      components.find((component) => component.type === "rgb-led") ??
-      components.find((component) => component.type === "led") ??
-      null
-    )
-  }, [experiment])
+  // TUTTI i componenti luminosi, non uno. 14 esperimenti su 88 ne hanno due o
+  // tre (misurato): sceglierne uno e chiamarlo «LED» faceva sparire gli altri
+  // in silenzio dietro un indicatore che sembrava riferito all'intero circuito.
+  const lights = useMemo(
+    () =>
+      experiment === null
+        ? []
+        : experiment.components.filter(
+            (component) => component.type === "rgb-led" || component.type === "led",
+          ),
+    [experiment],
+  )
 
-  const lightState =
-    solve?.kind === "ok" && light !== null ? solve.result.componentStates[light.id] : undefined
-  const ledOn = lightState?.on === true
-  // Verdetto onesto del motore: un LED bruciato (es. v1-cap6-esp2, senza
-  // resistore) NON è un generico "spento" — è la lezione del libro (p.32).
-  const ledBurned = (lightState as { burned?: boolean } | undefined)?.burned === true
-  // Il motore NON pubblica una corrente unica per il LED RGB (misurato: solo
-  // le tre resistenze di canale): per quel componente la grandezza per canale
-  // è `brightness`, e la porta unica è rgbChannelsFromSolve.
-  const ledCurrent =
-    solve?.kind === "ok" && light !== null && light.type === "led"
-      ? solve.result.currents[light.id]
-      : undefined
-  const rgbChannels =
-    solve?.kind === "ok" && light !== null && light.type === "rgb-led"
-      ? rgbChannelsFromSolve(solve.result, light.id)
-      : null
+  // Lettura per componente. `missing` NON è «spento»: il registry non
+  // garantisce che `componentStates` contenga ogni componente, e normalizzare
+  // l'assenza a zero produrrebbe tre correnti «0.0 mA» mai calcolate da
+  // nessuno. È la classe di difetto che questa unità chiude: un'assenza
+  // stampata come verdetto.
+  type LightReading =
+    | { kind: "missing"; id: string }
+    | { kind: "led"; id: string; on: boolean; burned: boolean; currentAmps: number | undefined }
+    | { kind: "rgb"; id: string; on: boolean; channels: RgbChannels }
+
+  const readings = useMemo<LightReading[]>(() => {
+    if (solve?.kind !== "ok") return []
+    return lights.map((light): LightReading => {
+      const state = solve.result.componentStates[light.id]
+      if (state === undefined) return { kind: "missing", id: light.id }
+      if (light.type === "rgb-led") {
+        return {
+          kind: "rgb",
+          id: light.id,
+          on: state.on === true,
+          channels: rgbChannelsFromSolve(solve.result, light.id),
+        }
+      }
+      return {
+        kind: "led",
+        id: light.id,
+        on: state.on === true,
+        // Verdetto onesto del motore: un LED bruciato (es. v1-cap6-esp2, senza
+        // resistore) NON è un generico "spento" — è la lezione del libro (p.32).
+        burned: (state as { burned?: boolean }).burned === true,
+        currentAmps: solve.result.currents[light.id],
+      }
+    })
+  }, [lights, solve])
+
+  const missingLights = readings.filter((reading) => reading.kind === "missing")
+  /** Un verdetto esiste solo se OGNI componente luminoso ha uno stato. */
+  const hasVerdict = readings.length > 0 && missingLights.length === 0
+  const ledOn = hasVerdict && readings.some((reading) => reading.kind !== "missing" && reading.on)
+  const ledBurned =
+    hasVerdict && readings.some((reading) => reading.kind === "led" && reading.burned)
+  // Forma singola conservata quando la luce è una sola: è il caso di 74
+  // esperimenti su 88, e i selettori esistenti restano univoci.
+  const single = hasVerdict && readings.length === 1 ? readings[0] : null
+  const ledCurrent = single?.kind === "led" ? single.currentAmps : undefined
+  const rgbChannels = single?.kind === "rgb" ? single.channels : null
 
   return (
     <div
@@ -363,32 +396,89 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
               </div>
               {solve?.kind === "ok" && (
                 <dl style={{ margin: 0, padding: "4px 8px" }}>
-                  <div>
-                    <dt style={{ display: "inline" }}>LED: </dt>
-                    <dd
-                      style={{ display: "inline", margin: 0 }}
-                      data-led-on={ledOn ? "1" : "0"}
-                      data-led-burned={ledBurned ? "1" : "0"}
-                    >
-                      {ledBurned ? "BRUCIATO (sovracorrente!)" : ledOn ? "acceso" : "spento"}
-                    </dd>
-                  </div>
-                  {rgbChannels === null ? (
-                    <div>
-                      <dt style={{ display: "inline" }}>Corrente LED (mA): </dt>
-                      <dd style={{ display: "inline", margin: 0 }} data-led-current-ma>
-                        {ledCurrent === undefined ? "—" : (ledCurrent * 1000).toFixed(1)}
-                      </dd>
+                  {/* Nessuno stato per uno dei componenti luminosi ⇒ NESSUN
+                      verdetto. L'attributo data-led-on non viene emesso
+                      affatto: la sua assenza è il segnale, e non può essere
+                      letta come «spento». */}
+                  {missingLights.length > 0 ? (
+                    <div role="alert" data-led-state="missing">
+                      <strong>Verdetto non disponibile.</strong> Il registry non ha restituito
+                      lo stato di: {missingLights.map((reading) => reading.id).join(", ")}.
+                    </div>
+                  ) : readings.length === 0 ? (
+                    <div role="alert" data-led-state="no-light">
+                      Nessun componente luminoso in questo esperimento.
                     </div>
                   ) : (
-                    <div>
-                      <dt style={{ display: "inline" }}>Canali RGB: </dt>
-                      <dd style={{ display: "inline", margin: 0 }} data-rgb-channels>
-                        {`R ${formatRgbChannelMa(rgbChannels.red)} · G ${formatRgbChannelMa(
-                          rgbChannels.green,
-                        )} · B ${formatRgbChannelMa(rgbChannels.blue)}`}
-                      </dd>
-                    </div>
+                    <>
+                      <div>
+                        <dt style={{ display: "inline" }}>
+                          {readings.length === 1 ? "LED: " : `LED (${readings.length}): `}
+                        </dt>
+                        <dd
+                          style={{ display: "inline", margin: 0 }}
+                          data-led-on={ledOn ? "1" : "0"}
+                          data-led-burned={ledBurned ? "1" : "0"}
+                          data-led-count={String(readings.length)}
+                        >
+                          {ledBurned
+                            ? "BRUCIATO (sovracorrente!)"
+                            : ledOn
+                              ? readings.length === 1
+                                ? "acceso"
+                                : "almeno uno acceso"
+                              : "spento"}
+                        </dd>
+                      </div>
+                      {single !== null && single.kind === "led" && (
+                        <div>
+                          <dt style={{ display: "inline" }}>Corrente LED (mA): </dt>
+                          <dd style={{ display: "inline", margin: 0 }} data-led-current-ma>
+                            {ledCurrent === undefined ? "—" : (ledCurrent * 1000).toFixed(1)}
+                          </dd>
+                        </div>
+                      )}
+                      {rgbChannels !== null && (
+                        <div>
+                          <dt style={{ display: "inline" }}>Canali RGB: </dt>
+                          <dd style={{ display: "inline", margin: 0 }} data-rgb-channels>
+                            {`R ${formatRgbChannelMa(rgbChannels.red)} · G ${formatRgbChannelMa(
+                              rgbChannels.green,
+                            )} · B ${formatRgbChannelMa(rgbChannels.blue)}`}
+                          </dd>
+                        </div>
+                      )}
+                      {/* Più di una luce: ognuna NOMINATA con il suo valore.
+                          L'aggregato qui sopra dice «almeno uno», non «il
+                          circuito»: la differenza è ciò che il docente legge. */}
+                      {readings.length > 1 &&
+                        readings.map((reading) =>
+                          reading.kind === "missing" ? null : (
+                            <div key={reading.id} data-light-id={reading.id}>
+                              <dt style={{ display: "inline" }}>{reading.id}: </dt>
+                              <dd style={{ display: "inline", margin: 0 }}>
+                                {reading.kind === "rgb"
+                                  ? `${reading.on ? "acceso" : "spento"} · R ${formatRgbChannelMa(
+                                      reading.channels.red,
+                                    )} · G ${formatRgbChannelMa(
+                                      reading.channels.green,
+                                    )} · B ${formatRgbChannelMa(reading.channels.blue)}`
+                                  : `${
+                                      reading.burned
+                                        ? "BRUCIATO (sovracorrente!)"
+                                        : reading.on
+                                          ? "acceso"
+                                          : "spento"
+                                    } · ${
+                                      reading.currentAmps === undefined
+                                        ? "—"
+                                        : `${(reading.currentAmps * 1000).toFixed(1)} mA`
+                                    }`}
+                              </dd>
+                            </div>
+                          ),
+                        )}
+                    </>
                   )}
                   {solve.result.diagnostics.shortCircuit && (
                     <div role="alert">

@@ -122,6 +122,67 @@ describe("ElabLab (mount ELAB via renderEmbeddable + solve via registry)", () =>
     }
   })
 
+  // Finding B1 della revisione a due lenti, CONFERMATO leggendo il codice: uno
+  // `SolveResult` con `ok: true` e `componentStates` VUOTO veniva pubblicato
+  // come verdetto — «spento» piu' «R 0.0 mA · G 0.0 mA · B 0.0 mA». Era una
+  // REGRESSIONE della riparazione F5-1: prima lo stato assente dava «—», cioe'
+  // nessun valore; dopo dava tre zeri, cioe' tre numeri inventati. Ed e' la
+  // stessa classe che F5-1 chiudeva: assenza travestita da verdetto.
+  // Il registry NON garantisce la completezza di componentStates: nessun tipo
+  // la impone. L'assenza va DICHIARATA, non normalizzata a zero.
+  it("stato del componente luminoso ASSENTE: nessun verdetto, e si vede", async () => {
+    window.history.replaceState(null, "", "/?vista=elab-lab&esperimento=v1-cap9-esp6")
+    const real = getSimulationTool(REFERENCE_SIM_TOOL_ID)
+    try {
+      registerSimulationTool(REFERENCE_SIM_TOOL_ID, {
+        ...real!,
+        solve: () => ({
+          ok: true,
+          componentStates: {}, // il registry non ha detto nulla su rgb1
+          currents: {},
+          nodeVoltages: {},
+          diagnostics: { shortCircuit: false, disconnectedPins: [], overloadWarnings: [] },
+          warnings: [],
+        }),
+      })
+      const view = await renderView()
+      // Nessun verdetto: l'attributo NON esiste, invece di esistere e dire "0".
+      expect(view.querySelector("[data-led-on]")).toBeNull()
+      expect(view.querySelector("[data-rgb-channels]")).toBeNull()
+      expect(view.querySelector("[data-led-current-ma]")).toBeNull()
+      // E l'assenza e' leggibile da chi guarda, non solo dal DOM.
+      const alert = view.querySelector("[data-led-state=missing]")
+      expect(alert).not.toBeNull()
+      expect(alert?.textContent).toContain("rgb1")
+    } finally {
+      registerSimulationTool(REFERENCE_SIM_TOOL_ID, real!)
+    }
+  })
+
+  // Finding A1 della revisione a due lenti, CONFERMATO con una sonda su tutti
+  // gli 88 esperimenti: 14 hanno due o piu' componenti luminosi. Su
+  // v2-cap6-esp1 il motore accende led1 E led2 a 16,4 mA ciascuno, e il
+  // pannello mostrava UNA riga anonima «LED: acceso» con una sola corrente.
+  // Il difetto precede F5-1 (`componentStates.led1` ne sceglieva uno solo),
+  // ma la riparazione lo rendeva piu' credibile senza renderlo vero.
+  it("piu' componenti luminosi: ognuno e' nominato, nessuno sparisce in silenzio", async () => {
+    window.history.replaceState(null, "", "/?vista=elab-lab&esperimento=v2-cap6-esp1")
+    const experiment = findElabLabExperiment("v2-cap6-esp1")
+    expect(experiment).not.toBeNull()
+    const lights = experiment!.components.filter((component) => component.type === "led")
+    expect(lights.length).toBe(2) // precondizione misurata, non assunta
+    const engine = solveElabExperiment(toSolverExperiment(experiment!))
+    for (const light of lights) expect(engine.componentStates[light.id]?.on).toBe(true)
+
+    const view = await renderView()
+    expect(view.querySelector("[data-led-count]")?.getAttribute("data-led-count")).toBe("2")
+    for (const light of lights) {
+      const row = view.querySelector(`[data-light-id='${light.id}']`)
+      expect(row, `manca la riga di ${light.id}`).not.toBeNull()
+      expect(row?.textContent).toContain((engine.currents[light.id] * 1000).toFixed(1))
+    }
+  })
+
   it("il solve passa dal REGISTRY (deny-by-default), non da un import diretto del motore", async () => {
     const real = getSimulationTool(REFERENCE_SIM_TOOL_ID)
     expect(real?.solve).toBeDefined()
