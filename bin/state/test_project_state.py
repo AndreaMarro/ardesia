@@ -7,6 +7,7 @@ verificata da `project_state.py --verify`, non qui.
 """
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 import tempfile
@@ -302,11 +303,37 @@ def test_deploy_ricevuta_storica_e_allineamento_ricalcolato() -> None:
         check("conta le ricevute", out["receipts_count"], 2)
         check_true("allineato a main", out["matches_main"] is True)
 
+        # il dato deve arrivare all'occhio umano, non restare nel JSON:
+        # la prima versione del renderer leggeva `sha`/`at` invece di
+        # `commit_sha`/`deployed_at` e stampava «ultimo deploy: ? il ?»
+        stato = ps.empty_state()
+        stato["deploy"] = out
+        md = ps.render_current_md(stato)
+        check_true("la SHA del deploy e' visibile in CURRENT.md", sha in md)
+        check_true("nessun campo perso", "? il ?" not in md)
+
         # una ricevuta a una SHA diversa deve dire NON allineato
         (dep / "2026-07-31T00-00Z-disallineata.json").write_text(
             '{"commit_sha": "1111111111111111111111111111111111111111"}')
         out2 = ps.collect_deploy(root)
         check_true("disallineato rilevato", out2["matches_main"] is False)
+
+        # una ricevuta NON puo' dichiarare come e' stata letta: `status`,
+        # `source` e `receipts_count` sono affermazioni del collettore
+        (dep / "2026-08-01T00-00Z-bugiarda.json").write_text(json.dumps({
+            "commit_sha": "2222222222222222222222222222222222222222",
+            "status": "UNAVAILABLE", "source": "forgiata", "receipts_count": 999,
+        }))
+        out3 = ps.collect_deploy(root)
+        check("status non sovrascrivibile", out3["status"], "MEASURED")
+        check("source non sovrascrivibile", out3["source"], "docs/ops/deploys/2026-08-01T00-00Z-bugiarda.json")
+        check("receipts_count non sovrascrivibile", out3["receipts_count"], 4)
+
+        # JSON valido ma di forma sbagliata: UNAVAILABLE, non un crash
+        (dep / "2026-08-02T00-00Z-lista.json").write_text("[]")
+        out4 = ps.collect_deploy(root)
+        check("radice non-oggetto", out4["status"], "UNAVAILABLE")
+        check_true("motivo dichiarato", "radice list" in out4.get("reason", ""))
 
 
 def main() -> int:

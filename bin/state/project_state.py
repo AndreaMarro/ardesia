@@ -283,8 +283,21 @@ def render_current_md_untruncated(state: dict) -> str:
                 f"- strict: {s.get('strict', '?')}"]
 
     def deploy_body(s: dict) -> list[str]:
-        return [f"- ultimo deploy: `{s.get('sha', '?')}` il {s.get('at', '?')}",
-                f"- pari a `main`: {s.get('matches_main', '?')}"]
+        # I nomi dei campi sono quelli della RICEVUTA (`commit_sha`,
+        # `deployed_at`). La prima versione leggeva `sha` e `at`: avevo cambiato
+        # il collector e dimenticato il renderer, e `CURRENT.md` stampava
+        # letteralmente «ultimo deploy: ? il ?» mentre il JSON era corretto.
+        # Una vista umana che perde il dato e' peggio di una vista assente,
+        # perche' sembra averlo guardato.
+        allineato = s.get("matches_main")
+        etichetta = {True: "sì", False: "**NO**", None: "non misurato"}.get(allineato, str(allineato))
+        return [
+            f"- ultimo deploy: `{s.get('commit_sha') or 'non registrato'}`",
+            f"- quando: {s.get('deployed_at') or 'non registrato'}",
+            f"- dove: {s.get('alias') or s.get('deployment_url') or 'non registrato'}",
+            f"- **pari a `main`: {etichetta}**",
+            f"- ricevute totali: {s.get('receipts_count', '?')}",
+        ]
 
     def cert_body(s: dict) -> list[str]:
         tot = s.get("total")
@@ -547,6 +560,14 @@ def collect_deploy(root: Path) -> dict:
         return {"status": "UNAVAILABLE",
                 "reason": f"ricevuta illeggibile ({ultima.name}): {exc}",
                 "source": str(ultima.relative_to(root))}
+    # JSON valido non significa forma valida: una radice `[]` passa da
+    # `json.loads` e poi esplode su `.get`, portandosi via l'intera generazione
+    # dello stato invece di degradare a UNAVAILABLE.
+    if not isinstance(data, dict):
+        return {"status": "UNAVAILABLE",
+                "reason": (f"ricevuta con radice {type(data).__name__}, atteso un oggetto "
+                           f"({ultima.name})"),
+                "source": str(ultima.relative_to(root))}
     sha = str(data.get("commit_sha", ""))
     rc, main = _run(["git", "rev-parse", "origin/main"], root)
     if rc != 0:
@@ -555,11 +576,17 @@ def collect_deploy(root: Path) -> dict:
     else:
         allineato = sha == main.strip()
         motivo = None
+    # I metadati del COLLETTORE vanno DOPO lo spread, non prima.
+    # Con `{**meta, **data}` una ricevuta poteva sovrascrivere `status`,
+    # `source` e `receipts_count`, cioe' i campi che descrivono la MISURA e non
+    # il fatto misurato: un file di dati poteva dichiarare com'era stato letto.
+    # Il contenuto della ricevuta e' un'affermazione DEL DEPLOY; `status` e
+    # `source` sono affermazioni DI QUESTO SCRIPT, e solo lui puo' farle.
     out = {
+        **data,
         "status": "MEASURED",
         "source": str(ultima.relative_to(root)),
         "receipts_count": len(ricevute),
-        **data,
         "matches_main": allineato,
     }
     if motivo:
