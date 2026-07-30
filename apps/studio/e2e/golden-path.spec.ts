@@ -39,6 +39,32 @@ async function testoVisibile(page: Page): Promise<string> {
   return page.evaluate(() => document.body.innerText)
 }
 
+// Il tetto globale di `playwright.config.ts` e' 30 s, scritto per uno spec che
+// fa una cosa sola. Questo ne fa SETTE, e il solo passo 7 contiene due attese
+// da 20 s ciascuna (righe 129 e 147): il budget residuo dipende da quanto e'
+// carica la macchina, non da cosa fa il prodotto.
+//
+// Misurato il 2026-07-30: nella suite intera a 4 worker questo test moriva a
+// 30 s al passo 7, mentre da solo usciva 0 sei volte di fila — «verde in
+// isolamento» e' esattamente la sonda che risponde a un'altra domanda.
+//
+// ⚠️ Il control run NON ha riprodotto il fallimento: con quattro sonde in
+// timeout reintrodotte (suite a 1,3 min) il golden path passa lo stesso, ma la
+// condizione originale erano SETTE spec falliti e 2,6 min. La riproduzione
+// copre circa meta' della contesa, quindi non conferma ne' smentisce.
+// Il budget esplicito toglie la domanda di mezzo: se questo test fallira',
+// fallira' per il prodotto e non per il carico della macchina.
+//
+// 60 s, non 120. La prima versione metteva 120 s e il revisore ha fatto notare
+// che un rallentamento reale di 4x sarebbe passato in silenzio: un budget cosi'
+// largo non e' un budget, e' l'assenza di un budget. Il revisore citava un
+// «oracolo ratificato sotto i 60 s»: cercato nel vault, NON esiste — l'unico
+// riscontro e' «giorni 31-60» in un piano, che parla d'altro. Il numero qui
+// e' quindi MISURATO, non citato: questo spec da solo impiega 8,7 s, e la
+// suite intera a 4 worker sta in 33-35 s. 60 s lascia sette volte il margine
+// osservato e vieta comunque il raddoppio.
+test.setTimeout(60_000)
+
 test("golden path: lezione → chiusura → Continuità → export → import → riapertura a freddo → ripresa", async ({
   page,
 }, testInfo) => {

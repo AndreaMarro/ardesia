@@ -75,11 +75,26 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   expect(new URL(page.url()).search).toBe("")
   await page.evaluate(() => (window as any).__FB6C_RELEASE_WRITE__())
 
-  // 3. Continuità usa la projection read-only già esistente.
-  await expect(page.locator("[data-zstat]")).toBeVisible({ timeout: 15_000 })
+  // 3. Continuità è la superficie di ripresa, NON il cruscotto.
+  //
+  // Questo passo asseriva `[data-zstat]`, che esiste solo in
+  // `TeacherDashboardView`. Il commit 9083f589 (29jul) ha ridiretto la voce di
+  // nav "Continuità" da `?vista=cruscotto` a `?vista=continuita`, che monta
+  // `ContinuityView`: una superficie diversa, con una promessa diversa. L'assert
+  // era rimasto puntato su dove Continuità stava PRIMA, e fallendo qui il test
+  // non arrivava mai al passo 4 — nascondendo il difetto vero, che era la nav
+  // assente da `ContinuityView` in tutti e sette i suoi rami.
+  //
+  // La garanzia sulla projection non è stata persa: è al passo 6, sulla
+  // superficie che la espone davvero.
+  const superficie = page.getByTestId("continuity-surface")
+  await expect(superficie).toBeVisible({ timeout: 15_000 })
   await expect(
     page.locator('[data-view-nav-item="continuita"][aria-current="page"]'),
   ).toBeVisible()
+  // La nav deve esistere QUI: senza, il passo 4 non sarebbe raggiungibile da un
+  // docente, solo da un test che conosce gli URL.
+  await expect(page.locator("[data-view-nav] [data-view-nav-item]")).toHaveCount(3)
   expect(new URL(page.url()).hash).toBe(roomHash)
 
   // 4. Materiali usa l'alias profondo ma monta il workflow locale Founder Beta.
@@ -103,9 +118,13 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
     return journal ? (await journal.text()).includes(marker) : false
   }, lastEventMarker)).toBe(true)
 
-  // 6. Continuità, ora che la write è durevole, deve PROIETTARE quell'evento:
+  // 6. Il cruscotto, ora che la write è durevole, deve PROIETTARE quell'evento:
   // la presenza del selettore non dice se la projection legge la lezione giusta.
-  await page.locator('[data-view-nav-item="continuita"]').click()
+  //
+  // Si naviga esplicitamente a `?vista=cruscotto`: è lì che vive `[data-zstat]`
+  // da quando la nav "Continuità" punta alla superficie di ripresa. L'assert è
+  // lo stesso di prima — cambia il referente, non la garanzia.
+  await page.goto(`/?vista=cruscotto${roomHash}`)
   const mathInserts = page.getByTestId("zstat-math.inserts.count")
   await expect(mathInserts).toBeVisible({ timeout: 15_000 })
   await expect

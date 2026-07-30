@@ -24,7 +24,13 @@ async function seedEventLog(page: import("@playwright/test").Page) {
     const DB = "lessonos-eventlog"
     const STORE = "lessonos_events"
     const db = await new Promise<IDBDatabase>((resolve, reject) => {
-      const req = indexedDB.open(DB, 1)
+      // NIENTE versione. Il prodotto apre lo STESSO database a DB_VERSION = 2
+      // dal 23 luglio (1f7c464d, indice composto lesson+session+seq): un seed
+      // che chiede la versione 1 muore con VersionError. Duplicare qui la
+      // costante del prodotto significa doverla riallineare a ogni migrazione,
+      // e accorgersene solo quando la suite diventa rossa. Aprire senza
+      // versione usa quella corrente, e crea il DB se non esiste.
+      const req = indexedDB.open(DB)
       req.onupgradeneeded = () => {
         const d = req.result
         if (!d.objectStoreNames.contains(STORE)) d.createObjectStore(STORE, { keyPath: "seq" })
