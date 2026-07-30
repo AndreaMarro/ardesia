@@ -189,13 +189,47 @@ def check_document(path: str) -> list[str]:
     return problems
 
 
+def visible_to_git() -> set[str] | None:
+    """File tracciati PIU' quelli non tracciati ma non ignorati.
+
+    None significa «git non ha risposto»: in quel caso non si filtra, perche'
+    un filtro cieco che scarta tutto renderebbe il gate verde per assenza di
+    documenti — indistinguibile da un gate che ha guardato.
+    """
+    p = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+        capture_output=True, text=True,
+    )
+    if p.returncode != 0:
+        return None
+    return {line.strip() for line in p.stdout.splitlines() if line.strip()}
+
+
+def select_targets(found: list[str], visible: set[str] | None) -> list[str]:
+    """Scarta gli artefatti GENERATI e gitignorati.
+
+    Quarto falso positivo della serie, trovato usando il gate il 2026-07-30:
+    `docs/ops/CURRENT.md` e' generato da `bin/state/project_state.py` e riporta
+    `apps/studio/e2e/golden-path.spec.ts` proprio per dire che NON esiste. Il
+    gate leggeva quella riga come un claim smentito dal repo. Ma un file
+    gitignorato non e' un documento che il repo afferma: e' una misura.
+
+    La correzione e' piu' PRECISIONE, non un blocco piu' largo. Il filtro tiene
+    i file non tracciati ma non ignorati, cosi' un documento nuovo aggiunto
+    nella stessa modifica resta sotto gate — che era il difetto opposto.
+    """
+    if visible is None:
+        return found
+    return [f for f in found if f in visible]
+
+
 def targets(argv: list[str]) -> list[str]:
     if len(argv) > 1:
         return [a for a in argv[1:] if not a.startswith("--")]
     found: list[str] = []
     for pattern in SCAN_GLOBS:
         found += [str(p) for p in sorted(Path().glob(pattern))]
-    return found
+    return select_targets(found, visible_to_git())
 
 
 def main() -> int:
@@ -268,6 +302,24 @@ class DocClaimsGateTest(unittest.TestCase):
         reason = unverifiable_reason(None)
         self.assertIsNotNone(reason)
         self.assertIn("fallisce, non degrada", reason)
+
+    def test_generated_and_ignored_files_are_not_claims(self) -> None:
+        """Un artefatto gitignorato e' una misura, non un'affermazione."""
+        found = ["docs/ops/ARDESIA-LOOP-X.md", "docs/ops/CURRENT.md"]
+        visible = {"docs/ops/ARDESIA-LOOP-X.md"}  # CURRENT.md e' ignorato
+        self.assertEqual(select_targets(found, visible), ["docs/ops/ARDESIA-LOOP-X.md"])
+
+    def test_new_untracked_document_stays_under_gate(self) -> None:
+        """Non tracciato ma non ignorato = documento nuovo, resta sotto gate."""
+        found = ["docs/ops/ARDESIA-LOOP-NUOVO.md"]
+        visible = {"docs/ops/ARDESIA-LOOP-NUOVO.md"}  # `--others --exclude-standard`
+        self.assertEqual(select_targets(found, visible), found)
+
+    def test_git_silent_does_not_empty_the_gate(self) -> None:
+        """Se git non risponde si NON filtra: un gate verde per assenza di
+        documenti e' indistinguibile da un gate che ha guardato."""
+        found = ["docs/ops/ARDESIA-LOOP-X.md"]
+        self.assertEqual(select_targets(found, None), found)
 
 
 if __name__ == "__main__":

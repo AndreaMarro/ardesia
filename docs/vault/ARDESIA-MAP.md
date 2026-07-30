@@ -1,6 +1,19 @@
-# ARDESIA — MAPPA D'ORIENTAMENTO (SoT) · agg. 2026-06-17
+# ARDESIA — MAPPA D'ORIENTAMENTO · agg. 2026-06-17
 
-> Documento UNICO per orientarsi: umani **e** agenti della fabbrica. Se un altro doc contraddice
+> ⚠️ **Questo documento NON è la fonte dello stato corrente, e la data sopra è
+> parte del motivo.** È stato aggiornato l'ultima volta il **2026-06-17** e
+> descrive una topologia che nel frattempo è cambiata. Vale ancora come mappa di
+> **orientamento** — quali macchine, quali repo, quali invarianti — ma qualunque
+> numero, SHA, elenco di PR o conteggio che contiene è **storico**.
+>
+> Lo stato corrente si **genera**, non si legge:
+> ```
+> python3 bin/state/project_state.py    # -> docs/ops/CURRENT.md
+> ```
+> Se questo file e `docs/ops/CURRENT.md` si contraddicono, vale `CURRENT.md`; se
+> `CURRENT.md` e il repo si contraddicono, vale il repo e il generatore va corretto.
+
+> Documento per orientarsi: umani **e** agenti della fabbrica. Se un altro doc contraddice
 > questo per la struttura/navigazione, **vale questo**. Dettaglio operativo ordini = `COORDINATION.md`.
 > NB: codename interno = **MAESTRO** (locale `~/maestro-*`); su GitHub i repo sono **`ardesia-*`**.
 
