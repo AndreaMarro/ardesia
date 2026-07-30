@@ -54,7 +54,16 @@ async function testoVisibile(page: Page): Promise<string> {
 // copre circa meta' della contesa, quindi non conferma ne' smentisce.
 // Il budget esplicito toglie la domanda di mezzo: se questo test fallira',
 // fallira' per il prodotto e non per il carico della macchina.
-test.setTimeout(120_000)
+//
+// 60 s, non 120. La prima versione metteva 120 s e il revisore ha fatto notare
+// che un rallentamento reale di 4x sarebbe passato in silenzio: un budget cosi'
+// largo non e' un budget, e' l'assenza di un budget. Il revisore citava un
+// «oracolo ratificato sotto i 60 s»: cercato nel vault, NON esiste — l'unico
+// riscontro e' «giorni 31-60» in un piano, che parla d'altro. Il numero qui
+// e' quindi MISURATO, non citato: questo spec da solo impiega 8,7 s, e la
+// suite intera a 4 worker sta in 33-35 s. 60 s lascia sette volte il margine
+// osservato e vieta comunque il raddoppio.
+test.setTimeout(60_000)
 
 test("golden path: lezione → chiusura → Continuità → export → import → riapertura a freddo → ripresa", async ({
   page,

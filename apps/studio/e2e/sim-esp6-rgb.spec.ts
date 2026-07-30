@@ -57,7 +57,26 @@ test("ELAB Lab esp6: 3 potenziometri, LED RGB montato, solve reale del motore", 
 
   // Il solve viene dal motore reale via registry, non da valori pre-dichiarati.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })
-  await expect(page.locator("[data-led-current-ma]")).toBeVisible()
+
+  // ⚠️ QUESTO ASSERT PUNTA A UN DIFETTO, NON A UNA SPECIFICA.
+  //
+  // La prima versione di questa spec asseriva soltanto che
+  // `[data-led-current-ma]` fosse VISIBILE, e passava. Il revisore avversariale
+  // ha chiesto cosa contenesse: misurato sulla rotta ELAB Lab per esp6,
+  //     data-led-on = "0"        (la lampada NON si accende)
+  //     corrente     = "—"       (nessun valore)
+  //     [data-rgb-channels]      ASSENTE
+  //     [aria-label='LED RGB acceso']  ASSENTE
+  // mentre la spec RIMOSSA, sulla lavagna, asseriva il LED acceso e i canali in
+  // mA reali. Scrivere che «la copertura si conserva» era falso: si conserva il
+  // MONTAGGIO, non il COMPORTAMENTO.
+  //
+  // Fissare qui lo stato corrente non lo approva: lo rende impossibile da
+  // dimenticare. Il giorno in cui la lampada si accendera', questo assert
+  // diventera' rosso e costringera' a tornare qui — che e' esattamente il
+  // segnale che serve. L'unita' aperta e' F3-7.
+  await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "0")
+  await expect(page.locator("[data-led-current-ma]")).toHaveText("—")
 
   // Citazione reale dal Pack: la scena e' legata al libro, non inventata.
   await expect(page.locator("[data-elab-lab-citation]")).toBeVisible()

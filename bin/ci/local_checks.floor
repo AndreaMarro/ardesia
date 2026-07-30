@@ -32,4 +32,10 @@
 # snapshot). Era l'unica superficie della shell senza ViewNav, e il difetto era
 # invisibile perche' una sonda e2e scaduta faceva da tappo prima di arrivarci.
 #   esito grezzo: "Tests  2113 passed | 5 skipped (2118)"   exit=0   138.13s
-studio_tests_min=2113
+# alzato 2026-07-30T20:40+02:00, riparazione della revisione su #232: +2 test.
+# Il ramo `snapshot` di Continuita' ha TRE sotto-stati e il test ne esercitava
+# UNO (`loading`, con un loadSnapshot che non si risolve mai): sarebbe rimasto
+# verde anche se la nav fosse sparita da `scope-invalid` e da ogni projection
+# caricata. Trovato dal revisore avversariale, non dal ragionamento.
+#   esito grezzo: "Tests  2115 passed | 5 skipped (2120)"   exit=0
+studio_tests_min=2115
