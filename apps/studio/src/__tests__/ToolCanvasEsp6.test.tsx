@@ -15,6 +15,7 @@ import {
   ELAB_V1_RGB_LAMP_EXPERIMENT_ID,
   buildSimulationInsert,
 } from "../toolhost/ToolCanvasEmbeddable"
+import { solveElabExperiment } from "../../sim/solver/elabSolver"
 
 afterEach(cleanup)
 
@@ -57,15 +58,32 @@ describe("createV1Cap9Esp6SimulationScene — bridge multi-pin", () => {
 })
 
 describe("post-it esp6 — canali dal motore reale", () => {
-  it("diagnostica per canale: R, G e B con corrente in mA dal solve MNA", () => {
+  // Rinforzato il 2026-07-31 (F5-1). L'assert precedente era `toMatch(/\d+\.\d
+  // mA/)`: QUALUNQUE numero lo soddisfa. Un control run che portava il fondo
+  // scala della brightness da 30 a 20 mA — cioè il pannello che dichiara 3.8
+  // dove il motore dice 5.7 — lasciava questo test VERDE. Ora il valore mostrato
+  // è confrontato col motore: brightness × 30, inversione di
+  // CircuitSolver._solveRGBLed (brightness = clamped / 0.03). Il 30 è scritto
+  // QUI a mano apposta: importare la costante di produzione renderebbe il test
+  // d'accordo con qualsiasi valore essa assuma.
+  it("diagnostica per canale: R, G e B col milliampere del solve MNA, non solo la forma", () => {
+    const scene = createV1Cap9Esp6SimulationScene()
+    const rgb = scene.components.find((component) => component.type === "rgb-led")
+    expect(rgb).toBeDefined()
+    const engine = solveElabExperiment({
+      components: scene.components.map((component) => ({ id: component.id, type: component.type, ...(component.value !== undefined ? { value: component.value } : {}) })),
+      connections: scene.connections.map((connection) => ({ from: connection.from, to: connection.to })),
+      pinAssignments: scene.pinAssignments,
+    })
+    const state = engine.componentStates[rgb!.id] as Record<string, { brightness?: number } | undefined>
+
     const container = mountEsp6()
-    const diag = container.querySelector("[data-rgb-channels]")
-    expect(diag).not.toBeNull()
-    const text = diag?.textContent ?? ""
-    for (const channel of ["R", "G", "B"]) {
-      expect(text).toContain(`${channel} `)
+    const text = container.querySelector("[data-rgb-channels]")?.textContent ?? ""
+    for (const [label, key] of [["R", "red"], ["G", "green"], ["B", "blue"]] as const) {
+      const brightness = state[key]?.brightness ?? 0
+      expect(brightness, `canale ${key} spento: la scena non accende`).toBeGreaterThan(0)
+      expect(text).toContain(`${label} ${(brightness * 30).toFixed(1)} mA`)
     }
-    expect(text).toMatch(/\d+\.\d mA/)
   })
 
   it("SVG: 3 potenziometri e il LED RGB acceso (canali indipendenti dal solve)", () => {

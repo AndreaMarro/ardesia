@@ -5,6 +5,13 @@
 // simulationPluginRegistry.solve (motore reale dietro registry, deny-by-
 // default) — mai un import diretto del solver dalla vista.
 //
+// PRECISAZIONE (2026-07-31, F5-1): «mai un import diretto» vale per il
+// CALCOLO. Dal modulo del solver questa vista importa solo tipi e proiezioni
+// PURE di un SolveResult già ottenuto dal registry (rgbChannelsFromSolve,
+// formatRgbChannelMa): nessuna di esse chiama il motore. La garanzia è
+// verificata dal test «il solve passa dal REGISTRY», che sostituisce l'entry
+// del registry e pretende che il pannello mostri i numeri finti.
+//
 // Dato montato: l'esperimento reale del Pack v1-cap6-esp1 ("Accendi il tuo
 // primo LED", Vol.1 cap.6) — zero mock, stessa topologia del golden elettrico
 // (ElabSolver.test.ts).
@@ -30,7 +37,12 @@ import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
 // Import con side-effect deliberato: registra l'entry del Simulation Plugin
 // (render + solve reale) nel registry — lo stesso dispatch usato dal canvas.
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
-import type { SolveResult, SolverExperiment } from "../../sim/solver/elabSolver"
+import {
+  formatRgbChannelMa,
+  rgbChannelsFromSolve,
+  type SolveResult,
+  type SolverExperiment,
+} from "../../sim/solver/elabSolver"
 import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
 import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
@@ -250,13 +262,39 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     return () => handle.dispose()
   }, [experiment])
 
-  const ledOn = solve?.kind === "ok" && solve.result.componentStates.led1?.on === true
+  // F5-1 — l'id del componente luminoso si LEGGE dall'esperimento, non si
+  // indovina. Fino al 2026-07-30 questa vista leggeva `led1` costante: per la
+  // lampada RGB (v1-cap9-esp6, componente `rgb1`) `componentStates.led1?.on`
+  // vale false perché l'id non esiste, e la vista stampava «spento» mentre il
+  // motore diceva acceso su tutti e tre i canali. `?.` collassa «assente» e
+  // «negativo»: un'assenza travestita da verdetto.
+  const light = useMemo(() => {
+    if (experiment === null) return null
+    const components = experiment.components
+    return (
+      components.find((component) => component.type === "rgb-led") ??
+      components.find((component) => component.type === "led") ??
+      null
+    )
+  }, [experiment])
+
+  const lightState =
+    solve?.kind === "ok" && light !== null ? solve.result.componentStates[light.id] : undefined
+  const ledOn = lightState?.on === true
   // Verdetto onesto del motore: un LED bruciato (es. v1-cap6-esp2, senza
   // resistore) NON è un generico "spento" — è la lezione del libro (p.32).
-  const ledBurned =
-    solve?.kind === "ok" &&
-    (solve.result.componentStates.led1 as { burned?: boolean } | undefined)?.burned === true
-  const ledCurrent = solve?.kind === "ok" ? solve.result.currents.led1 : undefined
+  const ledBurned = (lightState as { burned?: boolean } | undefined)?.burned === true
+  // Il motore NON pubblica una corrente unica per il LED RGB (misurato: solo
+  // le tre resistenze di canale): per quel componente la grandezza per canale
+  // è `brightness`, e la porta unica è rgbChannelsFromSolve.
+  const ledCurrent =
+    solve?.kind === "ok" && light !== null && light.type === "led"
+      ? solve.result.currents[light.id]
+      : undefined
+  const rgbChannels =
+    solve?.kind === "ok" && light !== null && light.type === "rgb-led"
+      ? rgbChannelsFromSolve(solve.result, light.id)
+      : null
 
   return (
     <div
@@ -335,12 +373,23 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                       {ledBurned ? "BRUCIATO (sovracorrente!)" : ledOn ? "acceso" : "spento"}
                     </dd>
                   </div>
-                  <div>
-                    <dt style={{ display: "inline" }}>Corrente LED (mA): </dt>
-                    <dd style={{ display: "inline", margin: 0 }} data-led-current-ma>
-                      {ledCurrent === undefined ? "—" : (ledCurrent * 1000).toFixed(1)}
-                    </dd>
-                  </div>
+                  {rgbChannels === null ? (
+                    <div>
+                      <dt style={{ display: "inline" }}>Corrente LED (mA): </dt>
+                      <dd style={{ display: "inline", margin: 0 }} data-led-current-ma>
+                        {ledCurrent === undefined ? "—" : (ledCurrent * 1000).toFixed(1)}
+                      </dd>
+                    </div>
+                  ) : (
+                    <div>
+                      <dt style={{ display: "inline" }}>Canali RGB: </dt>
+                      <dd style={{ display: "inline", margin: 0 }} data-rgb-channels>
+                        {`R ${formatRgbChannelMa(rgbChannels.red)} · G ${formatRgbChannelMa(
+                          rgbChannels.green,
+                        )} · B ${formatRgbChannelMa(rgbChannels.blue)}`}
+                      </dd>
+                    </div>
+                  )}
                   {solve.result.diagnostics.shortCircuit && (
                     <div role="alert">
                       <strong>Corto circuito rilevato.</strong>

@@ -109,6 +109,64 @@ export function ledStressZone(currentAmps: number): LedStressZone {
   return "bruciato"
 }
 
+// ── LED RGB: proiezione dei canali dal SolveResult ─────────────────────────
+// PORTA UNICA. Il motore non pubblica una corrente per il LED RGB in
+// `currents` (misurato: per v1-cap9-esp6 ci sono solo r1/r2/r3): l'unica
+// grandezza per canale è `brightness`, e `currentMa` ne è l'inversione ESATTA
+// della formula di CircuitSolver._solveRGBLed
+//     brightness = min(1, clamped / 0.03)   con clamped = clamp(current, 0, 0.04)
+// quindi sotto il clamp `brightness * 30` è il milliampere vero; a brightness
+// 1 il motore ha clampato e il valore reale è ">= 30 mA", mai un numero finto.
+//
+// Chiunque mostri i canali passa DA QUI (canvas post-it e ELAB Lab): due
+// letture a mano dello stesso stato erano l'origine di F5-1, dove una
+// superficie diceva "acceso" e l'altra "spento" sullo stesso solve.
+
+/** Fondo scala della brightness del motore, in mA (brightness 1 ⇒ clamp). */
+export const RGB_BRIGHTNESS_FULL_SCALE_MA = 30
+
+export interface RgbChannel {
+  on: boolean
+  brightness: number
+  /** Valido solo se `brightness < 1`; oltre, il motore ha clampato. */
+  currentMa: number
+}
+
+export interface RgbChannels {
+  red: RgbChannel
+  green: RgbChannel
+  blue: RgbChannel
+}
+
+/**
+ * Legge i tre canali del LED RGB `rgbId` dal risultato del solve. Un id
+ * assente produce tre canali spenti — chi chiama deve aver già verificato che
+ * il componente esista, altrimenti "assente" si traveste da "spento" (ed è
+ * esattamente il difetto F5-1).
+ */
+export function rgbChannelsFromSolve(result: SolveResult, rgbId: string): RgbChannels {
+  const state = result.componentStates[rgbId] as
+    | Partial<Record<"red" | "green" | "blue", { on?: boolean; brightness?: number }>>
+    | undefined
+  const channel = (name: "red" | "green" | "blue"): RgbChannel => {
+    const raw = state?.[name]
+    const brightness = raw?.brightness ?? 0
+    return {
+      on: raw?.on === true,
+      brightness,
+      currentMa: brightness * RGB_BRIGHTNESS_FULL_SCALE_MA,
+    }
+  }
+  return { red: channel("red"), green: channel("green"), blue: channel("blue") }
+}
+
+/** Etichetta di un canale. Al clamp dichiara la soglia, non un valore inventato. */
+export function formatRgbChannelMa(channel: RgbChannel): string {
+  return channel.brightness >= 1
+    ? `>= ${RGB_BRIGHTNESS_FULL_SCALE_MA} mA`
+    : `${channel.currentMa.toFixed(1)} mA`
+}
+
 export const LED_STRESS_ZONE_LABELS: Record<LedStressZone, string> = {
   nominale: "corrente nominale",
   overdrive: "sopra corrente nominale: più luminoso, vita del LED ridotta",

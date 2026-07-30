@@ -21,7 +21,15 @@ import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/s
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { catalogSummary } from "./elabExperimentCatalog";
 import { stepByStepModel, type StepByStepModel } from "./simulationStepMode";
-import { solveElabExperiment, ledStressZone, LED_STRESS_ZONE_LABELS, type SolveResult } from "../../sim/solver/elabSolver";
+import {
+  solveElabExperiment,
+  ledStressZone,
+  LED_STRESS_ZONE_LABELS,
+  rgbChannelsFromSolve,
+  formatRgbChannelMa,
+  type SolveResult,
+  type RgbChannels,
+} from "../../sim/solver/elabSolver";
 import { simulationSceneFromElabScene, type ElabSceneBridgeOptions } from "./elabSceneBridge";
 import { renderPluginPostitBoardEmbeddable } from "./pluginPostitBoardRender";
 import {
@@ -1545,11 +1553,9 @@ function StepByStepCard({
 
 // ── Vista canali per scene multi-pin (runtime elab-mna) ─────────────────────
 // Il verdetto per canale esce dal motore MNA reale sui dati della scena.
-// currentMa è l'inversione esatta della formula del motore (brightness =
-// clamped/0.03, CircuitSolver._solveRGBLed): sotto il clamp è il valore vero,
-// a brightness 1 il motore ha clampato → si dichiara ">= 30", mai un numero finto.
-type ElabMnaChannel = { on: boolean; brightness: number; currentMa: number };
-type ElabMnaChannels = { red: ElabMnaChannel; green: ElabMnaChannel; blue: ElabMnaChannel };
+// La proiezione stato→canali (e la formula currentMa) vive in elabSolver:
+// PORTA UNICA condivisa con ELAB Lab — vedi rgbChannelsFromSolve.
+type ElabMnaChannels = RgbChannels;
 type ElabMnaView =
   | { ok: true; channels: ElabMnaChannels; anyOn: boolean }
   | { ok: false; error: string };
@@ -1577,15 +1583,7 @@ function computeElabMnaView(scene: SimulationSceneV1): ElabMnaView {
     // Fail-visible: l'errore del solve arriva in diagnostica, mai verde finto.
     return { ok: false, error: (error as Error).message };
   }
-  const state = result.componentStates[rgb.id] as
-    | Partial<Record<"red" | "green" | "blue", { on?: boolean; brightness?: number }>>
-    | undefined;
-  const channel = (name: "red" | "green" | "blue"): ElabMnaChannel => {
-    const raw = state?.[name];
-    const brightness = raw?.brightness ?? 0;
-    return { on: raw?.on === true, brightness, currentMa: brightness * 30 };
-  };
-  const channels = { red: channel("red"), green: channel("green"), blue: channel("blue") };
+  const channels = rgbChannelsFromSolve(result, rgb.id);
   return {
     ok: true,
     channels,
@@ -1651,9 +1649,7 @@ function deriveSimulationSolveOutcome(
   return { kind: "idle" };
 }
 
-function formatChannelMa(channel: ElabMnaChannel): string {
-  return channel.brightness >= 1 ? ">= 30 mA" : `${channel.currentMa.toFixed(1)} mA`;
-}
+const formatChannelMa = formatRgbChannelMa;
 
 export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
