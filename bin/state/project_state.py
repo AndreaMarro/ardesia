@@ -290,14 +290,28 @@ def render_current_md_untruncated(state: dict) -> str:
         # letteralmente «ultimo deploy: ? il ?» mentre il JSON era corretto.
         # Una vista umana che perde il dato e' peggio di una vista assente,
         # perche' sembra averlo guardato.
-        allineato = s.get("matches_main")
-        etichetta = {True: "sì", False: "**NO**", None: "non misurato"}.get(allineato, str(allineato))
+        # `matches_main` parla della RICEVUTA; la riga in grassetto deve parlare
+        # della PRODUZIONE, che e' la sola cosa che un docente apre. Sono due
+        # domande diverse e per sei commit hanno avuto due risposte diverse.
+        allineato = s.get("allineato_in_produzione")
+        # Senza `**` nell'etichetta: la riga e' gia' in grassetto, e annidarli
+        # produceva `**pari a main: **NO****`, che Markdown non rende.
+        etichetta = {True: "sì", False: "NO", None: "non misurato"}.get(allineato, str(allineato))
+        served = s.get("served") or {}
+        sha_servita = served.get("served_commit_sha")
+        riga_servita = (f"`{sha_servita}`" if sha_servita
+                        else f"non misurata — {served.get('reason', 'motivo non registrato')}")
+        scarto = s.get("prod_scarto") or {}
+        riga_scarto = (f"**{scarto['commits']}** commit" if scarto.get("status") == "MEASURED"
+                       else f"non misurato — {scarto.get('reason', 'motivo non registrato')}")
         return [
-            f"- ultimo deploy: `{s.get('commit_sha') or 'non registrato'}`",
+            f"- ultimo deploy (ricevuta): `{s.get('commit_sha') or 'non registrato'}`",
             f"- quando: {s.get('deployed_at') or 'non registrato'}",
             f"- dove: {s.get('alias') or s.get('deployment_url') or 'non registrato'}",
-            f"- **pari a `main`: {etichetta}**",
-            f"- ricevute totali: {s.get('receipts_count', '?')}",
+            f"- servito ADESSO dalla produzione: {riga_servita}",
+            f"- `prod_scarto` (servito → `origin/main`): {riga_scarto}",
+            f"- **pari a `main` in produzione: {etichetta}**",
+            f"- ricevuta pari a `main`: {s.get('matches_main')} · ricevute totali: {s.get('receipts_count', '?')}",
         ]
 
     def cert_body(s: dict) -> list[str]:
@@ -575,6 +589,146 @@ def _eta_ref_origin_main(root: Path) -> float | None:
     return eta
 
 
+#: Il marcatore che `apps/studio/vite.config.ts` compila ACCANTO alla SHA di
+#: build (`__ARDESIA_GIT_SHA__` finisce dentro `__ARDESIA_BUILD__`). E' l'ancora
+#: che distingue la SHA SERVITA da un qualunque altro esadecimale a 40 cifre
+#: presente nel bundle: un hash di integrita' e una fixture di test hanno
+#: esattamente la stessa faccia, e un `[0-9a-f]{40}` nudo li accetterebbe.
+MARCATORE_BUILD = "__ARDESIA_BUILD__"
+
+#: Nel bundle di produzione letto il 2026-07-30 fra il marcatore e la SHA
+#: correvano 44 caratteri. La finestra e' larga abbastanza da sopportare un
+#: minificatore diverso, stretta abbastanza da non pescare l'altra meta' del
+#: file.
+FINESTRA_SHA_DAL_MARCATORE = 2000
+
+PRODUZIONE_URL = "https://ardesia-lavagna.vercel.app"
+PRODUZIONE_TIMEOUT_S = 20
+
+_SHA40_RE = re.compile(r"\b[0-9a-f]{40}\b")
+_ASSET_JS_RE = re.compile(r"[\"'/](assets/[A-Za-z0-9._-]+\.js)")
+
+
+def estrai_sha_servita(testo: str) -> str | None:
+    """La SHA compilata nel bundle, ancorata al marcatore di provenienza.
+
+    Restituisce `None` — mai un tentativo — in tre casi: nessun marcatore,
+    nessuna SHA vicino al marcatore, oppure **letture divergenti**. L'ultimo
+    caso e' la ragione per cui questa funzione non si ferma alla prima
+    occorrenza: se due marcatori portano SHA diverse, il bundle non dice una
+    cosa sola, e pubblicarne una a caso sarebbe inventare.
+    """
+    trovate: list[str] = []
+    inizio = 0
+    while True:
+        i = testo.find(MARCATORE_BUILD, inizio)
+        if i < 0:
+            break
+        dopo = i + len(MARCATORE_BUILD)
+        m = _SHA40_RE.search(testo[dopo:dopo + FINESTRA_SHA_DAL_MARCATORE])
+        if m:
+            trovate.append(m.group(0))
+        inizio = dopo
+    distinte = sorted(set(trovate))
+    return distinte[0] if len(distinte) == 1 else None
+
+
+def _leggi_url(url: str) -> str:
+    from urllib.request import urlopen  # import locale: lo stato gira anche offline
+
+    with urlopen(url, timeout=PRODUZIONE_TIMEOUT_S) as r:  # noqa: S310
+        return r.read().decode("utf-8", "replace")
+
+
+def collect_served(base_url: str, fetch=_leggi_url) -> dict:
+    """La SHA che la produzione STA SERVENDO, interrogandola adesso.
+
+    Esiste perche' `collect_deploy` legge una RICEVUTA, cioe' l'affermazione di
+    un deploy passato, e una ricevuta puo' essere piu' vecchia della produzione
+    (misurato: ricevuta `dbc8ad9a`, servito `eff62705`) oppure piu' NUOVA di
+    essa, che e' il verso che fa danno — un deploy fallito dopo che la ricevuta
+    era stata scritta, o un rollback.
+
+    Fuori rete si degrada a `UNAVAILABLE` con il motivo: un HTTP 200 non e' una
+    misura, e nemmeno un timeout e' una prova che la produzione sia indietro.
+    """
+    def non_misurata(motivo: str, fonte: str) -> dict:
+        return {"status": "UNAVAILABLE", "reason": motivo,
+                "served_commit_sha": None, "source": fonte}
+
+    try:
+        pagina = fetch(base_url)
+    except Exception as exc:  # noqa: BLE001 — qualunque guasto di rete e' lo stesso fatto
+        return non_misurata(f"produzione non raggiungibile: {type(exc).__name__}: {exc}", base_url)
+
+    visti: list[str] = []
+    for a in _ASSET_JS_RE.findall(pagina):
+        if a not in visti:
+            visti.append(a)
+    if not visti:
+        return non_misurata("nessun asset JS in pagina: non e' un build di studio", base_url)
+
+    guasti: list[str] = []
+    for asset in visti:
+        url = base_url.rstrip("/") + "/" + asset
+        try:
+            testo = fetch(url)
+        except Exception as exc:  # noqa: BLE001
+            guasti.append(f"{asset}: {type(exc).__name__}")
+            continue
+        sha = estrai_sha_servita(testo)
+        if sha:
+            return {"status": "MEASURED", "served_commit_sha": sha, "source": url}
+
+    coda = f"; asset illeggibili: {', '.join(guasti)}" if guasti else ""
+    return non_misurata(
+        f"nessun `{MARCATORE_BUILD}` in {len(visti)} asset: "
+        f"la produzione serve un build che non sa dire chi e'{coda}",
+        base_url)
+
+
+def allineamento_produzione(receipt_sha: str | None,
+                            served_sha: str | None,
+                            main_sha: str | None) -> bool | None:
+    """Allineato solo se la RICEVUTA e la PRODUZIONE dicono entrambe `main`.
+
+    E' una congiunzione, non una disgiunzione, e nemmeno la sola ricevuta: il
+    falso verde da uccidere e' «ricevuta pari a `main`, produzione indietro»,
+    che oggi stamperebbe «pari a main: SI» mentre Andrea non ha niente da
+    aprire. `None` quando la produzione non e' stata misurata — «indietro» e
+    «non lo so» sono due cose diverse, e questo registro ha gia' pagato per
+    averle confuse una volta.
+    """
+    def norm(s: str | None) -> str | None:
+        return s.strip().lower() if isinstance(s, str) and s.strip() else None
+
+    r, s, m = norm(receipt_sha), norm(served_sha), norm(main_sha)
+    if s is None or m is None:
+        return None
+    return r == m and s == m
+
+
+def misura_prod_scarto(root: Path, served_sha: str | None) -> dict:
+    """Quanti commit separano la SHA SERVITA da `origin/main`.
+
+    E' il numero che il registro del loop chiama `prod_scarto` e che finora era
+    contato a mano. `UNAVAILABLE` — non `0` — quando la SHA servita non e'
+    misurata o non e' un commit conosciuto in questo checkout: uno zero e' un
+    verde, e un verde non misurato e' la cosa che questo file esiste per non
+    produrre.
+    """
+    if not served_sha:
+        return {"status": "UNAVAILABLE", "reason": "SHA servita non misurata"}
+    if _run(["git", "cat-file", "-e", f"{served_sha}^{{commit}}"], root)[0] != 0:
+        return {"status": "UNAVAILABLE",
+                "reason": f"la SHA servita {served_sha[:8]} non e' un commit di questo checkout"}
+    rc, out = _run(["git", "rev-list", "--count", f"{served_sha}..origin/main"], root)
+    if rc != 0:
+        return {"status": "UNAVAILABLE", "reason": f"git rev-list exit {rc}"}
+    return {"status": "MEASURED", "commits": int(out.strip()),
+            "source": f"git rev-list --count {served_sha[:8]}..origin/main"}
+
+
 def collect_deploy(root: Path) -> dict:
     """L'ultimo deploy, dalla sua ricevuta COMMITTATA.
 
@@ -677,9 +831,24 @@ def build_state(root: Path, offline: bool = False) -> dict:
         motivo = "--offline: nessuna chiamata di rete"
         state["pull_requests"] = {"status": "UNAVAILABLE", "reason": motivo}
         state["required_checks"] = {"status": "UNAVAILABLE", "reason": motivo}
+        state["deploy"]["served"] = {"status": "UNAVAILABLE", "reason": motivo,
+                                     "served_commit_sha": None}
     else:
         state["pull_requests"] = collect_pull_requests(root)
         state["required_checks"] = collect_required_checks(root)
+        state["deploy"]["served"] = collect_served(PRODUZIONE_URL)
+
+    # La ricevuta dice cosa e' stato deployato; la produzione dice cosa e'
+    # servito ADESSO. `matches_main` risponde alla prima domanda e resta dov'e';
+    # `allineato_in_produzione` risponde a quella che interessa a un docente.
+    servita = state["deploy"]["served"].get("served_commit_sha")
+    state["deploy"]["prod_scarto"] = misura_prod_scarto(root, servita)
+    rc_m, main_sha = _run(["git", "rev-parse", "origin/main"], root)
+    state["deploy"]["allineato_in_produzione"] = allineamento_produzione(
+        str(state["deploy"].get("commit_sha") or "") or None,
+        servita,
+        main_sha.strip() if rc_m == 0 else None,
+    )
     return state
 
 

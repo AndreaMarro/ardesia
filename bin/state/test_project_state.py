@@ -385,6 +385,99 @@ def test_deploy_i_due_finding_avversariali_del_2026_07_30() -> None:
                    "non aggiornato da" in motivo)
 
 
+# --- F3-4: la produzione va INTERROGATA, non dedotta da una ricevuta ----
+# Misurato il 2026-07-30T20:5x+02:00, a mano: la ricevuta piu' recente diceva
+# `dbc8ad9a` (PR #229, 17:21) e `https://ardesia-lavagna.vercel.app` serviva
+# `eff62705` (PR #230, 17:51). `collect_deploy` non contatta la produzione:
+# gliela racconta un file, e quel file era indietro di un deploy.
+#
+# Questo verso dello sbaglio e' innocuo e persino voluto (assenza di PROVA).
+# Il verso che fa danno e' il simmetrico: una ricevuta PARI a `main` mentre la
+# produzione e' indietro — un deploy fallito dopo la ricevuta, o un rollback.
+# Allora si stampa «pari a main: SI» e Andrea non ha niente da aprire.
+
+
+def test_sha_servita_e_ancorata_al_marcatore_di_provenienza() -> None:
+    """Forma REALE del bundle di produzione, copiata il 2026-07-30."""
+    bundle = ("var ye=`__ARDESIA_BUILD__`;function be(){try{return"
+              "`eff62705dd239f08f3272d2b90f046a62957bd3f`}catch{return null}}")
+    check("sha servita", ps.estrai_sha_servita(bundle),
+          "eff62705dd239f08f3272d2b90f046a62957bd3f")
+
+
+def test_un_esadecimale_qualunque_non_e_una_sha_servita() -> None:
+    """CoV #2: cosa mostrerebbe la misura se l'affermazione fosse falsa?
+
+    Un `[0-9a-f]{40}` non ancorato accetta un hash di integrita' o una
+    fixture: riporterebbe una SHA con la stessa faccia di quella vera. Il
+    marcatore `__ARDESIA_BUILD__` e' cio' che `vite.config.ts` compila
+    ACCANTO alla SHA, ed e' l'unica ancora che distingue le due.
+    """
+    check("nessun marcatore",
+          ps.estrai_sha_servita('const sri="da39a3ee5e6b4b0d3255bfef95601890afd80709"'),
+          None)
+
+
+def test_sha_lontana_dal_marcatore_non_viene_raccolta() -> None:
+    """Il riempimento va SEPARATO dalla SHA, o il test passa per il motivo sbagliato.
+
+    Prima versione: `("x" * 4000) + sha`. Passava, ma non per la finestra —
+    `_SHA40_RE` chiede `\\b` e fra una `x` e una `d` non c'e' alcun confine di
+    parola, quindi non matchava mai. Il control run l'ha smascherata: con la
+    regex NON ancorata questo test restava verde. Un criterio che resta verde
+    quando la cosa che asserisce si rompe non e' un criterio.
+    """
+    lontano = "`" + ps.MARCATORE_BUILD + "`;" + ("x" * 4000) + ";da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    check("precondizione: la SHA lontana e' RAGGIUNGIBILE dalla regex",
+          bool(ps._SHA40_RE.search(lontano)), True)
+    check("fuori finestra", ps.estrai_sha_servita(lontano), None)
+
+
+def test_produzione_irraggiungibile_e_UNAVAILABLE_non_falso_verde() -> None:
+    def fetch_rotto(_url: str) -> str:
+        raise OSError("getaddrinfo failed")
+
+    got = ps.collect_served("https://esempio.invalid", fetch_rotto)
+    check("status", got["status"], "UNAVAILABLE")
+    check_true("motivo scritto", bool(got.get("reason")))
+    check_true("nessuna sha inventata", got.get("served_commit_sha") is None)
+
+
+def test_produzione_raggiungibile_dichiara_la_sha_e_la_sua_fonte() -> None:
+    pagina = '<script type="module" src="/assets/index-nzwOe0RD.js"></script>'
+    asset = "var ye=`__ARDESIA_BUILD__`;return`" + "e" * 40 + "`"
+
+    def fetch(url: str) -> str:
+        return asset if url.endswith(".js") else pagina
+
+    got = ps.collect_served("https://ardesia-lavagna.vercel.app", fetch)
+    check("status", got["status"], "MEASURED")
+    check("sha", got["served_commit_sha"], "e" * 40)
+    check_true("dichiara da quale asset", "index-nzwOe0RD.js" in str(got.get("source")))
+
+
+def test_pagina_servita_senza_marcatore_non_e_un_verde() -> None:
+    """Un 200 non e' una misura: la pagina puo' essere un vecchio build."""
+    def fetch(url: str) -> str:
+        return "<script src=/assets/v.js></script>" if not url.endswith(".js") else "var a=1"
+
+    got = ps.collect_served("https://ardesia-lavagna.vercel.app", fetch)
+    check("status", got["status"], "UNAVAILABLE")
+    check_true("nessuna sha inventata", got.get("served_commit_sha") is None)
+
+
+def test_allineamento_e_una_CONGIUNZIONE_ricevuta_E_produzione() -> None:
+    main = "a" * 40
+    check("ricevuta pari a main ma produzione indietro: NON allineato",
+          ps.allineamento_produzione(main, "b" * 40, main), False)
+    check("entrambe pari a main: allineato",
+          ps.allineamento_produzione(main, main, main), True)
+    check("produzione non misurata: ne' vero ne' falso",
+          ps.allineamento_produzione(main, None, main), None)
+    check("ricevuta indietro, produzione pari: NON allineato",
+          ps.allineamento_produzione("c" * 40, main, main), False)
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -400,6 +493,13 @@ def main() -> int:
         test_finding3_repo_dichiara_i_campi_non_misurati,
         test_deploy_ricevuta_storica_e_allineamento_ricalcolato,
         test_deploy_i_due_finding_avversariali_del_2026_07_30,
+        test_sha_servita_e_ancorata_al_marcatore_di_provenienza,
+        test_un_esadecimale_qualunque_non_e_una_sha_servita,
+        test_sha_lontana_dal_marcatore_non_viene_raccolta,
+        test_produzione_irraggiungibile_e_UNAVAILABLE_non_falso_verde,
+        test_produzione_raggiungibile_dichiara_la_sha_e_la_sua_fonte,
+        test_pagina_servita_senza_marcatore_non_e_un_verde,
+        test_allineamento_e_una_CONGIUNZIONE_ricevuta_E_produzione,
     )
     for fn in tests:
         try:
