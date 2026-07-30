@@ -196,16 +196,29 @@ def empty_state() -> dict:
     }
 
 
-def _section_lines(title: str, sec: dict, body) -> list[str]:
+def _section_lines(title: str, sec: dict, body, sempre=None) -> list[str]:
+    """`sempre` rende righe che valgono anche a sezione non misurata.
+
+    Serve perche' una sezione puo' contenere DUE evidenze indipendenti: per il
+    deploy, la ricevuta (che puo' mancare) e la misura viva della produzione
+    (che puo' esserci comunque). Senza questo, l'assenza della ricevuta
+    cancellava dalla vista una misura che era stata fatta.
+    """
     lines = [f"## {title}", ""]
     if sec.get("status") != "MEASURED":
         lines.append(f"**{sec.get('status', 'UNAVAILABLE')}** — {sec.get('reason', 'motivo non registrato')}")
         lines.append("")
-        return lines
-    lines.extend(body(sec))
-    lines.append("")
-    lines.append(f"<sub>fonte: `{sec.get('source', 'non registrata')}`</sub>")
-    lines.append("")
+    else:
+        lines.extend(body(sec))
+        lines.append("")
+        lines.append(f"<sub>fonte: `{sec.get('source', 'non registrata')}`</sub>")
+        lines.append("")
+    # `sempre` vale in ENTRAMBI i rami: e' la ragione per cui esiste. Metterlo
+    # nel solo ramo UNAVAILABLE faceva sparire la misura viva ogni volta che la
+    # ricevuta c'era — cioe' quasi sempre. Trovato dal test B7 appena scritto.
+    if sempre is not None:
+        lines.extend(sempre(sec))
+        lines.append("")
     return lines
 
 
@@ -290,29 +303,46 @@ def render_current_md_untruncated(state: dict) -> str:
         # letteralmente «ultimo deploy: ? il ?» mentre il JSON era corretto.
         # Una vista umana che perde il dato e' peggio di una vista assente,
         # perche' sembra averlo guardato.
-        # `matches_main` parla della RICEVUTA; la riga in grassetto deve parlare
-        # della PRODUZIONE, che e' la sola cosa che un docente apre. Sono due
-        # domande diverse e per sei commit hanno avuto due risposte diverse.
-        allineato = s.get("allineato_in_produzione")
+        return [
+            f"- ultimo deploy (ricevuta): `{s.get('commit_sha') or 'non registrato'}`",
+            f"- quando: {s.get('deployed_at') or 'non registrato'}",
+            f"- dove: {s.get('alias') or s.get('deployment_url') or 'non registrato'}",
+            f"- ricevuta pari a `main`: {s.get('matches_main')} · ricevute totali: {s.get('receipts_count', '?')}",
+        ]
+
+    def deploy_produzione(s: dict) -> list[str]:
+        """La misura VIVA della produzione: indipendente dalla ricevuta.
+
+        Sta fuori da `deploy_body` perche' vale anche quando la ricevuta manca.
+        Prima era dentro, e `_section_lines` la cancellava insieme al resto:
+        `docs/ops/deploys` vuota nascondeva una misura che era stata fatta.
+        """
         # Senza `**` nell'etichetta: la riga e' gia' in grassetto, e annidarli
         # produceva `**pari a main: **NO****`, che Markdown non rende.
-        etichetta = {True: "sì", False: "NO", None: "non misurato"}.get(allineato, str(allineato))
+        etichetta = {True: "sì", False: "NO", None: "non misurato"}.get(
+            s.get("allineato_in_produzione"), str(s.get("allineato_in_produzione")))
         served = s.get("served") or {}
         sha_servita = served.get("served_commit_sha")
         riga_servita = (f"`{sha_servita}`" if sha_servita
                         else f"non misurata — {served.get('reason', 'motivo non registrato')}")
         scarto = s.get("prod_scarto") or {}
-        riga_scarto = (f"**{scarto['commits']}** commit" if scarto.get("status") == "MEASURED"
-                       else f"non misurato — {scarto.get('reason', 'motivo non registrato')}")
-        return [
-            f"- ultimo deploy (ricevuta): `{s.get('commit_sha') or 'non registrato'}`",
-            f"- quando: {s.get('deployed_at') or 'non registrato'}",
-            f"- dove: {s.get('alias') or s.get('deployment_url') or 'non registrato'}",
+        if scarto.get("status") == "MEASURED":
+            riga_scarto = f"**{scarto['commits']}** commit indietro"
+            if scarto.get("commits_avanti"):
+                riga_scarto += (f", e **{scarto['commits_avanti']}** avanti "
+                                f"(la produzione serve commit che non sono su `main`)")
+        else:
+            riga_scarto = f"non misurato — {scarto.get('reason', 'motivo non registrato')}"
+        righe = [
             f"- servito ADESSO dalla produzione: {riga_servita}",
-            f"- `prod_scarto` (servito → `origin/main`): {riga_scarto}",
+            f"- `prod_scarto` (servito ↔ `origin/main`): {riga_scarto}",
             f"- **pari a `main` in produzione: {etichetta}**",
-            f"- ricevuta pari a `main`: {s.get('matches_main')} · ricevute totali: {s.get('receipts_count', '?')}",
         ]
+        if served.get("source"):
+            righe.append(f"- letto da: `{served['source']}`")
+        for campo, motivo in sorted((s.get("unmeasured") or {}).items()):
+            righe.append(f"- ⚠️ `{campo}` **non misurato**: {motivo}")
+        return righe
 
     def cert_body(s: dict) -> list[str]:
         tot = s.get("total")
@@ -331,7 +361,7 @@ def render_current_md_untruncated(state: dict) -> str:
     out += _section_lines("Repo", state["repo"], repo_body)
     out += _section_lines("Pull request aperte", state["pull_requests"], pr_body)
     out += _section_lines("Check richiesti", state["required_checks"], checks_body)
-    out += _section_lines("Deploy", state["deploy"], deploy_body)
+    out += _section_lines("Deploy", state["deploy"], deploy_body, sempre=deploy_produzione)
     out += _section_lines("Certificazione esperimenti", state["certification"], cert_body)
     out += _section_lines("Oracolo di prodotto (E2E)", state["e2e"], e2e_body)
     return "\n".join(out) + "\n"
@@ -605,8 +635,16 @@ FINESTRA_SHA_DAL_MARCATORE = 2000
 PRODUZIONE_URL = "https://ardesia-lavagna.vercel.app"
 PRODUZIONE_TIMEOUT_S = 20
 
+#: Tetto sugli asset da leggere. Non e' un dettaglio: un tetto che tronca in
+#: silenzio fa sembrare «guardati tutti» un campione. Quando morde, finisce nel
+#: risultato (`asset_letti` < `asset_totali` piu' il motivo).
+MAX_ASSET_DA_LEGGERE = 24
+
 _SHA40_RE = re.compile(r"\b[0-9a-f]{40}\b")
-_ASSET_JS_RE = re.compile(r"[\"'/](assets/[A-Za-z0-9._-]+\.js)")
+#: Prende il valore INTERO di `src`, non il solo pezzo `assets/...`: ricostruire
+#: `base + "/assets/..."` da un `src` assoluto leggerebbe un file same-origin
+#: DIVERSO da quello che il browser esegue davvero.
+_ASSET_JS_RE = re.compile(r"""["'\s=]([^"'\s<>]+\.js)(?=["'\s>])""")
 
 
 def estrai_sha_servita(testo: str) -> str | None:
@@ -617,6 +655,18 @@ def estrai_sha_servita(testo: str) -> str | None:
     caso e' la ragione per cui questa funzione non si ferma alla prima
     occorrenza: se due marcatori portano SHA diverse, il bundle non dice una
     cosa sola, e pubblicarne una a caso sarebbe inventare.
+    """
+    distinte = candidati_sha_servita(testo)
+    return distinte[0] if len(distinte) == 1 else None
+
+
+def candidati_sha_servita(testo: str) -> list[str]:
+    """Tutte le SHA distinte ancorate a un marcatore, in ordine.
+
+    Separata da `estrai_sha_servita` perche' zero candidati e due candidati
+    sono cause DIVERSE dello stesso `None`, e il chiamante deve poterle
+    distinguere: attribuire una divergenza all'assenza del marcatore e' uno
+    stato giusto con la ragione sbagliata, che nasconde il difetto vero.
     """
     trovate: list[str] = []
     inizio = 0
@@ -629,15 +679,21 @@ def estrai_sha_servita(testo: str) -> str | None:
         if m:
             trovate.append(m.group(0))
         inizio = dopo
-    distinte = sorted(set(trovate))
-    return distinte[0] if len(distinte) == 1 else None
+    return sorted(set(trovate))
 
 
-def _leggi_url(url: str) -> str:
+def _leggi_url(url: str) -> tuple[str, str]:
+    """Il corpo e l'URL FINALE, dopo gli eventuali redirect.
+
+    `urlopen` segue i 3xx in silenzio. Restituendo solo il corpo, `source`
+    avrebbe continuato a nominare l'host di partenza mentre la misura veniva
+    fatta altrove: il chiamante non poteva distinguere una lettura diretta da
+    una su un secondo host.
+    """
     from urllib.request import urlopen  # import locale: lo stato gira anche offline
 
     with urlopen(url, timeout=PRODUZIONE_TIMEOUT_S) as r:  # noqa: S310
-        return r.read().decode("utf-8", "replace")
+        return r.read().decode("utf-8", "replace"), r.geturl()
 
 
 def collect_served(base_url: str, fetch=_leggi_url) -> dict:
@@ -656,56 +712,120 @@ def collect_served(base_url: str, fetch=_leggi_url) -> dict:
         return {"status": "UNAVAILABLE", "reason": motivo,
                 "served_commit_sha": None, "source": fonte}
 
+    from urllib.parse import urljoin  # puro, nessuna rete
+
     try:
-        pagina = fetch(base_url)
+        pagina, url_pagina = fetch(base_url)
     except Exception as exc:  # noqa: BLE001 — qualunque guasto di rete e' lo stesso fatto
         return non_misurata(f"produzione non raggiungibile: {type(exc).__name__}: {exc}", base_url)
 
     visti: list[str] = []
-    for a in _ASSET_JS_RE.findall(pagina):
-        if a not in visti:
-            visti.append(a)
+    for src in _ASSET_JS_RE.findall(pagina):
+        # Risolto contro l'URL FINALE della pagina, non contro quello chiesto:
+        # dopo un redirect gli asset relativi appartengono al nuovo host.
+        u = urljoin(url_pagina, src)
+        if u not in visti:
+            visti.append(u)
     if not visti:
-        return non_misurata("nessun asset JS in pagina: non e' un build di studio", base_url)
+        return non_misurata("nessun asset JS in pagina: non e' un build di studio", url_pagina)
 
+    da_leggere = visti[:MAX_ASSET_DA_LEGGERE]
+    conteggi = {"asset_totali": len(visti), "asset_letti": len(da_leggere)}
+
+    # Si leggono TUTTI gli asset, non ci si ferma al primo marcato: fermarsi al
+    # primo rende la divergenza invisibile e fa dipendere l'esito dall'ORDINE
+    # nell'HTML. `estrai_sha_servita` gia' rifiuta due marcatori discordi nello
+    # stesso file; fra file diversi valeva la stessa ragione e mancava il
+    # controllo.
+    trovate: dict[str, str] = {}
+    discordi_nel_file: list[str] = []
     guasti: list[str] = []
-    for asset in visti:
-        url = base_url.rstrip("/") + "/" + asset
+    for url in da_leggere:
         try:
-            testo = fetch(url)
+            testo, url_finale = fetch(url)
         except Exception as exc:  # noqa: BLE001
-            guasti.append(f"{asset}: {type(exc).__name__}")
+            guasti.append(f"{url}: {type(exc).__name__}")
             continue
-        sha = estrai_sha_servita(testo)
-        if sha:
-            return {"status": "MEASURED", "served_commit_sha": sha, "source": url}
+        candidati = candidati_sha_servita(testo)
+        if len(candidati) > 1:
+            # Il marcatore C'E', e dice due cose. Dirlo, invece di riportare
+            # «nessun marcatore»: sarebbe lo stato giusto con la causa sbagliata.
+            discordi_nel_file.append(f"{url_finale} dichiara {', '.join(candidati)}")
+        elif candidati:
+            trovate.setdefault(candidati[0], url_finale)
 
     coda = f"; asset illeggibili: {', '.join(guasti)}" if guasti else ""
-    return non_misurata(
-        f"nessun `{MARCATORE_BUILD}` in {len(visti)} asset: "
-        f"la produzione serve un build che non sa dire chi e'{coda}",
-        base_url)
+    if discordi_nel_file:
+        return {**non_misurata(
+            "un asset porta piu' di una SHA di build: " + "; ".join(discordi_nel_file) + coda,
+            url_pagina), **conteggi}
+    if len(trovate) > 1:
+        dettaglio = "; ".join(f"{s} da {u}" for s, u in sorted(trovate.items()))
+        return {**non_misurata(
+            f"asset con SHA divergenti, la produzione non dice una cosa sola: {dettaglio}{coda}",
+            url_pagina), **conteggi}
+    if not trovate:
+        return {**non_misurata(
+            f"nessun `{MARCATORE_BUILD}` in {len(da_leggere)} asset: "
+            f"la produzione serve un build che non sa dire chi e'{coda}",
+            url_pagina), **conteggi}
+
+    sha, fonte = next(iter(trovate.items()))
+    out = {"status": "MEASURED", "served_commit_sha": sha, "source": fonte, **conteggi}
+    if conteggi["asset_totali"] > conteggi["asset_letti"]:
+        out["reason"] = (f"letti {conteggi['asset_letti']} asset su {conteggi['asset_totali']} "
+                         f"(tetto {MAX_ASSET_DA_LEGGERE}): una divergenza negli asset non letti "
+                         f"non sarebbe vista")
+    if guasti:
+        out["asset_illeggibili"] = guasti
+    return out
 
 
-def allineamento_produzione(receipt_sha: str | None,
-                            served_sha: str | None,
-                            main_sha: str | None) -> bool | None:
-    """Allineato solo se la RICEVUTA e la PRODUZIONE dicono entrambe `main`.
+def allineamento_produzione(served_sha: str | None, main_sha: str | None) -> bool | None:
+    """La PRODUZIONE serve esattamente `main`? Un fatto solo, e solo su di lei.
 
-    E' una congiunzione, non una disgiunzione, e nemmeno la sola ricevuta: il
-    falso verde da uccidere e' «ricevuta pari a `main`, produzione indietro»,
-    che oggi stamperebbe «pari a main: SI» mentre Andrea non ha niente da
-    aprire. `None` quando la produzione non e' stata misurata — «indietro» e
-    «non lo so» sono due cose diverse, e questo registro ha gia' pagato per
-    averle confuse una volta.
+    Prima era una congiunzione «ricevuta E produzione». La revisione
+    avversariale l'ha smontata e aveva ragione: con `receipt=C, served=A,
+    main=A` restituiva `False` e `CURRENT.md` stampava «pari a main in
+    produzione: NO» mentre la produzione **era** pari a `main`. Il nome del
+    campo afferma qualcosa sulla produzione, e il valore parlava d'altro.
+
+    Il falso verde che la congiunzione doveva uccidere — ricevuta pari a `main`
+    con produzione indietro — e' ucciso lo stesso da `served == main`, che e'
+    falso proprio in quel caso. La ricevuta resta misurata, e resta stampata,
+    come fatto SEPARATO (`matches_main`).
+
+    `None` quando la produzione non e' misurata: «indietro» e «non lo so» sono
+    due cose diverse.
     """
     def norm(s: str | None) -> str | None:
         return s.strip().lower() if isinstance(s, str) and s.strip() else None
 
-    r, s, m = norm(receipt_sha), norm(served_sha), norm(main_sha)
+    s, m = norm(served_sha), norm(main_sha)
     if s is None or m is None:
         return None
-    return r == m and s == m
+    return s == m
+
+
+def main_sha_utilizzabile(root: Path) -> tuple[str | None, str | None]:
+    """La SHA di `origin/main`, ma solo se il ref e' abbastanza fresco da valere.
+
+    Restituisce `(sha, None)` oppure `(None, motivo)`. Estrae il cancello che
+    `collect_deploy` applicava gia' da solo, perche' ogni confronto contro
+    `origin/main` deve passarci: e' un ref di TRACKING, e senza un fetch
+    recente descrive il remoto di quando lo si e' guardato l'ultima volta.
+    """
+    rc, sha = _run(["git", "rev-parse", "origin/main"], root)
+    if rc != 0:
+        return None, f"git rev-parse origin/main exit {rc}"
+    eta = _eta_ref_origin_main(root)
+    if eta is None:
+        return None, "eta' del ref `origin/main` non misurabile: confronto non dichiarabile"
+    if eta > FRESCHEZZA_REF_MAX_S:
+        return None, (f"ref locale `origin/main` non aggiornato da {int(eta // 60)} min "
+                      f"(soglia {FRESCHEZZA_REF_MAX_S // 60} min): confronto non affidabile, "
+                      f"esegui `git fetch origin`")
+    return sha.strip(), None
 
 
 def misura_prod_scarto(root: Path, served_sha: str | None) -> dict:
@@ -719,14 +839,37 @@ def misura_prod_scarto(root: Path, served_sha: str | None) -> dict:
     """
     if not served_sha:
         return {"status": "UNAVAILABLE", "reason": "SHA servita non misurata"}
+    # Il cancello di freschezza esisteva gia' in questo file, e questa funzione
+    # riusava `origin/main` SENZA passarci: con il ref fermo due ore indietro
+    # pubblicava `commits: 0`, cioe' un verde, su un confronto che
+    # `collect_deploy` rifiuta. Trovato dalla revisione avversariale su #233.
+    main_sha, motivo = main_sha_utilizzabile(root)
+    if main_sha is None:
+        return {"status": "UNAVAILABLE", "reason": motivo}
     if _run(["git", "cat-file", "-e", f"{served_sha}^{{commit}}"], root)[0] != 0:
         return {"status": "UNAVAILABLE",
                 "reason": f"la SHA servita {served_sha[:8]} non e' un commit di questo checkout"}
-    rc, out = _run(["git", "rev-list", "--count", f"{served_sha}..origin/main"], root)
+    # Il range e' DIREZIONALE: `served..main` conta zero sia quando le due SHA
+    # coincidono sia quando la produzione e' AVANTI rispetto a `main` (un
+    # deploy di un commit mai fuso, o `main` riscritto). Contare una sola
+    # direzione stampava `prod_scarto: 0` — cioe' un verde — su due situazioni
+    # diverse, e una delle due non e' allineata affatto.
+    rc, out = _run(["git", "rev-list", "--left-right", "--count",
+                    f"{served_sha}...{main_sha}"], root)
     if rc != 0:
         return {"status": "UNAVAILABLE", "reason": f"git rev-list exit {rc}"}
-    return {"status": "MEASURED", "commits": int(out.strip()),
-            "source": f"git rev-list --count {served_sha[:8]}..origin/main"}
+    pezzi = out.split()
+    if len(pezzi) != 2:
+        return {"status": "UNAVAILABLE",
+                "reason": f"git rev-list --left-right ha risposto {out.strip()!r}, attesi due interi"}
+    avanti, indietro = int(pezzi[0]), int(pezzi[1])
+    res = {"status": "MEASURED", "commits": indietro,
+           "source": f"git rev-list --left-right --count {served_sha[:8]}...{main_sha[:8]}"}
+    if avanti:
+        res["commits_avanti"] = avanti
+        res["reason"] = (f"la produzione serve {avanti} commit che non sono su `main`: "
+                         f"`prod_scarto` = {indietro} non significa allineata")
+    return res
 
 
 def collect_deploy(root: Path) -> dict:
@@ -780,28 +923,18 @@ def collect_deploy(root: Path) -> dict:
                 "source": str(ultima.relative_to(root)),
                 "receipts_count": len(ricevute)}
 
-    rc, main = _run(["git", "rev-parse", "origin/main"], root)
-    motivo = None
-    if rc != 0:
-        allineato = None
-        motivo = f"git rev-parse origin/main exit {rc}"
-    else:
-        # `origin/main` e' un ref LOCALE di tracking: senza un fetch recente
-        # descrive il remoto di quando lo si e' guardato l'ultima volta, non
-        # adesso. Il renderer scrive «pari a `main`», quindi un ref stantio
-        # produrrebbe un `true` che risponde a un'altra domanda — la classe di
-        # difetto piu' ricorrente di questo progetto.
-        eta = _eta_ref_origin_main(root)
-        if eta is None:
-            allineato = None
-            motivo = "eta' del ref `origin/main` non misurabile: allineamento non dichiarabile"
-        elif eta > FRESCHEZZA_REF_MAX_S:
-            allineato = None
-            motivo = (f"ref locale `origin/main` non aggiornato da {int(eta // 60)} min "
-                      f"(soglia {FRESCHEZZA_REF_MAX_S // 60} min): confronto non affidabile, "
-                      f"esegui `git fetch origin`")
-        else:
-            allineato = sha == main.strip()
+    # `origin/main` e' un ref LOCALE di tracking: senza un fetch recente
+    # descrive il remoto di quando lo si e' guardato l'ultima volta, non adesso.
+    # Il renderer scrive «pari a `main`», quindi un ref stantio produrrebbe un
+    # `true` che risponde a un'altra domanda — la classe di difetto piu'
+    # ricorrente di questo progetto.
+    #
+    # Questo blocco era scritto a mano QUI, e la revisione avversariale su #233
+    # ha mostrato il costo della duplicazione: i derivati nuovi hanno riusato
+    # `origin/main` senza il cancello e hanno pubblicato uno zero. Ora la porta
+    # e' una sola, e `test_flywheel_una_sola_porta_su_origin_main` la tiene tale.
+    main, motivo = main_sha_utilizzabile(root)
+    allineato = None if main is None else (sha == main)
     # I metadati del COLLETTORE vanno DOPO lo spread, non prima.
     # Con `{**meta, **data}` una ricevuta poteva sovrascrivere `status`,
     # `source` e `receipts_count`, cioe' i campi che descrivono la MISURA e non
@@ -843,12 +976,12 @@ def build_state(root: Path, offline: bool = False) -> dict:
     # `allineato_in_produzione` risponde a quella che interessa a un docente.
     servita = state["deploy"]["served"].get("served_commit_sha")
     state["deploy"]["prod_scarto"] = misura_prod_scarto(root, servita)
-    rc_m, main_sha = _run(["git", "rev-parse", "origin/main"], root)
-    state["deploy"]["allineato_in_produzione"] = allineamento_produzione(
-        str(state["deploy"].get("commit_sha") or "") or None,
-        servita,
-        main_sha.strip() if rc_m == 0 else None,
-    )
+    # Stesso cancello di freschezza: su un ref stantio l'allineamento resta
+    # `None` con il motivo, non `True`.
+    main_sha, motivo_main = main_sha_utilizzabile(root)
+    state["deploy"]["allineato_in_produzione"] = allineamento_produzione(servita, main_sha)
+    if motivo_main:
+        state["deploy"].setdefault("unmeasured", {})["allineato_in_produzione"] = motivo_main
     return state
 
 
