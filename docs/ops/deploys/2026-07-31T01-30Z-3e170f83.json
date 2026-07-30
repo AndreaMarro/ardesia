@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "deployed_at": "2026-07-31T01:30:00Z",
+  "timezone": "Europe/Rome",
+  "commit_sha": "3e170f838353181f8dab36da529377041418abc3",
+  "project": "ardesia-lavagna",
+  "project_id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+  "scope": "andreas-projects-6d4e9791",
+  "alias": "https://ardesia-lavagna.vercel.app",
+  "deployment_id": "dpl_HCB2vAb5VHyGtqnER7KvqJMNyCuw",
+  "deployment_url": "https://ardesia-lavagna-b5gt7l5zg-andreas-projects-6d4e9791.vercel.app",
+  "method": "vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup && vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup",
+  "cosa_cambia_per_un_docente": {
+    "rotta": "https://ardesia-lavagna.vercel.app/?vista=elab-lab&esperimento=v1-cap9-esp6",
+    "prima_sha_servita": "9302329eb7e23d90479d00d20b517280fb440812",
+    "prima": "il circuito si vedeva come una fila di BLOCCHI NERI: breadboard, batteria, potenziometri e resistenze",
+    "dopo": "batteria 9V coi terminali, breadboard bianca coi fori numerati e le strisce di alimentazione, tre potenziometri blu con la manopola, tre resistenze con le bande colorate, fili rossi e neri",
+    "misura": "45 custom property distinte usate in fill/stroke, TUTTE non definite, su ~1700 elementi; 40 <rect> su 52 con fill computato rgb(0,0,0). Un var() irrisolto rende la proprieta' invalida e fill cade sul valore iniziale, che e' nero.",
+    "delta_visibile": "l'intero disegno del circuito su tutte e otto le scene della whitelist visibile",
+    "quota_test": 0.798,
+    "_lettura_della_quota": "SOPRA 0,50, e va dichiarato. Il numeratore e' alto perche' il diff di PRODOTTO e' una riga di import piu' lo spostamento del blocco :root: tutto il resto e' l'oracolo. La regola resta utile proprio cosi': impedisce di chiamare «prodotto» un diff fatto di test, anche quando il cambiamento visibile e' grande."
+  },
+  "precondizioni": {
+    "pr": 237,
+    "merge_commit": "3e170f838353181f8dab36da529377041418abc3",
+    "check_richiesti_sulla_pr": "studio 3m52s pass · engine 49s pass · hygiene 30s pass",
+    "ci_di_main_DOPO_il_merge": "conclusion=success su 3e170f83, verificata e non dedotta",
+    "local_checks": "READY_FOR_REVIEW, exit 0, 2121 test >= pavimento 2115",
+    "revisione": "due lenti, 3 finding distinti, 1 in comune (sovrapposizione 1 su 3). Tutti CONFERMATI e riparati nello stesso ciclo; nessun finding confermato e aperto al momento del merge"
+  },
+  "smoke": {
+    "comando": "ARDESIA_STUDIO_SMOKE_EXPECT_SHA=3e170f838353181f8dab36da529377041418abc3 npm run smoke:studio:production",
+    "exit": 0,
+    "served_commit_sha": "3e170f838353181f8dab36da529377041418abc3"
+  },
+  "control_run_dello_smoke": {
+    "comando": "ARDESIA_STUDIO_SMOKE_EXPECT_SHA=0000000000000000000000000000000000000000 npm run smoke:studio:production",
+    "exit": 1
+  },
+  "control_run_del_codice": [
+    "commentato l'import del CSS -> la spec torna rossa e rinomina tutte e 45 le variabili",
+    "--elab-hex-1a1a1a mutato da #1a1a1a a #000000 -> l'oracolo NUOVO arrossa nominando token e valori. E' esattamente la mutazione con cui il revisore aveva dimostrato la cecita' dell'oracolo VECCHIO, che escludeva quel nome a mano"
+  ],
+  "prod_scarto": { "prima": 0, "dopo": 0 },
+  "rollback": {
+    "comando": "npx vercel rollback https://ardesia-lavagna-ksm4an66r-andreas-projects-6d4e9791.vercel.app --scope andreas-projects-6d4e9791",
+    "target_precedente_sha": "9302329eb7e23d90479d00d20b517280fb440812",
+    "target_precedente_deployment": "dpl_CZeBpwAQ462HqQ59W474W5r8SMmG",
+    "_stato": "documentato e NON eseguito"
+  },
+  "non_stabilito": [
+    "L'oracolo verifica che ogni token del disegno si risolva al valore che il suo NOME dichiara, su tutte e otto le scene visibili. NON verifica che i colori siano quelli GIUSTI per il libro: un token corretto puo' comunque disegnare una breadboard del colore sbagliato.",
+    "I 94 esperimenti resuscitabili via URL fuori whitelist non sono coperti dalla spec.",
+    "I token del plugin restano dichiarati a `:root` nel documento dello studio: e' la forma normale di un design system e il file e' condiviso con l'app elab-tutor. Il rischio residuo (una futura CSS dello studio che legge un nome dichiarato anche dal plugin) e' tenuto da un controllo meccanico sui nomi, non dall'isolamento.",
+    "Il deploy resta a mano: F3-4 e' ferma su un gesto di Andrea.",
+    "Nessun docente reale ha guardato la schermata."
+  ]
+}
