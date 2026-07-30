@@ -24,7 +24,9 @@ PR #163) is the previous generation and remains as the record of it.
 That qualification in the second row is a correction, and worth the detour. An
 earlier revision asserted the model as fact in this table while the closing section
 said the resolved model was **not established** — the document asserting what it
-disclaimed forty lines later. Adversarial review caught it, which is to say the
+disclaimed **252 lines later** — line 21 against line 273 in `c7492bda^`, a distance
+worth stating correctly because an earlier revision wrote "forty lines later", a
+number nobody had counted. Adversarial review caught both. Which is to say the
 refuter refused to let the document overstate the refuter's own identity. What is
 established is the **separation** — different machine, different provider, different
 model family from the writer — and separation is what the property below depends on.
@@ -35,9 +37,10 @@ separation is the point rather than an accident: the literature on reward hackin
 finds that the defect appears when the generator and the judge **share context** —
 the score rises while the quality does not.
 
-The separation is **partial, and saying otherwise was the fourth thing adversarial
-review corrected in this file.** An earlier revision claimed "here they share
-nothing", which is false. Be precise about which is which:
+The separation is **partial, and saying otherwise was what the fourth review round
+corrected in this file** — a round, not a finding; the finding count is higher and is
+tabled below. An earlier revision claimed "here they share nothing", which is false.
+Be precise about which is which:
 
 | separated | shared |
 |---|---|
@@ -51,13 +54,34 @@ reviewer reads that framing before the code. So an ACCEPT is **not** a fully
 decorrelated judgment, and treating it as one is the mistake this table exists to
 prevent.
 
-What can be said from measurement rather than hope: across PRs #222, #220 and #223
-on 29–30 July, nine review rounds ran and produced **eight REJECT and one ACCEPT**,
-fourteen findings in total, every one of which held up when re-tested against the
-real code — including six against this document, four of them against claims its
-author had framed confidently in the prompt. A shared channel that reliably produced
-agreement would not look like that. The channel is real; on this evidence it did not
-capture the reviewer.
+What can be said from measurement rather than hope — as a **snapshot**, anchored so
+it can be recounted rather than believed. Measured at head `ff24bd9f`, after the
+fifth round on this PR, across #222, #220 and #223 on 29–30 July:
+
+| | rounds | findings |
+|---|---|---|
+| #222 | 1 | 1 |
+| #220 | 4 | 5 |
+| #223 — this document | 5 | **11** |
+| **total** | **10** | **17** |
+
+Nine REJECT and one ACCEPT. Every finding held up when re-tested against the real
+code. Eleven of the seventeen were against this file, several of them against claims
+its author had framed confidently in the review prompt.
+
+Two things about that table are themselves corrections. An earlier revision said
+"nine rounds, fourteen findings, six against this document" — the total was right at
+the time, the per-document count was **wrong** (it was eight, not six), and the
+whole figure was a running total that went stale the moment another round ran. It is
+now a snapshot tied to a SHA, and the recount is one command:
+
+```bash
+# the verdict files are in the operator's scratch dir, not in this repo
+python3 -c "import json,glob; f=sorted(glob.glob('hermes-22*.json')); print(len(f), sum(len(json.load(open(x))['findings']) for x in f))"
+```
+
+A shared channel that reliably produced agreement would not look like this. The
+channel is real; on this evidence it did not capture the reviewer.
 
 Hermes' contract is enforced, not requested. Its wrapper exits `69` when the JSON
 is missing, `69` when `not_checked` is **empty**, and `65` on an empty diff. A
@@ -283,10 +307,21 @@ product, additive and migrate-safe changes, **never weaken the gates**, and
 **never auto-merge to main**.
 
 On that last one, what actually happened on 29–30 July, stated as a fact and not as
-an interpretation: #222 and #220 were **merged by Claude Code**, each under an
+an interpretation. #222 and #220 were **merged by Claude Code**, each under an
 explicit authorization from Andrea — the first per-PR, the second a standing
-directive of 2026-07-30 — after an adversarial ACCEPT, five green checks and a
-control run, with `main`'s own CI verified **after** each merge rather than inferred.
+directive of 2026-07-30 — each with five green checks and a control run, and with
+`main`'s own CI verified **after** each merge rather than inferred.
+
+Their review outcomes were **not the same**, and an earlier revision of this file
+flattened them into "after an adversarial ACCEPT", which is false for one of the two:
+
+| PR | adversarial verdict at merge | what was done with it |
+|---|---|---|
+| #220 | **ACCEPT**, no findings | merged |
+| #222 | **REJECT / F_REVIEW** | the finding was re-tested, confirmed true, and judged **non-blocking** — it condemned a pre-existing property that the PR improved rather than introduced. The reasoning is recorded in merge commit `74e428c8`, which says so in its own text. |
+
+A merge over a REJECT is a judgement call, and writing it as an ACCEPT would hide
+exactly the call that deserves scrutiny.
 
 **Whether that complies with «mai auto-merge a main» is unresolved, and this
 document does not resolve it.** An earlier revision proposed a reading — "no merge
