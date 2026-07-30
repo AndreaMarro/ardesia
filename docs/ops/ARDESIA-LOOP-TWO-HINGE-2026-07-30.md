@@ -86,23 +86,64 @@ check cannot.
 ## A gate must read meaning, not characters
 
 That gate took four adversarial rounds, and **every single finding was in the gate
-rather than in the workflow**. Six valid YAML spellings of the banned filter
-walked past a line-based parser:
+rather than in the workflow**. Six valid YAML spellings of the banned filter walked
+past a line-based parser.
+
+Each is a **complete document**, and the block below is a valid multi-document YAML
+stream, so it can be pasted and checked rather than read and believed. An earlier
+revision of this file compressed them into one pseudo-block that PyYAML refused
+with `ComposerError: found undefined alias 'base'` — while the surrounding prose
+claimed all six had been confirmed with a real parser. Adversarial review caught
+it. Examples that cannot be executed are not evidence.
 
 ```yaml
-pull_request: { branches: [main] }        # flow mapping under the trigger
-"branches" : [main]                       # space before the colon
-on: {pull_request: {branches: [main]}}    # flow mapping under `on:` itself
-"pull_request":                      # unicode escape in a quoted key
-push: &f {branches: [main]}                # anchor…
-pull_request: *f                           # …and alias
-pull_request: { <<: *base }               # merge key
+# 1 — flow mapping under the trigger
+on:
+  pull_request: { branches: [main] }
+---
+# 2 — space before the colon
+on:
+  pull_request:
+    "branches" : [main]
+---
+# 3 — flow mapping under `on:` itself
+on: {pull_request: {branches: [main]}}
+---
+# 4 — unicode escape inside a quoted key: the key decodes to pull_request
+on:
+  "pull_requ\u0065st":
+    branches: [main]
+---
+# 5 — anchor and alias
+on:
+  push: &base
+    branches: [main]
+  pull_request: *base
+---
+# 6 — merge key
+on:
+  push: &base
+    branches: [main]
+  pull_request:
+    <<: *base
 ```
 
-All six were confirmed with a real YAML parser to mean exactly
-`pull_request -> branches`. A lexical parser compares **characters** while YAML
-compares **decoded values**, so every key has unlimited spellings and every patch
-invites the next one.
+Verify the claim rather than trust it — every document must report
+`{'branches': ['main']}`:
+
+```bash
+python3 -c "import yaml,sys; [print(list(d.values())[0]['pull_request']) for d in yaml.safe_load_all(sys.stdin)]" < examples.yaml
+```
+
+Measured: **6/6** parse to `pull_request.branches == ['main']`, and **6/6** are
+flagged by `bin/ci/workflow_trigger_gate.py`. The authority is the versioned tests
+in that file — `test_flags_escaped_trigger_key`,
+`test_flags_filter_reached_through_an_anchor_alias`,
+`test_flags_merge_key_under_a_pr_trigger` and the rest — not this block. If the two
+ever disagree, the tests are right.
+
+A lexical parser compares **characters** while YAML compares **decoded values**, so
+every key has unlimited spellings and every patch invites the next one.
 
 The answer was architectural: the gate reads the document via `yaml.compose`,
 which returns the node tree with scalars already decoded and with line marks —
@@ -129,10 +170,25 @@ Two rules fell out of this and are worth carrying to any gate in `bin/ci/`:
 
 ## The self-improving part, and its honest limit
 
-Until 2026-07-30 the loop produced gates and had **nowhere to attach them** that it
-could not talk itself out of. Measured: no Claude Code hooks, no git hooks in the
-vault. Every gate was a script somebody had to remember to run — prose with extra
-steps.
+**This repository has had a `PreToolUse` hook since `2026-07-10T03:33:04+02:00`** —
+`.claude/settings.json` matches `Bash|Edit|Write|NotebookEdit|Read|Grep|Glob` and
+runs `scripts/guardrails/claude-pretool-safety.sh`. An earlier revision of this file
+said "no Claude Code hooks" as an unqualified measurement, and that was false for
+this repo. What had actually been measured was the **user-level** files —
+`~/.claude/settings.json` and `~/.claude/settings.local.json` — and the result was
+then written as a statement about the repository. Adversarial review caught it.
+
+That is worth naming rather than quietly fixing, because it is the defect this
+project keeps paying for: a measurement taken on one referent and reported as a
+claim about the **adjacent** one. `bin/receipt-measurements.py` exists because the
+same shape had already recurred eight times.
+
+So the accurate statement is narrower. The **attachment point** was never missing
+here: a repo-level `PreToolUse` hook predates this work by twenty days. What was
+missing was a gate on **false measurement** — nothing refused a command whose exit
+code could not mean what it appeared to mean — and there were no git hooks in the
+vault, so every gate in the vault's `bin/` was a script somebody had to remember to
+run.
 
 What exists now lives **outside this repository**, in the operator's environment,
 and is recorded here so the shape is known:
@@ -163,15 +219,23 @@ Root `AGENTS.md` states: GDPR (no corpus or PII in the repo), ZERO-LLM in the
 product, additive and migrate-safe changes, **never weaken the gates**, and
 **never auto-merge to main**.
 
-On that last one, what actually happened on 29–30 July, so nobody has to guess:
-#222 and #220 were merged by Claude Code, each under an explicit authorization
-from Andrea — the first per-PR, the second a standing directive of 2026-07-30 —
-after an adversarial ACCEPT, five green checks, and a control run. `main`'s own CI
-was then verified **after** each merge rather than inferred, because two green PRs
-can conflict in semantics. That is not the GitHub auto-merge feature and not a
-merge without review, but it is a human-authorized machine merge, and the rule as
-written does not distinguish the two. Read it as: no merge without an explicit
-authorization recorded in the same session.
+On that last one, what actually happened on 29–30 July, stated as a fact and not as
+an interpretation: #222 and #220 were **merged by Claude Code**, each under an
+explicit authorization from Andrea — the first per-PR, the second a standing
+directive of 2026-07-30 — after an adversarial ACCEPT, five green checks and a
+control run, with `main`'s own CI verified **after** each merge rather than inferred.
+
+**Whether that complies with «mai auto-merge a main» is unresolved, and this
+document does not resolve it.** An earlier revision proposed a reading — "no merge
+without an explicit authorization recorded in the same session" — and adversarial
+review rejected it: neither this file, `docs/vault/ARDESIA-MAP.md`, nor the
+ratified canon authorizes substituting a written prohibition with a different rule,
+and a document that did so would license a future agent to self-merge on finding a
+standing directive and a green PR. The rule is left exactly as it stands.
+
+Until Andrea rules on it, the safe reading for any agent is the literal one: **do
+not merge to `main`.** Ask, or record the authorization and let a human perform the
+merge.
 
 ## What this document does not establish
 
