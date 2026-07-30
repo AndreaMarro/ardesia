@@ -7,7 +7,9 @@ verificata da `project_state.py --verify`, non qui.
 """
 from __future__ import annotations
 
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -182,6 +184,89 @@ def test_current_md_dichiara_i_campi_non_misurati() -> None:
     check_true("motivo visibile", "nessuna ricevuta" in testo)
 
 
+# --- i tre finding della revisione avversariale del 2026-07-30 -----------
+# Tutti e tre verificati sul codice reale prima di essere accettati, tutti e
+# tre classificati `mechanical`: diventano controlli, non attenzione.
+
+def test_finding1_la_scoperta_copre_ogni_config_playwright() -> None:
+    """Il glob `apps/*/e2e/**` mancava `apps/studio/eval/replay-kill-test.spec.ts`,
+    che una SUA config Playwright include esplicitamente: 21 spec riportate su
+    22 reali. La scoperta deve seguire le config, non una convenzione di path."""
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        (root / "apps/studio/e2e").mkdir(parents=True)
+        (root / "apps/studio/eval").mkdir(parents=True)
+        (root / "apps/studio/e2e/a.spec.ts").write_text("//")
+        (root / "apps/studio/eval/replay-kill-test.spec.ts").write_text("//")
+        (root / "apps/studio/playwright.config.ts").write_text('testDir: "./e2e"')
+        (root / "apps/studio/eval/playwright.config.ts").write_text(
+            'testDir: ".",\n  testMatch: "replay-kill-test.spec.ts",')
+        (root / "node_modules/pkg/e2e").mkdir(parents=True)
+        (root / "node_modules/pkg/e2e/rumore.spec.ts").write_text("//")
+
+        # e le spec .spec.js di un altro workspace, che il glob `.spec.ts`
+        # ignorava: 79 file reali in plugins/elab-tutor, scoperti correggendo
+        # questo stesso finding.
+        (root / "plugins/elab-tutor/e2e").mkdir(parents=True)
+        (root / "plugins/elab-tutor/e2e/01-homepage.spec.js").write_text("//")
+
+        out = ps.collect_e2e(root)
+        check("spec_count", out["spec_count"], 3)
+        check_true("eval inclusa", "apps/studio/eval/replay-kill-test.spec.ts" in out["specs"])
+        check_true("spec .js inclusa",
+                   "plugins/elab-tutor/e2e/01-homepage.spec.js" in out["specs"])
+        check_true("node_modules escluso",
+                   not any("node_modules" in s for s in out["specs"]))
+        check("config trovate", len(out["playwright_configs"]), 2)
+        check("conta per workspace", out["spec_count_by_workspace"],
+              {"apps/studio": 2, "plugins/elab-tutor": 1})
+
+
+def test_finding2_in_ci_non_scatta_su_un_commento() -> None:
+    """`"playwright" in testo` rendeva `in_ci: true` per un workflow che
+    contiene solo `# TODO: add playwright later`. Un gate lessicale che scambia
+    la PAROLA per l'ESECUZIONE e' un generatore di falso verde."""
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        wf = root / ".github/workflows"
+        wf.mkdir(parents=True)
+        (wf / "solo-commento.yml").write_text(
+            "name: ci\n# TODO: add playwright later\njobs:\n  x:\n    steps:\n"
+            "      - run: echo ciao\n")
+        out = ps.collect_e2e(root)
+        check("in_ci su commento", out["in_ci"], False)
+        check("nessuna evidenza", out["in_ci_evidence"], [])
+
+        (wf / "vera.yml").write_text(
+            "jobs:\n  e2e:\n    steps:\n      - run: npx playwright test\n")
+        out2 = ps.collect_e2e(root)
+        check("in_ci su invocazione vera", out2["in_ci"], True)
+        check_true("evidenza citata",
+                   any("playwright test" in e for e in out2["in_ci_evidence"]))
+
+
+def test_finding3_repo_dichiara_i_campi_non_misurati() -> None:
+    """`collect_repo` riportava MEASURED con `origin_main_sha: null` e nessun
+    motivo: viola il contratto che questa unita' esiste per imporre."""
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        for cmd in (["git", "init", "-q"],
+                    ["git", "-c", "user.email=a@b", "-c", "user.name=a",
+                     "commit", "-q", "--allow-empty", "-m", "x"]):
+            subprocess.run(cmd, cwd=root, capture_output=True)
+        out = ps.collect_repo(root)
+        check_true("head misurato", out["head_sha_full"] != "")
+        check_true("origin/main dichiarato non misurato",
+                   "origin_main_sha" in out.get("unmeasured", {}))
+        motivo = out.get("unmeasured", {}).get("origin_main_sha", "")
+        check_true(f"con motivo (ottenuto {motivo!r})", "origin/main" in motivo)
+        # e il motivo deve arrivare all'occhio umano, non restare nel JSON
+        stato = ps.empty_state()
+        stato["repo"] = out
+        check_true("visibile in CURRENT.md",
+                   "origin_main_sha" in ps.render_current_md(stato))
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -192,6 +277,9 @@ def main() -> int:
         test_precondizione_il_tetto_serve_davvero,
         test_current_md_sotto_250_righe,
         test_current_md_dichiara_i_campi_non_misurati,
+        test_finding1_la_scoperta_copre_ogni_config_playwright,
+        test_finding2_in_ci_non_scatta_su_un_commento,
+        test_finding3_repo_dichiara_i_campi_non_misurati,
     )
     for fn in tests:
         try:

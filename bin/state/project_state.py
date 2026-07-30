@@ -244,11 +244,14 @@ def render_current_md_untruncated(state: dict) -> str:
     ]
 
     def repo_body(s: dict) -> list[str]:
-        return [
-            f"- `main` (origin): **{s.get('origin_main_sha', '?')}**",
-            f"- HEAD locale: `{s.get('head_sha', '?')}` sul ramo `{s.get('head_branch', '?')}`",
-            f"- file non committati nel checkout: {s.get('dirty_count', '?')}",
+        righe = [
+            f"- `main` (origin): **{s.get('origin_main_sha') or 'non misurato'}**",
+            f"- HEAD locale: `{s.get('head_sha', '?')}` sul ramo `{s.get('head_branch') or 'non misurato'}`",
+            f"- file non committati nel checkout: {s.get('dirty_count') if s.get('dirty_count') is not None else 'non misurato'}",
         ]
+        for campo, motivo in sorted(s.get("unmeasured", {}).items()):
+            righe.append(f"- ⚠️ `{campo}` **non misurato**: {motivo}")
+        return righe
 
     def pr_body(s: dict) -> list[str]:
         b = [
@@ -329,20 +332,40 @@ def repo_root() -> Path:
 
 
 def collect_repo(root: Path) -> dict:
+    """Stato git, con i campi non misurati DICHIARATI uno per uno.
+
+    Finding 3 della revisione avversariale del 2026-07-30, verificato su un
+    repo temporaneo senza remote: la sezione usciva `MEASURED` con
+    `origin_main_sha: null` e nessun motivo. Una sezione puo' essere misurata
+    in parte — ma allora dice quale parte manca e perche', altrimenti viola
+    esattamente il contratto che questa unita' esiste per imporre.
+    """
     rc_h, head = _run(["git", "rev-parse", "HEAD"], root)
     if rc_h != 0:
         return {"status": "UNAVAILABLE", "reason": f"git rev-parse HEAD exit {rc_h}"}
+
+    unmeasured: dict[str, str] = {}
     rc_b, branch = _run(["git", "rev-parse", "--abbrev-ref", "HEAD"], root)
+    if rc_b != 0:
+        unmeasured["head_branch"] = f"git rev-parse --abbrev-ref HEAD exit {rc_b}"
     rc_m, main = _run(["git", "rev-parse", "origin/main"], root)
+    if rc_m != 0:
+        unmeasured["origin_main_sha"] = (
+            f"git rev-parse origin/main exit {rc_m}: il ref non esiste in questo "
+            f"checkout (remote assente o fetch mai eseguito)")
     rc_s, status = _run(["git", "status", "--porcelain"], root)
+    if rc_s != 0:
+        unmeasured["dirty_count"] = f"git status --porcelain exit {rc_s}"
+
     return {
         "status": "MEASURED",
         "source": "git rev-parse HEAD | origin/main; git status --porcelain",
         "head_sha": head.strip()[:8],
         "head_sha_full": head.strip(),
-        "head_branch": branch.strip() if rc_b == 0 else "?",
+        "head_branch": branch.strip() if rc_b == 0 else None,
         "origin_main_sha": main.strip()[:8] if rc_m == 0 else None,
         "dirty_count": len([x for x in status.splitlines() if x.strip()]) if rc_s == 0 else None,
+        "unmeasured": unmeasured,
     }
 
 
@@ -393,28 +416,96 @@ def collect_certification(root: Path) -> dict:
     return parse_catalog(p.read_text(encoding="utf-8"))
 
 
+#: Un'INVOCAZIONE di Playwright, non la parola. `playwright test`, `npm run e2e`,
+#: o una action ufficiale. Un commento non contiene nessuna di queste forme in
+#: posizione di comando, perche' i commenti vengono tolti prima del confronto.
+PLAYWRIGHT_INVOCATION_RE = re.compile(
+    r"(?:npx\s+playwright\s+test"
+    r"|playwright\s+test"
+    r"|npm\s+run\s+e2e"
+    r"|yarn\s+e2e"
+    r"|pnpm\s+e2e"
+    r"|uses:\s*microsoft/playwright)",
+    re.I,
+)
+
+
+def _strip_yaml_comments(text: str) -> str:
+    """Toglie i commenti `#` a inizio riga o dopo spazio.
+
+    Approssimazione dichiarata: un `#` dentro una stringa quotata verrebbe
+    trattato come commento. Per la domanda «questo workflow ESEGUE Playwright»
+    l'errore va nella direzione sicura — al massimo perde un'invocazione
+    esotica e riporta `false`, mai un `true` inventato.
+    """
+    out = []
+    for line in text.splitlines():
+        stripped = line.lstrip()
+        if stripped.startswith("#"):
+            continue
+        out.append(re.sub(r"\s+#.*$", "", line))
+    return "\n".join(out)
+
+
 def collect_e2e(root: Path) -> dict:
     """Misura l'oracolo di prodotto: spec scritte, spec eseguite, golden path.
 
-    Rende visibile il difetto di F0-2 (spec scritte che nessuno esegue) senza
-    doverlo riscoprire ogni ciclo.
+    Due finding della revisione avversariale del 2026-07-30, verificati sul
+    codice reale prima di essere accettati:
+
+    - Finding 1: il glob `apps/*/e2e/**` mancava
+      `apps/studio/eval/replay-kill-test.spec.ts`, che una SUA config Playwright
+      include esplicitamente — 21 spec riportate su 22 reali. La scoperta ora
+      segue le config e i file, non una convenzione di path.
+    - Finding 2: `in_ci` era `"playwright" in testo`, quindi un workflow con il
+      solo commento `# TODO: add playwright later` produceva `in_ci: true`. Un
+      gate lessicale che scambia la PAROLA per l'ESECUZIONE e' un generatore di
+      falso verde, e questa e' la classe di difetto che il loop paga di piu'.
+      Ora si cerca un'invocazione, e si riporta la riga che l'ha provata.
     """
-    specs = sorted(str(x.relative_to(root)) for x in root.glob("apps/*/e2e/**/*.spec.ts"))
-    specs += sorted(str(x.relative_to(root)) for x in root.glob("apps/*/tests/e2e/**/*.spec.ts"))
+    # Estensioni al plurale, non `.spec.ts` soltanto: correggendo il finding 1
+    # e' emerso che `plugins/elab-tutor` ha 79 spec `.spec.js` che il glob
+    # precedente non vedeva. Stessa classe di difetto — una convenzione di path
+    # ASSUNTA invece che misurata — con un errore dieci volte piu' grande.
+    specs = sorted(
+        str(p.relative_to(root))
+        for ext in ("*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.mjs")
+        for p in root.rglob(ext)
+        if "node_modules" not in p.parts
+    )
+    configs = sorted(
+        str(p.relative_to(root))
+        for p in root.rglob("playwright.config.*")
+        if "node_modules" not in p.parts
+    )
+    # Raggruppate per workspace: un totale unico confonde prodotti diversi, e
+    # «22 dello studio» e «79 di elab-tutor» non sommano in niente di utile.
+    by_workspace: dict[str, int] = {}
+    for s in specs:
+        parts = s.split("/")
+        ws = "/".join(parts[:2]) if len(parts) > 2 else parts[0]
+        by_workspace[ws] = by_workspace.get(ws, 0) + 1
+
     wf = root / ".github" / "workflows"
-    in_ci = False
+    evidence: list[str] = []
     if wf.is_dir():
-        for f in wf.glob("*.yml"):
-            if "playwright" in f.read_text(encoding="utf-8", errors="replace").lower():
-                in_ci = True
-                break
+        for f in sorted(list(wf.glob("*.yml")) + list(wf.glob("*.yaml"))):
+            body = _strip_yaml_comments(f.read_text(encoding="utf-8", errors="replace"))
+            for line in body.splitlines():
+                if PLAYWRIGHT_INVOCATION_RE.search(line):
+                    evidence.append(f"{f.relative_to(root)}: {line.strip()[:120]}")
+
     golden = "apps/studio/e2e/golden-path.spec.ts"
     return {
         "status": "MEASURED",
-        "source": "glob apps/*/e2e/**/*.spec.ts; grep playwright .github/workflows/*.yml",
+        "source": ("rglob *.spec.{ts,tsx,js,mjs} e playwright.config.* (escluso "
+                   "node_modules); invocazione Playwright nei workflow, commenti rimossi"),
         "spec_count": len(specs),
+        "spec_count_by_workspace": by_workspace,
         "specs": specs,
-        "in_ci": in_ci,
+        "playwright_configs": configs,
+        "in_ci": bool(evidence),
+        "in_ci_evidence": evidence,
         "golden_path": golden,
         "golden_path_exists": (root / golden).exists(),
     }
