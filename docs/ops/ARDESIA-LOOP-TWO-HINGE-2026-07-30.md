@@ -18,8 +18,16 @@ PR #163) is the previous generation and remains as the record of it.
 | hinge | where | job |
 |---|---|---|
 | **Claude Code** | MacBook | writes the code, runs the oracle, adjudicates findings |
-| **Hermes** | Mac mini, `gpt-5.6-sol` via `openai-codex` | tries to **refute** the change |
+| **Hermes** | Mac mini, `openai-codex` provider; model **declared** `gpt-5.6-sol`, resolved model unverified — see the closing section | tries to **refute** the change |
 | **Andrea** | — | authorizes what is irreversible |
+
+That qualification in the second row is a correction, and worth the detour. An
+earlier revision asserted the model as fact in this table while the closing section
+said the resolved model was **not established** — the document asserting what it
+disclaimed forty lines later. Adversarial review caught it, which is to say the
+refuter refused to let the document overstate the refuter's own identity. What is
+established is the **separation** — different machine, different provider, different
+model family from the writer — and separation is what the property below depends on.
 
 Hermes is **not in this repository**. It runs on a separate machine, against a
 separate model and a separate provider, and reads a private Obsidian vault. That
