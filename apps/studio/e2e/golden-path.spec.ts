@@ -99,7 +99,28 @@ test("golden path: lezione → chiusura → Continuità → export → import �
   // --- 5. riprende la sessione -------------------------------------------
   await test.step("5. riprende la sessione", async () => {
     await page.getByTestId("continuity-session").first().click()
-    await expect(page.locator("[data-next-action]")).toBeVisible({ timeout: 20_000 })
+
+    // `[data-next-action]` da solo NON e' evidenza di ripresa riuscita, e la
+    // revisione avversariale l'ha misurato: `ContinuityResumeCard.tsx:184` lo
+    // rende anche nello stato `scope-invalid`, con
+    // `data-next-action="reopen-lesson"`. Un assert sulla sua sola presenza
+    // sarebbe verde anche su una card d'errore.
+    const card = page.locator("[data-continuity-phase]")
+    await expect(card).toBeVisible({ timeout: 20_000 })
+    await expect
+      .poll(() => card.getAttribute("data-continuity-phase"), { timeout: 20_000 })
+      .not.toBe("loading")
+
+    const fase = await card.getAttribute("data-continuity-phase")
+    expect(
+      ["scope-invalid", "corrupt", "missing-evidence"],
+      `la ripresa e' finita in uno stato d'errore: ${fase}`,
+    ).not.toContain(fase)
+    await expect(page.locator("[data-continuity-scope-code]")).toHaveCount(0)
+
+    // e deve riguardare LA lezione che si sta guardando, non un'altra
+    await expect(page.locator("[data-continuity-lesson]")).toHaveText(stanza)
+    await expect(page.locator("[data-next-action]").first()).toBeVisible()
   })
 
   // --- 6. esporta una copia ----------------------------------------------
@@ -133,7 +154,29 @@ test("golden path: lezione → chiusura → Continuità → export → import �
 
       await freddo.goto(`/#${stanza}`)
       await expect(freddo.locator(".excalidraw").first()).toBeVisible({ timeout: 20_000 })
-      // La ripresa e' vera solo se la traccia del passo 2 e' ancora li'.
+
+      // La ripresa va osservata nella UI, non solo nello storage. La revisione
+      // avversariale l'ha detto con precisione: leggere il journal tramite
+      // `__MAESTRO_TEST__` sarebbe verde anche con l'idratazione della scena
+      // rotta e il docente davanti a una lavagna vuota. Quindi si torna in
+      // Continuita' NEL CONTESTO FREDDO e si pretende che la lezione sia di
+      // nuovo ritrovabile e riprendibile.
+      await freddo.locator('[data-view-nav-item="continuita"]').click()
+      const superficieFredda = freddo.getByTestId("continuity-surface")
+      await expect(superficieFredda).toBeVisible({ timeout: 20_000 })
+      await expect(superficieFredda).toHaveAttribute("data-state", "sessions")
+      await freddo.getByTestId("continuity-session").first().click()
+      const cardFredda = freddo.locator("[data-continuity-phase]")
+      await expect(cardFredda).toBeVisible({ timeout: 20_000 })
+      await expect
+        .poll(() => cardFredda.getAttribute("data-continuity-phase"), { timeout: 20_000 })
+        .not.toBe("loading")
+      await expect(freddo.locator("[data-continuity-scope-code]")).toHaveCount(0)
+      await expect(freddo.locator("[data-continuity-lesson]")).toHaveText(stanza)
+
+      // ...e SOLO ORA anche la prova sullo storage: la traccia del passo 2.
+      await freddo.goto(`/#${stanza}`)
+      await expect(freddo.locator(".excalidraw").first()).toBeVisible({ timeout: 20_000 })
       await expect
         .poll(
           () =>
