@@ -1,6 +1,9 @@
 # The two-hinge loop: how work enters this repository
 
-Written `2026-07-30T04:40+02:00`, on `main` at `5c0a2822`.
+First committed `2026-07-30T04:22:44+02:00`, on `main` at `5c0a2822`; revised across six
+adversarial review rounds after that. An earlier revision stated a writing time of
+`04:40`, which was **later than the commit that contained it** — a document cannot
+declare a future hour. `bin/ci/doc_claims_gate.py` now refuses that.
 
 Every timestamp and SHA below comes from `git log`, not from memory. The
 reconstruction is repeatable:
@@ -209,7 +212,14 @@ Verify the claim rather than trust it — every document must report
 `{'branches': ['main']}`:
 
 ```bash
-python3 -c "import yaml,sys; [print(list(d.values())[0]['pull_request']) for d in yaml.safe_load_all(sys.stdin)]" < examples.yaml
+# self-contained: extracts the block from THIS file and checks it, from the repo root
+python3 - <<'EOF'
+import re, pathlib, yaml
+t = pathlib.Path("docs/ops/ARDESIA-LOOP-TWO-HINGE-2026-07-30.md").read_text()
+block = re.search(r"```yaml\n(.*?)```", t, re.S).group(1)
+for d in yaml.safe_load_all(block):
+    print(list(d.values())[0]["pull_request"])
+EOF
 ```
 
 Measured: **6/6** parse to `pull_request.branches == ['main']`, and **6/6** are
@@ -317,7 +327,7 @@ flattened them into "after an adversarial ACCEPT", which is false for one of the
 
 | PR | adversarial verdict at merge | what was done with it |
 |---|---|---|
-| #220 | **ACCEPT**, no findings | merged |
+| #220 | **ACCEPT**, no findings — **on `4e17cfce`** | merged at head `259b4916`, which added a fail-closed merge-key check **after** that ACCEPT and was never reviewed. The merge commit says so; an earlier revision of this table did not, and flattened the two into one verdict. |
 | #222 | **REJECT / F_REVIEW** | the finding was re-tested, confirmed true, and judged **non-blocking** — it condemned a pre-existing property that the PR improved rather than introduced. The reasoning is recorded in merge commit `74e428c8`, which says so in its own text. |
 
 A merge over a REJECT is a judgement call, and writing it as an ACCEPT would hide

@@ -78,6 +78,13 @@ jobs:
         run: python3 bin/ci/workflow_trigger_gate.py
       - name: workflow trigger gate tests
         run: python3 bin/ci/workflow_trigger_gate.py --self-test
+      # Da 16 finding avversariali su 20 classificati come meccanicamente
+      # controllabili il 2026-07-30: il revisore costa 20-40 minuti per round e ne
+      # spendeva l'80% su cose che uno script trova in due secondi.
+      - name: doc claims gate (un documento non afferma cio' che il repo smentisce)
+        run: python3 bin/ci/doc_claims_gate.py
+      - name: doc claims gate tests
+        run: python3 bin/ci/doc_claims_gate.py --self-test
       - name: whitespace errors (git diff --check)
         if: github.event_name == 'pull_request'
         env:
