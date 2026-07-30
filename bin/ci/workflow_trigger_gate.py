@@ -21,129 +21,71 @@ enforces that shape so the comment explaining it cannot be "simplified" away.
 Push triggers are deliberately NOT checked: a push branch list restricts which
 branches get pre-PR feedback, which never removes a check from a PR.
 
-This gate reads the DOCUMENT, not the lines, and it does so because reading the
-lines was tried first and lost. Adversarial review of this very file produced
-four valid YAML spellings of the banned filter that a line parser called clean:
+This gate reads the DOCUMENT, not the lines, because reading the lines was tried
+first and lost three rounds of adversarial review. Five valid YAML spellings of
+the banned filter walked past a line parser:
 
     pull_request: { branches: [main] }        flow mapping under the trigger
     "branches" : [main]                       space before the colon
     on: {pull_request: {branches: [main]}}    flow mapping under `on:` itself
     "pull_request":                      escape inside a quoted key
+    push: &f {branches: [main]} / pull_request: *f    anchor and alias
 
-All four were confirmed with a real YAML parser to mean exactly
-`pull_request -> branches`. The first three were patched lexically; the fourth
-arrived immediately afterwards, which is the lesson: a lexical parser compares
-CHARACTERS while YAML compares DECODED VALUES, so every key has unlimited
-spellings and every patch invites the next one. A gate that valid YAML can bypass
-does not make an invariant non-regressable, which is its only reason to exist.
+A lexical parser compares CHARACTERS while YAML compares DECODED VALUES, so every
+key has unlimited spellings and every patch invites the next one. `yaml.compose`
+ends the game: it returns the node tree with scalars already decoded and with line
+marks — the meaning and the line number, which is all this gate needs. Flow or
+block, quoted or bare, escaped or aliased: none of it matters once characters stop
+being the subject.
 
-`yaml.compose` hands over the node tree with scalars already decoded and with
-line marks — the meaning and the line number, which is everything this gate
-needs. Flow or block, quoted or bare, escaped or literal: none of it matters once
-the characters stop being the subject.
-
-`offenders_lexical` survives only for a host without PyYAML. It cannot normalise
-flow forms or escapes, so it REFUSES them rather than calling them clean, and
-`main()` prints which mode ran: a degraded gate that stays silent is worse than
-an absent one, because it looks like a gate that checked.
+There is deliberately NO degraded mode. An earlier revision carried a lexical
+fallback for a host without PyYAML; review then found that its self-test crashed
+in exactly that mode and that it was blind to anchors. The fallback was insurance
+against a risk already disproven by measurement — the CI runner does have PyYAML,
+printed by this gate's own banner — and it produced two defects on its own. A gate
+that cannot verify FAILS. It does not degrade, because a degraded gate that stays
+silent is worse than an absent one: it looks like a gate that checked.
 
     python3 bin/ci/workflow_trigger_gate.py             # scan .github/workflows
     python3 bin/ci/workflow_trigger_gate.py --self-test # verify the parser
 """
 from __future__ import annotations
 
-import re
 import sys
 import unittest
 from pathlib import Path
 
 try:
     import yaml
-except ImportError:  # pragma: no cover - misurato in CI, vedi banner di main()
+except ImportError:
     yaml = None
 
 WORKFLOW_DIR = Path(".github/workflows")
-
-# Chiave double-quoted che contiene un escape: `"pull_request":`. Un parser
-# lessicale confronta i CARATTERI, YAML confronta il valore DECODIFICATO, quindi
-# in modo degradato questa forma non e' normalizzabile e non va dichiarata pulita.
-ESCAPED_KEY_RE = re.compile(r'"[^"]*\\[^"]*"[ ]*:')
 
 # Triggers whose branch filter is evaluated against the PR base branch.
 PR_TRIGGERS = {"pull_request", "pull_request_target"}
 BANNED_FILTERS = {"branches", "branches-ignore"}
 
-KEY_RE = re.compile(
-    r"""^(?P<indent>[ ]*)                    # block indentation
-         (?P<quote>["']?)(?P<key>[^"':\#]+)(?P=quote)  # key, optionally quoted
-         [ ]*:(?P<rest>[ ].*|)$              # colon (YAML allows space before it)
-    """,
-    re.VERBOSE,
-)
 
-# Un filtro proibito NOMINATO dentro una forma flow. Serve solo a rendere il
-# messaggio d'errore utile: la violazione e' la forma flow in se' (vedi
-# `flow_offence`), non la presenza del token.
-BANNED_IN_FLOW_RE = re.compile(r"\b(branches-ignore|branches)\b[ ]*[\"']?[ ]*:")
+def unverifiable_reason(yaml_module: object | None) -> str | None:
+    """Perche' questo gate non puo' pronunciarsi, o None se puo'.
 
-
-def flow_offence(value: str) -> str | None:
-    """Nome del filtro proibito, `"flow-mapping"`, o None se la forma e' leggibile.
-
-    Una SEQUENZA flow (`on: [push, pull_request]`) non puo' portare filtri: e'
-    lecita. Una MAPPA flow puo', e un parser a righe non la decompone in modo
-    affidabile — quindi non e' in grado di PROVARE che sia pulita, e il gate
-    fallisce chiuso invece di dichiararla a posto.
+    Pura di proposito: prende il modulo invece di leggere il globale, cosi' il
+    ramo «non posso verificare» e' testabile senza giochi di import — che e'
+    esattamente cio' che mancava alla versione con il fallback, il cui self-test
+    andava in AttributeError proprio nel modo che dichiarava di supportare.
     """
-    if "{" not in value:
-        return None
-    match = BANNED_IN_FLOW_RE.search(value)
-    return match.group(1) if match else "flow-mapping"
+    if yaml_module is None:
+        return (
+            "PyYAML assente. Questo gate verifica il SIGNIFICATO del workflow, non "
+            "il suo testo, e senza un parser YAML non puo' farlo: `pip install pyyaml`. "
+            "Un gate che non puo' verificare fallisce, non degrada."
+        )
+    return None
 
 
-def significant(text: str) -> list[tuple[int, int, str | None, str]]:
-    """(line number, indent, key or None, same-line value) for parseable lines.
-
-    Blank lines and whole-line comments carry no structure, so they are
-    dropped instead of being read as a dedent that would close a block early.
-    """
-    rows: list[tuple[int, int, str | None, str]] = []
-    for lineno, raw in enumerate(text.splitlines(), start=1):
-        if not raw.strip() or raw.lstrip().startswith("#"):
-            continue
-        match = KEY_RE.match(raw)
-        if match:
-            rows.append(
-                (
-                    lineno,
-                    len(match.group("indent")),
-                    match.group("key").strip(),
-                    match.group("rest").strip(),
-                )
-            )
-        else:
-            rows.append((lineno, len(raw) - len(raw.lstrip()), None, ""))
-    return rows
-
-
-def block(rows: list[tuple[int, int, str | None, str]], start: int) -> list:
-    """Rows nested strictly deeper than rows[start], up to the first dedent."""
-    outer = rows[start][1]
-    end = start + 1
-    while end < len(rows) and rows[end][1] > outer:
-        end += 1
-    return rows[start + 1 : end]
-
-
-def offenders_semantic(text: str) -> list[tuple[int, str, str]]:
-    """Come sopra, ma sul DOCUMENTO invece che sulle righe.
-
-    `yaml.compose` restituisce l'albero dei nodi con i valori scalari GIA'
-    decodificati e con `start_mark`, cioe' esattamente le due cose che servono:
-    il significato e il numero di riga. Forma flow o a blocchi, chiave quotata o
-    nuda, escape o testo letterale: qui non fanno differenza, perche' non si
-    guardano piu' i caratteri.
-    """
+def offenders(text: str) -> list[tuple[int, str, str]]:
+    """(riga, trigger, filtro) per ogni filtro di base su un trigger di PR."""
     try:
         root = yaml.compose(text)
     except yaml.YAMLError:
@@ -155,6 +97,8 @@ def offenders_semantic(text: str) -> list[tuple[int, str, str]]:
 
     found: list[tuple[int, str, str]] = []
     for key_node, value_node in root.value:
+        # `on` in YAML 1.1 risolve a booleano: si confronta il VALORE della chiave,
+        # non il suo tag, cosi' `on`, `"on"`, `On` e `ON` passano tutte da qui.
         if not isinstance(key_node, yaml.ScalarNode) or key_node.value.lower() != "on":
             continue
         # Uno scalare (`on: push`) o una sequenza (`on: [push, pull_request]`) non
@@ -183,59 +127,14 @@ def offenders_semantic(text: str) -> list[tuple[int, str, str]]:
     return found
 
 
-def offenders(text: str) -> list[tuple[int, str, str]]:
-    """Il gate. Semantico quando si puo', lessicale e fail-closed quando no."""
-    if yaml is not None:
-        return offenders_semantic(text)
-    return offenders_lexical(text)
-
-
-def offenders_lexical(text: str) -> list[tuple[int, str, str]]:
-    """(line, trigger, filter) leggendo le righe. Modo DEGRADATO, fail-closed.
-
-    Sopravvive solo per il caso in cui PyYAML non ci sia. Non puo' normalizzare
-    ne' le forme flow ne' gli escape, quindi le RIFIUTA invece di dichiararle
-    pulite: un gate degradato che tace e' peggio di un gate assente, perche'
-    somiglia a uno che ha guardato.
-    """
-    rows = significant(text)
-    found: list[tuple[int, str, str]] = []
-
-    for lineno, raw in enumerate(text.splitlines(), start=1):
-        if ESCAPED_KEY_RE.search(raw):
-            found.append((lineno, "document", "escaped-key"))
-
-    for index, (lineno, indent, key, value) in enumerate(rows):
-        # `on:` is the only top-level key that can carry triggers.
-        if indent != 0 or key not in {"on", "On", "ON", "true"}:
-            continue
-        if value:
-            # Un valore sulla stessa riga NON e' sempre innocuo: una mappa flow
-            # `on: {pull_request: {branches: [main]}}` porta trigger E filtri su
-            # una riga sola, ed e' esattamente cio' che questo gate deve vietare.
-            # Il commento che stava qui affermava il contrario ed era falso.
-            offence = flow_offence(value)
-            if offence:
-                found.append((lineno, "on", offence))
-            continue
-        for offset, (t_lineno, _t_indent, t_key, t_value) in enumerate(
-            block(rows, index)
-        ):
-            if t_key not in PR_TRIGGERS:
-                continue
-            if t_value:
-                offence = flow_offence(t_value)
-                if offence:
-                    found.append((t_lineno, t_key, offence))
-                continue
-            trigger_start = index + 1 + offset
-            for f_lineno, _f_indent, f_key, _f_value in block(rows, trigger_start):
-                if f_key in BANNED_FILTERS:
-                    found.append((f_lineno, t_key, f_key))
-    return found
-
-
 def main() -> int:
+    # Prima di qualunque cosa, incluso il self-test: se il gate non puo'
+    # verificare, non deve nemmeno sembrare di averlo fatto.
+    reason = unverifiable_reason(yaml)
+    if reason is not None:
+        print(f"workflow trigger gate: {reason}", file=sys.stderr)
+        return 1
+
     if "--self-test" in sys.argv:
         return 0 if unittest.main(argv=sys.argv[:1], exit=False).result.wasSuccessful() else 1
 
@@ -261,13 +160,9 @@ def main() -> int:
         print(f"\nworkflow trigger gate: {failures} filtro/i da rimuovere", file=sys.stderr)
         return 1
 
-    # Il modo va STAMPATO, non presunto: se PyYAML mancasse, il gate scenderebbe
-    # al parser lessicale e un verde direbbe una cosa piu' debole di quella che
-    # sembra. Un lettore della receipt deve poter distinguere i due verdi.
-    mode = "semantico (PyYAML)" if yaml is not None else "LESSICALE DEGRADATO (PyYAML assente)"
     print(
         f"workflow trigger gate ok: {len(workflows)} workflow, nessun filtro di base "
-        f"[modo: {mode}]"
+        f"[modo: semantico (PyYAML {yaml.__version__})]"
     )
     return 0
 
@@ -301,7 +196,7 @@ class WorkflowTriggerGateTest(unittest.TestCase):
             offenders("on:\n  pull_request:\n  push:\n    branches: [main]\n"), []
         )
 
-    def test_ignores_comments_and_blank_lines_inside_the_block(self) -> None:
+    def test_comments_and_blank_lines_do_not_shift_the_reported_line(self) -> None:
         found = offenders(
             "on:\n"
             "  # spiegazione\n"
@@ -324,18 +219,17 @@ class WorkflowTriggerGateTest(unittest.TestCase):
             [],
         )
 
-    def test_ignores_scalar_and_flow_forms_of_on(self) -> None:
+    def test_ignores_scalar_and_flow_sequence_forms_of_on(self) -> None:
         self.assertEqual(offenders("on: pull_request\n"), [])
         self.assertEqual(offenders("on: [push, pull_request]\n"), [])
+        self.assertEqual(offenders("on: [push, pull_request, workflow_dispatch]\n"), [])
 
-    # --- Forme YAML valide che un parser a righe non puo' decomporre. Tutte e tre
-    # verificate con PyYAML: producono ESATTAMENTE `pull_request -> branches`,
-    # cioe' il filtro proibito. Prima di questi test il gate le dichiarava pulite,
-    # ed era il gate stesso — non il workflow — il buco: un gate aggirabile con
-    # YAML valido non rende l'invariante non-regredibile, che e' il suo unico scopo.
+    # --- Le cinque scritture che un parser a righe dichiarava pulite. Tutte
+    # verificate con PyYAML: significano esattamente `pull_request -> branches`.
+    # Le prime tre le ha trovate la revisione avversariale al primo giro, la
+    # quarta al secondo, la quinta al terzo. Ognuna e' costata un round.
 
     def test_flags_flow_mapping_under_pull_request(self) -> None:
-        # trovato dalla revisione avversariale su questo ramo
         self.assertEqual(
             offenders("on:\n  pull_request: { branches: [main], paths: [apps/**] }\n"),
             [(2, "pull_request", "branches")],
@@ -348,75 +242,18 @@ class WorkflowTriggerGateTest(unittest.TestCase):
         )
 
     def test_flags_quoted_key_with_space_before_colon(self) -> None:
-        # `"branches" : [main]` e' YAML valido: la chiave e' `branches`.
         self.assertEqual(
             offenders('on:\n  pull_request:\n    "branches" : [main]\n'),
             [(3, "pull_request", "branches")],
         )
 
     def test_flags_flow_mapping_directly_under_on(self) -> None:
-        # NON trovato dalla revisione: il commento del gate affermava che un valore
-        # sulla stessa riga di `on:` «non ha spazio per una mappa di filtri».
-        # `on: {pull_request: {branches: [main]}}` lo smentisce.
-        #
-        # I due modi rispondono in modo DIVERSO, ed e' la differenza che conta:
-        # leggendo il documento il gate sa a quale trigger appartiene il filtro,
-        # leggendo le righe puo' solo dire «qualcosa sotto on:». Entrambi lo
-        # rifiutano; solo uno sa cosa ha rifiutato.
+        # Il commento di una revisione precedente affermava che un valore sulla
+        # stessa riga di `on:` «non ha spazio per una mappa di filtri». Falso.
         self.assertEqual(
-            offenders_semantic("on: {pull_request: {branches: [main]}}\n"),
+            offenders("on: {pull_request: {branches: [main]}}\n"),
             [(1, "pull_request", "branches")],
         )
-        self.assertEqual(
-            offenders_lexical("on: {pull_request: {branches: [main]}}\n"),
-            [(1, "on", "branches")],
-        )
-
-    def test_semantic_mode_leaves_push_filters_alone_even_in_flow_form(self) -> None:
-        # Il modo lessicale rifiutava anche questo, non sapendo attribuirlo. Il
-        # semantico no: i filtri su push non togliono check a una PR.
-        self.assertEqual(offenders_semantic("on: {push: {branches: [main]}}\n"), [])
-        self.assertEqual(
-            offenders_lexical("on: {push: {branches: [main]}}\n"),
-            [(1, "on", "branches")],
-        )
-
-    def test_semantic_mode_allows_a_clean_flow_form(self) -> None:
-        # Leggendo il documento, una mappa flow SENZA filtro proibito e' pulita:
-        # non serve piu' over-approssimare, perche' non si tira a indovinare.
-        self.assertEqual(offenders("on:\n  pull_request: { types: [opened] }\n"), [])
-
-    def test_lexical_fallback_fails_closed_on_forms_it_cannot_normalize(self) -> None:
-        # Il modo degradato non sa decomporre una mappa flow ne' decodificare un
-        # escape: li rifiuta. Testato sulla funzione ESPLICITA, non sul dispatch,
-        # perche' altrimenti su una macchina con PyYAML questo test non misurerebbe
-        # nulla e sarebbe verde per assenza del ramo che dovrebbe coprire.
-        self.assertEqual(
-            offenders_lexical("on:\n  pull_request: { types: [opened] }\n"),
-            [(2, "pull_request", "flow-mapping")],
-        )
-        self.assertEqual(
-            offenders_lexical('on:\n  "pull_requ\\u0065st":\n    branches: [main]\n'),
-            [(2, "document", "escaped-key")],
-        )
-
-    def test_semantic_mode_speaks_up_on_invalid_yaml(self) -> None:
-        if yaml is None:
-            self.skipTest("PyYAML assente: il ramo semantico non esiste qui")
-        self.assertEqual(
-            offenders_semantic("on:\n  pull_request:\n   branches: [main]\n  bad\n"),
-            [(1, "document", "unparseable-yaml")],
-        )
-
-    def test_flow_sequence_of_on_stays_allowed(self) -> None:
-        # Una SEQUENZA flow non puo' portare filtri: resta lecita.
-        self.assertEqual(offenders("on: [push, pull_request, workflow_dispatch]\n"), [])
-
-    # --- Quarto bypass, secondo giro della revisione avversariale. Un parser
-    # LESSICALE confronta la forma scritta; YAML confronta il valore DECODIFICATO.
-    # Finche' il gate guarda i caratteri, ogni chiave ha infinite scritture e ogni
-    # pezza ne invita un'altra: e' la ragione per cui questo gate ha smesso di
-    # leggere righe e ha iniziato a leggere il documento.
 
     def test_flags_escaped_trigger_key(self) -> None:
         self.assertEqual(
@@ -429,6 +266,46 @@ class WorkflowTriggerGateTest(unittest.TestCase):
             offenders('on:\n  pull_request:\n    "branch\\u0065s": [main]\n'),
             [(3, "pull_request", "branches")],
         )
+
+    def test_flags_filter_reached_through_an_anchor_alias(self) -> None:
+        # Quinto giro. La riga riportata e' quella dove il filtro e' DEFINITO, non
+        # quella dell'alias: e' la riga da cambiare, quindi e' quella utile.
+        # Questo test e' un LUCCHETTO, non un falsificatore: il parser semantico lo
+        # passava gia' quando e' stato scritto, e serve a impedire la regressione.
+        self.assertEqual(
+            offenders(
+                "on:\n"
+                "  push: &filters\n"
+                "    branches: [main]\n"
+                "  pull_request: *filters\n"
+            ),
+            [(3, "pull_request", "branches")],
+        )
+
+    # --- Forme lecite: senza queste i test sopra sarebbero verdi per eccesso di zelo.
+
+    def test_a_clean_flow_form_stays_clean(self) -> None:
+        self.assertEqual(offenders("on:\n  pull_request: { types: [opened] }\n"), [])
+
+    def test_push_filters_stay_allowed_even_in_flow_form(self) -> None:
+        self.assertEqual(offenders("on: {push: {branches: [main]}}\n"), [])
+
+    # --- Il gate parla anche quando non puo' giudicare.
+
+    def test_speaks_up_on_invalid_yaml(self) -> None:
+        self.assertEqual(
+            offenders("on:\n  pull_request:\n   branches: [main]\n  bad\n"),
+            [(1, "document", "unparseable-yaml")],
+        )
+
+    def test_refuses_to_run_without_a_yaml_parser(self) -> None:
+        reason = unverifiable_reason(None)
+        self.assertIsNotNone(reason)
+        self.assertIn("PyYAML", reason)
+        self.assertIn("fallisce, non degrada", reason)
+
+    def test_runs_when_a_yaml_parser_is_present(self) -> None:
+        self.assertIsNone(unverifiable_reason(yaml))
 
 
 if __name__ == "__main__":
