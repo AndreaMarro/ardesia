@@ -162,6 +162,7 @@ run_check "project_state_st"    "$ROOT" python3 bin/state/project_state.py --sel
 run_check "project_state_tests" "$ROOT" python3 bin/state/test_project_state.py
 run_check "project_state_verify" "$ROOT" python3 bin/state/project_state.py --verify
 run_check "local_checks_st"     "$ROOT" bash bin/ci/local_checks.sh --self-test
+run_check "backup_now_tests"    "$ROOT" bash bin/ci/test_backup_now.sh
 
 if [ "$MODE" = "full" ]; then
   if [ ! -d "$STUDIO/node_modules" ]; then
