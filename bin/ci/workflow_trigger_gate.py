@@ -113,10 +113,20 @@ def offenders(text: str) -> list[tuple[int, str, str]]:
             ):
                 continue
             for filter_node, _ in filters_node.value:
-                if (
-                    isinstance(filter_node, yaml.ScalarNode)
-                    and filter_node.value in BANNED_FILTERS
-                ):
+                if not isinstance(filter_node, yaml.ScalarNode):
+                    continue
+                # `yaml.compose` risolve gli ALIAS ma non le MERGE KEY: `<<` viene
+                # fuso dal constructor, non dal composer. Misurato: `safe_load`
+                # produce `pull_request -> branches`, `compose` non lo vede. Il
+                # parser non puo' provare che sia pulito, quindi non lo dichiara —
+                # e chiudere il buco costa meno che dipendere da cosa fa GitHub
+                # con le merge key, che la revisione non ha potuto stabilire.
+                if filter_node.value == "<<":
+                    found.append(
+                        (filter_node.start_mark.line + 1, trigger_node.value, "merge-key")
+                    )
+                    continue
+                if filter_node.value in BANNED_FILTERS:
                     found.append(
                         (
                             filter_node.start_mark.line + 1,
@@ -265,6 +275,26 @@ class WorkflowTriggerGateTest(unittest.TestCase):
         self.assertEqual(
             offenders('on:\n  pull_request:\n    "branch\\u0065s": [main]\n'),
             [(3, "pull_request", "branches")],
+        )
+
+    def test_flags_merge_key_under_a_pr_trigger(self) -> None:
+        # Pista lasciata dalla quarta revisione avversariale nel proprio
+        # `not_checked`: scartata come finding perche' non poteva provare che
+        # GitHub Actions accetti le merge key. Misurato qui: `yaml.safe_load`
+        # risolve `<<` in `pull_request -> branches: [main]`, mentre `yaml.compose`
+        # NON lo fa — la fusione avviene nel constructor, non nel composer.
+        # Quindi il gate non puo' provare che sia pulito, e non lo dichiara.
+        # Chiudere il buco costa meno che dipendere da cosa fa GitHub.
+        self.assertEqual(
+            offenders(
+                "on:\n"
+                "  push: &base\n"
+                "    branches: [main]\n"
+                "  pull_request:\n"
+                "    <<: *base\n"
+                "    paths: [apps/**]\n"
+            ),
+            [(5, "pull_request", "merge-key")],
         )
 
     def test_flags_filter_reached_through_an_anchor_alias(self) -> None:
