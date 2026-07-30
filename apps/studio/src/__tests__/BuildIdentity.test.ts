@@ -73,9 +73,33 @@ describe("shaMismatch — il confronto che rende lo smoke un oracolo", () => {
     expect(esito).toContain("non dichiara la propria identita'")
   })
 
-  it("rifiuta un prefisso troppo corto invece di combaciare per caso", () => {
+  it("rifiuta un'attesa troppo corta invece di combaciare per caso", () => {
     const esito = shaMismatch("7930", SHA)
     expect(esito).not.toBeNull()
-    expect(esito).toContain("troppo corta")
+    expect(esito).toContain("non e' una SHA valida")
+  })
+
+  // I due buchi trovati dalla revisione avversariale del 2026-07-30, entrambi
+  // riprodotti eseguendo la funzione. Un «fail-closed» con un buco e' peggio di
+  // un controllo assente, perche' viene creduto.
+
+  it("FALLISCE se la SHA SERVITA e' troppo corta: il confronto e' a senso unico", () => {
+    // Prima passava: la validazione di lunghezza stava solo sull'attesa, e il
+    // confronto simmetrico faceva combaciare `expected.startsWith(served)`.
+    const esito = shaMismatch(SHA, "7930")
+    expect(esito).not.toBeNull()
+    expect(esito).toContain("malformata")
+  })
+
+  it("FALLISCE su un'identita' servita che non e' esadecimale", () => {
+    const esito = shaMismatch("79304d81", "79304d81-not-a-sha")
+    expect(esito).not.toBeNull()
+    expect(esito).toContain("malformata")
+  })
+
+  it("l'attesa e' il PREFISSO della servita, mai il contrario", () => {
+    expect(shaMismatch("79304d81", SHA)).toBeNull()
+    // la servita non puo' essere un prefisso dell'attesa
+    expect(shaMismatch(SHA, "79304d81")).not.toBeNull()
   })
 })

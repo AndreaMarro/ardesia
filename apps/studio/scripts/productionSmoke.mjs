@@ -42,10 +42,16 @@ function pushLimited(list, value) {
  *   giusto — ed e' esattamente quello che succede oggi in produzione, che
  *   precede l'introduzione di `window.__ARDESIA_BUILD__`.
  */
+const SHA_ESADECIMALE = /^[0-9a-f]{7,40}$/
+
 export function shaMismatch(expected, served) {
   if (expected === "") return null
-  if (expected.length < 7) {
-    return `ARDESIA_STUDIO_SMOKE_EXPECT_SHA troppo corta (${expected.length} char, minimo 7): un prefisso breve combacia per caso`
+  const atteso = expected.toLowerCase()
+  if (!SHA_ESADECIMALE.test(atteso)) {
+    return (
+      `ARDESIA_STUDIO_SMOKE_EXPECT_SHA non e' una SHA valida: "${expected}". ` +
+      `Attese 7-40 cifre esadecimali (un prefisso piu' corto combacia per caso).`
+    )
   }
   if (typeof served !== "string" || served === "") {
     return (
@@ -54,9 +60,25 @@ export function shaMismatch(expected, served) {
       `non ha dimostrato di essere quello giusto: fallisco chiuso.`
     )
   }
-  const a = expected.toLowerCase()
-  const b = served.toLowerCase()
-  if (!b.startsWith(a) && !a.startsWith(b)) {
+  const servita = served.toLowerCase()
+  // Anche la SHA SERVITA va validata, e il confronto e' A SENSO UNICO.
+  //
+  // La prima versione validava solo l'attesa e confrontava simmetricamente
+  // (`a.startsWith(b) || b.startsWith(a)`). La revisione avversariale ha
+  // eseguito la funzione e ha mostrato due modi di passare con un'identita'
+  // fasulla: atteso pieno + servito `"7930"` (il prefisso corto stava dalla
+  // parte non validata), e servito `"79304d81-not-a-sha"` (nessun vincolo di
+  // forma). Un «fail-closed» con un buco e' peggio di un controllo assente,
+  // perche' viene creduto.
+  if (!SHA_ESADECIMALE.test(servita)) {
+    return (
+      `il build servito dichiara un'identita' malformata: "${served}". ` +
+      `Attese 7-40 cifre esadecimali.`
+    )
+  }
+  // L'attesa e' il PREFISSO della servita, mai il contrario: la servita e' il
+  // dato completo, l'attesa puo' essere la forma corta.
+  if (!servita.startsWith(atteso)) {
     return `SHA servita ${served} != SHA attesa ${expected}`
   }
   return null

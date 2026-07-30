@@ -24,4 +24,7 @@
 # alzato 2026-07-30T09:20+02:00 su 79304d81 + il ramo F0-5: +8 test, il confronto
 # fra SHA attesa e SHA servita promosso da script a controllo unitario.
 #   esito grezzo: "Tests  2103 passed | 5 skipped"   exit=0
-studio_tests_min=2103
+# alzato 2026-07-30T09:55+02:00: +3 test dai due finding avversariali su #227
+# (la SHA SERVITA va validata, e il confronto e' a senso unico).
+#   esito grezzo: "Tests  2106 passed | 5 skipped"   exit=0
+studio_tests_min=2106
