@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "_perche_committata": "Una ricevuta di deploy e' un fatto STORICO: non invecchia, resta vera per sempre su quell'istante. Lo stato corrente invece e' derivato e resta gitignorato, perche' un file non puo' contenere lo SHA del commit che lo contiene.",
+  "deployed_at": "2026-07-30T10:45:00Z",
+  "timezone": "Europe/Rome",
+  "commit_sha": "291b2942b73a1941667370e29614bf3a22099cdb",
+  "project": "ardesia-lavagna",
+  "project_id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+  "scope": "andreas-projects-6d4e9791",
+  "deployment_id": "dpl_3CGuUa1Jvc9T1uzTTurAWS5RENvf",
+  "deployment_url": "https://ardesia-lavagna-oppx5i9nx-andreas-projects-6d4e9791.vercel.app",
+  "alias": "https://ardesia-lavagna.vercel.app",
+  "method": "vercel build --prod --yes && vercel deploy --prebuilt --prod",
+  "_perche_prebuilt": "Il progetto NON ha git integration: e' la ragione per cui la produzione era ferma al 2026-07-10 nonostante decine di merge su main. Fondere NON deploya. E un build remoto non avrebbe la SHA: `resolveBuildCommitSha` la prende da git o da VERCEL_GIT_COMMIT_SHA, che senza integrazione git non e' impostata. Costruendo in locale nel worktree, la SHA viene da `git rev-parse HEAD` ed e' quella giusta per costruzione.",
+  "verified_before_deploy": {
+    "sha_nell_output": true,
+    "comando": "grep -rl 291b2942b73a1941667370e29614bf3a22099cdb .vercel/output/",
+    "file": [
+      ".vercel/output/static/assets/index-DMKuFIjh.js",
+      ".vercel/output/static/assets/ContinuityView-CEdPFH03.js",
+      ".vercel/output/static/assets/indexedDbEventLog-8KG5ukLy.js"
+    ],
+    "sha_vecchie_assenti": true
+  },
+  "smoke": {
+    "comando": "npm run smoke:studio:production",
+    "exit": 0,
+    "expected_commit_sha": "291b2942b73a1941667370e29614bf3a22099cdb",
+    "served_commit_sha": "291b2942b73a1941667370e29614bf3a22099cdb",
+    "http_status": 200,
+    "body_excerpt": "Ardesia STUDIO ... Lezione Continuita' Materiali ... La lavagna che ricorda la tua lezione",
+    "_prova_indipendente": "Il body mostra la shell Founder Beta a tre voci. La produzione precedente mostrava 'invita studente / sim esp2 / sim esp3 / sim esp6 / esporta lezione / Meet', che quella shell rimuove: e' una differenza visibile che non dipende dal confronto di SHA."
+  },
+  "rollback": {
+    "comando": "npx vercel rollback https://ardesia-lavagna-43raj4p0w-andreas-projects-6d4e9791.vercel.app --scope andreas-projects-6d4e9791",
+    "target_precedente": "dpl_42Aa6QwHzVGqZQw3SaSNkrfkDwG3",
+    "target_precedente_url": "https://ardesia-lavagna-gh9u94qzt-andreas-projects-6d4e9791.vercel.app",
+    "target_precedente_creato": "2026-07-10T21:05:51+02:00",
+    "_avvertenza": "Il rollback ripristina il CODICE, non i DATI. Fra il 2026-07-10 e oggi il livello di persistenza e' stato riscritto e lo stato utente vive nel browser sotto lo stesso prefisso `maestro:` e nello stesso DB IndexedDB `lessonos-eventlog`. Uno stato gia' letto e migrato dal build nuovo non torna indietro con un rollback del codice."
+  },
+  "non_stabilito": [
+    "Il golden path NON gira contro questa produzione: dipende da window.__MAESTRO_TEST__, esposto solo sotto import.meta.env.DEV. Lo smoke verifica identita' e assenza di errori, non la chiusura del ciclo didattico.",
+    "Un solo browser (chromium) e un solo viewport. Niente iPad, che e' il dispositivo dichiarato.",
+    "Il rollback e' documentato ma NON eseguito: non e' stato provato che funzioni."
+  ]
+}
