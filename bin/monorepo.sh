@@ -231,7 +231,39 @@ smoke_studio_production() {
   require_file "apps/studio/package.json"
   require_studio_playwright
 
-  node apps/studio/scripts/productionSmoke.mjs
+  # Il DEFAULT deve essere sicuro, e questo caller era il buco.
+  #
+  # Lo script sa confrontare la SHA servita con quella attesa, ma il confronto e'
+  # inerte finche' `ARDESIA_STUDIO_SMOKE_EXPECT_SHA` e' vuota — e questo chiamante
+  # non la impostava. Risultato: `npm run smoke:studio:production` riproduceva il
+  # falso verde misurato il 2026-07-30 (exit 0 contro una produzione di 116 commit
+  # prima, senza che nessun deploy fosse avvenuto). Riparare lo script e lasciare
+  # il chiamante com'era significa non aver riparato niente per chi lo usa.
+  #
+  # Ora il default e' «verifica che la produzione serva LA MIA HEAD». Chi vuole il
+  # vecchio comportamento — sola raggiungibilita' — deve chiederlo per nome con
+  # `ARDESIA_STUDIO_SMOKE_EXPECT_SHA=any`, che e' esplicito e resta nella storia
+  # della shell invece di essere un'omissione silenziosa.
+  if [ "${ARDESIA_STUDIO_SMOKE_EXPECT_SHA-}" = "any" ]; then
+    echo "-- identita' del build NON verificata (richiesto esplicitamente: EXPECT_SHA=any)"
+    ARDESIA_STUDIO_SMOKE_EXPECT_SHA="" node apps/studio/scripts/productionSmoke.mjs
+    return $?
+  fi
+
+  if [ -z "${ARDESIA_STUDIO_SMOKE_EXPECT_SHA-}" ]; then
+    if ! ARDESIA_STUDIO_SMOKE_EXPECT_SHA="$(git -C "$ROOT" rev-parse HEAD 2>/dev/null)"; then
+      echo "smoke: git rev-parse HEAD fallito e nessuna ARDESIA_STUDIO_SMOKE_EXPECT_SHA fornita." >&2
+      echo "       Non eseguo uno smoke che non puo' fallire: passa la SHA attesa, oppure" >&2
+      echo "       chiedi esplicitamente ARDESIA_STUDIO_SMOKE_EXPECT_SHA=any." >&2
+      return 65
+    fi
+    echo "-- SHA attesa (default: HEAD) = $ARDESIA_STUDIO_SMOKE_EXPECT_SHA"
+  else
+    echo "-- SHA attesa (fornita) = $ARDESIA_STUDIO_SMOKE_EXPECT_SHA"
+  fi
+
+  ARDESIA_STUDIO_SMOKE_EXPECT_SHA="$ARDESIA_STUDIO_SMOKE_EXPECT_SHA" \
+    node apps/studio/scripts/productionSmoke.mjs
 }
 
 smoke_studio_production_scenario() {
