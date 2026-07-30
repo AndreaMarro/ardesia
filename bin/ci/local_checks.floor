@@ -27,4 +27,9 @@
 # alzato 2026-07-30T09:55+02:00: +3 test dai due finding avversariali su #227
 # (la SHA SERVITA va validata, e il confronto e' a senso unico).
 #   esito grezzo: "Tests  2106 passed | 5 skipped"   exit=0
-studio_tests_min=2106
+# alzato 2026-07-30T20:15+02:00 su 1d9e0a94 + il ramo F3-2: +7 test, la nav di
+# Continuita' asserita in OGNI ramo (cinque di errore, la lista sessioni e lo
+# snapshot). Era l'unica superficie della shell senza ViewNav, e il difetto era
+# invisibile perche' una sonda e2e scaduta faceva da tappo prima di arrivarci.
+#   esito grezzo: "Tests  2113 passed | 5 skipped (2118)"   exit=0   138.13s
+studio_tests_min=2113

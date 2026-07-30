@@ -6,12 +6,21 @@
 // snapshot, `ContinuityResumeCard` per il rendering. Qui c'e' solo il
 // cablaggio.
 //
+// La nav sta in OGNI ramo, compresi quelli di errore. Misurato il 2026-07-30:
+// questa era l'unica superficie della shell senza `ViewNav` — Room, ElabLab,
+// SavedLessonsView, TeacherDashboardView e SimulationPluginWorkbench lo
+// rendono tutte. Il GOAL chiede che il docente ritrovi la lezione in
+// Continuita' e la esporti in Materiali: senza nav quel passo non esiste, e i
+// rami in cui serve di piu' sono proprio quelli in cui qualcosa e' andato
+// storto.
+//
 // Regola che governa il file: stati diversi devono APPARIRE diversi. Nessuna
 // sessione, storage non raggiungibile e lettura fallita sono tre cose distinte,
 // e collassarle in un'unica schermata vuota e' il modo piu' rapido per far
 // credere a un docente di aver perso una lezione che invece c'e'.
 
 import { useEffect, useState } from "react"
+import ViewNav from "./ViewNav"
 import ContinuityResumeCard, {
   type ContinuityResumeCardStateV1,
 } from "./ContinuityResumeCard"
@@ -38,6 +47,14 @@ declare const __ARDESIA_GIT_SHA__: string
 export interface ContinuityViewDeps {
   openEventLog?: () => Promise<IndexedDbEventLogHandle>
   loadSnapshot?: typeof loadScopedContinuitySnapshot
+  /**
+   * Cucitura per l'enumerazione. Coerente con la regola dichiarata in cima al
+   * file — «qui c'e' solo il cablaggio» — e serve a un test che deve poter
+   * STABILIRE ogni ramo invece di sperare di raggiungerlo: i rami di errore
+   * sono quelli in cui un docente ha piu' bisogno della nav, e sono anche
+   * quelli che un test scritto sul caso buono non tocca mai.
+   */
+  readSessions?: typeof readResumableSessions
 }
 
 /** `sessione` nell'URL: quale sessione si sta chiedendo di riaprire. */
@@ -65,6 +82,7 @@ type ViewState =
 function SurfaceMessage(props: { state: string; title: string; detail: string }) {
   return (
     <section data-testid="continuity-surface" data-state={props.state} className="st-panel">
+      <ViewNav current="continuita" />
       <h1>{props.title}</h1>
       <p>{props.detail}</p>
     </section>
@@ -106,7 +124,8 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
       }
 
       // Ramo elenco: quale sessione riprendere non e' ancora stato scelto.
-      const surface = await readResumableSessions(
+      const leggi = deps?.readSessions ?? readResumableSessions
+      const surface = await leggi(
         lessonId,
         deps?.openEventLog ?? (() => openIndexedDbEventLog({})),
       )
@@ -119,7 +138,17 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
     }
   }, [deps])
 
-  if (state.phase === "snapshot") return <ContinuityResumeCard state={state.card} />
+  // La nav sta QUI e non dentro `ContinuityResumeCard`: la card ha sei rami di
+  // ritorno, e metterla in ognuno significherebbe sei punti da cui puo' sparire.
+  // Cosi' resta un punto solo, e la card resta puramente presentazionale.
+  if (state.phase === "snapshot") {
+    return (
+      <>
+        <ViewNav current="continuita" />
+        <ContinuityResumeCard state={state.card} />
+      </>
+    )
+  }
 
   const surface = state.surface
   if (surface === null) {
@@ -164,6 +193,7 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
     case "sessions":
       return (
         <section data-testid="continuity-surface" data-state="sessions" className="st-panel">
+          <ViewNav current="continuita" />
           <h1>Riprendi una sessione</h1>
           <p>Lezione {surface.lessonId}</p>
           {/*

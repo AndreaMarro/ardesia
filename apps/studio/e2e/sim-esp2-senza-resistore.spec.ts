@@ -51,33 +51,21 @@ test("ELAB Lab esp2: solve onesto BRUCIATO, whitelist nel picker, console pulita
   expect(consoleErrors).toEqual([])
 })
 
-test("lavagna: post-it esp2 dalla toolbar — scena SVG col LED bruciato, banner catalogo", async ({
-  page,
-}) => {
-  const consoleErrors = await collectConsoleErrors(page)
-
-  await page.goto("/")
-  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
-
-  await page
-    .getByRole("button", { name: "Inserisci esperimento LED senza resistore sulla lavagna" })
-    .click()
-
-  // Gotcha Excalidraw: attendere l'ELEMENTO, mai lo stato.
-  const stage = page.locator('[data-experiment-id="v1-cap6-esp2"]')
-  await expect(stage).toBeVisible({ timeout: 15_000 })
-
-  // Verdetto onesto nel post-it: LED bruciato, metriche senza finto "acceso".
-  await expect(page.locator('[aria-label*="bruciato per sovracorrente"]')).toBeVisible()
-  await expect(page.getByText("SENZA RESISTORE: sovracorrente (Vol.1 p.32)")).toBeVisible()
-  const banner = page.locator("[data-elab-catalog-summary]")
-  await expect(banner).toHaveAttribute("data-elab-catalog-summary", "4/88")
-
-  // Evidenza visiva desktop + mobile.
-  await page.screenshot({ path: "test-results/esp2-postit-desktop.png", fullPage: false })
-  await page.setViewportSize({ width: 390, height: 844 })
-  await expect(stage).toBeVisible()
-  await page.screenshot({ path: "test-results/esp2-postit-mobile.png", fullPage: false })
-
-  expect(consoleErrors).toEqual([])
-})
+// IL SECONDO TEST DI QUESTO FILE E' STATO RIMOSSO (2026-07-30).
+//
+// Asseriva che l'esperimento comparisse come post-it SULLA LAVAGNA cliccando il
+// bottone di toolbar "Inserisci esperimento LED senza resistore sulla lavagna".
+// Quel bottone e' stato ritirato APPOSTA dal commit e7ebc42f del 2026-07-20
+// ("constrain founder beta lesson surface"), che ha sostituito i bottoni
+// per-esperimento con l'allowlist chiusa della Founder Beta — e nello stesso
+// commit ha aggiornato `product-flow-shell.spec.ts`, che oggi asserisce
+// l'ASSENZA di "sim esp2/esp3/esp6" dalle azioni di lezione.
+//
+// Le due asserzioni erano quindi CONTRADDITTORIE: una pretendeva il bottone,
+// l'altra ne pretendeva l'assenza. Tenere entrambe significa una suite che non
+// puo' diventare verde per costruzione.
+//
+// La garanzia sul rendering di esp2 NON e' andata persa: il test qui sopra la
+// copre sulla rotta ELAB Lab, che e' quella superstite, e lo fa in modo piu'
+// forte (verdetto BRUCIATO dal solve reale, whitelist del picker, citazione
+// Vol.1 p.32).

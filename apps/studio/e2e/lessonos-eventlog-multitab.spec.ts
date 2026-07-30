@@ -78,7 +78,9 @@ test("due tab appendono 100 eventi exactly-once, contigui e durevoli al cold reo
       t: event.t,
     }))
     const physicalKeys = await new Promise<number[]>((resolve, reject) => {
-      const open = indexedDB.open(databaseName, 1)
+      // Stessa ragione della spec del cruscotto: l'adapter ha gia' aperto a
+      // DB_VERSION = 2, e chiedere la 1 qui e' un VersionError garantito.
+      const open = indexedDB.open(databaseName)
       open.onerror = () => reject(open.error)
       open.onsuccess = () => {
         const db = open.result
