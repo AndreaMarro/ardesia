@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "deployed_at": "2026-07-30T17:20:00Z",
+  "timezone": "Europe/Rome",
+  "commit_sha": "dbc8ad9a84220468d9fdcd1ee5256b434d74c6e3",
+  "project": "ardesia-lavagna",
+  "project_id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+  "scope": "andreas-projects-6d4e9791",
+  "alias": "https://ardesia-lavagna.vercel.app",
+  "method": "vercel build --prod --yes && vercel deploy --prebuilt --prod",
+  "_perche_questa_ricevuta_mancava": "Il deploy di dbc8ad9a e' avvenuto e lo smoke l'ha verificato, ma la ricevuta non era stata scritta. Il buco l'ha trovato `collect_deploy` stesso, riportando `pari a main: NO` mentre la produzione era allineata: la misura ha segnalato l'assenza della prova, non l'assenza del fatto. E' il comportamento voluto.",
+  "smoke": {
+    "comando": "npm run smoke:studio:production",
+    "exit": 0,
+    "expected_commit_sha": "dbc8ad9a84220468d9fdcd1ee5256b434d74c6e3",
+    "served_commit_sha": "dbc8ad9a84220468d9fdcd1ee5256b434d74c6e3"
+  },
+  "rollback": {
+    "comando": "npx vercel rollback https://ardesia-lavagna-bqchoflqd-andreas-projects-6d4e9791.vercel.app --scope andreas-projects-6d4e9791",
+    "target_precedente_sha": "852201a275defc65ea1a539ce31d013866db3845",
+    "_avvertenza": "Il rollback ripristina il CODICE, non i DATI."
+  },
+  "non_stabilito": [
+    "La suite e2e completa e' a 24/31: questo deploy pubblica un albero i cui test end-to-end non sono tutti verdi.",
+    "Il golden path non gira contro la produzione: dipende da window.__MAESTRO_TEST__, esposto solo sotto import.meta.env.DEV.",
+    "Il rollback resta documentato e mai eseguito."
+  ]
+}

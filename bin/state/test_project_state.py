@@ -8,9 +8,11 @@ verificata da `project_state.py --verify`, non qui.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -336,6 +338,53 @@ def test_deploy_ricevuta_storica_e_allineamento_ricalcolato() -> None:
         check_true("motivo dichiarato", "radice list" in out4.get("reason", ""))
 
 
+def test_deploy_i_due_finding_avversariali_del_2026_07_30() -> None:
+    """Entrambi riprodotti prima di essere accettati, entrambi meccanici."""
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        for cmd in (["git", "init", "-q"],
+                    ["git", "-c", "user.email=a@b", "-c", "user.name=a",
+                     "commit", "-q", "--allow-empty", "-m", "x"]):
+            subprocess.run(cmd, cwd=root, capture_output=True)
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                             capture_output=True, text=True).stdout.strip()
+        subprocess.run(["git", "update-ref", "refs/remotes/origin/main", sha],
+                       cwd=root, capture_output=True)
+        dep = root / "docs/ops/deploys"
+        dep.mkdir(parents=True)
+
+        # --- FINDING 2: ricevuta senza `commit_sha` --------------------------
+        # Prima usciva MEASURED con `matches_main: false` e nessun motivo:
+        # «non allineato» e «non so a cosa» sono cose diverse.
+        (dep / "2026-07-30T00-00Z-senza-sha.json").write_text(
+            '{"deployed_at": "2026-07-30T00:00:00Z"}')
+        out = ps.collect_deploy(root)
+        check("senza commit_sha", out["status"], "UNAVAILABLE")
+        check_true("motivo dichiarato", "senza `commit_sha`" in out.get("reason", ""))
+
+        # --- FINDING 1: ref di tracking STANTIO ------------------------------
+        # `origin/main` e' un ref LOCALE: senza fetch recente descrive il remoto
+        # di quando lo si e' guardato l'ultima volta. Il renderer scrive «pari a
+        # main», quindi un ref stantio produrrebbe un `true` che risponde a
+        # un'altra domanda.
+        (dep / "2026-07-31T00-00Z-con-sha.json").write_text(
+            json.dumps({"commit_sha": sha}))
+        fresco = ps.collect_deploy(root)
+        check_true("ref fresco: allineamento dichiarabile", fresco["matches_main"] is True)
+
+        vecchio = time.time() - 3 * 3600
+        for rel in ("refs/remotes/origin/main", "FETCH_HEAD", "packed-refs"):
+            f = root / ".git" / rel
+            if f.exists():
+                os.utime(f, (vecchio, vecchio))
+        stantio = ps.collect_deploy(root)
+        check_true("ref stantio: NON si dichiara allineato",
+                   stantio["matches_main"] is None)
+        motivo = stantio.get("unmeasured", {}).get("matches_main", "")
+        check_true(f"motivo dichiarato (ottenuto {motivo[:60]!r})",
+                   "non aggiornato da" in motivo)
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -350,6 +399,7 @@ def main() -> int:
         test_finding2_in_ci_non_scatta_su_un_commento,
         test_finding3_repo_dichiara_i_campi_non_misurati,
         test_deploy_ricevuta_storica_e_allineamento_ricalcolato,
+        test_deploy_i_due_finding_avversariali_del_2026_07_30,
     )
     for fn in tests:
         try:

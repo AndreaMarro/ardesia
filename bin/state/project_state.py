@@ -36,6 +36,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -526,6 +527,53 @@ def collect_e2e(root: Path) -> dict:
 
 DEPLOY_RECEIPTS = "docs/ops/deploys"
 
+#: Oltre questa eta', il ref di tracking `origin/main` non e' una misura del
+#: remoto: e' una fotografia di quando lo si e' guardato l'ultima volta.
+FRESCHEZZA_REF_MAX_S = 600
+
+
+def _eta_ref_origin_main(root: Path) -> float | None:
+    """Secondi da quando `origin/main` e' stato aggiornato l'ultima volta.
+
+    Guarda, in ordine: il ref sciolto, `FETCH_HEAD`, il `packed-refs`. `None`
+    quando nessuno dei tre e' leggibile — e in quel caso l'allineamento NON va
+    dichiarato, perche' non se ne conosce la freschezza.
+    """
+    basi: list[Path] = []
+    rc_g, gitdir = _run(["git", "rev-parse", "--absolute-git-dir"], root)
+    if rc_g == 0 and gitdir.strip():
+        basi.append(Path(gitdir.strip()))
+    rc_c, common = _run(["git", "rev-parse", "--path-format=absolute", "--git-common-dir"], root)
+    if rc_c == 0 and common.strip():
+        basi.append(Path(common.strip()))
+    if not basi:
+        return None
+
+    # Due cose misurate sul repo reale, ed entrambe rendevano cieca la prima
+    # versione di questa funzione:
+    #
+    # 1. In un worktree, `FETCH_HEAD` sta nel gitdir DEL WORKTREE
+    #    (`.git/worktrees/<nome>/FETCH_HEAD`, 26 s dopo un fetch), mentre i ref
+    #    remoti stanno nel repo comune. Guardare solo il comune leggeva un
+    #    `FETCH_HEAD` di 38786 s e dichiarava stantio un fetch appena fatto.
+    # 2. Il mtime di `refs/remotes/origin/main` cambia solo quando il ref SI
+    #    MUOVE: se `main` non e' avanzato, resta vecchio anche dopo un fetch
+    #    riuscito. Non e' una misura di freschezza del contatto col remoto.
+    #
+    # Quindi: si prende l'evidenza PIU' RECENTE di contatto col remoto fra
+    # tutti i candidati, e `FETCH_HEAD` e' quello che conta davvero.
+    candidati = [b / rel for b in basi
+                 for rel in ("FETCH_HEAD", "refs/remotes/origin/main", "packed-refs")]
+    eta: float | None = None
+    for c in candidati:
+        try:
+            m = c.stat().st_mtime
+        except OSError:
+            continue
+        e = max(0.0, time.time() - m)
+        eta = e if eta is None else min(eta, e)
+    return eta
+
 
 def collect_deploy(root: Path) -> dict:
     """L'ultimo deploy, dalla sua ricevuta COMMITTATA.
@@ -568,14 +616,38 @@ def collect_deploy(root: Path) -> dict:
                 "reason": (f"ricevuta con radice {type(data).__name__}, atteso un oggetto "
                            f"({ultima.name})"),
                 "source": str(ultima.relative_to(root))}
-    sha = str(data.get("commit_sha", ""))
+    sha = str(data.get("commit_sha", "")).strip()
+    if not sha:
+        # Una ricevuta senza SHA non identifica alcun deploy. Prima usciva
+        # MEASURED con `matches_main: false` e nessun motivo: falso, perche'
+        # «non allineato» e «non so a cosa» sono cose diverse.
+        return {**data, "status": "UNAVAILABLE",
+                "reason": f"ricevuta senza `commit_sha` ({ultima.name}): non identifica alcun deploy",
+                "source": str(ultima.relative_to(root)),
+                "receipts_count": len(ricevute)}
+
     rc, main = _run(["git", "rev-parse", "origin/main"], root)
+    motivo = None
     if rc != 0:
         allineato = None
         motivo = f"git rev-parse origin/main exit {rc}"
     else:
-        allineato = sha == main.strip()
-        motivo = None
+        # `origin/main` e' un ref LOCALE di tracking: senza un fetch recente
+        # descrive il remoto di quando lo si e' guardato l'ultima volta, non
+        # adesso. Il renderer scrive «pari a `main`», quindi un ref stantio
+        # produrrebbe un `true` che risponde a un'altra domanda — la classe di
+        # difetto piu' ricorrente di questo progetto.
+        eta = _eta_ref_origin_main(root)
+        if eta is None:
+            allineato = None
+            motivo = "eta' del ref `origin/main` non misurabile: allineamento non dichiarabile"
+        elif eta > FRESCHEZZA_REF_MAX_S:
+            allineato = None
+            motivo = (f"ref locale `origin/main` non aggiornato da {int(eta // 60)} min "
+                      f"(soglia {FRESCHEZZA_REF_MAX_S // 60} min): confronto non affidabile, "
+                      f"esegui `git fetch origin`")
+        else:
+            allineato = sha == main.strip()
     # I metadati del COLLETTORE vanno DOPO lo spread, non prima.
     # Con `{**meta, **data}` una ricevuta poteva sovrascrivere `status`,
     # `source` e `receipts_count`, cioe' i campi che descrivono la MISURA e non
