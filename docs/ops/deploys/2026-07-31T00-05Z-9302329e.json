@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "deployed_at": "2026-07-31T00:05:00Z",
+  "timezone": "Europe/Rome",
+  "commit_sha": "9302329eb7e23d90479d00d20b517280fb440812",
+  "project": "ardesia-lavagna",
+  "project_id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+  "scope": "andreas-projects-6d4e9791",
+  "alias": "https://ardesia-lavagna.vercel.app",
+  "deployment_id": "dpl_CZeBpwAQ462HqQ59W474W5r8SMmG",
+  "deployment_url": "https://ardesia-lavagna-ksm4an66r-andreas-projects-6d4e9791.vercel.app",
+  "method": "vercel build --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup && vercel deploy --prebuilt --prod --yes --scope team_23uD0RgdInaTaOPEL0EGltup",
+  "_perche_lo_scope_e_esplicito": "`/Users/andreamarro/VOLUME 3/.vercel/project.json` punta a `elab-tutor` (elabtutor.school). Un `vercel --prod` lanciato da li' pubblicherebbe 77 worktree di un repo privato piu' un `.mcp.json`. Il deploy parte SOLO dalla worktree, che prima non aveva `.vercel`, e con scope e project id espliciti. `.vercel` e' gitignorato.",
+  "cosa_cambia_per_un_docente": {
+    "_perche_questo_campo_esiste": "E' la regola che definisce il prompt v5: un ciclo e' chiuso solo se un docente, aprendo la produzione, vede o puo' fare qualcosa che prima non poteva. `prod_scarto` a 0 e' una identita' di SHA, non un cambiamento percepibile: il deploy precedente era a scarto 0 e conteneva UN file di prodotto.",
+    "rotta": "https://ardesia-lavagna.vercel.app/?vista=elab-lab&esperimento=v1-cap9-esp6",
+    "prima_sha_servita": "d050375015496a8a78493125f494557f43989f55",
+    "prima": "pallino di stato grigio · «LED: spento» · «Corrente LED (mA): —» · nessun canale RGB nel DOM",
+    "dopo": "pallino di stato VERDE · «LED: acceso» · «Canali RGB: R 5.7 mA · G 4.9 mA · B 3.2 mA»",
+    "misurato_da": "sonda playwright sulla produzione VIVA, stesso viewport 1280x720, prima e dopo il deploy; i valori sono letti dal DOM, non dallo screenshot",
+    "delta_visibile_righe": 73,
+    "quota_test": 0.412
+  },
+  "precondizioni": {
+    "pr": 235,
+    "merge_commit": "9302329eb7e23d90479d00d20b517280fb440812",
+    "check_richiesti_sulla_pr": "studio 4m0s pass · engine 49s pass · hygiene 35s pass",
+    "ci_di_main_DOPO_il_merge": "run 30584122930 conclusion=success su 9302329e, verificata e non dedotta",
+    "local_checks": "READY_FOR_REVIEW, exit 0, 2118 test >= pavimento 2115",
+    "revisione": "due lenti, 2 finding distinti, sovrapposizione 0 su 2. Entrambi CONFERMATI sul codice reale e riparati nello stesso ciclo; nessun finding confermato e aperto al momento del merge"
+  },
+  "smoke": {
+    "comando": "ARDESIA_STUDIO_SMOKE_EXPECT_SHA=9302329eb7e23d90479d00d20b517280fb440812 npm run smoke:studio:production",
+    "exit": 0,
+    "expected_commit_sha": "9302329eb7e23d90479d00d20b517280fb440812",
+    "served_commit_sha": "9302329eb7e23d90479d00d20b517280fb440812",
+    "http_status": 200,
+    "title": "Ardesia · studio",
+    "console_errors": 0,
+    "page_errors": 0,
+    "failed_requests": 0,
+    "bad_responses": 0
+  },
+  "control_run_dello_smoke": {
+    "_perche": "Un gate che non puo' fallire non e' un gate. La direzione che conta e' quella negativa.",
+    "comando": "ARDESIA_STUDIO_SMOKE_EXPECT_SHA=0000000000000000000000000000000000000000 npm run smoke:studio:production",
+    "exit": 1,
+    "messaggio": "production smoke failed: SHA servita 9302329eb7e23d90479d00d20b517280fb440812 != SHA attesa 0000000000000000000000000000000000000000"
+  },
+  "control_run_del_codice": [
+    "fondo scala RGB 30 -> 20 mA: arrossa ELAB Lab E il post-it del canvas con lo STESSO valore sbagliato (R 3.8 mA) — prova che la proiezione e' una porta sola",
+    "la stessa mutazione, PRIMA di rinforzare ToolCanvasEsp6, lasciava quel test verde: asseriva /\\d+\\.\\d mA/, cioe' qualunque numero. Difetto trovato dal control run, non dal ragionamento",
+    "ritorno a `led1` costante: arrossa esattamente il test nuovo, e solo quello",
+    "guardia sullo stato assente disattivata: arrossa il test del finding B1, e solo quello",
+    "lights.slice(0, 1): arrossa il test del finding A1, e solo quello"
+  ],
+  "prod_scarto": {
+    "prima": 2,
+    "dopo": 0,
+    "prod_scarto_visibile_prima": 0,
+    "_perche_due_metriche": "I 2 commit di scarto prima di questo ciclo erano il merge e la ricevuta del deploy precedente: `prod_scarto` grezzo li conta, `prod_scarto_visibile` no, perche' una ricevuta non e' una superficie. La seconda e' la metrica che il v4 non aveva e per cui ha lavorato 20 giorni senza cambiamento percepibile.",
+    "misura_dopo": "bin/state/project_state.py: served=9302329e letto da https://ardesia-lavagna.vercel.app/assets/index-Bn1uLRdT.js · prod_scarto commits=0 · pari a main in produzione: si"
+  },
+  "rollback": {
+    "comando": "npx vercel rollback https://ardesia-lavagna-jxgqkx2sh-andreas-projects-6d4e9791.vercel.app --scope andreas-projects-6d4e9791",
+    "target_precedente_sha": "d050375015496a8a78493125f494557f43989f55",
+    "target_precedente_deployment": "dpl_C5MfYP7zLHBNp6uKJjjYzTvv9sTs",
+    "_avvertenza": "Il rollback ripristina il CODICE, non i DATI.",
+    "_stato": "documentato e NON eseguito"
+  },
+  "non_stabilito": [
+    "Questo deploy e' stato fatto da un agente a mano: NON e' la conseguenza automatica del merge. F3-4 resta bloccata su un gesto umano — concedere alla GitHub App di Vercel l'accesso a AndreaMarro/ardesia su https://github.com/settings/installations/96001411. L'installazione e' `isAccessRestricted: true` e vede solo `elab-tutor`.",
+    "La lampada RGB e' misurata ACCESA nel DOM e negli screenshot. NON e' stato verificato che il LED RGB appaia illuminato nel DISEGNO del canvas su questa rotta: la sonda legge il pannello, non i colori dell'SVG.",
+    "Sulla stessa rotta, molti `rect` dell'SVG hanno `fill` computato `rgb(0,0,0)` — il default SVG quando il fill non e' dichiarato, non un colore scelto: breadboard e batteria appaiono come blocchi neri. Osservato negli screenshot di QUESTO ciclo e registrato come unita' nuova; non toccato qui (una unita' in volo).",
+    "I 14 esperimenti multi-luce sono stati misurati col solve, ma la nuova resa a piu' righe e' stata vista renderizzata SOLO su v2-cap6-esp1 in jsdom, mai in un browser reale.",
+    "Lo smoke prova 200, identita' e assenza di errori. NON prova che una lezione si apra, si chiuda e si ritrovi.",
+    "Il rollback resta documentato e mai eseguito.",
+    "Nessuna verifica con un docente reale: `delta_visibile` misura il CODICE e il DOM, non la comprensione."
+  ]
+}
