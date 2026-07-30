@@ -14,17 +14,27 @@ import { createRoot } from 'react-dom/client';
 // definisce lungo QUESTO percorso di mount. Nell'app elab-tutor il foglio
 // arriva dall'entry, e li' il difetto non si vede — per questo e' sopravvissuto.
 //
-// Portata verificata prima di importarlo: 965 righe, 748 variabili, 20 regole
-// non-`:root` tutte class-scoped (`.elab-simulator`, `.u-*`, `.sr-only`,
-// `.skip-to-content`) — nessun selettore su `body` o `*`. I due nomi in comune
-// con lo studio (`--color-primary`, `--color-primary-light`) NON collidono: lo
-// studio non li dichiara a `:root`, li dichiara dentro `.excalidraw`, e una
-// custom property si eredita dall'antenato piu' vicino.
+// SI IMPORTANO I TOKEN, NON IL DESIGN SYSTEM. La prima riparazione importava
+// `design-system.css` intero, e il revisore avversariale l'ha smontata con una
+// sonda A/B: quel foglio contiene DUE regole davvero globali —
+// `:focus-visible` e `:focus:not(:focus-visible)` — che colpivano la shell
+// dello studio. Il link «Continuita'» prendeva outline navy ELAB
+// rgb(30, 77, 140) e la shadow ELAB, su una rotta dove il canvas non viene
+// montato affatto: `ElabLab` importa questo modulo staticamente, quindi il CSS
+// arriva anche quando l'esperimento non esiste.
+//
+// La mia misura di portata aveva un buco: cercavo i selettori globali con
+// `^(body|html|\*|:root)` e `^[a-zA-Z.#\[]`, e una regola che comincia con
+// `:focus-visible` non e' matchata da NESSUNO dei due.
+//
+// `design-tokens.css` e' il blocco `:root` SPOSTATO fuori (732 token, nessuna
+// copia): `design-system.css` lo reimporta come prima riga, quindi l'app
+// elab-tutor non cambia, e qui entrano token e ZERO regole.
 //
 // Il gate e' `apps/studio/e2e/elab-lab-canvas-colors.spec.ts`, e2e e non unit
 // perche' jsdom non applica i fogli importati dai moduli: li' un test su questo
 // difetto sarebbe verde per costruzione.
-import '../styles/design-system.css';
+import '../styles/design-tokens.css';
 import SimulatorCanvas from '../components/simulator/canvas/SimulatorCanvas';
 
 export const pluginManifest = Object.freeze({
