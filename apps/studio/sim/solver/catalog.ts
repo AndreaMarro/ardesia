@@ -118,6 +118,59 @@ export function registerElectricalCatalog(): void {
     label: "Potenziometro",
   })
 
+  // ── F5-8 (2026-07-31): i tipi di v2-cap7-esp1 e v2-cap7-esp2 ────────────
+  // Stessa forma di NOTTE-13: il motore vendored li supporta GIA'
+  // (`_solveCapacitor`, `_solveMultimeter`, i case `push-button` in
+  // `_getMNAResistance` e nel dispatch), ed era QUESTO catalogo a negarli.
+  // Finche' erano negati, due degli otto esperimenti che un docente puo'
+  // aprire mostravano «solve fallito: tipo componente non catalogato» sotto un
+  // disegno completo e corretto.
+  //
+  // Pin e defaultState estratti firsthand da Capacitor.jsx:155-166,
+  // PushButton.jsx:91-101 e Multimeter.jsx:180-191 del plugin — gli stessi
+  // file che chiamano `registerComponent` per l'app standalone. Restano una
+  // ri-dichiarazione: e' il prezzo del deny-by-default dell'host, ed e'
+  // sostenibile SOLO finche' i pin sono liste letterali corte.
+  //
+  // ⚠️ Per `nano-r4` NON lo e': i suoi ~40 pin sono CALCOLATI
+  // (allTopPins/allBottomPins/allWingPins piu' l'aliasing `mapsTo` delle ali,
+  // NanoR4Board.jsx:921-933). Ricopiarli qui sarebbe la duplicazione che il
+  // flywheel esiste per togliere, e la riparazione giusta e' far LEGGERE
+  // all'host le registrazioni del plugin invece di riscriverle. Unita' a se',
+  // e `ElabVisibleExperimentsSolve.test.ts` la tiene visibile con un assert
+  // invertito invece di lasciarla implicita.
+  registerComponent("capacitor", {
+    pins: [
+      { id: "positive", label: "+ (Positive)", type: "passive" },
+      { id: "negative", label: "− (Negative)", type: "passive" },
+    ],
+    defaultState: { charge: 0, voltage: 0, current: 0 },
+    category: "passive",
+    label: "Condensatore",
+  })
+
+  registerComponent("push-button", {
+    pins: [
+      { id: "pin1", label: "Pin 1", type: "digital" },
+      { id: "pin2", label: "Pin 2", type: "digital" },
+      { id: "pin3", label: "Pin 3", type: "digital" },
+      { id: "pin4", label: "Pin 4", type: "digital" },
+    ],
+    defaultState: { pressed: false },
+    category: "input",
+    label: "Pulsante",
+  })
+
+  registerComponent("multimeter", {
+    pins: [
+      { id: "probe-negative", label: "COM (−)", type: "passive" },
+      { id: "probe-positive", label: "V/Ω (+)", type: "passive" },
+    ],
+    defaultState: { reading: 0, mode: "voltage" },
+    category: "passive",
+    label: "Multimetro",
+  })
+
   registerComponent("rgb-led", {
     pins: [
       { id: "red", label: "R (Red)", type: "digital" },
