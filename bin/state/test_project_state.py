@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -385,6 +386,341 @@ def test_deploy_i_due_finding_avversariali_del_2026_07_30() -> None:
                    "non aggiornato da" in motivo)
 
 
+# --- F3-4: la produzione va INTERROGATA, non dedotta da una ricevuta ----
+# Misurato il 2026-07-30T20:5x+02:00, a mano: la ricevuta piu' recente diceva
+# `dbc8ad9a` (PR #229, 17:21) e `https://ardesia-lavagna.vercel.app` serviva
+# `eff62705` (PR #230, 17:51). `collect_deploy` non contatta la produzione:
+# gliela racconta un file, e quel file era indietro di un deploy.
+#
+# Questo verso dello sbaglio e' innocuo e persino voluto (assenza di PROVA).
+# Il verso che fa danno e' il simmetrico: una ricevuta PARI a `main` mentre la
+# produzione e' indietro — un deploy fallito dopo la ricevuta, o un rollback.
+# Allora si stampa «pari a main: SI» e Andrea non ha niente da aprire.
+
+
+def test_sha_servita_e_ancorata_al_marcatore_di_provenienza() -> None:
+    """Forma REALE del bundle di produzione, copiata il 2026-07-30."""
+    bundle = ("var ye=`__ARDESIA_BUILD__`;function be(){try{return"
+              "`eff62705dd239f08f3272d2b90f046a62957bd3f`}catch{return null}}")
+    check("sha servita", ps.estrai_sha_servita(bundle),
+          "eff62705dd239f08f3272d2b90f046a62957bd3f")
+
+
+def test_un_esadecimale_qualunque_non_e_una_sha_servita() -> None:
+    """CoV #2: cosa mostrerebbe la misura se l'affermazione fosse falsa?
+
+    Un `[0-9a-f]{40}` non ancorato accetta un hash di integrita' o una
+    fixture: riporterebbe una SHA con la stessa faccia di quella vera. Il
+    marcatore `__ARDESIA_BUILD__` e' cio' che `vite.config.ts` compila
+    ACCANTO alla SHA, ed e' l'unica ancora che distingue le due.
+    """
+    check("nessun marcatore",
+          ps.estrai_sha_servita('const sri="da39a3ee5e6b4b0d3255bfef95601890afd80709"'),
+          None)
+
+
+def test_sha_lontana_dal_marcatore_non_viene_raccolta() -> None:
+    """Il riempimento va SEPARATO dalla SHA, o il test passa per il motivo sbagliato.
+
+    Prima versione: `("x" * 4000) + sha`. Passava, ma non per la finestra —
+    `_SHA40_RE` chiede `\\b` e fra una `x` e una `d` non c'e' alcun confine di
+    parola, quindi non matchava mai. Il control run l'ha smascherata: con la
+    regex NON ancorata questo test restava verde. Un criterio che resta verde
+    quando la cosa che asserisce si rompe non e' un criterio.
+    """
+    lontano = "`" + ps.MARCATORE_BUILD + "`;" + ("x" * 4000) + ";da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    check("precondizione: la SHA lontana e' RAGGIUNGIBILE dalla regex",
+          bool(ps._SHA40_RE.search(lontano)), True)
+    check("fuori finestra", ps.estrai_sha_servita(lontano), None)
+
+
+def _marcato(sha: str) -> str:
+    return "var ye=`" + ps.MARCATORE_BUILD + "`;return`" + sha + "`"
+
+
+def test_produzione_irraggiungibile_e_UNAVAILABLE_non_falso_verde() -> None:
+    def fetch_rotto(_url: str):
+        raise OSError("getaddrinfo failed")
+
+    got = ps.collect_served("https://esempio.invalid", fetch_rotto)
+    check("status", got["status"], "UNAVAILABLE")
+    check_true("motivo scritto", bool(got.get("reason")))
+    check_true("nessuna sha inventata", got.get("served_commit_sha") is None)
+
+
+def test_produzione_raggiungibile_dichiara_la_sha_e_la_sua_fonte() -> None:
+    pagina = '<script type="module" src="/assets/index-nzwOe0RD.js"></script>'
+
+    def fetch(url: str):
+        return (_marcato("e" * 40), url) if url.endswith(".js") else (pagina, url)
+
+    got = ps.collect_served("https://ardesia-lavagna.vercel.app", fetch)
+    check("status", got["status"], "MEASURED")
+    check("sha", got["served_commit_sha"], "e" * 40)
+    check_true("dichiara da quale asset", "index-nzwOe0RD.js" in str(got.get("source")))
+
+
+def test_pagina_servita_senza_marcatore_non_e_un_verde() -> None:
+    """Un 200 non e' una misura: la pagina puo' essere un vecchio build."""
+    def fetch(url: str):
+        return ("var a=1", url) if url.endswith(".js") else ("<script src=/assets/v.js></script>", url)
+
+    got = ps.collect_served("https://ardesia-lavagna.vercel.app", fetch)
+    check("status", got["status"], "UNAVAILABLE")
+    check_true("nessuna sha inventata", got.get("served_commit_sha") is None)
+
+
+# --- riparazione della revisione avversariale su #233 -------------------
+# LENTE A, quattro finding CONFERMATI e riprodotti dal revisore. Tutti e
+# quattro erano la stessa forma: la misura pubblica un valore che SEMBRA la
+# risposta giusta e non permette al chiamante di accorgersi che il referente
+# era un altro.
+
+
+def test_A1_asset_divergenti_non_pubblicano() -> None:
+    """Fermarsi al PRIMO asset marcato rende la divergenza invisibile.
+
+    `estrai_sha_servita` gia' rifiutava due marcatori discordi nello STESSO
+    file; fra file diversi no, e l'esito dipendeva dall'ordine nell'HTML.
+    """
+    pagina = '<script src="/assets/a.js"></script><script src="/assets/b.js"></script>'
+
+    def fetch(url: str):
+        if url.endswith("a.js"):
+            return (_marcato("a" * 40), url)
+        if url.endswith("b.js"):
+            return (_marcato("b" * 40), url)
+        return (pagina, url)
+
+    got = ps.collect_served("https://x.test", fetch)
+    check("divergenza fra asset: non si pubblica", got["status"], "UNAVAILABLE")
+    check_true("nessuna sha scelta a caso", got.get("served_commit_sha") is None)
+    check_true(f"il motivo nomina entrambe (ottenuto {str(got.get('reason'))[:80]!r})",
+               "a" * 40 in str(got.get("reason")) and "b" * 40 in str(got.get("reason")))
+
+
+def test_A2_asset_su_un_altro_host_viene_letto_DOVE_STA() -> None:
+    """Ricostruire `base + /assets/...` misura un file diverso da quello eseguito."""
+    pagina = '<script src="https://cdn.test/assets/app.js"></script>'
+    letti: list[str] = []
+
+    def fetch(url: str):
+        letti.append(url)
+        return (_marcato("c" * 40), url) if url.endswith(".js") else (pagina, url)
+
+    got = ps.collect_served("https://ardesia-lavagna.vercel.app", fetch)
+    check("sha", got.get("served_commit_sha"), "c" * 40)
+    check_true(f"letto sul CDN, non same-origin (letti: {letti})",
+               "https://cdn.test/assets/app.js" in letti)
+    check_true("source nomina il vero referente",
+               "cdn.test" in str(got.get("source")))
+
+
+def test_A5_source_dichiara_URL_FINALE_dopo_i_redirect() -> None:
+    """`urlopen` segue i 302 in silenzio: `source` deve dire dove ha letto."""
+    pagina = '<script src="/assets/app.js"></script>'
+
+    def fetch(url: str):
+        if url.endswith(".js"):
+            return (_marcato("d" * 40), "https://altro.test/assets/app.js")
+        return (pagina, url)
+
+    got = ps.collect_served("https://x.test", fetch)
+    check("sha", got.get("served_commit_sha"), "d" * 40)
+    check("source e' l'URL finale", got.get("source"), "https://altro.test/assets/app.js")
+
+
+def test_A6_prod_scarto_non_si_misura_su_un_ref_STANTIO() -> None:
+    """Il falso verde piu' grave della tornata, riprodotto dal revisore.
+
+    `collect_deploy` rifiuta esplicitamente il confronto quando
+    `refs/remotes/origin/main` e' vecchio, perche' un ref di tracking senza
+    fetch recente descrive il remoto di quando lo si e' guardato. I derivati
+    nuovi usavano lo stesso ref SENZA quel cancello: con `origin/main` fermo
+    due ore indietro pubblicavano `commits: 0` e `allineato: True`.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        env = ["-c", "user.email=a@b", "-c", "user.name=a"]
+        subprocess.run(["git", "init", "-q"], cwd=root, capture_output=True)
+        subprocess.run(["git", *env, "commit", "-q", "--allow-empty", "-m", "B"],
+                       cwd=root, capture_output=True)
+        b = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                           capture_output=True, text=True).stdout.strip()
+        subprocess.run(["git", "update-ref", "refs/remotes/origin/main", b],
+                       cwd=root, capture_output=True)
+        subprocess.run(["git", *env, "commit", "-q", "--allow-empty", "-m", "A"],
+                       cwd=root, capture_output=True)
+
+        fresco = ps.misura_prod_scarto(root, b)
+        check("precondizione: con ref fresco la misura ESISTE", fresco["status"], "MEASURED")
+
+        vecchio = time.time() - 7200
+        for rel in ("refs/remotes/origin/main", "FETCH_HEAD", "packed-refs"):
+            f = root / ".git" / rel
+            if f.exists():
+                os.utime(f, (vecchio, vecchio))
+
+        stantio = ps.misura_prod_scarto(root, b)
+        check("ref stantio: NON si dichiara uno scarto", stantio["status"], "UNAVAILABLE")
+        check_true(f"motivo dichiarato (ottenuto {str(stantio.get('reason'))[:70]!r})",
+                   "non aggiornato da" in str(stantio.get("reason")))
+        sha_usabile, motivo = ps.main_sha_utilizzabile(root)
+        check_true("main non utilizzabile su ref stantio", sha_usabile is None)
+        check_true("con un motivo", bool(motivo))
+
+
+def test_allineamento_parla_SOLO_della_produzione() -> None:
+    """Era una congiunzione con la ricevuta. La revisione l'ha smontata.
+
+    Con `receipt=C, served=A, main=A` la congiunzione restituiva `False` e
+    `CURRENT.md` stampava «pari a main in produzione: NO» mentre la produzione
+    era pari a `main`: il nome del campo afferma qualcosa sulla produzione e il
+    valore parlava della ricevuta. Il falso verde che la congiunzione doveva
+    uccidere resta ucciso da `served == main`. La ricevuta e' un fatto
+    separato e resta stampata come tale.
+    """
+    main = "a" * 40
+    check("produzione pari a main: allineato, anche con ricevuta vecchia",
+          ps.allineamento_produzione(main, main), True)
+    check("produzione indietro: NON allineato",
+          ps.allineamento_produzione("b" * 40, main), False)
+    check("produzione non misurata: ne' vero ne' falso",
+          ps.allineamento_produzione(None, main), None)
+    check("main non utilizzabile: ne' vero ne' falso",
+          ps.allineamento_produzione(main, None), None)
+
+
+def test_B2_marcatore_discorde_non_viene_chiamato_marcatore_ASSENTE() -> None:
+    """Stato giusto, causa sbagliata: nasconde il difetto vero."""
+    pagina = '<script src="/assets/app.js"></script>'
+    doppio = _marcato("a" * 40) + ";" + _marcato("b" * 40)
+
+    def fetch(url: str):
+        return (doppio, url) if url.endswith(".js") else (pagina, url)
+
+    got = ps.collect_served("https://x.test", fetch)
+    check("status", got["status"], "UNAVAILABLE")
+    motivo = str(got.get("reason"))
+    check_true(f"non incolpa l'assenza del marcatore (ottenuto {motivo[:70]!r})",
+               "nessun `" not in motivo)
+    check_true("nomina entrambe le SHA", "a" * 40 in motivo and "b" * 40 in motivo)
+
+
+def test_B3_produzione_AVANTI_rispetto_a_main_non_e_scarto_zero() -> None:
+    """`served..main` conta zero anche quando la produzione e' avanti.
+
+    Due situazioni diverse — pari a `main`, e in servizio un commit mai fuso —
+    producevano lo stesso `prod_scarto: 0`, cioe' lo stesso verde.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        env = ["-c", "user.email=a@b", "-c", "user.name=a"]
+        subprocess.run(["git", "init", "-q"], cwd=root, capture_output=True)
+        subprocess.run(["git", *env, "commit", "-q", "--allow-empty", "-m", "M"],
+                       cwd=root, capture_output=True)
+        m = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                           capture_output=True, text=True).stdout.strip()
+        subprocess.run(["git", "update-ref", "refs/remotes/origin/main", m],
+                       cwd=root, capture_output=True)
+        subprocess.run(["git", *env, "commit", "-q", "--allow-empty", "-m", "avanti"],
+                       cwd=root, capture_output=True)
+        avanti = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                                capture_output=True, text=True).stdout.strip()
+
+        pari = ps.misura_prod_scarto(root, m)
+        check("precondizione: pari a main -> 0 indietro", pari["commits"], 0)
+        check_true("e nessun `commits_avanti`", pari.get("commits_avanti") is None)
+
+        got = ps.misura_prod_scarto(root, avanti)
+        check("indietro resta 0", got["commits"], 0)
+        check("ma l'avanti e' dichiarato", got.get("commits_avanti"), 1)
+        check_true("con il motivo", "non sono su `main`" in str(got.get("reason")))
+        check("e NON e' allineata", ps.allineamento_produzione(avanti, m), False)
+
+
+def test_B6_la_misura_viva_sopravvive_all_assenza_della_ricevuta() -> None:
+    """`_section_lines` cancellava il corpo intero a sezione UNAVAILABLE.
+
+    Ricevuta e produzione sono due evidenze indipendenti: `docs/ops/deploys`
+    vuota nascondeva una misura che era stata fatta davvero.
+    """
+    stato = ps.empty_state()
+    stato["deploy"] = {
+        "status": "UNAVAILABLE", "reason": "docs/ops/deploys assente",
+        "served": {"status": "MEASURED", "served_commit_sha": "f" * 40,
+                   "source": "https://x.test/assets/app.js"},
+        "prod_scarto": {"status": "MEASURED", "commits": 0},
+        "allineato_in_produzione": True,
+    }
+    md = ps.render_current_md_untruncated(stato)
+    check_true("dichiara comunque la SHA servita", "f" * 40 in md)
+    check_true("e l'allineamento in produzione", "pari a `main` in produzione: sì" in md)
+    check_true("senza perdere il motivo della ricevuta assente", "docs/ops/deploys assente" in md)
+
+
+def test_B7_svuotare_la_feature_deve_far_diventare_ROSSO() -> None:
+    """Il verde e' guadagnato o comprato?
+
+    La suite non toccava ne' il cablaggio in `build_state` ne' la resa umana:
+    rimuovere i tre campi dallo stato, o le tre righe dal renderer, lasciava
+    tutto verde mentre `project.json` e `CURRENT.md` perdevano la misura.
+    """
+    stato = ps.empty_state()
+    stato["deploy"] = {
+        "status": "MEASURED", "commit_sha": "a" * 40, "source": "x", "receipts_count": 1,
+        "matches_main": True,
+        "served": {"status": "MEASURED", "served_commit_sha": "a" * 40, "source": "u"},
+        "prod_scarto": {"status": "MEASURED", "commits": 0},
+        "allineato_in_produzione": True,
+    }
+    md = ps.render_current_md_untruncated(stato)
+    for atteso in ("servito ADESSO dalla produzione", "`prod_scarto`",
+                   "pari a `main` in produzione"):
+        check_true(f"il renderer stampa {atteso!r}", atteso in md)
+
+    # Il cablaggio: `build_state` deve produrre i tre campi, non solo le
+    # funzioni saperli calcolare.
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        subprocess.run(["git", "init", "-q"], cwd=root, capture_output=True)
+        s = ps.build_state(root, offline=True)
+        for campo in ("served", "prod_scarto", "allineato_in_produzione"):
+            check_true(f"build_state cabla `{campo}`", campo in s["deploy"])
+
+
+#: Le sole funzioni autorizzate a leggere `origin/main` da git.
+#: - `collect_repo` lo ESPONE e basta, non ne deriva alcun giudizio;
+#: - `main_sha_utilizzabile` E' il cancello di freschezza.
+#: Chiunque altro deve passare dal cancello. Se aggiungi una funzione qui,
+#: scrivi perche' il confronto che fa non ha bisogno della freschezza.
+PORTE_AUTORIZZATE_SU_ORIGIN_MAIN = {"collect_repo", "main_sha_utilizzabile"}
+
+
+def test_flywheel_una_sola_porta_su_origin_main() -> None:
+    """Il controllo meccanico nato dal finding A6/B4, nello stesso ciclo.
+
+    A6 non era «una funzione sbagliata»: era una REGOLA gia' presente nel file
+    e riscritta a mano altrove, quindi il derivato nuovo poteva ometterla senza
+    che nulla protestasse. Riparare la funzione non impedisce alla prossima di
+    rifarlo; questo assert si'.
+    """
+    sorgente = (Path(ps.__file__).read_text(encoding="utf-8"))
+    corpi = re.split(r"^def ", sorgente, flags=re.MULTILINE)
+    colpevoli = set()
+    for corpo in corpi[1:]:
+        nome = corpo.split("(", 1)[0].strip()
+        if '"rev-parse", "origin/main"' in corpo:
+            colpevoli.add(nome)
+    check("le porte su origin/main sono solo quelle autorizzate",
+          colpevoli, PORTE_AUTORIZZATE_SU_ORIGIN_MAIN)
+
+    # Precondizione: se il pattern cercato non esistesse piu', l'assert sopra
+    # sarebbe verde per assenza di materia — la sonda cieca di questo registro.
+    check_true("precondizione: il pattern esiste davvero nel sorgente",
+               len(colpevoli) > 0)
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -400,6 +736,22 @@ def main() -> int:
         test_finding3_repo_dichiara_i_campi_non_misurati,
         test_deploy_ricevuta_storica_e_allineamento_ricalcolato,
         test_deploy_i_due_finding_avversariali_del_2026_07_30,
+        test_sha_servita_e_ancorata_al_marcatore_di_provenienza,
+        test_un_esadecimale_qualunque_non_e_una_sha_servita,
+        test_sha_lontana_dal_marcatore_non_viene_raccolta,
+        test_produzione_irraggiungibile_e_UNAVAILABLE_non_falso_verde,
+        test_produzione_raggiungibile_dichiara_la_sha_e_la_sua_fonte,
+        test_pagina_servita_senza_marcatore_non_e_un_verde,
+        test_allineamento_parla_SOLO_della_produzione,
+        test_A1_asset_divergenti_non_pubblicano,
+        test_A2_asset_su_un_altro_host_viene_letto_DOVE_STA,
+        test_A5_source_dichiara_URL_FINALE_dopo_i_redirect,
+        test_A6_prod_scarto_non_si_misura_su_un_ref_STANTIO,
+        test_B2_marcatore_discorde_non_viene_chiamato_marcatore_ASSENTE,
+        test_B3_produzione_AVANTI_rispetto_a_main_non_e_scarto_zero,
+        test_B6_la_misura_viva_sopravvive_all_assenza_della_ricevuta,
+        test_B7_svuotare_la_feature_deve_far_diventare_ROSSO,
+        test_flywheel_una_sola_porta_su_origin_main,
     )
     for fn in tests:
         try:
