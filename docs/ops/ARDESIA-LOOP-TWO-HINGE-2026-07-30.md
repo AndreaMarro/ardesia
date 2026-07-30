@@ -33,7 +33,31 @@ Hermes is **not in this repository**. It runs on a separate machine, against a
 separate model and a separate provider, and reads a private Obsidian vault. That
 separation is the point rather than an accident: the literature on reward hacking
 finds that the defect appears when the generator and the judge **share context** —
-the score rises while the quality does not. Here they share nothing.
+the score rises while the quality does not.
+
+The separation is **partial, and saying otherwise was the fourth thing adversarial
+review corrected in this file.** An earlier revision claimed "here they share
+nothing", which is false. Be precise about which is which:
+
+| separated | shared |
+|---|---|
+| machine, provider, model family | the diff under review |
+| context window | the framing the operator writes into the review prompt |
+| — | the vault ledger, which the loop writes and the reviewer reads |
+
+The last two matter. If a cycle records a wrong adjudication in the ledger, the
+reviewer consumes it; if the operator's prompt frames a change persuasively, the
+reviewer reads that framing before the code. So an ACCEPT is **not** a fully
+decorrelated judgment, and treating it as one is the mistake this table exists to
+prevent.
+
+What can be said from measurement rather than hope: across PRs #222, #220 and #223
+on 29–30 July, nine review rounds ran and produced **eight REJECT and one ACCEPT**,
+fourteen findings in total, every one of which held up when re-tested against the
+real code — including six against this document, four of them against claims its
+author had framed confidently in the prompt. A shared channel that reliably produced
+agreement would not look like that. The channel is real; on this evidence it did not
+capture the reviewer.
 
 Hermes' contract is enforced, not requested. Its wrapper exits `69` when the JSON
 is missing, `69` when `not_checked` is **empty**, and `65` on an empty diff. A
