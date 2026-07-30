@@ -1,8 +1,18 @@
 name: studio-preview-readiness
 
 on:
-  push:
-    branches: [main, "codex/**", "feat/**", "docs/**"]
+  # NON aggiungere `branches:` sotto `pull_request`. Il filtro guarda la BASE
+  # della PR, non il contenuto: con `branches: [main]` una PR impilata (base
+  # wip/..., feat/..., qualunque cosa) non fa MAI partire questo workflow e
+  # arriva con un check in meno. Visto il 2026-07-29 su #218 (base
+  # wip/desktop-loop-continuity): 4 check contro i 5 di #217 (base main).
+  # Il buco si auto-guarisce quando la PR padre entra in main e GitHub
+  # ri-punta la base -> a posteriori l'evidenza sparisce e nessuno se ne
+  # accorge. Lista di prefissi = allowlist da aggiornare a mano: regredisce
+  # al primo prefisso nuovo (il repo ne ha gia' 18). L'unica forma che non
+  # regredisce e' nessun filtro: ogni PR, qualunque base.
+  # Invariante applicata da bin/ci/workflow_trigger_gate.py nel job hygiene.
+  pull_request:
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
       - ".gitignore"
@@ -10,7 +20,12 @@ on:
       - "bin/monorepo.sh"
       - "package.json"
       - "vercel.json"
-  pull_request:
+  # Su push solo main: e' lo stato INTEGRATO dopo il merge, l'unico che il
+  # check sulla PR non ha mai visto (due PR verdi possono confliggere in
+  # semantica). I prefissi di branch che stavano qui (codex/**, feat/**,
+  # docs/**) servivano a rimediare al filtro sopra: ora sono rumore che
+  # duplica ogni run gia' coperta da `pull_request`.
+  push:
     branches: [main]
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
