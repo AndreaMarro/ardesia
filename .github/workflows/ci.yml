@@ -53,6 +53,51 @@ jobs:
       - name: pytest (skip dei test live esplicito senza API key)
         run: uv run pytest -q -rs
 
+  # Lane ADVISORY, non richiesta: esegue il solo golden path, che e' l'obiettivo
+  # del prodotto scritto come comando con un exit code.
+  #
+  # Misurato il 2026-07-30: 101 spec Playwright scritte (22 in apps/studio, 79 in
+  # plugins/elab-tutor), `grep -rl playwright .github/workflows/` non trovava
+  # NIENTE, e almeno una di quelle spec — `e2e/product-flow-shell.spec.ts` — era
+  # ROSSA contro `main` senza che nessuno lo sapesse. Una spec che nessuno esegue
+  # non e' un oracolo: e' un file.
+  #
+  # Perche' SOLO il golden path e non tutte e 101: le altre non sono mai state
+  # verdi in CI, e portarle dentro tutte insieme renderebbe questa lane rumore
+  # dal primo giorno — un check che fallisce sempre viene ignorato, e un check
+  # ignorato non protegge niente. Si allarga quando una classe alla volta e'
+  # verde, non prima.
+  #
+  # `continue-on-error: true`: riporta, non blocca. Diventa required solo dopo
+  # che ha riportato un esito su almeno cinque PR consecutive (unita' F1-3).
+  e2e-golden-path:
+    name: e2e golden path (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: golden path (l'obiettivo, come exit code)
+        run: npx playwright test e2e/golden-path.spec.ts --reporter=line
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: golden-path-traces-${{ github.sha }}
+          path: apps/studio/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest

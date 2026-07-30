@@ -17,4 +17,8 @@
 # NOTA: e' il pavimento LOCALE. La CI puo' saltare test diversi (chiavi API
 # assenti), quindi questo numero non e' trasferibile a ubuntu-latest senza
 # rimisurarlo la'.
-studio_tests_min=2094
+# alzato 2026-07-30T07:50+02:00 su 6e1f0a74 + il ramo F0-3: +1 test, il controllo
+# meccanico «nessun UUID nel testo visibile» promosso dal golden path a vitest.
+#   esito grezzo: "Tests  2095 passed | 5 skipped (2100)"   exit=0
+# Il pavimento sale perche' la copertura e' salita. Non scende mai in silenzio.
+studio_tests_min=2095
