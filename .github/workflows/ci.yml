@@ -85,6 +85,30 @@ jobs:
         run: python3 bin/ci/doc_claims_gate.py
       - name: doc claims gate tests
         run: python3 bin/ci/doc_claims_gate.py --self-test
+      # Stato corrente generato a macchina (F0-1). `--verify` gira OFFLINE e
+      # asserisce che il generatore legga l'HEAD REALE del repo: se restituisse
+      # una costante o un valore memorizzato, questa asserzione fallirebbe al
+      # primo commit nuovo. E' la forma eseguibile di «il JSON cambia quando
+      # cambia main».
+      - name: project state — funzioni pure
+        run: python3 bin/state/project_state.py --self-test
+      - name: project state — test
+        run: python3 bin/state/test_project_state.py
+      - name: project state — legge il repo reale (offline)
+        run: python3 bin/state/project_state.py --verify
+      - name: project state — genera lo stato di QUESTO SHA
+        env:
+          ARDESIA_STATE_OFFLINE: "1"
+        run: python3 bin/state/project_state.py
+      - name: project state — pubblica l'artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-state-${{ github.sha }}
+          path: |
+            artifacts/state/project.json
+            docs/ops/CURRENT.md
+          if-no-files-found: error
+          retention-days: 30
       - name: whitespace errors (git diff --check)
         if: github.event_name == 'pull_request'
         env:

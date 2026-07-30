@@ -1,0 +1,20 @@
+# Pavimenti MISURATI, non stimati. Salgono, non scendono.
+#
+# Perche' un pavimento e non «zero fallimenti»: una suite che non raccoglie
+# nulla esce 0. Questo registro contiene quella classe di bug due volte
+# (`test -d` vero su una directory vuota; `typecheck` rosso sotto 113 test e poi
+# 2088 verdi perche' vitest non typechecca). L'assert deve stare sul NUMERO.
+#
+# Ogni riga porta il comando, lo SHA e la data della misura che l'ha prodotta.
+# Se abbassi un pavimento, scrivi qui perche', con la misura che lo giustifica.
+
+# misurato 2026-07-30T07:23+02:00 su 462c8dee, macOS 25.0, node 22, in
+# apps/studio con:
+#   npx vitest run --pool=threads --maxWorkers=1 --no-file-parallelism \
+#       --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+# esito grezzo: "Test Files  187 passed | 1 skipped (188)"
+#               "Tests  2094 passed | 5 skipped (2099)"   exit=0   112.05s
+# NOTA: e' il pavimento LOCALE. La CI puo' saltare test diversi (chiavi API
+# assenti), quindi questo numero non e' trasferibile a ubuntu-latest senza
+# rimisurarlo la'.
+studio_tests_min=2094

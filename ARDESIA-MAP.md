@@ -1,5 +1,17 @@
 # ARDESIA-MAP — Mappa di navigazione del monorepo
 
+> ⚠️ **Questo file NON dichiara lo stato corrente.** Descrive dove sta il codice,
+> e come ogni documento scritto a mano fotografa l'istante in cui e' stato
+> scritto. Per lo stato corrente — SHA di `main`, PR aperte e loro classe, check
+> richiesti, conteggi di certificazione, oracolo E2E — l'unica fonte e' generata:
+>
+> ```
+> python3 bin/state/project_state.py    # -> docs/ops/CURRENT.md + artifacts/state/project.json
+> ```
+>
+> Il JSON e' gitignorato di proposito: un file di stato committato invecchia e
+> ridiventa la SoT stale che il generatore esiste per rimuovere.
+
 Dove sta cosa e da dove partire. (Mappa del CODICE; la mappa di governance/visione e in `ardesia-vault/ARDESIA-MAP.md`.)
 
 ## Entry point per area

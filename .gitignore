@@ -20,6 +20,16 @@ dist/
 .nx/
 .vercel/
 
+# Stato corrente GENERATO (bin/state/project_state.py). Deliberatamente NON
+# committato — nessuno dei due output, e la ragione e' strutturale: un file non
+# puo' contenere lo SHA del commit che lo contiene, quindi uno stato versionato
+# non puo' MAI essere fresco, e diventa entro pochi giorni la SoT stale che quel
+# generatore esiste per rimuovere. Rigeneralo (3 secondi), non leggerlo vecchio.
+# La CI lo rigenera a ogni run e lo pubblica come artifact: quello e' fresco per
+# costruzione, perche' nasce allo SHA che descrive.
+artifacts/
+docs/ops/CURRENT.md
+
 # Playwright/generated local evidence artifacts (regenerated at runtime)
 output/playwright/
 test-results/
