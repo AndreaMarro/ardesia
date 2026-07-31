@@ -34,11 +34,23 @@ import { findExperimentById } from "@elab-tutor-plugin/data/experiments-index"
 import { VISIBLE_EXP_IDS } from "@elab-tutor-plugin/data/experiment-visibility"
 import { solveElabExperiment } from "../../sim/solver/elabSolver"
 
-/** Id ancora non risolvibili, con la ragione. Deve solo ACCORCIARSI. */
+/** Id ancora non risolvibili, con la ragione. Deve solo ACCORCIARSI.
+ *
+ *  ⚠️ RATCHET, non allowlist. Il revisore avversariale ha smontato la versione
+ *  precedente di questo elenco: era una lista MODIFICABILE, quindi se domani
+ *  `v1-cap6-esp1` si rompesse e qualcuno ne aggiungesse l'id qui, la suite
+ *  passerebbe 10/10 mentre gli esperimenti rotti salgono da due a tre. Il
+ *  numero di controllo tornerebbe e nessun assert lo intercetterebbe.
+ *
+ *  Il tetto qui sotto e' il cancello: la lista non puo' crescere senza che un
+ *  test diventi rosso, e abbassarlo e' l'unico modo di dichiarare un progresso. */
 const ANCORA_ROTTI: Record<string, string> = {
   "v3-cap6-esp4": "nano-r4: pin calcolati, catalogare a mano sarebbe duplicazione",
   "v3-cap6-esp5": "nano-r4: pin calcolati, catalogare a mano sarebbe duplicazione",
 }
+
+/** Quanti id possono stare in ANCORA_ROTTI. **Scende, non sale.** */
+const TETTO_ANCORA_ROTTI = 2
 
 function esito(id: string): { kind: "ok"; ok: boolean } | { kind: "throw"; detail: string } {
   const experiment = findExperimentById(id)
@@ -59,6 +71,80 @@ describe("gli 8 esperimenti della whitelist Founder Beta", () => {
   it("la whitelist è quella che credo (l'oracolo non è vacuo)", () => {
     expect(VISIBLE_EXP_IDS.length).toBe(8)
     for (const id of VISIBLE_EXP_IDS) expect(findExperimentById(id), id).not.toBeNull()
+  })
+
+  // Finding E2 del revisore avversariale, CONFERMATO leggendo il codice.
+  // Senza questo, `ANCORA_ROTTI` e' una lista che puo' crescere restando verde.
+  it("ANCORA_ROTTI è un ratchet: non può crescere", () => {
+    const ids = Object.keys(ANCORA_ROTTI)
+    expect(
+      ids.length,
+      `l'elenco degli esperimenti rotti è cresciuto a ${ids.length} (${ids.join(", ")}): ` +
+        `abbassare TETTO_ANCORA_ROTTI è l'unico modo di dichiarare un progresso, alzarlo è nasconderlo`,
+    ).toBeLessThanOrEqual(TETTO_ANCORA_ROTTI)
+    // E ogni id dichiarato rotto deve essere davvero nella whitelist: un id
+    // fuori catalogo qui sarebbe un'eccezione concessa a qualcosa che nessuno
+    // vede, cioè rumore che allarga il tetto senza costo.
+    for (const id of ids) expect(VISIBLE_EXP_IDS, `${id} non è fra i visibili`).toContain(id)
+  })
+
+  // Finding E1 del revisore avversariale, e va raccontato per intero perché la
+  // sua portata è diversa da come sembrava.
+  //
+  // Hermes ha provato che premendo il pulsante per 90 frame a 30 Hz e
+  // rilasciandolo, il motore dichiara `c1.current = -8,845 mA` con
+  // `r1.current = 0 A` — un condensatore che si scarica attraverso una
+  // resistenza che non porta corrente. E in esp2 `led1.current = 6,890 mA`
+  // mentre `currents.led1 = 0 A`: due valori per la stessa grandezza.
+  //
+  // MISURATO DOPO: quello scenario **non è raggiungibile dal percorso che il
+  // prodotto usa**. `SolverComponent` non ha un campo `state`, e
+  // `solveElabExperiment` non espone `press`/`release`: il pulsante arriva al
+  // solve sempre al suo default `pressed: false`. Hermes ha pilotato il motore
+  // grezzo, non questa API.
+  //
+  // Questo NON lo smentisce: rende il difetto reale e raggiungibile da una via
+  // che non è ancora cablata. Il giorno in cui lo sarà, il difetto arriverà in
+  // produzione — quindi l'invariante si asserisce ORA, sul rest, dove è
+  // verificabile. È l'oracolo che lo prenderà, non un test che lo assolve.
+  it("continuità della corrente: chi è in serie porta la stessa corrente", () => {
+    for (const id of ["v2-cap7-esp1", "v2-cap7-esp2"]) {
+      const risultato = esito(id)
+      expect(risultato.kind, id).toBe("ok")
+      const experiment = findExperimentById(id)!
+      const result = solveElabExperiment({
+        components: experiment.components,
+        connections: experiment.connections,
+        pinAssignments: experiment.pinAssignments,
+      })
+      const stati = result.componentStates as Record<string, { current?: number } | undefined>
+      const corrente = (comp: string) => stati[comp]?.current ?? 0
+
+      // A riposo il pulsante è aperto: TUTTE le correnti del ramo sono zero.
+      // Se una sola è diversa da zero mentre le altre no, la maglia mente.
+      const rami = ["c1", "r1", ...(id === "v2-cap7-esp2" ? ["led1"] : [])]
+      const correnti = rami.map((c) => Math.abs(corrente(c)))
+      const max = Math.max(...correnti)
+      const min = Math.min(...correnti)
+      expect(
+        max - min,
+        `${id}: correnti incoerenti nella stessa maglia — ${rami
+          .map((c, i) => `${c}=${(correnti[i] * 1000).toFixed(3)}mA`)
+          .join(" ")}`,
+      ).toBeLessThan(1e-9)
+
+      // E la grandezza pubblicata in `currents` deve concordare con quella
+      // dentro `componentStates`: erano due valori diversi nel finding E1.
+      for (const comp of rami) {
+        const dentro = corrente(comp)
+        const fuori = result.currents[comp]
+        if (fuori === undefined) continue
+        expect(
+          Math.abs(dentro - fuori),
+          `${id}: ${comp} ha due correnti diverse — componentStates ${dentro}, currents ${fuori}`,
+        ).toBeLessThan(1e-9)
+      }
+    }
   })
 
   // «Non lancia» è un'asserzione debole: un solve che restituisce un oggetto
