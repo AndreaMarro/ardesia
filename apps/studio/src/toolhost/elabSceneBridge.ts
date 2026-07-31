@@ -141,7 +141,25 @@ export function simulationSceneFromElabScene(
     if (pose === undefined) {
       throw new Error(`pose mancante per ${component.id}: il bridge non inventa layout`)
     }
-    layout[component.id] = { x: pose.x, y: pose.y }
+    // F5-12 — la rotazione dichiarata dalla scena NON si butta.
+    //
+    // Prima qui c'era `{ x: pose.x, y: pose.y }`, e `pose.rotationDeg` finiva
+    // nel nulla — mentre `SimulationLayout` ha il campo `rotation?: number` da
+    // prima di questa unita'. Il dato c'era, il campo c'era, e nessuno li univa.
+    //
+    // Costo del difetto, dichiarato dalla provenienza delle fixture stesse:
+    // «visualMatch resta unknown FINCHE' IL RENDERER NON CONSUMA QUESTA
+    // ROTAZIONE». Con la rotazione persa, `visualMatch` non poteva passare da
+    // `unknown` per NESSUNA delle 88 scene, e la promozione candidate->verified
+    // era bloccata per costruzione, non per mancanza di lavoro.
+    //
+    // Lo zero NON viene propagato: una rotazione di 0 non e' una rotazione, e
+    // scriverla renderebbe indistinguibile «non ruotato» da «ruotato di zero».
+    layout[component.id] = {
+      x: pose.x,
+      y: pose.y,
+      ...(pose.rotationDeg !== 0 ? { rotation: pose.rotationDeg } : {}),
+    }
   }
 
   const battery = payload.circuit.components.find((component) => component.type === "battery9v")
