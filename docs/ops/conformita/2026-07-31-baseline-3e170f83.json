@@ -1,0 +1,249 @@
+{
+ "misurato_il": "2026-07-31T13:52:27.362Z",
+ "base_url": "https://ardesia-lavagna.vercel.app",
+ "sha_servita": "3e170f838353181f8dab36da529377041418abc3",
+ "conformita": 0.077,
+ "passate": 1,
+ "totali": 13,
+ "affermazioni": [
+  {
+   "n": 1,
+   "testo": "nav globale persistente con esattamente 5 destinazioni",
+   "esito": "FAIL",
+   "misura": "nav trovate: 3/3/3/3 — nomi: [\"Lezione\",\"Continuità\",\"Materiali\"]"
+  },
+  {
+   "n": 2,
+   "testo": "ricerca globale con placeholder diverso per rotta",
+   "esito": "FAIL",
+   "misura": "placeholder distinti: 0 su 4 rotte"
+  },
+  {
+   "n": 3,
+   "testo": "intestazione a 3 elementi (eyebrow MAIUSCOLO · h1 · sottotitolo)",
+   "esito": "FAIL",
+   "misura": "h1 per rotta: 0/1/0/0"
+  },
+  {
+   "n": 4,
+   "testo": "esattamente UN bottone pieno per schermata",
+   "esito": "FAIL",
+   "misura": "bottoni pieni: 0/0/0/0"
+  },
+  {
+   "n": 5,
+   "testo": "almeno un ID di provenienza monospace",
+   "esito": "FAIL",
+   "misura": "trovati: 0/0/0/0"
+  },
+  {
+   "n": 6,
+   "testo": "event log con >=4 voci HH:MM + chip di stato",
+   "esito": "FAIL",
+   "misura": "voci valide: 0/0/0/0"
+  },
+  {
+   "n": 7,
+   "testo": "regione Sedimentazione con >=4 artefatti",
+   "esito": "FAIL",
+   "misura": "nessuna rotta espone «Sedimentazione» con 4 artefatti"
+  },
+  {
+   "n": 8,
+   "testo": "grafo con >=10 nodi tipizzati",
+   "esito": "FAIL",
+   "misura": "nodi [data-node-type]: 0/0/0/0"
+  },
+  {
+   "n": 9,
+   "testo": "ogni arco ha un tipo di relazione recuperabile",
+   "esito": "FAIL",
+   "misura": "archi tipizzati: 0/0/0/0 — un grafo con archi senza tipo e' un disegno"
+  },
+  {
+   "n": 10,
+   "testo": "nessun testo visibile sotto 16 px  [DEVIAZIONE: fallisce anche sull'atlante]",
+   "esito": "FAIL",
+   "misura": "sotto 16px: 31/4/32/139 — minimo 3.5px · es. 11px SPAN \"studio\""
+  },
+  {
+   "n": 11,
+   "testo": "ogni bersaglio tattile >=44 px  [DEVIAZIONE]",
+   "esito": "FAIL",
+   "misura": "sotto 44px: 27/31 0/3 27/31 7/23 · es. 225x24 \"Assegna un nome a questa\""
+  },
+  {
+   "n": 12,
+   "testo": "<=8 regioni di primo livello  [DEVIAZIONE]",
+   "esito": "PASS",
+   "misura": null
+  },
+  {
+   "n": 13,
+   "testo": "zoom raggruppato + controllo «adatta alla vista»",
+   "esito": "FAIL",
+   "misura": "zoom: false/false/false/false · fit: false/false/false/false"
+  }
+ ],
+ "per_rotta": {
+  "lezione": {
+   "navCount": 3,
+   "nomiNav": [
+    "Lezione",
+    "Continuità",
+    "Materiali"
+   ],
+   "navUgualeAttesa": false,
+   "ricercaPresente": false,
+   "ricercaPlaceholder": null,
+   "intestazione3": false,
+   "h1Count": 0,
+   "bottoniPieni": 0,
+   "provenienzaCount": 0,
+   "eventLogOk": 0,
+   "sedimentazione": false,
+   "nodiTipizzati": 0,
+   "tipiNodo": [],
+   "archiTipizzati": 0,
+   "minFontPx": 10,
+   "sotto16": 31,
+   "sotto16Esempi": [
+    "11px SPAN \"studio\"",
+    "13px SPAN \"wbstudio-6uqrs5a\"",
+    "12px SPAN \"dai un nome\"",
+    "12px SPAN \"solo in questo browser\"",
+    "12px SPAN \"—\""
+   ],
+   "bersagliTotali": 31,
+   "bersagliPiccoli": 27,
+   "bersagliPiccoliEsempi": [
+    "225x24 \"Assegna un nome a questa\"",
+    "85x14 \"scegli cartella…\"",
+    "70x28 \"formula\"",
+    "62x28 \"Inserisci immagine, PDF \"",
+    "47x28 \"Inserisci Simulation Plu\""
+   ],
+   "regioniPrimoLivello": 1,
+   "zoomRaggruppato": false,
+   "fitPresente": false
+  },
+  "continuita": {
+   "navCount": 3,
+   "nomiNav": [
+    "Lezione",
+    "Continuità",
+    "Materiali"
+   ],
+   "navUgualeAttesa": false,
+   "ricercaPresente": false,
+   "ricercaPlaceholder": null,
+   "intestazione3": false,
+   "h1Count": 1,
+   "bottoniPieni": 0,
+   "provenienzaCount": 0,
+   "eventLogOk": 0,
+   "sedimentazione": false,
+   "nodiTipizzati": 0,
+   "tipiNodo": [],
+   "archiTipizzati": 0,
+   "minFontPx": 13,
+   "sotto16": 4,
+   "sotto16Esempi": [
+    "13px A \"Lezione\"",
+    "13px A \"Continuità\"",
+    "13px A \"Materiali\"",
+    "13px P \"Apri una lezione: la ripresa lavora sull\""
+   ],
+   "bersagliTotali": 3,
+   "bersagliPiccoli": 0,
+   "bersagliPiccoliEsempi": [],
+   "regioniPrimoLivello": 1,
+   "zoomRaggruppato": false,
+   "fitPresente": false
+  },
+  "materiali": {
+   "navCount": 3,
+   "nomiNav": [
+    "Lezione",
+    "Continuità",
+    "Materiali"
+   ],
+   "navUgualeAttesa": false,
+   "ricercaPresente": false,
+   "ricercaPlaceholder": null,
+   "intestazione3": false,
+   "h1Count": 0,
+   "bottoniPieni": 0,
+   "provenienzaCount": 0,
+   "eventLogOk": 0,
+   "sedimentazione": false,
+   "nodiTipizzati": 0,
+   "tipiNodo": [],
+   "archiTipizzati": 0,
+   "minFontPx": 10,
+   "sotto16": 32,
+   "sotto16Esempi": [
+    "11px SPAN \"studio\"",
+    "13px SPAN \"wbstudio-2bpynk8\"",
+    "12px SPAN \"dai un nome\"",
+    "12px SPAN \"solo in questo browser\"",
+    "12px SPAN \"—\""
+   ],
+   "bersagliTotali": 31,
+   "bersagliPiccoli": 27,
+   "bersagliPiccoliEsempi": [
+    "228x24 \"Assegna un nome a questa\"",
+    "85x14 \"scegli cartella…\"",
+    "70x28 \"formula\"",
+    "62x28 \"Inserisci immagine, PDF \"",
+    "47x28 \"Inserisci Simulation Plu\""
+   ],
+   "regioniPrimoLivello": 1,
+   "zoomRaggruppato": false,
+   "fitPresente": false
+  },
+  "elab-lab": {
+   "navCount": 3,
+   "nomiNav": [
+    "Lezione",
+    "Continuità",
+    "Materiali"
+   ],
+   "navUgualeAttesa": false,
+   "ricercaPresente": false,
+   "ricercaPlaceholder": null,
+   "intestazione3": false,
+   "h1Count": 0,
+   "bottoniPieni": 0,
+   "provenienzaCount": 0,
+   "eventLogOk": 0,
+   "sedimentazione": false,
+   "nodiTipizzati": 0,
+   "tipiNodo": [],
+   "archiTipizzati": 0,
+   "minFontPx": 3.5,
+   "sotto16": 139,
+   "sotto16Esempi": [
+    "11px SPAN \"studio\"",
+    "13px SPAN \"ELAB Lab — Simulation Plugin (motore rea\"",
+    "13px A \"Lezione\"",
+    "13px A \"Continuità\"",
+    "13px A \"Materiali\""
+   ],
+   "bersagliTotali": 23,
+   "bersagliPiccoli": 7,
+   "bersagliPiccoliEsempi": [
+    "361x19 \"Cap. 6 Esp. 1 - Accendi \"",
+    "183x21 \"Monta tu (parti dal manu\"",
+    "13x13 \"\"",
+    "13x13 \"\"",
+    "157x21 \"Un canale non risponde\""
+   ],
+   "regioniPrimoLivello": 1,
+   "zoomRaggruppato": false,
+   "fitPresente": false
+  }
+ },
+ "errori_pagina": [],
+ "_nota": "Misura, non verdetto. Le affermazioni 10-12 sono deviazioni dichiarate dall'atlante e falliscono anche su di esso."
+}
