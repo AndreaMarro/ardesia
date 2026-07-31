@@ -1,5 +1,12 @@
 # The two-hinge loop: how work enters this repository
 
+> **Successore approvato, non ancora implementato (31 luglio 2026):**
+> [ARDESIA Loop v6 — Convergence-first](../superpowers/specs/2026-07-31-ardesia-loop-v6-convergence-design.md).
+> Questo documento resta la descrizione storica verificata del loop a due
+> cardini; v6 ne conserva la separazione writer/refuter e aggiunge controller,
+> freshness gate, writer lease, riconciliazione atomica e arresto
+> `READY_FOR_HUMAN`.
+
 First committed `2026-07-30T04:22:44+02:00`, on `main` at `5c0a2822`; revised across six
 adversarial review rounds after that. An earlier revision stated a writing time of
 `04:40`, which was **later than the commit that contained it** — a document cannot
