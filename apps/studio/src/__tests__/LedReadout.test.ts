@@ -6,7 +6,7 @@
 // Il rimedio non è un `??` in più: è un tipo che non ha modo di collassare.
 
 import { describe, expect, it } from "vitest"
-import { LED_READOUT_LABELS, ledReadout } from "../core/contracts/ledReadout.ts"
+import { LED_READOUT_LABELS, ledReadout, measureReadout } from "../core/contracts/ledReadout.ts"
 
 describe("ledReadout: acceso, spento e ignoto sono TRE stati", () => {
   it("acceso e spento restano distinti", () => {
@@ -24,6 +24,39 @@ describe("ledReadout: acceso, spento e ignoto sono TRE stati", () => {
     expect(LED_READOUT_LABELS.unknown).not.toBe(LED_READOUT_LABELS.off)
     expect(LED_READOUT_LABELS.on).toBe("ON")
     expect(LED_READOUT_LABELS.off).toBe("OFF")
+  })
+
+  it("una misura assente non è uno zero", () => {
+    // Il CARDINE (P1-3, 2026-07-31) nomina l'espressione esatta:
+    // «calcola `currents.led ?? 0`, che può trasformare un valore assente in
+    // uno zero apparente». Riparata la PAROLA in questa stessa PR e lasciato il
+    // NUMERO, la striscia mostrava «LED ?» accanto a «0.0 mA»: due affermazioni
+    // contraddittorie sullo stesso circuito, una prudente e una inventata.
+    expect(measureReadout(null)).toBe(LED_READOUT_LABELS.unknown)
+    expect(measureReadout(undefined)).toBe(LED_READOUT_LABELS.unknown)
+    expect(measureReadout(null)).not.toBe("0.0")
+  })
+
+  it("uno zero VERO resta uno zero, e i decimali sono quelli chiesti", () => {
+    expect(measureReadout(0)).toBe("0.0")
+    expect(measureReadout(15.28)).toBe("15.3")
+    expect(measureReadout(15.28, 2)).toBe("15.28")
+  })
+
+  it("`cifre: null` non formatta — perché non tutti i punti formattavano", () => {
+    // Regressione vera, intercettata da quattro test il 2026-08-01 alle 23:14:
+    // il post-it stampava `led current 0.0153` e la prima stesura di questo
+    // helper, col default a un decimale, lo aveva ridotto a `0.0`. Riparare un
+    // difetto imponendo un formato che nessuno aveva chiesto è una regressione
+    // travestita da riparazione.
+    expect(measureReadout(0.0153, null)).toBe("0.0153")
+    expect(measureReadout(0.0153)).toBe("0.0")
+    expect(measureReadout(null, null)).toBe(LED_READOUT_LABELS.unknown)
+  })
+
+  it("NaN e infinito non sono misure — `?? 0` non li avrebbe nemmeno visti", () => {
+    expect(measureReadout(Number.NaN)).toBe(LED_READOUT_LABELS.unknown)
+    expect(measureReadout(Number.POSITIVE_INFINITY)).toBe(LED_READOUT_LABELS.unknown)
   })
 
   it("i tre stati sono esattamente tre: nessuna etichetta vuota", () => {

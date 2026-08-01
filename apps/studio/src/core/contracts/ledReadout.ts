@@ -21,3 +21,26 @@ export function ledReadout(lit: boolean | null | undefined): LedReadoutState {
   if (lit === null || lit === undefined) return "unknown"
   return lit ? "on" : "off"
 }
+
+/**
+ * Lo stesso principio sui NUMERI. `valore ?? 0` trasforma «non misurato» in
+ * «misurato zero», che è un fatto inventato: un LED senza corrente e un LED di
+ * cui non conosciamo la corrente si leggono entrambi «0.0 mA».
+ *
+ * Copre anche `NaN` e infinito, che `?? 0` non intercetta nemmeno: sono esiti
+ * di un solver che non ha convergiuto, non misure.
+ *
+ * `cifre: null` rende il valore GREZZO. Serve perché non tutti i punti
+ * formattavano: imporre un decimale dove prima si stampava `0.0153` sarebbe una
+ * regressione travestita da riparazione — ed è successo davvero il 2026-08-01
+ * alle 23:14, intercettato da quattro test.
+ */
+export function measureReadout(
+  valore: number | null | undefined,
+  cifre: number | null = 1,
+): string {
+  if (valore === null || valore === undefined || !Number.isFinite(valore)) {
+    return LED_READOUT_LABELS.unknown
+  }
+  return cifre === null ? String(valore) : valore.toFixed(cifre)
+}

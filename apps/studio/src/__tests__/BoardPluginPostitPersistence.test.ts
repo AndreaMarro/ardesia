@@ -693,3 +693,32 @@ describe("Board plugin post-it persistence", () => {
     ).toThrow("plugin post-it board element must be embeddable")
   })
 })
+
+// ---------------------------------------------------------------------------
+// Perche' il collasso numerico del CARDINE (P1-3) e' LATENTE e non vivo.
+//
+// Il finding dice: «calcola `currents.led ?? 0`, che puo' trasformare un valore
+// assente in uno zero apparente». Riparato il 2026-08-01, il control run ha
+// mostrato la suite ancora VERDE col difetto rimesso: nessuno lo osservava. Il
+// tentativo di scrivere l'oracolo ha spiegato il perche', e la ragione merita
+// una guardia sua: il modello RIFIUTA un post-it Simulation senza
+// providerOutput, e la riga «led current» si rende solo quando l'output c'e'.
+//
+// Quindi il ramo ignoto non e' raggiungibile da qui OGGI. Se un domani il
+// modello ammettesse l'assenza, questo test diventa rosso e il collasso
+// diventerebbe vivo: e' la sentinella di quella transizione, non la prova che
+// il caso sia gestito.
+// ---------------------------------------------------------------------------
+
+describe("il collasso numerico e' latente perche' il modello vieta l'assenza", () => {
+  it("un post-it Simulation senza providerOutput e' rifiutato dal modello", () => {
+    const postits = createMultiPostitWorkbenchPostits()
+    const senzaOutput = postits.map((postit) => {
+      if (!isSimulationPostitState(postit.pluginState)) return postit
+      const { providerOutput: _rimosso, ...resto } = postit.pluginState
+      return { ...postit, pluginState: resto as typeof postit.pluginState }
+    })
+
+    expect(() => createPluginPostitBoardScene(senzaOutput)).toThrow(/invalid Simulation state/)
+  })
+})
