@@ -13,7 +13,7 @@ import { ToolBoard } from "./caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "./caps/board.ts"
 import { ToolGraph } from "./caps/graph.ts"
 import type { EventLogReadLike } from "./caps/graph.ts"
-import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
+import { ToolStorage, purgeInstanceStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
 import { assertInstanceId } from "./caps/instance.ts"
 import { ToolSimulation } from "./caps/simulation.ts"
@@ -264,8 +264,15 @@ export class ToolHost {
     // drena le mutazioni storage in coda: una set in-flight che atterrasse
     // DOPO il purge resusciterebbe dati che dovevano sparire.
     await this._storage?.idle()
-    await purgeToolStorage(this._deps.store, this.manifest.id)
-    await this._deps.store.delete(statePath(this.manifest.id, this._deps.instanceId))
+    // Un'istanza disinstalla SOLO se stessa: il purge totale del tool
+    // svuoterebbe i post-it gemelli dello stesso plugin ancora sulla lavagna.
+    const instanceId = this._deps.instanceId
+    if (instanceId === undefined) {
+      await purgeToolStorage(this._deps.store, this.manifest.id)
+    } else {
+      await purgeInstanceStorage(this._deps.store, this.manifest.id, instanceId)
+    }
+    await this._deps.store.delete(statePath(this.manifest.id, instanceId))
   }
 
   private _requireSession(): ToolHostSession {

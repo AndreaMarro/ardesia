@@ -295,3 +295,41 @@ describe("ToolHost multi-istanza: lo stato di lifecycle è per istanza", () => {
     }
   })
 })
+
+// ---------- invariante 7: disinstallare UN post-it non svuota il gemello ----------
+// purgeToolStorage pulisce l'intero albero del tool: chiamato da ToolHost.uninstall()
+// di un'istanza portava via anche lo storage dell'altra istanza dello stesso plugin.
+
+describe("uninstall di UNA istanza non tocca le altre", () => {
+  it("A disinstallata: storage e stato di B sopravvivono", async () => {
+    const driver = new MemoryDriver()
+    const a = await mountInstanceWithHost(driver, "ist-a", { suspend: () => ({ conta: 1 }) })
+    const b = await mountInstanceWithHost(driver, "ist-b", { suspend: () => ({ conta: 2 }) })
+
+    await a.conn.call("storage.set", { key: "nota.txt", value: "di A" })
+    await b.conn.call("storage.set", { key: "nota.txt", value: "di B" })
+    await a.host.suspend()
+    await b.host.suspend()
+
+    await a.host.uninstall()
+
+    expect(driver.files.has(statePath(TOOL_ID, "ist-a"))).toBe(false)
+    expect(driver.files.has(statePath(TOOL_ID, "ist-b"))).toBe(true)
+    expect(driver.files.has(storagePrefix(TOOL_ID, "ist-a") + "nota.txt")).toBe(false)
+    expect(driver.files.has(storagePrefix(TOOL_ID, "ist-b") + "nota.txt")).toBe(true)
+  })
+
+  it("uninstall SENZA instanceId resta il purge totale del tool (non-regressione)", async () => {
+    const driver = new MemoryDriver()
+    driver.files.set(storagePrefix(TOOL_ID, "ist-a") + "nota.txt", new Blob(["di A"]))
+    driver.files.set(storagePrefix(TOOL_ID) + "legacy.txt", new Blob(["storico"]))
+
+    const host = new ToolHost(MULTI_MANIFEST, resolveGrant(MULTI_MANIFEST, ["storage"]), {
+      store: driver,
+      board: new FakeBoard(),
+    })
+    await host.uninstall()
+
+    expect([...driver.files.keys()].filter((p) => p.startsWith(storagePrefix(TOOL_ID)))).toEqual([])
+  })
+})
