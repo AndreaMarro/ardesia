@@ -12,68 +12,11 @@
 
 import React, { useMemo } from 'react';
 import { registerComponent } from './registry';
+import { NANO_R4_PIN_GROUPS } from './nanoR4Catalog.js';
 
 // ─── Pin data (IDs UNCHANGED for solver/experiment compatibility) ─────────
 
-const TOP_PINS = [
-  { id: 'D13', label: 'D13', type: 'digital', arduino: 13 },
-  { id: '3V3', label: '3V3', type: 'power' },
-  { id: 'AREF', label: 'AREF', type: 'analog' },
-  { id: 'A0', label: 'A0', type: 'analog', arduino: 14 },
-  { id: 'A1', label: 'A1', type: 'analog', arduino: 15 },
-  { id: 'A2', label: 'A2', type: 'analog', arduino: 16 },
-  { id: 'A3', label: 'A3', type: 'analog', arduino: 17 },
-  { id: 'A4', label: 'A4', type: 'analog', arduino: 18 },
-  { id: 'A5', label: 'A5', type: 'analog', arduino: 19 },
-  { id: 'A6', label: 'A6', type: 'analog', arduino: 20 },
-  { id: 'A7', label: 'A7', type: 'analog', arduino: 21 },
-  { id: '5V', label: '5V', type: 'power' },
-  { id: 'MINUS', label: '-', type: 'power' },
-  { id: 'GND', label: 'GND', type: 'power' },
-  { id: 'VIN', label: 'VIN', type: 'power' },
-];
-
-const BOTTOM_PINS = [
-  { id: 'D12', label: 'D12', type: 'digital', arduino: 12 },
-  { id: 'D11', label: '~D11', type: 'pwm', arduino: 11 },
-  { id: 'D10', label: '~D10', type: 'pwm', arduino: 10 },
-  { id: 'D9', label: '~D9', type: 'pwm', arduino: 9 },
-  { id: 'D8', label: 'D8', type: 'digital', arduino: 8 },
-  { id: 'D7', label: 'D7', type: 'digital', arduino: 7 },
-  { id: 'D6', label: '~D6', type: 'pwm', arduino: 6 },
-  { id: 'D5', label: '~D5', type: 'pwm', arduino: 5 },
-  { id: 'D4', label: 'D4', type: 'digital', arduino: 4 },
-  { id: 'D3', label: '~D3', type: 'pwm', arduino: 3 },
-  { id: 'D2', label: 'D2', type: 'digital', arduino: 2 },
-  { id: 'GND_R', label: 'GND', type: 'power' },
-  { id: 'RST_R', label: 'RST', type: 'control' },
-  { id: 'RX', label: 'D0/RX', type: 'digital', arduino: 0 },
-  { id: 'TX', label: 'D1/TX', type: 'digital', arduino: 1 },
-];
-
-const WING_PINS = [
-  { id: 'W_A0', label: 'A0', type: 'analog', arduino: 14, mapsTo: 'A0' },
-  { id: 'W_A1', label: 'A1', type: 'analog', arduino: 15, mapsTo: 'A1' },
-  { id: 'W_A2', label: 'A2', type: 'analog', arduino: 16, mapsTo: 'A2' },
-  { id: 'W_A3', label: 'A3', type: 'analog', arduino: 17, mapsTo: 'A3' },
-  { id: 'W_D3', label: '~D3', type: 'pwm', arduino: 3, mapsTo: 'D3' },
-  { id: 'W_D5', label: '~D5', type: 'pwm', arduino: 5, mapsTo: 'D5' },
-  { id: 'W_D6', label: '~D6', type: 'pwm', arduino: 6, mapsTo: 'D6' },
-  { id: 'W_D9', label: '~D9', type: 'pwm', arduino: 9, mapsTo: 'D9' },
-  { id: 'W_A4', label: 'A4/SDA', type: 'analog', arduino: 18, mapsTo: 'A4' },
-  { id: 'W_A5', label: 'A5/SCL', type: 'analog', arduino: 19, mapsTo: 'A5' },
-  { id: 'W_D0', label: 'D0/RX', type: 'digital', arduino: 0, mapsTo: 'RX' },
-  { id: 'W_D1', label: 'D1/TX', type: 'digital', arduino: 1, mapsTo: 'TX' },
-  { id: 'W_D13', label: 'D13/SCK', type: 'digital', arduino: 13, mapsTo: 'D13' },
-  { id: 'W_D12', label: 'D12/MISO', type: 'digital', arduino: 12, mapsTo: 'D12' },
-  { id: 'W_D11', label: '~D11/MOSI', type: 'pwm', arduino: 11, mapsTo: 'D11' },
-  { id: 'W_D10', label: '~D10', type: 'pwm', arduino: 10, mapsTo: 'D10' },
-  { id: 'W_D8', label: 'D8', type: 'digital', arduino: 8, mapsTo: 'D8' },
-  { id: 'W_GND1', label: 'GND', type: 'power', mapsTo: 'GND' },
-  { id: 'W_VCC1', label: '5V', type: 'power', mapsTo: '5V' },
-  { id: 'W_GND2', label: 'GND', type: 'power', mapsTo: 'GND' },
-  { id: 'W_VCC2', label: '5V', type: 'power', mapsTo: '5V' },
-];
+const { top: TOP_PINS, bottom: BOTTOM_PINS, wing: WING_PINS } = NANO_R4_PIN_GROUPS;
 
 // ─── Layout constants — IMMUTABLE (pin positions used by all experiments) ──
 
@@ -214,14 +157,6 @@ function BoardDefs({ id }) {
   );
 }
 
-// ─── Important pins to label ──────────────────────────────────────────────
-
-const IMPORTANT_PIN_IDS = new Set([
-  '5V', 'GND', 'GND_R', 'VIN', 'D13', 'D12', 'D11', 'D10', 'D9', 'D8',
-  'D7', 'D6', 'D5', 'D4', 'D3', 'D2', 'A0', 'A1', 'A2', 'A3', 'A4',
-  'A5', 'A6', 'A7', '3V3', 'AREF', 'RST_R', 'MINUS',
-]);
-
 // ─── Pin coordinate helpers (UNCHANGED) ───────────────────────────────────
 
 function xAt(index) {
@@ -290,10 +225,10 @@ function HeaderPinPad({ pin, stateValue, boardId }) {
   const isHigh = stateValue === 'HIGH' || stateValue === 1 || stateValue === true;
   const isActive = stateValue !== undefined && stateValue !== null;
 
-  const isPower5V = pin.id === '5V' || pin.id === '3V3' || pin.id === 'VIN';
-  const isGround = pin.id === 'GND' || pin.id === 'GND_R' || pin.id === 'MINUS';
-  const padColor = isPower5V ? 'var(--elab-hex-e85040)' : isGround ? '#333' : `url(#gold-pad-${boardId})`;
-  const padStroke = isPower5V ? 'var(--elab-hex-b53030)' : isGround ? 'var(--elab-hex-1a1a1a)' : PAD_STROKE;
+  const isSupply = pin.padRole === 'supply';
+  const isGround = pin.padRole === 'ground';
+  const padColor = isSupply ? 'var(--elab-hex-e85040)' : isGround ? '#333' : `url(#gold-pad-${boardId})`;
+  const padStroke = isSupply ? 'var(--elab-hex-b53030)' : isGround ? 'var(--elab-hex-1a1a1a)' : PAD_STROKE;
 
   return (
     <g data-pin={pin.id} className="pin-pad">
@@ -339,9 +274,9 @@ function WingPinPad({ pin, stateValue, boardId, textCounterRot = 270 }) {
   const isHigh = stateValue === 'HIGH' || stateValue === 1 || stateValue === true;
   const isActive = stateValue !== undefined && stateValue !== null;
 
-  const isPowerVCC = pin.id === 'W_VCC1' || pin.id === 'W_VCC2';
-  const isPowerGND = pin.id === 'W_GND1' || pin.id === 'W_GND2';
-  const padFill = isPowerVCC ? 'var(--elab-hex-e85040)' : isPowerGND ? '#333' : `url(#gold-pad-${boardId})`;
+  const isSupply = pin.padRole === 'supply';
+  const isGround = pin.padRole === 'ground';
+  const padFill = isSupply ? 'var(--elab-hex-e85040)' : isGround ? '#333' : `url(#gold-pad-${boardId})`;
 
   return (
     <g data-pin={pin.id} className="pin-pad">

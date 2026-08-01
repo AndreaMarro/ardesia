@@ -9,11 +9,25 @@
 // Tipi non registrati restano deny-by-default per il solve (slice future).
 import { registerComponent } from "./components/registry.js"
 import type { CatalogInternalNet, CatalogPin } from "./components/registry.js"
+// Il plugin è JavaScript fuori dal project graph tsc; il dato resta risolto
+// dall'alias Vite senza importare React o il componente SVG.
+// @ts-expect-error -- modulo JS headless del plugin senza declaration companion
+import { NANO_R4_PINS } from "@elab-tutor-plugin/components/simulator/components/nanoR4Catalog.js"
 
 const COLS = 30
 const TOP_LABELS = ["a", "b", "c", "d", "e"] as const
 const BOT_LABELS = ["f", "g", "h", "i", "j"] as const
 const BUS_PREFIXES = ["bus-top-plus", "bus-top-minus", "bus-bot-plus", "bus-bot-minus"] as const
+
+// Proprietà dell'oggetto, non eccezione per nome: il solve strutturale usa i
+// pin, mentre un provider statico può derivare che serve un runtime firmware.
+const NANO_R4_ELECTRICAL_ENTRY = {
+  pins: NANO_R4_PINS,
+  defaultState: {},
+  category: "board",
+  label: "ELAB NanoBreakout V1.1 GP",
+  requiresRuntimeFirmware: true,
+}
 
 function breadboardHalfPins(): CatalogPin[] {
   const pins: CatalogPin[] = [
@@ -101,6 +115,8 @@ export function registerElectricalCatalog(): void {
     category: "wire",
     label: "Filo",
   })
+
+  registerComponent("nano-r4", NANO_R4_ELECTRICAL_ENTRY)
 
   // ── Sblocco multi-pin (NOTTE-13, per v1-cap9-esp6 lampada RGB) ──────────
   // Il motore vendored supporta già potentiometer (_solvePotentiometer,

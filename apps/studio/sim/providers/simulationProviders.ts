@@ -229,7 +229,12 @@ function localUnsupportedModeResult(mode: ProviderMode): SolverResult | null {
 function localUnsupportedPhysicsDiagnostics(scene: SceneForSolve): ProviderDiagnostic[] {
   registerElectricalCatalog()
   return (scene.components ?? [])
-    .filter((component) => getComponent(component.type) === null)
+    .filter((component) => {
+      const catalogEntry = getComponent(component.type) as {
+        requiresRuntimeFirmware?: boolean
+      } | null
+      return catalogEntry === null || catalogEntry.requiresRuntimeFirmware === true
+    })
     .map((component) => ({
       code: "provider-physics-unsupported",
       severity: "blocker",
