@@ -9,6 +9,7 @@
 
 import ViewNav from "./ViewNav"
 import LessonGraphCanvas from "./LessonGraphCanvas"
+import StudentPackResult from "./StudentPackResult"
 import {
   buildStudentPackArtifact,
   parseStudentPackArtifact,
@@ -529,37 +530,10 @@ export default function TeacherDashboardView({ deps }: { deps?: TeacherDashboard
                 }}
               />
             </label>
-            {importedPack !== null && !importedPack.ok && (
-              <div role="alert" data-z7-import-error style={{ fontSize: 13 }}>
-                Import fallito: {importedPack.error}
-              </div>
-            )}
-            {importedPack !== null && importedPack.ok && (
-              <div
-                data-imported-pack
-                style={{
-                  border: "1px solid var(--st-line, #d8d2c6)",
-                  borderRadius: 8,
-                  padding: "10px 14px",
-                  display: "grid",
-                  gap: 4,
-                }}
-              >
-                <strong>Pack riaperto — {importedPack.artifact.packs.length} elemento/i</strong>
-                {importedPack.artifact.packs.map((pack) => (
-                  <div key={pack.candidateId} data-imported-pack-id={pack.candidateId}>
-                    <div>{pack.label.it}</div>
-                    <div style={{ fontSize: 12, opacity: 0.7 }}>
-                      errore: {pack.errorId}
-                      {pack.fromRoom !== "" ? ` — lezione: ${pack.fromRoom}` : ""}
-                    </div>
-                    <div style={{ fontSize: 12, opacity: 0.7 }}>
-                      evidenze: {pack.evidence.join(", ")}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* Stessa resa che vede chi RICEVE il pack (?vista=pack): una
+                sola sorgente, cosi' i due capi del round-trip non possono
+                divergere. */}
+            <StudentPackResult result={importedPack} />
           </div>
         </section>
 
