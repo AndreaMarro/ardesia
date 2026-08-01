@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactEle
 
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
+import { LED_READOUT_LABELS, ledReadout } from "../core/contracts/ledReadout";
 import {
   ELAB_BREADBOARD_POINT_COUNT,
   ELAB_BOTTOM_TERMINAL_ROWS,
@@ -1792,8 +1793,21 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             </>
           ) : scene.runtime.kind === "elab-mna" ? (
             <>
-              <text x="16" y="48" style={diagnosticSvgStyle}>
-                batteria {scene.runtime.supplyVolts}.00 V - LED RGB {mnaView?.ok === true && mnaView.anyOn ? "ON" : "OFF"}
+              <text
+                x="16"
+                y="48"
+                style={diagnosticSvgStyle}
+                data-led-readout={ledReadout(
+                  // Quattro righe sotto, `mnaView === null` era gia' un caso a
+                  // se'; qui finiva schiacciato su "OFF" insieme al solve
+                  // fallito. Vista assente e solve fallito = non lo sappiamo.
+                  mnaView === null ? null : mnaView.ok ? mnaView.anyOn : null,
+                )}
+              >
+                batteria {scene.runtime.supplyVolts}.00 V - LED RGB{" "}
+                {LED_READOUT_LABELS[
+                  ledReadout(mnaView === null ? null : mnaView.ok ? mnaView.anyOn : null)
+                ]}
               </text>
               <text x="16" y="68" style={diagnosticSvgStyle} data-rgb-channels>
                 {mnaView === null

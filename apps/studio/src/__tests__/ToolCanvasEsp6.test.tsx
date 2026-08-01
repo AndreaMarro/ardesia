@@ -101,6 +101,49 @@ describe("post-it esp6 — canali dal motore reale", () => {
   })
 })
 
+describe("il LED non dichiara OFF quando la risposta non c'è", () => {
+  // `mnaView?.ok === true && mnaView.anyOn ? "ON" : "OFF"` schiacciava tre
+  // realtà su una parola: LED spento, solve fallito, vista non calcolata.
+  // Quattro righe sotto, nello stesso <text>, `mnaView === null` era GIÀ un
+  // caso a sé — il file conosceva il tri-stato e la parola lo ignorava.
+  //
+  // Questi due test guardano il PRODOTTO, non l'helper: il modulo `ledReadout`
+  // ha i suoi test, ma nessun oracolo osservava questi due punti d'uso, quindi
+  // la riparazione sarebbe stata invisibile a tutta la suite.
+
+  function mountSenzaRgb() {
+    const scene = createV1Cap9Esp6SimulationScene()
+    const element = createToolEmbedElement({
+      embedId: ELAB_V1_RGB_LAMP_EMBED_ID,
+      state: {
+        kind: "simulation-scene-v1",
+        scene: {
+          ...scene,
+          // computeElabMnaView: senza rgb-led torna { ok: false }, il ramo che
+          // prima stampava "OFF".
+          components: scene.components.filter((component) => component.type !== "rgb-led"),
+        },
+      },
+    })
+    const view = renderToolCanvasEmbeddable(element as never)
+    if (view === null) throw new Error("embeddable non renderizzato")
+    return render(view).container
+  }
+
+  it("scena integra: il readout è 'on', quindi l'attributo riflette un solve vero", () => {
+    const readout = mountEsp6().querySelector("[data-led-readout]")
+    expect(readout).not.toBeNull()
+    expect(readout?.getAttribute("data-led-readout")).toBe("on")
+  })
+
+  it("solve non disponibile: il readout è 'unknown' e la parola OFF non compare", () => {
+    const readout = mountSenzaRgb().querySelector("[data-led-readout]")
+    expect(readout).not.toBeNull()
+    expect(readout?.getAttribute("data-led-readout")).toBe("unknown")
+    expect(readout?.textContent ?? "").not.toContain("OFF")
+  })
+})
+
 describe("inserimento toolbar", () => {
   it("buildSimulationInsert('v1-cap9-esp6') produce il post-it con la scena esp6", () => {
     const insert = buildSimulationInsert([], ELAB_V1_RGB_LAMP_EXPERIMENT_ID)

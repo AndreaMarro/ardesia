@@ -18,6 +18,7 @@ import {
   solveWithProvider,
   type ProviderId,
 } from "../../sim/providers/simulationProviders"
+import { LED_READOUT_LABELS, ledReadout } from "../core/contracts/ledReadout"
 import { wokwiDiagramToSimulationScene } from "../../sim/core/wokwiDiagramAdapter"
 import {
   structuredObservationToSimulationScene,
@@ -457,6 +458,9 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
   }
   const liveCurrentMa = (liveSolve.currents.led1 ?? 0) * 1000
   const liveLedState = liveSolve.componentStates.led1
+  // `led1` può non esistere in questa scena, o il solver può non aver risposto:
+  // in entrambi i casi non sappiamo, e «non lo so» non si scrive «OFF».
+  const liveLedReadout = ledReadout(liveLedState?.on)
 
   return (
     <div
@@ -480,7 +484,7 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
       >
         <strong>fisica reale</strong>
         <span>{liveSolve.ok ? "solver local OK" : liveSolve.diagnostics.join(", ")}</span>
-        <span>LED {liveLedState?.on === true ? "ON" : "OFF"}</span>
+        <span data-led-readout={liveLedReadout}>LED {LED_READOUT_LABELS[liveLedReadout]}</span>
         <span>{liveCurrentMa.toFixed(1)} mA</span>
         <span>{liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0} pin scollegati</span>
         {freeAssembly.findings.length > 0 && (
