@@ -15,6 +15,53 @@ afterEach(() => {
   })
 })
 
+describe("striscia fisica: la parola e l'attributo non possono divergere", () => {
+  // Copre un punto d'uso di `ledReadout` che prima nessun oracolo osservava.
+  //
+  // ⚠️ LIMITE MISURATO, non dedotto: al 2026-08-01 tutte e tre le sorgenti di
+  // scena del Workbench producono `on` (verificato con una sonda usa-e-getta
+  // che stampava i tre valori: `Wokwi=on`, `Immagine=on`, `Descrizione=on`).
+  // Quindi il ramo `unknown` **non è raggiungibile da qui**, e in questo punto
+  // il collasso era LATENTE, non vivo — quello vivo, riprodotto verbatim, è
+  // sul canvas (`ToolCanvasEsp6.test.tsx`).
+  //
+  // Questo test vale come guardia di non-divergenza fra attributo e parola: se
+  // una scena futura porta `unknown` qui, il ramo scatta. Non vale come prova
+  // che il caso ignoto sia gestito: quella prova è sul canvas.
+  const ETICHETTE: Record<string, string> = { on: "ON", off: "OFF", unknown: "?" }
+
+  function leggiReadout(container: HTMLElement): { stato: string; testo: string } {
+    const nodo = container.querySelector("[data-led-readout]")
+    if (nodo === null) throw new Error("nessun readout del LED nella striscia fisica")
+    return {
+      stato: nodo.getAttribute("data-led-readout") ?? "",
+      testo: nodo.textContent ?? "",
+    }
+  }
+
+  it("in tutte e tre le sorgenti di scena lo stato dichiarato e la parola coincidono", () => {
+    const { container } = render(<SimulationPluginWorkbench />)
+    const visti: string[] = []
+
+    for (const etichettaBottone of ["Wokwi diagram.json", "Immagine", "Descrizione"]) {
+      fireEvent.click(screen.getByText(etichettaBottone))
+      const { stato, testo } = leggiReadout(container)
+
+      expect(Object.keys(ETICHETTE), `stato sconosciuto: ${stato}`).toContain(stato)
+      expect(testo, `sorgente ${etichettaBottone}`).toContain(ETICHETTE[stato])
+      if (stato === "unknown") {
+        expect(testo, `sorgente ${etichettaBottone}: ignoto scritto come spento`).not.toContain("OFF")
+      }
+      visti.push(stato)
+    }
+
+    // Non pretendo che una sorgente specifica produca "unknown": dipende dalle
+    // scene, e legarlo a una di esse renderebbe il test d'accordo con qualunque
+    // cosa quelle scene diventino. Pretendo che il readout esista sempre.
+    expect(visti).toHaveLength(3)
+  })
+})
+
 describe("Simulation Plugin route", () => {
   it("has its own query route, separate from ELABTutor", () => {
     window.history.replaceState(null, "", "/?vista=simulatore")
