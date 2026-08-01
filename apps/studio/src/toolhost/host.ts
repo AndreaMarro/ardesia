@@ -15,6 +15,7 @@ import { ToolGraph } from "./caps/graph.ts"
 import type { EventLogReadLike } from "./caps/graph.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
+import { assertInstanceId } from "./caps/instance.ts"
 import { ToolSimulation } from "./caps/simulation.ts"
 import type { SimulationRuntimeApiLike } from "./caps/simulation.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
@@ -25,9 +26,15 @@ import type { MethodHandler } from "./router.ts"
 import type { PortLike } from "./session.ts"
 import type { EventLogStore, LessonOsEvent } from "../lessonos/eventlog.ts"
 
-export function statePath(toolId: string): string {
+export function statePath(toolId: string, instanceId?: string): string {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
-  return `tools/${toolId}/state.json`
+  if (instanceId === undefined) return `tools/${toolId}/state.json`
+  // Specchia storagePrefix(): board, storage e simulation erano già namespaced
+  // per istanza, lo stato di lifecycle dell'host no — due post-it dello stesso
+  // plugin si restituivano lo stato a vicenda. "@instance" non è un instanceId
+  // valido (INSTANCE_ID_RE), quindi il segmento non è alias-abile.
+  assertInstanceId(instanceId)
+  return `tools/${toolId}/@instance/${instanceId}/state.json`
 }
 
 /**
@@ -224,7 +231,7 @@ export class ToolHost {
       if (blob.size > MAX_STATE_BYTES) {
         throw new Error(`suspend state too large (${blob.size} > ${MAX_STATE_BYTES} bytes)`)
       }
-      await this._deps.store.write(statePath(this.manifest.id), blob)
+      await this._deps.store.write(statePath(this.manifest.id, this._deps.instanceId), blob)
     })
   }
 
@@ -232,14 +239,16 @@ export class ToolHost {
   restore(): Promise<boolean> {
     return this._serializeLifecycle(async () => {
       const session = this._requireSession()
-      const blob = await this._deps.store.read(statePath(this.manifest.id))
+      const blob = await this._deps.store.read(statePath(this.manifest.id, this._deps.instanceId))
       if (blob === null) return false
       let doc: z.infer<typeof StateDocSchema>
       try {
         doc = StateDocSchema.parse(JSON.parse(await blob.text()))
       } catch {
         // mai consegnare spazzatura al tool: meglio un errore esplicito al docente
-        throw new Error(`corrupted tool state: ${statePath(this.manifest.id)}`)
+        throw new Error(
+          `corrupted tool state: ${statePath(this.manifest.id, this._deps.instanceId)}`,
+        )
       }
       await session.request("host.restore", { state: doc.state })
       return true
@@ -256,7 +265,7 @@ export class ToolHost {
     // DOPO il purge resusciterebbe dati che dovevano sparire.
     await this._storage?.idle()
     await purgeToolStorage(this._deps.store, this.manifest.id)
-    await this._deps.store.delete(statePath(this.manifest.id))
+    await this._deps.store.delete(statePath(this.manifest.id, this._deps.instanceId))
   }
 
   private _requireSession(): ToolHostSession {

@@ -22,11 +22,11 @@ import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/stora
 import { EMBED_DATA_KEY, ToolBoard, embedOwner } from "../toolhost/caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
-import { ToolHost } from "../toolhost/host.ts"
+import { ToolHost, statePath } from "../toolhost/host.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
 import { ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import { connectTool } from "../sdk/index.ts"
-import type { ToolConnection, WindowLike } from "../sdk/index.ts"
+import type { ToolConnection, ToolHandlers, WindowLike } from "../sdk/index.ts"
 
 class MemoryDriver implements StorageDriverLike, AuditStore {
   files = new Map<string, Blob>()
@@ -206,5 +206,92 @@ describe("ToolHost multi-istanza (due mount sul wire, storage isolato)", () => {
           instanceId: "../evasione",
         }),
     ).toThrow()
+  })
+})
+
+// ---------- invariante 6: lo STATO DI LIFECYCLE è per istanza ----------
+// Le invarianti 1-5 coprono storage e board. Lo stato che l'HOST STESSO
+// persiste in suspend/restore non era coperto da nessuna: statePath() vedeva
+// solo il toolId, quindi due post-it dello stesso plugin si sovrascrivevano lo
+// stato a vicenda mentre ogni altra superficie era isolata.
+
+async function mountInstanceWithHost(
+  driver: MemoryDriver,
+  instanceId: string,
+  handlers: ToolHandlers = {},
+): Promise<{ host: ToolHost; conn: ToolConnection }> {
+  const host = new ToolHost(MULTI_MANIFEST, resolveGrant(MULTI_MANIFEST, ["storage"]), {
+    store: driver,
+    board: new FakeBoard(),
+    instanceId,
+    now: () => 1000,
+  })
+  const ch = new MessageChannel()
+  const session = host.mount(ch.port1)
+  const win = new InPageToolWindow()
+  const connP = connectTool({ windowRef: win, handlers })
+  win.deliver(session.hello, [ch.port2])
+  const conn = await connP
+  cleanups.push(() => {
+    conn.close()
+    host.unmount()
+    ch.port1.close()
+    ch.port2.close()
+  })
+  return { host, conn }
+}
+
+describe("ToolHost multi-istanza: lo stato di lifecycle è per istanza", () => {
+  it("suspend di A non sovrascrive lo stato di B (file distinti)", async () => {
+    const driver = new MemoryDriver()
+    const a = await mountInstanceWithHost(driver, "ist-a", { suspend: () => ({ conta: 1 }) })
+    const b = await mountInstanceWithHost(driver, "ist-b", { suspend: () => ({ conta: 2 }) })
+
+    await a.host.suspend()
+    await b.host.suspend()
+
+    // I due percorsi devono essere DIVERSI prima ancora di confrontarli con lo
+    // store: senza questa riga il test è verde per tautologia se statePath
+    // ignora l'istanza (due chiamate identiche, due insiemi da uno).
+    expect(statePath(TOOL_ID, "ist-a")).not.toBe(statePath(TOOL_ID, "ist-b"))
+
+    const paths = [...driver.files.keys()].filter((p) => p.endsWith("state.json"))
+    expect(paths).toHaveLength(2)
+    expect(new Set(paths)).toEqual(new Set([statePath(TOOL_ID, "ist-a"), statePath(TOOL_ID, "ist-b")]))
+  })
+
+  it("restore restituisce a ogni istanza il PROPRIO stato", async () => {
+    const driver = new MemoryDriver()
+    const restored: Record<string, unknown> = {}
+    const a = await mountInstanceWithHost(driver, "ist-a", {
+      suspend: () => ({ conta: 1 }),
+      restore: (state: unknown) => {
+        restored["ist-a"] = state
+      },
+    })
+    const b = await mountInstanceWithHost(driver, "ist-b", {
+      suspend: () => ({ conta: 2 }),
+      restore: (state: unknown) => {
+        restored["ist-b"] = state
+      },
+    })
+
+    await a.host.suspend()
+    await b.host.suspend()
+    expect(await a.host.restore()).toBe(true)
+    expect(await b.host.restore()).toBe(true)
+
+    expect(restored["ist-a"]).toEqual({ conta: 1 })
+    expect(restored["ist-b"]).toEqual({ conta: 2 })
+  })
+
+  it("senza instanceId il percorso resta quello storico (nessuna rottura)", () => {
+    expect(statePath(TOOL_ID)).toBe(`tools/${TOOL_ID}/state.json`)
+  })
+
+  it("instanceId malformato in statePath = fail-closed", () => {
+    for (const bad of ["../evasione", "", "a/b", "@instance", "Ist-A"]) {
+      expect(() => statePath(TOOL_ID, bad), `instanceId: ${JSON.stringify(bad)}`).toThrow()
+    }
   })
 })
