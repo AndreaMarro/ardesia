@@ -239,16 +239,30 @@ export class ToolHost {
   restore(): Promise<boolean> {
     return this._serializeLifecycle(async () => {
       const session = this._requireSession()
-      const blob = await this._deps.store.read(statePath(this.manifest.id, this._deps.instanceId))
+      const instanceId = this._deps.instanceId
+      const percorso = statePath(this.manifest.id, instanceId)
+      let letto = percorso
+      let blob = await this._deps.store.read(percorso)
+      if (blob === null && instanceId !== undefined) {
+        // Migrazione esplicita dal percorso senza istanza (CARDINE 3, P0-3).
+        // Prima di questa riparazione lo stato viveva in tools/<id>/state.json:
+        // senza fallback un post-it aggiornato si riaprirebbe VUOTO, e nessun
+        // errore lo direbbe — il silenzio è il difetto, non la perdita.
+        //
+        // Il legacy si LEGGE e non si cancella: finché un'altra istanza non ha
+        // ancora un proprio stato, quello è l'unico che ha. La migrazione si
+        // completa da sé al primo suspend, che scrive sempre sul percorso di
+        // istanza.
+        letto = statePath(this.manifest.id)
+        blob = await this._deps.store.read(letto)
+      }
       if (blob === null) return false
       let doc: z.infer<typeof StateDocSchema>
       try {
         doc = StateDocSchema.parse(JSON.parse(await blob.text()))
       } catch {
         // mai consegnare spazzatura al tool: meglio un errore esplicito al docente
-        throw new Error(
-          `corrupted tool state: ${statePath(this.manifest.id, this._deps.instanceId)}`,
-        )
+        throw new Error(`corrupted tool state: ${letto}`)
       }
       await session.request("host.restore", { state: doc.state })
       return true

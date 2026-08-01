@@ -300,6 +300,71 @@ describe("ToolHost multi-istanza: lo stato di lifecycle è per istanza", () => {
 // purgeToolStorage pulisce l'intero albero del tool: chiamato da ToolHost.uninstall()
 // di un'istanza portava via anche lo storage dell'altra istanza dello stesso plugin.
 
+// ---------- invariante 8: migrazione esplicita dal percorso legacy ----------
+// Prescritta dal CARDINE 3 (`P0-3 — Suspend/restore non è per istanza`,
+// 2026-07-31): «con migrazione esplicita dal path legacy». Senza, uno stato
+// salvato PRIMA che l'host conoscesse l'istanza resta orfano: il post-it si
+// riapre vuoto e nessun errore lo dice.
+
+describe("stato legacy: la prima riapertura per istanza lo ritrova", () => {
+  it("restore trova lo stato scritto sul percorso senza istanza", async () => {
+    const driver = new MemoryDriver()
+    // scritto da un host PRECEDENTE, che non conosceva l'instanceId
+    driver.files.set(
+      statePath(TOOL_ID),
+      new Blob([JSON.stringify({ v: 1, t: 1, state: { conta: 42 } })]),
+    )
+
+    let ricevuto: unknown = null
+    const a = await mountInstanceWithHost(driver, "ist-a", {
+      suspend: () => ({ conta: 0 }),
+      restore: (state: unknown) => {
+        ricevuto = state
+      },
+    })
+
+    expect(await a.host.restore()).toBe(true)
+    expect(ricevuto).toEqual({ conta: 42 })
+  })
+
+  it("dopo il primo suspend lo stato vive sul percorso di istanza", async () => {
+    const driver = new MemoryDriver()
+    driver.files.set(
+      statePath(TOOL_ID),
+      new Blob([JSON.stringify({ v: 1, t: 1, state: { conta: 42 } })]),
+    )
+    const a = await mountInstanceWithHost(driver, "ist-a", { suspend: () => ({ conta: 43 }) })
+
+    await a.host.suspend()
+
+    expect(driver.files.has(statePath(TOOL_ID, "ist-a"))).toBe(true)
+    const doc = JSON.parse(await driver.files.get(statePath(TOOL_ID, "ist-a"))!.text())
+    expect(doc.state).toEqual({ conta: 43 })
+  })
+
+  it("il legacy NON è condiviso fra istanze: serve solo finché l'istanza non ha il proprio", async () => {
+    const driver = new MemoryDriver()
+    driver.files.set(
+      statePath(TOOL_ID),
+      new Blob([JSON.stringify({ v: 1, t: 1, state: { conta: 42 } })]),
+    )
+    const a = await mountInstanceWithHost(driver, "ist-a", { suspend: () => ({ conta: 1 }) })
+    let ricevutoB: unknown = null
+    const b = await mountInstanceWithHost(driver, "ist-b", {
+      suspend: () => ({ conta: 2 }),
+      restore: (state: unknown) => {
+        ricevutoB = state
+      },
+    })
+
+    await a.host.suspend() // A si scrive il proprio
+    expect(await b.host.restore()).toBe(true)
+
+    // B non ha ancora un proprio stato: legge il legacy, NON quello di A.
+    expect(ricevutoB).toEqual({ conta: 42 })
+  })
+})
+
 describe("uninstall di UNA istanza non tocca le altre", () => {
   it("A disinstallata: storage e stato di B sopravvivono", async () => {
     const driver = new MemoryDriver()
