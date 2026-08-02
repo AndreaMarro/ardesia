@@ -98,6 +98,63 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  # Seconda lane ADVISORY, separata dal golden path DI PROPOSITO. Metterle nello
+  # stesso job costa una riga in meno e un segnale: se una delle due fallisse, il
+  # colore del job non direbbe piu' QUALE capacita' e' rotta, e due advisory
+  # indistinguibili sono un advisory solo.
+  #
+  # Perche' proprio questa spec, fra le 23 di `apps/studio/e2e/`: e' l'unica che
+  # prova `KERN-001` come il PRD lo chiede — due istanze dello stesso plugin che
+  # conservano stato divergente dopo reload — e lo prova su due viewport.
+  #
+  # Che il gate non la vedesse NON e' dedotto dal YAML, e' misurato il
+  # 2026-08-02 su `main@751bcb30`: rotta di proposito la sintassi della spec, il
+  # comando della lane sopra continua a uscire 0 dichiarando «Total: 1 test in 1
+  # file», mentre lo stesso runner puntato su quella spec esce 1. Il comando non
+  # la carica nemmeno.
+  #
+  # Verde 3 esecuzioni su 3 su quello stesso SHA (6,3 s · 4,2 s · 3,5 s) e
+  # discriminante: resa costante l'identita' d'istanza in
+  # `pluginPostitBoardRender.tsx:166` — con `tsc -b --noEmit` a 0, perche' un
+  # file che non compila somiglia a un rosso e non lo e' — la spec fallisce
+  # `2 failed` su entrambe le viewport alla riga `:110`, che e' il punto previsto.
+  #
+  # Resta `continue-on-error: true` e NON entra nella branch protection: la
+  # promozione a required richiede una serie storica, esattamente come dichiarato
+  # sopra per il golden path (unita' F1-3). Una lane nuova promossa il giorno in
+  # cui nasce non ha mai riportato niente su cui decidere.
+  e2e-postit-reload:
+    name: e2e postit reload (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      # Nessuna pipe e nessun wrapper di shell: l'exit code che il job legge deve
+      # essere quello di playwright. Un `| tee` qui riporterebbe l'exit dell'ultimo
+      # anello della catena, ed e' esattamente il modo in cui un rosso diventa
+      # invisibile restando "verde".
+      - name: postit reload — identita' per istanza su due viewport
+        run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --reporter=line
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: postit-reload-traces-${{ github.sha }}
+          path: apps/studio/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest
