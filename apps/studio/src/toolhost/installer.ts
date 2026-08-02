@@ -19,6 +19,7 @@ import { ToolManifestSchema, isValidToolId } from "../toolhost-protocol/index.ts
 import type { ToolManifest } from "../toolhost-protocol/index.ts"
 import { assertNotKilled } from "./killList.ts"
 import type { StorageReadWriteDelete } from "./killList.ts"
+import { auditPath } from "./audit.ts"
 import type { AuditStore } from "./audit.ts"
 import type { StorageEntryLike } from "./caps/storage.ts"
 
@@ -213,8 +214,40 @@ export async function installTool(
 // ---- Uninstall ----
 
 /**
- * Disinstalla un tool: rimuove manifest, bundle, install record, storage e state.
- * L'audit-log SOPRAVVIVE (spec §2: "audit log conservato").
+ * Path che il contratto dichiara DUREVOLI oltre l'uninstall totale.
+ *
+ * Oggi ce n'è uno solo — l'audit-log — e la spec §2 dice perché: dopo aver
+ * disinstallato un plugin, chi insegna deve poter ancora rispondere a «cosa ha
+ * letto questo tool?». Un registro d'audit che sparisce col suo soggetto non è
+ * un registro d'audit.
+ *
+ * Esiste come funzione, e non come stringa dentro `uninstallTool`, perché è
+ * l'UNICO elenco scritto a mano che questa semantica si concede: tutto il resto
+ * si deriva. Chi domani vorrà preservare un secondo oggetto lo aggiunge qui, e
+ * il test che pretende «sopravvive solo l'audit» diventa rosso finché non lo
+ * dichiara — che è il modo giusto di accorgersi di un cambio di contratto.
+ */
+export function uninstallPreservedPaths(toolId: string): readonly string[] {
+  return [auditPath(toolId)]
+}
+
+/**
+ * Disinstalla un tool: rimuove TUTTO il suo sottoalbero tranne i path che il
+ * contratto dichiara durevoli.
+ *
+ * Il referente si DERIVA dal `toolId` validato invece di essere un elenco di
+ * cose da cancellare. Prima lo era, e l'elenco è invecchiato: la PR che ha
+ * introdotto lo stato per istanza in `tools/<id>/@instance/<inst>/state.json`
+ * non poteva sapere che qui esistesse un `tools/<id>/state.json` scritto a mano,
+ * e quello stato sopravviveva alla disinstallazione. Un elenco di path da
+ * rimuovere va aggiornato da chi aggiunge un path; un sottoalbero no.
+ *
+ * Nota di sicurezza: la kill-list vive a `tools/kill-list.json`, cioè SOPRA il
+ * sottoalbero del singolo tool, e questa cancellazione non la raggiunge. Un
+ * plugin revocato resta revocato anche dopo essere stato disinstallato.
+ *
+ * Idempotente: alla seconda chiamata il sottoalbero contiene già soltanto i
+ * path preservati, e non resta niente da cancellare.
  */
 export async function uninstallTool(
   store: InstallerStore,
@@ -222,20 +255,16 @@ export async function uninstallTool(
 ): Promise<void> {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
 
-  // Pulisce storage per-tool
-  const sp = `tools/${toolId}/storage/`
-  const entries = await store.list(sp)
-  for (const entry of entries) {
+  const root = `tools/${toolId}/`
+  const preserved = new Set(uninstallPreservedPaths(toolId))
+
+  for (const entry of await store.list(root)) {
+    // `list(prefix)` è un filtro richiesto, non garantito: lo riapplico qui.
+    // Senza, uno store generoso cancellerebbe fuori dal sottoalbero del tool.
+    if (!entry.path.startsWith(root)) continue
+    if (preserved.has(entry.path)) continue
     await store.delete(entry.path)
   }
-
-  // Rimuovi artefatti di install
-  await store.delete(manifestPath(toolId))
-  await store.delete(bundlePath(toolId))
-  await store.delete(installRecordPath(toolId))
-  await store.delete(`tools/${toolId}/state.json`)
-
-  // NOTA: tools/<toolId>/audit.jsonl NON viene cancellato (audit preservato)
 }
 
 // ---- Query ----

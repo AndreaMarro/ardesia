@@ -13,7 +13,12 @@ import { PluginManager, lifecyclePath, LifecycleDocSchema } from "../toolhost/pl
 import { installTool, manifestPath } from "../toolhost/installer.ts"
 import type { InstallerStore } from "../toolhost/installer.ts"
 import { addToKillList, removeFromKillList } from "../toolhost/killList.ts"
+import { storagePrefix } from "../toolhost/caps/storage.ts"
 import type { StorageEntryLike } from "../toolhost/caps/storage.ts"
+import { statePath } from "../toolhost/host.ts"
+// Alias: più giù alcuni test hanno una costante locale `auditPath`, e questo è
+// il costruttore VERO di quel path.
+import { auditPath as auditPathDelTool } from "../toolhost/audit.ts"
 
 // ---------- harness ----------
 
@@ -157,6 +162,96 @@ describe("PluginManager — install/enable/disable/uninstall", () => {
     expect(await store.read(manifestPath(toolId))).toBeNull()
     // l'audit sopravvive all'uninstall (chi-ha-letto-cosa resta consultabile)
     expect(await store.read(auditPath)).not.toBeNull()
+  })
+
+  // P0-C — l'uninstall TOTALE deve rimuovere anche lo stato PER ISTANZA.
+  //
+  // Il difetto che questo test esiste per prendere: #242 ha introdotto
+  // `statePath(toolId, instanceId)` = `tools/<id>/@instance/<inst>/state.json`,
+  // che sta FUORI da `tools/<id>/storage/`. `uninstallTool()` purga il prefisso
+  // storage e poi cancella UNA stringa hard-coded, `tools/<id>/state.json`:
+  // quella dell'istanza sopravvive alla disinstallazione del plugin.
+  //
+  // L'oracolo chiama il PERCORSO REALE — `PluginManager.uninstall()`, che è ciò
+  // che l'interfaccia invoca — e non `purgeToolStorage()`, che è un pezzo
+  // interno. Un test sul pezzo interno risponderebbe a un'altra domanda.
+  //
+  // OGNI path del fixture è costruito con la funzione REALE di produzione
+  // (`statePath`, `storagePrefix`, `auditPath`): se domani cambiano forma, il
+  // test le segue invece di restare a sorvegliare una stringa che nessuno
+  // scrive più. Vale anche per l'audit, che è il path che il prodotto PRESERVA:
+  // scriverlo a mano qui avrebbe riaperto nell'oracolo proprio l'enumerazione
+  // che la patch toglie dall'implementazione.
+  it("uninstall totale: sopravvive SOLO l'audit — storage e stato di ogni istanza spariscono", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const toolId = await installViaManager(pm)
+
+    const auditPath = auditPathDelTool(toolId)
+    const auditBytes = "letto board.read alle 10:00\n"
+    await store.write(auditPath, new Blob([auditBytes], { type: "application/x-ndjson" }))
+
+    // storage: uno legacy (senza istanza) e uno per ciascuna delle due istanze
+    await store.write(`${storagePrefix(toolId)}legacy.txt`, new Blob(["storico"]))
+    await store.write(`${storagePrefix(toolId, "ist-a")}nota.txt`, new Blob(["di A"]))
+    await store.write(`${storagePrefix(toolId, "ist-b")}nota.txt`, new Blob(["di B"]))
+
+    // stato di lifecycle: quello legacy e quello delle due istanze
+    await store.write(statePath(toolId), new Blob([`{"v":1,"t":1,"state":{"conta":0}}`]))
+    await store.write(statePath(toolId, "ist-a"), new Blob([`{"v":1,"t":1,"state":{"conta":1}}`]))
+    await store.write(statePath(toolId, "ist-b"), new Blob([`{"v":1,"t":1,"state":{"conta":2}}`]))
+
+    await pm.uninstall(toolId)
+
+    // il plugin non è più installato e il suo lifecycle è sparito
+    expect(await pm.getState(toolId)).toBe("not-installed")
+    expect(await store.read(lifecyclePath(toolId))).toBeNull()
+    expect(await store.read(manifestPath(toolId))).toBeNull()
+
+    // storage: né il legacy né quello delle istanze
+    expect(await store.read(`${storagePrefix(toolId)}legacy.txt`)).toBeNull()
+    expect(await store.read(`${storagePrefix(toolId, "ist-a")}nota.txt`)).toBeNull()
+    expect(await store.read(`${storagePrefix(toolId, "ist-b")}nota.txt`)).toBeNull()
+
+    // stato: né il legacy né quello delle istanze
+    expect(await store.read(statePath(toolId))).toBeNull()
+    expect(await store.read(statePath(toolId, "ist-a"))).toBeNull()
+    expect(await store.read(statePath(toolId, "ist-b"))).toBeNull()
+
+    // l'unico sopravvissuto dichiarato dal contratto, e byte-identico
+    const audit = await store.read(auditPath)
+    expect(audit).not.toBeNull()
+    expect(await audit!.text()).toBe(auditBytes)
+
+    // Niente residui in TUTTO lo store, a parte l'audit.
+    //
+    // Il prefisso NON si passa di proposito. Un `list("tools/<id>/")` avrebbe
+    // usato come referente la stessa stringa che l'implementazione usa come
+    // radice della purga: implementazione e oracolo avrebbero condiviso il
+    // punto cieco, e nessun residuo FUORI dal sottoalbero avrebbe mai potuto
+    // far fallire questo test. Guardare l'intero store è ciò che rende
+    // l'asserzione capace di dire di no.
+    const residui = (await store.list()).map((e) => e.path).sort()
+    expect(residui).toEqual([auditPath])
+
+    // Idempotenza, osservata sulle CANCELLAZIONI e non sull'assenza di throw:
+    // `MemoryInstallerStore.delete` è una `Map.delete` e non lancia mai, per
+    // nessun input, quindi un `resolves` da solo sarebbe verde anche con
+    // un'implementazione che cancella alla cieca. La seconda disinstallazione
+    // deve trovare il sottoalbero già vuoto e non emettere NESSUNA delete di
+    // purga: l'unica ammessa è quella del lifecycle, che `PluginManager` fa
+    // incondizionatamente.
+    const cancellazioni: string[] = []
+    const deleteReale = store.delete.bind(store)
+    store.delete = async (path: string) => {
+      cancellazioni.push(path)
+      await deleteReale(path)
+    }
+
+    await expect(pm.uninstall(toolId)).resolves.toBeUndefined()
+
+    expect(cancellazioni).toEqual([lifecyclePath(toolId)])
+    expect(await (await store.read(auditPath))!.text()).toBe(auditBytes)
   })
 
   it("enable/disable su tool NON installato → throw", async () => {
