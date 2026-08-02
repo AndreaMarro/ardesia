@@ -141,7 +141,23 @@ export class ToolStorage {
  * (tools/<toolId>/audit.jsonl) sta FUORI dal prefisso e sopravvive per costruzione.
  */
 export async function purgeToolStorage(driver: StorageDriverLike, toolId: string): Promise<number> {
-  const prefix = storagePrefix(toolId)
+  return purgeByPrefix(driver, storagePrefix(toolId))
+}
+
+/**
+ * Uninstall di UNA istanza: purge del solo sottoalbero @instance/<id>/.
+ * Disinstallare un post-it non deve svuotare il gemello dello stesso plugin
+ * accanto — il referente è il prefisso DERIVATO dall'istanza, non una lista.
+ */
+export async function purgeInstanceStorage(
+  driver: StorageDriverLike,
+  toolId: string,
+  instanceId: string,
+): Promise<number> {
+  return purgeByPrefix(driver, storagePrefix(toolId, instanceId))
+}
+
+async function purgeByPrefix(driver: StorageDriverLike, prefix: string): Promise<number> {
   const paths = (await driver.list(prefix)).map((e) => e.path).filter((p) => p.startsWith(prefix))
   for (const p of paths) await driver.delete(p)
   return paths.length

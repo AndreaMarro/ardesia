@@ -13,8 +13,9 @@ import { ToolBoard } from "./caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "./caps/board.ts"
 import { ToolGraph } from "./caps/graph.ts"
 import type { EventLogReadLike } from "./caps/graph.ts"
-import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
+import { ToolStorage, purgeInstanceStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
+import { assertInstanceId } from "./caps/instance.ts"
 import { ToolSimulation } from "./caps/simulation.ts"
 import type { SimulationRuntimeApiLike } from "./caps/simulation.ts"
 import { assertGrantWithinManifest } from "./policy.ts"
@@ -25,9 +26,30 @@ import type { MethodHandler } from "./router.ts"
 import type { PortLike } from "./session.ts"
 import type { EventLogStore, LessonOsEvent } from "../lessonos/eventlog.ts"
 
-export function statePath(toolId: string): string {
+export function statePath(toolId: string, instanceId?: string): string {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
-  return `tools/${toolId}/state.json`
+  if (instanceId === undefined) return `tools/${toolId}/state.json`
+  // Condivide identità e validazione con storagePrefix(), non il layout:
+  // storage vive sotto storage/@instance/, lo stato sotto @instance/. Board,
+  // storage e simulation erano già namespaced per istanza, lo stato di
+  // lifecycle dell'host no — due post-it dello stesso plugin si restituivano
+  // lo stato a vicenda. "@instance" non è un instanceId valido
+  // (INSTANCE_ID_RE), quindi il segmento non è alias-abile.
+  assertInstanceId(instanceId)
+  return `${instanceStatePrefix(toolId)}${instanceId}/state.json`
+}
+
+export function instanceStatePrefix(toolId: string): string {
+  if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
+  return `tools/${toolId}/@instance/`
+}
+
+async function purgeAllInstanceState(store: StorageDriverLike, toolId: string): Promise<void> {
+  const prefix = instanceStatePrefix(toolId)
+  const paths = (await store.list(prefix))
+    .map((entry) => entry.path)
+    .filter((path) => path.startsWith(prefix))
+  for (const path of paths) await store.delete(path)
 }
 
 /**
@@ -224,7 +246,7 @@ export class ToolHost {
       if (blob.size > MAX_STATE_BYTES) {
         throw new Error(`suspend state too large (${blob.size} > ${MAX_STATE_BYTES} bytes)`)
       }
-      await this._deps.store.write(statePath(this.manifest.id), blob)
+      await this._deps.store.write(statePath(this.manifest.id, this._deps.instanceId), blob)
     })
   }
 
@@ -232,14 +254,30 @@ export class ToolHost {
   restore(): Promise<boolean> {
     return this._serializeLifecycle(async () => {
       const session = this._requireSession()
-      const blob = await this._deps.store.read(statePath(this.manifest.id))
+      const instanceId = this._deps.instanceId
+      const percorso = statePath(this.manifest.id, instanceId)
+      let letto = percorso
+      let blob = await this._deps.store.read(percorso)
+      if (blob === null && instanceId !== undefined) {
+        // Migrazione esplicita dal percorso senza istanza (CARDINE 3, P0-3).
+        // Prima di questa riparazione lo stato viveva in tools/<id>/state.json:
+        // senza fallback un post-it aggiornato si riaprirebbe VUOTO, e nessun
+        // errore lo direbbe — il silenzio è il difetto, non la perdita.
+        //
+        // Il legacy si LEGGE e non si cancella: finché un'altra istanza non ha
+        // ancora un proprio stato, quello è l'unico che ha. La migrazione si
+        // completa da sé al primo suspend, che scrive sempre sul percorso di
+        // istanza.
+        letto = statePath(this.manifest.id)
+        blob = await this._deps.store.read(letto)
+      }
       if (blob === null) return false
       let doc: z.infer<typeof StateDocSchema>
       try {
         doc = StateDocSchema.parse(JSON.parse(await blob.text()))
       } catch {
         // mai consegnare spazzatura al tool: meglio un errore esplicito al docente
-        throw new Error(`corrupted tool state: ${statePath(this.manifest.id)}`)
+        throw new Error(`corrupted tool state: ${letto}`)
       }
       await session.request("host.restore", { state: doc.state })
       return true
@@ -255,8 +293,16 @@ export class ToolHost {
     // drena le mutazioni storage in coda: una set in-flight che atterrasse
     // DOPO il purge resusciterebbe dati che dovevano sparire.
     await this._storage?.idle()
-    await purgeToolStorage(this._deps.store, this.manifest.id)
-    await this._deps.store.delete(statePath(this.manifest.id))
+    // Un'istanza disinstalla SOLO se stessa: il purge totale del tool
+    // svuoterebbe i post-it gemelli dello stesso plugin ancora sulla lavagna.
+    const instanceId = this._deps.instanceId
+    if (instanceId === undefined) {
+      await purgeToolStorage(this._deps.store, this.manifest.id)
+      await purgeAllInstanceState(this._deps.store, this.manifest.id)
+    } else {
+      await purgeInstanceStorage(this._deps.store, this.manifest.id, instanceId)
+    }
+    await this._deps.store.delete(statePath(this.manifest.id, instanceId))
   }
 
   private _requireSession(): ToolHostSession {
