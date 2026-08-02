@@ -12,6 +12,7 @@
 // così la stessa cucitura si porta su una superficie nativa senza riscriverla.
 
 import { ToolHost } from "./host.ts"
+import type { MountGate } from "./host.ts"
 import { resolveGrant } from "./policy.ts"
 import type { CapabilityName, ToolManifest } from "../toolhost-protocol/index.ts"
 import type { AuditStore } from "./audit.ts"
@@ -32,6 +33,8 @@ export interface MountLivePostitOptions {
   store: StorageDriverLike & AuditStore
   board: BoardApiLike
   approved: readonly CapabilityName[]
+  /** Gate lifecycle/sicurezza: nega plugin non installati, disabilitati o revocati. */
+  gate: MountGate
   /** Aggancia il tool al canale: iframe in produzione, tool in-page nei test. */
   connect(hello: unknown, port: MessagePort): Promise<void>
   now?: () => number
@@ -49,11 +52,16 @@ export async function mountLivePostit(opts: MountLivePostitOptions): Promise<Liv
   })
 
   const channel = new MessageChannel()
-  const session = host.mount(channel.port1)
+  let mounted = false
   try {
+    const session = await host.mountIfEnabled(opts.gate, channel.port1)
+    if (session === null) {
+      throw new Error(`tool "${opts.manifest.id}" is not mountable`)
+    }
+    mounted = true
     await opts.connect(session.hello, channel.port2)
   } catch (err) {
-    host.unmount()
+    if (mounted) host.unmount()
     channel.port1.close()
     channel.port2.close()
     throw err
@@ -66,10 +74,13 @@ export async function mountLivePostit(opts: MountLivePostitOptions): Promise<Liv
       // Ordine non commutativo: lo stato si chiede al tool mentre la sessione è
       // VIVA. Smontare prima perderebbe lo stato in silenzio, ed è esattamente
       // ciò che rende una riapertura "quasi giusta".
-      await host.suspend()
-      host.unmount()
-      channel.port1.close()
-      channel.port2.close()
+      try {
+        await host.suspend()
+      } finally {
+        host.unmount()
+        channel.port1.close()
+        channel.port2.close()
+      }
     },
   }
 }

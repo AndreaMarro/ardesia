@@ -29,12 +29,27 @@ import type { EventLogStore, LessonOsEvent } from "../lessonos/eventlog.ts"
 export function statePath(toolId: string, instanceId?: string): string {
   if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
   if (instanceId === undefined) return `tools/${toolId}/state.json`
-  // Specchia storagePrefix(): board, storage e simulation erano già namespaced
-  // per istanza, lo stato di lifecycle dell'host no — due post-it dello stesso
-  // plugin si restituivano lo stato a vicenda. "@instance" non è un instanceId
-  // valido (INSTANCE_ID_RE), quindi il segmento non è alias-abile.
+  // Condivide identità e validazione con storagePrefix(), non il layout:
+  // storage vive sotto storage/@instance/, lo stato sotto @instance/. Board,
+  // storage e simulation erano già namespaced per istanza, lo stato di
+  // lifecycle dell'host no — due post-it dello stesso plugin si restituivano
+  // lo stato a vicenda. "@instance" non è un instanceId valido
+  // (INSTANCE_ID_RE), quindi il segmento non è alias-abile.
   assertInstanceId(instanceId)
-  return `tools/${toolId}/@instance/${instanceId}/state.json`
+  return `${instanceStatePrefix(toolId)}${instanceId}/state.json`
+}
+
+export function instanceStatePrefix(toolId: string): string {
+  if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
+  return `tools/${toolId}/@instance/`
+}
+
+async function purgeAllInstanceState(store: StorageDriverLike, toolId: string): Promise<void> {
+  const prefix = instanceStatePrefix(toolId)
+  const paths = (await store.list(prefix))
+    .map((entry) => entry.path)
+    .filter((path) => path.startsWith(prefix))
+  for (const path of paths) await store.delete(path)
 }
 
 /**
@@ -283,6 +298,7 @@ export class ToolHost {
     const instanceId = this._deps.instanceId
     if (instanceId === undefined) {
       await purgeToolStorage(this._deps.store, this.manifest.id)
+      await purgeAllInstanceState(this._deps.store, this.manifest.id)
     } else {
       await purgeInstanceStorage(this._deps.store, this.manifest.id, instanceId)
     }

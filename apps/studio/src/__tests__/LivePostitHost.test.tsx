@@ -8,8 +8,9 @@
 // inerte) e non passa instanceId, quindi nessun percorso di produzione crea
 // un'istanza di plugin che sopravviva alla sessione.
 
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { mountLivePostit } from "../toolhost/livePostitHost.ts"
+import { ToolHost } from "../toolhost/host.ts"
 import { ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import { connectTool } from "../sdk/index.ts"
 import type { WindowLike } from "../sdk/index.ts"
@@ -111,6 +112,7 @@ afterEach(async () => {
 })
 
 const APPROVED = ["storage"] as const
+const ALLOW_GATE = { canMount: async () => true }
 
 describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
   it("hanno stato distinto e lo ritrovano dopo chiusura e riapertura", async () => {
@@ -125,6 +127,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: toolA.connect,
     })
     const b = await mountLivePostit({
@@ -133,6 +136,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: toolB.connect,
     })
 
@@ -154,6 +158,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: toolA2.connect,
     })
     const b2 = await mountLivePostit({
@@ -162,6 +167,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: toolB2.connect,
     })
     closers.push(
@@ -185,6 +191,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: fakeTool(1).connect,
     })
     const b = await mountLivePostit({
@@ -193,6 +200,7 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
       store,
       board,
       approved: APPROVED,
+      gate: ALLOW_GATE,
       connect: fakeTool(2).connect,
     })
     await a.close()
@@ -210,8 +218,81 @@ describe("CORE-00 — due post-it vivi dello stesso plugin", () => {
         store,
         board: new SceneBoard(),
         approved: APPROVED,
+        gate: ALLOW_GATE,
         connect: fakeTool(1).connect,
       }),
     ).rejects.toThrow()
+  })
+
+  it("close smonta l'host e chiude le porte anche se suspend fallisce", async () => {
+    const closeSpy = vi.spyOn(MessagePort.prototype, "close")
+    const store = new PersistentStore()
+    try {
+      const postit = await mountLivePostit({
+        manifest: MANIFEST,
+        instanceId: "post-errore-suspend",
+        store,
+        board: new SceneBoard(),
+        approved: APPROVED,
+        gate: ALLOW_GATE,
+        connect: fakeTool(1).connect,
+      })
+      const writeSpy = vi.spyOn(store, "write").mockRejectedValueOnce(new Error("persistenza rotta"))
+      try {
+        await expect(postit.close()).rejects.toThrow("persistenza rotta")
+        expect(postit.host.session).toBeNull()
+        expect(closeSpy).toHaveBeenCalled()
+      } finally {
+        writeSpy.mockRestore()
+      }
+    } finally {
+      closeSpy.mockRestore()
+    }
+  })
+
+  it("chiude entrambe le porte se host.mount fallisce", async () => {
+    const mountSpy = vi.spyOn(ToolHost.prototype, "mount").mockImplementation(() => {
+      throw new Error("mount rotto")
+    })
+    const closeSpy = vi.spyOn(MessagePort.prototype, "close")
+    try {
+      await expect(
+        mountLivePostit({
+          manifest: MANIFEST,
+          instanceId: "post-errore-mount",
+          store: new PersistentStore(),
+          board: new SceneBoard(),
+          approved: APPROVED,
+          gate: ALLOW_GATE,
+          connect: fakeTool(1).connect,
+        }),
+      ).rejects.toThrow("mount rotto")
+      expect(closeSpy).toHaveBeenCalledTimes(2)
+    } finally {
+      closeSpy.mockRestore()
+      mountSpy.mockRestore()
+    }
+  })
+
+  it("gate negato: non connette il tool e chiude entrambe le porte", async () => {
+    const closeSpy = vi.spyOn(MessagePort.prototype, "close")
+    const connect = vi.fn(async () => {})
+    try {
+      await expect(
+        mountLivePostit({
+          manifest: MANIFEST,
+          instanceId: "post-negato",
+          store: new PersistentStore(),
+          board: new SceneBoard(),
+          approved: APPROVED,
+          gate: { canMount: async () => false },
+          connect,
+        }),
+      ).rejects.toThrow("not mountable")
+      expect(connect).not.toHaveBeenCalled()
+      expect(closeSpy).toHaveBeenCalledTimes(2)
+    } finally {
+      closeSpy.mockRestore()
+    }
   })
 })

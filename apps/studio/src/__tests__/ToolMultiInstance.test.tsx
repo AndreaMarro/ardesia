@@ -22,7 +22,7 @@ import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/stora
 import { EMBED_DATA_KEY, ToolBoard, embedOwner } from "../toolhost/caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
-import { ToolHost, statePath } from "../toolhost/host.ts"
+import { ToolHost, instanceStatePrefix, statePath } from "../toolhost/host.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
 import { ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import { connectTool } from "../sdk/index.ts"
@@ -388,6 +388,14 @@ describe("uninstall di UNA istanza non tocca le altre", () => {
     const driver = new MemoryDriver()
     driver.files.set(storagePrefix(TOOL_ID, "ist-a") + "nota.txt", new Blob(["di A"]))
     driver.files.set(storagePrefix(TOOL_ID) + "legacy.txt", new Blob(["storico"]))
+    driver.files.set(
+      statePath(TOOL_ID, "ist-a"),
+      new Blob([JSON.stringify({ v: 1, t: 1, state: { conta: 1 } })]),
+    )
+    driver.files.set(
+      statePath(TOOL_ID, "ist-b"),
+      new Blob([JSON.stringify({ v: 1, t: 1, state: { conta: 2 } })]),
+    )
 
     const host = new ToolHost(MULTI_MANIFEST, resolveGrant(MULTI_MANIFEST, ["storage"]), {
       store: driver,
@@ -396,5 +404,6 @@ describe("uninstall di UNA istanza non tocca le altre", () => {
     await host.uninstall()
 
     expect([...driver.files.keys()].filter((p) => p.startsWith(storagePrefix(TOOL_ID)))).toEqual([])
+    expect([...driver.files.keys()].filter((p) => p.startsWith(instanceStatePrefix(TOOL_ID)))).toEqual([])
   })
 })
