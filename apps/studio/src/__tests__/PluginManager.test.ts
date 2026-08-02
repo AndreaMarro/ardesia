@@ -193,10 +193,16 @@ describe("PluginManager — install/enable/disable/uninstall", () => {
   // L'oracolo chiama `PluginManager.uninstall()` e non `purgeToolStorage()`,
   // che è un pezzo interno. `PluginManager.uninstall()` è il percorso pubblico
   // REALE del manager — quello che una superficie d'uso invocherebbe — ma oggi
-  // NON ha call site di prodotto né di UI: `grep -rn "uninstall" src` dà 43
-  // righe e nessuna chiamata fuori dai test. Il difetto era reale nel codice e
-  // bloccava la PR; non era qualcosa che una persona potesse incontrare oggi, e
-  // questo test prova il percorso del codice, non un percorso utente.
+  // NON ha call site di prodotto né di UI. Il conteggio NON si scrive qui: la
+  // prima stesura diceva «43 righe», misurato prima che questo commento
+  // esistesse, e il commento stesso è fra le righe che quel comando conta —
+  // un referente che si invalida scrivendolo. Si legge, e le uniche occorrenze
+  // fuori dai test sono DEFINIZIONI, non chiamate:
+  //   grep -rn "uninstall" --include='*.ts' --include='*.tsx' src
+  //
+  // Il difetto era reale nel codice e bloccava la PR; non era qualcosa che una
+  // persona potesse incontrare oggi, e questo test prova il percorso del
+  // codice, non un percorso utente.
   //
   // OGNI path del fixture è costruito con la funzione REALE di produzione
   // (`statePath`, `storagePrefix`, `auditPath`, `addToKillList`): se domani
