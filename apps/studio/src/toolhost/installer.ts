@@ -235,6 +235,33 @@ export function uninstallPreservedPaths(toolId: string): readonly string[] {
  * Disinstalla un tool: rimuove TUTTO il suo sottoalbero tranne i path che il
  * contratto dichiara durevoli.
  *
+ * ## Che cosa significa «totale»
+ *
+ * Totale dentro il WorkspaceStore e dentro il sottoalbero POSSEDUTO dal tool,
+ * cioè `tools/<toolId>/`. Non è totale in senso assoluto, e ciò che resta fuori
+ * non è una dimenticanza:
+ * - il `customData` della scena, dove `caps/board.ts` fa vivere l'ownership
+ *   degli oggetti di proposito: è un secondo canale di ritenzione, e toccarlo
+ *   sarebbe una decisione di prodotto;
+ * - l'event-log LessonOS in IndexedDB, che sta FUORI dal WorkspaceStore e che
+ *   questa funzione non può raggiungere nemmeno in linea di principio;
+ * - sul driver FSA, le directory rimaste vuote: `walkDir` elenca file, quindi
+ *   quello che resta lì è una forma, non un dato.
+ *
+ * ## Precondizione: quiescenza
+ *
+ * Il chiamante deve aver FERMATO e DRENATO le scritture del tool. La purga
+ * cancella lo snapshot che `store.list(root)` ha restituito, e senza quiescenza
+ * l'esito di una write concorrente è NON DETERMINISTICO. Misurati i tre casi:
+ * verso un path assente dallo snapshot sopravvive; verso un path elencato ma
+ * non ancora cancellato viene cancellata; verso un path già cancellato
+ * sopravvive. Non esiste un istante dopo il quale una write «si salva».
+ *
+ * Questa funzione non drena da sé — `PluginManager` non possiede gli host vivi
+ * — e non promette niente contro le scritture concorrenti. Dove drenare è
+ * possibile il progetto lo fa già: `ToolHost.uninstall()` attende
+ * `ToolStorage.idle()` prima del purge.
+ *
  * Il referente si DERIVA dal `toolId` validato invece di essere un elenco di
  * cose da cancellare. Prima lo era, e l'elenco è invecchiato: la PR che ha
  * introdotto lo stato per istanza in `tools/<id>/@instance/<inst>/state.json`
