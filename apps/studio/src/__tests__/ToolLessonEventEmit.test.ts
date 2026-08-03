@@ -374,6 +374,24 @@ describe("ToolHost end-to-end: lesson.event.emit via SDK reale", () => {
     conn.close()
   })
 
+  it("identità che ESTENDE la propria → negata: il confronto è esatto, non un prefisso", async () => {
+    // I casi sopra confrontano "sim-a" con "sim-b", stringhe del tutto diverse:
+    // le supererebbe anche un `startsWith`. Questo no. Stessa cura dell'esatta
+    // chiave `room` contro `fromRoom` altrove: un confronto permissivo su
+    // un'identità è un confine che si allarga in silenzio.
+    const log = new InMemoryEventLog()
+    const conn = await mountLessonWriter({ lessonEventLog: log, instanceId: "sim-a" })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-a-extra") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(`${LESSON_EVENT_MANIFEST.id}.evil`, "sim-a") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
+    expect(await log.readAll()).toEqual([])
+    conn.close()
+  })
+
   it("host senza log NÉ identità (forma ToolLab): plugin.mounted nega prima di rivelare il wiring", async () => {
     // Cambio di comportamento DELIBERATO introdotto col gate, fissato qui perché
     // non resti incidentale: prima questa forma rispondeva INTERNAL "method not
