@@ -721,6 +721,60 @@ def test_flywheel_una_sola_porta_su_origin_main() -> None:
                len(colpevoli) > 0)
 
 
+# --- terza fonte: il `Production` DERIVATO da GitHub --------------------
+# Misurato il 2026-08-03: la ricevuta piu' recente era `3e170f83` del 31 luglio
+# mentre GitHub dava `Production` = `751bcb30` dal 2 agosto, e nulla nello stato
+# generato poteva dirlo — la ricevuta e' tenuta a mano e il probe vivo cadeva
+# per certificato. Il referente derivato esiste e va usato.
+
+def _stato_deploy(ricevuta: str, gh: dict) -> dict:
+    stato = ps.empty_state()
+    stato["deploy"] = {
+        "status": "MEASURED", "source": "docs/ops/deploys/x.json",
+        "commit_sha": ricevuta, "deployed_at": "2026-07-31T01:30:00Z",
+        "alias": "https://esempio", "receipts_count": 6, "matches_main": None,
+        "served": {"status": "UNAVAILABLE", "reason": "irraggiungibile",
+                   "served_commit_sha": None},
+        "github_production": gh,
+    }
+    return stato
+
+
+def test_ricevuta_indietro_rispetto_a_github_viene_DETTO() -> None:
+    """Il punto della terza fonte e' poter contraddire le altre due."""
+    gh = {"status": "MEASURED", "sha": "751bcb30", "sha_full": "751bcb305e78",
+          "created_at": "2026-08-02T18:27:27Z", "creator": "vercel[bot]"}
+    testo = ps.render_current_md(_stato_deploy("3e170f838353", gh))
+    check_true("dichiara il Production derivato", "751bcb30" in testo)
+    check_true("dichiara la divergenza", "NON descrive quel deploy" in testo)
+    check_true("nomina la causa: elenco tenuto a mano", "tenuta a mano" in testo)
+
+    # CONTROLLO nello stesso test: se le due fonti concordano, l'allarme NON
+    # deve comparire. Senza questa meta', l'assert sopra sarebbe soddisfatto
+    # anche da una riga stampata sempre, che non misurerebbe niente.
+    gh_uguale = dict(gh, sha="3e170f83", sha_full="3e170f838353")
+    concorde = ps.render_current_md(_stato_deploy("3e170f838353", gh_uguale))
+    check_true("nessun allarme quando concordano", "NON descrive quel deploy" not in concorde)
+
+
+def test_github_production_non_misurato_non_diventa_un_verde() -> None:
+    gh = {"status": "UNAVAILABLE", "reason": "`gh api deployments` exit 4"}
+    testo = ps.render_current_md(_stato_deploy("3e170f838353", gh))
+    check_true("dichiara il non misurato", "non misurato" in testo)
+    check_true("riporta il motivo", "exit 4" in testo)
+    check_true("non inventa una divergenza", "NON descrive quel deploy" not in testo)
+
+
+def test_nessun_production_mai_registrato_non_e_un_errore() -> None:
+    """«Non ne esiste nessuno» e «non sono riuscito a chiedere» sono diversi."""
+    gh = {"status": "MEASURED", "sha": None, "sha_full": None,
+          "created_at": None, "creator": None}
+    testo = ps.render_current_md(_stato_deploy("3e170f838353", gh))
+    check_true("lo dice con il suo nome", "nessun deploy `Production` mai registrato" in testo)
+    check_true("non lo confonde con un fallimento", "non misurato —" not in testo.split("servito ADESSO")[0])
+    check_true("non inventa una divergenza", "NON descrive quel deploy" not in testo)
+
+
 def main() -> int:
     tests = (
         test_classificazione,
@@ -752,6 +806,9 @@ def main() -> int:
         test_B6_la_misura_viva_sopravvive_all_assenza_della_ricevuta,
         test_B7_svuotare_la_feature_deve_far_diventare_ROSSO,
         test_flywheel_una_sola_porta_su_origin_main,
+        test_ricevuta_indietro_rispetto_a_github_viene_DETTO,
+        test_github_production_non_misurato_non_diventa_un_verde,
+        test_nessun_production_mai_registrato_non_e_un_errore,
     )
     for fn in tests:
         try:

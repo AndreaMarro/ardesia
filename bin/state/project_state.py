@@ -333,11 +333,30 @@ def render_current_md_untruncated(state: dict) -> str:
                                 f"(la produzione serve commit che non sono su `main`)")
         else:
             riga_scarto = f"non misurato — {scarto.get('reason', 'motivo non registrato')}"
+        gh_prod = s.get("github_production") or {}
+        if gh_prod.get("status") == "MEASURED":
+            gh_sha = gh_prod.get("sha")
+            riga_gh = (f"`{gh_sha}` · {gh_prod.get('created_at') or 'data non registrata'}"
+                       if gh_sha else "nessun deploy `Production` mai registrato")
+        else:
+            riga_gh = f"non misurato — {gh_prod.get('reason', 'motivo non registrato')}"
         righe = [
+            f"- ultimo `Production` secondo GitHub (derivato): {riga_gh}",
             f"- servito ADESSO dalla produzione: {riga_servita}",
             f"- `prod_scarto` (servito ↔ `origin/main`): {riga_scarto}",
             f"- **pari a `main` in produzione: {etichetta}**",
         ]
+        # Il punto di avere una terza fonte e' proprio poter contraddire le altre
+        # due: se la ricevuta piu' recente non descrive l'ultimo Production, lo
+        # stato generato lo DICE invece di lasciare che il lettore lo deduca.
+        gh_sha_full = gh_prod.get("sha_full")
+        ricevuta_full = s.get("commit_sha_full") or s.get("commit_sha")
+        if gh_sha_full and ricevuta_full and not gh_sha_full.startswith(str(ricevuta_full)):
+            righe.insert(1, (
+                f"- ⚠️ la ricevuta piu' recente NON descrive quel deploy: "
+                f"ricevuta `{s.get('commit_sha')}`, GitHub `{gh_prod.get('sha')}` — "
+                f"`{DEPLOY_RECEIPTS}/` e' tenuta a mano e qui e' rimasta indietro"
+            ))
         if served.get("source"):
             righe.append(f"- letto da: `{served['source']}`")
         for campo, motivo in sorted((s.get("unmeasured") or {}).items()):
@@ -446,6 +465,54 @@ def collect_pull_requests(root: Path) -> dict:
     # risponde a «quante me ne mostri», non a «quante sono».
     res["source"] = " ".join(cmd)
     return res
+
+
+def collect_github_production(root: Path) -> dict:
+    """L'ultimo deploy `Production` DERIVATO da GitHub, non da una ricevuta.
+
+    Perche' esiste. `collect_deploy` legge `docs/ops/deploys/`, che qualcuno deve
+    ricordarsi di scrivere; `collect_served` legge la produzione viva, che qui
+    fallisce per certificato. Quando entrambe tacciono, lo stato generato non ha
+    piu' alcun modo di sapere che la produzione si e' mossa — ed e' successo:
+    misurato il 2026-08-03, la ricevuta piu' recente era `3e170f83` del 31 luglio
+    mentre GitHub dava `Production` = `751bcb30` dal 2 agosto. Due giorni e una
+    SHA di distanza, senza che niente lo dicesse.
+
+    Questa e' una terza fonte, e ha la proprieta' che alle altre due manca: il
+    referente si DERIVA dall'oggetto (l'API dei deployment) invece di essere
+    tenuto a mano o di dipendere dalla raggiungibilita' TLS del sito.
+    Non sostituisce nessuna delle due: la ricevuta resta il fatto storico, il
+    probe vivo resta cio' che le persone vedono davvero.
+    """
+    rc_r, repo = _run(["gh", "repo", "view", "--json", "nameWithOwner", "-q", ".nameWithOwner"], root)
+    if rc_r != 0:
+        return {"status": "UNAVAILABLE", "reason": f"`gh repo view` exit {rc_r}"}
+    slug = repo.strip()
+    cmd = ["gh", "api", f"repos/{slug}/deployments?environment=Production&per_page=1"]
+    rc, out = _run(cmd, root, timeout=60)
+    if rc != 0:
+        return {"status": "UNAVAILABLE", "reason": f"`gh api deployments` exit {rc}",
+                "source": " ".join(cmd)}
+    try:
+        data = json.loads(out)
+    except json.JSONDecodeError as exc:
+        return {"status": "UNAVAILABLE", "reason": f"JSON illeggibile: {exc}",
+                "source": " ".join(cmd)}
+    if not isinstance(data, list) or not data:
+        # Nessun deploy Production mai registrato NON e' un errore, ed e' diverso
+        # da «non sono riuscito a chiedere»: si dichiara con il suo nome.
+        return {"status": "MEASURED", "source": " ".join(cmd),
+                "sha": None, "created_at": None, "creator": None}
+    ultimo = data[0]
+    sha = ultimo.get("sha")
+    return {
+        "status": "MEASURED",
+        "source": " ".join(cmd),
+        "sha": sha[:8] if isinstance(sha, str) else None,
+        "sha_full": sha if isinstance(sha, str) else None,
+        "created_at": ultimo.get("created_at"),
+        "creator": (ultimo.get("creator") or {}).get("login"),
+    }
 
 
 def collect_required_checks(root: Path) -> dict:
@@ -966,10 +1033,12 @@ def build_state(root: Path, offline: bool = False) -> dict:
         state["required_checks"] = {"status": "UNAVAILABLE", "reason": motivo}
         state["deploy"]["served"] = {"status": "UNAVAILABLE", "reason": motivo,
                                      "served_commit_sha": None}
+        state["deploy"]["github_production"] = {"status": "UNAVAILABLE", "reason": motivo}
     else:
         state["pull_requests"] = collect_pull_requests(root)
         state["required_checks"] = collect_required_checks(root)
         state["deploy"]["served"] = collect_served(PRODUZIONE_URL)
+        state["deploy"]["github_production"] = collect_github_production(root)
 
     # La ricevuta dice cosa e' stato deployato; la produzione dice cosa e'
     # servito ADESSO. `matches_main` risponde alla prima domanda e resta dov'e';
