@@ -779,7 +779,16 @@ async function readScene(
 // legacy (`type: "embed"` + flat customData) — cosi' una scena reale con
 // embed Simulation zero-event forza la required build/plugin provenance
 // invece di nascondersi come empty verified.
-const SIMULATION_PLUGIN_IDS: ReadonlySet<string> = new Set([
+// Esportato per essere FISSATO da un test, non per essere usato altrove.
+// Gli stessi due id vivono gia' come costanti in `toolhost/ToolCanvasEmbeddable`
+// (`REFERENCE_SIM_TOOL_ID` e `LEGACY_REFERENCE_SIM_TOOL_ID`), ma `lessonos/` non
+// importa NULLA da `toolhost/` e quel confine non si rompe per una stringa:
+// importarle qui trascinerebbe la UI React dentro il runtime di continuita'.
+// Restano quindi due copie, e a tenerle allineate e' un test che le confronta —
+// se divergono, un embed Simulation reale smetterebbe di essere riconosciuto e
+// una scena si presenterebbe come "empty verified" invece di pretendere la
+// provenance di build/plugin. E' un cedimento APERTO e silenzioso: va fissato.
+export const SIMULATION_PLUGIN_IDS: ReadonlySet<string> = new Set([
   "io.ardesia.simulation",
   "io.ardesia.simulation-plugin",
 ])

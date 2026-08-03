@@ -18,12 +18,17 @@ import { cleanup, render } from "@testing-library/react"
 import {
   loadScopedContinuitySnapshot,
   openIndexedDbContinuityEventReader,
+  SIMULATION_PLUGIN_IDS,
   type ContinuityEventReaderV1,
   type ContinuityWorkspacePersistenceV1,
   type ContinuityWorkspaceReaderV1,
   type ContinuityRuntimeAdapterFactories,
   type LoadScopedContinuityResultV1,
 } from "../lessonos/continuityRuntime"
+import {
+  LEGACY_REFERENCE_SIM_TOOL_ID,
+  REFERENCE_SIM_TOOL_ID,
+} from "../toolhost/ToolCanvasEmbeddable"
 import {
   projectContinuityV1,
   validateContinuityScopeV1,
@@ -179,6 +184,22 @@ function canonicalSnapshot(snapshot: ReturnType<typeof loadedOrThrow>): string {
     issues: snapshot.issues,
   })
 }
+
+describe("gli id del Simulation plugin non possono divergere fra i due strati", () => {
+  it("continuityRuntime accetta ESATTAMENTE gli id che il resto dell'app usa", () => {
+    // `lessonos/` non importa da `toolhost/` — quel confine regge, e per una
+    // stringa non lo si rompe. Il prezzo e' due copie degli stessi due id; il
+    // guardiano e' questo test, che le confronta da fuori.
+    //
+    // Se divergono, `detectSimulationEmbed` smette di riconoscere un embed
+    // Simulation reale e la scena passa come "empty verified" invece di
+    // pretendere la provenance di build/plugin: un cedimento APERTO, cioe' del
+    // tipo che non si annuncia.
+    expect([...SIMULATION_PLUGIN_IDS].sort()).toEqual(
+      [REFERENCE_SIM_TOOL_ID, LEGACY_REFERENCE_SIM_TOOL_ID].sort(),
+    )
+  })
+})
 
 describe("loadScopedContinuitySnapshot — scope-first zero-I/O (accept #1)", () => {
   it("scope invalido: nessuna factory chiamata, nessun byte letto", async () => {
