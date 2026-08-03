@@ -685,8 +685,17 @@ def test_B7_svuotare_la_feature_deve_far_diventare_ROSSO() -> None:
         root = Path(d)
         subprocess.run(["git", "init", "-q"], cwd=root, capture_output=True)
         s = ps.build_state(root, offline=True)
-        for campo in ("served", "prod_scarto", "allineato_in_produzione"):
+        # `github_production` sta in questo elenco per la ragione che l'elenco
+        # stesso dichiara: la fonte derivata puo' esistere come funzione e non
+        # essere cablata, e allora `CURRENT.md` torna a non avere il terzo
+        # referente senza che nulla protesti. Il ramo `--offline` e' quello
+        # esercitato qui, e deve dichiararsi UNAVAILABLE invece di sparire.
+        for campo in ("served", "prod_scarto", "allineato_in_produzione", "github_production"):
             check_true(f"build_state cabla `{campo}`", campo in s["deploy"])
+        check_true("offline: la fonte derivata si dichiara non disponibile",
+                   s["deploy"]["github_production"].get("status") == "UNAVAILABLE")
+        check_true("offline: con il suo motivo",
+                   "offline" in s["deploy"]["github_production"].get("reason", ""))
 
 
 #: Le sole funzioni autorizzate a leggere `origin/main` da git.
