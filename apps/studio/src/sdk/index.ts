@@ -32,6 +32,17 @@ import type { ToolManifest } from "../toolhost-protocol/manifest.ts"
 // Il protocollo è la grammatica dei messaggi sul filo; il contratto è l'intera
 // superficie pubblica che un plugin compila contro. Possono evolvere insieme o
 // separatamente (es. un nuovo helper SDK = MINOR del contratto, wire invariato).
+// 1.3.1 — PRECONDIZIONE ristretta, nessun bump: `lesson.event.emit` rifiuta un
+// `plugin.mounted` la cui identita' (pluginId/instanceId) non sia quella del
+// chiamante -> CAPABILITY_DENIED, deny-by-default come board.write own-embeds.
+// Restringere un input accettato sarebbe MAJOR per la regola qui sopra, e non lo
+// e' per due misure: nessun host di produzione inietta `lessonEventLog` (il
+// metodo non e' raggiungibile da nessun tool spedito) e nessun plugin/pack/e2e
+// usa quella chiamata. Resta scritto qui perche' il descrittore macchina non
+// puo' vederlo: CONTRACT congela vocabolario, mappa metodo->capability, metodi
+// di lifecycle e codici d'errore, NON le precondizioni per metodo (stessa cecita'
+// che ha gia' il precedente board.write). Se un giorno il log viene cablato in
+// produzione, questa riga e' l'unico posto che dice cos'e' cambiato.
 // 1.2.0 — MINOR: nuovo metodo wire retro-compatibile `lesson.event.emit`:
 // append controllato di eventi didattici verificabili nel log LessonOS. Nessun
 // metodo, capability o codice errore esistente è cambiato.

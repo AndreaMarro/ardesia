@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it } from "vitest"
 import { ERR, ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import type { ToolManifest } from "../toolhost-protocol/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
+import { readAuditLog } from "../toolhost/audit.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
 import { InMemoryEventLog } from "../lessonos/eventlog.ts"
 import type { EventLogStore } from "../lessonos/eventlog.ts"
@@ -86,18 +87,23 @@ async function mountLessonWriter(opts: {
   approved?: boolean
   lessonEventLog?: EventLogStore
   instanceId?: string
+  /** Iniettabile per leggere l'audit-log DOPO la chiamata (stesso store dell'host). */
+  store?: MemoryWorkspace
+  /** L'audit è fire-and-forget: serve l'host per aspettarne il flush con idle(). */
+  onHost?: (host: ToolHost) => void
 }): Promise<ToolConnection> {
   const host = new ToolHost(
     LESSON_EVENT_MANIFEST,
     resolveGrant(LESSON_EVENT_MANIFEST, opts.approved === false ? [] : ["lesson.event.emit"]),
     {
-      store: new MemoryWorkspace(),
+      store: opts.store ?? new MemoryWorkspace(),
       board: new FakeBoard(),
       bearerToken: "bearer-test-1234",
       ...(opts.lessonEventLog === undefined ? {} : { lessonEventLog: opts.lessonEventLog }),
       ...(opts.instanceId === undefined ? {} : { instanceId: opts.instanceId }),
     },
   )
+  opts.onHost?.(host)
   const ch = new MessageChannel()
   openChannels.push(ch)
   const session = host.mount(ch.port1)
@@ -332,6 +338,55 @@ describe("ToolHost end-to-end: lesson.event.emit via SDK reale", () => {
       conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-a") }),
     ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
     expect(await log.readAll()).toEqual([])
+    conn.close()
+  })
+
+  it("il tentativo di forgiatura entra nell'audit come `denied`, non come errore interno", async () => {
+    const log = new InMemoryEventLog()
+    const store = new MemoryWorkspace()
+    let host: ToolHost | undefined
+    const conn = await mountLessonWriter({
+      lessonEventLog: log,
+      instanceId: "sim-a",
+      store,
+      onHost: (h) => {
+        host = h
+      },
+    })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-b") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
+
+    // Il rifiuto deve essere LEGGIBILE da chi insegna: `denied` è la categoria di
+    // "ha chiesto qualcosa che non gli è concesso". Con INVALID_PARAMS l'audit
+    // direbbe `invalid`, cioè "il plugin ha sbagliato la forma" — un tentativo di
+    // dichiararsi un'altra istanza sparirebbe fra gli errori di battitura.
+    await host?.audit.idle()
+    const { entries, malformed } = await readAuditLog(store, LESSON_EVENT_MANIFEST.id)
+    expect(malformed).toBe(0)
+    expect(entries.at(-1)).toMatchObject({
+      tool: LESSON_EVENT_MANIFEST.id,
+      method: "lesson.event.emit",
+      outcome: "denied",
+      code: ERR.CAPABILITY_DENIED,
+    })
+    conn.close()
+  })
+
+  it("host senza log NÉ identità (forma ToolLab): plugin.mounted nega prima di rivelare il wiring", async () => {
+    // Cambio di comportamento DELIBERATO introdotto col gate, fissato qui perché
+    // non resti incidentale: prima questa forma rispondeva INTERNAL "method not
+    // wired". ToolLab concede tutte le capability dichiarate dal manifest — e il
+    // manifest della simulazione dichiara lesson.event.emit — senza iniettare né
+    // lessonEventLog né instanceId. Negare prima del dispatch è la scelta
+    // fail-closed: non si rivela lo stato di cablaggio dell'host a chi non è
+    // comunque autorizzato a dichiarare quell'identità.
+    const conn = await mountLessonWriter({})
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-a") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
     conn.close()
   })
 
