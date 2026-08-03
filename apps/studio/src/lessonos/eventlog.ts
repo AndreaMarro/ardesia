@@ -290,6 +290,41 @@ const FACTUAL_KINDS = new Set<LessonOsEvent["kind"]>(
   Object.keys(LESSON_OS_PAYLOAD_RULES) as LessonOsEvent["kind"][],
 )
 
+/**
+ * I kind il cui payload PORTA un certo campo, derivati dalle regole.
+ *
+ * Esiste per non elencare a mano un insieme che le regole gia' contengono.
+ * `LESSON_OS_PAYLOAD_RULES` e' un `Record` sull'unione dei kind: aggiungerne uno
+ * OBBLIGA a scrivere la sua regola, quindi un kind nuovo che porta `room` entra
+ * qui da solo. Un elenco scritto a mano altrove avrebbe smesso di coprirlo **in
+ * silenzio**, ed e' la classe di difetto che questo progetto paga piu' spesso:
+ * il referente si deriva dall'oggetto, non si ricorda.
+ *
+ * Il confronto e' sulla CHIAVE esatta: `studentpack.generated` porta `fromRoom`,
+ * che non e' `room` e non deve entrare nello scope-check della stanza.
+ */
+export function kindsBearingPayloadField(
+  rules: Readonly<
+    Record<string, { required: Readonly<Record<string, unknown>>; optional?: Readonly<Record<string, unknown>> }>
+  >,
+  field: string,
+): Set<string> {
+  const bearing = new Set<string>()
+  for (const [kind, rule] of Object.entries(rules)) {
+    const inRequired = Object.prototype.hasOwnProperty.call(rule.required, field)
+    const inOptional =
+      rule.optional !== undefined && Object.prototype.hasOwnProperty.call(rule.optional, field)
+    if (inRequired || inOptional) bearing.add(kind)
+  }
+  return bearing
+}
+
+/** Derivato una volta sola: i kind il cui payload porta `room`. */
+export const ROOM_BEARING_KINDS: ReadonlySet<string> = kindsBearingPayloadField(
+  LESSON_OS_PAYLOAD_RULES,
+  "room",
+)
+
 function assertLegacyPayloadField(value: unknown, expected: LegacyPayloadField, context: string): void {
   if (expected === "string" && typeof value === "string") return
   if (expected === "number" && typeof value === "number" && Number.isFinite(value)) return

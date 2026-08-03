@@ -21,6 +21,7 @@ import {
 } from "../core/contracts/eventEnvelope"
 import {
   assertLessonOsEnvelopePayload,
+  ROOM_BEARING_KINDS,
   type AppendedEventEnvelopeV2,
 } from "./eventlog"
 import {
@@ -99,7 +100,13 @@ export interface ContinuityRuntimeAdapterFactories {
 
 const FULL_COMMIT_SHA_RE = /^[0-9a-fA-F]{40}$/
 const JOURNAL_V1_ADAPTER_PRODUCER_ID = "com.github.andreamarro.ardesia.studio.journal-v1-adapter"
-const REDUNDANT_ROOM_KINDS = new Set(["lesson.started", "lesson.ended", "plugin.mounted"])
+// DERIVATO, non elencato. Prima era `new Set(["lesson.started", "lesson.ended",
+// "plugin.mounted"])`: corretto allora, e destinato a smettere di esserlo in
+// silenzio. I kind che portano `room` stanno gia' in LESSON_OS_PAYLOAD_RULES,
+// che e' un Record esaustivo sull'unione: aggiungere un kind obbliga a scrivere
+// la sua regola, ma NON obbligava ad aggiornare questo elenco — e lo scope-check
+// avrebbe smesso di coprirlo senza che niente protestasse.
+const REDUNDANT_ROOM_KINDS = ROOM_BEARING_KINDS
 const NO_OP_DISPOSE = async (): Promise<void> => {}
 
 /**

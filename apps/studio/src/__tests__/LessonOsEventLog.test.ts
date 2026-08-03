@@ -7,6 +7,8 @@ import {
   EVENT_LOG_DDL,
   InMemoryEventLog,
   isValidEvidenceRef,
+  kindsBearingPayloadField,
+  ROOM_BEARING_KINDS,
   type AppendedEvent,
   type LessonOsEvent,
 } from "../lessonos/eventlog"
@@ -305,6 +307,43 @@ describe("materializer (eventi → grafo derivato)", () => {
       id.startsWith("plugin:io.ardesia.simulation#"),
     )
     expect(instanceNodeKeys).toHaveLength(2)
+  })
+})
+
+describe("kind che portano `room`: derivati dalle regole, non elencati", () => {
+  // L'elenco a mano vive QUI, nel test, non nel criterio di produzione. Se un
+  // kind nuovo porta `room`, l'insieme derivato cresce e questa riga diventa
+  // rossa: qualcuno deve guardarla e decidere. E' il verso giusto — prima era
+  // il contrario, e un kind nuovo sarebbe uscito dallo scope-check in silenzio.
+  it("oggi sono esattamente tre, ed e' il test a saperlo", () => {
+    expect([...ROOM_BEARING_KINDS].sort()).toEqual([
+      "lesson.ended",
+      "lesson.started",
+      "plugin.mounted",
+    ])
+  })
+
+  it("un kind NUOVO che porta `room` entra da solo, in required o in optional", () => {
+    const derivati = kindsBearingPayloadField(
+      {
+        "kind.senza": { required: { id: "string" } },
+        "kind.required": { required: { room: "string" } },
+        "kind.optional": { required: { id: "string" }, optional: { room: "string" } },
+      },
+      "room",
+    )
+    expect([...derivati].sort()).toEqual(["kind.optional", "kind.required"])
+  })
+
+  it("`fromRoom` non e' `room`: il confronto e' sulla chiave esatta", () => {
+    // studentpack.generated porta `fromRoom` e NON deve entrare nello
+    // scope-check della stanza. Un match per sottostringa lo tirerebbe dentro.
+    const derivati = kindsBearingPayloadField(
+      { "studentpack.generated": { required: { packId: "string" }, optional: { fromRoom: "string" } } },
+      "room",
+    )
+    expect([...derivati]).toEqual([])
+    expect(ROOM_BEARING_KINDS.has("studentpack.generated")).toBe(false)
   })
 })
 
