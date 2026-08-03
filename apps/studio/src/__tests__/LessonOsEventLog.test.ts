@@ -4,6 +4,7 @@
 
 import { describe, it, expect } from "vitest"
 import {
+  ALL_LESSON_OS_KINDS,
   EVENT_LOG_DDL,
   InMemoryEventLog,
   isValidEvidenceRef,
@@ -12,6 +13,7 @@ import {
   type AppendedEvent,
   type LessonOsEvent,
 } from "../lessonos/eventlog"
+import { FACTUAL_KINDS } from "../lessonos/bootstrap"
 import { materialize } from "../lessonos/materializer"
 import { neighbors, recallCorrectionsForConcept, recallErrorsForConcept } from "../lessonos/recall"
 
@@ -344,6 +346,38 @@ describe("kind che portano `room`: derivati dalle regole, non elencati", () => {
     )
     expect([...derivati]).toEqual([])
     expect(ROOM_BEARING_KINDS.has("studentpack.generated")).toBe(false)
+  })
+})
+
+describe("kind fattuali: una sola coppia scritta a mano regge tipo e runtime", () => {
+  it("sono tutti i kind meno i due di lifecycle, e l'elenco a mano sta qui", () => {
+    expect([...FACTUAL_KINDS].sort()).toEqual([
+      "concept.introduced",
+      "error.observed",
+      "exercise.completed",
+      "material.cited",
+      "plugin.mounted",
+      "quiz.attempted",
+      "simulation.circuit.solved",
+      "simulation.error.observed",
+      "simulation.step.completed",
+      "studentpack.exported",
+      "studentpack.generated",
+    ])
+  })
+
+  it("nessun kind di lifecycle e' fattuale, e nessun kind si perde per strada", () => {
+    // La proprieta' che conta: la partizione e' COMPLETA. Con il vecchio Set
+    // scritto a mano un kind nuovo non finiva ne' fra i fattuali ne' fra i
+    // lifecycle — spariva, e `appendFact` lo rifiutava a runtime dando la colpa
+    // al chiamante.
+    expect(FACTUAL_KINDS.has("lesson.started")).toBe(false)
+    expect(FACTUAL_KINDS.has("lesson.ended")).toBe(false)
+    expect(FACTUAL_KINDS.size + 2).toBe(ALL_LESSON_OS_KINDS.length)
+    for (const kind of ALL_LESSON_OS_KINDS) {
+      const lifecycle = kind === "lesson.started" || kind === "lesson.ended"
+      expect(FACTUAL_KINDS.has(kind)).toBe(!lifecycle)
+    }
   })
 })
 

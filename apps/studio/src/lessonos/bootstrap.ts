@@ -10,6 +10,7 @@
 //     una volta, non a ogni reload di una lavagna volutamente nuova.
 // I consumer (bridge #34, projection #30) vedranno SOLO EventLogStore.
 
+import { ALL_LESSON_OS_KINDS } from "./eventlog"
 import type {
   AnyEventEnvelopeV2,
   AppendEnvelopeResult,
@@ -75,9 +76,21 @@ export interface LessonOsRuntime {
   corrupted: boolean
 }
 
+/**
+ * L'UNICO elenco scritto a mano di questa coppia, e regge sia il tipo sia la
+ * guardia a runtime. Prima erano due: questo `Exclude` e un
+ * `new Set<LessonOsFactKind>([...])` con undici kind ricopiati. Un `Set`
+ * tipizzato **type-checka anche quando dimentica un membro**, quindi un kind
+ * fattuale nuovo sarebbe stato accettato dal compilatore e poi rifiutato a
+ * runtime da `appendFact`, con un messaggio che dava la colpa al chiamante.
+ * Fallimento chiuso e rumoroso, non silenzioso — ma pur sempre due fonti per
+ * un fatto solo.
+ */
+const LIFECYCLE_KINDS = ["lesson.started", "lesson.ended"] as const
+
 export type LessonOsFactKind = Exclude<
   LessonOsEvent["kind"],
-  "lesson.started" | "lesson.ended"
+  (typeof LIFECYCLE_KINDS)[number]
 >
 
 export type LessonPayload<K extends LessonOsFactKind> = Omit<
@@ -125,19 +138,13 @@ export const DEFAULT_LESSON_ACTOR = Object.freeze({
   id: "founder-beta-teacher",
 })
 
-const FACTUAL_KINDS = new Set<LessonOsFactKind>([
-  "concept.introduced",
-  "material.cited",
-  "error.observed",
-  "exercise.completed",
-  "simulation.step.completed",
-  "simulation.circuit.solved",
-  "simulation.error.observed",
-  "plugin.mounted",
-  "quiz.attempted",
-  "studentpack.generated",
-  "studentpack.exported",
-])
+// Derivato dalla stessa coppia che definisce il tipo: tutti i kind meno quelli
+// di lifecycle. Un kind fattuale nuovo entra qui da solo, senza che nessuno se
+// ne ricordi.
+const LIFECYCLE_KIND_SET: ReadonlySet<string> = new Set<string>(LIFECYCLE_KINDS)
+export const FACTUAL_KINDS: ReadonlySet<string> = new Set<string>(
+  ALL_LESSON_OS_KINDS.filter((kind) => !LIFECYCLE_KIND_SET.has(kind)),
+)
 
 const FACT_META_KEYS = new Set(["evidence", "causationId", "idempotencyKey"])
 

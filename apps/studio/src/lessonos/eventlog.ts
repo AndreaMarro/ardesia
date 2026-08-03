@@ -325,6 +325,16 @@ export const ROOM_BEARING_KINDS: ReadonlySet<string> = kindsBearingPayloadField(
   "room",
 )
 
+/**
+ * Tutti i kind LessonOS, a RUNTIME, derivati dalle stesse regole da cui li
+ * deriva il tipo. Serve a chi deve filtrarli (p.es. i soli kind fattuali):
+ * un `new Set<Union>([...])` scritto a mano **type-checka anche se dimentica un
+ * membro**, quindi il tipo non protegge dall'omissione. Questo elenco si.
+ */
+export const ALL_LESSON_OS_KINDS: readonly LessonOsEvent["kind"][] = Object.freeze(
+  Object.keys(LESSON_OS_PAYLOAD_RULES) as LessonOsEvent["kind"][],
+)
+
 function assertLegacyPayloadField(value: unknown, expected: LegacyPayloadField, context: string): void {
   if (expected === "string" && typeof value === "string") return
   if (expected === "number" && typeof value === "number" && Number.isFinite(value)) return
