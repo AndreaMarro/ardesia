@@ -267,6 +267,45 @@ describe("materializer (eventi → grafo derivato)", () => {
       evidenceRefs: ["plugin:io.ardesia.simulation@0.1.0", "board:plugin-postit-sim-a-board"],
     })
   })
+
+  it("due istanze dello stesso plugin materializzano DUE nodi distinti (provenance per istanza)", async () => {
+    const log = new InMemoryEventLog()
+    for (const [instanceId, label] of [
+      ["sim-a", "Simulatore A"],
+      ["sim-b", "Simulatore B"],
+    ] as const) {
+      await log.append({
+        kind: "plugin.mounted",
+        pluginId: "io.ardesia.simulation",
+        pluginKind: "simulation",
+        instanceId,
+        room: "lezione-led",
+        labels: { it: label },
+        t: 1500,
+        evidence: ["plugin:io.ardesia.simulation@0.1.0", `board:plugin-postit-${instanceId}-board`],
+      })
+    }
+
+    const graph = materialize(await log.readAll())
+    // Due montaggi dello STESSO plugin = due nodi: la memoria didattica distingue
+    // la provenienza per ISTANZA, non solo per definizione. La chiave del nodo è
+    // `plugin:<id>#<instanceId>`; senza `#<instanceId>` i due montaggi
+    // collasserebbero in un nodo solo (last-write-wins sulle labels).
+    expect(graph.nodes.get("plugin:io.ardesia.simulation#sim-a")).toMatchObject({
+      kind: "plugin",
+      labels: { it: "Simulatore A" },
+    })
+    expect(graph.nodes.get("plugin:io.ardesia.simulation#sim-b")).toMatchObject({
+      kind: "plugin",
+      labels: { it: "Simulatore B" },
+    })
+    // La definizione da sola non è mai un nodo: nessuna chiave priva di istanza.
+    expect(graph.nodes.get("plugin:io.ardesia.simulation")).toBeUndefined()
+    const instanceNodeKeys = [...graph.nodes.keys()].filter((id) =>
+      id.startsWith("plugin:io.ardesia.simulation#"),
+    )
+    expect(instanceNodeKeys).toHaveLength(2)
+  })
 })
 
 describe("recall deterministico (query O(vicinato))", () => {
