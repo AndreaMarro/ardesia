@@ -203,6 +203,14 @@ export class ToolHost {
       grantedCaps: this._grant,
       handlers: this._handlers(),
       isOwnEmbed: this._board.isOwnEmbed,
+      // Un tool può registrare il PROPRIO montaggio, mai quello di un'altra
+      // istanza o di un altro plugin. Fail-closed: senza identità di istanza
+      // host-side non c'è nulla contro cui verificare la dichiarazione, quindi
+      // si nega invece di fidarsi (l'identità la crea la superficie, non il tool).
+      isOwnPluginIdentity: (pluginId, instanceId) =>
+        this._deps.instanceId !== undefined &&
+        pluginId === this.manifest.id &&
+        instanceId === this._deps.instanceId,
       // fire-and-forget consapevole: un audit-sink rotto non blocca il tool
       // (policy ST2); l'errore resta osservabile da audit.idle() nei test.
       onAudit: (event) => void this.audit.append(event).catch(() => {}),

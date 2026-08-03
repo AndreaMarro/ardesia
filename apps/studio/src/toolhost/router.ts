@@ -6,7 +6,13 @@ import {
   RequestIdSchema,
   isGranted,
 } from "../toolhost-protocol/index.ts"
-import type { Capabilities, JsonRpcRequest, JsonRpcResponse, RequestId } from "../toolhost-protocol/index.ts"
+import type {
+  Capabilities,
+  JsonRpcRequest,
+  JsonRpcResponse,
+  LessonEventEmitParams,
+  RequestId,
+} from "../toolhost-protocol/index.ts"
 import { outcomeFromResponse } from "./audit.ts"
 import type { AuditEvent } from "./audit.ts"
 
@@ -17,6 +23,15 @@ export interface RouterConfig {
   handlers: Partial<Record<string, MethodHandler>>
   /** board.write scope "own-embeds": senza predicato di ownership NESSUN embed è scrivibile (deny-by-default). */
   isOwnEmbed?: (embedId: string) => boolean
+  /**
+   * lesson.event.emit / `plugin.mounted`: l'identità di istanza è HOST-side e
+   * "non esiste sul wire" (caps/instance.ts, ToolHostDeps.instanceId) — ma i
+   * params di questo evento la PORTANO, insieme al pluginId. Senza predicato di
+   * ownership NESSUNA identità è dichiarabile (deny-by-default, come own-embeds):
+   * altrimenti un tool montato registra il montaggio di un'ALTRA istanza, e la
+   * provenienza per-istanza di LessonOS diventa un'affermazione del non fidato.
+   */
+  isOwnPluginIdentity?: (pluginId: string, instanceId: string) => boolean
   /** Audit T2: invocato per OGNI request rispondibile (mai per le notification). */
   onAudit?: (event: AuditEvent) => void
 }
@@ -80,6 +95,15 @@ async function dispatch(raw: unknown, cfg: RouterConfig): Promise<JsonRpcRespons
     const embedId = (paramsParse.data as { embedId: string }).embedId
     if (cfg.isOwnEmbed === undefined || !cfg.isOwnEmbed(embedId)) {
       return errorResponse(req.id, ERR.CAPABILITY_DENIED, "board.write outside own-embeds scope")
+    }
+  }
+
+  if (req.method === "lesson.event.emit") {
+    const { event } = paramsParse.data as LessonEventEmitParams
+    if (event.kind === "plugin.mounted") {
+      if (cfg.isOwnPluginIdentity === undefined || !cfg.isOwnPluginIdentity(event.pluginId, event.instanceId)) {
+        return errorResponse(req.id, ERR.CAPABILITY_DENIED, "plugin.mounted outside own instance identity")
+      }
     }
   }
 

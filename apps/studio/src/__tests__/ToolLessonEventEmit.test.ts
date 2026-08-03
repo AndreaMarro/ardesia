@@ -85,6 +85,7 @@ afterEach(() => {
 async function mountLessonWriter(opts: {
   approved?: boolean
   lessonEventLog?: EventLogStore
+  instanceId?: string
 }): Promise<ToolConnection> {
   const host = new ToolHost(
     LESSON_EVENT_MANIFEST,
@@ -94,6 +95,7 @@ async function mountLessonWriter(opts: {
       board: new FakeBoard(),
       bearerToken: "bearer-test-1234",
       ...(opts.lessonEventLog === undefined ? {} : { lessonEventLog: opts.lessonEventLog }),
+      ...(opts.instanceId === undefined ? {} : { instanceId: opts.instanceId }),
     },
   )
   const ch = new MessageChannel()
@@ -268,6 +270,67 @@ describe("ToolHost end-to-end: lesson.event.emit via SDK reale", () => {
         },
       }),
     ).rejects.toMatchObject({ code: ERR.INVALID_PARAMS })
+    expect(await log.readAll()).toEqual([])
+    conn.close()
+  })
+
+  // L'identità di ISTANZA è HOST-side e "non esiste sul wire" (ToolHostDeps.instanceId
+  // e caps/instance.ts lo dichiarano entrambi). `plugin.mounted` però PORTA
+  // pluginId/instanceId nei suoi params, quindi senza un gate di ownership un tool
+  // montato può dichiararsi un'ALTRA istanza — o un ALTRO plugin — e la provenienza
+  // per-istanza di LessonOS diventa un'affermazione dell'attore non fidato.
+  // Stessa classe di board.write fuori dagli own-embeds, quindi stesso codice.
+  const pluginMountedBy = (pluginId: string, instanceId: string) => ({
+    kind: "plugin.mounted" as const,
+    pluginId,
+    pluginKind: "panel",
+    instanceId,
+    room: "lezione-led",
+    labels: { it: "Post-it vivo" },
+    evidence: ["plugin:com.example.lesson-writer@1.0.0"],
+    t: 1718000000000,
+  })
+
+  it("plugin.mounted con la PROPRIA identità → appeso (il gate non è un divieto)", async () => {
+    const log = new InMemoryEventLog()
+    const conn = await mountLessonWriter({ lessonEventLog: log, instanceId: "sim-a" })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-a") }),
+    ).resolves.toEqual({ seq: 1 })
+    expect((await log.readAll())[0]).toMatchObject({ kind: "plugin.mounted", instanceId: "sim-a" })
+    conn.close()
+  })
+
+  it("plugin.mounted con l'identità di un'ALTRA istanza → CAPABILITY_DENIED, log intatto", async () => {
+    const log = new InMemoryEventLog()
+    const conn = await mountLessonWriter({ lessonEventLog: log, instanceId: "sim-a" })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-b") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
+    expect(await log.readAll()).toEqual([])
+    conn.close()
+  })
+
+  it("plugin.mounted a nome di un ALTRO plugin → CAPABILITY_DENIED, log intatto", async () => {
+    const log = new InMemoryEventLog()
+    const conn = await mountLessonWriter({ lessonEventLog: log, instanceId: "sim-a" })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy("io.ardesia.simulation", "sim-a") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
+    expect(await log.readAll()).toEqual([])
+    conn.close()
+  })
+
+  it("host SENZA identità di istanza → plugin.mounted negato (deny-by-default)", async () => {
+    const log = new InMemoryEventLog()
+    const conn = await mountLessonWriter({ lessonEventLog: log })
+
+    await expect(
+      conn.call("lesson.event.emit", { event: pluginMountedBy(LESSON_EVENT_MANIFEST.id, "sim-a") }),
+    ).rejects.toMatchObject({ code: ERR.CAPABILITY_DENIED })
     expect(await log.readAll()).toEqual([])
     conn.close()
   })
