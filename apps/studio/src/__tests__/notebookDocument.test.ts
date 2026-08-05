@@ -12,6 +12,7 @@ import {
   NOTEBOOK_SCHEMA_VERSION,
   appendNotebookPage,
   createNotebookDocument,
+  insertNotebookPageAfter,
   notebookPaths,
   orderedNotebookPages,
   parseNotebookDocument,
@@ -55,7 +56,7 @@ describe("identita' e schema", () => {
 describe("collezione ordinata di pagine", () => {
   it("aggiunge una seconda pagina in coda mantenendo gli ordinali contigui", () => {
     const uno = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
-    const due = appendNotebookPage(uno, { title: "Seconda", now: 2 })
+    const due = appendNotebookPage(uno, { pageId: "page-2", title: "Seconda", now: 2 })
 
     expect(due.pages).toHaveLength(2)
     expect(due.pages.map((p) => p.ordinal)).toEqual([0, 1])
@@ -65,7 +66,7 @@ describe("collezione ordinata di pagine", () => {
 
   it("restituisce le pagine per ordinale anche se il manifest le elenca disordinate", () => {
     const uno = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
-    const due = appendNotebookPage(uno, { title: "Seconda", now: 2 })
+    const due = appendNotebookPage(uno, { pageId: "page-2", title: "Seconda", now: 2 })
     const disordinato = { ...due, pages: [due.pages[1], due.pages[0]] }
 
     expect(orderedNotebookPages(disordinato).map((p) => p.ordinal)).toEqual([0, 1])
@@ -73,7 +74,7 @@ describe("collezione ordinata di pagine", () => {
 
   it("sopravvive al round-trip: serializza, rileggi, ritrova identita' e ordine", () => {
     const uno = createNotebookDocument({ documentId: "t1", title: "Taccuino", now: 1 })
-    const due = appendNotebookPage(uno, { title: "Seconda", now: 2 })
+    const due = appendNotebookPage(uno, { pageId: "page-2", title: "Seconda", now: 2 })
 
     const riletto = parseNotebookDocument(serializeNotebookDocument(due))
 
@@ -82,6 +83,67 @@ describe("collezione ordinata di pagine", () => {
     expect(riletto!.title).toBe("Taccuino")
     expect(orderedNotebookPages(riletto!).map((p) => p.pageId))
       .toEqual(due.pages.map((p) => p.pageId))
+  })
+})
+
+describe("identita' indipendente dall'ordine", () => {
+  function duePagine() {
+    const uno = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
+    return appendNotebookPage(uno, {
+      pageId: "page-b",
+      title: "Seconda",
+      now: 2,
+    })
+  }
+
+  it("inserisce una nuova identita' dopo la pagina corrente e ricostruisce soltanto gli ordinali", () => {
+    const base = duePagine()
+    const bytesPrima = serializeNotebookDocument(base)
+    const inserito = insertNotebookPageAfter(base, "p1", {
+      pageId: "page-new",
+      title: "Nuova",
+      now: 3,
+    })
+
+    expect(inserito.pages.map((page) => page.pageId)).toEqual(["p1", "page-new", "page-b"])
+    expect(inserito.pages.map((page) => page.ordinal)).toEqual([0, 1, 2])
+    expect(inserito.pages.map(({ pageId, title }) => ({ pageId, title }))).toEqual([
+      { pageId: "p1", title: "Pagina 1" },
+      { pageId: "page-new", title: "Nuova" },
+      { pageId: "page-b", title: "Seconda" },
+    ])
+    expect(inserito.updatedAt).toBe(3)
+    expect(serializeNotebookDocument(base)).toBe(bytesPrima)
+
+    const riletto = parseNotebookDocument(serializeNotebookDocument(inserito))
+    expect(riletto?.pages.map((page) => page.pageId)).toEqual(["p1", "page-new", "page-b"])
+  })
+
+  it("inserire dopo l'ultima pagina equivale all'append", () => {
+    const base = duePagine()
+    const inserito = insertNotebookPageAfter(base, "page-b", {
+      pageId: "page-last",
+      now: 4,
+    })
+    const appeso = appendNotebookPage(base, { pageId: "page-last", now: 4 })
+
+    expect(inserito).toEqual(appeso)
+    expect(inserito.pages.map((page) => page.pageId)).toEqual(["p1", "page-b", "page-last"])
+  })
+
+  it("rigetta pagina corrente assente e nuove identita' duplicate o invalide senza mutare l'originale", () => {
+    const base = duePagine()
+    const bytesPrima = serializeNotebookDocument(base)
+    const casi = [
+      () => insertNotebookPageAfter(base, "assente", { pageId: "page-x", now: 4 }),
+      () => insertNotebookPageAfter(base, "p1", { pageId: "page-b", now: 4 }),
+      () => insertNotebookPageAfter(base, "p1", { pageId: "../fuori", now: 4 }),
+    ]
+
+    for (const inserisci of casi) {
+      expect(inserisci).toThrow()
+      expect(serializeNotebookDocument(base)).toBe(bytesPrima)
+    }
   })
 })
 

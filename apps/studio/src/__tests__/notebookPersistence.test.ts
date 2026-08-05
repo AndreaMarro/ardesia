@@ -11,6 +11,7 @@ import {
   createNotebookIfMissing,
   createNotebookDocument,
   inspectNotebook,
+  insertNotebookPageAfter,
   loadNotebook,
   loadNotebookPageScene,
   orderedNotebookPages,
@@ -134,7 +135,7 @@ describe("riapertura a freddo del taccuino", () => {
 
     const creato = appendNotebookPage(
       createNotebookDocument({ documentId: "taccuino-led", title: "LED", now: 1 }),
-      { title: "Seconda", now: 2 },
+      { pageId: "page-b", title: "Seconda", now: 2 },
     )
     await saveNotebook(store, creato)
     await saveNotebookPageScene(store, "taccuino-led", creato.pages[0].pageId, SCENA)
@@ -155,7 +156,7 @@ describe("riapertura a freddo del taccuino", () => {
     const store = fakeStore()
     const doc = appendNotebookPage(
       createNotebookDocument({ documentId: "t1", title: "T", now: 1 }),
-      { now: 2 },
+      { pageId: "page-b", now: 2 },
     )
     await saveNotebook(store, doc)
     await saveNotebookPageScene(store, "t1", doc.pages[0].pageId, JSON.stringify({ elements: ["a"] }))
@@ -166,6 +167,27 @@ describe("riapertura a freddo del taccuino", () => {
 
     expect(JSON.parse(prima!).elements).toEqual(["a"])
     expect(JSON.parse(seconda!).elements).toEqual(["b"])
+  })
+
+  it("rilegge a freddo lo stesso ordine e le stesse identita' dopo un inserimento intermedio", async () => {
+    const store = fakeStore()
+    const base = appendNotebookPage(
+      createNotebookDocument({ documentId: "t1", title: "T", now: 1 }),
+      { pageId: "page-b", title: "Seconda", now: 2 },
+    )
+    const inserito = insertNotebookPageAfter(base, "p1", {
+      pageId: "page-new",
+      now: 3,
+    })
+    await saveNotebook(store, inserito)
+    await saveNotebookPageScene(store, "t1", "p1", JSON.stringify({ elements: ["a"] }))
+    await saveNotebookPageScene(store, "t1", "page-b", JSON.stringify({ elements: ["b"] }))
+
+    const riaperto = await loadNotebook(store, "t1")
+    expect(riaperto?.pages.map((page) => page.pageId)).toEqual(["p1", "page-new", "page-b"])
+    expect(riaperto?.pages.map((page) => page.ordinal)).toEqual([0, 1, 2])
+    expect(JSON.parse((await loadNotebookPageScene(store, "t1", "p1"))!).elements).toEqual(["a"])
+    expect(JSON.parse((await loadNotebookPageScene(store, "t1", "page-b"))!).elements).toEqual(["b"])
   })
 
   it("tiene separati due taccuini diversi", async () => {

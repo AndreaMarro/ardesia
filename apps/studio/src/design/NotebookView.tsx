@@ -375,7 +375,10 @@ export default function NotebookView() {
         // corrente non e' ancora durevole: non iniziare la creazione.
         return
       }
-      const aggiornato = appendNotebookPage(doc, { now: Date.now() })
+      const aggiornato = appendNotebookPage(doc, {
+        pageId: `page-${crypto.randomUUID()}`,
+        now: Date.now(),
+      })
       await saveNotebook(workspaceStore, aggiornato)
       apiRef.current = null
       ultimaOsservazioneRef.current = null

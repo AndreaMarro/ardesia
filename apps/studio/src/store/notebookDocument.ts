@@ -82,20 +82,6 @@ export function notebookPaths(documentId: string): NotebookPaths {
   }
 }
 
-/**
- * Id di pagina derivato dall'ordinale.
- *
- * Vincolo che questa scelta impone e che va rispettato quando arrivera' la
- * cancellazione: **non ricompattare gli ordinali**, o due pagine diverse
- * finirebbero per condividere un id in momenti diversi della storia del
- * documento — esattamente il difetto di identita' che KERN-001 e KERN-007
- * vietano. Il giorno che serve cancellare, serve un contatore nel manifest, e
- * sara' un test a chiederlo.
- */
-function pageIdForOrdinal(ordinal: number): string {
-  return `p${ordinal + 1}`
-}
-
 export function createNotebookDocument(options: {
   documentId: string
   title: string
@@ -110,22 +96,51 @@ export function createNotebookDocument(options: {
     createdAt: options.now,
     updatedAt: options.now,
     // Un taccuino nasce con una pagina reale: un documento paginato senza
-    // pagine sarebbe uno stato vuoto che l'utente non ha chiesto.
-    pages: [{ pageId: pageIdForOrdinal(0), ordinal: 0, title: "Pagina 1" }],
+    // pagine sarebbe uno stato vuoto che l'utente non ha chiesto. `p1` resta
+    // l'identita' legacy esplicita; le pagine successive ricevono un ID al
+    // boundary chiamante e non lo derivano mai dalla posizione.
+    pages: [{ pageId: "p1", ordinal: 0, title: "Pagina 1" }],
   }
+}
+
+export function insertNotebookPageAfter(
+  doc: NotebookDocument,
+  currentPageId: string,
+  options: { pageId: string; title?: string; now: number },
+): NotebookDocument {
+  const pages = orderedNotebookPages(doc)
+  const currentIndex = pages.findIndex((page) => page.pageId === currentPageId)
+  if (currentIndex < 0) throw new Error("Current notebook page does not exist")
+
+  const pageId = validateNotebookId(options.pageId)
+  if (pages.some((page) => page.pageId === pageId)) {
+    throw new Error("Notebook page identifier already exists")
+  }
+
+  const inserted: NotebookPage = {
+    pageId,
+    ordinal: currentIndex + 1,
+    title: options.title ?? `Pagina ${currentIndex + 2}`,
+  }
+  const reordered = [
+    ...pages.slice(0, currentIndex + 1),
+    inserted,
+    ...pages.slice(currentIndex + 1),
+  ].map((page, ordinal) => (
+    page.ordinal === ordinal ? page : { ...page, ordinal }
+  ))
+
+  return { ...doc, pages: reordered, updatedAt: options.now }
 }
 
 export function appendNotebookPage(
   doc: NotebookDocument,
-  options: { title?: string; now: number },
+  options: { pageId: string; title?: string; now: number },
 ): NotebookDocument {
-  const ordinal = doc.pages.length
-  const page: NotebookPage = {
-    pageId: pageIdForOrdinal(ordinal),
-    ordinal,
-    title: options.title ?? `Pagina ${ordinal + 1}`,
-  }
-  return { ...doc, pages: [...doc.pages, page], updatedAt: options.now }
+  const pages = orderedNotebookPages(doc)
+  const last = pages[pages.length - 1]
+  if (!last) throw new Error("Notebook document has no pages")
+  return insertNotebookPageAfter(doc, last.pageId, options)
 }
 
 /** Le pagine in ordine di lettura. L'ordine non dipende da come sono elencate. */
