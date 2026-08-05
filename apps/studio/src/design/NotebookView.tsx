@@ -25,10 +25,10 @@ import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./excalidrawConfig"
 import ViewNav from "./ViewNav"
 import {
-  appendNotebookPage,
   createNotebookIfMissing,
   createNotebookDocument,
   inspectNotebook,
+  insertNotebookPageAfter,
   loadNotebookPageScene,
   orderedNotebookPages,
   saveNotebook,
@@ -363,8 +363,8 @@ export default function NotebookView() {
     }
   }, [flush, pageIndex])
 
-  const aggiungiPagina = useCallback(async () => {
-    if (!doc || !documentId || transizioneRef.current) return
+  async function aggiungiPagina() {
+    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -375,17 +375,20 @@ export default function NotebookView() {
         // corrente non e' ancora durevole: non iniziare la creazione.
         return
       }
-      const aggiornato = appendNotebookPage(doc, {
-        pageId: `page-${crypto.randomUUID()}`,
+      const pageId = `page-${crypto.randomUUID()}`
+      const aggiornato = insertNotebookPageAfter(doc, pageIdCorrente, {
+        pageId,
         now: Date.now(),
       })
       await saveNotebook(workspaceStore, aggiornato)
+      const indiceInserito = orderedNotebookPages(aggiornato)
+        .findIndex((page) => page.pageId === pageId)
       apiRef.current = null
       ultimaOsservazioneRef.current = null
       setScenaPer(null)
       setSceneData(null)
       setDoc(aggiornato)
-      setPageIndex(aggiornato.pages.length - 1)
+      setPageIndex(indiceInserito)
       setErroreSalvataggio(null)
     } catch (error) {
       setErroreSalvataggio(`Creazione pagina non riuscita: ${(error as Error).message}`)
@@ -393,7 +396,7 @@ export default function NotebookView() {
       transizioneRef.current = false
       setOperazioneInCorso(false)
     }
-  }, [doc, documentId, flush])
+  }
 
   const navigaDopoSalvataggio = useCallback((href: string) => {
     if (transizioneRef.current) return
@@ -573,6 +576,7 @@ export default function NotebookView() {
           <button
             key={pagina.pageId}
             type="button"
+            data-notebook-page-id={pagina.pageId}
             data-notebook-page-ordinal={String(pagina.ordinal)}
             aria-current={indice === pageIndex ? "true" : undefined}
             disabled={operazioneInCorso}
