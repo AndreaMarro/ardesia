@@ -13,6 +13,7 @@ import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } 
 import { IconAlert } from "./design/icons"
 import ViewNav from "./design/ViewNav"
 import { isStudentView } from "./store/studentView"
+import { notebookHref, notebookIdForLesson } from "./store/notebookView"
 import {
   openLessonOsSession,
   type LessonOsSessionHandle,
@@ -919,6 +920,20 @@ export default function Room({
               current="lavagna"
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
+          )}
+          {/* Taccuino: PC-R1-001 → PRD §5.1/§6.3. L'ingresso vive DENTRO
+              Lezione e non aggiunge una quarta voce alla nav Founder, che
+              resta a tre superfici. L'id e' derivato dalla stanza, quindi la
+              stessa lezione riapre lo stesso taccuino. */}
+          {!studentView && (
+            <button
+              onClick={() => { void navigateToSurface(notebookHref(notebookIdForLesson(getRoomId()), window.location.hash)) }}
+              className="st-ghost"
+              aria-label="Apri il Taccuino di questa lezione"
+              data-open-notebook
+            >
+              taccuino
+            </button>
           )}
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
