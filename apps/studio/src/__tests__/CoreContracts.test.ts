@@ -139,7 +139,7 @@ describe("manifest.kind", () => {
     expect(parsed.kind).toBeUndefined()
   })
 
-  it("accetta i 4 kind della regola di classificazione, rifiuta il resto", () => {
+  it("accetta i 4 valori tecnici kind compatibili e rifiuta il resto", () => {
     for (const kind of ["core", "plugin", "pack", "workflow"]) {
       expect(ToolManifestSchema.parse({ ...baseManifest, kind }).kind).toBe(kind)
     }

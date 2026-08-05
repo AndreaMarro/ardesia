@@ -22,9 +22,9 @@ function isSafeEntryPath(p: string): boolean {
 
 export const SurfaceSchema = z.enum(["board-embed", "panel", "fullscreen"])
 
-// Regola di classificazione del canon (CANON-INDEX): Universale → core ·
-// Strumento riusabile → plugin · Materia/metodo → pack · Sequenza vendibile
-// → workflow. Senza `kind` la gerarchia non è esprimibile nel manifest.
+// Valori di compatibilità del manifest, non gerarchia normativa del prodotto.
+// La composizione resta OOP/LEGO e la distinzione tecnica tra core, plugin,
+// pack e workflow non introduce una tassonomia di valore (PRODUCT-CONTRACT PC-OBJ-001).
 export const ArdesiaModuleKindSchema = z.enum(["core", "plugin", "pack", "workflow"])
 export type ArdesiaModuleKind = z.infer<typeof ArdesiaModuleKindSchema>
 
