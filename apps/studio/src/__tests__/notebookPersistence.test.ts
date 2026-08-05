@@ -8,10 +8,13 @@
 import { describe, it, expect } from "vitest"
 import {
   appendNotebookPage,
+  createNotebookIfMissing,
   createNotebookDocument,
+  inspectNotebook,
   loadNotebook,
   loadNotebookPageScene,
   orderedNotebookPages,
+  parseNotebookDocument,
   saveNotebook,
   saveNotebookPageScene,
 } from "../store/notebookDocument"
@@ -40,6 +43,61 @@ const SCENA = JSON.stringify({
 })
 
 describe("riapertura a freddo del taccuino", () => {
+  it("rifiuta anche il pageId di un manifest che tenta path traversal", () => {
+    const doc = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
+    const alterato = JSON.parse(JSON.stringify(doc))
+    alterato.pages[0].pageId = "../fuori"
+
+    expect(parseNotebookDocument(JSON.stringify(alterato))).toBeNull()
+  })
+
+  it("distingue un manifest corrotto da un taccuino davvero assente", async () => {
+    const store = fakeStore()
+    store.files.set("notebooks/t1/notebook.json", "non e' json")
+
+    await expect(inspectNotebook(store, "t1")).resolves.toEqual({
+      kind: "corrupt",
+      reason: "invalid-manifest",
+    })
+    await expect(inspectNotebook(store, "mai-visto")).resolves.toEqual({ kind: "missing" })
+  })
+
+  it("non accetta un manifest che dichiara l'identita' di un altro percorso", async () => {
+    const store = fakeStore()
+    const intruso = createNotebookDocument({ documentId: "altro", title: "Altro", now: 1 })
+    store.files.set("notebooks/richiesto/notebook.json", JSON.stringify(intruso))
+
+    await expect(inspectNotebook(store, "richiesto")).resolves.toEqual({
+      kind: "corrupt",
+      reason: "document-id-mismatch",
+    })
+    await expect(loadNotebook(store, "richiesto")).resolves.toBeNull()
+  })
+
+  it("serializza due creazioni concorrenti dello stesso taccuino senza sovrascrivere", async () => {
+    const base = fakeStore()
+    let writes = 0
+    const store = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        writes += 1
+        await new Promise((resolve) => setTimeout(resolve, 5))
+        await base.write(path, data)
+      },
+    }
+    const prima = createNotebookDocument({ documentId: "concorrente", title: "Prima", now: 1 })
+    const seconda = createNotebookDocument({ documentId: "concorrente", title: "Seconda", now: 2 })
+
+    const [uno, due] = await Promise.all([
+      createNotebookIfMissing(store, prima),
+      createNotebookIfMissing(store, seconda),
+    ])
+
+    expect(writes).toBe(1)
+    expect(uno).toEqual(due)
+    expect(uno.title).toBe("Prima")
+  })
+
   it("ritrova identita', ordine delle pagine e contenuto dopo un reload", async () => {
     const store = fakeStore()
 
@@ -120,6 +178,21 @@ describe("riapertura a freddo del taccuino", () => {
     })
 
     expect(elenco.map((n) => n.documentId).sort()).toEqual(["due", "uno"])
+  })
+
+  it("non cataloga un manifest sotto l'identita' dichiarata da un altro percorso", async () => {
+    const store = fakeStore()
+    const intruso = createNotebookDocument({ documentId: "altro", title: "Altro", now: 1 })
+    store.files.set("notebooks/richiesto/notebook.json", JSON.stringify(intruso))
+
+    const elenco = await listNotebooks({
+      ...store,
+      async list() {
+        return [...store.files.keys()].map((path) => ({ path }))
+      },
+    })
+
+    expect(elenco).toEqual([])
   })
 })
 

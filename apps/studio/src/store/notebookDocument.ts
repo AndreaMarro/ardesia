@@ -168,6 +168,11 @@ export function parseNotebookDocument(json: string): NotebookDocument | null {
     if (typeof page.pageId !== "string") return null
     if (typeof page.ordinal !== "number") return null
     if (typeof page.title !== "string") return null
+    try {
+      validateNotebookId(page.pageId)
+    } catch {
+      return null
+    }
     pages.push({ pageId: page.pageId, ordinal: page.ordinal, title: page.title })
   }
 
@@ -220,6 +225,21 @@ export type NotebookSummary = Readonly<{
   pageCount: number
 }>
 
+/**
+ * Esito esplicito dell'apertura del manifest.
+ *
+ * `missing` e `corrupt` non sono intercambiabili: soltanto il primo autorizza
+ * la creazione di un nuovo taccuino. Trattare un file illeggibile come assente
+ * trasformerebbe un errore recuperabile in sovrascrittura distruttiva.
+ */
+export type NotebookInspection =
+  | Readonly<{ kind: "ready"; document: NotebookDocument }>
+  | Readonly<{ kind: "missing" }>
+  | Readonly<{
+    kind: "corrupt"
+    reason: "invalid-manifest" | "document-id-mismatch"
+  }>
+
 function jsonBlob(text: string): Blob {
   return new Blob([text], { type: "application/json" })
 }
@@ -229,14 +249,76 @@ export async function saveNotebook(store: NotebookStore, doc: NotebookDocument):
   await store.write(paths.manifest, jsonBlob(serializeNotebookDocument(doc)))
 }
 
+const notebookCreations = new WeakMap<NotebookStore, Map<string, Promise<NotebookDocument>>>()
+
+/**
+ * Crea soltanto dopo aver verificato nuovamente l'assenza del manifest e
+ * serializza le creazioni concorrenti nello stesso runtime.
+ *
+ * Il contratto read/write di NotebookStore non espone una CAS cross-processo:
+ * questa funzione elimina le corse di StrictMode e delle viste nello stesso
+ * runtime, ma non viene presentata come lock distribuito fra tab indipendenti.
+ */
+export function createNotebookIfMissing(
+  store: NotebookStore,
+  candidate: NotebookDocument,
+): Promise<NotebookDocument> {
+  const documentId = validateNotebookId(candidate.documentId)
+  let byDocument = notebookCreations.get(store)
+  if (!byDocument) {
+    byDocument = new Map()
+    notebookCreations.set(store, byDocument)
+  }
+  const pending = byDocument.get(documentId)
+  if (pending) return pending
+
+  const operation = (async () => {
+    const inspection = await inspectNotebook(store, documentId)
+    if (inspection.kind === "ready") return inspection.document
+    if (inspection.kind === "corrupt") {
+      throw new Error("Cannot create notebook over a corrupt manifest")
+    }
+    await saveNotebook(store, candidate)
+    const persisted = await inspectNotebook(store, documentId)
+    if (persisted.kind !== "ready") {
+      throw new Error("Notebook creation could not be verified")
+    }
+    return persisted.document
+  })()
+  byDocument.set(documentId, operation)
+  void operation.then(
+    () => {
+      if (byDocument?.get(documentId) === operation) byDocument.delete(documentId)
+    },
+    () => {
+      if (byDocument?.get(documentId) === operation) byDocument.delete(documentId)
+    },
+  )
+  return operation
+}
+
 export async function loadNotebook(
   store: NotebookStore,
   documentId: string,
 ): Promise<NotebookDocument | null> {
-  const paths = notebookPaths(documentId)
+  const inspection = await inspectNotebook(store, documentId)
+  return inspection.kind === "ready" ? inspection.document : null
+}
+
+export async function inspectNotebook(
+  store: NotebookStore,
+  documentId: string,
+): Promise<NotebookInspection> {
+  const requestedId = validateNotebookId(documentId)
+  const paths = notebookPaths(requestedId)
   const blob = await store.read(paths.manifest)
-  if (!blob) return null
-  return parseNotebookDocument(await blob.text())
+  if (!blob) return { kind: "missing" }
+  const document = parseNotebookDocument(await blob.text())
+  if (!document) return { kind: "corrupt", reason: "invalid-manifest" }
+  if (document.documentId !== requestedId) {
+    return { kind: "corrupt", reason: "document-id-mismatch" }
+  }
+  return { kind: "ready", document }
 }
 
 export async function saveNotebookPageScene(
@@ -272,11 +354,18 @@ export async function listNotebooks(store: NotebookListStore): Promise<ReadonlyA
   const entries = await store.list(`${NOTEBOOK_ROOT}/`)
   const summaries: NotebookSummary[] = []
   for (const entry of entries) {
-    if (!entry.path.endsWith("/notebook.json")) continue
+    const match = /^notebooks\/([^/]+)\/notebook\.json$/.exec(entry.path)
+    if (!match) continue
+    const pathDocumentId = match[1]!
+    try {
+      validateNotebookId(pathDocumentId)
+    } catch {
+      continue
+    }
     const blob = await store.read(entry.path)
     if (!blob) continue
     const doc = parseNotebookDocument(await blob.text())
-    if (!doc) continue
+    if (!doc || doc.documentId !== pathDocumentId) continue
     summaries.push({
       documentId: doc.documentId,
       title: doc.title,

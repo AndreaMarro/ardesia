@@ -927,7 +927,7 @@ export default function Room({
               stessa lezione riapre lo stesso taccuino. */}
           {!studentView && (
             <button
-              onClick={() => { void navigateToSurface(notebookHref(notebookIdForLesson(getRoomId()), window.location.hash)) }}
+              onClick={() => { void navigateToSurface(notebookHref(notebookIdForLesson(room), room)) }}
               className="st-ghost"
               aria-label="Apri il Taccuino di questa lezione"
               data-open-notebook
