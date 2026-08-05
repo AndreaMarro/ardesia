@@ -381,7 +381,105 @@ test("taccuino: una write fallita resta visibile e blocca il cambio pagina", asy
   await expect(page.locator("[data-notebook-save-state='errore']")).toContainText("Salvataggio non riuscito", {
     timeout: 10_000,
   })
+  await expect(page.locator("[data-notebook-save-state='errore']")).toHaveAttribute("role", "alert")
   await expect(page.locator("[data-notebook-save-error]")).toHaveText("Riprova il salvataggio")
+  await expect(page.locator("[data-notebook-save-error]")).toHaveAttribute(
+    "aria-describedby",
+    "notebook-save-status",
+  )
   await page.locator("[data-add-notebook-page]").click()
   await expect(page.locator("[data-notebook-page-ordinal]")).toHaveCount(1)
+})
+
+test("taccuino: un flush richiesto durante una write drena anche la modifica successiva", async ({
+  page,
+}) => {
+  await page.goto("/#lezione-flush-concorrente")
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  await apriTaccuino(page)
+  const taccuino = page.locator("[data-notebook-document-id]").first()
+  await expect(taccuino).toBeVisible({ timeout: 15_000 })
+  const documentId = await taccuino.getAttribute("data-notebook-document-id")
+  if (!documentId) throw new Error("documentId assente")
+
+  await page.evaluate(() => {
+    const stato = window as unknown as {
+      __arrayBufferOriginale?: typeof Blob.prototype.arrayBuffer
+      __setTimeoutOriginale?: typeof window.setTimeout
+      __bloccaProssimaWrite?: boolean
+      __writeBloccata?: boolean
+      __rilasciaWrite?: () => void
+    }
+    stato.__arrayBufferOriginale = Blob.prototype.arrayBuffer
+    stato.__setTimeoutOriginale = window.setTimeout
+    stato.__bloccaProssimaWrite = true
+    stato.__writeBloccata = false
+
+    Blob.prototype.arrayBuffer = function (): Promise<ArrayBuffer> {
+      const originale = stato.__arrayBufferOriginale!
+      if (stato.__bloccaProssimaWrite && this.type === "application/json") {
+        stato.__bloccaProssimaWrite = false
+        stato.__writeBloccata = true
+        const leggiBlob = () => originale.call(this)
+        return new Promise<ArrayBuffer>((resolve, reject) => {
+          stato.__rilasciaWrite = () => {
+            void leggiBlob().then(resolve, reject)
+          }
+        })
+      }
+      return originale.call(this)
+    }
+
+    window.setTimeout = ((handler: TimerHandler, timeout?: number, ...args: unknown[]) => {
+      if (timeout === 400) return 0 as unknown as number
+      return stato.__setTimeoutOriginale!(handler, timeout, ...(args as []))
+    }) as typeof window.setTimeout
+  })
+
+  await disegnaUnTratto(page)
+  await expect.poll(
+    () => page.evaluate(() => Boolean((window as unknown as { __writeBloccata?: boolean }).__writeBloccata)),
+    { timeout: 10_000 },
+  ).toBe(true)
+
+  // Il secondo pointer-up chiede un flush mentre il primo e' ancora in volo.
+  // Il timer ordinario e' sospeso: soltanto il flush puo' rendere durevole il
+  // secondo tratto.
+  await disegnaUnTratto(page)
+  const elementiVivi = Number(
+    await page.locator("[data-notebook-scene-elements]").first().getAttribute(
+      "data-notebook-scene-elements",
+    ),
+  )
+  expect(elementiVivi).toBeGreaterThan(1)
+  await page.evaluate(() => {
+    const stato = window as unknown as {
+      __arrayBufferOriginale?: typeof Blob.prototype.arrayBuffer
+      __setTimeoutOriginale?: typeof window.setTimeout
+      __rilasciaWrite?: () => void
+    }
+    const rilascia = stato.__rilasciaWrite
+    if (!rilascia) throw new Error("write non bloccata")
+    rilascia()
+    Blob.prototype.arrayBuffer = stato.__arrayBufferOriginale!
+    window.setTimeout = stato.__setTimeoutOriginale!
+  })
+
+  // La cache localStorage non e' una prova di persistenza: attendo la barriera
+  // semantica esposta dalla UI, poi butto via l'intera pagina e verifico la
+  // scena riletta dal WorkspaceStore in una riapertura a freddo.
+  await expect(page.locator("[data-notebook-save-state='salvato']")).toBeVisible({
+    timeout: 2_000,
+  })
+  await page.reload()
+  const riaperto = page.locator("[data-notebook-document-id]").first()
+  await expect(riaperto).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect(riaperto).toHaveAttribute("data-notebook-document-id", documentId)
+  await expect(page.locator("[data-notebook-scene-elements]").first()).toHaveAttribute(
+    "data-notebook-scene-elements",
+    String(elementiVivi),
+    { timeout: 10_000 },
+  )
 })

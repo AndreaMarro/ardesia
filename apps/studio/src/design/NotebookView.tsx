@@ -203,6 +203,9 @@ export default function NotebookView() {
   const pagine = doc ? orderedNotebookPages(doc) : []
   const paginaCorrente = pagine[pageIndex] ?? null
   const pageIdCorrente = paginaCorrente?.pageId ?? null
+  const identitaScenaCorrente = documentId && pageIdCorrente
+    ? `${documentId}/${pageIdCorrente}`
+    : null
 
   useEffect(() => {
     let annullato = false
@@ -216,7 +219,7 @@ export default function NotebookView() {
         const initialData = sceneInitialData(salvata)
         if (annullato) return
         setSceneData(initialData)
-        setScenaPer(pageIdCorrente)
+        setScenaPer(`${documentId}/${pageIdCorrente}`)
       } catch {
         if (annullato) return
         setErroreCaricamento(
@@ -312,12 +315,13 @@ export default function NotebookView() {
       }
       do {
         if (paginaSporcaRef.current) await persistiScenaRef.current()
-        // Durante una transizione gli input sono congelati: drenare anche una
-        // modifica arrivata mentre una write precedente era in volo termina.
-        // Un flush ordinario salva invece lo snapshot confermato corrente; una
-        // modifica realmente successiva mantiene il proprio timer.
-      } while (transizioneRef.current && paginaSporcaRef.current)
-      await codaScrittureRef.current
+        // Un flush e' una barriera di durabilita': se una seconda modifica e'
+        // arrivata mentre la write precedente era in volo, deve drenare anche
+        // quella. Restituire la promise gia' in corso senza questa seconda
+        // passata farebbe apparire concluso il pointer-up lasciando il nuovo
+        // marker affidato soltanto al debounce.
+        await codaScrittureRef.current
+      } while (paginaSporcaRef.current)
     })()
     flushInCorsoRef.current = run
     void run.finally(() => {
@@ -471,7 +475,11 @@ export default function NotebookView() {
         <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
           <h1 style={titolo}>{doc.title}</h1>
           <span
-            style={statoSalvataggio}
+            id="notebook-save-status"
+            style={erroreSalvataggio ? { ...statoSalvataggio, ...statoSalvataggioErrore } : statoSalvataggio}
+            role={erroreSalvataggio ? "alert" : "status"}
+            aria-live={erroreSalvataggio ? "assertive" : "polite"}
+            aria-atomic="true"
             data-notebook-saved-at={erroreSalvataggio ? "" : salvatoAlle ?? ""}
             data-notebook-save-state={
               erroreSalvataggio
@@ -497,6 +505,7 @@ export default function NotebookView() {
             type="button"
             data-notebook-save-error
             style={erroreSalvataggioButton}
+            aria-describedby="notebook-save-status"
             onClick={() => { void flush().catch(() => {}) }}
           >
             Riprova il salvataggio
@@ -526,11 +535,11 @@ export default function NotebookView() {
           void flush().catch(() => {})
         }}
       >
-        {scenaPer !== paginaCorrente?.pageId ? (
+        {scenaPer !== identitaScenaCorrente ? (
           <div className="st-bar" aria-busy="true" aria-label="Apertura della pagina" />
         ) : (
         <Excalidraw
-          key={paginaCorrente?.pageId ?? "vuota"}
+          key={identitaScenaCorrente ?? "vuota"}
           langCode={EXCALIDRAW_CONFIG.langCode}
           theme={EXCALIDRAW_CONFIG.theme}
           aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
@@ -708,4 +717,9 @@ const erroreSalvataggioButton = {
   maxWidth: "min(100%, 28rem)",
   whiteSpace: "normal",
   textAlign: "center",
+} as const
+
+const statoSalvataggioErrore = {
+  color: "#991b1b",
+  fontWeight: 600,
 } as const

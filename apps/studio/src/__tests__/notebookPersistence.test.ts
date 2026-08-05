@@ -98,6 +98,37 @@ describe("riapertura a freddo del taccuino", () => {
     expect(uno.title).toBe("Prima")
   })
 
+  it("rifiuta un candidato invalido prima di creare il manifest", async () => {
+    const store = fakeStore()
+    const valido = createNotebookDocument({ documentId: "candidato", title: "T", now: 1 })
+    const invalido = {
+      ...valido,
+      pages: [{ ...valido.pages[0], pageId: "../fuori" }],
+    }
+
+    await expect(saveNotebook(store, invalido)).rejects.toThrow("Invalid notebook document")
+    expect(store.files.size).toBe(0)
+    await expect(createNotebookIfMissing(store, invalido)).rejects.toThrow(
+      "Invalid notebook document",
+    )
+    await expect(inspectNotebook(store, "candidato")).resolves.toEqual({ kind: "missing" })
+    expect(store.files.size).toBe(0)
+
+    const storeConManifest = fakeStore()
+    const manifestEsistente = JSON.stringify({ ...valido, title: "Manifest da conservare" })
+    storeConManifest.files.set("notebooks/candidato/notebook.json", manifestEsistente)
+
+    await expect(saveNotebook(storeConManifest, invalido)).rejects.toThrow(
+      "Invalid notebook document",
+    )
+    await expect(createNotebookIfMissing(storeConManifest, invalido)).rejects.toThrow(
+      "Invalid notebook document",
+    )
+    expect(storeConManifest.files.get("notebooks/candidato/notebook.json")).toBe(
+      manifestEsistente,
+    )
+  })
+
   it("ritrova identita', ordine delle pagine e contenuto dopo un reload", async () => {
     const store = fakeStore()
 

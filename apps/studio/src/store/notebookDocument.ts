@@ -137,6 +137,12 @@ export function serializeNotebookDocument(doc: NotebookDocument): string {
   return JSON.stringify(doc)
 }
 
+function normalizeNotebookDocument(doc: NotebookDocument): NotebookDocument {
+  const normalized = parseNotebookDocument(serializeNotebookDocument(doc))
+  if (!normalized) throw new Error("Invalid notebook document")
+  return normalized
+}
+
 /**
  * Rilegge un manifest. Restituisce `null` — e non un documento parziale — per
  * ogni forma che non riconosce: schema diverso, campi mancanti, ordinali non
@@ -245,8 +251,9 @@ function jsonBlob(text: string): Blob {
 }
 
 export async function saveNotebook(store: NotebookStore, doc: NotebookDocument): Promise<void> {
-  const paths = notebookPaths(doc.documentId)
-  await store.write(paths.manifest, jsonBlob(serializeNotebookDocument(doc)))
+  const normalized = normalizeNotebookDocument(doc)
+  const paths = notebookPaths(normalized.documentId)
+  await store.write(paths.manifest, jsonBlob(serializeNotebookDocument(normalized)))
 }
 
 const notebookCreations = new WeakMap<NotebookStore, Map<string, Promise<NotebookDocument>>>()
@@ -263,7 +270,13 @@ export function createNotebookIfMissing(
   store: NotebookStore,
   candidate: NotebookDocument,
 ): Promise<NotebookDocument> {
-  const documentId = validateNotebookId(candidate.documentId)
+  let normalizedCandidate: NotebookDocument
+  try {
+    normalizedCandidate = normalizeNotebookDocument(candidate)
+  } catch (error) {
+    return Promise.reject(error)
+  }
+  const documentId = normalizedCandidate.documentId
   let byDocument = notebookCreations.get(store)
   if (!byDocument) {
     byDocument = new Map()
@@ -278,7 +291,7 @@ export function createNotebookIfMissing(
     if (inspection.kind === "corrupt") {
       throw new Error("Cannot create notebook over a corrupt manifest")
     }
-    await saveNotebook(store, candidate)
+    await saveNotebook(store, normalizedCandidate)
     const persisted = await inspectNotebook(store, documentId)
     if (persisted.kind !== "ready") {
       throw new Error("Notebook creation could not be verified")
@@ -351,12 +364,14 @@ export async function loadNotebookPageScene(
  * deve nascondere gli altri taccuini dell'utente.
  */
 export async function listNotebooks(store: NotebookListStore): Promise<ReadonlyArray<NotebookSummary>> {
-  const entries = await store.list(`${NOTEBOOK_ROOT}/`)
+  const rootPrefix = `${NOTEBOOK_ROOT}/`
+  const manifestSuffix = "/notebook.json"
+  const entries = await store.list(rootPrefix)
   const summaries: NotebookSummary[] = []
   for (const entry of entries) {
-    const match = /^notebooks\/([^/]+)\/notebook\.json$/.exec(entry.path)
-    if (!match) continue
-    const pathDocumentId = match[1]!
+    if (!entry.path.startsWith(rootPrefix) || !entry.path.endsWith(manifestSuffix)) continue
+    const pathDocumentId = entry.path.slice(rootPrefix.length, -manifestSuffix.length)
+    if (!pathDocumentId || pathDocumentId.includes("/")) continue
     try {
       validateNotebookId(pathDocumentId)
     } catch {
