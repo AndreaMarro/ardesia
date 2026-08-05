@@ -52,6 +52,16 @@ export default function NotebookView() {
   const [doc, setDoc] = useState<NotebookDocument | null>(null)
   const [pageIndex, setPageIndex] = useState(0)
   const [sceneJson, setSceneJson] = useState<string | null>(null)
+  /**
+   * A quale pagina appartiene `sceneJson`. `null` = caricamento in corso.
+   *
+   * Excalidraw legge `initialData` UNA SOLA VOLTA, al montaggio. Montarlo appena
+   * cambia la pagina significa montarlo sul contenuto della pagina precedente e
+   * non riaggiornarlo mai: il canvas resta vuoto mentre lo stato dice che il
+   * contenuto c'e'. E' esattamente il guasto che questo campo impedisce, ed e'
+   * stato trovato guardando lo screenshot, non leggendo un test verde.
+   */
+  const [scenaPer, setScenaPer] = useState<string | null>(null)
   const [elementCount, setElementCount] = useState(0)
   const [salvatoAlle, setSalvatoAlle] = useState<string | null>(null)
   const [caricato, setCaricato] = useState(false)
@@ -92,15 +102,15 @@ export default function NotebookView() {
   useEffect(() => {
     let annullato = false
     if (!documentId || !paginaCorrente) return
+    // La scena in memoria appartiene alla pagina PRECEDENTE finche' il caricamento
+    // non finisce: dichiararlo subito impedisce di montare il canvas su dati
+    // sbagliati.
+    setScenaPer(null)
     void (async () => {
       const salvata = await loadNotebookPageScene(workspaceStore, documentId, paginaCorrente.pageId)
       if (annullato) return
       setSceneJson(salvata)
-      try {
-        setElementCount(salvata ? (JSON.parse(salvata).elements?.length ?? 0) : 0)
-      } catch {
-        setElementCount(0)
-      }
+      setScenaPer(paginaCorrente.pageId)
     })()
     return () => {
       annullato = true
@@ -232,6 +242,9 @@ export default function NotebookView() {
         data-notebook-scene-elements={String(elementCount)}
         onPointerUp={flush}
       >
+        {scenaPer !== paginaCorrente?.pageId ? (
+          <div className="st-bar" aria-busy="true" aria-label="Apertura della pagina" />
+        ) : (
         <Excalidraw
           key={paginaCorrente?.pageId ?? "vuota"}
           langCode={EXCALIDRAW_CONFIG.langCode}
@@ -245,9 +258,15 @@ export default function NotebookView() {
           }
           excalidrawAPI={(api: unknown) => {
             apiRef.current = api as ExcalidrawApi
+            // Il conteggio esposto DEVE venire dalla scena viva, non dal JSON
+            // che credo di aver caricato. Derivarlo dal JSON rende l'attributo
+            // corretto anche quando il canvas e' vuoto: un oracolo che non puo'
+            // vedere il guasto che deve sorvegliare.
+            setElementCount((api as ExcalidrawApi).getSceneElements().length)
           }}
           onChange={onChange}
         />
+        )}
       </main>
 
       {/* Striscia delle pagine: una sola navigazione sull'asse dell'ordine.
