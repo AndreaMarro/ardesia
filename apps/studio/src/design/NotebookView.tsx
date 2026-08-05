@@ -130,9 +130,44 @@ export default function NotebookView() {
     salvaTimer.current = setTimeout(salvaScena, AUTOSAVE_MS)
   }, [salvaScena])
 
-  useEffect(() => () => {
-    if (salvaTimer.current) clearTimeout(salvaTimer.current)
+  // Il flush deve poter girare da un listener registrato una volta sola, senza
+  // catturare una `salvaScena` vecchia: il ref segue l'ultima versione.
+  const salvaScenaRef = useRef(salvaScena)
+  salvaScenaRef.current = salvaScena
+
+  /**
+   * Scrive subito cio' che l'autosave sta ancora aspettando di scrivere.
+   *
+   * PRD §8.4 chiede «autosave locale con RPO 0 per eventi confermati». Un
+   * debounce da solo lascia una finestra in cui un tratto gia' confermato
+   * dall'utente non e' su disco: chi chiude il coperchio subito dopo aver
+   * scritto lo perde. Misurato con `e2e/taccuino-rpo.spec.ts`, che senza questo
+   * flush riapre la pagina con zero elementi.
+   *
+   * `pagehide` e `visibilitychange` coprono il caso reale (chiusura, cambio
+   * tab, navigazione via `location.assign`), dove il cleanup di React non e'
+   * garantito; il cleanup lo copre per lo smontaggio interno.
+   */
+  const flush = useCallback(() => {
+    if (salvaTimer.current) {
+      clearTimeout(salvaTimer.current)
+      salvaTimer.current = null
+    }
+    salvaScenaRef.current()
   }, [])
+
+  useEffect(() => {
+    const alNascondersi = () => {
+      if (document.visibilityState === "hidden") flush()
+    }
+    window.addEventListener("pagehide", flush)
+    document.addEventListener("visibilitychange", alNascondersi)
+    return () => {
+      window.removeEventListener("pagehide", flush)
+      document.removeEventListener("visibilitychange", alNascondersi)
+      flush()
+    }
+  }, [flush])
 
   const aggiungiPagina = useCallback(() => {
     if (!doc || !documentId) return
@@ -185,8 +220,18 @@ export default function NotebookView() {
       </header>
 
       {/* La superficie di scrittura e' l'elemento dominante: e' il solo
-          principio di G01 che questo slice trasferisce senza riserve. */}
-      <main style={superficie} data-notebook-scene-elements={String(elementCount)}>
+          principio di G01 che questo slice trasferisce senza riserve.
+
+          `onPointerUp` scrive alla FINE del tratto invece di aspettare i 400 ms
+          di quiete. Il debounce serve a non scrivere a ogni frame di un gesto
+          continuo; ma un tratto finito e' un evento confermato dall'utente, e
+          PRD §8.4 chiede RPO 0 su quelli. Misurato: senza questa riga il tratto
+          si perde uscendo subito (`e2e/taccuino-rpo.spec.ts`). */}
+      <main
+        style={superficie}
+        data-notebook-scene-elements={String(elementCount)}
+        onPointerUp={flush}
+      >
         <Excalidraw
           key={paginaCorrente?.pageId ?? "vuota"}
           langCode={EXCALIDRAW_CONFIG.langCode}
@@ -292,13 +337,16 @@ const tabPagina = {
   cursor: "pointer",
 } as const
 
+// `border` intero, non `borderColor`: React avverte quando una riscrittura
+// rimuove una proprieta' non-shorthand mentre e' attiva la shorthand
+// corrispondente, e l'avviso era reale — compariva nel log Playwright.
 const tabPaginaAttiva = {
   color: "#1f3f63",
-  borderColor: "#1f3f63",
+  border: "1px solid #1f3f63",
   boxShadow: "0 1px 3px rgba(21,38,56,0.18)",
 } as const
 
-const tabNuova = { ...tabPagina, borderStyle: "dashed", color: "#1f3f63" } as const
+const tabNuova = { ...tabPagina, border: "1px dashed rgba(21,38,56,0.32)", color: "#1f3f63" } as const
 
 const emptyWrap = {
   flex: 1,
