@@ -13,6 +13,7 @@ import {
   appendNotebookPage,
   createNotebookDocument,
   insertNotebookPageAfter,
+  insertNotebookPageBefore,
   notebookPaths,
   orderedNotebookPages,
   parseNotebookDocument,
@@ -143,6 +144,107 @@ describe("identita' indipendente dall'ordine", () => {
     for (const inserisci of casi) {
       expect(inserisci).toThrow()
       expect(serializeNotebookDocument(base)).toBe(bytesPrima)
+    }
+  })
+})
+
+describe("inserimento prima dell'identita' corrente", () => {
+  function trePagine() {
+    const uno = createNotebookDocument({ documentId: "t1", title: "Taccuino", now: 1 })
+    const due = appendNotebookPage(uno, {
+      pageId: "page-b",
+      title: "Seconda storica",
+      now: 2,
+    })
+    return appendNotebookPage(due, {
+      pageId: "page-c",
+      title: "Terza storica",
+      now: 3,
+    })
+  }
+
+  it("inserisce prima della pagina centrale preservando identita', titoli, metadati e input", () => {
+    const base = trePagine()
+    const bytesPrima = serializeNotebookDocument(base)
+    const inserito = insertNotebookPageBefore(base, "page-b", {
+      pageId: "page-new",
+      title: "Nuova",
+      now: 4,
+    })
+
+    expect(inserito.pages.map((page) => page.pageId)).toEqual([
+      "p1",
+      "page-new",
+      "page-b",
+      "page-c",
+    ])
+    expect(inserito.pages.map((page) => page.ordinal)).toEqual([0, 1, 2, 3])
+    expect(inserito.pages.map(({ pageId, title }) => ({ pageId, title }))).toEqual([
+      { pageId: "p1", title: "Pagina 1" },
+      { pageId: "page-new", title: "Nuova" },
+      { pageId: "page-b", title: "Seconda storica" },
+      { pageId: "page-c", title: "Terza storica" },
+    ])
+    expect({
+      v: inserito.v,
+      kind: inserito.kind,
+      documentId: inserito.documentId,
+      title: inserito.title,
+      createdAt: inserito.createdAt,
+    }).toEqual({
+      v: base.v,
+      kind: base.kind,
+      documentId: base.documentId,
+      title: base.title,
+      createdAt: base.createdAt,
+    })
+    expect(inserito.updatedAt).toBe(4)
+    expect(serializeNotebookDocument(base)).toBe(bytesPrima)
+
+    const riletto = parseNotebookDocument(serializeNotebookDocument(inserito))
+    expect(riletto?.pages.map((page) => page.pageId)).toEqual([
+      "p1",
+      "page-new",
+      "page-b",
+      "page-c",
+    ])
+  })
+
+  it("inserisce prima della prima pagina e assegna titolo e ordinali dalla nuova posizione", () => {
+    const base = trePagine()
+    const inserito = insertNotebookPageBefore(base, "p1", {
+      pageId: "page-first",
+      now: 4,
+    })
+
+    expect(inserito.pages.map((page) => page.pageId)).toEqual([
+      "page-first",
+      "p1",
+      "page-b",
+      "page-c",
+    ])
+    expect(inserito.pages.map((page) => page.ordinal)).toEqual([0, 1, 2, 3])
+    expect(inserito.pages[0].title).toBe("Pagina 1")
+    expect(inserito.pages.slice(1).map((page) => page.title)).toEqual([
+      "Pagina 1",
+      "Seconda storica",
+      "Terza storica",
+    ])
+  })
+
+  it("rigetta current assente e nuove identita' duplicate o invalide senza mutare un byte", () => {
+    const base = trePagine()
+    const bytesPrima = serializeNotebookDocument(base)
+    const casi = [
+      () => insertNotebookPageBefore(base, "assente", { pageId: "page-x", now: 4 }),
+      () => insertNotebookPageBefore(base, "page-b", { pageId: "page-c", now: 4 }),
+      () => insertNotebookPageBefore(base, "page-b", { pageId: "../fuori", now: 4 }),
+    ]
+
+    for (const inserisci of casi) {
+      expect(inserisci).toThrow()
+      expect(serializeNotebookDocument(base)).toBe(bytesPrima)
+      expect(base.updatedAt).toBe(3)
     }
   })
 })

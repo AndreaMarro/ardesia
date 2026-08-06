@@ -12,6 +12,7 @@ import {
   createNotebookDocument,
   inspectNotebook,
   insertNotebookPageAfter,
+  insertNotebookPageBefore,
   loadNotebook,
   loadNotebookPageScene,
   orderedNotebookPages,
@@ -188,6 +189,34 @@ describe("riapertura a freddo del taccuino", () => {
     expect(riaperto?.pages.map((page) => page.ordinal)).toEqual([0, 1, 2])
     expect(JSON.parse((await loadNotebookPageScene(store, "t1", "p1"))!).elements).toEqual(["a"])
     expect(JSON.parse((await loadNotebookPageScene(store, "t1", "page-b"))!).elements).toEqual(["b"])
+  })
+
+  it("rilegge ordine e scene per identita' dopo un inserimento prima della pagina centrale", async () => {
+    const store = fakeStore()
+    const uno = createNotebookDocument({ documentId: "before", title: "T", now: 1 })
+    const due = appendNotebookPage(uno, { pageId: "page-b", title: "B", now: 2 })
+    const tre = appendNotebookPage(due, { pageId: "page-c", title: "C", now: 3 })
+    const inserito = insertNotebookPageBefore(tre, "page-b", {
+      pageId: "page-new",
+      title: "Nuova",
+      now: 4,
+    })
+    await saveNotebook(store, inserito)
+    await saveNotebookPageScene(store, "before", "p1", JSON.stringify({ elements: ["a"] }))
+    await saveNotebookPageScene(store, "before", "page-b", JSON.stringify({ elements: ["b"] }))
+    await saveNotebookPageScene(store, "before", "page-c", JSON.stringify({ elements: ["c"] }))
+
+    const riaperto = await loadNotebook(store, "before")
+    expect(riaperto?.pages.map((page) => page.pageId)).toEqual([
+      "p1",
+      "page-new",
+      "page-b",
+      "page-c",
+    ])
+    expect(riaperto?.pages.map((page) => page.ordinal)).toEqual([0, 1, 2, 3])
+    expect(JSON.parse((await loadNotebookPageScene(store, "before", "p1"))!).elements).toEqual(["a"])
+    expect(JSON.parse((await loadNotebookPageScene(store, "before", "page-b"))!).elements).toEqual(["b"])
+    expect(JSON.parse((await loadNotebookPageScene(store, "before", "page-c"))!).elements).toEqual(["c"])
   })
 
   it("tiene separati due taccuini diversi", async () => {

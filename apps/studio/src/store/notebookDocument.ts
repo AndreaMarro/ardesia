@@ -103,34 +103,63 @@ export function createNotebookDocument(options: {
   }
 }
 
+function notebookPageIndex(
+  pages: ReadonlyArray<NotebookPage>,
+  currentPageId: string,
+): number {
+  const currentIndex = pages.findIndex((page) => page.pageId === currentPageId)
+  if (currentIndex < 0) throw new Error("Current notebook page does not exist")
+  return currentIndex
+}
+
+function insertNotebookPageAt(
+  doc: NotebookDocument,
+  pages: ReadonlyArray<NotebookPage>,
+  insertionIndex: number,
+  options: { pageId: string; title?: string; now: number },
+): NotebookDocument {
+  const pageId = validateNotebookId(options.pageId)
+  if (pages.some((page) => page.pageId === pageId)) {
+    throw new Error("Notebook page identifier already exists")
+  }
+  if (insertionIndex < 0 || insertionIndex > pages.length) {
+    throw new Error("Invalid notebook page insertion index")
+  }
+
+  const inserted: NotebookPage = {
+    pageId,
+    ordinal: insertionIndex,
+    title: options.title ?? `Pagina ${insertionIndex + 1}`,
+  }
+  const reordered = [
+    ...pages.slice(0, insertionIndex),
+    inserted,
+    ...pages.slice(insertionIndex),
+  ].map((page, ordinal) => (
+    page.ordinal === ordinal ? page : { ...page, ordinal }
+  ))
+
+  return { ...doc, pages: reordered, updatedAt: options.now }
+}
+
 export function insertNotebookPageAfter(
   doc: NotebookDocument,
   currentPageId: string,
   options: { pageId: string; title?: string; now: number },
 ): NotebookDocument {
   const pages = orderedNotebookPages(doc)
-  const currentIndex = pages.findIndex((page) => page.pageId === currentPageId)
-  if (currentIndex < 0) throw new Error("Current notebook page does not exist")
+  const currentIndex = notebookPageIndex(pages, currentPageId)
+  return insertNotebookPageAt(doc, pages, currentIndex + 1, options)
+}
 
-  const pageId = validateNotebookId(options.pageId)
-  if (pages.some((page) => page.pageId === pageId)) {
-    throw new Error("Notebook page identifier already exists")
-  }
-
-  const inserted: NotebookPage = {
-    pageId,
-    ordinal: currentIndex + 1,
-    title: options.title ?? `Pagina ${currentIndex + 2}`,
-  }
-  const reordered = [
-    ...pages.slice(0, currentIndex + 1),
-    inserted,
-    ...pages.slice(currentIndex + 1),
-  ].map((page, ordinal) => (
-    page.ordinal === ordinal ? page : { ...page, ordinal }
-  ))
-
-  return { ...doc, pages: reordered, updatedAt: options.now }
+export function insertNotebookPageBefore(
+  doc: NotebookDocument,
+  currentPageId: string,
+  options: { pageId: string; title?: string; now: number },
+): NotebookDocument {
+  const pages = orderedNotebookPages(doc)
+  const currentIndex = notebookPageIndex(pages, currentPageId)
+  return insertNotebookPageAt(doc, pages, currentIndex, options)
 }
 
 export function appendNotebookPage(
