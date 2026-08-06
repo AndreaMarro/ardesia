@@ -15,7 +15,7 @@ const VIEWPORTS = [
   { nome: "ipad", larghezza: 834, altezza: 1194 },
 ] as const
 
-const INSERT_AFTER_PROFILES = [
+const INSERT_PROFILES = [
   {
     nome: "desktop",
     viewport: { width: 1280, height: 800 },
@@ -100,6 +100,65 @@ async function attivaControlloPagina(
     return
   }
   await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2)
+}
+
+async function attivaControlloPrima(
+  page: Page,
+  controllo: Locator,
+  touch: boolean,
+): Promise<void> {
+  await expect(controllo).toBeVisible()
+  const box = await controllo.boundingBox()
+  if (!box) throw new Error("controllo Prima senza bounding box")
+  expect(box.width).toBeGreaterThanOrEqual(44)
+  expect(box.height).toBeGreaterThanOrEqual(44)
+  if (touch) {
+    await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2)
+    return
+  }
+
+  await controllo.focus()
+  await page.keyboard.press("Shift+Tab")
+  await page.keyboard.press("Tab")
+  await expect(controllo).toBeFocused()
+  await expect.poll(() => controllo.evaluate((elemento) => {
+    const stile = getComputedStyle(elemento)
+    const outlineVisibile = stile.outlineStyle !== "none" && parseFloat(stile.outlineWidth) > 0
+    return outlineVisibile || stile.boxShadow !== "none"
+  })).toBe(true)
+  await page.keyboard.press("Enter")
+}
+
+/**
+ * Misura il backend cache attivo per scegliere contenuti distinguibili.
+ * L'oracolo resta il remount UI sottostante; questa lettura non prova FSA,
+ * export o durabilita' dopo crash.
+ */
+async function contaElementiCachePagina(
+  page: Page,
+  documentId: string,
+  pageId: string,
+): Promise<number> {
+  return page.evaluate(({ doc, pagina }) => {
+    const suffix = `notebooks/${doc}/pages/${pagina}.excalidraw`
+    let candidatoInvalido = false
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const key = localStorage.key(index)
+      if (key?.endsWith(suffix)) {
+        const codificato = localStorage.getItem(key)
+        if (!codificato) continue
+        try {
+          const bytes = Uint8Array.from(atob(codificato), (byte) => byte.charCodeAt(0))
+          const scena = JSON.parse(new TextDecoder().decode(bytes)) as { elements?: unknown[] }
+          if (Array.isArray(scena.elements)) return scena.elements.length
+          candidatoInvalido = true
+        } catch {
+          candidatoInvalido = true
+        }
+      }
+    }
+    return candidatoInvalido ? -2 : -1
+  }, { doc: documentId, pagina: pageId })
 }
 
 for (const vp of VIEWPORTS) {
@@ -193,7 +252,7 @@ test("taccuino: una seconda pagina si aggiunge in coda e si passa fra le due sen
   })
 })
 
-for (const profile of INSERT_AFTER_PROFILES) {
+for (const profile of INSERT_PROFILES) {
   test.describe(`inserimento dopo la pagina corrente — ${profile.nome}`, () => {
     test.use({
       viewport: profile.viewport,
@@ -338,6 +397,304 @@ for (const profile of INSERT_AFTER_PROFILES) {
     })
   })
 }
+
+for (const profile of INSERT_PROFILES) {
+  test.describe(`inserimento prima della pagina corrente — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: inserisce prima della centrale e conserva identita' e scene dopo reload completo`, async ({
+      page,
+    }) => {
+      test.setTimeout(120_000)
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-insert-before-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const taccuino = page.locator("[data-notebook-document-id]").first()
+      await expect(taccuino).toBeVisible({
+        timeout: 15_000,
+      })
+      const documentId = await taccuino.getAttribute("data-notebook-document-id")
+      if (!documentId) throw new Error("documentId assente")
+
+      const emulazione = await page.evaluate(() => ({
+        dpr: window.devicePixelRatio,
+        touchPoints: navigator.maxTouchPoints,
+      }))
+      expect(page.viewportSize()).toEqual(profile.viewport)
+      expect(emulazione.dpr).toBe(profile.deviceScaleFactor)
+      if (profile.hasTouch) expect(emulazione.touchPoints).toBeGreaterThan(0)
+
+      const conteggio = page.locator("[data-notebook-scene-elements]").first()
+      const pagine = page.locator("[data-notebook-page-id]")
+
+      await disegnaUnTratto(page)
+      await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", "1", {
+        timeout: 10_000,
+      })
+      await expect.poll(() => contaElementiCachePagina(page, documentId, "p1"), {
+        timeout: 10_000,
+      }).toBe(1)
+      const conteggioPrima = await contaElementiCachePagina(page, documentId, "p1")
+      if (conteggioPrima < 0) throw new Error(`cache pagina p1 non valida: ${conteggioPrima}`)
+      const elementiPrima = String(conteggioPrima)
+
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-add-notebook-page]"),
+        profile.hasTouch,
+      )
+      await expect(pagine).toHaveCount(2)
+      await disegnaUnTratto(page)
+      await disegnaUnTratto(page)
+      await expect(conteggio).not.toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiPrima!,
+        { timeout: 10_000 },
+      )
+      const pageIdSeconda = await pagine.nth(1).getAttribute("data-notebook-page-id")
+      if (!pageIdSeconda) throw new Error("pageId seconda assente")
+      await expect.poll(() => contaElementiCachePagina(page, documentId, pageIdSeconda), {
+        timeout: 10_000,
+      }).toBeGreaterThan(Number(elementiPrima))
+      const conteggioSeconda = await contaElementiCachePagina(page, documentId, pageIdSeconda)
+      if (conteggioSeconda < 0) {
+        throw new Error(`cache pagina seconda non valida: ${conteggioSeconda}`)
+      }
+      const elementiSeconda = String(conteggioSeconda)
+
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-add-notebook-page]"),
+        profile.hasTouch,
+      )
+      await expect(pagine).toHaveCount(3)
+      await disegnaUnTratto(page)
+      await disegnaUnTratto(page)
+      await disegnaUnTratto(page)
+      await expect(conteggio).not.toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiSeconda!,
+        { timeout: 10_000 },
+      )
+      const pageIdTerza = await pagine.nth(2).getAttribute("data-notebook-page-id")
+      if (!pageIdTerza) throw new Error("pageId terza assente")
+      await expect.poll(() => contaElementiCachePagina(page, documentId, pageIdTerza), {
+        timeout: 10_000,
+      }).toBeGreaterThan(Number(elementiSeconda))
+      const conteggioTerza = await contaElementiCachePagina(page, documentId, pageIdTerza)
+      if (conteggioTerza < 0) {
+        throw new Error(`cache pagina terza non valida: ${conteggioTerza}`)
+      }
+      const elementiTerza = String(conteggioTerza)
+
+      const idsStorici = await pagine.evaluateAll((buttons) => (
+        buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+      ))
+      expect(idsStorici).toHaveLength(3)
+      expect(idsStorici[0]).toBe("p1")
+      expect(idsStorici[1]).toMatch(/^page-[A-Za-z0-9-]+$/)
+      expect(idsStorici[2]).toMatch(/^page-[A-Za-z0-9-]+$/)
+
+      await attivaControlloPagina(page, pagine.nth(1), profile.hasTouch)
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiSeconda!,
+        { timeout: 10_000 },
+      )
+      await attivaControlloPrima(
+        page,
+        page.locator("[data-insert-notebook-page-before]"),
+        profile.hasTouch,
+      )
+
+      await expect(pagine).toHaveCount(4)
+      const idsDopo = await pagine.evaluateAll((buttons) => (
+        buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+      ))
+      expect(idsDopo[0]).toBe(idsStorici[0])
+      expect(idsDopo[1]).toMatch(/^page-[A-Za-z0-9-]+$/)
+      expect(idsDopo[1]).not.toBe(idsStorici[0])
+      expect(idsDopo[1]).not.toBe(idsStorici[1])
+      expect(idsDopo[1]).not.toBe(idsStorici[2])
+      expect(idsDopo[2]).toBe(idsStorici[1])
+      expect(idsDopo[3]).toBe(idsStorici[2])
+      await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+      await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", "0", {
+        timeout: 10_000,
+      })
+
+      for (const [indice, elementi] of [
+        [0, elementiPrima!],
+        [2, elementiSeconda!],
+        [3, elementiTerza!],
+      ] as const) {
+        await attivaControlloPagina(page, pagine.nth(indice), profile.hasTouch)
+        await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", elementi, {
+          timeout: 10_000,
+        })
+      }
+
+      await page.reload()
+      await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+        timeout: 15_000,
+      })
+      await expect(pagine).toHaveCount(4)
+      expect(await pagine.evaluateAll((buttons) => (
+        buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+      ))).toEqual(idsDopo)
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiPrima!,
+        { timeout: 10_000 },
+      )
+      for (const [indice, elementi] of [
+        [1, "0"],
+        [2, elementiSeconda!],
+        [3, elementiTerza!],
+      ] as const) {
+        await attivaControlloPagina(page, pagine.nth(indice), profile.hasTouch)
+        await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", elementi, {
+          timeout: 10_000,
+        })
+      }
+
+      await expect(page.locator(".st-bar[aria-busy='true']")).toHaveCount(0)
+      expect(await page.evaluate(() => (
+        document.documentElement.scrollWidth - document.documentElement.clientWidth
+      ))).toBe(0)
+      expect(erroriConsole).toEqual([])
+
+      const screenshotDir = process.env.ARDESIA_NOTEBOOK_SCREENSHOT_DIR
+      if (screenshotDir) {
+        await page.screenshot({
+          path: `${screenshotDir}/insert-before-${profile.nome}.png`,
+          fullPage: true,
+        })
+      }
+    })
+  })
+}
+
+test("taccuino: una write manifest fallita durante Prima conserva ordine, active ID e scena", async ({
+  page,
+}) => {
+  test.setTimeout(90_000)
+  await page.goto("/#lezione-insert-before-manifest-failure")
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  await apriTaccuino(page)
+  const taccuino = page.locator("[data-notebook-document-id]").first()
+  await expect(taccuino).toBeVisible({ timeout: 15_000 })
+  const documentId = await taccuino.getAttribute("data-notebook-document-id")
+  if (!documentId) throw new Error("documentId assente")
+
+  const conteggio = page.locator("[data-notebook-scene-elements]").first()
+  const pagine = page.locator("[data-notebook-page-id]")
+  await disegnaUnTratto(page)
+  await page.locator("[data-add-notebook-page]").click()
+  await disegnaUnTratto(page)
+  await disegnaUnTratto(page)
+  await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
+    timeout: 10_000,
+  })
+  const elementiSeconda = await conteggio.getAttribute("data-notebook-scene-elements")
+  expect(Number(elementiSeconda)).toBeGreaterThan(1)
+  await page.locator("[data-add-notebook-page]").click()
+  await disegnaUnTratto(page)
+  await disegnaUnTratto(page)
+  await disegnaUnTratto(page)
+  await pagine.nth(1).click()
+  await expect(conteggio).toHaveAttribute(
+    "data-notebook-scene-elements",
+    elementiSeconda!,
+    { timeout: 10_000 },
+  )
+  await expect(page.locator("[data-notebook-save-state='salvato']")).toBeVisible({
+    timeout: 10_000,
+  })
+
+  const idsPrima = await pagine.evaluateAll((buttons) => (
+    buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+  ))
+  const activeIdPrima = await pagine.nth(1).getAttribute("data-notebook-page-id")
+  const manifestKey = await page.evaluate((id) => {
+    const suffix = `notebooks/${id}/notebook.json`
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const key = localStorage.key(index)
+      if (key?.endsWith(suffix)) return key
+    }
+    return null
+  }, documentId)
+  if (!manifestKey) throw new Error("chiave manifest persistita assente")
+  const manifestPrima = await page.evaluate((key) => localStorage.getItem(key), manifestKey)
+  expect(manifestPrima).toBeTruthy()
+
+  await page.evaluate((keyManifest) => {
+    const stato = window as unknown as {
+      __notebookBeforeManifestSetItemOriginal?: typeof Storage.prototype.setItem
+    }
+    stato.__notebookBeforeManifestSetItemOriginal = Storage.prototype.setItem
+    Storage.prototype.setItem = function (key: string, value: string): void {
+      if (key === keyManifest) {
+        throw new DOMException("manifest before simulato", "QuotaExceededError")
+      }
+      stato.__notebookBeforeManifestSetItemOriginal!.call(this, key, value)
+    }
+  }, manifestKey)
+
+  try {
+    const inserisciPrima = page.locator("[data-insert-notebook-page-before]")
+    await expect(inserisciPrima).toBeVisible({ timeout: 5_000 })
+    await inserisciPrima.click()
+    await expect(pagine).toHaveCount(3)
+    expect(await pagine.evaluateAll((buttons) => (
+      buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+    ))).toEqual(idsPrima)
+    await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", activeIdPrima!)
+    await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+    await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", elementiSeconda!)
+    await expect(page.getByRole("alert")).toContainText("Creazione pagina non riuscita")
+    await expect(page.locator("[data-notebook-save-state='salvato']")).toHaveCount(0)
+    await expect(inserisciPrima).toBeEnabled()
+    await expect(page.locator("[data-add-notebook-page]")).toBeEnabled()
+    expect(await page.evaluate((key) => localStorage.getItem(key), manifestKey)).toBe(manifestPrima)
+  } finally {
+    await page.evaluate(() => {
+      const stato = window as unknown as {
+        __notebookBeforeManifestSetItemOriginal?: typeof Storage.prototype.setItem
+      }
+      if (stato.__notebookBeforeManifestSetItemOriginal) {
+        Storage.prototype.setItem = stato.__notebookBeforeManifestSetItemOriginal
+        delete stato.__notebookBeforeManifestSetItemOriginal
+      }
+    })
+  }
+
+  await page.reload()
+  await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect(pagine).toHaveCount(3)
+  expect(await pagine.evaluateAll((buttons) => (
+    buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+  ))).toEqual(idsPrima)
+  await pagine.nth(1).click()
+  await expect(conteggio).toHaveAttribute(
+    "data-notebook-scene-elements",
+    elementiSeconda!,
+    { timeout: 10_000 },
+  )
+  expect(await page.evaluate((key) => localStorage.getItem(key), manifestKey)).toBe(manifestPrima)
+})
 
 test("taccuino: una write fallita del solo manifest non cambia ordine o pagina attiva", async ({
   page,

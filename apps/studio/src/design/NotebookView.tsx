@@ -29,6 +29,7 @@ import {
   createNotebookDocument,
   inspectNotebook,
   insertNotebookPageAfter,
+  insertNotebookPageBefore,
   loadNotebookPageScene,
   orderedNotebookPages,
   saveNotebook,
@@ -363,7 +364,7 @@ export default function NotebookView() {
     }
   }, [flush, pageIndex])
 
-  async function aggiungiPagina() {
+  async function aggiungiPagina(posizione: "before" | "after") {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
     transizioneRef.current = true
     setOperazioneInCorso(true)
@@ -376,10 +377,10 @@ export default function NotebookView() {
         return
       }
       const pageId = `page-${crypto.randomUUID()}`
-      const aggiornato = insertNotebookPageAfter(doc, pageIdCorrente, {
-        pageId,
-        now: Date.now(),
-      })
+      const inserisci = posizione === "before"
+        ? insertNotebookPageBefore
+        : insertNotebookPageAfter
+      const aggiornato = inserisci(doc, pageIdCorrente, { pageId, now: Date.now() })
       await saveNotebook(workspaceStore, aggiornato)
       const indiceInserito = orderedNotebookPages(aggiornato)
         .findIndex((page) => page.pageId === pageId)
@@ -588,9 +589,21 @@ export default function NotebookView() {
         ))}
         <button
           type="button"
+          className="st-chip"
+          data-insert-notebook-page-before
+          aria-label="Inserisci una pagina prima di quella corrente"
+          disabled={operazioneInCorso}
+          onClick={() => { void aggiungiPagina("before") }}
+          style={tabNuova}
+        >
+          + Prima
+        </button>
+        <button
+          type="button"
+          className="st-chip"
           data-add-notebook-page
           disabled={operazioneInCorso}
-          onClick={() => { void aggiungiPagina() }}
+          onClick={() => { void aggiungiPagina("after") }}
           style={tabNuova}
         >
           + Nuova pagina
