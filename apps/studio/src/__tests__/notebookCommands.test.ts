@@ -43,6 +43,205 @@ async function seededNotebook(store: NotebookStore, documentId = "commands") {
 }
 
 describe("command boundary persistito", () => {
+  it("elimina la pagina attiva centrale, conserva la scena e recupera la stessa identita'", async () => {
+    const store = fakeStore()
+    const initial = createNotebookDocument({ documentId: "delete-middle", title: "Delete", now: 1 })
+    const withB = appendNotebookPage(initial, { pageId: "page-b", title: "B", now: 2 })
+    const withC = appendNotebookPage(withB, { pageId: "page-c", title: "C", now: 3 })
+    const withD = appendNotebookPage(withC, { pageId: "page-d", title: "D", now: 4 })
+    const arranged = {
+      ...withD,
+      pages: withD.pages.map((page) => page.pageId === "page-b"
+        ? {
+            ...page,
+            title: "B da recuperare",
+            orientation: 90 as const,
+            logicalSize: { width: 1123, height: 794 },
+          }
+        : page),
+      activePageId: "page-b",
+      selectedPageIds: ["p1", "page-b", "page-d"],
+    }
+    await saveNotebook(store, arranged)
+    const paths = notebookPaths("delete-middle")
+    const deletedScene = '{"type":"excalidraw","elements":[{"id":"delete-ink"}]}'
+    store.files.set(paths.pageScene("page-b"), deletedScene)
+
+    const deleted = await executeNotebookCommand(store, {
+      kind: "delete_page",
+      documentId: "delete-middle",
+      commandId: "delete-page-b",
+      pageId: "page-b",
+      now: 10,
+    })
+
+    expect(deleted.status).toBe("committed")
+    expect(deleted.document.pages.map((page) => [page.pageId, page.ordinal])).toEqual([
+      ["p1", 0],
+      ["page-c", 1],
+      ["page-d", 2],
+    ])
+    expect(deleted.document.activePageId).toBe("page-c")
+    expect(deleted.document.selectedPageIds).toEqual(["p1", "page-c", "page-d"])
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(deletedScene)
+    expect(deleted.document.history.undo.at(-1)?.before.pages[1]).toEqual(
+      arranged.pages[1],
+    )
+    const reloadedDeleted = await loadNotebook(fakeStore(store.files), "delete-middle")
+    expect(reloadedDeleted?.pages).toEqual(deleted.document.pages)
+    expect(reloadedDeleted?.activePageId).toBe(deleted.document.activePageId)
+    expect(reloadedDeleted?.selectedPageIds).toEqual(deleted.document.selectedPageIds)
+
+    const undone = await executeNotebookCommand(store, {
+      kind: "undo",
+      documentId: "delete-middle",
+      commandId: "undo-delete-page-b",
+      now: 11,
+    })
+    expect(undone.document.pages).toEqual(arranged.pages)
+    expect(undone.document.activePageId).toBe("page-b")
+    expect(undone.document.selectedPageIds).toEqual(["p1", "page-b", "page-d"])
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(deletedScene)
+    const reloadedUndone = await loadNotebook(fakeStore(store.files), "delete-middle")
+    expect(reloadedUndone?.pages).toEqual(undone.document.pages)
+    expect(reloadedUndone?.activePageId).toBe(undone.document.activePageId)
+    expect(reloadedUndone?.selectedPageIds).toEqual(undone.document.selectedPageIds)
+
+    const redone = await executeNotebookCommand(store, {
+      kind: "redo",
+      documentId: "delete-middle",
+      commandId: "redo-delete-page-b",
+      now: 12,
+    })
+    expect(redone.document.pages.map((page) => page.pageId)).toEqual(["p1", "page-c", "page-d"])
+    expect(redone.document.activePageId).toBe("page-c")
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(deletedScene)
+  })
+
+  it("sceglie la precedente in coda e preserva active/selection eliminando una pagina non attiva", async () => {
+    const store = fakeStore()
+    const initial = createNotebookDocument({ documentId: "delete-selection", title: "Delete", now: 1 })
+    const withB = appendNotebookPage(initial, { pageId: "page-b", title: "B", now: 2 })
+    const withC = appendNotebookPage(withB, { pageId: "page-c", title: "C", now: 3 })
+    await saveNotebook(store, {
+      ...withC,
+      activePageId: "page-b",
+      selectedPageIds: ["p1", "page-b", "page-c"],
+    })
+
+    const nonActive = await executeNotebookCommand(store, {
+      kind: "delete_page",
+      documentId: "delete-selection",
+      commandId: "delete-non-active-c",
+      pageId: "page-c",
+      now: 4,
+    })
+    expect(nonActive.document.activePageId).toBe("page-b")
+    expect(nonActive.document.selectedPageIds).toEqual(["p1", "page-b"])
+
+    const tail = await executeNotebookCommand(store, {
+      kind: "delete_page",
+      documentId: "delete-selection",
+      commandId: "delete-active-tail-b",
+      pageId: "page-b",
+      now: 5,
+    })
+    expect(tail.document.pages.map((page) => page.pageId)).toEqual(["p1"])
+    expect(tail.document.activePageId).toBe("p1")
+    expect(tail.document.selectedPageIds).toEqual(["p1"])
+
+    const tailStore = fakeStore()
+    const tailInitial = createNotebookDocument({
+      documentId: "delete-active-tail",
+      title: "Tail",
+      now: 1,
+    })
+    const tailWithB = appendNotebookPage(
+      tailInitial,
+      { pageId: "page-b", title: "B", now: 2 },
+    )
+    const tailWithC = appendNotebookPage(
+      tailWithB,
+      { pageId: "page-c", title: "C", now: 3 },
+    )
+    await saveNotebook(tailStore, {
+      ...tailWithC,
+      activePageId: "page-c",
+      selectedPageIds: ["page-c"],
+    })
+    const deletedActiveTail = await executeNotebookCommand(tailStore, {
+      kind: "delete_page",
+      documentId: "delete-active-tail",
+      commandId: "delete-active-page-c",
+      pageId: "page-c",
+      now: 4,
+    })
+    expect(deletedActiveTail.document.pages.map((page) => page.pageId)).toEqual(["p1", "page-b"])
+    expect(deletedActiveTail.document.activePageId).toBe("page-b")
+    expect(deletedActiveTail.document.selectedPageIds).toEqual(["page-b"])
+  })
+
+  it("rifiuta l'ultima pagina pre-I/O e compensa una write delete fallita", async () => {
+    const onlyStore = fakeStore()
+    const only = createNotebookDocument({ documentId: "delete-only", title: "Only", now: 1 })
+    await saveNotebook(onlyStore, only)
+    const onlyPaths = notebookPaths("delete-only")
+    const onlyManifest = onlyStore.files.get(onlyPaths.manifest)
+    const onlyScene = '{"type":"excalidraw","elements":[{"id":"only"}]}'
+    onlyStore.files.set(onlyPaths.pageScene("p1"), onlyScene)
+    const originalOnlyWrite = onlyStore.write.bind(onlyStore)
+    let onlyWrites = 0
+    onlyStore.write = async (path: string, data: Blob): Promise<void> => {
+      onlyWrites += 1
+      await originalOnlyWrite(path, data)
+    }
+
+    await expect(executeNotebookCommand(onlyStore, {
+      kind: "delete_page",
+      documentId: "delete-only",
+      commandId: "delete-final-page",
+      pageId: "p1",
+      now: 2,
+    })).rejects.toThrow("Cannot delete the final notebook page")
+    expect(onlyWrites).toBe(0)
+    expect(onlyStore.files.get(onlyPaths.manifest)).toBe(onlyManifest)
+    expect(onlyStore.files.get(onlyPaths.pageScene("p1"))).toBe(onlyScene)
+
+    const base = fakeStore()
+    const original = await seededNotebook(base, "delete-failure")
+    const paths = notebookPaths("delete-failure")
+    const originalManifest = base.files.get(paths.manifest)
+    const retainedScene = '{"type":"excalidraw","elements":[{"id":"retained"}]}'
+    base.files.set(paths.pageScene("page-b"), retainedScene)
+    let manifestWrites = 0
+    let failureInjected = false
+    const failingStore = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        await base.write(path, data)
+        if (path !== paths.manifest) return
+        manifestWrites += 1
+        if (manifestWrites === 1) {
+          failureInjected = true
+          throw new Error("injected delete manifest failure")
+        }
+      },
+    }
+
+    await expect(executeNotebookCommand(failingStore, {
+      kind: "delete_page",
+      documentId: "delete-failure",
+      commandId: "delete-page-b-failure",
+      pageId: "page-b",
+      now: 3,
+    })).rejects.toThrow("injected delete manifest failure")
+    expect(failureInjected).toBe(true)
+    expect(manifestWrites).toBe(2)
+    expect(base.files.get(paths.manifest)).toBe(originalManifest)
+    expect(base.files.get(paths.pageScene("page-b"))).toBe(retainedScene)
+    expect(await loadNotebook(base, "delete-failure")).toEqual(original)
+  })
+
   it("rinomina la stessa identita', preserva scena e snapshot storici, poi undo/redo", async () => {
     const store = fakeStore()
     await seededNotebook(store, "rename")

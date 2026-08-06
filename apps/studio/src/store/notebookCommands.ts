@@ -45,6 +45,10 @@ export type NotebookCommandRequest =
     pageId: string
     title: string
   }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "delete_page"
+    pageId: string
+  }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
   | (CommandEnvelope & Readonly<{
@@ -123,6 +127,9 @@ function validateEnvelope(request: NotebookCommandRequest): void {
   if (request.kind === "rename_page") {
     validateNotebookId(request.pageId)
     normalizePageTitle(request.title)
+  }
+  if (request.kind === "delete_page") {
+    validateNotebookId(request.pageId)
   }
   if (request.kind === "set_view_state") {
     if (
@@ -239,6 +246,55 @@ function createCandidate(
       status: "committed",
       document: {
         ...renamed,
+        revision: doc.revision + 1,
+        recentCommandIds: appendRecentCommand(doc, request.commandId),
+        history: {
+          undo: [...doc.history.undo, entry].slice(-NOTEBOOK_HISTORY_LIMIT),
+          redo: [],
+        },
+      },
+    }
+  }
+
+  if (request.kind === "delete_page") {
+    // PC-R1-001 + GN-A1-003/GN-A7-012 → PRD §4.4, §5.1 e §19.2:
+    // eliminazione logica recuperabile; la scena stabile non viene cancellata.
+    const pages = [...doc.pages].sort((a, b) => a.ordinal - b.ordinal)
+    const targetIndex = pages.findIndex((page) => page.pageId === request.pageId)
+    if (targetIndex < 0) throw new Error("Notebook delete target page does not exist")
+    if (pages.length === 1) throw new Error("Cannot delete the final notebook page")
+    const remaining = [
+      ...pages.slice(0, targetIndex),
+      ...pages.slice(targetIndex + 1),
+    ].map((page, ordinal) => page.ordinal === ordinal ? page : { ...page, ordinal })
+    const activePageId = doc.activePageId === request.pageId
+      ? (pages[targetIndex + 1]?.pageId ?? pages[targetIndex - 1]!.pageId)
+      : doc.activePageId
+    const previouslySelected = new Set(
+      doc.selectedPageIds.filter((pageId) => pageId !== request.pageId),
+    )
+    previouslySelected.add(activePageId)
+    const selectedPageIds = remaining
+      .map((page) => page.pageId)
+      .filter((pageId) => previouslySelected.has(pageId))
+    const deleted: NotebookDocument = {
+      ...doc,
+      pages: remaining,
+      activePageId,
+      selectedPageIds,
+      updatedAt: request.now,
+    }
+    const entry: NotebookHistoryEntry = {
+      commandId: request.commandId,
+      kind: request.kind,
+      at: request.now,
+      before: snapshot(doc),
+      after: snapshot(deleted),
+    }
+    return {
+      status: "committed",
+      document: {
+        ...deleted,
         revision: doc.revision + 1,
         recentCommandIds: appendRecentCommand(doc, request.commandId),
         history: {

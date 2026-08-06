@@ -680,6 +680,141 @@ for (const profile of INSERT_PROFILES) {
   })
 }
 
+// PC-R1-001 + GN-A1-003 + GN-A7-012 → PRD §4.4 e §19.2:
+// conseguenza esplicita, ultima pagina protetta e recupero reale dopo reload.
+for (const profile of INSERT_PROFILES) {
+  test.describe(`eliminazione recuperabile — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: elimina con conferma e recupera stessa pagina dopo reload`, async ({
+      page,
+    }) => {
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-delete-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const taccuino = page.locator("[data-notebook-document-id]").first()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      const documentId = await taccuino.getAttribute("data-notebook-document-id")
+      expect(documentId).toBeTruthy()
+      const pagine = page.locator("[data-notebook-page-id]")
+      const elimina = page.locator("[data-delete-notebook-page]")
+      await expect(elimina).toBeDisabled()
+
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, page.locator("[data-add-notebook-page]"), true)
+      } else {
+        await attivaControlloPaginaAccessibile(
+          page,
+          page.locator("[data-add-notebook-page]"),
+          false,
+        )
+      }
+      await expect(pagine).toHaveCount(2)
+      const deletedId = await pagine.nth(1).getAttribute("data-notebook-page-id")
+      expect(deletedId).toBeTruthy()
+      await disegnaUnTratto(page)
+      const conteggio = page.locator("[data-notebook-scene-elements]").first()
+      await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
+        timeout: 10_000,
+      })
+      const deletedElements = await conteggio.getAttribute("data-notebook-scene-elements")
+      await expect.poll(() => leggiByteCachePagina(page, documentId!, deletedId!)).not.toBeNull()
+      const deletedBytes = await leggiByteCachePagina(page, documentId!, deletedId!)
+
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, elimina, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, elimina, false)
+      }
+      const conferma = page.locator("[data-delete-notebook-confirmation]")
+      await expect(conferma).toContainText("Pagina 2")
+      await expect(conferma).toContainText("Annulla la recupera con tutto il contenuto")
+      const mantieni = page.locator("[data-cancel-delete-notebook-page]")
+      await expect(mantieni).toBeFocused()
+      if (profile.hasTouch) {
+        await attivaControlloPagina(
+          page,
+          mantieni,
+          true,
+        )
+      } else {
+        await attivaControlloPaginaAccessibile(
+          page,
+          mantieni,
+          false,
+        )
+      }
+      await expect(conferma).toHaveCount(0)
+      await expect(pagine).toHaveCount(2)
+      await expect(elimina).toBeFocused()
+
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, elimina, true)
+        await attivaControlloPagina(
+          page,
+          page.locator("[data-confirm-delete-notebook-page]"),
+          true,
+        )
+      } else {
+        await attivaControlloPaginaAccessibile(page, elimina, false)
+        await attivaControlloPaginaAccessibile(
+          page,
+          page.locator("[data-confirm-delete-notebook-page]"),
+          false,
+        )
+      }
+      await expect(pagine).toHaveCount(1)
+      await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", "p1")
+      await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+      await expect(pagine.nth(0)).toBeFocused()
+      expect(await leggiByteCachePagina(page, documentId!, deletedId!)).toBe(deletedBytes)
+
+      await page.reload()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      await expect(pagine).toHaveCount(1)
+      const undo = page.locator("[data-notebook-undo]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, undo, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, undo, false)
+      }
+      await expect(pagine).toHaveCount(2)
+      await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", deletedId!)
+      await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        deletedElements!,
+        { timeout: 10_000 },
+      )
+
+      const redo = page.locator("[data-notebook-redo]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, redo, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, redo, false)
+      }
+      await expect(pagine).toHaveCount(1)
+      expect(await contaElementiCachePagina(page, documentId!, deletedId!)).toBe(
+        Number(deletedElements),
+      )
+      await page.reload()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      await expect(pagine).toHaveCount(1)
+      expect(erroriConsole).toEqual([])
+    })
+  })
+}
+
 test("taccuino: una seconda pagina si aggiunge in coda e si passa fra le due senza perdere il contenuto", async ({
   page,
 }) => {

@@ -151,6 +151,10 @@ export default function NotebookView() {
     pageId: string
     value: string
   }> | null>(null)
+  const [eliminaDraft, setEliminaDraft] = useState<Readonly<{
+    pageId: string
+    title: string
+  }> | null>(null)
 
   const apiRef = useRef<ExcalidrawApi | null>(null)
   const salvaTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -162,6 +166,9 @@ export default function NotebookView() {
   const ultimaOsservazioneRef = useRef<SceneObservation | null>(null)
   const rinominaButtonRef = useRef<HTMLButtonElement | null>(null)
   const ripristinaFocusRinominaRef = useRef(false)
+  const eliminaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const paginaAttivaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const focusDopoEliminaRef = useRef<"delete" | "page" | null>(null)
 
   function chiudiRinominaConFocus() {
     ripristinaFocusRinominaRef.current = true
@@ -173,6 +180,21 @@ export default function NotebookView() {
     ripristinaFocusRinominaRef.current = false
     rinominaButtonRef.current.focus()
   }, [rinominaDraft])
+
+  function chiudiEliminaConFocus(target: "delete" | "page" = "delete") {
+    focusDopoEliminaRef.current = target
+    setEliminaDraft(null)
+  }
+
+  useEffect(() => {
+    if (eliminaDraft || operazioneInCorso || !focusDopoEliminaRef.current) return
+    const target = focusDopoEliminaRef.current === "delete"
+      ? eliminaButtonRef.current
+      : paginaAttivaButtonRef.current
+    if (!target || target.disabled) return
+    focusDopoEliminaRef.current = null
+    target.focus()
+  }, [doc?.activePageId, doc?.pages.length, eliminaDraft, operazioneInCorso])
 
   // Carica (o crea) il taccuino e la scena della pagina corrente.
   useEffect(() => {
@@ -367,6 +389,7 @@ export default function NotebookView() {
   const cambiaPagina = useCallback(async (pageId: string) => {
     if (!doc || !documentId || pageId === doc.activePageId || transizioneRef.current) return
     setRinominaDraft(null)
+    setEliminaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -398,6 +421,7 @@ export default function NotebookView() {
   async function aggiungiPagina(posizione: "before" | "after") {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
     setRinominaDraft(null)
+    setEliminaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -434,6 +458,7 @@ export default function NotebookView() {
   async function applicaCronologia(kind: "undo" | "redo") {
     if (!doc || !documentId || transizioneRef.current) return
     setRinominaDraft(null)
+    setEliminaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -464,6 +489,7 @@ export default function NotebookView() {
   async function duplicaPagina() {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
     setRinominaDraft(null)
+    setEliminaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -512,6 +538,38 @@ export default function NotebookView() {
     } catch (error) {
       if (!paginaSporcaRef.current) {
         setErroreSalvataggio(`Rinomina pagina non riuscita: ${(error as Error).message}`)
+      }
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
+  async function eliminaPagina() {
+    // PC-R1-001 + GN-A1-003/GN-A7-012 → PRD §4.4 e §19.2:
+    // il commit segue una conferma nominativa e mantiene un focus valido.
+    if (!doc || !documentId || !eliminaDraft || transizioneRef.current) return
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "delete_page",
+        documentId,
+        commandId: `delete-${crypto.randomUUID()}`,
+        pageId: eliminaDraft.pageId,
+        now: Date.now(),
+      })
+      apiRef.current = null
+      ultimaOsservazioneRef.current = null
+      setScenaPer(null)
+      setSceneData(null)
+      setDoc(result.document)
+      chiudiEliminaConFocus(result.document.pages.length > 1 ? "delete" : "page")
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Eliminazione pagina non riuscita: ${(error as Error).message}`)
       }
     } finally {
       transizioneRef.current = false
@@ -718,6 +776,7 @@ export default function NotebookView() {
           <button
             key={pagina.pageId}
             type="button"
+            ref={pagina.pageId === doc.activePageId ? paginaAttivaButtonRef : undefined}
             data-notebook-page-id={pagina.pageId}
             data-notebook-page-ordinal={String(pagina.ordinal)}
             aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
@@ -791,12 +850,66 @@ export default function NotebookView() {
             disabled={operazioneInCorso || !paginaCorrente}
             onClick={() => {
               if (paginaCorrente) {
+                setEliminaDraft(null)
                 setRinominaDraft({ pageId: paginaCorrente.pageId, value: paginaCorrente.title })
               }
             }}
             style={tabNuova}
           >
             Rinomina
+          </button>
+        )}
+        {/* Conferma recuperabile: PRD §4.4/§19.2, PC-R1-001,
+            GN-A1-003/GN-A7-012; non e' un prompt nativo opaco. */}
+        {eliminaDraft ? (
+          <form
+            data-delete-notebook-confirmation
+            aria-label="Conferma eliminazione pagina"
+            style={eliminaForm}
+            onSubmit={(event) => {
+              event.preventDefault()
+              void eliminaPagina()
+            }}
+          >
+            <span style={eliminaCopy}>
+              Eliminare “{eliminaDraft.title}”? La pagina scompare, ma Annulla la recupera con tutto il contenuto.
+            </span>
+            <button
+              type="submit"
+              data-confirm-delete-notebook-page
+              disabled={operazioneInCorso}
+              style={eliminaConferma}
+            >
+              Elimina pagina
+            </button>
+            <button
+              type="button"
+              data-cancel-delete-notebook-page
+              autoFocus
+              disabled={operazioneInCorso}
+              onClick={() => { chiudiEliminaConFocus() }}
+              style={tabNuova}
+            >
+              Mantieni pagina
+            </button>
+          </form>
+        ) : (
+          <button
+            type="button"
+            className="st-chip"
+            ref={eliminaButtonRef}
+            data-delete-notebook-page
+            aria-label="Elimina la pagina corrente"
+            disabled={operazioneInCorso || !paginaCorrente || pagine.length <= 1}
+            onClick={() => {
+              if (paginaCorrente) {
+                setRinominaDraft(null)
+                setEliminaDraft({ pageId: paginaCorrente.pageId, title: paginaCorrente.title })
+              }
+            }}
+            style={eliminaPulsante}
+          >
+            Elimina
           </button>
         )}
         <button
@@ -920,6 +1033,31 @@ const rinominaInput = {
   background: "#ffffff",
   color: "#1f3f63",
   font: "500 14px/1.3 system-ui",
+} as const
+
+const eliminaForm = {
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+  flexWrap: "wrap",
+  maxWidth: 520,
+} as const
+
+const eliminaCopy = {
+  font: "600 12px/1.35 system-ui",
+  color: "#6f2b2b",
+} as const
+
+const eliminaPulsante = {
+  ...tabNuova,
+  color: "#8a2f2f",
+  borderColor: "rgba(138,47,47,0.38)",
+} as const
+
+const eliminaConferma = {
+  ...eliminaPulsante,
+  background: "#fff2f0",
+  borderStyle: "solid",
 } as const
 
 const emptyWrap = {
