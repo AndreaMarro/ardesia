@@ -54,6 +54,11 @@ export type NotebookCommandRequest =
     pageIds: ReadonlyArray<string>
     targetIndex: number
   }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "rotate_page"
+    pageIds: ReadonlyArray<string>
+    quarterTurns: 1 | 2 | 3
+  }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
   | (CommandEnvelope & Readonly<{
@@ -149,6 +154,22 @@ function validateEnvelope(request: NotebookCommandRequest): void {
       request.pageIds.forEach(validateNotebookId)
     } catch {
       throw new Error("Invalid notebook page reorder")
+    }
+  }
+  if (request.kind === "rotate_page") {
+    if (
+      !Array.isArray(request.pageIds) ||
+      request.pageIds.length === 0 ||
+      new Set(request.pageIds).size !== request.pageIds.length ||
+      (request.quarterTurns !== 1 && request.quarterTurns !== 2 &&
+        request.quarterTurns !== 3)
+    ) {
+      throw new Error("Invalid notebook page rotation")
+    }
+    try {
+      request.pageIds.forEach(validateNotebookId)
+    } catch {
+      throw new Error("Invalid notebook page rotation")
     }
   }
   if (request.kind === "set_view_state") {
@@ -382,6 +403,63 @@ function createCandidate(
     }
   }
 
+  if (request.kind === "rotate_page") {
+    // PC-R1-001 + GN-A1-004/GN-A7-012 → PRD §5.1, §6.3 e §19.2:
+    // ruotano insieme metadati logici e geometria reale della selezione persistita.
+    const pages = [...doc.pages].sort((a, b) => a.ordinal - b.ordinal)
+    const requested = new Set(request.pageIds)
+    const persistedSelection = new Set(doc.selectedPageIds)
+    if (
+      requested.size !== persistedSelection.size ||
+      !doc.selectedPageIds.every((pageId) => requested.has(pageId)) ||
+      !requested.has(doc.activePageId) ||
+      request.pageIds.some((pageId) => !pages.some((page) => page.pageId === pageId))
+    ) {
+      throw new Error("Invalid notebook page rotation")
+    }
+    const affectedPageIds = pages
+      .filter((page) => requested.has(page.pageId))
+      .map((page) => page.pageId)
+    const rotatedDocument: NotebookDocument = {
+      ...doc,
+      pages: doc.pages.map((page) => {
+        if (!requested.has(page.pageId)) return page
+        const orientation = (
+          (page.orientation + request.quarterTurns * 90) % 360
+        ) as 0 | 90 | 180 | 270
+        const logicalSize = request.quarterTurns % 2 === 1
+          ? { width: page.logicalSize.height, height: page.logicalSize.width }
+          : { ...page.logicalSize }
+        return { ...page, orientation, logicalSize }
+      }),
+      updatedAt: request.now,
+    }
+    const entry: NotebookHistoryEntry = {
+      commandId: request.commandId,
+      kind: request.kind,
+      at: request.now,
+      before: snapshot(doc),
+      after: snapshot(rotatedDocument),
+      effect: {
+        kind: "rotate_page",
+        pageIds: affectedPageIds,
+        quarterTurns: request.quarterTurns,
+      },
+    }
+    return {
+      status: "committed",
+      document: {
+        ...rotatedDocument,
+        revision: doc.revision + 1,
+        recentCommandIds: appendRecentCommand(doc, request.commandId),
+        history: {
+          undo: [...doc.history.undo, entry].slice(-NOTEBOOK_HISTORY_LIMIT),
+          redo: [],
+        },
+      },
+    }
+  }
+
   let inserted: NotebookDocument
   if (request.kind === "duplicate_page") {
     const pages = [...doc.pages].sort((a, b) => a.ordinal - b.ordinal)
@@ -549,6 +627,190 @@ function equalBytes(left: Uint8Array, right: Uint8Array): boolean {
   return left.length === right.length && left.every((byte, index) => byte === right[index])
 }
 
+function normalizeSceneAngle(angle: number): number {
+  const fullTurn = Math.PI * 2
+  const normalized = ((angle % fullTurn) + fullTurn) % fullTurn
+  return Math.abs(normalized) < 1e-12 || Math.abs(normalized - fullTurn) < 1e-12
+    ? 0
+    : normalized
+}
+
+/** Pure quarter-turn transform for the persisted Excalidraw scene boundary. */
+export function rotateNotebookSceneJson(
+  sceneJson: string,
+  options: Readonly<{
+    width: number
+    height: number
+    quarterTurns: 1 | 2 | 3
+  }>,
+): string {
+  if (
+    !Number.isFinite(options.width) || options.width <= 0 ||
+    !Number.isFinite(options.height) || options.height <= 0 ||
+    (options.quarterTurns !== 1 && options.quarterTurns !== 2 &&
+      options.quarterTurns !== 3)
+  ) {
+    throw new Error("Invalid notebook scene rotation")
+  }
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(sceneJson) as unknown
+  } catch (cause) {
+    throw new Error("Notebook page scene is malformed", { cause })
+  }
+  if (!parsed || typeof parsed !== "object") {
+    throw new Error("Notebook page scene is malformed")
+  }
+  const scene = parsed as Record<string, unknown>
+  if (!Array.isArray(scene.elements)) {
+    throw new Error("Notebook page scene is malformed")
+  }
+  const elements = scene.elements.map((rawElement) => {
+    if (!rawElement || typeof rawElement !== "object") {
+      throw new Error("Notebook page scene is malformed")
+    }
+    const element = rawElement as Record<string, unknown>
+    const { x, y, width, height, angle } = element
+    if (
+      typeof x !== "number" || !Number.isFinite(x) ||
+      typeof y !== "number" || !Number.isFinite(y) ||
+      typeof width !== "number" || !Number.isFinite(width) ||
+      typeof height !== "number" || !Number.isFinite(height) ||
+      typeof angle !== "number" || !Number.isFinite(angle)
+    ) {
+      throw new Error("Notebook page scene is malformed")
+    }
+    const centreX = x + width / 2
+    const centreY = y + height / 2
+    const [nextCentreX, nextCentreY] = options.quarterTurns === 1
+      ? [options.height - centreY, centreX]
+      : options.quarterTurns === 2
+        ? [options.width - centreX, options.height - centreY]
+        : [centreY, options.width - centreX]
+    return {
+      ...element,
+      x: nextCentreX - width / 2,
+      y: nextCentreY - height / 2,
+      angle: normalizeSceneAngle(angle + options.quarterTurns * Math.PI / 2),
+    }
+  })
+  return JSON.stringify({ ...scene, elements })
+}
+
+type PreparedSceneRotation = Readonly<{
+  path: string
+  originalBytes: Uint8Array<ArrayBuffer>
+  originalType: string
+  candidateBytes: Uint8Array<ArrayBuffer>
+}>
+
+async function restoreNotebookScene(
+  store: NotebookStore,
+  scene: PreparedSceneRotation,
+): Promise<void> {
+  let writeFailure: unknown
+  try {
+    await store.write(
+      scene.path,
+      new Blob([scene.originalBytes], { type: scene.originalType || "application/json" }),
+    )
+  } catch (error) {
+    writeFailure = error
+  }
+  try {
+    const restored = await store.read(scene.path)
+    if (
+      restored &&
+      equalBytes(new Uint8Array(await restored.arrayBuffer()), scene.originalBytes)
+    ) return
+    throw new Error("Notebook rotation scene rollback byte mismatch")
+  } catch (verificationError) {
+    throw new AggregateError(
+      [writeFailure, verificationError].filter(Boolean),
+      "Notebook rotation scene rollback failed",
+      { cause: verificationError },
+    )
+  }
+}
+
+async function persistRotationCandidate(
+  store: NotebookStore,
+  originalManifestBytes: string,
+  source: NotebookDocument,
+  candidate: NotebookDocument,
+  commandId: string,
+  pageIds: ReadonlyArray<string>,
+  quarterTurns: 1 | 2 | 3,
+): Promise<NotebookDocument> {
+  const paths = notebookPaths(source.documentId)
+  const selected = new Set(pageIds)
+  const orderedPages = [...source.pages]
+    .sort((left, right) => left.ordinal - right.ordinal)
+    .filter((page) => selected.has(page.pageId))
+  if (
+    orderedPages.length !== selected.size ||
+    pageIds.some((pageId) => !orderedPages.some((page) => page.pageId === pageId))
+  ) throw new Error("Invalid notebook page rotation")
+
+  const prepared: PreparedSceneRotation[] = []
+  for (const page of orderedPages) {
+    const path = paths.pageScene(page.pageId)
+    const original = await store.read(path)
+    // A never-drawn page is valid and has no scene blob yet. Rotate its logical
+    // page metadata without manufacturing an empty persistence artifact.
+    if (!original) continue
+    const originalBytes = new Uint8Array(await original.arrayBuffer())
+    const sceneJson = new TextDecoder().decode(originalBytes)
+    const candidateJson = rotateNotebookSceneJson(sceneJson, {
+      width: page.logicalSize.width,
+      height: page.logicalSize.height,
+      quarterTurns,
+    })
+    prepared.push({
+      path,
+      originalBytes,
+      originalType: original.type,
+      candidateBytes: new TextEncoder().encode(candidateJson),
+    })
+  }
+
+  const touched: PreparedSceneRotation[] = []
+  try {
+    for (const scene of prepared) {
+      touched.push(scene)
+      await store.write(
+        scene.path,
+        new Blob([scene.candidateBytes], { type: scene.originalType || "application/json" }),
+      )
+      const readback = await store.read(scene.path)
+      if (
+        !readback ||
+        !equalBytes(new Uint8Array(await readback.arrayBuffer()), scene.candidateBytes)
+      ) {
+        throw new Error("Notebook rotation scene readback verification failed")
+      }
+    }
+    return await persistCandidate(store, originalManifestBytes, candidate, commandId)
+  } catch (rotationError) {
+    const rollbackErrors: unknown[] = []
+    for (const scene of [...touched].reverse()) {
+      try {
+        await restoreNotebookScene(store, scene)
+      } catch (error) {
+        rollbackErrors.push(error)
+      }
+    }
+    if (rollbackErrors.length > 0) {
+      throw new AggregateError(
+        [rotationError, ...rollbackErrors],
+        "Notebook rotation and scene rollback failed",
+        { cause: rotationError },
+      )
+    }
+    throw rotationError
+  }
+}
+
 async function persistDuplicateCandidate(
   store: NotebookStore,
   originalBytes: string,
@@ -632,6 +894,38 @@ export async function executeNotebookCommand(
     }
     const candidate = createCandidate(durable, request)
     if (candidate.status !== "committed") return candidate
+    if (request.kind === "rotate_page") {
+      const persisted = await persistRotationCandidate(
+        store,
+        originalBytes,
+        durable,
+        candidate.document,
+        request.commandId,
+        request.pageIds,
+        request.quarterTurns,
+      )
+      return { status: "committed", document: persisted }
+    }
+    if (request.kind === "undo" || request.kind === "redo") {
+      const entry = request.kind === "undo"
+        ? durable.history.undo.at(-1)
+        : durable.history.redo.at(-1)
+      if (entry?.kind === "rotate_page" && entry.effect) {
+        const quarterTurns = request.kind === "undo"
+          ? ((4 - entry.effect.quarterTurns) % 4) as 1 | 2 | 3
+          : entry.effect.quarterTurns
+        const persisted = await persistRotationCandidate(
+          store,
+          originalBytes,
+          durable,
+          candidate.document,
+          request.commandId,
+          entry.effect.pageIds,
+          quarterTurns,
+        )
+        return { status: "committed", document: persisted }
+      }
+    }
     if (request.kind === "duplicate_page") {
       const persisted = await persistDuplicateCandidate(
         store,

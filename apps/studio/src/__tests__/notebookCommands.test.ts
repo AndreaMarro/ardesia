@@ -12,7 +12,10 @@ import {
   serializeNotebookDocument,
   type NotebookStore,
 } from "../store/notebookDocument"
-import { executeNotebookCommand } from "../store/notebookCommands"
+import {
+  executeNotebookCommand,
+  rotateNotebookSceneJson,
+} from "../store/notebookCommands"
 
 function fakeStore(seed?: Map<string, string>) {
   const files = seed ?? new Map<string, string>()
@@ -1071,5 +1074,348 @@ describe("command boundary persistito", () => {
     expect(base.files.get(path)).toBe(committedBytes)
     expect(await loadNotebook(base, "undo-failure")).toEqual(inserted.document)
     expect(serializeNotebookDocument(inserted.document)).toBe(committedBytes)
+  })
+})
+
+describe("rotazione canonica delle pagine", () => {
+  const geometricScene = (id: string, x = 10, y = 20) => JSON.stringify({
+    type: "excalidraw",
+    version: 2,
+    elements: [
+      { id, x, y, width: 30, height: 40, angle: 0, isDeleted: false },
+      {
+        id: `${id}-deleted`,
+        x: x + 2,
+        y: y + 4,
+        width: 6,
+        height: 8,
+        angle: Math.PI * 1.5,
+        isDeleted: true,
+      },
+    ],
+    appState: { scrollX: 17, scrollY: -9, zoom: { value: 1.25 } },
+    files: { image: { id: "image", dataURL: "data:image/png;base64,AA==" } },
+  })
+
+  it("trasforma centri e angoli a 90/180/270, inclusi gli elementi eliminati, senza toccare viewport e file", () => {
+    const source = geometricScene("ink")
+    const sourceObject = JSON.parse(source)
+    const expectations = [
+      {
+        turns: 1 as const,
+        centre: [1123 - 40, 25],
+        deletedCentre: [1123 - 28, 15],
+        angle: Math.PI / 2,
+        deletedAngle: 0,
+      },
+      {
+        turns: 2 as const,
+        centre: [794 - 25, 1123 - 40],
+        deletedCentre: [794 - 15, 1123 - 28],
+        angle: Math.PI,
+        deletedAngle: Math.PI / 2,
+      },
+      {
+        turns: 3 as const,
+        centre: [40, 794 - 25],
+        deletedCentre: [28, 794 - 15],
+        angle: Math.PI * 1.5,
+        deletedAngle: Math.PI,
+      },
+    ]
+
+    for (const expected of expectations) {
+      const rotated = JSON.parse(rotateNotebookSceneJson(source, {
+        width: 794,
+        height: 1123,
+        quarterTurns: expected.turns,
+      }))
+      expect(rotated.elements).toHaveLength(sourceObject.elements.length)
+      const element = rotated.elements[0]
+      expect(element.x + 15).toBeCloseTo(expected.centre[0], 12)
+      expect(element.y + 20).toBeCloseTo(expected.centre[1], 12)
+      expect(element.angle).toBeCloseTo(expected.angle, 12)
+      const deleted = rotated.elements[1]
+      expect(deleted.isDeleted).toBe(true)
+      expect(deleted.x + 3).toBeCloseTo(expected.deletedCentre[0], 12)
+      expect(deleted.y + 4).toBeCloseTo(expected.deletedCentre[1], 12)
+      expect(deleted.angle).toBeCloseTo(expected.deletedAngle, 12)
+      expect(rotated.appState).toEqual(sourceObject.appState)
+      expect(rotated.files).toEqual(sourceObject.files)
+    }
+  })
+
+  it("quattro giri da 90 gradi ritornano alla geometria iniziale entro 1e-9", () => {
+    const source = geometricScene("cycle", 10.125, 20.375)
+    let rotated = source
+    let size = { width: 794, height: 1123 }
+    for (let turn = 0; turn < 4; turn += 1) {
+      rotated = rotateNotebookSceneJson(rotated, { ...size, quarterTurns: 1 })
+      size = { width: size.height, height: size.width }
+    }
+    const before = JSON.parse(source).elements
+    const after = JSON.parse(rotated).elements
+    expect(after).toHaveLength(before.length)
+    for (const [index, element] of after.entries()) {
+      expect(element.x).toBeCloseTo(before[index].x, 9)
+      expect(element.y).toBeCloseTo(before[index].y, 9)
+      expect(element.width).toBe(before[index].width)
+      expect(element.height).toBe(before[index].height)
+      expect(element.angle).toBeCloseTo(before[index].angle, 9)
+    }
+  })
+
+  it("ruota una selezione multi-scena e applica l'inversa/forward esatti con undo e redo", async () => {
+    const store = fakeStore()
+    const base = await seededNotebook(store, "rotate-multi")
+    const selected = {
+      ...base,
+      activePageId: "page-b",
+      selectedPageIds: ["p1", "page-b"],
+    }
+    const expectedPages = JSON.parse(JSON.stringify(selected.pages))
+    await saveNotebook(store, selected)
+    const paths = notebookPaths("rotate-multi")
+    const originals = new Map([
+      ["p1", geometricScene("p1", 10, 20)],
+      ["page-b", geometricScene("page-b", 100, 200)],
+    ])
+    for (const [pageId, bytes] of originals) store.files.set(paths.pageScene(pageId), bytes)
+
+    const rotated = await executeNotebookCommand(store, {
+      kind: "rotate_page",
+      documentId: "rotate-multi",
+      commandId: "rotate-both",
+      pageIds: ["page-b", "p1"],
+      quarterTurns: 1,
+      now: 10,
+    })
+    expect(rotated.status).toBe("committed")
+    expect(rotated.document.pages.map((page) => ({
+      id: page.pageId,
+      orientation: page.orientation,
+      size: page.logicalSize,
+    }))).toEqual([
+      { id: "p1", orientation: 90, size: { width: 1123, height: 794 } },
+      { id: "page-b", orientation: 90, size: { width: 1123, height: 794 } },
+    ])
+    const rotatedFirst = JSON.parse(store.files.get(paths.pageScene("p1"))!).elements[0]
+    expect(rotatedFirst.x).toBeCloseTo(1068, 9)
+    expect(rotatedFirst.y).toBeCloseTo(5, 9)
+    expect(rotatedFirst.angle).toBeCloseTo(Math.PI / 2, 12)
+    expect(rotated.document.history.undo.at(-1)?.effect).toEqual({
+      kind: "rotate_page",
+      pageIds: ["p1", "page-b"],
+      quarterTurns: 1,
+    })
+
+    const undone = await executeNotebookCommand(store, {
+      kind: "undo",
+      documentId: "rotate-multi",
+      commandId: "undo-rotate-both",
+      now: 11,
+    })
+    expect(undone.document.pages).toEqual(expectedPages)
+    for (const [pageId, original] of originals) {
+      const expected = JSON.parse(original).elements
+      const actual = JSON.parse(store.files.get(paths.pageScene(pageId))!).elements
+      expect(actual).toHaveLength(expected.length)
+      actual.forEach((element: Record<string, number>, index: number) => {
+        expect(element.x).toBeCloseTo(expected[index].x, 9)
+        expect(element.y).toBeCloseTo(expected[index].y, 9)
+        expect(element.angle).toBeCloseTo(expected[index].angle, 9)
+      })
+    }
+
+    const redone = await executeNotebookCommand(store, {
+      kind: "redo",
+      documentId: "rotate-multi",
+      commandId: "redo-rotate-both",
+      now: 12,
+    })
+    expect(redone.document.pages).toEqual(rotated.document.pages)
+    expect(JSON.parse(store.files.get(paths.pageScene("page-b"))!).elements[0].angle)
+      .toBeCloseTo(Math.PI / 2, 12)
+  })
+
+  it("rifiuta valori, target, scene assenti o malformate prima di qualsiasi write", async () => {
+    const invalidRequests = [
+      { pageIds: [] as string[], quarterTurns: 1 },
+      { pageIds: ["p1", "p1"], quarterTurns: 1 },
+      { pageIds: ["missing"], quarterTurns: 1 },
+      { pageIds: ["page-b"], quarterTurns: 1 },
+      { pageIds: ["p1"], quarterTurns: 0 },
+      { pageIds: ["p1"], quarterTurns: 4 },
+      { pageIds: ["p1"], quarterTurns: 1.5 },
+    ]
+    for (const [index, request] of invalidRequests.entries()) {
+      const base = fakeStore()
+      await seededNotebook(base, `rotate-invalid-${index}`)
+      const path = notebookPaths(`rotate-invalid-${index}`).manifest
+      const before = base.files.get(path)
+      let writes = 0
+      const store = {
+        ...base,
+        async write(target: string, data: Blob): Promise<void> {
+          writes += 1
+          await base.write(target, data)
+        },
+      }
+      await expect(executeNotebookCommand(store, {
+        kind: "rotate_page",
+        documentId: `rotate-invalid-${index}`,
+        commandId: `rotate-invalid-command-${index}`,
+        pageIds: request.pageIds,
+        quarterTurns: request.quarterTurns as 1,
+        now: 20 + index,
+      })).rejects.toThrow("Invalid notebook page rotation")
+      expect(writes).toBe(0)
+      expect(base.files.get(path)).toBe(before)
+    }
+
+    const blankBase = fakeStore()
+    const blankId = "rotate-missing-scene"
+    await saveNotebook(
+      blankBase,
+      createNotebookDocument({ documentId: blankId, title: "Blank", now: 1 }),
+    )
+    const blankPaths = notebookPaths(blankId)
+    const blankResult = await executeNotebookCommand(blankBase, {
+      kind: "rotate_page",
+      documentId: blankId,
+      commandId: "rotate-blank-page",
+      pageIds: ["p1"],
+      quarterTurns: 1,
+      now: 30,
+    })
+    expect(blankResult.document.pages[0]).toMatchObject({
+      orientation: 90,
+      logicalSize: { width: 1123, height: 794 },
+    })
+    expect(blankBase.files.has(blankPaths.pageScene("p1"))).toBe(false)
+
+    for (const [documentId, scene] of [
+      ["rotate-malformed-scene", "not-json"],
+    ] as const) {
+      const base = fakeStore()
+      await saveNotebook(base, createNotebookDocument({ documentId, title: "Rotate", now: 1 }))
+      const paths = notebookPaths(documentId)
+      if (scene !== undefined) base.files.set(paths.pageScene("p1"), scene)
+      const manifestBefore = base.files.get(paths.manifest)
+      let writes = 0
+      const store = {
+        ...base,
+        async write(target: string, data: Blob): Promise<void> {
+          writes += 1
+          await base.write(target, data)
+        },
+      }
+      await expect(executeNotebookCommand(store, {
+        kind: "rotate_page",
+        documentId,
+        commandId: `command-${documentId}`,
+        pageIds: ["p1"],
+        quarterTurns: 1,
+        now: 30,
+      })).rejects.toThrow()
+      expect(writes).toBe(0)
+      expect(base.files.get(paths.manifest)).toBe(manifestBefore)
+    }
+  })
+
+  it("compensa in ordine inverso Nth scene e manifest falliti preservando ogni byte", async () => {
+    for (const failure of ["second-scene", "manifest"] as const) {
+      const base = fakeStore()
+      const doc = await seededNotebook(base, `rotate-failure-${failure}`)
+      await saveNotebook(base, {
+        ...doc,
+        activePageId: "page-b",
+        selectedPageIds: ["p1", "page-b"],
+      })
+      const paths = notebookPaths(`rotate-failure-${failure}`)
+      base.files.set(paths.pageScene("p1"), geometricScene("first"))
+      base.files.set(paths.pageScene("page-b"), geometricScene("second"))
+      const before = new Map(base.files)
+      let failed = false
+      const writePaths: string[] = []
+      let failureWriteIndex = -1
+      const store = {
+        ...base,
+        async write(path: string, data: Blob): Promise<void> {
+          writePaths.push(path)
+          await base.write(path, data)
+          if (
+            !failed &&
+            ((failure === "second-scene" && path === paths.pageScene("page-b")) ||
+              (failure === "manifest" && path === paths.manifest))
+          ) {
+            failed = true
+            failureWriteIndex = writePaths.length - 1
+            throw new Error(`injected ${failure} failure`)
+          }
+        },
+      }
+
+      await expect(executeNotebookCommand(store, {
+        kind: "rotate_page",
+        documentId: `rotate-failure-${failure}`,
+        commandId: `command-${failure}`,
+        pageIds: ["p1", "page-b"],
+        quarterTurns: 1,
+        now: 40,
+      })).rejects.toThrow(`injected ${failure} failure`)
+      expect(writePaths[failureWriteIndex + 1]).toBe(
+        failure === "second-scene" ? paths.pageScene("page-b") : paths.manifest,
+      )
+      expect(base.files).toEqual(before)
+    }
+  })
+
+  it("migra v1 una volta e ruota senza doppie riscritture ai retry", async () => {
+    const documentId = "rotate-legacy"
+    const manifestPath = notebookPaths(documentId).manifest
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId,
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 1,
+      pages: [{ pageId: "p1", ordinal: 0, title: "Pagina 1" }],
+    })
+    const base = fakeStore(new Map([
+      [manifestPath, legacy],
+      [notebookPaths(documentId).pageScene("p1"), geometricScene("legacy")],
+    ]))
+    const writes: string[] = []
+    const store = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        writes.push(path)
+        await base.write(path, data)
+      },
+    }
+    const request = {
+      kind: "rotate_page" as const,
+      documentId,
+      commandId: "rotate-after-v1",
+      pageIds: ["p1"],
+      quarterTurns: 1 as const,
+      now: 50,
+    }
+
+    const first = await executeNotebookCommand(store, request)
+    const writesAfterFirst = [...writes]
+    const retry = await executeNotebookCommand(store, request)
+
+    expect(first.document.v).toBe(2)
+    expect(first.document.pages[0]).toMatchObject({
+      orientation: 90,
+      logicalSize: { width: 1123, height: 794 },
+    })
+    expect(writesAfterFirst.filter((path) => path === manifestPath)).toHaveLength(2)
+    expect(retry.status).toBe("deduplicated")
+    expect(writes).toEqual(writesAfterFirst)
+    expect(retry.document).toEqual(first.document)
   })
 })
