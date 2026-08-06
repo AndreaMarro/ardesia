@@ -43,6 +43,221 @@ async function seededNotebook(store: NotebookStore, documentId = "commands") {
 }
 
 describe("command boundary persistito", () => {
+  it("riordina una selezione non contigua secondo l'ordine documento e preserva active/scene", async () => {
+    const store = fakeStore()
+    const initial = createNotebookDocument({ documentId: "reorder-multi", title: "Reorder", now: 1 })
+    const withB = appendNotebookPage(initial, { pageId: "page-b", title: "B", now: 2 })
+    const withC = appendNotebookPage(withB, { pageId: "page-c", title: "C", now: 3 })
+    const withD = appendNotebookPage(withC, { pageId: "page-d", title: "D", now: 4 })
+    const withE = appendNotebookPage(withD, { pageId: "page-e", title: "E", now: 5 })
+    const arranged = {
+      ...withE,
+      pages: withE.pages.map((page) => page.pageId === "page-d"
+        ? { ...page, orientation: 270 as const, logicalSize: { width: 1123, height: 794 } }
+        : page),
+      activePageId: "page-d",
+      selectedPageIds: ["page-b", "page-d"],
+    }
+    await saveNotebook(store, arranged)
+    const paths = notebookPaths("reorder-multi")
+    const sceneBytes = new Map(arranged.pages.map((page) => [
+      page.pageId,
+      `{"type":"excalidraw","elements":[{"id":"ink-${page.pageId}"}]}`,
+    ]))
+    for (const [pageId, bytes] of sceneBytes) store.files.set(paths.pageScene(pageId), bytes)
+
+    const reordered = await executeNotebookCommand(store, {
+      kind: "reorder_pages",
+      documentId: "reorder-multi",
+      commandId: "reorder-b-d-first",
+      pageIds: ["page-d", "page-b"],
+      targetIndex: 0,
+      now: 10,
+    })
+
+    expect(reordered.status).toBe("committed")
+    expect(reordered.document.pages.map((page) => [page.pageId, page.ordinal])).toEqual([
+      ["page-b", 0],
+      ["page-d", 1],
+      ["p1", 2],
+      ["page-c", 3],
+      ["page-e", 4],
+    ])
+    expect(reordered.document.activePageId).toBe("page-d")
+    expect(reordered.document.selectedPageIds).toEqual(["page-b", "page-d"])
+    expect(reordered.document.pages[1]).toEqual({
+      pageId: "page-d",
+      ordinal: 1,
+      title: "D",
+      orientation: 270,
+      logicalSize: { width: 1123, height: 794 },
+    })
+    for (const [pageId, bytes] of sceneBytes) {
+      expect(store.files.get(paths.pageScene(pageId))).toBe(bytes)
+    }
+
+    const undone = await executeNotebookCommand(store, {
+      kind: "undo",
+      documentId: "reorder-multi",
+      commandId: "undo-reorder-b-d",
+      now: 11,
+    })
+    expect(undone.document.pages).toEqual(arranged.pages)
+    expect(undone.document.activePageId).toBe("page-d")
+    expect(undone.document.selectedPageIds).toEqual(["page-b", "page-d"])
+    const redone = await executeNotebookCommand(store, {
+      kind: "redo",
+      documentId: "reorder-multi",
+      commandId: "redo-reorder-b-d",
+      now: 12,
+    })
+    expect(redone.document.pages.map((page) => page.pageId)).toEqual([
+      "page-b", "page-d", "p1", "page-c", "page-e",
+    ])
+    expect(redone.document.activePageId).toBe("page-d")
+    for (const [pageId, bytes] of sceneBytes) {
+      expect(store.files.get(paths.pageScene(pageId))).toBe(bytes)
+    }
+  })
+
+  it("muove una pagina al confine e tratta l'ordine invariato come zero-I/O", async () => {
+    const store = fakeStore()
+    const initial = createNotebookDocument({ documentId: "reorder-single", title: "Reorder", now: 1 })
+    const withB = appendNotebookPage(initial, { pageId: "page-b", title: "B", now: 2 })
+    const withC = appendNotebookPage(withB, { pageId: "page-c", title: "C", now: 3 })
+    const withD = appendNotebookPage(withC, { pageId: "page-d", title: "D", now: 4 })
+    const arranged = { ...withD, activePageId: "page-c", selectedPageIds: ["page-c"] }
+    await saveNotebook(store, arranged)
+
+    const moved = await executeNotebookCommand(store, {
+      kind: "reorder_pages",
+      documentId: "reorder-single",
+      commandId: "move-c-last",
+      pageIds: ["page-c"],
+      targetIndex: 3,
+      now: 5,
+    })
+    expect(moved.document.pages.map((page) => page.pageId)).toEqual([
+      "p1", "page-b", "page-d", "page-c",
+    ])
+    expect(moved.document.activePageId).toBe("page-c")
+    expect(moved.document.selectedPageIds).toEqual(["page-c"])
+
+    const noopStore = fakeStore()
+    const noopDoc = {
+      ...withD,
+      activePageId: "page-b",
+      selectedPageIds: ["page-b", "page-c"],
+    }
+    await saveNotebook(noopStore, noopDoc)
+    const manifestPath = notebookPaths("reorder-single").manifest
+    const manifestBefore = noopStore.files.get(manifestPath)
+    const originalWrite = noopStore.write.bind(noopStore)
+    let writes = 0
+    noopStore.write = async (path: string, data: Blob): Promise<void> => {
+      writes += 1
+      await originalWrite(path, data)
+    }
+    const noop = await executeNotebookCommand(noopStore, {
+      kind: "reorder_pages",
+      documentId: "reorder-single",
+      commandId: "reorder-noop",
+      pageIds: ["page-c", "page-b"],
+      targetIndex: 1,
+      now: 6,
+    })
+    expect(noop.status).toBe("noop")
+    expect(writes).toBe(0)
+    expect(noopStore.files.get(manifestPath)).toBe(manifestBefore)
+    expect(noop.document.revision).toBe(0)
+    expect(noop.document.history.undo).toEqual([])
+  })
+
+  it("rifiuta selezione e target reorder invalidi prima di ogni write", async () => {
+    const store = fakeStore()
+    const base = await seededNotebook(store, "reorder-invalid")
+    await saveNotebook(store, {
+      ...base,
+      activePageId: "page-b",
+      selectedPageIds: ["page-b"],
+    })
+    const path = notebookPaths("reorder-invalid").manifest
+    const before = store.files.get(path)
+    const originalWrite = store.write.bind(store)
+    let writes = 0
+    store.write = async (target: string, data: Blob): Promise<void> => {
+      writes += 1
+      await originalWrite(target, data)
+    }
+    const invalid = [
+      { pageIds: [] as string[], targetIndex: 0 },
+      { pageIds: ["page-b", "page-b"], targetIndex: 0 },
+      { pageIds: ["missing"], targetIndex: 0 },
+      { pageIds: ["p1"], targetIndex: 0 },
+      { pageIds: ["page-b"], targetIndex: -1 },
+      { pageIds: ["page-b"], targetIndex: 2 },
+      { pageIds: ["page-b"], targetIndex: 0.5 },
+    ]
+    for (const [index, request] of invalid.entries()) {
+      await expect(executeNotebookCommand(store, {
+        kind: "reorder_pages",
+        documentId: "reorder-invalid",
+        commandId: `invalid-reorder-${index}`,
+        pageIds: request.pageIds,
+        targetIndex: request.targetIndex,
+        now: 10 + index,
+      })).rejects.toThrow("Invalid notebook page reorder")
+    }
+    expect(writes).toBe(0)
+    expect(store.files.get(path)).toBe(before)
+  })
+
+  it("compensa il manifest reorder fallito senza esporre ordine o history candidati", async () => {
+    const base = fakeStore()
+    const initial = createNotebookDocument({ documentId: "reorder-failure", title: "Reorder", now: 1 })
+    const withB = appendNotebookPage(initial, { pageId: "page-b", title: "B", now: 2 })
+    const withC = appendNotebookPage(withB, { pageId: "page-c", title: "C", now: 3 })
+    const arranged = {
+      ...withC,
+      activePageId: "page-b",
+      selectedPageIds: ["page-b", "page-c"],
+    }
+    await saveNotebook(base, arranged)
+    const paths = notebookPaths("reorder-failure")
+    const manifestBefore = base.files.get(paths.manifest)
+    const scenes = new Map([
+      ["p1", '{"elements":[{"id":"p1"}]}'],
+      ["page-b", '{"elements":[{"id":"b"}]}'],
+      ["page-c", '{"elements":[{"id":"c"}]}'],
+    ])
+    for (const [pageId, bytes] of scenes) base.files.set(paths.pageScene(pageId), bytes)
+    let manifestWrites = 0
+    const failingStore = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        await base.write(path, data)
+        if (path !== paths.manifest) return
+        manifestWrites += 1
+        if (manifestWrites === 1) throw new Error("injected reorder manifest failure")
+      },
+    }
+
+    await expect(executeNotebookCommand(failingStore, {
+      kind: "reorder_pages",
+      documentId: "reorder-failure",
+      commandId: "reorder-failure-command",
+      pageIds: ["page-c", "page-b"],
+      targetIndex: 0,
+      now: 4,
+    })).rejects.toThrow("injected reorder manifest failure")
+    expect(manifestWrites).toBe(2)
+    expect(base.files.get(paths.manifest)).toBe(manifestBefore)
+    expect(await loadNotebook(base, "reorder-failure")).toEqual(arranged)
+    for (const [pageId, bytes] of scenes) {
+      expect(base.files.get(paths.pageScene(pageId))).toBe(bytes)
+    }
+  })
+
   it("elimina la pagina attiva centrale, conserva la scena e recupera la stessa identita'", async () => {
     const store = fakeStore()
     const initial = createNotebookDocument({ documentId: "delete-middle", title: "Delete", now: 1 })

@@ -245,6 +245,18 @@ export default function NotebookView() {
     : -1
   const paginaCorrente = pagine[pageIndex] ?? null
   const pageIdCorrente = paginaCorrente?.pageId ?? null
+  // PC-R1-001 + GN-A1-002/GN-A7-012 → PRD §5.1 e §19.2:
+  // selezione unica persistita e riordino equivalente fra input diversi.
+  const selectedPageIdSet = new Set(doc?.selectedPageIds ?? [])
+  const firstSelectedPageIndex = pagine.findIndex((page) => selectedPageIdSet.has(page.pageId))
+  const currentSelectionTargetIndex = firstSelectedPageIndex < 0
+    ? 0
+    : pagine
+      .slice(0, firstSelectedPageIndex)
+      .filter((page) => !selectedPageIdSet.has(page.pageId)).length
+  const remainingPageCount = pagine.length - selectedPageIdSet.size
+  const canMoveSelectionUp = currentSelectionTargetIndex > 0
+  const canMoveSelectionDown = currentSelectionTargetIndex < remainingPageCount
   const identitaScenaCorrente = documentId && pageIdCorrente
     ? `${documentId}/${pageIdCorrente}`
     : null
@@ -577,6 +589,68 @@ export default function NotebookView() {
     }
   }
 
+  // Boundary UI di PC-R1-001 / PRD §5.1 e §19.2: nessuna seconda
+  // selezione volatile; ogni toggle e move passa dal manifest autorevole.
+  async function toggleSelezionePagina(pageId: string, now: number) {
+    if (!doc || !documentId || pageId === doc.activePageId || transizioneRef.current) return
+    setRinominaDraft(null)
+    setEliminaDraft(null)
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      const selected = new Set(doc.selectedPageIds)
+      if (selected.has(pageId)) selected.delete(pageId)
+      else selected.add(pageId)
+      const selectedPageIds = pagine
+        .map((page) => page.pageId)
+        .filter((candidate) => selected.has(candidate))
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "set_view_state",
+        documentId,
+        commandId: `selection-${crypto.randomUUID()}`,
+        activePageId: doc.activePageId,
+        selectedPageIds,
+        now,
+      })
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      setErroreSalvataggio(`Selezione pagine non riuscita: ${(error as Error).message}`)
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
+  async function spostaSelezione(direction: "up" | "down", now: number) {
+    if (!doc || !documentId || transizioneRef.current) return
+    const targetIndex = direction === "up"
+      ? Math.max(0, currentSelectionTargetIndex - 1)
+      : Math.min(remainingPageCount, currentSelectionTargetIndex + 1)
+    if (targetIndex === currentSelectionTargetIndex) return
+    setRinominaDraft(null)
+    setEliminaDraft(null)
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "reorder_pages",
+        documentId,
+        commandId: `reorder-${crypto.randomUUID()}`,
+        pageIds: doc.selectedPageIds,
+        targetIndex,
+        now,
+      })
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      setErroreSalvataggio(`Riordino pagine non riuscito: ${(error as Error).message}`)
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
   const navigaDopoSalvataggio = useCallback((href: string) => {
     if (transizioneRef.current) return
     transizioneRef.current = true
@@ -749,7 +823,16 @@ export default function NotebookView() {
       {/* Striscia delle pagine: una sola navigazione sull'asse dell'ordine.
           G01 ne ha due (tab in alto + miniature in basso) e le due possono
           divergere; qui ce n'e' una. */}
-      <nav style={striscia} aria-label="Pagine del taccuino">
+      <nav
+        style={striscia}
+        aria-label="Pagine del taccuino"
+        data-notebook-pages-strip
+        onKeyDown={(event) => {
+          if (!event.altKey || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return
+          event.preventDefault()
+          void spostaSelezione(event.key === "ArrowUp" ? "up" : "down", Date.now())
+        }}
+      >
         <button
           type="button"
           className="st-chip"
@@ -773,20 +856,62 @@ export default function NotebookView() {
           Ripristina
         </button>
         {pagine.map((pagina) => (
-          <button
-            key={pagina.pageId}
-            type="button"
-            ref={pagina.pageId === doc.activePageId ? paginaAttivaButtonRef : undefined}
-            data-notebook-page-id={pagina.pageId}
-            data-notebook-page-ordinal={String(pagina.ordinal)}
-            aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
-            disabled={operazioneInCorso}
-            onClick={() => { void cambiaPagina(pagina.pageId) }}
-            style={pagina.pageId === doc.activePageId ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
-          >
-            {pagina.ordinal + 1}. {pagina.title}
-          </button>
+          <span key={pagina.pageId} style={paginaConSelezione}>
+            <button
+              type="button"
+              ref={pagina.pageId === doc.activePageId ? paginaAttivaButtonRef : undefined}
+              data-notebook-page-id={pagina.pageId}
+              data-notebook-page-ordinal={String(pagina.ordinal)}
+              data-notebook-page-selected={selectedPageIdSet.has(pagina.pageId) ? "true" : "false"}
+              aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
+              disabled={operazioneInCorso}
+              onClick={() => { void cambiaPagina(pagina.pageId) }}
+              style={pagina.pageId === doc.activePageId ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
+            >
+              {pagina.ordinal + 1}. {pagina.title}
+            </button>
+            <button
+              type="button"
+              className="st-chip"
+              data-toggle-notebook-page-selection={pagina.pageId}
+              aria-label={selectedPageIdSet.has(pagina.pageId)
+                ? `Rimuovi ${pagina.title} dalla selezione`
+                : `Aggiungi ${pagina.title} alla selezione`}
+              aria-pressed={selectedPageIdSet.has(pagina.pageId)}
+              disabled={operazioneInCorso || pagina.pageId === doc.activePageId}
+              onClick={() => { void toggleSelezionePagina(pagina.pageId, Date.now()) }}
+              style={selectedPageIdSet.has(pagina.pageId)
+                ? { ...selezionaPagina, ...selezionaPaginaAttiva }
+                : selezionaPagina}
+            >
+              {selectedPageIdSet.has(pagina.pageId) ? "✓" : "+"}
+            </button>
+          </span>
         ))}
+        <button
+          type="button"
+          className="st-chip"
+          data-move-notebook-selection-up
+          aria-label="Sposta la selezione verso l'inizio"
+          title="Sposta su — Alt+Freccia su"
+          disabled={operazioneInCorso || !canMoveSelectionUp}
+          onClick={() => { void spostaSelezione("up", Date.now()) }}
+          style={tabNuova}
+        >
+          ↑ Sposta
+        </button>
+        <button
+          type="button"
+          className="st-chip"
+          data-move-notebook-selection-down
+          aria-label="Sposta la selezione verso la fine"
+          title="Sposta giù — Alt+Freccia giù"
+          disabled={operazioneInCorso || !canMoveSelectionDown}
+          onClick={() => { void spostaSelezione("down", Date.now()) }}
+          style={tabNuova}
+        >
+          ↓ Sposta
+        </button>
         <button
           type="button"
           className="st-chip"
@@ -1011,6 +1136,25 @@ const tabPaginaAttiva = {
 } as const
 
 const tabNuova = { ...tabPagina, border: "1px dashed rgba(21,38,56,0.32)", color: "#1f3f63" } as const
+
+const paginaConSelezione = {
+  display: "inline-flex",
+  alignItems: "stretch",
+  gap: 2,
+} as const
+
+const selezionaPagina = {
+  ...tabPagina,
+  minWidth: TAP,
+  padding: "6px 10px",
+  border: "1px dashed rgba(21,38,56,0.28)",
+} as const
+
+const selezionaPaginaAttiva = {
+  color: "#1f3f63",
+  border: "1px solid #1f3f63",
+  background: "#edf4fb",
+} as const
 
 const rinominaForm = {
   display: "flex",

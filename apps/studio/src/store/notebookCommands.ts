@@ -49,6 +49,11 @@ export type NotebookCommandRequest =
     kind: "delete_page"
     pageId: string
   }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "reorder_pages"
+    pageIds: ReadonlyArray<string>
+    targetIndex: number
+  }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
   | (CommandEnvelope & Readonly<{
@@ -130,6 +135,21 @@ function validateEnvelope(request: NotebookCommandRequest): void {
   }
   if (request.kind === "delete_page") {
     validateNotebookId(request.pageId)
+  }
+  if (request.kind === "reorder_pages") {
+    if (
+      !Array.isArray(request.pageIds) ||
+      request.pageIds.length === 0 ||
+      new Set(request.pageIds).size !== request.pageIds.length ||
+      !Number.isInteger(request.targetIndex)
+    ) {
+      throw new Error("Invalid notebook page reorder")
+    }
+    try {
+      request.pageIds.forEach(validateNotebookId)
+    } catch {
+      throw new Error("Invalid notebook page reorder")
+    }
   }
   if (request.kind === "set_view_state") {
     if (
@@ -295,6 +315,63 @@ function createCandidate(
       status: "committed",
       document: {
         ...deleted,
+        revision: doc.revision + 1,
+        recentCommandIds: appendRecentCommand(doc, request.commandId),
+        history: {
+          undo: [...doc.history.undo, entry].slice(-NOTEBOOK_HISTORY_LIMIT),
+          redo: [],
+        },
+      },
+    }
+  }
+
+  if (request.kind === "reorder_pages") {
+    // PC-R1-001 + GN-A1-002/GN-A7-012 → PRD §5.1 e §19.2:
+    // l'ordine del documento prevale sull'ordine del payload/click.
+    const pages = [...doc.pages].sort((a, b) => a.ordinal - b.ordinal)
+    const requested = new Set(request.pageIds)
+    const persistedSelection = new Set(doc.selectedPageIds)
+    if (
+      requested.size !== persistedSelection.size ||
+      !doc.selectedPageIds.every((pageId) => requested.has(pageId)) ||
+      !requested.has(doc.activePageId) ||
+      request.pageIds.some((pageId) => !pages.some((page) => page.pageId === pageId))
+    ) {
+      throw new Error("Invalid notebook page reorder")
+    }
+    const moved = pages.filter((page) => requested.has(page.pageId))
+    const remaining = pages.filter((page) => !requested.has(page.pageId))
+    if (request.targetIndex < 0 || request.targetIndex > remaining.length) {
+      throw new Error("Invalid notebook page reorder")
+    }
+    const reordered = [
+      ...remaining.slice(0, request.targetIndex),
+      ...moved,
+      ...remaining.slice(request.targetIndex),
+    ].map((page, ordinal) => page.ordinal === ordinal ? page : { ...page, ordinal })
+    if (reordered.every((page, index) => page.pageId === pages[index]?.pageId)) {
+      return { status: "noop", document: doc }
+    }
+    const movedDocument: NotebookDocument = {
+      ...doc,
+      pages: reordered,
+      activePageId: doc.activePageId,
+      selectedPageIds: reordered
+        .map((page) => page.pageId)
+        .filter((pageId) => requested.has(pageId)),
+      updatedAt: request.now,
+    }
+    const entry: NotebookHistoryEntry = {
+      commandId: request.commandId,
+      kind: request.kind,
+      at: request.now,
+      before: snapshot(doc),
+      after: snapshot(movedDocument),
+    }
+    return {
+      status: "committed",
+      document: {
+        ...movedDocument,
         revision: doc.revision + 1,
         recentCommandIds: appendRecentCommand(doc, request.commandId),
         history: {

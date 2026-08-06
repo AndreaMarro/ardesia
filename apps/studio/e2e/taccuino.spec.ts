@@ -45,6 +45,9 @@ const INSERT_PROFILES = [
 async function disegnaUnTratto(page: Page): Promise<void> {
   const canvas = page.locator(".excalidraw canvas").first()
   await expect(canvas).toBeVisible({ timeout: 15_000 })
+  await expect.poll(async () => Boolean(await canvas.boundingBox()), {
+    timeout: 15_000,
+  }).toBe(true)
   const box = await canvas.boundingBox()
   if (!box) throw new Error("canvas senza bounding box")
 
@@ -91,6 +94,7 @@ async function attivaControlloPagina(
   touch: boolean,
 ): Promise<void> {
   await expect(controllo).toBeVisible()
+  await controllo.scrollIntoViewIfNeeded()
   const box = await controllo.boundingBox()
   if (!box) throw new Error("controllo pagina senza bounding box")
   expect(box.width).toBeGreaterThanOrEqual(44)
@@ -810,6 +814,172 @@ for (const profile of INSERT_PROFILES) {
       await page.reload()
       await expect(taccuino).toBeVisible({ timeout: 15_000 })
       await expect(pagine).toHaveCount(1)
+      expect(erroriConsole).toEqual([])
+    })
+  })
+}
+
+// PC-R1-001 + GN-A1-002 + GN-A7-012 → PRD §5.1 e §19.2:
+// selezione persistita, blocco stabile e parita' mouse/tastiera/touch.
+for (const profile of INSERT_PROFILES) {
+  test.describe(`riordino multiplo — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: sposta selezione non contigua e conserva active/scene al reload`, async ({
+      page,
+    }) => {
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-reorder-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const taccuino = page.locator("[data-notebook-document-id]").first()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      const documentId = await taccuino.getAttribute("data-notebook-document-id")
+      expect(documentId).toBeTruthy()
+      const pagine = page.locator("[data-notebook-page-id]")
+      const aggiungi = page.locator("[data-add-notebook-page]")
+      for (let index = 0; index < 3; index += 1) {
+        if (profile.hasTouch) {
+          await attivaControlloPagina(page, aggiungi, true)
+        } else {
+          await aggiungi.click()
+        }
+        await expect(pagine).toHaveCount(index + 2)
+      }
+      await expect(pagine).toHaveCount(4)
+      const ids = await pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))
+      const [p1, p2, p3, p4] = ids
+      expect(p1).toBe("p1")
+      expect(p2).toBeTruthy()
+      expect(p3).toBeTruthy()
+      expect(p4).toBeTruthy()
+
+      await disegnaUnTratto(page)
+      const conteggio = page.locator("[data-notebook-scene-elements]").first()
+      await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
+        timeout: 10_000,
+      })
+      const elementiP4 = await conteggio.getAttribute("data-notebook-scene-elements")
+      await expect.poll(() => contaElementiCachePagina(page, documentId!, p4!)).toBe(
+        Number(elementiP4),
+      )
+      const byteP4 = await leggiByteCachePagina(page, documentId!, p4!)
+
+      await attivaControlloPagina(page, pagine.nth(1), profile.hasTouch)
+      await disegnaUnTratto(page)
+      await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
+        timeout: 10_000,
+      })
+      const elementiP2 = await conteggio.getAttribute("data-notebook-scene-elements")
+      await expect.poll(() => contaElementiCachePagina(page, documentId!, p2!)).toBe(
+        Number(elementiP2),
+      )
+      const byteP2 = await leggiByteCachePagina(page, documentId!, p2!)
+
+      const selezioneP2 = page.locator(`[data-toggle-notebook-page-selection="${p2}"]`)
+      const selezioneP4 = page.locator(`[data-toggle-notebook-page-selection="${p4}"]`)
+      await expect(selezioneP2).toHaveAttribute("aria-pressed", "true")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, selezioneP4, true)
+      } else {
+        await selezioneP4.click()
+      }
+      await expect(selezioneP4).toHaveAttribute("aria-pressed", "true")
+      await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+
+      const moveDown = page.locator("[data-move-notebook-selection-down]")
+      const moveUp = page.locator("[data-move-notebook-selection-up]")
+      const moveBox = await moveDown.boundingBox()
+      if (!moveBox) throw new Error("controllo riordino senza bounding box")
+      expect(moveBox.width).toBeGreaterThanOrEqual(44)
+      expect(moveBox.height).toBeGreaterThanOrEqual(44)
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, moveDown, true)
+      } else {
+        await moveDown.click()
+      }
+      await expect.poll(() => pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))).toEqual([p1, p3, p2, p4])
+      await expect(page.locator(`[data-notebook-page-id="${p2}"]`)).toHaveAttribute(
+        "aria-current",
+        "true",
+      )
+
+      const undo = page.locator("[data-notebook-undo]")
+      const redo = page.locator("[data-notebook-redo]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, undo, true)
+      } else {
+        await undo.click()
+      }
+      await expect.poll(() => pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))).toEqual([p1, p2, p3, p4])
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, redo, true)
+      } else {
+        await redo.click()
+      }
+      await expect.poll(() => pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))).toEqual([p1, p3, p2, p4])
+      await expect(moveUp).toBeEnabled()
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, moveUp, true)
+      } else {
+        await moveUp.focus()
+        await page.keyboard.press("Alt+ArrowUp")
+      }
+      await expect.poll(() => pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))).toEqual([p1, p2, p4, p3])
+      await expect(page.locator(`[data-notebook-page-id="${p2}"]`)).toHaveAttribute(
+        "aria-current",
+        "true",
+      )
+      await expect(selezioneP2).toHaveAttribute("aria-pressed", "true")
+      await expect(selezioneP4).toHaveAttribute("aria-pressed", "true")
+      expect(await leggiByteCachePagina(page, documentId!, p2!)).toBe(byteP2)
+      expect(await leggiByteCachePagina(page, documentId!, p4!)).toBe(byteP4)
+
+      await page.reload()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      await expect.poll(() => pagine.evaluateAll((elements) => elements.map(
+        (element) => element.getAttribute("data-notebook-page-id"),
+      ))).toEqual([p1, p2, p4, p3])
+      await expect(page.locator(`[data-notebook-page-id="${p2}"]`)).toHaveAttribute(
+        "aria-current",
+        "true",
+      )
+      await expect(selezioneP2).toHaveAttribute("aria-pressed", "true")
+      await expect(selezioneP4).toHaveAttribute("aria-pressed", "true")
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiP2!,
+        { timeout: 10_000 },
+      )
+      await attivaControlloPagina(
+        page,
+        page.locator(`[data-notebook-page-id="${p4}"]`),
+        profile.hasTouch,
+      )
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiP4!,
+        { timeout: 10_000 },
+      )
       expect(erroriConsole).toEqual([])
     })
   })
