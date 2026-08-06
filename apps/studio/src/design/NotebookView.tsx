@@ -28,14 +28,13 @@ import {
   createNotebookIfMissing,
   createNotebookDocument,
   inspectNotebook,
-  insertNotebookPageAfter,
-  insertNotebookPageBefore,
   loadNotebookPageScene,
+  migrateNotebookDocument,
   orderedNotebookPages,
-  saveNotebook,
   saveNotebookPageScene,
   type NotebookDocument,
 } from "../store/notebookDocument"
+import { executeNotebookCommand } from "../store/notebookCommands"
 import { notebookIdFromLocation } from "../store/notebookView"
 import { workspaceStore } from "../store/WorkspaceStore"
 
@@ -129,7 +128,6 @@ function serializeNotebookScene(api: ExcalidrawApi, elements: ReadonlyArray<unkn
 export default function NotebookView() {
   const documentId = notebookIdFromLocation()
   const [doc, setDoc] = useState<NotebookDocument | null>(null)
-  const [pageIndex, setPageIndex] = useState(0)
   const [sceneData, setSceneData] = useState<NotebookSceneData | null>(null)
   /**
    * A quale pagina appartiene `sceneJson`. `null` = caricamento in corso.
@@ -176,7 +174,9 @@ export default function NotebookView() {
           setCaricato(true)
           return
         }
-        let corrente = inspection.kind === "ready" ? inspection.document : null
+        let corrente = inspection.kind === "ready"
+          ? (await migrateNotebookDocument(workspaceStore, documentId)).document
+          : null
         if (!corrente) {
           const candidate = createNotebookDocument({
             documentId,
@@ -187,7 +187,6 @@ export default function NotebookView() {
           corrente = await createNotebookIfMissing(workspaceStore, candidate)
         }
         if (annullato) return
-        setPageIndex((index) => Math.min(index, corrente.pages.length - 1))
         setDoc(corrente)
       } catch (error) {
         if (annullato) return
@@ -202,6 +201,9 @@ export default function NotebookView() {
   }, [documentId, tentativo])
 
   const pagine = doc ? orderedNotebookPages(doc) : []
+  const pageIndex = doc
+    ? pagine.findIndex((page) => page.pageId === doc.activePageId)
+    : -1
   const paginaCorrente = pagine[pageIndex] ?? null
   const pageIdCorrente = paginaCorrente?.pageId ?? null
   const identitaScenaCorrente = documentId && pageIdCorrente
@@ -345,24 +347,35 @@ export default function NotebookView() {
     }
   }, [flush])
 
-  const cambiaPagina = useCallback(async (indice: number) => {
-    if (indice === pageIndex || transizioneRef.current) return
+  const cambiaPagina = useCallback(async (pageId: string) => {
+    if (!doc || !documentId || pageId === doc.activePageId || transizioneRef.current) return
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
       await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "set_view_state",
+        documentId,
+        commandId: `view-${crypto.randomUUID()}`,
+        activePageId: pageId,
+        selectedPageIds: [pageId],
+        now: Date.now(),
+      })
       apiRef.current = null
       ultimaOsservazioneRef.current = null
       setScenaPer(null)
       setSceneData(null)
-      setPageIndex(indice)
-    } catch {
-      // L'errore e' gia' esposto da `persistiScena`: non cambiare pagina.
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Cambio pagina non riuscito: ${(error as Error).message}`)
+      }
     } finally {
       transizioneRef.current = false
       setOperazioneInCorso(false)
     }
-  }, [flush, pageIndex])
+  }, [doc, documentId, flush])
 
   async function aggiungiPagina(posizione: "before" | "after") {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
@@ -377,22 +390,51 @@ export default function NotebookView() {
         return
       }
       const pageId = `page-${crypto.randomUUID()}`
-      const inserisci = posizione === "before"
-        ? insertNotebookPageBefore
-        : insertNotebookPageAfter
-      const aggiornato = inserisci(doc, pageIdCorrente, { pageId, now: Date.now() })
-      await saveNotebook(workspaceStore, aggiornato)
-      const indiceInserito = orderedNotebookPages(aggiornato)
-        .findIndex((page) => page.pageId === pageId)
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: posizione === "before" ? "insert_before" : "insert_after",
+        documentId,
+        commandId: `insert-${crypto.randomUUID()}`,
+        targetPageId: pageIdCorrente,
+        pageId,
+        now: Date.now(),
+      })
       apiRef.current = null
       ultimaOsservazioneRef.current = null
       setScenaPer(null)
       setSceneData(null)
-      setDoc(aggiornato)
-      setPageIndex(indiceInserito)
+      setDoc(result.document)
       setErroreSalvataggio(null)
     } catch (error) {
       setErroreSalvataggio(`Creazione pagina non riuscita: ${(error as Error).message}`)
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
+  async function applicaCronologia(kind: "undo" | "redo") {
+    if (!doc || !documentId || transizioneRef.current) return
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind,
+        documentId,
+        commandId: `${kind}-${crypto.randomUUID()}`,
+        now: Date.now(),
+      })
+      if (result.status === "noop") return
+      apiRef.current = null
+      ultimaOsservazioneRef.current = null
+      setScenaPer(null)
+      setSceneData(null)
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Cronologia pagina non riuscita: ${(error as Error).message}`)
+      }
     } finally {
       transizioneRef.current = false
       setOperazioneInCorso(false)
@@ -434,7 +476,6 @@ export default function NotebookView() {
             onClick={() => {
               setCaricato(false)
               setDoc(null)
-              setPageIndex(0)
               setErroreCaricamento(null)
               setErroreSalvataggio(null)
               setModificheInAttesa(false)
@@ -573,16 +614,38 @@ export default function NotebookView() {
           G01 ne ha due (tab in alto + miniature in basso) e le due possono
           divergere; qui ce n'e' una. */}
       <nav style={striscia} aria-label="Pagine del taccuino">
-        {pagine.map((pagina, indice) => (
+        <button
+          type="button"
+          className="st-chip"
+          data-notebook-undo
+          aria-label="Annulla ultima operazione sulle pagine"
+          disabled={operazioneInCorso || doc.history.undo.length === 0}
+          onClick={() => { void applicaCronologia("undo") }}
+          style={tabNuova}
+        >
+          Annulla
+        </button>
+        <button
+          type="button"
+          className="st-chip"
+          data-notebook-redo
+          aria-label="Ripristina ultima operazione sulle pagine"
+          disabled={operazioneInCorso || doc.history.redo.length === 0}
+          onClick={() => { void applicaCronologia("redo") }}
+          style={tabNuova}
+        >
+          Ripristina
+        </button>
+        {pagine.map((pagina) => (
           <button
             key={pagina.pageId}
             type="button"
             data-notebook-page-id={pagina.pageId}
             data-notebook-page-ordinal={String(pagina.ordinal)}
-            aria-current={indice === pageIndex ? "true" : undefined}
+            aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
             disabled={operazioneInCorso}
-            onClick={() => { void cambiaPagina(indice) }}
-            style={indice === pageIndex ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
+            onClick={() => { void cambiaPagina(pagina.pageId) }}
+            style={pagina.pageId === doc.activePageId ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
           >
             {pagina.ordinal + 1}. {pagina.title}
           </button>
@@ -741,5 +804,5 @@ const erroreSalvataggioButton = {
 
 const statoSalvataggioErrore = {
   color: "#991b1b",
-  fontWeight: 600,
+  font: "600 12px/1.4 system-ui",
 } as const

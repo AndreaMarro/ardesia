@@ -102,14 +102,14 @@ async function attivaControlloPagina(
   await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2)
 }
 
-async function attivaControlloPrima(
+async function attivaControlloPaginaAccessibile(
   page: Page,
   controllo: Locator,
   touch: boolean,
 ): Promise<void> {
   await expect(controllo).toBeVisible()
   const box = await controllo.boundingBox()
-  if (!box) throw new Error("controllo Prima senza bounding box")
+  if (!box) throw new Error("controllo pagina accessibile senza bounding box")
   expect(box.width).toBeGreaterThanOrEqual(44)
   expect(box.height).toBeGreaterThanOrEqual(44)
   if (touch) {
@@ -218,6 +218,232 @@ for (const vp of VIEWPORTS) {
     expect(erroriConsole).toEqual([])
   })
 }
+
+// PC-R1-001 + PC-OBJ-001; GN-A1-001 + GN-A7-012 → PRD §4.4 e §19.2:
+// storia pagina reale, conseguenze recuperabili, migrazione locale e failure
+// senza stato fantasma.
+test("taccuino: undo/redo degli inserimenti conserva ID, attiva e ordine dopo reload", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/#lezione-undo-redo")
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  await apriTaccuino(page)
+  await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+    timeout: 15_000,
+  })
+
+  const pagine = page.locator("[data-notebook-page-id]")
+  await expect(pagine).toHaveCount(1)
+  const primaId = await pagine.nth(0).getAttribute("data-notebook-page-id")
+
+  await attivaControlloPaginaAccessibile(
+    page,
+    page.locator("[data-add-notebook-page]"),
+    false,
+  )
+  await expect(pagine).toHaveCount(2)
+  const dopoId = await pagine.nth(1).getAttribute("data-notebook-page-id")
+  await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+
+  await attivaControlloPaginaAccessibile(
+    page,
+    page.locator("[data-insert-notebook-page-before]"),
+    false,
+  )
+  await expect(pagine).toHaveCount(3)
+  const primaDellaCorrenteId = await pagine.nth(1).getAttribute("data-notebook-page-id")
+  expect([primaId, dopoId, primaDellaCorrenteId].every(Boolean)).toBe(true)
+  await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+
+  const undo = page.locator("[data-notebook-undo]")
+  const redo = page.locator("[data-notebook-redo]")
+  await expect(undo).toBeEnabled()
+  await attivaControlloPaginaAccessibile(page, undo, false)
+  await expect(pagine).toHaveCount(2)
+  await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", dopoId!)
+  await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+
+  await attivaControlloPaginaAccessibile(page, undo, false)
+  await expect(pagine).toHaveCount(1)
+  await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", primaId!)
+  await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+  await expect(undo).toBeDisabled()
+  await expect(redo).toBeEnabled()
+
+  await attivaControlloPaginaAccessibile(page, redo, false)
+  await attivaControlloPaginaAccessibile(page, redo, false)
+  await expect(pagine).toHaveCount(3)
+  await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", primaId!)
+  await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", primaDellaCorrenteId!)
+  await expect(pagine.nth(2)).toHaveAttribute("data-notebook-page-id", dopoId!)
+  await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+
+  await page.reload()
+  await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect(pagine).toHaveCount(3)
+  await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", primaId!)
+  await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", primaDellaCorrenteId!)
+  await expect(pagine.nth(2)).toHaveAttribute("data-notebook-page-id", dopoId!)
+  await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+})
+
+test.describe("undo/redo touch iPad", () => {
+  test.use({
+    viewport: { width: 834, height: 1194 },
+    deviceScaleFactor: 2,
+    hasTouch: true,
+  })
+
+  test("taccuino iPad: tap reali annullano e ripristinano la stessa pagina", async ({ page }) => {
+    await page.goto("/#lezione-undo-touch-ipad")
+    await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+    await apriTaccuino(page)
+    await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+      timeout: 15_000,
+    })
+    expect(await page.evaluate(() => navigator.maxTouchPoints)).toBeGreaterThan(0)
+
+    const pagine = page.locator("[data-notebook-page-id]")
+    const primaId = await pagine.nth(0).getAttribute("data-notebook-page-id")
+    await attivaControlloPagina(page, page.locator("[data-add-notebook-page]"), true)
+    await expect(pagine).toHaveCount(2)
+    const nuovaId = await pagine.nth(1).getAttribute("data-notebook-page-id")
+
+    await attivaControlloPagina(page, page.locator("[data-notebook-undo]"), true)
+    await expect(pagine).toHaveCount(1)
+    await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", primaId!)
+    await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+    await attivaControlloPagina(page, page.locator("[data-notebook-redo]"), true)
+    await expect(pagine).toHaveCount(2)
+    await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", nuovaId!)
+    await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+  })
+})
+
+test("taccuino: migra un manifest v1 una volta e il reload conserva gli stessi byte v2", async ({
+  page,
+}) => {
+  await page.goto("/#lezione-v1-migration")
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  const manifestKey = "maestro:notebooks/taccuino-lezione-v1-migration/notebook.json"
+  await page.evaluate((key) => {
+    const legacy = {
+      v: 1,
+      kind: "notebook",
+      documentId: "taccuino-lezione-v1-migration",
+      title: "Taccuino storico",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [
+        { pageId: "legacy-a", ordinal: 0, title: "A storica" },
+        { pageId: "legacy-b", ordinal: 1, title: "B storica" },
+      ],
+    }
+    localStorage.setItem(key, btoa(JSON.stringify(legacy)))
+  }, manifestKey)
+
+  await apriTaccuino(page)
+  const pagine = page.locator("[data-notebook-page-id]")
+  await expect(pagine).toHaveCount(2)
+  await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", "legacy-a")
+  await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+  const migratedBytes = await page.evaluate((key) => localStorage.getItem(key), manifestKey)
+  expect(migratedBytes).toBeTruthy()
+  const migrated = JSON.parse(atob(migratedBytes!))
+  expect(migrated).toMatchObject({
+    v: 2,
+    revision: 0,
+    activePageId: "legacy-a",
+    selectedPageIds: ["legacy-a"],
+  })
+  expect(migrated.pages[0]).toMatchObject({
+    orientation: 0,
+    logicalSize: { width: 794, height: 1123 },
+  })
+
+  await page.reload()
+  await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect.poll(
+    () => page.evaluate((key) => localStorage.getItem(key), manifestKey),
+    { timeout: 10_000 },
+  ).toBe(migratedBytes)
+  await expect(pagine).toHaveCount(2)
+  await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+})
+
+test("taccuino: una write manifest fallita durante undo non cambia UI o history", async ({
+  page,
+}) => {
+  await page.goto("/#lezione-undo-write-failure")
+  await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+  await apriTaccuino(page)
+  const pagine = page.locator("[data-notebook-page-id]")
+  await page.locator("[data-add-notebook-page]").click()
+  await expect(pagine).toHaveCount(2)
+  const idsPrima = await pagine.evaluateAll((buttons) => (
+    buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+  ))
+  const manifestKey = "maestro:notebooks/taccuino-lezione-undo-write-failure/notebook.json"
+  const manifestPrima = await page.evaluate((key) => localStorage.getItem(key), manifestKey)
+  expect(manifestPrima).toBeTruthy()
+
+  await page.evaluate((keyManifest) => {
+    const state = window as unknown as {
+      __undoManifestSetItem?: typeof Storage.prototype.setItem
+    }
+    state.__undoManifestSetItem = Storage.prototype.setItem
+    Storage.prototype.setItem = function (key: string, value: string): void {
+      if (key === keyManifest) throw new DOMException("undo simulato", "QuotaExceededError")
+      state.__undoManifestSetItem!.call(this, key, value)
+    }
+  }, manifestKey)
+
+  try {
+    await page.locator("[data-notebook-undo]").click()
+    const statoSalvataggio = page.locator("#notebook-save-status")
+    await expect(statoSalvataggio).toHaveAttribute("data-notebook-save-state", "errore")
+    await expect(statoSalvataggio).toContainText("Cronologia pagina non riuscita")
+    await expect(pagine).toHaveCount(2)
+    expect(await pagine.evaluateAll((buttons) => (
+      buttons.map((button) => button.getAttribute("data-notebook-page-id"))
+    ))).toEqual(idsPrima)
+    await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+    await expect(page.locator("[data-notebook-undo]")).toBeEnabled()
+    expect(await page.evaluate((key) => localStorage.getItem(key), manifestKey)).toBe(manifestPrima)
+  } finally {
+    await page.evaluate(() => {
+      const state = window as unknown as {
+        __undoManifestSetItem?: typeof Storage.prototype.setItem
+      }
+      if (state.__undoManifestSetItem) {
+        Storage.prototype.setItem = state.__undoManifestSetItem
+        delete state.__undoManifestSetItem
+      }
+    })
+  }
+
+  await page.locator("[data-notebook-undo]").click()
+  await expect(pagine).toHaveCount(1)
+  await expect.poll(
+    () => page.evaluate((key) => localStorage.getItem(key), manifestKey),
+    { timeout: 10_000 },
+  ).not.toBe(manifestPrima)
+
+  await page.reload()
+  await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect(pagine).toHaveCount(1)
+  await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", idsPrima[0]!)
+  await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+  await expect(page.locator("[data-notebook-undo]")).toBeDisabled()
+  await expect(page.locator("[data-notebook-redo]")).toBeEnabled()
+})
 
 test("taccuino: una seconda pagina si aggiunge in coda e si passa fra le due senza perdere il contenuto", async ({
   page,
@@ -363,9 +589,10 @@ for (const profile of INSERT_PROFILES) {
       ))).toEqual(idsDopo)
       await expect(conteggio).toHaveAttribute(
         "data-notebook-scene-elements",
-        elementiPrima!,
+        elementiSeconda!,
         { timeout: 10_000 },
       )
+      await expect(pagine.nth(2)).toHaveAttribute("aria-current", "true")
       await attivaControlloPagina(page, pagine.nth(1), profile.hasTouch)
       await expect(conteggio).toHaveAttribute("data-notebook-scene-elements", "0", {
         timeout: 10_000,
@@ -463,14 +690,17 @@ for (const profile of INSERT_PROFILES) {
       )
       const pageIdSeconda = await pagine.nth(1).getAttribute("data-notebook-page-id")
       if (!pageIdSeconda) throw new Error("pageId seconda assente")
-      await expect.poll(() => contaElementiCachePagina(page, documentId, pageIdSeconda), {
+      await expect.poll(async () => {
+        const elementiUi = Number(await conteggio.getAttribute("data-notebook-scene-elements"))
+        const elementiCache = await contaElementiCachePagina(page, documentId, pageIdSeconda)
+        return elementiUi > Number(elementiPrima) && elementiCache === elementiUi
+      }, {
         timeout: 10_000,
-      }).toBeGreaterThan(Number(elementiPrima))
-      const conteggioSeconda = await contaElementiCachePagina(page, documentId, pageIdSeconda)
-      if (conteggioSeconda < 0) {
-        throw new Error(`cache pagina seconda non valida: ${conteggioSeconda}`)
+      }).toBe(true)
+      const elementiSeconda = await conteggio.getAttribute("data-notebook-scene-elements")
+      if (!elementiSeconda || Number(elementiSeconda) <= Number(elementiPrima)) {
+        throw new Error(`scena pagina seconda non valida: ${elementiSeconda}`)
       }
-      const elementiSeconda = String(conteggioSeconda)
 
       await attivaControlloPagina(
         page,
@@ -488,14 +718,17 @@ for (const profile of INSERT_PROFILES) {
       )
       const pageIdTerza = await pagine.nth(2).getAttribute("data-notebook-page-id")
       if (!pageIdTerza) throw new Error("pageId terza assente")
-      await expect.poll(() => contaElementiCachePagina(page, documentId, pageIdTerza), {
+      await expect.poll(async () => {
+        const elementiUi = Number(await conteggio.getAttribute("data-notebook-scene-elements"))
+        const elementiCache = await contaElementiCachePagina(page, documentId, pageIdTerza)
+        return elementiUi > Number(elementiSeconda) && elementiCache === elementiUi
+      }, {
         timeout: 10_000,
-      }).toBeGreaterThan(Number(elementiSeconda))
-      const conteggioTerza = await contaElementiCachePagina(page, documentId, pageIdTerza)
-      if (conteggioTerza < 0) {
-        throw new Error(`cache pagina terza non valida: ${conteggioTerza}`)
+      }).toBe(true)
+      const elementiTerza = await conteggio.getAttribute("data-notebook-scene-elements")
+      if (!elementiTerza || Number(elementiTerza) <= Number(elementiSeconda)) {
+        throw new Error(`scena pagina terza non valida: ${elementiTerza}`)
       }
-      const elementiTerza = String(conteggioTerza)
 
       const idsStorici = await pagine.evaluateAll((buttons) => (
         buttons.map((button) => button.getAttribute("data-notebook-page-id"))
@@ -511,7 +744,7 @@ for (const profile of INSERT_PROFILES) {
         elementiSeconda!,
         { timeout: 10_000 },
       )
-      await attivaControlloPrima(
+      await attivaControlloPaginaAccessibile(
         page,
         page.locator("[data-insert-notebook-page-before]"),
         profile.hasTouch,
@@ -554,9 +787,10 @@ for (const profile of INSERT_PROFILES) {
       ))).toEqual(idsDopo)
       await expect(conteggio).toHaveAttribute(
         "data-notebook-scene-elements",
-        elementiPrima!,
+        elementiTerza!,
         { timeout: 10_000 },
       )
+      await expect(pagine.nth(3)).toHaveAttribute("aria-current", "true")
       for (const [indice, elementi] of [
         [1, "0"],
         [2, elementiSeconda!],

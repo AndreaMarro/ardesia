@@ -37,6 +37,11 @@ export type NotebookCommandRequest =
   }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "set_view_state"
+    activePageId: string
+    selectedPageIds: ReadonlyArray<string>
+  }>)
 
 export type NotebookCommandResult = Readonly<{
   status: "committed" | "deduplicated" | "noop"
@@ -83,6 +88,15 @@ function validateEnvelope(request: NotebookCommandRequest): void {
   ) {
     throw new Error("Invalid notebook page title")
   }
+  if (request.kind === "set_view_state") {
+    if (
+      typeof request.activePageId !== "string" ||
+      !Array.isArray(request.selectedPageIds) ||
+      !request.selectedPageIds.every((pageId) => typeof pageId === "string")
+    ) {
+      throw new Error("Invalid notebook view state")
+    }
+  }
 }
 
 function createCandidate(
@@ -91,6 +105,39 @@ function createCandidate(
 ): NotebookCommandResult {
   if (doc.recentCommandIds.includes(request.commandId)) {
     return { status: "deduplicated", document: doc }
+  }
+
+  if (request.kind === "set_view_state") {
+    const orderedIds = [...doc.pages]
+      .sort((a, b) => a.ordinal - b.ordinal)
+      .map((page) => page.pageId)
+    const selected = [...request.selectedPageIds]
+    if (
+      !orderedIds.includes(request.activePageId) ||
+      new Set(selected).size !== selected.length ||
+      !selected.includes(request.activePageId) ||
+      selected.some((pageId) => !orderedIds.includes(pageId)) ||
+      orderedIds.filter((pageId) => selected.includes(pageId)).some(
+        (pageId, index) => pageId !== selected[index],
+      )
+    ) {
+      throw new Error("Invalid notebook view state")
+    }
+    const unchanged = doc.activePageId === request.activePageId &&
+      doc.selectedPageIds.length === selected.length &&
+      doc.selectedPageIds.every((pageId, index) => pageId === selected[index])
+    if (unchanged) return { status: "noop", document: doc }
+    return {
+      status: "committed",
+      document: {
+        ...doc,
+        activePageId: request.activePageId,
+        selectedPageIds: selected,
+        updatedAt: request.now,
+        revision: doc.revision + 1,
+        recentCommandIds: appendRecentCommand(doc, request.commandId),
+      },
+    }
   }
 
   if (request.kind === "undo") {

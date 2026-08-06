@@ -40,6 +40,36 @@ async function seededNotebook(store: NotebookStore, documentId = "commands") {
 }
 
 describe("command boundary persistito", () => {
+  it("persiste active/selected senza creare history di pagina", async () => {
+    const store = fakeStore()
+    const base = await seededNotebook(store, "view-state")
+    const other = await seededNotebook(store, "view-state-other")
+    const otherPath = notebookPaths("view-state-other").manifest
+    const otherBytes = store.files.get(otherPath)
+
+    const result = await executeNotebookCommand(store, {
+      kind: "set_view_state",
+      documentId: "view-state",
+      commandId: "select-page-b",
+      activePageId: "page-b",
+      selectedPageIds: ["p1", "page-b"],
+      now: 4,
+    })
+
+    expect(result.status).toBe("committed")
+    expect(result.document.activePageId).toBe("page-b")
+    expect(result.document.selectedPageIds).toEqual(["p1", "page-b"])
+    expect(result.document.history).toEqual(base.history)
+    expect(result.document.revision).toBe(1)
+    expect(await loadNotebook(store, "view-state")).toEqual(result.document)
+    expect(store.files.get(otherPath)).toBe(otherBytes)
+    expect(await loadNotebook(store, "view-state-other")).toEqual(other)
+
+    const reopened = fakeStore(store.files)
+    expect(await loadNotebook(reopened, "view-state")).toEqual(result.document)
+    expect(await loadNotebook(reopened, "view-state-other")).toEqual(other)
+  })
+
   it("modificare un documento non cambia manifest o pagine di un altro", async () => {
     const store = fakeStore()
     await seededNotebook(store, "doc-a")
