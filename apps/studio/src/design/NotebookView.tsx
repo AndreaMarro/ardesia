@@ -441,6 +441,36 @@ export default function NotebookView() {
     }
   }
 
+  async function duplicaPagina() {
+    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "duplicate_page",
+        documentId,
+        commandId: `duplicate-${crypto.randomUUID()}`,
+        sourcePageId: pageIdCorrente,
+        pageId: `page-${crypto.randomUUID()}`,
+        now: Date.now(),
+      })
+      apiRef.current = null
+      ultimaOsservazioneRef.current = null
+      setScenaPer(null)
+      setSceneData(null)
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Duplicazione pagina non riuscita: ${(error as Error).message}`)
+      }
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
   const navigaDopoSalvataggio = useCallback((href: string) => {
     if (transizioneRef.current) return
     transizioneRef.current = true
@@ -650,6 +680,17 @@ export default function NotebookView() {
             {pagina.ordinal + 1}. {pagina.title}
           </button>
         ))}
+        <button
+          type="button"
+          className="st-chip"
+          data-duplicate-notebook-page
+          aria-label="Duplica la pagina corrente"
+          disabled={operazioneInCorso}
+          onClick={() => { void duplicaPagina() }}
+          style={tabNuova}
+        >
+          Duplica
+        </button>
         <button
           type="button"
           className="st-chip"

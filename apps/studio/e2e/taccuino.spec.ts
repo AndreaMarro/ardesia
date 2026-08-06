@@ -161,6 +161,19 @@ async function contaElementiCachePagina(
   }, { doc: documentId, pagina: pageId })
 }
 
+async function leggiByteCachePagina(
+  page: Page,
+  documentId: string,
+  pageId: string,
+): Promise<string | null> {
+  return page.evaluate(
+    ({ doc, pagina }) => localStorage.getItem(
+      `maestro:notebooks/${doc}/pages/${pagina}.excalidraw`,
+    ),
+    { doc: documentId, pagina: pageId },
+  )
+}
+
 for (const vp of VIEWPORTS) {
   test(`taccuino ${vp.nome}: da Lezione creo un Taccuino, scrivo, ricarico e ritrovo tutto`, async ({
     page,
@@ -444,6 +457,101 @@ test("taccuino: una write manifest fallita durante undo non cambia UI o history"
   await expect(page.locator("[data-notebook-undo]")).toBeDisabled()
   await expect(page.locator("[data-notebook-redo]")).toBeEnabled()
 })
+
+for (const profile of INSERT_PROFILES) {
+  test.describe(`duplicazione pagina — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: duplica scena e metadati su identita' indipendente dopo reload`, async ({
+      page,
+    }) => {
+      test.setTimeout(90_000)
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-duplicate-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const taccuino = page.locator("[data-notebook-document-id]").first()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+      const documentId = await taccuino.getAttribute("data-notebook-document-id")
+      if (!documentId) throw new Error("documentId duplicate assente")
+
+      const pagine = page.locator("[data-notebook-page-id]")
+      const conteggio = page.locator("[data-notebook-scene-elements]").first()
+      const sourceId = await pagine.nth(0).getAttribute("data-notebook-page-id")
+      if (!sourceId) throw new Error("source page duplicate assente")
+      await disegnaUnTratto(page)
+      await expect.poll(async () => {
+        const elementiUi = Number(await conteggio.getAttribute("data-notebook-scene-elements"))
+        return elementiUi > 0 &&
+          await contaElementiCachePagina(page, documentId, sourceId) === elementiUi
+      }, { timeout: 10_000 }).toBe(true)
+      const elementiSource = await conteggio.getAttribute("data-notebook-scene-elements")
+      const byteSource = await leggiByteCachePagina(page, documentId, sourceId)
+      expect(byteSource).toBeTruthy()
+
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-duplicate-notebook-page]"),
+        profile.hasTouch,
+      )
+      await expect(pagine).toHaveCount(2)
+      const duplicateId = await pagine.nth(1).getAttribute("data-notebook-page-id")
+      expect(duplicateId).toMatch(/^page-[A-Za-z0-9-]+$/)
+      expect(duplicateId).not.toBe(sourceId)
+      await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+      await expect(pagine.nth(1)).toContainText("Copia di Pagina 1")
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiSource!,
+        { timeout: 10_000 },
+      )
+      await expect.poll(
+        () => leggiByteCachePagina(page, documentId, duplicateId!),
+        { timeout: 10_000 },
+      ).toBe(byteSource)
+
+      await disegnaUnTratto(page)
+      await expect.poll(async () => {
+        const elementiUi = Number(await conteggio.getAttribute("data-notebook-scene-elements"))
+        return elementiUi > Number(elementiSource) &&
+          await contaElementiCachePagina(page, documentId, duplicateId!) === elementiUi
+      }, { timeout: 10_000 }).toBe(true)
+      const elementiDuplicate = await conteggio.getAttribute("data-notebook-scene-elements")
+      expect(await leggiByteCachePagina(page, documentId, sourceId)).toBe(byteSource)
+
+      await page.reload()
+      await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+        timeout: 15_000,
+      })
+      await expect(pagine).toHaveCount(2)
+      await expect(pagine.nth(1)).toHaveAttribute("data-notebook-page-id", duplicateId!)
+      await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiDuplicate!,
+        { timeout: 10_000 },
+      )
+
+      await attivaControlloPagina(page, pagine.nth(0), profile.hasTouch)
+      await expect(conteggio).toHaveAttribute(
+        "data-notebook-scene-elements",
+        elementiSource!,
+        { timeout: 10_000 },
+      )
+      expect(await leggiByteCachePagina(page, documentId, sourceId)).toBe(byteSource)
+      expect(erroriConsole).toEqual([])
+    })
+  })
+}
 
 test("taccuino: una seconda pagina si aggiunge in coda e si passa fra le due senza perdere il contenuto", async ({
   page,

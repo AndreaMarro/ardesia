@@ -27,6 +27,9 @@ function fakeStore(seed?: Map<string, string>) {
     async write(path: string, data: Blob): Promise<void> {
       files.set(path, await data.text())
     },
+    async delete(path: string): Promise<void> {
+      files.delete(path)
+    },
   }
 }
 
@@ -40,6 +43,106 @@ async function seededNotebook(store: NotebookStore, documentId = "commands") {
 }
 
 describe("command boundary persistito", () => {
+  it("duplica byte e metadati su nuova identita' adiacente e li recupera con undo/redo", async () => {
+    const store = fakeStore()
+    const base = await seededNotebook(store, "duplicate")
+    const source = {
+      ...base,
+      pages: base.pages.map((page) => page.pageId === "page-b"
+        ? {
+            ...page,
+            title: "Schema B",
+            orientation: 90 as const,
+            logicalSize: { width: 1123, height: 794 },
+          }
+        : page),
+    }
+    await saveNotebook(store, source)
+    const paths = notebookPaths("duplicate")
+    const sourceScene = '{\n  "type": "excalidraw", "elements": [{"id":"ink-b"}]\n}'
+    store.files.set(paths.pageScene("page-b"), sourceScene)
+
+    const duplicated = await executeNotebookCommand(store, {
+      kind: "duplicate_page",
+      documentId: "duplicate",
+      commandId: "duplicate-b",
+      sourcePageId: "page-b",
+      pageId: "page-b-copy",
+      now: 10,
+    })
+
+    expect(duplicated.status).toBe("committed")
+    expect(duplicated.document.pages.map((page) => page.pageId)).toEqual([
+      "p1",
+      "page-b",
+      "page-b-copy",
+    ])
+    expect(duplicated.document.pages[2]).toEqual({
+      pageId: "page-b-copy",
+      ordinal: 2,
+      title: "Copia di Schema B",
+      orientation: 90,
+      logicalSize: { width: 1123, height: 794 },
+    })
+    expect(duplicated.document.activePageId).toBe("page-b-copy")
+    expect(duplicated.document.selectedPageIds).toEqual(["page-b-copy"])
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(sourceScene)
+    expect(store.files.get(paths.pageScene("page-b-copy"))).toBe(sourceScene)
+
+    const undone = await executeNotebookCommand(store, {
+      kind: "undo",
+      documentId: "duplicate",
+      commandId: "undo-duplicate-b",
+      now: 11,
+    })
+    expect(undone.document.pages.map((page) => page.pageId)).toEqual(["p1", "page-b"])
+    expect(store.files.get(paths.pageScene("page-b-copy"))).toBe(sourceScene)
+
+    const redone = await executeNotebookCommand(store, {
+      kind: "redo",
+      documentId: "duplicate",
+      commandId: "redo-duplicate-b",
+      now: 12,
+    })
+    expect(redone.document.pages.map((page) => page.pageId)).toEqual([
+      "p1",
+      "page-b",
+      "page-b-copy",
+    ])
+    expect(store.files.get(paths.pageScene("page-b-copy"))).toBe(sourceScene)
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(sourceScene)
+  })
+
+  it("elimina e verifica la scena candidata se il manifest duplicate fallisce", async () => {
+    const store = fakeStore()
+    await seededNotebook(store, "duplicate-failure")
+    const paths = notebookPaths("duplicate-failure")
+    const manifestBefore = store.files.get(paths.manifest)
+    const sourceScene = '{"type":"excalidraw","elements":[{"id":"source"}]}'
+    store.files.set(paths.pageScene("page-b"), sourceScene)
+    const originalWrite = store.write.bind(store)
+    store.write = async (path: string, data: Blob): Promise<void> => {
+      if (path === paths.manifest && store.files.has(paths.pageScene("page-copy"))) {
+        throw new Error("manifest duplicate simulato")
+      }
+      await originalWrite(path, data)
+    }
+
+    await expect(executeNotebookCommand(store, {
+      kind: "duplicate_page",
+      documentId: "duplicate-failure",
+      commandId: "duplicate-failure-command",
+      sourcePageId: "page-b",
+      pageId: "page-copy",
+      now: 20,
+    })).rejects.toThrow("manifest duplicate simulato")
+
+    expect(store.files.get(paths.manifest)).toBe(manifestBefore)
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(sourceScene)
+    expect(store.files.has(paths.pageScene("page-copy"))).toBe(false)
+    expect((await loadNotebook(store, "duplicate-failure"))?.history.undo).toEqual([])
+  })
+
   it("persiste active/selected senza creare history di pagina", async () => {
     const store = fakeStore()
     const base = await seededNotebook(store, "view-state")

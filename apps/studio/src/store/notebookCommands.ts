@@ -35,6 +35,11 @@ export type NotebookCommandRequest =
     pageId: string
     title?: string
   }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "duplicate_page"
+    sourcePageId: string
+    pageId: string
+  }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
   | (CommandEnvelope & Readonly<{
@@ -87,6 +92,10 @@ function validateEnvelope(request: NotebookCommandRequest): void {
     request.title !== undefined && typeof request.title !== "string"
   ) {
     throw new Error("Invalid notebook page title")
+  }
+  if (request.kind === "duplicate_page") {
+    validateNotebookId(request.sourcePageId)
+    validateNotebookId(request.pageId)
   }
   if (request.kind === "set_view_state") {
     if (
@@ -178,17 +187,41 @@ function createCandidate(
     }
   }
 
-  const inserted = request.kind === "insert_before"
-    ? insertNotebookPageBefore(doc, request.targetPageId, {
+  let inserted: NotebookDocument
+  if (request.kind === "duplicate_page") {
+    const pages = [...doc.pages].sort((a, b) => a.ordinal - b.ordinal)
+    const sourceIndex = pages.findIndex((page) => page.pageId === request.sourcePageId)
+    if (sourceIndex < 0) throw new Error("Notebook duplicate source page does not exist")
+    if (pages.some((page) => page.pageId === request.pageId)) {
+      throw new Error("Notebook page identifier already exists")
+    }
+    const source = pages[sourceIndex]!
+    const duplicated = {
+      ...source,
       pageId: request.pageId,
-      title: request.title,
-      now: request.now,
-    })
-    : insertNotebookPageAfter(doc, request.targetPageId, {
-      pageId: request.pageId,
-      title: request.title,
-      now: request.now,
-    })
+      ordinal: sourceIndex + 1,
+      title: `Copia di ${source.title}`,
+      logicalSize: { ...source.logicalSize },
+    }
+    const reordered = [
+      ...pages.slice(0, sourceIndex + 1),
+      duplicated,
+      ...pages.slice(sourceIndex + 1),
+    ].map((page, ordinal) => page.ordinal === ordinal ? page : { ...page, ordinal })
+    inserted = { ...doc, pages: reordered, updatedAt: request.now }
+  } else {
+    inserted = request.kind === "insert_before"
+      ? insertNotebookPageBefore(doc, request.targetPageId, {
+        pageId: request.pageId,
+        title: request.title,
+        now: request.now,
+      })
+      : insertNotebookPageAfter(doc, request.targetPageId, {
+        pageId: request.pageId,
+        title: request.title,
+        now: request.now,
+      })
+  }
   const withSelection: NotebookDocument = {
     ...inserted,
     activePageId: request.pageId,
@@ -289,6 +322,88 @@ async function persistCandidate(
   }
 }
 
+type DeletableNotebookStore = NotebookStore & Readonly<{
+  delete?: (path: string) => Promise<void>
+}>
+
+async function deleteAndVerifyAbsent(
+  store: NotebookStore,
+  path: string,
+): Promise<void> {
+  const remove = (store as DeletableNotebookStore).delete
+  if (!remove) throw new Error("Notebook store cannot compensate a scene copy")
+  let deleteFailure: unknown
+  try {
+    await remove.call(store, path)
+  } catch (error) {
+    deleteFailure = error
+  }
+  try {
+    if (await store.read(path) === null) return
+    throw new Error("Notebook duplicate scene cleanup mismatch")
+  } catch (verificationError) {
+    throw new AggregateError(
+      [deleteFailure, verificationError].filter(Boolean),
+      "Notebook duplicate scene cleanup failed",
+      { cause: verificationError },
+    )
+  }
+}
+
+function equalBytes(left: Uint8Array, right: Uint8Array): boolean {
+  return left.length === right.length && left.every((byte, index) => byte === right[index])
+}
+
+async function persistDuplicateCandidate(
+  store: NotebookStore,
+  originalBytes: string,
+  request: Extract<NotebookCommandRequest, { kind: "duplicate_page" }>,
+  candidate: NotebookDocument,
+): Promise<NotebookDocument> {
+  const paths = notebookPaths(request.documentId)
+  const sourcePath = paths.pageScene(request.sourcePageId)
+  const targetPath = paths.pageScene(request.pageId)
+  if (await store.read(targetPath)) {
+    throw new Error("Notebook duplicate target scene already exists")
+  }
+  const source = await store.read(sourcePath)
+  if (!source) {
+    return persistCandidate(store, originalBytes, candidate, request.commandId)
+  }
+
+  const remove = (store as DeletableNotebookStore).delete
+  if (!remove) throw new Error("Notebook store cannot compensate a scene copy")
+  const sourceBytes = new Uint8Array(await source.arrayBuffer())
+  let targetTouched = false
+  try {
+    targetTouched = true
+    await store.write(
+      targetPath,
+      new Blob([sourceBytes], { type: source.type || "application/json" }),
+    )
+    const copied = await store.read(targetPath)
+    if (!copied) throw new Error("Notebook duplicate scene readback is missing")
+    const copiedBytes = new Uint8Array(await copied.arrayBuffer())
+    if (!equalBytes(sourceBytes, copiedBytes)) {
+      throw new Error("Notebook duplicate scene readback mismatch")
+    }
+    return await persistCandidate(store, originalBytes, candidate, request.commandId)
+  } catch (duplicateError) {
+    if (targetTouched) {
+      try {
+        await deleteAndVerifyAbsent(store, targetPath)
+      } catch (cleanupError) {
+        throw new AggregateError(
+          [duplicateError, cleanupError],
+          "Notebook duplicate command and scene cleanup failed",
+          { cause: cleanupError },
+        )
+      }
+    }
+    throw duplicateError
+  }
+}
+
 /**
  * Esegue un comando sul referente riletto dentro una lease per-documento e
  * rende visibile il candidato soltanto dopo write + readback verificati.
@@ -322,6 +437,15 @@ export async function executeNotebookCommand(
     }
     const candidate = createCandidate(durable, request)
     if (candidate.status !== "committed") return candidate
+    if (request.kind === "duplicate_page") {
+      const persisted = await persistDuplicateCandidate(
+        store,
+        originalBytes,
+        request,
+        candidate.document,
+      )
+      return { status: "committed", document: persisted }
+    }
     const persisted = await persistCandidate(
       store,
       originalBytes,
