@@ -43,6 +43,105 @@ async function seededNotebook(store: NotebookStore, documentId = "commands") {
 }
 
 describe("command boundary persistito", () => {
+  it("rinomina la stessa identita', preserva scena e snapshot storici, poi undo/redo", async () => {
+    const store = fakeStore()
+    await seededNotebook(store, "rename")
+    const paths = notebookPaths("rename")
+    const sourceScene = '{"type":"excalidraw","elements":[{"id":"rename-ink"}]}'
+    store.files.set(paths.pageScene("page-b"), sourceScene)
+    const duplicated = await executeNotebookCommand(store, {
+      kind: "duplicate_page",
+      documentId: "rename",
+      commandId: "rename-setup-duplicate",
+      sourcePageId: "page-b",
+      pageId: "page-b-copy",
+      now: 3,
+    })
+    const historicalDuplicate = JSON.stringify(duplicated.document.history.undo[0])
+
+    const renamed = await executeNotebookCommand(store, {
+      kind: "rename_page",
+      documentId: "rename",
+      commandId: "rename-page-b",
+      pageId: "page-b",
+      title: "  Titolo  nuovo  ",
+      now: 4,
+    })
+
+    expect(renamed.status).toBe("committed")
+    expect(renamed.document.pages.map((page) => [page.pageId, page.title])).toEqual([
+      ["p1", "Pagina 1"],
+      ["page-b", "Titolo  nuovo"],
+      ["page-b-copy", "Copia di B"],
+    ])
+    expect(JSON.stringify(renamed.document.history.undo[0])).toBe(historicalDuplicate)
+    expect(renamed.document.history.undo.at(-1)?.before.pages[1]?.title).toBe("B")
+    expect(renamed.document.history.undo.at(-1)?.after.pages[1]?.title).toBe("Titolo  nuovo")
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(sourceScene)
+
+    const undone = await executeNotebookCommand(store, {
+      kind: "undo",
+      documentId: "rename",
+      commandId: "undo-rename-page-b",
+      now: 5,
+    })
+    expect(undone.document.pages[1]?.pageId).toBe("page-b")
+    expect(undone.document.pages[1]?.title).toBe("B")
+    const redone = await executeNotebookCommand(store, {
+      kind: "redo",
+      documentId: "rename",
+      commandId: "redo-rename-page-b",
+      now: 6,
+    })
+    expect(redone.document.pages[1]?.pageId).toBe("page-b")
+    expect(redone.document.pages[1]?.title).toBe("Titolo  nuovo")
+    expect(store.files.get(paths.pageScene("page-b"))).toBe(sourceScene)
+  })
+
+  it("rifiuta titoli invalidi e tratta il titolo invariato come zero-I/O", async () => {
+    const store = fakeStore()
+    await seededNotebook(store, "rename-validation")
+    const manifestPath = notebookPaths("rename-validation").manifest
+    const manifestBefore = store.files.get(manifestPath)
+    const originalWrite = store.write.bind(store)
+    let writes = 0
+    store.write = async (path: string, data: Blob): Promise<void> => {
+      writes += 1
+      await originalWrite(path, data)
+    }
+
+    for (const [commandId, title] of [
+      ["rename-empty", "   "],
+      ["rename-control", "titolo\nnuovo"],
+      ["rename-control-leading", "\nTitolo"],
+      ["rename-control-trailing", "Titolo\r"],
+      ["rename-too-long", "x".repeat(121)],
+    ] as const) {
+      await expect(executeNotebookCommand(store, {
+        kind: "rename_page",
+        documentId: "rename-validation",
+        commandId,
+        pageId: "page-b",
+        title,
+        now: 10,
+      })).rejects.toThrow("Invalid notebook page title")
+    }
+
+    const noop = await executeNotebookCommand(store, {
+      kind: "rename_page",
+      documentId: "rename-validation",
+      commandId: "rename-noop",
+      pageId: "page-b",
+      title: "  B  ",
+      now: 11,
+    })
+    expect(noop.status).toBe("noop")
+    expect(writes).toBe(0)
+    expect(store.files.get(manifestPath)).toBe(manifestBefore)
+    expect(noop.document.revision).toBe(0)
+    expect(noop.document.history.undo).toEqual([])
+  })
+
   it("duplica byte e metadati su nuova identita' adiacente e li recupera con undo/redo", async () => {
     const store = fakeStore()
     const base = await seededNotebook(store, "duplicate")

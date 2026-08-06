@@ -147,6 +147,10 @@ export default function NotebookView() {
   const [modificheInAttesa, setModificheInAttesa] = useState(false)
   const [tentativo, setTentativo] = useState(0)
   const [operazioneInCorso, setOperazioneInCorso] = useState(false)
+  const [rinominaDraft, setRinominaDraft] = useState<Readonly<{
+    pageId: string
+    value: string
+  }> | null>(null)
 
   const apiRef = useRef<ExcalidrawApi | null>(null)
   const salvaTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -156,6 +160,19 @@ export default function NotebookView() {
   const flushInCorsoRef = useRef<Promise<void> | null>(null)
   const transizioneRef = useRef(false)
   const ultimaOsservazioneRef = useRef<SceneObservation | null>(null)
+  const rinominaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const ripristinaFocusRinominaRef = useRef(false)
+
+  function chiudiRinominaConFocus() {
+    ripristinaFocusRinominaRef.current = true
+    setRinominaDraft(null)
+  }
+
+  useEffect(() => {
+    if (rinominaDraft || !ripristinaFocusRinominaRef.current || !rinominaButtonRef.current) return
+    ripristinaFocusRinominaRef.current = false
+    rinominaButtonRef.current.focus()
+  }, [rinominaDraft])
 
   // Carica (o crea) il taccuino e la scena della pagina corrente.
   useEffect(() => {
@@ -349,6 +366,7 @@ export default function NotebookView() {
 
   const cambiaPagina = useCallback(async (pageId: string) => {
     if (!doc || !documentId || pageId === doc.activePageId || transizioneRef.current) return
+    setRinominaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -379,6 +397,7 @@ export default function NotebookView() {
 
   async function aggiungiPagina(posizione: "before" | "after") {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
+    setRinominaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -414,6 +433,7 @@ export default function NotebookView() {
 
   async function applicaCronologia(kind: "undo" | "redo") {
     if (!doc || !documentId || transizioneRef.current) return
+    setRinominaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -443,6 +463,7 @@ export default function NotebookView() {
 
   async function duplicaPagina() {
     if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
+    setRinominaDraft(null)
     transizioneRef.current = true
     setOperazioneInCorso(true)
     try {
@@ -464,6 +485,33 @@ export default function NotebookView() {
     } catch (error) {
       if (!paginaSporcaRef.current) {
         setErroreSalvataggio(`Duplicazione pagina non riuscita: ${(error as Error).message}`)
+      }
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
+  async function rinominaPagina() {
+    if (!doc || !documentId || !rinominaDraft || transizioneRef.current) return
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "rename_page",
+        documentId,
+        commandId: `rename-${crypto.randomUUID()}`,
+        pageId: rinominaDraft.pageId,
+        title: rinominaDraft.value,
+        now: Date.now(),
+      })
+      setDoc(result.document)
+      chiudiRinominaConFocus()
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Rinomina pagina non riuscita: ${(error as Error).message}`)
       }
     } finally {
       transizioneRef.current = false
@@ -691,6 +739,66 @@ export default function NotebookView() {
         >
           Duplica
         </button>
+        {rinominaDraft ? (
+          <form
+            data-rename-notebook-form
+            style={rinominaForm}
+            onSubmit={(event) => {
+              event.preventDefault()
+              void rinominaPagina()
+            }}
+          >
+            <label htmlFor="notebook-page-title" style={rinominaLabel}>
+              Titolo pagina
+            </label>
+            <input
+              id="notebook-page-title"
+              data-rename-notebook-input
+              value={rinominaDraft.value}
+              maxLength={120}
+              autoFocus
+              disabled={operazioneInCorso}
+              onChange={(event) => {
+                setRinominaDraft({ ...rinominaDraft, value: event.currentTarget.value })
+              }}
+              style={rinominaInput}
+            />
+            <button
+              type="submit"
+              data-save-notebook-page-title
+              disabled={operazioneInCorso}
+              style={tabNuova}
+            >
+              Salva titolo
+            </button>
+            <button
+              type="button"
+              data-cancel-notebook-page-title
+              disabled={operazioneInCorso}
+              onClick={chiudiRinominaConFocus}
+              style={tabNuova}
+            >
+              Annulla rinomina
+            </button>
+          </form>
+        ) : (
+          <button
+            type="button"
+            className="st-chip"
+            ref={rinominaButtonRef}
+            data-rename-notebook-page
+            aria-label="Rinomina la pagina corrente"
+            disabled={operazioneInCorso || !paginaCorrente}
+            onClick={() => {
+              if (paginaCorrente) {
+                setRinominaDraft({ pageId: paginaCorrente.pageId, value: paginaCorrente.title })
+              }
+            }}
+            style={tabNuova}
+          >
+            Rinomina
+          </button>
+        )}
         <button
           type="button"
           className="st-chip"
@@ -790,6 +898,29 @@ const tabPaginaAttiva = {
 } as const
 
 const tabNuova = { ...tabPagina, border: "1px dashed rgba(21,38,56,0.32)", color: "#1f3f63" } as const
+
+const rinominaForm = {
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+  flexWrap: "wrap",
+} as const
+
+const rinominaLabel = {
+  font: "600 12px/1.3 system-ui",
+  color: "#41556d",
+} as const
+
+const rinominaInput = {
+  minHeight: TAP,
+  minWidth: 180,
+  padding: "6px 10px",
+  borderRadius: 8,
+  border: "1px solid rgba(21,38,56,0.28)",
+  background: "#ffffff",
+  color: "#1f3f63",
+  font: "500 14px/1.3 system-ui",
+} as const
 
 const emptyWrap = {
   flex: 1,

@@ -553,6 +553,133 @@ for (const profile of INSERT_PROFILES) {
   })
 }
 
+// PC-R1-001 + GN-A0-011 + GN-A7-012 → PRD §5.1 e §19.2:
+// stessa pagina rinominata, cronologia durevole, reload e focus/touch verificati.
+for (const profile of INSERT_PROFILES) {
+  test.describe(`rinomina pagina — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: rinomina stessa identita' con undo/redo e reload`, async ({
+      page,
+    }) => {
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-rename-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+        timeout: 15_000,
+      })
+      const pagine = page.locator("[data-notebook-page-id]")
+      const pageId = await pagine.nth(0).getAttribute("data-notebook-page-id")
+      expect(pageId).toBe("p1")
+
+      const apriRinomina = page.locator("[data-rename-notebook-page]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, apriRinomina, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, apriRinomina, false)
+      }
+      const input = page.locator("[data-rename-notebook-input]")
+      await expect(input).toBeFocused()
+      const boxInput = await input.boundingBox()
+      if (!boxInput) throw new Error("input rinomina senza bounding box")
+      expect(boxInput.width).toBeGreaterThanOrEqual(44)
+      expect(boxInput.height).toBeGreaterThanOrEqual(44)
+      await input.fill("  Titolo  esperimento  ")
+
+      if (profile.hasTouch) {
+        await attivaControlloPagina(
+          page,
+          page.locator("[data-save-notebook-page-title]"),
+          true,
+        )
+      } else {
+        await input.press("Enter")
+      }
+      await expect(page.locator("[data-rename-notebook-form]")).toHaveCount(0)
+      await expect(apriRinomina).toBeFocused()
+      await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", pageId!)
+      await expect(pagine.nth(0)).toContainText("Titolo  esperimento")
+      await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+
+      const undo = page.locator("[data-notebook-undo]")
+      const redo = page.locator("[data-notebook-redo]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, undo, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, undo, false)
+      }
+      await expect(pagine.nth(0)).toContainText("Pagina 1")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, redo, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, redo, false)
+      }
+      await expect(pagine.nth(0)).toContainText("Titolo  esperimento")
+
+      await page.reload()
+      await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+        timeout: 15_000,
+      })
+      await expect(pagine).toHaveCount(1)
+      await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", pageId!)
+      await expect(pagine.nth(0)).toContainText("Titolo  esperimento")
+      await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, apriRinomina, true)
+        await attivaControlloPagina(
+          page,
+          page.locator("[data-cancel-notebook-page-title]"),
+          true,
+        )
+      } else {
+        await attivaControlloPaginaAccessibile(page, apriRinomina, false)
+        await attivaControlloPaginaAccessibile(
+          page,
+          page.locator("[data-cancel-notebook-page-title]"),
+          false,
+        )
+      }
+      await expect(page.locator("[data-rename-notebook-form]")).toHaveCount(0)
+      await expect(apriRinomina).toBeFocused()
+
+      const aggiungi = page.locator("[data-add-notebook-page]")
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, aggiungi, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, aggiungi, false)
+      }
+      await expect(pagine).toHaveCount(2)
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, apriRinomina, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, apriRinomina, false)
+      }
+      await expect(page.locator("[data-rename-notebook-form]")).toBeVisible()
+      if (profile.hasTouch) {
+        await attivaControlloPagina(page, undo, true)
+      } else {
+        await attivaControlloPaginaAccessibile(page, undo, false)
+      }
+      await expect(pagine).toHaveCount(1)
+      await expect(page.locator("[data-rename-notebook-form]")).toHaveCount(0)
+      await expect(pagine.nth(0)).toContainText("Titolo  esperimento")
+      await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
+      expect(erroriConsole).toEqual([])
+    })
+  })
+}
+
 test("taccuino: una seconda pagina si aggiunge in coda e si passa fra le due senza perdere il contenuto", async ({
   page,
 }) => {

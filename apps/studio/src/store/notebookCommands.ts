@@ -40,6 +40,11 @@ export type NotebookCommandRequest =
     sourcePageId: string
     pageId: string
   }>)
+  | (CommandEnvelope & Readonly<{
+    kind: "rename_page"
+    pageId: string
+    title: string
+  }>)
   | (CommandEnvelope & Readonly<{ kind: "undo" }>)
   | (CommandEnvelope & Readonly<{ kind: "redo" }>)
   | (CommandEnvelope & Readonly<{
@@ -52,6 +57,24 @@ export type NotebookCommandResult = Readonly<{
   status: "committed" | "deduplicated" | "noop"
   document: NotebookDocument
 }>
+
+const NOTEBOOK_PAGE_TITLE_MAX = 120
+const UNICODE_CONTROL_CHARACTER = /\p{Cc}/u
+
+function normalizePageTitle(title: unknown): string {
+  if (typeof title !== "string") throw new Error("Invalid notebook page title")
+  if (UNICODE_CONTROL_CHARACTER.test(title)) {
+    throw new Error("Invalid notebook page title")
+  }
+  const normalized = title.trim()
+  if (
+    normalized.length === 0 ||
+    normalized.length > NOTEBOOK_PAGE_TITLE_MAX
+  ) {
+    throw new Error("Invalid notebook page title")
+  }
+  return normalized
+}
 
 function snapshot(doc: NotebookDocument): NotebookPageStateSnapshot {
   return {
@@ -96,6 +119,10 @@ function validateEnvelope(request: NotebookCommandRequest): void {
   if (request.kind === "duplicate_page") {
     validateNotebookId(request.sourcePageId)
     validateNotebookId(request.pageId)
+  }
+  if (request.kind === "rename_page") {
+    validateNotebookId(request.pageId)
+    normalizePageTitle(request.title)
   }
   if (request.kind === "set_view_state") {
     if (
@@ -182,6 +209,41 @@ function createCandidate(
         history: {
           undo: [...doc.history.undo, entry].slice(-NOTEBOOK_HISTORY_LIMIT),
           redo: doc.history.redo.slice(0, -1),
+        },
+      },
+    }
+  }
+
+  if (request.kind === "rename_page") {
+    // PC-R1-001 + GN-A0-011/GN-A7-012 → PRD §5.1 e §19.2:
+    // persistenza dello stesso pageId e snapshot storici prima/dopo immutabili.
+    const normalizedTitle = normalizePageTitle(request.title)
+    const current = doc.pages.find((page) => page.pageId === request.pageId)
+    if (!current) throw new Error("Notebook rename target page does not exist")
+    if (current.title === normalizedTitle) return { status: "noop", document: doc }
+    const renamed: NotebookDocument = {
+      ...doc,
+      pages: doc.pages.map((page) => page.pageId === request.pageId
+        ? { ...page, title: normalizedTitle, logicalSize: { ...page.logicalSize } }
+        : page),
+      updatedAt: request.now,
+    }
+    const entry: NotebookHistoryEntry = {
+      commandId: request.commandId,
+      kind: request.kind,
+      at: request.now,
+      before: snapshot(doc),
+      after: snapshot(renamed),
+    }
+    return {
+      status: "committed",
+      document: {
+        ...renamed,
+        revision: doc.revision + 1,
+        recentCommandIds: appendRecentCommand(doc, request.commandId),
+        history: {
+          undo: [...doc.history.undo, entry].slice(-NOTEBOOK_HISTORY_LIMIT),
+          redo: [],
         },
       },
     }
