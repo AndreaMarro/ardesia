@@ -7,6 +7,7 @@
 
 import { describe, it, expect } from "vitest"
 import {
+  NOTEBOOK_SCHEMA_VERSION,
   appendNotebookPage,
   createNotebookIfMissing,
   createNotebookDocument,
@@ -15,6 +16,7 @@ import {
   insertNotebookPageBefore,
   loadNotebook,
   loadNotebookPageScene,
+  migrateNotebookDocument,
   orderedNotebookPages,
   parseNotebookDocument,
   saveNotebook,
@@ -45,6 +47,252 @@ const SCENA = JSON.stringify({
 })
 
 describe("riapertura a freddo del taccuino", () => {
+  it("legge una fixture v1 come v2 senza migrazione implicita", async () => {
+    const store = fakeStore()
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "legacy",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "Pagina storica" }],
+    })
+    store.files.set("notebooks/legacy/notebook.json", legacy)
+
+    const inspection = await inspectNotebook(store, "legacy")
+
+    expect(inspection.kind).toBe("ready")
+    expect(inspection.kind === "ready" ? inspection.document.v : null)
+      .toBe(NOTEBOOK_SCHEMA_VERSION)
+    expect(inspection.kind === "ready" ? inspection.document.pages[0].orientation : null)
+      .toBe(0)
+    expect(store.files.get("notebooks/legacy/notebook.json")).toBe(legacy)
+  })
+
+  it("migra v1 una volta, verifica il readback e poi resta byte-idempotente", async () => {
+    const base = fakeStore()
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "migrazione",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "Pagina storica" }],
+    })
+    base.files.set("notebooks/migrazione/notebook.json", legacy)
+    let writes = 0
+    const store = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        writes += 1
+        await base.write(path, data)
+      },
+    }
+
+    const first = await migrateNotebookDocument(store, "migrazione")
+    const migratedBytes = base.files.get("notebooks/migrazione/notebook.json")
+    const second = await migrateNotebookDocument(store, "migrazione")
+
+    expect(first.kind).toBe("migrated")
+    expect(first.document.v).toBe(NOTEBOOK_SCHEMA_VERSION)
+    expect(second.kind).toBe("already-current")
+    expect(base.files.get("notebooks/migrazione/notebook.json")).toBe(migratedBytes)
+    expect(writes).toBe(1)
+  })
+
+  it("ripristina gli esatti byte v1 se la write di migrazione fallisce dopo aver scritto", async () => {
+    const base = fakeStore()
+    const legacy = '{ "v": 1, "kind": "notebook", "documentId": "rollback", "title": "Spazi intatti", "createdAt": 1, "updatedAt": 2, "pages": [{ "pageId": "p1", "ordinal": 0, "title": "P" }] }'
+    base.files.set("notebooks/rollback/notebook.json", legacy)
+    let writes = 0
+    const store = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        writes += 1
+        await base.write(path, data)
+        if (writes === 1) throw new Error("injected migration write failure")
+      },
+    }
+
+    await expect(migrateNotebookDocument(store, "rollback")).rejects.toThrow(
+      "injected migration write failure",
+    )
+    expect(base.files.get("notebooks/rollback/notebook.json")).toBe(legacy)
+    expect(writes).toBe(2)
+  })
+
+  it("serializza due migrazioni concorrenti dello stesso referente", async () => {
+    const base = fakeStore()
+    base.files.set("notebooks/concurrent-migration/notebook.json", JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "concurrent-migration",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "P" }],
+    }))
+    let writes = 0
+    const store = {
+      ...base,
+      async write(path: string, data: Blob): Promise<void> {
+        writes += 1
+        await new Promise((resolve) => setTimeout(resolve, 5))
+        await base.write(path, data)
+      },
+    }
+
+    const results = await Promise.all([
+      migrateNotebookDocument(store, "concurrent-migration"),
+      migrateNotebookDocument(store, "concurrent-migration"),
+    ])
+
+    expect(results.map((result) => result.kind).sort()).toEqual([
+      "already-current",
+      "migrated",
+    ])
+    expect(writes).toBe(1)
+  })
+
+  it("non sovrascrive un manifest v2 piu' recente osservato durante il rollback", async () => {
+    const base = fakeStore()
+    const path = "notebooks/newer-writer/notebook.json"
+    base.files.set(path, JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "newer-writer",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "P" }],
+    }))
+    const newer = JSON.stringify({
+      ...createNotebookDocument({ documentId: "newer-writer", title: "Writer recente", now: 9 }),
+      revision: 3,
+      updatedAt: 9,
+    })
+    let writes = 0
+    const store = {
+      ...base,
+      async write(target: string, data: Blob): Promise<void> {
+        writes += 1
+        await base.write(target, data)
+        base.files.set(target, newer)
+        throw new Error("injected stale migration failure")
+      },
+    }
+
+    await expect(migrateNotebookDocument(store, "newer-writer")).rejects.toThrow(
+      "injected stale migration failure",
+    )
+    expect(base.files.get(path)).toBe(newer)
+    expect(writes).toBe(1)
+    expect((await loadNotebook(base, "newer-writer"))?.title).toBe("Writer recente")
+  })
+
+  it("propaga AggregateError se la compensazione non puo' essere verificata", async () => {
+    const base = fakeStore()
+    const path = "notebooks/rollback-aggregate/notebook.json"
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "rollback-aggregate",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "P" }],
+    })
+    base.files.set(path, legacy)
+    let writes = 0
+    let corruptNextRead = false
+    const store = {
+      ...base,
+      async read(target: string): Promise<Blob | null> {
+        if (corruptNextRead) {
+          corruptNextRead = false
+          return new Blob(["corrupt rollback readback"])
+        }
+        return base.read(target)
+      },
+      async write(target: string, data: Blob): Promise<void> {
+        writes += 1
+        await base.write(target, data)
+        if (writes === 1) throw new Error("injected migration failure")
+        corruptNextRead = true
+      },
+    }
+
+    const failure = migrateNotebookDocument(store, "rollback-aggregate")
+    await expect(failure).rejects.toBeInstanceOf(AggregateError)
+    await expect(failure).rejects.toThrow("Notebook migration and rollback failed")
+    expect(base.files.get(path)).toBe(legacy)
+  })
+
+  it("ripristina v1 quando la write fallita lascia byte parziali", async () => {
+    const base = fakeStore()
+    const path = "notebooks/partial-write/notebook.json"
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "partial-write",
+      title: "Legacy",
+      createdAt: 1,
+      updatedAt: 2,
+      pages: [{ pageId: "p1", ordinal: 0, title: "P" }],
+    })
+    base.files.set(path, legacy)
+    let writes = 0
+    const store = {
+      ...base,
+      async write(target: string, data: Blob): Promise<void> {
+        writes += 1
+        if (writes === 1) {
+          base.files.set(target, (await data.text()).slice(0, 24))
+          throw new Error("injected partial migration write")
+        }
+        await base.write(target, data)
+      },
+    }
+
+    await expect(migrateNotebookDocument(store, "partial-write")).rejects.toThrow(
+      "injected partial migration write",
+    )
+    expect(base.files.get(path)).toBe(legacy)
+    expect(writes).toBe(2)
+  })
+
+  it("migra solo il target e riapre gli stessi byte v2 con un nuovo store", async () => {
+    const files = new Map<string, string>()
+    const store = fakeStore()
+    for (const documentId of ["migration-a", "migration-b"]) {
+      files.set(`notebooks/${documentId}/notebook.json`, JSON.stringify({
+        v: 1,
+        kind: "notebook",
+        documentId,
+        title: documentId,
+        createdAt: 1,
+        updatedAt: 2,
+        pages: [{ pageId: "p1", ordinal: 0, title: "P" }],
+      }))
+    }
+    store.files.clear()
+    for (const [path, bytes] of files) store.files.set(path, bytes)
+    const untouched = store.files.get("notebooks/migration-b/notebook.json")
+
+    const migrated = await migrateNotebookDocument(store, "migration-a")
+    const migratedBytes = store.files.get("notebooks/migration-a/notebook.json")
+    const reopened = fakeStore()
+    for (const [path, bytes] of store.files) reopened.files.set(path, bytes)
+    const cold = await migrateNotebookDocument(reopened, "migration-a")
+
+    expect(migrated.kind).toBe("migrated")
+    expect(cold).toEqual({ kind: "already-current", document: migrated.document })
+    expect(reopened.files.get("notebooks/migration-a/notebook.json")).toBe(migratedBytes)
+    expect(reopened.files.get("notebooks/migration-b/notebook.json")).toBe(untouched)
+  })
+
   it("rifiuta anche il pageId di un manifest che tenta path traversal", () => {
     const doc = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
     const alterato = JSON.parse(JSON.stringify(doc))

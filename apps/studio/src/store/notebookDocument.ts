@@ -24,7 +24,13 @@
 // Non c'e' un secondo store: si scrive con lo stesso WorkspaceStore, quindi
 // con lo stesso driver FSA/localStorage e lo stesso coordinatore di mutazioni.
 
-export const NOTEBOOK_SCHEMA_VERSION = 1
+export const NOTEBOOK_SCHEMA_VERSION = 2
+export const NOTEBOOK_HISTORY_LIMIT = 50
+export const NOTEBOOK_RECENT_COMMAND_LIMIT = 100
+export const NOTEBOOK_DEFAULT_LOGICAL_SIZE = Object.freeze({
+  width: 794,
+  height: 1123,
+})
 
 /** Namespace di archiviazione. Deliberatamente NON `raw/`: vedi sopra. */
 const NOTEBOOK_ROOT = "notebooks"
@@ -32,11 +38,55 @@ const NOTEBOOK_ROOT = "notebooks"
 const NOTEBOOK_ID_PATTERN = /^[A-Za-z0-9._-]{1,128}$/
 const WINDOWS_DEVICE_PATTERN = /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i
 
+export type NotebookOrientation = 0 | 90 | 180 | 270
+
+export type NotebookLogicalSize = Readonly<{
+  width: number
+  height: number
+}>
+
 export type NotebookPage = Readonly<{
   pageId: string
   /** Posizione nell'ordine, 0-based e contigua. Un buco e' corruzione. */
   ordinal: number
   title: string
+  orientation: NotebookOrientation
+  logicalSize: NotebookLogicalSize
+}>
+
+export type NotebookPageStateSnapshot = Readonly<{
+  pages: ReadonlyArray<NotebookPage>
+  activePageId: string
+  selectedPageIds: ReadonlyArray<string>
+}>
+
+export type NotebookHistoryCommandKind =
+  | "insert_before"
+  | "insert_after"
+  | "duplicate_page"
+  | "rename_page"
+  | "delete_page"
+  | "reorder_pages"
+  | "rotate_page"
+
+export type NotebookHistoryEffect = Readonly<{
+  kind: "rotate_page"
+  pageIds: ReadonlyArray<string>
+  quarterTurns: 1 | 2 | 3
+}>
+
+export type NotebookHistoryEntry = Readonly<{
+  commandId: string
+  kind: NotebookHistoryCommandKind
+  at: number
+  before: NotebookPageStateSnapshot
+  after: NotebookPageStateSnapshot
+  effect?: NotebookHistoryEffect
+}>
+
+export type NotebookHistory = Readonly<{
+  undo: ReadonlyArray<NotebookHistoryEntry>
+  redo: ReadonlyArray<NotebookHistoryEntry>
 }>
 
 export type NotebookDocument = Readonly<{
@@ -47,6 +97,12 @@ export type NotebookDocument = Readonly<{
   createdAt: number
   updatedAt: number
   pages: ReadonlyArray<NotebookPage>
+  revision: number
+  /** Finestra bounded di idempotenza, non garanzia oltre gli ultimi 100 commit. */
+  recentCommandIds: ReadonlyArray<string>
+  activePageId: string
+  selectedPageIds: ReadonlyArray<string>
+  history: NotebookHistory
 }>
 
 export type NotebookPaths = Readonly<{
@@ -82,6 +138,50 @@ export function notebookPaths(documentId: string): NotebookPaths {
   }
 }
 
+const notebookDocumentQueues = new Map<string, Promise<unknown>>()
+
+async function withBrowserNotebookLock<T>(
+  documentId: string,
+  operation: () => Promise<T>,
+): Promise<T> {
+  const lockManager = typeof navigator === "undefined"
+    ? undefined
+    : (navigator as Navigator & {
+      locks?: { request: <Value>(name: string, callback: () => Promise<Value>) => Promise<Value> }
+    }).locks
+  if (!lockManager) return operation()
+  return lockManager.request(`ardesia:notebook:${documentId}`, operation)
+}
+
+/**
+ * Lease di processo per identita' documento, indipendente dall'adapter store.
+ * Web Locks estende la stessa esclusione fra tab quando disponibile.
+ */
+function withNotebookDocumentLease<T>(
+  documentId: string,
+  operation: () => Promise<T>,
+): Promise<T> {
+  const validDocumentId = validateNotebookId(documentId)
+  const previous = notebookDocumentQueues.get(validDocumentId) ?? Promise.resolve()
+  const current = previous
+    .catch(() => undefined)
+    .then(() => withBrowserNotebookLock(validDocumentId, operation))
+  notebookDocumentQueues.set(validDocumentId, current)
+  void current.then(
+    () => {
+      if (notebookDocumentQueues.get(validDocumentId) === current) {
+        notebookDocumentQueues.delete(validDocumentId)
+      }
+    },
+    () => {
+      if (notebookDocumentQueues.get(validDocumentId) === current) {
+        notebookDocumentQueues.delete(validDocumentId)
+      }
+    },
+  )
+  return current
+}
+
 export function createNotebookDocument(options: {
   documentId: string
   title: string
@@ -99,7 +199,18 @@ export function createNotebookDocument(options: {
     // pagine sarebbe uno stato vuoto che l'utente non ha chiesto. `p1` resta
     // l'identita' legacy esplicita; le pagine successive ricevono un ID al
     // boundary chiamante e non lo derivano mai dalla posizione.
-    pages: [{ pageId: "p1", ordinal: 0, title: "Pagina 1" }],
+    pages: [{
+      pageId: "p1",
+      ordinal: 0,
+      title: "Pagina 1",
+      orientation: 0,
+      logicalSize: { ...NOTEBOOK_DEFAULT_LOGICAL_SIZE },
+    }],
+    revision: 0,
+    recentCommandIds: [],
+    activePageId: "p1",
+    selectedPageIds: ["p1"],
+    history: { undo: [], redo: [] },
   }
 }
 
@@ -130,6 +241,8 @@ function insertNotebookPageAt(
     pageId,
     ordinal: insertionIndex,
     title: options.title ?? `Pagina ${insertionIndex + 1}`,
+    orientation: 0,
+    logicalSize: { ...NOTEBOOK_DEFAULT_LOGICAL_SIZE },
   }
   const reordered = [
     ...pages.slice(0, insertionIndex),
@@ -187,13 +300,181 @@ function normalizeNotebookDocument(doc: NotebookDocument): NotebookDocument {
   return normalized
 }
 
-/**
- * Rilegge un manifest. Restituisce `null` — e non un documento parziale — per
- * ogni forma che non riconosce: schema diverso, campi mancanti, ordinali non
- * contigui. Un taccuino mezzo letto sarebbe peggio di un taccuino non letto,
- * perche' verrebbe poi riscritto sopra l'originale.
- */
-export function parseNotebookDocument(json: string): NotebookDocument | null {
+const NOTEBOOK_COMMAND_ID_PATTERN = /^[A-Za-z0-9._:-]{1,128}$/
+const NOTEBOOK_HISTORY_KINDS = new Set<NotebookHistoryCommandKind>([
+  "insert_before",
+  "insert_after",
+  "duplicate_page",
+  "rename_page",
+  "delete_page",
+  "reorder_pages",
+  "rotate_page",
+])
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value)
+}
+
+function isCanonicalOrientation(value: unknown): value is NotebookOrientation {
+  return value === 0 || value === 90 || value === 180 || value === 270
+}
+
+export function validateNotebookCommandId(commandId: string): string {
+  if (!NOTEBOOK_COMMAND_ID_PATTERN.test(commandId)) {
+    throw new Error("Invalid notebook command identifier")
+  }
+  return commandId
+}
+
+function parseNotebookPages(
+  entries: unknown,
+  sourceVersion: 1 | 2,
+): NotebookPage[] | null {
+  if (!Array.isArray(entries) || entries.length === 0) return null
+  const pages: NotebookPage[] = []
+  for (const entry of entries) {
+    if (!entry || typeof entry !== "object") return null
+    const page = entry as Record<string, unknown>
+    if (typeof page.pageId !== "string") return null
+    if (!Number.isInteger(page.ordinal) || (page.ordinal as number) < 0) return null
+    if (typeof page.title !== "string") return null
+    try {
+      validateNotebookId(page.pageId)
+    } catch {
+      return null
+    }
+
+    const orientation = sourceVersion === 1 ? 0 : page.orientation
+    if (!isCanonicalOrientation(orientation)) return null
+    const logicalSize = sourceVersion === 1
+      ? NOTEBOOK_DEFAULT_LOGICAL_SIZE
+      : page.logicalSize
+    if (!logicalSize || typeof logicalSize !== "object") return null
+    const size = logicalSize as Record<string, unknown>
+    if (
+      !isFiniteNumber(size.width) || size.width <= 0 ||
+      !isFiniteNumber(size.height) || size.height <= 0
+    ) return null
+
+    pages.push({
+      pageId: page.pageId,
+      ordinal: page.ordinal as number,
+      title: page.title,
+      orientation,
+      logicalSize: { width: size.width, height: size.height },
+    })
+  }
+
+  const ordinals = pages.map((page) => page.ordinal).sort((a, b) => a - b)
+  for (let index = 0; index < ordinals.length; index += 1) {
+    if (ordinals[index] !== index) return null
+  }
+  if (new Set(pages.map((page) => page.pageId)).size !== pages.length) return null
+  return pages
+}
+
+function validPageState(
+  pages: ReadonlyArray<NotebookPage>,
+  activePageId: unknown,
+  selectedPageIds: unknown,
+): activePageId is string {
+  if (typeof activePageId !== "string" || !Array.isArray(selectedPageIds)) return false
+  if (!pages.some((page) => page.pageId === activePageId)) return false
+  if (!selectedPageIds.every((pageId) => typeof pageId === "string")) return false
+  const selected = selectedPageIds as string[]
+  if (new Set(selected).size !== selected.length || !selected.includes(activePageId)) return false
+  const liveIds = new Set(pages.map((page) => page.pageId))
+  if (selected.some((pageId) => !liveIds.has(pageId))) return false
+  const documentOrder = [...pages]
+    .sort((a, b) => a.ordinal - b.ordinal)
+    .filter((page) => selected.includes(page.pageId))
+    .map((page) => page.pageId)
+  return documentOrder.length === selected.length &&
+    documentOrder.every((pageId, index) => pageId === selected[index])
+}
+
+function parsePageStateSnapshot(raw: unknown): NotebookPageStateSnapshot | null {
+  if (!raw || typeof raw !== "object") return null
+  const candidate = raw as Record<string, unknown>
+  const pages = parseNotebookPages(candidate.pages, 2)
+  if (!pages || !validPageState(pages, candidate.activePageId, candidate.selectedPageIds)) {
+    return null
+  }
+  return {
+    pages,
+    activePageId: candidate.activePageId,
+    selectedPageIds: [...(candidate.selectedPageIds as string[])],
+  }
+}
+
+function parseHistoryEntry(raw: unknown): NotebookHistoryEntry | null {
+  if (!raw || typeof raw !== "object") return null
+  const candidate = raw as Record<string, unknown>
+  if (typeof candidate.commandId !== "string") return null
+  try {
+    validateNotebookCommandId(candidate.commandId)
+  } catch {
+    return null
+  }
+  if (
+    typeof candidate.kind !== "string" ||
+    !NOTEBOOK_HISTORY_KINDS.has(candidate.kind as NotebookHistoryCommandKind)
+  ) return null
+  if (!isFiniteNumber(candidate.at)) return null
+  const before = parsePageStateSnapshot(candidate.before)
+  const after = parsePageStateSnapshot(candidate.after)
+  if (!before || !after) return null
+
+  let effect: NotebookHistoryEffect | undefined
+  if (candidate.kind === "rotate_page" && candidate.effect === undefined) return null
+  if (candidate.effect !== undefined) {
+    if (!candidate.effect || typeof candidate.effect !== "object") return null
+    const rawEffect = candidate.effect as Record<string, unknown>
+    if (
+      candidate.kind !== "rotate_page" ||
+      rawEffect.kind !== "rotate_page" ||
+      !Array.isArray(rawEffect.pageIds) || rawEffect.pageIds.length === 0 ||
+      !rawEffect.pageIds.every((pageId) => typeof pageId === "string") ||
+      new Set(rawEffect.pageIds).size !== rawEffect.pageIds.length ||
+      (rawEffect.quarterTurns !== 1 && rawEffect.quarterTurns !== 2 &&
+        rawEffect.quarterTurns !== 3)
+    ) return null
+    effect = {
+      kind: "rotate_page",
+      pageIds: [...rawEffect.pageIds] as string[],
+      quarterTurns: rawEffect.quarterTurns,
+    }
+  }
+
+  return {
+    commandId: candidate.commandId,
+    kind: candidate.kind as NotebookHistoryCommandKind,
+    at: candidate.at,
+    before,
+    after,
+    ...(effect ? { effect } : {}),
+  }
+}
+
+function parseHistory(raw: unknown): NotebookHistory | null {
+  if (!raw || typeof raw !== "object") return null
+  const candidate = raw as Record<string, unknown>
+  if (!Array.isArray(candidate.undo) || !Array.isArray(candidate.redo)) return null
+  if (candidate.undo.length + candidate.redo.length > NOTEBOOK_HISTORY_LIMIT) return null
+  const undo = candidate.undo.map(parseHistoryEntry)
+  const redo = candidate.redo.map(parseHistoryEntry)
+  if (undo.some((entry) => !entry) || redo.some((entry) => !entry)) return null
+  const entries = [...undo, ...redo] as NotebookHistoryEntry[]
+  if (new Set(entries.map((entry) => entry.commandId)).size !== entries.length) return null
+  return { undo: undo as NotebookHistoryEntry[], redo: redo as NotebookHistoryEntry[] }
+}
+
+type ParsedNotebookDocument = Readonly<{
+  document: NotebookDocument
+  sourceVersion: 1 | 2
+}>
+
+function parseNotebookDocumentWithVersion(json: string): ParsedNotebookDocument | null {
   let raw: unknown
   try {
     raw = JSON.parse(json)
@@ -202,54 +483,87 @@ export function parseNotebookDocument(json: string): NotebookDocument | null {
   }
   if (!raw || typeof raw !== "object") return null
   const candidate = raw as Record<string, unknown>
-
-  if (candidate.v !== NOTEBOOK_SCHEMA_VERSION) return null
+  if (candidate.v !== 1 && candidate.v !== NOTEBOOK_SCHEMA_VERSION) return null
+  const sourceVersion = candidate.v as 1 | 2
   if (candidate.kind !== "notebook") return null
   if (typeof candidate.documentId !== "string") return null
   if (typeof candidate.title !== "string") return null
-  if (typeof candidate.createdAt !== "number") return null
-  if (typeof candidate.updatedAt !== "number") return null
-  if (!Array.isArray(candidate.pages) || candidate.pages.length === 0) return null
-
-  const pages: NotebookPage[] = []
-  for (const entry of candidate.pages) {
-    if (!entry || typeof entry !== "object") return null
-    const page = entry as Record<string, unknown>
-    if (typeof page.pageId !== "string") return null
-    if (typeof page.ordinal !== "number") return null
-    if (typeof page.title !== "string") return null
-    try {
-      validateNotebookId(page.pageId)
-    } catch {
-      return null
-    }
-    pages.push({ pageId: page.pageId, ordinal: page.ordinal, title: page.title })
-  }
-
-  // Ordinali contigui 0..n-1: la sola forma d'ordine che questo documento
-  // ammette. Un buco significa che una scrittura si e' persa.
-  const ordinals = pages.map((p) => p.ordinal).sort((a, b) => a - b)
-  for (let i = 0; i < ordinals.length; i += 1) {
-    if (ordinals[i] !== i) return null
-  }
-  const ids = new Set(pages.map((p) => p.pageId))
-  if (ids.size !== pages.length) return null
-
+  if (!isFiniteNumber(candidate.createdAt) || !isFiniteNumber(candidate.updatedAt)) return null
   try {
     validateNotebookId(candidate.documentId)
   } catch {
     return null
   }
 
-  return {
-    v: NOTEBOOK_SCHEMA_VERSION,
-    kind: "notebook",
-    documentId: candidate.documentId,
-    title: candidate.title,
-    createdAt: candidate.createdAt,
-    updatedAt: candidate.updatedAt,
-    pages,
+  const pages = parseNotebookPages(candidate.pages, sourceVersion)
+  if (!pages) return null
+  const firstPage = [...pages].sort((a, b) => a.ordinal - b.ordinal)[0]
+  if (!firstPage) return null
+
+  if (sourceVersion === 1) {
+    return {
+      sourceVersion,
+      document: {
+        v: NOTEBOOK_SCHEMA_VERSION,
+        kind: "notebook",
+        documentId: candidate.documentId,
+        title: candidate.title,
+        createdAt: candidate.createdAt,
+        updatedAt: candidate.updatedAt,
+        pages,
+        revision: 0,
+        recentCommandIds: [],
+        activePageId: firstPage.pageId,
+        selectedPageIds: [firstPage.pageId],
+        history: { undo: [], redo: [] },
+      },
+    }
   }
+
+  if (!Number.isInteger(candidate.revision) || (candidate.revision as number) < 0) return null
+  if (
+    !Array.isArray(candidate.recentCommandIds) ||
+    candidate.recentCommandIds.length > NOTEBOOK_RECENT_COMMAND_LIMIT ||
+    !candidate.recentCommandIds.every((commandId) => typeof commandId === "string") ||
+    new Set(candidate.recentCommandIds).size !== candidate.recentCommandIds.length
+  ) return null
+  for (const commandId of candidate.recentCommandIds as string[]) {
+    try {
+      validateNotebookCommandId(commandId)
+    } catch {
+      return null
+    }
+  }
+  if (!validPageState(pages, candidate.activePageId, candidate.selectedPageIds)) return null
+  const history = parseHistory(candidate.history)
+  if (!history) return null
+  return {
+    sourceVersion,
+    document: {
+      v: NOTEBOOK_SCHEMA_VERSION,
+      kind: "notebook",
+      documentId: candidate.documentId,
+      title: candidate.title,
+      createdAt: candidate.createdAt,
+      updatedAt: candidate.updatedAt,
+      pages,
+      revision: candidate.revision as number,
+      recentCommandIds: [...(candidate.recentCommandIds as string[])],
+      activePageId: candidate.activePageId,
+      selectedPageIds: [...(candidate.selectedPageIds as string[])],
+      history,
+    },
+  }
+}
+
+/**
+ * Rilegge un manifest. Restituisce `null` — e non un documento parziale — per
+ * ogni forma che non riconosce: schema diverso, campi mancanti, ordinali non
+ * contigui. Un taccuino mezzo letto sarebbe peggio di un taccuino non letto,
+ * perche' verrebbe poi riscritto sopra l'originale.
+ */
+export function parseNotebookDocument(json: string): NotebookDocument | null {
+  return parseNotebookDocumentWithVersion(json)?.document ?? null
 }
 
 // --- PERSISTENZA ---
@@ -376,6 +690,137 @@ export async function inspectNotebook(
     return { kind: "corrupt", reason: "document-id-mismatch" }
   }
   return { kind: "ready", document }
+}
+
+export type NotebookMigrationResult = Readonly<{
+  kind: "migrated" | "already-current"
+  document: NotebookDocument
+}>
+
+async function restoreNotebookManifest(
+  store: NotebookStore,
+  manifestPath: string,
+  originalBytes: string,
+): Promise<void> {
+  let writeFailure: unknown
+  try {
+    await store.write(manifestPath, jsonBlob(originalBytes))
+  } catch (error) {
+    writeFailure = error
+  }
+
+  let restored: Blob | null
+  try {
+    restored = await store.read(manifestPath)
+  } catch (verificationError) {
+    throw new AggregateError(
+      [writeFailure, verificationError].filter(Boolean),
+      "Notebook manifest rollback could not be verified",
+      { cause: verificationError },
+    )
+  }
+  if (restored && await restored.text() === originalBytes) return
+  throw new AggregateError(
+    [writeFailure, new Error("Notebook manifest rollback byte mismatch")].filter(Boolean),
+    "Notebook manifest rollback failed",
+  )
+}
+
+/**
+ * Converte esplicitamente un manifest v1 nel formato corrente.
+ *
+ * La lettura normale resta non mutante. La migrazione conserva invece gli
+ * esatti byte originali, verifica il candidato riletto come v2 e compensa ogni
+ * fallimento osservabile prima di propagare l'errore.
+ */
+async function migrateNotebookDocumentUnlocked(
+  store: NotebookStore,
+  documentId: string,
+): Promise<NotebookMigrationResult> {
+  const requestedId = validateNotebookId(documentId)
+  const manifestPath = notebookPaths(requestedId).manifest
+  const originalBlob = await store.read(manifestPath)
+  if (!originalBlob) throw new Error("Cannot migrate a missing notebook manifest")
+  const originalBytes = await originalBlob.text()
+  const parsed = parseNotebookDocumentWithVersion(originalBytes)
+  if (!parsed) throw new Error("Cannot migrate a corrupt notebook manifest")
+  if (parsed.document.documentId !== requestedId) {
+    throw new Error("Cannot migrate a mismatched notebook manifest")
+  }
+  if (parsed.sourceVersion === NOTEBOOK_SCHEMA_VERSION) {
+    return { kind: "already-current", document: parsed.document }
+  }
+
+  const candidateBytes = serializeNotebookDocument(parsed.document)
+  try {
+    await store.write(manifestPath, jsonBlob(candidateBytes))
+    const verifiedBlob = await store.read(manifestPath)
+    if (!verifiedBlob) throw new Error("Notebook migration readback is missing")
+    const verifiedBytes = await verifiedBlob.text()
+    const verified = parseNotebookDocumentWithVersion(verifiedBytes)
+    if (
+      !verified ||
+      verified.sourceVersion !== NOTEBOOK_SCHEMA_VERSION ||
+      verified.document.documentId !== requestedId ||
+      serializeNotebookDocument(verified.document) !== candidateBytes
+    ) {
+      throw new Error("Notebook migration readback verification failed")
+    }
+    return { kind: "migrated", document: verified.document }
+  } catch (migrationError) {
+    let currentBytes: string | null
+    try {
+      const current = await store.read(manifestPath)
+      currentBytes = current ? await current.text() : null
+    } catch (readError) {
+      throw new AggregateError(
+        [migrationError, readError],
+        "Notebook migration failed and rollback state could not be read",
+        { cause: readError },
+      )
+    }
+    const currentParsed = currentBytes === null
+      ? null
+      : parseNotebookDocumentWithVersion(currentBytes)
+    const distinctValidV2Writer = currentBytes !== candidateBytes &&
+      currentParsed?.sourceVersion === NOTEBOOK_SCHEMA_VERSION &&
+      currentParsed.document.documentId === requestedId
+    if (currentBytes !== originalBytes && !distinctValidV2Writer) {
+      try {
+        await restoreNotebookManifest(store, manifestPath, originalBytes)
+      } catch (rollbackError) {
+        throw new AggregateError(
+          [migrationError, rollbackError],
+          "Notebook migration and rollback failed",
+          { cause: rollbackError },
+        )
+      }
+    }
+    throw migrationError
+  }
+}
+
+export function migrateNotebookDocument(
+  store: NotebookStore,
+  documentId: string,
+): Promise<NotebookMigrationResult> {
+  return withMigratedNotebookDocumentLease(
+    store,
+    documentId,
+    async (result) => result,
+  )
+}
+
+/** Compone migrazione e operazione chiamante nella stessa lease non rientrante. */
+export function withMigratedNotebookDocumentLease<T>(
+  store: NotebookStore,
+  documentId: string,
+  operation: (migration: NotebookMigrationResult) => Promise<T>,
+): Promise<T> {
+  return withNotebookDocumentLease(documentId, async () => {
+    const migration = await migrateNotebookDocumentUnlocked(store, documentId)
+    return operation(migration)
+  })
 }
 
 export async function saveNotebookPageScene(

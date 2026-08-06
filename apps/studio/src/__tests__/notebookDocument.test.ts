@@ -9,6 +9,8 @@
 
 import { describe, it, expect } from "vitest"
 import {
+  NOTEBOOK_HISTORY_LIMIT,
+  NOTEBOOK_RECENT_COMMAND_LIMIT,
   NOTEBOOK_SCHEMA_VERSION,
   appendNotebookPage,
   createNotebookDocument,
@@ -33,8 +35,62 @@ describe("identita' e schema", () => {
     expect(doc.v).toBe(NOTEBOOK_SCHEMA_VERSION)
     expect(doc.kind).toBe("notebook")
     expect(doc.pages).toHaveLength(1)
-    expect(doc.pages[0].ordinal).toBe(0)
-    expect(doc.pages[0].pageId).toMatch(/^[A-Za-z0-9._-]{1,128}$/)
+    expect(doc.pages[0]).toEqual({
+      pageId: "p1",
+      ordinal: 0,
+      title: "Pagina 1",
+      orientation: 0,
+      logicalSize: { width: 794, height: 1123 },
+    })
+    expect(doc).toMatchObject({
+      revision: 0,
+      recentCommandIds: [],
+      activePageId: "p1",
+      selectedPageIds: ["p1"],
+      history: { undo: [], redo: [] },
+    })
+  })
+
+  it("normalizza una fixture v1 senza riscrivere identita' o titoli", () => {
+    const legacy = JSON.stringify({
+      v: 1,
+      kind: "notebook",
+      documentId: "legacy-v1",
+      title: "Titolo storico",
+      createdAt: 10,
+      updatedAt: 20,
+      pages: [
+        { pageId: "storica-b", ordinal: 1, title: "B  storico" },
+        { pageId: "storica-a", ordinal: 0, title: "A storico" },
+      ],
+    })
+
+    const parsed = parseNotebookDocument(legacy)
+
+    expect(parsed).toMatchObject({
+      v: NOTEBOOK_SCHEMA_VERSION,
+      revision: 0,
+      recentCommandIds: [],
+      activePageId: "storica-a",
+      selectedPageIds: ["storica-a"],
+      history: { undo: [], redo: [] },
+    })
+    expect(parsed?.pages).toEqual([
+      {
+        pageId: "storica-b",
+        ordinal: 1,
+        title: "B  storico",
+        orientation: 0,
+        logicalSize: { width: 794, height: 1123 },
+      },
+      {
+        pageId: "storica-a",
+        ordinal: 0,
+        title: "A storico",
+        orientation: 0,
+        logicalSize: { width: 794, height: 1123 },
+      },
+    ])
   })
 
   it("rifiuta un manifest con schema diverso invece di degradare in silenzio", () => {
@@ -51,6 +107,72 @@ describe("identita' e schema", () => {
     rotto.pages.push({ pageId: "p9", ordinal: 7, title: "salto" })
 
     expect(parseNotebookDocument(JSON.stringify(rotto))).toBeNull()
+  })
+
+  it("rifiuta orientamento non canonico e selezioni che non contengono l'attiva", () => {
+    const doc = createNotebookDocument({ documentId: "t1", title: "T", now: 1 })
+    const orientamentoRotto = JSON.parse(serializeNotebookDocument(doc))
+    orientamentoRotto.pages[0].orientation = 45
+    expect(parseNotebookDocument(JSON.stringify(orientamentoRotto))).toBeNull()
+
+    const selezioneRotta = JSON.parse(serializeNotebookDocument(doc))
+    selezioneRotta.selectedPageIds = []
+    expect(parseNotebookDocument(JSON.stringify(selezioneRotta))).toBeNull()
+  })
+
+  it("rifiuta history/retry oltre limite, ID duplicati e selezione fuori ordine", () => {
+    const base = appendNotebookPage(
+      createNotebookDocument({ documentId: "limits", title: "T", now: 1 }),
+      { pageId: "page-b", now: 2 },
+    )
+    const snapshot = {
+      pages: base.pages,
+      activePageId: base.activePageId,
+      selectedPageIds: base.selectedPageIds,
+    }
+    expect(parseNotebookDocument(serializeNotebookDocument(base))).not.toBeNull()
+    const entry = (commandId: string) => ({
+      commandId,
+      kind: "insert_after",
+      at: 3,
+      before: snapshot,
+      after: snapshot,
+    })
+
+    const troppaHistory = JSON.parse(serializeNotebookDocument(base))
+    troppaHistory.history.undo = Array.from(
+      { length: NOTEBOOK_HISTORY_LIMIT + 1 },
+      (_, index) => entry(`history-${index}`),
+    )
+    expect(parseNotebookDocument(JSON.stringify(troppaHistory))).toBeNull()
+
+    const historyDuplicata = JSON.parse(serializeNotebookDocument(base))
+    historyDuplicata.history.undo = [entry("duplicate-history")]
+    historyDuplicata.history.redo = [entry("duplicate-history")]
+    expect(parseNotebookDocument(JSON.stringify(historyDuplicata))).toBeNull()
+
+    const rotateSenzaEffetto = JSON.parse(serializeNotebookDocument(base))
+    rotateSenzaEffetto.history.undo = [{
+      ...entry("rotate-without-effect"),
+      kind: "rotate_page",
+    }]
+    expect(parseNotebookDocument(JSON.stringify(rotateSenzaEffetto))).toBeNull()
+
+    const retryTroppi = JSON.parse(serializeNotebookDocument(base))
+    retryTroppi.recentCommandIds = Array.from(
+      { length: NOTEBOOK_RECENT_COMMAND_LIMIT + 1 },
+      (_, index) => `recent-${index}`,
+    )
+    expect(parseNotebookDocument(JSON.stringify(retryTroppi))).toBeNull()
+
+    const retryDuplicati = JSON.parse(serializeNotebookDocument(base))
+    retryDuplicati.recentCommandIds = ["same-retry", "same-retry"]
+    expect(parseNotebookDocument(JSON.stringify(retryDuplicati))).toBeNull()
+
+    const selezioneFuoriOrdine = JSON.parse(serializeNotebookDocument(base))
+    selezioneFuoriOrdine.activePageId = "p1"
+    selezioneFuoriOrdine.selectedPageIds = ["page-b", "p1"]
+    expect(parseNotebookDocument(JSON.stringify(selezioneFuoriOrdine))).toBeNull()
   })
 })
 
