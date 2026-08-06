@@ -112,6 +112,7 @@ async function attivaControlloPaginaAccessibile(
   touch: boolean,
 ): Promise<void> {
   await expect(controllo).toBeVisible()
+  await controllo.scrollIntoViewIfNeeded()
   const box = await controllo.boundingBox()
   if (!box) throw new Error("controllo pagina accessibile senza bounding box")
   expect(box.width).toBeGreaterThanOrEqual(44)
@@ -178,6 +179,17 @@ async function leggiByteCachePagina(
   )
 }
 
+async function leggiScenaCachePagina(
+  page: Page,
+  documentId: string,
+  pageId: string,
+): Promise<Record<string, unknown> | null> {
+  return page.evaluate(({ doc, pagina }) => {
+    const encoded = localStorage.getItem(`maestro:notebooks/${doc}/pages/${pagina}.excalidraw`)
+    return encoded ? JSON.parse(atob(encoded)) as Record<string, unknown> : null
+  }, { doc: documentId, pagina: pageId })
+}
+
 for (const vp of VIEWPORTS) {
   test(`taccuino ${vp.nome}: da Lezione creo un Taccuino, scrivo, ricarico e ritrovo tutto`, async ({
     page,
@@ -233,6 +245,130 @@ for (const vp of VIEWPORTS) {
     )
 
     expect(erroriConsole).toEqual([])
+  })
+}
+
+for (const profile of INSERT_PROFILES) {
+  test.describe(`rotazione reale ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: ruota selezione, geometria e pagina bianca con undo/redo e reload`, async ({
+      page,
+    }) => {
+      const consoleErrors: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") consoleErrors.push(message.text())
+      })
+      page.on("pageerror", (error) => consoleErrors.push(`pageerror: ${error.message}`))
+      await page.goto(`/#lezione-rotate-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const notebook = page.locator("[data-notebook-document-id]").first()
+      await expect(notebook).toBeVisible({ timeout: 15_000 })
+      const documentId = await notebook.getAttribute("data-notebook-document-id")
+      if (!documentId) throw new Error("documentId rotazione assente")
+
+      await disegnaUnTratto(page)
+      await expect(page.locator("[data-notebook-save-state='salvato']")).toBeVisible({
+        timeout: 10_000,
+      })
+      const p1Before = await leggiScenaCachePagina(page, documentId, "p1")
+      const elementBefore = (p1Before?.elements as Array<Record<string, number>> | undefined)?.[0]
+      if (!elementBefore) throw new Error("elemento p1 pre-rotazione assente")
+
+      const pages = page.locator("[data-notebook-page-id]")
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-add-notebook-page]"),
+        profile.hasTouch,
+      )
+      await expect(pages).toHaveCount(2)
+      const blankPageId = await pages.nth(1).getAttribute("data-notebook-page-id")
+      if (!blankPageId) throw new Error("pagina bianca assente")
+      expect(await leggiScenaCachePagina(page, documentId, blankPageId)).toBeNull()
+      await attivaControlloPagina(
+        page,
+        page.locator('[data-toggle-notebook-page-selection="p1"]'),
+        profile.hasTouch,
+      )
+
+      const rotate = page.locator("[data-rotate-notebook-selection]")
+      await attivaControlloPaginaAccessibile(page, rotate, profile.hasTouch)
+      await expect(page.locator(".excalidraw canvas").first()).toBeVisible({ timeout: 10_000 })
+      await expect(pages.nth(0)).toHaveAttribute("data-notebook-page-orientation", "90")
+      await expect(pages.nth(1)).toHaveAttribute("data-notebook-page-orientation", "90")
+      await expect(pages.nth(1)).toHaveAttribute("aria-current", "true")
+      await expect(pages.nth(0)).toHaveAttribute("data-notebook-page-selected", "true")
+      await expect(pages.nth(1)).toHaveAttribute("data-notebook-page-selected", "true")
+      const blankAfterRotate = await leggiScenaCachePagina(page, documentId, blankPageId)
+      expect(blankAfterRotate?.elements).toEqual([])
+
+      const surface = page.locator("[data-notebook-page-surface]")
+      await expect(surface).toHaveAttribute("data-notebook-page-orientation", "90")
+      const landscapeBox = await surface.boundingBox()
+      if (!landscapeBox) throw new Error("superficie landscape assente")
+      expect(Math.abs(landscapeBox.width / landscapeBox.height - 1123 / 794)).toBeLessThan(0.08)
+
+      const p1Rotated = await leggiScenaCachePagina(page, documentId, "p1")
+      const elementRotated = (p1Rotated?.elements as Array<Record<string, number>> | undefined)?.[0]
+      if (!elementRotated) throw new Error("elemento p1 ruotato assente")
+      const centreX = elementBefore.x + elementBefore.width / 2
+      const centreY = elementBefore.y + elementBefore.height / 2
+      expect(elementRotated.x + elementRotated.width / 2).toBeCloseTo(1123 - centreY, 6)
+      expect(elementRotated.y + elementRotated.height / 2).toBeCloseTo(centreX, 6)
+      expect(elementRotated.angle).toBeCloseTo(
+        (elementBefore.angle + Math.PI / 2) % (Math.PI * 2),
+        9,
+      )
+
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-notebook-undo]"),
+        profile.hasTouch,
+      )
+      await expect(page.locator(".excalidraw canvas").first()).toBeVisible({ timeout: 10_000 })
+      await expect(surface).toHaveAttribute("data-notebook-page-orientation", "0")
+      const portraitBox = await surface.boundingBox()
+      if (!portraitBox) throw new Error("superficie portrait assente")
+      expect(Math.abs(portraitBox.width / portraitBox.height - 794 / 1123)).toBeLessThan(0.08)
+      const p1Undone = await leggiScenaCachePagina(page, documentId, "p1")
+      const elementUndone = (p1Undone?.elements as Array<Record<string, number>> | undefined)?.[0]
+      if (!elementUndone) throw new Error("elemento p1 undo assente")
+      expect(elementUndone.x).toBeCloseTo(elementBefore.x, 6)
+      expect(elementUndone.y).toBeCloseTo(elementBefore.y, 6)
+      expect(elementUndone.angle).toBeCloseTo(elementBefore.angle, 9)
+
+      await attivaControlloPagina(
+        page,
+        page.locator("[data-notebook-redo]"),
+        profile.hasTouch,
+      )
+      await expect(page.locator(".excalidraw canvas").first()).toBeVisible({ timeout: 10_000 })
+      await expect(surface).toHaveAttribute("data-notebook-page-orientation", "90")
+      await page.reload()
+      await expect(notebook).toBeVisible({ timeout: 15_000 })
+      await expect(surface).toHaveAttribute("data-notebook-page-orientation", "90")
+      await expect(pages.nth(0)).toHaveAttribute("data-notebook-page-selected", "true")
+      await expect(pages.nth(1)).toHaveAttribute("data-notebook-page-selected", "true")
+      await expect(pages.nth(1)).toHaveAttribute("aria-current", "true")
+      const blankAfterReload = await leggiScenaCachePagina(page, documentId, blankPageId)
+      expect(blankAfterReload?.elements).toEqual([])
+      const p1AfterReload = await leggiScenaCachePagina(page, documentId, "p1")
+      const elementAfterReload = (
+        p1AfterReload?.elements as Array<Record<string, number>> | undefined
+      )?.[0]
+      if (!elementAfterReload) throw new Error("elemento p1 post-reload assente")
+      expect(elementAfterReload.x).toBeCloseTo(elementRotated.x, 6)
+      expect(elementAfterReload.y).toBeCloseTo(elementRotated.y, 6)
+      expect(elementAfterReload.width).toBeCloseTo(elementRotated.width, 6)
+      expect(elementAfterReload.height).toBeCloseTo(elementRotated.height, 6)
+      expect(elementAfterReload.angle).toBeCloseTo(elementRotated.angle, 9)
+      expect(consoleErrors).toEqual([])
+    })
   })
 }
 

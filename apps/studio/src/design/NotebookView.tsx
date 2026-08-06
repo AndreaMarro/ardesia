@@ -146,7 +146,12 @@ export default function NotebookView() {
   const [erroreSalvataggio, setErroreSalvataggio] = useState<string | null>(null)
   const [modificheInAttesa, setModificheInAttesa] = useState(false)
   const [tentativo, setTentativo] = useState(0)
+  const [ricaricaScena, setRicaricaScena] = useState(0)
   const [operazioneInCorso, setOperazioneInCorso] = useState(false)
+  const [misuraSuperficie, setMisuraSuperficie] = useState<Readonly<{
+    width: number
+    height: number
+  }> | null>(null)
   const [rinominaDraft, setRinominaDraft] = useState<Readonly<{
     pageId: string
     value: string
@@ -168,6 +173,7 @@ export default function NotebookView() {
   const ripristinaFocusRinominaRef = useRef(false)
   const eliminaButtonRef = useRef<HTMLButtonElement | null>(null)
   const paginaAttivaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const superficieContenitoreRef = useRef<HTMLDivElement | null>(null)
   const focusDopoEliminaRef = useRef<"delete" | "page" | null>(null)
 
   function chiudiRinominaConFocus() {
@@ -239,6 +245,23 @@ export default function NotebookView() {
     }
   }, [documentId, tentativo])
 
+  useEffect(() => {
+    const contenitore = superficieContenitoreRef.current
+    if (!contenitore) return
+    const misura = () => {
+      const bounds = contenitore.getBoundingClientRect()
+      const next = { width: bounds.width, height: bounds.height }
+      setMisuraSuperficie((current) => (
+        current?.width === next.width && current.height === next.height ? current : next
+      ))
+    }
+    misura()
+    if (typeof ResizeObserver === "undefined") return
+    const observer = new ResizeObserver(misura)
+    observer.observe(contenitore)
+    return () => { observer.disconnect() }
+  }, [doc?.documentId])
+
   const pagine = doc ? orderedNotebookPages(doc) : []
   const pageIndex = doc
     ? pagine.findIndex((page) => page.pageId === doc.activePageId)
@@ -260,6 +283,29 @@ export default function NotebookView() {
   const identitaScenaCorrente = documentId && pageIdCorrente
     ? `${documentId}/${pageIdCorrente}`
     : null
+  // PC-R1-001 + PC-OBJ-001 → PRD §5.1, §6.1 e §6.3: orientamento e
+  // proporzioni appartengono alla Page del NotebookDocument. Il fit e' solo
+  // una proiezione UI; non e' una prova dell'RPO 0 richiesto dal PRD §8.4.
+  const pageAspectRatio = paginaCorrente
+    ? paginaCorrente.logicalSize.width / paginaCorrente.logicalSize.height
+    : 1
+  const fittedSurfaceSize = misuraSuperficie
+    ? misuraSuperficie.width / misuraSuperficie.height > pageAspectRatio
+      ? {
+          width: misuraSuperficie.height * pageAspectRatio,
+          height: misuraSuperficie.height,
+        }
+      : {
+          width: misuraSuperficie.width,
+          height: misuraSuperficie.width / pageAspectRatio,
+        }
+    : null
+  const superficiePagina = {
+    ...superficie,
+    width: fittedSurfaceSize?.width ?? "100%",
+    height: fittedSurfaceSize?.height ?? "100%",
+    aspectRatio: `${paginaCorrente?.logicalSize.width ?? 1} / ${paginaCorrente?.logicalSize.height ?? 1}`,
+  }
 
   useEffect(() => {
     let annullato = false
@@ -284,7 +330,7 @@ export default function NotebookView() {
     return () => {
       annullato = true
     }
-  }, [documentId, pageIdCorrente, tentativo])
+  }, [documentId, pageIdCorrente, tentativo, ricaricaScena])
 
   async function persistiScena() {
     const sporca = paginaSporcaRef.current
@@ -469,6 +515,9 @@ export default function NotebookView() {
 
   async function applicaCronologia(kind: "undo" | "redo") {
     if (!doc || !documentId || transizioneRef.current) return
+    const historyEntry = kind === "undo"
+      ? doc.history.undo.at(-1)
+      : doc.history.redo.at(-1)
     setRinominaDraft(null)
     setEliminaDraft(null)
     transizioneRef.current = true
@@ -482,10 +531,16 @@ export default function NotebookView() {
         now: Date.now(),
       })
       if (result.status === "noop") return
-      apiRef.current = null
-      ultimaOsservazioneRef.current = null
-      setScenaPer(null)
-      setSceneData(null)
+      if (
+        historyEntry?.kind === "rotate_page" ||
+        result.document.activePageId !== doc.activePageId
+      ) {
+        apiRef.current = null
+        ultimaOsservazioneRef.current = null
+        setScenaPer(null)
+        setSceneData(null)
+        setRicaricaScena((value) => value + 1)
+      }
       setDoc(result.document)
       setErroreSalvataggio(null)
     } catch (error) {
@@ -651,6 +706,42 @@ export default function NotebookView() {
     }
   }
 
+  async function ruotaSelezione(now: number) {
+    // PC-R1-001 + GN-A1-004/GN-A7-012 → PRD §5.1, §6.3 e §19.2:
+    // il solo controllo opera sulla selezione persistita e rimonta la scena
+    // trasformata; mouse, tastiera e touch condividono lo stesso button nativo.
+    if (!doc || !documentId || transizioneRef.current) return
+    setRinominaDraft(null)
+    setEliminaDraft(null)
+    transizioneRef.current = true
+    setOperazioneInCorso(true)
+    try {
+      await flush()
+      const result = await executeNotebookCommand(workspaceStore, {
+        kind: "rotate_page",
+        documentId,
+        commandId: `rotate-${crypto.randomUUID()}`,
+        pageIds: doc.selectedPageIds,
+        quarterTurns: 1,
+        now,
+      })
+      apiRef.current = null
+      ultimaOsservazioneRef.current = null
+      setScenaPer(null)
+      setSceneData(null)
+      setRicaricaScena((value) => value + 1)
+      setDoc(result.document)
+      setErroreSalvataggio(null)
+    } catch (error) {
+      if (!paginaSporcaRef.current) {
+        setErroreSalvataggio(`Rotazione pagine non riuscita: ${(error as Error).message}`)
+      }
+    } finally {
+      transizioneRef.current = false
+      setOperazioneInCorso(false)
+    }
+  }
+
   const navigaDopoSalvataggio = useCallback((href: string) => {
     if (transizioneRef.current) return
     transizioneRef.current = true
@@ -782,43 +873,51 @@ export default function NotebookView() {
           continuo. Il test `taccuino-rpo.spec.ts` prova la navigazione immediata
           dentro questa finestra; non simula un process-kill e quindi non viene
           presentato come prova completa dell'RPO 0 richiesto dal PRD §8.4. */}
-      <main
-        inert={operazioneInCorso}
-        aria-busy={operazioneInCorso || undefined}
-        style={operazioneInCorso ? { ...superficie, pointerEvents: "none" } : superficie}
-        data-notebook-scene-elements={String(elementCount)}
-        onPointerUp={() => { void flush().catch(() => {}) }}
-        onKeyUp={(evento) => {
-          if (evento.key !== "Escape" && evento.key !== "Enter") return
-          void flush().catch(() => {})
-        }}
-      >
-        {scenaPer !== identitaScenaCorrente ? (
-          <div className="st-bar" aria-busy="true" aria-label="Apertura della pagina" />
-        ) : (
-        <Excalidraw
-          key={identitaScenaCorrente ?? "vuota"}
-          langCode={EXCALIDRAW_CONFIG.langCode}
-          theme={EXCALIDRAW_CONFIG.theme}
-          aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
-          UIOptions={EXCALIDRAW_CONFIG.UIOptions}
-          initialData={(sceneData ?? { appState: EXCALIDRAW_CONFIG.newRoomAppState }) as never}
-          excalidrawAPI={(api: unknown) => {
-            apiRef.current = api as ExcalidrawApi
-            ultimaOsservazioneRef.current = observeScene(
-              (api as ExcalidrawApi).getSceneElements(),
-              (api as ExcalidrawApi).getAppState(),
-            )
-            // Il conteggio esposto DEVE venire dalla scena viva, non dal JSON
-            // che credo di aver caricato. Derivarlo dal JSON rende l'attributo
-            // corretto anche quando il canvas e' vuoto: un oracolo che non puo'
-            // vedere il guasto che deve sorvegliare.
-            setElementCount((api as ExcalidrawApi).getSceneElements().length)
+      <div ref={superficieContenitoreRef} style={superficieContenitore}>
+        <main
+          inert={operazioneInCorso}
+          aria-busy={operazioneInCorso || undefined}
+          style={operazioneInCorso
+            ? { ...superficiePagina, pointerEvents: "none" }
+            : superficiePagina}
+          data-notebook-page-surface
+          data-notebook-page-orientation={paginaCorrente?.orientation ?? 0}
+          data-notebook-page-width={paginaCorrente?.logicalSize.width ?? 0}
+          data-notebook-page-height={paginaCorrente?.logicalSize.height ?? 0}
+          data-notebook-scene-elements={String(elementCount)}
+          onPointerUp={() => { void flush().catch(() => {}) }}
+          onKeyUp={(evento) => {
+            if (evento.key !== "Escape" && evento.key !== "Enter") return
+            void flush().catch(() => {})
           }}
-          onChange={onChange}
-        />
-        )}
-      </main>
+        >
+          {scenaPer !== identitaScenaCorrente ? (
+            <div className="st-bar" aria-busy="true" aria-label="Apertura della pagina" />
+          ) : (
+          <Excalidraw
+            key={identitaScenaCorrente ?? "vuota"}
+            langCode={EXCALIDRAW_CONFIG.langCode}
+            theme={EXCALIDRAW_CONFIG.theme}
+            aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
+            UIOptions={EXCALIDRAW_CONFIG.UIOptions}
+            initialData={(sceneData ?? { appState: EXCALIDRAW_CONFIG.newRoomAppState }) as never}
+            excalidrawAPI={(api: unknown) => {
+              apiRef.current = api as ExcalidrawApi
+              ultimaOsservazioneRef.current = observeScene(
+                (api as ExcalidrawApi).getSceneElements(),
+                (api as ExcalidrawApi).getAppState(),
+              )
+              // Il conteggio esposto DEVE venire dalla scena viva, non dal JSON
+              // che credo di aver caricato. Derivarlo dal JSON rende l'attributo
+              // corretto anche quando il canvas e' vuoto: un oracolo che non puo'
+              // vedere il guasto che deve sorvegliare.
+              setElementCount((api as ExcalidrawApi).getSceneElements().length)
+            }}
+            onChange={onChange}
+          />
+          )}
+        </main>
+      </div>
 
       {/* Striscia delle pagine: una sola navigazione sull'asse dell'ordine.
           G01 ne ha due (tab in alto + miniature in basso) e le due possono
@@ -863,6 +962,9 @@ export default function NotebookView() {
               data-notebook-page-id={pagina.pageId}
               data-notebook-page-ordinal={String(pagina.ordinal)}
               data-notebook-page-selected={selectedPageIdSet.has(pagina.pageId) ? "true" : "false"}
+              data-notebook-page-orientation={String(pagina.orientation)}
+              data-notebook-page-width={String(pagina.logicalSize.width)}
+              data-notebook-page-height={String(pagina.logicalSize.height)}
               aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
               disabled={operazioneInCorso}
               onClick={() => { void cambiaPagina(pagina.pageId) }}
@@ -922,6 +1024,19 @@ export default function NotebookView() {
           style={tabNuova}
         >
           Duplica
+        </button>
+        <button
+          type="button"
+          className="st-chip"
+          data-rotate-notebook-selection
+          aria-label={`Ruota di 90 gradi ${doc.selectedPageIds.length === 1
+            ? "la pagina selezionata"
+            : `le ${doc.selectedPageIds.length} pagine selezionate`}`}
+          disabled={operazioneInCorso || doc.selectedPageIds.length === 0}
+          onClick={() => { void ruotaSelezione(Date.now()) }}
+          style={tabNuova}
+        >
+          ↻ Ruota
         </button>
         {rinominaDraft ? (
           <form
@@ -1103,7 +1218,26 @@ const posizione = {
   whiteSpace: "nowrap",
 } as const
 
-const superficie = { flex: 1, minHeight: 0, position: "relative" } as const
+const superficieContenitore = {
+  flex: 1,
+  minHeight: 0,
+  minWidth: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+  background: "#e8edf2",
+} as const
+
+const superficie = {
+  flex: "none",
+  minHeight: 0,
+  minWidth: 0,
+  position: "relative",
+  overflow: "hidden",
+  background: EXCALIDRAW_CONFIG.newRoomAppState.viewBackgroundColor,
+  boxShadow: "0 1px 5px rgba(21,38,56,0.16)",
+} as const
 
 const striscia = {
   display: "flex",
