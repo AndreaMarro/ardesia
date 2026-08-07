@@ -423,6 +423,7 @@ test("taccuino: undo/redo degli inserimenti conserva ID, attiva e ordine dopo re
   const dopoId = await pagine.nth(1).getAttribute("data-notebook-page-id")
   await expect(pagine.nth(1)).toHaveAttribute("aria-current", "true")
 
+  await apriGestorePagine(page, false)
   await attivaControlloPaginaAccessibile(
     page,
     page.locator("[data-insert-notebook-page-before]"),
@@ -662,11 +663,16 @@ for (const profile of INSERT_PROFILES) {
       const byteSource = await leggiByteCachePagina(page, documentId, sourceId)
       expect(byteSource).toBeTruthy()
 
+      await apriGestorePagine(page, profile.hasTouch)
       await attivaControlloPagina(
         page,
         page.locator("[data-duplicate-notebook-page]"),
         profile.hasTouch,
       )
+      // Il gestore consegna una pagina nuova in scrittura e si toglie di mezzo:
+      // restare aperto metterebbe il pannello sopra la superficie proprio dove
+      // serve lo spazio per scrivere.
+      await expect(page.locator("[data-notebook-page-manager]")).toHaveCount(0)
       await expect(pagine).toHaveCount(2)
       const duplicateId = await pagine.nth(1).getAttribute("data-notebook-page-id")
       expect(duplicateId).toMatch(/^page-[A-Za-z0-9-]+$/)
@@ -1450,6 +1456,7 @@ for (const profile of INSERT_PROFILES) {
         elementiSeconda!,
         { timeout: 10_000 },
       )
+      await apriGestorePagine(page, profile.hasTouch)
       await attivaControlloPaginaAccessibile(
         page,
         page.locator("[data-insert-notebook-page-before]"),
@@ -1592,6 +1599,7 @@ test("taccuino: una write manifest fallita durante Prima conserva ordine, active
   }, manifestKey)
 
   try {
+    await apriGestorePagine(page, false)
     const inserisciPrima = page.locator("[data-insert-notebook-page-before]")
     await expect(inserisciPrima).toBeVisible({ timeout: 5_000 })
     await inserisciPrima.click()
@@ -2097,6 +2105,25 @@ for (const profile of INSERT_PROFILES) {
       expect(await strip.locator("[data-move-notebook-selection-up]").count()).toBe(0)
       expect(await strip.locator("[data-move-notebook-selection-down]").count()).toBe(0)
       expect(await strip.locator("[data-rotate-notebook-selection]").count()).toBe(0)
+      // INT-UX-003: frequenti e sicuri restano visibili, il resto entra nel
+      // gestore. Duplica e «+ Prima» non sono frequenti: sono varianti.
+      expect(await strip.locator("[data-duplicate-notebook-page]").count()).toBe(0)
+      expect(await strip.locator("[data-insert-notebook-page-before]").count()).toBe(0)
+      // ...ma restano immediatamente visibili nella strip i due che lo sono.
+      expect(await strip.locator("[data-add-notebook-page]").count()).toBe(1)
+      expect(await strip.locator("[data-notebook-undo]").count()).toBe(1)
+
+      // L'oracolo di NOTEBOOK-INFORMATION-ARCHITECTURE-01: la strip non deve
+      // eccedere la viewport desktop a sei pagine. Su iPad 834 px le sole
+      // pagine superano ancora la larghezza: è un limite dichiarato, non
+      // coperto da questa asserzione.
+      const misuraStrip = await strip.evaluate((nodo) => ({
+        scroll: nodo.scrollWidth,
+        client: nodo.clientWidth,
+      }))
+      if (!profile.hasTouch) {
+        expect(misuraStrip.scroll).toBeLessThanOrEqual(misuraStrip.client)
+      }
 
       const apre = page.locator("[data-open-notebook-page-manager]")
       await expect(apre).toHaveAttribute("aria-expanded", "false")

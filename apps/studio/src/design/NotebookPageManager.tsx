@@ -31,6 +31,8 @@ export type NotebookPageManagerProps = Readonly<{
   onToggleSelection: (pageId: string) => void
   onMoveSelection: (direction: "up" | "down") => void
   onRotateSelection: () => void
+  onDuplicatePage: () => void
+  onInsertBefore: () => void
 }>
 
 const ORIENTAMENTO: Readonly<Record<number, string>> = {
@@ -49,6 +51,8 @@ export default function NotebookPageManager({
   onToggleSelection,
   onMoveSelection,
   onRotateSelection,
+  onDuplicatePage,
+  onInsertBefore,
 }: NotebookPageManagerProps) {
   const chiudiRef = useRef<HTMLButtonElement | null>(null)
   const pannelloRef = useRef<HTMLElement | null>(null)
@@ -183,6 +187,38 @@ export default function NotebookPageManager({
         ))}
       </ul>
 
+      {/* Due gruppi, perche' operano su due referenti diversi: la SELEZIONE e
+          la pagina IN SCRITTURA. Tenerli in un'unica fila costringeva a
+          dedurre da sola l'etichetta quale dei due un comando toccasse. */}
+      <h3 style={titoloGruppo}>Pagina in scrittura</h3>
+      <div style={comandi}>
+        <button
+          type="button"
+          className="st-chip"
+          data-insert-notebook-page-before
+          data-notebook-manager-control="insert-before"
+          aria-label="Inserisci una pagina prima di quella in scrittura"
+          disabled={busy}
+          onClick={onInsertBefore}
+          style={comando}
+        >
+          + Prima
+        </button>
+        <button
+          type="button"
+          className="st-chip"
+          data-duplicate-notebook-page
+          data-notebook-manager-control="duplicate"
+          aria-label="Duplica la pagina in scrittura"
+          disabled={busy}
+          onClick={onDuplicatePage}
+          style={comando}
+        >
+          Duplica
+        </button>
+      </div>
+
+      <h3 style={titoloGruppo}>Selezione</h3>
       <div style={comandi}>
         <button
           type="button"
@@ -267,6 +303,14 @@ const titoloPannello = {
   margin: 0,
   font: "600 14px/1.2 system-ui",
   color: "#152638",
+} as const
+
+const titoloGruppo = {
+  margin: "4px 0 0",
+  font: "600 11px/1.2 system-ui",
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+  color: "#6b7f96",
 } as const
 
 const annuncio = {

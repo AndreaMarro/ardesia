@@ -184,6 +184,11 @@ export default function NotebookView() {
   const focusDopoEliminaRef = useRef<"delete" | "page" | null>(null)
   const gestoreButtonRef = useRef<HTMLButtonElement | null>(null)
 
+  /** Chiude il gestore solo se il comando ha davvero committato. */
+  function chiudiSeRiuscito(riuscito: boolean) {
+    if (riuscito) chiudiGestoreConFocus()
+  }
+
   function chiudiGestoreConFocus() {
     setGestoreAperto(false)
     // Il focus torna da dove e' partito: chiudere una superficie non deve
@@ -487,8 +492,8 @@ export default function NotebookView() {
     }
   }, [doc, documentId, flush])
 
-  async function aggiungiPagina(posizione: "before" | "after") {
-    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
+  async function aggiungiPagina(posizione: "before" | "after"): Promise<boolean> {
+    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return false
     setRinominaDraft(null)
     setEliminaDraft(null)
     transizioneRef.current = true
@@ -499,7 +504,7 @@ export default function NotebookView() {
       } catch {
         // `persistiScena` ha gia' esposto l'errore specifico e la pagina
         // corrente non e' ancora durevole: non iniziare la creazione.
-        return
+        return false
       }
       const pageId = `page-${crypto.randomUUID()}`
       const result = await executeNotebookCommand(workspaceStore, {
@@ -516,8 +521,10 @@ export default function NotebookView() {
       setSceneData(null)
       setDoc(result.document)
       setErroreSalvataggio(null)
+      return true
     } catch (error) {
       setErroreSalvataggio(`Creazione pagina non riuscita: ${(error as Error).message}`)
+      return false
     } finally {
       transizioneRef.current = false
       setOperazioneInCorso(false)
@@ -564,8 +571,8 @@ export default function NotebookView() {
     }
   }
 
-  async function duplicaPagina() {
-    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return
+  async function duplicaPagina(): Promise<boolean> {
+    if (!doc || !documentId || !pageIdCorrente || transizioneRef.current) return false
     setRinominaDraft(null)
     setEliminaDraft(null)
     transizioneRef.current = true
@@ -586,10 +593,12 @@ export default function NotebookView() {
       setSceneData(null)
       setDoc(result.document)
       setErroreSalvataggio(null)
+      return true
     } catch (error) {
       if (!paginaSporcaRef.current) {
         setErroreSalvataggio(`Duplicazione pagina non riuscita: ${(error as Error).message}`)
       }
+      return false
     } finally {
       transizioneRef.current = false
       setOperazioneInCorso(false)
@@ -938,6 +947,14 @@ export default function NotebookView() {
             onToggleSelection={(pageId) => { void toggleSelezionePagina(pageId, Date.now()) }}
             onMoveSelection={(direction) => { void spostaSelezione(direction, Date.now()) }}
             onRotateSelection={() => { void ruotaSelezione(Date.now()) }}
+            // Un comando che consegna una pagina NUOVA in scrittura chiude il
+            // gestore: il pannello sta sopra la superficie, e restare aperto
+            // dopo aver creato la pagina su cui si sta per scrivere mette un
+            // ostacolo esattamente dove serve lo spazio. I comandi sulla
+            // selezione (Sposta, Ruota) non lo chiudono: lì si continua a
+            // lavorare sulla stessa selezione.
+            onDuplicatePage={() => { void duplicaPagina().then(chiudiSeRiuscito) }}
+            onInsertBefore={() => { void aggiungiPagina("before").then(chiudiSeRiuscito) }}
           />
         ) : null}
       </div>
@@ -1014,17 +1031,6 @@ export default function NotebookView() {
           style={tabNuova}
         >
           Gestisci pagine
-        </button>
-        <button
-          type="button"
-          className="st-chip"
-          data-duplicate-notebook-page
-          aria-label="Duplica la pagina corrente"
-          disabled={operazioneInCorso}
-          onClick={() => { void duplicaPagina() }}
-          style={tabNuova}
-        >
-          Duplica
         </button>
         {rinominaDraft ? (
           <form
@@ -1140,17 +1146,6 @@ export default function NotebookView() {
             Elimina
           </button>
         )}
-        <button
-          type="button"
-          className="st-chip"
-          data-insert-notebook-page-before
-          aria-label="Inserisci una pagina prima di quella corrente"
-          disabled={operazioneInCorso}
-          onClick={() => { void aggiungiPagina("before") }}
-          style={tabNuova}
-        >
-          + Prima
-        </button>
         <button
           type="button"
           className="st-chip"
