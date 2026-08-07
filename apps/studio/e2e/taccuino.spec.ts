@@ -45,10 +45,17 @@ const INSERT_PROFILES = [
 async function disegnaUnTratto(page: Page): Promise<void> {
   const canvas = page.locator(".excalidraw canvas").first()
   await expect(canvas).toBeVisible({ timeout: 15_000 })
-  await expect.poll(async () => Boolean(await canvas.boundingBox()), {
-    timeout: 15_000,
-  }).toBe(true)
-  const box = await canvas.boundingBox()
+  // La box si CATTURA nella stessa lettura che la valida. Con `poll` seguito da
+  // una seconda `boundingBox()` c'era una TOCTOU reale: Excalidraw viene
+  // rimontato per `key` a ogni cambio pagina, e fra la verifica e la rilettura
+  // il canvas può sparire. Il fallimento che ne usciva — «canvas senza bounding
+  // box» — sembrava un difetto di prodotto e non lo era. L'oracolo non si
+  // indebolisce: senza box il test resta rosso.
+  let box: Awaited<ReturnType<typeof canvas.boundingBox>> = null
+  await expect.poll(async () => {
+    box = await canvas.boundingBox()
+    return Boolean(box)
+  }, { timeout: 15_000 }).toBe(true)
   if (!box) throw new Error("canvas senza bounding box")
 
   // Il focus deve stare sulla superficie prima della scorciatoia: subito dopo
@@ -132,6 +139,22 @@ async function attivaControlloPaginaAccessibile(
     return outlineVisibile || stile.boxShadow !== "none"
   })).toBe(true)
   await page.keyboard.press("Enter")
+}
+
+/**
+ * Apre il gestore pagine, che da GN-A0-012 e' la sola superficie da cui si
+ * seleziona e si comanda una selezione. E' idempotente: chi ha gia' il pannello
+ * aperto non lo richiude per sbaglio.
+ */
+async function apriGestorePagine(page: Page, touch: boolean): Promise<void> {
+  const gestore = page.locator("[data-notebook-page-manager]")
+  if (await gestore.count() > 0 && await gestore.isVisible()) return
+  await attivaControlloPagina(
+    page,
+    page.locator("[data-open-notebook-page-manager]"),
+    touch,
+  )
+  await expect(gestore).toBeVisible()
 }
 
 /**
@@ -290,6 +313,7 @@ for (const profile of INSERT_PROFILES) {
       const blankPageId = await pages.nth(1).getAttribute("data-notebook-page-id")
       if (!blankPageId) throw new Error("pagina bianca assente")
       expect(await leggiScenaCachePagina(page, documentId, blankPageId)).toBeNull()
+      await apriGestorePagine(page, profile.hasTouch)
       await attivaControlloPagina(
         page,
         page.locator('[data-toggle-notebook-page-selection="p1"]'),
@@ -1023,6 +1047,7 @@ for (const profile of INSERT_PROFILES) {
       )
       const byteP2 = await leggiByteCachePagina(page, documentId!, p2!)
 
+      await apriGestorePagine(page, profile.hasTouch)
       const selezioneP2 = page.locator(`[data-toggle-notebook-page-selection="${p2}"]`)
       const selezioneP4 = page.locator(`[data-toggle-notebook-page-selection="${p4}"]`)
       await expect(selezioneP2).toHaveAttribute("aria-pressed", "true")
@@ -1099,6 +1124,11 @@ for (const profile of INSERT_PROFILES) {
         "aria-current",
         "true",
       )
+      // Il gestore e' stato di vista: dopo il reload e' chiuso. La SELEZIONE,
+      // che e' dominio, deve invece essere sopravvissuta — ed e' esattamente
+      // cio' che si legge riaprendolo.
+      await expect(page.locator("[data-notebook-page-manager]")).toHaveCount(0)
+      await apriGestorePagine(page, profile.hasTouch)
       await expect(selezioneP2).toHaveAttribute("aria-pressed", "true")
       await expect(selezioneP4).toHaveAttribute("aria-pressed", "true")
       await expect(conteggio).toHaveAttribute(
@@ -2014,3 +2044,153 @@ test("taccuino: un flush richiesto durante una write drena anche la modifica suc
     { timeout: 10_000 },
   )
 })
+
+// GN-A0-012 → PRD §5.1/§19.2 — gestore pagine contestuale.
+//
+// L'oracolo non e' "il pannello si apre": e' che il pannello sia l'UNICA
+// superficie di selezione, che dichiari il proprio target prima del commit, che
+// non inventi miniature e che non produca overflow orizzontale del documento
+// sul viewport iPad, dove il debito misurato era proprio quello.
+for (const profile of INSERT_PROFILES) {
+  test.describe(`gestore pagine — ${profile.nome}`, () => {
+    test.use({
+      viewport: profile.viewport,
+      deviceScaleFactor: profile.deviceScaleFactor,
+      hasTouch: profile.hasTouch,
+    })
+
+    test(`taccuino ${profile.nome}: il gestore e' l'unica superficie di selezione e dichiara il target`, async ({
+      page,
+    }) => {
+      test.setTimeout(90_000)
+      const erroriConsole: string[] = []
+      page.on("console", (message) => {
+        if (message.type() === "error") erroriConsole.push(message.text())
+      })
+      page.on("pageerror", (error) => erroriConsole.push(`pageerror: ${error.message}`))
+
+      await page.goto(`/#lezione-manager-${profile.nome}`)
+      await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
+      await apriTaccuino(page)
+      const taccuino = page.locator("[data-notebook-document-id]").first()
+      await expect(taccuino).toBeVisible({ timeout: 15_000 })
+
+      const pagine = page.locator("[data-notebook-page-id]")
+      const strip = page.locator("[data-notebook-pages-strip]")
+      const gestore = page.locator("[data-notebook-page-manager]")
+
+      // Sei pagine: il numero dichiarato da §10 per rendere osservabile
+      // l'affollamento della strip.
+      for (let i = 0; i < 5; i += 1) {
+        await attivaControlloPagina(
+          page,
+          page.locator("[data-add-notebook-page]"),
+          profile.hasTouch,
+        )
+      }
+      await expect(pagine).toHaveCount(6)
+
+      // 1. Il gestore non esiste finche' non lo si apre, e la strip non
+      //    conserva nessun controllo di selezione o di comando bulk.
+      await expect(gestore).toHaveCount(0)
+      expect(await strip.locator("[data-toggle-notebook-page-selection]").count()).toBe(0)
+      expect(await strip.locator("[data-move-notebook-selection-up]").count()).toBe(0)
+      expect(await strip.locator("[data-move-notebook-selection-down]").count()).toBe(0)
+      expect(await strip.locator("[data-rotate-notebook-selection]").count()).toBe(0)
+
+      const apre = page.locator("[data-open-notebook-page-manager]")
+      await expect(apre).toHaveAttribute("aria-expanded", "false")
+      await apriGestorePagine(page, profile.hasTouch)
+      await expect(apre).toHaveAttribute("aria-expanded", "true")
+      // Il focus entra nel pannello: senza questo, da tastiera il gestore
+      // sarebbe raggiungibile solo ritabulando tutta la strip.
+      await expect(page.locator("[data-close-notebook-page-manager]")).toBeFocused()
+
+      // 2. Nessuna miniatura finta: identita' testuale, nessun `img`/`canvas`.
+      const righe = gestore.locator("[data-notebook-manager-page]")
+      await expect(righe).toHaveCount(6)
+      expect(await gestore.locator("img, canvas").count()).toBe(0)
+
+      // 3. Il target si dichiara prima del commit, in ordine di documento.
+      const annuncio = page.locator("[data-notebook-manager-announcement]")
+      const idPrima = await pagine.nth(0).getAttribute("data-notebook-page-id")
+      const idTerza = await pagine.nth(2).getAttribute("data-notebook-page-id")
+      if (!idPrima || !idTerza) throw new Error("identita' pagine assenti")
+      // La selezione si costruisce dal fondo: se l'ordine di click contasse,
+      // l'annuncio nominerebbe la terza pagina prima della prima.
+      // Ogni toggle passa dal manifest: si aspetta il suo stato commesso prima
+      // del successivo, altrimenti si legge un annuncio di uno stato che il
+      // comando non ha ancora scritto.
+      const toggleTerza = gestore.locator(`[data-toggle-notebook-page-selection="${idTerza}"]`)
+      const togglePrima = gestore.locator(`[data-toggle-notebook-page-selection="${idPrima}"]`)
+      await attivaControlloPagina(page, toggleTerza, profile.hasTouch)
+      await expect(toggleTerza).toHaveAttribute("aria-pressed", "true")
+      await attivaControlloPagina(page, togglePrima, profile.hasTouch)
+      await expect(togglePrima).toHaveAttribute("aria-pressed", "true")
+      // Il comando disabilita e riabilita il controllo appena usato: il focus
+      // non deve cadere sul `body`, o la superficie diventa muta da tastiera
+      // subito dopo l'azione dell'utente.
+      if (!profile.hasTouch) await expect(togglePrima).toBeFocused()
+      const testoAnnuncio = (await annuncio.textContent()) ?? ""
+      expect(testoAnnuncio).toContain("3 pagine")
+      expect(testoAnnuncio).toMatch(/ordine relativo/i)
+      expect(testoAnnuncio.indexOf("Pagina 1")).toBeGreaterThanOrEqual(0)
+      expect(testoAnnuncio.indexOf("Pagina 1")).toBeLessThan(testoAnnuncio.indexOf("Pagina 3"))
+      // Il nome accessibile del trigger accorda il numero e viene dal modello:
+      // scritto inline nel JSX diceva “1 selezionate” e nessun test lo vedeva.
+      await expect(apre).toHaveAttribute("aria-label", "Gestisci pagine, 3 selezionate")
+
+      // 4. Ogni controllo del gestore e' un bersaglio tattile reale.
+      const misure = await gestore.locator("button").evaluateAll((nodi) => nodi.map((nodo) => {
+        const rect = nodo.getBoundingClientRect()
+        return { w: rect.width, h: rect.height }
+      }))
+      expect(misure.length).toBeGreaterThan(0)
+      for (const misura of misure) {
+        expect(misura.h).toBeGreaterThanOrEqual(44)
+        expect(misura.w).toBeGreaterThanOrEqual(44)
+      }
+
+      // 5. Il pannello non produce scroll orizzontale del documento: era il
+      //    difetto misurato sulla strip su iPad.
+      const overflow = await page.evaluate(() => ({
+        scroll: document.documentElement.scrollWidth,
+        client: document.documentElement.clientWidth,
+      }))
+      expect(overflow.scroll).toBeLessThanOrEqual(overflow.client + 1)
+
+      // 6. Chiusura e ritorno del focus a chi lo aveva aperto.
+      if (profile.hasTouch) {
+        await attivaControlloPagina(
+          page,
+          page.locator("[data-close-notebook-page-manager]"),
+          true,
+        )
+      } else {
+        await page.keyboard.press("Escape")
+      }
+      await expect(gestore).toHaveCount(0)
+      await expect(apre).toHaveAttribute("aria-expanded", "false")
+      await expect(apre).toBeFocused()
+
+      // 7. La selezione e' dominio: sopravvive alla chiusura del gestore e al
+      //    reload, che invece azzera solo lo stato di vista.
+      await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-selected", "true")
+      await expect(pagine.nth(2)).toHaveAttribute("data-notebook-page-selected", "true")
+      await page.reload()
+      await expect(page.locator("[data-notebook-document-id]").first()).toBeVisible({
+        timeout: 15_000,
+      })
+      await expect(gestore).toHaveCount(0)
+      await apriGestorePagine(page, profile.hasTouch)
+      await expect(
+        gestore.locator(`[data-toggle-notebook-page-selection="${idPrima}"]`),
+      ).toHaveAttribute("aria-pressed", "true")
+      await expect(
+        gestore.locator(`[data-toggle-notebook-page-selection="${idTerza}"]`),
+      ).toHaveAttribute("aria-pressed", "true")
+
+      expect(erroriConsole).toEqual([])
+    })
+  })
+}

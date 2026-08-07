@@ -24,6 +24,7 @@ import { Excalidraw, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./excalidrawConfig"
 import ViewNav from "./ViewNav"
+import NotebookPageManager from "./NotebookPageManager"
 import {
   createNotebookIfMissing,
   createNotebookDocument,
@@ -35,6 +36,7 @@ import {
   type NotebookDocument,
 } from "../store/notebookDocument"
 import { executeNotebookCommand } from "../store/notebookCommands"
+import { notebookManagerModel } from "../store/notebookPageManager"
 import { notebookIdFromLocation } from "../store/notebookView"
 import { workspaceStore } from "../store/WorkspaceStore"
 
@@ -160,6 +162,11 @@ export default function NotebookView() {
     pageId: string
     title: string
   }> | null>(null)
+  // Stato di VISTA, non di dominio: se il gestore e' aperto non cambia nulla di
+  // cio' che il documento contiene, quindi non passa dal manifest e non entra
+  // nella history. Pagina attiva e selezione — che sono dominio — restano
+  // nell'unico posto in cui vivono gia': il `NotebookDocument`.
+  const [gestoreAperto, setGestoreAperto] = useState(false)
 
   const apiRef = useRef<ExcalidrawApi | null>(null)
   const salvaTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -175,6 +182,14 @@ export default function NotebookView() {
   const paginaAttivaButtonRef = useRef<HTMLButtonElement | null>(null)
   const superficieContenitoreRef = useRef<HTMLDivElement | null>(null)
   const focusDopoEliminaRef = useRef<"delete" | "page" | null>(null)
+  const gestoreButtonRef = useRef<HTMLButtonElement | null>(null)
+
+  function chiudiGestoreConFocus() {
+    setGestoreAperto(false)
+    // Il focus torna da dove e' partito: chiudere una superficie non deve
+    // scaricare il focus sul body e costringere a ritabulare la strip.
+    gestoreButtonRef.current?.focus()
+  }
 
   function chiudiRinominaConFocus() {
     ripristinaFocusRinominaRef.current = true
@@ -268,18 +283,14 @@ export default function NotebookView() {
     : -1
   const paginaCorrente = pagine[pageIndex] ?? null
   const pageIdCorrente = paginaCorrente?.pageId ?? null
-  // PC-R1-001 + GN-A1-002/GN-A7-012 → PRD §5.1 e §19.2:
+  // PC-R1-001 + GN-A0-012/GN-A1-002/GN-A7-012 → PRD §5.1 e §19.2:
   // selezione unica persistita e riordino equivalente fra input diversi.
-  const selectedPageIdSet = new Set(doc?.selectedPageIds ?? [])
-  const firstSelectedPageIndex = pagine.findIndex((page) => selectedPageIdSet.has(page.pageId))
-  const currentSelectionTargetIndex = firstSelectedPageIndex < 0
-    ? 0
-    : pagine
-      .slice(0, firstSelectedPageIndex)
-      .filter((page) => !selectedPageIdSet.has(page.pageId)).length
-  const remainingPageCount = pagine.length - selectedPageIdSet.size
-  const canMoveSelectionUp = currentSelectionTargetIndex > 0
-  const canMoveSelectionDown = currentSelectionTargetIndex < remainingPageCount
+  // Strip e gestore leggono la STESSA proiezione: quando la derivazione viveva
+  // qui, il gestore avrebbe dovuto ricalcolarla e le due potevano divergere.
+  const managerModel = doc ? notebookManagerModel(doc) : null
+  const selectedPageIdSet = new Set(managerModel?.target.pageIds ?? [])
+  const currentSelectionTargetIndex = managerModel?.reorderTargetIndex ?? 0
+  const remainingPageCount = managerModel?.reorderBound ?? 0
   const identitaScenaCorrente = documentId && pageIdCorrente
     ? `${documentId}/${pageIdCorrente}`
     : null
@@ -917,6 +928,18 @@ export default function NotebookView() {
           />
           )}
         </main>
+        {managerModel ? (
+          <NotebookPageManager
+            model={managerModel}
+            open={gestoreAperto}
+            busy={operazioneInCorso}
+            onClose={chiudiGestoreConFocus}
+            onActivatePage={(pageId) => { void cambiaPagina(pageId) }}
+            onToggleSelection={(pageId) => { void toggleSelezionePagina(pageId, Date.now()) }}
+            onMoveSelection={(direction) => { void spostaSelezione(direction, Date.now()) }}
+            onRotateSelection={() => { void ruotaSelezione(Date.now()) }}
+          />
+        ) : null}
       </div>
 
       {/* Striscia delle pagine: una sola navigazione sull'asse dell'ordine.
@@ -926,11 +949,6 @@ export default function NotebookView() {
         style={striscia}
         aria-label="Pagine del taccuino"
         data-notebook-pages-strip
-        onKeyDown={(event) => {
-          if (!event.altKey || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return
-          event.preventDefault()
-          void spostaSelezione(event.key === "ArrowUp" ? "up" : "down", Date.now())
-        }}
       >
         <button
           type="button"
@@ -955,64 +973,47 @@ export default function NotebookView() {
           Ripristina
         </button>
         {pagine.map((pagina) => (
-          <span key={pagina.pageId} style={paginaConSelezione}>
-            <button
-              type="button"
-              ref={pagina.pageId === doc.activePageId ? paginaAttivaButtonRef : undefined}
-              data-notebook-page-id={pagina.pageId}
-              data-notebook-page-ordinal={String(pagina.ordinal)}
-              data-notebook-page-selected={selectedPageIdSet.has(pagina.pageId) ? "true" : "false"}
-              data-notebook-page-orientation={String(pagina.orientation)}
-              data-notebook-page-width={String(pagina.logicalSize.width)}
-              data-notebook-page-height={String(pagina.logicalSize.height)}
-              aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
-              disabled={operazioneInCorso}
-              onClick={() => { void cambiaPagina(pagina.pageId) }}
-              style={pagina.pageId === doc.activePageId ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
-            >
-              {pagina.ordinal + 1}. {pagina.title}
-            </button>
-            <button
-              type="button"
-              className="st-chip"
-              data-toggle-notebook-page-selection={pagina.pageId}
-              aria-label={selectedPageIdSet.has(pagina.pageId)
-                ? `Rimuovi ${pagina.title} dalla selezione`
-                : `Aggiungi ${pagina.title} alla selezione`}
-              aria-pressed={selectedPageIdSet.has(pagina.pageId)}
-              disabled={operazioneInCorso || pagina.pageId === doc.activePageId}
-              onClick={() => { void toggleSelezionePagina(pagina.pageId, Date.now()) }}
-              style={selectedPageIdSet.has(pagina.pageId)
-                ? { ...selezionaPagina, ...selezionaPaginaAttiva }
-                : selezionaPagina}
-            >
-              {selectedPageIdSet.has(pagina.pageId) ? "✓" : "+"}
-            </button>
-          </span>
+          <button
+            key={pagina.pageId}
+            type="button"
+            ref={pagina.pageId === doc.activePageId ? paginaAttivaButtonRef : undefined}
+            data-notebook-page-id={pagina.pageId}
+            data-notebook-page-ordinal={String(pagina.ordinal)}
+            data-notebook-page-selected={selectedPageIdSet.has(pagina.pageId) ? "true" : "false"}
+            data-notebook-page-orientation={String(pagina.orientation)}
+            data-notebook-page-width={String(pagina.logicalSize.width)}
+            data-notebook-page-height={String(pagina.logicalSize.height)}
+            aria-current={pagina.pageId === doc.activePageId ? "true" : undefined}
+            disabled={operazioneInCorso}
+            onClick={() => { void cambiaPagina(pagina.pageId) }}
+            style={pagina.pageId === doc.activePageId ? { ...tabPagina, ...tabPaginaAttiva } : tabPagina}
+          >
+            {pagina.ordinal + 1}. {pagina.title}
+          </button>
         ))}
+        {/* GN-A0-012 → PRD §5.1: selezione multipla e comandi che agiscono su
+            una selezione stanno dietro un solo ingresso. La strip conserva la
+            navigazione e i comandi sulla pagina corrente. */}
         <button
           type="button"
           className="st-chip"
-          data-move-notebook-selection-up
-          aria-label="Sposta la selezione verso l'inizio"
-          title="Sposta su — Alt+Freccia su"
-          disabled={operazioneInCorso || !canMoveSelectionUp}
-          onClick={() => { void spostaSelezione("up", Date.now()) }}
+          ref={gestoreButtonRef}
+          data-open-notebook-page-manager
+          aria-expanded={gestoreAperto}
+          aria-label={managerModel?.triggerLabel ?? "Gestisci pagine"}
+          disabled={operazioneInCorso}
+          onClick={() => {
+            if (gestoreAperto) {
+              chiudiGestoreConFocus()
+              return
+            }
+            setRinominaDraft(null)
+            setEliminaDraft(null)
+            setGestoreAperto(true)
+          }}
           style={tabNuova}
         >
-          ↑ Sposta
-        </button>
-        <button
-          type="button"
-          className="st-chip"
-          data-move-notebook-selection-down
-          aria-label="Sposta la selezione verso la fine"
-          title="Sposta giù — Alt+Freccia giù"
-          disabled={operazioneInCorso || !canMoveSelectionDown}
-          onClick={() => { void spostaSelezione("down", Date.now()) }}
-          style={tabNuova}
-        >
-          ↓ Sposta
+          Gestisci pagine
         </button>
         <button
           type="button"
@@ -1024,19 +1025,6 @@ export default function NotebookView() {
           style={tabNuova}
         >
           Duplica
-        </button>
-        <button
-          type="button"
-          className="st-chip"
-          data-rotate-notebook-selection
-          aria-label={`Ruota di 90 gradi ${doc.selectedPageIds.length === 1
-            ? "la pagina selezionata"
-            : `le ${doc.selectedPageIds.length} pagine selezionate`}`}
-          disabled={operazioneInCorso || doc.selectedPageIds.length === 0}
-          onClick={() => { void ruotaSelezione(Date.now()) }}
-          style={tabNuova}
-        >
-          ↻ Ruota
         </button>
         {rinominaDraft ? (
           <form
@@ -1222,6 +1210,9 @@ const superficieContenitore = {
   flex: 1,
   minHeight: 0,
   minWidth: 0,
+  // Ancora del gestore pagine: il pannello e' inset su tutti i lati, quindi
+  // `overflow: hidden` non lo taglia e non produce scroll orizzontale.
+  position: "relative",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -1270,25 +1261,6 @@ const tabPaginaAttiva = {
 } as const
 
 const tabNuova = { ...tabPagina, border: "1px dashed rgba(21,38,56,0.32)", color: "#1f3f63" } as const
-
-const paginaConSelezione = {
-  display: "inline-flex",
-  alignItems: "stretch",
-  gap: 2,
-} as const
-
-const selezionaPagina = {
-  ...tabPagina,
-  minWidth: TAP,
-  padding: "6px 10px",
-  border: "1px dashed rgba(21,38,56,0.28)",
-} as const
-
-const selezionaPaginaAttiva = {
-  color: "#1f3f63",
-  border: "1px solid #1f3f63",
-  background: "#edf4fb",
-} as const
 
 const rinominaForm = {
   display: "flex",
