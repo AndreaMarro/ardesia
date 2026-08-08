@@ -43,6 +43,18 @@ const INSERT_PROFILES = [
  *    con un'attesa reale fra l'una e l'altra.
  */
 async function disegnaUnTratto(page: Page): Promise<void> {
+  // La scena della pagina si carica in asincrono e, finche' non e' pronta, la
+  // vista mostra una barra al posto di Excalidraw. Disegnare in quella finestra
+  // significa disegnare su un'istanza che sta per essere smontata: il tratto non
+  // arriva a nessuna scena e il conteggio resta `0`.
+  //
+  // E' la causa dei fallimenti intermittenti «data-notebook-scene-elements resta
+  // 0» dopo un cambio pagina — e non era un difetto di prodotto: il prodotto
+  // dichiarava di stare caricando, e il test non lo ascoltava. Qui il gesto
+  // aspetta un segnale reale del prodotto, non un timeout piu' lungo.
+  await expect(page.locator('[aria-label="Apertura della pagina"]')).toHaveCount(0, {
+    timeout: 15_000,
+  })
   const canvas = page.locator(".excalidraw canvas").first()
   await expect(canvas).toBeVisible({ timeout: 15_000 })
   // La box si CATTURA nella stessa lettura che la valida. Con `poll` seguito da
@@ -752,6 +764,8 @@ for (const profile of INSERT_PROFILES) {
       const pageId = await pagine.nth(0).getAttribute("data-notebook-page-id")
       expect(pageId).toBe("p1")
 
+      // Rinomina non e' un comando frequente: vive nel gestore (INT-UX-003).
+      await apriGestorePagine(page, profile.hasTouch)
       const apriRinomina = page.locator("[data-rename-notebook-page]")
       if (profile.hasTouch) {
         await attivaControlloPagina(page, apriRinomina, true)
@@ -805,6 +819,10 @@ for (const profile of INSERT_PROFILES) {
       await expect(pagine.nth(0)).toContainText("Titolo  esperimento")
       await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
 
+      // Il gestore è stato di vista: il reload lo chiude. Il titolo rinominato,
+      // che è dominio, è invece sopravvissuto — lo si è appena letto nella strip.
+      await expect(page.locator("[data-notebook-page-manager]")).toHaveCount(0)
+      await apriGestorePagine(page, profile.hasTouch)
       if (profile.hasTouch) {
         await attivaControlloPagina(page, apriRinomina, true)
         await attivaControlloPagina(
@@ -830,6 +848,8 @@ for (const profile of INSERT_PROFILES) {
         await attivaControlloPaginaAccessibile(page, aggiungi, false)
       }
       await expect(pagine).toHaveCount(2)
+      // «+ Nuova pagina» consegna una pagina su cui scrivere e chiude il gestore.
+      await apriGestorePagine(page, profile.hasTouch)
       if (profile.hasTouch) {
         await attivaControlloPagina(page, apriRinomina, true)
       } else {
@@ -878,7 +898,14 @@ for (const profile of INSERT_PROFILES) {
       expect(documentId).toBeTruthy()
       const pagine = page.locator("[data-notebook-page-id]")
       const elimina = page.locator("[data-delete-notebook-page]")
+      // Elimina è distruttivo: sta nel gestore (INT-UX-003). Con una pagina
+      // sola resta visibile ma impossibile — non sparisce, così chi impara
+      // vede che l'azione esiste e perché ora non si può.
+      await apriGestorePagine(page, profile.hasTouch)
       await expect(elimina).toBeDisabled()
+      // Chiuso prima di disegnare: il pannello sta sopra la superficie.
+      await page.keyboard.press("Escape")
+      await expect(page.locator("[data-notebook-page-manager]")).toHaveCount(0)
 
       if (profile.hasTouch) {
         await attivaControlloPagina(page, page.locator("[data-add-notebook-page]"), true)
@@ -901,6 +928,7 @@ for (const profile of INSERT_PROFILES) {
       await expect.poll(() => leggiByteCachePagina(page, documentId!, deletedId!)).not.toBeNull()
       const deletedBytes = await leggiByteCachePagina(page, documentId!, deletedId!)
 
+      await apriGestorePagine(page, profile.hasTouch)
       if (profile.hasTouch) {
         await attivaControlloPagina(page, elimina, true)
       } else {
@@ -946,7 +974,11 @@ for (const profile of INSERT_PROFILES) {
       await expect(pagine).toHaveCount(1)
       await expect(pagine.nth(0)).toHaveAttribute("data-notebook-page-id", "p1")
       await expect(pagine.nth(0)).toHaveAttribute("aria-current", "true")
-      await expect(pagine.nth(0)).toBeFocused()
+      // Con una pagina sola Elimina è diventato impossibile: il focus non può
+      // restare su un controllo disabilitato e va sulla pagina in scrittura —
+      // dentro il gestore, che è la superficie su cui l'utente sta operando,
+      // non nella strip da cui non è partito.
+      await expect(page.locator('[data-notebook-manager-page="p1"]')).toBeFocused()
       expect(await leggiByteCachePagina(page, documentId!, deletedId!)).toBe(deletedBytes)
 
       await page.reload()

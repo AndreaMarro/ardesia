@@ -40,6 +40,16 @@ export type NotebookManagerTarget = Readonly<{
 export type NotebookManagerModel = Readonly<{
   rows: ReadonlyArray<NotebookManagerRow>
   activePageId: string
+  /**
+   * Revisione del documento proiettato.
+   *
+   * Serve a chi tiene una bozza aperta su una pagina: quando il documento
+   * cambia sotto — per un comando qualunque — la bozza descrive uno stato che
+   * non esiste piu' ed e' stantia. Prima questa regola viveva come sette
+   * chiamate sparse a `setDraft(null)` dentro altrettanti handler, e bastava
+   * dimenticarne una perche' un form sopravvivesse al proprio referente.
+   */
+  revision: number
   target: NotebookManagerTarget
   /**
    * Indice a cui `reorder_pages` reinserisce il blocco selezionato, misurato
@@ -113,6 +123,7 @@ export function notebookManagerModel(doc: NotebookDocument): NotebookManagerMode
       isSelected: selectedPageIdSet.has(page.pageId),
     })),
     activePageId: doc.activePageId,
+    revision: doc.revision,
     target,
     reorderTargetIndex: targetIndex,
     reorderBound: remainingPageCount,

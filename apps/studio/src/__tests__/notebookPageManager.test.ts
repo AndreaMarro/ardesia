@@ -248,6 +248,17 @@ describe("notebookManagerModel", () => {
     expect(due.triggerLabel).toBe("Gestisci pagine, 2 selezionate")
   })
 
+  it("espone la revisione del documento proiettato", () => {
+    const sorgente = doc({
+      pages: quattroPagine,
+      activePageId: "pa",
+      selectedPageIds: ["pa"],
+    })
+
+    expect(notebookManagerModel(sorgente).revision).toBe(0)
+    expect(notebookManagerModel({ ...sorgente, revision: 7 }).revision).toBe(7)
+  })
+
   it("non muta il documento che proietta", () => {
     const sorgente = doc({
       pages: quattroPagine,

@@ -18,13 +18,17 @@
 //    identita' testuale onesta (ordinale, titolo, orientamento). La thumbnail
 //    resta DEFERRED e non e' implicata come fatta.
 
-import { useEffect, useRef } from "react"
+// 4. Bozze e ripristino del focus appartengono a QUESTA superficie, non alla
+//    vista. Un form vive dove e' disegnato: tenerne lo stato altrove costringeva
+//    la vista a possedere `ref` verso bottoni che non renderizza piu'. La vista
+//    conserva comando e persistenza; il gestore conserva bozza e focus.
+
+import { useEffect, useRef, useState } from "react"
 
 import type { NotebookManagerModel } from "../store/notebookPageManager"
 
 export type NotebookPageManagerProps = Readonly<{
   model: NotebookManagerModel
-  open: boolean
   busy: boolean
   onClose: () => void
   onActivatePage: (pageId: string) => void
@@ -33,6 +37,10 @@ export type NotebookPageManagerProps = Readonly<{
   onRotateSelection: () => void
   onDuplicatePage: () => void
   onInsertBefore: () => void
+  /** Ritorna `true` solo se il comando ha committato. */
+  onRenamePage: (pageId: string, title: string) => Promise<boolean>
+  /** Ritorna `true` solo se il comando ha committato. */
+  onDeletePage: (pageId: string) => Promise<boolean>
 }>
 
 const ORIENTAMENTO: Readonly<Record<number, string>> = {
@@ -44,7 +52,6 @@ const ORIENTAMENTO: Readonly<Record<number, string>> = {
 
 export default function NotebookPageManager({
   model,
-  open,
   busy,
   onClose,
   onActivatePage,
@@ -53,8 +60,35 @@ export default function NotebookPageManager({
   onRotateSelection,
   onDuplicatePage,
   onInsertBefore,
+  onRenamePage,
+  onDeletePage,
 }: NotebookPageManagerProps) {
+  const [rinominaDraft, setRinominaDraft] = useState<Readonly<{
+    pageId: string
+    value: string
+  }> | null>(null)
+  const [eliminaDraft, setEliminaDraft] = useState<Readonly<{
+    pageId: string
+    title: string
+  }> | null>(null)
+  const [revisionePrecedente, setRevisionePrecedente] = useState(model.revision)
+  const rinominaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const eliminaButtonRef = useRef<HTMLButtonElement | null>(null)
+  const paginaAttivaRef = useRef<HTMLButtonElement | null>(null)
+  const ripristinaFocusRinominaRef = useRef(false)
+  const focusDopoEliminaRef = useRef<"delete" | "page" | null>(null)
   const chiudiRef = useRef<HTMLButtonElement | null>(null)
+
+  function chiudiRinominaConFocus() {
+    ripristinaFocusRinominaRef.current = true
+    setRinominaDraft(null)
+  }
+
+  function chiudiEliminaConFocus(target: "delete" | "page") {
+    focusDopoEliminaRef.current = target
+    setEliminaDraft(null)
+  }
+
   const pannelloRef = useRef<HTMLElement | null>(null)
   const ultimoControlloRef = useRef<string | null>(null)
   const eraOccupatoRef = useRef(busy)
@@ -63,10 +97,15 @@ export default function NotebookPageManager({
   // resterebbe sul trigger e il pannello sarebbe raggiungibile solo tabulando
   // attraverso tutta la strip. Il ritorno del focus al trigger e' responsabilita'
   // di chi possiede il trigger, cioe' della vista.
+  //
+  // Il montaggio E' l'apertura: la vista renderizza questo componente solo
+  // quando il gestore e' aperto, quindi la chiusura lo smonta e con esso spariscono
+  // bozze e riferimenti. Prima c'era un prop `open` e un effetto che azzerava le
+  // bozze alla chiusura — cioe' uno stato invisibile che sopravviveva a una
+  // superficie chiusa, ripulito da un `setState` dentro un effetto.
   useEffect(() => {
-    if (!open) return
     chiudiRef.current?.focus()
-  }, [open])
+  }, [])
 
   // Ogni comando disabilita i controlli mentre e' in volo. Disabilitare
   // l'elemento che ha il focus lo fa cadere sul `body`: da tastiera la
@@ -76,16 +115,51 @@ export default function NotebookPageManager({
   useEffect(() => {
     const eraOccupato = eraOccupatoRef.current
     eraOccupatoRef.current = busy
-    if (busy || !eraOccupato || !open) return
+    if (busy || !eraOccupato) return
     const controllo = ultimoControlloRef.current
     if (!controllo) return
     const bersaglio = pannelloRef.current?.querySelector<HTMLElement>(
       `[data-notebook-manager-control="${CSS.escape(controllo)}"]`,
     )
     if (bersaglio && !(bersaglio as HTMLButtonElement).disabled) bersaglio.focus()
-  }, [busy, open])
+  }, [busy])
 
-  if (!open) return null
+  // Chiudere un form non deve scaricare il focus sul `body`: torna al controllo
+  // che il form ha sostituito.
+  useEffect(() => {
+    if (rinominaDraft || !ripristinaFocusRinominaRef.current || !rinominaButtonRef.current) return
+    ripristinaFocusRinominaRef.current = false
+    rinominaButtonRef.current.focus()
+  }, [rinominaDraft])
+
+  // Dopo un'eliminazione riuscita il bottone Elimina puo' essere diventato
+  // impossibile — resta una pagina sola. In quel caso il focus va sulla pagina
+  // in scrittura, non su un controllo disabilitato.
+  useEffect(() => {
+    if (eliminaDraft || busy || !focusDopoEliminaRef.current) return
+    const bersaglio = focusDopoEliminaRef.current === "delete"
+      ? eliminaButtonRef.current
+      : paginaAttivaRef.current
+    if (!bersaglio || bersaglio.disabled) return
+    focusDopoEliminaRef.current = null
+    bersaglio.focus()
+  }, [busy, eliminaDraft, model.activePageId, model.rows.length])
+
+  // Una bozza descrive una pagina a una revisione precisa. Se il documento
+  // cambia sotto — undo, riordino, selezione, qualunque comando — la bozza
+  // descrive uno stato che non esiste piu': si chiude.
+  //
+  // L'aggiustamento avviene DURANTE il render confrontando la prop con il suo
+  // valore precedente: e' il modo documentato di reagire al cambio di una prop
+  // senza un effetto, e senza la latenza di un secondo passaggio in cui il form
+  // resterebbe visibile su dati sbagliati.
+  if (model.revision !== revisionePrecedente) {
+    setRevisionePrecedente(model.revision)
+    if (rinominaDraft) setRinominaDraft(null)
+    if (eliminaDraft) setEliminaDraft(null)
+  }
+
+  const paginaInScrittura = model.rows.find((row) => row.isActive) ?? null
 
   return (
     <aside
@@ -145,6 +219,7 @@ export default function NotebookPageManager({
           <li key={row.pageId} style={riga}>
             <button
               type="button"
+              ref={row.isActive ? paginaAttivaRef : undefined}
               data-notebook-manager-page={row.pageId}
               data-notebook-manager-control={`page:${row.pageId}`}
               data-notebook-manager-page-selected={row.isSelected ? "true" : "false"}
@@ -216,6 +291,130 @@ export default function NotebookPageManager({
         >
           Duplica
         </button>
+        {rinominaDraft ? (
+          <form
+            data-rename-notebook-form
+            style={rinominaForm}
+            onSubmit={(event) => {
+              event.preventDefault()
+              void onRenamePage(rinominaDraft.pageId, rinominaDraft.value).then((riuscito) => {
+                if (riuscito) chiudiRinominaConFocus()
+              })
+            }}
+          >
+            <label htmlFor="notebook-page-title" style={rinominaLabel}>
+              Titolo pagina
+            </label>
+            <input
+              id="notebook-page-title"
+              data-rename-notebook-input
+              value={rinominaDraft.value}
+              maxLength={120}
+              autoFocus
+              disabled={busy}
+              onChange={(event) => {
+                setRinominaDraft({ ...rinominaDraft, value: event.currentTarget.value })
+              }}
+              style={rinominaInput}
+            />
+            <button
+              type="submit"
+              data-save-notebook-page-title
+              disabled={busy}
+              style={comando}
+            >
+              Salva titolo
+            </button>
+            <button
+              type="button"
+              data-cancel-notebook-page-title
+              disabled={busy}
+              onClick={chiudiRinominaConFocus}
+              style={comando}
+            >
+              Annulla rinomina
+            </button>
+          </form>
+        ) : (
+          <button
+            type="button"
+            className="st-chip"
+            ref={rinominaButtonRef}
+            data-rename-notebook-page
+            data-notebook-manager-control="rename"
+            aria-label="Rinomina la pagina in scrittura"
+            disabled={busy || !paginaInScrittura}
+            onClick={() => {
+              if (!paginaInScrittura) return
+              setEliminaDraft(null)
+              setRinominaDraft({
+                pageId: paginaInScrittura.pageId,
+                value: paginaInScrittura.title,
+              })
+            }}
+            style={comando}
+          >
+            Rinomina
+          </button>
+        )}
+        {/* Conferma recuperabile: PRD §4.4/§19.2, PC-R1-001,
+            GN-A1-003/GN-A7-012; non e' un prompt nativo opaco. */}
+        {eliminaDraft ? (
+          <form
+            data-delete-notebook-confirmation
+            aria-label="Conferma eliminazione pagina"
+            style={eliminaFormStile}
+            onSubmit={(event) => {
+              event.preventDefault()
+              void onDeletePage(eliminaDraft.pageId).then((riuscito) => {
+                if (riuscito) chiudiEliminaConFocus(model.rows.length > 2 ? "delete" : "page")
+              })
+            }}
+          >
+            <span style={eliminaCopy}>
+              Eliminare “{eliminaDraft.title}”? La pagina scompare, ma Annulla la recupera con tutto il contenuto.
+            </span>
+            <button
+              type="submit"
+              data-confirm-delete-notebook-page
+              disabled={busy}
+              style={eliminaConferma}
+            >
+              Elimina pagina
+            </button>
+            <button
+              type="button"
+              data-cancel-delete-notebook-page
+              autoFocus
+              disabled={busy}
+              onClick={() => { chiudiEliminaConFocus("delete") }}
+              style={comando}
+            >
+              Mantieni pagina
+            </button>
+          </form>
+        ) : (
+          <button
+            type="button"
+            className="st-chip"
+            ref={eliminaButtonRef}
+            data-delete-notebook-page
+            data-notebook-manager-control="delete"
+            aria-label="Elimina la pagina in scrittura"
+            disabled={busy || !paginaInScrittura || !model.canDelete}
+            onClick={() => {
+              if (!paginaInScrittura) return
+              setRinominaDraft(null)
+              setEliminaDraft({
+                pageId: paginaInScrittura.pageId,
+                title: paginaInScrittura.title,
+              })
+            }}
+            style={eliminaPulsante}
+          >
+            Elimina
+          </button>
+        )}
       </div>
 
       <h3 style={titoloGruppo}>Selezione</h3>
@@ -392,6 +591,46 @@ const comandi = {
   gap: 6,
 } as const
 
+const rinominaForm = {
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+  flexWrap: "wrap",
+  width: "100%",
+} as const
+
+const rinominaLabel = {
+  font: "600 11px/1.2 system-ui",
+  color: "#6b7f96",
+} as const
+
+const rinominaInput = {
+  flex: 1,
+  minWidth: 120,
+  minHeight: TAP,
+  padding: "6px 10px",
+  borderRadius: 8,
+  border: "1px solid rgba(21,38,56,0.24)",
+  font: "400 13px/1.2 system-ui",
+  color: "#152638",
+} as const
+
+const eliminaFormStile = {
+  display: "flex",
+  alignItems: "center",
+  gap: 6,
+  flexWrap: "wrap",
+  width: "100%",
+} as const
+
+const eliminaCopy = {
+  flexBasis: "100%",
+  font: "400 12px/1.45 system-ui",
+  color: "#41556d",
+} as const
+
+
+
 const comando = {
   minHeight: TAP,
   padding: "6px 14px",
@@ -402,4 +641,16 @@ const comando = {
   font: "600 13px/1 system-ui",
   whiteSpace: "nowrap",
   cursor: "pointer",
+} as const
+
+const eliminaPulsante = {
+  ...comando,
+  color: "#8a2b2b",
+  border: "1px dashed rgba(138,43,43,0.45)",
+} as const
+const eliminaConferma = {
+  ...comando,
+  color: "#ffffff",
+  background: "#8a2b2b",
+  border: "1px solid #8a2b2b",
 } as const
