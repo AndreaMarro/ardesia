@@ -78,6 +78,26 @@ async function disegnaUnTratto(page: Page): Promise<void> {
   // "7" = strumento disegno libero in Excalidraw (titolo: "Disegno — P oppure 7").
   await page.keyboard.press("7")
 
+  // La selezione dello strumento era ASSUNTA, e l'assunzione falliva in
+  // silenzio: se il tasto non raggiunge Excalidraw — perche' il focus e' ancora
+  // sul controllo che ha cambiato pagina, o perche' il componente si e' appena
+  // rimontato — il gesto successivo non disegna, la scena resta vuota e il test
+  // muore molto piu' tardi su «data-notebook-scene-elements resta 0», cioe' su
+  // un sintomo lontano dalla causa.
+  //
+  // Qui la precondizione diventa esplicita e si aspetta. Se lo strumento non si
+  // attiva, il rosso lo dice: non e' un rinvio, e' una diagnosi anticipata al
+  // punto in cui il difetto accade. Il secondo tentativo di scorciatoia serve
+  // ai casi in cui il primo e' arrivato durante il rimontaggio.
+  const freedraw = page.locator('[data-testid="toolbar-freedraw"]')
+  await expect.poll(async () => {
+    if (await freedraw.count() === 0) return "assente"
+    if (await freedraw.isChecked()) return "attivo"
+    await page.mouse.click(box!.x + box!.width * 0.62, box!.y + box!.height * 0.5)
+    await page.keyboard.press("7")
+    return "non-attivo"
+  }, { timeout: 10_000 }).toBe("attivo")
+
   const x0 = box.x + box.width * 0.62
   const y0 = box.y + box.height * 0.5
   await page.mouse.move(x0, y0)
