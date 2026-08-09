@@ -134,6 +134,17 @@ async function attivaControlloPagina(
 ): Promise<void> {
   await expect(controllo).toBeVisible()
   await controllo.scrollIntoViewIfNeeded()
+  // I comandi del Taccuino sono `disabled={operazioneInCorso}` finche' un
+  // comando precedente e' in volo, e `aggiungiPagina`/`cambiaPagina` rientrano
+  // a vuoto sulla guardia `transizioneRef`. `controllo.click()` aspetta da solo
+  // che il controllo sia abilitato; `page.touchscreen.tap` NO: tocca
+  // coordinate, e un tap su un bottone disabilitato non fa niente e non solleva
+  // niente.
+  //
+  // E' la causa misurata del rosso iPad `toHaveCount` atteso 6 ricevuto 5: dei
+  // cinque tap consecutivi che aggiungono pagine, uno cadeva nel vuoto. Il
+  // difetto era solo iPad proprio perche' su desktop l'attesa era implicita.
+  await expect(controllo).toBeEnabled()
   const box = await controllo.boundingBox()
   if (!box) throw new Error("controllo pagina senza bounding box")
   expect(box.width).toBeGreaterThanOrEqual(44)
@@ -142,7 +153,12 @@ async function attivaControlloPagina(
     await controllo.click()
     return
   }
-  await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2)
+  // La box si rilegge qui, immediatamente prima del tap: fra la misura dei
+  // 44 px e il gesto il layout puo' essere cambiato, e un tap su coordinate
+  // vecchie manca il bersaglio in silenzio.
+  const boxTap = await controllo.boundingBox()
+  if (!boxTap) throw new Error("controllo pagina senza bounding box al tap")
+  await page.touchscreen.tap(boxTap.x + boxTap.width / 2, boxTap.y + boxTap.height / 2)
 }
 
 async function attivaControlloPaginaAccessibile(
@@ -171,6 +187,43 @@ async function attivaControlloPaginaAccessibile(
     return outlineVisibile || stile.boxShadow !== "none"
   })).toBe(true)
   await page.keyboard.press("Enter")
+}
+
+/**
+ * Cambia la pagina in scrittura e ASPETTA che il prodotto dichiari il cambio.
+ *
+ * `cambiaPagina` in `NotebookView` fa `await flush()` e
+ * `await executeNotebookCommand(...)` PRIMA di toccare lo stato. Finche' quei
+ * due await non si risolvono, `doc.activePageId` e' ancora la pagina
+ * precedente: quindi `scenaPer === identitaScenaCorrente` — entrambi vecchi —
+ * la barra "Apertura della pagina" NON compare, e il canvas della pagina
+ * precedente resta montato.
+ *
+ * Chi disegna in quella finestra disegna nella pagina SBAGLIATA, e il rosso
+ * arriva dieci secondi dopo su `data-notebook-scene-elements` che resta `0`:
+ * un sintomo lontano dalla causa. Sotto contesa la finestra si allarga, ed e'
+ * per questo che il difetto sembrava dipendere dal carico.
+ *
+ * `aria-current` sulla pagina bersaglio si accende solo dopo `setDoc(...)`,
+ * cioe' dopo tutto l'asincrono; e nello stesso batch `setScenaPer(null)` fa
+ * comparire la barra. Aspettarlo rende vera la precondizione che
+ * `disegnaUnTratto` gia' controlla, invece di lasciarla assunta.
+ *
+ * Non e' un'attesa piu' lunga: e' un'attesa su un segnale del prodotto. Se il
+ * cambio non avviene, il test muore qui, dove il difetto accade.
+ */
+async function cambiaPaginaCorrente(
+  page: Page,
+  controllo: Locator,
+  touch: boolean,
+): Promise<void> {
+  // L'helper deve provare una TRANSIZIONE, non uno stato. Se il bersaglio
+  // fosse gia' la pagina corrente, `cambiaPagina` rientrerebbe subito a vuoto
+  // (`pageId === doc.activePageId` → `return`) e l'asserzione finale sarebbe
+  // vera senza che il click abbia fatto nulla: un verde che non misura niente.
+  await expect(controllo).not.toHaveAttribute("aria-current", "true")
+  await attivaControlloPagina(page, controllo, touch)
+  await expect(controllo).toHaveAttribute("aria-current", "true")
 }
 
 /**
@@ -1094,7 +1147,7 @@ for (const profile of INSERT_PROFILES) {
       )
       const byteP4 = await leggiByteCachePagina(page, documentId!, p4!)
 
-      await attivaControlloPagina(page, pagine.nth(1), profile.hasTouch)
+      await cambiaPaginaCorrente(page, pagine.nth(1), profile.hasTouch)
       await disegnaUnTratto(page)
       await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
         timeout: 10_000,
@@ -1194,7 +1247,13 @@ for (const profile of INSERT_PROFILES) {
         elementiP2!,
         { timeout: 10_000 },
       )
-      await attivaControlloPagina(
+      // Il cambio pagina si aspetta anche qui. Senza, l'asserzione sotto e'
+      // VACUA: `elementiP2` ed `elementiP4` valgono entrambi `"1"` — un solo
+      // tratto per pagina — quindi il conteggio mostrato prima del click
+      // soddisfa gia' l'atteso, e il test passerebbe identico se il click non
+      // facesse niente. Attendendo `aria-current` l'asserzione torna a dire
+      // cio' che dichiara: dopo il riordino, su p4 ritrovo il contenuto di p4.
+      await cambiaPaginaCorrente(
         page,
         page.locator(`[data-notebook-page-id="${p4}"]`),
         profile.hasTouch,
@@ -1600,6 +1659,10 @@ test("taccuino: una write manifest fallita durante Prima conserva ordine, active
   const pagine = page.locator("[data-notebook-page-id]")
   await disegnaUnTratto(page)
   await page.locator("[data-add-notebook-page]").click()
+  // Il conteggio delle pagine e' il segnale di commit dell'aggiunta: cambia
+  // solo dopo `setDoc`. Senza, si disegna nella finestra in cui la pagina
+  // nuova non esiste ancora e i tratti finiscono su quella precedente.
+  await expect(pagine).toHaveCount(2)
   await disegnaUnTratto(page)
   await disegnaUnTratto(page)
   await expect(conteggio).not.toHaveAttribute("data-notebook-scene-elements", "0", {
@@ -1608,6 +1671,7 @@ test("taccuino: una write manifest fallita durante Prima conserva ordine, active
   const elementiSeconda = await conteggio.getAttribute("data-notebook-scene-elements")
   expect(Number(elementiSeconda)).toBeGreaterThan(1)
   await page.locator("[data-add-notebook-page]").click()
+  await expect(pagine).toHaveCount(3)
   await disegnaUnTratto(page)
   await disegnaUnTratto(page)
   await disegnaUnTratto(page)
@@ -2147,6 +2211,15 @@ for (const profile of INSERT_PROFILES) {
           page.locator("[data-add-notebook-page]"),
           profile.hasTouch,
         )
+        // Il conteggio delle pagine e' il segnale di commit dell'aggiunta:
+        // cambia solo dopo `setDoc`. Aspettare invece che il bottone torni
+        // abilitato NON basta, ed e' stato misurato: `transizioneRef.current`
+        // e' alzato in modo SINCRONO quando `aggiungiPagina` parte, mentre
+        // `disabled={operazioneInCorso}` compare nel DOM un commit dopo. Nella
+        // finestra fra i due il bottone sembra abilitato e il comando rientra
+        // gia' a vuoto, quindi il tap successivo veniva perso in silenzio: e'
+        // la causa del rosso iPad `toHaveCount` atteso 6 ricevuto 5.
+        await expect(pagine).toHaveCount(i + 2)
       }
       await expect(pagine).toHaveCount(6)
 
