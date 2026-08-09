@@ -287,6 +287,53 @@ async function leggiByteCachePagina(
   )
 }
 
+/**
+ * Scena in cache confrontabile ATTRAVERSO un montaggio.
+ *
+ * I byte grezzi non lo sono. Misurato con una sonda: subito dopo `duplica` i
+ * byte del duplicato sono identici a quelli della sorgente (1156 caratteri);
+ * entro ~300 ms il duplicato monta, Excalidraw ri-serializza e l'autosave
+ * riscrive la forma normalizzata (1152 caratteri, `boundElements` da `null` a
+ * lista vuota). Da quel momento i byte non torneranno mai piu' uguali.
+ *
+ * `expect.poll(...).toBe(byteSource)` passava quindi solo se il PRIMO campione
+ * cadeva dentro quella finestra: sotto carico cadeva dopo, e la poll moriva
+ * dopo dieci secondi. Non era un difetto del contenuto — era un oracolo che
+ * pretendeva l'idempotenza della serializzazione di Excalidraw, che il prodotto
+ * non garantisce.
+ *
+ * La normalizzazione e' DERIVATA dai valori, non da un elenco di campi a mano:
+ * `null`, `undefined`, assente e collezione vuota sono la stessa cosa, e le
+ * chiavi si ordinano. Cio' che questo confronto NON distingue piu' e' esattamente
+ * questo: vuoto contro assente. Elementi aggiunti, persi, spostati o alterati
+ * restano tutti visibili, e il conteggio degli elementi resta asserito a parte.
+ */
+function normalizzaScena(valore: unknown): unknown {
+  if (Array.isArray(valore)) return valore.map(normalizzaScena)
+  if (valore && typeof valore === "object") {
+    const risultato: Record<string, unknown> = {}
+    const voci = Object.entries(valore as Record<string, unknown>)
+      .filter(([, v]) => v !== null && v !== undefined)
+      .filter(([, v]) => !(Array.isArray(v) && v.length === 0))
+      .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    for (const [chiave, v] of voci) risultato[chiave] = normalizzaScena(v)
+    return risultato
+  }
+  return valore
+}
+
+async function leggiScenaConfrontabile(
+  page: Page,
+  documentId: string,
+  pageId: string,
+): Promise<string | null> {
+  const grezzo = await leggiByteCachePagina(page, documentId, pageId)
+  if (!grezzo) return null
+  return JSON.stringify(normalizzaScena(JSON.parse(
+    Buffer.from(grezzo, "base64").toString("utf8"),
+  )))
+}
+
 async function leggiScenaCachePagina(
   page: Page,
   documentId: string,
@@ -747,6 +794,8 @@ for (const profile of INSERT_PROFILES) {
       const elementiSource = await conteggio.getAttribute("data-notebook-scene-elements")
       const byteSource = await leggiByteCachePagina(page, documentId, sourceId)
       expect(byteSource).toBeTruthy()
+      const scenaSource = await leggiScenaConfrontabile(page, documentId, sourceId)
+      expect(scenaSource).toBeTruthy()
 
       await apriGestorePagine(page, profile.hasTouch)
       await attivaControlloPagina(
@@ -769,10 +818,13 @@ for (const profile of INSERT_PROFILES) {
         elementiSource!,
         { timeout: 10_000 },
       )
+      // Confronto ATTRAVERSO il montaggio del duplicato: vedi
+      // `leggiScenaConfrontabile`. I byte grezzi qui erano una corsa contro
+      // l'autosave del duplicato, non una prova sul contenuto.
       await expect.poll(
-        () => leggiByteCachePagina(page, documentId, duplicateId!),
+        () => leggiScenaConfrontabile(page, documentId, duplicateId!),
         { timeout: 10_000 },
-      ).toBe(byteSource)
+      ).toBe(scenaSource)
 
       await disegnaUnTratto(page)
       await expect.poll(async () => {
