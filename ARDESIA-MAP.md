@@ -28,7 +28,7 @@ Dove sta cosa e da dove partire. (Mappa del CODICE; la mappa di governance/visio
   - Simulatore: `src/components/simulator/` (CircuitSolver union-find, WireRenderer, BreadboardHalf). I 5 tipi di collegamento sono GIA modellati.
   - CircuitScene v1 = spec/work-order in PR#195 (branch `claude/elab-simulator-codebase-graph-mhT32`): provenance + validatori (electrical/geometry/bookMatch). Fix dati noto: `c21 -> e21` su 3 esperimenti vol3.
 - **Fabbrica -> `ops/tools/`**
-  - `factory-metrics.py --digest`, gate, `deadman.sh`, bridge Telegram, replenish/strategos. Gira sul Mini.
+  - `factory-metrics.py --digest`, gate, `deadman.sh`, bridge Telegram, replenish/strategos. ⚠️ Diceva «Gira sul Mini»: **il Mini è vietato dal 2026-08-02**. L'orologio del loop gira in locale, da `~/ARDESIA-KNOWLEDGE/ops/loop/`.
 - **Docs/visione -> `docs/`** + vault esterno `ardesia-vault` (governance, PDF v2).
 
 ## Stato (18/06/2026)
