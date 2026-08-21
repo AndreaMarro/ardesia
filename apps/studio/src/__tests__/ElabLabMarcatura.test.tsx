@@ -81,7 +81,50 @@ describe("ElabLab — marcatura common_mistakes → error.observed", () => {
       labels: { it: "LED inserito al contrario" },
       evidence: ["pack:io.elab.tutor:v1-cap6-esp1"],
     })
-    expect(view.querySelector("[data-marked-count]")?.textContent).toContain("1")
+    await vi.waitFor(() => {
+      expect(view.querySelector("[data-marked-count]")?.textContent).toContain("1")
+    })
+  })
+
+  // Issue #246 — l'oracolo veloce dello stesso invariante che l'e2e
+  // `elab-lab-marcatura-durabile.spec.ts` misura navigando: la vista non
+  // dichiara «segnato» finche' l'append non e' acknowledged. Qui l'append e'
+  // tenuto in volo esplicitamente, cosi' la finestra e' deterministica.
+  it("#246: il contatore non anticipa la durabilita' — resta 0 finche' l'append e' in volo", async () => {
+    let sblocca: (() => void) | null = null
+    const inVolo = new Promise<void>((resolve) => {
+      sblocca = resolve
+    })
+    const memoria = new InMemoryEventLog()
+    const logLento: EventLogStore = {
+      append: async (event) => {
+        await inVolo
+        return memoria.append(event)
+      },
+      readAll: () => memoria.readAll(),
+    }
+    const view = await renderView(logLento)
+
+    await act(async () => {
+      conceptRadio(view, "polarità LED").click()
+    })
+    await act(async () => {
+      mistakeButton(view, "LED inserito al contrario").click()
+    })
+
+    // Scrittura ancora in volo: nulla e' durabile, quindi nulla e' «segnato».
+    expect(await memoria.readAll()).toHaveLength(0)
+    expect(view.querySelector("[data-marked-count]")?.textContent).toContain("errori segnati: 0")
+
+    await act(async () => {
+      sblocca?.()
+      await inVolo
+    })
+
+    await vi.waitFor(() => {
+      expect(view.querySelector("[data-marked-count]")?.textContent).toContain("errori segnati: 1")
+    })
+    expect(await memoria.readAll()).toHaveLength(1)
   })
 
   it("append fallito → avviso visibile, mai silenzio", async () => {

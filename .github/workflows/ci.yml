@@ -98,6 +98,59 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  # Lane che BLOCCA — il contrario della lane advisory qui sopra, e per una
+  # ragione precisa: questo journey non riporta un difetto, lo impedisce.
+  #
+  # Issue #246, misurata il 2026-08-22: ElabLab.tsx markMistake() emetteva
+  # `error.observed` sul bus e incrementava il contatore nella stessa funzione
+  # sincrona, mentre il binding host faceva `void log.append(...)`. La vista
+  # dichiarava «errori segnati: 1» con la scrittura ancora in volo: chi
+  # ricaricava in quella finestra perdeva l'errore appena segnato, DOPO aver
+  # letto che era segnato. Le 4 spec e2e che coprivano ELAB Lab non lo vedevano
+  # perche' nessuna naviga: restano nella vista montata, e un difetto di
+  # durabilita' e' invisibile finche' nessuno spegne la luce.
+  #
+  # Perche' questa e' required e il golden path no: il golden path e' un
+  # obiettivo largo che non e' mai stato verde in CI: renderlo bloccante
+  # significherebbe un rosso permanente, cioe' un check che si impara a
+  # ignorare. Questo journey e' UNO, e' stato visto rosso contro il codice di
+  # prima e verde dopo il rimedio, e la sua mutazione di controllo (rimettere
+  # il contatore sull'emit) lo riporta rosso. Un check con quelle tre misure
+  # alle spalle puo' bloccare dal primo giorno.
+  #
+  # ⚠️ gate-Andrea: «required» qui significa «senza continue-on-error», cioe'
+  # un rosso di questo job fa rosso il workflow. La LISTA dei required status
+  # checks della branch protection e' un'impostazione di repo, non un file di
+  # questo albero: non la puo' cambiare questo commit. Finche' quella lista non
+  # nomina `e2e durabilita memoria`, il check e' bloccante nel workflow ma non
+  # nel merge button.
+  e2e-durabilita-memoria:
+    name: e2e durabilita memoria (#246)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: la memoria della lezione sopravvive alla navigazione (#246)
+        run: npx playwright test e2e/elab-lab-marcatura-durabile.spec.ts --reporter=line
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durabilita-memoria-traces-${{ github.sha }}
+          path: apps/studio/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest
