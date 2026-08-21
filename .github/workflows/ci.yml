@@ -116,7 +116,22 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - name: golden path (l'obiettivo, come exit code)
-        run: npx playwright test e2e/golden-path.spec.ts --reporter=line
+        run: npx playwright test e2e/golden-path.spec.ts --forbid-only --reporter=line
+      # `toolhost-srcdoc-bypass` e' stata RESPINTA dal cancello che blocca il
+      # 2026-08-22: il suo terzo test asserisce che il bypass di sandbox del
+      # Tool Lab ESISTE ANCORA, quindi in un job bloccante sarebbe un cancello
+      # che difende la vulnerabilita' — chi implementa ADR-0001 troverebbe la
+      # PR rossa.
+      #
+      # Ma respingerla dal cancello non deve voler dire non eseguirla mai: e'
+      # l'unica prova viva che quel confine e' quello che e', e senza nessuna
+      # corsia che la esegua il giorno in cui ADR-0001 chiudera' il buco
+      # nessuno se ne accorgerebbe dalla CI. Qui e' al posto giusto: ADVISORY
+      # riporta senza bloccare, e il flip da verde a rosso e' il SEGNALE che
+      # l'enforcement e' arrivato — da leggere, non da subire.
+      - name: characterization del bypass srcDoc (flip atteso quando ADR-0001 chiude il buco)
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/toolhost-srcdoc-bypass.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -196,6 +211,52 @@ jobs:
       - name: shell del docente - Lezione, Continuita, Materiali, stessa Lezione
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/product-flow-shell.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22. Mutazione discriminante: `RecoveryReport.recovered`
+      # forzato a 0 in `IndexedDbEventLog.open()` -> questa spec esce 1, mentre
+      # golden-path, il journey #246 e il journey shell docente escono tutti 0.
+      # La conseguenza di quella mutazione non e' solo un test rosso: bootstrap
+      # scrive il marker di telemetria solo se `recovered` e' maggiore di zero,
+      # quindi con recovered sempre 0 `dataLoss` non diventa mai true e l'avviso
+      # «memoria non trovata, ripristina da export» (EVENTLOG-PERSISTENCE-SPEC
+      # §4.4) diventa IRRAGGIUNGIBILE: la perdita di una lezione tornerebbe
+      # silenziosa. Questo journey e' l'unico che se ne accorge.
+      #
+      # ⚠️ RESPINTA nello stesso giro, e vale la pena saperlo qui:
+      # `e2e/toolhost-srcdoc-bypass.spec.ts` e' verde ma NON entra. Il suo terzo
+      # test asserisce che il bypass di sandbox ESISTE ANCORA — e' la
+      # characterization di un difetto noto, scritta per diventare rossa quando
+      # ADR-0001 lo chiude. In un job che blocca sarebbe un cancello che difende
+      # la vulnerabilita': chi ripara troverebbe la PR rossa. Il criterio
+      # d'ingresso non e' «la spec e' verde», e' «cosa si rompe se il prodotto
+      # PEGGIORA».
+      #
+      # ⚠️ Due precisazioni che la revisione ha strappato a questo stesso step,
+      # e senza le quali il commento qui sopra direbbe piu' di cio' che e' stato
+      # misurato:
+      #   1. NON e' un journey. La spec importa direttamente
+      #      `/src/lessonos/indexedDbEventLog.ts` via `page.evaluate`: non
+      #      attraversa nessuna vista, nessun bottone, nessun bus. E' il
+      #      contratto di un modulo esercitato in un browser vero — che e'
+      #      esattamente cio' che serve per la semantica multi-tab di IndexedDB,
+      #      e che jsdom non sa dare. Lo step si chiama per quello che e'.
+      #   2. La mutazione che l'ha fatta entrare (`recovered: 0`) dimostra che
+      #      questa spec sorveglia il RECOVERY REPORT. NON dimostra che
+      #      sorvegli l'exactly-once fra due tab: la mutazione che mirava li' —
+      #      togliere la serializzazione `writeQueue` da `append()` — non e'
+      #      stata presa da NESSUNA spec, candidata compresa (4 exit 0 su 4),
+      #      perche' la transazione readwrite di IndexedDB serializza gia'
+      #      l'allocazione del seq. Quindi: la parte multi-tab dell'invariante
+      #      e' DICHIARATA, non dimostrata, e la `writeQueue` e' una garanzia
+      #      che nessun test misura. Il codice non e' stato toccato.
+      #
+      # Rischio noto sul primo giro reale in CI: 100 append piu' un cold reopen
+      # ereditano il timeout di 30s della config di Playwright. Su un runner
+      # lento questa e' la candidata piu' plausibile a un rosso che NON e' un
+      # difetto del prodotto. Se succede, si misura il tempo prima di toccare
+      # il prodotto.
+      - name: contratto event-log su piu' tab - exactly-once, contiguo, durevole a freddo
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/lessonos-eventlog-multitab.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

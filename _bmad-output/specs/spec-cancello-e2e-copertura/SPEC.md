@@ -1,6 +1,6 @@
 ---
 id: SPEC-cancello-e2e-copertura
-companions: []
+companions: [journey-ammessi.md]
 sources: []
 ---
 
@@ -30,11 +30,17 @@ Misurato il **2026-08-22**: `npx playwright test --workers=3` su `apps/studio` e
   - **intent:** la giustificazione della corsia advisory smette di affermare un fatto invecchiato e porta la misura di oggi con la sua data.
   - **success:** il commento di `ci.yml` cita la misura del 2026-08-22 e distingue esplicitamente «verde in locale» da «verde in CI».
 
+- **CAP-4**
+  - **intent:** la promessa di exactly-once e contiguità dell'event-log quando più tab scrivono insieme è sorvegliata da un cancello che blocca.
+  - **success:** con `RecoveryReport.recovered` forzato a `0`, `lessonos-eventlog-multitab` esce **1** mentre `golden-path`, il journey #246 e il journey shell docente escono tutti **0**.
+
 ## Constraints
 
 - **Una alla volta, e ognuna vista fallire prima di entrare.** Una spec verde che non è mai stata rossa non è un oracolo dimostrato: è un file che passa.
 - **Verde in locale non è verde in CI.** Nessuna delle 22 è mai stata eseguita su `ubuntu-latest`/node 22: non esiste una sola osservazione del loro comportamento lì. La misura di oggi autorizza a far entrare una spec, non a dichiararla verde in CI.
 - **La mutazione di controllo sta nel prodotto, non nel test.** Rompere il test per vederlo rosso dimostra che il test sa fallire, non che sorveglia qualcosa.
+- **La mutazione deve DISCRIMINARE**: deve lasciare verdi i journey già nel cancello. Se la prendono tutti, la spec candidata non aggiunge copertura — e la cosa va scritta, non aggirata cambiando mutazione finché una funziona.
+- **Il criterio d'ingresso non è «la spec è verde»: è «cosa si rompe se il prodotto peggiora».** Una spec che diventa rossa quando il prodotto **migliora** — la characterization di un difetto noto — va tenuta fuori: in un job che blocca sarebbe un cancello che difende il difetto.
 - Convergenza: **un solo job** che blocca, con una lista esplicita che cresce di una riga per volta. Non 22 job, non un glob — un glob farebbe entrare anche ciò che nessuno ha visto fallire.
 
 ## Non-goals
@@ -43,6 +49,8 @@ Misurato il **2026-08-22**: `npx playwright test --workers=3` su `apps/studio` e
 - La suite vitest locale rossa per deriva d'ambiente (node v26.5.1 contro node 22 in CI): fuori dalla fetta, e ripararla senza misurarla su node 22 sarebbe indovinare.
 - La lane advisory del golden path: resta dov'è; questa fetta ne corregge la giustificazione, non la posizione.
 - La branch protection: impostazione di repository, non un file di questo albero.
+
+Il registro dei journey ammessi e di quelli respinti, con la misura che ha deciso ciascuno, sta in `journey-ammessi.md`.
 
 ## Success signal
 
