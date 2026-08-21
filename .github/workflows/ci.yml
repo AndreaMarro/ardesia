@@ -62,14 +62,41 @@ jobs:
   # ROSSA contro `main` senza che nessuno lo sapesse. Una spec che nessuno esegue
   # non e' un oracolo: e' un file.
   #
-  # Perche' SOLO il golden path e non tutte e 101: le altre non sono mai state
-  # verdi in CI, e portarle dentro tutte insieme renderebbe questa lane rumore
-  # dal primo giorno — un check che fallisce sempre viene ignorato, e un check
-  # ignorato non protegge niente. Si allarga quando una classe alla volta e'
-  # verde, non prima.
+  # Perche' SOLO il golden path e non tutte e 101: al 2026-07-30 le altre non
+  # erano mai state verdi in CI, e portarle dentro tutte insieme avrebbe reso
+  # questa lane rumore dal primo giorno — un check che fallisce sempre viene
+  # ignorato, e un check ignorato non protegge niente.
+  #
+  # ⚠️ RIMISURATO il 2026-08-22, e la frase qui sopra NON REGGE PIU' com'era
+  # scritta: `npx playwright test --workers=3` su apps/studio esce 0, `40
+  # passed` su 24 file di spec. Tutte verdi, comprese le 22 che questa lane non
+  # carica, e compresa `e2e/product-flow-shell.spec.ts` che il commento di
+  # allora citava come rossa. Una giustificazione con dentro un numero va
+  # rimisurata o cade: questa e' rimasta a decidere per tre settimane dopo
+  # essere diventata falsa.
+  #
+  # Il numero qui sopra e' registrato — `bin/measure.sh`, receipt
+  # `2026-08-22-R-VENTITRE-SPEC-VERDI-E-UNA-CORSIA-CHE-NON-BLOCCA` nel vault —
+  # ma NESSUNO SCRIPT LO RIMISURA: fra tre settimane potrebbe essere invecchiato
+  # esattamente come quello che sostituisce. Detto, non nascosto.
+  #
+  # Cio' che la misura NON dice: quelle 24 sono verdi in LOCALE (macOS, node
+  # v26.5.1, chromium). Nessuna delle 22 e' MAI stata eseguita su
+  # ubuntu-latest/node 22 — di li' non esiste una singola osservazione. Per
+  # questo l'allargamento resta UNA ALLA VOLTA, nel job `e2e-journey` qui
+  # sotto, e ognuna entra solo dopo essere stata vista fallire su una
+  # mutazione del PRODOTTO.
   #
   # `continue-on-error: true`: riporta, non blocca. Diventa required solo dopo
   # che ha riportato un esito su almeno cinque PR consecutive (unita' F1-3).
+  #
+  # Perche' `e2e-journey` qui sotto blocca invece dal primo giorno, senza
+  # passare da quella soglia: la soglia delle cinque PR serve a stimare se un
+  # check e' stabile quando NON si sa perche' fallisce. Ogni journey di
+  # `e2e-journey` entra invece con una mutazione di controllo alle spalle — e'
+  # stato visto rosso su un difetto del prodotto e verde senza — quindi di quel
+  # check si sa gia' cosa lo fa fallire. Sono due modi di guadagnarsi la
+  # fiducia, non due pesi e due misure.
   e2e-golden-path:
     name: e2e golden path (advisory)
     runs-on: ubuntu-latest
@@ -122,11 +149,19 @@ jobs:
   # un rosso di questo job fa rosso il workflow. La LISTA dei required status
   # checks della branch protection e' un'impostazione di repo, non un file di
   # questo albero: non la puo' cambiare questo commit. Finche' quella lista non
-  # nomina `e2e durabilita memoria`, il check e' bloccante nel workflow ma non
-  # nel merge button.
-  e2e-durabilita-memoria:
-    name: e2e durabilita memoria (#246)
+  # nomina `e2e journey (blocca)`, il check e' bloccante nel workflow ma non nel
+  # merge button.
+  # La LISTA dei journey che bloccano. Cresce di UNA RIGA per giro, e ogni riga
+  # e' in `git log` con la misura che l'ha fatta entrare: una spec verde che non
+  # e' mai stata vista rossa non e' un oracolo dimostrato, e' un file che passa.
+  # Uno step per journey, cosi' il log di CI nomina QUALE si e' rotto.
+  # Niente glob: un glob farebbe entrare anche cio' che nessuno ha visto fallire.
+  e2e-journey:
+    name: e2e journey (blocca)
     runs-on: ubuntu-latest
+    # Un journey impiantato consumerebbe il default di GitHub (6 ore) tenendo
+    # ferma la coda: un cancello che non risponde non e' piu' un cancello.
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: apps/studio
@@ -141,12 +176,30 @@ jobs:
           cache-dependency-path: apps/studio/package-lock.json
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
+      # `--forbid-only`: senza, un `test.only` dimenticato in una spec rende
+      # questo job VERDE avendo eseguito un test solo. Un cancello che si puo'
+      # disarmare con una parola dentro il file che sorveglia non sorveglia.
+      #
+      # `if: ${{ !cancelled() }}` su ogni journey dopo il primo: di default uno
+      # step non gira se il precedente e' fallito, e la lista e' destinata a
+      # crescere. Senza, il primo rosso nasconde tutti i journey successivi e il
+      # log di CI racconta un difetto quando ce ne sono tre.
       - name: la memoria della lezione sopravvive alla navigazione (#246)
-        run: npx playwright test e2e/elab-lab-marcatura-durabile.spec.ts --reporter=line
+        run: npx playwright test e2e/elab-lab-marcatura-durabile.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22. E' la spec che il commento della lane advisory
+      # citava come rossa contro main senza che nessuno lo sapesse; oggi e'
+      # verde. Misura che ne giustifica l'ingresso, e non era ovvia: con una
+      # QUARTA voce di nav ("Marketplace") iniettata in ViewNav — una
+      # violazione del perimetro Founder Beta — questa spec esce 1, mentre
+      # `golden-path` esce 0 e il journey #246 esce 0. Il cancello di oggi, in
+      # tutte le sue forme, quella regressione la lascerebbe passare.
+      - name: shell del docente - Lezione, Continuita, Materiali, stessa Lezione
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/product-flow-shell.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: durabilita-memoria-traces-${{ github.sha }}
+          name: e2e-journey-traces-${{ github.sha }}
           path: apps/studio/test-results/
           if-no-files-found: ignore
           retention-days: 14
