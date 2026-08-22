@@ -116,6 +116,14 @@ jobs:
         run: python3 bin/ci/test_secret_scan.py
       - name: ELAB standalone boundary (ratchet)
         run: python3 bin/ci/elab_boundary_gate.py
+      # ARDESIA e' per tutti: la regola era scritta due volte in `CLAUDE.md` e
+      # violata quattro volte dentro una sola PR aperta (#239). Guarda le righe
+      # AGGIUNTE, non l'albero — sull'albero ce ne sono 9697 in 1340 file, e
+      # una soglia su quel numero non sarebbe un cancello.
+      - name: lessico (le righe nuove non restringono il destinatario)
+        run: python3 bin/ci/lessico_gate.py
+      - name: lessico gate tests
+        run: python3 bin/ci/lessico_gate.py --self-test
       # hygiene e' un check REQUIRED su main: la regola "nessun filtro di base
       # sotto pull_request" vive qui perche' un commento nel workflow lo si
       # cancella senza che nessuno se ne accorga, un check rosso no.
