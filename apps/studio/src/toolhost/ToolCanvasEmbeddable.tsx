@@ -1976,6 +1976,19 @@ function BreadboardHole({
 
 function BoardWires({ scene }: { scene: SimulationSceneV1 }) {
   // Decorativo: i fili NON intercettano i pointer, i fori sotto restano tappabili.
+  //
+  // ⚠️ NESSUN COMANDO LO FA RISPETTARE, ed e' misurato (2026-08-22). Tolto
+  // `pointerEvents="none"` da questo gruppo — cioe' rimesso esattamente il
+  // difetto che la riga sopra dichiara di escludere — restano VERDI:
+  //   e2e/montaggio-canvas.spec.ts   exit 0   (l'unica spec che tocca i fori)
+  //   la suite unitaria intera       exit 0   2138 passed
+  //   i nove journey del cancello    exit 0
+  // Perche' nessuno lo vede: i due fori che la spec tocca (bb1:c3, bb1:c4)
+  // non stanno sotto un filo, e un clic non forzato passa con e senza la
+  // mutazione. In jsdom il problema non esiste affatto: `fireEvent.click`
+  // parte dal nodo e non simula `pointer-events`.
+  // Questa riga resta una DICHIARAZIONE, non un invariante difeso. Chi la
+  // cambia non rompe niente di rosso, ed e' il motivo per cui c'e' scritto.
   return (
     <g pointerEvents="none">
       {scene.connections.map((connection) => {

@@ -147,6 +147,57 @@ Sette giri hanno promosso journey su questo ramo e **nessuno** ha detto che il
 check che conta davvero e' rosso. Non e' una scoperta del cancello e2e: e' cio'
 che il cancello e2e nascondeva, misurando solo la propria corsia.
 
+## Giro 10 — `montaggio-canvas` NON entra, e la ragione non e' la ridondanza
+
+Cercata la mutazione che **solo un e2e** puo' vedere, secondo il criterio che ha
+funzionato due volte. Trovata, ed e' migliore di quanto sperato: il codice
+**dichiara da solo** l'invariante, in
+`apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx`, sopra `BoardWires`:
+
+> *«Decorativo: i fili NON intercettano i pointer, i fori sotto restano
+> tappabili.»*
+
+Tolto `pointerEvents="none"` da quel gruppo — cioe' rimesso esattamente il
+difetto che la riga esclude — **non se ne accorge nessuno**:
+
+| chi guarda | esito |
+|---|---|
+| `montaggio-canvas` (l'unica spec che tocca i fori) | **exit 0** |
+| la **suite unitaria intera** (required) | **exit 0** · `2138 passed` |
+| i **nove** journey del cancello | **exit 0** |
+
+**Perche' la candidata non lo vede, e perche' non basta rafforzarla.** I due fori
+che tocca (`bb1:c3`, `bb1:c4`) **non stanno sotto un filo**: un clic **non
+forzato** — quello che attiva il controllo di hit-target di Playwright — passa
+con e senza la mutazione. Servirebbe un foro coperto da un filo.
+
+## Bersagli sbagliati del giro 10, e vanno scritti
+
+Due strade tentate e cadute, cosi' il giro 11 non le ripete:
+
+1. **`document.elementFromPoint` sui centri dei fori** non funziona qui: nel
+   viewport di default del runner la lavagna sta **sotto la piega**. Il primo
+   foro ha `y ≈ 755` e il viewport e' alto **720** — e `playwright.config.ts`
+   **non dichiara alcun viewport** (`grep viewport` esce **1**, nessuna riga),
+   quindi vale il default di Playwright. `elementFromPoint` restituisce `null`
+   per tutti e 420 i fori, e un'asserzione costruita su di lui sarebbe **vuota,
+   non verde**. `scrollIntoViewIfNeeded` non basta: dopo lo scroll i fori con
+   rect interamente dentro il viewport restano **0**.
+2. **Il clic non forzato come discriminante** non basta da solo: e' la forma
+   giusta — disattiva `force: true` e riaccende il controllo di hit-target — ma
+   su `bb1:c3`/`bb1:c4` non c'e' niente sopra da intercettare.
+
+Cio' che il giro 11 avrebbe bisogno di sapere: **55 fori su 420 hanno il centro
+dentro il bounding box di un `path`** dell'SVG. Il bounding box non e' il tratto,
+quindi non e' ancora la lista dei fori davvero coperti — ma e' li' che si cerca.
+
+## Un invariante dichiarato e non difeso, lasciato dichiarato
+
+La riga sopra `BoardWires` adesso **dice di se stessa** che nessun comando la fa
+rispettare, con i tre exit accanto. Non e' un rimedio: e' smettere di far
+sembrare difeso cio' che non lo e'. Questo repository ha gia' pagato la forma
+opposta — un «tetto» dichiarato in un commento e mai imposto.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
