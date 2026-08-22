@@ -74,6 +74,13 @@ commit ottengono due verdetti, e niente nel repository lo dice. Non riparata in
 `e33d51a3` per disciplina — **una modifica alla volta** — ed e' l'elemento
 d'azione piu' economico che resta.
 
+> **Chiuso il 2026-08-22 (`1022e35a`), e la chiusura ha trovato altro.** Alla
+> prima esecuzione utile il gate nuovo ha stampato una divergenza che nessuna
+> receipt aveva mai nominata: `studio-preview-readiness.yml:55` chiedeva
+> `"22.12.0"` mentre `ci.yml` chiedeva `22` in tre job. **Due workflow, due
+> Node**, e zero righe nell'albero che lo dicessero. Allineato a `22`, che e'
+> la versione sotto cui la suite e' stata davvero eseguita.
+
 ### R-3 — Il cancello e2e misurava solo la propria corsia · **lezione di processo**
 
 **Fonte:** le sette receipt dei giri 1-7 nel vault; nessuna esegue
@@ -108,10 +115,10 @@ piu' grandi). Nessuno dei due lo vede.
 
 | # | azione | fonte | stato |
 |---|---|---|---|
-| A-1 | dichiarare la versione di Node nel repository (`.nvmrc` a `22`, o `engines`) e farla leggere a `ci.yml` con `node-version-file` | R-2 | **proposto** |
+| A-1 | dichiarare la versione di Node nel repository, e farla rispettare | R-2 | **FATTO** (`1022e35a`) — `.nvmrc` = 22 + `bin/ci/node_version_gate.py` in hygiene. ⚠️ Alla prima esecuzione utile ha trovato una divergenza che nessuno sapeva: `studio-preview-readiness.yml:55` chiedeva `"22.12.0"` mentre `ci.yml` chiedeva `22` |
 | A-2 | ogni receipt che afferma un fatto sulla CI porta il referente d'ambiente, non solo lo `sha` | R-1 | **proposto** |
-| A-3 | il giro che promuove un journey esegue anche i check **required** e ne scrive l'exit | R-3 | **proposto** |
-| A-4 | decidere se la mutazione C valga una spec, o se la soglia della candidata vada legata al riquadro | R-5 | **proposto** |
+| A-3 | il giro che promuove un journey esegue anche i check **required** e ne scrive l'exit | R-3 | **FATTO** (giro 9, `0d55564e`) — undici exit nel registro, compreso il rosso di `engine` con il suo referente d'ambiente |
+| A-4 | decidere se la mutazione C valga una spec, o se la soglia della candidata vada legata al riquadro | R-5 | **FATTO** (giro 9, `0d55564e`) — soglia legata al riquadro (`fillRatio > 0.9`), e la spec e' entrata proprio per quello |
 | A-5 | `e2e journey (blocca)` fra i required su `main` | receipt `R-IL-CANCELLO-CHE-SI-CHIAMA-BLOCCA` | **gate-Andrea, aperto** |
 
 ---
