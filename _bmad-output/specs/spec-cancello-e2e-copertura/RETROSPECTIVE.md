@@ -1,6 +1,6 @@
 # Retrospettiva — spec-cancello-e2e-copertura
 
-**Modo:** headless (sessione autonoma, `{user_name}` non presente).
+**Modo:** headless (sessione autonoma, Andrea non presente).
 **Ambito:** gli otto giri del cancello e2e, da `ad854936` a `d1852453`, piu' la
 correzione `e33d51a3`/`b273c96b`.
 **Verdetto macchina:** **accepted-with-open-items**.
@@ -10,7 +10,7 @@ correzione `e33d51a3`/`b273c96b`.
 ## Assunzioni prese senza l'utente (traccia d'audit)
 
 1. **Quale epic.** Nessun `sprint-status.yaml` esiste in questo repository
-   (`{implementation_artifacts}` assente): modo **stories**, cartella scelta
+   (`_bmad-output/implementation-artifacts` assente): modo **stories**, cartella scelta
    `_bmad-output/specs/spec-cancello-e2e-copertura/`. Non c'e' `stories.yaml`:
    la lista dei "giri" e' stata derivata dai commit `ci:` che la `SPEC.md` e
    `journey-ammessi.md` nominano, ed e' **una narrowing dichiarata**, non la
