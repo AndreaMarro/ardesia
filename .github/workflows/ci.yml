@@ -257,6 +257,32 @@ jobs:
       - name: contratto event-log su piu' tab - exactly-once, contiguo, durevole a freddo
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/lessonos-eventlog-multitab.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22. Mutazione discriminante trovata al primo colpo:
+      # `SavedLessonsView.restoreMessage()`, ramo `no-snapshot`, smette di dire
+      # «il bundle non contiene memoria LessonOS» e dice solo «Import
+      # completato.» -> questa spec esce 1, golden-path e gli altri tre journey
+      # del cancello escono tutti 0.
+      #
+      # Cosa costa quella mutazione a un docente: importa un bundle SENZA la
+      # memoria della lezione credendo che la memoria sia arrivata. E' la stessa
+      # famiglia di #246 — una UI che tace su cio' che non c'e' — spostata dal
+      # percorso di marcatura a quello di import.
+      #
+      # E porta una promessa che nessun altro journey fa: durante preview,
+      # commit, export e riapertura a freddo NESSUNA richiesta esce verso un
+      # host diverso da localhost. Il repository contiene i tre volumi e
+      # citazioni verbatim: una richiesta uscente li' e' un incidente.
+      # ⚠️ COSTO di questo ingresso, dichiarato invece che scoperto dopo: la
+      # mutazione che l'ha fatto entrare rompe una STRINGA visibile all'utente,
+      # e la spec la asserisce per sottostringa. Chi riscrive quel messaggio —
+      # una traduzione, una rifrasatura — trova questo job rosso senza aver
+      # rotto niente. Non e' un difetto del test: quel messaggio E' la promessa
+      # («dire al docente cosa NON e' arrivato»), quindi fissarlo e' fissare la
+      # promessa, e cambiarlo deve passare da una decisione, non da una svista.
+      # Ma il costo va saputo prima, non scoperto con la PR rossa in mano.
+      - name: Materiali del docente - preview, commit, export, riapertura a freddo, e tutto resta locale
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/saved-lessons.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

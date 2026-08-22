@@ -34,6 +34,10 @@ Misurato il **2026-08-22**: `npx playwright test --workers=3` su `apps/studio` e
   - **intent:** la promessa di exactly-once e contiguità dell'event-log quando più tab scrivono insieme è sorvegliata da un cancello che blocca.
   - **success:** con `RecoveryReport.recovered` forzato a `0`, `lessonos-eventlog-multitab` esce **1** mentre `golden-path`, il journey #246 e il journey shell docente escono tutti **0**.
 
+- **CAP-5**
+  - **intent:** il percorso Materiali del docente — anteprima, commit, export, riapertura a freddo — è sorvegliato da un cancello che blocca, compresa la promessa che tutto resti locale.
+  - **success:** con il ramo `no-snapshot` di `restoreMessage()` che smette di nominare la memoria mancante, `saved-lessons` esce **1** mentre golden-path e i tre journey già nel cancello escono **0**.
+
 ## Constraints
 
 - **Una alla volta, e ognuna vista fallire prima di entrare.** Una spec verde che non è mai stata rossa non è un oracolo dimostrato: è un file che passa.
@@ -41,6 +45,7 @@ Misurato il **2026-08-22**: `npx playwright test --workers=3` su `apps/studio` e
 - **La mutazione di controllo sta nel prodotto, non nel test.** Rompere il test per vederlo rosso dimostra che il test sa fallire, non che sorveglia qualcosa.
 - **La mutazione deve DISCRIMINARE**: deve lasciare verdi i journey già nel cancello. Se la prendono tutti, la spec candidata non aggiunge copertura — e la cosa va scritta, non aggirata cambiando mutazione finché una funziona.
 - **Il criterio d'ingresso non è «la spec è verde»: è «cosa si rompe se il prodotto peggiora».** Una spec che diventa rossa quando il prodotto **migliora** — la characterization di un difetto noto — va tenuta fuori: in un job che blocca sarebbe un cancello che difende il difetto.
+- **La promessa di località non è decorazione.** `saved-lessons` è l'unico journey che asserisce **zero richieste** verso host diversi da `localhost`. Il repository contiene i tre volumi e citazioni verbatim: una richiesta uscente lì è un incidente, non un dettaglio.
 - Convergenza: **un solo job** che blocca, con una lista esplicita che cresce di una riga per volta. Non 22 job, non un glob — un glob farebbe entrare anche ciò che nessuno ha visto fallire.
 
 ## Non-goals
