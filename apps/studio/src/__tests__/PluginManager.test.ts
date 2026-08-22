@@ -6,14 +6,19 @@
 // WebCrypto Ed25519 reali (Node 22+); coppie di chiavi fresh per run. La firma è
 // sui BYTE del JSON originale (stesso contratto dell'installer).
 
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { CONTRACT_VERSION } from "../sdk/index.ts"
 import { ToolManifestSchema } from "../toolhost-protocol/index.ts"
 import { PluginManager, lifecyclePath, LifecycleDocSchema } from "../toolhost/pluginManager.ts"
 import { installTool, manifestPath } from "../toolhost/installer.ts"
 import type { InstallerStore } from "../toolhost/installer.ts"
-import { addToKillList, removeFromKillList } from "../toolhost/killList.ts"
+import { addToKillList, checkKillList, removeFromKillList } from "../toolhost/killList.ts"
+import { storagePrefix } from "../toolhost/caps/storage.ts"
 import type { StorageEntryLike } from "../toolhost/caps/storage.ts"
+import { statePath } from "../toolhost/host.ts"
+// Alias: più giù alcuni test hanno una costante locale `auditPath`, e questo è
+// il costruttore VERO di quel path.
+import { auditPath as auditPathDelTool } from "../toolhost/audit.ts"
 
 // ---------- harness ----------
 
@@ -32,6 +37,22 @@ class MemoryInstallerStore implements InstallerStore {
     return [...this.files.entries()]
       .filter(([p]) => prefix === undefined || p.startsWith(prefix))
       .map(([path, data]) => ({ path, data }))
+  }
+}
+
+/**
+ * Store la cui `list(prefix)` restituisce di proposito ANCHE elementi fuori dal
+ * prefisso richiesto.
+ *
+ * `StorageDriverLike` dichiara il filtro come RICHIESTO, non come garantito: un
+ * driver che lo sbaglia resta dentro il contratto, e una purga che si fida
+ * dell'elenco altrui esce dal sottoalbero del tool. Con lo store ordinato qui
+ * sopra il `startsWith(root)` dell'implementazione sarebbe verde per inerzia —
+ * non perché protegge, ma perché non ha mai niente da respingere.
+ */
+class StoreConListGenerosa extends MemoryInstallerStore {
+  override async list(_prefix?: string): Promise<StorageEntryLike[]> {
+    return [...this.files.entries()].map(([path, data]) => ({ path, data }))
   }
 }
 
@@ -157,6 +178,148 @@ describe("PluginManager — install/enable/disable/uninstall", () => {
     expect(await store.read(manifestPath(toolId))).toBeNull()
     // l'audit sopravvive all'uninstall (chi-ha-letto-cosa resta consultabile)
     expect(await store.read(auditPath)).not.toBeNull()
+  })
+
+  // P0-C — l'uninstall TOTALE deve rimuovere anche lo stato PER ISTANZA, e
+  // SOLO ciò che appartiene al tool disinstallato.
+  //
+  // Il difetto che questo test esiste per prendere: #242 ha introdotto
+  // `statePath(toolId, instanceId)` = `tools/<id>/@instance/<inst>/state.json`,
+  // che sta FUORI da `tools/<id>/storage/`. `uninstallTool()` purgava il
+  // prefisso storage e poi cancellava quattro stringhe scritte a mano, fra cui
+  // `tools/<id>/state.json`: quella dell'istanza sopravviveva alla
+  // disinstallazione del plugin.
+  //
+  // L'oracolo chiama `PluginManager.uninstall()` e non `purgeToolStorage()`,
+  // che è un pezzo interno. `PluginManager.uninstall()` è il percorso pubblico
+  // REALE del manager — quello che una superficie d'uso invocherebbe — ma oggi
+  // NON ha call site di prodotto né di UI. Il conteggio NON si scrive qui: la
+  // prima stesura diceva «43 righe», misurato prima che questo commento
+  // esistesse, e il commento stesso è fra le righe che quel comando conta —
+  // un referente che si invalida scrivendolo. Si legge, e le uniche occorrenze
+  // fuori dai test sono DEFINIZIONI, non chiamate:
+  //   grep -rn "uninstall" --include='*.ts' --include='*.tsx' src
+  //
+  // Il difetto era reale nel codice e bloccava la PR; non era qualcosa che una
+  // persona potesse incontrare oggi, e questo test prova il percorso del
+  // codice, non un percorso utente.
+  //
+  // OGNI path del fixture è costruito con la funzione REALE di produzione
+  // (`statePath`, `storagePrefix`, `auditPath`, `addToKillList`): se domani
+  // cambiano forma, il test le segue invece di sorvegliare una stringa che
+  // nessuno scrive più. Vale anche per l'audit, che è il path che il prodotto
+  // PRESERVA: scriverlo a mano qui avrebbe riaperto nell'oracolo proprio
+  // l'enumerazione che la patch toglie dall'implementazione.
+  it("uninstall totale: nel sottoalbero del tool sopravvive SOLO l'audit, e nulla di estraneo viene toccato", async () => {
+    // La `list` generosa è ciò che rende osservabile il `startsWith(root)`.
+    const store = new StoreConListGenerosa()
+    const pm = new PluginManager(store, () => 100)
+    const toolId = await installViaManager(pm)
+
+    const auditPath = auditPathDelTool(toolId)
+    // Byte, non testo. L'audit-log è APPEND-ONLY e può contenere una riga
+    // interrotta a metà da un crash: qui la coda `0xC3 0x28` è UTF-8 non
+    // valido. `Blob.text()` la mappa su U+FFFD, cioè sugli STESSI caratteri di
+    // una sequenza di byte diversa — quindi un confronto via `text()` non
+    // saprebbe distinguere «preservato» da «riscritto». Il contratto dice
+    // durevole, e durevole si misura sui byte.
+    const auditBytes = new Uint8Array([
+      ...new TextEncoder().encode(`{"v":1,"t":1,"tool":"${toolId}","method":"board.read","outcome":"ok"}\n{"v":1,`),
+      0xc3, 0x28,
+    ])
+    await store.write(auditPath, new Blob([auditBytes], { type: "application/x-ndjson" }))
+
+    // storage: uno legacy (senza istanza) e uno per ciascuna delle due istanze
+    await store.write(`${storagePrefix(toolId)}legacy.txt`, new Blob(["storico"]))
+    await store.write(`${storagePrefix(toolId, "ist-a")}nota.txt`, new Blob(["di A"]))
+    await store.write(`${storagePrefix(toolId, "ist-b")}nota.txt`, new Blob(["di B"]))
+
+    // stato di lifecycle: quello legacy e quello delle due istanze
+    await store.write(statePath(toolId), new Blob([`{"v":1,"t":1,"state":{"conta":0}}`]))
+    await store.write(statePath(toolId, "ist-a"), new Blob([`{"v":1,"t":1,"state":{"conta":1}}`]))
+    await store.write(statePath(toolId, "ist-b"), new Blob([`{"v":1,"t":1,"state":{"conta":2}}`]))
+
+    // ---- ciò che NON appartiene al tool disinstallato ----
+    //
+    // Un plugin FRATELLO installato per davvero, con il suo storage, il suo
+    // stato d'istanza e il suo audit. E il suo id è `…test-tool-vicino`, che
+    // ha come PREFISSO l'id del target: un `root` senza `/` finale lo
+    // includerebbe, ed è il modo più facile di sbagliare una radice derivata.
+    const fratello = await installViaManager(pm, { id: `${toolId}-vicino` })
+    await store.write(`${storagePrefix(fratello)}nota.txt`, new Blob(["del fratello"]))
+    await store.write(statePath(fratello, "ist-c"), new Blob([`{"v":1,"t":1,"state":{}}`]))
+    await store.write(auditPathDelTool(fratello), new Blob(["audit del fratello\n"]))
+
+    // Un artefatto GLOBALE, fuori da qualunque tool.
+    await store.write("documenti/lezione.md", new Blob(["# Lezione\n"]))
+    // E la kill-list, scritta dalla funzione di produzione: vive a
+    // `tools/kill-list.json`, cioè SOPRA il sottoalbero del singolo tool. Un
+    // plugin revocato deve restare revocato anche dopo la disinstallazione.
+    await addToKillList(store, fratello, "incidente", () => 7)
+
+    // Fotografia: gli estranei si DERIVANO da ciò che è stato seminato, non da
+    // un secondo elenco scritto a mano che potrebbe invecchiare.
+    const radiceDelTool = `tools/${toolId}/`
+    const estranei = [...store.files.keys()].filter((p) => !p.startsWith(radiceDelTool)).sort()
+    expect(estranei.length).toBeGreaterThan(0)
+
+    await pm.uninstall(toolId)
+
+    // il plugin non è più installato e il suo lifecycle è sparito
+    expect(await pm.getState(toolId)).toBe("not-installed")
+    expect(await store.read(lifecyclePath(toolId))).toBeNull()
+    expect(await store.read(manifestPath(toolId))).toBeNull()
+
+    // storage: né il legacy né quello delle istanze
+    expect(await store.read(`${storagePrefix(toolId)}legacy.txt`)).toBeNull()
+    expect(await store.read(`${storagePrefix(toolId, "ist-a")}nota.txt`)).toBeNull()
+    expect(await store.read(`${storagePrefix(toolId, "ist-b")}nota.txt`)).toBeNull()
+
+    // stato: né il legacy né quello delle istanze — le due asserzioni che il
+    // control run «la purga salta @instance/» rende rosse
+    expect(await store.read(statePath(toolId))).toBeNull()
+    expect(await store.read(statePath(toolId, "ist-a"))).toBeNull()
+    expect(await store.read(statePath(toolId, "ist-b"))).toBeNull()
+
+    // La proposizione intera, in una riga: nel sottoalbero del tool target
+    // sopravvive SOLO `auditPath(toolId)`, e ogni estraneo è ancora al suo
+    // posto. Il confronto è sull'INTERO store — non «lo store è vuoto», che
+    // sarebbe falso e non lo si pretende — quindi cattura entrambi i modi di
+    // sbagliare: un residuo del tool (elemento in più) e una cancellazione
+    // collaterale (elemento in meno). Non condivide il punto cieco
+    // dell'implementazione: un residuo scritto FUORI dal sottoalbero
+    // comparirebbe qui, mentre un `list(radiceDelTool)` non lo vedrebbe mai.
+    expect([...store.files.keys()].sort()).toEqual([auditPath, ...estranei].sort())
+
+    // Il fratello resta revocato: la kill-list non è stata raggiunta. Letto con
+    // il reader di produzione, non con il path scritto a mano.
+    expect(await checkKillList(store, fratello)).toBe(true)
+
+    // L'unico sopravvissuto dichiarato dal contratto, confrontato sui BYTE.
+    const audit = await store.read(auditPath)
+    expect(audit).not.toBeNull()
+    expect([...new Uint8Array(await audit!.arrayBuffer())]).toEqual([...auditBytes])
+
+    // Idempotenza, osservata sulle CANCELLAZIONI e non sull'assenza di throw:
+    // `MemoryInstallerStore.delete` è una `Map.delete` e non lancia mai, per
+    // nessun input, quindi un `resolves` da solo sarebbe verde anche con
+    // un'implementazione che cancella alla cieca. La seconda disinstallazione
+    // deve trovare il sottoalbero già vuoto e non emettere NESSUNA delete di
+    // purga: l'unica ammessa è quella del lifecycle, che `PluginManager` fa
+    // incondizionatamente.
+    const spiaDelete = vi.spyOn(store, "delete")
+    try {
+      await expect(pm.uninstall(toolId)).resolves.toBeUndefined()
+      expect(spiaDelete.mock.calls.map(([path]) => path)).toEqual([lifecyclePath(toolId)])
+    } finally {
+      spiaDelete.mockRestore()
+    }
+
+    // e dopo la seconda passata lo store è ancora esattamente quello di prima
+    expect([...store.files.keys()].sort()).toEqual([auditPath, ...estranei].sort())
+    expect([...new Uint8Array(await (await store.read(auditPath))!.arrayBuffer())]).toEqual([
+      ...auditBytes,
+    ])
   })
 
   it("enable/disable su tool NON installato → throw", async () => {
