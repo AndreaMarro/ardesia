@@ -41,6 +41,15 @@ NON confronta con il `node` in esecuzione: un gate che pretendesse la stessa
 versione sulla macchina di chi committa fallirebbe per tutti tranne uno, e
 questo file non e' il posto dove si decide chi ha ragione.
 
+NON confronta nemmeno con il PAVIMENTO della toolchain, e vale la pena dirlo
+perche' il pavimento esiste: `vite@8.0.16` dichiara
+`engines: ^20.19.0 || >=22.12.0`, e `apps/studio/eval/gate.sh:7` porta la
+cicatrice di quando fu scoperto («node-local e' v22.10 < 22.12 richiesto da
+vitest 4, rompeva la discovery dei test»). Questo gate confronta una
+DICHIARAZIONE con una INSTALLAZIONE; verificare che la dichiarazione soddisfi
+gli `engines` di ogni dipendenza e' un secondo oracolo, con una libreria semver
+dentro, e non e' questo.
+
 USO
     python3 bin/ci/node_version_gate.py              # giudica l'albero
     python3 bin/ci/node_version_gate.py --self-test  # verifica il parser
