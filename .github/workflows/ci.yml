@@ -308,6 +308,36 @@ jobs:
       - name: verdetto elettrico onesto - LED senza resistore = BRUCIATO, mai un finto acceso
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/sim-esp2-senza-resistore.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22, sesto giro. E' il lato CONSUMATORE della stessa
+      # memoria che il journey #246 difende dal lato produttore: l'errore che il
+      # docente ha segnato in ElabLab deve comparire nella zona «Ripasso errori»
+      # del cruscotto, nello stesso profilo, dopo una navigazione vera.
+      #
+      # Mutazione discriminante: `graph.query` negata al pannello ripasso
+      # (`apps/studio/src/toolhost/panelHost.ts`, `opts.approved ?? []`). Il
+      # plugin NON va in errore: degrada da solo a lista vuota, e il cruscotto
+      # mostra `data-zripasso-aperti="0"`. Questa spec esce 1; i CINQUE journey
+      # gia' nel cancello escono 0, e cosi' `golden-path`, `cruscotto` e
+      # `cruscotto-graph`. Otto spec cieche, una sola vede.
+      # Cosa costa: il docente legge «nessun errore da ripassare» quando la
+      # verita' e' «non ho potuto leggere il grafo». E' la famiglia di #246 —
+      # una superficie che tace su cio' che non c'e' — spostata dal percorso di
+      # marcatura a quello di ripasso.
+      #
+      # ⚠️ COSTI dell'ingresso, dichiarati prima invece che scoperti dopo:
+      #  1. La spec asserisce `consoleErrors` VUOTO su due viste. Qualunque
+      #     `console.error` — anche di una dipendenza, anche innocuo — rende
+      #     questo job rosso senza che nulla si sia rotto per un docente.
+      #  2. Fissa il nome dell'attributo `data-zripasso-aperti`: chi lo rinomina
+      #     trova il job rosso avendo migliorato il codice.
+      #  3. La sua STABILITA' DIPENDE DAL RIMEDIO DI #246. Misurato: era 4 su 5
+      #     rossa prima di quel rimedio, ed e' 5 su 5 verde dopo. Se #246
+      #     regredisce, questo job diventa rosso con un messaggio che parla di
+      #     «aperti = 0», non di durabilita': due rossi, una causa, e il secondo
+      #     messaggio porta fuori strada.
+      - name: ripasso del docente - l'errore segnato in ElabLab compare nel cruscotto
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/ripasso-live.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
