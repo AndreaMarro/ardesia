@@ -82,7 +82,21 @@ Vanno scritti quanto le promozioni, se no il giro dopo li ricontrolla.
   candidata, che asserisce `width > 120` su riquadri molto piu' grandi di 300px.
   E' un buco aperto, e non lo chiude questo giro.
 
-## ⚠️ Il check REQUIRED e' ROSSO sull'albero consegnato
+## ⚠️ Il check REQUIRED era rosso **solo qui**: era Node 26, non il prodotto
+
+> **CORREZIONE del 2026-08-22, e vale piu' del testo che corregge.** Questa
+> sezione diceva «Il check REQUIRED e' ROSSO sull'albero consegnato» e citava
+> `main` come secondo referente. Era vero **su questa macchina** e falso come
+> affermazione su CI: `ci.yml` installa `node-version: 22`, e sotto Node 22
+> quei 22 test **passavano gia'** (`112 passed`, exit 0, misurato).
+> Mancava un referente — la versione di Node — e senza quello «rosso su main»
+> non significa niente. La causa e' in `apps/studio/vitest.config.ts` (commit
+> `e33d51a3`): Node >= 24 definisce di suo un globale `localStorage` che
+> restituisce `undefined` e **oscura quello di jsdom**. Chiuso con
+> `execArgv: ["--no-experimental-webstorage"]`, e la suite intera esce **0**
+> su **entrambe** le versioni: `191 file, 2138 test`.
+
+## Il testo di prima, lasciato perche' cancellarlo sarebbe meno vero
 
 Misurato per **esecuzione**, non per inferenza, sul tip di
 `fix/246-durabilita-eventi`: `npx vitest run` esce **1**, `5 file / 22 test`
