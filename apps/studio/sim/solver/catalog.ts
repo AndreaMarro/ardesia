@@ -122,9 +122,9 @@ export function registerElectricalCatalog(): void {
   // Stessa forma di NOTTE-13: il motore vendored li supporta GIA'
   // (`_solveCapacitor`, `_solveMultimeter`, i case `push-button` in
   // `_getMNAResistance` e nel dispatch), ed era QUESTO catalogo a negarli.
-  // Finche' erano negati, due degli otto esperimenti che un docente puo'
-  // aprire mostravano «solve fallito: tipo componente non catalogato» sotto un
-  // disegno completo e corretto.
+  // Finche' erano negati, due degli otto esperimenti che chi impara o insegna
+  // puo' aprire mostravano «solve fallito: tipo componente non catalogato»
+  // sotto un disegno completo e corretto.
   //
   // Pin e defaultState estratti firsthand da Capacitor.jsx:155-166,
   // PushButton.jsx:91-101 e Multimeter.jsx:180-191 del plugin — gli stessi

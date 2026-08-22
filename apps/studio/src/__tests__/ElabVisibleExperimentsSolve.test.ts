@@ -1,4 +1,5 @@
-// F5-8 — gli esperimenti che un docente può DAVVERO aprire devono risolvere.
+// F5-8 — gli esperimenti che chi impara o insegna può DAVVERO aprire devono
+// risolvere.
 //
 // `VISIBLE_EXP_IDS` è la whitelist Founder Beta: gli 8 id che compaiono nel
 // picker di ELAB Lab. Sonda del 2026-07-31, prima di questo test:
@@ -8,10 +9,10 @@
 //     v1-cap6-esp3  ok      v3-cap6-esp4  THROW  nano-r4  (id nano1)
 //     v1-cap9-esp6  ok      v3-cap6-esp5  THROW  nano-r4  (id nano1)
 //
-// QUATTRO SU OTTO. Sulla produzione il docente vede un disegno completo e
-// corretto — la breadboard, i componenti, i fili — e sotto «solve fallito:
-// Error: tipo componente non catalogato per il solve». Il messaggio non è per
-// lui, e il circuito non calcola niente.
+// QUATTRO SU OTTO. Sulla produzione chi impara o insegna vede un disegno
+// completo e corretto — la breadboard, i componenti, i fili — e sotto «solve
+// fallito: Error: tipo componente non catalogato per il solve». Il messaggio
+// non è per chi guarda, e il circuito non calcola niente.
 //
 // La causa non è il motore: `CircuitSolver` ha già `_solveCapacitor`,
 // `_solveMultimeter` e i case per `push-button`, e il plugin registra tutti e
@@ -148,8 +149,8 @@ describe("gli 8 esperimenti della whitelist Founder Beta", () => {
   })
 
   // «Non lancia» è un'asserzione debole: un solve che restituisce un oggetto
-  // vuoto la soddisfa. Quello che il docente guadagna è un VERDETTO al posto
-  // di un errore interno, quindi è il verdetto che si pretende.
+  // vuoto la soddisfa. Quello che chi impara o insegna guadagna è un VERDETTO
+  // al posto di un errore interno, quindi è il verdetto che si pretende.
   //
   // E va detto per intero: il circuito esce a RIPOSO. `btn1.pressed` è false,
   // quindi nessuna corrente, condensatore a 0 V, LED spento. È fisicamente
