@@ -283,6 +283,31 @@ jobs:
       - name: Materiali del docente - preview, commit, export, riapertura a freddo, e tutto resta locale
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/saved-lessons.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22, ed e' il primo journey del cancello che difende
+      # una VERITA' FISICA invece di un comportamento software.
+      # v1-cap6-esp2 e' l'esperimento del libro «LED senza resistore (cosa NON
+      # fare!)», Vol.1 p.32: il verdetto onesto e' BRUCIATO, e l'intestazione
+      # della spec lo scrive come divieto — «mai un finto acceso».
+      #
+      # Mutazione discriminante: `LED_STRESS_THRESHOLDS.pericoloMaxAmps` da 0.1
+      # a 100 in `apps/studio/sim/solver/elabSolver.ts`, cosi' la zona
+      # «pericolo» inghiotte il caso senza-resistore (~1A) e
+      # `reinterpretLedStress` declassa il verdetto del motore. La spec esce 1
+      # con la bugia verbatim nel DOM —
+      # `<dd data-led-on="1" data-led-count="1" data-led-burned="0">acceso</dd>`
+      # — mentre golden-path e gli altri quattro journey escono tutti 0.
+      # Cosa costa: il prodotto insegnerebbe che si puo' pilotare un LED senza
+      # resistore. Un declassamento del verdetto elettrico e' piu' grave di un
+      # bottone rotto, perche' insegna la cosa sbagliata a chi impara.
+      #
+      # ⚠️ Bersaglio sbagliato, misurato prima di trovare quello giusto:
+      # `plugins/elab-tutor/src/.../engine/CircuitSolver.js` NON e' il motore
+      # dello Studio — `elabSolver.ts` importa `./engine/CircuitSolver.js`, una
+      # copia vendored dentro `apps/studio`. Alzare `LED_BURN_CURRENT` nel
+      # sorgente del plugin lascia verdi tutti, candidata compresa.
+      - name: verdetto elettrico onesto - LED senza resistore = BRUCIATO, mai un finto acceso
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/sim-esp2-senza-resistore.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
