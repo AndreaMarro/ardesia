@@ -364,6 +364,42 @@ jobs:
       - name: student pack - il file esce dall'app, torna dentro, e porta le sue fonti
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/studentpack-artifact.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22, ed e' la prima ammessa con il criterio COMPLETO:
+      # non basta essere discriminante rispetto a questo cancello, deve esserlo
+      # AL NETTO di cio' che e' gia' required. Il 2026-08-22 questa stessa spec
+      # era stata RESPINTA proprio per quello: le due mutazioni che vedeva
+      # (identita' di istanza fuori dagli id del DOM; post-it collassati in
+      # x:0,y:0) le vedeva anche `studio (typecheck + test + build)`.
+      #
+      # Cio' che l'ha fatta entrare e' una TERZA mutazione, e la vede lei sola:
+      # `cardStyle` da `width/height: "100%"` a `"40%"` — il post-it disegnato
+      # dentro il proprio riquadro ma grande meno della meta'.
+      #
+      #   candidata rafforzata   exit 1  (fillRatioX 0.3978 contro > 0.9)
+      #   suite unitaria         exit 0  <- CIECA: jsdom non ha geometria
+      #   i sette qui sopra      exit 0  <- CIECHI
+      #   golden-path/cruscotto  exit 0  <- CIECHI
+      #
+      # La cecita' della suite unitaria non e' una svista: `getBoundingClientRect`
+      # in jsdom restituisce zeri, quindi NESSUN test unitario puo' asserire una
+      # geometria resa. E' la classe di difetto per cui un e2e esiste.
+      #
+      # L'asserzione e' RELATIVA apposta. Quella vecchia (`width > 120`) resta
+      # nel file e resta verde sotto la mutazione: riquadri misurati 560x384 e
+      # 740x424, il 40% fa ~224px, e 224 > 120. Una soglia assoluta su un
+      # riquadro variabile non misura il riempimento.
+      #
+      # ⚠️ COSTI dell'ingresso, dichiarati prima:
+      #  1. Due viewport (desktop 1440x960 e tablet 768x1024): il journey vale
+      #     doppio in tempo e doppio in fragilita'.
+      #  2. Pretende `consoleErrors` vuoto e un PNG > 10KB: due modi di
+      #     diventare rosso che non sono il difetto che difende.
+      #  3. La soglia 0.9 e' tarata su rapporti misurati 0.99. Un cambio di
+      #     padding del contenitore la puo' far scendere: se un giorno diventa
+      #     rossa senza che il post-it si sia rimpicciolito, e' questo.
+      - name: post-it di plugin - identita' per istanza, e riempiono il riquadro assegnato
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

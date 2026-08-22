@@ -25,6 +25,13 @@ type DomRectEvidence = {
   width: number
   height: number
   text: string
+  // #C — quanto del riquadro che Excalidraw gli assegna il post-it riempie
+  // davvero. Una soglia assoluta (`width > 120`) non vede un post-it disegnato
+  // al 40% di un riquadro da 320px: restano 128px, e passa.
+  frameWidth: number
+  frameHeight: number
+  fillRatioX: number
+  fillRatioY: number
 }
 
 const VIEWPORTS: ViewportTarget[] = [
@@ -180,6 +187,7 @@ for (const target of VIEWPORTS) {
         cards: cards
           .map((card) => {
             const rect = card.getBoundingClientRect()
+            const frame = (card.parentElement ?? card).getBoundingClientRect()
             return {
               id: card.id,
               instance: card.dataset.pluginPostitInstance ?? "",
@@ -189,6 +197,10 @@ for (const target of VIEWPORTS) {
               width: rect.width,
               height: rect.height,
               text: card.innerText.trim(),
+              frameWidth: frame.width,
+              frameHeight: frame.height,
+              fillRatioX: frame.width === 0 ? 0 : rect.width / frame.width,
+              fillRatioY: frame.height === 0 ? 0 : rect.height / frame.height,
             }
           })
           .sort((a, b) => a.instance.localeCompare(b.instance)),
@@ -223,6 +235,17 @@ for (const target of VIEWPORTS) {
       expect(card.width).toBeGreaterThan(120)
       expect(card.height).toBeGreaterThan(120)
       expect(card.text.length).toBeGreaterThan(20)
+      // Il post-it deve RIEMPIRE il riquadro che Excalidraw gli assegna, e la
+      // soglia e' relativa apposta. Misurato il 2026-08-22 sull'albero pulito:
+      // riquadri da 560x384 e 740x424, rapporti 0.99. Con `width: "40%"` in
+      // `cardStyle` il post-it scende a ~224px e le due asserzioni assolute qui
+      // sopra restano VERDI — 224 > 120 — mentre il rapporto crolla a 0.4.
+      // La suite unitaria non puo' vedere questo difetto: jsdom non ha
+      // geometria, `getBoundingClientRect` restituisce zeri.
+      expect(card.frameWidth).toBeGreaterThan(240)
+      expect(card.frameHeight).toBeGreaterThan(240)
+      expect(card.fillRatioX).toBeGreaterThan(0.9)
+      expect(card.fillRatioY).toBeGreaterThan(0.9)
     }
 
     await mkdir(EVIDENCE_DIR, { recursive: true })
