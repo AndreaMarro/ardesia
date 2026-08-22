@@ -53,6 +53,20 @@ Misurato il **2026-08-22**: `npx playwright test --workers=3` su `apps/studio` e
 - **La promessa di località non è decorazione.** `saved-lessons` è l'unico journey che asserisce **zero richieste** verso host diversi da `localhost`. Il repository contiene i tre volumi e citazioni verbatim: una richiesta uscente lì è un incidente, non un dettaglio.
 - Convergenza: **un solo job** che blocca, con una lista esplicita che cresce di una riga per volta. Non 22 job, non un glob — un glob farebbe entrare anche ciò che nessuno ha visto fallire.
 
+- **Il nome di un job non e' un enforcement.** Misurato il 2026-08-22 dal
+  repository e non dedotto da `ci.yml`: i required status checks su `main` sono
+  **tre** — `studio (typecheck + test + build)`, `engine (pytest)`,
+  `hygiene (NUL + secrets + boundary + whitespace)`. Il job **`e2e journey
+  (blocca)` non e' fra loro**, e `required_approving_review_count` e' **0**.
+  «Blocca» significa soltanto «senza `continue-on-error`»: il job diventa rosso e
+  nessuno gli deve niente. E' la stessa forma del «tetto» di
+  `ToolCanvasEmbeddable` — una dichiarazione che nessun comando fa rispettare.
+- **Un cancello che non ha mai girato in CI e' un oggetto locale.** Misurato:
+  `gh run list --branch fix/246-durabilita-eventi` -> **zero** corse; il remoto
+  porta **270** rami e **nessuno** nomina `246`; il ramo locale traccia
+  `origin/main`. I cinque journey ammessi uno per volta non sono mai usciti dal
+  portatile su cui sono stati scritti.
+
 ## Non-goals
 
 - Le altre 21 spec: entrano nei giri successivi, con la stessa cerimonia.
