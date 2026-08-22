@@ -1977,7 +1977,7 @@ function BreadboardHole({
 function BoardWires({ scene }: { scene: SimulationSceneV1 }) {
   // Decorativo: i fili NON intercettano i pointer, i fori sotto restano tappabili.
   //
-  // ⚠️ NESSUN COMANDO LO FA RISPETTARE, ed e' misurato (2026-08-22). Tolto
+  // ATTENZIONE: NESSUN COMANDO LO FA RISPETTARE, ed e' misurato (2026-08-22). Tolto
   // `pointerEvents="none"` da questo gruppo — cioe' rimesso esattamente il
   // difetto che la riga sopra dichiara di escludere — restano VERDI:
   //   e2e/montaggio-canvas.spec.ts   exit 0   (l'unica spec che tocca i fori)
