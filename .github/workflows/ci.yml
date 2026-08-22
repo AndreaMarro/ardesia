@@ -453,6 +453,34 @@ jobs:
       - name: montaggio libero - i fili non rubano il tocco ai fori sotto
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/montaggio-canvas.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-23. Difende la RISOLUZIONE DEI TOKEN nel documento
+      # renderizzato: il difetto storico e' misurato sulla PRODUZIONE VIVA del
+      # 2026-07-31 — 45 custom property usate in fill/stroke e NESSUNA definita,
+      # ~1700 elementi, 40 <rect> su 52 con fill computato NERO. Un `var()`
+      # irrisolto rende la proprieta' invalida e `fill` cade sul valore
+      # iniziale: breadboard, batteria e componenti come blocchi neri pieni.
+      # Il plugin portava il disegno e non i suoi token.
+      #
+      # Mutazione discriminante: `import '../styles/design-tokens.css'` tolto da
+      # plugins/elab-tutor/src/plugin/renderEmbeddable.jsx (cioe' il difetto
+      # originale, rimesso).
+      #   la candidata          exit 1  OTTO scene su otto rosse
+      #   la suite unitaria     exit 0  <- CIECA
+      #   i dieci qui sopra     exit 0  <- CIECHI
+      # La cecita' e' dichiarata dal file stesso: jsdom non applica i fogli di
+      # stile importati dai moduli, quindi `getComputedStyle(...).fill` non
+      # distingue un token risolto da uno rotto. Un unit test su questo difetto
+      # sarebbe VERDE PER COSTRUZIONE.
+      #
+      # COSTI dichiarati prima:
+      #  1. Dieci test in un file (otto scene + due): e' il journey piu' lungo
+      #     del job.
+      #  2. La lista SCENE_VISIBILI e' una copia di VISIBLE_EXP_IDS: se una
+      #     scena nuova diventa visibile e nessuno la aggiunge qui, il journey
+      #     resta verde su una domanda piu' piccola di quella che dichiara.
+      - name: ELAB Lab - il disegno porta i suoi colori, non blocchi neri
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/elab-lab-canvas-colors.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

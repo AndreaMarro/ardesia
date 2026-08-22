@@ -15,6 +15,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `studentpack-artifact` | **ammessa** (giro 7) | `evidence: []` nel builder del pack lo fa rosso mentre i sei gia' dentro, `golden-path` e `cruscotto` restano verdi; unico journey che segue il FILE fuori dall'app e lo riporta dentro |
 | `first-led-ipad-touch` | **ammessa** (giro 11) | la fascia tablet 769-1024px riportata scoperta la fa rossa (il pulsante "sim" torna oltre il bordo a 810px) mentre la suite unitaria resta **verde**: jsdom non ha layout ne' media query risolte |
 | `montaggio-canvas` | **RESPINTA** (giro 10, per IMPOTENZA), poi **ammessa** (giro 12) | tolto `pointerEvents="none"` da `BoardWires` la fa rossa con «subtree intercepts pointer events», mentre la suite unitaria e i dieci gia' dentro restano verdi. Ci sono voluti tre giri per capire DOVE guardare |
+| `elab-lab-canvas-colors` | **ammessa** (giro 13) | tolto `import '../styles/design-tokens.css'` dall'entry del plugin — il difetto storico rimesso — le **otto scene su otto** escono rosse, mentre la suite unitaria e i dieci gia' dentro restano verdi |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
 | `plugin-postit-room-reload` | **RESPINTA** (giro 8), poi **AMMESSA** (giro 9) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
@@ -288,6 +289,48 @@ Misurato dentro lo stage legacy: `path=14`, `fori=420`, il gruppo dei fili ha
 Due misure identiche nel metodo (`isPointInStroke`), su **due superfici
 diverse**, e solo una risponde alla domanda. E' la stessa famiglia del referente
 adiacente, applicata al DOM invece che a un albero git.
+
+## Giro 13 — la dodicesima entra, e porta una quarta classe
+
+`elab-lab-canvas-colors` difende la **risoluzione dei token nel documento
+renderizzato**. Il difetto storico non e' ipotetico: misurato sulla **produzione
+viva** il 2026-07-31 — **45** custom property usate in `fill`/`stroke` e
+**nessuna definita**, **~1700** elementi, **40 `<rect>` su 52** con `fill`
+computato **NERO**. Un `var()` irrisolto rende la proprieta' invalida e `fill`
+cade sul valore iniziale: breadboard, batteria e componenti come blocchi neri
+pieni. Il plugin portava il disegno e **non i suoi token**.
+
+| mutazione | candidata | suite unitaria (required) | i dieci dentro |
+|---|---|---|---|
+| `import '../styles/design-tokens.css'` tolto dall'entry del plugin | **rossa (1)** — **8 scene su 8** | **verde (0)** | **verde (0)** |
+| nessuna | verde (0) — `10 passed` | verde (0) | verde (0) |
+
+**La cecita' la dichiara il file stesso**, e non e' un'opinione: «jsdom non
+applica i fogli di stile importati dai moduli: li' `getComputedStyle(...).fill`
+non distingue un token risolto da uno rotto. Un unit test su questo difetto
+sarebbe **verde per costruzione** — la forma di falso verde che questo loop
+esiste per cacciare.»
+
+E' la **quarta** classe che solo un e2e difende, dopo geometria resa, layout
+responsivo e hit-testing dei pointer.
+
+## ⚠️ CORREZIONE DI UN CONTEGGIO: i journey erano dieci, non undici
+
+Le receipt dei giri 11 e 12 hanno scritto «il cancello e' a **dieci**» e «passa a
+**undici**» journey. **Erano nove e dieci.** Contato dal workflow invece che a
+memoria:
+
+```
+python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/ci.yml')); \
+  print(len([x for x in d['jobs']['e2e-journey']['steps'] if x.get('name')]))"
+-> 10   (prima di questo giro)
+-> 11   (dopo)
+```
+
+L'errore nasce da due numerazioni sovrapposte: «la nona spec» contava le spec
+**giudicate** (ammesse + respinte), «nove journey» conta quelle **nel job**. Da
+qui in avanti il numero dei journey si **conta dal workflow**, e il comando sta
+qui sopra. Le due frasi sbagliate restano nelle receipt, marcate.
 
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
