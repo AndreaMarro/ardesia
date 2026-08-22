@@ -14,6 +14,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `ripasso-live` | **ammessa** (giro 6) | `graph.query` negata al pannello ripasso la fa rossa con `data-zripasso-aperti="0"` mentre gli altri cinque, `golden-path`, `cruscotto` e `cruscotto-graph` restano verdi; e' il lato consumatore della memoria che #246 difende dal lato produttore |
 | `studentpack-artifact` | **ammessa** (giro 7) | `evidence: []` nel builder del pack lo fa rosso mentre i sei gia' dentro, `golden-path` e `cruscotto` restano verdi; unico journey che segue il FILE fuori dall'app e lo riporta dentro |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
+| `plugin-postit-room-reload` | **RESPINTA** (giro 8) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
 ## Perche' una respinta sta qui accanto alle ammesse
 
@@ -55,3 +56,47 @@ Vanno scritti quanto le promozioni, se no il giro dopo li ricontrolla.
   Una spec il cui verdetto non e' funzione del repository non entra in un job
   che blocca, e finche' la causa non ha un nome non entra nemmeno in advisory
   con la pretesa di significare qualcosa.
+
+## Una spec RESPINTA perche' un cancello che c'e' gia' la copre
+
+- **`plugin-postit-room-reload`** (2026-08-22). Il criterio d'ingresso non era
+  ancora scritto per intero: «cosa si rompe se il prodotto peggiora» va letto
+  **al netto di cio' che gia' e' obbligatorio**. Un journey la cui potenza
+  discriminante e' contenuta in `studio (typecheck + test + build)` — required
+  su `main` — aggiunge tempo di CI e nessuna protezione.
+
+  Tre mutazioni, tutte sul PRODOTTO, tutte con ripristino e sigillo di digest:
+
+  | mutazione | la candidata | la suite unitaria (rosso di partenza: **5 file / 22 test**) |
+  |---|---|---|
+  | **A** l'identita' di istanza sparisce dagli id del DOM (`prefix = 'plugin-postit'`) | **rossa** | **9 file / 32 test** -> `+4 / +10`: la vede |
+  | **B** i tre post-it collassati in `x:0, y:0` nella scena | **rossa** | **6 file / 23 test** -> `+1 / +1`: la vede |
+  | **C** il post-it disegnato al **40%** del suo riquadro (solo CSS) | **VERDE** | **5 file / 22 test** -> **identico al partenza: NON la vede** |
+
+  Sotto A i sette journey ammessi escono `7 passed` e `golden-path`,
+  `cruscotto`, `cruscotto-graph` escono `3 passed`: la candidata **e'**
+  discriminante rispetto al cancello. Non lo e' rispetto al **required**.
+
+  ⚠️ **La mutazione C non la vede nessuno.** Un post-it disegnato al 40% del suo
+  riquadro passa la suite unitaria (jsdom non ha geometria) **e** passa la
+  candidata, che asserisce `width > 120` su riquadri molto piu' grandi di 300px.
+  E' un buco aperto, e non lo chiude questo giro.
+
+## ⚠️ Il check REQUIRED e' ROSSO sull'albero consegnato
+
+Misurato per **esecuzione**, non per inferenza, sul tip di
+`fix/246-durabilita-eventi`: `npx vitest run` esce **1**, `5 file / 22 test`
+rossi, e i file hanno un nome:
+
+```
+src/__tests__/ContinuityRuntimePath.test.tsx
+src/__tests__/SavedLessonsView.test.tsx
+src/__tests__/StudentPackArtifact.test.tsx
+src/__tests__/TeacherDashboardStatsZone.test.tsx
+src/__tests__/TeacherDashboardZ7View.test.tsx
+```
+
+`studio (typecheck + test + build)` e' uno dei tre check **required** su `main`.
+Sette giri hanno promosso journey su questo ramo e **nessuno** ha detto che il
+check che conta davvero e' rosso. Non e' una scoperta del cancello e2e: e' cio'
+che il cancello e2e nascondeva, misurando solo la propria corsia.
