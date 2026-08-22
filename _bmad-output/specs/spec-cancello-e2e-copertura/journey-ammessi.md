@@ -14,7 +14,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `ripasso-live` | **ammessa** (giro 6) | `graph.query` negata al pannello ripasso la fa rossa con `data-zripasso-aperti="0"` mentre gli altri cinque, `golden-path`, `cruscotto` e `cruscotto-graph` restano verdi; e' il lato consumatore della memoria che #246 difende dal lato produttore |
 | `studentpack-artifact` | **ammessa** (giro 7) | `evidence: []` nel builder del pack lo fa rosso mentre i sei gia' dentro, `golden-path` e `cruscotto` restano verdi; unico journey che segue il FILE fuori dall'app e lo riporta dentro |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
-| `plugin-postit-room-reload` | **RESPINTA** (giro 8) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
+| `plugin-postit-room-reload` | **RESPINTA** (giro 8), poi **AMMESSA** (giro 9) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
 ## Perche' una respinta sta qui accanto alle ammesse
 
@@ -56,6 +56,38 @@ Vanno scritti quanto le promozioni, se no il giro dopo li ricontrolla.
   Una spec il cui verdetto non e' funzione del repository non entra in un job
   che blocca, e finche' la causa non ha un nome non entra nemmeno in advisory
   con la pretesa di significare qualcosa.
+
+## La stessa spec ENTRA al giro 9, e cio' che e' cambiato non e' l'opinione
+
+Al giro 8 era respinta con la ragione giusta: le mutazioni che vedeva le vedeva
+anche `studio (typecheck + test + build)`, che e' **required**. Al giro 9 entra
+perche' vede una **terza** mutazione, e quella non la vede nessuno.
+
+Non e' la spec ad avere cambiato verdetto: e' la spec ad essere **cambiata**.
+L'asserzione nuova e' relativa al riquadro, e la vecchia resta accanto a
+mostrare perche' non bastava.
+
+| mutazione | candidata **rafforzata** | suite unitaria (required) | i sette | advisory |
+|---|---|---|---|---|
+| **A** identita' di istanza fuori dagli id del DOM | **rossa** (1) | **rossa** (1) — la vede | — | — |
+| **C** post-it al **40%** del riquadro (solo CSS) | **rossa** (1) | **verde** (0) — **CIECA** | **verde** (0) | **verde** (0) |
+| nessuna | verde (0) | verde (0) | verde (0) | verde (0) |
+
+`fillRatioX` misurato **0.3978** contro la soglia `> 0.9`. Sull'albero pulito i
+rapporti sono **0.99**, su riquadri **560x384** e **740x424**: al 40% il post-it
+fa ~224px e la vecchia asserzione `width > 120` resta **verde**. Una soglia
+assoluta su un riquadro variabile non misura il riempimento — ed e' esattamente
+il buco che il giro 8 aveva trovato e lasciato aperto.
+
+**La cecita' della suite unitaria non e' riparabile li'**: in jsdom
+`getBoundingClientRect` restituisce zeri. Nessun test unitario puo' asserire una
+geometria resa. E' la classe di difetto per cui un e2e esiste, ed e' la prima
+volta che questo cancello ne ammette una per quella ragione.
+
+⚠️ **Costo dichiarato:** la soglia 0.9 e' tarata su rapporti 0.99. Un cambio di
+padding del contenitore la puo' far scendere: se un giorno diventa rossa senza
+che il post-it si sia rimpicciolito, la causa e' quella, ed e' scritta anche in
+`ci.yml`.
 
 ## Una spec RESPINTA perche' un cancello che c'e' gia' la copre
 
@@ -114,3 +146,33 @@ src/__tests__/TeacherDashboardZ7View.test.tsx
 Sette giri hanno promosso journey su questo ramo e **nessuno** ha detto che il
 check che conta davvero e' rosso. Non e' una scoperta del cancello e2e: e' cio'
 che il cancello e2e nascondeva, misurando solo la propria corsia.
+
+## I check REQUIRED, eseguiti (A-3 della retrospettiva)
+
+Sette giri hanno promosso journey senza mai eseguire i check che impediscono
+davvero una fusione. Il giro 9 li ha eseguiti, e questi sono gli exit:
+
+| check required | comando | exit |
+|---|---|---|
+| studio | `npm run typecheck` | **0** |
+| studio | `npx vitest run` | **0** |
+| studio | `npm run build` | **0** |
+| hygiene | `python3 bin/ci/nul_scan.py` | **0** |
+| hygiene | `python3 bin/ci/secret_scan.py` | **0** |
+| hygiene | `python3 bin/ci/elab_boundary_gate.py` | **0** |
+| hygiene | `python3 bin/ci/workflow_trigger_gate.py` | **0** |
+| hygiene | `python3 bin/ci/doc_claims_gate.py` | **0** |
+| engine | `uv run pytest -q -rs` | **1** ⚠️ |
+| engine | `env -u KIMI_API_KEY uv run pytest -q -rs` | **0** — `2044 passed, 7 skipped` |
+| (il job intero) | gli **otto** journey del cancello | **0** |
+
+⚠️ **Il rosso di `engine` porta il suo referente d'ambiente, e non e' un difetto
+del prodotto.** I due test rossi sono `TestRealtimeEvalLiveKimi` e il suo
+compagno, `@pytest.mark.skipif("KIMI_API_KEY" not in os.environ)`: la variabile
+esiste su questa macchina e non su un runner, dove risultano **SKIPPED**.
+Tolta la variabile, exit **0**. (L'endpoint Kimi risponde `404 url.not_found` su
+`/anthropic/chat/completions`: cablaggio locale rotto, tocca credenziali, non
+riparato qui.)
+
+E' la regola che il giro precedente ha pagato: **una misura sulla CI porta la
+versione del runtime e le variabili d'ambiente, non solo lo `sha`.**
