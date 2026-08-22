@@ -400,6 +400,36 @@ jobs:
       - name: post-it di plugin - identita' per istanza, e riempiono il riquadro assegnato
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-23. Difende un difetto di LAYOUT RESPONSIVO, ed e' la
+      # prima di questa famiglia: su iPad/LIM a 810px la toolbar completa
+      # (~1356px) non entrava e l'hamburger compariva solo <=768px, quindi il
+      # pulsante "sim" restava OLTRE IL BORDO - irraggiungibile a tocco E a
+      # mouse (misurato allora: btn.right=893 > innerWidth=810). Il rimedio e'
+      # la fascia @media (min-width: 769px) and (max-width: 1024px) in
+      # src/index.css, che quel commento dichiara "guardata da
+      # e2e/first-led-ipad-touch.spec.ts". Adesso e' vero anche in CI.
+      #
+      # Mutazione discriminante: la fascia tablet riportata scoperta
+      # (min-width: 1025px, cioe' una query che non matcha mai).
+      #   la candidata            exit 1
+      #   la suite unitaria       exit 0  <- CIECA
+      #   i nove qui sopra        exit 0  <- CIECHI
+      # La cecita' e' strutturale: jsdom non ha layout ne' media query risolte,
+      # quindi nessun test unitario puo' vedere un controllo spinto fuori dal
+      # viewport. E' la seconda classe di difetto - dopo la geometria resa -
+      # che solo un e2e puo' difendere.
+      #
+      # COSTI dell'ingresso, dichiarati prima:
+      #  1. Il file porta un `test.fixme` DICHIARATO (il tap-tap legacy non si
+      #     attiva a tocco puro): non e' uno skip silenzioso, ma questo job
+      #     eseguira' 1 test su 2 e il log lo dira'.
+      #  2. Viewport 810x1080 con hasTouch e deviceScaleFactor 2: e' l'unico
+      #     journey che non gira nel viewport di default, e un cambio di
+      #     breakpoint altrove puo' romperlo per una ragione giusta.
+      #  3. Pretende `consoleErrors` vuoto.
+      - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

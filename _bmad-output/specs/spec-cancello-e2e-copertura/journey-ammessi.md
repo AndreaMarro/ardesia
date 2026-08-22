@@ -13,6 +13,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `sim-esp2-senza-resistore` | **ammessa** (giro 5) | la zona di stress LED allargata la fa rossa con la bugia verbatim nel DOM (`data-led-on="1" data-led-burned="0"` su «acceso»), mentre gli altri cinque restano verdi |
 | `ripasso-live` | **ammessa** (giro 6) | `graph.query` negata al pannello ripasso la fa rossa con `data-zripasso-aperti="0"` mentre gli altri cinque, `golden-path`, `cruscotto` e `cruscotto-graph` restano verdi; e' il lato consumatore della memoria che #246 difende dal lato produttore |
 | `studentpack-artifact` | **ammessa** (giro 7) | `evidence: []` nel builder del pack lo fa rosso mentre i sei gia' dentro, `golden-path` e `cruscotto` restano verdi; unico journey che segue il FILE fuori dall'app e lo riporta dentro |
+| `first-led-ipad-touch` | **ammessa** (giro 11) | la fascia tablet 769-1024px riportata scoperta la fa rossa (il pulsante "sim" torna oltre il bordo a 810px) mentre la suite unitaria resta **verde**: jsdom non ha layout ne' media query risolte |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
 | `plugin-postit-room-reload` | **RESPINTA** (giro 8), poi **AMMESSA** (giro 9) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
@@ -197,6 +198,52 @@ La riga sopra `BoardWires` adesso **dice di se stessa** che nessun comando la fa
 rispettare, con i tre exit accanto. Non e' un rimedio: e' smettere di far
 sembrare difeso cio' che non lo e'. Questo repository ha gia' pagato la forma
 opposta — un «tetto» dichiarato in un commento e mai imposto.
+
+## Giro 11 — la decima entra, e una regressione MIA aveva quasi fatto respingere una spec buona
+
+`first-led-ipad-touch` difende una classe di difetto **nuova per questo
+cancello**: il **layout responsivo**. Il difetto storico e' documentato nel file
+e nel CSS: su iPad/LIM a **810px** la toolbar completa (~1356px) non entrava e
+l'hamburger compariva **solo <=768px**, quindi il pulsante «sim» restava
+**oltre il bordo** — irraggiungibile a tocco E a mouse (`btn.right=893 >
+innerWidth=810`). Il rimedio e' la fascia `@media (min-width: 769px) and
+(max-width: 1024px)` in `src/index.css`, il cui commento **dichiara** di essere
+«guardata da `e2e/first-led-ipad-touch.spec.ts`». Adesso e' vero anche in CI.
+
+| mutazione | candidata | suite unitaria (required) | i nove gia' dentro |
+|---|---|---|---|
+| fascia tablet riportata scoperta (`min-width: 1025px`) | **rossa** (1) | **verde (0) — CIECA** | verde (0) |
+| nessuna | verde (0) | verde (0) | verde (0) |
+
+La cecita' e' **strutturale**: jsdom non ha layout ne' media query risolte,
+quindi nessun test unitario puo' vedere un controllo spinto fuori dal viewport.
+E' la **seconda** classe — dopo la geometria resa — che solo un e2e difende.
+
+### ⚠️ La prima misura di questo giro diceva il contrario, ed era colpa mia
+
+La prima esecuzione dava la suite unitaria **rossa** sotto quella mutazione,
+cioe' «ridondante, respinta». Era rossa per un **emoji che avevo committato io**
+in `ToolCanvasEmbeddable.tsx` al giro 10 (`4672d189`), che viola
+`src/__tests__/no-emoji.test.ts` (S-UX-1). Riparata (`ada6c5c6`) e rimisurata su
+albero pulito, la suite esce **0** e la spec e' ammissibile.
+
+**Una regressione non misurata aveva quasi fatto respingere un journey buono.**
+La causa e' nota e vale piu' del sintomo: al giro 10, dopo l'ultima modifica al
+commento, avevo eseguito `tsc` e il journey — **non** la suite unitaria — e il
+gate frozen l'avevo eseguito *prima* di quella modifica. Tre comandi verdi, e
+nessuno dei tre guardava la riga appena scritta.
+
+### I journey si eseguono UNO PER VOLTA, e non e' un dettaglio
+
+Eseguiti tutti insieme in un solo comando, `plugin-postit-room-reload`
+(desktop) esce **rosso**: `toHaveCount(3)` riceve **0**. Eseguiti **uno per
+volta**, come fa `ci.yml` (uno step per journey, niente glob), **tutti e nove i
+file escono 0**.
+
+Non e' un difetto del job com'e' configurato — e' un vincolo di cui il job
+dipende senza dirlo: **i journey non sono mutuamente isolati**. Chi un giorno
+li unisse in un'unica invocazione per fare prima troverebbe un rosso che non e'
+del prodotto. Scritto qui perche' non venga scoperto per caso.
 
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
