@@ -14,6 +14,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `ripasso-live` | **ammessa** (giro 6) | `graph.query` negata al pannello ripasso la fa rossa con `data-zripasso-aperti="0"` mentre gli altri cinque, `golden-path`, `cruscotto` e `cruscotto-graph` restano verdi; e' il lato consumatore della memoria che #246 difende dal lato produttore |
 | `studentpack-artifact` | **ammessa** (giro 7) | `evidence: []` nel builder del pack lo fa rosso mentre i sei gia' dentro, `golden-path` e `cruscotto` restano verdi; unico journey che segue il FILE fuori dall'app e lo riporta dentro |
 | `first-led-ipad-touch` | **ammessa** (giro 11) | la fascia tablet 769-1024px riportata scoperta la fa rossa (il pulsante "sim" torna oltre il bordo a 810px) mentre la suite unitaria resta **verde**: jsdom non ha layout ne' media query risolte |
+| `montaggio-canvas` | **RESPINTA** (giro 10, per IMPOTENZA), poi **ammessa** (giro 12) | tolto `pointerEvents="none"` da `BoardWires` la fa rossa con «subtree intercepts pointer events», mentre la suite unitaria e i dieci gia' dentro restano verdi. Ci sono voluti tre giri per capire DOVE guardare |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
 | `plugin-postit-room-reload` | **RESPINTA** (giro 8), poi **AMMESSA** (giro 9) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
@@ -244,6 +245,49 @@ Non e' un difetto del job com'e' configurato — e' un vincolo di cui il job
 dipende senza dirlo: **i journey non sono mutuamente isolati**. Chi un giorno
 li unisse in un'unica invocazione per fare prima troverebbe un rosso che non e'
 del prodotto. Scritto qui perche' non venga scoperto per caso.
+
+## Giro 12 — l'undicesima entra, e la lezione e' su DOVE si misura
+
+Al giro 10 `montaggio-canvas` era stata respinta per **impotenza**: non vedeva
+nemmeno l'invariante che il codice le affidava esplicitamente. Al giro 12 entra,
+e **non e' la spec ad avere cambiato idea**: sono due suoi dettagli ad essere
+diventati un oracolo.
+
+| mutazione | candidata **rafforzata** | candidata **com'era** | suite unitaria | i dieci dentro |
+|---|---|---|---|---|
+| `pointerEvents="none"` tolto da `BoardWires` | **rossa (1)** | **verde (0)** | **verde (0)** | **verde (0)** |
+| nessuna | verde (0) | verde (0) | verde (0) | verde (0) |
+
+Il messaggio che la fa rossa e' quello che serviva da tre giri:
+
+```text
+<path fill="none" stroke="#ffffff" stroke-width="0.45" ...>
+  from <g>...</g> subtree intercepts pointer events
+```
+
+### I due dettagli, ed erano sbagliati entrambi
+
+1. **Il clic non deve essere `force: true`.** `force` disattiva il controllo di
+   hit-target di Playwright, cioe' **esattamente la domanda** «chi riceve davvero
+   questo tocco». La colonna «candidata com'era» sopra e' la controprova: stessa
+   mutazione, `force: true`, **verde**.
+2. **Il foro tappato deve stare sotto il TRATTO di un filo**, e i fori giusti si
+   misurano **dentro lo stage legacy**, non sul canvas core.
+
+### ⚠️ La trappola che e' costata tre giri: la superficie sbagliata
+
+Le sonde dei giri 10 e 11 misuravano **senza aprire il pannello legacy**, quindi
+guardavano il **canvas CORE** — che ha 420 fori suoi e altri fili — e davano una
+lista di fori coperti (`bb1:j1` fra questi) **inutile per questa spec**, che
+tappa nello **stage legacy**.
+
+Misurato dentro lo stage legacy: `path=14`, `fori=420`, il gruppo dei fili ha
+**6 path**, e i fori sotto il tratto sono **TRE**: `bb1:bus-top-plus-1`,
+`bb1:bus-bot-plus-3`, `bb1:a9`. La spec adesso tappa il secondo.
+
+Due misure identiche nel metodo (`isPointInStroke`), su **due superfici
+diverse**, e solo una risponde alla domanda. E' la stessa famiglia del referente
+adiacente, applicata al DOM invece che a un albero git.
 
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 

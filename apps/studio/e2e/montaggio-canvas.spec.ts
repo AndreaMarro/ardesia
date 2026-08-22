@@ -4,9 +4,15 @@
 // manuale (bb1:i9, occupato dai pinAssignments) rifiuta il tap con notice.
 import { test, expect, type Locator } from "@playwright/test"
 
+// Il clic NON e' forzato, ed e' l'oracolo: `force: true` disattiva il controllo
+// di hit-target di Playwright, cioe' proprio la domanda «chi riceve davvero
+// questo tocco». Con `force` la spec resta verde anche se un filo copre il foro.
+// Misurato il 2026-08-23: tolto `pointerEvents="none"` da BoardWires, la spec
+// con `force: true` su bb1:c3 esce 0, questa esce 1 con
+// «<path ...stroke="#ffffff"...> from <g>...</g> subtree intercepts pointer events».
 async function clickHole(stage: Locator, ref: string) {
   const hole = stage.locator(`[data-bb-hole="${ref}"]`)
-  await hole.click({ force: true })
+  await hole.click()
 }
 
 async function activateStage(page: import("@playwright/test").Page, stage: Locator) {
@@ -65,9 +71,17 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
   await paletteResistenza.click()
   await expect(paletteResistenza).toHaveAttribute("aria-pressed", "true")
 
-  // Due fori liberi: c3 pending → c4 piazza.
-  await clickHole(legacyStage, "bb1:c3")
-  await expect(legacyStage.locator('[data-bb-hole="bb1:c3"]')).toHaveAttribute("data-pending", "1")
+  // Il primo foro NON e' scelto a caso: `bb1:bus-bot-plus-3` e' uno dei TRE che
+  // stanno sotto il TRATTO dei fili nello stage legacy (misurati con
+  // `isPointInStroke`, geometria SVG: gli altri due sono bb1:bus-top-plus-1 e
+  // bb1:a9). Tappare qui, senza `force`, e' cio' che rende la spec capace di
+  // vedere se i fili tornassero a intercettare i pointer.
+  // ATTENZIONE, trappola pagata: la stessa misura fatta SENZA aprire il pannello legacy
+  // guarda il canvas CORE, che ha 420 fori suoi e altri fili — e da' una lista
+  // diversa (bb1:j1 fra questi), inutile qui.
+  // Due fori liberi: il primo pending → c4 piazza.
+  await clickHole(legacyStage, "bb1:bus-bot-plus-3")
+  await expect(legacyStage.locator('[data-bb-hole="bb1:bus-bot-plus-3"]')).toHaveAttribute("data-pending", "1")
   await clickHole(legacyStage, "bb1:c4")
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",

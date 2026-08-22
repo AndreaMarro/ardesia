@@ -1977,18 +1977,20 @@ function BreadboardHole({
 function BoardWires({ scene }: { scene: SimulationSceneV1 }) {
   // Decorativo: i fili NON intercettano i pointer, i fori sotto restano tappabili.
   //
-  // ATTENZIONE: NESSUN COMANDO LO FA RISPETTARE, ed e' misurato (2026-08-22). Tolto
-  // `pointerEvents="none"` da questo gruppo — cioe' rimesso esattamente il
-  // difetto che la riga sopra dichiara di escludere — restano VERDI:
-  //   e2e/montaggio-canvas.spec.ts   exit 0   (l'unica spec che tocca i fori)
-  //   la suite unitaria intera       exit 0   2138 passed
-  //   i nove journey del cancello    exit 0
-  // Perche' nessuno lo vede: i due fori che la spec tocca (bb1:c3, bb1:c4)
-  // non stanno sotto un filo, e un clic non forzato passa con e senza la
-  // mutazione. In jsdom il problema non esiste affatto: `fireEvent.click`
-  // parte dal nodo e non simula `pointer-events`.
-  // Questa riga resta una DICHIARAZIONE, non un invariante difeso. Chi la
-  // cambia non rompe niente di rosso, ed e' il motivo per cui c'e' scritto.
+  // DIFESO da e2e/montaggio-canvas.spec.ts dal 2026-08-23, e c'e' voluto
+  // sapere DOVE guardare. Tolto `pointerEvents="none"` da questo gruppo,
+  // la spec esce 1 con «<path ... stroke="#ffffff" ...> from <g>...</g>
+  // subtree intercepts pointer events», mentre la suite unitaria esce 0 e
+  // cosi' i dieci journey del cancello: in jsdom `fireEvent.click` parte dal
+  // nodo e non simula `pointer-events`, quindi nessun test unitario potra'
+  // mai difendere questa riga.
+  // Due dettagli fanno l'oracolo, e per tre giri erano sbagliati entrambi:
+  //  1. il clic della spec NON deve essere `force: true`, che disattiva il
+  //     controllo di hit-target — con `force` la mutazione resta verde;
+  //  2. il foro tappato deve stare SOTTO IL TRATTO di un filo. Nello stage
+  //     legacy sono TRE (bus-top-plus-1, bus-bot-plus-3, a9), misurati con
+  //     `isPointInStroke`. La stessa misura sul canvas CORE ne da' altri, e
+  //     usare quelli lascia la mutazione invisibile.
   return (
     <g pointerEvents="none">
       {scene.connections.map((connection) => {

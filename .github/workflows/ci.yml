@@ -430,6 +430,29 @@ jobs:
       - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-23, dopo TRE giri di tentativi falliti, e la storia
+      # sta nel commento sopra BoardWires in ToolCanvasEmbeddable.tsx. Difende
+      # un invariante che il codice dichiarava e nessuno faceva rispettare:
+      # «i fili NON intercettano i pointer, i fori sotto restano tappabili».
+      #
+      # Mutazione discriminante: `pointerEvents="none"` tolto da BoardWires.
+      #   la candidata            exit 1  «<path ...> subtree intercepts pointer events»
+      #   la suite unitaria       exit 0  <- CIECA
+      #   i dieci qui sopra       exit 0  <- CIECHI
+      #   la spec com'era PRIMA   exit 0  <- CIECA anche lei (controprova)
+      # L'ultima riga e' il punto: non e' la spec ad essere cambiata idea, sono
+      # due dettagli suoi ad essere diventati un oracolo — il clic senza
+      # `force: true` e un foro che sta DAVVERO sotto il tratto di un filo.
+      #
+      # COSTI dichiarati prima:
+      #  1. Il clic non forzato e' piu' fragile: qualunque overlay futuro sopra
+      #     la lavagna la fa rossa, e sarebbe un rosso giusto ma non su questo.
+      #  2. Dipende da UNA scena (v1-cap6-esp1) e dai suoi tre fori coperti: se
+      #     la scena cambia geometria, la spec va rimisurata con isPointInStroke
+      #     DENTRO lo stage legacy, non sul canvas core.
+      - name: montaggio libero - i fili non rubano il tocco ai fori sotto
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/montaggio-canvas.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
