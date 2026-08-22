@@ -338,6 +338,32 @@ jobs:
       - name: ripasso del docente - l'errore segnato in ElabLab compare nel cruscotto
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/ripasso-live.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-22, settimo giro. E' l'unico journey che segue il
+      # FILE fuori dall'app e lo riporta dentro: errore marcato in ELAB Lab →
+      # cruscotto → Genera → Esporta (download vero) → import del file appena
+      # scaricato. Nessuno degli altri sei attraversa quel confine.
+      #
+      # Mutazione discriminante: `evidence: []` in
+      # `apps/studio/src/lessonos/studentPackArtifact.ts` (riga del builder, al
+      # posto di `[...candidate.evidenceRefs]`). Il pack resta un file VALIDO —
+      # formato giusto, si riapre, l'id c'e' — e ha perso le fonti. Questa spec
+      # esce 1; i SEI journey gia' nel cancello escono 0, e cosi' `golden-path`
+      # e `cruscotto`. Otto cieche, una vede.
+      # Cosa costa: lo studente riceve «hai sbagliato questo» senza NESSUN
+      # riferimento a dove l'errore e' stato osservato. Il file non e' rotto:
+      # e' muto, e nessuno se ne accorge aprendolo.
+      #
+      # ⚠️ COSTI dell'ingresso, dichiarati prima:
+      #  1. Il journey dipende da un DOWNLOAD reale del browser. Su un runner e'
+      #     il passo piu' fragile della lista, e un rosso li' non e' un difetto
+      #     del prodotto.
+      #  2. Porta gia' dentro un `toPass` con reload fino a 30s, perche' la
+      #     scrittura IndexedDB della marcatura e' asincrona rispetto al
+      #     contatore: e' il journey piu' lento del job.
+      #  3. Come `ripasso-live`, pretende `consoleErrors` vuoto su due viste.
+      - name: student pack - il file esce dall'app, torna dentro, e porta le sue fonti
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/studentpack-artifact.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
