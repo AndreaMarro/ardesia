@@ -429,6 +429,17 @@ jobs:
       # hygiene e' un check REQUIRED su main: la regola "nessun filtro di base
       # sotto pull_request" vive qui perche' un commento nel workflow lo si
       # cancella senza che nessuno se ne accorga, un check rosso no.
+      # Entrato il 2026-08-22, e la ragione e' costata un'ora e mezza: cinque
+      # file di test erano rossi qui e verdi su un runner perche' questa
+      # macchina eseguiva Node 26 e ci.yml installava 22, e IL REPOSITORY NON
+      # LO DICEVA — nessun `.nvmrc`, `engines` assente ovunque. Alla prima
+      # esecuzione questo gate ha trovato una divergenza che nessuno sapeva:
+      # studio-preview-readiness.yml chiedeva "22.12.0" mentre ci.yml chiedeva
+      # 22, in tre job.
+      - name: node version gate (la versione dichiarata e quella installata coincidono)
+        run: python3 bin/ci/node_version_gate.py
+      - name: node version gate tests
+        run: python3 bin/ci/node_version_gate.py --self-test
       - name: workflow trigger gate (copertura indipendente dalla base)
         run: python3 bin/ci/workflow_trigger_gate.py
       - name: workflow trigger gate tests

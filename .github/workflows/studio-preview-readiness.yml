@@ -52,7 +52,13 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: "22.12.0"
+          # Allineato a `.nvmrc` il 2026-08-22. Prima diceva "22.12.0" mentre
+          # ci.yml diceva 22 in tre job: due workflow, due Node, e niente
+          # nell'albero che lo dicesse. Vince `22` perche' e' la versione
+          # sotto cui la suite e' stata davvero eseguita (22.14.0, exit 0),
+          # non una scelta nuova. Il gate bin/ci/node_version_gate.py adesso
+          # rifiuta la divergenza.
+          node-version: "22"
           cache: npm
           cache-dependency-path: apps/studio/package-lock.json
       - run: bash -n bin/monorepo.sh
