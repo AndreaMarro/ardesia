@@ -625,6 +625,55 @@ l'alert dev'essere **visibile** e contenere `tipo componente non catalogato`.
 contenga componenti fuori dal catalogo elettrico? Non e' un difetto da riparare
 di nascosto — e' una domanda di ambito.
 
+## Giro 20 — quanti tipi mancano: la risposta completa, in un comando
+
+Il giro 19 aveva trovato i tipi mancanti **uno alla volta**, catalogandone uno e
+rileggendo l'alert: `capacitor`, poi `push-button`. Metodo giusto ma lento, e
+non dice **quando finisce**.
+
+La domanda si chiude in un comando solo, leggendo i dati invece di sondare la
+vista: per ogni scena visibile, i tipi dei suoi componenti meno i sette del
+catalogo.
+
+```text
+v1-cap6-esp1  tipi=4  fuori-catalogo=[]
+v1-cap6-esp2  tipi=3  fuori-catalogo=[]
+v1-cap6-esp3  tipi=4  fuori-catalogo=[]
+v1-cap9-esp6  tipi=5  fuori-catalogo=[]
+v2-cap7-esp1  tipi=6  fuori-catalogo=[capacitor push-button multimeter]
+v2-cap7-esp2  tipi=7  fuori-catalogo=[capacitor push-button multimeter]
+v3-cap6-esp4  tipi=4  fuori-catalogo=[nano-r4]
+v3-cap6-esp5  tipi=4  fuori-catalogo=[nano-r4]
+
+tipi FUORI catalogo usati dalle scene visibili: 4
+elenco: capacitor multimeter nano-r4 push-button
+```
+
+**Quattro tipi, non tre.** E la riga che cambia una decisione: **`v3-cap6-esp4/5`
+sono a UN SOLO componente** dal risolvere — manca `nano-r4`, la scheda. Le altre
+due ne aspettano tre.
+
+### Il rapporto adesso e' sorvegliato, e non da un cancello nuovo
+
+`apps/studio/src/__tests__/CatalogoSceneVisibili.test.ts` — un test unitario,
+dentro `studio (test)` che e' **required**, non un gate in piu' da mantenere.
+Confronta il catalogo registrato con i tipi usati dalle scene **visibili** e
+pretende che l'insieme fuori catalogo sia esattamente quello misurato.
+
+| mutazione | il test |
+|---|---|
+| `nano-r4` catalogato | **rosso (1)** |
+| nessuna | verde |
+
+Cosi' il rapporto non puo' cambiare in silenzio **in entrambi i versi**: una
+scena nuova che porta dentro un tipo non catalogato, o un tipo catalogato che fa
+risolvere una scena che prima non risolveva, obbligano ad aggiornare la costante
+**scrivendo perche'**. E' `SOLVE_ATTESO` dal lato dei **dati** invece che della
+vista.
+
+⚠️ Il test **non ripara** e non giudica: il gate-Andrea resta aperto, ed e' la
+domanda d'ambito «e' voluto che meta' della Founder Beta non risolva?».
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
