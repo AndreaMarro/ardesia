@@ -1472,3 +1472,74 @@ si impara a ignorare.
 
 Seconda esecuzione: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**,
 i sei cancelli hygiene **0**.
+
+---
+
+## Giro 28 — il flake NON e' stato risolto, ed ecco cosa e' stato misurato invece
+
+L'ordine chiedeva la causa misurata o un isolamento che rendesse il verde
+riproducibile, «non «riprovato e passava»». **Non ho la causa.** Quello che ho e'
+il motivo per cui non ce l'ho, e la riparazione di quel motivo.
+
+### Cosa ho misurato del meccanismo
+
+Ogni invocazione di `npx playwright test` **avvia e uccide il proprio dev
+server**: prima e dopo una singola invocazione i processi `vite --port 5199` sono
+**zero**. Sedici passi = **sedici cicli di vita del server**, ognuno che si lega
+alla porta 5199 con `--strictPort` subito dopo che il precedente e' stato ucciso.
+Vale anche in `ci.yml`, dove i sedici passi sono sedici invocazioni separate.
+
+Sembrava la causa. **Non l'ho dimostrato**, e ho anzi dimostrato che una parte
+della mia ipotesi era falsa.
+
+### Una mia misura ritirata
+
+Prima lettura: batch con server persistente **74s**, batch com'e' oggi **114s** —
+«il 35% di risparmio». **Ritirata.** Rifatta attraverso lo strumento, con la
+durata stampata dal runner stesso:
+
+| gate | durata |
+|---|---|
+| i sedici, un dev server per invocazione | `durata_secondi=129` |
+| i sedici, UN solo dev server persistente | `durata_secondi=128` |
+
+**Un secondo.** La prima misura confondeva il ciclo di vita del server con la
+cache di ottimizzazione di vite, calda dopo le esecuzioni precedenti. Il server
+persistente non fa risparmiare niente.
+
+### E il flake non si e' ripresentato
+
+**Cinque** esecuzioni dei sedici oggi — tre con il server per invocazione, due
+con quello persistente — **zero rossi**. Con zero eventi non si distingue nulla:
+non posso attribuire il flake al meccanismo, e non posso nemmeno escluderlo.
+
+Per questo **non ho cablato** il server persistente in `ci.yml`: l'unica
+giustificazione sarebbe stata un guadagno di velocita' che non esiste e un
+determinismo che non so dimostrare. Cambiare la CI su una supposizione e' come
+riparare una gamba di test senza vederla rossa.
+
+### Il diff che invece serviva: le prove alla caduta
+
+Il flake dei giri 23 e 27 non e' stato diagnosticabile perche' **un journey che
+cade non lasciava prove**. Misurato:
+
+| gate | `journey_exit` | trace | screenshot | video |
+|---|---|---|---|---|
+| config **com'era** | **1** | **0** | **0** | **0** |
+| config **dopo** | **1** | **1** | **1** | **1** |
+
+`playwright.config.ts` non nominava `trace`, `screenshot` ne' `video`: un
+fallimento lasciava in `test-results/` soltanto un `error-context.md`, e il passo
+`upload-artifact` del job `e2e-journey` — che esiste, e carica quella cartella —
+caricava quasi niente.
+
+Ora: `trace: "retain-on-failure"`, `screenshot: "only-on-failure"`,
+`video: "retain-on-failure"`. **Nessun costo sui verdi**; sui rossi la cartella
+caricata cresce, ed e' esattamente il momento in cui serve.
+
+Il flake resta aperto. La prossima volta che accade, ci sara' un trace da aprire.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

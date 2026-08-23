@@ -12,6 +12,16 @@ export default defineConfig({
   use: {
     baseURL,
     headless: true,
+    // Un journey che fallisce deve LASCIARE PROVE. Misurato il 2026-08-24: senza
+    // queste tre righe un fallimento lasciava in `test-results/` soltanto un
+    // `error-context.md` — zero trace, zero screenshot, zero video — e il passo
+    // `upload-artifact` del job e2e-journey caricava quasi niente. Il flake visto
+    // due volte (una spec rossa in batch e verde da sola) non e' stato
+    // diagnosticabile per QUESTO motivo, non perche' fosse irriproducibile.
+    // `retain-on-failure`: nessun costo sui verdi.
+    trace: "retain-on-failure",
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
   },
   ...(externalBaseURL
     ? {}
