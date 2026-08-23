@@ -544,6 +544,40 @@ jobs:
       - name: officina plugin - firma vera, handshake sandbox, e i byte del file che scarichi
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/plugin-wizard.spec.ts --forbid-only --reporter=line
+
+      # 14) board multi-esperimento ripristinata - AMMESSA per una regressione a
+      # SINGLETON nel render: un solo embed vivo per tool, in silenzio.
+      #
+      # La ragione, misurata. Mutazione: `renderToolCanvasEmbeddable` ricorda il
+      # primo embedId visto per ogni toolId e restituisce null per gli altri.
+      #   sim-multi-experiment-restore  exit 1  <- 1 embed su 3 dopo il reload
+      #   la suite unitaria             exit 0  <- CIECA
+      #   il typecheck                  exit 0  <- CIECO
+      #   i tredici qui sopra           exit 0  <- CIECHI
+      # I tredici sono ciechi perche' nessuno di loro ha piu' di un embed vivo
+      # insieme: `plugin-postit-room-reload` ricarica, ma con un post-it solo.
+      # La suite unitaria e' cieca perche' copre la LOGICA d'inserimento
+      # (`nextSimulationEmbedId`, `buildSimulationInsert`) e non il DISPATCH del
+      # render: mutato l'inserimento (`return baseEmbedId`) la suite va rossa
+      # (exit 1) — le due coperture non si toccano, e il buco sta fra loro.
+      #
+      # COSTI dichiarati prima:
+      #  1. La fixture e' un file di 907 righe generato dalle factory di scena:
+      #     un cambio legittimo delle factory la rende stantia, e va rigenerata
+      #     con un vitest node-env (le factory importano .json, servono i
+      #     transform di vite).
+      #  2. Dipende dal debounce di persistenza (700ms) e da un poll su
+      #     localStorage: e' il journey piu' esposto al timing.
+      #  3. Fa un `page.reload()` vero con attese a 20s: il piu' lento dei
+      #     quattordici.
+      #  4. Una delle sue asserzioni e' una REGEX sul testo dei warning React
+      #     (`RENDER_PHASE_SETSTATE`). Se React cambiasse la formulazione, quella
+      #     gamba diventerebbe cieca IN SILENZIO — un falso verde, non un falso
+      #     rosso. L'ammissione NON poggia su quella gamba: la mutazione che
+      #     l'ha ammessa fallisce sul CONTEGGIO degli embed.
+      - name: board multi-esperimento - tre embed ripristinati insieme dopo un reload vero
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/sim-multi-experiment-restore.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1020,3 +1020,76 @@ del runner · timing dell'handshake sandbox · il formato dello zip come contrat
 · `consoleErrors` vuoto).
 
 Albero pulito: **tredici** journey, tutti exit **0**, uno per passo.
+
+---
+
+## Giro 21 — `sim-multi-experiment-restore` **AMMESSA** (quattordicesima), `sim-multi-instance` **RESPINTA**
+
+Il giro precedente ha lasciato un metodo, non solo un esito: cercare **due
+coperture forti che si guardano senza toccarsi**. Qui ce n'e' un'altra, e il buco
+fra le due e' una regressione che nessuno vedrebbe.
+
+### Le due mutazioni che non hanno deciso nulla (e perche' le scrivo lo stesso)
+
+- **F** — l'emissione `host.emitLessonEvent` spostata dall'effetto al corpo del
+  render: candidata **0**, unitari **0**, typecheck **0**. Nessuno la vede, e
+  non ho la prova che sia arrivata: e' una mutazione **muta**, non un reperto.
+- **G** — una scrittura `host.persistEmbedState` durante il render del figlio:
+  candidata **0**, **unitari 1**. La mutazione e' arrivata (il required la
+  prende) e la candidata non la vede. Prima gamba d'impotenza — ma sulla classe
+  che la spec dichiara nel titolo, non su cio' che sa fare davvero.
+
+Due tentativi a vuoto sulla classe dichiarata. Il terzo ha cercato la
+**regressione**, non la classe.
+
+### Mutazione H — la regressione a singleton
+
+`renderToolCanvasEmbeddable` ricorda il primo `embedId` visto per ogni `toolId`
+e restituisce `null` per gli altri. E' la forma esatta del difetto storico che
+`sim-multi-instance` documenta nella sua intestazione («prima del fix il secondo
+click selezionava l'istanza esistente»), spostata dall'inserimento al **render**.
+
+| referente | exit | legge |
+|---|---|---|
+| `sim-multi-experiment-restore` (candidata) | **1** | 1 embed su 3 dopo il reload |
+| `sim-multi-instance` (l'altra candidata) | **1** | lo vede anche lei |
+| `npx vitest run` | **0** | cieca |
+| `npx tsc -b --noEmit` | **0** | cieco |
+| i **tredici** journey gia' ammessi | **0** | ciechi |
+
+I tredici sono ciechi per una ragione sola e verificabile: **nessuno di loro ha
+piu' di un embed vivo insieme.** `plugin-postit-room-reload` ricarica davvero,
+ma con un post-it solo.
+
+### Le due coperture che non si toccano
+
+| cosa | chi la copre | cosa NON copre |
+|---|---|---|
+| la **logica d'inserimento** (`nextSimulationEmbedId`, `buildSimulationInsert`) | la suite unitaria | il dispatch del render |
+| il **render di un embed** | `ToolCanvasEmbeddable.test.tsx` | piu' embed vivi insieme |
+
+Prova della prima riga — **mutazione I**, `nextSimulationEmbedId` che ritorna
+sempre `baseEmbedId`: suite unitaria exit **1**, `sim-multi-instance` exit **1**.
+L'inserimento e' gia' required. Il **render con piu' istanze** non lo e'.
+
+### Gli esiti
+
+- **`sim-multi-experiment-restore`: AMMESSA.** Vede la regressione a singleton
+  che i tredici e i required non vedono, e in piu' esercita l'unica cosa che
+  nessun altro fa: tre embed che si rimontano **insieme** dopo un `reload()`
+  vero, da store persistito.
+- **`sim-multi-instance`: RESPINTA per ridondanza**, su entrambe le gambe. Sulla
+  regressione del render duplica la quattordicesima (mutazione H: rosse tutte e
+  due); sull'inserimento duplica il check required (mutazione I: rossi tutti e
+  due). Non resta nulla che veda da sola.
+
+### Cablata, con una fragilita' dichiarata
+
+`.github/workflows/ci.yml`, quattordicesimo passo, con quattro costi. Il quarto
+va detto qui perche' e' scomodo: una delle asserzioni della spec e' una **regex
+sul testo dei warning React**. Se React cambiasse la formulazione, quella gamba
+diventerebbe cieca **in silenzio** — un falso verde. L'ammissione non poggia su
+di lei: la mutazione che l'ha ammessa fallisce sul **conteggio** degli embed.
+
+Albero pulito: **quattordici** journey, tutti exit **0**, uno per passo.
+`/tmp/journeys.sh` rigenerato da `ci.yml`, mai a mano.
