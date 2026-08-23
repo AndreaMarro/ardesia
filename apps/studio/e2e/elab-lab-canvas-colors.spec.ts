@@ -19,21 +19,25 @@
 // costruzione — la forma di falso verde che questo loop esiste per cacciare.
 import { test, expect } from "@playwright/test"
 
-// Le OTTO scene che un docente può davvero aprire (VISIBLE_EXP_IDS). La prima
-// versione di questa spec guardava solo esp6: il revisore avversariale ha
-// mostrato con una sonda che un token usato solo dal NanoR4 di v3-cap6-esp5
-// poteva rompersi lasciandola verde. Una sonda su una scena su otto risponde
-// a una domanda più piccola di quella che dichiara.
-const SCENE_VISIBILI = [
-  "v1-cap6-esp1",
-  "v1-cap6-esp2",
-  "v1-cap6-esp3",
-  "v1-cap9-esp6",
-  "v2-cap7-esp1",
-  "v2-cap7-esp2",
-  "v3-cap6-esp4",
-  "v3-cap6-esp5",
-] as const
+// Le scene che un docente può davvero aprire. La prima versione di questa spec
+// guardava solo esp6: il revisore avversariale ha mostrato con una sonda che un
+// token usato solo dal NanoR4 di v3-cap6-esp5 poteva rompersi lasciandola
+// verde. Una sonda su una scena su otto risponde a una domanda più piccola di
+// quella che dichiara.
+//
+// LA LISTA SI IMPORTA, NON SI COPIA — e il perché è misurato (2026-08-23).
+// Qui c'era una copia letterale di otto id. Resa visibile una NONA scena nella
+// fonte di verità (`VISIBLE_EXP_IDS`), questa spec continuava a eseguire 10
+// test invece di 11: restava verde su una domanda più piccola di quella che
+// dichiara, e nessun comando lo diceva. Con l'import il divario non è
+// riparabile — è impossibile.
+//
+// L'import è relativo e non usa l'alias `@elab-tutor-plugin/...`: quell'alias
+// lo risolve vite per l'app, non il runner di Playwright, che compila questo
+// file per conto suo.
+import { VISIBLE_EXP_IDS } from "../../../plugins/elab-tutor/src/data/experiment-visibility.js"
+
+const SCENE_VISIBILI = VISIBLE_EXP_IDS
 
 for (const esperimento of SCENE_VISIBILI) {
   test(`ELAB Lab ${esperimento}: ogni token del disegno si risolve al valore che il suo nome dichiara`, async ({

@@ -332,6 +332,45 @@ L'errore nasce da due numerazioni sovrapposte: «la nona spec» contava le spec
 qui in avanti il numero dei journey si **conta dal workflow**, e il comando sta
 qui sopra. Le due frasi sbagliate restano nelle receipt, marcate.
 
+## Giro 14 — la lista si importa, non si copia
+
+`elab-lab-canvas-colors` iterava su una **copia letterale** di `VISIBLE_EXP_IDS`
+— otto id scritti a mano nella spec. Il costo era gia' dichiarato al giro 13
+(«se una scena nuova diventa visibile e nessuno la aggiunge qui, il journey
+resta verde su una domanda piu' piccola di quella che dichiara»), ed e' stato
+**misurato**, non ipotizzato:
+
+| albero | fonte `VISIBLE_EXP_IDS` | test eseguiti dalla spec |
+|---|---|---|
+| copia letterale | 8 scene | **10** |
+| copia letterale | **9** scene (una resa visibile) | **10** ⚠️ la nona non la guarda nessuno |
+| **import** della fonte | **9** scene | **11** |
+| **import** della fonte | 8 scene (ripristino) | **10** — senza toccare la spec |
+
+Il rimedio non e' un cancello: e' togliere la possibilita' di divergere.
+`import { VISIBLE_EXP_IDS } from "../../../plugins/elab-tutor/src/data/experiment-visibility.js"`.
+Stessa forma di `node-version-file: .nvmrc` — cio' che non si copia non puo'
+divergere.
+
+L'import e' **relativo** e non usa l'alias `@elab-tutor-plugin/...`: quell'alias
+lo risolve vite per l'app, non il runner di Playwright, che compila la spec per
+conto suo.
+
+### Cercate altre copie, e una distinzione che vale
+
+`grep` degli array di >=3 stringhe letterali in **tutte** le spec e2e: ne restano
+**due**, e nessuna delle due e' lo stesso difetto.
+
+- `cruscotto-graph.spec.ts:13 EVENTS` — e' **fixture**, non una copia di una
+  costante del prodotto.
+- `plugin-postit-room-reload.spec.ts:12 EXPECTED_INSTANCES` — e' l'**atteso**,
+  non il **dominio**.
+
+E' la distinzione: **copiare il DOMINIO su cui si itera e' pericoloso** perche'
+la divergenza *restringe la copertura in silenzio*; **copiare l'ATTESO e' il
+mestiere del test**, perche' la divergenza lo fa fallire a voce alta. Solo la
+prima famiglia va importata.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
