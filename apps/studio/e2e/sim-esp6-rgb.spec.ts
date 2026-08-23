@@ -55,9 +55,14 @@ test("ELAB Lab esp6: 3 potenziometri, LED RGB montato, solve reale del motore", 
 
   // Multi-pin: tre potenziometri distinti, non "almeno uno".
   await expect(page.locator("[aria-label^='Potenziometro']")).toHaveCount(3)
+  // Contati E visti: `toHaveCount` non guarda la resa (vedi il blocco viewport).
+  for (const pot of await page.locator("[aria-label^='Potenziometro']").all()) {
+    await expect(pot).toBeVisible()
+  }
 
   // Il LED RGB e' un componente a 4 pin del catalogo elettrico, non un disegno.
   await expect(page.locator("[data-type='rgb-led']")).toHaveCount(1)
+  await expect(page.locator("[data-type='rgb-led']")).toBeVisible()
 
   // Il solve viene dal motore reale via registry, non da valori pre-dichiarati.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })

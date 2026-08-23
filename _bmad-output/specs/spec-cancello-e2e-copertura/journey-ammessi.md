@@ -415,6 +415,50 @@ da sembrare di difendere.
 E' la quinta classe che solo un e2e vede: **visibilita' sotto un viewport**.
 jsdom non ha layout ne' media query risolte.
 
+## Giro 16 — contare non e' vedere: il censimento, e il buco che ha trovato
+
+La domanda aperta dal giro 15 — «quante altre `toHaveCount` dovrebbero essere
+`toBeVisible`?» — non si risponde leggendo: si risponde con una mutazione.
+
+**Censimento** delle dodici spec ammesse: **3** `toHaveCount(0)` (asserzioni di
+**assenza**: contare li' e' esatto) e **8** `toHaveCount(n>0)` (asserzioni di
+**presenza**), piu' 2 occorrenze dentro un commento.
+
+**La mutazione**: `[data-elab-canvas] { display: none }` — il disegno resta nel
+DOM e sparisce dallo schermo, su **ogni** viewport.
+
+| | journey che se ne accorgono |
+|---|---|
+| **prima** del rimedio | **1 su 12** — solo `sim-esp6-rgb` |
+| **dopo** | **2 su 12** — e la seconda e' quella che doveva |
+
+⚠️ **Il buco era nella spec meno sospettabile.** `elab-lab-canvas-colors` — nata
+perche' il circuito era **grafica morta in produzione**, 40 `<rect>` su 52 con
+`fill` computato nero — usciva **`10 passed`** con il disegno **completamente
+invisibile**. Verificava che i token si **risolvessero**, e un token si risolve
+benissimo dentro un sottoalbero che nessuno vede.
+
+Rimediato: `toBeVisible()` accanto al conteggio, sul canvas e sul LED. Sotto la
+stessa mutazione ora esce **1**, `9 failed`.
+
+### Non tutte le `toHaveCount` sono un buco, e la controprova lo dimostra
+
+`product-flow-shell` conta le tre voci di nav in tre punti. Reso il nav
+**invisibile** (`visibility: hidden`), la spec esce **1** — senza che nessuno
+l'abbia toccata. **E' il CLIC a pretendere la visibilita'**, non il conteggio:
+Playwright rifiuta di cliccare cio' che non si vede.
+
+Da cui la regola, piu' precisa di «usa sempre `toBeVisible`»:
+
+> `toHaveCount` e' un buco **solo quando nient'altro nella spec interagisce con
+> quell'elemento**. Se la spec poi lo clicca, l'azione difende gia' la
+> visibilita'. Contare cio' che poi si tocca e' corretto; contare cio' che si
+> guarda soltanto, no.
+
+Per lo stesso motivo `sim-esp2-senza-resistore:29` (`select option` a otto)
+resta com'e': le `<option>` non hanno una visibilita' propria utile, e la spec
+poi **seleziona** un valore.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono

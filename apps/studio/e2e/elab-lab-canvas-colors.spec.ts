@@ -46,6 +46,12 @@ for (const esperimento of SCENE_VISIBILI) {
     await page.goto(`/?vista=elab-lab&esperimento=${esperimento}`)
     await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
     await expect(page.locator("[data-elab-canvas] svg")).toHaveCount(1)
+    // CONTARE NON E' VEDERE, ed e' misurato (2026-08-23): con una regola
+    // `[data-elab-canvas] { display: none }` il disegno resta NEL DOM e questa
+    // spec — quella nata perche' il circuito era GRAFICA MORTA in produzione —
+    // usciva 0 su tutte e otto le scene. Un token si risolve benissimo anche
+    // dentro un sottoalbero che nessuno vede.
+    await expect(page.locator("[data-elab-canvas] svg")).toBeVisible()
 
     // L'ORACOLO. La prima versione faceva due cose deboli: cercava i token non
     // definiti, e poi contava gli elementi neri ESCLUDENDO a mano quattro nomi
@@ -96,6 +102,7 @@ test("ELAB Lab: i token dello studio non vengono sovrascritti dal plugin", async
   await page.goto("/?vista=elab-lab&esperimento=v1-cap9-esp6")
   await expect(page.locator("[data-elab-lab-state=mounted]")).toBeVisible({ timeout: 15_000 })
   await expect(page.locator("[data-type='rgb-led']")).toHaveCount(1)
+  await expect(page.locator("[data-type='rgb-led']")).toBeVisible()
 
   // 3. IL FOGLIO DEL PLUGIN NON DEVE SPOSTARE I TOKEN DELLO STUDIO.
   //
