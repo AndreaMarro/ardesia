@@ -1352,3 +1352,54 @@ decorative; misurate, era una.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 26 — il quattordicesimo journey non guardava i tre embed che conta
+
+E la **difesa di rimbalzo** si conferma con una seconda misura indipendente:
+sono sempre gli **stessi tre** journey a tenerla su.
+
+### La scansione, questa volta precisa
+
+Il giro 25 aveva contato le FORME (`toHaveCount`, screenshot). Questo cerca la
+firma esatta: **un conteggio il cui locator non compare mai su una riga con
+`toBeVisible`**. Esclusi i `toHaveCount(0)`, che sono asserzioni di assenza e non
+possono essere cieche allo stesso modo.
+
+Ne esce che `sim-esp6-rgb` era gia' a posto — ogni conteggio ha accanto la sua
+visibilita', con i commenti che spiegano perche' — e che il sospetto piu' grosso
+e' il **quattordicesimo passo**, `sim-multi-experiment-restore`, con tre
+conteggi nudi, fra cui i due che sono la ragione stessa della sua ammissione.
+
+### La misura
+
+Mutazione Q:
+`[data-elab-canvas-source-of-truth="simulation-scene"] { display: none !important; }`
+
+| referente | exit | legge |
+|---|---|---|
+| `sim-multi-experiment-restore` **com'era** | **0** | **cieca** |
+| `npx vitest run` | **0** | cieca |
+| `sim-multi-experiment-restore` **riparata** | **1** | riga 91, `toBeVisible` |
+| sull'albero pulito, riparata | **0** | verde |
+
+Il punto di quel journey e' che **i tre tornano** dopo un reload vero. Tornare
+invisibili non e' tornare, e nessuno lo diceva.
+
+### La difesa di rimbalzo, confermata
+
+Sotto Q vanno rossi **`first-led-ipad-touch`, `montaggio-canvas`,
+`sim-passo-passo`** — gli **stessi tre** della mutazione O del giro 25, che
+nascondeva un elemento diverso (la scheda del founder plugin).
+
+Due mutazioni indipendenti, su due elementi diversi, e lo stesso identico
+insieme di rossi. La visibilita' della catena d'ingresso al simulatore e'
+protetta da **tre journey che la cliccano**, non da chi la asserisce. Il giorno
+in cui quei tre cambiano percorso, la protezione sparisce **in silenzio** — e
+adesso e' scritto con due misure invece che con un sospetto.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

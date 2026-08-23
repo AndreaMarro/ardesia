@@ -82,6 +82,14 @@ test("board multi-esperimento ripristinata (reload) NON emette warning setState-
   })
   // I 3 canvas core ELABTutor devono essere montati davvero (svg presente).
   await expect(page.locator("[data-elab-core-canvas-host] svg")).toHaveCount(board.length, { timeout: 20_000 })
+  // I conteggi qui sopra leggono il DOM e IGNORANO la resa: da soli restano
+  // verdi con i tre embed nascosti da un `display: none` (misurato 2026-08-24,
+  // spec com'era exit 0). Il punto di questo journey e' che i tre TORNANO —
+  // tornare invisibili non e' tornare.
+  const ripristinati = page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')
+  for (const embed of await ripristinati.all()) {
+    await expect(embed).toBeVisible()
+  }
   // Margine per warning emessi in commit post-mount.
   await page.waitForTimeout(1_500)
 
