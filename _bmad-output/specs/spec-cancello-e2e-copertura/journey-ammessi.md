@@ -859,3 +859,69 @@ riparato qui.)
 
 E' la regola che il giro precedente ha pagato: **una misura sulla CI porta la
 versione del runtime e le variabili d'ambiente, non solo lo `sha`.**
+
+---
+
+## Giro 19 — `p30-free-manipulation`: **RESPINTA**, per due ragioni insieme
+
+La candidata dichiara nella sua intestazione la classe che difende: la
+**raggiungibilita' del puntatore**, verificata da `assertPointerReachable`, che
+chiede a `document.elementFromPoint` sul centro del controllo di restituire il
+controllo stesso — «dev'essere visibile, abilitato e non coperto da un
+overlay/canvas». E' una delle cinque classi gia' ammesse, quindi la domanda non
+e' se la classe conti, ma se **questa** spec veda qualcosa che nessun check
+required vede.
+
+Due mutazioni, due esiti opposti, e nessuno dei due la ammette.
+
+### Mutazione A — il canvas torna sopra i pannelli
+
+In `apps/studio/src/index.css`, prima del blocco `@media (max-width: 768px)`:
+
+```css
+.excalidraw { position: relative; z-index: 9999; }
+```
+
+E' la forma del difetto storico che il commento accanto a `.st-bar` ricorda: la
+tela che si riprende lo stacking context e copre la barra.
+
+| referente | exit | legge |
+|---|---|---|
+| `p30-free-manipulation` (la candidata) | **0** | non lo vede |
+| `npx vitest run` (il required) | **0** | non lo vede |
+| i **dodici** journey del cancello, uno per passo | **1** | lo vede |
+
+Il journey che l'ha preso e' **`first-led-ipad-touch`**, e gli altri undici sono
+rimasti verdi. La mutazione quindi **arriva** — non e' un no-op, ed e' la regola
+che il giro 14 ha pagato — ma la classe che p30 dichiara e' gia' difesa da un
+journey ammesso, e p30 e' cieca proprio li'.
+
+### Mutazione B — il digest topologico smette di distinguere
+
+In `apps/studio/sim/core/simulationSceneDigest.ts`, `simulationSceneDigest`
+restituisce una costante invece dell'hash FNV della topologia canonica.
+
+| referente | exit | legge |
+|---|---|---|
+| `p30-free-manipulation` | **1** | lo vede |
+| `npx vitest run` | **1** | lo vede |
+
+Qui p30 vede — ma il check required vede lo stesso, e prima. Il digest e'
+coperto da quattro file unitari (`ContinuityProjection`, `ContinuityRuntimePath`,
+`ToolHostSimulationBroker`, e la prova di tipo `…ImpossibleStates`).
+
+### L'esito
+
+**RESPINTA per impotenza sulla classe che dichiara** (mutazione A) **e per
+ridondanza con un required su cio' che invece vede** (mutazione B). E' la prima
+candidata che colleziona entrambe le ragioni: dove e' sola non guarda, e dove
+guarda non e' sola.
+
+### Il reperto da tenere
+
+`assertPointerReachable` non e' scattata con la tela a `z-index: 9999` sopra
+tutto. O il controllo che interroga non sta sotto la tela, o l'asserzione corre
+prima che la copertura conti. Non e' una dichiarazione di difetto: e' la domanda
+che chi legge il file deve poter fare, e oggi non e' scritta da nessuna parte.
+
+Ripristino misurato: albero pulito, candidata exit **0**.
