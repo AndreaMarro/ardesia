@@ -674,6 +674,62 @@ vista.
 ⚠️ Il test **non ripara** e non giudica: il gate-Andrea resta aperto, ed e' la
 domanda d'ambito «e' voluto che meta' della Founder Beta non risolva?».
 
+## Giro 21 — quanto costa il catalogo: la tabella che serve per decidere
+
+Il gate-Andrea sul catalogo elettrico era posto bene («e' voluto che meta' della
+Founder Beta non risolva?») e privo del numero che lo decide: **quanto costa
+cambiarlo, e da dove si comincia**.
+
+Esteso il censimento del giro 20 dalle **8 scene visibili** a **tutte le 88** del
+corpus:
+
+```text
+esperimenti nel corpus: 88
+tipi nel catalogo elettrico: 7
+tipi fuori catalogo usati dal corpus: 12
+risolvibili col catalogo attuale: 21
+```
+
+**Ventuno su 88.** E i tipi che bloccano, per scene che li usano:
+
+```text
+nano-r4 23 · push-button 19 · multimeter 16 · photo-resistor 6
+reed-switch 5 · mosfet-n 5 · motor-dc 5 · capacitor 4
+phototransistor 3 · buzzer-piezo 2 · breadboard-full 2 · diode 1
+```
+
+### L'ordine greedy: da dove si comincia
+
+| + tipo | risolvibili | guadagno |
+|---|---|---|
+| *(catalogo attuale, 7 tipi)* | **21** / 88 | — |
+| `nano-r4` | **39** | **+18** |
+| `push-button` | **50** | +11 |
+| `multimeter` | **61** | +11 |
+| `photo-resistor` | 67 | +6 |
+| `reed-switch` | 71 | +4 |
+| `capacitor` | 75 | +4 |
+| `motor-dc` | 79 | +4 |
+| `mosfet-n` | 82 | +3 |
+| `buzzer-piezo` | 84 | +2 |
+| `phototransistor` | 86 | +2 |
+| `breadboard-full` | 87 | +1 |
+| `diode` | 88 | +1 |
+
+**Tre tipi — `nano-r4`, `push-button`, `multimeter` — portano il corpus da 21 a
+61 su 88.** Da meno di un quarto a oltre due terzi. Ed e' la stessa scheda
+Arduino che sblocca da sola le due scene visibili di Volume 3.
+
+Lo strumento e' `ops/tools/catalogo-copertura.mjs` (FABBRICA, mai spedito), e
+**legge il catalogo vero** invece di ricopiarlo: catalogato `nano-r4` per prova,
+i suoi numeri passano da `21` a `39` risolvibili e da `12` a `11` tipi fuori
+catalogo. Ripristinato, tornano.
+
+⚠️ Il comando misura la **copertura**, non la **difficolta'**. Un catalogo non e'
+un elenco di nomi: e' un modello, e le dodici fisiche non si equivalgono. La
+decisione resta di Andrea — ma adesso ha davanti una tabella invece di
+un'impressione.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
