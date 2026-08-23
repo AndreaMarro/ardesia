@@ -54,11 +54,13 @@ _RADICE = "docent"
 
 SUGGERIMENTO = "chi impara o insegna"
 
-# D5 (prima versione): `docenti_attivi`, `DOCENTE_ROLE` e `listaDocenti`
-# passavano, cioe' proprio gli identificatori che il commit diceva di voler
-# prendere. `_` e' `\w`, quindi `\b` non vedeva confine; e il camelCase non ne
-# ha nessuno. La riparazione non e' una regex piu' barocca: si NORMALIZZA la
-# riga prima di guardarla, e poi il confine e' semplice.
+# D5 (prima versione): la radice seguita da `_attivi`, la stessa in
+# SCREAMING_SNAKE, e la stessa in coda a un camelCase passavano tutte — cioe'
+# proprio gli identificatori che quel commit diceva di voler prendere. `_` e'
+# `\w`, quindi `\b` non vedeva confine; e il camelCase non ne ha nessuno. La
+# riparazione non e' una regex piu' barocca: si NORMALIZZA la riga prima di
+# guardarla, e poi il confine torna semplice. Le grafie non si scrivono qui:
+# stanno nelle prove, composte, ed e' il self-test a fissarle.
 _CAMEL = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
 VIETATO = re.compile(rf"(?<![A-Za-z0-9]){_RADICE}[ei](?![A-Za-z0-9])", re.IGNORECASE)
 
@@ -72,7 +74,7 @@ DEROGA = re.compile(r"(?:#|//|/\*|\*|<!--|;|--)\s*lessico-ok:\s*(?P<ragione>\S[^
 def normalizza(testo: str) -> str:
     """Spezza gli identificatori dove un umano legge una parola.
 
-    `listaDocenti` -> `lista Docenti` · `x_docenti` -> `x docenti`
+    `listaRadice` -> `lista Radice` · `x_radice` -> `x radice`
     `<parola>ria` resta intero, quindi non matcha: e' un'altra parola.
     """
     return _CAMEL.sub(" ", testo).replace("_", " ")
