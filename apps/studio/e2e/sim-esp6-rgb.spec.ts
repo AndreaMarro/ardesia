@@ -86,12 +86,21 @@ test("ELAB Lab esp6: 3 potenziometri, LED RGB montato, solve reale del motore", 
   await expect(page.locator("[data-elab-lab-citation]")).toBeVisible()
 
   // Evidenza visiva desktop / tablet / mobile.
+  //
+  // `toBeVisible()` e NON `toHaveCount(1)`, ed e' la differenza fra difendere
+  // e sembrare di difendere. Misurato il 2026-08-23: una regola
+  // `@media (max-width: 480px) { [data-elab-canvas] { display: none } }` —
+  // la regressione plausibile «nascondi il canvas su mobile per far stare la
+  // UI» — lascia il nodo NEL DOM, quindi `toHaveCount(1)` resta verde su tutti
+  // e tre i viewport mentre il docente su telefono non vede piu' niente.
+  // Con `toBeVisible()` la stessa mutazione esce 1.
+  await expect(page.locator("[data-type='rgb-led']")).toBeVisible()
   await page.screenshot({ path: "test-results/esp6-elab-lab-desktop.png", fullPage: false })
   await page.setViewportSize({ width: 768, height: 1024 })
-  await expect(page.locator("[data-type='rgb-led']")).toHaveCount(1)
+  await expect(page.locator("[data-type='rgb-led']")).toBeVisible()
   await page.screenshot({ path: "test-results/esp6-elab-lab-tablet.png", fullPage: false })
   await page.setViewportSize({ width: 390, height: 844 })
-  await expect(page.locator("[data-type='rgb-led']")).toHaveCount(1)
+  await expect(page.locator("[data-type='rgb-led']")).toBeVisible()
   await page.screenshot({ path: "test-results/esp6-elab-lab-mobile.png", fullPage: false })
 
   expect(consoleErrors).toEqual([])

@@ -16,6 +16,7 @@ workflow e questa tabella devono raccontare la stessa storia.
 | `first-led-ipad-touch` | **ammessa** (giro 11) | la fascia tablet 769-1024px riportata scoperta la fa rossa (il pulsante "sim" torna oltre il bordo a 810px) mentre la suite unitaria resta **verde**: jsdom non ha layout ne' media query risolte |
 | `montaggio-canvas` | **RESPINTA** (giro 10, per IMPOTENZA), poi **ammessa** (giro 12) | tolto `pointerEvents="none"` da `BoardWires` la fa rossa con «subtree intercepts pointer events», mentre la suite unitaria e i dieci gia' dentro restano verdi. Ci sono voluti tre giri per capire DOVE guardare |
 | `elab-lab-canvas-colors` | **ammessa** (giro 13) | tolto `import '../styles/design-tokens.css'` dall'entry del plugin — il difetto storico rimesso — le **otto scene su otto** escono rosse, mentre la suite unitaria e i dieci gia' dentro restano verdi |
+| `sim-esp6-rgb` | **RESPINTA** e **ammessa nello stesso giro** (giro 15) | la mutazione ovvia (l'id luminoso torna `led1`) la fa rossa **ma anche la suite unitaria**: ridondante. L'ha fatta entrare una seconda mutazione — il canvas nascosto sotto i 480px — piu' il passaggio da `toHaveCount(1)` a `toBeVisible()` |
 | `toolhost-srcdoc-bypass` | **RESPINTA**, poi in **advisory** (giro 3) | verde, ma asserisce che il bypass di sandbox **esiste ancora**: diventerebbe rossa quando ADR-0001 chiude il buco. Un cancello che difende la vulnerabilità |
 | `plugin-postit-room-reload` | **RESPINTA** (giro 8), poi **AMMESSA** (giro 9) | verde, e discriminante: l'identita' di istanza tolta dagli id del DOM la fa rossa mentre i sette gia' dentro e i tre advisory restano verdi. Ma la STESSA mutazione fa rossa anche la suite unitaria (`+4 file, +10 test` sopra il rosso preesistente), e `studio (typecheck + test + build)` e' gia' un check **REQUIRED**. Vedi §«Una spec respinta perche' un cancello che c'e' gia' la copre» |
 
@@ -370,6 +371,49 @@ E' la distinzione: **copiare il DOMINIO su cui si itera e' pericoloso** perche'
 la divergenza *restringe la copertura in silenzio*; **copiare l'ATTESO e' il
 mestiere del test**, perche' la divergenza lo fa fallire a voce alta. Solo la
 prima famiglia va importata.
+
+## Giro 15 — respinta e ammessa nello stesso giro, e la differenza e' una parola
+
+`sim-esp6-rgb` al primo giudizio era **RESPINTA per ridondanza**. La sua
+mutazione ovvia e' il difetto F5-1 rimesso: l'id del componente luminoso che
+torna la costante `led1` invece di leggersi dall'esperimento — per la lampada
+RGB (`rgb1`) `componentStates.led1?.on` vale `false` perche' l'id **non esiste**,
+e `?.` collassa «assente» e «negativo».
+
+| mutazione | candidata | suite unitaria (required) |
+|---|---|---|
+| **A** l'id luminoso torna `led1` | **rossa (1)** | **rossa (1)** — la vede |
+
+Cio' che l'ha fatta entrare e' una **seconda** mutazione, browser-only:
+
+```css
+@media (max-width: 480px) { [data-elab-canvas] { display: none } }
+```
+
+la regressione plausibile «nascondi il canvas su mobile per far stare la UI».
+
+| mutazione **B** | candidata **com'era** | candidata **rafforzata** | suite unitaria | gli undici dentro |
+|---|---|---|---|---|
+| canvas nascosto sotto i 480px | **verde (0)** | **rossa (1)** | **verde (0)** | **verde (0)** |
+
+### La differenza e' una parola: `toHaveCount` non e' `toBeVisible`
+
+La spec faceva, sui tre viewport:
+
+```ts
+await expect(page.locator("[data-type='rgb-led']")).toHaveCount(1)
+```
+
+`toHaveCount` conta i nodi nel **DOM**. Un `display: none` lascia il nodo dov'e':
+la spec restava **verde su tutti e tre i viewport** mentre il docente su telefono
+non vedeva piu' niente — e il commento sopra diceva «Evidenza visiva desktop /
+tablet / mobile». **Dichiarava di guardare la vista e guardava l'albero.**
+
+Con `toBeVisible()` la stessa mutazione esce **1**. Una parola separa difendere
+da sembrare di difendere.
+
+E' la quinta classe che solo un e2e vede: **visibilita' sotto un viewport**.
+jsdom non ha layout ne' media query risolte.
 
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 

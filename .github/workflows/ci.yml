@@ -481,6 +481,34 @@ jobs:
       - name: ELAB Lab - il disegno porta i suoi colori, non blocchi neri
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/elab-lab-canvas-colors.spec.ts --forbid-only --reporter=line
+      # Entrata il 2026-08-23, e la storia e' istruttiva: al primo giudizio era
+      # RESPINTA. La sua mutazione ovvia — l'id del componente luminoso che
+      # torna la costante `led1` invece di leggersi dall'esperimento, cioe' il
+      # difetto F5-1 rimesso — la fa rossa, ma fa rossa ANCHE la suite unitaria:
+      # ridondante con un required.
+      #
+      # Cio' che l'ha fatta entrare e' una seconda mutazione e un rafforzamento:
+      #   @media (max-width: 480px) { [data-elab-canvas] { display: none } }
+      # la regressione plausibile «nascondi il canvas su mobile per far stare
+      # la UI». Con `toHaveCount(1)` la spec restava VERDE su tutti e tre i
+      # viewport — il nodo e' nel DOM, semplicemente invisibile. Con
+      # `toBeVisible()`:
+      #   la candidata rafforzata  exit 1
+      #   la candidata com'era     exit 0  <- cieca
+      #   la suite unitaria        exit 0  <- CIECA
+      #   gli undici qui sopra     exit 0  <- CIECHI
+      # jsdom non ha layout ne' media query risolte: la visibilita' sotto un
+      # viewport e' per costruzione lavoro da e2e.
+      #
+      # COSTI dichiarati prima:
+      #  1. Cambia viewport tre volte in un test solo: e' il journey che
+      #     dipende di piu' dal layout, e un ridisegno legittimo lo fa rosso.
+      #  2. Asserisce una regex sui canali (`R \d+\.\d mA · G … · B …`): la
+      #     forma del testo e' contratto, non solo il valore.
+      #  3. Pretende `consoleErrors` vuoto.
+      - name: lampada RGB - tre potenziometri, canali dal motore, e si VEDE anche su telefono
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/sim-esp6-rgb.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
