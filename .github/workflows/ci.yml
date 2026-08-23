@@ -435,6 +435,12 @@ jobs:
       #     del pulsante raggiungibile, che E' coperto dal test vivo; il
       #     piazzamento a tocco NO. Sta scritto perche' un passo verde non
       #     dichiari una copertura che non ha.
+      #     RIMISURATO il 2026-08-25: acceso, quel test cade con
+      #     `locator.tap: Test timeout` sulla palette — a tocco non si arriva
+      #     nemmeno a selezionare un componente. E la palette esiste SOLO dentro
+      #     il pannello legacy: il canvas core non ha affordance di piazzamento.
+      #     Su iPad lo studente non puo' piazzare nulla. GATE-ANDREA, non un test
+      #     da riaccendere.
       - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile (1 dei 2 test del file e' un test.fixme)
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line --output=test-results/first-led-ipad-touch

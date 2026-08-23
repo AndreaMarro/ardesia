@@ -1679,3 +1679,56 @@ con la misura.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 31 — il test spento non era pigrizia: su iPad lo studente non puo' piazzare nulla
+
+Il giro 30 aveva trovato un `test.fixme` dentro un journey ammesso e l'aveva
+dichiarato. Questo lo **accende e lo misura**, come l'ordine chiedeva: leggere
+prima perche' fu spento.
+
+### Perche' fu spento, e se vale ancora
+
+Il commento accanto lo dice fin da P29: con gesti di puro tocco l'embed di
+montaggio **legacy** non si attiva — la tela interattiva di Excalidraw intercetta
+i pointer, e il doppio-tap non fa quello che fa il doppio-click del mouse.
+
+Acceso il fixme e lasciato correre:
+
+```
+locator.tap: Test timeout of 60000ms exceeded
+  > 81 |   await paletteResistenza.tap()
+```
+
+Il divario **c'e' ancora**, e cade **prima** di qualunque posa: a tocco non si
+arriva nemmeno a **selezionare** un componente dalla palette.
+
+### Il fatto che rende il divario piu' grave di come suona
+
+La palette e i fori (`SimulationBoard`) stanno **solo** dentro il `<details>`
+«Montaggio libero legacy». Il canvas **core** — la superficie primaria, quella
+che il commento di P29 proponeva come via alternativa — **non ha affordance di
+piazzamento**.
+
+Quindi oggi non esiste una seconda strada: **su iPad lo studente non puo'
+piazzare nulla**, ne' nel pannello legacy ne' altrove. Il journey ammesso copre
+il gesto del **docente** (inserire il plugin), che funziona; il gesto dello
+**studente** non e' coperto perche' non esiste.
+
+### Cosa ho fatto e cosa no
+
+**Non ho riacceso il test**: sarebbe rosso per un difetto vero, e trasformare un
+gap documentato in un cancello rosso non e' una decisione da test.
+
+**Ho scritto la misura dove serve**: nel commento del `fixme` (con la riga e
+l'errore esatti) e nel quarto costo del passo 9 in `ci.yml`. Chi legge non deve
+rifare la misura per sapere se il divario e' ancora li'.
+
+**GATE-ANDREA**: o si rendono attivabili a tocco gli embed Excalidraw, o il
+flusso dello studente si porta sul canvas core. E' una scelta di prodotto.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

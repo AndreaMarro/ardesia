@@ -62,6 +62,19 @@ test("iPad+touch: teacher opens the menu and inserts the Simulation Plugin", asy
 // the CORE canvas is the primary surface. Deferred to P1: determine whether
 // Excalidraw embeds are touch-activatable (tap/long-press) and wire it, then
 // promote this fixme back to a real test. See docs/ops/P29-NEXT-PLAN.md.
+//
+// RIMISURATO il 2026-08-25 (acceso il fixme e lasciato correre): il divario c'e'
+// ancora, e cade PRIMA di qualunque posa —
+//   `locator.tap: Test timeout of 60000ms exceeded` alla riga `paletteResistenza.tap()`
+// cioe' a tocco non si arriva nemmeno a SELEZIONARE dalla palette.
+//
+// E il fatto strutturale che rende il divario piu' grave di come suona: la
+// palette e i fori (`SimulationBoard`) stanno SOLO dentro il `<details>`
+// «Montaggio libero legacy». Il canvas CORE, che e' la superficie primaria, non
+// ha affordance di piazzamento. Quindi oggi non esiste una via alternativa: su
+// iPad lo studente non puo' piazzare nulla, ne' nel pannello legacy ne' altrove.
+// GATE-ANDREA: o si rendono attivabili a tocco gli embed Excalidraw, o il flusso
+// dello studente si porta sul canvas core. Non e' una scelta da test.
 test.fixme("iPad+touch: student places a resistor via touch (montaggio tap-tap)", async ({ page }) => {
   const errors = collectErrors(page)
   await insertSimViaTouch(page)
