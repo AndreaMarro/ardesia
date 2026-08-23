@@ -505,6 +505,74 @@ Il rimedio su `[data-montaggio-canvas-count]` li' e' dentro il `test.fixme`
 dichiarato: non gira, quindi non puo' vedere niente. Registrato per non
 cercarlo di nuovo.
 
+## Giro 18 — quali verdetti nessuno guarda, e QUATTRO SCENE SU OTTO senza verdetto
+
+La domanda del giro 17 («sei su dodici e' un miglioramento, non una
+copertura») risposta mutando **un verdetto alla volta**:
+
+| verdetto reso invisibile | journey che diventano rossi |
+|---|---|
+| `data-marked-count` | **3** — marcatura-durabile, ripasso-live, studentpack |
+| `data-led-on` | **2** — sim-esp2, sim-esp6 |
+| `data-led-burned` | **2** — sim-esp2, sim-esp6 |
+| `data-montaggio-canvas-count` | **1** — montaggio-canvas |
+| `data-montaggio-canvas-notice` | **1** — montaggio-canvas |
+| `data-imported-pack` | **1** — studentpack-artifact |
+| `data-rgb-channels` | **1** — sim-esp6 |
+
+**Nessuno dei sette e' cieco**: ogni verdetto che una spec asserisce ha almeno un
+journey che lo guarda davvero. La risposta alla domanda del giro 17 e'
+**positiva**, ed e' misurata riga per riga.
+
+### ⚠️ Ma la domanda giusta era un'altra, e la risposta e' peggiore
+
+I sette sono quelli che **qualcuno gia' asserisce**. Censiti invece i `data-*`
+che il prodotto **emette**: **127**, di cui **88 mai nominati da nessuna spec
+e2e**. Fra quelli, `data-led-state` — l'attributo che porta il cartello
+**«Verdetto non disponibile»**, nato proprio per non far leggere un'assenza come
+un verdetto — e `data-light-id`, le righe per-luce degli esperimenti con piu' di
+una luce.
+
+Seguendo quella pista, misurato su **tutte e otto** le scene visibili:
+
+```text
+v1-cap6-esp1  solve=ok     led-count=1 on=1 burned=0
+v1-cap6-esp2  solve=ok     led-count=1 on=0 burned=1
+v1-cap6-esp3  solve=ok     led-count=1 on=1 burned=0
+v1-cap9-esp6  solve=ok     led-count=1 on=1 burned=0
+v2-cap7-esp1  solve=error  led-count=-  on=-  burned=-
+v2-cap7-esp2  solve=error  led-count=-  on=-  burned=-
+v3-cap6-esp4  solve=error  led-count=-  on=-  burned=-
+v3-cap6-esp5  solve=error  led-count=-  on=-  burned=-
+```
+
+**Quattro scene su otto che un docente puo' aprire escono `solve=error` e non
+gli mostrano NESSUN verdetto elettrico** — ne' acceso, ne' bruciato, ne' il
+cartello «verdetto non disponibile». Diagnostica e citazione ci sono; il
+verdetto no.
+
+E **nessuno dei dodici journey se ne accorgeva**: `elab-lab-canvas-colors` itera
+su tutte e otto ma guardava solo i token, e le altre spec usano **esp2 ed esp6**
+— due delle quattro che stanno bene.
+
+### Il segnalibro, e perche' non e' una promessa
+
+⚠️ **Non e' dichiarato che sia un difetto.** Un solver MNA in continua puo'
+legittimamente non risolvere un transitorio (carica/scarica del condensatore,
+`v2-cap7-esp1/2`); per «due LED che si alternano» e il semaforo la ragione **non
+e' stata cercata**. E' un **gate-Andrea**.
+
+Aggiunta a `elab-lab-canvas-colors` la mappa `SOLVE_ATTESO`, che fissa lo stato
+**com'e' oggi** scena per scena. Non promette che sia giusto: impedisce che
+cambi in silenzio **in entrambi i versi**. Il giorno in cui una delle quattro si
+risolvera' — o in cui una delle quattro sane smettera' — la spec diventera'
+rossa e qualcuno dovra' aggiornare la riga scrivendo perche'. E' la stessa forma
+che F5-1 aveva usato per non dimenticare la lampada RGB spenta.
+
+Mutazione: `data-elab-lab-solve` che dichiara `error` anche quando risolve →
+la spec esce **1**. (La vedono anche la suite unitaria e altri journey: questa
+riga non cerca un'ammissione, e' un segnalibro dentro una spec gia' ammessa.)
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono

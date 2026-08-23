@@ -39,6 +39,37 @@ import { VISIBLE_EXP_IDS } from "../../../plugins/elab-tutor/src/data/experiment
 
 const SCENE_VISIBILI = VISIBLE_EXP_IDS
 
+// LO STATO DEL SOLVE, FISSATO COM'E' OGGI — e non e' una promessa, e' un
+// segnalibro. Misurato il 2026-08-23 su tutte e otto le scene visibili:
+// QUATTRO su otto escono `solve=error` e non mostrano al docente NESSUN
+// verdetto elettrico (`data-led-count`, `data-led-on`, `data-led-burned` non
+// sono emessi affatto), mentre diagnostica e citazione ci sono.
+//
+// Nessuno dei dodici journey del cancello se ne accorgeva: questa spec itera su
+// tutte e otto ma guardava solo la risoluzione dei token, e le altre usano solo
+// esp2 ed esp6 — due delle quattro che stanno bene.
+//
+// ⚠️ NON e' dichiarato che sia un DIFETTO. Un solver MNA in continua puo'
+// legittimamente non risolvere un transitorio (carica/scarica di un
+// condensatore, v2-cap7-esp1/2); per «due LED che si alternano» e il semaforo
+// (v3-cap6-esp4/5) la ragione non e' stata cercata. E' un GATE-ANDREA.
+//
+// Cio' che questa mappa fa e' impedire che la situazione cambi in silenzio, in
+// entrambi i versi: il giorno in cui una di quelle quattro si risolvera', o in
+// cui una delle quattro sane smettera' di farlo, questa spec diventera' rossa e
+// qualcuno dovra' aggiornare la riga scrivendo perche'. E' la stessa forma che
+// F5-1 aveva usato per non dimenticare la lampada RGB spenta.
+const SOLVE_ATTESO: Record<string, "ok" | "error"> = {
+  "v1-cap6-esp1": "ok",
+  "v1-cap6-esp2": "ok",
+  "v1-cap6-esp3": "ok",
+  "v1-cap9-esp6": "ok",
+  "v2-cap7-esp1": "error",
+  "v2-cap7-esp2": "error",
+  "v3-cap6-esp4": "error",
+  "v3-cap6-esp5": "error",
+}
+
 for (const esperimento of SCENE_VISIBILI) {
   test(`ELAB Lab ${esperimento}: ogni token del disegno si risolve al valore che il suo nome dichiara`, async ({
     page,
@@ -52,6 +83,15 @@ for (const esperimento of SCENE_VISIBILI) {
     // usciva 0 su tutte e otto le scene. Un token si risolve benissimo anche
     // dentro un sottoalbero che nessuno vede.
     await expect(page.locator("[data-elab-canvas] svg")).toBeVisible()
+
+    // Il verdetto del motore, fissato scena per scena (vedi SOLVE_ATTESO).
+    const atteso = SOLVE_ATTESO[esperimento]
+    if (atteso !== undefined) {
+      await expect(page.locator("[data-elab-lab-solve]")).toHaveAttribute(
+        "data-elab-lab-solve",
+        atteso,
+      )
+    }
 
     // L'ORACOLO. La prima versione faceva due cose deboli: cercava i token non
     // definiti, e poi contava gli elementi neri ESCLUDENDO a mano quattro nomi
