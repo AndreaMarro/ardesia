@@ -70,6 +70,10 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
 
   await paletteResistenza.click()
   await expect(paletteResistenza).toHaveAttribute("aria-pressed", "true")
+  // Stessa forma, stessa misura (2026-08-25): con `aria-pressed="true"` su ogni
+  // voce di palette questo journey restava verde. Selezionare significa che UNA
+  // sola voce e' premuta.
+  await expect(legacyStage.locator('[aria-pressed="true"]')).toHaveCount(1)
 
   // Il primo foro NON e' scelto a caso: `bb1:bus-bot-plus-3` e' uno dei TRE che
   // stanno sotto il TRATTO dei fili nello stage legacy (misurati con

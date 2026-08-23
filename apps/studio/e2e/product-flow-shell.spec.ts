@@ -18,6 +18,10 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   expect(roomHash).toMatch(/^#wbstudio-/)
   const nav = page.locator("[data-view-nav]").first()
   await expect(nav).toBeVisible()
+  // Asserire il valore POSITIVO non basta: misurato il 2026-08-25, con
+  // `aria-current="page"` su OGNI voce questo journey restava verde (exit 0) e
+  // solo la suite unitaria se ne accorgeva. «Corrente» ha senso se e' UNA.
+  await expect(nav.locator('[aria-current="page"]')).toHaveCount(1)
   await expect(nav.locator('[data-view-nav-item="lezione"]')).toHaveAttribute(
     "aria-current",
     "page",

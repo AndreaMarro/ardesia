@@ -1962,3 +1962,57 @@ Riparare cio' che so vedere rosso; dichiarare cio' che non so vedere rosso.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 36 — la caccia si chiude: quattro esemplari della stessa forma su quattordici attributi
+
+Gli ultimi due attributi. Entrambi ciechi, entrambi riparati. E il conto finale
+della caccia.
+
+### `aria-current` e `aria-pressed`
+
+| mutazione | journey | `vitest` |
+|---|---|---|
+| **AF**: ogni voce di nav si dichiara la pagina corrente | `product-flow-shell` exit **0** | exit **1** |
+| **AG**: ogni voce di palette si dichiara premuta | `montaggio-canvas` exit **0** | exit **1** |
+
+`tsc` verificato **prima** di ogni misura (exit **0**): la regola che il giro
+scorso e' costata due mutazioni buttate.
+
+### Le due riparazioni
+
+Stessa forma, stessa cura: **il valore positivo non basta, conta che sia UNO.**
+
+- `product-flow-shell`: `[aria-current="page"]` dentro la nav → `toHaveCount(1)`.
+  «Corrente» ha senso se e' una.
+- `montaggio-canvas`: `[aria-pressed="true"]` nella stage legacy →
+  `toHaveCount(1)`. Selezionare significa che una sola voce e' premuta.
+
+Rosse sotto le rispettive mutazioni (exit **1** e **1**), verdi sull'albero
+pulito: i **sedici** journey exit **0**.
+
+### Il conto della caccia, chiusa
+
+Quattordici attributi asseriti con un valore dai sedici journey. Tutti tracciati
+alla sorgente e **misurati**, in cinque giri.
+
+| esito | quanti | quali |
+|---|---|---|
+| **onesti** | 6 | `data-plugin-trust-tier` · `data-led-burned` · `data-led-on` · `data-elab-lab-solve` · `data-step-passed` · `data-montaggio-canvas-count` |
+| **legati dopo la misura** | 2 | `data-elab-catalog-summary` (al corpus) · `data-zripasso-aperti` (al contenuto) |
+| **valore positivo asserito, riparati** | 3 | `data-pending` · `aria-current` · `aria-pressed` |
+| **valore positivo asserito, dichiarato non riparabile** | 1 | `data-pass` (nel flusso verde non esiste un handshake che fallisce) |
+| **non asseriti con un valore** | 2 | `data-founder-plugin-id`, gia' coperto dal giro 25 |
+
+**Nessun sosia.** La forma che si e' ripetuta non era «l'attributo espone un'altra
+cosa», ma «l'asserzione non puo' fallire»: **quattro esemplari su quattordici**.
+
+E in tutti e quattro i casi il required vedeva. Il cancello e2e non stava
+coprendo meno del previsto: stava **dichiarando** di coprire cio' che copriva la
+suite unitaria.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
