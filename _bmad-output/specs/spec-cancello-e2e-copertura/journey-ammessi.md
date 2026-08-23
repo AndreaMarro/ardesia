@@ -1800,3 +1800,60 @@ scoperto: `v1-cap9-esp6` l'ho verificato **a mano** con una sonda, una volta.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 33 — un catalogo che dice sempre no
+
+La terza lista trovata il giro scorso, `sim/elab/sceneCatalog.ts`: serve o e'
+morta? Misurato, e la risposta e' piu' interessante di «morta».
+
+### La misura di morte apparente
+
+Mutazione Y: `getElabSceneStatus` reso esplosivo.
+
+| referente | exit | legge |
+|---|---|---|
+| `npx vitest run` | **1** | **solo** i due test di `ElabSceneCatalog.test.ts` |
+| i **sedici** journey | **0** | ciechi: a runtime non lo chiama nessuno |
+
+Dead code, dunque. Ma il nome del file dice «scene catalog», e i tipi dichiarano
+un ramo `ready`.
+
+### Il fatto che rende il file peggio che morto
+
+`getElabSceneStatus` **risponde `blocked` a qualunque id**: il ramo `ready` non
+viene mai costruito. Quindi risponde «bloccato» anche per **`v1-cap6-esp1`**, che
+il prodotto monta e risolve davvero (misurato in browser il giro scorso:
+`stato=mounted solve=ok`).
+
+Un file che si chiama «catalogo delle scene» e che, se qualcuno lo cablasse come
+cancello del mount, **bloccherebbe tutto**. E il giro scorso ci sono quasi
+cascato io: l'avevo elencato come una delle tre liste candidate a essere «quella
+che decide».
+
+### Cosa ho fatto, e cosa NON ho deciso
+
+**Non l'ho cancellato.** Il piano del 2026-07-07 (Task 4) lo vuole li' per il
+blocker onesto di `v3-cap6-esp4`, e togliere un artefatto di contratto non e' una
+decisione da giro di loop.
+
+**Gli ho fatto dire cosa e'.** Intestazione con lo stato misurato: nessuno lo
+chiama, il mount passa dal Pack, il banner nasce da un'altra lista, e chi volesse
+cablarlo deve PRIMA aggiungere le voci `ready` o blocca tutto.
+
+**Ho scritto il confine come test**, perche' non si perda:
+
+| gate | exit |
+|---|---|
+| l'asserzione del confine sotto la MUTAZIONE Z (il modulo comincia a dire `ready` per esp1) | **1** |
+| la stessa, albero pulito | **0** |
+
+L'asserzione dice: questo modulo risponde `blocked` **anche** per un esperimento
+che il prodotto monta. Non e' un difetto da riparare — e' il confine da non
+dimenticare.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
