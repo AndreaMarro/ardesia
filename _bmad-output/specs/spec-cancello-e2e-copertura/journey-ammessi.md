@@ -2071,3 +2071,58 @@ falso a chi legge il job.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 39 — il quinto difetto della stessa famiglia, e il piu' largo
+
+`buildStudentPackArtifact` e' puro e coperto dagli unitari **con gli argomenti che
+gli passa il test**. Quali argomenti passi il cruscotto non lo verificava nessuno.
+
+### La mutazione
+
+`onExport` costruisce il pack da `{ ...candidate, candidateId: "pack-sbagliato" }`
+— cioe' il pack del docente esce sotto **un candidato che non e' quello scelto**.
+
+| referente | exit | legge |
+|---|---|---|
+| `studentpack-artifact` (il journey che scarica il pack) | **0** | **cieco** |
+| `npx vitest run` | **0** | cieca |
+| `npx tsc -b --noEmit` | **0** | cieco |
+| i **sedici** journey del cancello | **0** | ciechi |
+
+**Nessuno.** E' il piu' largo dei cinque difetti di questa famiglia: gli altri
+quattro erano visti almeno dal typecheck o da un unitario.
+
+Il journey apriva davvero il file scaricato e ne asseriva `format`,
+`packs.length` e `evidence.length > 0` — tutte cose vere anche per il pack
+sbagliato. Il campo `candidateId` era perfino **dichiarato nel tipo** del test e
+mai asserito.
+
+### La riparazione
+
+Il journey ora legge l'id dal bottone che sta per premere
+(`[data-z7-export]`) e pretende che il pack scaricato sia il suo.
+
+| gate | exit |
+|---|---|
+| rafforzata, sotto la MUTAZIONE AI | **1** — `Expected "sp-v1-cap6-esp1:mistake-1"` · `Received "pack-sbagliato"` |
+| rafforzata, albero pulito | **0** |
+| controllo: ancora rossa sotto AI dopo la correzione | **1** |
+
+### La gamba che ho scritto e tolto
+
+Avevo aggiunto anche «il nome del file contiene l'id». **Rossa sul prodotto
+intatto**: `studentPackFileName` sanifica i due punti —
+`sp-v1-cap6-esp1:mistake-1` diventa `…sp-v1-cap6-esp1_mistake-1…`. Replicare la
+sanificazione nel test duplicherebbe la logica del prodotto, quindi l'ho tolta e
+ho lasciato la misura nel commento. Il legame vero e' `candidateId` dentro
+l'artefatto.
+
+E' la terza volta in questa sessione che il **prodotto intatto rosso** mi dice che
+il sospettato sono io.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

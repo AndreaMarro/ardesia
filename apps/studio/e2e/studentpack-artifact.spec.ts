@@ -40,6 +40,15 @@ test("Z7: genera → esporta scarica il pack → import lo riapre (round-trip)",
   await page.locator("[data-z7-generate]").first().click()
   await expect(page.locator("[data-z7-export]").first()).toBeVisible({ timeout: 15_000 })
 
+  // Quale candidato sto per esportare? Il pack scaricato deve essere IL SUO.
+  // `buildStudentPackArtifact` e' puro e coperto dagli unitari con gli argomenti
+  // che gli passa il test; QUALI argomenti passi il cruscotto non lo verificava
+  // nessuno. Misurato il 2026-08-24: costruito il pack da
+  // `{ ...candidate, candidateId: "pack-sbagliato" }`, questo journey restava
+  // verde, la suite unitaria verde, il typecheck verde e i sedici journey verdi.
+  const candidatoAtteso = await page.locator("[data-z7-export]").first().getAttribute("data-z7-export")
+  expect(candidatoAtteso, "il bottone di export deve dichiarare il suo candidato").toBeTruthy()
+
   const downloadPromise = page.waitForEvent("download")
   await page.locator("[data-z7-export]").first().click()
   const download = await downloadPromise
@@ -55,6 +64,13 @@ test("Z7: genera → esporta scarica il pack → import lo riapre (round-trip)",
   expect(artifact.format).toBe("ardesia.studentpack/1")
   expect(artifact.packs.length).toBe(1)
   expect(artifact.packs[0]!.evidence.length).toBeGreaterThan(0)
+  // Il pack scaricato appartiene al candidato scelto.
+  expect(artifact.packs[0]!.candidateId).toBe(candidatoAtteso)
+  // NB: sul NOME del file non si asserisce l'id verbatim, e non e' una svista:
+  // `studentPackFileName` sanifica i due punti (misurato il 2026-08-24 —
+  // `sp-v1-cap6-esp1:mistake-1` diventa `…sp-v1-cap6-esp1_mistake-1…`).
+  // Replicare qui la sanificazione duplicherebbe la logica del prodotto; il
+  // legame vero e' `candidateId` dentro l'artefatto, che e' asserito sopra.
 
   // 3. Riapertura: import del file appena scaricato.
   await page.locator("[data-z7-import]").setInputFiles(packPath)
