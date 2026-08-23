@@ -1093,3 +1093,85 @@ di lei: la mutazione che l'ha ammessa fallisce sul **conteggio** degli embed.
 
 Albero pulito: **quattordici** journey, tutti exit **0**, uno per passo.
 `/tmp/journeys.sh` rigenerato da `ci.yml`, mai a mano.
+
+---
+
+## Giro 22 — le ultime tre. **Il filone e' chiuso.**
+
+`elab-lab` **AMMESSA** (quindicesima). `sim-passo-passo` e `board-home`
+**RESPINTE**. Non restano candidate.
+
+### `elab-lab` — AMMESSA: il cablaggio dell'export
+
+Terza volta in tre giri che il difetto sta **fra** due coperture. E stavolta il
+codice lo dice da se': sopra `exportMemory` c'e' scritto «il modulo costruisce il
+JSON versionato dall'event-log, **qui SOLO il download**».
+
+Mutazione J: `buildLessonMemoryExport(log, { experimentId: "v1-cap6-esp9" })` —
+la memoria depositata sotto un esperimento che non e' quello aperto. Il file
+scende, e' JSON valido, si apre: e' solo archiviato nel posto sbagliato.
+
+| referente | exit | legge |
+|---|---|---|
+| `elab-lab` (la candidata) | **1** | `experimentId` e il nome del file |
+| `npx vitest run` | **0** | cieca |
+| `npx tsc -b --noEmit` | **0** | cieco |
+| i **quattordici** journey gia' ammessi | **0** | ciechi |
+
+`ExportLessonMemory.test.ts` copre il modulo — con gli argomenti che gli passa il
+test. **Quali argomenti passi il componente** non lo verifica nessuno, e in jsdom
+non si puo': non c'e' evento `download`.
+
+### `sim-passo-passo` — RESPINTA: ridondante dove guarda, cieca dove e' sola
+
+- **Ridondante sull'evidenza del libro.** La spec asserisce
+  `pag.30 — «Collega il positivo della batteria`. `SimulationStepByStep.test.tsx`
+  asserisce **la stessa stringa** (righe 144-148), ed e' nel check required.
+- **Impotente sul telefono.** Il suo secondo test esiste per il pannello su
+  390px. Mutazione K: `[data-step-id] { display: none !important }` dentro
+  `@media (max-width: 768px)`.
+
+| referente | exit | legge |
+|---|---|---|
+| `sim-passo-passo` | **0** | non lo vede |
+| `npx vitest run` | **1** | lo vede |
+
+La mutazione e' arrivata — il required la prende. La candidata no, perche' il suo
+test mobile fa `toHaveCount(4)`, che **conta nodi nel DOM e ignora il render**, e
+poi uno screenshot, che non asserisce niente. E' la lezione gia' pagata al giro
+17, qui in una spec che nessuno aveva riletto: **la gamba mobile e' decorativa.**
+
+### `board-home` — RESPINTA per ridondanza
+
+La sua unica affermazione e' un caricamento pulito. Mutazione L: un
+`console.error` all'avvio in `main.tsx`.
+
+| referente | exit |
+|---|---|
+| `board-home` | **1** |
+| i quattordici gia' ammessi | **1** — e **dieci su quattordici** rossi |
+
+Non aggiunge nulla: dieci journey ammessi asseriscono gia' `consoleErrors` vuoto
+sullo stesso caricamento.
+
+### Il quadro finale
+
+**Quindici journey** nel cancello. Sette classi ammesse: geometria renderizzata ·
+layout responsivo · hit-testing del puntatore · risoluzione dei token ·
+visibilita' sotto un viewport · i byte che il browser consegna · il cablaggio fra
+un modulo coperto e la consegna.
+
+Le sei respinte, con la ragione: `sim-duplicate-instance` · `p30-free-manipulation`
+(impotenza **e** ridondanza) · `sim-multi-instance` · `sim-passo-passo`
+(ridondanza **e** impotenza) · `board-home` · e le altre gia' a registro.
+
+**Il filone e' chiuso: non restano spec fuori dal cancello da giudicare.**
+
+### Cosa lascia aperto, e vale piu' di un'ammissione
+
+Tre giri, tre difetti nella stessa posizione: **fra due coperture forti che si
+guardano senza toccarsi**. L'export dei plugin, il render con piu' istanze, la
+memoria della lezione. Non e' un caso: e' la forma piu' comune di buco in un
+repository ben testato, perche' ogni singola copertura sembra completa dal suo
+lato. Nessuno ha censito quante altre coppie ci siano — le tre sono emerse
+cercando mutazioni, non cercando loro.

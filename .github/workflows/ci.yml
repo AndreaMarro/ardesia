@@ -578,6 +578,38 @@ jobs:
       - name: board multi-esperimento - tre embed ripristinati insieme dopo un reload vero
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/sim-multi-experiment-restore.spec.ts --forbid-only --reporter=line
+
+      # 15) ELAB Lab - AMMESSA per il CABLAGGIO dell'export: che la memoria
+      # scaricata sia quella dell'esperimento aperto.
+      #
+      # La ragione, misurata. Mutazione: `exportMemory` chiama
+      # `buildLessonMemoryExport(log, { experimentId: "v1-cap6-esp9" })` — un
+      # esperimento che non e' quello aperto. Il file scende, si apre, e' JSON
+      # valido: e' depositato sotto un altro esperimento.
+      #   elab-lab               exit 1  <- legge experimentId e il nome del file
+      #   la suite unitaria      exit 0  <- CIECA
+      #   il typecheck           exit 0  <- CIECO
+      #   i quattordici qui sopra exit 0 <- CIECHI
+      # Il commento sopra `exportMemory` lo dice da se': «il modulo costruisce il
+      # JSON versionato dall'event-log, qui SOLO il download».
+      # `ExportLessonMemory.test.ts` copre il MODULO — con gli argomenti che gli
+      # passa il test. Quali argomenti passi il componente non lo verifica
+      # nessuno, e in jsdom non si puo': non c'e' evento `download`.
+      #
+      # COSTI dichiarati prima:
+      #  1. Asserisce dati REALI del Pack verbatim (Vol. 1 p. 29, il titolo del
+      #     capitolo, 5 passi del libro): una correzione legittima del Pack la
+      #     fa rossa.
+      #  2. Il bottone di marcatura si abilita solo a event-log IndexedDB pronto
+      #     (attesa a 15s): esposta al timing.
+      #  3. Il formato `ardesia.lesson-memory/1` diventa contratto: cambiarlo
+      #     richiede di cambiare anche questo passo.
+      #  4. Il secondo test naviga con `?esperimento=v1-cap6-esp2` e pretende che
+      #     esp2 resti montato nel catalogo.
+      #  5. Pretende `consoleErrors` vuoto.
+      - name: ELAB Lab - citazione dal libro, marcatura errore, e la memoria che scarichi
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/elab-lab.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
