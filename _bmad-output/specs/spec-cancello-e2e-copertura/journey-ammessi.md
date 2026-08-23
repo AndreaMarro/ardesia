@@ -925,3 +925,98 @@ prima che la copertura conti. Non e' una dichiarazione di difetto: e' la domanda
 che chi legge il file deve poter fare, e oggi non e' scritta da nessuna parte.
 
 Ripristino misurato: albero pulito, candidata exit **0**.
+
+---
+
+## Giro 20a — la domanda aperta del giro 19, chiusa con tre misure
+
+Il giro 19 aveva scritto: `assertPointerReachable` promette «non coperto da un
+overlay/canvas» e non e' scattata con `.excalidraw` a `z-index: 9999`. Offriva
+due spiegazioni — o il controllo non sta sotto la tela, o l'asserzione corre
+prima che la copertura conti. **La vera era una terza, e si misura.**
+
+**Sonda di parentela**, inserita accanto alla chiamata e a due facce:
+
+| asserzione della sonda | exit |
+|---|---|
+| il break **NON** e' discendente di `.excalidraw` | **1** — `Received: true` |
+| il break **E'** discendente di `.excalidraw` | **0** |
+
+Il controllo `[data-sim-break]` vive **dentro** `.excalidraw`. Alzare lo
+`z-index` di un antenato non copre i propri discendenti: tutto il sottoalbero,
+bottone incluso, sale insieme. La mutazione A del giro 19 **non era una
+mutazione per quel controllo**, e per `first-led-ipad-touch` — che tocca la barra
+FUORI dalla tela — lo era.
+
+**E l'asserzione funziona.** Mutazione D, una copertura che non e' antenata:
+
+```css
+body::after { content: ""; position: fixed; inset: 0; z-index: 2147483647; }
+```
+
+`p30-free-manipulation` → exit **1**, con il messaggio che l'asserzione stessa
+promette: `puntatore reale colpisce BODY, atteso il controllo stesso`.
+
+`assertPointerReachable` non e' rotta. Non c'e' niente da riparare, e la
+respinta del giro 19 resta valida per le due ragioni che gia' portava — solo che
+la prima si legge meglio: p30 non e' cieca alla copertura, e' che quella
+mutazione non poteva coprirla.
+
+---
+
+## Giro 20b — `plugin-wizard`: **AMMESSA** (tredicesima), classe nuova
+
+Non e' una delle cinque. Le altre dodici guardano cio' che la pagina **mostra**;
+questa guarda cio' che l'utente **si porta via**: i byte del file che il browser
+consegna davvero.
+
+### La mutazione
+
+In `apps/studio/src/design/PluginWizard.tsx`, `handleExport` costruisce il
+package e poi lo consegna:
+
+```ts
+const pkg = buildPluginPackage({ manifestJson, signatureB64, entryHtml })
+const url = URL.createObjectURL(pkg)          // <- il cablaggio
+anchor.download = `${output.manifest.id}.maestrotool`
+```
+
+Mutazione: `URL.createObjectURL(new Blob([output.manifestJson]))`. Il **nome**
+del file resta giusto; i **byte** sono altri.
+
+| referente | exit | legge |
+|---|---|---|
+| `plugin-wizard` (la candidata) | **1** | magic `PK` assente |
+| `npx vitest run` | **0** | cieca |
+| `npx tsc -b --noEmit` | **0** | cieco |
+| i **dodici** journey gia' ammessi | **0** | ciechi |
+
+### Perche' il required non la vede
+
+Non e' che l'export sia scoperto: e' coperto **due volte, e mai nel mezzo**.
+
+- `PluginWizard.test.tsx` sostituisce `URL.createObjectURL` con un mock e
+  asserisce gli **attributi dell'ancora** (`download` = `<id>.maestrotool`, una
+  sola chiamata). Il blob non viene mai aperto.
+- `MarketplaceLocalCatalog.test.ts` apre davvero i byte, ma di
+  `buildPluginPackage(...)` chiamata **dal test**, non di cio' che il componente
+  passa al browser.
+
+Il cablaggio fra le due — la riga 198 — non ha oracolo. E non puo' averne uno in
+jsdom: jsdom non emette un evento `download`.
+
+### Cosa vede solo lei
+
+`download.suggestedFilename()` e poi lo **stream reale**: magic `PK`, e
+`manifest.json` + `signature.b64` + `entry.html` nel central directory. Piu' la
+firma Ed25519 vera via WebCrypto e l'handshake postMessage contro un iframe
+sandbox (4 check, incluso `no-out-of-band-reply`).
+
+### Cablata
+
+`.github/workflows/ci.yml`, job `e2e-journey`, tredicesimo passo, con la ragione
+di ammissione e **quattro costi dichiarati prima** (curva Ed25519 nel Chromium
+del runner · timing dell'handshake sandbox · il formato dello zip come contratto
+· `consoleErrors` vuoto).
+
+Albero pulito: **tredici** journey, tutti exit **0**, uno per passo.

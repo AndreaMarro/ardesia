@@ -509,6 +509,41 @@ jobs:
       - name: lampada RGB - tre potenziometri, canali dal motore, e si VEDE anche su telefono
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/sim-esp6-rgb.spec.ts --forbid-only --reporter=line
+
+      # 13) officina plugin - AMMESSA per una classe nuova: i BYTE che il
+      # browser consegna davvero. Le altre dodici guardano cio' che la pagina
+      # mostra; questa guarda cio' che l'utente si porta via.
+      #
+      # La ragione, misurata. Mutazione: il cablaggio dell'export passa a
+      # `URL.createObjectURL` un blob che NON e' il package
+      # (`new Blob([output.manifestJson])` invece di `pkg`).
+      #   la candidata plugin-wizard  exit 1  <- legge i byte veri (magic PK +
+      #                                          manifest.json, signature.b64,
+      #                                          entry.html nel central dir)
+      #   la suite unitaria           exit 0  <- CIECA
+      #   il typecheck                exit 0  <- CIECO
+      #   i dodici qui sopra          exit 0  <- CIECHI
+      # L'unitario che copre l'export (`PluginWizard.test.tsx`) sostituisce
+      # `URL.createObjectURL` con un mock e asserisce gli ATTRIBUTI dell'ancora
+      # (`download`, il conteggio delle chiamate), non il contenuto del blob:
+      # il nome del file resta giusto mentre i byte sono altri. E i byte del
+      # package sono a loro volta coperti (`MarketplaceLocalCatalog.test.ts`)
+      # — ma della funzione, non del cablaggio che la collega al download.
+      # jsdom non emette un evento `download`: cosa il browser consegni e' per
+      # costruzione lavoro da e2e.
+      #
+      # COSTI dichiarati prima:
+      #  1. Firma Ed25519 REALE via WebCrypto nel browser: dipende dal supporto
+      #     della curva nel Chromium del runner, non solo dal nostro codice.
+      #  2. Handshake postMessage contro un iframe sandbox (4 check, incluso
+      #     `no-out-of-band-reply`): e' il passo piu' esposto a timing.
+      #  3. Legge lo stream del download e ispeziona i byte dello zip: se il
+      #     formato del package cambia legittimamente, questo journey va rosso
+      #     prima di ogni altro.
+      #  4. Pretende `consoleErrors` vuoto.
+      - name: officina plugin - firma vera, handshake sandbox, e i byte del file che scarichi
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/plugin-wizard.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
