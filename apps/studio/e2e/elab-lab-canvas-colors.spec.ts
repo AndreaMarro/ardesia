@@ -91,6 +91,22 @@ for (const esperimento of SCENE_VISIBILI) {
         "data-elab-lab-solve",
         atteso,
       )
+      if (atteso === "error") {
+        // La RAGIONE, non solo l'esito. Misurato il 2026-08-23: il motore e'
+        // fail-closed sui tipi non catalogati (`elabSolver.ts:220`), e il
+        // catalogo elettrico ne registra SETTE — breadboard-half, battery9v,
+        // resistor, led, wire, potentiometer, rgb-led. Le quattro scene che non
+        // risolvono contengono `capacitor` (v2-cap7-esp1/2) o `nano-r4`
+        // (v3-cap6-esp4/5).
+        //
+        // Il docente NON resta in silenzio: vede un alert visibile che dice
+        // perche'. Fissare la ragione oltre all'esito serve a due cose — che
+        // l'alert resti VISTO, e che se un giorno la causa cambiasse (un tipo
+        // catalogato, un altro errore) qualcuno debba scrivere perche'.
+        const alert = page.locator("[data-elab-lab-solve] [role=alert]")
+        await expect(alert).toBeVisible()
+        await expect(alert).toContainText("tipo componente non catalogato")
+      }
     }
 
     // L'ORACOLO. La prima versione faceva due cose deboli: cercava i token non

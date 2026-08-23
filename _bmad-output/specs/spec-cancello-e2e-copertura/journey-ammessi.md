@@ -573,6 +573,58 @@ Mutazione: `data-elab-lab-solve` che dichiara `error` anche quando risolve →
 la spec esce **1**. (La vedono anche la suite unitaria e altri journey: questa
 riga non cerca un'ammissione, e' un segnalibro dentro una spec gia' ammessa.)
 
+## Giro 19 — perche' quattro scene non risolvono: la causa ha un nome
+
+Il giro 18 aveva trovato che quattro scene su otto escono `solve=error`. Il
+compito era indagare **senza riparare in silenzio**, perche' tocca il motore
+elettrico. Indagato, e la causa e' precisa.
+
+**Il motore e' fail-closed per progetto** (`apps/studio/sim/solver/elabSolver.ts`,
+commento verbatim: «Fail-closed sui tipi non catalogati»): prima di risolvere
+scorre i componenti e lancia se **uno solo** non e' nel catalogo elettrico.
+
+Il catalogo ne registra **SETTE**: `breadboard-half`, `battery9v`, `resistor`,
+`led`, `wire`, `potentiometer`, `rgb-led`.
+
+Cio' che il docente **vede davvero** — misurato, non dedotto:
+
+```text
+v2-cap7-esp1  solve=error  «solve fallito: … non catalogato … capacitor (id c1)»
+v2-cap7-esp2  solve=error  «solve fallito: … non catalogato … capacitor (id c1)»
+v3-cap6-esp4  solve=error  «solve fallito: … non catalogato … nano-r4 (id nano1)»
+v3-cap6-esp5  solve=error  «solve fallito: … non catalogato … nano-r4 (id nano1)»
+```
+
+### ⚠️ Correzione al giro 18: il prodotto NON resta in silenzio
+
+La receipt del giro 18 diceva che quelle scene «non mostrano NESSUN verdetto
+elettrico — ne' acceso, ne' bruciato, ne' il cartello». Vero per il **verdetto**;
+falso come impressione complessiva. C'e' un `role="alert"` **visibile**
+(`display=block`, misurato) che dice **perche'**. Il prodotto e' fail-closed e
+lo dichiara: e' la forma giusta, non un silenzio.
+
+### E i componenti mancanti sono almeno TRE, non uno
+
+Catalogato `capacitor` per prova, le stesse due scene falliscono su
+**`push-button` (id btn1)**. La mutazione era **arrivata** — l'ho verificato
+invece di dedurlo dal verde — e lo stato non e' cambiato perche' manca un terzo
+tipo. Servono almeno `capacitor`, `push-button`, `nano-r4`.
+
+### L'oracolo adesso fissa la RAGIONE, non solo l'esito
+
+`SOLVE_ATTESO` pinnava il **kind**. Aggiunto: per le quattro scene in errore,
+l'alert dev'essere **visibile** e contenere `tipo componente non catalogato`.
+
+| mutazione | la spec |
+|---|---|
+| **A** `capacitor` catalogato | **verde** — e la verifica dice perche': ora fallisce su `push-button` |
+| **B** la ragione sparisce dal messaggio d'errore | **rossa (1)** |
+| nessuna | verde |
+
+⚠️ **GATE-ANDREA**: e' voluto che **meta' delle scene** della Founder Beta
+contenga componenti fuori dal catalogo elettrico? Non e' un difetto da riparare
+di nascosto — e' una domanda di ambito.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
