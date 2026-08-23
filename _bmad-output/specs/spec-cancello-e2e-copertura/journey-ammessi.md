@@ -1175,3 +1175,64 @@ memoria della lezione. Non e' un caso: e' la forma piu' comune di buco in un
 repository ben testato, perche' ogni singola copertura sembra completa dal suo
 lato. Nessuno ha censito quante altre coppie ci siano — le tre sono emerse
 cercando mutazioni, non cercando loro.
+
+---
+
+## Giro 23 — la gamba decorativa riparata, e una mia conclusione corretta
+
+`sim-passo-passo` **AMMESSA (sedicesima), dopo riparazione**. E il giro corregge
+una riga che il giro precedente aveva scritto sbagliata.
+
+### La riparazione, rossa prima
+
+La gamba mobile faceva `toHaveCount(4)` e uno screenshot. Ora ogni passo
+dev'essere **visibile** e avere un box non degenere.
+
+| gate | exit |
+|---|---|
+| la gamba riparata sotto `display:none` dentro il media block | **1** — «passo `…step-1-positivo-striscia-rossa` invisibile a 390px» |
+| la gamba riparata sull'albero pulito, file intero | **0** |
+
+### La correzione: «il required la prende» era falso
+
+Il giro 22 ha respinto questa spec per impotenza e ha scritto che sotto la
+mutazione il check required andava **rosso**. Era vero come exit e **falso come
+causa**: avevo inserito la regola in un blocco `@media (max-width: 768px)`
+**nuovo**, e `responsive.test.ts` (S-UX-3) legge la forma del CSS. Andava rosso
+per il blocco in piu', non per il pannello nascosto.
+
+Rifatta la mutazione **dentro** il blocco che esiste gia':
+
+| referente | exit | legge |
+|---|---|---|
+| la gamba mobile **riparata** | **1** | la vede |
+| la gamba mobile **com'era** | **0** | cieca |
+| `npx vitest run` | **0** | **cieca** — non come avevo scritto |
+| i **quindici** journey gia' ammessi | **0** | ciechi |
+
+La respinta del giro 22 resta giusta — la gamba com'era e' cieca, exit **0** — ma
+la ragione che le avevo messo accanto era sbagliata. Una mutazione puo' essere
+presa dal required **per il motivo sbagliato**, e allora la ridondanza che sembra
+di aver misurato non esiste.
+
+### Un oracolo che ho scritto e poi tolto, perche' misurava altro
+
+Avevo aggiunto anche: il box di ogni passo dev'essere dentro i 390px. **Rosso sul
+prodotto intatto**, bordo destro a `1087`. Sonda a due letture, prima e dopo il
+resize: **prima 1087, dopo 1087**. Il post-it vive su una tela Excalidraw
+pannabile e `setViewportSize` non la rifluisce: quel limite misurava la posizione
+sulla **tela**, non la leggibilita'. Tolto, con la misura scritta nel commento.
+
+E' il caso simmetrico della mutazione muta: qui non e' la mutazione a non
+arrivare, e' **l'oracolo a puntare altrove**. Il prodotto intatto che va rosso e'
+il segnale.
+
+### Cablata
+
+`.github/workflows/ci.yml`, sedicesimo passo, con quattro costi — fra cui, detto
+esplicitamente, che i suoi due screenshot **non asseriscono niente** e restano
+solo come CoV visivo, e che l'evidenza del libro e' ridondante con l'unitario e
+non e' la ragione dell'ammissione.
+
+Albero pulito: **sedici** journey, tutti exit **0**. `/tmp/journeys.sh`
+rigenerato da `ci.yml`.

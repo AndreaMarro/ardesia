@@ -72,7 +72,25 @@ test("mobile: pannello passo-passo leggibile e screenshottato", async ({ page })
   await toggle.click()
   await expect(page.locator("[data-step-id]")).toHaveCount(4)
   await page.setViewportSize({ width: 390, height: 844 })
-  await expect(page.locator("[data-step-id]")).toHaveCount(4)
+  const steps = page.locator("[data-step-id]")
+  await expect(steps).toHaveCount(4)
+  // `toHaveCount` CONTA NODI NEL DOM E IGNORA IL RENDER, e uno screenshot non
+  // asserisce niente: con quelle due sole, questo test resta verde anche col
+  // pannello nascosto da un `display: none` (misurato 2026-08-24). L'oracolo
+  // vero e' la VISIBILITA' di ogni passo, piu' un box non degenere.
+  for (const step of await steps.all()) {
+    const id = await step.getAttribute("data-step-id")
+    await expect(step, `passo ${id} invisibile a 390px`).toBeVisible()
+    const box = await step.boundingBox()
+    if (box === null) throw new Error(`passo ${id} senza bounding box a 390px`)
+    expect(box.height, `passo ${id} alto zero`).toBeGreaterThan(0)
+    expect(box.width, `passo ${id} largo zero`).toBeGreaterThan(0)
+  }
+  // NON si asserisce che il box stia dentro i 390px, e non e' una svista: il
+  // post-it vive su una tela Excalidraw pannabile, e `setViewportSize` NON la
+  // rifluisce. Misurato: bordo destro del primo passo 1087 PRIMA del resize e
+  // 1087 DOPO. Un limite sul viewport misurerebbe la posizione sulla TELA, non
+  // la leggibilita' — sarebbe rosso sul prodotto intatto.
   await page.screenshot({
     path: "test-results/sim-passo-passo-mobile.png",
     fullPage: false,

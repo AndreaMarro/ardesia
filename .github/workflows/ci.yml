@@ -610,6 +610,35 @@ jobs:
       - name: ELAB Lab - citazione dal libro, marcatura errore, e la memoria che scarichi
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/elab-lab.spec.ts --forbid-only --reporter=line
+
+      # 16) passo-passo sul telefono - AMMESSA DOPO RIPARAZIONE. Respinta il
+      # 2026-08-24 per IMPOTENZA: la sua gamba mobile faceva `toHaveCount(4)` e
+      # uno screenshot, e `toHaveCount` conta nodi nel DOM e ignora il render —
+      # non poteva fallire col pannello nascosto. Ora asserisce la VISIBILITA'
+      # di ogni passo piu' un box non degenere.
+      #
+      # La ragione, misurata. Mutazione: `[data-step-id] { display: none
+      # !important }` DENTRO il blocco `@media (max-width: 768px)` che esiste
+      # gia' (metterlo in un blocco NUOVO fa rosso `responsive.test.ts` per la
+      # forma del CSS, non per il pannello: sarebbe una falsa ridondanza).
+      #   la gamba mobile RIPARATA   exit 1  <- «passo ... invisibile a 390px»
+      #   la gamba mobile COM'ERA    exit 0  <- CIECA
+      #   la suite unitaria          exit 0  <- CIECA
+      #   i quindici qui sopra       exit 0  <- CIECHI
+      #
+      # COSTI dichiarati prima:
+      #  1. Asserisce il banner onesta' catalogo `4/88`: cambiare il catalogo la
+      #     fa rossa, ed e' voluto.
+      #  2. Attiva l'embed con un doppio click RAW sulle coordinate (routing
+      #     pointer di Excalidraw): il passo piu' esposto al flake.
+      #  3. L'evidenza del libro (`pag.30`) e' RIDONDANTE con
+      #     `SimulationStepByStep.test.tsx`: resta come contesto, non e' la
+      #     ragione dell'ammissione.
+      #  4. Fa due screenshot che NON asseriscono niente. Restano come CoV
+      #     visivo, e sono etichettati tali: non sono un oracolo.
+      - name: passo-passo - i quattro passi del libro VISIBILI anche su telefono
+        if: ${{ !cancelled() }}
+        run: npx playwright test e2e/sim-passo-passo.spec.ts --forbid-only --reporter=line
       - uses: actions/upload-artifact@v4
         if: always()
         with:
