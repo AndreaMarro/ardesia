@@ -117,6 +117,25 @@ describe("elabExperimentCatalog — onestà montati/88 da fonti reali (S2)", () 
     expect(ELAB_CORPUS_TOTAL).toBe(onDisk)
   })
 
+  it("ogni esperimento del catalogo ESISTE nel corpus (lesson-path su disco)", () => {
+    // Il banner «N montati di 88» nasce da ELAB_EXPERIMENT_CATALOG, una lista
+    // scritta a mano che il percorso di MOUNT non consulta mai: la vista ELAB
+    // Lab risolve `?esperimento=` dal Pack (`getLessonPath`), non da qui.
+    // Misurato 2026-08-25: `ELAB_EXPERIMENT_CATALOG` e' letto SOLO da
+    // `catalogSummary()` e da questo file. Finora l'unico vincolo era «la
+    // fixture esiste su disco», che non impedisce di dichiarare montato un
+    // esperimento che nel corpus non c'e'. Questo lega il banner al corpus.
+    // NON verifica che l'esperimento sia davvero MONTABILE: quello richiede il
+    // browser, e resta scoperto.
+    const lessonPathsDir = join(repoRoot, "packs/elab-tutor/data/lesson-paths")
+    for (const entry of ELAB_EXPERIMENT_CATALOG) {
+      expect(
+        existsSync(join(lessonPathsDir, `${entry.experimentId}.json`)),
+        `${entry.experimentId}: dichiarato montato ma assente dal corpus`,
+      ).toBe(true)
+    }
+  })
+
   it("catalogSummary dichiara montati/total senza gonfiare", () => {
     const summary = catalogSummary()
     expect(summary.mounted).toBe(ELAB_EXPERIMENT_CATALOG.length)

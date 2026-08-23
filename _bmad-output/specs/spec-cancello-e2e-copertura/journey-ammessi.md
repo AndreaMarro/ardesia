@@ -1732,3 +1732,71 @@ flusso dello studente si porta sul canvas core. E' una scelta di prodotto.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 32 — la caccia al sosia: il banner dell'onesta' non era un sosia, ma non era legato a niente
+
+Cercavo un attributo che esponesse un calcolo parallelo. Ne ho trovato uno che
+espone una **lista scritta a mano che il prodotto non consulta**.
+
+### Il sospetto
+
+Dei quattordici attributi asseriti con un valore dai sedici journey, il piu'
+esposto e' `data-elab-catalog-summary` — il banner «N esperimenti montati di 88»,
+asserito `4/88` da `sim-passo-passo`. E' una dichiarazione di onesta' verso il
+docente: la regola scritta nel file dice «la UI non vende esperimenti non
+montati».
+
+### Le tre liste
+
+| lista | dove | chi la legge a runtime |
+|---|---|---|
+| `ELAB_EXPERIMENT_CATALOG` (4 voci) | `src/toolhost/elabExperimentCatalog.ts` | **nessuno**: solo `catalogSummary()` e il suo test |
+| `getElabSceneStatus` | `sim/elab/sceneCatalog.ts` | **nessuno**: solo il suo test |
+| il corpus vero | `packs/elab-tutor/data/lesson-paths/` | la vista ELAB Lab, via `getLessonPath` |
+
+Il banner nasce dalla prima. Il **mount** passa dalla terza. Le due non si
+toccano.
+
+### Il sosia non c'era — misurato
+
+Se la lista fosse gonfiata, il banner mentirebbe. Sonda su `v1-cap9-esp6`, il
+quarto dichiarato montato:
+
+```
+stato=mounted solve=ok
+```
+
+**Si monta e risolve.** Il banner oggi dice il vero. Il difetto non e' il valore:
+e' che **niente lo tiene legato** — l'unico vincolo era «la fixture esiste su
+disco», che non impedisce di dichiarare montato un esperimento che nel corpus non
+c'e'.
+
+### La riparazione, rossa prima
+
+Aggiunta un'asserzione unitaria: ogni voce del catalogo deve **esistere nel
+corpus** (`lesson-paths/<id>.json`).
+
+Mutazione X: un id del catalogo sostituito con uno fuori dal corpus, **conteggio
+invariato** (resta 4).
+
+| referente | exit | legge |
+|---|---|---|
+| la nuova asserzione | **1** | la vede |
+| `sim-passo-passo` (che asserisce `4/88`) | **0** | **cieca**: il numero non e' cambiato |
+| la stessa asserzione, albero pulito | **0** | verde |
+
+Il journey guardava il **numero**, non il suo significato. Ora il numero e'
+legato al corpus.
+
+### Cosa NON copre, detto qui
+
+L'asserzione lega il banner al **corpus**, non alla **montabilita'**. Che un
+esperimento dichiarato montato si monti davvero richiede il browser, e resta
+scoperto: `v1-cap9-esp6` l'ho verificato **a mano** con una sonda, una volta.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
