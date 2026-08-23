@@ -778,6 +778,58 @@ asserire, e molti `data-*` sono agganci interni che non hanno bisogno di un
 oracolo. Il verso dell'errore e' pero' quello giusto — sovrastima la copertura,
 quindi i 31 sono un limite **inferiore**.
 
+## Giro 23 — due limiti invece di un numero, e il parametro che stavo accordando
+
+Il giro 22 aveva corretto «88» in «**31**». Il giro 23 corregge il **31**, e non
+sostituendolo con un altro numero: mostrando che **un numero solo, qui, e' falsa
+precisione**.
+
+«Nominato» non e' «asserito»: un attributo citato in un selettore d'appoggio non
+e' sorvegliato. Separare i due insiemi sembra facile. Provati due criteri, ed
+**entrambi sbagliano, in versi opposti**.
+
+### VICINANZA — ha un parametro, e il parametro sceglie la risposta
+
+| finestra | non asseriti |
+|---|---|
+| stessa riga (`N=0`) | **51** |
+| `N=1` | **36** |
+| `N=2` | **31** |
+| `N=3` | 31 |
+
+Avevo scelto `N=2` **e ottenuto il numero piu' comodo**. Non l'avevo scelto per
+quello — ma non avevo nemmeno guardato gli altri, ed e' la stessa cosa dal punto
+di vista di chi legge il risultato.
+
+### PARENTESI — niente parametri, e sottostima
+
+L'attributo dentro le parentesi di un `expect(...)`, per conteggio di bracket.
+Nessun parametro da accordare. E sbaglia lo stesso, perche' il legame passa per
+una variabile:
+
+```ts
+const alert = view.querySelector("[data-led-state=missing]")
+expect(alert).not.toBeNull()
+```
+
+`data-led-state` finisce fra i «solo citati» — **eppure e' difeso davvero**, e al
+giro 22 due mutazioni lo hanno fatto rosso. Nessun criterio testuale segue una
+variabile.
+
+### La risposta onesta e' un intervallo
+
+```text
+LIMITE INFERIORE dei non sorvegliati: 31   (nessun oracolo li nomina)
+LIMITE SUPERIORE dei non sorvegliati: 50   (piu' i citati fuori da expect)
+```
+
+`ops/tools/attributi-senza-oracolo.py` adesso stampa **due limiti e la ragione
+di ognuno**, con il controesempio scritto nella docstring perche' nessuno —
+me compreso — torni ad accordare un parametro finche' il numero non piace.
+
+Mutazione: tolto a un test il nome `data-led-state`, il limite inferiore passa
+da **31 a 32**; ripristinato, torna.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
