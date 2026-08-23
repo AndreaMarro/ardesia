@@ -82,6 +82,12 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
   // Due fori liberi: il primo pending → c4 piazza.
   await clickHole(legacyStage, "bb1:bus-bot-plus-3")
   await expect(legacyStage.locator('[data-bb-hole="bb1:bus-bot-plus-3"]')).toHaveAttribute("data-pending", "1")
+  // Asserire il valore POSITIVO di un attributo booleano e' decorativo da solo:
+  // misurato il 2026-08-25, con `data-pending="1"` su OGNI foro questo journey
+  // restava verde (exit 0) e solo la suite unitaria se ne accorgeva. Il tap-tap
+  // ha senso se il foro in attesa e' UNO: e' quello che rende la seconda mano
+  // una posa e non un'altra attesa.
+  await expect(legacyStage.locator("[data-pending]")).toHaveCount(1)
   await clickHole(legacyStage, "bb1:c4")
   // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
   // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —

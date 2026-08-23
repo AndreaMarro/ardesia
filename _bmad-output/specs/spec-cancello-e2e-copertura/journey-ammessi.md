@@ -1905,3 +1905,60 @@ Il badge, comunque, non certificava piu' nulla di cio' che il docente legge.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 35 — asserire il valore positivo di un booleano e' decorativo
+
+Otto attributi restanti, tracciati. Tre negativi netti, due gambe decorative
+trovate con la stessa forma, e **due mie mutazioni ritirate perche' non
+compilavano**.
+
+### Le due mutazioni ritirate
+
+Avevo scritto `{/* MUTAZIONE ... */}` **dentro la lista di attributi** di un
+elemento JSX: parse error. Entrambe le esecuzioni erano rosse — e per il motivo
+sbagliato: `[PARSE_ERROR] Expected \`...\` but found \`}\``. Ho rifatto le due
+mutazioni senza commento, verificando `tsc` prima. **Un rosso che non ho
+attribuito non e' una misura**, ed erano due.
+
+### I negativi (misurati, non letti)
+
+| attributo | mutazione | esito |
+|---|---|---|
+| `data-step-passed` | i passi giudicano un circuito senza collegamenti | **vivo**: `sim-passo-passo` exit **1**, `vitest` exit **1** |
+| `data-montaggio-canvas-count` | (stessa esecuzione) | vivo |
+| `data-led-on` | copre lo stesso `readings` di `data-led-burned`, gia' misurato | coperto |
+
+### La forma nuova: il valore positivo asserito
+
+Due attributi booleani sono asseriti dai journey **solo nel loro valore
+positivo**. Se il prodotto smette di distinguere e dice sempre «si», il journey
+non se ne accorge.
+
+| attributo | mutazione | journey | `vitest` |
+|---|---|---|---|
+| `data-pending` | ogni foro si dichiara in attesa | `montaggio-canvas` exit **0** | exit **1** |
+| `data-pass` | il collaudo si dichiara sempre superato | `plugin-wizard` exit **0** | exit **1** |
+
+Entrambe coperte dal required — non sono buchi di copertura. Sono **gambe
+decorative dentro journey ammessi**: sembrano oracolo e non lo sono.
+
+### Le due riparazioni, diverse per un motivo
+
+- **`montaggio-canvas` — riparata.** Il tap-tap ha senso se il foro in attesa e'
+  **uno**: `toHaveCount(1)` su `[data-pending]`. Rossa sotto la mutazione (exit
+  **1**), verde sull'albero pulito (exit **0**).
+- **`plugin-wizard` — NON riparata, dichiarata.** Non ho una mutazione che faccia
+  fallire le spunte senza inventarla: nel flusso verde non esiste un handshake che
+  fallisce. Ho scritto accanto alle quattro asserzioni che **non possono fallire
+  se il badge dice sempre «1»**, e dove sta la garanzia vera: l'export e'
+  fail-closed sul report reale, e piu' sotto il download viene ispezionato byte a
+  byte. Le spunte restano come contesto leggibile, non come oracolo.
+
+Riparare cio' che so vedere rosso; dichiarare cio' che non so vedere rosso.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

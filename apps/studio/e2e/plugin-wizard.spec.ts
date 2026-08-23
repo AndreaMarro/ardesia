@@ -35,6 +35,14 @@ test("officina: spec → genera firmato → collaudo 4/4 verde → export .maest
   await page.getByRole("button", { name: "Collauda l'handshake" }).click()
   const checks = page.locator("[data-testid^='harness-check-']")
   await expect(checks).toHaveCount(4)
+  // ONESTA' DI COPERTURA, misurata il 2026-08-25: le quattro asserzioni
+  // `data-pass="1"` qui sotto NON possono fallire se il badge dice sempre «1».
+  // Mutato `data-pass={check.pass ? "1" : "0"}` in `data-pass="1"`, questo
+  // journey resta VERDE (exit 0) e solo la suite unitaria se ne accorge
+  // (exit 1). La garanzia vera in questo passo non sono le spunte: e' che
+  // l'export sia FAIL-CLOSED sul report reale — il bottone si abilita solo con
+  // harness ok, e piu' sotto il download viene aperto e ispezionato byte a byte.
+  // Le spunte restano come contesto leggibile, non come oracolo.
   for (const id of [
     "tool-ready-received",
     "ready-well-formed",
