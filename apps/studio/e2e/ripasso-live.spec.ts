@@ -31,6 +31,11 @@ test("errore osservato in ElabLab → compare nel ripasso del cruscotto", async 
   const mistakeLabel = (await mistakeButton.textContent())?.trim() ?? ""
   expect(mistakeLabel.length).toBeGreaterThan(0)
   await mistakeButton.click()
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(marcatura.locator("[data-marked-count]")).toBeVisible()
   await expect(marcatura.locator("[data-marked-count]")).toHaveText("errori segnati: 1")
 
   // 2. Cruscotto docente nello STESSO profilo: la zona ripasso deve vedere

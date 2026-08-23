@@ -65,6 +65,11 @@ test("ELAB Lab #246: il contatore non anticipa la memoria — l'errore segnato s
   await bottoneErrore.click()
 
   // Il docente legge la conferma della vista. E' l'unico segnale che ha.
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(marcatura.locator("[data-marked-count]")).toBeVisible()
   await expect(marcatura.locator("[data-marked-count]")).toHaveText("errori segnati: 1", {
     timeout: 20_000,
   })

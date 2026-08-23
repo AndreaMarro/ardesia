@@ -78,6 +78,11 @@ test("ELAB Lab esp6: 3 potenziometri, LED RGB montato, solve reale del motore", 
   // `componentStates.led1`, un id che per questo esperimento NON ESISTE, e
   // `led1?.on === true` vale false tanto per «spento» quanto per «assente».
   // Ora l'id del componente luminoso si legge dall'esperimento.
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(page.locator("[data-led-on]")).toBeVisible()
   await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "1")
   // Il LED RGB non ha una corrente unica nel motore: ha tre canali. La cifra
   // mostrata e' brightness x 30 (inversione di CircuitSolver._solveRGBLed),

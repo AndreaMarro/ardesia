@@ -459,6 +459,52 @@ Per lo stesso motivo `sim-esp2-senza-resistore:29` (`select option` a otto)
 resta com'e': le `<option>` non hanno una visibilita' propria utile, e la spec
 poi **seleziona** un valore.
 
+## Giro 17 — il verdetto che non si vede, e una mutazione che non era una mutazione
+
+Stesso metodo del giro 16, applicato a `toHaveText` / `toContainText` /
+`toHaveAttribute`. Censimento delle dodici spec ammesse: **28** asserzioni di
+testo o attributo, di cui **15** su selettori con cui la spec **non interagisce**
+— cioe' cose che il docente **legge** e nessuno **tocca**: `[data-marked-count]`,
+`[data-led-on]`, `[data-led-burned]`, `[data-montaggio-canvas-notice]`,
+`[data-imported-pack]`, `[data-rgb-channels]`.
+
+**Mutazione**: quei verdetti resi `display: none` — nel DOM, fuori dallo schermo.
+
+| | journey che se ne accorgono |
+|---|---|
+| **prima** | **3 su 12** (`sim-esp2`, `studentpack-artifact`, `sim-esp6-rgb`) |
+| **dopo** il rimedio | **6 su 12** |
+
+I tre che gia' vedevano lo devono a `toBeVisible` o a `getByText(...)` che
+avevano per altre ragioni — non al fatto di asserire un attributo.
+
+### ⚠️ La prima mutazione NON era una mutazione, e va detto per primo
+
+La prima misura diceva **12 su 12 ciechi**. Era falsa: la regola CSS non aveva
+effetto sui verdetti elettrici, perche' l'elemento che li porta ha uno **style
+inline**:
+
+```tsx
+<dd style={{ display: "inline", margin: 0 }}
+    data-led-on={ledOn ? "1" : "0"}
+    data-led-burned={ledBurned ? "1" : "0"}>
+```
+
+Uno `style` inline batte qualunque regola di foglio senza `!important`. Per
+quegli elementi la mutazione **non e' mai avvenuta**, e «12 su 12 verdi»
+rispondeva a un'altra domanda. Rifatta con `display: none !important` e
+rimisurata su entrambi i lati: **3 prima, 6 dopo**.
+
+E' la regola «verifica che il tuo comando abbia fatto quello che credi» pagata
+una seconda volta, in una forma nuova: **una mutazione che non muta e' un
+controllo che non controlla**, e sembra identica a una che funziona.
+
+### `first-led-ipad-touch` resta a 0, e non e' un buco
+
+Il rimedio su `[data-montaggio-canvas-count]` li' e' dentro il `test.fixme`
+dichiarato: non gira, quindi non puo' vedere niente. Registrato per non
+cercarlo di nuovo.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono

@@ -31,7 +31,13 @@ test("ELAB Lab esp2: solve onesto BRUCIATO, whitelist nel picker, console pulita
 
   // Solve reale via registry: il LED è BRUCIATO, non acceso.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(page.locator("[data-led-burned]")).toBeVisible()
   await expect(page.locator("[data-led-burned]")).toHaveAttribute("data-led-burned", "1")
+  await expect(page.locator("[data-led-on]")).toBeVisible()
   await expect(page.locator("[data-led-on]")).toHaveAttribute("data-led-on", "0")
   await expect(page.getByText("BRUCIATO (sovracorrente!)")).toBeVisible()
 

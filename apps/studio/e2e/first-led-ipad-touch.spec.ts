@@ -76,6 +76,11 @@ test.fixme("iPad+touch: student places a resistor via touch (montaggio tap-tap)"
   await legacyStage.locator('[data-bb-hole="bb1:c3"]').tap({ force: true })
   await expect(legacyStage.locator('[data-bb-hole="bb1:c3"]')).toHaveAttribute("data-pending", "1")
   await legacyStage.locator('[data-bb-hole="bb1:c4"]').tap({ force: true })
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(page.locator("[data-montaggio-canvas-count]")).toBeVisible()
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",
     "1",

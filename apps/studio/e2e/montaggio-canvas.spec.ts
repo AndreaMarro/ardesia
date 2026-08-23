@@ -83,6 +83,11 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
   await clickHole(legacyStage, "bb1:bus-bot-plus-3")
   await expect(legacyStage.locator('[data-bb-hole="bb1:bus-bot-plus-3"]')).toHaveAttribute("data-pending", "1")
   await clickHole(legacyStage, "bb1:c4")
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(page.locator("[data-montaggio-canvas-count]")).toBeVisible()
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",
     "1",
@@ -92,6 +97,7 @@ test("lavagna: palette tap-tap piazza una resistenza e rifiuta i fori occupati",
   // Foro occupato dal manuale: rifiuto visibile, conteggio invariato.
   await activateStage(page, legacyStage)
   await clickHole(legacyStage, "bb1:i9")
+  await expect(legacyStage.locator("[data-montaggio-canvas-notice]")).toBeVisible()
   await expect(legacyStage.locator("[data-montaggio-canvas-notice]")).toContainText("bb1:i9")
   await expect(page.locator("[data-montaggio-canvas-count]")).toHaveAttribute(
     "data-montaggio-canvas-count",

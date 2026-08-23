@@ -22,6 +22,11 @@ test("Z7: genera → esporta scarica il pack → import lo riapre (round-trip)",
   const mistakeButton = marcatura.locator("[data-mistake-id]").first()
   await expect(mistakeButton).toBeEnabled({ timeout: 15_000 })
   await mistakeButton.click()
+  // Il verdetto deve essere VISTO, non solo presente. Misurato il 2026-08-23:
+  // con i verdetti resi `display: none` — nel DOM e fuori dallo schermo —
+  // TUTTI E DODICI i journey del cancello restavano verdi. Un'asserzione di
+  // testo o attributo legge l'albero, non la vista.
+  await expect(marcatura.locator("[data-marked-count]")).toBeVisible()
   await expect(marcatura.locator("[data-marked-count]")).toHaveText("errori segnati: 1")
 
   // 2. Cruscotto: candidato in coda → Genera → Esporta con DOWNLOAD reale.
@@ -54,6 +59,7 @@ test("Z7: genera → esporta scarica il pack → import lo riapre (round-trip)",
   // 3. Riapertura: import del file appena scaricato.
   await page.locator("[data-z7-import]").setInputFiles(packPath)
   await expect(page.locator("[data-imported-pack]")).toBeVisible({ timeout: 15_000 })
+  await expect(page.locator("[data-imported-pack]")).toBeVisible()
   await expect(page.locator("[data-imported-pack]")).toContainText("Pack riaperto")
   await expect(
     page.locator(`[data-imported-pack-id="${artifact.packs[0]!.candidateId}"]`),
