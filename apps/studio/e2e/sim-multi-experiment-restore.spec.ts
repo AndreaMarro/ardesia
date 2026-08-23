@@ -24,16 +24,23 @@ const RENDER_PHASE_SETSTATE =
   /existing state transition|while rendering a different component|update during render|update a component .* while rendering/i
 
 test("board multi-esperimento ripristinata (reload) NON emette warning setState-in-render", async ({ page }) => {
-  const renderPhaseWarnings: string[] = []
+  // L'oracolo NON e' la regex. `RENDER_PHASE_SETSTATE` serve solo a ETICHETTARE
+  // il messaggio quando fallisce: se React cambiasse la formulazione del warning,
+  // un gate basato sul testo diventerebbe cieco IN SILENZIO — falso verde. Qui il
+  // gate e' «zero errori di console durante il restore», che e' strettamente piu'
+  // forte e non dipende da come React scrive le sue frasi.
+  const consoleErrors: string[] = []
   const pageErrors: string[] = []
   page.on("console", (message) => {
-    if (message.type() === "error" && RENDER_PHASE_SETSTATE.test(message.text())) {
-      renderPhaseWarnings.push(message.text())
-    }
+    if (message.type() === "error") consoleErrors.push(message.text())
   })
   page.on("pageerror", (error) => {
-    if (RENDER_PHASE_SETSTATE.test(error.message)) pageErrors.push(error.message)
+    pageErrors.push(error.message)
   })
+  const etichetta = (righe: string[]) =>
+    righe
+      .map((riga) => (RENDER_PHASE_SETSTATE.test(riga) ? `[setState-in-render] ${riga}` : riga))
+      .join("\n")
 
   await page.goto("/")
   await expect(page.locator(".excalidraw").first()).toBeVisible({ timeout: 15_000 })
@@ -78,6 +85,6 @@ test("board multi-esperimento ripristinata (reload) NON emette warning setState-
   // Margine per warning emessi in commit post-mount.
   await page.waitForTimeout(1_500)
 
-  expect(renderPhaseWarnings, `render-phase setState warnings:\n${renderPhaseWarnings.join("\n")}`).toEqual([])
-  expect(pageErrors, `pageerror setState:\n${pageErrors.join("\n")}`).toEqual([])
+  expect(consoleErrors, `errori di console durante il restore:\n${etichetta(consoleErrors)}`).toEqual([])
+  expect(pageErrors, `pageerror durante il restore:\n${etichetta(pageErrors)}`).toEqual([])
 })

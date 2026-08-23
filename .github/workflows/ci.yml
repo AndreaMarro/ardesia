@@ -570,11 +570,17 @@ jobs:
       #     localStorage: e' il journey piu' esposto al timing.
       #  3. Fa un `page.reload()` vero con attese a 20s: il piu' lento dei
       #     quattordici.
-      #  4. Una delle sue asserzioni e' una REGEX sul testo dei warning React
-      #     (`RENDER_PHASE_SETSTATE`). Se React cambiasse la formulazione, quella
-      #     gamba diventerebbe cieca IN SILENZIO — un falso verde, non un falso
-      #     rosso. L'ammissione NON poggia su quella gamba: la mutazione che
-      #     l'ha ammessa fallisce sul CONTEGGIO degli embed.
+      #  4. (RISOLTO il 2026-08-24.) Questa gamba era una REGEX sul testo dei
+      #     warning React: un cambio di formulazione l'avrebbe resa cieca IN
+      #     SILENZIO. Ora il gate e' «ZERO errori di console durante il restore»
+      #     e la regex serve solo a ETICHETTARE il messaggio nel fallimento.
+      #     Misurato con un `console.error` dalle parole che React non usa:
+      #       l'oracolo nuovo  exit 1
+      #       la spec com'era  exit 0  <- CIECA, falso verde
+      #     Il nuovo gate e' un soprainsieme del vecchio per costruzione: i
+      #     warning React passano da `console.error`, che ora si raccoglie senza
+      #     filtro. Costo del cambio: qualunque errore di console sul percorso di
+      #     restore fa rossa questa gamba, anche se non c'entra col setState.
       - name: board multi-esperimento - tre embed ripristinati insieme dopo un reload vero
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/sim-multi-experiment-restore.spec.ts --forbid-only --reporter=line

@@ -1236,3 +1236,59 @@ non e' la ragione dell'ammissione.
 
 Albero pulito: **sedici** journey, tutti exit **0**. `/tmp/journeys.sh`
 rigenerato da `ci.yml`.
+
+---
+
+## Giro 24 — la regex fragile, sostituita. Un falso verde misurato.
+
+Il quattordicesimo passo asseriva i warning React con una **regex sul testo**. Il
+giro 21 l'aveva dichiarata fragile e non l'aveva risolta: se React cambiasse la
+formulazione, quella gamba diventerebbe cieca **in silenzio**. Non era una
+supposizione, e ora c'e' la misura.
+
+### Il falso verde, misurato
+
+Mutazione N: un `console.error` emesso sul percorso di mount degli embed, con
+parole che React **non usa** — «regressione simulata: stato aggiornato fuori
+tempo». Non corrisponde a nessuno dei quattro rami di `RENDER_PHASE_SETSTATE`.
+
+| referente | exit | legge |
+|---|---|---|
+| l'oracolo **nuovo** | **1** | lo prende |
+| la spec **com'era**, con la regex | **0** | **cieca — falso verde** |
+
+E' esattamente la forma temuta: il prodotto sbaglia, il test resta verde, e
+nessuno lo sa.
+
+### La sostituzione
+
+Il gate non legge piu' il testo. Raccoglie **tutti** gli errori di console e i
+`pageerror` durante il restore e pretende che siano zero. La regex resta, ma solo
+per **etichettare** la riga nel messaggio di fallimento
+(`[setState-in-render] …`), dove serve a chi legge e non decide niente.
+
+| gate | exit |
+|---|---|
+| l'oracolo nuovo sull'albero pulito | **0** |
+| `npx tsc -b --noEmit` | **0** |
+| i **sedici** journey, uno per passo | **0** |
+| REQUIRED studio e hygiene | **0** |
+
+### Cosa si guadagna e cosa si paga, detto prima
+
+**Si guadagna** un soprainsieme: i warning React passano da `console.error`, che
+ora si raccoglie senza filtro — quindi tutto cio' che la regex prendeva viene
+preso ancora. Questo pezzo e' **per costruzione, non misurato**: non sono
+riuscito a produrre un warning di fase-render vero con una mutazione locale (i
+tentativi F e G del giro 21), e lo scrivo invece di far finta.
+
+**Si paga** che qualunque errore di console sul percorso di restore ora fa rossa
+questa gamba, anche se non c'entra con il `setState`. E' scritto accanto al passo
+in `ci.yml` come costo numero 4, al posto della fragilita' che c'era prima.
+
+### Il commento in `ci.yml` non mente piu'
+
+Il quattordicesimo passo portava scritto «quella gamba diventerebbe cieca in
+silenzio». Restava vero fino a oggi. Ora quel blocco dice **RISOLTO**, con le due
+misure e il costo nuovo — perche' un avvertimento stantio accanto a un passo e'
+peggio di nessun avvertimento: chi lo legge crede di sapere una cosa falsa.
