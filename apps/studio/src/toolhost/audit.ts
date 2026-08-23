@@ -1,7 +1,12 @@
 // TOOLHOST-SPEC-v0 §3 (innesto P3) — audit-log APPEND-ONLY per-tool, leggibile
 // dal docente ("cosa ha letto questo tool?"). Ogni chiamata capability registrata:
 // timestamp, tool, metodo, esito. Vive nel WorkspaceStore a tools/<toolId>/audit.jsonl
-// e SOPRAVVIVE all'uninstall (la purge tocca solo storage/, mai l'audit).
+// e SOPRAVVIVE all'uninstall totale del plugin — ma non più "perché la purge
+// tocca solo storage/": quella frase è invecchiata. L'uninstall totale cancella
+// l'INTERO sottoalbero tools/<toolId>/, audit compreso se nessuno lo protegge, e
+// lo protegge `uninstallPreservedPaths()` in installer.ts, di cui questo file è
+// oggi l'unica voce. La sopravvivenza è dichiarata dal contratto, non regalata
+// dal layout: è lì che va aggiunto un secondo oggetto durevole.
 
 import { z } from "zod"
 import { ERR, isValidToolId } from "../toolhost-protocol/index.ts"
