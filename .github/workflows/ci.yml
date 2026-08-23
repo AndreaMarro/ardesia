@@ -555,7 +555,14 @@ jobs:
       #     formato del package cambia legittimamente, questo journey va rosso
       #     prima di ogni altro.
       #  4. Pretende `consoleErrors` vuoto.
-      - name: officina plugin - firma vera, handshake sandbox, e i byte del file che scarichi
+      # ⚠️ NOME CORRETTO il 2026-08-26. Diceva «firma vera, handshake sandbox,
+      # e i byte del file che scarichi». Misurato il 2026-08-25: le quattro
+      # spunte dell'handshake NON possono fallire — con `data-pass="1"` fisso
+      # questo passo resta verde (exit 0) e solo la suite unitaria se ne
+      # accorge (exit 1). Il passo difende davvero i BYTE del file e il
+      # fail-closed dell'export; l'handshake lo attraversa, non lo certifica.
+      # Un nome che promette e' una dichiarazione come le altre.
+      - name: officina plugin - export fail-closed e i byte del file che scarichi (l'handshake e' attraversato, non certificato)
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/plugin-wizard.spec.ts --forbid-only --reporter=line --output=test-results/plugin-wizard
 

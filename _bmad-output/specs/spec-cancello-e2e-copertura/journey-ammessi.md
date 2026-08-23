@@ -2016,3 +2016,58 @@ suite unitaria.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 37 — i divieti reggono, e un nome che prometteva
+
+Cercavo nelle asserzioni di TESTO la forma trovata negli attributi. **Non c'e'**,
+e la misura lo dice in modo netto.
+
+### I divieti reggono — negativo misurato
+
+Sospettavo i sette `not.toContainText` di `product-flow-shell`: se `.st-actions`
+sparisse, sette divieti su un elemento inesistente passerebbero tutti.
+
+Mutazione AH: la barra azioni rinominata, quindi assente dal DOM.
+
+| referente | exit | messaggio |
+|---|---|---|
+| `product-flow-shell` | **1** | `expect(locator).not.toContainText(expected) failed` · `element(s) not found` |
+| `npx vitest run` | **1** | tre file |
+
+**Playwright fallisce quando il locator non risolve, anche su un'asserzione
+negativa.** L'ipotesi era sbagliata, ed e' una buona notizia: i dodici negativi
+dei sedici journey non hanno quel vizio.
+
+### E i `toHaveCount(0)` sono ancorati
+
+Gli unici che potrebbero passare su un elemento assente sono i `toHaveCount(0)`.
+Letti tutti: sono **preceduti** da un'asserzione che ancora il contenitore —
+`elab-lab` asserisce prima un finding con `bb1:e3`, poi `[data-diagnostica-ok]`
+a zero; `sim-esp6-rgb` asserisce prima `[data-rgb-channels]` visibile. Il
+`toHaveCount(0)` di `elab-lab-canvas-colors` e' una **precondizione**
+dichiarata tale.
+
+E la citazione dal libro (`Vol. 1, p. 29`, capitolo, passi) viene da `bookRef` e
+`bookLabel`, cioe' dal Pack: non e' testo scritto nella vista.
+
+Tre negativi, misurati e non letti.
+
+### Il nome che prometteva
+
+Il giro 35 aveva misurato che le quattro spunte dell'handshake **non possono
+fallire**. Il nome del passo diceva ancora «firma vera, **handshake sandbox**, e i
+byte del file che scarichi».
+
+Corretto: «export fail-closed e i byte del file che scarichi (l'handshake e'
+attraversato, non certificato)», con accanto la misura del giro 35.
+
+**Un nome che promette e' una dichiarazione come le altre**, e vale la stessa
+regola dell'avvertimento stantio: peggio di nessun nome e' un nome che dice il
+falso a chi legge il job.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
