@@ -27,7 +27,15 @@ test("ELAB Lab: sim reale + marcatura errore comune, console pulita", async ({ p
   await expect(citazione).toBeVisible()
   await expect(citazione).toContainText("Vol. 1, p. 29")
   await expect(citazione).toContainText("Capitolo 6 - Cos'è il diodo LED?")
-  await expect(citazione.locator("[data-book-step]")).toHaveCount(5)
+  const passiLibro = citazione.locator("[data-book-step]")
+  await expect(passiLibro).toHaveCount(5)
+  // Il contenitore visibile NON rende visibili i figli: con
+  // `[data-book-step] { display: none }` il conteggio resta verde (misurato
+  // 2026-08-24, spec com'era exit 0). La citazione verbatim serve al docente
+  // solo se la legge.
+  for (const passo of await passiLibro.all()) {
+    await expect(passo).toBeVisible()
+  }
 
   // Solve via registry: esito ok e LED acceso con corrente numerica.
   await expect(page.locator("[data-elab-lab-solve=ok]")).toBeVisible({ timeout: 15_000 })

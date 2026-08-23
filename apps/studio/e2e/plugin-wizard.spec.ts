@@ -41,7 +41,13 @@ test("officina: spec → genera firmato → collaudo 4/4 verde → export .maest
     "nonce-echoed",
     "no-out-of-band-reply",
   ]) {
-    await expect(page.getByTestId(`harness-check-${id}`)).toHaveAttribute("data-pass", "1")
+    const check = page.getByTestId(`harness-check-${id}`)
+    // `toHaveCount` e `toHaveAttribute` leggono il DOM e IGNORANO la resa: da
+    // sole restano verdi con i quattro check nascosti da un `display: none`
+    // (misurato 2026-08-24, spec com'era exit 0). Un collaudo che l'autore del
+    // plugin non VEDE non e' un collaudo.
+    await expect(check, `il check ${id} dev'essere visibile`).toBeVisible()
+    await expect(check).toHaveAttribute("data-pass", "1")
   }
 
   // Export: fail-closed superato → download reale del package v1.

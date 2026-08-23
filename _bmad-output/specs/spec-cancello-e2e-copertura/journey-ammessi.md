@@ -1403,3 +1403,72 @@ adesso e' scritto con due misure invece che con un sospetto.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 27 — le ultime due gambe cieche, e un rosso che non si ripete
+
+Le due spec che la firma precisa aveva lasciato in sospeso erano **entrambe**
+cieche. Riparate. E il giro inciampa in qualcosa che non stavo cercando.
+
+### `plugin-wizard` — i quattro check che l'autore non vede
+
+Il collaudo dell'handshake e' asserito con `toHaveCount(4)` e quattro
+`toHaveAttribute("data-pass", "1")`: tutto DOM, niente resa.
+
+Mutazione R: `[data-testid^="harness-check-"] { display: none !important; }`
+
+| referente | exit |
+|---|---|
+| `plugin-wizard` **com'era** | **0** — cieca |
+| `plugin-wizard` **riparata** | **1** — «il check `tool-ready-received` dev'essere visibile» |
+
+Un collaudo che l'autore del plugin **non vede** non e' un collaudo: il journey
+certificava quattro spunte che potevano non esserci sullo schermo.
+
+### `elab-lab` — i cinque passi del libro
+
+`[data-book-step]` contati 5 dentro `[data-elab-lab-citation]`, che e' asserito
+visibile. **Il contenitore visibile non rende visibili i figli.**
+
+Mutazione S: `[data-book-step] { display: none !important; }`
+
+| referente | exit |
+|---|---|
+| `elab-lab` **com'era** | **0** — cieca |
+| `npx vitest run` | **0** — cieca |
+| `elab-lab` **riparata** | **1** |
+
+La citazione verbatim dal libro serve al docente **solo se la legge**.
+
+### Il conto delle gambe cieche
+
+Quattro trovate con la firma precisa, **tutte e quattro vere**: la scheda del
+founder plugin (`product-flow-shell`), i tre embed ripristinati
+(`sim-multi-experiment-restore`), i quattro check dell'handshake
+(`plugin-wizard`), i cinque passi del libro (`elab-lab`). Piu' quella trovata per
+caso in `sim-passo-passo` prima dell'ammissione. Un solo falso sospetto — il
+conteggio delle voci di nav — ritirato dopo la misura.
+
+### Il rosso che non si ripete
+
+Alla prima esecuzione dei sedici sull'albero pulito, **`sim-esp2-senza-resistore`
+exit 1** — una spec che questo giro non ha toccato.
+
+| gate | exit |
+|---|---|
+| `sim-esp2-senza-resistore` da sola | **0** (`1 passed`) |
+| i sedici, prima esecuzione | **1** (solo lei rossa) |
+| i sedici, seconda esecuzione, stesso albero | **0** |
+
+Non e' una regressione: e' un **flake**, e questa e' la seconda volta che se ne
+vede uno nella stessa forma (il giro 23 aveva visto `sim-passo-passo` fallire in
+batch e passare da solo). La verita' scomoda: **il verde dei sedici, in locale,
+non e' deterministico.** Non l'ho inseguito — costerebbe il giro — ma non lo
+lascio implicito: un cancello che a volte e' rosso senza causa e' un cancello che
+si impara a ignorare.
+
+### Lo stato
+
+Seconda esecuzione: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**,
+i sei cancelli hygiene **0**.
