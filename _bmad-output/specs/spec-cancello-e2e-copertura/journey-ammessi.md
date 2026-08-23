@@ -730,6 +730,54 @@ un elenco di nomi: e' un modello, e le dodici fisiche non si equivalgono. La
 decisione resta di Andrea — ma adesso ha davanti una tabella invece di
 un'impressione.
 
+## Giro 22 — il cartello era gia' difeso, e il mio «88» ne valeva 31
+
+Due correzioni mie, ed e' tutto cio' che questo giro produce di duraturo.
+
+### Il cartello «Verdetto non disponibile» E' difeso, e da prima di me
+
+Il giro 18 aveva notato che `data-led-state` non compare in **nessuna spec e2e**,
+e ne aveva fatto una domanda aperta: «o il caso non capita, o il blocco non viene
+renderizzato». Nessuna delle due. **Esisteva gia' un test**
+(`ElabLab.test.tsx`, «stato del componente luminoso ASSENTE») che registra un
+solve con `componentStates: {}` e pretende il cartello **piu'** il nome del
+componente.
+
+Falsificato per esserne sicuro, invece di fidarmi della lettura:
+
+| mutazione | il test |
+|---|---|
+| il marcatore `data-led-state="missing"` cambiato | **rosso (1)** |
+| il cartello non nomina piu' il componente | **rosso (1)** |
+| nessuna | verde |
+
+### ⚠️ E il numero che avevo scritto valeva un terzo
+
+Il censimento del giro 18 guardava **solo le spec e2e** e diceva «**88** emessi e
+mai nominati». Giusto per la domanda posta, **fuorviante** per quella che
+sembrava rispondere: si legge come «88 non difesi», e non lo e'. Un attributo di
+**vista** lo difende benissimo un test unitario — il cartello ne e' la prova.
+
+Contando anche i test unitari:
+
+```text
+127 emessi · 39 nominati da e2e · 91 da test unitari
+ 96 nominati da almeno un oracolo · 31 da NESSUNO
+```
+
+**Trentuno, non ottantotto.** Un terzo. E 31 e' una lista che una persona puo'
+leggere in dieci minuti, mentre 88 sembrava un cantiere.
+
+`ops/tools/attributi-senza-oracolo.py` (FABBRICA) rende il numero ripetibile
+invece di riderivarlo a mano. Mutazione: tolto a un test il nome
+`data-led-state`, il censimento passa da **31 a 32**; ripristinato, torna. Legge
+gli oracoli veri.
+
+⚠️ Il comando produce un **denominatore**, non un verdetto: nominare non e'
+asserire, e molti `data-*` sono agganci interni che non hanno bisogno di un
+oracolo. Il verso dell'errore e' pero' quello giusto — sovrastima la copertura,
+quindi i 31 sono un limite **inferiore**.
+
 ## I check REQUIRED, eseguiti (A-3 della retrospettiva)
 
 Sette giri hanno promosso journey senza mai eseguire i check che impediscono
