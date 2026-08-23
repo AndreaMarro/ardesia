@@ -427,7 +427,15 @@ jobs:
       #     journey che non gira nel viewport di default, e un cambio di
       #     breakpoint altrove puo' romperlo per una ragione giusta.
       #  3. Pretende `consoleErrors` vuoto.
-      - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile
+      #  4. ⚠️ QUESTO FILE HA DUE TEST E UNO E' SPENTO. Il secondo — «student
+      #     places a resistor via touch (montaggio tap-tap)» — e' un
+      #     `test.fixme`: non gira, e `--forbid-only` non lo intercetta (vieta
+      #     `.only`, non `.fixme`). Misurato 2026-08-25: dei 21 test contenuti
+      #     nei sedici journey, 1 e' spento, e sta qui. Il nome del passo parla
+      #     del pulsante raggiungibile, che E' coperto dal test vivo; il
+      #     piazzamento a tocco NO. Sta scritto perche' un passo verde non
+      #     dichiari una copertura che non ha.
+      - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile (1 dei 2 test del file e' un test.fixme)
         if: ${{ !cancelled() }}
         run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line --output=test-results/first-led-ipad-touch
       # Entrata il 2026-08-23, dopo TRE giri di tentativi falliti, e la storia

@@ -1624,3 +1624,58 @@ sole: **una sola causa**, e non era ne' lo stato condiviso ne' la porta.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 30 — correggo il giro 29: le due sorgenti NON divergono nei flussi misurati
+
+E trovo, cercando altro, un test **spento** dentro un journey ammesso.
+
+### La correzione
+
+Il giro 29 ha scritto che le due chiamate a `simulationSolveEvent` **divergono**
+durante la manipolazione libera. **L'ho affermato, non misurato.** Misurato oggi:
+
+`boardScene = createBoardSceneWithPlacements(scene, placements)` — cioe' e'
+DERIVATA da `scene`, e aggiunge i piazzamenti dalla palette. Il DOM calcola la
+fisica su `boardScene`; l'effetto che consegna a LessonOS la calcola su `scene`.
+Strutturalmente diverse, quindi. Ma dopo un piazzamento reale
+(`montaggio-canvas`, resistenza posata su due fori):
+
+```
+dom=solved  emesso=simulation.circuit.solved:15.3  correnteDom=15.3
+```
+
+**Stesso esito, stessa corrente.** La divergenza e' **possibile per costruzione,
+non osservata** nei flussi che il cancello esercita.
+
+Non ho aggiunto l'asserzione di uguaglianza che avevo in mente: non sono riuscito
+a costruire una mutazione che la faccia rossa senza inventarne una artificiale, e
+un'asserzione che non so vedere rossa e' la definizione di gamba decorativa. La
+domanda su quale sorgente sia quella giusta resta **aperta**, e resta un
+gate-Andrea — ma senza la parola «divergono», che non mi ero guadagnato.
+
+### Il test spento
+
+La sonda e' finita dentro `test.fixme` e non e' mai stata eseguita: e' cosi' che
+ho scoperto che `first-led-ipad-touch` **ha due test e uno e' spento**.
+
+| gate | osservato |
+|---|---|
+| test dentro i sedici journey | **21** |
+| test **spenti** (`fixme` o `skip`) | **1** |
+| dove | `first-led-ipad-touch`, «student places a resistor via touch» |
+
+`--forbid-only` vieta `.only`, **non** `.fixme`. Un test spento e' la gamba
+decorativa perfetta: non puo' fallire per costruzione, e non lascia traccia nel
+verde del passo.
+
+Il nome del passo in `ci.yml` parlava del pulsante raggiungibile — che il test
+vivo copre davvero — ma il file prometteva anche il piazzamento a tocco, che non
+gira. **Annotato**: il nome del passo ora lo dice, e il quarto costo lo spiega
+con la misura.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
