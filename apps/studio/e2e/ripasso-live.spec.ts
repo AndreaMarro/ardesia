@@ -46,6 +46,17 @@ test("errore osservato in ElabLab → compare nel ripasso del cruscotto", async 
   await expect(ripasso).toHaveAttribute("data-zripasso-aperti", /^[1-9]\d*$/, {
     timeout: 15_000,
   })
+  // Il badge CONTA, e da solo non dice che il docente veda qualcosa: con
+  // `lines: []` il pannello resta vuoto e questo journey restava verde
+  // (misurato 2026-08-25). Le righe le copre `TeacherDashboardRipassoLive.test`
+  // in jsdom, ma con un event-log INIETTATO; qui il log e' quello vero,
+  // IndexedDB, scritto dal passo 1 di questo stesso journey. Il tratto che solo
+  // questo passo puo' vedere e' log reale -> righe rese.
+  const righe = ripasso.locator("[data-zripasso-line]")
+  await expect(righe.first()).toBeVisible({ timeout: 15_000 })
+  const quante = await righe.count()
+  const aperti = Number(await ripasso.getAttribute("data-zripasso-aperti"))
+  expect(quante, `il badge dice ${aperti} aperti e le righe rese sono ${quante}`).toBeGreaterThanOrEqual(aperti)
 
   expect(consoleErrors).toEqual([])
 })

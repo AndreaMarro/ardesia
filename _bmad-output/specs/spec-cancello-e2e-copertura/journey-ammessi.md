@@ -1857,3 +1857,51 @@ dimenticare.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 34 — la caccia al sosia: quattro negativi onesti e una gamba che contava
+
+Cinque dei quattordici attributi asseriti dai sedici, tracciati alla loro
+sorgente. Quattro sono onesti. Il quinto ha dato una gamba da rafforzare.
+
+### I quattro negativi, misurati e non supposti
+
+| attributo | da dove nasce | esito |
+|---|---|---|
+| `data-plugin-trust-tier` | costante `FOUNDER_BETA_PLUGIN_TRUST_TIER` | **onesto**: il commento accanto dichiara cosa NON afferma (nessuna firma verificata al mount) e a quale condizione la costante deve sparire |
+| `data-led-burned` | `solve.result` del motore, stesso `readings` di `data-led-on` | **coperto**: tolto il verdetto dal motore, `vitest` exit **1** e `sim-esp2-senza-resistore` exit **1** |
+| `data-elab-lab-solve` | `solve?.kind` | **onesto**: e' l'esito del solve, non un suo sinonimo |
+| il contenuto del ripasso | `handle.plugin.render()` | **coperto**: svuotate le righe, `vitest` exit **1** (`TeacherDashboardRipassoLive.test`) |
+
+Nessun sosia fra questi quattro. Lo scrivo perche' un negativo misurato vale
+quanto un positivo: toglie una zona dal sospetto invece di lasciarla nel dubbio.
+
+### Il quinto: un badge che conta e un pannello che poteva restare vuoto
+
+`ripasso-live` asseriva **solo** `data-zripasso-aperti` con una regex
+`/^[1-9]\d*$/`. Mutazione AB — `lines: []` mentre il badge continua a contare:
+
+| referente | exit | legge |
+|---|---|---|
+| `ripasso-live` **com'era** | **0** | **cieca**: il badge dice «1», il pannello e' vuoto |
+| `npx vitest run` | **1** | lo vede |
+| `ripasso-live` **rafforzata** | **1** | riga visibile + righe ≥ aperti |
+| la stessa, albero pulito | **0** | verde |
+
+### Perche' non e' ridondanza, e cosa NON ho misurato
+
+Sotto AB il required va rosso, quindi su **quella** mutazione l'asserzione nuova
+duplica l'unitario. Non e' quello il suo valore, e lo scrivo per non barare:
+`TeacherDashboardRipassoLive.test` rende il pannello in jsdom **con un event-log
+iniettato**; qui il log e' quello **vero**, IndexedDB, scritto dal passo 1 dello
+stesso journey. Il tratto che solo questo passo puo' vedere e' **log reale →
+righe rese**, e quel tratto **non l'ho misurato**: non ho una mutazione che lo
+rompa senza rompere anche il resto.
+
+Il badge, comunque, non certificava piu' nulla di cio' che il docente legge.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
