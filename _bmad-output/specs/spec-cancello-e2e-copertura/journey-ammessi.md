@@ -1292,3 +1292,63 @@ Il quattordicesimo passo portava scritto «quella gamba diventerebbe cieca in
 silenzio». Restava vero fino a oggi. Ora quel blocco dice **RISOLTO**, con le due
 misure e il costo nuovo — perche' un avvertimento stantio accanto a un passo e'
 peggio di nessun avvertimento: chi lo legge crede di sapere una cosa falsa.
+
+---
+
+## Giro 25 — una gamba decorativa fra i SEDICI ammessi, e una che credevo tale e non lo era
+
+Il giro 23 aveva trovato una gamba decorativa in una spec **respinta**. Questo la
+cerca dentro il cancello, e ne trova una nel secondo journey ammesso in assoluto.
+
+### Da dove ho cominciato
+
+Scansione dei sedici per le forme che non possono fallire: `toHaveCount`,
+`toHaveAttribute` senza valore, screenshot. Nove spec ne hanno almeno una.
+`product-flow-shell` e' la piu' esposta: quattro `toHaveCount`, nessuno
+screenshot, e — la cosa che conta — un blocco di tre asserzioni sulla scheda del
+founder plugin che leggono **solo** il DOM:
+
+```ts
+await expect(founderPlugin).toHaveCount(1)
+await expect(founderPlugin).toHaveAttribute("data-founder-plugin-id", "io.ardesia.simulation")
+await expect(founderPlugin).toHaveAttribute("data-plugin-trust-tier", "builtin-reviewed")
+```
+
+### La misura
+
+Mutazione O: `[data-founder-plugin-id] { display: none !important; }`.
+
+| referente | exit | legge |
+|---|---|---|
+| `product-flow-shell` **com'era** | **0** | **cieca** |
+| `npx vitest run` | **0** | cieca |
+| `product-flow-shell` **riparata** (`toBeVisible()`) | **1** | la vede |
+| sull'albero pulito, riparata | **0** | verde |
+
+La scheda del founder plugin e' la **porta d'ingresso al simulatore**: poteva
+sparire dalla vista e il journey che la controlla restava verde.
+
+### Il dettaglio che cambia la conclusione
+
+Sotto la stessa mutazione, **tre** dei sedici vanno rossi: `first-led-ipad-touch`,
+`montaggio-canvas`, `sim-passo-passo`. Non perche' guardino la scheda — perche'
+la **cliccano**. L'elemento era difeso **di rimbalzo**, da chi lo usa, non da chi
+lo asserisce. Una difesa cosi' sparisce il giorno in cui quei tre cambiano
+percorso, e nessuno se ne accorge.
+
+### E una che credevo decorativa e non lo era
+
+Avevo rafforzato anche `toHaveCount(3)` sulle voci di navigazione. Mutazione P
+(`[data-view-nav-item] { display: none !important }`): rosso — ma alla **riga che
+c'era gia'**, `[data-view-nav-item="continuita"][aria-current="page"]`
+`toBeVisible()`, due righe sopra. La mia aggiunta era ridondante e l'ho
+**ritirata**, lasciando al suo posto un commento con la misura: quel conteggio
+aggiunge «sono TRE», che la visibilita' non dice.
+
+E' la lezione numero 2 applicata a me stesso. Avevo supposto due gambe
+decorative; misurate, era una.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

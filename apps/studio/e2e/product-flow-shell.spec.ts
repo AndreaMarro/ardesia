@@ -29,6 +29,11 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
 
   const founderPlugin = page.locator("[data-founder-plugin-id]")
   await expect(founderPlugin).toHaveCount(1)
+  // `toHaveCount` e `toHaveAttribute` leggono il DOM e IGNORANO il render: da
+  // sole restano verdi con la scheda nascosta da un `display: none` (misurato
+  // 2026-08-24). La scheda del founder plugin e' la porta d'ingresso al
+  // simulatore: dev'essere VISIBILE, non solo presente.
+  await expect(founderPlugin).toBeVisible()
   await expect(founderPlugin).toHaveAttribute("data-founder-plugin-id", "io.ardesia.simulation")
   await expect(founderPlugin).toHaveAttribute("data-plugin-trust-tier", "builtin-reviewed")
   const lessonActions = page.locator(".st-actions")
@@ -94,6 +99,10 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   ).toBeVisible()
   // La nav deve esistere QUI: senza, il passo 4 non sarebbe raggiungibile da un
   // docente, solo da un test che conosce gli URL.
+  // NB: questo `toHaveCount` NON e' decorativo, e l'ho verificato invece di
+  // supporlo: la riga qui sopra asserisce gia' `toBeVisible()` sulla voce
+  // corrente, e nascondendo `[data-view-nav-item]` e' quella a fallire (misurato
+  // 2026-08-24). Il conteggio aggiunge «sono TRE», che la visibilita' non dice.
   await expect(page.locator("[data-view-nav] [data-view-nav-item]")).toHaveCount(3)
   expect(new URL(page.url()).hash).toBe(roomHash)
 
