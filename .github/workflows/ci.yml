@@ -200,7 +200,7 @@ jobs:
       # crescere. Senza, il primo rosso nasconde tutti i journey successivi e il
       # log di CI racconta un difetto quando ce ne sono tre.
       - name: la memoria della lezione sopravvive alla navigazione (#246)
-        run: npx playwright test e2e/elab-lab-marcatura-durabile.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/elab-lab-marcatura-durabile.spec.ts --forbid-only --reporter=line --output=test-results/elab-lab-marcatura-durabile
       # Entrata il 2026-08-22. E' la spec che il commento della lane advisory
       # citava come rossa contro main senza che nessuno lo sapesse; oggi e'
       # verde. Misura che ne giustifica l'ingresso, e non era ovvia: con una
@@ -210,7 +210,7 @@ jobs:
       # tutte le sue forme, quella regressione la lascerebbe passare.
       - name: shell del docente - Lezione, Continuita, Materiali, stessa Lezione
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/product-flow-shell.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/product-flow-shell.spec.ts --forbid-only --reporter=line --output=test-results/product-flow-shell
       # Entrata il 2026-08-22. Mutazione discriminante: `RecoveryReport.recovered`
       # forzato a 0 in `IndexedDbEventLog.open()` -> questa spec esce 1, mentre
       # golden-path, il journey #246 e il journey shell docente escono tutti 0.
@@ -256,7 +256,7 @@ jobs:
       # il prodotto.
       - name: contratto event-log su piu' tab - exactly-once, contiguo, durevole a freddo
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/lessonos-eventlog-multitab.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/lessonos-eventlog-multitab.spec.ts --forbid-only --reporter=line --output=test-results/lessonos-eventlog-multitab
       # Entrata il 2026-08-22. Mutazione discriminante trovata al primo colpo:
       # `SavedLessonsView.restoreMessage()`, ramo `no-snapshot`, smette di dire
       # «il bundle non contiene memoria LessonOS» e dice solo «Import
@@ -282,7 +282,7 @@ jobs:
       # Ma il costo va saputo prima, non scoperto con la PR rossa in mano.
       - name: Materiali del docente - preview, commit, export, riapertura a freddo, e tutto resta locale
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/saved-lessons.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/saved-lessons.spec.ts --forbid-only --reporter=line --output=test-results/saved-lessons
       # Entrata il 2026-08-22, ed e' il primo journey del cancello che difende
       # una VERITA' FISICA invece di un comportamento software.
       # v1-cap6-esp2 e' l'esperimento del libro «LED senza resistore (cosa NON
@@ -307,7 +307,7 @@ jobs:
       # sorgente del plugin lascia verdi tutti, candidata compresa.
       - name: verdetto elettrico onesto - LED senza resistore = BRUCIATO, mai un finto acceso
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/sim-esp2-senza-resistore.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/sim-esp2-senza-resistore.spec.ts --forbid-only --reporter=line --output=test-results/sim-esp2-senza-resistore
       # Entrata il 2026-08-22, sesto giro. E' il lato CONSUMATORE della stessa
       # memoria che il journey #246 difende dal lato produttore: l'errore che il
       # docente ha segnato in ElabLab deve comparire nella zona «Ripasso errori»
@@ -337,7 +337,7 @@ jobs:
       #     messaggio porta fuori strada.
       - name: ripasso del docente - l'errore segnato in ElabLab compare nel cruscotto
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/ripasso-live.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/ripasso-live.spec.ts --forbid-only --reporter=line --output=test-results/ripasso-live
       # Entrata il 2026-08-22, settimo giro. E' l'unico journey che segue il
       # FILE fuori dall'app e lo riporta dentro: errore marcato in ELAB Lab →
       # cruscotto → Genera → Esporta (download vero) → import del file appena
@@ -363,7 +363,7 @@ jobs:
       #  3. Come `ripasso-live`, pretende `consoleErrors` vuoto su due viste.
       - name: student pack - il file esce dall'app, torna dentro, e porta le sue fonti
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/studentpack-artifact.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/studentpack-artifact.spec.ts --forbid-only --reporter=line --output=test-results/studentpack-artifact
       # Entrata il 2026-08-22, ed e' la prima ammessa con il criterio COMPLETO:
       # non basta essere discriminante rispetto a questo cancello, deve esserlo
       # AL NETTO di cio' che e' gia' required. Il 2026-08-22 questa stessa spec
@@ -399,7 +399,7 @@ jobs:
       #     rossa senza che il post-it si sia rimpicciolito, e' questo.
       - name: post-it di plugin - identita' per istanza, e riempiono il riquadro assegnato
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --forbid-only --reporter=line --output=test-results/plugin-postit-room-reload
       # Entrata il 2026-08-23. Difende un difetto di LAYOUT RESPONSIVO, ed e' la
       # prima di questa famiglia: su iPad/LIM a 810px la toolbar completa
       # (~1356px) non entrava e l'hamburger compariva solo <=768px, quindi il
@@ -429,7 +429,7 @@ jobs:
       #  3. Pretende `consoleErrors` vuoto.
       - name: iPad e LIM - il pulsante che inserisce il plugin resta raggiungibile
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/first-led-ipad-touch.spec.ts --forbid-only --reporter=line --output=test-results/first-led-ipad-touch
       # Entrata il 2026-08-23, dopo TRE giri di tentativi falliti, e la storia
       # sta nel commento sopra BoardWires in ToolCanvasEmbeddable.tsx. Difende
       # un invariante che il codice dichiarava e nessuno faceva rispettare:
@@ -452,7 +452,7 @@ jobs:
       #     DENTRO lo stage legacy, non sul canvas core.
       - name: montaggio libero - i fili non rubano il tocco ai fori sotto
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/montaggio-canvas.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/montaggio-canvas.spec.ts --forbid-only --reporter=line --output=test-results/montaggio-canvas
       # Entrata il 2026-08-23. Difende la RISOLUZIONE DEI TOKEN nel documento
       # renderizzato: il difetto storico e' misurato sulla PRODUZIONE VIVA del
       # 2026-07-31 — 45 custom property usate in fill/stroke e NESSUNA definita,
@@ -480,7 +480,7 @@ jobs:
       #     resta verde su una domanda piu' piccola di quella che dichiara.
       - name: ELAB Lab - il disegno porta i suoi colori, non blocchi neri
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/elab-lab-canvas-colors.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/elab-lab-canvas-colors.spec.ts --forbid-only --reporter=line --output=test-results/elab-lab-canvas-colors
       # Entrata il 2026-08-23, e la storia e' istruttiva: al primo giudizio era
       # RESPINTA. La sua mutazione ovvia — l'id del componente luminoso che
       # torna la costante `led1` invece di leggersi dall'esperimento, cioe' il
@@ -508,7 +508,7 @@ jobs:
       #  3. Pretende `consoleErrors` vuoto.
       - name: lampada RGB - tre potenziometri, canali dal motore, e si VEDE anche su telefono
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/sim-esp6-rgb.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/sim-esp6-rgb.spec.ts --forbid-only --reporter=line --output=test-results/sim-esp6-rgb
 
       # 13) officina plugin - AMMESSA per una classe nuova: i BYTE che il
       # browser consegna davvero. Le altre dodici guardano cio' che la pagina
@@ -543,7 +543,7 @@ jobs:
       #  4. Pretende `consoleErrors` vuoto.
       - name: officina plugin - firma vera, handshake sandbox, e i byte del file che scarichi
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/plugin-wizard.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/plugin-wizard.spec.ts --forbid-only --reporter=line --output=test-results/plugin-wizard
 
       # 14) board multi-esperimento ripristinata - AMMESSA per una regressione a
       # SINGLETON nel render: un solo embed vivo per tool, in silenzio.
@@ -583,7 +583,7 @@ jobs:
       #     restore fa rossa questa gamba, anche se non c'entra col setState.
       - name: board multi-esperimento - tre embed ripristinati insieme dopo un reload vero
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/sim-multi-experiment-restore.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/sim-multi-experiment-restore.spec.ts --forbid-only --reporter=line --output=test-results/sim-multi-experiment-restore
 
       # 15) ELAB Lab - AMMESSA per il CABLAGGIO dell'export: che la memoria
       # scaricata sia quella dell'esperimento aperto.
@@ -615,7 +615,7 @@ jobs:
       #  5. Pretende `consoleErrors` vuoto.
       - name: ELAB Lab - citazione dal libro, marcatura errore, e la memoria che scarichi
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/elab-lab.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/elab-lab.spec.ts --forbid-only --reporter=line --output=test-results/elab-lab
 
       # 16) passo-passo sul telefono - AMMESSA DOPO RIPARAZIONE. Respinta il
       # 2026-08-24 per IMPOTENZA: la sua gamba mobile faceva `toHaveCount(4)` e
@@ -644,7 +644,11 @@ jobs:
       #     visivo, e sono etichettati tali: non sono un oracolo.
       - name: passo-passo - i quattro passi del libro VISIBILI anche su telefono
         if: ${{ !cancelled() }}
-        run: npx playwright test e2e/sim-passo-passo.spec.ts --forbid-only --reporter=line
+        run: npx playwright test e2e/sim-passo-passo.spec.ts --forbid-only --reporter=line --output=test-results/sim-passo-passo
+      # `--output` per journey: senza, ogni invocazione di playwright SVUOTA
+      # `test-results/`, e le prove del journey caduto le cancella il journey
+      # SUCCESSIVO. Misurato 2026-08-24: cartella condivisa -> trace
+      # sopravvissuti 0; `--output` per journey -> 1.
       - uses: actions/upload-artifact@v4
         if: always()
         with:

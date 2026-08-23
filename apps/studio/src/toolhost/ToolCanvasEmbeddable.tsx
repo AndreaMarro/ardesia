@@ -904,6 +904,13 @@ function ReferenceSimulationCanvasTool({
   // ri-render; nessuna emissione per esiti idle. Il mapping esito→evento è la
   // funzione PURA e testata simulationSolveEvent.
   const lastEmittedSolveRef = useRef<string | null>(null);
+  // Il DOM esponeva `solveEvent`, che e' un CALCOLO PARALLELO (useMemo su
+  // `boardScene`), non l'evento consegnato a LessonOS dall'effetto qui sotto
+  // (che usa `scene`, cioe' l'override di manipolazione libera quando c'e').
+  // Le due sorgenti possono divergere, e un journey che leggeva
+  // `data-sim-last-event-kind` credeva di osservare cio' che il log ha
+  // ricevuto. Questo stato registra cio' che e' stato EMESSO davvero.
+  const [emittedEventScene, setEmittedEventScene] = useState<string>("");
   useEffect(() => {
     if (!host?.emitLessonEvent) return;
     const outcome = deriveSimulationSolveOutcome(scene, sideMnaView, validation.ok);
@@ -917,6 +924,7 @@ function ReferenceSimulationCanvasTool({
     if (!event) return;
     lastEmittedSolveRef.current = signature;
     host.emitLessonEvent(event);
+    setEmittedEventScene("sceneId" in event ? (event.sceneId ?? "") : "");
   }, [host, scene, sideMnaView, validation.ok]);
 
   function applyPlacements(next: MontaggioPlacement[]) {
@@ -1145,6 +1153,7 @@ function ReferenceSimulationCanvasTool({
               solveOutcome.kind === "solved" ? solveOutcome.currentMa.toFixed(1) : "0.0"
             }
             data-sim-last-event-kind={solveEvent?.kind ?? "idle"}
+            data-sim-emitted-event-scene={emittedEventScene}
             data-sim-error-id={
               solveEvent?.kind === "simulation.error.observed" ? solveEvent.errorId : ""
             }

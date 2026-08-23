@@ -8,7 +8,17 @@ const baseURL = externalBaseURL || "http://localhost:5199"
 
 export default defineConfig({
   testDir: "./e2e",
-  timeout: 30_000,
+  // 60s, non 30. Misurato 2026-08-24 dentro il batch dei sedici (tempi per
+  // journey, avvio del dev server incluso): montaggio-canvas 32s,
+  // sim-multi-experiment-restore 33s, sim-passo-passo 33s,
+  // elab-lab-canvas-colors 47s. Con un tetto di 30s i journey pesanti di
+  // canvas correvano a pochi secondi dal soffitto, e sotto carico lo
+  // superavano: il flake visto tre volte (giri 23, 27, 29 — tre spec
+  // diverse, sempre in batch, sempre verdi da sole) era
+  // `Test timeout of 30000ms exceeded`, letto nel trace del giro 29.
+  // COSTO dichiarato: un blocco vero adesso impiega il doppio a farsi
+  // vedere. E' il prezzo per un rosso che significa qualcosa.
+  timeout: 60_000,
   use: {
     baseURL,
     headless: true,

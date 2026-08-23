@@ -40,6 +40,15 @@ async function insertSimViaTouch(page: Page) {
 test("iPad+touch: teacher opens the menu and inserts the Simulation Plugin", async ({ page }) => {
   const errors = collectErrors(page)
   await insertSimViaTouch(page)
+  // L'evento LessonOS del solve deve uscire sotto l'esperimento CHE E' APERTO.
+  // `simulationSolveEvent` e' una funzione pura, coperta dagli unitari con gli
+  // argomenti che gli passa il test; quali argomenti passi il COMPONENTE non lo
+  // verificava nessuno. Misurato 2026-08-24: sostituito `scene.experimentId` con
+  // un id inventato, vitest exit 0, tsc exit 0, tutti e sedici i journey exit 0.
+  const freeMode = page.locator("[data-simulation-free-mode]").first()
+  await expect(freeMode).toBeVisible({ timeout: 15_000 })
+  await expect(freeMode).toHaveAttribute("data-sim-emitted-event-scene", "v1-cap6-esp1")
+
   const mount = page.locator("[data-elab-core-canvas-mounted]").first()
   await expect(mount).toBeVisible({ timeout: 15_000 })
   expect(["pending", "true"]).toContain(await mount.getAttribute("data-elab-core-canvas-mounted"))

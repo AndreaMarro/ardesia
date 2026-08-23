@@ -1543,3 +1543,84 @@ Il flake resta aperto. La prossima volta che accade, ci sara' un trace da aprire
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 29 — il flake ha un nome, e il DOM diceva una cosa per un'altra
+
+Partito per riparare la difesa di rimbalzo. Trovato che era **gia' chiusa**, poi
+un quarto difetto fra due coperture, e infine — grazie al trace cablato ieri —
+**la causa del flake**.
+
+### La difesa di rimbalzo era gia' chiusa, e non lo sapevo
+
+`[data-founder-plugin-id]` e
+`[aria-label="Inserisci Simulation Plugin sulla lavagna"]` sono **lo stesso
+nodo**: il bottone della toolbar porta entrambi. La riparazione del giro 25
+(`toBeVisible()` sulla scheda founder) copriva gia' la porta d'ingresso.
+Misurato: nascosto il bottone, `product-flow-shell` exit **1**, `vitest` **0**.
+
+Due mutazioni che credevo su elementi diversi erano sullo stesso elemento. Ecco
+perche' producevano lo stesso insieme di rossi.
+
+### Il quarto difetto fra due coperture
+
+`simulationSolveEvent` e' puro e coperto dagli unitari **con gli argomenti che
+gli passa il test**. Quali argomenti passi il componente non lo verificava
+nessuno.
+
+Mutazione U: `experimentId: "v1-cap6-esp9"` al posto di `scene.experimentId`.
+
+| referente | exit |
+|---|---|
+| `npx vitest run` | **0** |
+| `npx tsc -b --noEmit` | **0** |
+| i **sedici** journey | **0** |
+
+### E il DOM esponeva un calcolo parallelo
+
+Il primo tentativo di riparazione — asserire `data-sim-last-event-scene` — e'
+rimasto **verde** sotto la mutazione. La sonda dice perche': ci sono **due**
+chiamate a `simulationSolveEvent`, con **due sorgenti diverse**.
+
+- riga 916, nell'effetto: `scene.experimentId` — l'evento **consegnato** a LessonOS
+- riga 1028, in un `useMemo`: `boardScene.experimentId` — l'evento **mostrato** nel DOM
+
+`scene` e' `sceneOverride ?? baseScene`: durante la manipolazione libera le due
+divergono. Un journey che leggeva `data-sim-last-event-kind` credeva di osservare
+cio' che il log ha ricevuto, e osservava un calcolo parallelo.
+
+Riparazione: uno stato registra cio' che e' stato **emesso davvero**, esposto come
+`data-sim-emitted-event-scene`, e `first-led-ipad-touch` lo asserisce.
+Sotto la mutazione U: exit **1**. Albero pulito: exit **0**.
+
+### Il flake ha un nome
+
+Il batch ha fatto cadere `montaggio-canvas`. Alla prima caduta **il trace non
+c'era**: ogni invocazione di playwright **svuota `test-results/`**, quindi le
+prove del journey caduto le cancella il journey successivo.
+
+| gate | trace sopravvissuti |
+|---|---|
+| cartella condivisa (com'era) | **0** |
+| `--output` per journey | **1** |
+
+Cablato `--output=test-results/<nome>` sui sedici passi. Alla caduta successiva
+il trace c'era, e diceva: **`Test timeout of 30000ms exceeded`**.
+
+Tempi per journey misurati dentro il batch (avvio del dev server incluso):
+`montaggio-canvas` **32s**, `sim-multi-experiment-restore` **33s**,
+`sim-passo-passo` **33s**, `elab-lab-canvas-colors` **47s**. Con il tetto a
+**30s** i journey pesanti di canvas correvano a pochi secondi dal soffitto.
+
+Tetto portato a **60s**. Controllo che governi davvero: tetto a 5s →
+`montaggio-canvas` exit **1**. **COSTO dichiarato**: un blocco vero adesso
+impiega il doppio a farsi vedere.
+
+Tre flake, tre spec diverse (giri 23, 27, 29), sempre in batch, sempre verdi da
+sole: **una sola causa**, e non era ne' lo stato condiviso ne' la porta.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.
