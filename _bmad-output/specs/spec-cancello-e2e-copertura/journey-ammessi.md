@@ -2126,3 +2126,54 @@ il sospettato sono io.
 
 Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
 cancelli hygiene **0**.
+
+---
+
+## Giro 40 — la sesta coppia NON e' un difetto, e la ragione vale piu' di un difetto
+
+`lessonBundle` — l'export `.lesson`, con il journey `saved-lessons` — ha la stessa
+forma delle cinque coppie che hanno reso un difetto. **Non e' un difetto**, e il
+perche' spiega anche i cinque precedenti.
+
+### Le due mutazioni
+
+**AJ** — il bundle di un'altra stanza (`exportLesson("stanza-sbagliata", …)`):
+`saved-lessons` exit **1**, ma per il motivo sbagliato: `page.waitForEvent:
+Test timeout` — la stanza non esiste, l'export **solleva**, il download non
+avviene. Fail-closed del prodotto, mutazione inutilizzabile.
+
+**AJ2** — il nome giusto e i **byte** sbagliati (`download(new Blob(["{}"]), …)`):
+
+| referente | exit | legge |
+|---|---|---|
+| `saved-lessons` | **1** | riga **112**, `Anteprima import` non compare |
+| `npx vitest run` | **0** | cieca |
+| `npx tsc -b --noEmit` | **0** | cieco |
+
+### Perche' non e' un difetto: il round-trip e' un oracolo
+
+`saved-lessons` **non apre** il file scaricato — asserisce solo il nome e che il
+percorso esista. Poi lo **reimporta**. Ed e' il reimport a prendere i byte
+sbagliati, senza sapere niente del formato.
+
+**Il round-trip e' un oracolo che non ha bisogno di conoscere la forma del dato.**
+
+### E la coppia che spiega il quinto difetto
+
+Anche `studentpack-artifact` reimporta il file che ha scaricato — e ieri era
+**cieco** al pack di un altro candidato. Le due misure insieme dicono la regola:
+
+| oracolo | prende | non prende |
+|---|---|---|
+| **round-trip** (esporta e reimporta) | byte corrotti, formato rotto | **identita' sbagliata**, se il file e' valido |
+| **asserzione sul campo** (`candidateId`) | identita' sbagliata | niente sul resto del file |
+
+Servono **entrambi**, e servono per ragioni diverse. Un file valido ma di un altro
+proprietario passa qualunque round-trip: e' esattamente il difetto di ieri.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**.
+Nessuna riparazione: non ho una mutazione che faccia fallire un'asserzione
+d'identita' su `saved-lessons` senza costruire una seconda stanza reale, e
+**un'asserzione che non so vedere rossa non la scrivo**.
