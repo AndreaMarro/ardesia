@@ -2177,3 +2177,55 @@ Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**.
 Nessuna riparazione: non ho una mutazione che faccia fallire un'asserzione
 d'identita' su `saved-lessons` senza costruire una seconda stanza reale, e
 **un'asserzione che non so vedere rossa non la scrivo**.
+
+---
+
+## Giro 41 — tre embed che tornano uguali: la regola dei due oracoli rende subito
+
+Il giro precedente ha misurato che un round-trip prende i byte corrotti e **non**
+l'identita' sbagliata. Applicata la regola al primo candidato, il difetto c'era.
+
+### Il sospetto, e la sua fonte
+
+`sim-multi-experiment-restore` dichiara nella sua prima riga: «board SALVATA con
+esperimenti sim **DISTINTI** (v1-cap6-esp1/esp2/esp3) ripristinata su RELOAD».
+Le sue asserzioni erano: **conteggio** degli embed, **conteggio** dei canvas core,
+**visibilita'** (aggiunta al giro 26) e zero errori di console. Nessuna diceva
+**quali** esperimenti fossero tornati.
+
+### La mutazione
+
+`resolveSimulationScene(undefined, snapshot)` — il ripristino **ignora lo stato
+salvato** dell'embed, e tutti e tre tornano sull'esperimento di default.
+
+| referente | exit | legge |
+|---|---|---|
+| `sim-multi-experiment-restore` **com'era** | **0** | **cieca** |
+| `npx vitest run` | **1** | lo vede |
+| la spec **rafforzata** | **1** | riga **111**, `Expected - 2 / Received + 0` |
+| la stessa, albero pulito | **0** | verde |
+
+Il salva-ricarica funzionava: tre embed, tre canvas, tutti visibili. Erano **lo
+stesso esperimento tre volte**, e il journey che esiste per gli esperimenti
+distinti non se ne accorgeva.
+
+### La riparazione
+
+Gli esperimenti attesi si leggono **dalla fixture**, non si scrivono a mano: se la
+fixture cambia, l'asserzione la segue. Poi si confronta l'insieme dei
+`data-experiment-id` visti con quello atteso.
+
+### La regola, confermata al primo colpo
+
+| oracolo | prende | NON prende |
+|---|---|---|
+| round-trip / salva-ricarica | byte corrotti, formato rotto, mount fallito | **identita'**: chi e' tornato |
+| asserzione sull'identita' | chi e' tornato | il resto |
+
+Due journey su due, cercati con questa regola, avevano il buco: `studentpack-artifact`
+(il pack di un altro candidato) e ora `sim-multi-experiment-restore`.
+
+### Lo stato
+
+Albero pulito: **sedici** journey exit **0**, `vitest` **0**, `tsc` **0**, i sei
+cancelli hygiene **0**.

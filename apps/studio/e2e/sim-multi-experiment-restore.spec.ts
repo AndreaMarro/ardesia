@@ -90,6 +90,25 @@ test("board multi-esperimento ripristinata (reload) NON emette warning setState-
   for (const embed of await ripristinati.all()) {
     await expect(embed).toBeVisible()
   }
+
+  // …e devono essere I TRE SALVATI, non tre qualunque. Il round-trip
+  // salva-ricarica e' un oracolo per i byte, NON per l'identita': misurato il
+  // 2026-08-24, con il ripristino che ignora lo stato salvato (tutti e tre
+  // tornano sull'esperimento di default) questo journey restava VERDE, e solo
+  // la suite unitaria se ne accorgeva. Conteggio e visibilita' non rispondono
+  // alla domanda «di chi sono».
+  const attesi = [...new Set(
+    (JSON.stringify(board).match(/v\d-cap\d+-esp\d+/g) ?? []),
+  )].sort()
+  expect(attesi.length, "la fixture deve dichiarare esperimenti distinti").toBe(board.length)
+  await expect
+    .poll(async () => {
+      const visti = await page.locator("[data-experiment-id]").evaluateAll((nodi) =>
+        nodi.map((n) => n.getAttribute("data-experiment-id") ?? ""),
+      )
+      return [...new Set(visti)].sort()
+    }, { timeout: 20_000 })
+    .toEqual(attesi)
   // Margine per warning emessi in commit post-mount.
   await page.waitForTimeout(1_500)
 
