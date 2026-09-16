@@ -13,7 +13,7 @@
 // lezione che invece c'e'.
 
 import { describe, it, expect, afterEach, vi } from "vitest"
-import { cleanup, render, screen } from "@testing-library/react"
+import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import ContinuityView from "../design/ContinuityView"
 import type { IndexedDbEventLogHandle } from "../lessonos/indexedDbEventLog"
 import type {
@@ -250,6 +250,43 @@ describe("ContinuityView", () => {
     expect(
       (await screen.findByTestId("continuity-surface")).getAttribute("data-state"),
     ).toBe("storage-unavailable")
+  })
+
+  it("snapshot che rigetta: niente loading infinito, stato d'errore esplicito", async () => {
+    // Se il loader rigetta (indice corrotto, lettura rifiutata), la vista non
+    // deve restare su «Caricamento…» per sempre: e' la forma peggiore di
+    // ricevuta, perche' finge attesa mentre non succedera' piu' niente.
+    at(`/?vista=continuita&sessione=${SESSION_ONE}#${LESSON_ID}`)
+    render(
+      <ContinuityView
+        deps={{
+          openEventLog: async () => handleWith([]),
+          loadSnapshot: () => Promise.reject(new Error("indice sessioni illeggibile")),
+        }}
+      />,
+    )
+
+    // Il loading TERMINA: senza fix questo waitFor scade (la card resta
+    // data-continuity-phase="loading" e la rejection resta unhandled).
+    await waitFor(
+      () => {
+        const phase = document
+          .querySelector("[data-continuity-phase]")
+          ?.getAttribute("data-continuity-phase")
+        expect(phase).not.toBe("loading")
+      },
+      { timeout: 2000 },
+    )
+    const card = document.querySelector("[data-continuity-phase]")
+    expect(card?.getAttribute("data-continuity-phase")).toBe("load-failed")
+    // Stato esplicito: un alert leggibile, non un falso "nessuna sessione"
+    // (quella sarebbe la lista, qui siamo nello snapshot) e non un successo.
+    expect(card?.getAttribute("role")).toBe("alert")
+    expect(card?.textContent ?? "").toContain("indice sessioni illeggibile")
+    // Una via d'uscita sola e onesta, come negli altri rami d'errore.
+    expect(card?.querySelector('[data-next-action="reopen-lesson"]')).not.toBeNull()
+    // Lo scope resta quello chiesto: lesson visibile nella URL/scope.
+    expect(window.location.hash).toBe(`#${LESSON_ID}`)
   })
 
   it("con ?sessione: chiede lo snapshot per la tripla esatta dello scope", async () => {

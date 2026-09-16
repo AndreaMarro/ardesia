@@ -127,15 +127,32 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
       if (lessonId !== null && sessionId !== null) {
         if (!cancelled) setState({ phase: "snapshot", card: { kind: "loading" } })
         const load = deps?.loadSnapshot ?? loadScopedContinuitySnapshot
-        const result: LoadScopedContinuityResultV1 = await load(
-          { lessonId, roomId: lessonId, sessionId },
-          {
-            createEventReader: (scope) => openIndexedDbContinuityEventReader({}, scope),
-            createWorkspaceReader: async () =>
-              createWorkspaceStoreContinuityWorkspaceReader(workspaceStore),
-            buildCommitSha: typeof __ARDESIA_GIT_SHA__ === "string" ? __ARDESIA_GIT_SHA__ : null,
-          },
-        )
+        let result: LoadScopedContinuityResultV1
+        try {
+          result = await load(
+            { lessonId, roomId: lessonId, sessionId },
+            {
+              createEventReader: (scope) => openIndexedDbContinuityEventReader({}, scope),
+              createWorkspaceReader: async () =>
+                createWorkspaceStoreContinuityWorkspaceReader(workspaceStore),
+              buildCommitSha: typeof __ARDESIA_GIT_SHA__ === "string" ? __ARDESIA_GIT_SHA__ : null,
+            },
+          )
+        } catch (error) {
+          // Il loader ha rigettato: senza questo ramo la card resterebbe su
+          // "loading" per sempre (rejection unhandled). Lo scope era valido,
+          // a fallire e' il caricamento — quindi `load-failed`, mai un falso
+          // "nessuna sessione" ne' un successo inventato.
+          if (cancelled) return
+          setState({
+            phase: "snapshot",
+            card: {
+              kind: "load-failed",
+              code: error instanceof Error ? error.message : String(error),
+            },
+          })
+          return
+        }
         if (cancelled) return
         setState({
           phase: "snapshot",

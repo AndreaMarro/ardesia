@@ -29,6 +29,13 @@ export type ContinuityResumeCardStateV1 =
   | Readonly<{ kind: "loading" }>
   | Readonly<{ kind: "scope-invalid"; code: ContinuityScopeErrorCode }>
   | Readonly<{ kind: "loaded"; projection: ContinuityProjectionV1 }>
+  /**
+   * Il loader ha rigettato (lettura rifiutata, indice corrotto…): lo scope
+   * era valido, a fallire e' stato il caricamento. Distinto da
+   * `scope-invalid` — riusare quello mentirebbe sulla causa — e da `loaded`:
+   * senza snapshot non si fabbrica una projection.
+   */
+  | Readonly<{ kind: "load-failed"; code: string }>
 
 export interface ContinuityResumeCardProps {
   readonly state: ContinuityResumeCardStateV1
@@ -192,6 +199,31 @@ function ScopeInvalidState(props: { code: ContinuityScopeErrorCode }) {
   )
 }
 
+function LoadFailedState(props: { code: string }) {
+  // Come scope-invalid: UNA azione fuori loading (reopen-lesson alla root),
+  // role=alert, causa visibile. Il codice e' quello riportato dal loader
+  // (stessa convenzione di continuitySurface "unreadable"): dirlo e' l'unica
+  // risposta onesta, nasconderlo sarebbe un errore muto.
+  return (
+    <section
+      className="continuity-resume continuity-resume-load-failed"
+      data-continuity-phase="load-failed"
+      role="alert"
+    >
+      <p data-continuity-title>Continuità non caricata</p>
+      <p data-continuity-detail>Non è stato possibile caricare questa sessione: {props.code}.</p>
+      <a
+        data-next-action="reopen-lesson"
+        data-next-action-priority="4"
+        data-next-action-cause="load-failed"
+        href="/"
+      >
+        {NEXT_ACTION_TEXT["reopen-lesson"]}
+      </a>
+    </section>
+  )
+}
+
 function LoadedState(props: { projection: ContinuityProjectionV1 }) {
   const { projection } = props
   const role = PHASE_ROLE[projection.phase]
@@ -236,6 +268,8 @@ export default function ContinuityResumeCard(props: ContinuityResumeCardProps) {
       return <LoadingState />
     case "scope-invalid":
       return <ScopeInvalidState code={state.code} />
+    case "load-failed":
+      return <LoadFailedState code={state.code} />
     case "loaded":
       return <LoadedState projection={state.projection} />
   }
