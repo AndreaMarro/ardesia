@@ -1,12 +1,12 @@
 // Product-factory (P30) — primo deliverable UMANO-LEGGIBILE: un recap.html
 // autosufficiente e stampabile che il docente consegna allo studente.
-// Deriva SOLO da LessonRecap (già proiettato): nessuna nuova persistenza,
-// ZERO PII (il recap non contiene nomi/dati studente), e rende LEGGIBILE la
-// provenienza (pagine del manuale viste = fonti). Estetica "ardesioso":
-// ardesia fredda + serif da display + un accento-mobile alla Calder.
+// Deriva SOLO da LessonOutcome (thin waist post-lezione): nessuna nuova
+// persistenza, ZERO PII, e rende LEGGIBILE la provenienza. Estetica
+// "ardesioso": ardesia fredda + serif da display + un accento-mobile
+// alla Calder.
 import type { LessonRecap } from "./lessonRecap"
 import { formatDuration } from "./lessonRecap"
-import type { StudyDigest } from "../lessonos/studyDigest"
+import type { LessonOutcomeV1 } from "./lessonOutcome"
 
 function esc(s: string): string {
   return s
@@ -31,9 +31,11 @@ const ELEMENT_LABEL_IT: Record<string, string> = {
 
 /**
  * HTML autosufficiente (CSS inline, nessuna risorsa esterna), stampabile.
- * Deterministico: stesso recap → stesso documento.
+ * Deterministico: stesso outcome → stesso documento.
  */
-export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string {
+export function buildRecapHtml(outcome: LessonOutcomeV1): string {
+  const recap: LessonRecap = outcome.recap
+  const digest = outcome.pedagogy.status === "available" ? outcome.pedagogy.digest : null
   const title = esc(recap.title)
   const duration = formatDuration(recap.durationMs)
   const pages = [...recap.pdfPagesViewed].sort((a, b) => a - b)

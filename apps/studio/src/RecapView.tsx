@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { buildRecapHtml } from "./store/recapHtml"
+import { createLessonOutcome } from "./store/lessonOutcome"
 import { createEventLogStore } from "./lessonos/indexedDbEventLog"
 import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
 import { lessonSlug } from "./lessonSlug"
@@ -75,9 +76,12 @@ export default function RecapView({ store, room }: RecapViewProps) {
 
   // react-best-practices: deriva l'HTML del materiale UNA volta per recap
   // (memoized), unica fonte per anteprima E download — mai rigenerato a ogni render.
+  // L'input e' il LessonOutcome (thin waist): room + recap + digest/null.
   const recapHtml = useMemo(
-    () => (recap && !isRecapEmpty(recap) ? buildRecapHtml(recap, digest ?? undefined) : null),
-    [recap, digest],
+    () => (recap && !isRecapEmpty(recap)
+      ? buildRecapHtml(createLessonOutcome(room, recap, digest))
+      : null),
+    [recap, digest, room],
   )
 
   async function handleExport() {
