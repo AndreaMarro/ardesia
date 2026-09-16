@@ -36,7 +36,14 @@ const RAMI: ReadonlyArray<{ nome: string; stato: ContinuitySurfaceStateV1 }> = [
   { nome: "lettura fallita", stato: { kind: "unreadable", code: "QuotaExceededError" } },
   {
     nome: "elenco sessioni",
-    stato: { kind: "sessions", lessonId: "wbstudio-abc", sessionIds: ["s-1", "s-2"] },
+    stato: {
+      kind: "sessions",
+      lessonId: "wbstudio-abc",
+      sessions: [
+        { sessionId: "11111111-1111-4111-8111-111111111111", firstSeenAt: "2026-08-01T09:00:00.000Z" },
+        { sessionId: "22222222-2222-4222-8222-222222222222", firstSeenAt: null },
+      ],
+    },
   },
 ]
 

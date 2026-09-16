@@ -67,6 +67,30 @@ function requestedSessionId(): string | null {
 }
 
 /**
+ * Etichetta docente per la data di inizio di una sessione.
+ *
+ * `null` = nessuna data affidabile da mostrare (sessione senza eventi
+ * leggibili o istante non valido): la vista dice «data non disponibile»
+ * invece di inventare o di stampare «Invalid Date». L'istante esatto resta
+ * sulla macchina (`<time dateTime>`), il testo e' per il docente.
+ */
+function sessionStartLabel(firstSeenAt: string | null): { dateTime: string; text: string } | null {
+  if (firstSeenAt === null) return null
+  const instant = new Date(firstSeenAt)
+  if (!Number.isFinite(instant.getTime())) return null
+  return {
+    dateTime: firstSeenAt,
+    text: new Intl.DateTimeFormat("it-IT", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(instant),
+  }
+}
+
+/**
  * Href della sessione, con lo hash della stanza preservato. Senza lo hash il
  * link porterebbe a una lezione diversa da quella che si sta guardando.
  */
@@ -190,50 +214,62 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
           detail="L'archivio è stato letto e per questa lezione non risulta alcuna sessione."
         />
       )
-    case "sessions":
+    case "sessions": {
+      // L'ordine arriva dalla superficie (`readResumableSessions` ordina per
+      // data di inizio, dalla piu' recente): la prima voce e' quella da cui
+      // il docente normalmente vuole ripartire — questa e' una superficie di
+      // ripresa, non un archivio storico. Il marchio «più recente» va sulla
+      // prima voce SOLO quando ogni sessione ha una data nota: se anche una
+      // sola manca, una ignota potrebbe essere la vera piu' recente e
+      // incoronarne un'altra mentirebbe. Stessa ragione per le sessioni senza
+      // data in fondo: restano in lista e lo si dice.
+      const first = surface.sessions[0]
+      const allDated =
+        surface.sessions.length > 0 &&
+        surface.sessions.every((session) => sessionStartLabel(session.firstSeenAt) !== null)
+      const latestId = first !== undefined && allDated ? first.sessionId : null
+      const someUndated = !allDated && surface.sessions.length > 0
       return (
         <section data-testid="continuity-surface" data-state="sessions" className="st-panel">
           <ViewNav current="continuita" />
           <h1>Riprendi una sessione</h1>
           <p>Lezione {surface.lessonId}</p>
-          {/*
-            L'ordine non e' quello temporale, e dirlo e' obbligatorio.
-            `listSessionIds` scorre l'indice `[lessonId, sessionId, seq]`, quindi
-            ordina LESSICOGRAFICAMENTE per `sessionId` — che e' un UUID casuale.
-            Numerare le voci senza questa riga farebbe promettere alla vista una
-            cronologia che l'archivio non conserva: sarebbe una ricevuta che
-            mente, esattamente la classe di difetto che questo sottosistema
-            documenta di voler evitare.
-            La data di ciascuna sessione richiede di leggere il primo envelope
-            per sessione: non e' fatto qui, ed e' il lavoro di F0-6.
-          */}
           <p className="st-hint">
-            L'archivio elenca le sessioni nel proprio ordine interno, che non è
-            quello temporale: la numerazione qui sotto non dice quale sia la più
-            recente.
+            In ordine di inizio, dalla più recente.
+            {someUndated ? " Le sessioni senza data leggibile stanno in fondo." : ""}
           </p>
           <ul>
-            {surface.sessionIds.map((sessionId, indice) => (
-              <li key={sessionId}>
-                {/*
-                  Il testo visibile NON contiene l'identificatore: l'obiettivo
-                  del prodotto e' che il docente non debba conoscere un solo
-                  UUID. L'id resta in `href` e in `data-*`, che sono per le
-                  macchine, e in `title`, che e' un aiuto di debug e non
-                  qualcosa da leggere per usare il prodotto.
-                */}
-                <a
-                  data-testid="continuity-session"
-                  data-continuity-session-id={sessionId}
-                  title={`Identificatore tecnico della sessione: ${sessionId}`}
-                  href={sessionHref(sessionId)}
-                >
-                  Sessione {indice + 1}
-                </a>
-              </li>
-            ))}
+            {surface.sessions.map((session, indice) => {
+              const label = sessionStartLabel(session.firstSeenAt)
+              return (
+                <li key={session.sessionId}>
+                  {/*
+                    Il testo visibile NON contiene l'identificatore: l'obiettivo
+                    del prodotto e' che il docente non debba conoscere un solo
+                    UUID. L'id resta in `href` e in `data-*`, che sono per le
+                    macchine, e in `title`, che e' un aiuto di debug e non
+                    qualcosa da leggere per usare il prodotto.
+                  */}
+                  <a
+                    data-testid="continuity-session"
+                    data-continuity-session-id={session.sessionId}
+                    title={`Identificatore tecnico della sessione: ${session.sessionId}`}
+                    href={sessionHref(session.sessionId)}
+                  >
+                    Sessione {indice + 1} —{" "}
+                    {label === null ? (
+                      "data non disponibile"
+                    ) : (
+                      <time dateTime={label.dateTime}>{label.text}</time>
+                    )}
+                    {session.sessionId === latestId ? " (più recente)" : ""}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </section>
       )
+    }
   }
 }
