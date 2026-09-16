@@ -57,4 +57,20 @@ describe("LessonOutcomeV1 (thin waist post-lezione)", () => {
     expect(second).toEqual(first)
     expect(JSON.stringify(first)).not.toContain("generatedAt")
   })
+
+  it("FACTORY_IS_NOT_IDENTITY_VALIDATOR: il factory compone, lo scope lo garantisce il callsite", async () => {
+    // Precondizione documentata: recap e digest devono arrivare gia' scoped
+    // alla stessa lessonId dal chiamante (RecapView li deriva entrambi dalla
+    // stessa `room`). Il factory NON ispeziona la provenance — un digest di
+    // un'altra lezione verrebbe composto cosi' com'e': questo test lo
+    // dichiara esplicitamente invece di fingere una validazione.
+    const digestAltrui: StudyDigest = {
+      concepts: [{ id: "x", label: "Altra lezione", evidence: [] }],
+      errors: [],
+    }
+    const outcome = createLessonOutcome("lezione-a", RECAP, digestAltrui)
+    expect(outcome.lessonId).toBe("lezione-a")
+    if (outcome.pedagogy.status !== "available") throw new Error("atteso available")
+    expect(outcome.pedagogy.digest).toBe(digestAltrui)
+  })
 })

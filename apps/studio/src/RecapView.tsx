@@ -37,6 +37,12 @@ function isRecapEmpty(r: LessonRecap): boolean {
 }
 
 export default function RecapView({ store, room }: RecapViewProps) {
+  // Precondizione di scoping: recap e digest sono stati indipendenti ma
+  // DEVONO riferirsi alla stessa room — l'outcome li compone senza
+  // rivalidare (createLessonOutcome = boundary, non validator). Oggi `room`
+  // e' stabile al mount (Room non ha listener hashchange), quindi non puo'
+  // cambiare live; se un giorno cambiasse, recap E digest vanno resettati
+  // atomicamente o la vista mescolerebbe due lezioni.
   const [recap, setRecap] = useState<LessonRecap | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

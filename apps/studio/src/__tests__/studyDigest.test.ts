@@ -270,4 +270,21 @@ describe("buildLessonStudyDigest (identity-scoped, C2A)", () => {
 
     expect(digestA).toEqual({ concepts: [], errors: [] })
   })
+
+  it("Test 7 — A/B/A finestre ripetute senza marker: solo identita', mai finestra", async () => {
+    // Lo scenario della review: una finestra A 100..600 ingloberebbe B@350.
+    // Qui non esistono nemmeno i marker lesson.started/ended: senza
+    // lessonId non ci sarebbe proprio nulla a cui aggrapparsi — la
+    // projection include solo gli envelope lessonId=A, in entrambe le
+    // sotto-finestre, ed esclude B@350.
+    const digestA = await digestOfLesson(
+      [
+        errorObserved(LESSON_A, SESSION_A1, "err:a150", "concetto-a", "2026-08-01T00:02:30.000Z"),
+        errorObserved(LESSON_B, SESSION_B1, "err:b350", "concetto-b", "2026-08-01T00:05:50.000Z"),
+        errorObserved(LESSON_A, SESSION_A2, "err:a550", "concetto-a", "2026-08-01T00:09:10.000Z"),
+      ],
+      LESSON_A,
+    )
+    expect(digestA.errors.map((e) => e.id).sort()).toEqual(["err:a150", "err:a550"])
+  })
 })
