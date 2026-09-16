@@ -85,7 +85,7 @@ describe("buildRecap", () => {
 
   it("calcola durata da primo e ultimo evento journal", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         mkEvent({ t: 1000, type: "t0" }),
         mkEvent({ t: 2000, type: "t1" }),
         mkEvent({ t: 5000, type: "t0" }),
@@ -100,7 +100,7 @@ describe("buildRecap", () => {
 
   it("estrae formula math.insert uniche", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         mkEvent({ t: 1000, type: "math.insert", latex: "E = mc^2" }),
         mkEvent({ t: 2000, type: "math.insert", latex: "\\int_a^b f(x) dx" }),
         mkEvent({ t: 3000, type: "math.insert", latex: "E = mc^2" }), // duplicata
@@ -112,7 +112,7 @@ describe("buildRecap", () => {
 
   it("conta elementi aggiunti per tipo", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         mkEvent({ t: 1000, type: "element.add", element: { id: "a", type: "rectangle", version: 1 } }),
         mkEvent({ t: 2000, type: "element.add", element: { id: "b", type: "text", version: 1 } }),
         mkEvent({ t: 3000, type: "element.add", element: { id: "c", type: "rectangle", version: 1 } }),
@@ -130,7 +130,7 @@ describe("buildRecap", () => {
 
   it("conta pagine PDF uniche", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         mkEvent({ t: 1000, type: "pdf.page.view", page: 1, totalPages: 10 }),
         mkEvent({ t: 2000, type: "pdf.page.view", page: 2, totalPages: 10 }),
         mkEvent({ t: 3000, type: "pdf.page.view", page: 1, totalPages: 10 }), // duplicata
@@ -143,7 +143,7 @@ describe("buildRecap", () => {
 
   it("gestisce journal vuoto (solo newline)", async () => {
     const store = mockStore({
-      "raw/events.jsonl": "\n\n",
+      "raw/room-1/events.jsonl": "\n\n",
     })
     const recap = await buildRecap(store, "room-1")
     expect(recap!.durationMs).toBe(0)
@@ -161,7 +161,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1 (report 20260612-1321): journal out-of-order non deve produrre durata negativa
   it("journal out-of-order: durata = max-min, mai negativa", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         mkEvent({ t: 9000, type: "t0" }),
         mkEvent({ t: 1000, type: "t1" }),
         mkEvent({ t: 5000, type: "t0" }),
@@ -177,7 +177,7 @@ describe("buildRecap", () => {
   // ma l'evento RESTA contato nelle aggregazioni (formule/elementi)
   it("t non numerico: durata sui validi, aggregazioni su tutti gli eventi", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         JSON.stringify({ t: "non-un-numero", type: "math.insert", latex: "E = mc^2" }),
         JSON.stringify({ t: 2000, type: "t0" }),
         JSON.stringify({ t: 7000, type: "t1" }),
@@ -195,7 +195,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1 SELF-ADV: math.insert senza latex (o non stringa) non deve far crashare buildRecap
   it("math.insert con latex mancante/non stringa viene ignorato senza crash", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         JSON.stringify({ t: 1000, type: "math.insert" }),
         JSON.stringify({ t: 2000, type: "math.insert", latex: 42 }),
         JSON.stringify({ t: 3000, type: "math.insert", latex: "f(x)" }),
@@ -208,7 +208,7 @@ describe("buildRecap", () => {
   // SOLO eventi con t corrotto: nessuna durata, ma recap non vuoto
   it("solo t corrotti: durata 0, first/last null", async () => {
     const store = mockStore({
-      "raw/events.jsonl": JSON.stringify({ t: null, type: "math.insert", latex: "x" }),
+      "raw/room-1/events.jsonl": JSON.stringify({ t: null, type: "math.insert", latex: "x" }),
     })
     const recap = await buildRecap(store, "room-1")
     expect(recap!.durationMs).toBe(0)
@@ -220,7 +220,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1: page invalida (stringa, negativa, non intera) non entra in pdfPagesViewed
   it("pdf.page.view con page invalida viene ignorata", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         JSON.stringify({ t: 1000, type: "pdf.page.view", page: "3", totalPages: 10 }),
         JSON.stringify({ t: 2000, type: "pdf.page.view", page: -1, totalPages: 10 }),
         JSON.stringify({ t: 3000, type: "pdf.page.view", page: 2.5, totalPages: 10 }),
@@ -235,7 +235,7 @@ describe("buildRecap", () => {
   // S-TRIAGE-1: element null/array/undefined non contati come elementi aggiunti
   it("element.add con element null/array/undefined non viene contato", async () => {
     const store = mockStore({
-      "raw/events.jsonl": [
+      "raw/room-1/events.jsonl": [
         JSON.stringify({ t: 1000, type: "element.add", element: null }),
         JSON.stringify({ t: 2000, type: "element.add", element: [1, 2] }),
         JSON.stringify({ t: 3000, type: "element.add" }),
@@ -249,12 +249,45 @@ describe("buildRecap", () => {
 
   it("salta righe JSON malformate", async () => {
     const store = mockStore({
-      "raw/events.jsonl": "{valido}\n{corrotto\n{valido2}\n",
+      "raw/room-1/events.jsonl": "{valido}\n{corrotto\n{valido2}\n",
     })
     // Solo {valido} e {valido2} vengono parsati (se sono JSON validi)
     const recap = await buildRecap(store, "room-1")
     // Nessun evento riconosciuto (i JSON non corrispondono al formato atteso)
     // ma la funzione non crasha
     expect(recap).not.toBeNull()
+  })
+})
+
+describe("buildRecap room-scoped (journal per-room)", () => {
+  it("legge il journal della room richiesta, non quello globale", async () => {
+    // Il recorder scrive raw/<room>/events.jsonl; il globale non esiste nel
+    // flusso Room. Se buildRecap legge il globale, il recap resta vuoto.
+    const store = mockStore({
+      "raw/room-1/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "math.insert", latex: "E=mc^2" }),
+        JSON.stringify({ t: 2000, type: "element.add", element: { id: "a", type: "rectangle" } }),
+      ].join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.mathFormulas).toEqual(["E=mc^2"])
+    expect(recap!.totalElementsAdded).toBe(1)
+    expect(recap!.firstEventTime).toBe(1000)
+  })
+
+  it("isola le room: niente leak dal journal di un'altra room né dal globale", async () => {
+    const store = mockStore({
+      "raw/room-1/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "math.insert", latex: "SOLO-A" }),
+      ].join("\n"),
+      "raw/room-2/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "math.insert", latex: "SOLO-B" }),
+      ].join("\n"),
+      "raw/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "math.insert", latex: "GLOBALE" }),
+      ].join("\n"),
+    })
+    const recapA = await buildRecap(store, "room-1")
+    expect(recapA!.mathFormulas).toEqual(["SOLO-A"])
   })
 })

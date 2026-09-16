@@ -40,18 +40,15 @@ async function apriLezione(page: Page, room: string): Promise<void> {
   await expect
     .poll(() => page.evaluate(() => Boolean((window as unknown as { __MAESTRO_TEST__?: { ready?: boolean } }).__MAESTRO_TEST__?.ready)), { timeout: 20_000 })
     .toBe(true)
-  // Traccia lavagna: senza, buildRecap e' vuoto e l'anteprima non esiste.
-  // NOTA: buildRecap legge il journal GLOBALE (raw/events.jsonl), mentre il
-  // recorder scrive quello per-room — il recap base risulta vuoto per le
-  // lezioni room-scoped (bug indipendente, registrato come debito, NON di
-  // questa unita'). Qui si scrive il journal globale via store production
-  // per rendere il recap non-vuoto; il digest resta da event-log (C2A).
-  await page.evaluate(async (m) => {
+  // Traccia lavagna per-room: buildRecap legge raw/<room>/events.jsonl (lo
+  // stesso path del recorder). Senza, il recap e' vuoto e l'anteprima non
+  // esiste.
+  await page.evaluate(async (room) => {
     const h = (window as unknown as { __MAESTRO_TEST__?: Harness }).__MAESTRO_TEST__
     if (!h?.store) throw new Error("store Workspace non esposto")
-    const riga = `${JSON.stringify({ kind: "journal", type: "math.insert", latex: m, t: Date.now() })}\n`
-    await h.store.write("raw/events.jsonl", new Blob([riga], { type: "application/x-ndjson" }))
-  }, `c2b-${room}`)
+    const riga = `${JSON.stringify({ kind: "journal", type: "math.insert", latex: `c2b-${room}`, t: Date.now() })}\n`
+    await h.store.write(`raw/${room}/events.jsonl`, new Blob([riga], { type: "application/x-ndjson" }))
+  }, room)
 }
 
 let contatoreEventi = 0

@@ -3,7 +3,7 @@
 // Linguaggio docente: mai flush/cache, "appunti salvati".
 
 import { type WorkspaceStore } from "./WorkspaceStore"
-import { PATHS } from "./types"
+import { roomPaths } from "./roomPaths"
 import type { JournalEvent } from "./JournalRecorder"
 
 export interface LessonRecap {
@@ -39,8 +39,11 @@ export async function buildRecap(
   const meta = await store.loadMeta(room)
   const title = meta?.name ?? "Lezione senza nome"
 
-  // 2. Carica events.jsonl e analizza
-  const journalBlob = await store.read(PATHS.JOURNAL)
+  // 2. Carica events.jsonl DELLA ROOM e analizza. Il recorder scrive il
+  // journal per-room (roomPaths); leggere quello globale ("raw/events.jsonl",
+  // mai scritto dal flusso Room) lascerebbe il recap sempre vuoto — o, se un
+  // giorno esistesse, mescolerebbe lezioni diverse. Niente fallback globale.
+  const journalBlob = await store.read(roomPaths(room).journal)
   if (!journalBlob) {
     return {
       v: 1,
