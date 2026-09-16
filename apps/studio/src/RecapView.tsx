@@ -8,7 +8,7 @@ import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { buildRecapHtml } from "./store/recapHtml"
 import { createEventLogStore } from "./lessonos/indexedDbEventLog"
-import { buildRoomStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
+import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
@@ -47,13 +47,14 @@ export default function RecapView({ store, room }: RecapViewProps) {
     let cancelled = false
     setLoading(true)
     // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
-    // room-scoped. Fail-soft: senza log leggibile il materiale resta valido
-    // senza le sezioni pedagogiche.
+    // room-scoped per IDENTITA' (lessonId canonico), mai per finestra
+    // temporale. Fail-soft: senza log leggibile il materiale resta valido
+    // senza le sezioni pedagogiche — ma mai con dati di un'altra lezione.
     void (async () => {
       try {
         const log = await createEventLogStore()
-        const events = await log.readAll()
-        if (!cancelled) setDigest(buildRoomStudyDigest(events, room))
+        const envelopes = await log.readEnvelopesByLesson(room)
+        if (!cancelled) setDigest(buildLessonStudyDigest(envelopes))
         if ("close" in log) await (log as { close(): Promise<void> }).close()
       } catch {
         /* fail-soft: nessun digesto */

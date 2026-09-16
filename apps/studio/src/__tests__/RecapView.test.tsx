@@ -36,10 +36,10 @@ describe("RecapView", () => {
     vi.restoreAllMocks()
   })
 
-  async function renderRecapView() {
+  async function renderRecapView(room = "test-room") {
     const { default: RecapView } = await import("../RecapView")
     const root = createRoot(container)
-    root.render(<RecapView store={mockStore as any} room="test-room" />)
+    root.render(<RecapView store={mockStore as any} room={room} />)
     // Poll fino a FINE caricamento: l'header renderizza subito, quindi
     // textContent non-vuoto non basta — serve l'uscita dallo stato "caricamento…"
     const deadline = Date.now() + 3000
@@ -382,5 +382,92 @@ describe("RecapView", () => {
     await renderRecapView()
     expect(container.textContent).toContain("E = mc^2")
     expect(container.textContent).toContain("\\int_a^b f(x) dx")
+  })
+
+  it("digest identity-scoped: lezioni sovrapposte, l'anteprima esclude gli errori dell'altra lezione", async () => {
+    // A: avviata t=100, errore t=140. B: avviata t=120, errore t=130, dentro
+    // la finestra di A. Col vecchio path temporale l'anteprima mostrava
+    // anche "Errore B"; col path identity-scoped mai.
+    const { IDBFactory, IDBKeyRange: FakeKeyRange } = await import("fake-indexeddb")
+    const g = globalThis as { indexedDB?: unknown; IDBKeyRange?: unknown }
+    const prevIndexedDB = g.indexedDB
+    const prevKeyRange = g.IDBKeyRange
+    g.indexedDB = new IDBFactory()
+    g.IDBKeyRange = FakeKeyRange
+    try {
+      const { createEventLogStore } = await import("../lessonos/indexedDbEventLog")
+      const seed = await createEventLogStore()
+      let n = 0
+      const envelope = (
+        lessonId: string,
+        sessionId: string,
+        kind: string,
+        occurredAt: string,
+        payload: Record<string, unknown>,
+      ) => {
+        n += 1
+        return {
+          schemaVersion: 2,
+          eventId: `70000000-0000-4000-8000-${String(n).padStart(12, "0")}`,
+          lessonId,
+          sessionId,
+          kind,
+          occurredAt,
+          actor: { type: "teacher", id: "founder-beta-teacher" },
+          producer: {
+            id: "com.github.andreamarro.ardesia.studio",
+            version: "0.0.0",
+            commitSha: "a".repeat(40),
+          },
+          causationId: null,
+          idempotencyKey: `recap-view:${n}`,
+          evidence: [{ ref: `lesson:${lessonId}@${n}`, resolution: "verified" }],
+          payload,
+        } as never
+      }
+      const err = (lessonId: string, sessionId: string, errorId: string, label: string, t: string) =>
+        envelope(lessonId, sessionId, "error.observed", t, {
+          errorId,
+          conceptId: "concetto",
+          labels: { it: label },
+        })
+      const sessionA = "aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaa1"
+      const sessionB = "bbbbbbbb-bbbb-4bbb-bbbb-bbbbbbbbbbb1"
+      for (const env of [
+        err("lezione-a", sessionA, "err:a", "Errore A", "2026-08-01T00:02:20.000Z"),
+        err("lezione-b", sessionB, "err:b", "Errore B", "2026-08-01T00:02:10.000Z"),
+      ]) {
+        await seed.appendEnvelope(env)
+      }
+      if ("close" in seed) await (seed as { close(): Promise<void> }).close()
+
+      const { buildRecap } = await import("../store/lessonRecap")
+      vi.mocked(buildRecap).mockResolvedValue({
+        v: 1,
+        title: "Lezione A",
+        durationMs: 1000,
+        mathFormulas: [],
+        elementTypeCounts: {},
+        totalElementsAdded: 0,
+        pdfPagesViewed: [],
+        firstEventTime: 1000,
+        lastEventTime: 2000,
+      })
+      await renderRecapView("lezione-a")
+
+      // L'anteprima materiale e' un iframe: si legge srcDoc, non il DOM.
+      let srcDoc = ""
+      const deadline = Date.now() + 3000
+      while (Date.now() < deadline) {
+        srcDoc = (container.querySelector("iframe") as HTMLIFrameElement | null)?.srcdoc ?? ""
+        if (srcDoc.includes("Errore A")) break
+        await new Promise((r) => setTimeout(r, 10))
+      }
+      expect(srcDoc).toContain("Errore A")
+      expect(srcDoc).not.toContain("Errore B")
+    } finally {
+      g.indexedDB = prevIndexedDB
+      g.IDBKeyRange = prevKeyRange
+    }
   })
 })
