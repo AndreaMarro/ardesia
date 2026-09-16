@@ -66,7 +66,23 @@ export async function readResumableSessions(
 ): Promise<ContinuitySurfaceStateV1> {
   if (lessonId === null) return Object.freeze({ kind: "no-lesson" as const })
 
-  const handle = await open()
+  // L'apertura puo' rigettare (es. Web Crypto non disponibile in
+  // costruzione): senza contenimento la rejection uscirebbe da qui e la vista
+  // resterebbe su "loading" per sempre. Lo stato corretto e' quello esistente
+  // `storage-unavailable` — l'archivio non si e' potuto aprire — col motivo
+  // reale nel descrittore; nessun handle da chiudere, non essendocene uno.
+  let handle: IndexedDbEventLogHandle
+  try {
+    handle = await open()
+  } catch (error) {
+    return Object.freeze({
+      kind: "storage-unavailable" as const,
+      backend: Object.freeze({
+        kind: "unavailable" as const,
+        code: error instanceof Error ? error.message : String(error),
+      }),
+    })
+  }
   try {
     const log = handle.log
     if (log === null) {

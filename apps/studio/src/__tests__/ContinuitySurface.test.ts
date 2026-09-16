@@ -226,4 +226,20 @@ describe("readResumableSessions", () => {
     expect(state).toEqual({ kind: "unreadable", code: "indice sessioni illeggibile" })
     expect(closeCount).toBe(1)
   })
+
+  it("apertura che rigetta: storage-unavailable col motivo reale, nessuna eccezione propagata", async () => {
+    // L'apertura puo' rigettare (es. Web Crypto non disponibile in
+    // costruzione): senza contenimento la rejection esce da qui, la vista
+    // resta su "loading" per sempre e la console raccoglie un unhandled.
+    const open = vi.fn(async (): Promise<IndexedDbEventLogHandle> => {
+      throw new Error("Web Crypto non disponibile")
+    })
+    const state = await readResumableSessions(LESSON_ID, open)
+
+    expect(open).toHaveBeenCalledTimes(1)
+    expect(state).toEqual({
+      kind: "storage-unavailable",
+      backend: { kind: "unavailable", code: "Web Crypto non disponibile" },
+    })
+  })
 })

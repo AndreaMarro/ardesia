@@ -315,4 +315,31 @@ describe("ContinuityView", () => {
       sessionId: SESSION_ONE,
     })
   })
+
+  it("apertura che rigetta nel listing: niente loading infinito, archivio dichiarato non raggiungibile", async () => {
+    // Ramo listing SENZA ?sessione: se l'apertura rigetta, la vista non deve
+    // restare su "Lettura delle sessioni…" ne' fingere "nessuna sessione".
+    at(`/?vista=continuita#${LESSON_ID}`)
+    render(
+      <ContinuityView
+        deps={{
+          openEventLog: () => Promise.reject(new Error("Web Crypto non disponibile")),
+        }}
+      />,
+    )
+
+    const superficie = await screen.findByTestId("continuity-surface")
+    await waitFor(
+      () => {
+        expect(superficie.getAttribute("data-state")).not.toBe("loading")
+      },
+      { timeout: 2000 },
+    )
+    // Stato d'errore corretto: archivio non raggiungibile, mai no-sessions
+    // (le sessioni potrebbero esistere: non sono state lette).
+    expect(superficie.getAttribute("data-state")).toBe("storage-unavailable")
+    expect(superficie.textContent ?? "").toContain("Archivio non raggiungibile")
+    // Lesson/hash correnti non alterati: la lezione guardata resta quella.
+    expect(window.location.hash).toBe(`#${LESSON_ID}`)
+  })
 })
