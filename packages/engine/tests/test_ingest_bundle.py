@@ -15,6 +15,7 @@ import pytest
 
 from lessonos.capsule.extraction import build_extraction_prompt
 from lessonos.capsule.segmentation import build_segmentation_prompt
+from lessonos.capsule.assembly import load_capsule
 from lessonos.ingest.bundle import (
     BundleContents,
     _is_safe_member,
@@ -690,6 +691,63 @@ class TestManifestInventoryBijection:
                 zf.writestr(path, payload)
         with pytest.raises(ValueError, match="inventory|absent|missing"):
             read_bundle(str(p))
+
+    @pytest.mark.xfail(
+        strict=False,
+        reason="known failure mode (fault-injection probe 2026-09-17): a "
+        "failed re-ingest leaves NEW segments with the OLD capsule whose "
+        "citations no longer match persisted segments. Future fix must make "
+        "round-2 failure atomic (rollback segments or purge stale capsule); "
+        "delete this xfail when fixed.",
+    )
+    def test_failed_reingest_keeps_capsule_consistent(self, tmp_path) -> None:
+        """Round 1 ok, round 2 raises in assembly: capsule citations must
+        still resolve verbatim against persisted segments."""
+        def _bundle(text: str) -> str:
+            # _write_lesson riusa lo stesso path: round sequenziali, mai
+            # concorrenti — il secondo write avviene dopo il primo ingest.
+            ev = _events(_text_add(1000, "a", text))
+            return _write_lesson(tmp_path, ev, session="audioConsent: false\n")
+
+        p1 = _bundle("Testo stabile v1")
+        segs = journal_to_segments(
+            _events(_text_add(1000, "a", "Testo stabile v1")), ML)
+        tmp = SQLiteStore(":memory:")
+        for s in segs:
+            tmp.save_segment(s)
+        router_ok = Router()
+        router_ok.register(MockProvider({
+            build_segmentation_prompt(tmp.segments_for_lesson(ML)): json.dumps(
+                [{"topic": "t", "seg_ids": [f"{ML}#s1"]}]),
+            build_extraction_prompt(tmp.segments_for_lesson(ML)): json.dumps({
+                "concepts": [{
+                    "name": "c", "status": "introduced",
+                    "citations": [{"seg_id": f"{ML}#s1",
+                                   "excerpt": "Testo stabile v1"}],
+                }],
+                "exercises": [], "student_questions": [], "homework": [],
+            }),
+        }))
+        store = SQLiteStore(":memory:")
+        ingest_bundle(p1, store, ML, router=router_ok, provider="mock")
+
+        p2 = _bundle("Testo NUOVO v2")
+        router_ko = Router()
+        router_ko.register(MockProvider({}))
+        with pytest.raises(Exception):
+            ingest_bundle(p2, store, ML, router=router_ko, provider="mock")
+
+        texts = [s.text for s in store.segments_for_lesson(ML)]
+        excerpts = [
+            cite.excerpt
+            for concept in load_capsule(store, ML).content.concepts
+            for cite in concept.citations
+        ]
+        for excerpt in excerpts:
+            assert any(excerpt in text for text in texts), (
+                "stale capsule cites text absent from persisted segments")
+        store.close()
+        tmp.close()
 
     @pytest.mark.parametrize("bad_version", [True, 1.0, "1", None])
     def test_f5_manifest_versions_are_strict_ints(self, tmp_path, bad_version) -> None:
