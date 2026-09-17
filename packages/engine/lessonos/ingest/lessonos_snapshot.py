@@ -32,17 +32,17 @@ from dataclasses import dataclass
 _EVIDENCE_RE = re.compile(r"^[a-z][a-z0-9-]*:.+$")
 
 # Digest-relevant factual kinds (mirror of the Studio materializer cases
-# that can create concetto/errore nodes or mark corrections). All other
-# known kinds (lesson.started/ended, simulation.step.completed,
-# plugin.mounted, simulation.circuit.solved without concept, quiz.attempted,
-# studentpack.*, journal.* …) are ignored for this projection — exactly
-# like Studio, whose digest only reads concetto/errore nodes.
+# that can create concetto/errore nodes). All other known kinds
+# (lesson.started/ended, plugin.mounted, quiz.attempted, studentpack.*,
+# journal.* …) are ignored for this projection — exactly like Studio,
+# whose digest only reads concetto/errore nodes.
 _CONCEPT_YIELDING = frozenset({
     "concept.introduced",
     "material.cited",
     "error.observed",
     "simulation.error.observed",
     "exercise.completed",
+    "simulation.step.completed",
     "simulation.circuit.solved",
 })
 _ERROR_YIELDING = frozenset({
@@ -232,17 +232,24 @@ def project_lessonos_study_digest(
             _require_str(payload, "exerciseId", line_no, kind)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
-                ensure_concept(concept_id, labels, refs)
+                # Come Studio: labels {} (quelle dell'exercise restano al
+                # nodo esercizio, fuori digest).
+                ensure_concept(concept_id, {}, refs)
             corrects = payload.get("correctsErrorId")
             if isinstance(corrects, str) and corrects and corrects in error_labels:
                 # First correction wins (correctedAt semantics); orphan
                 # correctsErrorId invents nothing — Studio evidence-first.
                 error_corrected.add(corrects)
+        elif kind == "simulation.step.completed":
+            _require_str(payload, "stepId", line_no, kind)
+            concept_id = payload.get("conceptId")
+            if isinstance(concept_id, str) and concept_id:
+                ensure_concept(concept_id, {}, refs)
         elif kind == "simulation.circuit.solved":
             _require_str(payload, "experimentId", line_no, kind)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
-                ensure_concept(concept_id, labels, refs)
+                ensure_concept(concept_id, {}, refs)
 
     concepts = tuple(
         StudyConcept(
