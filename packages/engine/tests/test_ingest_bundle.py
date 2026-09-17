@@ -814,3 +814,35 @@ class TestTemporalBaseline:
         segs = journal_to_segments(ev, ML)
         assert [s.text for s in segs] == ["nuovo"]
         assert (segs[0].start, segs[0].end) == (40, 40)
+
+
+class TestLessonOsSnapshotSurfaced:
+    def test_snapshot_bytes_surfaced_when_present(self, tmp_path) -> None:
+        """raw/lessonos-events.jsonl presente → bytes disponibili, non consumati qui."""
+        snap = (
+            '{"seq": 1, "schemaVersion": 2, "kind": "lesson.started"}\n'
+        )
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        files["raw/lessonos-events.jsonl"] = snap.encode("utf-8")
+        p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                          session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files),
+                          extra={"raw/lessonos-events.jsonl": snap})
+        c = read_bundle(p)
+        assert c.lessonos_events_jsonl == snap
+
+    def test_snapshot_absent_is_none_not_empty(self, tmp_path) -> None:
+        """Assente != presente-vuoto: None, mai stringa vuota ambigua."""
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                          session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files))
+        c = read_bundle(p)
+        assert c.lessonos_events_jsonl is None
+
+    def test_legacy_bundle_has_no_snapshot(self, tmp_path) -> None:
+        p = _write_lesson(tmp_path, _events(_text_add(1000, "a", "x")),
+                          session="audioConsent: false\n")
+        c = read_bundle(p)
+        assert c.manifest is None
+        assert c.lessonos_events_jsonl is None

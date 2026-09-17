@@ -44,6 +44,7 @@ LESSON_PATHS = {
     "JOURNAL": "raw/events.jsonl",
     "SESSION": "raw/session.yaml",
     "AUDIO_DIR": "raw/audio/",
+    "LESSONOS": "raw/lessonos-events.jsonl",
 }
 
 SUPPORTED_BUNDLE_VERSION = 1
@@ -78,6 +79,12 @@ class BundleContents:
     # legacy manifest-less: percorso storico preservato). Solo le chiavi
     # usate dal motore (lessonId) sono contrattuali qui.
     manifest: dict | None = None
+    # Snapshot LessonOS canonico (EventEnvelope v2) quando il bundle lo
+    # contiene, altrimenti None. None (assente) != "" (presente ma vuoto):
+    # la distinzione unavailable/available-empty vive qui, non in una
+    # stringa vuota ambigua. Letto DOPO le verifiche esistenti (l'inventario
+    # manifest lo copre gia': niente secondo sistema hash).
+    lessonos_events_jsonl: str | None = None
 
 
 def _is_safe_member(name: str) -> bool:
@@ -152,6 +159,11 @@ def read_bundle(zip_path: str) -> BundleContents:
             raise ValueError(f"bundle missing {LESSON_PATHS['JOURNAL']!r}")
         manifest = _read_manifest(zf, names)
         events_jsonl = zf.read(LESSON_PATHS["JOURNAL"]).decode("utf-8")
+        lessonos_events_jsonl = (
+            zf.read(LESSON_PATHS["LESSONOS"]).decode("utf-8")
+            if LESSON_PATHS["LESSONOS"] in names
+            else None
+        )
         session: dict = {}
         if LESSON_PATHS["SESSION"] in names:
             session = parse_session_yaml(
@@ -168,7 +180,7 @@ def read_bundle(zip_path: str) -> BundleContents:
         )
     return BundleContents(
         events_jsonl=events_jsonl, session=session, audio_members=audio_members,
-        manifest=manifest,
+        manifest=manifest, lessonos_events_jsonl=lessonos_events_jsonl,
     )
 
 
