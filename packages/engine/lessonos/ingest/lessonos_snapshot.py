@@ -196,7 +196,11 @@ def project_lessonos_study_digest(
             if ref not in current:
                 current.append(ref)
 
-    def ensure_concept(cid: str, labels: dict, refs: list[str]) -> None:
+    def ensure_concept(cid: str, labels: dict, refs: list[str], line_no: int) -> None:
+        # Singolo punto di creazione/merge concetto: il ruolo e' reclamato
+        # QUI per ogni origine (introdotto o derivato), mai ai callsites —
+        # altrimenti un concetto implicito sfugge all'invariante globale.
+        claim_role(cid, "concetto", line_no)
         if cid in concept_labels:
             concept_labels[cid] = merge_labels(concept_labels[cid], labels)
             merge_evidence(concept_evidence[cid], refs)
@@ -264,8 +268,7 @@ def project_lessonos_study_digest(
 
         if kind == "concept.introduced":
             cid = _require_str(payload, "conceptId", line_no, kind)
-            claim_role(cid, "concetto", line_no)
-            ensure_concept(cid, labels, refs)
+            ensure_concept(cid, labels, refs, line_no)
         elif kind == "material.cited":
             mid = _require_str(payload, "materialId", line_no, kind)
             claim_role(mid, "materiale", line_no)
@@ -274,7 +277,7 @@ def project_lessonos_study_digest(
                 # Come Studio (materializer): il nodo concetto derivato nasce
                 # con labels VUOTE (le labels del material restano al nodo
                 # materiale, fuori digest); l'evidence invece si unisce.
-                ensure_concept(concept_id, {}, refs)
+                ensure_concept(concept_id, {}, refs, line_no)
         elif kind in _ERROR_YIELDING:
             eid = _require_str(payload, "errorId", line_no, kind)
             cid = _require_str(payload, "conceptId", line_no, kind)
@@ -286,7 +289,7 @@ def project_lessonos_study_digest(
             else:
                 error_labels[eid] = merge_labels(error_labels[eid], labels)
                 merge_evidence(error_evidence[eid], refs)
-            ensure_concept(cid, {}, refs)
+            ensure_concept(cid, {}, refs, line_no)
         elif kind == "exercise.completed":
             exid = _require_str(payload, "exerciseId", line_no, kind)
             # Prima della logica di correzione: un exerciseId riusato come
@@ -296,7 +299,7 @@ def project_lessonos_study_digest(
             if isinstance(concept_id, str) and concept_id:
                 # Come Studio: labels {} (quelle dell'exercise restano al
                 # nodo esercizio, fuori digest).
-                ensure_concept(concept_id, {}, refs)
+                ensure_concept(concept_id, {}, refs, line_no)
             corrects = payload.get("correctsErrorId")
             if isinstance(corrects, str) and corrects and corrects in error_labels:
                 # First correction wins (correctedAt semantics); orphan
@@ -307,13 +310,13 @@ def project_lessonos_study_digest(
             claim_role(stepid, "esercizio", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
-                ensure_concept(concept_id, {}, refs)
+                ensure_concept(concept_id, {}, refs, line_no)
         elif kind == "simulation.circuit.solved":
             expid = _require_str(payload, "experimentId", line_no, kind)
             claim_role(expid, "esercizio", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
-                ensure_concept(concept_id, {}, refs)
+                ensure_concept(concept_id, {}, refs, line_no)
 
     concepts = tuple(
         StudyConcept(
