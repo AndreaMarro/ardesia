@@ -462,6 +462,13 @@ def ingest_bundle(
     Raises ``ValueError`` on an unsafe/GDPR-invalid bundle, on a manifest
     whose declared lessonId disagrees with the requested one, or when the
     board carried no text (nothing to ingest).
+
+    Failure atomicity: the previous segments/capsule are snapshotted BEFORE
+    the purge, and restored if anything fails afterwards (assembly/LLM
+    errors included). The store methods commit eagerly and a long-lived
+    transaction across LLM calls is deliberately NOT used — explicit
+    snapshot/restore on the Store contract instead. The original exception
+    is always re-raised unchanged.
     """
     from lessonos.capsule.assembly import assemble_lesson_capsule
 
@@ -477,14 +484,30 @@ def ingest_bundle(
             f"bundle {zip_path!r} yielded no whiteboard text segments "
             f"(no text written on the board)"
         )
+    # Snapshot esplicito dello stato autorevole precedente PRIMA di mutare
+    # alcunché: su fallimento si ripristina old+old, mai new+old.
+    previous_segments = list(store.segments_for_lesson(lesson_id))
+    previous_capsule = store.get_capsule(lesson_id)
     # Bug-hunt #6: purge PRIMA del re-ingest, DENTRO la funzione (il runner
     # T8 lo dimenticava): un re-export con meno elementi lasciava righe stale
     # e shift posizionale dei seg_id (classe B3).
     store.delete_segments_for_lesson(lesson_id)
     for seg in segments:
         store.save_segment(seg)
-    capsule = assemble_lesson_capsule(
-        store, lesson_id, router,
-        provider=provider, model=model, defensive=defensive, save=save,
-    )
+    try:
+        capsule = assemble_lesson_capsule(
+            store, lesson_id, router,
+            provider=provider, model=model, defensive=defensive, save=save,
+        )
+    except Exception:
+        # Ripristino byte-equivalente dello stato precedente, poi l'errore
+        # originale risale invariato: nessun new+old, nessun mixed.
+        store.delete_segments_for_lesson(lesson_id)
+        for seg in previous_segments:
+            store.save_segment(seg)
+        if previous_capsule is None:
+            store.delete_capsule(lesson_id)
+        else:
+            store.save_capsule(lesson_id, previous_capsule)
+        raise
     return segments, capsule
