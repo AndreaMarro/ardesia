@@ -649,3 +649,168 @@ class TestModernEndToEnd:
         assert {c.name for c in capsule.content.concepts} == {"segnale"}
         store.close()
         tmp.close()
+
+
+# ── D2-J1.1 hardening ─────────────────────────────────────────────────
+
+
+class TestManifestInventoryBijection:
+    def test_f1_unlisted_payload_rejected(self, tmp_path) -> None:
+        """raw/events.jsonl nello ZIP ma assente da manifest.files[]: il
+        journal verrebbe letto senza verifica bytes/sha256."""
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        declared = {k: v for k, v in files.items() if k != "raw/events.jsonl"}
+        p = tmp_path / "unlisted.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _modern_manifest(ML, declared))
+            for path, payload in files.items():
+                zf.writestr(path, payload)
+        with pytest.raises(ValueError, match="inventory"):
+            read_bundle(str(p))
+
+    def test_f1_extra_unlisted_member_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = tmp_path / "extra.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _modern_manifest(ML, files))
+            for path, payload in files.items():
+                zf.writestr(path, payload)
+            zf.writestr("raw/extra.bin", b"unlisted")
+        with pytest.raises(ValueError, match="inventory"):
+            read_bundle(str(p))
+
+    def test_f1_manifest_entry_without_payload_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = tmp_path / "ghost.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _modern_manifest(ML, files))
+            for path, payload in files.items():
+                if path == "raw/session.yaml":
+                    continue
+                zf.writestr(path, payload)
+        with pytest.raises(ValueError, match="inventory|absent|missing"):
+            read_bundle(str(p))
+
+    @pytest.mark.parametrize("bad_version", [True, 1.0, "1", None])
+    def test_f5_manifest_versions_are_strict_ints(self, tmp_path, bad_version) -> None:
+        """bundleVersion/schemaVersion: True == 1 in Python, ma il contratto
+        Studio richiede l'intero esatto: true/1.0/"1"/null → reject."""
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        for field in ("bundleVersion", "schemaVersion"):
+            p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                              session="audioConsent: false\n",
+                              manifest=_modern_manifest(ML, files, **{field: bad_version}))
+            with pytest.raises(ValueError, match="unsupported manifest|version"):
+                read_bundle(p)
+
+    def test_f8_non_object_journal_row_rejected_explicitly(self) -> None:
+        """Riga JSON valida ma non-oggetto: ValueError chiaro, mai AttributeError opaco."""
+        with pytest.raises(ValueError, match="not a JSON object"):
+            journal_to_segments(_events(5, "x", [1]), ML)
+
+    def test_f9_v2_element_without_id_rejected(self) -> None:
+        row = _v2_add(ML, "a", "x", "2026-08-01T00:00:01.000Z", 1)
+        del row["payload"]["element"]["id"]
+        with pytest.raises(ValueError, match="without id"):
+            journal_to_segments(_events(row), ML)
+
+
+class TestDuplicateMembers:
+    @pytest.mark.parametrize("dup", [
+        "manifest.json", "raw/events.jsonl", "raw/session.yaml",
+    ])
+    def test_f2_duplicate_file_member_rejected(self, tmp_path, dup: str) -> None:
+        """zipfile e' last-wins sui duplicati; Studio li rifiuta: anche qui."""
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = tmp_path / "dup.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _modern_manifest(ML, files))
+            for path, payload in files.items():
+                zf.writestr(path, payload)
+            extra = b"{}" if dup == "manifest.json" else files.get(dup, b"x")
+            zf.writestr(dup, extra)
+        with pytest.raises(ValueError, match="[Dd]uplicate"):
+            read_bundle(str(p))
+
+
+class TestV2HintDetection:
+    def test_f3_v2_like_without_schema_version_rejected(self) -> None:
+        """kind+lessonId+occurredAt+payload senza schemaVersion: sembra v2,
+        quindi va validato come v2 — mai ricadere nel legacy silenzioso."""
+        row = {
+            "kind": "journal.element.add",
+            "lessonId": ML,
+            "occurredAt": "2026-08-01T00:00:01.000Z",
+            "payload": {"element": {"id": "a", "type": "text", "text": "x"}},
+        }
+        with pytest.raises(ValueError, match="v2|schemaVersion|envelope"):
+            journal_to_segments(_events(row), ML)
+
+    def test_f3_v2_unsupported_schema_version_rejected(self) -> None:
+        row = dict(_v2_add(ML, "a", "x", "2026-08-01T00:00:01.000Z", 1))
+        row["schemaVersion"] = 3
+        with pytest.raises(ValueError, match="schemaVersion"):
+            journal_to_segments(_events(row), ML)
+
+    def test_pure_legacy_without_v2_hints_still_ignored(self) -> None:
+        """Legacy puro {t,type} senza hint v2: contratto storico invariato."""
+        ev = _events(
+            {"t": 1000, "type": "unknown.future.kind"},
+            _text_add(2000, "a", "reale"),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["reale"]
+
+
+class TestTemporalBaseline:
+    def test_f4_pointer_before_element_legacy(self) -> None:
+        """pointer @0s, add @60s: la baseline e' di TUTTI gli eventi (60)."""
+        ev = _events(
+            {"t": 0, "type": "t0"},
+            _text_add(60_000, "a", "testo"),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["testo"]
+        assert segs[0].start == 60
+
+    def test_f4_pointer_before_element_v2(self) -> None:
+        """Stesso caso in v2: il pointer non-element contribuisce a t0."""
+        ev = _events(
+            _v2_envelope(ML, MSESSION, "journal.pointer.down", "2026-08-01T00:00:00.000Z", {}, 1),
+            _v2_add(ML, "a", "testo", "2026-08-01T00:01:00.000Z", 2),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["testo"]
+        assert segs[0].start == 60
+
+    def test_f4_out_of_order_update_before_add(self) -> None:
+        """update@60 visto prima di add@30: start=min, end=max, per formato.
+        Tempi relativi a t0=30: (0, 30)."""
+        legacy = _events(
+            {"t": 60_000, "type": "element.update",
+             "element": {"id": "a", "type": "text", "text": "finale"}},
+            _text_add(30_000, "a", "bozza"),
+        )
+        segs = journal_to_segments(legacy, ML)
+        assert [s.text for s in segs] == ["finale"]
+        assert (segs[0].start, segs[0].end) == (0, 30)
+
+        v2 = _events(
+            _v2_update(ML, "a", "finale", "2026-08-01T00:01:00.000Z", 1),
+            _v2_add(ML, "a", "bozza", "2026-08-01T00:00:30.000Z", 2),
+        )
+        segs = journal_to_segments(v2, ML)
+        assert [s.text for s in segs] == ["finale"]
+        assert (segs[0].start, segs[0].end) == (0, 30)
+
+    def test_f4_delete_readd_resets_life(self) -> None:
+        """delete→re-add resta una vita nuova anche fuori ordine apparente
+        (relativo a t0=10: (40, 40))."""
+        ev = _events(
+            _text_add(10_000, "a", "vecchio"),
+            {"t": 20_000, "type": "element.delete", "elementId": "a"},
+            _text_add(50_000, "a", "nuovo"),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["nuovo"]
+        assert (segs[0].start, segs[0].end) == (40, 40)

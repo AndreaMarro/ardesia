@@ -14,8 +14,10 @@ is a later step. From Segments on, the EXISTING pipeline runs unchanged (same
 windowed capsule + grounded graph + summary as the ASR path).
 
 Security / GDPR:
-  * **ZipSlip** — every archived member is validated before any read: no
-    absolute path, no ``..`` traversal, must live under ``raw/``.
+  * **ZipSlip** — every archived file member is validated before any read:
+    no absolute path, no ``..`` traversal, no duplicate file member, and
+    only ``manifest.json`` may live outside ``raw/`` (explicit directory
+    entries are ignored: they are never read).
   * **Revoked audio** — a bundle that carries ``raw/audio/*`` while
     ``session.yaml`` says ``audioConsent != true`` is an integrity violation
     (the Studio export must have filtered it) and is REFUSED: revoked audio
@@ -131,7 +133,16 @@ def read_bundle(zip_path: str) -> BundleContents:
     """
     with zipfile.ZipFile(zip_path) as zf:
         names = [n for n in zf.namelist() if not n.endswith("/")]
-        # validate-then-act: check EVERY member before reading anything
+        # validate-then-act: check EVERY member before reading anything.
+        # Duplicati prima di tutto: zipfile e' last-wins su zf.read(name) e
+        # leggerne uno solo sarebbe ambiguo (quale payload verifica il
+        # manifest?). Le directory duplicate/esplicite restano ignorate: non
+        # sono payload e non vengono lette.
+        seen: set[str] = set()
+        for name in names:
+            if name in seen:
+                raise ValueError(f"duplicate bundle member: {name!r}")
+            seen.add(name)
         for name in names:
             if not _is_safe_member(name):
                 raise ValueError(
@@ -172,11 +183,13 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
         raise ValueError(f"bundle manifest malformed: {exc}") from exc
     if not isinstance(manifest, dict):
         raise ValueError("bundle manifest root must be an object")
-    if manifest.get("bundleVersion") != SUPPORTED_BUNDLE_VERSION:
+    # Type-strict: il contratto Studio richiede l'intero esatto (in Python
+    # True == 1 e 1.0 == 1, ma true/1.0 non sono versioni valide).
+    if type(manifest.get("bundleVersion")) is not int or manifest.get("bundleVersion") != SUPPORTED_BUNDLE_VERSION:
         raise ValueError(
             f"unsupported manifest bundleVersion: {manifest.get('bundleVersion')!r}"
         )
-    if manifest.get("schemaVersion") != SUPPORTED_SCHEMA_VERSION:
+    if type(manifest.get("schemaVersion")) is not int or manifest.get("schemaVersion") != SUPPORTED_SCHEMA_VERSION:
         raise ValueError(
             f"unsupported manifest schemaVersion: {manifest.get('schemaVersion')!r}"
         )
@@ -189,6 +202,24 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
     files = manifest.get("files")
     if not isinstance(files, list) or not files:
         raise ValueError("bundle manifest files inventory missing")
+    inventoried: set[str] = set()
+    for entry in files:
+        if not isinstance(entry, dict):
+            raise ValueError("bundle manifest files entry must be an object")
+        path = entry.get("path")
+        if not isinstance(path, str):
+            raise ValueError("bundle manifest files entry must declare a path")
+        inventoried.add(path)
+    # Biiezione: ogni file reale deve essere inventariato e viceversa. Un
+    # payload presente ma non inventariato non riceverebbe verifica
+    # bytes/sha256; una entry senza payload e' un manifest bugiardo.
+    # `names` contiene solo file reali (le directory ZIP sono gia' escluse).
+    payload_paths = set(names) - {LESSON_PATHS["MANIFEST"]}
+    if payload_paths != inventoried:
+        raise ValueError(
+            "bundle manifest inventory mismatch: "
+            f"zip={sorted(payload_paths)} manifest={sorted(inventoried)}"
+        )
     for entry in files:
         if not isinstance(entry, dict):
             raise ValueError("bundle manifest files entry must be an object")
@@ -202,6 +233,32 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
         if digest != entry.get("sha256"):
             raise ValueError(f"bundle manifest SHA-256 mismatch ({path})")
     return manifest
+
+
+# Hint keys canoniche EventEnvelope v2 (mirror di Studio
+# looksLikeJournalEnvelopeV2: ne basta UNA). Le righe legacy {t, type, …}
+# non ne contengono nessuna al top level, quindi il rilevamento non ha
+# falsi positivi sul formato storico.
+_V2_HINT_KEYS = frozenset({
+    "schemaVersion",
+    "eventId",
+    "lessonId",
+    "sessionId",
+    "kind",
+    "occurredAt",
+    "actor",
+    "producer",
+    "causationId",
+    "idempotencyKey",
+    "evidence",
+    "payload",
+})
+
+
+def _looks_like_v2_envelope(obj: object) -> bool:
+    """True se il valore sembra un EventEnvelope v2: va validato come tale,
+    mai ricadere nel parser legacy."""
+    return isinstance(obj, dict) and any(key in obj for key in _V2_HINT_KEYS)
 
 
 def _v2_occurred_at_ms(value: object, line_no: int) -> int:
@@ -218,30 +275,39 @@ def _v2_occurred_at_ms(value: object, line_no: int) -> int:
     return int(moment.timestamp() * 1000)
 
 
-def _normalize_journal_v2(obj: dict, lesson_id: str, line_no: int) -> dict | None:
-    """Map ONE canonical EventEnvelope v2 journal row to its legacy
-    equivalent (``{"t", "type", "element"/"elementId"}``) so the segment
-    logic below runs ONCE, identically for both formats.
+def _normalize_journal_v2(
+    obj: dict, lesson_id: str, line_no: int
+) -> tuple[int | None, dict | None]:
+    """Validate ONE canonical EventEnvelope v2 journal row.
 
-    Returns None for v2 kinds this junction does not need (pointer, math,
-    pdf, lesson.* …). Raises ValueError on a recognisable-but-corrupt v2
-    row (never silently skipped as "unknown legacy"), on a v2 row from
-    another lesson (no renaming B as A), and on unsupported schemaVersion.
+    Returns ``(observed_ms_or_None, legacy_equivalent_or_None)``:
+      * every v2 row must carry valid schemaVersion/kind/lessonId/occurredAt
+        (a recognisable-but-corrupt row raises, never silently skipped);
+      * element add/update/delete rows additionally require payload shape
+        and lessonId match, and map to their legacy equivalent;
+      * non-element rows of THIS lesson contribute only their timestamp
+        (baseline t0); rows of another lesson contribute nothing — they are
+        ignored exactly like legacy rows, which carry no lesson at all
+        (segment-contributing identity is enforced on element rows).
     """
     if obj.get("schemaVersion") != 2:
         raise ValueError(
             f"journal v2 line {line_no}: unsupported schemaVersion {obj.get('schemaVersion')!r}"
         )
     kind = obj.get("kind")
-    if kind not in V2_JOURNAL_KINDS:
-        return None
+    if not isinstance(kind, str) or not kind:
+        raise ValueError(f"journal v2 line {line_no}: malformed kind")
     row_lesson = obj.get("lessonId")
+    if not isinstance(row_lesson, str) or not row_lesson:
+        raise ValueError(f"journal v2 line {line_no}: malformed lessonId")
+    t = _v2_occurred_at_ms(obj.get("occurredAt"), line_no)
+    if kind not in V2_JOURNAL_KINDS:
+        return (t, None) if row_lesson == lesson_id else (None, None)
     if row_lesson != lesson_id:
         raise ValueError(
             f"journal v2 line {line_no}: lessonId {row_lesson!r} "
             f"does not match bundle lesson {lesson_id!r}"
         )
-    t = _v2_occurred_at_ms(obj.get("occurredAt"), line_no)
     payload = obj.get("payload")
     if not isinstance(payload, dict):
         raise ValueError(f"journal v2 line {line_no}: malformed payload for {kind}")
@@ -250,11 +316,14 @@ def _normalize_journal_v2(obj: dict, lesson_id: str, line_no: int) -> dict | Non
         element_id = payload.get("elementId")
         if not isinstance(element_id, str) or not element_id:
             raise ValueError(f"journal v2 line {line_no}: malformed elementId for delete")
-        return {"t": t, "type": legacy_type, "elementId": element_id}
+        return (t, {"t": t, "type": legacy_type, "elementId": element_id})
     element = payload.get("element")
     if not isinstance(element, dict):
         raise ValueError(f"journal v2 line {line_no}: malformed element for {kind}")
-    return {"t": t, "type": legacy_type, "element": element}
+    element_id = element.get("id")
+    if not isinstance(element_id, str) or not element_id:
+        raise ValueError(f"journal v2 line {line_no}: element without id for {kind}")
+    return (t, {"t": t, "type": legacy_type, "element": element})
 
 
 def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
@@ -265,15 +334,22 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
     (``journal.element.add/update/delete``): v2 rows are normalised to the
     legacy shape first, so update/delete/ordering semantics run once.
 
-    Each Excalidraw ``text`` element becomes one Segment: the element's final
-    text (last add/update wins), ``[start,end]`` from the first/last journal
-    event touching it, in **seconds relative to the first event**. Deleted
-    elements are dropped; empty text is skipped. Segments are ordered by start
-    and ``seg_id`` is 1-indexed (``<lesson>#sN``) — the same contract as the ASR
-    adapter (``adapter.py``). Malformed JSONL lines are skipped (defensive,
-    historical legacy contract preserved).
+    Each Excalidraw ``text`` element becomes one Segment: the element's text
+    as of its temporally latest add/update, ``[start,end]`` from the min/max
+    journal timestamps of its current life, in **seconds relative to the
+    lesson baseline**. Deleted elements are dropped; empty text is skipped. Segments
+    are ordered by start and ``seg_id`` is 1-indexed (``<lesson>#sN``) — the
+    same contract as the ASR adapter (``adapter.py``). Malformed JSONL lines
+    are skipped (defensive, historical legacy contract preserved); parsed
+    non-object rows are rejected explicitly (never an opaque AttributeError).
+
+    The lesson baseline is the minimum timestamp over ALL valid journal
+    events of the lesson (legacy ``t`` + same-lesson v2 ``occurredAt``),
+    NOT only the events that become segments: a pointer/math row before the
+    first element still anchors the timeline, identically for both formats.
     """
     events: list[dict] = []
+    baseline_ms: list[int] = []
     for line_no, line in enumerate(events_jsonl.splitlines(), start=1):
         line = line.strip()
         if not line:
@@ -282,16 +358,21 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
             parsed = json.loads(line)
         except json.JSONDecodeError:
             continue
-        if isinstance(parsed, dict) and "schemaVersion" in parsed:
-            normalised = _normalize_journal_v2(parsed, lesson_id, line_no)
+        if _looks_like_v2_envelope(parsed):
+            observed_ms, normalised = _normalize_journal_v2(parsed, lesson_id, line_no)
+            if observed_ms is not None:
+                baseline_ms.append(observed_ms)
             if normalised is not None:
                 events.append(normalised)
             continue
+        if not isinstance(parsed, dict):
+            raise ValueError(f"journal line {line_no}: not a JSON object")
+        baseline_ms.append(int(parsed.get("t", 0)))
         events.append(parsed)
     if not events:
         return []
 
-    t0 = min(int(ev.get("t", 0)) for ev in events)
+    t0 = min(baseline_ms)
 
     texts: dict[str, dict] = {}  # element id → {text, start, end}
     deleted: set[str] = set()
@@ -314,9 +395,14 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
             text = (el.get("text") or "").strip()
             rec = texts.get(eid)
             if rec is None:
-                texts[eid] = {"text": text, "start": t, "end": t}
+                texts[eid] = {"text": text, "start": t, "end": t, "tmax": t}
             else:
-                rec["text"] = text  # last write wins
+                # Out-of-order safe: il testo e' quello dell'evento temporalmente
+                # piu' recente, non dell'ultimo in ordine di file.
+                if t >= rec["tmax"]:
+                    rec["text"] = text
+                    rec["tmax"] = t
+                rec["start"] = min(rec["start"], t)
                 rec["end"] = max(rec["end"], t)
         elif typ == "element.delete":
             eid = ev.get("elementId")
