@@ -81,6 +81,30 @@ class LessonOsStudyDigest:
     errors: tuple[StudyError, ...] = ()
 
 
+# Hint keys canoniche EventEnvelope v2 (stesso mirror di Studio
+# looksLikeJournalEnvelopeV2 usato dal journal adapter: ne basta UNA).
+# Una riga riconoscibile come v2 ma malformata non deve mai ricadere nel
+# trattamento legacy: fail closed.
+_V2_HINT_KEYS = frozenset({
+    "schemaVersion",
+    "eventId",
+    "lessonId",
+    "sessionId",
+    "kind",
+    "occurredAt",
+    "actor",
+    "producer",
+    "causationId",
+    "idempotencyKey",
+    "evidence",
+    "payload",
+})
+
+
+def _looks_like_v2_envelope(obj: object) -> bool:
+    return isinstance(obj, dict) and any(key in obj for key in _V2_HINT_KEYS)
+
+
 def _fail(line_no: int, reason: str) -> ValueError:
     return ValueError(f"lessonos snapshot line {line_no}: {reason}")
 
@@ -106,16 +130,21 @@ def _evidence_refs(obj: dict, line_no: int) -> list[str]:
 
 
 def _labels(payload: dict, line_no: int) -> dict:
+    # Mirror di Studio assertLegacyPayloadField(labels): object con valori
+    # tutti stringa (misurato: {it: 123} rejected). {} ammesso → fallback id.
     labels = payload.get("labels")
-    if not isinstance(labels, dict):
-        raise _fail(line_no, "malformed labels (must be an object)")
+    if not isinstance(labels, dict) or any(
+        not isinstance(value, str) for value in labels.values()
+    ):
+        raise _fail(line_no, "malformed labels (must be a string map)")
     return labels
 
 
 def _label_of(node_id: str, labels: dict) -> str:
-    """Studio labelOf: labels.it → first available → id."""
+    """Mirror esatto di Studio labelOf: labels.it (ANCHE "" — ?? salta solo
+    null/undefined), poi primo valore disponibile, poi id."""
     it_label = labels.get("it")
-    if isinstance(it_label, str) and it_label:
+    if isinstance(it_label, str):
         return it_label
     for value in labels.values():
         if isinstance(value, str) and value:
@@ -142,6 +171,22 @@ def project_lessonos_study_digest(
     error_evidence: dict[str, list[str]] = {}
     error_concept: dict[str, str] = {}
     error_corrected: set[str] = set()
+    # Global node identity across digest-adjacent roles (mirror di Studio
+    # upsertNode: stesso id + kind diverso → throw). Traccia
+    # concetto/errore/esercizio/materiale: sono i ruoli che interagiscono
+    # con digest e correzioni. lesson:/plugin: vivono in namespace con
+    # prefisso disgiunti per costruzione (lesson:<room>, plugin:<id>#<n>)
+    # e non entrano nel digest: fuori da questo confine.
+    node_roles: dict[str, str] = {}
+
+    def claim_role(node_id: str, role: str, line_no: int) -> None:
+        existing = node_roles.get(node_id)
+        if existing is not None and existing != role:
+            raise _fail(
+                line_no,
+                f"id {node_id!r} reused with different role ({existing} vs {role})",
+            )
+        node_roles[node_id] = role
 
     def merge_labels(current: dict, incoming: dict) -> dict:
         return {**incoming, **current}
@@ -166,11 +211,20 @@ def project_lessonos_study_digest(
             continue
         try:
             parsed = json.loads(stripped)
-        except json.JSONDecodeError:
-            continue
+        except json.JSONDecodeError as exc:
+            # Riga non vuota e non JSON: snapshot canonico corrotto. Non
+            # esiste skip fail-soft qui (a differenza del journal legacy):
+            # tacere produrrebbe un digest apparentemente valido e vuoto.
+            raise _fail(line_no, f"malformed JSON line ({exc})") from exc
         if not isinstance(parsed, dict):
             raise _fail(line_no, "not a JSON object")
         if "schemaVersion" not in parsed:
+            if _looks_like_v2_envelope(parsed):
+                raise _fail(
+                    line_no,
+                    "v2-like row without schemaVersion "
+                    "(recognisable canonical row, never legacy)",
+                )
             # Legacy non-envelope row: modern snapshots are v2-only;
             # skipped by design (never misread as something else).
             continue
@@ -191,7 +245,9 @@ def project_lessonos_study_digest(
                 f"lessonId {row_lesson!r} does not match bundle lesson {lesson_id!r}",
             )
         seq = parsed.get("seq")
-        if not isinstance(seq, int) or seq < 1:
+        # Type-strict come Studio (Number.isInteger(true) === false):
+        # bool non e' un sequence number valido.
+        if type(seq) is not int or seq < 1:
             raise _fail(line_no, "malformed seq (canonical order required)")
         rows.append((seq, parsed))
 
@@ -208,9 +264,11 @@ def project_lessonos_study_digest(
 
         if kind == "concept.introduced":
             cid = _require_str(payload, "conceptId", line_no, kind)
+            claim_role(cid, "concetto", line_no)
             ensure_concept(cid, labels, refs)
         elif kind == "material.cited":
-            _require_str(payload, "materialId", line_no, kind)
+            mid = _require_str(payload, "materialId", line_no, kind)
+            claim_role(mid, "materiale", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
                 # Come Studio (materializer): il nodo concetto derivato nasce
@@ -220,6 +278,7 @@ def project_lessonos_study_digest(
         elif kind in _ERROR_YIELDING:
             eid = _require_str(payload, "errorId", line_no, kind)
             cid = _require_str(payload, "conceptId", line_no, kind)
+            claim_role(eid, "errore", line_no)
             if eid not in error_labels:
                 error_labels[eid] = dict(labels)
                 error_evidence[eid] = list(refs)
@@ -229,7 +288,10 @@ def project_lessonos_study_digest(
                 merge_evidence(error_evidence[eid], refs)
             ensure_concept(cid, {}, refs)
         elif kind == "exercise.completed":
-            _require_str(payload, "exerciseId", line_no, kind)
+            exid = _require_str(payload, "exerciseId", line_no, kind)
+            # Prima della logica di correzione: un exerciseId riusato come
+            # errorId non deve mai diventare corrected=true.
+            claim_role(exid, "esercizio", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
                 # Come Studio: labels {} (quelle dell'exercise restano al
@@ -241,12 +303,14 @@ def project_lessonos_study_digest(
                 # correctsErrorId invents nothing — Studio evidence-first.
                 error_corrected.add(corrects)
         elif kind == "simulation.step.completed":
-            _require_str(payload, "stepId", line_no, kind)
+            stepid = _require_str(payload, "stepId", line_no, kind)
+            claim_role(stepid, "esercizio", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
                 ensure_concept(concept_id, {}, refs)
         elif kind == "simulation.circuit.solved":
-            _require_str(payload, "experimentId", line_no, kind)
+            expid = _require_str(payload, "experimentId", line_no, kind)
+            claim_role(expid, "esercizio", line_no)
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
                 ensure_concept(concept_id, {}, refs)

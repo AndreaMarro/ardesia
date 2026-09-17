@@ -250,6 +250,157 @@ class TestLessonOsStudyDigest:
             "e": [(e.id, e.label, e.concept_id, e.evidence_refs) for e in digest.errors],
         })
 
+
+class TestSnapshotContractHardening:
+    def test_a11_truncated_line_rejected_not_empty(self) -> None:
+        """Riga troncata: mai un digest apparentemente valido e vuoto."""
+        snap = '{"seq": 1, "schemaVersion": 2, "kind": "error.observed"'
+        with pytest.raises(ValueError, match="malformed|truncat|JSON|snapshot"):
+            project_lessonos_study_digest(snap, L)
+
+    def test_a12_truncated_correction_rejected(self) -> None:
+        """Correzione troncata: mai concludere corrected=false in silenzio."""
+        good = _error("err:e", "c", "Errore",
+                      "2026-08-01T00:01:00.000Z")
+        bad = _env("exercise.completed", "2026-08-01T00:02:00.000Z", {
+            "exerciseId": "ex:x", "correctsErrorId": "err:e",
+            "labels": {"it": "X"},
+        })
+        snap = _snapshot(good) + "\n" + json.dumps(bad)[:60]
+        with pytest.raises(ValueError, match="malformed|truncat|JSON|snapshot"):
+            project_lessonos_study_digest(snap, L)
+
+    def test_a13_v2_like_without_schema_version_rejected(self) -> None:
+        """Riga v2-like (kind/lessonId/occurredAt/payload) senza
+        schemaVersion: riconoscibile come canonica corrotta, mai legacy."""
+        row = {
+            "kind": "journal.element.add",
+            "lessonId": L,
+            "occurredAt": "2026-08-01T00:00:00.000Z",
+            "payload": {"element": {"id": "a", "type": "text", "text": "x"}},
+        }
+        with pytest.raises(ValueError, match="schemaVersion|v2|canonical"):
+            project_lessonos_study_digest(_snapshot(row), L)
+
+    def test_a3_empty_it_label_is_empty_like_studio(self) -> None:
+        """labels.it='' → Studio labelOf rende '' (?? salta solo
+        null/undefined), NON fallback. Misurato via probe, non dedotto."""
+        row = _env("concept.introduced", "2026-08-01T00:00:00.000Z", {
+            "conceptId": "c", "labels": {"it": "", "en": "Concept"},
+        })
+        digest = project_lessonos_study_digest(_snapshot(row), L)
+        assert digest.concepts[0].label == ""
+
+    def test_a3b_non_string_label_rejected(self) -> None:
+        """labels {it: 123}: Studio assertLegacyPayloadField rifiuta
+        (misurato). Mirror: reject, mai coerce."""
+        row = _env("concept.introduced", "2026-08-01T00:00:00.000Z", {
+            "conceptId": "c", "labels": {"it": 123},
+        })
+        with pytest.raises(ValueError, match="labels"):
+            project_lessonos_study_digest(_snapshot(row), L)
+
+    def test_a3c_bool_seq_rejected(self) -> None:
+        """seq=true: Studio Number.isInteger rifiuta; isinstance Python
+        accetterebbe. Type-strict."""
+        row = _env("concept.introduced", "2026-08-01T00:00:00.000Z", {
+            "conceptId": "c", "labels": {"it": "C"},
+        })
+        row["seq"] = True
+        with pytest.raises(ValueError, match="seq"):
+            project_lessonos_study_digest(_snapshot(row), L)
+
+    def test_a21_same_id_concept_and_error_rejected(self) -> None:
+        """conceptId = errorId = 'same': Studio rifiuta concetto vs errore."""
+        snap = _snapshot(
+            _concept("same", "Stesso", "2026-08-01T00:00:00.000Z"),
+            _error("same", "same", "Stesso errore",
+                   "2026-08-01T00:01:00.000Z"),
+        )
+        with pytest.raises(ValueError, match="kind|role|riusato|conflict"):
+            project_lessonos_study_digest(snap, L)
+
+    def test_a22_exercise_id_reused_as_error_id_rejected(self) -> None:
+        """exerciseId = errorId = 'e': Studio rifiuta errore vs esercizio;
+        mai trasformarlo in e.corrected = true."""
+        snap = _snapshot(
+            _error("e", "c", "Errore", "2026-08-01T00:00:00.000Z"),
+            _env("exercise.completed", "2026-08-01T00:01:00.000Z", {
+                "exerciseId": "e", "correctsErrorId": "e",
+                "labels": {"it": "Esercizio"},
+            }),
+        )
+        with pytest.raises(ValueError, match="kind|role|riusato|conflict"):
+            project_lessonos_study_digest(snap, L)
+
+    def test_differential_parity_full_relevant_subset(self) -> None:
+        """Tripwire permanente di parità Studio (D2-J3A + J3A.1): gli 11 kind
+        rilevanti proiettati devono coincidere con buildLessonStudyDigest.
+        Fixture condivisa con probe vitest /tmp/d2j31-full.jsonl (procedura
+        nel body PR #251/#252): se Studio cambia semantica, rigenerare
+        l'atteso con lo stesso snapshot."""
+        L2 = "lezione-j31x"
+        S2 = "aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaa1"
+
+        def row(seq: int, kind: str, secs: int, payload: dict, ev: str) -> dict:
+            return {
+                "seq": seq, "schemaVersion": 2,
+                "eventId": f"70000000-0000-4000-8000-{seq:012d}",
+                "lessonId": L2, "sessionId": S2, "kind": kind,
+                "occurredAt": f"2026-08-01T00:{secs // 60:02d}:{secs % 60:02d}.000Z",
+                "actor": {"type": "teacher", "id": "founder-beta-teacher"},
+                "producer": {"id": "com.github.andreamarro.ardesia.studio",
+                             "version": "0.0.0", "commitSha": "a" * 40},
+                "causationId": None, "idempotencyKey": f"j31x:{seq}",
+                "evidence": [{"ref": ev, "resolution": "verified"}],
+                "payload": payload,
+            }
+
+        rows = [
+            row(1, "lesson.started", 0, {"room": L2}, f"lesson:{L2}@0"),
+            row(2, "concept.introduced", 10,
+                {"conceptId": "ohm", "labels": {"it": "Legge di Ohm"}},
+                "manual:x:p1"),
+            row(3, "material.cited", 20,
+                {"materialId": "man:p2", "conceptId": "ohm",
+                 "labels": {"it": "Pagina 2"}}, "manual:x:p2"),
+            row(4, "error.observed", 30,
+                {"errorId": "err:e", "conceptId": "ohm",
+                 "labels": {"it": "Errore E"}}, "board:e"),
+            row(5, "exercise.completed", 40,
+                {"exerciseId": "ex:fix", "conceptId": "ohm",
+                 "correctsErrorId": "err:e", "labels": {"it": "Esercizio fix"}},
+                "board:fix"),
+            row(6, "simulation.error.observed", 50,
+                {"errorId": "sim:s", "conceptId": "ohm",
+                 "labels": {"it": "Errore S"}, "sceneId": "s",
+                 "experimentId": "e"}, "simulation:s"),
+            row(7, "simulation.step.completed", 60,
+                {"stepId": "step:1", "conceptId": "ohm",
+                 "labels": {"it": "Passo"}}, "board:step"),
+            row(8, "simulation.circuit.solved", 70,
+                {"experimentId": "exp:1", "conceptId": "ohm",
+                 "labels": {"it": "Circuito ok"}}, "plugin:sok"),
+            row(9, "lesson.ended", 80, {"room": L2}, f"lesson:{L2}@80"),
+            row(10, "quiz.attempted", 90,
+                {"quizId": "q", "correct": 1, "total": 2,
+                 "labels": {"it": "Quiz"}}, "board:q"),
+            row(11, "session.heartbeat", 95, {}, "session:h"),
+        ]
+        snap = "\n".join(json.dumps(r) for r in rows)
+        digest = project_lessonos_study_digest(snap, L2)
+        assert [(c.id, c.label) for c in digest.concepts] == [("ohm", "Legge di Ohm")]
+        assert digest.concepts[0].evidence_refs == (
+            "manual:x:p1", "manual:x:p2", "board:e", "board:fix",
+            "simulation:s", "board:step", "plugin:sok")
+        assert [(e.id, e.label, e.concept_id, e.corrected)
+                for e in digest.errors] == [
+            ("err:e", "Errore E", "ohm", True),
+            ("sim:s", "Errore S", "ohm", False),
+        ]
+        assert digest.errors[0].evidence_refs == ("board:e",)
+        assert digest.errors[1].evidence_refs == ("simulation:s",)
+
     def test_t1_simulation_step_completed_yields_concept(self) -> None:
         """Studio crea il nodo concetto (labels {}) anche da step: il digest
         puo' contenerlo, Python non deve perderlo."""
