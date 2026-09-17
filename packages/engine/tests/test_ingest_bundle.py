@@ -7,6 +7,7 @@ and the end-to-end orchestration into the existing capsule pipeline (mock LLM).
 
 from __future__ import annotations
 
+import hashlib
 import json
 import zipfile
 
@@ -38,10 +39,13 @@ def _text_add(t: int, eid: str, text: str, version: int = 1) -> dict:
 
 
 def _write_lesson(tmp_path, events_jsonl: str, *, session: str | None = None,
-                  audio: tuple[str, ...] = (), extra: dict | None = None):
+                   audio: tuple[str, ...] = (), extra: dict | None = None,
+                   manifest: str | None = None):
     """Write a synthetic .lesson zip and return its path."""
     p = tmp_path / "lesson.lesson"
     with zipfile.ZipFile(p, "w") as zf:
+        if manifest is not None:
+            zf.writestr("manifest.json", manifest)
         zf.writestr("raw/events.jsonl", events_jsonl)
         if session is not None:
             zf.writestr("raw/session.yaml", session)
@@ -382,3 +386,266 @@ class TestReexportFewerElements:
         store.close()
         tmp1.close()
         tmp2.close()
+
+
+# ── D2-J1: canonical Studio bundles (manifest.json + v2 journal) ──────
+
+ML = "lezione-moderna"
+MSESSION = "11111111-1111-4111-8111-111111111111"
+
+_V2_PRODUCER = {
+    "id": "com.github.andreamarro.ardesia.studio",
+    "version": "0.0.0",
+    "commitSha": "a" * 40,
+}
+
+
+def _v2_envelope(lesson_id: str, session_id: str, kind: str, occurred_at: str,
+                 payload: dict, seq: int) -> dict:
+    return {
+        "schemaVersion": 2,
+        "eventId": f"70000000-0000-4000-8000-{seq:012d}",
+        "lessonId": lesson_id,
+        "sessionId": session_id,
+        "kind": kind,
+        "occurredAt": occurred_at,
+        "actor": {"type": "teacher", "id": "founder-beta-teacher"},
+        "producer": dict(_V2_PRODUCER),
+        "causationId": None,
+        "idempotencyKey": f"d2j1:{seq}",
+        "evidence": [{"ref": f"lesson:{lesson_id}@{seq}", "resolution": "verified"}],
+        "payload": payload,
+    }
+
+
+def _v2_add(lesson_id: str, eid: str, text: str, occurred_at: str,
+            seq: int, session_id: str = MSESSION) -> dict:
+    return _v2_envelope(lesson_id, session_id, "journal.element.add", occurred_at,
+                        {"element": {"id": eid, "type": "text", "text": text}}, seq)
+
+
+def _v2_update(lesson_id: str, eid: str, text: str, occurred_at: str,
+               seq: int, session_id: str = MSESSION) -> dict:
+    return _v2_envelope(lesson_id, session_id, "journal.element.update", occurred_at,
+                        {"element": {"id": eid, "type": "text", "text": text}}, seq)
+
+
+def _v2_delete(lesson_id: str, eid: str, occurred_at: str,
+               seq: int, session_id: str = MSESSION) -> dict:
+    return _v2_envelope(lesson_id, session_id, "journal.element.delete", occurred_at,
+                        {"elementId": eid}, seq)
+
+
+def _modern_manifest(lesson_id: str, files: dict[str, bytes], **overrides) -> str:
+    """Manifest shaped like Studio buildLessonBundleManifest (v1)."""
+    doc: dict = {
+        "bundleVersion": 1,
+        "schemaVersion": 1,
+        "lessonId": lesson_id,
+        "sessionIds": [MSESSION],
+        "producer": dict(_V2_PRODUCER),
+        "requiredArtifacts": ["raw/board.excalidraw", "raw/events.jsonl", "raw/session.yaml"],
+        "optionalArtifacts": ["raw/lessonos-events.jsonl", "raw/audio/*"],
+        "files": [
+            {"path": path,
+             "bytes": len(payload),
+             "sha256": hashlib.sha256(payload).hexdigest(),
+             "required": path in ("raw/board.excalidraw", "raw/events.jsonl", "raw/session.yaml")}
+            for path, payload in sorted(files.items())
+        ],
+        "lessonOs": {"status": "missing", "warnings": []},
+        "compatibility": {"minimumReaderSchemaVersion": 1, "migrations": []},
+    }
+    doc.update(overrides)
+    return json.dumps(doc)
+
+
+def _modern_files(events_jsonl: str) -> dict[str, bytes]:
+    return {
+        "raw/board.excalidraw": b"{}",
+        "raw/events.jsonl": events_jsonl.encode("utf-8"),
+        "raw/session.yaml": b"audioConsent: false\n",
+    }
+
+
+class TestModernManifest:
+    def test_t1_root_manifest_accepted(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                          session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files))
+        c = read_bundle(p)
+        assert c.manifest is not None
+        assert c.manifest["lessonId"] == ML
+        assert "element.add" in c.events_jsonl
+
+    def test_t2_unexpected_root_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                          session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files),
+                          extra={"evil.txt": "pwned"})
+        with pytest.raises(ValueError, match="unsafe"):
+            read_bundle(p)
+
+    def test_t3_traversal_rejected(self, tmp_path) -> None:
+        for bad in ("../foo.lesson", "/abs/path.lesson"):
+            p = tmp_path / "x.lesson"
+            with zipfile.ZipFile(p, "w") as zf:
+                zf.writestr("raw/events.jsonl", "{}")
+                zf.writestr(bad, "pwned")
+            with pytest.raises(ValueError, match="unsafe"):
+                read_bundle(str(p))
+
+    def test_t4_unsupported_version_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        for field, value in (("bundleVersion", 2), ("schemaVersion", 2)):
+            p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                              session="audioConsent: false\n",
+                              manifest=_modern_manifest(ML, files, **{field: value}))
+            with pytest.raises(ValueError, match="unsupported manifest"):
+                read_bundle(p)
+
+    def test_t5_manifest_requested_identity_mismatch_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        p = _write_lesson(tmp_path, files["raw/events.jsonl"].decode("utf-8"),
+                          session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files))
+        store = SQLiteStore(":memory:")
+        router = Router()
+        router.register(MockProvider({}))
+        with pytest.raises(ValueError, match="does not match requested lesson"):
+            ingest_bundle(p, store, "altra-lezione", router=router, provider="mock")
+
+    def test_t6_legacy_manifest_less_preserved(self, tmp_path) -> None:
+        p = _write_lesson(tmp_path, _events(_text_add(1000, "a", "x")),
+                          session="audioConsent: false\n")
+        c = read_bundle(p)
+        assert c.manifest is None
+        assert "element.add" in c.events_jsonl
+
+    def test_manifest_hash_mismatch_rejected(self, tmp_path) -> None:
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        tampered = dict(files)
+        # Stessa lunghezza (i bytes coincidono), contenuto diverso: solo lo
+        # SHA-256 puo' accorgersene.
+        tampered["raw/events.jsonl"] = _events(_text_add(1000, "a", "y")).encode("utf-8")
+        p = tmp_path / "tampered.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _modern_manifest(ML, files))
+            for path, payload in tampered.items():
+                zf.writestr(path, payload)
+        with pytest.raises(ValueError, match="SHA-256 mismatch"):
+            read_bundle(str(p))
+
+
+class TestV2Journal:
+    def test_t7_v2_add_extracts_text(self) -> None:
+        ev = _events(
+            _v2_add(ML, "a", "Definizione sintetica", "2026-08-01T00:00:01.000Z", 1),
+            _v2_add(ML, "b", "Energia sintetica", "2026-08-01T00:00:02.000Z", 2),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.seg_id for s in segs] == [f"{ML}#s1", f"{ML}#s2"]
+        assert [s.text for s in segs] == ["Definizione sintetica", "Energia sintetica"]
+        assert segs[0].start == 0
+        assert segs[1].start == 1
+
+    def test_t8_v2_update_last_wins(self) -> None:
+        ev = _events(
+            _v2_add(ML, "a", "Bozza", "2026-08-01T00:00:01.000Z", 1),
+            _v2_update(ML, "a", "Versione finale", "2026-08-01T00:00:03.000Z", 2),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["Versione finale"]
+        assert segs[0].end == 2
+
+    def test_t9_v2_delete_readd_resurrects(self) -> None:
+        ev = _events(
+            _v2_add(ML, "a", "originale", "2026-08-01T00:00:01.000Z", 1),
+            _v2_delete(ML, "a", "2026-08-01T00:00:02.000Z", 2),
+            _v2_add(ML, "a", "ripristinato", "2026-08-01T00:00:05.000Z", 3),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["ripristinato"]
+        assert segs[0].start == 4
+
+    def test_t10_v2_lesson_mismatch_rejected(self) -> None:
+        ev = _events(
+            _v2_add("altra-lezione", "a", "testo altrui", "2026-08-01T00:00:01.000Z", 1),
+        )
+        with pytest.raises(ValueError, match="does not match bundle lesson"):
+            journal_to_segments(ev, ML)
+
+    def test_t10b_manifest_journal_identity_mismatch_rejected(self, tmp_path) -> None:
+        ev = _events(
+            _v2_add("altra-lezione", "a", "testo altrui", "2026-08-01T00:00:01.000Z", 1),
+        )
+        files = _modern_files(ev)
+        p = _write_lesson(tmp_path, ev, session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files))
+        store = SQLiteStore(":memory:")
+        router = Router()
+        router.register(MockProvider({}))
+        with pytest.raises(ValueError, match="does not match bundle lesson"):
+            ingest_bundle(p, store, ML, router=router, provider="mock")
+
+    def test_v2_other_kinds_ignored(self) -> None:
+        ev = _events(
+            _v2_envelope(ML, MSESSION, "journal.pointer.down", "2026-08-01T00:00:01.000Z", {}, 1),
+            _v2_envelope(ML, MSESSION, "journal.math.insert", "2026-08-01T00:00:02.000Z",
+                         {"latex": "x"}, 2),
+            _v2_add(ML, "a", "solo testo", "2026-08-01T00:00:03.000Z", 3),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert [s.text for s in segs] == ["solo testo"]
+
+    def test_v2_corrupt_envelope_rejected_not_skipped(self) -> None:
+        bad = _v2_add(ML, "a", "x", "2026-08-01T00:00:01.000Z", 1)
+        del bad["payload"]["element"]
+        with pytest.raises(ValueError, match="malformed element"):
+            journal_to_segments(_events(bad), ML)
+
+    def test_legacy_lines_still_supported_alongside_v2(self) -> None:
+        ev = _events(
+            _text_add(1000, "a", "legacy"),
+            _v2_add(ML, "b", "moderno", "2026-08-01T00:00:02.000Z", 1),
+        )
+        segs = journal_to_segments(ev, ML)
+        assert sorted(s.text for s in segs) == ["legacy", "moderno"]
+
+
+class TestModernEndToEnd:
+    def test_t11_manifest_v2_end_to_end(self, tmp_path) -> None:
+        ev = _events(
+            _v2_add(ML, "a", "Definizione sintetica di segnale", "2026-08-01T00:00:01.000Z", 1),
+            _v2_add(ML, "b", "Energia sintetica di un segnale", "2026-08-01T00:00:05.000Z", 2),
+            _v2_add(ML, "c", "Esercizio sintetico", "2026-08-01T00:00:09.000Z", 3),
+        )
+        files = _modern_files(ev)
+        p = _write_lesson(tmp_path, ev, session="audioConsent: false\n",
+                          manifest=_modern_manifest(ML, files))
+        segs = journal_to_segments(ev, ML)
+        tmp = SQLiteStore(":memory:")
+        for s in segs:
+            tmp.save_segment(s)
+        seg_prompt = build_segmentation_prompt(tmp.segments_for_lesson(ML))
+        ext_prompt = build_extraction_prompt(tmp.segments_for_lesson(ML))
+        router = Router()
+        router.register(MockProvider({
+            seg_prompt: json.dumps([{"topic": "t", "seg_ids": [f"{ML}#s1", f"{ML}#s2", f"{ML}#s3"]}]),
+            ext_prompt: json.dumps({
+                "concepts": [
+                    {"name": "segnale", "status": "introduced",
+                     "citations": [{"seg_id": f"{ML}#s1", "excerpt": "Definizione sintetica di segnale"}]},
+                ],
+                "exercises": [], "student_questions": [], "homework": [],
+            }),
+        }))
+        store = SQLiteStore(":memory:")
+        segments, capsule = ingest_bundle(p, store, ML, router=router, provider="mock")
+        assert [s.seg_id for s in segments] == [f"{ML}#s{i}" for i in (1, 2, 3)]
+        assert capsule.lesson_id == ML
+        assert {c.name for c in capsule.content.concepts} == {"segnale"}
+        store.close()
+        tmp.close()
