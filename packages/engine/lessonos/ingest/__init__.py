@@ -5,6 +5,12 @@ from lessonos.ingest.bundle import (
     journal_to_segments,
     read_bundle,
 )
+from lessonos.ingest.lessonos_snapshot import (
+    LessonOsStudyDigest,
+    StudyConcept,
+    StudyError,
+    project_lessonos_study_digest,
+)
 from lessonos.ingest.chunker import (
     ChunkResult,
     ChunkResultItem,
@@ -20,4 +26,8 @@ __all__ = [
     "ingest_bundle",
     "journal_to_segments",
     "read_bundle",
+    "LessonOsStudyDigest",
+    "StudyConcept",
+    "StudyError",
+    "project_lessonos_study_digest",
 ]
