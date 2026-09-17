@@ -692,14 +692,6 @@ class TestManifestInventoryBijection:
         with pytest.raises(ValueError, match="inventory|absent|missing"):
             read_bundle(str(p))
 
-    @pytest.mark.xfail(
-        strict=False,
-        reason="known failure mode (fault-injection probe 2026-09-17): a "
-        "failed re-ingest leaves NEW segments with the OLD capsule whose "
-        "citations no longer match persisted segments. Future fix must make "
-        "round-2 failure atomic (rollback segments or purge stale capsule); "
-        "delete this xfail when fixed.",
-    )
     def test_failed_reingest_keeps_capsule_consistent(self, tmp_path) -> None:
         """Round 1 ok, round 2 raises in assembly: capsule citations must
         still resolve verbatim against persisted segments."""
