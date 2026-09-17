@@ -456,3 +456,34 @@ class TestSnapshotContractHardening:
         # quindi l'evidence resta (board, manual) in entrambi i casi.
         assert digest.concepts[0].label == "Legge di Ohm"
         assert digest.concepts[0].evidence_refs == ("board:ex-1", "manual:test:p10")
+
+
+def _single_event_row(kind: str, payload: dict) -> dict:
+    return _env(kind, "2026-08-01T00:00:00.000Z", payload)
+
+
+@pytest.mark.parametrize("kind,payload", [
+    ("error.observed", {"errorId": "same", "conceptId": "same",
+                        "labels": {"it": "X"}}),
+    ("simulation.error.observed", {"errorId": "same", "conceptId": "same",
+                                   "sceneId": "s", "experimentId": "e",
+                                   "labels": {"it": "X"}}),
+    ("material.cited", {"materialId": "same", "conceptId": "same",
+                        "labels": {"it": "X"}}),
+    ("exercise.completed", {"exerciseId": "same", "conceptId": "same",
+                            "labels": {"it": "X"}}),
+    ("simulation.step.completed", {"stepId": "same", "conceptId": "same",
+                                   "labels": {"it": "X"}}),
+    ("simulation.circuit.solved", {"experimentId": "same",
+                                   "conceptId": "same",
+                                   "labels": {"it": "X"}}),
+])
+def test_derived_concept_claims_concetto_role(kind: str, payload: dict) -> None:
+    """Concetto creato IMPLICITAMENTE nello stesso evento deve reclamare il
+    ruolo concetto: se l'id e' gia' di altro ruolo (qui: se stesso come
+    errore/esercizio/materiale), Studio rifiuta la collisione e anche noi.
+    Distingue dal caso pre-claimato (concept.introduced in evento separato,
+    gia' coperto da test_a21/a22)."""
+    with pytest.raises(ValueError, match="kind|role|riusato|conflict"):
+        project_lessonos_study_digest(
+            _snapshot(_single_event_row(kind, payload)), L)
