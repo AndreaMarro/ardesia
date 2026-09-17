@@ -249,3 +249,59 @@ class TestLessonOsStudyDigest:
             "c": [(c.id, c.label, c.evidence_refs) for c in digest.concepts],
             "e": [(e.id, e.label, e.concept_id, e.evidence_refs) for e in digest.errors],
         })
+
+    def test_t1_simulation_step_completed_yields_concept(self) -> None:
+        """Studio crea il nodo concetto (labels {}) anche da step: il digest
+        puo' contenerlo, Python non deve perderlo."""
+        row = _env("simulation.step.completed", "2026-08-01T00:00:00.000Z", {
+            "stepId": "step-1", "conceptId": "ohm",
+            "labels": {"it": "Passo circuito"},
+        })
+        row["evidence"] = [{"ref": "board:step-1", "resolution": "verified"}]
+        digest = project_lessonos_study_digest(_snapshot(row), L)
+        assert [(c.id, c.label) for c in digest.concepts] == [("ohm", "ohm")]
+        assert digest.concepts[0].evidence_refs == ("board:step-1",)
+
+    def test_t2_exercise_concept_keeps_empty_labels(self) -> None:
+        """Le labels dell'exercise restano al nodo esercizio: il concetto
+        derivato nasce vuoto (label = fallback id)."""
+        row = _env("exercise.completed", "2026-08-01T00:00:00.000Z", {
+            "exerciseId": "ex-1", "conceptId": "ohm",
+            "labels": {"it": "Esercizio sulla legge di Ohm"},
+        })
+        row["evidence"] = [{"ref": "board:ex-1", "resolution": "verified"}]
+        digest = project_lessonos_study_digest(_snapshot(row), L)
+        assert [(c.id, c.label) for c in digest.concepts] == [("ohm", "ohm")]
+        assert digest.concepts[0].evidence_refs == ("board:ex-1",)
+
+    def test_t3_circuit_solved_concept_keeps_empty_labels(self) -> None:
+        row = _env("simulation.circuit.solved", "2026-08-01T00:00:00.000Z", {
+            "experimentId": "exp-1", "conceptId": "ohm",
+            "labels": {"it": "Circuito risolto"},
+        })
+        row["evidence"] = [{"ref": "plugin:sim@1", "resolution": "verified"}]
+        digest = project_lessonos_study_digest(_snapshot(row), L)
+        assert [(c.id, c.label) for c in digest.concepts] == [("ohm", "ohm")]
+        assert digest.concepts[0].evidence_refs == ("plugin:sim@1",)
+
+    def test_merge_exercise_then_introduced_and_reverse(self) -> None:
+        """Labels vuote derivate non cancellano ne' inventano: chi arriva
+        prima fissa, chi arriva dopo arricchisce senza riscrivere."""
+        ex_row = _env("exercise.completed", "2026-08-01T00:00:00.000Z", {
+            "exerciseId": "ex-1", "conceptId": "ohm",
+            "labels": {"it": "Esercizio"}},
+        )
+        ex_row["evidence"] = [{"ref": "board:ex-1", "resolution": "verified"}]
+        in_row = _env("concept.introduced", "2026-08-01T00:01:00.000Z", {
+            "conceptId": "ohm", "labels": {"it": "Legge di Ohm"}})
+        in_row["evidence"] = [{"ref": "manual:test:p10", "resolution": "verified"}]
+        digest = project_lessonos_study_digest(
+            _snapshot(ex_row, in_row), L)
+        assert digest.concepts[0].label == "Legge di Ohm"
+        assert digest.concepts[0].evidence_refs == ("board:ex-1", "manual:test:p10")
+        digest = project_lessonos_study_digest(
+            _snapshot(in_row, ex_row), L)
+        # L'ordine canonico e' seq (non riga di file): ex_row ha seq minore,
+        # quindi l'evidence resta (board, manual) in entrambi i casi.
+        assert digest.concepts[0].label == "Legge di Ohm"
+        assert digest.concepts[0].evidence_refs == ("board:ex-1", "manual:test:p10")
