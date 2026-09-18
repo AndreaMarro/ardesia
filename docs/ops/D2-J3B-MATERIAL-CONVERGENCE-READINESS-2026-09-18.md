@@ -136,13 +136,16 @@ La convergenza NON è "sceglierne una": è comporre D2-J3A digest +
 SummaryPack esistente. Dettaglio nella slice sotto. Non è una decisione
 di architettura nuova: è wiring di accumulatori esistenti.
 
-## 11. Smallest possible J3B implementation slice
+## 11. Smallest possible J3B implementation slice (aggiornato: implementato in PR #254)
 
-Estendere il prompt pack del summary esistente con DUE sezioni grounded
-già disponibili senza nuovo schema: (a) errori aperti/correzioni dal
-digest D2-J3A (EvidenceRef mostrate, non convertite); (b) soluzioni
-esercizi già estratte in capsula. Riuso totale di prompt-gating-render
-esistenti. Niente blueprint, niente quarto, niente PDF in J3B.
+Narrazione grounded invariata + deterministic structured appendix DOPO di
+essa (NON dentro il prompt LLM): (a) soluzioni esercizi già estratte in
+capsula, con citation verificate via verify_citation; (b) errori
+aperti/correzioni dal digest D2-J3A con EvidenceRef mostrate come
+provenienza plain, mai convertite in citazioni seg_id. Riuso totale di
+prompt-gating-render esistenti. Niente blueprint, niente quarto, niente
+PDF in J3B. Dettaglio implementativo e prove: PR #254
+(feat/d2-j3b-hybrid-lesson-material).
 
 ## 12. Exact files J3B would likely touch
 
@@ -163,8 +166,15 @@ esistenti. Niente blueprint, niente quarto, niente PDF in J3B.
 ## 14. Deferred decisions
 
 - Seg_id namespacing ASR/board (schema-level → decision record futura).
-- Re-ingest atomicity: CHIUSA in questa sessione (snapshot/restore,
-  xfail rimosso) — non più deferred.
+- Re-ingest failure compensation: PROVATO solo per post-purge save/assembly
+  failure con restore riuscito (test dedicati) + contratto Store allineato
+  (tutti i public mutators onorano _in_transaction, test parametrizzato).
+  NON PROVATO / NON GARANTITO: full failure atomicity, concurrent reader
+  isolation, same-lesson concurrent ingest, recovery se il backend viola le
+  assunzioni, restore success in presenza di restore failure (in quel caso
+  l'errore originale resta incatenato in __context__, non è più la top-level
+  exception). "Original error re-raised unchanged" vale SOLO a restore
+  riuscito — mai inteso come atomicità generale.
 - `readEnvelopesByLesson` index perf; live-Kimi 404 esterni.
 - Study-pack route: verificare nel repo che la ospita o dichiararla
   greenfield.
@@ -175,3 +185,47 @@ LessonDocument/IR, PDF/LaTeX/Markdown renderer nuovi, CLI nuova, nuovo
 DB/schema, Kirchhoff/Numeria/ELAB integration, Room/hashchange fix,
 marketplace/SaaS/MCP/LMS/factory, rewrite Studio/engine/ELAB,
 DevOS/control plane, merge, deploy.
+
+## 16. Truth alignment 2026-09-18 (D2-J3B-TRUTH-PDF-POC)
+
+Le sezioni 1-15 restano il record dell'audit scritto a `671cbfcf`.
+Questa sezione le corregge senza riscrivere la storia.
+
+- §11 SUPERSEDED. J3B NON è stato implementato come estensione del
+  prompt pack. Implementato in PR #254 (`0a5b33f5` + `6157e663`):
+  `generate_lesson_summary` mantiene la narrazione grounded
+  byte-identica, poi appende `render_structured_appendix`
+  (`packages/engine/lessonos/summarizer.py:447`) — deterministico, senza
+  LLM — costruito da errori/correzioni di `LessonOsStudyDigest`
+  (`packages/engine/lessonos/ingest/lessonos_snapshot.py:76`) +
+  `ExerciseExtraction.solution`
+  (`packages/engine/lessonos/capsule/extraction.py:162`) con gating via
+  `verify_citation`. Guardie: digest di altra lezione → `ValueError`;
+  citazioni senza excerpt verificato scartate da `is_verified_excerpt`
+  PRIMA di `verify_citation`.
+- Output invariato come outer type: `SummaryPack`
+  (`files{<lesson>.md}`); appendix `""` quando non applicabile →
+  output legacy byte-identici (test exact-output pre-esistente).
+- §14 SUPERSEDED ("atomicity CHIUSA"). Solo bounded post-purge
+  compensation. Contratto Store: i public mutators committano
+  eagerly fuori da transazioni esplicite, suppressi dentro
+  (`if not self._in_transaction`, `store/sqlite.py`); snapshot di
+  vecchi segments+capsule PRIMA della purge; purge = singolo DELETE
+  fuori dal try (se fallisce: stato intatto, niente da ripristinare);
+  fallimento save/assembly post-purge → restore old+old + errore
+  originale ri-sollevato; fallimento del restore → propaga con
+  l'originale incatenato in `__context__`. NON GARANTITO: atomicità
+  generale, isolamento dei lettori concorrenti (stato transiente
+  osservabile), ingest concorrente stessa lezione (nessun lock in
+  `ingest/bundle.py`). Staged atomic replacement futura = FUTURE, non
+  implementata.
+- Epistemica: `EvidenceRef` = provenienza mostrata come riga plain
+  `Provenienza:`, mai convertita in citazioni seg_id; `Citation` =
+  grounding testuale via `verify_citation` su excerpt di segmento;
+  solution etichettata "estratta", mai "verificata" (non esiste un
+  verificatore di dominio); Kirchhoff claim = verifica di dominio
+  futura, fuori scope.
+- Exporter Quarto (`export/quarto.py`) è CourseBlueprint-oriented
+  (course-level), contiene `"Soluzione da sviluppare."` hardcoded
+  (`quarto.py:359`), richiede runtime quarto esterno (assente): NON è
+  il truth path single-lesson J3B.
