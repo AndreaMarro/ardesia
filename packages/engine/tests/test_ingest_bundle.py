@@ -896,3 +896,107 @@ class TestLessonOsSnapshotSurfaced:
         c = read_bundle(p)
         assert c.manifest is None
         assert c.lessonos_events_jsonl is None
+
+
+class _FailingSaveStore:
+    """Duck-typed Store wrapper: fail save_segment exactly once (Nth call).
+
+    Reads/deletes delegate to the real store; saves pass through except the
+    configured one. Proves what ingest_bundle guarantees when persistence
+    itself breaks mid-write (no LLM involved)."""
+
+    def __init__(self, real: SQLiteStore, fail_on_save_call: int,
+                 failure: Exception) -> None:
+        self._real = real
+        self._fail_on = fail_on_save_call
+        self._failure = failure
+        self._saves = 0
+
+    def __getattr__(self, name: str):
+        return getattr(self._real, name)
+
+    def save_segment(self, segment) -> None:
+        self._saves += 1
+        if self._saves == self._fail_on:
+            raise self._failure
+        self._real.save_segment(segment)
+
+
+def _ok_router_for_texts(mlesson: str, texts: list[str]):
+    segs = journal_to_segments(
+        _events(*[_text_add(1000 + i, f"t{i}", t) for i, t in enumerate(texts)]),
+        mlesson)
+    tmp = SQLiteStore(":memory:")
+    for s in segs:
+        tmp.save_segment(s)
+    seg_prompt = build_segmentation_prompt(tmp.segments_for_lesson(mlesson))
+    ext_prompt = build_extraction_prompt(tmp.segments_for_lesson(mlesson))
+    router = Router()
+    router.register(MockProvider({
+        seg_prompt: json.dumps([{"topic": "t", "seg_ids": [s.seg_id for s in segs]}]),
+        ext_prompt: json.dumps({
+            "concepts": [{
+                "name": "c", "status": "introduced",
+                "citations": [{"seg_id": segs[0].seg_id, "excerpt": texts[0]}],
+            }],
+            "exercises": [], "student_questions": [], "homework": [],
+        }),
+    }))
+    tmp.close()
+    return router
+
+
+class TestReingestFailureTruth:
+    def test_wrapper_has_no_incoherent_save_mode(self) -> None:
+        """ingest_bundle non offre save=False: con save=False farebbe
+        comunque purge+save dei segmenti saltando la capsula (new+old
+        silenzioso). Il dry-run vive solo su assemble_lesson_capsule."""
+        import inspect
+
+        assert "save" not in inspect.signature(ingest_bundle).parameters
+
+    def test_save_failure_restores_old_state_and_reraises(self, tmp_path) -> None:
+        """Failure DURANTE save_segment (2a scrittura nuova): l'errore
+        originale risale e lo stato torna old+old — niente purge parziale."""
+        store = SQLiteStore(":memory:")
+        p1 = _write_lesson(tmp_path, _events(_text_add(1000, "a", "vecchio")),
+                           session="audioConsent: false\n")
+        ingest_bundle(p1, store, ML,
+                      router=_ok_router_for_texts(ML, ["vecchio"]), provider="mock")
+        assert [s.text for s in store.segments_for_lesson(ML)] == ["vecchio"]
+
+        p2 = _write_lesson(tmp_path, _events(
+            _text_add(1000, "a", "nuovo-1"), _text_add(2000, "b", "nuovo-2")),
+            session="audioConsent: false\n")
+        failing = _FailingSaveStore(store, fail_on_save_call=2,
+                                    failure=IOError("disco pieno (sintetico)"))
+        with pytest.raises(IOError, match="disco pieno"):
+            ingest_bundle(p2, failing, ML,
+                          router=_ok_router_for_texts(ML, ["nuovo-1", "nuovo-2"]),
+                          provider="mock")
+        assert [s.text for s in store.segments_for_lesson(ML)] == ["vecchio"]
+        assert load_capsule(store, ML) is not None
+        store.close()
+
+    def test_restore_failure_preserves_original_as_context(self, tmp_path) -> None:
+        """Se anche il restore fallisce, l'errore originale non deve
+        sparire: resta incatenato come __context__ (mai masking muto)."""
+        store = SQLiteStore(":memory:")
+        p1 = _write_lesson(tmp_path, _events(_text_add(1000, "a", "vecchio")),
+                           session="audioConsent: false\n")
+        ingest_bundle(p1, store, ML,
+                      router=_ok_router_for_texts(ML, ["vecchio"]), provider="mock")
+
+        p2 = _write_lesson(tmp_path, _events(_text_add(1000, "a", "nuovo")),
+                           session="audioConsent: false\n")
+
+        class AlwaysFail(_FailingSaveStore):
+            def save_segment(self, segment) -> None:
+                raise IOError("disco rotto (sintetico)")
+
+        with pytest.raises(IOError) as excinfo:
+            ingest_bundle(p2, AlwaysFail(store, 0, IOError("unused")),
+                          ML, router=_ok_router_for_texts(ML, ["nuovo"]),
+                          provider="mock")
+        assert excinfo.value.__context__ is not None
+        store.close()
