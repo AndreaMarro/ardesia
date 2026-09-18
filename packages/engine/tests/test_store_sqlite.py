@@ -452,3 +452,47 @@ def test_get_evidence_for_edge_filters_by_edge_and_orders_by_id() -> None:
     assert got[0].excerpt == "z"  # full row hydrated (ev1's excerpt), not just ids
     assert store.get_evidence_for_edge("l1#missing") == ()  # empty for unknown edge
     store.close()
+
+
+class TestTransactionContract:
+    """Store ABC: inside begin_transaction(), auto-commits are suppressed —
+    rollback must leave no persistent change. Observable store behavior,
+    not _in_transaction flag assertions."""
+
+    def _seg(self, sid: str = "l1#s1", text: str = "Testo") -> Segment:
+        return Segment(seg_id=sid, lesson_id="l1", start=0, end=1, text=text)
+
+    def test_save_segment_rollback_inside_transaction(self) -> None:
+        store = SQLiteStore()
+        store.begin_transaction()
+        store.save_segment(self._seg())
+        store.rollback_transaction()
+        assert store.get_segment("l1#s1") is None
+        store.close()
+
+    def test_delete_segments_rollback_inside_transaction(self) -> None:
+        store = SQLiteStore()
+        store.save_segment(self._seg())
+        store.begin_transaction()
+        assert store.delete_segments_for_lesson("l1") == 1
+        store.rollback_transaction()
+        assert store.get_segment("l1#s1") is not None
+        store.close()
+
+    def test_save_capsule_rollback_inside_transaction(self) -> None:
+        store = SQLiteStore()
+        store.begin_transaction()
+        store.save_capsule("l1", '{"lesson_id": "l1"}')
+        store.rollback_transaction()
+        assert store.get_capsule("l1") is None
+        store.close()
+
+    def test_commit_inside_transaction_persists(self) -> None:
+        store = SQLiteStore()
+        store.begin_transaction()
+        store.save_segment(self._seg())
+        store.save_capsule("l1", '{"lesson_id": "l1"}')
+        store.commit_transaction()
+        assert store.get_segment("l1#s1") is not None
+        assert store.get_capsule("l1") == '{"lesson_id": "l1"}'
+        store.close()

@@ -321,7 +321,8 @@ class SQLiteStore(Store):
                 segment.text,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_segment(self, seg_id: str) -> Segment | None:
         row = self._conn.execute(
@@ -347,7 +348,8 @@ class SQLiteStore(Store):
         cur = self._conn.execute(
             "DELETE FROM segments WHERE lesson_id = ?", (lesson_id,)
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
         return cur.rowcount
 
     @staticmethod
@@ -406,7 +408,8 @@ class SQLiteStore(Store):
             "VALUES (?, ?)",
             (lesson_id, capsule_data),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_capsule(self, lesson_id: str) -> str | None:
         row = self._conn.execute(

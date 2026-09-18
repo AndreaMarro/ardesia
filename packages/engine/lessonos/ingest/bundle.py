@@ -452,23 +452,35 @@ def ingest_bundle(
     provider: str = "mock",
     model: str | None = None,
     defensive: bool = True,
-    save: bool = True,
 ):
     """Ingest a ``.lesson`` bundle end-to-end: read+validate → text Segments →
     persist → assemble capsule (windowed, grounded) → return ``(segments,
     capsule)``. Graph + summary are composed by the caller (same shape as
     ``bin/run_lesson_full.sh``), reusing the unchanged pipeline.
 
+    The capsule is ALWAYS persisted (``save=True`` downstream): this wrapper
+    has no dry-run mode. ``save=False`` lives only on the lower-level
+    ``assemble_lesson_capsule`` for callers that manage persistence
+    themselves. A wrapper-level ``save=False`` would still purge+save
+    segments while skipping the capsule persist — silently incoherent
+    (new segments + old capsule) — so the parameter does not exist here.
+
     Raises ``ValueError`` on an unsafe/GDPR-invalid bundle, on a manifest
     whose declared lessonId disagrees with the requested one, or when the
     board carried no text (nothing to ingest).
 
-    Failure atomicity: the previous segments/capsule are snapshotted BEFORE
-    the purge, and restored if anything fails afterwards (assembly/LLM
-    errors included). The store methods commit eagerly and a long-lived
-    transaction across LLM calls is deliberately NOT used — explicit
-    snapshot/restore on the Store contract instead. The original exception
-    is always re-raised unchanged.
+    Post-purge failure compensation (NOT general atomicity): the previous
+    segments/capsule are snapshotted BEFORE the purge; if saving or assembly
+    fails afterwards, the previous state is restored and the original
+    exception re-raised unchanged. Outside explicit transactions the store
+    methods commit eagerly, and a long-lived transaction across LLM calls
+    is deliberately NOT used — explicit snapshot/restore on the Store
+    contract instead.
+    Known limits (see tests): a purge that itself fails leaves state
+    untouched (single-statement atomicity, nothing to restore); a restore
+    that itself fails propagates with the original error chained as
+    ``__context__`` (never silently masked); concurrent readers may observe
+    transient state (no isolation claimed).
     """
     from lessonos.capsule.assembly import assemble_lesson_capsule
 
@@ -488,20 +500,8 @@ def ingest_bundle(
     # alcunché: su fallimento si ripristina old+old, mai new+old.
     previous_segments = list(store.segments_for_lesson(lesson_id))
     previous_capsule = store.get_capsule(lesson_id)
-    # Bug-hunt #6: purge PRIMA del re-ingest, DENTRO la funzione (il runner
-    # T8 lo dimenticava): un re-export con meno elementi lasciava righe stale
-    # e shift posizionale dei seg_id (classe B3).
-    store.delete_segments_for_lesson(lesson_id)
-    for seg in segments:
-        store.save_segment(seg)
-    try:
-        capsule = assemble_lesson_capsule(
-            store, lesson_id, router,
-            provider=provider, model=model, defensive=defensive, save=save,
-        )
-    except Exception:
-        # Ripristino byte-equivalente dello stato precedente, poi l'errore
-        # originale risale invariato: nessun new+old, nessun mixed.
+
+    def _restore_previous_state() -> None:
         store.delete_segments_for_lesson(lesson_id)
         for seg in previous_segments:
             store.save_segment(seg)
@@ -509,5 +509,26 @@ def ingest_bundle(
             store.delete_capsule(lesson_id)
         else:
             store.save_capsule(lesson_id, previous_capsule)
+
+    # Bug-hunt #6: purge PRIMA del re-ingest, DENTRO la funzione (il runner
+    # T8 lo dimenticava): un re-export con meno elementi lasciava righe stale
+    # e shift posizionale dei seg_id (classe B3).
+    # La purge resta FUORI dal try: e' un singolo statement DELETE (atomico —
+    # se fallisce, nulla e' stato cancellato e non c'e' niente da ripristinare;
+    # un restore qui richiamerebbe la stessa delete fallita mascherando tutto).
+    store.delete_segments_for_lesson(lesson_id)
+    try:
+        for seg in segments:
+            store.save_segment(seg)
+        capsule = assemble_lesson_capsule(
+            store, lesson_id, router,
+            provider=provider, model=model, defensive=defensive, save=True,
+        )
+    except Exception:
+        # Ripristino byte-equivalente dello stato precedente, poi l'errore
+        # originale risale invariato: nessun new+old, nessun mixed.
+        # Se anche il restore fallisce, il suo errore risale con l'originale
+        # incatenato in __context__ (mai masking muto).
+        _restore_previous_state()
         raise
     return segments, capsule
