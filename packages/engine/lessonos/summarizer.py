@@ -470,8 +470,14 @@ def render_structured_appendix(
         verifier exists; Kirchhoff is out of scope).
 
     Returns "" when there is nothing structured to append, so legacy
-    outputs (no solutions, no digest) stay byte-identical.
+    outputs stay byte-identical.
     """
+    if digest is not None and digest.lesson_id != capsule.lesson_id:
+        raise ValueError(
+            f"digest lesson {digest.lesson_id!r} does not match "
+            f"capsule lesson {capsule.lesson_id!r} — cross-lesson "
+            f"contamination refused, never renamed or ignored"
+        )
     lines: list[str] = []
 
     solution_blocks: list[list[str]] = []
@@ -480,6 +486,11 @@ def render_structured_appendix(
             continue
         verified_links: list[str] = []
         for citation in exercise.citations:
+            # Ordine canonico (grounding.py): prima excerpt presente e non
+            # vuoto, POI risoluzione seg_id. Un badge ✗ non e' mai una
+            # verified citation — senza excerpt non si quota niente.
+            if not is_verified_excerpt(citation.excerpt):
+                continue
             try:
                 verify_citation(
                     store, citation.seg_id, capsule.lesson_id,

@@ -817,3 +817,102 @@ class TestHybridStructuredAppendix:
         assert "Circuito aperto" in md and "da rivedere" in md
         assert "Corto richiuso" in md and "corretto" in md
         assert "manual:test:p10" in md and "board:ok" in md
+
+    def test_cross_lesson_digest_rejected(self, store: SQLiteStore) -> None:
+        """digest.lesson_id != capsule.lesson_id: fail closed. Mai render,
+        mai rename, mai silenzio."""
+        capsule = _solution_capsule()
+        foreign = LessonOsStudyDigest(
+            lesson_id="l2",
+            concepts=(),
+            errors=(
+                StudyError(
+                    id="err:x", label="Errore altrui", concept_id=None,
+                    corrected=False, evidence_refs=("board:x",),
+                ),
+            ),
+        )
+        with pytest.raises(ValueError, match="digest lesson"):
+            generate_lesson_summary(
+                store, capsule, _solution_router(store, capsule),
+                provider="mock", digest=foreign,
+            )
+
+    def _excerpt_capsule(self, excerpt) -> LessonCapsule:
+        base = _solution_capsule()
+        return LessonCapsule(
+            lesson_id=base.lesson_id,
+            timeline=base.timeline,
+            content=LessonContent(
+                lesson_id=base.lesson_id,
+                concepts=base.content.concepts,
+                exercises=(
+                    ExerciseExtraction(
+                        prompt="Esercizio sonda.",
+                        solution="Soluzione sonda.",
+                        citations=(Citation(seg_id="l1#s0", excerpt=excerpt),),
+                    ),
+                ),
+                student_questions=base.content.student_questions,
+                homework=base.content.homework,
+            ),
+            dropped=base.dropped,
+        )
+
+    def _excerpt_md(self, store: SQLiteStore, excerpt) -> str:
+        capsule = self._excerpt_capsule(excerpt)
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=None,
+        )
+        return pack.files["l1.md"]
+
+    def test_case_a_none_excerpt_no_solution_block(self, store: SQLiteStore) -> None:
+        md = self._excerpt_md(store, None)
+        assert "Soluzione sonda." not in md
+
+    def test_case_b_empty_excerpt_no_solution_block(self, store: SQLiteStore) -> None:
+        md = self._excerpt_md(store, "")
+        assert "Soluzione sonda." not in md
+
+    def test_case_c_whitespace_excerpt_no_solution_block(self, store: SQLiteStore) -> None:
+        md = self._excerpt_md(store, "   ")
+        assert "Soluzione sonda." not in md
+
+    def test_case_d_verbatim_excerpt_renders(self, store: SQLiteStore) -> None:
+        md = self._excerpt_md(store, "rate of change")
+        assert "Soluzione sonda." in md
+
+    def test_case_e_nonverbatim_excerpt_no_solution_block(self, store: SQLiteStore) -> None:
+        md = self._excerpt_md(store, "invenzione totale mai scritta")
+        assert "Soluzione sonda." not in md
+
+    def test_cross_lesson_citation_no_solution_block(self, store: SQLiteStore) -> None:
+        """Citation valida ma di ALTRA lezione: stesso fail-closed del body."""
+        store.save_segment(Segment(seg_id="l2#s0", lesson_id="l2", start=0,
+                                   end=15, text="Testo altra lezione."))
+        base = _solution_capsule()
+        capsule = LessonCapsule(
+            lesson_id=base.lesson_id,
+            timeline=base.timeline,
+            content=LessonContent(
+                lesson_id=base.lesson_id,
+                concepts=base.content.concepts,
+                exercises=(
+                    ExerciseExtraction(
+                        prompt="Esercizio sonda.",
+                        solution="Soluzione sonda.",
+                        citations=(Citation(seg_id="l2#s0",
+                                            excerpt="Testo altra lezione."),),
+                    ),
+                ),
+                student_questions=base.content.student_questions,
+                homework=base.content.homework,
+            ),
+            dropped=base.dropped,
+        )
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=None,
+        )
+        assert "Soluzione sonda." not in pack.files["l1.md"]
