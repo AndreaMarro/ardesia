@@ -32,7 +32,13 @@ from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import _repair_excerpt
-from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, claim_badge, is_verified_excerpt
+from lessonos.graph.grounding import (
+    MAX_UNVERIFIED_RATIO,
+    claim_badge,
+    is_verified_excerpt,
+    verify_citation,
+)
+from lessonos.ingest.lessonos_snapshot import LessonOsStudyDigest
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -438,6 +444,84 @@ def _render_summary_markdown(
     return "\n".join(lines)
 
 
+def render_structured_appendix(
+    store: Store,
+    capsule: LessonCapsule,
+    digest: LessonOsStudyDigest | None,
+) -> str:
+    """Deterministic structured appendix: extracted exercise solutions +
+    digest errors, appended AFTER the grounded LLM narrative.
+
+    Design (J3B hybrid): the narrative stays 100% LLM-grounded; structured
+    facts NEVER cross an LLM — they render byte-for-byte from capsule and
+    digest. No router calls here (a strict MockProvider proves it: any
+    extra LLM call raises).
+
+    Epistemics — three separate vocabularies, never merged:
+      * TEXTUAL GROUNDING — engine Citation (seg_id + verbatim excerpt):
+        exercise citations are verified with ``verify_citation``; an
+        exercise renders ONLY with >=1 verified citation (same fail-closed
+        discipline as the narrative — no repair attempt here).
+      * PROVENANCE — LessonOS EvidenceRef (``manual:…``, ``board:…``):
+        rendered as a plain ``Provenienza:`` line, NEVER as citation links,
+        never converted to seg_id, no excerpt invented.
+      * DOMAIN VERIFICATION — absent: solutions render as "Soluzione
+        estratta dalla lezione", NEVER "verificata" (no domain-specific
+        verifier exists; Kirchhoff is out of scope).
+
+    Returns "" when there is nothing structured to append, so legacy
+    outputs (no solutions, no digest) stay byte-identical.
+    """
+    lines: list[str] = []
+
+    solution_blocks: list[list[str]] = []
+    for exercise in capsule.content.exercises:
+        if exercise.solution is None:
+            continue
+        verified_links: list[str] = []
+        for citation in exercise.citations:
+            try:
+                verify_citation(
+                    store, citation.seg_id, capsule.lesson_id,
+                    excerpt=citation.excerpt,
+                )
+            except ValueError:
+                continue
+            excerpt = citation.excerpt or ""
+            verified_links.append(f"{claim_badge(excerpt)}[{excerpt}]({citation.seg_id})")
+        if not verified_links:
+            continue
+        block = [
+            f"**{exercise.prompt}**",
+            "",
+            f"Soluzione estratta dalla lezione: {exercise.solution}",
+            "",
+            f"Fonti: {'; '.join(verified_links)}",
+            "",
+        ]
+        solution_blocks.append(block)
+    if solution_blocks:
+        lines.append("## Soluzioni degli esercizi")
+        lines.append("")
+        for block in solution_blocks:
+            lines.extend(block)
+
+    if digest is not None and digest.errors:
+        lines.append("## Errori e correzioni")
+        lines.append("")
+        for error in digest.errors:
+            state = "corretto" if error.corrected else "da rivedere"
+            if error.concept_id is not None:
+                lines.append(f"- {error.label} (concetto: {error.concept_id}) — {state}")
+            else:
+                lines.append(f"- {error.label} — {state}")
+            if error.evidence_refs:
+                lines.append(f"  Provenienza: {', '.join(error.evidence_refs)}")
+        lines.append("")
+
+    return "\n".join(lines)
+
+
 # ── Public API ────────────────────────────────────────────────────────
 
 
@@ -449,6 +533,7 @@ def generate_lesson_summary(
     output_dir: str = "",
     provider: str,
     model: str | None = None,
+    digest: LessonOsStudyDigest | None = None,
 ) -> SummaryPack:
     """Generate a structured markdown lesson summary from a Lesson Capsule.
 
@@ -459,6 +544,8 @@ def generate_lesson_summary(
     4. **Validate every citation** mechanically (seg_id resolves, excerpt is
        verbatim substring, same-lesson guard).
     5. Render as markdown and return a ``SummaryPack``.
+    6. Append the deterministic structured appendix (extracted solutions +
+       digest errors, if any): pure composition, no further LLM calls.
 
     When ``output_dir`` is non-empty, the pack is automatically written to
     ``<output_dir>/<lesson_id>.md``. Use empty ``output_dir`` (default) for
@@ -471,6 +558,9 @@ def generate_lesson_summary(
         output_dir: If set, write ``<lesson_id>.md`` to this directory.
         provider: Router provider name. Default ``"mock"``.
         model: Optional model override.
+        digest: Optional LessonOS study digest (errors/corrections with
+            EvidenceRef provenance). ``None`` (default) preserves the legacy
+            output byte-for-byte when no structured facts apply.
 
     Returns:
         ``SummaryPack`` with ``files[rel_path] = markdown_content``.
@@ -512,6 +602,11 @@ def generate_lesson_summary(
 
     # Step 5: Render markdown
     markdown = _render_summary_markdown(capsule, sections)
+
+    # Step 6: deterministic structured appendix (no LLM): extracted
+    # solutions + digest errors. Empty string when nothing applies, so
+    # legacy outputs stay byte-identical.
+    markdown += render_structured_appendix(store, capsule, digest)
 
     file_name = f"{lesson_id}.md"
     pack = SummaryPack(files={file_name: markdown})
