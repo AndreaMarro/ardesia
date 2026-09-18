@@ -181,7 +181,8 @@ class SQLiteStore(Store):
                 path.teacher_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_path(self, path_id: str) -> Path | None:
         row = self._conn.execute(
@@ -263,7 +264,8 @@ class SQLiteStore(Store):
                 lesson.source_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_lesson(self, lesson_id: str) -> Lesson | None:
         row = self._conn.execute(
@@ -295,7 +297,8 @@ class SQLiteStore(Store):
             "VALUES (?, ?, ?)",
             (source.source_id, source.title, source.kind),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_source(self, source_id: str) -> Source | None:
         row = self._conn.execute(
@@ -376,7 +379,8 @@ class SQLiteStore(Store):
                 moment.seg_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_moment(self, moment_id: str) -> Moment | None:
         row = self._conn.execute(
@@ -497,7 +501,8 @@ class SQLiteStore(Store):
                 entry.label,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_ledger_entries(self) -> tuple[CostLedgerEntry, ...]:
         rows = self._conn.execute(

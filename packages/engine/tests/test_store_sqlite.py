@@ -496,3 +496,47 @@ class TestTransactionContract:
         assert store.get_segment("l1#s1") is not None
         assert store.get_capsule("l1") == '{"lesson_id": "l1"}'
         store.close()
+
+    @pytest.mark.parametrize("mutator", [
+        "save_path",
+        "save_lesson",
+        "save_source",
+        "save_moment",
+        "save_ledger_entry",
+    ])
+    def test_all_public_mutators_honor_transaction(self, mutator: str) -> None:
+        """Drift guard: OGNI public save/delete mutator deve sopprimere
+        l'auto-commit dentro begin_transaction (contratto ABC). Se un nuovo
+        mutator nasce senza guard, o un guard viene rimosso, questo test
+        diventa rosso sul metodo esatto."""
+        store = SQLiteStore()
+        writer = {
+            "save_path": lambda: store.save_path(
+                Path(path_id="p1", title="T", subject="s", teacher_id="andrea")),
+            "save_lesson": lambda: store.save_lesson(
+                Lesson(lesson_id="l1", path_id="p1", title="T", order=1)),
+            "save_source": lambda: store.save_source(
+                Source(source_id="s1", title="T")),
+            "save_moment": lambda: store.save_moment(
+                Moment(moment_id="l1#m1", lesson_id="l1", t=5, kind="topic")),
+            "save_ledger_entry": lambda: store.save_ledger_entry(
+                CostLedgerEntry(entry_id="cl:0000", lesson_id="l1", model="m",
+                                provider="mock", prompt_tokens=1,
+                                completion_tokens=1, cost_usd=0.0)),
+        }[mutator]
+        readers = {
+            "save_path": lambda: store.get_path("p1"),
+            "save_lesson": lambda: store.get_lesson("l1"),
+            "save_source": lambda: store.get_source("s1"),
+            "save_moment": lambda: store.get_moment("l1#m1"),
+            "save_ledger_entry": lambda: store.get_ledger_entries(),
+        }
+        store.begin_transaction()
+        writer()
+        store.rollback_transaction()
+        got = readers[mutator]()
+        if mutator == "save_ledger_entry":
+            assert got == ()
+        else:
+            assert got is None
+        store.close()
