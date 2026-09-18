@@ -34,6 +34,7 @@ from lessonos.capsule.extraction import (
     QuestionExtraction,
 )
 from lessonos.capsule.segmentation import TopicSpan
+from lessonos.ingest.lessonos_snapshot import LessonOsStudyDigest, StudyError
 from lessonos.llm.router import MockProvider, Router
 from lessonos.models.entities import Segment
 from lessonos.store.sqlite import SQLiteStore
@@ -673,3 +674,146 @@ class TestSummaryPromptBounding:
         assert "(+10 altri concetti nel grafo" in prompt
         # exactly the cap is listed
         assert prompt.count("(status=introduced)") == _SUMMARY_CONCEPT_CAP
+
+
+def _solution_capsule() -> LessonCapsule:
+    """Capsule with one solved exercise (verified citation) and one unsolved."""
+    base = _make_capsule()
+    solved = ExerciseExtraction(
+        prompt="Calcola la derivata di x^2.",
+        solution="2x, dalla definizione con il limite del rapporto incrementale.",
+        citations=(Citation(seg_id="l1#s1", excerpt="difference quotient"),),
+    )
+    unsolved = ExerciseExtraction(
+        prompt="Enuncia la regola della potenza.",
+        citations=(Citation(seg_id="l1#s2", excerpt="Power rule"),),
+    )
+    return LessonCapsule(
+        base.lesson_id,
+        timeline=base.timeline,
+        content=LessonContent(
+            lesson_id=base.lesson_id,
+            concepts=base.content.concepts,
+            exercises=(solved, unsolved),
+            student_questions=base.content.student_questions,
+            homework=base.content.homework,
+        ),
+        dropped=base.dropped,
+    )
+
+
+def _solution_router(store: SQLiteStore, capsule: LessonCapsule) -> Router:
+    router = Router()
+    router.register(MockProvider(fixtures={
+        _build_summary_prompt(capsule, _cited_seg_texts(store, capsule)):
+            _DETERMINISTIC_LLM_RESPONSE,
+    }))
+    return router
+
+
+def _study_digest() -> LessonOsStudyDigest:
+    return LessonOsStudyDigest(
+        lesson_id="l1",
+        concepts=(),
+        errors=(
+            StudyError(
+                id="err:aperto", label="Circuito aperto",
+                concept_id="circuito_chiuso", corrected=False,
+                evidence_refs=("manual:test:p10", "board:fix"),
+            ),
+            StudyError(
+                id="err:chiuso", label="Corto richiuso",
+                concept_id=None, corrected=True,
+                evidence_refs=("board:ok",),
+            ),
+        ),
+    )
+
+
+class TestHybridStructuredAppendix:
+    """J3B: deterministic structured augmentation (solutions + digest
+    errors) appended to the grounded narrative. No extra LLM calls: the
+    strict MockProvider only fixtures the narrative prompt."""
+
+    def test_solution_rendered_byte_for_byte(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_study_digest(),
+        )
+        md = pack.files["l1.md"]
+        assert "2x, dalla definizione con il limite del rapporto incrementale." in md
+        assert "Calcola la derivata di x^2." in md
+
+    def test_no_solution_no_invention(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_study_digest(),
+        )
+        md = pack.files["l1.md"]
+        # Exactly one solution block (the solved exercise); nothing invented
+        # for the unsolved one — neither its prompt in appendix nor a solution.
+        assert md.count("Soluzione estratta dalla lezione") == 1
+        assert "Enuncia la regola della potenza.\n\nSoluzione" not in md
+
+    def test_digest_errors_rendered_deterministically(
+        self, store: SQLiteStore
+    ) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_study_digest(),
+        )
+        md = pack.files["l1.md"]
+        assert "Circuito aperto" in md
+        assert "da rivedere" in md
+        assert "Corto richiuso" in md
+        assert "corretto" in md
+        assert "Provenienza: manual:test:p10, board:fix" in md
+        assert "Provenienza: board:ok" in md
+
+    def test_evidence_refs_are_not_citations(
+        self, store: SQLiteStore
+    ) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_study_digest(),
+        )
+        md = pack.files["l1.md"]
+        assert "](manual:test:p10)" not in md
+        assert "](board:fix)" not in md
+        assert "](board:ok)" not in md
+
+    def test_same_inputs_byte_identical(
+        self, store: SQLiteStore
+    ) -> None:
+        capsule = _solution_capsule()
+        router = _solution_router(store, capsule)
+        first = generate_lesson_summary(
+            store, capsule, router, provider="mock", digest=_study_digest())
+        second = generate_lesson_summary(
+            store, capsule, router, provider="mock", digest=_study_digest())
+        assert first.files["l1.md"] == second.files["l1.md"]
+
+    def test_retention_matrix_solution_error_provenance(
+        self, store: SQLiteStore
+    ) -> None:
+        """Raw → Capsule/Digest → Material, per field: concept, exercise
+        prompt, exercise solution, error, correction state, provenance."""
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_study_digest(),
+        )
+        md = pack.files["l1.md"]
+        # concept (narrative, grounded): from existing deterministic response
+        assert "derivata" in md
+        # exercise prompt + solution (structured, extracted)
+        assert "Calcola la derivata di x^2." in md
+        assert "2x, dalla definizione" in md
+        # error + correction state + provenance (structured, digest)
+        assert "Circuito aperto" in md and "da rivedere" in md
+        assert "Corto richiuso" in md and "corretto" in md
+        assert "manual:test:p10" in md and "board:ok" in md
