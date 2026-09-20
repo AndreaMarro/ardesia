@@ -551,6 +551,27 @@ class TestChromiumStage:
         assert Path(profile_arg.split("=", 1)[1]).parent.parent == tmp_path
         assert "shell" not in chrom_calls[0]["kwargs"]
         assert argv[-1].endswith(".html")
+        assert "--no-sandbox" not in argv
+
+    def test_no_sandbox_opt_in_param(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        rec = _install_fakes(monkeypatch, tmp_path)
+        export_summary_pdf(
+            _pack({"l.md": MD}), str(tmp_path),
+            pandoc_executable=rec["pandoc"], chromium_executable=rec["chromium"],
+            chromium_no_sandbox=True,
+        )
+        chrom_calls = [c for c in rec["calls"] if c["argv"][0] == rec["chromium"]]
+        assert "--no-sandbox" in chrom_calls[0]["argv"]
+
+    def test_no_sandbox_opt_in_env(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        rec = _install_fakes(monkeypatch, tmp_path)
+        monkeypatch.setenv("ARDESIA_CHROMIUM_NO_SANDBOX", "1")
+        export_summary_pdf(
+            _pack({"l.md": MD}), str(tmp_path),
+            pandoc_executable=rec["pandoc"], chromium_executable=rec["chromium"],
+        )
+        chrom_calls = [c for c in rec["calls"] if c["argv"][0] == rec["chromium"]]
+        assert "--no-sandbox" in chrom_calls[0]["argv"]
 
 
 # ── Publish policy: only the validated candidate is published ─────────

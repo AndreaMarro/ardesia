@@ -139,7 +139,13 @@ jobs:
           fi
           test -n "$SHELL_BIN" || { echo "no chromium found after install"; exit 1; }
           echo "ARDESIA_CHROMIUM=$SHELL_BIN" >> "$GITHUB_ENV"
+      # Stock ubuntu runners forbid unprivileged user namespaces, so the
+      # stock Chromium sandbox cannot start. Opt-in --no-sandbox is scoped
+      # to this ephemeral synthetic-only lane (see export_summary_pdf docs
+      # for the threat rationale); product default stays sandboxed.
       - name: Engine consumes produced bytes (exact, mock model only)
+        env:
+          ARDESIA_CHROMIUM_NO_SANDBOX: "1"
         run: >
           D2_EVIDENCE_DIR=${{ github.workspace }}/d2-evidence
           D2_EVIDENCE_OUT=${{ github.workspace }}/d2-evidence-out
