@@ -63,10 +63,6 @@ _CSP = (
     "style-src 'unsafe-inline'; img-src data:; font-src data:;"
 )
 
-_META_INCLUDE_KEYS = frozenset({
-    "header-includes", "include-in-header", "include-before", "include-after",
-})
-
 _RAW_HTML_TYPES = frozenset({"RawBlock", "RawInline"})
 
 
@@ -279,18 +275,21 @@ def _validate_ast(ast: dict) -> dict:
     """Structural allowlist over the Pandoc AST (fail-closed, no stripping).
 
     Allowed: text, headings, lists, code, tables, formulas, textual links,
-    inline data: images. Refused with a clear error: remote/relative/file
-    images, any raw HTML/JS/CSS block or inline, and YAML header-include
-    style metadata. Fenced code stays inert text (CodeBlock, never Raw).
+    inline data: images — and NO document metadata at all. Pandoc metadata
+    (``css``/``stylesheet``/``header-includes``/...) renders into
+    ``<head>`` BEFORE the CSP meta, so any non-empty ``meta`` is refused:
+    no controlled metadata has a demonstrated need in this slice.
+    Fenced code stays inert text (CodeBlock, never Raw).
     Returns the same AST when valid; the renderer consumes THIS object,
     never the original markdown.
     """
     meta = ast.get("meta") or {}
-    for key in _META_INCLUDE_KEYS:
-        if key in meta:
-            raise ValueError(
-                f"metadata {key!r} refused: header includes are outside the contract"
-            )
+    if meta:
+        keys = sorted(str(k) for k in meta)
+        raise ValueError(
+            f"document metadata refused (no metadata is needed; got {keys}): "
+            "rendering must stay offline"
+        )
 
     def walk(node: object) -> None:
         if isinstance(node, dict):
