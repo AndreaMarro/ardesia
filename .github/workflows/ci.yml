@@ -131,9 +131,9 @@ jobs:
           --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
         working-directory: apps/studio
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
-      - name: resolve headless chromium (preinstalled, never downloaded here)
+      - name: resolve headless chromium (installed above, never downloaded here)
         run: |
-          SHELL_BIN=$(ls "$HOME/.cache/ms-playwright"/chromium_headless_shell-*/chrome-headless-shell-linux/chrome-headless-shell 2>/dev/null | sort -r | head -n 1)
+          SHELL_BIN=$(ls "$HOME/.cache/ms-playwright"/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell "$HOME/.cache/ms-playwright"/chromium_headless_shell-*/chrome-headless-shell-linux/chrome-headless-shell "$HOME/.cache/ms-playwright"/chromium_headless_shell-*/chrome-headless-shell-mac-arm64/chrome-headless-shell 2>/dev/null | sort -r | head -n 1)
           if [ -z "$SHELL_BIN" ]; then
             SHELL_BIN=$(ls "$HOME/.cache/ms-playwright"/chromium-*/chrome-linux/chrome 2>/dev/null | sort -r | head -n 1)
           fi
