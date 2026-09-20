@@ -16,7 +16,8 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 
 - OBSERVED current main: `b124eee04acc8062c27284f23c5d9108e3767c27`
 - OBSERVED source PR255 head: `7af8f51ca958f395544af79f0a39cbc3d03c82c7`
-- CODE_CANDIDATE_SHA: `29d66bd3...` (product+test commits; see ledger)
+- CODE_CANDIDATE_SHA: in `integration-ledger.json` (product+test commits;
+  resolve evidence head from PR #256 head; runtime from Actions/#249 FINAL)
 - EVIDENCE_HEAD_SHA: recorded in ledger after the docs-only commit
 - Candidate branch: `integration/d2-lesson-material-20260920`
 - Merge base: `751bcb305e78647ac3c7405254492c637ab753d4`
