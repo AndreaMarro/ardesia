@@ -179,6 +179,9 @@ def main() -> None:
     (out_dir_path / "summary-a.md").write_text(md, encoding="utf-8")
     (out_dir_path / "summary-a.txt").write_text(txt, encoding="utf-8")
     (out_dir_path / "page-count.txt").write_text(str(pages), encoding="utf-8")
+    import shutil as _shutil
+    for lesson_file in ("lesson-a.lesson", "lesson-b.lesson"):
+        _shutil.copy2(os.path.join(evidence_dir, lesson_file), out_dir_path / lesson_file)
 
     import shutil
     evidence = {
