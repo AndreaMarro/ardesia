@@ -1,13 +1,23 @@
 """Browser PDF export: single-lesson SummaryPack markdown -> local PDF.
 
-Provisional Founder Beta renderer (D2-J3C). Offline pipeline, no new
-document model, no LLM, no network:
+Provisional Founder Beta renderer (D2-J3C hardening). Offline pipeline,
+no new document model, no LLM, no network:
 
     SummaryPack.files{<lesson>.md}
-      -> Pandoc standalone HTML5 + MathML (stdin, argv, no shell)
+      -> Pandoc markdown-to-JSON (stdin, argv, no shell)
+      -> structural AST validation (fail-closed, no silent stripping)
+      -> Pandoc JSON-to-standalone-HTML5+MathML (validated AST only)
       -> minimal print CSS + offline CSP injected into <head>
-      -> headless Chromium --print-to-pdf (local file input)
-      -> <lesson>.pdf validated (exists, non-empty, %PDF- magic)
+      -> headless Chromium --print-to-pdf into a PRIVATE per-attempt
+         staging dir (own --user-data-dir profile)
+      -> candidate validated (exists, non-empty, %PDF- magic, %%EOF,
+         pdfinfo >= 1 page when a parser is available)
+      -> publish ONLY the final PDF (+HTML) via os.replace; a previous
+         PDF is never truncated by a failed attempt
+
+A single-file os.replace on the destination filesystem is atomic, but
+that is NOT a whole-pipeline transaction and NOT power-loss durability:
+documented property, nothing more.
 
 The summarizer knows nothing about this module (dependency direction:
 SummaryPack -> adapter -> external executables). The caller owns the
@@ -15,23 +25,27 @@ decision to invoke it: nothing here wires PDF generation into ingest,
 summary, scripts, or Studio flows. Human review stays before export.
 
 Error semantics (fail-closed, never None):
-    ValueError         bad SummaryPack input / remote fetch vectors
-    FileNotFoundError  pandoc or chromium executable unavailable
-    RuntimeError       pandoc/chromium failure or invalid PDF output
+    ValueError         bad SummaryPack input / hostile document structure
+    FileNotFoundError  pandoc, chromium (or vanished) executable unavailable
+    RuntimeError       pandoc/chromium/pdfinfo failure or invalid candidate
 """
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path, PurePosixPath
+from urllib.parse import urlsplit
 
 from lessonos.summarizer import SummaryPack
 
 PANDOC_TIMEOUT = 60
 CHROMIUM_TIMEOUT = 120
+PDFINFO_TIMEOUT = 30
 _STDERR_LIMIT = 2000
 
 _PRINT_CSS = """@page { size: A4; margin: 20mm 16mm; }
@@ -46,14 +60,14 @@ th, td { border: 1px solid #999; padding: 4px 8px; text-align: left; }
 
 _CSP = (
     "default-src 'none'; script-src 'none'; connect-src 'none'; "
-    "style-src 'unsafe-inline'; img-src data: file:; font-src data: file:;"
+    "style-src 'unsafe-inline'; img-src data:; font-src data:;"
 )
 
-_REMOTE_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(\s*https?://", re.IGNORECASE)
-_RAW_FETCH_TAG_RE = re.compile(
-    r"<\s*(script|link|iframe|embed|object|img|form|video|audio|source)\b",
-    re.IGNORECASE,
-)
+_META_INCLUDE_KEYS = frozenset({
+    "header-includes", "include-in-header", "include-before", "include-after",
+})
+
+_RAW_HTML_TYPES = frozenset({"RawBlock", "RawInline"})
 
 
 # ── Public API ────────────────────────────────────────────────────────
@@ -65,32 +79,36 @@ def export_summary_pdf(
     *,
     pandoc_executable: str | None = None,
     chromium_executable: str | None = None,
+    pdfinfo_executable: str | None = None,
 ) -> Path:
     """Render one single-lesson SummaryPack markdown to a local PDF file.
 
     Args:
         pack: Existing SummaryPack. Must contain exactly one ``.md`` file
-            with a safe relative path (no absolute paths, no ``..``).
-        output_dir: Caller-provided directory; ``<lesson>.pdf`` (and the
-            intermediate ``<lesson>.html``) are written here.
+            with a simple relative name (no directories, no absolute
+            paths, no ``..``).
+        output_dir: Caller-owned directory; must not be a symlink. Only
+            ``<lesson>.pdf`` (and ``<lesson>.html``) are published here,
+            and only after the candidate validates.
         pandoc_executable: Explicit pandoc path (tests). When None,
             resolved via ``shutil.which("pandoc")``.
         chromium_executable: Explicit Chromium path (tests). When None,
             resolved via :func:`_discover_chromium`.
+        pdfinfo_executable: Explicit pdfinfo path (tests). When None,
+            auto-discovered; when unavailable the page-count gate is
+            OPEN (documented environmental gate) and magic+EOF apply.
 
     Returns:
-        Path to the written, validated PDF (exists, non-empty, ``%PDF-``).
+        Path to the published, validated PDF.
 
     Raises:
-        ValueError: Input contract violated (zero/multiple markdown
-            files, unsafe path) or the markdown carries remote fetch
-            vectors (remote images, script/link/iframe/... tags).
+        ValueError: Input contract violated or the document carries
+            active content / arbitrary resources outside the contract.
         FileNotFoundError: Pandoc or Chromium executable unavailable.
-        RuntimeError: Pandoc/Chromium timeout or non-zero exit, missing
-            or invalid PDF output.
+        RuntimeError: Stage timeout/failure, missing or invalid
+            candidate, or a zero-page parse.
     """
     name, markdown = _select_lesson_markdown(pack)
-    _reject_remote_resources(markdown)
 
     pandoc = pandoc_executable or shutil.which("pandoc")
     if not pandoc:
@@ -105,16 +123,30 @@ def export_summary_pdf(
             "pass chromium_executable=... (no download is attempted)"
         )
 
-    out_dir = Path(output_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir = _resolve_output_dir(output_dir)
     stem = PurePosixPath(name).stem
-    html_path = out_dir / f"{stem}.html"
-    pdf_path = out_dir / f"{stem}.pdf"
+    pdfinfo = _resolve_pdfinfo(pdfinfo_executable)
 
-    html = _run_pandoc(pandoc, markdown)
-    html_path.write_text(_build_print_html(html, title=stem), encoding="utf-8")
-    _run_chromium(chromium, html_path, pdf_path)
-    return _validate_pdf(pdf_path)
+    staging = Path(tempfile.mkdtemp(prefix="ardesia-pdf-", dir=str(out_dir)))
+    try:
+        candidate_html = staging / "candidate.html"
+        candidate_pdf = staging / "candidate.pdf"
+        profile = staging / "chromium-profile"
+
+        ast = _pandoc_to_ast(pandoc, markdown)
+        _validate_ast(ast)
+        html = _pandoc_render(pandoc, ast)
+        candidate_html.write_text(_build_print_html(html, title=stem), encoding="utf-8")
+        _run_chromium(chromium, candidate_html, candidate_pdf, profile)
+        _validate_candidate(candidate_pdf, pdfinfo)
+
+        final_html = out_dir / f"{stem}.html"
+        final_pdf = out_dir / f"{stem}.pdf"
+        os.replace(candidate_html, final_html)
+        os.replace(candidate_pdf, final_pdf)
+        return final_pdf
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
 
 
 # ── Input contract ────────────────────────────────────────────────────
@@ -129,25 +161,23 @@ def _select_lesson_markdown(pack: SummaryPack) -> tuple[str, str]:
             f"{candidates} — refusing to guess"
         )
     name = candidates[0]
-    parts = PurePosixPath(name).parts
-    if PurePosixPath(name).is_absolute() or ".." in parts:
-        raise ValueError(f"unsafe lesson path refused: {name!r}")
+    posix = PurePosixPath(name)
+    if posix.is_absolute() or ".." in posix.parts or len(posix.parts) != 1:
+        raise ValueError(
+            f"lesson name must be a simple relative filename, refused: {name!r}"
+        )
     return name, pack.files[name]
 
 
-def _reject_remote_resources(markdown: str) -> None:
-    """Refuse markdown that could fetch remote content while rendering.
-
-    Plain textual links (``[text](https://...)``) are allowed: they do not
-    trigger fetches during print. Remote images and raw fetch tags are not.
-    """
-    if _REMOTE_IMAGE_RE.search(markdown):
-        raise ValueError("remote image URL refused: rendering must stay offline")
-    match = _RAW_FETCH_TAG_RE.search(markdown)
-    if match:
+def _resolve_output_dir(output_dir: str | Path) -> Path:
+    """Caller-owned real directory (never a symlink, never auto-trusted)."""
+    out = Path(output_dir)
+    if out.is_symlink():
         raise ValueError(
-            f"raw <{match.group(1).lower()}> tag refused: rendering must stay offline"
+            f"output dir must be a real directory, not a symlink: {out}"
         )
+    out.mkdir(parents=True, exist_ok=True)
+    return out
 
 
 # ── Runtime discovery ─────────────────────────────────────────────────
@@ -184,6 +214,13 @@ def _discover_chromium() -> str | None:
     return None
 
 
+def _resolve_pdfinfo(pdfinfo_executable: str | None) -> str | None:
+    """pdfinfo path or None when the parse gate is environmentally open."""
+    if pdfinfo_executable is not None:
+        return pdfinfo_executable
+    return shutil.which("pdfinfo")
+
+
 # ── Stages ────────────────────────────────────────────────────────────
 
 
@@ -194,26 +231,105 @@ def _as_text(data: bytes | str) -> str:
     return data
 
 
-def _run_pandoc(pandoc: str, markdown: str) -> str:
-    """Markdown -> standalone HTML5+MathML via Pandoc stdin (argv, no shell)."""
-    argv = [pandoc, "-s", "--mathml", "-f", "markdown", "-t", "html5"]
+def _run_checked(
+    argv: list[str], stage: str, timeout: int, *, stdin_bytes: bytes | None = None,
+) -> bytes:
+    """Run one external stage (argv only, never shell) with explicit errors."""
     try:
         result = subprocess.run(
             argv,
-            input=markdown.encode("utf-8"),
+            input=stdin_bytes,
             capture_output=True,
-            timeout=PANDOC_TIMEOUT,
+            timeout=timeout,
         )
     except subprocess.TimeoutExpired as exc:
-        raise RuntimeError(f"Pandoc timed out after {PANDOC_TIMEOUT}s") from exc
+        raise RuntimeError(f"{stage} timed out after {timeout}s") from exc
     except (FileNotFoundError, OSError) as exc:
-        raise FileNotFoundError(f"Pandoc executable unavailable: {pandoc}") from exc
+        raise FileNotFoundError(f"{stage} executable unavailable: {argv[0]}") from exc
     if result.returncode != 0:
         raise RuntimeError(
-            f"Pandoc exited {result.returncode}: "
+            f"{stage} exited {result.returncode}: "
             f"{_as_text(result.stderr)[:_STDERR_LIMIT]}"
         )
-    return _as_text(result.stdout)
+    out = result.stdout
+    return out if isinstance(out, bytes) else out.encode("utf-8")
+
+
+def _pandoc_to_ast(pandoc: str, markdown: str) -> dict:
+    """Markdown -> Pandoc JSON AST (reader stage; markdown never rendered yet)."""
+    raw = _run_checked(
+        [pandoc, "-f", "markdown", "-t", "json"],
+        "Pandoc", PANDOC_TIMEOUT, stdin_bytes=markdown.encode("utf-8"),
+    )
+    try:
+        ast = json.loads(raw.decode("utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise RuntimeError(f"Pandoc AST output is not JSON: {exc}") from exc
+    if not isinstance(ast, dict) or "blocks" not in ast:
+        raise RuntimeError("Pandoc AST output has no blocks: refusing to render")
+    return ast
+
+
+def _image_target_is_allowed(target: str) -> bool:
+    """Only inline data: blobs need no fetch; everything else is refused."""
+    return target.startswith("data:")
+
+
+def _validate_ast(ast: dict) -> dict:
+    """Structural allowlist over the Pandoc AST (fail-closed, no stripping).
+
+    Allowed: text, headings, lists, code, tables, formulas, textual links,
+    inline data: images. Refused with a clear error: remote/relative/file
+    images, any raw HTML/JS/CSS block or inline, and YAML header-include
+    style metadata. Fenced code stays inert text (CodeBlock, never Raw).
+    Returns the same AST when valid; the renderer consumes THIS object,
+    never the original markdown.
+    """
+    meta = ast.get("meta") or {}
+    for key in _META_INCLUDE_KEYS:
+        if key in meta:
+            raise ValueError(
+                f"metadata {key!r} refused: header includes are outside the contract"
+            )
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            node_type = node.get("t")
+            if node_type in _RAW_HTML_TYPES:
+                raise ValueError(
+                    "raw HTML block/inline refused: active content is outside the contract"
+                )
+            if node_type == "Image":
+                _check_image(node)
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    def _check_image(node: dict) -> None:
+        target = ""
+        try:
+            target = node["c"][2][0]
+        except (KeyError, IndexError, TypeError):
+            target = ""
+        if not _image_target_is_allowed(str(target)):
+            raise ValueError(
+                f"image target refused (only data: blobs are offline-safe): {target!r}"
+            )
+
+    walk(ast.get("blocks", []))
+    return ast
+
+
+def _pandoc_render(pandoc: str, ast: dict) -> str:
+    """Validated AST -> standalone HTML5+MathML (renderer consumes the AST)."""
+    raw = _run_checked(
+        [pandoc, "-f", "json", "-t", "html5", "-s", "--mathml"],
+        "Pandoc", PANDOC_TIMEOUT,
+        stdin_bytes=json.dumps(ast).encode("utf-8"),
+    )
+    return raw.decode("utf-8")
 
 
 def _build_print_html(pandoc_html: str, *, title: str) -> str:
@@ -227,41 +343,53 @@ def _build_print_html(pandoc_html: str, *, title: str) -> str:
     return pandoc_html.replace("</head>", injection + "\n</head>", 1)
 
 
-def _run_chromium(chromium: str, html_path: Path, pdf_path: Path) -> None:
-    """Print a local HTML file to PDF (argv, no shell, local input only)."""
+def _run_chromium(chromium: str, html_path: Path, pdf_path: Path, profile: Path) -> None:
+    """Print a local HTML file to PDF with a dedicated throwaway profile.
+
+    Never touches personal browser profiles; the staging dir (profile
+    included) is removed after the attempt.
+    """
     argv = [
         chromium,
         "--headless",
         "--disable-gpu",
         "--no-pdf-header-footer",
+        f"--user-data-dir={profile}",
         f"--print-to-pdf={pdf_path}",
         str(html_path),
     ]
-    try:
-        result = subprocess.run(
-            argv,
-            capture_output=True,
-            text=True,
-            timeout=CHROMIUM_TIMEOUT,
-        )
-    except subprocess.TimeoutExpired as exc:
-        raise RuntimeError(f"Chromium timed out after {CHROMIUM_TIMEOUT}s") from exc
-    except (FileNotFoundError, OSError) as exc:
-        raise FileNotFoundError(f"Chromium executable unavailable: {chromium}") from exc
-    if result.returncode != 0:
-        raise RuntimeError(
-            f"Chromium exited {result.returncode}: {_as_text(result.stderr)[:_STDERR_LIMIT]}"
-        )
+    _run_checked(argv, "Chromium", CHROMIUM_TIMEOUT)
 
 
-def _validate_pdf(pdf_path: Path) -> Path:
-    """Postcondition: a 0 exit is not enough — prove the artifact is a PDF."""
-    if not pdf_path.is_file():
-        raise RuntimeError(f"PDF output missing: {pdf_path}")
-    data = pdf_path.read_bytes()
-    if not data or not data.startswith(b"%PDF-"):
+def _parse_pages(pdfinfo: str, pdf_path: Path) -> int:
+    """Parse the page count with an injected/available pdfinfo executable."""
+    out = _run_checked(
+        [pdfinfo, str(pdf_path)], "pdfinfo", PDFINFO_TIMEOUT,
+    ).decode("utf-8", errors="replace")
+    match = re.search(r"^Pages:\s+(\d+)\s*$", out, re.MULTILINE)
+    if match is None:
+        raise RuntimeError(f"pdfinfo output has no Pages line for {pdf_path}")
+    return int(match.group(1))
+
+
+def _validate_candidate(candidate: Path, pdfinfo: str | None) -> None:
+    """Prove the staged candidate is a real PDF before anything is published.
+
+    Floor (always): exists, non-empty, ``%PDF-`` magic, ``%%EOF`` trailer.
+    Parse gate (when a pdfinfo executable is available): at least one page.
+    When pdfinfo is unavailable the parse gate is OPEN — documented
+    environmental limit, not a silent pass: magic+EOF still apply.
+    """
+    if not candidate.is_file():
+        raise RuntimeError(f"PDF output missing: {candidate} — previous PDF untouched")
+    data = candidate.read_bytes()
+    if not data or not data.startswith(b"%PDF-") or b"%%EOF" not in data:
         raise RuntimeError(
-            f"PDF output invalid (missing %PDF- magic): {pdf_path} "
-            f"({len(data)} bytes)"
+            f"PDF output invalid (needs %PDF- magic and %%EOF trailer): "
+            f"{candidate} ({len(data)} bytes)"
         )
-    return pdf_path
+    if pdfinfo is None:
+        return
+    pages = _parse_pages(pdfinfo, candidate)
+    if pages < 1:
+        raise RuntimeError(f"pdfinfo reports {pages} pages for {candidate}")
