@@ -485,6 +485,34 @@ def ingest_bundle(
     from lessonos.capsule.assembly import assemble_lesson_capsule
 
     contents = read_bundle(zip_path)
+    return _ingest_bundle_contents(
+        contents, store, lesson_id, router,
+        provider=provider, model=model, defensive=defensive,
+        bundle_label=zip_path,
+    )
+
+
+def _ingest_bundle_contents(
+    contents,
+    store,
+    lesson_id: str,
+    router,
+    *,
+    provider: str = "mock",
+    model: str | None = None,
+    defensive: bool = True,
+    bundle_label: str = "<in-memory contents>",
+):
+    """Ingest already-validated bundle contents (single authoritative body).
+
+    Both ``ingest_bundle`` (read-then-ingest) and the composition root
+    (read once, project the digest from the same bytes, then ingest)
+    execute THIS body — never two diverging copies. ``contents`` must
+    come from :func:`read_bundle`; callers must not re-read the file
+    between validation and this call (TOCTOU).
+    """
+    from lessonos.capsule.assembly import assemble_lesson_capsule
+
     if contents.manifest is not None and contents.manifest["lessonId"] != lesson_id:
         raise ValueError(
             f"bundle manifest lessonId {contents.manifest['lessonId']!r} "
@@ -493,7 +521,7 @@ def ingest_bundle(
     segments = journal_to_segments(contents.events_jsonl, lesson_id)
     if not segments:
         raise ValueError(
-            f"bundle {zip_path!r} yielded no whiteboard text segments "
+            f"bundle {bundle_label!r} yielded no whiteboard text segments "
             f"(no text written on the board)"
         )
     # Snapshot esplicito dello stato autorevole precedente PRIMA di mutare
