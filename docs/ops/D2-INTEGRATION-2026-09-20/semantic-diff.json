@@ -1,0 +1,85 @@
+{
+ "result": "IDENTICAL",
+ "compared": "SOURCE_HEAD(7af8f51c) vs CANDIDATE-B (cherry-picked D2)",
+ "scope": [
+  "capsule",
+  "digest",
+  "manifest_semantics",
+  "segments",
+  "summary_markdown"
+ ],
+ "classification": "no EXPECTED/INTENTIONAL deviations; zero REGRESSION/UNKNOWN",
+ "record": {
+  "capsule": {
+   "concepts": [
+    [
+     "serie",
+     "introduced"
+    ]
+   ],
+   "dropped": []
+  },
+  "digest": {
+   "concepts": [
+    {
+     "id": "ck:serie",
+     "label": "Serie elettrica",
+     "refs": [
+      "manual:vol1:p30",
+      "board:t2",
+      "board:t1"
+     ]
+    }
+   ],
+   "errors": [
+    {
+     "concept": "ck:serie",
+     "corrected": false,
+     "id": "err:open",
+     "label": "Somma in parallelo",
+     "refs": [
+      "board:t2"
+     ]
+    },
+    {
+     "concept": "ck:serie",
+     "corrected": true,
+     "id": "err:shut",
+     "label": "Verso invertito",
+     "refs": [
+      "board:t1"
+     ]
+    }
+   ],
+   "lesson_id": "studio-proof-a"
+  },
+  "manifest_semantics": {
+   "bundleVersion": 1,
+   "lessonId": "studio-proof-a",
+   "optionalArtifacts": [
+    "raw/lessonos-events.jsonl",
+    "raw/audio/*"
+   ],
+   "requiredArtifacts": [
+    "raw/board.excalidraw",
+    "raw/events.jsonl",
+    "raw/session.yaml"
+   ],
+   "schemaVersion": 1,
+   "sessionIds": [
+    "aaaaaaaa-1111-4111-8111-111111111111"
+   ]
+  },
+  "segments": [
+   {
+    "seg_id": "studio-proof-a#s1",
+    "text": "La corrente è uguale in serie."
+   },
+   {
+    "seg_id": "studio-proof-a#s2",
+    "text": "Legge di Ohm: $V = R I$."
+   }
+  ],
+  "summary_markdown": "# Riepilogo: studio-proof-a\n\n- **Lezione**: `studio-proof-a`\n- **Concetti**: 1\n- **Esercizi**: 0\n- **Domande**: 0\n- **Compiti**: 0\n\n## Sintesi\n\nLa corrente same Conforme. (✅[corrente](studio-proof-a#s1))\n\nLegge di Ohm verificata. (✅[Ohm](studio-proof-a#s2))\n## Errori e correzioni\n\n- Somma in parallelo (concetto: ck:serie) — da rivedere\n  Provenienza: board:t2\n- Verso invertito (concetto: ck:serie) — corretto\n  Provenienza: board:t1\n\n## Concetti registrati nel LessonOS\n\n- Serie elettrica\n  Provenienza: manual:vol1:p30, board:t2, board:t1\n"
+ }
+}
