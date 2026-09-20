@@ -98,6 +98,64 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  # Lane required: prova cross-boundary Studio -> Engine su byte sintetici
+  # prodotti dal producer corrente (mai fixture congelate da sole).
+  # Flusso: Studio exportLesson() reale -> .lesson -> Engine reale
+  # (read_bundle/compose/mock-model/export PDF) -> artifact sintetico.
+  # PDF runtime: chromium via playwright pin (package-lock), pandoc +
+  # poppler-utils via apt (versioni registrate nel runtime JSON, non
+  # byte-identity). Nessun provider reale, nessuna PII, nessun segreto.
+  d2-integration-evidence:
+    name: d2 integration evidence (synthetic)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+        working-directory: apps/studio
+      - run: npx playwright install --with-deps chromium
+        working-directory: apps/studio
+      - name: system PDF tools (versions recorded, not pinned by distro)
+        run: sudo apt-get update -y && sudo apt-get install -y pandoc poppler-utils
+      - name: Studio synthetic producer (current exportLesson)
+        run: >
+          D2_EVIDENCE_OUT=${{ github.workspace }}/d2-evidence
+          npx vitest run src/__tests__/D2EvidenceProducer.test.ts
+          --pool=threads --maxWorkers=1 --no-file-parallelism
+          --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+        working-directory: apps/studio
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
+      - name: resolve headless chromium (preinstalled, never downloaded here)
+        run: |
+          SHELL_BIN=$(ls "$HOME/.cache/ms-playwright"/chromium_headless_shell-*/chrome-headless-shell-linux/chrome-headless-shell 2>/dev/null | sort -r | head -n 1)
+          if [ -z "$SHELL_BIN" ]; then
+            SHELL_BIN=$(ls "$HOME/.cache/ms-playwright"/chromium-*/chrome-linux/chrome 2>/dev/null | sort -r | head -n 1)
+          fi
+          test -n "$SHELL_BIN" || { echo "no chromium found after install"; exit 1; }
+          echo "ARDESIA_CHROMIUM=$SHELL_BIN" >> "$GITHUB_ENV"
+      - name: Engine consumes produced bytes (exact, mock model only)
+        run: >
+          D2_EVIDENCE_DIR=${{ github.workspace }}/d2-evidence
+          D2_EVIDENCE_OUT=${{ github.workspace }}/d2-evidence-out
+          PR_HEAD_SHA=${{ github.event.pull_request.head.sha }}
+          CI_CHECKOUT_SHA=${{ github.sha }}
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          uv run --project packages/engine --no-sync
+          python packages/engine/bin/d2_evidence_consume.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: d2-integration-evidence-${{ github.sha }}
+          path: d2-evidence-out/
+          if-no-files-found: error
+          retention-days: 30
+
   hygiene:
     name: hygiene (NUL + secrets + boundary + whitespace)
     runs-on: ubuntu-latest
