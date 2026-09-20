@@ -427,6 +427,53 @@ class TestAstResourcePolicy:
                 pandoc_executable=rec["pandoc"], chromium_executable=rec["chromium"],
             )
 
+    def test_css_metadata_rejected(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        # Real pandoc AST for "---\ncss: https://example.invalid/ardesia.css\n---\n# Test":
+        # standalone HTML would emit <link rel="stylesheet" href="..."> BEFORE
+        # the CSP meta. No network is fetched in this test; the acceptance
+        # itself is the defect.
+        hostile = {
+            "pandoc-api-version": [1, 23, 1, 1],
+            "meta": {"css": {"t": "MetaInlines",
+                             "c": [{"t": "Str", "c": "https://example.invalid/ardesia.css"}]}},
+            "blocks": [
+                {"t": "Header", "c": [1, ["test", [], []],
+                                      [{"t": "Str", "c": "Test"}]]},
+                {"t": "Para", "c": [{"t": "Str", "c": "Text."}]},
+            ],
+        }
+        rec = _install_fakes(monkeypatch, tmp_path, stage1_ast=json.dumps(hostile))
+        with pytest.raises(ValueError, match="[Mm]etadata|css"):
+            export_summary_pdf(
+                _pack({"l.md": "---\ncss: https://example.invalid/ardesia.css\n---\n# Test\n"}),
+                str(tmp_path),
+                pandoc_executable=rec["pandoc"], chromium_executable=rec["chromium"],
+            )
+        assert len(_pandoc_calls(rec)) == 1
+
+    def test_empty_metadata_accepted(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        # Positive control: an ordinary SummaryPack-shaped AST (no YAML front
+        # matter, hence empty meta) keeps converting.
+        blocks = [
+            {"t": "Header", "c": [1, ["riepilogo", [], []], [{"t": "Str", "c": "Riepilogo"}]]},
+            {"t": "Para", "c": [
+                {"t": "Str", "c": "testo"},
+                {"t": "Space"},
+                {"t": "Math", "c": [{"t": "InlineMath", "c": "x^2"}]},
+                {"t": "Space"},
+                {"t": "Link", "c": [["", [], []], [{"t": "Str", "c": "m"}],
+                                    ["https://example.com/p", ""]]},
+            ]},
+        ]
+        rec = _install_fakes(monkeypatch, tmp_path, stage1_ast=_ast_doc(blocks))
+        out = export_summary_pdf(
+            _pack({"l.md": "# Riepilogo\n\ntesto $x^2$ [m](https://example.com/p)\n"}),
+            str(tmp_path),
+            pandoc_executable=rec["pandoc"], chromium_executable=rec["chromium"],
+        )
+        assert out.is_file()
+        assert len(_pandoc_calls(rec)) == 2
+
     def test_fenced_code_stays_inert_text(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
     ) -> None:
