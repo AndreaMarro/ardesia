@@ -169,3 +169,61 @@ class TestDeepSeekPricing:
             assert out > cache_miss, (
                 f"{model}: output ({out}) must cost more than input ({cache_miss})"
             )
+
+
+class _FakeHTTPResponse:
+    def __init__(self, payload: bytes) -> None:
+        self._payload = payload
+
+    def read(self) -> bytes:
+        return self._payload
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args) -> bool:
+        return False
+
+
+class TestKimiRequestContract:
+    """Provider diagnosis gate: OpenAI-shape request via fake transport.
+
+    Asserts URL, method, headers (redacted), model, messages schema and
+    timeout without ever printing secrets or touching the network.
+    """
+
+    def test_openai_shape_request(self, monkeypatch) -> None:
+        import json
+        import urllib.request
+
+        seen: dict = {}
+
+        def fake_urlopen(request, timeout=None):
+            seen["url"] = request.full_url
+            seen["method"] = request.get_method()
+            seen["content_type"] = request.get_header("Content-type")
+            seen["auth_prefix"] = request.get_header("Authorization")[:7]
+            seen["auth_len"] = len(request.get_header("Authorization"))
+            seen["timeout"] = timeout
+            seen["body"] = json.loads(request.data.decode("utf-8"))
+            payload = json.dumps({
+                "choices": [{"message": {"content": "ok"}}],
+                "usage": {"prompt_tokens": 5, "completion_tokens": 2},
+            }).encode("utf-8")
+            return _FakeHTTPResponse(payload)
+
+        monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+        provider = KimiProvider(api_key="test-secret-value",
+                                base_url="https://api.moonshot.ai/v1",
+                                model="kimi-k2-0905-preview")
+        resp = provider.complete("dillo in breve")
+        assert seen["url"] == "https://api.moonshot.ai/v1/chat/completions"
+        assert seen["method"] == "POST"
+        assert seen["content_type"] == "application/json"
+        assert seen["auth_prefix"] == "Bearer "
+        assert seen["auth_len"] > len("Bearer ")
+        assert seen["timeout"] == 120.0
+        assert seen["body"]["model"] == "kimi-k2-0905-preview"
+        assert seen["body"]["messages"] == [{"role": "user", "content": "dillo in breve"}]
+        assert resp.text == "ok"
+        assert resp.provider == "kimi"

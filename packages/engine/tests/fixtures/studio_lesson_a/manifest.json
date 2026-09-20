@@ -1,0 +1,56 @@
+{
+  "bundleVersion": 1,
+  "schemaVersion": 1,
+  "lessonId": "studio-proof-a",
+  "sessionIds": [
+    "aaaaaaaa-1111-4111-8111-111111111111"
+  ],
+  "producer": {
+    "id": "com.github.andreamarro.ardesia.studio",
+    "version": "0.0.0",
+    "commitSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7"
+  },
+  "requiredArtifacts": [
+    "raw/board.excalidraw",
+    "raw/events.jsonl",
+    "raw/session.yaml"
+  ],
+  "optionalArtifacts": [
+    "raw/lessonos-events.jsonl",
+    "raw/audio/*"
+  ],
+  "files": [
+    {
+      "path": "raw/board.excalidraw",
+      "bytes": 35,
+      "sha256": "f01bb126abebda287491358c5322a23eddea14271562786b28845083516e8465",
+      "required": true
+    },
+    {
+      "path": "raw/events.jsonl",
+      "bytes": 1759,
+      "sha256": "e6d008f15b51eebbc7d63a1509f985f6439102aa58b692f8dc3950dc1997fad6",
+      "required": true
+    },
+    {
+      "path": "raw/lessonos-events.jsonl",
+      "bytes": 2913,
+      "sha256": "513b2417c0a8450863144565229eb32ee333f0fb194fb86866c75214c4121640",
+      "required": false
+    },
+    {
+      "path": "raw/session.yaml",
+      "bytes": 36,
+      "sha256": "47cbae59f9a489b12dfa8b6533d17731c98e165576797317b16dc7e864e6bb51",
+      "required": true
+    }
+  ],
+  "lessonOs": {
+    "status": "included",
+    "warnings": []
+  },
+  "compatibility": {
+    "minimumReaderSchemaVersion": 1,
+    "migrations": []
+  }
+}
