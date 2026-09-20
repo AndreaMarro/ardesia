@@ -450,7 +450,7 @@ def render_structured_appendix(
     digest: LessonOsStudyDigest | None,
 ) -> str:
     """Deterministic structured appendix: extracted exercise solutions +
-    digest errors, appended AFTER the grounded LLM narrative.
+    digest errors, digest concepts, appended AFTER the grounded LLM narrative.
 
     Design (J3B hybrid): the narrative stays 100% LLM-grounded; structured
     facts NEVER cross an LLM — they render byte-for-byte from capsule and
@@ -530,6 +530,21 @@ def render_structured_appendix(
                 lines.append(f"  Provenienza: {', '.join(error.evidence_refs)}")
         lines.append("")
 
+    if digest is not None and digest.concepts:
+        # Digest-only concept retention (HARDENING): every digest concept
+        # renders verbatim with its EvidenceRef provenance — no
+        # deduplication against capsule narrative names (textual
+        # similarity is not canonical identity), no citation conversion,
+        # no excerpt invented, no LLM. A corrected flag does not exist
+        # on concepts: none is shown, none is implied.
+        lines.append("## Concetti registrati nel LessonOS")
+        lines.append("")
+        for concept in digest.concepts:
+            lines.append(f"- {concept.label}")
+            if concept.evidence_refs:
+                lines.append(f"  Provenienza: {', '.join(concept.evidence_refs)}")
+        lines.append("")
+
     return "\n".join(lines)
 
 
@@ -556,7 +571,8 @@ def generate_lesson_summary(
        verbatim substring, same-lesson guard).
     5. Render as markdown and return a ``SummaryPack``.
     6. Append the deterministic structured appendix (extracted solutions +
-       digest errors, if any): pure composition, no further LLM calls.
+       digest errors and digest concepts, if any): pure composition, no
+       further LLM calls.
 
     When ``output_dir`` is non-empty, the pack is automatically written to
     ``<output_dir>/<lesson_id>.md``. Use empty ``output_dir`` (default) for

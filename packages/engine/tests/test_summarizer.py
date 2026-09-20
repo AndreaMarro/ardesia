@@ -34,7 +34,7 @@ from lessonos.capsule.extraction import (
     QuestionExtraction,
 )
 from lessonos.capsule.segmentation import TopicSpan
-from lessonos.ingest.lessonos_snapshot import LessonOsStudyDigest, StudyError
+from lessonos.ingest.lessonos_snapshot import LessonOsStudyDigest, StudyConcept, StudyError
 from lessonos.llm.router import MockProvider, Router
 from lessonos.models.entities import Segment
 from lessonos.store.sqlite import SQLiteStore
@@ -916,3 +916,85 @@ class TestHybridStructuredAppendix:
             provider="mock", digest=None,
         )
         assert "Soluzione sonda." not in pack.files["l1.md"]
+
+
+def _concept_digest() -> LessonOsStudyDigest:
+    base = _study_digest()
+    return LessonOsStudyDigest(
+        lesson_id=base.lesson_id,
+        concepts=(
+            StudyConcept(
+                id="ck:potenza",
+                label="Regola registrata LessonOS",
+                evidence_refs=("manual:analisi:p7", "board:riepilogo"),
+            ),
+        ),
+        errors=base.errors,
+    )
+
+
+class TestDigestConceptRetention:
+    """N01: digest-only concepts reach the material deterministically.
+
+    The digest concept below (ck:potenza) is NOT a capsule concept
+    (capsule has derivata / regola della potenza as narrative names):
+    its marker proves the digest wiring, not a narrative coincidence.
+    """
+
+    def test_digest_only_concept_rendered_with_provenance(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_concept_digest(),
+        )
+        md = pack.files["l1.md"]
+        assert "Regola registrata LessonOS" in md
+        assert "Provenienza: manual:analisi:p7, board:riepilogo" in md
+
+    def test_digest_concepts_are_not_segment_citations(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=_concept_digest(),
+        )
+        md = pack.files["l1.md"]
+        assert "](manual:analisi:p7)" not in md
+        assert "](board:riepilogo)" not in md
+
+    def test_no_extra_llm_call_for_concepts(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        calls: list[str] = []
+
+        class _CountingProvider(MockProvider):
+            def complete(self, prompt: str, *, model=None):  # type: ignore[override]
+                calls.append(prompt)
+                return super().complete(prompt, model=model)
+
+        counting = _CountingProvider(fixtures={
+            _build_summary_prompt(capsule, _cited_seg_texts(store, capsule)):
+                _DETERMINISTIC_LLM_RESPONSE,
+        })
+        router = Router()
+        router.register(counting)
+        generate_lesson_summary(
+            store, capsule, router, provider="mock", digest=_concept_digest())
+        assert len(calls) == 1
+
+    def test_empty_concepts_preserve_error_sections_and_full_empty_is_legacy(
+        self, store: SQLiteStore
+    ) -> None:
+        capsule = _solution_capsule()
+        router = _solution_router(store, capsule)
+        without = generate_lesson_summary(
+            store, capsule, router, provider="mock", digest=None)
+        base = _study_digest()
+        empty_concepts = LessonOsStudyDigest(
+            lesson_id=base.lesson_id, concepts=(), errors=base.errors)
+        with_empty = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=empty_concepts)
+        assert with_empty.files["l1.md"] != without.files["l1.md"]
+        nodigest_errors = LessonOsStudyDigest(lesson_id=base.lesson_id)
+        assert generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=nodigest_errors).files["l1.md"] == without.files["l1.md"]
