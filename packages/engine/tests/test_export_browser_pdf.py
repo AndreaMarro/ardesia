@@ -146,20 +146,26 @@ class TestInputContract:
         rec = _install_fakes(
             monkeypatch, tmp_path, stage1_ast=_ast_doc(_image_block("https://example.com/a.png")))
         with pytest.raises(ValueError):
-            export_summary_pdf(_pack({"l.md": "# T\n\n![x](https://example.com/a.png)\n"}), str(tmp_path))
+            export_summary_pdf(_pack({"l.md": "# T\n\n![x](https://example.com/a.png)\n"}), str(tmp_path),
+                               pandoc_executable=rec["pandoc"],
+                               chromium_executable=rec["chromium"])
 
     def test_script_tag_rejected(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         raw = [{"t": "RawBlock", "c": ["html", "<script>alert(1)</script>"]}]
         rec = _install_fakes(monkeypatch, tmp_path, stage1_ast=_ast_doc(raw))
         with pytest.raises(ValueError):
-            export_summary_pdf(_pack({"l.md": "# T\n\n<script>alert(1)</script>\n"}), str(tmp_path))
+            export_summary_pdf(_pack({"l.md": "# T\n\n<script>alert(1)</script>\n"}), str(tmp_path),
+                               pandoc_executable=rec["pandoc"],
+                               chromium_executable=rec["chromium"])
 
     def test_iframe_rejected(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         raw = [{"t": "RawBlock", "c": ["html", '<iframe src="https://example.com"></iframe>']}]
         rec = _install_fakes(monkeypatch, tmp_path, stage1_ast=_ast_doc(raw))
         with pytest.raises(ValueError):
             export_summary_pdf(_pack({"l.md": '# T\n\n<iframe src="https://example.com"></iframe>\n'}),
-                               str(tmp_path))
+                               str(tmp_path),
+                               pandoc_executable=rec["pandoc"],
+                               chromium_executable=rec["chromium"])
 
     def test_plain_link_allowed(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         rec = _install_fakes(monkeypatch, tmp_path)
