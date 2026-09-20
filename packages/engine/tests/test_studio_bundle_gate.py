@@ -22,7 +22,7 @@ from lessonos.ingest.bundle import journal_to_segments, read_bundle
 from lessonos.ingest.lessonos_snapshot import project_lessonos_study_digest
 
 FIX = Path(__file__).parent / "fixtures" / "studio_lesson_a"
-LESSON = "studio-proof-a"
+LESSON = "d2-lesson-a"
 
 
 def _rebuild_bundle() -> bytes:
@@ -69,10 +69,10 @@ class TestStudioBundleGate:
         digest = project_lessonos_study_digest(contents.lessonos_events_jsonl, LESSON)
         assert digest.lesson_id == LESSON
         by_id = {e.id: e for e in digest.errors}
-        assert by_id["err:open"].corrected is False
-        assert by_id["err:shut"].corrected is True
-        assert "manual:vol1:p30" in str(digest.concepts) + str(digest.errors)
-        assert any(c.id == "ck:serie" for c in digest.concepts)
+        assert by_id["err:d2open"].corrected is False
+        assert by_id["err:d2shut"].corrected is True
+        assert "manual:d2:p1" in str(digest.concepts) + str(digest.errors)
+        assert any(c.id == "ck:d2a" for c in digest.concepts)
 
     def test_no_foreign_lesson_rows(self, tmp_path: Path) -> None:
         contents = read_bundle(_write_tmp(tmp_path))
@@ -80,4 +80,4 @@ class TestStudioBundleGate:
         for line in contents.lessonos_events_jsonl.splitlines():
             if line.strip():
                 assert json.loads(line)["lessonId"] == LESSON
-        assert "studio-proof-b" not in contents.events_jsonl
+        assert "d2-lesson-b" not in contents.events_jsonl
