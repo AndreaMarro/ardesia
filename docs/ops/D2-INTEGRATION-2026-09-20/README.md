@@ -34,20 +34,28 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 - Studio-production synthetic vertical (real exportLesson bytes →
   real Engine compose → PDF, A/B isolation)
 - Durable cross-boundary gate (text-only Studio fixtures, no binaries)
+- Live CI lane `d2-integration-evidence` (current producer → current
+  consumer → synthetic artifact; first exact-head run pending at
+  docs-commit time — resolve from PR #256 checks)
 - Provider root-cause diagnosis (Kimi 404 → LOCAL_CONFIGURATION, no code fix)
 - MCP readiness (research only), Kirchhoff reuse notes, stack disposition
 - Codex handoff packets A/B/C
 
-## Three verdicts + authority
+## Three verdicts + authority (refined: no collapsed continuity claim)
 
-- ENGINE_TRANSPLANT_COMPATIBILITY: PASS (20/20 picks, engine 2212/7/0,
-  typecheck/build green, D2 specs 99 green; full vitest shows only the 22
-  pre-existing env failures proven identical on pristine main)
-- STUDIO_TO_MATERIAL_CONTINUITY: PASS on production bytes (isolation
-  assertions green; didactic quality pending human review, NOT claimed)
-- SOURCE_HEAD_SEMANTIC_EQUIVALENCE: PASS (semantic diff IDENTICAL across
-  manifest/segments/digest/capsule/summary)
-- SINGLE_AUTHORITY_MATERIAL_PIPELINE: PASS (table in collision/audit evidence)
+- ENGINE_TRANSPLANT_COMPATIBILITY: PASS on rehearsal gates; new exact-head
+  CI pending at docs-commit time (resolve run from PR #256 checks tab).
+- PERSISTED_STATE_TO_MATERIAL: PASS (production exportLesson bytes consumed
+  by production compose; quality review pending human, NOT claimed).
+- USER_ACTION_TO_MATERIAL: PASS post ack-port (RED pre-fix observed on this
+  candidate: UI "1" with empty log/export; emit-increment mutation RED).
+- SOURCE_HEAD_SEMANTIC_EQUIVALENCE: PASS (semantic diff IDENTICAL, re-run
+  after the ack port: Studio-only change, engine semantics unaffected).
+- SINGLE_AUTHORITY_MATERIAL_PIPELINE: PASS (table in collision/audit evidence;
+  producer = Studio exportLesson; persisted source = room journal + event
+  log; canonical format = .lesson + manifest; consumer root = compose;
+  projector = lessonos_snapshot; generator = summarizer;
+  review boundary = inspectable material; exporter = browser_pdf).
 
 ## Evidence files
 
@@ -62,14 +70,15 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 - `codex-handoff.md` — packets A/B/C + adversarial question
 - `stack-disposition.md` — PR #248–#255 roles and close conditions
 
-## CI / artifact
+## CI / artifact (runtime evidence lives outside versioned files)
 
-Recorded in the ledger after the draft-PR exact-head run (run id, checkout,
-artifact id/digest/expiry). Prior source-head CI: run 35500500310 SUCCESS.
+- Exact-head CI run, merge checkout, and both artifacts
+  (`project-state-*`, `d2-integration-evidence-*`): resolve from PR #256
+  checks tab + issue #249 FINAL. The ledger carries pointers, not copies.
+- Prior source-head CI: run 35539330655 SUCCESS (exact head 6cd63abe).
 
 ## Known unknowns
 
-- Transplant execution proof beyond rehearsal gates: pending draft-PR CI.
 - Real-lesson didactic quality: pilot human review pending.
 - Live provider path: endpoint unusable from here; separate debt lane.
 - ChatGPT developer-mode eligibility for this workspace: not verified.

@@ -1,7 +1,18 @@
-# Exclusion matrix — pre-D2 commits reviewed but NOT transplanted
+# Exclusion matrix — pre-D2 commits reviewed but NOT transplanted wholesale
 
-Producer prerequisite set: EMPTY. Every row below carries a proof or a
-technical reason; "non serve" alone is never accepted.
+Producer prerequisite set: ONE minimal property port (see ack row).
+Every other row carries a proof or a technical reason; "non serve" alone
+is never accepted.
+
+## Ported (property only, not the commit)
+
+- PERSISTENCE_ACK (3ee18131): PORTED AS PROPERTY. RED observed on
+  candidate (UI "1" with empty log/export). Port: `onRecorded` ack in
+  `busEventLogBinding` + UI increment moved off emit (2 product files).
+  NOT ported: workflow changes, bmad spec docs, e2e journey specs, CI
+  lane changes. Mutation (emit-increment restored) re-verified RED.
+  The exclusion below now applies only to the commit's non-property
+  baggage, not to the acknowledgement property itself.
 
 ## Included-by-category reasoning
 
@@ -25,10 +36,17 @@ technical reason; "non serve" alone is never accepted.
 - CONTINUITY (99a25c31, 4be24d40, b970f365): EXCLUDED. Session-listing
   surface (`continuitySurface.ts`); no edge to lesson material, digest,
   bundle, or PDF. FUTURE_DESTINATION: continuity slice review.
-- CI_GATE (22 commits): EXCLUDED. e2e journey admission + Node pinning;
-  gates already live on main. No lesson-data semantics. The 22
-  environment-coupled vitest reds are pre-existing on pristine main
-  (measured identical), unrelated to D2 (D2 touches zero Studio files).
+- CI_GATE (22 commits): EXCLUDED as code. Gate-location truth (§19
+  correction): current main carries studio typecheck/test/build, engine
+  pytest, hygiene, and e2e golden path (advisory). The blocking
+  `e2e journey` lane (simulation, plugin wizard, studentpack, ELAB
+  catalog journeys) lives ONLY in the hidden stack, not on main. The new
+  `d2-integration-evidence` lane added by this candidate covers exactly
+  the D2 property (live Studio producer → Engine consumer → synthetic
+  artifact) without dragging simulation/plugin/catalog journeys.
+  The 22 environment-coupled vitest reds are pre-existing on pristine
+  main (measured identical), unrelated to D2 (D2 touches zero Studio
+  files except the ack port + durability test).
 - TEST_INFRA (9 commits, incl. 8822b51c oracle): EXCLUDED as code, CITED as
   evidence. The recap-identity and marcatura oracles run green in CI at
   source head; their properties are presentation-layer.

@@ -16,17 +16,47 @@ separately and is never presented as independent.
 - DO NOT REVIEW: integration with main as if proven, MCP, audio/image
   roadmap, marketplace.
 
-## Packet B — integration hypothesis
+## Packet B — integration hypothesis (current)
 
-- Main base b124eee0, CODE_CANDIDATE_SHA + EVIDENCE_HEAD_SHA in ledger,
-  causal graph + matrix, included prerequisites (NONE — exclusion proofs),
-  excluded commit matrix, source→candidate lineage (20 cherry-picks with
-  `-x`), source-head differential (IDENTICAL), three verdicts,
-  single-authority verdict, full gates, artifact id/digest.
-- ADVERSARIAL QUESTION: seek a counterexample to the thesis that this is
-  the minimum sufficient set for Studio → LessonOS → `.lesson` → Engine →
-  material → PDF. Hunt excluded semantic dependencies, vacuous tests,
-  identity drift, data loss, duplicate authorities. Do not merely approve.
+- Main base b124eee0, CODE_CANDIDATE_SHA + EVIDENCE_HEAD_SHA in ledger
+  (resolve evidence head from PR #256 head; ledger carries code SHA +
+  runtime pointers, never self-SHA).
+- Causal graph + matrix (64 commits, 0 merges); ONE minimal producer
+  prerequisite ported as property (ack #246: RED/GREEN/mutation on
+  candidate); everything else excluded with proof.
+- F246 verdict: USER_ACTION_TO_MATERIAL PASS post-fix (was FAIL pre-fix,
+  observed RED). Persisted-state verdict PASS throughout.
+- Source semantic diff: IDENTICAL (re-run after the ack port).
+- Live producer CI gate (`d2-integration-evidence` job): current Studio
+  exportLesson → current Engine on exact bytes → synthetic artifact
+  (`d2-integration-evidence-<sha>`); fixture freshness enforced
+  (commitSha-normalized manifest + entry payload compare).
+- Mutation evidence: R1/R2/UUID-path/%%EOF/fixture-tamper/emit-increment,
+  all caught, all restored.
+- Full gates: engine 2213/7/0; typecheck clean; build green; D2 specs +
+  durability suite green; full vitest only pre-existing env reds.
+- Artifact ids/digests: PR body + #249 FINAL (runtime records).
+- Exact CI: PR #256 checks tab (do not reuse 35539330655 for the new head).
+
+## Adversarial question for Codex
+
+> Cerca un controesempio alla claim che PR #256 sia il minimo candidato
+> sufficiente per preservare, senza false conferme e senza perdita
+> silenziosa, la catena:
+>
+> teacher action → persisted LessonOS fact → Studio exportLesson →
+> canonical `.lesson` → Engine → grounded material → PDF.
+>
+> Verifica in particolare:
+> - temporal durability;
+> - fixture freshness;
+> - excluded hidden commits;
+> - source-vs-candidate semantic drift;
+> - vacuous green tests;
+> - duplicated authorities;
+> - evidence-pack overclaims.
+
+Non chiedere semplicemente "is this good?" — falsifica, non approvare.
 
 ## Packet C — MCP readiness
 
