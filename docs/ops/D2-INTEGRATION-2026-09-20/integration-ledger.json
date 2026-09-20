@@ -1,1 +1,115 @@
-{"artifact_expiry": "runtimeEvidence = GitHub Actions run + issue #249 FINAL", "candidateBranch": "integration/d2-lesson-material-20260920", "codeCandidateSha": "6840850cf6aa8858ca4163d77f677146f3659df7", "d2Boundary": "fba5d035c73bc5ca41deb8b4877ac6bf33b5a057", "d2CommitCount": 20, "d2HeadSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7", "d2PathCount": 16, "evidenceHeadResolution": "resolve from PR #256 current head", "excludedCommits": "docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md (64 rows; ack row updated to minimal port)", "hiddenCommitCount": 64, "hiddenD2Intersection": [], "hiddenEnginePathCount": 0, "hiddenPathCount": 56, "knownUnknowns": ["real-lesson quality (pilot human review pending)", "live provider path (endpoint unusable; separate debt lane)", "ChatGPT developer-mode eligibility for this workspace"], "mainOnlyD2Intersection": [], "mainOnlyPreserved": ["apps/studio/sim/solver/catalog.ts", "apps/studio/src/__tests__/ElabVisibleExperimentsSolve.test.ts"], "mergeBase": "751bcb305e78647ac3c7405254492c637ab753d4", "mutations": [{"caught_by": "test_swap_between_acquisitions_cannot_mix_versions", "mutation": "reintroduce second read_bundle in compose", "restored": true}, {"caught_by": "test_css_metadata_rejected", "mutation": "header-includes-only metadata denylist", "restored": true}, {"caught_by": "test_llm_kimi.py::TestKimiRequestContract", "mutation": "wrong completions path", "restored": true}, {"caught_by": "test_magic_only_output_rejected + publish tests", "mutation": "drop %%EOF requirement", "restored": true}, {"caught_by": "gate red (manifest bytes mismatch)", "mutation": "tamper Studio fixture byte", "restored": "n/a (ad-hoc, nothing committed)"}, {"caught_by": "MarkedExportRace (emit-increment reintroduced)", "mutation": "setMarkedCount on emit", "restored": true}, {"caught_by": "d2_evidence_consume freshness", "mutation": "tamper produced entry", "restored": "n/a (ad-hoc)"}], "observedMainSha": "b124eee04acc8062c27284f23c5d9108e3767c27", "producerPrerequisites": [{"green_proof": "MarkedExportRace GREEN + emit-increment mutation RED + existing marcatura suite green", "ported_sha": "candidate commit (fix(studio): persisted confirmation before export)", "property": "persisted confirmation before export (UI increments on append ack, never on emit)", "red_proof": "MarkedExportRace RED pre-fix (UI 1, log empty, export missing error)", "source_sha": "3ee18131219ae63b0deea3679e42dd0e149ae6b7 (property only; workflow/spec/e2e baggage NOT ported)"}], "runtimeEvidence": "GitHub Actions d2-integration-evidence job + issue #249 FINAL", "schema": "ardesia.d2-integration-ledger/2", "semanticDiff": {"result": "IDENTICAL", "scope": "manifest semantics, segments, digest, capsule fields, dropped, SummaryPack markdown"}, "sourceHeadSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7", "tests": [{"name": "engine deterministic full suite (candidate)", "result": "2213 passed / 7 skipped"}, {"name": "studio typecheck (candidate)", "result": "PASS, 0 errors"}, {"name": "studio targeted D2+durability specs", "result": "52 passed (producer, race, marcatura, bundle)"}, {"name": "cross-boundary gate test_studio_bundle_gate", "result": "4 passed (regenerated fixtures)"}, {"name": "kimi request contract", "result": "PASS + mutation caught"}], "verdicts": {"ENGINE_TRANSPLANT_COMPATIBILITY": "PASS (pending new exact-head CI)", "PERSISTED_STATE_TO_MATERIAL": "PASS", "SINGLE_AUTHORITY_MATERIAL_PIPELINE": "PASS", "SOURCE_HEAD_SEMANTIC_EQUIVALENCE": "PASS", "STUDIO_TO_MATERIAL_CONTINUITY": "PARTIAL (see sub-verdicts)", "USER_ACTION_TO_MATERIAL": "PASS (post ack-port; RED pre-fix observed)"}}
+{
+ "artifact_expiry": "runtimeEvidence = GitHub Actions run + issue #249 FINAL",
+ "candidateBranch": "integration/d2-lesson-material-20260920",
+ "codeCandidateSha": "eb7a018da6f45d05a5aac697829230ac57e79e29",
+ "d2Boundary": "fba5d035c73bc5ca41deb8b4877ac6bf33b5a057",
+ "d2CommitCount": 20,
+ "d2HeadSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7",
+ "d2PathCount": 16,
+ "evidenceHeadResolution": "resolve from PR #256 current head",
+ "excludedCommits": "docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md (64 rows; ack row updated to minimal port)",
+ "hiddenCommitCount": 64,
+ "hiddenD2Intersection": [],
+ "hiddenEnginePathCount": 0,
+ "hiddenPathCount": 56,
+ "knownUnknowns": [
+  "real-lesson quality (pilot human review pending)",
+  "live provider path (endpoint unusable; separate debt lane)",
+  "ChatGPT developer-mode eligibility for this workspace"
+ ],
+ "mainOnlyD2Intersection": [],
+ "mainOnlyPreserved": [
+  "apps/studio/sim/solver/catalog.ts",
+  "apps/studio/src/__tests__/ElabVisibleExperimentsSolve.test.ts"
+ ],
+ "mergeBase": "751bcb305e78647ac3c7405254492c637ab753d4",
+ "mutations": [
+  {
+   "caught_by": "test_swap_between_acquisitions_cannot_mix_versions",
+   "mutation": "reintroduce second read_bundle in compose",
+   "restored": true
+  },
+  {
+   "caught_by": "test_css_metadata_rejected",
+   "mutation": "header-includes-only metadata denylist",
+   "restored": true
+  },
+  {
+   "caught_by": "test_llm_kimi.py::TestKimiRequestContract",
+   "mutation": "wrong completions path",
+   "restored": true
+  },
+  {
+   "caught_by": "test_magic_only_output_rejected + publish tests",
+   "mutation": "drop %%EOF requirement",
+   "restored": true
+  },
+  {
+   "caught_by": "gate red (manifest bytes mismatch)",
+   "mutation": "tamper Studio fixture byte",
+   "restored": "n/a (ad-hoc, nothing committed)"
+  },
+  {
+   "caught_by": "MarkedExportRace (emit-increment reintroduced)",
+   "mutation": "setMarkedCount on emit",
+   "restored": true
+  },
+  {
+   "caught_by": "d2_evidence_consume freshness",
+   "mutation": "tamper produced entry",
+   "restored": "n/a (ad-hoc)"
+  },
+  {
+   "caught_by": "MarkedExportRace (emit-increment reintroduced)",
+   "mutation": "setMarkedCount on emit",
+   "restored": true
+  }
+ ],
+ "observedMainSha": "b124eee04acc8062c27284f23c5d9108e3767c27",
+ "producerPrerequisites": [
+  {
+   "green_proof": "MarkedExportRace GREEN + emit-increment mutation RED + existing marcatura suite green",
+   "ported_sha": "candidate commit (fix(studio): persisted confirmation before export)",
+   "property": "persisted confirmation before export (UI increments on append ack, never on emit)",
+   "red_proof": "MarkedExportRace RED pre-fix (UI 1, log empty, export missing error)",
+   "source_sha": "3ee18131219ae63b0deea3679e42dd0e149ae6b7 (property only; workflow/spec/e2e baggage NOT ported)"
+  }
+ ],
+ "runtimeEvidence": "GitHub Actions d2-integration-evidence job + issue #249 FINAL",
+ "schema": "ardesia.d2-integration-ledger/2",
+ "semanticDiff": {
+  "result": "IDENTICAL",
+  "scope": "manifest semantics, segments, digest, capsule fields, dropped, SummaryPack markdown"
+ },
+ "sourceHeadSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7",
+ "tests": [
+  {
+   "name": "engine deterministic full suite (candidate)",
+   "result": "2213 passed / 7 skipped"
+  },
+  {
+   "name": "studio typecheck (candidate)",
+   "result": "PASS, 0 errors"
+  },
+  {
+   "name": "studio targeted D2+durability specs",
+   "result": "52 passed (producer, race, marcatura, bundle)"
+  },
+  {
+   "name": "cross-boundary gate test_studio_bundle_gate",
+   "result": "4 passed (regenerated fixtures)"
+  },
+  {
+   "name": "kimi request contract",
+   "result": "PASS + mutation caught"
+  }
+ ],
+ "verdicts": {
+  "ENGINE_TRANSPLANT_COMPATIBILITY": "PASS (pending new exact-head CI)",
+  "PERSISTED_STATE_TO_MATERIAL": "PASS",
+  "SINGLE_AUTHORITY_MATERIAL_PIPELINE": "PASS",
+  "SOURCE_HEAD_SEMANTIC_EQUIVALENCE": "PASS",
+  "STUDIO_TO_MATERIAL_CONTINUITY": "PARTIAL (see sub-verdicts)",
+  "USER_ACTION_TO_MATERIAL": "PASS (post ack-port; RED pre-fix observed; emit-increment mutation RED)"
+ }
+}
