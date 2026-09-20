@@ -312,6 +312,127 @@ class TestComposeContract:
         store.close()
 
 
+def _variant_journal(marker: str) -> str:
+    evs = [
+        {"t": 1000, "type": "element.add",
+         "element": {"id": "a", "type": "text", "text": f"{marker} uno.", "version": 1}},
+        {"t": 2000, "type": "element.add",
+         "element": {"id": "b", "type": "text", "text": f"{marker} due.", "version": 1}},
+        {"t": 3000, "type": "element.add",
+         "element": {"id": "c", "type": "text", "text": f"{marker} tre.", "version": 1}},
+    ]
+    return "\n".join(json.dumps(e) for e in evs)
+
+
+def _variant_snapshot(marker: str, error_label: str) -> str:
+    rows = [
+        _env("concept.introduced",
+             {"conceptId": "ck:x", "labels": {"it": f"Concetto {marker}"}}),
+        _env("error.observed",
+             {"errorId": "err:x", "conceptId": "ck:x",
+              "labels": {"it": error_label}}),
+    ]
+    for r in rows:
+        r["evidence"] = [{"ref": "board:vert", "resolution": "verified"}]
+    return "\n".join(json.dumps(r) for r in rows)
+
+
+def _variant_fixtures(bundle_path: str, marker: str) -> dict:
+    """Exact-prompt fixtures for one bundle variant (order-independent)."""
+    from lessonos.capsule.assembly import assemble_lesson_capsule
+
+    contents = read_bundle(bundle_path)
+    segments = journal_to_segments(contents.events_jsonl, L)
+    ids = [s.seg_id for s in segments]
+    seg_prompt = build_segmentation_prompt(segments)
+    ext_prompt = build_extraction_prompt(segments)
+    seg_r = json.dumps([{"topic": "t", "seg_ids": ids}])
+    ext_r = json.dumps({
+        "concepts": [{"name": f"concetto-{marker}", "status": "introduced",
+                      "prerequisites": [],
+                      "citations": [{"seg_id": ids[0], "excerpt": f"{marker} uno"}]}],
+        "exercises": [], "student_questions": [], "homework": []})
+    tmp = SQLiteStore(":memory:")
+    for seg in segments:
+        tmp.save_segment(seg)
+    p1 = Router()
+    p1.register(MockProvider({seg_prompt: seg_r, ext_prompt: ext_r}))
+    capsule = assemble_lesson_capsule(tmp, L, p1, provider="mock")
+    summ_prompt = _build_summary_prompt(capsule, _cited_seg_texts(tmp, capsule))
+    summ_r = json.dumps({"sections": [{"heading": "S", "paragraphs": [
+        {"text": f"{marker} uno.",
+         "citations": [{"seg_id": ids[0], "excerpt": f"{marker} uno"}]}]}]})
+    tmp.close()
+    return {seg_prompt: seg_r, ext_prompt: ext_r, summ_prompt: summ_r}
+
+
+class TestSingleAcquisition:
+    """R1: the bundle must be acquired exactly once (TOCTOU).
+
+    Bundle A and B share identity but differ in content. A swap planted
+    after the first validated acquisition must be unobservable: digest
+    facts and segments must come from ONE version.
+    """
+
+    def test_swap_between_acquisitions_cannot_mix_versions(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        import lessonos.compose as compose_mod
+        from lessonos.ingest.bundle import read_bundle as real_read_bundle
+
+        path = tmp_path / "lez.lesson"
+        path.write_bytes(
+            _bundle_bytes(_variant_journal("Alfa"), _variant_snapshot("Alfa", "Errore alfa")))
+        path_b = tmp_path / "lezb.lesson"
+        path_b.write_bytes(
+            _bundle_bytes(_variant_journal("Beta"), _variant_snapshot("Beta", "Errore beta")))
+
+        fixtures = {}
+        fixtures.update(_variant_fixtures(str(path), "Alfa"))
+        fixtures.update(_variant_fixtures(str(path_b), "Beta"))
+        router = Router()
+        router.register(MockProvider(fixtures))
+
+        acquisitions: list[bytes] = []
+        first = True
+
+        def swapping_read(zip_path: str):
+            nonlocal first
+            contents = real_read_bundle(zip_path)
+            acquisitions.append(Path(zip_path).read_bytes())
+            if first:
+                first = False
+                # TOCTOU: replace the file AFTER the validated acquisition.
+                Path(zip_path).write_bytes(path_b.read_bytes())
+            return contents
+
+        monkeypatch.setattr(compose_mod, "read_bundle", swapping_read)
+        store = SQLiteStore(":memory:")
+        material = compose_lesson_material(
+            str(path), L, store=store, router=router, provider="mock")
+        digest_labels = sorted(e.label for e in material.digest.errors)
+        seg_texts = sorted(s.text for s in store.segments_for_lesson(L))
+        digest_is_alfa = digest_labels == ["Errore alfa"]
+        segments_are_alfa = seg_texts == sorted([f"Alfa {w}." for w in ("uno", "due", "tre")])
+        # Same version on both sides — never digest-from-A with segments-from-B.
+        assert digest_is_alfa == segments_are_alfa
+        # Secondary: a single validated acquisition happened.
+        assert len(acquisitions) == 1
+        store.close()
+
+
+def _bundle_bytes(journal: str, snapshot: str | None) -> bytes:
+    import io
+
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("raw/events.jsonl", journal)
+        if snapshot is not None:
+            zf.writestr("raw/lessonos-events.jsonl", snapshot)
+        zf.writestr("raw/board.excalidraw", "{}")
+    return buf.getvalue()
+
+
 # ── H2: vertical retention matrix ─────────────────────────────────────
 
 

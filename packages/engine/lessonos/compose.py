@@ -8,7 +8,8 @@ order:
       -> project digest from the SAME acquisition (pure: no store
          writes, no router calls); malformed or foreign snapshots fail
          here, before any avoidable effect
-      -> ingest_bundle: segments + capsule (persists; no dry-run mode)
+      -> shared ingest-from-contents seam (same validated bytes, no
+         second file read) -> segments + capsule
       -> generate_lesson_summary(digest=...): inspectable SummaryPack
 
 PDF export stays an explicit caller-side step AFTER inspection:
@@ -26,7 +27,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from lessonos.ingest.bundle import ingest_bundle, read_bundle
+from lessonos.ingest.bundle import _ingest_bundle_contents, read_bundle
 from lessonos.ingest.lessonos_snapshot import (
     LessonOsStudyDigest,
     project_lessonos_study_digest,
@@ -100,9 +101,9 @@ def compose_lesson_material(
         # snapshot fails here with zero avoidable effects.
         digest = project_lessonos_study_digest(snapshot, lesson_id)
 
-    _, capsule = ingest_bundle(
-        str(resolved), store, lesson_id, router=router,
-        provider=provider, model=model,
+    _, capsule = _ingest_bundle_contents(
+        contents, store, lesson_id, router,
+        provider=provider, model=model, bundle_label=str(resolved),
     )
     pack = generate_lesson_summary(
         store, capsule, router, output_dir=output_dir,
