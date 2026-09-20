@@ -183,11 +183,22 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     return bindBusToEventLog(bus, log, {
       onRecordError: () =>
         setRecordError("Errore osservato NON registrato nella memoria della lezione."),
+      // #246 — il contatore si muove QUI, sull'acknowledgement dell'event-log,
+      // non al momento dell'emit: «segnato» significa «nella memoria», e la
+      // vista non ha altro modo di saperlo che essere avvisata.
+      onRecorded: (kind) => {
+        if (kind === "error.observed") setMarkedCount((count) => count + 1)
+      },
     })
   }, [bus, log])
 
   const selectedConcept = concepts.find((concept) => concept.conceptId === conceptId) ?? null
 
+  // #246 — emette e basta. La conferma all'utente NON si scrive qui: `bus.emit`
+  // è sincrono ma la scrittura sull'event-log no, e incrementare il contatore
+  // subito dopo l'emit significava dichiarare durabile una scrittura ancora in
+  // volo. Chi ricaricava in quella finestra perdeva l'errore appena segnato,
+  // dopo aver letto che era segnato. Il contatore ora lo muove `onRecorded`.
   const markMistake = (observation: MistakeObservation) => {
     if (selectedConcept === null || log === null) return
     bus.emit(
@@ -199,7 +210,6 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         t: Date.now(),
       }),
     )
-    setMarkedCount((count) => count + 1)
   }
 
   // Diagnostica montaggio (report unico #82 sulla vista). Semantica dati
