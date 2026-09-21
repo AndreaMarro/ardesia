@@ -1,0 +1,82 @@
+// Copy to artifacts/restart/r02-browser-proof.mjs and run with Node.
+// Requires this worktree's isolated Vite server at 127.0.0.1:5291.
+// R02_SCREENSHOT_DIR must be an existing directory outside the repository.
+import { chromium, expect } from "../../apps/studio/node_modules/@playwright/test/index.mjs";
+import { readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+if (!process.env.R02_SCREENSHOT_DIR) throw new Error("R02_SCREENSHOT_DIR required");
+const browser = await chromium.launch();
+const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+const page = await context.newPage();
+const errors = [], consoleErrors = [];
+page.on("pageerror", e => errors.push(e.message));
+page.on("console", m => { if (m.type() === "error") consoleErrors.push(m.text()); });
+const A = "browser-r02-a", B = "browser-r02-b";
+const evidence = { browser: browser.version(), errors, consoleErrors, identities: [], recaps: [] };
+try {
+  for (const room of [A, B]) {
+    await page.goto("about:blank");
+    await page.goto(`http://127.0.0.1:5291/#${room}`);
+    await page.waitForFunction(room => window.__MAESTRO_TEST__?.ready === true && window.__MAESTRO_TEST__.room === room, room);
+    expect(await page.evaluate(() => window.__MAESTRO_TEST__.journal.identity.lessonId)).toBe(room);
+    evidence.identities.push(room);
+    await page.evaluate(async ({ room, A }) => {
+      const h = window.__MAESTRO_TEST__;
+      h.recorder.recordMathInsert(room === A ? "V = R I" : "F = m a");
+      h.recorder.recordChange([{ id: `${room}-shape`, type: room === A ? "rectangle" : "ellipse", version: 1 }]);
+      h.recorder.recordPdfPageView(9, 10, { documentId: "synthetic-pdf" });
+      const p = room === A ? 3 : 7;
+      h.recorder.recordPdfPageObserved(p, 10, { documentId: "synthetic-pdf" }, `pdf:synthetic-pdf#page=${p}`);
+      await h.recorder.flush();
+      await h.lessonOs.current.appendFact("concept.introduced", {
+        conceptId: room, labels: { it: room === A ? "Concetto SOLO A" : "Concetto SOLO B" },
+      }, { evidence: [{ ref: `board:${room}`, resolution: "verified" }] });
+      if (await h.store.read("raw/events.jsonl") !== null) throw new Error("Unexpected legacy seam");
+    }, { room, A });
+  }
+  for (const room of [A, B]) {
+    await page.goto("about:blank");
+    await page.goto(`http://127.0.0.1:5291/?vista=recap#${room}`);
+    const frame = page.frameLocator('iframe[title="Anteprima del recap stampabile da consegnare"]');
+    const formula = room === A ? "V = R I" : "F = m a";
+    const foreign = room === A ? "F = m a" : "V = R I";
+    const concept = room === A ? "Concetto SOLO A" : "Concetto SOLO B";
+    await expect(frame.getByText(formula, { exact: true })).toBeVisible();
+    await expect(frame.getByText(concept, { exact: true })).toBeVisible();
+    const html = await page.locator("iframe").getAttribute("srcdoc");
+    expect(html).not.toContain(foreign);
+    expect(html).not.toContain(room === A ? "Concetto SOLO B" : "Concetto SOLO A");
+    expect(html).toContain(room === A ? "1&nbsp;rettangoli" : "1&nbsp;ellissi");
+    expect(html).toContain(`pagina&nbsp;${room === A ? 3 : 7}`);
+    expect(html).not.toContain("pagina&nbsp;9");
+    expect(await page.locator("vite-error-overlay").count()).toBe(0);
+    await page.screenshot({ path: `${process.env.R02_SCREENSHOT_DIR}/r02-${room}.png`, fullPage: true });
+    const pending = page.waitForEvent("download");
+    await page.getByRole("button", { name: "scarica recap", exact: true }).click();
+    const download = await pending;
+    const file = new URL(`./r02-${room}.html`, import.meta.url);
+    await download.saveAs(fileURLToPath(file));
+    expect(await readFile(file, "utf8")).toBe(html);
+    evidence.recaps.push({ room, formula, concept, download: download.suggestedFilename(), exactPreviewDownload: true });
+  }
+  // Prove that the existing view makes canonical identity failure visible.
+  await page.evaluate(async ({ A, B }) => {
+    const store = window.__MAESTRO_TEST__.store;
+    const foreign = await store.read(`raw/${B}/events.jsonl`);
+    if (!foreign) throw new Error("Missing B journal");
+    await store.write(`raw/${A}/events.jsonl`, foreign);
+  }, { A, B });
+  await page.goto(`http://127.0.0.1:5291/?vista=recap#${A}`);
+  await page.reload();
+  await expect(page.getByRole("alert")).toContainText("Riepilogo non disponibile");
+  await expect(page.getByRole("alert")).toContainText("lesson/source mismatch");
+  await expect(page.getByRole("button", { name: "scarica recap", exact: true })).toBeDisabled();
+  expect(await page.locator("iframe").count()).toBe(0);
+  evidence.foreignJournal = "VISIBLE_ERROR_NO_DOWNLOAD";
+  expect(errors).toEqual([]);
+} finally {
+  await writeFile(new URL("./r02-browser.json", import.meta.url), JSON.stringify(evidence, null, 2));
+  console.log(JSON.stringify(evidence));
+  await context.close();
+  await browser.close();
+}
