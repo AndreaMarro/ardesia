@@ -998,3 +998,93 @@ class TestDigestConceptRetention:
         assert generate_lesson_summary(
             store, capsule, _solution_router(store, capsule),
             provider="mock", digest=nodigest_errors).files["l1.md"] == without.files["l1.md"]
+
+
+def _pandoc_ast_or_skip(markdown: str) -> dict:
+    """Parse markdown with real Pandoc; skip when Pandoc is unavailable."""
+    import shutil
+    import subprocess
+
+    pandoc = shutil.which("pandoc")
+    if pandoc is None:
+        pytest.skip("pandoc unavailable: AST structure check needs the real reader")
+    result = subprocess.run(
+        [pandoc, "-f", "markdown", "-t", "json"],
+        input=markdown.encode("utf-8"),
+        capture_output=True,
+        timeout=60,
+    )
+    assert result.returncode == 0, result.stderr.decode("utf-8", errors="replace")[:500]
+    return json.loads(result.stdout.decode("utf-8"))
+
+
+def _h2_texts(ast: dict) -> list:
+    found = []
+
+    def walk(node) -> None:
+        if isinstance(node, dict):
+            if node.get("t") == "Header" and node.get("c", [None])[0] == 2:
+                inlines = node["c"][2] if len(node["c"]) > 2 else []
+                parts = []
+                for part in inlines:
+                    if not isinstance(part, dict):
+                        continue
+                    if part.get("t") == "Str":
+                        parts.append(part.get("c", ""))
+                    elif part.get("t") == "Space":
+                        parts.append(" ")
+                found.append("".join(parts))
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(ast.get("blocks", []))
+    return found
+
+
+class TestAppendixHeadingStructure:
+    """F-03: the FIRST appendix section heading must be a semantic Header.
+
+    Only the boundary between narrative tail and appendix start can glue
+    (later sections already follow blank lines): each test isolates a
+    different first section. A test passes on unfixed code iff it does not
+    cover the first-section case -- verified by mutation below."""
+
+    def _first_h2_boundary(self, store: SQLiteStore, capsule, digest) -> None:
+        pack = generate_lesson_summary(
+            store, capsule, _solution_router(store, capsule),
+            provider="mock", digest=digest,
+        )
+        md = pack.files["l1.md"]
+        titles = ["Soluzioni degli esercizi", "Errori e correzioni",
+                  "Concetti registrati nel LessonOS"]
+        positions = [(md.find("## " + title), title) for title in titles]
+        positions = [(i, title) for i, title in positions if i != -1]
+        assert positions, "no appendix section rendered"
+        first_hash, title = min(positions)
+        assert md[first_hash - 2:first_hash] == "\n\n", repr(md[first_hash - 10:first_hash + 40])
+        ast = _pandoc_ast_or_skip(md)
+        assert title in _h2_texts(ast)
+
+    def test_solutions_first_is_h2(self, store: SQLiteStore) -> None:
+        capsule = _solution_capsule()
+        self._first_h2_boundary(store, capsule, _study_digest())
+
+    def test_errors_first_is_h2(self, store: SQLiteStore) -> None:
+        capsule = _make_capsule()
+        base = _study_digest()
+        errors_only = LessonOsStudyDigest(
+            lesson_id=base.lesson_id, concepts=(), errors=base.errors)
+        self._first_h2_boundary(store, capsule, errors_only)
+
+    def test_concepts_first_is_h2(self, store: SQLiteStore) -> None:
+        capsule = _make_capsule()
+        base = _study_digest()
+        concepts_only = LessonOsStudyDigest(
+            lesson_id=base.lesson_id,
+            concepts=(StudyConcept(id="ck:solo", label="Solo", evidence_refs=()),),
+            errors=(),
+        )
+        self._first_h2_boundary(store, capsule, concepts_only)

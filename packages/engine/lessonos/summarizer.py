@@ -632,8 +632,13 @@ def generate_lesson_summary(
 
     # Step 6: deterministic structured appendix (no LLM): extracted
     # solutions + digest errors. Empty string when nothing applies, so
-    # legacy outputs stay byte-identical.
-    markdown += render_structured_appendix(store, capsule, digest)
+    # legacy outputs stay byte-identical. A non-empty appendix is separated
+    # from the narrative by a blank line: without it Pandoc's
+    # blank_before_header rule glues the first appendix heading into the
+    # previous paragraph as literal text (F-03).
+    appendix = render_structured_appendix(store, capsule, digest)
+    if appendix:
+        markdown = markdown.rstrip("\n") + "\n\n" + appendix.lstrip("\n")
 
     file_name = f"{lesson_id}.md"
     pack = SummaryPack(files={file_name: markdown})
