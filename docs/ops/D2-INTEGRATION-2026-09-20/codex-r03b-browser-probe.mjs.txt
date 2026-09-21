@@ -1,0 +1,88 @@
+// Copy to artifacts/restart/r03b-browser-proof.mjs; isolated Vite on 5291.
+// R03B_SCREENSHOT_DIR must exist outside the repository.
+import { chromium, expect } from "../../apps/studio/node_modules/@playwright/test/index.mjs";
+import JSZip from "../../apps/studio/node_modules/jszip/lib/index.js";
+import { readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+if (!process.env.R03B_SCREENSHOT_DIR) throw new Error("R03B_SCREENSHOT_DIR required");
+const browser = await chromium.launch();
+const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+const page = await context.newPage();
+const errors = [], consoleErrors = [], downloads = [];
+page.on("pageerror", e => errors.push(e.message));
+page.on("console", m => { if (m.type() === "error") consoleErrors.push(m.text()); });
+page.on("download", d => downloads.push(d));
+const room = "browser-r03b";
+const evidence = { browser: browser.version(), errors, consoleErrors, failures: [] };
+try {
+  await page.goto(`http://127.0.0.1:5291/#${room}`);
+  await page.waitForFunction(room => window.__MAESTRO_TEST__?.ready && window.__MAESTRO_TEST__.journal?.identity.lessonId === room, room);
+  await page.evaluate(async room => {
+    const h = window.__MAESTRO_TEST__;
+    h.recorder.recordMathInsert("V = R I");
+    await h.recorder.flush();
+    await h.store.write(`raw/${room}/board.excalidraw`, new Blob([JSON.stringify({ type: "excalidraw", elements: [] })]));
+    await h.lessonOs.current.appendFact("concept.introduced", {
+      conceptId: "persisted-r03b", labels: { it: "Memoria persistente R03b" },
+    }, { evidence: [{ ref: `board:${room}`, resolution: "verified" }] });
+    const rows = await h.lessonOs.current.store.readEnvelopesByLesson(room);
+    await h.store.write(`raw/${room}/lessonos-events.jsonl`, new Blob([rows.map(row => JSON.stringify(row)).join("\n") + "\n"]));
+  }, room);
+  await page.goto("about:blank");
+  await page.goto(`http://127.0.0.1:5291/?vista=recap#${room}`);
+  await page.waitForFunction(room => window.__MAESTRO_TEST__?.ready && window.__MAESTRO_TEST__.room === room, room);
+  await expect(page.locator("iframe")).toBeVisible();
+  await expect(page.locator(".st-recap-title")).toHaveText("Lezione senza nome");
+  evidence.url = page.url();
+  evidence.title = await page.title();
+  const archived = await page.evaluate(async room => (await window.__MAESTRO_TEST__.store.read(`raw/${room}/lessonos-events.jsonl`)).text(), room);
+  for (const failure of ["missing", "opening-error"]) {
+    await page.evaluate(failure => {
+      window.__R03B_DESCRIPTOR__ = Object.getOwnPropertyDescriptor(window, "indexedDB");
+      const idb = window.indexedDB;
+      const replacement = failure === "missing" ? undefined : new Proxy(idb, {
+        get(target, key) {
+          if (key === "open") return () => { throw new DOMException("apertura bloccata nella prova", "SecurityError"); };
+          const value = Reflect.get(target, key, target);
+          return typeof value === "function" ? value.bind(target) : value;
+        },
+      });
+      Object.defineProperty(window, "indexedDB", { configurable: true, value: replacement });
+    }, failure);
+    await page.getByRole("button", { name: "esporta .lesson", exact: true }).click();
+    await expect(page.getByRole("alert")).toContainText(failure === "missing" ? "IndexedDB non disponibile" : "apertura bloccata nella prova");
+    await expect(page.getByRole("button", { name: "esporta .lesson", exact: true })).toBeEnabled();
+    await expect(page.locator("iframe")).toBeVisible();
+    expect(downloads.length).toBe(0);
+    const currentArchive = await page.evaluate(async room => (await window.__MAESTRO_TEST__.store.read(`raw/${room}/lessonos-events.jsonl`)).text(), room);
+    expect(currentArchive).toBe(archived);
+    await page.screenshot({ path: `${process.env.R03B_SCREENSHOT_DIR}/r03b-${failure}.png`, fullPage: true });
+    evidence.failures.push({ failure, visibleError: await page.getByRole("alert").textContent(), downloads: downloads.length, archivedBytesUnchanged: true });
+    await page.evaluate(() => {
+      if (window.__R03B_DESCRIPTOR__) Object.defineProperty(window, "indexedDB", window.__R03B_DESCRIPTOR__);
+      else delete window.indexedDB;
+      delete window.__R03B_DESCRIPTOR__;
+    });
+  }
+  const next = page.waitForEvent("download");
+  await page.getByRole("button", { name: "esporta .lesson", exact: true }).click();
+  const item = await next;
+  const output = new URL("./r03b-recovered.lesson", import.meta.url);
+  await item.saveAs(fileURLToPath(output));
+  const zip = await JSZip.loadAsync(await readFile(output));
+  const memory = await zip.file("raw/lessonos-events.jsonl")?.async("text");
+  expect(memory).toContain("Memoria persistente R03b");
+  expect(JSON.parse(await zip.file("manifest.json").async("text")).lessonId).toBe(room);
+  expect(memory.trim().split("\n").map(JSON.parse).every(row => row.lessonId === room)).toBe(true);
+  await expect(page.getByRole("alert")).toHaveCount(0);
+  expect(downloads.length).toBe(1);
+  expect(await page.locator("vite-error-overlay").count()).toBe(0);
+  expect(errors).toEqual([]);
+  await page.screenshot({ path: `${process.env.R03B_SCREENSHOT_DIR}/r03b-recovered.png`, fullPage: true });
+  evidence.recovered = { downloads: downloads.length, currentMemoryPresent: true, identity: room };
+} finally {
+  await writeFile(new URL("./r03b-browser.json", import.meta.url), JSON.stringify(evidence, null, 2));
+  console.log(JSON.stringify(evidence));
+  await context.close();
+  await browser.close();
+}
