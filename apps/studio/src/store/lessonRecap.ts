@@ -3,8 +3,9 @@
 // Linguaggio docente: mai flush/cache, "appunti salvati".
 
 import { type WorkspaceStore } from "./WorkspaceStore"
-import { PATHS } from "./types"
-import type { JournalEvent } from "./JournalRecorder"
+import { roomPaths } from "./roomPaths"
+import { looksLikeJournalEnvelopeV2, type JournalEvent } from "./JournalRecorder"
+import { deserializeEvents } from "./ReplayEngine"
 
 export interface LessonRecap {
   v: 1
@@ -40,7 +41,8 @@ export async function buildRecap(
   const title = meta?.name ?? "Lezione senza nome"
 
   // 2. Carica events.jsonl e analizza
-  const journalBlob = await store.read(PATHS.JOURNAL)
+  const journalPath = roomPaths(room).journal
+  const journalBlob = await store.read(journalPath)
   if (!journalBlob) {
     return {
       v: 1,
@@ -56,18 +58,26 @@ export async function buildRecap(
   }
 
   const text = await journalBlob.text()
-  const events: JournalEvent[] = text
-    .trim()
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => {
-      try {
-        return JSON.parse(line) as JournalEvent
-      } catch {
-        return null
-      }
-    })
-    .filter((e): e is JournalEvent => e !== null)
+  // Preserve the recap's tolerant legacy aggregates (e.g. a formula without t).
+  // Physical V2 rows use the canonical decoder: identity, validation, duplicate
+  // detection and projection stay shared with replay. Blank placeholders retain
+  // physical line numbers in errors; malformed JSON also reaches that decoder
+  // so a truncated V2 row cannot silently fall back to legacy.
+  const legacyEvents: JournalEvent[] = []
+  const canonicalLines = text.split("\n").map((line) => {
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(line)
+    } catch {
+      return line
+    }
+    if (looksLikeJournalEnvelopeV2(parsed)) return line
+    if (typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)) {
+      legacyEvents.push(parsed as JournalEvent)
+    }
+    return ""
+  })
+  const events = [...legacyEvents, ...deserializeEvents(canonicalLines.join("\n"), journalPath)]
 
   if (events.length === 0) {
     return {

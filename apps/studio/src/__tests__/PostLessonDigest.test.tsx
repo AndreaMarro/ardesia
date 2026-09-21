@@ -5,7 +5,7 @@ import { act, cleanup, render, waitFor } from "@testing-library/react"
 import RecapView from "../RecapView"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { roomPaths } from "../store/roomPaths"
-import { PATHS, type WorkspaceDriver } from "../store/types"
+import type { WorkspaceDriver } from "../store/types"
 import * as eventLogs from "../lessonos/indexedDbEventLog"
 import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
 
@@ -48,13 +48,11 @@ async function logWithLessons(started = false) {
   return log
 }
 
-// Legacy rows here keep UI digest tests observable even on the pre-fix reader.
-// Both locations are written explicitly; the recorder compatibility proof
-// was frozen separately with actual producer bytes, never these legacy rows.
+// Per-room legacy compatibility keeps the digest lifecycle tests focused.
+// Actual producer bytes are covered separately by lessonRecapRecorder.test.ts.
 async function visibleRecap(store: WorkspaceStore, room: string) {
   const text = JSON.stringify({ t: 1000, type: "math.insert", latex: "V = R I" })
   await store.write(roomPaths(room).journal, new Blob([text]))
-  await store.write(PATHS.JOURNAL, new Blob([text]))
 }
 
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
@@ -114,6 +112,7 @@ describe("post-lesson canonical identity", () => {
   it("ignores a late result after navigating to a different lesson", async () => {
     const store = workspace()
     await visibleRecap(store, A)
+    await visibleRecap(store, B)
     const log = await logWithLessons()
     let resolveOpen!: (value: typeof log) => void
     const pending = new Promise<typeof log>((resolve) => { resolveOpen = resolve })
