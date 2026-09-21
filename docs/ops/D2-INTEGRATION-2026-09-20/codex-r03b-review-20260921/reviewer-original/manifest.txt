@@ -1,0 +1,51 @@
+R-03b independent review receipt
+reviewer runtime identity: inherited/unknown
+capability record: INDEX_SYNC_DEFERRED (current mandate forbids vault, Basic Memory, and AgentMemory access)
+
+candidate: a90d3563014c5cd995630a37ea164f42f4c40b9c
+base: b76611be7bcfd738d31c9b845a6be1acd95ded74
+candidate files and final SHA-256:
+d1fd905b477510beb0059a771e3945a9f8ec52e92ee3dd996c44fe9f378f98df  apps/studio/src/RecapView.tsx
+383c1e53ab8717e9762ad70e9bb4ce67d39ceeb1bbdaa79056f34b2227aea745  apps/studio/src/__tests__/RecapLiveExport.test.tsx
+dd043107278e090ac4a20f6d16ea639e96fac71f217b80df85a251d00de365e2  apps/studio/src/__tests__/RecapView.test.tsx
+281c53cf3d444fca47fdd4f03b706aa84162456b79de1cfae5c1a8138dfe1e74  docs/ops/D2-INTEGRATION-2026-09-20/codex-r03b-unit.md
+
+verdict: APPROVE
+findings: none
+
+new falsification probe:
+  source: probes/R03bIndependentPostOpenProbe.temp.test.tsx
+  sha256: c970c1825435ab799e79a1cc18f91fd2d87daee71ddacd8606b7ed720cc639bc
+  result: after a successful IndexedDB open, the probe makes the exporter's
+    next real IndexedDB transaction throw. It observed an alert, zero download,
+    close() on the exact newly opened export handle, an enabled retry button,
+    and a retry ZIP containing only the current scoped fact.
+  product temp test: removed before candidate regression/typecheck/build; git diff
+    and status checks show no tracked reviewer edits.
+
+verification environment:
+  node: v22.14.0
+  npm: 10.9.2
+  runner: run-scrubbed.sh sha256 dbcf8b8a8e5d092a66dc079bc82fc9960f9cb056f81e443fde2ea70efec0bdee
+  child environment: KIMI_API_KEY, DEEPSEEK_API_KEY, OPENAI_API_KEY,
+    ANTHROPIC_API_KEY, and ARDESIA_CHROMIUM_NO_SANDBOX removed for every command.
+
+command records (each has direct stdout, stderr, and metadata in logs/):
+  01-independent-post-open-probe: initial probe; test assertion failed because
+    it counted a concurrent digest handle close as if it were export-only. The
+    runner then hit zsh's read-only `status` variable after the child ended, so
+    its metadata lacks its trailing exit/duration lines. Outer command exit was
+    1 (2.97s observed). Preserved without rewriting.
+  02-independent-post-open-probe: same assertion failure; exit 1; duration 2s.
+  03-independent-post-open-probe-fixed: exit 0; duration 2s.
+  04-probe-source-hash: exit 0; duration 0s; source and artifact mirror hashes matched.
+  05-focused-recap-regressions: exit 0; duration 5s; 3 files / 29 tests passed.
+  06-typecheck: exit 0; duration 15s; `tsc -b --noEmit` passed.
+  07-build: exit 0; duration 15s; `tsc -b && vite build` passed.
+  08-final-integrity: exit 0; duration 0s; final candidate/probe hashes captured.
+
+limits:
+  jsdom plus fake-indexeddb exercises the actual IndexedDB adapter, React
+  component, WorkspaceStore, and JSZip export, but no physical browser storage
+  implementation was run. Review scope excludes general recovery/integrity
+  redesign and other export callers.

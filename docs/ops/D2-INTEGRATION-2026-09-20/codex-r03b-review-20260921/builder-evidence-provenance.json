@@ -1,0 +1,230 @@
+{
+  "utc": "2026-09-21T21:04:18.680826+00:00",
+  "kind": "Root provenance audit of earlier builder executions; not independent reruns",
+  "base": "b76611be7bcfd738d31c9b845a6be1acd95ded74",
+  "candidate": "a90d3563014c5cd995630a37ea164f42f4c40b9c",
+  "evidence_head": "54635723e61fac72e7f7727e9a29e0fb33541660",
+  "product_sha256": "d1fd905b477510beb0059a771e3945a9f8ec52e92ee3dd996c44fe9f378f98df",
+  "frozen_review_unchanged": true,
+  "evidence_only_paths": [
+    "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03b-browser-probe.mjs.txt",
+    "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03b-checkpoint.md"
+  ],
+  "prior_commands": [
+    {
+      "name": "r03b-red",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "seconds": 2.66,
+      "utc": "2026-09-21T20:20:33.692682+00:00",
+      "stdout_stderr_sha256": "16ad4a1b0a96451bab11315350182a0880b9b35f728f9d709f057f430d9b644a"
+    },
+    {
+      "name": "r03b-focused-final",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/RecapView.test.tsx",
+        "src/__tests__/SavedLessonsView.test.tsx",
+        "src/__tests__/LessonOsLiveSnapshot.test.ts",
+        "src/__tests__/PostLessonDigest.test.tsx",
+        "src/__tests__/ExportLessonMemory.test.ts",
+        "src/__tests__/LessonBundle.test.ts",
+        "src/__tests__/IndexedDbEventLog.test.ts",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 0,
+      "seconds": 8.4,
+      "utc": "2026-09-21T20:23:05.096398+00:00",
+      "stdout_stderr_sha256": "77c7ff1c5d4dd7a351e5531e1b70d5baa6d1280b66fb9f113433c61e95a3a758"
+    },
+    {
+      "name": "r03b-mutation-fallback",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "seconds": 4.86,
+      "utc": "2026-09-21T20:23:33.513622+00:00",
+      "stdout_stderr_sha256": "3fa844b57c78b3b8e67410bf4c6f024b8b4b786e70e21566d5fd1d0c99b1ec53"
+    },
+    {
+      "name": "r03b-studio-full",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 0,
+      "seconds": 138.49,
+      "utc": "2026-09-21T20:26:37.372567+00:00",
+      "stdout_stderr_sha256": "038b97cf188b986ae028b987fee4f0eea99c36893342c1afe091a9d51192ece5"
+    },
+    {
+      "name": "r03b-typecheck",
+      "cwd": "apps/studio",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "seconds": 13.15,
+      "utc": "2026-09-21T20:24:32.025510+00:00",
+      "stdout_stderr_sha256": "1454b1dd6bc302ad2f905499cf9d6078d61f038903a0927ce116460426b93112"
+    },
+    {
+      "name": "r03b-build",
+      "cwd": "apps/studio",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 14.93,
+      "utc": "2026-09-21T20:24:47.047587+00:00",
+      "stdout_stderr_sha256": "931d6833b3cf5c38a2e2bfa05c2a325060c374bea3c42ead89be9013b32cf6b5"
+    },
+    {
+      "name": "r03b-frozen-gate",
+      "cwd": "apps/studio",
+      "command": [
+        "env",
+        "NODE_OPTIONS=--no-experimental-webstorage",
+        "bash",
+        "eval/gate.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 106.61,
+      "utc": "2026-09-21T20:28:39.492666+00:00",
+      "stdout_stderr_sha256": "1478d4b2cc2255f5b155a40e628efbceda1ae53e1bffc284f16060b648efdfe6"
+    },
+    {
+      "name": "r03b-browser",
+      "cwd": ".",
+      "command": [
+        "env",
+        "R03B_SCREENSHOT_DIR=/Users/andreamarro/.codex/visualizations/2026/09/21/01a0c4c6-d203-7160-b23e-f6575493e013",
+        "node",
+        "artifacts/restart/r03b-browser-proof.mjs"
+      ],
+      "exit_code": 0,
+      "seconds": 4.23,
+      "utc": "2026-09-21T20:26:12.355956+00:00",
+      "stdout_stderr_sha256": "0e6c6cd582b9f0c5ce40a3131842e730c0dac2efade977786baf8637ec9d01bb"
+    },
+    {
+      "name": "r03b-browser-parity",
+      "cwd": ".",
+      "command": [
+        "env",
+        "R03_SCREENSHOT_DIR=/Users/andreamarro/.codex/visualizations/2026/09/21/01a0c4c6-d203-7160-b23e-f6575493e013",
+        "node",
+        "artifacts/restart/r03b-parity-proof.mjs"
+      ],
+      "exit_code": 0,
+      "seconds": 6.29,
+      "utc": "2026-09-21T20:26:59.199381+00:00",
+      "stdout_stderr_sha256": "33abad1f62cc9fd63021547f16dcd83010703276d923458dfb0046dd7b8c09f6"
+    },
+    {
+      "name": "r03b-golden",
+      "cwd": "apps/studio",
+      "command": [
+        "env",
+        "ARDESIA_STUDIO_E2E_BASE_URL=http://127.0.0.1:5291",
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "e2e/golden-path.spec.ts"
+      ],
+      "exit_code": 0,
+      "seconds": 8.65,
+      "utc": "2026-09-21T20:27:07.916641+00:00",
+      "stdout_stderr_sha256": "342cc67cb27a9f2d5aa4eb1aeda1455d33860e4161ffabe28b1d8149d7356408"
+    }
+  ],
+  "exports": [
+    {
+      "room": "browser-r03-a",
+      "entries": [
+        {
+          "surface": "recap",
+          "archive_sha256": "d5596850be020dfaffb1b00e512ad09218d9455df318ce476f1fa5149082add7",
+          "memory_sha256": "1a8e6991050ee0a3900c657149a638c729ae54ed460b58f0e2119193d474429f",
+          "rows": 4
+        },
+        {
+          "surface": "materials",
+          "archive_sha256": "d5596850be020dfaffb1b00e512ad09218d9455df318ce476f1fa5149082add7",
+          "memory_sha256": "1a8e6991050ee0a3900c657149a638c729ae54ed460b58f0e2119193d474429f",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "room": "browser-r03-b",
+      "entries": [
+        {
+          "surface": "recap",
+          "archive_sha256": "367a7ebfcb082ca9cfb333fd3bf9589fe4b667b660b81537a0caaeca81865172",
+          "memory_sha256": "572fa786262209fedcad4cc0374b9f2fa6cb65795b3d0d6dc8bdd0f293d7bf94",
+          "rows": 4
+        },
+        {
+          "surface": "materials",
+          "archive_sha256": "367a7ebfcb082ca9cfb333fd3bf9589fe4b667b660b81537a0caaeca81865172",
+          "memory_sha256": "572fa786262209fedcad4cc0374b9f2fa6cb65795b3d0d6dc8bdd0f293d7bf94",
+          "rows": 4
+        }
+      ]
+    }
+  ],
+  "recovered_export": {
+    "archive_sha256": "ab546e0a33ba75474dc0eeeb2b64e0206538ec6318880bfde0cc25592aa64fb0",
+    "memory_sha256": "4973812435405f14d52c08fea83dffaf75c4020da6a91f00a96168ceead07b6b",
+    "rows": 2,
+    "identity": "browser-r03b"
+  },
+  "browser_probe_sha256": "63f52848a357438dac8ba14fab80150377167c84eceaa431298e018d57bfe118",
+  "browser_results_sha256": "e52d5f0b6b02acd26be811198fd177010568e1cb3730dedd8689b9360232f629",
+  "browser_parity_results_sha256": "a33ffab417007b1acf047f0d4b73a61f8b06f44397fb25fb31e7a21af8eb6403"
+}

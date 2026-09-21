@@ -1,0 +1,118 @@
+{
+  "utc": "2026-09-21T21:04:41.589321+00:00",
+  "coordinator_head": "54635723e61fac72e7f7727e9a29e0fb33541660",
+  "reviewer_head": "a90d3563014c5cd995630a37ea164f42f4c40b9c",
+  "remote": "https://github.com/AndreaMarro/ardesia.git",
+  "local_divergence_origin_main": "0\t51",
+  "main_remote": "b124eee04acc8062c27284f23c5d9108e3767c27\trefs/heads/main",
+  "pr": {
+    "baseRefOid": "b124eee04acc8062c27284f23c5d9108e3767c27",
+    "headRefOid": "705284acc4322db4d241032de071437ab0473cc1",
+    "isDraft": true,
+    "reviews": [],
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:12:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971310/job/106182762201",
+        "name": "studio (typecheck + test + build)",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:13:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971330/job/106182762315",
+        "name": "no-deploy-check",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "studio-preview-readiness"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:10:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971310/job/106182762209",
+        "name": "engine (pytest)",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:10:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971310/job/106182762289",
+        "name": "e2e golden path (advisory)",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:10:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971310/job/106182762204",
+        "name": "d2 integration evidence (synthetic)",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:10:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/35549971310/job/106182762067",
+        "name": "hygiene (NUL + secrets + boundary + whitespace)",
+        "startedAt": "2026-09-21T01:09:37Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-09-21T01:09:36Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Vercel",
+        "startedAt": "2026-09-21T01:10:18Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/andreas-projects-6d4e9791/ardesia-lavagna/8CxbLvv4dMBQ5xNHufBmezxXEKLN"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-21T01:10:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github",
+        "name": "Vercel Preview Comments",
+        "startedAt": "2026-09-21T01:10:19Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ]
+  },
+  "reviewer_sparse_patterns": [
+    "/AGENTS.md",
+    "/.gitignore",
+    "/.gitattributes",
+    "/apps/studio/",
+    "/plugins/elab-tutor/src/",
+    "/packages/",
+    "/bin/",
+    "/docs/ops/",
+    "/docs/CANON-INDEX.md",
+    "/docs/vault/ARDESIA-MAP.md",
+    "/packs/elab-tutor/"
+  ],
+  "installed_dependencies": "Shared symlink; not newly installed",
+  "lockfile_sha256": "0f7c344b16bab89fb7312a4375533cc7f7715e217837a32cf165b1ee3ccf21d4",
+  "previous_r03_review_unchanged": true,
+  "remote_results_cover_local_patch": false
+}

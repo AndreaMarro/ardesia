@@ -1,0 +1,26 @@
+{
+  "utc": "2026-09-21T21:12:52.680533+00:00",
+  "source": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03b-review-20260921/artifacts/r03b-review",
+  "destination": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03b-review-20260921/reviewer-original",
+  "files_copied": 30,
+  "byte_identical": true,
+  "manifest_sha256": "c76f0fdc7d4370ee6b5b6dbcb381e7a1923d3a4961b45365d4a73012ddc3b1dd",
+  "reviewer_receipt_sha256": "7e3d0fce21c11e4fe50380ed9f595968f66e573a26c390a826b6c5acc4c235b1",
+  "all_artifact_extensions_checked_for_nul_and_secret_patterns": true,
+  "reviewer_tracked_status_clean": true,
+  "packaging": {
+    "utc": "2026-09-21T21:14:39.474578+00:00",
+    "archive": "reviewer-original/raw-artifacts.zip",
+    "archive_sha256": "5e5b872a251b8d18e53e4a0956cf98aabd05bfe72b6e8f8f17a9f049b0c794ac",
+    "entries": 30,
+    "every_entry_matches_original": true,
+    "plain_exact_copies": [
+      "SHA256SUMS",
+      "clarification.txt",
+      "manifest.txt",
+      "probes/R03bIndependentPostOpenProbe.temp.test.tsx",
+      "run-scrubbed.sh"
+    ],
+    "reason": "Preserve raw README and runner whitespace without changing bytes or repository gates; all originals remain available by archive extraction."
+  }
+}

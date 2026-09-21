@@ -1,0 +1,17 @@
+R-03b review clarification — appended 2026-09-21
+
+The independent post-open probe directly asserts that the retry JSONL contains
+`POST OPEN CURRENT`. It does not parse every JSONL row and does not seed a
+second lesson, so the phrase “only current scoped fact” in the receipt is
+broader than that probe's direct assertion.
+
+Scope isolation and exclusion of a foreign lesson were separately exercised by
+the committed `RecapLiveExport.test.tsx` focused regression, which seeds the
+selected lesson and `r03-foreign` and asserts the generated JSONL contains the
+selected current facts while excluding `FOREIGN` and the stored stale snapshot.
+The empty-current-log regression separately asserts that a true persistent
+empty state does not resurrect the stored snapshot.
+
+This clarification does not change the APPROVE verdict: the independent probe
+establishes post-open failure cleanup/retry, while the focused committed
+regressions establish the broader current/scoped-data semantics.
