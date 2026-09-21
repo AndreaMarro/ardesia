@@ -94,7 +94,15 @@ export default function RecapView({ store, room }: RecapViewProps) {
     setExporting(true)
     setExportError(null)
     try {
-      const zipBlob = await store.exportLesson(room)
+      // Acquire current canonical memory for this click, independently of the
+      // preview's projected digest and its already-closed read handle.
+      const log = await createEventLogStore()
+      let zipBlob: Blob
+      try {
+        zipBlob = await store.exportLesson(room, log)
+      } finally {
+        if ("close" in log) await (log as { close(): Promise<void> }).close()
+      }
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")
       const slug = lessonSlug(recap?.title ?? "", room)
