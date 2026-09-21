@@ -1,0 +1,74 @@
+// @vitest-environment jsdom
+import { afterEach, describe, expect, it, vi } from "vitest"
+import { act, cleanup, render, waitFor } from "@testing-library/react"
+import RecapView from "../RecapView"
+import { WorkspaceStore } from "../store/WorkspaceStore"
+import { PATHS, type WorkspaceDriver } from "../store/types"
+import * as eventLogs from "../lessonos/indexedDbEventLog"
+import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
+
+const A = "r01-a"
+const B = "r01-b"
+const SESSION = "11111111-1111-4111-8111-111111111111"
+const producer = { id: "test.r01", version: "1.0.0", commitSha: "a".repeat(40) }
+let nextId = 0
+const eventId = () => `00000000-0000-4000-8000-${(++nextId).toString(16).padStart(12, "0")}`
+
+function workspace(): WorkspaceStore {
+  const data = new Map<string, ArrayBuffer>()
+  const driver: WorkspaceDriver = {
+    name: "r01-memory", available: () => true, init: async () => true,
+    read: async (path) => data.has(path) ? new Blob([data.get(path)!]) : null,
+    write: async (path, blob) => { data.set(path, await blob.arrayBuffer()) },
+    delete: async (path) => { data.delete(path) },
+    list: async (prefix) => [...data].filter(([path]) => !prefix || path.startsWith(prefix))
+      .map(([path, bytes]) => ({ path, data: new Blob([bytes]), mtime: 0 })),
+  }
+  const store = new WorkspaceStore()
+  Object.assign(store, { driver, fallback: driver })
+  return store
+}
+
+async function logFor(room: string) {
+  const log = await eventLogs.createEventLogStore({ factory: undefined })
+  await log.appendEnvelope(createEventEnvelopeV2({
+    lessonId: room, sessionId: SESSION, kind: "concept.introduced",
+    actor: { type: "teacher", id: "r01" }, producer, causationId: null, idempotencyKey: null,
+    evidence: [{ ref: `board:${room}`, resolution: "verified" }],
+    payload: { conceptId: room, labels: { it: `only-${room}` } },
+  }, { eventId, now: () => new Date(1000) }))
+  return log
+}
+
+afterEach(() => { cleanup(); vi.restoreAllMocks() })
+
+describe("R01 delayed canonical read", () => {
+  it("cannot publish or leak the first lesson after navigation while its read is pending", async () => {
+    const store = workspace()
+    await store.write(PATHS.JOURNAL, new Blob([JSON.stringify({ t: 1000, type: "math.insert", latex: "x" })]))
+    const first = await logFor(A)
+    const second = await logFor(B)
+    const firstClose = vi.fn().mockResolvedValue(undefined)
+    const secondClose = vi.fn().mockResolvedValue(undefined)
+    Object.assign(first, { close: firstClose })
+    Object.assign(second, { close: secondClose })
+    let release!: () => void
+    const pending = new Promise<void>((resolve) => { release = resolve })
+    const originalRead = first.readEnvelopesByLesson.bind(first)
+    vi.spyOn(first, "readEnvelopesByLesson").mockImplementation(async (room) => {
+      await pending
+      return originalRead(room)
+    })
+    vi.spyOn(eventLogs, "createEventLogStore").mockResolvedValueOnce(first).mockResolvedValueOnce(second)
+
+    const { container, rerender } = render(<RecapView store={store} room={A} />)
+    await waitFor(() => expect(first.readEnvelopesByLesson).toHaveBeenCalledWith(A))
+    rerender(<RecapView store={store} room={B} />)
+    await waitFor(() => expect(container.querySelector("iframe")?.srcdoc).toContain(`only-${B}`))
+    await act(async () => { release(); await pending })
+    await waitFor(() => expect(firstClose).toHaveBeenCalledOnce())
+    expect(secondClose).toHaveBeenCalledOnce()
+    expect(container.querySelector("iframe")?.srcdoc).toContain(`only-${B}`)
+    expect(container.querySelector("iframe")?.srcdoc).not.toContain(`only-${A}`)
+  })
+})

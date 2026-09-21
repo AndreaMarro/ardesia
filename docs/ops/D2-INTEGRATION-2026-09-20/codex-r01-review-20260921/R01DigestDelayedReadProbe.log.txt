@@ -1,0 +1,11 @@
+Command:
+env -u KIMI_API_KEY -u DEEPSEEK_API_KEY -u OPENAI_API_KEY -u ANTHROPIC_API_KEY -u ARDESIA_CHROMIUM_NO_SANDBOX npx vitest run src/__tests__/R01DigestDelayedReadProbe.test.tsx --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+
+Exit: 0
+
+RUN  v4.1.8 /Users/andreamarro/VOLUME 3/ardesia-codex-r01-review-20260921/apps/studio
+
+Test Files  1 passed (1)
+Tests  1 passed (1)
+Start at  19:28:54
+Duration  935ms (transform 136ms, setup 0ms, import 268ms, tests 64ms, environment 525ms)
