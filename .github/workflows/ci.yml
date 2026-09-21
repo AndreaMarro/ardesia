@@ -48,6 +48,11 @@ jobs:
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
+      # Pandoc serve agli AST regression test strutturali (F-03): senza,
+      # skipperebbero dichiarati ma non eseguiti. Versione registrata nei
+      # log, non richiesta byte-identica.
+      - name: system pandoc for AST structure tests
+        run: sudo apt-get update -y && sudo apt-get install -y pandoc
       # -rs stampa ogni skip con la sua ragione: il check resta verde solo con
       # lo skip DICHIARATO nel log, mai con una copertura sparita in silenzio.
       - name: pytest (skip dei test live esplicito senza API key)
