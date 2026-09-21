@@ -117,10 +117,15 @@ def main() -> None:
             raise RuntimeError(f"fixture freshness: entry drift in {name}")
     record("fixture freshness vs committed", 0, "manifest normalized on producer.commitSha only")
 
-    # --- privacy gate on produced bytes ---
+    # --- privacy gate on produced bytes (BOTH lessons) ---
     for name, payload in produced.items():
-        privacy_gate(payload.decode("utf-8", errors="replace"), name)
-    record("privacy gate (synthetic-only)", 0, "no contact patterns")
+        privacy_gate(payload.decode("utf-8", errors="replace"), f"lesson-a:{name}")
+    with zipfile.ZipFile(bundle_b) as _zb:
+        for name in _zb.namelist():
+            if name.endswith("/"):
+                continue
+            privacy_gate(_zb.read(name).decode("utf-8", errors="replace"), f"lesson-b:{name}")
+    record("privacy gate (synthetic-only)", 0, "no contact patterns in A+B entries")
 
     # --- Engine consumes lesson-a through real entry points ---
     contents = read_bundle(bundle_a)
@@ -182,6 +187,16 @@ def main() -> None:
     import shutil as _shutil
     for lesson_file in ("lesson-a.lesson", "lesson-b.lesson"):
         _shutil.copy2(os.path.join(evidence_dir, lesson_file), out_dir_path / lesson_file)
+    # --- privacy gate over derived text outputs before upload ---
+    html_text = (out_dir_path / "d2-lesson-a.html").read_text(encoding="utf-8")
+    for name, text in {
+        "summary-a.md": md,
+        "summary-a.txt": txt,
+        "page-count.txt": str(pages),
+        "d2-lesson-a.html": html_text,
+    }.items():
+        privacy_gate(text, f"derived:{name}")
+    record("privacy gate derived outputs", 0, "no contact patterns")
 
     import shutil
     evidence = {
