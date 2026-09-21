@@ -1,0 +1,60 @@
+// @vitest-environment node
+// Temporary independent R-02 review proof; removed after execution.
+import { describe, expect, it } from "vitest"
+import { JournalRecorder } from "../store/JournalRecorder"
+import { buildRecap } from "../store/lessonRecap"
+import { roomPaths } from "../store/roomPaths"
+import { WorkspaceStore } from "../store/WorkspaceStore"
+import { PATHS, type WorkspaceDriver } from "../store/types"
+
+function workspace(): WorkspaceStore {
+  const bytes = new Map<string, ArrayBuffer>()
+  const driver: WorkspaceDriver = {
+    name: "r02-review-memory", available: () => true, init: async () => true,
+    read: async (path) => bytes.has(path) ? new Blob([bytes.get(path)!]) : null,
+    write: async (path, blob) => { bytes.set(path, await blob.arrayBuffer()) },
+    delete: async (path) => { bytes.delete(path) },
+    list: async () => [],
+  }
+  const store = new WorkspaceStore()
+  Object.assign(store, { driver, fallback: driver })
+  return store
+}
+
+async function recorderBytes(store: WorkspaceStore, room: string, latex: string, id: string): Promise<string> {
+  const recorder = new JournalRecorder({
+    store,
+    journalPath: roomPaths(room).journal,
+    identity: { lessonId: room, sessionId: "11111111-1111-4111-8111-111111111111", actor: { type: "teacher", id: "reviewer" } },
+    producer: { id: "r02.independent.review", version: "1.0.0", commitSha: "b".repeat(40) },
+    now: () => 4_000,
+    newEventId: () => id,
+    withExclusiveLock: async (_name, work) => work(),
+  })
+  recorder.recordMathInsert(latex)
+  await recorder.flush()
+  return (await store.read(roomPaths(room).journal))!.text()
+}
+
+describe("R-02 independent mixed-journal falsification", () => {
+  it("keeps in-room legacy aggregates and recorder V2 while rejecting any global-journal fallback", async () => {
+    const store = workspace()
+    const selected = "review-selected"
+    const foreign = "review-foreign"
+    const ownV2 = await recorderBytes(store, selected, "own-v2", "00000000-0000-4000-8000-000000000001")
+    const foreignV2 = await recorderBytes(store, foreign, "foreign-v2", "00000000-0000-4000-8000-000000000002")
+    await store.write(PATHS.JOURNAL, new Blob([foreignV2]))
+    await store.write(roomPaths(selected).journal, new Blob([[
+      JSON.stringify({ type: "math.insert", latex: "legacy-no-time" }),
+      JSON.stringify({ t: "corrupt", type: "math.insert", latex: "legacy-corrupt-time" }),
+      ownV2,
+    ].join("\n")]))
+
+    await expect(buildRecap(store, selected)).resolves.toMatchObject({
+      mathFormulas: ["legacy-corrupt-time", "legacy-no-time", "own-v2"],
+      firstEventTime: 4_000,
+      lastEventTime: 4_000,
+      durationMs: 0,
+    })
+  })
+})
