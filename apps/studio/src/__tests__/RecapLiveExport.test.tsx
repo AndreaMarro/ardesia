@@ -2,7 +2,7 @@
 // Actual recorder, IndexedDbEventLog, WorkspaceStore and ZIP exporter; synthetic inputs only.
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
-import { IDBFactory, IDBKeyRange } from "fake-indexeddb"
+import { IDBDatabase, IDBFactory, IDBKeyRange } from "fake-indexeddb"
 import JSZip from "jszip"
 import RecapView from "../RecapView"
 import SavedLessonsView from "../design/SavedLessonsView"
@@ -18,6 +18,7 @@ const OTHER = "r03-foreign"
 const SESSION = "11111111-1111-4111-8111-111111111111"
 const producer = { id: "test.r03.export", version: "1.0.0", commitSha: "a".repeat(40) }
 const originalFactory = eventLogs.createEventLogStore
+const originalOpen = eventLogs.IndexedDbEventLog.prototype.open
 let nextId = 0
 const uuid = () => `00000000-0000-4000-8000-${(++nextId).toString(16).padStart(12, "0")}`
 let handles: eventLogs.IndexedDbEventLog[] = []
@@ -75,16 +76,18 @@ async function setup() {
   await store.write(roomPaths(ROOM).lessonOsSnapshot, await eventLogs.exportEnvelopeEventLogSnapshot(old))
 
   const factory = new IDBFactory()
-  const open = async () => {
-    const handle = new eventLogs.IndexedDbEventLog({ factory })
-    await handle.open()
-    handles.push(handle)
-    vi.spyOn(handle, "close")
-    return handle
-  }
-  const writer = await open()
-  const createLog = vi.spyOn(eventLogs, "createEventLogStore").mockImplementation(open)
-  return { store, writer, createLog, open }
+  vi.stubGlobal("indexedDB", factory)
+  const openSpy = vi.spyOn(eventLogs.IndexedDbEventLog.prototype, "open")
+    .mockImplementation(async function (this: eventLogs.IndexedDbEventLog) {
+      if (!handles.includes(this)) {
+        handles.push(this)
+        vi.spyOn(this, "close")
+      }
+      return originalOpen.call(this)
+    })
+  const writer = new eventLogs.IndexedDbEventLog({ factory })
+  await writer.open()
+  return { store, writer, openSpy }
 }
 
 async function showRecap(store: WorkspaceStore) {
@@ -142,19 +145,15 @@ describe("RecapView live export authority", () => {
   })
 
   it("shows live read failure without download or stale fallback, closes the handle and permits retry", async () => {
-    const { store, writer, createLog, open } = await setup()
+    const { store, writer } = await setup()
     await writer.appendEnvelope(fact(ROOM, "OWN RETRY"))
     const view = await showRecap(store)
-    let failedHandle: eventLogs.IndexedDbEventLog | undefined
-    createLog.mockImplementationOnce(async () => {
-      failedHandle = await open()
-      vi.spyOn(failedHandle, "readEnvelopesByLesson").mockRejectedValue(new Error("live read rejected"))
-      return failedHandle
-    })
+    vi.spyOn(eventLogs.IndexedDbEventLog.prototype, "readEnvelopesByLesson")
+      .mockRejectedValueOnce(new Error("live read rejected"))
     fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
     expect((await screen.findByRole("alert")).textContent).toContain("live read rejected")
     expect(downloads).toHaveLength(0)
-    expect(failedHandle!.close).toHaveBeenCalledOnce()
+    expect(handles[2]!.close).toHaveBeenCalledOnce()
     expect(view.container.querySelector("iframe")).not.toBeNull()
     expect((screen.getByRole("button", { name: "esporta .lesson" }) as HTMLButtonElement).disabled).toBe(false)
     const zip = await downloadRecap()
@@ -162,15 +161,17 @@ describe("RecapView live export authority", () => {
     expect(screen.queryByRole("alert")).toBeNull()
   })
 
-  it("fails visibly before exporting when the log factory rejects", async () => {
-    const { store, createLog } = await setup()
+  it("fails visibly and closes the handle when persistent log opening rejects", async () => {
+    const { store, openSpy } = await setup()
     await showRecap(store)
     const exportSpy = vi.spyOn(store, "exportLesson")
-    createLog.mockRejectedValueOnce(new Error("log acquisition rejected"))
+    const closeSpy = vi.spyOn(eventLogs.IndexedDbEventLog.prototype, "close")
+    openSpy.mockRejectedValueOnce(new Error("log acquisition rejected"))
     fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
     expect((await screen.findByRole("alert")).textContent).toContain("log acquisition rejected")
     expect(downloads).toHaveLength(0)
     expect(exportSpy).not.toHaveBeenCalled()
+    expect(closeSpy).toHaveBeenCalledOnce()
     expect((screen.getByRole("button", { name: "esporta .lesson" }) as HTMLButtonElement).disabled).toBe(false)
   })
 
@@ -185,4 +186,64 @@ describe("RecapView live export authority", () => {
     expect(handles[2]!.close).toHaveBeenCalledOnce()
     expect((screen.getByRole("button", { name: "esporta .lesson" }) as HTMLButtonElement).disabled).toBe(false)
   })
+  it.each(["missing", "throwing", "request-error"] as const)(
+    "blocks an unavailable persistent backend (%s), preserves the recap and permits a real retry",
+    async (failure) => {
+      const { store, writer } = await setup()
+      const view = await showRecap(store)
+      const savedSnapshot = await (await store.read(roomPaths(ROOM).lessonOsSnapshot))!.text()
+      const exportSpy = vi.spyOn(store, "exportLesson")
+      const unavailable = new IDBFactory()
+      if (failure === "missing") {
+        vi.stubGlobal("indexedDB", undefined)
+      } else {
+        vi.stubGlobal("indexedDB", unavailable)
+        vi.spyOn(unavailable, "open").mockImplementation(() => {
+          if (failure === "throwing") throw new DOMException("access denied", "SecurityError")
+          const request = { error: new DOMException("open failed", "UnknownError"), onerror: null as (() => void) | null }
+          queueMicrotask(() => request.onerror?.())
+          return request as unknown as IDBOpenDBRequest
+        })
+      }
+      fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
+      await waitFor(() => expect(screen.queryByRole("alert") !== null || downloads.length > 0).toBe(true))
+      expect(screen.queryByRole("alert")).not.toBeNull()
+      expect(downloads).toHaveLength(0)
+      expect(exportSpy).not.toHaveBeenCalled()
+      expect(view.container.querySelector("iframe")).not.toBeNull()
+      expect((screen.getByRole("button", { name: "esporta .lesson" }) as HTMLButtonElement).disabled).toBe(false)
+      expect(await (await store.read(roomPaths(ROOM).lessonOsSnapshot))!.text()).toBe(savedSnapshot)
+      // Restore a real persistent database and verify that retry exports current facts.
+      const recovered = new IDBFactory()
+      vi.stubGlobal("indexedDB", recovered)
+      const restoredWriter = new eventLogs.IndexedDbEventLog({ factory: recovered })
+      await restoredWriter.open()
+      await restoredWriter.appendEnvelope(fact(ROOM, "RECOVERED CURRENT"))
+      await writer.close()
+      const zip = await downloadRecap()
+      expect(await zip.file("raw/lessonos-events.jsonl")?.async("text")).toContain("RECOVERED CURRENT")
+      expect(screen.queryByRole("alert")).toBeNull()
+    },
+  )
+
+  it("closes a partially opened database on acquisition failure and allows retry", async () => {
+    const { store, writer } = await setup()
+    await writer.appendEnvelope(fact(ROOM, "AFTER OPEN RETRY"))
+    await showRecap(store)
+    const nativeClose = vi.spyOn(IDBDatabase.prototype, "close")
+    vi.spyOn(IDBDatabase.prototype, "transaction").mockImplementationOnce(() => {
+      throw new DOMException("cannot inspect opened database", "UnknownError")
+    })
+    const exportSpy = vi.spyOn(store, "exportLesson")
+    fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
+    expect((await screen.findByRole("alert")).textContent).toContain("cannot inspect opened database")
+    expect(downloads).toHaveLength(0)
+    expect(exportSpy).not.toHaveBeenCalled()
+    expect(handles[2]!.close).toHaveBeenCalledOnce()
+    expect(nativeClose).toHaveBeenCalledOnce()
+    const zip = await downloadRecap()
+    expect(await zip.file("raw/lessonos-events.jsonl")?.async("text")).toContain("AFTER OPEN RETRY")
+    expect(screen.queryByRole("alert")).toBeNull()
+  })
+
 })

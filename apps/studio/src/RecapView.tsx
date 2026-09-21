@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { buildRecapHtml } from "./store/recapHtml"
-import { createEventLogStore } from "./lessonos/indexedDbEventLog"
+import { createEventLogStore, IndexedDbEventLog } from "./lessonos/indexedDbEventLog"
 import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
@@ -96,12 +96,15 @@ export default function RecapView({ store, room }: RecapViewProps) {
     try {
       // Acquire current canonical memory for this click, independently of the
       // preview's projected digest and its already-closed read handle.
-      const log = await createEventLogStore()
+      const log = new IndexedDbEventLog()
       let zipBlob: Blob
       try {
+        // Export requires persistence: never substitute an unavailable backend
+        // with the general factory's empty in-memory fallback.
+        await log.open()
         zipBlob = await store.exportLesson(room, log)
       } finally {
-        if ("close" in log) await (log as { close(): Promise<void> }).close()
+        await log.close()
       }
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")

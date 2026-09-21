@@ -3,6 +3,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
+import { IDBFactory, IDBKeyRange } from "fake-indexeddb"
 import { hasEmoji } from "./emojiGuard"
 
 // Mock buildRecap per isolare il componente
@@ -19,6 +20,8 @@ describe("RecapView", () => {
   let mockStore: any
 
   beforeEach(() => {
+    vi.stubGlobal("indexedDB", new IDBFactory())
+    vi.stubGlobal("IDBKeyRange", IDBKeyRange)
     container = document.createElement("div")
     document.body.appendChild(container)
     mockStore = {
@@ -34,6 +37,7 @@ describe("RecapView", () => {
   afterEach(() => {
     document.body.removeChild(container)
     vi.restoreAllMocks()
+    vi.unstubAllGlobals()
   })
 
   async function renderRecapView() {
