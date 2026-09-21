@@ -1,0 +1,97 @@
+// Copy to artifacts/restart/r03-browser-proof.mjs. Use isolated Vite on 5291.
+// R03_SCREENSHOT_DIR must be an existing directory outside the repository.
+import { chromium, expect } from "../../apps/studio/node_modules/@playwright/test/index.mjs";
+import JSZip from "../../apps/studio/node_modules/jszip/lib/index.js";
+import { readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+if (!process.env.R03_SCREENSHOT_DIR) throw new Error("R03_SCREENSHOT_DIR required");
+const browser = await chromium.launch();
+const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+const page = await context.newPage();
+const errors = [], consoleErrors = [];
+function observe(p) {
+  p.on("pageerror", e => errors.push(e.message));
+  p.on("console", m => { if (m.type() === "error") consoleErrors.push(m.text()); });
+}
+observe(page);
+const A = "browser-r03-a", B = "browser-r03-b";
+const evidence = { browser: browser.version(), errors, consoleErrors, identities: [], exports: [] };
+async function openRoom(room, recap = false) {
+  await page.goto("about:blank");
+  await page.goto(`http://127.0.0.1:5291/${recap ? "?vista=recap" : ""}#${room}`);
+  await page.waitForFunction(room => window.__MAESTRO_TEST__?.ready && window.__MAESTRO_TEST__.room === room, room);
+  if (!recap) expect(await page.evaluate(() => window.__MAESTRO_TEST__.journal.identity.lessonId)).toBe(room);
+}
+async function download(p, name, filename) {
+  const pending = p.waitForEvent("download");
+  await p.getByRole("button", { name, exact: true }).click();
+  const item = await pending;
+  const output = new URL(`./${filename}`, import.meta.url);
+  await item.saveAs(fileURLToPath(output));
+  return JSZip.loadAsync(await readFile(output));
+}
+try {
+  for (const room of [A, B]) {
+    await openRoom(room);
+    evidence.identities.push(room);
+    await page.evaluate(async ({ room, A }) => {
+      const h = window.__MAESTRO_TEST__;
+      h.recorder.recordMathInsert(room === A ? "V = R I" : "F = m a");
+      await h.recorder.flush();
+      await h.store.write(`raw/${room}/board.excalidraw`, new Blob([JSON.stringify({ type: "excalidraw", elements: [] })]));
+      await h.lessonOs.current.appendFact("concept.introduced", {
+        conceptId: room, labels: { it: room === A ? "Concetto SOLO A" : "Concetto SOLO B" },
+      }, { evidence: [{ ref: `board:${room}`, resolution: "verified" }] });
+      const rows = await h.lessonOs.current.store.readEnvelopesByLesson(room);
+      await h.store.write(`raw/${room}/lessonos-events.jsonl`, new Blob([rows.map(row => JSON.stringify(row)).join("\n") + "\n"]));
+    }, { room, A });
+  }
+  for (const room of [A, B]) {
+    await openRoom(room, true);
+    await expect(page.locator("iframe")).toBeVisible();
+    // Recap is read-only and does not open a recorder/runtime. Append through
+    // a separate real board, keeping it alive during both export actions.
+    const writer = await context.newPage();
+    observe(writer);
+    await writer.goto(`http://127.0.0.1:5291/#${room}`);
+    await writer.waitForFunction(room => window.__MAESTRO_TEST__?.ready && window.__MAESTRO_TEST__.journal?.identity.lessonId === room, room);
+    await writer.evaluate(async ({ room }) => {
+      const h = window.__MAESTRO_TEST__;
+      await h.lessonOs.current.appendFact("concept.introduced", {
+        conceptId: `${room}-new`, labels: { it: `NUOVO DOPO ANTEPRIMA ${room}` },
+      }, { evidence: [{ ref: `board:${room}`, resolution: "verified" }] });
+      const old = await (await h.store.read(`raw/${room}/lessonos-events.jsonl`)).text();
+      if (old.includes("NUOVO DOPO ANTEPRIMA")) throw new Error("Stored snapshot is not stale");
+    }, { room });
+    // Keep both surfaces open: navigation could itself append a session-ended fact.
+    const materials = await context.newPage();
+    observe(materials);
+    await materials.goto(`http://127.0.0.1:5291/?vista=lezioni-salvate#${room}`);
+    await expect(materials.getByRole("button", { name: "Esporta .lesson", exact: true })).toBeEnabled();
+    const recapZip = await download(page, "esporta .lesson", `r03-${room}-recap.lesson`);
+    const savedZip = await download(materials, "Esporta .lesson", `r03-${room}-materials.lesson`);
+    const recapSnapshot = await recapZip.file("raw/lessonos-events.jsonl")?.async("text");
+    const savedSnapshot = await savedZip.file("raw/lessonos-events.jsonl")?.async("text");
+    expect(recapSnapshot).toContain(`NUOVO DOPO ANTEPRIMA ${room}`);
+    expect(recapSnapshot).not.toContain(room === A ? "Concetto SOLO B" : "Concetto SOLO A");
+    expect(recapSnapshot).toBe(savedSnapshot);
+    const rows = recapSnapshot.trim().split("\n").map(JSON.parse);
+    expect(rows.every(row => row.lessonId === room)).toBe(true);
+    for (const zip of [recapZip, savedZip]) {
+      expect(JSON.parse(await zip.file("manifest.json").async("text")).lessonId).toBe(room);
+    }
+    expect(await page.locator("vite-error-overlay").count()).toBe(0);
+    await expect(materials.getByText("Export .lesson creato e legato alla lezione corrente.")).toBeVisible();
+    await page.screenshot({ path: `${process.env.R03_SCREENSHOT_DIR}/r03-${room}-recap.png`, fullPage: true });
+    await materials.screenshot({ path: `${process.env.R03_SCREENSHOT_DIR}/r03-${room}-materials.png`, fullPage: true });
+    evidence.exports.push({ room, rows: rows.length, exactMemoryParity: true, includesNewFact: true });
+    await materials.close();
+    await writer.close();
+  }
+  expect(errors).toEqual([]);
+} finally {
+  await writeFile(new URL("./r03-browser.json", import.meta.url), JSON.stringify(evidence, null, 2));
+  console.log(JSON.stringify(evidence));
+  await context.close();
+  await browser.close();
+}
