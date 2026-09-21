@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/R03ReviewerFallbackLifecycle.test.tsx > R-03 independent fallback lifecycle probe > does not silently replace an archived canonical snapshot when IndexedDB is unavailable
+AssertionError: expected null not to be null
+ ❯ src/__tests__/R03ReviewerFallbackLifecycle.test.tsx:83:26
+     81|     const zip = await JSZip.loadAsync(downloads[0]!)
+     82|     const lessonOs = zip.file("raw/lessonos-events.jsonl")
+     83|     expect(lessonOs).not.toBeNull()
+       |                          ^
+     84|     expect(await lessonOs!.async("text")).toContain("PRESERVED-ARCHIVE…
+     85|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

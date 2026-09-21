@@ -1,0 +1,92 @@
+// @vitest-environment jsdom
+// Independent R-03 reviewer probe: actual RecapView + WorkspaceStore + ZIP.
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import JSZip from "jszip"
+import RecapView from "../RecapView"
+import { WorkspaceStore } from "../store/WorkspaceStore"
+import { roomPaths } from "../store/roomPaths"
+import type { WorkspaceDriver } from "../store/types"
+import { IndexedDbEventLog, exportEnvelopeEventLogSnapshot } from "../lessonos/indexedDbEventLog"
+import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
+import { IDBFactory, IDBKeyRange } from "fake-indexeddb"
+
+const ROOM = "r03-fallback-boundary"
+const SESSION = "33333333-3333-4333-8333-333333333333"
+const producer = { id: "review.r03", version: "1.0.0", commitSha: "c".repeat(40) }
+
+let downloads: Blob[] = []
+
+beforeEach(() => {
+  downloads = []
+  vi.stubGlobal("IDBKeyRange", IDBKeyRange)
+  vi.stubGlobal("URL", Object.assign(class extends URL {}, {
+    createObjectURL: (blob: Blob) => { downloads.push(blob); return "blob:r03-review" },
+    revokeObjectURL: () => {},
+  }))
+  vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {})
+})
+
+afterEach(() => {
+  cleanup()
+  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
+})
+
+function event() {
+  return createEventEnvelopeV2({
+    lessonId: ROOM,
+    sessionId: SESSION,
+    kind: "concept.introduced",
+    actor: { type: "teacher", id: "reviewer" },
+    producer,
+    causationId: null,
+    idempotencyKey: null,
+    evidence: [{ ref: "board:review", resolution: "verified" }],
+    payload: { conceptId: "PRESERVED-ARCHIVE", labels: { it: "PRESERVED-ARCHIVE" } },
+  }, { eventId: () => "33333333-3333-4333-8333-333333333334", now: () => new Date(1000) })
+}
+
+async function memoryStore(): Promise<WorkspaceStore> {
+  const bytes = new Map<string, ArrayBuffer>()
+  const driver: WorkspaceDriver = {
+    name: "review-memory", available: () => true, init: async () => true,
+    read: async (path) => bytes.has(path) ? new Blob([bytes.get(path)!]) : null,
+    write: async (path, blob) => { bytes.set(path, await blob.arrayBuffer()) },
+    delete: async (path) => { bytes.delete(path) },
+    list: async (prefix) => [...bytes].filter(([path]) => !prefix || path.startsWith(prefix))
+      .map(([path, data]) => ({ path, data: new Blob([data]), mtime: 0 })),
+  }
+  const store = new WorkspaceStore()
+  Object.assign(store, { driver, fallback: driver })
+  vi.spyOn(store, "init").mockResolvedValue("localStorage")
+  await store.write(roomPaths(ROOM).scene, new Blob([JSON.stringify({ type: "excalidraw", elements: [] })]))
+  await store.write(roomPaths(ROOM).journal, new Blob([""]))
+  return store
+}
+
+describe("R-03 independent fallback lifecycle probe", () => {
+  it("does not silently omit LessonOS data when IndexedDB is unavailable", async () => {
+    const store = await memoryStore()
+    const archived = new IndexedDbEventLog({ factory: new IDBFactory(), dbName: "r03-review-archive" })
+    await archived.open()
+    await archived.appendEnvelope(event())
+    await store.write(roomPaths(ROOM).lessonOsSnapshot, await exportEnvelopeEventLogSnapshot(archived))
+    await archived.close()
+
+    // The historical no-live-log call (the R-03 base behavior) preserves it.
+    const historicalZip = await JSZip.loadAsync(await store.exportLesson(ROOM))
+    expect(historicalZip.file("raw/lessonos-events.jsonl")).not.toBeNull()
+
+    vi.stubGlobal("indexedDB", undefined)
+    render(<RecapView store={store} room={ROOM} />)
+    fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
+    await waitFor(() => expect(downloads).toHaveLength(1))
+    const zip = await JSZip.loadAsync(downloads[0]!)
+    const lessonOs = zip.file("raw/lessonos-events.jsonl")
+    // A genuine current empty canonical log may intentionally supersede history.
+    // An unavailable backend is not that state: it must retain the archived bytes
+    // or reject visibly instead of silently emitting a no-memory bundle.
+    expect(lessonOs !== null || screen.queryByRole("alert") !== null).toBe(true)
+  })
+})

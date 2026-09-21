@@ -1,0 +1,207 @@
+{
+  "utc": "2026-09-21T19:02:45.228333+00:00",
+  "kind": "Root provenance audit of earlier builder executions; not independent reruns",
+  "base": "c54fa42c1bb34ac37374a5bb228d838b2b4409ec",
+  "candidate": "ba9c3bdfe1b3218273dcf286e3c56723d204b707",
+  "evidence_head": "8e4783fd3eb132baf84b0f6ce1baaf09455890de",
+  "product_sha256": "adc186e382f7e2ebf2650c07524c3695a484589870d9e63536446a3b8084a194",
+  "frozen_review_unchanged": true,
+  "evidence_only_paths": [
+    "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03-browser-probe.mjs.txt",
+    "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03-checkpoint.md"
+  ],
+  "prior_commands": [
+    {
+      "name": "r03-red-final",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "seconds": 4.99,
+      "utc": "2026-09-21T18:36:32.386167+00:00",
+      "stdout_stderr_sha256": "155c79116a97b611b02645956c357b193c1875a0584aefaebb520b6152d6dfba"
+    },
+    {
+      "name": "r03-focused-green",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/RecapView.test.tsx",
+        "src/__tests__/SavedLessonsView.test.tsx",
+        "src/__tests__/LessonOsLiveSnapshot.test.ts",
+        "src/__tests__/PostLessonDigest.test.tsx",
+        "src/__tests__/ExportLessonMemory.test.ts",
+        "src/__tests__/LessonBundle.test.ts",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 0,
+      "seconds": 7.9,
+      "utc": "2026-09-21T18:36:58.443294+00:00",
+      "stdout_stderr_sha256": "d8a4d58b7200f8991b2d4db41b423e6465be3494e7f0d6d42d27091fe4c240ae"
+    },
+    {
+      "name": "r03-mutation-no-live",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "seconds": 3.42,
+      "utc": "2026-09-21T18:37:40.207172+00:00",
+      "stdout_stderr_sha256": "ae4de33d36696ace45fc2a2c61e7e39924fd3f679856ec68c9a17b817f43411b"
+    },
+    {
+      "name": "r03-studio-full",
+      "cwd": "apps/studio",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 0,
+      "seconds": 185.54,
+      "utc": "2026-09-21T18:42:22.631062+00:00",
+      "stdout_stderr_sha256": "e3f6cde5ea3122a41cf5b20fa31d1b780253372f746f2cd5019a97565bc7a0b1"
+    },
+    {
+      "name": "r03-typecheck",
+      "cwd": "apps/studio",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "seconds": 35.08,
+      "utc": "2026-09-21T18:39:52.170315+00:00",
+      "stdout_stderr_sha256": "1454b1dd6bc302ad2f905499cf9d6078d61f038903a0927ce116460426b93112"
+    },
+    {
+      "name": "r03-build",
+      "cwd": "apps/studio",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 25.47,
+      "utc": "2026-09-21T18:40:17.756846+00:00",
+      "stdout_stderr_sha256": "20f57446a20d457b860d4c84066dc2f8651280270bcc14f38be1030fb9ce4ced"
+    },
+    {
+      "name": "r03-frozen-gate",
+      "cwd": "apps/studio",
+      "command": [
+        "env",
+        "NODE_OPTIONS=--no-experimental-webstorage",
+        "bash",
+        "eval/gate.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 286.0,
+      "utc": "2026-09-21T18:48:43.322766+00:00",
+      "stdout_stderr_sha256": "4546a4cf8a3cc5b0a9457fa87495d1cb93f8f75be7ef42cbd9f5238aec98b553"
+    },
+    {
+      "name": "r03-browser-final",
+      "cwd": ".",
+      "command": [
+        "env",
+        "R03_SCREENSHOT_DIR=/Users/andreamarro/.codex/visualizations/2026/09/21/01a0c4c6-d203-7160-b23e-f6575493e013",
+        "node",
+        "artifacts/restart/r03-browser-proof.mjs"
+      ],
+      "exit_code": 0,
+      "seconds": 10.83,
+      "utc": "2026-09-21T18:40:35.643682+00:00",
+      "stdout_stderr_sha256": "33abad1f62cc9fd63021547f16dcd83010703276d923458dfb0046dd7b8c09f6"
+    },
+    {
+      "name": "r03-golden",
+      "cwd": "apps/studio",
+      "command": [
+        "env",
+        "ARDESIA_STUDIO_E2E_BASE_URL=http://127.0.0.1:5291",
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "e2e/golden-path.spec.ts"
+      ],
+      "exit_code": 0,
+      "seconds": 13.43,
+      "utc": "2026-09-21T18:44:10.753165+00:00",
+      "stdout_stderr_sha256": "3ee507ee29a195c773901c862682f82ded17bb40607b4e89d37a059fe57f1c61"
+    }
+  ],
+  "exports": [
+    {
+      "room": "browser-r03-a",
+      "entries": [
+        {
+          "surface": "recap",
+          "archive_sha256": "e68a305d1c5135d3a6ad49a936c605fe7b9b09cff2843b6a24622a1a54a0c1a3",
+          "memory_sha256": "01184b8fd72b8b6936e14b674a50373ba8705851883497a2b758c2a5ad6ccf3a",
+          "rows": 4
+        },
+        {
+          "surface": "materials",
+          "archive_sha256": "e68a305d1c5135d3a6ad49a936c605fe7b9b09cff2843b6a24622a1a54a0c1a3",
+          "memory_sha256": "01184b8fd72b8b6936e14b674a50373ba8705851883497a2b758c2a5ad6ccf3a",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "room": "browser-r03-b",
+      "entries": [
+        {
+          "surface": "recap",
+          "archive_sha256": "184e675f30de8ad3a19801f2c5c65960f5231bbc7641c46879aedbe6a1900a51",
+          "memory_sha256": "bee562938d74ff01c6923fddceb691b20794c25272dcc1cd6f6b8a7dfa81d1c3",
+          "rows": 4
+        },
+        {
+          "surface": "materials",
+          "archive_sha256": "184e675f30de8ad3a19801f2c5c65960f5231bbc7641c46879aedbe6a1900a51",
+          "memory_sha256": "bee562938d74ff01c6923fddceb691b20794c25272dcc1cd6f6b8a7dfa81d1c3",
+          "rows": 4
+        }
+      ]
+    }
+  ],
+  "browser_probe_sha256": "f0f952462d8088c98c92371877288589f77e62646b2e522699eb340db25a35e9"
+}

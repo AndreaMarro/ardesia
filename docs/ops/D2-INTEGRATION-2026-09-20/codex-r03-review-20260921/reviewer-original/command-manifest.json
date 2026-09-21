@@ -1,0 +1,153 @@
+{
+  "candidate": "ba9c3bdfe1b3218273dcf286e3c56723d204b707",
+  "base": "c54fa42c1bb34ac37374a5bb228d838b2b4409ec",
+  "reviewer_runtime_model_effort": "inherited/unknown",
+  "dependency_sharing": {
+    "node_modules": "apps/studio/node_modules is a shared symlink; not modified",
+    "package_lock_sha256": "0f7c344b16bab89fb7312a4375533cc7f7715e217837a32cf165b1ee3ccf21d4"
+  },
+  "environment_changes": {
+    "removed_before_every_subprocess": [
+      "KIMI_API_KEY",
+      "DEEPSEEK_API_KEY",
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "ARDESIA_CHROMIUM_NO_SANDBOX"
+    ],
+    "removed_keys_present_without_values": [
+      "KIMI_API_KEY"
+    ]
+  },
+  "commands": [
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.093,
+      "stdout": "versions.stdout.log",
+      "stderr": "versions.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "--version"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.315,
+      "stdout": "npm-version.stdout.log",
+      "stderr": "npm-version.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/R03ReviewerFallbackLifecycle.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 3.416,
+      "stdout": "focused-recap.stdout.log",
+      "stderr": "focused-recap.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/R03ReviewerFallbackLifecycle.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 3.991,
+      "stdout": "focused-recap-rerun.stdout.log",
+      "stderr": "focused-recap-rerun.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 11.869,
+      "stdout": "typecheck.stdout.log",
+      "stderr": "typecheck.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 12.493,
+      "stdout": "build.stdout.log",
+      "stderr": "build.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/R03ReviewerFallbackLifecycle.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 8.141,
+      "stdout": "focused-recap-final.stdout.log",
+      "stderr": "focused-recap-final.stderr.log"
+    },
+    {
+      "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio",
+      "args": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "src/__tests__/RecapLiveExport.test.tsx",
+        "src/__tests__/R03ReviewerFallbackLifecycle.test.tsx",
+        "--pool=threads",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=30000",
+        "--hookTimeout=30000",
+        "--teardownTimeout=30000"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 3.586,
+      "stdout": "focused-recap-causal.stdout.log",
+      "stderr": "focused-recap-causal.stderr.log"
+    }
+  ]
+}

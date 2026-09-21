@@ -1,0 +1,15 @@
+
+> studio@0.0.0 test
+> vitest run --passWithNoTests src/__tests__/RecapLiveExport.test.tsx src/__tests__/R03ReviewerFallbackLifecycle.test.tsx --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+
+
+ RUN  v4.1.8 /Users/andreamarro/VOLUME 3/ardesia-codex-r03-review-20260921/apps/studio
+
+ ❯ src/__tests__/R03ReviewerFallbackLifecycle.test.tsx (1 test | 1 failed) 163ms
+     × does not silently replace an archived canonical snapshot when IndexedDB is unavailable 162ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 5 passed (6)
+   Start at  21:04:24
+   Duration  2.76s (transform 223ms, setup 0ms, import 598ms, tests 618ms, environment 1.33s)
+

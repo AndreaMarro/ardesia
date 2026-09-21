@@ -1,0 +1,22 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/R03ReviewerFallbackLifecycle.test.tsx > R-03 independent fallback lifecycle probe > does not silently omit LessonOS data when IndexedDB is unavailable
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/R03ReviewerFallbackLifecycle.test.tsx:86:71
+     84|     // An unavailable backend is not that state: it must retain the ar…
+     85|     // or reject visibly instead of silently emitting a no-memory bund…
+     86|     expect(lessonOs !== null || screen.queryByRole("alert") !== null).…
+       |                                                                       ^
+     87|   })
+     88| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
