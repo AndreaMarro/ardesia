@@ -221,6 +221,8 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
         path = entry.get("path")
         if not isinstance(path, str):
             raise ValueError("bundle manifest files entry must declare a path")
+        if path in inventoried:
+            raise ValueError(f"bundle manifest lists duplicate path {path!r}")
         inventoried.add(path)
     # Biiezione: ogni file reale deve essere inventariato e viceversa. Un
     # payload presente ma non inventariato non riceverebbe verifica

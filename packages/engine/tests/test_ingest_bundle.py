@@ -539,6 +539,21 @@ class TestModernManifest:
         with pytest.raises(ValueError, match="SHA-256 mismatch"):
             read_bundle(str(p))
 
+    def test_manifest_duplicate_path_rejected(self, tmp_path) -> None:
+        import json as _json
+
+        files = _modern_files(_events(_text_add(1000, "a", "x")))
+        manifest = _json.loads(_modern_manifest(ML, files))
+        duplicated = dict(manifest["files"][0])
+        manifest["files"] = manifest["files"] + [duplicated]
+        p = tmp_path / "duppath.lesson"
+        with zipfile.ZipFile(p, "w") as zf:
+            zf.writestr("manifest.json", _json.dumps(manifest))
+            for path, payload in files.items():
+                zf.writestr(path, payload)
+        with pytest.raises(ValueError, match="duplicate"):
+            read_bundle(str(p))
+
 
 class TestV2Journal:
     def test_t7_v2_add_extracts_text(self) -> None:
