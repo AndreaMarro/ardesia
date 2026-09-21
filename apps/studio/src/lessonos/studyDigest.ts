@@ -5,7 +5,7 @@
 // Funzione PURA e deterministica: nessuna affermazione inventata, ogni voce
 // porta la sua evidenza.
 import { materialize, type LessonGraph, type LessonNode } from "./materializer"
-import type { AppendedEvent } from "./eventlog"
+import { toLegacyLessonOsEvent, type AppendedEvent, type AppendedEventEnvelopeV2 } from "./eventlog"
 
 export interface StudyDigestConcept {
   id: string
@@ -63,20 +63,16 @@ export function buildStudyDigest(graph: LessonGraph): StudyDigest {
 }
 
 /**
- * Digesto ROOM-SCOPED: il log LessonOS è app-wide, quindi per il materiale di
- * UNA lezione si restringono gli eventi alla finestra lesson.started/ended di
- * quella room prima di materializzare. Senza finestra (lezione mai "avviata"
- * formalmente) si usa best-effort l'intero log (caso comune: sessione singola).
- * Puro e deterministico.
+ * Proietta envelope già attribuiti a UNA lezione da readEnvelopesByLesson.
+ * L'identità è stabilita dalla query canonica, mai dai timestamp. Il projector
+ * esistente conserva sequenza/provenienza e scarta gli envelope non fattuali.
+ * Puro e deterministico; il chiamante gestisce eventuali errori di proiezione.
  */
-export function buildRoomStudyDigest(events: readonly AppendedEvent[], room: string): StudyDigest {
-  const startTs = events.filter((e) => e.kind === "lesson.started" && e.room === room).map((e) => e.t)
-  const endTs = events.filter((e) => e.kind === "lesson.ended" && e.room === room).map((e) => e.t)
-  let scoped: readonly AppendedEvent[] = events
-  if (startTs.length > 0) {
-    const from = Math.min(...startTs)
-    const to = endTs.length > 0 ? Math.max(...endTs) : Number.POSITIVE_INFINITY
-    scoped = events.filter((e) => e.t >= from && e.t <= to)
+export function buildLessonStudyDigest(envelopes: readonly AppendedEventEnvelopeV2[]): StudyDigest {
+  const factual: AppendedEvent[] = []
+  for (const envelope of envelopes) {
+    const event = toLegacyLessonOsEvent(envelope)
+    if (event !== null) factual.push(event)
   }
-  return buildStudyDigest(materialize([...scoped]))
+  return buildStudyDigest(materialize(factual))
 }

@@ -1,0 +1,59 @@
+// Copy to artifacts/restart/browser-proof.mjs before running.
+// Start the isolated Studio dev server on port 5291; set RESTART_SCREENSHOT_DIR
+// to an existing directory outside the repository. Synthetic data only.
+import { chromium, expect } from "../../apps/studio/node_modules/@playwright/test/index.mjs";
+import { writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+const phase=process.argv[2];
+if (!["red", "green"].includes(phase)) throw new Error("Expected red or green");
+const browser=await chromium.launch();
+const context=await browser.newContext({viewport:{width:1280,height:900}});
+const page=await context.newPage();
+const errors=[]; page.on("pageerror",e=>errors.push(e.message));
+const consoleErrors=[]; page.on("console",m=>{if(m.type()==="error")consoleErrors.push(m.text())});
+const A="browser-restart-a", B="browser-restart-b";
+const evidence={phase,browser:browser.version(),errors,consoleErrors,identities:[]};
+try {
+ for(const room of [A,B]) {
+  await page.goto("about:blank");
+  await page.goto(`http://127.0.0.1:5291/#${room}`);
+  await page.waitForFunction(room=>window.__MAESTRO_TEST__?.ready===true && window.__MAESTRO_TEST__.room===room,room);
+  const identity=await page.evaluate(()=>window.__MAESTRO_TEST__.journal.identity.lessonId);
+  expect(identity).toBe(room); evidence.identities.push(identity);
+  await page.evaluate(async ({room,A})=>{
+   const h=window.__MAESTRO_TEST__;
+   h.recorder.recordMathInsert(room===A?"V = R I":"F = m a");
+   await h.recorder.flush();
+   await h.lessonOs.current.appendFact("concept.introduced",{conceptId:room,labels:{it:room===A?"Concetto SOLO A":"Concetto SOLO B"}}, {evidence:[{ref:`board:${room}`,resolution:"verified"}]});
+  },{room,A});
+ }
+ await page.goto(`http://127.0.0.1:5291/?vista=recap#${A}`);
+ await expect(page.getByText("Ancora nessun appunto",{exact:true})).toBeVisible();
+ evidence.recorderRecap="EMPTY_INHERITED_JOURNAL_BUG";
+ // Existing recap reads flat legacy bytes. Seed only this inherited seam to
+ // exercise the digest UI independently; not proof of the complete recorder flow.
+ await page.waitForFunction(()=>window.__MAESTRO_TEST__?.store);
+ await page.evaluate(async ()=>{
+  await window.__MAESTRO_TEST__.store.write("raw/events.jsonl",new Blob([JSON.stringify({t:1000,type:"math.insert",latex:"V = R I"})]));
+ });
+ await page.reload();
+ const frame=page.frameLocator('iframe[title="Anteprima del recap stampabile da consegnare"]');
+ await expect(frame.getByText("Concetto SOLO A",{exact:true})).toBeVisible();
+ const html=await page.locator("iframe").getAttribute("srcdoc");
+ evidence.foreignConceptVisible=html.includes("Concetto SOLO B");
+ evidence.page={url:page.url(),title:await page.title(),nonblank:(await page.locator("body").innerText()).length>100,overlay:await page.locator("vite-error-overlay").count()};
+ await frame.getByText("Concetto SOLO A",{exact:true}).evaluate(el=>el.scrollIntoView({block:"center"}));
+ await page.screenshot({path:`${process.env.RESTART_SCREENSHOT_DIR ?? "/Users/andreamarro/.codex/visualizations/2026/09/21/01a0c4c6-d203-7160-b23e-f6575493e013"}/recap-${phase}.png`,fullPage:true});
+ const downloadPromise=page.waitForEvent("download");
+ await page.getByRole("button",{name:"scarica recap",exact:true}).click();
+ const download=await downloadPromise;
+ await download.saveAs(fileURLToPath(new URL(`./browser-${phase}-recap.html`,import.meta.url)));
+ evidence.download=download.suggestedFilename();
+ if(phase==="green") expect(evidence.foreignConceptVisible).toBe(false);
+ else expect(evidence.foreignConceptVisible).toBe(true);
+ expect(errors).toEqual([]);
+} finally {
+ await writeFile(new URL(`./browser-${phase}.json`,import.meta.url),JSON.stringify(evidence,null,2));
+ console.log(JSON.stringify(evidence));
+ await context.close(); await browser.close();
+}

@@ -1,0 +1,150 @@
+// @vitest-environment jsdom
+// Synthetic evidence through the actual recorder, store, log, view and exporter.
+import { afterEach, describe, expect, it, vi } from "vitest"
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import JSZip from "jszip"
+import RecapView from "../RecapView"
+import { WorkspaceStore } from "../store/WorkspaceStore"
+import { JournalRecorder } from "../store/JournalRecorder"
+import { buildRecap } from "../store/lessonRecap"
+import { roomPaths } from "../store/roomPaths"
+import { PATHS, type WorkspaceDriver } from "../store/types"
+import * as eventLogs from "../lessonos/indexedDbEventLog"
+import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
+
+const A = "recap-proof-a"
+const B = "recap-proof-b"
+const SESSION = "11111111-1111-4111-8111-111111111111"
+const producer = { id: "test.local.postlesson", version: "1.0.0", commitSha: "a".repeat(40) }
+let nextId = 0
+const uuid = () => `00000000-0000-4000-8000-${(++nextId).toString(16).padStart(12, "0")}`
+
+function workspace() {
+  const data = new Map<string, ArrayBuffer>()
+  const driver: WorkspaceDriver = {
+    name: "synthetic-memory", available: () => true, init: async () => true,
+    read: async (path) => data.has(path) ? new Blob([data.get(path)!]) : null,
+    write: async (path, blob) => { data.set(path, await blob.arrayBuffer()) },
+    delete: async (path) => { data.delete(path) },
+    list: async (prefix) => [...data].filter(([p]) => !prefix || p.startsWith(prefix))
+      .map(([path, bytes]) => ({ path, data: new Blob([bytes]), mtime: 0 })),
+  }
+  const store = new WorkspaceStore()
+  Object.assign(store, { driver, fallback: driver })
+  return store
+}
+
+async function record(store: WorkspaceStore, room: string) {
+  let t = 1000
+  const recorder = new JournalRecorder({ store, journalPath: roomPaths(room).journal,
+    identity: { lessonId: room, sessionId: SESSION, actor: { type: "teacher", id: "synthetic" } },
+    producer, now: () => { const current = t; t += 1000; return current }, newEventId: uuid,
+    withExclusiveLock: async (_name, work) => work(),
+  })
+  recorder.recordMathInsert(room === A ? "V = R I" : "F = m a")
+  recorder.recordPdfPageObserved(3, 10, { documentId: "synthetic-pdf" }, "pdf:synthetic-pdf#page=3")
+  await recorder.flush()
+  await store.write(roomPaths(room).scene, new Blob([JSON.stringify({ type: "excalidraw", elements: [] })]))
+  await store.write(roomPaths(room).session, new Blob(["v: 1\ncreated: 1000\naudioConsent: false\n"]))
+}
+
+async function logWithLessons(started = false) {
+  const log = await eventLogs.createEventLogStore({ factory: undefined })
+  for (const room of [A, B]) {
+    if (started) await log.appendEnvelope(createEventEnvelopeV2({ lessonId: room, sessionId: SESSION,
+      kind: "lesson.started", actor: { type: "teacher", id: "synthetic" }, producer,
+      causationId: null, idempotencyKey: null, evidence: [{ ref: `lesson:${room}`, resolution: "verified" }],
+      payload: { room },
+    }, { eventId: uuid, now: () => new Date(900) }))
+    await log.appendEnvelope(createEventEnvelopeV2({ lessonId: room, sessionId: SESSION,
+      kind: "concept.introduced", actor: { type: "teacher", id: "synthetic" }, producer,
+      causationId: null, idempotencyKey: null, evidence: [{ ref: `board:${room}`, resolution: "verified" }],
+      payload: { conceptId: room, labels: { it: room === A ? "Concetto SOLO A" : "Concetto SOLO B" } },
+    }, { eventId: uuid, now: () => new Date(1000) }))
+  }
+  return log
+}
+
+// Legacy rows here keep UI digest tests observable even on the pre-fix reader.
+// Both locations are written explicitly; the recorder compatibility test above
+// uses ONLY actual producer bytes, never these legacy rows.
+async function visibleRecap(store: WorkspaceStore, room: string) {
+  const text = JSON.stringify({ t: 1000, type: "math.insert", latex: "V = R I" })
+  await store.write(roomPaths(room).journal, new Blob([text]))
+  await store.write(PATHS.JOURNAL, new Blob([text]))
+}
+
+afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
+
+describe("post-lesson canonical identity", () => {
+  it("recaps actual recorder bytes for A, even with B and an unrelated flat journal", async () => {
+    const store = workspace()
+    await record(store, A)
+    await record(store, B)
+    await store.write(PATHS.JOURNAL, new Blob([JSON.stringify({ t: 1, type: "math.insert", latex: "FOREIGN FLAT" })]))
+    const recap = await buildRecap(store, A)
+    expect(recap?.mathFormulas).toEqual(["V = R I"])
+    expect(recap?.durationMs).toBe(1000)
+    expect(recap?.pdfPagesViewed).toEqual([3])
+  })
+
+  it("understands recorder v2 fields independently of the journal path", async () => {
+    const store = workspace()
+    await record(store, A)
+    const canonical = await store.read(roomPaths(A).journal)
+    expect(canonical).not.toBeNull()
+    // Feed identical producer bytes to both paths to isolate parser shape.
+    await store.write(PATHS.JOURNAL, canonical!)
+    expect((await buildRecap(store, A))?.mathFormulas).toEqual(["V = R I"])
+  })
+
+  it("does not assign the flat legacy journal to an empty named lesson", async () => {
+    const store = workspace()
+    await store.write(PATHS.JOURNAL, new Blob([JSON.stringify({ t: 1000, type: "math.insert", latex: "FOREIGN FLAT" })]))
+    expect((await buildRecap(store, A))?.mathFormulas).toEqual([])
+  })
+
+  for (const started of [false, true]) it(`excludes overlapping B facts from A (start=${started})`, async () => {
+    const store = workspace()
+    await visibleRecap(store, A)
+    const log = await logWithLessons(started)
+    vi.spyOn(eventLogs, "createEventLogStore").mockResolvedValue(log)
+    const { container } = render(<RecapView store={store} room={A} />)
+    await waitFor(() => expect(container.querySelector("iframe")?.srcdoc).toContain("Concetto SOLO A"))
+    expect(container.querySelector("iframe")?.srcdoc).not.toContain("Concetto SOLO B")
+  })
+
+  it("clears the prior digest if reading the next lesson fails", async () => {
+    const store = workspace()
+    await visibleRecap(store, A)
+    await visibleRecap(store, B)
+    const log = await logWithLessons()
+    const factory = vi.spyOn(eventLogs, "createEventLogStore").mockResolvedValue(log)
+    const { container, rerender } = render(<RecapView store={store} room={A} />)
+    await waitFor(() => expect(container.querySelector("iframe")?.srcdoc).toContain("Concetto SOLO A"))
+    factory.mockRejectedValue(new Error("synthetic read failure"))
+    rerender(<RecapView store={store} room={B} />)
+    await waitFor(() => expect(container.textContent).not.toContain("caricamento…"))
+    expect(container.querySelector("iframe")?.srcdoc).not.toContain("Concetto SOLO A")
+  })
+
+  it("exports current canonical memory from the recap action", async () => {
+    const store = workspace()
+    await record(store, A)
+    const log = await logWithLessons()
+    vi.spyOn(eventLogs, "createEventLogStore").mockResolvedValue(log)
+    let downloaded: Blob | null = null
+    vi.stubGlobal("URL", Object.assign(class extends URL {}, {
+      createObjectURL: (blob: Blob) => { downloaded = blob; return "blob:synthetic" },
+      revokeObjectURL: () => {},
+    }))
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {})
+    render(<RecapView store={store} room={A} />)
+    fireEvent.click(screen.getByRole("button", { name: "esporta .lesson" }))
+    await waitFor(() => expect(downloaded).not.toBeNull())
+    const zip = await JSZip.loadAsync(downloaded!)
+    const snapshot = await zip.file("raw/lessonos-events.jsonl")?.async("text")
+    expect(snapshot ?? "").toContain("Concetto SOLO A")
+    expect(snapshot).not.toContain("Concetto SOLO B")
+  })
+})

@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest"
 import { InMemoryEventLog } from "../lessonos/eventlog"
+import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
 import { materialize } from "../lessonos/materializer"
-import { buildStudyDigest, buildRoomStudyDigest } from "../lessonos/studyDigest"
+import { buildStudyDigest, buildLessonStudyDigest } from "../lessonos/studyDigest"
 
 describe("buildStudyDigest (materiale di studio dal grafo LessonOS)", () => {
   it("estrae concetti + errori break→explain (incl. simulation.error.observed) con provenienza e stato-corretto", async () => {
@@ -62,33 +64,28 @@ describe("buildStudyDigest (materiale di studio dal grafo LessonOS)", () => {
     expect(buildStudyDigest(materialize(events))).toEqual(digest)
   })
 
-  it("room-scoped: include SOLO gli eventi nella finestra della lezione della room", async () => {
-    const log = new InMemoryEventLog()
-    // Room A: finestra 100..200
-    await log.append({ kind: "lesson.started", room: "A", t: 100, evidence: ["lesson:A@100"] })
-    await log.append({
-      kind: "simulation.error.observed",
-      errorId: "err:A",
-      conceptId: "cA",
-      labels: { it: "Errore A" },
-      t: 150,
-      evidence: ["simulation:scene:A"],
-    })
-    await log.append({ kind: "lesson.ended", room: "A", t: 200, evidence: ["lesson:A@200"] })
-    // Room B: fuori dalla finestra di A
-    await log.append({ kind: "lesson.started", room: "B", t: 300, evidence: ["lesson:B@300"] })
-    await log.append({
-      kind: "simulation.error.observed",
-      errorId: "err:B",
-      conceptId: "cB",
-      labels: { it: "Errore B" },
-      t: 350,
-      evidence: ["simulation:scene:B"],
-    })
-    const events = await log.readAll()
-
-    const digestA = buildRoomStudyDigest(events, "A")
-    expect(digestA.errors.map((e) => e.id)).toContain("err:A")
-    expect(digestA.errors.map((e) => e.id)).not.toContain("err:B")
+  it("projects scoped canonical facts with provenance, ignoring advisory envelopes", async () => {
+    const log = await createEventLogStore({ factory: undefined })
+    let counter = 0
+    const append = async (lessonId: string, kind: string, payload: Record<string, string | { it: string }>) => {
+      await log.appendEnvelope(createEventEnvelopeV2({ lessonId,
+        sessionId: "11111111-1111-4111-8111-111111111111", kind, payload,
+        actor: { type: "teacher", id: "synthetic" },
+        producer: { id: "test.digest", version: "1.0.0", commitSha: "a".repeat(40) },
+        causationId: null, idempotencyKey: null,
+        evidence: [{ ref: `board:${lessonId}`, resolution: "verified" }],
+      }, { eventId: () => `00000000-0000-4000-8000-${(++counter).toString(16).padStart(12, "0")}`,
+        now: () => new Date(1000) }))
+    }
+    await append("A", "concept.introduced", { conceptId: "cA", labels: { it: "Concetto A" } })
+    await append("A", "simulation.error.observed", { errorId: "err:A", conceptId: "cA", labels: { it: "Errore A" } })
+    await append("B", "exercise.completed", { exerciseId: "ex:B", correctsErrorId: "err:A", labels: { it: "Correzione" } })
+    await append("A", "tutor.suggestion.proposed", { conceptId: "advisory", labels: { it: "Not a fact" } })
+    const digest = buildLessonStudyDigest(await log.readEnvelopesByLesson("A"))
+    expect(digest.concepts).toEqual([{ id: "cA", label: "Concetto A", evidence: ["board:A"] }])
+    expect(digest.errors).toEqual([{ id: "err:A", label: "Errore A", conceptId: "cA", corrected: false, evidence: ["board:A"] }])
+    expect(buildLessonStudyDigest(await log.readEnvelopesByLesson("absent"))).toEqual({ concepts: [], errors: [] })
+    await append("A", "exercise.completed", { exerciseId: "ex:A", correctsErrorId: "err:A", labels: { it: "Correzione" } })
+    expect(buildLessonStudyDigest(await log.readEnvelopesByLesson("A")).errors[0]?.corrected).toBe(true)
   })
 })
