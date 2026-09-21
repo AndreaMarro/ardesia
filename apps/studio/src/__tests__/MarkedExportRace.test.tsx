@@ -62,8 +62,19 @@ class DeferredLog implements EventLogStore {
   }
 
   async append(event: LessonOsEvent): Promise<AppendedEvent> {
+    if (this.failNext) {
+      this.failNext = false
+      throw new Error("storage giù (F-04 scripted)")
+    }
     if (this.armed) await this.gate
     return this.inner.append(event)
+  }
+
+  private failNext = false
+
+  /** Next append rejects instead of persisting. */
+  armFailNextAppend(): void {
+    this.failNext = true
   }
 
   async readAll(): Promise<AppendedEvent[]> {
@@ -195,5 +206,30 @@ describe("temporal durability: UI confirmation vs immediate export", () => {
     // After acknowledgement, the immediate export observes the confirmed fact.
     const snapshotAfter = await exportSnapshotText(store, log)
     expect(snapshotAfter).toContain("v1-cap6-esp1:mistake-1")
+  })
+
+  it("F-04: stale failure alert clears on the next successful acknowledgement", async () => {
+    const log = new DeferredLog()
+    log.armFailNextAppend()
+    const view = await renderView(log)
+
+    await act(async () => {
+      conceptRadio(view, CONCEPT_LABEL).click()
+    })
+    await act(async () => {
+      mistakeButton(view, MISTAKE_TEXT).click()
+    })
+    await vi.waitFor(() => {
+      expect(view.textContent).toContain("NON registrato")
+    })
+    expect(markedText(view)).toBe("errori segnati: 0")
+
+    await act(async () => {
+      mistakeButton(view, MISTAKE_TEXT).click()
+    })
+    await vi.waitFor(() => {
+      expect(markedText(view)).toBe("errori segnati: 1")
+    })
+    expect(view.textContent).not.toContain("NON registrato")
   })
 })

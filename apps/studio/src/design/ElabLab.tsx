@@ -186,8 +186,13 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
       // #246 — il contatore si muove QUI, sull'acknowledgement dell'event-log,
       // non al momento dell'emit: «segnato» significa «nella memoria», e la
       // vista non ha altro modo di saperlo che essere avvisata.
+      // F-04 — un acknowledgement riuscito supera anche un eventuale avviso
+      // di un fallimento precedente: l'alert descrive l'ultimo esito noto.
       onRecorded: (kind) => {
-        if (kind === "error.observed") setMarkedCount((count) => count + 1)
+        if (kind === "error.observed") {
+          setMarkedCount((count) => count + 1)
+          setRecordError(null)
+        }
       },
     })
   }, [bus, log])

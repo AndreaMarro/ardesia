@@ -19,6 +19,7 @@ import {
   type LessonOsSessionOpener,
 } from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
+import { reportLessonOsAppendResult } from "./lessonos/reportAppend"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
 import { isRecapView } from "./store/isRecapView"
@@ -1079,7 +1080,13 @@ export default function Room({
                       emitLessonEvent: (event) => {
                         // host-observes-solve: accoda l'evento del Simulation
                         // Plugin nel log LessonOS (fail-soft; nessuna chiave client).
-                        lessonOsRef.current?.store?.append(event).catch(() => {})
+                        // F-02: un append rifiutato deve diventare diagnostica
+                        // visibile (stesso surface degli altri errori storage),
+                        // mai silenzio mentre la simulazione continua.
+                        reportLessonOsAppendResult(
+                          lessonOsRef.current?.store?.append(event) ?? Promise.resolve(),
+                          setStorageError,
+                        )
                       },
                     },
               )
