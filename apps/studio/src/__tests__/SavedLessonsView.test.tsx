@@ -164,6 +164,27 @@ describe("SavedLessonsView", () => {
     expect(await screen.findByText(/3 eventi LessonOS ripristinati/)).toBeTruthy()
   })
 
+  it("export rifiutato dal live log: nessun download, errore visibile (F-01 Case D)", async () => {
+    window.history.replaceState(null, "", "/?vista=lezioni-salvate#wbstudio-room1")
+    const store = fakeStore()
+    store.exportLesson.mockRejectedValueOnce(new Error("live LessonOS read failed"))
+    const download = vi.fn()
+    render(
+      <SavedLessonsView
+        store={store as never}
+        eventLogFactory={async () => fakeLog as never}
+        download={download}
+      />,
+    )
+
+    expect(await screen.findByText("Materiali locali")).toBeTruthy()
+    fireEvent.click(screen.getByRole("button", { name: "Esporta .lesson" }))
+    await waitFor(() => expect(store.exportLesson).toHaveBeenCalled())
+    expect(await screen.findByText(/live LessonOS read failed/)).toBeTruthy()
+    expect(download).not.toHaveBeenCalled()
+    expect(screen.queryByText(/Export .lesson creato/)).toBeNull()
+  })
+
   it("una recovery pendente blocca il commit finché il docente non la riprende", async () => {
     window.history.replaceState(null, "", "/?vista=lezioni-salvate#wbstudio-room1")
     const blockedPreview = {
