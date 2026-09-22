@@ -1,3 +1,5 @@
+import { UNASSIGNED_LESSON_ID } from "../lessonos/eventlog"
+
 export type RoomPaths = {
   scene: string
   meta: string
@@ -29,6 +31,24 @@ export function validateRoomId(room: string): string {
     throw new Error("Invalid room identifier")
   }
   return room
+}
+
+/**
+ * Identità stanza per i percorsi di PRODOTTO (UI, export/import, sessioni,
+ * recorder). Riserva il contenitore tecnico di recovery: lo strato storage
+ * (validateRoomId/roomPaths) e gli envelope LessonOS restano capaci di
+ * leggerlo e scriverlo, così i byte esistenti e la recovery non si rompono.
+ * Solo la creazione/selezione di lezioni ordinarie lo rifiuta, con esito
+ * esplicito e senza migrare o rinominare dati.
+ */
+export function validateProductRoomId(room: string): string {
+  const validRoom = validateRoomId(room)
+  if (validRoom === UNASSIGNED_LESSON_ID) {
+    throw new Error(
+      `Reserved room identifier "${UNASSIGNED_LESSON_ID}": it names the LessonOS recovery container, not a product lesson`,
+    )
+  }
+  return validRoom
 }
 
 export function roomPaths(room: string): RoomPaths {

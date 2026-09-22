@@ -2,7 +2,7 @@ import {
   assertFullCommitSha,
   studioProducerIdentity,
 } from "../core/contracts/eventEnvelope"
-import { validateRoomId } from "./roomPaths"
+import { validateProductRoomId } from "./roomPaths"
 import type { FileEntry } from "./types"
 
 /** Path normalizzati dentro il bundle .lesson. */
@@ -88,7 +88,7 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
     manifestError("schema non supportato")
   }
   if (typeof value.lessonId !== "string") manifestError("lessonId mancante o non valido")
-  const lessonId = validateRoomId(value.lessonId)
+  const lessonId = validateProductRoomId(value.lessonId)
   const sessionIds = stringArray(value.sessionIds, "sessionIds")
   if (sessionIds.some((sessionId) => !SESSION_ID_RE.test(sessionId))) {
     manifestError("sessionIds contiene un UUID non canonico")

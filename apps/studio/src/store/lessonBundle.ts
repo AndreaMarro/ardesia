@@ -54,7 +54,7 @@ import {
   stagedLessonImportSource,
   type PendingLessonImport,
 } from "./lessonImportTransaction"
-import { roomPaths, validateRoomId } from "./roomPaths"
+import { roomPaths, validateProductRoomId } from "./roomPaths"
 
 export { LESSON_PATHS } from "./lessonBundleManifest"
 
@@ -132,7 +132,7 @@ export async function exportLesson(
    */
   lessonOsLog?: EventLogStore | null,
 ): Promise<Blob> {
-  const lessonId = validateRoomId(room)
+  const lessonId = validateProductRoomId(room)
   const paths = roomPaths(lessonId)
   const entries = new Map<string, FileEntry>()
 
@@ -410,7 +410,7 @@ async function runLessonImport(
   if (mode === "commit") await recoverPendingLessonImport(store, lessonOsLog)
   const requestedDestination = options.destinationLessonId === undefined
     ? null
-    : validateRoomId(options.destinationLessonId)
+    : validateProductRoomId(options.destinationLessonId)
   const zip = await JSZip.loadAsync(blob)
 
   // Prima passata: valida ogni path e raccoglie le letture, senza I/O sul workspace.
@@ -497,7 +497,7 @@ async function runLessonImport(
     throw new Error("Bundle identity: journal e LessonOS dichiarano lessonId differenti")
   }
   const embeddedLessonId = lessonIds.values().next().value as string | undefined
-  if (embeddedLessonId !== undefined) validateRoomId(embeddedLessonId)
+  if (embeddedLessonId !== undefined) validateProductRoomId(embeddedLessonId)
   if (
     manifest !== null &&
     embeddedLessonId !== undefined &&

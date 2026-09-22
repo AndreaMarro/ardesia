@@ -2,7 +2,7 @@
 // osservativa dello scope dall'URL. Separato in un file per testabilita',
 // stesso pattern di isTeacherDashboardView / isToolLabView.
 
-import { validateRoomId } from "./roomPaths"
+import { validateProductRoomId } from "./roomPaths"
 
 /** Controlla se l'URL richiede la superficie di continuita'. */
 export function isContinuityView(): boolean {
@@ -18,7 +18,7 @@ export function isContinuityView(): boolean {
 /**
  * Id della lezione da riprendere, letto dallo hash della stanza.
  *
- * `bootstrapLessonOs` fa `lessonId = validateRoomId(options.room)`
+ * `bootstrapLessonOs` fa `lessonId = validateProductRoomId(options.room)`
  * (bootstrap.ts:249): per una lezione live i due identificatori sono lo stesso
  * valore, quindi lo hash della stanza e' anche l'id lezione.
  *
@@ -35,7 +35,7 @@ export function continuityLessonIdFromLocation(): string | null {
   const hash = window.location.hash.replace(/^#/, "")
   if (hash === "") return null
   try {
-    return validateRoomId(hash)
+    return validateProductRoomId(hash)
   } catch {
     return null
   }

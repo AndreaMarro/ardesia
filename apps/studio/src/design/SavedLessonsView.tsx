@@ -13,7 +13,7 @@ import type {
   LessonImportPreview,
   LessonOsRestoreStatus,
 } from "../store/lessonBundle"
-import { validateRoomId } from "../store/roomPaths"
+import { validateProductRoomId } from "../store/roomPaths"
 
 type MaterialsStore = Pick<
   WorkspaceStore,
@@ -40,7 +40,7 @@ function selectedRoom(): string | null {
   try {
     if (typeof window === "undefined") return null
     const room = window.location.hash.replace(/^#/, "")
-    return room === "" ? null : validateRoomId(room)
+    return room === "" ? null : validateProductRoomId(room)
   } catch {
     return null
   }

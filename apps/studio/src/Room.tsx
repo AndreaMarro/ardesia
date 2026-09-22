@@ -33,7 +33,7 @@ import EmptyState from "./design/EmptyState"
 import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
-import { roomPaths, validateRoomId } from "./store/roomPaths"
+import { roomPaths, validateProductRoomId, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -100,6 +100,14 @@ export default function Room({
 }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
+  // Nome riservato (es. contenitore recovery): stanza non apribile come
+  // lezione di prodotto. Esito esplicito, mai crash e mai sessione aperta.
+  let roomBlocked: string | null = null
+  try {
+    validateProductRoomId(room)
+  } catch (error) {
+    roomBlocked = error instanceof Error ? error.message : String(error)
+  }
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
@@ -171,6 +179,8 @@ export default function Room({
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
+    // Stanza riservata: nessun init, nessuna sessione, nessun recorder.
+    if (roomBlocked !== null) return
     const generation = lifecycleGeneration
     let cancelled = false
     let activity: ActiveLessonRegistration | null = null
@@ -796,6 +806,18 @@ export default function Room({
       appState: { selectedElementIds: { [insert.embedId]: true } },
     })
     apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+  }
+  if (roomBlocked !== null) {
+    return (
+      <div className="st-status st-lifecycle-failed">
+        <EmptyState
+          tone="error"
+          title="Lezione non disponibile"
+          detail={`Questa stanza non si può aprire come lezione ordinaria (${roomBlocked}). I dati esistenti restano conservati: apri una lezione ordinaria per continuare.`}
+          hint="Torna alle lezioni e scegli una stanza ordinaria; il contenitore di recovery non è una lezione."
+        />
+      </div>
+    )
   }
   if (lifecycleGate === "pending") {
     return (

@@ -30,7 +30,7 @@ import {
   type JsonObject,
   type ProducerIdentity,
 } from "../core/contracts/eventEnvelope"
-import { validateRoomId } from "../store/roomPaths"
+import { validateProductRoomId } from "../store/roomPaths"
 import {
   runStoragePreflight,
   type StorageCapabilitySnapshot,
@@ -246,7 +246,7 @@ export async function bootstrapLessonOs(
 export async function openLessonOsSession(
   options: OpenLessonOsSessionOptions,
 ): Promise<LessonOsSessionHandle> {
-  const lessonId = validateRoomId(options.room)
+  const lessonId = validateProductRoomId(options.room)
   const now = options.now ?? Date.now
   const newSessionId = options.newSessionId ?? canonicalRandomUuid
   const newEventId = options.newEventId ?? canonicalRandomUuid

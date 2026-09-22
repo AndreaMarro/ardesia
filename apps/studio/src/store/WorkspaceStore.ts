@@ -17,7 +17,7 @@ import {
   type LessonImportPreview,
   type LessonOsRestoreStatus,
 } from "./lessonBundle"
-import { roomPaths, validateRoomId } from "./roomPaths"
+import { roomPaths, validateProductRoomId } from "./roomPaths"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   originLessonMutationCoordinator,
@@ -694,7 +694,7 @@ export class WorkspaceStore {
   // --- EXPORT/IMPORT .lesson (ZIP) ---
 
   async exportLesson(room: string, lessonOsLog?: EventLogStore | null): Promise<Blob> {
-    const validRoom = validateRoomId(room)
+    const validRoom = validateProductRoomId(room)
     return buildLessonExport(this, validRoom, lessonOsLog)
   }
 
@@ -708,7 +708,7 @@ export class WorkspaceStore {
     lessonOsLog?: EventLogStore | null,
     legacyClaim: NonNullable<ImportLessonOptions["legacyClaim"]> = { userConfirmed: true },
   ): Promise<ImportLessonResult> {
-    const validRoom = validateRoomId(room)
+    const validRoom = validateProductRoomId(room)
     const result = await parseLessonImport(this, blob, lessonOsLog, {
       destinationLessonId: validRoom,
       legacyClaim,
@@ -723,7 +723,7 @@ export class WorkspaceStore {
     room: string,
     legacyClaim?: NonNullable<ImportLessonOptions["legacyClaim"]>,
   ): Promise<LessonImportPreview> {
-    const validRoom = validateRoomId(room)
+    const validRoom = validateProductRoomId(room)
     return buildLessonPreview(this, blob, {
       destinationLessonId: validRoom,
       ...(legacyClaim ? { legacyClaim } : {}),

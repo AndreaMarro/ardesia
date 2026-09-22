@@ -8,7 +8,7 @@
 
 import { type WorkspaceStore } from "./WorkspaceStore"
 import { PATHS } from "./types"
-import { roomPaths } from "./roomPaths"
+import { roomPaths, validateProductRoomId } from "./roomPaths"
 import {
   assertEventEnvelopeV2,
   createEventEnvelopeV2,
@@ -460,9 +460,9 @@ export class JournalRecorder {
     ) {
       failJournal("canonical options object required; flat positional constructor removed")
     }
-    if (options.identity.lessonId === "unassigned") {
-      failJournal("unassigned is reserved for legacy flat journal recovery")
-    }
+    // Nome riservato al confine prodotto: un recorder non nasce mai sulla
+    // recovery (i percorsi legacy restano a journalSourceLessonId).
+    validateProductRoomId(options.identity.lessonId)
     const expectedPath = roomPaths(options.identity.lessonId).journal
     if (options.journalPath !== expectedPath) {
       failJournal(`journal path must exactly match room ${options.identity.lessonId}`)
