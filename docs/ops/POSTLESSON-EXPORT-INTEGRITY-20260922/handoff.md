@@ -72,9 +72,19 @@ D2EvidenceProducer da solo NON è prova di cattura UI (dichiarato).
 
 ## Review e CI
 
-- INDEPENDENT_REVIEW=PENDING (self-review svolta, vedi sotto; mai APPROVE).
-- REMOTE_CI: da verificare sul tab Checks della nuova PR (distinguere head,
-  merge sintetico ed eguaglianza albero; Vercel Ready non è collaudo).
+## Addendum REMOTE_CI — 22 settembre 2026
+
+PR #258 (draft, base `codex/restart-review-postlesson-20260921`, head
+`765026f67b818c8f254e7d9f5ca18fcadc0a16f4`): run 35728385672, tutti i
+check pass (studio typecheck+test+build, engine pytest, hygiene,
+d2-integration-evidence, e2e golden path advisory, no-deploy-check;
+CodeRabbit skipped draft, Vercel Ready = preview deployment, non collaudo).
+Distinzione head/merge: i metadati del run riportano head
+`765026f6`, ma il checkout effettivo nei log è il merge sintetico
+`1af4b38` (Merge 765026f6 into 1c3f546a = punto di fork, nessun altro
+delta). Nota: engine passa in CI (senza chiave provider i 2 test
+live-Kimi si comportano da skip/debt noto, non 404). INDEPENDENT_REVIEW
+resta PENDING; nessun merge richiesto né eseguito.
 - Receipt R-01/R-02/R-03/R-03b/R-04b preservati e invariati.
 
 ## Self-review del diff
