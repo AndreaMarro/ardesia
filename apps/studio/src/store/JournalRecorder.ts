@@ -342,6 +342,43 @@ function pdfPayload(event: JournalPdfPageView): JournalPayloadByKind["journal.pd
   }
 }
 
+/**
+ * La canvas consegna elementi con chiavi a valore undefined (es. customData
+ * dei testi Excalidraw reali). structuredClone NON le rimuove in browser/jsdom
+ * (solo Node le scarta: mai farci affidamento) e l'assert JSON abortirebbe
+ * l'intero batch onChange, perdendo anche gli eventi validi co-raggruppati.
+ * Sanificazione a semantica JSON esplicita — esattamente ciò che il file
+ * events.jsonl conterrà: undefined sparisce, gli hole di array diventano
+ * null; numeri non-finiti e tipi non-JSON restano un errore distinguibile,
+ * mai silenzio e mai null inventati al posto di un numero corrotto.
+ */
+function sanitizeJsonValue(value: unknown, path: string): unknown {
+  if (value === undefined) return undefined
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) failJournal(`${path} contiene un numero non-finito`)
+    return value
+  }
+  if (typeof value === "string" || typeof value === "boolean" || value === null) return value
+  if (Array.isArray(value)) {
+    return value.map((item, index) => (
+      item === undefined ? null : sanitizeJsonValue(item, `${path}[${index}]`)
+    ))
+  }
+  if (typeof value === "object") {
+    const out: Record<string, unknown> = {}
+    for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+      if (entry === undefined) continue
+      out[key] = sanitizeJsonValue(entry, `${path}.${key}`)
+    }
+    return out
+  }
+  failJournal(`${path} contiene un valore non-JSON di tipo ${typeof value}`)
+}
+
+function jsonCanonicalElement(element: Record<string, unknown>): JsonObject {
+  return sanitizeJsonValue(element, "payload.element") as JsonObject
+}
+
 function journalPayload<K extends JournalKind>(
   event: JournalEvent,
   kind: K,
@@ -353,7 +390,7 @@ function journalPayload<K extends JournalKind>(
       if (event.type !== "element.add" && event.type !== "element.update") {
         failJournal(`${kind} requires an element event`)
       }
-      payload = { element: event.element as JsonObject }
+      payload = { element: jsonCanonicalElement(event.element) }
       break
     }
     case "journal.element.delete":
