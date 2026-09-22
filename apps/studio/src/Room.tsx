@@ -20,6 +20,7 @@ import {
 } from "./lessonos/bootstrap"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { reportLessonOsAppendResult } from "./lessonos/reportAppend"
+import type { LessonOsEvent } from "./lessonos/eventlog"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
 import { isRecapView } from "./store/isRecapView"
@@ -176,6 +177,11 @@ export default function Room({
   // Un solo cambio superficie per volta: un doppio click non può avviare due
   // flush concorrenti né scegliere una seconda destinazione a metà preflight.
   const _pendingSurfaceNavigation = useRef<Promise<void> | null>(null)
+  // Append LessonOS accettati e ancora in volo (path Simulation via host):
+  // la chiusura/navigazione non deve superarli e l'export non deve mancarli.
+  // Si conservano gli ESITI delle operazioni pertinenti, non la coda che ha
+  // già inghiottito eventuali rifiuti: ogni append resta osservabile.
+  const pendingLessonOsAppendsRef = useRef<Array<Promise<unknown>>>([])
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
@@ -260,6 +266,9 @@ export default function Room({
         navigateToLesson,
         flushPersist,
         promoteJournalToLessonOs,
+        // Stesso riferimento passato all'host dei tool embed: la via
+        // d'ingresso reale degli eventi Simulation nel log LessonOS.
+        emitLessonEvent,
       }
     }
 
@@ -313,6 +322,15 @@ export default function Room({
           await ownedJournal?.flush()
         } catch (error) {
           console.error("Room journal flush failed before LessonOS close", error)
+        }
+        try {
+          // Best-effort: lo smontaggio non può bloccare il browser, ma la
+          // chiusura della sessione (lesson.ended in coda) resta ordinata
+          // dopo gli append accettati. Il rigetto è già diagnostica via
+          // reportLessonOsAppendResult quando la vista è ancora montata.
+          await awaitPendingLessonOsAppends()
+        } catch (error) {
+          console.error("Room pending LessonOS appends failed before close", error)
         }
         try {
           await runtime?.close()
@@ -518,6 +536,34 @@ export default function Room({
   async function flushLiveLesson(): Promise<void> {
     await flushPersist()
     await journalRef.current?.flush()
+    // Ultima azione LessonOS prima della richiesta: o è nella memoria, o la
+    // navigazione si annulla con errore visibile — mai export incompleto.
+    await awaitPendingLessonOsAppends()
+  }
+
+  /** Host dei tool embed (Simulation): accoda l'evento del plugin nel log
+   * LessonOS (fail-soft; nessuna chiave client). F-02: un append rifiutato
+   * diventa diagnostica visibile (stesso surface degli altri errori storage),
+   * mai silenzio mentre la simulazione continua. L'esito resta tracciato:
+   * la chiusura/navigazione lo attende (flushLiveLesson), mai fire-and-forget. */
+  function emitLessonEvent(event: LessonOsEvent): void {
+    const outcome = lessonOsRef.current?.store?.append(event) ?? Promise.resolve()
+    pendingLessonOsAppendsRef.current.push(outcome)
+    reportLessonOsAppendResult(outcome, setStorageError)
+  }
+
+  /** Drena gli append accettati prima della richiesta; il primo rigetto
+   * fallisce visibile così il chiamante non esporta memoria incompleta.
+   * Istantanea, non attesa di una coda viva: le azioni accettate DOPO la
+   * richiesta appartengono alla richiesta successiva. */
+  async function awaitPendingLessonOsAppends(): Promise<void> {
+    const pending = pendingLessonOsAppendsRef.current
+    pendingLessonOsAppendsRef.current = []
+    if (pending.length === 0) return
+    const settled = await Promise.allSettled(pending)
+    for (const result of settled) {
+      if (result.status === "rejected") throw result.reason
+    }
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -1099,17 +1145,7 @@ export default function Room({
                           )
                         }
                       },
-                      emitLessonEvent: (event) => {
-                        // host-observes-solve: accoda l'evento del Simulation
-                        // Plugin nel log LessonOS (fail-soft; nessuna chiave client).
-                        // F-02: un append rifiutato deve diventare diagnostica
-                        // visibile (stesso surface degli altri errori storage),
-                        // mai silenzio mentre la simulazione continua.
-                        reportLessonOsAppendResult(
-                          lessonOsRef.current?.store?.append(event) ?? Promise.resolve(),
-                          setStorageError,
-                        )
-                      },
+                      emitLessonEvent,
                     },
               )
             }
