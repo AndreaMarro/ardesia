@@ -1,0 +1,36 @@
+{
+  "base": "af46e658e94bc32eaf80295984dc4938ea76972c",
+  "candidate": "b2eddaf3f02c3e20c45c74507b99a18de40f16a0",
+  "evidence_head": "0149c7ff2e6def35f8d4c983ebfc04a99437a785",
+  "gate_sha256": "af9bedf288d485cc647644ae897e7ec07bb9b9fb4e03d8ee948599920371e062",
+  "counts": {
+    "base-3": 16,
+    "candidate-3": 20,
+    "candidate-4": 26,
+    "checkpoint": 11
+  },
+  "new_flags_in_existing_documents": {
+    "README.md": {
+      "post-adversarial-repair.md": 2,
+      "semantic-diff.json": 1
+    },
+    "codex-handoff.md": {
+      "post-adversarial-repair.md": 1
+    },
+    "exclusions.md": {}
+  },
+  "new_unit_flags": 6,
+  "yaml_tree_identical": true,
+  "product_and_gates_unchanged": true,
+  "frozen_receipts_unchanged": true,
+  "required_contexts": [
+    "studio (typecheck + test + build)",
+    "engine (pytest)",
+    "hygiene (NUL + secrets + boundary + whitespace)"
+  ],
+  "additional_rules": [],
+  "versions": {
+    "python": "3.13.14",
+    "pyyaml": "6.0.3"
+  }
+}

@@ -1,0 +1,145 @@
+[
+  {
+    "name": "gate-base-3",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "artifacts/restart/r04-review/base/README.md",
+      "artifacts/restart/r04-review/base/codex-handoff.md",
+      "artifacts/restart/r04-review/base/exclusions.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.328,
+    "utc": "2026-09-22T07:59:31.585539+00:00"
+  },
+  {
+    "name": "gate-candidate-3",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "artifacts/restart/r04-review/candidate/README.md",
+      "artifacts/restart/r04-review/candidate/codex-handoff.md",
+      "artifacts/restart/r04-review/candidate/exclusions.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.364,
+    "utc": "2026-09-22T07:59:31.950049+00:00"
+  },
+  {
+    "name": "gate-candidate-4",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "artifacts/restart/r04-review/candidate/README.md",
+      "artifacts/restart/r04-review/candidate/codex-handoff.md",
+      "artifacts/restart/r04-review/candidate/exclusions.md",
+      "artifacts/restart/r04-review/candidate/codex-r04-unit.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.468,
+    "utc": "2026-09-22T07:59:32.418604+00:00"
+  },
+  {
+    "name": "gate-checkpoint",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "artifacts/restart/r04-review/evidence/codex-r04-checkpoint.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.225,
+    "utc": "2026-09-22T07:59:32.644062+00:00"
+  },
+  {
+    "name": "protection",
+    "command": [
+      "gh",
+      "api",
+      "repos/AndreaMarro/ardesia/branches/main/protection/required_status_checks"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.565,
+    "utc": "2026-09-22T07:59:33.960748+00:00"
+  },
+  {
+    "name": "rules",
+    "command": [
+      "gh",
+      "api",
+      "repos/AndreaMarro/ardesia/rules/branches/main"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.364,
+    "utc": "2026-09-22T07:59:34.325503+00:00"
+  },
+  {
+    "name": "pr",
+    "command": [
+      "gh",
+      "pr",
+      "view",
+      "256",
+      "--repo",
+      "AndreaMarro/ardesia",
+      "--json",
+      "state,isDraft,headRefOid,baseRefOid,reviews"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.456,
+    "utc": "2026-09-22T07:59:34.782973+00:00"
+  },
+  {
+    "name": "default-docs",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.614,
+    "utc": "2026-09-22T07:59:35.397552+00:00"
+  },
+  {
+    "name": "workflow",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/workflow_trigger_gate.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.057,
+    "utc": "2026-09-22T07:59:35.455282+00:00"
+  },
+  {
+    "name": "boundary",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/elab_boundary_gate.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.079,
+    "utc": "2026-09-22T07:59:35.534855+00:00"
+  },
+  {
+    "name": "candidate-whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "af46e658e94bc32eaf80295984dc4938ea76972c",
+      "0149c7ff2e6def35f8d4c983ebfc04a99437a785"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.017,
+    "utc": "2026-09-22T07:59:35.552575+00:00"
+  }
+]

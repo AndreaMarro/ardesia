@@ -1,0 +1,84 @@
+import collections, datetime, hashlib, importlib.util, json, os, pathlib, re, subprocess, time
+import yaml
+
+ROOT = pathlib.Path(__file__).resolve().parents[3]
+OUT = pathlib.Path(__file__).resolve().parent
+BASE = 'af46e658e94bc32eaf80295984dc4938ea76972c'
+CANDIDATE = 'b2eddaf3f02c3e20c45c74507b99a18de40f16a0'
+PACK = 'docs/ops/D2-INTEGRATION-2026-09-20/'
+ENV = os.environ.copy()
+for key in ('KIMI_API_KEY', 'DEEPSEEK_API_KEY', 'OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'ARDESIA_CHROMIUM_NO_SANDBOX'):
+    ENV.pop(key, None)
+records = []
+
+def run(name, args, expected=0):
+    before = time.monotonic()
+    result = subprocess.run(args, cwd=ROOT, env=ENV, capture_output=True)
+    (OUT / f'{name}.stdout.log').write_bytes(result.stdout)
+    (OUT / f'{name}.stderr.log').write_bytes(result.stderr)
+    records.append(dict(name=name, command=args, cwd=str(ROOT), exit_code=result.returncode,
+                        seconds=round(time.monotonic()-before, 3), utc=datetime.datetime.now(datetime.timezone.utc).isoformat()))
+    (OUT / 'commands.json').write_text(json.dumps(records, indent=2)+'\n')
+    assert result.returncode == expected, (name, result.returncode, expected)
+    return result
+
+def git(*args):
+    return subprocess.check_output(['git', *args], cwd=ROOT, env=ENV)
+
+sha = lambda data: hashlib.sha256(data).hexdigest()
+assert git('rev-parse', CANDIDATE+'^').decode().strip() == BASE
+head = git('rev-parse', 'HEAD').decode().strip()
+assert head.startswith('0149c7ff')
+gate = 'bin/ci/doc_claims_gate.py'
+assert git('show', BASE+':'+gate) == git('show', CANDIDATE+':'+gate) == (ROOT/gate).read_bytes()
+yaml_path = '.github/workflows/ci.yml'
+old_yaml, new_yaml = [git('show', rev+':'+yaml_path) for rev in (BASE, CANDIDATE)]
+assert yaml.safe_load(old_yaml) == yaml.safe_load(new_yaml)
+assert not git('diff', '--name-only', BASE, head, '--', 'apps', 'packages', 'bin')
+frozen = [PACK+'semantic-diff.json', PACK+'codex-restart-review-frozen.md',
+          PACK+'codex-r01-review-20260921', PACK+'codex-r02-review-20260921',
+          PACK+'codex-r03-review-20260921', PACK+'codex-r03b-review-20260921']
+assert not git('diff', '--name-only', BASE, head, '--', *frozen)
+core = ['README.md', 'codex-handoff.md', 'exclusions.md']
+paths = {}
+for tag, rev, names in [('base', BASE, core), ('candidate', CANDIDATE, core+['codex-r04-unit.md']), ('evidence', head, ['codex-r04-checkpoint.md'])]:
+    folder = OUT / tag
+    folder.mkdir(exist_ok=True)
+    paths[tag] = []
+    for name in names:
+        file = folder/name
+        file.write_bytes(git('show', rev+':'+PACK+name))
+        paths[tag].append(str(file.relative_to(ROOT)))
+py = 'packages/engine/.venv/bin/python'
+gate_results = {}
+for name, files in [('base-3', paths['base']), ('candidate-3', paths['candidate'][:3]), ('candidate-4', paths['candidate']), ('checkpoint', paths['evidence'])]:
+    result = run('gate-'+name, [py, gate, *files], expected=1)
+    gate_results[name] = len(re.findall(rb'\[paths\]', result.stderr))
+spec = importlib.util.spec_from_file_location('doc_gate', ROOT/gate)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+new_paths = {}
+for name in core:
+    def issues(rev):
+        messages = module.check_cited_paths(git('show', rev+':'+PACK+name).decode())
+        return collections.Counter(re.search(r'`([^`]+)`', m).group(1) for m in messages)
+    new_paths[name] = dict(issues(CANDIDATE)-issues(BASE))
+assert gate_results['base-3'] == 16
+assert gate_results['candidate-3'] == 20
+assert gate_results['candidate-4'] == 26
+old_ledger = json.loads(git('show', BASE+':'+PACK+'integration-ledger.json'))
+ledger = json.loads(git('show', CANDIDATE+':'+PACK+'integration-ledger.json'))
+assert old_ledger['verdicts'] == ledger['verdicts']
+assert old_ledger['codeCandidateSha'] == ledger['codeCandidateSha'] if 'codeCandidateSha' in old_ledger else True
+protection = json.loads(run('protection', ['gh','api','repos/AndreaMarro/ardesia/branches/main/protection/required_status_checks']).stdout)
+rules = json.loads(run('rules', ['gh','api','repos/AndreaMarro/ardesia/rules/branches/main']).stdout)
+run('pr', ['gh','pr','view','256','--repo','AndreaMarro/ardesia','--json','state,isDraft,headRefOid,baseRefOid,reviews'])
+for name, script in [('default-docs',gate), ('workflow','bin/ci/workflow_trigger_gate.py'), ('boundary','bin/ci/elab_boundary_gate.py')]:
+    run(name, [py, script])
+run('candidate-whitespace', ['git','diff','--check',BASE,head])
+result = dict(base=BASE,candidate=CANDIDATE,evidence_head=head,gate_sha256=sha((ROOT/gate).read_bytes()),
+    counts=gate_results,new_flags_in_existing_documents=new_paths,new_unit_flags=6,
+    yaml_tree_identical=True,product_and_gates_unchanged=True,frozen_receipts_unchanged=True,
+    required_contexts=protection['contexts'],additional_rules=rules,versions=dict(python=__import__('sys').version.split()[0],pyyaml=yaml.__version__))
+(OUT/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result,indent=2))
