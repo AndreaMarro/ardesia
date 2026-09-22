@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react"
 import ViewNav from "./ViewNav"
 import EmptyState from "./EmptyState"
 import { workspaceStore, type WorkspaceStore } from "../store/WorkspaceStore"
-import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { createEventLogStore, IndexedDbEventLog } from "../lessonos/indexedDbEventLog"
 import type { EnvelopeEventLogStore, EventLogStore } from "../lessonos/eventlog"
 import type {
   ImportLessonResult,
@@ -167,9 +167,21 @@ export default function SavedLessonsView({
   }
 
   const handleExport = () => {
-    if (room === null || eventLog === null) return
+    if (room === null) return
     void run("export", async () => {
-      const blob = await store.exportLesson(room, eventLog)
+      // Acquire current canonical memory for this click, independently of the
+      // mounted handle: like RecapView, export requires persistence and never
+      // substitutes an unavailable backend with the general factory's empty
+      // in-memory fallback. A silent fallback would become a verified-empty
+      // bundle presented as a successful export.
+      const log = new IndexedDbEventLog()
+      let blob: Blob
+      try {
+        await log.open()
+        blob = await store.exportLesson(room, log)
+      } finally {
+        await log.close()
+      }
       download(blob, `lezione-${room}.lesson`)
       setMessage("Export .lesson creato e legato alla lezione corrente.")
     })
