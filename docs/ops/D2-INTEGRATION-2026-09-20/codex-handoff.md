@@ -27,7 +27,7 @@ separately and is never presented as independent.
 - F246 verdict: USER_ACTION_TO_MATERIAL PARTIAL globally (ElabLab mark PASS
   post-fix, was FAIL pre-fix, observed RED; Simulation success-timing append
   window documented without fix, no global flush — see
-  `post-adversarial-repair.md` claim matrix). Persisted-state verdict PASS
+  `docs/ops/D2-INTEGRATION-2026-09-20/post-adversarial-repair.md` claim matrix). Persisted-state verdict PASS
   throughout.
 - Source semantic diff: file result IDENTICAL (frozen pre-repair comparison
   `SOURCE_HEAD(7af8f51c)` vs candidate-B; post-repair ONE expected F-03

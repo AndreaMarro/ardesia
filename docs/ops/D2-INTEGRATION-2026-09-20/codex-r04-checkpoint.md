@@ -23,9 +23,9 @@ SHA D2 o file congelati: solo commenti YAML, Markdown e ledger.
 | # | File | Prima → dopo | Fonte/SHA |
 |---|---|---|---|
 | A | `.github/workflows/ci.yml` (solo commenti) | «Lane required» → lane NON richiesta dalla protection | Protection API main 2026-09-22: required = studio, engine, hygiene |
-| B | `README.md`, `codex-handoff.md` | USER_ACTION globale PASS → PARTIAL (ElabLab mark PASS) | `post-adversarial-repair.md:87-88`; ledger GIÀ PARTIAL, conservato |
-| C | `README.md`, `codex-handoff.md`, `integration-ledger.json` | IDENTICAL generale → equivalenza per campi + F-03 attesa | `post-adversarial-repair.md:89-90`; `semantic-diff.json` storico pre-repair `SOURCE_HEAD(7af8f51c)` NON riscritto |
-| D | `exclusions.md` riga ack | EXCLUDED piatto → EXCLUDED AS CODE (baggage), proprietà PORTED | Ledger `producerPrerequisites`; donor `3ee18131…` resto escluso |
+| B | `docs/ops/D2-INTEGRATION-2026-09-20/README.md`, `docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md` | USER_ACTION globale PASS → PARTIAL (ElabLab mark PASS) | `post-adversarial-repair.md:87-88`; ledger GIÀ PARTIAL, conservato |
+| C | `docs/ops/D2-INTEGRATION-2026-09-20/README.md`, `docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md`, `docs/ops/D2-INTEGRATION-2026-09-20/integration-ledger.json` | IDENTICAL generale → equivalenza per campi + F-03 attesa | `post-adversarial-repair.md:89-90`; `docs/ops/D2-INTEGRATION-2026-09-20/semantic-diff.json` storico pre-repair `SOURCE_HEAD(7af8f51c)` NON riscritto |
+| D | `docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md` riga ack | EXCLUDED piatto → EXCLUDED AS CODE (baggage), proprietà PORTED | Ledger `producerPrerequisites`; donor `3ee18131…` resto escluso |
 
 F-03 citata al punto reale: `packages/engine/lessonos/summarizer.py:635-641`
 (riga vuota prima dell'appendice non vuota). Numeri storici D2/R-03b
@@ -40,11 +40,11 @@ Log diretti e record in `artifacts/restart/commands.jsonl`, prefisso
 |---|---|
 | ledger JSON parse + verdicti | exit 0 |
 | albero YAML ci.yml HEAD vs patch | exit 0, identico (solo commenti) |
-| `doc_claims_gate.py` default (CI) | exit 0, 1 documento, 4 controlli |
-| `doc_claims_gate.py` sui 4 md modificati | exit 1, 26 flag [paths] TUTTI stessa classe: nomi nudi intra-pack; baseline HEAD già exit 1 con 16 — nessuna ridefinizione, gate/allowlist intoccati |
-| `workflow_trigger_gate.py` | exit 0 |
-| `elab_boundary_gate.py` | exit 0 (12 offender storici, zero aggiunti) |
-| `nul_scan.py`, `secret_scan.py` | exit 0 |
+| `bin/ci/doc_claims_gate.py` default (CI) | exit 0, 1 documento, 4 controlli |
+| `bin/ci/doc_claims_gate.py` sui 4 md modificati | exit 1, 26 flag [paths] TUTTI stessa classe: nomi nudi intra-pack; baseline HEAD già exit 1 con 16 — nessuna ridefinizione, gate/allowlist intoccati |
+| `bin/ci/workflow_trigger_gate.py` | exit 0 |
+| `bin/ci/elab_boundary_gate.py` | exit 0 (12 offender storici, zero aggiunti) |
+| `bin/ci/nul_scan.py`, `bin/ci/secret_scan.py` | exit 0 |
 | `git diff --check` | exit 0 |
 | `project_state.py --verify` (repo reale) | exit 0, head `af46e658` letto |
 
@@ -57,8 +57,50 @@ quindi nessuna dichiarazione UNAVAILABLE.
 
 ## Limiti residui e prossima azione
 
-`R04_INDEPENDENT_REVIEW=PENDING`: la self-review non è indipendente.
-Receipt R-01/R-02/R-03/R-03b preservati; approvazioni circoscritte invariate.
+## Addendum 2026-09-22 — correzione F-R04-01 (review indipendente)
+
+Review indipendente Codex sul patch SHA `b2eddaf3` (receipt in
+`docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-review-20260922/review.md`):
+verdetto REQUEST_CHANGES, un finding P2 documentale F-R04-01. Le quattro
+correzioni di contenuto restano supportate; la patch aveva aggiunto nuovi
+flag [paths] del gate documentale con riferimenti abbreviati intra-pack.
+La riga storica exit 1 della tabella sopra è preservata e NON riscritta.
+
+Correzione (solo riferimenti, nessun contenuto): ogni percorso citato nei
+cinque Markdown usa ora il percorso completo dalla root, verificabile dal
+gate — `docs/ops/D2-INTEGRATION-2026-09-20/<file>` per il pacchetto,
+`.github/workflows/ci.yml`, `bin/ci/<gate>.py`,
+`apps/studio/src/store/lessonBundle.ts`,
+`apps/studio/src/store/recapHtml.ts`, `apps/studio/src/RecapView.tsx`,
+`apps/studio/src/lessonos/continuitySurface.ts`. Caso speciale: il modulo
+lessonOutcome esisteva a source head `7af8f51c` (verificato via
+`git ls-tree` su `apps/studio/src/store/`) ma è assente da questo HEAD;
+è nominato in prosa con SHA e non come percorso verificabile, e
+l'assenza di edge è ri-verificata con rg sull'albero corrente (zero
+riferimenti dal bundle path a recapHtml/lessonOutcome; solo
+`apps/studio/src/RecapView.tsx` li nomina). Gate, allowlist e criteri
+intoccati.
+
+Nuovo esito mirato (record `r04b-muse-doc-claims` in
+`artifacts/restart/commands.jsonl`):
+
+```sh
+packages/engine/.venv/bin/python bin/ci/doc_claims_gate.py \
+  docs/ops/D2-INTEGRATION-2026-09-20/README.md \
+  docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md \
+  docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md \
+  docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-unit.md \
+  docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-checkpoint.md
+```
+
+exit 0 — `doc claims gate ok: 5 documento/i, 4 controlli`. Workflow,
+boundary (12 offender storici), NUL, secrets, `git diff --check` e
+`project_state.py --verify` (head `de4524cd` letto): tutti exit 0
+(record `r04b-muse-*`).
+
+`R04_INDEPENDENT_REVIEW=REQUEST_CHANGES` (finding del reviewer, non
+self-review). Prossima azione: nuova review Codex circoscritta del commit
+correttivo.
 
 **Unica prossima azione:** review Codex circoscritta del nuovo SHA di patch
 e dei quattro claim, non un altro audit generale. R-04 non autorizza rilascio

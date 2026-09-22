@@ -16,7 +16,7 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 
 - OBSERVED current main: `b124eee04acc8062c27284f23c5d9108e3767c27`
 - OBSERVED source PR255 head: `7af8f51ca958f395544af79f0a39cbc3d03c82c7`
-- CODE_CANDIDATE_SHA: in `integration-ledger.json` (product+test commits;
+- CODE_CANDIDATE_SHA: in `docs/ops/D2-INTEGRATION-2026-09-20/integration-ledger.json` (product+test commits;
   resolve evidence head from PR #256 head; runtime from Actions/#249 FINAL)
 - EVIDENCE_HEAD_SHA: recorded in ledger after the docs-only commit
 - Candidate branch: `integration/d2-lesson-material-20260920`
@@ -52,12 +52,12 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 - USER_ACTION_TO_MATERIAL: PARTIAL (scoped: ElabLab mark PASS post ack-port
   — RED pre-fix observed on this candidate: UI "1" with empty log/export;
   emit-increment mutation RED. Global claim NOT made: Simulation
-  success-timing append window still pending, see `post-adversarial-repair.md`
+  success-timing append window still pending, see `docs/ops/D2-INTEGRATION-2026-09-20/post-adversarial-repair.md`
   claim matrix; no global flush introduced).
 - SOURCE_HEAD_SEMANTIC_EQUIVALENCE: PASS per-field (capsule/digest/manifest/
   segments identical; SummaryPack markdown carries the ONE expected F-03
   blank-line diff that makes appendix headings structural, see
-  `post-adversarial-repair.md`. `semantic-diff.json` is the frozen
+  `docs/ops/D2-INTEGRATION-2026-09-20/post-adversarial-repair.md`. `docs/ops/D2-INTEGRATION-2026-09-20/semantic-diff.json` is the frozen
   pre-repair comparison at `SOURCE_HEAD(7af8f51c)` vs candidate-B, kept as
   historical observation, not rewritten post-repair).
 - SINGLE_AUTHORITY_MATERIAL_PIPELINE: PASS (table in collision/audit evidence;
@@ -68,16 +68,16 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
 
 ## Evidence files
 
-- `integration-ledger.json` — machine-readable record (this README's claims)
-- `pre-d2-causal-matrix.md` — 64-commit inventory with categories
-- `pre-d2-causal-graph.json` — causal nodes/edges (machine-readable)
-- `exclusions.md` — per-commit non-inclusion proof or technical reason
-- `semantic-diff.json` — source-vs-candidate differential (IDENTICAL)
-- `provider-diagnostic.md` — Kimi 404 classification + contract test
-- `mcp-readiness.md` — official sources, separation, schemas, threats
-- `kirchhoff-reuse.md` — BORROW / DO_NOT_BORROW / FUTURE
-- `codex-handoff.md` — packets A/B/C + adversarial question
-- `stack-disposition.md` — PR #248–#255 roles and close conditions
+- `docs/ops/D2-INTEGRATION-2026-09-20/integration-ledger.json` — machine-readable record (this README's claims)
+- `docs/ops/D2-INTEGRATION-2026-09-20/pre-d2-causal-matrix.md` — 64-commit inventory with categories
+- `docs/ops/D2-INTEGRATION-2026-09-20/pre-d2-causal-graph.json` — causal nodes/edges (machine-readable)
+- `docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md` — per-commit non-inclusion proof or technical reason
+- `docs/ops/D2-INTEGRATION-2026-09-20/semantic-diff.json` — source-vs-candidate differential (IDENTICAL)
+- `docs/ops/D2-INTEGRATION-2026-09-20/provider-diagnostic.md` — Kimi 404 classification + contract test
+- `docs/ops/D2-INTEGRATION-2026-09-20/mcp-readiness.md` — official sources, separation, schemas, threats
+- `docs/ops/D2-INTEGRATION-2026-09-20/kirchhoff-reuse.md` — BORROW / DO_NOT_BORROW / FUTURE
+- `docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md` — packets A/B/C + adversarial question
+- `docs/ops/D2-INTEGRATION-2026-09-20/stack-disposition.md` — PR #248–#255 roles and close conditions
 
 ## CI / artifact (runtime evidence lives outside versioned files)
 

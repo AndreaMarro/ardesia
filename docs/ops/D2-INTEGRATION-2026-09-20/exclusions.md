@@ -25,7 +25,7 @@ is never accepted.
   callback. Recorded events are byte-identical; bundle contents cannot
   differ because of it.
 - LESSON_IDENTITY (c0a8ec41): EXCLUDED. PROOF: bundle carries raw envelopes,
-  never a Studio digest (`lessonBundle.ts` identical both sides); the engine
+  never a Studio digest (`apps/studio/src/store/lessonBundle.ts` identical both sides); the engine
   projector filters by lessonId. Temporal-window mixing PROVEN leaky on main
   (§15 probe: B's in-window error lands in A's digest), which is exactly why
   the bundle path correctly bypasses Studio digest scoping.
@@ -35,10 +35,14 @@ is never accepted.
   RecapView presentation, not bundle bytes.
 - LESSON_OUTCOME (c70c33f5 + fba5d035 tests): EXCLUDED.
   LESSON_OUTCOME_REQUIRED_FOR_D2=NO. PROOF: zero consumer edges from the
-  bundle path (`lessonBundle.ts`, engine ingest/compose) to
-  `lessonOutcome.ts`/`recapHtml.ts` (grep-verified).
+  bundle path (`apps/studio/src/store/lessonBundle.ts`, engine ingest/compose)
+  to outcome/recap rendering (`apps/studio/src/store/recapHtml.ts`,
+  presentation only in `apps/studio/src/RecapView.tsx`; the D2-era
+  lessonOutcome module lived at apps/studio/src/store/lessonOutcome.ts at
+  source head 7af8f51c and is absent from this HEAD, hence no edge is
+  possible — rg-verified).
 - CONTINUITY (99a25c31, 4be24d40, b970f365): EXCLUDED. Session-listing
-  surface (`continuitySurface.ts`); no edge to lesson material, digest,
+  surface (`apps/studio/src/lessonos/continuitySurface.ts`); no edge to lesson material, digest,
   bundle, or PDF. FUTURE_DESTINATION: continuity slice review.
 - CI_GATE (22 commits): EXCLUDED as code. Gate-location truth (§19
   correction): current main carries studio typecheck/test/build, engine
