@@ -1,0 +1,85 @@
+[
+  {
+    "name": "base-five-docs",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "artifacts/restart/r04b-review/base/README.md",
+      "artifacts/restart/r04b-review/base/codex-handoff.md",
+      "artifacts/restart/r04b-review/base/exclusions.md",
+      "artifacts/restart/r04b-review/base/codex-r04-unit.md",
+      "artifacts/restart/r04b-review/base/codex-r04-checkpoint.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.737,
+    "utc": "2026-09-22T08:45:27.558418+00:00"
+  },
+  {
+    "name": "candidate-five-docs",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/doc_claims_gate.py",
+      "docs/ops/D2-INTEGRATION-2026-09-20/README.md",
+      "docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md",
+      "docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md",
+      "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-unit.md",
+      "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-checkpoint.md"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.049,
+    "utc": "2026-09-22T08:45:27.609330+00:00"
+  },
+  {
+    "name": "bundle-reference-search",
+    "command": [
+      "rg",
+      "-n",
+      "lessonOutcome|recapHtml",
+      "apps/studio/src/store/lessonBundle.ts",
+      "packages/engine/lessonos/ingest",
+      "packages/engine/lessonos/compose.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 1,
+    "seconds": 0.049,
+    "utc": "2026-09-22T08:45:28.128765+00:00"
+  },
+  {
+    "name": "workflow",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/workflow_trigger_gate.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.055,
+    "utc": "2026-09-22T08:45:28.184165+00:00"
+  },
+  {
+    "name": "boundary",
+    "command": [
+      "packages/engine/.venv/bin/python",
+      "bin/ci/elab_boundary_gate.py"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.078,
+    "utc": "2026-09-22T08:45:28.261923+00:00"
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "de4524cd7780209fe0cc6fe2a807b666564ad936",
+      "4286a00488b929e544a31ec3c2bc9b0622a2d84b"
+    ],
+    "cwd": "/Users/andreamarro/VOLUME 3/ardesia-codex-restart-20260921",
+    "exit_code": 0,
+    "seconds": 0.017,
+    "utc": "2026-09-22T08:45:28.279482+00:00"
+  }
+]

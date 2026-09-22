@@ -1,0 +1,66 @@
+import datetime, hashlib, importlib.util, json, os, pathlib, re, subprocess, time
+
+ROOT = pathlib.Path(__file__).resolve().parents[3]
+OUT = pathlib.Path(__file__).resolve().parent
+BASE = 'de4524cd7780209fe0cc6fe2a807b666564ad936'
+HEAD = '4286a00488b929e544a31ec3c2bc9b0622a2d84b'
+PACK = 'docs/ops/D2-INTEGRATION-2026-09-20/'
+DOCS = [PACK+x for x in ('README.md','codex-handoff.md','exclusions.md','codex-r04-unit.md','codex-r04-checkpoint.md')]
+ENV = os.environ.copy()
+for key in ('KIMI_API_KEY','DEEPSEEK_API_KEY','OPENAI_API_KEY','ANTHROPIC_API_KEY','ARDESIA_CHROMIUM_NO_SANDBOX'):
+    ENV.pop(key,None)
+records = []
+
+def run(name,args,expected=0):
+    start=time.monotonic()
+    p=subprocess.run(args,cwd=ROOT,env=ENV,capture_output=True)
+    (OUT/f'{name}.stdout.log').write_bytes(p.stdout)
+    (OUT/f'{name}.stderr.log').write_bytes(p.stderr)
+    records.append(dict(name=name,command=args,cwd=str(ROOT),exit_code=p.returncode,
+                        seconds=round(time.monotonic()-start,3),utc=datetime.datetime.now(datetime.timezone.utc).isoformat()))
+    (OUT/'commands.json').write_text(json.dumps(records,indent=2)+'\n')
+    assert p.returncode==expected,(name,p.returncode)
+    return p
+
+def git(*args):
+    return subprocess.check_output(['git',*args],cwd=ROOT,env=ENV)
+
+assert git('rev-parse','HEAD').decode().strip()==HEAD
+assert git('rev-parse',HEAD+'^').decode().strip()==BASE
+assert set(git('diff','--name-only',BASE,HEAD).decode().splitlines())==set(DOCS)
+for path in DOCS: assert (ROOT/path).read_bytes()==git('show',HEAD+':'+path)
+assert not git('diff','--name-only',BASE,HEAD,'--','bin','apps','packages','.github')
+assert not git('diff','--name-only',BASE,HEAD,'--',PACK+'integration-ledger.json',PACK+'semantic-diff.json',PACK+'codex-r04-review-20260922')
+gate='bin/ci/doc_claims_gate.py'
+gate_bytes=(ROOT/gate).read_bytes()
+assert gate_bytes==git('show',BASE+':'+gate)==git('show',HEAD+':'+gate)
+old_folder=OUT/'base'; old_folder.mkdir(exist_ok=True)
+old_paths=[]
+for path in DOCS:
+    p=old_folder/pathlib.Path(path).name;p.write_bytes(git('show',BASE+':'+path));old_paths.append(str(p.relative_to(ROOT)))
+py='packages/engine/.venv/bin/python'
+red=run('base-five-docs',[py,gate,*old_paths],1)
+green=run('candidate-five-docs',[py,gate,*DOCS])
+assert len(re.findall(rb'\[paths\]',red.stderr))==37
+assert b'5 documento/i' in green.stdout
+spec=importlib.util.spec_from_file_location('gate',ROOT/gate); module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+references=sorted({p for doc in DOCS for p in module.CITED_PATH_RE.findall((ROOT/doc).read_text())})
+for path in references:
+    assert subprocess.run(['git','cat-file','-e',HEAD+':'+path],cwd=ROOT,env=ENV,capture_output=True).returncode==0,path
+source='7af8f51ca958f395544af79f0a39cbc3d03c82c7'
+outcome='apps/studio/src/store/lessonOutcome.ts'
+assert git('ls-tree',source,outcome) and not git('ls-tree',HEAD,outcome)
+run('bundle-reference-search',['rg','-n','lessonOutcome|recapHtml','apps/studio/src/store/lessonBundle.ts','packages/engine/lessonos/ingest','packages/engine/lessonos/compose.py'],1)
+checkpoint=(ROOT/(PACK+'codex-r04-checkpoint.md')).read_text()
+assert 'exit 1, 26 flag' in checkpoint and 'baseline HEAD già exit 1 con 16' in checkpoint
+for name,script in [('workflow','bin/ci/workflow_trigger_gate.py'),('boundary','bin/ci/elab_boundary_gate.py')]: run(name,[py,script])
+run('whitespace',['git','diff','--check',BASE,HEAD])
+result=dict(base=BASE,candidate=HEAD,files=DOCS,base_paths_failures=37,candidate_exit=0,
+    checked_documents=5,gate_sha256=hashlib.sha256(gate_bytes).hexdigest(),gate_unchanged=True,
+    verified_versioned_references=references,only_five_markdown_files_changed=True,
+    product_workflow_ledger_previous_review_unchanged=True,historical_exit_one_preserved=True,
+    lesson_outcome_present_at_source_absent_at_candidate=True,bundle_name_search_exit=1,
+    python=__import__('sys').version.split()[0])
+(OUT/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k not in ['files','verified_versioned_references']},indent=2))
+print('Versioned references checked:',len(references))
