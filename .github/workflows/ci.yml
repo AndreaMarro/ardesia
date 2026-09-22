@@ -103,8 +103,12 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-  # Lane required: prova cross-boundary Studio -> Engine su byte sintetici
-  # prodotti dal producer corrente (mai fixture congelate da sole).
+  # Lane NON richiesta dalla branch protection di main (verificato via API
+  # il 2026-09-22: required = studio, engine, hygiene; questa lane e il
+  # golden path restano informativi): prova cross-boundary Studio -> Engine
+  # su byte sintetici prodotti dal producer corrente (mai fixture congelate
+  # da sole). L'esistenza/esecuzione del job non equivale a un requisito
+  # di protezione del branch.
   # Flusso: Studio exportLesson() reale -> .lesson -> Engine reale
   # (read_bundle/compose/mock-model/export PDF) -> artifact sintetico.
   # PDF runtime: chromium via playwright pin (package-lock), pandoc +

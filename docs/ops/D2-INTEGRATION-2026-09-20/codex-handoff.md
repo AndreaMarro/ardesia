@@ -24,9 +24,14 @@ separately and is never presented as independent.
 - Causal graph + matrix (64 commits, 0 merges); ONE minimal producer
   prerequisite ported as property (ack #246: RED/GREEN/mutation on
   candidate); everything else excluded with proof.
-- F246 verdict: USER_ACTION_TO_MATERIAL PASS post-fix (was FAIL pre-fix,
-  observed RED). Persisted-state verdict PASS throughout.
-- Source semantic diff: IDENTICAL (re-run after the ack port).
+- F246 verdict: USER_ACTION_TO_MATERIAL PARTIAL globally (ElabLab mark PASS
+  post-fix, was FAIL pre-fix, observed RED; Simulation success-timing append
+  window documented without fix, no global flush — see
+  `post-adversarial-repair.md` claim matrix). Persisted-state verdict PASS
+  throughout.
+- Source semantic diff: file result IDENTICAL (frozen pre-repair comparison
+  `SOURCE_HEAD(7af8f51c)` vs candidate-B; post-repair ONE expected F-03
+  blank-line markdown diff, capsule/digest/manifest/segments identical).
 - Live producer CI gate (`d2-integration-evidence` job): current Studio
   exportLesson → current Engine on exact bytes → synthetic artifact
   (`d2-integration-evidence-<sha>`); fixture freshness enforced

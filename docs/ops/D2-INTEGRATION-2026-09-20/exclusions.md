@@ -16,10 +16,14 @@ is never accepted.
 
 ## Included-by-category reasoning
 
-- PERSISTENCE_ACK (3ee18131): EXCLUDED. PROOF: diff main..D2 shows the
-  `log.append(event)` call unchanged; the commit only adds the optional
-  `onRecorded` UI-confirmation callback. Recorded events are byte-identical;
-  bundle contents cannot differ because of it.
+- PERSISTENCE_ACK (3ee18131): EXCLUDED AS CODE — the commit's non-property
+  baggage only (workflow changes, bmad spec docs, e2e journey specs, CI
+  lane changes); the minimal `onRecorded` acknowledgement property itself
+  is PORTED (see Ported section above), not excluded. PROOF on the code
+  side: diff main..D2 shows the `log.append(event)` call unchanged; the
+  donor commit only adds the optional `onRecorded` UI-confirmation
+  callback. Recorded events are byte-identical; bundle contents cannot
+  differ because of it.
 - LESSON_IDENTITY (c0a8ec41): EXCLUDED. PROOF: bundle carries raw envelopes,
   never a Studio digest (`lessonBundle.ts` identical both sides); the engine
   projector filters by lessonId. Temporal-window mixing PROVEN leaky on main

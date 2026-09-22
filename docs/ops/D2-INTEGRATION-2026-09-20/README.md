@@ -31,7 +31,8 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
   LessonOutcome necessity) with verdicts
 - Candidate A rehearsal (main + D2-only, 20/20 clean cherry-picks) + gates
 - Clean Candidate B + main-only preservation proof + source-vs-candidate
-  semantic differential (IDENTICAL)
+  semantic differential (file result IDENTICAL: frozen pre-repair comparison,
+  see per-field verdict below for the expected F-03 markdown diff)
 - Studio-production synthetic vertical (real exportLesson bytes →
   real Engine compose → PDF, A/B isolation)
 - Durable cross-boundary gate (text-only Studio fixtures, no binaries)
@@ -48,10 +49,17 @@ measurements), PROVEN (red+green+mutation or exact-SHA gate), NOT_PROVEN
   CI pending at docs-commit time (resolve run from PR #256 checks tab).
 - PERSISTED_STATE_TO_MATERIAL: PASS (production exportLesson bytes consumed
   by production compose; quality review pending human, NOT claimed).
-- USER_ACTION_TO_MATERIAL: PASS post ack-port (RED pre-fix observed on this
-  candidate: UI "1" with empty log/export; emit-increment mutation RED).
-- SOURCE_HEAD_SEMANTIC_EQUIVALENCE: PASS (semantic diff IDENTICAL, re-run
-  after the ack port: Studio-only change, engine semantics unaffected).
+- USER_ACTION_TO_MATERIAL: PARTIAL (scoped: ElabLab mark PASS post ack-port
+  — RED pre-fix observed on this candidate: UI "1" with empty log/export;
+  emit-increment mutation RED. Global claim NOT made: Simulation
+  success-timing append window still pending, see `post-adversarial-repair.md`
+  claim matrix; no global flush introduced).
+- SOURCE_HEAD_SEMANTIC_EQUIVALENCE: PASS per-field (capsule/digest/manifest/
+  segments identical; SummaryPack markdown carries the ONE expected F-03
+  blank-line diff that makes appendix headings structural, see
+  `post-adversarial-repair.md`. `semantic-diff.json` is the frozen
+  pre-repair comparison at `SOURCE_HEAD(7af8f51c)` vs candidate-B, kept as
+  historical observation, not rewritten post-repair).
 - SINGLE_AUTHORITY_MATERIAL_PIPELINE: PASS (table in collision/audit evidence;
   producer = Studio exportLesson; persisted source = room journal + event
   log; canonical format = .lesson + manifest; consumer root = compose;

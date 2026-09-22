@@ -77,10 +77,11 @@
  ],
  "runtimeEvidence": "GitHub Actions d2-integration-evidence job + issue #249 FINAL",
  "schema": "ardesia.d2-integration-ledger/2",
- "semanticDiff": {
-  "result": "IDENTICAL",
-  "scope": "manifest semantics, segments, digest, capsule fields, dropped, SummaryPack markdown"
- },
+  "semanticDiff": {
+   "result": "PASS per-field (capsule/digest/manifest/segments identical; SummaryPack markdown carries the ONE expected F-03 blank-line diff per post-adversarial-repair.md)",
+   "scope": "manifest semantics, segments, digest, capsule fields, dropped, SummaryPack markdown",
+   "frozenFile": "semantic-diff.json result IDENTICAL is the frozen pre-repair comparison SOURCE_HEAD(7af8f51c) vs candidate-B, kept as historical observation"
+  },
  "sourceHeadSha": "7af8f51ca958f395544af79f0a39cbc3d03c82c7",
  "tests": [
   {
