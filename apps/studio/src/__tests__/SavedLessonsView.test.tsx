@@ -5,6 +5,7 @@
 
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { IDBFactory, IDBKeyRange } from "fake-indexeddb"
 import {
   isSavedLessonsView,
   LESSONOS_BASE_URL_STORAGE_KEY,
@@ -12,11 +13,16 @@ import {
   readSavedLessonsConfig,
 } from "../store/savedLessonsView"
 import SavedLessonsView from "../design/SavedLessonsView"
+import { IndexedDbEventLog } from "../lessonos/indexedDbEventLog"
 import type { LessonImportPreview } from "../store/lessonBundle"
 
 beforeEach(() => {
   window.history.replaceState(null, "", "/?vista=lezioni-salvate")
   window.localStorage.clear()
+  // L'export acquisisce un IndexedDbEventLog fresco e rigoroso (Unità A):
+  // backend persistente reale anche quando il mount usa la factory iniettata.
+  vi.stubGlobal("IDBKeyRange", IDBKeyRange)
+  vi.stubGlobal("indexedDB", new IDBFactory())
 })
 
 afterEach(() => {
@@ -140,7 +146,12 @@ describe("SavedLessonsView", () => {
     expect(fetchSpy).not.toHaveBeenCalled()
 
     fireEvent.click(screen.getByRole("button", { name: "Esporta .lesson" }))
-    await waitFor(() => expect(store.exportLesson).toHaveBeenCalledWith("wbstudio-room1", fakeLog))
+    // Contratto Unità A: l'export non riusa l'handle del mount, acquisisce un
+    // IndexedDbEventLog fresco; import/commit continuano sull'handle montata.
+    await waitFor(() => expect(store.exportLesson).toHaveBeenCalledWith(
+      "wbstudio-room1",
+      expect.any(IndexedDbEventLog),
+    ))
     expect(download).toHaveBeenCalledWith(expect.any(Blob), "lezione-wbstudio-room1.lesson")
 
     const file = new File(["bundle"], "lezione.lesson", { type: "application/zip" })
