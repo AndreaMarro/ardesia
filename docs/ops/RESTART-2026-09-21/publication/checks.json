@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "source_snapshot": "908cdf0f1ffae49d518c7093719904075a593cc0",
+  "scope": "Local publication preparation; remote CI is reported by the pull request at its tested SHA.",
+  "whitespace_before": {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "705284ac...908cdf0f"
+    ],
+    "exit_code": 2,
+    "stdout_stderr": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/commands.md:3: trailing whitespace.\n+Workspace: `/Users/andreamarro/VOLUME 3/ardesia-codex-r02-review-20260921`  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/commands.md:4: trailing whitespace.\n+Base: `92a3bf6e5d8f2831a7e7b8d6a70df8f168682cf7`  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/commands.md:5: trailing whitespace.\n+Candidate: `866ee396e0554b9b7d77b3337461b7c25edd225f`  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/reconfirm-build.log.txt:204: trailing whitespace.\n+[plugin builtin:vite-reporter] \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/reconfirm-vitest.log.txt:9: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/build-supplement/build-supplement.stderr.log:1: trailing whitespace.\n+[plugin builtin:vite-reporter] \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/build.stderr.log:9: trailing whitespace.\n+ \u001b[38;5;240m  │\u001b[0m                             ────────────────┬────────────────  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/build.stderr.log:17: trailing whitespace.\n+ \u001b[38;5;240m  │\u001b[0m                               ───────────────┬──────────────  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/build.stderr.log:25: trailing whitespace.\n+ \u001b[38;5;240m  │\u001b[0m                                              ─────────────────┬─────────────────  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-causal.stderr.log:22: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-causal.stdout.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-final.stderr.log:22: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-final.stdout.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-rerun.stderr.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap-rerun.stdout.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap.stderr.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/focused-recap.stdout.log:15: new blank line at EOF.\ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/reviewer.md:3: trailing whitespace.\n+Candidate: `ba9c3bdfe1b3218273dcf286e3c56723d204b707`  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/reviewer.md:4: trailing whitespace.\n+Base: `c54fa42c1bb34ac37374a5bb228d838b2b4409ec`  \ndocs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/reviewer-original/typecheck.stdout.log:4: new blank line at EOF.\n"
+  },
+  "checks": [
+    {
+      "name": "publication-archive-verify",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "docs/ops/RESTART-2026-09-21/publication/verify.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.42,
+      "utc": "2026-09-22T09:57:02.992104+00:00",
+      "log_sha256": "d1817e63885de17a23f38615b44e0e040a33eecec35e28e7cd17a8a1b71fa6da",
+      "stdout_stderr": "PASS: 257 original files, 183 command logs, 15 reading copies, 7 units\n"
+    },
+    {
+      "name": "publication-docs",
+      "cwd": ".",
+      "command": [
+        "packages/engine/.venv/bin/python",
+        "bin/ci/doc_claims_gate.py",
+        "docs/START-HERE.md",
+        "docs/ops/RESTART-2026-09-21/publication/README.md",
+        "docs/ops/RESTART-2026-09-21/publication/preregistration.md",
+        "docs/ops/D2-INTEGRATION-2026-09-20/README.md",
+        "docs/ops/D2-INTEGRATION-2026-09-20/codex-handoff.md",
+        "docs/ops/D2-INTEGRATION-2026-09-20/exclusions.md",
+        "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-unit.md",
+        "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-checkpoint.md"
+      ],
+      "exit_code": 0,
+      "seconds": 0.11,
+      "utc": "2026-09-22T09:57:03.155398+00:00",
+      "log_sha256": "9284b81a8b6ea25d945fc3e1e18e858433445cd0f2789e12fa460fd6f58c9b21",
+      "stdout_stderr": "doc claims gate ok: 8 documento/i, 4 controlli [da 16 finding avversariali misurati il 2026-07-30]\n"
+    },
+    {
+      "name": "publication-state",
+      "cwd": ".",
+      "command": [
+        "env",
+        "ARDESIA_STATE_OFFLINE=1",
+        "packages/engine/.venv/bin/python",
+        "bin/state/project_state.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.32,
+      "utc": "2026-09-22T09:57:03.890195+00:00",
+      "log_sha256": "74dd0af8a03333d8a565e2187f2d01209b4eead4d3ba811480d9b5ed12fe0df6",
+      "stdout_stderr": "scritto artifacts/state/project.json\nscritto docs/ops/CURRENT.md\n  repo: MEASURED\n  pull_requests: UNAVAILABLE\n  required_checks: UNAVAILABLE\n  deploy: MEASURED\n  certification: MEASURED\n  e2e: MEASURED\n"
+    },
+    {
+      "name": "publication-state-verify",
+      "cwd": ".",
+      "command": [
+        "packages/engine/.venv/bin/python",
+        "bin/state/project_state.py",
+        "--verify"
+      ],
+      "exit_code": 0,
+      "seconds": 2.51,
+      "utc": "2026-09-22T09:57:06.458374+00:00",
+      "log_sha256": "08d5bfb33b84688d3620cc21c165da5bb76ddd17973df3a5009c604dd02b7120",
+      "stdout_stderr": "verify: head_sha 908cdf0f letto dal repo reale; CURRENT.md 55 righe\n"
+    },
+    {
+      "name": "publication-whitespace",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "705284ac"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "utc": "2026-09-22T09:57:23.458691+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_stderr": ""
+    },
+    {
+      "name": "publication-boundary",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "bin/ci/elab_boundary_gate.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3,
+      "utc": "2026-09-22T09:58:26.240062+00:00",
+      "log_sha256": "fc89b2a467963b12378f2b4ce4e55a9bab37c169872513c80f5fbfe1516b4b83",
+      "stdout_stderr": "elab_boundary_gate: OK (12 baseline offenders remain, none added; packs/ clean)\n"
+    },
+    {
+      "name": "publication-final-docs",
+      "cwd": ".",
+      "command": [
+        "packages/engine/.venv/bin/python",
+        "bin/ci/doc_claims_gate.py",
+        "docs/START-HERE.md",
+        "docs/ops/RESTART-2026-09-21/publication/README.md",
+        "docs/ops/RESTART-2026-09-21/publication/preregistration.md"
+      ],
+      "exit_code": 0,
+      "seconds": 0.39,
+      "utc": "2026-09-22T09:58:26.332193+00:00",
+      "log_sha256": "4252d4a5aa865577da40ca5a4cfd078fcb1b5ab9ef81c0e2610625153fd5e51f",
+      "stdout_stderr": "doc claims gate ok: 3 documento/i, 4 controlli [da 16 finding avversariali misurati il 2026-07-30]\n"
+    },
+    {
+      "name": "publication-staged-whitespace",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.08,
+      "utc": "2026-09-22T09:58:26.549983+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_stderr": ""
+    },
+    {
+      "name": "publication-workflow",
+      "cwd": ".",
+      "command": [
+        "packages/engine/.venv/bin/python",
+        "bin/ci/workflow_trigger_gate.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.16,
+      "utc": "2026-09-22T09:58:26.589898+00:00",
+      "log_sha256": "8a311ab001e3e8276cc4a9c2cd07285bf8a864186dd7bdf00fe1098eabbd6b2a",
+      "stdout_stderr": "workflow trigger gate ok: 2 workflow, nessun filtro di base [modo: semantico (PyYAML 6.0.3)]\n"
+    },
+    {
+      "name": "publication-complete-whitespace",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "705284ac"
+      ],
+      "exit_code": 0,
+      "seconds": 0.08,
+      "utc": "2026-09-22T09:58:26.701063+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_stderr": ""
+    },
+    {
+      "name": "publication-nul",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "bin/ci/nul_scan.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.97,
+      "utc": "2026-09-22T09:58:27.917239+00:00",
+      "log_sha256": "e688bc27f289d3474a900840c6f5e53262a8949034e0818b248a3ad432ee6ae4",
+      "stdout_stderr": "nul_scan: OK (no NUL bytes in tracked text files)\n"
+    },
+    {
+      "name": "publication-default-docs",
+      "cwd": ".",
+      "command": [
+        "packages/engine/.venv/bin/python",
+        "bin/ci/doc_claims_gate.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.34,
+      "utc": "2026-09-22T09:58:28.004148+00:00",
+      "log_sha256": "6e02d31617f04d5b36e340aa04d20e70ffbec5681c36d52455cf313eed93af89",
+      "stdout_stderr": "doc claims gate ok: 1 documento/i, 4 controlli [da 16 finding avversariali misurati il 2026-07-30]\n"
+    },
+    {
+      "name": "publication-final-inventory",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "docs/ops/RESTART-2026-09-21/publication/verify.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.36,
+      "utc": "2026-09-22T09:58:29.134710+00:00",
+      "log_sha256": "d1817e63885de17a23f38615b44e0e040a33eecec35e28e7cd17a8a1b71fa6da",
+      "stdout_stderr": "PASS: 257 original files, 183 command logs, 15 reading copies, 7 units\n"
+    },
+    {
+      "name": "publication-secrets",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "bin/ci/secret_scan.py"
+      ],
+      "exit_code": 0,
+      "seconds": 25.43,
+      "utc": "2026-09-22T09:58:53.491593+00:00",
+      "log_sha256": "8ec7d8a25df85784dc09cc122f00b8dc338157e302cea9720f65a53271df0a81",
+      "stdout_stderr": "secret_scan: OK (no high-confidence secret patterns)\n"
+    },
+    {
+      "name": "publication-secret-tests",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "bin/ci/test_secret_scan.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.19,
+      "utc": "2026-09-22T09:58:53.756782+00:00",
+      "log_sha256": "2c37d50a88147ca2ebd5197d74ee37d462dab650d793512e849814c28d5a38f0",
+      "stdout_stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n"
+    }
+  ]
+}

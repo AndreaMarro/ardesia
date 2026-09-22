@@ -112,3 +112,11 @@ dipendenza, installazione globale o riscrittura del valutatore.
 Preregistrazione, esito, last-use e next-gate conservati qui in append;
 nessun registro esterno consultato o modificato. `INDEX_SYNC_DEFERRED`.
 AgentMemory `RETIRED_NO_READ_NO_WRITE`. Mandato senza vault rispettato.
+
+## Addendum di pubblicazione — 22 settembre 2026
+
+Questo receipt descrive lo stato al momento della review. La successiva
+[pubblicazione GitHub](../../RESTART-2026-09-21/publication/README.md) conserva
+gli originali in un archivio verificabile e normalizza soltanto il whitespace
+delle copie di lettura elencate nel manifest. Gli hash storici si applicano
+agli originali archiviati; il verdetto e gli esiti sopra non sono modificati.

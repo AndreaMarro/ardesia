@@ -1,5 +1,9 @@
 # D2 integration evidence pack — 2026-09-20
 
+> Per la ripartenza successiva a questo pack: [guida di lettura](../../START-HERE.md)
+> e [indice delle review](../RESTART-2026-09-21/index.json). I checkpoint sotto
+> conservano data e perimetro originali.
+
 ## Purpose
 
 Durable, GitHub-reviewable evidence that the D2 lesson-material vertical

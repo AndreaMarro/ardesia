@@ -1,5 +1,8 @@
 # ARDESIA — Monorepo
 
+**Da dove iniziare:** [guida di lettura per persone e ChatGPT](docs/START-HERE.md)
+— architettura, correzioni R-01–R-04, review, prove verificabili e attività aperte.
+
 Piattaforma didattica **local-first** per docenti: lavagna minimal (solo il docente) + **marketplace di plugin immutabili** + **AI metodologica** (mappa il metodo del docente, suggerisce, NON insegna, NO-training). Monorepo unico: si lavora su tutto da qui.
 
 > **Modello di business (ratificato):** ZERO-fee sulle lezioni — il docente tiene il 100%. Ricavi = abbonamento **SaaS ~EUR15/mese** + **marketplace 70/30**. Niente tassa-Superprof. Visione completa: `docs/` + PDF v2 (`ardesia-vault/20-ARDESIA-VISIONE-E-BUSINESS-v2.pdf`).

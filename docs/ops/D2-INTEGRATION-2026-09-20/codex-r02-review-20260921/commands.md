@@ -1,8 +1,8 @@
 # R-02 independent review command log
 
-Workspace: `/Users/andreamarro/VOLUME 3/ardesia-codex-r02-review-20260921`  
-Base: `92a3bf6e5d8f2831a7e7b8d6a70df8f168682cf7`  
-Candidate: `866ee396e0554b9b7d77b3337461b7c25edd225f`  
+Workspace: `/Users/andreamarro/VOLUME 3/ardesia-codex-r02-review-20260921`
+Base: `92a3bf6e5d8f2831a7e7b8d6a70df8f168682cf7`
+Candidate: `866ee396e0554b9b7d77b3337461b7c25edd225f`
 Node: `v22.14.0`; Vitest: `v4.1.8`; Vite observed in build: `v8.0.16`.
 
 All test/typecheck/build subprocesses used this scrubber prefix:

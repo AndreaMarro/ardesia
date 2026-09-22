@@ -1,7 +1,7 @@
 # R-03 independent review
 
-Candidate: `ba9c3bdfe1b3218273dcf286e3c56723d204b707`  
-Base: `c54fa42c1bb34ac37374a5bb228d838b2b4409ec`  
+Candidate: `ba9c3bdfe1b3218273dcf286e3c56723d204b707`
+Base: `c54fa42c1bb34ac37374a5bb228d838b2b4409ec`
 Reviewer runtime model/effort: `inherited/unknown`
 
 ## Verdict: REQUEST_CHANGES

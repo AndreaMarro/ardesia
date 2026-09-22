@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/AndreaMarro/ardesia",
+  "visibility_at_publication": "private",
+  "snapshot_date": "2026-09-22",
+  "source_snapshot": "908cdf0f1ffae49d518c7093719904075a593cc0",
+  "publication_branch": "codex/restart-review-postlesson-20260921",
+  "base_branch": "integration/d2-lesson-material-20260920",
+  "base_commit": "705284acc4322db4d241032de071437ab0473cc1",
+  "dependency_pr": "https://github.com/AndreaMarro/ardesia/pull/256",
+  "guide_path": "docs/START-HERE.md",
+  "state_generator_path": "bin/state/project_state.py",
+  "state_note": "This index is a snapshot. Regenerate project state; read GitHub runs and PRs for remote status.",
+  "evidence_manifest_path": "docs/ops/RESTART-2026-09-21/publication/manifest.json",
+  "pilot_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-restart-pilot.md",
+  "units": [
+    {
+      "id": "D2",
+      "title": "Inspectable lesson material and PDF",
+      "change_commit": "b7f75e9d40ab063d0851f1cc6882e68e993edf47",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-restart-review-frozen.md",
+      "review_status": "APPROVE",
+      "scope": "bounded; not whole-product approval"
+    },
+    {
+      "id": "R-01",
+      "title": "Canonical lesson-scoped digest",
+      "change_commit": "d8e360389addb8a4339290a38763cd6dea58358b",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r01-review-20260921/closeout.md",
+      "review_status": "APPROVE",
+      "scope": "bounded; not whole-product approval"
+    },
+    {
+      "id": "R-02",
+      "title": "Per-lesson recorder v2 recap",
+      "change_commit": "866ee396e0554b9b7d77b3337461b7c25edd225f",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r02-review-20260921/closeout.md",
+      "review_status": "APPROVE",
+      "scope": "bounded; not whole-product approval"
+    },
+    {
+      "id": "R-03",
+      "title": "Current memory export; fallback finding",
+      "change_commit": "ba9c3bdfe1b3218273dcf286e3c56723d204b707",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03-review-20260921/closeout.md",
+      "review_status": "REQUEST_CHANGES",
+      "scope": "bounded; not whole-product approval"
+    },
+    {
+      "id": "R-03b",
+      "title": "Persistent memory required for export",
+      "change_commit": "a90d3563014c5cd995630a37ea164f42f4c40b9c",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r03b-review-20260921/closeout.md",
+      "review_status": "APPROVE",
+      "scope": "bounded; not whole-product approval",
+      "supersedes": "R-03"
+    },
+    {
+      "id": "R-04",
+      "title": "Documentation claim reconciliation",
+      "change_commit": "b2eddaf3f02c3e20c45c74507b99a18de40f16a0",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04-review-20260922/review.md",
+      "review_status": "REQUEST_CHANGES",
+      "scope": "bounded; not whole-product approval"
+    },
+    {
+      "id": "R-04b",
+      "title": "Root-verifiable references",
+      "change_commit": "4286a00488b929e544a31ec3c2bc9b0622a2d84b",
+      "review_path": "docs/ops/D2-INTEGRATION-2026-09-20/codex-r04b-review-20260922/review.md",
+      "review_status": "APPROVE",
+      "scope": "bounded; not whole-product approval",
+      "supersedes": "R-04"
+    }
+  ],
+  "remaining": {
+    "full_post_lesson_workflow_ready": false,
+    "real_pilot": "NOT_RUN",
+    "user_action_to_material": "PARTIAL",
+    "persisted_state_to_material": "PASS in bounded D2 scope",
+    "merge": "OWNER_DECISION_REQUIRED",
+    "provider_configuration_data_and_spend": "OWNER_DECISION_REQUIRED"
+  },
+  "maintenance": "Append dated units and receipts; retain prior verdicts. Update navigation, do not rewrite frozen evidence."
+}

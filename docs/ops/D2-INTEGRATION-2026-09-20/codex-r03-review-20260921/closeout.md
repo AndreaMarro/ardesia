@@ -125,3 +125,11 @@ accettata, nessuna quota 50/30/20 dichiarata raggiunta. Nessuna promozione,
 riscrittura di gate o dipendenza aggiornata. Preregistrazione, receipt, last-use
 e next-gate aggiunti localmente senza riscrivere la storia. Nessun registro
 esterno consultato: `INDEX_SYNC_DEFERRED`. AgentMemory `RETIRED_NO_READ_NO_WRITE`.
+
+## Addendum di pubblicazione — 22 settembre 2026
+
+Questo receipt descrive lo stato al momento della review. La successiva
+[pubblicazione GitHub](../../RESTART-2026-09-21/publication/README.md) conserva
+gli originali in un archivio verificabile e normalizza soltanto il whitespace
+delle copie di lettura elencate nel manifest. Gli hash storici si applicano
+agli originali archiviati; il verdetto e gli esiti sopra non sono modificati.
