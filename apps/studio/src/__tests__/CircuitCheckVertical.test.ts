@@ -104,6 +104,35 @@ describe("CircuitCheck nel confine Ardesia", () => {
     }
   })
 
+  it("una correzione valutata collega due tentativi dello stesso circuito senza dichiarare padronanza", async () => {
+    const proof = readCircuitProof(response, netlist)
+    const log = new InMemoryEventLog()
+    await log.append(circuitProofEvent(proof, "circuit-reasoning", 1000))
+    const wrong = await circuitTraceEvent(proof, trace, {
+      outcome:"first_invalid",step:1,message:"Somma errata",focus:["R1","R2"],
+      circuit_fingerprint:fingerprint,
+    }, "circuit-reasoning", 1100)
+    await log.append(wrong)
+    const fixedTrace = [{...trace[0]!, transcription:"R1+R2=20", claimed_value:"20"}]
+    await log.append(await circuitTraceEvent(proof, fixedTrace, {
+      outcome:"valid_so_far",step:null,message:"Passaggio valido",focus:[],
+      circuit_fingerprint:fingerprint,
+    }, "altra-lavagna", 1150, wrong.kind === "circuit.trace.assessed" ? wrong.errorId : undefined))
+    expect(buildStudyDigest(materialize(await log.readAll())).errors[0]?.corrected).toBe(false)
+    await log.append(await circuitTraceEvent(proof, fixedTrace, {
+      outcome:"valid_so_far",step:null,message:"Passaggio valido",focus:[],
+      circuit_fingerprint:fingerprint,
+    }, "circuit-reasoning", 1200, wrong.kind === "circuit.trace.assessed" ? wrong.errorId : undefined))
+    const events = await log.readAll()
+    const graph = materialize(events)
+    const digest = buildStudyDigest(graph)
+    expect(digest.errors).toEqual([expect.objectContaining({id:wrong.kind === "circuit.trace.assessed" ? wrong.errorId : "",corrected:true})])
+    expect(graph.edges).toContainEqual(expect.objectContaining({
+      from:events[3]!.kind === "circuit.trace.assessed" ? events[3]!.attemptId : "",
+      to:wrong.kind === "circuit.trace.assessed" ? wrong.errorId : "",kind:"corregge",
+    }))
+  })
+
   it("rifiuta una proiezione semantica parziale o attribuita a un tentativo non valutabile", () => {
     const base = {attemptId:"attempt:a",exerciseId:"circuit:a",labels:{it:"Tentativo"}}
     expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
@@ -113,6 +142,9 @@ describe("CircuitCheck nel confine Ardesia", () => {
       ...base,outcome:"not_assessable",firstInvalidStep:1,errorId:"error:a",
       conceptId:"circuit:method:serie",conceptLabels:{it:"Riduzione in serie"},
     })).toThrow(/primo passaggio valutato/)
+    expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
+      ...base,outcome:"not_assessable",correctsErrorId:"error:a",
+    })).toThrow(/correzione CircuitCheck/)
     expect(() => assertLessonOsEnvelopePayload("circuit.proof.verified", {
       exerciseId:"circuit:a",circuitFingerprint:fingerprint,embedId:"board:a",
       answerExact:"42/5",unit:"V",engineRevision:"a".repeat(40),labels:{it:"Risultato"},

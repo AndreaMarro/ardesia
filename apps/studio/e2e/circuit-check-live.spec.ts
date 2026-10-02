@@ -46,12 +46,40 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   await expect(page.getByRole("textbox", {name:"Trascrizione 1"})).toHaveValue("R1+R2=11")
   await page.getByRole("button", {name:"Controlla il procedimento"}).click()
   await expect(page.getByText(/valore equivalente è 10 ohm, non 11 ohm/)).toBeVisible()
+  await expect.poll(async () => page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string}>>
+    }}}}}).__MAESTRO_TEST__
+    return (await harness?.lessonOs?.current?.store?.readAll() ?? [])
+      .filter(item => item.kind === "circuit.trace.assessed").length
+  })).toBe(2)
   const after = await page.evaluate(async () => {
     const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {readAll(): Promise<Array<{kind:string}> >}}}}}).__MAESTRO_TEST__
     return await harness?.lessonOs?.current?.store?.readAll() ?? []
   })
   expect(after.filter(item => item.kind === "circuit.proof.verified")).toHaveLength(2)
   expect(after.filter(item => item.kind === "circuit.trace.assessed")).toHaveLength(2)
+
+  await page.getByRole("textbox", {name:"Trascrizione 1"}).fill("R1+R2=10")
+  await page.getByRole("textbox", {name:"Valore 1"}).fill("10")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Valido fin qui/)).toBeVisible()
+  await expect.poll(async () => page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string}>>
+    }}}}}).__MAESTRO_TEST__
+    return (await harness?.lessonOs?.current?.store?.readAll() ?? [])
+      .filter(item => item.kind === "circuit.trace.assessed").length
+  })).toBe(3)
+  const corrected = await page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string;errorId?:string;correctsErrorId?:string}>>
+    }}}}}).__MAESTRO_TEST__
+    return await harness?.lessonOs?.current?.store?.readAll() ?? []
+  })
+  const assessments = corrected.filter(item => item.kind === "circuit.trace.assessed")
+  expect(assessments).toHaveLength(3)
+  expect(assessments[2]?.correctsErrorId).toBe(assessments[0]?.errorId)
 
   await page.getByRole("link", {name:"Materiali"}).click()
   await expect(page.getByText("Materiali locali")).toBeVisible()
@@ -61,11 +89,11 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   const board = JSON.parse(await zip.file("raw/board.excalidraw")!.async("string"))
   const object = board.elements.find((item: {id:string}) => item.id === "circuit-reasoning")
   expect(object.customData.maestroTool.state.proof.answer.exact).toBe("42/5")
-  expect(object.customData.maestroTool.state.trace[0].claimed_value).toBe("11")
+  expect(object.customData.maestroTool.state.trace[0].claimed_value).toBe("10")
   const events = (await zip.file("raw/lessonos-events.jsonl")!.async("string"))
     .trim().split("\n").map(line => JSON.parse(line) as {kind:string})
   expect(events.filter(item => item.kind === "circuit.proof.verified")).toHaveLength(2)
-  expect(events.filter(item => item.kind === "circuit.trace.assessed")).toHaveLength(2)
+  expect(events.filter(item => item.kind === "circuit.trace.assessed")).toHaveLength(3)
 
   await page.getByRole("link", {name:"Rivedi il recap stampabile"}).click()
   const preview = page.frameLocator('iframe[title="Anteprima del recap stampabile da consegnare"]')
@@ -73,6 +101,7 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   await expect(preview.getByText(/Risultato registrato: 42\/5 V/)).toBeVisible()
   await expect(preview.locator('img[alt="Schema del passaggio 1"]')).toBeVisible()
   await expect(preview.getByText("Procedimento dello studente")).toBeVisible()
+  await expect(preview.getByText("corretto", {exact:true})).toBeVisible()
   const recapDownload = page.waitForEvent("download")
   await page.getByRole("button", {name:"scarica recap"}).click()
   const recapHtml = await readFile(await (await recapDownload).path(), "utf8")

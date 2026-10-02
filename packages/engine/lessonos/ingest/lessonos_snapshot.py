@@ -172,6 +172,7 @@ def project_lessonos_study_digest(
     error_evidence: dict[str, list[str]] = {}
     error_concept: dict[str, str] = {}
     error_corrected: set[str] = set()
+    circuit_error_exercise: dict[str, str] = {}
     # Global node identity across digest-adjacent roles (mirror di Studio
     # upsertNode: stesso id + kind diverso → throw). Traccia
     # concetto/errore/esercizio/materiale: sono i ruoli che interagiscono
@@ -320,9 +321,15 @@ def project_lessonos_study_digest(
                 ensure_concept(concept_id, {}, refs, line_no)
         elif kind == "circuit.trace.assessed":
             attempt_id = _require_str(payload, "attemptId", line_no, kind)
-            _require_str(payload, "exerciseId", line_no, kind)
+            exercise_id = _require_str(payload, "exerciseId", line_no, kind)
             claim_role(attempt_id, "esercizio", line_no)
             semantic = {"errorId", "conceptId", "conceptLabels"} & payload.keys()
+            corrects = payload.get("correctsErrorId")
+            if "correctsErrorId" in payload and (
+                not isinstance(corrects, str) or not corrects
+                or payload.get("outcome") != "valid_so_far" or semantic
+            ):
+                raise _fail(line_no, "malformed CircuitCheck correction evidence")
             if semantic:
                 step = payload.get("firstInvalidStep")
                 if (len(semantic) != 3 or payload.get("outcome") != "first_invalid"
@@ -340,10 +347,17 @@ def project_lessonos_study_digest(
                     error_labels[error_id] = dict(labels)
                     error_evidence[error_id] = list(refs)
                     error_concept[error_id] = concept_id
+                    circuit_error_exercise[error_id] = exercise_id
                 else:
                     error_labels[error_id] = merge_labels(error_labels[error_id], labels)
                     merge_evidence(error_evidence[error_id], refs)
                 ensure_concept(concept_id, method_labels, refs, line_no)
+            if isinstance(corrects, str) and (
+                circuit_error_exercise.get(corrects) == exercise_id
+                and any(ref.startswith("board:") and ref in refs
+                        for ref in error_evidence[corrects])
+            ):
+                error_corrected.add(corrects)
 
     concepts = tuple(
         StudyConcept(

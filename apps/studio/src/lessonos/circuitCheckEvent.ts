@@ -21,10 +21,13 @@ export function circuitProofEvent(proof: CircuitProof, embedId: string, t: numbe
 
 export async function circuitTraceEvent(
   proof: CircuitProof, trace: readonly CircuitTraceStep[], diagnosis: CircuitDiagnosis,
-  embedId: string, t: number,
-): Promise<LessonOsEvent> {
+  embedId: string, t: number, correctsErrorId: string | null = null,
+): Promise<Extract<LessonOsEvent,{kind:"circuit.trace.assessed"}>> {
   if (diagnosis.circuit_fingerprint !== proof.fingerprint) {
     throw new Error("La diagnosi non appartiene alla prova CircuitCheck.")
+  }
+  if (correctsErrorId && !new RegExp(`^circuit-attempt:${proof.fingerprint}:[a-f0-9]{24}:error$`).test(correctsErrorId)) {
+    throw new Error("La correzione non appartiene al circuito corrente.")
   }
   const bytes = new TextEncoder().encode(JSON.stringify({fingerprint:proof.fingerprint,trace}))
   const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
@@ -49,6 +52,7 @@ export async function circuitTraceEvent(
       errorId:`${attemptId}:error`, conceptId:`circuit:method:${invalid!.operation}`,
       conceptLabels:{it:conceptLabel},
     } : {}),
+    ...(diagnosis.outcome === "valid_so_far" && correctsErrorId ? {correctsErrorId} : {}),
     labels: { it: label }, t, evidence: [`board:${embedId}`],
   }
 }

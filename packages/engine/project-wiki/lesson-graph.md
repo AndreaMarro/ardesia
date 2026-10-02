@@ -47,3 +47,7 @@ Le funzioni in `lessonos/graph/queries.py` convertono i nodi/archi in networkx.D
 - GraphNode/GraphEdge frozen, ValueError su tipo invalido
 - Ogni concept ha un solo explains edge dalla sua lezione
 - Repeats edges: solo tra lezioni diverse (stessa lezione non può ripetersi)
+
+## CircuitCheck: correzione locale osservata
+
+Il projector dello snapshot `.lesson` collega un tentativo `valid_so_far` a un precedente `first_invalid` solo quando `correctsErrorId` esiste già, `exerciseId` coincide e le due prove condividono il riferimento alla stessa lavagna. Il digest marca `corrected`; non attribuisce padronanza alla persona. Un evento di un altro circuito o di un'altra lavagna non corregge l'errore (`lessonos/ingest/lessonos_snapshot.py:322-360`; `tests/test_lessonos_snapshot.py:71-120`). Studio usa lo stesso vincolo nel materializer e conserva il riferimento nel board prima dell'esportazione.

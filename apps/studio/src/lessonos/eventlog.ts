@@ -116,6 +116,8 @@ export type LessonOsEvent =
       errorId?: string
       conceptId?: string
       conceptLabels?: Labels
+      /** Un nuovo tentativo valido corregge un errore osservato nello stesso circuito. */
+      correctsErrorId?: string
       labels: Labels
     })
   | (BaseEvent & {
@@ -302,7 +304,7 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
   },
   "circuit.trace.assessed": {
     required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
-    optional: { firstInvalidStep: "number", errorId: "string", conceptId: "string", conceptLabels: "labels" },
+    optional: { firstInvalidStep: "number", errorId: "string", conceptId: "string", conceptLabels: "labels", correctsErrorId: "string" },
   },
   "simulation.error.observed": {
     required: { errorId: "string", conceptId: "string", labels: "labels" },
@@ -378,6 +380,11 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
         typeof payload.errorId !== "string" || payload.errorId.length === 0 ||
         typeof payload.conceptId !== "string" || payload.conceptId.length === 0)) {
       throw new Error("LessonOS event log: errore CircuitCheck senza primo passaggio valutato e metodo completo")
+    }
+    if (Object.prototype.hasOwnProperty.call(payload, "correctsErrorId") &&
+        (payload.outcome !== "valid_so_far" || semantic.length !== 0 ||
+         typeof payload.correctsErrorId !== "string" || !payload.correctsErrorId.length)) {
+      throw new Error("LessonOS event log: correzione CircuitCheck senza tentativo valido")
     }
   }
 }

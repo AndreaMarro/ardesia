@@ -50,11 +50,13 @@ export type CircuitEmbedState = Readonly<{
   selectedStep: number
   trace: CircuitTraceStep[]
   diagnosis: CircuitDiagnosis | null
+  pendingErrorId: string | null
 }>
 
 export const emptyCircuitState = (): CircuitEmbedState => ({
   kind: "circuitcheck-proof-v1", netlist: "", method: "auto", proof: null,
   selectedStep: 0, trace: [], diagnosis: null,
+  pendingErrorId: null,
 })
 
 const object = (v: unknown): v is Record<string, unknown> =>
@@ -161,7 +163,10 @@ export function readCircuitState(value: unknown): CircuitEmbedState {
   } catch { proof = null }
   return { kind: "circuitcheck-proof-v1", netlist: value.netlist, method: value.method,
     proof, selectedStep: value.selectedStep as number, trace: value.trace as CircuitTraceStep[],
-    diagnosis: null }
+    diagnosis: null,
+    pendingErrorId: proof && typeof value.pendingErrorId === "string" &&
+      new RegExp(`^circuit-attempt:${proof.fingerprint}:[a-f0-9]{24}:error$`).test(value.pendingErrorId)
+        ? value.pendingErrorId : null }
 }
 
 export async function callCircuitCheck(path: "solve" | "diagnose", body: unknown, signal?: AbortSignal): Promise<unknown> {

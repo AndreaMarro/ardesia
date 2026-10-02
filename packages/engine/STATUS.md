@@ -1080,3 +1080,11 @@ Pin: "test che tutte le query retrieval CRM (students_for_class, classes_for_stu
 - gate: **2041/0 VERDE** (ri-eseguito ORA). Criteri [VERIFICATO] gia documentati nell'entry precedente di STATUS (3° tool esposto, PrerequisiteChain persistita via build_teacher_book, grounding-guard 3-livelli, e2e + 7 avversari, additivo zero-regressioni).
 - `promote_pin lessonos` = **cap giornaliero raggiunto (12/12)** → driver bloccato sulla rotazione (gridlock cap-bound). Chiusura scritta in NEEDS-CLAUDE per rotazione manuale supervisore a ROADMAP riga 18 (grounded_memory_fundamentals). Builder non edita la riga PROSSIMA TASK.
 - SELF-ADV: 0/0 (NOOP, nessun diff codice). cost_usd: ~$0 (gate + verifica ancestry/criteri, ZERO LLM).
+
+## 2026-10-02 — Continuità CircuitCheck: errore e correzione nella stessa prova
+
+- Stato: implementato localmente sul branch della PR #259; nessun merge o deploy.
+- `circuit.trace.assessed` conserva il collegamento esplicito al precedente errore quando il nuovo tentativo è `valid_so_far`; Studio ed Engine lo accettano soltanto per lo stesso esercizio e la stessa lavagna. La prova storica resta distinta dalla verifica elettrica corrente.
+- Gate: Engine `2222 passed, 7 skipped`; Studio `2211 passed, 5 skipped`; `npm run typecheck`, build e test browser reale con riapertura, export `.lesson` e recap verde. Il test browser attende l'evento persistito, perché il messaggio UI precede l'append asincrono.
+- Limite: questa correzione locale non è un giudizio sulla persona; revisione docente e recupero nella lezione successiva richiedono ancora una prova end-to-end.
+- Modello effettivo: `inherited/unknown`; costi API di questa unità: nessuna chiamata di prodotto a provider esterni; costo del runtime Codex non osservabile.

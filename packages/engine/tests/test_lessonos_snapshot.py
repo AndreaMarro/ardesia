@@ -80,6 +80,42 @@ def _correct(exid: str, corrects: str, t: str) -> dict:
 
 
 class TestLessonOsStudyDigest:
+    def test_circuit_correction_requires_prior_error_for_same_exercise(self) -> None:
+        invalid = _env("circuit.trace.assessed", "2026-08-01T00:00:00.000Z", {
+            "attemptId": "circuit-attempt:example:wrong", "exerciseId": "circuit:example",
+            "outcome": "first_invalid", "firstInvalidStep": 1,
+            "errorId": "circuit-attempt:example:wrong:error",
+            "conceptId": "circuit:method:serie", "conceptLabels": {"it": "Riduzione in serie"},
+            "labels": {"it": "Somma errata"},
+        })
+        corrected = _env("circuit.trace.assessed", "2026-08-01T00:01:00.000Z", {
+            "attemptId": "circuit-attempt:example:fixed", "exerciseId": "circuit:example",
+            "outcome": "valid_so_far", "correctsErrorId": "circuit-attempt:example:wrong:error",
+            "labels": {"it": "Passaggio valido"},
+        })
+        foreign = _env("circuit.trace.assessed", "2026-08-01T00:02:00.000Z", {
+            "attemptId": "circuit-attempt:other:fixed", "exerciseId": "circuit:other",
+            "outcome": "valid_so_far", "correctsErrorId": "circuit-attempt:example:wrong:error",
+            "labels": {"it": "Altro circuito"},
+        })
+        for event in (invalid, corrected, foreign):
+            event["evidence"] = [{"ref": "board:circuit-reasoning", "resolution": "verified"}]
+        wrong_board = _env("circuit.trace.assessed", "2026-08-01T00:03:00.000Z", {
+            **corrected["payload"], "attemptId": "circuit-attempt:example:other-board",
+        })
+        wrong_board["evidence"] = [{"ref": "board:other", "resolution": "verified"}]
+        digest = project_lessonos_study_digest(_snapshot(invalid, foreign), L)
+        assert digest.errors[0].corrected is False
+        digest = project_lessonos_study_digest(_snapshot(invalid, wrong_board), L)
+        assert digest.errors[0].corrected is False
+        digest = project_lessonos_study_digest(_snapshot(invalid, corrected), L)
+        assert digest.errors[0].corrected is True
+        invalid_correction = {**corrected, "payload": {
+            **corrected["payload"], "outcome": "not_assessable",
+        }}
+        with pytest.raises(ValueError, match="CircuitCheck correction"):
+            project_lessonos_study_digest(_snapshot(invalid, invalid_correction), L)
+
     def test_circuit_first_invalid_step_matches_studio_digest(self) -> None:
         base = {
             "attemptId": "circuit-attempt:example:abc", "exerciseId": "circuit:example",

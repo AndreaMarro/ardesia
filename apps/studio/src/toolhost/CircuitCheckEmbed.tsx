@@ -50,7 +50,7 @@ export function CircuitCheckEmbed({element, toolLink, host}: {
   function editNetlist(netlist: string) {
     generation.current += 1
     setCurrent(false); setError(""); setNotice("")
-    void update({...state, netlist, proof: null, trace: [], diagnosis: null, selectedStep: 0})
+    void update({...state, netlist, proof: null, trace: [], diagnosis: null, pendingErrorId:null, selectedStep: 0})
   }
   async function solve() {
     const n = ++generation.current
@@ -88,12 +88,14 @@ export function CircuitCheckEmbed({element, toolLink, host}: {
         trace: {schema: "student-trace.v1", circuit_fingerprint: proof.fingerprint, steps: state.trace},
       }), proof.fingerprint)
       if (n !== generation.current) return
-      const saved = await update({...state, diagnosis})
+      const event = await circuitTraceEvent(proof, state.trace, diagnosis,
+        toolLink.embedId, Date.now(), state.pendingErrorId)
+      const pendingErrorId = diagnosis.outcome === "first_invalid" ? event.errorId ?? null
+        : diagnosis.outcome === "valid_so_far" ? null : state.pendingErrorId
+      const saved = await update({...state, diagnosis, pendingErrorId})
       if (n !== generation.current) return
       if (!saved) throw new Error("Il tentativo non è stato salvato nella lavagna: nessun evento di lezione registrato.")
       if (!await host?.flushEmbedState?.()) throw new Error("Il tentativo non è ancora durevole nella lezione: nessun evento registrato.")
-      if (n !== generation.current) return
-      const event = await circuitTraceEvent(proof, state.trace, diagnosis, toolLink.embedId, Date.now())
       if (n !== generation.current) return
       host?.emitLessonEvent?.(event)
     } catch (cause) {

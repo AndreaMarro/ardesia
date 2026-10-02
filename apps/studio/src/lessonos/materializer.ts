@@ -193,6 +193,22 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
           addEdge(ev.errorId, ev.conceptId, "deriva-da", ev.evidence, ev.t)
           addEdge(ev.errorId, ev.attemptId, "deriva-da", ev.evidence, ev.t)
         }
+        if (ev.outcome === "valid_so_far" && ev.correctsErrorId) {
+          const error = nodes.get(ev.correctsErrorId)
+          const priorAttempt = edges.find(edge => edge.from === ev.correctsErrorId && edge.kind === "deriva-da" &&
+            nodes.get(edge.to)?.kind === "esercizio")?.to
+          const sameCircuit = priorAttempt && edges.some(edge => edge.from === priorAttempt &&
+            edge.to === ev.exerciseId && edge.kind === "deriva-da")
+          const sameBoard = error?.evidenceRefs.some(ref => ref.startsWith("board:") && ev.evidence.includes(ref))
+          if (error?.kind === "errore" && sameCircuit && sameBoard) {
+            addEdge(ev.attemptId, ev.correctsErrorId, "corregge", ev.evidence, ev.t)
+            if (error.correctedAt === undefined) error.correctedAt = ev.t
+            for (const edge of edges.filter(edge => edge.from === ev.correctsErrorId &&
+              edge.kind === "deriva-da" && nodes.get(edge.to)?.kind === "concetto")) {
+              addEdge(ev.attemptId, edge.to, "corregge", ev.evidence, ev.t)
+            }
+          }
+        }
         break
       }
 
