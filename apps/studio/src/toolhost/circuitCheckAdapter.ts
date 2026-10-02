@@ -27,7 +27,7 @@ export type CircuitProof = Readonly<{
 
 export type CircuitTraceStep = Readonly<{
   transcription: string
-  operation: "serie" | "parallelo" | "kcl" | "corrente" | "tensione" | "altro"
+  operation: "serie" | "parallelo" | "kcl" | "kvl" | "corrente" | "tensione" | "altro"
   first: string
   second: string
   claimed_value: string | null
@@ -141,7 +141,7 @@ export function readCircuitState(value: unknown): CircuitEmbedState {
   const validTrace = value.trace.every((step: unknown) => object(step) &&
     string(step.transcription, 500) && string(step.first, 500) && string(step.second, 500) &&
     (step.claimed_value === null || string(step.claimed_value, 100)) &&
-    ["serie", "parallelo", "kcl", "corrente", "tensione", "altro"].includes(String(step.operation)) &&
+    ["serie", "parallelo", "kcl", "kvl", "corrente", "tensione", "altro"].includes(String(step.operation)) &&
     ["clear", "ambiguous", "unreadable"].includes(String(step.reading)))
   if (!validTrace) return emptyCircuitState()
   // A persisted proof is historical evidence only. Legacy v1 had discarded the

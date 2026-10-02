@@ -56,6 +56,7 @@ export async function circuitTraceEvent(
     ? invalid.operation === "serie" ? "Riduzione in serie"
       : invalid.operation === "parallelo" ? "Riduzione in parallelo"
       : invalid.operation === "kcl" ? "KCL al nodo"
+      : invalid.operation === "kvl" ? "KVL nella maglia"
       : invalid.operation === "corrente" ? "Corrente di un componente"
       : invalid.operation === "tensione" ? "Tensione di un componente" : undefined
     : undefined

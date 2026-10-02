@@ -191,6 +191,58 @@ test("a KCL error and correction survive the real board and lesson memory", asyn
   })).toBe(wrong?.errorId)
 })
 
+test("KVL and a reversed numeric reference survive the real board and assessment", async ({page}) => {
+  const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
+  await page.goto("/")
+  await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
+  await page.getByRole("button", {name:"Risolvi e verifica"}).click()
+  await expect(page.getByText(/Risultato verificato:.*42\/5 V/)).toBeVisible()
+  await page.getByRole("button", {name:"Aggiungi passaggio"}).click()
+  await page.getByRole("combobox", {name:"Operazione 1"}).selectOption("kvl")
+  await page.getByRole("textbox", {name:"Trascrizione 1"}).fill("4 I + 6 I + 14 = 0")
+  await page.getByRole("textbox", {name:"Nodo 1"}).fill("p")
+  await page.getByRole("textbox", {name:"Termini orientati 1"}).fill("+R1,+R2,+V1")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Primo passaggio da rivedere: 1/)).toBeVisible()
+  const wrong = await page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string;errorId?:string;conceptId?:string;observedStep?:{operation:string;first:string;second:string}}>>
+    }}}}}).__MAESTRO_TEST__
+    const events = await harness?.lessonOs?.current?.store?.readAll() ?? []
+    return events.findLast(item => item.kind === "circuit.trace.assessed")
+  })
+  expect(wrong?.conceptId).toBe("circuit:method:kvl")
+  expect(wrong?.observedStep).toEqual(expect.objectContaining({operation:"kvl",first:"p",second:"+R1,+R2,+V1"}))
+  await page.reload()
+  await expect(page.getByText(/Prova riaperta dalla lavagna/)).toBeVisible()
+  await page.getByRole("button", {name:"Ricalcola e verifica"}).click()
+  await expect(page.getByRole("combobox", {name:"Operazione 1"})).toHaveValue("kvl")
+  await expect(page.getByRole("textbox", {name:"Termini orientati 1"})).toHaveValue("+R1,+R2,+V1")
+  await page.getByRole("textbox", {name:"Termini orientati 1"}).fill("+R1,+R2,-V1")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Valido fin qui/)).toBeVisible()
+  await expect.poll(async () => page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string;correctsErrorId?:string}>>
+    }}}}}).__MAESTRO_TEST__
+    const events = await harness?.lessonOs?.current?.store?.readAll() ?? []
+    return events.findLast(item => item.kind === "circuit.trace.assessed")?.correctsErrorId
+  })).toBe(wrong?.errorId)
+  await page.getByRole("combobox", {name:"Operazione 1"}).selectOption("tensione")
+  await page.getByRole("textbox", {name:"Trascrizione 1"}).fill("V_R2 da 0 a q = -42/5 V")
+  await page.getByRole("textbox", {name:"Primo componente 1"}).fill("R2")
+  await page.getByRole("textbox", {name:"Verso (morsetti) 1"}).fill("0,q")
+  await page.getByRole("textbox", {name:"Valore 1"}).fill("-42/5")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Valido fin qui/)).toBeVisible()
+  await page.reload()
+  await expect(page.getByText(/Prova riaperta dalla lavagna/)).toBeVisible()
+  await page.getByRole("button", {name:"Ricalcola e verifica"}).click()
+  await expect(page.getByRole("textbox", {name:"Verso (morsetti) 1"})).toHaveValue("0,q")
+  await expect(page.getByRole("textbox", {name:"Valore 1"})).toHaveValue("-42/5")
+})
+
 test("the next lesson retrieves the exact prior circuit step without copying its memory", async ({page}) => {
   const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
   await page.goto("/#circuit-lesson-a")

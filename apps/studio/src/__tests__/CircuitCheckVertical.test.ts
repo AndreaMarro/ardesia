@@ -162,6 +162,45 @@ describe("CircuitCheck nel confine Ardesia", () => {
     }
   })
 
+  it("KVL attraversa lavagna, evento e lezione successiva senza perdere la prova", async () => {
+    const proof = readCircuitProof(response, netlist)
+    const inserted = buildCircuitCheckInsert([])!
+    const kvl: CircuitTraceStep = {
+      transcription:"4 I + 6 I + 14 = 0", operation:"kvl", first:"p",
+      second:"+R1,+R2,+V1", claimed_value:null, reading:"clear",
+    }
+    const state = readCircuitState({kind:"circuitcheck-proof-v1",netlist,method:"auto",proof,
+      selectedStep:0,trace:[kvl],diagnosis:null,pendingErrorId:null})
+    expect(state.proof?.fingerprint).toBe(fingerprint)
+    expect(state.trace).toEqual([kvl])
+    const scene = JSON.stringify({elements:[{...inserted.embed,customData:{
+      [EMBED_DATA_KEY]:{owner:"io.ardesia.circuit-reasoning",state},
+    }}]})
+    const log = new InMemoryEventLog()
+    await log.append(await circuitProofEvent(proof,inserted.embedId,1000))
+    const wrong = await circuitTraceEvent(proof,[kvl],{
+      outcome:"first_invalid",step:1,message:"Manca un termine nella maglia",
+      focus:["V1","R1","R2"],circuit_fingerprint:fingerprint,
+    },inserted.embedId,1100)
+    expect(wrong.conceptId).toBe("circuit:method:kvl")
+    expect(wrong.conceptLabels?.it).toBe("KVL nella maglia")
+    expect(wrong.observedStep).toEqual(kvl)
+    await log.append(wrong)
+    const events = await log.readAll()
+    expect((await circuitStudyEvidence(scene,events))[0]?.assessedTrace).toEqual([kvl])
+    const identity = {lessonId:"lesson-a",sessionId:"11111111-1111-4111-8111-111111111111",
+      eventId:"70000000-0000-4000-8000-000000000001",actor:{type:"teacher" as const,id:"synthetic"},
+      producer:{id:"test.circuit",version:"1.0.0",commitSha:"a".repeat(40)},idempotencyKey:null}
+    const envelopes = events.map((event,i) => adaptLegacyLessonOsV1Log(event,{
+      ...identity,eventId:`70000000-0000-4000-8000-${String(i+1).padStart(12,"0")}`,
+    }))
+    expect((await circuitNextLessonEvidence(scene,envelopes,"lesson-a"))).toEqual([
+      expect.objectContaining({embedId:inserted.embedId,errorId:wrong.errorId,
+        observedStep:kvl,corrected:false}),
+    ])
+    expect(buildLessonStudyDigest(envelopes).errors[0]?.conceptId).toBe("circuit:method:kvl")
+  })
+
   it("rifiuta una proiezione semantica parziale o attribuita a un tentativo non valutabile", () => {
     const base = {attemptId:"attempt:a",exerciseId:"circuit:a",labels:{it:"Tentativo"}}
     expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {

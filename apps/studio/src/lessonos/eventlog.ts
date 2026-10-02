@@ -46,7 +46,7 @@ export type Labels = Record<string, string>
 /** Exact teacher-visible fields of one electrically assessed student step. */
 export type ObservedCircuitStep = Readonly<{
   transcription: string
-  operation: "serie" | "parallelo" | "kcl" | "corrente" | "tensione" | "altro"
+  operation: "serie" | "parallelo" | "kcl" | "kvl" | "corrente" | "tensione" | "altro"
   first: string
   second: string
   claimed_value: string | null
@@ -365,7 +365,7 @@ function assertLegacyPayloadField(value: unknown, expected: LegacyPayloadField, 
         typeof step.first === "string" && step.first.length <= 500 &&
         typeof step.second === "string" && step.second.length <= 500 &&
         (step.claimed_value === null || typeof step.claimed_value === "string" && step.claimed_value.length <= 100) &&
-        ["serie", "parallelo", "kcl", "corrente", "tensione", "altro"].includes(String(step.operation)) &&
+        ["serie", "parallelo", "kcl", "kvl", "corrente", "tensione", "altro"].includes(String(step.operation)) &&
         ["clear", "ambiguous", "unreadable"].includes(String(step.reading))) return
   }
   if (expected === "string" && typeof value === "string") return

@@ -152,26 +152,29 @@ export function CircuitCheckEmbed({element, toolLink, host}: {
     </div>}
     {proof && current && <div style={{marginTop:16, borderTop:"1px solid #d0d8df", paddingTop:14}}>
       <h3 style={{margin:"0 0 8px"}}>Procedimento dello studente</h3>
-      <p style={{fontSize:13}}>Puoi controllare riduzioni, KCL al nodo e valori DC di corrente o tensione del circuito originale. Per KCL usa tutti i rami, per esempio -R1,+R2,+R3: + se la corrente esce dal nodo nel verso della netlist. Il valore controllato non certifica il metodo scritto.</p>
-      {state.trace.map((item, i) => {const numeric=item.operation === "corrente" || item.operation === "tensione",kcl=item.operation === "kcl";return <fieldset key={i} style={{border:"1px solid #d0d8df", borderRadius:8, marginBottom:8}}>
+      <p style={{fontSize:13}}>Puoi controllare riduzioni, KCL al nodo, KVL nella maglia e valori DC di corrente o tensione del circuito originale. Per KCL usa tutti i rami, per esempio -R1,+R2,+R3: + se la corrente esce dal nodo nel verso della netlist. Per KVL indica il nodo di partenza e le tensioni orientate di una maglia chiusa, per esempio +R1,+R2,-V1. Per un valore numerico puoi dichiarare il verso con i due morsetti, per esempio q,p. Il valore controllato non certifica il metodo scritto.</p>
+      {state.trace.map((item, i) => {const numeric=item.operation === "corrente" || item.operation === "tensione",kcl=item.operation === "kcl",kvl=item.operation === "kvl",law=kcl || kvl;return <fieldset key={i} style={{border:"1px solid #d0d8df", borderRadius:8, marginBottom:8}}>
         <legend>Passaggio {i+1}</legend>
         <label>Trascrizione<input style={field} aria-label={`Trascrizione ${i+1}`} value={item.transcription}
           onChange={event => patchTrace(i,{transcription:event.target.value})}/></label>
         <div style={{display:"flex", flexWrap:"wrap", gap:7, marginTop:6}}>
           <select aria-label={`Operazione ${i+1}`} value={item.operation} style={field}
             onChange={event => {const operation=event.target.value as CircuitTraceStep["operation"];patchTrace(i,{operation,
-              first:operation === "kcl" ? "" : item.first,
-              second:["kcl","corrente","tensione"].includes(operation) ? "" : item.second,
-              claimed_value:operation === "kcl" ? null : item.claimed_value})}}>
+              first:["kcl","kvl"].includes(operation) ? "" : item.first,
+              second:["kcl","kvl","corrente","tensione"].includes(operation) ? "" : item.second,
+              claimed_value:["kcl","kvl"].includes(operation) ? null : item.claimed_value})}}>
             <option value="serie">Serie</option><option value="parallelo">Parallelo</option>
-            <option value="kcl">KCL al nodo</option><option value="corrente">Corrente componente</option>
+            <option value="kcl">KCL al nodo</option><option value="kvl">KVL nella maglia</option>
+            <option value="corrente">Corrente componente</option>
             <option value="tensione">Tensione componente</option><option value="altro">Altro</option>
           </select>
-          <input aria-label={`Primo componente ${i+1}`} placeholder={kcl ? "Nodo" : "R1"} style={field} value={item.first}
+          <input aria-label={kvl ? `Nodo ${i+1}` : `Primo componente ${i+1}`} placeholder={law ? kvl ? "Nodo iniziale" : "Nodo" : "R1"} style={field} value={item.first}
             onChange={event => patchTrace(i,{first:event.target.value})}/>
-          {!numeric && <input aria-label={`Secondo componente ${i+1}`} placeholder={kcl ? "-R1,+R2,+R3" : "R2"} style={field} value={item.second}
-            onChange={event => patchTrace(i,{second:event.target.value})}/>}
-          {!kcl && <input aria-label={`Valore ${i+1}`} placeholder={numeric ? item.operation === "corrente" ? "A" : "V" : "Ω"} style={field} value={item.claimed_value ?? ""}
+          <input aria-label={numeric ? `Verso (morsetti) ${i+1}` : kvl ? `Termini orientati ${i+1}` : `Secondo componente ${i+1}`}
+            placeholder={kcl ? "-R1,+R2,+R3" : kvl ? "+R1,+R2,-V1" : numeric ? "q,p (facoltativo)" : "R2"}
+            style={field} value={item.second}
+            onChange={event => patchTrace(i,{second:event.target.value})}/>
+          {!law && <input aria-label={`Valore ${i+1}`} placeholder={numeric ? item.operation === "corrente" ? "A" : "V" : "Ω"} style={field} value={item.claimed_value ?? ""}
             onChange={event => patchTrace(i,{claimed_value:event.target.value || null})}/>}
         </div>
         <label>Leggibilità<select style={field} value={item.reading}
