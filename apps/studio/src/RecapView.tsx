@@ -188,7 +188,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
   const reviewEvents = reviewEventsResult?.store === store && reviewEventsResult.room === room
     ? reviewEventsResult.events : []
   const reviewStatus = currentRevision
-    ? recapReviewStatus(reviewEvents,room,currentRevision) : {approved:false,reviewer:null}
+    ? recapReviewStatus(reviewEvents,room,currentRevision) : {approved:false,reviewer:null,flagged:false}
 
   /** Rebuild from the current board, journal and canonical log before any review/export. */
   async function liveMaterial(log: IndexedDbEventLog) {
@@ -204,7 +204,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
       sha:await recapRevisionSha256(html)}
   }
 
-  async function handleReview(action:"approve"|"revise") {
+  async function handleReview(action:"approve"|"revise"|"reject"|"flag") {
     setReviewError("")
     if (!currentRevision || !recapHtml) return
     setReviewBusy(true)
@@ -447,6 +447,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
                   <p role="status">{reviewStatus.approved
                     ? `Revisione approvata da ${reviewStatus.reviewer} per questa versione del recap.`
                     : "Materiale da revisionare prima della consegna."}</p>
+                  {reviewStatus.flagged && <p>Problema segnalato per questa versione: consulta la nota nella memoria della lezione.</p>}
                   {currentRevision && <p className="st-quiet">Revisione {currentRevision.slice(0,12)}…</p>}
                   <label>Nome docente <input value={reviewer} maxLength={100}
                     onChange={event=>setReviewer(event.target.value)} /></label>
@@ -457,6 +458,10 @@ export default function RecapView({ store, room }: RecapViewProps) {
                       onClick={()=>void handleReview("approve")}>Approva questa versione</button>
                     <button type="button" className="st-ghost" disabled={reviewBusy || !currentRevision || !reviewer.trim()}
                       onClick={()=>void handleReview("revise")}>Richiedi revisione</button>
+                    <button type="button" className="st-ghost" disabled={reviewBusy || !currentRevision || !reviewer.trim()}
+                      onClick={()=>void handleReview("flag")}>Segnala un problema</button>
+                    <button type="button" className="st-ghost" disabled={reviewBusy || !currentRevision || !reviewer.trim()}
+                      onClick={()=>void handleReview("reject")}>Rifiuta questa versione</button>
                   </div>
                 </div>
                 <iframe

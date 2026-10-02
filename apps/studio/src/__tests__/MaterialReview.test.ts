@@ -29,6 +29,8 @@ describe("revisione del recap Ardesia", () => {
     expect(recapReviewStatus([approved],"lesson-b",sha).approved).toBe(false)
     expect(recapReviewStatus([approved,event("lesson-a","revise",sha,2)],"lesson-a",sha).approved).toBe(false)
     expect(recapReviewStatus([approved,event("lesson-a","flag",sha,3)],"lesson-a",sha).approved).toBe(true)
+    expect(recapReviewStatus([approved,event("lesson-a","flag",sha,3)],"lesson-a",sha).flagged).toBe(true)
+    expect(recapReviewStatus([approved,event("lesson-a","flag",sha,3)],"lesson-a","c".repeat(64)).flagged).toBe(false)
     expect(recapReviewStatus([{...approved,actor:{type:"teacher",id:"altro"}}],"lesson-a",sha).approved).toBe(false)
     expect(recapReviewStatus([{...approved,evidence:[{ref:"material:recap:lesson-a",resolution:"missing"}]}],
       "lesson-a",sha).approved).toBe(false)

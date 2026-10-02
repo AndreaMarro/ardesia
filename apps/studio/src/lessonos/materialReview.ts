@@ -45,10 +45,11 @@ export async function recapRevisionSha256(html: string): Promise<string> {
 /** TeacherReviewSet semantics over the lesson's canonical append-only events. */
 export function recapReviewStatus(
   events: readonly AnyEventEnvelopeV2[], lessonId: string, revisionSha256: string,
-): Readonly<{approved:boolean;reviewer:string|null}> {
+): Readonly<{approved:boolean;reviewer:string|null;flagged:boolean}> {
   const materialId = `recap:${lessonId}`
   let reviewer: string | null = null
   let blocked = false
+  let flagged = false
   for (const event of events) {
     if (event.kind !== "material.reviewed" || event.lessonId !== lessonId) continue
     assertLessonOsEnvelopePayload(event.kind,event.payload)
@@ -57,7 +58,8 @@ export function recapReviewStatus(
         event.actor.type !== "teacher" || event.actor.id !== encodeURIComponent(String(payload.reviewer)) ||
         !event.evidence.some(item => item.ref === `material:${materialId}` && item.resolution === "verified")) continue
     if (payload.action === "revise" || payload.action === "reject") blocked = true
+    if (payload.action === "flag") flagged = true
     if (payload.action === "approve") reviewer = String(payload.reviewer)
   }
-  return {approved:reviewer !== null && !blocked,reviewer:blocked ? null : reviewer}
+  return {approved:reviewer !== null && !blocked,reviewer:blocked ? null : reviewer,flagged}
 }

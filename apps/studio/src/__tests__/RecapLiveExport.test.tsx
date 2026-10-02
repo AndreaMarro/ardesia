@@ -148,6 +148,26 @@ describe("RecapView live export authority", () => {
     expect((await recapRevisionSha256(await downloads.at(-1)!.text()))).not.toBe(review?.payload.revisionSha256)
   })
 
+  it("keeps a flag visible and records rejection on the exact reviewed revision", async () => {
+    const {store,writer} = await setup()
+    await showRecap(store)
+    fireEvent.change(screen.getByLabelText("Nome docente"),{target:{value:"Prof. Rossi"}})
+    const flag = screen.getByRole("button",{name:"Segnala un problema"})
+    await waitFor(() => expect((flag as HTMLButtonElement).disabled).toBe(false))
+    fireEvent.change(screen.getByLabelText("Nota di revisione"),{target:{value:"Controllare il verso del ramo"}})
+    fireEvent.click(flag)
+    await waitFor(() => expect(screen.getByText(/Problema segnalato/)).toBeTruthy())
+    fireEvent.click(screen.getByRole("button",{name:"Approva questa versione"}))
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("approvata da Prof. Rossi"))
+    fireEvent.click(screen.getByRole("button",{name:"Rifiuta questa versione"}))
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("da revisionare"))
+    const events = await writer.readEnvelopesByLesson(ROOM)
+    expect(events.filter(event => event.kind === "material.reviewed").map(event => event.payload.action))
+      .toEqual(["flag","approve","reject"])
+    expect(new Set(events.filter(event => event.kind === "material.reviewed")
+      .map(event => event.payload.revisionSha256)).size).toBe(1)
+  })
+
   it("exports the same current memory as SavedLessonsView, including facts appended after preview", async () => {
     const { store, writer } = await setup()
     await writer.appendEnvelope(fact(ROOM, "OWN INITIAL"))
