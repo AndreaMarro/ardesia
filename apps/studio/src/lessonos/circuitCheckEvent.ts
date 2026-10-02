@@ -5,11 +5,15 @@ const exerciseId = (proof: CircuitProof): string => `circuit:${proof.fingerprint
 
 /** Exercise-level facts only. The board scene holds the raw proof and attempt. */
 export function circuitProofEvent(proof: CircuitProof, embedId: string, t: number): LessonOsEvent {
+  if (proof.scope !== "electrical_result" || !proof.verification || !proof.lessonBuild) {
+    throw new Error("La prova CircuitCheck non conserva lo scope della verifica.")
+  }
   return {
     kind: "circuit.proof.verified", exerciseId: exerciseId(proof),
     circuitFingerprint: proof.fingerprint, embedId,
     answerExact: proof.answer.exact, unit: proof.answer.unit,
     engineRevision: proof.sourceSha,
+    verificationScope: proof.scope, lessonBuild: proof.lessonBuild,
     labels: { it: `${proof.title}: ${proof.answer.exact} ${proof.answer.unit}` },
     t, evidence: [`board:${embedId}`],
   }

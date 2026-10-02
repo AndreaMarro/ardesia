@@ -10,8 +10,14 @@ export type CircuitStep = Readonly<{
 }>
 
 export type CircuitProof = Readonly<{
+  schema: "circuit-proof.v2"
+  /** Persisted proof is historical until the service re-solves this revision. */
+  scope: "electrical_result" | "legacy_unrecorded"
   fingerprint: string
   sourceSha: string
+  lessonBuild: string | null
+  verification: Readonly<{electrical_claim:"VERIFIED";backend:"CLOSED";lesson:"exact-answer-crosscheck";product_verified:false}> | null
+  inputProvenance: Readonly<{source_kind:"image";source_sha256:string;circuit_sha256:string;confirmed_at_unix:number}> | null
   netlist: string
   title: string
   method: string
@@ -55,13 +61,10 @@ const object = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null && !Array.isArray(v)
 const string = (v: unknown, max: number): v is string => typeof v === "string" && v.length <= max
 
-/** Accept only a solved answer explicitly verified by the canonical service. */
-export function readCircuitProof(value: unknown, requestedNetlist: string): CircuitProof {
+function readProofFields(value: unknown, requestedNetlist: string): Pick<CircuitProof,"fingerprint"|"sourceSha"|"netlist"|"title"|"method"|"answer"|"steps"> {
   if (!object(value)) throw new Error("CircuitCheck non ha restituito una soluzione verificata per questo circuito.")
   if (JSON.stringify(value).length > 1_500_000) throw new Error("La prova CircuitCheck supera il limite della lavagna.")
-  if (value.outcome !== "solved" || value.netlist !== requestedNetlist ||
-      !object(value.verification) || value.verification.electrical_claim !== "VERIFIED" ||
-      value.verification.backend !== "CLOSED" || !object(value.answer) ||
+  if (value.netlist !== requestedNetlist || !object(value.answer) ||
       !string(value.fingerprint, 64) || !/^[a-f0-9]{64}$/.test(value.fingerprint) ||
       !string(value.source_sha, 100) || !string(value.title, 240) || !string(value.method, 40) ||
       !string(value.answer.exact, 200) || !string(value.answer.unit, 20) ||
@@ -83,6 +86,38 @@ export function readCircuitProof(value: unknown, requestedNetlist: string): Circ
     netlist: requestedNetlist, title: value.title, method: value.method,
     answer: { exact: value.answer.exact, unit: value.answer.unit,
       reference: value.answer.reference }, steps }
+}
+
+function readProvenance(value: unknown, fingerprint: string): CircuitProof["inputProvenance"] {
+  if (value === undefined || value === null) return null
+  if (!object(value) || value.source_kind !== "image" ||
+      typeof value.source_sha256 !== "string" || !/^[a-f0-9]{64}$/.test(value.source_sha256) ||
+      value.circuit_sha256 !== fingerprint || !Number.isInteger(value.confirmed_at_unix) ||
+      Number(value.confirmed_at_unix) <= 0) {
+    throw new Error("La provenienza fotografica non appartiene alla revisione CircuitCheck.")
+  }
+  return {source_kind:"image",source_sha256:value.source_sha256,
+    circuit_sha256:value.circuit_sha256,confirmed_at_unix:value.confirmed_at_unix as number}
+}
+
+function isElectricalVerification(value: unknown): value is NonNullable<CircuitProof["verification"]> {
+  return object(value) && value.electrical_claim === "VERIFIED" &&
+    value.backend === "CLOSED" && value.lesson === "exact-answer-crosscheck" &&
+    value.product_verified === false
+}
+
+/** Accept only the service's actual electrical claim and preserve its limited scope. */
+export function readCircuitProof(value: unknown, requestedNetlist: string): CircuitProof {
+  if (!object(value) || value.outcome !== "solved" || !isElectricalVerification(value.verification)) {
+    throw new Error("CircuitCheck non ha restituito una soluzione verificata per questo circuito.")
+  }
+  const fields = readProofFields(value, requestedNetlist)
+  if (typeof value.lesson_build !== "string" || !/^[a-f0-9]{64}$/.test(value.lesson_build)) {
+    throw new Error("La revisione della lezione CircuitCheck non è verificabile.")
+  }
+  return {...fields, schema:"circuit-proof.v2", scope:"electrical_result",
+    lessonBuild:value.lesson_build, verification:{...value.verification},
+    inputProvenance:readProvenance(value.input_provenance, fields.fingerprint)}
 }
 
 export function readCircuitDiagnosis(value: unknown, fingerprint: string): CircuitDiagnosis {
@@ -107,13 +142,23 @@ export function readCircuitState(value: unknown): CircuitEmbedState {
     ["serie", "parallelo", "altro"].includes(String(step.operation)) &&
     ["clear", "ambiguous", "unreadable"].includes(String(step.reading)))
   if (!validTrace) return emptyCircuitState()
-  // A persisted proof is historical evidence only. The UI re-solves before calling it current.
+  // A persisted proof is historical evidence only. Legacy v1 had discarded the
+  // verification scope: keep it readable without manufacturing a VERIFIED claim.
   let proof: CircuitProof | null = null
-  try { if (value.proof !== null) proof = readCircuitProof({
-    ...(object(value.proof) ? value.proof : {}), outcome: "solved", netlist: value.netlist,
-    verification: { electrical_claim: "VERIFIED", backend: "CLOSED" },
-    source_sha: object(value.proof) ? value.proof.sourceSha : null,
-  }, value.netlist) } catch { proof = null }
+  try {
+    if (object(value.proof)) {
+      const raw = value.proof
+      const fields = readProofFields({...raw, source_sha:raw.sourceSha}, value.netlist)
+      const scoped = raw.schema === "circuit-proof.v2" && raw.scope === "electrical_result" &&
+        isElectricalVerification(raw.verification) &&
+        typeof raw.lessonBuild === "string" && /^[a-f0-9]{64}$/.test(raw.lessonBuild)
+      proof = {...fields, schema:"circuit-proof.v2",
+        scope:scoped ? "electrical_result" : "legacy_unrecorded",
+        lessonBuild:scoped ? raw.lessonBuild as string : null,
+        verification:scoped ? {...raw.verification as NonNullable<CircuitProof["verification"]>} : null,
+        inputProvenance:scoped ? readProvenance(raw.inputProvenance, fields.fingerprint) : null}
+    }
+  } catch { proof = null }
   return { kind: "circuitcheck-proof-v1", netlist: value.netlist, method: value.method,
     proof, selectedStep: value.selectedStep as number, trace: value.trace as CircuitTraceStep[],
     diagnosis: null }

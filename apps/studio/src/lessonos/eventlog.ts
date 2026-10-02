@@ -101,6 +101,8 @@ export type LessonOsEvent =
       answerExact: string
       unit: string
       engineRevision: string
+      verificationScope?: "electrical_result"
+      lessonBuild?: string
       labels: Labels
     })
   | (BaseEvent & {
@@ -296,6 +298,7 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
       exerciseId: "string", circuitFingerprint: "string", embedId: "string",
       answerExact: "string", unit: "string", engineRevision: "string", labels: "labels",
     },
+    optional: {verificationScope:"string",lessonBuild:"string"},
   },
   "circuit.trace.assessed": {
     required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
@@ -358,6 +361,14 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
   for (const [key, expected] of Object.entries(rule.optional ?? {})) {
     if (Object.prototype.hasOwnProperty.call(payload, key)) {
       assertLegacyPayloadField(payload[key], expected, `${factualKind}.${key}`)
+    }
+  }
+  if (factualKind === "circuit.proof.verified") {
+    const scoped = Object.prototype.hasOwnProperty.call(payload,"verificationScope")
+    const built = Object.prototype.hasOwnProperty.call(payload,"lessonBuild")
+    if (scoped !== built || scoped && (payload.verificationScope !== "electrical_result" ||
+        typeof payload.lessonBuild !== "string" || !/^[a-f0-9]{64}$/.test(payload.lessonBuild))) {
+      throw new Error("LessonOS event log: scope CircuitCheck incompleto o non supportato")
     }
   }
   if (factualKind === "circuit.trace.assessed") {

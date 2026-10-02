@@ -15,9 +15,10 @@ import { buildRecapHtml } from "../store/recapHtml"
 const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
 const fingerprint = "e".repeat(64)
 const response = {
-  outcome: "solved", netlist, fingerprint, source_sha: "a".repeat(40),
+  outcome: "solved", netlist, fingerprint, source_sha: "a".repeat(40), lesson_build:"b".repeat(64),
   title: "Tensione di R2", method: "divider",
-  verification: { electrical_claim: "VERIFIED", backend: "CLOSED" },
+  verification: { electrical_claim: "VERIFIED", backend: "CLOSED",
+    lesson: "exact-answer-crosscheck", product_verified: false },
   answer: { exact: "42/5", unit: "V", reference: "q → 0" },
   steps: [{ title: "Riduciamo", explanation: "R1 e R2 sono in serie.",
     svg: '<svg xmlns="http://www.w3.org/2000/svg"></svg>', equations: ["R1+R2=10 Ω"] }],
@@ -31,6 +32,15 @@ describe("CircuitCheck nel confine Ardesia", () => {
   it("rifiuta risultati senza verifica elettrica o riferiti a un altro circuito", () => {
     expect(() => readCircuitProof({...response, verification: {electrical_claim:"UNVERIFIED",backend:"CLOSED"}}, netlist)).toThrow(/verificata/)
     expect(() => readCircuitProof(response, netlist.replace("14", "15"))).toThrow(/verificata/)
+    expect(() => readCircuitProof({...response, verification:{electrical_claim:"VERIFIED",backend:"CLOSED"}}, netlist)).toThrow(/verificata/)
+    const proof = readCircuitProof(response, netlist)
+    expect(proof.schema).toBe("circuit-proof.v2")
+    expect(proof.scope).toBe("electrical_result")
+    expect(proof.verification).toEqual(response.verification)
+    const photo = {source_kind:"image",source_sha256:"c".repeat(64),
+      circuit_sha256:fingerprint,confirmed_at_unix:1780000000}
+    expect(readCircuitProof({...response,input_provenance:photo},netlist).inputProvenance).toEqual(photo)
+    expect(() => readCircuitProof({...response,input_provenance:{...photo,circuit_sha256:"d".repeat(64)}},netlist)).toThrow(/provenienza/)
   })
 
   it("l'oggetto della lavagna è posseduto, distinto per istanza e riapre come prova storica", () => {
@@ -44,8 +54,12 @@ describe("CircuitCheck nel confine Ardesia", () => {
     const stored = readCircuitState({kind:"circuitcheck-proof-v1",netlist,method:"auto",proof,
       selectedStep:0,trace,diagnosis:{outcome:"valid_so_far"}})
     expect(stored.proof?.answer.exact).toBe("42/5")
+    expect(stored.proof?.scope).toBe("electrical_result")
     expect(stored.diagnosis).toBeNull() // una vecchia diagnosi non è corrente
     expect(readCircuitState({...stored, trace:[{operation:"nonsense"}]}).proof).toBeNull()
+    const legacy = readCircuitState({...stored, proof:{...proof, schema:undefined, scope:undefined, verification:undefined}})
+    expect(legacy.proof?.answer.exact).toBe("42/5")
+    expect(legacy.proof?.scope).toBe("legacy_unrecorded")
   })
 
   it("il primo passo errato alimenta il digest con il metodo osservato, senza inventare padronanza", async () => {
@@ -99,6 +113,11 @@ describe("CircuitCheck nel confine Ardesia", () => {
       ...base,outcome:"not_assessable",firstInvalidStep:1,errorId:"error:a",
       conceptId:"circuit:method:serie",conceptLabels:{it:"Riduzione in serie"},
     })).toThrow(/primo passaggio valutato/)
+    expect(() => assertLessonOsEnvelopePayload("circuit.proof.verified", {
+      exerciseId:"circuit:a",circuitFingerprint:fingerprint,embedId:"board:a",
+      answerExact:"42/5",unit:"V",engineRevision:"a".repeat(40),labels:{it:"Risultato"},
+      verificationScope:"electrical_result",
+    })).toThrow(/scope CircuitCheck/)
   })
 
   it("il materiale stampabile usa solo la prova e il tentativo che coincidono con gli eventi della lezione", async () => {
@@ -130,5 +149,15 @@ describe("CircuitCheck nel confine Ardesia", () => {
     expect(html).toContain("R1+R2=10 Ω")
     const changed = scene.replace("42/5", "42/4")
     expect(await circuitStudyEvidence(changed, await log.readAll())).toEqual([])
+    const legacy = scene.replace('"schema":"circuit-proof.v2"','"schema":"circuit-proof.v1"')
+    expect(await circuitStudyEvidence(legacy, await log.readAll())).toEqual([])
+    const olderEvents = (await log.readAll()).map(event => {
+      if (event.kind !== "circuit.proof.verified") return event
+      const old = {...event}
+      delete old.verificationScope
+      delete old.lessonBuild
+      return old
+    })
+    expect(await circuitStudyEvidence(scene, olderEvents)).toEqual([])
   })
 })

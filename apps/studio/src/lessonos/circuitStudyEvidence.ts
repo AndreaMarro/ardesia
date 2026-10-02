@@ -31,11 +31,12 @@ export async function circuitStudyEvidence(
     if (marker.owner !== CIRCUIT_CHECK_TOOL_ID) continue
     const state = readCircuitState(marker.state)
     const proof = state.proof
-    if (!proof) continue
+    if (!proof || proof.scope !== "electrical_result") continue
     const source = events.find(event => event.kind === "circuit.proof.verified" &&
       event.embedId === element.id && event.circuitFingerprint === proof.fingerprint &&
       event.answerExact === proof.answer.exact && event.unit === proof.answer.unit &&
-      event.engineRevision === proof.sourceSha && event.evidence.includes(`board:${element.id}`))
+      event.engineRevision === proof.sourceSha && event.verificationScope === proof.scope &&
+      event.lessonBuild === proof.lessonBuild && event.evidence.includes(`board:${element.id}`))
     if (!source) continue
 
     let assessedTrace: readonly CircuitTraceStep[] = []
