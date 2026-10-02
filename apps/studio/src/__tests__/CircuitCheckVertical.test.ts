@@ -4,8 +4,9 @@ import {
   type CircuitTraceStep,
 } from "../toolhost/circuitCheckAdapter"
 import { circuitProofEvent, circuitTraceEvent } from "../lessonos/circuitCheckEvent"
-import { InMemoryEventLog } from "../lessonos/eventlog"
+import { adaptLegacyLessonOsV1Log, assertLessonOsEnvelopePayload, InMemoryEventLog } from "../lessonos/eventlog"
 import { materialize } from "../lessonos/materializer"
+import { buildLessonStudyDigest, buildStudyDigest } from "../lessonos/studyDigest"
 import { buildCircuitCheckInsert, parseToolLink } from "../toolhost/ToolCanvasEmbeddable"
 import { EMBED_DATA_KEY, embedOwner } from "../toolhost/caps/board"
 import { circuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
@@ -47,7 +48,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
     expect(readCircuitState({...stored, trace:[{operation:"nonsense"}]}).proof).toBeNull()
   })
 
-  it("il log conserva prova e tentativo con riferimenti alla lavagna, senza inventare una competenza", async () => {
+  it("il primo passo errato alimenta il digest con il metodo osservato, senza inventare padronanza", async () => {
     const proof = readCircuitProof(response, netlist)
     const diagnosis = readCircuitDiagnosis({outcome:"first_invalid", step:1,
       message:"La riduzione cambia i nodi", focus:["R1","R2"], circuit_fingerprint:fingerprint}, fingerprint)
@@ -57,10 +58,47 @@ describe("CircuitCheck nel confine Ardesia", () => {
     await log.append(await circuitTraceEvent(proof, trace, diagnosis, "circuit-reasoning", 1100))
     const graph = materialize(await log.readAll())
     const attempt = [...graph.nodes.keys()].find(key => key.startsWith("circuit-attempt:"))!
+    const digest = buildStudyDigest(graph)
     expect(graph.nodes.get(`circuit:${fingerprint}`)?.evidenceRefs).toContain("board:circuit-reasoning")
     expect(graph.edges).toContainEqual(expect.objectContaining({from:attempt,to:`circuit:${fingerprint}`,kind:"deriva-da"}))
-    expect([...graph.nodes.values()].every(node => node.kind !== "concetto")).toBe(true)
+    expect(digest.concepts).toEqual([expect.objectContaining({id:"circuit:method:serie",label:"Riduzione in serie"})])
+    expect(digest.errors).toEqual([expect.objectContaining({
+      id:`${attempt}:error`, conceptId:"circuit:method:serie", corrected:false,
+      evidence:["board:circuit-reasoning"],
+    })])
+    expect(digest.errors[0]?.label).toContain("La riduzione cambia i nodi")
+    const identity = {lessonId:"lesson:circuit",sessionId:"11111111-1111-4111-8111-111111111111",
+      eventId:"70000000-0000-4000-8000-000000000001",actor:{type:"teacher" as const,id:"synthetic"},
+      producer:{id:"test.circuit",version:"1.0.0",commitSha:"a".repeat(40)},idempotencyKey:null}
+    const envelopes = (await log.readAll()).map((event,i) => adaptLegacyLessonOsV1Log(event, {
+      ...identity,eventId:`70000000-0000-4000-8000-${String(i+1).padStart(12,"0")}`,
+    }))
+    expect(buildLessonStudyDigest(envelopes)).toEqual(digest)
     expect((await log.readAll()).map(item => item.kind)).toEqual(["circuit.proof.verified","circuit.trace.assessed"])
+  })
+
+  it("un tentativo valido fin qui o non valutabile non diventa errore o competenza", async () => {
+    const proof = readCircuitProof(response, netlist)
+    for (const outcome of ["valid_so_far", "not_assessable"] as const) {
+      const log = new InMemoryEventLog()
+      await log.append(circuitProofEvent(proof, "circuit-reasoning", 1000))
+      await log.append(await circuitTraceEvent(proof, trace, {
+        outcome, step:null, message:"Ancora nessuna diagnosi di errore", focus:[],
+        circuit_fingerprint:fingerprint,
+      }, "circuit-reasoning", 1100))
+      expect(buildStudyDigest(materialize(await log.readAll()))).toEqual({concepts:[],errors:[]})
+    }
+  })
+
+  it("rifiuta una proiezione semantica parziale o attribuita a un tentativo non valutabile", () => {
+    const base = {attemptId:"attempt:a",exerciseId:"circuit:a",labels:{it:"Tentativo"}}
+    expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
+      ...base,outcome:"first_invalid",firstInvalidStep:1,errorId:"error:a",
+    })).toThrow(/metodo completo/)
+    expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
+      ...base,outcome:"not_assessable",firstInvalidStep:1,errorId:"error:a",
+      conceptId:"circuit:method:serie",conceptLabels:{it:"Riduzione in serie"},
+    })).toThrow(/primo passaggio valutato/)
   })
 
   it("il materiale stampabile usa solo la prova e il tentativo che coincidono con gli eventi della lezione", async () => {

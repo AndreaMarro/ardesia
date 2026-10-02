@@ -44,6 +44,7 @@ _CONCEPT_YIELDING = frozenset({
     "exercise.completed",
     "simulation.step.completed",
     "simulation.circuit.solved",
+    "circuit.trace.assessed",
 })
 _ERROR_YIELDING = frozenset({
     "error.observed",
@@ -317,6 +318,32 @@ def project_lessonos_study_digest(
             concept_id = payload.get("conceptId")
             if isinstance(concept_id, str) and concept_id:
                 ensure_concept(concept_id, {}, refs, line_no)
+        elif kind == "circuit.trace.assessed":
+            attempt_id = _require_str(payload, "attemptId", line_no, kind)
+            _require_str(payload, "exerciseId", line_no, kind)
+            claim_role(attempt_id, "esercizio", line_no)
+            semantic = {"errorId", "conceptId", "conceptLabels"} & payload.keys()
+            if semantic:
+                step = payload.get("firstInvalidStep")
+                if (len(semantic) != 3 or payload.get("outcome") != "first_invalid"
+                        or type(step) is not int or step < 1):
+                    raise _fail(line_no, "malformed CircuitCheck first-invalid-step evidence")
+                error_id = _require_str(payload, "errorId", line_no, kind)
+                concept_id = _require_str(payload, "conceptId", line_no, kind)
+                method_labels = payload["conceptLabels"]
+                if not isinstance(method_labels, dict) or any(
+                    not isinstance(value, str) for value in method_labels.values()
+                ):
+                    raise _fail(line_no, "malformed CircuitCheck conceptLabels")
+                claim_role(error_id, "errore", line_no)
+                if error_id not in error_labels:
+                    error_labels[error_id] = dict(labels)
+                    error_evidence[error_id] = list(refs)
+                    error_concept[error_id] = concept_id
+                else:
+                    error_labels[error_id] = merge_labels(error_labels[error_id], labels)
+                    merge_evidence(error_evidence[error_id], refs)
+                ensure_concept(concept_id, method_labels, refs, line_no)
 
     concepts = tuple(
         StudyConcept(

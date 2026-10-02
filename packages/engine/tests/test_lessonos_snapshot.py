@@ -80,6 +80,38 @@ def _correct(exid: str, corrects: str, t: str) -> dict:
 
 
 class TestLessonOsStudyDigest:
+    def test_circuit_first_invalid_step_matches_studio_digest(self) -> None:
+        base = {
+            "attemptId": "circuit-attempt:example:abc", "exerciseId": "circuit:example",
+            "labels": {"it": "Tentativo: primo passaggio da rivedere 1"},
+        }
+        invalid = _env("circuit.trace.assessed", "2026-08-01T00:00:00.000Z", {
+            **base, "outcome": "first_invalid", "firstInvalidStep": 1,
+            "errorId": "circuit-attempt:example:abc:error",
+            "conceptId": "circuit:method:serie",
+            "conceptLabels": {"it": "Riduzione in serie"},
+        })
+        invalid["evidence"] = [{"ref": "board:circuit-reasoning", "resolution": "verified"}]
+        uncertain = _env("circuit.trace.assessed", "2026-08-01T00:01:00.000Z", {
+            **base, "attemptId": "circuit-attempt:example:def", "outcome": "not_assessable",
+        })
+        digest = project_lessonos_study_digest(_snapshot(invalid, uncertain), L)
+        assert [(c.id, c.label, c.evidence_refs) for c in digest.concepts] == [
+            ("circuit:method:serie", "Riduzione in serie", ("board:circuit-reasoning",)),
+        ]
+        assert [(e.id, e.concept_id, e.corrected, e.evidence_refs) for e in digest.errors] == [
+            ("circuit-attempt:example:abc:error", "circuit:method:serie", False,
+             ("board:circuit-reasoning",)),
+        ]
+
+    def test_circuit_partial_semantic_claim_fails_closed(self) -> None:
+        row = _env("circuit.trace.assessed", "2026-08-01T00:00:00.000Z", {
+            "attemptId": "attempt:a", "exerciseId": "circuit:a", "outcome": "first_invalid",
+            "firstInvalidStep": 1, "errorId": "error:a", "labels": {"it": "Tentativo"},
+        })
+        with pytest.raises(ValueError, match="CircuitCheck"):
+            project_lessonos_study_digest(_snapshot(row), L)
+
     def test_t2_empty_relevant_projection_is_available_empty(self) -> None:
         snap = _snapshot(
             _env("lesson.started", "2026-08-01T00:00:00.000Z",

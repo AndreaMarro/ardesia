@@ -110,6 +110,10 @@ export type LessonOsEvent =
       exerciseId: string
       outcome: "first_invalid" | "valid_so_far" | "not_assessable"
       firstInvalidStep?: number
+      /** Solo per un passaggio chiaramente valutato: metodo dichiarato, non diagnosi di padronanza. */
+      errorId?: string
+      conceptId?: string
+      conceptLabels?: Labels
       labels: Labels
     })
   | (BaseEvent & {
@@ -295,7 +299,7 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
   },
   "circuit.trace.assessed": {
     required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
-    optional: { firstInvalidStep: "number" },
+    optional: { firstInvalidStep: "number", errorId: "string", conceptId: "string", conceptLabels: "labels" },
   },
   "simulation.error.observed": {
     required: { errorId: "string", conceptId: "string", labels: "labels" },
@@ -354,6 +358,15 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
   for (const [key, expected] of Object.entries(rule.optional ?? {})) {
     if (Object.prototype.hasOwnProperty.call(payload, key)) {
       assertLegacyPayloadField(payload[key], expected, `${factualKind}.${key}`)
+    }
+  }
+  if (factualKind === "circuit.trace.assessed") {
+    const semantic = ["errorId", "conceptId", "conceptLabels"].filter(key => Object.prototype.hasOwnProperty.call(payload, key))
+    if (semantic.length !== 0 && (semantic.length !== 3 || payload.outcome !== "first_invalid" ||
+        !Number.isInteger(payload.firstInvalidStep) || Number(payload.firstInvalidStep) < 1 ||
+        typeof payload.errorId !== "string" || payload.errorId.length === 0 ||
+        typeof payload.conceptId !== "string" || payload.conceptId.length === 0)) {
+      throw new Error("LessonOS event log: errore CircuitCheck senza primo passaggio valutato e metodo completo")
     }
   }
 }

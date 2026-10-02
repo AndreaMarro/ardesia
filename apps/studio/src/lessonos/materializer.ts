@@ -187,6 +187,12 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
         if (nodes.get(ev.exerciseId)?.kind === "esercizio") {
           addEdge(ev.attemptId, ev.exerciseId, "deriva-da", ev.evidence, ev.t)
         }
+        if (ev.outcome === "first_invalid" && ev.errorId && ev.conceptId && ev.conceptLabels) {
+          upsertNode(ev.errorId, "errore", ev.labels, ev.evidence, ev.t)
+          upsertNode(ev.conceptId, "concetto", ev.conceptLabels, ev.evidence, ev.t)
+          addEdge(ev.errorId, ev.conceptId, "deriva-da", ev.evidence, ev.t)
+          addEdge(ev.errorId, ev.attemptId, "deriva-da", ev.evidence, ev.t)
+        }
         break
       }
 
