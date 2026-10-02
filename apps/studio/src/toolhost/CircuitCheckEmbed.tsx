@@ -150,27 +150,33 @@ export function CircuitCheckEmbed({element, toolLink, host}: {
     </div>}
     {proof && current && <div style={{marginTop:16, borderTop:"1px solid #d0d8df", paddingTop:14}}>
       <h3 style={{margin:"0 0 8px"}}>Procedimento dello studente</h3>
-      {state.trace.map((item, i) => <fieldset key={i} style={{border:"1px solid #d0d8df", borderRadius:8, marginBottom:8}}>
+      <p style={{fontSize:13}}>Puoi controllare riduzioni, KCL al nodo e valori DC di corrente o tensione del circuito originale. Per KCL usa tutti i rami, per esempio -R1,+R2,+R3: + se la corrente esce dal nodo nel verso della netlist. Il valore controllato non certifica il metodo scritto.</p>
+      {state.trace.map((item, i) => {const numeric=item.operation === "corrente" || item.operation === "tensione",kcl=item.operation === "kcl";return <fieldset key={i} style={{border:"1px solid #d0d8df", borderRadius:8, marginBottom:8}}>
         <legend>Passaggio {i+1}</legend>
         <label>Trascrizione<input style={field} aria-label={`Trascrizione ${i+1}`} value={item.transcription}
           onChange={event => patchTrace(i,{transcription:event.target.value})}/></label>
-        <div style={{display:"flex", gap:7, marginTop:6}}>
+        <div style={{display:"flex", flexWrap:"wrap", gap:7, marginTop:6}}>
           <select aria-label={`Operazione ${i+1}`} value={item.operation} style={field}
-            onChange={event => patchTrace(i,{operation:event.target.value as CircuitTraceStep["operation"]})}>
-            <option value="serie">Serie</option><option value="parallelo">Parallelo</option><option value="altro">Altro</option>
+            onChange={event => {const operation=event.target.value as CircuitTraceStep["operation"];patchTrace(i,{operation,
+              first:operation === "kcl" ? "" : item.first,
+              second:["kcl","corrente","tensione"].includes(operation) ? "" : item.second,
+              claimed_value:operation === "kcl" ? null : item.claimed_value})}}>
+            <option value="serie">Serie</option><option value="parallelo">Parallelo</option>
+            <option value="kcl">KCL al nodo</option><option value="corrente">Corrente componente</option>
+            <option value="tensione">Tensione componente</option><option value="altro">Altro</option>
           </select>
-          <input aria-label={`Primo componente ${i+1}`} placeholder="R1" style={field} value={item.first}
+          <input aria-label={`Primo componente ${i+1}`} placeholder={kcl ? "Nodo" : "R1"} style={field} value={item.first}
             onChange={event => patchTrace(i,{first:event.target.value})}/>
-          <input aria-label={`Secondo componente ${i+1}`} placeholder="R2" style={field} value={item.second}
-            onChange={event => patchTrace(i,{second:event.target.value})}/>
-          <input aria-label={`Valore ${i+1}`} placeholder="Ω" style={field} value={item.claimed_value ?? ""}
-            onChange={event => patchTrace(i,{claimed_value:event.target.value || null})}/>
+          {!numeric && <input aria-label={`Secondo componente ${i+1}`} placeholder={kcl ? "-R1,+R2,+R3" : "R2"} style={field} value={item.second}
+            onChange={event => patchTrace(i,{second:event.target.value})}/>}
+          {!kcl && <input aria-label={`Valore ${i+1}`} placeholder={numeric ? item.operation === "corrente" ? "A" : "V" : "Ω"} style={field} value={item.claimed_value ?? ""}
+            onChange={event => patchTrace(i,{claimed_value:event.target.value || null})}/>}
         </div>
         <label>Leggibilità<select style={field} value={item.reading}
           onChange={event => patchTrace(i,{reading:event.target.value as CircuitTraceStep["reading"]})}>
           <option value="clear">Chiaro</option><option value="ambiguous">Incerto</option><option value="unreadable">Illeggibile</option>
         </select></label>
-      </fieldset>)}
+      </fieldset>})}
       <div style={{display:"flex", gap:8}}>
         <button type="button" style={button} disabled={busy || !writable || state.trace.length >= 32}
           onClick={() => void update({...state, trace:[...state.trace, blankTrace()], diagnosis:null})}>Aggiungi passaggio</button>

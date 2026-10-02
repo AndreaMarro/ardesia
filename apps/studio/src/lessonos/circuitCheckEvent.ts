@@ -37,7 +37,10 @@ export async function circuitTraceEvent(
     ? trace[diagnosis.step - 1] : undefined
   const conceptLabel = invalid?.reading === "clear"
     ? invalid.operation === "serie" ? "Riduzione in serie"
-      : invalid.operation === "parallelo" ? "Riduzione in parallelo" : undefined
+      : invalid.operation === "parallelo" ? "Riduzione in parallelo"
+      : invalid.operation === "kcl" ? "KCL al nodo"
+      : invalid.operation === "corrente" ? "Corrente di un componente"
+      : invalid.operation === "tensione" ? "Tensione di un componente" : undefined
     : undefined
   const label = diagnosis.outcome === "first_invalid"
     ? `Tentativo: primo passaggio da rivedere ${diagnosis.step}: ${diagnosis.message}`

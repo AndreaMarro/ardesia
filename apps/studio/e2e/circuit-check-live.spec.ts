@@ -108,3 +108,43 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   expect(recapHtml).toContain("Ragionamento sui circuiti")
   expect(recapHtml).toContain("42/5 V")
 })
+
+test("a KCL error and correction survive the real board and lesson memory", async ({page}) => {
+  const netlist = "V1 a 0 12 volt\nR1 a b 100 ohm\nR2 b 0 200 ohm\nR3 b 0 300 ohm\n? current R2"
+  await page.goto("/")
+  await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
+  await page.getByRole("button", {name:"Risolvi e verifica"}).click()
+  await expect(page.getByText(/Risultato verificato:.*9\/275 A/)).toBeVisible()
+  await page.getByRole("button", {name:"Aggiungi passaggio"}).click()
+  await page.getByRole("combobox", {name:"Operazione 1"}).selectOption("kcl")
+  await page.getByRole("textbox", {name:"Primo componente 1"}).fill("b")
+  await page.getByRole("textbox", {name:"Secondo componente 1"}).fill("-R1,+R2")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Primo passaggio da rivedere: 1/)).toBeVisible()
+  const wrong = await page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string;errorId?:string;conceptId?:string}>>
+    }}}}}).__MAESTRO_TEST__
+    const events = await harness?.lessonOs?.current?.store?.readAll() ?? []
+    return events.findLast(item => item.kind === "circuit.trace.assessed")
+  })
+  expect(wrong?.conceptId).toBe("circuit:method:kcl")
+  expect(wrong?.errorId).toMatch(/:error$/)
+  await page.reload()
+  await expect(page.getByText(/Prova riaperta dalla lavagna/)).toBeVisible()
+  await page.getByRole("button", {name:"Ricalcola e verifica"}).click()
+  await expect(page.getByText(/Risultato verificato:.*9\/275 A/)).toBeVisible()
+  await expect(page.getByRole("combobox", {name:"Operazione 1"})).toHaveValue("kcl")
+  await expect(page.getByRole("textbox", {name:"Secondo componente 1"})).toHaveValue("-R1,+R2")
+  await page.getByRole("textbox", {name:"Secondo componente 1"}).fill("-R1,+R2,+R3")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Valido fin qui/)).toBeVisible()
+  await expect.poll(async () => page.evaluate(async () => {
+    const harness = (window as unknown as {__MAESTRO_TEST__?: {lessonOs?: {current?: {store?: {
+      readAll(): Promise<Array<{kind:string;correctsErrorId?:string}>>
+    }}}}}).__MAESTRO_TEST__
+    const events = await harness?.lessonOs?.current?.store?.readAll() ?? []
+    return events.findLast(item => item.kind === "circuit.trace.assessed")?.correctsErrorId
+  })).toBe(wrong?.errorId)
+})

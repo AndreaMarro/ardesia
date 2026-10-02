@@ -133,6 +133,34 @@ describe("CircuitCheck nel confine Ardesia", () => {
     }))
   })
 
+  it("KCL e osservabili alternativi restano sulla lavagna e generano un errore locale correggibile", async () => {
+    const proof = readCircuitProof(response, netlist)
+    for (const [operation, label] of [["kcl","KCL al nodo"],["corrente","Corrente di un componente"],["tensione","Tensione di un componente"]] as const) {
+      const step: CircuitTraceStep = {transcription:`${operation} del circuito`,operation,
+        first:operation === "kcl" ? "q" : "R2",second:operation === "kcl" ? "-R1,+R2" : "",
+        claimed_value:operation === "kcl" ? null : "1/2",reading:"clear"}
+      const restored = readCircuitState({kind:"circuitcheck-proof-v1",netlist,method:"auto",proof,
+        selectedStep:0,trace:[step],diagnosis:null,pendingErrorId:null})
+      expect(restored.trace).toEqual([step])
+      const wrong = await circuitTraceEvent(proof,[step],{
+        outcome:"first_invalid",step:1,message:"Passaggio da correggere",focus:[step.first],
+        circuit_fingerprint:fingerprint,
+      },"circuit-reasoning",1100)
+      expect(wrong.conceptId).toBe(`circuit:method:${operation}`)
+      expect(wrong.conceptLabels?.it).toBe(label)
+      const log = new InMemoryEventLog()
+      await log.append(circuitProofEvent(proof,"circuit-reasoning",1000))
+      await log.append(wrong)
+      const fixed = await circuitTraceEvent(proof,[{...step,transcription:"corretto"}],{
+        outcome:"valid_so_far",step:null,message:"Passaggio valido",focus:[],circuit_fingerprint:fingerprint,
+      },"circuit-reasoning",1200,wrong.errorId)
+      await log.append(fixed)
+      expect(buildStudyDigest(materialize(await log.readAll())).errors).toEqual([
+        expect.objectContaining({id:wrong.errorId,corrected:true}),
+      ])
+    }
+  })
+
   it("rifiuta una proiezione semantica parziale o attribuita a un tentativo non valutabile", () => {
     const base = {attemptId:"attempt:a",exerciseId:"circuit:a",labels:{it:"Tentativo"}}
     expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
