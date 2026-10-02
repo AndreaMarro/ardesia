@@ -9,6 +9,8 @@ import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonReca
 import { buildRecapHtml } from "./store/recapHtml"
 import { createEventLogStore, IndexedDbEventLog } from "./lessonos/indexedDbEventLog"
 import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
+import { circuitStudyEvidence, type CircuitStudyEvidence } from "./lessonos/circuitStudyEvidence"
+import { toLegacyLessonOsEvent } from "./lessonos/eventlog"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
@@ -16,6 +18,8 @@ interface RecapViewProps {
   store: WorkspaceStore
   room: string
 }
+
+const EMPTY_CIRCUITS: CircuitStudyEvidence[] = []
 
 /**
  * Lezione realmente vuota: nessun evento registrato (firstEventTime === null) e
@@ -44,9 +48,15 @@ export default function RecapView({ store, room }: RecapViewProps) {
   const [digestResult, setDigestResult] = useState<{
     store: WorkspaceStore; room: string; value: StudyDigest
   } | null>(null)
+  const [circuitResult, setCircuitResult] = useState<{
+    store: WorkspaceStore; room: string; value: CircuitStudyEvidence[]
+  } | null>(null)
   // Guard also the render before the effect resets state on navigation.
   const digest = digestResult?.store === store && digestResult.room === room
     ? digestResult.value : null
+  const circuits = circuitResult?.store === store && circuitResult.room === room
+    ? circuitResult.value : EMPTY_CIRCUITS
+  const hasRecapContent = recap !== null && (!isRecapEmpty(recap) || circuits.length > 0)
 
   useEffect(() => {
     let cancelled = false
@@ -54,6 +64,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
     setRecap(null)
     setError(null)
     setDigestResult(null)
+    setCircuitResult(null)
     // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
     // per lessonId canonico, mai per finestra temporale. Fail-soft: senza log
     // leggibile si omettono le sezioni pedagogiche, senza riusare un altro digest.
@@ -63,6 +74,10 @@ export default function RecapView({ store, room }: RecapViewProps) {
         try {
           const envelopes = await log.readEnvelopesByLesson(room)
           if (!cancelled) setDigestResult({ store, room, value: buildLessonStudyDigest(envelopes) })
+          const scene = await store.loadScene(room)
+          const evidence = await circuitStudyEvidence(scene,
+            envelopes.map(toLegacyLessonOsEvent).filter(event => event !== null))
+          if (!cancelled) setCircuitResult({ store, room, value: evidence })
         } finally {
           if ("close" in log) await (log as { close(): Promise<void> }).close()
         }
@@ -86,8 +101,8 @@ export default function RecapView({ store, room }: RecapViewProps) {
   // react-best-practices: deriva l'HTML del materiale UNA volta per recap
   // (memoized), unica fonte per anteprima E download — mai rigenerato a ogni render.
   const recapHtml = useMemo(
-    () => (recap && !isRecapEmpty(recap) ? buildRecapHtml(recap, digest ?? undefined) : null),
-    [recap, digest],
+    () => (recap && hasRecapContent ? buildRecapHtml(recap, digest ?? undefined, circuits) : null),
+    [recap, digest, circuits, hasRecapContent],
   )
 
   async function handleExport() {
@@ -176,14 +191,14 @@ export default function RecapView({ store, room }: RecapViewProps) {
             hint="Riprova tra qualche istante. Se il problema resta, esporta la lezione e riaprila da un'altra scheda."
           />
         )}
-        {!loading && !error && (recap === null || isRecapEmpty(recap)) && (
+        {!loading && !error && !hasRecapContent && (
           <EmptyState
             title="Ancora nessun appunto"
             detail="Questa lezione non contiene ancora elementi sulla lavagna né formule."
             hint="Torna alla lavagna e inizia a scrivere: il riepilogo si aggiorna da solo."
           />
         )}
-        {!loading && !error && recap !== null && !isRecapEmpty(recap) && (
+        {!loading && !error && recap !== null && hasRecapContent && (
           <>
             <section style={{ marginBottom: "28px" }}>
               <h2 className="st-recap-title" style={{

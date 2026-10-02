@@ -289,6 +289,9 @@ export default function SavedLessonsView({
                 </button>
               </div>
               <div style={actionRowStyle}>
+                <a className="st-ghost" href={`/?vista=recap#${room}`}>
+                  Rivedi il recap stampabile
+                </a>
                 <button
                   type="button"
                   className="st-primary"

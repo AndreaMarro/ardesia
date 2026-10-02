@@ -37,14 +37,19 @@ Kirchhoff e non viene inoltrata automaticamente da Ardesia.
   la UI, il salvataggio/riapertura e gli eventi attribuiti alla lezione. Esporta
   inoltre un vero `.lesson` e apre lo ZIP: `raw/board.excalidraw` contiene
   risposta esatta e tentativo, `raw/lessonos-events.jsonl` contiene i due tipi
-  di evento. Il test è ignorato nei job senza i due URL espliciti.
+  di evento. Il riepilogo HTML stampabile della **stessa stanza** proietta
+  diagrammi, equazioni e tentativo quando prova, revisione, risposta e riferimenti
+  della lavagna coincidono con gli eventi. La vista Materiali apre il recap
+  della stessa stanza tramite un collegamento esplicito. L'SVG viene sanitizzato; un render
+  senza DOM lo omette. Il test apre il recap nel browser e scarica l'HTML reale.
+  Il test è ignorato nei job senza i due URL espliciti.
 
 ## Limiti ancora aperti
 
-- La validazione end-to-end di `.lesson` → Engine → materiale rivisto → PDF →
-  recupero nella lezione successiva non è stata dimostrata. L'export `.lesson`
-  e il suo contenuto sono verificati, ma il materiale pedagogico dell'Engine non proietta
-  ancora diagrammi/equazioni CircuitCheck in una dispensa rivista.
+- Il recap locale stampabile include ora la prova CircuitCheck; il percorso
+  `.lesson` → Engine → revisione del docente → PDF dell'Engine → recupero nella
+  lezione successiva non è stato dimostrato. Il recap è una bozza da verificare
+  prima della consegna e non concede da solo un'approvazione pedagogica.
 - Il proxy è locale allo sviluppo. Una distribuzione necessita di un servizio
   autenticato, policy di rete e verifica con host reale prima di qualificare
   questa integrazione come disponibile fuori da questa macchina.

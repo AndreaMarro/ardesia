@@ -8,6 +8,8 @@ import { InMemoryEventLog } from "../lessonos/eventlog"
 import { materialize } from "../lessonos/materializer"
 import { buildCircuitCheckInsert, parseToolLink } from "../toolhost/ToolCanvasEmbeddable"
 import { EMBED_DATA_KEY, embedOwner } from "../toolhost/caps/board"
+import { circuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
+import { buildRecapHtml } from "../store/recapHtml"
 
 const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
 const fingerprint = "e".repeat(64)
@@ -59,5 +61,36 @@ describe("CircuitCheck nel confine Ardesia", () => {
     expect(graph.edges).toContainEqual(expect.objectContaining({from:attempt,to:`circuit:${fingerprint}`,kind:"deriva-da"}))
     expect([...graph.nodes.values()].every(node => node.kind !== "concetto")).toBe(true)
     expect((await log.readAll()).map(item => item.kind)).toEqual(["circuit.proof.verified","circuit.trace.assessed"])
+  })
+
+  it("il materiale stampabile usa solo la prova e il tentativo che coincidono con gli eventi della lezione", async () => {
+    const proof = readCircuitProof(response, netlist)
+    const inserted = buildCircuitCheckInsert([])!
+    const marker = {owner:"io.ardesia.circuit-reasoning", state:{
+      kind:"circuitcheck-proof-v1", netlist, method:"auto", proof,
+      selectedStep:0, trace, diagnosis:null,
+    }}
+    const scene = JSON.stringify({elements:[{...inserted.embed, customData:{[EMBED_DATA_KEY]:marker}}]})
+    const log = new InMemoryEventLog()
+    expect(await circuitStudyEvidence(scene, await log.readAll())).toEqual([])
+    await log.append(circuitProofEvent(proof, inserted.embedId, 1000))
+    let evidence = await circuitStudyEvidence(scene, await log.readAll())
+    expect(evidence).toHaveLength(1)
+    expect(evidence[0]!.assessment).toBeNull()
+    const diagnosis = readCircuitDiagnosis({outcome:"first_invalid",step:1,
+      message:"Valore errato",focus:["R1"],circuit_fingerprint:fingerprint},fingerprint)
+    await log.append(await circuitTraceEvent(proof, trace, diagnosis, inserted.embedId, 1100))
+    evidence = await circuitStudyEvidence(scene, await log.readAll())
+    expect(evidence[0]!.assessment).toContain("primo passaggio")
+    const html = buildRecapHtml({v:1,title:"Lezione circuiti",durationMs:1000,
+      mathFormulas:[],elementTypeCounts:{embeddable:1},totalElementsAdded:1,
+      pdfPagesViewed:[],firstEventTime:1000,lastEventTime:2000},undefined,evidence)
+    expect(html).toContain("Ragionamento sui circuiti")
+    expect(html).toContain("42/5")
+    expect(html).not.toContain("<svg") // il render Node non emette SVG senza sanitizer DOM
+    expect(html).toContain("Procedimento dello studente")
+    expect(html).toContain("R1+R2=10 Ω")
+    const changed = scene.replace("42/5", "42/4")
+    expect(await circuitStudyEvidence(changed, await log.readAll())).toEqual([])
   })
 })

@@ -7,6 +7,8 @@
 import type { LessonRecap } from "./lessonRecap"
 import { formatDuration } from "./lessonRecap"
 import type { StudyDigest } from "../lessonos/studyDigest"
+import type { CircuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
+import DOMPurify from "dompurify"
 
 function esc(s: string): string {
   return s
@@ -33,7 +35,9 @@ const ELEMENT_LABEL_IT: Record<string, string> = {
  * HTML autosufficiente (CSS inline, nessuna risorsa esterna), stampabile.
  * Deterministico: stesso recap → stesso documento.
  */
-export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string {
+export function buildRecapHtml(
+  recap: LessonRecap, digest?: StudyDigest, circuits: readonly CircuitStudyEvidence[] = [],
+): string {
   const title = esc(recap.title)
   const duration = formatDuration(recap.durationMs)
   const pages = [...recap.pdfPagesViewed].sort((a, b) => a - b)
@@ -69,7 +73,24 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
         .join("")}</ul></section>`
     : ""
 
-  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0
+  const circuitHtml = circuits.map(({embedId, proof, assessedTrace, assessment}) => {
+    const steps = proof.steps.map((step, index) => {
+      // The printable preview is produced in the browser. Node-side rendering
+      // omits the image rather than emitting an unsanitized SVG.
+      const safeSvg = typeof window === "undefined" ? ""
+        : DOMPurify.sanitize(step.svg, { USE_PROFILES: { svg: true, svgFilters: true } })
+      const image = safeSvg.startsWith("<svg")
+        ? `<img class="circuit-diagram" alt="Schema del passaggio ${index + 1}" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(safeSvg)}">`
+        : ""
+      return `<li><h3>${index + 1}. ${esc(step.title)}</h3>${image}<p>${esc(step.explanation)}</p>${step.equations.map(eq => `<div class="circuit-equation"><code>${esc(eq)}</code></div>`).join("")}</li>`
+    }).join("")
+    const attempt = assessment
+      ? `<div class="circuit-attempt"><strong>Procedimento dello studente</strong><ol>${assessedTrace.map(step => `<li>${esc(step.transcription)}</li>`).join("")}</ol><p>${esc(assessment)}</p></div>`
+      : ""
+    return `<article class="circuit-proof"><h3>${esc(proof.title)}</h3><p><strong>Risultato registrato:</strong> ${esc(proof.answer.exact)} ${esc(proof.answer.unit)} · ${esc(proof.answer.reference)}</p><p class="circuit-source">Fonte: lavagna ${esc(embedId)} · revisione ${esc(proof.fingerprint.slice(0, 12))}. Ricalcolare prima di riusare la prova in un nuovo circuito.</p><ol class="circuit-steps">${steps}</ol>${attempt}</article>`
+  }).join("")
+
+  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || circuits.length > 0
 
   return `<!doctype html>
 <html lang="it">
@@ -110,6 +131,16 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
   .concetti li,.errori li { padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
   .errori .ok { color:var(--viridian); font-weight:600; }
   .errori .todo { color:var(--ochre); font-weight:600; }
+  .circuit-proof { border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:18px; background:#fff; }
+  .circuit-proof h3 { margin:0 0 8px; font-size:18px; }
+  .circuit-source { color:var(--ink-3); font-size:12px; overflow-wrap:anywhere; }
+  .circuit-steps { padding-left:22px; list-style:decimal; }
+  .circuit-steps li { padding:14px 0; border-top:1px solid var(--line); break-inside:avoid; }
+  .circuit-steps li h3 { font-size:15px; }
+  .circuit-diagram { display:block; max-width:100%; max-height:310px; margin:8px 0; }
+  .circuit-equation { margin:5px 0; overflow-wrap:anywhere; }
+  .circuit-attempt { border-top:1px solid var(--line); padding-top:14px; }
+  .circuit-attempt ol { padding-left:22px; list-style:decimal; }
   @media print { body { background:#fff; } .sheet { padding:24px 0; } .print-btn { display:none; } }
 </style>
 </head>
@@ -127,6 +158,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
     </section>
     ${conceptsHtml}
     ${errorsHtml}
+    ${circuitHtml ? `<section><h2>Ragionamento sui circuiti</h2>${circuitHtml}</section>` : ""}
     <section>
       <h2>Fonti</h2>
       ${fontiHtml}
