@@ -12,6 +12,7 @@ import { roomPaths } from "../store/roomPaths"
 import type { WorkspaceDriver } from "../store/types"
 import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
 import * as eventLogs from "../lessonos/indexedDbEventLog"
+import { recapRevisionSha256 } from "../lessonos/materialReview"
 
 const ROOM = "r03-selected"
 const OTHER = "r03-foreign"
@@ -106,6 +107,47 @@ async function downloadRecap() {
 }
 
 describe("RecapView live export authority", () => {
+  it("refuses to approve a preview superseded by a canonical fact", async () => {
+    const {store,writer} = await setup()
+    await showRecap(store)
+    fireEvent.change(screen.getByLabelText("Nome docente"),{target:{value:"docente"}})
+    const approve = screen.getByRole("button",{name:"Approva questa versione"})
+    await waitFor(() => expect((approve as HTMLButtonElement).disabled).toBe(false))
+    await writer.appendEnvelope(fact(ROOM,"NUOVO CONCETTO DOPO ANTEPRIMA"))
+    fireEvent.click(approve)
+    await waitFor(() => expect(screen.getByRole("alert").textContent).toContain("Il materiale è cambiato"))
+    const events = await writer.readEnvelopesByLesson(ROOM)
+    expect(events.some(event => event.kind === "material.reviewed")).toBe(false)
+    expect(screen.getByRole("status").textContent).toContain("da revisionare")
+  })
+
+  it("records an explicit teacher review for the exact HTML bytes in the exported lesson", async () => {
+    const {store,writer} = await setup()
+    const view = await showRecap(store)
+    expect(screen.getByRole("status").textContent).toContain("da revisionare")
+    const approve = screen.getByRole("button",{name:"Approva questa versione"})
+    fireEvent.change(screen.getByLabelText("Nome docente"),{target:{value:" Prof. Rossi "}})
+    await waitFor(() => expect((approve as HTMLButtonElement).disabled).toBe(false), {timeout:5000})
+    fireEvent.click(approve)
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("approvata da Prof. Rossi"))
+    const zip = await downloadRecap()
+    const events = (await zip.file("raw/lessonos-events.jsonl")!.async("text")).trim().split("\n")
+      .map(line => JSON.parse(line) as {kind:string;payload:{revisionSha256?:string;reviewer?:string}})
+    const review = events.find(event => event.kind === "material.reviewed")
+    expect(review?.payload.reviewer).toBe("Prof. Rossi")
+    const count = downloads.length
+    fireEvent.click(screen.getByRole("button",{name:"scarica recap"}))
+    await waitFor(() => expect(downloads).toHaveLength(count+1))
+    expect(await recapRevisionSha256(await downloads[count]!.text())).toBe(review?.payload.revisionSha256)
+    view.unmount()
+    render(<RecapView store={store} room={ROOM}/>)
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("approvata da Prof. Rossi"))
+    await writer.appendEnvelope(fact(ROOM,"CONCETTO INSERITO DOPO APPROVAZIONE"))
+    fireEvent.click(screen.getByRole("button",{name:"scarica recap"}))
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("da revisionare"))
+    expect((await recapRevisionSha256(await downloads.at(-1)!.text()))).not.toBe(review?.payload.revisionSha256)
+  })
+
   it("exports the same current memory as SavedLessonsView, including facts appended after preview", async () => {
     const { store, writer } = await setup()
     await writer.appendEnvelope(fact(ROOM, "OWN INITIAL"))

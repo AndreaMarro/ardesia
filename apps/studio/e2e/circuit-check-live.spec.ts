@@ -1,6 +1,14 @@
 import { expect, test } from "@playwright/test"
 import JSZip from "jszip"
 import { readFile } from "node:fs/promises"
+import { createHash } from "node:crypto"
+
+function materialSha(html: string): string {
+  const name = Buffer.from("recap.html")
+  const body = Buffer.from(html)
+  const size = (length:number) => { const bytes=Buffer.alloc(8); bytes.writeBigUInt64BE(BigInt(length)); return bytes }
+  return createHash("sha256").update(Buffer.concat([size(name.length),name,size(body.length),body])).digest("hex")
+}
 
 // Requires the real Kirchhoff HTTP service behind the Ardesia dev proxy.
 test.skip(!process.env.KIRCHHOFF_LOCAL_URL || !process.env.ARDESIA_STUDIO_E2E_BASE_URL,
@@ -109,6 +117,19 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   const recapHtml = await readFile(await (await recapDownload).path(), "utf8")
   expect(recapHtml).toContain("Ragionamento sui circuiti")
   expect(recapHtml).toContain("42/5 V")
+  await page.getByLabel("Nome docente").fill("Prof. Rossi")
+  await page.getByRole("button",{name:"Approva questa versione"}).click()
+  await expect(page.getByRole("status")).toContainText("approvata da Prof. Rossi")
+  const reviewedExport = page.waitForEvent("download")
+  await page.getByRole("button",{name:"esporta .lesson"}).click()
+  const reviewedZip = await JSZip.loadAsync(await readFile(await (await reviewedExport).path()))
+  const reviewedEvents = (await reviewedZip.file("raw/lessonos-events.jsonl")!.async("string"))
+    .trim().split("\n").map(line => JSON.parse(line) as {kind:string;payload?:{revisionSha256:string;reviewer:string}})
+  const review = reviewedEvents.find(item=>item.kind==="material.reviewed")
+  expect(review?.payload?.reviewer).toBe("Prof. Rossi")
+  expect(review?.payload?.revisionSha256).toBe(materialSha(recapHtml))
+  await page.reload()
+  await expect(page.getByRole("status")).toContainText("approvata da Prof. Rossi")
 })
 
 test("a KCL error and correction survive the real board and lesson memory", async ({page}) => {

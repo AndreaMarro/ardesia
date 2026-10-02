@@ -128,6 +128,7 @@ export const DEFAULT_LESSON_ACTOR = Object.freeze({
 const FACTUAL_KINDS = new Set<LessonOsFactKind>([
   "concept.introduced",
   "material.cited",
+  "material.reviewed",
   "error.observed",
   "exercise.completed",
   "simulation.step.completed",

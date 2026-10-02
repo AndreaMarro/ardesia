@@ -65,6 +65,16 @@ export type LessonOsEvent =
   | (BaseEvent & { kind: "concept.introduced"; conceptId: string; labels: Labels })
   | (BaseEvent & { kind: "material.cited"; materialId: string; conceptId?: string; labels: Labels })
   | (BaseEvent & {
+      /** Human action on the exact rendered revision of a lesson handout. */
+      kind: "material.reviewed"
+      materialId: string
+      revisionSha256: string
+      action: "approve" | "revise" | "reject" | "flag"
+      reviewer: string
+      comment: string
+      labels: Labels
+    })
+  | (BaseEvent & {
       kind: "error.observed"
       errorId: string
       conceptId: string
@@ -286,6 +296,10 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
     required: { materialId: "string", labels: "labels" },
     optional: { conceptId: "string" },
   },
+  "material.reviewed": {
+    required: {materialId:"string",revisionSha256:"string",action:"string",
+      reviewer:"string",comment:"string",labels:"labels"},
+  },
   "error.observed": {
     required: { errorId: "string", conceptId: "string", labels: "labels" },
     optional: { studentId: "string" },
@@ -401,6 +415,15 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
           !/^[a-f0-9]{64}$/.test(payload.proofSha256))) {
       throw new Error("LessonOS event log: impronta della prova CircuitCheck non valida")
     }
+  }
+  if (factualKind === "material.reviewed" &&
+      (typeof payload.materialId !== "string" || !/^recap:[A-Za-z0-9._-]{1,128}$/.test(payload.materialId) ||
+       typeof payload.revisionSha256 !== "string" || !/^[a-f0-9]{64}$/.test(payload.revisionSha256) ||
+       !["approve","revise","reject","flag"].includes(String(payload.action)) ||
+       typeof payload.reviewer !== "string" || !payload.reviewer.trim() ||
+       payload.reviewer.length > 100 || typeof payload.comment !== "string" ||
+       payload.comment.length > 1000)) {
+    throw new Error("LessonOS event log: revisione materiale non valida")
   }
   if (factualKind === "circuit.trace.assessed") {
     const semantic = ["errorId", "conceptId", "conceptLabels"].filter(key => Object.prototype.hasOwnProperty.call(payload, key))

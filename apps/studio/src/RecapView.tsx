@@ -13,6 +13,8 @@ import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest
 import { circuitNextLessonEvidence, circuitStudyEvidence,
   type CircuitNextLessonEvidence, type CircuitStudyEvidence } from "./lessonos/circuitStudyEvidence"
 import { toLegacyLessonOsEvent, UNASSIGNED_LESSON_ID } from "./lessonos/eventlog"
+import type { AnyEventEnvelopeV2 } from "./lessonos/eventlog"
+import { createRecapReviewEvent, recapReviewStatus, recapRevisionSha256 } from "./lessonos/materialReview"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
@@ -62,6 +64,14 @@ export default function RecapView({ store, room }: RecapViewProps) {
   } | null>(null)
   const [priorError, setPriorError] = useState("")
   const [priorBusy, setPriorBusy] = useState(false)
+  const [reviewer, setReviewer] = useState("")
+  const [reviewComment, setReviewComment] = useState("")
+  const [reviewBusy, setReviewBusy] = useState(false)
+  const [reviewError, setReviewError] = useState("")
+  const [reviewRevision, setReviewRevision] = useState<{room:string;html:string;sha:string}|null>(null)
+  const [reviewEventsResult, setReviewEventsResult] = useState<{
+    store:WorkspaceStore;room:string;events:AnyEventEnvelopeV2[]
+  }|null>(null)
   const priorGeneration = useRef(0)
   // Guard also the render before the effect resets state on navigation.
   const digest = digestResult?.store === store && digestResult.room === room
@@ -87,6 +97,9 @@ export default function RecapView({ store, room }: RecapViewProps) {
     setPriorEvidenceResult(null)
     setPriorError("")
     setPriorBusy(false)
+    setReviewError("")
+    setReviewRevision(null)
+    setReviewEventsResult(null)
     // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
     // per lessonId canonico, mai per finestra temporale. Fail-soft: senza log
     // leggibile si omettono le sezioni pedagogiche, senza riusare un altro digest.
@@ -96,6 +109,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
         try {
           const envelopes = await log.readEnvelopesByLesson(room)
           if (!cancelled) setDigestResult({ store, room, value: buildLessonStudyDigest(envelopes) })
+          if (!cancelled) setReviewEventsResult({store,room,events:envelopes})
           const scene = await store.loadScene(room)
           const evidence = await circuitStudyEvidence(scene,
             envelopes.map(toLegacyLessonOsEvent).filter(event => event !== null))
@@ -159,6 +173,63 @@ export default function RecapView({ store, room }: RecapViewProps) {
     () => (recap && hasRecapContent ? buildRecapHtml(recap, digest ?? undefined, circuits) : null),
     [recap, digest, circuits, hasRecapContent],
   )
+  useEffect(() => {
+    let cancelled = false
+    setReviewRevision(null)
+    if (recapHtml) void recapRevisionSha256(recapHtml).then(sha => {
+      if (!cancelled) setReviewRevision({room,html:recapHtml,sha})
+    }).catch(() => {
+      if (!cancelled) setReviewError("Impronta del materiale non disponibile")
+    })
+    return () => {cancelled = true}
+  },[room,recapHtml])
+  const currentRevision = reviewRevision?.room === room && reviewRevision.html === recapHtml
+    ? reviewRevision.sha : null
+  const reviewEvents = reviewEventsResult?.store === store && reviewEventsResult.room === room
+    ? reviewEventsResult.events : []
+  const reviewStatus = currentRevision
+    ? recapReviewStatus(reviewEvents,room,currentRevision) : {approved:false,reviewer:null}
+
+  /** Rebuild from the current board, journal and canonical log before any review/export. */
+  async function liveMaterial(log: IndexedDbEventLog) {
+    const envelopes = await log.readEnvelopesByLesson(room)
+    const freshRecap = await buildRecap(store,room)
+    if (!freshRecap) throw new Error("Recap della lezione non disponibile")
+    const freshDigest = buildLessonStudyDigest(envelopes)
+    const scene = await store.loadScene(room)
+    const freshCircuits = await circuitStudyEvidence(scene,
+      envelopes.map(toLegacyLessonOsEvent).filter(event => event !== null))
+    const html = buildRecapHtml(freshRecap,freshDigest,freshCircuits)
+    return {envelopes,freshRecap,freshDigest,freshCircuits,html,
+      sha:await recapRevisionSha256(html)}
+  }
+
+  async function handleReview(action:"approve"|"revise") {
+    setReviewError("")
+    if (!currentRevision || !recapHtml) return
+    setReviewBusy(true)
+    const log = new IndexedDbEventLog()
+    try {
+      await log.open()
+      const fresh = await liveMaterial(log)
+      if (fresh.html !== recapHtml || fresh.sha !== currentRevision) {
+        setRecap(fresh.freshRecap)
+        setDigestResult({store,room,value:fresh.freshDigest})
+        setCircuitResult({store,room,value:fresh.freshCircuits})
+        setReviewEventsResult({store,room,events:fresh.envelopes})
+        throw new Error("Il materiale è cambiato: rileggilo prima di registrare la revisione")
+      }
+      const envelope = createRecapReviewEvent(room,fresh.sha,reviewer,action,reviewComment)
+      const appended = await log.appendEnvelope(envelope)
+      setReviewEventsResult({store,room,events:[...fresh.envelopes,appended.event]})
+      setReviewComment("")
+    } catch (cause) {
+      setReviewError(cause instanceof Error ? cause.message : String(cause))
+    } finally {
+      await log.close()
+      setReviewBusy(false)
+    }
+  }
 
   async function handleExport() {
     setExporting(true)
@@ -196,9 +267,27 @@ export default function RecapView({ store, room }: RecapViewProps) {
 
   // Deliverable umano-leggibile: un recap.html autosufficiente e stampabile
   // (worksheet + Fonti), derivato dal recap già proiettato. ZERO PII.
-  function handleDownloadRecapHtml() {
+  async function handleDownloadRecapHtml() {
     if (!recapHtml || !recap) return
-    const blob = new Blob([recapHtml], { type: "text/html;charset=utf-8" })
+    setReviewError("")
+    const log = new IndexedDbEventLog()
+    let fresh
+    try {
+      await log.open()
+      fresh = await liveMaterial(log)
+      setReviewEventsResult({store,room,events:fresh.envelopes})
+      if (fresh.html !== recapHtml) {
+        setRecap(fresh.freshRecap)
+        setDigestResult({store,room,value:fresh.freshDigest})
+        setCircuitResult({store,room,value:fresh.freshCircuits})
+      }
+    } catch (cause) {
+      setReviewError(cause instanceof Error ? cause.message : String(cause))
+      return
+    } finally { await log.close() }
+    // The downloaded bytes are exactly those reviewed. A stamp inside the
+    // HTML would alter the digest; review provenance travels in the .lesson.
+    const blob = new Blob([fresh.html], { type: "text/html;charset=utf-8" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
@@ -219,7 +308,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
         </div>
         <span className="st-chip-student">riepilogo lezione</span>
         <div className="st-recap-actions" style={{ marginLeft: "auto" }}>
-          <button onClick={handleDownloadRecapHtml} disabled={!recapHtml} className="st-ghost">
+          <button onClick={() => void handleDownloadRecapHtml()} disabled={!recapHtml} className="st-ghost">
             scarica recap
           </button>
           <button onClick={handleExport} disabled={exporting} className="st-primary">
@@ -237,6 +326,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
             lineHeight: 1.5,
           }}>{exportError}</p>
         )}
+        {reviewError && <p role="alert" style={{color:"var(--m-error)"}}>{reviewError}</p>}
         {loading && <p className="st-quiet">caricamento…</p>}
         {error && (
           <EmptyState
@@ -348,9 +438,27 @@ export default function RecapView({ store, room }: RecapViewProps) {
                 }}>Anteprima materiale</h3>
                 {circuits.length > 0 && (
                   <p className="st-quiet" style={{ margin: "0 0 12px" }}>
-                    Bozza CircuitCheck: controlla schemi, segni e passaggi prima di consegnarla.
+                    {reviewStatus.approved
+                      ? "Materiale CircuitCheck revisionato: schemi, segni e passaggi appartengono a questa versione."
+                      : "Bozza CircuitCheck: controlla schemi, segni e passaggi prima di consegnarla."}
                   </p>
                 )}
+                <div aria-label="Revisione docente del materiale" style={{marginBottom:16}}>
+                  <p role="status">{reviewStatus.approved
+                    ? `Revisione approvata da ${reviewStatus.reviewer} per questa versione del recap.`
+                    : "Materiale da revisionare prima della consegna."}</p>
+                  {currentRevision && <p className="st-quiet">Revisione {currentRevision.slice(0,12)}…</p>}
+                  <label>Nome docente <input value={reviewer} maxLength={100}
+                    onChange={event=>setReviewer(event.target.value)} /></label>
+                  <label>Nota di revisione <input value={reviewComment} maxLength={1000}
+                    onChange={event=>setReviewComment(event.target.value)} /></label>
+                  <div style={{display:"flex",gap:8,marginTop:8}}>
+                    <button type="button" className="st-primary" disabled={reviewBusy || !currentRevision || !reviewer.trim()}
+                      onClick={()=>void handleReview("approve")}>Approva questa versione</button>
+                    <button type="button" className="st-ghost" disabled={reviewBusy || !currentRevision || !reviewer.trim()}
+                      onClick={()=>void handleReview("revise")}>Richiedi revisione</button>
+                  </div>
+                </div>
                 <iframe
                   title="Anteprima del recap stampabile da consegnare"
                   srcDoc={recapHtml}
