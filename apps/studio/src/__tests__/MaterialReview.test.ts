@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
 import { assertLessonOsEnvelopePayload } from "../lessonos/eventlog"
-import { recapRevisionSha256, recapReviewStatus } from "../lessonos/materialReview"
+import { recapRevisionSha256, recapReviewStatus, reviewedRecapHtml } from "../lessonos/materialReview"
 
 const sha = "a".repeat(64)
 const producer = {id:"test.material",version:"1.0.0",commitSha:"b".repeat(40)}
@@ -45,5 +45,17 @@ describe("revisione del recap Ardesia", () => {
       .toThrow(/revisione materiale/)
     expect(() => assertLessonOsEnvelopePayload("material.reviewed",{...base,action:"auto"}))
       .toThrow(/revisione materiale/)
+  })
+
+  it("marca la copia stampabile con il digest della sorgente senza interpretare il nome docente come HTML", async () => {
+    const source = '<html><body><div class="sheet"><p>V = R I</p></div></body></html>'
+    const exact = await recapRevisionSha256(source)
+    const printed = await reviewedRecapHtml(source,exact,'<img src=x onerror=alert(1)>')
+    expect(printed).toContain(`data-revision-sha256="${exact}"`)
+    expect(printed).toContain('&lt;img src=x onerror=alert(1)&gt;')
+    expect(printed).not.toContain('<img src=x')
+    expect(printed).toContain('<p>V = R I</p>')
+    await expect(reviewedRecapHtml(source,"bad","docente")).rejects.toThrow(/non disponibile/)
+    await expect(reviewedRecapHtml(source,sha,"docente")).rejects.toThrow(/non corrisponde/)
   })
 })

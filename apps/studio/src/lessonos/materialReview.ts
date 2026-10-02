@@ -42,6 +42,22 @@ export async function recapRevisionSha256(html: string): Promise<string> {
     .map(value => value.toString(16).padStart(2,"0")).join("")
 }
 
+/** Printable copy of the approved source. The digest names the unstamped recap.html
+ * bytes recorded in material.reviewed; the stamp is only a human-readable pointer
+ * to that event, never an approval of independently edited output bytes. */
+export async function reviewedRecapHtml(html: string, revisionSha256: string, reviewer: string): Promise<string> {
+  if (!/^[a-f0-9]{64}$/.test(revisionSha256) || !reviewer.trim() || !html.includes('<div class="sheet">')) {
+    throw new Error("Materiale revisionato non disponibile")
+  }
+  if (await recapRevisionSha256(html) !== revisionSha256) {
+    throw new Error("La revisione approvata non corrisponde ai byte del recap")
+  }
+  const safeReviewer = reviewer.replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;")
+  const stamp = `<aside aria-label="Revisione docente" data-revision-sha256="${revisionSha256}" style="border:1px solid #1f9e73;padding:12px;margin-bottom:24px;overflow-wrap:anywhere"><strong>Revisione docente registrata</strong><br>Docente: ${safeReviewer}<br>Revisione del recap.html: ${revisionSha256}<br><small>Confronta questa impronta con l'evento material.reviewed nella lezione esportata. Il nome del docente è dichiarato in questa installazione.</small></aside>`
+  return html.replace('<div class="sheet">',`<div class="sheet">${stamp}`)
+}
+
 /** TeacherReviewSet semantics over the lesson's canonical append-only events. */
 export function recapReviewStatus(
   events: readonly AnyEventEnvelopeV2[], lessonId: string, revisionSha256: string,

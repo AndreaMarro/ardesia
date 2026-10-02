@@ -128,6 +128,25 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   const review = reviewedEvents.find(item=>item.kind==="material.reviewed")
   expect(review?.payload?.reviewer).toBe("Prof. Rossi")
   expect(review?.payload?.revisionSha256).toBe(materialSha(recapHtml))
+  const printDownload = page.waitForEvent("download")
+  await page.getByRole("button",{name:"scarica materiale revisionato per PDF"}).click()
+  const printPath = await (await printDownload).path()
+  const printHtml = await readFile(printPath,"utf8")
+  expect(printHtml).toContain(`data-revision-sha256="${review?.payload?.revisionSha256}"`)
+  expect(printHtml).toContain("Docente: Prof. Rossi")
+  const printable = await page.context().newPage()
+  try {
+    // Playwright's temporary download path has no .html extension, so opening
+    // it as file:// would make Chromium treat the same bytes as plain text.
+    await printable.setContent(printHtml)
+    await expect(printable.getByText("Revisione docente registrata")).toBeVisible()
+    await expect(printable.locator('img[alt="Schema del passaggio 1"]')).toBeVisible()
+    expect(await printable.locator('img[alt="Schema del passaggio 1"]').evaluate(image =>
+      (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
+    const pdf = await printable.pdf({printBackground:true})
+    expect(pdf.subarray(0,5).toString()).toBe("%PDF-")
+    expect(pdf.length).toBeGreaterThan(10000)
+  } finally { await printable.close() }
   await page.reload()
   await expect(page.getByRole("status")).toContainText("approvata da Prof. Rossi")
 })

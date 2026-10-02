@@ -14,7 +14,7 @@ import { circuitNextLessonEvidence, circuitStudyEvidence,
   type CircuitNextLessonEvidence, type CircuitStudyEvidence } from "./lessonos/circuitStudyEvidence"
 import { toLegacyLessonOsEvent, UNASSIGNED_LESSON_ID } from "./lessonos/eventlog"
 import type { AnyEventEnvelopeV2 } from "./lessonos/eventlog"
-import { createRecapReviewEvent, recapReviewStatus, recapRevisionSha256 } from "./lessonos/materialReview"
+import { createRecapReviewEvent, recapReviewStatus, recapRevisionSha256, reviewedRecapHtml } from "./lessonos/materialReview"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
@@ -267,7 +267,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
 
   // Deliverable umano-leggibile: un recap.html autosufficiente e stampabile
   // (worksheet + Fonti), derivato dal recap già proiettato. ZERO PII.
-  async function handleDownloadRecapHtml() {
+  async function handleDownloadRecapHtml(reviewedOnly = false) {
     if (!recapHtml || !recap) return
     setReviewError("")
     const log = new IndexedDbEventLog()
@@ -280,18 +280,26 @@ export default function RecapView({ store, room }: RecapViewProps) {
         setRecap(fresh.freshRecap)
         setDigestResult({store,room,value:fresh.freshDigest})
         setCircuitResult({store,room,value:fresh.freshCircuits})
+        if (reviewedOnly) throw new Error("Il materiale è cambiato: rileggilo prima di scaricare la versione revisionata")
+      }
+      if (reviewedOnly) {
+        const status = recapReviewStatus(fresh.envelopes,room,fresh.sha)
+        if (!status.approved || status.flagged || !status.reviewer) {
+          throw new Error("Questa versione non ha una revisione approvata e senza problemi segnalati")
+        }
+        fresh.html = await reviewedRecapHtml(fresh.html,fresh.sha,status.reviewer)
       }
     } catch (cause) {
       setReviewError(cause instanceof Error ? cause.message : String(cause))
       return
     } finally { await log.close() }
-    // The downloaded bytes are exactly those reviewed. A stamp inside the
-    // HTML would alter the digest; review provenance travels in the .lesson.
+    // The ordinary recap is byte-identical to the reviewed source. The optional
+    // print copy visibly identifies that source and its canonical review event.
     const blob = new Blob([fresh.html], { type: "text/html;charset=utf-8" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `recap-${lessonSlug(recap.title, room)}.html`
+    a.download = `recap-${lessonSlug(recap.title, room)}${reviewedOnly ? "-revisionato" : ""}.html`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -310,6 +318,10 @@ export default function RecapView({ store, room }: RecapViewProps) {
         <div className="st-recap-actions" style={{ marginLeft: "auto" }}>
           <button onClick={() => void handleDownloadRecapHtml()} disabled={!recapHtml} className="st-ghost">
             scarica recap
+          </button>
+          <button onClick={() => void handleDownloadRecapHtml(true)}
+            disabled={!recapHtml || !reviewStatus.approved || reviewStatus.flagged} className="st-ghost">
+            scarica materiale revisionato per PDF
           </button>
           <button onClick={handleExport} disabled={exporting} className="st-primary">
             {exporting ? "esporto…" : "esporta .lesson"}
