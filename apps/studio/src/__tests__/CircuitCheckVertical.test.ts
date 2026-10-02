@@ -67,7 +67,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
     const diagnosis = readCircuitDiagnosis({outcome:"first_invalid", step:1,
       message:"La riduzione cambia i nodi", focus:["R1","R2"], circuit_fingerprint:fingerprint}, fingerprint)
     const log = new InMemoryEventLog()
-    const event = circuitProofEvent(proof, "circuit-reasoning", 1000)
+    const event = await circuitProofEvent(proof, "circuit-reasoning", 1000)
     await log.append(event)
     await log.append(await circuitTraceEvent(proof, trace, diagnosis, "circuit-reasoning", 1100))
     const graph = materialize(await log.readAll())
@@ -95,7 +95,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
     const proof = readCircuitProof(response, netlist)
     for (const outcome of ["valid_so_far", "not_assessable"] as const) {
       const log = new InMemoryEventLog()
-      await log.append(circuitProofEvent(proof, "circuit-reasoning", 1000))
+      await log.append(await circuitProofEvent(proof, "circuit-reasoning", 1000))
       await log.append(await circuitTraceEvent(proof, trace, {
         outcome, step:null, message:"Ancora nessuna diagnosi di errore", focus:[],
         circuit_fingerprint:fingerprint,
@@ -107,7 +107,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
   it("una correzione valutata collega due tentativi dello stesso circuito senza dichiarare padronanza", async () => {
     const proof = readCircuitProof(response, netlist)
     const log = new InMemoryEventLog()
-    await log.append(circuitProofEvent(proof, "circuit-reasoning", 1000))
+    await log.append(await circuitProofEvent(proof, "circuit-reasoning", 1000))
     const wrong = await circuitTraceEvent(proof, trace, {
       outcome:"first_invalid",step:1,message:"Somma errata",focus:["R1","R2"],
       circuit_fingerprint:fingerprint,
@@ -149,7 +149,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
       expect(wrong.conceptId).toBe(`circuit:method:${operation}`)
       expect(wrong.conceptLabels?.it).toBe(label)
       const log = new InMemoryEventLog()
-      await log.append(circuitProofEvent(proof,"circuit-reasoning",1000))
+      await log.append(await circuitProofEvent(proof,"circuit-reasoning",1000))
       await log.append(wrong)
       const fixed = await circuitTraceEvent(proof,[{...step,transcription:"corretto"}],{
         outcome:"valid_so_far",step:null,message:"Passaggio valido",focus:[],circuit_fingerprint:fingerprint,
@@ -190,7 +190,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
     const scene = JSON.stringify({elements:[{...inserted.embed, customData:{[EMBED_DATA_KEY]:marker}}]})
     const log = new InMemoryEventLog()
     expect(await circuitStudyEvidence(scene, await log.readAll())).toEqual([])
-    await log.append(circuitProofEvent(proof, inserted.embedId, 1000))
+    await log.append(await circuitProofEvent(proof, inserted.embedId, 1000))
     let evidence = await circuitStudyEvidence(scene, await log.readAll())
     expect(evidence).toHaveLength(1)
     expect(evidence[0]!.assessment).toBeNull()
@@ -209,6 +209,12 @@ describe("CircuitCheck nel confine Ardesia", () => {
     expect(html).toContain("R1+R2=10 Ω")
     const changed = scene.replace("42/5", "42/4")
     expect(await circuitStudyEvidence(changed, await log.readAll())).toEqual([])
+    const changedEquation = scene.replace("R1+R2=10 Ω", "R1+R2=20 Ω")
+    expect(await circuitStudyEvidence(changedEquation, await log.readAll())).toEqual([])
+    const changedSvg = scene.replace('<svg xmlns=\\\"http://www.w3.org/2000/svg\\\"></svg>',
+      '<svg xmlns=\\\"http://www.w3.org/2000/svg\\\"><text>falso</text></svg>')
+    expect(changedSvg).not.toBe(scene)
+    expect(await circuitStudyEvidence(changedSvg, await log.readAll())).toEqual([])
     const legacy = scene.replace('"schema":"circuit-proof.v2"','"schema":"circuit-proof.v1"')
     expect(await circuitStudyEvidence(legacy, await log.readAll())).toEqual([])
     const olderEvents = (await log.readAll()).map(event => {
@@ -219,5 +225,12 @@ describe("CircuitCheck nel confine Ardesia", () => {
       return old
     })
     expect(await circuitStudyEvidence(scene, olderEvents)).toEqual([])
+    const unhashedEvents = (await log.readAll()).map(event => {
+      if (event.kind !== "circuit.proof.verified") return event
+      const old = {...event}
+      delete old.proofSha256
+      return old
+    })
+    expect(await circuitStudyEvidence(scene, unhashedEvents)).toEqual([])
   })
 })

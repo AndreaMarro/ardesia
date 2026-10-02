@@ -103,6 +103,7 @@ export type LessonOsEvent =
       engineRevision: string
       verificationScope?: "electrical_result"
       lessonBuild?: string
+      proofSha256?: string
       labels: Labels
     })
   | (BaseEvent & {
@@ -300,7 +301,7 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
       exerciseId: "string", circuitFingerprint: "string", embedId: "string",
       answerExact: "string", unit: "string", engineRevision: "string", labels: "labels",
     },
-    optional: {verificationScope:"string",lessonBuild:"string"},
+    optional: {verificationScope:"string",lessonBuild:"string",proofSha256:"string"},
   },
   "circuit.trace.assessed": {
     required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
@@ -371,6 +372,11 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
     if (scoped !== built || scoped && (payload.verificationScope !== "electrical_result" ||
         typeof payload.lessonBuild !== "string" || !/^[a-f0-9]{64}$/.test(payload.lessonBuild))) {
       throw new Error("LessonOS event log: scope CircuitCheck incompleto o non supportato")
+    }
+    if (Object.prototype.hasOwnProperty.call(payload,"proofSha256") &&
+        (!scoped || typeof payload.proofSha256 !== "string" ||
+          !/^[a-f0-9]{64}$/.test(payload.proofSha256))) {
+      throw new Error("LessonOS event log: impronta della prova CircuitCheck non valida")
     }
   }
   if (factualKind === "circuit.trace.assessed") {

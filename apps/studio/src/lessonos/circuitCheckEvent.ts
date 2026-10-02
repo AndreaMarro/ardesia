@@ -3,8 +3,24 @@ import type { CircuitDiagnosis, CircuitProof, CircuitTraceStep } from "../toolho
 
 const exerciseId = (proof: CircuitProof): string => `circuit:${proof.fingerprint}`
 
+/** Bind the complete displayed proof to its factual event, independently of source build metadata. */
+export async function circuitProofSha256(proof: CircuitProof): Promise<string> {
+  const canonical = [proof.schema, proof.scope, proof.fingerprint, proof.sourceSha,
+    proof.lessonBuild, proof.netlist, proof.title, proof.method,
+    proof.verification ? [proof.verification.electrical_claim, proof.verification.backend,
+      proof.verification.lesson, proof.verification.product_verified] : null,
+    proof.inputProvenance ? [proof.inputProvenance.source_kind, proof.inputProvenance.source_sha256,
+      proof.inputProvenance.circuit_sha256, proof.inputProvenance.confirmed_at_unix] : null,
+    [proof.answer.exact, proof.answer.unit, proof.answer.reference],
+    proof.steps.map(step => [step.title, step.explanation, step.svg, step.equations]),
+  ]
+  const bytes = new TextEncoder().encode(JSON.stringify(canonical))
+  return [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
+    .map(value => value.toString(16).padStart(2, "0")).join("")
+}
+
 /** Exercise-level facts only. The board scene holds the raw proof and attempt. */
-export function circuitProofEvent(proof: CircuitProof, embedId: string, t: number): LessonOsEvent {
+export async function circuitProofEvent(proof: CircuitProof, embedId: string, t: number): Promise<LessonOsEvent> {
   if (proof.scope !== "electrical_result" || !proof.verification || !proof.lessonBuild) {
     throw new Error("La prova CircuitCheck non conserva lo scope della verifica.")
   }
@@ -14,6 +30,7 @@ export function circuitProofEvent(proof: CircuitProof, embedId: string, t: numbe
     answerExact: proof.answer.exact, unit: proof.answer.unit,
     engineRevision: proof.sourceSha,
     verificationScope: proof.scope, lessonBuild: proof.lessonBuild,
+    proofSha256: await circuitProofSha256(proof),
     labels: { it: `${proof.title}: ${proof.answer.exact} ${proof.answer.unit}` },
     t, evidence: [`board:${embedId}`],
   }

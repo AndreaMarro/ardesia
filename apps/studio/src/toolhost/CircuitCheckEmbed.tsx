@@ -65,13 +65,15 @@ export function CircuitCheckEmbed({element, toolLink, host}: {
           state.proof.answer.exact !== proof.answer.exact)) {
         throw new Error("La prova salvata non coincide con il nuovo calcolo. Nessun risultato corrente esposto.")
       }
+      const event = await circuitProofEvent(proof, toolLink.embedId, Date.now())
+      if (n !== generation.current) return
       const saved = await update({...state, proof, selectedStep: Math.min(state.selectedStep, proof.steps.length - 1), diagnosis: null})
       if (n !== generation.current) return
       if (!saved) throw new Error("La prova non è stata salvata nella lavagna: nessun evento di lezione registrato.")
       if (!await host?.flushEmbedState?.()) throw new Error("La prova non è ancora durevole nella lezione: nessun evento registrato.")
       if (n !== generation.current) return
       setCurrent(true)
-      host?.emitLessonEvent?.(circuitProofEvent(proof, toolLink.embedId, Date.now()))
+      host?.emitLessonEvent?.(event)
       setNotice("Risultato verificato dal motore CircuitCheck per questa revisione. La prova è associata all'oggetto lavagna.")
     } catch (cause) {
       if (n === generation.current) setError(cause instanceof Error ? cause.message : String(cause))

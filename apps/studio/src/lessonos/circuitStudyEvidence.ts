@@ -3,6 +3,7 @@ import {
   CIRCUIT_CHECK_TOOL_ID, readCircuitState, type CircuitProof, type CircuitTraceStep,
 } from "../toolhost/circuitCheckAdapter"
 import type { AppendedEvent } from "./eventlog"
+import { circuitProofSha256 } from "./circuitCheckEvent"
 
 export type CircuitStudyEvidence = Readonly<{
   embedId: string
@@ -32,11 +33,13 @@ export async function circuitStudyEvidence(
     const state = readCircuitState(marker.state)
     const proof = state.proof
     if (!proof || proof.scope !== "electrical_result") continue
+    const proofSha256 = await circuitProofSha256(proof)
     const source = events.find(event => event.kind === "circuit.proof.verified" &&
       event.embedId === element.id && event.circuitFingerprint === proof.fingerprint &&
       event.answerExact === proof.answer.exact && event.unit === proof.answer.unit &&
       event.engineRevision === proof.sourceSha && event.verificationScope === proof.scope &&
-      event.lessonBuild === proof.lessonBuild && event.evidence.includes(`board:${element.id}`))
+      event.lessonBuild === proof.lessonBuild && event.proofSha256 === proofSha256 &&
+      event.evidence.includes(`board:${element.id}`))
     if (!source) continue
 
     let assessedTrace: readonly CircuitTraceStep[] = []
