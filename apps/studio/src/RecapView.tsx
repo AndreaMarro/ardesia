@@ -291,13 +291,18 @@ export default function RecapView({ store, room }: RecapViewProps) {
                   color: "var(--m-ink-2)",
                   margin: "0 0 12px",
                 }}>Anteprima materiale</h3>
+                {circuits.length > 0 && (
+                  <p className="st-quiet" style={{ margin: "0 0 12px" }}>
+                    Bozza CircuitCheck: controlla schemi, segni e passaggi prima di consegnarla.
+                  </p>
+                )}
                 <iframe
                   title="Anteprima del recap stampabile da consegnare"
                   srcDoc={recapHtml}
                   sandbox=""
                   style={{
                     width: "100%",
-                    height: "380px",
+                    height: circuits.length > 0 ? "760px" : "380px",
                     border: "1px solid var(--m-line-2)",
                     borderRadius: "var(--m-r-card)",
                     background: "var(--m-canvas)",
@@ -328,7 +333,9 @@ export default function RecapView({ store, room }: RecapViewProps) {
                       fontSize: "var(--m-fs-sm)",
                       color: "var(--m-accent)",
                     }}>
-                      {type} <strong>{count}</strong>
+                      {type === "embeddable"
+                        ? count === 1 ? "strumento interattivo" : "strumenti interattivi"
+                        : type} <strong>{count}</strong>
                     </span>
                   ))}
               </div>

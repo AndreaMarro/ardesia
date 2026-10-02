@@ -29,6 +29,7 @@ const ELEMENT_LABEL_IT: Record<string, string> = {
   text: "testi",
   image: "immagini",
   freedraw: "tratti a mano",
+  embeddable: "strumenti interattivi",
 }
 
 /**
@@ -46,7 +47,9 @@ export function buildRecapHtml(
   const coveredItems: string[] = []
   for (const [type, count] of Object.entries(recap.elementTypeCounts).sort((a, b) => b[1] - a[1])) {
     if (count <= 0) continue
-    coveredItems.push(`${count}&nbsp;${esc(ELEMENT_LABEL_IT[type] ?? type)}`)
+    const label = type === "embeddable" && count === 1
+      ? "strumento interattivo" : ELEMENT_LABEL_IT[type] ?? type
+    coveredItems.push(`${count}&nbsp;${esc(label)}`)
   }
 
   const fontiHtml = pages.length
