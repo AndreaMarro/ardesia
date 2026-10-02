@@ -66,6 +66,10 @@ if (typeof studioPackage.version !== 'string') {
 const buildCommitSha = resolveBuildCommitSha(process.env, () =>
   execFileSync('git', ['rev-parse', 'HEAD'], { cwd: checkoutRoot, encoding: 'utf8' }),
 )
+const circuitCheckLocalUrl = process.env.KIRCHHOFF_LOCAL_URL
+if (circuitCheckLocalUrl && !/^http:\/\/(?:127\.0\.0\.1|localhost):[0-9]{2,5}\/?$/.test(circuitCheckLocalUrl)) {
+  throw new Error('KIRCHHOFF_LOCAL_URL must be a loopback HTTP server with an explicit port')
+}
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -92,6 +96,15 @@ export default defineConfig({
     // Il dev-server deve poter servire i sorgenti del plugin fuori da
     // apps/studio (monorepo): consenti la radice del repo, nient'altro.
     fs: { allow: [fileURLToPath(new URL('../..', import.meta.url))] },
+    // CircuitCheck keeps the circuit on this machine and is addressed through
+    // this same-origin dev proxy. No public service or deploy is implied.
+    proxy: circuitCheckLocalUrl ? {
+      '/circuitcheck': {
+        target: circuitCheckLocalUrl,
+        changeOrigin: true,
+        rewrite: (path: string) => path.replace(/^\/circuitcheck/, ''),
+      },
+    } : {},
   },
   optimizeDeps: { include: ['react', 'react-dom', 'react-dom/client'] },
 })

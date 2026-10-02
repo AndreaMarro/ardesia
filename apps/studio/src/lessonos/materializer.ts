@@ -175,6 +175,21 @@ export function materialize(events: readonly AppendedEvent[]): LessonGraph {
         break
       }
 
+      case "circuit.proof.verified": {
+        // Il motore certifica la risposta del circuito, non il lavoro o la
+        // competenza di una persona. L'embed resta la prova ispezionabile.
+        upsertNode(ev.exerciseId, "esercizio", ev.labels, ev.evidence, ev.t)
+        break
+      }
+
+      case "circuit.trace.assessed": {
+        upsertNode(ev.attemptId, "esercizio", ev.labels, ev.evidence, ev.t)
+        if (nodes.get(ev.exerciseId)?.kind === "esercizio") {
+          addEdge(ev.attemptId, ev.exerciseId, "deriva-da", ev.evidence, ev.t)
+        }
+        break
+      }
+
       case "simulation.error.observed": {
         // Errore elettrico = stessa grammatica di grafo di error.observed
         // (nodo errore + arco deriva-da concetto): una sola memoria, più sorgenti.

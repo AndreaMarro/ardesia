@@ -17,6 +17,8 @@ import {
 } from "../../sim/breadboard/simulationBreadboard";
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
+import { CircuitCheckEmbed } from "./CircuitCheckEmbed";
+import { CIRCUIT_CHECK_EMBED_ID, CIRCUIT_CHECK_TOOL_ID, emptyCircuitState } from "./circuitCheckAdapter";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
 import { catalogSummary } from "./elabExperimentCatalog";
@@ -649,6 +651,17 @@ export function buildSimulationInsert(
   return null;
 }
 
+/** New owned circuit-reasoning object; no example circuit is preloaded. */
+export function buildCircuitCheckInsert(
+  currentElements: readonly { id?: string }[],
+): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
+  const entry = getSimulationTool(CIRCUIT_CHECK_TOOL_ID);
+  if (!entry) return null;
+  const ids = currentElements.map((el) => el.id).filter((id): id is string => typeof id === "string");
+  const embedId = nextSimulationEmbedId(ids, entry.embedId);
+  return { embed: entry.createEmbed(embedId), embedId };
+}
+
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
@@ -681,6 +694,14 @@ const referenceSimulationEntry = {
 registerSimulationTool(REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(LEGACY_REFERENCE_SIM_TOOL_ID, referenceSimulationEntry);
 registerSimulationTool(REFERENCE_PLUGIN_REF_ID, referenceSimulationEntry);
+registerSimulationTool(CIRCUIT_CHECK_TOOL_ID, {
+  embedId: CIRCUIT_CHECK_EMBED_ID,
+  render: (element, toolLink, host) => <CircuitCheckEmbed element={element} toolLink={toolLink} host={host} />,
+  createEmbed: (embedId = CIRCUIT_CHECK_EMBED_ID) => ({
+    ...createToolEmbedElement({toolId: CIRCUIT_CHECK_TOOL_ID, embedId, state: emptyCircuitState()}),
+    width: 900, height: 680,
+  }),
+});
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch
 // il tap-tap è il gesto affidabile, il drag no). Semantica occupazione = #93:

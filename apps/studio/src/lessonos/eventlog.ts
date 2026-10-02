@@ -93,6 +93,26 @@ export type LessonOsEvent =
       labels: Labels
     })
   | (BaseEvent & {
+      /** Risultato esatto ricevuto dal servizio CircuitCheck, associato al proprio embed. */
+      kind: "circuit.proof.verified"
+      exerciseId: string
+      circuitFingerprint: string
+      embedId: string
+      answerExact: string
+      unit: string
+      engineRevision: string
+      labels: Labels
+    })
+  | (BaseEvent & {
+      /** Un tentativo è stato diagnosticato; non implica completamento o padronanza. */
+      kind: "circuit.trace.assessed"
+      attemptId: string
+      exerciseId: string
+      outcome: "first_invalid" | "valid_so_far" | "not_assessable"
+      firstInvalidStep?: number
+      labels: Labels
+    })
+  | (BaseEvent & {
       /** Errore elettrico osservato dal solver (filo scollegato, LED invertito, R mancante/pericolosa). */
       kind: "simulation.error.observed"
       errorId: string
@@ -266,6 +286,16 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
       currentMa: "number",
       bookLayoutValid: "boolean",
     },
+  },
+  "circuit.proof.verified": {
+    required: {
+      exerciseId: "string", circuitFingerprint: "string", embedId: "string",
+      answerExact: "string", unit: "string", engineRevision: "string", labels: "labels",
+    },
+  },
+  "circuit.trace.assessed": {
+    required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
+    optional: { firstInvalidStep: "number" },
   },
   "simulation.error.observed": {
     required: { errorId: "string", conceptId: "string", labels: "labels" },

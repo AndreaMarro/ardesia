@@ -133,6 +133,8 @@ const FACTUAL_KINDS = new Set<LessonOsFactKind>([
   "simulation.step.completed",
   "simulation.circuit.solved",
   "simulation.error.observed",
+  "circuit.proof.verified",
+  "circuit.trace.assessed",
   "plugin.mounted",
   "quiz.attempted",
   "studentpack.generated",

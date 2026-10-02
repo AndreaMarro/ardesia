@@ -8,11 +8,13 @@ export async function persistRoomEmbedStateThroughToolHost(
   state: unknown,
   toolId: string,
   reportError: (message: string) => void,
-): Promise<void> {
+): Promise<boolean> {
   try {
     const ok = await persistEmbedStateThroughToolHost(api, store, embedId, state, { toolId })
     if (!ok) reportError("Write-back ToolHost fallito: richiesta negata")
+    return ok
   } catch (error) {
     reportError(`Write-back ToolHost fallito: ${(error as Error).message}`)
+    return false
   }
 }

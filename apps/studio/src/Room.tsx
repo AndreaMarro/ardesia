@@ -31,7 +31,7 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildCircuitCheckInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateProductRoomId, validateRoomId } from "./store/roomPaths"
@@ -828,6 +828,24 @@ export default function Room({
     }
   }
 
+  function insertCircuitCheck() {
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+    const currentElements = apiRef.current.getSceneElements()
+    const insert = buildCircuitCheckInsert(currentElements as readonly { id?: string }[])
+    if (!insert) {
+      setStorageError("CircuitCheck non disponibile.")
+      return
+    }
+    apiRef.current.updateScene({
+      elements: [...currentElements, insert.embed],
+      appState: { selectedElementIds: { [insert.embedId]: true } },
+    })
+    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+  }
+
   function insertSimulationPlugin(experimentId?: string) {
     if (!apiRef.current) {
       setStorageError("Lavagna non pronta: riprova tra un istante.")
@@ -1002,6 +1020,8 @@ export default function Room({
           >
             sim
           </button>
+          <button onClick={insertCircuitCheck} className="st-ghost"
+            aria-label="Inserisci CircuitCheck sulla lavagna">circuiti</button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
@@ -1135,7 +1155,7 @@ export default function Room({
                   : {
                       persistEmbedState: (embedId, state, toolId) => {
                         if (apiRef.current) {
-                          void persistRoomEmbedStateThroughToolHost(
+                          return persistRoomEmbedStateThroughToolHost(
                             apiRef.current,
                             actualStore,
                             embedId,
@@ -1143,6 +1163,21 @@ export default function Room({
                             toolId,
                             setStorageError,
                           )
+                        }
+                        return Promise.resolve(false)
+                      },
+                      flushEmbedState: async () => {
+                        if (!apiRef.current) return false
+                        // The Excalidraw onChange callback may lag the ToolHost
+                        // write by one render; snapshot the live scene itself.
+                        latestElementsRef.current = apiRef.current.getSceneElements()
+                        latestAppStateRef.current = apiRef.current.getAppState()
+                        latestFilesRef.current = apiRef.current.getFiles?.() ?? latestFilesRef.current ?? {}
+                        try {
+                          await flushPersist()
+                          return true
+                        } catch {
+                          return false
                         }
                       },
                       emitLessonEvent,
@@ -1168,7 +1203,7 @@ export default function Room({
                 <div className="st-welcome-guide">
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
                   <p>Per le formule premi «formula», per slide e immagini «media».</p>
-                  <p>Il simulatore integrato è l'unico plugin disponibile in questa beta.</p>
+                  <p>Il simulatore e CircuitCheck sono disponibili nella lavagna di questa beta.</p>
                 </div>
               </WelcomeScreen.Center>
               <WelcomeScreen.Hints.ToolbarHint>
