@@ -43,6 +43,16 @@ export function assertEvidence(refs: unknown, context: string): asserts refs is 
 /** Label multilingua: concept_id neutro + label per lingua (requisito strutturale, non traduzione finale). */
 export type Labels = Record<string, string>
 
+/** Exact teacher-visible fields of one electrically assessed student step. */
+export type ObservedCircuitStep = Readonly<{
+  transcription: string
+  operation: "serie" | "parallelo" | "kcl" | "corrente" | "tensione" | "altro"
+  first: string
+  second: string
+  claimed_value: string | null
+  reading: "clear" | "ambiguous" | "unreadable"
+}>
+
 interface BaseEvent {
   /** Timestamp evento (ms epoch), fornito dal chiamante: il log non inventa tempi. */
   t: number
@@ -113,6 +123,7 @@ export type LessonOsEvent =
       exerciseId: string
       outcome: "first_invalid" | "valid_so_far" | "not_assessable"
       firstInvalidStep?: number
+      observedStep?: ObservedCircuitStep
       /** Solo per un passaggio chiaramente valutato: metodo dichiarato, non diagnosi di padronanza. */
       errorId?: string
       conceptId?: string
@@ -261,7 +272,7 @@ export function adaptLegacyLessonOsV1Log(
   return Object.freeze({ ...adaptLegacyLessonOsV1Append(legacy, identity), seq })
 }
 
-type LegacyPayloadField = "string" | "number" | "boolean" | "labels"
+type LegacyPayloadField = "string" | "number" | "boolean" | "labels" | "circuit_step"
 type LegacyPayloadRule = Readonly<{
   required: Readonly<Record<string, LegacyPayloadField>>
   optional?: Readonly<Record<string, LegacyPayloadField>>
@@ -305,7 +316,7 @@ const LESSON_OS_PAYLOAD_RULES: Record<LessonOsEvent["kind"], LegacyPayloadRule> 
   },
   "circuit.trace.assessed": {
     required: { attemptId: "string", exerciseId: "string", outcome: "string", labels: "labels" },
-    optional: { firstInvalidStep: "number", errorId: "string", conceptId: "string", conceptLabels: "labels", correctsErrorId: "string" },
+    optional: { firstInvalidStep: "number", observedStep: "circuit_step", errorId: "string", conceptId: "string", conceptLabels: "labels", correctsErrorId: "string" },
   },
   "simulation.error.observed": {
     required: { errorId: "string", conceptId: "string", labels: "labels" },
@@ -331,6 +342,18 @@ const FACTUAL_KINDS = new Set<LessonOsEvent["kind"]>(
 )
 
 function assertLegacyPayloadField(value: unknown, expected: LegacyPayloadField, context: string): void {
+  if (expected === "circuit_step" && typeof value === "object" && value !== null &&
+      !Array.isArray(value) && Object.getPrototypeOf(value) === Object.prototype) {
+    const step = value as Record<string, unknown>
+    const keys = ["transcription", "operation", "first", "second", "claimed_value", "reading"]
+    if (Object.keys(step).length === keys.length && keys.every(key => Object.hasOwn(step, key)) &&
+        typeof step.transcription === "string" && step.transcription.length <= 500 &&
+        typeof step.first === "string" && step.first.length <= 500 &&
+        typeof step.second === "string" && step.second.length <= 500 &&
+        (step.claimed_value === null || typeof step.claimed_value === "string" && step.claimed_value.length <= 100) &&
+        ["serie", "parallelo", "kcl", "corrente", "tensione", "altro"].includes(String(step.operation)) &&
+        ["clear", "ambiguous", "unreadable"].includes(String(step.reading))) return
+  }
   if (expected === "string" && typeof value === "string") return
   if (expected === "number" && typeof value === "number" && Number.isFinite(value)) return
   if (expected === "boolean" && typeof value === "boolean") return
@@ -386,6 +409,9 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
         typeof payload.errorId !== "string" || payload.errorId.length === 0 ||
         typeof payload.conceptId !== "string" || payload.conceptId.length === 0)) {
       throw new Error("LessonOS event log: errore CircuitCheck senza primo passaggio valutato e metodo completo")
+    }
+    if (Object.prototype.hasOwnProperty.call(payload, "observedStep") && semantic.length !== 3) {
+      throw new Error("LessonOS event log: passaggio osservato senza errore CircuitCheck verificato")
     }
     if (Object.prototype.hasOwnProperty.call(payload, "correctsErrorId") &&
         (payload.outcome !== "valid_so_far" || semantic.length !== 0 ||

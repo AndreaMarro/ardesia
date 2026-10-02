@@ -1,13 +1,19 @@
 // @vitest-environment jsdom
 // Synthetic identity/lifecycle evidence through the actual store, log and view.
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { act, cleanup, render, waitFor } from "@testing-library/react"
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { IDBFactory, IDBKeyRange } from "fake-indexeddb"
 import RecapView from "../RecapView"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { roomPaths } from "../store/roomPaths"
 import type { WorkspaceDriver } from "../store/types"
 import * as eventLogs from "../lessonos/indexedDbEventLog"
-import { createEventEnvelopeV2 } from "../core/contracts/eventEnvelope"
+import { createEventEnvelopeV2, type JsonObject } from "../core/contracts/eventEnvelope"
+import { readCircuitProof, type CircuitTraceStep } from "../toolhost/circuitCheckAdapter"
+import { circuitProofEvent, circuitTraceEvent } from "../lessonos/circuitCheckEvent"
+import { buildCircuitCheckInsert } from "../toolhost/ToolCanvasEmbeddable"
+import { EMBED_DATA_KEY } from "../toolhost/caps/board"
+import type { LessonOsEvent } from "../lessonos/eventlog"
 
 const A = "recap-proof-a"
 const B = "recap-proof-b"
@@ -58,6 +64,59 @@ async function visibleRecap(store: WorkspaceStore, room: string) {
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 
 describe("post-lesson canonical identity", () => {
+  it("shows A's observed circuit step in B only after explicit retrieval, without importing B's correction", async () => {
+    const store = workspace()
+    await visibleRecap(store,B)
+    const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
+    const fingerprint = "e".repeat(64)
+    const proof = readCircuitProof({outcome:"solved",netlist,fingerprint,
+      source_sha:"a".repeat(40),lesson_build:"b".repeat(64),title:"Tensione R2",method:"divider",
+      verification:{electrical_claim:"VERIFIED",backend:"CLOSED",lesson:"exact-answer-crosscheck",product_verified:false},
+      answer:{exact:"42/5",unit:"V",reference:"q → 0"},
+      steps:[{title:"Serie",explanation:"Riduzione",svg:'<svg xmlns="http://www.w3.org/2000/svg"></svg>',equations:["R1+R2=10 Ω"]}],
+    },netlist)
+    const step: CircuitTraceStep = {transcription:"R1+R2=20 Ω",operation:"serie",first:"R1",second:"R2",
+      claimed_value:"20",reading:"clear"}
+    const inserted = buildCircuitCheckInsert([])!
+    await store.write(roomPaths(A).scene,new Blob([JSON.stringify({elements:[{...inserted.embed,customData:{
+      [EMBED_DATA_KEY]:{owner:"io.ardesia.circuit-reasoning",state:{kind:"circuitcheck-proof-v1",
+        netlist,method:"auto",proof,selectedStep:0,trace:[],diagnosis:null}},
+    }}]})]))
+    const factory = new IDBFactory()
+    vi.stubGlobal("indexedDB",factory)
+    vi.stubGlobal("IDBKeyRange",IDBKeyRange)
+    const writer = new eventLogs.IndexedDbEventLog({factory})
+    await writer.open()
+    const append = async (event: LessonOsEvent, lessonId: string) => {
+      const {kind,t:_t,evidence,...payload} = event
+      await writer.appendEnvelope(createEventEnvelopeV2<string,JsonObject>({lessonId,sessionId:SESSION,kind,
+        actor:{type:"teacher",id:"synthetic"},producer,causationId:null,idempotencyKey:null,
+        evidence:evidence.map(ref => ({ref,resolution:"verified" as const})),payload:payload as unknown as JsonObject,
+      },{eventId:uuid,now:()=>new Date(1000)}))
+    }
+    await append(await circuitProofEvent(proof,inserted.embedId,1000),A)
+    const wrong = await circuitTraceEvent(proof,[step],{outcome:"first_invalid",step:1,
+      message:"Somma errata",focus:["R1"],circuit_fingerprint:fingerprint},inserted.embedId,1100)
+    await append(wrong,A)
+    await append(await circuitTraceEvent(proof,[{...step,claimed_value:"10"}],{
+      outcome:"valid_so_far",step:null,message:"Corretto",focus:[],circuit_fingerprint:fingerprint,
+    },inserted.embedId,1200,wrong.errorId),B)
+    await writer.close()
+    render(<RecapView store={store} room={B} />)
+    await screen.findByRole("button",{name:"Cerca lezioni precedenti"})
+    expect(screen.queryByText("R1+R2=20 Ω")).toBeNull()
+    fireEvent.click(screen.getByRole("button",{name:"Cerca lezioni precedenti"}))
+    await screen.findByRole("combobox",{name:"Lezione precedente"})
+    fireEvent.click(screen.getByRole("button",{name:"Apri evidenze"}))
+    await screen.findByText(/Passaggio osservato 1: R1\+R2=20 Ω/)
+    expect(screen.getByText(/Passaggio ancora da rivedere/)).toBeDefined()
+    expect(screen.getByText(/Risultato storico del circuito: 42\/5 V/)).toBeDefined()
+    const check = new eventLogs.IndexedDbEventLog({factory})
+    await check.open()
+    expect(await check.readEnvelopesByLesson(B)).toHaveLength(1)
+    await check.close()
+  })
+
   for (const started of [false, true]) it(`excludes overlapping B facts from A (start=${started})`, async () => {
     const store = workspace()
     await visibleRecap(store, A)

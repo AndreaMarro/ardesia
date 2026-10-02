@@ -9,7 +9,7 @@ import { materialize } from "../lessonos/materializer"
 import { buildLessonStudyDigest, buildStudyDigest } from "../lessonos/studyDigest"
 import { buildCircuitCheckInsert, parseToolLink } from "../toolhost/ToolCanvasEmbeddable"
 import { EMBED_DATA_KEY, embedOwner } from "../toolhost/caps/board"
-import { circuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
+import { circuitNextLessonEvidence, circuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
 import { buildRecapHtml } from "../store/recapHtml"
 
 const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
@@ -148,6 +148,7 @@ describe("CircuitCheck nel confine Ardesia", () => {
       },"circuit-reasoning",1100)
       expect(wrong.conceptId).toBe(`circuit:method:${operation}`)
       expect(wrong.conceptLabels?.it).toBe(label)
+      expect(wrong.observedStep).toEqual(step)
       const log = new InMemoryEventLog()
       await log.append(await circuitProofEvent(proof,"circuit-reasoning",1000))
       await log.append(wrong)
@@ -173,6 +174,14 @@ describe("CircuitCheck nel confine Ardesia", () => {
     expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
       ...base,outcome:"not_assessable",correctsErrorId:"error:a",
     })).toThrow(/correzione CircuitCheck/)
+    expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
+      ...base,outcome:"first_invalid",firstInvalidStep:1,
+      errorId:"error:a",conceptId:"circuit:method:kcl",conceptLabels:{it:"KCL"},
+      observedStep:{...trace[0],operation:"inventato"},
+    })).toThrow(/circuit_step/)
+    expect(() => assertLessonOsEnvelopePayload("circuit.trace.assessed", {
+      ...base,outcome:"valid_so_far",observedStep:trace[0],
+    })).toThrow(/passaggio osservato/)
     expect(() => assertLessonOsEnvelopePayload("circuit.proof.verified", {
       exerciseId:"circuit:a",circuitFingerprint:fingerprint,embedId:"board:a",
       answerExact:"42/5",unit:"V",engineRevision:"a".repeat(40),labels:{it:"Risultato"},
@@ -232,5 +241,47 @@ describe("CircuitCheck nel confine Ardesia", () => {
       return old
     })
     expect(await circuitStudyEvidence(scene, unhashedEvents)).toEqual([])
+  })
+
+  it("recupera il passaggio osservato dalla lezione A senza importare la correzione della lezione B", async () => {
+    const proof = readCircuitProof(response, netlist)
+    const inserted = buildCircuitCheckInsert([])!
+    const scene = JSON.stringify({elements:[{...inserted.embed,customData:{
+      [EMBED_DATA_KEY]:{owner:"io.ardesia.circuit-reasoning",state:{
+        kind:"circuitcheck-proof-v1",netlist,method:"auto",proof,
+        selectedStep:0,trace:[{...trace[0]!,claimed_value:"20"}],diagnosis:null,
+      }},
+    }}]})
+    const log = new InMemoryEventLog()
+    await log.append(await circuitProofEvent(proof,inserted.embedId,1000))
+    const wrong = await circuitTraceEvent(proof,trace,{
+      outcome:"first_invalid",step:1,message:"Somma errata",focus:["R1"],
+      circuit_fingerprint:fingerprint,
+    },inserted.embedId,1100)
+    await log.append(wrong)
+    const corrected = await circuitTraceEvent(proof,[{...trace[0]!,claimed_value:"20"}],{
+      outcome:"valid_so_far",step:null,message:"Corretto",focus:[],
+      circuit_fingerprint:fingerprint,
+    },inserted.embedId,1200,wrong.errorId)
+    await log.append(corrected)
+    const events = await log.readAll()
+    const envelope = (event: typeof events[number],index:number,lessonId:string) =>
+      adaptLegacyLessonOsV1Log(event,{
+        lessonId,sessionId:"11111111-1111-4111-8111-111111111111",
+        eventId:`70000000-0000-4000-8000-${String(index+1).padStart(12,"0")}`,
+        actor:{type:"teacher",id:"synthetic"},
+        producer:{id:"test.circuit",version:"1.0.0",commitSha:"a".repeat(40)},
+        idempotencyKey:null,
+      })
+    const mixed = [envelope(events[0]!,0,"lesson-a"),envelope(events[1]!,1,"lesson-a"),
+      envelope(events[2]!,2,"lesson-b")]
+    const fromA = await circuitNextLessonEvidence(scene,mixed,"lesson-a")
+    expect(fromA).toEqual([expect.objectContaining({
+      embedId:inserted.embedId,errorId:wrong.errorId,
+      observedStep:trace[0],corrected:false,
+    })])
+    expect(await circuitNextLessonEvidence(scene,mixed,"lesson-b")).toEqual([])
+    const allA = [...mixed.slice(0,2),envelope(events[2]!,3,"lesson-a")]
+    expect((await circuitNextLessonEvidence(scene,allA,"lesson-a"))[0]?.corrected).toBe(true)
   })
 })

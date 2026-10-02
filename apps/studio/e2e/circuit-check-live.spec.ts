@@ -91,9 +91,11 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   expect(object.customData.maestroTool.state.proof.answer.exact).toBe("42/5")
   expect(object.customData.maestroTool.state.trace[0].claimed_value).toBe("10")
   const events = (await zip.file("raw/lessonos-events.jsonl")!.async("string"))
-    .trim().split("\n").map(line => JSON.parse(line) as {kind:string})
+    .trim().split("\n").map(line => JSON.parse(line) as {kind:string;payload?:{observedStep?:{transcription:string}}})
   expect(events.filter(item => item.kind === "circuit.proof.verified")).toHaveLength(2)
   expect(events.filter(item => item.kind === "circuit.trace.assessed")).toHaveLength(3)
+  expect(events.find(item => item.kind === "circuit.trace.assessed" && item.payload?.observedStep)
+    ?.payload?.observedStep?.transcription).toBe("R1+R2=11")
 
   await page.getByRole("link", {name:"Rivedi il recap stampabile"}).click()
   const preview = page.frameLocator('iframe[title="Anteprima del recap stampabile da consegnare"]')
@@ -147,4 +149,28 @@ test("a KCL error and correction survive the real board and lesson memory", asyn
     const events = await harness?.lessonOs?.current?.store?.readAll() ?? []
     return events.findLast(item => item.kind === "circuit.trace.assessed")?.correctsErrorId
   })).toBe(wrong?.errorId)
+})
+
+test("the next lesson retrieves the exact prior circuit step without copying its memory", async ({page}) => {
+  const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
+  await page.goto("/#circuit-lesson-a")
+  await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
+  await page.getByRole("button", {name:"Risolvi e verifica"}).click()
+  await expect(page.getByText(/Risultato verificato:.*42\/5 V/)).toBeVisible()
+  await page.getByRole("button", {name:"Aggiungi passaggio"}).click()
+  await page.getByRole("textbox", {name:"Trascrizione 1"}).fill("R1+R2=11 Ω")
+  await page.getByRole("textbox", {name:"Primo componente 1"}).fill("R1")
+  await page.getByRole("textbox", {name:"Secondo componente 1"}).fill("R2")
+  await page.getByRole("textbox", {name:"Valore 1"}).fill("11")
+  await page.getByRole("button", {name:"Controlla il procedimento"}).click()
+  await expect(page.getByText(/Primo passaggio da rivedere: 1/)).toBeVisible()
+  await page.goto("/?vista=recap#circuit-lesson-b")
+  await expect(page.getByRole("button",{name:"Cerca lezioni precedenti"})).toBeVisible()
+  await expect(page.getByText("R1+R2=11 Ω")).toHaveCount(0)
+  await page.getByRole("button",{name:"Cerca lezioni precedenti"}).click()
+  await page.getByRole("combobox",{name:"Lezione precedente"}).selectOption("circuit-lesson-a")
+  await page.getByRole("button",{name:"Apri evidenze"}).click()
+  await expect(page.getByText(/Passaggio osservato 1: R1\+R2=11 Ω/)).toBeVisible()
+  await expect(page.getByText(/Risultato storico del circuito: 42\/5 V/)).toBeVisible()
 })

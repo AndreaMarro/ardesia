@@ -70,7 +70,7 @@ export async function circuitTraceEvent(
       ? { firstInvalidStep: diagnosis.step } : {}),
     ...(conceptLabel ? {
       errorId:`${attemptId}:error`, conceptId:`circuit:method:${invalid!.operation}`,
-      conceptLabels:{it:conceptLabel},
+      conceptLabels:{it:conceptLabel}, observedStep:{...invalid!},
     } : {}),
     ...(diagnosis.outcome === "valid_so_far" && correctsErrorId ? {correctsErrorId} : {}),
     labels: { it: label }, t, evidence: [`board:${embedId}`],

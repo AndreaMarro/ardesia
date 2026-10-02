@@ -3,14 +3,16 @@
 // Linguaggio docente: "appunti salvati" (sottotitolo), mai flush/cache.
 // Ogni card ha una label propria (tempo / lavagna / formule), non ripetuta.
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
+import type { RoomInfo } from "./store/types"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { buildRecapHtml } from "./store/recapHtml"
 import { createEventLogStore, IndexedDbEventLog } from "./lessonos/indexedDbEventLog"
 import { buildLessonStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
-import { circuitStudyEvidence, type CircuitStudyEvidence } from "./lessonos/circuitStudyEvidence"
-import { toLegacyLessonOsEvent } from "./lessonos/eventlog"
+import { circuitNextLessonEvidence, circuitStudyEvidence,
+  type CircuitNextLessonEvidence, type CircuitStudyEvidence } from "./lessonos/circuitStudyEvidence"
+import { toLegacyLessonOsEvent, UNASSIGNED_LESSON_ID } from "./lessonos/eventlog"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
@@ -51,20 +53,40 @@ export default function RecapView({ store, room }: RecapViewProps) {
   const [circuitResult, setCircuitResult] = useState<{
     store: WorkspaceStore; room: string; value: CircuitStudyEvidence[]
   } | null>(null)
+  const [priorRoomsResult, setPriorRoomsResult] = useState<{
+    store: WorkspaceStore; room: string; value: RoomInfo[]
+  } | null>(null)
+  const [priorRoom, setPriorRoom] = useState("")
+  const [priorEvidenceResult, setPriorEvidenceResult] = useState<{
+    store: WorkspaceStore; room: string; priorRoom: string; value: CircuitNextLessonEvidence[]
+  } | null>(null)
+  const [priorError, setPriorError] = useState("")
+  const [priorBusy, setPriorBusy] = useState(false)
+  const priorGeneration = useRef(0)
   // Guard also the render before the effect resets state on navigation.
   const digest = digestResult?.store === store && digestResult.room === room
     ? digestResult.value : null
   const circuits = circuitResult?.store === store && circuitResult.room === room
     ? circuitResult.value : EMPTY_CIRCUITS
+  const priorRooms = priorRoomsResult?.store === store && priorRoomsResult.room === room
+    ? priorRoomsResult.value : null
+  const priorEvidence = priorEvidenceResult?.store === store && priorEvidenceResult.room === room &&
+    priorEvidenceResult.priorRoom === priorRoom ? priorEvidenceResult.value : null
   const hasRecapContent = recap !== null && (!isRecapEmpty(recap) || circuits.length > 0)
 
   useEffect(() => {
     let cancelled = false
+    priorGeneration.current += 1
     setLoading(true)
     setRecap(null)
     setError(null)
     setDigestResult(null)
     setCircuitResult(null)
+    setPriorRoomsResult(null)
+    setPriorRoom("")
+    setPriorEvidenceResult(null)
+    setPriorError("")
+    setPriorBusy(false)
     // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
     // per lessonId canonico, mai per finestra temporale. Fail-soft: senza log
     // leggibile si omettono le sezioni pedagogiche, senza riusare un altro digest.
@@ -95,8 +117,41 @@ export default function RecapView({ store, room }: RecapViewProps) {
       .finally(() => {
         if (!cancelled) setLoading(false)
       })
-    return () => { cancelled = true }
+    return () => { cancelled = true; priorGeneration.current += 1 }
   }, [store, room])
+
+  async function discoverPriorRooms() {
+    const request = ++priorGeneration.current
+    setPriorBusy(true); setPriorError(""); setPriorEvidenceResult(null)
+    try {
+      const available = (await store.listRooms()).filter(item =>
+        item.room !== room && item.room !== UNASSIGNED_LESSON_ID)
+      if (request !== priorGeneration.current) return
+      setPriorRoomsResult({store,room,value:available})
+      setPriorRoom(available[0]?.room ?? "")
+    } catch (cause) {
+      if (request === priorGeneration.current) setPriorError(cause instanceof Error ? cause.message : String(cause))
+    } finally { if (request === priorGeneration.current) setPriorBusy(false) }
+  }
+
+  async function retrievePriorEvidence() {
+    if (!priorRoom || !priorRooms?.some(item => item.room === priorRoom)) return
+    const request = ++priorGeneration.current
+    setPriorBusy(true); setPriorError(""); setPriorEvidenceResult(null)
+    try {
+      const scene = await store.loadScene(priorRoom)
+      const log = new IndexedDbEventLog()
+      let envelopes
+      try {
+        await log.open()
+        envelopes = await log.readEnvelopesByLesson(priorRoom)
+      } finally { await log.close() }
+      const value = await circuitNextLessonEvidence(scene,envelopes,priorRoom)
+      if (request === priorGeneration.current) setPriorEvidenceResult({store,room,priorRoom,value})
+    } catch (cause) {
+      if (request === priorGeneration.current) setPriorError(cause instanceof Error ? cause.message : String(cause))
+    } finally { if (request === priorGeneration.current) setPriorBusy(false) }
+  }
 
   // react-best-practices: deriva l'HTML del materiale UNA volta per recap
   // (memoized), unica fonte per anteprima E download — mai rigenerato a ogni render.
@@ -342,6 +397,35 @@ export default function RecapView({ store, room }: RecapViewProps) {
             </section>
           </>
         )}
+        {!loading && !error && <section aria-label="Evidenze per la lezione successiva" style={{marginTop:28}}>
+          <h3>Riprendi un esercizio precedente</h3>
+          <p className="st-quiet">Scegli una lezione salvata per consultare il passaggio osservato e la prova del circuito. Questa consultazione non copia dati nella lezione corrente.</p>
+          <button type="button" className="st-ghost" disabled={priorBusy} onClick={() => void discoverPriorRooms()}>
+            Cerca lezioni precedenti
+          </button>
+          {priorRooms && priorRooms.length === 0 && <p className="st-quiet">Nessun'altra lezione salvata.</p>}
+          {priorRooms && priorRooms.length > 0 && <div style={{display:"flex",gap:8,marginTop:12}}>
+            <select aria-label="Lezione precedente" value={priorRoom}
+              onChange={event => {priorGeneration.current += 1;setPriorRoom(event.target.value);setPriorEvidenceResult(null)}}>
+              {priorRooms.map(item => <option key={item.room} value={item.room}>{item.name}</option>)}
+            </select>
+            <button type="button" className="st-ghost" disabled={priorBusy || !priorRoom}
+              onClick={() => void retrievePriorEvidence()}>Apri evidenze</button>
+          </div>}
+          {priorError && <p role="alert">Evidenze non disponibili: {priorError}</p>}
+          {priorEvidence && priorEvidence.length === 0 && <p className="st-quiet">Nessun passaggio CircuitCheck verificabile in questa lezione.</p>}
+          {priorEvidence && priorEvidence.length > 0 && <ul>
+            {priorEvidence.map(item => <li key={item.errorId} style={{marginTop:14}}>
+              <strong>{item.proof.title}</strong>
+              <p>Passaggio osservato {item.firstInvalidStep}: {item.observedStep.transcription ||
+                `${item.observedStep.operation} ${item.observedStep.first} ${item.observedStep.second} ${item.observedStep.claimed_value ?? ""}`}</p>
+              <p>{item.corrected ? "Correzione registrata nella lezione precedente." : "Passaggio ancora da rivedere nella lezione precedente."}</p>
+              <p>Risultato storico del circuito: {item.proof.answer.exact} {item.proof.answer.unit}. Ricalcola prima di riusarlo.</p>
+              {item.proof.steps.flatMap(step => step.equations).map((equation,index) =>
+                <code key={index} style={{display:"block"}}>{equation}</code>)}
+            </li>)}
+          </ul>}
+        </section>}
       </div>
     </div>
   )

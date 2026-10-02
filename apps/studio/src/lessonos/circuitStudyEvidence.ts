@@ -2,7 +2,8 @@ import { EMBED_DATA_KEY } from "../toolhost/caps/board"
 import {
   CIRCUIT_CHECK_TOOL_ID, readCircuitState, type CircuitProof, type CircuitTraceStep,
 } from "../toolhost/circuitCheckAdapter"
-import type { AppendedEvent } from "./eventlog"
+import { toLegacyLessonOsEvent, type AppendedEvent, type AppendedEventEnvelopeV2,
+  type ObservedCircuitStep } from "./eventlog"
 import { circuitProofSha256 } from "./circuitCheckEvent"
 
 export type CircuitStudyEvidence = Readonly<{
@@ -10,6 +11,15 @@ export type CircuitStudyEvidence = Readonly<{
   proof: CircuitProof
   assessedTrace: readonly CircuitTraceStep[]
   assessment: string | null
+}>
+
+export type CircuitNextLessonEvidence = Readonly<{
+  embedId: string
+  proof: CircuitProof
+  errorId: string
+  firstInvalidStep: number
+  observedStep: ObservedCircuitStep
+  corrected: boolean
 }>
 
 const object = (v: unknown): v is Record<string, unknown> =>
@@ -60,4 +70,32 @@ export async function circuitStudyEvidence(
     result.push({embedId:element.id, proof, assessedTrace, assessment})
   }
   return result.sort((a,b) => a.embedId.localeCompare(b.embedId))
+}
+
+/** Read prior-lesson exercise facts without projecting a student score or copying them into the new lesson. */
+export async function circuitNextLessonEvidence(
+  sceneJson: string | null,
+  envelopes: readonly AppendedEventEnvelopeV2[],
+  priorLessonId: string,
+): Promise<CircuitNextLessonEvidence[]> {
+  const events = envelopes.filter(item => item.lessonId === priorLessonId)
+    .map(toLegacyLessonOsEvent).filter((item): item is AppendedEvent => item !== null)
+  const verified = await circuitStudyEvidence(sceneJson, events)
+  const result: CircuitNextLessonEvidence[] = []
+  for (const {embedId, proof} of verified) {
+    const exerciseId = `circuit:${proof.fingerprint}`
+    const boardRef = `board:${embedId}`
+    for (const error of events) {
+      if (error.kind !== "circuit.trace.assessed" || error.outcome !== "first_invalid" ||
+          error.exerciseId !== exerciseId || !error.errorId || !error.observedStep ||
+          !error.firstInvalidStep || !error.evidence.includes(boardRef)) continue
+      const corrected = events.some(item => item.kind === "circuit.trace.assessed" &&
+        item.seq > error.seq && item.outcome === "valid_so_far" &&
+        item.exerciseId === exerciseId && item.correctsErrorId === error.errorId &&
+        item.evidence.includes(boardRef))
+      result.push({embedId, proof, errorId:error.errorId,
+        firstInvalidStep:error.firstInvalidStep, observedStep:error.observedStep, corrected})
+    }
+  }
+  return result.sort((a,b) => a.errorId.localeCompare(b.errorId))
 }
