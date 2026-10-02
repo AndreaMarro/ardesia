@@ -267,7 +267,7 @@ def test_compile_course_review_flag(capsys):
 
 
 def test_compile_course_approve_flag(capsys):
-    """--approve auto-approva il corso."""
+    """Il solo flag non sostituisce un'azione del docente sulla revisione letta."""
     rc = main(
         [
             "compile-course",
@@ -275,23 +275,63 @@ def test_compile_course_approve_flag(capsys):
             "--approve",
         ]
     )
-    assert rc == 0
-    out = capsys.readouterr().out
-    assert "Course approved:" in out
-    assert "Review status:" in out
-    assert "1 note(s)" in out
-    assert "approved=True" in out
+    assert rc == 1
+    captured = capsys.readouterr()
+    assert "Course approved:" not in captured.out
+    assert "named reviewer" in captured.err
 
 
-def test_compile_course_review_and_approve(capsys):
-    """--review + --approve insieme."""
+def test_compile_course_approval_requires_the_reviewed_revision(tmp_path, capsys):
+    import json
+
+    base = ["compile-course", _fixture_path(), "--output", str(tmp_path)]
+    assert main([*base, "--review"]) == 0
+    digest = json.loads((tmp_path / "review.json").read_text())["revision_sha256"]
+    assert len(digest) == 64
+    assert main([*base, "--approve"]) == 1
+    assert main([*base, "--approve", "--reviewer", "docente-test",
+                 "--revision-sha256", "0" * 64]) == 1
+    assert main([*base, "--approve", "--reviewer", "docente-test",
+                 "--revision-sha256", digest]) == 0
+    persisted = json.loads((tmp_path / "review.json").read_text())
+    assert persisted["notes"][0]["revision_sha256"] == digest
+    assert persisted["notes"][0]["reviewer"] == "docente-test"
+    assert "approved=True" in capsys.readouterr().out
+
+
+def test_compile_course_rebuild_preserves_historical_approval_without_reapproving(tmp_path, capsys):
+    import json
+    import shutil
+
+    source = tmp_path / "source"
+    output = tmp_path / "output"
+    shutil.copytree(_fixture_path(), source, ignore=shutil.ignore_patterns("_build"))
+    base = ["compile-course", str(source), "--output", str(output)]
+    assert main([*base, "--review"]) == 0
+    first = json.loads((output / "review.json").read_text())["revision_sha256"]
+    assert main([*base, "--approve", "--reviewer", "docente-test",
+                 "--revision-sha256", first]) == 0
+    definition = source / "course.json"
+    course = json.loads(definition.read_text())
+    course["modules"][0]["objectives"] = ["Nuovo obiettivo revisionato"]
+    definition.write_text(json.dumps(course))
+    assert main([*base, "--review"]) == 0
+    latest = json.loads((output / "review.json").read_text())
+    assert latest["revision_sha256"] != first
+    assert len(latest["notes"]) == 1
+    assert latest["notes"][0]["revision_sha256"] == first
+    assert "approved=False" in capsys.readouterr().out
+
+
+def test_compile_course_review_and_approve(tmp_path, capsys):
+    """--review + --approve richiedono la revisione esatta e il docente."""
+    import json
+    base = ["compile-course", _fixture_path(), "--output", str(tmp_path)]
+    assert main([*base, "--review"]) == 0
+    digest = json.loads((tmp_path / "review.json").read_text())["revision_sha256"]
     rc = main(
-        [
-            "compile-course",
-            _fixture_path(),
-            "--review",
-            "--approve",
-        ]
+        [*base, "--review", "--approve", "--reviewer", "docente-test",
+         "--revision-sha256", digest]
     )
     assert rc == 0
     out = capsys.readouterr().out

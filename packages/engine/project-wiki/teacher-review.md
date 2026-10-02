@@ -1,4 +1,19 @@
-# Teacher-review stub — interfaccia per revisione docente
+# Teacher-review — approvazione di una revisione precisa
+
+Aggiornamento 2026-10-02: `TeacherReviewNote.revision_sha256` lega ogni nota
+ai byte del materiale (`lessonos/course/teacher_review.py:79-102`).
+`material_revision_sha256` include nomi e byte dei file in ordine stabile
+(`teacher_review.py:247-261`). `is_course_approved` richiede la revisione
+corrente, un revisore identificato e nessun blocco riferito a quella revisione
+(`teacher_review.py:264-294`). Le note legacy prive di digest restano leggibili,
+ma non autorizzano la pubblicazione.
+
+La CLI legge i byte esportati e salva il digest in `review.json`
+(`lessonos/cli.py:1316-1367`). `--review` mostra il digest da esaminare;
+`--approve` richiede `--reviewer` e `--revision-sha256` corrispondente.
+Un file modificato dopo la revisione richiede un nuovo digest e una nuova
+approvazione. Il contratto Engine ora è vincolato alla revisione; la UI docente
+e il recupero nella lezione successiva sono ancora da collegare.
 
 ## Cos'è
 
@@ -11,7 +26,7 @@ e approvare/rifiutare/flaggarne parti. Questo modulo fornisce le strutture dati
 
 ## Schema dati
 
-### ReviewAction enum (`lessonos/course/teacher_review.py:25-32`)
+### ReviewAction enum (`lessonos/course/teacher_review.py`)
 
 4 azioni:
 - `APPROVE` — approvato
@@ -19,7 +34,7 @@ e approvare/rifiutare/flaggarne parti. Questo modulo fornisce le strutture dati
 - `REJECT` — rifiutato
 - `FLAG` — segnalazione non-bloccante
 
-### ReviewScope enum (`lessonos/course/teacher_review.py:38-43`)
+### ReviewScope enum (`lessonos/course/teacher_review.py`)
 
 4 scope:
 - `COURSE` — corso intero
@@ -27,51 +42,59 @@ e approvare/rifiutare/flaggarne parti. Questo modulo fornisce le strutture dati
 - `LESSON` — lezione
 - `ATOM` — singolo atomo didattico
 
-### TeacherReviewNote (`lessonos/course/teacher_review.py:49-78`)
+### TeacherReviewNote (`lessonos/course/teacher_review.py:59-102`)
 
 Frozen dataclass: nota di revisione su un elemento del corso.
 
 Attributi: `note_id`, `action` (ReviewAction), `scope` (ReviewScope), `target_id`,
-`comment`, `reviewer`.
+`comment`, `reviewer`, `revision_sha256`.
 
 Validazione:
-- `note_id` non vuoto → ValueError (`teacher_review.py:81`)
-- `target_id` non vuoto → ValueError (`teacher_review.py:84`)
-- `action` deve essere ReviewAction → ValueError (`teacher_review.py:87-91`)
-- `scope` deve essere ReviewScope → ValueError (`teacher_review.py:93-97`)
+- `note_id` e `target_id` non vuoti, azione e scope validi
+  (`teacher_review.py:87-97`).
+- Digest presente: 64 caratteri hex minuscoli (`teacher_review.py:98-102`).
 
-### TeacherReviewSet (`lessonos/course/teacher_review.py:103-148`)
+### TeacherReviewSet (`lessonos/course/teacher_review.py:105-159`)
 
 Frozen dataclass: set di note di revisione per un corso. Immutabile.
 
 Metodi:
 - `has_approve` / `has_blockers` / `has_flags` — proprietà booleane
   (`teacher_review.py:120-136`)
-- `notes_for_scope(scope)` — filtra per scope (`teacher_review.py:138-140`)
-- `notes_for_target(target_id)` — filtra per target (`teacher_review.py:142-144`)
+- `notes_for_scope(scope)` — filtra per scope (`teacher_review.py`)
+- `notes_for_target(target_id)` — filtra per target (`teacher_review.py`)
 - `add_note(note)` — restituisce NUOVO set con nota aggiunta (immutabile,
-  `teacher_review.py:146-153`)
+  `teacher_review.py`)
 
-### Stub functions
+### Funzioni di revisione
 
 - `make_review_note(note_id, *, action, scope, target_id, ...)` — factory con
   validazione, accetta stringhe o enum (`teacher_review.py:160-219`)
 - `make_empty_review_set(course_id)` — set vuoto (`teacher_review.py:222-224`)
-- `is_course_approved(review_set)` — determina approvazione per pubblicazione.
-  Richiede APPROVE a livello COURSE + nessun blocker (REVISE/REJECT)
-  (`teacher_review.py:227-250`)
+- `material_revision_sha256(files)` — digest stabile dei nomi e byte reali
+  (`teacher_review.py:247-261`).
+- `is_course_approved(review_set, revision_sha256)` — richiede APPROVE a livello
+  COURSE per quel digest, revisore identificato, target corrispondente e nessun
+  blocker sulla stessa revisione (`teacher_review.py:264-294`).
 
 ## Regole prodotto
 
-1. **Niente UI**: il modulo definisce SOLO strutture dati + stub functions.
-   L'interfaccia utente (CLI o web) sara costruita dopo.
+1. **Modulo headless**: il modello è usato dalla CLI; la UI web resta da collegare.
 2. **Niente LLM**: tutto deterministico, zero-LLM, frozen + ValueError.
-3. **Approvazione esplicita**: un corso e approvato SOLO con una nota APPROVE
-   a livello COURSE. Flags non sono sufficienti (`is_course_approved`).
+3. **Approvazione esplicita e versionata**: un corso è approvato solo con nota
+   APPROVE per i byte correnti, revisore e course_id; flag e note legacy non
+   bastano (`teacher_review.py:264-294`).
 4. **Immutabilità**: `TeacherReviewSet.add_note()` non modifica l'originale —
    pattern funzionale (append-only log).
 
-## Test — 50 test non-tautologici
+## Test
+
+I test correnti in `tests/test_course_teacher_review.py` e
+`tests/test_cli_compile_course.py` coprono hash di nomi/byte, approvazione
+vincolata, revisione modificata, conservazione storica delle note e rifiuto
+dell'approvazione CLI senza revisore o digest.
+
+### Baseline storica P1
 
 | Gruppo | File | Test |
 |--------|------|------|

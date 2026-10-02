@@ -1,4 +1,4 @@
-"""Teacher-review stub — interface per revisione docente del corso compilato.
+"""Teacher-review contract for a revision of compiled course material.
 
 Definisce il contratto dati per la revisione umana di un corso prodotto
 dal Course Foundry (PlannerResult -> Export). Il docente puo:
@@ -8,8 +8,8 @@ dal Course Foundry (PlannerResult -> Export). Il docente puo:
 3. Approvare/Rivedere/Rifiutare il corso o parti di esso
 4. Marcare singoli atomi come revisati (teacher_approved)
 
-P1: stub deterministico. In futuro un LLM planner o UI web
-popoleranno/consumeranno questi dati.
+Legacy notes without a material digest remain readable but cannot authorize
+an export. Approval is evaluated against the exact current material bytes.
 
 COORDINATION.md: CourseFolder -> Atoms -> Blueprint -> MarkdownPack ->
 LiaScript -> Quarto -> MoodleXML -> Docling-adapter -> LLM-planner ->
@@ -22,7 +22,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Sequence
+import hashlib
+import re
+from typing import Mapping, Sequence
 
 from lessonos.models import require_non_empty
 
@@ -70,6 +72,8 @@ class TeacherReviewNote:
         comment: Commento opzionale del docente.
         reviewer: Nome/identificativo del revisore (opzionale in v0.
             Puo essere vuoto per stub).
+        revision_sha256: SHA-256 della revisione esatta del materiale. Le note
+            legacy senza digest non approvano un export.
     """
 
     note_id: str
@@ -78,6 +82,7 @@ class TeacherReviewNote:
     target_id: str
     comment: str = ""
     reviewer: str = ""
+    revision_sha256: str = ""
 
     def __post_init__(self) -> None:
         require_non_empty(self.note_id, "note_id")
@@ -90,6 +95,11 @@ class TeacherReviewNote:
             raise ValueError(
                 f"scope must be a ReviewScope enum, got {type(self.scope).__name__}"
             )
+        if self.revision_sha256 and (
+            not isinstance(self.revision_sha256, str)
+            or re.fullmatch(r"[a-f0-9]{64}", self.revision_sha256) is None
+        ):
+            raise ValueError("revision_sha256 must be a lowercase SHA-256 hex digest")
 
 
 @dataclass(frozen=True)
@@ -165,6 +175,7 @@ def make_review_note(
     target_id: str,
     comment: str = "",
     reviewer: str = "",
+    revision_sha256: str = "",
 ) -> TeacherReviewNote:
     """Crea una nota di revisione con validazione.
 
@@ -224,6 +235,7 @@ def make_review_note(
         target_id=target_id,
         comment=comment,
         reviewer=reviewer,
+        revision_sha256=revision_sha256,
     )
 
 
@@ -232,14 +244,32 @@ def make_empty_review_set(course_id: str) -> TeacherReviewSet:
     return TeacherReviewSet(course_id=course_id)
 
 
-def is_course_approved(review_set: TeacherReviewSet) -> bool:
-    """Determina se un corso e approvato per pubblicazione.
+def material_revision_sha256(files: Mapping[str, bytes]) -> str:
+    """Hash exact material bytes and their names in a stable, unambiguous order."""
+    if not files:
+        raise ValueError("material revision requires at least one file")
+    digest = hashlib.sha256()
+    for name in sorted(files):
+        content = files[name]
+        if not isinstance(name, str) or not name or not isinstance(content, bytes):
+            raise ValueError("material revision requires named byte files")
+        name_bytes = name.encode("utf-8")
+        digest.update(len(name_bytes).to_bytes(8, "big"))
+        digest.update(name_bytes)
+        digest.update(len(content).to_bytes(8, "big"))
+        digest.update(content)
+    return digest.hexdigest()
+
+
+def is_course_approved(review_set: TeacherReviewSet, revision_sha256: str | None = None) -> bool:
+    """Determine whether a named teacher approved this exact material revision.
 
     Un corso e approvato se:
-    - Ha almeno una nota APPROVE a livello COURSE (approvazione esplicita)
-    - Non ha blocker (REVISE/REJECT)
+    - Ha una nota APPROVE a livello COURSE per il course_id e la revisione;
+    - La nota APPROVE registra un revisore non vuoto;
+    - Non ha blocker REVISE/REJECT sulla stessa revisione.
 
-    Se non ci sono note, il corso NON e approvato (non rivisto).
+    Senza digest corrente valido, la risposta e sempre False.
 
     Args:
         review_set: Il set di note di revisione.
@@ -247,13 +277,18 @@ def is_course_approved(review_set: TeacherReviewSet) -> bool:
     Returns:
         True se approvato, False altrimenti.
     """
-    if review_set.has_blockers:
+    if not isinstance(revision_sha256, str) or re.fullmatch(r"[a-f0-9]{64}", revision_sha256) is None:
+        return False
+    current = tuple(n for n in review_set.notes if n.revision_sha256 == revision_sha256)
+    if any(n.action in (ReviewAction.REVISE, ReviewAction.REJECT) for n in current):
         return False
     # Cerca approvazione esplicita a livello corso
-    for note in review_set.notes:
+    for note in current:
         if (
             note.action == ReviewAction.APPROVE
             and note.scope == ReviewScope.COURSE
+            and note.target_id == review_set.course_id
+            and note.reviewer.strip()
         ):
             return True
     return False

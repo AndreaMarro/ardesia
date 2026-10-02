@@ -57,7 +57,7 @@ Ogni pagina + riassunto 1 riga.
   - **source-extractor.md** — P1: SourceMaterial + extract_source_materials da CourseFolder (Docling-adapter foundation, stdlib-only)
 - **docling-adapter.md** — P1: Docling-adapter — PDF/DOCX/HTML/VTT/SRT extraction via subprocess + stdlib (ZERO new deps)
   - **llm-planner-stub.md** — P1: LLM-planner stub — plan_course() + PlannerResult bridge between CourseFolder materials and export pipeline (deterministic, zero-LLM, frozen dataclass)
-  - **teacher-review.md** — P1: Teacher-review stub — ReviewAction/ReviewScope enums, TeacherReviewNote, TeacherReviewSet, is_course_approved() (deterministic, zero-LLM, frozen data model for human review)
+  - **teacher-review.md** — Contratto di revisione docente vincolato a hash dei byte esportati e revisore esplicito; note legacy non approvanti.
 
 ## MCP (Model Context Protocol)
 

@@ -57,6 +57,7 @@ from lessonos.course.teacher_review import (
     make_empty_review_set,
     make_review_note,
     is_course_approved,
+    material_revision_sha256,
 )
 
 # ---------------------------------------------------------------------------
@@ -1058,8 +1059,10 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--approve",
         action="store_true",
         default=False,
-        help="Auto-approve the course after compilation (sets APPROVE at COURSE scope)",
+        help="Approve only a previously inspected revision with --reviewer and --revision-sha256",
     )
+    cc_parser.add_argument("--reviewer", default="", help="Teacher identifier for explicit approval")
+    cc_parser.add_argument("--revision-sha256", default="", help="SHA-256 shown by the reviewed export")
     cc_parser.add_argument(
         "--theme",
         type=str,
@@ -1312,25 +1315,56 @@ def main(argv: list[str] | None = None) -> int:
 
                 # Teacher review integration (only for the first target when --target all)
                 if (args.review or args.approve) and target == targets[0]:
+                    root = FsPath(target_output_dir).resolve()
+                    review_path = root / "review.json"
                     review_set = make_empty_review_set(result.blueprint.title)
+                    if review_path.exists():
+                        try:
+                            prior = json.loads(review_path.read_text(encoding="utf-8"))
+                        except (OSError, json.JSONDecodeError) as exc:
+                            raise ValueError("Existing teacher review cannot be read") from exc
+                        if (not isinstance(prior, dict) or prior.get("course_id") != review_set.course_id
+                                or not isinstance(prior.get("notes"), list)):
+                            raise ValueError("Existing teacher review has a different course or invalid notes")
+                        for raw in prior["notes"]:
+                            if not isinstance(raw, dict) or any(not isinstance(raw.get(key), str)
+                                for key in ("note_id", "action", "scope", "target_id", "comment", "reviewer")):
+                                raise ValueError("Existing teacher review contains an invalid note")
+                            if not isinstance(raw.get("revision_sha256", ""), str):
+                                raise ValueError("Existing teacher review contains an invalid revision")
+                            review_set = review_set.add_note(make_review_note(
+                                note_id=raw["note_id"], action=raw["action"], scope=raw["scope"],
+                                target_id=raw["target_id"], comment=raw["comment"],
+                                reviewer=raw["reviewer"],
+                                revision_sha256=raw.get("revision_sha256", ""),
+                            ))
+                    material_files = {}
+                    for name in pack.files:
+                        material_path = (root / name).resolve()
+                        if not material_path.is_relative_to(root) or not material_path.is_file():
+                            raise ValueError(f"Material file unavailable for review: {name}")
+                        material_files[name] = material_path.read_bytes()
+                    revision_sha256 = material_revision_sha256(material_files)
 
                     if args.approve:
+                        if not args.reviewer.strip() or args.revision_sha256 != revision_sha256:
+                            raise ValueError("Approval requires a named reviewer and the exact reviewed revision SHA-256")
                         from datetime import datetime, timezone
 
-                        note_id = f"auto-approve-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}"
+                        note_id = f"teacher-approve-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}"
                         note = make_review_note(
                             note_id=note_id,
                             action="approve",
                             scope="course",
                             target_id=result.blueprint.title,
-                            comment="Auto-approved via CLI --approve flag.",
-                            reviewer="CLI",
+                            comment="Explicit teacher approval of the inspected material revision.",
+                            reviewer=args.reviewer.strip(),
+                            revision_sha256=revision_sha256,
                         )
                         review_set = review_set.add_note(note)
                         print(f"  ✅ Course approved: {result.blueprint.title}")
 
                     # Serialize review_set to output dir for persistence
-                    review_path = FsPath(target_output_dir) / "review.json"
                     review_path.parent.mkdir(parents=True, exist_ok=True)
                     import dataclasses
 
@@ -1342,13 +1376,15 @@ def main(argv: list[str] | None = None) -> int:
 
                     review_data = {
                         "course_id": review_set.course_id,
+                        "revision_sha256": revision_sha256,
                         "notes": [_serialize_note(n) for n in review_set.notes],
                     }
                     review_path.write_text(json.dumps(review_data, indent=2))
                     print(f"  💾 Review notes saved: {review_path}")
+                    print(f"  🔎 Material revision SHA-256: {revision_sha256}")
                     print(
                         f"  📋 Review status: {len(review_set)} note(s), "
-                        f"approved={is_course_approved(review_set)}"
+                        f"approved={is_course_approved(review_set, revision_sha256)}"
                     )
         except ValueError as e:
             print(f"Error during export: {e}", file=sys.stderr)

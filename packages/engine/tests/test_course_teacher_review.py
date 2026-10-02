@@ -14,6 +14,7 @@ from lessonos.course.teacher_review import (
     TeacherReviewNote,
     TeacherReviewSet,
     is_course_approved,
+    material_revision_sha256,
     make_empty_review_set,
     make_review_note,
 )
@@ -375,13 +376,49 @@ class TestMakeEmptyReviewSet:
 # =============================================================================
 
 class TestIsCourseApproved:
+    def test_revision_hash_tracks_actual_bytes_and_names(self):
+        first = material_revision_sha256({"a.html": b"<p>R=10</p>", "b.svg": b"<svg/>"})
+        assert first == material_revision_sha256({"b.svg": b"<svg/>", "a.html": b"<p>R=10</p>"})
+        assert first != material_revision_sha256({"a.html": b"<p>R=11</p>", "b.svg": b"<svg/>"})
+        assert first != material_revision_sha256({"a.html": b"<p>R=10</p>", "c.svg": b"<svg/>"})
+        with pytest.raises(ValueError, match="at least one file"):
+            material_revision_sha256({})
+
+    def test_approval_binds_the_exact_material_revision(self):
+        first = "a" * 64
+        changed = "b" * 64
+        review = TeacherReviewSet(
+            course_id="circuiti",
+            notes=(make_review_note(
+                "rev-001", action="approve", scope="course", target_id="circuiti",
+                reviewer="docente-test", revision_sha256=first,
+            ),),
+        )
+        assert is_course_approved(review, first) is True
+        assert is_course_approved(review, changed) is False
+        assert is_course_approved(review) is False
+
+    def test_legacy_or_anonymous_approval_cannot_authorize_material(self):
+        revision = "a" * 64
+        legacy = TeacherReviewSet(course_id="circuiti", notes=(make_review_note(
+            "old", action="approve", scope="course", target_id="circuiti",
+        ),))
+        anonymous = TeacherReviewSet(course_id="circuiti", notes=(make_review_note(
+            "anon", action="approve", scope="course", target_id="circuiti",
+            revision_sha256=revision,
+        ),))
+        assert is_course_approved(legacy, revision) is False
+        assert is_course_approved(anonymous, revision) is False
+
     def test_approved_with_approve_course(self):
         """APPROVE a livello COURSE = approvato."""
+        revision = "a" * 64
         review = TeacherReviewSet(
             course_id="calcolo-2",
-            notes=(make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2"),),
+            notes=(make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2",
+                                    reviewer="docente-test", revision_sha256=revision),),
         )
-        assert is_course_approved(review) is True
+        assert is_course_approved(review, revision) is True
 
     def test_not_approved_empty_set(self):
         """Set vuoto = non approvato."""
@@ -390,41 +427,50 @@ class TestIsCourseApproved:
 
     def test_not_approved_with_blocker_revise(self):
         """REVISE blocca l'approvazione anche con approve COURSE."""
+        revision = "a" * 64
         review = TeacherReviewSet(
             course_id="calcolo-2",
             notes=(
-                make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2"),
-                make_review_note("rev-002", action="revise", scope="module", target_id="derivate"),
+                make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2",
+                                 reviewer="docente-test", revision_sha256=revision),
+                make_review_note("rev-002", action="revise", scope="module", target_id="derivate",
+                                 revision_sha256=revision),
             ),
         )
-        assert is_course_approved(review) is False
+        assert is_course_approved(review, revision) is False
 
     def test_not_approved_with_blocker_reject(self):
         """REJECT blocca l'approvazione."""
+        revision = "a" * 64
         review = TeacherReviewSet(
             course_id="calcolo-2",
             notes=(
-                make_review_note("rev-001", action="reject", scope="course", target_id="calcolo-2"),
+                make_review_note("rev-001", action="reject", scope="course", target_id="calcolo-2",
+                                 revision_sha256=revision),
             ),
         )
-        assert is_course_approved(review) is False
+        assert is_course_approved(review, revision) is False
 
     def test_not_approved_with_flags_only(self):
         """Solo FLAG = non approvato (serve APPROVE esplicito)."""
+        revision = "a" * 64
         review = TeacherReviewSet(
             course_id="calcolo-2",
-            notes=(make_review_note("rev-001", action="flag", scope="lesson", target_id="l1_derivatives"),),
+            notes=(make_review_note("rev-001", action="flag", scope="lesson", target_id="l1_derivatives",
+                                    revision_sha256=revision),),
         )
-        assert is_course_approved(review) is False
+        assert is_course_approved(review, revision) is False
 
     def test_approve_with_flags_is_approved(self):
         """APPROVE COURSE + FLAG su moduli = approvato (flag non blocca)."""
+        revision = "a" * 64
         review = TeacherReviewSet(
             course_id="calcolo-2",
             notes=(
-                make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2"),
+                make_review_note("rev-001", action="approve", scope="course", target_id="calcolo-2",
+                                 reviewer="docente-test", revision_sha256=revision),
                 make_review_note("rev-002", action="flag", scope="module", target_id="derivate",
-                                 comment="Verificare esercizi opzionali"),
+                                 comment="Verificare esercizi opzionali", revision_sha256=revision),
             ),
         )
-        assert is_course_approved(review) is True
+        assert is_course_approved(review, revision) is True
