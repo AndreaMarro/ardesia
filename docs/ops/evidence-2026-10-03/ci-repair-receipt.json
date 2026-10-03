@@ -1,0 +1,77 @@
+{
+  "as_of": "2026-10-03",
+  "ardesia_fix": "344cce6c",
+  "kirchhoff_fix": "ef44a21",
+  "engine_offline": {
+    "passed": 2244,
+    "skipped": 7
+  },
+  "focused": 96,
+  "d2": {
+    "pdf_pages": 1,
+    "status": "PASS",
+    "fixture_entry_payloads_unchanged": true
+  },
+  "actual_bundles": [
+    {
+      "artifact": "shared-pdf-participant.lesson",
+      "schemaVersion": 3,
+      "journal_bytes": 0,
+      "lesson_os_present": false,
+      "session_inventory": {
+        "includedSessionIds": [],
+        "missingSessionIds": []
+      }
+    },
+    {
+      "artifact": "laplace.lesson",
+      "schemaVersion": 2,
+      "journal_bytes": 1339,
+      "lesson_os_present": true,
+      "session_inventory": {
+        "includedSessionIds": [
+          "0c2eadde-4560-417a-86a2-f8a4e2cd0844",
+          "6b17f355-36cb-4db2-9380-b79676b5de15"
+        ],
+        "missingSessionIds": []
+      }
+    },
+    {
+      "artifact": "ac-port.lesson",
+      "schemaVersion": 2,
+      "journal_bytes": 1339,
+      "lesson_os_present": true,
+      "session_inventory": {
+        "includedSessionIds": [
+          "12b4efd3-8a07-4d57-9286-a507ba83fbc8",
+          "a3cc2a1d-da50-4a76-b4c5-565a01acd1c3"
+        ],
+        "missingSessionIds": []
+      }
+    }
+  ],
+  "packaging_tests": 11,
+  "logs": {
+    "ardesia-engine-extensions.log": {
+      "sha256": "b414d0e6de7363f8e3b41f0ce5cdad739825ae7dbb105d5ed684a6f8e83cd853",
+      "bytes": 1358
+    },
+    "ardesia-engine-final-offline.log": {
+      "sha256": "de4773399a074f8f76ae0ccfe720cde34280548c51982b22d96995deaba48a50",
+      "bytes": 3772
+    },
+    "ardesia-d2-final-headless.log": {
+      "sha256": "b6c9bf51e7b63d940133369d1290e3526567ea19f6998f2d5d8c417c3212a478",
+      "bytes": 121
+    },
+    "kirchhoff-ci-packaging-recheck.log": {
+      "sha256": "08faea39fd19189f6544839f505d91d76ecb1367e219f5db362cdf22916ef869",
+      "bytes": 80
+    }
+  },
+  "limitations": [
+    "Engine preserves new artifacts as inventory-checked opaque files; it does not derive facts from session/PDF contents",
+    "two provider-gated tests inadvertently activated on first Engine run, both HTTP404; offline rerun excludes provider environment variables",
+    "remote CI status tracked separately in PRs"
+  ]
+}

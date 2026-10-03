@@ -305,3 +305,32 @@ una PR di revert dei commit di consegna, preservando gli archivi utente e i bund
 Le migrazioni sono additive: non cancellare le stanze o i materiali per annullare
 una modifica al codice. Stato CI e commit finali sono registrati nella descrizione
 delle PR e nella ricevuta locale di pubblicazione.
+
+
+## Addendum — integrazione Engine e CI dopo la pubblicazione
+
+La prima CI ha trovato due prerequisiti mancanti, ora corretti:
+
+- **Ardesia:** Engine accettava solo i bundle schema1. Il lettore ora accetta
+  schema1/2/3, verifica scope/inventario delle sessioni e identità/quote/header
+  dei PDF prima di ingerire il journal. Le sessioni e i documenti aggiunti sono
+  artefatti opachi, non fatti didattici inventati. La fixture D2 è stata rigenerata
+  dall'export reale: solo metadata manifest cambiati, tutti i payload invariati.
+  La fixture v1 originale è conservata e ancora testata. Nessun gate indebolito.
+  **96 test mirati PASS; suite Engine offline2244 PASS/7skip**. I tre bundle
+  reali PDFcondiviso/Laplace/portaAC sono accettati. D2 completo con headless
+  shell1223 produce un PDF valido di una pagina. La prima scelta del browser
+  completo era scaduta dopo120s; il fallimento locale rimane registrato.
+- **Kirchhoff:** il job Python eseguiva i nuovi test di packaging senza prima
+  compilare la MCP App. Il workflow ora installa dal lockfile e compila le
+  risorse prima di pytest; gli11 test di packaging locali passano.
+
+La prima suite Engine è stata lanciata senza il filtro offline del progetto:
+le variabili d'ambiente hanno attivato due test live, entrambi falliti HTTP404.
+Nessun esercizio privato è stato usato da quei test. Il rerun corretto rimuove
+KIMI_API_KEY e DEEPSEEK_API_KEY dal processo; è questo il gate offline riportato.
+
+La preview Vercel collegata alla PR Ardesia è stata pubblicata automaticamente.
+Non è stata acquisita un'accettazione interattiva della preview. Le nuove CI
+remote sono identificate nelle PR; non confondere i risultati locali con lo
+stato dei job GitHub. La ricevuta di pubblicazione locale conserva gli SHA finali.
