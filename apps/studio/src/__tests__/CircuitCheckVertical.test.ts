@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import {
-  readCircuitDiagnosis, readCircuitProof, readCircuitState,
+  readCircuitDiagnosis, readCircuitProof, readCircuitState, circuitConventionsLabel,
   type CircuitTraceStep,
 } from "../toolhost/circuitCheckAdapter"
 import { circuitProofEvent, circuitTraceEvent } from "../lessonos/circuitCheckEvent"
@@ -11,6 +11,10 @@ import { buildCircuitCheckInsert, parseToolLink } from "../toolhost/ToolCanvasEm
 import { EMBED_DATA_KEY, embedOwner } from "../toolhost/caps/board"
 import { circuitNextLessonEvidence, circuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
 import { buildRecapHtml } from "../store/recapHtml"
+// Captured from Kirchhoff create_lesson at source_sha recorded in the payload.
+import portResponse from "./fixtures/circuitcheck-port-response.json"
+import acResponse from "./fixtures/circuitcheck-ac-response.json"
+import powerResponse from "./fixtures/circuitcheck-power-response.json"
 
 const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
 const fingerprint = "e".repeat(64)
@@ -29,6 +33,185 @@ const trace: CircuitTraceStep[] = [{
 }]
 
 describe("CircuitCheck nel confine Ardesia", () => {
+  it("conserva la potenza reale come P/Q con segno passivo e convenzione di picco", () => {
+    const proof = readCircuitProof(powerResponse,powerResponse.netlist)
+    expect(proof.scope).toBe("phasor_power_crosschecked")
+    expect(proof.answer.quantity).toBe("power")
+    expect(proof.answer.phasor).toBeUndefined()
+    expect(proof.answer.complex_power).toEqual(powerResponse.answer.complex_power)
+    expect(proof.conventions).toEqual(powerResponse.conventions)
+    expect(circuitConventionsLabel(proof)).toContain("P = -25/3 W · Q = -25/3 var")
+    expect(circuitConventionsLabel(proof)).toContain("potenza positiva assorbita")
+    const state = {kind:"circuitcheck-proof-v1",netlist:proof.netlist,method:"auto",proof,
+      selectedStep:7,selectedFocus:"V1",trace:[],diagnosis:null}
+    expect(readCircuitState(JSON.parse(JSON.stringify(state))).proof).toEqual(proof)
+    for (const conventions of [undefined,
+      {...powerResponse.conventions,amplitude:"unspecified"},
+      {...powerResponse.conventions,amplitude:"rms"},
+      {...powerResponse.conventions,power_factor:"1"},
+      {...powerResponse.conventions,power_formula:"S=V*conj(I)"},
+      {...powerResponse.conventions,power_sign:"generator"},
+      {...powerResponse.conventions,power_calculated:false},
+    ]) expect(() => readCircuitProof({...powerResponse,conventions},proof.netlist)).toThrow()
+    for (const verification of [acResponse.verification,
+      {...powerResponse.verification,product_verified:true},
+      {...powerResponse.verification,checks:powerResponse.verification.checks.slice(0,4)},
+    ]) expect(() => readCircuitProof({...powerResponse,verification},proof.netlist)).toThrow()
+    for (const answer of [{...powerResponse.answer,quantity:"current"},
+      {...powerResponse.answer,phasor:acResponse.answer.phasor},
+      {...powerResponse.answer,unit:"W"},
+      {...powerResponse.answer,complex_power:{...powerResponse.answer.complex_power,
+        reactive:{...powerResponse.answer.complex_power.reactive,unit:"W"}}},
+    ]) expect(() => readCircuitProof({...powerResponse,answer},proof.netlist)).toThrow()
+  })
+
+  it("lega P/Q, coordinate e precisione della potenza all'evento e al recap portabile", async () => {
+    const proof = readCircuitProof(powerResponse,powerResponse.netlist)
+    const inserted = buildCircuitCheckInsert([])!
+    const sceneFor = (p:typeof proof) => JSON.stringify({elements:[{...inserted.embed,customData:{
+      [EMBED_DATA_KEY]:{owner:"io.ardesia.circuit-reasoning",state:{kind:"circuitcheck-proof-v1",
+        netlist:p.netlist,method:"auto",proof:p,selectedStep:7,trace:[],diagnosis:null}},
+    }}]})
+    const event = await circuitProofEvent(proof,inserted.embedId,1000)
+    const envelope = adaptLegacyLessonOsV1Log({...event,seq:1},{lessonId:"power-lesson",
+      sessionId:"11111111-1111-4111-8111-111111111111",eventId:"70000000-0000-4000-8000-000000000001",
+      actor:{type:"teacher",id:"test"},producer:{id:"test.power",version:"1.0.0",commitSha:"a".repeat(40)},idempotencyKey:null})
+    expect(envelope.payload.verificationScope).toBe("phasor_power_crosschecked")
+    const events = [{...event,seq:1}]
+    const evidence = await circuitStudyEvidence(sceneFor(proof),events)
+    expect(evidence[0]?.proof).toEqual(proof)
+    const html = buildRecapHtml({v:1,title:"Potenza AC",durationMs:1000,mathFormulas:[],
+      elementTypeCounts:{embeddable:1},totalElementsAdded:1,pdfPagesViewed:[],firstEventTime:1000,lastEventTime:2000},undefined,evidence)
+    expect(html).toContain("Potenza complessa e bilancio confrontati su tutti i rami")
+    expect(html).toContain("P = -25/3 W · Q = -25/3 var")
+    expect(html).toContain("S=V*conj(I)/2")
+    expect(html).not.toContain("Risultato elettrico verificato")
+    const power = proof.answer.complex_power!
+    for (const corrupted of [
+      {...power,active:{...power.active,exact:"25/3"}},
+      {...power,reactive:{...power.reactive,exact:"25/3"}},
+      {...power,coefficients:["-25/3","0","0","25/3"]},
+      {...power,decimal_precision:{...power.decimal_precision!,real:64}},
+    ]) expect(await circuitStudyEvidence(sceneFor({...proof,answer:{...proof.answer,complex_power:corrupted}}),events)).toEqual([])
+  })
+
+  it("conserva la prova reale DC di porta con uno scope distinto e riapribile", () => {
+    const proof = readCircuitProof(portResponse, portResponse.netlist)
+    expect(proof.answer).toEqual({exact:"2",unit:"Ω",reference:"a → 0"})
+    expect(proof.scope).toBe("port_subproofs_crosschecked")
+    expect(proof.verification).toEqual(portResponse.verification)
+    const restored = readCircuitState(JSON.parse(JSON.stringify({kind:"circuitcheck-proof-v1",
+      netlist:proof.netlist,method:"auto",proof,selectedStep:3,trace:[],diagnosis:null})))
+    expect(restored.proof).toEqual(proof)
+    expect(restored.selectedStep).toBe(3)
+    for (const verification of [
+      {...portResponse.verification,electrical_claim:"VERIFIED"},
+      {...portResponse.verification,backend:"CLOSED"},
+      {...portResponse.verification,lesson:"exact-answer-crosscheck"},
+      {...portResponse.verification,product_verified:true},
+    ]) expect(() => readCircuitProof({...portResponse,verification},proof.netlist)).toThrow(/verificata/)
+    expect(() => readCircuitProof({...portResponse,method:"nodal"},proof.netlist)).toThrow(/metodo/)
+    expect(() => readCircuitProof({...portResponse,answer:{...portResponse.answer,unit:"V"}},proof.netlist)).toThrow(/unità/)
+    expect(() => readCircuitProof({...portResponse,outcome:"refusal"},proof.netlist)).toThrow(/verificata/)
+  })
+
+  it("conserva il payload reale AC con coordinate esatte, frequenza e convenzioni", () => {
+    const proof = readCircuitProof(acResponse,acResponse.netlist)
+    expect(proof.scope).toBe("phasor_paths_crosschecked")
+    expect(proof.verification).toEqual(acResponse.verification)
+    expect(proof.answer.phasor).toEqual(acResponse.answer.phasor)
+    expect(proof.conventions).toEqual(acResponse.conventions)
+    expect(readCircuitState(JSON.parse(JSON.stringify({kind:"circuitcheck-proof-v1",
+      netlist:proof.netlist,method:"auto",proof,selectedStep:2,trace:[],diagnosis:null}))).proof).toEqual(proof)
+    for (const verification of [response.verification,portResponse.verification,
+      {...acResponse.verification,backend:"CLOSED"},{...acResponse.verification,product_verified:true},
+      {...acResponse.verification,checks:[]},
+    ]) expect(() => readCircuitProof({...acResponse,verification},proof.netlist)).toThrow()
+    for (const conventions of [undefined,{...acResponse.conventions,amplitude:"invented"},
+      {...acResponse.conventions,time_dependence:"exp(-jωt)"},
+      {...acResponse.conventions,power_calculated:true},
+      {...acResponse.conventions,omega:{exact:"0",unit:"rad/s"}},
+    ]) expect(() => readCircuitProof({...acResponse,conventions},proof.netlist)).toThrow()
+    for (const phasor of [undefined,{...acResponse.answer.phasor,coefficients:["1","0","0"]},
+      {...acResponse.answer.phasor,coefficients:["1/0","0","0","0"]},
+      {...acResponse.answer.phasor,real_decimal:"Infinity"},
+    ]) expect(() => readCircuitProof({...acResponse,answer:{...acResponse.answer,phasor}},proof.netlist)).toThrow()
+  })
+
+  it.each(["rms", "peak", "unspecified"])("conserva ampiezze %s e precisione nella prova portabile", amplitude => {
+    const decimal_precision = {real:64,imaginary:8,significant_digits:8,method:"exact-rational-sqrt3-bounds"}
+    const proof = readCircuitProof({...acResponse, conventions:{...acResponse.conventions,amplitude},
+      answer:{...acResponse.answer,phasor:{...acResponse.answer.phasor,decimal_precision}}}, acResponse.netlist)
+    const restored = readCircuitState(JSON.parse(JSON.stringify({kind:"circuitcheck-proof-v1",
+      netlist:proof.netlist,method:"auto",proof,selectedStep:2,trace:[],diagnosis:null}))).proof!
+    expect(restored.conventions?.amplitude).toBe(amplitude)
+    expect(restored.answer.phasor?.decimal_precision).toEqual(decimal_precision)
+    expect(circuitConventionsLabel(restored)).toContain(amplitude === "rms" ? "RMS dichiarate" : amplitude === "peak" ? "picco dichiarate" : "non specificata")
+    expect(restored.verification?.product_verified).toBe(false)
+    for (const invalid of [null,{...decimal_precision,real:-1},{...decimal_precision,method:"fixed"}]) {
+      expect(() => readCircuitProof({...acResponse,answer:{...acResponse.answer,
+        phasor:{...acResponse.answer.phasor,decimal_precision:invalid}}},acResponse.netlist)).toThrow(/precisione/)
+    }
+  })
+
+  it("conserva il focus strutturato e rifiuta riferimenti malformati senza appiattirli", () => {
+    const withFocus = {...response,steps:[{...response.steps[0]!,focus:["R1","R2"]}]}
+    const proof = readCircuitProof(withFocus,netlist)
+    const restored = readCircuitState(JSON.parse(JSON.stringify({kind:"circuitcheck-proof-v1",
+      netlist,method:"auto",proof,selectedStep:0,selectedFocus:"R2",trace:[],diagnosis:null})))
+    expect(restored.proof?.steps[0]?.focus).toEqual(["R1","R2"])
+    expect(restored.selectedFocus).toBe("R2")
+    expect(readCircuitState({...restored,selectedFocus:"V1"}).selectedFocus).toBeNull()
+    for (const focus of [[""],[42],"R1",Array(129).fill("R1")]) {
+      expect(() => readCircuitProof({...withFocus,steps:[{...withFocus.steps[0],focus}]},netlist)).toThrow(/passaggio/)
+    }
+  })
+
+  it("porta e focus attraversano evento, scena e recap senza promozione dello scope", async () => {
+    const inserted = buildCircuitCheckInsert([])!
+    for (const payload of [portResponse,acResponse,{...response,steps:[{...response.steps[0]!,focus:["R1","R2"]}]}]) {
+      const proof = readCircuitProof(payload,payload.netlist)
+      const state = {kind:"circuitcheck-proof-v1",netlist:proof.netlist,method:"auto",proof,
+        selectedStep:0,trace:[],diagnosis:null}
+      const scene = JSON.stringify({elements:[{...inserted.embed,customData:{
+        [EMBED_DATA_KEY]:{owner:"io.ardesia.circuit-reasoning",state},
+      }}]})
+      const log = new InMemoryEventLog()
+      const event = await circuitProofEvent(proof,inserted.embedId,1000)
+      if (event.kind !== "circuit.proof.verified") throw new Error("evento inatteso")
+      expect(event.verificationScope).toBe(proof.scope)
+      expect(adaptLegacyLessonOsV1Log({...event,seq:1},{
+        lessonId:"lesson:port",sessionId:"11111111-1111-4111-8111-111111111111",
+        eventId:"70000000-0000-4000-8000-000000000001",actor:{type:"teacher",id:"test"},
+        producer:{id:"test.port",version:"1.0.0",commitSha:"a".repeat(40)},idempotencyKey:null,
+      }).payload.verificationScope).toBe(proof.scope)
+      await log.append(event)
+      const evidence = await circuitStudyEvidence(scene,await log.readAll())
+      expect(evidence[0]?.proof).toEqual(proof)
+      const html = buildRecapHtml({v:1,title:"Lezione circuiti",durationMs:1000,
+        mathFormulas:[],elementTypeCounts:{embeddable:1},totalElementsAdded:1,
+        pdfPagesViewed:[],firstEventTime:1000,lastEventTime:2000},undefined,evidence)
+      if (proof.scope === "port_subproofs_crosschecked") {
+        expect(html).toContain("sottoprove chiuse e confrontate")
+        expect(html).not.toContain("Risultato elettrico verificato")
+        const promoted = (await log.readAll()).map(item => item.kind === "circuit.proof.verified"
+          ? {...item,verificationScope:"electrical_result" as const} : item)
+        expect(await circuitStudyEvidence(scene,promoted)).toEqual([])
+      } else if (proof.scope === "phasor_paths_crosschecked") {
+        expect(html).toContain("Fasori confrontati su tutti i rami")
+        expect(html).toContain("ω = 100 rad/s")
+        expect(html).toContain("exp(+jωt)")
+        expect(html).toContain("ampiezza non specificata come picco o RMS")
+        expect(html).not.toContain("Risultato elettrico verificato")
+        expect(await circuitStudyEvidence(scene.replace('"exact":"100","unit":"rad/s"','"exact":"200","unit":"rad/s"'),await log.readAll())).toEqual([])
+        expect(await circuitStudyEvidence(scene.replace('"5/3","5/3","-5/3","0"','"5/3","5/3","-5/3","1"'),await log.readAll())).toEqual([])
+      } else {
+        expect(html).toContain("Riferimenti nello schema: R1, R2")
+        expect(await circuitStudyEvidence(scene.replace('"focus":["R1","R2"]','"focus":["R2"]'),await log.readAll())).toEqual([])
+      }
+    }
+  })
+
   it("rifiuta risultati senza verifica elettrica o riferiti a un altro circuito", () => {
     expect(() => readCircuitProof({...response, verification: {electrical_claim:"UNVERIFIED",backend:"CLOSED"}}, netlist)).toThrow(/verificata/)
     expect(() => readCircuitProof(response, netlist.replace("14", "15"))).toThrow(/verificata/)

@@ -24,6 +24,7 @@ import type {
   ContinuityScopeErrorCode,
   ContinuitySourceIssueV1,
 } from "../lessonos/continuityProjection"
+import "./continuity-resume.css"
 
 export type ContinuityResumeCardStateV1 =
   | Readonly<{ kind: "loading" }>
@@ -71,7 +72,7 @@ const ISSUE_CODE_TEXT: Readonly<Record<ContinuitySourceIssueV1["code"], string>>
 }
 
 const NEXT_ACTION_TEXT: Readonly<Record<ContinuityNextActionV1["kind"], string>> = {
-  "recover-continuity": "Ripristina continuita'",
+  "recover-continuity": "Rivedi le sessioni",
   "fix-simulation-error": "Correggi l'errore Simulation",
   "resume-open-loop": "Riprendi il ciclo aperto",
   "open-current-material": "Apri il materiale corrente",
@@ -209,6 +210,13 @@ function LoadedState(props: { projection: ContinuityProjectionV1 }) {
         <p data-continuity-title>{title}</p>
         <p data-continuity-lesson>{projection.identity.lessonId}</p>
       </header>
+      {projection.phase === "degraded" && (
+        <p className="continuity-resume-guidance">
+          Prima di riprendere, controlla le fonti indicate qui sotto.
+          Da Materiali puoi consultare il recap ed esportare la lezione per conservarla.
+          Il salvataggio nel browser richiede una copia di sicurezza.
+        </p>
+      )}
       {projection.sourceHealth.issues.length > 0 && (
         <IssuesList issues={projection.sourceHealth.issues} />
       )}

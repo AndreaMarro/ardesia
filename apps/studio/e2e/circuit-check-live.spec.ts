@@ -18,6 +18,7 @@ test("the owned proof and a student's first error survive a real Ardesia reopen"
   const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
   await page.goto("/")
   await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("button",{name:"Vista esperta",exact:true}).click()
   await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
   await page.getByRole("button", {name:"Risolvi e verifica"}).click()
   await expect(page.getByText(/Risultato verificato:.*42\/5 V/)).toBeVisible()
@@ -155,6 +156,7 @@ test("a KCL error and correction survive the real board and lesson memory", asyn
   const netlist = "V1 a 0 12 volt\nR1 a b 100 ohm\nR2 b 0 200 ohm\nR3 b 0 300 ohm\n? current R2"
   await page.goto("/")
   await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("button",{name:"Vista esperta",exact:true}).click()
   await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
   await page.getByRole("button", {name:"Risolvi e verifica"}).click()
   await expect(page.getByText(/Risultato verificato:.*9\/275 A/)).toBeVisible()
@@ -195,6 +197,7 @@ test("KVL and a reversed numeric reference survive the real board and assessment
   const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
   await page.goto("/")
   await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("button",{name:"Vista esperta",exact:true}).click()
   await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
   await page.getByRole("button", {name:"Risolvi e verifica"}).click()
   await expect(page.getByText(/Risultato verificato:.*42\/5 V/)).toBeVisible()
@@ -247,6 +250,7 @@ test("the next lesson retrieves the exact prior circuit step without copying its
   const netlist = "V1 p 0 14 volt\nR1 p q 4 ohm\nR2 q 0 6 ohm\n? voltage R2"
   await page.goto("/#circuit-lesson-a")
   await page.getByRole("button", {name:"Inserisci CircuitCheck sulla lavagna"}).click()
+  await page.getByRole("button",{name:"Vista esperta",exact:true}).click()
   await page.getByRole("textbox", {name:"Circuito CircuitCheck"}).fill(netlist)
   await page.getByRole("button", {name:"Risolvi e verifica"}).click()
   await expect(page.getByText(/Risultato verificato:.*42\/5 V/)).toBeVisible()

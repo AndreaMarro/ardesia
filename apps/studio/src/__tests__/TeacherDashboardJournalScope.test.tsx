@@ -80,6 +80,15 @@ beforeEach(() => {
 })
 
 describe("Continuità — sorgente del journal", () => {
+  it("legge la stessa lezione da un invito condiviso senza usare il grant come percorso", async () => {
+    location.hash = `#${ROOM}&sync=http%3A%2F%2F127.0.0.1%3A4318&access=private-grant`
+    files.set(`raw/${ROOM}/events.jsonl`, journalLine("FORMULA-CONDIVISA", 1000))
+    render(<TeacherDashboardView deps={{ loadEvents: async () => [], appendEvent: async () => {} }} />)
+    await waitFor(() => expect(screen.getByText("Statistiche")).toBeTruthy())
+    expect(reads).toContain(`raw/${ROOM}/events.jsonl`)
+    expect(reads.every(path => !path.includes("private-grant") && !path.includes("&"))).toBe(true)
+  })
+
   it("legge il journal della room corrente, non il path flat", async () => {
     files.set(`raw/${ROOM}/events.jsonl`, journalLine("FORMULA-DI-QUESTA-LEZIONE", 1000))
     files.set("raw/events.jsonl", journalLine("RESIDUO-FLAT-DI-UNALTRA-LEZIONE", 900))

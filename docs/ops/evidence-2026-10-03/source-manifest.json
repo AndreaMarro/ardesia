@@ -1,0 +1,448 @@
+{
+  "schema": "delivery-content-manifest.v1",
+  "as_of": "2026-10-03",
+  "base_commit": "4d79a1148465c49a99522854db8851f7020048b3",
+  "scope": "Modified and added source/test files, before delivery commit; generated catalog and append-only ledgers excluded",
+  "files": [
+    {
+      "path": "apps/studio/e2e/circuit-check-ac-port-live.spec.ts",
+      "bytes": 5493,
+      "sha256": "671f7759b514c1fa107b6c10e40732dca50ba4f8fafcffc772006955ac058d82"
+    },
+    {
+      "path": "apps/studio/e2e/circuit-check-advanced-live.spec.ts",
+      "bytes": 13555,
+      "sha256": "c1b410828fcfd3f555befa4cece5b013ebca6df9d6a5d35c07b3966b3b63e964"
+    },
+    {
+      "path": "apps/studio/e2e/circuit-check-input-live.spec.ts",
+      "bytes": 9752,
+      "sha256": "52c164ba2c1b05c6282eee7d1db2b6cc09c8be71310c6dc3bf80a7f9f1b90246"
+    },
+    {
+      "path": "apps/studio/e2e/circuit-check-laplace-live.spec.ts",
+      "bytes": 5562,
+      "sha256": "66030fcef166a750b33de9a861880a0c852dd680959ddaef172ea664d143d5f2"
+    },
+    {
+      "path": "apps/studio/e2e/circuit-check-live.spec.ts",
+      "bytes": 18002,
+      "sha256": "aa778d7bc1347058753192a23ab6656a1d62a46dae65b1bb410106f4eb0d587d"
+    },
+    {
+      "path": "apps/studio/e2e/function-graph-live.spec.ts",
+      "bytes": 7221,
+      "sha256": "89c161ccec74e81d1d6ac841aa337d0a3f000e3923998017dca4db47b8e2c5cb"
+    },
+    {
+      "path": "apps/studio/e2e/pdf-import-live.spec.ts",
+      "bytes": 10577,
+      "sha256": "20a6b04d54630032b1823a87f89e1687f5471a7e1882d592cf5fee805d031cea"
+    },
+    {
+      "path": "apps/studio/e2e/shared-pdf-live.spec.ts",
+      "bytes": 11036,
+      "sha256": "facd9e2ea8cf8ef38a76edf88a144fb7cd5cda0336264e42d89a8bd66b874c71"
+    },
+    {
+      "path": "apps/studio/e2e/shared-room-live.spec.ts",
+      "bytes": 6886,
+      "sha256": "d949c5e815a1dcf13b2b0aee036b0d8b71902d1ce12d60e0b9ecf105e2370ffe"
+    },
+    {
+      "path": "apps/studio/e2e/shared-room-mcp-live.spec.ts",
+      "bytes": 3579,
+      "sha256": "bf56aab52efd643ddbfef65198e5ee81f60a20fe915e3d4c70f0c1b6ac7f3b76"
+    },
+    {
+      "path": "apps/studio/package-lock.json",
+      "bytes": 254092,
+      "sha256": "97d08a2c7766c8acb2ac70cbe6b09b522150187f6f4a0f90e0fb3efa5b6910de"
+    },
+    {
+      "path": "apps/studio/package.json",
+      "bytes": 1461,
+      "sha256": "f6887e99c5464857a0a9914fc6613b19089ecc931eae5c3ea2551c34b8418c75"
+    },
+    {
+      "path": "apps/studio/src/RecapView.tsx",
+      "bytes": 28450,
+      "sha256": "ccbd3c586388cce10ee8be7e0df34cc0071a197e43746f6597b223ab5a196736"
+    },
+    {
+      "path": "apps/studio/src/Room.tsx",
+      "bytes": 61245,
+      "sha256": "0dc43277d121933cb466718177091588b8b0a9eb5b1313fe8fc8b166e348576b"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitCheckEmbed.test.tsx",
+      "bytes": 5392,
+      "sha256": "385b7bd195044d7ef9cf028992940cb3bdfd8f9cf1ed10301bfa39422dc9df70"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitCheckLaplace.test.ts",
+      "bytes": 2914,
+      "sha256": "c927be1af706f104b91c5e35d7145092effb5b6790b68265f237d916f618fdfb"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitCheckPort.test.ts",
+      "bytes": 10156,
+      "sha256": "182cd0dcddf43451015a129ba22661fdd0e3c6d1729bf4637e524b9abb7d3e41"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitCheckVertical.test.ts",
+      "bytes": 32340,
+      "sha256": "39e772c231b94cc742787ae84d63c1c80693202453ac37af7675846f3e22eaae"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitIngress.test.tsx",
+      "bytes": 18862,
+      "sha256": "cf1aec34443b0c4913d64f93abb7199ac5b814db1a4298ce20a49b225709993c"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitInputEditor.test.tsx",
+      "bytes": 3828,
+      "sha256": "42a07a7602b087f9a6503f4e0d047f7c4139fcf36e4233fe16cf514697dd3685"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitLaplace.test.ts",
+      "bytes": 9461,
+      "sha256": "d69448c04080666cb6daacdd6c5791445c7853fa1e59f573f3530a4204327ee0"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitMath.test.ts",
+      "bytes": 3885,
+      "sha256": "d3ac43b856c5d260d543add6d45ce0de74fc9b6a9c3e72169eeb2a37d2d5d872"
+    },
+    {
+      "path": "apps/studio/src/__tests__/CircuitMathRendering.test.tsx",
+      "bytes": 3104,
+      "sha256": "c679d54929eadb7b7b8d98954e16bbec0758d5f9e5633f750780f0425f410e76"
+    },
+    {
+      "path": "apps/studio/src/__tests__/ContinuityCircuitEvidence.test.ts",
+      "bytes": 9160,
+      "sha256": "8706e1a7e760f2bc86e5721d76c7bc19ec574967a52b2990bf788986222a7802"
+    },
+    {
+      "path": "apps/studio/src/__tests__/ContinuityView.test.tsx",
+      "bytes": 9039,
+      "sha256": "b1ddd7a64523ced239319f4e294c1201f566ebbb77452b91cea0f1e779b012e8"
+    },
+    {
+      "path": "apps/studio/src/__tests__/FunctionGraph.test.tsx",
+      "bytes": 12012,
+      "sha256": "79cd3cbdee1cf9ee40205fa56f235f4c7b8fdbecbdd7d65e409c285e88157d2b"
+    },
+    {
+      "path": "apps/studio/src/__tests__/LessonBundle.test.ts",
+      "bytes": 60110,
+      "sha256": "7d256af5dfb050aa28146bb9b3e752e2a0825375b896c9b4643e5d3de9006acd"
+    },
+    {
+      "path": "apps/studio/src/__tests__/LessonBundlePdfAssets.test.ts",
+      "bytes": 9238,
+      "sha256": "4e74742a88725b2afc7bb5ae6335f0b46e1a776e5dfd30b92631a931da60f656"
+    },
+    {
+      "path": "apps/studio/src/__tests__/LessonBundleSessionIsolation.test.ts",
+      "bytes": 16476,
+      "sha256": "e2742ec137b9b8d857dc43f20002160678ff14aa49561aaf84649e8798488265"
+    },
+    {
+      "path": "apps/studio/src/__tests__/Room.integration.test.tsx",
+      "bytes": 139783,
+      "sha256": "250735fd3b175b9209ef86809326a71480d3d365ff242660714a46f5b0ce0bc1"
+    },
+    {
+      "path": "apps/studio/src/__tests__/RoomLessonOsClose.test.tsx",
+      "bytes": 13145,
+      "sha256": "116e6d679799ac01c292679b905049ec1a90022f7a2a288727b0925548a727de"
+    },
+    {
+      "path": "apps/studio/src/__tests__/RoomSync.test.ts",
+      "bytes": 13351,
+      "sha256": "ae1b25962b0b5be3b6b578f5986653f68dd12030fa75bbb00c77c602f9179e00"
+    },
+    {
+      "path": "apps/studio/src/__tests__/SharedLessonNavigation.test.ts",
+      "bytes": 1478,
+      "sha256": "fe97814cfe67882ed29600be11fb746445236b694073412061445998e0bbfcf5"
+    },
+    {
+      "path": "apps/studio/src/__tests__/SharedViewerArchive.test.ts",
+      "bytes": 4799,
+      "sha256": "5fe04bac4475e8e04a2e62833ba3b16eaec402f7b44322adf1d34f099a993517"
+    },
+    {
+      "path": "apps/studio/src/__tests__/TeacherDashboardJournalScope.test.tsx",
+      "bytes": 6552,
+      "sha256": "56279848c704f79ffe1ad44ff4e9eedab0bb49eb16e0d8d7699e8489ea265e65"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-ac-port-response.json",
+      "bytes": 395372,
+      "sha256": "ea662557083746cb6983f9837912f9810debb6be41a6be8f5f61fd7741cf8049"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-ac-response.json",
+      "bytes": 38158,
+      "sha256": "06ce6a986fea5bda9eb647a2d784bed5ddda86260da0f0cfa663718e3ae16b59"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-laplace-rc-response.json",
+      "bytes": 274339,
+      "sha256": "5e2e96c561c38f13c5948886336865549e7c3aabf6e159db117d5db000957213"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-laplace-rl-response.json",
+      "bytes": 122612,
+      "sha256": "a0c5f966f6497079b6bafc47ab4344258866ff0da42119267912979a9ae70d2c"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-math-response.json",
+      "bytes": 215625,
+      "sha256": "5826b6221a564e65d321376c540ecbf2cbfb80b33b0e414e2914039bd1a0b333"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-port-response.json",
+      "bytes": 18999,
+      "sha256": "3d9fdf5797a750ba44f1145d0c4ae67bf67765b7e1c5ae83e9e1552f85313b8a"
+    },
+    {
+      "path": "apps/studio/src/__tests__/fixtures/circuitcheck-power-response.json",
+      "bytes": 49535,
+      "sha256": "7e7389d3582dc91da1723e92973eff5ac69b5a4d1b11ea73ab44eef890d57a94"
+    },
+    {
+      "path": "apps/studio/src/__tests__/loadFile.test.ts",
+      "bytes": 2981,
+      "sha256": "912597a6929c22ddffb597743588f2d81965e5fba85f5e0eabf7604a194a0d0f"
+    },
+    {
+      "path": "apps/studio/src/__tests__/pdfAssets.test.ts",
+      "bytes": 3265,
+      "sha256": "5419d4bae7a94fc53ed16c5592a0f9568f5dc3f4dc522d7e4ec366cf83fd8b34"
+    },
+    {
+      "path": "apps/studio/src/collaboration/CollaborationPanel.tsx",
+      "bytes": 7449,
+      "sha256": "4247e501c3b0495554a28cf2014118cfdf477cee9483b1443c13062dbdc54b4f"
+    },
+    {
+      "path": "apps/studio/src/collaboration/roomSync.ts",
+      "bytes": 20652,
+      "sha256": "5ff6b656ec4c681da9cfab622786e88e843715c4a18997d5b51ab6792acfb15d"
+    },
+    {
+      "path": "apps/studio/src/design/ContinuityResumeCard.tsx",
+      "bytes": 8944,
+      "sha256": "8ca9b5e7bd60fd1289a1fe4c671737715df7de3e5c9b4a72cbf8fe10845adc5e"
+    },
+    {
+      "path": "apps/studio/src/design/ContinuityView.tsx",
+      "bytes": 9650,
+      "sha256": "b98ae812e867273df170e67534629c25e32d2765fa6fa23cbf8d0fb5b01444c2"
+    },
+    {
+      "path": "apps/studio/src/design/SavedLessonsView.tsx",
+      "bytes": 17409,
+      "sha256": "2b0fd2fa9bbc7c28fbaab83054e73c067452d2a7a66b402bc1578a98375a366a"
+    },
+    {
+      "path": "apps/studio/src/design/TeacherDashboardView.tsx",
+      "bytes": 25770,
+      "sha256": "fc9e5e1c668773fcfa62cf9e8f2a5eba743f79de5c20754e80cd2181d68f69cc"
+    },
+    {
+      "path": "apps/studio/src/design/continuity-resume.css",
+      "bytes": 1695,
+      "sha256": "4327fefdab59613a965304d393aea84c1aabec9928a0f8ea364cb2df4119afca"
+    },
+    {
+      "path": "apps/studio/src/lessonos/circuitCheckEvent.ts",
+      "bytes": 8408,
+      "sha256": "4a1c9ef15b18fc4e80920eceabed8101aa6386f5e13ec641ad4f1833f7828d5b"
+    },
+    {
+      "path": "apps/studio/src/lessonos/circuitStudyEvidence.ts",
+      "bytes": 4921,
+      "sha256": "53d0959ff53b1d0ad8ccfdaa3739491405a72ee72893efa0df4439ae9e00ffcd"
+    },
+    {
+      "path": "apps/studio/src/lessonos/continuityCircuitEvidence.ts",
+      "bytes": 4289,
+      "sha256": "8d5ced3d0e3218a168c9d56bd61650568d886336d56f97d4889cc6d3344562d2"
+    },
+    {
+      "path": "apps/studio/src/lessonos/continuityProjection.ts",
+      "bytes": 25446,
+      "sha256": "42776b7050a35c4a55c8cdf3cd5f0e3a668d695d30a4b33f92a72c3fb2b25f79"
+    },
+    {
+      "path": "apps/studio/src/lessonos/continuityRuntime.ts",
+      "bytes": 44783,
+      "sha256": "4f0c56e8d223cbb71b62828471e54bb3422f465f067245b6ed47f1a3ff7f18a0"
+    },
+    {
+      "path": "apps/studio/src/lessonos/eventlog.ts",
+      "bytes": 22786,
+      "sha256": "beb64abe6eb8c40b8e88c47cc1db58711c4ff6c455f275a5f62393b59cde6813"
+    },
+    {
+      "path": "apps/studio/src/loadFile.ts",
+      "bytes": 2767,
+      "sha256": "2663b9652402c9c335ba26da40f79907f02faea28680590526daae83d9d601d8"
+    },
+    {
+      "path": "apps/studio/src/pdfPageSource.tsx",
+      "bytes": 9356,
+      "sha256": "a739a9dd72ba960631240e0dcfc724a526d6b9100ea133a3a19aa2b0eadaf571"
+    },
+    {
+      "path": "apps/studio/src/store/WorkspaceStore.ts",
+      "bytes": 25468,
+      "sha256": "fe211c04801244cad803997c822c91d3b599c08454060577186785fb954d93d8"
+    },
+    {
+      "path": "apps/studio/src/store/continuityView.ts",
+      "bytes": 1644,
+      "sha256": "b2acef895319a27a4dfb852582f3397f9ee05abb996b61a665beb03dfeded7d1"
+    },
+    {
+      "path": "apps/studio/src/store/lessonBundle.ts",
+      "bytes": 33403,
+      "sha256": "fdd38b1a988f75ef884944c087f4c329eef5f5a62c4cf6feead01783b400bc96"
+    },
+    {
+      "path": "apps/studio/src/store/lessonBundleManifest.ts",
+      "bytes": 13742,
+      "sha256": "96596a39cdd65573d5227460039feb510a4d51b24b540ef646b842381774c91d"
+    },
+    {
+      "path": "apps/studio/src/store/liveSession.ts",
+      "bytes": 1191,
+      "sha256": "dddfca56eb423af78d62bee9d4d66033f96e6768e67a2e1c5de7ccb82e6bd1f8"
+    },
+    {
+      "path": "apps/studio/src/store/pdfAssets.ts",
+      "bytes": 3734,
+      "sha256": "8c28852e4639a5ac83ab3cc132987c5c14dbe67c3827de44f7e4fbfd92fec104"
+    },
+    {
+      "path": "apps/studio/src/store/recapHtml.ts",
+      "bytes": 10551,
+      "sha256": "de016fe7d2072b06de109dade5b71dbd140a0f2eac6d9e3adcc1cced63f0ba87"
+    },
+    {
+      "path": "apps/studio/src/store/roomPaths.ts",
+      "bytes": 2487,
+      "sha256": "348010adac2f4269de7dad47ed84c47a996ecb8803cd4432d9fe63bfb52676ca"
+    },
+    {
+      "path": "apps/studio/src/toolhost/CircuitCheckEmbed.tsx",
+      "bytes": 24234,
+      "sha256": "fb7a53c222c8691c4d2b1afcdaaab5202b0fedd6e8cf9b98da01e5d533d84f6f"
+    },
+    {
+      "path": "apps/studio/src/toolhost/CircuitInputEditor.tsx",
+      "bytes": 8099,
+      "sha256": "c8e930f109b6ebea542dedb1a0c096985fa438faae0da6058b8132a214b74853"
+    },
+    {
+      "path": "apps/studio/src/toolhost/FunctionGraphEmbed.tsx",
+      "bytes": 7285,
+      "sha256": "d9bfe29ccefd928fa377e92a2fe4c8f4d4b0847e82029699a314ad5c060b710d"
+    },
+    {
+      "path": "apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx",
+      "bytes": 114179,
+      "sha256": "d3efed5475547e5fc9847b5427c3f8a6aacb465d00aef3e166b871d075c05a38"
+    },
+    {
+      "path": "apps/studio/src/toolhost/circuitCheckAdapter.ts",
+      "bytes": 35978,
+      "sha256": "32f9d73b13a5126d8f702c4f1ead7b90e5e710176129e59b2583b12e583b1f26"
+    },
+    {
+      "path": "apps/studio/src/toolhost/circuitIngress.ts",
+      "bytes": 5707,
+      "sha256": "5600b6af60bc3bff95ee434ffcd0c4262387787e68cbbc33d87e2a6eac8ced08"
+    },
+    {
+      "path": "apps/studio/src/toolhost/circuitInputModel.ts",
+      "bytes": 9993,
+      "sha256": "ccce7e8fd1d320f43ff91553547d3ac24fdaab7c4384bed54ef52dbd2ee46926"
+    },
+    {
+      "path": "apps/studio/src/toolhost/circuitLaplace.ts",
+      "bytes": 10763,
+      "sha256": "1a21a487345c2ebdc57da2776d3f4c6b8db90fae348ff351e9fc7b50af7aba7c"
+    },
+    {
+      "path": "apps/studio/src/toolhost/functionGraph.ts",
+      "bytes": 6473,
+      "sha256": "6d6944074aed64cba10862c76825a99367583eaeddd1b10b9feb84d83b19a8c2"
+    },
+    {
+      "path": "apps/studio/src/toolhost/lessonMath.ts",
+      "bytes": 5787,
+      "sha256": "55a043cd03bb64a6f1f55bafd1652452aec56c1df82e4744c24ba29da2438977"
+    },
+    {
+      "path": "apps/studio/src/toolhost/simulationPluginRegistry.ts",
+      "bytes": 3351,
+      "sha256": "c8be8e1c0f2f6c369ea6d034def72af78669b9b5b13ce6925ac94911e1486212"
+    },
+    {
+      "path": "apps/studio/src/toolhost/toolSource.ts",
+      "bytes": 6027,
+      "sha256": "8388800408dba0a5c64e5e27ffd3df66e4077d664993876ec93a2b82e649c0d5"
+    },
+    {
+      "path": "bin/dev-laboratory.sh",
+      "bytes": 2025,
+      "sha256": "2ba2525a710c666029b86c6cbb86e29328dc914f673b70d1d81c05b5d8ee5e9e"
+    },
+    {
+      "path": "services/room-sync/README.md",
+      "bytes": 14216,
+      "sha256": "0af96cd6491ed680dae54338a2419fb3ac23cb1cd37a36d2224cc8e51193b818"
+    },
+    {
+      "path": "services/room-sync/mcp_server.py",
+      "bytes": 9352,
+      "sha256": "1b8c070843593247ec317f05a329b96cdd03eb7dd4e660397a004ba5ed5695ce"
+    },
+    {
+      "path": "services/room-sync/pdf-http.test.mjs",
+      "bytes": 5182,
+      "sha256": "d04404f03f6ffc412d3a61771e487669688e19110043938f3dcae883e293bcd0"
+    },
+    {
+      "path": "services/room-sync/pdf-store.test.mjs",
+      "bytes": 7953,
+      "sha256": "b2e53f59f1990563eb97de745eb604a93271e15e09cf4f1c6ce250308a72eaaa"
+    },
+    {
+      "path": "services/room-sync/server.mjs",
+      "bytes": 8497,
+      "sha256": "653d8170c882d3ab6b9873a922b5e34ffe4a0f3d6d56fc73d7ebd9bc728ec81a"
+    },
+    {
+      "path": "services/room-sync/store.mjs",
+      "bytes": 21302,
+      "sha256": "a396da4ce934fd62a22a71818dd2e4de1be32eed8e7a893d5a4208896f095c70"
+    },
+    {
+      "path": "services/room-sync/store.test.mjs",
+      "bytes": 14657,
+      "sha256": "8a63ba08a3d84b5e939eb05b7eb3e60fe4ead2c7876176b4a1eff57a7730fcac"
+    },
+    {
+      "path": "services/room-sync/test_mcp_server.py",
+      "bytes": 10647,
+      "sha256": "a6eb9584ad12b4ea953717768a9da9010108b2730894eeef8b2eb0b278cd838c"
+    }
+  ]
+}

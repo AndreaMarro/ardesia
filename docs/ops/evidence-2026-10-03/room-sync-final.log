@@ -1,0 +1,95 @@
+TAP version 13
+# Subtest: two authenticated HTTP clients share exact PDF bytes only after document consent; token and publication revocation apply
+ok 1 - two authenticated HTTP clients share exact PDF bytes only after document consent; token and publication revocation apply
+  ---
+  duration_ms: 824.7575
+  ...
+# Subtest: missing/revoked/wrong-room/viewer grants fail before an unfinished large body is read
+ok 2 - missing/revoked/wrong-room/viewer grants fail before an unfinished large body is read
+  ---
+  duration_ms: 382.561166
+  ...
+# Subtest: revocation while a permitted upload is in flight prevents publication
+ok 3 - revocation while a permitted upload is in flight prevents publication
+  ---
+  duration_ms: 151.444666
+  ...
+# Subtest: PDF is private by default, explicitly published, exact after restart, and absent from canvas file bytes
+ok 4 - PDF is private by default, explicitly published, exact after restart, and absent from canvas file bytes
+  ---
+  duration_ms: 305.659958
+  ...
+# Subtest: current roles and revocation protect upload/download/withdrawal; another room token cannot read
+ok 5 - current roles and revocation protect upload/download/withdrawal; another room token cannot read
+  ---
+  duration_ms: 464.298916
+  ...
+# Subtest: uncommitted bytes are never served and retry completes the existing publication transaction
+ok 6 - uncommitted bytes are never served and retry completes the existing publication transaction
+  ---
+  duration_ms: 278.792459
+  ...
+# Subtest: tampered body, metadata conflicts, stored collisions and limits fail without replacing documents
+ok 7 - tampered body, metadata conflicts, stored collisions and limits fail without replacing documents
+  ---
+  duration_ms: 89.528084
+  ...
+# Subtest: quota counts retained bytes, including withdrawn documents, and deduplicates retries
+ok 8 - quota counts retained bytes, including withdrawn documents, and deduplicates retries
+  ---
+  duration_ms: 3634.80775
+  ...
+# Subtest: two clients merge independent objects, reject stale same-object edits, and recover through snapshot/events
+ok 9 - two clients merge independent objects, reject stale same-object edits, and recover through snapshot/events
+  ---
+  duration_ms: 991.903
+  ...
+# Subtest: roles come from revocable grants; viewer, forged role, and revoked tokens cannot mutate
+ok 10 - roles come from revocable grants; viewer, forged role, and revoked tokens cannot mutate
+  ---
+  duration_ms: 309.943375
+  ...
+# Subtest: undo affects only the caller operation and is conditional on unchanged versions
+ok 11 - undo affects only the caller operation and is conditional on unchanged versions
+  ---
+  duration_ms: 264.14575
+  ...
+# Subtest: retry remains idempotent across restart and private disk persistence contains no bearer tokens
+ok 12 - retry remains idempotent across restart and private disk persistence contains no bearer tokens
+  ---
+  duration_ms: 70.695208
+  ...
+# Subtest: image/PDF files travel with the snapshot, reject remote URLs, and cannot be overwritten
+ok 13 - image/PDF files travel with the snapshot, reject remote URLs, and cannot be overwritten
+  ---
+  duration_ms: 68.513
+  ...
+# Subtest: CORS and content type guard browser access; presence expires and revocation removes it
+ok 14 - CORS and content type guard browser access; presence expires and revocation removes it
+  ---
+  duration_ms: 85.322125
+  ...
+# Subtest: simultaneous HTTP requests serialize; tombstone versions prevent stale resurrection
+ok 15 - simultaneous HTTP requests serialize; tombstone versions prevent stale resurrection
+  ---
+  duration_ms: 149.871292
+  ...
+# Subtest: invalid IDs, duplicate objects, private metadata and missing files fail without partial writes
+ok 16 - invalid IDs, duplicate objects, private metadata and missing files fail without partial writes
+  ---
+  duration_ms: 44.721708
+  ...
+# Subtest: explicit origin allowlist replaces localhost defaults, and DNS rebinding Host is rejected
+ok 17 - explicit origin allowlist replaces localhost defaults, and DNS rebinding Host is rejected
+  ---
+  duration_ms: 54.214709
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5164.118917

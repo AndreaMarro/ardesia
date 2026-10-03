@@ -121,7 +121,7 @@ export type LessonOsEvent =
       answerExact: string
       unit: string
       engineRevision: string
-      verificationScope?: "electrical_result"
+      verificationScope?: "electrical_result" | "port_subproofs_crosschecked" | "phasor_paths_crosschecked" | "phasor_power_crosschecked" | "phasor_port_crosschecked" | "laplace_algebra_crosschecked"
       lessonBuild?: string
       proofSha256?: string
       labels: Labels
@@ -406,7 +406,7 @@ export function assertLessonOsEnvelopePayload(kind: string, payload: JsonObject)
   if (factualKind === "circuit.proof.verified") {
     const scoped = Object.prototype.hasOwnProperty.call(payload,"verificationScope")
     const built = Object.prototype.hasOwnProperty.call(payload,"lessonBuild")
-    if (scoped !== built || scoped && (payload.verificationScope !== "electrical_result" ||
+    if (scoped !== built || scoped && (!["electrical_result","port_subproofs_crosschecked","phasor_paths_crosschecked","phasor_power_crosschecked","phasor_port_crosschecked","laplace_algebra_crosschecked"].includes(String(payload.verificationScope)) ||
         typeof payload.lessonBuild !== "string" || !/^[a-f0-9]{64}$/.test(payload.lessonBuild))) {
       throw new Error("LessonOS event log: scope CircuitCheck incompleto o non supportato")
     }

@@ -2,7 +2,7 @@
 // osservativa dello scope dall'URL. Separato in un file per testabilita',
 // stesso pattern di isTeacherDashboardView / isToolLabView.
 
-import { validateProductRoomId } from "./roomPaths"
+import { validateProductRoomId, roomIdFromHash } from "./roomPaths"
 
 /** Controlla se l'URL richiede la superficie di continuita'. */
 export function isContinuityView(): boolean {
@@ -35,7 +35,7 @@ export function continuityLessonIdFromLocation(): string | null {
   const hash = window.location.hash.replace(/^#/, "")
   if (hash === "") return null
   try {
-    return validateProductRoomId(hash)
+    return validateProductRoomId(roomIdFromHash(hash))
   } catch {
     return null
   }

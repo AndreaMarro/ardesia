@@ -1,0 +1,26 @@
+
+Running 1 test using 1 worker
+
+(node:5445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[shared-pdf] START Import seven pages and start the shared lesson without uploading the original
+[shared-pdf] PASS Import seven pages and start the shared lesson without uploading the original
+[shared-pdf] START Create a viewer invitation
+[shared-pdf] PASS Create a viewer invitation
+[shared-pdf] START Viewer receives raster pages without original bytes
+[shared-pdf] PASS Viewer receives raster pages without original bytes
+[shared-pdf] START Teacher explicitly publishes the original and viewer discovers metadata
+[shared-pdf] PASS Teacher explicitly publishes the original and viewer discovers metadata
+[shared-pdf] START Viewer explicitly retains and downloads byte-identical original
+[shared-pdf] PASS Viewer explicitly retains and downloads byte-identical original
+[shared-pdf] START Viewer exports a portable lesson containing the retained original
+[shared-pdf] PASS Viewer exports a portable lesson containing the retained original
+[shared-pdf] START Reopen shared lesson and withdraw future remote access while retaining local bytes
+[shared-pdf] PASS Reopen shared lesson and withdraw future remote access while retaining local bytes
+[shared-pdf] START Republish and revoke viewer access while preserving the retained local copy
+[shared-pdf] PASS Republish and revoke viewer access while preserving the retained local copy
+  ✓  1 e2e/shared-pdf-live.spec.ts:17:1 › two browsers share an original PDF only by consent, retain a verified portable copy, and respect revocation (15.6s)
+
+  1 passed (19.1s)

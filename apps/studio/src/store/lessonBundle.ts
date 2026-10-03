@@ -14,6 +14,31 @@
 // Vedi anche: zipBundle.ts (formato JSONL+base64 legacy per compatibilità)
 
 import JSZip from "jszip"
+import { PDF_ASSET_DIR, PDF_ASSET_LIMITS, pdfAssetPath, portablePdfId, validatePdfAsset, validatePdfInventory } from "./pdfAssets"
+
+// JSZip 3 exposes this stream on ZipObject; its bundled types omit the method.
+declare module "jszip" {
+  interface JSZipObject { internalStream(type: "uint8array"): JSZipStreamHelper<Uint8Array> }
+}
+
+function boundedZipBlob(entry: JSZip.JSZipObject, limit: number): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    const chunks: Uint8Array<ArrayBuffer>[] = []
+    let size = 0
+    let stopped = false
+    const stream = entry.internalStream("uint8array")
+    stream.on("data", chunk => {
+      if (stopped) return
+      size += chunk.byteLength
+      if (size > limit) {
+        stopped = true
+        stream.pause()
+        chunks.length = 0
+        reject(new Error("Bundle PDF: limite di decompressione superato"))
+      } else chunks.push(Uint8Array.from(chunk))
+    }).on("error", reject).on("end", () => { if (!stopped) resolve(new Blob(chunks)) }).resume()
+  })
+}
 import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
 import { parseSessionYaml } from "./AudioRecorder"
@@ -38,6 +63,7 @@ import {
   assertRequiredLessonBundleEntries,
   buildLessonBundleManifest,
   parseLessonBundleManifestV1,
+  portableSessionId,
   sameOrderedStrings,
   verifyLessonBundleManifestPayload,
   type LessonBundleManifestV1,
@@ -55,6 +81,7 @@ import {
   type PendingLessonImport,
 } from "./lessonImportTransaction"
 import { roomPaths, validateProductRoomId } from "./roomPaths"
+import { parseSessionYamlV2, sessionPaths } from "./sessionState"
 
 export { LESSON_PATHS } from "./lessonBundleManifest"
 
@@ -69,17 +96,32 @@ function readOnlyLessonScope(
   const rejectWrite = async (): Promise<never> => {
     throw new Error("Lesson bundle: read-only LessonOS export scope")
   }
+  const readScope = async () => {
+    const events = await log.readEnvelopesByLesson(lessonId)
+    let previousSeq = 0
+    return events.map((event, index) => {
+      // seq addresses the source database, which can contain other lessons.
+      // The portable log gets its own contiguous positions; canonical event
+      // identity, evidence and payload remain unchanged. Never repair invalid
+      // source ordering or accept events outside the requested lesson.
+      if (event.lessonId !== lessonId || !Number.isSafeInteger(event.seq) || event.seq <= previousSeq) {
+        throw new Error("Lesson bundle: invalid LessonOS export scope or sequence")
+      }
+      previousSeq = event.seq
+      return { ...event, seq: index + 1 }
+    })
+  }
   return {
     append: rejectWrite,
     readAll: async () => [],
     appendEnvelope: rejectWrite,
-    readAllEnvelopes: () => log.readEnvelopesByLesson(lessonId),
+    readAllEnvelopes: readScope,
     readEnvelopesByLesson: (requestedLessonId) => (
-      requestedLessonId === lessonId ? log.readEnvelopesByLesson(lessonId) : Promise.resolve([])
+      requestedLessonId === lessonId ? readScope() : Promise.resolve([])
     ),
     readEnvelopesBySession: (requestedLessonId, sessionId) => (
       requestedLessonId === lessonId
-        ? log.readEnvelopesBySession(lessonId, sessionId)
+        ? readScope().then(events => events.filter(event => event.sessionId === sessionId))
         : Promise.resolve([])
     ),
   }
@@ -100,6 +142,9 @@ function supportsEnvelopeExport(log: EventLogStore): log is EnvelopeEventLogStor
  * export → import → export produce gli stessi byte.
  */
 const DEFAULT_SESSION_YAML = "v: 1\ncreated: 0\naudioConsent: false\n"
+/** Archive provenance only: this is not a canonical session document. */
+export const SHARED_VIEWER_SESSION_YAML = DEFAULT_SESSION_YAML + "# ardesia-archive: shared-viewer-snapshot.v1\n# Remote event history was not transferred.\n"
+export const SHARED_VIEWER_HISTORY_WARNING = "Shared viewer copy: remote event history was not transferred; included events, if any, are local."
 
 function addEntry(
   entries: Map<string, FileEntry>,
@@ -141,9 +186,11 @@ export async function exportLesson(
   // La sessione è room-scoped come gli altri artefatti: leggere il path flat
   // legacy trasporterebbe nel bundle di A la sessione (e il consenso) di B.
   let audioConsent: boolean | undefined
+  let sharedViewerCopy = false
   const sessionBlob = await store.read(paths.session)
   if (sessionBlob) {
     const sessionText = await sessionBlob.text()
+    sharedViewerCopy = sessionText === SHARED_VIEWER_SESSION_YAML
     audioConsent = parseSessionYaml(sessionText).audioConsent
     addEntry(entries, LESSON_PATHS.SESSION, sessionBlob)
   } else {
@@ -194,17 +241,38 @@ export async function exportLesson(
   }
   addEntry(entries, LESSON_PATHS.LESSONOS, lessonOsSnapshot)
 
+  // Carry existing canonical sessions byte-for-byte. Missing historical
+  // documents remain missing; an export must not invent their provenance.
+  const sourceRoot = `raw/${lessonId}/`
+  for (const entry of await store.list(sourceRoot)) {
+    if (entry.path === paths.session || !entry.path.endsWith("/session.yaml")) continue
+    const portablePath = `${LESSON_PATHS.SESSIONS_DIR}${entry.path.slice(sourceRoot.length)}`
+    portableSessionId(portablePath) // rejects malformed/nested session paths
+    entries.set(portablePath,{...entry,path:portablePath})
+  }
+
+  const documentsRoot = `raw/${lessonId}/documents/`
+  const documents = await store.list(documentsRoot)
+  validatePdfInventory(documents.map(entry => ({ path: PDF_ASSET_DIR + entry.path.slice(documentsRoot.length), bytes: entry.data.size })))
+  for (const entry of documents) {
+    const path = PDF_ASSET_DIR + entry.path.slice(documentsRoot.length)
+    await validatePdfAsset(entry.data, portablePdfId(path)!)
+    entries.set(path, { ...entry, path })
+  }
+
   assertRequiredLessonBundleEntries(entries)
 
   const identity = await embeddedIdentity(
     entries.get(LESSON_PATHS.JOURNAL)?.data ?? null,
     entries.get(LESSON_PATHS.LESSONOS)?.data ?? null,
+    [...entries.values()],
   )
   for (const embeddedLessonId of identity.lessonIds) {
     if (embeddedLessonId !== lessonId) {
       throw new Error("Lesson bundle: payload identity differs from requested lesson")
     }
   }
+  if (sharedViewerCopy) lessonOsWarnings = [...(lessonOsWarnings ?? (lessonOsSnapshot ? [] : ["LessonOS snapshot missing"])), SHARED_VIEWER_HISTORY_WARNING]
   const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries, lessonOsWarnings)
 
   // Costruisce ZIP
@@ -304,9 +372,19 @@ function canonicalEnvelopeFromSnapshotRow(value: unknown): AnyEventEnvelopeV2 {
 async function embeddedIdentity(
   journal: Blob | null,
   lessonOs: Blob | null,
+  entries: readonly StagedZipEntry[] = [],
 ): Promise<Readonly<{ lessonIds: Set<string>; sessionIds: Set<string> }>> {
   const lessonIds = new Set<string>()
   const sessionIds = new Set<string>()
+
+  for (const entry of entries) {
+    const pathSessionId = portableSessionId(entry.path)
+    if (pathSessionId === null) continue
+    const doc = parseSessionYamlV2(new Uint8Array(await entry.data.arrayBuffer()))
+    if (doc.sessionId !== pathSessionId) throw new Error("Bundle identity: sessionId non coincide con il path")
+    lessonIds.add(doc.lessonId)
+    sessionIds.add(doc.sessionId)
+  }
 
   if (journal) {
     for (const rawLine of (await journal.text()).split("\n")) {
@@ -347,6 +425,10 @@ async function embeddedIdentity(
 
 function importedPath(path: string, destinationLessonId: string | null): string {
   if (!destinationLessonId) return path
+  const sessionId = portableSessionId(path)
+  if (sessionId !== null) return sessionPaths({lessonId:destinationLessonId,sessionId}).session
+  const documentId = portablePdfId(path)
+  if (documentId !== null) return pdfAssetPath(destinationLessonId, documentId)
   const destination = roomPaths(destinationLessonId)
   switch (path) {
     case LESSON_PATHS.SCENE:
@@ -414,15 +496,19 @@ async function runLessonImport(
   const zip = await JSZip.loadAsync(blob)
 
   // Prima passata: valida ogni path e raccoglie le letture, senza I/O sul workspace.
-  const pendingEntries: Array<{ path: string; dataPromise: Promise<Blob> }> = []
-  let manifestTextPromise: Promise<string> | null = null
+  const pendingEntries: Array<{ path: string; entry: JSZip.JSZipObject }> = []
+  let manifestEntry: JSZip.JSZipObject | null = null
   let hasAudioEntry = false
 
   zip.forEach((relativePath, zipEntry) => {
     if (zipEntry.dir) return
 
+    if (zipEntry.unsafeOriginalName !== undefined && zipEntry.unsafeOriginalName !== relativePath) {
+      throw new Error("ZipSlip: path normalizzato non ammesso")
+    }
+
     if (relativePath === LESSON_PATHS.MANIFEST) {
-      manifestTextPromise = zipEntry.async("text")
+      manifestEntry = zipEntry
       return
     }
 
@@ -436,36 +522,60 @@ async function runLessonImport(
         `ZipSlip: path rifiutato "${relativePath}" — deve iniziare con raw/ e non contenere .. come segmento`,
       )
     }
+    portablePdfId(relativePath)
+    if (/^raw\/[^/]+\/documents(?:\/|$)/.test(relativePath)) {
+      throw new Error("Bundle PDF: path workspace non portabile")
+    }
+    const portableSession = portableSessionId(relativePath)
+    if (portableSession === null && /^raw\/[^/]+\/[^/]+\/session\.yaml$/.test(relativePath)) {
+      // Old readers accepted arbitrary raw files. A canonical workspace path
+      // must never bypass the portable namespace and overwrite another lesson.
+      throw new Error("Bundle identity: path sessione workspace non portabile")
+    }
 
     // Rileva entry audio per validazione coerenza
     if (relativePath.startsWith(LESSON_PATHS.AUDIO_DIR)) {
       hasAudioEntry = true
     }
 
-    pendingEntries.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
+    pendingEntries.push({ path: relativePath, entry: zipEntry })
   })
 
-  // Seconda passata di validazione: materializza tutte le entry prima della prima
-  // write. Errori ZIP/Blob, GDPR e identità non possono lasciare scritture parziali.
-  const stagedEntries: StagedZipEntry[] = await Promise.all(
-    pendingEntries.map(async ({ path, dataPromise }) => ({ path, data: await dataPromise })),
-  )
-  const byPortablePath = new Map(stagedEntries.map((entry) => [entry.path, entry.data]))
-
   let manifest: LessonBundleManifestV1 | null = null
-  if (manifestTextPromise !== null) {
+  if (manifestEntry !== null) {
     let parsedManifest: unknown
     try {
-      parsedManifest = JSON.parse(await manifestTextPromise)
+      parsedManifest = JSON.parse(await (await boundedZipBlob(manifestEntry, 1024 * 1024)).text())
     } catch {
-      throw new Error("Bundle manifest: JSON malformato")
+      throw new Error("Bundle manifest: JSON malformato o oltre il limite")
     }
     manifest = parseLessonBundleManifestV1(parsedManifest)
-    await verifyLessonBundleManifestPayload(manifest, stagedEntries)
     if (requestedDestination !== null && manifest.lessonId !== requestedDestination) {
       throw new Error("Bundle manifest: lessonId non coincide con la destinazione")
     }
   }
+  const pdfEntries = pendingEntries.filter(entry => portablePdfId(entry.path) !== null)
+  if (pdfEntries.length > 0 && manifest?.schemaVersion !== 3) {
+    throw new Error("Bundle PDF: originali richiedono manifest v3")
+  }
+  if (pdfEntries.length > PDF_ASSET_LIMITS.count) throw new Error("Bundle PDF: più di 32 documenti")
+
+  // All validation and bounded PDF decompression precede any workspace write.
+  const stagedEntries: StagedZipEntry[] = []
+  let pdfBytes = 0
+  for (const { path, entry } of pendingEntries) {
+    const documentId = portablePdfId(path)
+    const data = documentId === null
+      ? await entry.async("blob")
+      : await boundedZipBlob(entry, Math.min(PDF_ASSET_LIMITS.perFile, PDF_ASSET_LIMITS.total - pdfBytes))
+    if (documentId !== null) {
+      await validatePdfAsset(data, documentId)
+      pdfBytes += data.size
+    }
+    stagedEntries.push({ path, data })
+  }
+  const byPortablePath = new Map(stagedEntries.map((entry) => [entry.path, entry.data]))
+  if (manifest !== null) await verifyLessonBundleManifestPayload(manifest, stagedEntries)
 
   // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR.
   // Se manca (bundle legacy pre-T2), il consenso è ignoto e il controllo storico
@@ -486,6 +596,7 @@ async function runLessonImport(
   const { lessonIds, sessionIds } = await embeddedIdentity(
     byPortablePath.get(LESSON_PATHS.JOURNAL) ?? null,
     byPortablePath.get(LESSON_PATHS.LESSONOS) ?? null,
+    stagedEntries,
   )
   if (manifest === null && (lessonIds.size > 0 || sessionIds.size > 0)) {
     throw new Error("Bundle manifest mancante: downgrade di payload canonico v2 rifiutato")
@@ -544,6 +655,27 @@ async function runLessonImport(
     targetPaths.add(path)
     return { path, data: entry.data }
   })
+
+  if (pdfEntries.length > 0 && mappedDestination !== null) {
+    const root = `raw/${mappedDestination}/documents/`
+    const union = new Map((await store.list(root)).map(entry => {
+      const path = PDF_ASSET_DIR + entry.path.slice(root.length)
+      return [path, {path, bytes: entry.data.size}]
+    }))
+    // Import adds assets to an existing lesson; files omitted by the bundle
+    // survive. Apply limits to that resulting inventory, deduplicating hashes.
+    for (const entry of stagedEntries) {
+      if (portablePdfId(entry.path) !== null) union.set(entry.path, {path: entry.path, bytes: entry.data.size})
+    }
+    validatePdfInventory([...union.values()])
+  }
+
+  for (const entry of stagedEntries) {
+    const documentId = portablePdfId(entry.path)
+    if (documentId === null) continue
+    const previous = await store.read(importedPath(entry.path, mappedDestination))
+    if (previous) await validatePdfAsset(previous, documentId)
+  }
 
   if (mode === "preview") {
     const pending = await readPendingLessonImport(store)

@@ -13,7 +13,7 @@ import type {
   LessonImportPreview,
   LessonOsRestoreStatus,
 } from "../store/lessonBundle"
-import { validateProductRoomId } from "../store/roomPaths"
+import { validateProductRoomId, roomIdFromHash } from "../store/roomPaths"
 
 type MaterialsStore = Pick<
   WorkspaceStore,
@@ -40,7 +40,7 @@ function selectedRoom(): string | null {
   try {
     if (typeof window === "undefined") return null
     const room = window.location.hash.replace(/^#/, "")
-    return room === "" ? null : validateProductRoomId(room)
+    return room === "" ? null : validateProductRoomId(roomIdFromHash(room))
   } catch {
     return null
   }
@@ -289,7 +289,7 @@ export default function SavedLessonsView({
                 </button>
               </div>
               <div style={actionRowStyle}>
-                <a className="st-ghost" href={`/?vista=recap#${room}`}>
+                <a className="st-ghost" href={`/?vista=recap${window.location.hash}`}>
                   Rivedi il recap stampabile
                 </a>
                 <button
@@ -328,6 +328,12 @@ export default function SavedLessonsView({
                     </dd>
                   </div>
                 </dl>
+                {(preview.manifest?.sessions?.missingSessionIds.length ?? 0) > 0 && (
+                  <p role="status">Il bundle conserva gli eventi, ma mancano i documenti di {preview.manifest!.sessions!.missingSessionIds.length} sessioni storiche. La continuità resta incompleta per queste sessioni.</p>
+                )}
+                {preview.manifest !== null && preview.manifest.schemaVersion === 1 && (
+                  <p role="status">Questo formato precedente non trasporta i documenti canonici delle sessioni. La continuità può risultare incompleta.</p>
+                )}
                 <ul style={fileListStyle} aria-label="File verificati nel bundle">
                   {preview.files.map((file) => (
                     <li key={`${file.sourcePath}:${file.targetPath}`} style={fileRowStyle}>

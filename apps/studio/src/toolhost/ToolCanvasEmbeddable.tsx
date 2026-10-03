@@ -18,6 +18,8 @@ import {
 import { describeHole } from "../../sim/breadboard/sceneAuthoring";
 import { registerSimulationTool, getSimulationTool, type SimulationToolHost } from "./simulationPluginRegistry";
 import { CircuitCheckEmbed } from "./CircuitCheckEmbed";
+import { FunctionGraphEmbed } from "./FunctionGraphEmbed";
+import { FUNCTION_GRAPH_TOOL_ID, FUNCTION_GRAPH_EMBED_ID, emptyFunctionGraphState, readFunctionGraphState } from "./functionGraph";
 import { CIRCUIT_CHECK_EMBED_ID, CIRCUIT_CHECK_TOOL_ID, emptyCircuitState } from "./circuitCheckAdapter";
 import { simulationSolveEvent, type SimulationSolveOutcome } from "../lessonos/simulationSolveEvent";
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest";
@@ -662,6 +664,17 @@ export function buildCircuitCheckInsert(
   return { embed: entry.createEmbed(embedId), embedId };
 }
 
+/** Insert the local graph through the registry's shared identity rules. */
+export function buildFunctionGraphInsert(
+  currentElements: readonly { id?: string }[],
+): { embed: { id: string } & Record<string, unknown>; embedId: string } | null {
+  const entry = getSimulationTool(FUNCTION_GRAPH_TOOL_ID);
+  if (!entry) return null;
+  const ids = currentElements.map(el => el.id).filter((id): id is string => typeof id === "string");
+  const embedId = nextSimulationEmbedId(ids, entry.embedId);
+  return { embed: entry.createEmbed(embedId), embedId };
+}
+
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
@@ -701,6 +714,19 @@ registerSimulationTool(CIRCUIT_CHECK_TOOL_ID, {
     ...createToolEmbedElement({toolId: CIRCUIT_CHECK_TOOL_ID, embedId, state: emptyCircuitState()}),
     width: 900, height: 680,
   }),
+});
+
+registerSimulationTool(FUNCTION_GRAPH_TOOL_ID, {
+  embedId: FUNCTION_GRAPH_EMBED_ID,
+  render: (element, toolLink, host) => <FunctionGraphEmbed element={element} toolLink={toolLink} host={host} />,
+  createEmbed: (embedId = FUNCTION_GRAPH_EMBED_ID) => ({
+    ...createToolEmbedElement({toolId: FUNCTION_GRAPH_TOOL_ID, embedId, state: emptyFunctionGraphState()}),
+    width: 760, height: 650,
+  }),
+  validate: state => {
+    try { readFunctionGraphState(state); return {ok: true, errors: []}; }
+    catch (error) { return {ok: false, errors: [error instanceof Error ? error.message : "Grafico non valido"]}; }
+  },
 });
 
 // Montaggio libero slice 3 — tap-tap dalla palette SVG (LIM-first: sul touch

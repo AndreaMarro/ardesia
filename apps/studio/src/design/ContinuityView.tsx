@@ -107,8 +107,12 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
           { lessonId, roomId: lessonId, sessionId },
           {
             createEventReader: (scope) => openIndexedDbContinuityEventReader({}, scope),
-            createWorkspaceReader: async () =>
-              createWorkspaceStoreContinuityWorkspaceReader(workspaceStore),
+            createWorkspaceReader: async () => {
+              // A direct visit starts a fresh module instance. Initialize the
+              // local driver before the reader captures its actual authority.
+              if (workspaceStore.mode === "unavailable") await workspaceStore.init()
+              return createWorkspaceStoreContinuityWorkspaceReader(workspaceStore)
+            },
             buildCommitSha: typeof __ARDESIA_GIT_SHA__ === "string" ? __ARDESIA_GIT_SHA__ : null,
           },
         )

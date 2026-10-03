@@ -20,6 +20,9 @@ import type {
   LoadScopedContinuityResultV1,
   ContinuityRuntimeAdapterFactories,
 } from "../lessonos/continuityRuntime"
+import { loadScopedContinuitySnapshot } from "../lessonos/continuityRuntime"
+import { workspaceStore } from "../store/WorkspaceStore"
+import { roomPaths } from "../store/roomPaths"
 
 const LESSON_ID = "wbstudio-abc123"
 const SESSION_ONE = "11111111-1111-4111-8111-111111111111"
@@ -47,6 +50,41 @@ afterEach(() => {
 })
 
 describe("ContinuityView", () => {
+  it("riapertura diretta: inizializza il workspace, legge la scena e conserva la degradazione della cache", async () => {
+    at(`/?vista=continuita&sessione=${SESSION_ONE}#${LESSON_ID}`)
+    expect(workspaceStore.mode).toBe("unavailable")
+    await workspaceStore.saveScene(LESSON_ID,JSON.stringify({elements:[{id:"saved-note",type:"text",text:"Appunto salvato"}]}))
+    const results: LoadScopedContinuityResultV1[] = []
+    const loadSnapshot: typeof loadScopedContinuitySnapshot = async (requested,factories) => {
+      const result = await loadScopedContinuitySnapshot(requested,{
+        ...factories,
+        createEventReader: async () => ({
+          persistence:{kind:"verified-indexeddb",database:"continuity-test"},
+          readEnvelopesBySession:async()=>[],dispose:async()=>{},
+        }),
+      })
+      results.push(result)
+      return result
+    }
+    try {
+      const {container} = render(<ContinuityView deps={{loadSnapshot}} />)
+      await screen.findByText("Continuita' degradata")
+      const result = results[0]!
+      expect(result.kind).toBe("loaded")
+      if (result.kind === "loaded") {
+        expect(result.snapshot.scene?.elements).toEqual([{id:"saved-note",type:"text",text:"Appunto salvato"}])
+        expect(result.snapshot.issues.some(issue=>issue.code === "workspace-uninitialised")).toBe(false)
+        expect(result.snapshot.issues.filter(issue=>issue.code === "local-storage-non-authoritative")).toHaveLength(3)
+      }
+      expect(workspaceStore.mode).toBe("localStorage")
+      expect(container.querySelector('[data-continuity-issue-code="workspace-uninitialised"]')).toBeNull()
+      expect(container.querySelectorAll('[data-continuity-issue-code="local-storage-non-authoritative"]')).toHaveLength(3)
+    } finally {
+      await workspaceStore.delete(roomPaths(LESSON_ID).scene)
+      localStorage.clear()
+    }
+  })
+
   it("nessuna lezione nello scope: lo dice, e non apre alcuna sorgente", async () => {
     at("/?vista=continuita")
     const openEventLog = vi.fn()

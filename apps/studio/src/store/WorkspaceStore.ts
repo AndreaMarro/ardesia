@@ -8,6 +8,7 @@ import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStor
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
 import {
+  SHARED_VIEWER_SESSION_YAML,
   exportLesson as buildLessonExport,
   importLesson as parseLessonImport,
   previewLessonImport as buildLessonPreview,
@@ -59,6 +60,7 @@ export type WorkspaceStoreOptions = Readonly<{
 export type WorkspaceCompensationOperation =
   | "connect-folder-migration"
   | "legacy-bundle-import"
+  | "shared-viewer-archive"
 
 export type WorkspaceRollbackFailure = Readonly<{
   path: string
@@ -522,6 +524,28 @@ export class WorkspaceStore {
     // Path per-room: raw/<room>/board.excalidraw — due room NON si sovrascrivono
     await this.write(paths.scene, blob)
     // Sync su localStorage come cache
+    this.fallback.setLegacyScene(room, sceneJson)
+  }
+
+  /** A viewer receives a scene, not the teacher's historical event log.
+   * Initialize an explicitly empty local journal only for a NEW viewer archive.
+   * Existing missing journals remain errors; no teacher/session history is healed.
+   */
+  async saveSharedViewerScene(room: string, sceneJson: string): Promise<void> {
+    const paths = roomPaths(validateProductRoomId(room))
+    await this.mutationCoordinator.withPathMutation(paths.scene, async () => {
+      const journal = await this.driver.read(paths.journal)
+      const entries: Array<{path: string; data: Blob}> = []
+      if (!journal) {
+        const previous = await this.driver.list(`raw/${room}/`)
+        if (previous.some(entry => entry.path !== paths.meta && !entry.path.startsWith(`raw/${room}/documents/`)))
+          throw new Error("Copia partecipante: cronologia locale mancante in un archivio esistente; nessuna ricostruzione automatica.")
+        entries.push({path: paths.session, data: new Blob([SHARED_VIEWER_SESSION_YAML], {type: "text/yaml"})})
+        entries.push({path: paths.journal, data: new Blob([], {type: "application/x-ndjson"})})
+      }
+      entries.push({path: paths.scene, data: new Blob([sceneJson], {type: "application/json"})})
+      await writeEntriesWithCompensation("shared-viewer-archive", this.driver, entries)
+    })
     this.fallback.setLegacyScene(room, sceneJson)
   }
 

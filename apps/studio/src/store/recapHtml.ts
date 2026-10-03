@@ -8,6 +8,8 @@ import type { LessonRecap } from "./lessonRecap"
 import { formatDuration } from "./lessonRecap"
 import type { StudyDigest } from "../lessonos/studyDigest"
 import type { CircuitStudyEvidence } from "../lessonos/circuitStudyEvidence"
+import { circuitAssuranceLabel, circuitConventionsLabel } from "../toolhost/circuitCheckAdapter"
+import { lessonExpressionMarkup, lessonMathMarkup } from "../toolhost/lessonMath"
 import DOMPurify from "dompurify"
 
 function esc(s: string): string {
@@ -85,12 +87,20 @@ export function buildRecapHtml(
       const image = safeSvg.startsWith("<svg")
         ? `<img class="circuit-diagram" alt="Schema del passaggio ${index + 1}" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(safeSvg)}">`
         : ""
-      return `<li><h3>${index + 1}. ${esc(step.title)}</h3>${image}<p>${esc(step.explanation)}</p>${step.equations.map(eq => `<div class="circuit-equation"><code>${esc(eq)}</code></div>`).join("")}</li>`
+      const references = step.focus?.length
+        ? `<p class="circuit-focus">Riferimenti nello schema: ${step.focus.map(esc).join(", ")}</p>` : ""
+      const math=lessonMathMarkup(step.math)
+      const equations=math ? `<div class="circuit-equation" data-circuit-math="steps">${math}</div>`
+        : step.equations.map(eq => `<div class="circuit-equation"><code>${esc(eq)}</code></div>`).join("")
+      return `<li><h3>${index + 1}. ${esc(step.title)}</h3>${image}<p>${esc(step.explanation)}</p>${references}${equations}</li>`
     }).join("")
     const attempt = assessment
       ? `<div class="circuit-attempt"><strong>Procedimento dello studente</strong><ol>${assessedTrace.map(step => `<li>${esc(step.transcription)}</li>`).join("")}</ol><p>${esc(assessment)}</p></div>`
       : ""
-    return `<article class="circuit-proof"><h3>${esc(proof.title)}</h3><p><strong>Risultato registrato:</strong> ${esc(proof.answer.exact)} ${esc(proof.answer.unit)} · ${esc(proof.answer.reference)}</p><p class="circuit-source">Fonte: lavagna ${esc(embedId)} · revisione ${esc(proof.fingerprint.slice(0, 12))}. Ricalcolare prima di riusare la prova in un nuovo circuito.</p><ol class="circuit-steps">${steps}</ol>${attempt}</article>`
+    const conventions = circuitConventionsLabel(proof)
+    const answerMath=lessonExpressionMarkup(proof.answer.math)
+    const answer=answerMath ? `<span data-circuit-math="answer">${answerMath}</span>` : esc(proof.answer.exact)
+    return `<article class="circuit-proof"><h3>${esc(proof.title)}</h3><p><strong>Risultato registrato:</strong> ${answer} ${esc(proof.answer.unit)} · ${esc(proof.answer.reference)}</p><p class="circuit-assurance">${esc(circuitAssuranceLabel(proof))}. La verifica riguarda il calcolo indicato.</p>${conventions ? `<p>${esc(conventions)}</p>` : ""}<p class="circuit-source">Fonte: lavagna ${esc(embedId)} · revisione ${esc(proof.fingerprint.slice(0, 12))}. Ricalcolare prima di riusare la prova in un nuovo circuito.</p><ol class="circuit-steps">${steps}</ol>${attempt}</article>`
   }).join("")
 
   const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || circuits.length > 0

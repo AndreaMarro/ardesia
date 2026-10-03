@@ -29,7 +29,8 @@ vi.mock("@excalidraw/excalidraw", () => {
   }
 })
 
-vi.mock("../store/WorkspaceStore", () => ({
+vi.mock("../store/WorkspaceStore", async (importOriginal) => ({
+  ...await importOriginal<typeof import("../store/WorkspaceStore")>(),
   workspaceStore: {},
 }))
 
@@ -68,6 +69,7 @@ import { roomPaths } from "../store/roomPaths"
 import { exportLesson } from "../store/lessonBundle"
 import type { WorkspaceDriver } from "../store/types"
 import { JournalRecorder } from "../store/JournalRecorder"
+import { WorkspaceStore } from "../store/WorkspaceStore"
 
 const ROOM_A = "cls-room-a"
 const ROOM_B = "cls-room-b"
@@ -98,10 +100,15 @@ function memoryStore() {
     list: async (prefix) => [...bytes].filter(([p]) => !prefix || p.startsWith(prefix))
       .map(([path, data]) => ({ path, data: new Blob([data]), mtime: 0 })),
   }
+  // Exercise the canonical session writer against these same bytes, so the
+  // lifecycle fixture satisfies the production archive contract as well.
+  const canonical = new WorkspaceStore()
+  ;(canonical as any).driver = driver
   return {
     mode: "localStorage",
     init: async () => "localStorage",
     registerActiveLesson: async (lessonId: string) => ({ lessonId, release: async () => {} }),
+    createSessionOnce: canonical.createSessionOnce.bind(canonical),
     loadScene: async () => null,
     saveScene: async () => {},
     loadMeta: async () => null,

@@ -1,17 +1,21 @@
 import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
-import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
+import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON, exportToBlob } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
+import { PDF_PAGE_DATA_KEY, PdfOriginals, collectPdfPageSources, type PdfPageSource } from "./pdfPageSource"
+import { readPdfAsset, writePdfAsset, PDF_ASSET_LIMITS } from "./store/pdfAssets"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { type StorageMode } from "./store/types"
 import { LESSON_EXTENSION } from "./store/lessonBundle"
 import { JournalRecorder, toLegacyJournalEvent } from "./store/JournalRecorder"
 import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert } from "./design/icons"
-import ViewNav from "./design/ViewNav"
+import ViewNav, { viewHref } from "./design/ViewNav"
+import CollaborationPanel from "./collaboration/CollaborationPanel"
+import { RoomSync, type SyncState } from "./collaboration/roomSync"
 import { isStudentView } from "./store/studentView"
 import {
   openLessonOsSession,
@@ -31,20 +35,22 @@ import EmptyState from "./design/EmptyState"
 // NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
 // nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
 // getSimulationTool, o il registry risulterebbe vuoto.
-import { buildCircuitCheckInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildCircuitCheckInsert, buildFunctionGraphInsert, buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
+import { captureToolSource, prepareToolSourceSelection, sourceSha256, type ToolSourceSelection } from "./toolhost/toolSource"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
-import { roomPaths, validateProductRoomId, validateRoomId } from "./store/roomPaths"
+import { roomPaths, validateProductRoomId, roomIdFromHash } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
+import { persistLiveSession } from "./store/liveSession"
 
-// Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
+// Il fragment contiene la stanza; gli eventuali grant restano separati.
 function getRoomId(): string {
   let h = location.hash.replace(/^#/, "")
   if (!h) {
     h = "wbstudio-" + Math.random().toString(36).slice(2, 9)
     location.hash = h
   }
-  return validateRoomId(h)
+  return roomIdFromHash(h)
 }
 
 /** Clock del journal canonico della lezione. */
@@ -112,6 +118,15 @@ export default function Room({
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
+  const sharedRoom = useMemo(() => location.hash.includes("&access="), [])
+  const [syncState, setSyncState] = useState<SyncState | null>(null)
+  const syncClientRef = useRef<RoomSync | null>(null)
+  const applyingRemoteRef = useRef(false)
+  // Set only by an authenticated viewer snapshot; survives revocation cleanup.
+  const sharedViewerArchiveRef = useRef(false)
+  const canvasReadOnly = sharedRoom
+    ? !syncState?.canWrite
+    : studentView
   const recapView = useMemo(() => isRecapView(), [])
   const replayView = useMemo(() => isReplayView(), [])
   const lifecycleGeneration = useMemo(
@@ -132,6 +147,9 @@ export default function Room({
     ? lifecycleState.error
     : null
   const [storageError, setStorageError] = useState<string | null>(null)
+  const [fileImportError, setFileImportError] = useState<string | null>(null)
+  const [pdfPages, setPdfPages] = useState<PdfPageSource[]>([])
+  const [pdfOriginalsOpen, setPdfOriginalsOpen] = useState(false)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
@@ -158,6 +176,7 @@ export default function Room({
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
+  const toolSourceSelectionsRef = useRef(new Map<string,ToolSourceSelection>())
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
   const initialLoadDone = useRef(false)
@@ -223,9 +242,13 @@ export default function Room({
     latestAppStateRef.current = null
     latestFilesRef.current = null
     apiRef.current = null
+    toolSourceSelectionsRef.current.clear()
     persistRequestedRef.current = false
     setSaved(false)
     setStorageError(null)
+    setFileImportError(null)
+    setPdfPages([])
+    setPdfOriginalsOpen(false)
     setStoreMode("localStorage")
     setMenuOpen(false)
     setLessonName(null)
@@ -390,7 +413,19 @@ export default function Room({
         // Le viste read-only non aprono né sessione né recorder. Nel percorso docente,
         // la sessione canonica è l'unica autorità che può costruire il journal live.
         if (!studentView && !recapView && !replayView) {
-          openerPromise = Promise.resolve().then(() => lessonOsOpener({ room }))
+          openerPromise = Promise.resolve().then(async () => {
+            const opened = await lessonOsOpener({ room })
+            try {
+              await persistLiveSession(actualStore, opened)
+              return opened
+            } catch (error) {
+              // Cleanup waits for this same promise: no late session document
+              // can race a lesson switch or escape the owned lifecycle.
+              try { await opened.close() }
+              catch (closeError) { throw new AggregateError([error, closeError], "Documento sessione e chiusura falliti") }
+              throw error
+            }
+          })
           try {
             runtime = await openerPromise
           } catch (error) {
@@ -437,6 +472,7 @@ export default function Room({
             const parsed = JSON.parse(data)
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
             setSceneData(parsed)
+            updatePdfPages(parsed.elements ?? [])
             if (journalRef.current && parsed?.elements) {
               journalRef.current.seed(parsed.elements)
             }
@@ -505,7 +541,8 @@ export default function Room({
     const run = _pendingSave.current.then(async () => {
       try {
         const serialized = serializeAsJSON(elements, appState, files, "local")
-        await actualStore.saveScene(room, serialized)
+        if (sharedViewerArchiveRef.current) await actualStore.saveSharedViewerScene(room, serialized)
+        else await actualStore.saveScene(room, serialized)
         setStorageError(null)
         setSaved(true)
         window.setTimeout(() => setSaved(false), 1200)
@@ -566,8 +603,17 @@ export default function Room({
     }
   }
 
+  function updatePdfPages(elements: readonly unknown[]) {
+    const next = collectPdfPageSources(elements)
+    setPdfPages(previous => JSON.stringify(previous) === JSON.stringify(next) ? previous : next)
+  }
+
   /** Handler composito: salva scena + registra eventi journal */
   function handleChange(elements: any, appState: any, files: any) {
+    updatePdfPages(elements)
+    // Remote scenes are persisted by the sync callback. Revocation may clear
+    // the display but must not overwrite the recoverable local lesson.
+    if (sharedRoom && (applyingRemoteRef.current || !syncClientRef.current?.canWrite)) return
     // P0-C residuo: un duplicato dal canvas (copy/paste/Alt-drag) clona il
     // link → id ≠ embedId e il duplicato scriverebbe sullo stato dell'
     // ORIGINALE. La normalizzazione lo promuove a NUOVA istanza (idempotente:
@@ -578,6 +624,7 @@ export default function Room({
       return
     }
     persist(elements, appState, files)
+    if (sharedRoom && !canvasReadOnly && !applyingRemoteRef.current) syncClientRef.current?.change(elements, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
   }
@@ -728,7 +775,7 @@ export default function Room({
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
+  function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number; pdfSource?: PdfPageSource }[]) {
     if (!apiRef.current || !items.length) return
     const files = items.map((it) => {
       const id = (crypto.randomUUID?.() ?? String(Math.random()).slice(2)) as string
@@ -736,9 +783,11 @@ export default function Room({
     })
     apiRef.current.addFiles(files.map((f) => f.file))
     const els = convertToExcalidrawElements(
-      files.map((f) => ({ type: "image", x: f.x, y: f.y, width: f.width, height: f.height, fileId: f._id }) as any)
+      files.map((f) => ({ type: "image", x: f.x, y: f.y, width: f.width, height: f.height, fileId: f._id, ...(f.pdfSource ? {customData:{[PDF_PAGE_DATA_KEY]:f.pdfSource}} : {}) }) as any)
     )
-    apiRef.current.updateScene({ elements: [...apiRef.current.getSceneElements(), ...els] })
+    const elements = [...apiRef.current.getSceneElements(), ...els]
+    apiRef.current.updateScene({ elements })
+    updatePdfPages(elements)
   }
 
   async function insertMath(latex: string) {
@@ -756,14 +805,15 @@ export default function Room({
     const file = e.target.files?.[0]
     e.target.value = ""
     if (!file) return
+    setFileImportError(null)
     const lessonFile = isLessonFile(file)
     const supported = lessonFile || file.type === "application/pdf" || file.type.startsWith("image/")
     if (!supported) {
-      setStorageError("Formato non supportato (usa immagine, PDF o .lesson).")
+      setFileImportError("Formato non supportato (usa immagine, PDF o .lesson).")
       return
     }
     if (!apiRef.current) {
-      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      setFileImportError("Lavagna non pronta: riprova tra un istante.")
       return
     }
     try {
@@ -784,6 +834,7 @@ export default function Room({
         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
         const files = parsed.files ?? {}
         setSceneData(parsed)
+        updatePdfPages(parsed.elements ?? [])
         latestElementsRef.current = elements
         latestAppStateRef.current = appState
         latestFilesRef.current = files
@@ -792,23 +843,30 @@ export default function Room({
         // Telemetria mai silenziosa (§4.4): un restore FALLITO va detto al docente
         // (il board è importato; è la memoria didattica a non essere tornata).
         if (importResult.lessonOsRestore.kind === "failed") {
-          setStorageError(
+          setFileImportError(
             "Lezione importata, ma memoria didattica NON ripristinata: " +
               importResult.lessonOsRestore.error,
           )
         } else {
-          setStorageError(null)
+          setFileImportError(null)
         }
         setSaved(true)
         window.setTimeout(() => setSaved(false), 1200)
       } else if (file.type === "application/pdf") {
+        if (file.size > PDF_ASSET_LIMITS.perFile) throw new Error("Il PDF supera il limite di 20 MiB.")
         const pages = await pdfToImages(file)
+        if (!pages.length) throw new Error("Il PDF non contiene pagine.")
+        const expectedId = pages[0]!.documentId?.replace(/^document:sha256:/, "")
+        const original = await writePdfAsset(actualStore, room, file, expectedId)
+        const pageDigests = await Promise.all(pages.map(page => sourceSha256(Uint8Array.from(atob(page.dataURL.split(",")[1]!), c => c.charCodeAt(0)))))
         let y = 100
         const totalPages = pages[0]?.totalPages ?? pages.length
         const items = pages.map((p, index) => {
           const width = Math.min(720, p.width)
           const height = Math.round(width * (p.height / p.width))
-          const it = { dataURL: p.dataURL, mimeType: "image/png", width, height, x: 160, y }
+          const pdfSource: PdfPageSource = {schema:"pdf-page.v1", documentId:`document:sha256:${original.documentId}`,
+            documentName:file.name, page:p.page ?? index + 1, totalPages, sourceBytes:original.bytes, rasterSha256:pageDigests[index]!}
+          const it = { dataURL: p.dataURL, mimeType: "image/png", width, height, x: 160, y, pdfSource }
           y += height + 24
           journalRef.current?.recordPdfPageView(p.page ?? index + 1, totalPages, {
             documentId: p.documentId,
@@ -824,7 +882,7 @@ export default function Room({
         addImages([{ dataURL, mimeType: file.type, width: w, height: h, x: 160, y: 120 }])
       }
     } catch (err) {
-      setStorageError("Caricamento non riuscito: " + (err as Error).message)
+      setFileImportError("Caricamento non riuscito: " + (err as Error).message)
     }
   }
 
@@ -837,6 +895,34 @@ export default function Room({
     const insert = buildCircuitCheckInsert(currentElements as readonly { id?: string }[])
     if (!insert) {
       setStorageError("CircuitCheck non disponibile.")
+      return
+    }
+    const selectedIds = Object.entries(apiRef.current.getAppState?.().selectedElementIds ?? {})
+      .filter(([,selected])=>selected===true).map(([id])=>id)
+    if (selectedIds.length) {
+      try {
+        toolSourceSelectionsRef.current.set(insert.embedId,prepareToolSourceSelection(
+          currentElements,apiRef.current.getFiles?.() ?? {},selectedIds))
+      } catch (cause) {
+        setStorageError((cause as Error).message)
+      }
+    }
+    apiRef.current.updateScene({
+      elements: [...currentElements, insert.embed],
+      appState: { selectedElementIds: { [insert.embedId]: true } },
+    })
+    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
+  }
+
+  function insertFunctionGraph() {
+    if (!apiRef.current) {
+      setStorageError("Lavagna non pronta: riprova tra un istante.")
+      return
+    }
+    const currentElements = apiRef.current.getSceneElements()
+    const insert = buildFunctionGraphInsert(currentElements as readonly { id?: string }[])
+    if (!insert) {
+      setStorageError("Grafico di funzione non disponibile.")
       return
     }
     apiRef.current.updateScene({
@@ -924,7 +1010,7 @@ export default function Room({
           >
             {lessonName ?? room}
           </span>
-          <span className="st-chip-student">stai guardando la lavagna</span>
+          <span className="st-chip-student">{sharedRoom && !canvasReadOnly ? "scriviamo insieme" : "stai guardando la lavagna"}</span>
         </header>
       ) : (
       <header className="st-bar">
@@ -973,9 +1059,9 @@ export default function Room({
               </span>
             )
             : (
-              <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
+              <span className="st-indicator st-local" title={sharedRoom ? "Archivio della lezione su questo browser; lavagna comune sul servizio" : "Senza cartella, i dati restano solo in questo browser"}>
                 <span className="st-led" aria-hidden />
-                solo in questo browser
+                {sharedRoom ? "archivio locale" : "solo in questo browser"}
                 {" — "}
                 <button onClick={handleConnectFolder} className="st-indicator-connect">
                   scegli cartella…
@@ -988,6 +1074,7 @@ export default function Room({
             <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
           )}
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
+          {fileImportError && <span className="st-err" role="alert" title={fileImportError}><IconAlert /> {fileImportError}</span>}
         </div>
 
         {/* Hamburger menu mobile (visibile solo <=768px via CSS) */}
@@ -1009,6 +1096,7 @@ export default function Room({
           )}
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
+          {!sharedRoom && pdfPages.length > 0 && <button className="st-ghost" onClick={() => setPdfOriginalsOpen(open => !open)}>PDF originali</button>}
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
           <button
             onClick={() => insertSimulationPlugin()}
@@ -1022,12 +1110,18 @@ export default function Room({
           </button>
           <button onClick={insertCircuitCheck} className="st-ghost"
             aria-label="Inserisci CircuitCheck sulla lavagna">circuiti</button>
+          <button onClick={insertFunctionGraph} className="st-ghost"
+            aria-label="Inserisci grafico di funzione sulla lavagna">grafico</button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
         </div>
       </header>
       )}
+
+      {pdfOriginalsOpen && <PdfOriginals store={actualStore} lessonId={room} pages={pdfPages} onClose={() => setPdfOriginalsOpen(false)}
+        shared={syncState?.snapshot && syncClientRef.current ? {client:syncClientRef.current,documents:syncState.snapshot.pdfDocuments ?? [],role:syncState.snapshot.role,grantId:syncState.snapshot.grantId,canWrite:syncState.canWrite} : undefined}
+        onExport={() => {void navigateToSurface(viewHref("materiali",location.hash))}} />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (
@@ -1084,8 +1178,54 @@ export default function Room({
         </div>
       )}
 
-      <div style={{ flex: 1, position: "relative" }}>
-        {studentView && !sceneData && (
+      <CollaborationPanel room={room} title={lessonName ?? "Lezione condivisa"} student={studentView}
+        hasPdfPages={pdfPages.length > 0} onOpenPdfs={() => setPdfOriginalsOpen(open => !open)}
+        prepareSharedLesson={async (newRoomId) => {
+          // The teacher keeps private originals in the new local lesson scope.
+          // This callback performs no network transmission of document bytes.
+          const sources = collectPdfPageSources(apiRef.current?.getSceneElements() ?? [])
+          for (const id of new Set(sources.map(source => source.documentId))) {
+            const hash = id.slice("document:sha256:".length)
+            const asset = await readPdfAsset(actualStore,room,hash)
+            if (asset) await writePdfAsset(actualStore,newRoomId,asset.blob,hash)
+          }
+        }}
+        getScene={() => ({ elements: apiRef.current?.getSceneElementsIncludingDeleted() ?? [], files: apiRef.current?.getFiles() ?? {} })}
+        onState={(state, client) => {
+          syncClientRef.current = client
+          if (studentView && state.snapshot?.role === "viewer") sharedViewerArchiveRef.current = true
+          setSyncState(state)
+          const api = apiRef.current
+          if (!api) return
+          applyingRemoteRef.current = true
+          const current = api.getSceneElementsIncludingDeleted()
+          if (JSON.stringify(current) !== JSON.stringify(state.elements)) {
+            api.addFiles(Object.values(state.files))
+            api.updateScene({ elements: state.elements, captureUpdate: "NEVER" })
+            updatePdfPages(state.elements)
+            if (state.snapshot) {
+              persist(state.elements, api.getAppState(), state.files)
+              journalRef.current?.recordChange(state.elements)
+            }
+          }
+          api.updateScene({ collaborators: new Map(state.peers.map(peer => [peer.clientId, {
+            username: peer.name ?? "Partecipante", pointer: peer.cursor ? { ...peer.cursor, tool: "pointer" } : undefined,
+            color: { background: "#d8eee1", stroke: "#32664c" },
+          }])), captureUpdate: "NEVER" })
+          applyingRemoteRef.current = false
+        }} />
+      <div style={{ flex: 1, position: "relative" }} onKeyDownCapture={event => {
+        if (sharedRoom && (event.ctrlKey || event.metaKey) && ["z", "y"].includes(event.key.toLowerCase()) &&
+            !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLTextAreaElement)) {
+          event.preventDefault(); event.stopPropagation()
+          // Redo has no shared operation contract yet; never treat it as undo
+          // or let Excalidraw replay its local history over the shared scene.
+          if (event.key.toLowerCase() === "z" && !event.shiftKey) {
+            void syncClientRef.current?.undo().catch(error => setStorageError(String(error)))
+          }
+        }
+      }}>
+        {studentView && !sharedRoom && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
             <EmptyState
@@ -1094,12 +1234,13 @@ export default function Room({
             />
           </div>
         )}
-        {!(studentView && !sceneData) && (
+        {!(studentView && !sharedRoom && !sceneData) && (
           <Excalidraw
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
             aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
-            viewModeEnabled={studentView}
+            viewModeEnabled={canvasReadOnly}
+            onPointerUpdate={sharedRoom ? ({ pointer }) => syncClientRef.current?.presence(pointer) : undefined}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
@@ -1141,7 +1282,7 @@ export default function Room({
                 : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
             }
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
-            onChange={studentView ? undefined : handleChange}
+            onChange={sharedRoom ? handleChange : studentView ? undefined : handleChange}
             validateEmbeddable={/^maestro-tool:\/\//}
             // Host per i tool embed (slice 4): write-back dei piazzamenti nello
             // state dell'embed → la persistenza segue quella della scena. In
@@ -1150,9 +1291,26 @@ export default function Room({
             renderEmbeddable={(element: Parameters<typeof renderToolCanvasEmbeddable>[0]) =>
               renderToolCanvasEmbeddable(
                 element,
-                studentView
+                canvasReadOnly
                   ? undefined
                   : {
+                      captureSelection: async (embedId) => {
+                        const api=apiRef.current
+                        if(!api)throw new Error("Lavagna non pronta.")
+                        const selectedIds=Object.entries(api.getAppState().selectedElementIds ?? {})
+                          .filter(([id,selected])=>selected===true && id!==embedId).map(([id])=>id)
+                        const selection=selectedIds.length
+                          ? prepareToolSourceSelection(api.getSceneElements(),api.getFiles?.() ?? {},selectedIds)
+                          : toolSourceSelectionsRef.current.get(embedId)
+                        if(!selection)throw new Error("Seleziona i tratti o una pagina immagine prima di aprire CircuitCheck. Puoi anche caricare una foto qui.")
+                        return captureToolSource(selection,async (scene)=>{
+                          const blob=await exportToBlob({elements:scene.elements as Parameters<typeof exportToBlob>[0]["elements"],
+                            files:scene.files as Parameters<typeof exportToBlob>[0]["files"],mimeType:"image/png",maxWidthOrHeight:1800,
+                            appState:{exportBackground:true,viewBackgroundColor:"#ffffff",exportWithDarkMode:false}})
+                          if(blob.size>2_000_000)throw new Error("La selezione supera 2 MB: scegli una regione più piccola.")
+                          return new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error("Immagine della selezione non leggibile."));reader.onload=()=>resolve(String(reader.result));reader.readAsDataURL(blob)})
+                        })
+                      },
                       persistEmbedState: (embedId, state, toolId) => {
                         if (apiRef.current) {
                           return persistRoomEmbedStateThroughToolHost(
@@ -1174,7 +1332,14 @@ export default function Room({
                         latestAppStateRef.current = apiRef.current.getAppState()
                         latestFilesRef.current = apiRef.current.getFiles?.() ?? latestFilesRef.current ?? {}
                         try {
+                          // A tool may finish before Excalidraw's onChange and its
+                          // journal debounce. A successful save includes both.
+                          journalRef.current?.recordChange(latestElementsRef.current)
                           await flushPersist()
+                          await journalRef.current?.flush()
+                          if (sharedRoom && !canvasReadOnly) {
+                            syncClientRef.current?.change(latestElementsRef.current, latestFilesRef.current)
+                          }
                           return true
                         } catch {
                           return false

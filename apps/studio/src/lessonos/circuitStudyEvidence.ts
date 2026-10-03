@@ -42,7 +42,7 @@ export async function circuitStudyEvidence(
     if (marker.owner !== CIRCUIT_CHECK_TOOL_ID) continue
     const state = readCircuitState(marker.state)
     const proof = state.proof
-    if (!proof || proof.scope !== "electrical_result") continue
+    if (!proof || proof.scope === "legacy_unrecorded") continue
     const proofSha256 = await circuitProofSha256(proof)
     const source = events.find(event => event.kind === "circuit.proof.verified" &&
       event.embedId === element.id && event.circuitFingerprint === proof.fingerprint &&

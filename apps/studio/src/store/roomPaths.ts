@@ -63,3 +63,16 @@ export function roomPaths(room: string): RoomPaths {
     lessonOsSnapshot: `${root}/lessonos-events.jsonl`,
   }
 }
+
+/** Identity in a lesson link; access grants remain URL context, never a file path. */
+export function roomIdFromHash(hash: string): string {
+  const raw = hash.replace(/^#/, "")
+  const [room, ...parts] = raw.split("&")
+  if (parts.length) {
+    const params = new URLSearchParams(parts.join("&"))
+    const keys = [...params.keys()]
+    if (keys.length !== 2 || !keys.includes("sync") || !keys.includes("access") ||
+        !params.get("sync") || !params.get("access")) throw new Error("Invalid shared lesson link")
+  }
+  return validateRoomId(room)
+}

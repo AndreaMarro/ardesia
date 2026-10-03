@@ -299,7 +299,7 @@ describe("LessonBundle", () => {
     }
     expect(manifest).toMatchObject({
       bundleVersion: 1,
-      schemaVersion: 1,
+      schemaVersion: 2,
       lessonId: ROOM,
       sessionIds: [sessionId],
       producer: studioProducerIdentity(),
@@ -308,8 +308,9 @@ describe("LessonBundle", () => {
         LESSON_PATHS.JOURNAL,
         LESSON_PATHS.SESSION,
       ],
-      optionalArtifacts: [LESSON_PATHS.LESSONOS, `${LESSON_PATHS.AUDIO_DIR}*`],
+      optionalArtifacts: [LESSON_PATHS.LESSONOS, `${LESSON_PATHS.AUDIO_DIR}*`, `${LESSON_PATHS.SESSIONS_DIR}*/session.yaml`],
       lessonOs: { status: "included", warnings: [] },
+      sessions: {includedSessionIds:[],missingSessionIds:[sessionId]},
     })
     expect(manifest.files.map((file) => file.path)).toEqual([
       LESSON_PATHS.SCENE,
@@ -397,7 +398,7 @@ describe("LessonBundle", () => {
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
     const zip = await JSZip.loadAsync(await exportLesson(store, ROOM))
     const manifest = JSON.parse((await zip.file(LESSON_PATHS.MANIFEST)!.async("text")))
-    manifest.schemaVersion = 2
+    manifest.schemaVersion = 999
     zip.file(LESSON_PATHS.MANIFEST, `${JSON.stringify(manifest)}\n`)
     const unsupported = await zip.generateAsync({ type: "blob" })
     const target = new WorkspaceStore()

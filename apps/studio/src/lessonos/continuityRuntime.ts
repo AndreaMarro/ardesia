@@ -47,6 +47,7 @@ import {
 } from "../store/sessionState"
 import type { WorkspaceStore } from "../store/WorkspaceStore"
 import { isConstructedWorkspaceStore } from "../store/WorkspaceStore"
+import { resolveCircuitContinuityEvidence } from "./continuityCircuitEvidence"
 
 // --- Porte read-only (design §5.2) ---
 //
@@ -1064,26 +1065,25 @@ async function buildScopedSnapshot(
     journalEvents,
   )
 
-  const snapshot: ScopedContinuitySnapshotV1 = Object.freeze({
+  const sources = {
     scope,
     session: sessionResult.session,
     lessonEvents,
     journalEvents,
     scene: sceneResult.scene,
     buildCommitSha: factories.buildCommitSha,
-    evidenceByOccurrence,
     issues: Object.freeze(issues),
+  }
+  const snapshot: ScopedContinuitySnapshotV1 = Object.freeze({...sources,
+    evidenceByOccurrence:await resolveCircuitContinuityEvidence(sources,evidenceByOccurrence),
   })
   return Object.freeze({ kind: "loaded" as const, snapshot })
 }
 
 // La mappa e' keyed per `${eventId}:${evidenceIndex}` cosi' due occurrence
-// della stessa ref restano distinte (design §5.4). Il loader NON e' un
-// resolver strict: non parsa namespace, non verifica target scoped, non fa
-// receipt artifact/build. Quindi una evidence dichiarata "verified" resta
-// unsupported/handler-unavailable finche' il resolver di §8 non conferma il
-// target; una dichiarata "missing" resta missing/declared-missing. Nessun
-// byte viene promosso a "resolved" senza verifica reale (design §8.1).
+// della stessa ref restano distinte (design §5.4). These conservative defaults
+// remain unless the bounded resolver verifies a target against the validated
+// sources of this exact session. The original declaration remains unchanged.
 function buildEvidenceOccurrenceMap(
   lessonEvents: readonly AppendedEventEnvelopeV2[],
   journalEvents: readonly Readonly<{ line: number; envelope: JournalEnvelopeV2 }>[],

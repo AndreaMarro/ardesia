@@ -4,6 +4,8 @@
 // e che gli errori di quota siano visibili all'utente.
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { readFileSync } from "node:fs"
+import { createHash } from "node:crypto"
 import { createRoot } from "react-dom/client"
 import { act, Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
@@ -19,6 +21,7 @@ import {
 import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { roomPaths } from "../store/roomPaths"
+import { sessionPaths, parseSessionYamlV2, serializeSessionYamlV2 } from "../store/sessionState"
 import { FOUNDER_BETA_PLUGINS } from "../toolhost/founderBetaPlugin"
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import {
@@ -2073,6 +2076,26 @@ describe("FB-3C: ownership Room della sessione LessonOS", () => {
 })
 
 describe("FB-4C: Room usa il journal v2 della sessione canonica", () => {
+  it("conserva un documento sessione preesistente in conflitto e chiude l'avvio rifiutato", async () => {
+    const handle = await openInMemorySession("test-room-1", deterministicSessionDeps({
+      sessionId:SESSION_A,eventIds:[EVENT_START,EVENT_END],
+    }))
+    const { store } = await createMockStore()
+    const path = sessionPaths(handle.identity).session
+    const original = serializeSessionYamlV2({v:2,lessonId:handle.identity.lessonId,
+      sessionId:handle.identity.sessionId,created:1,revision:0,audioConsent:false,audioStartEpoch:null})
+    await store.write(path,new Blob([original.slice()]))
+    const close = vi.spyOn(handle,"close")
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} lessonOsOpener={async () => handle} />)
+    await vi.waitFor(() => expect(document.body.textContent).toContain("Documento sessione conservato senza sovrascrittura: conflict"))
+    expect(Array.from(new Uint8Array(await (await store.read(path))!.arrayBuffer()))).toEqual(Array.from(original))
+    expect(close).toHaveBeenCalledTimes(1)
+    expect((window as any).__MAESTRO_TEST__?.recorder).toBeNull()
+    root.unmount()
+  })
+
   async function mountWithSession(
     providedHandle?: LessonOsSessionHandle,
   ) {
@@ -2100,6 +2123,14 @@ describe("FB-4C: Room usa il journal v2 della sessione canonica", () => {
 
   it("scrive solo nel path room e usa identita/producer esatti della sessione", async () => {
     const { root, store, handle, harness } = await mountWithSession()
+
+    const sessionFile = await store.read(sessionPaths(handle.identity).session)
+    expect(sessionFile).not.toBeNull()
+    const sessionDocument = parseSessionYamlV2(new Uint8Array(await sessionFile!.arrayBuffer()))
+    const start = (await handle.store.readEnvelopesBySession(handle.identity.lessonId, handle.identity.sessionId))
+      .find(event => event.kind === "lesson.started")!
+    expect(sessionDocument).toMatchObject({ v:2, lessonId:handle.identity.lessonId,
+      sessionId:handle.identity.sessionId, created:Date.parse(start.occurredAt), audioConsent:false, audioStartEpoch:null })
 
     harness.recorder.recordMathInsert("V = RI")
     await harness.recorder.flush()
@@ -2947,6 +2978,8 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
 })
 
 describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coerente, no alert)", () => {
+  const originalPdf = readFileSync("../../plugins/elab-tutor/ELAB-Collaborator-Deck.pdf")
+  const originalPdfId = `document:sha256:${createHash("sha256").update(originalPdf).digest("hex")}`
   async function mountRoomAndGetFileInput(options: { mockLoadScene?: boolean } = {}) {
     const { mockLoadScene = true } = options
     const { store } = await createMockStore()
@@ -3054,6 +3087,24 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     root.unmount()
   })
 
+  it("un autosalvataggio riuscito non nasconde il fallimento dell'import PDF", async () => {
+    const { pdfToImages } = await import("../loadFile")
+    vi.mocked(pdfToImages).mockRejectedValueOnce(new Error("pdf corrotto"))
+    const { root, input, store } = await mountRoomAndGetFileInput()
+    const save = vi.spyOn(store,"saveScene")
+    selectFile(input,new File(["%PDF-1.4"],"corrotto.pdf",{type:"application/pdf"}))
+    await vi.waitFor(()=>expect(document.querySelector('[role="alert"]')?.textContent).toContain("pdf corrotto"))
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+    await act(async()=>{
+      props?.onChange?.([], {isLoading:false} as any, {})
+      await (window as any).__MAESTRO_TEST__.flushPersist()
+    })
+    expect(save).toHaveBeenCalled()
+    expect(document.querySelector('[role="alert"]')?.textContent).toContain("Caricamento non riuscito: pdf corrotto")
+    root.unmount()
+  })
+
   it("import PDF registra journal.pdf.imported con evidence missing nel path della room", async () => {
     const { pdfToImages } = await import("../loadFile")
     vi.mocked(pdfToImages).mockResolvedValueOnce([
@@ -3063,7 +3114,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
         height: 1000,
         page: 1,
         totalPages: 2,
-        documentId: "document:sha256:abc123",
+        documentId: originalPdfId,
         documentName: "manuale.pdf",
       },
       {
@@ -3072,14 +3123,14 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
         height: 1000,
         page: 2,
         totalPages: 2,
-        documentId: "document:sha256:abc123",
+        documentId: originalPdfId,
         documentName: "manuale.pdf",
       },
     ])
 
     const { root, input, store } = await mountRoomAndGetFileInput()
 
-    selectFile(input, new File(["%PDF-1.4"], "manuale.pdf", { type: "application/pdf" }))
+    selectFile(input, new File([originalPdf], "manuale.pdf", { type: "application/pdf" }))
 
     await vi.waitFor(() => {
       const recorder = (window as any).__MAESTRO_TEST__?.recorder
@@ -3099,17 +3150,45 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       "journal.pdf.imported",
     ])
     expect(events.map((event) => event.evidence)).toEqual([
-      [{ ref: "pdf:document%3Asha256%3Aabc123#page=1", resolution: "missing" }],
-      [{ ref: "pdf:document%3Asha256%3Aabc123#page=2", resolution: "missing" }],
+      [{ ref: `pdf:${encodeURIComponent(originalPdfId)}#page=1`, resolution: "missing" }],
+      [{ ref: `pdf:${encodeURIComponent(originalPdfId)}#page=2`, resolution: "missing" }],
     ])
     expect(events.map((event) => event.payload.documentId)).toEqual([
-      "document:sha256:abc123",
-      "document:sha256:abc123",
+      originalPdfId,
+      originalPdfId,
     ])
     expect(events.map((event) => event.payload.page)).toEqual([1, 2])
     expect(events.map((event) => event.payload.totalPages)).toEqual([2, 2])
     expect(events.map((event) => event.payload.documentName)).toEqual(["manuale.pdf", "manuale.pdf"])
 
+    root.unmount()
+  })
+
+  it("non inserisce pagine o journal se il PDF originale non si salva", async () => {
+    const {pdfToImages} = await import("../loadFile")
+    vi.mocked(pdfToImages).mockResolvedValueOnce([pdfPage(originalPdfId, 1)])
+    const {root, input, store} = await mountRoomAndGetFileInput()
+    const write = store.write.bind(store)
+    vi.spyOn(store, "write").mockImplementation(async (path, data) => {
+      if (path.includes("/documents/")) throw new Error("quota PDF esaurita")
+      return write(path, data)
+    })
+    const api = (window as any).__MAESTRO_TEST__.apiRef.current
+    selectFile(input, new File([originalPdf], "manuale.pdf", {type:"application/pdf"}))
+    await vi.waitFor(() => expect(document.querySelector('[role="alert"]')?.textContent).toContain("quota PDF esaurita"))
+    expect(api.addFiles).not.toHaveBeenCalled()
+    expect((window as any).__MAESTRO_TEST__.recorder.getBuffer().filter((event:any)=>event.type === "pdf.page.view")).toHaveLength(0)
+    root.unmount()
+  })
+
+  it("non riusa pagine derivate da byte PDF differenti", async () => {
+    const {pdfToImages} = await import("../loadFile")
+    vi.mocked(pdfToImages).mockResolvedValueOnce([pdfPage("document:sha256:" + "0".repeat(64), 1)])
+    const {root, input, store} = await mountRoomAndGetFileInput()
+    selectFile(input, new File([originalPdf], "manuale.pdf", {type:"application/pdf"}))
+    await vi.waitFor(() => expect(document.querySelector('[role="alert"]')?.textContent).toContain("SHA-256 discordante"))
+    expect(await store.list("raw/test-room-1/documents/")).toHaveLength(0)
+    expect((window as any).__MAESTRO_TEST__.recorder.getBuffer().filter((event:any)=>event.type === "pdf.page.view")).toHaveLength(0)
     root.unmount()
   })
 
@@ -3135,7 +3214,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
     await vi.waitFor(() => {
       expect((window as any).__MAESTRO_TEST__?.lessonOs?.current?.store).toBeTruthy()
     }, { timeout: 5000, interval: 10 })
-    selectFile(input, new File(["%PDF-1.4"], "manuale.pdf", { type: "application/pdf" }))
+    selectFile(input, new File([originalPdf], "manuale.pdf", { type: "application/pdf" }))
     await vi.waitFor(() => {
       const recorder = (window as any).__MAESTRO_TEST__?.recorder
       expect(
@@ -3146,7 +3225,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   }
 
   it("bridge LessonOS: un PDF soltanto importato non diventa material.cited verificato", async () => {
-    const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 3)])
+    const { root, harness } = await importPdfAndGetHarness([pdfPage(originalPdfId, 3)])
 
     await harness.promoteJournalToLessonOs()
 
@@ -3158,7 +3237,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 
   it("bridge LessonOS: replay ripetuto di soli import resta privo di fatti verificati", async () => {
-    const { root, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:abc123", 5)])
+    const { root, harness } = await importPdfAndGetHarness([pdfPage(originalPdfId, 5)])
 
     await harness.promoteJournalToLessonOs()
     const after1 = (await harness.lessonOs.current.store.readAll()).length
@@ -3172,7 +3251,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 
   it("bridge LessonOS: documento NON riconosciuto → zero material.cited, journal intatto", async () => {
-    const { root, store, harness } = await importPdfAndGetHarness([pdfPage("document:sha256:zzz", 3)])
+    const { root, store, harness } = await importPdfAndGetHarness([pdfPage(originalPdfId, 3)])
 
     await harness.promoteJournalToLessonOs()
 

@@ -16,6 +16,8 @@ import { toLegacyLessonOsEvent, UNASSIGNED_LESSON_ID } from "./lessonos/eventlog
 import type { AnyEventEnvelopeV2 } from "./lessonos/eventlog"
 import { createRecapReviewEvent, recapReviewStatus, recapRevisionSha256, reviewedRecapHtml } from "./lessonos/materialReview"
 import { lessonSlug } from "./lessonSlug"
+import { circuitAssuranceLabel } from "./toolhost/circuitCheckAdapter"
+import { lessonExpressionMarkup, lessonMathMarkup } from "./toolhost/lessonMath"
 import EmptyState from "./design/EmptyState"
 
 interface RecapViewProps {
@@ -540,15 +542,18 @@ export default function RecapView({ store, room }: RecapViewProps) {
           {priorError && <p role="alert">Evidenze non disponibili: {priorError}</p>}
           {priorEvidence && priorEvidence.length === 0 && <p className="st-quiet">Nessun passaggio CircuitCheck verificabile in questa lezione.</p>}
           {priorEvidence && priorEvidence.length > 0 && <ul>
-            {priorEvidence.map(item => <li key={item.errorId} style={{marginTop:14}}>
+            {priorEvidence.map(item => {const answerMath=lessonExpressionMarkup(item.proof.answer.math);return <li key={item.errorId} style={{marginTop:14}}>
               <strong>{item.proof.title}</strong>
               <p>Passaggio osservato {item.firstInvalidStep}: {item.observedStep.transcription ||
                 `${item.observedStep.operation} ${item.observedStep.first} ${item.observedStep.second} ${item.observedStep.claimed_value ?? ""}`}</p>
               <p>{item.corrected ? "Correzione registrata nella lezione precedente." : "Passaggio ancora da rivedere nella lezione precedente."}</p>
-              <p>Risultato storico del circuito: {item.proof.answer.exact} {item.proof.answer.unit}. Ricalcola prima di riusarlo.</p>
-              {item.proof.steps.flatMap(step => step.equations).map((equation,index) =>
-                <code key={index} style={{display:"block"}}>{equation}</code>)}
-            </li>)}
+              <p>Risultato storico del circuito: {answerMath ? <span data-circuit-math="answer" dangerouslySetInnerHTML={{__html:answerMath}}/> : item.proof.answer.exact} {item.proof.answer.unit}. Ricalcola prima di riusarlo.</p>
+              <p>{circuitAssuranceLabel(item.proof)}.</p>
+              <p>Riferimenti nello schema: {[...new Set(item.proof.steps.flatMap(step => step.focus ?? []))].join(", ") || item.proof.answer.reference}</p>
+              {item.proof.steps.map((step,index) => {const math=lessonMathMarkup(step.math);return math
+                ? <div key={index} data-circuit-math="steps" style={{overflowX:"auto"}} dangerouslySetInnerHTML={{__html:math}}/>
+                : <div key={index}>{step.equations.map((equation,i)=><code key={i} style={{display:"block"}}>{equation}</code>)}</div>})}
+            </li>})}
           </ul>}
         </section>}
       </div>

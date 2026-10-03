@@ -21,7 +21,7 @@ import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { AppendedEvent, LessonOsEvent } from "../lessonos/eventlog"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { deserializeEvents } from "../store/ReplayEngine"
-import { roomPaths } from "../store/roomPaths"
+import { roomPaths, roomIdFromHash } from "../store/roomPaths"
 import { workspaceStore } from "../store/WorkspaceStore"
 import {
   projectTeacherDashboard,
@@ -82,7 +82,9 @@ async function appendEventToStore(event: LessonOsEvent): Promise<void> {
 
 function roomFromHash(): string {
   const h = location.hash.replace(/^#/, "").trim()
-  return h || "current"
+  if (!h) return "current"
+  try { return roomIdFromHash(h) }
+  catch { return h } // The existing journal loader reports invalid scopes.
 }
 
 function defaultFocusNodeId(events: readonly AppendedEvent[]): string | null {

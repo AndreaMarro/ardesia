@@ -683,10 +683,8 @@ function recoverEvidenceAction(
   candidate: ContinuityEvidenceV1,
   missingEvidence: readonly ContinuityEvidenceV1[],
 ): ContinuityNextActionV1 {
-  // Il resolver strict (§8) non e' ancora acceptato: qualsiasi occurrence
-  // dichiarata `verified` resta unsupported/handler-unavailable e non puo'
-  // essere promossa a resolved. Il candidato per il recover porta lo status
-  // effettivo osservato (mai "resolved" per definizione).
+  // Only unresolved occurrences reach recovery. A declaration alone never
+  // establishes a target; supported resolvers must check the scoped sources.
   const status = candidate.status as Exclude<ContinuityEvidenceV1["status"], "resolved">
   return Object.freeze({
     kind: "recover-continuity" as const,

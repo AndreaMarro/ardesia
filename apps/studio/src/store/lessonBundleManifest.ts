@@ -4,6 +4,7 @@ import {
 } from "../core/contracts/eventEnvelope"
 import { validateProductRoomId } from "./roomPaths"
 import type { FileEntry } from "./types"
+import { PDF_ASSET_DIR, portablePdfId, validatePdfInventory } from "./pdfAssets"
 
 /** Path normalizzati dentro il bundle .lesson. */
 export const LESSON_PATHS = {
@@ -11,6 +12,7 @@ export const LESSON_PATHS = {
   SCENE: "raw/board.excalidraw",
   JOURNAL: "raw/events.jsonl",
   SESSION: "raw/session.yaml",
+  SESSIONS_DIR: "raw/sessions/",
   AUDIO_DIR: "raw/audio/",
   /** Snapshot event-log LessonOS — distinto dal journal. */
   LESSONOS: "raw/lessonos-events.jsonl",
@@ -26,6 +28,9 @@ const OPTIONAL_ARTIFACTS = Object.freeze([
   LESSON_PATHS.LESSONOS,
   `${LESSON_PATHS.AUDIO_DIR}*`,
 ])
+const OPTIONAL_ARTIFACTS_V2 = Object.freeze([...OPTIONAL_ARTIFACTS, `${LESSON_PATHS.SESSIONS_DIR}*/session.yaml`])
+
+const OPTIONAL_ARTIFACTS_V3 = Object.freeze([...OPTIONAL_ARTIFACTS_V2, `${PDF_ASSET_DIR}*.pdf`])
 
 type LessonBundleFileManifest = Readonly<{
   path: string
@@ -36,7 +41,7 @@ type LessonBundleFileManifest = Readonly<{
 
 export type LessonBundleManifestV1 = Readonly<{
   bundleVersion: 1
-  schemaVersion: 1
+  schemaVersion: 1 | 2 | 3
   lessonId: string
   sessionIds: readonly string[]
   producer: ReturnType<typeof studioProducerIdentity>
@@ -47,8 +52,12 @@ export type LessonBundleManifestV1 = Readonly<{
     status: "included" | "missing"
     warnings: readonly string[]
   }>
+  sessions?: Readonly<{
+    includedSessionIds: readonly string[]
+    missingSessionIds: readonly string[]
+  }>
   compatibility: Readonly<{
-    minimumReaderSchemaVersion: 1
+    minimumReaderSchemaVersion: 1 | 2 | 3
     migrations: readonly string[]
   }>
 }>
@@ -56,6 +65,18 @@ export type LessonBundleManifestV1 = Readonly<{
 type StagedBundleEntry = Readonly<{ path: string; data: Blob }>
 
 const SESSION_ID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+
+/** This namespace contains only canonical session documents, never arbitrary files. */
+export function portableSessionId(path: string): string | null {
+  if (path === LESSON_PATHS.SESSIONS_DIR.slice(0,-1)) manifestError("path sessione non canonico")
+  if (!path.startsWith(LESSON_PATHS.SESSIONS_DIR)) return null
+  const relative = path.slice(LESSON_PATHS.SESSIONS_DIR.length)
+  const parts = relative.split("/")
+  if (parts.length !== 2 || !SESSION_ID_RE.test(parts[0]!) || parts[1] !== "session.yaml") {
+    manifestError("path sessione non canonico")
+  }
+  return parts[0]!
+}
 const REVERSE_DNS_RE = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/
 const SEMVER_RE =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/
@@ -84,7 +105,7 @@ export function sameOrderedStrings(
 
 export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifestV1 {
   if (!isRecord(value)) manifestError("radice non-oggetto")
-  if (value.bundleVersion !== 1 || value.schemaVersion !== 1) {
+  if (value.bundleVersion !== 1 || (value.schemaVersion !== 1 && value.schemaVersion !== 2 && value.schemaVersion !== 3)) {
     manifestError("schema non supportato")
   }
   if (typeof value.lessonId !== "string") manifestError("lessonId mancante o non valido")
@@ -116,7 +137,7 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
   if (!sameOrderedStrings(requiredArtifacts, REQUIRED_ARTIFACTS)) {
     manifestError("requiredArtifacts non coincide con il contratto FB-5")
   }
-  if (!sameOrderedStrings(optionalArtifacts, OPTIONAL_ARTIFACTS)) {
+  if (!sameOrderedStrings(optionalArtifacts, value.schemaVersion === 3 ? OPTIONAL_ARTIFACTS_V3 : value.schemaVersion === 2 ? OPTIONAL_ARTIFACTS_V2 : OPTIONAL_ARTIFACTS)) {
     manifestError("optionalArtifacts non coincide con il contratto FB-5")
   }
 
@@ -129,6 +150,18 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
     }
     if (item.path.split("/").some((segment) => segment === "..")) {
       manifestError("files contiene un path con traversal")
+    }
+    const sessionId = portableSessionId(item.path)
+    if (sessionId !== null && (value.schemaVersion === 1 || !sessionIds.includes(sessionId))) {
+      manifestError("sessione fuori scope o schema non supportato")
+    }
+    const documentId = portablePdfId(item.path)
+    if (documentId !== null && value.schemaVersion !== 3) manifestError("PDF originale richiede schema v3")
+    if (documentId !== null && item.sha256 !== documentId) manifestError("impronta PDF discordante dal path")
+    if ((value.schemaVersion === 2 || value.schemaVersion === 3) &&
+      ![...REQUIRED_ARTIFACTS,LESSON_PATHS.LESSONOS].includes(item.path as never) &&
+      !/^raw\/audio\/[^/\\]+$/.test(item.path) && sessionId === null && documentId === null) {
+      manifestError("path fuori dal contratto portabile")
     }
     if (seenPaths.has(item.path)) manifestError(`path duplicato (${item.path})`)
     seenPaths.add(item.path)
@@ -151,6 +184,9 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
     manifestError("files deve essere ordinato per path")
   }
 
+  validatePdfInventory(files)
+  if (value.schemaVersion === 3 && !files.some(file => portablePdfId(file.path) !== null)) manifestError("schema v3 senza PDF originali")
+
   for (const requiredPath of REQUIRED_ARTIFACTS) {
     if (!seenPaths.has(requiredPath)) manifestError(`file obbligatorio mancante (${requiredPath})`)
   }
@@ -166,14 +202,26 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
   }
 
   if (!isRecord(value.compatibility)) manifestError("compatibility mancante o non valido")
-  if (value.compatibility.minimumReaderSchemaVersion !== 1) {
+  if (value.compatibility.minimumReaderSchemaVersion !== value.schemaVersion) {
     manifestError("minimumReaderSchemaVersion non supportato")
   }
   const migrations = stringArray(value.compatibility.migrations, "compatibility.migrations")
+  let sessions: LessonBundleManifestV1["sessions"]
+  if (value.schemaVersion >= 2) {
+    if (!isRecord(value.sessions)) manifestError("sessions mancante o non valido")
+    const includedSessionIds = stringArray(value.sessions.includedSessionIds,"sessions.includedSessionIds")
+    const missingSessionIds = stringArray(value.sessions.missingSessionIds,"sessions.missingSessionIds")
+    const included = files.map(file=>portableSessionId(file.path)).filter((id):id is string=>id !== null).sort()
+    if (!sameOrderedStrings(includedSessionIds,included) ||
+      !sameOrderedStrings(missingSessionIds,sessionIds.filter(id=>!included.includes(id)))) {
+      manifestError("inventario sessioni discordante")
+    }
+    sessions = Object.freeze({includedSessionIds:Object.freeze(includedSessionIds),missingSessionIds:Object.freeze(missingSessionIds)})
+  }
 
   return Object.freeze({
     bundleVersion: 1,
-    schemaVersion: 1,
+    schemaVersion: value.schemaVersion,
     lessonId,
     sessionIds: Object.freeze(sessionIds),
     producer: Object.freeze({
@@ -185,8 +233,9 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
     optionalArtifacts: Object.freeze(optionalArtifacts),
     files: Object.freeze(files),
     lessonOs: Object.freeze({ status: value.lessonOs.status, warnings: Object.freeze(warnings) }),
+    ...(sessions ? {sessions} : {}),
     compatibility: Object.freeze({
-      minimumReaderSchemaVersion: 1,
+      minimumReaderSchemaVersion: value.schemaVersion,
       migrations: Object.freeze(migrations),
     }),
   })
@@ -238,21 +287,28 @@ export async function buildLessonBundleManifest(
     })))
   const lessonOsIncluded = entries.has(LESSON_PATHS.LESSONOS)
   const defaultWarnings = lessonOsIncluded ? [] : ["LessonOS snapshot missing"]
-  return Object.freeze({
+  const sortedSessionIds = [...sessionIds].sort()
+  const includedSessionIds = files.map(file=>portableSessionId(file.path)).filter((id):id is string=>id !== null).sort()
+  const schemaVersion = files.some(file => portablePdfId(file.path) !== null) ? 3 : 2
+  return parseLessonBundleManifestV1({
     bundleVersion: 1,
-    schemaVersion: 1,
+    schemaVersion,
     lessonId,
-    sessionIds: Object.freeze([...sessionIds].sort()),
+    sessionIds: Object.freeze(sortedSessionIds),
     producer: studioProducerIdentity(),
     requiredArtifacts: REQUIRED_ARTIFACTS,
-    optionalArtifacts: OPTIONAL_ARTIFACTS,
+    optionalArtifacts: schemaVersion === 3 ? OPTIONAL_ARTIFACTS_V3 : OPTIONAL_ARTIFACTS_V2,
     files: Object.freeze(files),
     lessonOs: Object.freeze({
       status: lessonOsIncluded ? "included" : "missing",
       warnings: Object.freeze(lessonOsWarnings ?? defaultWarnings),
     }),
+    sessions:Object.freeze({
+      includedSessionIds:Object.freeze(includedSessionIds),
+      missingSessionIds:Object.freeze(sortedSessionIds.filter(id=>!includedSessionIds.includes(id))),
+    }),
     compatibility: Object.freeze({
-      minimumReaderSchemaVersion: 1,
+      minimumReaderSchemaVersion: schemaVersion,
       migrations: Object.freeze([]),
     }),
   })
