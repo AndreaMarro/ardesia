@@ -37,6 +37,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 
 from lessonos.models.entities import Segment
+from lessonos.ingest.bundle_extensions import validate_extensions
 
 LESSON_PATHS = {
     "MANIFEST": "manifest.json",
@@ -48,7 +49,8 @@ LESSON_PATHS = {
 }
 
 SUPPORTED_BUNDLE_VERSION = 1
-SUPPORTED_SCHEMA_VERSION = 1
+SUPPORTED_SCHEMA_VERSION = 3
+SUPPORTED_SCHEMA_VERSIONS = frozenset({1, 2, 3})
 
 # Mirror di Studio validateRoomId (roomPaths.ts): l'identita' dichiarata dal
 # manifest deve avere la stessa forma di un lessonId canonico.
@@ -201,7 +203,7 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
         raise ValueError(
             f"unsupported manifest bundleVersion: {manifest.get('bundleVersion')!r}"
         )
-    if type(manifest.get("schemaVersion")) is not int or manifest.get("schemaVersion") != SUPPORTED_SCHEMA_VERSION:
+    if type(manifest.get("schemaVersion")) is not int or manifest.get("schemaVersion") not in SUPPORTED_SCHEMA_VERSIONS:
         raise ValueError(
             f"unsupported manifest schemaVersion: {manifest.get('schemaVersion')!r}"
         )
@@ -234,6 +236,7 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
             "bundle manifest inventory mismatch: "
             f"zip={sorted(payload_paths)} manifest={sorted(inventoried)}"
         )
+    pdf_paths = validate_extensions(manifest, {path: zf.getinfo(path).file_size for path in payload_paths})
     for entry in files:
         if not isinstance(entry, dict):
             raise ValueError("bundle manifest files entry must be an object")
@@ -243,6 +246,8 @@ def _read_manifest(zf: zipfile.ZipFile, names: list[str]) -> dict | None:
         payload = zf.read(path)
         if len(payload) != entry.get("bytes"):
             raise ValueError(f"bundle manifest bytes mismatch ({path})")
+        if path in pdf_paths and b"%PDF-" not in payload[:1024]:
+            raise ValueError(f"bundle original PDF header missing ({path})")
         digest = hashlib.sha256(payload).hexdigest()
         if digest != entry.get("sha256"):
             raise ValueError(f"bundle manifest SHA-256 mismatch ({path})")

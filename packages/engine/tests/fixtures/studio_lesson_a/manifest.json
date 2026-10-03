@@ -1,6 +1,6 @@
 {
   "bundleVersion": 1,
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "lessonId": "d2-lesson-a",
   "sessionIds": [
     "aaaaaaaa-1111-4111-8111-111111111111"
@@ -8,7 +8,7 @@
   "producer": {
     "id": "com.github.andreamarro.ardesia.studio",
     "version": "0.0.0",
-    "commitSha": "d8c4cb874ca350ffe04460e0fe3a3f7ba372157c"
+    "commitSha": "1a3ba1a0b29280a495f4f107a5f22a092fd76157"
   },
   "requiredArtifacts": [
     "raw/board.excalidraw",
@@ -17,7 +17,8 @@
   ],
   "optionalArtifacts": [
     "raw/lessonos-events.jsonl",
-    "raw/audio/*"
+    "raw/audio/*",
+    "raw/sessions/*/session.yaml"
   ],
   "files": [
     {
@@ -49,8 +50,14 @@
     "status": "included",
     "warnings": []
   },
+  "sessions": {
+    "includedSessionIds": [],
+    "missingSessionIds": [
+      "aaaaaaaa-1111-4111-8111-111111111111"
+    ]
+  },
   "compatibility": {
-    "minimumReaderSchemaVersion": 1,
+    "minimumReaderSchemaVersion": 2,
     "migrations": []
   }
 }
