@@ -44,7 +44,7 @@ il bundle rimane una copia di recupero locale.
 | `a47cd69d3075c4d2274d5eaea1e8bdf6bdda8851` | Merge locale del recupero LED #243 |
 | `e1216fd87dbb7dad05cfcf64a7b2ff35346402b0` | Merge locale advisory post-it reload #244 |
 | `e6d6d5259bfbc6dce5f916a2bfabaa8edc27c526` | Merge locale copertura workflow PR impilate #221 |
-| `fea12230c393e83b6b12807f9f4270f6b1f22c7c` | Errore board/audit append propagato |
+| `fea12230c393e83b6b12807f9f4270f6b1f22c7c` | Append audit rifiutate contate senza far fallire un write-back già eseguito |
 | `22e5a8bc64408639c0de4959162258ac4720b077` | Rifiuto conferma della memoria ELAB volatile |
 | `4237f197aabba61a7dc7a774281f16acc1f586b9` | Persistenza identità dei collegamenti post-it |
 
