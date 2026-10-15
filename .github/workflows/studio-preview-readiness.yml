@@ -12,6 +12,12 @@ on:
   # al primo prefisso nuovo (il repo ne ha gia' 18). L'unica forma che non
   # regredisce e' nessun filtro: ogni PR, qualunque base.
   # Invariante applicata da bin/ci/workflow_trigger_gate.py nel job hygiene.
+  #
+  # `paths:` invece filtra sui file cambiati: qui include Studio e gli input
+  # condivisi elencati sotto. Se il workflow e' saltato, un check required
+  # rimane Pending e blocca la PR. Prima di promuovere no-deploy-check occorre
+  # un workflow eleggibile per ogni PR, con selezione interna e un check che
+  # riporti sempre l'esito. Aggiungere un job qui non aggira il filtro paths.
   pull_request:
     paths:
       - ".github/workflows/studio-preview-readiness.yml"
