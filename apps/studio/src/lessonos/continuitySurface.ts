@@ -5,6 +5,7 @@
 // montare nulla, e la vista resta una funzione dello stato.
 
 import type { IndexedDbEventLogHandle } from "./indexedDbEventLog"
+import { validateContinuityScopeV1 } from "./continuityProjection"
 
 export type ContinuitySurfaceStateV1 =
   /** Nessuna lezione nello scope: non c'e' niente da riprendere, e non e' un errore. */
@@ -13,6 +14,21 @@ export type ContinuitySurfaceStateV1 =
   | Readonly<{ kind: "storage-unavailable"; backend: IndexedDbEventLogHandle["backend"] }>
   /** Il log e' apribile ma la lettura e' fallita: distinto da "nessuna sessione". */
   | Readonly<{ kind: "unreadable"; code: string }>
+  /** Archivio aperto ma non integro: una lista vuota non prova l'assenza di sessioni. */
+  | Readonly<{
+      kind: "storage-degraded"
+      lessonId: string
+      backend: Extract<IndexedDbEventLogHandle["backend"], { kind: "corrupt" }>
+      discovery: Readonly<{ kind: "blocked" }>
+    }>
+  | Readonly<{
+      kind: "storage-degraded"
+      lessonId: string
+      backend: Extract<IndexedDbEventLogHandle["backend"], { kind: "data-loss" }>
+      discovery:
+        | Readonly<{ kind: "partial"; sessionIds: readonly string[] }>
+        | Readonly<{ kind: "unreadable"; code: string }>
+    }>
   | Readonly<{ kind: "no-sessions"; lessonId: string }>
   | Readonly<{ kind: "sessions"; lessonId: string; sessionIds: readonly string[] }>
 
@@ -56,6 +72,14 @@ export async function readResumableSessions(
     })
   }
   try {
+    const backend = handle.backend
+    if (backend.kind === "corrupt") {
+      // Come il loader dello snapshot: una sequenza corrotta blocca la lettura.
+      return Object.freeze({
+        kind: "storage-degraded" as const, lessonId, backend,
+        discovery: Object.freeze({ kind: "blocked" as const }),
+      })
+    }
     const log = handle.log
     if (log === null) {
       return Object.freeze({ kind: "storage-unavailable" as const, backend: handle.backend })
@@ -64,9 +88,32 @@ export async function readResumableSessions(
     try {
       sessionIds = await log.listSessionIds(lessonId)
     } catch (error) {
+      const code = error instanceof Error ? error.message : String(error)
+      if (backend.kind === "data-loss") {
+        return Object.freeze({
+          kind: "storage-degraded" as const, lessonId, backend,
+          discovery: Object.freeze({ kind: "unreadable" as const, code }),
+        })
+      }
       return Object.freeze({
         kind: "unreadable" as const,
-        code: error instanceof Error ? error.message : String(error),
+        code,
+      })
+    }
+    if (backend.kind === "data-loss") {
+      // Le chiavi non sono i byte degli eventi: lo scope valido rende una voce
+      // indirizzabile, non certifica il contenuto. Il loader lo verifichera'.
+      const candidates = sessionIds.filter(sessionId => {
+        try {
+          validateContinuityScopeV1({ lessonId, roomId: lessonId, sessionId })
+          return true
+        } catch {
+          return false
+        }
+      })
+      return Object.freeze({
+        kind: "storage-degraded" as const, lessonId, backend,
+        discovery: Object.freeze({ kind: "partial" as const, sessionIds: Object.freeze(candidates) }),
       })
     }
     if (sessionIds.length === 0) {

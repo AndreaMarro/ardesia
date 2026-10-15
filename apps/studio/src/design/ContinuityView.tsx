@@ -75,6 +75,21 @@ function sessionHref(sessionId: string): string {
   return `/?vista=continuita&sessione=${encodeURIComponent(sessionId)}${hash}`
 }
 
+function archiveProblem(code: string): string {
+  switch (code) {
+    case "legacy-physical-rows":
+      return "Alcuni dati usano un formato precedente e richiedono una verifica."
+    case "malformed-v2-rows":
+      return "Alcuni dati non rispettano il formato previsto."
+    case "recovery-dropped-tail":
+      return "Il recupero ha scartato una parte finale degli eventi."
+    case "sequence-non-contiguous":
+      return "La sequenza degli eventi non è integra."
+    default:
+      return `Il controllo dell'archivio segnala un problema non riconosciuto (${code}).`
+  }
+}
+
 type ViewState =
   | Readonly<{ phase: "listing"; surface: ContinuitySurfaceStateV1 | null }>
   | Readonly<{ phase: "snapshot"; card: ContinuityResumeCardStateV1 }>
@@ -186,6 +201,40 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
           detail={`L'archivio si è aperto ma l'elenco non è stato letto: ${surface.code}. Nessuna conclusione sulle sessioni presenti.`}
         />
       )
+    case "storage-degraded": {
+      const discovery = surface.discovery
+      return (
+        <section data-testid="continuity-surface" data-state="storage-degraded" className="st-panel"
+          data-backend-kind={surface.backend.kind} data-backend-code={surface.backend.code}>
+          <ViewNav current="continuita" />
+          <h1>{discovery.kind === "blocked" ? "Archivio danneggiato" : "Archivio incompleto"}</h1>
+          <p>{archiveProblem(surface.backend.code)}</p>
+          {discovery.kind === "blocked" ? (
+            <p>La ripresa è bloccata; i dati originali restano nell'archivio.</p>
+          ) : (
+            <p>L'archivio contiene dati incompleti o non leggibili. Le voci disponibili possono essere parziali e verranno verificate prima della ripresa.</p>
+          )}
+          {discovery.kind === "unreadable" && (
+            <p role="alert">L'elenco non è stato letto: {discovery.code}. Nessuna conclusione sulle sessioni presenti.</p>
+          )}
+          {discovery.kind === "partial" && (discovery.sessionIds.length === 0 ? (
+            <p>Non è stato possibile individuare una sessione riprendibile. Questo non prova che la lezione sia vuota.</p>
+          ) : (
+            <>
+              <p className="st-hint">Le voci seguono l'ordine interno dell'archivio, non quello temporale.</p>
+              <ul>
+                {discovery.sessionIds.map((sessionId, indice) => (
+                  <li key={sessionId}>
+                    <a data-testid="continuity-session" data-continuity-session-id={sessionId}
+                      href={sessionHref(sessionId)}>Controlla sessione {indice + 1}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ))}
+        </section>
+      )
+    }
     case "no-sessions":
       return (
         <SurfaceMessage

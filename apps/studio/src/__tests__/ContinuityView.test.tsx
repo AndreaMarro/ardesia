@@ -111,6 +111,68 @@ describe("ContinuityView", () => {
     expect(openEventLog).toHaveBeenCalledTimes(1)
   })
 
+  it.each([{ sessionIds: [] }, { sessionIds: [SESSION_ONE] }])("archivio incompleto: avviso anche con candidati %j", async ({ sessionIds }) => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    const handle = { ...handleWith(sessionIds), backend: {
+      kind: "data-loss" as const, code: "malformed-v2-rows", database: "test",
+    } }
+    const { container } = render(<ContinuityView deps={{ openEventLog: async () => handle }} />)
+    await screen.findByText("Archivio incompleto")
+    const surface = screen.getByTestId("continuity-surface")
+    expect(surface.getAttribute("data-state")).toBe("storage-degraded")
+    expect(surface.getAttribute("data-backend-code")).toBe("malformed-v2-rows")
+    expect(container.textContent).not.toContain("Nessuna sessione da riprendere")
+    expect(container.textContent).not.toContain(SESSION_ONE)
+    if (sessionIds.length) {
+      expect(screen.getByRole("link", { name: "Controlla sessione 1" }).getAttribute("href"))
+        .toBe(`/?vista=continuita&sessione=${SESSION_ONE}#${LESSON_ID}`)
+      expect(container.textContent).toContain("non quello temporale")
+    } else {
+      expect(container.textContent).toContain("non prova che la lezione sia vuota")
+    }
+    expect(screen.getByRole("link", { name: "Materiali" })).toBeTruthy()
+  })
+
+  it("archivio corrotto: ripresa bloccata, nav disponibile e nessun falso elenco", async () => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    const handle = { ...handleWith([SESSION_ONE]), backend: {
+      kind: "corrupt" as const, code: "sequence-non-contiguous",
+    } }
+    const { container } = render(<ContinuityView deps={{ openEventLog: async () => handle }} />)
+    await screen.findByText("Archivio danneggiato")
+    expect(screen.getByTestId("continuity-surface").getAttribute("data-backend-code"))
+      .toBe("sequence-non-contiguous")
+    expect(container.textContent).toContain("La ripresa è bloccata")
+    expect(container.textContent).not.toContain("Nessuna sessione da riprendere")
+    expect(screen.queryAllByTestId("continuity-session")).toHaveLength(0)
+    expect(screen.getByRole("link", { name: "Materiali" })).toBeTruthy()
+  })
+
+  it("elenco incompleto illeggibile: causa della lettura distinta dalla degradazione", async () => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    const handle = { ...handleWith([]), backend: {
+      kind: "data-loss" as const, code: "malformed-v2-rows", database: "test",
+    } }
+    handle.log!.listSessionIds = async () => { throw new Error("cursore non leggibile") }
+    render(<ContinuityView deps={{ openEventLog: async () => handle }} />)
+    await screen.findByText("Archivio incompleto")
+    expect(screen.getByRole("alert").textContent).toContain("cursore non leggibile")
+    expect(screen.getByTestId("continuity-surface").getAttribute("data-backend-code"))
+      .toBe("malformed-v2-rows")
+  })
+
+  it.each([
+    ["legacy-physical-rows", "Alcuni dati usano un formato precedente e richiedono una verifica."],
+    ["malformed-v2-rows", "Alcuni dati non rispettano il formato previsto."],
+    ["recovery-dropped-tail", "Il recupero ha scartato una parte finale degli eventi."],
+  ])("causa visibile distinta: %s", async (code, reason) => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    const handle = { ...handleWith([]), backend: { kind: "data-loss" as const, code, database: "test" } }
+    render(<ContinuityView deps={{ openEventLog: async () => handle }} />)
+    await screen.findByText("Archivio incompleto")
+    expect(screen.getByText(reason)).toBeTruthy()
+  })
+
   it("sessioni presenti: una voce per sessione, ciascuna con il proprio sessionId nell'URL", async () => {
     at(`/?vista=continuita#${LESSON_ID}`)
     render(
