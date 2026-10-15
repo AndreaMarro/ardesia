@@ -1,4 +1,7 @@
 # GITHUB-VERCEL-STATE
+
+> Aggiornamento di consegna 15 ottobre2026: [checkpoint recuperato, pubblicazione e debiti](../../docs/ops/CONSEGNA-2026-10-15/README.md). Le informazioni datate sotto restano storiche; main/produzione non sono promossi da questa nota.
+
 last-verified: 2026-06-25
 verified-by: gh api + vercel CLI + ssh git firsthand
 

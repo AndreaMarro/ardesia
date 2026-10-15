@@ -1,5 +1,8 @@
 # ARDESIA — guida di lettura
 
+> Aggiornamento di consegna 15 ottobre2026: [checkpoint recuperato, pubblicazione e debiti](ops/CONSEGNA-2026-10-15/README.md). Le informazioni datate sotto restano storiche; main/produzione non sono promossi da questa nota.
+
+
 Questa guida collega architettura, codice e prove della ripartenza del
 21–22 settembre 2026. È una fotografia documentata, non uno stato generato in
 tempo reale. Snapshot approvato per le singole unità: **908cdf0f**.

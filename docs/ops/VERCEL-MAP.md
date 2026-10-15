@@ -1,5 +1,8 @@
 # ARDESIA — Vercel map
 
+> Aggiornamento di consegna 15 ottobre2026: [checkpoint recuperato, pubblicazione e debiti](CONSEGNA-2026-10-15/README.md). Le informazioni datate sotto restano storiche; main/produzione non sono promossi da questa nota.
+
+
 ## Update 2026-07-10 21:35-21:45 CEST - production P30 audit smoke
 
 No deploy, no alias change.
