@@ -14,8 +14,9 @@ Commit del tag: `5b1f65779701ba680a9b4d7d0841dc9c021422ff`; tree `a7867bb6fc1ece
 Tutti gli8commit locali originali sono stati riletti tramite GitHub con gli
 stessi OID. La ricostruzione mantiene i parent originali e i3merge locali.
 Main rimane **`b124eee04acc8062c27284f23c5d9108e3767c27`**: le modifiche candidate restano archiviate,
-non integrate in quel main. I286riferimenti preesistenti e i branch di tutte
-le20PR sono stati confrontati e conservati; il primo tag aggiunge un solo ref.
+non integrate in quel main. Le 286 voci preesistenti di `ls-remote` (285 nomi di ref e una voce peeled
+`^{}` di tag annotato), inclusi i branch delle 20 PR, sono state confrontate
+e conservate. Il primo tag aggiunge un solo ref: 287 voci e 286 nomi.
 I testi originari di PR/issue e gli AC non sono stati riscritti: digest e
 receipt di chiusura sono nell'inventario e nei commenti seguenti.
 

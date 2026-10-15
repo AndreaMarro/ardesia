@@ -398,3 +398,5 @@ Prossima task: **T3 bundle .lesson**.
 - **2026-10-15 — CONSEGNA OPERATIVA, NON MERGE.** Recuperati e verificati gli8commitstorici fino4237f197/treeede09440. Documentazione, inventario20PR+8issue, prove/limiti e guardieauto-deploy dell’archivio in `docs/ops/CONSEGNA-2026-10-15/README.md`. Main resta b124eee; correzioni locali non dichiarate integrate. Richiesta owner: archiviare le lavorazioni pendenti senza fingere fix/merge; preservare branch e AC. Nessun nuovo run runtime dalla ricostruzione.
 
 - **2026-10-15 — ARCHIVIO E CHIUSURE RILETTI.** Tagarchive/codex-finalization-20261015→5b1f65779701ba680a9b4d7d0841dc9c021422ff;8commit recuperati suGitHub,20PRclosedwithoutmerge+8issuenot_planned. Letturaconclusiva0PR/0issueaperte (2026-10-15T19:25:29.784119+00:00); mainb124eee e286refpreesistenti invariati. Debiti e AC conservati in `docs/ops/CONSEGNA-2026-10-15/CLOSEOUT.md`, nessuna completezzaV1/fixmain/deploy dichiarata.
+
+  Precisazione del conteggio precedente: 286 voci ls-remote comprendono 285 nomi di ref e una voce peeled `^{}` di tag annotato; la preservazione confronta tutte le voci, senza contare il peeled come ref autonomo.
