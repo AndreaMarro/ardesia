@@ -179,6 +179,9 @@ export async function persistEmbedStateThroughToolHost(
       },
     },
   )
-  await Promise.all(auditWrites)
+  // The scene operation already ran. Audit failure must not change its result;
+  // ToolAuditLog counts rejected appends separately via auditDropCount().
+  // A successful scene write is not a durable flush of the workspace/journal.
+  await Promise.allSettled(auditWrites)
   return response !== null && "result" in response
 }

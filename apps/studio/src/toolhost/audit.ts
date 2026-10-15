@@ -83,7 +83,7 @@ export class ToolAuditLog {
     const p = this._chain.then(() => this._doAppend(entry))
     this._chain = p.then(
       () => {},
-      () => {},
+      () => { recordAuditDrop(this._store, this._tool) },
     )
     return p
   }
@@ -99,6 +99,25 @@ export class ToolAuditLog {
     const next = prior + JSON.stringify(entry) + "\n"
     await this._store.write(this._path, new Blob([next], { type: "application/x-ndjson" }))
   }
+}
+
+// Rejected append attempts for a live store/tool, shared by its writers.
+// This is an in-memory diagnostic: a rejecting driver may already have written
+// bytes, and neither the counter nor a successful append certifies durability.
+const auditDropsByStore = new WeakMap<AuditStore, Map<string, number>>()
+
+function recordAuditDrop(store: AuditStore, toolId: string): void {
+  let counts = auditDropsByStore.get(store)
+  if (counts === undefined) {
+    counts = new Map<string, number>()
+    auditDropsByStore.set(store, counts)
+  }
+  counts.set(toolId, (counts.get(toolId) ?? 0) + 1)
+}
+
+/** Rejected appends in this process, distinct from malformed rows on disk. */
+export function auditDropCount(store: AuditStore, toolId: string): number {
+  return auditDropsByStore.get(store)?.get(toolId) ?? 0
 }
 
 export interface AuditReadResult {
