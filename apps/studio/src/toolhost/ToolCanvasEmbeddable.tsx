@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactEle
 
 import { ArduinoRuntime, LED_BUILTIN, SketchScheduler, blinkSketch } from "../../plugins/reference/arduino";
 import { EMBED_DATA_KEY } from "./caps/board";
+import { LED_READOUT_LABELS, ledReadout, measureReadout } from "../core/contracts/ledReadout";
 import {
   ELAB_BREADBOARD_POINT_COUNT,
   ELAB_BOTTOM_TERMINAL_ROWS,
@@ -1630,6 +1631,12 @@ function computeElabMnaView(scene: SimulationSceneV1): ElabMnaView {
     // Fail-visible: l'errore del solve arriva in diagnostica, mai verde finto.
     return { ok: false, error: (error as Error).message };
   }
+  if (!result.ok) {
+    return {
+      ok: false,
+      error: result.diagnostics.shortCircuit ? "corto circuito rilevato" : "solve rifiutato dal motore",
+    };
+  }
   const channels = rgbChannelsFromSolve(result, rgb.id);
   return {
     ok: true,
@@ -1698,7 +1705,12 @@ function deriveSimulationSolveOutcome(
 
 const formatChannelMa = formatRgbChannelMa;
 
-export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1; montaggio?: MontaggioCanvas }) {
+export function SimulationBoard({ scene, montaggio, solveAvailable = true }: {
+  scene: SimulationSceneV1;
+  montaggio?: MontaggioCanvas;
+  /** A rejected outer solve cannot be replaced with the authored LED state. */
+  solveAvailable?: boolean;
+}) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
   const mnaView = useMemo(
     () => (scene.runtime.kind === "elab-mna" ? computeElabMnaView(scene) : null),
@@ -1727,7 +1739,7 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
           <BoardWires scene={scene} />
           <NanoR4Svg scene={scene} />
           <ResistorSvg scene={scene} />
-          <LedSvg scene={scene} />
+          <LedSvg scene={scene} solveAvailable={solveAvailable} />
           <PotentiometersSvg scene={scene} />
           <RgbLedSvg scene={scene} channels={mnaView?.ok === true ? mnaView.channels : null} />
           {montaggio && <PlacedPartsSvg scene={scene} placements={montaggio.placements} />}
@@ -1839,8 +1851,21 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             </>
           ) : scene.runtime.kind === "elab-mna" ? (
             <>
-              <text x="16" y="48" style={diagnosticSvgStyle}>
-                batteria {scene.runtime.supplyVolts}.00 V - LED RGB {mnaView?.ok === true && mnaView.anyOn ? "ON" : "OFF"}
+              <text
+                x="16"
+                y="48"
+                style={diagnosticSvgStyle}
+                data-led-readout={ledReadout(
+                  // Quattro righe sotto, `mnaView === null` era gia' un caso a
+                  // se'; qui finiva schiacciato su "OFF" insieme al solve
+                  // fallito. Vista assente e solve fallito = non lo sappiamo.
+                  mnaView === null ? null : mnaView.ok ? mnaView.anyOn : null,
+                )}
+              >
+                batteria {scene.runtime.supplyVolts}.00 V - LED RGB{" "}
+                {LED_READOUT_LABELS[
+                  ledReadout(mnaView === null ? null : mnaView.ok ? mnaView.anyOn : null)
+                ]}
               </text>
               <text x="16" y="68" style={diagnosticSvgStyle} data-rgb-channels>
                 {mnaView === null
@@ -1852,8 +1877,8 @@ export function SimulationBoard({ scene, montaggio }: { scene: SimulationSceneV1
             </>
           ) : (
             <>
-              <text x="16" y="48" style={diagnosticSvgStyle}>batteria {scene.runtime.supplyVolts}.00 V - LED {scene.runtime.ledOn ? "ON" : "OFF"}</text>
-              <text x="16" y="68" style={diagnosticSvgStyle}>corrente {ledCurrentMa.toFixed(1)} mA - R={scene.runtime.resistorOhms} Ohm</text>
+              <text x="16" y="48" style={diagnosticSvgStyle} data-battery-led-readout={ledReadout(solveAvailable ? scene.runtime.ledOn : null)}>batteria {scene.runtime.supplyVolts}.00 V - LED {LED_READOUT_LABELS[ledReadout(solveAvailable ? scene.runtime.ledOn : null)]}</text>
+              <text x="16" y="68" style={diagnosticSvgStyle}>corrente {measureReadout(solveAvailable ? ledCurrentMa : null)} mA - R={scene.runtime.resistorOhms} Ohm</text>
               {ledStressZone(ledCurrentMa / 1000) !== "nominale" && (
                 <text x="16" y="78" style={diagnosticSvgStyle} data-led-stress-zone={ledStressZone(ledCurrentMa / 1000)}>
                   {LED_STRESS_ZONE_LABELS[ledStressZone(ledCurrentMa / 1000)]}
@@ -2187,7 +2212,7 @@ function RgbLedSvg({ scene, channels }: { scene: SimulationSceneV1; channels: El
     : "#c9cdd2";
   const legColor: Record<string, string> = { red: "#d3413a", green: "#2fa764", blue: "#2f68ad", common: "#15191e" };
   return (
-    <g aria-label={`LED RGB ${anyOn ? "acceso" : "spento"}`} pointerEvents="none">
+    <g aria-label={`LED RGB ${channels === null ? "stato non disponibile" : anyOn ? "acceso" : "spento"}`} pointerEvents="none">
       {legs.map((leg) => (
         <line
           key={leg.pin}
@@ -2229,7 +2254,7 @@ function ResistorBody({ a, b, ohms = 470 }: { a: { x: number; y: number }; b: { 
   );
 }
 
-function LedSvg({ scene }: { scene: SimulationSceneV1 }) {
+function LedSvg({ scene, solveAvailable = true }: { scene: SimulationSceneV1; solveAvailable?: boolean }) {
   // Scene senza LED singolo (es. multi-pin v1-cap9-esp6): niente da disegnare
   // — e mai parseBreadboardRef su un ref assente.
   const anodeRef = scene.pinAssignments["led1:anode"];
@@ -2239,9 +2264,11 @@ function LedSvg({ scene }: { scene: SimulationSceneV1 }) {
   const cathode = pointForBreadboardRef(cathodeRef);
   if (!anode || !cathode) return null;
   const led = scene.components.find((component) => component.id === "led1");
-  const burned = scene.runtime.kind === "battery-led-senza-resistore";
-  const ledOn = scene.runtime.kind === "elab-mna" ? false : scene.runtime.ledOn;
-  const ariaLabel = burned
+  const burned = solveAvailable && scene.runtime.kind === "battery-led-senza-resistore";
+  const ledOn = solveAvailable && scene.runtime.kind !== "elab-mna" && scene.runtime.ledOn;
+  const ariaLabel = !solveAvailable
+    ? `LED ${led?.color ?? "verde"} stato non disponibile`
+    : burned
     ? `LED ${led?.color ?? "verde"} bruciato per sovracorrente`
     : ledOn
       ? `LED ${led?.color ?? "verde"} acceso`

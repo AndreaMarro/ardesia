@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { measureReadout } from "../core/contracts/ledReadout"
 import postitFunctions from "@elab-pack/postitFunctions.json"
 import {
   derivePluginFunctionSurface,
@@ -304,7 +305,7 @@ function PluginPostitCard({ postit }: { postit: MultiPostitObject }) {
             {simulationState.providerOutput.diagnostics.join(", ")}
           </div>
           <div id={ids.solverOutputId} data-solver-output-instance={postit.instanceId} style={dataRowStyle}>
-            led current {simulationState.providerOutput.solverOutput.currents.led ?? 0}
+            led current {measureReadout(simulationState.providerOutput.solverOutput.currents.led, null)}
           </div>
         </>
       )}

@@ -693,3 +693,25 @@ describe("Board plugin post-it persistence", () => {
     ).toThrow("plugin post-it board element must be embeddable")
   })
 })
+
+// ---------------------------------------------------------------------------
+// Il modello richiede il contenitore providerOutput, ma non una misura LED.
+// Rettifica del 2026-10-15 alla diagnosi storica della PR #243: il sim-b
+// predefinito ha providerOutput presente e currents:{}; l'assenza della misura
+// e' dunque viva. Questa guardia conserva solo il requisito strutturale del
+// contenitore. SimulationReadoutUnavailable.test.tsx osserva il readout reale
+// senza misura, lo zero misurato e il valore raw 0.0153.
+// ---------------------------------------------------------------------------
+
+describe("il contenitore providerOutput e' obbligatorio, la misura puo' mancare", () => {
+  it("un post-it Simulation senza providerOutput e' rifiutato dal modello", () => {
+    const postits = createMultiPostitWorkbenchPostits()
+    const senzaOutput = postits.map((postit) => {
+      if (!isSimulationPostitState(postit.pluginState)) return postit
+      const { providerOutput: _rimosso, ...resto } = postit.pluginState
+      return { ...postit, pluginState: resto as typeof postit.pluginState }
+    })
+
+    expect(() => createPluginPostitBoardScene(senzaOutput)).toThrow(/invalid Simulation state/)
+  })
+})
