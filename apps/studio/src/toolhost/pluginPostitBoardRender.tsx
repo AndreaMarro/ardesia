@@ -12,6 +12,7 @@ import {
 import {
   PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
   pluginPostitBoardElementId,
+  pluginPostitBoardLink,
   type PluginPostitBoardRenderModel,
 } from "../design/multiPostitBoardPersistence"
 import { EMBED_DATA_KEY, instanceOwner } from "./caps/board"
@@ -61,6 +62,13 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
   const expectedElementId = pluginPostitBoardElementId(postit.instanceId)
   if (element.id !== expectedElementId) {
     throw new Error(`plugin post-it board id mismatch for ${postit.instanceId}`)
+  }
+  if (
+    element.link !== null &&
+    element.link !== undefined &&
+    element.link !== pluginPostitBoardLink(postit.pluginId, expectedElementId)
+  ) {
+    throw new Error(`plugin post-it board link mismatch for ${postit.instanceId}`)
   }
   const simulationState = isSimulationPostitState(postit.pluginState) ? postit.pluginState : null
   const elabTutorState = isElabTutorPostitState(postit.pluginState) ? postit.pluginState : null

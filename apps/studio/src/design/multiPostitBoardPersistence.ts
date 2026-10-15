@@ -298,7 +298,7 @@ function readBoardBounds(element: Record<string, unknown>): PostitBounds {
   return bounds
 }
 
-function pluginPostitBoardLink(pluginId: string, embedId: string): string {
+export function pluginPostitBoardLink(pluginId: string, embedId: string): string {
   return `${PLUGIN_POSTIT_BOARD_LINK_SCHEME}${pluginId}/${embedId}`
 }
 
