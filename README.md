@@ -1,6 +1,6 @@
 # ARDESIA — Monorepo
 
-> Aggiornamento di consegna 15 ottobre2026: [checkpoint recuperato, pubblicazione e debiti](docs/ops/CONSEGNA-2026-10-15/README.md). Le informazioni datate sotto restano storiche; main/produzione non sono promossi da questa nota.
+> Aggiornamento di consegna 15 ottobre2026: [checkpoint recuperato, pubblicazione e debiti](docs/ops/CONSEGNA-2026-10-15/CLOSEOUT.md). Le informazioni datate sotto restano storiche; main/produzione non sono promossi da questa nota.
 
 
 **Da dove iniziare:** [guida di lettura per persone e ChatGPT](docs/START-HERE.md)

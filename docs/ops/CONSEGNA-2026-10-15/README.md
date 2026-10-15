@@ -1,5 +1,8 @@
 # Consegna operativa Ardesia — 15 ottobre 2026
 
+> Esito successivo verificato: [20PR chiuse senza merge,8issue not_planned,0/0aperte](CLOSEOUT.md). Il testo iniziale sotto precede pubblicazione e chiusure; il registro JSON ora contiene i readback conclusivi.
+
+
 Fotografia alla chiusura richiesta dal proprietario. Il progetto resta in sviluppo:
 questa consegna chiude l'esecuzione, non certifica V1 o l'integrazione di tutto il backlog.
 Stato corrente del checkout: rigenerare `python3 bin/state/project_state.py`.
