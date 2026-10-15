@@ -46,7 +46,7 @@ import {
 } from "../../sim/solver/elabSolver"
 import { createTypedEventBus, type ArdesiaEventMap } from "../core/contracts/eventBus"
 import { bindBusToEventLog } from "../lessonos/busEventLogBinding"
-import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { openIndexedDbEventLog, type IndexedDbEventLogHandle } from "../lessonos/indexedDbEventLog"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   listLessonConcepts,
@@ -100,7 +100,7 @@ function dispatchSolve(experiment: ElabVolumeExperiment): SolveOutcome {
 interface ElabLabProps {
   /**
    * Event-log della lezione (iniettabile nei test); assente = creato qui
-   * (IndexedDB, fallback InMemory — la marcatura parte comunque).
+   * (IndexedDB disponibile e verificato; nessuna conferma su fallback volatile).
    */
   eventLog?: EventLogStore
 }
@@ -170,11 +170,40 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   useEffect(() => {
     if (eventLog !== undefined) return
     let cancelled = false
-    void createEventLogStore().then((store) => {
-      if (!cancelled) setLog(store)
-    })
+    let owned: IndexedDbEventLogHandle | null = null
+    const unavailable = "Memoria della lezione non disponibile: marcatura ed esportazione sospese."
+    const releaseOwned = () => {
+      const handle = owned
+      owned = null
+      if (handle !== null) void handle.close().catch(() => {})
+    }
+    void (async () => {
+      let handle: IndexedDbEventLogHandle
+      try {
+        handle = await openIndexedDbEventLog()
+      } catch {
+        if (!cancelled) setRecordError(unavailable)
+        return
+      }
+      if (cancelled) {
+        void handle.close().catch(() => {})
+        return
+      }
+      owned = handle
+      if (handle.backend.kind !== "verified-indexeddb" || handle.log === null) {
+        setRecordError(handle.backend.kind === "corrupt"
+          ? "Registro della lezione corrotto: marcatura ed esportazione sospese."
+          : handle.backend.kind === "data-loss"
+            ? "Registro della lezione parziale: marcatura ed esportazione sospese."
+            : unavailable)
+        releaseOwned()
+        return
+      }
+      setLog(handle.log)
+    })()
     return () => {
       cancelled = true
+      releaseOwned()
     }
   }, [eventLog])
 
