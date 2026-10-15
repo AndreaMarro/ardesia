@@ -41,7 +41,20 @@ export async function readResumableSessions(
 ): Promise<ContinuitySurfaceStateV1> {
   if (lessonId === null) return Object.freeze({ kind: "no-lesson" as const })
 
-  const handle = await open()
+  let handle: IndexedDbEventLogHandle
+  try {
+    handle = await open()
+  } catch (error) {
+    // L'apertura puo' fallire prima di restituire un handle (per esempio
+    // senza Web Crypto). Nessuna sessione e' stata letta: non e' una lista vuota.
+    return Object.freeze({
+      kind: "storage-unavailable" as const,
+      backend: Object.freeze({
+        kind: "unavailable" as const,
+        code: error instanceof Error ? error.message : String(error),
+      }),
+    })
+  }
   try {
     const log = handle.log
     if (log === null) {

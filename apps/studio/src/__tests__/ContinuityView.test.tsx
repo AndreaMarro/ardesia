@@ -96,6 +96,21 @@ describe("ContinuityView", () => {
     expect(openEventLog).not.toHaveBeenCalled()
   })
 
+  it("apertura che rigetta: esce da loading senza dire che le sessioni sono assenti", async () => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    const openEventLog = vi.fn(async (): Promise<IndexedDbEventLogHandle> => {
+      throw new Error("Web Crypto non disponibile")
+    })
+    const { container } = render(<ContinuityView deps={{ openEventLog }} />)
+    await screen.findByText("Archivio non raggiungibile")
+    expect(screen.getByTestId("continuity-surface").getAttribute("data-state"))
+      .toBe("storage-unavailable")
+    expect(container.textContent).toContain("Le sessioni potrebbero esistere: non sono state lette")
+    expect(container.textContent).not.toContain("Lettura delle sessioni")
+    expect(container.textContent).not.toContain("Nessuna sessione da riprendere")
+    expect(openEventLog).toHaveBeenCalledTimes(1)
+  })
+
   it("sessioni presenti: una voce per sessione, ciascuna con il proprio sessionId nell'URL", async () => {
     at(`/?vista=continuita#${LESSON_ID}`)
     render(

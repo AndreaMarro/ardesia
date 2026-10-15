@@ -13,7 +13,7 @@
 
 import { describe, it, expect, vi } from "vitest"
 import { readResumableSessions } from "../lessonos/continuitySurface"
-import { IndexedDbEventLog, type IndexedDbEventLogHandle } from "../lessonos/indexedDbEventLog"
+import { IndexedDbEventLog, openIndexedDbEventLog, type IndexedDbEventLogHandle } from "../lessonos/indexedDbEventLog"
 import type { AppendedEventEnvelopeV2 } from "../lessonos/eventlog"
 
 const LESSON_ID = "wbstudio-abc123"
@@ -101,6 +101,48 @@ describe("readResumableSessions", () => {
     expect(state).toEqual({ kind: "storage-unavailable", backend })
     expect(closeCount).toBe(1)
   })
+
+  it("apertura reale senza Web Crypto: conserva la causa e non propaga il rigetto", async () => {
+    const { IDBFactory } = await import("fake-indexeddb")
+    const state = await readResumableSessions(LESSON_ID, () => openIndexedDbEventLog({
+      factory: new IDBFactory() as unknown as IDBFactory,
+      crypto: {} as Crypto,
+    }))
+    expect(state).toEqual({
+      kind: "storage-unavailable",
+      backend: { kind: "unavailable", code: "LessonOS event log: Web Crypto non disponibile" },
+    })
+    expect(Object.isFrozen(state)).toBe(true)
+    if (state.kind === "storage-unavailable") expect(Object.isFrozen(state.backend)).toBe(true)
+  })
+
+  it("apertura che rigetta un valore non Error: conserva il valore", async () => {
+    const state = await readResumableSessions(LESSON_ID, async () => { throw "accesso negato" })
+    expect(state).toEqual({
+      kind: "storage-unavailable",
+      backend: { kind: "unavailable", code: "accesso negato" },
+    })
+  })
+
+  it.each(["sessions", "no-sessions", "storage-unavailable", "unreadable"] as const)(
+    "chiusura fallita: preserva lo stato %s già accertato",
+    async (kind) => {
+      const close = vi.fn(async () => { throw new Error("chiusura fallita") })
+      const handle = {
+        backend: { kind: "unavailable", code: "backend-test" },
+        log: kind === "storage-unavailable" ? null : {
+          async listSessionIds() {
+            if (kind === "unreadable") throw new Error("lettura fallita")
+            return kind === "sessions" ? [SESSION_ONE] : []
+          },
+        },
+        close,
+      } as unknown as IndexedDbEventLogHandle
+      const state = await readResumableSessions(LESSON_ID, async () => handle)
+      expect(state.kind).toBe(kind)
+      expect(close).toHaveBeenCalledTimes(1)
+    },
+  )
 
   it("lezione senza sessioni: no-sessions, non una lista vuota indistinguibile", async () => {
     const { handle, closed } = await realHandle([[OTHER_LESSON_ID, SESSION_ONE]])
