@@ -61,7 +61,7 @@ function overlappingPairs(rects: readonly DomRectEvidence[]): string[] {
 }
 
 for (const target of VIEWPORTS) {
-  test(`Room import .lesson renders plugin post-it board in real Excalidraw (${target.name})`, async ({
+  test(`Room import and cold reload preserve distinct plugin post-its (${target.name})`, async ({
     page,
   }, testInfo) => {
     const consoleErrors: string[] = []
@@ -73,9 +73,8 @@ for (const target of VIEWPORTS) {
     })
 
     await page.setViewportSize(target.size)
-    await page.addInitScript(() => {
-      window.localStorage.clear()
-    })
+    // Playwright gives each case a fresh browser context. Do not clear the
+    // archive on every navigation: cold reload must actually reopen its bytes.
 
     const route = `/#p22b-plugin-postit-${target.name}-${testInfo.workerIndex}`
     await page.goto(route)
@@ -255,5 +254,54 @@ for (const target of VIEWPORTS) {
 
     expect(screenshot.size).toBeGreaterThan(10_000)
     expect(consoleErrors).toEqual([])
+
+    const assertDistinctReadouts = async () => {
+      await expect(page.locator('[data-provider-output-instance="sim-a"]')).toContainText("local")
+      await expect(page.locator('[data-provider-output-instance="sim-b"]')).toContainText("fastapi")
+      await expect(page.locator('[data-solver-output-instance="sim-a"]')).toHaveText("led current 0.0153")
+      await expect(page.locator('[data-solver-output-instance="sim-b"]')).toHaveText("led current ?")
+    }
+    await assertDistinctReadouts()
+    const readPluginStates = () => page.evaluate(() => {
+      const api = (window as unknown as { __MAESTRO_TEST__?: { apiRef?: { current?: {
+        getSceneElements(): { customData?: { maestroTool?: { schema?: string; state?: { instanceId?: string; pluginState?: unknown } } } }[]
+      } } } }).__MAESTRO_TEST__?.apiRef?.current
+      if (!api) throw new Error("existing board harness unavailable")
+      return api.getSceneElements()
+        .map(element => element.customData?.maestroTool)
+        .filter(marker => marker?.schema === "plugin-postit-board-state/1")
+        .map(marker => ({ instanceId: marker!.state!.instanceId, pluginState: marker!.state!.pluginState }))
+        .sort((a, b) => a.instanceId!.localeCompare(b.instanceId!))
+    })
+    const importedStates = await readPluginStates()
+    expect(importedStates.map(state => state.instanceId)).toEqual([...EXPECTED_INSTANCES])
+    // Wait for the exact archive and all three identities, not a timer or a
+    // ready badge. Only then discard the document and reopen from storage.
+    await expect.poll(() => page.evaluate(() => {
+      const room = window.location.hash.slice(1).split("&")[0]
+      const raw = localStorage.getItem(`maestro:raw/${room}/board.excalidraw`)
+      if (raw === null) return []
+      const text = new TextDecoder().decode(Uint8Array.from(atob(raw), char => char.charCodeAt(0)))
+      const scene = JSON.parse(text)
+      return (scene.elements as { customData?: { maestroTool?: { schema?: string; state?: { instanceId?: string } } } }[])
+        .map(element => element.customData?.maestroTool)
+        .filter(marker => marker?.schema === "plugin-postit-board-state/1")
+        .map(marker => marker!.state!.instanceId).sort()
+    }), { timeout: 10000 }).toEqual([...EXPECTED_INSTANCES])
+    await page.reload()
+    await expect(page.locator(".excalidraw")).toBeVisible({ timeout: 20000 })
+    await expect(postits).toHaveCount(3, { timeout: 20000 })
+    for (const instanceId of EXPECTED_INSTANCES) {
+      await expect(page.locator(`[data-plugin-postit-instance="${instanceId}"]`)).toBeVisible()
+    }
+    await assertDistinctReadouts()
+    expect(await readPluginStates()).toEqual(importedStates)
+
+    const reopenedPluginIds = await page.locator('[id^="plugin-postit-"]').evaluateAll(nodes => nodes.map(node => node.id))
+    expect(new Set(reopenedPluginIds).size).toBe(reopenedPluginIds.length)
+    await page.screenshot({ path: join(EVIDENCE_DIR, `plugin-postit-room-${target.name}-reopened.png`), fullPage: true })
+    await writeFile(join(EVIDENCE_DIR, `plugin-postit-room-${target.name}-reopened.json`), JSON.stringify({ importedStates, reopenedStates: await readPluginStates(), reopenedPluginIds, consoleErrors }, null, 2))
+    expect(consoleErrors).toEqual([])
+
   })
 }

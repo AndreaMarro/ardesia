@@ -103,6 +103,46 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  # Advisory separata per import .lesson e riapertura a freddo dei post-it.
+  # La spec controlla identita' e stati diversi su viewport desktop/tablet;
+  # il selettore golden-path non carica questo file. Non certifica da sola
+  # l'intero KERN-001 o un round-trip export/import arbitrario.
+  # La promozione a required resta una decisione distinta con serie storica.
+  e2e-postit-reload:
+    name: e2e postit reload (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/studio
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      # Nessuna pipe e nessun wrapper di shell: l'exit code che il job legge deve
+      # essere quello di playwright. Un `| tee` qui riporterebbe l'exit dell'ultimo
+      # anello della catena, ed e' esattamente il modo in cui un rosso diventa
+      # invisibile restando "verde".
+      - name: postit reload — identita' per istanza su due viewport
+        run: npx playwright test e2e/plugin-postit-room-reload.spec.ts --reporter=line --trace retain-on-failure
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: postit-reload-traces-${{ github.sha }}
+          path: |
+            apps/studio/test-results/
+            output/playwright/
+          if-no-files-found: ignore
+          retention-days: 14
+
   # Lane NON richiesta dalla branch protection di main (verificato via API
   # il 2026-09-22: required = studio, engine, hygiene; questa lane e il
   # golden path restano informativi): prova cross-boundary Studio -> Engine
