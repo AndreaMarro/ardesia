@@ -145,3 +145,5 @@ Append-only. 1 riga per modifica.
 - 2026-10-16: recorded independent ZIP review P1/P2 and real-archive regressions/fixes in raw-ingestion.md; full engine2109PASS7SKIP.
 
 - 2026-10-16: raw-ingestion.md records dependent atomic source/capsule candidate: staging, short CAS publication, SQLite11 trigger tokens/erasure, real file/process tests and remaining derived-consumer boundary.
+
+- 2026-10-16: atomic review found uncommitted CAS token reuse after rollback; public snapshot reads now refuse caller transactions. Two authentic RED regressions,42 targetedPASS and2151PASS7SKIP offline full. Mislaunched key-bearing full run2153PASS2FAIL3SKIP retained, external requests/cost uncertainty recorded in STATUS.md.

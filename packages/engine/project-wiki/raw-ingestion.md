@@ -111,8 +111,12 @@ token, segments and capsule JSON. This is a storage observation, not a new
 lesson IR. The narrow SegmentReader/CapsuleSink protocols let the existing
 assembler work against either stored or prepared source without a fake DB.
 
-`store/sqlite.py:963` reads the pair from one SQLite snapshot; callers making
-separate legacy reads can naturally straddle a commit. `sqlite.py:982` owns a
+`store/sqlite.py:971` reads the pair from one committed SQLite snapshot and
+refuses any existing caller transaction without changing it. Rolled-back
+AUTOINCREMENT values can be reused, so uncommitted observations must never
+escape as publication preconditions. `sqlite.py:963` is the internal helper;
+publication returns its state only after successful commit. Separate legacy
+reads can naturally straddle a commit. `sqlite.py:985` owns a
 short BEGIN IMMEDIATE transaction: scope/duplicate/foreign-ID checks, revision
 CAS, delete/insert source, save capsule, commit. A changed lesson raises
 LessonRevisionConflict before writes. Any publication failure rolls back.
@@ -133,3 +137,12 @@ Source/capsule are either old+old or new+new through the new snapshot API.
 Graph, summary and material projections are separate downstream work; this
 unit does not claim those consumers or all existing pipelines use revisions.
 No human pilot or real LLM calls, and no promotion without normal gates.
+
+Review correction on529735f: uncommitted revision token reuse was reproduced
+and fixed with explicit/implicit transaction regressions (2RED then GREEN).
+Final offline full engine2151PASS7SKIP; targeted42PASS. An earlier full run
+mistakenly inherited API keys, activating four pre-existing live-gated tests:
+2153PASS2FAIL3SKIP, with Kimi HTTP404 and unintended external requests. Request
+count/cost unavailable. This FAIL is preserved; the offline run removes keys
+and matches baseline conditions. The no-real-call statement above applies to
+the initial candidate tests, not this later erroneous verification run.

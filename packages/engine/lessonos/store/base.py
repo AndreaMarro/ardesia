@@ -344,7 +344,11 @@ class Store(ABC):
         """Roll back the current transaction, discarding all changes since begin."""
 
     def read_lesson_revision(self, lesson_id: str) -> StoredLessonRevision:
-        """Read revision + segments + capsule from ONE storage snapshot."""
+        """Read a committed revision + segments + capsule in ONE snapshot.
+
+        Refuse an existing caller transaction: a rolled-back revision token
+        can be reused and is not a safe publication precondition.
+        """
         raise NotImplementedError('consistent lesson revisions unavailable')
 
     def publish_lesson_revision(

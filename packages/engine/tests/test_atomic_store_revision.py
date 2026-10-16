@@ -197,6 +197,37 @@ def test_nested_publication_does_not_commit_callers_transaction(tmp_path):
     finally: store.close()
 
 
+@pytest.mark.parametrize('transaction', ['explicit', 'implicit'])
+def test_revision_read_refuses_uncommitted_token_and_preserves_caller_transaction(tmp_path, transaction):
+    db = str(tmp_path / 'uncommitted.db')
+    first, second = SQLiteStore(db), SQLiteStore(db)
+    try:
+        seed(first)
+        committed = first.read_lesson_revision(L)
+        if transaction == 'explicit':
+            first.begin_transaction()
+            first.save_segment(candidate('rolled back')[0][0])
+        else:
+            first._conn.execute('UPDATE segments SET text = ? WHERE lesson_id = ?', ('rolled back', L))
+        # Rolled-back AUTOINCREMENT values may be reused by the next writer.
+        # Such a token must never escape as a committed publication precondition.
+        with pytest.raises(RuntimeError, match='transaction'):
+            first.read_lesson_revision(L)
+        assert first._conn.in_transaction
+        assert first.segments_for_lesson(L)[0].text == 'rolled back'
+        if transaction == 'explicit':
+            assert first._in_transaction
+            first.rollback_transaction()
+        else:
+            first._conn.rollback()
+        second.save_segment(candidate('concurrent committed')[0][0])
+        with pytest.raises(LessonRevisionConflict):
+            first.publish_lesson_revision(committed, *candidate('stale'))
+        assert second.segments_for_lesson(L)[0].text == 'concurrent committed'
+    finally:
+        first.close(); second.close()
+
+
 def test_failed_migration_preserves_original_rows_and_version(tmp_path):
     db = str(tmp_path / 'broken-v10.db')
     conn = sqlite3.connect(db)

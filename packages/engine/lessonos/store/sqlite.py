@@ -960,23 +960,26 @@ class SQLiteStore(Store):
         ).fetchone()
         return row[0]
 
+    def _read_lesson_state(self, lesson_id: str) -> StoredLessonRevision:
+        # Caller owns the snapshot transaction. Publication returns this state
+        # only after its write transaction has committed successfully.
+        return StoredLessonRevision(
+            lesson_id, self._lesson_revision_token(lesson_id),
+            self.segments_for_lesson(lesson_id), self.get_capsule(lesson_id),
+        )
+
     def read_lesson_revision(self, lesson_id: str) -> StoredLessonRevision:
         if not isinstance(lesson_id, str) or not lesson_id:
             raise ValueError('lesson_id must be a nonempty string')
-        owns_read = not self._conn.in_transaction
-        if owns_read:
-            self._conn.execute('BEGIN')
+        if self._in_transaction or self._conn.in_transaction:
+            raise RuntimeError('committed lesson revision requires its own read transaction')
+        self._conn.execute('BEGIN')
         try:
-            state = StoredLessonRevision(
-                lesson_id, self._lesson_revision_token(lesson_id),
-                self.segments_for_lesson(lesson_id), self.get_capsule(lesson_id),
-            )
-            if owns_read:
-                self._conn.commit()
+            state = self._read_lesson_state(lesson_id)
+            self._conn.commit()
             return state
         except BaseException:
-            if owns_read:
-                self._conn.rollback()
+            self._conn.rollback()
             raise
 
     def publish_lesson_revision(
@@ -1003,7 +1006,7 @@ class SQLiteStore(Store):
         self._in_transaction = True
         try:
             if self._lesson_revision_token(lesson_id) != expected.revision:
-                raise LessonRevisionConflict('lesson changed during preparation; rebuild before publishing')
+                raise LessonRevisionConflict('publication revision changed; rebuild before publishing')
             for segment in segments:
                 foreign = self._conn.execute(
                     'SELECT lesson_id FROM segments WHERE seg_id = ? AND lesson_id <> ?',
@@ -1015,7 +1018,7 @@ class SQLiteStore(Store):
             for segment in segments:
                 self.save_segment(segment)
             self.save_capsule(lesson_id, capsule_data)
-            published = self.read_lesson_revision(lesson_id)
+            published = self._read_lesson_state(lesson_id)
             self.commit_transaction()
             return published
         except BaseException:
