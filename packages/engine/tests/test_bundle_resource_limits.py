@@ -1,7 +1,9 @@
 """Small harmless archives exercise budgets before any authoritative effect."""
 from types import SimpleNamespace
 import io
+import struct
 import zipfile
+import zlib
 
 import pytest
 
@@ -147,4 +149,76 @@ def test_zip64_locator_before_maximum_comment_rejected_before_zip_parser(tmp_pat
         output.write(data[:eocd] + b'PK\x06\x07' + b'\x00' * 16 + data[eocd:])
     monkeypatch.setattr(zipfile, 'ZipFile', lambda *a, **k: pytest.fail('ZIP64 reached parser'))
     with pytest.raises(ValueError, match='ZIP64'):
+        bundle.read_bundle(path)
+
+
+def test_preflight_uses_the_same_last_end_record_as_zipfile(tmp_path, monkeypatch):
+    limits(monkeypatch, max_directory_bytes=100, max_members=2)
+    path = tmp_path / 'two-end-records.lesson'
+    fake = struct.pack('<4s4H2LH', b'PK\x05\x06', 0, 0, 1, 1, 1, 0, 23)
+    with zipfile.ZipFile(path, 'w') as zf:
+        zf.writestr('raw/events.jsonl', '{}')
+        for i in range(10): zf.writestr(f'raw/unused{i}', '')
+        last = zipfile.ZipInfo('raw/last/')
+        last.comment = fake
+        zf.writestr(last, '')
+    path.write_bytes(path.read_bytes() + b'x')
+    monkeypatch.setattr(zipfile, 'ZipFile', lambda *a, **k: pytest.fail('preflight used a different end record'))
+    with pytest.raises(ValueError, match='ZIP malformed'):
+        bundle.read_bundle(path)
+
+
+@pytest.mark.parametrize('compression', [zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED])
+def test_real_zip_cannot_hide_oversize_tail_with_small_file_size(tmp_path, monkeypatch, compression):
+    limits(monkeypatch, max_member_bytes=4, max_total_bytes=4)
+    path = tmp_path / 'undersized.lesson'
+    with zipfile.ZipFile(path, 'w', compression=compression) as zf:
+        zf.writestr('raw/events.jsonl', b'{}' + b'x' * 100)
+    data = bytearray(path.read_bytes())
+    central = data.index(b'PK\x01\x02')
+    struct.pack_into('<L', data, central + 16, zlib.crc32(b'{}'))
+    struct.pack_into('<L', data, central + 24, 2)
+    path.write_bytes(data)
+    with pytest.raises(ValueError):
+        bundle.read_bundle(path)
+
+
+@pytest.mark.parametrize('compression', [zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED])
+@pytest.mark.parametrize('payload', [b'', b'{}', b'1234'])
+def test_real_zip_empty_and_exact_budget_payloads_remain_readable(tmp_path, monkeypatch, compression, payload):
+    limits(monkeypatch, max_member_bytes=4, max_total_bytes=4)
+    path = tmp_path / 'boundary.lesson'
+    with zipfile.ZipFile(path, 'w', compression=compression) as zf:
+        zf.writestr('raw/events.jsonl', payload)
+    assert bundle.read_bundle(path).events_jsonl.encode() == payload
+
+
+@pytest.mark.parametrize('compression', [zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED])
+def test_real_zip_false_high_size_is_rejected(tmp_path, monkeypatch, compression):
+    limits(monkeypatch, max_member_bytes=4)
+    path = tmp_path / 'high-size.lesson'
+    with zipfile.ZipFile(path, 'w', compression=compression) as zf:
+        zf.writestr('raw/events.jsonl', b'{}')
+    data = bytearray(path.read_bytes())
+    struct.pack_into('<L', data, data.index(b'PK\x01\x02') + 24, 3)
+    path.write_bytes(data)
+    with pytest.raises(ValueError, match='member size mismatch'):
+        bundle.read_bundle(path)
+
+
+@pytest.mark.parametrize('compression', [zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED])
+def test_actual_size_check_does_not_depend_on_crc_difference(tmp_path, monkeypatch, compression):
+    limits(monkeypatch, max_member_bytes=16)
+    # CRC of four NULs is the standard residue; appending its little-endian
+    # CRC keeps that residue. Both prefix and complete payload pass the CRC.
+    prefix = b'\x00' * 4
+    payload = prefix + struct.pack('<L', zlib.crc32(prefix))
+    assert zlib.crc32(payload) == zlib.crc32(prefix)
+    path = tmp_path / 'same-crc.lesson'
+    with zipfile.ZipFile(path, 'w', compression=compression) as zf:
+        zf.writestr('raw/events.jsonl', payload)
+    data = bytearray(path.read_bytes())
+    struct.pack_into('<L', data, data.index(b'PK\x01\x02') + 24, len(prefix))
+    path.write_bytes(data)
+    with pytest.raises(ValueError, match='member size mismatch'):
         bundle.read_bundle(path)

@@ -55,7 +55,7 @@ The ingest body retains main's existing persistence path with a manifest
 lessonId check before store effects (`bundle.py:439`). Legacy journal order
 remains authoritative; v2 add/update/delete normalizes into that same body.
 
-`bundle_resources.py:15` defines positive, immutable budgets: archive 256 MiB,
+`bundle_resources.py:16` defines positive, immutable budgets: archive 256 MiB,
 central directory 2 MiB, 1024 members including directories, each payload
 64 MiB, each retained text 16 MiB, manifest 1 MiB, expanded total 256 MiB.
 Single-disk stored/deflated ZIP is supported. ZIP64, split archives and
@@ -63,7 +63,7 @@ encryption are refused. Python ZipFile also refuses ambiguous EOCD signatures
 in comments; ordinary comments are accepted. No second ZIP implementation is
 introduced to widen that compatibility.
 
-`bundle_resources.py:41` checks archive/EOCD metadata before ZipFile allocates
+`bundle_resources.py:42` checks archive/EOCD metadata before ZipFile allocates
 the central directory. `bundle_resources.py:81` preflights every member, then
 reads/hashes each payload once in chunks of at most 64 KiB, bounding actual
 expanded bytes independently of metadata. Only manifest/journal/session and
@@ -84,3 +84,13 @@ then green, plus a strict v2 version regression RED→GREEN. Early PDF/ZIP64
 counterprobes 4 RED→GREEN. Full final engine 2096 PASS/7 SKIP (exit 0), with
 API keys removed from the subprocess. Skips: four live LLM, two absent canonical
 repo drift checks, one real corpus absent. No LLM calls or real lesson data.
+
+Independent review rejected the first candidate f9b5722: fallback to an earlier
+EOCD could preflight a smaller directory than ZipFile selected (P1); ZipExtFile
+could truncate/hash an undersized metadata prefix (P2). Both now have real ZIP
+regressions seen RED. Only the last EOCD signature is accepted, with an exact
+EOF/comment check. A copy of ZipInfo uses a budget+1 read view while preserving
+the original size/CRC/offset for verification, preventing a false low size from
+silently truncating input. Stored/deflated payloads, empty/exact-cap cases,
+false-high size and identical prefix/full CRC are exercised. Full revised
+engine: 2109 PASS/7 SKIP, exit 0; no old failure or earlier count is erased.

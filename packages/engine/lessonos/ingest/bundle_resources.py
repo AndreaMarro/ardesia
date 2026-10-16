@@ -4,6 +4,7 @@ Only the four requested text members are retained. Every payload is counted
 and hashed in chunks, including opaque board, audio and PDF artifacts.
 """
 from dataclasses import dataclass
+from copy import copy
 import hashlib
 import struct
 import zipfile
@@ -51,16 +52,15 @@ def _check_directory(archive, limits):
         raise ValueError('bundle archive byte budget exceeded')
     archive.seek(max(0, size - 65_557))
     tail = archive.read(65_557)
-    end = len(tail)
-    while True:
-        pos = tail.rfind(b'PK\x05\x06', 0, end)
-        if pos < 0:
-            raise ValueError('bundle ZIP end record missing or malformed')
-        if pos + 22 <= len(tail):
-            record = struct.unpack_from('<4s4H2LH', tail, pos)
-            if pos + 22 + record[-1] == len(tail):
-                break
-        end = pos
+    # Match ZipFile's selection: only the LAST signature can be authoritative.
+    # Falling back to an earlier EOF-shaped record can preflight one directory
+    # while ZipFile later allocates another, larger one.
+    pos = tail.rfind(b'PK\x05\x06')
+    if pos < 0 or pos + 22 > len(tail):
+        raise ValueError('bundle ZIP malformed: end record missing or ambiguous')
+    record = struct.unpack_from('<4s4H2LH', tail, pos)
+    if pos + 22 + record[-1] != len(tail):
+        raise ValueError('bundle ZIP malformed: end record/comment length differs')
     _, disk, directory_disk, disk_count, count, directory_size, offset, _ = record
     eocd_offset = size - len(tail) + pos
     archive.seek(max(0, eocd_offset - 20))
@@ -121,7 +121,13 @@ def read_payloads(zip_path, safe_member, text_members, limits):
                 for name, (info, cap) in files.items():
                     size, digest, prefix = 0, hashlib.sha256(), b''
                     retained = bytearray() if name in text_members else None
-                    with zf.open(info) as member:
+                    # ZipExtFile truncates to ZipInfo.file_size. Give its read
+                    # view the budget + sentinel, so a false low size cannot
+                    # silently hash/accept only the prefix. Preserve the real
+                    # central entry for the final size comparison and CRC.
+                    read_info = copy(info)
+                    read_info.file_size = cap + 1
+                    with zf.open(read_info) as member:
                         while True:
                             chunk = member.read(min(limits.chunk_bytes, cap - size + 1,
                                                     limits.max_total_bytes - actual_total + 1))
