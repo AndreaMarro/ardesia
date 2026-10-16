@@ -143,3 +143,5 @@ Append-only. 1 riga per modifica.
 - 2026-10-16: raw-ingestion.md records bounded legacy/modern `.lesson` reader recovery, resource budgets, source archive, semantic/persistence limits and full-engine evidence; code at lessonos/ingest/bundle_resources.py:15, bundle.py:130.
 
 - 2026-10-16: recorded independent ZIP review P1/P2 and real-archive regressions/fixes in raw-ingestion.md; full engine2109PASS7SKIP.
+
+- 2026-10-16: raw-ingestion.md records dependent atomic source/capsule candidate: staging, short CAS publication, SQLite11 trigger tokens/erasure, real file/process tests and remaining derived-consumer boundary.

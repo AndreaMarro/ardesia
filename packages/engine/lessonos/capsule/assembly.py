@@ -3,7 +3,8 @@
 Final step of the M2 pipeline: combines the topic timeline (from segmentation)
 with the extracted content (concepts, exercises, questions, homework) into a
 single grounded Lesson Capsule. All citations have already been validated by
-the sub-steps; the assembler only composes.
+the sub-steps against the supplied segment source. It may be a stored snapshot
+or an immutable preparation; authoritative publication is the caller's job.
 
 Optional persistence: pass ``save=True`` to ``assemble_lesson_capsule`` and
 the capsule will be saved in the store as a serialised JSON blob (M2-task5).
@@ -18,7 +19,7 @@ from dataclasses import asdict, dataclass
 from lessonos.capsule.extraction import LessonContent, extract_lesson_content
 from lessonos.capsule.segmentation import TopicSpan, segment_lesson_topics
 from lessonos.llm.router import Router
-from lessonos.store.base import Store
+from lessonos.store.base import Store, CapsuleSink
 
 
 @dataclass(frozen=True)
@@ -27,7 +28,8 @@ class LessonCapsule:
 
     The output of the M2 pipeline: a grounded, citation-backed representation
     of a single lesson. Every ``seg_id`` inside has been validated against
-    persisted segments by the segmentation and extraction steps.
+    the supplied source by the segmentation and extraction steps. Prepared
+    source and capsule must be published together before durable use.
     """
 
     lesson_id: str
@@ -37,7 +39,7 @@ class LessonCapsule:
 
 
 def assemble_lesson_capsule(
-    store: Store,
+    store: CapsuleSink,
     lesson_id: str,
     router: Router,
     *,

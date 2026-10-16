@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 from lessonos.capsule.extraction import _window
 from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
-from lessonos.store.base import Store
+from lessonos.store.base import SegmentReader
 
 
 @dataclass(frozen=True)
@@ -50,7 +50,7 @@ def build_segmentation_prompt(segments) -> str:
 
 
 def segment_lesson_topics(
-    store: Store,
+    store: SegmentReader,
     lesson_id: str,
     router: Router,
     *,

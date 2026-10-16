@@ -14,9 +14,9 @@ import sqlite3
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
 from lessonos.models.crm import ConsentEvent, Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
-from lessonos.store.base import Store
+from lessonos.store.base import Store, StoredLessonRevision, LessonRevisionConflict
 
-SCHEMA_VERSION = 10
+SCHEMA_VERSION = 11
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -132,12 +132,46 @@ CREATE TABLE IF NOT EXISTS consent_events (
 CREATE INDEX IF NOT EXISTS idx_consent_events_rel
     ON consent_events(teacher_id, class_id);
 """
+
+# A monotonic token survives erasure in SQLite's anonymous sqlite_sequence;
+# the per-lesson row itself is erased. Triggers cover legacy mutations too.
+_SCHEMA += """
+CREATE TABLE IF NOT EXISTS lesson_revisions (
+    revision INTEGER PRIMARY KEY AUTOINCREMENT,
+    lesson_id TEXT NOT NULL UNIQUE
+);
+"""
+for _table in ('segments', 'capsules', 'lessons'):
+    for _action, _references in (
+        ('INSERT', ('NEW',)), ('UPDATE', ('OLD', 'NEW')), ('DELETE', ('OLD',)),
+    ):
+        _touch = ''
+        if _table == 'segments' and _action == 'INSERT':
+            # INSERT OR REPLACE may evict a global seg_id from another lesson;
+            # before insertion it is still available to invalidate its token.
+            _touch += """
+            INSERT OR REPLACE INTO lesson_revisions (lesson_id)
+            SELECT lesson_id FROM segments
+            WHERE seg_id = NEW.seg_id AND lesson_id <> NEW.lesson_id;
+            """
+        for _reference in _references:
+            _touch += f"INSERT OR REPLACE INTO lesson_revisions (lesson_id) VALUES ({_reference}.lesson_id);"
+        _SCHEMA += f"""
+        CREATE TRIGGER IF NOT EXISTS revision_{_table}_{_action.lower()}
+        BEFORE {_action} ON {_table} BEGIN {_touch} END;
+        """
+
+
 class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
         self._conn = sqlite3.connect(db_path)
         self._conn.row_factory = sqlite3.Row
         self._in_transaction: bool = False
-        self._migrate()
+        try:
+            self._migrate()
+        except BaseException:
+            self._conn.close()
+            raise
 
     def _migrate(self) -> None:
         current = self._conn.execute("PRAGMA user_version").fetchone()[0]
@@ -161,9 +195,19 @@ class SQLiteStore(Store):
             # CREATE … IF NOT EXISTS — additive, no data migration.
             # Migration v9→v10 (consent-state): _SCHEMA adds the append-only
             # consent_events table + index — additive, no data migration.
-            self._conn.executescript(_SCHEMA)
-            self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
-            self._conn.commit()
+            # v10→v11: metadata-only backfill, preserving source/capsule rows.
+            # Schema, triggers, tokens and version are installed atomically.
+            try:
+                self._conn.executescript(
+                    'BEGIN IMMEDIATE;\n' + _SCHEMA + '''
+                    INSERT OR IGNORE INTO lesson_revisions (lesson_id)
+                    SELECT lesson_id FROM lessons UNION SELECT lesson_id FROM segments
+                    UNION SELECT lesson_id FROM capsules;
+                    ''' + f'PRAGMA user_version = {SCHEMA_VERSION};\nCOMMIT;'
+                )
+            except BaseException:
+                self._conn.rollback()
+                raise
 
     # --- Path -----------------------------------------------------------
     def save_path(self, path: Path) -> None:
@@ -181,7 +225,8 @@ class SQLiteStore(Store):
                 path.teacher_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_path(self, path_id: str) -> Path | None:
         row = self._conn.execute(
@@ -263,7 +308,8 @@ class SQLiteStore(Store):
                 lesson.source_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_lesson(self, lesson_id: str) -> Lesson | None:
         row = self._conn.execute(
@@ -295,7 +341,8 @@ class SQLiteStore(Store):
             "VALUES (?, ?, ?)",
             (source.source_id, source.title, source.kind),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_source(self, source_id: str) -> Source | None:
         row = self._conn.execute(
@@ -321,7 +368,8 @@ class SQLiteStore(Store):
                 segment.text,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_segment(self, seg_id: str) -> Segment | None:
         row = self._conn.execute(
@@ -347,7 +395,8 @@ class SQLiteStore(Store):
         cur = self._conn.execute(
             "DELETE FROM segments WHERE lesson_id = ?", (lesson_id,)
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
         return cur.rowcount
 
     @staticmethod
@@ -374,7 +423,8 @@ class SQLiteStore(Store):
                 moment.seg_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_moment(self, moment_id: str) -> Moment | None:
         row = self._conn.execute(
@@ -406,7 +456,8 @@ class SQLiteStore(Store):
             "VALUES (?, ?)",
             (lesson_id, capsule_data),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_capsule(self, lesson_id: str) -> str | None:
         row = self._conn.execute(
@@ -466,6 +517,8 @@ class SQLiteStore(Store):
                         (json.dumps(remaining), row["path_id"]),
                     )
                     total += 1
+            self._conn.execute("INSERT OR REPLACE INTO lesson_revisions (lesson_id) VALUES (?)", (lesson_id,))
+            self._conn.execute("DELETE FROM lesson_revisions WHERE lesson_id = ?", (lesson_id,))
             self.commit_transaction()
         except BaseException:
             self.rollback_transaction()
@@ -494,7 +547,8 @@ class SQLiteStore(Store):
                 entry.label,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_ledger_entries(self) -> tuple[CostLedgerEntry, ...]:
         rows = self._conn.execute(
@@ -892,6 +946,82 @@ class SQLiteStore(Store):
             at=row["at"],
             expires_at=row["expires_at"],
         )
+
+    # --- Consistent lesson source/capsule publication ------------------------
+
+    def _lesson_revision_token(self, lesson_id: str) -> int:
+        # Absence is versioned too: erasure removes its identifying row but
+        # advances sqlite_sequence, so an old preparation cannot resurrect it.
+        row = self._conn.execute(
+            "SELECT COALESCE("
+            "(SELECT revision FROM lesson_revisions WHERE lesson_id = ?),"
+            "-1 - COALESCE((SELECT seq FROM sqlite_sequence WHERE name = 'lesson_revisions'), 0))",
+            (lesson_id,),
+        ).fetchone()
+        return row[0]
+
+    def read_lesson_revision(self, lesson_id: str) -> StoredLessonRevision:
+        if not isinstance(lesson_id, str) or not lesson_id:
+            raise ValueError('lesson_id must be a nonempty string')
+        owns_read = not self._conn.in_transaction
+        if owns_read:
+            self._conn.execute('BEGIN')
+        try:
+            state = StoredLessonRevision(
+                lesson_id, self._lesson_revision_token(lesson_id),
+                self.segments_for_lesson(lesson_id), self.get_capsule(lesson_id),
+            )
+            if owns_read:
+                self._conn.commit()
+            return state
+        except BaseException:
+            if owns_read:
+                self._conn.rollback()
+            raise
+
+    def publish_lesson_revision(
+        self, expected: StoredLessonRevision, segments: tuple[Segment, ...], capsule_data: str,
+    ) -> StoredLessonRevision:
+        if (not isinstance(expected, StoredLessonRevision) or
+            not isinstance(expected.lesson_id, str) or not expected.lesson_id or
+            type(expected.revision) is not int or expected.revision == 0):
+            raise ValueError('expected must be a stored lesson revision')
+        if type(segments) is not tuple or not segments:
+            raise ValueError('publication requires a nonempty immutable segment tuple')
+        if not isinstance(capsule_data, str) or not capsule_data:
+            raise ValueError('publication requires serialized capsule data')
+        lesson_id = expected.lesson_id
+        seen = set()
+        for segment in segments:
+            if (not isinstance(segment, Segment) or segment.lesson_id != lesson_id or
+                not isinstance(segment.seg_id, str) or not segment.seg_id or segment.seg_id in seen):
+                raise ValueError('publication segment identity/scope mismatch')
+            seen.add(segment.seg_id)
+        if self._in_transaction or self._conn.in_transaction:
+            raise RuntimeError('lesson publication owns a short transaction; nested publication refused')
+        self._conn.execute('BEGIN IMMEDIATE')
+        self._in_transaction = True
+        try:
+            if self._lesson_revision_token(lesson_id) != expected.revision:
+                raise LessonRevisionConflict('lesson changed during preparation; rebuild before publishing')
+            for segment in segments:
+                foreign = self._conn.execute(
+                    'SELECT lesson_id FROM segments WHERE seg_id = ? AND lesson_id <> ?',
+                    (segment.seg_id, lesson_id),
+                ).fetchone()
+                if foreign is not None:
+                    raise ValueError('publication cannot overwrite a segment of another lesson')
+            self.delete_segments_for_lesson(lesson_id)
+            for segment in segments:
+                self.save_segment(segment)
+            self.save_capsule(lesson_id, capsule_data)
+            published = self.read_lesson_revision(lesson_id)
+            self.commit_transaction()
+            return published
+        except BaseException:
+            if self._in_transaction:
+                self.rollback_transaction()
+            raise
 
     # --- Transaction support ------------------------------------------------
 

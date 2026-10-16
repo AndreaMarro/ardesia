@@ -8,10 +8,33 @@ callers. This base file fixes the contract; concrete backends live alongside.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import Protocol
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
 from lessonos.models.crm import ConsentEvent, Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
+
+
+class SegmentReader(Protocol):
+    def segments_for_lesson(self, lesson_id: str) -> tuple[Segment, ...]: ...
+
+
+class CapsuleSink(SegmentReader, Protocol):
+    def save_capsule(self, lesson_id: str, capsule_data: str) -> None: ...
+
+
+@dataclass(frozen=True)
+class StoredLessonRevision:
+    """One consistent storage observation; capsule JSON stays opaque here."""
+    lesson_id: str
+    revision: int
+    segments: tuple[Segment, ...]
+    capsule_data: str | None
+
+
+class LessonRevisionConflict(RuntimeError):
+    """Preparation used an older source revision; no publication occurred."""
 
 
 class Store(ABC):
@@ -319,3 +342,17 @@ class Store(ABC):
     @abstractmethod
     def rollback_transaction(self) -> None:
         """Roll back the current transaction, discarding all changes since begin."""
+
+    def read_lesson_revision(self, lesson_id: str) -> StoredLessonRevision:
+        """Read revision + segments + capsule from ONE storage snapshot."""
+        raise NotImplementedError('consistent lesson revisions unavailable')
+
+    def publish_lesson_revision(
+        self, expected: StoredLessonRevision, segments: tuple[Segment, ...], capsule_data: str,
+    ) -> StoredLessonRevision:
+        """Atomically replace the source/capsule pair if expected still matches.
+
+        Caller prepares/validates capsule semantics before entering this
+        short publication. Unsupported backends fail before any write.
+        """
+        raise NotImplementedError('atomic lesson publication unavailable')

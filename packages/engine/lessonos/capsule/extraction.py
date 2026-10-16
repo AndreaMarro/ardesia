@@ -16,7 +16,7 @@ from difflib import SequenceMatcher
 from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
 from lessonos.models import CONCEPT_STATUS, validate_enum
-from lessonos.store.base import Store
+from lessonos.store.base import SegmentReader
 
 
 # Negation guard shared by tier 2 & 3
@@ -244,7 +244,7 @@ def build_extraction_prompt(segments) -> str:
 
 
 def extract_lesson_content(
-    store: Store,
+    store: SegmentReader,
     lesson_id: str,
     router: Router,
     *,

@@ -46,7 +46,7 @@ ZERO-LLM — purely rule-based, no model calls.
 - M7 order: `COORDINATION.md:14` (Claude-SAYS 2026-06-08)
 - Fixtures README: `fixtures/raw_transcript/README.md`
 
-## Studio `.lesson` reader — bounded recovery, 2026-10-16
+## Studio `.lesson` reader — bounded recovery, 2026-10-16 (candidate b9bff962)
 
 `lessonos/ingest/bundle.py:130` accepts legacy and manifest bundleVersion 1,
 schemas 1/2/3. This selectively recovers reader/journal contracts from archive
@@ -94,3 +94,42 @@ the original size/CRC/offset for verification, preventing a false low size from
 silently truncating input. Stored/deflated payloads, empty/exact-cap cases,
 false-high size and identical prefix/full CRC are exercised. Full revised
 engine: 2109 PASS/7 SKIP, exit 0; no old failure or earlier count is erased.
+
+## Atomic source/capsule publication — dependent local candidate
+
+Reader-specific limits above describe b9bff962/PR262. This local unit changes
+its legacy persistence path, without merging or expanding the reader PR.
+
+`lessonos/ingest/bundle.py:439` holds an immutable candidate segment tuple and
+captures accepted capsule JSON in memory. `bundle.py:459` uses the canonical
+assembler and its unchanged grounding threshold before publication. Router
+work holds no authoritative DB transaction. save=False changes neither source
+nor capsule. The narrative provider path remains pre-existing, not ZERO-LLM.
+
+`store/base.py:28` exposes StoredLessonRevision: lesson identity, opaque revision
+token, segments and capsule JSON. This is a storage observation, not a new
+lesson IR. The narrow SegmentReader/CapsuleSink protocols let the existing
+assembler work against either stored or prepared source without a fake DB.
+
+`store/sqlite.py:963` reads the pair from one SQLite snapshot; callers making
+separate legacy reads can naturally straddle a commit. `sqlite.py:982` owns a
+short BEGIN IMMEDIATE transaction: scope/duplicate/foreign-ID checks, revision
+CAS, delete/insert source, save capsule, commit. A changed lesson raises
+LessonRevisionConflict before writes. Any publication failure rolls back.
+
+Schema11 adds one AUTOINCREMENT token table and source/capsule/lesson triggers,
+covering old mutators and ABA changes. Metadata-only migration preserves old
+rows and installs/backfills atomically. Purge removes the lesson-ID token row
+while advancing the anonymous sqlite_sequence, so a staged old/absent revision
+cannot resurrect erased content. Missing revisions use a conservative global
+absence token: unrelated updates can invalidate preparation of a NEW/erased
+lesson; existing per-lesson tokens do not suffer that conflict. No ID tombstone.
+
+Evidence:18 authentic RED→GREEN; final full engine2149PASS7SKIP, exit0.40 new
+cases use real file DBs, two connections, separate spawned processes exiting
+after delete/capsule/commit, WAL commit between reader SELECTs, competing and
+legacy ABA writers, erasure/recreation, scope/grounding failures and migration.
+Source/capsule are either old+old or new+new through the new snapshot API.
+Graph, summary and material projections are separate downstream work; this
+unit does not claim those consumers or all existing pipelines use revisions.
+No human pilot or real LLM calls, and no promotion without normal gates.

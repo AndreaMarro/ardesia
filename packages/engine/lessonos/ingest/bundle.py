@@ -436,6 +436,26 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
     return segments
 
 
+class _CapsulePreparation:
+    """One candidate source, with capsule output captured only in memory.
+
+    The canonical assembler still runs its own grounding acceptance gate.
+    It cannot purge/save authoritative segments through this narrow sink.
+    """
+    def __init__(self, lesson_id: str, segments: tuple[Segment, ...]):
+        self.lesson_id = lesson_id
+        self.segments = segments
+        self.capsule_data: str | None = None
+
+    def segments_for_lesson(self, lesson_id: str) -> tuple[Segment, ...]:
+        return self.segments if lesson_id == self.lesson_id else ()
+
+    def save_capsule(self, lesson_id: str, capsule_data: str) -> None:
+        if lesson_id != self.lesson_id:
+            raise ValueError('prepared capsule belongs to another lesson')
+        self.capsule_data = capsule_data
+
+
 def ingest_bundle(
     zip_path: str,
     store,
@@ -448,9 +468,11 @@ def ingest_bundle(
     save: bool = True,
 ):
     """Ingest a ``.lesson`` bundle end-to-end: read+validate → text Segments →
-    persist → assemble capsule (windowed, grounded) → return ``(segments,
-    capsule)``. Graph + summary are composed by the caller (same shape as
-    ``bin/run_lesson_full.sh``), reusing the unchanged pipeline.
+    prepare capsule (windowed, grounded) → atomically publish source/capsule
+    if the observed lesson revision still matches → return ``(segments,
+    capsule)``. Preparation holds no authoritative DB transaction. Graph +
+    summary remain downstream derived steps. ``save=False`` is a true dry
+    run: neither source segments nor capsule are changed.
 
     Raises ``ValueError`` on an unsafe/GDPR-invalid bundle, or when the board
     carried no text (nothing to ingest).
@@ -466,14 +488,14 @@ def ingest_bundle(
             f"bundle {zip_path!r} yielded no whiteboard text segments "
             f"(no text written on the board)"
         )
-    # Bug-hunt #6: purge PRIMA del re-ingest, DENTRO la funzione (il runner
-    # T8 lo dimenticava): un re-export con meno elementi lasciava righe stale
-    # e shift posizionale dei seg_id (classe B3).
-    store.delete_segments_for_lesson(lesson_id)
-    for seg in segments:
-        store.save_segment(seg)
+    expected = store.read_lesson_revision(lesson_id) if save else None
+    preparation = _CapsulePreparation(lesson_id, tuple(segments))
     capsule = assemble_lesson_capsule(
-        store, lesson_id, router,
-        provider=provider, model=model, defensive=defensive, save=save,
+        preparation, lesson_id, router,
+        provider=provider, model=model, defensive=defensive, save=True,
     )
+    if preparation.capsule_data is None:
+        raise RuntimeError('capsule preparation produced no accepted payload')
+    if save:
+        store.publish_lesson_revision(expected, preparation.segments, preparation.capsule_data)
     return segments, capsule
