@@ -17,6 +17,7 @@ import type {
   EventLogStore,
   LessonOsEvent,
 } from "./eventlog"
+import { adaptLegacyLessonOsV1Append, assertLegacyLessonOsEvent, assertLessonOsEnvelopePayload, toLegacyLessonOsEvent } from "./eventlog"
 import {
   IndexedDbEventLog,
   createEventLogStore,
@@ -24,6 +25,8 @@ import {
 } from "./indexedDbEventLog"
 import {
   createEventEnvelopeV2,
+  assertEventEnvelopeV2,
+  assertFounderBetaAuthority,
   studioProducerIdentity,
   type EventActor,
   type EventEvidence,
@@ -113,7 +116,8 @@ export interface LessonOsSessionHandle extends LessonOsRuntime {
     payload: LessonPayload<K>,
     meta: FactMeta,
   ): Promise<AppendEnvelopeResult>
-  close(): Promise<AppendEnvelopeResult>
+  /** beforeEnd is part of the sealed revision; an aborted attempt cannot publish end later. */
+  close(options?: Readonly<{ beforeEnd?: () => Promise<void>; signal?: AbortSignal }>): Promise<AppendEnvelopeResult>
 }
 
 export type LessonOsSessionOpener = (
@@ -300,9 +304,73 @@ export async function openLessonOsSession(
   let ended: AnyEventEnvelopeV2 | null = null
   let endedResult: AppendEnvelopeResult | null = null
   let closeAttempt: Promise<AppendEnvelopeResult> | null = null
+  let rejectedAfterCut: Error | null = null
+  type AcceptedWrite = { envelope: AnyEventEnvelopeV2; pending: Promise<AppendEnvelopeResult> | null; failed: boolean }
+  const accepted = new Set<AcceptedWrite>()
+  const backend = runtime.store
+
+  const requireAccepting = (): void => {
+    if (closing || closed) {
+      const error = new Error("LessonOS session: chiusura in corso/closed; nuovo evento rifiutato")
+      if (!closed) rejectedAfterCut = error
+      throw error
+    }
+  }
+  const attemptWrite = (entry: AcceptedWrite): Promise<AppendEnvelopeResult> => {
+    entry.failed = false
+    const pending = Promise.resolve().then(() => backend.appendEnvelope(entry.envelope))
+    entry.pending = pending
+    // Keep failures for the next deliberate close/retry, including a lost ACK.
+    void pending.then(() => { accepted.delete(entry) }, () => { entry.failed = true })
+    return pending
+  }
+  const operations = {
+    async appendEnvelope(envelope: AnyEventEnvelopeV2): Promise<AppendEnvelopeResult> {
+      // Only this exact private envelope may cross the sealed boundary.
+      if (closing && envelope === ended) return backend.appendEnvelope(envelope)
+      requireAccepting()
+      assertEventEnvelopeV2(envelope)
+      assertFounderBetaAuthority(envelope)
+      assertLessonOsEnvelopePayload(envelope.kind, envelope.payload)
+      if (!FACTUAL_KINDS.has(envelope.kind as LessonOsFactKind)) throw new Error("LessonOS session: lifecycle/non-factual kind rifiutato")
+      const snapshot = structuredClone(envelope)
+      if (snapshot.lessonId !== lessonId || snapshot.sessionId !== sessionId ||
+          snapshot.actor.type !== actor.type || snapshot.actor.id !== actor.id ||
+          snapshot.producer.id !== producer.id || snapshot.producer.version !== producer.version || snapshot.producer.commitSha !== producer.commitSha) {
+        throw new Error("LessonOS session: contesto/identità estranea al writer")
+      }
+      const entry: AcceptedWrite = { envelope: snapshot, pending: null, failed: false }
+      accepted.add(entry)
+      return attemptWrite(entry)
+    },
+    async append(event: LessonOsEvent) {
+      requireAccepting()
+      assertLegacyLessonOsEvent(event)
+      if (!FACTUAL_KINDS.has(event.kind as LessonOsFactKind)) throw new Error("LessonOS session: lifecycle/non-factual kind rifiutato")
+      const envelope = adaptLegacyLessonOsV1Append(event, {
+        lessonId, sessionId, actor, producer,
+        eventId: newEventId(), idempotencyKey: null,
+      })
+      const result = await store.appendEnvelope(envelope)
+      const projected = toLegacyLessonOsEvent(result.event)
+      if (!projected) throw new Error("LessonOS session: evento accettato non proiettabile")
+      return projected
+    },
+  }
+  // A lifecycle facade over the existing backend, not another event store.
+  // Optional snapshot/recovery methods retain their native receiver/capabilities.
+  const store = new Proxy(operations as EnvelopeEventLogStore, {
+    get(target, key) {
+      if (Reflect.has(target, key)) return Reflect.get(target, key)
+      const value = Reflect.get(backend, key)
+      return typeof value === "function" ? value.bind(backend) : value
+    },
+    has(target, key) { return Reflect.has(target, key) || Reflect.has(backend, key) },
+  })
 
   const handle: LessonOsSessionHandle = {
     ...runtime,
+    store,
     identity,
     producer,
     async appendFact<K extends LessonOsFactKind>(
@@ -310,7 +378,7 @@ export async function openLessonOsSession(
       payload: LessonPayload<K>,
       meta: FactMeta,
     ): Promise<AppendEnvelopeResult> {
-      if (closing || closed) throw new Error("LessonOS session: closing/closed; appendFact rifiutato")
+      requireAccepting()
       if (!FACTUAL_KINDS.has(kind)) {
         throw new Error(`LessonOS session: kind lifecycle/non-factual rifiutato (${String(kind)})`)
       }
@@ -329,24 +397,45 @@ export async function openLessonOsSession(
         },
         { eventId: newEventId, now: () => new Date(now()) },
       )
-      return runtime.store.appendEnvelope(envelope)
+      return store.appendEnvelope(envelope)
     },
-    close(): Promise<AppendEnvelopeResult> {
-      closing = true
+    close(options = {}): Promise<AppendEnvelopeResult> {
       if (closed && endedResult) return Promise.resolve(endedResult)
       if (closeAttempt) return closeAttempt
-
+      if (options.signal?.aborted) return Promise.reject(options.signal.reason)
+      // This synchronous cut includes all previously accepted backend writes.
+      closing = true
+      rejectedAfterCut = null
+      const writesAtCut = [...accepted].map(entry => entry.failed ? attemptWrite(entry) : (entry.pending ?? attemptWrite(entry)))
+      const wait = async <T,>(work: Promise<T>): Promise<T> => {
+        const signal = options.signal
+        if (!signal) return work
+        if (signal.aborted) { void work.catch(() => {}); throw signal.reason }
+        let abort!: () => void
+        const aborted = new Promise<never>((_resolve, reject) => {
+          abort = () => reject(signal.reason)
+          signal.addEventListener("abort", abort, { once: true })
+        })
+        try { return await Promise.race([work, aborted]) }
+        finally { signal.removeEventListener("abort", abort) }
+      }
       const attempt = (async () => {
+        await wait(Promise.all(writesAtCut))
+        if (options.beforeEnd) await wait(options.beforeEnd())
+        options.signal?.throwIfAborted()
+        if (rejectedAfterCut) throw rejectedAfterCut
         ended ??= lifecycleEnvelope("lesson.ended", "ended")
-        endedResult ??= await runtime.store.appendEnvelope(ended!)
-        await closePhysicalStore(runtime.store)
+        endedResult ??= await wait(store.appendEnvelope(ended!))
+        await closePhysicalStore(backend)
         closed = true
         return endedResult
       })()
       closeAttempt = attempt.then(
-        (result) => result,
-        (error) => {
+        result => result,
+        error => {
           closeAttempt = null
+          // Once end may have committed, only retrying the identical end is safe.
+          if (ended === null) closing = false
           throw error
         },
       )

@@ -18,6 +18,7 @@ import {
   type LessonOsSessionHandle,
   type LessonOsSessionOpener,
 } from "./lessonos/bootstrap"
+import type { EnvelopeEventLogStore } from "./lessonos/eventlog"
 import { deriveStorageAdvice, ensurePersistentStorage } from "./lessonos/storagePreflight"
 import { appendJournalBridgeTail } from "./lessonos/journalBridgeWriter"
 import { defaultManualRegistry } from "./lessonos/manualRegistry"
@@ -122,6 +123,8 @@ export default function Room({
     ? lifecycleState.error
     : null
   const [storageError, setStorageError] = useState<string | null>(null)
+  const navigationClosing = useRef(false)
+  const [closingForNavigation, setClosingForNavigation] = useState(false)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
@@ -157,6 +160,8 @@ export default function Room({
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
   const lessonOsRef = useRef<LessonOsSessionHandle | null>(null)
+  const renderedStore = lessonOsRef.current?.store
+  const pendingRoomOperations = useRef(0)
   // persist() va chiesto UNA volta, su chiara interazione utente (spec #35 §4.1)
   const persistRequestedRef = useRef(false)
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
@@ -198,6 +203,8 @@ export default function Room({
     // generation corrente. Il gate tokenizzato nasconde già il primo render B;
     // questo reset impedisce che un loadScene/loadMeta B nullo riesponga A.
     initialLoadDone.current = false
+    navigationClosing.current = false
+    setClosingForNavigation(false)
     if (saveTimer.current) {
       window.clearTimeout(saveTimer.current)
       saveTimer.current = null
@@ -298,13 +305,22 @@ export default function Room({
           }
         }
 
+        let journalFailure: unknown = null
         try {
           await ownedJournal?.flush()
         } catch (error) {
+          journalFailure = error
           console.error("Room journal flush failed before LessonOS close", error)
         }
         try {
-          await runtime?.close()
+          if (journalFailure !== null) {
+            // Drain accepted facts but do not certify an end with a failed journal.
+            try { await runtime?.close({ beforeEnd: async () => { throw journalFailure } }) }
+            finally {
+              const backend = runtime?.store as (EnvelopeEventLogStore & { close?: () => Promise<void> }) | undefined
+              await backend?.close?.()
+            }
+          } else await runtime?.close()
         } catch (error) {
           console.error(
             runtimeWasPending
@@ -455,7 +471,7 @@ export default function Room({
   // Persistenza via WorkspaceStore.
   // Aggiorna refs coi dati più recenti, poi debounce 700ms.
   function persist(elements: any, appState: any, files: any) {
-    if (!initialLoadDone.current) return
+    if (navigationClosing.current || !initialLoadDone.current) return
     latestElementsRef.current = elements
     latestAppStateRef.current = appState
     latestFilesRef.current = files
@@ -511,6 +527,7 @@ export default function Room({
 
   /** Handler composito: salva scena + registra eventi journal */
   function handleChange(elements: any, appState: any, files: any) {
+    if (navigationClosing.current || renderedStore !== lessonOsRef.current?.store) return
     // P0-C residuo: un duplicato dal canvas (copy/paste/Alt-drag) clona il
     // link → id ≠ embedId e il duplicato scriverebbe sullo stato dell'
     // ORIGINALE. La normalizzazione lo promuove a NUOVA istanza (idempotente:
@@ -552,85 +569,91 @@ export default function Room({
     }
   }
 
-  /** Naviga a un'altra lezione: flush persist + cambia hash + forza re-init */
-  async function navigateToLesson(targetRoom: string) {
-    if (targetRoom === room) {
-      setDrawerOpen(false)
-      return
+  /** One navigation owns the sealed session cut, including double clicks. */
+  function navigateAfterClose(action: () => void, label: string): Promise<void> {
+    if (_pendingSurfaceNavigation.current) return _pendingSurfaceNavigation.current
+    if (pendingRoomOperations.current > 0) {
+      setStorageError("Un'operazione è ancora in corso. Attendi il completamento e riprova.")
+      return Promise.resolve()
     }
-    // Entrambe le fonti live devono essere durevoli prima di cambiare identità.
-    try {
-      await flushLiveLesson()
-    } catch (error) {
-      setStorageError("Cambio lezione annullato: " + (error as Error).message)
-      return
-    }
-    // Cambia hash — guidare re-init via room state
-    location.hash = targetRoom
-    setDrawerOpen(false)
-    // Forza un re-mount pulito del componente
-    window.location.reload()
-  }
-
-  /**
-   * Cambia superficie soltanto dopo il flush scena+journal. La Promise viene
-   * serializzata: i click successivi durante il preflight non cambiano target.
-   */
-  function navigateToSurface(href: string): Promise<void> {
-    const pending = _pendingSurfaceNavigation.current
-    if (pending) return pending
-
+    const cancellation = new AbortController()
+    navigationClosing.current = true
+    setClosingForNavigation(true)
+    const runtime = lessonOsRef.current
     const run = (async () => {
       try {
-        // Un driver bloccato non può tenere il control plane in stallo infinito.
-        // La write sottostante continua; la route resta ferma e il mutex si libera.
-        await withSurfaceFlushTimeout(flushLiveLesson())
-        navigate(href)
+        await withSurfaceFlushTimeout(runtime
+          ? runtime.close({ beforeEnd: flushLiveLesson, signal: cancellation.signal }).then(() => {})
+          : flushLiveLesson())
+        action()
       } catch (error) {
-        setStorageError("Cambio superficie annullato: " + (error as Error).message)
+        cancellation.abort(error)
+        navigationClosing.current = false
+        setClosingForNavigation(false)
+        setStorageError(`${label}: ${(error as Error).message}`)
       }
     })()
     _pendingSurfaceNavigation.current = run
     void run.then(() => {
-      if (_pendingSurfaceNavigation.current === run) {
-        _pendingSurfaceNavigation.current = null
-      }
+      if (_pendingSurfaceNavigation.current === run) _pendingSurfaceNavigation.current = null
     })
     return run
   }
 
+  function navigateToLesson(targetRoom: string): Promise<void> {
+    if (targetRoom === room) {
+      setDrawerOpen(false)
+      return Promise.resolve()
+    }
+    return navigateAfterClose(() => {
+      location.hash = targetRoom
+      setDrawerOpen(false)
+      window.location.reload()
+    }, "Cambio lezione annullato")
+  }
+
+  function navigateToSurface(href: string): Promise<void> {
+    return navigateAfterClose(() => navigate(href), "Cambio superficie annullato")
+  }
+
   /** Avvia rename inline del nome lezione */
   function startRename() {
+    if (navigationClosing.current) return
     setEditingName(true)
     // Focus dopo render
     setTimeout(() => renameInputRef.current?.select(), 0)
   }
 
   /** Salva nome e esce da rename */
-  function saveRename(newName: string) {
+  async function saveRename(newName: string) {
+    if (navigationClosing.current) return
     const trimmed = newName.trim()
-    if (!trimmed) return // nome vuoto = non salvare
-    setLessonName(trimmed)
-    setEditingName(false)
-    actualStore.saveMeta(room, { v: 1, name: trimmed, createdAt: Date.now() }).catch((err) => {
-      setStorageError("Salvataggio nome fallito: " + (err as Error).message)
-    })
+    if (!trimmed) return
+    pendingRoomOperations.current++
+    try {
+      await actualStore.saveMeta(room, { v: 1, name: trimmed, createdAt: Date.now() })
+      if (renderedStore !== lessonOsRef.current?.store) return
+      setLessonName(trimmed)
+      setEditingName(false)
+    } catch (err) {
+      if (renderedStore === lessonOsRef.current?.store) setStorageError("Salvataggio nome fallito: " + (err as Error).message)
+    } finally { pendingRoomOperations.current-- }
   }
 
-  /** Collega una cartella FSA (showDirectoryPicker) su gesto esplicito utente */
+  /** Collega una cartella FSA su gesto esplicito; il cambio driver precede il cut. */
   const handleConnectFolder = useCallback(async () => {
+    if (navigationClosing.current) return
+    pendingRoomOperations.current++
     setStorageError(null)
     try {
       const ok = await actualStore.connectFolder()
-      if (ok) {
-        setStoreMode("fsa")
-      } else {
-        setStorageError("Impossibile aprire la cartella. Chrome? Consenti il permesso.")
-      }
+      if (renderedStore !== lessonOsRef.current?.store) return
+      if (ok) setStoreMode("fsa")
+      else setStorageError("Impossibile aprire la cartella. Chrome? Consenti il permesso.")
     } catch (err) {
-      setStorageError("Errore aprendo la cartella: " + (err as Error).message)
-    }
-  }, [actualStore])
+      if (renderedStore === lessonOsRef.current?.store) setStorageError("Errore aprendo la cartella: " + (err as Error).message)
+    } finally { pendingRoomOperations.current-- }
+  }, [actualStore, renderedStore])
 
   /**
    * Bridge Journal → LessonOS (spec #34): promuove le pdf.page.view riconosciute
@@ -685,20 +708,23 @@ export default function Room({
   }
 
   async function insertMath(latex: string) {
-    if (!apiRef.current || !latex.trim()) return
+    const api = apiRef.current
+    if (!api || !latex.trim() || navigationClosing.current) return
+    pendingRoomOperations.current++
     try {
       const { dataURL, width, height } = await latexToImage(latex)
+      if (!apiRef.current || renderedStore !== lessonOsRef.current?.store) return
       addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
       journalRef.current?.recordMathInsert(latex)
     } catch (err) {
-      setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
-    }
+      if (renderedStore === lessonOsRef.current?.store) setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
+    } finally { pendingRoomOperations.current-- }
   }
 
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ""
-    if (!file) return
+    if (!file || navigationClosing.current) return
     const lessonFile = isLessonFile(file)
     const supported = lessonFile || file.type === "application/pdf" || file.type.startsWith("image/")
     if (!supported) {
@@ -709,6 +735,7 @@ export default function Room({
       setStorageError("Lavagna non pronta: riprova tra un istante.")
       return
     }
+    pendingRoomOperations.current++
     try {
       if (lessonFile) {
         // P32 R10: passa l'event-log LessonOS così il bundle può ripristinare la
@@ -717,9 +744,10 @@ export default function Room({
         const importResult = await actualStore.importLessonBlobForRoom(
           file,
           room,
-          lessonOsRef.current?.store,
+          renderedStore,
         )
         const sceneJson = await actualStore.loadScene(room)
+        if (renderedStore !== lessonOsRef.current?.store || !apiRef.current) return
         if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
         const parsed = JSON.parse(sceneJson)
         if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
@@ -746,6 +774,7 @@ export default function Room({
         window.setTimeout(() => setSaved(false), 1200)
       } else if (file.type === "application/pdf") {
         const pages = await pdfToImages(file)
+        if (renderedStore !== lessonOsRef.current?.store || !apiRef.current) return
         let y = 100
         const totalPages = pages[0]?.totalPages ?? pages.length
         const items = pages.map((p, index) => {
@@ -762,13 +791,14 @@ export default function Room({
         addImages(items)
       } else if (file.type.startsWith("image/")) {
         const { dataURL, width, height } = await imageToDataURL(file)
+        if (renderedStore !== lessonOsRef.current?.store || !apiRef.current) return
         const w = Math.min(600, width)
         const h = Math.round(w * (height / width))
         addImages([{ dataURL, mimeType: file.type, width: w, height: h, x: 160, y: 120 }])
       }
     } catch (err) {
-      setStorageError("Caricamento non riuscito: " + (err as Error).message)
-    }
+      if (renderedStore === lessonOsRef.current?.store) setStorageError("Caricamento non riuscito: " + (err as Error).message)
+    } finally { pendingRoomOperations.current-- }
   }
 
   function insertSimulationPlugin(experimentId?: string) {
@@ -890,12 +920,13 @@ export default function Room({
                 <span className="st-led" aria-hidden />
                 solo in questo browser
                 {" — "}
-                <button onClick={handleConnectFolder} className="st-indicator-connect">
+                <button disabled={closingForNavigation} onClick={handleConnectFolder} className="st-indicator-connect">
                   scegli cartella…
                 </button>
               </span>
             )}
           {saved && <span className="st-quiet">salvato</span>}
+          {closingForNavigation && <span className="st-quiet" role="status">Chiusura della lezione in corso…</span>}
           {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
           {exportAdvice && (
             <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
@@ -920,10 +951,11 @@ export default function Room({
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
           )}
-          <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
-          <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
+          <button disabled={closingForNavigation} onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
+          <button disabled={closingForNavigation} onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
           <button
+            disabled={closingForNavigation}
             onClick={() => insertSimulationPlugin()}
             className="st-ghost"
             aria-label="Inserisci Simulation Plugin sulla lavagna"
@@ -995,7 +1027,7 @@ export default function Room({
         </div>
       )}
 
-      <div style={{ flex: 1, position: "relative" }}>
+      <div style={{ flex: 1, position: "relative" }} inert={closingForNavigation} aria-busy={closingForNavigation}>
         {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
@@ -1010,12 +1042,14 @@ export default function Room({
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
             aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
-            viewModeEnabled={studentView}
+            viewModeEnabled={studentView || closingForNavigation}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
+              if (renderedStore !== lessonOsRef.current?.store) return
               apiRef.current = eapi
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
+                  if (navigationClosing.current || renderedStore !== lessonOsRef.current?.store) return
                   journalRef.current?.recordPointerDown()
                   // Primo gesto reale sulla lavagna = momento giusto per persist()
                   // (spec #35 §4.1: chiara interazione utente; stand-in finché il
@@ -1039,6 +1073,7 @@ export default function Room({
               }
               if (typeof eapi.onPointerUp === "function") {
                 const unsubUp = eapi.onPointerUp(() => {
+                  if (navigationClosing.current || renderedStore !== lessonOsRef.current?.store) return
                   journalRef.current?.recordPointerUp()
                 })
                 unsubsRef.current.push(unsubUp)
@@ -1065,21 +1100,26 @@ export default function Room({
                   ? undefined
                   : {
                       persistEmbedState: (embedId, state, toolId) => {
+                        if (renderedStore !== lessonOsRef.current?.store || navigationClosing.current) return
                         if (apiRef.current) {
+                          pendingRoomOperations.current++
                           void persistRoomEmbedStateThroughToolHost(
                             apiRef.current,
                             actualStore,
                             embedId,
                             state,
                             toolId,
-                            setStorageError,
-                          )
+                            message => { if (renderedStore === lessonOsRef.current?.store) setStorageError(message) },
+                          ).finally(() => { pendingRoomOperations.current-- })
                         }
                       },
                       emitLessonEvent: (event) => {
                         // host-observes-solve: accoda l'evento del Simulation
                         // Plugin nel log LessonOS (fail-soft; nessuna chiave client).
-                        lessonOsRef.current?.store?.append(event).catch(() => {})
+                        if (renderedStore !== lessonOsRef.current?.store) return
+                        renderedStore?.append(event).catch(error => {
+                          if (renderedStore === lessonOsRef.current?.store) setStorageError("Memoria lezione non salvata: " + (error as Error).message)
+                        })
                       },
                     },
               )

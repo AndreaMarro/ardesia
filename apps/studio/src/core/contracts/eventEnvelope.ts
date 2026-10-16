@@ -92,7 +92,7 @@ const DRAFT_KEYS = [
 const AI_ACTOR: EventActor = { type: "system", id: "ai.consultative" }
 const AI_KINDS = new Set(["ai.advice.proposed", "ai.advice.revised"])
 const MAX_JSON_DEPTH = 32
-const MAX_JSON_VALUES = 10_000
+export const MAX_JSON_VALUES = 10_000
 
 type DataRecord = Record<string, unknown>
 

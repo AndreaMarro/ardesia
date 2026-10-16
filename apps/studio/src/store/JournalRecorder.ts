@@ -11,6 +11,7 @@ import { PATHS } from "./types"
 import { roomPaths } from "./roomPaths"
 import {
   assertEventEnvelopeV2,
+  MAX_JSON_VALUES,
   createEventEnvelopeV2,
   studioProducerIdentity,
   type EventActor,
@@ -342,6 +343,39 @@ function pdfPayload(event: JournalPdfPageView): JournalPayloadByKind["journal.pd
   }
 }
 
+/** Normalize only JSON's undefined semantics on the already cloned canvas data.
+ * Cycles/non-plain objects and malformed values remain for the strict validator;
+ * work stays iterative and bounded by the same canonical payload value budget. */
+function jsonCanonicalElement(element: Record<string, unknown>): JsonObject {
+  const pending: unknown[] = [element]
+  const seen = new WeakSet<object>()
+  let visited = 0
+  const visit = () => {
+    if (++visited > MAX_JSON_VALUES) failJournal("canvas normalization exceeds JSON value budget")
+  }
+  while (pending.length > 0) {
+    const current = pending.pop()
+    visit()
+    if (current === null || typeof current !== "object" || seen.has(current)) continue
+    seen.add(current)
+    if (Array.isArray(current)) {
+      if (current.length > MAX_JSON_VALUES) failJournal("canvas array exceeds JSON value budget")
+      for (let index = 0; index < current.length; index++) {
+        if (current[index] === undefined) current[index] = null
+        pending.push(current[index])
+      }
+    } else if (Object.getPrototypeOf(current) === Object.prototype) {
+      for (const key of Reflect.ownKeys(current)) {
+        const field = Object.getOwnPropertyDescriptor(current, key)!
+        if (!("value" in field) || !field.enumerable || typeof key !== "string") continue
+        if (field.value === undefined) { visit(); delete (current as Record<string, unknown>)[key] }
+        else pending.push(field.value)
+      }
+    }
+  }
+  return element as JsonObject
+}
+
 function journalPayload<K extends JournalKind>(
   event: JournalEvent,
   kind: K,
@@ -353,7 +387,7 @@ function journalPayload<K extends JournalKind>(
       if (event.type !== "element.add" && event.type !== "element.update") {
         failJournal(`${kind} requires an element event`)
       }
-      payload = { element: event.element as JsonObject }
+      payload = { element: jsonCanonicalElement(event.element) }
       break
     }
     case "journal.element.delete":

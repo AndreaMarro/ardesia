@@ -5,6 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
+import { act as actRoomUpdate } from "@testing-library/react"
 import { act, Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
@@ -20,7 +21,7 @@ import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { roomPaths } from "../store/roomPaths"
 import { FOUNDER_BETA_PLUGINS } from "../toolhost/founderBetaPlugin"
-import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
+import { REFERENCE_SIM_TOOL_ID, REFERENCE_SIM_EMBED_ID, createToolEmbedElement, createV1Cap6Esp2SimulationScene } from "../toolhost/ToolCanvasEmbeddable"
 import {
   createLessonMutationCoordinator,
   type MutationLockBroker,
@@ -3272,4 +3273,237 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
 
     root.unmount()
   })
+})
+
+
+// The mutation caught here is removing the accepted-write barrier or recreating
+// an envelope on retry. Events originate in the actual Simulation renderer.
+describe("accepted Simulation action → closed lesson boundary", () => {
+  afterEach(() => vi.restoreAllMocks())
+  async function producerRoom() {
+    const handle = await openInMemorySession()
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const navigate = vi.fn()
+    const released = makeDeferred<void>()
+    const register = store.registerActiveLesson.bind(store)
+    vi.spyOn(store, "registerActiveLesson").mockImplementation(async room => {
+      const activity = await register(room)
+      return { lessonId: activity.lessonId, release: async () => { await activity.release(); released.resolve() } }
+    })
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} navigate={navigate} lessonOsOpener={async () => handle} />)
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      expect((window as any).__MAESTRO_TEST__?.apiRef?.current).toBeTruthy()
+      expect(vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]?.renderEmbeddable).toEqual(expect.any(Function))
+    })
+    const sourceRoots: ReturnType<typeof createRoot>[] = []
+    const addSource = (late = false) => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)![0]!
+      const element = createToolEmbedElement({
+        embedId: late ? `${REFERENCE_SIM_EMBED_ID}-late` : REFERENCE_SIM_EMBED_ID,
+        ...(late ? { state: { kind: "simulation-scene-v1" as const, scene: createV1Cap6Esp2SimulationScene() } } : {}),
+      })
+      const mount = document.createElement("div"); document.body.appendChild(mount)
+      const sourceRoot = createRoot(mount); sourceRoots.push(sourceRoot)
+      sourceRoot.render(props.renderEmbeddable!(element as never, {} as never))
+    }
+    const clickMaterials = () => document.querySelector<HTMLAnchorElement>('[data-view-nav-item="materiali"]')!.click()
+    let disposed = false
+    const cleanup = () => { if (disposed) return; disposed = true; sourceRoots.forEach(r => r.unmount()); root.unmount() }
+    const changeCanvas = (elements: Record<string, unknown>[]) => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)![0]!
+      props.onChange!(elements as never, {} as never, {})
+    }
+    const rebind = async () => {
+      const next = await openInMemorySession("test-room-1", deterministicSessionDeps({ sessionId: SESSION_B }))
+      const { store: nextStore } = await createMockStore()
+      const opener = async () => next
+      root.render(<RoomModule.default store={nextStore} navigate={navigate} lessonOsOpener={opener} />)
+      await vi.waitFor(() => {
+        expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(next)
+        expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
+      })
+      return next
+    }
+    return { handle, store, navigate, addSource, clickMaterials, cleanup, changeCanvas, rebind, released: released.promise }
+  }
+
+  async function interceptFactWrites(_handle: LessonOsSessionHandle, effect: () => Promise<void>, afterWrite?: () => void) {
+    const probe = await createEventLogStore({ factory: undefined })
+    const prototype = Object.getPrototypeOf(probe) as typeof probe & { appendEnvelope: LessonOsSessionHandle["store"]["appendEnvelope"] }
+    const append = prototype.append
+    const appendEnvelope = prototype.appendEnvelope
+    vi.spyOn(prototype, "append").mockImplementation(async function(this: typeof probe, event) {
+      await effect(); const result = await append.call(this, event); afterWrite?.(); return result
+    })
+    vi.spyOn(prototype, "appendEnvelope").mockImplementation(async function(this: LessonOsSessionHandle["store"], envelope) {
+      if (envelope.kind === "lesson.started" || envelope.kind === "lesson.ended") return appendEnvelope.call(this, envelope)
+      await effect(); const result = await appendEnvelope.call(this, envelope); afterWrite?.(); return result
+    })
+  }
+
+  it("Materiali waits for the renderer's accepted write and commits lesson.ended before navigation", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    await interceptFactWrites(r.handle, async () => { started.resolve(); await allow.promise })
+    try {
+      r.addSource(); await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      expect(r.navigate).not.toHaveBeenCalled()
+      allow.resolve()
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+      const rows = await r.handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+      expect(rows.map(e => e.kind)).toEqual(["lesson.started", "simulation.circuit.solved", "lesson.ended"])
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("a rejected accepted action cancels navigation with a visible recoverable error", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    await interceptFactWrites(r.handle, async () => { started.resolve(); await allow.promise; throw new Error("synthetic append offline") })
+    try {
+      r.addSource(); await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials(); allow.resolve() })
+      await vi.waitFor(() => expect(document.querySelector(".st-err")?.textContent ?? "").toContain("synthetic append offline"))
+      expect(r.navigate).not.toHaveBeenCalled()
+      const rows = await r.handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+      expect(rows.map(e => e.kind)).toEqual(["lesson.started"])
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("a lost ACK is recoverable on a deliberate retry without duplicating the accepted event", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>(); let loseAck = true
+    await interceptFactWrites(r.handle, async () => { started.resolve(); await allow.promise }, () => {
+      if (loseAck) { loseAck = false; throw new Error("synthetic ACK lost after commit") }
+    })
+    try {
+      r.addSource(); await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials(); allow.resolve() })
+      await vi.waitFor(() => expect(document.querySelector(".st-err")?.textContent ?? "").toContain("synthetic ACK lost"))
+      expect(r.navigate).not.toHaveBeenCalled()
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+      const rows = await r.handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+      expect(rows.map(e => e.kind)).toEqual(["lesson.started", "simulation.circuit.solved", "lesson.ended"])
+      expect(new Set(rows.map(e => e.eventId)).size).toBe(3)
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("a producer arriving after the close cut is rejected visibly rather than silently joining the export", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    await interceptFactWrites(r.handle, async () => { started.resolve(); await allow.promise })
+    try {
+      r.addSource(); await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials(); r.addSource(true) })
+      allow.resolve()
+      await vi.waitFor(() => expect(document.querySelector(".st-err")?.textContent ?? "").toMatch(/chiusura|closing|confine/i))
+      await vi.waitFor(async () => {
+        const rows = await r.handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
+        expect(rows.filter(e => e.kind.startsWith("simulation.")).map(e => e.kind)).toEqual(["simulation.circuit.solved"])
+      })
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("the close cut freezes canvas and pointer input while a prior accepted write drains", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    await interceptFactWrites(r.handle, async () => { started.resolve(); await allow.promise })
+    try {
+      r.changeCanvas([{ id: "cut-rectangle", type: "rectangle", version: 1, x: 10, y: 20 }])
+      r.addSource(); await started.promise
+      await actRoomUpdate(async () => {
+        r.clickMaterials()
+        r.changeCanvas([{ id: "cut-rectangle", type: "rectangle", version: 2, x: 999, y: 20 }])
+        mockExcalidrawHarness.pointerDown?.()
+      })
+      allow.resolve()
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+      const journal = await r.store.read(roomPaths("test-room-1").journal)
+      const rows = (await journal!.text()).trim().split("\n").map(line => JSON.parse(line))
+      expect(rows.map(e => e.kind)).toEqual(["journal.element.add"])
+      expect(rows[0].payload.element.x).toBe(10)
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("failed journal cleanup cannot publish a successful lesson.ended marker", async () => {
+    const r = await producerRoom()
+    const error = vi.spyOn(console, "error").mockImplementation(() => {})
+    r.changeCanvas([{ id: "unsaved-rectangle", type: "rectangle", version: 1, x: 10, y: 20 }])
+    vi.spyOn(r.store, "write").mockRejectedValue(new Error("synthetic journal failure at unmount"))
+    r.cleanup()
+    await r.released
+    expect(error.mock.calls.some(call => String(call[0]).includes("journal flush failed"))).toBe(true)
+    expect((await r.handle.store.readAllEnvelopes()).map(e => e.kind)).toEqual(["lesson.started"])
+  })
+
+
+  it("navigation cannot close while an accepted formula insertion is still being prepared", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    const { latexToImage } = await import("../latexToImage")
+    vi.mocked(latexToImage).mockImplementation(async () => {
+      started.resolve(); await allow.promise
+      return { dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 20, height: 20 }
+    })
+    try {
+      capturedOnInsert = null
+      const formula = [...document.querySelectorAll("button")].find(b => b.textContent === "formula")!
+      await actRoomUpdate(async () => { formula.click() })
+      expect(capturedOnInsert).not.toBeNull()
+      const insertion = (capturedOnInsert as unknown as (value: string) => Promise<void>)("V = R I")
+      await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      expect(r.navigate).not.toHaveBeenCalled()
+      expect(document.querySelector(".st-err")?.textContent ?? "").toMatch(/in corso|attendi/i)
+      allow.resolve(); await insertion
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+      expect(await (await r.store.read(roomPaths("test-room-1").journal))!.text()).toContain("V = R I")
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("a renderer from the old Room generation cannot append or write back into its replacement", async () => {
+    const r = await producerRoom()
+    try {
+      r.addSource()
+      await vi.waitFor(async () => expect((await r.handle.store.readAllEnvelopes()).filter(e => e.kind.startsWith("simulation."))).toHaveLength(1))
+      const next = await r.rebind()
+      const oldButton = document.querySelector<HTMLButtonElement>("[data-sim-break]")!
+      await actRoomUpdate(async () => { oldButton.click() })
+      expect(document.querySelector("[data-sim-solve-kind]")?.getAttribute("data-sim-solve-kind")).toBe("error")
+      expect((await next.store.readAllEnvelopes()).map(e => e.kind)).toEqual(["lesson.started"])
+      expect(document.querySelector(".st-err")).toBeNull()
+    } finally { r.cleanup() }
+  })
+
+
+  it.each(["metadata", "image", "folder"] as const)("an in-flight %s operation must finish before the close cut", async kind => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    try {
+      if (kind === "metadata") {
+        vi.spyOn(r.store, "saveMeta").mockImplementation(async () => { started.resolve(); await allow.promise })
+        await actRoomUpdate(async () => { document.querySelector<HTMLElement>(".st-name")!.click() })
+        const input = document.querySelector<HTMLInputElement>(".st-name-input")!
+        input.value = "Nome sintetico della lezione"
+        await actRoomUpdate(async () => { input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true })) })
+      } else if (kind === "folder") {
+        vi.spyOn(r.store, "connectFolder").mockImplementation(async () => { started.resolve(); await allow.promise; return true })
+        await actRoomUpdate(async () => { document.querySelector<HTMLButtonElement>(".st-indicator-connect")!.click() })
+      } else {
+        const { imageToDataURL } = await import("../loadFile")
+        vi.mocked(imageToDataURL).mockImplementation(async () => { started.resolve(); await allow.promise; return { dataURL: "data:image/png;base64,eA==", width: 10, height: 10 } })
+        const input = document.querySelector<HTMLInputElement>('input[type="file"]')!
+        Object.defineProperty(input, "files", { configurable: true, value: [new File(["synthetic"], "fixture.png", { type: "image/png" })] })
+        await actRoomUpdate(async () => { input.dispatchEvent(new Event("change", { bubbles: true })) })
+      }
+      await started.promise
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      expect(r.navigate).not.toHaveBeenCalled()
+      expect(document.querySelector(".st-err")?.textContent ?? "").toMatch(/in corso|attendi/i)
+      await actRoomUpdate(async () => { allow.resolve() })
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+    } finally { allow.resolve(); r.cleanup() }
+  })
+
 })
