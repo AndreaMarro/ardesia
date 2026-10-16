@@ -146,12 +146,12 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest, provena
   @media (max-width:480px) { .sheet { padding:28px 18px 40px; } h1 { font-size:28px; } .brand { margin-bottom:18px; } .meta { margin-bottom:24px; } }
   @media print {
     body { background:#fff; }
-    .sheet { padding:24px 0; }
+    .sheet { padding:0; }
     .print-help { display:none; }
     .meta { margin-bottom:24px; }
     section { margin-bottom:18px; }
     h2 { break-after:avoid; }
-    li,.notes,footer { break-inside:avoid; }
+    li,.notes,.worksheet,footer { break-inside:avoid; }
     .notes .rule { height:24px; }
     footer { margin-top:24px; }
   }
@@ -180,11 +180,12 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest, provena
       <h2>Fonti</h2>
       ${fontiHtml}
     </section>
-    <section>
+    <div class="worksheet"><section>
       <h2>I miei appunti</h2>
       <div class="notes">${'<div class="rule"></div>'.repeat(6)}</div>
     </section>
     <footer>Generato da Ardesia dagli appunti salvati. I riferimenti distinguono importazioni e osservazioni registrate.${revisionHtml}</footer>
+    </div>
   </div>
 </body>
 </html>`
