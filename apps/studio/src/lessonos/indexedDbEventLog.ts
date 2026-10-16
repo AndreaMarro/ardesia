@@ -393,7 +393,7 @@ export interface TrustedLegacyEventContext {
 }
 
 /** Scope richiesto: rende l'integrita' attribuibile invece che globale. */
-export type EventLogIntegrityScope = Readonly<{ lessonId: string; sessionId: string }>
+export type EventLogIntegrityScope = Readonly<{ lessonId: string; sessionId?: string }>
 
 export interface IndexedDbEventLogOptions {
   /**
@@ -584,6 +584,10 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
   }
 
   async readAllEnvelopes(): Promise<AppendedEventEnvelopeV2[]> {
+    return this.readEnvelopeSnapshot()
+  }
+
+  private async readEnvelopeSnapshot(lessonId?: string): Promise<AppendedEventEnvelopeV2[]> {
     const db = this.requireOpenDb()
     const physicalSnapshot = (await requestToPromise(
       db.transaction(STORE_NAME, "readonly").objectStore(STORE_NAME).getAll(),
@@ -592,6 +596,11 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
     const v2: AppendedEventEnvelopeV2[] = []
     const legacy: Array<{ physical: StoredLegacyEventRecord; event: AppendedEvent }> = []
     for (const record of ordered) {
+      // Keep legacy projection compatibility and conservative handling of
+      // unattributable rows. A proven foreign owner cannot invalidate this
+      // lesson's export. This still reads a physical snapshot, not a privacy query.
+      const owner = attributableScope(record)
+      if (lessonId !== undefined && owner !== null && owner.lessonId !== lessonId) continue
       if (hasSchemaVersion(record)) {
         v2.push(splitStoredEnvelope(record).appended)
       } else {
@@ -605,7 +614,7 @@ export class IndexedDbEventLog implements EventLogStore, EnvelopeEventLogStore {
   }
 
   async readEnvelopesByLesson(lessonId: string): Promise<AppendedEventEnvelopeV2[]> {
-    return (await this.readAllEnvelopes()).filter((event) => event.lessonId === lessonId)
+    return (await this.readEnvelopeSnapshot(lessonId)).filter((event) => event.lessonId === lessonId)
   }
 
   /**
@@ -970,7 +979,8 @@ async function inspectPhysicalRows(
     // leggibile non vengono saltate: restano conservative.
     if (scope !== undefined) {
       const owner = attributableScope(record)
-      if (owner !== null && (owner.lessonId !== scope.lessonId || owner.sessionId !== scope.sessionId)) {
+      if (owner !== null && (owner.lessonId !== scope.lessonId ||
+          (scope.sessionId !== undefined && owner.sessionId !== scope.sessionId))) {
         continue
       }
     }

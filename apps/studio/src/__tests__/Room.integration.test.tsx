@@ -3280,8 +3280,8 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
 // an envelope on retry. Events originate in the actual Simulation renderer.
 describe("accepted Simulation action → closed lesson boundary", () => {
   afterEach(() => vi.restoreAllMocks())
-  async function producerRoom() {
-    const handle = await openInMemorySession()
+  async function producerRoom(deps = deterministicSessionDeps()) {
+    const handle = await openInMemorySession("test-room-1", deps)
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()
@@ -3329,7 +3329,7 @@ describe("accepted Simulation action → closed lesson boundary", () => {
       })
       return next
     }
-    return { handle, store, navigate, addSource, clickMaterials, cleanup, changeCanvas, rebind, released: released.promise }
+    return { handle, store, navigate, addSource, clickMaterials, cleanup, changeCanvas, rebind, unmountRoomOnly: () => root.unmount(), released: released.promise }
   }
 
   async function interceptFactWrites(_handle: LessonOsSessionHandle, effect: () => Promise<void>, afterWrite?: () => void) {
@@ -3504,6 +3504,68 @@ describe("accepted Simulation action → closed lesson boundary", () => {
       await actRoomUpdate(async () => { r.clickMaterials() })
       await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
     } finally { allow.resolve(); r.cleanup() }
+  })
+
+  it("an end ACK timeout keeps the sealed canvas frozen until a deliberate navigation retry", async () => {
+    const r = await producerRoom(); const started = makeDeferred<void>(); const allow = makeDeferred<void>()
+    const probe = await createEventLogStore({ factory: undefined })
+    const prototype = Object.getPrototypeOf(probe) as typeof r.handle.store
+    const original = prototype.appendEnvelope
+    vi.spyOn(prototype, "appendEnvelope").mockImplementation(async function(this: typeof r.handle.store, envelope) {
+      const result = await original.call(this, envelope)
+      if (envelope.kind === "lesson.ended") { started.resolve(); await allow.promise }
+      return result
+    })
+    try {
+      vi.useFakeTimers()
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      await started.promise
+      await actRoomUpdate(async () => { await vi.advanceTimersByTimeAsync(10_000) })
+      expect(r.navigate).not.toHaveBeenCalled()
+      expect(document.querySelector(".st-err")?.textContent).toContain("10 secondi")
+      const { Excalidraw } = await import("@excalidraw/excalidraw")
+      const state = {
+        endedCount: (await r.handle.store.readAllEnvelopes()).filter(e => e.kind === "lesson.ended").length,
+        canvasEditable: !vi.mocked(Excalidraw).mock.calls.at(-1)![0]!.viewModeEnabled,
+      }
+      r.changeCanvas([{ id: "after-ended-timeout", type: "text", text: "after end", version: 1 }])
+      await (window as any).__MAESTRO_TEST__.recorder.flush()
+      const journal = await r.store.read(roomPaths("test-room-1").journal)
+      expect(state.endedCount).toBe(1)
+      expect((await journal?.text()) ?? "").not.toContain("after-ended-timeout")
+      expect(state.canvasEditable).toBe(false)
+      allow.resolve()
+      await actRoomUpdate(async () => { r.clickMaterials() })
+      await vi.waitFor(() => expect(r.navigate).toHaveBeenCalledTimes(1))
+      expect((await r.handle.store.readAllEnvelopes()).filter(e => e.kind === "lesson.ended")).toHaveLength(1)
+    } finally { allow.resolve(); vi.useRealTimers(); r.cleanup() }
+  })
+
+
+  it("persistence capability updates cannot preserve a disposed renderer owner", async () => {
+    const r = await producerRoom(deterministicSessionDeps({
+      eventIds: [EVENT_START, EVENT_FACT, EVENT_END, "20000000-0000-4000-8000-000000000004"],
+      times: [1, 2, 3, 4],
+    })); const allow = makeDeferred<void>()
+    let roomUnmounted = false
+    try {
+      r.addSource()
+      await vi.waitFor(async () => expect((await r.handle.store.readAllEnvelopes()).filter(e => e.kind.startsWith("simulation."))).toHaveLength(1))
+      const harness = (window as any).__MAESTRO_TEST__
+      mockExcalidrawHarness.pointerDown?.()
+      await vi.waitFor(() => expect(harness.lessonOs.current?.capabilities.persistRequested).toBe(true))
+      vi.spyOn(harness.recorder, "flush").mockImplementation(async () => allow.promise)
+      await actRoomUpdate(async () => { r.unmountRoomOnly(); roomUnmounted = true })
+      const oldButton = document.querySelector<HTMLButtonElement>("[data-sim-break]")!
+      await actRoomUpdate(async () => { oldButton.click() })
+      const rows = await r.handle.store.readAllEnvelopes()
+      expect(harness.lessonOs.current).toBeNull()
+      expect(rows.filter(e => e.kind.startsWith("simulation."))).toHaveLength(1)
+    } finally {
+      allow.resolve()
+      if (roomUnmounted) await r.released
+      r.cleanup()
+    }
   })
 
 })

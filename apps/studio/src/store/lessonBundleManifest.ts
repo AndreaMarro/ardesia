@@ -225,6 +225,7 @@ export async function buildLessonBundleManifest(
   lessonId: string,
   sessionIds: readonly string[],
   entries: ReadonlyMap<string, FileEntry>,
+  lessonOsWarnings?: readonly string[],
 ): Promise<LessonBundleManifestV1> {
   const required = new Set<string>(REQUIRED_ARTIFACTS)
   const files = await Promise.all([...entries.values()]
@@ -247,7 +248,7 @@ export async function buildLessonBundleManifest(
     files: Object.freeze(files),
     lessonOs: Object.freeze({
       status: lessonOsIncluded ? "included" : "missing",
-      warnings: Object.freeze(lessonOsIncluded ? [] : ["LessonOS snapshot missing"]),
+      warnings: Object.freeze([...(lessonOsWarnings ?? (lessonOsIncluded ? [] : ["LessonOS snapshot missing"]))]),
     }),
     compatibility: Object.freeze({
       minimumReaderSchemaVersion: 1,

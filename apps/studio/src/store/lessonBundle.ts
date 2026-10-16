@@ -175,16 +175,14 @@ export async function exportLesson(
   // Snapshot canonico v2 e limitato alla lezione. Un log v1 non viene proiettato:
   // perdere event/session/producer identity sarebbe un falso export canonico.
   let lessonOsSnapshot: Blob | null = storedLessonOsSnapshot
+  let lessonOsWarnings: readonly string[] | undefined
   if (lessonOsLog && supportsEnvelopeExport(lessonOsLog)) {
-    try {
-      const snapshot = await exportEnvelopeEventLogSnapshot(
-        readOnlyLessonScope(lessonOsLog, lessonId),
-      )
-      if (snapshot.size > 0) {
-        lessonOsSnapshot = snapshot
-      }
-    } catch {
-      // Il file room-scoped già persistito rimane il fallback; mai usare flat.
+    const snapshot = await exportEnvelopeEventLogSnapshot(
+      readOnlyLessonScope(lessonOsLog, lessonId),
+    )
+    lessonOsSnapshot = snapshot.size > 0 ? snapshot : null
+    if (snapshot.size === 0) {
+      lessonOsWarnings = ["live canonical LessonOS state is empty; stored snapshot not resurrected"]
     }
   }
   addEntry(entries, LESSON_PATHS.LESSONOS, lessonOsSnapshot)
@@ -200,7 +198,7 @@ export async function exportLesson(
       throw new Error("Lesson bundle: payload identity differs from requested lesson")
     }
   }
-  const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries)
+  const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries, lessonOsWarnings)
 
   // Costruisce ZIP
   const zip = new JSZip()

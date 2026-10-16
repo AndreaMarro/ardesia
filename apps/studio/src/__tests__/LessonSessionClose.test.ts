@@ -79,3 +79,32 @@ describe("cancellation belongs to the same sealed close attempt", () => {
     expect((await h.store.readAllEnvelopes()).map(e => e.kind)).toEqual(["lesson.started", "concept.introduced", "lesson.ended"])
   })
 })
+
+
+describe("an uncertain end preserves the already flushed revision", () => {
+  afterEach(() => vi.restoreAllMocks())
+  it("a retry reuses the end identity without running beforeEnd a second time", async () => {
+    const h = await session()
+    const probe = await createEventLogStore({ factory: undefined })
+    const prototype = Object.getPrototypeOf(probe) as typeof h.store
+    const original = prototype.appendEnvelope
+    let loseAck = true
+    vi.spyOn(prototype, "appendEnvelope").mockImplementation(async function(this: typeof h.store, envelope) {
+      const result = await original.call(this, envelope)
+      if (envelope.kind === "lesson.ended" && loseAck) {
+        loseAck = false
+        throw new Error("synthetic end ACK lost after commit")
+      }
+      return result
+    })
+    const beforeEnd = vi.fn(async () => {})
+    await expect(h.close({ beforeEnd })).rejects.toThrow("synthetic end ACK lost")
+    const end = (await h.store.readAllEnvelopes()).find(e => e.kind === "lesson.ended")!
+    await expect(h.appendFact("concept.introduced", { conceptId: "late", labels: {} },
+      { evidence: [{ ref: "board:synthetic", resolution: "verified" }] })).rejects.toThrow(/chiusura|closed/i)
+    await h.close({ beforeEnd })
+    expect(beforeEnd).toHaveBeenCalledOnce()
+    const ends = (await h.store.readAllEnvelopes()).filter(e => e.kind === "lesson.ended")
+    expect(ends).toEqual([end])
+  })
+})

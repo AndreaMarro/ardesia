@@ -12,6 +12,8 @@ import {
   readSavedLessonsConfig,
 } from "../store/savedLessonsView"
 import SavedLessonsView from "../design/SavedLessonsView"
+import { IDBFactory } from "fake-indexeddb"
+import { IndexedDbEventLog } from "../lessonos/indexedDbEventLog"
 import type { LessonImportPreview } from "../store/lessonBundle"
 
 beforeEach(() => {
@@ -126,6 +128,7 @@ describe("SavedLessonsView", () => {
     window.history.replaceState(null, "", "/?vista=lezioni-salvate#wbstudio-room1")
     const fetchSpy = vi.fn()
     vi.stubGlobal("fetch", fetchSpy)
+    vi.stubGlobal("indexedDB", new IDBFactory())
     const store = fakeStore()
     const download = vi.fn()
     render(
@@ -139,8 +142,10 @@ describe("SavedLessonsView", () => {
     expect(await screen.findByText("Materiali locali")).toBeTruthy()
     expect(fetchSpy).not.toHaveBeenCalled()
 
+    await waitFor(() => expect((screen.getByRole("button", { name: "Esporta .lesson" }) as HTMLButtonElement).disabled).toBe(false))
     fireEvent.click(screen.getByRole("button", { name: "Esporta .lesson" }))
-    await waitFor(() => expect(store.exportLesson).toHaveBeenCalledWith("wbstudio-room1", fakeLog))
+    await waitFor(() => expect(store.exportLesson).toHaveBeenCalledWith("wbstudio-room1", expect.any(IndexedDbEventLog)))
+    expect((store.exportLesson.mock.calls[0] as unknown[])[1]).not.toBe(fakeLog)
     expect(download).toHaveBeenCalledWith(expect.any(Blob), "lezione-wbstudio-room1.lesson")
 
     const file = new File(["bundle"], "lezione.lesson", { type: "application/zip" })

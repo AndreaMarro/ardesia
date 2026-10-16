@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react"
 import ViewNav from "./ViewNav"
 import EmptyState from "./EmptyState"
 import { workspaceStore, type WorkspaceStore } from "../store/WorkspaceStore"
-import { createEventLogStore } from "../lessonos/indexedDbEventLog"
+import { createEventLogStore, openIndexedDbEventLog } from "../lessonos/indexedDbEventLog"
 import type { EnvelopeEventLogStore, EventLogStore } from "../lessonos/eventlog"
 import type {
   ImportLessonResult,
@@ -167,11 +167,21 @@ export default function SavedLessonsView({
   }
 
   const handleExport = () => {
-    if (room === null || eventLog === null) return
+    if (room === null) return
     void run("export", async () => {
-      const blob = await store.exportLesson(room, eventLog)
-      download(blob, `lezione-${room}.lesson`)
-      setMessage("Export .lesson creato e legato alla lezione corrente.")
+      // A mounted fallback is useful for import recovery, but cannot attest
+      // that current persistent memory is empty. Acquire and inspect afresh.
+      const current = await openIndexedDbEventLog({ scope: { lessonId: room } })
+      try {
+        if (current.backend.kind !== "verified-indexeddb" || current.log === null) {
+          throw new Error(`Memoria locale non disponibile per l'export (${current.backend.kind}: ${"code" in current.backend ? current.backend.code : "missing-log"}). Riprova dopo aver ripristinato l'archivio.`)
+        }
+        const blob = await store.exportLesson(room, current.log)
+        download(blob, `lezione-${room}.lesson`)
+        setMessage("Export .lesson creato e legato alla lezione corrente.")
+      } finally {
+        await current.close()
+      }
     })
   }
 
@@ -280,7 +290,7 @@ export default function SavedLessonsView({
                 <button
                   type="button"
                   className="st-primary"
-                  disabled={busy !== null || eventLog === null}
+                  disabled={busy !== null || loading}
                   onClick={handleExport}
                 >
                   {busy === "export" ? "Esporto…" : "Esporta .lesson"}

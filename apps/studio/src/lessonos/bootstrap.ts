@@ -111,6 +111,8 @@ export interface LessonOsSessionHandle extends LessonOsRuntime {
     actor: EventActor
   }>
   producer: ProducerIdentity
+  /** Live lifecycle state; an uncertain end cannot reopen this writer. */
+  isAcceptingWrites(): boolean
   appendFact<K extends LessonOsFactKind>(
     kind: K,
     payload: LessonPayload<K>,
@@ -373,6 +375,7 @@ export async function openLessonOsSession(
     store,
     identity,
     producer,
+    isAcceptingWrites: () => !closing && !closed,
     async appendFact<K extends LessonOsFactKind>(
       kind: K,
       payload: LessonPayload<K>,
@@ -421,7 +424,7 @@ export async function openLessonOsSession(
       }
       const attempt = (async () => {
         await wait(Promise.all(writesAtCut))
-        if (options.beforeEnd) await wait(options.beforeEnd())
+        if (ended === null && options.beforeEnd) await wait(options.beforeEnd())
         options.signal?.throwIfAborted()
         if (rejectedAfterCut) throw rejectedAfterCut
         ended ??= lifecycleEnvelope("lesson.ended", "ended")

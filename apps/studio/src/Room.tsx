@@ -125,6 +125,7 @@ export default function Room({
   const [storageError, setStorageError] = useState<string | null>(null)
   const navigationClosing = useRef(false)
   const [closingForNavigation, setClosingForNavigation] = useState(false)
+  const [closeNeedsRetry, setCloseNeedsRetry] = useState(false)
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
@@ -205,6 +206,7 @@ export default function Room({
     initialLoadDone.current = false
     navigationClosing.current = false
     setClosingForNavigation(false)
+    setCloseNeedsRetry(false)
     if (saveTimer.current) {
       window.clearTimeout(saveTimer.current)
       saveTimer.current = null
@@ -579,6 +581,8 @@ export default function Room({
     const cancellation = new AbortController()
     navigationClosing.current = true
     setClosingForNavigation(true)
+    setCloseNeedsRetry(false)
+    setStorageError(null)
     const runtime = lessonOsRef.current
     const run = (async () => {
       try {
@@ -588,8 +592,10 @@ export default function Room({
         action()
       } catch (error) {
         cancellation.abort(error)
-        navigationClosing.current = false
-        setClosingForNavigation(false)
+        const sealed = runtime !== null && !runtime.isAcceptingWrites()
+        navigationClosing.current = sealed
+        setClosingForNavigation(sealed)
+        setCloseNeedsRetry(sealed)
         setStorageError(`${label}: ${(error as Error).message}`)
       }
     })()
@@ -926,7 +932,9 @@ export default function Room({
               </span>
             )}
           {saved && <span className="st-quiet">salvato</span>}
-          {closingForNavigation && <span className="st-quiet" role="status">Chiusura della lezione in corso…</span>}
+          {closingForNavigation && <span className="st-quiet" role="status">{closeNeedsRetry
+            ? "Modifiche bloccate: riprova la navigazione per confermare la chiusura."
+            : "Chiusura della lezione in corso…"}</span>}
           {/* Spec #35 §4.3: la durabilità vera è l'export — consiglio sobrio, mai vocabolario OPFS */}
           {exportAdvice && (
             <span className="st-quiet st-export-advice" title={exportAdvice}>da esportare a fine lezione</span>
@@ -1059,7 +1067,8 @@ export default function Room({
                     ensurePersistentStorage()
                       .then((snapshot) => {
                         const runtime = lessonOsRef.current
-                        if (runtime) lessonOsRef.current = { ...runtime, capabilities: snapshot }
+                        if (!runtime || runtime.store !== renderedStore) return
+                        runtime.capabilities = snapshot
                         // Esito persist() nel consiglio UX (§4.3): negato/fallito ⇒
                         // "da esportare". persistent viene dal runtime (lo store non
                         // cambia col gesto), non dalla mera presenza dell'API.
