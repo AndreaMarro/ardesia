@@ -3,7 +3,9 @@ import type { AppendedEventEnvelopeV2 } from "../lessonos/eventlog"
 import type { WorkspaceStore } from "./WorkspaceStore"
 import { collectLessonWorkspaceEntries, LESSON_PATHS } from "./lessonBundle"
 import { sha256Hex } from "./lessonBundleManifest"
-import { validateRoomId } from "./roomPaths"
+import { roomPaths, validateRoomId } from "./roomPaths"
+import { decodeJournalJsonl } from "./ReplayEngine"
+import type { JournalEnvelopeV2 } from "./JournalRecorder"
 
 // Versioned references in the existing end evidence, not a second store/schema.
 // Hashes prove consistency of bytes; they do not authenticate their author.
@@ -57,12 +59,14 @@ export async function verifyLessonRevision(
   room: string,
   currentEvidence: readonly EventEvidence[],
   journal: Blob,
+  journalEvents: readonly JournalEnvelopeV2[],
 ): Promise<void> {
   const lessonId = validateRoomId(room)
   const ends = events.filter(event => event.kind === "lesson.ended").sort((a, b) => a.seq - b.seq)
   const current = receipt(currentEvidence, lessonId, true)!
   const latest = ends.at(-1)
   if (!latest) throw new Error("Materiale: ricevuta di chiusura mancante")
+  const prefixIds = new Map<number, ReadonlySet<string>>()
   for (const end of ends) {
     const closed = receipt(end.evidence, lessonId, end === latest)
     if (!closed) continue
@@ -72,6 +76,19 @@ export async function verifyLessonRevision(
     if (closed.journal && (closed.journal.bytes > journal.size ||
         await sha256Hex(journal.slice(0, closed.journal.bytes)) !== closed.journal.sha256)) {
       throw new Error("Materiale: gli appunti non conservano la revisione di una sessione chiusa")
+    }
+    const ownRows = journalEvents.filter(event => event.sessionId === end.sessionId)
+    if (ownRows.length === 0) continue
+    if (!closed.journal) throw new Error("Materiale: appunti successivi alla chiusura della propria sessione")
+    let ids = prefixIds.get(closed.journal.bytes)
+    if (!ids) {
+      const prefix = decodeJournalJsonl(await journal.slice(0, closed.journal.bytes).text(), roomPaths(lessonId).journal)
+      if (prefix.issues.length) throw new Error("Materiale: prefisso degli appunti di chiusura non valido")
+      ids = new Set(prefix.envelopes.map(event => event.eventId))
+      prefixIds.set(closed.journal.bytes, ids)
+    }
+    if (ownRows.some(event => !ids.has(event.eventId))) {
+      throw new Error("Materiale: appunti successivi alla chiusura della propria sessione")
     }
   }
 }

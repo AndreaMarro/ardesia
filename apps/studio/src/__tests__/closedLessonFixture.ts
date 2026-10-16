@@ -34,7 +34,7 @@ export function captureBroker(active = false, localOnly = false): MutationLockBr
     tryRequest: async (_name, _options, work) => active ? { acquired: false } : { acquired: true, value: await work() },
   }
 }
-export async function closedLessonFixture(coordinator = createLessonMutationCoordinator(captureBroker())) {
+export async function closedLessonFixture(coordinator = createLessonMutationCoordinator(captureBroker()), room = MATERIAL_ROOM) {
   const factory = new IDBFactory()
   vi.stubGlobal("indexedDB", factory); vi.stubGlobal("IDBKeyRange", IDBKeyRange)
   const local = new Map<string, string>()
@@ -45,10 +45,10 @@ export async function closedLessonFixture(coordinator = createLessonMutationCoor
   const store = memoryLessonWorkspace(coordinator)
   let id = 0
   const uuid = () => `cccccccc-cccc-4ccc-8ccc-${(++id).toString(16).padStart(12, "0")}`
-  const handle = await openLessonOsSession({ room: MATERIAL_ROOM, actor: { type: "teacher", id: "synthetic" },
+  const handle = await openLessonOsSession({ room, actor: { type: "teacher", id: "synthetic" },
     newSessionId: () => MATERIAL_SESSION, newEventId: uuid, now: () => 1000 + id,
     env: { indexedDB: factory, storage: undefined, markerStorage: undefined } })
-  const recorder = new JournalRecorder({ store, journalPath: roomPaths(MATERIAL_ROOM).journal,
+  const recorder = new JournalRecorder({ store, journalPath: roomPaths(room).journal,
     identity: handle.identity, producer: handle.producer, newEventId: uuid, now: () => 1000 + id,
     withExclusiveLock: async (_name, work) => work() })
   const question = { id: "question-synthetic", type: "text", text: MATERIAL_QUESTION, version: 1 }
@@ -59,9 +59,9 @@ export async function closedLessonFixture(coordinator = createLessonMutationCoor
     { evidence: [{ ref: "simulation:synthetic-series", resolution: "verified" }] })
   await handle.close({ beforeEnd: async () => {
     await recorder.flush()
-    await store.write(roomPaths(MATERIAL_ROOM).scene, new Blob([JSON.stringify({ type: "excalidraw", elements: [question] })]))
-    await store.saveMeta(MATERIAL_ROOM, { v: 1, name: "Lezione sintetica DC", createdAt: 1000 })
-    return captureLessonRevisionEvidence(store, MATERIAL_ROOM)
+    await store.write(roomPaths(room).scene, new Blob([JSON.stringify({ type: "excalidraw", elements: [question] })]))
+    await store.saveMeta(room, { v: 1, name: "Lezione sintetica DC", createdAt: 1000 })
+    return captureLessonRevisionEvidence(store, room)
   } })
   return { store, factory, handle, recorder }
 }

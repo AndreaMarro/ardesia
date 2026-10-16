@@ -287,6 +287,8 @@ export default function SavedLessonsView({
                 </button>
               </div>
               <div style={actionRowStyle}>
+                <a href={`/?vista=recap#${room}`} className="st-ghost" aria-disabled={busy !== null}
+                  onClick={event => { if (busy !== null) event.preventDefault() }}>Apri riepilogo</a>
                 <button
                   type="button"
                   className="st-primary"

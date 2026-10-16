@@ -5,14 +5,18 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { hasEmoji } from "./emojiGuard"
 
-// Mock buildRecap per isolare il componente
-vi.mock("../store/lessonRecap", () => {
-  const actual = vi.importActual("../store/lessonRecap") as Promise<any>
-  return actual.then((mod: any) => ({
-    ...mod,
-    buildRecap: vi.fn(),
-  }))
-})
+// The component consumes a single captured revision; projection/bytes have
+// separate real-store tests in RecapCaptureView and ClosedLessonCapture.
+import { captureClosedLessonMaterial } from "../store/lessonMaterial"
+import { buildRecapHtml } from "../store/recapHtml"
+import type { LessonRecap } from "../store/lessonRecap"
+vi.mock("../store/lessonMaterial", () => ({ captureClosedLessonMaterial: vi.fn() }))
+function givenRecap(recap: LessonRecap) {
+  const digest = { concepts: [], errors: [] }
+  const revision = { lessonId: "test-room", bundleSha256: "a".repeat(64), journalSha256: "b".repeat(64), sceneSha256: "c".repeat(64), sessions: [] }
+  vi.mocked(captureClosedLessonMaterial).mockResolvedValue({ recap, digest, revision,
+    bundle: new Blob(["captured synthetic bundle"]), html: buildRecapHtml(recap, digest, revision) })
+}
 
 describe("RecapView", () => {
   let container: HTMLDivElement
@@ -34,6 +38,7 @@ describe("RecapView", () => {
   afterEach(() => {
     document.body.removeChild(container)
     vi.restoreAllMocks()
+    vi.unstubAllGlobals()
   })
 
   async function renderRecapView() {
@@ -79,16 +84,14 @@ describe("RecapView", () => {
     return downloads
   }
 
-  it("mostra errore quando buildRecap fallisce", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockRejectedValue(new Error("ERRORE-TEST"))
+  it("mostra errore quando la cattura della revisione fallisce", async () => {
+    vi.mocked(captureClosedLessonMaterial).mockRejectedValue(new Error("ERRORE-TEST"))
     await renderRecapView()
     expect(container.textContent).toContain("ERRORE-TEST")
   })
 
   it("lo stato di errore spiega cosa fare ed è privo di emoji", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockRejectedValue(new Error("boom"))
+    vi.mocked(captureClosedLessonMaterial).mockRejectedValue(new Error("boom"))
     await renderRecapView()
     const state = container.querySelector(".st-state-error")
     expect(state).not.toBeNull()
@@ -100,10 +103,9 @@ describe("RecapView", () => {
   })
 
   it("lezione senza contenuto (recap a zero) mostra lo stato vuoto, non la griglia di zeri", async () => {
-    // buildRecap NON restituisce mai null per una lezione vuota: torna un recap
+    // La proiezione di una revisione senza appunti torna un recap
     // a zero (no journal / no eventi). Lo stato vuoto deve scattare su QUESTO caso.
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Lezione senza nome",
       durationMs: 0,
@@ -125,8 +127,7 @@ describe("RecapView", () => {
 
   it("recap con sola durata (>0) mostra la griglia, non lo stato vuoto", async () => {
     // guardia anti-regressione: la soglia di vuoto non deve nascondere lezioni reali.
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 60_000,
@@ -145,8 +146,7 @@ describe("RecapView", () => {
   it("lezione con attività registrata ma durata 0 (es. solo audio) NON è vuota", async () => {
     // firstEventTime valorizzato = c'è stato un evento (audio.chunk): un singolo
     // evento dà durationMs 0, ma NON va marcata "vuota" (sarebbe fuorviante).
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 0,
@@ -163,8 +163,7 @@ describe("RecapView", () => {
   })
 
   it("mostra titolo della lezione", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Teoria dei Segnali",
       durationMs: 3600_000,
@@ -180,8 +179,7 @@ describe("RecapView", () => {
   })
 
   it("mostra durata formattata", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 3660_000,
@@ -197,8 +195,7 @@ describe("RecapView", () => {
   })
 
   it("mostra conteggio formule", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 1000,
@@ -214,8 +211,7 @@ describe("RecapView", () => {
   })
 
   it("mostra bottone esporta .lesson", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 1000,
@@ -234,8 +230,7 @@ describe("RecapView", () => {
   })
 
   it("usa linguaggio 'appunti salvati' mai 'cache'/'flush'/'workspace'", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 1000,
@@ -255,8 +250,7 @@ describe("RecapView", () => {
   })
 
   it("ogni card metrica ha una label propria, 'appunti salvati' solo nel sottotitolo", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 1000,
@@ -280,8 +274,7 @@ describe("RecapView", () => {
   })
 
   it("a PDF reference remains visible when it is the only content and its time is unavailable", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1, title: "Solo import sintetico", durationMs: 0, mathFormulas: [],
       elementTypeCounts: {}, totalElementsAdded: 0, pdfPagesViewed: [],
       firstEventTime: null, lastEventTime: null,
@@ -295,8 +288,7 @@ describe("RecapView", () => {
   })
 
   it("export fallito: banner locale, il riepilogo resta visibile (no errore di pagina)", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Teoria dei Segnali",
       durationMs: 3600_000,
@@ -307,7 +299,10 @@ describe("RecapView", () => {
       firstEventTime: 1000,
       lastEventTime: 3601_000,
     })
-    mockStore.exportLesson = vi.fn().mockRejectedValue(new Error("disco pieno"))
+    class FailedDownloadURL extends URL {
+      static createObjectURL(): string { throw new Error("disco pieno") }
+    }
+    vi.stubGlobal("URL", FailedDownloadURL)
     await renderRecapView()
     const exportBtn = Array.from(container.querySelectorAll("button"))
       .find((b) => b.textContent?.includes("esporta"))!
@@ -327,8 +322,7 @@ describe("RecapView", () => {
   })
 
   it("export: slug deriva dal titolo (caso normale)", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Teoria dei Segnali",
       durationMs: 1000,
@@ -346,8 +340,7 @@ describe("RecapView", () => {
   it("export: titolo senza caratteri utili ricade sul room id (no 'lezione-.lesson')", async () => {
     // Pre-fix RecapView duplicava lo slug inline SENZA il fallback di lessonSlug:
     // un titolo di soli simboli produceva slug vuoto -> filename 'lezione-.lesson'.
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "©™",
       durationMs: 1000,
@@ -365,8 +358,7 @@ describe("RecapView", () => {
   it("export: taglio a 48 char non lascia un trattino finale nel filename", async () => {
     // Pre-fix l'inline tagliava a 48 SENZA il secondo strip del trattino: un titolo
     // lungo con confine di parola sul char 48 dava 'lezione-...-.lesson'.
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "a".repeat(47) + " x",
       durationMs: 1000,
@@ -382,8 +374,7 @@ describe("RecapView", () => {
   })
 
   it("mostra elenco formule inserite", async () => {
-    const { buildRecap } = await import("../store/lessonRecap")
-    vi.mocked(buildRecap).mockResolvedValue({
+    givenRecap({
       v: 1,
       title: "Test",
       durationMs: 1000,

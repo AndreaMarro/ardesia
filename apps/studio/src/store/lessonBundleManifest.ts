@@ -229,7 +229,7 @@ export async function buildLessonBundleManifest(
 ): Promise<LessonBundleManifestV1> {
   const required = new Set<string>(REQUIRED_ARTIFACTS)
   const files = await Promise.all([...entries.values()]
-    .sort((left, right) => left.path.localeCompare(right.path))
+    .sort((left, right) => left.path < right.path ? -1 : left.path > right.path ? 1 : 0)
     .map(async (entry): Promise<LessonBundleFileManifest> => ({
       path: entry.path,
       bytes: entry.data.size,

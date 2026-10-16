@@ -146,11 +146,11 @@ export async function captureClosedLessonMaterial(store: WorkspaceStore, room: s
       }
       const journal = await read(paths.journal); const scene = await read(paths.scene)
       if (!journal || !scene) throw new Error("Materiale: appunti o lavagna della lezione non disponibili")
-      await verifyLessonRevision(closed.events, lessonId, await captureLessonRevisionEvidence({ read, list }, lessonId), journal)
       const decoded = decodeJournalJsonl(await journal.text(), paths.journal)
       if (decoded.issues.length > 0 || decoded.legacy.length !== decoded.envelopes.map(toLegacyJournalEvent).filter(Boolean).length) {
         throw new Error("Materiale: appunti legacy o incompleti, non una revisione canonica chiusa")
       }
+      await verifyLessonRevision(closed.events, lessonId, await captureLessonRevisionEvidence({ read, list }, lessonId), journal, decoded.envelopes)
       const owners = new Map(closed.events.filter(event => event.kind === "lesson.started").map(event => [event.sessionId, event]))
       for (const event of decoded.envelopes) {
         const owner = owners.get(event.sessionId)

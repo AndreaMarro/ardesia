@@ -3,14 +3,14 @@
 // Linguaggio docente: "appunti salvati" (sottotitolo), mai flush/cache.
 // Ogni card ha una label propria (tempo / lavagna / formule), non ripetuta.
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
-import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
-import { buildRecapHtml } from "./store/recapHtml"
-import { createEventLogStore } from "./lessonos/indexedDbEventLog"
-import { buildRoomStudyDigest, type StudyDigest } from "./lessonos/studyDigest"
+import { formatDuration, type LessonRecap } from "./store/lessonRecap"
+import { captureClosedLessonMaterial, type ClosedLessonMaterial } from "./store/lessonMaterial"
+import type { StudyDigest } from "./lessonos/studyDigest"
 import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
+import ViewNav from "./design/ViewNav"
 
 interface RecapViewProps {
   store: WorkspaceStore
@@ -25,7 +25,7 @@ interface RecapViewProps {
  * fuorviante "torna alla lavagna"). I check sul contenuto coprono il caso di
  * elementi con timestamp corrotto (firstEventTime null ma aggregazioni > 0).
  */
-function isRecapEmpty(r: LessonRecap): boolean {
+function isRecapEmpty(r: LessonRecap, digest: StudyDigest): boolean {
   return (
     r.firstEventTime === null &&
     r.durationMs === 0 &&
@@ -33,107 +33,82 @@ function isRecapEmpty(r: LessonRecap): boolean {
     r.mathFormulas.length === 0 &&
     r.pdfPagesViewed.length === 0 &&
     (r.pdfReferences?.length ?? 0) === 0 &&
-    (r.boardTexts?.length ?? 0) === 0
+    (r.boardTexts?.length ?? 0) === 0 &&
+    digest.concepts.length === 0 && digest.errors.length === 0 &&
+    (digest.results?.length ?? 0) === 0 && (digest.exercises?.length ?? 0) === 0 &&
+    (digest.materials?.length ?? 0) === 0
   )
 }
 
 export default function RecapView({ store, room }: RecapViewProps) {
-  const [recap, setRecap] = useState<LessonRecap | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [exportError, setExportError] = useState<string | null>(null)
-  const [exporting, setExporting] = useState(false)
-  const [digest, setDigest] = useState<StudyDigest | null>(null)
+  const [attempt, setAttempt] = useState(0)
+  const [result, setResult] = useState<Readonly<{
+    store: WorkspaceStore; room: string; attempt: number
+    material: ClosedLessonMaterial | null; error: string | null
+  }> | null>(null)
+  const [downloadError, setDownloadError] = useState<Readonly<{ material: ClosedLessonMaterial; message: string }> | null>(null)
+  // Never show A's result/error during the first render for B or a new attempt.
+  const current = result?.store === store && result.room === room && result.attempt === attempt ? result : null
+  const loading = current === null
+  const error = current?.error ?? null
+  const material = current?.material ?? null
+  const recap = material?.recap ?? null
+  const empty = material !== null && isRecapEmpty(material.recap, material.digest)
+  const recapHtml = material !== null && !empty ? material.html : null
+  const exportError = downloadError?.material === material ? downloadError?.message : null
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
-    // Digesto di studio (concetti + errori break→explain) dal log LessonOS,
-    // room-scoped. Fail-soft: senza log leggibile il materiale resta valido
-    // senza le sezioni pedagogiche.
-    void (async () => {
-      try {
-        const log = await createEventLogStore()
-        const events = await log.readAll()
-        if (!cancelled) setDigest(buildRoomStudyDigest(events, room))
-        if ("close" in log) await (log as { close(): Promise<void> }).close()
-      } catch {
-        /* fail-soft: nessun digesto */
-      }
-    })()
-    buildRecap(store, room)
-      .then((r) => {
-        if (!cancelled) setRecap(r)
-      })
+    captureClosedLessonMaterial(store, room)
+      .then(material => { if (!cancelled) setResult({ store, room, attempt, material, error: null }) })
       .catch((err: unknown) => {
-        if (!cancelled) setError((err as Error).message)
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
+        if (!cancelled) setResult({ store, room, attempt, material: null, error: err instanceof Error ? err.message : String(err) })
       })
     return () => { cancelled = true }
-  }, [store, room])
+  }, [store, room, attempt])
 
-  // react-best-practices: deriva l'HTML del materiale UNA volta per recap
-  // (memoized), unica fonte per anteprima E download — mai rigenerato a ogni render.
-  const recapHtml = useMemo(
-    () => (recap && !isRecapEmpty(recap) ? buildRecapHtml(recap, digest ?? undefined) : null),
-    [recap, digest],
-  )
-
-  async function handleExport() {
-    setExporting(true)
-    setExportError(null)
+  function download(blob: Blob, filename: string) {
+    if (!material) return
+    setDownloadError(null)
     try {
-      const zipBlob = await store.exportLesson(room)
-      const url = URL.createObjectURL(zipBlob)
+      const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
-      const slug = lessonSlug(recap?.title ?? "", room)
       a.href = url
-      a.download = `lezione-${slug}.lesson`
+      a.download = filename
       document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
+      try { a.click() }
+      finally { a.remove(); URL.revokeObjectURL(url) }
     } catch (err) {
-      // Errore LOCALE all'azione: non nasconde il riepilogo (sarebbe contraddittorio
-      // suggerire "esporta la lezione" proprio quando l'export è fallito).
-      setExportError("Esportazione non riuscita: " + (err as Error).message + ". Riprova; se persiste, controlla lo spazio su disco.")
-    } finally {
-      setExporting(false)
+      setDownloadError({ material, message: "Esportazione non riuscita: " + (err instanceof Error ? err.message : String(err)) + ". Riprova; se persiste, controlla lo spazio su disco." })
     }
   }
 
-  // Deliverable umano-leggibile: un recap.html autosufficiente e stampabile
-  // (worksheet + Fonti), derivato dal recap già proiettato. ZERO PII.
+  function handleExport() {
+    if (material) download(material.bundle, `lezione-${lessonSlug(material.recap.title, room)}.lesson`)
+  }
+
   function handleDownloadRecapHtml() {
     if (!recapHtml || !recap) return
-    const blob = new Blob([recapHtml], { type: "text/html;charset=utf-8" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `recap-${lessonSlug(recap.title, room)}.html`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
+    download(new Blob([recapHtml], { type: "text/html;charset=utf-8" }), `recap-${lessonSlug(recap.title, room)}.html`)
   }
 
   return (
     <div className="st-recap">
-      <header className="st-bar st-bar-recap">
+      <header className="st-bar st-bar-recap" style={{ height: "auto", minHeight: 56, flexWrap: "wrap", gap: 12, padding: "12px 20px" }}>
         <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
           <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
         <span className="st-chip-student">riepilogo lezione</span>
-        <div className="st-recap-actions" style={{ marginLeft: "auto" }}>
+        <ViewNav current="materiali" />
+        <div className="st-recap-actions" style={{ marginLeft: "auto", display: "flex", flexWrap: "wrap", gap: 8 }}>
+          <button onClick={() => setAttempt(value => value + 1)} disabled={loading} className="st-ghost">aggiorna riepilogo</button>
           <button onClick={handleDownloadRecapHtml} disabled={!recapHtml} className="st-ghost">
             scarica recap
           </button>
-          <button onClick={handleExport} disabled={exporting} className="st-primary">
-            {exporting ? "esporto…" : "esporta .lesson"}
+          <button onClick={handleExport} disabled={!material} className="st-primary">
+            esporta .lesson
           </button>
         </div>
       </header>
@@ -153,17 +128,17 @@ export default function RecapView({ store, room }: RecapViewProps) {
             tone="error"
             title="Riepilogo non disponibile"
             detail={"Non è stato possibile preparare il riepilogo di questa lezione. " + error}
-            hint="Riprova tra qualche istante. Se il problema resta, esporta la lezione e riaprila da un'altra scheda."
+            hint="Riprova con aggiorna riepilogo dopo la chiusura della lezione. Per importare un bundle o recuperare l'archivio, apri Materiali."
           />
         )}
-        {!loading && !error && (recap === null || isRecapEmpty(recap)) && (
+        {!loading && !error && (recap === null || empty) && (
           <EmptyState
             title="Ancora nessun appunto"
             detail="Questa lezione non contiene ancora elementi sulla lavagna né formule."
-            hint="Torna alla lavagna e inizia a scrivere: il riepilogo si aggiorna da solo."
+            hint="Torna alla lavagna e inizia a scrivere; dopo la chiusura, apri di nuovo il riepilogo."
           />
         )}
-        {!loading && !error && recap !== null && !isRecapEmpty(recap) && (
+        {!loading && !error && recap !== null && !empty && (
           <>
             <section style={{ marginBottom: "28px" }}>
               <h2 className="st-recap-title" style={{

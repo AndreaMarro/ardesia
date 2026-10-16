@@ -5,6 +5,9 @@ import JSZip from "jszip"
 import { IDBFactory } from "fake-indexeddb"
 import { captureClosedLessonMaterial } from "../store/lessonMaterial"
 import { IndexedDbEventLog } from "../lessonos/indexedDbEventLog"
+import { openLessonOsSession } from "../lessonos/bootstrap"
+import { JournalRecorder } from "../store/JournalRecorder"
+import { captureLessonRevisionEvidence } from "../store/lessonRevision"
 import { createLessonMutationCoordinator } from "../store/lessonMutationLock"
 import { roomPaths } from "../store/roomPaths"
 import { captureBroker, closedLessonFixture, memoryLessonWorkspace, MATERIAL_QUESTION, MATERIAL_ROOM, MATERIAL_SESSION } from "./closedLessonFixture"
@@ -128,5 +131,40 @@ describe("one closed material capture", () => {
       expect(reopened.html).toContain(MATERIAL_QUESTION)
       expect(reopened.revision.sessions).toEqual(material.revision.sessions)
     } finally { await log.close() }
+  })
+
+  it.each(["Zeta", "Z", "Teacher-Lesson", "zeta"])("reopens its own bundle for the valid lesson ID %s", async room => {
+    const { store } = await closedLessonFixture(undefined, room)
+    const material = await captureClosedLessonMaterial(store, room)
+    const recipient = memoryLessonWorkspace(createLessonMutationCoordinator(captureBroker()))
+    const factory = new IDBFactory(); vi.stubGlobal("indexedDB", factory)
+    const log = new IndexedDbEventLog({ factory }); await log.open()
+    try {
+      await recipient.importLessonBlobForRoom(material.bundle, room, log)
+      expect((await recipient.loadMeta(room))?.name).toBe("Lezione sintetica DC")
+      expect((await captureClosedLessonMaterial(recipient, room)).html).toContain(MATERIAL_QUESTION)
+    } finally { await log.close() }
+  })
+
+  it.each(["A-after-end", "B-before-end"] as const)("checks the journal against its own author's end (%s)", async source => {
+    const { store, factory, recorder: recorderA } = await closedLessonFixture()
+    let id = 0
+    const uuid = () => `eeeeeeee-eeee-4eee-8eee-${(++id).toString(16).padStart(12, "0")}`
+    const b = await openLessonOsSession({ room: MATERIAL_ROOM, actor: { type: "teacher", id: "synthetic-B" },
+      newSessionId: () => "22222222-2222-4222-8222-222222222222", newEventId: uuid, now: () => 1000,
+      env: { indexedDB: factory, storage: undefined, markerStorage: undefined } })
+    const recorderB = new JournalRecorder({ store, journalPath: roomPaths(MATERIAL_ROOM).journal,
+      identity: b.identity, producer: b.producer, newEventId: uuid, now: () => 1000,
+      withExclusiveLock: async (_name, work) => work() })
+    const active = source === "A-after-end" ? recorderA : recorderB
+    active.recordMathInsert("LATE_SUFFIX_AT_SAME_CLOCK")
+    await b.close({ beforeEnd: async () => { await active.flush(); return captureLessonRevisionEvidence(store, MATERIAL_ROOM) } })
+    if (source === "A-after-end") {
+      await expect(captureClosedLessonMaterial(store, MATERIAL_ROOM)).rejects.toThrow(/sessione|chiusura/)
+    } else {
+      const material = await captureClosedLessonMaterial(store, MATERIAL_ROOM)
+      expect(material.recap.mathFormulas).toContain("LATE_SUFFIX_AT_SAME_CLOCK")
+      expect(material.revision.sessions).toHaveLength(2)
+    }
   })
 })
