@@ -3293,7 +3293,9 @@ describe("accepted Simulation action → closed lesson boundary", () => {
     })
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
-    root.render(<RoomModule.default store={store} navigate={navigate} lessonOsOpener={async () => handle} />)
+    await actRoomUpdate(async () => {
+      root.render(<RoomModule.default store={store} navigate={navigate} lessonOsOpener={async () => handle} />)
+    })
     const { Excalidraw } = await import("@excalidraw/excalidraw")
     await vi.waitFor(() => {
       expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
@@ -3322,7 +3324,9 @@ describe("accepted Simulation action → closed lesson boundary", () => {
       const next = await openInMemorySession("test-room-1", deterministicSessionDeps({ sessionId: SESSION_B }))
       const { store: nextStore } = await createMockStore()
       const opener = async () => next
-      root.render(<RoomModule.default store={nextStore} navigate={navigate} lessonOsOpener={opener} />)
+      await actRoomUpdate(async () => {
+        root.render(<RoomModule.default store={nextStore} navigate={navigate} lessonOsOpener={opener} />)
+      })
       await vi.waitFor(() => {
         expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(next)
         expect((window as any).__MAESTRO_TEST__?.ready).toBe(true)
@@ -3465,7 +3469,7 @@ describe("accepted Simulation action → closed lesson boundary", () => {
   it("a renderer from the old Room generation cannot append or write back into its replacement", async () => {
     const r = await producerRoom()
     try {
-      r.addSource()
+      await actRoomUpdate(async () => { r.addSource() })
       await vi.waitFor(async () => expect((await r.handle.store.readAllEnvelopes()).filter(e => e.kind.startsWith("simulation."))).toHaveLength(1))
       const next = await r.rebind()
       const oldButton = document.querySelector<HTMLButtonElement>("[data-sim-break]")!
@@ -3549,7 +3553,7 @@ describe("accepted Simulation action → closed lesson boundary", () => {
     })); const allow = makeDeferred<void>()
     let roomUnmounted = false
     try {
-      r.addSource()
+      await actRoomUpdate(async () => { r.addSource() })
       await vi.waitFor(async () => expect((await r.handle.store.readAllEnvelopes()).filter(e => e.kind.startsWith("simulation."))).toHaveLength(1))
       const harness = (window as any).__MAESTRO_TEST__
       mockExcalidrawHarness.pointerDown?.()
