@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import type { CSSProperties, ReactElement } from "react"
+import { measureReadout } from "../core/contracts/ledReadout"
 
 import {
   isElabTutorPostitState,
@@ -156,7 +157,9 @@ function PluginPostitBoardCard({ model }: { model: PluginPostitBoardRenderModel 
         : genericPluginFunctionLabels
   const visibleFunctions =
     model.functionSurfaceMode === "compact" ? functionLabels.slice(0, 2) : functionLabels
-  const ledCurrent = model.providerOutput?.solverOutput.currents.led ?? 0
+  // Espressione citata verbatim dal CARDINE (P1-3): `currents.led ?? 0`
+  // «puo' trasformare un valore assente in uno zero apparente».
+  const ledCurrent = measureReadout(model.providerOutput?.solverOutput.currents.led, null)
 
   return (
     <article

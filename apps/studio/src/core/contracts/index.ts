@@ -21,6 +21,9 @@ export {
   type ArdesiaEventMap,
   type ArdesiaEventKind,
 } from "./eventBus"
+// Acceso, spento e IGNOTO: il terzo stato esiste perché `x?.on === true`
+// vale `false` in due situazioni diverse, e una di esse non è un fatto.
+export { ledReadout, measureReadout, LED_READOUT_LABELS, type LedReadoutState } from "./ledReadout"
 // `kind` vive nel manifest (toolhost-protocol possiede il ToolManifest);
 // qui viene ri-esportato perché fa parte del vocabolario Core.
 export {

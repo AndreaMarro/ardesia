@@ -21,6 +21,8 @@ export function simulationSolveEvent(input: SimulationSolveEventInput): LessonOs
   if (!experimentId) return null
   const evidence = [`simulation:scene:${experimentId}`]
   if (outcome.kind === "solved") {
+    // Non-finite payloads cannot become measured facts in export or recap.
+    if (!Number.isFinite(outcome.currentMa)) return null
     return {
       kind: "simulation.circuit.solved",
       experimentId,

@@ -126,6 +126,8 @@ export function ledStressZone(currentAmps: number): LedStressZone {
 export const RGB_BRIGHTNESS_FULL_SCALE_MA = 30
 
 export interface RgbChannel {
+  /** Derived readout validity, never inferred from an absent channel. */
+  available: boolean
   on: boolean
   brightness: number
   /** Valido solo se `brightness < 1`; oltre, il motore ha clampato. */
@@ -140,9 +142,8 @@ export interface RgbChannels {
 
 /**
  * Legge i tre canali del LED RGB `rgbId` dal risultato del solve. Un id
- * assente produce tre canali spenti — chi chiama deve aver già verificato che
- * il componente esista, altrimenti "assente" si traveste da "spento" (ed è
- * esattamente il difetto F5-1).
+ * assente o non valido produce un canale non disponibile. I consumer devono
+ * verificare available prima di presentare un verdetto acceso/spento.
  */
 export function rgbChannelsFromSolve(result: SolveResult, rgbId: string): RgbChannels {
   const state = result.componentStates[rgbId] as
@@ -150,8 +151,12 @@ export function rgbChannelsFromSolve(result: SolveResult, rgbId: string): RgbCha
     | undefined
   const channel = (name: "red" | "green" | "blue"): RgbChannel => {
     const raw = state?.[name]
-    const brightness = raw?.brightness ?? 0
+    const available = result.ok && typeof raw?.on === "boolean" &&
+      typeof raw.brightness === "number" && Number.isFinite(raw.brightness) &&
+      raw.brightness >= 0 && raw.brightness <= 1
+    const brightness = available ? raw!.brightness! : 0
     return {
+      available,
       on: raw?.on === true,
       brightness,
       currentMa: brightness * RGB_BRIGHTNESS_FULL_SCALE_MA,
@@ -162,6 +167,7 @@ export function rgbChannelsFromSolve(result: SolveResult, rgbId: string): RgbCha
 
 /** Etichetta di un canale. Al clamp dichiara la soglia, non un valore inventato. */
 export function formatRgbChannelMa(channel: RgbChannel): string {
+  if (!channel.available || !Number.isFinite(channel.currentMa)) return "?"
   return channel.brightness >= 1
     ? `>= ${RGB_BRIGHTNESS_FULL_SCALE_MA} mA`
     : `${channel.currentMa.toFixed(1)} mA`

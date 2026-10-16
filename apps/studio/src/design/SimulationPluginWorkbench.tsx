@@ -18,6 +18,7 @@ import {
   solveWithProvider,
   type ProviderId,
 } from "../../sim/providers/simulationProviders"
+import { LED_READOUT_LABELS, ledReadout, measureReadout } from "../core/contracts/ledReadout"
 import { wokwiDiagramToSimulationScene } from "../../sim/core/wokwiDiagramAdapter"
 import {
   structuredObservationToSimulationScene,
@@ -455,8 +456,14 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
     canUndo: undoSnapshot !== null,
     onUndo: handleMontaggioUndo,
   }
-  const liveCurrentMa = (liveSolve.currents.led1 ?? 0) * 1000
+  // `?? 0` mostrava 0.0 mA per una corrente NON misurata: accanto a «LED ?»
+  // erano due affermazioni contraddittorie sullo stesso circuito (CARDINE P1-3).
+  const liveLed1A = liveSolve.ok ? liveSolve.currents.led1 : null
+  const liveCurrentMa = liveLed1A === undefined || liveLed1A === null ? null : liveLed1A * 1000
   const liveLedState = liveSolve.componentStates.led1
+  // `led1` può non esistere in questa scena, o il solver può non aver risposto:
+  // in entrambi i casi non sappiamo, e «non lo so» non si scrive «OFF».
+  const liveLedReadout = ledReadout(liveSolve.ok ? liveLedState?.on : null)
 
   return (
     <div
@@ -469,19 +476,19 @@ function SimulationSceneCanvas({ scene }: { scene: SimulationScene }) {
       data-preview-source-kind={scene.adapters.source}
       style={elabCanvasFrameStyle}
     >
-      <SimulationBoard scene={boardScene} montaggio={montaggio} />
+      <SimulationBoard scene={boardScene} montaggio={montaggio} solveAvailable={liveSolve.ok} />
       <SimulationWireEditorPanel key={scene.id} scene={scene} />
       <div
         data-live-physics-status={liveSolve.ok ? "ok" : "blocked"}
-        data-live-physics-current-ma={liveCurrentMa.toFixed(1)}
+        data-live-physics-current-ma={measureReadout(liveCurrentMa)}
         data-live-physics-disconnected={String(liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0)}
         data-free-assembly-findings={String(freeAssembly.findings.length)}
         style={physicsStripStyle}
       >
         <strong>fisica reale</strong>
-        <span>{liveSolve.ok ? "solver local OK" : liveSolve.diagnostics.join(", ")}</span>
-        <span>LED {liveLedState?.on === true ? "ON" : "OFF"}</span>
-        <span>{liveCurrentMa.toFixed(1)} mA</span>
+        <span>{liveSolve.ok ? "solver local OK" : liveSolve.solverDiagnostics?.shortCircuit ? "corto circuito rilevato" : liveSolve.diagnostics.join(", ")}</span>
+        <span data-led-readout={liveLedReadout}>LED {LED_READOUT_LABELS[liveLedReadout]}</span>
+        <span>{measureReadout(liveCurrentMa)} mA</span>
         <span>{liveSolve.solverDiagnostics?.disconnectedPins.length ?? 0} pin scollegati</span>
         {freeAssembly.findings.length > 0 && (
           <span>{freeAssembly.findings[0]?.message}</span>

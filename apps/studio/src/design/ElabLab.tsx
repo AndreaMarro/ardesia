@@ -34,6 +34,7 @@ import {
 import { getLessonPath } from "@elab-pack/data/lesson-paths"
 import { getVolumeLabel, getVolumeRef } from "@elab-pack/data/volume-references"
 import { getSimulationTool } from "../toolhost/simulationPluginRegistry"
+import { measureReadout } from "../core/contracts/ledReadout"
 // Import con side-effect deliberato: registra l'entry del Simulation Plugin
 // (render + solve reale) nel registry — lo stesso dispatch usato dal canvas.
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
@@ -91,7 +92,9 @@ function dispatchSolve(experiment: ElabVolumeExperiment): SolveOutcome {
   const entry = getSimulationTool(REFERENCE_SIM_TOOL_ID)
   if (entry?.solve === undefined) return { kind: "no-solve" }
   try {
-    return { kind: "ok", result: entry.solve(toSolverExperiment(experiment)) }
+    const result = entry.solve(toSolverExperiment(experiment))
+    if (!result.ok) return { kind: "error", detail: result.diagnostics.shortCircuit ? "Corto circuito rilevato" : "Solve rifiutato dal motore" }
+    return { kind: "ok", result }
   } catch (error) {
     return { kind: "error", detail: String(error) }
   }
@@ -256,13 +259,6 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     URL.revokeObjectURL(url)
   }
 
-  useEffect(() => {
-    const node = canvasRef.current
-    if (node === null || experiment === null) return
-    const handle = renderEmbeddable(node, { experiment })
-    return () => handle.dispose()
-  }, [experiment])
-
   // F5-1 — l'id del componente luminoso si LEGGE dall'esperimento, non si
   // indovina. Fino al 2026-07-30 questa vista leggeva `led1` costante: per la
   // lampada RGB (v1-cap9-esp6, componente `rgb1`) `componentStates.led1?.on`
@@ -296,13 +292,15 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     if (solve?.kind !== "ok") return []
     return lights.map((light): LightReading => {
       const state = solve.result.componentStates[light.id]
-      if (state === undefined) return { kind: "missing", id: light.id }
+      if (state === undefined || typeof state.on !== "boolean") return { kind: "missing", id: light.id }
       if (light.type === "rgb-led") {
+        const channels = rgbChannelsFromSolve(solve.result, light.id)
+        if (Object.values(channels).some(channel => !channel.available)) return { kind: "missing", id: light.id }
         return {
           kind: "rgb",
           id: light.id,
           on: state.on === true,
-          channels: rgbChannelsFromSolve(solve.result, light.id),
+          channels,
         }
       }
       return {
@@ -328,6 +326,16 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
   const single = hasVerdict && readings.length === 1 ? readings[0] : null
   const ledCurrent = single?.kind === "led" ? single.currentAmps : undefined
   const rgbChannels = single?.kind === "rgb" ? single.channels : null
+
+  useEffect(() => {
+    const node = canvasRef.current
+    if (node === null || experiment === null) return
+    const handle = renderEmbeddable(node, {
+      experiment,
+      componentStates: solve?.kind === "ok" && hasVerdict ? solve.result.componentStates : {},
+    })
+    return () => handle.dispose()
+  }, [experiment, solve, hasVerdict])
 
   return (
     <div
@@ -434,7 +442,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                         <div>
                           <dt style={{ display: "inline" }}>Corrente LED (mA): </dt>
                           <dd style={{ display: "inline", margin: 0 }} data-led-current-ma>
-                            {ledCurrent === undefined ? "—" : (ledCurrent * 1000).toFixed(1)}
+                            {ledCurrent === undefined ? "—" : measureReadout(ledCurrent * 1000)}
                           </dd>
                         </div>
                       )}
@@ -472,7 +480,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
                                     } · ${
                                       reading.currentAmps === undefined
                                         ? "—"
-                                        : `${(reading.currentAmps * 1000).toFixed(1)} mA`
+                                        : `${measureReadout(reading.currentAmps * 1000)} mA`
                                     }`}
                               </dd>
                             </div>

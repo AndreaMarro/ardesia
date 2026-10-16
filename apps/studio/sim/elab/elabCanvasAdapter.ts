@@ -9,7 +9,7 @@ import type {
   SimulationOperationOrigin,
 } from "../core/simulationOperations"
 import type { SimulationWirePath } from "../core/simulationScene"
-import { solveElabExperiment } from "../solver/elabSolver"
+import { rgbChannelsFromSolve, solveElabExperiment } from "../solver/elabSolver"
 import type { SolveResult } from "../solver/elabSolver"
 
 type ElabCanvasPoint = { x: number; y: number }
@@ -75,6 +75,7 @@ export type ElabCanvasMountState = {
   projectionMode: ElabCanvasProjectionMode
   experiment: ElabCanvasExperiment
   componentStates: Record<string, unknown>
+  measurementStatus: "known" | "unknown"
   diagnostics: string[]
 }
 
@@ -124,12 +125,25 @@ export function simulationSceneToElabCanvasState(
   } catch (error) {
     diagnostics.push(error instanceof Error ? error.message : String(error))
   }
+  if (solve !== null && !solve.ok) {
+    diagnostics.push(solve.diagnostics.shortCircuit ? "Corto circuito: stato elettrico non disponibile" : "Solve rifiutato: stato elettrico non disponibile")
+  }
+
+  const componentStates = normalizeElabCanvasComponentStates(scene, solve)
+  const unknownLights = scene.components.filter(component =>
+    (component.type === "led" || component.type === "rgb-led") &&
+    asRecord(componentStates[component.id]).measurementStatus === "unknown")
+  const measurementStatus = solve?.ok === true && unknownLights.length === 0 ? "known" : "unknown"
+  if (measurementStatus === "unknown" && diagnostics.length === 0) {
+    diagnostics.push(`Stato elettrico non disponibile${unknownLights.length ? `: ${unknownLights.map(component => component.id).join(", ")}` : ""}`)
+  }
 
   return {
     sourceOfTruth: "simulation-scene",
     projectionMode,
     experiment,
-    componentStates: normalizeElabCanvasComponentStates(scene, solve),
+    componentStates,
+    measurementStatus,
     diagnostics,
   }
 }
@@ -380,16 +394,17 @@ function normalizeElabCanvasComponentStates(
   scene: ElabCanvasSceneLike,
   solve: SolveResult | null,
 ): Record<string, unknown> {
-  const states: Record<string, unknown> = solve === null ? {} : structuredClone(solve.componentStates)
+  const states: Record<string, unknown> = solve === null || !solve.ok ? {} : structuredClone(solve.componentStates)
 
   for (const component of scene.components) {
     const raw = asRecord(states[component.id])
     if (component.type === "led") {
-      const on = raw.on === true
-      states[component.id] = {
-        ...raw,
-        brightness: typeof raw.brightness === "number" ? raw.brightness : on ? 1 : 0,
-      }
+      states[component.id] = typeof raw.on !== "boolean" || (raw.brightness !== undefined && (typeof raw.brightness !== "number" || !Number.isFinite(raw.brightness) || raw.brightness < 0 || raw.brightness > 1))
+        ? { measurementStatus: "unknown" }
+        : { ...raw, brightness: typeof raw.brightness === "number" && Number.isFinite(raw.brightness) ? raw.brightness : raw.on ? 1 : 0 }
+    }
+    if (component.type === "rgb-led" && (solve === null || Object.values(rgbChannelsFromSolve(solve, component.id)).some(channel => !channel.available))) {
+      states[component.id] = { measurementStatus: "unknown" }
     }
     if (component.type === "battery9v") {
       states[component.id] = { voltage: 9, connected: true, ...raw }
