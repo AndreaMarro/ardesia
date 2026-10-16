@@ -4,10 +4,20 @@
 
 import { type WorkspaceStore } from "./WorkspaceStore"
 import { PATHS } from "./types"
-import type { JournalEvent } from "./JournalRecorder"
+import type { JournalEnvelopeV2, JournalEvent } from "./JournalRecorder"
+import type { EventEvidence } from "../core/contracts/eventEnvelope"
+import { decodeJournalJsonl, ReplayEngine } from "./ReplayEngine"
+import { roomPaths } from "./roomPaths"
 
 export interface LessonRecap {
   v: 1
+  /** Final visible board text, with original element and evidence identity. */
+  boardTexts?: ReadonlyArray<Readonly<{ elementId: string; text: string; evidence: readonly EventEvidence[] }>>
+  /** An import is not evidence that a page was observed. */
+  pdfReferences?: ReadonlyArray<Readonly<{
+    documentId: string | null; documentName: string | null; page: number
+    status: "imported" | "observed"; evidence: readonly EventEvidence[]
+  }>>
   /** Nome della lezione (da meta.json) */
   title: string
   /** Durata in millisecondi (max-min dei timestamp journal validi) */
@@ -32,55 +42,30 @@ export interface LessonRecap {
  * Linguaggio: mai "flush"/"cache"/"workspace" nei label — solo "appunti salvati".
  */
 export async function buildRecap(
-  store: WorkspaceStore,
+  store: Pick<WorkspaceStore, "read" | "loadMeta">,
   room: string,
 ): Promise<LessonRecap | null> {
   // 1. Carica meta (nome lezione)
   const meta = await store.loadMeta(room)
   const title = meta?.name ?? "Lezione senza nome"
 
-  // 2. Carica events.jsonl e analizza
-  const journalBlob = await store.read(PATHS.JOURNAL)
-  if (!journalBlob) {
-    return {
-      v: 1,
-      title,
-      durationMs: 0,
-      mathFormulas: [],
-      elementTypeCounts: {},
-      totalElementsAdded: 0,
-      pdfPagesViewed: [],
-      firstEventTime: null,
-      lastEventTime: null,
-    }
-  }
-
-  const text = await journalBlob.text()
-  const events: JournalEvent[] = text
-    .trim()
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => {
-      try {
-        return JSON.parse(line) as JournalEvent
-      } catch {
-        return null
-      }
-    })
-    .filter((e): e is JournalEvent => e !== null)
-
-  if (events.length === 0) {
-    return {
-      v: 1,
-      title,
-      durationMs: 0,
-      mathFormulas: [],
-      elementTypeCounts: {},
-      totalElementsAdded: 0,
-      pdfPagesViewed: [],
-      firstEventTime: null,
-      lastEventTime: null,
-    }
+  const source = roomPaths(room).journal
+  const scopedBlob = await store.read(source)
+  // Legacy compatibility is explicit and only applies when the room artifact
+  // is absent. A present empty or unreadable canonical journal is authoritative.
+  const journalBlob = scopedBlob ?? await store.read(PATHS.JOURNAL)
+  const text = journalBlob ? await journalBlob.text() : ""
+  let envelopes: readonly JournalEnvelopeV2[] | null = null
+  let events: JournalEvent[]
+  if (scopedBlob !== null) {
+    const decoded = decodeJournalJsonl(text, source)
+    if (decoded.issues.length > 0) throw new Error(`${source}: journal incompleto alla riga ${decoded.issues[0]!.line}`)
+    envelopes = decoded.envelopes
+    events = [...decoded.legacy]
+  } else {
+    events = text.trim().split("\n").filter(Boolean).map(line => {
+      try { return JSON.parse(line) as JournalEvent } catch { return null }
+    }).filter((event): event is JournalEvent => event !== null)
   }
 
   // Il journal puo essere out-of-order (merge di chunk, import): min/max, non primo/ultimo.
@@ -113,13 +98,27 @@ export async function buildRecap(
 
   const totalElementsAdded = Object.values(elementTypeCounts).reduce((a, b) => a + b, 0)
 
-  // 4. Pagine PDF uniche visualizzate
+  const pdfReferences: NonNullable<LessonRecap["pdfReferences"]> = envelopes === null ? [] : envelopes
+    .filter(event => event.kind === "journal.pdf.imported" || event.kind === "journal.pdf.page-observed")
+    .map(event => ({ documentId: event.payload.documentId, documentName: event.payload.documentName, page: event.payload.page,
+      status: event.kind === "journal.pdf.page-observed" ? "observed" as const : "imported" as const,
+      evidence: event.evidence }))
   const pdfPages = new Set<number>()
-  for (const ev of events) {
-    if (ev.type === "pdf.page.view" && Number.isInteger(ev.page) && ev.page > 0) {
-      pdfPages.add(ev.page)
+  if (envelopes !== null) {
+    for (const ref of pdfReferences) if (ref.status === "observed") pdfPages.add(ref.page)
+  } else for (const ev of events) {
+    if (ev.type === "pdf.page.view" && Number.isInteger(ev.page) && ev.page > 0) pdfPages.add(ev.page)
+  }
+  const textEvidence = new Map<string, readonly EventEvidence[]>()
+  for (const event of envelopes ?? []) {
+    if (event.kind === "journal.element.add" || event.kind === "journal.element.update") {
+      textEvidence.set(String(event.payload.element.id), event.evidence)
     }
   }
+  const boardTexts: NonNullable<LessonRecap["boardTexts"]> = envelopes === null ? [] : new ReplayEngine().replay(events)
+    .filter(element => element.type === "text" && typeof element.text === "string" && !element.isDeleted)
+    .map(element => ({ elementId: String(element.id), text: element.text as string,
+      evidence: textEvidence.get(String(element.id)) ?? [] }))
 
   const durationMs = firstEventTime !== null && lastEventTime !== null ? lastEventTime - firstEventTime : 0
 
@@ -133,6 +132,7 @@ export async function buildRecap(
     pdfPagesViewed: [...pdfPages].sort((a, b) => a - b),
     firstEventTime,
     lastEventTime,
+    ...(envelopes === null ? {} : { boardTexts, pdfReferences }),
   }
 }
 

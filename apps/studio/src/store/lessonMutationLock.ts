@@ -52,6 +52,8 @@ export interface LessonMutationCoordinator {
   withWorkspaceExclusive<T>(work: () => Promise<T>): Promise<T>
   registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration>
   probeInactiveLesson(lessonId: string): Promise<InactiveLessonProbe>
+  /** Hold the inactive lesson and workspace revision throughout a read-only callback. */
+  withInactiveLessonRead<T>(lessonId: string, work: () => Promise<T>): Promise<T>
 }
 
 export const WORKSPACE_MUTATION_LOCK = "ardesia:workspace-mutation"
@@ -322,6 +324,26 @@ class DefaultLessonMutationCoordinator implements LessonMutationCoordinator {
     return attempt.acquired
       ? Object.freeze({ status: "inactive" })
       : Object.freeze({ status: "unavailable", reason: "active" })
+  }
+
+  async withInactiveLessonRead<T>(lessonId: string, work: () => Promise<T>): Promise<T> {
+    const validLessonId = validateRoomId(lessonId)
+    if (this.safety === "local-only") {
+      throw new Error("Questo browser non può verificare che la lezione sia chiusa in tutte le schede (local-only).")
+    }
+    // Same lock order as mutations. An activity probe released before the
+    // callback would leave a gap in which another author could start writing.
+    return this.broker.request(WORKSPACE_MUTATION_LOCK, { mode: "shared" }, async () => {
+      const attempt = await this.broker.tryRequest(
+        lessonActivityLockName(validLessonId),
+        { mode: "exclusive" },
+        () => this.broker.request(lessonMutationLockName(validLessonId), { mode: "exclusive" }, work),
+      )
+      if (!attempt.acquired) {
+        throw new Error("La lezione è ancora aperta in un'altra scheda. Chiudila e riprova.")
+      }
+      return attempt.value
+    })
   }
 }
 

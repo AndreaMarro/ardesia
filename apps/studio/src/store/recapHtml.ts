@@ -7,6 +7,7 @@
 import type { LessonRecap } from "./lessonRecap"
 import { formatDuration } from "./lessonRecap"
 import type { StudyDigest } from "../lessonos/studyDigest"
+import type { EventEvidence } from "../core/contracts/eventEnvelope"
 
 function esc(s: string): string {
   return s
@@ -14,6 +15,14 @@ function esc(s: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
+}
+
+function evidenceHtml(evidence: readonly EventEvidence[]): string {
+  return evidence.length ? `<small>${evidence.map(item => `<code>${esc(item.ref)}</code> (${item.resolution === "verified" ? "verificata" : "non verificata"})`).join(" · ")}</small>` : ""
+}
+
+function digestEvidence(refs: readonly string[]): string {
+  return refs.length ? `<small>${refs.map(ref => `<code>${esc(ref)}</code>`).join(" · ")}</small>` : ""
 }
 
 /** Etichette IT per i tipi di elemento Excalidraw (mai gergo tecnico). */
@@ -45,9 +54,13 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
     coveredItems.push(`${count}&nbsp;${esc(ELEMENT_LABEL_IT[type] ?? type)}`)
   }
 
-  const fontiHtml = pages.length
-    ? `<ul class="fonti">${pages.map((p) => `<li>Manuale — pagina&nbsp;${p}</li>`).join("")}</ul>`
-    : `<p class="empty">Nessuna pagina del manuale registrata in questa lezione.</p>`
+  const fontiHtml = recap.pdfReferences !== undefined
+    ? (recap.pdfReferences.length
+      ? `<ul class="fonti">${recap.pdfReferences.map(ref => `<li>${esc(ref.documentName ?? ref.documentId ?? "Documento senza nome")} — pagina&nbsp;${ref.page} ${ref.status === "observed" ? "osservata" : "importata"}${evidenceHtml(ref.evidence)}</li>`).join("")}</ul>`
+      : `<p class="empty">Nessuna pagina PDF registrata in questa lezione.</p>`)
+    : (pages.length
+      ? `<ul class="fonti">${pages.map(p => `<li>pagina&nbsp;${p} (registrazione legacy)</li>`).join("")}</ul>`
+      : `<p class="empty">Nessuna pagina PDF registrata in questa lezione.</p>`)
 
   const formulasHtml = formulas.length
     ? `<ul class="formule">${formulas.map((f) => `<li><code>${esc(f)}</code></li>`).join("")}</ul>`
@@ -58,18 +71,20 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
     : `<p class="empty">Lavagna senza elementi registrati.</p>`
 
   const conceptsHtml = digest && digest.concepts.length
-    ? `<section><h2>Concetti trattati</h2><ul class="concetti">${digest.concepts.map((c) => `<li>${esc(c.label)}</li>`).join("")}</ul></section>`
+    ? `<section><h2>Concetti trattati</h2><ul class="concetti">${digest.concepts.map((c) => `<li>${esc(c.label)}${digestEvidence(c.evidence)}</li>`).join("")}</ul></section>`
     : ""
   const errorsHtml = digest && digest.errors.length
     ? `<section><h2>Errori e correzioni</h2><ul class="errori">${digest.errors
         .map(
           (e) =>
-            `<li>${esc(e.label)} — <span class="${e.corrected ? "ok" : "todo"}">${e.corrected ? "corretto" : "da rivedere"}</span></li>`,
+            `<li>${esc(e.label)} — <span class="${e.corrected ? "ok" : "todo"}">${e.corrected ? "corretto" : "da rivedere"}</span>${digestEvidence(e.evidence)}</li>`,
         )
         .join("")}</ul></section>`
     : ""
 
-  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0
+  const boardHtml = recap.boardTexts?.length
+    ? `<section><h2>Appunti sulla lavagna</h2>${recap.boardTexts.map(item => `<p>${esc(item.text).replace(/\n/g, "<br>")}${evidenceHtml(item.evidence)}</p>`).join("")}</section>` : ""
+  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || Boolean(boardHtml)
 
   return `<!doctype html>
 <html lang="it">
@@ -110,6 +125,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
   .concetti li,.errori li { padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
   .errori .ok { color:var(--viridian); font-weight:600; }
   .errori .todo { color:var(--ochre); font-weight:600; }
+  small { display:block; overflow-wrap:anywhere; color:var(--ink-3); }
   @media print { body { background:#fff; } .sheet { padding:24px 0; } .print-btn { display:none; } }
 </style>
 </head>
@@ -125,6 +141,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
       ${coveredHtml}
       ${formulasHtml}
     </section>
+    ${boardHtml}
     ${conceptsHtml}
     ${errorsHtml}
     <section>
@@ -135,7 +152,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
       <h2>I miei appunti</h2>
       <div class="notes">${'<div class="rule"></div>'.repeat(6)}</div>
     </section>
-    <footer>Generato da Ardesia. Le fonti citano le pagine reali del manuale mostrate durante la lezione (provenienza verificabile).</footer>
+    <footer>Generato da Ardesia dagli appunti salvati. I riferimenti distinguono importazioni e osservazioni registrate.</footer>
   </div>
 </body>
 </html>`

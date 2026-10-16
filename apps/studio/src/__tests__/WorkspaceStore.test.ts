@@ -768,6 +768,7 @@ describe("WorkspaceStore", () => {
         calls.push(`probe:${lessonId}`)
         return Object.freeze({ status: "inactive" as const })
       },
+      withInactiveLessonRead: async (_lessonId, work) => work(),
     }
     const guardedStore = new WorkspaceStore({ mutationCoordinator: coordinator })
 
@@ -1289,6 +1290,7 @@ class DeferredPathCoordinator implements LessonMutationCoordinator {
     return Object.freeze({ lessonId, release: async () => undefined })
   }
   async probeInactiveLesson() { return Object.freeze({ status: "inactive" as const }) }
+  withInactiveLessonRead<T>(_lessonId: string, work: () => Promise<T>): Promise<T> { return work() }
   release(): void { this.releaseGate.resolve() }
 }
 
@@ -1836,6 +1838,7 @@ describe("SessionYamlV2 authority", () => {
       withWorkspaceExclusive: async (work) => work(),
       registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
       probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+      withInactiveLessonRead: async (_lessonId, work) => work(),
     }
     const driver = new MockDriver()
     const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
@@ -1888,6 +1891,7 @@ describe("SessionYamlV2 authority", () => {
       withWorkspaceExclusive: async (work) => work(),
       registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
       probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+      withInactiveLessonRead: async (_lessonId, work) => work(),
     }
     const driver = new MockDriver()
     const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
@@ -2196,6 +2200,7 @@ describe("SessionYamlV2 authority", () => {
       withWorkspaceExclusive: async (work) => work(),
       registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
       probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+      withInactiveLessonRead: async (_lessonId, work) => work(),
     }
     const driver = new MockDriver()
     const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
@@ -2376,6 +2381,7 @@ describe("SessionYamlV2 authority", () => {
       withWorkspaceExclusive: async (work) => work(),
       registerActiveLesson: async (lessonId) => Object.freeze({ lessonId, release: async () => undefined }),
       probeInactiveLesson: async () => Object.freeze({ status: "inactive" }),
+      withInactiveLessonRead: async (_lessonId, work) => work(),
     }
     const driver = new MockDriver()
     const sessionStore = new WorkspaceStore({ mutationCoordinator: coordinator })
@@ -2572,5 +2578,67 @@ describe("zipBundle", () => {
     const binEntry = parsed.find((e) => e.path === "raw/data.bin")
     expect(binEntry).toBeDefined()
     expect(binEntry!.data.type).toBe("application/octet-stream")
+  })
+})
+
+
+describe("closed lesson read lease", () => {
+  it("refuses either active author, including a case-folded alias, before reading", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const first = await coordinator.registerActiveLesson("C")
+    const second = await coordinator.registerActiveLesson("c")
+    const read = vi.fn(async () => "captured")
+    try {
+      await expect(coordinator.withInactiveLessonRead("C", read)).rejects.toThrow(/aperta|active/i)
+      await first.release()
+      await expect(coordinator.withInactiveLessonRead("C", read)).rejects.toThrow(/aperta|active/i)
+      expect(read).not.toHaveBeenCalled()
+      await expect(coordinator.withInactiveLessonRead("D", read)).resolves.toBe("captured")
+      await second.release()
+      await expect(coordinator.withInactiveLessonRead("C", read)).resolves.toBe("captured")
+      expect(read).toHaveBeenCalledTimes(2)
+    } finally { await first.release(); await second.release() }
+  })
+
+  it("holds off new activity and workspace/lesson mutations throughout capture", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const entered = deferred(); const release = deferred(); const trace: string[] = []
+    const capture = coordinator.withInactiveLessonRead("C", async () => {
+      trace.push("capture"); entered.resolve(); await release.promise; return "same revision"
+    })
+    await entered.promise
+    const nextActivity = coordinator.registerActiveLesson("c").then(activity => { trace.push("activity"); return activity })
+    const mutation = coordinator.withPathMutation("raw/c/board.excalidraw", async () => { trace.push("write") })
+    const global = coordinator.withWorkspaceExclusive(async () => { trace.push("import") })
+    try {
+      await vi.waitFor(() => expect(broker.ledger).toContain("request:exclusive:ardesia:workspace-mutation"))
+      expect(trace).toEqual(["capture"])
+    } finally { release.resolve() }
+    await expect(capture).resolves.toBe("same revision")
+    const activity = await nextActivity; await activity.release()
+    await Promise.all([mutation, global])
+    expect(trace).toContain("write"); expect(trace).toContain("import"); expect(trace).toContain("activity")
+  })
+
+  it("releases every read lease after a capture failure without changing the original error", async () => {
+    const broker = new AdversarialMutationLockBroker()
+    const coordinator = createLessonMutationCoordinator(broker)
+    const error = new Error("synthetic material read failure")
+    await expect(coordinator.withInactiveLessonRead("C", async () => { throw error })).rejects.toBe(error)
+    const activity = await coordinator.registerActiveLesson("c"); await activity.release()
+    await expect(coordinator.withPathMutation("raw/C/events.jsonl", async () => "written")).resolves.toBe("written")
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:lesson-active:c")
+    expect(broker.ledger).toContain("exit:exclusive:ardesia:lesson-mutation:c")
+  })
+
+  it("cannot attest a closed revision with local-only locking or an invalid room", async () => {
+    const broker = new AdversarialMutationLockBroker("local-only")
+    const coordinator = createLessonMutationCoordinator(broker)
+    const read = vi.fn(async () => "must not read")
+    await expect(coordinator.withInactiveLessonRead("C", read)).rejects.toThrow(/browser|local-only/i)
+    await expect(coordinator.withInactiveLessonRead("../C", read)).rejects.toThrow(/room/i)
+    expect(read).not.toHaveBeenCalled(); expect(broker.ledger).toEqual([])
   })
 })

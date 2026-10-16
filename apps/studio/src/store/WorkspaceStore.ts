@@ -429,6 +429,11 @@ export class WorkspaceStore {
     return this.mutationCoordinator.probeInactiveLesson(lessonId)
   }
 
+  /** The callback may read only; mutations would reacquire a non-reentrant lease. */
+  withInactiveLessonRead<T>(lessonId: string, work: () => Promise<T>): Promise<T> {
+    return this.mutationCoordinator.withInactiveLessonRead(lessonId, work)
+  }
+
   /**
    * Inizializzazione SILENZIOSA: parte con localStorage (sempre disponibile).
    * MAI chiedere la cartella FSA qui — connectFolder() lo fa su gesto utente.
