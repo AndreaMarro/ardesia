@@ -10,7 +10,7 @@ import { PATHS, type WorkspaceDriver } from "../store/types"
 const ROOM = "recap-synthetic"
 const SESSION = "77777777-7777-4777-8777-777777777777"
 const producer = { id: "test.material.source", version: "1.0.0", commitSha: "f".repeat(40) }
-function setup() {
+function setup(clock?: () => number) {
   const bytes = new Map<string, ArrayBuffer>()
   const driver: WorkspaceDriver = {
     name: "synthetic-memory", available: () => true, init: async () => true,
@@ -24,7 +24,7 @@ function setup() {
   let n = 0
   const recorder = new JournalRecorder({ store, journalPath: roomPaths(ROOM).journal,
     identity: { lessonId: ROOM, sessionId: SESSION, actor: { type: "teacher", id: "synthetic" } },
-    producer, now: () => 1000 + n, newEventId: () => `88888888-8888-4888-8888-${(++n).toString(16).padStart(12, "0")}`,
+    producer, now: () => clock?.() ?? 1000 + n, newEventId: () => `88888888-8888-4888-8888-${(++n).toString(16).padStart(12, "0")}`,
     withExclusiveLock: async (_name, work) => work() })
   return { store, recorder }
 }
@@ -101,4 +101,34 @@ describe("canonical recap source", () => {
     expect(html).not.toContain("Domanda precedente")
     expect(html).not.toContain("Testo cancellato")
   })
+})
+
+
+it("an import-only canonical lesson is recorded activity without claiming an observed page", async () => {
+  const { store, recorder } = setup()
+  recorder.recordPdfPageView(2, 20, { documentId: "doc:synthetic", documentName: "Appunti sintetici.pdf" })
+  await recorder.flush()
+  const recap = (await buildRecap(store, ROOM))!
+  expect(recap.pdfReferences).toHaveLength(1)
+  expect(recap.pdfPagesViewed).toEqual([])
+  expect(recap.firstEventTime).toBe(1000)
+  expect(recap.lastEventTime).toBe(1000)
+  const html = buildRecapHtml(recap)
+  expect(html).toContain("importata")
+  expect(html).not.toContain("Questa lezione non ha ancora attività registrata")
+})
+
+
+it("an import before a formula contributes to the duration without becoming an observed page", async () => {
+  let time = 1000
+  const { store, recorder } = setup(() => time)
+  recorder.recordPdfPageView(2, 20, { documentId: "doc:synthetic", documentName: "Appunti sintetici.pdf" })
+  time = 11000
+  recorder.recordMathInsert("V = R I")
+  await recorder.flush()
+  const recap = (await buildRecap(store, ROOM))!
+  expect(recap.firstEventTime).toBe(1000)
+  expect(recap.lastEventTime).toBe(11000)
+  expect(recap.durationMs).toBe(10000)
+  expect(recap.pdfPagesViewed).toEqual([])
 })

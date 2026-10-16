@@ -31,7 +31,9 @@ function isRecapEmpty(r: LessonRecap): boolean {
     r.durationMs === 0 &&
     r.totalElementsAdded === 0 &&
     r.mathFormulas.length === 0 &&
-    r.pdfPagesViewed.length === 0
+    r.pdfPagesViewed.length === 0 &&
+    (r.pdfReferences?.length ?? 0) === 0 &&
+    (r.boardTexts?.length ?? 0) === 0
   )
 }
 

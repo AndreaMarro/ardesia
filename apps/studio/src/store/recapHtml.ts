@@ -84,7 +84,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
 
   const boardHtml = recap.boardTexts?.length
     ? `<section><h2>Appunti sulla lavagna</h2>${recap.boardTexts.map(item => `<p>${esc(item.text).replace(/\n/g, "<br>")}${evidenceHtml(item.evidence)}</p>`).join("")}</section>` : ""
-  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || Boolean(boardHtml)
+  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || Boolean(boardHtml) || Boolean(recap.pdfReferences?.length)
 
   return `<!doctype html>
 <html lang="it">

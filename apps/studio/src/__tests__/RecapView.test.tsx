@@ -279,6 +279,21 @@ describe("RecapView", () => {
     expect(occurrences).toBe(1)
   })
 
+  it("a PDF reference remains visible when it is the only content and its time is unavailable", async () => {
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1, title: "Solo import sintetico", durationMs: 0, mathFormulas: [],
+      elementTypeCounts: {}, totalElementsAdded: 0, pdfPagesViewed: [],
+      firstEventTime: null, lastEventTime: null,
+      pdfReferences: [{ documentId: "doc:synthetic", documentName: "Appunti sintetici.pdf", page: 2,
+        status: "imported", evidence: [{ ref: "pdf:doc%3Asynthetic#page=2", resolution: "missing" }] }],
+    })
+    await renderRecapView()
+    await vi.waitFor(() => expect(container.querySelector("iframe")).not.toBeNull())
+    expect(container.textContent).not.toContain("Ancora nessun appunto")
+    expect(container.querySelector("iframe")?.srcdoc).toContain("importata")
+  })
+
   it("export fallito: banner locale, il riepilogo resta visibile (no errore di pagina)", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockResolvedValue({

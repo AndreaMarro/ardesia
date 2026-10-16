@@ -73,10 +73,13 @@ export async function buildRecap(
   // non dalle aggregazioni (formule/elementi/pagine restano contati).
   let firstEventTime: number | null = null
   let lastEventTime: number | null = null
-  for (const ev of events) {
-    if (typeof ev.t !== "number" || !Number.isFinite(ev.t)) continue
-    if (firstEventTime === null || ev.t < firstEventTime) firstEventTime = ev.t
-    if (lastEventTime === null || ev.t > lastEventTime) lastEventTime = ev.t
+  // Some canonical events (notably PDF imports) intentionally have no legacy
+  // projection. Their occurrence still counts as activity, never as observation.
+  const timestamps = envelopes === null ? events.map(event => event.t) : envelopes.map(event => Date.parse(event.occurredAt))
+  for (const timestamp of timestamps) {
+    if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) continue
+    if (firstEventTime === null || timestamp < firstEventTime) firstEventTime = timestamp
+    if (lastEventTime === null || timestamp > lastEventTime) lastEventTime = timestamp
   }
 
   // 3. Estrai formula LaTeX uniche
