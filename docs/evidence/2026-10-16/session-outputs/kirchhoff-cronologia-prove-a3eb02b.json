@@ -1,0 +1,205 @@
+{
+  "candidate": "023fef3da11c995f359db2738abd29e0c7e0acf5",
+  "tree": "24b92ff9c7f91d6e5946f565cb6eeed3fb6d1d23",
+  "base": "7e1c4b6148622805c457538249bab1cb2d92152d",
+  "local": {
+    "python": {
+      "passed": 2631,
+      "skipped": 0,
+      "exit": 0,
+      "seconds": 234.81,
+      "coverage_percent": 97.4,
+      "domain_percent": 100,
+      "log": "history-python-tmp-final.log"
+    },
+    "web_unit": {
+      "passed": 391,
+      "exit": 0,
+      "log": "history-web-final.log"
+    },
+    "build_and_types": {
+      "exit": 0,
+      "log": "history-build-final.log"
+    },
+    "browser_standard": {
+      "passed": 186,
+      "skipped": 62,
+      "exit": 0,
+      "retry": 0,
+      "workers": 2,
+      "log": "history-browser-final.log",
+      "skip_reason": "Existing optional live lanes, including6 new history cases"
+    },
+    "browser_live": {
+      "passed": 22,
+      "skipped": 0,
+      "exit": 0,
+      "seconds": 18.1,
+      "log": "history-live-final.log",
+      "server": "http://127.0.0.1:43926",
+      "cases": "6history+2Ohm+2photo+2PDF+10capabilities"
+    },
+    "domain_boundaries_bmad": {
+      "exit": 0,
+      "domain_percent": 100
+    },
+    "toolchain": {
+      "node": "24.19.0",
+      "python": "3.12.12",
+      "chromium": "153.0.8010.12",
+      "pypdf": "6.13.3"
+    },
+    "runtime": "/private/tmp/codex-kirchhoff-history-20261016",
+    "provider_keys_excluded": [
+      "OPENAI_API_KEY",
+      "KIMI_API_KEY",
+      "DEEPSEEK_API_KEY"
+    ]
+  },
+  "review": {
+    "verdict": "APPROVE technical bounded",
+    "candidate": "023fef3da11c995f359db2738abd29e0c7e0acf5",
+    "reviewer": "/root/review_history",
+    "independent_targeted_web_passed": 40,
+    "human_github_approval": false
+  },
+  "failures_preserved": [
+    "113PASS1FAIL catalog adjacent run, resolved canonical regeneration",
+    "Initial Documents fullPython exit2,2 collection Errno60 errors,0 tests executed,654.45s",
+    "Documents Playwright bad-interpreter I/O, no tests executed",
+    "Documents webServer unchanged60000ms startup timeout, no tests executed",
+    "Two earlier structural-shape test first runs were alreadyGREEN, not counted as RED",
+    "Additional readonly Ardesia Git blob identity lookup stalled on Documents, own process terminated143; no mutation or behavioral claim",
+    "PDF bbox helper under systemPython3.14 failed to load libexpat; same XML parsed and asserted with frozenCPython3.12.12; no production change"
+  ],
+  "gates_timeouts_retries_skips_weakened": false,
+  "history_unit_external_provider_calls_observed": false,
+  "whole_goal_external_provider_calls": "Earlier atomic verification inherited provider keys and made unintended requests; billing/count unknown. This unit does not erase that incident.",
+  "deployment_command_executed": false,
+  "state": "INTEGRATED; exact candidate4CI and exact main2CI SUCCESS",
+  "main": {
+    "sha": "a3eb02bbeee7bc2914737f73cf771f524265c4c4",
+    "tree": "24b92ff9c7f91d6e5946f565cb6eeed3fb6d1d23",
+    "candidate_tree_equal": true,
+    "build_exit": 0,
+    "browser_live_passed": 6,
+    "browser_live_seconds": 8.1,
+    "actual_ui_export": "dc-cronologia-prova-a3eb02b.json",
+    "pdf": {
+      "source_main": "a3eb02bbeee7bc2914737f73cf771f524265c4c4",
+      "pages": 10,
+      "rendered_pages": 10,
+      "words_outside_media_box": [],
+      "text_checks": "PASS: question,8V and four attempts/outcomes present",
+      "parser_runtime": "CPython3.12.12; systemPython3.14 XML helper failed with incompatible libexpat before assertions",
+      "visual_inspection": "PASS: all10 rendered pages and reopened UI inspected"
+    }
+  },
+  "candidate_ci": {
+    "python_pr": {
+      "run": 38841679789,
+      "job": 116782976706,
+      "state": "SUCCESS",
+      "passed": 2628,
+      "skipped": 3,
+      "coverage_percent": 97.34,
+      "domain_percent": 100
+    },
+    "python_push": {
+      "run": 38841673878,
+      "job": 116782958141,
+      "state": "SUCCESS",
+      "passed": 2628,
+      "skipped": 3,
+      "coverage_percent": 97.34,
+      "domain_percent": 100
+    },
+    "web_pr": {
+      "run": 38841679808,
+      "job": 116782976627,
+      "state": "SUCCESS",
+      "unit_passed": 391,
+      "browser_passed": 186,
+      "browser_skipped": 62
+    },
+    "web_push": {
+      "run": 38841673791,
+      "job": 116782957902,
+      "state": "SUCCESS",
+      "unit_passed": 391,
+      "browser_passed": 186,
+      "browser_skipped": 62
+    }
+  },
+  "python_ci_skip_reasons": [
+    "sprint_plan helper not reachable",
+    "Chromium absent in Python job",
+    "ngspice absent"
+  ],
+  "main_ci": {
+    "python": {
+      "run": 38842416646,
+      "job": 116785293992,
+      "state": "SUCCESS",
+      "passed": 2628,
+      "skipped": 3,
+      "coverage_percent": 97.34,
+      "domain_percent": 100,
+      "seconds": 367.46
+    },
+    "web": {
+      "run": 38842416706,
+      "job": 116785294423,
+      "state": "SUCCESS",
+      "unit_passed": 391,
+      "browser_passed": 186,
+      "browser_skipped": 62
+    }
+  },
+  "artifacts": {
+    "dc-cronologia-quaderno-400635e.json": {
+      "bytes": 1797,
+      "sha256": "539bbb0da863960cc8a6ed12c41058c9fb9acd44cb5bef582b003a8fabe568e3",
+      "source_sha": "400635e374643f67c65352b2aa3858ec02183a85"
+    },
+    "dc-cronologia-prova-400635e.json": {
+      "bytes": 3057,
+      "sha256": "fad6db76440f641f520eb4188eb31bad4492422023b8efd119f951271aaaa72c",
+      "source_sha": "400635e374643f67c65352b2aa3858ec02183a85"
+    },
+    "dc-cronologia-riaperta-400635e.png": {
+      "bytes": 152492,
+      "sha256": "18428f260ef48aa26c0bb9df1376e073fca22368e73015192060377676f77d8d",
+      "source_sha": "400635e374643f67c65352b2aa3858ec02183a85"
+    },
+    "dc-cronologia-lezione-400635e.pdf": {
+      "bytes": 88090,
+      "sha256": "4268d84ff80d7f209408e3614c463d6171a8da8f03bf742baaf84cc5f517eae5",
+      "source_sha": "400635e374643f67c65352b2aa3858ec02183a85"
+    },
+    "dc-cronologia-prova-a3eb02b.json": {
+      "bytes": 3118,
+      "sha256": "e2bd7cf67d2ce5dd2396874ace0f3227fc307ba4322ac5d76a168c2ea9bdb287",
+      "source_sha": "a3eb02bbeee7bc2914737f73cf771f524265c4c4"
+    },
+    "dc-cronologia-riaperta-a3eb02b.png": {
+      "bytes": 151147,
+      "sha256": "6be447f53c79d5c64ee15005092f0ba92578047b89d0eb2e3e6463be9038bb61",
+      "source_sha": "a3eb02bbeee7bc2914737f73cf771f524265c4c4"
+    },
+    "dc-cronologia-lezione-a3eb02b.pdf": {
+      "bytes": 88090,
+      "sha256": "7e642963be9668b3aa9864d4440ef55d723a2472ab669e8c50968d018bae33fa",
+      "source_sha": "a3eb02bbeee7bc2914737f73cf771f524265c4c4"
+    },
+    "dc-cronologia-quaderno-a3eb02b.json": {
+      "bytes": 1797,
+      "sha256": "86d196f95ffbbb864b3ecbcc6dceca31802429121bffd0d1c3874a372dcf8009",
+      "source_sha": "a3eb02bbeee7bc2914737f73cf771f524265c4c4"
+    }
+  },
+  "remote_effects": [
+    "Branch push and PR27 updated/marked ready, normal merge at2026-10-16T02:49:42Z; no admin bypass, protection or branch deletion.",
+    "No deployment command; existing Ardesia automatic PR previews remain disclosed in earlier unit."
+  ]
+}

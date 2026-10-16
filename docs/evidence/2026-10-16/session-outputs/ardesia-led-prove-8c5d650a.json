@@ -1,0 +1,569 @@
+{
+  "date": "2026-10-16T04:38:33.233109+00:00",
+  "repository": "AndreaMarro/ardesia",
+  "branch": "codex/led-unknown-20261016",
+  "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "candidate": "8c5d650ae59659357a0d0f46c7306287634158aa",
+  "tree": "255575f80cdb0c18cc5e69e9cc616e32706ebf1c",
+  "parent_candidate": "461e2217c13c3c832a4921021ff01b69a39db158",
+  "state": "READY_FOR_REVIEW local technical candidate; NOT_PUSHED; NO_PR; NO_CI; NOT_INTEGRATED",
+  "scope": "Unknown/on/off and measured zero remain distinct through actual current consumers, primary Lab canvas, export, canonical events and digest. Derived availability only; no new persisted format.",
+  "recovered_from": [
+    "d0ec9303159d0c41c542540002c5484c9cd854d3",
+    "891921065889a76054ce8d8a1efca359ce99da9c",
+    "a47cd69d3075c4d2274d5eaea1e8bdf6bdda8851"
+  ],
+  "owner_requirement": "https://github.com/AndreaMarro/ardesia/pull/243#issuecomment-6204290063",
+  "runtime": {
+    "url": "http://127.0.0.1:5196/#led-final-build-8c5d650a",
+    "status": 200,
+    "title": "Ardesia · studio",
+    "build": {
+      "schema": 1,
+      "commitSha": "8c5d650ae59659357a0d0f46c7306287634158aa"
+    },
+    "node": "v24.19.0",
+    "chromium": "148.0.7778.96"
+  },
+  "toolchain": {
+    "node_full_browser": "24.19.0",
+    "node_frozen": "26.5.1",
+    "vite": "8.0.16",
+    "vitest": "4.1.8",
+    "playwright": "1.60.0",
+    "typescript": "6.0.3",
+    "react": "19.2.7",
+    "chromium": "148.0.7778.96"
+  },
+  "commands": {
+    "full": "npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000",
+    "typecheck": "npm run typecheck",
+    "build": "npm run build",
+    "local_fast": "bash bin/ci/local_checks.sh --fast",
+    "frozen": "NODE_OPTIONS=--no-experimental-webstorage VITEST_MAX_WORKERS=1 bash eval/gate.sh",
+    "browser": "ARDESIA_STUDIO_E2E_BASE_URL=http://127.0.0.1:5196 npx playwright test e2e/simulation-readout-unavailable.spec.ts e2e/led-lesson-transport.spec.ts --workers=1 --retries=0 --reporter=line"
+  },
+  "verification": {
+    "full_studio": {
+      "passed": 2185,
+      "skipped": 5,
+      "files_passed": 195,
+      "files_skipped": 1,
+      "seconds": 113.92,
+      "exit": 0,
+      "skip_reason": "Unchanged external maestro-logs/ui-shots absent"
+    },
+    "targeted_post_review": {
+      "passed": 45,
+      "files": 4,
+      "exit": 0,
+      "note": "Requested ElabCanvasAdapter test path does not exist; no fifth file ran"
+    },
+    "typecheck_exit": 0,
+    "build_exit": 0,
+    "local_checks_fast": {
+      "passed_checks": 13,
+      "exit": 0,
+      "full_type_unit_build_checked_separately": true
+    },
+    "frozen_gate": {
+      "passed": 2186,
+      "failed": 0,
+      "exit": 0,
+      "unit_passed": 2185,
+      "replay_passed": 1,
+      "SKIP_REPLAY": false,
+      "candidate": "8c5d650ae59659357a0d0f46c7306287634158aa",
+      "skip_count": "not exposed by gate terminal JSON"
+    },
+    "native_exact_candidate": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "exit": 0,
+      "reported_duration": "1.0m",
+      "workers": 1,
+      "retries": 0,
+      "viewports": [
+        "1440x1000",
+        "1365x950",
+        "390x844"
+      ],
+      "console_and_pageerror_empty": true,
+      "vite_overlay_absent": true
+    },
+    "patch_apply_check": {
+      "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "exit": 0
+    },
+    "unchanged_gate_retry_skip_timeout": true,
+    "historical_461": {
+      "frozen": {
+        "passed": 2181,
+        "failed": 0,
+        "exit": 0
+      },
+      "native": {
+        "passed": 17,
+        "seconds": 57.1,
+        "exit": 0
+      },
+      "review": "WITH FIXES; superseded by8c5, not final approval"
+    }
+  },
+  "failed_and_setup_runs_preserved": [
+    {
+      "log": "led-consumer-red.log",
+      "result": "5FAIL28PASS, genuine baseline consumers"
+    },
+    {
+      "log": "led-browser-red.log",
+      "result": "2FAIL; missing current numeric bug and new short selector, supported by DOM/unit evidence"
+    },
+    {
+      "log": "led-recovery-green.log",
+      "result": "4collectionFAIL files/8helperPASS from mistaken47unrelated registration lines; removed unrelated source only"
+    },
+    {
+      "log": "led-integrity-red.log",
+      "result": "6functional FAIL +4wrong constructor setup errors"
+    },
+    {
+      "log": "led-integrity-red-ready.log",
+      "result": "10genuine functional FAIL after setup repair"
+    },
+    {
+      "log": "led-integrity-tail-red.log",
+      "result": "3genuine FAIL11PASS"
+    },
+    {
+      "log": "led-canvas-coherence-red.log",
+      "result": "4genuine FAIL11PASS, including real Lab canvas disagreement"
+    },
+    {
+      "log": "led-zero-event-red.log",
+      "result": "1genuine FAIL7PASS: successful all-OFF MNA emitted idle, not measured zero"
+    },
+    {
+      "log": "led-transport-probe.log",
+      "result": "3FAIL2PASS: legacy click intercepted, not storage failure"
+    },
+    {
+      "log": "led-transport-activated.log",
+      "result": "3FAIL: null hit-test and viewport activation; fixed test geometry, no timeout increase"
+    },
+    {
+      "log": "led-review-red.log",
+      "result": "3functional FAIL plus1unsupported Chai matcher setup error"
+    },
+    {
+      "log": "led-review-red-ready.log",
+      "result": "4genuine FAIL16PASS after matcher repair"
+    },
+    {
+      "log": "led-review-lab-green.log",
+      "result": "2FAIL18PASS: Lab fixed, mono findings still red"
+    },
+    {
+      "log": "led-review-browser.log",
+      "result": "wrong edit cwd, zero matching new tests; setup failure"
+    },
+    {
+      "log": "led-review-browser-ready.log",
+      "result": "1PASS1FAIL: mobile Excalidraw overlay intercepted click"
+    }
+  ],
+  "review": {
+    "reviewer": "/root/review_led",
+    "initial_candidate": "461e2217c13c3c832a4921021ff01b69a39db158",
+    "initial_verdict": "WITH FIXES",
+    "initial_findings": [
+      "P1 actual mono embed omitted solveAvailable, showing ON/0 on a real short",
+      "P2 Lab forwarded on-only/nonfinite mono state raw, disagreeing with the primary canvas",
+      "P2 preexisting absent runtime ledOn borrowed Arduino LOW"
+    ],
+    "candidate": "8c5d650ae59659357a0d0f46c7306287634158aa",
+    "tree": "255575f80cdb0c18cc5e69e9cc616e32706ebf1c",
+    "verdict": "Favorable bounded technical review; no blocking finding remaining in the examined scope",
+    "unchanged_external_counterprobes": {
+      "passed": 4,
+      "failed": 0,
+      "exit": 0,
+      "seconds": 3.67
+    },
+    "initial_targeted": {
+      "passed": 31,
+      "seconds": 4.25
+    },
+    "full_build_browser_repeated_by_reviewer": false,
+    "human_github_approval": false,
+    "limits": [
+      "Not general kernel/runtime correctness",
+      "Not physical durability or asynchronous providers",
+      "Not the complete two-product lesson path"
+    ]
+  },
+  "remote_observation": {
+    "observedAt": "2026-10-16T04:34:38.904096+00:00",
+    "pr262": {
+      "exit": 0,
+      "data": {
+        "headRefOid": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+        "isDraft": false,
+        "mergeStateStatus": "BLOCKED",
+        "reviewDecision": "REVIEW_REQUIRED",
+        "state": "OPEN",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-10-16T00:49:38Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/38831360547/job/116750636519",
+            "name": "studio (typecheck + test + build)",
+            "startedAt": "2026-10-16T00:46:10Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-10-16T00:47:04Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/38831360547/job/116750636587",
+            "name": "engine (pytest)",
+            "startedAt": "2026-10-16T00:46:12Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-10-16T00:47:07Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/38831360547/job/116750636523",
+            "name": "e2e golden path (advisory)",
+            "startedAt": "2026-10-16T00:46:10Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-10-16T00:46:45Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/38831360547/job/116750636365",
+            "name": "hygiene (NUL + secrets + boundary + whitespace)",
+            "startedAt": "2026-10-16T00:46:11Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          },
+          {
+            "__typename": "StatusContext",
+            "context": "CodeRabbit",
+            "startedAt": "2026-10-16T00:46:16Z",
+            "state": "SUCCESS",
+            "targetUrl": ""
+          },
+          {
+            "__typename": "StatusContext",
+            "context": "Vercel",
+            "startedAt": "2026-10-16T00:46:45Z",
+            "state": "SUCCESS",
+            "targetUrl": "https://vercel.com/andreas-projects-6d4e9791/ardesia-lavagna/CidVnvEwpbG7wmx1ygZ2w2gpty7H"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-10-16T00:46:46Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://vercel.com/github",
+            "name": "Vercel Preview Comments",
+            "startedAt": "2026-10-16T00:46:46Z",
+            "status": "COMPLETED",
+            "workflowName": ""
+          }
+        ],
+        "url": "https://github.com/AndreaMarro/ardesia/pull/262"
+      },
+      "error": null
+    },
+    "mainRefs": {
+      "exit": 0,
+      "data": {
+        "data": {
+          "ardesia": {
+            "isPrivate": true,
+            "ref": {
+              "target": {
+                "oid": "b124eee04acc8062c27284f23c5d9108e3767c27"
+              }
+            }
+          },
+          "kirchhoff": {
+            "isPrivate": false,
+            "ref": {
+              "target": {
+                "oid": "a3eb02bbeee7bc2914737f73cf771f524265c4c4"
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    "prior_rest_ref_attempt": {
+      "exit": 1,
+      "endpoint": "repos/AndreaMarro/ardesia/git/ref/heads/main",
+      "note": "stderr was captured but not retained by initial script; no result asserted"
+    }
+  },
+  "remote_effects": "No push, new PR, merge or explicit deployment in this unit. Existing automatic PR previews are historical, not a new deploy command.",
+  "provider_keys_excluded": [
+    "OPENAI_API_KEY",
+    "KIMI_API_KEY",
+    "DEEPSEEK_API_KEY"
+  ],
+  "provider_requests_this_unit": "None observed; not a zero-call/zero-cost claim for the entire goal.",
+  "source_sha256": {
+    "apps/studio/STATUS.md": {
+      "bytes": 232475,
+      "sha256": "afd2273b6415241830eff56d3deef652e2ab218af4c0c78b4d942e6ff4673bdb"
+    },
+    "apps/studio/e2e/led-lesson-transport.spec.ts": {
+      "bytes": 9852,
+      "sha256": "8e0869988d68d9207d6b468b03c7118c4c7a0b34320f6fe98ec5832fd4f8dbdd"
+    },
+    "apps/studio/e2e/simulation-readout-unavailable.spec.ts": {
+      "bytes": 7108,
+      "sha256": "6ba07d85a55a12b7b043df7c64a3dfb3b4494a47e1cdcefb6063f53091cdaa11"
+    },
+    "apps/studio/log.jsonl": {
+      "bytes": 146279,
+      "sha256": "c7d7a00dac2d19dfc3828a52a4853279557b65704a8566af3a08400bd58d537c"
+    },
+    "apps/studio/sim/elab/elabCanvasAdapter.ts": {
+      "bytes": 18037,
+      "sha256": "5e62f5766fde880453a192ee947f0336d76ae04396207b333772539ae5c23ac0"
+    },
+    "apps/studio/sim/solver/elabSolver.ts": {
+      "bytes": 11592,
+      "sha256": "69b1f61c62ec2a47d0de298d7625fd955e0bd55f1b0c956eb17c1118d54fd5c0"
+    },
+    "apps/studio/src/__tests__/LedConsumerIntegrity.test.tsx": {
+      "bytes": 9352,
+      "sha256": "9fb744770b42392bb5d14db0d3bea725e1eb7b5d80323720056104da4b6d7264"
+    },
+    "apps/studio/src/__tests__/LedReadout.test.ts": {
+      "bytes": 3305,
+      "sha256": "207a4c554c7cd4f2cc26278be039d1f212c7dce3b72fe5e52b234455e3f6c449"
+    },
+    "apps/studio/src/__tests__/SimulationReadoutUnavailable.test.tsx": {
+      "bytes": 8877,
+      "sha256": "0cae7c94c8c07e6bc70d9553e25e6a55df6a3dbb6c95c59e0b486bd56ac22d4e"
+    },
+    "apps/studio/src/core/contracts/index.ts": {
+      "bytes": 1108,
+      "sha256": "ebf564087387be4e1b5f2280d3d1d370a1b42fab04813ab05a95b84860ddb17c"
+    },
+    "apps/studio/src/core/contracts/ledReadout.ts": {
+      "bytes": 2004,
+      "sha256": "8b67682847d9930cbddec70d780dd70ad75059429a90aaed6ace120c519ce1b4"
+    },
+    "apps/studio/src/design/ElabLab.tsx": {
+      "bytes": 36871,
+      "sha256": "dbd51c46e1c0b26c74b26a79dc10d6e76a34bcaab1bca7f05fe49de6e3441e61"
+    },
+    "apps/studio/src/design/MultiPostitWorkbench.tsx": {
+      "bytes": 15520,
+      "sha256": "85c843f5e586676a5fbae6317efe345c63b2ad119df06097833667bfa81d9128"
+    },
+    "apps/studio/src/design/SimulationPluginWorkbench.tsx": {
+      "bytes": 27146,
+      "sha256": "4ffd302f5a0731cdcc0c1a78f42583f62f317a6c2a7796bd65da299d36e6979f"
+    },
+    "apps/studio/src/lessonos/simulationSolveEvent.ts": {
+      "bytes": 1728,
+      "sha256": "3783f8be1b794f03f7f6ab576ee239afde50e3290e2beaac3901e80f5189c201"
+    },
+    "apps/studio/src/toolhost/ToolCanvasEmbeddable.tsx": {
+      "bytes": 114064,
+      "sha256": "5ef4510a4c0459f5f50f0d231d3d92834afa77c9d281deec6f4f6c0e9b18dcf7"
+    },
+    "apps/studio/src/toolhost/pluginPostitBoardRender.tsx": {
+      "bytes": 9631,
+      "sha256": "59736cda460658799e3d7f2fa669add223db079ce70a9442f0e14c365e52ff68"
+    }
+  },
+  "artifacts": {
+    "ardesia-led-ignoto-8c5d650a.patch": {
+      "bytes": 86945,
+      "sha256": "af1ed331867d98fa486bd66986231d06559f2fd709a5c6acc4f866902c0a3539"
+    },
+    "ardesia-led-healthy-8c5d650a.lesson": {
+      "bytes": 54184,
+      "sha256": "296fd3660856b62559198c3835b5c2b86b7af5267c2bb6b761296e541cff1b76"
+    },
+    "ardesia-led-short-8c5d650a.lesson": {
+      "bytes": 55173,
+      "sha256": "4dd399ba1c20c036fd4c4aa8e7d42cdfe4168c98140c6650cc88fe9d528cd30c"
+    },
+    "ardesia-led-open-8c5d650a.lesson": {
+      "bytes": 46770,
+      "sha256": "ab42b6cad2a7092245a5c249ee396e8d622c31ace0992e2758ed1965d4859523"
+    },
+    "ardesia-led-trasporto-8c5d650a.json": {
+      "bytes": 25394,
+      "sha256": "c9c2fa9de03955b9489118945a13f690e4756a7bc23a83460836774278f6136b"
+    },
+    "ardesia-led-corto-riaperto-8c5d650a.png": {
+      "bytes": 263071,
+      "sha256": "6bac1571754574df23c0bc14eefaaa5c0d6b1e3852a1505932bfbbaea10b5784"
+    },
+    "ardesia-led-ignoto-mobile-8c5d650a.png": {
+      "bytes": 44343,
+      "sha256": "1e7a7bbcbd687cda1243f291adedb5f6ca344135f31b237175ff8b6e38c1bfcd"
+    },
+    "ardesia-led-lab-coerente-8c5d650a.png": {
+      "bytes": 283902,
+      "sha256": "eec63c1665a56c418c71de1bc390e5cb58b336871fc60a122e26f7cb89ca5acd"
+    }
+  },
+  "logs": {
+    "led-consumer-red.log": {
+      "bytes": 9327,
+      "sha256": "072aedb2d46aa89d1feea3ac7a6d5301c17c3debc210e58b2403f347885c7b3e"
+    },
+    "led-browser-red.log": {
+      "bytes": 4342,
+      "sha256": "b14f39f3844c2d9f112aeb41f24482da946d866868fd18c52fa845eb0f489cc4"
+    },
+    "led-recovery-green.log": {
+      "bytes": 4231,
+      "sha256": "b1ae16dd3aa42252b0b1c043623b146b1bb810e61776ac941ae196b23ff5051f"
+    },
+    "led-integrity-red.log": {
+      "bytes": 9053,
+      "sha256": "3458315f38845086bc89ae3a5fb7e6966423b15befb334700604b874b52d8f40"
+    },
+    "led-integrity-red-ready.log": {
+      "bytes": 9178,
+      "sha256": "b4ef1f8ece887f8da1034af63f3528d1f14c6cbc7ec09c88d1e32abaddd5b403"
+    },
+    "led-integrity-tail-red.log": {
+      "bytes": 3791,
+      "sha256": "dd6d9e73411873515013c9b5edaf95a6dee5ca469a8fb322b24e8ac3d9723060"
+    },
+    "led-canvas-coherence-red.log": {
+      "bytes": 12011,
+      "sha256": "18b02c3859140c6e3fa1c361ffb02f42bd62120308c6ca374fcf169147a1f1e9"
+    },
+    "led-zero-event-red.log": {
+      "bytes": 1487,
+      "sha256": "4f2e702b39e65251ad38d232ed083633cf04edfdb123befc8e6df6a4b509d987"
+    },
+    "led-transport-probe.log": {
+      "bytes": 10770,
+      "sha256": "66beefe3db44c0287f91ec27c34aa52baea3e5fea1727b0e23bd9eea3fd74a55"
+    },
+    "led-transport-activated.log": {
+      "bytes": 10168,
+      "sha256": "d5a179344d971684bf81d1ef69d67637a638b772bacac5e8393dc11bc6bd9904"
+    },
+    "led-review-red.log": {
+      "bytes": 4361,
+      "sha256": "6d3d4e540dec25074873943de5cf5d6c7ab356d8459803f0a6f39593c57edd03"
+    },
+    "led-review-red-ready.log": {
+      "bytes": 4687,
+      "sha256": "95869bc4bbb232a8863d46bfc73c050af83a3b6d365aceb99f00811223ee3143"
+    },
+    "led-review-lab-green.log": {
+      "bytes": 2843,
+      "sha256": "c65c1a515c2392f6dc3ff4e1d19e337cb383e3fba37c9d8cae6bbf5f0eedbef7"
+    },
+    "led-review-browser.log": {
+      "bytes": 174,
+      "sha256": "95ba9571d03805b4ca070d39bc6a106a8905a88f1c45352d510978208478fba7"
+    },
+    "led-review-browser-ready.log": {
+      "bytes": 3437,
+      "sha256": "07622792f125f1ebc8fd60cb75aad637d5bc17e57dcb17d5fac7906937942d2e"
+    },
+    "led-review-mono-red.log": {
+      "bytes": 2842,
+      "sha256": "ae98d204fd1d6e9e29f5eb953e5fbcd40ea695c8f81485f985df1f9c285a3345"
+    },
+    "led-review-green.log": {
+      "bytes": 239,
+      "sha256": "cab549a6bc66fdb668bd6309fd74105b15be2e2dd96432192f5fc0405d404fb5"
+    },
+    "led-review-full-studio.log": {
+      "bytes": 637,
+      "sha256": "12b7635dda9052bf940bcd974ffb99933ec29e78e4005b506aa339fa6749930b"
+    },
+    "led-review-typecheck.log": {
+      "bytes": 45,
+      "sha256": "1454b1dd6bc302ad2f905499cf9d6078d61f038903a0927ce116460426b93112"
+    },
+    "led-review-build.log": {
+      "bytes": 17076,
+      "sha256": "f48e5df156c38e4038ea49928930b64eadd27f149b5fe1cddc2ae6e782d39f78"
+    },
+    "led-review-localchecks.log": {
+      "bytes": 2066,
+      "sha256": "e476335b4d90e85a910dc225c0374180d8c84ce6be1af0dbe13afc672738870e"
+    },
+    "led-review-browser-fit.log": {
+      "bytes": 685,
+      "sha256": "e7cbdac284e734914dff88387ceac018c82bf0f0d014a18891ed3de24fb3c2c8"
+    },
+    "led-transport-digest.log": {
+      "bytes": 805,
+      "sha256": "f0a950f6b8f15769a33a2a8a5481ba15123d093e661e299ec6b74d70f8a90583"
+    },
+    "led-frozen-gate.log": {
+      "bytes": 36,
+      "sha256": "c0c23ad71a3834e351dbc36419688f1f6c3e1109b4650c907065502aab074645"
+    },
+    "led-frozen-replay-461e2217.log": {
+      "bytes": 1144,
+      "sha256": "115903b92f4c106c25bc323b91be135e4e3294aa2872db74ec5a1119ff99bf64"
+    },
+    "led-browser-candidate.log": {
+      "bytes": 2661,
+      "sha256": "ebc6685a68b76c187abe1c723c93f7821bdea34f9210e1cd6e364a85940d9fe0"
+    },
+    "led-frozen-gate-8c5d650a.log": {
+      "bytes": 36,
+      "sha256": "78ab3e7566e6b752f739573c01c5fe3cb8c52c666aa9c15f84b82d8f6b5b7176"
+    },
+    "led-frozen-replay-8c5d650a.log": {
+      "bytes": 1145,
+      "sha256": "8bc08e8d375fa5cbe71a720a6238448f7628c65c1c738b2bf5f17cfdf740e938"
+    },
+    "led-browser-8c5d650a.log": {
+      "bytes": 2941,
+      "sha256": "9b25b8c519d7441b85184c9849bc27fe26031ae022f60a8f6e6ad60b24a07388"
+    },
+    "review-led-counterprobe/run-461e2217.log": {
+      "bytes": 4703,
+      "sha256": "be1e6c0982e343dd9bea802781b0ad631f1fe86254ccc64ba81eabe2fac84110"
+    },
+    "review-led-counterprobe/run-8c5d650a.log": {
+      "bytes": 1577,
+      "sha256": "ae08282dcf04259a18230f0f0d7121cacb0fae6326675adcc4623686e6f39aa4"
+    }
+  },
+  "limits": [
+    "Local candidate only: no push, PR, CI or integration. Reader PR262 remains human REVIEW_REQUIRED with SUCCESS checks.",
+    "API export was exercised; a complete user-facing export workflow was not tested.",
+    "The 12 recovered browser cases include synthetic source seeds, an in-memory harness reset and technical disclosure dispatches; only the new transport cases demonstrate actual bundle transfer.",
+    "Three RGB cases use real .lesson UI imports, reload, actual export API/IndexedDB events/StudyDigest and a new empty isolated recipient context. Five other new cases cover primary Lab desktop/mobile and mono real import/reload desktop/mobile.",
+    "Two isolated contexts do not prove browser-process restart, power-loss durability, remote collaboration or producer authenticity.",
+    "Mobile mono canvas uses real keyboard zoom-to-fit as an overview. The mobile Workbench screenshot shows readable diagnostics; this is not full accessibility or pen validation.",
+    "Primary canvas in the desktop RGB screenshot is partly clipped and Lab sidebar overlaps part of the circuit; no general legibility/UX closure is claimed.",
+    "Activated providers here are synchronous local solvers; no claim for stale remote asynchronous replies or historical post-it freshness.",
+    "Canonical/digest checks preserve the real short error and measured zero, but do not prove accepted append/close/material revision coherence.",
+    "No kernel/vendor JS, persisted schema, dependency lock, gate, skip, retry or timeout change.",
+    "Narrative LLM policy collision, complete two-product path and human pilot remain open.",
+    "No provider request observed in this LED unit; earlier atomic verification incident with inherited keys remains a recorded FAIL and unknown cost."
+  ],
+  "next_primary_unit": "Ardesia: append accettate, chiusura e materiale sulla stessa revisione, usando le primitive esistenti; poi prova del percorso con le due revisioni congelate.",
+  "delivery_environment_note": "First finalizer stopped on Errno60 while reading the operational recovery map. Product checks remained terminal/pass; current map rewritten atomically from already observed facts, historical report preserved."
+}

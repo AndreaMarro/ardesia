@@ -1,3 +1,5 @@
+> Nota 16 ottobre 2026: [consegna del monorepo](../../docs/ops/CONSEGNA-2026-10-16.md) e [README Engine](README.md) distinguono main, candidati archiviati e comandi del checkout. Il divieto GitHub motivato da auth rotta e i percorsi Mini sotto sono indicazioni storiche: la pubblicazione di questa consegna è stata autorizzata dal proprietario. Non cambia le protezioni di main né concede autorizzazioni future.
+
 > ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
 
 # LessonOS Core Engine — Ordini operativi per Hermes (build autonomo, Mac Mini)

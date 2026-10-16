@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-16T01:30:12.621953+00:00",
+  "repository": "AndreaMarro/ardesia",
+  "branch": "codex/atomic-reingest-20261016",
+  "base": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+  "candidate": "6536991c917396d1f05974ae17746c3457d5a7c6",
+  "tree": "c780ee41ce14eea16aa97d4c389fb1873126c725",
+  "commits": [
+    "529735fac55184cfb6fb5e2b9a23c3fd4b75c3f8",
+    "6536991c917396d1f05974ae17746c3457d5a7c6"
+  ],
+  "state": "READY local technical candidate; NOT_PUSHED; NOT_MERGED; exact-head CI not run",
+  "dependency": "PR262 reader, OPEN, b9bff962, CI SUCCESS, GitHub REVIEW_REQUIRED",
+  "scope": "Prepare capsule off-store; atomically publish segments/capsule with committed revision CAS; SQLite schema11 additive migration and transaction contract guards.",
+  "review": {
+    "verdict": "APPROVE technical, no residual findings in examined scope",
+    "exact_candidate": "6536991c917396d1f05974ae17746c3457d5a7c6",
+    "reviewer": "/root/review_atomic, separate readonly context/worktree, same model family",
+    "human_github_approval": false,
+    "prior_candidate": "529735fac55184cfb6fb5e2b9a23c3fd4b75c3f8",
+    "prior_verdict": "REQUEST_CHANGES P2: read of uncommitted AUTOINCREMENT token could survive rollback numerically and clobber a concurrent committed writer",
+    "fix": "Public revision read refuses existing caller transaction; private state helper remains within owned publication and returns state only after commit.",
+    "review_tests_passed": 42,
+    "counterprobes": [
+      "original token-reuse exploit blocked",
+      "caller transaction preserved",
+      "returned revision visible to other connection",
+      "blocked commit rolls back pair/token",
+      "helper error rolls back pair/token"
+    ]
+  },
+  "verification": {
+    "cwd": "packages/engine",
+    "python": "3.12.12",
+    "sqlite": "3.50.4",
+    "baseline": {
+      "passed": 2109,
+      "skipped": 7,
+      "exit": 0
+    },
+    "initial_behavioral_red": {
+      "failed": 18,
+      "exit": 1
+    },
+    "review_regression_red": {
+      "failed": 2,
+      "exit": 1
+    },
+    "targeted": {
+      "passed": 42,
+      "skipped": 0,
+      "exit": 0
+    },
+    "full_offline": {
+      "passed": 2151,
+      "skipped": 7,
+      "exit": 0,
+      "seconds": 24.22,
+      "command": "env -u KIMI_API_KEY -u DEEPSEEK_API_KEY .venv/bin/python -m pytest -q"
+    },
+    "skip_reasons": [
+      "4 existing live-provider tests: keys excluded",
+      "2 canonical-repository drift checks: repository absent",
+      "1 real corpus check: corpus absent"
+    ],
+    "failed_key_bearing_run": {
+      "passed": 2153,
+      "failed": 2,
+      "skipped": 3,
+      "exit": 1,
+      "cause": "Incorrect launch inherited provider keys; 4 existing live-gated tests activated, 2 Kimi tests failed HTTP404",
+      "external_provider_requests": "observed; exact count unavailable",
+      "cost_usd": null,
+      "billing": "unavailable; do not infer zero cost"
+    },
+    "setup_errors": [
+      "initial baseline at repository root: 14 relative-fixture lookup failures, corrected cwd restored baseline without code change",
+      "target command referenced nonexistent test_assembly.py: exit4/no tests, not behavioral RED"
+    ],
+    "test_gate_skip_retry_timeout_changes": false,
+    "file_process_cases": [
+      "two writers and stale CAS",
+      "legacy ABA",
+      "purge and recreate/absence",
+      "real file DB and separate connections",
+      "spawned process exit before/after commit",
+      "WAL writer between reader SELECTs",
+      "no DB write lock during router work",
+      "dry-run no authoritative effects",
+      "scope/grounding refusal",
+      "migration preserve/rollback"
+    ]
+  },
+  "limits": [
+    "Segments/capsule pair only; legacy separate getters can straddle commit.",
+    "Derived graph/summary/material and accepted append/close coherence remain open.",
+    "No full integrated Ardesia/Kirchhoff browser proof or human pilot.",
+    "Narrative LLM policy collision unresolved; no ZERO-LLM pipeline claim.",
+    "No arbitrary external SQL, old binaries after migration, power-loss or filesystem durability validation.",
+    "No push or second PR for this dependent unit; reader integration/human review and future exact-head CI still required."
+  ],
+  "remote_effects": [
+    "No branch push, PR or merge for this atomic unit.",
+    "One mislaunched verification run caused unintended external provider requests; billing unavailable.",
+    "Earlier reader PR previews were registered by existing GitHub/Vercel integration; no explicit deployment command."
+  ],
+  "patch": {
+    "file": "ardesia-reingest-atomico-6536991c.patch",
+    "sha256": "3aaf9e57bd1d46080ecc1f75d5ed74a74b74821222dc90a443569eb00442d618",
+    "bytes": 54469
+  },
+  "logs": {
+    "reingest-red.log": {
+      "sha256": "f461a031181062d6919248624ea898fde725c4fd9c13b31c474d03c16b4606ed",
+      "bytes": 19657
+    },
+    "reingest-review-cas-red.log": {
+      "sha256": "a907e438da49c6aa4b19596c1cd2342d4b71e75f1f8880e936b4aaa396696556",
+      "bytes": 3181
+    },
+    "reingest-review-cas-green.log": {
+      "sha256": "b0f6266698132bf9b0ce0cdc4b60e0e88e00a457f1871aa49c5e7668c7431af9",
+      "bytes": 99
+    },
+    "reingest-review-full.log": {
+      "sha256": "d79b591dbf0b5ebb24739cfdfdbfe2cd60cc05d7bd941d99e605a5b3381b1de5",
+      "bytes": 9452
+    },
+    "reingest-review-full-offline.log": {
+      "sha256": "a27ba579e0a89b414c3e83a98edb3bc55451e2f44adf581a2af0d814de05fa98",
+      "bytes": 2433
+    }
+  }
+}

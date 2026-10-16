@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-16T03:51:39.008328+00:00",
+  "repository": "AndreaMarro/ardesia",
+  "branch": "codex/postit-reload-20261016",
+  "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "candidate": "2c12ce93e76793ec32f8a390ee247bd989effc1c",
+  "tree": "eb366049f96be12e35aa25c3e2ddeb207bbfc8ff",
+  "state": "READY_FOR_REVIEW local technical candidate; NOT_PUSHED; NO_PR; NO_CI; NOT_INTEGRATED",
+  "recovered_from": "4237f197aabba61a7dc7a774281f16acc1f586b9, narrow source fix only; archived mega-diff and CI lane not recovered",
+  "scope": "Present link must match validated plugin and board identity; absent/null normalization and legacy preserved. New real UI lifecycle proof uses existing stores and formats.",
+  "runtime": {
+    "url": "http://127.0.0.1:5197/#postit-build-identity",
+    "status": 200,
+    "title": "Ardesia · studio",
+    "build": {
+      "schema": 1,
+      "commitSha": "2c12ce93e76793ec32f8a390ee247bd989effc1c"
+    },
+    "browser": "148.0.7778.96",
+    "node": "v24.19.0",
+    "errors": []
+  },
+  "verification": {
+    "baseline_existing_unit": {
+      "passed": 13,
+      "exit": 0,
+      "note": "New test creation path was initially wrong; only existing file ran, not functional RED."
+    },
+    "behavioral_red": {
+      "failed": 6,
+      "passed": 16,
+      "exit": 1,
+      "cause": "Present contradictory/malformed renderer links accepted"
+    },
+    "targeted": {
+      "passed": 22,
+      "exit": 0
+    },
+    "full_studio": {
+      "passed": 2158,
+      "skipped": 5,
+      "exit": 0,
+      "seconds": 78.46,
+      "command": "npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000",
+      "skip_reason": "Existing shots.test.ts suite requires absent external maestro-logs/ui-shots"
+    },
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exit": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "exit": 0
+    },
+    "local_checks_fast": {
+      "passed_checks": 13,
+      "exit": 0,
+      "note": "Type, unit and build checked separately above"
+    },
+    "frozen_gate": {
+      "passed": 2159,
+      "failed": 0,
+      "exit": 0,
+      "candidate": "2c12ce93e76793ec32f8a390ee247bd989effc1c",
+      "unit_passed": 2158,
+      "replay_kill_test_passed": 1,
+      "node": "26.5.1",
+      "command": "NODE_OPTIONS=--no-experimental-webstorage VITEST_MAX_WORKERS=1 bash eval/gate.sh",
+      "changed": false,
+      "SKIP_REPLAY": false,
+      "skip_count": "not exposed by terminal gate JSON"
+    },
+    "browser_candidate": {
+      "candidate": "2c12ce93e76793ec32f8a390ee247bd989effc1c",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "exit": 0,
+      "seconds": 19.8,
+      "workers": 1,
+      "retry": 0,
+      "command": "ARDESIA_STUDIO_E2E_BASE_URL=http://127.0.0.1:5197 npx playwright test e2e/plugin-postit-room-reload.spec.ts e2e/plugin-postit-continuity.spec.ts --workers=1 --retries=0 --reporter=line",
+      "viewports": [
+        "1440x960",
+        "768x1024"
+      ],
+      "cases": [
+        "2 existing import/render",
+        "2 new real UI nudge/write-content confirmation/reload/API export/fresh context UI import/reload",
+        "SecurityError targeted scene write",
+        "QuotaExceededError targeted scene write"
+      ],
+      "assertions": [
+        "three distinct IDs/links/owners/plugin states/geometry",
+        "consumer bound to sim-a",
+        "known A readout and distinct unavailable B provider diagnostics",
+        "new context empty before import",
+        "persisted data matches moved scene",
+        "visible write failure, previous saved position unchanged and restored",
+        "zero console/pageerror or Vite overlay",
+        "real keyboard zoom-to-fit before overview screenshot"
+      ]
+    },
+    "oracle_mutants": [
+      {
+        "kind": "clear owned localStorage just before reload",
+        "failed": 1,
+        "exit": 1,
+        "assertion": "3 post-it cards expected, 0 received after reload",
+        "result": "KILLED"
+      },
+      {
+        "kind": "intercept actual renderer module on next document and substitute ledCurrent=0",
+        "failed": 1,
+        "exit": 1,
+        "assertion": "led current 0.0153 expected, led current 0 received after reload",
+        "result": "KILLED",
+        "invalid_mutant": false
+      }
+    ],
+    "setup_failures_preserved": [
+      "First new-test creation path wrong: only13existing unit tests ran; not a RED.",
+      "First Vite exit127 because dependency symlink path wrong; no browser test ran.",
+      "Existing browser baseline2FAIL solely from3fonts403 each: native diagnostic URLs pointed to dependency symlink outside Vite root. Own locked npmci fixed environment without allowlist or console filtering."
+    ],
+    "npm_ci": {
+      "exit": 0,
+      "lock_changed": false,
+      "audit_observed": {
+        "low": 1,
+        "moderate": 7,
+        "high": 14,
+        "total": 22
+      },
+      "audit_force_fix": false
+    },
+    "patch_apply_check": {
+      "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "exit": 0
+    },
+    "gate_retry_skip_timeout_product_dependency_changes": false
+  },
+  "review": {
+    "reviewer": "/root/review_postit",
+    "candidate": "2c12ce93e76793ec32f8a390ee247bd989effc1c",
+    "tree": "eb366049f96be12e35aa25c3e2ddeb207bbfc8ff",
+    "verdict": "Favorable bounded technical verdict; no actionable findings in six-file diff",
+    "targeted_passed": 22,
+    "seconds": 3.87,
+    "cache": "disabled",
+    "human_github_approval": false,
+    "browser_mutants_types_build_gate_rerun_by_reviewer": false,
+    "limits": "No live solver, physical durability, full KERN-001 or human approval claim."
+  },
+  "remote_observation": {
+    "data": {
+      "repository": {
+        "isPrivate": true,
+        "defaultBranchRef": {
+          "target": {
+            "oid": "b124eee04acc8062c27284f23c5d9108e3767c27"
+          }
+        },
+        "pullRequest": {
+          "url": "https://github.com/AndreaMarro/ardesia/pull/262",
+          "state": "OPEN",
+          "isDraft": false,
+          "headRefOid": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+          "reviewDecision": "REVIEW_REQUIRED",
+          "mergeStateStatus": "BLOCKED",
+          "commits": {
+            "nodes": [
+              {
+                "commit": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "remote_effects": "No branch push, new PR, merge or explicit deployment in this unit. PR262 remains human REVIEW_REQUIRED with SUCCESS checks; main unchanged.",
+  "provider_keys_excluded": [
+    "OPENAI_API_KEY",
+    "KIMI_API_KEY",
+    "DEEPSEEK_API_KEY"
+  ],
+  "provider_requests_this_unit": "None observed; earlier atomic verification incident remains in the general report.",
+  "limits": [
+    "Synthetic board fixture is not a live solver or complete two-product lesson proof.",
+    "Export tested through real API, not a complete user-facing export flow.",
+    "Reload and isolated contexts do not attest browser-process restart or filesystem/power-loss durability.",
+    "Stored .lesson contains scene, journal and session plus manifest; no LessonOS snapshot, audio or PDF in this artifact.",
+    "Rejected-write injection concerns scene writes, not every storage API or FSA failure.",
+    "Tablet overview uses50% canvas zoom; reading individual cards still requires zoom/pan. Not full accessibility or pen validation.",
+    "Pre-existing unavailable LED readout defaults to0; persistence proof does not endorse its semantics. Separate recovery pending.",
+    "No CI lane/protection promotion, full KERN-001 closure or human pilot."
+  ],
+  "artifacts": {
+    "ardesia-postit-identita-2c12ce93.patch": {
+      "bytes": 22772,
+      "sha256": "b10a2db3cbd61ec0be5a7bd04a4f66b467db086c990e7a92c934dc9e999d994a"
+    },
+    "ardesia-postit-riaperti-desktop-2c12ce93.png": {
+      "bytes": 88053,
+      "sha256": "49448503c3790097669d7acadcac6a32721e4c009b2989e64086e6ec4703ee6c"
+    },
+    "ardesia-postit-riaperti-tablet-2c12ce93.png": {
+      "bytes": 53377,
+      "sha256": "8d772b50986611f3169c48187ded4e85248ca04987bd70e976b3e4b8edb95f78"
+    },
+    "ardesia-postit-esportati-2c12ce93.lesson": {
+      "bytes": 30297,
+      "sha256": "0c5fca227cd836382f5c7bb9ecdbe6d948b74dd5fc05ae96c73764adec36e6d6"
+    },
+    "ardesia-postit-identita-ui-2c12ce93.json": {
+      "bytes": 37184,
+      "sha256": "39c9e6f3c80fbfaf5dc40188a693bcbf05f3149d4348e12e80a5c97200d626cd"
+    }
+  },
+  "logs": {
+    "postit-identity-red.log": {
+      "bytes": 515,
+      "sha256": "8ba9e7129e28796f9ebce2f6f514fb434235e7ee47b24d7fda38f7c4dbb8ec6f"
+    },
+    "postit-link-red-native.log": {
+      "bytes": 2848,
+      "sha256": "4eb72c50e6a261d4af04b8c52002ed70bc39af966ed341d775c1d53588a2eb1f"
+    },
+    "postit-link-green.log": {
+      "bytes": 515,
+      "sha256": "deb0350328cdc12b4b7ae562976391ed6d905ea06a6e3477a11780725e8808b8"
+    },
+    "postit-baseline-browser.log": {
+      "bytes": 3681,
+      "sha256": "811c9ab09b6505efe79eab06970997c959a88a700050c1a42f6e85d58404a12f"
+    },
+    "postit-continuity-probe.log": {
+      "bytes": 974,
+      "sha256": "745e03d217d41b6f49ddc5f6333df52d7f4287cdc3b40349702f02812b8c9547"
+    },
+    "postit-oracle-clear.log": {
+      "bytes": 2315,
+      "sha256": "89a8fdbe2befa8e6bcc6b479c067b469a2650107e828a4fb58157c09100fa3ea"
+    },
+    "postit-oracle-constant.log": {
+      "bytes": 2642,
+      "sha256": "cf67a6887f28be264d0163e71618600948f48a4118b344a69fa6f85c0093e6fa"
+    },
+    "postit-full-studio.log": {
+      "bytes": 639,
+      "sha256": "bca9f14074f2df5fd8f2e95f636fa0ec0410c0a7ca47ad011e7e28a3623b677b"
+    },
+    "postit-typecheck.log": {
+      "bytes": 45,
+      "sha256": "1454b1dd6bc302ad2f905499cf9d6078d61f038903a0927ce116460426b93112"
+    },
+    "postit-build.log": {
+      "bytes": 17076,
+      "sha256": "cbe8115336b4883a0c4874aac872e92f4fc1b52cfd8a7cb41bd0b941f0afb956"
+    },
+    "postit-localchecks.log": {
+      "bytes": 2010,
+      "sha256": "a54d334ad5aa25cb2a3240f43862268ddea465abf3fb493e6d38a0e4fe194efe"
+    },
+    "postit-frozen-gate.log": {
+      "bytes": 36,
+      "sha256": "c9b2eae69ffc61af25e0096375767014a81d271faa42e37c954d648f9f554134"
+    },
+    "postit-frozen-replay.log": {
+      "bytes": 1140,
+      "sha256": "348f7245aaa2af14118b5bc93f724e9d350399724f2e6c39175c2ff3c492cc92"
+    },
+    "postit-browser-candidate.log": {
+      "bytes": 1251,
+      "sha256": "655b9768f93ab0a26025ca1ac8f52a03b260b16e663980bfd549e79681638ff8"
+    }
+  },
+  "next_primary_unit": "Ardesia: distinguish unknown LED/current from a measured zero in existing consumers; reproduce main before selective recovery."
+}

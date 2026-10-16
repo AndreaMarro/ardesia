@@ -1080,3 +1080,8 @@ Pin: "test che tutte le query retrieval CRM (students_for_class, classes_for_stu
 - gate: **2041/0 VERDE** (ri-eseguito ORA). Criteri [VERIFICATO] gia documentati nell'entry precedente di STATUS (3° tool esposto, PrerequisiteChain persistita via build_teacher_book, grounding-guard 3-livelli, e2e + 7 avversari, additivo zero-regressioni).
 - `promote_pin lessonos` = **cap giornaliero raggiunto (12/12)** → driver bloccato sulla rotazione (gridlock cap-bound). Chiusura scritta in NEEDS-CLAUDE per rotazione manuale supervisore a ROADMAP riga 18 (grounded_memory_fundamentals). Builder non edita la riga PROSSIMA TASK.
 - SELF-ADV: 0/0 (NOOP, nessun diff codice). cost_usd: ~$0 (gate + verifica ancestry/criteri, ZERO LLM).
+
+
+## Chiusura operativa — 16 ottobre 2026
+
+Il proprietario ha chiesto di terminare e pubblicare la lavorazione. I candidati sono archiviati nei rami GitHub archive/goal-closeout-20261016, con SHA e prove nel registro docs/ops/CONSEGNA-2026-10-16.md del monorepo. PR262 chiusa senza merge per review umana mancante; nessun candidato è dichiarato integrato. Le capacità residue sono differite e non lasciate in esecuzione. Gate, privacy e soglie invariati.

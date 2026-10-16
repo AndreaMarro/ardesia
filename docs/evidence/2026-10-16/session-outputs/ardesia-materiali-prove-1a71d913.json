@@ -1,0 +1,2044 @@
+{
+  "status": "IN_PROGRESS",
+  "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "head": "1a71d91379ea954ee54a1955b05d22e50401e535",
+  "tree": "50696dc29ea8bd981232e2e4770a7a09db0d758e",
+  "branch": "codex/lesson-close-revision-20261016",
+  "cleanAtCapture": true,
+  "remoteEffects": [],
+  "printProofCheckpoint": "429a3959badd03d3e1903e5443001c4e805d2277",
+  "nativePrint": [
+    {
+      "status": "PASS_PRINT_ONLY",
+      "consumerSha": "429a3959badd03d3e1903e5443001c4e805d2277",
+      "sourceProducerSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "originalBundleSha256": "a0a3bf033aeb0c7d8ac91470cad6d6b546f386c9a3c31d603fe926ea03eb1bc1",
+      "bundleSha256": "e5e81096882dd2c2dea31e1fcf550ca7eb72b830a4635fe0c44c5f2d88131c47",
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "f877a39a-738c-449c-9313-6b1d32b71278",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:44.841Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143884841",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "8fdf1988-f175-4983-9c3b-54d5a0d0ae54",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:47.763Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "58b0af66-c21f-474e-b3ae-c8ee5e0b5264",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:54.564Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143894564",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "e72ff114-4376-4c74-9cdb-616b55a817e4",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:55.178Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "99826093-5246-4d38-844c-4db2b14a0ab8",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:44:57.614Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143897614",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:0205c35845f99c608b547826dc81313c76a7a718f0ff78ef7eadd477bc73a06f",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "bde23b36-63b3-45d5-a7ca-ab21217c1f7f",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:45:01.153Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143901153",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:11fbcd5aa84047ab8ce1d5fb49b0bea80f9b91f2ebe009c71207107635da6409",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "htmlSha256": "867685f3eae6f84575d7cf3716ca9a3218a091d84edd49663edb69a852938da6",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "errors": [],
+      "consoleMessages": [],
+      "scope": "Actual UI import, parent action opens byte-identical captured HTML with null opener and unchanged sandbox, browser PDF of opened document. Figures omitted, no formula case; not a full-suite or whole30s teacher-to-recipient pass."
+    },
+    {
+      "status": "PASS_PRINT_ONLY",
+      "consumerSha": "429a3959badd03d3e1903e5443001c4e805d2277",
+      "sourceProducerSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "originalBundleSha256": "a0a3bf033aeb0c7d8ac91470cad6d6b546f386c9a3c31d603fe926ea03eb1bc1",
+      "bundleSha256": "76bac3f3cab2e3e08c36626143e2c25666f98f6eb72b43fc3bca031db5b61df0",
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "f877a39a-738c-449c-9313-6b1d32b71278",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:44.841Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143884841",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "8fdf1988-f175-4983-9c3b-54d5a0d0ae54",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:47.763Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "58b0af66-c21f-474e-b3ae-c8ee5e0b5264",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:54.564Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143894564",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "e72ff114-4376-4c74-9cdb-616b55a817e4",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:55.178Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "99826093-5246-4d38-844c-4db2b14a0ab8",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:44:57.614Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143897614",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:0205c35845f99c608b547826dc81313c76a7a718f0ff78ef7eadd477bc73a06f",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "bde23b36-63b3-45d5-a7ca-ab21217c1f7f",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:45:01.153Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143901153",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:11fbcd5aa84047ab8ce1d5fb49b0bea80f9b91f2ebe009c71207107635da6409",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "htmlSha256": "0032f13d0cd398841472614151b3a59c7c2a65034c194372a2d5a6c07c30f18c",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "errors": [],
+      "consoleMessages": [],
+      "scope": "Actual UI import, parent action opens byte-identical captured HTML with null opener and unchanged sandbox, browser PDF of opened document. Figures omitted, no formula case; not a full-suite or whole30s teacher-to-recipient pass."
+    }
+  ],
+  "pdfInspection": [
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-print-429a3959/print-native-captured-docu-9e403-andbox-and-prints-at-1440px/captured-print.pdf",
+      "pdfSha256": "ed8d4a3831b192ed80487638be78a1b83ec05635dacd368606a8bb10195169fd",
+      "htmlSha256": "867685f3eae6f84575d7cf3716ca9a3218a091d84edd49663edb69a852938da6",
+      "bundleSha256": "e5e81096882dd2c2dea31e1fcf550ca7eb72b830a4635fe0c44c5f2d88131c47",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 651,
+          "render": "/private/tmp/codex-material-print-pdf-429a3959/1440/page-01.png"
+        },
+        {
+          "page": 2,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 336,
+          "render": "/private/tmp/codex-material-print-pdf-429a3959/1440/page-02.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    },
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-print-429a3959/print-native-captured-docu-e296c-sandbox-and-prints-at-390px/captured-print.pdf",
+      "pdfSha256": "6e907d152a000cd87fa9586c9c5155d4371fd30b5191485bc03d92a18fbcc92e",
+      "htmlSha256": "0032f13d0cd398841472614151b3a59c7c2a65034c194372a2d5a6c07c30f18c",
+      "bundleSha256": "76bac3f3cab2e3e08c36626143e2c25666f98f6eb72b43fc3bca031db5b61df0",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 651,
+          "render": "/private/tmp/codex-material-print-pdf-429a3959/390/page-01.png"
+        },
+        {
+          "page": 2,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 336,
+          "render": "/private/tmp/codex-material-print-pdf-429a3959/390/page-02.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    }
+  ],
+  "currentChecks": {
+    "htmlTests": {
+      "exitCode": 0,
+      "pass": 7
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "build": {
+      "exitCode": 0,
+      "seconds": 42.95
+    },
+    "native": {
+      "attempts": [
+        {
+          "exitCode": 1,
+          "pass": 0,
+          "fail": 2,
+          "classification": "PAGE_FIXTURE_SETUP_TIMEOUT",
+          "appActionsExecuted": false,
+          "log": "/private/tmp/ardesia-material-print-native-1a71d913.log"
+        },
+        {
+          "exitCode": 0,
+          "pass": 2,
+          "fail": 0,
+          "seconds": 25.5,
+          "classification": "PASS_PRINT_ONLY",
+          "appActionsExecuted": true,
+          "log": "/private/tmp/ardesia-material-print-native-1a71d913-resources1336.log"
+        }
+      ],
+      "gatesTimeoutsPoolUnchanged": true
+    },
+    "full": {
+      "status": "PASS_TEST_SUMMARY_EXIT_CODE_UNAVAILABLE_AFTER_INTERRUPTION",
+      "pass": 2257,
+      "skip": 5,
+      "failedReported": 0,
+      "filesPass": 201,
+      "filesSkip": 1,
+      "seconds": 807.88,
+      "exitCode": null,
+      "processHandle": "MISSING",
+      "processInventory": "NO_TEST_RUNTIME_PRESENT",
+      "log": "/private/tmp/ardesia-close-material-full-1a71d913-verbose-bail.log",
+      "previousFailuresPreserved": true
+    },
+    "pagination": "PASS_ONE_PAGE_EACH_SHORT_SYNTHETIC_FIXTURE",
+    "figures": "EXPLICITLY_OMITTED",
+    "formulaFixture": "NOT_EXERCISED",
+    "environmentProbe": {
+      "exitCode": 0,
+      "pass": 1,
+      "pageFixtureSeconds": 1.8,
+      "scope": "ENVIRONMENT_ONLY_NO_APP_ACTIONS"
+    },
+    "frozenGate": {
+      "status": "PASS",
+      "log": "/private/tmp/ardesia-frozen-gate-1a71d913.log",
+      "completionRecord": "/private/tmp/ardesia-frozen-gate-1a71d913-completion.json",
+      "gateSha256": "46dbf3e019cb4fd89c39148d5336752ade34cf1dc4449ecc136c6ac9829f69f3",
+      "gateUnchangedFromBase": true,
+      "toolchainAdapter": "work/run-frozen-studio-gate-1a.sh; real locked Node24 tools, canonical AGENTS flags, no cached results, SKIP_REPLAY unset",
+      "exitCode": 0,
+      "passed": 2258,
+      "failed": 0,
+      "includes": "2257 Vitest tests plus actual browser replay",
+      "replaySeconds": 8.5
+    },
+    "teacherRecipientNative": {
+      "status": "PASS",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "seconds": 41.1,
+      "testSeconds": [
+        25.8,
+        9.2
+      ],
+      "timeoutMs": 30000,
+      "workers": 1,
+      "retries": 0,
+      "scope": "Actual synthetic UI teacher/two same-actor tabs/closed capture/downloads/empty recipient UI import/reload; no formula, figures, first-error/correction, physical durability or remote-collaboration claim"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-429a3959.html",
+      "sha256": "867685f3eae6f84575d7cf3716ca9a3218a091d84edd49663edb69a852938da6",
+      "bytes": 5386
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-429a3959.lesson",
+      "sha256": "e5e81096882dd2c2dea31e1fcf550ca7eb72b830a4635fe0c44c5f2d88131c47",
+      "bytes": 29075
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-429a3959.pdf",
+      "sha256": "ed8d4a3831b192ed80487638be78a1b83ec05635dacd368606a8bb10195169fd",
+      "bytes": 170810
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-mobile-429a3959.png",
+      "sha256": "e816c10fde3cd90457e6a6d4921ac73a9e035c3be99351f056b50481a019be6f",
+      "bytes": 76623
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-pagina-1-429a3959.png",
+      "sha256": "14f9bde3917732d1151ab622f66e2b06e46408b5eb1161838efb356cb7b98a85",
+      "bytes": 111341
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-pagina-2-429a3959.png",
+      "sha256": "d32066276255532239dbb12ee1d94e51cd2553d95561816ee1a0a12a76b12ead",
+      "bytes": 40563
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-materiali-1a71d913.patch",
+      "sha256": "37d816ece8b8b54acc64978db996649d7ec74538d1c2fb1cff068bc3f3a35ac1",
+      "bytes": 241991
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-materiali-stampa-1a71d913.md",
+      "sha256": "9c4de3d9737a85ffd9507ff3a3c0f55976643a49030b683b415818e8946bb519",
+      "bytes": 5747
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-1a71d913.html",
+      "sha256": "c480fdffa6c5f5a6a94b12063bab9a5876750043dc7acb8fd83a6513de9545b2",
+      "bytes": 5426
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-1a71d913.lesson",
+      "sha256": "06ceb25ab5b5699e16801a0f5c86aba2a6fb887dddbe87651107d557ac79e53b",
+      "bytes": 29075
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-esempio-1a71d913.pdf",
+      "sha256": "ec00c2842390b7fd8651370d86b2996f5638d0f2ce549a0a750e258f99a769b9",
+      "bytes": 170048
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-mobile-1a71d913.png",
+      "sha256": "9feb6e70087ee47bcfef424a77a61864208beffc2ed1553d14402b7cb9c9fd7c",
+      "bytes": 76615
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-documento-mobile-1a71d913.png",
+      "sha256": "401ce7cb8bab8dada95c16e2cb069d76fc7e39aa9f2a65a2ab29646a44a4136f",
+      "bytes": 98731
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-pagina-desktop-1a71d913.png",
+      "sha256": "7f09e1e508be04b4910d5575d17c969008a82d5fb9b26043bc333c606d9f74ab",
+      "bytes": 143341
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-stampa-pagina-mobile-1a71d913.png",
+      "sha256": "cf0b0a90fd3f1625dabbf2b22b9b5b4dec9a5f186e72079dbba556a6e7f1e6bd",
+      "bytes": 143419
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-lezione-esempio-1a71d913.html",
+      "sha256": "4e45a75134859f1f492db9a84455dffb25b5f8ce8a13c0786fec9c5660ec1d35",
+      "bytes": 5426
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-lezione-esempio-1a71d913.lesson",
+      "sha256": "8ebbda8db3da191441c7ff69aa3d0c28f059388bfd911d2a45f027262ce57f16",
+      "bytes": 29072
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-lezione-esempio-1a71d913.pdf",
+      "sha256": "42616587a564ec9e8e64dacf3484508690511a5f335b9ce17e79d8c07bdc2074",
+      "bytes": 169899
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-lezione-pagina-1440-1a71d913.png",
+      "sha256": "bfe467ef66b8e76f086cb1db9b2363485d13df53936a8ca5deec6054820c14dd",
+      "bytes": 143998
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/outputs/ardesia-lezione-pagina-390-1a71d913.png",
+      "sha256": "dc33533b65b78c707e98be9ef4f76452c89956db4f761fcf3d09e7135bc6208e",
+      "bytes": 143644
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/ardesia-material-print-native-429a3959.log",
+      "sha256": "2d6d19c8ce558070fd255b17bfae1c86a59d3e1130d49541d0df3a4d7ccbee1b",
+      "bytes": 778
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-pdf-429a3959.log",
+      "sha256": "6a59efb8b787957d7dc77dc54d15137e431bd179ee9047cc6136223ff3632864",
+      "bytes": 4837
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-layout-red-429a3959.log",
+      "sha256": "1834ee138c150b626d5022d1a437c6f6b395a9ed246c6bc9a7ea6b8b67029f2b",
+      "bytes": 219
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-layout-unit.log",
+      "sha256": "d8d8db8cb8e021b5bb24a183771a44164415b4ee8c6ab9f10564f85a6209696f",
+      "bytes": 1313
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-layout-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-build-1a71d913.log",
+      "sha256": "4922c2ade15d222701f45b2516beaa2e7bb2dc586e6eaa613f0f8873c82a7159",
+      "bytes": 17203
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-native-1a71d913.log",
+      "sha256": "f256e4b3edd67508d17e8729912dabce27ff57a61688cedfce61ec972f85456f",
+      "bytes": 2269
+    },
+    {
+      "path": "/private/tmp/codex-close-material-review-e6c5bbd5/ADDENDUM-WORKSHEET-1A71D913.md",
+      "sha256": "e8f5c349aaecc3ed85829ebdf6b17b64e3e96163ffc6754da84ac6ae7d635d5b",
+      "bytes": 1836
+    },
+    {
+      "path": "/private/tmp/ardesia-browser-resource-probe-20261016-1336.log",
+      "sha256": "fc26561fe00bdc6f9b7c2aaac3b37fad72985bb513ef981782f97a9d9e1d733f",
+      "bytes": 689
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-native-1a71d913-resources1336.log",
+      "sha256": "2c17090b65997f3d070356f674f8c4c51ea3ec0bb653b28f4013885a8f85eedd",
+      "bytes": 776
+    },
+    {
+      "path": "/private/tmp/ardesia-material-print-pdf-1a71d913-resources1336.log",
+      "sha256": "a56ad4ed7f77d636bc7066d3c6a0d1976f675ea0dc093e7f94dbc6f1f5e71b34",
+      "bytes": 4846
+    },
+    {
+      "path": "/private/tmp/ardesia-close-material-full-1a71d913-verbose-bail.log",
+      "sha256": "0a415f7e7c6da47fad78379e0f6e7e26cc282aa582ed67321da732b42eceadae",
+      "bytes": 384789
+    },
+    {
+      "path": "/private/tmp/ardesia-frozen-gate-1a71d913.log",
+      "sha256": "66dbd105af4788fa87bba8b458b634f604a9acfb91453de465bf08520f36dbe8",
+      "bytes": 36
+    },
+    {
+      "path": "/private/tmp/ardesia-frozen-gate-1a71d913-completion.json",
+      "sha256": "49a2271d7e50572c13f19cb8b540c8f4a952b524b5a2899c7260d417147610c9",
+      "bytes": 65
+    },
+    {
+      "path": "/private/tmp/ardesia-frozen-gate-1a71d913-tool-calls.log",
+      "sha256": "98d400472fa7a79fc154200dff9c9fa11ad52ea87bb7fbec405ac2419549dc06",
+      "bytes": 246
+    },
+    {
+      "path": "/private/tmp/ardesia-frozen-gate-1a71d913-replay.log",
+      "sha256": "4b594a6e7c38bb6057907410761b922065aa9e0c2eb55ae33cdfd9cfc4fae7a7",
+      "bytes": 839
+    },
+    {
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-16/es/work/run-frozen-studio-gate-1a.sh",
+      "sha256": "9c0be252a23641152b90606dbba36d240f35a0c7a3345c1eccf305544dd870d6",
+      "bytes": 1912
+    },
+    {
+      "path": "/private/tmp/ardesia-material-native-whole-1a71d913.log",
+      "sha256": "eb8fd77106ef598864b92e2fdbc76acb23994b8474de39dc6464c8a7cee85595",
+      "bytes": 1318
+    },
+    {
+      "path": "/private/tmp/ardesia-material-native-whole-1a71d913-completion.json",
+      "sha256": "3edd82d4e49f89c30270dee752ac018539f4dc6848d7a33b1553404e6f8b58af",
+      "bytes": 15
+    },
+    {
+      "path": "/private/tmp/ardesia-material-native-whole-pdf-1a71d913.log",
+      "sha256": "a56ad4ed7f77d636bc7066d3c6a0d1976f675ea0dc093e7f94dbc6f1f5e71b34",
+      "bytes": 4846
+    },
+    {
+      "path": "/private/tmp/codex-material-native-1a71d913-resources1336/results.json",
+      "sha256": "1b9335ea5e3c0d36f37cce5cc75ffd560ae004c1511b2e720cc171fcaccf1d13",
+      "bytes": 5820
+    },
+    {
+      "path": "/private/tmp/codex-material-native-1a71d913-resources1336/closed-material-native-1a--26b23-a-fresh-recipient-at-1440px/closed-material-proof.json",
+      "sha256": "753cd108322fa744b6bd54dff217bab9b62acf7d3a6ab69a5bee1302fa61aabe",
+      "bytes": 8225
+    },
+    {
+      "path": "/private/tmp/codex-material-native-1a71d913-resources1336/closed-material-native-1a--9ca5d--a-fresh-recipient-at-390px/closed-material-proof.json",
+      "sha256": "055b4cd54d471c6f89a07a80ea73b632799bf74691ccd348242a9ec0bf48481a",
+      "bytes": 8220
+    }
+  ],
+  "nativePrintCurrent": [
+    {
+      "status": "PASS_PRINT_ONLY",
+      "consumerSha": "1a71d91379ea954ee54a1955b05d22e50401e535",
+      "sourceProducerSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "originalBundleSha256": "a0a3bf033aeb0c7d8ac91470cad6d6b546f386c9a3c31d603fe926ea03eb1bc1",
+      "bundleSha256": "06ceb25ab5b5699e16801a0f5c86aba2a6fb887dddbe87651107d557ac79e53b",
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "f877a39a-738c-449c-9313-6b1d32b71278",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:44.841Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143884841",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "8fdf1988-f175-4983-9c3b-54d5a0d0ae54",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:47.763Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "58b0af66-c21f-474e-b3ae-c8ee5e0b5264",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:54.564Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143894564",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "e72ff114-4376-4c74-9cdb-616b55a817e4",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:55.178Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "99826093-5246-4d38-844c-4db2b14a0ab8",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:44:57.614Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143897614",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:0205c35845f99c608b547826dc81313c76a7a718f0ff78ef7eadd477bc73a06f",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "bde23b36-63b3-45d5-a7ca-ab21217c1f7f",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:45:01.153Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143901153",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:11fbcd5aa84047ab8ce1d5fb49b0bea80f9b91f2ebe009c71207107635da6409",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "htmlSha256": "c480fdffa6c5f5a6a94b12063bab9a5876750043dc7acb8fd83a6513de9545b2",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "errors": [],
+      "consoleMessages": [],
+      "scope": "Actual UI import, parent action opens byte-identical captured HTML with null opener and unchanged sandbox, browser PDF of opened document. Figures omitted, no formula case; not a full-suite or whole30s teacher-to-recipient pass."
+    },
+    {
+      "status": "PASS_PRINT_ONLY",
+      "consumerSha": "1a71d91379ea954ee54a1955b05d22e50401e535",
+      "sourceProducerSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "originalBundleSha256": "a0a3bf033aeb0c7d8ac91470cad6d6b546f386c9a3c31d603fe926ea03eb1bc1",
+      "bundleSha256": "96582996161aebd95c467f855e199a33ed3e3fa62d46967d98cb70778783f408",
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "f877a39a-738c-449c-9313-6b1d32b71278",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:44.841Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143884841",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "8fdf1988-f175-4983-9c3b-54d5a0d0ae54",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:47.763Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "58b0af66-c21f-474e-b3ae-c8ee5e0b5264",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T09:44:54.564Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143894564",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "e72ff114-4376-4c74-9cdb-616b55a817e4",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T09:44:55.178Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "99826093-5246-4d38-844c-4db2b14a0ab8",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "a56ad492-f19c-4b28-86cd-ab409def32cc",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:44:57.614Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:a56ad492-f19c-4b28-86cd-ab409def32cc:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143897614",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:0205c35845f99c608b547826dc81313c76a7a718f0ff78ef7eadd477bc73a06f",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "bde23b36-63b3-45d5-a7ca-ab21217c1f7f",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "0190af3b-d12f-474a-99f5-111356c36d26",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T09:45:01.153Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "14f68791aa0c3715989014d28a1efc29c9a0cbf5"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:0190af3b-d12f-474a-99f5-111356c36d26:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792143901153",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:11fbcd5aa84047ab8ce1d5fb49b0bea80f9b91f2ebe009c71207107635da6409",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:f481c4a152c8e445502f7bf613051be2a83e0486a82ccdc65434131096be0b31",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "htmlSha256": "3ad34a182fe9f1c310f63c91feff038a470e8d420a6b782b0be99450b4d3bc4f",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "errors": [],
+      "consoleMessages": [],
+      "scope": "Actual UI import, parent action opens byte-identical captured HTML with null opener and unchanged sandbox, browser PDF of opened document. Figures omitted, no formula case; not a full-suite or whole30s teacher-to-recipient pass."
+    }
+  ],
+  "pdfInspectionCurrent": [
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-print-1a71d913-resources1336/print-native-captured-docu-9e403-andbox-and-prints-at-1440px/captured-print.pdf",
+      "pdfSha256": "ec00c2842390b7fd8651370d86b2996f5638d0f2ce549a0a750e258f99a769b9",
+      "htmlSha256": "c480fdffa6c5f5a6a94b12063bab9a5876750043dc7acb8fd83a6513de9545b2",
+      "bundleSha256": "06ceb25ab5b5699e16801a0f5c86aba2a6fb887dddbe87651107d557ac79e53b",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 988,
+          "render": "/private/tmp/codex-material-print-pdf-1a71d913-resources1336/1440/page-01.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "expectedPages": 1,
+      "layoutMismatch": false,
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    },
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-print-1a71d913-resources1336/print-native-captured-docu-e296c-sandbox-and-prints-at-390px/captured-print.pdf",
+      "pdfSha256": "c2a6b970ae608c072dec31b2b1f80c1fe529576307290955cb85d2e82cf48877",
+      "htmlSha256": "3ad34a182fe9f1c310f63c91feff038a470e8d420a6b782b0be99450b4d3bc4f",
+      "bundleSha256": "96582996161aebd95c467f855e199a33ed3e3fa62d46967d98cb70778783f408",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 988,
+          "render": "/private/tmp/codex-material-print-pdf-1a71d913-resources1336/390/page-01.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "expectedPages": 1,
+      "layoutMismatch": false,
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    }
+  ],
+  "visualInspectionCurrent": {
+    "rendersViewed": [
+      "/private/tmp/codex-material-print-pdf-1a71d913-resources1336/1440/page-01.png",
+      "/private/tmp/codex-material-print-pdf-1a71d913-resources1336/390/page-01.png"
+    ],
+    "mobileScreensViewed": [
+      "/private/tmp/codex-material-print-1a71d913-resources1336/print-native-captured-docu-e296c-sandbox-and-prints-at-390px/parent-print-view.png",
+      "/private/tmp/codex-material-print-1a71d913-resources1336/print-native-captured-docu-e296c-sandbox-and-prints-at-390px/opened-print-document.png"
+    ],
+    "result": "READABLE_NO_OBSERVED_CROP_NOT_COMPLETE_MATERIAL"
+  },
+  "teacherRecipientNative": [
+    {
+      "producerSha": "1a71d91379ea954ee54a1955b05d22e50401e535",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "bundleSha256": "8ebbda8db3da191441c7ff69aa3d0c28f059388bfd911d2a45f027262ce57f16",
+      "htmlSha256": "4e45a75134859f1f492db9a84455dffb25b5f8ce8a13c0786fec9c5660ec1d35",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "9fa1c3ad-bfbe-4ff7-ab51-379aba6da788",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "086f2b70-5f94-48cf-9370-b5a2fab55384",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T12:39:57.832Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:086f2b70-5f94-48cf-9370-b5a2fab55384:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154397832",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "5feab745-1c03-4795-b4b4-4df7de5f373b",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "086f2b70-5f94-48cf-9370-b5a2fab55384",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T12:39:59.127Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "83df7cac-8765-409d-8d19-e2e93a35afb3",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "c407f93b-da94-4168-9a3d-afb68c74f453",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T12:40:02.480Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:c407f93b-da94-4168-9a3d-afb68c74f453:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154402480",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "7e41cfa2-ec82-437b-ba75-de0cc93ca7eb",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "c407f93b-da94-4168-9a3d-afb68c74f453",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T12:40:02.953Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "75c5afe2-6cfa-4bd3-9ad5-2614d02edc44",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "086f2b70-5f94-48cf-9370-b5a2fab55384",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T12:40:06.796Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:086f2b70-5f94-48cf-9370-b5a2fab55384:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154406796",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:909d13592a188b0b5e6183fec8af4a7601bea00a0396f73f998c9b594106a96b",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:c820815c6445350f1cd617566891d4375723e6ef37c5478c5651e7fcb5cf9351",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "a9ae7162-9663-4fe9-8eb3-ecb5e8e11367",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "c407f93b-da94-4168-9a3d-afb68c74f453",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T12:40:11.032Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:c407f93b-da94-4168-9a3d-afb68c74f453:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154411032",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:6fee65fea7fa94393cbb123b99dc846b91d57d453f13b247be793c6ef934cc56",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:9572:sha256:c820815c6445350f1cd617566891d4375723e6ef37c5478c5651e7fcb5cf9351",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "errors": [],
+      "consoleMessages": [],
+      "timings": [
+        {
+          "phase": "first-screen",
+          "elapsedMs": 1325
+        },
+        {
+          "phase": "lesson-typed-and-persisted",
+          "elapsedMs": 3205
+        },
+        {
+          "phase": "second-screen",
+          "elapsedMs": 7521
+        },
+        {
+          "phase": "both-closed",
+          "elapsedMs": 14332
+        },
+        {
+          "phase": "captured-preview",
+          "elapsedMs": 15178
+        },
+        {
+          "phase": "downloaded",
+          "elapsedMs": 15441
+        },
+        {
+          "phase": "printed",
+          "elapsedMs": 21413
+        },
+        {
+          "phase": "recipient-imported-and-reloaded",
+          "elapsedMs": 24782
+        }
+      ],
+      "browserAvailability": "Browser plugin not available; locked repository Playwright used",
+      "scope": "Synthetic UI, same default teacher in two tabs, fresh isolated recipient. Browser PDF from captured HTML; figures omitted visibly. No physical durability, remote collaboration, complete final material or full Kirchhoff-Ardesia vertical claim."
+    },
+    {
+      "producerSha": "1a71d91379ea954ee54a1955b05d22e50401e535",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "room": "Teacher-Closed-Material-Synthetic",
+      "title": "Lezione sintetica di corrente continua",
+      "question": "Domanda sintetica: quale corrente viene registrata nel circuito Simulation?",
+      "bundleSha256": "9a44e1f538031870395b5e5452894c336eb51cb18fcfc21f083a227d783f8c9d",
+      "htmlSha256": "d314b2b3b0a30692be1ae2b1654b74ab9a085a8ea43506e4cc299e9af437f131",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "events": [
+        {
+          "schemaVersion": 2,
+          "eventId": "4466182e-e970-48d8-9238-0373bbb22212",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "b81681e2-2ce8-4452-b8c5-3914bfdf5c37",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T12:40:22.946Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:b81681e2-2ce8-4452-b8c5-3914bfdf5c37:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154422946",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 1
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "c1e6ee09-6c22-42d0-adcf-add68ee17d2a",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "b81681e2-2ce8-4452-b8c5-3914bfdf5c37",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T12:40:24.208Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 2
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "51e9ee21-4394-4a78-93b2-d28d60d0895e",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "9043ae26-4845-48c8-870b-22a8d57fe244",
+          "kind": "lesson.started",
+          "occurredAt": "2026-10-16T12:40:25.739Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:9043ae26-4845-48c8-870b-22a8d57fe244:started",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154425739",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 3
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "5af91715-6c8e-4629-ae2f-75095862132b",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "9043ae26-4845-48c8-870b-22a8d57fe244",
+          "kind": "simulation.circuit.solved",
+          "occurredAt": "2026-10-16T12:40:25.953Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": null,
+          "evidence": [
+            {
+              "ref": "simulation:scene:v1-cap6-esp1",
+              "resolution": "missing"
+            }
+          ],
+          "payload": {
+            "experimentId": "v1-cap6-esp1",
+            "sceneId": "v1-cap6-esp1",
+            "currentMa": 15.3,
+            "bookLayoutValid": true,
+            "labels": {
+              "it": "Circuito risolto: 15.3 mA"
+            }
+          },
+          "seq": 4
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "4af208b4-7142-438d-9885-86b4c32ce1f6",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "b81681e2-2ce8-4452-b8c5-3914bfdf5c37",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T12:40:26.101Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:b81681e2-2ce8-4452-b8c5-3914bfdf5c37:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154426101",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:752e5a9c5cbba9b8efa2b5eda01537a92b2371bc9740f8d2579a295a3445b01d",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:10970:sha256:8d4e4cfbe679e2cad90a3bfa5d74340202959be92b1c75b2bffb6cb3f4af0b8c",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 5
+        },
+        {
+          "schemaVersion": 2,
+          "eventId": "bee9ca32-9735-4f1b-9320-76a4b1ceb795",
+          "lessonId": "Teacher-Closed-Material-Synthetic",
+          "sessionId": "9043ae26-4845-48c8-870b-22a8d57fe244",
+          "kind": "lesson.ended",
+          "occurredAt": "2026-10-16T12:40:27.498Z",
+          "actor": {
+            "type": "teacher",
+            "id": "founder-beta-teacher"
+          },
+          "producer": {
+            "id": "com.github.andreamarro.ardesia.studio",
+            "version": "0.0.0",
+            "commitSha": "1a71d91379ea954ee54a1955b05d22e50401e535"
+          },
+          "causationId": null,
+          "idempotencyKey": "session:9043ae26-4845-48c8-870b-22a8d57fe244:ended",
+          "evidence": [
+            {
+              "ref": "lesson:Teacher-Closed-Material-Synthetic@1792154427498",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:body:sha256:bb011acea269aab0dcc9d7e20cfff9ecfa4659286b246d2857ab80bccee6a277",
+              "resolution": "verified"
+            },
+            {
+              "ref": "workspace:v1:Teacher-Closed-Material-Synthetic:journal:10970:sha256:8d4e4cfbe679e2cad90a3bfa5d74340202959be92b1c75b2bffb6cb3f4af0b8c",
+              "resolution": "verified"
+            }
+          ],
+          "payload": {
+            "room": "Teacher-Closed-Material-Synthetic"
+          },
+          "seq": 6
+        }
+      ],
+      "errors": [],
+      "consoleMessages": [],
+      "timings": [
+        {
+          "phase": "first-screen",
+          "elapsedMs": 1033
+        },
+        {
+          "phase": "lesson-typed-and-persisted",
+          "elapsedMs": 2697
+        },
+        {
+          "phase": "second-screen",
+          "elapsedMs": 3366
+        },
+        {
+          "phase": "both-closed",
+          "elapsedMs": 5031
+        },
+        {
+          "phase": "captured-preview",
+          "elapsedMs": 5250
+        },
+        {
+          "phase": "downloaded",
+          "elapsedMs": 5352
+        },
+        {
+          "phase": "printed",
+          "elapsedMs": 5716
+        },
+        {
+          "phase": "recipient-imported-and-reloaded",
+          "elapsedMs": 8786
+        }
+      ],
+      "browserAvailability": "Browser plugin not available; locked repository Playwright used",
+      "scope": "Synthetic UI, same default teacher in two tabs, fresh isolated recipient. Browser PDF from captured HTML; figures omitted visibly. No physical durability, remote collaboration, complete final material or full Kirchhoff-Ardesia vertical claim."
+    }
+  ],
+  "teacherRecipientPdfInspection": [
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-native-1a71d913-resources1336/closed-material-native-1a--26b23-a-fresh-recipient-at-1440px/closed-material.pdf",
+      "pdfSha256": "42616587a564ec9e8e64dacf3484508690511a5f335b9ce17e79d8c07bdc2074",
+      "htmlSha256": "4e45a75134859f1f492db9a84455dffb25b5f8ce8a13c0786fec9c5660ec1d35",
+      "bundleSha256": "8ebbda8db3da191441c7ff69aa3d0c28f059388bfd911d2a45f027262ce57f16",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 988,
+          "render": "/private/tmp/codex-material-native-whole-pdf-1a71d913/1440/page-01.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "expectedPages": 1,
+      "layoutMismatch": false,
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    },
+    {
+      "status": "PASS_TEXT_AND_BOUNDS",
+      "sourcePdf": "/private/tmp/codex-material-native-1a71d913-resources1336/closed-material-native-1a--9ca5d--a-fresh-recipient-at-390px/closed-material.pdf",
+      "pdfSha256": "53f8c3b6bef3532874d5a3ab5deacc7dd35a6185a935f60a3eeeb7e494aaf62f",
+      "htmlSha256": "d314b2b3b0a30692be1ae2b1654b74ab9a085a8ea43506e4cc299e9af437f131",
+      "bundleSha256": "9a44e1f538031870395b5e5452894c336eb51cb18fcfc21f083a227d783f8c9d",
+      "browserVersion": "148.0.7778.96",
+      "nodeVersion": "v24.19.0",
+      "printFonts": {
+        "status": "loaded",
+        "body": "-apple-system, system-ui, \"Segoe UI\", sans-serif",
+        "title": "\"Iowan Old Style\", Palatino, Georgia, serif"
+      },
+      "pdfFonts": [
+        "AAAAAA+IowanOldStyle-Bold",
+        "BAAAAA+IowanOldStyle-Bold",
+        "CAAAAA+.SFNS-Regular",
+        "DAAAAA+.SFNS-Bold",
+        "EAAAAA+.SFNS-Regular",
+        "FAAAAA+Courier",
+        "GAAAAA+.SFNS-Regular",
+        "HAAAAA+.SFNS-RegularItalic",
+        "IAAAAA+.SFNS-Regular",
+        "JAAAAA+.SFNS-Regular",
+        "KAAAAA+Courier"
+      ],
+      "pdfplumberVersion": "0.11.9",
+      "pypdfium2Version": "5.14.0",
+      "pages": [
+        {
+          "page": 1,
+          "widthPt": 595.91998,
+          "heightPt": 842.88,
+          "textCharacters": 988,
+          "render": "/private/tmp/codex-material-native-whole-pdf-1a71d913/390/page-01.png"
+        }
+      ],
+      "missing": [],
+      "outsidePage": [],
+      "expectedPages": 1,
+      "layoutMismatch": false,
+      "scope": "Synthetic captured HTML, semantic text and page bounds. Visual render still requires inspection. Figures explicitly omitted; no formula case in this fixture."
+    }
+  ]
+}

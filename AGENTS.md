@@ -1,3 +1,5 @@
+> Consegna datata: [chiusura del 16 ottobre 2026](docs/ops/CONSEGNA-2026-10-16.md). Stato live sempre tramite il generatore; i candidati archiviati non sono main.
+
 # ARDESIA monorepo — AGENTS (root)
 > STATO CORRENTE — per primo, e GENERATO, mai letto da un documento scritto a mano: `python3 bin/state/project_state.py` produce `docs/ops/CURRENT.md` (umano) e `artifacts/state/project.json` (macchina, gitignorato). Ogni altro file descrive l'istante in cui è stato scritto, non l'istante in cui lo leggi.
 > ORIENTAMENTO: leggi `docs/vault/ARDESIA-MAP.md` — com'è fatto il progetto (macchine, repo, branch, loop, modelli, invarianti).

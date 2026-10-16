@@ -1,3 +1,5 @@
+> Aggiornamento di orientamento del 16 ottobre 2026: il checkout attuale è il monorepo AndreaMarro/ardesia, con Studio in apps/studio, Engine in packages/engine e tooling in ops e bin. La [consegna corrente](../ops/CONSEGNA-2026-10-16.md) distingue main e rami archiviati. Le macchine, i conteggi e le lavorazioni del 17 giugno sotto restano una fotografia storica.
+
 # ARDESIA — MAPPA D'ORIENTAMENTO · agg. 2026-06-17
 
 > ⚠️ **Questo documento NON è la fonte dello stato corrente, e la data sopra è

@@ -1,3 +1,5 @@
+> Registro storico di integrazione. La sigla V1 e i risultati P33–P37 sotto non attestano il completamento del prodotto. La [consegna del 16 ottobre 2026](CONSEGNA-2026-10-16.md) riporta lo stato successivo e la chiusura operativa.
+
 # ARDESIA V1 — integration map
 
 Updated: 2026-07-10. Current overlay base:

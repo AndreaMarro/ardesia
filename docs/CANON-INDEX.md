@@ -1,8 +1,10 @@
+> Fotografia storica del 23 giugno 2026. Le affermazioni sul ToolHost non montato e sui repository separati hanno la data di questo inventario. Lo stato della consegna corrente è nel [registro del 16 ottobre](ops/CONSEGNA-2026-10-16.md); la misura live si rigenera con il tool del monorepo.
+
 # ARDESIA — CANON INDEX (23/06/2026)
 
-Spec canoniche del prodotto/architettura, ricavate dai repo reali e verificate firsthand (workflow `wf_a3b09ee4`, 10 agenti, file:riga). Autorità: queste 4 + questo indice. NON marketing.
+Spec canoniche del prodotto/architettura, ricavate dai repo reali e verificate firsthand (workflow `wf_a3b09ee4`, 10 agenti, file:riga). Autorità: queste 5 + questo indice. NON marketing.
 
-## I quattro documenti
+## I cinque documenti
 1. **[ARCHITECTURE-CANON](ARCHITECTURE-CANON.md)** — mappa sorgenti canoniche, regola di classificazione, 4 layer AS-IS vs AS-DESIGNED, confine Core da disegnare, persisted-vs-ephemeral, roadmap A–H grounded.
 2. **[PRODUCT-CANON](PRODUCT-CANON.md)** — ARDESIA≠ELAB≠simulatore, reality-test camminato sullo stato reale, 2 modalità→`LessonMode`, funzioni Core cross-materia, statement moat onesto, responsive, tagli duri.
 3. **[PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md)** — `ArdesiaPluginManifest` (as-built + `kind`/visibility/marketplace da-aggiungere), kernel sicurezza, 2 item aperti (TOCTOU, bundleHash), wire-reachability, tipi vendibili, P0=montare l'host.

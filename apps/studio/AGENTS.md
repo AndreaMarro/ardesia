@@ -1,3 +1,5 @@
+> Nota 16 ottobre 2026: [consegna del monorepo](../../docs/ops/CONSEGNA-2026-10-16.md) e [README Studio](README.md) descrivono i checkout e le prove attuali. Gli ordini Hermes/Mini sotto conservano il proprio contesto storico; le autorizzazioni di pubblicazione restano quelle della sessione corrente.
+
 > ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
 
 # AGENTS.md — MAESTRO-Studio (regole per Hermes)

@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-16T13:20:57.457723+00:00",
+  "repository": "AndreaMarro/ardesia",
+  "visibility": "private",
+  "decision": "Owner requested termination, documentation, publication and closure; no new feature work",
+  "main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "candidates_composed": false,
+  "main_changed": false,
+  "documentation_destination": "refs/heads/archive/goal-closeout-20261016/documentation",
+  "documentation_in_main": false,
+  "pr262": {
+    "state": "CLOSED_WITHOUT_MERGE",
+    "closed_at": "2026-10-16T13:08:28Z",
+    "head": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+    "url": "https://github.com/AndreaMarro/ardesia/pull/262",
+    "reason": "Required human approval absent; no bypass or gate modification"
+  },
+  "units": [
+    {
+      "name": "bounded-reader",
+      "head": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+      "tree": "6e0d6b4c6fc3f37099c6a8261651f67ceb862306",
+      "parents": [
+        "f9b572244e21171eff2b22f37286b2be8e0f889a"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/bounded-reader",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Limited archive reader; inventory and resource budgets before effects",
+      "verification": "CI: engine 2107 PASS/9 SKIP; studio 2149 PASS/5 SKIP; hygiene and advisory PASS; 35 technical counterproofs",
+      "limitations": "No general archive durability, complete pipeline or human approval claim",
+      "human_github_approval": false
+    },
+    {
+      "name": "atomic-reingest",
+      "head": "6536991c917396d1f05974ae17746c3457d5a7c6",
+      "tree": "c780ee41ce14eea16aa97d4c389fb1873126c725",
+      "parents": [
+        "529735fac55184cfb6fb5e2b9a23c3fd4b75c3f8"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/atomic-reingest",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Prepare off-store; atomically publish segments/capsule using a committed revision CAS",
+      "verification": "Offline engine 2151 PASS/7 SKIP; 42 targeted PASS; bounded separate technical review",
+      "limitations": "Depends on bounded-reader. Separate legacy getters and derived projections are not made atomic. One earlier key-bearing run made unintended provider requests; count and cost unavailable",
+      "human_github_approval": false
+    },
+    {
+      "name": "continuity-storage",
+      "head": "1842338b0f71693c2c42ad4ed061b972c9e2cd96",
+      "tree": "05256bbd9bfdce9c70677a8ea3da2a5f149a736b",
+      "parents": [
+        "b124eee04acc8062c27284f23c5d9108e3767c27"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/continuity-storage",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Distinguish empty, unreadable and damaged storage without discarding known failures",
+      "verification": "Studio 2155 PASS/5 SKIP; frozen gate 2156 PASS including replay; 25 targeted and 12 native browser PASS; 13 local checks; typecheck/build PASS",
+      "limitations": "No physical durability or composed integration claim",
+      "human_github_approval": false
+    },
+    {
+      "name": "postit-reload",
+      "head": "2c12ce93e76793ec32f8a390ee247bd989effc1c",
+      "tree": "eb366049f96be12e35aa25c3e2ddeb207bbfc8ff",
+      "parents": [
+        "b124eee04acc8062c27284f23c5d9108e3767c27"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/postit-reload",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Preserve post-it identity across edit, reload, export and fresh recipient import",
+      "verification": "Studio 2158 PASS/5 SKIP; frozen gate 2159 PASS including replay; 22 targeted, 6 native browser PASS; 2 mutants killed; typecheck/build/13 local checks PASS",
+      "limitations": "No remote collaboration or full continuity vertical claim",
+      "human_github_approval": false
+    },
+    {
+      "name": "led-unknown",
+      "head": "8c5d650ae59659357a0d0f46c7306287634158aa",
+      "tree": "255575f80cdb0c18cc5e69e9cc616e32706ebf1c",
+      "parents": [
+        "461e2217c13c3c832a4921021ff01b69a39db158"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/led-unknown",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Expose unknown/unavailable LED measurements consistently through canvas, Lab and lesson transport",
+      "verification": "Studio 2185 PASS/5 SKIP; frozen gate 2186 PASS including replay; 19 native browser PASS, including 3 lesson transport cases; 4 review counterproofs PASS; typecheck/build/13 local checks PASS",
+      "limitations": "No general kernel or asynchronous provider correctness claim",
+      "human_github_approval": false
+    },
+    {
+      "name": "lesson-close-material",
+      "head": "1a71d91379ea954ee54a1955b05d22e50401e535",
+      "tree": "50696dc29ea8bd981232e2e4770a7a09db0d758e",
+      "parents": [
+        "429a3959badd03d3e1903e5443001c4e805d2277"
+      ],
+      "reference_main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "published_ref": "refs/heads/archive/goal-closeout-20261016/lesson-close-material",
+      "remote_verified": true,
+      "state": "ARCHIVED_WITHOUT_MERGE",
+      "scope": "Bind close receipts and material to one canonical capture; export matching HTML and lesson bundle; printable material and recipient reopen",
+      "verification": "Studio summary 2257 PASS/5 SKIP with original terminal exit unavailable; frozen gate exit 0, 2258 PASS including real replay; typecheck/build PASS; native print 2 PASS and current producer teacher-recipient 2 PASS; two one-page PDFs inspected",
+      "limitations": "HTML visibly omits board figures retained in lesson bundle. Final fixture contains no formula. Two tabs use the same synthetic actor, not two authenticated people",
+      "human_github_approval": false
+    }
+  ],
+  "kirchhoff": {
+    "documentation_pr": "https://github.com/AndreaMarro/kirchhoff/pull/28",
+    "state": "MERGED",
+    "merged_at": "2026-10-16T13:17:15Z",
+    "merge_commit": "b35a8b5da0616f00a7764397bda0e6b95aca3c95",
+    "product_code_checkpoint": "a3eb02bbeee7bc2914737f73cf771f524265c4c4",
+    "main_ci": {
+      "state": "SUCCESS",
+      "head": "b35a8b5da0616f00a7764397bda0e6b95aca3c95",
+      "python": "https://github.com/AndreaMarro/kirchhoff/actions/runs/38906699257",
+      "web": "https://github.com/AndreaMarro/kirchhoff/actions/runs/38906699203"
+    }
+  },
+  "historical_outputs_manifest": "historical-deliverables-manifest.json",
+  "historical_generated_snapshot": "generated-state-snapshot.json",
+  "historical_snapshots_are_not_current_status": true,
+  "abandoned_figure_proposal": {
+    "state": "DEFERRED_AT_OWNER_CLOSEOUT_UNIMPLEMENTED",
+    "patch": {
+      "archive": "historical-evidence.zip",
+      "member": "figure-proposal-abandoned.patch"
+    },
+    "red_log": {
+      "archive": "historical-evidence.zip",
+      "member": "figure-proposal-red.txt"
+    },
+    "failed": 2,
+    "passed": 7,
+    "code_candidate_restored_clean_to": "1a71d91379ea954ee54a1955b05d22e50401e535"
+  },
+  "provider_incident": {
+    "unit": "atomic-reingest",
+    "unintended_external_requests_observed": true,
+    "request_count": null,
+    "cost_usd": null,
+    "billing": "unavailable; never infer zero"
+  },
+  "release_claims": {
+    "full_two_product_vertical": false,
+    "human_pilot": false,
+    "product_verified": false,
+    "new_explicit_deployment_performed": false
+  },
+  "gate_changes": false,
+  "protection_changes": false,
+  "historical_archive": "historical-evidence.zip",
+  "archive_members_manifest": "archive-members.json",
+  "documentation_verification": {
+    "first_whitespace_check": "FAILED on unmodified raw patch/log/generated-artifact bytes",
+    "resolution": "Preserved all 101 originals byte-identically in a ZIP, plus selected direct examples; no whitespace rule or gate was changed",
+    "nul_scan_before_packaging": "PASS",
+    "secret_scan_before_packaging": "PASS",
+    "doc_claims_five_current_documents_before_packaging": "PASS",
+    "final": {
+      "nul_scan": "PASS",
+      "secret_scan": "PASS",
+      "elab_boundary_gate": "PASS; existing 12 baseline offenders unchanged",
+      "doc_claims_gate": "PASS; five current documents, four checks each",
+      "markdown_links": "PASS; 23 local links across five current documents",
+      "archive_integrity": "PASS; ZIP and all 101 member hashes",
+      "archive_secret_scan": "PASS; no high-confidence patterns in members; lesson members scanned before packaging",
+      "json_parse": "PASS",
+      "whitespace": "PASS after exact-byte evidence packaging"
+    }
+  }
+}

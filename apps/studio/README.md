@@ -1,39 +1,33 @@
-# Whiteboard-Studio — Studio (aula web)
+# Ardesia Studio
 
-Aula di insegnamento **tutto-in-una-finestra**, posseduta dal docente. Per i 10 docenti (umanistiche + STEM, uni e non) **disposti a pagare €15/mese** (validazione 09/06/2026). Anti-Superprof: la lezione È il prodotto, niente pedaggio-sul-contatto.
+Studio è la lavagna web del monorepo: React 19, TypeScript, Vite 8 ed Excalidraw 0.18, con MathLive/MathJax per le formule e pdfjs per le pagine PDF. I contratti e le versioni effettive sono nel codice e nei lockfile.
 
-**NIENTE ELAB. NIENTE LessonOS. NIENTE sim-Arduino.** (3 progetti separati — vedi `~/HANDOFF-2026-06-09.md`.)
+## Stato della consegna
 
-## Stack (assemblato, licenze pulite)
-- **Vite 8 + React 19 + TS** (scaffold)
-- **Excalidraw 0.18** (MIT) — lavagna
-- **MathLive 0.110** (MIT) — composer formule; **MathJax CDN** — LaTeX→SVG per inserirle sulla lavagna
-- **pdfjs-dist 6** (Apache) — PDF→immagini (worker Vite-native `?url`)
-- **Video = Google Meet ESTERNO** (bottone "apri Meet", niente embed — decisione 10/06; ex-Jitsi rimosso)
+Il [registro del 16 ottobre 2026](../../docs/ops/CONSEGNA-2026-10-16.md) distingue il main b124eee0 dai candidati archiviati per storage, identità dei post-it, misure LED e chiusura/materiale. Questi candidati sono pubblicati su GitHub e testati separatamente; non sono stati composti o integrati nel main. Il precedente README descriveva il prototipo del 9 giugno: la sua separazione assoluta da LessonOS e il piano cloud non descrivevano più questo checkout.
 
-## Feature (tutte verificate live, git)
-- Lavagna Excalidraw full-screen + header (stanza, copia-link-studente, apri-Meet, formula, carica)
-- **Video**: Google Meet esterno via bottone (la lezione vive sulla lavagna, non nel video)
-- **Math**: composer MathLive → "inserisci sulla lavagna" (SVG image, spostabile)
-- **Carica immagini/PDF** sulla lavagna (PDF = pagine-immagine impilate). [PDF: testare con file reale]
-- **Persistenza** localStorage per-stanza (`✓ salvato`) — la lezione non sparisce al refresh
+Studio possiede lavagna e journal; il ToolHost governa i plugin e i consumer leggono la memoria della lezione. Formule e PDF possono richiedere risorse o conversioni dedicate. Il salvataggio locale e l'esportazione vanno distinti da garanzie di durata dopo crash o da collaborazione remota, che questa consegna non attesta.
 
-## Run
+## Avvio
+
+Dalla radice del monorepo:
+
+```sh
+cd apps/studio
+npm ci
+npm run dev
 ```
-cd ~/whiteboard-studio/studio
-npm run dev          # http://localhost:5173
+
+## Controlli
+
+Dalla directory Studio:
+
+```sh
+npm run typecheck
+npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+npm run build
 ```
-(O via Claude Preview: launch.json name **"studio"**, porta 5189.)
 
-## Gotcha imparati (NON ri-sbattere)
-- **React duplicato** con Excalidraw+nuova-dep → `resolve.dedupe:['react','react-dom']` in vite.config.
-- **Aggiungere una dep** → Vite va riavviato + `rm -rf node_modules/.vite` (l'optimizer non vede la dep a caldo → schermo bianco).
-- **mathjax-full (npm) = CJS** (`require is not defined`) → usato **MathJax da CDN** (lazy-load, no bundling).
-- `React.CSSProperties`/`React.ChangeEvent` → importare `type CSSProperties`/`type ChangeEvent` (no `import React`).
-- Verifica SEMPRE a schermo (screenshot) prima di dire "fatto".
+Il gate originale in `apps/studio/eval/gate.sh` include il replay reale nel browser. I risultati si attribuiscono sempre al commit su cui sono stati eseguiti. Nel candidato 1a71d913 il gate riporta 2258 controlli PASS, il percorso docente–destinatario passa su desktop/mobile e il PDF sintetico ha una pagina; le figure restano un'omissione visibile nell'HTML. Non è una prova del prodotto completo.
 
-## Prossimo
-- **Persistenza cloud (Supabase)** — lo studente riapre la lavagna; fondamenta multi-tenant. Serve progetto Supabase NUOVO (no-ELAB) + URL/anon-key in `.env.local` (mai in chat). Design: localStorage sempre + cloud quando configurato (fallback).
-- Co-editing real-time lavagna (Yjs) — oggi: docente disegna, studente vede via screen-share.
-- Test PDF con file reale.
-- LessonOS come "motore-lezioni" = solo quando il Mac Mini torna online + deployato su host affidabile (NON il Mini di casa).
+React è deduplicato nella configurazione Vite. Si preservano byte e MIME dei file; il journal resta append-only. Le modifiche ai formati sono additive e i gate non si indeboliscono. Cloud, penna, accessibilità completa, pilot e integrazione con altri prodotti richiedono prove proprie.

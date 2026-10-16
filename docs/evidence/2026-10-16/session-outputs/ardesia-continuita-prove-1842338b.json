@@ -1,0 +1,272 @@
+{
+  "date": "2026-10-16T03:34:07.279482+00:00",
+  "repository": "AndreaMarro/ardesia",
+  "branch": "codex/continuity-storage-20261016",
+  "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "candidate": "1842338b0f71693c2c42ad4ed061b972c9e2cd96",
+  "tree": "05256bbd9bfdce9c70677a8ea3da2a5f149a736b",
+  "state": "READY_FOR_REVIEW local technical candidate; NOT_PUSHED; NO_PR; NO_CI; NOT_INTEGRATED",
+  "scope": "Continuity enumeration preserves corrupt/data-loss descriptor; UI distinguishes damaged/partial archive from verified empty. No storage write, repair, migration or new solver.",
+  "runtime": {
+    "url": "http://127.0.0.1:5198/?vista=continuita#storage-build-identity",
+    "status": 200,
+    "title": "Ardesia · studio",
+    "build": {
+      "schema": 1,
+      "commitSha": "1842338b0f71693c2c42ad4ed061b972c9e2cd96"
+    },
+    "browser": "148.0.7778.96",
+    "node": "v24.19.0"
+  },
+  "verification": {
+    "baseline_targeted": {
+      "passed": 19,
+      "exit": 0
+    },
+    "behavioral_red": {
+      "consumer_and_view_failed": 4,
+      "nav_failed": 2,
+      "native_browser_failed": 8,
+      "native_browser_passed": 4,
+      "exit": 1
+    },
+    "targeted": {
+      "passed": 25,
+      "exit": 0
+    },
+    "full_studio": {
+      "passed": 2155,
+      "skipped": 5,
+      "exit": 0,
+      "seconds": 79.91,
+      "node": "24.19.0",
+      "command": "npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000",
+      "skip_reason": "Existing shots.test.ts suite requires absent external ~/maestro-logs/ui-shots"
+    },
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exit": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "exit": 0
+    },
+    "local_checks_fast": {
+      "checks_passed": 13,
+      "exit": 0,
+      "command": "bin/ci/local_checks.sh --fast",
+      "separate_type_unit_build_runs": true
+    },
+    "frozen_gate": {
+      "candidate": "1842338b0f71693c2c42ad4ed061b972c9e2cd96",
+      "passed": 2156,
+      "failed": 0,
+      "exit": 0,
+      "unit_passed": 2155,
+      "replay_kill_test_passed": 1,
+      "node": "26.5.1",
+      "command": "NODE_OPTIONS=--no-experimental-webstorage VITEST_MAX_WORKERS=1 bash eval/gate.sh",
+      "gate_modified": false,
+      "SKIP_REPLAY": false,
+      "note": "Gate chooses Homebrew Node, uses existing default Vitest limits and does not expose a skip count in its terminal JSON."
+    },
+    "native_browser_candidate": {
+      "candidate": "1842338b0f71693c2c42ad4ed061b972c9e2cd96",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0,
+      "exit": 0,
+      "seconds": 36.0,
+      "retry": 0,
+      "workers": 1,
+      "command": "ARDESIA_STUDIO_E2E_BASE_URL=http://127.0.0.1:5198 npx playwright test e2e/continuity-storage-integrity.spec.ts --workers=1 --retries=0 --reporter=line",
+      "playwright": "1.60.0",
+      "chromium": "148.0.7778.96",
+      "node": "24.19.0",
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ],
+      "cases_per_viewport": [
+        "seq gap without target lesson keys",
+        "malformed V2",
+        "unattributed legacy row",
+        "seq gap with target lesson keys",
+        "verified empty",
+        "verified with session"
+      ],
+      "assertions": [
+        "native IndexedDB synthetic rows",
+        "real opener backend kind",
+        "real rendered application",
+        "reload and new page in same isolated context",
+        "row-value equality before and after read",
+        "URL and title",
+        "no overlay, pageerror or console error",
+        "no horizontal overflow",
+        "keyboard focus and Enter navigate to Materiali"
+      ]
+    },
+    "setup_failures_preserved": [
+      "Initial browser run: 12 launch failures because locked Chromium headless shell absent; not behavioral RED. Installed pinned browser, then obtained genuine 8FAIL/4PASS before production edit.",
+      "Initial LocalChecks: 4 environment failures because PyYAML absent; installed exact already-locked PyYAML6.0.3 in auxiliary venv, then13checksPASS. No product lockfile change."
+    ],
+    "unchanged": [
+      "frozen gate",
+      "test gates",
+      "retry count",
+      "timeouts",
+      "skip policy",
+      "package manifest and lockfile"
+    ],
+    "patch_apply_check": {
+      "base": "b124eee04acc8062c27284f23c5d9108e3767c27",
+      "exit": 0
+    }
+  },
+  "review": {
+    "reviewer": "/root/review_storage",
+    "candidate": "1842338b0f71693c2c42ad4ed061b972c9e2cd96",
+    "tree": "05256bbd9bfdce9c70677a8ea3da2a5f149a736b",
+    "verdict": "No concrete findings; favorable technical verdict in examined storage enumeration scope",
+    "independent_targeted_passed": 25,
+    "independent_selected_backend_passed": 12,
+    "filtered_out": 79,
+    "direct_counterprobes": [
+      "corrupt log null",
+      "data-loss legacy/malformed/dropped-tail",
+      "no enumeration",
+      "descriptor identity",
+      "close once",
+      "rejecting close preserves result",
+      "no scope without opening"
+    ],
+    "human_github_approval": false,
+    "browser_full_build_gate_repeated_by_reviewer": false,
+    "record": {
+      "bytes": 1538,
+      "sha256": "8a4a074cf4563dce924ae00403c39a969b006d1002b50b641fa875555b2c782c"
+    }
+  },
+  "remote_observation": {
+    "data": {
+      "repository": {
+        "isPrivate": true,
+        "defaultBranchRef": {
+          "name": "main",
+          "target": {
+            "oid": "b124eee04acc8062c27284f23c5d9108e3767c27"
+          }
+        },
+        "pullRequest": {
+          "url": "https://github.com/AndreaMarro/ardesia/pull/262",
+          "state": "OPEN",
+          "isDraft": false,
+          "headRefOid": "b9bff9621cd94b34bbf5ee251488f44ca7414114",
+          "reviewDecision": "REVIEW_REQUIRED",
+          "mergeStateStatus": "BLOCKED",
+          "commits": {
+            "nodes": [
+              {
+                "commit": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "remote_effects": "No push, new PR, merge or explicit deployment for this unit. PR262 remains human REVIEW_REQUIRED with SUCCESS checks; main unchanged.",
+  "provider_keys_excluded": [
+    "OPENAI_API_KEY",
+    "KIMI_API_KEY",
+    "DEEPSEEK_API_KEY"
+  ],
+  "provider_requests_this_unit": "None observed. This does not erase unintended requests in the earlier atomic re-ingest verification.",
+  "limits": [
+    "Synthetic rows are deliberate fault fixtures, not integrated lesson flow evidence.",
+    "Row-value equality is not equality of physical IndexedDB file bytes.",
+    "New page and reload use the same context; no full browser-process restart proof.",
+    "No data recovery, durability, migrations or multi-tab writer proof.",
+    "No full accessibility, pen, human pilot or full Ardesia/Kirchhoff integration validation.",
+    "Separate requested-session snapshot path unchanged; enumeration scope only.",
+    "Exact-candidate remote CI and human prerequisite still pending."
+  ],
+  "artifacts": {
+    "ardesia-continuita-storage-1842338b.patch": {
+      "bytes": 23295,
+      "sha256": "7f13112c53f43145762d48d3c577d9404b7190134e6f89f04d20bd486bf52339"
+    },
+    "ardesia-archivio-danneggiato-1842338b.png": {
+      "bytes": 22271,
+      "sha256": "03fecbaf31ed6010c45424dedcbcebc63aaedceffdd5c406bcd64c10912a73ac"
+    },
+    "ardesia-archivio-parziale-mobile-1842338b.png": {
+      "bytes": 18158,
+      "sha256": "25a092bf2a2ea646f8d3acf22685c57281d0b2d8e870e3eda62cc3c03be092d1"
+    }
+  },
+  "logs": {
+    "storage-baseline-targeted.log": {
+      "bytes": 531,
+      "sha256": "278920e5d63093bc937b417fcda037b7eadd66c7640569449fd11564d6143b16"
+    },
+    "storage-red-unit.log": {
+      "bytes": 15247,
+      "sha256": "a3b318c9f62ca64dd7be64afffbf16ee2a0940a75b4f535ad34198d6737271bf"
+    },
+    "storage-red-nav.log": {
+      "bytes": 1438,
+      "sha256": "6d8675784bd38a5af1eb64df664b83136d29887944e53360328f7aecf26e8490"
+    },
+    "storage-red-browser.log": {
+      "bytes": 22901,
+      "sha256": "3f93ff892b29af5c29ce9fc00dcbb36b08ebeb6ba4e8b007f3f57c3e10ff8cc9"
+    },
+    "storage-red-native.log": {
+      "bytes": 19498,
+      "sha256": "b0c96209165322c5141725196ec22328d2f3038dc3542859413ac7158f5c0019"
+    },
+    "storage-green-targeted.log": {
+      "bytes": 531,
+      "sha256": "7e78d8f7d298a26ada426a448474ab1aac5a953adac646b0bcf76e8fe3832a3a"
+    },
+    "storage-full-studio.log": {
+      "bytes": 640,
+      "sha256": "e8c87ecebb662b86631480689c850f0d543b63daeb630d538f9bf618130cae7e"
+    },
+    "storage-typecheck.log": {
+      "bytes": 45,
+      "sha256": "1454b1dd6bc302ad2f905499cf9d6078d61f038903a0927ce116460426b93112"
+    },
+    "storage-build.log": {
+      "bytes": 17076,
+      "sha256": "4f55aa1e54a87606aae71a1e8af90c5b0b92b08b8571e33a86266a17820ce5c6"
+    },
+    "storage-localchecks-fast.log": {
+      "bytes": 2584,
+      "sha256": "45af5401053c36c5b77b57719f7f61e7c56e599a0420776ac8ae8892076e5d10"
+    },
+    "storage-localchecks-ready.log": {
+      "bytes": 2108,
+      "sha256": "cadd0880b3a54453ec91a21fa7369dd3368521915838716a78cedcb0bc27a96b"
+    },
+    "storage-frozen-gate.log": {
+      "bytes": 36,
+      "sha256": "e1d392e234cc91c0126985c433cc62ef28a530a0001cb438e50c787073fffc76"
+    },
+    "storage-frozen-replay.log": {
+      "bytes": 1140,
+      "sha256": "f4cbecfa44716c98f76e7a3b18fe32277c298881ad5b1849c0b398c7b9eda29d"
+    },
+    "storage-candidate-browser.log": {
+      "bytes": 1775,
+      "sha256": "eb707918ca5c3097fce0b68a125e50374954d89fec25d8cd7bdc7f7db6c3c72c"
+    }
+  },
+  "next_primary_unit": "Verify existing post-it identities and bindings after a real document reload and .lesson transfer; characterize baseline before implementing anything."
+}
