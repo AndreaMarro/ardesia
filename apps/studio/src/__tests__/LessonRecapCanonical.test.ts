@@ -132,3 +132,17 @@ it("an import before a formula contributes to the duration without becoming an o
   expect(recap.durationMs).toBe(10000)
   expect(recap.pdfPagesViewed).toEqual([])
 })
+
+it.each(["room", "flat"] as const)("valid legacy metadata keeps its activity time in a %s journal", async location => {
+  const { store } = setup()
+  const lines = [
+    { t: 1000, type: "audio.chunk", chunkIndex: 0, startEpoch: 1000, endEpoch: 2000 },
+    { t: 11000, type: "math.insert", latex: "V = R I" },
+  ].map(row => JSON.stringify(row)).join("\n")
+  await store.write(location === "room" ? roomPaths(ROOM).journal : PATHS.JOURNAL, new Blob([lines]))
+  const recap = (await buildRecap(store, ROOM))!
+  expect(recap.firstEventTime).toBe(1000)
+  expect(recap.lastEventTime).toBe(11000)
+  expect(recap.durationMs).toBe(10000)
+  expect(recap.mathFormulas).toEqual(["V = R I"])
+})

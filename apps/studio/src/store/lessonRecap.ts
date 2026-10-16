@@ -73,9 +73,10 @@ export async function buildRecap(
   // non dalle aggregazioni (formule/elementi/pagine restano contati).
   let firstEventTime: number | null = null
   let lastEventTime: number | null = null
-  // Some canonical events (notably PDF imports) intentionally have no legacy
-  // projection. Their occurrence still counts as activity, never as observation.
-  const timestamps = envelopes === null ? events.map(event => event.t) : envelopes.map(event => Date.parse(event.occurredAt))
+  // Canonical imports have no legacy projection; accepted legacy metadata can
+  // have no canonical adapter. Both decoder outputs belong to this same journal.
+  const timestamps = events.map(event => event.t)
+  for (const envelope of envelopes ?? []) timestamps.push(Date.parse(envelope.occurredAt))
   for (const timestamp of timestamps) {
     if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) continue
     if (firstEventTime === null || timestamp < firstEventTime) firstEventTime = timestamp
