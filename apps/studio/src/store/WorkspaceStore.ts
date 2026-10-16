@@ -51,6 +51,16 @@ export interface WorkspaceState {
   room: string
 }
 
+/** Existing lesson title format, shared by live and captured readers. */
+export async function parseLessonMeta(blob: Blob | null): Promise<LessonMeta | null> {
+  if (!blob) return null
+  try {
+    const parsed = JSON.parse(await blob.text()) as LessonMeta
+    if (parsed && typeof parsed === "object" && parsed.v === 1 && typeof parsed.name === "string") return parsed
+  } catch { /* malformed metadata remains unavailable */ }
+  return null
+}
+
 export type WorkspaceStoreOptions = Readonly<{
   mutationCoordinator?: LessonMutationCoordinator
   createFsaDriver?: () => WorkspaceDriver
@@ -556,15 +566,7 @@ export class WorkspaceStore {
 
   async loadMeta(room: string): Promise<LessonMeta | null> {
     const paths = roomPaths(room)
-    const blob = await this.read(paths.meta)
-    if (!blob) return null
-    try {
-      const parsed = JSON.parse(await blob.text()) as LessonMeta
-      if (parsed && typeof parsed === "object" && parsed.v === 1 && typeof parsed.name === "string") {
-        return parsed
-      }
-    } catch { /* malformed — return null */ }
-    return null
+    return parseLessonMeta(await this.read(paths.meta))
   }
 
   /**

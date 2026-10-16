@@ -119,7 +119,7 @@ export interface LessonOsSessionHandle extends LessonOsRuntime {
     meta: FactMeta,
   ): Promise<AppendEnvelopeResult>
   /** beforeEnd is part of the sealed revision; an aborted attempt cannot publish end later. */
-  close(options?: Readonly<{ beforeEnd?: () => Promise<void>; signal?: AbortSignal }>): Promise<AppendEnvelopeResult>
+  close(options?: Readonly<{ beforeEnd?: () => Promise<void | readonly EventEvidence[]>; signal?: AbortSignal }>): Promise<AppendEnvelopeResult>
 }
 
 export type LessonOsSessionOpener = (
@@ -264,6 +264,7 @@ export async function openLessonOsSession(
   const lifecycleEnvelope = (
     kind: "lesson.started" | "lesson.ended",
     suffix: "started" | "ended",
+    additionalEvidence: readonly EventEvidence[] = [],
   ): AnyEventEnvelopeV2 => {
     const occurredAt = now()
     return createEventEnvelopeV2(
@@ -275,7 +276,7 @@ export async function openLessonOsSession(
         producer,
         causationId: null,
         idempotencyKey: `session:${sessionId}:${suffix}`,
-        evidence: [{ ref: `lesson:${lessonId}@${occurredAt}`, resolution: "verified" }],
+        evidence: [{ ref: `lesson:${lessonId}@${occurredAt}`, resolution: "verified" }, ...additionalEvidence],
         payload: { room: lessonId },
       },
       { eventId: newEventId, now: () => new Date(occurredAt) },
@@ -424,10 +425,10 @@ export async function openLessonOsSession(
       }
       const attempt = (async () => {
         await wait(Promise.all(writesAtCut))
-        if (ended === null && options.beforeEnd) await wait(options.beforeEnd())
+        const evidence = ended === null && options.beforeEnd ? await wait(options.beforeEnd()) : undefined
         options.signal?.throwIfAborted()
         if (rejectedAfterCut) throw rejectedAfterCut
-        ended ??= lifecycleEnvelope("lesson.ended", "ended")
+        ended ??= lifecycleEnvelope("lesson.ended", "ended", evidence ?? [])
         endedResult ??= await wait(store.appendEnvelope(ended!))
         await closePhysicalStore(backend)
         closed = true

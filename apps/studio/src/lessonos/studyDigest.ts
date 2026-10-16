@@ -6,12 +6,23 @@
 // porta la sua evidenza.
 import { materialize, type LessonGraph, type LessonNode } from "./materializer"
 import type { AppendedEvent } from "./eventlog"
+import type { EventEvidence } from "../core/contracts/eventEnvelope"
+
+export interface StudyDigestRecord {
+  eventId: string
+  sessionId: string
+  label: string
+  evidence: readonly EventEvidence[]
+  currentMa?: number
+}
 
 export interface StudyDigestConcept {
   id: string
   label: string
   /** Ref di provenienza (pagina manuale, board, scena…) — mai vuoto se il nodo ne ha. */
   evidence: string[]
+  sessionId?: string
+  evidenceDetails?: readonly EventEvidence[]
 }
 
 export interface StudyDigestError {
@@ -22,11 +33,16 @@ export interface StudyDigestError {
   /** L'errore è stato corretto (esiste un exercise.completed che lo corregge). */
   corrected: boolean
   evidence: string[]
+  sessionId?: string
+  evidenceDetails?: readonly EventEvidence[]
 }
 
 export interface StudyDigest {
   concepts: StudyDigestConcept[]
   errors: StudyDigestError[]
+  results?: readonly StudyDigestRecord[]
+  exercises?: readonly StudyDigestRecord[]
+  materials?: ReadonlyArray<StudyDigestRecord & Readonly<{ id: string }>>
 }
 
 function labelOf(node: LessonNode): string {

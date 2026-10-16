@@ -112,26 +112,13 @@ function addEntry(
 }
 
 /**
- * Esporta la lezione corrente come Blob .lesson (ZIP).
- *
- * Strategy:
- *   - Elenca tutti i file raw/ dallo store
- *   - Esclude scene per-room (raw/{room}/board.excalidraw) — la scena
- *     corrente viene iniettata flat come raw/board.excalidraw
- *   - Costruisce una Map per-path per dedup (l'iniettato vince)
- *   - Crea ZIP via JSZip e restituisce Blob
+ * The same portable workspace body is used by export and the close receipt.
+ * Canonical events are added separately, after the final end has been stored.
  */
-export async function exportLesson(
-  store: WorkspaceStore,
+export async function collectLessonWorkspaceEntries(
+  store: Pick<WorkspaceStore, "read" | "list">,
   room: string,
-  /**
-   * Event-log LessonOS opzionale (spec #35 §4.3: l'export è l'unica durabilità
-   * VERA). Se fornito e non vuoto, il suo snapshot JSONL entra nel bundle come
-   * raw/lessonos-events.jsonl. Il restore nell'event-log (importSnapshot) è
-   * fase successiva: qui il file viaggia nel bundle e sopravvive come raw/.
-   */
-  lessonOsLog?: EventLogStore | null,
-): Promise<Blob> {
+): Promise<Map<string, FileEntry>> {
   const lessonId = validateRoomId(room)
   const paths = roomPaths(lessonId)
   const entries = new Map<string, FileEntry>()
@@ -170,6 +157,21 @@ export async function exportLesson(
   // vengono adattati a path flat dentro lo ZIP, senza leggere residui flat o B.
   addEntry(entries, LESSON_PATHS.SCENE, await store.read(paths.scene))
   addEntry(entries, LESSON_PATHS.JOURNAL, await store.read(paths.journal))
+  // Keep the established room-scoped metadata path: the manifest inventory
+  // already supports it, and import preserves it without a schema change.
+  addEntry(entries, paths.meta, await store.read(paths.meta))
+  return entries
+}
+
+/** Exports the selected lesson. An optional live log replaces stored events. */
+export async function exportLesson(
+  store: Pick<WorkspaceStore, "read" | "list">,
+  room: string,
+  lessonOsLog?: EventLogStore | null,
+): Promise<Blob> {
+  const lessonId = validateRoomId(room)
+  const paths = roomPaths(lessonId)
+  const entries = await collectLessonWorkspaceEntries(store, lessonId)
   const storedLessonOsSnapshot = await store.read(paths.lessonOsSnapshot)
 
   // Snapshot canonico v2 e limitato alla lezione. Un log v1 non viene proiettato:

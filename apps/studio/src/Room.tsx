@@ -34,6 +34,7 @@ import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasE
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
+import { captureLessonRevisionEvidence } from "./store/lessonRevision"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -522,9 +523,10 @@ export default function Room({
   }
 
   /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
-  async function flushLiveLesson(): Promise<void> {
+  async function flushLiveLesson() {
     await flushPersist()
     await journalRef.current?.flush()
+    return captureLessonRevisionEvidence(actualStore, room)
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -588,7 +590,7 @@ export default function Room({
       try {
         await withSurfaceFlushTimeout(runtime
           ? runtime.close({ beforeEnd: flushLiveLesson, signal: cancellation.signal }).then(() => {})
-          : flushLiveLesson())
+          : flushLiveLesson().then(() => {}))
         action()
       } catch (error) {
         cancellation.abort(error)

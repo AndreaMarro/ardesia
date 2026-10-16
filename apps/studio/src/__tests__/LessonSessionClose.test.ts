@@ -83,6 +83,14 @@ describe("cancellation belongs to the same sealed close attempt", () => {
 
 describe("an uncertain end preserves the already flushed revision", () => {
   afterEach(() => vi.restoreAllMocks())
+  it("keeps evidence returned by the pre-end flush on the unique canonical end", async () => {
+    const h = await session()
+    const evidence = [{ ref: "workspace:synthetic-revision", resolution: "verified" as const }]
+    const result = await h.close({ beforeEnd: async () => evidence })
+    expect(result.event.evidence).toContainEqual(evidence[0])
+    evidence[0] = { ref: "workspace:later-mutation", resolution: "verified" }
+    expect(result.event.evidence).not.toContainEqual(evidence[0])
+  })
   it("a retry reuses the end identity without running beforeEnd a second time", async () => {
     const h = await session()
     const probe = await createEventLogStore({ factory: undefined })

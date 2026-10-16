@@ -9,6 +9,13 @@ import { formatDuration } from "./lessonRecap"
 import type { StudyDigest } from "../lessonos/studyDigest"
 import type { EventEvidence } from "../core/contracts/eventEnvelope"
 
+export type LessonMaterialProvenance = Readonly<{
+  lessonId: string
+  bundleSha256: string
+  sessions: ReadonlyArray<Readonly<{ sessionId: string; endEventId: string; endSeq: number }>>
+  omissions?: readonly string[]
+}>
+
 function esc(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -21,7 +28,8 @@ function evidenceHtml(evidence: readonly EventEvidence[]): string {
   return evidence.length ? `<small>${evidence.map(item => `<code>${esc(item.ref)}</code> (${item.resolution === "verified" ? "verificata" : "non verificata"})`).join(" · ")}</small>` : ""
 }
 
-function digestEvidence(refs: readonly string[]): string {
+function digestEvidence(refs: readonly string[], details?: readonly EventEvidence[]): string {
+  if (details) return evidenceHtml(details)
   return refs.length ? `<small>${refs.map(ref => `<code>${esc(ref)}</code>`).join(" · ")}</small>` : ""
 }
 
@@ -42,7 +50,7 @@ const ELEMENT_LABEL_IT: Record<string, string> = {
  * HTML autosufficiente (CSS inline, nessuna risorsa esterna), stampabile.
  * Deterministico: stesso recap → stesso documento.
  */
-export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string {
+export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest, provenance?: LessonMaterialProvenance): string {
   const title = esc(recap.title)
   const duration = formatDuration(recap.durationMs)
   const pages = [...recap.pdfPagesViewed].sort((a, b) => a - b)
@@ -71,20 +79,30 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
     : `<p class="empty">Lavagna senza elementi registrati.</p>`
 
   const conceptsHtml = digest && digest.concepts.length
-    ? `<section><h2>Concetti trattati</h2><ul class="concetti">${digest.concepts.map((c) => `<li>${esc(c.label)}${digestEvidence(c.evidence)}</li>`).join("")}</ul></section>`
+    ? `<section><h2>Concetti trattati</h2><ul class="concetti">${digest.concepts.map((c) => `<li>${esc(c.label)}${digestEvidence(c.evidence, c.evidenceDetails)}</li>`).join("")}</ul></section>`
     : ""
   const errorsHtml = digest && digest.errors.length
     ? `<section><h2>Errori e correzioni</h2><ul class="errori">${digest.errors
         .map(
           (e) =>
-            `<li>${esc(e.label)} — <span class="${e.corrected ? "ok" : "todo"}">${e.corrected ? "corretto" : "da rivedere"}</span>${digestEvidence(e.evidence)}</li>`,
+            `<li>${esc(e.label)} — <span class="${e.corrected ? "ok" : "todo"}">${e.corrected ? "corretto" : "da rivedere"}</span>${digestEvidence(e.evidence, e.evidenceDetails)}</li>`,
         )
         .join("")}</ul></section>`
     : ""
 
   const boardHtml = recap.boardTexts?.length
     ? `<section><h2>Appunti sulla lavagna</h2>${recap.boardTexts.map(item => `<p>${esc(item.text).replace(/\n/g, "<br>")}${evidenceHtml(item.evidence)}</p>`).join("")}</section>` : ""
-  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || Boolean(boardHtml) || Boolean(recap.pdfReferences?.length)
+  const resultsHtml = digest?.results?.length
+    ? `<section><h2>Risultati registrati</h2><ul>${digest.results.map(result => `<li data-event-id="${esc(result.eventId)}">${esc(result.label)}${result.currentMa === undefined ? "" : ` — ${result.currentMa} mA`}${evidenceHtml(result.evidence)}</li>`).join("")}</ul></section>` : ""
+  const exercisesHtml = digest?.exercises?.length
+    ? `<section><h2>Esercizi e passaggi</h2><ul>${digest.exercises.map(item => `<li data-event-id="${esc(item.eventId)}">${esc(item.label)}${evidenceHtml(item.evidence)}</li>`).join("")}</ul></section>` : ""
+  const materialsHtml = digest?.materials?.length
+    ? `<section><h2>Materiali citati</h2><ul>${digest.materials.map(item => `<li>${esc(item.label)}${evidenceHtml(item.evidence)}</li>`).join("")}</ul></section>` : ""
+  const omissionsHtml = provenance?.omissions?.length
+    ? `<section><h2>Contenuti non inclusi</h2><ul>${provenance.omissions.map(item => `<li>${esc(item)}</li>`).join("")}</ul></section>` : ""
+  const revisionHtml = provenance
+    ? `<small>Lezione ${esc(provenance.lessonId)} · sessioni ${provenance.sessions.map(session => `${esc(session.sessionId)}: ${session.endSeq}`).join(" · ")}</small><small>Integrità .lesson SHA-256: <code>${esc(provenance.bundleSha256)}</code></small>` : ""
+  const hasContent = recap.totalElementsAdded > 0 || formulas.length > 0 || pages.length > 0 || Boolean(boardHtml) || Boolean(recap.pdfReferences?.length) || Boolean(conceptsHtml || errorsHtml || resultsHtml || exercisesHtml || materialsHtml)
 
   return `<!doctype html>
 <html lang="it">
@@ -144,6 +162,10 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
     ${boardHtml}
     ${conceptsHtml}
     ${errorsHtml}
+    ${resultsHtml}
+    ${exercisesHtml}
+    ${materialsHtml}
+    ${omissionsHtml}
     <section>
       <h2>Fonti</h2>
       ${fontiHtml}
@@ -152,7 +174,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest): string
       <h2>I miei appunti</h2>
       <div class="notes">${'<div class="rule"></div>'.repeat(6)}</div>
     </section>
-    <footer>Generato da Ardesia dagli appunti salvati. I riferimenti distinguono importazioni e osservazioni registrate.</footer>
+    <footer>Generato da Ardesia dagli appunti salvati. I riferimenti distinguono importazioni e osservazioni registrate.${revisionHtml}</footer>
   </div>
 </body>
 </html>`

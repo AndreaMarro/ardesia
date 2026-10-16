@@ -887,6 +887,11 @@ export async function exportEventLogSnapshot(store: EventLogStore): Promise<Blob
 /** Snapshot canonico v2: una riga per identità fisica, seq preservato. */
 export async function exportEnvelopeEventLogSnapshot(store: EnvelopeEventLogStore): Promise<Blob> {
   const events = await store.readAllEnvelopes()
+  return serializeEnvelopeEventLogSnapshot(events)
+}
+
+/** Same canonical format, for an already captured and validated read. */
+export function serializeEnvelopeEventLogSnapshot(events: readonly AppendedEventEnvelopeV2[]): Blob {
   const lines = events.map((event) => JSON.stringify(event)).join("\n")
   return new Blob([lines.length > 0 ? `${lines}\n` : ""], { type: "application/x-ndjson" })
 }
