@@ -14,8 +14,10 @@ is a later step. From Segments on, the EXISTING pipeline runs unchanged (same
 windowed capsule + grounded graph + summary as the ASR path).
 
 Security / GDPR:
-  * **ZipSlip** — every archived member is validated before any read: no
-    absolute path, no ``..`` traversal, must live under ``raw/``.
+  * **ZipSlip** — every archived file member is validated before any read:
+    no absolute path, no ``..`` traversal, no duplicate file member, and
+    only ``manifest.json`` may live outside ``raw/`` (explicit directory
+    entries are ignored: they are never read).
   * **Revoked audio** — a bundle that carries ``raw/audio/*`` while
     ``session.yaml`` says ``audioConsent != true`` is an integrity violation
     (the Studio export must have filtered it) and is REFUSED: revoked audio
@@ -29,34 +31,77 @@ from __future__ import annotations
 
 import json
 import re
-import zipfile
 from dataclasses import dataclass
+from datetime import datetime, timezone
 
 from lessonos.models.entities import Segment
+from lessonos.ingest.bundle_extensions import validate_extensions
+from lessonos.ingest.bundle_resources import DEFAULT_BUNDLE_LIMITS, read_payloads
 
 LESSON_PATHS = {
+    "MANIFEST": "manifest.json",
     "SCENE": "raw/board.excalidraw",
     "JOURNAL": "raw/events.jsonl",
     "SESSION": "raw/session.yaml",
     "AUDIO_DIR": "raw/audio/",
+    "LESSONOS": "raw/lessonos-events.jsonl",
+}
+
+SUPPORTED_BUNDLE_VERSION = 1
+SUPPORTED_SCHEMA_VERSION = 3
+SUPPORTED_SCHEMA_VERSIONS = frozenset({1, 2, 3})
+
+# Mirror di Studio validateRoomId (roomPaths.ts): l'identita' dichiarata dal
+# manifest deve avere la stessa forma di un lessonId canonico.
+_ROOM_ID_RE = re.compile(r"^[A-Za-z0-9._-]{1,128}$")
+
+# Gli unici kind EventEnvelope v2 necessari a ricostruire i segmenti di testo.
+# Altri kind v2 (pointer, math, pdf, lesson.*) sono ignorati: non servono qui.
+V2_JOURNAL_KINDS = frozenset({
+    "journal.element.add",
+    "journal.element.update",
+    "journal.element.delete",
+})
+_V2_KIND_TO_LEGACY_TYPE = {
+    "journal.element.add": "element.add",
+    "journal.element.update": "element.update",
+    "journal.element.delete": "element.delete",
 }
 
 
 @dataclass(frozen=True)
 class BundleContents:
-    """The validated, in-memory contents of a ``.lesson`` bundle."""
+    """Byte/inventory-checked bundle contents, not semantic event validity.
+
+    LessonOS snapshot text stays opaque until its consumer validates it.
+    """
 
     events_jsonl: str
     session: dict
     audio_members: tuple[str, ...]
+    # Manifest Studio v1 parsato quando presente, altrimenti None (bundle
+    # legacy manifest-less: percorso storico preservato). Solo le chiavi
+    # usate dal motore (lessonId) sono contrattuali qui.
+    manifest: dict | None = None
+    # Snapshot LessonOS canonico (EventEnvelope v2) quando il bundle lo
+    # contiene, altrimenti None. None (assente) != "" (presente ma vuoto):
+    # la distinzione unavailable/available-empty vive qui, non in una
+    # stringa vuota ambigua. Letto DOPO le verifiche esistenti (l'inventario
+    # manifest lo copre gia': niente secondo sistema hash).
+    lessonos_events_jsonl: str | None = None
 
 
 def _is_safe_member(name: str) -> bool:
     """ZipSlip guard: reject absolute paths, parent traversal, and anything
-    outside ``raw/``. A path is safe iff it starts with ``raw/`` and no segment
-    is ``..`` (and it is not absolute)."""
+    outside ``raw/`` — with ONE exact exception: the Studio root manifest
+    (``manifest.json``). A path is safe iff it is exactly ``manifest.json``
+    or it starts with ``raw/`` and no segment is ``..`` (and it is not
+    absolute). Anything else at root is rejected: the allowlist is NOT
+    widened to ``*``."""
     if not name or name.startswith("/") or name.startswith("\\"):
         return False
+    if name == LESSON_PATHS["MANIFEST"]:
+        return True
     parts = name.replace("\\", "/").split("/")
     if any(p == ".." for p in parts):
         return False
@@ -84,30 +129,37 @@ def parse_session_yaml(text: str) -> dict:
 
 def read_bundle(zip_path: str) -> BundleContents:
     """Open a ``.lesson`` zip, validate every member (ZipSlip), and return the
-    journal + parsed session + audio member list.
+    journal + parsed session + audio member list + parsed manifest (if any).
 
-    Raises ``ValueError`` on an unsafe member, a missing journal, or a
-    revoked-consent bundle that still carries audio (GDPR).
+    Two flavours, no new abstraction:
+      * ``manifest-v1`` — modern Studio export: ``manifest.json`` at root is
+        parsed and cross-checked (versions, lessonId, required files,
+        files[] bytes+sha256 inventory). Coherence, NOT signature.
+      * ``legacy`` — manifest-less bundle: historical path preserved
+        (manifest is None).
+
+    Raises ``ValueError`` on an unsafe member, a missing journal, a revoked-
+    consent bundle that still carries audio (GDPR), or a manifest that
+    disagrees with the payload.
     """
-    with zipfile.ZipFile(zip_path) as zf:
-        names = [n for n in zf.namelist() if not n.endswith("/")]
-        # validate-then-act: check EVERY member before reading anything
-        for name in names:
-            if not _is_safe_member(name):
-                raise ValueError(
-                    f"unsafe bundle member (ZipSlip/out-of-scope): {name!r}"
-                )
-        if LESSON_PATHS["JOURNAL"] not in names:
-            raise ValueError(f"bundle missing {LESSON_PATHS['JOURNAL']!r}")
-        events_jsonl = zf.read(LESSON_PATHS["JOURNAL"]).decode("utf-8")
-        session: dict = {}
-        if LESSON_PATHS["SESSION"] in names:
-            session = parse_session_yaml(
-                zf.read(LESSON_PATHS["SESSION"]).decode("utf-8")
-            )
-        audio_members = tuple(
-            n for n in names if n.startswith(LESSON_PATHS["AUDIO_DIR"])
+    payloads = read_payloads(zip_path, _is_safe_member, {
+        LESSON_PATHS["MANIFEST"], LESSON_PATHS["JOURNAL"],
+        LESSON_PATHS["SESSION"], LESSON_PATHS["LESSONOS"],
+    }, DEFAULT_BUNDLE_LIMITS)
+    if LESSON_PATHS["JOURNAL"] not in payloads:
+        raise ValueError(f"bundle missing {LESSON_PATHS['JOURNAL']!r}")
+    manifest = _read_manifest(payloads)
+    try:
+        events_jsonl = payloads[LESSON_PATHS["JOURNAL"]].data.decode("utf-8")
+        lessonos_events_jsonl = (
+            payloads[LESSON_PATHS["LESSONOS"]].data.decode("utf-8")
+            if LESSON_PATHS["LESSONOS"] in payloads else None
         )
+        session = (parse_session_yaml(payloads[LESSON_PATHS["SESSION"]].data.decode("utf-8"))
+                   if LESSON_PATHS["SESSION"] in payloads else {})
+    except UnicodeDecodeError as exc:
+        raise ValueError("bundle text payload is not UTF-8") from exc
+    audio_members = tuple(n for n in payloads if n.startswith(LESSON_PATHS["AUDIO_DIR"]))
 
     if audio_members and session.get("audioConsent") is not True:
         raise ValueError(
@@ -115,33 +167,222 @@ def read_bundle(zip_path: str) -> BundleContents:
             f"audioConsent != true — revoked audio must not be ingested (GDPR)"
         )
     return BundleContents(
-        events_jsonl=events_jsonl, session=session, audio_members=audio_members
+        events_jsonl=events_jsonl, session=session, audio_members=audio_members,
+        manifest=manifest, lessonos_events_jsonl=lessonos_events_jsonl,
     )
+
+
+def _read_manifest(payloads: dict) -> dict | None:
+    """Parse and cross-check ``manifest.json``; None when the bundle is a
+    legacy manifest-less one. Every check raises ``ValueError``."""
+    names = list(payloads)
+    if LESSON_PATHS["MANIFEST"] not in names:
+        return None
+    try:
+        manifest = json.loads(payloads[LESSON_PATHS["MANIFEST"]].data.decode("utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise ValueError(f"bundle manifest malformed: {exc}") from exc
+    if not isinstance(manifest, dict):
+        raise ValueError("bundle manifest root must be an object")
+    # Type-strict: il contratto Studio richiede l'intero esatto (in Python
+    # True == 1 e 1.0 == 1, ma true/1.0 non sono versioni valide).
+    if type(manifest.get("bundleVersion")) is not int or manifest.get("bundleVersion") != SUPPORTED_BUNDLE_VERSION:
+        raise ValueError(
+            f"unsupported manifest bundleVersion: {manifest.get('bundleVersion')!r}"
+        )
+    if type(manifest.get("schemaVersion")) is not int or manifest.get("schemaVersion") not in SUPPORTED_SCHEMA_VERSIONS:
+        raise ValueError(
+            f"unsupported manifest schemaVersion: {manifest.get('schemaVersion')!r}"
+        )
+    lesson_id = manifest.get("lessonId")
+    if not isinstance(lesson_id, str) or not _ROOM_ID_RE.match(lesson_id):
+        raise ValueError("bundle manifest lessonId missing or invalid")
+    for required in ("raw/board.excalidraw", LESSON_PATHS["JOURNAL"], LESSON_PATHS["SESSION"]):
+        if required not in names:
+            raise ValueError(f"bundle manifest requires missing file {required!r}")
+    files = manifest.get("files")
+    if not isinstance(files, list) or not files:
+        raise ValueError("bundle manifest files inventory missing")
+    inventoried: set[str] = set()
+    for entry in files:
+        if not isinstance(entry, dict):
+            raise ValueError("bundle manifest files entry must be an object")
+        path = entry.get("path")
+        if not isinstance(path, str):
+            raise ValueError("bundle manifest files entry must declare a path")
+        if path in inventoried:
+            raise ValueError(f"bundle manifest lists duplicate path {path!r}")
+        inventoried.add(path)
+    # Biiezione: ogni file reale deve essere inventariato e viceversa. Un
+    # payload presente ma non inventariato non riceverebbe verifica
+    # bytes/sha256; una entry senza payload e' un manifest bugiardo.
+    # `names` contiene solo file reali (le directory ZIP sono gia' escluse).
+    payload_paths = set(names) - {LESSON_PATHS["MANIFEST"]}
+    if payload_paths != inventoried:
+        raise ValueError(
+            "bundle manifest inventory mismatch: "
+            f"zip={sorted(payload_paths)} manifest={sorted(inventoried)}"
+        )
+    pdf_paths = validate_extensions(manifest, {path: payloads[path].size for path in payload_paths})
+    for entry in files:
+        if not isinstance(entry, dict):
+            raise ValueError("bundle manifest files entry must be an object")
+        path = entry.get("path")
+        if not isinstance(path, str) or path not in names:
+            raise ValueError(f"bundle manifest lists absent file {path!r}")
+        payload = payloads[path]
+        if (type(entry.get("bytes")) is not int or entry["bytes"] < 0 or
+            not isinstance(entry.get("sha256"), str) or
+            not re.fullmatch(r"[0-9a-f]{64}", entry["sha256"])):
+            raise ValueError(f"bundle manifest invalid bytes/hash ({path})")
+        if payload.size != entry["bytes"]:
+            raise ValueError(f"bundle manifest bytes mismatch ({path})")
+        if path in pdf_paths and b"%PDF-" not in payload.prefix:
+            raise ValueError(f"bundle original PDF header missing ({path})")
+        digest = payload.sha256
+        if digest != entry.get("sha256"):
+            raise ValueError(f"bundle manifest SHA-256 mismatch ({path})")
+    return manifest
+
+
+# Hint keys canoniche EventEnvelope v2 (mirror di Studio
+# looksLikeJournalEnvelopeV2: ne basta UNA). Le righe legacy {t, type, …}
+# non ne contengono nessuna al top level, quindi il rilevamento non ha
+# falsi positivi sul formato storico.
+_V2_HINT_KEYS = frozenset({
+    "schemaVersion",
+    "eventId",
+    "lessonId",
+    "sessionId",
+    "kind",
+    "occurredAt",
+    "actor",
+    "producer",
+    "causationId",
+    "idempotencyKey",
+    "evidence",
+    "payload",
+})
+
+
+def _looks_like_v2_envelope(obj: object) -> bool:
+    """True se il valore sembra un EventEnvelope v2: va validato come tale,
+    mai ricadere nel parser legacy."""
+    return isinstance(obj, dict) and any(key in obj for key in _V2_HINT_KEYS)
+
+
+def _v2_occurred_at_ms(value: object, line_no: int) -> int:
+    """Deterministic ISO-8601 → epoch ms. No synthetic timestamps: an
+    unparseable occurredAt is a corrupt canonical line, not a legacy one."""
+    if not isinstance(value, str):
+        raise ValueError(f"journal v2 line {line_no}: occurredAt missing")
+    try:
+        moment = datetime.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(f"journal v2 line {line_no}: bad occurredAt {value!r}") from exc
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return int(moment.timestamp() * 1000)
+
+
+def _normalize_journal_v2(
+    obj: dict, lesson_id: str, line_no: int
+) -> tuple[int | None, dict | None]:
+    """Validate ONE canonical EventEnvelope v2 journal row.
+
+    Returns ``(observed_ms_or_None, legacy_equivalent_or_None)``:
+      * every v2 row must carry valid schemaVersion/kind/lessonId/occurredAt
+        (a recognisable-but-corrupt row raises, never silently skipped);
+      * element add/update/delete rows additionally require payload shape
+        and lessonId match, and map to their legacy equivalent;
+      * non-element rows of THIS lesson contribute only their timestamp
+        (baseline t0); rows of another lesson contribute nothing — they are
+        ignored exactly like legacy rows, which carry no lesson at all
+        (segment-contributing identity is enforced on element rows).
+    """
+    if type(obj.get("schemaVersion")) is not int or obj.get("schemaVersion") != 2:
+        raise ValueError(
+            f"journal v2 line {line_no}: unsupported schemaVersion {obj.get('schemaVersion')!r}"
+        )
+    kind = obj.get("kind")
+    if not isinstance(kind, str) or not kind:
+        raise ValueError(f"journal v2 line {line_no}: malformed kind")
+    row_lesson = obj.get("lessonId")
+    if not isinstance(row_lesson, str) or not row_lesson:
+        raise ValueError(f"journal v2 line {line_no}: malformed lessonId")
+    t = _v2_occurred_at_ms(obj.get("occurredAt"), line_no)
+    if kind not in V2_JOURNAL_KINDS:
+        return (t, None) if row_lesson == lesson_id else (None, None)
+    if row_lesson != lesson_id:
+        raise ValueError(
+            f"journal v2 line {line_no}: lessonId {row_lesson!r} "
+            f"does not match bundle lesson {lesson_id!r}"
+        )
+    payload = obj.get("payload")
+    if not isinstance(payload, dict):
+        raise ValueError(f"journal v2 line {line_no}: malformed payload for {kind}")
+    legacy_type = _V2_KIND_TO_LEGACY_TYPE[kind]
+    if legacy_type == "element.delete":
+        element_id = payload.get("elementId")
+        if not isinstance(element_id, str) or not element_id:
+            raise ValueError(f"journal v2 line {line_no}: malformed elementId for delete")
+        return (t, {"t": t, "type": legacy_type, "elementId": element_id})
+    element = payload.get("element")
+    if not isinstance(element, dict):
+        raise ValueError(f"journal v2 line {line_no}: malformed element for {kind}")
+    element_id = element.get("id")
+    if not isinstance(element_id, str) or not element_id:
+        raise ValueError(f"journal v2 line {line_no}: element without id for {kind}")
+    return (t, {"t": t, "type": legacy_type, "element": element})
 
 
 def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
     """Extract whiteboard TEXT segments from the journal events.
 
-    Each Excalidraw ``text`` element becomes one Segment: the element's final
-    text (last add/update wins), ``[start,end]`` from the first/last journal
-    event touching it, in **seconds relative to the first event**. Deleted
-    elements are dropped; empty text is skipped. Segments are ordered by start
-    and ``seg_id`` is 1-indexed (``<lesson>#sN``) — the same contract as the ASR
-    adapter (``adapter.py``). Malformed JSONL lines are skipped (defensive).
+    Accepts BOTH the legacy journal (``{"t", "type": "element.*", ...}``)
+    and the canonical Studio EventEnvelope v2 journal
+    (``journal.element.add/update/delete``): v2 rows are normalised to the
+    legacy shape first, so update/delete/ordering semantics run once.
+
+    Each Excalidraw ``text`` element becomes one Segment: the element's text
+    from the last add/update in journal order, preserving the legacy rule,
+    ``[start,end]`` from its journal timestamps, in **seconds relative to the
+    lesson baseline**. Deleted elements are dropped; empty text is skipped. Segments
+    are ordered by start and ``seg_id`` is 1-indexed (``<lesson>#sN``) — the
+    same contract as the ASR adapter (``adapter.py``). Malformed JSONL lines
+    are skipped (defensive, historical legacy contract preserved); parsed
+    non-object rows are rejected explicitly (never an opaque AttributeError).
+
+    The lesson baseline is the minimum timestamp over ALL valid journal
+    events of the lesson (legacy ``t`` + same-lesson v2 ``occurredAt``),
+    NOT only the events that become segments: a pointer/math row before the
+    first element still anchors the timeline, identically for both formats.
     """
     events: list[dict] = []
-    for line in events_jsonl.splitlines():
+    baseline_ms: list[int] = []
+    for line_no, line in enumerate(events_jsonl.splitlines(), start=1):
         line = line.strip()
         if not line:
             continue
         try:
-            events.append(json.loads(line))
+            parsed = json.loads(line)
         except json.JSONDecodeError:
             continue
+        if _looks_like_v2_envelope(parsed):
+            observed_ms, normalised = _normalize_journal_v2(parsed, lesson_id, line_no)
+            if observed_ms is not None:
+                baseline_ms.append(observed_ms)
+            if normalised is not None:
+                events.append(normalised)
+            continue
+        if not isinstance(parsed, dict):
+            raise ValueError(f"journal line {line_no}: not a JSON object")
+        baseline_ms.append(int(parsed.get("t", 0)))
+        events.append(parsed)
     if not events:
         return []
 
-    t0 = min(int(ev.get("t", 0)) for ev in events)
+    t0 = min(baseline_ms)
 
     texts: dict[str, dict] = {}  # element id → {text, start, end}
     deleted: set[str] = set()
@@ -166,7 +407,7 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
             if rec is None:
                 texts[eid] = {"text": text, "start": t, "end": t}
             else:
-                rec["text"] = text  # last write wins
+                rec["text"] = text  # legacy journal order remains authoritative
                 rec["end"] = max(rec["end"], t)
         elif typ == "element.delete":
             eid = ev.get("elementId")
@@ -217,6 +458,8 @@ def ingest_bundle(
     from lessonos.capsule.assembly import assemble_lesson_capsule
 
     contents = read_bundle(zip_path)
+    if contents.manifest is not None and contents.manifest["lessonId"] != lesson_id:
+        raise ValueError("bundle manifest lessonId does not match requested lesson")
     segments = journal_to_segments(contents.events_jsonl, lesson_id)
     if not segments:
         raise ValueError(

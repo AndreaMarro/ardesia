@@ -45,3 +45,42 @@ ZERO-LLM — purely rule-based, no model calls.
 
 - M7 order: `COORDINATION.md:14` (Claude-SAYS 2026-06-08)
 - Fixtures README: `fixtures/raw_transcript/README.md`
+
+## Studio `.lesson` reader — bounded recovery, 2026-10-16
+
+`lessonos/ingest/bundle.py:130` accepts legacy and manifest bundleVersion 1,
+schemas 1/2/3. This selectively recovers reader/journal contracts from archive
+`5b1f65779701ba680a9b4d7d0841dc9c021422ff`; it does not merge that branch.
+The ingest body retains main's existing persistence path with a manifest
+lessonId check before store effects (`bundle.py:439`). Legacy journal order
+remains authoritative; v2 add/update/delete normalizes into that same body.
+
+`bundle_resources.py:15` defines positive, immutable budgets: archive 256 MiB,
+central directory 2 MiB, 1024 members including directories, each payload
+64 MiB, each retained text 16 MiB, manifest 1 MiB, expanded total 256 MiB.
+Single-disk stored/deflated ZIP is supported. ZIP64, split archives and
+encryption are refused. Python ZipFile also refuses ambiguous EOCD signatures
+in comments; ordinary comments are accepted. No second ZIP implementation is
+introduced to widen that compatibility.
+
+`bundle_resources.py:41` checks archive/EOCD metadata before ZipFile allocates
+the central directory. `bundle_resources.py:81` preflights every member, then
+reads/hashes each payload once in chunks of at most 64 KiB, bounding actual
+expanded bytes independently of metadata. Only manifest/journal/session and
+optional LessonOS text are retained. Opaque board/audio/PDF bytes are streamed.
+PDF caps have one authority (`bundle_extensions.py:14`): 20 MiB each, 32 PDFs,
+100 MiB total, enforced before payload reads on legacy and modern paths.
+
+Manifest inventory is bijective; byte counts, SHA-256 and schema are checked.
+An integrity hash does not authenticate the producer or consent. Snapshot
+absence (`None`), present-empty (`""`) and opaque nonempty text stay distinct;
+valid UTF-8/bytes do not attest event semantics. No snapshot projector, UI,
+durable-save claim, ZERO-LLM pipeline claim or re-ingest atomicity is recovered
+here. The existing narrative path and save=False/persistence coherence remain
+separate work.
+
+Evidence: baseline 2044 PASS/7 SKIP; resource/modern contract RED 14 FAIL/14 PASS
+then green, plus a strict v2 version regression RED→GREEN. Early PDF/ZIP64
+counterprobes 4 RED→GREEN. Full final engine 2096 PASS/7 SKIP (exit 0), with
+API keys removed from the subprocess. Skips: four live LLM, two absent canonical
+repo drift checks, one real corpus absent. No LLM calls or real lesson data.
