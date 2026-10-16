@@ -24,8 +24,9 @@ describe("buildRecapHtml (deliverable umano-leggibile)", () => {
     expect(html).toContain(formatDuration(RECAP.durationMs))
     expect(html).toContain("rettangoli")
     expect(html).toContain("V = R \\cdot I")
-    // PDF via stampa: pulsante presente (nascosto in @media print)
-    expect(html).toContain('onclick="window.print()"')
+    // The same document is safe in the script-disabled preview and standalone.
+    expect(html).not.toMatch(/\bonclick\s*=|<script\b/i)
+    expect(html).toContain("Stampa del browser")
   })
 
   it("rende LEGGIBILE la provenienza (pagine del manuale, ordinate) — la fonte", () => {

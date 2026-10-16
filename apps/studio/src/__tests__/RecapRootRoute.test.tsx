@@ -16,13 +16,21 @@ afterEach(async () => {
   await act(async () => root.unmount()); container.remove(); window.history.replaceState(null, "", "/")
   vi.restoreAllMocks(); vi.unstubAllGlobals()
 })
+async function renderApp() {
+  await act(async () => {
+    root.render(<App />)
+    // Await the real lazy route module; this test checks routing/ownership,
+    // while the native browser covers its cold load.
+    await import("../RecapPage")
+  })
+}
 
 describe("root route for closed lesson material", () => {
   it("routes recap without mounting a Room writer or its activity registration", async () => {
     window.history.replaceState(null, "", "/?vista=recap#closed-synthetic")
     vi.spyOn(workspaceStore, "init").mockResolvedValue("localStorage")
-    await act(async () => root.render(<App />))
-    await vi.waitFor(async () => { await act(async () => {}); expect(container.querySelector('[data-testid="readonly-recap"]')).not.toBeNull() })
+    await renderApp()
+    expect(container.querySelector('[data-testid="readonly-recap"]')).not.toBeNull()
     expect(container.querySelector('[data-testid="room-writer"]')).toBeNull()
     expect(container.textContent).toContain("closed-synthetic")
   })
@@ -30,8 +38,8 @@ describe("root route for closed lesson material", () => {
   it.each(["", "#.."])("does not create or initialize a lesson from an invalid hash %s", async hash => {
     window.history.replaceState(null, "", `/?vista=recap${hash}`)
     const init = vi.spyOn(workspaceStore, "init").mockResolvedValue("localStorage")
-    await act(async () => root.render(<App />))
-    await vi.waitFor(async () => { await act(async () => {}); expect(container.querySelector('[role="alert"]')).not.toBeNull() })
+    await renderApp()
+    expect(container.querySelector('[role="alert"]')).not.toBeNull()
     expect(init).not.toHaveBeenCalled()
     expect(window.location.hash).toBe(hash)
     expect(container.querySelector('[data-testid="room-writer"]')).toBeNull()

@@ -1,7 +1,7 @@
 // Product-factory (P30) — primo deliverable UMANO-LEGGIBILE: un recap.html
 // autosufficiente e stampabile che il docente consegna allo studente.
-// Deriva SOLO da LessonRecap (già proiettato): nessuna nuova persistenza,
-// ZERO PII (il recap non contiene nomi/dati studente), e rende LEGGIBILE la
+// Deriva dagli appunti e dai fatti catturati: nessuna nuova persistenza.
+// Conserva il testo della lezione e rende LEGGIBILE la
 // provenienza (pagine del manuale viste = fonti). Estetica "ardesioso":
 // ardesia fredda + serif da display + un accento-mobile alla Calder.
 import type { LessonRecap } from "./lessonRecap"
@@ -136,15 +136,25 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest, provena
   .formule code { font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:13px; }
   .empty { color:var(--ink-3); font-style:italic; margin:0; }
   footer { margin-top:44px; padding-top:16px; border-top:1px solid var(--line); color:var(--ink-3); font-size:12px; }
-  .print-btn { display:inline-flex; align-items:center; margin:0 0 30px; padding:8px 16px; font:inherit; font-size:13px; color:var(--blue); background:transparent; border:1px solid var(--blue); border-radius:999px; cursor:pointer; }
-  .print-btn:hover { background:rgba(23,99,255,.06); }
+  .print-help { margin:0 0 30px; color:var(--ink-3); font-size:13px; }
   .notes { margin-top:6px; }
   .notes .rule { height:30px; border-bottom:1px solid var(--line); }
   .concetti li,.errori li { padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
   .errori .ok { color:var(--viridian); font-weight:600; }
   .errori .todo { color:var(--ochre); font-weight:600; }
   small { display:block; overflow-wrap:anywhere; color:var(--ink-3); }
-  @media print { body { background:#fff; } .sheet { padding:24px 0; } .print-btn { display:none; } }
+  @media (max-width:480px) { .sheet { padding:28px 18px 40px; } h1 { font-size:28px; } .brand { margin-bottom:18px; } .meta { margin-bottom:24px; } }
+  @media print {
+    body { background:#fff; }
+    .sheet { padding:24px 0; }
+    .print-help { display:none; }
+    .meta { margin-bottom:24px; }
+    section { margin-bottom:18px; }
+    h2 { break-after:avoid; }
+    li,.notes,footer { break-inside:avoid; }
+    .notes .rule { height:24px; }
+    footer { margin-top:24px; }
+  }
 </style>
 </head>
 <body>
@@ -152,7 +162,7 @@ export function buildRecapHtml(recap: LessonRecap, digest?: StudyDigest, provena
     <div class="brand"><span class="mobile" aria-hidden="true"></span><span class="word">Ardesia</span></div>
     <h1>${title}</h1>
     <p class="meta">Recap della lezione · durata ${esc(duration)}</p>
-    <button class="print-btn" type="button" onclick="window.print()">Stampa · salva come PDF</button>
+    <p class="print-help">Per stampare o salvare come PDF, usa Stampa del browser.</p>
     ${hasContent ? "" : `<p class="empty">Questa lezione non ha ancora attività registrata.</p>`}
     <section>
       <h2>In questa lezione</h2>

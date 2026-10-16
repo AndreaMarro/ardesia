@@ -3,7 +3,7 @@
 // Linguaggio docente: "appunti salvati" (sottotitolo), mai flush/cache.
 // Ogni card ha una label propria (tempo / lavagna / formule), non ripetuta.
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { formatDuration, type LessonRecap } from "./store/lessonRecap"
 import { captureClosedLessonMaterial, type ClosedLessonMaterial } from "./store/lessonMaterial"
@@ -47,6 +47,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
     material: ClosedLessonMaterial | null; error: string | null
   }> | null>(null)
   const [downloadError, setDownloadError] = useState<Readonly<{ material: ClosedLessonMaterial; message: string }> | null>(null)
+  const printDocument = useRef<Readonly<{ material: ClosedLessonMaterial; url: string }> | null>(null)
   // Never show A's result/error during the first render for B or a new attempt.
   const current = result?.store === store && result.room === room && result.attempt === attempt ? result : null
   const loading = current === null
@@ -56,6 +57,13 @@ export default function RecapView({ store, room }: RecapViewProps) {
   const empty = material !== null && isRecapEmpty(material.recap, material.digest)
   const recapHtml = material !== null && !empty ? material.html : null
   const exportError = downloadError?.material === material ? downloadError?.message : null
+
+  useEffect(() => () => {
+    if (printDocument.current?.material === material) {
+      URL.revokeObjectURL(printDocument.current.url)
+      printDocument.current = null
+    }
+  }, [material])
 
   useEffect(() => {
     let cancelled = false
@@ -92,6 +100,25 @@ export default function RecapView({ store, room }: RecapViewProps) {
     download(new Blob([recapHtml], { type: "text/html;charset=utf-8" }), `recap-${lessonSlug(recap.title, room)}.html`)
   }
 
+  function handleOpenPrintDocument() {
+    if (!material || !recapHtml) return
+    setDownloadError(null)
+    try {
+      if (printDocument.current?.material !== material) {
+        if (printDocument.current) URL.revokeObjectURL(printDocument.current.url)
+        printDocument.current = { material, url: URL.createObjectURL(new Blob([recapHtml], { type: "text/html;charset=utf-8" })) }
+      }
+      const link = document.createElement("a")
+      link.href = printDocument.current.url
+      link.target = "_blank"
+      link.rel = "noopener noreferrer"
+      document.body.appendChild(link)
+      try { link.click() } finally { link.remove() }
+    } catch (err) {
+      setDownloadError({ material, message: "Apertura del riepilogo non riuscita: " + (err instanceof Error ? err.message : String(err)) + ". Puoi scaricare il recap e aprirlo dal browser." })
+    }
+  }
+
   return (
     <div className="st-recap">
       <header className="st-bar st-bar-recap" style={{ height: "auto", minHeight: 56, flexWrap: "wrap", gap: 12, padding: "12px 20px" }}>
@@ -106,6 +133,9 @@ export default function RecapView({ store, room }: RecapViewProps) {
           <button onClick={() => setAttempt(value => value + 1)} disabled={loading} className="st-ghost">aggiorna riepilogo</button>
           <button onClick={handleDownloadRecapHtml} disabled={!recapHtml} className="st-ghost">
             scarica recap
+          </button>
+          <button onClick={handleOpenPrintDocument} disabled={!recapHtml} className="st-ghost">
+            apri recap per stampare
           </button>
           <button onClick={handleExport} disabled={!material} className="st-primary">
             esporta .lesson
