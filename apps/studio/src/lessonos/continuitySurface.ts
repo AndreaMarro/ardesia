@@ -11,6 +11,8 @@ export type ContinuitySurfaceStateV1 =
   | Readonly<{ kind: "no-lesson" }>
   /** Il log non e' apribile. Si riporta il descrittore reale, non un'etichetta nostra. */
   | Readonly<{ kind: "storage-unavailable"; backend: IndexedDbEventLogHandle["backend"] }>
+  /** Un indice ancora leggibile non dimostra che l'archivio sia completo o integro. */
+  | Readonly<{ kind: "storage-degraded"; backend: Extract<IndexedDbEventLogHandle["backend"], { kind: "corrupt" | "data-loss" }> }>
   /** Il log e' apribile ma la lettura e' fallita: distinto da "nessuna sessione". */
   | Readonly<{ kind: "unreadable"; code: string }>
   | Readonly<{ kind: "no-sessions"; lessonId: string }>
@@ -43,6 +45,9 @@ export async function readResumableSessions(
 
   const handle = await open()
   try {
+    if (handle.backend.kind === "corrupt" || handle.backend.kind === "data-loss") {
+      return Object.freeze({ kind: "storage-degraded" as const, backend: handle.backend })
+    }
     const log = handle.log
     if (log === null) {
       return Object.freeze({ kind: "storage-unavailable" as const, backend: handle.backend })

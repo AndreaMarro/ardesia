@@ -174,6 +174,16 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
           detail={`Impossibile aprire l'archivio eventi (${surface.backend.kind}). Le sessioni potrebbero esistere: non sono state lette.`}
         />
       )
+    case "storage-degraded":
+      return (
+        <SurfaceMessage
+          state="storage-degraded"
+          title={surface.backend.kind === "corrupt" ? "Archivio danneggiato" : "Archivio parziale"}
+          detail={surface.backend.kind === "corrupt"
+            ? "L'integrità dell'archivio non è confermata. Non è possibile stabilire quali sessioni siano presenti."
+            : "L'archivio contiene dati parziali o in un formato da recuperare. Non è possibile verificare l'elenco completo delle sessioni."}
+        />
+      )
     case "unreadable":
       return (
         <SurfaceMessage

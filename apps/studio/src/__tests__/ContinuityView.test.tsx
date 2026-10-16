@@ -47,6 +47,18 @@ afterEach(() => {
 })
 
 describe("ContinuityView", () => {
+  it.each([
+    { backend: { kind: "corrupt", code: "sequence-non-contiguous" } as const, title: "Archivio danneggiato" },
+    { backend: { kind: "data-loss", code: "malformed-v2-rows", database: "test" } as const, title: "Archivio parziale" },
+  ])("mostra $title senza dichiarare che non esistano sessioni", async ({ backend, title }) => {
+    at(`/?vista=continuita#${LESSON_ID}`)
+    render(<ContinuityView deps={{ openEventLog: async () => ({ ...handleWith([]), backend }) }} />)
+    expect(await screen.findByRole("heading", { name: title })).toBeTruthy()
+    expect(screen.getByTestId("continuity-surface").getAttribute("data-state")).toBe("storage-degraded")
+    expect(screen.queryByText("Nessuna sessione da riprendere")).toBeNull()
+    expect(document.querySelector('[data-view-nav-item="materiali"]')).not.toBeNull()
+  })
+
   it("nessuna lezione nello scope: lo dice, e non apre alcuna sorgente", async () => {
     at("/?vista=continuita")
     const openEventLog = vi.fn()

@@ -14,7 +14,7 @@
 // esattamente quelli in cui un docente ha piu' bisogno di potersene andare, e
 // sono anche quelli che un test scritto sul caso buono non tocca mai.
 
-import { cleanup, render, screen } from "@testing-library/react"
+import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
 import ContinuityView from "../design/ContinuityView"
@@ -33,6 +33,8 @@ const RAMI: ReadonlyArray<{ nome: string; stato: ContinuitySurfaceStateV1 }> = [
   { nome: "nessuna lezione nello scope", stato: { kind: "no-lesson" } },
   { nome: "nessuna sessione ripristinabile", stato: { kind: "no-sessions", lessonId: "wbstudio-abc" } },
   { nome: "storage non raggiungibile", stato: { kind: "storage-unavailable", backend: { kind: "unavailable", code: "SecurityError" } } },
+  { nome: "archivio danneggiato", stato: { kind: "storage-degraded", backend: { kind: "corrupt", code: "sequence-non-contiguous" } } },
+  { nome: "archivio parziale", stato: { kind: "storage-degraded", backend: { kind: "data-loss", code: "malformed-v2-rows", database: "test" } } },
   { nome: "lettura fallita", stato: { kind: "unreadable", code: "QuotaExceededError" } },
   {
     nome: "elenco sessioni",
@@ -56,6 +58,7 @@ describe("ContinuityView — la nav esiste in ogni ramo", () => {
     it(`rende la nav nel ramo: ${ramo.nome}`, async () => {
       render(<ContinuityView deps={{ readSessions: async () => ramo.stato }} />)
       await screen.findByTestId("continuity-surface")
+      await waitFor(() => expect(screen.getByTestId("continuity-surface").getAttribute("data-state")).toBe(ramo.stato.kind))
 
       const nav = document.querySelector("[data-view-nav]")
       expect(nav).not.toBeNull()

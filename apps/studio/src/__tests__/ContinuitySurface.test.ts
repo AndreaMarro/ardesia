@@ -76,6 +76,21 @@ async function realHandle(
 }
 
 describe("readResumableSessions", () => {
+  it.each([
+    { kind: "corrupt", code: "sequence-non-contiguous" } as const,
+    { kind: "data-loss", code: "malformed-v2-rows", database: "test" } as const,
+  ])("conserva il backend $kind e non promuove l'indice a elenco verificato", async (backend) => {
+    const listSessionIds = vi.fn(async () => [])
+    const close = vi.fn(async () => {})
+    const handle = { backend, log: { listSessionIds }, close } as unknown as IndexedDbEventLogHandle
+
+    expect(await readResumableSessions(LESSON_ID, async () => handle)).toEqual({
+      kind: "storage-degraded", backend,
+    })
+    expect(listSessionIds).not.toHaveBeenCalled()
+    expect(close).toHaveBeenCalledTimes(1)
+  })
+
   it("scope assente: no-lesson, e NESSUNA sorgente viene aperta", async () => {
     // Aprire IndexedDB per scoprire di non avere una lezione da leggere e'
     // esattamente il tipo di accesso non necessario che questo sottosistema
