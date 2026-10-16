@@ -40,6 +40,7 @@ import { measureReadout } from "../core/contracts/ledReadout"
 import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import {
   formatRgbChannelMa,
+  monoLedStateFromSolve,
   rgbChannelsFromSolve,
   type RgbChannels,
   type SolveResult,
@@ -288,10 +289,19 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     | { kind: "led"; id: string; on: boolean; burned: boolean; currentAmps: number | undefined }
     | { kind: "rgb"; id: string; on: boolean; channels: RgbChannels }
 
+  const componentStates = useMemo(() => {
+    if (solve?.kind !== "ok") return {}
+    const states = { ...solve.result.componentStates }
+    for (const light of lights) {
+      if (light.type === "led") states[light.id] = monoLedStateFromSolve(solve.result, light.id) ?? { measurementStatus: "unknown" }
+    }
+    return states
+  }, [lights, solve])
+
   const readings = useMemo<LightReading[]>(() => {
     if (solve?.kind !== "ok") return []
     return lights.map((light): LightReading => {
-      const state = solve.result.componentStates[light.id]
+      const state = componentStates[light.id]
       if (state === undefined || typeof state.on !== "boolean") return { kind: "missing", id: light.id }
       if (light.type === "rgb-led") {
         const channels = rgbChannelsFromSolve(solve.result, light.id)
@@ -313,7 +323,7 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
         currentAmps: solve.result.currents[light.id],
       }
     })
-  }, [lights, solve])
+  }, [lights, solve, componentStates])
 
   const missingLights = readings.filter((reading) => reading.kind === "missing")
   /** Un verdetto esiste solo se OGNI componente luminoso ha uno stato. */
@@ -332,10 +342,10 @@ export default function ElabLab({ eventLog }: ElabLabProps = {}) {
     if (node === null || experiment === null) return
     const handle = renderEmbeddable(node, {
       experiment,
-      componentStates: solve?.kind === "ok" && hasVerdict ? solve.result.componentStates : {},
+      componentStates: hasVerdict ? componentStates : {},
     })
     return () => handle.dispose()
-  }, [experiment, solve, hasVerdict])
+  }, [experiment, componentStates, hasVerdict])
 
   return (
     <div

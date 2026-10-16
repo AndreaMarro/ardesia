@@ -6,14 +6,15 @@ const ROOM = "led-readout-transport"
 const ROUTE = `/#${ROOM}`
 test.use({ viewport: { width: 1440, height: 1000 } })
 
-async function inputLesson(page: Page, kind: "healthy" | "short" | "open") {
+async function inputLesson(page: Page, kind: "healthy" | "short" | "open" | "mono-short" | "mono-absent") {
   const board = await page.evaluate(async kind => {
     const modulePath = "/src/toolhost/ToolCanvasEmbeddable.tsx"
     const factories = await import(/* @vite-ignore */ modulePath)
-    const scene = factories.createV1Cap9Esp6SimulationScene()
-    if (kind === "short") scene.connections.push({ from: "bat1:positive", to: "bat1:negative", color: "red", kind: "wire" })
+    const scene = kind.startsWith("mono-") ? factories.createReferenceSimulationScene() : factories.createV1Cap9Esp6SimulationScene()
+    if (kind === "mono-absent") delete scene.runtime.ledOn
+    if (kind === "short" || kind === "mono-short") scene.connections.push({ from: "bat1:positive", to: "bat1:negative", color: "red", kind: "wire" })
     if (kind === "open") scene.connections = []
-    const element = factories.createToolEmbedElement({ embedId: factories.ELAB_V1_RGB_LAMP_EMBED_ID, state: { kind: "simulation-scene-v1", scene } })
+    const element = factories.createToolEmbedElement({ embedId: kind.startsWith("mono-") ? factories.REFERENCE_SIM_EMBED_ID : factories.ELAB_V1_RGB_LAMP_EMBED_ID, state: { kind: "simulation-scene-v1", scene } })
     return { type: "excalidraw", elements: [element], appState: {} }
   }, kind)
   const zip = new JSZip()
@@ -28,11 +29,7 @@ async function loadFile(page: Page, buffer: Buffer) {
   await expect(page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')).toHaveCount(1)
 }
 
-async function readout(page: Page, kind: "healthy" | "short" | "open") {
-  const core = page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')
-  await expect(core).toHaveAttribute("data-elab-canvas-measurement", kind === "short" ? "unknown" : "known")
-  await expect(core.locator("[data-elab-core-canvas-host] svg")).toHaveCount(1)
-  if (kind === "short") await expect(core.getByRole("status")).toContainText("non disponibile")
+async function openLegacy(page: Page) {
   const legacy = page.locator("[data-legacy-free-assembly-harness]")
   const summary = legacy.locator("summary")
   await summary.scrollIntoViewIfNeeded()
@@ -44,6 +41,15 @@ async function readout(page: Page, kind: "healthy" | "short" | "open") {
   if (!active) await page.mouse.dblclick(point.x, point.y)
   if (await legacy.getAttribute("open") === null) await summary.click()
   await expect(legacy).toHaveAttribute("open", "")
+  return legacy
+}
+
+async function readout(page: Page, kind: "healthy" | "short" | "open") {
+  const core = page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')
+  await expect(core).toHaveAttribute("data-elab-canvas-measurement", kind === "short" ? "unknown" : "known")
+  await expect(core.locator("[data-elab-core-canvas-host] svg")).toHaveCount(1)
+  if (kind === "short") await expect(core.getByRole("status")).toContainText("non disponibile")
+  const legacy = await openLegacy(page)
   const value = legacy.locator("[data-led-readout]")
   await expect(value).toHaveAttribute("data-led-readout", kind === "healthy" ? "on" : kind === "short" ? "unknown" : "off")
   await expect(value).toContainText(kind === "healthy" ? "LED RGB ON" : kind === "short" ? "LED RGB ?" : "LED RGB OFF")
@@ -131,6 +137,39 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     await expect(page.locator("[data-led-on]")).toHaveText("acceso")
     await expect(page.locator('[data-elab-canvas] [data-type="led"]')).toHaveAttribute("aria-label", /acceso/)
     await page.screenshot({ path: info.outputPath("lab-shared-result.png") })
+    expect(errors).toEqual([])
+  })
+}
+
+
+for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
+  test(`mono short and absent state remain unavailable after real import/reload at ${viewport.width}px`, async ({ page }, info) => {
+    await page.setViewportSize(viewport)
+    const errors: string[] = []
+    page.on("pageerror", e => errors.push(e.message))
+    page.on("console", m => { if (m.type() === "error") errors.push(m.text()) })
+    await page.goto(ROUTE)
+    await expect(page.locator(".excalidraw").first()).toBeVisible()
+    for (const kind of ["mono-short", "mono-absent"] as const) {
+      await loadFile(page, await inputLesson(page, kind))
+      await page.reload()
+      if (viewport.width < 500) {
+        await page.locator(".excalidraw").first().click({ position: { x: 20, y: 200 } })
+        await page.keyboard.press("Shift+1")
+      }
+      const core = page.locator('[data-elab-canvas-source-of-truth="simulation-scene"]')
+      await expect(core).toHaveAttribute("data-elab-canvas-measurement", kind === "mono-short" ? "unknown" : "known")
+      const legacy = await openLegacy(page)
+      await expect(legacy.locator("[data-battery-led-readout]")).toHaveAttribute("data-battery-led-readout", "unknown")
+      await expect(legacy).toContainText("corrente ? mA")
+      await expect(legacy.locator('[aria-label$="stato non disponibile"]')).toHaveCount(1)
+      const metrics = page.locator('[data-simulation-surface="elab-core-canvas"] aside').first()
+      await expect(metrics).toContainText("LED?")
+      await expect(metrics).toContainText("corrente? mA")
+      if (kind === "mono-short") await page.screenshot({ path: info.outputPath("mono-short-unknown.png") })
+    }
+    await expect(page).toHaveTitle("Ardesia · studio")
+    await expect(page.locator("vite-error-overlay")).toHaveCount(0)
     expect(errors).toEqual([])
   })
 }

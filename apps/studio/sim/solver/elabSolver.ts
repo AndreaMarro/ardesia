@@ -109,6 +109,18 @@ export function ledStressZone(currentAmps: number): LedStressZone {
   return "bruciato"
 }
 
+/** A legacy mono verdict may omit brightness; malformed brightness is not evidence. */
+export function monoLedStateFromSolve(
+  result: SolveResult | null,
+  ledId: string,
+): ({ on: boolean; brightness: number } & Record<string, unknown>) | null {
+  const raw = result?.componentStates[ledId]
+  if (!result?.ok || raw === null || typeof raw !== "object" || typeof raw.on !== "boolean") return null
+  const brightness = raw.brightness
+  if (brightness !== undefined && (typeof brightness !== "number" || !Number.isFinite(brightness) || brightness < 0 || brightness > 1)) return null
+  return { ...raw, on: raw.on, brightness: typeof brightness === "number" ? brightness : raw.on ? 1 : 0 }
+}
+
 // ── LED RGB: proiezione dei canali dal SolveResult ─────────────────────────
 // PORTA UNICA. Il motore non pubblica una corrente per il LED RGB in
 // `currents` (misurato: per v1-cap9-esp6 ci sono solo r1/r2/r3): l'unica

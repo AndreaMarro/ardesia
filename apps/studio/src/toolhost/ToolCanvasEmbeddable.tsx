@@ -1012,6 +1012,12 @@ function ReferenceSimulationCanvasTool({
     () => createBoardSceneWithPlacements(scene, placements),
     [scene, placements],
   );
+  // The mono legacy view must use the same availability boundary as the core canvas.
+  const monoSolveAvailable = useMemo(() =>
+    boardScene.runtime.kind !== "battery-led" ||
+    (typeof boardScene.runtime.ledOn === "boolean" && simulationSceneToElabCanvasState(boardScene).measurementStatus === "known"),
+    [boardScene],
+  );
   // Fisica reale proiettata nel DOM (contratto stabile per la trace v0). La
   // fisica è quella del circuito EFFETTIVAMENTE costruito = boardScene (scena
   // del libro ± break ± componenti piazzati dalla palette), NON la sola scena
@@ -1191,7 +1197,7 @@ function ReferenceSimulationCanvasTool({
           />
           <details style={legacyHarnessDetailsStyle} data-legacy-free-assembly-harness>
             <summary style={legacyHarnessSummaryStyle}>Montaggio libero legacy</summary>
-            <SimulationBoard scene={boardScene} montaggio={montaggio} />
+            <SimulationBoard scene={boardScene} montaggio={montaggio} solveAvailable={monoSolveAvailable} />
           </details>
         </div>
 
@@ -1236,8 +1242,8 @@ function ReferenceSimulationCanvasTool({
               <>
                 <Metric label="sorgente" value={`${scene.runtime.supplyVolts} V`} />
                 <Metric label="resistore" value={`${scene.runtime.resistorOhms} Ohm`} />
-                <Metric label="LED" value={snapshot.ledOn ? "ON" : "OFF"} />
-                <Metric label="corrente" value={`${batteryLedCurrentMa(scene).toFixed(1)} mA`} />
+                <Metric label="LED" value={LED_READOUT_LABELS[ledReadout(monoSolveAvailable && boardScene.runtime.kind === "battery-led" ? boardScene.runtime.ledOn : null)]} />
+                <Metric label="corrente" value={`${measureReadout(monoSolveAvailable ? batteryLedCurrentMa(boardScene) : null)} mA`} />
               </>
             )}
           </div>
@@ -1662,11 +1668,11 @@ function deriveSimulationSolveOutcome(
 
 const formatChannelMa = formatRgbChannelMa;
 
-export function SimulationBoard({ scene, montaggio, solveAvailable = true }: {
+export function SimulationBoard({ scene, montaggio, solveAvailable }: {
   scene: SimulationSceneV1;
   montaggio?: MontaggioCanvas;
   /** A rejected outer solve cannot be replaced with the authored LED state. */
-  solveAvailable?: boolean;
+  solveAvailable: boolean;
 }) {
   const ledCurrentMa = batteryLedCurrentMa(scene);
   const mnaView = useMemo(
@@ -2448,6 +2454,8 @@ function resolveSimulationScene(state: SimulationToolState | undefined, snapshot
     return scene;
   }
   if (scene.runtime.kind === "battery-led") {
+    // A saved scene without a declared LED value is not Arduino's initial LOW.
+    if (state?.kind === "simulation-scene-v1" && typeof scene.runtime.ledOn !== "boolean") return scene;
     return {
       ...scene,
       runtime: {

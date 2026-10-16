@@ -9,7 +9,7 @@ import type {
   SimulationOperationOrigin,
 } from "../core/simulationOperations"
 import type { SimulationWirePath } from "../core/simulationScene"
-import { rgbChannelsFromSolve, solveElabExperiment } from "../solver/elabSolver"
+import { monoLedStateFromSolve, rgbChannelsFromSolve, solveElabExperiment } from "../solver/elabSolver"
 import type { SolveResult } from "../solver/elabSolver"
 
 type ElabCanvasPoint = { x: number; y: number }
@@ -399,9 +399,7 @@ function normalizeElabCanvasComponentStates(
   for (const component of scene.components) {
     const raw = asRecord(states[component.id])
     if (component.type === "led") {
-      states[component.id] = typeof raw.on !== "boolean" || (raw.brightness !== undefined && (typeof raw.brightness !== "number" || !Number.isFinite(raw.brightness) || raw.brightness < 0 || raw.brightness > 1))
-        ? { measurementStatus: "unknown" }
-        : { ...raw, brightness: typeof raw.brightness === "number" && Number.isFinite(raw.brightness) ? raw.brightness : raw.on ? 1 : 0 }
+      states[component.id] = monoLedStateFromSolve(solve, component.id) ?? { measurementStatus: "unknown" }
     }
     if (component.type === "rgb-led" && (solve === null || Object.values(rgbChannelsFromSolve(solve, component.id)).some(channel => !channel.available))) {
       states[component.id] = { measurementStatus: "unknown" }

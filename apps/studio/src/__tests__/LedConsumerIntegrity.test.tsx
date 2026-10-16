@@ -3,7 +3,7 @@ import { cleanup, render, waitFor } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import ElabLab, { findElabLabExperiment, toSolverExperiment } from "../design/ElabLab"
 import { getSimulationTool, registerSimulationTool } from "../toolhost/simulationPluginRegistry"
-import { REFERENCE_SIM_TOOL_ID, createReferenceSimulationScene, createV1Cap9Esp6SimulationScene } from "../toolhost/ToolCanvasEmbeddable"
+import { REFERENCE_SIM_TOOL_ID, createReferenceSimulationScene, createV1Cap9Esp6SimulationScene, createToolEmbedElement, renderToolCanvasEmbeddable, REFERENCE_SIM_EMBED_ID } from "../toolhost/ToolCanvasEmbeddable"
 import { formatRgbChannelMa, rgbChannelsFromSolve, solveElabExperiment, type SolveResult } from "../../sim/solver/elabSolver"
 import { simulationSceneToElabCanvasState } from "../../sim/elab/elabCanvasAdapter"
 import { InMemoryEventLog } from "../lessonos/eventlog"
@@ -115,5 +115,45 @@ describe("Lab consumes the declared solver outcome, not a default Boolean", () =
     const zero = await labWith(result)
     expect(zero.container.querySelector("[data-led-current-ma]")?.textContent).toBe("0.0")
     expect(zero.container.querySelector("[data-led-on]")?.textContent).toBe("spento")
+  })
+})
+
+
+describe("review counterexamples remain coherent across actual mono consumers", () => {
+  it.each([true, false])("legacy on-only state %s agrees between panel and primary Lab canvas", async on => {
+    const result = solveElabExperiment(toSolverExperiment(findElabLabExperiment()!))
+    result.componentStates.led1 = { on }
+    const { container } = await labWith(result)
+    expect(container.querySelector("[data-led-on]")?.textContent).toBe(on ? "acceso" : "spento")
+    await waitFor(() => expect(container.querySelector('[data-elab-canvas] [data-type="led"]')).not.toBeNull())
+    const label = container.querySelector('[data-elab-canvas] [data-type="led"]')!.getAttribute("aria-label")
+    if (on) expect(label).toContain("acceso")
+    else expect(label).not.toContain("acceso")
+  })
+
+  it("non-finite mono brightness cannot declare a verdict in the Lab panel", async () => {
+    const result = solveElabExperiment(toSolverExperiment(findElabLabExperiment()!))
+    result.componentStates.led1 = { on: true, brightness: Number.NaN }
+    const { container } = await labWith(result)
+    expect(container.querySelector("[data-led-on]")).toBeNull()
+    expect(container.querySelector("[data-led-state=missing]")?.textContent).toContain("led1")
+  })
+
+  it.each(["short", "absent-runtime"] as const)("actual mono embed keeps %s evidence unknown", async kind => {
+    const scene = createReferenceSimulationScene()
+    if (kind === "short") scene.connections.push({ from: "bat1:positive", to: "bat1:negative", color: "red", kind: "wire" })
+    else delete (scene.runtime as { ledOn?: boolean }).ledOn
+    const element = createToolEmbedElement({ embedId: REFERENCE_SIM_EMBED_ID, state: { kind: "simulation-scene-v1", scene } })
+    const view = renderToolCanvasEmbeddable(element as never)
+    if (view === null) throw new Error("real mono embed rejected")
+    const { container } = render(view)
+    await waitFor(() => expect(container.querySelector("[data-elab-canvas-measurement]")).not.toBeNull())
+    const legacy = container.querySelector("[data-legacy-free-assembly-harness]")!
+    if (kind === "short") expect(container.querySelector("[data-elab-canvas-measurement]")?.getAttribute("data-elab-canvas-measurement")).toBe("unknown")
+    expect(legacy.textContent).toContain("LED ?")
+    expect(legacy.textContent).toContain("corrente ? mA")
+    expect(container.querySelector("aside")?.textContent).toContain("LED?")
+    expect(container.querySelector("aside")?.textContent).toContain("corrente? mA")
+    expect(legacy.querySelector('[aria-label$="stato non disponibile"]')).not.toBeNull()
   })
 })
