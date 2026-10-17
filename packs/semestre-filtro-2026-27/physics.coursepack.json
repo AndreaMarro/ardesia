@@ -1,0 +1,184 @@
+{
+  "format": "ardesia.course-pack/1",
+  "id": "it.semestre-aperto.medicina.fisica",
+  "release": "2026.1.0-draft",
+  "status": "DRAFT_NOT_WIRED_NOT_CERTIFIED",
+  "locale": "it-IT",
+  "academic_year": "2026/2027",
+  "scope": {
+    "subject": "Fisica",
+    "degree_programs": [
+      "LM-41",
+      "LM-46",
+      "LM-42"
+    ],
+    "language": "italiano",
+    "cfu_total": 6
+  },
+  "assessment_profiles": [
+    {
+      "id": "fisica-2026-27-esame",
+      "assessment_kind": "exam",
+      "academic_year": "2026/2027",
+      "duration_minutes": 50,
+      "question_count": 31,
+      "question_types": [
+        {
+          "kind": "multiple_choice",
+          "count": 21
+        },
+        {
+          "kind": "completion",
+          "count": 10
+        }
+      ],
+      "score_per_answer": {
+        "correct": 1,
+        "wrong": -0.1,
+        "omitted": 0
+      },
+      "result_scale": "RULE_PENDING_FULL_DECREE_REVIEW",
+      "dates": [
+        "2026-12-10",
+        "2027-01-11"
+      ],
+      "support_policy": "none_during_exam"
+    }
+  ],
+  "units": [
+    {
+      "id": "fisica-01",
+      "index": 1,
+      "title": "Introduzione ai metodi della fisica",
+      "cfu": 0.2,
+      "min_exercise_fraction": 0.2,
+      "tags": [
+        "notazione scientifica",
+        "unita SI",
+        "vettori",
+        "ordini di grandezza"
+      ]
+    },
+    {
+      "id": "fisica-02",
+      "index": 2,
+      "title": "Meccanica",
+      "cfu": 1.4,
+      "min_exercise_fraction": 0.25,
+      "tags": [
+        "cinematica",
+        "dinamica",
+        "lavoro ed energia",
+        "equilibrio",
+        "momento"
+      ]
+    },
+    {
+      "id": "fisica-03",
+      "index": 3,
+      "title": "Meccanica dei fluidi",
+      "cfu": 1.2,
+      "min_exercise_fraction": 0.25,
+      "tags": [
+        "Stevino",
+        "Pascal",
+        "Archimede",
+        "continuita",
+        "Bernoulli",
+        "Poiseuille",
+        "viscosita"
+      ]
+    },
+    {
+      "id": "fisica-04",
+      "index": 4,
+      "title": "Onde meccaniche",
+      "cfu": 0.4,
+      "min_exercise_fraction": 0.2,
+      "tags": [
+        "onde",
+        "oscillazioni",
+        "suono",
+        "intensita"
+      ]
+    },
+    {
+      "id": "fisica-05",
+      "index": 5,
+      "title": "Termodinamica",
+      "cfu": 1,
+      "min_exercise_fraction": 0.3,
+      "tags": [
+        "gas perfetti",
+        "calore",
+        "primo principio",
+        "secondo principio",
+        "trasformazioni"
+      ]
+    },
+    {
+      "id": "fisica-06",
+      "index": 6,
+      "title": "Elettricita e magnetismo",
+      "cfu": 1.2,
+      "min_exercise_fraction": 0.3,
+      "tags": [
+        "cariche e campi",
+        "potenziale",
+        "legge di Ohm",
+        "condensatori",
+        "campo magnetico",
+        "induzione"
+      ]
+    },
+    {
+      "id": "fisica-07",
+      "index": 7,
+      "title": "Fisica delle radiazioni",
+      "cfu": 0.6,
+      "min_exercise_fraction": 0.2,
+      "tags": [
+        "radiazione elettromagnetica",
+        "spettro",
+        "fotoni",
+        "Lambert-Beer",
+        "radioattivita",
+        "ottica"
+      ]
+    }
+  ],
+  "curriculum": {
+    "default_learning_mode": "practice_with_tutor_review",
+    "track_observations_not_student_ability_scores": true,
+    "curricular_object_ids_are_stable": true,
+    "prerequisites_versioned": true
+  },
+  "normative_sources": [
+    {
+      "id": "MUR-2026-DM941",
+      "kind": "decree",
+      "date": "2026-07-10",
+      "url": "https://www.mur.gov.it/it/atti-e-normativa/decreto-ministeriale-n-941-del-10-7-2026"
+    },
+    {
+      "id": "MUR-2026-DD249",
+      "kind": "calendar",
+      "date": "2026-07-13",
+      "url": "https://www.mur.gov.it/it/atti-e-normativa/decreto-direttoriale-n-249-del-13-7-2026"
+    },
+    {
+      "id": "MUR-2026-PHYSICS-SYLLABUS",
+      "kind": "syllabus",
+      "date": "2026-06-19",
+      "url": "https://www.mur.gov.it/sites/default/files/2026-06/Syllabus_FISICA_%20finale%202026.pdf"
+    }
+  ],
+  "provenance": {
+    "checked_at": "2026-10-17",
+    "source_status": "OFFICIAL_WEB_INDEX_READ_PDF_HTTP403",
+    "official_affiliation": false,
+    "independent_teacher_review": "PENDING",
+    "downloadable_pdf_byte_checksum": "PENDING",
+    "caveat": "CFU and exercise fractions describe teaching plan; they are NOT official exam-question allocation probabilities."
+  }
+}
