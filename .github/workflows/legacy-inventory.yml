@@ -1,0 +1,66 @@
+name: legacy inventory (exact head, evidence only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/legacy-inventory.yml'
+      - 'bin/audit/**'
+      - 'apps/studio/**'
+      - 'plugins/**'
+      - 'packs/**'
+      - 'docs/ops/PROJECT-CONVERGENCE.md'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/legacy-inventory.yml'
+      - 'bin/audit/**'
+      - 'apps/studio/**'
+      - 'plugins/**'
+      - 'packs/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: legacy-inventory-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inventory:
+    name: legacy inventory (exact head, evidence only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/studio/package-lock.json
+      - name: Inventory contract tests (synthetic repositories)
+        run: python3 bin/audit/test_legacy_inventory.py
+      - name: Install Studio from its lockfile
+        working-directory: apps/studio
+        run: npm ci --no-audit --no-fund
+      - name: Build the checked out head
+        working-directory: apps/studio
+        env:
+          ARDESIA_GIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        # pull_request GITHUB_SHA is the synthetic merge, whereas this job
+        # checks out the head. Preserve Vite's provenance check using the
+        # explicit head provider and the actual git checkout, which must agree.
+        run: env -u GITHUB_SHA npm run build
+      - name: Inventory tracked sources and this job's built artifact
+        run: >-
+          python3 bin/audit/legacy_inventory.py
+          --artifact-root apps/studio/dist
+          --output artifacts/audit/legacy-inventory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacy-inventory-${{ github.event.pull_request.head.sha || github.sha }}
+          path: artifacts/audit/legacy-inventory.json
+          if-no-files-found: error
+          retention-days: 30
