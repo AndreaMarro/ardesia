@@ -1,6 +1,6 @@
 # M2 — decisioni e prove ancora richieste
 
-M1 sintetica non abilita vendite o trattamento di dati reali.
+M1 sintetica non abilita vendite o trattamento di dati reali. La richiesta diretta del 19 ottobre autorizza la preparazione autonoma locale verso M2; i gate umani restano aperti. Vedere `../m2-runbook.md` e `../m2-human-kit.md`.
 
 - [ ] Review scientifica umana di almeno 24 esercizi originali, quattro attività/varianti e due prove di trasferimento sul perimetro dichiarato.
 - [ ] Il tutor prova personalmente il percorso, inclusi lettura di originali, chiarimenti, retry e recupero della fonte.
@@ -13,4 +13,4 @@ M1 sintetica non abilita vendite o trattamento di dati reali.
 - [ ] Se si vuole AI live: provider autorizzato, tetto di costo, test separati su qualità/astensione/lettura e benchmark non confuso con il fake.
 - [ ] Prova umana di accessibilità, lettori di schermo e dispositivi touch/Pencil. Chromium emulato non la sostituisce.
 
-Finché questi punti restano aperti: stato M2 = NON AUTORIZZATO. Nessuna promessa di efficacia educativa o ammissione è dedotta dalla coorte sintetica.
+Finché questi punti restano aperti: M2 umana/commerciale NON ESEGUITA, preparazione locale autorizzata. Nessuna promessa di efficacia educativa o ammissione è dedotta dalla coorte sintetica.

@@ -40,3 +40,13 @@ Materiali esporta `.study.json`: fonti correnti, tentativi, review, layout e all
 La vista studio propone oggetti contestuali nello stesso monorepo e riusa identità/layout dei post-it; non aggiunge un motore canvas. Non attesta integrazione di ogni strumento storico nel laboratorio. Le revisioni inviate restano immutabili, le fonti correnti possono essere aggiornate, i derivati obsoleti sono esclusi dal recupero. La cancellazione completa dei dati personali e le policy di conservazione richiedono M2: M1 usa soltanto fonti sintetiche.
 
 Vedere `progress.md`, `release-readiness.json` e il manifest del run accettato per stato e prove. La microdemo storica `53782a1…` non è stata recuperata: i componenti mancanti sono stati ricostruiti sulla base `b124eee0`, preservando il checkout originale in conflitto.
+
+## Preparazione locale verso M2
+
+Il mandato aggiornato consente lavoro locale verso M2, mantenendo i limiti su pubblicazione, merge, dati reali e costi API. [Runbook](m2-runbook.md), [scheda umana](m2-human-kit.md) e [piano](m2-plan.md). La preparazione include inviti monouso, revoca accessi, backup/restore v2 e replay delle cancellazioni logiche nel perimetro Study. Conservazione e copie esterne restano decisioni esplicite dell’owner. Nessuna prova umana o approvazione scientifica è stata eseguita.
+
+```sh
+node bin/study-demo/verify-m2.mjs
+```
+
+Il collaudo ripete M1 su un nuovo database, prova l’anteprima DRAFT e inviti dall’interfaccia sul build, riavvia un restore senza seed e controlla originali/memoria su HTTP. Cancella soltanto uno studente di una copia usa e getta e verifica che il restore del backup precedente riapplichi la cancellazione. Per riaprire un restore manualmente usare `serve.py --no-seed --data-dir DIRECTORY --port PORTA`: gli accessi devono essere riemessi per i soli attori ancora presenti.
