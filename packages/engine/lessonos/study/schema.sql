@@ -6,6 +6,14 @@ CREATE TABLE IF NOT EXISTS study_principals(
 CREATE TABLE IF NOT EXISTS study_sessions(
  token_hash TEXT PRIMARY KEY, actor_id TEXT NOT NULL REFERENCES study_principals(id), expires_at REAL NOT NULL
 );
+CREATE TABLE IF NOT EXISTS study_invitations(
+ id TEXT PRIMARY KEY, token_hash TEXT NOT NULL UNIQUE, actor_id TEXT NOT NULL REFERENCES study_principals(id),
+ edition_id TEXT NOT NULL REFERENCES study_editions(id), expires_at REAL NOT NULL,
+ state TEXT NOT NULL CHECK(state IN ('pending','used','revoked'))
+);
+CREATE TABLE IF NOT EXISTS study_rate_limits(
+ bucket TEXT PRIMARY KEY, attempts INTEGER NOT NULL, expires_at REAL NOT NULL
+);
 CREATE TABLE IF NOT EXISTS study_editions(
  id TEXT PRIMARY KEY REFERENCES classes(class_id), teacher_id TEXT NOT NULL REFERENCES teachers(teacher_id),
  capacity INTEGER NOT NULL CHECK(capacity BETWEEN 1 AND 10), price_minor INTEGER NOT NULL CHECK(price_minor>=0),

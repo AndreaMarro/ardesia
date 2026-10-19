@@ -20,7 +20,7 @@ class ResourceBody(BaseModel):
     visibility: str = 'private'
 
 
-def create_app(db_path: Path, *, demo=False, frontend: Path | None = None):
+def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
@@ -46,6 +46,17 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None):
             origin = request.headers.get('origin')
             if origin and origin != str(request.base_url).rstrip('/'):
                 return JSONResponse({'error':'origin_denied'}, status_code=403)
+            limit=20*1024*1024 if request.url.path=='/study/assets' else 16*1024*1024 if request.url.path=='/study/notebook/inspect' else 65536
+            data=bytearray()
+            async for chunk in request.stream():
+                data.extend(chunk)
+                if len(data)>limit:return JSONResponse({'error':'payload_too_large'},status_code=413)
+            request._body=bytes(data)
+            if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
+                limiter=StudyStore(db_path)
+                try:allowed,retry=limiter.allow_request(digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
+                finally:limiter.close()
+                if not allowed:return JSONResponse({'error':'rate_limited'},status_code=429,headers={'Retry-After':str(retry)})
         response = await call_next(request)
         response.headers['Cache-Control'] = 'no-store'
         response.headers['X-Content-Type-Options'] = 'nosniff'
@@ -74,8 +85,30 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None):
         if principal is None:
             raise StudyError('invalid_demo_access',401)
         token = store.issue_session(principal)
-        response.set_cookie('study_session', token, httponly=True, samesite='strict', max_age=3600)
+        response.set_cookie('study_session', token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
+
+    @app.post('/study/invitations/accept')
+    async def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
+        token=store.accept_invitation(body.token)
+        principal=store.principal_for_session(token)
+        response.set_cookie('study_session',token,httponly=True,secure=secure_cookies,samesite='strict',max_age=3600)
+        return {'id':principal.id,'role':principal.role,'synthetic':True}
+
+    @app.post('/study/editions/{edition_id}/invitations')
+    async def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+        return store.create_invitation(authenticate(request,store),edition_id,body.get('actorId'))
+
+    @app.delete('/study/invitations/{invitation_id}')
+    async def revoke_invitation(invitation_id: str, request: Request, store=Depends(store_dependency)):
+        store.revoke_invitation(authenticate(request,store),invitation_id)
+        return {'revoked':True}
+
+    @app.post('/study/session/revoke-all')
+    async def revoke_all(request: Request, response: Response, store=Depends(store_dependency)):
+        store.revoke_all_sessions(authenticate(request,store))
+        response.delete_cookie('study_session',secure=secure_cookies,samesite='strict')
+        return {'revoked':True}
 
     @app.delete('/study/session')
     async def logout(request: Request, response: Response, store=Depends(store_dependency)):

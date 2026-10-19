@@ -100,6 +100,51 @@ class StudyStore:
         with self.transaction() as c:
             c.execute('DELETE FROM study_sessions WHERE token_hash=?', (digest(token),))
 
+    def revoke_all_sessions(self, principal):
+        self._principal(principal)
+        with self.transaction() as c:
+            c.execute('DELETE FROM study_sessions WHERE actor_id=?', (principal.id,))
+            c.execute("UPDATE study_invitations SET state='revoked' WHERE actor_id=? AND state='pending'", (principal.id,))
+
+    def create_invitation(self, principal, edition_id, actor_id, ttl=900):
+        self._edition_access(principal, edition_id, teacher_only=True)
+        if type(ttl) not in (int,float) or not 0 < ttl <= 86400:
+            raise StudyError('invalid_invitation_ttl')
+        if not self.connection.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?', (edition_id,actor_id)).fetchone():
+            raise StudyError('forbidden',403)
+        token=secrets.token_urlsafe(32); invite_id=identifier(); expires=self.clock()+ttl
+        with self.transaction() as c:
+            c.execute('INSERT INTO study_invitations VALUES(?,?,?,?,?,?)', (invite_id,digest(token),actor_id,edition_id,expires,'pending'))
+        return {'id':invite_id,'token':token,'expiresAt':expires,'singleUse':True}
+
+    def revoke_invitation(self, principal, invitation_id):
+        row=self.connection.execute('SELECT edition_id FROM study_invitations WHERE id=?',(invitation_id,)).fetchone()
+        if not row:raise StudyError('not_found',404)
+        self._edition_access(principal,row[0],teacher_only=True)
+        with self.transaction() as c:
+            c.execute("UPDATE study_invitations SET state='revoked' WHERE id=? AND state='pending'",(invitation_id,))
+
+    def accept_invitation(self, token):
+        session=secrets.token_urlsafe(32)
+        with self.transaction() as c:
+            row=c.execute("SELECT * FROM study_invitations WHERE token_hash=? AND expires_at>? AND state='pending'",(digest(token),self.clock())).fetchone()
+            if not row:raise StudyError('invalid_invitation',401)
+            if not c.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(row['edition_id'],row['actor_id'])).fetchone():
+                raise StudyError('invalid_invitation',401)
+            c.execute("UPDATE study_invitations SET state='used' WHERE id=?",(row['id'],))
+            c.execute('INSERT INTO study_sessions VALUES(?,?,?)',(digest(session),row['actor_id'],self.clock()+3600))
+        return session
+
+    def allow_request(self, bucket, limit, window=60):
+        """Persistent, bounded counters; caller supplies a hash, never raw tokens."""
+        now=self.clock()
+        with self.transaction() as c:
+            c.execute('DELETE FROM study_rate_limits WHERE expires_at<=?',(now,))
+            row=c.execute('SELECT * FROM study_rate_limits WHERE bucket=?',(bucket,)).fetchone()
+            if row and row['attempts']>=limit:return False,max(1,int(row['expires_at']-now)+1)
+            c.execute('INSERT INTO study_rate_limits VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET attempts=attempts+1',(bucket,now+window))
+        return True,window
+
     def create_edition(self, principal, edition_id, capacity=10, price_minor=4900):
         self._principal(principal)
         if principal.role != 'teacher':

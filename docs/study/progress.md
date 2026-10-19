@@ -70,3 +70,7 @@ Reviewed head b097a4982a1abeb022aa87f785e15ec176201e2c, base b124eee0, independe
 
 - Code freeze: all following final checks must run with HEAD unchanged and a clean tracked tree. The generated final receipt in artifacts/study-demo is authoritative for gate execution and final task completion; committed prose records its observation time, not future results.
 - Node 26 fix verified on all five affected legacy files: 112 tests pass with explicit missing-Storage setup. No assertions, test inclusion or frozen gate changed.
+
+## M2 local preparation — 2026-10-19
+User authorizes autonomous work toward M2, keeping no merge/public deploy/API spend and the hourly reread. Plan: m2-plan.md. M1 receipt remains historical proof.
+- Task1 RED→GREEN: 59 scoped domain/API tests. Single-use invitations, concurrent redemption, expiry/revocation, tutor ACL, session self-revocation, HTTPS cookie option, persistent auth/public-interest throttling and bounded bodies. Production startup remains refused. Local synthetic security patterns are not a production approval.
