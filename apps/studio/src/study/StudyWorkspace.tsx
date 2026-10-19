@@ -5,6 +5,8 @@ import { NotebookPanel } from './NotebookPanel'
 import { ReviewPanel } from './ReviewPanel'
 import { StudyPostit } from './StudyPostit'
 import { PhysicsActivity } from './PhysicsActivity'
+import {AccessPanel} from './AccessPanel'
+import { CoursePackPreview } from './CoursePackPreview'
 import { createStudyPostit,moveStudyPostit,type StudyPostitView } from './postit'
 import { requestKey,studyRequest } from './apiClient'
 import type { StudyMe,Workspace,StudyResource,PostitReference,ContextPacket } from './contracts'
@@ -35,7 +37,9 @@ export function StudyWorkspace({me}:{me:StudyMe}){
   if(!data)return <section><p role="status">Caricamento della lezione…</p>{error&&<p role="alert">{error}</p>}</section>
   return <>
     <section className="study-workspace-header"><p className="study-eyebrow">{me.role==='teacher'?'Tutor sintetico':'Studente sintetico'} · {me.id}</p><h1>Fisica. Un’idea alla prova.</h1><button onClick={()=>void refresh().catch(()=>setError('Aggiornamento non riuscito.'))}>Aggiorna</button></section>
-    <nav className="study-tabs" aria-label="Spazio di studio">{['Lezione','Continuità','Materiali','Gruppo',...(me.role==='teacher'?['Da correggere']:[])].map(name=><button key={name} aria-current={tab===name?'page':undefined} onClick={()=>{setTab(name);if(name==='Continuità')void memory()}}>{name}</button>)}</nav>
+    <nav className="study-tabs" aria-label="Spazio di studio">{['Lezione','Continuità','Materiali','Gruppo','Programma DRAFT',...(me.role==='teacher'?['Da correggere','Accessi']:[])].map(name=><button key={name} aria-current={tab===name?'page':undefined} onClick={()=>{setTab(name);if(name==='Continuità')void memory()}}>{name}</button>)}</nav>
+    {tab==='Programma DRAFT'&&<CoursePackPreview/>}
+    {me.role==='teacher'&&tab==='Accessi'&&<AccessPanel/>}
     {error&&<p className="study-message" role="alert">{error}</p>}<p className="study-message" role="status">{message}</p>
     {(!data.enrolled||tab==='Gruppo')&&<><GroupEditionView edition={data.edition} teacher={me.role==='teacher'} enrolled={data.enrolled} onUpdate={refresh}/>{me.role==='teacher'&&<section><h2>Richieste ricevute</h2>{interests.map(interest=><p key={interest.id}>{interest.contact} · {interest.topic}</p>)}</section>}</>}
     {data.enrolled&&tab==='Lezione'&&<>

@@ -109,6 +109,12 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     async def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         return store.create_invitation(authenticate(request,store),edition_id,body.get('actorId'))
 
+    @app.get('/study/editions/{edition_id}/access')
+    async def access_list(edition_id: str, request: Request, store=Depends(store_dependency)):
+        store._edition_access(authenticate(request,store),edition_id,teacher_only=True)
+        return {'members':[row[0] for row in store.connection.execute('SELECT student_id FROM study_members WHERE edition_id=? ORDER BY student_id',(edition_id,))],
+                'invitations':[dict(row) for row in store.connection.execute('SELECT id,actor_id,state,expires_at FROM study_invitations WHERE edition_id=? ORDER BY id',(edition_id,))]}
+
     @app.delete('/study/invitations/{invitation_id}')
     async def revoke_invitation(invitation_id: str, request: Request, store=Depends(store_dependency)):
         store.revoke_invitation(authenticate(request,store),invitation_id)
@@ -152,6 +158,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     async def evaluate(body: dict):
         from lessonos.study.activities import evaluate_activity
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
+
+    @app.get('/study/coursepack')
+    async def coursepack():
+        from lessonos.study.coursepack import load_coursepack
+        return load_coursepack()
 
     @app.post('/study/interests')
     async def interest(body: dict, request: Request, store=Depends(store_dependency)):
