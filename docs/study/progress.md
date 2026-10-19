@@ -44,3 +44,6 @@ Heartbeat: ardesia-riesame-e-prosecuzione-ogni-60-minuti (ACTIVE, hourly, this t
 
 - Baseline correction: initial Engine run used repository root; 14 failures were missing relative fixtures. Correct package cwd: 2049 passed/7 skipped (includes new T01 tests). Studio: 2149 passed/5 skipped. Build and typecheck pass.
 - Review T01: self-review; same DB as SQLiteStore, private resources checked before response; no client identity accepted. Full branch fresh review remains T11.
+
+- T00 legacy browser baseline: saved-lessons export/import passed on production build. Two legacy post-it tests timed out at __MAESTRO_TEST__.ready, a dev-only hook; rerunning those via their intended dev server, keeping the production-build failure log. New study E2E will use visible UI and real API only.
+- T02 component and reference tests pass (3); typecheck pass. T03 deterministic physics and interest/domain isolation tests pass (11); service public roundtrip passes. T04 capacity, concurrent last seat, hold expiry, calendar and matching tests pass (6). Browser integration pending.

@@ -33,3 +33,15 @@ CREATE TABLE IF NOT EXISTS study_receipts(
  request_key TEXT NOT NULL, payload_hash TEXT NOT NULL, body TEXT NOT NULL,
  UNIQUE(actor_id,operation,request_key)
 );
+CREATE TABLE IF NOT EXISTS study_interests(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id), contact TEXT NOT NULL, topic TEXT NOT NULL, slots TEXT NOT NULL,
+ request_key TEXT NOT NULL UNIQUE, payload_hash TEXT NOT NULL, receipt TEXT NOT NULL, created_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS study_holds(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
+ expires_at REAL NOT NULL, state TEXT NOT NULL CHECK(state IN ('hold','confirmed','payment_requires_review','cancelled'))
+);
+CREATE TABLE IF NOT EXISTS study_waitlist(
+ edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
+ PRIMARY KEY(edition_id,student_id)
+);

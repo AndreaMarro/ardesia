@@ -1,6 +1,5 @@
 """Loopback-only synthetic M1 adapter. No production authentication claims."""
 from pathlib import Path
-from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, Response, Depends
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
@@ -86,6 +85,30 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None):
     @app.get('/study/resources/{resource_id}')
     async def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
         return store.get_resource(authenticate(request,store),resource_id)
+
+    @app.get('/study/course')
+    async def course(store=Depends(store_dependency)):
+        edition=store.get_edition('fluidi')
+        count=store.connection.execute("SELECT COUNT(*) FROM study_members WHERE edition_id='fluidi'").fetchone()[0]
+        return {key:edition[key] for key in ('id','capacity','priceMinor','state','sessions','timezone')} | {
+            'title':'Fisica: relazioni e fluidi', 'confirmedTest':count,'available':edition['capacity']-count,
+            'synthetic':True,'editorialStatus':'DRAFT','duration':'4 incontri da 90 minuti',
+            'scope':'Proporzioni, unità e fluidi. Il modulo non copre l’intero syllabus.'}
+
+    @app.post('/study/activities/evaluate')
+    async def evaluate(body: dict):
+        from lessonos.study.activities import evaluate_activity
+        return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
+
+    @app.post('/study/interests')
+    async def interest(body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.interests import record_interest
+        return record_interest(store,body,request.headers.get('Idempotency-Key',''))
+
+    @app.get('/study/interests')
+    async def interests(editionId: str, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.interests import list_interests
+        return list_interests(store,authenticate(request,store),editionId)
 
     if frontend:
         from fastapi.staticfiles import StaticFiles
