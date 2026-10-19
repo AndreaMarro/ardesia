@@ -11,7 +11,9 @@ const data=path.join(root,'.study-demo',runId)
 mkdirSync(output,{recursive:true});mkdirSync(data,{recursive:true,mode:0o700})
 const uv=process.env.ARDESIA_UV??path.join(process.env.HOME,'.local/bin/uv')
 const port=Number(process.env.STUDY_VERIFY_PORT??5228)
-const env={...process.env,STUDY_DEMO_DATA_DIR:data,ARDESIA_STUDIO_E2E_BASE_URL:`http://127.0.0.1:${port}`}
+const env={...process.env,STUDY_DEMO_DATA_DIR:data,ARDESIA_STUDIO_E2E_BASE_URL:`http://127.0.0.1:${port}`,STUDY_EXPECTED_SHA:spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim()}
+const startSha=spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim()
+const dirtyAtStart=spawnSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).stdout.trim()!==''
 const commands=[]
 const serverProcesses=[]
 const dataId=createHash('sha256').update(path.join(data,'study.sqlite')).digest('hex').slice(0,16)
@@ -28,10 +30,13 @@ try{
  run('npm',['--prefix','apps/studio','run','e2e','--','e2e/study-group-journey.spec.ts','--workers=1','--output',path.join(output,'journey')],'journey')
  await stop();await start()
  run('npm',['--prefix','apps/studio','run','e2e','--','e2e/study-cold-reopen.spec.ts','--workers=1','--output',path.join(output,'cold')],'cold-reopen')
+ run(uv,['run','--project','services/study-api','python','bin/study-demo/backup.py',data,data+'-backup'],'paired-backup')
  passed=true
 }finally{
  await stop()
  const sha=spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim()
- writeFileSync(path.join(output,'manifest.json'),JSON.stringify({runId,sha,passed,synthetic:true,liveModelTested:false,apiSpendUsd:0,serverProcesses,commands},null,2))
+ passed=passed&&!dirtyAtStart&&sha===startSha
+ if(!passed)process.exitCode=1
+ writeFileSync(path.join(output,'manifest.json'),JSON.stringify({runId,sha,startSha,dirtyAtStart,passed,synthetic:true,liveModelTested:false,apiSpendUsd:0,serverProcesses,commands},null,2))
  console.log(JSON.stringify({runId,output,passed}))
 }

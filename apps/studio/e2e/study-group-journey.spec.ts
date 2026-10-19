@@ -14,12 +14,13 @@ test('M1 on real build: ten students, private multimodal work, manual review, re
  test.setTimeout(180000)
  const errors:string[]=[]
  const visitorContext=await browser.newContext({viewport:{width:390,height:844}});const visitor=await visitorContext.newPage()
- await visitor.goto('/?vista=fisica');await expect(visitor.getByRole('heading',{name:'Che cosa tieni fisso?'})).toBeVisible()
+ await visitor.goto('/?vista=fisica');if(process.env.STUDY_EXPECTED_SHA)expect(await visitor.evaluate(()=>(window as unknown as {__ARDESIA_BUILD__:{commitSha:string}}).__ARDESIA_BUILD__.commitSha)).toBe(process.env.STUDY_EXPECTED_SHA);await expect(visitor.getByRole('heading',{name:'Che cosa tieni fisso?'})).toBeVisible()
  await visitor.getByLabel('La tua previsione').fill('La portata aumenta');await visitor.getByLabel('Rapporto dei raggi').fill('1.5')
  await expect(visitor.getByTestId('physics-ratio')).toContainText('5,0625');await visitor.getByLabel('Grandezza fissata',{exact:true}).selectOption('flow')
  await expect(visitor.getByTestId('physics-ratio')).toContainText('0,197531')
  await visitor.getByLabel('Contatto sintetico').fill('interested-01@example.invalid');await visitor.getByRole('checkbox').check();await visitor.getByRole('button',{name:'Invia interesse'}).click()
  await expect(visitor.getByRole('status')).toContainText('Interesse ricevuto')
+ await visitor.getByLabel('Contatto sintetico').fill('interested-02@example.invalid');await visitor.getByRole('button',{name:'Invia interesse'}).click();await expect(visitor.getByRole('status')).toContainText('Interesse ricevuto')
  expect(await visitor.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy()
  await visitor.screenshot({path:info.outputPath('public-mobile.png'),fullPage:true});await visitorContext.close()
  console.log('Public lab and interest verified')
@@ -38,11 +39,13 @@ test('M1 on real build: ten students, private multimodal work, manual review, re
    await expect(page.getByRole('heading',{name:'Aggiungi una fonte'})).toBeVisible()
    await page.getByLabel('Nota o testo originale').fill(i===2?'Confondo raggio e area: Q cresce come r².':`Fonte privata sintetica ${actor}`)
    await page.getByRole('button',{name:'Salva fonte privata'}).click();await expect(page.getByText('Fonte privata salvata.')).toBeVisible()
+   if(i===1){const open=page.getByRole('button',{name:'Contesto della fonte'}).first();await open.click();await page.getByRole('dialog').press('Escape');await expect(open).toBeFocused();await page.getByRole('button',{name:/Sposta post-it/}).first().click();await expect(page.getByText('Disposizione salvata.')).toBeVisible();await page.getByRole('button',{name:/Duplica vista/}).first().click();await expect(page.locator('[data-instance-id]')).toHaveCount(3);await page.reload();await expect(page.locator('[data-instance-id]')).toHaveCount(3)}
    await page.getByLabel('La tua spiegazione').fill(i===2?'Q cresce come r²':i===5?'Fonte ambigua':`Q/Q0 = 5,0625; ${actor}`)
    if(i>=2&&i<=4){const file=i===2?'source.png':i===3?'tone.mp3':'source.pdf';await page.getByLabel('Aggiungi originale privato').setInputFiles(path.join(dataDir,'fixtures',file));await expect(page.getByTestId('submission-status')).toContainText('Originale caricato')}
  }
  await pages[5].route('**/study/submissions',async route=>{await route.fetch();await route.abort('failed')},{times:1})
  await pages[5].getByRole('button',{name:'Consegna',exact:true}).click();await expect(pages[5].getByTestId('submission-status')).toContainText('non ancora confermato')
+ await pages[5].reload();await expect(pages[5].getByRole('button',{name:'Consegna',exact:true})).toBeVisible()
  await pages[6].route('**/study/submissions',route=>route.fulfill({status:503,body:'{"error":"storage_unavailable"}',contentType:'application/json'}),{times:1})
  await pages[6].getByRole('button',{name:'Consegna',exact:true}).click();await expect(pages[6].getByTestId('submission-status')).toContainText('non ancora confermato')
  await Promise.all(pages.map(page=>page.getByRole('button',{name:'Consegna',exact:true}).click()))
@@ -53,8 +56,7 @@ test('M1 on real build: ten students, private multimodal work, manual review, re
  expect(new Set(workspace.submissions.map((x:{student_id:string})=>x.student_id)).size).toBe(10)
  const s03=workspace.submissions.find((x:{student_id:string})=>x.student_id==='student-03')
  const denied=await pages[1].request.get(`/study/assets/${s03.asset_refs[0]}`);expect(denied.status()).toBe(403);expect(await denied.json()).toEqual({error:'forbidden'})
- const waitingContext=await browser.newContext();const waiting=await waitingContext.newPage();await login(waiting,'student-11')
- await waiting.getByRole('button',{name:'Conferma partecipazione di test'}).click();await expect(waiting.getByText('Gruppo completo: sei in lista d’attesa.')).toBeVisible();await waitingContext.close()
+ for(const actor of ['student-11','student-12']){const waitingContext=await browser.newContext();const waiting=await waitingContext.newPage();await login(waiting,actor);await waiting.getByRole('button',{name:'Conferma partecipazione di test'}).click();await expect(waiting.getByText('Gruppo completo: sei in lista d’attesa.')).toBeVisible();await waitingContext.close()}
  console.log('Starting synthetic tutor review')
  await tutor.getByRole('button',{name:'Aggiorna',exact:true}).click();await tutor.getByRole('button',{name:'Da correggere',exact:true}).click()
  for(const [actor,decision,review] of [['student-02','Approva e restituisci','A Δp fissata Q cresce con la quarta potenza. Riparti dalle grandezze fissate.'],['student-05','Richiedi chiarimento','Quale grandezza rimane fissata?']]){

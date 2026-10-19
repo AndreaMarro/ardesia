@@ -1,0 +1,14 @@
+{
+  "observed_on": "2026-10-19",
+  "rea_runtime": {"status":"NOT_AVAILABLE", "evidence":["No capture_browser_scenario/REA tool in available tool inventory", "command -v rea and named local-bin/research checkout checks found no installed CLI"], "fallback":"Pinned existing Playwright 1.60.x, built application, explicit browser scenarios", "installation":"No unpinned CLI installed; no binary decompilation needed for sources already available"},
+  "jobs": [
+    {"id":"R01-own-postits","question":"Do references, private sources and layout survive export/reopen without granting peer access?","status":"PLAYWRIGHT_AND_SOURCE_VERIFIED","source":"apps/studio/src/toolhost/postitObject.ts at b124eee0","implementation":"src/study/postit.ts, StudyPostit.tsx, layout API","tests":["StudyPostit.test.tsx","study-group-journey.spec.ts","study-cold-reopen.spec.ts","legacy saved-lessons and plugin-postit-room-reload"]},
+    {"id":"R02-physical-boundaries","question":"Does changing the fixed quantity change the calculated quantity and preserve a truthful failure state?","status":"ORIGINAL_IMPLEMENTATION_VERIFIED","implementation":"lessonos/study/activities.py, PhysicsActivity.tsx","tests":["test_physics_activity.py","PhysicsActivity.test.tsx","study-group-journey.spec.ts"]},
+    {"id":"R03-submission-and-review","question":"Can a lost response be retried, including after remount, without changing original files, actor, key or receipt?","status":"ORIGINAL_IMPLEMENTATION_VERIFIED","tests":["test_submissions.py","SubmissionPanel.test.tsx","study-group-journey.spec.ts"]},
+    {"id":"R04-group-capacity","question":"Can two requests reserve the last place and can an expired hold silently confirm?","status":"TRANSACTION_TEST_VERIFIED","tests":["test_groups.py","study-group-journey.spec.ts"]},
+    {"id":"R05-card-reference-patterns","question":"Separate content identity from views and contextual links","status":"DOC_ONLY","sources":["https://wiki.heptabase.com/user-interface-logic","https://obsidian.md/canvas"],"decision":"Original resource/revision/context adapter over the existing postitObject. No proprietary source or UI assets imported; no logged-in competitor workflow claimed."},
+    {"id":"R06-rea-contract","question":"Verify provenance and supported browser-scenario tooling before attempting captures","status":"DOC_ONLY","source":"https://github.com/morluto/rea","decision":"Official source read. REA runtime absent locally, so own-app browser evidence uses declared Playwright fallback. No competitor parity or REA execution claim."}
+  ],
+  "not_run":["Brilliant/Snorkl/Teachworks authenticated workflows","Native binary analysis","Copying external quiz banks or proprietary software"],
+  "limit":"Public documentation is design evidence, not a tested external feature or permission to copy code. This M1 uses original physics/content and already-authorized repository components."
+}

@@ -25,18 +25,18 @@ Heartbeat: ardesia-riesame-e-prosecuzione-ogni-60-minuti (ACTIVE, hourly, this t
 - T09→T10/T11: evidence with SHA and explicit NOT_RUN, no screenshots-only acceptance.
 
 ## Task state
-- T00: in progress — source files read and hashed, clean base, source mapping and baseline tests next.
+- T00: complete — hashes/base/recovery limits recorded; baseline typecheck/build/suites and legacy reader/browser roundtrips run.
 - T01: complete — 7 domain+HTTP contracts pass; SQLite backup/restore, session authority, peer/tutor isolation, rollback and additive legacy migration. HTTP tests live with the service so Engine keeps its dependencies.
-- T02: implemented — 3 component/identity tests and typecheck pass; full product integration and browser proof pending.
-- T03: pending
-- T04: pending
-- T05: pending
-- T06: pending
-- T07: pending
-- T08: pending
-- T09: pending
-- T10: pending
-- T11: pending
+- T02: implemented and browser-integrated; final candidate replay remains in final verification.
+- T03: implemented — original deterministic lab and persisted interest roundtrip, DRAFT editorial status.
+- T04: implemented — transactional cap, hold expiry/idempotency, date conflicts and compatibility explanations tested.
+- T05: implemented — original media validation/private storage, atomic submission and persistent receipt.
+- T06: implemented — actual synthetic-tutor UI review, clarification and linked second attempt.
+- T07: implemented — canonical LessonOS projection, permission-filtered context, invalidation and rebuild.
+- T08: implemented — zero-spend deterministic hints; live providers remain disabled.
+- T09: implemented — previous full built-browser journeys passed; final clean-SHA run is required.
+- T10: implemented — private portable notebook, synthetic clips/screens, launch draft and M2 checklist.
+- T11: final verification — independent review repair pass complete; await frozen gate and final receipt.
 
 ## Checks and evidence
 - State generator: python3 bin/state/project_state.py, exit 0; all reported surfaces MEASURED.
@@ -53,3 +53,20 @@ Heartbeat: ardesia-riesame-e-prosecuzione-ogni-60-minuti (ACTIVE, hourly, this t
 - T09: frontend attached at ?vista=fisica on built Studio; synthetic loopback server running on :5208. Real ten-context browser journey running; do not run overlapping writers or reset its database.
 - Dependencies: image/PDF validators isolated as Engine [study] extra (Pillow also dev for default tests), pinned service lock; ffprobe required only for declared audio validation. No live models/ASR run.
 - Ruling: new portable .study.json is explicitly read-only, ACL-filtered, with original asset hashes and omissions. Existing .lesson handles historical canvas/journal. Do not claim new notebook format restores enrollment/auth or legacy canvas.
+
+## Fresh-context review and adjudication
+Reviewed head b097a4982a1abeb022aa87f785e15ec176201e2c, base b124eee0, independent read-only reviewer.
+- P1 commit-response-lost + remount: confirmed with RED component test; persist complete immutable pending payload and original key before sending. Source selection and new attempts cannot change a pending retry.
+- P1 source-less accepted submission: confirmed with RED domain test; transaction now creates a private immutable original source and stable student context alongside submission/receipt. No empty-source observation can become unresolvable.
+- P2 portable reader metadata: material to requested source/attempt/review readability, fixing in the single review repair pass. Viewer now reads metadata, revisions, receipts, review and original media from the verified file itself.
+- P2 stale physical result on network failure: material to the scientific UI contract; RED reproduces old Q result under new fixed-flow label. Invalidate result on every input change.
+- Declined to judge M2 production auth/deploy/live AI/ASR/real payments/human pilot/scientific approval: remain explicitly NOT_RUN/NOT_AUTHORIZED; not required to simulate M1.
+- Reviewer not_checked: no independent full suites or future clean-SHA run; no physical crash or real full disk. Those claims are not inferred.
+- Full Studio first run: two failures — design tokens (new CSS hexes, fixed by moving palette to canonical tokens.css), and provenance (HEAD changed while tests ran, invalid test procedure). Never commit during final test/build verification.
+- Frozen gate first run reports 23 failed on Homebrew Node 26; reproducing its exact default runner to inspect failures before choosing any change. Gate script untouched.
+- Node 26 diagnosis: exact frozen invocation reproduced 22 legacy failures, caused by undefined native `localStorage` shadowing jsdom storage. Runtime Node 22.14 with documented threads flags had passed baseline. Add an explicit test-environment Storage contract only when storage is absent; preserve native jsdom storage and every assertion/gate. Do not bypass or change frozen gate.
+- Ruling: no selected source means an accepted attempt itself becomes a private original resource in the same atomic commit. Export test now expects both the explicitly saved note and that actual original (2), preserving peer isolation and independent hashes.
+- Repair-pass tests: pending receipt key/payload survive remount; no-source review context resolves; physics stale result omitted; canonical palette tokens. No extra model/ASR/payment capability enabled.
+
+- Code freeze: all following final checks must run with HEAD unchanged and a clean tracked tree. The generated final receipt in artifacts/study-demo is authoritative for gate execution and final task completion; committed prose records its observation time, not future results.
+- Node 26 fix verified on all five affected legacy files: 112 tests pass with explicit missing-Storage setup. No assertions, test inclusion or frozen gate changed.

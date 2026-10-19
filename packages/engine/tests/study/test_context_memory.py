@@ -65,3 +65,13 @@ def test_rebuild_cannot_resurrect_stale_legacy_retrieval_text(tmp_path):
     revise_resource(store,student,resource['id'],resource['revisionId'],'changed')
     rebuild_projection(store)
     assert store.legacy.get_segment('study-'+review['reviewId']) is None
+
+def test_plain_text_submission_without_selected_source_has_recoverable_context(tmp_path):
+    store,tutor,student,*_=setup_store(tmp_path)
+    receipt=submit(store,student,'fluidi','poiseuille-v1',[],'Q grows with radius squared','no-source')
+    proposal=propose_feedback(store,tutor,receipt['submissionId'])
+    review=review_feedback(store,tutor,proposal['id'],1,'Check the fourth power','review-no-source')
+    observation=store.connection.execute('SELECT context_id FROM study_observations WHERE review_id=?',(review['reviewId'],)).fetchone()
+    packet=retrieve_context(store,student,observation[0],'')
+    assert len(packet['observations'])==1
+    assert packet['observations'][0]['evidence']['text']=='Q grows with radius squared'

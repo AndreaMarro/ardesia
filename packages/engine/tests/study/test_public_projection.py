@@ -14,6 +14,6 @@ def test_export_is_scoped_and_integrity_checked_with_visible_omissions(tmp_path)
     assert bundle['format']=='ardesia-study-notebook-v1'
     assert bundle['omissions'] and bundle['resources'][0]['id']==source['id']
     inspected=inspect_notebook(bundle)
-    assert inspected['resources']==1 and inspected['submissions']==1
+    assert inspected['resources']==2 and inspected['submissions']==1
     bundle['resources'][0]['text']='tampered'
     with pytest.raises(ValueError):inspect_notebook(bundle)

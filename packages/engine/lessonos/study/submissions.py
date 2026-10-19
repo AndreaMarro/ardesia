@@ -1,6 +1,6 @@
 import json
 from .models import StudyError
-from .store import identifier,canonical
+from .store import identifier,canonical,digest
 from .activities import ACTIVITY_ID
 from .transactions import transact
 
@@ -31,7 +31,17 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             if c.execute('SELECT 1 FROM study_submissions WHERE parent_id=?',(parent_id,)).fetchone():raise StudyError('newer_attempt_exists',409)
             revision=parent['revision']+1
         submission_id,receipt_id=identifier(),identifier()
-        c.execute('INSERT INTO study_submissions(id,edition_id,student_id,activity_id,revision,parent_id,text,asset_refs,source_refs,receipt_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (submission_id,edition_id,principal.id,activity_id,revision,parent_id,text,canonical(asset_refs),canonical(source_refs),receipt_id,store.clock()))
+        effective_refs=list(source_refs)
+        if not effective_refs:
+            # A direct text/media submission is still an original source. Persist
+            # it atomically, so review and a later meeting have a resolvable context.
+            resource_id,revision_id=identifier(),identifier()
+            context_id=f'edition-{edition_id}-{principal.id}'
+            source_text=text if text.strip() else 'Originale multimediale privato: lettura manuale richiesta.'
+            c.execute('INSERT INTO study_resources(id,edition_id,owner_id,kind,visibility,context_id,current_revision) VALUES(?,?,?,?,?,?,?)',(resource_id,edition_id,principal.id,'attempt-source','private',context_id,revision_id))
+            c.execute('INSERT INTO study_revisions VALUES(?,?,?,?,?)',(revision_id,resource_id,source_text,digest(source_text),store.clock()))
+            effective_refs=[{'resourceId':resource_id,'revisionId':revision_id,'contextId':context_id}]
+        c.execute('INSERT INTO study_submissions(id,edition_id,student_id,activity_id,revision,parent_id,text,asset_refs,source_refs,receipt_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (submission_id,edition_id,principal.id,activity_id,revision,parent_id,text,canonical(asset_refs),canonical(effective_refs),receipt_id,store.clock()))
         return {'receiptId':receipt_id,'submissionId':submission_id,'studentId':principal.id,'activityId':activity_id,'revision':revision,'parentId':parent_id,'receivedAt':store.clock(),'state':'received'}
     return transact(store,principal,'submission.received',key,payload,apply)
 
