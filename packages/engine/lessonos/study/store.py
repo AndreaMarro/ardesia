@@ -15,6 +15,7 @@ import uuid
 from lessonos.models.crm import assert_pseudonymous
 from lessonos.store.sqlite import SQLiteStore
 from .models import Principal, StudyError
+from .lock import data_lock
 
 
 def identifier():
@@ -34,16 +35,17 @@ class StudyStore:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.clock = clock
-        self.legacy = SQLiteStore(str(self.path))
-        self.connection = self.legacy._conn
-        self.connection.execute('PRAGMA foreign_keys=ON')
-        self.connection.execute('PRAGMA busy_timeout=5000')
-        self.connection.execute('PRAGMA journal_mode=WAL')
-        present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
-        if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 1:
-            self.close()
-            raise StudyError('newer_schema', 503)
-        self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
+        with data_lock(self.path):
+            self.legacy = SQLiteStore(str(self.path))
+            self.connection = self.legacy._conn
+            self.connection.execute('PRAGMA foreign_keys=ON')
+            self.connection.execute('PRAGMA busy_timeout=5000')
+            self.connection.execute('PRAGMA journal_mode=WAL')
+            present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
+            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 2:
+                self.close()
+                raise StudyError('newer_schema', 503)
+            self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
 
     def close(self):
         self.legacy.close()
@@ -52,13 +54,14 @@ class StudyStore:
     def transaction(self):
         if self.connection.in_transaction:
             raise RuntimeError('nested study transaction')
-        self.connection.execute('BEGIN IMMEDIATE')
-        try:
-            yield self.connection
-            self.connection.commit()
-        except BaseException:
-            self.connection.rollback()
-            raise
+        with data_lock(self.path):
+            self.connection.execute('BEGIN IMMEDIATE')
+            try:
+                yield self.connection
+                self.connection.commit()
+            except BaseException:
+                self.connection.rollback()
+                raise
 
     def backup(self, target: Path):
         with sqlite3.connect(target) as destination:
@@ -69,6 +72,8 @@ class StudyStore:
         if role not in ('teacher', 'student'):
             raise StudyError('invalid_role')
         with self.transaction() as c:
+            if c.execute('SELECT 1 FROM study_erased_actors WHERE id=?',(actor_id,)).fetchone():
+                raise StudyError('erased_identity',409)
             existing = c.execute('SELECT role FROM study_principals WHERE id=?', (actor_id,)).fetchone()
             if existing and existing['role'] != role:
                 raise StudyError('identity_conflict', 409)

@@ -8,6 +8,7 @@ import tempfile
 import warnings
 from .models import StudyError
 from .store import identifier,digest
+from .lock import data_lock
 
 LIMITS={'image/png':10,'image/jpeg':10,'image/webp':10,'application/pdf':20,'audio/mpeg':20,'audio/mp4':20,'audio/webm':20}
 
@@ -52,6 +53,11 @@ def validate_asset(data,mime):
 
 
 def upload_asset(store,principal,edition_id,data,mime,blob_dir:Path):
+    with data_lock(store.path):
+        return _upload_locked(store,principal,edition_id,data,mime,blob_dir)
+
+
+def _upload_locked(store,principal,edition_id,data,mime,blob_dir):
     store._edition_access(principal,edition_id)
     text,status=validate_asset(data,mime)
     asset_id=identifier();blob_dir.mkdir(parents=True,exist_ok=True,mode=0o700)

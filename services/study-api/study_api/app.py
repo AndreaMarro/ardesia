@@ -23,6 +23,8 @@ class ResourceBody(BaseModel):
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
+    from lessonos.study.operations import resume_erasures
+    resume_erasures(Path(db_path).parent)
     app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
 
     @app.exception_handler(StudyError)
@@ -78,6 +80,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.get('/study/health')
     async def health():
         return {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16]}
+
+    @app.get('/study/ops/health')
+    async def readiness(request: Request, store=Depends(store_dependency)):
+        principal=authenticate(request,store)
+        if principal.role!='teacher':raise StudyError('forbidden',403)
+        from lessonos.study.operations import check_data
+        result=check_data(Path(db_path).parent)
+        return JSONResponse(result,status_code=200 if result['ok'] else 503)
 
     @app.post('/study/session')
     async def session(body: SessionBody, response: Response, store=Depends(store_dependency)):

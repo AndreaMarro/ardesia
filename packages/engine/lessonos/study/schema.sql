@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS study_schema(version INTEGER NOT NULL);
 INSERT INTO study_schema SELECT 1 WHERE NOT EXISTS (SELECT 1 FROM study_schema);
+UPDATE study_schema SET version=2 WHERE version=1;
 CREATE TABLE IF NOT EXISTS study_principals(
  id TEXT PRIMARY KEY, role TEXT NOT NULL CHECK(role IN ('teacher','student'))
 );
@@ -14,6 +15,7 @@ CREATE TABLE IF NOT EXISTS study_invitations(
 CREATE TABLE IF NOT EXISTS study_rate_limits(
  bucket TEXT PRIMARY KEY, attempts INTEGER NOT NULL, expires_at REAL NOT NULL
 );
+CREATE TABLE IF NOT EXISTS study_erased_actors(id TEXT PRIMARY KEY);
 CREATE TABLE IF NOT EXISTS study_editions(
  id TEXT PRIMARY KEY REFERENCES classes(class_id), teacher_id TEXT NOT NULL REFERENCES teachers(teacher_id),
  capacity INTEGER NOT NULL CHECK(capacity BETWEEN 1 AND 10), price_minor INTEGER NOT NULL CHECK(price_minor>=0),
