@@ -52,3 +52,5 @@ services/study-api/.venv/bin/python bin/study-demo/check-readiness.py
 ```
 
 Il primo esporta 24 esercizi originali, quattro modelli e sei nuovi quesiti in due prove di trasferimento, con proposte numeriche e hash. È sempre DRAFT; non scrive una firma docente. Il secondo è read-only e termina con **exit 2 atteso** perché il lancio è vietato e mancano prove umane. `assess_readiness` controlla la presenza strutturale dei record forniti dall’operatore, non autentica una firma o un’identità umana. Non concedere approvazioni modificando una flag. La produzione resta rifiutata anche con un report compilato.
+
+Gli ID RF/TR e i tre modelli aggiuntivi sono anteprime editoriali: consegne, aiuti contestuali e review attuali in Lezione tracciano `poiseuille-v1`. Il packet è utilizzabile per revisione dei testi; non certifica un motore completo di assegnazione/valutazione per tutti gli ID del CoursePack. Registrare questo limite nella prova tutor prima di decidere il perimetro del pilot.

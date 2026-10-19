@@ -4,7 +4,7 @@ Only study students without foreign CRM enrollment are supported. Run with the
 service stopped for erasure/restore. Keep the CURRENT erasure ledger separately
 from backups and always supply it when restoring an older snapshot.
 """
-import json,os,re,shutil,tempfile
+import json,os,re,shutil,tempfile,sqlite3
 from pathlib import Path
 from .store import StudyStore,canonical,digest
 from .lock import data_lock
@@ -40,24 +40,44 @@ def check_data(directory):
     """Operator-only report: no identity/content/path returned to HTTP clients."""
     directory=Path(directory)
     if not (directory/'study.sqlite').is_file():return {'ok':False,'databaseIntegrity':'missing','verifiedBlobs':0}
-    store=StudyStore(directory/'study.sqlite')
     try:
-        with data_lock(store.path):
-            integrity=store.connection.execute('PRAGMA integrity_check').fetchone()[0]
-            if integrity!='ok' or store.connection.execute('PRAGMA foreign_key_check').fetchone():raise ValueError('database_integrity')
-            count=0
-            for row in store.connection.execute('SELECT blob_ref,sha256 FROM study_assets WHERE deleted=0'):
-                if digest(_blob_path(directory,row['blob_ref']).read_bytes())!=row['sha256']:raise ValueError('blob_integrity')
-                count+=1
-            return {'ok':True,'databaseIntegrity':'ok','verifiedBlobs':count}
-    except (OSError,ValueError):return {'ok':False,'databaseIntegrity':'failed','verifiedBlobs':0}
-    finally:store.close()
+        with data_lock(directory/'study.sqlite'):
+            connection=_existing_database(directory)
+            try:
+                count=0
+                for row in connection.execute('SELECT blob_ref,sha256 FROM study_assets WHERE deleted=0'):
+                    if digest(_blob_path(directory,row['blob_ref']).read_bytes())!=row['sha256']:raise ValueError('blob_integrity')
+                    count+=1
+                return {'ok':True,'databaseIntegrity':'ok','verifiedBlobs':count}
+            finally:connection.close()
+    except (OSError,ValueError,sqlite3.Error):return {'ok':False,'databaseIntegrity':'failed','verifiedBlobs':0}
+
+
+def _existing_database(directory):
+    """Read-only, non-migrating inspection: never repair loss into emptiness."""
+    path=Path(directory)/'study.sqlite'
+    if path.is_symlink() or not path.is_file():raise ValueError('database_integrity_path')
+    with path.open('rb') as stream:
+        if stream.read(16)!=b'SQLite format 3\x00':raise ValueError('database_integrity_header')
+    connection=sqlite3.connect(path.resolve().as_uri()+'?mode=ro',uri=True)
+    connection.row_factory=sqlite3.Row
+    try:
+        if connection.execute('PRAGMA integrity_check').fetchone()[0]!='ok' or connection.execute('PRAGMA foreign_key_check').fetchone():raise ValueError('database_integrity')
+        schema=connection.execute('SELECT version FROM study_schema').fetchall()
+        if len(schema)!=1 or schema[0][0]!=2:raise ValueError('database_integrity_schema')
+        required=set(re.findall(r'CREATE TABLE IF NOT EXISTS (\w+)',Path(__file__).with_name('schema.sql').read_text()))
+        present={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if not required.issubset(present):raise ValueError('database_integrity_schema')
+        return connection
+    except BaseException:
+        connection.close();raise
 
 
 def backup_data(source,destination):
     source,destination=Path(source),Path(destination)
     if destination.exists():raise ValueError('destination_exists')
     if not (source/'study.sqlite').is_file():raise ValueError('source_missing')
+    if not check_data(source)['ok']:raise ValueError('backup_database_integrity_failure')
     resume_erasures(source)
     os.umask(0o077)
     store=StudyStore(source/'study.sqlite')
@@ -93,10 +113,15 @@ def backup_data(source,destination):
 
 
 def _preview(store,actor):
+    c=store.connection
+    # Check legacy ownership even if no Study principal exists. A missing Study
+    # identity must never make a legacy-only identity eligible for erasure.
+    if c.execute('SELECT 1 FROM enrollments WHERE student_id=? AND class_id NOT IN (SELECT id FROM study_editions)',(actor,)).fetchone():raise ValueError('legacy_scope_requires_manual_review')
     row=store.connection.execute('SELECT role FROM study_principals WHERE id=?',(actor,)).fetchone()
-    if row is None:return {'resources':0,'submissions':0,'assets':0}
+    if row is None:
+        if c.execute('SELECT 1 FROM students WHERE student_id=?',(actor,)).fetchone():raise ValueError('legacy_scope_requires_manual_review')
+        return {'resources':0,'submissions':0,'assets':0}
     if row['role']!='student':raise ValueError('student_only')
-    if store.connection.execute('SELECT 1 FROM enrollments WHERE student_id=? AND class_id NOT IN (SELECT id FROM study_editions)',(actor,)).fetchone():raise ValueError('legacy_scope_requires_manual_review')
     return {label:store.connection.execute(f'SELECT COUNT(*) FROM {table} WHERE {column}=?',(actor,)).fetchone()[0] for label,table,column in [('resources','study_resources','owner_id'),('submissions','study_submissions','student_id'),('assets','study_assets','owner_id')]}
 
 
@@ -106,9 +131,14 @@ def _erase_rows(store,actor):
     submissions={row[0] for row in c.execute('SELECT id FROM study_submissions WHERE student_id=?',(actor,))}
     reviews={row[0] for row in c.execute('SELECT r.id FROM study_reviews r JOIN study_feedback f ON f.id=r.candidate_id JOIN study_submissions s ON s.id=f.submission_id WHERE s.student_id=?',(actor,))}
     receipts=set()
+    def references(value,ids):
+        if isinstance(value,str):return value in ids
+        if isinstance(value,dict):return any(references(item,ids) for item in value.values())
+        if isinstance(value,list):return any(references(item,ids) for item in value)
+        return False
     for row in c.execute('SELECT id,actor_id,body FROM study_receipts'):
         body=json.loads(row['body'])
-        if row['actor_id']==actor or body.get('submissionId') in submissions or body.get('reviewId') in reviews:receipts.add(row['id'])
+        if row['actor_id']==actor or references(body,resources|submissions|reviews):receipts.add(row['id'])
     for row in c.execute('SELECT id,actor_id,resource_id,payload FROM study_events').fetchall():
         if row['actor_id']==actor or row['resource_id'] in resources or json.loads(row['payload']).get('receiptId') in receipts:
             c.execute('DELETE FROM study_events WHERE id=?',(row['id'],))
@@ -140,9 +170,13 @@ def _erase_rows(store,actor):
 
 
 def erase_student(source,actor,*,apply=False):
-    source=Path(source);store=StudyStore(source/'study.sqlite')
+    source=Path(source)
+    _validate_blob_directory(source)
+    existing=_existing_database(source);existing.close()
+    store=StudyStore(source/'study.sqlite')
     try:
         with data_lock(store.path):
+            _validate_blob_directory(source)
             # Validation before durable intent: never schedule unsupported deletion.
             if not re.fullmatch(r'[A-Za-z0-9_-]{1,128}',actor):raise ValueError('invalid_actor')
             preview=_preview(store,actor)
@@ -163,6 +197,13 @@ def erase_student(source,actor,*,apply=False):
             store.connection.execute('PRAGMA wal_checkpoint(TRUNCATE)')
             return preview|{'applied':True,'scope':'study-student','externalCopiesErased':False}
     finally:store.close()
+
+
+def _validate_blob_directory(source):
+    directory=source/'blobs'
+    if directory.is_symlink() or (directory.exists() and not directory.is_dir()):raise ValueError('blob_integrity_path')
+    for path in directory.glob('*'):
+        if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(directory.resolve()):raise ValueError('blob_integrity_path')
 
 
 def resume_erasures(source):

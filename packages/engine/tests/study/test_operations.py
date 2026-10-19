@@ -105,3 +105,54 @@ def test_restore_requires_current_ledger_and_rejects_traversal(tmp_path):
     (backup/'backup-manifest.json').write_text(json.dumps(manifest))
     with pytest.raises(ValueError,match='integrity'):ops.restore_data(backup,tmp_path/'escape',source/'erasure-ledger.json')
     assert not (tmp_path/'escape').exists()
+
+
+def test_erasure_never_removes_a_legacy_only_student(tmp_path):
+    ops=operation();store,*_=setup_store(tmp_path/'data')
+    c=store.connection
+    c.execute("INSERT INTO students VALUES('legacy-only')")
+    c.execute("INSERT INTO classes VALUES('legacy-class','legacy-teacher','legacy')")
+    c.execute("INSERT INTO enrollments VALUES('legacy-enrollment','legacy-class','legacy-only')");c.commit()
+    for apply in (False,True):
+        with pytest.raises(ValueError,match='legacy_scope'):ops.erase_student(store.path.parent,'legacy-only',apply=apply)
+    assert c.execute("SELECT 1 FROM students WHERE student_id='legacy-only'").fetchone()
+    assert c.execute("SELECT 1 FROM enrollments WHERE enrollment_id='legacy-enrollment'").fetchone()
+    assert not (store.path.parent/'erasure-ledger.json').exists()
+
+
+@pytest.mark.parametrize('action',['health','backup'])
+def test_integrity_operations_refuse_truncated_database_without_initializing_it(tmp_path,action):
+    ops=operation();store,*_=setup_store(tmp_path/'data');source=store.path.parent;store.close()
+    (source/'study.sqlite').write_bytes(b'')
+    if action=='health':assert ops.check_data(source)['ok'] is False
+    else:
+        with pytest.raises(ValueError,match='integrity'):ops.backup_data(source,tmp_path/'backup-empty')
+        assert not (tmp_path/'backup-empty').exists()
+    assert (source/'study.sqlite').read_bytes()==b''
+
+
+def test_erasure_rejects_symlinked_blob_directory_before_any_mutation(tmp_path):
+    ops=operation();store,_,student,*_=setup_store(tmp_path/'data');source=store.path.parent
+    store.create_resource(student,'fluidi','notes','must remain')
+    outside=tmp_path/'outside';outside.mkdir();external=outside/('a'*32);external.write_bytes(b'unrelated')
+    (source/'blobs').symlink_to(outside,target_is_directory=True)
+    before='\n'.join(store.connection.iterdump())
+    with pytest.raises(ValueError,match='blob_integrity'):ops.erase_student(source,student.id,apply=True)
+    assert external.read_bytes()==b'unrelated'
+    assert '\n'.join(store.connection.iterdump())==before
+    assert not (source/'erasure-ledger.json').exists()
+
+
+def test_erasure_removes_tutor_source_hint_receipt_and_event_but_preserves_peer(tmp_path):
+    ops=operation();store,tutor,student,peer,*_=setup_store(tmp_path/'data')
+    from lessonos.study.ai_jobs import request_hint
+    source=store.create_resource(student,'fluidi','notes','source to erase')
+    peer_source=store.create_resource(peer,'fluidi','notes','peer source preserved')
+    removed=request_hint(store,tutor,source['id'],1,'tutor-hint')
+    preserved=request_hint(store,tutor,peer_source['id'],1,'peer-hint')
+    ops.erase_student(store.path.parent,student.id,apply=True)
+    receipts=[json.loads(row[0]) for row in store.connection.execute('SELECT body FROM study_receipts')]
+    assert removed not in receipts and preserved in receipts
+    dump='\n'.join(store.connection.iterdump())
+    assert source['id'] not in dump and source['revisionId'] not in dump
+    assert peer_source['id'] in dump

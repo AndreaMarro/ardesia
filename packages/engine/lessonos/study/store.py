@@ -36,6 +36,8 @@ class StudyStore:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.clock = clock
         with data_lock(self.path):
+            if self.path.exists() and self.path.stat().st_size<100:
+                raise StudyError('database_integrity_failure',503)
             self.legacy = SQLiteStore(str(self.path))
             self.connection = self.legacy._conn
             self.connection.execute('PRAGMA foreign_keys=ON')
