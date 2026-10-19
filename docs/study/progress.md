@@ -47,3 +47,9 @@ Heartbeat: ardesia-riesame-e-prosecuzione-ogni-60-minuti (ACTIVE, hourly, this t
 
 - T00 legacy browser baseline: saved-lessons export/import passed on production build. Two legacy post-it tests timed out at __MAESTRO_TEST__.ready, a dev-only hook; rerunning those via their intended dev server, keeping the production-build failure log. New study E2E will use visible UI and real API only.
 - T02 component and reference tests pass (3); typecheck pass. T03 deterministic physics and interest/domain isolation tests pass (11); service public roundtrip passes. T04 capacity, concurrent last seat, hold expiry, calendar and matching tests pass (6). Browser integration pending.
+
+- T00: baseline recovery checks complete; legacy .lesson cold import/export passes on build, legacy postit tests pass on intended dev server (2). Their build failure is a dev-only hook, retained, not a product regression.
+- T05–T08 domain implemented. 54 scoped domain/API contracts pass including multimodal bytes, private blobs, atomic receipts, review, next attempt, LessonOS projection/rebuild, stale invalidation, deterministic zero-spend hints and malformed payloads.
+- T09: frontend attached at ?vista=fisica on built Studio; synthetic loopback server running on :5208. Real ten-context browser journey running; do not run overlapping writers or reset its database.
+- Dependencies: image/PDF validators isolated as Engine [study] extra (Pillow also dev for default tests), pinned service lock; ffprobe required only for declared audio validation. No live models/ASR run.
+- Ruling: new portable .study.json is explicitly read-only, ACL-filtered, with original asset hashes and omissions. Existing .lesson handles historical canvas/journal. Do not claim new notebook format restores enrollment/auth or legacy canvas.

@@ -2,7 +2,12 @@
 name = "ardesia-study-api"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["fastapi==0.139.0", "uvicorn>=0.30,<1"]
+dependencies = [
+    "fastapi==0.139.0",
+    "pillow>=12,<13",
+    "pypdf>=6.13.3,<7",
+    "uvicorn>=0.30,<1",
+]
 [dependency-groups]
 dev = ["pytest>=9,<10", "httpx==0.28.1"]
 [build-system]

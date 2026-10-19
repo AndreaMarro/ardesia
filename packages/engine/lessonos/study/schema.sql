@@ -45,3 +45,32 @@ CREATE TABLE IF NOT EXISTS study_waitlist(
  edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
  PRIMARY KEY(edition_id,student_id)
 );
+CREATE TABLE IF NOT EXISTS study_assets(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id), owner_id TEXT NOT NULL REFERENCES study_principals(id),
+ mime TEXT NOT NULL, bytes INTEGER NOT NULL, sha256 TEXT NOT NULL, blob_ref TEXT NOT NULL,
+ native_text TEXT NOT NULL DEFAULT '', extraction_status TEXT NOT NULL, deleted INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS study_submissions(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
+ activity_id TEXT NOT NULL, revision INTEGER NOT NULL, parent_id TEXT REFERENCES study_submissions(id),
+ text TEXT NOT NULL, asset_refs TEXT NOT NULL, source_refs TEXT NOT NULL DEFAULT '[]', receipt_id TEXT NOT NULL UNIQUE,
+ created_at REAL NOT NULL, state TEXT NOT NULL DEFAULT 'received'
+);
+CREATE TABLE IF NOT EXISTS study_feedback(
+ id TEXT PRIMARY KEY, submission_id TEXT NOT NULL UNIQUE REFERENCES study_submissions(id),
+ submission_revision INTEGER NOT NULL, author_type TEXT NOT NULL, state TEXT NOT NULL DEFAULT 'proposed',
+ text TEXT NOT NULL, source_refs TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS study_reviews(
+ id TEXT PRIMARY KEY, candidate_id TEXT NOT NULL UNIQUE REFERENCES study_feedback(id),
+ teacher_id TEXT NOT NULL REFERENCES teachers(teacher_id), decision TEXT NOT NULL, text TEXT NOT NULL, created_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS study_observations(
+ id TEXT PRIMARY KEY, review_id TEXT NOT NULL UNIQUE REFERENCES study_reviews(id),
+ student_id TEXT NOT NULL REFERENCES students(student_id), context_id TEXT NOT NULL,
+ submission_id TEXT NOT NULL REFERENCES study_submissions(id), text TEXT NOT NULL, source_refs TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS study_layouts(
+ actor_id TEXT NOT NULL REFERENCES study_principals(id), edition_id TEXT NOT NULL REFERENCES study_editions(id),
+ data TEXT NOT NULL, PRIMARY KEY(actor_id,edition_id)
+);

@@ -5,6 +5,7 @@ from .store import identifier, digest, canonical
 
 
 def record_interest(store, request, key):
+    if not isinstance(request.get('contact'),str):raise StudyError('invalid_contact')
     contact=request.get('contact','').strip().lower()
     if not re.fullmatch(r'[a-z0-9._+-]+@[a-z0-9.-]+\.invalid',contact) or request.get('consent') is not True:
         raise StudyError('synthetic_contact_and_consent_required')

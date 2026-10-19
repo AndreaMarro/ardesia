@@ -14,6 +14,7 @@ HINTS = (
 def evaluate_activity(activity_id, parameters, attempt=None):
     if activity_id != ACTIVITY_ID:
         raise StudyError('activity_not_supported',404)
+    if not isinstance(parameters,dict):raise StudyError('invalid_parameters')
     values = {}
     for key in ('radiusRatio','viscosity','length'):
         value = parameters.get(key,1)

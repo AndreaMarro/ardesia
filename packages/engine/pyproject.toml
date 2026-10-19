@@ -10,9 +10,16 @@ dependencies = [
 [project.scripts]
 lessonos = "lessonos.cli:main"
 
+[project.optional-dependencies]
+study = [
+    "pillow>=12,<13",
+    "pypdf>=6.13.3,<7",
+]
+
 [dependency-groups]
 dev = [
     "hypothesis>=6.155.2",
+    "pillow>=12,<13",
     "pypdf>=6.13.3",
     "pytest",
 ]
