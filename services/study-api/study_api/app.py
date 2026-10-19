@@ -48,7 +48,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             origin = request.headers.get('origin')
             if origin and origin != str(request.base_url).rstrip('/'):
                 return JSONResponse({'error':'origin_denied'}, status_code=403)
-            limit=20*1024*1024 if request.url.path=='/study/assets' else 16*1024*1024 if request.url.path=='/study/notebook/inspect' else 65536
+            # UTF-8/escaped 20k-character notes fit 256 KiB; notebook framing
+            # includes base64 for up to 50 MiB of decoded original assets.
+            limit=20*1024*1024 if request.url.path=='/study/assets' else 96*1024*1024 if request.url.path=='/study/notebook/inspect' else 256*1024
             data=bytearray()
             async for chunk in request.stream():
                 data.extend(chunk)

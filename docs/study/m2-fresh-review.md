@@ -20,3 +20,5 @@ Declined-to-judge adjudications:
 - Previously accepted M1 beyond M2 interactions: prior receipt remains historical; final M2 acceptance repeats the actual ten-context journey and cold reopen on the new build.
 
 No second independent review of the repair pass was performed. The author reproduces each finding RED→GREEN, reads the repair diff and runs final gates. No deferred style/minor findings were reported. Human gates remain open.
+
+Author follow-through found a request-budget compatibility regression: 20k-character Unicode notes exceeded the new 64 KiB envelope; notebooks with 12 MiB decoded attachments exceeded the 16 MiB base64 envelope. Both observed RED (413), then GREEN with bounded 256 KiB ordinary/96 MiB notebook bodies, preserving the existing 50 MiB decoded attachment limit. Oversize-request test still requires 413 at the explicit new boundary; no business validation relaxed. The scoped suite now has 82 passed. This is author verification, not another independent review.
