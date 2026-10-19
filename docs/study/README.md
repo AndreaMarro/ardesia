@@ -50,3 +50,7 @@ node bin/study-demo/verify-m2.mjs
 ```
 
 Il collaudo ripete M1 su un nuovo database, prova l’anteprima DRAFT e inviti dall’interfaccia sul build, riavvia un restore senza seed e controlla originali/memoria su HTTP. Cancella soltanto uno studente di una copia usa e getta e verifica che il restore del backup precedente riapplichi la cancellazione. Per riaprire un restore manualmente usare `serve.py --no-seed --data-dir DIRECTORY --port PORTA`: gli accessi devono essere riemessi per i soli attori ancora presenti.
+
+## Consegna su GitHub
+
+La [consegna M1/M2](GITHUB_DELIVERY.md) raccoglie il riepilogo verificato e l’archivio completo delle prove e dei quattro file di partenza, con percorsi locali normalizzati e senza credenziali o database runtime. Distingue lo SHA del codice collaudato dai commit successivi di pubblicazione.
